@@ -2,82 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A017252A3ED
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 15:55:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D4F852A405
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 15:58:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242208AbiEQNzt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 09:55:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42972 "EHLO
+        id S1348152AbiEQN6E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 09:58:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348083AbiEQNzr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 09:55:47 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DF8A39689
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 06:55:43 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id bx33so21831167ljb.12
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 06:55:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Sxr705jZC8qwBHiwQ0dlLfdaaSWTqvjEURwffcf7Xtk=;
-        b=pqjyv0Ute1e96047pfU5nKGgnaYqhyPiUOUSl3PZ561saMuArdMZd2qdK9kcOh4Mz2
-         nno4wpRxxJg13GrxWLppxtngA5iFNYAmzzjDFMa6D/Pai3Z5DfILW32LD0hjhyYHHIZq
-         ZHu3ps7Y355wMdJk9auRHkB/gDoSAx9nF8RQ5Og3h72QiNZk//zfCKf5v5HJmNtxjx23
-         JTr+NHb723MCTXISD2ZWKgxOCos92w4Evv4L5Dzu/PCAZLnfBbz2ZToJv6Nx1W5p+55l
-         ALHV0ThwaYygX152HWCGv3XtzYhtseOZSX0yu3+sINQVezPetq27rdnqT/agiyuPMhPa
-         IyWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Sxr705jZC8qwBHiwQ0dlLfdaaSWTqvjEURwffcf7Xtk=;
-        b=yJZz3uhWGjuCIah/92NVSuWXRLUCFl0MiVZUs1Eumu7JFrqIARHgQaYGmIrzFMz3UY
-         jvWGKhKFtWT1V/Aizb1vExmRWQHsQmG1sKtCtuzrEpG03lcwBmQ7RvOzVDG3FnD5sq+t
-         sJ4rhQRQjTAhewqe7bgzSD9RXD8GqXr1gtvnp4GNOWyjcPl79peB6Ij027wWUHJLQDzi
-         mR4EOflDd77pqa+Nbxk1BDsBg9kRIeuCD34DO2VFHiFi+zh7acdNxQqNT6TCFd4eura7
-         HGkGkxSoGGprFEipwBWoYWRi147IFw80b5yc+JCg/2iFn5KfbVMyOBzqJZ1Fg4CHRZKu
-         tREQ==
-X-Gm-Message-State: AOAM532a23c0n5KAs8X4YwpPkDMaU9LcadclrS8NBn7ANOEUM/EII4nJ
-        lVbmZ+G973tTqHV+HrRqSH3q/g==
-X-Google-Smtp-Source: ABdhPJxU3rEbOrP15QmzJWshAm2FKWF9dKPOC9EJhEy/iX80uWHvbEb/N3DSQEbjIKDF9xJDNDuXgw==
-X-Received: by 2002:a2e:b893:0:b0:250:6ab8:6e1a with SMTP id r19-20020a2eb893000000b002506ab86e1amr14034943ljp.193.1652795741365;
-        Tue, 17 May 2022 06:55:41 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id t10-20020a2e954a000000b0024b14fa6061sm1900075ljh.1.2022.05.17.06.55.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 May 2022 06:55:40 -0700 (PDT)
-Message-ID: <6c2ea5f7-3cc0-d43c-c667-18c25b64ff72@linaro.org>
-Date:   Tue, 17 May 2022 15:55:39 +0200
+        with ESMTP id S237547AbiEQN5m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 09:57:42 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB8233C4A7;
+        Tue, 17 May 2022 06:57:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id EC678CE1A5C;
+        Tue, 17 May 2022 13:57:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B493C3411A;
+        Tue, 17 May 2022 13:57:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1652795857;
+        bh=KwOBNdhdnb/8ytGEUEM5Zd4g0LGQZYEQdyjYJaTwoAs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=EujX2Y6rxyCjCCl5Rcb7vcEHHOrA4QKrJoZBjU8APW1Z0K0qbRN4SKPhQYiGGW09Z
+         79gCpaOC1lV6owAOHt8Dx3+mq2RimvV5EFcpnzLO18xprxhp9vOrqoYhOGhUF2ZJQ3
+         LGKb9FugzkFEloKf+9YMoa0fVpNXR124A3HqyEfKnjo0l2TermjHrIYKx2QFwN62Mk
+         rIHa8b2Gjghm3HXV3jSCH7I6I2Vx4uQBaOTFK7P2anu0T7bhrFSssUqWxwufhRaMxa
+         UPwmdQaS8rJ2hpjF5/OKl4qa5qs+GAYthu4bfdogha0i2oo9eealwEdzXG6RUQxlWf
+         1kHg5qjNXL0KQ==
+Received: by mail-ej1-f46.google.com with SMTP id n10so34901552ejk.5;
+        Tue, 17 May 2022 06:57:37 -0700 (PDT)
+X-Gm-Message-State: AOAM532zu6jpHENLXKfKCxMRsnq0rspLdC0poUi/78iHhefrSrJE4svA
+        dJD9P5zoNMwQ10cWL+WQA8hcdyO0ke3I05Zx9g==
+X-Google-Smtp-Source: ABdhPJwzgu1W9RnBAOnMWBllqPoxw52IE1DVZ3YRFzHKgW+BgyKyNlWfBhuprgxuC9BZxBvbGdCO79trhY14QFKNUQU=
+X-Received: by 2002:a17:906:a888:b0:6f3:e990:e554 with SMTP id
+ ha8-20020a170906a88800b006f3e990e554mr19872439ejb.19.1652795855281; Tue, 17
+ May 2022 06:57:35 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 02/20] dt-bindings: media: s5p-mfc: Convert s5p-mfc.txt to
- new DT schema
-Content-Language: en-US
-To:     Smitha T Murthy <smitha.t@samsung.com>,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
-        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
-        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
-        benjamin.gaignard@collabora.com, stanimir.varbanov@linaro.org,
-        dillon.minfei@gmail.com, david.plowman@raspberrypi.com,
-        mark.rutland@arm.com, robh+dt@kernel.org, krzk+dt@kernel.org,
-        andi@etezian.org, alim.akhtar@samsung.com,
-        aswani.reddy@samsung.com, pankaj.dubey@samsung.com,
-        linux-fsd@tesla.com
-References: <20220517125548.14746-1-smitha.t@samsung.com>
- <CGME20220517125554epcas5p4e87a71471525056281f1578f4f80f760@epcas5p4.samsung.com>
- <20220517125548.14746-3-smitha.t@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220517125548.14746-3-smitha.t@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+References: <8e48edc5e7b65f8dfd8b76c583e0265b9b97e62b.1652099944.git.geert+renesas@glider.be>
+ <20220517010408.GA3690472-robh@kernel.org> <CAMuHMdWnvYx93Xo4XHRi3vv8c1OCvX7zqGswHApRnc7VYM+X4g@mail.gmail.com>
+In-Reply-To: <CAMuHMdWnvYx93Xo4XHRi3vv8c1OCvX7zqGswHApRnc7VYM+X4g@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 17 May 2022 08:57:11 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJo-p+bh6VOKANq8pmMPbm1vZwmHt73yYaEhe9GfQ50dw@mail.gmail.com>
+Message-ID: <CAL_JsqJo-p+bh6VOKANq8pmMPbm1vZwmHt73yYaEhe9GfQ50dw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: phy: renesas,rcar-gen2-usb-phy: Convert to json-schema
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        "open list:GENERIC PHY FRAMEWORK" <linux-phy@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,266 +69,185 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/05/2022 14:55, Smitha T Murthy wrote:
-> Adds DT schema for s5p-mfc in yaml format.
-> 
+On Tue, May 17, 2022 at 1:59 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Rob,
+>
+> On Tue, May 17, 2022 at 3:04 AM Rob Herring <robh@kernel.org> wrote:
+> > On Mon, May 09, 2022 at 02:41:38PM +0200, Geert Uytterhoeven wrote:
+> > > Convert the Renesas R-Car Gen2 USB PHY Device Tree binding documentation
+> > > to json-schema.
+> > >
+> > > Add missing properties.
+> > > Drop the second example, as it doesn't add any value.
+> > >
+> > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > ---
+> > > Validation gives:
+> > >
+> > >     Documentation/devicetree/bindings/phy/renesas,rcar-gen2-usb-phy.example.dtb: usb
+> > >     -phy@e6590100: '#phy-cells' is a required property
+> > >           From schema: dt-schema/dtschema/schemas/phy/phy-provider.yaml
+> > >
+> > > The latter considers '#phy-cells' a required property, as the node name
+> > > matches "usb-phy".  But in this binding the actual PHY providers are the
+> > > child nodes.
+> > >
+> > > Is there a way to fix this? Overriding "#phy-cells" to "false" doesn't
+> > > work.
+> > > Should all nodes and child nodes be renamed? The (Linux) driver doesn't
+> > > care about the names of the children.
+> >
+> > There's an open issue in dtschema for this. I don't have an answer other
+> > than don't use 'phy' in the parent node name.
+>
+> IC...
+>
+> > > ---
+> > > This is the final conversion to json-schema of DT bindings for Renesas
+> > > ARM SoCs, hurray!
+> >
+> > Great, certainly looking better than some! My tracking in linux-next
+> > gives me this:
+> >
+> > For arm:
+> >
+> > Processing (r7|r8|r9|emev2|sh73a|gr-|iwg):
+> > warnings: 283
+> > undocumented compat: 32
+> >
+> > arch/arm/boot/dts/(r7|r8|r9|emev2|sh73a|gr-|iwg):32
+> > ['ams,as3711']
+>
+> Board component
+>
+> > ['arm,coresight-etm3x']
+>
+> ARM core
+>
+> > ['dlg,da9063-onkey']
+> > ['dlg,da9063-rtc']
+> > ['dlg,da9063-watchdog']
+> > ['dlg,da9063l']
+> > ['dlg,da9210']
+>
+> Board components
+>
+> > ['i2c-demux-pinctrl']
+>
+> I2C framework
+>
+> > ['renesas,pci-r8a7742', 'renesas,pci-rcar-gen2']
+> > ['renesas,pci-r8a7743', 'renesas,pci-rcar-gen2']
+> > ['renesas,pci-r8a7744', 'renesas,pci-rcar-gen2']
+> > ['renesas,pci-r8a7745', 'renesas,pci-rcar-gen2']
+> > ['renesas,pci-r8a7790', 'renesas,pci-rcar-gen2']
+> > ['renesas,pci-r8a7791', 'renesas,pci-rcar-gen2']
+> > ['renesas,pci-r8a7794', 'renesas,pci-rcar-gen2']
+> > ['renesas,pci-r9a06g032', 'renesas,pci-rzn1']
+>
+> https://lore.kernel.org/r/20220429134143.628428-3-herve.codina@bootlin.com
+>
+> > ['renesas,r2a11302ft']
+>
+> I2C device without bindings or upstream driver.
+>
+> > ['renesas,r9a06g032-dma', 'renesas,rzn1-dma']
+>
+> https://lore.kernel.org/r/20220427095653.91804-2-miquel.raynal@bootlin.com
+>
+> > ['renesas,r9a06g032-rtc', 'renesas,rzn1-rtc']
+>
+> https://lore.kernel.org/r/20220512143920.238987-2-miquel.raynal@bootlin.com
+>
+> > ['renesas,r9a06g032-wdt', 'renesas,rzn1-wdt']
+>
+> https://lore.kernel.org/r/20220413082527.155740-2-jjhiblot@traphandler.com
+>
+> > ['renesas,rzn1-dmamux']
+>
+> https://lore.kernel.org/r/20220421085112.78858-2-miquel.raynal@bootlin.com
+>
+> > ['renesas,usb-phy-r8a7742', 'renesas,rcar-gen2-usb-phy']
+> > ['renesas,usb-phy-r8a7743', 'renesas,rcar-gen2-usb-phy']
+> > ['renesas,usb-phy-r8a7744', 'renesas,rcar-gen2-usb-phy']
+> > ['renesas,usb-phy-r8a7745', 'renesas,rcar-gen2-usb-phy']
+> > ['renesas,usb-phy-r8a77470', 'renesas,rcar-gen2-usb-phy']
+> > ['renesas,usb-phy-r8a7790', 'renesas,rcar-gen2-usb-phy']
+> > ['renesas,usb-phy-r8a7791', 'renesas,rcar-gen2-usb-phy']
+> > ['renesas,usb-phy-r8a7794', 'renesas,rcar-gen2-usb-phy']
+>
+> This patch.
+>
+> > ['sil,sii9022']
+>
+> https://lore.kernel.org/r/3b2619682694050696e5c85269ccc4f864590e66.1638540704.git.geert+renesas@glider.be
+>
+> > ['st,stmpe-ts']
+> > ['st,stmpe811']
+>
+> Board components
+>
+> >
+> > For arm64:
+> >
+> > Processing renesas:
+> > warnings: 312
+> > undocumented compat: 15
+> >
+> > undocumented here means no schema.
+> >
+> > arch/arm64/boot/dts/renesas:15
+> > ['ilitek,ili2117']
+>
+> https://lore.kernel.org/r/0c5f06c9d262c1720b40d068b6eefe58ca406601.1638539806.git.geert+renesas@glider.be
+>
+> > ['micron,mt25qu512a', 'jedec,spi-nor']
+>
+> Board component
+>
+> > ['nxp,tda998x']
+>
+> https://lore.kernel.org/r/1f6bf58d76efc2e869b800534b818d1451ef98a2.1634822085.git.geert+renesas@glider.be
+>
+> > ['ovti,ov5645']
+>
+> Board component
+>
+> > ['renesas,r8a7795-mlp', 'renesas,rcar-gen3-mlp']
+> > ['renesas,r8a7796-mlp', 'renesas,rcar-gen3-mlp']
+> > ['renesas,r8a77961-mlp', 'renesas,rcar-gen3-mlp']
+> > ['renesas,r8a77965-mlp', 'renesas,rcar-gen3-mlp']
+> > ['renesas,r8a77990-mlp', 'renesas,rcar-gen3-mlp']
+> > ['renesas,r8a77995-mlp', 'renesas,rcar-gen3-mlp']
+>
+> Driver in staging without any bindings
+>
+> > ['renesas,r9a07g043-ssi', 'renesas,rz-ssi']
+>
+> https://lore.kernel.org/r/20220423133154.141027-1-biju.das.jz@bp.renesas.com
+>
+> > ['renesas,r9a07g043-tsu', 'renesas,rzg2l-tsu']
+>
+> https://lore.kernel.org/r/20220501081930.23743-1-biju.das.jz@bp.renesas.com
+>
+> > ['renesas,r9a07g043-usbphy-ctrl', 'renesas,rzg2l-usbphy-ctrl']
+>
+> https://lore.kernel.org/r/20220423134601.141975-1-biju.das.jz@bp.renesas.com
+>
+> > ['renesas,r9a07g043-wdt', 'renesas,rzg2l-wdt']
+>
+> https://lore.kernel.org/r/20220424071323.151757-1-biju.das.jz@bp.renesas.com
+>
+> > ['ti,pcm3168a']
+>
+> Board component
+>
+> > I guess board level components don't count and some might be pending.
+>
+> Some have been pending (or blocked) for a long time...
 
-Thank you for your patch. There is something to discuss/improve.
+Can you tell me which ones and I can apply them. If they have my tag
+already, then I tend to ignore them.
 
-> Cc: linux-fsd@tesla.com
-> Signed-off-by: Smitha T Murthy <smitha.t@samsung.com>
-> ---
->  .../devicetree/bindings/media/s5p-mfc.txt     | 77 +--------------
->  .../devicetree/bindings/media/s5p-mfc.yaml    | 98 +++++++++++++++++++
->  2 files changed, 99 insertions(+), 76 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/media/s5p-mfc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/s5p-mfc.txt b/Documentation/devicetree/bindings/media/s5p-mfc.txt
-> index aa54c8159d9f..f00241ed407f 100644
-> --- a/Documentation/devicetree/bindings/media/s5p-mfc.txt
-> +++ b/Documentation/devicetree/bindings/media/s5p-mfc.txt
-> @@ -1,76 +1 @@
-> -* Samsung Multi Format Codec (MFC)
-> -
-> -Multi Format Codec (MFC) is the IP present in Samsung SoCs which
-> -supports high resolution decoding and encoding functionalities.
-> -The MFC device driver is a v4l2 driver which can encode/decode
-> -video raw/elementary streams and has support for all popular
-> -video codecs.
-> -
-> -Required properties:
-> -  - compatible : value should be either one among the following
-> -	(a) "samsung,mfc-v5" for MFC v5 present in Exynos4 SoCs
-> -	(b) "samsung,mfc-v6" for MFC v6 present in Exynos5 SoCs
-> -	(c) "samsung,mfc-v7" for MFC v7 present in Exynos5420 SoC
-> -	(d) "samsung,mfc-v8" for MFC v8 present in Exynos5800 SoC
-> -	(e) "samsung,exynos5433-mfc" for MFC v8 present in Exynos5433 SoC
-> -	(f) "samsung,mfc-v10" for MFC v10 present in Exynos7880 SoC
-> -
-> -  - reg : Physical base address of the IP registers and length of memory
-> -	  mapped region.
-> -
-> -  - interrupts : MFC interrupt number to the CPU.
-> -  - clocks : from common clock binding: handle to mfc clock.
-> -  - clock-names : from common clock binding: must contain "mfc",
-> -		  corresponding to entry in the clocks property.
-> -
-> -Optional properties:
-> -  - power-domains : power-domain property defined with a phandle
-> -			   to respective power domain.
-> -  - memory-region : from reserved memory binding: phandles to two reserved
-> -	memory regions, first is for "left" mfc memory bus interfaces,
-> -	second if for the "right" mfc memory bus, used when no SYSMMU
-> -	support is available; used only by MFC v5 present in Exynos4 SoCs
-> -
-> -Obsolete properties:
-> -  - samsung,mfc-r, samsung,mfc-l : support removed, please use memory-region
-> -	property instead
-> -
-> -
-> -Example:
-> -SoC specific DT entry:
-> -
-> -mfc: codec@13400000 {
-> -	compatible = "samsung,mfc-v5";
-> -	reg = <0x13400000 0x10000>;
-> -	interrupts = <0 94 0>;
-> -	power-domains = <&pd_mfc>;
-> -	clocks = <&clock 273>;
-> -	clock-names = "mfc";
-> -};
-> -
-> -Reserved memory specific DT entry for given board (see reserved memory binding
-> -for more information):
-> -
-> -reserved-memory {
-> -	#address-cells = <1>;
-> -	#size-cells = <1>;
-> -	ranges;
-> -
-> -	mfc_left: region@51000000 {
-> -		compatible = "shared-dma-pool";
-> -		no-map;
-> -		reg = <0x51000000 0x800000>;
-> -	};
-> -
-> -	mfc_right: region@43000000 {
-> -		compatible = "shared-dma-pool";
-> -		no-map;
-> -		reg = <0x43000000 0x800000>;
-> -	};
-> -};
-> -
-> -Board specific DT entry:
-> -
-> -codec@13400000 {
-> -	memory-region = <&mfc_left>, <&mfc_right>;
-> -};
-> +This file has moved to s5p-mfc.yaml
-
-Instead entirely remove the file.
-
-> diff --git a/Documentation/devicetree/bindings/media/s5p-mfc.yaml b/Documentation/devicetree/bindings/media/s5p-mfc.yaml
-> new file mode 100644
-> index 000000000000..fff7c7e0d575
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/s5p-mfc.yaml
-> @@ -0,0 +1,98 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/s5p-mfc.yaml#
-
-Let's convert the name as well, so "samsung,s5p-mfc.yaml"
-
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Samsung Exynos Multi Format Codec (MFC)
-> +
-> +maintainers:
-> +  - Mauro Carvalho Chehab <mchehab@kernel.org>
-> +  - Rob Herring <robh+dt@kernel.org>
-> +  - Mark Rutland <mark.rutland@arm.com>
-> +  - Smitha T Murthy <smitha.t@samsung.com>
-
-Only people with access to HW, so you can put here Marek and yourself.
-
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - samsung,mfc-v5                  # Exynos4
-> +      - samsung,mfc-v6                  # Exynos5
-> +      - samsung,mfc-v7                  # Exynos5420
-> +      - samsung,mfc-v8                  # Exynos5800
-> +      - samsung,exynos5433-mfc          # Exynos5433
-> +      - samsung,mfc-v10                 # Exynos7880
-
-Ugh, how MFCv10 appeared here? Since 5433 we moved from versions to Soc
-compatibles as recommended... eh, please follow this convention, don't
-reverse it to other way.
-
-I propose to deprecated this in next patch and instead use SoC-based
-compatible.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description:
-> +      Phandle to MFC IP clock.
-
-Here and other places: s/Phandle//
-Instead describe what is it, e.g. "MFC IP clock"
-
-
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    description:
-> +      Must contain clock name (mfc) matching phandle in clocks
-> +      property.
-
-Skip description, its obvious. Instead list the items.
-
-> +    maxItems: 1
-
-No need, list the items.
-
-> +
-> +  interrupts:
-> +    description:
-> +      MFC interrupt number to the CPU.
-
-Skip description, it's obvious.
-
-> +    maxItems: 1
-> +
-> +  memory-region:
-> +    description:
-> +      From reserved memory binding phandles to two reserved
-> +      memory regions, first is for "left" mfc memory bus interfaces,
-> +      second if for the "right" mfc memory bus, used when no SYSMMU
-> +      support is available; used only by MFC v5 present in Exynos4 SoCs.
-> +    minItems: 1
-> +    maxItems: 2
-
-This needs allOf:if:then restricting two items to specific compatible.
-
-> +
-> +  iommus:
-> +    description:
-> +      Include the IOMMU domain MFC belong to.
-
-Skip description, it's obvious.
-
-> +    maxItems: 2
-> +
-
-What happened to power domains? You also removed them from the
-example... Does this pass dtbs_check?
-
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
-> +  - iommus
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +        /* Reserved memory specific DT entry for given board */
-> +        reserved-memory {
-
-Wrong indentation. Four spaces. See example schema.
-
-> +                #address-cells = <1>;
-> +                #size-cells = <1>;
-> +                ranges;
-> +
-> +                mfc_left: region@84000000 {
-> +                        compatible = "shared-dma-pool";
-> +                        no-map;
-> +                        reg = <0x84000000 0x800000>;
-> +                };
-> +
-> +                mfc_right: region@A9000000 {
-
-lower case hex addresses, everywhere.
-
-> +                        compatible = "shared-dma-pool";
-> +                        no-map;
-> +                        reg = <0xA9000000 0x800000>;
-> +                };
-> +        };
-> +
-> +        mfc_0: mfc0@12880000 {
-
-Generic node names, so mfc.
-
-> +                compatible = "samsung,mfc-v12";
-
-Does not look like you tested the bindings. Please run `make
-dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
-Be sure to test your bindings before sending them.
-
-> +                reg = <0x12880000 0x10000>;
-> +                clock-names = "mfc";
-> +                interrupts = <0 137 4>;
-
-Use interrupt defines.
-
-> +                clocks = <&clock_mfc 1>;
-> +                memory-region = <&mfc_left>, <&mfc_right>;
-> +                /* If IOMMU is present use below instead of memory-region property */
-> +                iommus = <&smmu_isp 0x1000 0x0>, <&smmu_isp 0x1400 0x0>;
-> +        };
-
-
-Best regards,
-Krzysztof
+Rob
