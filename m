@@ -2,79 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8CF1529749
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 04:19:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2007752979E
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 05:03:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239076AbiEQCT0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 22:19:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52500 "EHLO
+        id S229655AbiEQDDv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 23:03:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231314AbiEQCTV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 22:19:21 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2210403C2;
-        Mon, 16 May 2022 19:19:20 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B2EA5B816D4;
-        Tue, 17 May 2022 02:19:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7190EC385AA;
-        Tue, 17 May 2022 02:19:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1652753958;
-        bh=QHq01KWSMGiuXKgXM5MI2vADm0koj3FbWwa399IU7Cc=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=ZQmQzwx3Kwvo35oFeyW4x4xPzXjCLMhDRpISTXU7uQZA6M040CdPXJXj1QX+ZHDVx
-         ZTJ3bI4n27DOJog0/MZXryVcbeY1s5hNUpRrRJ9fCUQc5CIr9wH6Qd5BrwswGMHXL2
-         /0mEpteF3K6uIn0ewCkLsO0Cew0l0ayS3LrEe7380O6q/S5vq8HnIlJugn9rSaNhve
-         vmkGyHudzRfQIra58ute6wyeKdZ5YDyzSg7m2iaAo3OlXMdghjbSG1GawRcvb0USBo
-         uQl7AIamaku4ByCpzJLwjnozBmCxC864GJ3+SsbUbRAy85e1vTW3ncftEeUNEsg8cX
-         NUF51o1SOVkuQ==
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229536AbiEQDDu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 23:03:50 -0400
+Received: from conssluserg-01.nifty.com (conssluserg-01.nifty.com [210.131.2.80])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5160C28990;
+        Mon, 16 May 2022 20:03:48 -0700 (PDT)
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48]) (authenticated)
+        by conssluserg-01.nifty.com with ESMTP id 24H33Ume008206;
+        Tue, 17 May 2022 12:03:30 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-01.nifty.com 24H33Ume008206
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1652756610;
+        bh=JAkv9J2WuVb+Lx66ZtSMZCFFZ6CRvC9YXJPMi8gLvAM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Zs467IA/8d0EgkXw843SZV3whETHurMAWV39hkNTDRuh8jHD6+VH6Ys8tP8MDhhh2
+         +95kerirHD4p0gRzlZUFb+G/Jqr6i2lHDIgY1ra5F8sbWSkLSI3EfEi6L0Tyrr7ktd
+         OEm4u9TNJmLKBN/KyqhTvXl63MMOv9IwejCKAx8wQp0Twso9xYLqb3FN+Bwk0RCOP0
+         pTZrIPy4avzIExGBP/vs8q3fYoeTZxYBVtkvSpAPpsHWXN9NAGWgMBLUi4S/B1GfJm
+         WCopJTj+8zJVTJ9iF8x0xAhtghUAbYIkt785PlmpUJsoTAZkaUsv9y0HOybWIpcTJv
+         T3n/N6M4u5Gew==
+X-Nifty-SrcIP: [209.85.216.48]
+Received: by mail-pj1-f48.google.com with SMTP id l7-20020a17090aaa8700b001dd1a5b9965so1086948pjq.2;
+        Mon, 16 May 2022 20:03:30 -0700 (PDT)
+X-Gm-Message-State: AOAM533O7tHkz/vbcQYbfkcSLqoZy7EfKCqFRFShwKWLde+Edt6k3K+R
+        8BhErHJhAnrtMac3PXWwzosHTnYRSWK4o8dP66Y=
+X-Google-Smtp-Source: ABdhPJxAkwdSFjR+VPvxBZTeI26pMF/Mqre1No/sgmIzI/68PFLpXw454p1KT+CBzUKgXJlyrcp8r/laMUM3qW6Dqwg=
+X-Received: by 2002:a17:903:1205:b0:15e:8cbc:fd2b with SMTP id
+ l5-20020a170903120500b0015e8cbcfd2bmr20446798plh.99.1652756609881; Mon, 16
+ May 2022 20:03:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <b5ca5d417be079a2a40a6e79ac1b246b6359a49e.1652329411.git.qinjian@cqplus1.com>
-References: <cover.1652329411.git.qinjian@cqplus1.com> <b5ca5d417be079a2a40a6e79ac1b246b6359a49e.1652329411.git.qinjian@cqplus1.com>
-Subject: Re: [PATCH v15 04/10] dt-bindings: clock: Add bindings for SP7021 clock driver
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
-        mturquette@baylibre.com, tglx@linutronix.de, maz@kernel.org,
-        p.zabel@pengutronix.de, linux@armlinux.org.uk, arnd@arndb.de,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        Qin Jian <qinjian@cqplus1.com>
-To:     Qin Jian <qinjian@cqplus1.com>
-Date:   Mon, 16 May 2022 19:19:16 -0700
-User-Agent: alot/0.10
-Message-Id: <20220517021918.7190EC385AA@smtp.kernel.org>
-X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220510221333.2770571-1-robh@kernel.org> <CAK7LNAQYL7rkqsWfNSdS53_sf-SLqpuVeoSmZuGqRNNtScT6Hw@mail.gmail.com>
+ <20220517011214.GA3716531-robh@kernel.org>
+In-Reply-To: <20220517011214.GA3716531-robh@kernel.org>
+From:   Masahiro Yamada <masahiroy@kernel.org>
+Date:   Tue, 17 May 2022 12:02:52 +0900
+X-Gmail-Original-Message-ID: <CAK7LNAR_59AAEQ8wZzpmi5M4SyGspUGdyFgOqQR689DmpE_RCQ@mail.gmail.com>
+Message-ID: <CAK7LNAR_59AAEQ8wZzpmi5M4SyGspUGdyFgOqQR689DmpE_RCQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: Remove example file on dt-extract-example error
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_SOFTFAIL,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Qin Jian (2022-05-11 23:30:59)
-> +
-> +    extclk: osc0 {
-> +      compatible =3D "fixed-clock";
-> +      #clock-cells =3D <0>;
-> +      clock-frequency =3D <27000000>;
-> +      clock-output-names =3D "extclk";
-> +    };
-> +
-> +    clkc: clock-controller@9c000000 {
-> +      compatible =3D "sunplus,sp7021-clkc";
-> +      reg =3D <0x9c000000 0x280>;
+On Tue, May 17, 2022 at 10:12 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, May 11, 2022 at 09:27:00AM +0900, Masahiro Yamada wrote:
+> > On Wed, May 11, 2022 at 7:13 AM Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > As 'dt-extract-example' writes the example dts files to stdout, a file
+> > > is always created even on an error such as Ctrl-C. The resulting empty
+> > > file(s) then cause unexpected errors on subsequent builds. Fix this by
+> > > removing the output file on any error.
+> > >
+> >
+> >
+> > Did you really set it?
+>
+> Set what?
 
-The question is what other device compatible is in here? The reset
-controller?
+Sorry for the typo.   I meant "Did you really see it?"
 
-> +      clocks =3D <&extclk>;
-> +      #clock-cells =3D <1>;
-> +    };
-> +
+
+>
+> I'm sure I've gotten empty files which then throw errors on the next
+> run.
+
+
+Hmm, OK.
+
+When you observed this issue, were you using
+a pipe to another program?
+
+For example,
+
+  $  make  dt_binding_check  2>&1  |  tee  dt_binding_check.log
+
+
+
+
+
+> > The target deletion on interrupt is automatic
+> > since the following commit:
+> >
+> >
+> >
+> > commit 9c2af1c7377a8a6ef86e5cabf80978f3dbbb25c0
+> > Author: Masahiro Yamada <yamada.masahiro@socionext.com>
+> > Date:   Fri Jul 20 16:46:33 2018 +0900
+> >
+> >     kbuild: add .DELETE_ON_ERROR special target
+>
+> You're saying I shouldn't need this change? For some reason I do...
+>
+> Rob
+
+
+If .DELETE_ON_ERROR works as the manual [1] explains,
+
+[1] https://www.gnu.org/software/make/manual/make.html#Special-Targets
+
+the deletion of the target is automatic.
+
+
+Basically, it worked like that, except when Make is piped to another program.
+
+I asked this in GNU Make ML before.
+
+When Make is piped to another program, which is terminated by Ctrl-C,
+Make is also killed by SIGPIPE before cleaning up the incomplete targets.
+
+
+
+-- 
+Best Regards
+Masahiro Yamada
