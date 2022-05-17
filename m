@@ -2,82 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F57052A8E8
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 19:08:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D56EF52A911
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 19:21:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351343AbiEQRI3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 13:08:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57518 "EHLO
+        id S1343611AbiEQRVJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 13:21:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349851AbiEQRI2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 13:08:28 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0643427C9
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 10:08:25 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id d19so32437763lfj.4
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 10:08:25 -0700 (PDT)
+        with ESMTP id S1351409AbiEQRU5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 13:20:57 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECD20B48D
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 10:20:51 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id nk9-20020a17090b194900b001df2fcdc165so3169028pjb.0
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 10:20:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=+A/gqNgFRPEMJXVCfWemyO0vB3lRR0Hdpr7+C1w217k=;
-        b=KuYH9SfPm08o4zERjiaMVqprd20S354P0BHLOcpenPkSkL9RTHJzEvdAonyWDqEOcY
-         K5ojBvTLJlLKWm9NijAzwmd7DPHPsm/tEOssDFMCmBnBK+/aYV1W3Lb8QCC2xF2zxyqY
-         +dNzkoaJSy0G8ddWacS4h+4b1gzr7yHU7BPNfSziVFyy6xaeRM+yV/FT7BNBMNSuh4N1
-         Jrp7KdZS7w8213reU/sq75o2O169QjfQ4l4Fy6xOclcFW8lvSD+lM5LdOBk81vLTyG3o
-         HUVkZEPH83yLnkYC+uJZATVC4QVLEv1TyLOarqlGSt36LU8V3tSbNvhVTIpuztAhTlIL
-         wBXA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=qqJFZR8hTHMEpR03D7fICklADGJ1sACe7dmVDrtTPPA=;
+        b=ysKA7bOi5+9RdlYYFAsM9Hnm1Y0faip7O/uZx4Jtrfz0r6k4k9vYUggKvc5yQ1exMX
+         0Pwj7rSiWyjhXnLuAa1fGnu86owf5xZB9vxKXt7HfttlGj2yZzMka+qecyCOX9uSp5cY
+         UqTpAmywLrPUduIU5lo9vkJltg04KLwc8vGzsN4HDy2Jnt5RmvGUqK7ghg+RU4exZ6vV
+         utDNHvGDt6AEwWhhCSMvNpL88PIS7CnKCStA4CTurHtGE66zyvTeVATQ/VFDPEqYO0Ey
+         7jxg4aj0txKQirK+i5UXExqVypOCrnjFbiHxI/V18PcD3EcvzB9R2TEgawxCCzAaKEnG
+         43qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=+A/gqNgFRPEMJXVCfWemyO0vB3lRR0Hdpr7+C1w217k=;
-        b=nng+s9VwNVYN4QbrvVD6IuOBmOpEOJPmQtRecEXUQbUZDXM3stJk70Ix4HizAVpH8v
-         76rVKfvogWItoa7wErOtAniZOXRwdDl5EsRKGF4vpdlhx70KICMPJfFVS5Av6eoPqjsR
-         RfI7AA9QJOWT6yOdKuUao/sc7sroIpBNZn0Dup86ygZf2Dj7QVOwa/7OlA4NfjRAPaur
-         oBf7kGud0AJ9KScKvITZeLsz6AMQzbR7afa0N2SYtoLm9Ei35rkU9bbTuEpVgbud7wDW
-         1KksG3JQSWtpGRPLhCOoLSwLwdNa3XNBifrDKAO2SJRrDz33/ba3gF47rh/W4vmyMzX8
-         t7ag==
-X-Gm-Message-State: AOAM530dssPpExV9Q0Z7y6b93uvgq9Fw8/MZZzdgmfBsbqhooo17BLIg
-        zjI60y5qmqSSqHNaSngej6xeMw==
-X-Google-Smtp-Source: ABdhPJyTAaGcL35nGkVaSYQS4H7pcZ+EyaR+FCeKkh/hhqsUd3BG4KFAUQ5g6KvqZn3Dej0hS0ku2Q==
-X-Received: by 2002:a05:6512:258d:b0:477:a2a3:53ba with SMTP id bf13-20020a056512258d00b00477a2a353bamr3132854lfb.468.1652807304185;
-        Tue, 17 May 2022 10:08:24 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id v2-20020ac258e2000000b0047255d211c0sm8573lfo.239.2022.05.17.10.08.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 May 2022 10:08:23 -0700 (PDT)
-Message-ID: <5efdd020-3665-810c-f62d-ed3771757ada@linaro.org>
-Date:   Tue, 17 May 2022 19:08:22 +0200
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=qqJFZR8hTHMEpR03D7fICklADGJ1sACe7dmVDrtTPPA=;
+        b=FPYp/HKNUuBbCLjpM8COVXVlLAg+gtDvbrowp9MemDZwjDINb6DwoLfeO+qUhe/0TD
+         P66wC10Gcr9l2pv15sdbvjVxnmZySfQaJCG2r6s+YfwEdayKfOxGOWrEKYqUTV1nZiZF
+         rIOSlA8amBnBaueQ4eorD38dR1+F8daIQEd7jaf13/32NwD2D9b1FsxoiDkO5keszvwR
+         QytiUb2Hj7yo/RMLy49WMAbGkayR1TWWhhiS23DYcFXRmqqb27X0ic0vc2R88a6Daj4Q
+         LxCdmYRLucDhgcKoqqJyVcKFJixfUmPq288o+kpneRMgYfBM3ViYJjgQg+CBdooWB0Yk
+         AoWw==
+X-Gm-Message-State: AOAM533zieyplu1f3yGzKtW7E5FvCz733QunrzASF5lH1qkMREDVxqBy
+        amvKCT1lXmWLjb7y71SfTkYO
+X-Google-Smtp-Source: ABdhPJyhG3jIHWQ/4DWEUJffCPPujUE5uN8SWJy3rwsGgWf/e3ngmDrUje9ryR1pgmwqMjvcBEexhg==
+X-Received: by 2002:a17:90a:8b91:b0:1be:db25:eecd with SMTP id z17-20020a17090a8b9100b001bedb25eecdmr25779420pjn.10.1652808051232;
+        Tue, 17 May 2022 10:20:51 -0700 (PDT)
+Received: from thinkpad ([117.207.31.8])
+        by smtp.gmail.com with ESMTPSA id i7-20020a63cd07000000b003c14af5063esm8882115pgg.86.2022.05.17.10.20.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 May 2022 10:20:50 -0700 (PDT)
+Date:   Tue, 17 May 2022 22:50:42 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Frank Li <Frank.Li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 15/17] PCI: dwc: Introduce dma-ranges property support
+ for RC-host
+Message-ID: <20220517172042.GC4528@thinkpad>
+References: <20220503214638.1895-1-Sergey.Semin@baikalelectronics.ru>
+ <20220503214638.1895-16-Sergey.Semin@baikalelectronics.ru>
+ <20220512135708.GC35848@thinkpad>
+ <20220512194135.ku73pae2xdvyocx7@mobilestation>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 00/13] dt-bindings/arm64: dts: qcom: minor cleanups with
- DT schema
-Content-Language: en-US
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        USB list <linux-usb@vger.kernel.org>, arm-soc <soc@kernel.org>
-References: <20220504131923.214367-1-krzysztof.kozlowski@linaro.org>
- <CAMuHMdVc3kShpp8wieX1SSA8-37m8PbxpqKRs5+gxz8Dm6QwsA@mail.gmail.com>
- <3bdb65cd-cdad-6e10-c921-5ec3a9b4c9dd@linaro.org>
- <YoNxoUwjJIxyAi3l@kroah.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <YoNxoUwjJIxyAi3l@kroah.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220512194135.ku73pae2xdvyocx7@mobilestation>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,67 +85,180 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/05/2022 11:57, Greg Kroah-Hartman wrote:
-> On Tue, May 17, 2022 at 11:27:39AM +0200, Krzysztof Kozlowski wrote:
->> On 17/05/2022 11:19, Geert Uytterhoeven wrote:
->>> On Wed, May 4, 2022 at 5:13 PM Krzysztof Kozlowski
->>> <krzysztof.kozlowski@linaro.org> wrote:
->>>> The patches are independent, so they can be picked up as is (or everything
->>>> through Qualcomm SoC tree).
->>>>
->>>> Best regards,
->>>> Krzysztof
->>>>
->>>> Krzysztof Kozlowski (13):
->>>>   dt-bindings: soc: qcom: aoss: document qcom,sm8450-aoss-qmp
->>>>   dt-bindings: soc: qcom: qcom,smd-rpm: add power-controller
->>>>   dt-bindings: usb: qcom,dwc3: add IPQ8074, MSM8994, QCS404 and SM6125
->>>>   dt-bindings: usb: qcom,dwc3: fix clock matching
->>>>   arm64: dts: qcom: add missing AOSS QMP compatible fallback
->>>>   arm64: dts: qcom: correct DWC3 node names and unit addresses
->>>>   arm64: dts: qcom: ipq8074: add dedicated qcom,ipq8074-dwc3 compatible
->>>>   arm64: dts: qcom: msm8994: add dedicated qcom,msm8994-dwc3 compatible
->>>>   arm64: dts: qcom: sm6125: add dedicated qcom,sm6125-dwc3 compatible
->>>>   arm64: dts: qcom: qcs404: add dedicated qcom,qcs404-dwc3 compatible
->>>>   arm64: dts: qcom: msm8996: add clock-names to DWC3 USB node
->>>>   arm64: dts: qcom: align DWC3 USB clocks with DT schema
->>>>   arm64: dts: qcom: align DWC3 USB interrupts with DT schema
->>>
->>> Looks like all but the first two were applied to usb-next by Greg,
->>> causing conflicts with the soc/for-next tree.
->>
->> Also this one was not applied:
->> arm64: dts: qcom: add missing AOSS QMP compatible fallback
->>
->> However I did not get any conflict message...
->>
->> The DTS patches should not go via Greg's tree. They are sent together so
->> there will be no warnings from Rob's bot. This is a common practice for
->> dt-binding fixes.
->>
->> Bjorn,
->> Any preference from you? Shall I send missing three patches to you?
->>
->> What about conflicts with Greg's tree?
+On Thu, May 12, 2022 at 10:41:35PM +0300, Serge Semin wrote:
+> On Thu, May 12, 2022 at 07:27:08PM +0530, Manivannan Sadhasivam wrote:
+> > On Wed, May 04, 2022 at 12:46:36AM +0300, Serge Semin wrote:
+> > > In accordance with the generic PCIe Root Port DT-bindings the "dma-ranges"
+> > > property has the same format as the "ranges" property. The only difference
+> > > is in their semantics. The "dma-ranges" property describes the PCIe-to-CPU
+> > > memory mapping in opposite to the CPU-to-PCIe mapping of the "ranges"
+> > > property. Even though the DW PCIe controllers are normally equipped with
+> > > internal Address Translation Unit which inbound and outbound tables can be
+> > > used to implement both properties semantics, it was surprise for me to
+> > > discover that the host-related part of the DW PCIe driver currently
+> > > supports the "ranges" property only while the "dma-ranges" windows are
+> > > just ignored. Having the "dma-ranges" supported in the driver would be
+> > > very handy for the platforms, that don't tolerate the 1:1 CPU-PCIe memory
+> > > mapping and require customized the PCIe memory layout. So let's fix that
+> > > by introducing the "dma-ranges" property support.
+> > > 
+> > > First of all we suggest to rename the dw_pcie_prog_inbound_atu() method to
+> > > dw_pcie_prog_ep_inbound_atu() and create a new version of the
+> > > dw_pcie_prog_inbound_atu() function. Thus we'll have two methods for RC
+> > > and EP controllers respectively in the same way as it has been developed
+> > > for the outbound ATU setup methods.
+> > > 
+> > > Secondly aside with the memory window index and type the new
+> > > dw_pcie_prog_inbound_atu() function will accept CPU address, PCIe address
+> > > and size as its arguments. These parameters define the PCIe and CPU memory
+> > > ranges which will be used to setup the respective inbound ATU mapping. The
+> > > passed parameters need to be verified against the ATU ranges constraints
+> > > in the same way as it is done for the outbound ranges.
+> > > 
+> > > Finally the DMA-ranges detected for the PCIe controller need to be
+> > > converted into the inbound ATU entries during the host controller
+> > > initialization procedure. It will be done in the framework of the
+> > > dw_pcie_iatu_setup() method. Note before setting the inbound ranges up we
+> > > need to disable all the inbound ATU entries in order to prevent unexpected
+> > > PCIe TLPs translations defined by some third party software like
+> > > bootloader.
+> > > 
+> > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > > ---
+> > >  .../pci/controller/dwc/pcie-designware-ep.c   |  4 +-
+> > >  .../pci/controller/dwc/pcie-designware-host.c | 32 ++++++++++-
+> > >  drivers/pci/controller/dwc/pcie-designware.c  | 57 ++++++++++++++++++-
+> > >  drivers/pci/controller/dwc/pcie-designware.h  |  6 +-
+> > >  4 files changed, 90 insertions(+), 9 deletions(-)
+> > > 
+> > > diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> > > index c62640201246..9b0540cfa9e8 100644
+> > > --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
+> > > +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> > > @@ -167,8 +167,8 @@ static int dw_pcie_ep_inbound_atu(struct dw_pcie_ep *ep, u8 func_no, int type,
+> > >  		return -EINVAL;
+> > >  	}
+> > >  
+> > > -	ret = dw_pcie_prog_inbound_atu(pci, func_no, free_win, type,
+> > > -				       cpu_addr, bar);
+> > > +	ret = dw_pcie_prog_ep_inbound_atu(pci, func_no, free_win, type,
+> > > +					  cpu_addr, bar);
+> > >  	if (ret < 0) {
+> > >  		dev_err(pci->dev, "Failed to program IB window\n");
+> > >  		return ret;
+> > > diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> > > index 7caca6c575a5..9cb406f5c185 100644
+> > > --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> > > +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> > > @@ -612,12 +612,15 @@ static int dw_pcie_iatu_setup(struct pcie_port *pp)
+> > >  	}
+> > >  
+> > >  	/*
+> > > -	 * Ensure all outbound windows are disabled before proceeding with
+> > > -	 * the MEM/IO ranges setups.
+> > > +	 * Ensure all out/inbound windows are disabled before proceeding with
+> > > +	 * the MEM/IO (dma-)ranges setups.
+> > >  	 */
+> > >  	for (i = 0; i < pci->num_ob_windows; i++)
+> > >  		dw_pcie_disable_atu(pci, PCIE_ATU_REGION_DIR_OB, i);
+> > >  
+> > > +	for (i = 0; i < pci->num_ib_windows; i++)
+> > > +		dw_pcie_disable_atu(pci, PCIE_ATU_REGION_DIR_IB, i);
+> > > +
+> > >  	i = 0;
+> > >  	resource_list_for_each_entry(entry, &pp->bridge->windows) {
+> > >  		if (resource_type(entry->res) != IORESOURCE_MEM)
+> > > @@ -654,9 +657,32 @@ static int dw_pcie_iatu_setup(struct pcie_port *pp)
+> > >  	}
+> > >  
+> > >  	if (pci->num_ob_windows <= i)
+> > > -		dev_warn(pci->dev, "Resources exceed number of ATU entries (%d)\n",
+> > > +		dev_warn(pci->dev, "Ranges exceed outbound iATU size (%d)\n",
+> > >  			 pci->num_ob_windows);
+> > >  
+> > > +	i = 0;
+> > > +	resource_list_for_each_entry(entry, &pp->bridge->dma_ranges) {
+> > > +		if (resource_type(entry->res) != IORESOURCE_MEM)
+> > > +			continue;
+> > > +
+> > > +		if (pci->num_ib_windows <= i)
+> > > +			break;
+> > > +
+> > > +		ret = dw_pcie_prog_inbound_atu(pci, i++, PCIE_ATU_TYPE_MEM,
+> > > +					       entry->res->start,
+> > > +					       entry->res->start - entry->offset,
+> > > +					       resource_size(entry->res));
+> > > +		if (ret) {
+> > > +			dev_err(pci->dev, "Failed to set DMA range %pr\n",
+> > > +				entry->res);
+> > > +			return ret;
+> > > +		}
+> > > +	}
+> > > +
+> > > +	if (pci->num_ib_windows <= i)
+> > > +		dev_warn(pci->dev, "Dma-ranges exceed inbound iATU size (%u)\n",
+> > > +			 pci->num_ib_windows);
+> > > +
+> > >  	return 0;
+> > >  }
+> > >  
+> > > diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
+> > > index 747e252c09e6..33718ed6c511 100644
+> > > --- a/drivers/pci/controller/dwc/pcie-designware.c
+> > > +++ b/drivers/pci/controller/dwc/pcie-designware.c
+> > > @@ -397,8 +397,61 @@ static inline void dw_pcie_writel_atu_ib(struct dw_pcie *pci, u32 index, u32 reg
+> > >  	dw_pcie_writel_atu(pci, PCIE_ATU_REGION_DIR_IB, index, reg, val);
+> > >  }
+> > >  
+> > > -int dw_pcie_prog_inbound_atu(struct dw_pcie *pci, u8 func_no, int index,
+> > > -			     int type, u64 cpu_addr, u8 bar)
+> > > +int dw_pcie_prog_inbound_atu(struct dw_pcie *pci, int index, int type,
+> > > +			     u64 cpu_addr, u64 pci_addr, u64 size)
+> > > +{
+> > > +	u64 limit_addr = pci_addr + size - 1;
+> > > +	u32 retries, val;
+> > > +
+> > > +	if ((limit_addr & ~pci->region_limit) != (pci_addr & ~pci->region_limit) ||
+> > > +	    !IS_ALIGNED(cpu_addr, pci->region_align) ||
+> > > +	    !IS_ALIGNED(pci_addr, pci->region_align) ||
+> > > +	    !IS_ALIGNED(size, pci->region_align) ||
+> > 
 > 
-> If I need to revert anything from my tree, please let me know.  Trying
-> to figure out who should, and should not, take patches like this is
-> driving me crazy...
+> > Why do you want the size to be aligned? What if I want to transfer a small size
+> > buffer?
+> > 
+> > Same question applies to outbound programming as well.
+> 
+> You can't program a region with the unaligned size by the DW PCIe CSRs
+> design. The limit address lower bits are read-only and fixed with
+> one's in accordance with the IP-core synthesize parameter
+> CX_ATU_MIN_REGION_SIZE. So the mapping is always performed in the
+> CX_ATU_MIN_REGION_SIZE chunks.
+> 
+> IATU_LIMIT_ADDR_OFF_{IN,OUT}BOUND.LIMIT_ADDR_HW = 
+> {(CX_ATU_MIN_REGION_SIZE == 65536) ? "0xffff" :
+>  (CX_ATU_MIN_REGION_SIZE == 32768) ? "0x7fff" :
+>  (CX_ATU_MIN_REGION_SIZE == 16384) ? "0x3fff" :
+>  (CX_ATU_MIN_REGION_SIZE == 8192)  ? "0x1fff" :
+>  (CX_ATU_MIN_REGION_SIZE == 4096)  ? "0xfff" : "0xffff"}
+> 
 
-Sorry for the confusion Greg. I marked preferred merging strategy in the
-cover letter. I am trying to sort it out with Bjorn. The conflict will
-hit later Linus and it is auto-solvable with decent mergetool, but for a
-human's eye it is a confusing diff.
+Right. Even though the minimum size that could be mapped is 4k, I could still
+use that 4k size for mapping small buffers also. So you should not be erroring
+out here if the size is not aligned. I know that it is a waste of memory but
+that doesn't mean that it won't work.
 
-Some more background:
-Patches marked with "dts" prefix should always go via respective arm-soc
-maintainer, not only to reduce conflicts, but also to keep hardware
-description (Devicetree sources, DTS) separate from implementation.
-Otherwise some folks like to combine ABI-breaking changes in drivers
-together with DTS patches, so from the kernel perspective it looks like
-there is no ABI breakage. But there is, just not directly visible.
-Therefore arm-soc folks always insist on having DTS changes in separate
-branches, so this split driver-DTS is clear.
+Thanks,
+Mani
 
-Best regards,
-Krzysztof
+> -Sergey
+> 
+> > 
+> > Thanks,
+> > Mani
+> > 
+> > -- 
+> > மணிவண்ணன் சதாசிவம்
+
+-- 
+மணிவண்ணன் சதாசிவம்
