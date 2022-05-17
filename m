@@ -2,98 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98932529C94
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 10:34:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08023529CA1
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 10:37:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243158AbiEQIeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 04:34:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44950 "EHLO
+        id S243436AbiEQIhO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 04:37:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236144AbiEQIeL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 04:34:11 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F25E44339A;
-        Tue, 17 May 2022 01:34:09 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 2B88F1F41ECB
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1652776448;
-        bh=LCe72gf7Q6QuyRU8/hNAkV44/40CUOPrEMqg9amSQ6k=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=mWuOx6AFAnuY4LuC4el83eJaIr8+U3BZJlHbPUYkQtJljV6YtNFTt7BsfuUSe0+Be
-         Kkt1sSbONVTRTrxKUd3jMN1iqIOJ7woU8CjO16EYzUO4NPpj5Sq9lW2srgPc27jPUM
-         D+jR1YYzKTzx8Zz4tr+OuxurKqpxGJdEhi4gzziD+eKoRCMRHXJxK2rvyUx1hAxThA
-         pJlf75oPSboAcQlnABY1MKvccRmjm2CogQqQW9bqiUmw2HwzHWltElzn17Pf9oh5hD
-         KCJ1+roGMSkFEiwkxb87NuoGWHbfsaMMKlrs3CCswLO9CealVlEVy1DMqNeAJbCb3R
-         Pi/bAk0pq/VYA==
-Message-ID: <ca40156f-5bc1-ef3a-517e-6ad61e9bf3df@collabora.com>
-Date:   Tue, 17 May 2022 10:34:05 +0200
+        with ESMTP id S243431AbiEQIhK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 04:37:10 -0400
+Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39E143D1C0;
+        Tue, 17 May 2022 01:37:09 -0700 (PDT)
+Received: by mail-qv1-f43.google.com with SMTP id k8so360839qvm.9;
+        Tue, 17 May 2022 01:37:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=diTzJoBHU8EeLBqHq5Me1Ruh4X/r4hmR4tb/bosfltw=;
+        b=TGHLk+GfdqVDqmFqYbFcH/AkJXcHXTA1xCnr4TGBK2OLtMMFvQ57vHzNLL52/wXdN+
+         6TJ8thNtdeSvBV6gmVkKuxOtLkr5VZlZI8U2FnBJl2dB38cA5fic6Ntu/G6RtIkPyLov
+         6abQrdyttbx4J2feFHtl3hl+YShFIewCrIp7iCQb3RdxdpgBFqR9xc+DBHwPimDpwedY
+         KuA4WC1Tut3pXe5/ULKVLgYIOMwlbo64FVVI2dKSr7rkYAHwMNISloJtcHmqSPTVisG/
+         ZwRex7vL4GfEbMQ8L+Gj/mBWNFck8q/NcSvFBCXBqf9383GrhRN67iyM7MKHcq1EY1C0
+         GmVA==
+X-Gm-Message-State: AOAM5310EU90gVUiLko3SKyc2EzAZ7Jz3IE3dsD7VTabh3c82GqWPE88
+        wUynEnveyTjd6aYVcyR/L/hhICoil3HWrA==
+X-Google-Smtp-Source: ABdhPJxZ+2fjjI0hRydOPArGUCzxfW5JgkNPOtL8el9fcvWnxhjQ86EPaeczsqLKTZcKazkgmVpdDQ==
+X-Received: by 2002:a05:6214:2523:b0:460:2238:59a0 with SMTP id gg3-20020a056214252300b00460223859a0mr19313180qvb.20.1652776628027;
+        Tue, 17 May 2022 01:37:08 -0700 (PDT)
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
+        by smtp.gmail.com with ESMTPSA id o7-20020a37be07000000b0069fc13ce203sm7761857qkf.52.2022.05.17.01.37.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 May 2022 01:37:07 -0700 (PDT)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-2ff155c239bso34448687b3.2;
+        Tue, 17 May 2022 01:37:07 -0700 (PDT)
+X-Received: by 2002:a81:ad11:0:b0:2fe:fb00:a759 with SMTP id
+ l17-20020a81ad11000000b002fefb00a759mr9791139ywh.283.1652776627031; Tue, 17
+ May 2022 01:37:07 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: Add MediaTek MT6795 pinctrl
- bindings
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     linus.walleij@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, sean.wang@kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com, nfraprado@collabora.com
-References: <20220505083757.11288-1-angelogioacchino.delregno@collabora.com>
- <20220505083757.11288-2-angelogioacchino.delregno@collabora.com>
- <20220517000657.GA3609297-robh@kernel.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220517000657.GA3609297-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220427095653.91804-1-miquel.raynal@bootlin.com> <20220517103100.4da9ebe5@xps-13>
+In-Reply-To: <20220517103100.4da9ebe5@xps-13>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 17 May 2022 10:36:55 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWF7W=cov89AAkscYAaK0nmshNPuzYLtQbEtRiOQTquYg@mail.gmail.com>
+Message-ID: <CAMuHMdWF7W=cov89AAkscYAaK0nmshNPuzYLtQbEtRiOQTquYg@mail.gmail.com>
+Subject: Re: [PATCH v12 0/9] RZN1 DMA support
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>,
+        Rob Herring <robh@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 17/05/22 02:06, Rob Herring ha scritto:
-> On Thu, May 05, 2022 at 10:37:56AM +0200, AngeloGioacchino Del Regno wrote:
->> Add devicetree and pinfunc bindings for MediaTek Helio X10 MT6795.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   .../pinctrl/mediatek,pinctrl-mt6795.yaml      | 224 +++++
->>   include/dt-bindings/pinctrl/mt6795-pinfunc.h  | 908 ++++++++++++++++++
->>   2 files changed, 1132 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,pinctrl-mt6795.yaml
->>   create mode 100644 include/dt-bindings/pinctrl/mt6795-pinfunc.h
->>
+Hi Miquel,
 
-..snip..
+On Tue, May 17, 2022 at 10:31 AM Miquel Raynal
+<miquel.raynal@bootlin.com> wrote:
+> miquel.raynal@bootlin.com wrote on Wed, 27 Apr 2022 11:56:44 +0200:
+> > This is the series bringing DMA support to RZN1 platforms.
+> > The UART changes regarding DMA support has been merged into tty-next
+> > already.
+> >
+> > There is no other conflicting dependency with the other series, so these
+> > patches (all but DTS) can go though the dmaengine tree I believe.
+>
+> As all patches the patches in this series have received a fairly good
+> amount of reviews, as well as all the necessary tags since a few weeks
+> already, I was hoping to see it applied for the next merge window. Is
+> there something still blocking its acceptance? Let me know if it is
+> the case and I will do the necessary to make them fit.
 
->> diff --git a/include/dt-bindings/pinctrl/mt6795-pinfunc.h b/include/dt-bindings/pinctrl/mt6795-pinfunc.h
->> new file mode 100644
->> index 000000000000..4888bb7fb9cf
->> --- /dev/null
->> +++ b/include/dt-bindings/pinctrl/mt6795-pinfunc.h
->> @@ -0,0 +1,908 @@
->> +/* SPDX-License-Identifier: GPL-2.0-only */
-> 
-> Dual license please.
-> 
+> > Miquel Raynal (9):
+> >   dt-bindings: dmaengine: Introduce RZN1 dmamux bindings
+> >   dt-bindings: clock: r9a06g032-sysctrl: Reference the DMAMUX subnode
+> >   dt-bindings: dmaengine: Introduce RZN1 DMA compatible
+> >   clk: renesas: r9a06g032: Export function to set dmamux
+> >   dmaengine: dw: dmamux: Introduce RZN1 DMA router support
+> >   clk: renesas: r9a06g032: Probe possible children
+> >   dmaengine: dw: Add RZN1 compatible
+> >   ARM: dts: r9a06g032: Add the two DMA nodes
+> >   ARM: dts: r9a06g032: Describe the DMA router
 
-Whoooops!
+The DTS patches have been applied to renesas-devel, and have
+already made their way to soc/for-next.
 
-Sorry, my intention was to indeed put (GPL-2.0-only OR BSD-3-Clause) here,
-like I've done for the others.
-I'm sending a v4 with the right license right away.
+Gr{oetje,eeting}s,
 
-Thanks for making me notice this unintentional mistake.
+                        Geert
 
-Regards,
-Angelo
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
