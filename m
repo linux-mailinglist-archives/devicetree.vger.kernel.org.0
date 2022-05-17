@@ -2,113 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC5BC529CD4
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 10:43:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13345529CDF
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 10:48:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243543AbiEQIn3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 04:43:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38646 "EHLO
+        id S243796AbiEQIsQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 04:48:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243645AbiEQInW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 04:43:22 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60B994504B
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 01:43:20 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id ch13so33198783ejb.12
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 01:43:20 -0700 (PDT)
+        with ESMTP id S240764AbiEQIsJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 04:48:09 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3A3F43ADB;
+        Tue, 17 May 2022 01:48:07 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id r23so7711587wrr.2;
+        Tue, 17 May 2022 01:48:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=2H+kyojoKMIqacwlCH+yjlqbOTerfAkahQ6Tr2/rTHg=;
-        b=RuxlII7DDT22gV3GAwwJTVmCMCV4pDM4pbh+o3BD/8obibk5uM02ZTj7eCUeBuVoXH
-         SN/TOA4EpDEQgZUVUSqNFUl8r/odk0k6Zw2w6nGkGPVivm4uqhHAzIb1S0exTpPv/CVl
-         UHNifheqVZ1n43+Hxneac6yJGSZh/KVMplobKOtY9icqW1fuAFoVZhSdTigz5mwd3+I9
-         LFiOVvcXzA+zcGoFSQ03X+W7J0+jB3YqoA2oQUxAblos7JNxydqJNQttB2HhBmSelDIB
-         s5qWALHMM6w14rAV2KzlragLqUThmueQe93Fa9sZ28DAJ+9KrhZEvToL+TyR6qecoRGK
-         EVSw==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:content-language:to:cc
+         :references:from:subject:in-reply-to:content-transfer-encoding;
+        bh=dYNmO9yR7Q7576xbxhOmOadNAWD8PBDUv92pl5HZCXs=;
+        b=F7g+xOm9FjaBFZkKHw9RG5giyrBniDa8HRlmwqzWRkPCGsgNMH0x3OgIgl6IHGcOu2
+         m5iLNUOMlW+ZmanHnMaDUteT2t44SS4tMBmYlCBKLAMjyLPu3bCp3b1MMGoMSFNRYwUw
+         GpdSvsmuxvpq7qXdxaWfZ+IEJVECVYTSRTHzHUDuZYmI3UFLsatDN9lYH0gWsy97yh4j
+         UUYx7Ef9njEUVlgDrCQiPzJ9losGprQp0PSr2hKETLIs1i8oB73P300tJaQBpKx57Fj6
+         xDoLCZfm/lttrhl62hal3RZB/yGZMeQTqnDv3jrBg+45yWqhjyVRzgcnZz9+yEwgs1Wz
+         JdtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:message-id:date:mime-version:user-agent
+         :content-language:to:cc:references:from:subject:in-reply-to
          :content-transfer-encoding;
-        bh=2H+kyojoKMIqacwlCH+yjlqbOTerfAkahQ6Tr2/rTHg=;
-        b=3mhQVl8uP7B1Wisb6lUUFwdHPHzCS6L7jtRQgejh4vWmEZGlxMVA81urlNgZEDxewE
-         nWdByIrJqSLGZYDBEsARDzmaI4DM/60WZMk+HF/PCMJaEesJ3C06YL4Mx9ClPS6XGhvV
-         6kCymMqxBuadUTp4CJuqUA7mP2XBRe6Clvu2j2z291PaWB6VVxCxUJ1+397VYOGC+CiM
-         5AfSH3JHyIPu7kMa6EIXzWiZxreXY1Vb+FfWN3/39rxHVYTWWUmBT31y2Z39z3r2AVyY
-         1LR3sCn5mszAml7k0MY2AlKM5siEQpxE0JhHnGk/gesWYIUGGCjzZ6kOAKhh0HSTLp+j
-         7siA==
-X-Gm-Message-State: AOAM533hFKTyULv1FQR+oMjCAe3IN8dxFCBcmXBGnhci4VCd0Yi8LiXs
-        ZtOKZyoQ8YNSQzeY67Gy34U+7Q==
-X-Google-Smtp-Source: ABdhPJxtQjXQRb10lFqBAUzMfJDMOxeVz25FrJyNKeUEWXkNqJZB5jvCADp0PGfSltuUqftQ/W2Wkg==
-X-Received: by 2002:a17:907:c28:b0:6f4:2a80:f355 with SMTP id ga40-20020a1709070c2800b006f42a80f355mr18406294ejc.101.1652776998992;
-        Tue, 17 May 2022 01:43:18 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id c14-20020a50d64e000000b0042617ba6380sm6658474edj.10.2022.05.17.01.43.17
+        bh=dYNmO9yR7Q7576xbxhOmOadNAWD8PBDUv92pl5HZCXs=;
+        b=4VuYjc8LT5Tn9P2jq+8rxfwMUNePyCfJZv+WUhESlBk0JFQerXmisoXgZOG2d4iZfb
+         LkF6557EJLVbO7gLo7r5iY3zi49YdO6vac83yShCUO1cKPShkGDYtO1jEtedxWe3Q07s
+         1mvsfGBqKhX60mohCrRsgZ7vKZZe8U3mFPLgKOHRd91RPSKEYz6QuTFKqDVHStpLe+ZD
+         yk9TPNhgVvL3NTK+MzAhD4+nqQur5of04lPx4MKS8dDo7/1Ad6+B8hknXFQdCB08F6gv
+         4ltyWMX2Zp+wV9yFyKckiG1YaFkjLFw+gEbM+/ThYZS3QLGMpu93NjnreK8dZUeKV38Z
+         6rNA==
+X-Gm-Message-State: AOAM532lxQHPZt9mdY53AJ/PwQNgiKWrPwQ8lqcN9WUf/Bd/+AZ4frVQ
+        xdCxMYXETNdk+qT/+ufZErs=
+X-Google-Smtp-Source: ABdhPJyaSqlxkH+LHr5o/GxH2V7qOXxrecaZtXgSeCb5eYOvJdleQWKpRLslqOZqBFpTRdyVakQ1/A==
+X-Received: by 2002:a5d:6351:0:b0:20d:1028:3c32 with SMTP id b17-20020a5d6351000000b0020d10283c32mr4847625wrw.331.1652777286426;
+        Tue, 17 May 2022 01:48:06 -0700 (PDT)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id a25-20020adfb519000000b0020c5253d90asm11324560wrd.86.2022.05.17.01.48.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 May 2022 01:43:18 -0700 (PDT)
-Message-ID: <e77d83ee-c045-26a6-15bc-df49a3b880ae@linaro.org>
-Date:   Tue, 17 May 2022 10:43:17 +0200
+        Tue, 17 May 2022 01:48:05 -0700 (PDT)
+Message-ID: <739b3ccc-e8ac-2748-9d40-0666a4038876@gmail.com>
+Date:   Tue, 17 May 2022 10:48:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v1 02/13] dt-bindings: Add headers for Host1x and VIC on
- Tegra234
 Content-Language: en-US
-To:     Mikko Perttunen <cyndis@kapsi.fi>, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, digetx@gmail.com
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mikko Perttunen <mperttunen@nvidia.com>
-References: <20220516100213.1536571-1-cyndis@kapsi.fi>
- <20220516100213.1536571-3-cyndis@kapsi.fi>
- <20a7087d-dddd-134b-4cef-0ebcbc5115f3@linaro.org>
- <3b1e22cf-a439-2d84-a1fc-dd352a3f1b2c@kapsi.fi>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <3b1e22cf-a439-2d84-a1fc-dd352a3f1b2c@kapsi.fi>
-Content-Type: text/plain; charset=UTF-8
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, robh+dt@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, p.zabel@pengutronix.de, y.oudjana@protonmail.com,
+        jason-jh.lin@mediatek.com, ck.hu@mediatek.com,
+        fparent@baylibre.com, rex-bc.chen@mediatek.com,
+        tinghan.shen@mediatek.com, chun-jie.chen@mediatek.com,
+        weiyi.lu@mediatek.com, ikjn@chromium.org, miles.chen@mediatek.com,
+        sam.shih@mediatek.com, wenst@chromium.org,
+        bgolaszewski@baylibre.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org, paul.bouchara@somainline.org,
+        kernel@collabora.com
+References: <20220513165050.500831-1-angelogioacchino.delregno@collabora.com>
+ <20220513165050.500831-6-angelogioacchino.delregno@collabora.com>
+ <8177c547-2a38-691b-0a32-bc7e6ba1e2ed@gmail.com>
+ <b65546e1-2d3a-d525-b664-1730dc06994f@collabora.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Subject: Re: [PATCH 5/5] clk: mediatek: Add MediaTek Helio X10 MT6795 clock
+ drivers
+In-Reply-To: <b65546e1-2d3a-d525-b664-1730dc06994f@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/05/2022 10:41, Mikko Perttunen wrote:
-> On 5/17/22 11:02, Krzysztof Kozlowski wrote:
->> On 16/05/2022 12:02, cyndis@kapsi.fi wrote:
->>> From: Mikko Perttunen <mperttunen@nvidia.com>
+Hi Angelo,
+
+On 17/05/2022 10:07, AngeloGioacchino Del Regno wrote:
+> Il 16/05/22 13:30, Matthias Brugger ha scritto:
+>>
+>>
+>> On 13/05/2022 18:50, AngeloGioacchino Del Regno wrote:
+>>> Add the clock drivers for the entire clock tree of MediaTek Helio X10
+>>> MT6795, including system clocks (apmixedsys, infracfg, pericfg, topckgen)
+>>> and multimedia clocks (mmsys, mfg, vdecsys, vencsys).
 >>>
->>> Add clock, memory controller, powergate and reset dt-binding headers
->>> for Host1x and VIC on Tegra234.
->>>
->>> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
+>>> Signed-off-by: AngeloGioacchino Del Regno 
+>>> <angelogioacchino.delregno@collabora.com>
 >>
->> All your patches are send from wrong email address and the SoB chain is
->> not correct. Please add respective SoB.
+>> Thanks a lot for taking care of this!
+>> I just wonder if we couldn't build most of the clock drivers as modules like 
+>> done for the mt6779. It would help us to keep the kernel image smaller.
 >>
->> This applies to entire patchset.
->>
->>
->> Best regards,
->> Krzysztof
 > 
-> I can do
+> Hello Matthias!
 > 
->    Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
->    Signed-off-by: Mikko Perttunen <cyndis@kapsi.fi>
+> You're welcome!
+> ...but I simply couldn't stand at seeing partially working (..or actually, not
+> really working) SoCs upstream. If something is upstream, it must work, or it
+> shouldn't be here for real :-)
 > 
-> if that is better.
+> Regarding your question about the clock drivers as module... I believe we can,
+> but that'd be only for {vdec,venc}sys and *maybe* MFG (gpu clocks): I don't know
+> if it'd be worth to do, as these are about... 8 clocks out of... I haven't counted
+> them, but more than 250, I think?
+> 
+> It *should* be straightforward though, just about giving them a tristate in Kconfig
+> instead of a bool, but that would still be limited to just those three...
+> 
 
-That's not needed, if your name was in the sender field. The trouble is
-that your name was not there and I have no clue who is cyndis@kapsi.fi.
+I think you could guide yourself by looking at
+f09b9460a5e4 ("clk: mediatek: support COMMON_CLK_MT6779 module build")
 
 
-Best regards,
-Krzysztof
+I think having clocks as modules is a criteria to be part of Android's Generic 
+Kernel Image. Not that we target this here, just for your information (in case 
+you didn't know).
+
+> The reason for me excluding clk-mt6795-mm from this choice is that - at least for
+> me - my development platform is a commercial smartphone, where the only thing that
+> "saves you" is having some display output... I mean - I *do* have a UART port, but
+> that's only because I've been able to solder thin wires on 0.2mm pads... you surely
+> agree on the fact that this isn't a common practice, even across developers.
+> 
+
+Yes I was wondering if you got some development smartphone or you did the 
+soldering. I have some solder knowledge but I think not enough to solder 
+something like this :D
+
+> Besides, if you think that clk-mt6795-mm should indeed be a module by default,
+> well, that.. is.. possible - I don't see why it shouldn't be... obviously keeping
+> in mind that this will largely slow down the boot process, which isn't a big issue.
+> 
+
+Well I don't want to bother you with minor details, most important thing is that 
+we get support upstream... but ;) you can always mark the modules as compiled 
+in, even if it's tristate, which in your case you want to do.
+
+> In any case, it is *not* possible to compile as module *any* of the clock drivers
+> that I have included in the CONFIG_COMMON_CLK_MT6795 (apmixed, infra, peri, topck)
+> as.. you know.. these are "a bit critical" on older platforms :-)
+> 
+> 
+> How would you proceed?
+> 
+
+I'd make all the drivers that theoretically can be build as modules tristate, 
+you can then define for your development environment to make them build-in.
+
+Sounds good?
+
+Regards,
+Matthias
