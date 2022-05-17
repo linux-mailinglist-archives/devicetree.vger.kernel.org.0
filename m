@@ -2,125 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08023529CA1
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 10:37:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CB0D529CB2
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 10:39:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243436AbiEQIhO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 04:37:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51788 "EHLO
+        id S234871AbiEQIjQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 04:39:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243431AbiEQIhK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 04:37:10 -0400
-Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39E143D1C0;
-        Tue, 17 May 2022 01:37:09 -0700 (PDT)
-Received: by mail-qv1-f43.google.com with SMTP id k8so360839qvm.9;
-        Tue, 17 May 2022 01:37:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=diTzJoBHU8EeLBqHq5Me1Ruh4X/r4hmR4tb/bosfltw=;
-        b=TGHLk+GfdqVDqmFqYbFcH/AkJXcHXTA1xCnr4TGBK2OLtMMFvQ57vHzNLL52/wXdN+
-         6TJ8thNtdeSvBV6gmVkKuxOtLkr5VZlZI8U2FnBJl2dB38cA5fic6Ntu/G6RtIkPyLov
-         6abQrdyttbx4J2feFHtl3hl+YShFIewCrIp7iCQb3RdxdpgBFqR9xc+DBHwPimDpwedY
-         KuA4WC1Tut3pXe5/ULKVLgYIOMwlbo64FVVI2dKSr7rkYAHwMNISloJtcHmqSPTVisG/
-         ZwRex7vL4GfEbMQ8L+Gj/mBWNFck8q/NcSvFBCXBqf9383GrhRN67iyM7MKHcq1EY1C0
-         GmVA==
-X-Gm-Message-State: AOAM5310EU90gVUiLko3SKyc2EzAZ7Jz3IE3dsD7VTabh3c82GqWPE88
-        wUynEnveyTjd6aYVcyR/L/hhICoil3HWrA==
-X-Google-Smtp-Source: ABdhPJxZ+2fjjI0hRydOPArGUCzxfW5JgkNPOtL8el9fcvWnxhjQ86EPaeczsqLKTZcKazkgmVpdDQ==
-X-Received: by 2002:a05:6214:2523:b0:460:2238:59a0 with SMTP id gg3-20020a056214252300b00460223859a0mr19313180qvb.20.1652776628027;
-        Tue, 17 May 2022 01:37:08 -0700 (PDT)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
-        by smtp.gmail.com with ESMTPSA id o7-20020a37be07000000b0069fc13ce203sm7761857qkf.52.2022.05.17.01.37.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 May 2022 01:37:07 -0700 (PDT)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-2ff155c239bso34448687b3.2;
-        Tue, 17 May 2022 01:37:07 -0700 (PDT)
-X-Received: by 2002:a81:ad11:0:b0:2fe:fb00:a759 with SMTP id
- l17-20020a81ad11000000b002fefb00a759mr9791139ywh.283.1652776627031; Tue, 17
- May 2022 01:37:07 -0700 (PDT)
+        with ESMTP id S243558AbiEQIjK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 04:39:10 -0400
+Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A1E143AED;
+        Tue, 17 May 2022 01:39:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+         s=20161220; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=4VukSR4SHYzNRbj8Se/6nK2j2N2wZe6dlFD0wZxtWkE=; b=QpSNtWwev4f6WmROZ/65USyGPP
+        7Vt3YD/nXn0k3AkUBRq9FsFnSnBqhooH+AK2Wa8ORFNFBcROwIfI4Uox/4C9aoh4DILVKVGju2WZr
+        p6uKrQQd7eOtGvoszGNxryeBR6bJNcSc0B4EW4F3wLz5jyfymVPEUeETzM0KyqgeUVFBcsr0bN2u/
+        6JTDFchqmUtdUTQ8Bv4ViCpEiZRmnwbQhBoPLUXJiSjXinnTAsPGm1umZ1T1xvaDW/CWBzoqaEbc4
+        EcYfvflpLku30iKzmrO+jgHF1UatseYFsCWki0Bf3+L1efkJA1CORXg24Zx1EiGbT7qa5x4PoFX4M
+        hjtvGVeA==;
+Received: from 91-158-25-70.elisa-laajakaista.fi ([91.158.25.70] helo=[192.168.1.10])
+        by mail.kapsi.fi with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.92)
+        (envelope-from <cyndis@kapsi.fi>)
+        id 1nqsjF-0007u3-KW; Tue, 17 May 2022 11:38:53 +0300
+Message-ID: <1fccdfe8-d44c-2d56-e572-628998efc985@kapsi.fi>
+Date:   Tue, 17 May 2022 11:38:52 +0300
 MIME-Version: 1.0
-References: <20220427095653.91804-1-miquel.raynal@bootlin.com> <20220517103100.4da9ebe5@xps-13>
-In-Reply-To: <20220517103100.4da9ebe5@xps-13>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 17 May 2022 10:36:55 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWF7W=cov89AAkscYAaK0nmshNPuzYLtQbEtRiOQTquYg@mail.gmail.com>
-Message-ID: <CAMuHMdWF7W=cov89AAkscYAaK0nmshNPuzYLtQbEtRiOQTquYg@mail.gmail.com>
-Subject: Re: [PATCH v12 0/9] RZN1 DMA support
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>,
-        Rob Herring <robh@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.1
+Subject: Re: [PATCH v1 03/13] arm64: tegra: Add Host1x and VIC on Tegra234
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, digetx@gmail.com
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mikko Perttunen <mperttunen@nvidia.com>
+References: <20220516100213.1536571-1-cyndis@kapsi.fi>
+ <20220516100213.1536571-4-cyndis@kapsi.fi>
+ <424b02f3-eb53-68d0-bfee-5488dbcefa71@linaro.org>
+From:   Mikko Perttunen <cyndis@kapsi.fi>
+In-Reply-To: <424b02f3-eb53-68d0-bfee-5488dbcefa71@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 91.158.25.70
+X-SA-Exim-Mail-From: cyndis@kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Miquel,
+On 5/17/22 11:01, Krzysztof Kozlowski wrote:
+> On 16/05/2022 12:02, cyndis@kapsi.fi wrote:
+>> From: Mikko Perttunen <mperttunen@nvidia.com>
+>>
+>> Add device tree nodes for Host1x and VIC on Tegra234.
+>>
+>> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
+>> ---
+>>   arch/arm64/boot/dts/nvidia/tegra234.dtsi | 46 ++++++++++++++++++++++++
+>>   1 file changed, 46 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+>> index cb3af539e477..cae68e59580c 100644
+>> --- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+>> +++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+>> @@ -454,6 +454,52 @@ misc@100000 {
+>>   			status = "okay";
+>>   		};
+>>   
+>> +		host1x@13e00000 {
+> 
+> Generic node names, if that possible. Since the bindings do not exist in
+> the next, I actually cannot figure out what's host1x...
 
-On Tue, May 17, 2022 at 10:31 AM Miquel Raynal
-<miquel.raynal@bootlin.com> wrote:
-> miquel.raynal@bootlin.com wrote on Wed, 27 Apr 2022 11:56:44 +0200:
-> > This is the series bringing DMA support to RZN1 platforms.
-> > The UART changes regarding DMA support has been merged into tty-next
-> > already.
-> >
-> > There is no other conflicting dependency with the other series, so these
-> > patches (all but DTS) can go though the dmaengine tree I believe.
->
-> As all patches the patches in this series have received a fairly good
-> amount of reviews, as well as all the necessary tags since a few weeks
-> already, I was hoping to see it applied for the next merge window. Is
-> there something still blocking its acceptance? Let me know if it is
-> the case and I will do the necessary to make them fit.
+Host1x is a hardware block that provides programmable DMA channels, HW 
+synchronization primitives, and virtualization support for IP blocks 
+connected to its "host1x bus". So far I haven't found a one or two word 
+way to describe it despite efforts. In any case, considering all the 
+existing documentation and device trees that use this name, I'd prefer 
+not changing it (especially as I don't know what else it could be called).
 
-> > Miquel Raynal (9):
-> >   dt-bindings: dmaengine: Introduce RZN1 dmamux bindings
-> >   dt-bindings: clock: r9a06g032-sysctrl: Reference the DMAMUX subnode
-> >   dt-bindings: dmaengine: Introduce RZN1 DMA compatible
-> >   clk: renesas: r9a06g032: Export function to set dmamux
-> >   dmaengine: dw: dmamux: Introduce RZN1 DMA router support
-> >   clk: renesas: r9a06g032: Probe possible children
-> >   dmaengine: dw: Add RZN1 compatible
-> >   ARM: dts: r9a06g032: Add the two DMA nodes
-> >   ARM: dts: r9a06g032: Describe the DMA router
+> 
+>> +			compatible = "nvidia,tegra234-host1x";
+>> +			reg = <0x13e00000 0x10000>,
+>> +			      <0x13e10000 0x10000>,
+>> +			      <0x13e40000 0x10000>;
+>> +			reg-names = "common", "hypervisor", "vm";
+>> +			interrupts = <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
+>> +			             <GIC_SPI 449 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 450 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 451 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 452 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 453 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 454 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 455 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 263 IRQ_TYPE_LEVEL_HIGH>;
+>> +			interrupt-names = "syncpt0", "syncpt1", "syncpt2", "syncpt3", "syncpt4",
+>> +			                  "syncpt5", "syncpt6", "syncpt7", "host1x";
+>> +			clocks = <&bpmp TEGRA234_CLK_HOST1X>;
+>> +			clock-names = "host1x";
+>> +
+>> +			#address-cells = <1>;
+>> +			#size-cells = <1>;
+>> +
+>> +			ranges = <0x15000000 0x15000000 0x01000000>;
+>> +			interconnects = <&mc TEGRA234_MEMORY_CLIENT_HOST1XDMAR &emc>;
+>> +			interconnect-names = "dma-mem";
+>> +			iommus = <&smmu_niso1 TEGRA234_SID_HOST1X>;
+>> +
+>> +			vic@15340000 {
+> 
+> The same... vic is usually a vectored interrupt controller, so this
+> should be interrupt-controller. Unless it is something entirely else, so
+> then you need to come with a generic name.
 
-The DTS patches have been applied to renesas-devel, and have
-already made their way to soc/for-next.
+VIC here is video image compositor (with various other 2d operations). I 
+suppose I can invent some generic name. Any thoughts, Thierry?
 
-Gr{oetje,eeting}s,
+Mikko
 
-                        Geert
+> 
+> 
+> Best regards,
+> Krzysztof
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
