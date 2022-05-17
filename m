@@ -2,300 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F46252A2F2
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 15:14:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8613F52A30D
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 15:18:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243262AbiEQNOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 09:14:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36212 "EHLO
+        id S1347403AbiEQNSr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 09:18:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241154AbiEQNOB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 09:14:01 -0400
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBFC341627
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 06:13:59 -0700 (PDT)
-Received: by mail-qk1-x72b.google.com with SMTP id b20so14482231qkc.6
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 06:13:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :content-transfer-encoding:user-agent:mime-version;
-        bh=v6eTvLUEvVevBWajX03I9738Bo9HdDYIbURMPVLgI3o=;
-        b=oPZVvcPwz2accgrfPbP8mek4jw2FV2aLaLaxNt5GLBRqCXua49jJzrW3dz1IBGnbyN
-         AYy7zqnYY7qbbHb1M3VEpydqgzIJpFfwMXe1KXdTpgTLocSEh9VP5Xb9Ep8M2f5HO2Xc
-         BjTU3XVNv3v90gDgvmInVAskIVEmIcSbyf+9EWGIDJd+ea6EtBa82IT176L+rMyL7SlG
-         9mgzenSuE2H87Mp/RGA0+TpyXDz6rvUwO8AzCRjaH9PQCSoyecL5V1Igz6Ab/tEtKrfU
-         6XUlICw3kR/t0/hfqSy3QVv5K+DIiarqKOuUKdDFl/Bpj9XmVq73hNz9RP1VaZ8c4y/n
-         to5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:content-transfer-encoding:user-agent:mime-version;
-        bh=v6eTvLUEvVevBWajX03I9738Bo9HdDYIbURMPVLgI3o=;
-        b=Ucg3jwGr9+M7t3Rige6EUILmoMdo4cBH7vXO8lbLrd7GZXNBfWepnMvOrqnlIEuEcI
-         6xg2ymydQ5GFLmTZfxQyCix5O48XyktR4QZqgyHP0ihovQg3PZILPeUKqKY/+JMEj2/O
-         M0IPSdY+ZyghBi58C5Wil7Mnn228xOMwdpck/X5s97WBFrPyORqM2SeyuYHXoy7VL9ZE
-         gPdVdxhfVX9UU9gt3PTdAX9LckkMOKmxRRraRVicVoR0rQBtaogjQJZj0O/4tPIU4ZSm
-         8r/gwsZ7Aubhwoxh6AeCs/du4yfbGqmEcvE/T5AjX/wLItU4esnWjLJFoZYaz60yN1Pc
-         ddtA==
-X-Gm-Message-State: AOAM533ATuKmdIKSPgHi7pODtyXohG4X8uZjNrhhKp3j4dFWPVgmkavd
-        jpBNS0Iw9bNjeDcC8eCVdQQsgA==
-X-Google-Smtp-Source: ABdhPJzJUTu/kZOXxe6D9v/M0+MMu75gVhSgga0bLUrSZDERONsTz3Yb4XB6GpX3qEgbObri26puKQ==
-X-Received: by 2002:a05:620a:2792:b0:6a2:eb8d:70e1 with SMTP id g18-20020a05620a279200b006a2eb8d70e1mr7535050qkp.574.1652793238985;
-        Tue, 17 May 2022 06:13:58 -0700 (PDT)
-Received: from nicolas-tpx395.localdomain (173-246-12-168.qc.cable.ebox.net. [173.246.12.168])
-        by smtp.gmail.com with ESMTPSA id y68-20020a37af47000000b0069fc13ce1f3sm7860925qke.36.2022.05.17.06.13.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 May 2022 06:13:58 -0700 (PDT)
-Message-ID: <44a151e1cdbba8dcf3dfe7dfe00b6ee49c99bcfb.camel@ndufresne.ca>
-Subject: Re: [PATCH 06/20] Documention: v4l: Documentation for VP9 CIDs.
-From:   Nicolas Dufresne <nicolas@ndufresne.ca>
-To:     Smitha T Murthy <smitha.t@samsung.com>,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
-        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
-        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
-        benjamin.gaignard@collabora.com, stanimir.varbanov@linaro.org,
-        dillon.minfei@gmail.com, david.plowman@raspberrypi.com,
-        mark.rutland@arm.com, robh+dt@kernel.org, krzk+dt@kernel.org,
-        andi@etezian.org, alim.akhtar@samsung.com,
-        aswani.reddy@samsung.com, pankaj.dubey@samsung.com,
-        linux-fsd@tesla.com
-Date:   Tue, 17 May 2022 09:13:56 -0400
-In-Reply-To: <20220517125548.14746-7-smitha.t@samsung.com>
-References: <20220517125548.14746-1-smitha.t@samsung.com>
-         <CGME20220517125608epcas5p48b5d2f91c711e5728f993169b1d4b9a1@epcas5p4.samsung.com>
-         <20220517125548.14746-7-smitha.t@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.1 (3.44.1-1.fc36) 
+        with ESMTP id S232026AbiEQNSp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 09:18:45 -0400
+X-Greylist: delayed 61 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 17 May 2022 06:18:44 PDT
+Received: from smtpcmd10101.aruba.it (smtpcmd10101.aruba.it [62.149.156.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5E4AC41F9C
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 06:18:43 -0700 (PDT)
+Received: from [192.168.50.220] ([146.241.66.179])
+        by Aruba Outgoing Smtp  with ESMTPSA
+        id qx4zn3r0zcKJdqx50nLnQ1; Tue, 17 May 2022 15:17:41 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+        t=1652793461; bh=Im7bn8a6g50JK3DLRhOYV+yX/muSvMy/n6AfP0SgSe4=;
+        h=Date:MIME-Version:Subject:To:From:Content-Type;
+        b=OVztRY5e+Vo5wgr9R2CB53OXd7RMc+lqZ63p8dXb7vn42RVpWUbZxi/LCyGqI1Rli
+         I32xy8js5rYtmVCwnqcS1/Aiebq2Mqmrf1j8y9FuwY+Kj4eGa93PlRMaFK/EZSzezH
+         ppP3Kf74YsLBgdKoxPLcSHoX7hjZYnyApUcuudOxto316yvmBzBD7WFz4bAUxj+wZY
+         nawiMBUinSxt/DomGEoB+TNWOrSdAnufRmBsXn5fB0BnwMw7rMZCROazheFY61UCdX
+         RDpGMh8JAsYFebpsKiyax+Aif7H5RxnQm7D3PfTJgtto/17IIA5dkIeLefwc3RzOvk
+         3VHKCrHTVNbvA==
+Message-ID: <5a01ca81-f49a-a6f5-c80c-4bb8ac5bead8@benettiengineering.com>
+Date:   Tue, 17 May 2022 15:17:37 +0200
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v3 05/15] dt-bindings: serial: fsl-lpuart: add i.MXRT1170
+ compatible
+Content-Language: en-US
+To:     Jesse Taube <mr.bossman075@gmail.com>, linux-imx@nxp.com
+Cc:     robh+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, aisheng.dong@nxp.com, stefan@agner.ch,
+        linus.walleij@linaro.org, daniel.lezcano@linaro.org,
+        tglx@linutronix.de, arnd@arndb.de, olof@lixom.net, soc@kernel.org,
+        linux@armlinux.org.uk, abel.vesa@nxp.com, dev@lynxeye.de,
+        marcel.ziswiler@toradex.com, tharvey@gateworks.com,
+        leoyang.li@nxp.com, sebastian.reichel@collabora.com,
+        cniedermaier@dh-electronics.com, clin@suse.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org, Rob Herring <robh@kernel.org>
+References: <20220517032802.451743-1-Mr.Bossman075@gmail.com>
+ <20220517032802.451743-4-Mr.Bossman075@gmail.com>
+From:   Giulio Benetti <giulio.benetti@benettiengineering.com>
+In-Reply-To: <20220517032802.451743-4-Mr.Bossman075@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4xfJoC1DnIsmkpTb3OFMpYCrF2/0Umj6FeZvAjR9UVESNbar/h4sXktlDGKjA68llpEIhr8dv49CFeWUt1wXCB+UndhB9vvyX4ui1NQ7ZNcjTNhx/SRryN
+ UiKVsbY8NjUC3PayD/agYb3dNN1eeWRK6mwnGwg2+uDvr4V9bd0PLNqNw+FhxwspAIcDq1uSapJC9GdTic0eXKg6bJ+IFaI9cmcqzuY76K2i6SSRQLa0IVz7
+ zUtC4zQ6z/162ORDu0B2Lm5vq12JQyM/NXwwYCmj8XofSqbeNzvudmceTlmZUqwu1cJX+xuYgupDXkB4JwKykQK9KMCiZg3gHVDcsR5krp8x9eFxIZYJ8LBO
+ j/zzH2GDz4i6upuJxJrZEjKv8dK44Y4fg8+freEhPRaGsM/23fmo9MwK3ESqihBf2SHE9PyQM1g7GnWJptxuvgTk4zOxQuPVTaCcSqtzS/FK0vmbAge0m5dP
+ 94gREfP5ufET4qmbX9EeR7Nt0zglEAgyRxNjid9ZMAt7nItoWoDOgoQI7sMysWFVRzyEnbfnlQZkbu1QfvhhpFoUmXRNHsuxFEO48Bzjl1KUoCevReKUjUDO
+ Ogznm483V8u+/rxSNWtbgBDuBpw14GAMKmsxJBVK1uAccrOv9UHsHboPebA6tdq+XVmtzgfTI1i/HRjEmBahbVJNfd48/OeVT2mX8hhXEd8l8L+oTUvRtytR
+ G6tA4w3wW/lZFbE2e1BdmHg03ROsWCRcD1kymrnIBbSw/uf8BYE0b0vr2lpTYrrYQo3mbI27iGXFnbY7YW0GCPLlMOhwUkL5A/PuyYYtDM+8WajnHU3d7nAr
+ h0rejpEE4lHTpmGU9wxBNdUWip8ETBoo139oiMRi0O7WE+NIxXq18gpL64zeureA1HVNuhdzyZ90W0R7GRqIlQJS9Lb83/MB81uQA2gofK/LHdLYWSECChaf
+ G8KLH/X4Big95DopvE/AL185nNQOZq5bLogfPVnirfFj/M7/YuSdFXARFkBfiPa1tGXoX3ZwoZ2pMcmkoxCgU/+zKHcVpRnfvL4gYDlZKq/S11fLkWlJoAtH
+ zzllnhCy7Z6zrIjSJnSV9fPuwUT4DNcySdDEOa3rPsuQpiiT4w6kfqfFTEFtPuMCUiQj6OXOFPGdeoeoxZ0No6Fq6wpBamCPvaNVgi/Of1anm316qOvpSFDE
+ qNZpn2hIiXNm4w5anAJCkS4hqdkawiLYm26UbXKmecOMhgnB6JUG/GYQzJyY0lB/
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Smitha,
+Hi Jesse,
 
-Le mardi 17 mai 2022 =C3=A0 18:25 +0530, Smitha T Murthy a =C3=A9crit=C2=A0=
-:
-> Adds V4l2 controls for VP9 encoder documention.
->=20
-> Cc: linux-fsd@tesla.com
-> Signed-off-by: Smitha T Murthy <smitha.t@samsung.com>
+On 17/05/22 05:27, Jesse Taube wrote:
+> Add i.MXRT1170 compatible string to Documentation.
+> 
+> Cc: Giulio Benetti <giulio.benetti@benettiengineering.com>
+> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+> Acked-by: Rob Herring <robh@kernel.org>
 > ---
->  .../media/v4l/ext-ctrls-codec.rst             | 167 ++++++++++++++++++
->  1 file changed, 167 insertions(+)
->=20
-> diff --git a/Documentation/userspace-api/media/v4l/ext-ctrls-codec.rst b/=
-Documentation/userspace-api/media/v4l/ext-ctrls-codec.rst
-> index 4cd7c541fc30..1b617a08f973 100644
-> --- a/Documentation/userspace-api/media/v4l/ext-ctrls-codec.rst
-> +++ b/Documentation/userspace-api/media/v4l/ext-ctrls-codec.rst
-> @@ -2165,6 +2165,16 @@ enum v4l2_mpeg_video_vp8_profile -
->      * - ``V4L2_MPEG_VIDEO_VP8_PROFILE_3``
->        - Profile 3
-> =20
-> +VP9 Control Reference
-> +---------------------
-> +
-> +The VP9 controls include controls for encoding parameters of VP9 video
-> +codec.
-> +
-> +.. _vp9-control-id:
-> +
-> +VP9 Control IDs
-> +
->  .. _v4l2-mpeg-video-vp9-profile:
-> =20
->  ``V4L2_CID_MPEG_VIDEO_VP9_PROFILE``
-> @@ -2231,6 +2241,163 @@ enum v4l2_mpeg_video_vp9_level -
->      * - ``V4L2_MPEG_VIDEO_VP9_LEVEL_6_2``
->        - Level 6.2
-> =20
-> +``V4L2_CID_MPEG_VIDEO_VP9_I_FRAME_QP``
+> V1 -> V2:
+>   - New commit to fix dtbs_check
+> V2 -> V3:
+>   - Nothing done
+> ---
+>   Documentation/devicetree/bindings/serial/fsl-lpuart.yaml | 4 ++++
+>   1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+> index 30eaa62e1aed..d988d93eb5e6 100644
+> --- a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+> +++ b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+> @@ -21,6 +21,7 @@ properties:
+>             - fsl,ls1028a-lpuart
+>             - fsl,imx7ulp-lpuart
+>             - fsl,imx8qxp-lpuart
+> +          - fsl,imx8qm-lpuart
 
-The class was recently renamed V4L2_CID_CODEC... for a reason, can you rena=
-me
-MPEG_VIDEO with CODEC, specially for VP9 CODEC were MPEG makes no sense. Th=
-is
-applies all the doc and the defines in the other patch.
+this ^^^ looks like a rebase left-over
 
-thanks,
-Nicolas
+Kind regards
+-- 
+Giulio Benetti
+Benetti Engineering sas
 
-> +    Quantization parameter for an I frame for VP9. Valid range: from 1 t=
-o 255.
-> +
-> +``V4L2_CID_MPEG_VIDEO_VP9_P_FRAME_QP``
-> +    Quantization parameter for an P frame for VP9. Valid range: from 1 t=
-o 255.
-> +
-> +``V4L2_CID_MPEG_VIDEO_VP9_MAX_QP``
-> +    Maximum quantization parameter for VP9. Valid range: from 1 to 255.
-> +    Recommended range for MFC is from 230 to 255.
-> +
-> +``V4L2_CID_MPEG_VIDEO_VP9_MIN_QP``
-> +    Minimum quantization parameter for VP9. Valid range: from 1 to 255.
-> +    Recommended range for MFC is from 1 to 24.
-> +
-> +``V4L2_CID_MPEG_VIDEO_VP9_RC_FRAME_RATE``
-> +    Indicates the number of evenly spaced subintervals, called ticks, wi=
-thin
-> +    one second. This is a 16 bit unsigned integer and has a maximum valu=
-e up to
-> +    0xffff and a minimum value of 1.
-> +
-> +``V4L2_CID_MPEG_VIDEO_VP9_GF_REFRESH_PERIOD``
-> +    Indicates the refresh period of the golden frame for VP9 encoder.
-> +
-> +.. _v4l2-vp9-golden-frame-sel:
-> +
-> +``V4L2_CID_MPEG_VIDEO_VP9_GOLDEN_FRAMESEL``
-> +    (enum)
-> +
-> +enum v4l2_mpeg_vp9_golden_framesel -
-> +    Selects the golden frame for encoding. Valid when NUM_OF_REF is 2.
-> +    Possible values are:
-> +
-> +.. raw:: latex
-> +
-> +    \footnotesize
-> +
-> +.. tabularcolumns:: |p{9.0cm}|p{8.0cm}|
-> +
-> +.. flat-table::
-> +    :header-rows:  0
-> +    :stub-columns: 0
-> +
-> +    * - ``V4L2_CID_MPEG_VIDEO_VP9_GOLDEN_FRAME_USE_PREV``
-> +      - Use the (n-2)th frame as a golden frame, current frame index bei=
-ng
-> +        'n'.
-> +    * - ``V4L2_CID_MPEG_VIDEO_VP9_GOLDEN_FRAME_USE_REF_PERIOD``
-> +      - Use the previous specific frame indicated by
-> +        ``V4L2_CID_MPEG_VIDEO_VP9_GF_REFRESH_PERIOD`` as a
-> +        golden frame.
-> +
-> +.. raw:: latex
-> +
-> +    \normalsize
-> +
-> +
-> +``V4L2_CID_MPEG_VIDEO_VP9_HIERARCHY_QP_ENABLE``
-> +    Allows host to specify the quantization parameter values for each
-> +    temporal layer through HIERARCHICAL_QP_LAYER. This is valid only
-> +    if HIERARCHICAL_CODING_LAYER is greater than 1. Setting the control
-> +    value to 1 enables setting of the QP values for the layers.
-> +
-> +.. _v4l2-vp9-ref-number-of-pframes:
-> +
-> +``V4L2_CID_MPEG_VIDEO_VP9_REF_NUMBER_FOR_PFRAMES``
-> +    (enum)
-> +
-> +enum v4l2_mpeg_vp9_ref_num_for_pframes -
-> +    Number of reference pictures for encoding P frames.
-> +
-> +.. raw:: latex
-> +
-> +    \footnotesize
-> +
-> +.. tabularcolumns:: |p{9.0cm}|p{8.0cm}|
-> +
-> +.. flat-table::
-> +    :header-rows:  0
-> +    :stub-columns: 0
-> +
-> +    * - ``V4L2_CID_MPEG_VIDEO_VP9_1_REF_PFRAME``
-> +      - Indicates one reference frame, last encoded frame will be search=
-ed.
-> +    * - ``V4L2_CID_MPEG_VIDEO_VP9_GOLDEN_FRAME_USE_REF_PERIOD``
-> +      - Indicates 2 reference frames, last encoded frame and golden fram=
-e
-> +        will be searched.
-> +
-> +.. raw:: latex
-> +
-> +    \normalsize
-> +
-> +
-> +``V4L2_CID_MPEG_VIDEO_VP9_HIERARCHICAL_CODING_LAYER``
-> +    Indicates the number of hierarchial coding layer.
-> +    In normal encoding (non-hierarchial coding), it should be zero.
-> +    VP9 has upto 3 layer of encoder.
-> +
-> +``V4L2_CID_MPEG_VIDEO_VP9_HIERARCHY_RC_ENABLE``
-> +    Indicates enabling of bit rate for hierarchical coding layers VP9 en=
-coder.
-> +
-> +``V4L2_CID_MPEG_VIDEO_VP9_HIER_CODING_L0_BR``
-> +    Indicates bit rate for hierarchical coding layer 0 for VP9 encoder.
-> +
-> +``V4L2_CID_MPEG_VIDEO_VP9_HIER_CODING_L1_BR``
-> +    Indicates bit rate for hierarchical coding layer 1 for VP9 encoder.
-> +
-> +``V4L2_CID_MPEG_VIDEO_VP9_HIER_CODING_L2_BR``
-> +    Indicates bit rate for hierarchical coding layer 2 for VP9 encoder.
-> +
-> +``V4L2_CID_MPEG_VIDEO_VP9_HIER_CODING_L0_QP``
-> +    Indicates quantization parameter for hierarchical coding layer 0.
-> +    Valid range: [V4L2_CID_MPEG_VIDEO_VP9_MIN_QP,
-> +    V4L2_CID_MPEG_VIDEO_VP9_MAX_QP].
-> +
-> +``V4L2_CID_MPEG_VIDEO_VP9_HIER_CODING_L1_QP``
-> +    Indicates quantization parameter for hierarchical coding layer 1.
-> +    Valid range: [V4L2_CID_MPEG_VIDEO_VP9_MIN_QP,
-> +    V4L2_CID_MPEG_VIDEO_VP9_MAX_QP].
-> +
-> +``V4L2_CID_MPEG_VIDEO_VP9_HIER_CODING_L2_QP``
-> +    Indicates quantization parameter for hierarchical coding layer 2.
-> +    Valid range: [V4L2_CID_MPEG_VIDEO_VP9_MIN_QP,
-> +    V4L2_CID_MPEG_VIDEO_VP9_MAX_QP].
-> +
-> +.. _v4l2-vp9-max-partition-depth:
-> +
-> +``V4L2_CID_MPEG_VIDEO_VP9_MAX_PARTITION_DEPTH``
-> +    (enum)
-> +
-> +enum v4l2_mpeg_vp9_num_partitions -
-> +    Indicate maximum coding unit depth.
-> +
-> +.. raw:: latex
-> +
-> +    \footnotesize
-> +
-> +.. tabularcolumns:: |p{9.0cm}|p{8.0cm}|
-> +
-> +.. flat-table::
-> +    :header-rows:  0
-> +    :stub-columns: 0
-> +
-> +    * - ``V4L2_CID_MPEG_VIDEO_VP9_0_PARTITION``
-> +      - No coding unit partition depth.
-> +    * - ``V4L2_CID_MPEG_VIDEO_VP9_1_PARTITION``
-> +      - Allows one coding unit partition depth.
-> +
-> +.. raw:: latex
-> +
-> +    \normalsize
-> +
-> +
-> +``V4L2_CID_MPEG_VIDEO_VP9_DISABLE_INTRA_PU_SPLIT``
-> +    Zero indicates enable intra NxN PU split.
-> +    One indicates disable intra NxN PU split.
-> +
-> +``V4L2_CID_MPEG_VIDEO_VP9_DISABLE_IVF_HEADER``
-> +    Indicates IVF header generation. Zero indicates enable IVF format.
-> +    One indicates disable IVF format.
-> +
-> =20
->  High Efficiency Video Coding (HEVC/H.265) Control Reference
->  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>             - fsl,imxrt1050-lpuart
+>         - items:
+>             - enum:
+> @@ -32,6 +33,9 @@ properties:
+>                 - fsl,imx8qm-lpuart
+>                 - fsl,imx8dxl-lpuart
+>             - const: fsl,imx8qxp-lpuart
+> +      - items:
+> +          - const: fsl,imxrt1170-lpuart
+> +          - const: fsl,imxrt1050-lpuart
+>   
+>     reg:
+>       maxItems: 1
 
