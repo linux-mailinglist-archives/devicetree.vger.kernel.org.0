@@ -2,65 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80E6952AD0A
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 22:54:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C920C52AD1C
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 22:56:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353054AbiEQUx4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 16:53:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46674 "EHLO
+        id S229506AbiEQU4W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 16:56:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353043AbiEQUxy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 16:53:54 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6C6E52525;
-        Tue, 17 May 2022 13:53:51 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id en5so497547edb.1;
-        Tue, 17 May 2022 13:53:51 -0700 (PDT)
+        with ESMTP id S237362AbiEQU4Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 16:56:16 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 212116335;
+        Tue, 17 May 2022 13:56:14 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id r6-20020a1c2b06000000b00396fee5ebc9so13903wmr.1;
+        Tue, 17 May 2022 13:56:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=PAidMuA0ZfVLTFeYOY0jFETaKP5wFrL8y0MLkBWu2Mo=;
-        b=f4MOu4Orlds854J3Sjm8sYUcUV6qSn/fZ3l9OYZ5K4F6E9Y+oC9AAPkLy1eqvHjE1x
-         UuvM6w59Yo6rsmK78I+ZHrd/IztXVyb/mRdR4OH0jE2mytYs8Yd5ezAwobp/wQ1b3WeD
-         RgwIR/h8ABXxMXdBQylEYsuJZORtjxui+R2NfAtNZGsDkZ21LCgCFvIMGzxJUBOEMfG5
-         pyN9n9jLL5Vctr/o3kXuIdl0xfyC2UXnNiXVUY9j7ZnTwPTh3bmMWEyPSeJVZxpzDFE5
-         NRZfhXtqNBvEKJzO/I48LMBCd17P38CmAO74EMEki0I0d0K2uiGnx1k78oKjx0/c79k0
-         4l8A==
+        h=message-id:date:from:to:cc:subject:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=SttB0Al2SmA1Ml2eTj/wShEo5Nwp1X2GJB1Zw/Jq5fs=;
+        b=XAvJ64DTg2filoPTc7irccoZINdkOQRv9oxEwoMQGDhK4O1U80pzXCFuZjJVE3FjWp
+         wzyfulpgNydLZVyljEzJHhtWMj9TFHHiioK0yIligTXDdr1L2F7tFsWbpKCz8Nm7vjD1
+         yiDrUo8mdB8Jqn5GQhTTPNZVk4ZnTLL07oF7cdSEAGneTPaznZcwQrFAIlMth93g4PyC
+         sW2qatOQM3Lek969GECns1t2VlOEOK2/0KvGW+q6kJJ7DqrATSSGGlpJd9aWE8fozGGl
+         r7K5fNQnME+1rDbh7xE5bhnLOB9GWe+Ucl/mHSw8/fHLTtRSNGDk5iq8NcGtQP8hlqGG
+         h67A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=PAidMuA0ZfVLTFeYOY0jFETaKP5wFrL8y0MLkBWu2Mo=;
-        b=SvylEEoHuclOLFxf1kLZI+4jQxDOjUQxlDPninok2g1TiTpsHqM2eNcnhtHOjPHFzn
-         rhJxeokdKWSj7BuxYufI+z45xduItz8OKC74YAQTTN71A5niYvrsW0rpw5ZVYSEi+vOP
-         kTfUtorQO1kMprnBD3b0iJVYpuEFTXmz/u3oUVvp9ZoXmrYKrUoWJhbvdRUc9kMwFUsy
-         x4MWu3EAgNYE3zSb3w9xhX/yA3hwq3skKPhfGnyudtobUNwmrcYMAISA2eQJTuLcQu+y
-         05jKK0C2M0sM8vOarMwaiUvA+tBfJlng4JtX+znSaGunpHo1Lrn0aeDOK0qvaltZz76X
-         8UJQ==
-X-Gm-Message-State: AOAM5321dqhfZYDj9ScOv0pAHHGbRjxO9yb+Upk+TzuV2hY0ZnTYB7om
-        fb4cq8bN8c3pv2FcVFCKtwc=
-X-Google-Smtp-Source: ABdhPJzHrBMHkcmpaUrEVq9M2mG0iY3Zq86tClH9XaiJXLfERoeVAlOjyc20MwK4KfGezBnTR1SIdQ==
-X-Received: by 2002:a50:fa8e:0:b0:42a:b1f4:91c7 with SMTP id w14-20020a50fa8e000000b0042ab1f491c7mr12779105edr.140.1652820831573;
-        Tue, 17 May 2022 13:53:51 -0700 (PDT)
-Received: from fedora.robimarko.hr ([188.252.220.143])
-        by smtp.googlemail.com with ESMTPSA id v22-20020a17090651d600b006f3ef214e10sm120907ejk.118.2022.05.17.13.53.50
+        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=SttB0Al2SmA1Ml2eTj/wShEo5Nwp1X2GJB1Zw/Jq5fs=;
+        b=vrw7919geKxjaOng9yRjR3oHJwGJcWur8bkKUKNMqoKTxyjng4IdYiwKnumdNsEHkX
+         Hn4MzApmPMoCRwPRNw6Q3Y7nS/olQb1qqeyUZeiibCso5BJiag8unlxSO/v83yLMIsKh
+         6lSHTGlYe155U+zFK7nv39smYll8FI4glS5SjneK8WKCfQ5a0EnGkixppXJShfG+hum7
+         fO+8RllMD/e3MzoTUEKFkvy0Bw27EJympRf5HL7paBJ1V2vayV5Hw0wsfreQJUCLMh3L
+         /MDQjbVWILO9QGSzvwsAtqvwAW/yghBz99w76/oNjlz02vlMegWnDbVW8zzGZC8xrq/k
+         ddhA==
+X-Gm-Message-State: AOAM5330FBIT5FABY1nzucW94gmcMdJ62dvK/hef0OKOUUo4ouR744Od
+        k0BrOIXrj1Hf18FcSrOdXCxOSZ3t2gc=
+X-Google-Smtp-Source: ABdhPJxlpNKQuhQSJ2hEFYuSL2olvE3fgInpxw9a5UdtqtVkXl3QVdrp6UlvAJnusHS8jfSHPkGvdg==
+X-Received: by 2002:a7b:c5cd:0:b0:38c:8b1b:d220 with SMTP id n13-20020a7bc5cd000000b0038c8b1bd220mr22753995wmk.118.1652820972354;
+        Tue, 17 May 2022 13:56:12 -0700 (PDT)
+Received: from Ansuel-xps. (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
+        by smtp.gmail.com with ESMTPSA id e25-20020adfa459000000b0020c5253d8dcsm73870wra.40.2022.05.17.13.56.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 May 2022 13:53:51 -0700 (PDT)
-From:   Robert Marko <robimarko@gmail.com>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Robert Marko <robimarko@gmail.com>
-Subject: [PATCH v3 6/6] arm64: dts: ipq8074: add VQMMC supply
-Date:   Tue, 17 May 2022 22:53:41 +0200
-Message-Id: <20220517205341.536587-6-robimarko@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220517205341.536587-1-robimarko@gmail.com>
-References: <20220517205341.536587-1-robimarko@gmail.com>
+        Tue, 17 May 2022 13:56:11 -0700 (PDT)
+Message-ID: <62840beb.1c69fb81.9bdaf.070c@mx.google.com>
+X-Google-Original-Message-ID: <YoQL6ULpjb9muRvn@Ansuel-xps.>
+Date:   Tue, 17 May 2022 22:56:09 +0200
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-mtd@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] dt-bindings: mtd: qcom_nandc: document
+ qcom,boot-pages binding
+References: <20220503154353.4367-1-ansuelsmth@gmail.com>
+ <20220503154353.4367-3-ansuelsmth@gmail.com>
+ <20220516184912.GA3063673-robh@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220516184912.GA3063673-robh@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -71,32 +80,85 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SDHCI controller claims DDR, HS200 and HS400 1.8V support, however it
-cannot achieve those using the 2.95V I/O that is the default set by
-firmware.
+On Mon, May 16, 2022 at 01:49:12PM -0500, Rob Herring wrote:
+> On Tue, May 03, 2022 at 05:43:53PM +0200, Ansuel Smith wrote:
+> > Document new qcom,boot_pages binding used to apply special
+> 
+> s/boot_pages/boot-pages/
+> 
+> > read/write configuration to boot pages.
+> > 
+> > QCOM apply a special configuration where spare data is not protected
+> > by ECC for some special pages (used for boot partition). Add
+> > Documentation on how to declare these special pages.
+> > 
+> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> > ---
+> >  .../devicetree/bindings/mtd/qcom,nandc.yaml   | 22 +++++++++++++++++++
+> >  1 file changed, 22 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
+> > index 84ad7ff30121..fafeca0cafff 100644
+> > --- a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
+> > +++ b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
+> > @@ -102,6 +102,26 @@ allOf:
+> >              - const: rx
+> >              - const: cmd
+> >  
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - qcom,ipq8074-nand
+> > +
+> > +    then:
+> > +      properties:
+> > +        qcom,boot-pages:
+> > +          $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> 
+> You need to define the dimensions. Something like this:
+> 
+>              items:
+>                items:
+>                  - description: offset
+>                  - description: size
+>
 
-Since we know have access to the PMP8074 PMIC provided LDO that provides
-the I/O voltage set it as VQMMC supply so that higher speeds can actually
-be achieved.
+Considering this is not limited to one item how should I declare that an
+user can declare multiple items? (the user can declare multiple zones)
+Declaring minItems without a maxItems? 
 
-Signed-off-by: Robert Marko <robimarko@gmail.com>
----
- arch/arm64/boot/dts/qcom/ipq8074.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+I assume in the suggested form it's assumed
+minItems: 1
+maxItems: 1
+so this would be problematic.
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-index d1a0b77c38a4..fea3c4ee3565 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-@@ -476,6 +476,8 @@ sdhc_1: sdhci@7824900 {
- 			mmc-hs400-1_8v;
- 			bus-width = <8>;
- 
-+			vqmmc-supply = <&l11>;
-+
- 			status = "disabled";
- 		};
- 
+> > +          description:
+> > +            Some special page used by boot partition have spare data
+> > +            not protected by ECC. Use this to declare these special page
+> > +            by defining first the offset and then the size.
+> > +
+> > +            It's in the form of <offset1 size1 offset2 size2 offset3 ...>
+> > +
+> > +            Refer to the ipq8064 example on how to use this special binding.
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
+> > @@ -135,6 +155,8 @@ examples:
+> >          nand-ecc-strength = <4>;
+> >          nand-bus-width = <8>;
+> >  
+> > +        qcom,boot-pages = <0x0 0x58a0000>;
+> > +
+> >          partitions {
+> >            compatible = "fixed-partitions";
+> >            #address-cells = <1>;
+> > -- 
+> > 2.34.1
+> > 
+> > 
+
 -- 
-2.36.1
-
+	Ansuel
