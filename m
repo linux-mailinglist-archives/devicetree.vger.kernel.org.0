@@ -2,68 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30EBE529C88
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 10:32:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98932529C94
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 10:34:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243198AbiEQIbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 04:31:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35520 "EHLO
+        id S243158AbiEQIeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 04:34:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242653AbiEQIbh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 04:31:37 -0400
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AEBA4130C
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 01:31:36 -0700 (PDT)
-Received: by mail-oi1-x232.google.com with SMTP id i66so21438918oia.11
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 01:31:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=86ceeyNCi3z2FwBWcA32g1IsuLILJjbHc1Dja5XPTPg=;
-        b=DeF8B3N1r7sbp73Uqvz9RVfBGJg3Yp9qsMawQ9YscwVZ7L3DN8xVOnwYNlWQnRHvvw
-         Zv+BQI27nKd++MeBOqgZD6Gd41CcI6n3UhpX568sVY3Vo7S+9V1/pWkEnDYHHdqLGmAa
-         BWSXsrl273+VFNHtNz69HrRavobjUDuxw78bo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=86ceeyNCi3z2FwBWcA32g1IsuLILJjbHc1Dja5XPTPg=;
-        b=GQn2bOi4PCpgFFlDW9MDGgTczw8+CqP3ieaBWMTyqQxwSEEAVc4f54FX4MnPh/pxs6
-         370d6UCCV1R7dgkCOty7LJTAaLor6UTH2BE0ycoH3IULh4g6sXqUTyOpkt9vxOManl+5
-         2MCx3ElASKDyMSMt1yEQnK89HWy8NVePilpveBjTARHnE9wgE8enpu+skQHZoVoAW14H
-         vMrwWEKRoCABMF464HwKwvk8jH7SCgcGOpRZqf+PAdPdeckwzJjfQXR3zchfMpdYSRwM
-         +XBVQsN8mkfRK7cCoGfR1IvPVrVN6RsfpabhW1xlvlVwiKgOPTQwOEPVMcIAyxubUnly
-         GGxw==
-X-Gm-Message-State: AOAM531IETSBF+uEJivo0RTP7bb54zg7YtFHNhynYwlwOpoEdqihsCHy
-        DU7J48jHiNpwK+FvfF7d5eic4T0Gadxe8mmWZy0hqB6Ue6g=
-X-Google-Smtp-Source: ABdhPJyKjOJ1T6NtgPT1vvc1ORb9DXABYVvQ52Fb901/W4PDoTyrZMHh5Olt67M2hQleCSfA8WDFQSEcDFb0dU/afwA=
-X-Received: by 2002:a05:6808:14c2:b0:326:c129:d308 with SMTP id
- f2-20020a05680814c200b00326c129d308mr9705690oiw.193.1652776295739; Tue, 17
- May 2022 01:31:35 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 17 May 2022 01:31:35 -0700
+        with ESMTP id S236144AbiEQIeL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 04:34:11 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F25E44339A;
+        Tue, 17 May 2022 01:34:09 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 2B88F1F41ECB
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1652776448;
+        bh=LCe72gf7Q6QuyRU8/hNAkV44/40CUOPrEMqg9amSQ6k=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=mWuOx6AFAnuY4LuC4el83eJaIr8+U3BZJlHbPUYkQtJljV6YtNFTt7BsfuUSe0+Be
+         Kkt1sSbONVTRTrxKUd3jMN1iqIOJ7woU8CjO16EYzUO4NPpj5Sq9lW2srgPc27jPUM
+         D+jR1YYzKTzx8Zz4tr+OuxurKqpxGJdEhi4gzziD+eKoRCMRHXJxK2rvyUx1hAxThA
+         pJlf75oPSboAcQlnABY1MKvccRmjm2CogQqQW9bqiUmw2HwzHWltElzn17Pf9oh5hD
+         KCJ1+roGMSkFEiwkxb87NuoGWHbfsaMMKlrs3CCswLO9CealVlEVy1DMqNeAJbCb3R
+         Pi/bAk0pq/VYA==
+Message-ID: <ca40156f-5bc1-ef3a-517e-6ad61e9bf3df@collabora.com>
+Date:   Tue, 17 May 2022 10:34:05 +0200
 MIME-Version: 1.0
-In-Reply-To: <e74aacdf-3ff7-261d-997f-5b6566b66207@quicinc.com>
-References: <20220503113246.13857-1-quic_tdas@quicinc.com> <CAE-0n53QZn8VYB-dxzwccYDURU-0qW3ZwsuOEECwrKGAhYzwgw@mail.gmail.com>
- <e74aacdf-3ff7-261d-997f-5b6566b66207@quicinc.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Tue, 17 May 2022 01:31:35 -0700
-Message-ID: <CAE-0n50auThk=yzzVMvc2bu7g47gBzv4pw1K+dqshRRpA5969w@mail.gmail.com>
-Subject: Re: [PATCH v4] arm64: dts: qcom: sc7280: Add lpasscore & lpassaudio
- clock controllers
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-Cc:     Douglas Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: Add MediaTek MT6795 pinctrl
+ bindings
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     linus.walleij@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, sean.wang@kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com, nfraprado@collabora.com
+References: <20220505083757.11288-1-angelogioacchino.delregno@collabora.com>
+ <20220505083757.11288-2-angelogioacchino.delregno@collabora.com>
+ <20220517000657.GA3609297-robh@kernel.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220517000657.GA3609297-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,33 +60,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Taniya Das (2022-05-03 22:35:29)
-> Hello Stephen,
->
-> On 5/4/2022 12:40 AM, Stephen Boyd wrote:
-> > Quoting Taniya Das (2022-05-03 04:32:46)
-> >> Add the low pass audio clock controller device nodes. Keep the lpasscc
-> >> clock node disabled and enabled for lpass pil based devices.
-> >
-> > Does it mean that we're going to have overlapping reg ranges between
-> > nodes in DT for clk controllers? That is not proper DT style, indicating
-> > that we should combine the overlapping nodes and then have some
-> > compatible or DT property telling us how to treat the clks in the audio
-> > subsystem.
-> >
->
-> In the case where PIL based LPASS node would be used, we would disable
-> the other lpass clock controller nodes. Does that seem fine or I would
-> need to map the complete range in the current PIL driver if that works.
->
+Il 17/05/22 02:06, Rob Herring ha scritto:
+> On Thu, May 05, 2022 at 10:37:56AM +0200, AngeloGioacchino Del Regno wrote:
+>> Add devicetree and pinfunc bindings for MediaTek Helio X10 MT6795.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   .../pinctrl/mediatek,pinctrl-mt6795.yaml      | 224 +++++
+>>   include/dt-bindings/pinctrl/mt6795-pinfunc.h  | 908 ++++++++++++++++++
+>>   2 files changed, 1132 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,pinctrl-mt6795.yaml
+>>   create mode 100644 include/dt-bindings/pinctrl/mt6795-pinfunc.h
+>>
 
-Is the idea that we would have a set of nodes that have overlapping reg
-ranges but only one or the other would be enabled? That seems confusing.
-Why don't we simply have one node that has a different compatible string
-or some DT property that reflects the programming model of choice? Or
-use the protected-clocks property to list out the clks that we don't
-want to have registered on the system.
+..snip..
 
-We shouldn't need to have two entirely different nodes for the same
-physical device in the SoC, so talking about PIL based LPASS is
-confusing. Can you explain further?
+>> diff --git a/include/dt-bindings/pinctrl/mt6795-pinfunc.h b/include/dt-bindings/pinctrl/mt6795-pinfunc.h
+>> new file mode 100644
+>> index 000000000000..4888bb7fb9cf
+>> --- /dev/null
+>> +++ b/include/dt-bindings/pinctrl/mt6795-pinfunc.h
+>> @@ -0,0 +1,908 @@
+>> +/* SPDX-License-Identifier: GPL-2.0-only */
+> 
+> Dual license please.
+> 
+
+Whoooops!
+
+Sorry, my intention was to indeed put (GPL-2.0-only OR BSD-3-Clause) here,
+like I've done for the others.
+I'm sending a v4 with the right license right away.
+
+Thanks for making me notice this unintentional mistake.
+
+Regards,
+Angelo
+
