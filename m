@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D461852A406
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 15:58:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F49952A410
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 16:00:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244360AbiEQN6I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 09:58:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50834 "EHLO
+        id S1345951AbiEQOAA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 10:00:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348003AbiEQN6H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 09:58:07 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC4B83C4B4
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 06:58:05 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id f4so18674443lfu.12
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 06:58:05 -0700 (PDT)
+        with ESMTP id S1348141AbiEQN76 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 09:59:58 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C40593C700
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 06:59:56 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id h8so1187305ljb.6
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 06:59:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=eVaeE8EmFrZMCLqtcrlHzNvDehbUwPxJkr68zMJQkE0=;
-        b=keEYssJeA35i6Sta2I6KzzG+AyLAfGU3Lx5PpJy7XNJd46Oikjsl41K2FOclcNwgsf
-         LqEnxpal51K+s3Phphr9gnko8bztzkVvQMsZQXRbcHbIr5ZnHY04mUhXClzZfjIpyvfu
-         JN9u/WWFVTrS4rRPtrtQzTDX9UHmrPHcNwDmSP1Sf1+qW7loeTyBdIzkPd9y5JfV5bsS
-         b9fc4HEg9c5FtmdbLVKOFO47fPPvdiC9fbVkmb7R8UW54e/N5wXAgSffVIgmIhziQj9q
-         +Cfuea8uomdXM/3DRACVZLltyktTJwr4fDkOFZHDT75WmQilucE/VyjIzTvR+zh/8i15
-         rLaw==
+        bh=LEsqb6iifvbd1vGQ2F4XBUPSxstBfEUVUDZg8Q1Sun8=;
+        b=DdA+OmC0wz5YgtBt1uk29pnGFOo9cocstcx0c01D4Gt6aBXJ1itONLZ4e3gxzaHZfA
+         ow7cvmw0uFuF41S2OBXAZiPivC7NxRJS4YY0+6KuIAzgOMXHSteBFR6LqRaBdmkCyy5p
+         2kBOGatD9avctT1ETg3QAgtLJlgI2TEjLr6wNV3hW9FMGz7dcEOs5qwJlLgidL/VQNNx
+         uCEp9RD50bUIXz6sNxxLMYsPB6Eb7dya3JwnC8RqBiwhwee4UMeN9Pt8fyOzm/OpAR48
+         hELaCLsrup08W9pKmTxn3FQrXjy4vddlwgncgr6VHkCXMkfXWMdvcdBxoFbEsp84Q+fV
+         /JnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=eVaeE8EmFrZMCLqtcrlHzNvDehbUwPxJkr68zMJQkE0=;
-        b=G1jQgNOXu3v6QLPcrDZZfQKpROrQwHqmhfP9F9LhMoPJOUDuEV2igiSADWRSzMmOln
-         tpV2UWbcn6/llqFEjtfQ8h5adEw9gaCeXKU6C8Kx6DSr2GcEs5QlbNTxpFnHPteUUsgO
-         84ZbtsqBe/Smq8pjhcmm/mo9PlBQHzypUYh+9YFmHSkAZ7jH6Ma71eoxKW2hGLO2MvoC
-         rOWEhe4ImHPkjvDs/K2mhdYBDt2EpPH/wLil3p7kKwYXVowcgxHjDaaHEcVCfTSGaK9o
-         JiBb8n4iQXyk0rmalRLFaEU5ADlVqarbWl0vQ3AzlLjsy6O9z+CjIdjAE29MCzZDubZD
-         JSQw==
-X-Gm-Message-State: AOAM533eG01lAV3i1kOHovlJwLxbCiHdu90nnVWMnOeU5yYdBkgC2z0m
-        +N/oEMF/l7tqPo4oznUiSB1u3g==
-X-Google-Smtp-Source: ABdhPJxw8xo2pjvHxPlfO7zErtguu1LhEFbww2MX8pjsfBIN1zJWlGEkdKQlYDEvVNX2wu/6K/T+fw==
-X-Received: by 2002:a05:6512:1399:b0:448:9f0b:bf4f with SMTP id p25-20020a056512139900b004489f0bbf4fmr16621673lfa.67.1652795884116;
-        Tue, 17 May 2022 06:58:04 -0700 (PDT)
+        bh=LEsqb6iifvbd1vGQ2F4XBUPSxstBfEUVUDZg8Q1Sun8=;
+        b=B70BiKvFlKRsyLvwxpqFL0RhTTa9A638s+pLyMnjXG3mYQwrWaJ3t4YuKtfqMq991O
+         PMt7HkL5t4WqX/l4DZZAT63Vu1dTSzlQnEZPxk4SrLin5HJ/w17ce1UF5WOGo8wS6Bpo
+         ShSAbkWwHIfzwXw8Ee3kaF7k00X7Krr7ewoMexWm//X+jWaCxp00sip2M3DakKUDiXaJ
+         09TNnxJYvxYgTP9SVLD0Dphwv9JfvaBkOp3Xv/7A3YKHoA/OtnmxnxO+VgLtwoi2s+x+
+         AsVESH626cCMARsNdIzXLcsjPSY2/knTRRb8MfflbfOjwHH6Qhge+dNtr+XkCUUU9TbL
+         EReQ==
+X-Gm-Message-State: AOAM5319SI2etCfh71mA5HHDkGhjQBjw3bWRf672jUB2kxQ7TRGX+k1a
+        UvqkF5growhW4kwni2ppEP3xhg==
+X-Google-Smtp-Source: ABdhPJz7RfnaMB4s3XVzeGmho3fC74jbeCzLVypGz9aT7Ugi9qvsalkuXfrWE+QLQgyBiSWvUfDqdA==
+X-Received: by 2002:a2e:934b:0:b0:24f:cce:5501 with SMTP id m11-20020a2e934b000000b0024f0cce5501mr14698187ljh.443.1652795995182;
+        Tue, 17 May 2022 06:59:55 -0700 (PDT)
 Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id t8-20020ac25488000000b0047255d21117sm1602236lfk.70.2022.05.17.06.58.02
+        by smtp.gmail.com with ESMTPSA id v11-20020ac2592b000000b0047255d2117asm1596611lfi.169.2022.05.17.06.59.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 May 2022 06:58:03 -0700 (PDT)
-Message-ID: <9606459e-7d9f-90af-1c5c-263e8ab1fae1@linaro.org>
-Date:   Tue, 17 May 2022 15:58:02 +0200
+        Tue, 17 May 2022 06:59:54 -0700 (PDT)
+Message-ID: <08787027-4978-d03e-0d91-d70bb8e98f82@linaro.org>
+Date:   Tue, 17 May 2022 15:59:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH 03/20] dt-bindings: media: s5p-mfc: Add mfcv12 variant
+Subject: Re: [PATCH 15/20] media: s5p-mfc: DPB Count Independent of
+ VIDIOC_REQBUF
 Content-Language: en-US
 To:     Smitha T Murthy <smitha.t@samsung.com>,
         linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
@@ -68,15 +69,15 @@ Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
         aswani.reddy@samsung.com, pankaj.dubey@samsung.com,
         linux-fsd@tesla.com
 References: <20220517125548.14746-1-smitha.t@samsung.com>
- <CGME20220517125558epcas5p228cdf5f665468d3fd065d88a5d0ad157@epcas5p2.samsung.com>
- <20220517125548.14746-4-smitha.t@samsung.com>
+ <CGME20220517125641epcas5p48fc3d48ad5e4a02879a1063da36c0063@epcas5p4.samsung.com>
+ <20220517125548.14746-16-smitha.t@samsung.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220517125548.14746-4-smitha.t@samsung.com>
+In-Reply-To: <20220517125548.14746-16-smitha.t@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,28 +86,16 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 17/05/2022 14:55, Smitha T Murthy wrote:
-> Adds DT schema for s5p-mfc with a new compatible
-> string for mfcv12 variant.
-> 
-> Cc: linux-fsd@tesla.com
-> Signed-off-by: Smitha T Murthy <smitha.t@samsung.com>
-> ---
->  Documentation/devicetree/bindings/media/s5p-mfc.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/s5p-mfc.yaml b/Documentation/devicetree/bindings/media/s5p-mfc.yaml
-> index fff7c7e0d575..209da53f3582 100644
-> --- a/Documentation/devicetree/bindings/media/s5p-mfc.yaml
-> +++ b/Documentation/devicetree/bindings/media/s5p-mfc.yaml
-> @@ -21,6 +21,7 @@ properties:
->        - samsung,mfc-v8                  # Exynos5800
->        - samsung,exynos5433-mfc          # Exynos5433
->        - samsung,mfc-v10                 # Exynos7880
-> +      - samsung,mfc-v12                 # Tesla FSD
+> This patch allows allocation of DPB buffers based
+> on MFC requirement so codec buffers allocations
+> has been moved after state MFCINST_HEAD_PRODUCED.
+> And it is taken care that codec buffer allocation
+> is performed in process context from userspace IOCTL
+> call.
 
-No. We moved already to SoC specific comaptibles. You introduced back
-wrong pattern with MFCv10, but it should be rather fixed. Don't go back
-to it...
+Please wrap your commit messages according to Linux coding style:
+https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
+
 
 Best regards,
 Krzysztof
