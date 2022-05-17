@@ -2,94 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 145FC52A574
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 16:56:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 625FD52A596
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 17:03:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349434AbiEQO4q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 10:56:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53072 "EHLO
+        id S1349575AbiEQPDr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 11:03:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235603AbiEQO4n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 10:56:43 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE27024F3C;
-        Tue, 17 May 2022 07:56:41 -0700 (PDT)
-Received: from mail-yw1-f170.google.com ([209.85.128.170]) by
- mrelayeu.kundenserver.de (mreue106 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1MzQPe-1ndgwC0Ocy-00vRnN; Tue, 17 May 2022 16:56:40 +0200
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-2fedd26615cso77498037b3.7;
-        Tue, 17 May 2022 07:56:39 -0700 (PDT)
-X-Gm-Message-State: AOAM532SeLwfjctoKqmpGfeDF1zEHxm9lGBts33JPuG/U/seg6sQGDHY
-        Y153oxZLKtozhOjXYLZhfJz0PJVv00Y14NiWMAE=
-X-Google-Smtp-Source: ABdhPJzfQfMq9H+I8M/viBf/bZGDpOu9d60f+7Mz7Q+Kz6SQ6MND8STnx2JgGosiR2GP3lJ5ACWXszxYKv0jdRmGk1s=
-X-Received: by 2002:a0d:cd06:0:b0:2f8:f39c:4cfc with SMTP id
- p6-20020a0dcd06000000b002f8f39c4cfcmr26196437ywd.495.1652799398796; Tue, 17
- May 2022 07:56:38 -0700 (PDT)
+        with ESMTP id S1349545AbiEQPDq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 11:03:46 -0400
+Received: from mail-vs1-xe33.google.com (mail-vs1-xe33.google.com [IPv6:2607:f8b0:4864:20::e33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99124286F1;
+        Tue, 17 May 2022 08:03:45 -0700 (PDT)
+Received: by mail-vs1-xe33.google.com with SMTP id q2so18969190vsr.5;
+        Tue, 17 May 2022 08:03:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=S4e8UP5BJWcehEd5lvqnvGFisDV1bTubwTjUFBZmIpM=;
+        b=it+A4dqWumEFH1OSAjnGrn0chRuB/5FpiUDVDsQus4pGIE77uwkNPajTFqp43yaQQV
+         0K4FVAfDKxGbfdWuXwGMuG7OWRggbGm9UcyR6gkdkalqgO7NTI8voWH0N6d7cHwOuPLb
+         tAwe5tmJsOrauX8ChVqllBdIg4J3215TuS3u6DcHR4ERrH0PN+5+kH7m93V1Cye9CgP+
+         vUeIStn210AYuqJef07EjLTloaNfpoPGmO2ohlLbpqZ8tzNhJ+mEmaAVYk7w2HQe2lqo
+         29xH4Y+sUjHCMOxqVITXcyH9o5Ob+H1KoW7qMDLlKIeQsHopFS681ikGrcVWoXCqVTOv
+         JKJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=S4e8UP5BJWcehEd5lvqnvGFisDV1bTubwTjUFBZmIpM=;
+        b=Ixa3kqQJh7u+rcI8FT00j7ISHXObOAuEOvDw2JNo+O7PVH+hZuH5wdbbubopfMl6z9
+         +faYjoycZ0+OoE1NvLm7OBai0h5blQhD84sqSq5n2Xko2XO/OlaZH0IqFQ1CvLGiwJ6J
+         bNKJLNDMqedaOKX258T4uR7EckLhzTV0S4Sy3LJbPdkZ2tTDrp9AEw7CH+tpZXnV61Y0
+         PL7c2ickuhzKeqb65xbapHLTiD8qEk9AezxP3GhAgPU1hYVqpk2tMYCMIA3nIMkvqkM+
+         yjiwe+v1IG2pPVzai7yDMAFjbrW5QAdgpIKFX0e4EnNBiJCRd8QPKVuX91nxGePbyTn7
+         GlwA==
+X-Gm-Message-State: AOAM532WFodYtpWp+320nPRJ9k19+i3BiljLlHNer1nDvUW/bHXDdEyK
+        0NENvGddh9kslkksnb5jV5I=
+X-Google-Smtp-Source: ABdhPJxRUVIxQQmWioisYDsZbORonfIHNKzTiaRi23XzztneUyBk5dUPpWSFnz0dCz+HHvz3xLdiRA==
+X-Received: by 2002:a05:6102:548a:b0:32d:8c72:ee18 with SMTP id bk10-20020a056102548a00b0032d8c72ee18mr9187660vsb.70.1652799824751;
+        Tue, 17 May 2022 08:03:44 -0700 (PDT)
+Received: from [192.168.1.140] ([65.35.200.237])
+        by smtp.gmail.com with ESMTPSA id b20-20020a056102233400b0032d275e6922sm1207602vsa.34.2022.05.17.08.03.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 May 2022 08:03:44 -0700 (PDT)
+Message-ID: <30bb7968-06fb-308c-a5f0-df316dfb240e@gmail.com>
+Date:   Tue, 17 May 2022 11:03:41 -0400
 MIME-Version: 1.0
-References: <20220407204115.34350-1-krzysztof.kozlowski@linaro.org> <YoOZ4TawKslvu01w@xhacker>
-In-Reply-To: <YoOZ4TawKslvu01w@xhacker>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Tue, 17 May 2022 15:56:43 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a34dz7Fkk3jbwNq45BRHMt9tGuO=r5NJDiAuMyX05xW6g@mail.gmail.com>
-Message-ID: <CAK8P3a34dz7Fkk3jbwNq45BRHMt9tGuO=r5NJDiAuMyX05xW6g@mail.gmail.com>
-Subject: Re: [RESEND PATCH] arm64: dts: synaptics: remove unused DTSI for AS370
-To:     Jisheng Zhang <jszhang@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        arm-soc <arm@kernel.org>, SoC Team <soc@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:hmx3t1U0Jy8jKsEIrWSg53d6svImoOqDMm/Y063DOSGTNGV/5RO
- PV4dUNXBTcay3+dLIOmieyAGb0OFDvRXX5Qydr302OBCmG9OvOen5XRnm4//md16AyZ6sJK
- qyukf0xcmj91wSHwDgGaXIC+cK2rPRI9QF6HOmDbxpVtTc96p+UsqWHAsEwXHEhx60koZwi
- BZ/xdjrJCxjZE9WFqqW1g==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:0Q2xj5Wdlb0=:fxa9/3eub71EB5gTwlspTN
- t1wR4DhiO2MxcCDf1WAqDwcJCpLHE2510CCLURDpBP/Ex2Beq0RUNDR3IgAC0SbWqzgP/O3Wl
- jK/K+yS1bGn9mZSHbAtJL/JFNBLai5CnQBVgtuaRqL99Zqxs1JavffJn+kK7Lqo+qVpSX+6zq
- ejb7ugPX7OUYbIJo7gOOs/XxQ0Vq+yFoqy5wIDx9XBpSALc8wnrlFl7OvOGm5YUV7ki0cqCq9
- O3CE9Nu4b7fCn0r6oeFvuIVI7/0MqzJXn+2jUE3dBiJacEit5YLQNa4upKjQTe8Y5gj9rFkgx
- j8O1RoBiTGy3eeWGSmCNf7QASy98EwjyGU/eR7/UQM+gYusJfECaGvElVro12oYJz04b+GZqP
- 8+Muox+UYk7aFCUId+Klmw1j64fe0DFAGiDijtaKk3rEbKahy0prSe/Xv1NVhXfrqypfXE3TD
- 5IW6vZcRqCsOBfKae/tNiJAXiO5Xmys6+0/8KbC5789EdKQe22H6t2rin+OuL17TvM3bmvlv4
- sc9/XgayBtT050U3KwpjDf56oZEmV14a3W8qzBAJKZuWRbZLAUdd5LGA+g6jWprW+O4avF297
- dxTP8dLT/E7qbBGKNHey34r+xUIJdKO32VaGyOFsAvJF3zxHeZajZmmOBULsUFDM8+bXTVUQ6
- VlOTO1a0r1gECCGbnz0m76kXCyxpEDZwfQEQpDMn76lHU7G1eDTldrihhJVDyB2lXxjFK7Hpo
- T9tTyjVmzKIVFmWO1qLDjL+9FseniQOD4HwRjDYeW/PThA2JYyAp356qJIAwnOSjqEknHSz0l
- pHnSeyzy6qpJEmlp3O4/wa4mRNOG1nZhLnCEUDTiAejcBqPEaOTXWBQ5P5xRtSpk/FRoy+o4v
- wf57WYCepNa+6Xu3xdJw==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 1/3] of: always populate a root node
+Content-Language: en-US
+To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        Thomas Petazzoni <thomas.petazonni@bootlin.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Mark Brown <broonie@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
+References: <20220427094502.456111-1-clement.leger@bootlin.com>
+ <20220427094502.456111-2-clement.leger@bootlin.com>
+ <YnEx5/ni1ddIFCj9@robh.at.kernel.org>
+ <d356acbe-daff-1c66-6511-aab97a171c82@gmail.com>
+ <20220517093729.214c33a3@fixe.home>
+From:   Frank Rowand <frowand.list@gmail.com>
+In-Reply-To: <20220517093729.214c33a3@fixe.home>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 17, 2022 at 1:49 PM Jisheng Zhang <jszhang@kernel.org> wrote:
->
-> On Thu, Apr 07, 2022 at 10:41:15PM +0200, Krzysztof Kozlowski wrote:
-> > The as370.dtsi for Synaptics AS370 SoC does not have a user (DTS board
-> > file), is uncompilable and untestable.  It was added back in 2018.  No
-> > user appeared since that time, so assume it won't be added.
-> >
-> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Acked-by: Rob Herring <robh@kernel.org>
->
-> Acked-by: Jisheng Zhang <jszhang@kernel.org>
->
-> Hi Arnd, Olof,
->
-> This is the only one patch of berlin-soc for v5.19, Can you please
-> take it?
+On 5/17/22 02:37, Clément Léger wrote:
+> Le Mon, 16 May 2022 23:11:03 -0400,
+> Frank Rowand <frowand.list@gmail.com> a écrit :
+> 
+>> On 5/3/22 08:45, Rob Herring wrote:
+>>> On Wed, Apr 27, 2022 at 11:45:00AM +0200, Clément Léger wrote:  
+>>>> When enabling CONFIG_OF on a platform where of_root is not populated by
+>>>> firmware, we end up without a root node. In order to apply overlays and
+>>>> create subnodes of the root node, we need one. This commit creates an
+>>>> empty root node if not present.  
+>>>
+>>> The existing unittest essentially does the same thing for running the 
+>>> tests on non-DT systems. It should be modified to use this support 
+>>> instead. Maybe that's just removing the unittest code that set of_root.
+>>>
+>>> I expect Frank will have some comments.  
+>>
+>> My preference would be for unflatten_and_copy_device_tree() to
+>> use a compiled in FDT that only contains a root node, in the
+>> case that no valid device tree is found (in other words,
+>> "if (!initial_boot_params)".
+> 
+> Ok, so basically, instead of creating the root node manually, you
+> expect a device-tree which contains the following to be builtin the
+> kernel and unflattened if needed:
+> 
+> / {
+> 
+> };
 
-I had already applied when Krzysztof sent it, but forgot to send
-a notification about it.
+Yes.  If you agree with this I can create a patch to implement it.  I think
+it is useful even stand alone from the rest of the series.
 
-         Arnd
+> 
+> Maybe "chosen" and "aliases" nodes should also be provided as empty
+> nodes since the unittest are creating them anyway and the core DT code
+> also uses them.
+
+No. Unittest does not create both of them (I'm pretty sure, but I'm not
+going to double check).  If I recall correctly, unittest adds a property
+in one of those two nodes, and thus implicitly creates the node if not
+already present.  Unittest does populate internal pointers to those two
+nodes if the nodes are present (otherwise the pointers will have the
+value of null).  There is no need for the nodes to be present if empty.
+
+-Frank
+
+> 
+> Thanks,
+> 
+> Clément
+> 
+>>
+>> unflatten_and_copy_device_tree() calls unittest_unflatten_overlay_base()
+>> after unflattening the device tree passed into the booting kernel.  This
+>> step is needed for a specific portion of the unittests.
+>>
+>> I'm still looking at the bigger picture of using overlays for the PCIe
+>> card, so more comments will be coming about that bigger picture.
+>>
+>> -Frank
+>>
+> 
+> 
+
