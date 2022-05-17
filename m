@@ -2,84 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D6EB52A0C4
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 13:53:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0818052A0CB
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 13:54:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345516AbiEQLxy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 07:53:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37434 "EHLO
+        id S1345332AbiEQLyx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 07:54:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345508AbiEQLxy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 07:53:54 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 945444BFFA;
-        Tue, 17 May 2022 04:53:51 -0700 (PDT)
-Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id D50712223E;
-        Tue, 17 May 2022 13:53:46 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1652788428;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=4JeuNMnLUIShnOTplMHIItkUFZ+vv40zg13zfGeMbVk=;
-        b=DHRtLB+2YaBGPstvOeUrFtQvhn4A7rl+u1zER46nke1bDMqdZuVVmcj4IHUpmfvOFrEHK+
-        USraUAroiSjO552zPaZjX8CyTaEtK2xDQJ0Qk8JIVCPB6zSLWDJL1tL4u9bx5yVde04oXQ
-        ffsFQV1BXCaXZ30nEwWRhKjLrqwbBfo=
-From:   Michael Walle <michael@walle.cc>
-To:     peda@axentia.se
-Cc:     Manohar.Puri@microchip.com, UNGLinuxDriver@microchip.com,
-        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
-        devicetree@vger.kernel.org, kavyasree.kotagiri@microchip.com,
-        krzysztof.kozlowski+dt@linaro.org, lee.jones@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux@armlinux.org.uk, nicolas.ferre@microchip.com,
-        Michael Walle <michael@walle.cc>
-Subject: Re: [PATCH v2 4/4] mux: lan966: Add support for flexcom mux controller
-Date:   Tue, 17 May 2022 13:53:27 +0200
-Message-Id: <20220517115327.4139280-1-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <e43d766f-ec63-93d7-6b19-05b32579e6e3@axentia.se>
-References: <e43d766f-ec63-93d7-6b19-05b32579e6e3@axentia.se>
+        with ESMTP id S1345567AbiEQLys (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 07:54:48 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 665A6419BB;
+        Tue, 17 May 2022 04:54:40 -0700 (PDT)
+X-UUID: 10a6435c58b44ea6be7a5091242888d2-20220517
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:0d8f568d-f922-46b5-b62f-9ea606901178,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:2a19b09,CLOUDID:6b3d7fe2-edbf-4bd4-8a34-dfc5f7bb086d,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:0,BEC:nil
+X-UUID: 10a6435c58b44ea6be7a5091242888d2-20220517
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 613556711; Tue, 17 May 2022 19:54:35 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Tue, 17 May 2022 19:54:32 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Tue, 17 May 2022 19:54:32 +0800
+Message-ID: <b2a0449d7d1a1ae09ff9cdeff6a1a59b9aeac6bf.camel@mediatek.com>
+Subject: Re: [PATCH v6 1/7] thermal: mediatek: Relocate driver to mediatek
+ folder
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     Alexandre Bailon <abailon@baylibre.com>, <robh+dt@kernel.org>,
+        <krzk+dt@kernel.org>, <matthias.bgg@gmail.com>,
+        <p.zabel@pengutronix.de>
+CC:     <devicetree@vger.kernel.org>, <daniel.lezcano@linaro.org>,
+        <rafael@kernel.org>, <khilman@baylibre.com>,
+        <linux-pm@vger.kernel.org>, <amitk@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <michael.kao@mediatek.com>,
+        <ethan.chang@mediatek.com>, <linux-mediatek@lists.infradead.org>,
+        Michael Kao <michael.kao@mediatek.comi>, <rui.zhang@intel.com>,
+        <ben.tseng@mediatek.com>, <linux-arm-kernel@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <james.lo@mediatek.com>, <fan.chen@mediatek.com>,
+        <louis.yu@mediatek.com>
+Date:   Tue, 17 May 2022 19:54:32 +0800
+In-Reply-To: <20220512122433.1399802-2-abailon@baylibre.com>
+References: <20220512122433.1399802-1-abailon@baylibre.com>
+         <20220512122433.1399802-2-abailon@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, 2022-05-12 at 14:24 +0200, Alexandre Bailon wrote:
+> From: Michael Kao <michael.kao@mediatek.com>
+> 
+> Add Mediatek proprietary folder to upstream more thermal zone and
+> cooler
+> drivers. Relocate the original thermal controller driver to it and
+> rename
+> as soc_temp.c to show its purpose more clearly.
+> 
+> Signed-off-by: Michael Kao <michael.kao@mediatek.comi>
+> Signed-off-by: Ben Tseng <ben.tseng@mediatek.com>
+> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+> ---
+>  drivers/thermal/Kconfig                       | 14 ++++-------
+>  drivers/thermal/Makefile                      |  2 +-
+>  drivers/thermal/mediatek/Kconfig              | 23
+> +++++++++++++++++++
+>  drivers/thermal/mediatek/Makefile             |  1 +
+>  .../{mtk_thermal.c => mediatek/soc_temp.c}    |  0
+>  5 files changed, 29 insertions(+), 11 deletions(-)
+>  create mode 100644 drivers/thermal/mediatek/Kconfig
+>  create mode 100644 drivers/thermal/mediatek/Makefile
+>  rename drivers/thermal/{mtk_thermal.c => mediatek/soc_temp.c} (100%)
+> 
+> diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
+> index e37691e0bf20..8669d7278055 100644
+> --- a/drivers/thermal/Kconfig
+> +++ b/drivers/thermal/Kconfig
+> @@ -410,16 +410,10 @@ config DA9062_THERMAL
+>  	  zone.
+>  	  Compatible with the DA9062 and DA9061 PMICs.
+>  
+> -config MTK_THERMAL
+> -	tristate "Temperature sensor driver for mediatek SoCs"
+> -	depends on ARCH_MEDIATEK || COMPILE_TEST
+> -	depends on HAS_IOMEM
+> -	depends on NVMEM || NVMEM=n
+> -	depends on RESET_CONTROLLER
+> -	default y
+> -	help
+> -	  Enable this option if you want to have support for thermal
+> management
+> -	  controller present in Mediatek SoCs
+> +menu "Mediatek thermal drivers"
 
->> +struct mux_lan966x {
->
-> Why is the file named lan966, but then everything inside lan966x?
+Hello Alexandre,
 
-So I was about to reply to the bindings but since that question
-came up here, too, I'll do it here.
+could you help to do this?
+s/Mediatek/MediaTek/
 
-IMHO the name "lan966" is super confusing and if I followed it
-correctly, it was just invented because the DT guys don't want to
-have a wildcard in the compatibles. But LAN966 isn't a real product,
-just LAN9662 and LAN9668 is.
+and please also apply this to this series.
 
-I'd really prefer to have a consistent naming. I've said it once
-[1], having "lan966" (over lan966x) feels like cheating and is even
-worse, because everyone would assume there is a thing named LAN966.
-lan966x might lead the reader to think twice what the 'x' means.
+Thanks.
 
-So I'd prefer to have lan966x in the documentation and the drivers
-and just "microchip,lan9668" or "microchip,lan9662" in the
-compatibles.
+> +depends on ARCH_MEDIATEK || COMPILE_TEST
+> +source "drivers/thermal/mediatek/Kconfig"
+> +endmenu
+>  
+>  config AMLOGIC_THERMAL
+>  	tristate "Amlogic Thermal Support"
+> diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
+> index f0c36a1530d5..9ade39bdb525 100644
+> --- a/drivers/thermal/Makefile
+> +++ b/drivers/thermal/Makefile
+> @@ -55,7 +55,7 @@ obj-y				+= st/
+>  obj-$(CONFIG_QCOM_TSENS)	+= qcom/
+>  obj-y				+= tegra/
+>  obj-$(CONFIG_HISI_THERMAL)     += hisi_thermal.o
+> -obj-$(CONFIG_MTK_THERMAL)	+= mtk_thermal.o
+> +obj-$(CONFIG_MTK_THERMAL)	+= mediatek/
+>  obj-$(CONFIG_GENERIC_ADC_THERMAL)	+= thermal-generic-adc.o
+>  obj-$(CONFIG_UNIPHIER_THERMAL)	+= uniphier_thermal.o
+>  obj-$(CONFIG_AMLOGIC_THERMAL)     += amlogic_thermal.o
+> diff --git a/drivers/thermal/mediatek/Kconfig
+> b/drivers/thermal/mediatek/Kconfig
+> new file mode 100644
+> index 000000000000..0351e73170b7
+> --- /dev/null
+> +++ b/drivers/thermal/mediatek/Kconfig
+> @@ -0,0 +1,23 @@
+> +config MTK_THERMAL
+> +	tristate "Mediatek thermal drivers"
+> +	depends on THERMAL_OF
+> +	help
+> +	  This is the option for Mediatek thermal software
+> +	  solutions. Please enable corresponding options to
+> +	  get temperature information from thermal sensors or
+> +	  turn on throttle mechaisms for thermal mitigation.
+> +
+> +if MTK_THERMAL
+> +
+> +config MTK_SOC_THERMAL
+> +	tristate "Temperature sensor driver for mediatek SoCs"
+> +	depends on HAS_IOMEM
+> +	depends on NVMEM
+> +	depends on RESET_CONTROLLER
+> +	help
+> +	  Enable this option if you want to get SoC temperature
+> +	  information for Mediatek platforms. This driver
+> +	  configures thermal controllers to collect temperature
+> +	  via AUXADC interface.
+> +
+> +endif
+> diff --git a/drivers/thermal/mediatek/Makefile
+> b/drivers/thermal/mediatek/Makefile
+> new file mode 100644
+> index 000000000000..f75313ddce5e
+> --- /dev/null
+> +++ b/drivers/thermal/mediatek/Makefile
+> @@ -0,0 +1 @@
+> +obj-$(CONFIG_MTK_SOC_THERMAL)	+= soc_temp.o
+> diff --git a/drivers/thermal/mtk_thermal.c
+> b/drivers/thermal/mediatek/soc_temp.c
+> similarity index 100%
+> rename from drivers/thermal/mtk_thermal.c
+> rename to drivers/thermal/mediatek/soc_temp.c
 
--michael
+We should remain the original file "mtk_thermal.c" ?
+I think it's a old hardware structure for mtk socs, like mt8183.
 
-[1] https://lore.kernel.org/linux-devicetree/d18291ff8d81f03a58900935d92115f2@walle.cc/
+For mt8183, we still need to use this file.
+
+Therefore, I think we should use a config to handle this?
+And also, I think we can rename the mtk_thermal.c to mtk_thermal_adc.c.
+soc_temp.c to mtk_thermal_lvts.c.
+
+maybe we can discuss the file name offline.
+
+The new owner of mtk thermal is James Lo.
+Ben Tseng is no longer in mtk. Please remove this email.
+Please also cc these mail in next version.
+james.lo@mediatek.com
+fan.chen@mediatek.com
+louis.yu@mediatek.com
+rex-bc.chen@mediatek.com
+
+BRs,
+Rex
+
+
