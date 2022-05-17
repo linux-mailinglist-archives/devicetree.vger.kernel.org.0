@@ -2,67 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B8DA52A990
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 19:48:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E12E52A9A6
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 19:54:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351595AbiEQRsq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 13:48:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59822 "EHLO
+        id S235504AbiEQRx7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 13:53:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234922AbiEQRso (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 13:48:44 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E5E250062;
-        Tue, 17 May 2022 10:48:43 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 2E704B81B3D;
-        Tue, 17 May 2022 17:48:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D42A8C34118;
-        Tue, 17 May 2022 17:48:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1652809720;
-        bh=mM7kmRtxEsXSLuyxUuHv0ZboSh0tiiMRcwstNFbsFfY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=rwmjG7N6M9pmFM6sv9uM5k60fZXFmKSJEqEAZL2qV27Dke+ZPfNpoRsUgXEpfbBkZ
-         p6nLZvdZt8sN6otbQXIds2h2FSc8F9r5lO/tatI5hryulEoR60yFkZ+xqT9Dc3NkHm
-         +2LGKNa2E/ngwE4Zo4zf6WGGOKjA8g19iP4VE4gS7pBWfaMLDbcS0Eh6WeWi2uKbaK
-         MKJYfm0UHYXo/P6o+ttI0JjAC9jvwcxLnFNeq1YOM57obP8DDmK6wRt68z4x+kkPYe
-         3W1/yFXucBkXrfe6EjWZAbm7oXLSi0+16shE6pGOqj1stBfErgwbrpd7RXmz3HSh67
-         txqwuR0q+D9XA==
-Received: by mail-ej1-f45.google.com with SMTP id f9so947354ejc.0;
-        Tue, 17 May 2022 10:48:40 -0700 (PDT)
-X-Gm-Message-State: AOAM530tUggls+wu4yGqi5TAR72ZNLv+iKCJEsX6JhDCk9qYwQR1cGE/
-        ltE1t4cmi4eEbwlFLeqxcXhwFQjBxPEE4/0sWA==
-X-Google-Smtp-Source: ABdhPJzxvy1jWZewAshPUDKVWL4AiAPe3dQ/qVit9zTnsxZHVyTylHq9WyaWMfwaDU9yHzEz5gFVkxzypkFwDhwX0XE=
-X-Received: by 2002:a17:906:a888:b0:6f3:e990:e554 with SMTP id
- ha8-20020a170906a88800b006f3e990e554mr20800497ejb.19.1652809719089; Tue, 17
- May 2022 10:48:39 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220517101410.3493781-1-andre.przywara@arm.com>
- <20220517153444.GA1057027-robh@kernel.org> <CAFEAcA8sE8Rj0GmF71ox4BdDr0UcaS4QwiLUVUUFH5oj+hDhfA@mail.gmail.com>
-In-Reply-To: <CAFEAcA8sE8Rj0GmF71ox4BdDr0UcaS4QwiLUVUUFH5oj+hDhfA@mail.gmail.com>
+        with ESMTP id S1351633AbiEQRx6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 13:53:58 -0400
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59C693F88C;
+        Tue, 17 May 2022 10:53:57 -0700 (PDT)
+Received: by mail-oi1-f171.google.com with SMTP id i66so23172428oia.11;
+        Tue, 17 May 2022 10:53:57 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=YsDesghEDI/0tS5NHJX5qsEzOQ4O5WyEDYrAlt3mmLs=;
+        b=64vqOHVRsVfvZfjjSAoE9ift0brEPuxAVCtF0nbfg03ITHeGvuJpkZWmw46SgzuNs5
+         1Q080semW7GrXciv2P8lC8IkXemiITy3I9BaE/IHDByaM1xxvuQd/8lAf1wMbgZLZxWT
+         LOEpRFRokr7vwoh3kGXebeeNyOnSBqDQftvT9WTZrxRRnWlqK+6WP3Xx1jSaEyGubwEp
+         FYNHIvIf7Q7Z6CPY/QLws/eXvD5AE2CBqvQRbE/X/GY9yHClcOl+HDm7neOIXECXCYrK
+         vJf33jMXRVhUCRuwV91EcTz5EB+0Qw2Gt8V1eC6Gg3VNJuTeOGB0DV/T8uLRvJtO4YCH
+         cCDw==
+X-Gm-Message-State: AOAM532tWYK8V9IpxgoDUGBsk9HZsxTwKX4J2+z0Dp/sOtb+3Ch6DsiL
+        Gd2CEup/ahb/wmEZtLfV9g==
+X-Google-Smtp-Source: ABdhPJwljlblhzDw8zaW7HVqTSFpVeLgpJoxWDJdz7BuwXhztpSN+kRl6+3UUY5tJXYbETz/hauMvQ==
+X-Received: by 2002:a05:6808:1302:b0:326:dbcf:a2d0 with SMTP id y2-20020a056808130200b00326dbcfa2d0mr16468689oiv.106.1652810034896;
+        Tue, 17 May 2022 10:53:54 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id p9-20020a05683019c900b0060603221276sm60670otp.70.2022.05.17.10.53.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 May 2022 10:53:54 -0700 (PDT)
+Received: (nullmailer pid 1316050 invoked by uid 1000);
+        Tue, 17 May 2022 17:53:52 -0000
+Date:   Tue, 17 May 2022 12:53:52 -0500
 From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 17 May 2022 12:47:56 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLRvEn2E7cpTzQJRCJ=aeLjUtKhDimWat=nPtm3QP+cfA@mail.gmail.com>
-Message-ID: <CAL_JsqLRvEn2E7cpTzQJRCJ=aeLjUtKhDimWat=nPtm3QP+cfA@mail.gmail.com>
-Subject: Re: [PATCH] of/fdt: Ignore disabled memory nodes
-To:     Peter Maydell <peter.maydell@linaro.org>
-Cc:     Andre Przywara <andre.przywara@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Ross Burton <ross.burton@arm.com>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Russell King <linux@armlinux.org.uk>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+To:     Moudy Ho <moudy.ho@mediatek.com>
+Cc:     drinkcat@chromium.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        cellopoint.kai@gmail.com, Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        randy.wu@mediatek.com, xiandong.wang@mediatek.com,
+        linux-media@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-arm-kernel@lists.infradead.org,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>, allen-kh.cheng@mediatek.com,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        pihsun@chromium.org, hsinyi@google.com, jason-jh.lin@mediatek.com,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        river.cheng@mediatek.com, roy-cw.yeh@mediatek.com,
+        tfiga@chromium.org, devicetree@vger.kernel.org,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Subject: Re: [PATCH v15 1/3] dt-binding: mediatek: add bindings for MediaTek
+ MDP3 components
+Message-ID: <20220517175352.GA1315998-robh@kernel.org>
+References: <20220512092306.6895-1-moudy.ho@mediatek.com>
+ <20220512092306.6895-2-moudy.ho@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220512092306.6895-2-moudy.ho@mediatek.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,52 +84,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 17, 2022 at 11:54 AM Peter Maydell <peter.maydell@linaro.org> wrote:
->
-> On Tue, 17 May 2022 at 16:34, Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Tue, May 17, 2022 at 11:14:10AM +0100, Andre Przywara wrote:
-> > > When we boot a machine using a devicetree, the generic DT code goes
-> > > through all nodes with a 'device_type = "memory"' property, and collects
-> > > all memory banks mentioned there. However it does not check for the
-> > > status property, so any nodes which are explicitly "disabled" will still
-> > > be added as a memblock.
-> > > This ends up badly for QEMU, when booting with secure firmware on
-> > > arm/arm64 machines, because QEMU adds a node describing secure-only
-> > > memory:
-> > > ===================
-> > >       secram@e000000 {
-> >
-> > BTW, 'memory' is the correct node name.
->
-> We already have a 'memory' node, which is for the NS
-> memory. This one's for the secure-only RAM block,
-> which is why I gave it a name that hopefully helps in
-> spotting that when a human is reading the DT.
+On Thu, 12 May 2022 17:23:04 +0800, Moudy Ho wrote:
+> This patch adds DT binding documents for Media Data Path 3 (MDP3)
+> a unit in multimedia system combined with several components and
+> used for scaling and color format convert.
+> 
+> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> ---
+>  .../bindings/media/mediatek,mdp3-rdma.yaml    | 85 +++++++++++++++++++
+>  .../bindings/media/mediatek,mdp3-rsz.yaml     | 65 ++++++++++++++
+>  .../bindings/media/mediatek,mdp3-wrot.yaml    | 70 +++++++++++++++
+>  .../bindings/soc/mediatek/mediatek,ccorr.yaml | 58 +++++++++++++
+>  .../bindings/soc/mediatek/mediatek,wdma.yaml  | 71 ++++++++++++++++
+>  5 files changed, 349 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-rsz.yaml
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-wrot.yaml
+>  create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,ccorr.yaml
+>  create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,wdma.yaml
+> 
 
-You can do: secram: memory@e000000 {
-
-Where 'secram' is only a source level label until overlays come into
-the picture.
-
-> I'm not really sure to what extent node names in device trees are
-> "this is just an identifying textual label" and to what extent
-> they are "this is really ABI and you need to follow the standard",
-> though -- nothing in practice seems to care what they are,
-> suggesting the "textual label" theory, but some bits of tooling
-> complain if you do things like forget the address value or use the
-> same address for two different nodes, suggesting the "really ABI"
-> theory.
-
-Node names are supposed to follow the class of device and there's a
-list of established names in the spec.
-
-Sometimes it's ABI and sometimes not. Much of it is just good hygiene.
-memory nodes are also special because 'device_type' is used to
-identify them, but device_type is generally deprecated for FDT as its
-meaning in OpenFirmware doesn't apply (it defines what callable
-methods exist). We could use the nodename (without unit address)
-instead, but that would fail in some cases as other names have been
-used.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
