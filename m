@@ -2,58 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3454152A14A
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 14:15:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F006552A198
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 14:34:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345870AbiEQMO5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 08:14:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60136 "EHLO
+        id S1345592AbiEQMe2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 08:34:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345888AbiEQMO4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 08:14:56 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E1E94832F;
-        Tue, 17 May 2022 05:14:54 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24HCElbK039035;
-        Tue, 17 May 2022 07:14:47 -0500
+        with ESMTP id S242745AbiEQMe1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 08:34:27 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC0534B876;
+        Tue, 17 May 2022 05:34:26 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24HCXiuX090876;
+        Tue, 17 May 2022 07:33:44 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1652789687;
-        bh=d8V/d1FlippaVkhCu73J6chLBhyJrj8rPvurlMWI75I=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=GAE4ekdS3Cp53sWRnwBNADXbFC4hs2KKMP5yJuZnkJ1IUugtRps2tUVvy+2kh5ExH
-         OhrJSljIZ+TZFDcYmkhCNiE1fK6EW4a+aFTkAhaTACbd9/sHHWuje+TPmc6Uc+5G9d
-         SbedhQcb+OCSX5wyUvnbh+s9lk8E8IRYc1AWJKrc=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24HCElgK114263
+        s=ti-com-17Q1; t=1652790824;
+        bh=jX/75826u0dAvndf/WCTgLn1BPxJ18FVo/2uucSrT3Y=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=ksCA4A3K9ssPA9nasc1mvGNYBJRLlfv+cVMJ1NgTBdWUOI9f/I3BARSCJtQewvqIi
+         xkA9MBYoWj2ZVU4RmoTY4etI9m6jghCOtHMUdCZOmvs4Rg47zPO9VoNGJ4otocPobm
+         w5d9sFsBjpbZYMq1I/G37MsCJv1o0CLcWvkcX13U=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24HCXi48070260
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 17 May 2022 07:14:47 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+        Tue, 17 May 2022 07:33:44 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 17
- May 2022 07:14:47 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ May 2022 07:33:44 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 17 May 2022 07:14:47 -0500
-Received: from keerthy.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24HCEZdK014354;
-        Tue, 17 May 2022 07:14:43 -0500
-From:   Keerthy <j-keerthy@ti.com>
-To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
-        <amitk@kernel.org>, <kristo@kernel.org>
-CC:     <j-keerthy@ti.com>, <rafael@kernel.org>,
-        <linux-pm@vger.kernel.org>, <vigneshr@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v8 2/2] thermal: k3_j72xx_bandgap: Add the bandgap driver support
-Date:   Tue, 17 May 2022 17:44:23 +0530
-Message-ID: <20220517121423.8017-3-j-keerthy@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220517121423.8017-1-j-keerthy@ti.com>
-References: <20220517121423.8017-1-j-keerthy@ti.com>
+ Frontend Transport; Tue, 17 May 2022 07:33:44 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24HCXh78095767;
+        Tue, 17 May 2022 07:33:44 -0500
+Date:   Tue, 17 May 2022 18:03:43 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     =?utf-8?Q?C=C3=A9dric?= Le Goater <clg@kaod.org>
+CC:     Mark Brown <broonie@kernel.org>, <linux-spi@vger.kernel.org>,
+        <linux-mtd@lists.infradead.org>, <andrew@aj.id.au>,
+        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <richard@nod.at>,
+        <joel@jms.id.au>, <tudor.ambarus@microchip.com>,
+        <miquel.raynal@bootlin.com>, <chin-ting_kuo@aspeedtech.com>,
+        <linux-aspeed@lists.ozlabs.org>, <vigneshr@ti.com>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: (subset) [PATCH v7 00/11] spi: spi-mem: Convert Aspeed SMC
+ driver to spi-mem
+Message-ID: <20220517123343.5cust7y6uqeeamjs@ti.com>
+References: <20220509175616.1089346-1-clg@kaod.org>
+ <165272636363.750911.14933122170662994904.b4-ty@kernel.org>
+ <20220517110509.2e6xbwot63yl6a3c@ti.com>
+ <a17b2446-f5a6-d606-8ef4-3931b8bc94da@kaod.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <a17b2446-f5a6-d606-8ef4-3931b8bc94da@kaod.org>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
@@ -65,633 +73,121 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add VTM thermal support. In the Voltage Thermal Management
-Module(VTM), K3 J72XX supplies a voltage reference and a temperature
-sensor feature that are gathered in the band gap voltage and
-temperature sensor (VBGAPTS) module. The band gap provides current and
-voltage reference for its internal circuits and other analog IP
-blocks. The analog-to-digital converter (ADC) produces an output value
-that is proportional to the silicon temperature.
+Hi Cedric,
 
-Currently reading temperatures only is supported.  There are no
-active/passive cooling agent supported.
+On 17/05/22 02:03PM, Cédric Le Goater wrote:
+> Pratyush,
+> 
+> On 5/17/22 13:05, Pratyush Yadav wrote:
+> > Hi Cedric,
+> > 
+> > On 16/05/22 07:39PM, Mark Brown wrote:
+> > > On Mon, 9 May 2022 19:56:05 +0200, Cédric Le Goater wrote:
+> > > > This series adds a new SPI driver using the spi-mem interface for the
+> > > > Aspeed static memory controllers of the AST2600, AST2500 and AST2400
+> > > > SoCs.
+> > > > 
+> > > >   * AST2600 Firmware SPI Memory Controller (FMC)
+> > > >   * AST2600 SPI Flash Controller (SPI1 and SPI2)
+> > > >   * AST2500 Firmware SPI Memory Controller (FMC)
+> > > >   * AST2500 SPI Flash Controller (SPI1 and SPI2)
+> > > >   * AST2400 New Static Memory Controller (also referred as FMC)
+> > > >   * AST2400 SPI Flash Controller (SPI)
+> > > > 
+> > > > [...]
+> > > 
+> > > Applied to
+> > > 
+> > >     https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+> > > 
+> > > Thanks!
+> > > 
+> > > [02/11] dt-bindings: spi: Convert the Aspeed SMC controllers device tree binding
+> > >          commit: ce9858ea499da025684a7a5f19823c2c3f14bdce
+> > > [03/11] spi: spi-mem: Convert Aspeed SMC driver to spi-mem
+> > >          commit: 9c63b846e6df43e5b3d31263f7db545f32deeda3
+> > > [04/11] spi: aspeed: Add support for direct mapping
+> > >          commit: 9da06d7bdec7dad8018c23b180e410ef2e7a4367
+> > > [05/11] spi: aspeed: Adjust direct mapping to device size
+> > >          commit: bb084f94e1bca4a5c4f689d7aa9b410220c1ed71
+> > > [06/11] spi: aspeed: Workaround AST2500 limitations
+> > >          commit: 5785eedee42c34cfec496199a80fa8ec9ddcf7fe
+> > > [07/11] spi: aspeed: Add support for the AST2400 SPI controller
+> > >          commit: 53526ab27d9c256504f267713aea60db7af18fb0
+> > > [08/11] spi: aspeed: Calibrate read timings
+> > >          commit: eeaec1ea05c0e0f08e04c6844f20cc24a2fcc0f4
+> > 
+> > I have repeatedly objected to this patch [0][1][2] and you have
+> > repeatedly decided to not address my objections.
+> 
+> That's a very harsh way of saying things. I did not decide anything
+> or ignore your comments. I answered your questions and acknowledged
+> that indeed the read training was done under the dirmap handler but
+> this was not a concern today since we had all the required information
+> from spimem.
 
-J721e SoCs have errata i2128: https://www.ti.com/lit/pdf/sprz455
+I think the correct thing to do here would be to move this patch out of 
+your main series. Since the old driver did not have this feature anyway, 
+it is not necessary for the conversion to achieve feature parity. Then 
+have a separate series to drive the conversation on how to best 
+implement this contentious feature.
 
-The VTM Temperature Monitors (TEMPSENSORs) are trimmed during production,
-with the resulting values stored in software-readable registers. Software
-should use these  register values when translating the Temperature
-Monitor output codes to temperature values.
+> 
+> We waited _together_, 5 or 6 weeks, for more inputs on how to address
+> the concerns you raised regarding the sustainability of this method.
+> 
+> > I won't spend any more time fighting it.
+> 
+> This is not a fight. I don't know why you interpret it that way.
 
-It has an involved workaround. Software needs to read the error codes for
--40C, 30C, 125C from the efuse for each device & derive a new look up table
-for adc to temperature conversion. Involved calculating slopes & constants
-using 3 different straight line equations with adc refernce codes as the
-y-axis & error codes in the x-axis.
+I interpret it this way because I feel you have ignored my comments and 
+have kept this patch in regardless. But maybe I _am_ being too harsh. So 
+apologies if I have interpreted things wrong.
 
--40C to 30C
-30C to 125C
-125C to 150C
+> 
+> Now, since you object so explicitly, and since this patchset has
+> not reached the Linux kernel yet, we should consider dropping it.
+> I rather do that than push crap in mainline. But then, please,
+> provide solutions and not only objections !
 
-With the above 2 line equations we derive the full look-up table to
-workaround the errata i2128 for j721e SoC.
+Yes please. I would like to have this patch dropped, and then reopen 
+this discussion in a separate thread.
 
-Tested temperature reading on J721e SoC & J7200 SoC.
+I have provided solutions before but maybe you missed them. Please see 
+[3]. Specifically patches 1 and 3. These are still not very refined and 
+might not be accepted in their current state (especially patch 3 since 
+it does the calibration after registering the device with MTD), but they 
+should be a good starting point for discussion.
 
-[daniel.lezcano@linaro.org: Generate look-up tables run-time]
-Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-Signed-off-by: Keerthy <j-keerthy@ti.com>
----
- drivers/thermal/Makefile           |   2 +-
- drivers/thermal/k3_j72xx_bandgap.c | 566 +++++++++++++++++++++++++++++
- 2 files changed, 567 insertions(+), 1 deletion(-)
- create mode 100644 drivers/thermal/k3_j72xx_bandgap.c
+And we might end up deciding to just use the dirmap_create() hook to do 
+the calibration, but it is important to have this conversation 
+separately and clearly instead of it being missed as part of a large 
+patch series.
 
-diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
-index f0c36a1530d5..def8e1a0399c 100644
---- a/drivers/thermal/Makefile
-+++ b/drivers/thermal/Makefile
-@@ -28,7 +28,7 @@ thermal_sys-$(CONFIG_CPU_IDLE_THERMAL)	+= cpuidle_cooling.o
- # devfreq cooling
- thermal_sys-$(CONFIG_DEVFREQ_THERMAL) += devfreq_cooling.o
- 
--obj-$(CONFIG_K3_THERMAL)	+= k3_bandgap.o
-+obj-$(CONFIG_K3_THERMAL)	+= k3_bandgap.o k3_j72xx_bandgap.o
- # platform thermal drivers
- obj-y				+= broadcom/
- obj-$(CONFIG_THERMAL_MMIO)		+= thermal_mmio.o
-diff --git a/drivers/thermal/k3_j72xx_bandgap.c b/drivers/thermal/k3_j72xx_bandgap.c
-new file mode 100644
-index 000000000000..64e323158952
---- /dev/null
-+++ b/drivers/thermal/k3_j72xx_bandgap.c
-@@ -0,0 +1,566 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * TI Bandgap temperature sensor driver for J72XX SoC Family
-+ *
-+ * Copyright (C) 2021 Texas Instruments Incorporated - http://www.ti.com/
-+ */
-+
-+#include <linux/math.h>
-+#include <linux/math64.h>
-+#include <linux/module.h>
-+#include <linux/init.h>
-+#include <linux/kernel.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/err.h>
-+#include <linux/types.h>
-+#include <linux/of_platform.h>
-+#include <linux/io.h>
-+#include <linux/thermal.h>
-+#include <linux/of.h>
-+#include <linux/delay.h>
-+#include <linux/slab.h>
-+
-+#define K3_VTM_DEVINFO_PWR0_OFFSET		0x4
-+#define K3_VTM_DEVINFO_PWR0_TEMPSENS_CT_MASK	0xf0
-+#define K3_VTM_TMPSENS0_CTRL_OFFSET		0x300
-+#define K3_VTM_MISC_CTRL_OFFSET			0xc
-+#define K3_VTM_TMPSENS_STAT_OFFSET		0x8
-+#define K3_VTM_ANYMAXT_OUTRG_ALERT_EN		0x1
-+#define K3_VTM_MISC_CTRL2_OFFSET		0x10
-+#define K3_VTM_TS_STAT_DTEMP_MASK		0x3ff
-+#define K3_VTM_MAX_NUM_TS			8
-+#define K3_VTM_TMPSENS_CTRL_SOC			BIT(5)
-+#define K3_VTM_TMPSENS_CTRL_CLRZ		BIT(6)
-+#define K3_VTM_TMPSENS_CTRL_CLKON_REQ		BIT(7)
-+#define K3_VTM_TMPSENS_CTRL_MAXT_OUTRG_EN	BIT(11)
-+
-+#define K3_VTM_CORRECTION_TEMP_CNT		3
-+
-+#define MINUS40CREF				5
-+#define PLUS30CREF				253
-+#define PLUS125CREF				730
-+#define PLUS150CREF				940
-+
-+#define TABLE_SIZE				1024
-+#define MAX_TEMP				123000
-+#define COOL_DOWN_TEMP				105000
-+
-+#define FACTORS_REDUCTION			13
-+static int *derived_table;
-+
-+static int compute_value(int index, const s64 *factors, int nr_factors,
-+			 int reduction)
-+{
-+	s64 value = 0;
-+	int i;
-+
-+	for (i = 0; i < nr_factors; i++)
-+		value += factors[i] * int_pow(index, i);
-+
-+	return (int)div64_s64(value, int_pow(10, reduction));
-+}
-+
-+static void init_table(int factors_size, int *table, const s64 *factors)
-+{
-+	int i;
-+
-+	for (i = 0; i < TABLE_SIZE; i++)
-+		table[i] = compute_value(i, factors, factors_size,
-+					 FACTORS_REDUCTION);
-+}
-+
-+/**
-+ * struct err_values - structure containing error/reference values
-+ * @refs: reference error values for -40C, 30C, 125C & 150C
-+ * @errs: Actual error values for -40C, 30C, 125C & 150C read from the efuse
-+ */
-+struct err_values {
-+	int refs[4];
-+	int errs[4];
-+};
-+
-+static void create_table_segments(struct err_values *err_vals, int seg,
-+				  int *ref_table)
-+{
-+	int m = 0, c, num, den, i, err, idx1, idx2, err1, err2, ref1, ref2;
-+
-+	if (seg == 0)
-+		idx1 = 0;
-+	else
-+		idx1 = err_vals->refs[seg];
-+
-+	idx2 = err_vals->refs[seg + 1];
-+	err1 = err_vals->errs[seg];
-+	err2 = err_vals->errs[seg + 1];
-+	ref1 = err_vals->refs[seg];
-+	ref2 = err_vals->refs[seg + 1];
-+
-+	/*
-+	 * Calculate the slope with adc values read from the register
-+	 * as the y-axis param and err in adc value as x-axis param
-+	 */
-+	num = ref2 - ref1;
-+	den = err2 - err1;
-+	if (den)
-+		m = num / den;
-+	c = ref2 - m * err2;
-+
-+	/*
-+	 * Take care of divide by zero error if error values are same
-+	 * Or when the slope is 0
-+	 */
-+	if (den != 0 && m != 0) {
-+		for (i = idx1; i <= idx2; i++) {
-+			err = (i - c) / m;
-+			if (((i + err) < 0) || ((i + err) >= TABLE_SIZE))
-+				continue;
-+			derived_table[i] = ref_table[i + err];
-+		}
-+	} else { /* Constant error take care of divide by zero */
-+		for (i = idx1; i <= idx2; i++) {
-+			if (((i + err1) < 0) || ((i + err1) >= TABLE_SIZE))
-+				continue;
-+			derived_table[i] = ref_table[i + err1];
-+		}
-+	}
-+}
-+
-+static int prep_lookup_table(struct err_values *err_vals, int *ref_table)
-+{
-+	int inc, i, seg;
-+
-+	/*
-+	 * Fill up the lookup table under 3 segments
-+	 * region -40C to +30C
-+	 * region +30C to +125C
-+	 * region +125C to +150C
-+	 */
-+	for (seg = 0; seg < 3; seg++)
-+		create_table_segments(err_vals, seg, ref_table);
-+
-+	/* Get to the first valid temperature */
-+	i = 0;
-+	while (!derived_table[i])
-+		i++;
-+
-+	/*
-+	 * Get to the last zero index and back fill the temperature for
-+	 * sake of continuity
-+	 */
-+	if (i) {
-+		/* 300 milli celsius steps */
-+		while (i--)
-+			derived_table[i] = derived_table[i + 1] - 300;
-+		/* case 0 */
-+		derived_table[i] = derived_table[i + 1] - 300;
-+	}
-+
-+	/*
-+	 * Fill the last trailing 0s which are unfilled with increments of
-+	 * 100 milli celsius till 1023 code
-+	 */
-+	i = TABLE_SIZE - 1;
-+	while (!derived_table[i])
-+		i--;
-+
-+	i++;
-+	inc = 1;
-+	while (i < TABLE_SIZE) {
-+		derived_table[i] = derived_table[i - 1] + inc * 100;
-+		i++;
-+	}
-+
-+	return 0;
-+}
-+
-+struct k3_thermal_data;
-+
-+struct k3_j72xx_bandgap {
-+	struct device *dev;
-+	void __iomem *base;
-+	void __iomem *cfg2_base;
-+	void __iomem *fuse_base;
-+	struct k3_thermal_data *ts_data[K3_VTM_MAX_NUM_TS];
-+};
-+
-+/* common data structures */
-+struct k3_thermal_data {
-+	struct k3_j72xx_bandgap *bgp;
-+	u32 ctrl_offset;
-+	u32 stat_offset;
-+};
-+
-+static int two_cmp(int tmp, int mask)
-+{
-+	tmp = ~(tmp);
-+	tmp &= mask;
-+	tmp += 1;
-+
-+	/* Return negative value */
-+	return (0 - tmp);
-+}
-+
-+static unsigned int vtm_get_best_value(unsigned int s0, unsigned int s1,
-+				       unsigned int s2)
-+{
-+	int d01 = abs(s0 - s1);
-+	int d02 = abs(s0 - s2);
-+	int d12 = abs(s1 - s2);
-+
-+	if (d01 <= d02 && d01 <= d12)
-+		return (s0 + s1) / 2;
-+
-+	if (d02 <= d01 && d02 <= d12)
-+		return (s0 + s2) / 2;
-+
-+	return (s1 + s2) / 2;
-+}
-+
-+static inline int k3_bgp_read_temp(struct k3_thermal_data *devdata,
-+				   int *temp)
-+{
-+	struct k3_j72xx_bandgap *bgp;
-+	unsigned int dtemp, s0, s1, s2;
-+
-+	bgp = devdata->bgp;
-+	/*
-+	 * Errata is applicable for am654 pg 1.0 silicon/J7ES. There
-+	 * is a variation of the order for certain degree centigrade on AM654.
-+	 * Work around that by getting the average of two closest
-+	 * readings out of three readings everytime we want to
-+	 * report temperatures.
-+	 *
-+	 * Errata workaround.
-+	 */
-+	s0 = readl(bgp->base + devdata->stat_offset) &
-+		K3_VTM_TS_STAT_DTEMP_MASK;
-+	s1 = readl(bgp->base + devdata->stat_offset) &
-+		K3_VTM_TS_STAT_DTEMP_MASK;
-+	s2 = readl(bgp->base + devdata->stat_offset) &
-+		K3_VTM_TS_STAT_DTEMP_MASK;
-+	dtemp = vtm_get_best_value(s0, s1, s2);
-+
-+	if (dtemp < 0 || dtemp >= TABLE_SIZE)
-+		return -EINVAL;
-+
-+	*temp = derived_table[dtemp];
-+
-+	return 0;
-+}
-+
-+/* Get temperature callback function for thermal zone */
-+static int k3_thermal_get_temp(void *devdata, int *temp)
-+{
-+	struct k3_thermal_data *data = devdata;
-+	int ret = 0;
-+
-+	ret = k3_bgp_read_temp(data, temp);
-+	if (ret)
-+		return ret;
-+
-+	return ret;
-+}
-+
-+static const struct thermal_zone_of_device_ops k3_of_thermal_ops = {
-+	.get_temp = k3_thermal_get_temp,
-+};
-+
-+static int k3_j72xx_bandgap_temp_to_adc_code(int temp)
-+{
-+	int low = 0, high = TABLE_SIZE - 1, mid;
-+
-+	if (temp > 160000 || temp < -50000)
-+		return -EINVAL;
-+
-+	/* Binary search to find the adc code */
-+	while (low < (high - 1)) {
-+		mid = (low + high) / 2;
-+		if (temp <= derived_table[mid])
-+			high = mid;
-+		else
-+			low = mid;
-+	}
-+
-+	return mid;
-+}
-+
-+static void get_efuse_values(int id, struct k3_thermal_data *data, int *err,
-+			     struct k3_j72xx_bandgap *bgp)
-+{
-+	int i, tmp, pow;
-+	int ct_offsets[5][K3_VTM_CORRECTION_TEMP_CNT] = {
-+		{ 0x0, 0x8, 0x4 },
-+		{ 0x0, 0x8, 0x4 },
-+		{ 0x0, -1,  0x4 },
-+		{ 0x0, 0xC, -1 },
-+		{ 0x0, 0xc, 0x8 }
-+	};
-+	int ct_bm[5][K3_VTM_CORRECTION_TEMP_CNT] = {
-+		{ 0x3f, 0x1fe000, 0x1ff },
-+		{ 0xfc0, 0x1fe000, 0x3fe00 },
-+		{ 0x3f000, 0x7f800000, 0x7fc0000 },
-+		{ 0xfc0000, 0x1fe0, 0x1f800000 },
-+		{ 0x3f000000, 0x1fe000, 0x1ff0 }
-+	};
-+
-+	for (i = 0; i < 3; i++) {
-+		/* Extract the offset value using bit-mask */
-+		if (ct_offsets[id][i] == -1 && i == 1) {
-+			/* 25C offset Case of Sensor 2 split between 2 regs */
-+			tmp = (readl(bgp->fuse_base + 0x8) & 0xE0000000) >> (29);
-+			tmp |= ((readl(bgp->fuse_base + 0xC) & 0x1F) << 3);
-+			pow = tmp & 0x80;
-+		} else if (ct_offsets[id][i] == -1 && i == 2) {
-+			/* 125C Case of Sensor 3 split between 2 regs */
-+			tmp = (readl(bgp->fuse_base + 0x4) & 0xF8000000) >> (27);
-+			tmp |= ((readl(bgp->fuse_base + 0x8) & 0xF) << 5);
-+			pow = tmp & 0x100;
-+		} else {
-+			tmp = readl(bgp->fuse_base + ct_offsets[id][i]);
-+			tmp &= ct_bm[id][i];
-+			tmp = tmp >> __ffs(ct_bm[id][i]);
-+
-+			/* Obtain the sign bit pow*/
-+			pow = ct_bm[id][i] >> __ffs(ct_bm[id][i]);
-+			pow += 1;
-+			pow /= 2;
-+		}
-+
-+		/* Check for negative value */
-+		if (tmp & pow) {
-+			/* 2's complement value */
-+			tmp = two_cmp(tmp, ct_bm[id][i] >> __ffs(ct_bm[id][i]));
-+		}
-+		err[i] = tmp;
-+	}
-+
-+	/* Err value for 150C is set to 0 */
-+	err[i] = 0;
-+}
-+
-+static void print_look_up_table(struct device *dev, int *ref_table)
-+{
-+	int i;
-+
-+	dev_dbg(dev, "The contents of derived array\n");
-+	dev_dbg(dev, "Code   Temperature\n");
-+	for (i = 0; i < TABLE_SIZE; i++)
-+		dev_dbg(dev, "%d       %d %d\n", i, derived_table[i], ref_table[i]);
-+}
-+
-+struct k3_j72xx_bandgap_data {
-+	unsigned int has_errata_i2128;
-+};
-+
-+static int k3_j72xx_bandgap_probe(struct platform_device *pdev)
-+{
-+	int ret = 0, cnt, val, id;
-+	int high_max, low_temp;
-+	struct resource *res;
-+	struct device *dev = &pdev->dev;
-+	struct k3_j72xx_bandgap *bgp;
-+	struct k3_thermal_data *data;
-+	int workaround_needed = 0;
-+	const struct k3_j72xx_bandgap_data *driver_data;
-+	struct thermal_zone_device *ti_thermal;
-+	int *ref_table;
-+	struct err_values err_vals;
-+
-+	const s64 golden_factors[] = {
-+		-490019999999999936,
-+		3251200000000000,
-+		-1705800000000,
-+		603730000,
-+		-92627,
-+	};
-+
-+	const s64 pvt_wa_factors[] = {
-+		-415230000000000000,
-+		3126600000000000,
-+		-1157800000000,
-+	};
-+
-+	bgp = devm_kzalloc(&pdev->dev, sizeof(*bgp), GFP_KERNEL);
-+	if (!bgp)
-+		return -ENOMEM;
-+
-+	bgp->dev = dev;
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	bgp->base = devm_ioremap_resource(dev, res);
-+	if (IS_ERR(bgp->base))
-+		return PTR_ERR(bgp->base);
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-+	bgp->cfg2_base = devm_ioremap_resource(dev, res);
-+	if (IS_ERR(bgp->cfg2_base))
-+		return PTR_ERR(bgp->cfg2_base);
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 2);
-+	bgp->fuse_base = devm_ioremap_resource(dev, res);
-+	if (IS_ERR(bgp->fuse_base))
-+		return PTR_ERR(bgp->fuse_base);
-+
-+	driver_data = of_device_get_match_data(dev);
-+	if (driver_data)
-+		workaround_needed = driver_data->has_errata_i2128;
-+
-+	pm_runtime_enable(dev);
-+	ret = pm_runtime_get_sync(dev);
-+	if (ret < 0) {
-+		pm_runtime_put_noidle(dev);
-+		pm_runtime_disable(dev);
-+		return ret;
-+	}
-+
-+	/* Get the sensor count in the VTM */
-+	val = readl(bgp->base + K3_VTM_DEVINFO_PWR0_OFFSET);
-+	cnt = val & K3_VTM_DEVINFO_PWR0_TEMPSENS_CT_MASK;
-+	cnt >>= __ffs(K3_VTM_DEVINFO_PWR0_TEMPSENS_CT_MASK);
-+
-+	data = devm_kcalloc(bgp->dev, cnt, sizeof(*data), GFP_KERNEL);
-+	if (!data) {
-+		ret = -ENOMEM;
-+		goto err_alloc;
-+	}
-+
-+	ref_table = kzalloc(sizeof(*ref_table) * TABLE_SIZE, GFP_KERNEL);
-+	if (!ref_table) {
-+		ret = -ENOMEM;
-+		goto err_alloc;
-+	}
-+
-+	derived_table = devm_kzalloc(bgp->dev, sizeof(*derived_table) * TABLE_SIZE,
-+				     GFP_KERNEL);
-+	if (!derived_table) {
-+		ret = -ENOMEM;
-+		goto err_alloc;
-+	}
-+
-+	/* Workaround not needed if bit30/bit31 is set even for J721e */
-+	if (workaround_needed && (readl(bgp->fuse_base + 0x0) & 0xc0000000) == 0xc0000000)
-+		workaround_needed = false;
-+
-+	dev_dbg(bgp->dev, "Work around %sneeded\n",
-+		workaround_needed ? "not " : "");
-+
-+	if (!workaround_needed)
-+		init_table(5, ref_table, golden_factors);
-+	else
-+		init_table(3, ref_table, pvt_wa_factors);
-+
-+	/* Register the thermal sensors */
-+	for (id = 0; id < cnt; id++) {
-+		data[id].bgp = bgp;
-+		data[id].ctrl_offset = K3_VTM_TMPSENS0_CTRL_OFFSET + id * 0x20;
-+		data[id].stat_offset = data[id].ctrl_offset +
-+					K3_VTM_TMPSENS_STAT_OFFSET;
-+
-+		if (workaround_needed) {
-+			/* ref adc values for -40C, 30C & 125C respectively */
-+			err_vals.refs[0] = MINUS40CREF;
-+			err_vals.refs[1] = PLUS30CREF;
-+			err_vals.refs[2] = PLUS125CREF;
-+			err_vals.refs[3] = PLUS150CREF;
-+			get_efuse_values(id, &data[id], err_vals.errs, bgp);
-+		}
-+
-+		if (id == 0 && workaround_needed)
-+			prep_lookup_table(&err_vals, ref_table);
-+		else if (id == 0 && !workaround_needed)
-+			memcpy(derived_table, ref_table, TABLE_SIZE * 4);
-+
-+		val = readl(data[id].bgp->cfg2_base + data[id].ctrl_offset);
-+		val |= (K3_VTM_TMPSENS_CTRL_MAXT_OUTRG_EN |
-+			K3_VTM_TMPSENS_CTRL_SOC |
-+			K3_VTM_TMPSENS_CTRL_CLRZ | BIT(4));
-+		writel(val, data[id].bgp->cfg2_base + data[id].ctrl_offset);
-+
-+		bgp->ts_data[id] = &data[id];
-+		ti_thermal =
-+		devm_thermal_zone_of_sensor_register(bgp->dev, id,
-+						     &data[id],
-+						     &k3_of_thermal_ops);
-+		if (IS_ERR(ti_thermal)) {
-+			dev_err(bgp->dev, "thermal zone device is NULL\n");
-+			ret = PTR_ERR(ti_thermal);
-+			goto err_alloc;
-+		}
-+	}
-+
-+	/*
-+	 * Program TSHUT thresholds
-+	 * Step 1: set the thresholds to ~123C and 105C WKUP_VTM_MISC_CTRL2
-+	 * Step 2: WKUP_VTM_TMPSENS_CTRL_j set the MAXT_OUTRG_EN  bit
-+	 *         This is already taken care as per of init
-+	 * Step 3: WKUP_VTM_MISC_CTRL set the ANYMAXT_OUTRG_ALERT_EN  bit
-+	 */
-+	high_max = k3_j72xx_bandgap_temp_to_adc_code(MAX_TEMP);
-+	low_temp = k3_j72xx_bandgap_temp_to_adc_code(COOL_DOWN_TEMP);
-+
-+	writel((low_temp << 16) | high_max, data[0].bgp->cfg2_base +
-+	       K3_VTM_MISC_CTRL2_OFFSET);
-+	mdelay(100);
-+	writel(K3_VTM_ANYMAXT_OUTRG_ALERT_EN, data[0].bgp->cfg2_base +
-+	       K3_VTM_MISC_CTRL_OFFSET);
-+
-+	platform_set_drvdata(pdev, bgp);
-+
-+	print_look_up_table(dev, ref_table);
-+	/*
-+	 * Now that the derived_table has the appropriate look up values
-+	 * Free up the ref_table
-+	 */
-+	kfree(ref_table);
-+
-+	return 0;
-+
-+err_alloc:
-+	pm_runtime_put_sync(&pdev->dev);
-+	pm_runtime_disable(&pdev->dev);
-+
-+	return ret;
-+}
-+
-+static int k3_j72xx_bandgap_remove(struct platform_device *pdev)
-+{
-+	pm_runtime_put_sync(&pdev->dev);
-+	pm_runtime_disable(&pdev->dev);
-+
-+	return 0;
-+}
-+
-+const struct k3_j72xx_bandgap_data k3_j72xx_bandgap_j721e_data = {
-+	.has_errata_i2128 = 1,
-+};
-+
-+const struct k3_j72xx_bandgap_data k3_j72xx_bandgap_j7200_data = {
-+	.has_errata_i2128 = 0,
-+};
-+
-+static const struct of_device_id of_k3_j72xx_bandgap_match[] = {
-+	{
-+		.compatible = "ti,j721e-vtm",
-+		.data = &k3_j72xx_bandgap_j721e_data,
-+	},
-+	{
-+		.compatible = "ti,j7200-vtm",
-+		.data = &k3_j72xx_bandgap_j7200_data,
-+	},
-+	{ /* sentinel */ },
-+};
-+MODULE_DEVICE_TABLE(of, of_k3_j72xx_bandgap_match);
-+
-+static struct platform_driver k3_j72xx_bandgap_sensor_driver = {
-+	.probe = k3_j72xx_bandgap_probe,
-+	.remove = k3_j72xx_bandgap_remove,
-+	.driver = {
-+		.name = "k3-j72xx-soc-thermal",
-+		.of_match_table	= of_k3_j72xx_bandgap_match,
-+	},
-+};
-+
-+module_platform_driver(k3_j72xx_bandgap_sensor_driver);
-+
-+MODULE_DESCRIPTION("K3 bandgap temperature sensor driver");
-+MODULE_LICENSE("GPL");
-+MODULE_AUTHOR("J Keerthy <j-keerthy@ti.com>");
+> 
+> > But I will say that you should not expect any
+> > guarantees that SPI NOR or SPI NAND will not break your calibration in
+> > the future if they decide to move the dirmap_create() call around.
+> 
+> If that's the case one day, we have multiple solutions :
+> 
+>   - stop doing the training
+>   - move the training to the appropriate handler if it exists
+
+This is my preferred option, [3] is a good starting point for proposing 
+that handler.
+
+>   - use a default value
+> > > [11/11] mtd: spi-nor: aspeed: set the decoding size to at least 2MB for AST2600
+> > >          commit: 73ae97e3cabb580639f02f12a192324a53c4bebb
+> > > 
+> > 
+> > [0] https://patchwork.kernel.org/project/spi-devel-general/patch/20220325100849.2019209-9-clg@kaod.org/
+> > [1] https://patchwork.kernel.org/project/spi-devel-general/patch/20220214094231.3753686-9-clg@kaod.org/
+> > [2] https://lore.kernel.org/all/20220208190636.h6dubktkmuosvdxo@ti.com/
+[3] https://patchwork.ozlabs.org/project/linux-mtd/list/?series=233504&state=%2A&archive=both
+
 -- 
-2.17.1
-
+Regards,
+Pratyush Yadav
+Texas Instruments Inc.
