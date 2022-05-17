@@ -2,123 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEC9652A844
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 18:39:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16E4F52A8A3
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 18:54:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350637AbiEQQjM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 12:39:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49322 "EHLO
+        id S1351056AbiEQQyt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 12:54:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351035AbiEQQjJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 12:39:09 -0400
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07E68344D2;
-        Tue, 17 May 2022 09:39:07 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id D4C7520007;
-        Tue, 17 May 2022 16:39:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1652805546;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=aJtYRAFDXyv5D+rHulqoB18CgiwzQYEhSBBo7r1UZLw=;
-        b=PqMnphmKa+Oeky287RYM6Gq9ilrPz5qh6vlWGabmt0SxoEEMfRyJy6QaOyf/QenK1DHyuL
-        QmOqnHWpZqIVA1obxIcKlkrO81q9Qh636+wv7kshjVm2jfxIMtAhW/ZFiDmp44tLGMeEee
-        oEtkBtthnoNsPWdK+Upl0Kl5GbvHbXuB5ak+TBPYYCJh17n9F4ytJd9u1hdq+h6sK6idXH
-        mX09Xz3HaojL85ZSnh2qDTWk1Cz1c4M3zF3AGPru+9foDCbsrGwG4O6bJb2mXr7zh/Kv1u
-        cGkg7siIRlvwMEDEApgDBZUiChPcJvWIMUWuY5nOXiICKcD4ixk0pfxSYw6H+Q==
-Date:   Tue, 17 May 2022 18:39:03 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Mikhail Zhilkin <csharper2005@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mtd@lists.infradead.org, Karim <Karimdplay@gmail.com>,
-        M <x1@disroot.org>
-Subject: Re: [PATCH v5 0/3] Add support for Sercomm partitions
-Message-ID: <20220517183903.2b34819c@xps-13>
-In-Reply-To: <20220516184217.4e2957fc@xps-13>
-References: <20220516151228.885222-1-csharper2005@gmail.com>
-        <20220516184217.4e2957fc@xps-13>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S1346916AbiEQQyt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 12:54:49 -0400
+Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE18B403C7
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 09:54:47 -0700 (PDT)
+Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-2f16645872fso193782997b3.4
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 09:54:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=qfrwpsR8dVYRSweWV/3B4/qVRy2oFwVXna3I/qpO720=;
+        b=bcV6Yy2SmG5kbc6Q0/RO4eqS91H09JPCZebLeSw/NxhJKasEo8+GNMY59lxoJsum9M
+         4jhBAuevZyGJx/xmKU4uYQQDy80mfVv4+vgTUAXPqKwYLR9nQw6fT9+oOCredKi7qDEK
+         8qdIv3GRuzTYuddp1+5eme1J94/10qJRcw24MD95o/z7LY86Gyy11dij26G6Tdqr+FFZ
+         VThcInGlWbQWOcS+SAW8xp1YsvTAsNQl+0ImPTGcGWBoCogXWE1LG4TvVtypNzumze7E
+         ys2MDAEwmPlKYvf714pL37hPyu7ozSRB4HqhPYZ24Qkq3npQqvoFsVqWZ0uiso3RqGam
+         LL4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=qfrwpsR8dVYRSweWV/3B4/qVRy2oFwVXna3I/qpO720=;
+        b=HMeXeIQDQpjz75xOFRS3HwEbe7U3awr34iypJk1rYZ4QSIkOJVCUScUNCjJNDXk+Zk
+         9sCOdBmnEA/PyMH+zezDbgCNQE7Ngq6hsxWF+GB6hZX+lQ4WpWvUaEf1JA1fqjdlsjbr
+         CJo2eghkT/cZk0FS5dF6V2NFIFC4fjJW2RpkHx1T57CbHUG+lyv+BTpQnoNKwCsUAVy9
+         ndOZjTaAMZYN5Cc4V0ZpO9lm/HPrwyndjImct/u0YpKe6jNGEeypso0TWgfFlPHSHiaC
+         0ZLpNSSFNM/CMUBIB8uNfzmButlMbKZyqy3fURCC0oPvcXpoEbXj9V5UAX/sciWnI3hB
+         BGWg==
+X-Gm-Message-State: AOAM532b8EVGIJmjpwtQe9dtI39c3+BhYuV8/TCZ982y+hNP9ES5Reg8
+        DSEFBGG7mJz51Ey96hECfU3i7/fkWE2PAQ4nBUeCPA==
+X-Google-Smtp-Source: ABdhPJxRWXaAW/s7NQiyicZLAUVWqeo8BUdGCRUR2iOWAW29E0H0E6iMG/OCQUnBO3WNAZSnwEP4KifL6o+gmc2+wiI=
+X-Received: by 2002:a0d:d4d0:0:b0:2fe:b86b:472d with SMTP id
+ w199-20020a0dd4d0000000b002feb86b472dmr24665158ywd.469.1652806487018; Tue, 17
+ May 2022 09:54:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20220517101410.3493781-1-andre.przywara@arm.com> <20220517153444.GA1057027-robh@kernel.org>
+In-Reply-To: <20220517153444.GA1057027-robh@kernel.org>
+From:   Peter Maydell <peter.maydell@linaro.org>
+Date:   Tue, 17 May 2022 17:54:36 +0100
+Message-ID: <CAFEAcA8sE8Rj0GmF71ox4BdDr0UcaS4QwiLUVUUFH5oj+hDhfA@mail.gmail.com>
+Subject: Re: [PATCH] of/fdt: Ignore disabled memory nodes
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andre Przywara <andre.przywara@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Ross Burton <ross.burton@arm.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Russell King <linux@armlinux.org.uk>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+On Tue, 17 May 2022 at 16:34, Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, May 17, 2022 at 11:14:10AM +0100, Andre Przywara wrote:
+> > When we boot a machine using a devicetree, the generic DT code goes
+> > through all nodes with a 'device_type = "memory"' property, and collects
+> > all memory banks mentioned there. However it does not check for the
+> > status property, so any nodes which are explicitly "disabled" will still
+> > be added as a memblock.
+> > This ends up badly for QEMU, when booting with secure firmware on
+> > arm/arm64 machines, because QEMU adds a node describing secure-only
+> > memory:
+> > ===================
+> >       secram@e000000 {
+>
+> BTW, 'memory' is the correct node name.
 
-miquel.raynal@bootlin.com wrote on Mon, 16 May 2022 18:42:17 +0200:
+We already have a 'memory' node, which is for the NS
+memory. This one's for the secure-only RAM block,
+which is why I gave it a name that hopefully helps in
+spotting that when a human is reading the DT.
 
-> Hi Mikhail,
->=20
-> csharper2005@gmail.com wrote on Mon, 16 May 2022 15:12:28 +0000:
->=20
-> > This patch series add support for Sercomm mtd partition table parser. I=
-t's
-> > used in some Beeline, Netgear and Sercomm routers. The Sercomm partition
-> > map table contains real partition offsets, which may differ from device=
- to
-> > device depending on the number and location of bad blocks on NAND. =20
->=20
-> Series applied in place of the previous version on mtd/next.
+I'm not really sure to what extent node names in device trees are
+"this is just an identifying textual label" and to what extent
+they are "this is really ABI and you need to follow the standard",
+though -- nothing in practice seems to care what they are,
+suggesting the "textual label" theory, but some bits of tooling
+complain if you do things like forget the address value or use the
+same address for two different nodes, suggesting the "really ABI"
+theory.
 
-Actually we have a new robot warning, so I've dropped patch 3/3 and kept
-the bindings for this release.
-
-Thanks,
-Miqu=C3=A8l
->=20
-> >=20
-> > Changes since:
-> > v4:
-> >  - Add Acked-by to the first patch
-> >=20
-> > v3:
-> >  - Fix commit message of the first patch
-> >  - Add Reviewed-by to the second patch
-> >=20
-> > v2:
-> >  - Fix mistakes in dt-binding
-> >  - Add patch for new vendor prefix
-> >  - Add vendor prefix to scpart-id property
-> >=20
-> > v1:
-> >  - Add dt-binding in a separate patch
-> >  - Remove redundant braces and logical NOT operator
-> >  - Define pr_fmt
-> >  - Replace kcalloc by kzalloc
-> >  - Use of_get_child_count() and alloc big enough array before the
-> >    for_each_child_of_node()
-> >=20
-> > Mikhail Zhilkin (3):
-> >   dt-bindings: Add Sercomm (Suzhou) Corporation vendor prefix
-> >   dt-bindings: mtd: partitions: Extend fixed-partitions binding
-> >   mtd: parsers: add support for Sercomm partitions
-> >=20
-> >  .../mtd/partitions/fixed-partitions.yaml      |  55 +++-
-> >  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
-> >  drivers/mtd/parsers/Kconfig                   |   9 +
-> >  drivers/mtd/parsers/Makefile                  |   1 +
-> >  drivers/mtd/parsers/scpart.c                  | 240 ++++++++++++++++++
-> >  5 files changed, 305 insertions(+), 2 deletions(-)
-> >  create mode 100644 drivers/mtd/parsers/scpart.c
-> >  =20
->=20
->=20
-> Thanks,
-> Miqu=C3=A8l
-
+thanks
+-- PMM
