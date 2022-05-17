@@ -2,59 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04D4E52A44F
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 16:08:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CEA552A454
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 16:09:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244104AbiEQOII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 10:08:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51508 "EHLO
+        id S233493AbiEQOJD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 10:09:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243543AbiEQOIG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 10:08:06 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74ED13C4BC
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 07:08:05 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id bx33so21873786ljb.12
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 07:08:05 -0700 (PDT)
+        with ESMTP id S244395AbiEQOJB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 10:09:01 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F6B945AD3
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 07:09:00 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id m23so21943050ljc.0
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 07:09:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ILPQc7G+oPlM/aZP4m6NBhLYqFjSTocczgW3af4op68=;
-        b=PE0JV6pDh4rHpGkCg1JqfCrHmzxmw7W7Qyd2ouQl31by/orybXkuDp+LYNUJnW0YAG
-         gbapK+/sRL5cVKr1ZIDwjrJMXsSOzHFGNn+wuLKiMyY/Ja+vxqqwzauLl1sOfOR87fPE
-         ZB5Ya95oWKEVOK+4qG1lmjSP/UgREmLZORaqoI+0ARqwiOI3ylXI1OrmwvfJIVJ+s+zm
-         jgkTnIeNKvWg793waaxKfpfGTRrYzU88uPEwCeWDm7pDEBDRakDyblxoj0jtACfCWwEd
-         pi3r05xkqDeTfbUjUvhKNRuGA3WSqjWdY3wWd1lmqFG2iR2S2VPbYSCeg+r18WGv9zCe
-         hetg==
+        bh=VQ/tQhaBagrVvoxKym1eNDePBUWWDTsDmQsIJ7z9tmc=;
+        b=lq3LyMXRIj9ws/e9xkK2Ftm/9JayeFvZ4LPe0TTBdLd1OlQqjlPHqMH8ljTrgj4fMY
+         DzMlcvCXa7xCPNk++DAhkJm47mpiy+plW2AsKPZkCdwPRuoOlyhd9TrK8hOfHiWSV/MW
+         vCTfGqduDWyM8SRYM5cRFsh+EvhMtlUANGZ5g2swOQFwBSKMUX6eTlllFC/2OcgLL8r3
+         fBbnCCBLWgMyUks4Deiz0WkQBBiDMN0IHp8qBC+zmUqHBjTcW5/BMtzUC/zI6O+rAaj9
+         Dmg4g3hW2IM6iBwqR2+Q1ma6JLwiKPnvjBsjZsLNgPf+dBP8vZjc6mtdDX5IQljF+d/y
+         Qn5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=ILPQc7G+oPlM/aZP4m6NBhLYqFjSTocczgW3af4op68=;
-        b=YUFP9fdj7Xr1uy2Ty4lnFP2oECVou+/efv18U5emjO7PZuEYSdP3smGw9oeVp5dp9U
-         7YqxzLJDZModGPeWGCA4CfWAsgKb0CAdoUkYyttDVgGJbbBzjzq4xJ7GMrR1iafZoiET
-         p/PomhOER7eEHG5TbHJuLhIqsohIIyy3YdbjvjMhJpRaJ1W4oywY/fxhn6aCODpZfq2A
-         saNgl6lQUn3MgMXe7VUYyHKyjtneUkrRql086k7UrjpFEsVwYe6fmJPt1CP4JF/ESRsq
-         Ez7ylNjaMA9Bwlssw4asbY2Dew76OYTjOpRNJVq/M8NLJaj7Wfmy7kSZqqYtWB2DA0k7
-         xMqQ==
-X-Gm-Message-State: AOAM533IBgnqgk+/LDpmiYJ/u+jmU3VecU0gISWijHVGkulT5LB5zQME
-        78o58DkVxQuVcJA67G3MM8a1PQ==
-X-Google-Smtp-Source: ABdhPJxtqwhZWJ7dYHgMkZjWCVF34+2Hgq6B9aXDbdtKuyujaW+ust3Tn4JGyVEsqcwnFCqS839YWw==
-X-Received: by 2002:a05:651c:893:b0:249:4023:3818 with SMTP id d19-20020a05651c089300b0024940233818mr15040800ljq.44.1652796483809;
-        Tue, 17 May 2022 07:08:03 -0700 (PDT)
+        bh=VQ/tQhaBagrVvoxKym1eNDePBUWWDTsDmQsIJ7z9tmc=;
+        b=IBZKqH1lDJxM7wKwqDeUerx42c11DNt3jwtNYRBcUHPziNNgw/KYrerraxgRuF1gi/
+         Rte/fZEoK2AXh70YJi6xnVl7eeSVMnKMmUq8mqR8ARVHMh27XYPlH8JTMGEpa/CMxFRx
+         IBjVzYwT+7KD1txva5BUqCgrfDskIg833HRxfUjfJAnvJ3Hpfs+VVqsRuYZ8ZDn6iMat
+         x5pplXuMQGoCjMG+ZftzZPKpXf6KyNE3oa6EAMDEh/s2fcZKGtXm+LZuMXO5Mritq50L
+         8pkA/uxi5nx5/OodrjXK1vF3i+Q0t3IHpSsbkFsJg1/PN3e3JqS9KLhjsXJDT/eMqdkI
+         fHjw==
+X-Gm-Message-State: AOAM533doRRYUEqzV9Pdkqi7rpZg0/FzDzb2NmuAF6R3Gte6X+OJnTQg
+        8qVFiMh21nVJ2ID3ex6AJ3PeBA==
+X-Google-Smtp-Source: ABdhPJy5FwGw6iL9PZmQwU7TuQNTYtWJUfOU1FklF2Xf+G8XgFNjrWljP/K3gIULCLHrapMqKdWnKg==
+X-Received: by 2002:a2e:b0e5:0:b0:253:b5a0:e8af with SMTP id h5-20020a2eb0e5000000b00253b5a0e8afmr2304574ljl.250.1652796537252;
+        Tue, 17 May 2022 07:08:57 -0700 (PDT)
 Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id u8-20020ac24c28000000b0047255d211c7sm1597601lfq.246.2022.05.17.07.08.02
+        by smtp.gmail.com with ESMTPSA id v2-20020a197402000000b0047255d211ebsm1591039lfe.282.2022.05.17.07.08.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 May 2022 07:08:03 -0700 (PDT)
-Message-ID: <2eb61c98-6e1e-1fea-4af6-7a9deff11b11@linaro.org>
-Date:   Tue, 17 May 2022 16:08:02 +0200
+        Tue, 17 May 2022 07:08:56 -0700 (PDT)
+Message-ID: <79dcb6b9-e983-15ee-709b-878c889bfe4d@linaro.org>
+Date:   Tue, 17 May 2022 16:08:55 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: microchip-otpc: document Microchip
- OTPC
+Subject: Re: [PATCH v2 2/2] nvmem: microchip-otpc: add support
 Content-Language: en-US
 To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
         srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
@@ -62,14 +61,14 @@ To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
 Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
 References: <20220517125822.579580-1-claudiu.beznea@microchip.com>
- <20220517125822.579580-2-claudiu.beznea@microchip.com>
+ <20220517125822.579580-3-claudiu.beznea@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220517125822.579580-2-claudiu.beznea@microchip.com>
+In-Reply-To: <20220517125822.579580-3-claudiu.beznea@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,17 +77,24 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 17/05/2022 14:58, Claudiu Beznea wrote:
-> Document Microchip OTP controller.
-> 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-> ---
->  .../nvmem/microchip-sama7g5,otpc.yaml         | 50 +++++++++++++++++++
->  .../nvmem/microchip-sama7g5,otpc.h            | 12 +++++
->  2 files changed, 62 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/nvmem/microchip-sama7g5,otpc.yaml
 
-comma after vendor, dash after Soc, so:
-microchip,sama7g5-otpc.yaml
+Thank you for your patch. There is something to discuss/improve.
+
+> +static const struct of_device_id mchp_otpc_ids[] = {
+> +	{ .compatible = "microchip,sama7g5-otpc", },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, mchp_otpc_ids);
+> +
+> +static struct platform_driver mchp_otpc_driver = {
+> +	.probe = mchp_otpc_probe,
+> +	.driver = {
+> +		.name = MCHP_OTPC_NAME,
+> +		.of_match_table = of_match_ptr(mchp_otpc_ids),
+
+This still has incorrect pair of of_match_ptr/maybe_unused. Either both,
+or none.
+
 
 Best regards,
 Krzysztof
