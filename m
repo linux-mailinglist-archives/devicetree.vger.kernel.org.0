@@ -2,148 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 296F4529F17
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 12:14:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8544529F26
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 12:17:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344003AbiEQKOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 06:14:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47022 "EHLO
+        id S244526AbiEQKRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 06:17:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343920AbiEQKMy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 06:12:54 -0400
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 194E21E3F1;
-        Tue, 17 May 2022 03:12:14 -0700 (PDT)
-Received: by mail-pg1-x52b.google.com with SMTP id l11so16505476pgt.13;
-        Tue, 17 May 2022 03:12:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=aMBOI9YkUSIsWIlQdfz41gQk4nmmHQa5UOI2C/hBUEU=;
-        b=JtkF5r+oqYFZIyXuBu6cPFpvbyE/I3CGuS9xPWbrbxa9FneoN4paYaudwt+RBnSDrO
-         5X/79Ll2Fd2qonqa1Ubkk8KYhES4DpT+4h84wXNtok9qDHh8bQu8GZSbIOvL4yA4wuf4
-         OoJ8gGM4111xYPvCHRJnRsNHrbuYOHYiiktovHa3QNmVOx0c56bReuTjaCFxSWJkLFaD
-         G1Gkdi3E26J5Zl/wYf34rDekFek+EXo83nUupgPXvRzI1k6OjJ9wD1T9y+3nQqjiGUAb
-         4uNnjrVFNDHvhMoI50zu0hbHX+DAg2UNqiSbHC01MZi7lHk23i1hcVyFZN5sAgCCA5AH
-         qk8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=aMBOI9YkUSIsWIlQdfz41gQk4nmmHQa5UOI2C/hBUEU=;
-        b=EAVuv3wzqX7l8G0VremnzYv+q0Lg1a+TG2ujBRC9jjD7hzZPiYW6F1mwKQQT0OEKQr
-         vEp2qsA6UhdA+6b6TKeFutuDx2td94Wx5HdI8vU54hqH06WPQ3Jk0vyr0SwpyovDYNBX
-         uK+Shx2MvCBh95fKiq03Pt/BqDmmWFWwcynN7vFkMNtVZ6FMBKjnknEyyrD0N+3EKhx3
-         Q30bRsz9PchwEhGng/XsLIXVZ6fLFxs63EPNmZwMncyAcjH30yqJ6saygrbhMltV7ELT
-         2AW+oQHQGBN42N3OV7fiCt2u9Izfvaoutz1po6iDrD4C/DcbR0kqQdRv5xLBuhh1VKLf
-         c5JQ==
-X-Gm-Message-State: AOAM532DRtStbsEF95uY7bxMJaDobiYAww1cawUYsXyaj8fMVUBWpLZ4
-        3z15DPWGg324gYW+9125qw==
-X-Google-Smtp-Source: ABdhPJzTg9eea+BcxaCZFzMBUKvm4hvmH7A1NnWXwh2q1t9VyhA+uHTXLd3jc55tn++kghtu5gGqVQ==
-X-Received: by 2002:a05:6a00:2408:b0:4f7:a8cb:9b63 with SMTP id z8-20020a056a00240800b004f7a8cb9b63mr21900585pfh.33.1652782333486;
-        Tue, 17 May 2022 03:12:13 -0700 (PDT)
-Received: from localhost (220-133-130-217.hinet-ip.hinet.net. [220.133.130.217])
-        by smtp.gmail.com with ESMTPSA id z4-20020a62d104000000b0050dc7628184sm8751369pfg.94.2022.05.17.03.12.13
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 17 May 2022 03:12:13 -0700 (PDT)
-From:   Tyrone Ting <warp5tw@gmail.com>
-To:     avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        wsa@kernel.org, andriy.shevchenko@linux.intel.com,
-        jarkko.nikula@linux.intel.com, semen.protsenko@linaro.org,
-        rafal@milecki.pl, sven@svenpeter.dev, jsd@semihalf.com,
-        jie.deng@intel.com, lukas.bulwahn@gmail.com, arnd@arndb.de,
-        olof@lixom.net, warp5tw@gmail.com, tali.perry@nuvoton.com,
-        Avi.Fishman@nuvoton.com, tomer.maimon@nuvoton.com,
-        KWLIU@nuvoton.com, JJLIU0@nuvoton.com, kfting@nuvoton.com
-Cc:     openbmc@lists.ozlabs.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v5 10/10] i2c: npcm: Capitalize the one-line comment
-Date:   Tue, 17 May 2022 18:11:42 +0800
-Message-Id: <20220517101142.28421-11-warp5tw@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220517101142.28421-1-warp5tw@gmail.com>
-References: <20220517101142.28421-1-warp5tw@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S1344854AbiEQKRI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 06:17:08 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 82FC54D24F;
+        Tue, 17 May 2022 03:14:24 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 505391042;
+        Tue, 17 May 2022 03:14:24 -0700 (PDT)
+Received: from donnerap.arm.com (donnerap.cambridge.arm.com [10.1.197.42])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BBB0E3F66F;
+        Tue, 17 May 2022 03:14:22 -0700 (PDT)
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Ross Burton <ross.burton@arm.com>,
+        Peter Maydell <peter.maydell@linaro.org>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Russell King <linux@armlinux.org.uk>
+Subject: [PATCH] of/fdt: Ignore disabled memory nodes
+Date:   Tue, 17 May 2022 11:14:10 +0100
+Message-Id: <20220517101410.3493781-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Tyrone Ting <kfting@nuvoton.com>
+When we boot a machine using a devicetree, the generic DT code goes
+through all nodes with a 'device_type = "memory"' property, and collects
+all memory banks mentioned there. However it does not check for the
+status property, so any nodes which are explicitly "disabled" will still
+be added as a memblock.
+This ends up badly for QEMU, when booting with secure firmware on
+arm/arm64 machines, because QEMU adds a node describing secure-only
+memory:
+===================
+	secram@e000000 {
+		secure-status = "okay";
+		status = "disabled";
+		reg = <0x00 0xe000000 0x00 0x1000000>;
+		device_type = "memory";
+	};
+===================
 
-Make the one-line comments capital in the driver to get the comment style
-consistent.
+The kernel will eventually use that memory block (which is located below
+the main DRAM bank), but accesses to that will be answered with an
+SError:
+===================
+[    0.000000] Internal error: synchronous external abort: 96000050 [#1] PREEMPT SMP
+[    0.000000] Modules linked in:
+[    0.000000] CPU: 0 PID: 0 Comm: swapper Not tainted 5.18.0-rc6-00014-g10c8acb8b679 #524
+[    0.000000] Hardware name: linux,dummy-virt (DT)
+[    0.000000] pstate: 200000c5 (nzCv daIF -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+[    0.000000] pc : new_slab+0x190/0x340
+[    0.000000] lr : new_slab+0x184/0x340
+[    0.000000] sp : ffff80000a4b3d10
+....
+==================
+The actual crash location and call stack will be somewhat random, and
+depend on the specific allocation of that physical memory range.
 
-Fixes: 56a1485b102e ("i2c: npcm7xx: Add Nuvoton NPCM I2C controller driver")
-Signed-off-by: Tyrone Ting <kfting@nuvoton.com>
+As the DT spec[1] explicitly mentions standard properties, add a simple
+check to skip over disabled memory nodes, so that we only use memory
+that is meant for non-secure code to use.
+
+That fixes booting a QEMU arm64 VM with EL3 enabled ("secure=on"), when
+not using UEFI. In this case the QEMU generated DT will be handed on
+to the kernel, which will see the secram node.
+This issue is reproducible when using TF-A together with U-Boot as
+firmware, then booting with the "booti" command.
+
+When using U-Boot as an UEFI provider, the code there [2] explicitly
+filters for disabled nodes when generating the UEFI memory map, so we
+are safe.
+EDK/2 only reads the first bank of the first DT memory node [3] to learn
+about memory, so we got lucky there.
+
+[1] https://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter3-devicenodes.rst#memory-node (after the table)
+[2] https://source.denx.de/u-boot/u-boot/-/blob/master/lib/fdtdec.c#L1061-1063
+[3] https://github.com/tianocore/edk2/blob/master/ArmVirtPkg/PrePi/FdtParser.c
+
+Reported-by: Ross Burton <ross.burton@arm.com>
+Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 ---
- drivers/i2c/busses/i2c-npcm7xx.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/of/fdt.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/i2c/busses/i2c-npcm7xx.c b/drivers/i2c/busses/i2c-npcm7xx.c
-index a032b407f104..a60e392dda50 100644
---- a/drivers/i2c/busses/i2c-npcm7xx.c
-+++ b/drivers/i2c/busses/i2c-npcm7xx.c
-@@ -683,7 +683,7 @@ static void npcm_i2c_reset(struct npcm_i2c *bus)
- 	}
- #endif
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index ec315b060cd50..0f30496ce80bf 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -1105,6 +1105,9 @@ int __init early_init_dt_scan_memory(void)
+ 		if (type == NULL || strcmp(type, "memory") != 0)
+ 			continue;
  
--	/* clear status bits for spurious interrupts */
-+	/* Clear status bits for spurious interrupts */
- 	npcm_i2c_clear_master_status(bus);
- 
- 	bus->state = I2C_IDLE;
-@@ -1255,7 +1255,7 @@ static irqreturn_t npcm_i2c_int_slave_handler(struct npcm_i2c *bus)
- 	} /* SDAST */
- 
- 	/*
--	 * if irq is not one of the above, make sure EOB is disabled and all
-+	 * If irq is not one of the above, make sure EOB is disabled and all
- 	 * status bits are cleared.
- 	 */
- 	if (ret == IRQ_NONE) {
-@@ -1509,7 +1509,7 @@ static void npcm_i2c_irq_handle_nack(struct npcm_i2c *bus)
- 		npcm_i2c_clear_master_status(bus);
- 		readx_poll_timeout_atomic(ioread8, bus->reg + NPCM_I2CCST, val,
- 					  !(val & NPCM_I2CCST_BUSY), 10, 200);
--		/* verify no status bits are still set after bus is released */
-+		/* Verify no status bits are still set after bus is released */
- 		npcm_i2c_clear_master_status(bus);
- 	}
- 	bus->state = I2C_IDLE;
-@@ -1977,7 +1977,7 @@ static int npcm_i2c_init_module(struct npcm_i2c *bus, enum i2c_mode mode,
- 
- 	npcm_i2c_reset(bus);
- 
--	/* check HW is OK: SDA and SCL should be high at this point. */
-+	/* Check HW is OK: SDA and SCL should be high at this point. */
- 	if ((npcm_i2c_get_SDA(&bus->adap) == 0) || (npcm_i2c_get_SCL(&bus->adap) == 0)) {
- 		dev_err(bus->dev, "I2C%d init fail: lines are low\n", bus->num);
- 		dev_err(bus->dev, "SDA=%d SCL=%d\n", npcm_i2c_get_SDA(&bus->adap),
-@@ -2037,7 +2037,7 @@ static irqreturn_t npcm_i2c_bus_irq(int irq, void *dev_id)
- 			return IRQ_HANDLED;
- 	}
- #endif
--	/* clear status bits for spurious interrupts */
-+	/* Clear status bits for spurious interrupts */
- 	npcm_i2c_clear_master_status(bus);
- 
- 	return IRQ_HANDLED;
-@@ -2219,7 +2219,7 @@ static int npcm_i2c_master_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs,
- 		 (bus->data->rxf_ctl_last_pec & ioread8(bus->reg + NPCM_I2CRXF_CTL)))
- 		npcm_i2c_reset(bus);
- 
--	/* after any xfer, successful or not, stall and EOB must be disabled */
-+	/* After any xfer, successful or not, stall and EOB must be disabled */
- 	npcm_i2c_stall_after_start(bus, false);
- 	npcm_i2c_eob_int(bus, false);
- 
++		if (!of_fdt_device_is_available(fdt, node))
++			continue;
++
+ 		reg = of_get_flat_dt_prop(node, "linux,usable-memory", &l);
+ 		if (reg == NULL)
+ 			reg = of_get_flat_dt_prop(node, "reg", &l);
 -- 
-2.17.1
+2.25.1
 
