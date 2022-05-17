@@ -2,55 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8151529F9B
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 12:38:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C785529FA6
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 12:42:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344454AbiEQKh6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 06:37:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59904 "EHLO
+        id S1344397AbiEQKmt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 06:42:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236834AbiEQKhx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 06:37:53 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 111A32AC74;
-        Tue, 17 May 2022 03:37:50 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: shreeya)
-        with ESMTPSA id 34CDB1F4449B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1652783869;
-        bh=/dsxBc72kvp9HLcx8a+NKXyzgg9ikDWp61IyWUXJyrE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=ZrDlo/lcb+N1riezflUawdelj07yo7FSY4S8D+aDjfeCqCdeEdjSp/VgaO189eyZ9
-         YdJu3PFqjWzKD+qwcYaUyiEkM2Xf/wS8HRqTlNJk8ccdQuq1fEPFOOKdj6aWy7MkdD
-         wxM8o6J5FZUcSJvZhkD5E42oZN6zfEAQSQLqnitdsTUTQDWv59bEZXqo7Js/YXh3IR
-         1FJXtHTx/vIgKx14x/yNgamDhBVf6pTHOEax7xTj5xW/njXLArkMqX0spDgfEpQq1f
-         B4m5Bx1Qen1xyuvXsLZ++sc/lG6J/fpTKmr0sIb8XIYO69Unp/UePqITul2od325fF
-         xQ7V8l+bTJfug==
-Message-ID: <83907dd2-2a53-2448-576b-ae26462d432a@collabora.com>
-Date:   Tue, 17 May 2022 16:07:33 +0530
+        with ESMTP id S1344458AbiEQKml (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 06:42:41 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12E48CE1D;
+        Tue, 17 May 2022 03:42:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1652784156; x=1684320156;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=WBs2eI6X8CZ5YiF7kldg80ncAuzPV9s8G23gHoKP1l0=;
+  b=hIOQCk5sPE7Ox63waenkmLEssNJTware8Kg7pEcWXo23vDzFuVZnKT3m
+   yCwh+YQ2DhpxfijttqdkO558+a2VhYBYtLMdfQdt59D446u/gzqazLc1/
+   mC6IqipH15GvLCfk4viV6wp48EaUDhE+C8oPLRw+HUXlRQOE7XKcQHQGO
+   /eh9Jc/LaATIEtXRPCPh/rTuZ2YCsZEYaNMpMGwdu/iyLgVEBzeKL1dcw
+   QfKgYX2/JcQjbtEXlkKjU0EwvWFCssYR4Vwx/pNn/gCqMDy52h4QybP1P
+   R8/dIRLuaftePiKIUst/9nadQG/J0SrEZTto4OFfPjKbLf10DOmSx6xhV
+   w==;
+X-IronPort-AV: E=Sophos;i="5.91,232,1647327600"; 
+   d="scan'208";a="156367300"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 17 May 2022 03:42:35 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Tue, 17 May 2022 03:42:34 -0700
+Received: from conor-HP-Z240-Tower-Workstation.microchip.com (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Tue, 17 May 2022 03:42:32 -0700
+From:   Conor Paxton <conor.paxton@microchip.com>
+To:     <conor.dooley@microchip.com>, Palmer Dabbelt <palmer@dabbelt.com>
+CC:     Lewis Hanly <lewis.hanly@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Conor Paxton <conor.paxton@microchip.com>
+Subject: [PATCH] riscv: dts: microchip: fix gpio1 reg property typo
+Date:   Tue, 17 May 2022 11:40:58 +0100
+Message-ID: <20220517104058.2004734-1-conor.paxton@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v4 1/3] dt-bindings: vendor-prefixes: Add 'ltr' as
- deprecated vendor prefix
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     jic23@kernel.org, lars@metafoo.de, Zhigang.Shi@liteon.com,
-        krisman@collabora.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com, alvaro.soliverez@collabora.com,
-        Krzysztof Kozlowski <krzk@kernel.org>
-References: <20220511094024.175994-1-shreeya.patel@collabora.com>
- <20220511094024.175994-2-shreeya.patel@collabora.com>
- <20220516170058.GA2825626-robh@kernel.org>
-From:   Shreeya Patel <shreeya.patel@collabora.com>
-In-Reply-To: <20220516170058.GA2825626-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,76 +65,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Fix reg address typo in the gpio1 stanza.
 
-On 16/05/22 22:30, Rob Herring wrote:
-> On Wed, May 11, 2022 at 03:10:22PM +0530, Shreeya Patel wrote:
->> 'liteon' is the correct vendor prefix for devices released by
->> LITE-ON Technology Corp. But one of the released device which uses
->> ltr216a light sensor exposes the vendor prefix name as 'ltr' through
->> ACPI.
-> ACPI? NAK.
->
-> There are no cases of 'ltr' for DT, so fix ACPI.
+Signed-off-by: Conor Paxton <conor.paxton@microchip.com>
+---
+ arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Hi Rob,
+diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
+index 746c4d4e7686..cf2f55e1dcb6 100644
+--- a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
++++ b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
+@@ -366,7 +366,7 @@ gpio0: gpio@20120000 {
+ 
+ 		gpio1: gpio@20121000 {
+ 			compatible = "microchip,mpfs-gpio";
+-			reg = <000 0x20121000 0x0 0x1000>;
++			reg = <0x0 0x20121000 0x0 0x1000>;
+ 			interrupt-parent = <&plic>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <1>;
+-- 
+2.25.1
 
-Yes, we understand there are no cases of 'ltr', but we have released devices
-which uses this string for probing the ltrf216a light sensor driver ( 
-x86 with DT )
-
-If we don't document this in vendor-prefixes.yaml, then the following 
-warning
-is generated.
-
-WARNING: DT compatible string vendor "ltr" appears un-documented -- 
-check ./Documentation/devicetree/bindings/vendor-prefixes.yaml 364: 
-FILE: drivers/iio/light/ltrf216a.c:313: + { .compatible = "ltr,ltrf216a" },
-
-
-Can you suggest us what would be the right way to fix this warning if 
-not documenting
-in vendor-prefixes.yaml?
-
-
-
-Thanks,
-Shreeya Patel
-
->
->> Hence, add 'ltr' as a deprecated vendor prefix which would suppress the
->> following warning in case the compatible string used in ltrf216a driver
->> is "ltr,ltrf216a"
->>
->> WARNING: DT compatible string vendor "ltr" appears un-documented --
->> check ./Documentation/devicetree/bindings/vendor-prefixes.yaml
->> 364: FILE: drivers/iio/light/ltrf216a.c:313:
->> +    { .compatible = "ltr,ltrf216a" },
->>
->> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
->> Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
->> ---
->>
->> Changes in v2
->>    - Add vendor prefix name as per the alphabetical order.
->>
->>   Documentation/devicetree/bindings/vendor-prefixes.yaml | 3 +++
->>   1 file changed, 3 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
->> index 01430973ecec..02f94fba03b6 100644
->> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
->> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
->> @@ -716,6 +716,9 @@ patternProperties:
->>       description: Loongson Technology Corporation Limited
->>     "^lsi,.*":
->>       description: LSI Corp. (LSI Logic)
->> +  "^ltr,.*":
->> +    description: LITE-ON Technology Corp.
->> +    deprecated: true
->>     "^lwn,.*":
->>       description: Liebherr-Werk Nenzing GmbH
->>     "^lxa,.*":
->> -- 
->> 2.30.2
->>
->>
