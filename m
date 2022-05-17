@@ -2,65 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85CE5529B61
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 09:48:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0374E529B89
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 09:55:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241886AbiEQHsk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 03:48:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42038 "EHLO
+        id S231159AbiEQHzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 03:55:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241486AbiEQHsg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 03:48:36 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59D6A47393;
-        Tue, 17 May 2022 00:48:30 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 8ADA31F441AA
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1652773709;
-        bh=ExwtYhF6lW41/VV+VosOgNIh/aIBIehqgDlrAU2wlqI=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=llZKudObnwhLoG7831KnTVNHUlFkO6VQxYU9MnYi/2Tjfen3kZxHbcg1jUNBXi4pj
-         ZvSVeei11j1tJRXPCE+7+OiaXsX6oJltMp9hOe7+IdhXSq5wEMNyqXZ9n27mUGVdt/
-         bc9qtEwgeUDzl25M0osEVwNOPGNMWKqCHgLq8bWLrXHAArODExKHdDGEfqSrj2ww49
-         8+6KF54m8/pVVdmMj6qrGSQ4vr9r3bMqUYe9AKeM+knvnoVz2hKlmDY4/Fd3TRIZR4
-         t3wfLguv3KsdglOl37QL0PxAZLh5OTajsNe9q61Zr4mxkF4SceWzvo6ZZNjt6bywSm
-         c2GwOyoe+yIWg==
-Message-ID: <b3e34db8-4e79-f6e3-35b8-e32891f2c85b@collabora.com>
-Date:   Tue, 17 May 2022 09:48:25 +0200
+        with ESMTP id S239714AbiEQHzq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 03:55:46 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E19B110A
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 00:55:44 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id n23so6353457edy.0
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 00:55:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=yJhm7So20nh+ghnDwqGmb5PWROSPcSsi/yq5yfWtolA=;
+        b=MVwH4h5zuz4XVa5pcgkulJsx76lnIJ5pQqaRUTEjGrDMU7qNSX98iBqW00VJj0d+ra
+         un7ofKIS983900TaHiWjdtve+IOR1HKVhpQoR9nxSJKuvRBc7y5L4qWFaKUEJIVUkEEB
+         W85K/VLuWkTC0twiRk0/RpZtQmGWXl1/lALPFoafLPwuc8pfklV7tTFua3RxFd9gaUQg
+         g7DTAuCFeV3s6TwKWItkSOcruYtS/IeifFomkpxEWeNKarNGP5WpN0OD9/rervLO94SD
+         +FySeeqbK9ITd95LJfsoLMGagacLXeZa4MhUCWzONtA89eKAPOj46c3OC+VtJzQRSeOP
+         sXQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=yJhm7So20nh+ghnDwqGmb5PWROSPcSsi/yq5yfWtolA=;
+        b=QEK8cduMi34jLjO93vTqX/+WqX3KZgoGYTLUziTAZf/O2CSzIqkgl24maNmFFSR5Zi
+         PUAEAtmE8NQkb5N0zoNOgcbVmBViTSzGoJGZ+edP6PWuG6lk67hHMvX3LuBUNKIaoKUv
+         hcnVh4COqGmqI5bsBtzfB9AEsLOCvmwuHO6ncSF59pZNd02VcPDeSrN3+uzV0huwqSK1
+         LUUDRiZ4Sj2Nh/KKQJlzWa4/6uM7U5iAKRwARYn12lAPmXwoSdFBef8/58j0d5BEoyjw
+         9LeYxORtAZOh5NZVYepM8GBegzZSKzXwBvCxIUhgl6JUDslfZpLW2tzd9QE3+v7j3HN7
+         +oTg==
+X-Gm-Message-State: AOAM531/KygONeswaPXB3xm6xU2Kn3Znq8tWFOCA8przvQhfaZXNkVMp
+        9tIgCEqOnKdrjUUGMsfFMABEFQ==
+X-Google-Smtp-Source: ABdhPJw60qASXHunobAUwB4FC7sDQ3RM3G83ZfyPFyuoO+7+VkvImTwvPJ8pXd+yn8+A5uhYoyYOJQ==
+X-Received: by 2002:a05:6402:330b:b0:42a:b061:6e89 with SMTP id e11-20020a056402330b00b0042ab0616e89mr10330419eda.47.1652774142940;
+        Tue, 17 May 2022 00:55:42 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id h9-20020a1709063c0900b006fb6d9d25bfsm733239ejg.22.2022.05.17.00.55.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 May 2022 00:55:42 -0700 (PDT)
+Message-ID: <2b7e97a9-e696-34fd-89ce-e29dcea2681e@linaro.org>
+Date:   Tue, 17 May 2022 09:55:41 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH 4/5] dt-bindings: arm: mediatek: Add clock driver bindings
- for MT6795
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 2/3] dt-bindings: arm: add BCM63178 soc to binding
+ document
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
-        y.oudjana@protonmail.com, jason-jh.lin@mediatek.com,
-        ck.hu@mediatek.com, fparent@baylibre.com, rex-bc.chen@mediatek.com,
-        tinghan.shen@mediatek.com, chun-jie.chen@mediatek.com,
-        weiyi.lu@mediatek.com, ikjn@chromium.org, miles.chen@mediatek.com,
-        sam.shih@mediatek.com, wenst@chromium.org,
-        bgolaszewski@baylibre.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, paul.bouchara@somainline.org,
-        kernel@collabora.com
-References: <20220513165050.500831-1-angelogioacchino.delregno@collabora.com>
- <20220513165050.500831-5-angelogioacchino.delregno@collabora.com>
- <20220516172819.GA2938099-robh@kernel.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220516172819.GA2938099-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Anand Gore <anand.gore@broadcom.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     dan.beygelman@broadcom.com, joel.peshkin@broadcom.com,
+        florian.fainelli@broadcom.com,
+        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
+        kursad.oney@broadcom.com,
+        William Zhang <william.zhang@broadcom.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220516173808.1391482-1-anand.gore@broadcom.com>
+ <20220516103801.2.Iec642f72ecc8fe0178cd94faba372e89296168dc@changeid>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220516103801.2.Iec642f72ecc8fe0178cd94faba372e89296168dc@changeid>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,82 +82,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 16/05/22 19:28, Rob Herring ha scritto:
-> On Fri, May 13, 2022 at 06:50:49PM +0200, AngeloGioacchino Del Regno wrote:
->> Add the bindings for the clock drivers of the MediaTek Helio X10
->> MT6795 SoC.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   .../arm/mediatek/mediatek,mt6795-clock.yaml   | 67 +++++++++++++++++
->>   .../mediatek/mediatek,mt6795-sys-clock.yaml   | 73 +++++++++++++++++++
->>   2 files changed, 140 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt6795-clock.yaml
->>   create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt6795-sys-clock.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt6795-clock.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt6795-clock.yaml
->> new file mode 100644
->> index 000000000000..b7d96d0ed867
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt6795-clock.yaml
->> @@ -0,0 +1,67 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: "http://devicetree.org/schemas/arm/mediatek/mediatek,mt6795-clock.yaml#"
->> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->> +
->> +title: MediaTek Functional Clock Controller for MT6795
->> +
->> +maintainers:
->> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> +  - Chun-Jie Chen <chun-jie.chen@mediatek.com>
->> +
->> +description: |
->> +  The clock architecture in MediaTek like below
->> +  PLLs -->
->> +          dividers -->
->> +                      muxes
->> +                           -->
->> +                              clock gate
->> +
->> +  The devices provide clock gate control in different IP blocks.
->> +
->> +properties:
->> +  compatible:
->> +    items:
+On 16/05/2022 19:38, Anand Gore wrote:
+> Add BCM63178 SOC device tree description to bcmbca binding document.
 > 
-> Don't need 'items' if only 1 item.
-> 
->> +      - enum:
->> +          - mediatek,mt6795-mfgcfg
->> +          - mediatek,mt6795-vdecsys
->> +          - mediatek,mt6795-vencsys
-> 
-> blank line.
-> 
->> +  reg:
->> +    maxItems: 1
->> +
->> +  '#clock-cells':
->> +    const: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
-> 
-> Why is #clock-cells optional?
-> 
+> Signed-off-by: Anand Gore <anand.gore@broadcom.com>
+> ---
 
-I've used one of the other mediatek,mt(something)-(sys-)clock.yaml as a base
-for these ones, giving for granted that they were correct, but now that you're
-pointing that out... effectively, I should've checked if the ones that are
-already merged in were correct *before* using these as a base for mine.
 
-Thanks for your review: I'll send a v2 soon... and I will also separately
-send some fixes for the existing ones, as your review comments also apply
-to these ones.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Regards,
-Angelo
 
+Best regards,
+Krzysztof
