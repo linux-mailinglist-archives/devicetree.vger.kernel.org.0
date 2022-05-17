@@ -2,198 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1ED5529978
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 08:23:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A46B75299A1
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 08:37:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231985AbiEQGXJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 02:23:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41722 "EHLO
+        id S232477AbiEQGhu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 02:37:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239424AbiEQGXI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 02:23:08 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D3CE44743
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 23:23:05 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id kq17so32679961ejb.4
-        for <devicetree@vger.kernel.org>; Mon, 16 May 2022 23:23:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=c4ENXCjOLk1+dgXS0L44HTmpqaPYATePjr2C7PlRSnY=;
-        b=X54KsWPB0NVyyxAopjnRgU4ZOBrGbvlQ4FaNzE7BKYrtEqYlqOMCstiCOL//lQ8Dxw
-         8rkRpqoCADABAM8/OuegxD/25O7f/nJPZoaLKTmjnmcO5e/rG65jTmm9ahJBsk4RyVNC
-         Vtyp//l1Ok5j+8NwCWJlc+n3TbV44X5yO22wosq8xZ3qMCEdUvredEedxwk4R+boPRiu
-         Y/1FTQlZj740YLjErI3CrutAOuImvAvRxoE+x8k9T/MFztuJvet3PY16TBgTKaNMVbhE
-         zFw2Fsf+IcZ/qt9hwH4PXj1GSzulCd1cyTs95kQF8d8BeoEy/+RzVvtiuP/D6WKh/1XG
-         bjRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=c4ENXCjOLk1+dgXS0L44HTmpqaPYATePjr2C7PlRSnY=;
-        b=PyR4aU1YFgoTnIkMwm/7Mlv77oMsFnOEGQhip8S3kUDJNpOExRnbcXeOtyb56vhaae
-         kvBYAyW40BipdJx9Mz2tL+EC0WOqJHR4PGg8Owi+kJ+6Ge1Cjw249DebD5xgiHghHlJh
-         WGhHacW+rM5gtkQq0EYm4BxGgfUS5goec/4zFWQ9CQ8kFozLO8Ptfw4QK2TzFmkpQl8s
-         itRCsu5Dma9dYDkSKxRqJZ6ggdK526Ng0lu4epqdGJzP9fRJakfBFivFPs5INGiq4ZDQ
-         Bw+YEfxjnQp0PklO/97a0hIkJ/KOxi8sxTJZXhvIsRa/oEIRz2sCo0QnX3GTcwDeAtQz
-         mvYg==
-X-Gm-Message-State: AOAM530d1hpsKSgLR7x7pUUbZKG0QSH/MYcRlNHwPdno3SITO1prcWfo
-        bQiw5YOLKfErGHN8rVa07P3bkQ==
-X-Google-Smtp-Source: ABdhPJwEc9IVtajjmC4AchKGNCO1Lk9VipryyhfwItsHVzbgcFpffhGt50uBwsKK0NreDqXTje0i+g==
-X-Received: by 2002:a17:906:656:b0:6f4:ebc2:da81 with SMTP id t22-20020a170906065600b006f4ebc2da81mr18501914ejb.757.1652768583817;
-        Mon, 16 May 2022 23:23:03 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id es16-20020a056402381000b0042a96c77e9esm4448347edb.91.2022.05.16.23.23.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 May 2022 23:23:03 -0700 (PDT)
-Message-ID: <f042abfc-25c8-2684-3fec-fea17bab8087@linaro.org>
-Date:   Tue, 17 May 2022 08:23:02 +0200
+        with ESMTP id S231146AbiEQGht (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 02:37:49 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D77B92BB16;
+        Mon, 16 May 2022 23:37:43 -0700 (PDT)
+X-UUID: 1be3c25555d747e0b02388ea4d6ebf8b-20220517
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:c863057f-9fd9-4192-988f-bb7b614463c7,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:2a19b09,CLOUDID:4b5473e2-edbf-4bd4-8a34-dfc5f7bb086d,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:0,BEC:nil
+X-UUID: 1be3c25555d747e0b02388ea4d6ebf8b-20220517
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 838221604; Tue, 17 May 2022 14:37:38 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Tue, 17 May 2022 14:37:37 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Tue, 17 May 2022 14:37:36 +0800
+Message-ID: <cf2442b9c7124ebf1ce62ae5df597f003fa447d7.camel@mediatek.com>
+Subject: Re: [PATCH v2 2/2] memory: mtk-smi: Add support for MT6795 Helio X10
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+CC:     <krzysztof.kozlowski@linaro.org>, <robh+dt@kernel.org>,
+        <matthias.bgg@gmail.com>, <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <konrad.dybcio@somainline.org>, <marijn.suijten@somainline.org>,
+        <martin.botka@somainline.org>,
+        <~postmarketos/upstreaming@lists.sr.ht>,
+        <phone-devel@vger.kernel.org>, <paul.bouchara@somainline.org>,
+        <kernel@collabora.com>, <yi.kuo@mediatek.com>,
+        <anthony.huang@mediatek.com>, <wendy-st.lin@mediatek.com>
+Date:   Tue, 17 May 2022 14:37:36 +0800
+In-Reply-To: <20220513150633.387200-3-angelogioacchino.delregno@collabora.com>
+References: <20220513150633.387200-1-angelogioacchino.delregno@collabora.com>
+         <20220513150633.387200-3-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [v5 1/3] dt-bindings: phy: qcom,usb-snps-femto-v2: Add phy
- override params bindings
-Content-Language: en-US
-To:     Krishna Kurapati <quic_kriskura@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, quic_pkondeti@quicinc.com,
-        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
-        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-References: <1652723410-1630-1-git-send-email-quic_kriskura@quicinc.com>
- <1652723410-1630-2-git-send-email-quic_kriskura@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1652723410-1630-2-git-send-email-quic_kriskura@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2022 19:50, Krishna Kurapati wrote:
-> From: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+On Fri, 2022-05-13 at 17:06 +0200, AngeloGioacchino Del Regno wrote:
+> The MediaTek Helio X10 (MT6795) SoC has 5 LARBs and one common SMI
+> instance without any sub-common and without GALS.
 > 
-> Add device tree bindings for SNPS phy tuning parameters.
+> While the smi-common configuration is specific to this SoC, on the
+> LARB side, this is similar to MT8173, in the sense that it doesn't
+> need the port in LARB, and the register layout is also compatible
+> with that one, which makes us able to fully reuse the smi-larb
+> platform data struct that was introduced for MT8173.
 > 
-> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> Signed-off-by: AngeloGioacchino Del Regno <
+> angelogioacchino.delregno@collabora.com>
 > ---
->  .../bindings/phy/qcom,usb-snps-femto-v2.yaml       | 105 +++++++++++++++++++++
->  1 file changed, 105 insertions(+)
+>  drivers/memory/mtk-smi.c | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
-> index 1ce251d..0a78db7 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
-> @@ -53,6 +53,111 @@ properties:
->    vdda33-supply:
->      description: phandle to the regulator 3.3V supply node.
+> diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
+> index 86a3d34f418e..7e7c3ede19e4 100644
+> --- a/drivers/memory/mtk-smi.c
+> +++ b/drivers/memory/mtk-smi.c
+> @@ -21,11 +21,13 @@
+>  /* SMI COMMON */
+>  #define SMI_L1LEN			0x100
 >  
-> +  qcom,hs-disconnect-bp:
-> +    $ref: /schemas/types.yaml#/definitions/int32
+> +#define SMI_L1_ARB			0x200
+>  #define SMI_BUS_SEL			0x220
+>  #define SMI_BUS_LARB_SHIFT(larbid)	((larbid) << 1)
+>  /* All are MMU0 defaultly. Only specialize mmu1 here. */
+>  #define F_MMU1_LARB(larbid)		(0x1 <<
+> SMI_BUS_LARB_SHIFT(larbid))
+>  
+> +#define SMI_FIFO_TH0			0x230
 
-No need for ref for standard units.
+Does the name come from the coda you got?
+It is called SMI_READ_FIFO_TH in my coda.
 
-> +    description:
-> +      This adjusts the voltage level for the threshold used to
-> +      detect a disconnect event at the host. Possible values are.
-> +      The values defined are in multiples of basis points (1bp = 0.01%).
-> +      The hardware accepts only discrete values. The value closest to the
-> +      provided input will be chosen as the override value for this param.
-> +    minimum: -272
-> +    maximum: 2156
+>  #define SMI_M4U_TH			0x234
+>  #define SMI_FIFO_TH1			0x238
+>  #define SMI_FIFO_TH2			0x23c
+> @@ -360,6 +362,7 @@ static const struct of_device_id
+> mtk_smi_larb_of_ids[] = {
+>  	{.compatible = "mediatek,mt2701-smi-larb", .data =
+> &mtk_smi_larb_mt2701},
+>  	{.compatible = "mediatek,mt2712-smi-larb", .data =
+> &mtk_smi_larb_mt2712},
+>  	{.compatible = "mediatek,mt6779-smi-larb", .data =
+> &mtk_smi_larb_mt6779},
+> +	{.compatible = "mediatek,mt6795-smi-larb", .data =
+> &mtk_smi_larb_mt8173},
+>  	{.compatible = "mediatek,mt8167-smi-larb", .data =
+> &mtk_smi_larb_mt8167},
+>  	{.compatible = "mediatek,mt8173-smi-larb", .data =
+> &mtk_smi_larb_mt8173},
+>  	{.compatible = "mediatek,mt8183-smi-larb", .data =
+> &mtk_smi_larb_mt8183},
+> @@ -541,6 +544,13 @@ static struct platform_driver
+> mtk_smi_larb_driver = {
+>  	}
+>  };
+>  
+> +static const struct mtk_smi_reg_pair
+> mtk_smi_common_mt6795_init[SMI_COMMON_INIT_REGS_NR] = {
+> +	{SMI_L1_ARB, 0x1b},
+> +	{SMI_M4U_TH, 0xce810c85},
+> +	{SMI_FIFO_TH1, 0x43214c8},
+> +	{SMI_FIFO_TH0, 0x191f},
+> +};
 > +
-> +  qcom,squelch-detector-bp:
-> +    $ref: /schemas/types.yaml#/definitions/int32
-> +    description:
-> +      This adjusts the voltage level for the threshold used to
-> +      detect valid high-speed data.
-> +      The values defined are in multiples of basis points (1bp = 0.01%).
-> +      The hardware accepts only discrete values. The value closest to the
-> +      provided input will be chosen as the override value for this param.
-> +    minimum: -2090
-> +    maximum: 1590
-> +
-> +  qcom,hs-amplitude-bp:
-> +    $ref: /schemas/types.yaml#/definitions/int32
-> +    description:
-> +      This adjusts the high-speed DC level voltage.
-> +      The values defined are in multiples of basis points (1bp = 0.01%).
-> +      The hardware accepts only discrete values. The value closest to the
-> +      provided input will be chosen as the override value for this param.
-> +    minimum: -660
-> +    maximum: 2670
-> +
-> +  qcom,pre-emphasis-duration-bp:
-> +    $ref: /schemas/types.yaml#/definitions/int32
-> +    description:
-> +      This signal controls the duration for which the
-> +      HS pre-emphasis current is sourced onto DP<#> or DM<#>.
-> +      The HS Transmitter pre-emphasis duration is defined in terms of
-> +      unit amounts. One unit of pre-emphasis duration is approximately
-> +      650 ps and is defined as 1X pre-emphasis duration.
-> +      The values defined are in multiples of basis points (1bp = 0.01%).
-> +      The hardware accepts only discrete values. The value closest to the
-> +      provided input will be chosen as the override value for this param.
-> +    minimum: 10000
-> +    maximum: 20000
-> +
-> +  qcom,pre-emphasis-amplitude-bp:
-> +    $ref: /schemas/types.yaml#/definitions/int32
-> +    description:
-> +      This signal controls the amount of current sourced to
-> +      DP<#> and DM<#> after a J-to-K or K-to-J transition.
-> +      The HS Transmitter pre-emphasis current is defined in terms of unit
-> +      amounts. One unit amount is approximately 2 mA and is defined as
-> +      1X pre-emphasis current.
-> +      The values defined are in multiples of basis points (1bp = 0.01%).
-> +      The hardware accepts only discrete values. The value closest to the
-> +      provided input will be chosen as the override value for this param.
-> +    minimum: 10000
-> +    maximum: 40000
-> +
-> +  qcom,hs-rise-fall-time-bp:
-> +    $ref: /schemas/types.yaml#/definitions/int32
-> +    description:
-> +      This adjusts the rise/fall times of the high-speed waveform.
-> +      The values defined are in multiples of basis points (1bp = 0.01%).
-> +      The hardware accepts only discrete values. The value closest to the
-> +      provided input will be chosen as the override value for this param.
-> +    minimim: -4100
-> +    maximum: 5430
-> +
-> +  qcom,hs-crossover-voltage-microvolt:
-> +    $ref: /schemas/types.yaml#/definitions/int32
-> +    description:
-> +      This adjusts the voltage at which the DP<#> and DM<#>
-> +      signals cross while transmitting in HS mode.
-> +      The values defined are in milli volts. The hardware accepts only
-> +      discrete values. The value closest to the provided input will be
-> +      chosen as the override value for this param.
-> +    minimum: -31000
-> +    maximum: 28000
-> +
-> +  qcom,hs-output-impedance-micro-ohm:
+>  static const struct mtk_smi_reg_pair
+> mtk_smi_common_mt8195_init[SMI_COMMON_INIT_REGS_NR] = {
+>  	{SMI_L1LEN, 0xb},
+>  	{SMI_M4U_TH, 0xe100e10},
+> @@ -565,6 +575,12 @@ static const struct mtk_smi_common_plat
+> mtk_smi_common_mt6779 = {
+>  		    F_MMU1_LARB(5) | F_MMU1_LARB(6) | F_MMU1_LARB(7),
+>  };
+>  
+> +static const struct mtk_smi_common_plat mtk_smi_common_mt6795 = {
+> +	.type	  = MTK_SMI_GEN2,
+> +	.bus_sel  = BIT(0),
 
-Please use standard unit suffixes, so micro-ohms.
+Like the other larbs, use F_MMU1_LARB(0) here?
 
 
-Best regards,
-Krzysztof
+After the two changes,
+
+Reviewed-by: Yong Wu <yong.wu@mediatek.com>
+
+Thanks.
+
+> +	.init     = mtk_smi_common_mt6795_init,
+> +};
+> +
+>  static const struct mtk_smi_common_plat mtk_smi_common_mt8183 = {
+>  	.type     = MTK_SMI_GEN2,
+>  	.has_gals = true,
+> @@ -609,6 +625,7 @@ static const struct of_device_id
+> mtk_smi_common_of_ids[] = {
+>  	{.compatible = "mediatek,mt2701-smi-common", .data =
+> &mtk_smi_common_gen1},
+>  	{.compatible = "mediatek,mt2712-smi-common", .data =
+> &mtk_smi_common_gen2},
+>  	{.compatible = "mediatek,mt6779-smi-common", .data =
+> &mtk_smi_common_mt6779},
+> +	{.compatible = "mediatek,mt6795-smi-common", .data =
+> &mtk_smi_common_mt6795},
+>  	{.compatible = "mediatek,mt8167-smi-common", .data =
+> &mtk_smi_common_gen2},
+>  	{.compatible = "mediatek,mt8173-smi-common", .data =
+> &mtk_smi_common_gen2},
+>  	{.compatible = "mediatek,mt8183-smi-common", .data =
+> &mtk_smi_common_mt8183},
+
