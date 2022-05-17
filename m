@@ -2,59 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4091752A017
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 13:10:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E34AE52A031
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 13:15:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232068AbiEQLKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 07:10:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49976 "EHLO
+        id S1345008AbiEQLP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 07:15:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343703AbiEQLK3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 07:10:29 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB64611A02;
-        Tue, 17 May 2022 04:10:10 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id AB0C91F43AE1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1652785809;
-        bh=qf8uzbZ1EqZKktmG/w8A35nbIzmMTkGNdHNjUDAKrE0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=YSEpN29NXtz9y0X68InodlahgVwMXAbQqp76hpOV6ZqVaCMcmQ604Hsdc+EMgGSWp
-         iHP21VfOdjsMU1q4z3olc5ksKIpVDuSNx5b9aEEkn+xSaDc1zsEJl8U+RYi2zn9jpe
-         byljfm3THQOEyYqu66vH85Ci4JOmATN1oJW7XYCJHYhoshg/JkrBjoXEyLcWFdkxXX
-         5dR6aWBFVpXtDo80jDCg5oYpCI1Er0M31yjCljsEj17+xl84lwResrSPnngcH1cR3f
-         HaQGPDaasbSn3GpwwWP6Tsl/H+vf1lvUEF2O2fuHLT+AHtofAujWeTA5b7lMIk/kOh
-         DIboZigcnu4hQ==
-Message-ID: <0ab46d63-3b3a-c847-df21-40efbeb01486@collabora.com>
-Date:   Tue, 17 May 2022 13:10:06 +0200
+        with ESMTP id S1344929AbiEQLPX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 07:15:23 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF5834A913
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 04:15:21 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1nqvAT-0004KA-07; Tue, 17 May 2022 13:15:09 +0200
+Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ore@pengutronix.de>)
+        id 1nqvAR-002rTa-NG; Tue, 17 May 2022 13:15:06 +0200
+Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ore@pengutronix.de>)
+        id 1nqvAP-003tsS-LB; Tue, 17 May 2022 13:15:05 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v6 0/3] document dt-schema for some USB Ethernet controllers 
+Date:   Tue, 17 May 2022 13:15:02 +0200
+Message-Id: <20220517111505.929722-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH 1/2] dt-bindings: mediatek: Add bindings for MT6795 M4U
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     martin.botka@somainline.org, linux-mediatek@lists.infradead.org,
-        robh+dt@kernel.org, konrad.dybcio@somainline.org,
-        paul.bouchara@somainline.org, krzysztof.kozlowski+dt@linaro.org,
-        will@kernel.org, linux-kernel@vger.kernel.org,
-        yong.wu@mediatek.com, ~postmarketos/upstreaming@lists.sr.ht,
-        joro@8bytes.org, phone-devel@vger.kernel.org,
-        devicetree@vger.kernel.org, marijn.suijten@somainline.org,
-        linux-arm-kernel@lists.infradead.org, matthias.bgg@gmail.com,
-        iommu@lists.linux-foundation.org
-References: <20220513151411.395744-1-angelogioacchino.delregno@collabora.com>
- <20220513151411.395744-2-angelogioacchino.delregno@collabora.com>
- <20220516160307.GA2732645-robh@kernel.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220516160307.GA2732645-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,50 +55,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 16/05/22 18:03, Rob Herring ha scritto:
-> On Fri, 13 May 2022 17:14:10 +0200, AngeloGioacchino Del Regno wrote:
->> Add bindings for the MediaTek Helio X10 (MT6795) IOMMU/M4U.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   .../bindings/iommu/mediatek,iommu.yaml        |  3 +
->>   include/dt-bindings/memory/mt6795-larb-port.h | 96 +++++++++++++++++++
->>   2 files changed, 99 insertions(+)
->>   create mode 100644 include/dt-bindings/memory/mt6795-larb-port.h
->>
-> 
-> Acked-by: Rob Herring <robh@kernel.org>
+changes v6:
+- remove USB hub example from microchip,lan95xx.yaml. We care only about
+  ethernet node.
+- use only documented USD ID in example.
+- add Reviewed-by
+- drop board patches, all of them are taken by different subsystem
+  maintainers.
 
+changes v5:
+- move compatible string changes to a separate patch
+- add note about possible regressions
 
-Hello Rob,
+changes v4:
+- reword commit logs.
+- add note about compatible fix
 
-I'm sad to say that, but I have to send a new version of this patch even though
-you have acked it already... and I will have to drop your ack, as the changes to
-the yaml patch will be a bit different, as we're adding support for a phandle
-to mediatek,infracfg after some discussion about it on patch 2/2 of this series.
+Oleksij Rempel (3):
+  dt-bindings: net: add schema for ASIX USB Ethernet controllers
+  dt-bindings: net: add schema for Microchip/SMSC LAN95xx USB Ethernet
+    controllers
+  dt-bindings: usb: ci-hdrc-usb2: fix node node for ethernet controller
 
-The mediatek,infracfg phandle addition will come as a different series, and this
-patch (on v2) will add a conditional for:
+ .../devicetree/bindings/net/asix,ax88178.yaml | 68 +++++++++++++++++++
+ .../bindings/net/microchip,lan95xx.yaml       | 63 +++++++++++++++++
+ .../devicetree/bindings/usb/ci-hdrc-usb2.txt  |  2 +-
+ 3 files changed, 132 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/net/asix,ax88178.yaml
+ create mode 100644 Documentation/devicetree/bindings/net/microchip,lan95xx.yaml
 
-   - if:
+-- 
+2.30.2
 
-       properties:
-
-         compatible:
-
-           contains:
-
-             enum:
-
-               - mediatek,mt6795-m4u
-
-     then:
-
-       required:
-
-         - mediatek,infracfg
-
-Sorry about wasting your time on this v1.
-
-Regards,
-Angelo
