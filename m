@@ -2,76 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0D8752A5D1
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 17:15:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA78A52A5E0
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 17:19:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349767AbiEQPPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 11:15:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38852 "EHLO
+        id S1349814AbiEQPTi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 11:19:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345559AbiEQPPY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 11:15:24 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA28B49F31
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 08:15:23 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id u23so31912087lfc.1
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 08:15:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=gc0B+KUO3JMWAuRjz+x4dN12ndY0LGxXybxfOh3RP7w=;
-        b=sWzOi30fpeE8gWvv5iUlfYcr08ViW4rXRceTN3iOnpyevLP/1HFKpR+jlzOWzIHT2o
-         4zXjyr+Z1Bsim5sytLd1s0VCBVFWwdD3+zDB8vEC03AMrpp+svfzdwQUM0NQGvO9H49S
-         AfddPp3jDQeSCaZOmmnmIDpQWwoOeVn0gwEDCMct3zzjVH2CifoOKGtzpredlrP1D5J7
-         hAAQ7GhQDitrstrYMECaoWTXFGp6/VgkkA1yTFszZ3dRLqj69ixKsbz3aTXLGz3P1Vrf
-         OPshM5D8myxn3MVV43VqpxNc77qPVv/NZn3QBwSBbWqFjz0RTfHRfdp+6Mc5j6NKT8z/
-         WL4Q==
+        with ESMTP id S1349788AbiEQPTh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 11:19:37 -0400
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C52BA3BA51;
+        Tue, 17 May 2022 08:19:30 -0700 (PDT)
+Received: by mail-oi1-f169.google.com with SMTP id q10so22639629oia.9;
+        Tue, 17 May 2022 08:19:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=gc0B+KUO3JMWAuRjz+x4dN12ndY0LGxXybxfOh3RP7w=;
-        b=piT9AOfHTHNSQMw92kslsmhgi5F9ePE4FPc9po0uKf200bMvutIXzOAzTp+HM43su0
-         Ou5hA5jOyZN1EMgXl5GxADMqTTbYfzP4HGjhytLAZVYfaFsSrix32lcyKVk+d1qM3j8L
-         mc/HsIs6t/87JFrf8kWGB+a6LuKOSxw28M/8Wdym7UMovB2AiRGujD2UaBDjW7NSPfLC
-         S9oG5/Fx1yXzv6ECFZgsdzGgHXY6YfHe9bOHbQJgGjBRWoXX/RUBbgxt5LpHw4weQxxM
-         Po6CdHr3HKrnUqIlW0hPw1Iu/MuzNfdjD8d+kbwx5uFKXC/nZ1OCYqTCH98qE7urJ2Oa
-         Rnxg==
-X-Gm-Message-State: AOAM531MhlcJMJ9STdRX7BtNBhF22cVdV9OkTidczKih6iaICsITVUhM
-        woR9fHtcTFSJWj0cQNN1EOseuQ==
-X-Google-Smtp-Source: ABdhPJxfWdLc2ErvnQ7M2Ug26y8sHs3Ee958zCZBJ/jvxQoVx4aN3jQPaADUKCkg9G7AF3MkvasvYQ==
-X-Received: by 2002:a05:6512:2821:b0:474:5127:8f6 with SMTP id cf33-20020a056512282100b00474512708f6mr17461964lfb.66.1652800522120;
-        Tue, 17 May 2022 08:15:22 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id h2-20020a05651c114200b0024f3d1daf02sm1915201ljo.138.2022.05.17.08.15.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 May 2022 08:15:21 -0700 (PDT)
-Message-ID: <08a4097c-268a-81c0-8fa5-754d92216035@linaro.org>
-Date:   Tue, 17 May 2022 17:15:20 +0200
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=sk7To/cnY408tAi0eEPtXkxFL35aqCypY0kkg/jqdLw=;
+        b=qXuq+37RMMViL9Fs9LXQM/JJwpqf3Ne9edCD8fuXYrN8jmeXs8TFcj9eukf/dxTuev
+         fO4HgOv/QWWAd6or7PUTkUZ1CH0+JNSbeBRI6oLY5YB5L2nmoWOFG1ftZTNDZ211Da6E
+         fCJI9aHDOxXnEaldvf4JQLOWljshL5vUjVV4TReTZ2EhJEjr0Btwd8YP2hksoofVzVh8
+         1VWWHEDpeMtFjNuNBjqaIQYb/Rt6OhpAvqTMfuw3Vp+juIonL/At7rLEyCJgQMqtwkkB
+         84LuGMGF8g5zQaa/RbmGzp5h0w+lB2lPQ77pXLge+nQis+TMOCJ8vjxdwn+mcLR0PFfQ
+         tZOA==
+X-Gm-Message-State: AOAM533CC2JMG8T8bTaHHFkxLTg9MU9Sl2XCZyBfGndtxFa5mZbP5E1M
+        ih58EGPv2XzPdvyz5DZNHg==
+X-Google-Smtp-Source: ABdhPJwkcmCqKlXiFmdWk4FKdCcrkh4JqOk5ARujtp8mTS1TQ2XWBLTKQX3OKemV6gUSZmTCnpa9nw==
+X-Received: by 2002:a05:6808:1201:b0:325:75e1:25a8 with SMTP id a1-20020a056808120100b0032575e125a8mr16753250oil.18.1652800770085;
+        Tue, 17 May 2022 08:19:30 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id h9-20020a056870538900b000edae17a8cesm6801068oan.3.2022.05.17.08.19.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 May 2022 08:19:29 -0700 (PDT)
+Received: (nullmailer pid 1056432 invoked by uid 1000);
+        Tue, 17 May 2022 15:19:28 -0000
+Date:   Tue, 17 May 2022 10:19:28 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     shawnguo@kernel.org, festevam@gmail.com,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, mathieu.poirier@linaro.org,
+        linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>,
+        s.hauer@pengutronix.de, bjorn.andersson@linaro.org,
+        linux-remoteproc@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH V3 1/6] dt-bindings: remoteproc: imx_rproc: support
+ i.MX8QXP
+Message-ID: <20220517151928.GA1056374-robh@kernel.org>
+References: <20220517064937.4033441-1-peng.fan@oss.nxp.com>
+ <20220517064937.4033441-2-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v8 1/2] dt-bindings: thermal: k3-j72xx: Add VTM bindings
- documentation
-Content-Language: en-US
-To:     "J, KEERTHY" <j-keerthy@ti.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, daniel.lezcano@linaro.org,
-        rui.zhang@intel.com, amitk@kernel.org, kristo@kernel.org
-Cc:     rafael@kernel.org, linux-pm@vger.kernel.org, vigneshr@ti.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220517121423.8017-1-j-keerthy@ti.com>
- <20220517121423.8017-2-j-keerthy@ti.com>
- <03c0e4fa-ccfb-fd86-0899-92a1086cac09@linaro.org>
- <324bd9c8-06b4-b9f5-7213-0e4b2a50653b@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <324bd9c8-06b4-b9f5-7213-0e4b2a50653b@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220517064937.4033441-2-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,30 +68,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/05/2022 17:07, J, KEERTHY wrote:
+On Tue, 17 May 2022 14:49:32 +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
+> Add i.MX8QXP compatible
 > 
-> On 5/17/2022 8:08 PM, Krzysztof Kozlowski wrote:
->> On 17/05/2022 14:14, Keerthy wrote:
->>> Add VTM bindings documentation. In the Voltage Thermal
->>> Management Module(VTM), K3 J72XX supplies a voltage
->>> reference and a temperature sensor feature that are gathered in the band
->>> gap voltage and temperature sensor (VBGAPTS) module. The band
->>> gap provides current and voltage reference for its internal
->>> circuits and other analog IP blocks. The analog-to-digital
->>> converter (ADC) produces an output value that is proportional
->>> to the silicon temperature.
->>>
->>> Signed-off-by: Keerthy <j-keerthy@ti.com>
->>
->> It seems I am repeating myself... Tags are still missing...
+> Add a new property fsl,resource-id for SoC which supports SCFW.
+> This property is used to check whether remote process is under control
+> of Linux or not.
 > 
-> I still do not have a Reviewed-by from you. Should i add yours?
-> You are still giving additional comments so I did not add.
+> Add fsl,entry-address to specify the entry address which used by SCFW
+> to kick M4.
+> 
+> To i.MX8QM/QXP, when M4 is in the same hardware partition with Cortex-A
+> cores, need power up M4 through SCFW, then M4 could start. So introduce
+> power-domains property
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  .../bindings/remoteproc/fsl,imx-rproc.yaml        | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+> 
 
-You got Rob's:
-https://lore.kernel.org/all/YnB4rtn87l5nXtRM@robh.at.kernel.org/
-
-
-Best regards,
-Krzysztof
+Reviewed-by: Rob Herring <robh@kernel.org>
