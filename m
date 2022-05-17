@@ -2,80 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 090AB52A382
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 15:35:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D696852A397
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 15:37:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242681AbiEQNfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 09:35:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55786 "EHLO
+        id S241193AbiEQNhw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 09:37:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347950AbiEQNfh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 09:35:37 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53C494CD62
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 06:35:31 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id a23so13697791ljd.9
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 06:35:31 -0700 (PDT)
+        with ESMTP id S1347965AbiEQNfs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 09:35:48 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64DF9CD6
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 06:35:46 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id gh6so34852986ejb.0
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 06:35:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=gLHS/b9qQdVVuN1R0+pvG/oH+ldjA527p+Isz/IUtsc=;
-        b=r0L6AMtlOLjXttwltWd+JbJzYHNgR+IDkHHHPjxUdZQzj0grfqgUPyBz5kKri1XMK5
-         pEJixh88Gs+7Opa0zseBHRqDrb2js/6iH1GZOFnpRJ1crVAKh4emSJje7kqbePk4rcOp
-         Ghmk2pwH5Z/SrgaUcWWyfmijBnf2QmRNq/ErW2I0CpOLCR7PlIQHd/Ud+Ua66KKkODb0
-         1ukwRvOIIhCeyElAYXdTyYi/OXYZoZiUf59QyvbLvQkRFDhV3BRD2hbTOYa2JDczixrR
-         LQjCkQRW6wEFy73Tn7eosqge128eICghzWcpWgAzPLMAuvwgnWoxpyIIdrx7YsMaIoUS
-         aSCw==
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CczRdToQYyS79iXvOF9uezGc9FJnQwNkL8FC0j7GqZc=;
+        b=qa0WI3zitk4mo/vP9Tgu6LSAg4l9FD+vov9RuP5ZsrevoHrO6BGsT9PZZLR0s0C/ry
+         J74uOPc3PMXLsBoZ0snV+t2ugSnjriIVrvfmfJW5ROZkrO7etlFFBnmn5o6n8xlCEtOe
+         HMT3v77yUwOJI0Ag/OWI+KV0yZH/U1WpCAa7s=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=gLHS/b9qQdVVuN1R0+pvG/oH+ldjA527p+Isz/IUtsc=;
-        b=V3gfH2ofNGKQwtz/zBapbP2isVg99hvfd0yUzsKyE4G3E68Zvwk3/R1ZMn5lB35gHN
-         uRKLidivr/FVLH2ubeKtPR/CdQVzHLVERuA3TMRR53WyvdsR+P3vsLBlhHLcJVbv4QIk
-         5/iKbhYXhWaV+8QurgKHS+jD4X20HDIH4EQnzlX8ZvzOkEVz5xj6AeOKsk1sKtPI546u
-         kr9DuvhPA8t/v9ast3+aOEnKz9YF7B7s6ZOuY9nJ30jtFQBkIBI8JDDuOgHRk/A0mKbi
-         /48Yap3u6noRFAUlzJOxXkmX4/CMH61hhb+2jsTFx/J6TqkHMsT6eAy+Se54kUfsdDVZ
-         5L4Q==
-X-Gm-Message-State: AOAM533JHscGG82OmpGUQRErp5mQnCYyKdtycxjhAGoTYws3ix2d1yNs
-        6YKRY1cf+PAx6pA8uaDOupc19Q==
-X-Google-Smtp-Source: ABdhPJwqY+kntOQKl2ieBGyE6CPyoGfX0pDII8HGb/ETfWZEhzvSJGq9Jm4m6B3zEith92RNYqw8gA==
-X-Received: by 2002:a05:651c:1198:b0:253:c443:cdcb with SMTP id w24-20020a05651c119800b00253c443cdcbmr386635ljo.22.1652794530237;
-        Tue, 17 May 2022 06:35:30 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id 10-20020ac2568a000000b0047255d211c9sm1591084lfr.248.2022.05.17.06.35.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 May 2022 06:35:29 -0700 (PDT)
-Message-ID: <f5633395-0ff8-2de2-a7e5-b99891ede33e@linaro.org>
-Date:   Tue, 17 May 2022 15:35:28 +0200
+        bh=CczRdToQYyS79iXvOF9uezGc9FJnQwNkL8FC0j7GqZc=;
+        b=dYFQz/6XGobYhn4z4kU8KszYmaF5M5WkpsTFBLq2DBPR9lYlLsjmeOp+K5cSM+cP91
+         hNlkbNWdIY0SzgwsCuYRtUjnhgerlI1NP711AeyqblphvQ+3hpZcU2L60q/NygQeIypj
+         xUKLMInLnxRdbSKTapPaFSzHt6I7f0awTQA63GVpToDbcCO4Vr0aIpQ/BMZdTf7bbaC1
+         fchhC3+gjHodBigQPrkPr7+JXnWp/gJ1iBEz1ihBqBlNdhyTsOiWW0Tb6xua5MqAjcLD
+         ecib6lyMNYw+u4KNwpwBnV4EA4je5k/mdX7ePArPHcmYC8DmkHxL0s8wJdbON1ok+4mR
+         4aZQ==
+X-Gm-Message-State: AOAM530TJ0oRoY+JCoRUIWtCvi9DtlrupOhLWpQ9olpfiTR/JwhUF3dA
+        Wl4LLYN1RNfVi5CrV2Jua70m9we1F6aDCNLO
+X-Google-Smtp-Source: ABdhPJyD21G2He0F3CPkBtOh7TINXtxAfy7CevKrvtEdyM5j0DLCSLTKCJ4IqkSMmDe5Tn1vj7Yy+A==
+X-Received: by 2002:a17:906:4795:b0:6f3:d1cc:7127 with SMTP id cw21-20020a170906479500b006f3d1cc7127mr20325899ejc.461.1652794544802;
+        Tue, 17 May 2022 06:35:44 -0700 (PDT)
+Received: from panicking.amarulasolutions.com (mob-176-245-91-171.net.vodafone.it. [176.245.91.171])
+        by smtp.gmail.com with ESMTPSA id jl28-20020a17090775dc00b006f50ceabcb8sm1051398ejc.102.2022.05.17.06.35.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 May 2022 06:35:43 -0700 (PDT)
+From:   Michael Trimarchi <michael@amarulasolutions.com>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@denx.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-amarula@amarulasolutions.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Ariel D'Alessandro <ariel.dalessandro@collabora.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Simon Holesch <simon.holesch@bshg.com>
+Subject: [PATCH] arm: dts: imx6ulz-bsh-smm-m2: Support proper board power off
+Date:   Tue, 17 May 2022 15:35:40 +0200
+Message-Id: <20220517133540.2456987-1-michael@amarulasolutions.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 01/20] MAINTAINERS: Add git repo path for MFC
-Content-Language: en-US
-To:     Smitha T Murthy <smitha.t@samsung.com>,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
-        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
-        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
-        benjamin.gaignard@collabora.com, stanimir.varbanov@linaro.org,
-        dillon.minfei@gmail.com, david.plowman@raspberrypi.com,
-        mark.rutland@arm.com, robh+dt@kernel.org, krzk+dt@kernel.org,
-        andi@etezian.org, alim.akhtar@samsung.com,
-        aswani.reddy@samsung.com, pankaj.dubey@samsung.com
-References: <20220517125548.14746-1-smitha.t@samsung.com>
- <CGME20220517125551epcas5p42cca7f0a2db6dc1d16d0e27265c43f56@epcas5p4.samsung.com>
- <20220517125548.14746-2-smitha.t@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220517125548.14746-2-smitha.t@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,28 +71,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/05/2022 14:55, Smitha T Murthy wrote:
-> Add git repo path for MFC.
-> 
-> Signed-off-by: Smitha T Murthy <smitha.t@samsung.com>
-> ---
->  MAINTAINERS | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index fd768d43e048..e53c7333562b 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -2703,6 +2703,7 @@ M:	Andrzej Hajda <andrzej.hajda@intel.com>
->  L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
->  L:	linux-media@vger.kernel.org
->  S:	Maintained
-> +T:	git git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media.git
+From: Simon Holesch <simon.holesch@bshg.com>
 
-This is not a MFC repo, but a repo of media drivers. There is no need to
-add to every driver repo of the subsystem. It should be in subsystem
-instead.
+Supports initiating poweroff on SNVS_PMIC_ON_REQ signal.
 
+Signed-off-by: Simon Holesch <simon.holesch@bshg.com>
+---
+ arch/arm/boot/dts/imx6ulz-bsh-smm-m2.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm/boot/dts/imx6ulz-bsh-smm-m2.dts b/arch/arm/boot/dts/imx6ulz-bsh-smm-m2.dts
+index 59bcfc9a6b10..c92e4e2f6ab9 100644
+--- a/arch/arm/boot/dts/imx6ulz-bsh-smm-m2.dts
++++ b/arch/arm/boot/dts/imx6ulz-bsh-smm-m2.dts
+@@ -29,6 +29,10 @@ &gpmi {
+ 	status = "okay";
+ };
+ 
++&snvs_poweroff {
++	status = "okay";
++};
++
+ &uart3 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_uart3>;
+-- 
+2.25.1
+
