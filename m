@@ -2,66 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C69D529667
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 03:01:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3D9152967E
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 03:04:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230177AbiEQBBM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 21:01:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44014 "EHLO
+        id S243107AbiEQBE3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 21:04:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242406AbiEQBBI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 21:01:08 -0400
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8C2C2613A;
-        Mon, 16 May 2022 18:01:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1652749266; x=1684285266;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=xOn9kBavuf8KbUOiYe4vSCSwPuD4BpeBR/1EpevB86k=;
-  b=JMt6f3lmdXOZBww9L+ZT8zwoR9hLnjCAR1dxZd7w9XCZeBhTC2TX9gKC
-   cQEjMVFUM54iXHXwwkQM5DU2K2G5i0QfPOyN3Ts1dIaiBau0Ra3HVaYrz
-   36Ex9SBV+HG2iVQdjNxUEFbcL/fE8FAof5MUsWd5OIvP7VsWSpL4abJ3A
-   +zF3LLxkhPw8eh/r5allRM8U+mqlGbWPnC+jE+OOJLZdKCmZGvQ3NmRAT
-   +IEQmsydwbglKVRdd6tEdUH0x5ZLCwhlYRlPLp5tdbbbZ2NFuFaf7nadn
-   d197IK68wdyM0fDA1FN9izvvAyP/4o/+S0O8vzrt2m9ATYwAvZ9obt4RJ
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10349"; a="334053486"
-X-IronPort-AV: E=Sophos;i="5.91,231,1647327600"; 
-   d="scan'208";a="334053486"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 May 2022 18:01:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,231,1647327600"; 
-   d="scan'208";a="660366636"
-Received: from lkp-server02.sh.intel.com (HELO 242b25809ac7) ([10.239.97.151])
-  by FMSMGA003.fm.intel.com with ESMTP; 16 May 2022 18:00:58 -0700
-Received: from kbuild by 242b25809ac7 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nqla5-0000SX-VS;
-        Tue, 17 May 2022 01:00:57 +0000
-Date:   Tue, 17 May 2022 09:00:27 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Medad CChien <medadyoung@gmail.com>, benjaminfair@google.com,
-        yuenn@google.com, venture@google.com, tali.perry1@gmail.com,
-        tmaimon77@gmail.com, avifishman70@gmail.com, robh+dt@kernel.org,
-        alexandre.belloni@bootlin.com, a.zummo@towertech.it,
-        KWLIU@nuvoton.com, YSCHU@nuvoton.com, JJLIU0@nuvoton.com,
-        KFTING@nuvoton.com, ctcchien@nuvoton.com
-Cc:     kbuild-all@lists.01.org, openbmc@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-rtc@vger.kernel.org
-Subject: Re: [PATCH v1 3/3] RTC: nuvoton: Add NCT3018Y real time clock driver
-Message-ID: <202205170805.G7wKugZK-lkp@intel.com>
-References: <20220516152751.27716-3-ctcchien@nuvoton.com>
+        with ESMTP id S1343509AbiEQBET (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 21:04:19 -0400
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E217546B2F;
+        Mon, 16 May 2022 18:04:10 -0700 (PDT)
+Received: by mail-oi1-f174.google.com with SMTP id e189so20684192oia.8;
+        Mon, 16 May 2022 18:04:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=KY+QPIdpY9AYCIk1QlFa7rVHWIHqF8P4GNI2gsYC8vE=;
+        b=w+JySK5+e9q1fU6BXzgzHmPfu4YkQSEN05s5ceyQpLK7kZQ68Se/uHb1i5EMDJyy4h
+         8X3qwd46BjegSQV3QS1j/O8jF7SrqU6P1QvwhKMgnIbB0JKoRO1tGwKHKBXR431clBpW
+         plipEnqDXXqN9ymdKYVkOl5KsXBs2Vmo4C4JQGZa4zWLO7Z/ygpOTtOyFOGW1OAHU08y
+         H4L5CGkc2fW7FWDsj3yo/VYo3BB1LDGYQUzMnCI4zRVTgNgOXs3t/ks1XO1eUky7V2XL
+         t1aQpzyn/JiRYgfMut/re/ecG+PS8QeIZ+LMw4GU2IlfGnhyqsaJFrynjJwkAHqwXRUz
+         4GSw==
+X-Gm-Message-State: AOAM531c0Bm0zY8kJxlu3yZcVjYn/5uc55dM3Ay/Tks5I8d2KBdmlP5+
+        OUi0r0O2gvHmy93pjew2rQ==
+X-Google-Smtp-Source: ABdhPJw/iV8lYByMOe+HPVx71PPh6yhbeRQslmXszUH81CIxDaZRhTLo7U7V3vLLE/kPr/t/N3vkWw==
+X-Received: by 2002:a05:6808:d52:b0:328:acfc:d265 with SMTP id w18-20020a0568080d5200b00328acfcd265mr14773980oik.290.1652749449949;
+        Mon, 16 May 2022 18:04:09 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id d12-20020a056871040c00b000ee2bb503d0sm5914393oag.50.2022.05.16.18.04.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 May 2022 18:04:09 -0700 (PDT)
+Received: (nullmailer pid 3712320 invoked by uid 1000);
+        Tue, 17 May 2022 01:04:08 -0000
+Date:   Mon, 16 May 2022 20:04:08 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: phy: renesas,rcar-gen2-usb-phy: Convert to
+ json-schema
+Message-ID: <20220517010408.GA3690472-robh@kernel.org>
+References: <8e48edc5e7b65f8dfd8b76c583e0265b9b97e62b.1652099944.git.geert+renesas@glider.be>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220516152751.27716-3-ctcchien@nuvoton.com>
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <8e48edc5e7b65f8dfd8b76c583e0265b9b97e62b.1652099944.git.geert+renesas@glider.be>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,181 +67,121 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Medad,
+On Mon, May 09, 2022 at 02:41:38PM +0200, Geert Uytterhoeven wrote:
+> Convert the Renesas R-Car Gen2 USB PHY Device Tree binding documentation
+> to json-schema.
+> 
+> Add missing properties.
+> Drop the second example, as it doesn't add any value.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> Validation gives:
+> 
+>     Documentation/devicetree/bindings/phy/renesas,rcar-gen2-usb-phy.example.dtb: usb
+>     -phy@e6590100: '#phy-cells' is a required property
+> 	    From schema: dt-schema/dtschema/schemas/phy/phy-provider.yaml
+> 
+> The latter considers '#phy-cells' a required property, as the node name
+> matches "usb-phy".  But in this binding the actual PHY providers are the
+> child nodes.
+> 
+> Is there a way to fix this? Overriding "#phy-cells" to "false" doesn't
+> work.
+> Should all nodes and child nodes be renamed? The (Linux) driver doesn't
+> care about the names of the children.
 
-Thank you for the patch! Perhaps something to improve:
+There's an open issue in dtschema for this. I don't have an answer other 
+than don't use 'phy' in the parent node name.
 
-[auto build test WARNING on abelloni/rtc-next]
-[also build test WARNING on robh/for-next v5.18-rc7 next-20220516]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+> 
+> ---
+> This is the final conversion to json-schema of DT bindings for Renesas
+> ARM SoCs, hurray!
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Medad-CChien/ARM-dts-nuvoton-Add-nuvoton-RTC3018Y-node/20220516-232940
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
-config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20220517/202205170805.G7wKugZK-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 11.3.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/5c51862ee8030cfd9f2e955c10ee580f168663e3
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Medad-CChien/ARM-dts-nuvoton-Add-nuvoton-RTC3018Y-node/20220516-232940
-        git checkout 5c51862ee8030cfd9f2e955c10ee580f168663e3
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=m68k SHELL=/bin/bash drivers/rtc/
+Great, certainly looking better than some! My tracking in linux-next 
+gives me this:
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+For arm:
 
-All warnings (new ones prefixed by >>):
+Processing (r7|r8|r9|emev2|sh73a|gr-|iwg): 
+warnings: 283
+undocumented compat: 32
 
-   drivers/rtc/rtc-nct3018y.c: In function 'nct3018y_rtc_read_time':
-   drivers/rtc/rtc-nct3018y.c:192:26: warning: unused variable 'nct3018y' [-Wunused-variable]
-     192 |         struct nct3018y *nct3018y = i2c_get_clientdata(client);
-         |                          ^~~~~~~~
-   drivers/rtc/rtc-nct3018y.c: In function 'nct3018y_rtc_set_time':
-   drivers/rtc/rtc-nct3018y.c:227:26: warning: unused variable 'nct3018y' [-Wunused-variable]
-     227 |         struct nct3018y *nct3018y = i2c_get_clientdata(client);
-         |                          ^~~~~~~~
-   drivers/rtc/rtc-nct3018y.c: In function 'nct3018y_rtc_set_alarm':
-   drivers/rtc/rtc-nct3018y.c:292:26: warning: unused variable 'nct3018y' [-Wunused-variable]
-     292 |         struct nct3018y *nct3018y = i2c_get_clientdata(client);
-         |                          ^~~~~~~~
-   drivers/rtc/rtc-nct3018y.c: In function 'nct3018y_irq_enable':
-   drivers/rtc/rtc-nct3018y.c:322:26: warning: unused variable 'nct3018y' [-Wunused-variable]
-     322 |         struct nct3018y *nct3018y = i2c_get_clientdata(client);
-         |                          ^~~~~~~~
-   In file included from include/linux/printk.h:555,
-                    from include/linux/kernel.h:29,
-                    from include/linux/cpumask.h:10,
-                    from include/linux/smp.h:13,
-                    from include/linux/lockdep.h:14,
-                    from include/linux/mutex.h:17,
-                    from include/linux/kernfs.h:11,
-                    from include/linux/sysfs.h:16,
-                    from include/linux/kobject.h:20,
-                    from include/linux/of.h:17,
-                    from include/linux/clk-provider.h:9,
-                    from drivers/rtc/rtc-nct3018y.c:5:
-   drivers/rtc/rtc-nct3018y.c: In function 'nct3018y_probe':
->> drivers/rtc/rtc-nct3018y.c:513:39: warning: format '%d' expects argument of type 'int', but argument 5 has type 'long unsigned int' [-Wformat=]
-     513 |                 dev_dbg(&client->dev, "%s: NCT3018Y_BIT_TWO is :%d\n",
-         |                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/dynamic_debug.h:134:29: note: in definition of macro '__dynamic_func_call'
-     134 |                 func(&id, ##__VA_ARGS__);               \
-         |                             ^~~~~~~~~~~
-   include/linux/dynamic_debug.h:166:9: note: in expansion of macro '_dynamic_func_call'
-     166 |         _dynamic_func_call(fmt,__dynamic_dev_dbg,               \
-         |         ^~~~~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:155:9: note: in expansion of macro 'dynamic_dev_dbg'
-     155 |         dynamic_dev_dbg(dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |         ^~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:155:30: note: in expansion of macro 'dev_fmt'
-     155 |         dynamic_dev_dbg(dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                              ^~~~~~~
-   drivers/rtc/rtc-nct3018y.c:513:17: note: in expansion of macro 'dev_dbg'
-     513 |                 dev_dbg(&client->dev, "%s: NCT3018Y_BIT_TWO is :%d\n",
-         |                 ^~~~~~~
-   drivers/rtc/rtc-nct3018y.c:513:66: note: format string is defined here
-     513 |                 dev_dbg(&client->dev, "%s: NCT3018Y_BIT_TWO is :%d\n",
-         |                                                                 ~^
-         |                                                                  |
-         |                                                                  int
-         |                                                                 %ld
-   drivers/rtc/rtc-nct3018y.c:535:22: error: 'struct rtc_device' has no member named 'uie_unsupported'
-     535 |         nct3018y->rtc->uie_unsupported = 1;
-         |                      ^~
-   drivers/rtc/rtc-nct3018y.c:561:15: error: implicit declaration of function 'rtc_register_device'; did you mean 'i2c_unregister_device'? [-Werror=implicit-function-declaration]
-     561 |         err = rtc_register_device(nct3018y->rtc);
-         |               ^~~~~~~~~~~~~~~~~~~
-         |               i2c_unregister_device
-   cc1: some warnings being treated as errors
+arch/arm/boot/dts/(r7|r8|r9|emev2|sh73a|gr-|iwg):32
+['ams,as3711']
+['arm,coresight-etm3x']
+['dlg,da9063-onkey']
+['dlg,da9063-rtc']
+['dlg,da9063-watchdog']
+['dlg,da9063l']
+['dlg,da9210']
+['i2c-demux-pinctrl']
+['renesas,pci-r8a7742', 'renesas,pci-rcar-gen2']
+['renesas,pci-r8a7743', 'renesas,pci-rcar-gen2']
+['renesas,pci-r8a7744', 'renesas,pci-rcar-gen2']
+['renesas,pci-r8a7745', 'renesas,pci-rcar-gen2']
+['renesas,pci-r8a7790', 'renesas,pci-rcar-gen2']
+['renesas,pci-r8a7791', 'renesas,pci-rcar-gen2']
+['renesas,pci-r8a7794', 'renesas,pci-rcar-gen2']
+['renesas,pci-r9a06g032', 'renesas,pci-rzn1']
+['renesas,r2a11302ft']
+['renesas,r9a06g032-dma', 'renesas,rzn1-dma']
+['renesas,r9a06g032-rtc', 'renesas,rzn1-rtc']
+['renesas,r9a06g032-wdt', 'renesas,rzn1-wdt']
+['renesas,rzn1-dmamux']
+['renesas,usb-phy-r8a7742', 'renesas,rcar-gen2-usb-phy']
+['renesas,usb-phy-r8a7743', 'renesas,rcar-gen2-usb-phy']
+['renesas,usb-phy-r8a7744', 'renesas,rcar-gen2-usb-phy']
+['renesas,usb-phy-r8a7745', 'renesas,rcar-gen2-usb-phy']
+['renesas,usb-phy-r8a77470', 'renesas,rcar-gen2-usb-phy']
+['renesas,usb-phy-r8a7790', 'renesas,rcar-gen2-usb-phy']
+['renesas,usb-phy-r8a7791', 'renesas,rcar-gen2-usb-phy']
+['renesas,usb-phy-r8a7794', 'renesas,rcar-gen2-usb-phy']
+['sil,sii9022']
+['st,stmpe-ts']
+['st,stmpe811']
 
+For arm64:
 
-vim +513 drivers/rtc/rtc-nct3018y.c
+Processing renesas: 
+warnings: 312
+undocumented compat: 15
 
-   486	
-   487	static int nct3018y_probe(struct i2c_client *client,
-   488				  const struct i2c_device_id *id)
-   489	{
-   490		struct nct3018y *nct3018y;
-   491		int err;
-   492		unsigned char buf;
-   493	
-   494		if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C)) {
-   495			dev_err(&client->dev, "%s: ENODEV\n", __func__);
-   496			return -ENODEV;
-   497		}
-   498	
-   499		nct3018y = devm_kzalloc(&client->dev, sizeof(struct nct3018y),
-   500					GFP_KERNEL);
-   501		if (!nct3018y)
-   502			return -ENOMEM;
-   503	
-   504		i2c_set_clientdata(client, nct3018y);
-   505		nct3018y->client = client;
-   506		device_set_wakeup_capable(&client->dev, 1);
-   507	
-   508		err = nct3018y_read_block_data(client, NCT3018Y_REG_CTRL, 1, &buf);
-   509		if (err < 0) {
-   510			dev_err(&client->dev, "%s: read error\n", __func__);
-   511			return err;
-   512		} else if (buf & NCT3018Y_BIT_TWO) {
- > 513			dev_dbg(&client->dev, "%s: NCT3018Y_BIT_TWO is :%d\n",
-   514				__func__, buf & NCT3018Y_BIT_TWO);
-   515		}
-   516	
-   517		buf = 0 | NCT3018Y_BIT_TWO;
-   518		err = nct3018y_write_block_data(client, NCT3018Y_REG_CTRL, 1, &buf);
-   519		if (err < 0) {
-   520			dev_err(&client->dev, "%s: write fail, so ReadOnly\n", __func__);
-   521		} else {
-   522			buf = 0;
-   523			err = nct3018y_write_block_data(client, NCT3018Y_REG_ST, 1, &buf);
-   524			if (err < 0) {
-   525				dev_err(&client->dev, "%s: write error\n", __func__);
-   526				return err;
-   527			}
-   528		}
-   529	
-   530		nct3018y->rtc = devm_rtc_allocate_device(&client->dev);
-   531		if (IS_ERR(nct3018y->rtc))
-   532			return PTR_ERR(nct3018y->rtc);
-   533	
-   534		nct3018y->rtc->ops = &nct3018y_rtc_ops;
-   535		nct3018y->rtc->uie_unsupported = 1;
-   536		nct3018y->rtc->range_min = RTC_TIMESTAMP_BEGIN_2000;
-   537		nct3018y->rtc->range_max = RTC_TIMESTAMP_END_2099;
-   538		nct3018y->rtc->set_start_time = true;
-   539	
-   540		nct3018y->wakeup_host = devm_gpiod_get(&client->dev, "host-wakeup", GPIOD_IN);
-   541		if (IS_ERR(nct3018y->wakeup_host)) {
-   542			err = PTR_ERR(nct3018y->wakeup_host);
-   543			dev_err(&client->dev, "could not get host wakeup gpio: %d", err);
-   544			return err;
-   545		}
-   546		client->irq = gpiod_to_irq(nct3018y->wakeup_host);
-   547	
-   548		dev_dbg(&client->dev, "%s: client->irq:%d\n", __func__, client->irq);
-   549	
-   550		if (client->irq > 0) {
-   551			err = devm_request_threaded_irq(&client->dev, client->irq,
-   552					NULL, nct3018y_irq,
-   553					IRQF_ONESHOT | IRQF_TRIGGER_FALLING,
-   554					nct3018y_driver.driver.name, client);
-   555			if (err) {
-   556				dev_err(&client->dev, "unable to request IRQ %d\n", client->irq);
-   557				return err;
-   558			}
-   559		}
-   560	
-   561		err = rtc_register_device(nct3018y->rtc);
-   562		if (err)
-   563			return err;
-   564	
+undocumented here means no schema.
 
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+arch/arm64/boot/dts/renesas:15
+['ilitek,ili2117']
+['micron,mt25qu512a', 'jedec,spi-nor']
+['nxp,tda998x']
+['ovti,ov5645']
+['renesas,r8a7795-mlp', 'renesas,rcar-gen3-mlp']
+['renesas,r8a7796-mlp', 'renesas,rcar-gen3-mlp']
+['renesas,r8a77961-mlp', 'renesas,rcar-gen3-mlp']
+['renesas,r8a77965-mlp', 'renesas,rcar-gen3-mlp']
+['renesas,r8a77990-mlp', 'renesas,rcar-gen3-mlp']
+['renesas,r8a77995-mlp', 'renesas,rcar-gen3-mlp']
+['renesas,r9a07g043-ssi', 'renesas,rz-ssi']
+['renesas,r9a07g043-tsu', 'renesas,rzg2l-tsu']
+['renesas,r9a07g043-usbphy-ctrl', 'renesas,rzg2l-usbphy-ctrl']
+['renesas,r9a07g043-wdt', 'renesas,rzg2l-wdt']
+['ti,pcm3168a']
+
+I guess board level components don't count and some might be pending.
+
+All this comes from here: https://gitlab.com/robherring/linux-dt/-/jobs
+
+> 
+> Note that there are still a few plain text bindings left for Renesas IP
+> cores that are present on non-Renesas SoCs (nbpfaxi and usdhi6rol0).
+> And H8/300 is being removed.
+> ---
+>  .../devicetree/bindings/phy/rcar-gen2-phy.txt | 112 ----------------
+>  .../phy/renesas,rcar-gen2-usb-phy.yaml        | 123 ++++++++++++++++++
+>  2 files changed, 123 insertions(+), 112 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/phy/rcar-gen2-phy.txt
+>  create mode 100644 Documentation/devicetree/bindings/phy/renesas,rcar-gen2-usb-phy.yaml
+
+Ignoring the node names for now,
+
+Reviewed-by: Rob Herring <robh@kernel.org>
