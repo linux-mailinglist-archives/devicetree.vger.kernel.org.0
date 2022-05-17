@@ -2,86 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FBE7529DA8
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 11:15:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CA38529DCE
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 11:20:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229760AbiEQJPD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 05:15:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50410 "EHLO
+        id S239226AbiEQJU3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 05:20:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243230AbiEQJOq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 05:14:46 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A70F31234
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 02:14:13 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id ch13so33348254ejb.12
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 02:14:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=uzbrvO21UceULT+n5MFskyGm8lwNsVBJgpQqNCNVgr8=;
-        b=d/5fBGDl4VD9kmenjR3XuiSq4Y8Bi5tdMfEPsa+RDxu+1VrpGrE1H2/JuqoFoJbmCp
-         gYLoy63urmNNcgKBWIvr/hc2lf0Xu14Ypjklisn2i3cU2Ou0iiERq4uB5LMCppb/MXuN
-         eM8MfPmthjzXgvOWMdkPacjH5z5jM0GCs0fWeERxTgO2xo4uaYN0Ebdc5Ty/RvI/4WTw
-         UGy4asyOs6vukPSU1wjAqsx0jwQeRYqsJeyHqjDrpJnHICil9C4xYtjNay2hYvjzQOOl
-         mvxzGdpmYHA3T2c09q1kOXRiK4TvIGsdlyiL2jSftLKWmieGpoWPU2jYwgVaVWzK8bKg
-         6e4g==
+        with ESMTP id S244480AbiEQJUL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 05:20:11 -0400
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0270D2AE1B;
+        Tue, 17 May 2022 02:20:00 -0700 (PDT)
+Received: by mail-qv1-f54.google.com with SMTP id eq14so13961686qvb.4;
+        Tue, 17 May 2022 02:19:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=uzbrvO21UceULT+n5MFskyGm8lwNsVBJgpQqNCNVgr8=;
-        b=Tue5lIn2jfBAgRgRcAjnnC04TnDAcsPHtRzezUx7XClW2Ccxqf1PR5nccLncIu3ZOe
-         Ug4DhCelMhHeJ/cRiFpHGP3dU3CiMerLmZPg1kjsHLM8WSjqxdPziCXBMFEWmIm7SFwF
-         elpzcGNF8/bHetKgKgMG/eOTbv0XBnHR50mezIuASaVMHnWA8Yc+B2bGwGfMJF/Sun/M
-         ANAcv7H5oJRf8Sc2K6cq4RvfrSHgG6W/ZJVKgHlR7k31ORa0xDKsK3uFOwIfd2cEjZZy
-         Yr0SbNy3Mz5v7Uo8kCpVeZxJt4TCVFIaaRGLYCKQKH4htH2ZEu6WpBm9UCH8JjzErZqw
-         y3fA==
-X-Gm-Message-State: AOAM533tmwtVJb7TlJBK+DIownJA2FcNcFR/duUMrJgmkoBobLOkf+l+
-        RhafPCKqBuZptMuXigRE+9GBy51SwFaVi6nd
-X-Google-Smtp-Source: ABdhPJxCBKEyJKDU1ubbqhVVSdcfKG3t3Vlgdl5iGFF1Ybar3ybuDxiwsbQ2BStu2vvBLnHlUBaEAg==
-X-Received: by 2002:a17:906:9c82:b0:6df:baa2:9f75 with SMTP id fj2-20020a1709069c8200b006dfbaa29f75mr18383958ejc.762.1652778851749;
-        Tue, 17 May 2022 02:14:11 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id o23-20020aa7dd57000000b0042abfe32ac8sm1439288edw.30.2022.05.17.02.14.10
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0Cj6phUb1dq1rPNMVBa9CpWp1pNYYkNb3ArN0qD91+8=;
+        b=i1n4q6uRdZqUJHz4D4CfB+nI3eWIn6hf1NdyolBZ3x07Yvopl74Wjqx6jnAbbOdhgr
+         ozyQUcfylcxTFa0oPex5P8rWVuke9H2cYDeA9dfi5HiIdlFYKVEstJ4vp2kBY22+fu8W
+         peTBCzdM1cdZ1fJaceDnJk9QMQe4YGBqx/dso50SFmVFn7L8JvQUJpMqVljDDwU1mJ/w
+         qKzBahO5Q8hHrOiNAugA/DnkhbZuAuB+aQ64mopdJX6oZ/xQJAq1OG8EnVifFP5+BXa7
+         OYWl5/J9OvN+LGVJ6/8QTTYpcxe3v1GZ6QNHMDqXHKfQveZQBwbV5w0R715udbeagszf
+         DiPw==
+X-Gm-Message-State: AOAM5308pSS3q4s9+ZAmTqoaKOgO0+uchp93jWNobrMibPvHbbb/P37W
+        aC1jWKjjwtibke/28htG59tM52X8aMzTFw==
+X-Google-Smtp-Source: ABdhPJyR1cH1VuhH0NvrMXhcDLyXA/AePoZfxLkI+4sapl3PTrHlC9WUXeOA0SZTXSRpCa0dSvf9Eg==
+X-Received: by 2002:a05:6214:768:b0:45a:afdf:ae39 with SMTP id f8-20020a056214076800b0045aafdfae39mr19083851qvz.113.1652779198957;
+        Tue, 17 May 2022 02:19:58 -0700 (PDT)
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
+        by smtp.gmail.com with ESMTPSA id v12-20020ac8748c000000b002f39b99f68bsm7285672qtq.37.2022.05.17.02.19.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 May 2022 02:14:11 -0700 (PDT)
-Message-ID: <2668e283-42ae-d786-4dca-63526d549f54@linaro.org>
-Date:   Tue, 17 May 2022 11:14:10 +0200
+        Tue, 17 May 2022 02:19:58 -0700 (PDT)
+Received: by mail-yb1-f181.google.com with SMTP id j2so31494426ybu.0;
+        Tue, 17 May 2022 02:19:58 -0700 (PDT)
+X-Received: by 2002:a25:4150:0:b0:64d:7747:9d93 with SMTP id
+ o77-20020a254150000000b0064d77479d93mr13270137yba.36.1652779198364; Tue, 17
+ May 2022 02:19:58 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v5 2/2] dt-bindings: trivial-devices: Add xdp152
-Content-Language: en-US
-To:     Greg.Schwendimann@infineon.com, linux@roeck-us.net,
-        linux-hwmon@vger.kernel.org
-Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, devicetree@vger.kernel.org
-References: <1a600fd51db942389a5078a72c3bf411@infineon.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1a600fd51db942389a5078a72c3bf411@infineon.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220504131923.214367-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220504131923.214367-1-krzysztof.kozlowski@linaro.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 17 May 2022 11:19:46 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVc3kShpp8wieX1SSA8-37m8PbxpqKRs5+gxz8Dm6QwsA@mail.gmail.com>
+Message-ID: <CAMuHMdVc3kShpp8wieX1SSA8-37m8PbxpqKRs5+gxz8Dm6QwsA@mail.gmail.com>
+Subject: Re: [PATCH 00/13] dt-bindings/arm64: dts: qcom: minor cleanups with
+ DT schema
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        USB list <linux-usb@vger.kernel.org>, arm-soc <soc@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2022 16:03, Greg.Schwendimann@infineon.com wrote:
-> 
-> Add Infineon Digital Multi-phase xdp152 family controllers.
-> 
-> Signed-off-by: Greg Schwendimann <Greg.Schwendimann@infineon.com>
+On Wed, May 4, 2022 at 5:13 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> The patches are independent, so they can be picked up as is (or everything
+> through Qualcomm SoC tree).
+>
+> Best regards,
+> Krzysztof
+>
+> Krzysztof Kozlowski (13):
+>   dt-bindings: soc: qcom: aoss: document qcom,sm8450-aoss-qmp
+>   dt-bindings: soc: qcom: qcom,smd-rpm: add power-controller
+>   dt-bindings: usb: qcom,dwc3: add IPQ8074, MSM8994, QCS404 and SM6125
+>   dt-bindings: usb: qcom,dwc3: fix clock matching
+>   arm64: dts: qcom: add missing AOSS QMP compatible fallback
+>   arm64: dts: qcom: correct DWC3 node names and unit addresses
+>   arm64: dts: qcom: ipq8074: add dedicated qcom,ipq8074-dwc3 compatible
+>   arm64: dts: qcom: msm8994: add dedicated qcom,msm8994-dwc3 compatible
+>   arm64: dts: qcom: sm6125: add dedicated qcom,sm6125-dwc3 compatible
+>   arm64: dts: qcom: qcs404: add dedicated qcom,qcs404-dwc3 compatible
+>   arm64: dts: qcom: msm8996: add clock-names to DWC3 USB node
+>   arm64: dts: qcom: align DWC3 USB clocks with DT schema
+>   arm64: dts: qcom: align DWC3 USB interrupts with DT schema
 
+Looks like all but the first two were applied to usb-next by Greg,
+causing conflicts with the soc/for-next tree.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Gr{oetje,eeting}s,
 
+                        Geert
 
-Best regards,
-Krzysztof
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
