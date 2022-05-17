@@ -2,226 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3594529C80
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 10:31:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30EBE529C88
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 10:32:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241817AbiEQIbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 04:31:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34470 "EHLO
+        id S243198AbiEQIbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 04:31:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242020AbiEQIbN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 04:31:13 -0400
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17F863DA68;
-        Tue, 17 May 2022 01:31:05 -0700 (PDT)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id E4DB840002;
-        Tue, 17 May 2022 08:31:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1652776264;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=i1z3x9hbx4kB/pMTiRJFrLwHXIkoX1zu3HrlembJ5x8=;
-        b=TyeDRQ2lIX5B3f8sM/z1ikAhOjf29Ggqj6AmwWNXDtHI5qVIkGgNT1I0cNOgQojRJUxRu+
-        rYU4r24Ud6cAMdYWwVrxIqPnToc88eBtWbhL9xwguekqqgmxJtBJl0OQBvlWN5+tC/MXrj
-        F+nuik+Bx3C24RZVTyE+dExGS8b5eH9Q6/XxPjsSeXPsE+LluIPUnw8by/+iC/QwRr3HGu
-        5YT2ODzz4sAAdN2o+nHUbIewzfvK8Ve+m43NGdfXhHQQPU/NzYDIbHMXNlj2QOEFKkPTKc
-        wIJE/fSUsapnvIDGcmptiDwOLZJH/vsKs2TY5pu/cGkIt3Fu5qMPPZ3J6Rm2cw==
-Date:   Tue, 17 May 2022 10:31:00 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     linux-renesas-soc@vger.kernel.org, dmaengine@vger.kernel.org,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk@vger.kernel.org, Viresh Kumar <vireshk@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v12 0/9] RZN1 DMA support
-Message-ID: <20220517103100.4da9ebe5@xps-13>
-In-Reply-To: <20220427095653.91804-1-miquel.raynal@bootlin.com>
-References: <20220427095653.91804-1-miquel.raynal@bootlin.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S242653AbiEQIbh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 04:31:37 -0400
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AEBA4130C
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 01:31:36 -0700 (PDT)
+Received: by mail-oi1-x232.google.com with SMTP id i66so21438918oia.11
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 01:31:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=86ceeyNCi3z2FwBWcA32g1IsuLILJjbHc1Dja5XPTPg=;
+        b=DeF8B3N1r7sbp73Uqvz9RVfBGJg3Yp9qsMawQ9YscwVZ7L3DN8xVOnwYNlWQnRHvvw
+         Zv+BQI27nKd++MeBOqgZD6Gd41CcI6n3UhpX568sVY3Vo7S+9V1/pWkEnDYHHdqLGmAa
+         BWSXsrl273+VFNHtNz69HrRavobjUDuxw78bo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=86ceeyNCi3z2FwBWcA32g1IsuLILJjbHc1Dja5XPTPg=;
+        b=GQn2bOi4PCpgFFlDW9MDGgTczw8+CqP3ieaBWMTyqQxwSEEAVc4f54FX4MnPh/pxs6
+         370d6UCCV1R7dgkCOty7LJTAaLor6UTH2BE0ycoH3IULh4g6sXqUTyOpkt9vxOManl+5
+         2MCx3ElASKDyMSMt1yEQnK89HWy8NVePilpveBjTARHnE9wgE8enpu+skQHZoVoAW14H
+         vMrwWEKRoCABMF464HwKwvk8jH7SCgcGOpRZqf+PAdPdeckwzJjfQXR3zchfMpdYSRwM
+         +XBVQsN8mkfRK7cCoGfR1IvPVrVN6RsfpabhW1xlvlVwiKgOPTQwOEPVMcIAyxubUnly
+         GGxw==
+X-Gm-Message-State: AOAM531IETSBF+uEJivo0RTP7bb54zg7YtFHNhynYwlwOpoEdqihsCHy
+        DU7J48jHiNpwK+FvfF7d5eic4T0Gadxe8mmWZy0hqB6Ue6g=
+X-Google-Smtp-Source: ABdhPJyKjOJ1T6NtgPT1vvc1ORb9DXABYVvQ52Fb901/W4PDoTyrZMHh5Olt67M2hQleCSfA8WDFQSEcDFb0dU/afwA=
+X-Received: by 2002:a05:6808:14c2:b0:326:c129:d308 with SMTP id
+ f2-20020a05680814c200b00326c129d308mr9705690oiw.193.1652776295739; Tue, 17
+ May 2022 01:31:35 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 17 May 2022 01:31:35 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <e74aacdf-3ff7-261d-997f-5b6566b66207@quicinc.com>
+References: <20220503113246.13857-1-quic_tdas@quicinc.com> <CAE-0n53QZn8VYB-dxzwccYDURU-0qW3ZwsuOEECwrKGAhYzwgw@mail.gmail.com>
+ <e74aacdf-3ff7-261d-997f-5b6566b66207@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Tue, 17 May 2022 01:31:35 -0700
+Message-ID: <CAE-0n50auThk=yzzVMvc2bu7g47gBzv4pw1K+dqshRRpA5969w@mail.gmail.com>
+Subject: Re: [PATCH v4] arm64: dts: qcom: sc7280: Add lpasscore & lpassaudio
+ clock controllers
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     Douglas Anderson <dianders@chromium.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi folks,
+Quoting Taniya Das (2022-05-03 22:35:29)
+> Hello Stephen,
+>
+> On 5/4/2022 12:40 AM, Stephen Boyd wrote:
+> > Quoting Taniya Das (2022-05-03 04:32:46)
+> >> Add the low pass audio clock controller device nodes. Keep the lpasscc
+> >> clock node disabled and enabled for lpass pil based devices.
+> >
+> > Does it mean that we're going to have overlapping reg ranges between
+> > nodes in DT for clk controllers? That is not proper DT style, indicating
+> > that we should combine the overlapping nodes and then have some
+> > compatible or DT property telling us how to treat the clks in the audio
+> > subsystem.
+> >
+>
+> In the case where PIL based LPASS node would be used, we would disable
+> the other lpass clock controller nodes. Does that seem fine or I would
+> need to map the complete range in the current PIL driver if that works.
+>
 
-miquel.raynal@bootlin.com wrote on Wed, 27 Apr 2022 11:56:44 +0200:
+Is the idea that we would have a set of nodes that have overlapping reg
+ranges but only one or the other would be enabled? That seems confusing.
+Why don't we simply have one node that has a different compatible string
+or some DT property that reflects the programming model of choice? Or
+use the protected-clocks property to list out the clks that we don't
+want to have registered on the system.
 
-> Hello,
->=20
-> This is the series bringing DMA support to RZN1 platforms.
-> The UART changes regarding DMA support has been merged into tty-next
-> already.
->=20
-> There is no other conflicting dependency with the other series, so these
-> patches (all but DTS) can go though the dmaengine tree I believe.
-
-As all patches the patches in this series have received a fairly good
-amount of reviews, as well as all the necessary tags since a few weeks
-already, I was hoping to see it applied for the next merge window. Is
-there something still blocking its acceptance? Let me know if it is
-the case and I will do the necessary to make them fit.
-
-Cheers,
-Miqu=C3=A8l
->=20
-> Cheers,
-> Miqu=C3=A8l
->=20
-> Changes in v12:
-> * Collected more tags.
-> * Updated the prefix of the patch introducing the dmamux helper.
-> * Avoid failing to probe the clock driver entirely when a clock subnode
->   fails to probe. Just print an error message on purpose and mention it
->   int the commit log.
-> * Enabled the DMA nodes by default in the DTSI.
-> * Used the data-width property instead of the deprecated data_width.
->=20
-> Changes in v11:
-> * Renamed two defines.
-> * Changed the way the bitmap is declared.
-> * Updated the cover letter: this series can now go in through the
->   dmaengine tree.
->=20
-> Changes in v10:
-> * Collected more tags.
-> * Dropped the mutex from the dmamux driver.
-> * Added missing includes in the dmamux driver.
-> * Replaced set_bit() by test_and_set_bit() in order to check if the chan
->   is already used or not in the dmamux driver.
-> * Corrected the misuse of the set_bit() macro in the dmamux driver.
->=20
-> Changes in v9:
-> * Collected more tags.
-> * Changed a u32 into a regular bitmap and used the bitmap API.
-> * Reordered two function calls to save one extra line.
-> * Added a define to avoid a magic value.
->=20
-> Changes in v8:
-> * Collected more tags.
-> * Moved the Makefile line adding the dmamux driver to the bottom of the
->   file.
-> * Reversed the logic in a ternary operation as suggested by Andy.
-> * Changed a bit the naming of a #define as suggested by Andy.
->=20
-> Changes in v7:
-> * This time, really added Stephen's Acks (sorry for the error).
-> * Moved an error check to get rid of one mutex_unlock/lock call as
->   suggested by Ilpo.
-> * Split the patch adding the dmamux driver as advised by Vinod. One
->   patch introduces the dmamux driver, the other populates the children
->   of the system controller. As the original patch got acked by Stephen
->   Boyd, I moved his tag to the patch touching the clock controller only.
->=20
-> Changes in v6:
-> * Added Stephen's acks.
-> * Fixed an extra newline added in the middle of nowhere.
-> * Rebased on top of v5.18-rc1.
->=20
-> Changes in v5:
-> * Used gotos in rzn1_dmamux_route_allocate().
-> * Changed the prefix to "dmaengine:".
-> * Dropped the partial transfers fix.
-> * Added Rob's acks.
->=20
-> Changes in v4:
-> * Freed "map" in the error path of the dmamux driver.
-> * Improved a bit the style as requested by Prabhakar.
-> * Dropped a __maybe_unused.
-> * Reorder the includes.
-> * Added a dependency on ARCH_RZN1.
-> * Added Rob's Ack.
-> * Added a reg property to the dmamux binding file.
-> * Referenced the dmamux binding from the system controller file.
-> * Called of_platform_populate from the end of the system controller
->   (clock) driver probe in order to probe the dmamux if it was
->   populated.
-> * Added DMA properties to all the relevant UARTs.
->=20
-> Changes in v3:
-> * Added Reviewed-by tags.
-> * Exported the set_dmamux* symbol properly.
-> * Dropped a useless check in the probe and moved the sysctrl_priv
->   assignation to the end of the probe.
-> * Renamed the dmamux driver
-> * Added a couple of missing MODULE_ macros in the dmamux driver.
-> * Decided to use a regular platform init call instead of the
->   arch_initcall() initially proposed.
-> * s/%d/%u/ in printk's when appropriate.
-> * Used a hardcoded value instead of dmamux->dmac_requests when
->   appropriate.
-> * Changed the variable name "master" to "dmac_idx" to be more
->   descriptive.
-> * Dropped most of the of_* calls in favor of #define's.
-> * Fixed a typo.
-> * Exported two symbols from 8250_dma.c.
->=20
-> Changes in v2:
-> * Clarified that the 'fix' regarding non aligned reads would only apply
->   to the DEV_TO_MEM case.
-> * Fix the DMA controller compatible string (copy-paste error).
-> * s/syscon/sysctrl/ as advised by Geert.
-> * Disabled irqs when taking the spinlock from the clocks driver.
-> * Moved the DMAMUX offset inside the driver.
-> * Removed extra commas.
-> * Improved the style as suggested by Andy.
-> * Removed a dupplicated check against the device node presence.
-> * Reduced the number of lines of code by using dev_err_probe().
-> * Created a Kconfig symbol for DMAMUX to fix the two robot reports
->   received and be sure there was no useless overhead with other
->   platforms.
-> * Exported the serial8250_{tx,rx}_dma() symbols.
->=20
-> Miquel Raynal (9):
->   dt-bindings: dmaengine: Introduce RZN1 dmamux bindings
->   dt-bindings: clock: r9a06g032-sysctrl: Reference the DMAMUX subnode
->   dt-bindings: dmaengine: Introduce RZN1 DMA compatible
->   clk: renesas: r9a06g032: Export function to set dmamux
->   dmaengine: dw: dmamux: Introduce RZN1 DMA router support
->   clk: renesas: r9a06g032: Probe possible children
->   dmaengine: dw: Add RZN1 compatible
->   ARM: dts: r9a06g032: Add the two DMA nodes
->   ARM: dts: r9a06g032: Describe the DMA router
->=20
->  .../clock/renesas,r9a06g032-sysctrl.yaml      |  11 ++
->  .../bindings/dma/renesas,rzn1-dmamux.yaml     |  51 ++++++
->  .../bindings/dma/snps,dma-spear1340.yaml      |   8 +-
->  MAINTAINERS                                   |   1 +
->  arch/arm/boot/dts/r9a06g032.dtsi              |  38 +++++
->  drivers/clk/renesas/r9a06g032-clocks.c        |  40 ++++-
->  drivers/dma/dw/Kconfig                        |   9 +
->  drivers/dma/dw/Makefile                       |   2 +
->  drivers/dma/dw/platform.c                     |   1 +
->  drivers/dma/dw/rzn1-dmamux.c                  | 155 ++++++++++++++++++
->  include/linux/soc/renesas/r9a06g032-sysctrl.h |  11 ++
->  11 files changed, 325 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/dma/renesas,rzn1-dm=
-amux.yaml
->  create mode 100644 drivers/dma/dw/rzn1-dmamux.c
->  create mode 100644 include/linux/soc/renesas/r9a06g032-sysctrl.h
->=20
+We shouldn't need to have two entirely different nodes for the same
+physical device in the SoC, so talking about PIL based LPASS is
+confusing. Can you explain further?
