@@ -2,108 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9B45529CE3
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 10:48:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CBBB529D16
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 10:58:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235522AbiEQIso (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 04:48:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48724 "EHLO
+        id S243926AbiEQI6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 04:58:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235248AbiEQIsn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 04:48:43 -0400
-Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8476043ADE;
-        Tue, 17 May 2022 01:48:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
-         s=20161220; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=XpPlQoFkEA14izG0/3owwVuWJtisit8G2XM/kloA1D0=; b=YPvloaBhaF9ZBDhNcnSM4a/vxg
-        P6y9T4Qz0pBvqEBE7H/Yr32K6LmCZmH/YQVfuA/mrN5iupQPmDe8JsLc9PY05Yax2JOVqoWgjJKTy
-        WZW7Sm4CCcxc3KXtZ+qNTgMJ5XIpgodC6X7Dp102SU9d67c1N6mGPcmMs11RgJeehYudmnGOsRHNa
-        bQt5WkXXLLro1PxmO23FJRUljSfJKXXNoyMv/LPnQJki2QH21JgDbO7Oa9hlq+gQ+vqFON3XF+a/D
-        V0w9BzerUg08oOJXrxdazXmuRPJ5ebpGjGjLpeuLwA65FprteaCWSponhfOL0UpkjMK1Wa//Q81im
-        UXyXDT7w==;
-Received: from 91-158-25-70.elisa-laajakaista.fi ([91.158.25.70] helo=[192.168.1.10])
-        by mail.kapsi.fi with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.92)
-        (envelope-from <cyndis@kapsi.fi>)
-        id 1nqsse-00027X-86; Tue, 17 May 2022 11:48:36 +0300
-Message-ID: <9ee48521-c853-e07e-1f0b-90e9a46af728@kapsi.fi>
-Date:   Tue, 17 May 2022 11:48:35 +0300
+        with ESMTP id S240348AbiEQI6m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 04:58:42 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6766948E74
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 01:58:40 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id dk23so33339392ejb.8
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 01:58:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=gcBgbzUrhXlgJMEhbaDgDyZ5SGdnIcnHwbk4ovmn5fc=;
+        b=jFTcQLaC9oA7CuCmHEyFM95elDnHd7ZcLwOgBlht+XO/EXFsMuPHTkMF+L7fuWAKJ/
+         H8y9t7gKNsc8vkbGE1VMECeKt2tf+wmil6MoPb5gq6Lg3gc5mJJJQeWjbFMTMHFUS+AN
+         PWtC6duCb4g6zq8PhxiAyhEeJEhubi4RM1QOhlzQKb4AJJ45r7kMFTfHac9sMtxw9C2a
+         ykz7sIXhS1GkjnhBJLm8TYz7P7AZtUaDMiQepiaLsFA+tqpB0b6YSXfhDRVsDRE7I/Tf
+         zKOcaHFMXJw6P/BqUg2eWt9++/VCl6bQoYmuVBYyja6jE4UAy3DtQHzgs8D40q3WAlD+
+         mKLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=gcBgbzUrhXlgJMEhbaDgDyZ5SGdnIcnHwbk4ovmn5fc=;
+        b=1CTwVl1rvtLGWVOHm8oszaqvfeFEM5KeR2wpPgFO0od+8ANJgMJ8CTIWpJJjsTe78C
+         v1IJk4uCR5jbKXovNVNus1g6KZ/uMCFxnz9dEYdEYRJbjxdY6IG+QWKq8Eb27B1MYqaN
+         /A3k+q43YGVkQY3bzeXdzO8ZoLssQWSAAOdtSZ1nRosypabQyheIwp9kmEZxeqZJrO6P
+         dZ0cwkGCsbmHJ5hn8dmTwkmNcBHlkKOSz3oqy0dtnwkFollCllNq083WPdVk7wFCyaF/
+         6okmdgCKHd4WdIPSkq9gFmix43d2ROXeadxMNr9o/mewVCK719jy3+gnV8qSODHdQQbl
+         i0Xw==
+X-Gm-Message-State: AOAM531Uh4OqxYZojfLhbT+3kQ44gQa4dvzFNCIYiZ+1O0/h0fbMvXPw
+        H8Jg5WCiwHbmCq/04DpS+9ImeA==
+X-Google-Smtp-Source: ABdhPJzB5IJDtWaSHVhu2zZn9yNB8WW2lrbec0RhASTT4vDP4tCIYa22/maKHFHqtIzJJhw/f7ACAg==
+X-Received: by 2002:a17:906:6a29:b0:6f4:3389:9094 with SMTP id qw41-20020a1709066a2900b006f433899094mr19523366ejc.323.1652777919039;
+        Tue, 17 May 2022 01:58:39 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id hg23-20020a1709072cd700b006f3ef214decsm788722ejc.82.2022.05.17.01.58.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 May 2022 01:58:38 -0700 (PDT)
+Message-ID: <330d9a4b-063b-6a26-9cae-1143c88c5876@linaro.org>
+Date:   Tue, 17 May 2022 10:58:37 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.1
-Subject: Re: [PATCH v1 02/13] dt-bindings: Add headers for Host1x and VIC on
- Tegra234
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 1/2] dt-bindings: mmc: Add Broadcom optional sdio_freq
+ clock
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, digetx@gmail.com
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mikko Perttunen <mperttunen@nvidia.com>
-References: <20220516100213.1536571-1-cyndis@kapsi.fi>
- <20220516100213.1536571-3-cyndis@kapsi.fi>
- <20a7087d-dddd-134b-4cef-0ebcbc5115f3@linaro.org>
- <3b1e22cf-a439-2d84-a1fc-dd352a3f1b2c@kapsi.fi>
- <e77d83ee-c045-26a6-15bc-df49a3b880ae@linaro.org>
-From:   Mikko Perttunen <cyndis@kapsi.fi>
-In-Reply-To: <e77d83ee-c045-26a6-15bc-df49a3b880ae@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Kamal Dasu <kdasu.kdev@gmail.com>, ulf.hansson@linaro.org,
+        robh+dt@kernel.org, alcooperx@gmail.com
+Cc:     f.fainelli@gmail.com, bcm-kernel-feedback-list@broadcom.com,
+        adrian.hunter@intel.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220513201907.36470-1-kdasu.kdev@gmail.com>
+ <20220513201907.36470-2-kdasu.kdev@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220513201907.36470-2-kdasu.kdev@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 91.158.25.70
-X-SA-Exim-Mail-From: cyndis@kapsi.fi
-X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/17/22 11:43, Krzysztof Kozlowski wrote:
-> On 17/05/2022 10:41, Mikko Perttunen wrote:
->> On 5/17/22 11:02, Krzysztof Kozlowski wrote:
->>> On 16/05/2022 12:02, cyndis@kapsi.fi wrote:
->>>> From: Mikko Perttunen <mperttunen@nvidia.com>
->>>>
->>>> Add clock, memory controller, powergate and reset dt-binding headers
->>>> for Host1x and VIC on Tegra234.
->>>>
->>>> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
->>>
->>> All your patches are send from wrong email address and the SoB chain is
->>> not correct. Please add respective SoB.
->>>
->>> This applies to entire patchset.
->>>
->>>
->>> Best regards,
->>> Krzysztof
->>
->> I can do
->>
->>     Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
->>     Signed-off-by: Mikko Perttunen <cyndis@kapsi.fi>
->>
->> if that is better.
+On 13/05/2022 22:19, Kamal Dasu wrote:
+> The 72116B0 has improved SDIO controllers that allow the max clock
+> rate to be increased from a max of 100MHz to a max of 150MHz.
+> Optional "sdio_freq" clock is used to drive the bus clock if present
+> optional property "max-frequency" specifies a base clock frequency
+> in Hz that overrides the base clock frequency in the CAPS registers.
 > 
-> That's not needed, if your name was in the sender field. The trouble is
-> that your name was not there and I have no clue who is cyndis@kapsi.fi.
-> 
-> 
-> Best regards,
-> Krzysztof
+> Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
 
-I see, that makes sense. Looks like when I did the above From field 
-change I must have messed up my configuration somehow since it looks 
-like older patches I've sent do have the full name.
 
-Thanks, I'll try to fix it for next version.
-Mikko
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+Best regards,
+Krzysztof
