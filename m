@@ -2,32 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57E9152A599
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 17:04:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DC8B52A59D
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 17:05:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347378AbiEQPEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 11:04:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42868 "EHLO
+        id S1349617AbiEQPFt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 11:05:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349584AbiEQPEV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 11:04:21 -0400
+        with ESMTP id S1349540AbiEQPFs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 11:05:48 -0400
 Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EBA0286F1;
-        Tue, 17 May 2022 08:04:20 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7D3B2F0;
+        Tue, 17 May 2022 08:05:47 -0700 (PDT)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
         (Authenticated sender: nfraprado)
-        with ESMTPSA id 642481F446FE
+        with ESMTPSA id 7A1B81F44708
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1652799858;
-        bh=HLTx3V5C/OLEk5npKnb0rmPGaBqjbq5wK3wrkZrxIQA=;
+        s=mail; t=1652799946;
+        bh=lQaAioMCtJzYV+JsQokqOT8ZO6pFb3WCCN0aLVKRlF8=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=njxYRTJEyx5yTxdeQiH/V252FsF0rqTyFmDAZlpkn2YM06QBP8W6+1qSw0rk/AIwe
-         gD8pfLNF97nmxJNFZsEazZrm4BaxxFj6g539Vyg0CC4cKIjgZ46hOUsjNFUSvQ+5rE
-         01mXrUjWHcRJEgRlGxWbsnHBg+4gZ1r+5Sp993VYSwIEoVBwFF8s3bB4gjEPFOAYA0
-         JS+ZBB4KRwxSQPBpzxARzVbcjqdSGq9iZ5PRxibTdHrti1mWjJ+Sorxs4oJTwF222Y
-         J01gwsjf78f71dn6IgOGghNCV2yFJUDO+xx9Ao0hBNMylvEN9ceuI/LDY2w90sT1hF
-         pFdzY1cIzLrNQ==
-Date:   Tue, 17 May 2022 11:04:13 -0400
+        b=mWyx87AAiAbMwcD6cd7G4OZnTdDs7hrlugoKAY086+/TluU3kCCXiGBkC/cYj2PaK
+         PKAEnWgA9214eXGzRtuUtB9fD6PzrxZ9+I+kM1qjbFywDZmWFdSkLs266pqQl9nlJ+
+         6kULyYfvupeQqGR0UiBuPe+mpsWUsRz02UqhOJrZjI2sxs3Xh+h0wcNi5S1KyfJM6V
+         NMGwEO8hajIykt1it6HMY6lhGFTMWqUXY1SUh5QcOCkplM1dTCMUhcJmV4oKcjmWmd
+         kmKLGefjqS+i9HOR3cF6bJupcVxIrByNZKBQyuo6pQTrkV1+NhUEAmhzKgmJsX/2P1
+         I9GiuEjByRK6A==
+Date:   Tue, 17 May 2022 11:05:42 -0400
 From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
         <nfraprado@collabora.com>
 To:     AngeloGioacchino Del Regno 
@@ -38,16 +38,14 @@ Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         wenst@chromium.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 5/6] dt-bindings: arm: mt8192-clock: Remove unnecessary
- 'items'
-Message-ID: <20220517150413.pnhbvzz2upcmjebi@notapiano>
+Subject: Re: [PATCH 0/6] dt-bindings: arm: MediaTek: Fix clock bindings
+Message-ID: <20220517150542.cvvescaeohlfurkw@notapiano>
 References: <20220517101514.21639-1-angelogioacchino.delregno@collabora.com>
- <20220517101514.21639-6-angelogioacchino.delregno@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220517101514.21639-6-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220517101514.21639-1-angelogioacchino.delregno@collabora.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
@@ -58,74 +56,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 17, 2022 at 12:15:13PM +0200, AngeloGioacchino Del Regno wrote:
-> There's no need for 'items' when there's only one item.
+On Tue, May 17, 2022 at 12:15:08PM +0200, AngeloGioacchino Del Regno wrote:
+> As per Rob Herring's review [1] on my mt6795 clocks bindings patches, for
+> which I've used the already upstreamed ones as a base, it was found that
+> these bindings have some issues.
+> This series is addressing the issues that were found by Rob on my series,
+> which are present on all of the already merged bindings.
 > 
-> Fixes: 4a803990aeb1 ("dt-bindings: ARM: Mediatek: Add new document bindings of MT8192 clock")
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  .../arm/mediatek/mediatek,mt8192-clock.yaml   | 45 +++++++++----------
->  1 file changed, 22 insertions(+), 23 deletions(-)
+> [1]: https://patchwork.kernel.org/project/linux-mediatek/patch/20220513165050.500831-5-angelogioacchino.delregno@collabora.com/#24859953
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-clock.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-clock.yaml
-> index c8c67c033f8c..bb410b178f33 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-clock.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-clock.yaml
-> @@ -14,29 +14,28 @@ description:
->  
->  properties:
->    compatible:
-> -    items:
-> -      - enum:
-> -          - mediatek,mt8192-scp_adsp
-> -          - mediatek,mt8192-imp_iic_wrap_c
-> -          - mediatek,mt8192-imp_iic_wrap_e
-> -          - mediatek,mt8192-imp_iic_wrap_s
-> -          - mediatek,mt8192-imp_iic_wrap_ws
-> -          - mediatek,mt8192-imp_iic_wrap_w
-> -          - mediatek,mt8192-imp_iic_wrap_n
-> -          - mediatek,mt8192-msdc_top
-> -          - mediatek,mt8192-msdc
-> -          - mediatek,mt8192-mfgcfg
-> -          - mediatek,mt8192-imgsys
-> -          - mediatek,mt8192-imgsys2
-> -          - mediatek,mt8192-vdecsys_soc
-> -          - mediatek,mt8192-vdecsys
-> -          - mediatek,mt8192-vencsys
-> -          - mediatek,mt8192-camsys
-> -          - mediatek,mt8192-camsys_rawa
-> -          - mediatek,mt8192-camsys_rawb
-> -          - mediatek,mt8192-camsys_rawc
-> -          - mediatek,mt8192-ipesys
-> -          - mediatek,mt8192-mdpsys
-> +    enum:
-> +      - mediatek,mt8192-scp_adsp
-> +      - mediatek,mt8192-imp_iic_wrap_c
-> +      - mediatek,mt8192-imp_iic_wrap_e
-> +      - mediatek,mt8192-imp_iic_wrap_s
-> +      - mediatek,mt8192-imp_iic_wrap_ws
-> +      - mediatek,mt8192-imp_iic_wrap_w
-> +      - mediatek,mt8192-imp_iic_wrap_n
-> +      - mediatek,mt8192-msdc_top
-> +      - mediatek,mt8192-msdc
-> +      - mediatek,mt8192-mfgcfg
-> +      - mediatek,mt8192-imgsys
-> +      - mediatek,mt8192-imgsys2
-> +      - mediatek,mt8192-vdecsys_soc
-> +      - mediatek,mt8192-vdecsys
-> +      - mediatek,mt8192-vencsys
-> +      - mediatek,mt8192-camsys
-> +      - mediatek,mt8192-camsys_rawa
-> +      - mediatek,mt8192-camsys_rawb
-> +      - mediatek,mt8192-camsys_rawc
-> +      - mediatek,mt8192-ipesys
-> +      - mediatek,mt8192-mdpsys
+> AngeloGioacchino Del Regno (6):
+>   dt-bindings: arm: mt8186-clock: Remove unnecessary 'items' and fix
+>     formatting
+>   dt-bindings: arm: mt8186: Set #clock-cells as required property
+>   dt-bindings: arm: mt8195-clock: Remove unnecessary 'items' and fix
+>     formatting
+>   dt-bindings: arm: mt8195: Set #clock-cells as required property
+>   dt-bindings: arm: mt8192-clock: Remove unnecessary 'items'
+>   dt-bindings: arm: mt8192: Set #clock-cells as required property
 
-This will conflict with the patch removing msdc:
+For the whole series,
 
-[1] https://lore.kernel.org/all/20220429123133.28869-1-matthias.bgg@kernel.org/
-
-Although if this series is merged before that one, it should be fine.
+Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
 Thanks,
 Nícolas
+
+> 
+>  .../arm/mediatek/mediatek,mt8186-clock.yaml   | 29 ++++-----
+>  .../mediatek/mediatek,mt8186-sys-clock.yaml   |  1 +
+>  .../arm/mediatek/mediatek,mt8192-clock.yaml   | 46 +++++++--------
+>  .../mediatek/mediatek,mt8192-sys-clock.yaml   |  1 +
+>  .../arm/mediatek/mediatek,mt8195-clock.yaml   | 59 ++++++++++---------
+>  .../mediatek/mediatek,mt8195-sys-clock.yaml   |  1 +
+>  6 files changed, 71 insertions(+), 66 deletions(-)
+> 
+> -- 
+> 2.35.1
+> 
+> 
