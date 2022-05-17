@@ -2,141 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D05952A5A2
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 17:07:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CC5952A5B7
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 17:11:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241781AbiEQPHb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 11:07:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48924 "EHLO
+        id S230121AbiEQPLo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 11:11:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234068AbiEQPHa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 11:07:30 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 892F83B03F;
-        Tue, 17 May 2022 08:07:28 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24HF7NLV004434;
-        Tue, 17 May 2022 10:07:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1652800043;
-        bh=ZINbXM1Hh90dm8mq3C47q/Ut9jRaUp9GOA/s2JKJocM=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=MaO5IzaiSt7V3Uvv64jtL9WhA6+uiolO6khzr/tZC5KRpu2sVKzovKh7v+yMM86p/
-         zgUxQ3YqVlfhGzFZMDtsMOdqNqVXGzTKcsftCqUNfDHOuCOEz8O0XHsH/6vJcWOl2O
-         nDpqym/zMiueykENjHS6nr+hVSifpv+fIlT0RViQ=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24HF7NoF026227
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 17 May 2022 10:07:23 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 17
- May 2022 10:07:22 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 17 May 2022 10:07:22 -0500
-Received: from [10.250.234.179] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24HF7I65124850;
-        Tue, 17 May 2022 10:07:19 -0500
-Message-ID: <324bd9c8-06b4-b9f5-7213-0e4b2a50653b@ti.com>
-Date:   Tue, 17 May 2022 20:37:17 +0530
+        with ESMTP id S229492AbiEQPLo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 11:11:44 -0400
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACA2E3BF83;
+        Tue, 17 May 2022 08:11:43 -0700 (PDT)
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-edf9ddb312so24526537fac.8;
+        Tue, 17 May 2022 08:11:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=vKffu75/JaeR+3h2YIHGd7s27VZFAWG85y0Vy+z5Neg=;
+        b=R5LJbXV+ZGR9lmAPfNdMmGsMMlE9iNM2qbDYN7PQItrkV+M7P9VHtHmv1jCVYUTKKg
+         W//gn54YTc2A8TLfX59D37HHvRDMiFqhLoDUUwHY//o+J1sY0CuIyP9ZfBc87FqGL5o2
+         oPEPwPbe974+LYgaQ+CyMmyj7TKrOheVu4qUlEhaDkwTeCIQRuQp3i1jkke2rfWENNbj
+         DhX8W8wcnPX6qlqErY9OPwJLrryi9wsZpui1XHgS4U0ArYRVOoSs59L9II6CQe453e5k
+         vlkLsvSxGsn80SdBQF+COHQUCEobrh+Ha9Tdbcln6uFUSnXO4rWI+cofIPxMHPLSPbkM
+         KixA==
+X-Gm-Message-State: AOAM5303QcXVORTQOFNgMf1tuJ98YJvO+kqed8chEOeXDQhK2GA6dwVj
+        zzgyEg5QnZUGQIPI9fQE0g==
+X-Google-Smtp-Source: ABdhPJy8jacFLS6QJGBGYc5xwP/7byPwy7Vt4hC+lhvsItbre7bDr1MI4/AWGviHlME6OAqLa0hvVw==
+X-Received: by 2002:a05:6870:a928:b0:da:b3f:320a with SMTP id eq40-20020a056870a92800b000da0b3f320amr12236838oab.186.1652800302955;
+        Tue, 17 May 2022 08:11:42 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id t18-20020a056870609200b000f1952c6bc1sm3660979oae.31.2022.05.17.08.11.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 May 2022 08:11:42 -0700 (PDT)
+Received: (nullmailer pid 1043899 invoked by uid 1000);
+        Tue, 17 May 2022 15:11:41 -0000
+Date:   Tue, 17 May 2022 10:11:41 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc:     sebastian.hesselbarth@gmail.com, robh+dt@kernel.org,
+        davem@davemloft.net, pabeni@redhat.com, andrew@lunn.ch,
+        edumazet@google.com, kuba@kernel.org, kabel@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, gregory.clement@bootlin.com
+Subject: Re: [PATCH 2/2] dt-bindings: net: marvell,orion-mdio: Set
+ unevaluatedProperties to false
+Message-ID: <20220517151141.GA1043840-robh@kernel.org>
+References: <20220516224801.1656752-1-chris.packham@alliedtelesis.co.nz>
+ <20220516224801.1656752-3-chris.packham@alliedtelesis.co.nz>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v8 1/2] dt-bindings: thermal: k3-j72xx: Add VTM bindings
- documentation
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
-        <amitk@kernel.org>, <kristo@kernel.org>
-CC:     <rafael@kernel.org>, <linux-pm@vger.kernel.org>, <vigneshr@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20220517121423.8017-1-j-keerthy@ti.com>
- <20220517121423.8017-2-j-keerthy@ti.com>
- <03c0e4fa-ccfb-fd86-0899-92a1086cac09@linaro.org>
-From:   "J, KEERTHY" <j-keerthy@ti.com>
-In-Reply-To: <03c0e4fa-ccfb-fd86-0899-92a1086cac09@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220516224801.1656752-3-chris.packham@alliedtelesis.co.nz>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 5/17/2022 8:08 PM, Krzysztof Kozlowski wrote:
-> On 17/05/2022 14:14, Keerthy wrote:
->> Add VTM bindings documentation. In the Voltage Thermal
->> Management Module(VTM), K3 J72XX supplies a voltage
->> reference and a temperature sensor feature that are gathered in the band
->> gap voltage and temperature sensor (VBGAPTS) module. The band
->> gap provides current and voltage reference for its internal
->> circuits and other analog IP blocks. The analog-to-digital
->> converter (ADC) produces an output value that is proportional
->> to the silicon temperature.
->>
->> Signed-off-by: Keerthy <j-keerthy@ti.com>
+On Tue, 17 May 2022 10:48:01 +1200, Chris Packham wrote:
+> When the binding was converted it appeared necessary to set
+> 'unevaluatedProperties: true' because of the switch devices on the
+> turris-mox board. Actually the error was because of the reg property
+> being incorrect causing the rest of the properties to be unevaluated.
 > 
-> It seems I am repeating myself... Tags are still missing...
-
-I still do not have a Reviewed-by from you. Should i add yours?
-You are still giving additional comments so I did not add.
-
+> After the reg properties are fixed for turris-mox we can set
+> 'unevaluatedProperties: false' as is generally expected.
 > 
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
->> +    wkup_vtm0: thermal-sensor@42040000 {
->> +        compatible = "ti,j721e-vtm";
->> +        reg = <0x42040000 0x350>,
->> +            <0x42050000 0x350>,
->> +            <0x43000300 0x10>;
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> ---
+>  Documentation/devicetree/bindings/net/marvell,orion-mdio.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> Please align the continued entries with opening <.
 
-Okay. I will fix that.
-
-> 
->> +        power-domains = <&k3_pds 154 TI_SCI_PD_EXCLUSIVE>;
->> +        #thermal-sensor-cells = <1>;
->> +    };
->> +
->> +    mpu_thermal: mpu-thermal {
->> +        polling-delay-passive = <250>; /* milliseconds */
->> +        polling-delay = <500>; /* milliseconds */
->> +        thermal-sensors = <&wkup_vtm0 0>;
->> +
->> +        trips {
->> +                mpu_crit: mpu-crit {
-> 
-> You still have here incorrect/inconsistent indentation. Entire DTS
-> example goes usually with 4 spaces.
-
-Okay.
-
-> 
->> +                        temperature = <125000>; /* milliCelsius */
->> +                        hysteresis = <2000>; /* milliCelsius */
->> +                        type = "critical";
->> +                };
->> +        };
->> +    };
->> +...
-> 
->
-
-Thanks,
-Keerthy
-
-> Best regards,
-> Krzysztof
+Acked-by: Rob Herring <robh@kernel.org>
