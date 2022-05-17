@@ -2,457 +2,300 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C81A52A267
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 15:00:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F46252A2F2
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 15:14:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347075AbiEQM74 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 08:59:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44920 "EHLO
+        id S243262AbiEQNOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 09:14:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346842AbiEQM7o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 08:59:44 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AAE64EF52;
-        Tue, 17 May 2022 05:58:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1652792323; x=1684328323;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=J8KDh0p8KFTd35tP8LLvLdRjkmfaxl9tbAokhnHY/ik=;
-  b=gh7elHJaCSKKgMtCl5DVgXt3quykvtyfmSjjaOS39MnTDPxGrvBUW4wF
-   4Hdt8h7LPiqTK0K7+BLAtzc0OUT6/XDaMd1cd8yAwwtk5cS+elhH1+OIb
-   kNnwHO38VSu4P2s9Fqp3DuIay4tX06TQfVDwgHbcHqvuJbRVWTs1cJZWq
-   fE2DXGBE1Atg2m28JtnPRO4qZIVDDIBbtudXLFECc4FgVTL45J+tVq47V
-   UrXry5hVYR8w1pJ1L4Q/MAAtFlFS5v/E5wmk0vnBe37V4aOa0s0parcg8
-   iDPK++zfqbQ9TGWYBhzh9llNlo0KB1pMGiU7EETXDktmQ6GMUeO70JOo3
-   w==;
-X-IronPort-AV: E=Sophos;i="5.91,232,1647327600"; 
-   d="scan'208";a="164419682"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 17 May 2022 05:58:38 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Tue, 17 May 2022 05:58:38 -0700
-Received: from ROB-ULT-M18063.microchip.com (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Tue, 17 May 2022 05:58:36 -0700
-From:   Claudiu Beznea <claudiu.beznea@microchip.com>
-To:     <srinivas.kandagatla@linaro.org>, <robh+dt@kernel.org>,
-        <krzk+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>
-Subject: [PATCH v2 2/2] nvmem: microchip-otpc: add support
-Date:   Tue, 17 May 2022 15:58:22 +0300
-Message-ID: <20220517125822.579580-3-claudiu.beznea@microchip.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220517125822.579580-1-claudiu.beznea@microchip.com>
-References: <20220517125822.579580-1-claudiu.beznea@microchip.com>
+        with ESMTP id S241154AbiEQNOB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 09:14:01 -0400
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBFC341627
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 06:13:59 -0700 (PDT)
+Received: by mail-qk1-x72b.google.com with SMTP id b20so14482231qkc.6
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 06:13:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :content-transfer-encoding:user-agent:mime-version;
+        bh=v6eTvLUEvVevBWajX03I9738Bo9HdDYIbURMPVLgI3o=;
+        b=oPZVvcPwz2accgrfPbP8mek4jw2FV2aLaLaxNt5GLBRqCXua49jJzrW3dz1IBGnbyN
+         AYy7zqnYY7qbbHb1M3VEpydqgzIJpFfwMXe1KXdTpgTLocSEh9VP5Xb9Ep8M2f5HO2Xc
+         BjTU3XVNv3v90gDgvmInVAskIVEmIcSbyf+9EWGIDJd+ea6EtBa82IT176L+rMyL7SlG
+         9mgzenSuE2H87Mp/RGA0+TpyXDz6rvUwO8AzCRjaH9PQCSoyecL5V1Igz6Ab/tEtKrfU
+         6XUlICw3kR/t0/hfqSy3QVv5K+DIiarqKOuUKdDFl/Bpj9XmVq73hNz9RP1VaZ8c4y/n
+         to5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:content-transfer-encoding:user-agent:mime-version;
+        bh=v6eTvLUEvVevBWajX03I9738Bo9HdDYIbURMPVLgI3o=;
+        b=Ucg3jwGr9+M7t3Rige6EUILmoMdo4cBH7vXO8lbLrd7GZXNBfWepnMvOrqnlIEuEcI
+         6xg2ymydQ5GFLmTZfxQyCix5O48XyktR4QZqgyHP0ihovQg3PZILPeUKqKY/+JMEj2/O
+         M0IPSdY+ZyghBi58C5Wil7Mnn228xOMwdpck/X5s97WBFrPyORqM2SeyuYHXoy7VL9ZE
+         gPdVdxhfVX9UU9gt3PTdAX9LckkMOKmxRRraRVicVoR0rQBtaogjQJZj0O/4tPIU4ZSm
+         8r/gwsZ7Aubhwoxh6AeCs/du4yfbGqmEcvE/T5AjX/wLItU4esnWjLJFoZYaz60yN1Pc
+         ddtA==
+X-Gm-Message-State: AOAM533ATuKmdIKSPgHi7pODtyXohG4X8uZjNrhhKp3j4dFWPVgmkavd
+        jpBNS0Iw9bNjeDcC8eCVdQQsgA==
+X-Google-Smtp-Source: ABdhPJzJUTu/kZOXxe6D9v/M0+MMu75gVhSgga0bLUrSZDERONsTz3Yb4XB6GpX3qEgbObri26puKQ==
+X-Received: by 2002:a05:620a:2792:b0:6a2:eb8d:70e1 with SMTP id g18-20020a05620a279200b006a2eb8d70e1mr7535050qkp.574.1652793238985;
+        Tue, 17 May 2022 06:13:58 -0700 (PDT)
+Received: from nicolas-tpx395.localdomain (173-246-12-168.qc.cable.ebox.net. [173.246.12.168])
+        by smtp.gmail.com with ESMTPSA id y68-20020a37af47000000b0069fc13ce1f3sm7860925qke.36.2022.05.17.06.13.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 May 2022 06:13:58 -0700 (PDT)
+Message-ID: <44a151e1cdbba8dcf3dfe7dfe00b6ee49c99bcfb.camel@ndufresne.ca>
+Subject: Re: [PATCH 06/20] Documention: v4l: Documentation for VP9 CIDs.
+From:   Nicolas Dufresne <nicolas@ndufresne.ca>
+To:     Smitha T Murthy <smitha.t@samsung.com>,
+        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
+        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
+        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
+        benjamin.gaignard@collabora.com, stanimir.varbanov@linaro.org,
+        dillon.minfei@gmail.com, david.plowman@raspberrypi.com,
+        mark.rutland@arm.com, robh+dt@kernel.org, krzk+dt@kernel.org,
+        andi@etezian.org, alim.akhtar@samsung.com,
+        aswani.reddy@samsung.com, pankaj.dubey@samsung.com,
+        linux-fsd@tesla.com
+Date:   Tue, 17 May 2022 09:13:56 -0400
+In-Reply-To: <20220517125548.14746-7-smitha.t@samsung.com>
+References: <20220517125548.14746-1-smitha.t@samsung.com>
+         <CGME20220517125608epcas5p48b5d2f91c711e5728f993169b1d4b9a1@epcas5p4.samsung.com>
+         <20220517125548.14746-7-smitha.t@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.1 (3.44.1-1.fc36) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for Microchip OTP controller available on SAMA7G5. The OTPC
-controls the access to a non-volatile memory. The memory behind OTPC is
-organized into packets, packets are composed by a fixed length header
-(4 bytes long) and a variable length payload (payload length is available
-in the header). When software request the data at an offset in memory
-the OTPC will return (via header + data registers) the whole packet that
-has a word at that offset. For the OTP memory layout like below:
+Hi Smitha,
 
-offset  OTP Memory layout
+Le mardi 17 mai 2022 =C3=A0 18:25 +0530, Smitha T Murthy a =C3=A9crit=C2=A0=
+:
+> Adds V4l2 controls for VP9 encoder documention.
+>=20
+> Cc: linux-fsd@tesla.com
+> Signed-off-by: Smitha T Murthy <smitha.t@samsung.com>
+> ---
+>  .../media/v4l/ext-ctrls-codec.rst             | 167 ++++++++++++++++++
+>  1 file changed, 167 insertions(+)
+>=20
+> diff --git a/Documentation/userspace-api/media/v4l/ext-ctrls-codec.rst b/=
+Documentation/userspace-api/media/v4l/ext-ctrls-codec.rst
+> index 4cd7c541fc30..1b617a08f973 100644
+> --- a/Documentation/userspace-api/media/v4l/ext-ctrls-codec.rst
+> +++ b/Documentation/userspace-api/media/v4l/ext-ctrls-codec.rst
+> @@ -2165,6 +2165,16 @@ enum v4l2_mpeg_video_vp8_profile -
+>      * - ``V4L2_MPEG_VIDEO_VP8_PROFILE_3``
+>        - Profile 3
+> =20
+> +VP9 Control Reference
+> +---------------------
+> +
+> +The VP9 controls include controls for encoding parameters of VP9 video
+> +codec.
+> +
+> +.. _vp9-control-id:
+> +
+> +VP9 Control IDs
+> +
+>  .. _v4l2-mpeg-video-vp9-profile:
+> =20
+>  ``V4L2_CID_MPEG_VIDEO_VP9_PROFILE``
+> @@ -2231,6 +2241,163 @@ enum v4l2_mpeg_video_vp9_level -
+>      * - ``V4L2_MPEG_VIDEO_VP9_LEVEL_6_2``
+>        - Level 6.2
+> =20
+> +``V4L2_CID_MPEG_VIDEO_VP9_I_FRAME_QP``
 
-         .           .
-         .    ...    .
-         .           .
-0x0E     +-----------+	<--- packet X
-         | header  X |
-0x12     +-----------+
-         | payload X |
-0x16     |           |
-         |           |
-0x1A     |           |
-         +-----------+
-         .           .
-         .    ...    .
-         .           .
+The class was recently renamed V4L2_CID_CODEC... for a reason, can you rena=
+me
+MPEG_VIDEO with CODEC, specially for VP9 CODEC were MPEG makes no sense. Th=
+is
+applies all the doc and the defines in the other patch.
 
-if user requests data at address 0x16 the data started at 0x0E will be
-returned by controller. User will be able to fetch the whole packet
-starting at 0x0E (or parts of the packet) via proper registers. The same
-packet will be returned if software request the data at offset 0x0E or
-0x12 or 0x1A.
+thanks,
+Nicolas
 
-The OTP will be populated by Microchip with at least 2 packets first one
-being boot configuration packet and the 2nd one being temperature
-calibration packet. The packet order will be preserved b/w different chip
-revisions but the packet sizes may change.
-
-For the above reasons and to keep the same software able to work on all
-chip variants the read function of the driver is working with a packet
-id instead of an offset in OTP memory.
-
-Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
----
- MAINTAINERS                    |   8 +
- drivers/nvmem/Kconfig          |   7 +
- drivers/nvmem/Makefile         |   2 +
- drivers/nvmem/microchip-otpc.c | 288 +++++++++++++++++++++++++++++++++
- 4 files changed, 305 insertions(+)
- create mode 100644 drivers/nvmem/microchip-otpc.c
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1bf57fd937b5..19aee05c85cf 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12953,6 +12953,14 @@ S:	Supported
- F:	Documentation/devicetree/bindings/mtd/atmel-nand.txt
- F:	drivers/mtd/nand/raw/atmel/*
- 
-+MICROCHIP OTPC DRIVER
-+M:	Claudiu Beznea <claudiu.beznea@microchip.com>
-+L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-+S:	Supported
-+F:	Documentation/devicetree/bindings/nvmem/microchip-sama7g5,otpc.yaml
-+F:	drivers/nvmem/microchip-otpc.c
-+F:	dt-bindings/nvmem/microchip-sama7g5,otpc.h
-+
- MICROCHIP PWM DRIVER
- M:	Claudiu Beznea <claudiu.beznea@microchip.com>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-index 967d0084800e..d72d879a6d34 100644
---- a/drivers/nvmem/Kconfig
-+++ b/drivers/nvmem/Kconfig
-@@ -107,6 +107,13 @@ config MTK_EFUSE
- 	  This driver can also be built as a module. If so, the module
- 	  will be called efuse-mtk.
- 
-+config MICROCHIP_OTPC
-+	tristate "Microchip OTPC support"
-+	depends on ARCH_AT91 || COMPILE_TEST
-+	help
-+	  This driver enable the OTP controller available on Microchip SAMA7G5
-+	  SoCs. It controlls the access to the OTP memory connected to it.
-+
- config NVMEM_NINTENDO_OTP
- 	tristate "Nintendo Wii and Wii U OTP Support"
- 	depends on WII || COMPILE_TEST
-diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
-index 00e136a0a123..c710b64f9fe4 100644
---- a/drivers/nvmem/Makefile
-+++ b/drivers/nvmem/Makefile
-@@ -67,3 +67,5 @@ obj-$(CONFIG_NVMEM_SUNPLUS_OCOTP)	+= nvmem_sunplus_ocotp.o
- nvmem_sunplus_ocotp-y		:= sunplus-ocotp.o
- obj-$(CONFIG_NVMEM_APPLE_EFUSES)	+= nvmem-apple-efuses.o
- nvmem-apple-efuses-y 		:= apple-efuses.o
-+obj-$(CONFIG_MICROCHIP_OTPC)	+= nvmem-microchip-otpc.o
-+nvmem-microchip-otpc-y		:= microchip-otpc.o
-diff --git a/drivers/nvmem/microchip-otpc.c b/drivers/nvmem/microchip-otpc.c
-new file mode 100644
-index 000000000000..5c5ac1bca074
---- /dev/null
-+++ b/drivers/nvmem/microchip-otpc.c
-@@ -0,0 +1,288 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * OTP Memory controller
-+ *
-+ * Copyright (C) 2022 Microchip Technology Inc. and its subsidiaries
-+ *
-+ * Author: Claudiu Beznea <claudiu.beznea@microchip.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/iopoll.h>
-+#include <linux/module.h>
-+#include <linux/nvmem-provider.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+
-+#define MCHP_OTPC_CR			(0x0)
-+#define MCHP_OTPC_CR_READ		BIT(6)
-+#define MCHP_OTPC_MR			(0x4)
-+#define MCHP_OTPC_MR_ADDR		GENMASK(31, 16)
-+#define MCHP_OTPC_AR			(0x8)
-+#define MCHP_OTPC_SR			(0xc)
-+#define MCHP_OTPC_SR_READ		BIT(6)
-+#define MCHP_OTPC_HR			(0x20)
-+#define MCHP_OTPC_HR_SIZE		GENMASK(15, 8)
-+#define MCHP_OTPC_DR			(0x24)
-+
-+#define MCHP_OTPC_NAME			"mchp-otpc"
-+#define MCHP_OTPC_SIZE			(11 * 1024)
-+
-+/**
-+ * struct mchp_otpc - OTPC private data structure
-+ * @base: base address
-+ * @dev: struct device pointer
-+ * @packets: list of packets in OTP memory
-+ * @npackets: number of packets in OTP memory
-+ */
-+struct mchp_otpc {
-+	void __iomem *base;
-+	struct device *dev;
-+	struct list_head packets;
-+	u32 npackets;
-+};
-+
-+/**
-+ * struct mchp_otpc_packet - OTPC packet data structure
-+ * @list: list head
-+ * @id: packet ID
-+ * @offset: packet offset (in words) in OTP memory
-+ */
-+struct mchp_otpc_packet {
-+	struct list_head list;
-+	u32 id;
-+	u32 offset;
-+};
-+
-+static struct mchp_otpc_packet *mchp_otpc_id_to_packet(struct mchp_otpc *otpc,
-+						       u32 id)
-+{
-+	struct mchp_otpc_packet *packet;
-+
-+	if (id >= otpc->npackets)
-+		return NULL;
-+
-+	list_for_each_entry(packet, &otpc->packets, list) {
-+		if (packet->id == id)
-+			return packet;
-+	}
-+
-+	return NULL;
-+}
-+
-+static int mchp_otpc_prepare_read(struct mchp_otpc *otpc,
-+				  unsigned int offset)
-+{
-+	u32 tmp;
-+
-+	/* Set address. */
-+	tmp = readl_relaxed(otpc->base + MCHP_OTPC_MR);
-+	tmp &= ~MCHP_OTPC_MR_ADDR;
-+	tmp |= FIELD_PREP(MCHP_OTPC_MR_ADDR, offset);
-+	writel_relaxed(tmp, otpc->base + MCHP_OTPC_MR);
-+
-+	/* Set read. */
-+	tmp = readl_relaxed(otpc->base + MCHP_OTPC_CR);
-+	tmp |= MCHP_OTPC_CR_READ;
-+	writel_relaxed(tmp, otpc->base + MCHP_OTPC_CR);
-+
-+	/* Wait for packet to be transferred into temporary buffers. */
-+	return read_poll_timeout(readl_relaxed, tmp, !(tmp & MCHP_OTPC_SR_READ),
-+				 10000, 2000, false, otpc->base + MCHP_OTPC_SR);
-+}
-+
-+/*
-+ * OTPC memory is organized into packets. Each packets contains a header and
-+ * a payload. Header is 4 bytes long and contains the size of the payload.
-+ * Payload size varies. The memory footprint is something as follows:
-+ *
-+ * Memory offset  Memory footprint     Packet ID
-+ * -------------  ----------------     ---------
-+ *
-+ * 0x0            +------------+   <-- packet 0
-+ *                | header  0  |
-+ * 0x4            +------------+
-+ *                | payload 0  |
-+ *                .            .
-+ *                .    ...     .
-+ *                .            .
-+ * offset1        +------------+   <-- packet 1
-+ *                | header  1  |
-+ * offset1 + 0x4  +------------+
-+ *                | payload 1  |
-+ *                .            .
-+ *                .    ...     .
-+ *                .            .
-+ * offset2        +------------+   <-- packet 2
-+ *                .            .
-+ *                .    ...     .
-+ *                .            .
-+ * offsetN        +------------+   <-- packet N
-+ *                | header  N  |
-+ * offsetN + 0x4  +------------+
-+ *                | payload N  |
-+ *                .            .
-+ *                .    ...     .
-+ *                .            .
-+ *                +------------+
-+ *
-+ * where offset1, offset2, offsetN depends on the size of payload 0, payload 1,
-+ * payload N-1.
-+ *
-+ * The access to memory is done on a per packet basis: the control registers
-+ * need to be updated with an offset address (within a packet range) and the
-+ * data registers will be update by controller with information contained by
-+ * that packet. E.g. if control registers are updated with any address within
-+ * the range [offset1, offset2) the data registers are updated by controller
-+ * with packet 1. Header data is accessible though MCHP_OTPC_HR register.
-+ * Payload data is accessible though MCHP_OTPC_DR and MCHP_OTPC_AR registers.
-+ * There is no direct mapping b/w the offset requested by software and the
-+ * offset returned by hardware.
-+ *
-+ * For this, the read function will return the first requested bytes in the
-+ * packet. The user will have to be aware of the memory footprint before doing
-+ * the read request.
-+ */
-+static int mchp_otpc_read(void *priv, unsigned int off, void *val,
-+			  size_t bytes)
-+{
-+	struct mchp_otpc *otpc = priv;
-+	struct mchp_otpc_packet *packet;
-+	u32 *buf = val;
-+	u32 offset;
-+	size_t len = 0;
-+	int ret, payload_size;
-+
-+	/*
-+	 * We reach this point with off being multiple of stride = 4 to
-+	 * be able to cross the subsystem. Inside the driver we use continuous
-+	 * unsigned integer numbers for packet id, thus devide off by 4
-+	 * before passing it to mchp_otpc_id_to_packet().
-+	 */
-+	packet = mchp_otpc_id_to_packet(otpc, off / 4);
-+	if (!packet)
-+		return -EINVAL;
-+	offset = packet->offset;
-+
-+	while (len < bytes) {
-+		ret = mchp_otpc_prepare_read(otpc, offset);
-+		if (ret)
-+			return ret;
-+
-+		/* Read and save header content. */
-+		*buf++ = readl_relaxed(otpc->base + MCHP_OTPC_HR);
-+		len += sizeof(*buf);
-+		offset++;
-+		if (len >= bytes)
-+			break;
-+
-+		/* Read and save payload content. */
-+		payload_size = FIELD_GET(MCHP_OTPC_HR_SIZE, *(buf - 1));
-+		writel_relaxed(0UL, otpc->base + MCHP_OTPC_AR);
-+		do {
-+			*buf++ = readl_relaxed(otpc->base + MCHP_OTPC_DR);
-+			len += sizeof(*buf);
-+			offset++;
-+			payload_size--;
-+		} while (payload_size >= 0 && len < bytes);
-+	}
-+
-+	return 0;
-+}
-+
-+static int mchp_otpc_init_packets_list(struct mchp_otpc *otpc, u32 *size)
-+{
-+	struct mchp_otpc_packet *packet;
-+	u32 word, word_pos = 0, id = 0, npackets = 0, payload_size;
-+	int ret;
-+
-+	INIT_LIST_HEAD(&otpc->packets);
-+	*size = 0;
-+
-+	while (*size < MCHP_OTPC_SIZE) {
-+		ret = mchp_otpc_prepare_read(otpc, word_pos);
-+		if (ret)
-+			return ret;
-+
-+		word = readl_relaxed(otpc->base + MCHP_OTPC_HR);
-+		payload_size = FIELD_GET(MCHP_OTPC_HR_SIZE, word);
-+		if (!payload_size)
-+			break;
-+
-+		packet = devm_kzalloc(otpc->dev, sizeof(*packet), GFP_KERNEL);
-+		if (!packet)
-+			return -ENOMEM;
-+
-+		packet->id = id++;
-+		packet->offset = word_pos;
-+		INIT_LIST_HEAD(&packet->list);
-+		list_add_tail(&packet->list, &otpc->packets);
-+
-+		/* Count size by adding header and paload sizes. */
-+		*size += 4 * (payload_size + 1);
-+		/* Next word: this packet (header, payload) position + 1. */
-+		word_pos += payload_size + 2;
-+
-+		npackets++;
-+	}
-+
-+	otpc->npackets = npackets;
-+
-+	return 0;
-+}
-+
-+static struct nvmem_config mchp_nvmem_config = {
-+	.name = MCHP_OTPC_NAME,
-+	.type = NVMEM_TYPE_OTP,
-+	.read_only = true,
-+	.word_size = 4,
-+	.stride = 4,
-+	.reg_read = mchp_otpc_read,
-+};
-+
-+static int mchp_otpc_probe(struct platform_device *pdev)
-+{
-+	struct nvmem_device *nvmem;
-+	struct mchp_otpc *otpc;
-+	u32 size;
-+	int ret;
-+
-+	otpc = devm_kzalloc(&pdev->dev, sizeof(*otpc), GFP_KERNEL);
-+	if (!otpc)
-+		return -ENOMEM;
-+
-+	otpc->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(otpc->base))
-+		return PTR_ERR(otpc->base);
-+
-+	otpc->dev = &pdev->dev;
-+	ret = mchp_otpc_init_packets_list(otpc, &size);
-+	if (ret)
-+		return ret;
-+
-+	mchp_nvmem_config.dev = otpc->dev;
-+	mchp_nvmem_config.size = size;
-+	mchp_nvmem_config.priv = otpc;
-+	nvmem = devm_nvmem_register(&pdev->dev, &mchp_nvmem_config);
-+
-+	return PTR_ERR_OR_ZERO(nvmem);
-+}
-+
-+static const struct of_device_id mchp_otpc_ids[] = {
-+	{ .compatible = "microchip,sama7g5-otpc", },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, mchp_otpc_ids);
-+
-+static struct platform_driver mchp_otpc_driver = {
-+	.probe = mchp_otpc_probe,
-+	.driver = {
-+		.name = MCHP_OTPC_NAME,
-+		.of_match_table = of_match_ptr(mchp_otpc_ids),
-+	},
-+};
-+module_platform_driver(mchp_otpc_driver);
-+
-+MODULE_AUTHOR("Claudiu Beznea <claudiu.beznea@microchip.com>");
-+MODULE_DESCRIPTION("Microchip SAMA7G5 OTPC driver");
-+MODULE_LICENSE("GPL");
--- 
-2.34.1
+> +    Quantization parameter for an I frame for VP9. Valid range: from 1 t=
+o 255.
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_P_FRAME_QP``
+> +    Quantization parameter for an P frame for VP9. Valid range: from 1 t=
+o 255.
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_MAX_QP``
+> +    Maximum quantization parameter for VP9. Valid range: from 1 to 255.
+> +    Recommended range for MFC is from 230 to 255.
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_MIN_QP``
+> +    Minimum quantization parameter for VP9. Valid range: from 1 to 255.
+> +    Recommended range for MFC is from 1 to 24.
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_RC_FRAME_RATE``
+> +    Indicates the number of evenly spaced subintervals, called ticks, wi=
+thin
+> +    one second. This is a 16 bit unsigned integer and has a maximum valu=
+e up to
+> +    0xffff and a minimum value of 1.
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_GF_REFRESH_PERIOD``
+> +    Indicates the refresh period of the golden frame for VP9 encoder.
+> +
+> +.. _v4l2-vp9-golden-frame-sel:
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_GOLDEN_FRAMESEL``
+> +    (enum)
+> +
+> +enum v4l2_mpeg_vp9_golden_framesel -
+> +    Selects the golden frame for encoding. Valid when NUM_OF_REF is 2.
+> +    Possible values are:
+> +
+> +.. raw:: latex
+> +
+> +    \footnotesize
+> +
+> +.. tabularcolumns:: |p{9.0cm}|p{8.0cm}|
+> +
+> +.. flat-table::
+> +    :header-rows:  0
+> +    :stub-columns: 0
+> +
+> +    * - ``V4L2_CID_MPEG_VIDEO_VP9_GOLDEN_FRAME_USE_PREV``
+> +      - Use the (n-2)th frame as a golden frame, current frame index bei=
+ng
+> +        'n'.
+> +    * - ``V4L2_CID_MPEG_VIDEO_VP9_GOLDEN_FRAME_USE_REF_PERIOD``
+> +      - Use the previous specific frame indicated by
+> +        ``V4L2_CID_MPEG_VIDEO_VP9_GF_REFRESH_PERIOD`` as a
+> +        golden frame.
+> +
+> +.. raw:: latex
+> +
+> +    \normalsize
+> +
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_HIERARCHY_QP_ENABLE``
+> +    Allows host to specify the quantization parameter values for each
+> +    temporal layer through HIERARCHICAL_QP_LAYER. This is valid only
+> +    if HIERARCHICAL_CODING_LAYER is greater than 1. Setting the control
+> +    value to 1 enables setting of the QP values for the layers.
+> +
+> +.. _v4l2-vp9-ref-number-of-pframes:
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_REF_NUMBER_FOR_PFRAMES``
+> +    (enum)
+> +
+> +enum v4l2_mpeg_vp9_ref_num_for_pframes -
+> +    Number of reference pictures for encoding P frames.
+> +
+> +.. raw:: latex
+> +
+> +    \footnotesize
+> +
+> +.. tabularcolumns:: |p{9.0cm}|p{8.0cm}|
+> +
+> +.. flat-table::
+> +    :header-rows:  0
+> +    :stub-columns: 0
+> +
+> +    * - ``V4L2_CID_MPEG_VIDEO_VP9_1_REF_PFRAME``
+> +      - Indicates one reference frame, last encoded frame will be search=
+ed.
+> +    * - ``V4L2_CID_MPEG_VIDEO_VP9_GOLDEN_FRAME_USE_REF_PERIOD``
+> +      - Indicates 2 reference frames, last encoded frame and golden fram=
+e
+> +        will be searched.
+> +
+> +.. raw:: latex
+> +
+> +    \normalsize
+> +
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_HIERARCHICAL_CODING_LAYER``
+> +    Indicates the number of hierarchial coding layer.
+> +    In normal encoding (non-hierarchial coding), it should be zero.
+> +    VP9 has upto 3 layer of encoder.
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_HIERARCHY_RC_ENABLE``
+> +    Indicates enabling of bit rate for hierarchical coding layers VP9 en=
+coder.
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_HIER_CODING_L0_BR``
+> +    Indicates bit rate for hierarchical coding layer 0 for VP9 encoder.
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_HIER_CODING_L1_BR``
+> +    Indicates bit rate for hierarchical coding layer 1 for VP9 encoder.
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_HIER_CODING_L2_BR``
+> +    Indicates bit rate for hierarchical coding layer 2 for VP9 encoder.
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_HIER_CODING_L0_QP``
+> +    Indicates quantization parameter for hierarchical coding layer 0.
+> +    Valid range: [V4L2_CID_MPEG_VIDEO_VP9_MIN_QP,
+> +    V4L2_CID_MPEG_VIDEO_VP9_MAX_QP].
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_HIER_CODING_L1_QP``
+> +    Indicates quantization parameter for hierarchical coding layer 1.
+> +    Valid range: [V4L2_CID_MPEG_VIDEO_VP9_MIN_QP,
+> +    V4L2_CID_MPEG_VIDEO_VP9_MAX_QP].
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_HIER_CODING_L2_QP``
+> +    Indicates quantization parameter for hierarchical coding layer 2.
+> +    Valid range: [V4L2_CID_MPEG_VIDEO_VP9_MIN_QP,
+> +    V4L2_CID_MPEG_VIDEO_VP9_MAX_QP].
+> +
+> +.. _v4l2-vp9-max-partition-depth:
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_MAX_PARTITION_DEPTH``
+> +    (enum)
+> +
+> +enum v4l2_mpeg_vp9_num_partitions -
+> +    Indicate maximum coding unit depth.
+> +
+> +.. raw:: latex
+> +
+> +    \footnotesize
+> +
+> +.. tabularcolumns:: |p{9.0cm}|p{8.0cm}|
+> +
+> +.. flat-table::
+> +    :header-rows:  0
+> +    :stub-columns: 0
+> +
+> +    * - ``V4L2_CID_MPEG_VIDEO_VP9_0_PARTITION``
+> +      - No coding unit partition depth.
+> +    * - ``V4L2_CID_MPEG_VIDEO_VP9_1_PARTITION``
+> +      - Allows one coding unit partition depth.
+> +
+> +.. raw:: latex
+> +
+> +    \normalsize
+> +
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_DISABLE_INTRA_PU_SPLIT``
+> +    Zero indicates enable intra NxN PU split.
+> +    One indicates disable intra NxN PU split.
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_DISABLE_IVF_HEADER``
+> +    Indicates IVF header generation. Zero indicates enable IVF format.
+> +    One indicates disable IVF format.
+> +
+> =20
+>  High Efficiency Video Coding (HEVC/H.265) Control Reference
+>  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
 
