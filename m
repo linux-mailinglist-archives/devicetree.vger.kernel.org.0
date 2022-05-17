@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2096452A4DC
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 16:30:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C41652A4E2
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 16:31:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348908AbiEQOaR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 10:30:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52374 "EHLO
+        id S1348938AbiEQObM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 10:31:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348905AbiEQOaO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 10:30:14 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A9E842A3D
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 07:30:13 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id p22so2294094lfo.10
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 07:30:13 -0700 (PDT)
+        with ESMTP id S235130AbiEQObK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 10:31:10 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B41EC19018
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 07:31:09 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id y32so31666909lfa.6
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 07:31:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=MwRo3rFibChV4O65q8eXjp101W+2zLrCGSrd/xmpC7M=;
-        b=SvO/C1fUqmnr64ihkaFXtCYLUItLInkrgOLwfRO07OyNF+am/v6RV4hFMu8TUxKgsD
-         es3SI5z1pxH665t48wNjeSMnHzYktwzjuYr3UdxNOwJuaPQt+SIXkxZhR8hocfZ9o3J/
-         leWLxo0HSkdHYNq681L6EqQ4uwW5SmJqkW7gMTgYVICD4yoreUDwp/Lw8LD8mqZRqGM3
-         Pixb7e6u9UL1qxI+ci7ku8qbSwO49JHBV72fRgzX3pdEARBHnXNw+eihCU/D9Rd6HwDE
-         Oa6ll7OPAegL7sIki8QrvBV9TvBDA9Wy7FmtfrPcUbOikiHfo9fpHilxO0SnoCC2Ygu0
-         kQkA==
+        bh=D4tC4CnESKBgOF+WHUt7nUFhsjNxOiCDiAL5/0+dEm0=;
+        b=rUMZqKgaNmZMwXks9Jy/UbcRcIgVdnZbN/zHltL6ebIaQRXsWq5UkTyh0hR4Zzz9fK
+         Xl6eE2KTXcqmrXbu/LQGy32ZkLitSI0Ym1d9yFnFtnN7GCQA5XegcoWnN+R+BpV+KCdy
+         KKWF6zAqQvHtfWg+URqhrihJ0h50x9ddqm6tO3MbQ7nSc5oOQ1+aJ2vjW8V/IZZiRzKb
+         JUfcZoJv0YBZ6yT3Lkmp4kzMaCSNhq5izazjXp4mqYQ5fkPTPR99EkvU9Ou9meAkYIUF
+         CBBEyyyuHwoD2o5up4i4Qnq0Grav+d3JVtCvUQs4AdjqWIzB28dxjKt3B4FnbRiMkbWG
+         7O6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=MwRo3rFibChV4O65q8eXjp101W+2zLrCGSrd/xmpC7M=;
-        b=SpINDvjYQbEVytB6qtOrJ8I2DeU0H/564/gvJJHBR2r5J/sWsRhsAqOh8jeDJ5c8fO
-         ykaiy1SSku4MC9qQAlhXn7oh6TjMUquzEsaa2pir0ZpIOoBD51lpbzrTIRv3NSqRKD1/
-         uQayyCriqB7srvZZAl0AmwEGBxgAaIMoY6VxxX6IR8iHJwQCTZzu43GIJf4bvFJDn9C0
-         /TB4XEWhBVaaf/bUyx2/S0fiDAM7NS05zg0GGmMjTjxQZIP8O9wZeaxnOESztzkZAkij
-         daTuiPS89E1jVJ88N7TRFZBpy9SRvd0yGoO4JZKf/HvcdqfgTkz3Vm7b2aoQjvY/qYdK
-         6nSg==
-X-Gm-Message-State: AOAM5306kmXZdlwwWndLX17zQHTMohtlacft8XQ9jyJPBgn0wC0jsIhg
-        KBAaFapCYIe4/pnDdGjA1BHJmg==
-X-Google-Smtp-Source: ABdhPJzzI1cy4wLl0DIOkPpDOw7qoQ8fui0WGqjeuo2pp5rjDj30k+XU38Y64hEoyl+kbNEnkf+CVA==
-X-Received: by 2002:a05:6512:10d0:b0:477:8ce3:ccd5 with SMTP id k16-20020a05651210d000b004778ce3ccd5mr10560371lfg.203.1652797811545;
-        Tue, 17 May 2022 07:30:11 -0700 (PDT)
+        bh=D4tC4CnESKBgOF+WHUt7nUFhsjNxOiCDiAL5/0+dEm0=;
+        b=m4rmV5XT5VQZYhu8x2RI3kPcecTMma2tcAwnFk/xxmncb/lNKhc3LWeXcdfeA9+xEn
+         g4DykMlWvjB6OtapWg24oNfRpxEbktjhYZYQ6zcHTu0eW5RnGbwHypx/KQhkhzfB/c/3
+         YWYwTzR7j9SN3fpZeJuX277GTX+cCfCkZq74IySAxbAIOd/aT+ikJDEM2gOZv8rKIjz0
+         VbatzeaPC4s81HCjBYD2IzOglIU6a0f8CSHrlmDRKd4othG8ZUKseyKKDAl8FS/j7DUH
+         tILbtdr9DL8Oro8mhHCIMPUUfEYcNZrCV1A7PTFmtEnUIE1pNoUeu45HB0IME6VPGRpx
+         ZMIg==
+X-Gm-Message-State: AOAM531dmNMOcVQpNduQBv/LI91JeFwpvCQxhMPxP+Cl6WQLEMlicfEH
+        2MtbFbZ4jZ9JKjrhkhe8Dc8u3g==
+X-Google-Smtp-Source: ABdhPJwXMt1lAtTIKCHzfXbl4frwEhcaGUM+J8+xGzgnu5RUnPINhXiaY+LuOMG6qu0c84K5UgTVKw==
+X-Received: by 2002:ac2:593b:0:b0:477:a3d8:4042 with SMTP id v27-20020ac2593b000000b00477a3d84042mr2580626lfi.640.1652797866635;
+        Tue, 17 May 2022 07:31:06 -0700 (PDT)
 Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id u12-20020ac2518c000000b00477a97cb50bsm142157lfi.32.2022.05.17.07.30.10
+        by smtp.gmail.com with ESMTPSA id b2-20020ac25e82000000b0047255d211dasm1598860lfq.265.2022.05.17.07.31.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 May 2022 07:30:11 -0700 (PDT)
-Message-ID: <b3c835fc-3b9a-8207-a99c-4c289a6ee7ed@linaro.org>
-Date:   Tue, 17 May 2022 16:30:09 +0200
+        Tue, 17 May 2022 07:31:06 -0700 (PDT)
+Message-ID: <cfb32aee-91f8-ce2e-3915-6a444e189c07@linaro.org>
+Date:   Tue, 17 May 2022 16:31:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH 1/6] dt-bindings: arm: mt8186-clock: Remove unnecessary
+Subject: Re: [PATCH 3/6] dt-bindings: arm: mt8195-clock: Remove unnecessary
  'items' and fix formatting
 Content-Language: en-US
 To:     AngeloGioacchino Del Regno 
@@ -64,14 +64,14 @@ Cc:     krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20220517101514.21639-1-angelogioacchino.delregno@collabora.com>
- <20220517101514.21639-2-angelogioacchino.delregno@collabora.com>
+ <20220517101514.21639-4-angelogioacchino.delregno@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220517101514.21639-2-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220517101514.21639-4-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,18 +83,10 @@ On 17/05/2022 12:15, AngeloGioacchino Del Regno wrote:
 > There's no need for 'items' when there's only one item; while at it,
 > also fix formatting by adding a blank line before specifying 'reg'.
 > 
-> Fixes: f113a51aa2cf ("dt-bindings: ARM: MediaTek: Add new document bindings of MT8186 clock")
+> Fixes: 34d3ed3b9a00 ("dt-bindings: ARM: Mediatek: Add new document bindings of MT8195 clock")
 
-The original code was not buggy, so it is not a fix. There is no single
-reason to backport this patch (which you will cause with Fixes tag).
+Squash it with first patch and remove the Fixes tag, please.
 
-For the rest:
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-> Signed-off-by: AngeloGioacchino	Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  .../arm/mediatek/mediatek,mt8186-clock.yaml   | 28 +++++++++----------
->  1 file changed, 14 insertions(+), 14 deletions(-)
 
 Best regards,
 Krzysztof
