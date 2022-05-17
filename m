@@ -2,93 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F6B652A43F
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 16:05:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04D4E52A44F
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 16:08:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241486AbiEQOFW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 10:05:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41102 "EHLO
+        id S244104AbiEQOII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 10:08:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348446AbiEQOFT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 10:05:19 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 931704D603;
-        Tue, 17 May 2022 07:05:07 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 29B64B818EC;
-        Tue, 17 May 2022 14:05:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E541C385B8;
-        Tue, 17 May 2022 14:04:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1652796304;
-        bh=GudX6koMKPd3WgZ5qgsXK2Xg18G4EDiE+FysY70LTi0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=dbQhGv2YdItufG4Za9YLbDOenBhNHSNRPsxL3LsDfZeJJraMhxtnsj5w+GCOQIchy
-         mbT7RFit/M5XFAP/O717QdsOTVn/cSq/B1unj5OWStMFyLOs2XlRe5xfDmwY7In4rU
-         rshHWtzcO/FhTFL9SnN+KQd+vdI30GuseXGyCLm0Ba3fMMPueK+Y/GBSgMfdHZ1XDX
-         iavatjJmx1hflB4L9zNU0l1Zuj5BXTYIehWE1en/c4hOYUeu64G7Eu42elhISPgG47
-         xQ+BnO7alXzdg/qdWYFy6XIcqFyFyKG8wE6jqqjTZZTgYqI8kIp47xRHYh2xz12XJ3
-         MZsbKImO5x5TA==
-Message-ID: <00f05f62-7bf5-0a57-d07a-2e068253b9e6@kernel.org>
-Date:   Tue, 17 May 2022 16:04:56 +0200
+        with ESMTP id S243543AbiEQOIG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 10:08:06 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74ED13C4BC
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 07:08:05 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id bx33so21873786ljb.12
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 07:08:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=ILPQc7G+oPlM/aZP4m6NBhLYqFjSTocczgW3af4op68=;
+        b=PE0JV6pDh4rHpGkCg1JqfCrHmzxmw7W7Qyd2ouQl31by/orybXkuDp+LYNUJnW0YAG
+         gbapK+/sRL5cVKr1ZIDwjrJMXsSOzHFGNn+wuLKiMyY/Ja+vxqqwzauLl1sOfOR87fPE
+         ZB5Ya95oWKEVOK+4qG1lmjSP/UgREmLZORaqoI+0ARqwiOI3ylXI1OrmwvfJIVJ+s+zm
+         jgkTnIeNKvWg793waaxKfpfGTRrYzU88uPEwCeWDm7pDEBDRakDyblxoj0jtACfCWwEd
+         pi3r05xkqDeTfbUjUvhKNRuGA3WSqjWdY3wWd1lmqFG2iR2S2VPbYSCeg+r18WGv9zCe
+         hetg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=ILPQc7G+oPlM/aZP4m6NBhLYqFjSTocczgW3af4op68=;
+        b=YUFP9fdj7Xr1uy2Ty4lnFP2oECVou+/efv18U5emjO7PZuEYSdP3smGw9oeVp5dp9U
+         7YqxzLJDZModGPeWGCA4CfWAsgKb0CAdoUkYyttDVgGJbbBzjzq4xJ7GMrR1iafZoiET
+         p/PomhOER7eEHG5TbHJuLhIqsohIIyy3YdbjvjMhJpRaJ1W4oywY/fxhn6aCODpZfq2A
+         saNgl6lQUn3MgMXe7VUYyHKyjtneUkrRql086k7UrjpFEsVwYe6fmJPt1CP4JF/ESRsq
+         Ez7ylNjaMA9Bwlssw4asbY2Dew76OYTjOpRNJVq/M8NLJaj7Wfmy7kSZqqYtWB2DA0k7
+         xMqQ==
+X-Gm-Message-State: AOAM533IBgnqgk+/LDpmiYJ/u+jmU3VecU0gISWijHVGkulT5LB5zQME
+        78o58DkVxQuVcJA67G3MM8a1PQ==
+X-Google-Smtp-Source: ABdhPJxtqwhZWJ7dYHgMkZjWCVF34+2Hgq6B9aXDbdtKuyujaW+ust3Tn4JGyVEsqcwnFCqS839YWw==
+X-Received: by 2002:a05:651c:893:b0:249:4023:3818 with SMTP id d19-20020a05651c089300b0024940233818mr15040800ljq.44.1652796483809;
+        Tue, 17 May 2022 07:08:03 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id u8-20020ac24c28000000b0047255d211c7sm1597601lfq.246.2022.05.17.07.08.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 May 2022 07:08:03 -0700 (PDT)
+Message-ID: <2eb61c98-6e1e-1fea-4af6-7a9deff11b11@linaro.org>
+Date:   Tue, 17 May 2022 16:08:02 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH 16/20] media: s5p-mfc: Fix to handle reference queue
- during finishing
+Subject: Re: [PATCH v2 1/2] dt-bindings: microchip-otpc: document Microchip
+ OTPC
 Content-Language: en-US
-To:     Smitha T Murthy <smitha.t@samsung.com>,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
-        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
-        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
-        benjamin.gaignard@collabora.com, stanimir.varbanov@linaro.org,
-        dillon.minfei@gmail.com, david.plowman@raspberrypi.com,
-        mark.rutland@arm.com, robh+dt@kernel.org, krzk+dt@kernel.org,
-        andi@etezian.org, alim.akhtar@samsung.com,
-        aswani.reddy@samsung.com, pankaj.dubey@samsung.com,
-        linux-fsd@tesla.com
-References: <20220517125548.14746-1-smitha.t@samsung.com>
- <CGME20220517125644epcas5p3fcabdc953c042cc9f2697f7fbfc74121@epcas5p3.samsung.com>
- <20220517125548.14746-17-smitha.t@samsung.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220517125548.14746-17-smitha.t@samsung.com>
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
+        srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
+        krzk+dt@kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220517125822.579580-1-claudiu.beznea@microchip.com>
+ <20220517125822.579580-2-claudiu.beznea@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220517125822.579580-2-claudiu.beznea@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-9.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/05/2022 14:55, Smitha T Murthy wrote:
-> On receiving last buffer driver puts MFC to
-> MFCINST_FINISHING state which in turn skips
-> transferring of frame from SRC to REF queue.
-> This causes driver to stop MFC encoding and
-> last frame is lost.
-
-What type of wrapping is it exactly?
-
-https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
-
+On 17/05/2022 14:58, Claudiu Beznea wrote:
+> Document Microchip OTP controller.
 > 
-> This patch guarantees safe handling of frames
-> during MFCINST_FINISHING and correct clearing
-> of workbit to avoid early stopping of encoding.
-> 
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> ---
+>  .../nvmem/microchip-sama7g5,otpc.yaml         | 50 +++++++++++++++++++
+>  .../nvmem/microchip-sama7g5,otpc.h            | 12 +++++
+>  2 files changed, 62 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/microchip-sama7g5,otpc.yaml
 
-This looks like a bugfix so:
-1. Send it separately please.
-2. Add Fixes tag.
-3. Add Cc stable tag.
+comma after vendor, dash after Soc, so:
+microchip,sama7g5-otpc.yaml
 
 Best regards,
 Krzysztof
