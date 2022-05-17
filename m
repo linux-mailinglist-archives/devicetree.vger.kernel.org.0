@@ -2,283 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08B8E52AD4B
+	by mail.lfdr.de (Postfix) with ESMTP id EE46552AD4E
 	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 23:04:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353144AbiEQVDt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 17:03:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43156 "EHLO
+        id S241526AbiEQVEK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 17:04:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353139AbiEQVDs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 17:03:48 -0400
-Received: from smtp.smtpout.orange.fr (smtp04.smtpout.orange.fr [80.12.242.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AEBC532FD
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 14:03:46 -0700 (PDT)
-Received: from [192.168.1.18] ([86.243.180.246])
-        by smtp.orange.fr with ESMTPA
-        id r4M1nkfskEhCQr4M1ndeLA; Tue, 17 May 2022 23:03:44 +0200
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: YWZlNiIxYWMyZDliZWIzOTcwYTEyYzlhMmU3ZiQ1M2U2MzfzZDfyZTMxZTBkMTYyNDBjNDJlZmQ3ZQ==
-X-ME-Date: Tue, 17 May 2022 23:03:44 +0200
-X-ME-IP: 86.243.180.246
-Message-ID: <ad895690-b611-05d6-3950-601e99c7fa25@wanadoo.fr>
-Date:   Tue, 17 May 2022 23:03:41 +0200
+        with ESMTP id S235046AbiEQVEK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 17:04:10 -0400
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70D76532FB;
+        Tue, 17 May 2022 14:04:09 -0700 (PDT)
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-f16a3e0529so214438fac.2;
+        Tue, 17 May 2022 14:04:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=8F3suBL/aNM3dQyouVRoR2dfCYwP1OY5NBcTIO2ADO4=;
+        b=oehQIkUhB3l4K/EcpdhAza6x6nYcf1UZ8rnwTTMZWnYB/uFKoQfMiFvWA+eMABLpGT
+         p5uwoyNAgBx4xbJBs1EeKv3I6JEs8iCTEMmxtMH1dKTgByMvXjIaylozZwSNuwnpWnW3
+         ZmabsMmZtyRArNJfwFaIcip5X39PjEuqw7ngxVsOHlWqN5I3v9775PsbafRvRhlxZq9Z
+         7BUiFTrSg0CMqnRWlWRqwttiNdTUli2Vmwi/aJsPAHWTJ4ofYheXeBWWI5nAEzXhwNI9
+         Kz2CAduBTADoQsZ7QVJp6JjTPV4R1XnWMQrKqtwjOYZn4yf8WJheMWK7fxMU99OJ57t+
+         6Kdw==
+X-Gm-Message-State: AOAM5302/9q9GpfxmOx8o3WCVFzc6DJOiaPXLPoUPTNuk0zHP2IT6XEw
+        6yfsSkBsdjwFwX6udQYDrA==
+X-Google-Smtp-Source: ABdhPJzJhT+FIsAn3vilSiC+3Cvpbol50BGRh1QSZVL1IdUbT5gT8uy8Xoyym4W8MtiGpssz/VLraw==
+X-Received: by 2002:a05:6870:e0d1:b0:f1:aa95:6536 with SMTP id a17-20020a056870e0d100b000f1aa956536mr6036724oab.171.1652821448732;
+        Tue, 17 May 2022 14:04:08 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id k22-20020a056870959600b000e686d1386asm313715oao.4.2022.05.17.14.04.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 May 2022 14:04:08 -0700 (PDT)
+Received: (nullmailer pid 1640028 invoked by uid 1000);
+        Tue, 17 May 2022 21:04:07 -0000
+Date:   Tue, 17 May 2022 16:04:07 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [RFC 1/8] dt-bindings: soc: renesas: Add RZ/G2L POEG binding
+Message-ID: <20220517210407.GA1635524-robh@kernel.org>
+References: <20220510151112.16249-1-biju.das.jz@bp.renesas.com>
+ <20220510151112.16249-2-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Subject: Re: [PATCH net-next v2 1/5] net: ipqess: introduce the Qualcomm
- IPQESS driver
-To:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        davem@davemloft.net, Rob Herring <robh+dt@kernel.org>
-Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-arm-kernel@lists.infradead.org,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Robert Marko <robert.marko@sartura.hr>
-References: <20220514150656.122108-1-maxime.chevallier@bootlin.com>
- <20220514150656.122108-2-maxime.chevallier@bootlin.com>
-X-Mozilla-News-Host: news://news.gmane.org
-Content-Language: fr
-In-Reply-To: <20220514150656.122108-2-maxime.chevallier@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220510151112.16249-2-biju.das.jz@bp.renesas.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le 14/05/2022 à 17:06, Maxime Chevallier a écrit :
-> The Qualcomm IPQESS controller is a simple 1G Ethernet controller found
-> on the IPQ4019 chip. This controller has some specificities, in that the
-> IPQ4019 platform that includes that controller also has an internal
-> switch, based on the QCA8K IP.
+On Tue, May 10, 2022 at 04:11:05PM +0100, Biju Das wrote:
+> Add device tree bindings for the RZ/G2L Port Output Enable for GPT (POEG).
 > 
-> It is connected to that switch through an internal link, and doesn't
-> expose directly any external interface, hence it only supports the
-> PHY_INTERFACE_MODE_INTERNAL for now.
-> 
-> It has 16 RX and TX queues, with a very basic RSS fanout configured at
-> init time.
-> 
-> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 > ---
-> V1->V2 :
->   - Reworked the init sequence, following Andrew's comments
->   - Added clock and reset support
->   - Reworked the error paths
->   - Added extra endianness wrappers to fix sparse warnings
+>  .../soc/renesas/renesas,rzg2l-poeg.yaml       | 65 +++++++++++++++++++
+>  1 file changed, 65 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-poeg.yaml
 > 
->   MAINTAINERS                                   |    6 +
->   drivers/net/ethernet/qualcomm/Kconfig         |   11 +
->   drivers/net/ethernet/qualcomm/Makefile        |    2 +
->   drivers/net/ethernet/qualcomm/ipqess/Makefile |    8 +
->   drivers/net/ethernet/qualcomm/ipqess/ipqess.c | 1269 +++++++++++++++++
->   drivers/net/ethernet/qualcomm/ipqess/ipqess.h |  518 +++++++
->   .../ethernet/qualcomm/ipqess/ipqess_ethtool.c |  168 +++
->   7 files changed, 1982 insertions(+)
->   create mode 100644 drivers/net/ethernet/qualcomm/ipqess/Makefile
->   create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess.c
->   create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess.h
->   create mode 100644 drivers/net/ethernet/qualcomm/ipqess/ipqess_ethtool.c
+> diff --git a/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-poeg.yaml b/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-poeg.yaml
+> new file mode 100644
+> index 000000000000..5737dbf3fa45
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-poeg.yaml
+> @@ -0,0 +1,65 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/soc/renesas/renesas,rzg2l-poeg.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Renesas RZ/G2L Port Output Enable for GPT (POEG)
+> +
+> +maintainers:
+> +  - Biju Das <biju.das.jz@bp.renesas.com>
+> +
+> +description:
+
+'|' needed.
+
+> +  The output pins of the general PWM timer (GPT) can be disabled by using
+> +  the port output enabling function for the GPT (POEG). Specifically,
+> +  either of the following ways can be used.
+> +  * Input level detection of the GTETRGA to GTETRGD pins.
+> +  * Output-disable request from the GPT.
+> +  * Register settings.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - renesas,r9a07g044-poeg  # RZ/G2{L,LC}
+> +          - renesas,r9a07g054-poeg  # RZ/V2L
+> +      - const: renesas,rzg2l-poeg
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - power-domains
+> +  - resets
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/r9a07g044-cpg.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    poeggd: poeg@10049400 {
+> +        compatible = "renesas,r9a07g044-poeg", "renesas,rzg2l-poeg";
+> +        reg = <0x10049400 0x4>;
+
+This looks like it is part of some larger block?
+
+> +        interrupts = <GIC_SPI 325 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&cpg CPG_MOD R9A07G044_POEG_D_CLKP>;
+> +        power-domains = <&cpg>;
+> +        resets = <&cpg R9A07G044_POEG_D_RST>;
+> +    };
+> -- 
+> 2.25.1
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 9b0480f1b153..29e6ec4f975a 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -16308,6 +16308,12 @@ L:	netdev@vger.kernel.org
->   S:	Maintained
->   F:	drivers/net/ethernet/qualcomm/emac/
->   
-> +QUALCOMM IPQESS ETHERNET DRIVER
-> +M:	Maxime Chevallier <maxime.chevallier@bootlin.com>
-> +L:	netdev@vger.kernel.org
-> +S:	Maintained
-> +F:	drivers/net/ethernet/qualcomm/ipqess/
-> +
->   QUALCOMM ETHQOS ETHERNET DRIVER
->   M:	Vinod Koul <vkoul@kernel.org>
->   L:	netdev@vger.kernel.org
-> diff --git a/drivers/net/ethernet/qualcomm/Kconfig b/drivers/net/ethernet/qualcomm/Kconfig
-> index a4434eb38950..a723ddbea248 100644
-> --- a/drivers/net/ethernet/qualcomm/Kconfig
-> +++ b/drivers/net/ethernet/qualcomm/Kconfig
-> @@ -60,6 +60,17 @@ config QCOM_EMAC
->   	  low power, Receive-Side Scaling (RSS), and IEEE 1588-2008
->   	  Precision Clock Synchronization Protocol.
->   
-> +config QCOM_IPQ4019_ESS_EDMA
-> +	tristate "Qualcomm Atheros IPQ4019 ESS EDMA support"
-> +	depends on OF
-> +	select PHYLINK
-> +	help
-> +	  This driver supports the Qualcomm Atheros IPQ40xx built-in
-> +	  ESS EDMA ethernet controller.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called ipqess.
-> +
->   source "drivers/net/ethernet/qualcomm/rmnet/Kconfig"
->   
->   endif # NET_VENDOR_QUALCOMM
-> diff --git a/drivers/net/ethernet/qualcomm/Makefile b/drivers/net/ethernet/qualcomm/Makefile
-> index 9250976dd884..db463c9ea1f9 100644
-> --- a/drivers/net/ethernet/qualcomm/Makefile
-> +++ b/drivers/net/ethernet/qualcomm/Makefile
-> @@ -11,4 +11,6 @@ qcauart-objs := qca_uart.o
->   
->   obj-y += emac/
->   
-> +obj-$(CONFIG_QCOM_IPQ4019_ESS_EDMA) += ipqess/
-> +
->   obj-$(CONFIG_RMNET) += rmnet/
-> diff --git a/drivers/net/ethernet/qualcomm/ipqess/Makefile b/drivers/net/ethernet/qualcomm/ipqess/Makefile
-> new file mode 100644
-> index 000000000000..4f2db7283ebf
-> --- /dev/null
-> +++ b/drivers/net/ethernet/qualcomm/ipqess/Makefile
-> @@ -0,0 +1,8 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +#
-> +# Makefile for the IPQ ESS driver
-> +#
-> +
-> +obj-$(CONFIG_QCOM_IPQ4019_ESS_EDMA) += ipq_ess.o
-> +
-> +ipq_ess-objs := ipqess.o ipqess_ethtool.o
-> diff --git a/drivers/net/ethernet/qualcomm/ipqess/ipqess.c b/drivers/net/ethernet/qualcomm/ipqess/ipqess.c
-> new file mode 100644
-> index 000000000000..b11f11f23c11
-> --- /dev/null
-> +++ b/drivers/net/ethernet/qualcomm/ipqess/ipqess.c
-> @@ -0,0 +1,1269 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR ISC
-> +/* Copyright (c) 2014 - 2017, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2017 - 2018, John Crispin <john@phrozen.org>
-> + * Copyright (c) 2018 - 2019, Christian Lamparter <chunkeey@gmail.com>
-> + * Copyright (c) 2020 - 2021, Gabor Juhos <j4g8y7@gmail.com>
-> + * Copyright (c) 2021 - 2022, Maxime Chevallier <maxime.chevallier@bootlin.com>
-> + *
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/clk.h>
-> +#include <linux/if_vlan.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/of_mdio.h>
-> +#include <linux/of_net.h>
-> +#include <linux/phylink.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/reset.h>
-> +#include <linux/skbuff.h>
-> +#include <linux/vmalloc.h>
-> +#include <net/checksum.h>
-> +#include <net/ip6_checksum.h>
-> +
-> +#include "ipqess.h"
-> +
-> +#define IPQESS_RRD_SIZE		16
-> +#define IPQESS_NEXT_IDX(X, Y)  (((X) + 1) & ((Y) - 1))
-> +#define IPQESS_TX_DMA_BUF_LEN	0x3fff
-> +
-> +static void ipqess_w32(struct ipqess *ess, u32 reg, u32 val)
-> +{
-> +	writel(val, ess->hw_addr + reg);
-> +}
-> +
-> +static u32 ipqess_r32(struct ipqess *ess, u16 reg)
-> +{
-> +	return readl(ess->hw_addr + reg);
-> +}
-> +
-> +static void ipqess_m32(struct ipqess *ess, u32 mask, u32 val, u16 reg)
-> +{
-> +	u32 _val = ipqess_r32(ess, reg);
-> +
-> +	_val &= ~mask;
-> +	_val |= val;
-> +
-> +	ipqess_w32(ess, reg, _val);
-> +}
-> +
-> +void ipqess_update_hw_stats(struct ipqess *ess)
-> +{
-> +	u32 *p;
-> +	u32 stat;
-> +	int i;
-> +
-> +	lockdep_assert_held(&ess->stats_lock);
-> +
-> +	p = (u32 *)&ess->ipqess_stats;
-> +	for (i = 0; i < IPQESS_MAX_TX_QUEUE; i++) {
-> +		stat = ipqess_r32(ess, IPQESS_REG_TX_STAT_PKT_Q(i));
-> +		*p += stat;
-> +		p++;
-> +	}
-> +
-> +	for (i = 0; i < IPQESS_MAX_TX_QUEUE; i++) {
-> +		stat = ipqess_r32(ess, IPQESS_REG_TX_STAT_BYTE_Q(i));
-> +		*p += stat;
-> +		p++;
-> +	}
-> +
-> +	for (i = 0; i < IPQESS_MAX_RX_QUEUE; i++) {
-> +		stat = ipqess_r32(ess, IPQESS_REG_RX_STAT_PKT_Q(i));
-> +		*p += stat;
-> +		p++;
-> +	}
-> +
-> +	for (i = 0; i < IPQESS_MAX_RX_QUEUE; i++) {
-> +		stat = ipqess_r32(ess, IPQESS_REG_RX_STAT_BYTE_Q(i));
-> +		*p += stat;
-> +		p++;
-> +	}
-> +}
-> +
-> +static int ipqess_tx_ring_alloc(struct ipqess *ess)
-> +{
-> +	struct device *dev = &ess->pdev->dev;
-> +	int i;
-> +
-> +	for (i = 0; i < IPQESS_NETDEV_QUEUES; i++) {
-> +		struct ipqess_tx_ring *tx_ring = &ess->tx_ring[i];
-> +		size_t size;
-> +		u32 idx;
-> +
-> +		tx_ring->ess = ess;
-> +		tx_ring->ring_id = i;
-> +		tx_ring->idx = i * 4;
-> +		tx_ring->count = IPQESS_TX_RING_SIZE;
-> +		tx_ring->nq = netdev_get_tx_queue(ess->netdev, i);
-> +
-> +		size = sizeof(struct ipqess_buf) * IPQESS_TX_RING_SIZE;
-> +		tx_ring->buf = devm_kzalloc(dev, size, GFP_KERNEL);
-> +		if (!tx_ring->buf) {
-> +			netdev_err(ess->netdev, "buffer alloc of tx ring failed");
-> +			return -ENOMEM;
-> +		}
-> +
-> +		size = sizeof(struct ipqess_tx_desc) * IPQESS_TX_RING_SIZE;
-> +		tx_ring->hw_desc = dmam_alloc_coherent(dev, size, &tx_ring->dma,
-> +						       GFP_KERNEL | __GFP_ZERO);
-
-Hi,
-
-Nitpicking: I think that __GFP_ZERO is useless (and harmless) because 
-dma_alloc_coherent() always zeroes the memory that is allocated.
-
-CJ
-
+> 
