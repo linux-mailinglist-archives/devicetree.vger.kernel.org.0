@@ -2,52 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B77152A32E
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 15:21:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FF8E52A37B
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 15:33:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347575AbiEQNVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 09:21:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54366 "EHLO
+        id S1347866AbiEQNdz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 09:33:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347671AbiEQNVW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 09:21:22 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96665424B8;
-        Tue, 17 May 2022 06:21:20 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id BEE6B1F433FD
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1652793679;
-        bh=wExmkwG26MlgAOyGVtuHJ9fB7p/HupGT2oLsUu37GPQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=aZBoDF7S6WLjXzn71iCMIL/V+Lycg10Qf7ZK8Ug7yKiDvZZ5tyETWVCdqn6xklQJ+
-         CXOSXUk3mZsGhMY/unAz9RgNyzAo7PIM3EB699GyOr0TaimNnoA48fYU8x0SZbt+6B
-         gx2mLb0fQbQJ+mw4kkyzJXv8r5DNPar9Folgy/+CyM4SQe4rRQdpgNSja0B96wxFqh
-         Gry+R2j5QUj5dMUIbszjkpPGKH037OQv8IGSdhWH/HvRcTBikY0/vPlmY5GeaQHmCb
-         NOwxzv7phBvnhQJhpX64+n6enj3E1Gnzq9uTZyi0BJg8kb05E2Rw2r/tq5ItHHRkXo
-         veS3kWTfmVYDg==
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     yong.wu@mediatek.com
-Cc:     joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        iommu@lists.linux-foundation.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH 8/8] dt-bindings: iommu: mediatek: Require mediatek,pericfg for mt8195-infra
-Date:   Tue, 17 May 2022 15:21:07 +0200
-Message-Id: <20220517132107.195932-9-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220517132107.195932-1-angelogioacchino.delregno@collabora.com>
-References: <20220517132107.195932-1-angelogioacchino.delregno@collabora.com>
+        with ESMTP id S1347862AbiEQNdy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 09:33:54 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97CDE433AB
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 06:33:52 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id f4so18542476lfu.12
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 06:33:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=jujkXXpL/kb/c7aZAyCjUl23gmXI2y9oErwqfBwIlr0=;
+        b=OZEJ/Msp7XM8K+1vhwmBAlOo1ZNIN7ylNxEvoXh+uoCyiSwx/wEqHk0fKd2sW7xOZp
+         bNbcNseXOWJ/lELXwKYbllrd9tJwDVpc1OQwUqRbGMSsx9kTxKn9SmLTr0TN+F6y/haw
+         dkYskTaivYdRG8MnydOcW1QVMmZHuOZ360Llc6D7qcW9pFQrv4ziIqQ+mwU2xV8cOrIz
+         C+THD4t+tyLo22Udr7I9Ff0q9X/7L3pr0AHtQ0BavcH065say7bldIrfJ0isYuWaF/EN
+         o4UiyutD0Sp26Bz0HosBnNHEDrdE4KzAaJjRMyGlGi5YNovDdmhBJg2GyScU3Z5D58g7
+         oHiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=jujkXXpL/kb/c7aZAyCjUl23gmXI2y9oErwqfBwIlr0=;
+        b=QYhyUCpc6MssoyZ0lckXwFEXKtGtrD+0U5OAqtzQpNUI5FisnnoPQrvkkMJJEE34+q
+         fJLhRY/0YVLMOlQEAFHo5qAnXKnSITsuoE1paRIRbqKpSFsqlcbJEOvDa7d/gB496pzm
+         k2QBnQ1B5MO/RUlp0mMD+ArzBWk3HgwaeKoM5Wwc/YTEWIDu8QwafYjO8RmpmzBg7yGj
+         1v1YTyU3BqihKLaDiPCT6sf8i79us/nkWBbBmNAJGMQIZ6J/KRPI1HXI9IGkjeObizok
+         XWZmP6qOzvfFugh2mgEzV2yGQe9kaUJ1tKbRunJ7ObEklHlxoneu7Hsn5qU8VgUR5Dcn
+         R2tg==
+X-Gm-Message-State: AOAM532rTKQAEZOx1Lic2OS5hchXIz4cJouUtsd+wO9bl/yagzRgfafo
+        M+deDrt+yODBDJWJjOHg/dhkTg==
+X-Google-Smtp-Source: ABdhPJwvty/7HIe4QthtrDFz9rwI5bwb99VvY5FFuB5Si25wkdLQ00AWYk839j19WtxQgf14jzNdGw==
+X-Received: by 2002:a05:6512:b83:b0:44a:9fb7:784b with SMTP id b3-20020a0565120b8300b0044a9fb7784bmr16713124lfv.547.1652794430970;
+        Tue, 17 May 2022 06:33:50 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id c9-20020ac24149000000b0047255d21108sm1589584lfi.55.2022.05.17.06.33.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 May 2022 06:33:49 -0700 (PDT)
+Message-ID: <364d25ee-e7e3-96d3-a2ff-9befcce3f0ff@linaro.org>
+Date:   Tue, 17 May 2022 15:33:47 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v1 03/13] arm64: tegra: Add Host1x and VIC on Tegra234
+Content-Language: en-US
+To:     Mikko Perttunen <cyndis@kapsi.fi>, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, digetx@gmail.com
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mikko Perttunen <mperttunen@nvidia.com>
+References: <20220516100213.1536571-1-cyndis@kapsi.fi>
+ <20220516100213.1536571-4-cyndis@kapsi.fi>
+ <424b02f3-eb53-68d0-bfee-5488dbcefa71@linaro.org>
+ <1fccdfe8-d44c-2d56-e572-628998efc985@kapsi.fi>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1fccdfe8-d44c-2d56-e572-628998efc985@kapsi.fi>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,38 +79,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The MT8195 SoC has IOMMU related registers in the pericfg_ao iospace:
-require a phandle to that.
+On 17/05/2022 10:38, Mikko Perttunen wrote:
+>>>   
+>>> +		host1x@13e00000 {
+>>
+>> Generic node names, if that possible. Since the bindings do not exist in
+>> the next, I actually cannot figure out what's host1x...
+> 
+> Host1x is a hardware block that provides programmable DMA channels, HW 
+> synchronization primitives, and virtualization support for IP blocks 
+> connected to its "host1x bus". So far I haven't found a one or two word 
+> way to describe it despite efforts. In any case, considering all the 
+> existing documentation and device trees that use this name, I'd prefer 
+> not changing it (especially as I don't know what else it could be called).
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
+OK
 
-Note for Rob: as of now, there's no iommu node in upstream mt8195 devicetrees yet.
 
- .../devicetree/bindings/iommu/mediatek,iommu.yaml      | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-index 17d78b17027a..2441c2e8e55d 100644
---- a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-+++ b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-@@ -187,6 +187,16 @@ allOf:
-       required:
-         - mediatek,infracfg
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: mediatek,mt8195-iommu-infra
-+
-+    then:
-+      required:
-+        - mediatek,pericfg
-+
-   - if: # The IOMMUs don't have larbs.
-       not:
-         properties:
--- 
-2.35.1
-
+Best regards,
+Krzysztof
