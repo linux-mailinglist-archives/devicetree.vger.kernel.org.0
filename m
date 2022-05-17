@@ -2,77 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E879529D26
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 11:02:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71C0A529D33
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 11:05:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242554AbiEQJCM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 05:02:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48550 "EHLO
+        id S244029AbiEQJE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 05:04:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243968AbiEQJCK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 05:02:10 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3406D1B792
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 02:02:09 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id s3so6334730edr.9
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 02:02:09 -0700 (PDT)
+        with ESMTP id S244116AbiEQJEv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 05:04:51 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4B4849913
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 02:04:17 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id t6so23798841wra.4
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 02:04:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=RgPVi+DWNHOkIK0uf2dswKPC6dDGkOdaICJBn5DTVB8=;
-        b=iQyYjfRVFFzq25dlyesa10yBjX5Xu9MqzA/v9Uw7PphKpywZkAcdJeNgXOUO9M4Pf4
-         ZQ94UqmWmlcuSdNOaVq/wueTsWCit44KazORnavmwqIX7rl7Z63K8Q1aNm0Y9ZyUBvco
-         ZP6arhkkm6BNe2Z2jfJhdHh5E/OtX8knwXK6rGw2bkUu0kwmAndAAAWWgnJVQBAo6VlO
-         bc8F5PiuBOZv/t0wMKs3ALrNsQiIi/K4G51GjqF9QKVwzqKXr9WBz0+QbmZ9KWX48DGl
-         eAXXp0wH23PyGnm76FJdbbm+QU/Dohk0Ib/Dk4SbbT3tSZIVVogyeoEwvPzB1UTl892u
-         A7Qw==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=BD63j2HpRLVuVqfGZEYfIBf5UOk2z74/MiITtatEVYY=;
+        b=qAorOprbtPfV1b3pNa2UAWKB8p3iJPpS6OPxnRet+P/pISt0J0679h5riWvP3JknqC
+         KNgJIai5H2dqh5GQEfo3KtKmjv5XcRdmbnVWVGRSeZv9QWuKDIbs4BP/+FbdA7A+Kwo1
+         ciguiYqws762Zc6SVDXDa39jID2pE/SPaC0+8Jr1RJmriexFZ04MlAou0f+YbSjrTfFj
+         PEPucdyzzd5s0tQKiZE/XjkNSdKSi3fNQ5tTP48utatjP/bnilJyzE6jMqGJVq6cboTr
+         A8D7ILm6yS5KXRAo8J4xXjQoI0WaCsxCli5KJE5zzebFaXU5x1ozr5S/+mTvO6FDVb/e
+         0HDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=RgPVi+DWNHOkIK0uf2dswKPC6dDGkOdaICJBn5DTVB8=;
-        b=xWOZvPjxyeDOqoeTdeJtCwyLlQbyluH/Ar9T/d5p2h+87bKTXoNcC98h/9k2kLIki0
-         BhCU+KgUqywLBOSOunrQFyZHBGaEYPtfcujy4BTz/MJojhB5k7f9c3YR7aTOLQP3dpuc
-         3u8tAd7YWgOOYOG3W8Ai2Me65owiIoBMnXZzh4mMsXP5VZAVzBk5xuFTaiKx9eBcFdig
-         sjH5mLrSDMNBZwnUNA1S/7YZXk8DCDDa8ZUe5Bh9Q3JlnZjb6xo4v8j2s+m7cqakvNvc
-         zizcDxHl747HyzBJsxN+Sy/f/CR3wsKEYC4kIHw17CTQxG50zHNd+PZiA187JWe7Zewo
-         F7NQ==
-X-Gm-Message-State: AOAM531X0q/BSfE0fo8vo4COSL0rWg9uLWprcYGXRUjtOabDSfPZQbub
-        WDzb69OF3ISHETjKWupmTyphmQ==
-X-Google-Smtp-Source: ABdhPJyE0oiGq6f2ZE0B636lzw80jYuv2cwe46N7jkeL31ZT3I5Ap1rxo3ApQT6rHcSk91j4xh1+gQ==
-X-Received: by 2002:a05:6402:363:b0:42a:aa92:c302 with SMTP id s3-20020a056402036300b0042aaa92c302mr12755919edw.386.1652778127744;
-        Tue, 17 May 2022 02:02:07 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id w12-20020aa7da4c000000b0042ab649183asm2450941eds.35.2022.05.17.02.02.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 May 2022 02:02:07 -0700 (PDT)
-Message-ID: <c397bff2-b4c0-3f85-e5b9-22f03bc80a2b@linaro.org>
-Date:   Tue, 17 May 2022 11:02:06 +0200
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=BD63j2HpRLVuVqfGZEYfIBf5UOk2z74/MiITtatEVYY=;
+        b=ASrxqu/fVugh8VY/8sN9DLjYV18bAbyHGROV257miI3SKe8yO5j14Ek+Fxl1M6xiEg
+         snqdCtCL9IvusKsI76CfsBsZdm1VrHWxfse8Le6XXR0Ph467feoNPUYiUiikwpeD0PuB
+         WT7j4Q+/vF/4XGBOfgd3thNgcfPj4WmFhzfSburzj6JW9MlGIhHmzgeJHmHsRxhh209Q
+         BqGooAH11v2g9IvXh9ksysEPnsXWVuX5IatXEsvD6m/0e4CW4ESByym2sf6i3/usCZfJ
+         Se/4IDkUuvUvjna+urMq8xrS7+wgqrd63Ga0xnfYt50Js9XvcQSgpAGGhu8p2z989cVk
+         Umdg==
+X-Gm-Message-State: AOAM531NvcXEIvCBU1L5ZWgAI0oCtm6DBo2jyYZSqcGa6M2c/BLmgcaA
+        apeSs61aIJSEeeuhdQAveIdrYg==
+X-Google-Smtp-Source: ABdhPJzUela18pWzJFpYz/kj0jG1AUrEkLuAYkMqxMW/Vpo/UasSs3xIMnmYVMQ+OQrGfUJyatolOg==
+X-Received: by 2002:adf:9d89:0:b0:20d:e97:1640 with SMTP id p9-20020adf9d89000000b0020d0e971640mr5337204wre.441.1652778256340;
+        Tue, 17 May 2022 02:04:16 -0700 (PDT)
+Received: from p14s ([193.117.214.243])
+        by smtp.gmail.com with ESMTPSA id 19-20020a05600c26d300b003942a244f35sm1283224wmv.14.2022.05.17.02.04.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 May 2022 02:04:15 -0700 (PDT)
+Date:   Tue, 17 May 2022 10:04:12 +0100
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado 
+        <nfraprado@collabora.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>, kernel@collabora.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        Tzung-Bi Shih <tzungbi@google.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-remoteproc@vger.kernel.org
+Subject: Re: [PATCH v5 0/2] Mediatek SCP dt-binding tweaks
+Message-ID: <20220517090412.GA34828@p14s>
+References: <20220511195452.871897-1-nfraprado@collabora.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v2 1/3] dt-bindings: display: rockchip: make reg-names
- mandatory for VOP2
-Content-Language: en-US
-To:     Heiko Stuebner <heiko@sntech.de>, dri-devel@lists.freedesktop.org,
-        Sascha Hauer <s.hauer@pengutronix.de>, robh+dt@kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>, krzk+dt@kernel.org
-References: <20220511082109.1110043-1-s.hauer@pengutronix.de>
- <20220511082109.1110043-2-s.hauer@pengutronix.de> <6824319.LvFx2qVVIh@phil>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <6824319.LvFx2qVVIh@phil>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220511195452.871897-1-nfraprado@collabora.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,21 +81,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/05/2022 00:26, Heiko Stuebner wrote:
-> Hi Rob, Krzysztof,
+I have applied this set.
+
+Thanks,
+Mathieu
+
+On Wed, May 11, 2022 at 03:54:50PM -0400, Nícolas F. R. A. Prado wrote:
 > 
-> Am Mittwoch, 11. Mai 2022, 10:21:07 CEST schrieb Sascha Hauer:
->> The VOP2 driver relies on reg-names properties, but these are not
->> documented. Add the missing documentation, make reg-names mandatory
->> and increase minItems to 2 as always both register spaces are needed.
->>
->> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> Two simple patches for the Mediatek SCP dt-binding. The first fixes the
+> reg/reg-names property while the second adds a new optional
+> memory-region property.
 > 
-> does this look ok now?
-
-Neither Rob nor me was Cced on original email, so I don't have it in my
-mailbox... I would expect that scripts/get_maintainers.pl is a known tool.
-
-
-Best regards,
-Krzysztof
+> v4: https://lore.kernel.org/all/20220506213226.257859-1-nfraprado@collabora.com
+> v3: https://lore.kernel.org/all/20220503211114.2656099-1-nfraprado@collabora.com
+> v2: https://lore.kernel.org/all/20220502192420.2548512-1-nfraprado@collabora.com
+> v1: https://lore.kernel.org/all/20220429211111.2214119-1-nfraprado@collabora.com
+> 
+> Changes in v5:
+> - Made l1tcm optional for mt8192/mt8195
+> - Greatly simplified the constraints override in the if:then:
+> 
+> Changes in v4:
+> - Reworked presence of l1tcm reg to be if:then: based and present only
+>   on mt8192/mt8195
+> 
+> Changes in v3:
+> - Made the cfg reg required again. After looking again into the mtk-scp
+>   driver, only l1tcm is optional.
+> 
+> Changes in v2:
+> - Dropped type and description from memory-region since it's a
+>   well-known property
+> - Set memory-region maxItems to 1
+> 
+> Nícolas F. R. A. Prado (2):
+>   dt-bindings: remoteproc: mediatek: Make l1tcm reg exclusive to mt819x
+>   dt-bindings: remoteproc: mediatek: Add optional memory-region to
+>     mtk,scp
+> 
+>  .../bindings/remoteproc/mtk,scp.yaml          | 47 +++++++++++++------
+>  1 file changed, 33 insertions(+), 14 deletions(-)
+> 
+> -- 
+> 2.36.1
+> 
