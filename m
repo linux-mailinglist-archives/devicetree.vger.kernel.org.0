@@ -2,263 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D56EF52A911
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 19:21:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3EEF52A91E
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 19:23:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343611AbiEQRVJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 13:21:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47876 "EHLO
+        id S1344174AbiEQRW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 13:22:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351409AbiEQRU5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 13:20:57 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECD20B48D
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 10:20:51 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id nk9-20020a17090b194900b001df2fcdc165so3169028pjb.0
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 10:20:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=qqJFZR8hTHMEpR03D7fICklADGJ1sACe7dmVDrtTPPA=;
-        b=ysKA7bOi5+9RdlYYFAsM9Hnm1Y0faip7O/uZx4Jtrfz0r6k4k9vYUggKvc5yQ1exMX
-         0Pwj7rSiWyjhXnLuAa1fGnu86owf5xZB9vxKXt7HfttlGj2yZzMka+qecyCOX9uSp5cY
-         UqTpAmywLrPUduIU5lo9vkJltg04KLwc8vGzsN4HDy2Jnt5RmvGUqK7ghg+RU4exZ6vV
-         utDNHvGDt6AEwWhhCSMvNpL88PIS7CnKCStA4CTurHtGE66zyvTeVATQ/VFDPEqYO0Ey
-         7jxg4aj0txKQirK+i5UXExqVypOCrnjFbiHxI/V18PcD3EcvzB9R2TEgawxCCzAaKEnG
-         43qw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=qqJFZR8hTHMEpR03D7fICklADGJ1sACe7dmVDrtTPPA=;
-        b=FPYp/HKNUuBbCLjpM8COVXVlLAg+gtDvbrowp9MemDZwjDINb6DwoLfeO+qUhe/0TD
-         P66wC10Gcr9l2pv15sdbvjVxnmZySfQaJCG2r6s+YfwEdayKfOxGOWrEKYqUTV1nZiZF
-         rIOSlA8amBnBaueQ4eorD38dR1+F8daIQEd7jaf13/32NwD2D9b1FsxoiDkO5keszvwR
-         QytiUb2Hj7yo/RMLy49WMAbGkayR1TWWhhiS23DYcFXRmqqb27X0ic0vc2R88a6Daj4Q
-         LxCdmYRLucDhgcKoqqJyVcKFJixfUmPq288o+kpneRMgYfBM3ViYJjgQg+CBdooWB0Yk
-         AoWw==
-X-Gm-Message-State: AOAM533zieyplu1f3yGzKtW7E5FvCz733QunrzASF5lH1qkMREDVxqBy
-        amvKCT1lXmWLjb7y71SfTkYO
-X-Google-Smtp-Source: ABdhPJyhG3jIHWQ/4DWEUJffCPPujUE5uN8SWJy3rwsGgWf/e3ngmDrUje9ryR1pgmwqMjvcBEexhg==
-X-Received: by 2002:a17:90a:8b91:b0:1be:db25:eecd with SMTP id z17-20020a17090a8b9100b001bedb25eecdmr25779420pjn.10.1652808051232;
-        Tue, 17 May 2022 10:20:51 -0700 (PDT)
-Received: from thinkpad ([117.207.31.8])
-        by smtp.gmail.com with ESMTPSA id i7-20020a63cd07000000b003c14af5063esm8882115pgg.86.2022.05.17.10.20.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 May 2022 10:20:50 -0700 (PDT)
-Date:   Tue, 17 May 2022 22:50:42 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Frank Li <Frank.Li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 15/17] PCI: dwc: Introduce dma-ranges property support
- for RC-host
-Message-ID: <20220517172042.GC4528@thinkpad>
-References: <20220503214638.1895-1-Sergey.Semin@baikalelectronics.ru>
- <20220503214638.1895-16-Sergey.Semin@baikalelectronics.ru>
- <20220512135708.GC35848@thinkpad>
- <20220512194135.ku73pae2xdvyocx7@mobilestation>
+        with ESMTP id S231278AbiEQRW7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 13:22:59 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0614B26547;
+        Tue, 17 May 2022 10:22:57 -0700 (PDT)
+Received: from mail.denx.de (unknown [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: festevam@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 5CDAD80563;
+        Tue, 17 May 2022 19:22:55 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1652808175;
+        bh=J5dyxFbiFJCvDNdMNQhoyLESCKTEEO8zaqvRFwMD1lM=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=HuBu/6hLkMHrC5q2SIRzRKM+VReiQhTkq43f68CO6DDvl/YFLbiyiVbdzdvBuUlL4
+         FJXumjPJ5Ep9MYZGT7q7aN0HwBuWQb9FEPg6hTWdgkspaRUcWNfCpjnuGpdl/EFcYf
+         wo0n20aP630bS9H9FbzfJWkx39WpIGXgDXePisQ9dZ5Ojx0s6EbWOQwP08/xy3lNoG
+         UfFXAJlhCRADJkGB3lGyppm/zLkLNTd6GcL2giqH1bjkp0Xtc7dMehaFeyalDr0Suf
+         T1l1IwB04QghmaKGh9J+nxrNEluCYvxuVSfFisXTW+ToEqfi7CUGJOIIyfh1y5kou+
+         5sU61TGbghhjQ==
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220512194135.ku73pae2xdvyocx7@mobilestation>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 17 May 2022 14:22:55 -0300
+From:   Fabio Estevam <festevam@denx.de>
+To:     Michael Trimarchi <michael@amarulasolutions.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-amarula@amarulasolutions.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Ariel D'Alessandro <ariel.dalessandro@collabora.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Simon Holesch <simon.holesch@bshg.com>
+Subject: Re: [PATCH V2] arm: dts: imx6ulz-bsh-smm-m2: Support proper board
+ power off
+In-Reply-To: <20220517135342.2458267-1-michael@amarulasolutions.com>
+References: <20220517135342.2458267-1-michael@amarulasolutions.com>
+Message-ID: <103ffb04dc36c66112deaae7566b1622@denx.de>
+X-Sender: festevam@denx.de
+User-Agent: Roundcube Webmail/1.3.6
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 12, 2022 at 10:41:35PM +0300, Serge Semin wrote:
-> On Thu, May 12, 2022 at 07:27:08PM +0530, Manivannan Sadhasivam wrote:
-> > On Wed, May 04, 2022 at 12:46:36AM +0300, Serge Semin wrote:
-> > > In accordance with the generic PCIe Root Port DT-bindings the "dma-ranges"
-> > > property has the same format as the "ranges" property. The only difference
-> > > is in their semantics. The "dma-ranges" property describes the PCIe-to-CPU
-> > > memory mapping in opposite to the CPU-to-PCIe mapping of the "ranges"
-> > > property. Even though the DW PCIe controllers are normally equipped with
-> > > internal Address Translation Unit which inbound and outbound tables can be
-> > > used to implement both properties semantics, it was surprise for me to
-> > > discover that the host-related part of the DW PCIe driver currently
-> > > supports the "ranges" property only while the "dma-ranges" windows are
-> > > just ignored. Having the "dma-ranges" supported in the driver would be
-> > > very handy for the platforms, that don't tolerate the 1:1 CPU-PCIe memory
-> > > mapping and require customized the PCIe memory layout. So let's fix that
-> > > by introducing the "dma-ranges" property support.
-> > > 
-> > > First of all we suggest to rename the dw_pcie_prog_inbound_atu() method to
-> > > dw_pcie_prog_ep_inbound_atu() and create a new version of the
-> > > dw_pcie_prog_inbound_atu() function. Thus we'll have two methods for RC
-> > > and EP controllers respectively in the same way as it has been developed
-> > > for the outbound ATU setup methods.
-> > > 
-> > > Secondly aside with the memory window index and type the new
-> > > dw_pcie_prog_inbound_atu() function will accept CPU address, PCIe address
-> > > and size as its arguments. These parameters define the PCIe and CPU memory
-> > > ranges which will be used to setup the respective inbound ATU mapping. The
-> > > passed parameters need to be verified against the ATU ranges constraints
-> > > in the same way as it is done for the outbound ranges.
-> > > 
-> > > Finally the DMA-ranges detected for the PCIe controller need to be
-> > > converted into the inbound ATU entries during the host controller
-> > > initialization procedure. It will be done in the framework of the
-> > > dw_pcie_iatu_setup() method. Note before setting the inbound ranges up we
-> > > need to disable all the inbound ATU entries in order to prevent unexpected
-> > > PCIe TLPs translations defined by some third party software like
-> > > bootloader.
-> > > 
-> > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > > ---
-> > >  .../pci/controller/dwc/pcie-designware-ep.c   |  4 +-
-> > >  .../pci/controller/dwc/pcie-designware-host.c | 32 ++++++++++-
-> > >  drivers/pci/controller/dwc/pcie-designware.c  | 57 ++++++++++++++++++-
-> > >  drivers/pci/controller/dwc/pcie-designware.h  |  6 +-
-> > >  4 files changed, 90 insertions(+), 9 deletions(-)
-> > > 
-> > > diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> > > index c62640201246..9b0540cfa9e8 100644
-> > > --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
-> > > +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> > > @@ -167,8 +167,8 @@ static int dw_pcie_ep_inbound_atu(struct dw_pcie_ep *ep, u8 func_no, int type,
-> > >  		return -EINVAL;
-> > >  	}
-> > >  
-> > > -	ret = dw_pcie_prog_inbound_atu(pci, func_no, free_win, type,
-> > > -				       cpu_addr, bar);
-> > > +	ret = dw_pcie_prog_ep_inbound_atu(pci, func_no, free_win, type,
-> > > +					  cpu_addr, bar);
-> > >  	if (ret < 0) {
-> > >  		dev_err(pci->dev, "Failed to program IB window\n");
-> > >  		return ret;
-> > > diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > index 7caca6c575a5..9cb406f5c185 100644
-> > > --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > @@ -612,12 +612,15 @@ static int dw_pcie_iatu_setup(struct pcie_port *pp)
-> > >  	}
-> > >  
-> > >  	/*
-> > > -	 * Ensure all outbound windows are disabled before proceeding with
-> > > -	 * the MEM/IO ranges setups.
-> > > +	 * Ensure all out/inbound windows are disabled before proceeding with
-> > > +	 * the MEM/IO (dma-)ranges setups.
-> > >  	 */
-> > >  	for (i = 0; i < pci->num_ob_windows; i++)
-> > >  		dw_pcie_disable_atu(pci, PCIE_ATU_REGION_DIR_OB, i);
-> > >  
-> > > +	for (i = 0; i < pci->num_ib_windows; i++)
-> > > +		dw_pcie_disable_atu(pci, PCIE_ATU_REGION_DIR_IB, i);
-> > > +
-> > >  	i = 0;
-> > >  	resource_list_for_each_entry(entry, &pp->bridge->windows) {
-> > >  		if (resource_type(entry->res) != IORESOURCE_MEM)
-> > > @@ -654,9 +657,32 @@ static int dw_pcie_iatu_setup(struct pcie_port *pp)
-> > >  	}
-> > >  
-> > >  	if (pci->num_ob_windows <= i)
-> > > -		dev_warn(pci->dev, "Resources exceed number of ATU entries (%d)\n",
-> > > +		dev_warn(pci->dev, "Ranges exceed outbound iATU size (%d)\n",
-> > >  			 pci->num_ob_windows);
-> > >  
-> > > +	i = 0;
-> > > +	resource_list_for_each_entry(entry, &pp->bridge->dma_ranges) {
-> > > +		if (resource_type(entry->res) != IORESOURCE_MEM)
-> > > +			continue;
-> > > +
-> > > +		if (pci->num_ib_windows <= i)
-> > > +			break;
-> > > +
-> > > +		ret = dw_pcie_prog_inbound_atu(pci, i++, PCIE_ATU_TYPE_MEM,
-> > > +					       entry->res->start,
-> > > +					       entry->res->start - entry->offset,
-> > > +					       resource_size(entry->res));
-> > > +		if (ret) {
-> > > +			dev_err(pci->dev, "Failed to set DMA range %pr\n",
-> > > +				entry->res);
-> > > +			return ret;
-> > > +		}
-> > > +	}
-> > > +
-> > > +	if (pci->num_ib_windows <= i)
-> > > +		dev_warn(pci->dev, "Dma-ranges exceed inbound iATU size (%u)\n",
-> > > +			 pci->num_ib_windows);
-> > > +
-> > >  	return 0;
-> > >  }
-> > >  
-> > > diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-> > > index 747e252c09e6..33718ed6c511 100644
-> > > --- a/drivers/pci/controller/dwc/pcie-designware.c
-> > > +++ b/drivers/pci/controller/dwc/pcie-designware.c
-> > > @@ -397,8 +397,61 @@ static inline void dw_pcie_writel_atu_ib(struct dw_pcie *pci, u32 index, u32 reg
-> > >  	dw_pcie_writel_atu(pci, PCIE_ATU_REGION_DIR_IB, index, reg, val);
-> > >  }
-> > >  
-> > > -int dw_pcie_prog_inbound_atu(struct dw_pcie *pci, u8 func_no, int index,
-> > > -			     int type, u64 cpu_addr, u8 bar)
-> > > +int dw_pcie_prog_inbound_atu(struct dw_pcie *pci, int index, int type,
-> > > +			     u64 cpu_addr, u64 pci_addr, u64 size)
-> > > +{
-> > > +	u64 limit_addr = pci_addr + size - 1;
-> > > +	u32 retries, val;
-> > > +
-> > > +	if ((limit_addr & ~pci->region_limit) != (pci_addr & ~pci->region_limit) ||
-> > > +	    !IS_ALIGNED(cpu_addr, pci->region_align) ||
-> > > +	    !IS_ALIGNED(pci_addr, pci->region_align) ||
-> > > +	    !IS_ALIGNED(size, pci->region_align) ||
-> > 
+On 17/05/2022 10:53, Michael Trimarchi wrote:
+> From: Simon Holesch <simon.holesch@bshg.com>
 > 
-> > Why do you want the size to be aligned? What if I want to transfer a small size
-> > buffer?
-> > 
-> > Same question applies to outbound programming as well.
+> Supports initiating poweroff on SNVS_PMIC_ON_REQ signal.
 > 
-> You can't program a region with the unaligned size by the DW PCIe CSRs
-> design. The limit address lower bits are read-only and fixed with
-> one's in accordance with the IP-core synthesize parameter
-> CX_ATU_MIN_REGION_SIZE. So the mapping is always performed in the
-> CX_ATU_MIN_REGION_SIZE chunks.
-> 
-> IATU_LIMIT_ADDR_OFF_{IN,OUT}BOUND.LIMIT_ADDR_HW = 
-> {(CX_ATU_MIN_REGION_SIZE == 65536) ? "0xffff" :
->  (CX_ATU_MIN_REGION_SIZE == 32768) ? "0x7fff" :
->  (CX_ATU_MIN_REGION_SIZE == 16384) ? "0x3fff" :
->  (CX_ATU_MIN_REGION_SIZE == 8192)  ? "0x1fff" :
->  (CX_ATU_MIN_REGION_SIZE == 4096)  ? "0xfff" : "0xffff"}
-> 
+> Signed-off-by: Simon Holesch <simon.holesch@bshg.com>
+> Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
 
-Right. Even though the minimum size that could be mapped is 4k, I could still
-use that 4k size for mapping small buffers also. So you should not be erroring
-out here if the size is not aligned. I know that it is a waste of memory but
-that doesn't mean that it won't work.
-
-Thanks,
-Mani
-
-> -Sergey
-> 
-> > 
-> > Thanks,
-> > Mani
-> > 
-> > -- 
-> > மணிவண்ணன் சதாசிவம்
-
--- 
-மணிவண்ணன் சதாசிவம்
+Reviewed-by: Fabio Estevam <festevam@denx.de>
