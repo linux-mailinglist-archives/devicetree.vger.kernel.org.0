@@ -2,90 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C632C529C35
+	by mail.lfdr.de (Postfix) with ESMTP id 7A307529C34
 	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 10:19:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242834AbiEQISJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 04:18:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44074 "EHLO
+        id S242695AbiEQIS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 04:18:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242906AbiEQISC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 04:18:02 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EF166496AB;
-        Tue, 17 May 2022 01:17:26 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.91,232,1647270000"; 
-   d="scan'208";a="121232061"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 17 May 2022 17:17:26 +0900
-Received: from localhost.localdomain (unknown [10.226.92.244])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id D6B5C4004BD4;
-        Tue, 17 May 2022 17:17:23 +0900 (JST)
-From:   Phil Edworthy <phil.edworthy@renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: [PATCH v2 2/2] arm64: dts: renesas: rzv2m evk: Enable ethernet
-Date:   Tue, 17 May 2022 09:16:45 +0100
-Message-Id: <20220517081645.3764-3-phil.edworthy@renesas.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220517081645.3764-1-phil.edworthy@renesas.com>
-References: <20220517081645.3764-1-phil.edworthy@renesas.com>
+        with ESMTP id S242847AbiEQISt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 04:18:49 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C769448E59
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 01:18:41 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id n10so33183583ejk.5
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 01:18:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=PMmKxe3WgBWgmW72+NDFsBAaWr7pVUMq7IT2EOFj9rg=;
+        b=DXyvSIi7jXgAcG84j0dtTQNSoDlJIe40zgLupS5EpCO8insL1A3QKtDr3G4YtYNT0b
+         DpWn3l9GGUDYHesxAFO73sqFKLaDNKK7YLJVzLAY2gm9j/Pn1W1/yJiSdDE+V6VfEawE
+         7BvCwhDOBjFde5UyiZ36odZNjDdhjBsz3aadbnvIo0gAPHwVU7yPNYeTJTJahN5Cedpy
+         jn9ZlDycZAV49AIAkpAbSKCBFgYK0W14EVxWZAW0RFl76wBEJBgH4xXOT/qDJt4yioHs
+         hg5YQn9MV4XKqILR5+vGASilGUivZSB/j/My7a7ImeJAoINREVLPuN/Gsn8IxnhALlPp
+         IsaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=PMmKxe3WgBWgmW72+NDFsBAaWr7pVUMq7IT2EOFj9rg=;
+        b=B6xH3Xx4pFj7kL3QKzRBDFOPcvh6uGKQexoVSf16TCc8TU79JLPG2DAXZWMYEl7/9v
+         yRNc7O+5GsgWF8sKn5HjqBcw//Uy0Jpo3k0zAbtN0TKz1S7k+IOuUcFZP2Fe8ov5Kw3P
+         V2ygUlZVS5dLYPE02ATlnCX4Dcyi5IfwWK7WaJAWbYBrXagHVw1VkFDQEu0z3NoSxxYn
+         PGGjcWECtkv/mm06ASiaAcxS1UAPG+X3FyTh29PVyot3ZApI5uY5aZHt48UERuKTjRFY
+         YwSSUW4+JNkmBd44eNLgFCGa6jWxqVgq/f4R9J6sZEBnT8c84YLzRF/yn71IPivllieW
+         c9dQ==
+X-Gm-Message-State: AOAM533reTJ2qeK+N3Y9P62kdD1w+cHbYjUSdw1xoG4JzGe3a0OdATMT
+        reKtdHcEfWWj3OhJKsoXK/NAHw==
+X-Google-Smtp-Source: ABdhPJzrBCibM9RMlaxwEZZmMm1yEb5wWtfOTQfHuB6kYMrz6tNnDZq7nVne/1DF18nq6iRbJULiXQ==
+X-Received: by 2002:a17:907:1b14:b0:6ef:a5c8:afbd with SMTP id mp20-20020a1709071b1400b006efa5c8afbdmr19134421ejc.151.1652775520403;
+        Tue, 17 May 2022 01:18:40 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id e9-20020a056402104900b0042ac0e79bb6sm1345467edu.45.2022.05.17.01.18.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 May 2022 01:18:40 -0700 (PDT)
+Message-ID: <626d3f67-ae15-938d-ae87-e111b83435d0@linaro.org>
+Date:   Tue, 17 May 2022 10:18:38 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 5/7] arm64: dts: mediatek: mt6795: Add fixed clocks for
+ 32kHz and 26MHz XOs
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, robh+dt@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org, paul.bouchara@somainline.org,
+        kernel@collabora.com
+References: <20220513171617.504430-1-angelogioacchino.delregno@collabora.com>
+ <20220513171617.504430-6-angelogioacchino.delregno@collabora.com>
+ <03e99a02-1233-3882-e1e5-24ab1bbaf257@linaro.org>
+ <0f303425-3b12-7573-b201-030d4d044db8@collabora.com>
+ <d78e1936-a0ab-663d-1381-b537bfd7f07d@linaro.org>
+ <32c97e47-47a8-d033-4948-3c73a4313703@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <32c97e47-47a8-d033-4948-3c73a4313703@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable Ethernet interface on RZ/V2M EVK.
+On 17/05/2022 10:14, AngeloGioacchino Del Regno wrote:
 
-Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
-Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v2:
- - No change
----
- arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+> Right. If external components are strictly necessary, physically, they're
+> still external components and not inside of the SoC, and anything external
+> *may* change depending on the (hardware) implementation.
+> 
+> Anyway - I was wondering if splitting this change in two commits would be
+> better to let people understand what's going on... probably it would, as
+> that would clearly show both the addition of the 32K/26M clocks and the
+> subsequent removal of the other two: I would at this point do that, what
+> do you think?
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts b/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
-index 41cba82c2252..ec7099211cab 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
-@@ -14,6 +14,7 @@ / {
- 
- 	aliases {
- 		serial0 = &uart0;
-+		ethernet0 = &avb;
- 	};
- 
- 	chosen {
-@@ -42,3 +43,16 @@ &extal_clk {
- &uart0 {
- 	status = "okay";
- };
-+
-+&avb {
-+	renesas,no-ether-link;
-+	phy-handle = <&phy0>;
-+	phy-mode = "gmii";
-+	status = "okay";
-+
-+	phy0: ethernet-phy@0 {
-+		compatible = "ethernet-phy-id0022.1622",
-+			     "ethernet-phy-ieee802.3-c22";
-+		reg = <0>;
-+	};
-+};
--- 
-2.34.1
+Could help.
 
+
+Best regards,
+Krzysztof
