@@ -2,68 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF5D55295F1
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 02:18:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF3B45295FD
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 02:27:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233468AbiEQASW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 20:18:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45312 "EHLO
+        id S230410AbiEQA1y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 20:27:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229497AbiEQASV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 20:18:21 -0400
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3710245AF1;
-        Mon, 16 May 2022 17:18:20 -0700 (PDT)
-Received: by mail-oi1-f175.google.com with SMTP id l16so20620175oil.6;
-        Mon, 16 May 2022 17:18:20 -0700 (PDT)
+        with ESMTP id S229802AbiEQA1y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 20:27:54 -0400
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFE272E6A7;
+        Mon, 16 May 2022 17:27:52 -0700 (PDT)
+Received: by mail-oi1-f169.google.com with SMTP id v65so20590611oig.10;
+        Mon, 16 May 2022 17:27:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=GPUFIY49jVOLB0PCg0hcdHV6Ri73fGCHmtlekomUChM=;
-        b=NPgz3MMf5+bjZKCVRca3NdXWMHnBh0wl2BcJ8SLFcju9YjwIYxWui8JmnZwA2yN5Cp
-         ndokBO5iCsia1PGQZKD1b54rAnpazY5qdxXJhlzKqe/PpFlYrnWAmmfh6PMGEmUYZ2AF
-         MQcWQXSW3zc0rkQWx+5MHwHVC5v895JVIMonQRlfqgyWjqgQHCHEJRbteIA2lPGrwmPF
-         o6F74o1JnqXHBzgZwIa1vHo+28ncDboqKutaCbdWGtRAvXpu8tM8Y/d28Jl1hpGXUnG8
-         MQRz55v3Srisndb+qJ5tatnfVG2m7x01RnBBzPmintP1TaK3QgpjSVYuy8+aPDle+QXi
-         i92A==
-X-Gm-Message-State: AOAM532Mymjhl7ybURi7AwS3x9H8aDjOx+LE+AtHjSsN83Hk5GEpYT27
-        hbLTaUNtc6U4nE7sgqIY5A==
-X-Google-Smtp-Source: ABdhPJyoOUMiRrvr83FjYScfsZOHKuD0JIOvH2MR2SrWlETM1o5zPl+aB9buWtlZMSv2NfO8ZGVhHA==
-X-Received: by 2002:a05:6808:218c:b0:328:c5e6:b2a with SMTP id be12-20020a056808218c00b00328c5e60b2amr10874658oib.173.1652746699562;
-        Mon, 16 May 2022 17:18:19 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=AjIgoIzuU0qN1OneU4nydD9785iHKfz2mgfXgmyiwBA=;
+        b=t6GiBiN8hoSr+YE4N1QrzPwAF/yMnch94pg8ER5wAUQ8QaWJO6ZQBJm2yx7pcEXhUT
+         TE96eSjoKNGIDzb26HQinVEbxn8Jy0TjmbmY01q32MibS6CkabNVvI3EmwXAbsdcvabI
+         I4boRywo3jrnIqiBF+ibELzBYHPwMS9ucncNfnKXNoWRVeru6dq5xq6MCjpLW1vhGSWA
+         vz8RURS3TpDsyJIIKRIqN0tEoeDfF2cyBfdagccw2dZ9Zu2JV8BVMSwyV5lY/O/oa7lS
+         WfOwxrtidUEG4+tXDm+Ci2ezuj77KTK5KuaxO0hXXK1MhDsf41XH4YMBgkcTQ32jFbfM
+         7NPg==
+X-Gm-Message-State: AOAM533CFLnYewzuvbG3x9IGHWl2pEqCYd1FEzMtUx+3kYtPJtCvDq6e
+        somglRGPOjO1ax7cb3GJPw==
+X-Google-Smtp-Source: ABdhPJxT0vsAGu7gI2XEFSb7VXPXh7GjkIgGl9JGJgCiHApDSgmjmwIdM+VP2LsLjTK10XA7StATnw==
+X-Received: by 2002:a05:6808:1496:b0:326:e2de:63ec with SMTP id e22-20020a056808149600b00326e2de63ecmr9397520oiw.271.1652747272138;
+        Mon, 16 May 2022 17:27:52 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z18-20020a544592000000b00325cda1ffb2sm4334484oib.49.2022.05.16.17.18.18
+        by smtp.gmail.com with ESMTPSA id t129-20020aca5f87000000b00328a1be5c3asm4429079oib.25.2022.05.16.17.27.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 May 2022 17:18:18 -0700 (PDT)
-Received: (nullmailer pid 3632950 invoked by uid 1000);
-        Tue, 17 May 2022 00:18:17 -0000
-Date:   Mon, 16 May 2022 19:18:17 -0500
+        Mon, 16 May 2022 17:27:51 -0700 (PDT)
+Received: (nullmailer pid 3649667 invoked by uid 1000);
+        Tue, 17 May 2022 00:27:50 -0000
+Date:   Mon, 16 May 2022 19:27:50 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/6] dt-bindings: irqchip: armada-370-xp: Update
- information about MPIC SoC Error
-Message-ID: <20220517001817.GA3629501-robh@kernel.org>
-References: <20220506134029.21470-1-pali@kernel.org>
- <20220506134029.21470-2-pali@kernel.org>
+To:     Oleksandr Tyshchenko <olekstysh@gmail.com>
+Cc:     xen-devel@lists.xenproject.org,
+        virtualization@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+        Jason Wang <jasowang@redhat.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Julien Grall <julien@xen.org>, Juergen Gross <jgross@suse.com>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>
+Subject: Re: [PATCH V2 5/7] dt-bindings: Add xen,dev-domid property
+ description for xen-grant DMA ops
+Message-ID: <20220517002750.GA3638680-robh@kernel.org>
+References: <1651947548-4055-1-git-send-email-olekstysh@gmail.com>
+ <1651947548-4055-6-git-send-email-olekstysh@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220506134029.21470-2-pali@kernel.org>
+In-Reply-To: <1651947548-4055-6-git-send-email-olekstysh@gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -75,44 +73,121 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 06, 2022 at 03:40:24PM +0200, Pali Rohár wrote:
-> Signed-off-by: Pali Rohár <pali@kernel.org>
-
-Why do we need/want this change?
-
-> ---
->  .../interrupt-controller/marvell,armada-370-xp-mpic.txt  | 9 +++++++++
->  1 file changed, 9 insertions(+)
+On Sat, May 07, 2022 at 09:19:06PM +0300, Oleksandr Tyshchenko wrote:
+> From: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
 > 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/marvell,armada-370-xp-mpic.txt b/Documentation/devicetree/bindings/interrupt-controller/marvell,armada-370-xp-mpic.txt
-> index 5fc03134a999..8cddbc16ddbd 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/marvell,armada-370-xp-mpic.txt
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/marvell,armada-370-xp-mpic.txt
-> @@ -24,6 +24,11 @@ Optional properties:
->    connected as a slave to the Cortex-A9 GIC. The provided interrupt
->    indicate to which GIC interrupt the MPIC output is connected.
->  
-> +Optional subnodes:
+> Introduce Xen specific binding for the virtualized device (e.g. virtio)
+> to be used by Xen grant DMA-mapping layer in the subsequent commit.
+> 
+> This binding indicates that Xen grant mappings scheme needs to be
+> enabled for the device which DT node contains that property and specifies
+> the ID of Xen domain where the corresponding backend resides. The ID
+> (domid) is used as an argument to the grant mapping APIs.
+> 
+> This is needed for the option to restrict memory access using Xen grant
+> mappings to work which primary goal is to enable using virtio devices
+> in Xen guests.
+> 
+> Signed-off-by: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
+> ---
+> Changes RFC -> V1:
+>    - update commit subject/description and text in description
+>    - move to devicetree/bindings/arm/
+> 
+> Changes V1 -> V2:
+>    - update text in description
+>    - change the maintainer of the binding
+>    - fix validation issue
+>    - reference xen,dev-domid.yaml schema from virtio/mmio.yaml
+> ---
+>  .../devicetree/bindings/arm/xen,dev-domid.yaml     | 37 ++++++++++++++++++++++
+>  Documentation/devicetree/bindings/virtio/mmio.yaml |  7 ++++
+>  2 files changed, 44 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml b/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
+> new file mode 100644
+> index 00000000..750e89e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
+> @@ -0,0 +1,37 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/xen,dev-domid.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +- interrupt-controller@20 with interrupt-controller property for
-> +  MPIC SoC Error IRQ controller
+> +title: Xen specific binding for virtualized devices (e.g. virtio)
 > +
->  Example:
+> +maintainers:
+> +  - Stefano Stabellini <sstabellini@kernel.org>
+> +
+> +select: true
+
+Omit. No need to apply this on every single node.
+
+> +
+> +description:
+> +  This binding indicates that Xen grant mappings need to be enabled for
+> +  the device, and it specifies the ID of the domain where the corresponding
+> +  device (backend) resides. The property is required to restrict memory
+> +  access using Xen grant mappings.
+> +
+> +properties:
+> +  xen,dev-domid:
+
+I kind of think 'dev' is redundant. Is there another kind of domid 
+possible? Maybe xen,backend-domid or just xen,domid? I don't know Xen 
+too well, so ultimately up to you all.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      The domid (domain ID) of the domain where the device (backend) is running.
+> +
+> +additionalProperties: true
+> +
+> +examples:
+> +  - |
+> +    virtio@3000 {
+> +            compatible = "virtio,mmio";
+> +            reg = <0x3000 0x100>;
+> +            interrupts = <41>;
+> +
+> +            /* The device is located in Xen domain with ID 1 */
+> +            xen,dev-domid = <1>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/virtio/mmio.yaml b/Documentation/devicetree/bindings/virtio/mmio.yaml
+> index 10c22b5..29a0932 100644
+> --- a/Documentation/devicetree/bindings/virtio/mmio.yaml
+> +++ b/Documentation/devicetree/bindings/virtio/mmio.yaml
+> @@ -13,6 +13,9 @@ description:
+>    See https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=virtio for
+>    more details.
 >  
->          mpic: interrupt-controller@d0020000 {
-> @@ -35,4 +40,8 @@ Example:
->                msi-controller;
->                reg = <0xd0020a00 0x1d0>,
->                      <0xd0021070 0x58>;
-> +              soc_err: interrupt-controller@20 {
+> +allOf:
+> +  - $ref: /schemas/arm/xen,dev-domid.yaml#
+> +
+>  properties:
+>    compatible:
+>      const: virtio,mmio
+> @@ -33,6 +36,10 @@ properties:
+>      description: Required for devices making accesses thru an IOMMU.
+>      maxItems: 1
+>  
+> +  xen,dev-domid:
+> +    description: Required when Xen grant mappings need to be enabled for device.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
 
-unit address without 'reg' is an error.
+No need to define the type again nor describe it again.
 
-> +                    interrupt-controller;
-> +                    #interrupt-cells = <1>;
-> +              };
->          };
+Instead, just change additionalProperties to unevaluateProperties in 
+this doc. The diff is the latter takes $ref's into account.
+
+> +
+>  required:
+>    - compatible
+>    - reg
 > -- 
-> 2.20.1
+> 2.7.4
 > 
 > 
