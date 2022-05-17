@@ -2,182 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A46B75299A1
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 08:37:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 199E35299AD
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 08:43:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232477AbiEQGhu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 02:37:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41902 "EHLO
+        id S231146AbiEQGnJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 02:43:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231146AbiEQGht (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 02:37:49 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D77B92BB16;
-        Mon, 16 May 2022 23:37:43 -0700 (PDT)
-X-UUID: 1be3c25555d747e0b02388ea4d6ebf8b-20220517
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:c863057f-9fd9-4192-988f-bb7b614463c7,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:2a19b09,CLOUDID:4b5473e2-edbf-4bd4-8a34-dfc5f7bb086d,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:0,BEC:nil
-X-UUID: 1be3c25555d747e0b02388ea4d6ebf8b-20220517
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 838221604; Tue, 17 May 2022 14:37:38 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Tue, 17 May 2022 14:37:37 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Tue, 17 May 2022 14:37:36 +0800
-Message-ID: <cf2442b9c7124ebf1ce62ae5df597f003fa447d7.camel@mediatek.com>
-Subject: Re: [PATCH v2 2/2] memory: mtk-smi: Add support for MT6795 Helio X10
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-CC:     <krzysztof.kozlowski@linaro.org>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>, <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <konrad.dybcio@somainline.org>, <marijn.suijten@somainline.org>,
-        <martin.botka@somainline.org>,
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        <phone-devel@vger.kernel.org>, <paul.bouchara@somainline.org>,
-        <kernel@collabora.com>, <yi.kuo@mediatek.com>,
-        <anthony.huang@mediatek.com>, <wendy-st.lin@mediatek.com>
-Date:   Tue, 17 May 2022 14:37:36 +0800
-In-Reply-To: <20220513150633.387200-3-angelogioacchino.delregno@collabora.com>
-References: <20220513150633.387200-1-angelogioacchino.delregno@collabora.com>
-         <20220513150633.387200-3-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S240062AbiEQGnE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 02:43:04 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A3CB403ED;
+        Mon, 16 May 2022 23:43:02 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id B4FA1CE1839;
+        Tue, 17 May 2022 06:43:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBBB0C34117;
+        Tue, 17 May 2022 06:42:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1652769779;
+        bh=IkgpZRMDRokE+i/qDVN1ZJ1bBXEnwTYuhU5I2MyVykw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=BBbc+U3g516zRPvEHx6rR68oL63QDxOu6wmXrjg6ADJO7EZDspBWQFoopYxLpfGQx
+         frdUv3YMua7gwvI8cgEtySJErWg9kk/jBfUpAzku6n2SQy2UtstYXKprFU0VppTMKC
+         7nRo9uSZldhoaC+FyNxb0siRDcErTgLlWWNbxyWRMHBk6Yxv+gxIogOWMBIyYiQb5c
+         uleQ7S5GU5lEjEki14B7DlRx963LKsGu+T28cPvbcbMvPA/O6Rk6y2Ktubww4I2rqk
+         9Gsz4/vNTxLzm71kpUqX5jtMnneLgFsoPoVCDnqkD25GjHaDm1SQRK26KKH34jXa9M
+         Jav6CRyXFQsXA==
+Received: from ip-185-104-136-29.ptr.icomera.net ([185.104.136.29] helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nqqv1-00Bp6o-EV; Tue, 17 May 2022 07:42:55 +0100
+Date:   Tue, 17 May 2022 07:42:54 +0100
+Message-ID: <87mtfgmzgx.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
+        "kostap@marvell.com" <kostap@marvell.com>,
+        "robert.marko@sartura.hr" <robert.marko@sartura.hr>,
+        "vadym.kochan@plvision.eu" <vadym.kochan@plvision.eu>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v7 2/3] arm64: dts: marvell: Add Armada 98DX2530 SoC and RD-AC5X board
+In-Reply-To: <db5c3366-ac81-261b-ff32-3ccf94a930f6@alliedtelesis.co.nz>
+References: <20220512042501.3339775-1-chris.packham@alliedtelesis.co.nz>
+        <20220512042501.3339775-3-chris.packham@alliedtelesis.co.nz>
+        <87wnermc9c.wl-maz@kernel.org>
+        <5c01f20a-acd3-da15-081d-7cf878f8a77a@alliedtelesis.co.nz>
+        <a69eaf73-8c3c-dfd7-16e5-70460c68877e@alliedtelesis.co.nz>
+        <87mtfh6c58.wl-maz@kernel.org>
+        <db5c3366-ac81-261b-ff32-3ccf94a930f6@alliedtelesis.co.nz>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.104.136.29
+X-SA-Exim-Rcpt-To: Chris.Packham@alliedtelesis.co.nz, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, catalin.marinas@arm.com, will@kernel.org, andrew@lunn.ch, gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com, kostap@marvell.com, robert.marko@sartura.hr, vadym.kochan@plvision.eu, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-05-13 at 17:06 +0200, AngeloGioacchino Del Regno wrote:
-> The MediaTek Helio X10 (MT6795) SoC has 5 LARBs and one common SMI
-> instance without any sub-common and without GALS.
+On Mon, 16 May 2022 22:56:44 +0100,
+Chris Packham <Chris.Packham@alliedtelesis.co.nz> wrote:
 > 
-> While the smi-common configuration is specific to this SoC, on the
-> LARB side, this is similar to MT8173, in the sense that it doesn't
-> need the port in LARB, and the register layout is also compatible
-> with that one, which makes us able to fully reuse the smi-larb
-> platform data struct that was introduced for MT8173.
+> >>>> Please fix your firmware to program CNTFRQ_EL0, and
+> >>>> remove this useless property.
+> >>> I'm kind of at the mercy of what Marvell have provided for ATF. I am
+> >>> working on the bootloader portion in parallel and am getting things
+> >>> ready for submitting the u-boot support upstream. I was hoping to
+> >>> leave ATF alone I can at least see if they haven't fixed this already
+> >>> (the original dtsi I started with was fairly old) and if they haven't
+> >>> I'll raise it via their support system.
+> >> Seems to work fine without the clock so I'll drop it.
+> > Thanks. If you can, please verify that this is set on both CPUs (I
+> > have seen plenty of firmware only setting it on CPU0 in the past).
+> The arch_timer interrupts are counting up on both CPUs and things 
+> generally seem to be getting scheduled (I don't have much of a userland 
+> at the moment so it's not exactly a stress test). Do you think that is 
+> sufficient to say the clock property is unnecessary and whatever 
+> firmware I have is working as expected.
+
+No, the counter always count, and CNTFRQ_EL0 is only an indication of
+the frequency for SW to find out. You can directly read CNTFRQ_EL0
+from userspace on each CPU and find whether they have the same value.
+
+> >>>> You are also missing a PPI for the EL2 virtual timer which is present
+> >>>> on any ARMv8.1+ CPU (and since this system is using A55, it definitely
+> >>>> has it).
+> >>>>
+> >>>> [...]
+> >>> Will add.
+> >> I assume you're talking about the 5th PPI per the
+> >> timer/arm,arch_timer.yaml ("hypervisor virtual timer irq").
+> > Indeed.
+> >
+> >> Helpfully
+> >> Marvell don't include the PPI interrupt numbers in their datasheet. But
+> >> then I also notice that none of the other boards that have a
+> >> "arm,armv8-timer" provide a 5th interrupt either, have I misunderstood
+> >> something?
+> > This was only recently added to the DT binding, but the interrupt
+> > definitely exist at the CPU level for anything that implements ARMv8.1
+> > and up. AFAIK, the M1 is the only machine to expose this interrupt in
+> > DT, but this doesn't mean the interrupt doesn't exist on all the other
+> > systems that have the same architecture revision.
+> >
+> > If you have contacts in Marvell, maybe try and find out whether they
+> > have simply decided not to wire the interrupt (I wouldn't be
+> > surprised). In this case, please add a comment.
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <
-> angelogioacchino.delregno@collabora.com>
-> ---
->  drivers/memory/mtk-smi.c | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
-> 
-> diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
-> index 86a3d34f418e..7e7c3ede19e4 100644
-> --- a/drivers/memory/mtk-smi.c
-> +++ b/drivers/memory/mtk-smi.c
-> @@ -21,11 +21,13 @@
->  /* SMI COMMON */
->  #define SMI_L1LEN			0x100
->  
-> +#define SMI_L1_ARB			0x200
->  #define SMI_BUS_SEL			0x220
->  #define SMI_BUS_LARB_SHIFT(larbid)	((larbid) << 1)
->  /* All are MMU0 defaultly. Only specialize mmu1 here. */
->  #define F_MMU1_LARB(larbid)		(0x1 <<
-> SMI_BUS_LARB_SHIFT(larbid))
->  
-> +#define SMI_FIFO_TH0			0x230
+> I've reached out via their customer support portal. So far they just 
+> want to know why I'm refusing to use their out of date SDK (maybe I 
+> should direct them at some of Jon Corbet's presentations :P).
 
-Does the name come from the coda you got?
-It is called SMI_READ_FIFO_TH in my coda.
+The fact that they are asking is already saying everything there is to
+know, sadly...
 
->  #define SMI_M4U_TH			0x234
->  #define SMI_FIFO_TH1			0x238
->  #define SMI_FIFO_TH2			0x23c
-> @@ -360,6 +362,7 @@ static const struct of_device_id
-> mtk_smi_larb_of_ids[] = {
->  	{.compatible = "mediatek,mt2701-smi-larb", .data =
-> &mtk_smi_larb_mt2701},
->  	{.compatible = "mediatek,mt2712-smi-larb", .data =
-> &mtk_smi_larb_mt2712},
->  	{.compatible = "mediatek,mt6779-smi-larb", .data =
-> &mtk_smi_larb_mt6779},
-> +	{.compatible = "mediatek,mt6795-smi-larb", .data =
-> &mtk_smi_larb_mt8173},
->  	{.compatible = "mediatek,mt8167-smi-larb", .data =
-> &mtk_smi_larb_mt8167},
->  	{.compatible = "mediatek,mt8173-smi-larb", .data =
-> &mtk_smi_larb_mt8173},
->  	{.compatible = "mediatek,mt8183-smi-larb", .data =
-> &mtk_smi_larb_mt8183},
-> @@ -541,6 +544,13 @@ static struct platform_driver
-> mtk_smi_larb_driver = {
->  	}
->  };
->  
-> +static const struct mtk_smi_reg_pair
-> mtk_smi_common_mt6795_init[SMI_COMMON_INIT_REGS_NR] = {
-> +	{SMI_L1_ARB, 0x1b},
-> +	{SMI_M4U_TH, 0xce810c85},
-> +	{SMI_FIFO_TH1, 0x43214c8},
-> +	{SMI_FIFO_TH0, 0x191f},
-> +};
-> +
->  static const struct mtk_smi_reg_pair
-> mtk_smi_common_mt8195_init[SMI_COMMON_INIT_REGS_NR] = {
->  	{SMI_L1LEN, 0xb},
->  	{SMI_M4U_TH, 0xe100e10},
-> @@ -565,6 +575,12 @@ static const struct mtk_smi_common_plat
-> mtk_smi_common_mt6779 = {
->  		    F_MMU1_LARB(5) | F_MMU1_LARB(6) | F_MMU1_LARB(7),
->  };
->  
-> +static const struct mtk_smi_common_plat mtk_smi_common_mt6795 = {
-> +	.type	  = MTK_SMI_GEN2,
-> +	.bus_sel  = BIT(0),
+> These integrated chips are sometimes a bit problematic because the 
+> support goes via the Switching group but these questions are really 
+> about IP blocks that have been taken from the SoC group. It may take a 
+> while before I get a response from someone that actually knows the 
+> internals.
 
-Like the other larbs, use F_MMU1_LARB(0) here?
+Fair enough. Until then, please drop a comment in the DT indicating
+that the fate of this PPI is unknown. If you eventually find out, just
+add it to the DT (it is easy to add things, much harder to remove
+them).
 
+Thanks,
 
-After the two changes,
+	M.
 
-Reviewed-by: Yong Wu <yong.wu@mediatek.com>
-
-Thanks.
-
-> +	.init     = mtk_smi_common_mt6795_init,
-> +};
-> +
->  static const struct mtk_smi_common_plat mtk_smi_common_mt8183 = {
->  	.type     = MTK_SMI_GEN2,
->  	.has_gals = true,
-> @@ -609,6 +625,7 @@ static const struct of_device_id
-> mtk_smi_common_of_ids[] = {
->  	{.compatible = "mediatek,mt2701-smi-common", .data =
-> &mtk_smi_common_gen1},
->  	{.compatible = "mediatek,mt2712-smi-common", .data =
-> &mtk_smi_common_gen2},
->  	{.compatible = "mediatek,mt6779-smi-common", .data =
-> &mtk_smi_common_mt6779},
-> +	{.compatible = "mediatek,mt6795-smi-common", .data =
-> &mtk_smi_common_mt6795},
->  	{.compatible = "mediatek,mt8167-smi-common", .data =
-> &mtk_smi_common_gen2},
->  	{.compatible = "mediatek,mt8173-smi-common", .data =
-> &mtk_smi_common_gen2},
->  	{.compatible = "mediatek,mt8183-smi-common", .data =
-> &mtk_smi_common_mt8183},
-
+-- 
+Without deviation from the norm, progress is not possible.
