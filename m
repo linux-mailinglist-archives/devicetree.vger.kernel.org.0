@@ -2,66 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D4F852A405
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 15:58:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D461852A406
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 15:58:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348152AbiEQN6E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 09:58:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49012 "EHLO
+        id S244360AbiEQN6I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 09:58:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237547AbiEQN5m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 09:57:42 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB8233C4A7;
-        Tue, 17 May 2022 06:57:40 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id EC678CE1A5C;
-        Tue, 17 May 2022 13:57:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B493C3411A;
-        Tue, 17 May 2022 13:57:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1652795857;
-        bh=KwOBNdhdnb/8ytGEUEM5Zd4g0LGQZYEQdyjYJaTwoAs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=EujX2Y6rxyCjCCl5Rcb7vcEHHOrA4QKrJoZBjU8APW1Z0K0qbRN4SKPhQYiGGW09Z
-         79gCpaOC1lV6owAOHt8Dx3+mq2RimvV5EFcpnzLO18xprxhp9vOrqoYhOGhUF2ZJQ3
-         LGKb9FugzkFEloKf+9YMoa0fVpNXR124A3HqyEfKnjo0l2TermjHrIYKx2QFwN62Mk
-         rIHa8b2Gjghm3HXV3jSCH7I6I2Vx4uQBaOTFK7P2anu0T7bhrFSssUqWxwufhRaMxa
-         UPwmdQaS8rJ2hpjF5/OKl4qa5qs+GAYthu4bfdogha0i2oo9eealwEdzXG6RUQxlWf
-         1kHg5qjNXL0KQ==
-Received: by mail-ej1-f46.google.com with SMTP id n10so34901552ejk.5;
-        Tue, 17 May 2022 06:57:37 -0700 (PDT)
-X-Gm-Message-State: AOAM532zu6jpHENLXKfKCxMRsnq0rspLdC0poUi/78iHhefrSrJE4svA
-        dJD9P5zoNMwQ10cWL+WQA8hcdyO0ke3I05Zx9g==
-X-Google-Smtp-Source: ABdhPJwzgu1W9RnBAOnMWBllqPoxw52IE1DVZ3YRFzHKgW+BgyKyNlWfBhuprgxuC9BZxBvbGdCO79trhY14QFKNUQU=
-X-Received: by 2002:a17:906:a888:b0:6f3:e990:e554 with SMTP id
- ha8-20020a170906a88800b006f3e990e554mr19872439ejb.19.1652795855281; Tue, 17
- May 2022 06:57:35 -0700 (PDT)
+        with ESMTP id S1348003AbiEQN6H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 09:58:07 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC4B83C4B4
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 06:58:05 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id f4so18674443lfu.12
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 06:58:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=eVaeE8EmFrZMCLqtcrlHzNvDehbUwPxJkr68zMJQkE0=;
+        b=keEYssJeA35i6Sta2I6KzzG+AyLAfGU3Lx5PpJy7XNJd46Oikjsl41K2FOclcNwgsf
+         LqEnxpal51K+s3Phphr9gnko8bztzkVvQMsZQXRbcHbIr5ZnHY04mUhXClzZfjIpyvfu
+         JN9u/WWFVTrS4rRPtrtQzTDX9UHmrPHcNwDmSP1Sf1+qW7loeTyBdIzkPd9y5JfV5bsS
+         b9fc4HEg9c5FtmdbLVKOFO47fPPvdiC9fbVkmb7R8UW54e/N5wXAgSffVIgmIhziQj9q
+         +Cfuea8uomdXM/3DRACVZLltyktTJwr4fDkOFZHDT75WmQilucE/VyjIzTvR+zh/8i15
+         rLaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=eVaeE8EmFrZMCLqtcrlHzNvDehbUwPxJkr68zMJQkE0=;
+        b=G1jQgNOXu3v6QLPcrDZZfQKpROrQwHqmhfP9F9LhMoPJOUDuEV2igiSADWRSzMmOln
+         tpV2UWbcn6/llqFEjtfQ8h5adEw9gaCeXKU6C8Kx6DSr2GcEs5QlbNTxpFnHPteUUsgO
+         84ZbtsqBe/Smq8pjhcmm/mo9PlBQHzypUYh+9YFmHSkAZ7jH6Ma71eoxKW2hGLO2MvoC
+         rOWEhe4ImHPkjvDs/K2mhdYBDt2EpPH/wLil3p7kKwYXVowcgxHjDaaHEcVCfTSGaK9o
+         JiBb8n4iQXyk0rmalRLFaEU5ADlVqarbWl0vQ3AzlLjsy6O9z+CjIdjAE29MCzZDubZD
+         JSQw==
+X-Gm-Message-State: AOAM533eG01lAV3i1kOHovlJwLxbCiHdu90nnVWMnOeU5yYdBkgC2z0m
+        +N/oEMF/l7tqPo4oznUiSB1u3g==
+X-Google-Smtp-Source: ABdhPJxw8xo2pjvHxPlfO7zErtguu1LhEFbww2MX8pjsfBIN1zJWlGEkdKQlYDEvVNX2wu/6K/T+fw==
+X-Received: by 2002:a05:6512:1399:b0:448:9f0b:bf4f with SMTP id p25-20020a056512139900b004489f0bbf4fmr16621673lfa.67.1652795884116;
+        Tue, 17 May 2022 06:58:04 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id t8-20020ac25488000000b0047255d21117sm1602236lfk.70.2022.05.17.06.58.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 May 2022 06:58:03 -0700 (PDT)
+Message-ID: <9606459e-7d9f-90af-1c5c-263e8ab1fae1@linaro.org>
+Date:   Tue, 17 May 2022 15:58:02 +0200
 MIME-Version: 1.0
-References: <8e48edc5e7b65f8dfd8b76c583e0265b9b97e62b.1652099944.git.geert+renesas@glider.be>
- <20220517010408.GA3690472-robh@kernel.org> <CAMuHMdWnvYx93Xo4XHRi3vv8c1OCvX7zqGswHApRnc7VYM+X4g@mail.gmail.com>
-In-Reply-To: <CAMuHMdWnvYx93Xo4XHRi3vv8c1OCvX7zqGswHApRnc7VYM+X4g@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 17 May 2022 08:57:11 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJo-p+bh6VOKANq8pmMPbm1vZwmHt73yYaEhe9GfQ50dw@mail.gmail.com>
-Message-ID: <CAL_JsqJo-p+bh6VOKANq8pmMPbm1vZwmHt73yYaEhe9GfQ50dw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: phy: renesas,rcar-gen2-usb-phy: Convert to json-schema
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        "open list:GENERIC PHY FRAMEWORK" <linux-phy@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 03/20] dt-bindings: media: s5p-mfc: Add mfcv12 variant
+Content-Language: en-US
+To:     Smitha T Murthy <smitha.t@samsung.com>,
+        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
+        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
+        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
+        benjamin.gaignard@collabora.com, stanimir.varbanov@linaro.org,
+        dillon.minfei@gmail.com, david.plowman@raspberrypi.com,
+        mark.rutland@arm.com, robh+dt@kernel.org, krzk+dt@kernel.org,
+        andi@etezian.org, alim.akhtar@samsung.com,
+        aswani.reddy@samsung.com, pankaj.dubey@samsung.com,
+        linux-fsd@tesla.com
+References: <20220517125548.14746-1-smitha.t@samsung.com>
+ <CGME20220517125558epcas5p228cdf5f665468d3fd065d88a5d0ad157@epcas5p2.samsung.com>
+ <20220517125548.14746-4-smitha.t@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220517125548.14746-4-smitha.t@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,185 +84,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 17, 2022 at 1:59 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Rob,
->
-> On Tue, May 17, 2022 at 3:04 AM Rob Herring <robh@kernel.org> wrote:
-> > On Mon, May 09, 2022 at 02:41:38PM +0200, Geert Uytterhoeven wrote:
-> > > Convert the Renesas R-Car Gen2 USB PHY Device Tree binding documentation
-> > > to json-schema.
-> > >
-> > > Add missing properties.
-> > > Drop the second example, as it doesn't add any value.
-> > >
-> > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > > ---
-> > > Validation gives:
-> > >
-> > >     Documentation/devicetree/bindings/phy/renesas,rcar-gen2-usb-phy.example.dtb: usb
-> > >     -phy@e6590100: '#phy-cells' is a required property
-> > >           From schema: dt-schema/dtschema/schemas/phy/phy-provider.yaml
-> > >
-> > > The latter considers '#phy-cells' a required property, as the node name
-> > > matches "usb-phy".  But in this binding the actual PHY providers are the
-> > > child nodes.
-> > >
-> > > Is there a way to fix this? Overriding "#phy-cells" to "false" doesn't
-> > > work.
-> > > Should all nodes and child nodes be renamed? The (Linux) driver doesn't
-> > > care about the names of the children.
-> >
-> > There's an open issue in dtschema for this. I don't have an answer other
-> > than don't use 'phy' in the parent node name.
->
-> IC...
->
-> > > ---
-> > > This is the final conversion to json-schema of DT bindings for Renesas
-> > > ARM SoCs, hurray!
-> >
-> > Great, certainly looking better than some! My tracking in linux-next
-> > gives me this:
-> >
-> > For arm:
-> >
-> > Processing (r7|r8|r9|emev2|sh73a|gr-|iwg):
-> > warnings: 283
-> > undocumented compat: 32
-> >
-> > arch/arm/boot/dts/(r7|r8|r9|emev2|sh73a|gr-|iwg):32
-> > ['ams,as3711']
->
-> Board component
->
-> > ['arm,coresight-etm3x']
->
-> ARM core
->
-> > ['dlg,da9063-onkey']
-> > ['dlg,da9063-rtc']
-> > ['dlg,da9063-watchdog']
-> > ['dlg,da9063l']
-> > ['dlg,da9210']
->
-> Board components
->
-> > ['i2c-demux-pinctrl']
->
-> I2C framework
->
-> > ['renesas,pci-r8a7742', 'renesas,pci-rcar-gen2']
-> > ['renesas,pci-r8a7743', 'renesas,pci-rcar-gen2']
-> > ['renesas,pci-r8a7744', 'renesas,pci-rcar-gen2']
-> > ['renesas,pci-r8a7745', 'renesas,pci-rcar-gen2']
-> > ['renesas,pci-r8a7790', 'renesas,pci-rcar-gen2']
-> > ['renesas,pci-r8a7791', 'renesas,pci-rcar-gen2']
-> > ['renesas,pci-r8a7794', 'renesas,pci-rcar-gen2']
-> > ['renesas,pci-r9a06g032', 'renesas,pci-rzn1']
->
-> https://lore.kernel.org/r/20220429134143.628428-3-herve.codina@bootlin.com
->
-> > ['renesas,r2a11302ft']
->
-> I2C device without bindings or upstream driver.
->
-> > ['renesas,r9a06g032-dma', 'renesas,rzn1-dma']
->
-> https://lore.kernel.org/r/20220427095653.91804-2-miquel.raynal@bootlin.com
->
-> > ['renesas,r9a06g032-rtc', 'renesas,rzn1-rtc']
->
-> https://lore.kernel.org/r/20220512143920.238987-2-miquel.raynal@bootlin.com
->
-> > ['renesas,r9a06g032-wdt', 'renesas,rzn1-wdt']
->
-> https://lore.kernel.org/r/20220413082527.155740-2-jjhiblot@traphandler.com
->
-> > ['renesas,rzn1-dmamux']
->
-> https://lore.kernel.org/r/20220421085112.78858-2-miquel.raynal@bootlin.com
->
-> > ['renesas,usb-phy-r8a7742', 'renesas,rcar-gen2-usb-phy']
-> > ['renesas,usb-phy-r8a7743', 'renesas,rcar-gen2-usb-phy']
-> > ['renesas,usb-phy-r8a7744', 'renesas,rcar-gen2-usb-phy']
-> > ['renesas,usb-phy-r8a7745', 'renesas,rcar-gen2-usb-phy']
-> > ['renesas,usb-phy-r8a77470', 'renesas,rcar-gen2-usb-phy']
-> > ['renesas,usb-phy-r8a7790', 'renesas,rcar-gen2-usb-phy']
-> > ['renesas,usb-phy-r8a7791', 'renesas,rcar-gen2-usb-phy']
-> > ['renesas,usb-phy-r8a7794', 'renesas,rcar-gen2-usb-phy']
->
-> This patch.
->
-> > ['sil,sii9022']
->
-> https://lore.kernel.org/r/3b2619682694050696e5c85269ccc4f864590e66.1638540704.git.geert+renesas@glider.be
->
-> > ['st,stmpe-ts']
-> > ['st,stmpe811']
->
-> Board components
->
-> >
-> > For arm64:
-> >
-> > Processing renesas:
-> > warnings: 312
-> > undocumented compat: 15
-> >
-> > undocumented here means no schema.
-> >
-> > arch/arm64/boot/dts/renesas:15
-> > ['ilitek,ili2117']
->
-> https://lore.kernel.org/r/0c5f06c9d262c1720b40d068b6eefe58ca406601.1638539806.git.geert+renesas@glider.be
->
-> > ['micron,mt25qu512a', 'jedec,spi-nor']
->
-> Board component
->
-> > ['nxp,tda998x']
->
-> https://lore.kernel.org/r/1f6bf58d76efc2e869b800534b818d1451ef98a2.1634822085.git.geert+renesas@glider.be
->
-> > ['ovti,ov5645']
->
-> Board component
->
-> > ['renesas,r8a7795-mlp', 'renesas,rcar-gen3-mlp']
-> > ['renesas,r8a7796-mlp', 'renesas,rcar-gen3-mlp']
-> > ['renesas,r8a77961-mlp', 'renesas,rcar-gen3-mlp']
-> > ['renesas,r8a77965-mlp', 'renesas,rcar-gen3-mlp']
-> > ['renesas,r8a77990-mlp', 'renesas,rcar-gen3-mlp']
-> > ['renesas,r8a77995-mlp', 'renesas,rcar-gen3-mlp']
->
-> Driver in staging without any bindings
->
-> > ['renesas,r9a07g043-ssi', 'renesas,rz-ssi']
->
-> https://lore.kernel.org/r/20220423133154.141027-1-biju.das.jz@bp.renesas.com
->
-> > ['renesas,r9a07g043-tsu', 'renesas,rzg2l-tsu']
->
-> https://lore.kernel.org/r/20220501081930.23743-1-biju.das.jz@bp.renesas.com
->
-> > ['renesas,r9a07g043-usbphy-ctrl', 'renesas,rzg2l-usbphy-ctrl']
->
-> https://lore.kernel.org/r/20220423134601.141975-1-biju.das.jz@bp.renesas.com
->
-> > ['renesas,r9a07g043-wdt', 'renesas,rzg2l-wdt']
->
-> https://lore.kernel.org/r/20220424071323.151757-1-biju.das.jz@bp.renesas.com
->
-> > ['ti,pcm3168a']
->
-> Board component
->
-> > I guess board level components don't count and some might be pending.
->
-> Some have been pending (or blocked) for a long time...
+On 17/05/2022 14:55, Smitha T Murthy wrote:
+> Adds DT schema for s5p-mfc with a new compatible
+> string for mfcv12 variant.
+> 
+> Cc: linux-fsd@tesla.com
+> Signed-off-by: Smitha T Murthy <smitha.t@samsung.com>
+> ---
+>  Documentation/devicetree/bindings/media/s5p-mfc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/s5p-mfc.yaml b/Documentation/devicetree/bindings/media/s5p-mfc.yaml
+> index fff7c7e0d575..209da53f3582 100644
+> --- a/Documentation/devicetree/bindings/media/s5p-mfc.yaml
+> +++ b/Documentation/devicetree/bindings/media/s5p-mfc.yaml
+> @@ -21,6 +21,7 @@ properties:
+>        - samsung,mfc-v8                  # Exynos5800
+>        - samsung,exynos5433-mfc          # Exynos5433
+>        - samsung,mfc-v10                 # Exynos7880
+> +      - samsung,mfc-v12                 # Tesla FSD
 
-Can you tell me which ones and I can apply them. If they have my tag
-already, then I tend to ignore them.
+No. We moved already to SoC specific comaptibles. You introduced back
+wrong pattern with MFCv10, but it should be rather fixed. Don't go back
+to it...
 
-Rob
+Best regards,
+Krzysztof
