@@ -2,162 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71861529D89
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 11:11:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFFA8529D8A
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 11:12:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239586AbiEQJK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 05:10:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57702 "EHLO
+        id S232719AbiEQJLr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 05:11:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231822AbiEQJKd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 05:10:33 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95F864B86B;
-        Tue, 17 May 2022 02:08:35 -0700 (PDT)
-X-UUID: 6c43586b3ad74e128767874098025e85-20220517
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:b90e6212-ccee-45e0-aae1-e7356ee88c09,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:2a19b09,CLOUDID:772c7ae2-edbf-4bd4-8a34-dfc5f7bb086d,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:0,BEC:nil
-X-UUID: 6c43586b3ad74e128767874098025e85-20220517
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 437650018; Tue, 17 May 2022 17:08:30 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Tue, 17 May 2022 17:08:28 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Tue, 17 May 2022 17:08:27 +0800
-Message-ID: <38e38006662b52631a2145228444b9d70f9eb2c6.camel@mediatek.com>
-Subject: Re: [PATCH 2/2] iommu: mtk_iommu: Add support for MT6795 Helio X10
- M4Us
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-CC:     <joro@8bytes.org>, <will@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
-        <iommu@lists.linux-foundation.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <konrad.dybcio@somainline.org>, <marijn.suijten@somainline.org>,
-        <martin.botka@somainline.org>,
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        <phone-devel@vger.kernel.org>, <paul.bouchara@somainline.org>,
-        <yf.wang@mediatek.com>, <mingyuan.ma@mediatek.com>
-Date:   Tue, 17 May 2022 17:08:26 +0800
-In-Reply-To: <20220513151411.395744-3-angelogioacchino.delregno@collabora.com>
-References: <20220513151411.395744-1-angelogioacchino.delregno@collabora.com>
-         <20220513151411.395744-3-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S244422AbiEQJLK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 05:11:10 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 976C521E34
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 02:11:06 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1nqtEK-0000za-Qh; Tue, 17 May 2022 11:11:00 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     dri-devel@lists.freedesktop.org,
+        Sascha Hauer <s.hauer@pengutronix.de>, robh+dt@kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Peter Geis <pgwipeout@gmail.com>, krzk+dt@kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: display: rockchip: make reg-names mandatory for VOP2
+Date:   Tue, 17 May 2022 11:10:59 +0200
+Message-ID: <8064279.T7Z3S40VBb@diego>
+In-Reply-To: <c397bff2-b4c0-3f85-e5b9-22f03bc80a2b@linaro.org>
+References: <20220511082109.1110043-1-s.hauer@pengutronix.de> <6824319.LvFx2qVVIh@phil> <c397bff2-b4c0-3f85-e5b9-22f03bc80a2b@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-05-13 at 17:14 +0200, AngeloGioacchino Del Regno wrote:
-> Add support for the M4Us found in the MT6795 Helio X10 SoC.
+Am Dienstag, 17. Mai 2022, 11:02:06 CEST schrieb Krzysztof Kozlowski:
+> On 14/05/2022 00:26, Heiko Stuebner wrote:
+> > Hi Rob, Krzysztof,
+> > 
+> > Am Mittwoch, 11. Mai 2022, 10:21:07 CEST schrieb Sascha Hauer:
+> >> The VOP2 driver relies on reg-names properties, but these are not
+> >> documented. Add the missing documentation, make reg-names mandatory
+> >> and increase minItems to 2 as always both register spaces are needed.
+> >>
+> >> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> > 
+> > does this look ok now?
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <
-> angelogioacchino.delregno@collabora.com>
-> ---
->  drivers/iommu/mtk_iommu.c | 20 +++++++++++++++++++-
->  1 file changed, 19 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-> index 71b2ace74cd6..3d802dd3f377 100644
-> --- a/drivers/iommu/mtk_iommu.c
-> +++ b/drivers/iommu/mtk_iommu.c
-> @@ -157,6 +157,7 @@
->  enum mtk_iommu_plat {
->  	M4U_MT2712,
->  	M4U_MT6779,
-> +	M4U_MT6795,
->  	M4U_MT8167,
->  	M4U_MT8173,
->  	M4U_MT8183,
-> @@ -953,7 +954,8 @@ static int mtk_iommu_hw_init(const struct
-> mtk_iommu_data *data, unsigned int ban
->  	 * Global control settings are in bank0. May re-init these
-> global registers
->  	 * since no sure if there is bank0 consumers.
->  	 */
-> -	if (data->plat_data->m4u_plat == M4U_MT8173) {
-> +	if (data->plat_data->m4u_plat == M4U_MT6795 ||
-> +	    data->plat_data->m4u_plat == M4U_MT8173) {
->  		regval = F_MMU_PREFETCH_RT_REPLACE_MOD |
->  			 F_MMU_TF_PROT_TO_PROGRAM_ADDR_MT8173;
->  	} else {
-> @@ -1138,6 +1140,9 @@ static int mtk_iommu_probe(struct
-> platform_device *pdev)
->  		case M4U_MT2712:
->  			p = "mediatek,mt2712-infracfg";
->  			break;
-> +		case M4U_MT6795:
-> +			p = "mediatek,mt6795-infracfg";
-> +			break;
->  		case M4U_MT8173:
->  			p = "mediatek,mt8173-infracfg";
->  			break;
-> @@ -1404,6 +1409,18 @@ static const struct mtk_iommu_plat_data
-> mt6779_data = {
->  	.larbid_remap  = {{0}, {1}, {2}, {3}, {5}, {7, 8}, {10}, {9}},
->  };
->  
-> +static const struct mtk_iommu_plat_data mt6795_data = {
-> +	.m4u_plat     = M4U_MT6795,
-> +	.flags	      = HAS_4GB_MODE | HAS_BCLK | RESET_AXI |
-> +			HAS_LEGACY_IVRP_PADDR | MTK_IOMMU_TYPE_MM,
-> +	.inv_sel_reg  = REG_MMU_INV_SEL_GEN1,
-> +	.banks_num    = 1,
-> +	.banks_enable = {true},
-> +	.iova_region  = single_domain,
-> +	.iova_region_nr = ARRAY_SIZE(single_domain),
-> +	.larbid_remap = {{0}, {1}, {2}, {3}, {4}}, /* Linear mapping.
-> */
-> +};
+> Neither Rob nor me was Cced on original email, so I don't have it in my
+> mailbox... I would expect that scripts/get_maintainers.pl is a known tool.
 
-This is nearly same with mt8173_data. mt8173 has one more larb than
-mt6795, its larbid_remap is also ok for mt6795.
+Rob wrote in the past that he's working off of the devicetree-patchwork,
+and has reviewed the binding yesterday [0].
 
-thus it looks we could use mt8173 as the backward compatible.
-    compatible = "mediatek,mt6795-m4u",
-                 "mediatek,mt8173-m4u";
+But you're right, including all the maintainers get_maintainers.pl suggests
+would be better in the future.
 
-After this, the only thing is about "mediatek,mt6795-infracfg". we have
-to try again with mediatek,mt6795-infracfg after mediatek,mt8173-
-infracfg fail. I think we should allow the backward case in 4GB mode
-judgment if we have.
 
-What's your opinion? or some other suggestion?
-Thanks.
+[0] https://lore.kernel.org/r/20220516151226.GA2653888-robh@kernel.org
 
-> +
->  static const struct mtk_iommu_plat_data mt8167_data = {
->  	.m4u_plat     = M4U_MT8167,
->  	.flags        = RESET_AXI | HAS_LEGACY_IVRP_PADDR |
-> MTK_IOMMU_TYPE_MM,
-> @@ -1515,6 +1532,7 @@ static const struct mtk_iommu_plat_data
-> mt8195_data_vpp = {
->  static const struct of_device_id mtk_iommu_of_ids[] = {
->  	{ .compatible = "mediatek,mt2712-m4u", .data = &mt2712_data},
->  	{ .compatible = "mediatek,mt6779-m4u", .data = &mt6779_data},
-> +	{ .compatible = "mediatek,mt6795-m4u", .data = &mt6795_data},
->  	{ .compatible = "mediatek,mt8167-m4u", .data = &mt8167_data},
->  	{ .compatible = "mediatek,mt8173-m4u", .data = &mt8173_data},
->  	{ .compatible = "mediatek,mt8183-m4u", .data = &mt8183_data},
 
