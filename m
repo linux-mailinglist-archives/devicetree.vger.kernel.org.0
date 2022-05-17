@@ -2,73 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF7C552ACD5
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 22:37:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3C5852ACDA
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 22:39:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352692AbiEQUhl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 16:37:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44498 "EHLO
+        id S1353013AbiEQUi7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 16:38:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241415AbiEQUhk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 16:37:40 -0400
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F20AB2FFC4;
-        Tue, 17 May 2022 13:37:39 -0700 (PDT)
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-edf3b6b0f2so92613fac.9;
-        Tue, 17 May 2022 13:37:39 -0700 (PDT)
+        with ESMTP id S229797AbiEQUi5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 16:38:57 -0400
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6E99427C1;
+        Tue, 17 May 2022 13:38:56 -0700 (PDT)
+Received: by mail-oi1-f177.google.com with SMTP id w123so269518oiw.5;
+        Tue, 17 May 2022 13:38:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=YJ/g+N+frsFeUBRUIZZcLHsE+4AmcmYs415GdYVs7PU=;
-        b=aVBkRH0ysKUMBb78XiJs4EJSTjnhqEUtTus67wdTrUM9H0v/mIIGe/NHMCJTwvutzc
-         w6r3nrcQpHCDIFbgZeQQn0/OvSRuh1ighV35Lb5HyaVSpSEezpT8TX+oI0wNGEjrZdSS
-         ZMMwQADbShSoNH5sWabymk6VSvCYZ7IvBrOaQ1w2NItfF69ybhCkBtvv/ErkUEwfQOTZ
-         ENoDFgLgfZ/MuDT2tUenphIm9x/zenIJarefEtS5MeBT0HOEt2WfljLTCJVYI4l52dSr
-         Qs1nsWcclhGlFSyvlpTtyTPspQfFu3E4Sr1I4b+KQGzvNUasMQnYbjmsmL1+dgOCKAd+
-         puMg==
-X-Gm-Message-State: AOAM533AqnhNSaxIc8i5SaUDtG39unaR4giOQi9QUlN7SEXsWqIZLaQC
-        lWaFWXhlyL4nE7WvamiZHA==
-X-Google-Smtp-Source: ABdhPJxBncrepNVcSnbcipiZ6gs1h1FVeBg+V08G/WW79lWSiDRNBP405jmaewROF8jc71honMgxzA==
-X-Received: by 2002:a05:6870:4596:b0:da:b3f:2b1d with SMTP id y22-20020a056870459600b000da0b3f2b1dmr20604993oao.188.1652819859252;
-        Tue, 17 May 2022 13:37:39 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=76acAsy+SpmXuXdcwFP1XutJCmMfZGECecrBN17zFW8=;
+        b=JTOw18T/KXwOzdgJWxFAsnQ2MuVsXxgyARK3WI2XfK8+i1ihAz+97jLb+vsbVPBE+F
+         wtJB0iTqYhGJZMZpU1ZUb/nGOI4yHFWmJk3VLmbQJMlGxnOhwQF+ZNJ+W/cqMcnkraj6
+         4Fxnfkyy8jPPkavs9B5HmaSATfk7RlPam0n9nzWGm7ueptiZLtvBFZNHoOzOT6pZlPeA
+         KbZDQh0AcoWSXqpwl+0lXlV+iqHmu9Iseny0LY9Mwi4CzWIWORVHAc6LtjCShJcgUrCe
+         QKImrz9hQq5EcLMPJpVEAdhFzp3f8HDMIwHCOEh4VIkF0GCsiSLlJn/XfY1uytIxIkR5
+         g64w==
+X-Gm-Message-State: AOAM5300/NGrh0GTkZocY71CKNy8OnlzzKZT1hmlNyT9zd24s370HWRK
+        LShEBDRBjZ0kiXEYrKERdw==
+X-Google-Smtp-Source: ABdhPJxlSCs3AI+SN/yRG4xckkFiyuJMzASwJux1bkbcf5hDQi5L76hWTxDrOghHmhidJsbaJkhsUw==
+X-Received: by 2002:a05:6808:114d:b0:328:aaa2:10c9 with SMTP id u13-20020a056808114d00b00328aaa210c9mr11583137oiu.217.1652819936072;
+        Tue, 17 May 2022 13:38:56 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 185-20020a4a14c2000000b0035eb4e5a6b1sm217659ood.7.2022.05.17.13.37.37
+        by smtp.gmail.com with ESMTPSA id r5-20020a9d5cc5000000b006060322124bsm160989oti.27.2022.05.17.13.38.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 May 2022 13:37:38 -0700 (PDT)
-Received: (nullmailer pid 1594561 invoked by uid 1000);
-        Tue, 17 May 2022 20:37:37 -0000
-Date:   Tue, 17 May 2022 15:37:37 -0500
+        Tue, 17 May 2022 13:38:55 -0700 (PDT)
+Received: (nullmailer pid 1597094 invoked by uid 1000);
+        Tue, 17 May 2022 20:38:54 -0000
+Date:   Tue, 17 May 2022 15:38:54 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-leds@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com, ansuelsmth@gmail.com,
-        andrew@lunn.ch, vivien.didelot@gmail.com,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        John Crispin <john@phrozen.org>, linux-doc@vger.kernel.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH RESEND 2/5] dt-bindings: net: allow Ethernet devices as
- LED triggers
-Message-ID: <20220517203737.GA1590689-robh@kernel.org>
-References: <20220505135512.3486-1-zajec5@gmail.com>
- <20220505135512.3486-3-zajec5@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Robert Foss <robert.foss@linaro.org>,
+        Del Regno <angelogioacchino.delregno@somainline.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Todor Tomov <todor.too@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 1/4] media: dt-bindings: qcom,sdm660-camss: document
+ interconnects
+Message-ID: <20220517203854.GA1597034-robh@kernel.org>
+References: <20220509144714.144154-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220505135512.3486-3-zajec5@gmail.com>
+In-Reply-To: <20220509144714.144154-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -80,29 +70,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 05, 2022 at 03:55:09PM +0200, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Mon, 09 May 2022 16:47:11 +0200, Krzysztof Kozlowski wrote:
+> Document the interconnect properties used in the Qualcomm CAMSS on
+> SDM660:
 > 
-> This allows specifying Ethernet interfaces and switch ports as triggers
-> for LEDs activity.
+>   sdm630-sony-xperia-nile-discovery.dtb: camss@ca00000: 'interconnect-names', 'interconnects' do not match any of the regexes: 'pinctrl-[0-9]+'
 > 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  Documentation/devicetree/bindings/net/ethernet-controller.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+>  .../devicetree/bindings/media/qcom,sdm660-camss.yaml       | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> index 4f15463611f8..ebeb4446d253 100644
-> --- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> +++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> @@ -232,6 +232,9 @@ properties:
->            required:
->              - speed
->  
-> +allOf:
-> +  - $ref: /schemas/leds/trigger-source.yaml
 
-There's no need to add this here. A device binding still has to list 
-'#trigger-source-cells' and set it's value to 0 or 1 cell.
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
