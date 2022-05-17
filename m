@@ -2,252 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 496EC529DEF
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 11:25:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E6F4529DFA
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 11:27:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242373AbiEQJZk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 05:25:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49100 "EHLO
+        id S240362AbiEQJ0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 05:26:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233781AbiEQJZZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 05:25:25 -0400
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-eopbgr80049.outbound.protection.outlook.com [40.107.8.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEB9337011;
-        Tue, 17 May 2022 02:25:21 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UzGsqGEUzojbbvjcd/1edZbaJrkpjyjHnL1geTFtMdGL4sOfGRYSnhdMlqarzxS6uB3Uw3vbXz9Ulrxwtf0HoSWfJoCKQyhS8uULCIFKzBRsjBbfFua6JvHaI8ejb/jm1i+ruRxFEVjKo90lSO0CPDwsznSpLpXTdTJCXquu++9YMBLboepo+uF6XerKozMcYCYslsc1D2SHyVXfZTKAFw+uhBwJzHr6OMeaV+BBXgu0zgwjPyD9xcIMpUKDRyKPmnz4VGC+bvcUpZWKREa2ASqyWjTRUIBXTJEDi6KFlhn15rkdda56F107MGXABhDnFMQgJf1F0OshN9GU1NxBug==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/70/UzSLiCi+paFYt6qZsJBS0h+j4iU0s8TKG5piyLw=;
- b=DFXbpqatEmrCn3vClDpp5xruPDV76p1lE6sVYGvYdt1Q6+/eh9TP++zeKG08912C5HJmZA/PCAhvY3wl/bB1I8kunQpnFoGCE27pqTleZBypozwFdeCEmEFUTQ1uZRFWwG5rwNjDovRpO0FJeu0/alPRBukkP8I0baX4Pby3vySfKzNpvhtw71MmByacGsXf90u8uA4r/DVws8/Lm8n1cVzaeJyTqhYWrZmyG0kpG3K8zV2AgZcomL5XvPJNVmx4KdXIiFTaq+zFgv15SEFBaokj5MBwI+YyRJxYIJvMK/zooiPdNwIeVmjxuHNvK94o54Fp4eHjJ5PiwtvX8eayBQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
- header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
- arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=cherrycloud.onmicrosoft.com; s=selector2-cherrycloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/70/UzSLiCi+paFYt6qZsJBS0h+j4iU0s8TKG5piyLw=;
- b=IqJo5eeietANQpcgg1HbzPbg9lapwxQ+35iw5JTYBEvLF+LTD/94yjArA+yMhGK3eNNHbyVMAikNWj0LC4ojsrDOS+sHzB+fCetFN1A4f3Av7CYyvgREJ+X4vBW6/BTDgC9UID37PA14YncPB2QsdolbXo3xscNussTbdkXZyjE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
-Received: from PA4PR04MB9367.eurprd04.prod.outlook.com (2603:10a6:102:2aa::7)
- by AS8PR04MB7893.eurprd04.prod.outlook.com (2603:10a6:20b:2ab::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.18; Tue, 17 May
- 2022 09:25:19 +0000
-Received: from PA4PR04MB9367.eurprd04.prod.outlook.com
- ([fe80::e443:c646:c299:5512]) by PA4PR04MB9367.eurprd04.prod.outlook.com
- ([fe80::e443:c646:c299:5512%7]) with mapi id 15.20.5227.023; Tue, 17 May 2022
- 09:25:19 +0000
-Message-ID: <b77d43d5-4a50-3da2-67b4-65224a82a202@theobroma-systems.com>
-Date:   Tue, 17 May 2022 11:25:17 +0200
+        with ESMTP id S245143AbiEQJ0x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 05:26:53 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F6812AE0A;
+        Tue, 17 May 2022 02:26:52 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id BD6B01F443ED
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1652779611;
+        bh=D7c61EwGqdBX0Lw08AQnOwRHtOVIW1E5TNgutoUJtfQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=kxvCx6+RAIRbpZiibenhzoNCxHqJVohhnT00pE5zUajFhHFvesGnd1pbT3/AMINPP
+         RfX0fuHUR83AMDEcfX/cJ1azgYG06gR8B2t+9BC5uOIsfmu90YXxjxJFJ36/KXWlsM
+         0rBR7jE3jdpFgTABLgMUdwLAaibhhnMcUAFouQ30bX7n0v96NwqDxP7P7EjXax4mze
+         AN4N9rNTZlwcHZDRSnXssYRTldeMvOIfxmGvk+OsNWn+9hVA4x8fRDRGvea1jjDLya
+         KWnKOV1h5mE1aaSK7LdL7JG7vEp/Jcr8xAhUfqmxV/Ncb4woj6SnZ9cExjuKjfGFmW
+         GNNkhXwX6VllA==
+Message-ID: <9a67d3e8-8840-03b1-aec8-5a218e810eae@collabora.com>
+Date:   Tue, 17 May 2022 11:26:47 +0200
+MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.0
-Subject: Re: [PATCH v3 4/4] media: i2c: ov5675: add .get_selection support
+Subject: Re: [PATCH 2/2] iommu: mtk_iommu: Add support for MT6795 Helio X10
+ M4Us
 Content-Language: en-US
-To:     Jacopo Mondi <jacopo@jmondi.org>,
-        Quentin Schulz <foss+kernel@0leil.net>
-Cc:     shawnx.tu@intel.com, mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220509143226.531117-1-foss+kernel@0leil.net>
- <20220509143226.531117-4-foss+kernel@0leil.net>
- <20220512090553.x7mzsj3ff3u5gqxq@uno.localdomain>
-From:   Quentin Schulz <quentin.schulz@theobroma-systems.com>
-In-Reply-To: <20220512090553.x7mzsj3ff3u5gqxq@uno.localdomain>
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        iommu@lists.linux-foundation.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org, paul.bouchara@somainline.org,
+        yf.wang@mediatek.com, mingyuan.ma@mediatek.com
+References: <20220513151411.395744-1-angelogioacchino.delregno@collabora.com>
+ <20220513151411.395744-3-angelogioacchino.delregno@collabora.com>
+ <38e38006662b52631a2145228444b9d70f9eb2c6.camel@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <38e38006662b52631a2145228444b9d70f9eb2c6.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AS9PR04CA0095.eurprd04.prod.outlook.com
- (2603:10a6:20b:50e::7) To PA4PR04MB9367.eurprd04.prod.outlook.com
- (2603:10a6:102:2aa::7)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: aeccf862-1b3a-4e9d-a071-08da37e728ee
-X-MS-TrafficTypeDiagnostic: AS8PR04MB7893:EE_
-X-Microsoft-Antispam-PRVS: <AS8PR04MB789302C4B7008DFC52BC21FBC2CE9@AS8PR04MB7893.eurprd04.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: BfhyFf+pYwFb3xv98uV9crfMnEpjUJtN8hxD/TZ3wWDA+MvQ5zP10T547hRbId7U44HaSG08UHg6ffdUYKWz6GYV7DGp4+BAfcDafiNlX9p/W4Sj/b3YZHiprpkLSzTGnNg029Xb6UyOd4szEoz0eERN7zBNg2TvZTC6mNevzSITMkTEb8LtqXOmfGjl5iOKMJocMRdq9lMkUeLPbkjA7vvdy3kSS3rR9je9e3J9qVzny7vYXjD06UOimYNSo31YlOj0GGJA0esNhYDbhchVCAEfHH7NMIVuvl34dH3ns9PpA0zeRB8kTS3sXkRZ5pQw/Q5f4gGK7Qh0qTQplAKpGS+hofSZoHWssifhAbdRnQjd0oxGJVYxOtYhu51VuO2e4rheAJ9182LHhx+sFCwIeSUuY1wWDXcC1FNQPmaNEPcU5QfPRPQCxUatt+nAED1lpLUw2I8inQk0DkLDEJU9iFaPswjRZVF9plgtMpPKWZAvS+snD9l4hr6reXREZnQzsN4WxEfzSA0CWf0lxQD0bDjKyAa4JCqq3bNLGTlJd+ZMcXfo4ubLipj5GVwOBx1ItofdR1/FThB+vaq19OrqOEnng88NJri3+bA7YpFftZpkbXf4UShK3vHYG0LvAWQlBp3LrdgfYBFXPpevjGg/DaT3QWKgL6jH3Gx9cHrj8GnWhliGXkLumB70zhk5XYqTNDzUIEMs8wDR/7dHAD2ft1QicqEeAgTviPIjwF397ytC/M6Qv4cee2BPedNygTF6
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9367.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(38100700002)(2906002)(6512007)(83380400001)(31686004)(186003)(316002)(110136005)(31696002)(6486002)(508600001)(44832011)(66946007)(5660300002)(66556008)(4326008)(8676002)(8936002)(66476007)(26005)(6506007)(53546011)(2616005)(36756003)(86362001)(142923001)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WXJxMTlyY1lXaDYzNytPSjlWSzhYOGRqRS9VL01abmFET2UvTGxmUXdqOTQr?=
- =?utf-8?B?U1llU2VMSjg4UHRhaDluZlZDRlc5VytUNnlhUm1JRmlNVzE5WDFXUFA2U0tt?=
- =?utf-8?B?WWhaMEJhZ1piTmViN1pxWlZNcEFJYjJkOEgyRi85NUh5eXIrS3ZVVWpUSnBV?=
- =?utf-8?B?Wm9RaHlZaXJZSHY5MHBxQUNmaXhYN3drWHRHTWgwejVidVc0VVJGdFRSL3RN?=
- =?utf-8?B?S1I5Q2p5Q1BSbEZ4eXNPYU1NTG9NSlFWR3B3Wkw1L1ArTWFHbThmWHZDS2Fo?=
- =?utf-8?B?ZllBQUJ1eGZJaFJoOG1pWnpOSTdzVzEvZ0RldXpjQWhTZWRrNkZDbkhJcTE1?=
- =?utf-8?B?OVpreFRjYm9PRC9PNGxlZXFRTWhmZHo3S0dIK3J5KzlOamNneGdWWklTRWtz?=
- =?utf-8?B?VnFNaWhGVnBGdFdJTDNZckUycCtzanFTdXI2aTBRQVhoUVFsQkVNN2ZTdzht?=
- =?utf-8?B?M0FETkdyZXI1c0xyS2dWVE8wb2RnbWNkbVl3R01nRXgzVy9jcGl4d0xrZENI?=
- =?utf-8?B?OE41SjNPRytwK3FOTGRjQk9VMVE0U0VVQWNkTUpkT2cwaEdoR3lHZnV6cE1u?=
- =?utf-8?B?dlJ4OVd4d3ViMHpmV1lWMUpPOUEwR1ZHb2thVW5haWRxay9KcVdSeFZIWmNM?=
- =?utf-8?B?bEgvOFZwYVYwcERIaFp0Z3hsdkM4K2x0YmwxV2thdWFrQ21UUjZiRG5odEpN?=
- =?utf-8?B?WDh6WFl2UnkvSWZsYk5zNWtNeHJxcXBEZFNwYi9QT2IzRlRMN2pnNVVSREE3?=
- =?utf-8?B?ZlVxajEvdXB5YjFVOGlZTkVPMnQzTERpeGFtZXQzeG1JTCtxQ0JEYVB2SGF1?=
- =?utf-8?B?OVU5WW1oYWVsYmpRQTJoY0FjUGZlUW5QWk8vZ3QwampJUkh0UFVIRmxtZ2RJ?=
- =?utf-8?B?TEQ2UnlYU2lMNHoyUGxYOUxpZ1JtSlBsVi96U1c1V2M4WlU3amhHL29uMGNn?=
- =?utf-8?B?V2M4WjF5Y3RXWUZwVm5WcDZLSjc5KzlvUExMSG1naG8xd2pFcFQzZ3hocTVO?=
- =?utf-8?B?Uk9CanVCMWI0LzllbzlFcHY0MzdvbnFHS1AzNmJOTUVuTWJ2MTljaVZneXB2?=
- =?utf-8?B?N0lnWXpzWlpvdTB0TC96OENKMEJmRlhDa01BY0wrenl4NjcvTHVCaEdNa09P?=
- =?utf-8?B?SStoQm5MWWhhWk5BWmdsa3VBdmxpUmJrcVI4QmxDaXpBaXRQQUJodVIwaFdR?=
- =?utf-8?B?OUxkalA4aU40dXlrQ0RxaEhGS05Gc1B3MmpuSGZHUS9SbmhqYUpTRldwZ0lL?=
- =?utf-8?B?dG44RUFDM3JNM0FHQ0xFUG40K3RQNEJ2U3lraHRGYng5SzVWeEZjM0ZqWjVm?=
- =?utf-8?B?Tjd0cU00bWZsWkN3U3k5OXg1dzhMa2d4QTFqc0NDUnlNam9JdHp2SHg1QVFJ?=
- =?utf-8?B?ckFBS3IzUUk2bzUyMlIzSFM2NTJrMFZDd2VBVEFmUHVkankydU9pUGxZUVlm?=
- =?utf-8?B?QkUzSFJXamx6QnlCeE9USm12eFlmUmJBZVkxVTZRUVMxcFAwRkFZOXV2M3kw?=
- =?utf-8?B?RTlUejltUmtUSWdreUpHQ2xZK2tCY2pSNGY3cmJCdENaUFpFcXI0MWpCM1hC?=
- =?utf-8?B?OVFDNnNsaHpqTFF3U21rNFVLeDJ3MkVNWmgwOTRhM2thRlRPTVFFbVhNdS9k?=
- =?utf-8?B?clR3L0ZibVdQMGw2NE5NQ2xkdzZia3VHV0ovVm44bXJwM3Q4UlMrNkkybHdj?=
- =?utf-8?B?cDMwbTg0anlTQU1JbmNHS2pySXp3b1grK3NjZXBwYXhnU0l2MXBNT0tKN1RY?=
- =?utf-8?B?SHFkSmdmVExJR3o0ZUlQbTVSalBXSmlncm9xbnQzanA5VUFHZGlqWE83SFZ3?=
- =?utf-8?B?S3dWMHVlT1ZsYjkvS051WlRDcHJDOUhDbzhmTEIyRXg3VUpNQVd0Z2FCSHVV?=
- =?utf-8?B?OWdhNFR2NFM5OEpHbStRTzQ2c2xqemZnemZxUjNEQkh2UzBxc3hEdG9wekhU?=
- =?utf-8?B?a2t5SEl1dUtJWjNZQnFqSEoyU2x3MUIrVlA3ZkFsU2Z5RTZTYTN5M000bHh5?=
- =?utf-8?B?SVdxVjZ1VDRQSGhIMGc5bmxoSWEzemZiNEtPdDM4czJmQThXWWVSc2ZzOWtC?=
- =?utf-8?B?WUxHM3RjSjZaVHlrOXUwOUtMTmdud2s1ZGZuZHlxTjI1SmR5WlNwWTNOS3Vr?=
- =?utf-8?B?VzZEamFIK3hYL0E2VVU1b3pGUkJ5eUtjVXVtNitNUmJvN1M2dkZKTEpZVHh4?=
- =?utf-8?B?OXlCWHo5cDRoaFk1ZUJZdGdiSElVdU1mRmhOZWxNNCtJUld5THV2UXM0N3Js?=
- =?utf-8?B?QU5WMEtha1hzd0RlWEZNWDY4Q090TFlrRVowdThUKzZkN0hGK3lDcW13cGVi?=
- =?utf-8?B?UlJoeHFxemhSKzI2Z29rbzJrRFNQdkg2UzZON05aRlQ3VjRybkRoZjk1N0xi?=
- =?utf-8?Q?dWk4mhlpY2OT4XeC29VfRHAn4RxDj8sIHL4df?=
-X-OriginatorOrg: theobroma-systems.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: aeccf862-1b3a-4e9d-a071-08da37e728ee
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9367.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 May 2022 09:25:19.1765
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WXVrSd2/b2uIYHPeGSqEL7n70C8iZDnteVtrAWpu7ELojdimAw9SnD9vLDvzNV0kcU72Vjk0exmicOGmq3f79G2kvMMUd/XujPXNJFzUAUGRASZeRDDHyGEVvRFIn1Ob
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7893
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,PDS_OTHER_BAD_TLD,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacopo,
-
-On 5/12/22 11:05, Jacopo Mondi wrote:
-> Hi Quentin,
-> 
-> On Mon, May 09, 2022 at 04:32:26PM +0200, Quentin Schulz wrote:
->> From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+Il 17/05/22 11:08, Yong Wu ha scritto:
+> On Fri, 2022-05-13 at 17:14 +0200, AngeloGioacchino Del Regno wrote:
+>> Add support for the M4Us found in the MT6795 Helio X10 SoC.
 >>
->> The sensor has 2592*1944 active pixels, surrounded by 16 active dummy
->> pixels and there are an additional 24 black rows "at the bottom".
->>
->> As recommended in the SELECTION API documentation, let's put the first
->> useful active pixel at the top/left corner (0,0).
->>
->> This window is the default and maximal crop allowed by the sensor.
->>
->> Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+>> Signed-off-by: AngeloGioacchino Del Regno <
+>> angelogioacchino.delregno@collabora.com>
 >> ---
+>>   drivers/iommu/mtk_iommu.c | 20 +++++++++++++++++++-
+>>   1 file changed, 19 insertions(+), 1 deletion(-)
 >>
->> added in v3
->>
->>   drivers/media/i2c/ov5675.c | 25 +++++++++++++++++++++++++
->>   1 file changed, 25 insertions(+)
->>
->> diff --git a/drivers/media/i2c/ov5675.c b/drivers/media/i2c/ov5675.c
->> index 5544e1ae444e..8e3a5bc6c027 100644
->> --- a/drivers/media/i2c/ov5675.c
->> +++ b/drivers/media/i2c/ov5675.c
->> @@ -78,6 +78,9 @@
->>   #define OV5675_REG_FORMAT1		0x3820
->>   #define OV5675_REG_FORMAT2		0x373d
->>
->> +#define OV5675_PIXEL_ARRAY_WIDTH	2592U
->> +#define OV5675_PIXEL_ARRAY_HEIGHT	1944U
->> +
->>   #define to_ov5675(_sd)			container_of(_sd, struct ov5675, sd)
->>
->>   static const char * const ov5675_supply_names[] = {
->> @@ -1115,6 +1118,27 @@ static int ov5675_get_format(struct v4l2_subdev *sd,
->>   	return 0;
->>   }
->>
->> +static int ov5675_get_selection(struct v4l2_subdev *sd,
->> +				struct v4l2_subdev_state *state,
->> +				struct v4l2_subdev_selection *sel)
->> +{
->> +	if (sel->which != V4L2_SUBDEV_FORMAT_ACTIVE)
->> +		return -EINVAL;
->> +
->> +	switch (sel->target) {
->> +	case V4L2_SEL_TGT_CROP:
->> +	case V4L2_SEL_TGT_CROP_DEFAULT:
->> +	case V4L2_SEL_TGT_CROP_BOUNDS:
->> +		/* In HW, top/left corner is actually at (16,16) */
->> +		sel->r.top = 0;
->> +		sel->r.left = 0;
->> +		sel->r.width = OV5675_PIXEL_ARRAY_WIDTH;
->> +		sel->r.height = OV5675_PIXEL_ARRAY_HEIGHT;
->> +		return 0;
->> +	}
+>> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
+>> index 71b2ace74cd6..3d802dd3f377 100644
+>> --- a/drivers/iommu/mtk_iommu.c
+>> +++ b/drivers/iommu/mtk_iommu.c
+>> @@ -157,6 +157,7 @@
+>>   enum mtk_iommu_plat {
+>>   	M4U_MT2712,
+>>   	M4U_MT6779,
+>> +	M4U_MT6795,
+>>   	M4U_MT8167,
+>>   	M4U_MT8173,
+>>   	M4U_MT8183,
+>> @@ -953,7 +954,8 @@ static int mtk_iommu_hw_init(const struct
+>> mtk_iommu_data *data, unsigned int ban
+>>   	 * Global control settings are in bank0. May re-init these
+>> global registers
+>>   	 * since no sure if there is bank0 consumers.
+>>   	 */
+>> -	if (data->plat_data->m4u_plat == M4U_MT8173) {
+>> +	if (data->plat_data->m4u_plat == M4U_MT6795 ||
+>> +	    data->plat_data->m4u_plat == M4U_MT8173) {
+>>   		regval = F_MMU_PREFETCH_RT_REPLACE_MOD |
+>>   			 F_MMU_TF_PROT_TO_PROGRAM_ADDR_MT8173;
+>>   	} else {
+>> @@ -1138,6 +1140,9 @@ static int mtk_iommu_probe(struct
+>> platform_device *pdev)
+>>   		case M4U_MT2712:
+>>   			p = "mediatek,mt2712-infracfg";
+>>   			break;
+>> +		case M4U_MT6795:
+>> +			p = "mediatek,mt6795-infracfg";
+>> +			break;
+>>   		case M4U_MT8173:
+>>   			p = "mediatek,mt8173-infracfg";
+>>   			break;
+>> @@ -1404,6 +1409,18 @@ static const struct mtk_iommu_plat_data
+>> mt6779_data = {
+>>   	.larbid_remap  = {{0}, {1}, {2}, {3}, {5}, {7, 8}, {10}, {9}},
+>>   };
+>>   
+>> +static const struct mtk_iommu_plat_data mt6795_data = {
+>> +	.m4u_plat     = M4U_MT6795,
+>> +	.flags	      = HAS_4GB_MODE | HAS_BCLK | RESET_AXI |
+>> +			HAS_LEGACY_IVRP_PADDR | MTK_IOMMU_TYPE_MM,
+>> +	.inv_sel_reg  = REG_MMU_INV_SEL_GEN1,
+>> +	.banks_num    = 1,
+>> +	.banks_enable = {true},
+>> +	.iova_region  = single_domain,
+>> +	.iova_region_nr = ARRAY_SIZE(single_domain),
+>> +	.larbid_remap = {{0}, {1}, {2}, {3}, {4}}, /* Linear mapping.
+>> */
+>> +};
 > 
-> CROP_NATIVE = the full pixel array size = 2592x1944
-> 
-> CROP_BOUNDS = the rectangle that contains all possible crop
->                rectangles, aka the readable portion of your pixel array.
->                If in your case the sensor can read out dummy and non
->                active lines this is == NATIVE
-> 
-> CROP_DEFAULT = the active/valid pixel area. If there are any
->                 dummy/invalid lines the DEFAULT rectangle should not
->                 include them
-> 
-> CROP = the portion of the active pixel area cropped to produce the
->         final image. You should look into the modes definition and
->         inspect what values are programmed in register 0x380x (I don't
->         have a datasheet hence I don't know what corresponds to what)
-> 
-> Does this make any sense to you ?
+> This is nearly same with mt8173_data. mt8173 has one more larb than
+> mt6795, its larbid_remap is also ok for mt6795.
 > 
 
-It's difficult to make sense of the datasheet to be honest.
+I think that we should be explicit about the larbid_remap property,
+since mt6795 has one less larb, we should explicitly say that like
+I did there... that's only for human readability I admit ... but,
+still, I wouldn't want to see people thinking that MT6795 has 6 LARBs
+because they've read that larbid_remap having 6 entries.
 
-There's a 3296x2480px "full-size" rectangle, then the sensor array 
-output area called CROP and configurable through registers 0x380x, then 
-another output area called WIN (for window) also configurable through 
-registers 0x380x. The WIN area seems to be just a mask applied on top of 
-CROP area ("timing is not affected").
+> thus it looks we could use mt8173 as the backward compatible.
+>      compatible = "mediatek,mt6795-m4u",
+>                   "mediatek,mt8173-m4u";
+> 
+> After this, the only thing is about "mediatek,mt6795-infracfg". we have
+> to try again with mediatek,mt6795-infracfg after mediatek,mt8173-
+> infracfg fail. I think we should allow the backward case in 4GB mode
+> judgment if we have.
+> 
+> What's your opinion? or some other suggestion?
+> Thanks.
 
-On top of that, the schema shows 24 black lines - I assume - 
-incorrectly, one after the start of the full-size rectangle, one after 
-the end of the full-size rectangle.
+I know, I may have a plan for that, but I wanted to have a good reason to
+propose such a thing, as if it's just about two SoCs needing that, there
+would be no good reason to get things done differently.
 
-Then the sensor array area region in another section explicitly 
-specifies the sensor to be 2624x2000px, active dummy pixels (2 16-pixel 
-rows and columns) and black lines (1 24-pixel line) included. Which 
-makes the actual useful area 2592x1944px.
+...so, in order to provide a good cleanup, we have two possible roads to
+follow here: either we add a generic "mediatek,infracfg" compatible to the
+infra node (but I don't like that), or we can do it like it was previously
+done in mtk-pm-domains.c (I prefer that approach):
 
-In the datasheet, the default size for the CROP area is
-2624x1952px, offset (0,12) and for WIN it is 2592x1944px, offset (16,4) 
-(assumed relative to CROP given the second coordinate).
+iommu: iommu@somewhere {
+	... something ...
+	mediatek,infracfg = <&infracfg>;
+};
 
-In the kernel driver though, the 2592x1944px mode configures the CROP 
-area to be 2624x1968px offset (0,4) and the WIN area to be 2592x1944px, 
-offset (16,13).
+infracfg = syscon_regmap_lookup_by_compatible(node, "mediatek,infracfg");
+if (IS_ERR(infracfg)) {
+	/* try with the older way */
+	switch (...) {
+	case .... p = "mediatek,mt2712-infracfg";
+	... blah blah ...
+	}
+	/* legacy also failed, ouch! */
+	if (IS_ERR(infracfg))
+		return PTR_ERR(infracfg);
+}
 
-The datasheet only ever mentions 2592x1944px as being the max resolution 
-of the sensor though the sensor output area documentation and registers 
-do not mention such a limitation.
-
-Since we're not modifying the crop area at the moment, CROP_DEFAULT and 
-CROP would be the same, which would both be 2592x1944px.
-
-For the two others, I'm not sure. Any clue or hint with the info I just 
-gave?
+ret = regmap_read ... etc etc etc
 
 Cheers,
-Quentin
+Angelo
