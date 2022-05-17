@@ -2,121 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73EE3529E32
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 11:39:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A821C529E27
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 11:37:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244934AbiEQJjb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 05:39:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60072 "EHLO
+        id S244809AbiEQJhm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 05:37:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244034AbiEQJj3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 05:39:29 -0400
-Received: from mx1.cqplus1.com (unknown [113.204.237.245])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 95C3245501
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 02:39:01 -0700 (PDT)
-X-MailGates: (flag:1,DYNAMIC,RELAY,NOHOST,LAN:PASS)(compute_score:DELIVE
-        R,40,3)
-Received: from 172.27.96.203
-        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(11177:0:AUTH_RELAY)
-        (envelope-from <qinjian@cqplus1.com>); Tue, 17 May 2022 17:30:28 +0800 (CST)
-Received: from CQEXMAIL01.cqplus1.com (172.27.96.203) by
- CQEXMAIL01.cqplus1.com (172.27.96.203) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.6; Tue, 17 May 2022 17:30:24 +0800
-Received: from CQEXMAIL01.cqplus1.com ([::1]) by CQEXMAIL01.cqplus1.com
- ([::1]) with mapi id 15.01.2507.006; Tue, 17 May 2022 17:30:24 +0800
-From:   =?utf-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
-To:     Stephen Boyd <sboyd@kernel.org>
-CC:     "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "maz@kernel.org" <maz@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
-Subject: RE: [PATCH v15 05/10] clk: Add Sunplus SP7021 clock driver
-Thread-Topic: [PATCH v15 05/10] clk: Add Sunplus SP7021 clock driver
-Thread-Index: AQHYZcsXCsTwSBsje0a2OPS1GfS78a0h1u8AgADuCPA=
-Date:   Tue, 17 May 2022 09:30:24 +0000
-Message-ID: <7febed72ae2747abb953a6f44a51102c@cqplus1.com>
-References: <cover.1652329411.git.qinjian@cqplus1.com>
- <9a71d17e9c70051db44c5545453ae8320ed8e0f8.1652329411.git.qinjian@cqplus1.com>
- <20220517021755.F1D05C385B8@smtp.kernel.org>
-In-Reply-To: <20220517021755.F1D05C385B8@smtp.kernel.org>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.28.110.18]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S244825AbiEQJhi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 05:37:38 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6226F44764;
+        Tue, 17 May 2022 02:37:37 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id n6-20020a05600c3b8600b0039492b44ce7so934139wms.5;
+        Tue, 17 May 2022 02:37:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=d6bpt5PhKRS2nxh0KH3QMhV6usmzH2DoiTgMOR5LKlY=;
+        b=b95mzv+H1fuom7FJmC5IfYzMBegHp5UBQ93ReG8v5w1FBMrlb3IHdgH+K+PfL9Gd7a
+         6g9FRa1kg7PHBBhHlD94UTtBvuefUsFv18XedpdLjT1OpKJz8PZewsKTc6oS+kGFN43a
+         fUbTeu5OmuB0RVNCWdGgcc2RpA2yTU6UnbZWqS/kwBNPG9fvUCiolyyYlKT/QlCZScKJ
+         9/vLKty7wbn1iGRJXUTcDRqvLCkwzxC/lcX0xCD8lLyujq/z1l+xlFLpKhej7uCqFDMu
+         4yvOSeNEriQaUaFY8AjkwoWbHJXRG7uMxJLGNVzExOsM4Nlqw+cit3za2IQMHyqdPSPj
+         ZUsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=d6bpt5PhKRS2nxh0KH3QMhV6usmzH2DoiTgMOR5LKlY=;
+        b=sc0MJpa3+RkLodMLU7DpsGHsA1PcoW4oazlVZpQxSUDxSQfd3db4ocvDBbDfsnTNlU
+         cVWTqyEsTv0E5jZxMAC6+RNXDXvaA5Xcd8QetRVDQLvoluUV/aLjTFbOF5tR6WmUBwrI
+         c6W2v5iEVhj5ULT8I66shhQAXhoEQwDEoyto2U9S0pzruLgp+9iyxn5d2wf2eqJZ15ZS
+         soAspsA0fQR0x2QmB/7MZI9uYosvNXl6kZrN+cGfpyxoPVk/OXoDZMfOsbhagGX9Bhgc
+         85UZ4DxATs2PpEmunqn0FEU0VfoAl5PGNNhj1GW8PJrR9okIZ63V/ScQocfh5gooLGaT
+         vGQw==
+X-Gm-Message-State: AOAM530zvvB8/KnMkXhtvYKoR/oYSEC26gvX/hilwgmNyt6n2Ibyvcc6
+        90xQylUfePKQ3QPh4AMWTtU=
+X-Google-Smtp-Source: ABdhPJwQh+M0XoRHAjimlls7kwZEYt3NwpazeP5chnIi40MWbi4V+CLn1u5VVlKkgebvBjEFtn02fw==
+X-Received: by 2002:a05:600c:3549:b0:394:89ba:e1be with SMTP id i9-20020a05600c354900b0039489bae1bemr20344806wmq.181.1652780255954;
+        Tue, 17 May 2022 02:37:35 -0700 (PDT)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id a1-20020a05600c224100b0039706782e06sm1372542wmm.33.2022.05.17.02.37.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 May 2022 02:37:35 -0700 (PDT)
+Message-ID: <8a3079d2-1a2f-43ff-9072-91083a025c7b@gmail.com>
+Date:   Tue, 17 May 2022 11:37:34 +0200
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 2/2] iommu: mtk_iommu: Add support for MT6795 Helio X10
+ M4Us
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Yong Wu <yong.wu@mediatek.com>
+Cc:     joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        iommu@lists.linux-foundation.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org, paul.bouchara@somainline.org,
+        yf.wang@mediatek.com, mingyuan.ma@mediatek.com
+References: <20220513151411.395744-1-angelogioacchino.delregno@collabora.com>
+ <20220513151411.395744-3-angelogioacchino.delregno@collabora.com>
+ <38e38006662b52631a2145228444b9d70f9eb2c6.camel@mediatek.com>
+ <9a67d3e8-8840-03b1-aec8-5a218e810eae@collabora.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <9a67d3e8-8840-03b1-aec8-5a218e810eae@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiA+ICsgICAgICAgICAgICAgICBuZiA9IGZ2Y28gKiBtX3RhYmxlW21dOw0KPiA+ICsgICAgICAg
-ICAgICAgICBuID0gbmYgLyBGXzI3TTsNCj4gPiArICAgICAgICAgICAgICAgaWYgKChuICogRl8y
-N00pID09IG5mKQ0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIGJyZWFrOw0KPiA+ICsgICAg
-ICAgfQ0KPiA+ICsgICAgICAgbSA9IG1fdGFibGVbbV07DQo+ID4gKw0KPiA+ICsgICAgICAgaWYg
-KCFtKSB7DQo+IA0KPiBUaGlzIGNhbiBiZSByZXNvbHZlZCB3aXRoIGEgJ3JldHVybicgZnJvbSBh
-IHN1YmZ1bmN0aW9uIG9yIGEgZ290by4NCg0KU29ycnksIENvdWxkIHlvdSBleHBsYWluIG1vcmUg
-Y2xlYXI/DQpEaWQgeW91IG1lYW5zIGxpa2U6DQoJSWYgKCFtKSB7DQoJCXJldCA9IC1FSU5WQUw7
-DQoJCWdvdG8gZXJyX25vdF9mb3VuZDsNCgl9DQoJLi4uDQoJcmV0dXJuIGZyZXE7DQoNCmVycl9u
-b3RfZm91bmQ6DQoJLi4uDQoJcmV0dXJuIHJldDsNCn0NCg0KPiANCj4gPiArICAgICAgICAgICAg
-ICAgcHJfZXJyKCIlczogJXMgZnJlcTolbHUgbm90IGZvdW5kIGEgdmFsaWQgc2V0dGluZ1xuIiwN
-Cj4gPiArICAgICAgICAgICAgICAgICAgICAgIF9fZnVuY19fLCBjbGtfaHdfZ2V0X25hbWUoJmNs
-ay0+aHcpLCBmcmVxKTsNCj4gPiArICAgICAgICAgICAgICAgcmV0dXJuIC1FSU5WQUw7DQo+ID4g
-KyAgICAgICB9DQo+ID4gKw0KPiA+ICsgICAgICAgLyogc2F2ZSBwYXJhbWV0ZXJzICovDQo+ID4g
-KyAgICAgICBjbGstPnBbU0VMX0ZSQV0gPSAwOw0KPiA+ICsgICAgICAgY2xrLT5wW0RJVlJdICAg
-ID0gcjsNCj4gPiArICAgICAgIGNsay0+cFtESVZOXSAgICA9IG47DQo+ID4gKyAgICAgICBjbGst
-PnBbRElWTV0gICAgPSBtOw0KPiA+ICsNCj4gPiArICAgICAgIHJldHVybiBmcmVxOw0KPiA+ICt9
-DQoNCg0KDQoNCj4gPiArDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkZl9x
-dW90aWVudCAgPSBkZiAvIG07DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBk
-Zl9yZW1haW5kZXIgPSAoKGRmICUgbSkgKiAxMDAwKSAvIG07DQo+ID4gKw0KPiA+ICsgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgaWYgKGZyZXEgPiBkZl9xdW90aWVudCkgew0KPiA+ICsg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkZl9xdW90aWVudCAgPSBmcmVx
-IC0gZGZfcXVvdGllbnQgLSAxOw0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICBkZl9yZW1haW5kZXIgPSAxMDAwIC0gZGZfcmVtYWluZGVyOw0KPiANCj4gV2hlcmUg
-ZG9lcyAxMDAwIGNvbWUgZnJvbT8NCg0KMTAwMCBpcyBjb21lIGZyb20gImJvcnJvdyAxIiBpbiBs
-YXN0IG9wZXJhdGlvbi4NCg0KPiANCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-IH0gZWxzZSB7DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRm
-X3F1b3RpZW50ID0gZGZfcXVvdGllbnQgLSBmcmVxOw0KPiA+ICsgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgfQ0KPiA+ICsNCg0KDQoNCg0KPiA+ICtzdGF0aWMgaW50IHNwX3BsbF9zZXRf
-cmF0ZShzdHJ1Y3QgY2xrX2h3ICpodywgdW5zaWduZWQgbG9uZyByYXRlLA0KPiA+ICsgICAgICAg
-ICAgICAgICAgICAgICAgICAgIHVuc2lnbmVkIGxvbmcgcHJhdGUpDQo+ID4gK3sNCj4gPiArICAg
-ICAgIHN0cnVjdCBzcF9wbGwgKmNsayA9IHRvX3NwX3BsbChodyk7DQo+ID4gKyAgICAgICB1bnNp
-Z25lZCBsb25nIGZsYWdzOw0KPiA+ICsgICAgICAgdTMyIHJlZzsNCj4gPiArDQo+ID4gKyAgICAg
-ICBzcGluX2xvY2tfaXJxc2F2ZShjbGstPmxvY2ssIGZsYWdzKTsNCj4gDQo+IFBsZWFzZSBwdXNo
-IHRoZSBsb2NrIGRvd24uIE1heWJlIHRoYXQgbWVhbnMgaGF2aW5nIHR3byBjb25kaXRpb25hbHM/
-DQo+IEVpdGhlciB3YXksIGl0IGlzIHRvbyBsYXJnZSBiZWNhdXNlIGl0IGNhbGxzIGludG8gcGxs
-YV9zZXRfcmF0ZSgpIGFuZA0KPiBwbGx0dl9zZXRfcmF0ZSgpIHdpdGggdGhlIGxvY2sgaGVsZC4N
-Cg0KU29ycnksIEkgZG9uJ3QgdW5kZXJzdGFuZCAicHVzaCB0aGUgbG9jayBkb3duLiBNYXliZSB0
-aGF0IG1lYW5zIGhhdmluZyB0d28gY29uZGl0aW9uYWxzPyIgd2hhdCBtZWFucy4NClRoZSBwbGxh
-X3NldF9yYXRlKCkgJiBwbGx0dl9zZXRfcmF0ZSgpIGlzIG9ubHkgaW5jbHVkZSBzaW1wbGUgb3Bl
-cmF0aW9ucyAmIEhXIHJlZyB3cml0ZXMuDQpJIHRoaW5rIGl0IHNob3VsZCBiZSBjYWxsZWQgd2l0
-aCBsb2NrIGhlbGQuDQoNCnN0YXRpYyB2b2lkIHBsbGFfc2V0X3JhdGUoc3RydWN0IHNwX3BsbCAq
-Y2xrKQ0Kew0KCWNvbnN0IHUzMiAqcHAgPSBwYVtjbGstPnBbMF1dLnJlZ3M7DQoJaW50IGk7DQoN
-Cglmb3IgKGkgPSAwOyBpIDwgQVJSQVlfU0laRShwYS0+cmVncyk7IGkrKykNCgkJd3JpdGVsKDB4
-ZmZmZjAwMDAgfCBwcFtpXSwgY2xrLT5yZWcgKyAoaSAqIDQpKTsNCn0NCg0Kc3RhdGljIHZvaWQg
-cGxsdHZfc2V0X3JhdGUoc3RydWN0IHNwX3BsbCAqY2xrKQ0Kew0KCXUzMiByZWc7DQoNCglyZWcg
-ID0gSFdNX0ZJRUxEX1BSRVAoTUFTS19TRUxfRlJBLCBjbGstPnBbU0VMX0ZSQV0pOw0KCXJlZyB8
-PSBIV01fRklFTERfUFJFUChNQVNLX1NETV9NT0QsIGNsay0+cFtTRE1fTU9EXSk7DQoJcmVnIHw9
-IEhXTV9GSUVMRF9QUkVQKE1BU0tfUEhfU0VMLCBjbGstPnBbUEhfU0VMXSk7DQoJcmVnIHw9IEhX
-TV9GSUVMRF9QUkVQKE1BU0tfTkZSQSwgY2xrLT5wW05GUkFdKTsNCgl3cml0ZWwocmVnLCBjbGst
-PnJlZyk7DQoNCglyZWcgID0gSFdNX0ZJRUxEX1BSRVAoTUFTS19ESVZSLCBjbGstPnBbRElWUl0p
-Ow0KCXdyaXRlbChyZWcsIGNsay0+cmVnICsgNCk7DQoNCglyZWcgID0gSFdNX0ZJRUxEX1BSRVAo
-TUFTS19ESVZOLCBjbGstPnBbRElWTl0gLSAxKTsNCglyZWcgfD0gSFdNX0ZJRUxEX1BSRVAoTUFT
-S19ESVZNLCBjbGstPnBbRElWTV0gLSAxKTsNCgl3cml0ZWwocmVnLCBjbGstPnJlZyArIDgpOw0K
-fQ0KDQoNCg0K
+
+
+On 17/05/2022 11:26, AngeloGioacchino Del Regno wrote:
+> Il 17/05/22 11:08, Yong Wu ha scritto:
+>> On Fri, 2022-05-13 at 17:14 +0200, AngeloGioacchino Del Regno wrote:
+>>> Add support for the M4Us found in the MT6795 Helio X10 SoC.
+>>>
+>>> Signed-off-by: AngeloGioacchino Del Regno <
+>>> angelogioacchino.delregno@collabora.com>
+>>> ---
+>>>   drivers/iommu/mtk_iommu.c | 20 +++++++++++++++++++-
+>>>   1 file changed, 19 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
+>>> index 71b2ace74cd6..3d802dd3f377 100644
+>>> --- a/drivers/iommu/mtk_iommu.c
+>>> +++ b/drivers/iommu/mtk_iommu.c
+>>> @@ -157,6 +157,7 @@
+>>>   enum mtk_iommu_plat {
+>>>       M4U_MT2712,
+>>>       M4U_MT6779,
+>>> +    M4U_MT6795,
+>>>       M4U_MT8167,
+>>>       M4U_MT8173,
+>>>       M4U_MT8183,
+>>> @@ -953,7 +954,8 @@ static int mtk_iommu_hw_init(const struct
+>>> mtk_iommu_data *data, unsigned int ban
+>>>        * Global control settings are in bank0. May re-init these
+>>> global registers
+>>>        * since no sure if there is bank0 consumers.
+>>>        */
+>>> -    if (data->plat_data->m4u_plat == M4U_MT8173) {
+>>> +    if (data->plat_data->m4u_plat == M4U_MT6795 ||
+>>> +        data->plat_data->m4u_plat == M4U_MT8173) {
+>>>           regval = F_MMU_PREFETCH_RT_REPLACE_MOD |
+>>>                F_MMU_TF_PROT_TO_PROGRAM_ADDR_MT8173;
+>>>       } else {
+>>> @@ -1138,6 +1140,9 @@ static int mtk_iommu_probe(struct
+>>> platform_device *pdev)
+>>>           case M4U_MT2712:
+>>>               p = "mediatek,mt2712-infracfg";
+>>>               break;
+>>> +        case M4U_MT6795:
+>>> +            p = "mediatek,mt6795-infracfg";
+>>> +            break;
+>>>           case M4U_MT8173:
+>>>               p = "mediatek,mt8173-infracfg";
+>>>               break;
+>>> @@ -1404,6 +1409,18 @@ static const struct mtk_iommu_plat_data
+>>> mt6779_data = {
+>>>       .larbid_remap  = {{0}, {1}, {2}, {3}, {5}, {7, 8}, {10}, {9}},
+>>>   };
+>>> +static const struct mtk_iommu_plat_data mt6795_data = {
+>>> +    .m4u_plat     = M4U_MT6795,
+>>> +    .flags          = HAS_4GB_MODE | HAS_BCLK | RESET_AXI |
+>>> +            HAS_LEGACY_IVRP_PADDR | MTK_IOMMU_TYPE_MM,
+>>> +    .inv_sel_reg  = REG_MMU_INV_SEL_GEN1,
+>>> +    .banks_num    = 1,
+>>> +    .banks_enable = {true},
+>>> +    .iova_region  = single_domain,
+>>> +    .iova_region_nr = ARRAY_SIZE(single_domain),
+>>> +    .larbid_remap = {{0}, {1}, {2}, {3}, {4}}, /* Linear mapping.
+>>> */
+>>> +};
+>>
+>> This is nearly same with mt8173_data. mt8173 has one more larb than
+>> mt6795, its larbid_remap is also ok for mt6795.
+>>
+> 
+> I think that we should be explicit about the larbid_remap property,
+> since mt6795 has one less larb, we should explicitly say that like
+> I did there... that's only for human readability I admit ... but,
+> still, I wouldn't want to see people thinking that MT6795 has 6 LARBs
+> because they've read that larbid_remap having 6 entries.
+> 
+>> thus it looks we could use mt8173 as the backward compatible.
+>>      compatible = "mediatek,mt6795-m4u",
+>>                   "mediatek,mt8173-m4u";
+>>
+>> After this, the only thing is about "mediatek,mt6795-infracfg". we have
+>> to try again with mediatek,mt6795-infracfg after mediatek,mt8173-
+>> infracfg fail. I think we should allow the backward case in 4GB mode
+>> judgment if we have.
+>>
+>> What's your opinion? or some other suggestion?
+>> Thanks.
+> 
+> I know, I may have a plan for that, but I wanted to have a good reason to
+> propose such a thing, as if it's just about two SoCs needing that, there
+> would be no good reason to get things done differently.
+> 
+> ...so, in order to provide a good cleanup, we have two possible roads to
+> follow here: either we add a generic "mediatek,infracfg" compatible to the
+> infra node (but I don't like that), or we can do it like it was previously
+> done in mtk-pm-domains.c (I prefer that approach):
+> 
+> iommu: iommu@somewhere {
+>      ... something ...
+>      mediatek,infracfg = <&infracfg>;
+> };
+> 
+> infracfg = syscon_regmap_lookup_by_compatible(node, "mediatek,infracfg");
+> if (IS_ERR(infracfg)) {
+>      /* try with the older way */
+>      switch (...) {
+>      case .... p = "mediatek,mt2712-infracfg";
+>      ... blah blah ...
+>      }
+>      /* legacy also failed, ouch! */
+>      if (IS_ERR(infracfg))
+>          return PTR_ERR(infracfg);
+> }
+> 
+> ret = regmap_read ... etc etc etc
+> 
+
+I prefer that approach as well.
+
+Regards,
+Matthias
+
+> Cheers,
+> Angelo
