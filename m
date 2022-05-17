@@ -2,200 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A209F5297E4
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 05:23:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D28C75297F5
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 05:27:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233895AbiEQDXD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 May 2022 23:23:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49098 "EHLO
+        id S230078AbiEQD1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 May 2022 23:27:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232494AbiEQDXD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 23:23:03 -0400
-Received: from mail-vk1-xa35.google.com (mail-vk1-xa35.google.com [IPv6:2607:f8b0:4864:20::a35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AADC644A3F;
-        Mon, 16 May 2022 20:23:01 -0700 (PDT)
-Received: by mail-vk1-xa35.google.com with SMTP id y27so8445971vkl.8;
-        Mon, 16 May 2022 20:23:01 -0700 (PDT)
+        with ESMTP id S229470AbiEQD1O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 May 2022 23:27:14 -0400
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FD263FBDB;
+        Mon, 16 May 2022 20:27:13 -0700 (PDT)
+Received: by mail-qt1-x836.google.com with SMTP id u35so13494470qtc.13;
+        Mon, 16 May 2022 20:27:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=nEvgnb6e8KbkPHvMqBVVP/uj+xcyJbgepFxDgl/Iwok=;
-        b=p9Uz5g3xzyf5lryie2kbAjeaWgNf3qqdxTAltT5buWzdQ/X+3KizNrYxZYWdRZWNXM
-         ZSsoHsn7SJ5Qnp9AbLU7F1OvCJVW1s7KmXTPc2OiPX5B9fERgBiImQINhmbv2N7WR7Za
-         V2Hh6FBu8W1SGwDOmsHL2MmmfvYUFHJG/cQTXw7y/iR+wCbRdTS32V/V9BAOMVDfqGnf
-         BMMuGyzfBcmheuxL0Ojj0RhMZFZf/ZTAmS0UwkjYWK3+OrVwKt+sFOjhmoB3YQ/NTB97
-         YL4xMS4DqWfxLOjwjzQ6EWbf3oLuGk1rn5l4Vi1IWkvCl3NWw3Z3fAi9bMy8Bg0R8hmq
-         xXoA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8OzbVhmvKVxK/u+pL6n9TauT5Oh9WvboLvLjjb1RlRk=;
+        b=BgCdYpYNXu306BHOTvnmSonHejrzK3ESYT7NOSQtVzvNTIvHxN5mSL01bvIyRGGhFa
+         ioL91MflFY14b5O/5cHLeEVG01wLAh9mZg2Wtv/V8pagexAb06ewVp6oMkdqN95gvBKs
+         qQ6faSSfzJBMQGbrUsiEX+I05IDGLilf8TIx37xF8NWsL/CyIVo04R/b2dFQ5ta528Mn
+         BvmbVVR2CSLhuwiO0a29ZHqef8p2IbCPGIM8aBW6t/81IILmjkTVzThAlUYZHO8o5k9Q
+         19RQhofoUzml4kdOzKb6ifw+UxO0BGmoQDfTqugajrz/knh7Zs426k9PYZWettfylOfi
+         VTZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=nEvgnb6e8KbkPHvMqBVVP/uj+xcyJbgepFxDgl/Iwok=;
-        b=nQBYAJgK3erEg1pBOCZ4Y7WDOxngp4cpoTCeIiW8ozNhsgz70PTdgbbQJDqAtnT+ND
-         HF+hZpkRx/RmR3JaJYCyEitmFbmAI8Xvlg/SOjW6y+e2SYe2hYDDal3vga6eRieuUksS
-         05d+6MZhg/ZKWJ3qU69mxsRwdlZMbaRl1dURBWVxVTn+Zy3A/WEnI8n5QJ9T822I0jax
-         6oqDrqEtdeUSrKfNSA+iecZJINDvMhKCalF1KOJNwT79QPBdmc9cVo5CXuNJS0C4lbEv
-         L2JLV0g78tJQfMYb7hgZX5rzYXJOuGKbSmNy99PpsEFs+LtfbgzCruwYBh9apWfefASV
-         8gqA==
-X-Gm-Message-State: AOAM531XpiN0M6yrPCyz4fzbjfBvb4EwtuLWBLxjs2tB/YD89sqzwkYq
-        4YqdVVFzK2JRgnJM0m447Wjf6MwHyko=
-X-Google-Smtp-Source: ABdhPJzl1IsdtVXJz7nlTPX+u2ijkOPUFUHxrBI/kHJdcqYtzHNz0u5QIGYVKwnlnbCCTsEdRtHN8A==
-X-Received: by 2002:a05:6122:154:b0:351:c442:e34e with SMTP id r20-20020a056122015400b00351c442e34emr7641410vko.26.1652757780711;
-        Mon, 16 May 2022 20:23:00 -0700 (PDT)
-Received: from [192.168.1.140] ([65.35.200.237])
-        by smtp.gmail.com with ESMTPSA id 7-20020a670407000000b0032d275e690asm1004148vse.10.2022.05.16.20.22.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 May 2022 20:23:00 -0700 (PDT)
-Message-ID: <48b43291-b65a-0939-16ee-95b342e46377@gmail.com>
-Date:   Mon, 16 May 2022 23:22:57 -0400
+        bh=8OzbVhmvKVxK/u+pL6n9TauT5Oh9WvboLvLjjb1RlRk=;
+        b=C5+MkUfjNy8Dg9WiFhllwTkAhVYuznbxRAnB8c/dgnH4x7jIhUQ3zCUqC27WSaREVF
+         214SYmtljDL17GBjcAQn4MUTNoFOgDHX9hqZGV0G5HQH4SEFi5bq4l5r2agG381biSOE
+         uva1xM8tr/dhHQHqbgN3gGhcPjtoYceYP4UKrFrPuuPhEOAmLGjb3DV68Hl5yIMOLaeD
+         eLGH2IOeonb5bmjwRSEVeshzvWolOZetRJgtB0FLS/o+YjMzNT/UBoT99lIR6ov/jNft
+         J+MqURZnmGdigqDOEAS97BFj10mkvp3ngbyWC56gXpr/pIMiFe6LkWaM1ZheS9AaFGiu
+         pzfg==
+X-Gm-Message-State: AOAM531CJsFbarxaa9+hxKQTWmIKwKLFp2khOvJxIbuzSRhEeyUP+wsg
+        9pUlnr/qQL4DQ58YchB3i/I=
+X-Google-Smtp-Source: ABdhPJxFWj/rbR+PTt40M4n8xOok0WUFw9aKcl5QAMJEV26x9rlDKi1QCzRlm3in97mSogBX6aCT/Q==
+X-Received: by 2002:a05:622a:392:b0:2f3:d303:dd6b with SMTP id j18-20020a05622a039200b002f3d303dd6bmr18263879qtx.484.1652758032360;
+        Mon, 16 May 2022 20:27:12 -0700 (PDT)
+Received: from jesse-desktop.jtp-bos.lab (146-115-144-188.s4282.c3-0.nwt-cbr1.sbo-nwt.ma.cable.rcncustomer.com. [146.115.144.188])
+        by smtp.gmail.com with ESMTPSA id u129-20020a372e87000000b0069fc13ce1f6sm6893635qkh.39.2022.05.16.20.27.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 May 2022 20:27:11 -0700 (PDT)
+From:   Jesse Taube <mr.bossman075@gmail.com>
+X-Google-Original-From: Jesse Taube <Mr.Bossman075@gmail.com>
+To:     linux-imx@nxp.com
+Cc:     robh+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, aisheng.dong@nxp.com, stefan@agner.ch,
+        linus.walleij@linaro.org, daniel.lezcano@linaro.org,
+        tglx@linutronix.de, arnd@arndb.de, olof@lixom.net, soc@kernel.org,
+        linux@armlinux.org.uk, abel.vesa@nxp.com, dev@lynxeye.de,
+        marcel.ziswiler@toradex.com, tharvey@gateworks.com,
+        leoyang.li@nxp.com, sebastian.reichel@collabora.com,
+        cniedermaier@dh-electronics.com, Mr.Bossman075@gmail.com,
+        clin@suse.com, giulio.benetti@benettiengineering.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org
+Subject: [PATCH v3 00/15] Add support for the i.MXRT1170-evk
+Date:   Mon, 16 May 2022 23:26:55 -0400
+Message-Id: <20220517032710.451537-1-Mr.Bossman075@gmail.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH V2 Create empty OF root 1/1] of: create empty of root
-Content-Language: en-US
-To:     Lizhi Hou <lizhi.hou@xilinx.com>, devicetree@vger.kernel.org,
-        robh@kernel.org
-Cc:     linux-kernel@vger.kernel.org, yilun.xu@intel.com, maxz@xilinx.com,
-        sonal.santan@xilinx.com, yliu@xilinx.com, michal.simek@xilinx.com,
-        stefanos@xilinx.com, trix@redhat.com, mdf@kernel.org,
-        dwmw2@infradead.org, Max Zhen <max.zhen@xilinx.com>
-References: <20220216050056.311496-1-lizhi.hou@xilinx.com>
- <20220216050056.311496-2-lizhi.hou@xilinx.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-In-Reply-To: <20220216050056.311496-2-lizhi.hou@xilinx.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/16/22 23:00, Lizhi Hou wrote:
-> Xilinx Alveo PCIe accelerator cards use flattened device tree to describe
-> describe apertures in its PCIe BARs. Each device tree node represents an
-> aperture and each aperture is an hardware unit which requires a driver.
-> The product detail:
->     https://www.xilinx.com/products/boards-and-kits/alveo.html
-> 
-> Thus a base device tree is required. Then the Alveo card driver can load
-> its flattened device tree and overlay it to the base tree. However device
-> tree does not always exist. To resolve this, add OF_EMPTY_ROOT config.
-> When it is selected and there is not a device tree, create an empty device
-> tree root node.
-> 
+This patch continues support for the imxrt series now with the imxrt1170
 
-Please run scripts/get_maintainer on your patches to see who to put in
-the distribution list.
+This patch contains:
+- Update to imxrt_defconfig
+- Devicetree
+- Clock driver
+- Pinctrl driver
+- New pll
 
-I recently stumbled across this patch series and the previous related
-patch series (currently up to
-"[PATCH V3 XRT Alveo Infrastructure 0/8] XRT Alveo driver infrastructure overview")
-when I noticed it in an email archive.
+This patch also updates some documentation for both imxrt1170 an 1050.
 
-A similar need of creating an of_root if otherwise empty is being discussed
-in the thread "[PATCH 0/3] add dynamic PCI device of_node creation for overlay"
-at https://lore.kernel.org/r/20220427094502.456111-1-clement.leger@bootlin.com
+The i.MXRT1170 has a vast array of features including two cores. 2 Ethernet, 2 USB phy, and a 2d gpu.
 
--Frank
+It also is featured in a new google coral board
+https://coral.ai/products/dev-board-micro
+Not affiliated unfortunately.
 
-> Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
-> Signed-off-by: Max Zhen <max.zhen@xilinx.com>
-> Signed-off-by: Lizhi Hou <lizhi.hou@xilinx.com>
-> ---
->  drivers/of/Kconfig         |  5 ++++
->  drivers/of/Makefile        |  1 +
->  drivers/of/of_empty_root.c | 51 ++++++++++++++++++++++++++++++++++++++
->  3 files changed, 57 insertions(+)
->  create mode 100644 drivers/of/of_empty_root.c
-> 
-> diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
-> index 80b5fd44ab1c..452d2316b47b 100644
-> --- a/drivers/of/Kconfig
-> +++ b/drivers/of/Kconfig
-> @@ -94,4 +94,9 @@ config OF_DMA_DEFAULT_COHERENT
->  	# arches should select this if DMA is coherent by default for OF devices
->  	bool
->  
-> +config OF_EMPTY_ROOT
-> +	# driver which requires at least the empty base device tree to
-> +	# overlay its own device nodes should select this.
-> +	bool
-> +
->  endif # OF
-> diff --git a/drivers/of/Makefile b/drivers/of/Makefile
-> index e0360a44306e..c65364f32935 100644
-> --- a/drivers/of/Makefile
-> +++ b/drivers/of/Makefile
-> @@ -12,6 +12,7 @@ obj-$(CONFIG_OF_RESERVED_MEM) += of_reserved_mem.o
->  obj-$(CONFIG_OF_RESOLVE)  += resolver.o
->  obj-$(CONFIG_OF_OVERLAY) += overlay.o
->  obj-$(CONFIG_OF_NUMA) += of_numa.o
-> +obj-$(CONFIG_OF_EMPTY_ROOT) += of_empty_root.o
->  
->  ifdef CONFIG_KEXEC_FILE
->  ifdef CONFIG_OF_FLATTREE
-> diff --git a/drivers/of/of_empty_root.c b/drivers/of/of_empty_root.c
-> new file mode 100644
-> index 000000000000..5c429c7a27bd
-> --- /dev/null
-> +++ b/drivers/of/of_empty_root.c
-> @@ -0,0 +1,51 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2022 Xilinx, Inc.
-> + */
-> +
-> +#include <linux/of.h>
-> +#include <linux/slab.h>
-> +
-> +#include "of_private.h"
-> +
-> +static int __init of_root_init(void)
-> +{
-> +	struct property *prop = NULL;
-> +	struct device_node *node;
-> +	__be32 *val = NULL;
-> +
-> +	if (of_root)
-> +		return 0;
-> +
-> +	pr_info("Create empty OF root node\n");
-> +	node = kzalloc(sizeof(*node), GFP_KERNEL);
-> +	if (!node)
-> +		return -ENOMEM;
-> +	of_node_init(node);
-> +	node->full_name = "/";
-> +
-> +	prop = kcalloc(2, sizeof(*prop), GFP_KERNEL);
-> +	if (!prop)
-> +		return -ENOMEM;
-> +
-> +	val = kzalloc(sizeof(*val), GFP_KERNEL);
-> +	if (!val)
-> +		return -ENOMEM;
-> +	*val = cpu_to_be32(sizeof(void *) / sizeof(u32));
-> +
-> +	prop->name = "#address-cells";
-> +	prop->value = val;
-> +	prop->length = sizeof(u32);
-> +	of_add_property(node, prop);
-> +	prop++;
-> +	prop->name = "#size-cells";
-> +	prop->value = val;
-> +	prop->length = sizeof(u32);
-> +	of_add_property(node, prop);
-> +	of_root = node;
-> +	for_each_of_allnodes(node)
-> +		__of_attach_node_sysfs(node);
-> +
-> +	return 0;
-> +}
-> +pure_initcall(of_root_init);
+---
+V1 -> V2:
+ - Add 3 new commits in documentation
+ - Fix spelling
+---
+
+Jesse Taube (15):
+  dt-bindings: arm: imx: Add i.MXRT compatible Documentation
+  dt-bindings: timer: gpt: Add i.MXRT compatible Documentation
+  dt-bindings: gpio: fsl-imx-gpio: Add i.MXRT compatibles
+  dt-bindings: mmc: fsl-imx-esdhc: add i.MXRT1170 compatible
+  dt-bindings: serial: fsl-lpuart: add i.MXRT1170 compatible
+  dt-bindings: pinctrl: add i.MXRT1170 pinctrl Documentation
+  dt-bindings: clock: imx: Add documentation for i.MXRT1170 clock
+  ARM: mach-imx: Add support for i.MXRT1170
+  clk: imx: Update pllv3 to support i.MXRT1170
+  dt-bindings: imx: Add clock binding for i.MXRT1170
+  clk: imx: Add initial support for i.MXRT1170 clock driver
+  pinctrl: freescale: Add i.MXRT1170 pinctrl driver support
+  ARM: dts: imxrt1170-pinfunc: Add pinctrl binding header
+  ARM: dts: imx: Add i.MXRT1170-EVK support
+  ARM: imxrt_defconfig: Add i.MXRT1170
+
+ .../devicetree/bindings/arm/fsl.yaml          |   12 +
+ .../bindings/clock/fsl,imxrt1170-clock.yaml   |   57 +
+ .../bindings/gpio/fsl-imx-gpio.yaml           |    2 +
+ .../bindings/mmc/fsl-imx-esdhc.yaml           |    4 +
+ .../bindings/pinctrl/fsl,imxrt1170.yaml       |   77 +
+ .../bindings/serial/fsl-lpuart.yaml           |    4 +
+ .../devicetree/bindings/timer/fsl,imxgpt.yaml |    2 +
+ arch/arm/boot/dts/Makefile                    |    3 +-
+ arch/arm/boot/dts/imxrt1170-evk.dts           |  110 ++
+ arch/arm/boot/dts/imxrt1170-pinfunc.h         | 1561 +++++++++++++++++
+ arch/arm/boot/dts/imxrt1170.dtsi              |  276 +++
+ arch/arm/configs/imxrt_defconfig              |   17 +
+ arch/arm/mach-imx/mach-imxrt.c                |    1 +
+ drivers/clk/imx/Kconfig                       |    7 +
+ drivers/clk/imx/Makefile                      |    1 +
+ drivers/clk/imx/clk-imxrt1170.c               |  451 +++++
+ drivers/clk/imx/clk-pllv3.c                   |   57 +-
+ drivers/clk/imx/clk.h                         |    4 +
+ drivers/pinctrl/freescale/Kconfig             |    7 +
+ drivers/pinctrl/freescale/Makefile            |    1 +
+ drivers/pinctrl/freescale/pinctrl-imxrt1170.c |  349 ++++
+ include/dt-bindings/clock/imxrt1170-clock.h   |  282 +++
+ 22 files changed, 3282 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/fsl,imxrt1170-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imxrt1170.yaml
+ create mode 100644 arch/arm/boot/dts/imxrt1170-evk.dts
+ create mode 100644 arch/arm/boot/dts/imxrt1170-pinfunc.h
+ create mode 100644 arch/arm/boot/dts/imxrt1170.dtsi
+ create mode 100644 drivers/clk/imx/clk-imxrt1170.c
+ create mode 100644 drivers/pinctrl/freescale/pinctrl-imxrt1170.c
+ create mode 100644 include/dt-bindings/clock/imxrt1170-clock.h
+
+-- 
+2.36.1
 
