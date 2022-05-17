@@ -2,113 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4273052A1C0
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 14:41:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0524C52A1DA
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 14:46:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241475AbiEQMlV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 08:41:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54724 "EHLO
+        id S1346439AbiEQMqQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 08:46:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346219AbiEQMlE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 08:41:04 -0400
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED16C15724;
-        Tue, 17 May 2022 05:41:01 -0700 (PDT)
-Received: by mail-oi1-f182.google.com with SMTP id v65so22041308oig.10;
-        Tue, 17 May 2022 05:41:01 -0700 (PDT)
+        with ESMTP id S245280AbiEQMqA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 08:46:00 -0400
+Received: from mail-oa1-x31.google.com (mail-oa1-x31.google.com [IPv6:2001:4860:4864:20::31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CEB7F72;
+        Tue, 17 May 2022 05:45:59 -0700 (PDT)
+Received: by mail-oa1-x31.google.com with SMTP id 586e51a60fabf-f17f1acffeso11450232fac.4;
+        Tue, 17 May 2022 05:45:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=XcLXYo1D2oh0OQQdvqkUVmOkXVkO7QLZc7UJl3/1xMQ=;
+        b=XeMjoagCNmriIitDAJbxzBl6GCsOqTAJ4QoT4yjUv3VI7nJIm7dMFyrKc1sB4yLX6k
+         gLFC1WvSNFRo8y0d0Xxovr8HzJz/bPF4uHXL5Zl4y0ULiKQ2lTBEnPA8ooSu+qBmxc1N
+         HykAyjOcayKY2LOT4W3ZmYNRws3ZvALqMcVGImvgjx120Sz8lq8Eq7KHtfPcyFxBpMqH
+         K920a2YLFV2yFdxGBdKGbWydB2nf1qwySa9KaNVEU9oSi5BfK7qx9nrCapRl3viXdIcP
+         MiU3ky2SU2mf0Sa4UBPFqqPv7pQkEtNbJygjPXKjwBIJtwYM0PCPUhjNsphhTJcDJljw
+         EmHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=tU6K7uetAiw+rSP5T9+Sc20G5SXNExj5PkXgukoIQpY=;
-        b=WoOztYx/XHDkFLmzQgiX5NVA5acRpqNk2LOdGBMiQ0WPUob9msphTQ9b5/L+L11j5N
-         tgU4b4xaYtvgmBIGMVO7e/wd41apzro+ZyVL3NOIT0buGVv28Zi0A+wBcuiiCv6RGWXm
-         fpX3iDd10qympp97Ay1jn30aKp7bPX9YiRKlErcTbxaAg68QX3Io6XzwEYmsEk3ylSvc
-         o6ObbNyXLbkSAlO9ic0twr2Hk21e/tXxDHj40ipNg4Es+4kVKU39V23pQrNL9Fnk/kRz
-         2uhAyQBzFnHiTNdsV01dMRTNUxLcI5H/ns32KYflyTaNEgs8MSyuZRZ2lAxJEQWYT4OW
-         +s9Q==
-X-Gm-Message-State: AOAM533nTLjyMklk4wJYjauL3KEWKt504EMjaKrKH3hCm0L2g6Rldsza
-        zlhaUqcZ1URpLFxDR3l1bg==
-X-Google-Smtp-Source: ABdhPJxnbOAePBrL+7Vj6jx6SHaZRvhNaYbZt0r4+5WYZOCl4zrCDiMenp0OWItuwFOIpyqmNZ74CQ==
-X-Received: by 2002:a05:6808:2c8:b0:325:ad24:a002 with SMTP id a8-20020a05680802c800b00325ad24a002mr16074643oid.82.1652791261252;
-        Tue, 17 May 2022 05:41:01 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m1-20020a05680806c100b003266e656d39sm4722981oih.4.2022.05.17.05.40.59
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=XcLXYo1D2oh0OQQdvqkUVmOkXVkO7QLZc7UJl3/1xMQ=;
+        b=58j0sn67VPexaySW77XmBEEGK446egj17Ik52nxwe50cFEo0gNw90ZbL9GoZANampY
+         XHFkj4wURuSx5fzz3iF0Q4oCJ6RPyLPEoCnwNqs9ov5SnqDmjefqNsmFjkIY9QCSP2ZL
+         dOEElWFIi5vNDrrYHrDkw6pRf6DyDhz4x2LPjCwSDX/dljFV3qcMWScDDgoFoGYkpHj3
+         tjkXpItaGRcYM1oVkNO4u5WKjtKxQOouHyTqFaAVNkfNp6/eSXJZEb4y5DjHbMAqszEm
+         xm77WKCKlDXG+mlbfIR23XqDNBJ3T+6/0/v7JY88ou7sNiO1SUgL6ogWIe/iaDGQ3JC6
+         56ig==
+X-Gm-Message-State: AOAM530pLNb1e8x3X8y/z27MHvy4JbNHWrc8PV5Y+US0BKM7a4Nkv5Vp
+        4dfUsPfUAPA/L+jZ+20/dvw=
+X-Google-Smtp-Source: ABdhPJyLt7KmqZotuvIH195cG5zCBNURvlGgA3m4CPB6GtHXqmXGPUTc4eFr6QOh02iZ5K1nktxk9g==
+X-Received: by 2002:a05:6870:6097:b0:e1:a94d:9a38 with SMTP id t23-20020a056870609700b000e1a94d9a38mr12969476oae.191.1652791558646;
+        Tue, 17 May 2022 05:45:58 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id e22-20020a4ad256000000b0035eb4e5a6cbsm5076220oos.33.2022.05.17.05.45.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 May 2022 05:41:00 -0700 (PDT)
-Received: (nullmailer pid 785390 invoked by uid 1000);
-        Tue, 17 May 2022 12:40:59 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Max Krummenacher <max.oss.09@gmail.com>
-Cc:     Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Marek Vasut <marex@denx.de>, Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        max.krummenacher@toradex.com,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>
-In-Reply-To: <20220516162826.23025-2-max.oss.09@gmail.com>
-References: <20220516162826.23025-1-max.oss.09@gmail.com> <20220516162826.23025-2-max.oss.09@gmail.com>
-Subject: Re: [PATCH v1 1/2] dt-bindings: display: add new bus-format property for panel-dpi
-Date:   Tue, 17 May 2022 07:40:59 -0500
-Message-Id: <1652791259.418473.785387.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        Tue, 17 May 2022 05:45:57 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Tue, 17 May 2022 05:45:55 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Greg.Schwendimann@infineon.com
+Cc:     linux-hwmon@vger.kernel.org, robh+dt@kernel.org,
+        krzk+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 2/2] dt-bindings: trivial-devices: Add xdp152
+Message-ID: <20220517124555.GA3395300@roeck-us.net>
+References: <1a600fd51db942389a5078a72c3bf411@infineon.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1a600fd51db942389a5078a72c3bf411@infineon.com>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 16 May 2022 18:28:25 +0200, Max Krummenacher wrote:
-> From: Max Krummenacher <max.krummenacher@toradex.com>
+On Mon, May 16, 2022 at 02:03:43PM +0000, Greg.Schwendimann@infineon.com wrote:
+> Add Infineon Digital Multi-phase xdp152 family controllers.
 > 
-> The property is used to set the enum bus_format and infer the bpc
-> for a panel defined by 'panel-dpi'.
-> This specifies how the panel is connected to the display interface.
-> 
-> Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
+> Signed-off-by: Greg Schwendimann <Greg.Schwendimann@infineon.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Applied.
+
+Thanks,
+Guenter
+
 > ---
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
->  .../bindings/display/panel/panel-dpi.yaml     | 11 +++++++++
->  .../dt-bindings/display/dt-media-bus-format.h | 23 +++++++++++++++++++
->  2 files changed, 34 insertions(+)
->  create mode 100644 include/dt-bindings/display/dt-media-bus-format.h
-> 
-
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/display/panel/panel-dpi.example.dts:20.9-10 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:364: Documentation/devicetree/bindings/display/panel/panel-dpi.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1401: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index 550a2e5c9e05..c11520347a9d 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -143,6 +143,10 @@ properties:
+>            - infineon,xdpe12254
+>              # Infineon Multi-phase Digital VR Controller xdpe12284
+>            - infineon,xdpe12284
+> +            # Infineon Multi-phase Digital VR Controller xdpe15284
+> +          - infineon,xdpe15284
+> +            # Infineon Multi-phase Digital VR Controller xdpe152c4
+> +          - infineon,xdpe152c4
+>              # Injoinic IP5108 2.0A Power Bank IC with I2C
+>            - injoinic,ip5108
+>              # Injoinic IP5109 2.1A Power Bank IC with I2C
