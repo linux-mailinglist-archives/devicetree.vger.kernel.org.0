@@ -2,178 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 402A652AE55
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 00:56:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A3D552AE5B
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 00:59:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231403AbiEQW4m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 18:56:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33536 "EHLO
+        id S231513AbiEQW7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 18:59:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231230AbiEQW4m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 18:56:42 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4D3013EA6
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 15:56:39 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 89A822C0547;
-        Tue, 17 May 2022 22:56:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1652828196;
-        bh=elroB9+Uac6AD8ssPRgpQZO0VH70eB2bWTljZwH3sPg=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-        b=FCpBOy+XoDSuXb8zLweqrtEsA9TeNt/dO57QNNz5cY/sR81jQAkG1INg2QweuHwjd
-         61tnzfv8hpwtTwXAbGeH2a+z9vGFhJWdStOKoxvZC1VoPmeHFSafz3fLbxAt8f56P7
-         nytH9giRujXTiI2pvUHcoeyDN3dvIH8rBIqwjiaYTnR3yHjOilUylNq+NJYrFtoiXH
-         aoBUfEhzj4BP65aXoJnJkDFOnyZMmHzD0vaVqYyeVthIajGUljlC97X7w4eW1FMYe/
-         TN19U1GDGiJNxmK74zcrgarmxuT29KI5HQfg+0MOCUkx1a2O/kjq5yuT/XwdeiBA3f
-         wBq9/H9a3aCOg==
-Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B628428240001>; Wed, 18 May 2022 10:56:36 +1200
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
- svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) with Microsoft SMTP Server
- (TLS) id 15.0.1497.36; Wed, 18 May 2022 10:56:35 +1200
-Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
- svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
- 15.00.1497.036; Wed, 18 May 2022 10:56:35 +1200
-From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To:     Marc Zyngier <maz@kernel.org>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "andrew@lunn.ch" <andrew@lunn.ch>,
-        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
-        "kostap@marvell.com" <kostap@marvell.com>,
-        "robert.marko@sartura.hr" <robert.marko@sartura.hr>,
-        "vadym.kochan@plvision.eu" <vadym.kochan@plvision.eu>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v7 2/3] arm64: dts: marvell: Add Armada 98DX2530 SoC and
- RD-AC5X board
-Thread-Topic: [PATCH v7 2/3] arm64: dts: marvell: Add Armada 98DX2530 SoC and
- RD-AC5X board
-Thread-Index: AQHYZbhCZ5RJjp1rLk+xI3fL/9Lp4q0aEemAgADzhwCAADbcgIAFQ2SAgADLXgCAAJMDAIABEAuA
-Date:   Tue, 17 May 2022 22:56:35 +0000
-Message-ID: <1b29abc6-7428-1528-864f-2a246332f72b@alliedtelesis.co.nz>
-References: <20220512042501.3339775-1-chris.packham@alliedtelesis.co.nz>
- <20220512042501.3339775-3-chris.packham@alliedtelesis.co.nz>
- <87wnermc9c.wl-maz@kernel.org>
- <5c01f20a-acd3-da15-081d-7cf878f8a77a@alliedtelesis.co.nz>
- <a69eaf73-8c3c-dfd7-16e5-70460c68877e@alliedtelesis.co.nz>
- <87mtfh6c58.wl-maz@kernel.org>
- <db5c3366-ac81-261b-ff32-3ccf94a930f6@alliedtelesis.co.nz>
- <87mtfgmzgx.wl-maz@kernel.org>
-In-Reply-To: <87mtfgmzgx.wl-maz@kernel.org>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.32.1.11]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <EB0F09AB848080489186313F59B8313A@atlnz.lc>
-Content-Transfer-Encoding: base64
+        with ESMTP id S229755AbiEQW7i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 18:59:38 -0400
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A32D253A62
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 15:59:36 -0700 (PDT)
+Received: by mail-pg1-f169.google.com with SMTP id 202so515875pgc.9
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 15:59:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=SFZAX6CF7VprZqunQRHj3YaVJFxCaUMeDSdvMtjiSEo=;
+        b=PfQChgK7deAB0/APFY0MzlJZi/LbFiK/H/LuONIS67tf3JklFvdMqRVip+qhw+u7xq
+         5Gpj5Zq7DIBvHINSmMmSOb5vL26VFaRTDsUgujH/clmEXqiy75k5jCpUhEfAAd2pLOaY
+         3cTPnieshOWWF4Rm/qqeXcNO3JeBeSW8f5TLVucw8SeziiPVuMVvZ8rxUIKsckGCQngm
+         AuO8NIUZhJvoxoTGS+dDCDRt7/eMjfQCSofbFN5F9/pYtB73My7wiOjte/J7UoA/PmIJ
+         bV0O2rxlJIzwHUQfbVa4Xb90dY08axMuwSgJMyKfCasf81ctSyTArX8COiv2drEHFfPH
+         QM/Q==
+X-Gm-Message-State: AOAM533Ww/X89D1uskI4yVyPpYxk6UBYr05GvJffOAezDV4AYgwzBycW
+        h+K2C5uo1ToA4H6SFD0J+MVRpw==
+X-Google-Smtp-Source: ABdhPJyvNQ5asf1XcCdJM73Mbtn+CEHo9iog3gMB8ROwnc2CSr3dYRpOS9NqM2BmZAx5+CE3vB/LmA==
+X-Received: by 2002:a65:5acd:0:b0:399:24bc:bbfd with SMTP id d13-20020a655acd000000b0039924bcbbfdmr21528594pgt.323.1652828376002;
+        Tue, 17 May 2022 15:59:36 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id 5-20020a170902e9c500b0015e8d4eb1efsm151717plk.57.2022.05.17.15.59.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 May 2022 15:59:34 -0700 (PDT)
+From:   Kevin Hilman <khilman@kernel.org>
+To:     Chen-Yu Tsai <wenst@chromium.org>, Roger Lu <roger.lu@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Fan Chen <fan.chen@mediatek.com>,
+        Charles Yang <Charles.Yang@mediatek.com>,
+        Angus Lin <Angus.Lin@mediatek.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jia-wei Chang <jia-wei.chang@mediatek.com>,
+        =?utf-8?B?UmV4LUJDIENoZW4gKOmZs+afj+i+sCk=?= 
+        <rex-bc.chen@mediatek.com>
+Subject: Re: [PATCH v25 0/7] soc: mediatek: SVS: introduce MTK SVS
+In-Reply-To: <CAGXv+5GSdWPZe3fNpBJ_WW0zCL8Skg6fHx9ATxaKU1hyMEt2Ww@mail.gmail.com>
+References: <20220516004311.18358-1-roger.lu@mediatek.com>
+ <CAGXv+5GSdWPZe3fNpBJ_WW0zCL8Skg6fHx9ATxaKU1hyMEt2Ww@mail.gmail.com>
+Date:   Tue, 17 May 2022 15:59:33 -0700
+Message-ID: <7h4k1ndaui.fsf@baylibre.com>
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=U+Hs8tju c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=oZkIemNP1mAA:10 a=fzdkbl53fq4l72-ZKJoA:9 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQpPbiAxNy8wNS8yMiAxODo0MiwgTWFyYyBaeW5naWVyIHdyb3RlOg0KPiBPbiBNb24sIDE2IE1h
-eSAyMDIyIDIyOjU2OjQ0ICswMTAwLA0KPiBDaHJpcyBQYWNraGFtIDxDaHJpcy5QYWNraGFtQGFs
-bGllZHRlbGVzaXMuY28ubno+IHdyb3RlOg0KPj4+Pj4+IFBsZWFzZSBmaXggeW91ciBmaXJtd2Fy
-ZSB0byBwcm9ncmFtIENOVEZSUV9FTDAsIGFuZA0KPj4+Pj4+IHJlbW92ZSB0aGlzIHVzZWxlc3Mg
-cHJvcGVydHkuDQo+Pj4+PiBJJ20ga2luZCBvZiBhdCB0aGUgbWVyY3kgb2Ygd2hhdCBNYXJ2ZWxs
-IGhhdmUgcHJvdmlkZWQgZm9yIEFURi4gSSBhbQ0KPj4+Pj4gd29ya2luZyBvbiB0aGUgYm9vdGxv
-YWRlciBwb3J0aW9uIGluIHBhcmFsbGVsIGFuZCBhbSBnZXR0aW5nIHRoaW5ncw0KPj4+Pj4gcmVh
-ZHkgZm9yIHN1Ym1pdHRpbmcgdGhlIHUtYm9vdCBzdXBwb3J0IHVwc3RyZWFtLiBJIHdhcyBob3Bp
-bmcgdG8NCj4+Pj4+IGxlYXZlIEFURiBhbG9uZSBJIGNhbiBhdCBsZWFzdCBzZWUgaWYgdGhleSBo
-YXZlbid0IGZpeGVkIHRoaXMgYWxyZWFkeQ0KPj4+Pj4gKHRoZSBvcmlnaW5hbCBkdHNpIEkgc3Rh
-cnRlZCB3aXRoIHdhcyBmYWlybHkgb2xkKSBhbmQgaWYgdGhleSBoYXZlbid0DQo+Pj4+PiBJJ2xs
-IHJhaXNlIGl0IHZpYSB0aGVpciBzdXBwb3J0IHN5c3RlbS4NCj4+Pj4gU2VlbXMgdG8gd29yayBm
-aW5lIHdpdGhvdXQgdGhlIGNsb2NrIHNvIEknbGwgZHJvcCBpdC4NCj4+PiBUaGFua3MuIElmIHlv
-dSBjYW4sIHBsZWFzZSB2ZXJpZnkgdGhhdCB0aGlzIGlzIHNldCBvbiBib3RoIENQVXMgKEkNCj4+
-PiBoYXZlIHNlZW4gcGxlbnR5IG9mIGZpcm13YXJlIG9ubHkgc2V0dGluZyBpdCBvbiBDUFUwIGlu
-IHRoZSBwYXN0KS4NCj4+IFRoZSBhcmNoX3RpbWVyIGludGVycnVwdHMgYXJlIGNvdW50aW5nIHVw
-IG9uIGJvdGggQ1BVcyBhbmQgdGhpbmdzDQo+PiBnZW5lcmFsbHkgc2VlbSB0byBiZSBnZXR0aW5n
-IHNjaGVkdWxlZCAoSSBkb24ndCBoYXZlIG11Y2ggb2YgYSB1c2VybGFuZA0KPj4gYXQgdGhlIG1v
-bWVudCBzbyBpdCdzIG5vdCBleGFjdGx5IGEgc3RyZXNzIHRlc3QpLiBEbyB5b3UgdGhpbmsgdGhh
-dCBpcw0KPj4gc3VmZmljaWVudCB0byBzYXkgdGhlIGNsb2NrIHByb3BlcnR5IGlzIHVubmVjZXNz
-YXJ5IGFuZCB3aGF0ZXZlcg0KPj4gZmlybXdhcmUgSSBoYXZlIGlzIHdvcmtpbmcgYXMgZXhwZWN0
-ZWQuDQo+IE5vLCB0aGUgY291bnRlciBhbHdheXMgY291bnQsIGFuZCBDTlRGUlFfRUwwIGlzIG9u
-bHkgYW4gaW5kaWNhdGlvbiBvZg0KPiB0aGUgZnJlcXVlbmN5IGZvciBTVyB0byBmaW5kIG91dC4g
-WW91IGNhbiBkaXJlY3RseSByZWFkIENOVEZSUV9FTDANCj4gZnJvbSB1c2Vyc3BhY2Ugb24gZWFj
-aCBDUFUgYW5kIGZpbmQgd2hldGhlciB0aGV5IGhhdmUgdGhlIHNhbWUgdmFsdWUuDQoNCkhlcmUn
-cyBteSB0ZXN0IHByb2dyYW0NCg0KJCBjYXQgQ05URlJRX0VMMC5jDQojaW5jbHVkZSA8c3RkaW8u
-aD4NCiNpbmNsdWRlIDxzdGRpbnQuaD4NCiNpbmNsdWRlIDxpbnR0eXBlcy5oPg0KDQppbnQgbWFp
-bihpbnQgYXJnYywgY2hhciAqYXJndltdKQ0Kew0KIMKgwqDCoMKgwqDCoMKgIHVpbnQ2NF90IHZh
-bDsNCg0KIMKgwqDCoMKgwqDCoMKgIGFzbSB2b2xhdGlsZSgibXJzICUwLCBDTlRGUlFfRUwwIiA6
-ICI9ciIgKHZhbCkpOw0KIMKgwqDCoMKgwqDCoMKgIHByaW50ZigiQ05URlJRX0VMMCA9ICUiIFBS
-SXU2NCAiXG4iLCB2YWwpOw0KDQogwqDCoMKgwqDCoMKgwqAgcmV0dXJuIDA7DQp9DQoNCkFuZCBy
-dW5uaW5nIG9uIHRoZSBSRC1BQzVYIGJvYXJkDQoNCltyb290QGxpbnV4Ym94IHRtcF0jIHRhc2tz
-ZXQgMHgxIC4vQ05URlJRX0VMMA0KQ05URlJRX0VMMCA9IDI1MDAwMDAwDQpbcm9vdEBsaW51eGJv
-eCB0bXBdIyB0YXNrc2V0IDB4MiAuL0NOVEZSUV9FTDANCkNOVEZSUV9FTDAgPSAyNTAwMDAwMA0K
-DQoNCj4NCj4+Pj4+PiBZb3UgYXJlIGFsc28gbWlzc2luZyBhIFBQSSBmb3IgdGhlIEVMMiB2aXJ0
-dWFsIHRpbWVyIHdoaWNoIGlzIHByZXNlbnQNCj4+Pj4+PiBvbiBhbnkgQVJNdjguMSsgQ1BVIChh
-bmQgc2luY2UgdGhpcyBzeXN0ZW0gaXMgdXNpbmcgQTU1LCBpdCBkZWZpbml0ZWx5DQo+Pj4+Pj4g
-aGFzIGl0KS4NCj4+Pj4+Pg0KPj4+Pj4+IFsuLi5dDQo+Pj4+PiBXaWxsIGFkZC4NCj4+Pj4gSSBh
-c3N1bWUgeW91J3JlIHRhbGtpbmcgYWJvdXQgdGhlIDV0aCBQUEkgcGVyIHRoZQ0KPj4+PiB0aW1l
-ci9hcm0sYXJjaF90aW1lci55YW1sICgiaHlwZXJ2aXNvciB2aXJ0dWFsIHRpbWVyIGlycSIpLg0K
-Pj4+IEluZGVlZC4NCj4+Pg0KPj4+PiBIZWxwZnVsbHkNCj4+Pj4gTWFydmVsbCBkb24ndCBpbmNs
-dWRlIHRoZSBQUEkgaW50ZXJydXB0IG51bWJlcnMgaW4gdGhlaXIgZGF0YXNoZWV0LiBCdXQNCj4+
-Pj4gdGhlbiBJIGFsc28gbm90aWNlIHRoYXQgbm9uZSBvZiB0aGUgb3RoZXIgYm9hcmRzIHRoYXQg
-aGF2ZSBhDQo+Pj4+ICJhcm0sYXJtdjgtdGltZXIiIHByb3ZpZGUgYSA1dGggaW50ZXJydXB0IGVp
-dGhlciwgaGF2ZSBJIG1pc3VuZGVyc3Rvb2QNCj4+Pj4gc29tZXRoaW5nPw0KPj4+IFRoaXMgd2Fz
-IG9ubHkgcmVjZW50bHkgYWRkZWQgdG8gdGhlIERUIGJpbmRpbmcsIGJ1dCB0aGUgaW50ZXJydXB0
-DQo+Pj4gZGVmaW5pdGVseSBleGlzdCBhdCB0aGUgQ1BVIGxldmVsIGZvciBhbnl0aGluZyB0aGF0
-IGltcGxlbWVudHMgQVJNdjguMQ0KPj4+IGFuZCB1cC4gQUZBSUssIHRoZSBNMSBpcyB0aGUgb25s
-eSBtYWNoaW5lIHRvIGV4cG9zZSB0aGlzIGludGVycnVwdCBpbg0KPj4+IERULCBidXQgdGhpcyBk
-b2Vzbid0IG1lYW4gdGhlIGludGVycnVwdCBkb2Vzbid0IGV4aXN0IG9uIGFsbCB0aGUgb3RoZXIN
-Cj4+PiBzeXN0ZW1zIHRoYXQgaGF2ZSB0aGUgc2FtZSBhcmNoaXRlY3R1cmUgcmV2aXNpb24uDQo+
-Pj4NCj4+PiBJZiB5b3UgaGF2ZSBjb250YWN0cyBpbiBNYXJ2ZWxsLCBtYXliZSB0cnkgYW5kIGZp
-bmQgb3V0IHdoZXRoZXIgdGhleQ0KPj4+IGhhdmUgc2ltcGx5IGRlY2lkZWQgbm90IHRvIHdpcmUg
-dGhlIGludGVycnVwdCAoSSB3b3VsZG4ndCBiZQ0KPj4+IHN1cnByaXNlZCkuIEluIHRoaXMgY2Fz
-ZSwgcGxlYXNlIGFkZCBhIGNvbW1lbnQuDQo+PiBJJ3ZlIHJlYWNoZWQgb3V0IHZpYSB0aGVpciBj
-dXN0b21lciBzdXBwb3J0IHBvcnRhbC4gU28gZmFyIHRoZXkganVzdA0KPj4gd2FudCB0byBrbm93
-IHdoeSBJJ20gcmVmdXNpbmcgdG8gdXNlIHRoZWlyIG91dCBvZiBkYXRlIFNESyAobWF5YmUgSQ0K
-Pj4gc2hvdWxkIGRpcmVjdCB0aGVtIGF0IHNvbWUgb2YgSm9uIENvcmJldCdzIHByZXNlbnRhdGlv
-bnMgOlApLg0KPiBUaGUgZmFjdCB0aGF0IHRoZXkgYXJlIGFza2luZyBpcyBhbHJlYWR5IHNheWlu
-ZyBldmVyeXRoaW5nIHRoZXJlIGlzIHRvDQo+IGtub3csIHNhZGx5Li4uDQo+DQo+PiBUaGVzZSBp
-bnRlZ3JhdGVkIGNoaXBzIGFyZSBzb21ldGltZXMgYSBiaXQgcHJvYmxlbWF0aWMgYmVjYXVzZSB0
-aGUNCj4+IHN1cHBvcnQgZ29lcyB2aWEgdGhlIFN3aXRjaGluZyBncm91cCBidXQgdGhlc2UgcXVl
-c3Rpb25zIGFyZSByZWFsbHkNCj4+IGFib3V0IElQIGJsb2NrcyB0aGF0IGhhdmUgYmVlbiB0YWtl
-biBmcm9tIHRoZSBTb0MgZ3JvdXAuIEl0IG1heSB0YWtlIGENCj4+IHdoaWxlIGJlZm9yZSBJIGdl
-dCBhIHJlc3BvbnNlIGZyb20gc29tZW9uZSB0aGF0IGFjdHVhbGx5IGtub3dzIHRoZQ0KPj4gaW50
-ZXJuYWxzLg0KPiBGYWlyIGVub3VnaC4gVW50aWwgdGhlbiwgcGxlYXNlIGRyb3AgYSBjb21tZW50
-IGluIHRoZSBEVCBpbmRpY2F0aW5nDQo+IHRoYXQgdGhlIGZhdGUgb2YgdGhpcyBQUEkgaXMgdW5r
-bm93bi4gSWYgeW91IGV2ZW50dWFsbHkgZmluZCBvdXQsIGp1c3QNCj4gYWRkIGl0IHRvIHRoZSBE
-VCAoaXQgaXMgZWFzeSB0byBhZGQgdGhpbmdzLCBtdWNoIGhhcmRlciB0byByZW1vdmUNCj4gdGhl
-bSkuDQoNCkknbGwgaW5jbHVkZSB0aGUgZm9sbG93aW5nIGluIHRoZSBuZXh0IHJvdW5kDQoNCmRp
-ZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL21hcnZlbGwvYXJtYWRhLTk4ZHgyNXh4LmR0
-c2kgDQpiL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWFydmVsbC9hcm1hZGEtOThkeDI1eHguZHRzaQ0K
-aW5kZXggODhlZGM3NDFjMDA4Li43YTM2OTNhMmFkMDQgMTAwNjQ0DQotLS0gYS9hcmNoL2FybTY0
-L2Jvb3QvZHRzL21hcnZlbGwvYXJtYWRhLTk4ZHgyNXh4LmR0c2kNCisrKyBiL2FyY2gvYXJtNjQv
-Ym9vdC9kdHMvbWFydmVsbC9hcm1hZGEtOThkeDI1eHguZHRzaQ0KQEAgLTYzLDYgKzYzLDcgQEAg
-dGltZXIgew0KIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIDxHSUNfUFBJIDggSVJRX1RZUEVfTEVWRUxfSElHSD4sDQogwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPEdJQ19QUEkgMTAg
-SVJRX1RZUEVfTEVWRUxfSElHSD4sDQogwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPEdJQ19QUEkgNyBJUlFfVFlQRV9MRVZFTF9ISUdIPjsN
-CivCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-LyogUFBJIGZvciBFTDIgdmlydHVhbCB0aW1lciBpcyB1bmRvY3VtZW50ZWQgKi8NCiDCoMKgwqDC
-oMKgwqDCoCB9Ow0KDQogwqDCoMKgwqDCoMKgwqAgcG11IHsNCg0KPiBUaGFua3MsDQo+DQo+IAlN
-Lg0KPg==
+Chen-Yu Tsai <wenst@chromium.org> writes:
+
+> On Mon, May 16, 2022 at 8:43 AM Roger Lu <roger.lu@mediatek.com> wrote:
+>>
+>> The Smart Voltage Scaling(SVS) engine is a piece of hardware
+>> which calculates suitable SVS bank voltages to OPP voltage table.
+>> Then, DVFS driver could apply those SVS bank voltages to PMIC/Buck
+>> when receiving OPP_EVENT_ADJUST_VOLTAGE.
+>>
+>> 1. SVS driver uses OPP adjust event in [1] to update OPP table voltage part.
+>> 2. SVS driver gets thermal/GPU device by node [2][3] and CPU device by get_cpu_device().
+>> After retrieving subsys device, SVS driver calls device_link_add() to make sure probe/suspend callback priority.
+>>
+>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git/commit/?h=opp/linux-next&id=25cb20a212a1f989385dfe23230817e69c62bee5
+>> [2] https://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git/commit/?h=opp/linux-next&id=b325ce39785b1408040d90365a6ab1aa36e94f87
+>> [3] https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/commit/?h=v5.16-next/dts64&id=a8168cebf1bca1b5269e8a7eb2626fb76814d6e2
+>>
+>> Change since v24:
+>> - Rebase to Linux 5.18-rc6
+>> - Show specific fail log in svs_platform_probe() to help catch which step fails quickly
+>> - Remove struct svs_bank member "pd_dev" because all subsys device's power domain has been merged into one node like above [3]
+>>
+>> Test in below environment:
+>> SW: Integration Tree [4] + Thermal patch [5] + SVS v25 (this patchset)
+>> HW: mt8183-Krane
+>>
+>> [4] https://github.com/wens/linux/commits/mt8183-cpufreq-cci-svs-test
+>
+> I've updated my branch to include all the latest versions of the relevant
+> patch series:
+>
+> - anx7625 DPI bus type series v2 (so the display works)
+> - MT8183 thermal series v9 (this seems to have been overlooked by the
+> maintainer)
+> - MTK SVS driver series v25
+> - devfreq: cpu based scaling support to passive governor series v5
+> - MTK CCI devfreq series v4
+> - MT8183 cpufreq series v7
+> - Additional WIP patches for panfrost MTK devfreq
+
+Thanks for preparing an integration branch Chen-Yu.
+
+I'm testing this on mt8183-pumpkin with one patch to add the CCI
+regulator[1], and the defconfig you posted in a previous rev of this
+series, but the CCI driver still causes a fault on boot[2] on my
+platform.
+
+I mentioned in earlier reviews that I think there's potentially a race
+between CCI and SVS loading since they are co-dependent.  My hunch is
+that this is still not being handled properly.
+
+Kevin
+
+[1]
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts b/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
+index af0abadca803..59822a283ba2 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
+@@ -384,6 +384,10 @@ &mfg {
+ 	domain-supply = <&mt6358_vgpu_reg>;
+ };
+ 
++&cci {
++	proc-supply = <&mt6358_vproc12_reg>;
++};
++
+ &cpu0 {
+ 	proc-supply = <&mt6358_vproc12_reg>;
+ };
+
+
+[2]
+[...]
+[    0.439273] mtk-msdc 11230000.mmc: using lookup tables for GPIO lookup
+[    0.439276] mtk-msdc 11230000.mmc: No GPIO consumer wp found
+[    0.445542] ------------[ cut here ]------------
+[    0.445554] WARNING: CPU: 0 PID: 1 at drivers/devfreq/governor_passive.c:339 devfreq_passive_event_handler+0x1a4/0x2d8
+[    0.445577] Modules linked in:
+[    0.445587] CPU: 0 PID: 1 Comm: swapper/0 Not tainted 5.18.0-rc6-next-20220516-12233-ged53129ed440-dirty #71 653f6e79e530940612a5c2dd77876f403a48161d
+[    0.445596] Hardware name: Pumpkin MT8183 (DT)
+[    0.445600] pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+[    0.445606] pc : devfreq_passive_event_handler+0x1a4/0x2d8
+[    0.445614] lr : devfreq_passive_event_handler+0x1a0/0x2d8
+[    0.445621] sp : ffffffc00808ba90
+[    0.445623] x29: ffffffc00808ba90 x28: ffffff80033e8d80 x27: 0000000000000000
+[    0.445633] x26: ffffffc009522218 x25: ffffff800335a7b8 x24: ffffffc009522420
+[    0.445642] x23: ffffff8002606410 x22: 0000000000000004 x21: ffffff800335a780
+[    0.445651] x20: ffffff8003216000 x19: 00000000fffffdfb x18: 00000000a662b0a1
+[    0.445661] x17: 0000000000000001 x16: 0000000100000000 x15: 0000000100000001
+[    0.445670] x14: 0000000000000000 x13: 0000000000000030 x12: 0000000000000004
+[    0.445679] x11: 0000000000000001 x10: 0000000000000bb0 x9 : ffffffc008b0e8e8
+[    0.445688] x8 : ffffff8001e1ac90 x7 : 00000000c0000000 x6 : 0000000000000000
+[    0.445696] x5 : ffffff80033909d8 x4 : 0000000000000000 x3 : 0000000000000001
+[    0.445705] x2 : 0000000000000008 x1 : 0000000000000008 x0 : 00000000ffffffea
+[    0.445715] Call trace:
+[    0.445718]  devfreq_passive_event_handler+0x1a4/0x2d8
+[    0.445726]  devfreq_add_device+0x498/0x534
+[    0.445734]  devm_devfreq_add_device+0x6c/0xb8
+[    0.445740]  mtk_ccifreq_probe+0x384/0x418
+[    0.445748]  platform_probe+0x70/0xc0
+[    0.445756]  really_probe+0x14c/0x288
+[    0.445761]  __driver_probe_device+0xc8/0xe0
+[    0.445767]  driver_probe_device+0x4c/0xe4
+[    0.445772]  __driver_attach+0xe8/0xf8
+[    0.445777]  bus_for_each_dev+0x78/0xc4
+[    0.445786]  driver_attach+0x2c/0x38
+[    0.445791]  bus_add_driver+0x178/0x1c0
+[    0.445795]  driver_register+0xbc/0xf4
+[    0.445801]  __platform_driver_register+0x30/0x3c
+[    0.445807]  mtk_ccifreq_platdrv_init+0x24/0x30
+[    0.445817]  do_one_initcall+0xa0/0x1f8
+[    0.445824]  kernel_init_freeable+0x288/0x2a8
+[    0.445831]  kernel_init+0x2c/0x130
+[    0.445838]  ret_from_fork+0x10/0x20
+[    0.445844] ---[ end trace 0000000000000000 ]---
+[    0.445853] mtk-ccifreq cci: devfreq_add_device: Unable to start governor for the device
+[    0.449511] ------------[ cut here ]------------
+
