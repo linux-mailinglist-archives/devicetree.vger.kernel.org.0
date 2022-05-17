@@ -2,68 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D83C352AC91
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 22:15:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E4B152AC9B
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 22:19:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235063AbiEQUPw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 16:15:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53872 "EHLO
+        id S235514AbiEQUTJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 16:19:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231774AbiEQUPv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 16:15:51 -0400
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0B0450033;
-        Tue, 17 May 2022 13:15:50 -0700 (PDT)
-Received: by mail-oi1-f177.google.com with SMTP id n24so146061oie.12;
-        Tue, 17 May 2022 13:15:50 -0700 (PDT)
+        with ESMTP id S234652AbiEQUTJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 16:19:09 -0400
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E94E451E6C;
+        Tue, 17 May 2022 13:19:05 -0700 (PDT)
+Received: by mail-oi1-f171.google.com with SMTP id w130so260749oig.0;
+        Tue, 17 May 2022 13:19:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=zLuq8/jIrJucgBFEatj0kqdfIbuB917FOxPZ2pJhVlM=;
-        b=8GRNQ/LA6n4Z0BMzIOviL8tb8iXGSnZViQvasKBnZWPHqL4xKeKBB83Qyxf57fsjd4
-         Kaf8H3cwNhmtezI3votpMwcxzUZxKLM9BJwV9+dADXbVK4GUfJGNNmwieEvnu9OO3wyD
-         s+I/oLZWD+ZzaLzzo/F3REXHZeYLM2WTYOxPC21Eb+Drvrnna3MXw0RPncm9byuVTshG
-         DOfpMbWm1s70fhA9kVGYnm761jxFCs+3Yu5J7PPE0aKj0P0FVVyjhU89IY3WrdEb+EpS
-         ktWgoqBBR8QF1uzBxgclSel0sxPfuR1QHHgaUtXlme53LIH4p/WEjoFTzkqD8P0yTRNB
-         3MeA==
-X-Gm-Message-State: AOAM531RUF4pZS5G1VPOdYWs8sE6LJDuhNp9q9aTF4gmwFopQr/vq1Ci
-        8a/wYVjrTD8U09KjZM3P+Q==
-X-Google-Smtp-Source: ABdhPJy4qhjcEoJ8bmJKtyo5sNfuFbkzX3w7OdbKNgT7Td6iqrnA+pCkTtn7SSqdKvy9VsyLUfshzg==
-X-Received: by 2002:aca:7c1:0:b0:324:fe9a:9856 with SMTP id 184-20020aca07c1000000b00324fe9a9856mr16536836oih.293.1652818549940;
-        Tue, 17 May 2022 13:15:49 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=qF0K1DNnjaqSBBuzSNA0jml+7NSOTcoHRSVNExgb0IU=;
+        b=hHxYZavkNduQqYTY3Ya4UnZVleO/DbFMEXONXPjmAAt+XPY/9xbaeJI6CBavrtJ1Ro
+         KUaLikVyP9Amuk8pUD5Mq9daAYiu6ElJDAZumBFYVqNI0eRwunya7OBD4phZrarnLnNM
+         j7Xee9fbkUIVqbt6fdWVGzQH3+vH81O31yPIOpQncQFF3wkRFQE+Q75/9GE+8czZICqh
+         bcrwVi09W2R9iIxf+b3EWNwe1hPT7udN1cKM4BPCyWW8sG6twxfBKqGPqYxn3cKRAQID
+         AJd7YW2IPQDnSN8J5AAb9q+iZKXdvHfHC/8KhNU9m469EE1KjXMpMSZy9mQZIp3jrnJ8
+         XVrA==
+X-Gm-Message-State: AOAM530/WMwNEog31+1l9dFzViaBOrvPhsH3HcGGnAeOLO4xMuVXdugI
+        +zgxaziJNsOAbIwi09omVA==
+X-Google-Smtp-Source: ABdhPJyD6elI9HCVkd6AnLnBYNqOkkIRVTo1++KX2zvPCfJvAtcXP8v/Qto20xBUQ7sIQ4K661TKyg==
+X-Received: by 2002:aca:bc57:0:b0:326:b2b6:2535 with SMTP id m84-20020acabc57000000b00326b2b62535mr16655453oif.107.1652818745220;
+        Tue, 17 May 2022 13:19:05 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id k12-20020a4a2a0c000000b0035eb4e5a6bbsm186513oof.17.2022.05.17.13.15.48
+        by smtp.gmail.com with ESMTPSA id q19-20020a4a8353000000b00333220959b9sm207184oog.1.2022.05.17.13.19.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 May 2022 13:15:49 -0700 (PDT)
-Received: (nullmailer pid 1554564 invoked by uid 1000);
-        Tue, 17 May 2022 20:15:47 -0000
-Date:   Tue, 17 May 2022 15:15:47 -0500
+        Tue, 17 May 2022 13:19:04 -0700 (PDT)
+Received: (nullmailer pid 1561450 invoked by uid 1000);
+        Tue, 17 May 2022 20:19:03 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Jesse Taube <mr.bossman075@gmail.com>
-Cc:     Mr.Bossman075@gmail.com, dev@lynxeye.de,
-        giulio.benetti@benettiengineering.com, mturquette@baylibre.com,
-        clin@suse.com, daniel.lezcano@linaro.org, tharvey@gateworks.com,
-        tglx@linutronix.de, devicetree@vger.kernel.org, abel.vesa@nxp.com,
-        cniedermaier@dh-electronics.com, arnd@arndb.de, linux-imx@nxp.com,
-        linux-gpio@vger.kernel.org, linux-clk@vger.kernel.org,
-        shawnguo@kernel.org, linus.walleij@linaro.org, olof@lixom.net,
-        robh+dt@kernel.org, leoyang.li@nxp.com,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-        stefan@agner.ch, sebastian.reichel@collabora.com,
-        festevam@gmail.com, linux-arm-kernel@lists.infradead.org,
-        soc@kernel.org, sboyd@kernel.org, linux@armlinux.org.uk,
-        s.hauer@pengutronix.de, marcel.ziswiler@toradex.com,
-        aisheng.dong@nxp.com
-Subject: Re: [PATCH v3 13/15] ARM: dts: imxrt1170-pinfunc: Add pinctrl
- binding header
-Message-ID: <20220517201547.GA1554500-robh@kernel.org>
-References: <20220517032802.451743-1-Mr.Bossman075@gmail.com>
- <20220517032802.451743-12-Mr.Bossman075@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220517032802.451743-12-Mr.Bossman075@gmail.com>
+To:     Smitha T Murthy <smitha.t@samsung.com>
+Cc:     ezequiel@vanguardiasur.com.ar, benjamin.gaignard@collabora.com,
+        david.plowman@raspberrypi.com, stanimir.varbanov@linaro.org,
+        mark.rutland@arm.com, andi@etezian.org, aswani.reddy@samsung.com,
+        mchehab@kernel.org, linux-kernel@vger.kernel.org,
+        m.szyprowski@samsung.com, dillon.minfei@gmail.com,
+        andrzej.hajda@intel.com, linux-arm-kernel@lists.infradead.org,
+        pankaj.dubey@samsung.com, jernej.skrabec@gmail.com,
+        krzk+dt@kernel.org, devicetree@vger.kernel.org, robh+dt@kernel.org,
+        alim.akhtar@samsung.com, linux-media@vger.kernel.org,
+        linux-fsd@tesla.com, hverkuil-cisco@xs4all.nl
+In-Reply-To: <20220517125548.14746-3-smitha.t@samsung.com>
+References: <20220517125548.14746-1-smitha.t@samsung.com>        <CGME20220517125554epcas5p4e87a71471525056281f1578f4f80f760@epcas5p4.samsung.com> <20220517125548.14746-3-smitha.t@samsung.com>
+Subject: Re: [PATCH 02/20] dt-bindings: media: s5p-mfc: Convert s5p-mfc.txt to new DT schema
+Date:   Tue, 17 May 2022 15:19:03 -0500
+Message-Id: <1652818743.270476.1561449.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -75,20 +66,162 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 16 May 2022 23:28:00 -0400, Jesse Taube wrote:
-> Add binding header for i.MXRT1170 pinctrl device tree.
+On Tue, 17 May 2022 18:25:30 +0530, Smitha T Murthy wrote:
+> Adds DT schema for s5p-mfc in yaml format.
 > 
-> Cc: Giulio Benetti <giulio.benetti@benettiengineering.com>
-> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+> Cc: linux-fsd@tesla.com
+> Signed-off-by: Smitha T Murthy <smitha.t@samsung.com>
 > ---
-> V1 -> V2:
->  - Nothing done
-> V2 -> V3:
->  - Change to (GPL-2.0-only OR BSD-2-Clause)
-> ---
->  arch/arm/boot/dts/imxrt1170-pinfunc.h | 1561 +++++++++++++++++++++++++
->  1 file changed, 1561 insertions(+)
->  create mode 100644 arch/arm/boot/dts/imxrt1170-pinfunc.h
+>  .../devicetree/bindings/media/s5p-mfc.txt     | 77 +--------------
+>  .../devicetree/bindings/media/s5p-mfc.yaml    | 98 +++++++++++++++++++
+>  2 files changed, 99 insertions(+), 76 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/media/s5p-mfc.yaml
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
+
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
+
+Full log is available here: https://patchwork.ozlabs.org/patch/
+
+
+codec@11000000: 'iommu-names', 'power-domains' do not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm/boot/dts/exynos5250-arndale.dtb
+	arch/arm/boot/dts/exynos5250-smdk5250.dtb
+	arch/arm/boot/dts/exynos5250-snow.dtb
+	arch/arm/boot/dts/exynos5250-snow-rev5.dtb
+	arch/arm/boot/dts/exynos5250-spring.dtb
+	arch/arm/boot/dts/exynos5420-arndale-octa.dtb
+	arch/arm/boot/dts/exynos5420-chagall-wifi.dtb
+	arch/arm/boot/dts/exynos5420-klimt-wifi.dtb
+	arch/arm/boot/dts/exynos5420-peach-pit.dtb
+	arch/arm/boot/dts/exynos5420-smdk5420.dtb
+	arch/arm/boot/dts/exynos5422-odroidhc1.dtb
+	arch/arm/boot/dts/exynos5422-odroidxu3.dtb
+	arch/arm/boot/dts/exynos5422-odroidxu3-lite.dtb
+	arch/arm/boot/dts/exynos5422-odroidxu4.dtb
+	arch/arm/boot/dts/exynos5800-peach-pi.dtb
+
+codec@13400000: clock-names: ['mfc', 'sclk_mfc'] is too long
+	arch/arm/boot/dts/exynos3250-artik5-eval.dtb
+	arch/arm/boot/dts/exynos3250-monk.dtb
+	arch/arm/boot/dts/exynos3250-rinato.dtb
+	arch/arm/boot/dts/exynos4210-i9100.dtb
+	arch/arm/boot/dts/exynos4210-origen.dtb
+	arch/arm/boot/dts/exynos4210-smdkv310.dtb
+	arch/arm/boot/dts/exynos4210-trats.dtb
+	arch/arm/boot/dts/exynos4210-universal_c210.dtb
+	arch/arm/boot/dts/exynos4412-i9300.dtb
+	arch/arm/boot/dts/exynos4412-i9305.dtb
+	arch/arm/boot/dts/exynos4412-itop-elite.dtb
+	arch/arm/boot/dts/exynos4412-n710x.dtb
+	arch/arm/boot/dts/exynos4412-odroidu3.dtb
+	arch/arm/boot/dts/exynos4412-odroidx2.dtb
+	arch/arm/boot/dts/exynos4412-odroidx.dtb
+	arch/arm/boot/dts/exynos4412-origen.dtb
+	arch/arm/boot/dts/exynos4412-p4note-n8010.dtb
+	arch/arm/boot/dts/exynos4412-smdk4412.dtb
+	arch/arm/boot/dts/exynos4412-tiny4412.dtb
+	arch/arm/boot/dts/exynos4412-trats2.dtb
+
+codec@13400000: clocks: [[5, 273], [5, 170]] is too long
+	arch/arm/boot/dts/exynos4210-i9100.dtb
+	arch/arm/boot/dts/exynos4210-origen.dtb
+	arch/arm/boot/dts/exynos4210-smdkv310.dtb
+	arch/arm/boot/dts/exynos4210-trats.dtb
+	arch/arm/boot/dts/exynos4210-universal_c210.dtb
+
+codec@13400000: clocks: [[7, 178], [7, 228]] is too long
+	arch/arm/boot/dts/exynos3250-artik5-eval.dtb
+	arch/arm/boot/dts/exynos3250-monk.dtb
+	arch/arm/boot/dts/exynos3250-rinato.dtb
+
+codec@13400000: clocks: [[7, 273], [7, 170]] is too long
+	arch/arm/boot/dts/exynos4412-i9300.dtb
+	arch/arm/boot/dts/exynos4412-i9305.dtb
+	arch/arm/boot/dts/exynos4412-itop-elite.dtb
+	arch/arm/boot/dts/exynos4412-n710x.dtb
+	arch/arm/boot/dts/exynos4412-odroidu3.dtb
+	arch/arm/boot/dts/exynos4412-odroidx2.dtb
+	arch/arm/boot/dts/exynos4412-odroidx.dtb
+	arch/arm/boot/dts/exynos4412-origen.dtb
+	arch/arm/boot/dts/exynos4412-p4note-n8010.dtb
+	arch/arm/boot/dts/exynos4412-smdk4412.dtb
+	arch/arm/boot/dts/exynos4412-tiny4412.dtb
+	arch/arm/boot/dts/exynos4412-trats2.dtb
+
+codec@13400000: 'iommu-names', 'power-domains' do not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm/boot/dts/exynos4210-i9100.dtb
+	arch/arm/boot/dts/exynos4210-origen.dtb
+	arch/arm/boot/dts/exynos4210-smdkv310.dtb
+	arch/arm/boot/dts/exynos4210-trats.dtb
+	arch/arm/boot/dts/exynos4210-universal_c210.dtb
+	arch/arm/boot/dts/exynos4412-i9300.dtb
+	arch/arm/boot/dts/exynos4412-i9305.dtb
+	arch/arm/boot/dts/exynos4412-itop-elite.dtb
+	arch/arm/boot/dts/exynos4412-n710x.dtb
+	arch/arm/boot/dts/exynos4412-odroidu3.dtb
+	arch/arm/boot/dts/exynos4412-odroidx2.dtb
+	arch/arm/boot/dts/exynos4412-odroidx.dtb
+	arch/arm/boot/dts/exynos4412-origen.dtb
+	arch/arm/boot/dts/exynos4412-p4note-n8010.dtb
+	arch/arm/boot/dts/exynos4412-smdk4412.dtb
+	arch/arm/boot/dts/exynos4412-tiny4412.dtb
+	arch/arm/boot/dts/exynos4412-trats2.dtb
+
+codec@13400000: iommus: [[36]] is too short
+	arch/arm/boot/dts/exynos3250-monk.dtb
+
+codec@13400000: iommus: [[40]] is too short
+	arch/arm/boot/dts/exynos3250-artik5-eval.dtb
+
+codec@13400000: iommus: [[47]] is too short
+	arch/arm/boot/dts/exynos3250-rinato.dtb
+
+codec@13400000: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm/boot/dts/exynos3250-artik5-eval.dtb
+	arch/arm/boot/dts/exynos3250-monk.dtb
+	arch/arm/boot/dts/exynos3250-rinato.dtb
+
+codec@152e0000: clock-names: ['pclk', 'aclk', 'aclk_xiu'] is too long
+	arch/arm64/boot/dts/exynos/exynos5433-tm2.dtb
+	arch/arm64/boot/dts/exynos/exynos5433-tm2e.dtb
+
+codec@152e0000: clocks: [[34, 16], [34, 9], [34, 6]] is too long
+	arch/arm64/boot/dts/exynos/exynos5433-tm2.dtb
+	arch/arm64/boot/dts/exynos/exynos5433-tm2e.dtb
+
+codec@152e0000: 'iommu-names', 'power-domains' do not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm64/boot/dts/exynos/exynos5433-tm2.dtb
+	arch/arm64/boot/dts/exynos/exynos5433-tm2e.dtb
+
+codec@f1700000: clock-names: ['sclk_mfc', 'mfc'] is too long
+	arch/arm/boot/dts/s5pv210-aquila.dtb
+	arch/arm/boot/dts/s5pv210-fascinate4g.dtb
+	arch/arm/boot/dts/s5pv210-galaxys.dtb
+	arch/arm/boot/dts/s5pv210-goni.dtb
+	arch/arm/boot/dts/s5pv210-smdkc110.dtb
+	arch/arm/boot/dts/s5pv210-smdkv210.dtb
+	arch/arm/boot/dts/s5pv210-torbreck.dtb
+
+codec@f1700000: clocks: [[2, 60], [2, 92]] is too long
+	arch/arm/boot/dts/s5pv210-aquila.dtb
+	arch/arm/boot/dts/s5pv210-fascinate4g.dtb
+	arch/arm/boot/dts/s5pv210-galaxys.dtb
+	arch/arm/boot/dts/s5pv210-goni.dtb
+	arch/arm/boot/dts/s5pv210-smdkc110.dtb
+	arch/arm/boot/dts/s5pv210-smdkv210.dtb
+	arch/arm/boot/dts/s5pv210-torbreck.dtb
+
+codec@f1700000: 'iommus' is a required property
+	arch/arm/boot/dts/s5pv210-aquila.dtb
+	arch/arm/boot/dts/s5pv210-fascinate4g.dtb
+	arch/arm/boot/dts/s5pv210-galaxys.dtb
+	arch/arm/boot/dts/s5pv210-goni.dtb
+	arch/arm/boot/dts/s5pv210-smdkc110.dtb
+	arch/arm/boot/dts/s5pv210-smdkv210.dtb
+	arch/arm/boot/dts/s5pv210-torbreck.dtb
+
