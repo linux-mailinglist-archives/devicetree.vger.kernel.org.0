@@ -2,76 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33D01529EE2
-	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 12:11:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 069EA529F09
+	for <lists+devicetree@lfdr.de>; Tue, 17 May 2022 12:13:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245104AbiEQKLs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 06:11:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44744 "EHLO
+        id S245701AbiEQKNO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 06:13:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343782AbiEQKKs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 06:10:48 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C30804BBA8;
-        Tue, 17 May 2022 03:09:28 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id t6so24033416wra.4;
-        Tue, 17 May 2022 03:09:28 -0700 (PDT)
+        with ESMTP id S1343605AbiEQKMl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 06:12:41 -0400
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81C1F1BEA2;
+        Tue, 17 May 2022 03:11:56 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id f10so5017162pjs.3;
+        Tue, 17 May 2022 03:11:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=t4zPUKpv7XaTfwCy6u8+Y9X67AplsbkFXvPulu0ea1U=;
-        b=aEs+kBHg2LKI6or1oWTOXdLQLX5BKJra6ZJ/JQVkHM6rAssedHYEsM5LLwYPaUnEW1
-         Er8hzUj6HM+y4+yiwXyGVakR9K1eW0wFG7ntWYX5PrRIhZBrwU73bj12BVqv7NW1xe73
-         rziM/EwhIps3HhQpVH3xaVdy9KwZFJThIxS8WO2QzKsRYwexHJQ5FVMx/yzgcCpRvCX3
-         /cEjZ9eofAuUBTLY2ZjgATPazGtrs7j+Kro5NGKhNPAU9Qsj1jj4Xk0gUlM5P2xco1/S
-         iWjuFJt8aUKqornzfztDZjF2cIMAHiiJJ4upNIaJSphy/O4g63nrhNzt3IXXaiTJKFZi
-         6qgg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZkTRZ6J4nz1IazWIkYQ8lrxwI0vxdTjV3HhYpyhKWHk=;
+        b=DjYDgjgcSC/bcNm05ZGmpgYxI0LcM5bYtSjVab3ShHtq8kCLyIAUC5zpE5oxW9DYiO
+         Sm9NQK4zBAQFEVsBx7Sy3EQkIEBk4N3m7o48lKFLkeUXNyJIIhqCmZOfnCkU91NSV5Zs
+         Rop/S1ljOInPtxQ5b0WW16IsivGyhNRTBuT7tJtZHkTH1LT98OC8vNmuuocKufipHX+k
+         JI8t0Yhdc3Tb8zbfj+JWu/B7zm90p4bds5D0w4VgMG+kynpUeC/T8dnwCbE38Oe4GpCy
+         WxH+Sx7NU2XQbRuI+c5dl6eO9HsTT/Nsn9jGAer2Qp0Ra+UQcUNJVg01nEsZH/N/SrHl
+         9VdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=t4zPUKpv7XaTfwCy6u8+Y9X67AplsbkFXvPulu0ea1U=;
-        b=shN6m1f3JJttSDu5wdr946HWluh2OFbBAFh9tBuq4FG3LbQzU5KSdwT58xFjR4+Wv9
-         zUD7UaewMcUtFMzs4nI2y8P3m2HpBn04FWBeuHyoaHsZU6nYRRzBUUT0KpB0CAID39Yv
-         kLVZXSwi/SMkYaNl5j3CMYMc1aJlY5Q4nUKORHiRW8O8O2uqzJ5s2fj3CnK0jcLZS7dB
-         EzLKFQ/+vYSwZIRZabIVu2J4vRg4qU+esPhAh+bGYAIk0QGVew549YLABwGv8Cv3hpx+
-         oVdH63EU3kwu/TyO/pdxgP+KiHUczJDWi5pncUKQI2zF/0X0vZv0eOljPi3pwH7PKsO8
-         3fFg==
-X-Gm-Message-State: AOAM532gMOeY859zNspEHeWvJXSon/DOjtgzNSwjdVjnwtXljpFv5+0w
-        ZLbGNQW4Qd4I8dEbJ5HrHKM=
-X-Google-Smtp-Source: ABdhPJzK4FAOgEnNQs53gtSOtT0Y8b5G++nzf2lJHnk/cY7kMsd4pENS/ntIKs/HT0Xr5wKaUtO4JA==
-X-Received: by 2002:a5d:6989:0:b0:20d:b25:f5 with SMTP id g9-20020a5d6989000000b0020d0b2500f5mr6372658wru.616.1652782167330;
-        Tue, 17 May 2022 03:09:27 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id s7-20020a05600c29c700b003942a244ec2sm1443015wmd.7.2022.05.17.03.09.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 May 2022 03:09:26 -0700 (PDT)
-Message-ID: <3e9f0936-efee-cedf-6e2b-4dd9de79fc4e@gmail.com>
-Date:   Tue, 17 May 2022 12:09:25 +0200
+        bh=ZkTRZ6J4nz1IazWIkYQ8lrxwI0vxdTjV3HhYpyhKWHk=;
+        b=zC25wME6rkbmpKJ5b4POm6Q8W64nrAW/aUxiEPlVcjw7gZ6BtrfV5QRFpK6ivpV+ag
+         2KHP5pqKn1LF6mWCY1WWESLEF+KPKxJSyJB2Ad/Cpjj8UYBgN9GERaMTe1GBHijpGBhX
+         ssuuidmyxhYQWlKPOWlCmXuHywimFOjys4XO5xUpa+huIIvIxX45ec7RW15lP8SQKQXV
+         VtWimBS/NS0RcI3zSvf5FO4feC2J0AztubmhTNslwmzOjOrsNxsnywHx6cNM/INP1WOW
+         qHF9F42pZ0GvmhtIAANh6SwHclwqlzCpBED1U7/3qyl1eVUIOXdcw/NQWTqH2NAMrh+o
+         BIaw==
+X-Gm-Message-State: AOAM533hLni6Z8uMaEou1e7G5Qget1DuQv4J7P6FVsQhH5Rcd/pjo2xm
+        nKbS4OW1zyhPMdyjtiVtlQ==
+X-Google-Smtp-Source: ABdhPJz/YlKbVfMuxNEm3/Q/9AoIqoclOeyZ0WODTabygG6G1k89loa6G3yO1f/dYGhlI60zatr2Kg==
+X-Received: by 2002:a17:902:b58b:b0:15f:4421:ba5e with SMTP id a11-20020a170902b58b00b0015f4421ba5emr21280278pls.103.1652782315720;
+        Tue, 17 May 2022 03:11:55 -0700 (PDT)
+Received: from localhost (220-133-130-217.hinet-ip.hinet.net. [220.133.130.217])
+        by smtp.gmail.com with ESMTPSA id h188-20020a62dec5000000b0050dc762816esm8478832pfg.72.2022.05.17.03.11.55
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 17 May 2022 03:11:55 -0700 (PDT)
+From:   Tyrone Ting <warp5tw@gmail.com>
+To:     avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        wsa@kernel.org, andriy.shevchenko@linux.intel.com,
+        jarkko.nikula@linux.intel.com, semen.protsenko@linaro.org,
+        rafal@milecki.pl, sven@svenpeter.dev, jsd@semihalf.com,
+        jie.deng@intel.com, lukas.bulwahn@gmail.com, arnd@arndb.de,
+        olof@lixom.net, warp5tw@gmail.com, tali.perry@nuvoton.com,
+        Avi.Fishman@nuvoton.com, tomer.maimon@nuvoton.com,
+        KWLIU@nuvoton.com, JJLIU0@nuvoton.com, kfting@nuvoton.com
+Cc:     openbmc@lists.ozlabs.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v5 00/10] i2c: npcm: Bug fixes timeout, spurious interrupts
+Date:   Tue, 17 May 2022 18:11:32 +0800
+Message-Id: <20220517101142.28421-1-warp5tw@gmail.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v7 0/3] cpufreq: mediatek: Cleanup and support MT8183 and
- MT8186
-Content-Language: en-US
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, rafael@kernel.org,
-        viresh.kumar@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org
-Cc:     jia-wei.chang@mediatek.com, roger.lu@mediatek.com,
-        hsinyi@google.com, khilman@baylibre.com,
-        angelogioacchino.delregno@collabora.com, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220516111130.13325-1-rex-bc.chen@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220516111130.13325-1-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,46 +77,93 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Tyrone Ting <kfting@nuvoton.com>
 
+This patchset includes the following fixes:
 
-On 16/05/2022 13:11, Rex-BC Chen wrote:
-> Cpufreq is a DVFS driver used for power saving to scale the clock frequency
-> and supply the voltage for CPUs. This series do some cleanup for MediaTek
-> cpufreq drivers and add support for MediaTek SVS[2] and MediaTek CCI
-> devfreq[3] which are supported in MT8183 and MT8186.
-> 
+- Add dt-bindings description for NPCM845.
+- Bug fix for timeout calculation.
+- Better handling of spurious interrupts.
+- Fix for event type in slave mode.
+- Removal of own slave addresses [2:10].
+- Support for next gen BMC (NPCM845).
 
-Series applied to v5.19-next/dts64
+The NPCM I2C driver is tested on NPCM750 and NPCM845 evaluation boards.
 
-Thanks!
+Addressed comments from:
+ - Krzysztof Kozlowski : https://www.spinics.net/lists/linux-i2c/
+   msg56795.html
+ - Andy Shevchenko : https://lkml.org/lkml/2022/5/10/297
+ - Wolfram Sang : https://lkml.org/lkml/2022/5/17/38
+ - Andy Shevchenko : https://lkml.org/lkml/2022/5/10/306
+ - Andy Shevchenko : https://lkml.org/lkml/2022/5/10/309
 
-> Changes for v7:
-> 1. Drop all drviers patches because they are all accepted.
-> 2. Correct clock/clock-name for cci in dts.
-> 
-> Changes for v6:
-> 1. Reorder patches in this series.
-> 2. Add a new patch to do unregister platform device.
-> 3. Modify drivers from maintainer's advice.
-> 
-> Reference series:
-> [1]: V1 of this series is present by Jia-Wei Chang.
->       https://lore.kernel.org/all/20220307122151.11666-1-jia-wei.chang@mediatek.com/
-> 
-> [2]: The MediaTek CCI devfreq driver is introduced in another series.
->       https://lore.kernel.org/all/20220425125546.4129-1-johnson.wang@mediatek.com/
-> 
-> [3]: The MediaTek SVS driver is introduced in another series.
->       https://lore.kernel.org/all/20220420102044.10832-1-roger.lu@mediatek.com/
-> 
-> Rex-BC Chen (3):
->    arm64: dts: mediatek: Add opp table and clock property for MT8183
->      cpufreq
->    arm64: dts: mediatek: Add MediaTek CCI node for MT8183
->    arm64: dts: mediatek: Add mediatek,cci property for MT8183 cpufreq
-> 
->   arch/arm64/boot/dts/mediatek/mt8183-evb.dts   |  36 +++
->   .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |   4 +
->   arch/arm64/boot/dts/mediatek/mt8183.dtsi      | 286 ++++++++++++++++++
->   3 files changed, 326 insertions(+)
-> 
+Changes since version 4:
+ - Remove quotes around ref handle to nuvoton,sys-mgr in i2c binding
+   document.
+ - Keep the "longer line first" order.
+ - Correct the SoB chain.
+ - Modify the if statement in one line and add new line characters.
+ - Modify the commit message format in the patch Remove own slave
+   addresses 2:10. Correct the if statement in one line and shorten the
+   debug messages.
+ - Create a new patch to capitalize the one-line comment in the driver.
+
+Changes since version 3:
+ - Correct the const format in if condition in i2c binding document.
+ - Add the oops message statement and register information in register
+   access width patch.
+ - Add the occurring rate of the i2c spurious interrupt issue and more
+   details in driver's behavior to overcome this issue.
+ - Address Andy's comments in the patch to support NPCM845.
+ 
+Changes since version 2:
+ - Keep old code as fallback, if getting nuvoton,sys-mgr property fails.
+ - Fix the error reported by running 'make DT_CHECKER_FLAGS=-m 
+   dt_binding_check'.
+ - Make nuvoton,sys-mgr required for nuvoton,npcm845-i2c.
+ - Correct the patch's subject about changing the way of getting GCR
+   regmap and add the description about keeping old code as fallback
+   if getting nuvoton,sys-mgr property fails.
+ - Correct the patch title and description about removing the unused 
+   variable clk_regmap.
+ - Use the data field directly instead of the macros since macros are
+   not constants anymore in this patch.
+ 
+Changes since version 1:
+ - Add nuvoton,sys-mgr property in NPCM devicetree.
+ - Describe the commit message in imperative mood.
+ - Modify the description in i2c binding document to cover NPCM series.
+ - Add new property in i2c binding document.
+ - Create a new patch for client address calculation.
+ - Create a new patch for updating gcr property name.
+ - Create a new patch for removing unused clock node.
+ - Explain EOB in the commit description.
+ - Create a new patch for correcting NPCM register access width.
+ - Remove some comment since the corresponding logic no longer exists.
+ - Remove fixes tag while the patch adds an additional feature.
+ - Use devicetree data field to support NPCM845.
+
+Tali Perry (6):
+  i2c: npcm: Change the way of getting GCR regmap
+  i2c: npcm: Remove unused variable clk_regmap
+  i2c: npcm: Fix timeout calculation
+  i2c: npcm: Add tx complete counter
+  i2c: npcm: Handle spurious interrupts
+  i2c: npcm: Remove own slave addresses 2:10
+
+Tyrone Ting (4):
+  dt-bindings: i2c: npcm: support NPCM845
+  i2c: npcm: Correct register access width
+  i2c: npcm: Support NPCM845
+  i2c: npcm: Capitalize the one-line comment
+
+ .../bindings/i2c/nuvoton,npcm7xx-i2c.yaml     |  25 +-
+ drivers/i2c/busses/Kconfig                    |   8 +-
+ drivers/i2c/busses/Makefile                   |   2 +-
+ drivers/i2c/busses/i2c-npcm7xx.c              | 277 +++++++++++-------
+ 4 files changed, 194 insertions(+), 118 deletions(-)
+
+-- 
+2.17.1
+
