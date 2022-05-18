@@ -2,134 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B172E52C20E
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 20:27:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6B0352C23B
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 20:27:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232177AbiERSLQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 14:11:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60330 "EHLO
+        id S241315AbiERSRe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 14:17:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237740AbiERSLE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 14:11:04 -0400
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A844123177;
-        Wed, 18 May 2022 11:11:02 -0700 (PDT)
-Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-f1d2ea701dso3742306fac.10;
-        Wed, 18 May 2022 11:11:02 -0700 (PDT)
+        with ESMTP id S240092AbiERSRe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 14:17:34 -0400
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4279F17DDF1;
+        Wed, 18 May 2022 11:17:33 -0700 (PDT)
+Received: by mail-oi1-f171.google.com with SMTP id w127so237608oie.1;
+        Wed, 18 May 2022 11:17:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=2SbH21NI1RxYzUW8Fc68yUKxfiyOdhoY7sVVRkwTa5c=;
-        b=b0wyhlyp9ooTdbNyTPbV2vY5e4sfyc4FmaTotnr6Xg8E7BS6wgiiHKtqYsR1KEedxB
-         dDJ8fiYsHBSciCz+/ZuhEXa1TksqPxdId/27rygiJ0Wvj0RFxsfFOn+BqfczMjTCTcyk
-         W7vfHM9VCBYDluBuV02bjwsglMwnj1OOV5RI+VgyyilICd7q8OH78+uHJRLLui2lkrsZ
-         ej2xEAPKr5CwIn8p4ip/VK/iLsC9PHpWS7MOh4aOBUv9CO0ZxJWFM7J9FxZjYa1LeqiJ
-         0VDMovHoZ6dS3Gdl5UUX6yVjRsB6/7jjg4kOIMMxQMAWvEZBtxke1OM0JkSlJ3/zskZU
-         cfwg==
-X-Gm-Message-State: AOAM532UjxOCYX5L/qnyid4wi9TFpAtpuRDSYmIrRNXhgznlxTJO2Oyl
-        XDPCd7XLMqQRZv7sFXwLyA==
-X-Google-Smtp-Source: ABdhPJyY34Vx2sbvEO/kb6TuZqgF4pxQHTW0SZ1pk0lPygem0MFJXB98JiXyUZaeU/emLp1lwUyc5g==
-X-Received: by 2002:a05:6870:64a6:b0:f1:e54f:5923 with SMTP id cz38-20020a05687064a600b000f1e54f5923mr798509oab.123.1652897461805;
-        Wed, 18 May 2022 11:11:01 -0700 (PDT)
+        bh=JHB4mxwuxXLtxgR0b4MAdhznA0CHuJezj+quJiq9BUc=;
+        b=HxGlrN1QejU/psK562dsmR6sLYQ3HSnuVjsT5I4OgPv4kYoDMFDHy+Q+mEGpr3Tg3N
+         Lx8VpEKcQmQlvy0kVII5nwrW9oa8Zj5bHFGPqTjJ15LdAXkXdPHf2OYjYhQLaSUZvvwL
+         tBA2iqVPNPq/JAAkOj9jruVHAbpA2ZLn8tl7aa//EwxPicxqEKyHaS0p1rxE39nPRBin
+         ejCB058xgCr4jVLQ14r6XB3W8EUVekZ4hA+iekuM7R16RTk46zAoBamn7jYtkb6RPymn
+         JyFvPrfnoubRvNYIGlV8UBHd5Y9M3Warsln9XsShcNKwFDroCPacnAcQqHXg18afrqjr
+         j72w==
+X-Gm-Message-State: AOAM532shSVrVa4JeK2Lpd124YHPnE7vjbr2W6WRU90TyDNR1D64+i0D
+        LmoemR5D3GJPGueZ4F/PTQ==
+X-Google-Smtp-Source: ABdhPJwvC1l1x1uCUV1cpREPMBP26niSwJLo+XNIq7PloD4/cp1Dj6DMnFz6u4WHLF8c3hlHNwUWQw==
+X-Received: by 2002:a05:6808:3091:b0:326:cd17:fed4 with SMTP id bl17-20020a056808309100b00326cd17fed4mr726863oib.51.1652897852071;
+        Wed, 18 May 2022 11:17:32 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e133-20020acab58b000000b00325cda1ff99sm1019554oif.24.2022.05.18.11.11.00
+        by smtp.gmail.com with ESMTPSA id p4-20020a4a8144000000b0035eb4e5a6d0sm1240542oog.38.2022.05.18.11.17.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 May 2022 11:11:00 -0700 (PDT)
-Received: (nullmailer pid 3615615 invoked by uid 1000);
-        Wed, 18 May 2022 18:11:00 -0000
-Date:   Wed, 18 May 2022 13:11:00 -0500
+        Wed, 18 May 2022 11:17:31 -0700 (PDT)
+Received: (nullmailer pid 3626486 invoked by uid 1000);
+        Wed, 18 May 2022 18:17:30 -0000
+Date:   Wed, 18 May 2022 13:17:30 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] dt-bindings: mtd: qcom_nandc: document
- qcom,boot-pages binding
-Message-ID: <20220518181100.GG3302100-robh@kernel.org>
-References: <20220503154353.4367-1-ansuelsmth@gmail.com>
- <20220503154353.4367-3-ansuelsmth@gmail.com>
- <20220516184912.GA3063673-robh@kernel.org>
- <62840beb.1c69fb81.9bdaf.070c@mx.google.com>
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Subject: Re: [RFC 1/8] dt-bindings: soc: renesas: Add RZ/G2L POEG binding
+Message-ID: <20220518181730.GH3302100-robh@kernel.org>
+References: <20220510151112.16249-1-biju.das.jz@bp.renesas.com>
+ <20220510151112.16249-2-biju.das.jz@bp.renesas.com>
+ <20220517210407.GA1635524-robh@kernel.org>
+ <OS0PR01MB5922FC66FD4EF05F31B17D3386D19@OS0PR01MB5922.jpnprd01.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <62840beb.1c69fb81.9bdaf.070c@mx.google.com>
+In-Reply-To: <OS0PR01MB5922FC66FD4EF05F31B17D3386D19@OS0PR01MB5922.jpnprd01.prod.outlook.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 17, 2022 at 10:56:09PM +0200, Ansuel Smith wrote:
-> On Mon, May 16, 2022 at 01:49:12PM -0500, Rob Herring wrote:
-> > On Tue, May 03, 2022 at 05:43:53PM +0200, Ansuel Smith wrote:
-> > > Document new qcom,boot_pages binding used to apply special
+On Wed, May 18, 2022 at 05:58:00AM +0000, Biju Das wrote:
+> Hi Rob,
+> 
+> Thanks for the feedback.
+> 
+> > Subject: Re: [RFC 1/8] dt-bindings: soc: renesas: Add RZ/G2L POEG binding
 > > 
-> > s/boot_pages/boot-pages/
-> > 
-> > > read/write configuration to boot pages.
-> > > 
-> > > QCOM apply a special configuration where spare data is not protected
-> > > by ECC for some special pages (used for boot partition). Add
-> > > Documentation on how to declare these special pages.
-> > > 
-> > > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> > On Tue, May 10, 2022 at 04:11:05PM +0100, Biju Das wrote:
+> > > Add device tree bindings for the RZ/G2L Port Output Enable for GPT
+> > (POEG).
+> > >
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 > > > ---
-> > >  .../devicetree/bindings/mtd/qcom,nandc.yaml   | 22 +++++++++++++++++++
-> > >  1 file changed, 22 insertions(+)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-> > > index 84ad7ff30121..fafeca0cafff 100644
-> > > --- a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-> > > +++ b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-> > > @@ -102,6 +102,26 @@ allOf:
-> > >              - const: rx
-> > >              - const: cmd
-> > >  
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          contains:
-> > > +            enum:
-> > > +              - qcom,ipq8074-nand
+> > >  .../soc/renesas/renesas,rzg2l-poeg.yaml       | 65 +++++++++++++++++++
+> > >  1 file changed, 65 insertions(+)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-poeg.yaml
+> > >
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-poeg.yam
+> > > l
+> > > b/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-poeg.yam
+> > > l
+> > > new file mode 100644
+> > > index 000000000000..5737dbf3fa45
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-poeg
+> > > +++ .yaml
+> > > @@ -0,0 +1,65 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+> > > +---
+> > > +$id:
+> "
 > > > +
-> > > +    then:
-> > > +      properties:
-> > > +        qcom,boot-pages:
-> > > +          $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > > +title: Renesas RZ/G2L Port Output Enable for GPT (POEG)
+> > > +
+> > > +maintainers:
+> > > +  - Biju Das <biju.das.jz@bp.renesas.com>
+> > > +
+> > > +description:
 > > 
-> > You need to define the dimensions. Something like this:
+> > '|' needed.
+> 
+> OK.
+> 
 > > 
-> >              items:
-> >                items:
-> >                  - description: offset
-> >                  - description: size
-> >
+> > > +  The output pins of the general PWM timer (GPT) can be disabled by
+> > > + using  the port output enabling function for the GPT (POEG).
+> > > + Specifically,  either of the following ways can be used.
+> > > +  * Input level detection of the GTETRGA to GTETRGD pins.
+> > > +  * Output-disable request from the GPT.
+> > > +  * Register settings.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    items:
+> > > +      - enum:
+> > > +          - renesas,r9a07g044-poeg  # RZ/G2{L,LC}
+> > > +          - renesas,r9a07g054-poeg  # RZ/V2L
+> > > +      - const: renesas,rzg2l-poeg
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    maxItems: 1
+> > > +
+> > > +  power-domains:
+> > > +    maxItems: 1
+> > > +
+> > > +  resets:
+> > > +    maxItems: 1
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - interrupts
+> > > +  - clocks
+> > > +  - power-domains
+> > > +  - resets
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/clock/r9a07g044-cpg.h>
+> > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > +
+> > > +    poeggd: poeg@10049400 {
+> > > +        compatible = "renesas,r9a07g044-poeg", "renesas,rzg2l-poeg";
+> > > +        reg = <0x10049400 0x4>;
+> > 
+> > This looks like it is part of some larger block?
 > 
-> Considering this is not limited to one item how should I declare that an
-> user can declare multiple items? (the user can declare multiple zones)
-> Declaring minItems without a maxItems? 
+> There are 2 IP blocks GPT(PWM) and POEG with its own resources like (register map, clk, reset and interrupts)
 > 
-> I assume in the suggested form it's assumed
-> minItems: 1
-> maxItems: 1
-> so this would be problematic.
+> Larger block is GPT, which has lot of functionalities. The output from GPT block can be disabled
+> by this IP either by external trigger, request from GPT(Deadtime error, both output low/high)
+> or explicit software control). This IP has only a single register. Currently I am not sure which framework
+> to be used for this IP?? Or should it be merged with larger block GPT by combining the resources?
 
-No, the outer 'items' being a schema rather than a list means it applies 
-to all items and does not set a size of (offset, size) pairs.
-
-If you do have a maximum number, you could set the range.
+Usually, IP blocks would have some minimum address alignment (typ 4K or 
+64K to be page aligned), but if there's no other IP in this address 
+range as-is is fine. The question is what's before or after the above 
+address?
 
 Rob
