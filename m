@@ -2,113 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58B7C52B955
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 14:13:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDFF652B9A5
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 14:14:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235973AbiERL4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 07:56:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37196 "EHLO
+        id S236156AbiERMFQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 08:05:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235966AbiERL4T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 07:56:19 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58B71E9E;
-        Wed, 18 May 2022 04:56:17 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id dk23so3308118ejb.8;
-        Wed, 18 May 2022 04:56:17 -0700 (PDT)
+        with ESMTP id S236119AbiERMFO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 08:05:14 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 810549D060;
+        Wed, 18 May 2022 05:05:07 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id i27so3353956ejd.9;
+        Wed, 18 May 2022 05:05:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=bDVhsYhcH84aV3iRdTGGmIFJ0IE7KSrLpx2SeKM1fdE=;
-        b=lH9VMsyVl8qTRJwQvmr3mFQlz3jrJ3x40HwM5yg7Pta0C5oBdhVDXKcw6gWcXZkXVT
-         wfQk/CbUTB2/rlsKyJlTDFhF/WE1M1nnUVeDmMReRXIfWmuy8QLD+nn86GHVrseWLkqH
-         VGUwTtdA/wMHQk3kO+B3VGKLtO9taH1NkqijqBC9aKSYcJ5dI9jChu5zm2GzbnwfO9ra
-         z31S+FZKexYikA9yKw28U+OOjyz6EucQL+J3tWlwnns0ss5FNaESXB70/ZM9eCGGkIfH
-         OtObyA1fPXzluO2G/b8UlByYFjmmhdwkkpzdnGG5/HY+jmJN/z0OqKhlvKcjM/w1HXnu
-         JFEA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=HBvttKt/+puk2DR73PUb7EYpaQbMG8BEPu8CTXCnIwM=;
+        b=Fr6vweAA0egXTuuZRjpQKI6IEn98MQsoAcswBc5h6vhOadmz7K4WLAuf0M7I5Z+GuM
+         begrmOP04Gm65RcAZPJ4jDKgPHp1oBkDE1sEYHaqihVuaBEEf/Jg0GbjioYPMLrjmcQC
+         Zkf89kyxyTNvKH+uRjCYj54wTbJwaKD19Dswlcpw0q/tfW016CXXUOgtDSpj9AsQzkqn
+         ng1gYmdYow5ZGAAH9NeIDERMBXcLUjCLp7DzDH+pcRt9HRYRwoDoqpnYNI4pZHiO+722
+         Yz2e0DMBzYtfLBfI+dBlqzrAB7F+N+YisvPd3ypTHjXRRTmsQN9dqX6Sj1HMoYlSVsue
+         VVmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=bDVhsYhcH84aV3iRdTGGmIFJ0IE7KSrLpx2SeKM1fdE=;
-        b=3lFIgIv5lQA1LGkMGKXdrFgo8EEIsk+5nPeZF8v3E6QHD5dXekkAFyfAhe9+lsRPGm
-         1DR6RwA2DiP7yylnLvdu39eGR8pXAqhBE+6N/QDnGn+Tv7T0TGu1+yjjnMY7XbJJ78/K
-         sJjkrJsQ9OZ2v9TIIhfmpAy2NLmZpPft1NIj6hbq2pffzDl75aVUcmsl5U+NwLIiQa5G
-         Q+OpcP68vue+cW7/rk81OBGoy0/mYZvdBQIoUAf+2aD3ONhpLjJH9ro9rrArPwVFMlmS
-         o/n6bKJEUbzxv8O81YVhNzUYzHf3k2RnUWAlEtACtgk+8AlXPm8fgTobDfcwSqdPapZS
-         mi9g==
-X-Gm-Message-State: AOAM532yvZsazL84XfDnq0+51TldgDiexue920fYxt/YCW0spdp0u1/d
-        TqI+dcpYTJFDOkgGOhpgArs=
-X-Google-Smtp-Source: ABdhPJzzkEqdp3Q+ON2NhyqKQVUmBjrQFHhrDta4Qq8v8UNA5ECXxP9dmsraf+dBf51ngGrUihZCpA==
-X-Received: by 2002:a17:907:1c8e:b0:6f4:e24f:20e0 with SMTP id nb14-20020a1709071c8e00b006f4e24f20e0mr23516272ejc.227.1652874975853;
-        Wed, 18 May 2022 04:56:15 -0700 (PDT)
-Received: from linuxdev2.toradex.int (31-10-206-125.static.upc.ch. [31.10.206.125])
-        by smtp.gmail.com with ESMTPSA id dq20-20020a170907735400b006f5294986besm873999ejc.111.2022.05.18.04.56.15
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=HBvttKt/+puk2DR73PUb7EYpaQbMG8BEPu8CTXCnIwM=;
+        b=kHR3W3cDCkp5q/1VECU8qZafwpvnzxp5tqaTC93q02a806Fw1DamGj3IPB/faIfvDK
+         vleYZS0vQSZ1RmDT2aGLr6dHkTmzH8d5BTCipVo+WxfDQUrbPwkfikOHs/8hRgPT31lG
+         NXnPfkm5OGuKws6Wabgjd6xf4oiJt78sZ8DyYoWOQlcUsZJMLHzeRFeUCDHwX3qa4oHG
+         rcvoXNiWBSQCysPVOww+19QvvCuQUfbZzJP4qDmAlEgpUUsKZV5zyzFww2EHF415FgB2
+         bKmCEzLRcjnWFgjFPiaxA4LDMB5WC+Uc0rszPoUuK5il262jfi8pQnvLX6oqvoX14uIS
+         L9Ww==
+X-Gm-Message-State: AOAM533a20EVq1xLADClRlwokPyDi6tTMBg8LLXKSYMzsSlYd6VU5lGn
+        4R9DFbkRzybaae7YGB5dx4Y=
+X-Google-Smtp-Source: ABdhPJyr/sVG76W5wUvAmPcZnxHV7/Na7Nm1x9m0hiioEFYlFBk5pFQNLe9QjIUWIyDhUuMvrb+J8g==
+X-Received: by 2002:a17:907:9723:b0:6f4:77c7:8fef with SMTP id jg35-20020a170907972300b006f477c78fefmr23701102ejc.680.1652875505702;
+        Wed, 18 May 2022 05:05:05 -0700 (PDT)
+Received: from skbuf ([188.25.255.186])
+        by smtp.gmail.com with ESMTPSA id be18-20020a0564021a3200b0042aac7c2fa3sm1193832edb.96.2022.05.18.05.05.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 May 2022 04:56:15 -0700 (PDT)
-From:   Max Krummenacher <max.oss.09@gmail.com>
-To:     max.krummenacher@toradex.com
-Cc:     Marek Vasut <marex@denx.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
+        Wed, 18 May 2022 05:05:05 -0700 (PDT)
+Date:   Wed, 18 May 2022 15:05:03 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Nikita Kiryanov <nikita@compulab.co.il>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/3] dt-bindings: display: startek,startek-kd050c: allow bus-format property
-Date:   Wed, 18 May 2022 13:55:39 +0200
-Message-Id: <20220518115541.38407-3-max.oss.09@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20220518115541.38407-1-max.oss.09@gmail.com>
-References: <20220518115541.38407-1-max.oss.09@gmail.com>
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next v4 05/12] dt-bindings: net: dsa: add bindings
+ for Renesas RZ/N1 Advanced 5 port switch
+Message-ID: <20220518120503.3m2zfw7kmhsfg336@skbuf>
+References: <20220509131900.7840-1-clement.leger@bootlin.com>
+ <20220509131900.7840-6-clement.leger@bootlin.com>
+ <20220511152221.GA334055-robh@kernel.org>
+ <20220511153337.deqxawpbbk3actxf@skbuf>
+ <20220518015924.GC2049643-robh@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220518015924.GC2049643-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Max Krummenacher <max.krummenacher@toradex.com>
+On Tue, May 17, 2022 at 08:59:24PM -0500, Rob Herring wrote:
+> On Wed, May 11, 2022 at 06:33:37PM +0300, Vladimir Oltean wrote:
+> > On Wed, May 11, 2022 at 10:22:21AM -0500, Rob Herring wrote:
+> > > > +patternProperties:
+> > > > +  "^ethernet-ports$":
+> > > 
+> > > Move to 'properties', not a pattern.
+> > > 
+> > > With that,
+> > > 
+> > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > 
+> > Even if it should have been "^(ethernet-)?ports$"?
+> 
+> Why? Allowing 'ports' is for existing users. New ones don't need the 
+> variability and should use just 'ethernet-ports'.
+> 
+> Rob
 
-Allow to specify the optional bus-format property newly added to
-panel-dpi.
-
-Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
-
----
-
-Changes in v2:
-- New commit
-
- .../bindings/display/panel/startek,startek-kd050c.yaml           | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/display/panel/startek,startek-kd050c.yaml b/Documentation/devicetree/bindings/display/panel/startek,startek-kd050c.yaml
-index fd668640afd1..05306713044e 100644
---- a/Documentation/devicetree/bindings/display/panel/startek,startek-kd050c.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/startek,startek-kd050c.yaml
-@@ -19,6 +19,7 @@ properties:
-       - {} # panel-dpi, but not listed here to avoid false select
- 
-   backlight: true
-+  bus-format: true
-   enable-gpios: true
-   height-mm: true
-   label: true
--- 
-2.20.1
-
+Yeah, ok, somehow the memo that new DSA drivers shouldn't support "ports"
+didn't reach me. They invariably will though, since the DSA framework is
+the main parser of the property, and that is shared by both old and new
+drivers.
