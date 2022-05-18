@@ -2,58 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6214152B00A
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 03:43:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9933C52B00C
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 03:44:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233756AbiERBnq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 21:43:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50718 "EHLO
+        id S233760AbiERBoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 21:44:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233725AbiERBnp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 21:43:45 -0400
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDB7A51E47
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 18:43:44 -0700 (PDT)
-Received: by mail-oi1-f175.google.com with SMTP id e189so1029675oia.8
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 18:43:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=zremh6+sbC70MEPO/FHJmSVu9pbp2DGBm1xGg+NXpdo=;
-        b=oSzSr8DS7lmOZm8hUY3vKojx7RfTpCDWwBq+oiufJ0BrpL8tWI84zcRPzbX00xXniz
-         Adt/ao0qS8s7IgQzMgfSybPR9FQDlLh/Vd0iVr86g/cGw/lnPIuDRQoU4Mz4d8ZZFetp
-         uIgkE8aYZG1S9C4sZ74iIcwfuqEqELUOSmP0qH5LZF6oFG41liI3jSL47tbKRtSPeUvB
-         4ksqqNFYFHn/6gMgxmUgb8X8UMl31veYHNF1lnUjZiHv/kuXrZP0ValIsXCuGnM5e5Sb
-         8ChnQaYXT9S+Zcr8SOXC4j/u1bjjd+7LyYIDHGOp3Q5IwLnXmoPdnqYGqOZlhtLmzi6V
-         ZtUQ==
-X-Gm-Message-State: AOAM531ZhvuCs2Ap8HPxY64fG5IRHs9VfKOLPRjDwNT69oVYAwqmKlx5
-        aFREy6Dz0QK+bUY4FGdQhA==
-X-Google-Smtp-Source: ABdhPJzwO6psTGKQ7Sl9Z173oChxeu85bKOlhpwXCLG8Ds1qYEWg1nWAXfunznfrwZrO3QNxiqeXGQ==
-X-Received: by 2002:a05:6808:a11:b0:325:e5c1:5912 with SMTP id n17-20020a0568080a1100b00325e5c15912mr12617097oij.204.1652838224179;
-        Tue, 17 May 2022 18:43:44 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 53-20020a9d0eb8000000b006060322127fsm342277otj.79.2022.05.17.18.43.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 May 2022 18:43:43 -0700 (PDT)
-Received: (nullmailer pid 2047355 invoked by uid 1000);
-        Wed, 18 May 2022 01:43:42 -0000
-Date:   Tue, 17 May 2022 20:43:42 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-Cc:     jassisinghbrar@gmail.com, git@xilinx.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, michal.simek@xilinx.com
-Subject: Re: [PATCH v5] dt-bindings: mailbox: zynqmp_ipi: convert to yaml
-Message-ID: <20220518014342.GA2047296-robh@kernel.org>
-References: <20220517165536.8637-1-shubhrajyoti.datta@xilinx.com>
+        with ESMTP id S233725AbiERBoj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 21:44:39 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39FB95469D;
+        Tue, 17 May 2022 18:44:38 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id F1581B81DEF;
+        Wed, 18 May 2022 01:44:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70FC5C385B8;
+        Wed, 18 May 2022 01:44:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1652838275;
+        bh=jw9WY5TGpI68KaNjv0zfL25huNIRIdW/P8Q6Phay5WY=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=bwbAFNG6xWVALg36Hiu/dCS79vtJ58HL/feVRzcheNQxr0TEnRxrY4LTkxR7ZvgXy
+         avQUnmmtrAYBOg0rHUWidg0oF8/GX4sZG0g5wXIV3ap15nG0W8JSgVKISuARYcoZ6x
+         Yv9cCmoyJQ8XY9mnTqm31Bhvo7v618hXtIxeA2njxKGFLjS5E+VhsoPHjUd92+V6GE
+         M6WClZNtNMxr6v3CBrVDRfZjAc271LL+vmLyzt3zvRUFpY9chkIg4tU8MwCoaAPq/B
+         WzXv4RyyHz94Aa3FT8O0FCq708qOutTIuWeP0HcIZSbCp90KilK3kcJIA9+mGCU2Ns
+         Xd5mWhI8Kp81Q==
+Date:   Tue, 17 May 2022 18:44:33 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Lorenzo Bianconi <lorenzo@kernel.org>
+Cc:     netdev@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
+        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
+        davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
+        Sam.Shih@mediatek.com, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, robh@kernel.org,
+        lorenzo.bianconi@redhat.com
+Subject: Re: [PATCH v2 net-next 12/15] net: ethernet: mtk_eth_soc: introduce
+ MTK_NETSYS_V2 support
+Message-ID: <20220517184433.3cb2fd5a@kernel.org>
+In-Reply-To: <cc1bd411e3028e2d6b0365ed5d29f3cea66223f8.1652716741.git.lorenzo@kernel.org>
+References: <cover.1652716741.git.lorenzo@kernel.org>
+        <cc1bd411e3028e2d6b0365ed5d29f3cea66223f8.1652716741.git.lorenzo@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220517165536.8637-1-shubhrajyoti.datta@xilinx.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,28 +59,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 17 May 2022 22:25:36 +0530, Shubhrajyoti Datta wrote:
-> Convert the ipi doc to yaml.
-> 
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-> ---
-> v2:
->  Fix the warnings reported by Rob
-> v3:
->  Run dtbs_check
-> v4:
->  fix the formatting
-> v5:
-> fix alignment
-> fix quotes
-> double space errors
-> remove consumer example
-> 
->  .../mailbox/xlnx,zynqmp-ipi-mailbox.txt       | 127 ----------------
->  .../mailbox/xlnx,zynqmp-ipi-mailbox.yaml      | 140 ++++++++++++++++++
->  2 files changed, 140 insertions(+), 127 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.txt
->  create mode 100644 Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
-> 
+On Mon, 16 May 2022 18:06:39 +0200 Lorenzo Bianconi wrote:
+> +	struct mtk_mac *mac = netdev_priv(dev);
+> +	struct mtk_tx_dma_v2 *desc = txd;
+> +	struct mtk_eth *eth = mac->hw;
+> +	u32 data;
+> +
+> +	WRITE_ONCE(desc->txd1, info->addr);
+> +
+> +	data = TX_DMA_PLEN0(info->size);
+> +	if (info->last)
+> +		data |= TX_DMA_LS0;
+> +	WRITE_ONCE(desc->txd3, data);
+> +
+> +	if (!info->qid && mac->id)
+> +		info->qid = MTK_QDMA_GMAC2_QID;
+> +
+> +	data = (mac->id + 1) << TX_DMA_FPORT_SHIFT_V2; /* forward port */
+> +	data |= TX_DMA_SWC_V2 | QID_BITS_V2(info->qid);
+> +	WRITE_ONCE(desc->txd4, data);
+> +
+> +	data = 0;
+> +	if (info->first) {
+> +		if (info->gso)
+> +			data |= TX_DMA_TSO_V2;
+> +		/* tx checksum offload */
+> +		if (info->csum)
+> +			data |= TX_DMA_CHKSUM_V2;
+> +	}
+> +	WRITE_ONCE(desc->txd5, data);
+> +
+> +	data = 0;
+> +	if (info->first && info->vlan)
+> +		data |= TX_DMA_INS_VLAN_V2 | info->vlan_tci;
+> +	WRITE_ONCE(desc->txd6, data);
+> +
+> +	WRITE_ONCE(desc->txd7, 0);
+> +	WRITE_ONCE(desc->txd8, 0);
 
-Applied, thanks!
+Why all the WRITE_ONCE()? Don't you just need a barrier between writing
+the descriptor and kicking the HW? 
