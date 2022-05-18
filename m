@@ -2,57 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A251152B6FE
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 12:12:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B9C752B78C
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 12:13:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232778AbiERJsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 05:48:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46678 "EHLO
+        id S233792AbiERJv2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 05:51:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234511AbiERJsv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 05:48:51 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DB035A09B;
-        Wed, 18 May 2022 02:48:48 -0700 (PDT)
+        with ESMTP id S234679AbiERJuz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 05:50:55 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D78F2C138;
+        Wed, 18 May 2022 02:50:51 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9AD72617B5;
-        Wed, 18 May 2022 09:48:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84DABC385AA;
-        Wed, 18 May 2022 09:48:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1652867327;
-        bh=lv4HBe8Wz66POFUcjOZzWjCJJ3a3Qv9oZQxybybs8dg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CIMawBjVDfDDMMhlmDCJY/yrMAjt2SSIwXqnjmd3tS4PdMgks21T0Sb6ttzXYbv61
-         ULL2ftPjteTxt9snhY1aNU+9QrGFzq9f2avl9qq7E0jjkdybiSx2aco92RtJvox8kl
-         UHRcpGdK98VxAq7GWNdyW4+lb8OWliGnccgw0CUsu2uJ4xDcnlZOFMSc/1uJ7Q0G3f
-         RcUYVRTIIURdnL16sRNHJSM6dvGwnHL0sciJDyez5yNyAv/zoibfWOrDepzySmtscb
-         qL5m6AAxgncPSWOGmnWCuWpbSe/S+03MJS+L5g1DZIJuujbyRcTZOvrzDE16wyfDQ4
-         giEeVFhaZBmmQ==
-Date:   Wed, 18 May 2022 11:48:43 +0200
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     netdev@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
-        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
-        davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
-        Sam.Shih@mediatek.com, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, robh@kernel.org,
-        lorenzo.bianconi@redhat.com
-Subject: Re: [PATCH v2 net-next 11/15] net: ethernet: mtk_eth_soc: introduce
- device register map
-Message-ID: <YoTA+5gLC4zhoQ0F@lore-desk>
-References: <cover.1652716741.git.lorenzo@kernel.org>
- <78e8c6ed230130b75aae77e6d05a9b35e298860a.1652716741.git.lorenzo@kernel.org>
- <20220517184122.522ed708@kernel.org>
+        by ams.source.kernel.org (Postfix) with ESMTPS id 51975B81EFB;
+        Wed, 18 May 2022 09:50:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28623C34113;
+        Wed, 18 May 2022 09:50:44 +0000 (UTC)
+Message-ID: <a08d95f2-1861-98fc-5a6a-d9400e5dca30@xs4all.nl>
+Date:   Wed, 18 May 2022 11:50:43 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="yGUCWlv2qAlCwbOl"
-Content-Disposition: inline
-In-Reply-To: <20220517184122.522ed708@kernel.org>
-X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH 11/20] media: s5p-mfc: Add support for UHD encoding.
+Content-Language: en-US
+To:     Smitha T Murthy <smitha.t@samsung.com>,
+        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
+        mchehab@kernel.org, ezequiel@vanguardiasur.com.ar,
+        jernej.skrabec@gmail.com, benjamin.gaignard@collabora.com,
+        stanimir.varbanov@linaro.org, dillon.minfei@gmail.com,
+        david.plowman@raspberrypi.com, mark.rutland@arm.com,
+        robh+dt@kernel.org, krzk+dt@kernel.org, andi@etezian.org,
+        alim.akhtar@samsung.com, aswani.reddy@samsung.com,
+        pankaj.dubey@samsung.com, linux-fsd@tesla.com
+References: <20220517125548.14746-1-smitha.t@samsung.com>
+ <CGME20220517125625epcas5p3a5d6e217570e2e2f4e11b4c099d45767@epcas5p3.samsung.com>
+ <20220517125548.14746-12-smitha.t@samsung.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <20220517125548.14746-12-smitha.t@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-8.8 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -61,40 +56,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Smitha,
 
---yGUCWlv2qAlCwbOl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 5/17/22 14:55, Smitha T Murthy wrote:
+> MFC driver had restriction on max resolution of 1080p,
+> updated it for UHD. Added corresponding support to
+> set recommended profile and level for H264 in UHD scenario.
+> 
+> Cc: linux-fsd@tesla.com
+> Signed-off-by: Smitha T Murthy <smitha.t@samsung.com>
+> ---
+>  drivers/media/platform/samsung/s5p-mfc/s5p_mfc_enc.c |  4 ++--
+>  .../media/platform/samsung/s5p-mfc/s5p_mfc_opr_v6.c  | 12 ++++++++++++
+>  2 files changed, 14 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_enc.c b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_enc.c
+> index 456edcfebba7..9b624f17e32b 100644
+> --- a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_enc.c
+> +++ b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_enc.c
+> @@ -1630,8 +1630,8 @@ static int vidioc_try_fmt(struct file *file, void *priv, struct v4l2_format *f)
+>  			return -EINVAL;
+>  		}
+>  
+> -		v4l_bound_align_image(&pix_fmt_mp->width, 8, 1920, 1,
+> -			&pix_fmt_mp->height, 4, 1080, 1, 0);
+> +		v4l_bound_align_image(&pix_fmt_mp->width, 8, 3840, 1,
+> +			&pix_fmt_mp->height, 4, 2160, 1, 0);
 
-> On Mon, 16 May 2022 18:06:38 +0200 Lorenzo Bianconi wrote:
-> >  /* PDMA RX Base Pointer Register */
-> > -#define MTK_PRX_BASE_PTR0	0x900
-> > +#define MTK_PRX_BASE_PTR0	(eth->soc->reg_map[MTK_PDMA_BASE] + 0x100)
-> >  #define MTK_PRX_BASE_PTR_CFG(x)	(MTK_PRX_BASE_PTR0 + (x * 0x10))
->=20
-> Implicit macro arguments are really unpleasant for people doing
-> tree-wide changes or otherwise unfamiliar with the driver.
->=20
-> Nothing we can do to avoid this?
-
-I used this approach in order to have just few changes in the codebase. I g=
-uess the best
-option would be to explicitly add eth parameter to the register macros, wha=
-t do you think?
+Is this supported by older MFC versions as well? This seems to enable UHD support
+for all MFC versions.
 
 Regards,
-Lorenzo
 
---yGUCWlv2qAlCwbOl
-Content-Type: application/pgp-signature; name="signature.asc"
+	Hans
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCYoTA+gAKCRA6cBh0uS2t
-rKu7AQCqZ6gTV/nH6swFYufh/JvGdCvn+Ju4SVI9ORYBZxNvLgEA0u4maXWDKZI0
-eaenqEJ2bXJPNuae7fRx9qniJRt97gQ=
-=/+Hi
------END PGP SIGNATURE-----
-
---yGUCWlv2qAlCwbOl--
+>  	} else {
+>  		mfc_err("invalid buf type\n");
+>  		return -EINVAL;
+> diff --git a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_opr_v6.c b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_opr_v6.c
+> index 7db7945ea80f..2b6d6259a209 100644
+> --- a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_opr_v6.c
+> +++ b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_opr_v6.c
+> @@ -1127,6 +1127,18 @@ static int s5p_mfc_set_enc_params_h264(struct s5p_mfc_ctx *ctx)
+>  	reg |= ((p->num_b_frame & 0x3) << 16);
+>  	writel(reg, mfc_regs->e_gop_config);
+>  
+> +	/* UHD encoding case */
+> +	if ((ctx->img_width == 3840) && ctx->img_height == 2160) {
+> +		if (p_h264->level < 51) {
+> +			mfc_debug(2, "Set Level 5.1 for UHD\n");
+> +			p_h264->level = 51;
+> +		}
+> +		if (p_h264->profile != 0x2) {
+> +			mfc_debug(2, "Set High profile for UHD\n");
+> +			p_h264->profile = 0x2;
+> +		}
+> +	}
+> +
+>  	/* profile & level */
+>  	reg = 0;
+>  	/** level */
