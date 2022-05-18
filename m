@@ -2,59 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51E1C52AFD2
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 03:19:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B57B52AFD6
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 03:19:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233445AbiERBTE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 21:19:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55560 "EHLO
+        id S233517AbiERBTl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 21:19:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233502AbiERBTE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 21:19:04 -0400
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E504E541A2;
-        Tue, 17 May 2022 18:19:02 -0700 (PDT)
-Received: by mail-oi1-f174.google.com with SMTP id r1so996992oie.4;
-        Tue, 17 May 2022 18:19:02 -0700 (PDT)
+        with ESMTP id S232630AbiERBTk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 21:19:40 -0400
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C74D1541AE;
+        Tue, 17 May 2022 18:19:39 -0700 (PDT)
+Received: by mail-oi1-f182.google.com with SMTP id n24so952838oie.12;
+        Tue, 17 May 2022 18:19:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=dOjSbvFJzU0CvnEoNIDV+xsV7SachX6kYcOQb2jSCAM=;
-        b=lEBhydxqxHeaGDWjMuXTxxkVBOrDQZgOgHQEC+qbpBDJA++cPel2KLEM9v2lBh73Hj
-         JvBO0cnlQgUkj6CNthDKRTUJWYBFykBWC+jojEXn9DKuiIgehUE7dexQ3FpWK78lqg6g
-         JCFZHMI6DCWPlHSs+CcUpS5puo2JxmEutmrL8VxzSoDWEblENTvqcDLZ030cXZ6TeuJ1
-         9vFnsAC1W/dhPDFlTWOEmSxN2FwCZ3QEi9tv16r1wSrvGcEwTWi0h9BuXIEFq6fknGuh
-         mFU0Q7ivpCZ8RVdEPeX4acl2eGKv1by5U+wKu+IH87cB1lv1lDaDHe8Kb+YVZTMbge6i
-         AehQ==
-X-Gm-Message-State: AOAM530v9X+1zBVx4sQK8jjdLNbFZpEGFIN9o/VpRWorcd2P5L2Pln4O
-        2T5edsnphblyTeRi3S4oFA==
-X-Google-Smtp-Source: ABdhPJyVW9lX0u/Tduf0sfn4uTDKDDaASqIWzfS2BhX29afIHFZz6eAchY3e07N8O1YLBwNa0VbJYw==
-X-Received: by 2002:a05:6808:219c:b0:326:4456:d0be with SMTP id be28-20020a056808219c00b003264456d0bemr12044296oib.79.1652836741965;
-        Tue, 17 May 2022 18:19:01 -0700 (PDT)
+        bh=Kfb+7u6Uw6v+2PpmyDRwb+eNAw16/Ib/MlO+j8uqovw=;
+        b=mZ/7q8HYv3pwt6hiq2yXdLx1xktNNpcHq2Z/1o0leFLe3AD7+T8H75U0JDzVIvEBH3
+         s/216vREfGxTEjqhD6iP+dsAA2aW1UCJ6DLRgIX3j/RFQ/i/UVY5+SLzfho1LZF+pIlQ
+         /j71I2hc89L2mI8bo+sIS0xg6c7IFHGzWwfM6EM3h/LVZxhE2PfnGht56R+GIuFRAs+F
+         MDJ6X+tAqox43Npe8hkYIttr+6PyaqwVkiSo9yVraqaNfs/0iz30PPo4WZdeHRQUEDwZ
+         aTP2Z93pKirBL3gXY4hyuLBlzMmrt0g9Gok9NUCigJf3GzzQNtT5RXhQKpLJB2CuEk7D
+         2Whw==
+X-Gm-Message-State: AOAM531RW/Ps1PFlU6inGSlKeyJAxZckAvlleMdLBkQUJ1MlxJSCQEkP
+        6KDnl/9ngrGtMuFG6g7DrQ==
+X-Google-Smtp-Source: ABdhPJxXkFtw6rUqISK+0opSZFzVWDAiZPa07vOB/cSPlSN2Ohjk1gBwlQ/V2zVbJXsoWuWsG4waQw==
+X-Received: by 2002:a05:6808:178d:b0:326:6f83:13f3 with SMTP id bg13-20020a056808178d00b003266f8313f3mr12056249oib.0.1652836779088;
+        Tue, 17 May 2022 18:19:39 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id k22-20020a056870959600b000e686d1386asm536373oao.4.2022.05.17.18.19.00
+        by smtp.gmail.com with ESMTPSA id j3-20020a4ab1c3000000b0035eb4e5a6d6sm407380ooo.44.2022.05.17.18.19.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 May 2022 18:19:01 -0700 (PDT)
-Received: (nullmailer pid 2012064 invoked by uid 1000);
-        Wed, 18 May 2022 01:19:00 -0000
-Date:   Tue, 17 May 2022 20:19:00 -0500
+        Tue, 17 May 2022 18:19:38 -0700 (PDT)
+Received: (nullmailer pid 2013008 invoked by uid 1000);
+        Wed, 18 May 2022 01:19:37 -0000
+Date:   Tue, 17 May 2022 20:19:37 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-imx@nxp.com, shawnguo@kernel.org,
-        Peng Fan <peng.fan@nxp.com>,
-        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
-        festevam@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, s.hauer@pengutronix.de
-Subject: Re: [PATCH 1/2] dt-bindings: mailbox: imx-mu: add RST channel
-Message-ID: <20220518011900.GA2012006-robh@kernel.org>
-References: <20220517073518.34474-1-peng.fan@oss.nxp.com>
- <20220517073518.34474-2-peng.fan@oss.nxp.com>
+To:     Medad CChien <medadyoung@gmail.com>
+Cc:     benjaminfair@google.com, alexandre.belloni@bootlin.com,
+        a.zummo@towertech.it, avifishman70@gmail.com, ctcchien@nuvoton.com,
+        devicetree@vger.kernel.org, tali.perry1@gmail.com,
+        yuenn@google.com, KWLIU@nuvoton.com, openbmc@lists.ozlabs.org,
+        KFTING@nuvoton.com, JJLIU0@nuvoton.com,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        YSCHU@nuvoton.com, tmaimon77@gmail.com, venture@google.com,
+        linux-rtc@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: rtc: nuvoton: add NCT3018Y Real Time
+ Clock
+Message-ID: <20220518011937.GA2012974-robh@kernel.org>
+References: <20220517092927.19537-1-ctcchien@nuvoton.com>
+ <20220517092927.19537-3-ctcchien@nuvoton.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220517073518.34474-2-peng.fan@oss.nxp.com>
+In-Reply-To: <20220517092927.19537-3-ctcchien@nuvoton.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -66,19 +69,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 17 May 2022 15:35:17 +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On Tue, 17 May 2022 17:29:25 +0800, Medad CChien wrote:
+> Document devicetree bindings for the Nuvoton NCT3018Y Real Time Clock.
 > 
-> i.MX MU has a MUR bit which is to reset both the Processor B and the
-> Processor A sides of the MU module, forcing all control and status
-> registers to return to their default values (except the BHR bit in the ACR
-> register and BHRM bit in BCR register), and all internal states to be
-> cleared.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
 > ---
->  Documentation/devicetree/bindings/mailbox/fsl,mu.yaml | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
+>  .../bindings/rtc/nuvoton,nct3018y.yaml        | 44 +++++++++++++++++++
+>  1 file changed, 44 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/nuvoton,nct3018y.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
