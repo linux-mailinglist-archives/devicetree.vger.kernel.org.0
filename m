@@ -2,89 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F035852BBC5
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 16:15:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54F8952BD26
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 16:17:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237051AbiERMnG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 08:43:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50002 "EHLO
+        id S236982AbiERMrV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 08:47:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237920AbiERMmt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 08:42:49 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F2381ACF96
-        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 05:37:32 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id p4so1981503lfg.4
-        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 05:37:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=bjcBd0dxyOLx4l/iVB7YLxv3pDEKJIveecABs/FmMKM=;
-        b=dEr8oxgz+QsG8iMxbxZ21rateVZFoCcOtAjB6P8Lk/o3e91YIV/tyvFUlciQrzvkQi
-         ak2X7qWrrgXRkMIrBCfW/YQfkNL5NasaId+ZgBQ4EywCI5xIJroeyYGojdu5ECzD/vhf
-         Rbkd50rh9mvFJaReOjdXaekKBLX8H/HG0SOuV039UcxdlOibl6WgtvsFJcWZLziEKAL5
-         n72UBACaLSQQoSeSEKqCX9zdB5zjrUJU7ePMGxz1YNbJQIko+enDSr9JB5ciDW5OelDm
-         2Gsj1tXn5+kpo778SO40n39xuRWHsWRk4lrybwenApCRXhlCJ1nJfVm0QijYhBgr2bJL
-         59TQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=bjcBd0dxyOLx4l/iVB7YLxv3pDEKJIveecABs/FmMKM=;
-        b=sF5/GHYhVHA00TPeT5OoKYxDNM2ew/UQswpA/ug5FfyOIaPu1H90jKqKk3qKE0XRqH
-         lKy4s6axlQFKqRu8ep0mXASn876tC17x/PtqTuWWE8gZc5zQamYz3xLmJ3XzWeNbwMC9
-         BkvRF713453OWzyNhU0W9/mq/pJQP7bZXwSTldcsBmhtYzsGGK2lTW0Ogs+J9iiOvUg3
-         5x2V5IwHdekSzu35V8VpOjHDTZ1bIo/xXbq+ExUcKdSmNZxoPmcVLkz5+8TP2n297H2D
-         ChdKgDjQfiwii9fTI8vuaFVVx12/Auk7z97ER7HYfRqIzmYom66jEgK55CJxm0k68uS8
-         Ch8A==
-X-Gm-Message-State: AOAM531g8eItYDiew6nVD1HWhwzAi+LbXMw8Kd2GOs4L/KEvByJE9dnT
-        yYjwguBcUvS5D/yExp63v0FKsQ==
-X-Google-Smtp-Source: ABdhPJwHMKd/jdGmVLU/ZeYiatYQeLrhAI3N0HVLhUBn7kOKFKlKZpFS1pwdOKyqn6Tt/LpUcqFjuQ==
-X-Received: by 2002:ac2:46f5:0:b0:477:bc14:f03a with SMTP id q21-20020ac246f5000000b00477bc14f03amr1376980lfo.608.1652877428730;
-        Wed, 18 May 2022 05:37:08 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id a13-20020ac25e6d000000b0047255d21123sm201360lfr.82.2022.05.18.05.37.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 May 2022 05:37:08 -0700 (PDT)
-Message-ID: <4c9b7f31-4473-fca9-0e72-2f32e0983479@linaro.org>
-Date:   Wed, 18 May 2022 14:37:07 +0200
+        with ESMTP id S237425AbiERMp5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 08:45:57 -0400
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C60715D308;
+        Wed, 18 May 2022 05:42:25 -0700 (PDT)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 1863A240006;
+        Wed, 18 May 2022 12:42:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1652877744;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=3gM9WXfVKLQSwc3deM8grfiskd/pEHtQBWIsO3/UiFA=;
+        b=BVT23yrs3RTS7Oays8mQt1y5yO2CLE6kuXnLPiQJ35xmRgRerwJGEJJ75CA2EnSviEn4tH
+        k9FsITgPYESsuQMEoR7Mf6yMyrYLMLLHcaca/wmC3HllzJuinX32Ndmfp0//C4gOA0R7ZK
+        694jNF25jIcEz0pKhrRqRhfpj24hJ0sFX4roiI4shAekeVVvFbBQUzI4c5s+ZwufI01M/2
+        dGSNO70ZXEc//bLwo6uGK91g7gwjjPkTuQC+B2IleBwiGD2jcGEkndMnRvEAQN5WFBFj+S
+        ewQgZFJ/7/nou1jSRwatnNUO0qSYxouAisQ4w8xvnd/WNE4l6RlLpbIeRhP4aQ==
+Date:   Wed, 18 May 2022 14:41:11 +0200
+From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?UTF-8?B?TWlxdcOobA==?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next v4 05/12] dt-bindings: net: dsa: add bindings
+ for Renesas RZ/N1 Advanced 5 port switch
+Message-ID: <20220518144111.135c7d0d@fixe.home>
+In-Reply-To: <20220518120503.3m2zfw7kmhsfg336@skbuf>
+References: <20220509131900.7840-1-clement.leger@bootlin.com>
+        <20220509131900.7840-6-clement.leger@bootlin.com>
+        <20220511152221.GA334055-robh@kernel.org>
+        <20220511153337.deqxawpbbk3actxf@skbuf>
+        <20220518015924.GC2049643-robh@kernel.org>
+        <20220518120503.3m2zfw7kmhsfg336@skbuf>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v3 1/2] dt-bindings: microchip-otpc: document Microchip
- OTPC
-Content-Language: en-US
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
-        srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
-        krzk+dt@kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220518115129.908787-1-claudiu.beznea@microchip.com>
- <20220518115129.908787-2-claudiu.beznea@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220518115129.908787-2-claudiu.beznea@microchip.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/05/2022 13:51, Claudiu Beznea wrote:
-> Document Microchip OTP controller.
-> 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+Le Wed, 18 May 2022 15:05:03 +0300,
+Vladimir Oltean <olteanv@gmail.com> a =C3=A9crit :
 
+> On Tue, May 17, 2022 at 08:59:24PM -0500, Rob Herring wrote:
+> > On Wed, May 11, 2022 at 06:33:37PM +0300, Vladimir Oltean wrote: =20
+> > > On Wed, May 11, 2022 at 10:22:21AM -0500, Rob Herring wrote: =20
+> > > > > +patternProperties:
+> > > > > +  "^ethernet-ports$": =20
+> > > >=20
+> > > > Move to 'properties', not a pattern.
+> > > >=20
+> > > > With that,
+> > > >=20
+> > > > Reviewed-by: Rob Herring <robh@kernel.org> =20
+> > >=20
+> > > Even if it should have been "^(ethernet-)?ports$"? =20
+> >=20
+> > Why? Allowing 'ports' is for existing users. New ones don't need the=20
+> > variability and should use just 'ethernet-ports'.
+> >=20
+> > Rob =20
+>=20
+> Yeah, ok, somehow the memo that new DSA drivers shouldn't support "ports"
+> didn't reach me. They invariably will though, since the DSA framework is
+> the main parser of the property, and that is shared by both old and new
+> drivers.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Should also the subnodes of "ethernet-ports" use the
+"ethernet-port@[0-9]*" naming ? Or keeping the existing pattern is ok
+(ie "^(ethernet-)?port@[0-4]$") ?
 
+Thanks,
 
-Best regards,
-Krzysztof
+--=20
+Cl=C3=A9ment L=C3=A9ger,
+Embedded Linux and Kernel engineer at Bootlin
+https://bootlin.com
