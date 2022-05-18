@@ -2,78 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D527352B8BF
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 13:32:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3B4552B8EF
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 13:45:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235662AbiERL3b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 07:29:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45350 "EHLO
+        id S235752AbiERLgO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 07:36:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235630AbiERL3a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 07:29:30 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B10791756A6;
-        Wed, 18 May 2022 04:29:25 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id c190-20020a1c35c7000000b0038e37907b5bso3038297wma.0;
-        Wed, 18 May 2022 04:29:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=uFIsWxhH+SfWDbQeGJib3EffwTOsdWgNhmP3BKg6cTI=;
-        b=GIk1v/SP46GpQB2aa29XniHa4XWAzmRQTBwJvI2ojRUnPlE+MqZBO6G6nMAupnb8W+
-         G2EA2unw0FCDCoBzqtVzORAZzUFAFXx+Kdr8mqijkt1cl3qR20Nu7ks1Ou4EEIyvLfG1
-         BKNUqHtpdNg9JkHJn34prfdFRVXewGK/0aMoRwE31kjLG9CzM4rhFuUz60WAX4Xx4Qtf
-         Iw5hAdG4s9z4F6oM41gnCOxtwot5uL5itCKcTOqR+V3kIeqKyCtmTTLGt5h7TbNeBK4l
-         1nRGHnUOJvvntrUCPXJu1pJXgzrO3r0Q2kDfNl8uDHZhwRBCu9LgjhUgB/igxBzXk6Dk
-         Y+OA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=uFIsWxhH+SfWDbQeGJib3EffwTOsdWgNhmP3BKg6cTI=;
-        b=r7bMVYTEcFIWdWVVfFZRIV76V3Siu6yEXzNA5WQfwP1qDmgGo0yKscAtuKwkJIqZ2O
-         mRHaDQt7KD2DwZYe4VKetQsKMoYAGodAucOfxWFJFM63r+zTWhbLJmODa3AtVzbw1/HV
-         XspZkk82RLOpA7a90B+cn0UczBia06LYlb+1PA7Jv1KelUGbCMck5bLEU3wnYs/X67wK
-         dW9p+RhHBQaMTuNwfXY4yNPTApEILYeWd0uo3jGN3Yv0t6FU1w+O2MnpNxiTFK87lIRc
-         rkNIY+8S2Kv1xi5S55pGoEpNkX22WmRvKXHXzFC7DgNViVjfUa2r1MzqWRnbDa5MTJg9
-         eMTQ==
-X-Gm-Message-State: AOAM530yHaFDBoZ/LSudWjyZA1r8Q6BhuhrcyoAT+GF6OchwCYe2XikF
-        WM0P0DvGwhjbhx+N9jI1WJs=
-X-Google-Smtp-Source: ABdhPJwmMEJmW+CILoBoRlmxrlpjiQs7Ka6eyFZQusCiGX6OE9WPle9wfc8RX8mJ6nniBuuCC/UxRQ==
-X-Received: by 2002:a05:600c:3549:b0:394:89ba:e1be with SMTP id i9-20020a05600c354900b0039489bae1bemr25309861wmq.181.1652873364178;
-        Wed, 18 May 2022 04:29:24 -0700 (PDT)
-Received: from [192.168.0.36] ([5.225.216.194])
-        by smtp.gmail.com with ESMTPSA id v65-20020a1cac44000000b003947b59dfdesm5121659wme.36.2022.05.18.04.29.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 May 2022 04:29:23 -0700 (PDT)
-Message-ID: <4cfbc8dd-83d3-80df-630d-6f8fb2efb9fd@gmail.com>
-Date:   Wed, 18 May 2022 13:29:22 +0200
+        with ESMTP id S235745AbiERLeY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 07:34:24 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63DC61778B5;
+        Wed, 18 May 2022 04:34:22 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 14B40B81F30;
+        Wed, 18 May 2022 11:34:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41CA7C385A5;
+        Wed, 18 May 2022 11:34:15 +0000 (UTC)
+Message-ID: <31992c67-400e-8e14-38c2-4655995886f5@xs4all.nl>
+Date:   Wed, 18 May 2022 13:34:13 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v2 1/7] dt-bindings: iommu: mediatek: Add phandles for
- mediatek infra/pericfg
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v6, 6/7] media: mediatek: vcodec: prevent kernel crash
+ when scp ipi timeout
 Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, yong.wu@mediatek.com
-Cc:     joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        iommu@lists.linux-foundation.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        krzysztof.kozlowski@linaro.org
-References: <20220518100503.37279-1-angelogioacchino.delregno@collabora.com>
- <20220518100503.37279-2-angelogioacchino.delregno@collabora.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220518100503.37279-2-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     "yunfei.dong@mediatek.com" <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+Cc:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220513092526.9670-1-yunfei.dong@mediatek.com>
+ <20220513092526.9670-7-yunfei.dong@mediatek.com>
+ <ea9a04fb-368d-daca-96ae-9366253a5e91@xs4all.nl>
+ <f26d5225fc8c499226c297ed86feb5ee20e8f3d3.camel@mediatek.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <f26d5225fc8c499226c297ed86feb5ee20e8f3d3.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-8.8 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,48 +73,76 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 18/05/2022 12:04, AngeloGioacchino Del Regno wrote:
-> Add properties "mediatek,infracfg" and "mediatek,pericfg" to let the
-> mtk_iommu driver retrieve phandles to the infracfg and pericfg syscon(s)
-> instead of performing a per-soc compatible lookup.
+On 5/18/22 13:29, yunfei.dong@mediatek.com wrote:
+> Dear Hans,
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->   .../devicetree/bindings/iommu/mediatek,iommu.yaml         | 8 ++++++++
->   1 file changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> index 2ae3bbad7f1a..c4af41947593 100644
-> --- a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> @@ -101,6 +101,10 @@ properties:
->       items:
->         - const: bclk
->   
-> +  mediatek,infracfg:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: The phandle to the mediatek infracfg syscon
-> +
->     mediatek,larbs:
->       $ref: /schemas/types.yaml#/definitions/phandle-array
->       minItems: 1
-> @@ -112,6 +116,10 @@ properties:
->         Refer to bindings/memory-controllers/mediatek,smi-larb.yaml. It must sort
->         according to the local arbiter index, like larb0, larb1, larb2...
->   
-> +  mediatek,pericfg:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: The phandle to the mediatek pericfg syscon
-> +
+> Thanks for your review.
+> On Wed, 2022-05-18 at 11:37 +0200, Hans Verkuil wrote:
+>> Hi Yunfei,
+>>
+>> On 5/13/22 11:25, Yunfei Dong wrote:
+>>> When SCP timeout during playing video, kernel crashes with
+>>> following
+>>> message. It's caused by accessing NULL pointer in
+>>> vpu_dec_ipi_handler.
+>>> This patch doesn't solve the root cause of NULL pointer, but merely
+>>> prevent kernel crashed when encounter the NULL pointer.
+>>
+>> Is the root cause being addressed as well? Where is the root cause?
+>> Is it
+>> in this driver or in the scp (i.e. the remoteproc) driver?
+>>
+>> I need a bit more information to decide whether this series is ready
+>> to
+>> be merged for 5.20 or not.
+>>
+>> Regards,
+>>
+>> 	Hans
+>>
+> Vpu will be NUll when scp(micro processor) is hang or crash. Need to
+> keep kernel works well , so add this patch.
 
-I didn't explain myself. What I was suguesting was to squash the patch that add 
-requiered mediatek,infracfg with the patch that adds mediatk,infracfg to the 
-binding description. And then squash the both patches adding pericfg as well.
+OK, I think this should be stated in the commit log, and also in the code
+(see below).
+
+> 
+> Best Regards,
+> Yunfei Dong
+
+<snip>
+
+>>> diff --git a/drivers/media/platform/mediatek/vcodec/vdec_vpu_if.c
+>>> b/drivers/media/platform/mediatek/vcodec/vdec_vpu_if.c
+>>> index 35f4d5583084..1041dd663e76 100644
+>>> --- a/drivers/media/platform/mediatek/vcodec/vdec_vpu_if.c
+>>> +++ b/drivers/media/platform/mediatek/vcodec/vdec_vpu_if.c
+>>> @@ -91,6 +91,11 @@ static void vpu_dec_ipi_handler(void *data,
+>>> unsigned int len, void *priv)
+>>>  	struct vdec_vpu_inst *vpu = (struct vdec_vpu_inst *)
+>>>  					(unsigned long)msg-
+>>>> ap_inst_addr;
+>>>  
+>>> +	if (!vpu) {
+>>> +		mtk_v4l2_err("ap_inst_addr is NULL");
+
+E.g., either add a comment here or perhaps change the error message to:
+
+"ap_inst_addr is NULL, did the SCP hang?"
+
+Or something along those lines.
+
+Shouldn't there be a \n at the end of this message as well? Or does
+mtk_v4l2_err add that?
 
 Regards,
-Matthias
 
+	Hans
 
->     '#iommu-cells':
->       const: 1
->       description: |
+>>> +		return;
+>>> +	}
+>>> +
+>>>  	mtk_vcodec_debug(vpu, "+ id=%X", msg->msg_id);
+>>>  
+>>>  	vpu->failure = msg->status;
+> 
