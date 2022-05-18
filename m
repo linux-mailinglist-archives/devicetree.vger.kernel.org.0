@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34CA052BEA0
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 17:26:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F211452BDE0
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 17:25:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238553AbiEROVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 10:21:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48700 "EHLO
+        id S238637AbiEROZO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 10:25:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238551AbiEROVS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 10:21:18 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 686CC1C103;
-        Wed, 18 May 2022 07:21:16 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id bq30so3941235lfb.3;
-        Wed, 18 May 2022 07:21:16 -0700 (PDT)
+        with ESMTP id S238633AbiEROZN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 10:25:13 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC29217D3AE;
+        Wed, 18 May 2022 07:25:10 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id j28so3201931eda.13;
+        Wed, 18 May 2022 07:25:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=OgF7hB842Xb1tcpu/exVm00l5yNp9b+2bCf12T/zGxc=;
-        b=e7RUpvLPw1/sKoLVxVoOxzKi3xQRj3PpyVvr333lxyBp/yvOTfwmgKKAHFDm9CshR4
-         NvheW1Z+C/naejxdGvSKLOi7EaEmLYVb2fq254kes7ntQmFcbqCtIH7qgqj0uBlSjewP
-         y3nmYCWY/Wo+7Dyt53yvbAI8H+jCSAP4XJ3P9S/ukSPyKuJY5V2guFPrT2FPhT+LnyX7
-         WmVSTfkIGQgIo6m+LzUYb6iGOdDEWE6hyXuTeyFNzIl1y0R/Tw+BXAbPiVjjc6NEcHA9
-         v0l0cm1kMLgAuH/fG6sa1VdNDaE/61nnECZLz+KEkuIIK2tJpo86oiYElEkpUKfImlF3
-         sLyA==
+        bh=stnxt/OKHtoX8kg/zkH5s6FWJGjmv3qLkoVDNDYez8s=;
+        b=brki9cE8DnBCjFO8MmzqU5YEpQn9nkcdZ/0AwxoJ7dEX8xPBOgn8qTrH1hWb61SPNv
+         /oxPigsFSARndEpKecwGIOuCjS4xb0qRXClQWMR0fPscEaFRXAap95j91u6/EgJsoHsH
+         mWUZxdIuNF/yt02ZedrdPclyji8RxELs7OC+MfreC7JsKmHp15NpBhdMSeugc/f7qVMj
+         xt45Uty/mjnw0exm5bMTHRMKY/qNA4MLS6Vxeen7hWkr+Ym7tqyEA645nQ9wn1AIENOd
+         IpOEswFVe5cfz3cxUE8Wtw48BhsTIbrCC+z82Viu73IGk9ssgFudesJIE2Wigb0/haGJ
+         4Vrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=OgF7hB842Xb1tcpu/exVm00l5yNp9b+2bCf12T/zGxc=;
-        b=VQiaBrrk+NcVIYdFLa68mOTJuAGuULjH2pPhsFC1MMVJ/gAvtrgeIr9FwdcqUj/ZJg
-         xtfuwqAYfPb3Avxfa3A4triB3CFfOpcKZxSYDYeFrgLDKYBHamTXLaj4pWGEDtdcSGfs
-         fFZY2oyVVsAh6ab+hp0c7hHea5Rgp1gl983faAq1+GuHHsh5Hm8BYDS+rL3aWw7whOeF
-         qA8iAIekakIEWfzEZzvqJDD50vVy3X3QdASvFI7U5+XCZwBcByqXRjnyEX10D05Ad3Lw
-         tAoKKFuprUokM1g/+D1OK0wUZXE/3gQH68vwNZ62zBsrW2Baoc9ll8eOdcgTsbxSTzsv
-         WPQQ==
-X-Gm-Message-State: AOAM532+iv+YwxbOzbyZR8IorFeF4/ou2wiOUIj9d3DWvlKKAiD1xa5s
-        1hwp0ApHMklMogukx0Sh0rDhM3suLATia+VINUo=
-X-Google-Smtp-Source: ABdhPJwBXTEz06RJoigcTFP/EBVz+helwZx8NYWmO9cAOVwwvhieqj9DYnDaTZICu64zreOkTLHGIXwQvCu7H+MnSEg=
-X-Received: by 2002:ac2:550f:0:b0:477:bc6e:9bcc with SMTP id
- j15-20020ac2550f000000b00477bc6e9bccmr1697600lfk.279.1652883674662; Wed, 18
- May 2022 07:21:14 -0700 (PDT)
+        bh=stnxt/OKHtoX8kg/zkH5s6FWJGjmv3qLkoVDNDYez8s=;
+        b=AGK+ENn76XCfc9CFnFxp7BayojgIOxR/LHhY0Ou93SjCspwu2O24f4JjwyiE8pVCzG
+         PO3PzxeaSy6TBZiwIz+HoXBd19A06OLhpKJTxo1ZY1qpU7vcZGlEEaYlBgiJgM1ehu7E
+         p2XVyUrCyWDMdmDQH2QlKQOq0t2QcmKcPISgxQ2iF8HZj/whBfkIwQkKIpUu5RKTd1hy
+         VY7jxiUtJwp6/+c07dDTzLMo+C8vZgMHTWOO/s/d0XO8AVGMjGxrmI4jvX/RGthModBB
+         vEvdpceN5aG5pvYtm0L38hDfhR8sZ2ShpxCGQZayr7G+HXPxgClgkCrCXEfqCsPseOHx
+         S9CA==
+X-Gm-Message-State: AOAM530tR4gtSItoF3g+NnYiDq7aWrY4Az310yWvTCGbdW/dg9UyG6o8
+        wUNAA7kSRe086GKvItSo5onpTi3LKSqJYUoUtRg=
+X-Google-Smtp-Source: ABdhPJwH6lPMMsalu565/GTZAbgAdLomEaQg43Xm5pxBzuLuWLmOos5vvCCQHl3CECFtWMDT2PuB9gKSZhr6go14a2A=
+X-Received: by 2002:a05:6402:3585:b0:427:ccd4:bec3 with SMTP id
+ y5-20020a056402358500b00427ccd4bec3mr4590edc.2.1652883909505; Wed, 18 May
+ 2022 07:25:09 -0700 (PDT)
 MIME-Version: 1.0
 References: <20220516115846.58328-1-max.oss.09@gmail.com> <20220516115846.58328-12-max.oss.09@gmail.com>
- <CAOMZO5DhTNDHLt_VZoWqD5dMBHq3rvJ+0j8-4xHHThyqheqcgQ@mail.gmail.com>
-In-Reply-To: <CAOMZO5DhTNDHLt_VZoWqD5dMBHq3rvJ+0j8-4xHHThyqheqcgQ@mail.gmail.com>
-From:   Max Krummenacher <max.oss.09@gmail.com>
-Date:   Wed, 18 May 2022 16:21:03 +0200
-Message-ID: <CAEHkU3Xtm9gk6xXr586M3pm4tPpFA-fGn+QyKXfF+Cqqa8VK8g@mail.gmail.com>
+ <CAOMZO5DhTNDHLt_VZoWqD5dMBHq3rvJ+0j8-4xHHThyqheqcgQ@mail.gmail.com> <CAEHkU3Xtm9gk6xXr586M3pm4tPpFA-fGn+QyKXfF+Cqqa8VK8g@mail.gmail.com>
+In-Reply-To: <CAEHkU3Xtm9gk6xXr586M3pm4tPpFA-fGn+QyKXfF+Cqqa8VK8g@mail.gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Wed, 18 May 2022 11:25:00 -0300
+Message-ID: <CAOMZO5C+6Hoh8Sq4eZp+pp-0ktroz9MJw2-cD5eZEhBZGx+Wfw@mail.gmail.com>
 Subject: Re: [PATCH v1 11/17] ARM: dts: imx6q-apalis: Add ov5640 mipi csi camera
-To:     Fabio Estevam <festevam@gmail.com>
+To:     Max Krummenacher <max.oss.09@gmail.com>
 Cc:     Max Krummenacher <max.krummenacher@toradex.com>,
         Oleksandr Suvorov <oleksandr.suvorov@toradex.com>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -67,78 +67,30 @@ Cc:     Max Krummenacher <max.krummenacher@toradex.com>,
         <linux-arm-kernel@lists.infradead.org>,
         linux-kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabio
+Hi Max,
 
-On Mon, May 16, 2022 at 2:08 PM Fabio Estevam <festevam@gmail.com> wrote:
->
-> Hi Max,
->
-> On Mon, May 16, 2022 at 8:59 AM Max Krummenacher <max.oss.09@gmail.com> wrote:
-> >
-> > From: Oleksandr Suvorov <oleksandr.suvorov@toradex.com>
-> >
-> > The Apalis iMX6 modules allow connecting a mipi-csi video input.
-> > Add support for our OV5640 camera module but have it disabled.
-> > This allows to enable it in an overlay per the current system
-> > configuration.
-> >
-> > Signed-off-by: Oleksandr Suvorov <oleksandr.suvorov@toradex.com>
-> > Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
-> > ---
-> >
-> >  arch/arm/boot/dts/imx6qdl-apalis.dtsi | 67 ++++++++++++++++++++++++++-
-> >  1 file changed, 66 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/arch/arm/boot/dts/imx6qdl-apalis.dtsi b/arch/arm/boot/dts/imx6qdl-apalis.dtsi
-> > index 506d040ea37a..0d1004eede62 100644
-> > --- a/arch/arm/boot/dts/imx6qdl-apalis.dtsi
-> > +++ b/arch/arm/boot/dts/imx6qdl-apalis.dtsi
-> > @@ -29,6 +29,12 @@
-> >                 status = "disabled";
-> >         };
-> >
-> > +       clk_ov5640_osc: clk_ov5640_osc_int {
->
-> Node names should have "-", not "_"
+On Wed, May 18, 2022 at 11:21 AM Max Krummenacher <max.oss.09@gmail.com> wrote:
 
-Ups, missed that one. Will fix it in V2. Thanks.
+> In my (limited) testing I saw no issues that the camera would not come up.
+> It takes 2 to 3 seconds until the pipeline is running but I noted no hickups.
+> I did this with setting the resolution to 640x480 and 1920x1080 which
+> probably would not relate to the LP-11 issue you mention.
+>
+> I.e. I set up the v4l2 pipeline and start capture to the screen as follows:
 
->
-> clk_ov5640_osc: clk-ov5640-osc
->
-> Also, no need for the _int suffix.
->
-> Just curious: is ov5640 mipi support functional?
->
-> I recalled that I had issues in getting Gstreamer pipeline to capture
-> from the ov5640 mipi.
->
-> There were some errors related to LP-11 during the start of the capture.
+Just curious: which baseboard did you use to test the ov5640 camera?
 
-In my (limited) testing I saw no issues that the camera would not come up.
-It takes 2 to 3 seconds until the pipeline is running but I noted no hickups.
-I did this with setting the resolution to 640x480 and 1920x1080 which
-probably would not relate to the LP-11 issue you mention.
+Most likely there was an issue with the customer's baseboard that
+prevented the camera capture to start.
 
-I.e. I set up the v4l2 pipeline and start capture to the screen as follows:
-```
-media-ctl -l "'ov5640 1-003c':0 -> 'imx6-mipi-csi2':0[1]"
-media-ctl -l "'imx6-mipi-csi2':2 -> 'ipu1_csi1':0[1]"
-media-ctl -l "'ipu1_csi1':2 -> 'ipu1_csi1 capture':0[1]"
-media-ctl -V "'ov5640 1-003c':0 [fmt:UYVY2X8/640x480 field:none]"
-media-ctl -V "'imx6-mipi-csi2':2 [fmt:UYVY2X8/640x480 field:none]"
-media-ctl -V "'ipu1_csi1':2 [fmt:AYUV32/640x480 field:none]"
-gst-launch-1.0 v4l2src device='/dev/video0' ! videoconvert ! waylandsink
-```
-
-Max
+Thanks
