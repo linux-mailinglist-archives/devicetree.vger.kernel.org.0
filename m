@@ -2,57 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30DC452B931
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 13:55:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C638552B922
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 13:55:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235797AbiERLu1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 07:50:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42010 "EHLO
+        id S235791AbiERLtM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 07:49:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235795AbiERLu0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 07:50:26 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86FB417B865;
-        Wed, 18 May 2022 04:50:24 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id B6EBA1F44EFE
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1652874623;
-        bh=v9BT4jY0LXkbBKEpNBl7A0GnoXGTuIN7ai0ivp4fxo0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=MDHUAkFFlwdwoLrZiH6kWeRTcdEKGTPyapZ/YpbtlbTBTDYChw2zzczD8UNhaGaXX
-         c7ib5AqOU0w8q3zOjUiMSs1FtnDJpFtXZqk+d/3X8SHH6FzLuptdxWC2LtFmXzQlFI
-         2C3TbheXt2uFZTm7lhfp4QUqCYNFaOeDzqGhKqzhE3qunw3CiKJ+Rz4YmaSd8R3s9Y
-         gdvFBxVuBF2pQ7HdfWLPJgKH5r5u6oOfUbEqConajhIkeVbJagLiATav4M1jQm4kQe
-         Q3y5bhqwImy2ZiDVFg+OGnJUi5ZKo4Tz5ysJ9tSuRqOiW+t9V310+qCe36wgzVgC49
-         0gfZZDVLNP39w==
-Message-ID: <73f6ab7c-635e-1ff3-2d48-492c256ffcc9@collabora.com>
-Date:   Wed, 18 May 2022 13:50:20 +0200
+        with ESMTP id S235772AbiERLtL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 07:49:11 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF263179C19;
+        Wed, 18 May 2022 04:49:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1652874549; x=1684410549;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=d9QZeZd2/xhOso7dWnKP7HbWb4p7FSS+gP0Yr1dxXPE=;
+  b=2Fnye8GT2IwDRrc2mJpNP4eaFGygTEA/zVmqmHY8yVcFcjIhVhTxGoHn
+   yA57sU1i3vVrC996BPFB03A0CT8BpU2d+yq6XCnjpKrqXXaf0h/of5oLR
+   5Z35jGp35KD44JaAJ0RprWnKYxzIrzy5pEF/G1iWsnwtZqqPLGREjMyTf
+   T8ZNdlDH7tbjwn7+l4HOlQjerz1tDb0sP9+tyCZU7dSafsf88DtYonL+7
+   zr+QEWKVhepIdAbE55VSayC1dBe75wKLwDESxpDmqUyAxzUI2qgTQuzCC
+   5lUvLzmoA5zZkcVoG0pvoJfkBjBm3Vb1jvVpKxmBQZksrLx6u/SybR93o
+   g==;
+X-IronPort-AV: E=Sophos;i="5.91,234,1647327600"; 
+   d="scan'208";a="164583728"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 May 2022 04:49:08 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Wed, 18 May 2022 04:49:07 -0700
+Received: from localhost.localdomain (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Wed, 18 May 2022 04:49:05 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <srinivas.kandagatla@linaro.org>, <robh+dt@kernel.org>,
+        <krzk+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH v3 0/2] nvmem: add Microchip OTP controller
+Date:   Wed, 18 May 2022 14:51:27 +0300
+Message-ID: <20220518115129.908787-1-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v2 2/2] dt-bindings: arm: mtk-clocks: Set #clock-cells as
- required property
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        robh+dt@kernel.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        sboyd@kernel.org, chun-jie.chen@mediatek.com,
-        rex-bc.chen@mediatek.com, wenst@chromium.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220518093631.25491-1-angelogioacchino.delregno@collabora.com>
- <20220518093631.25491-3-angelogioacchino.delregno@collabora.com>
- <81dcc83b-7ef0-779e-ad2b-8d0722b48ba4@linaro.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <81dcc83b-7ef0-779e-ad2b-8d0722b48ba4@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,27 +61,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 18/05/22 13:46, Krzysztof Kozlowski ha scritto:
-> On 18/05/2022 11:36, AngeloGioacchino Del Regno wrote:
->> This is a clock-controller binding, so it needs #clock-cells, or
->> it would be of no use: add that to the list of required properties.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> These I considered as somehow fixes so I did not ask to remove the Fixes
-> tag, so also not squashing. It's fine, though...
-> 
+Hi,
 
-I'm sorry Krzysztof, for some reason I was sure that your comments were applicable
-on the entire series...
+This series adds support for Microchip OTP controller available on
+SAMA7G5. The driver gives access to a non-volatile memory which
+keeps (at the moment) information like booting media and temperature
+calibration data used for thermal measurements.
 
-I'll pay more attention next time, and eventually I'll make one more question
-when/if needed. I take your last comment as "leave this series as it is", so
-I will not send a v3.
+Thank you,
+Claudiu Beznea
 
-Regards,
-Angelo
+Changes in v3:
+- fixed Documentation and binding files names
+- used __maybe_unused for mchp_otpc_ids
 
+Changes in v2:
+- updated the bindings (patch 1/2) as follows:
+	- included the device name in files names and updated binding
+	  content accordingly
+	- updated the description
+	- removed address-cells, size-cells
+	- removed clock include
+	- use GPL-2.0 OR BSD-2-Clause license
+	- removed OTP_PKT_SAMA7G5_TEMP_CALIB_LEN and keep hardcoded
+	  value in examples
+	  
+- updated MAINTAINERS file with new naming of bindings
+
+Claudiu Beznea (2):
+  dt-bindings: microchip-otpc: document Microchip OTPC
+  nvmem: microchip-otpc: add support
+
+ .../nvmem/microchip,sama7g5-otpc.yaml         |  50 +++
+ MAINTAINERS                                   |   8 +
+ drivers/nvmem/Kconfig                         |   7 +
+ drivers/nvmem/Makefile                        |   2 +
+ drivers/nvmem/microchip-otpc.c                | 288 ++++++++++++++++++
+ .../nvmem/microchip,sama7g5-otpc.h            |  12 +
+ 6 files changed, 367 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/microchip,sama7g5-otpc.yaml
+ create mode 100644 drivers/nvmem/microchip-otpc.c
+ create mode 040000 include/dt-bindings/nvmem
+ create mode 100644 include/dt-bindings/nvmem/microchip,sama7g5-otpc.h
+
+-- 
+2.34.1
 
