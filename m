@@ -2,126 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9580B52C2AA
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 20:53:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60AA352C2F6
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 21:02:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241590AbiERSxQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 14:53:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58334 "EHLO
+        id S241818AbiERS7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 14:59:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241708AbiERSxO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 14:53:14 -0400
-Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE6D020EE20;
-        Wed, 18 May 2022 11:53:10 -0700 (PDT)
-Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-e5e433d66dso3914370fac.5;
-        Wed, 18 May 2022 11:53:10 -0700 (PDT)
+        with ESMTP id S241809AbiERS7H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 14:59:07 -0400
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F08421A942;
+        Wed, 18 May 2022 11:59:06 -0700 (PDT)
+Received: by mail-oi1-f173.google.com with SMTP id l16so3799068oil.6;
+        Wed, 18 May 2022 11:59:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=8MjJCE/8K8+TV18DiRjp4WnXk9vy6w8u4Ub+xfkaiUo=;
-        b=NWb6Q3Xp8TjvfEuECfIQr9df1jw+ayPwuRvx0niNBQuVXPSTM+UUV9YoaOuxuK70MH
-         C2pCHplp1VP4eV5d0Pkihl3CYLiitDTRasrd+7p/pYXn+DV89pSXfMOKLllydTfH8NeF
-         7mRQub4QFL+L6RR4mfEjJhA+SRKn9X+zHqtPYelTGz0gstgzPRNP5StkaljSpjCOS0Lq
-         hJKA51WujP9e9c8K4GzLG7mBFm8hsli0kcmWSUjyNZAzQ3EkU7kVgoHwjV+IDP5DcEMe
-         T09kJRO94G5ogh7TMRGPX24aDGQmFNkOZzkFi+Iia2gp6lr3twPg9GB3BZ6KSMNxpOxg
-         m7oQ==
-X-Gm-Message-State: AOAM531rZ1Jh8K+slVqKDs6Wjlg0WgEukSX7nEhxc664egcU3G5Gj/5J
-        piGvk4IjSs5kLkyCKqhEbA==
-X-Google-Smtp-Source: ABdhPJw+P/6QyDD9F7P5YoNd1qUPUMDZ8vwFg4Y7o7BJFW/d3h8QUhanxfXSfGfLfywzFxVJbjIodA==
-X-Received: by 2002:a05:6870:f61a:b0:f1:7484:8eca with SMTP id ek26-20020a056870f61a00b000f174848ecamr546312oab.107.1652899989566;
-        Wed, 18 May 2022 11:53:09 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=hl6vHR8m/JLovYO2gNE3ChbiYGqpt17k+OnwcqxZkjo=;
+        b=hodY84OWJLzorbbOhgzV8IJNUYfsvFv4kMCVWDIFiLK5rTsCi3tNw9fuHr+WlxVv1V
+         bTh96UT4WxSr/80pv244V0qdFJmTizO9vvmnuDgUWDCcZVrALBpDroPZlmQ28pqFP/5x
+         YxzwT+PeHC0qDc1LCst9D9kTXLNZ2xn2PuA9aPQ45hmVjLpkCFxBuWBlkFkwe7bwBLFV
+         pxQZgrIv+TvHYLhITlLBn+UGYQMJvTe+c1RWI7mY5KmxgNmlieaenV9ZhrSvEZfUxdd0
+         F3uwrvA+FxzqSH6W1bWSCXzz0WnmIpKimcIh5lbe8TtClfZuJy0unaB2AGnS7vKG0nIN
+         rEcg==
+X-Gm-Message-State: AOAM531nXTWBx+y3CcSEs+hj9qWeX8WMI80k1JGukkggbOtmaf1xuJkR
+        5QkeMkRmEddaYOwG4t4Keg==
+X-Google-Smtp-Source: ABdhPJyZK52/lZYsS9R3kKj1OyynJ0P1NooNpNVdFnOOXczUhwNDyIXF2qHiL1sltyV70oHQTWK1Fg==
+X-Received: by 2002:a05:6808:aa4:b0:325:91ff:43cc with SMTP id r4-20020a0568080aa400b0032591ff43ccmr623013oij.166.1652900345928;
+        Wed, 18 May 2022 11:59:05 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a9-20020a056870618900b000edda81f868sm1267659oah.10.2022.05.18.11.53.08
+        by smtp.gmail.com with ESMTPSA id bd15-20020a056870d78f00b000e686d1389esm1202223oab.56.2022.05.18.11.59.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 May 2022 11:53:08 -0700 (PDT)
-Received: (nullmailer pid 3685342 invoked by uid 1000);
-        Wed, 18 May 2022 18:53:07 -0000
-Date:   Wed, 18 May 2022 13:53:07 -0500
+        Wed, 18 May 2022 11:59:05 -0700 (PDT)
+Received: (nullmailer pid 3695375 invoked by uid 1000);
+        Wed, 18 May 2022 18:59:04 -0000
+Date:   Wed, 18 May 2022 13:59:04 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
-Cc:     Vladimir Oltean <olteanv@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Oleksandr Tyshchenko <olekstysh@gmail.com>,
+        xen-devel <xen-devel@lists.xenproject.org>,
+        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
+        <virtualization@lists.linux-foundation.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+        Jason Wang <jasowang@redhat.com>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH net-next v4 05/12] dt-bindings: net: dsa: add bindings
- for Renesas RZ/N1 Advanced 5 port switch
-Message-ID: <20220518185307.GL3302100-robh@kernel.org>
-References: <20220509131900.7840-1-clement.leger@bootlin.com>
- <20220509131900.7840-6-clement.leger@bootlin.com>
- <20220511152221.GA334055-robh@kernel.org>
- <20220511153337.deqxawpbbk3actxf@skbuf>
- <20220518015924.GC2049643-robh@kernel.org>
- <20220518120503.3m2zfw7kmhsfg336@skbuf>
- <20220518144111.135c7d0d@fixe.home>
+        Julien Grall <julien@xen.org>, Juergen Gross <jgross@suse.com>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>
+Subject: Re: [PATCH V2 5/7] dt-bindings: Add xen,dev-domid property
+ description for xen-grant DMA ops
+Message-ID: <20220518185904.GA3685644-robh@kernel.org>
+References: <1651947548-4055-1-git-send-email-olekstysh@gmail.com>
+ <1651947548-4055-6-git-send-email-olekstysh@gmail.com>
+ <CAK8P3a2cAnXr8TDDYTiFxTWzQxa67sGnYDQRRD+=Q8_cSb1mEw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220518144111.135c7d0d@fixe.home>
+In-Reply-To: <CAK8P3a2cAnXr8TDDYTiFxTWzQxa67sGnYDQRRD+=Q8_cSb1mEw@mail.gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 18, 2022 at 02:41:11PM +0200, Clément Léger wrote:
-> Le Wed, 18 May 2022 15:05:03 +0300,
-> Vladimir Oltean <olteanv@gmail.com> a écrit :
+On Wed, May 18, 2022 at 03:32:27PM +0100, Arnd Bergmann wrote:
+> On Sat, May 7, 2022 at 7:19 PM Oleksandr Tyshchenko <olekstysh@gmail.com> wrote:
+> >
+> > diff --git a/Documentation/devicetree/bindings/virtio/mmio.yaml b/Documentation/devicetree/bindings/virtio/mmio.yaml
+> > index 10c22b5..29a0932 100644
+> > --- a/Documentation/devicetree/bindings/virtio/mmio.yaml
+> > +++ b/Documentation/devicetree/bindings/virtio/mmio.yaml
+> > @@ -13,6 +13,9 @@ description:
+> >    See https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=virtio for
+> >    more details.
+> >
+> > +allOf:
+> > +  - $ref: /schemas/arm/xen,dev-domid.yaml#
+> > +
+> >  properties:
+> >    compatible:
+> >      const: virtio,mmio
+> > @@ -33,6 +36,10 @@ properties:
+> >      description: Required for devices making accesses thru an IOMMU.
+> >      maxItems: 1
+> >
+> > +  xen,dev-domid:
+> > +    description: Required when Xen grant mappings need to be enabled for device.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
 > 
-> > On Tue, May 17, 2022 at 08:59:24PM -0500, Rob Herring wrote:
-> > > On Wed, May 11, 2022 at 06:33:37PM +0300, Vladimir Oltean wrote:  
-> > > > On Wed, May 11, 2022 at 10:22:21AM -0500, Rob Herring wrote:  
-> > > > > > +patternProperties:
-> > > > > > +  "^ethernet-ports$":  
-> > > > > 
-> > > > > Move to 'properties', not a pattern.
-> > > > > 
-> > > > > With that,
-> > > > > 
-> > > > > Reviewed-by: Rob Herring <robh@kernel.org>  
-> > > > 
-> > > > Even if it should have been "^(ethernet-)?ports$"?  
-> > > 
-> > > Why? Allowing 'ports' is for existing users. New ones don't need the 
-> > > variability and should use just 'ethernet-ports'.
-> > > 
-> > > Rob  
-> > 
-> > Yeah, ok, somehow the memo that new DSA drivers shouldn't support "ports"
-> > didn't reach me. They invariably will though, since the DSA framework is
-> > the main parser of the property, and that is shared by both old and new
-> > drivers.
+> Sorry for joining the discussion late. Have you considered using the
+> generic iommu
+> binding here instead of a custom property? This would mean having a device
+> node for the grant-table mechanism that can be referred to using the 'iommus'
+> phandle property, with the domid as an additional argument.
 > 
-> Should also the subnodes of "ethernet-ports" use the
-> "ethernet-port@[0-9]*" naming ? Or keeping the existing pattern is ok
-> (ie "^(ethernet-)?port@[0-4]$") ?
+> It does not quite fit the model that Linux currently uses for iommus,
+> as that has an allocator for dma_addr_t space, but it would think it's
+> conceptually close enough that it makes sense for the binding.
 
-I prefer the former, but care less. The whole reason for 'ethernet-' 
-prefix is to make this distinct from the graph binding that uses ports 
-and port.
+Something common is almost always better.
+
+That may also have the issue that fw_devlink will make the 'iommu' 
+driver a dependency to probe.
 
 Rob
