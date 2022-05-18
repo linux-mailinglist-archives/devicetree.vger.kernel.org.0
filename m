@@ -2,56 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7E9052B46E
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 10:19:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED33752B47E
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 10:19:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232734AbiERIOu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 04:14:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34966 "EHLO
+        id S232789AbiERIR1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 04:17:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232680AbiERIOt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 04:14:49 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83AC93982B;
-        Wed, 18 May 2022 01:14:48 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id AA4611F4204B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1652861687;
-        bh=bxhlZVwcajiZSFDXfD98BHfzwz+so3WTdIJAkwePssc=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Y9QnZsP/QoDnDEAOgvnBEzK6pLWaWobcj5rdgAxSDyduLrL0YZoWRhH/ffHzUtX8t
-         LKEVbo6qtwxlfD+RUKGOK4r8UMyCnWtEdty3bPBbRDnFJk3snUJGFCyXC3+B4DLpLE
-         Wor+uQgSmtlbNhFMP+TWFNF7iadBw24C9KVgNNoULgFR7hjXOuV6xQtdgyYvvEGLa6
-         g8Ie3wFKfCq///es3Zu0XxdI7mbX3v3NcmL9qL/gY+piOIlhXb367bDJJrD198KQ5b
-         3OvdJJtv94RG1i5xNZLLg5qbqFP28kKJaZ8xZ6s63MLkXA6Aer8qA9ah7Grc0PRLaW
-         9qY9EgwPrPiBA==
-Message-ID: <4ed63c3a-ec47-5801-ab89-b7d1a597c0da@collabora.com>
-Date:   Wed, 18 May 2022 10:14:43 +0200
+        with ESMTP id S232799AbiERIRZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 04:17:25 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECD0340A0D
+        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 01:17:23 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id u7so888359ljd.11
+        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 01:17:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=PVVYuSWeKKOCTgybQ+dTOSOPcAGf8Bzx5TVqJC5mrvY=;
+        b=cNNfBzgqzUPTHP95q3mgAbPU+sjDD4S1/buHo0iH/MA1BIiCnJm8YoUgftnSheS9Mg
+         Tbklftv/qYgl3NE5qsKVy078GlxqQRNcVS/VRDtH0KlpYGKEzbo+K3hxDi7BzZ4U5qWJ
+         5vCpOlgiWGO7yfIDbDPr85M2phyWJ6k3ZTIXaO1a4hUvjjfBdFQRYB0X6XI1XKKNyNVM
+         psCGobcrTLJCHQq3+0rIevKIzh9FF3cKxLxtMY69nk6iA7V4hHL91Y5RC63WcJJdu47v
+         tFhLZEU5B0Ow+/DTSCSyfifdGi2iWVJ+Y1Wv0CswiD2jotVy++M+pnIsgUxPWzn9T9cO
+         qWzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=PVVYuSWeKKOCTgybQ+dTOSOPcAGf8Bzx5TVqJC5mrvY=;
+        b=gykByiu888QZIxGkrVImvX55gnaEKPq/u0/W54AM6VoxWCjvCIRHTeyuJIM7s8skKT
+         mY5yGG2NZpp5N50Cvlrnz5L5ruyntBaawYVPrB1jrxx4Y2I/oTLyAXEEhMtYJ3U40Weo
+         z7C6EIpI9mrSodq4i59cgvatICzxP0QEyICzDL9Ctht9J7BhvGjHPkq6IOwBwn0G6jV8
+         m24MPMz9jvadKs/jossLSJ127+TLQi4THw/1j72kB15dDk5vCpRtp4ixZKyQzYPL4l0k
+         wu+sT/jh+ipkt9ugsq1ektftW1z2UsGYEvhX5eXwcnfYEZrRHvFkOFA4u+VE5QDLNplf
+         XfHA==
+X-Gm-Message-State: AOAM532WHkj5N9Mtc6SOqT8kJu4/ztyi8jfGEdF5h+WKwh+CLAg3xQH7
+        zgkNUlwBA7oVKmbvJLEWqYZRhvlUmsIAY4F9
+X-Google-Smtp-Source: ABdhPJzMuG9p7OEw65AYXi1+Azt8GhLsLWUXIceXlYxErATRMFj5eL+EsfIiXREOYoaHUQVLwYx5PQ==
+X-Received: by 2002:a2e:8501:0:b0:249:17a0:ebf8 with SMTP id j1-20020a2e8501000000b0024917a0ebf8mr16676914lji.125.1652861842342;
+        Wed, 18 May 2022 01:17:22 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id m1-20020ac24241000000b0047255d2118asm133198lfl.185.2022.05.18.01.17.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 May 2022 01:17:21 -0700 (PDT)
+Message-ID: <2c9b80ef-74c6-bd60-cfc9-d69349cdf6b1@linaro.org>
+Date:   Wed, 18 May 2022 10:17:21 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH 7/8] dt-bindings: iommu: mediatek: Require
- mediatek,infracfg for mt2712/8173
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 2/2] dt-bindings: leds: Add aw21024 binding
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     yong.wu@mediatek.com, joro@8bytes.org, will@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        iommu@lists.linux-foundation.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20220517132107.195932-1-angelogioacchino.delregno@collabora.com>
- <20220517132107.195932-8-angelogioacchino.delregno@collabora.com>
- <20220518014143.GA2024242-robh@kernel.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220518014143.GA2024242-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Kyle Swenson <kyle.swenson@est.tech>, pavel@ucw.cz,
+        robh+dt@kernel.org, krzk+dt@kernel.org
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220513190409.3682501-1-kyle.swenson@est.tech>
+ <20220513190409.3682501-2-kyle.swenson@est.tech>
+ <cb83fbab-7aa3-d1a7-ab80-d2b94a516f6d@linaro.org> <YoPqDLMe+WYWKBxi@p620>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <YoPqDLMe+WYWKBxi@p620>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,46 +75,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 18/05/22 03:41, Rob Herring ha scritto:
-> On Tue, May 17, 2022 at 03:21:06PM +0200, AngeloGioacchino Del Regno wrote:
->> Both MT2712 and MT8173 got a mediatek,infracfg phandle: add that to
->> the required properties for these SoCs to deprecate the old way of
->> looking for SoC-specific infracfg compatible in the entire devicetree.
+On 17/05/2022 20:31, Kyle Swenson wrote:
+>>> +
+>>> +            multi-led@1 {
+>>> +                #address-cells = <1>;
+>>> +                #size-cells = <2>;
+>>> +                reg = <0x0 0x1 0x2>;
+>>
+>> This is confusing. Does not match unit address and address/size cells.
+>> Perhaps you wanted three separate regs?
+> The wrong address and size cells and not matching the unit address is a
+> mistake on my part, and the next version will actually pass make
+> dt_binding_check.
 > 
-> Wait, what? If there's only one possible node that can match, I prefer
-> the 'old way'. Until we implemented a phandle cache, searching the
-> entire tree was how phandle lookups worked too, so not any better.
+> That said, it's not clear to me how best to handle a combination of
+> multi-leds and individual LEDs on a particular board. For example, a
+> particular board with this driver might have the first six outputs
+> connected to two RGB LEDs, and then the remainder of the outputs
+> connected to individual LEDs.
 > 
-> But if this makes things more consistent,
+> My (poor) attempt at handling this resulted in this approach where I
+> (ab)used the 'reg' property to be able to address each individual LED of
+> a multi-led.  I'm sure this problem has been solved before, but I'm
+> struggling finding a driver in the tree that has solved it.
 > 
-> Acked-by: Rob Herring <robh@kernel.org>
+> Any advice or pointers will be welcome, and in the mean time I'll plan
+> on fixing the (now obvious) issues with the binding.  At the very least,
+> cleaning up the binding will make the problem I'm trying to solve more
+> clear.
 
+The immediate solution to the DTS reg issue is to use the same unit
+address, so:
 
-Hello Rob,
+multi-led@0 {
+	reg = <0x0>, <0x1>, <0x2>;
+}
 
-This makes things definitely more consistent, as it's done like that on
-mtk-pm-domains and other mtk drivers as well.
+However your case is partially (or entirely) covered by multicolor LEDs.
+You should add allOf:$ref with reference to leds-class-multicolor.yaml.
+I see exactly your pattern being used there - just the fixed one, I
+think. I'll send a patch for it and put you on Cc.
 
-The main reason why this phandle is useful, here and in other drivers, is
-that we're seeing a list of compatibles that is growing more and more, so
-you see stuff like (mockup names warning):
-
-switch (some_model)
-case MT1000:
-	p = "mediatek,mt1000-infracfg";
-	break;
-case MT1001:
-	p = "mediatek,mt1001-infracfg";
-	break;
-case MT1002:
-	p = "mediatek,mt1002-infracfg";
-	break;
-.....add another 20 SoCs, replicate this switch for 4/5 drivers....
-
-and this is why I want the mtk_iommu driver to also get that phandle like
-some other drivers are already doing.
-
-By the way, thanks for the ack!
-
-Regards,
-Angelo
+Best regards,
+Krzysztof
