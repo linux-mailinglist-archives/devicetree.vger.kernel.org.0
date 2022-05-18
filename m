@@ -2,65 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 419BA52AF7D
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 02:58:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAC8752AFB3
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 03:13:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232915AbiERA6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 20:58:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42152 "EHLO
+        id S232313AbiERBNf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 21:13:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233053AbiERA6K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 20:58:10 -0400
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8310254005;
-        Tue, 17 May 2022 17:58:09 -0700 (PDT)
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-d6e29fb3d7so788903fac.7;
-        Tue, 17 May 2022 17:58:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=LpjWkKEpSmy8t1ziW+4ueZtuwiEuGRNClIwNw3ymmbA=;
-        b=ixhFF0jAu2jmqzRfRppoKc8sMrsoDVb8Txv0N+QPCKBLEFgcQAMZtomeflsTVzMyS9
-         VoiAR/wZoOFTWFXU01H2KkaePSCEYpHuQjpQXJrYkrU/d4LR9Y36wx/M+mye7hvzLIW8
-         ezE4udd712eHmwLnUWOwWTkySkeO0bRI0k//uRTIkrJcPfLANS61zGtXo5jlFHhTbRlh
-         e3Ul3n1HsGewKevAkEv9BSi+bcwUFZDOwy1cXrxMxtLSNTCu1VrzK3fhP2NN8IOtZ1zW
-         2MQq7TyYKJ7AlJxDbd1NgHub5w5KGLvKcsP0cLwuhJk9+r5eEVdZ04A2Inw9/ybIKo49
-         sHSQ==
-X-Gm-Message-State: AOAM532LQ01hFmkGng65NsSlB08h9WWat3C03+TsxzlLRIBngbR2/QLV
-        bmhLx+KzfG6Vw1wbVocRXq35Cs9+1w==
-X-Google-Smtp-Source: ABdhPJybRUqXrXZRLYWRrTJaeDgKsRamcrVFghqsQ+A5UgH70g8ze1DsEsaKM4dKkTXYzIbg94pnjQ==
-X-Received: by 2002:a05:6870:b402:b0:d3:3712:efa7 with SMTP id x2-20020a056870b40200b000d33712efa7mr13412638oap.88.1652835487389;
-        Tue, 17 May 2022 17:58:07 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r10-20020a4aea8a000000b0035eb4e5a6c8sm391210ooh.30.2022.05.17.17.58.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 May 2022 17:58:06 -0700 (PDT)
-Received: (nullmailer pid 1982761 invoked by uid 1000);
-        Wed, 18 May 2022 00:58:05 -0000
-Date:   Tue, 17 May 2022 19:58:05 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 06/12] dt-bindings: remoteproc: qcom,adsp: use GIC_SPI
- defines in example
-Message-ID: <20220518005805.GA1982728-robh@kernel.org>
-References: <20220517070113.18023-1-krzysztof.kozlowski@linaro.org>
- <20220517070113.18023-7-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S229736AbiERBNe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 21:13:34 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C5A951E4C;
+        Tue, 17 May 2022 18:13:28 -0700 (PDT)
+X-UUID: 0a14b6a7b94e48adb474547db5e70b92-20220518
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:e0c1e221-3d54-4bdd-a806-4867722f3970,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:2a19b09,CLOUDID:389f8ce2-edbf-4bd4-8a34-dfc5f7bb086d,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
+        ,QS:0,BEC:nil
+X-UUID: 0a14b6a7b94e48adb474547db5e70b92-20220518
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 948408978; Wed, 18 May 2022 09:13:23 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Wed, 18 May 2022 09:13:21 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 18 May 2022 09:13:20 +0800
+Message-ID: <1614c81e4975c5cfd19c8090d523b16116907389.camel@mediatek.com>
+Subject: Re: [PATCH 2/2] iommu: mtk_iommu: Add support for MT6795 Helio X10
+ M4Us
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+CC:     <joro@8bytes.org>, <will@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
+        <iommu@lists.linux-foundation.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <konrad.dybcio@somainline.org>, <marijn.suijten@somainline.org>,
+        <martin.botka@somainline.org>,
+        <~postmarketos/upstreaming@lists.sr.ht>,
+        <phone-devel@vger.kernel.org>, <paul.bouchara@somainline.org>,
+        <yf.wang@mediatek.com>, <mingyuan.ma@mediatek.com>,
+        <libo.kang@mediatek.com>, <youlin.pei@mediatek.com>
+Date:   Wed, 18 May 2022 09:13:20 +0800
+In-Reply-To: <9a67d3e8-8840-03b1-aec8-5a218e810eae@collabora.com>
+References: <20220513151411.395744-1-angelogioacchino.delregno@collabora.com>
+         <20220513151411.395744-3-angelogioacchino.delregno@collabora.com>
+         <38e38006662b52631a2145228444b9d70f9eb2c6.camel@mediatek.com>
+         <9a67d3e8-8840-03b1-aec8-5a218e810eae@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220517070113.18023-7-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
         autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,13 +72,108 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 17 May 2022 09:01:07 +0200, Krzysztof Kozlowski wrote:
-> Use GIC_SPI defines instead of raw value in the DTS example.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
-> 
+On Tue, 2022-05-17 at 11:26 +0200, AngeloGioacchino Del Regno wrote:
+> Il 17/05/22 11:08, Yong Wu ha scritto:
+> > On Fri, 2022-05-13 at 17:14 +0200, AngeloGioacchino Del Regno
+> > wrote:
+> > > Add support for the M4Us found in the MT6795 Helio X10 SoC.
+> > > 
+> > > Signed-off-by: AngeloGioacchino Del Regno <
+> > > angelogioacchino.delregno@collabora.com>
+> > > ---
+> > >   drivers/iommu/mtk_iommu.c | 20 +++++++++++++++++++-
+> > >   1 file changed, 19 insertions(+), 1 deletion(-)
 
-Acked-by: Rob Herring <robh@kernel.org>
+[...]
+
+> > > +static const struct mtk_iommu_plat_data mt6795_data = {
+> > > +	.m4u_plat     = M4U_MT6795,
+> > > +	.flags	      = HAS_4GB_MODE | HAS_BCLK | RESET_AXI |
+> > > +			HAS_LEGACY_IVRP_PADDR | MTK_IOMMU_TYPE_MM,
+> > > +	.inv_sel_reg  = REG_MMU_INV_SEL_GEN1,
+> > > +	.banks_num    = 1,
+> > > +	.banks_enable = {true},
+> > > +	.iova_region  = single_domain,
+> > > +	.iova_region_nr = ARRAY_SIZE(single_domain),
+> > > +	.larbid_remap = {{0}, {1}, {2}, {3}, {4}}, /* Linear mapping.
+> > > */
+> > > +};
+> > 
+> > This is nearly same with mt8173_data. mt8173 has one more larb than
+> > mt6795, its larbid_remap is also ok for mt6795.
+> > 
+> 
+> I think that we should be explicit about the larbid_remap property,
+> since mt6795 has one less larb, we should explicitly say that like
+> I did there... that's only for human readability I admit ... but,
+> still, I wouldn't want to see people thinking that MT6795 has 6 LARBs
+> because they've read that larbid_remap having 6 entries.
+
+In the linear mapping case, It does help. Strictly larbid_remap is two-
+dimensional array now, It doesn't indicate how many larbs this SoC
+has. If someone would like to know this, he could read the mtxxx-larb-
+port.h. We also could document the larb numbers in the binding
+for readability.
+
+Anyway, It is not a big problem. A new structure is ok for me. I just
+complain there are too many structures, specially in the internal
+branch which contains many non-upstream SoCs, and there may be several
+IOMMU HWs in one SoC. thus I'd like to group it personally.
+
+> 
+> > thus it looks we could use mt8173 as the backward compatible.
+> >      compatible = "mediatek,mt6795-m4u",
+> >                   "mediatek,mt8173-m4u";
+> > 
+> > After this, the only thing is about "mediatek,mt6795-infracfg". we
+> > have
+> > to try again with mediatek,mt6795-infracfg after mediatek,mt8173-
+> > infracfg fail. I think we should allow the backward case in 4GB
+> > mode
+> > judgment if we have.
+> > 
+> > What's your opinion? or some other suggestion?
+> > Thanks.
+> 
+> I know, I may have a plan for that, but I wanted to have a good
+> reason to
+> propose such a thing, as if it's just about two SoCs needing that,
+> there
+> would be no good reason to get things done differently.
+> 
+> ...so, in order to provide a good cleanup, we have two possible roads
+> to
+> follow here: either we add a generic "mediatek,infracfg" compatible
+> to the
+> infra node (but I don't like that), or we can do it like it was
+> previously
+> done in mtk-pm-domains.c (I prefer that approach):
+> 
+> iommu: iommu@somewhere {
+> 	... something ...
+> 	mediatek,infracfg = <&infracfg>;
+
+We like this too. But this was not suggested from Rob long before.
+
+https://lore.kernel.org/linux-mediatek/20200715205120.GA778876@bogus/
+
+> };
+> 
+> infracfg = syscon_regmap_lookup_by_compatible(node,
+> "mediatek,infracfg");
+> if (IS_ERR(infracfg)) {
+> 	/* try with the older way */
+> 	switch (...) {
+> 	case .... p = "mediatek,mt2712-infracfg";
+> 	... blah blah ...
+> 	}
+> 	/* legacy also failed, ouch! */
+> 	if (IS_ERR(infracfg))
+> 		return PTR_ERR(infracfg);
+> }
+> 
+> ret = regmap_read ... etc etc etc
+> 
+> Cheers,
+> Angelo
+
