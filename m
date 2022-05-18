@@ -2,200 +2,286 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A21552C33C
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 21:24:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0367652C34B
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 21:28:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241889AbiERTWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 15:22:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53066 "EHLO
+        id S241909AbiERT1v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 15:27:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241829AbiERTWd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 15:22:33 -0400
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (mail-sn1anam02on2078.outbound.protection.outlook.com [40.107.96.78])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5D1D14C762;
-        Wed, 18 May 2022 12:22:31 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dskzI4tjINEaWkkaAbQQcg70UaR8zAeFHP7E5FyrtuNU7z33aiY31EwvOQOuzjFGCH7QSpIeqiiJfjYotBs5eT1jpdgxF9OwfQIN2h8v+Viln+573QnGPW52eSS1RNNWN3vMDsspQ5Iz/YQrAXrNyHAAPCWfWe/2vl6wgNwbJ2U+v0foMqQr9K/O6D48+/Kd59OWSIcjYHi/Px/zCufDChIVCQHzMqrQK7WKTjU5+bKnSS4jm1PL8JfEKKy7tEI1T8AdH9SLOCmRPxlB4FtMKneAr27fa+6RWpuGgZbGYPDOYtV47ibomiZwd9+kd4EcnYv5ebCCqEOPJCqJZp2wUw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bb7XMGlD0sfsnTMl5CvumuJKGGemDeTchlrsWtTvTcg=;
- b=nbGlhssGwi6hR18j/XrTH5f0hV+Py7XwivQSzx/jHBQOL9SrGywlpZAyaiz41ZULOfZUCp/6twP+D5pxSk7xz3xvP0Et4SQA7C2tqDh4AR3xt9xvN1jnsDv0KehA66/M0qfW+pvfPd5kwU7bOynFwkIHAvYJLrYzU/UcAuygNiDqZ8j0SE1KiWSLgMqFADzZSTKUFYlOczo80AE9qAzSHnGlZBAqOsIoV1IB89JLZko1wudFczh3Su49niV0qW2EbRdmkF2GRScv7gZ1BM3UrCf8B+zM1jUw0TK1uDliH6f6PJWYtebZPTYC4hDRcHMHCCWMoi8ZYnQFfjhcUCkpAQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=bootlin.com smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
+        with ESMTP id S241959AbiERT0a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 15:26:30 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF48835DDD;
+        Wed, 18 May 2022 12:26:28 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id a23so3683715ljd.9;
+        Wed, 18 May 2022 12:26:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bb7XMGlD0sfsnTMl5CvumuJKGGemDeTchlrsWtTvTcg=;
- b=EsrE4LAIS4JFIsd6OfwUaWJFPsdMt7ge3CMk5gWDBQJ9I3ne3KAvCC6DMdIa2crl+8bQRNzmByk0/j+TJqk2SuvxmnaUtOZgj3zEv2e9VDhrUh1j1yqtsklPBS/odw7+TvUUwaEutRbccLskMub75b6D25seY69uZqxB5txNQJY=
-Received: from SA9PR03CA0007.namprd03.prod.outlook.com (2603:10b6:806:20::12)
- by BY5PR02MB6644.namprd02.prod.outlook.com (2603:10b6:a03:20b::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5273.13; Wed, 18 May
- 2022 19:22:28 +0000
-Received: from SN1NAM02FT0036.eop-nam02.prod.protection.outlook.com
- (2603:10b6:806:20:cafe::d0) by SA9PR03CA0007.outlook.office365.com
- (2603:10b6:806:20::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5273.13 via Frontend
- Transport; Wed, 18 May 2022 19:22:28 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com; pr=C
-Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
- SN1NAM02FT0036.mail.protection.outlook.com (10.97.4.102) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5273.14 via Frontend Transport; Wed, 18 May 2022 19:22:27 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Wed, 18 May 2022 12:22:11 -0700
-Received: from smtp.xilinx.com (172.19.127.95) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Wed, 18 May 2022 12:22:11 -0700
-Envelope-to: clement.leger@bootlin.com,
- helgaas@kernel.org,
- robh+dt@kernel.org,
- frowand.list@gmail.com,
- pantelis.antoniou@konsulko.com,
- bhelgaas@google.com,
- allan.nielsen@microchip.com,
- horatiu.vultur@microchip.com,
- steen.hegelund@microchip.com,
- thomas.petazonni@bootlin.com,
- alexandre.belloni@bootlin.com,
- broonie@kernel.org,
- andriy.shevchenko@linux.intel.com,
- kuba@kernel.org,
- hdegoede@redhat.com,
- andrew@lunn.ch,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org,
- robh@kernel.org
-Received: from [172.19.74.144] (port=43354)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <lizhi.hou@xilinx.com>)
-        id 1nrPFH-000C3d-Ml; Wed, 18 May 2022 12:22:07 -0700
-Message-ID: <c2f6d576-b48b-d1a7-2e4d-bbedea969f52@xilinx.com>
-Date:   Wed, 18 May 2022 12:22:07 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH 2/3] PCI: of: create DT nodes for PCI devices if they do
- not exists
-Content-Language: en-US
-To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        Bjorn Helgaas <helgaas@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=LJX3AisiurXZoiui3Et8QtmT0gkjoXJj1LK+vbdvp1s=;
+        b=kVXm3fVaDrCw/7A3pQ/Wb9jC7JSMfEdHMXEhDCFBQXq/7UFQSSwwNioPMAWQhYjyUq
+         sCkRu2h+p9zsnIcGDX9gu7VIxzsiTbCZ5L1sKFpkRuv9DsfWSOcuOZaHz6O+E94FIS+p
+         IYi6g5TSmJlyBlhUSEsAlSvC/pmJX3miBPjFdIQVdCWjwMl7Y2oga2D5I1Dir8qHjfJz
+         leYWErekvS8k2TkWdH4UtQzRvHgRRsikv9Uwju+Cd9S0QvbP4HIPDWJhUSgSpq7ul/XJ
+         twE3MWMJIoZbOQU4gYGwYCI4A5Cc7nlKM3CppT9UDYJlydQmbb8bGg1LF/5+4c/gG/HO
+         DMcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=LJX3AisiurXZoiui3Et8QtmT0gkjoXJj1LK+vbdvp1s=;
+        b=celTZCa6PzqKr3Ua65o2wvFJmDvqfLOZ7UhC5mhnPDfVCo2gXF2/aIsbrwP6R1zw3v
+         1z3v8bB6NvZj7icCu1q5qsHhchTwP/O1w36eAoWxn0oG/VYeUZYkWppY6fQ99DOjWSqY
+         uc9NkyvGU9Jlcp+moEP4Vrlm+JXe4xta1iSrPhRq7r7jQQAenvzTFedFWPEceOzLiynM
+         6joU5X+Qn/k0bTBDr/g3o9YR1V7xL74stuL+0PSBdvFjESD3h/yjBYFSCBVMQC/rVTHz
+         nyPrb/aICAaa3T0cDDdR/H6E3+cm2DcZP5t/icx+/u+UFi0l5Wv3VPYDz6BI9W+hyNfR
+         1VKA==
+X-Gm-Message-State: AOAM532Ti1iyZ2sKGPovrKUmD9hrXDfnKNYnLWhSwfCTyTOKjV78rs2F
+        0ctIB8wU9wsQcf6g80zB/p0=
+X-Google-Smtp-Source: ABdhPJxNb4EAiC07ONAlvyeJ367ZCRT/5pJzGzbZ0HyineDUpl2vFkJ5vfcMykc+aHPZ9Tra+vXUdQ==
+X-Received: by 2002:a05:651c:1617:b0:247:fd84:2195 with SMTP id f23-20020a05651c161700b00247fd842195mr528641ljq.356.1652901986919;
+        Wed, 18 May 2022 12:26:26 -0700 (PDT)
+Received: from mobilestation ([95.79.189.214])
+        by smtp.gmail.com with ESMTPSA id f14-20020a056512360e00b0047255d2111fsm35381lfs.78.2022.05.18.12.26.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 May 2022 12:26:26 -0700 (PDT)
+Date:   Wed, 18 May 2022 22:26:23 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
         Bjorn Helgaas <bhelgaas@google.com>,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Steen Hegelund <steen.hegelund@microchip.com>,
-        Thomas Petazzoni <thomas.petazonni@bootlin.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Mark Brown <broonie@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andrew Lunn <andrew@lunn.ch>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>
-References: <20220427094502.456111-3-clement.leger@bootlin.com>
- <20220503225353.GA415393@bhelgaas> <20220504154303.5cdf8cc2@fixe.home>
-From:   Lizhi Hou <lizhi.hou@xilinx.com>
-In-Reply-To: <20220504154303.5cdf8cc2@fixe.home>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Frank Li <Frank.Li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 15/17] PCI: dwc: Introduce dma-ranges property support
+ for RC-host
+Message-ID: <20220518192623.fl3ogcxlurcd6okd@mobilestation>
+References: <20220503214638.1895-1-Sergey.Semin@baikalelectronics.ru>
+ <20220503214638.1895-16-Sergey.Semin@baikalelectronics.ru>
+ <20220512135708.GC35848@thinkpad>
+ <20220512194135.ku73pae2xdvyocx7@mobilestation>
+ <20220517172042.GC4528@thinkpad>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 02b1782a-f26a-4400-1ed6-08da3903bf03
-X-MS-TrafficTypeDiagnostic: BY5PR02MB6644:EE_
-X-Microsoft-Antispam-PRVS: <BY5PR02MB664439D04F11BD75AEC9A195A1D19@BY5PR02MB6644.namprd02.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: bmDtyR3YKwH8tGOLkI/3lXczMkeiNqJiQt0pfQdxfUilG0YqhlzVjMIWH4POzHGdm27d7VA0fomZsxeKx2EXsUcR7T4ZVaGumYhVZmTqxHBR7I0dmkdrJY/Ubdv4yWYzCTDWia1YHaaMfte0ICztfWslWa6UBGxe9+771iqoAYZqZevGqj7bkK9eJy3TRWs2lHVCjEGjaQ968Vata/A7dhh1DUQXPJPF6LXO5JrQc1GuawH841CQH2QgME00W/hnTG4gz75p5KLjTn4HZOhQQil12Umb99e00lIPKY/1P9XWkzbKa54datP1oQEv5lGy4ngOqGZffHv4+m8XBLJNiXwBtH1AUA7qMJko9FaYYZJvCVWwF67T+sGzTsYsSAXjru6s8Wz2j7obJfxFSJlJFGIUAh0xw8U/ojf3o4t50II/hFMGiGMS1J+2u+UqyN0vuj2qJIi68tNVvtYbgeRU31LXXJcm9lDQWtMIso0v/QseBuwkB6rFOolC9VVeFk3GSIGavJtPrMa90mqHKM/xBHDAhfDZNY2//7+fF72ccxk2JCwQf/xzKebNSQi4Rd2AZyjPHlSpmrDrGAC1wwfAb1+73ojaECXuwt6oG5o0Iktlqe3XGhWQvGsNuAxrHRYY7OnRK3MD+L6Mw1p4wfmg45lagyydpGV1S+yGf3GvlPAwVFKEn5iYwxUY+QZB0NoVz4VXR9SDr4ssXCSUmiKpTwXd/SuyE+ujydEXOPePx+a10ch4aeLyxrjXQCe0hpdGpgRXIitz4mKqzvH/RDPHHQ49yD6xRCTmYKIq608wwpx9hmABKtbSrSb8O1kukUY8xnrddsDjvL9yRPyIcs+69TK9hPVISqRNv09UKIsaojs=
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(4326008)(31696002)(83380400001)(40460700003)(26005)(54906003)(110136005)(316002)(426003)(336012)(7636003)(70206006)(356005)(70586007)(47076005)(66574015)(53546011)(2616005)(31686004)(186003)(2906002)(82310400005)(966005)(36756003)(8936002)(36860700001)(508600001)(8676002)(9786002)(7416002)(44832011)(5660300002)(50156003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 May 2022 19:22:27.7746
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 02b1782a-f26a-4400-1ed6-08da3903bf03
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT0036.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR02MB6644
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220517172042.GC4528@thinkpad>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, May 17, 2022 at 10:50:42PM +0530, Manivannan Sadhasivam wrote:
+> On Thu, May 12, 2022 at 10:41:35PM +0300, Serge Semin wrote:
+> > On Thu, May 12, 2022 at 07:27:08PM +0530, Manivannan Sadhasivam wrote:
+> > > On Wed, May 04, 2022 at 12:46:36AM +0300, Serge Semin wrote:
+> > > > In accordance with the generic PCIe Root Port DT-bindings the "dma-ranges"
+> > > > property has the same format as the "ranges" property. The only difference
+> > > > is in their semantics. The "dma-ranges" property describes the PCIe-to-CPU
+> > > > memory mapping in opposite to the CPU-to-PCIe mapping of the "ranges"
+> > > > property. Even though the DW PCIe controllers are normally equipped with
+> > > > internal Address Translation Unit which inbound and outbound tables can be
+> > > > used to implement both properties semantics, it was surprise for me to
+> > > > discover that the host-related part of the DW PCIe driver currently
+> > > > supports the "ranges" property only while the "dma-ranges" windows are
+> > > > just ignored. Having the "dma-ranges" supported in the driver would be
+> > > > very handy for the platforms, that don't tolerate the 1:1 CPU-PCIe memory
+> > > > mapping and require customized the PCIe memory layout. So let's fix that
+> > > > by introducing the "dma-ranges" property support.
+> > > > 
+> > > > First of all we suggest to rename the dw_pcie_prog_inbound_atu() method to
+> > > > dw_pcie_prog_ep_inbound_atu() and create a new version of the
+> > > > dw_pcie_prog_inbound_atu() function. Thus we'll have two methods for RC
+> > > > and EP controllers respectively in the same way as it has been developed
+> > > > for the outbound ATU setup methods.
+> > > > 
+> > > > Secondly aside with the memory window index and type the new
+> > > > dw_pcie_prog_inbound_atu() function will accept CPU address, PCIe address
+> > > > and size as its arguments. These parameters define the PCIe and CPU memory
+> > > > ranges which will be used to setup the respective inbound ATU mapping. The
+> > > > passed parameters need to be verified against the ATU ranges constraints
+> > > > in the same way as it is done for the outbound ranges.
+> > > > 
+> > > > Finally the DMA-ranges detected for the PCIe controller need to be
+> > > > converted into the inbound ATU entries during the host controller
+> > > > initialization procedure. It will be done in the framework of the
+> > > > dw_pcie_iatu_setup() method. Note before setting the inbound ranges up we
+> > > > need to disable all the inbound ATU entries in order to prevent unexpected
+> > > > PCIe TLPs translations defined by some third party software like
+> > > > bootloader.
+> > > > 
+> > > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > > > ---
+> > > >  .../pci/controller/dwc/pcie-designware-ep.c   |  4 +-
+> > > >  .../pci/controller/dwc/pcie-designware-host.c | 32 ++++++++++-
+> > > >  drivers/pci/controller/dwc/pcie-designware.c  | 57 ++++++++++++++++++-
+> > > >  drivers/pci/controller/dwc/pcie-designware.h  |  6 +-
+> > > >  4 files changed, 90 insertions(+), 9 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> > > > index c62640201246..9b0540cfa9e8 100644
+> > > > --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
+> > > > +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> > > > @@ -167,8 +167,8 @@ static int dw_pcie_ep_inbound_atu(struct dw_pcie_ep *ep, u8 func_no, int type,
+> > > >  		return -EINVAL;
+> > > >  	}
+> > > >  
+> > > > -	ret = dw_pcie_prog_inbound_atu(pci, func_no, free_win, type,
+> > > > -				       cpu_addr, bar);
+> > > > +	ret = dw_pcie_prog_ep_inbound_atu(pci, func_no, free_win, type,
+> > > > +					  cpu_addr, bar);
+> > > >  	if (ret < 0) {
+> > > >  		dev_err(pci->dev, "Failed to program IB window\n");
+> > > >  		return ret;
+> > > > diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> > > > index 7caca6c575a5..9cb406f5c185 100644
+> > > > --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> > > > +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> > > > @@ -612,12 +612,15 @@ static int dw_pcie_iatu_setup(struct pcie_port *pp)
+> > > >  	}
+> > > >  
+> > > >  	/*
+> > > > -	 * Ensure all outbound windows are disabled before proceeding with
+> > > > -	 * the MEM/IO ranges setups.
+> > > > +	 * Ensure all out/inbound windows are disabled before proceeding with
+> > > > +	 * the MEM/IO (dma-)ranges setups.
+> > > >  	 */
+> > > >  	for (i = 0; i < pci->num_ob_windows; i++)
+> > > >  		dw_pcie_disable_atu(pci, PCIE_ATU_REGION_DIR_OB, i);
+> > > >  
+> > > > +	for (i = 0; i < pci->num_ib_windows; i++)
+> > > > +		dw_pcie_disable_atu(pci, PCIE_ATU_REGION_DIR_IB, i);
+> > > > +
+> > > >  	i = 0;
+> > > >  	resource_list_for_each_entry(entry, &pp->bridge->windows) {
+> > > >  		if (resource_type(entry->res) != IORESOURCE_MEM)
+> > > > @@ -654,9 +657,32 @@ static int dw_pcie_iatu_setup(struct pcie_port *pp)
+> > > >  	}
+> > > >  
+> > > >  	if (pci->num_ob_windows <= i)
+> > > > -		dev_warn(pci->dev, "Resources exceed number of ATU entries (%d)\n",
+> > > > +		dev_warn(pci->dev, "Ranges exceed outbound iATU size (%d)\n",
+> > > >  			 pci->num_ob_windows);
+> > > >  
+> > > > +	i = 0;
+> > > > +	resource_list_for_each_entry(entry, &pp->bridge->dma_ranges) {
+> > > > +		if (resource_type(entry->res) != IORESOURCE_MEM)
+> > > > +			continue;
+> > > > +
+> > > > +		if (pci->num_ib_windows <= i)
+> > > > +			break;
+> > > > +
+> > > > +		ret = dw_pcie_prog_inbound_atu(pci, i++, PCIE_ATU_TYPE_MEM,
+> > > > +					       entry->res->start,
+> > > > +					       entry->res->start - entry->offset,
+> > > > +					       resource_size(entry->res));
+> > > > +		if (ret) {
+> > > > +			dev_err(pci->dev, "Failed to set DMA range %pr\n",
+> > > > +				entry->res);
+> > > > +			return ret;
+> > > > +		}
+> > > > +	}
+> > > > +
+> > > > +	if (pci->num_ib_windows <= i)
+> > > > +		dev_warn(pci->dev, "Dma-ranges exceed inbound iATU size (%u)\n",
+> > > > +			 pci->num_ib_windows);
+> > > > +
+> > > >  	return 0;
+> > > >  }
+> > > >  
+> > > > diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
+> > > > index 747e252c09e6..33718ed6c511 100644
+> > > > --- a/drivers/pci/controller/dwc/pcie-designware.c
+> > > > +++ b/drivers/pci/controller/dwc/pcie-designware.c
+> > > > @@ -397,8 +397,61 @@ static inline void dw_pcie_writel_atu_ib(struct dw_pcie *pci, u32 index, u32 reg
+> > > >  	dw_pcie_writel_atu(pci, PCIE_ATU_REGION_DIR_IB, index, reg, val);
+> > > >  }
+> > > >  
+> > > > -int dw_pcie_prog_inbound_atu(struct dw_pcie *pci, u8 func_no, int index,
+> > > > -			     int type, u64 cpu_addr, u8 bar)
+> > > > +int dw_pcie_prog_inbound_atu(struct dw_pcie *pci, int index, int type,
+> > > > +			     u64 cpu_addr, u64 pci_addr, u64 size)
+> > > > +{
+> > > > +	u64 limit_addr = pci_addr + size - 1;
+> > > > +	u32 retries, val;
+> > > > +
+> > > > +	if ((limit_addr & ~pci->region_limit) != (pci_addr & ~pci->region_limit) ||
+> > > > +	    !IS_ALIGNED(cpu_addr, pci->region_align) ||
+> > > > +	    !IS_ALIGNED(pci_addr, pci->region_align) ||
+> > > > +	    !IS_ALIGNED(size, pci->region_align) ||
+> > > 
+> > 
+> > > Why do you want the size to be aligned? What if I want to transfer a small size
+> > > buffer?
+> > > 
+> > > Same question applies to outbound programming as well.
+> > 
+> > You can't program a region with the unaligned size by the DW PCIe CSRs
+> > design. The limit address lower bits are read-only and fixed with
+> > one's in accordance with the IP-core synthesize parameter
+> > CX_ATU_MIN_REGION_SIZE. So the mapping is always performed in the
+> > CX_ATU_MIN_REGION_SIZE chunks.
+> > 
+> > IATU_LIMIT_ADDR_OFF_{IN,OUT}BOUND.LIMIT_ADDR_HW = 
+> > {(CX_ATU_MIN_REGION_SIZE == 65536) ? "0xffff" :
+> >  (CX_ATU_MIN_REGION_SIZE == 32768) ? "0x7fff" :
+> >  (CX_ATU_MIN_REGION_SIZE == 16384) ? "0x3fff" :
+> >  (CX_ATU_MIN_REGION_SIZE == 8192)  ? "0x1fff" :
+> >  (CX_ATU_MIN_REGION_SIZE == 4096)  ? "0xfff" : "0xffff"}
+> > 
+> 
 
-On 5/4/22 06:43, Clément Léger wrote:
-> Le Tue, 3 May 2022 17:53:53 -0500,
-> Bjorn Helgaas <helgaas@kernel.org> a écrit :
->
->> In subject:
->>
->>    PCI: of: Create DT nodes ... if they do not exist
->>
->> The subject could be read as saying that you're going to create DT
->> nodes before the PCI devices exist, but I think you mean that when we
->> enumerate a PCI devices, we're *always* going to create a DT node for
->> it, even if the DT didn't mention it.
-> Hi Bjorn,
->
-> Indeed ! I'll modify that.
+> Right. Even though the minimum size that could be mapped is 4k, I could still
+> use that 4k size for mapping small buffers also. So you should not be erroring
+> out here if the size is not aligned. 
 
-Linking the dynamic generated dt node to PCIe device through 
-pci_dev->dev.of_node may cause issues. Kernel and driver code may check 
-of_node pointer and run complete different code path if of_node is not 
-NULL.
+Why would you need to do that? Even if you do and the operation
+doesn't return an error (or at least splash the syslog with a
+warning), the hardware would expand the mapping up to the aligned size
+anyway. Such implicit behavior would have given your software an
+impression that the mapping was performed in the way you asked with
+the size you specified so the upper part of the unaligned range is
+free to be used for something else. If the range is accessed, instead
+of a bus error or silent IO termination it may cause unexpected result
+of creating random PCIe bus traffic. So I'd rather have the
+code/platform setup fixed right from the start instead of waiting for
+the hard to find bug cause.
 
-For example:  in of_irq_parse_pci(): 
-https://elixir.bootlin.com/linux/v5.18-rc2/source/drivers/pci/of.c#L492
+> I know that it is a waste of memory but that doesn't mean that it won't work.
 
-I encountered different issues when I tried to create a prototype. And I 
-have sent all may questions/thoughts through 
-https://lore.kernel.org/lkml/79e4c876-e5a4-861f-cfbc-c75ed1a07ddd@xilinx.com/#t
+The correct statement in this case would be "it won't work in a way
+you expected, but with the implicit side effect applied to the memory
+above the requested one."
 
-I am wondering what would be the right way to resolve it?
+-Sergey
 
-
-Thanks,
-
-Lizhi
-
->
->> Maybe something like:
->>
->>    PCI: of: Create DT node for every PCI device
->>
->> although I see Rob thinks this should be done on demand instead of
->> doing it for every device, which sounds sensible to me.
-> Agreed, I'll rework this series.
->
+> 
 > Thanks,
->
->> On Wed, Apr 27, 2022 at 11:45:01AM +0200, Clément Léger wrote:
->>> In order to apply overlays to PCI device nodes, the nodes must first
->>> exist. This commit add support to populate a skeleton tree for PCI bus
->>> and devices. These nodes can then be used by drivers to apply overlays.
->> s/This commit add support/Add support/
->>
->> Bjorn
->
->
+> Mani
+> 
+> > -Sergey
+> > 
+> > > 
+> > > Thanks,
+> > > Mani
+> > > 
+> > > -- 
+> > > மணிவண்ணன் சதாசிவம்
+> 
+> -- 
+> மணிவண்ணன் சதாசிவம்
