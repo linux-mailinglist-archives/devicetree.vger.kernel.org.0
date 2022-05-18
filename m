@@ -2,75 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FD8752BE31
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 17:26:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A3F352BE88
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 17:26:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238575AbiEROcg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 10:32:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39772 "EHLO
+        id S239016AbiEROv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 10:51:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238567AbiEROcf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 10:32:35 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5008913CA38;
-        Wed, 18 May 2022 07:32:33 -0700 (PDT)
-Received: from mail-yw1-f175.google.com ([209.85.128.175]) by
- mrelayeu.kundenserver.de (mreue106 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1MDPqi-1nzcRl0xTq-00ATkr; Wed, 18 May 2022 16:32:31 +0200
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-2ec42eae76bso26304877b3.10;
-        Wed, 18 May 2022 07:32:30 -0700 (PDT)
-X-Gm-Message-State: AOAM533Sr58KVGRRaHUSQv7V1Nd3Y10h59aVcVe1VZBmEOHeyDkrAXNy
-        Qjmy8ydJ9C89ob4MgbgsZM5qhzuQiuvEasBy7G8=
-X-Google-Smtp-Source: ABdhPJxlE4uUCuxvYT1DUTMaDWGZzPyyY5pBzmvWGxQQ4rCwL5f9fheKzGazF0y+V/+NQaENE1GQBL2EymP+kgt99NY=
-X-Received: by 2002:a81:6283:0:b0:2ff:2443:6f3c with SMTP id
- w125-20020a816283000000b002ff24436f3cmr9731868ywb.135.1652884349891; Wed, 18
- May 2022 07:32:29 -0700 (PDT)
+        with ESMTP id S239070AbiEROvQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 10:51:16 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5220B1A3A6
+        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 07:51:15 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id f4so4027847lfu.12
+        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 07:51:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=q2kVv7m8CBuZD1Spxccpokl1oQNMGRMweenLQqgX3NA=;
+        b=WSD5MDaGIePij6AavQX6fQeRh9N4oOjCJInF9gHOOt45EwT8ryHJ8ib0FXBTb0dR8C
+         qrgBXXutdSRgC+VztsX9MDEBexeOcTIjJoEUkgTX/SQ1gvltiPxa7T9h8p9iCZbG8a1p
+         cT+GU6GuhC21a4aJpyte/wHfhwlGcKWfy6I6dzbi6O8xC7zq3+6X8WDbZdBok45GbLNV
+         1pnlPnXUoJSeK3xr2mEDkJeJoc6fHum3jCHmw6PXfKdnf9YHI6+bfugt7gb0Jm1hTu5T
+         +GWJ1azbimpBoST1MQF0gPnZ+WrGROfnHAoKnQJktpVpoqeWdLGwFvBPaHIV4zWe5D7M
+         fuZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=q2kVv7m8CBuZD1Spxccpokl1oQNMGRMweenLQqgX3NA=;
+        b=Ha6QTee2vifHTSN86S3wOdqmL13SnJASribH+/++lEWkiL6T0hYcfyJukCGtO0ique
+         BDtaQeGSCXhVG0wif8ferMrL8igD18u4RmPxiVSNtZHjHj/ejmBDf7irA4rwxBJNTzC3
+         YkdRPjV4RpREfsKxjugszm+oNvu2Zs8gY2QQZVdKWKMNnc3MKbMrUwNcawr3D3PpjMmX
+         xatUDCRk3HPYuHx+dA0qz2CcdMXCI7V6QI7dvGHq3uy6AS2HqHostWlKCz0f1tOETRMz
+         zHK6XrfZwmbxNur5Ft9jebv2vyqUgMq31gCwvUX0oKV+IFR6bm1iNA2DDJrxV2HKXuoL
+         bWSw==
+X-Gm-Message-State: AOAM530H8dshaagDVjUXW0FYu3WlxM7v2GhpdumL8s5iZ0tWWfWBiN6K
+        DF0oVXSEQlvchkT5o3iru/yMfA==
+X-Google-Smtp-Source: ABdhPJyDjM6ZjqmxjxZktytCmCb28biT+t612+tqSzXgR/FnJIzxhkFtch4kb/cOn/WT2k9tx583jA==
+X-Received: by 2002:a19:494b:0:b0:476:5917:b67 with SMTP id l11-20020a19494b000000b0047659170b67mr19048509lfj.452.1652885473701;
+        Wed, 18 May 2022 07:51:13 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id x11-20020ac25dcb000000b00477c0365b20sm59449lfq.188.2022.05.18.07.51.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 May 2022 07:51:13 -0700 (PDT)
+Message-ID: <cdad0dbf-2712-5710-8bea-612f3de08036@linaro.org>
+Date:   Wed, 18 May 2022 16:51:12 +0200
 MIME-Version: 1.0
-References: <1651947548-4055-1-git-send-email-olekstysh@gmail.com> <1651947548-4055-6-git-send-email-olekstysh@gmail.com>
-In-Reply-To: <1651947548-4055-6-git-send-email-olekstysh@gmail.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Wed, 18 May 2022 15:32:27 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a2cAnXr8TDDYTiFxTWzQxa67sGnYDQRRD+=Q8_cSb1mEw@mail.gmail.com>
-Message-ID: <CAK8P3a2cAnXr8TDDYTiFxTWzQxa67sGnYDQRRD+=Q8_cSb1mEw@mail.gmail.com>
-Subject: Re: [PATCH V2 5/7] dt-bindings: Add xen,dev-domid property
- description for xen-grant DMA ops
-To:     Oleksandr Tyshchenko <olekstysh@gmail.com>
-Cc:     xen-devel <xen-devel@lists.xenproject.org>,
-        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
-        <virtualization@lists.linux-foundation.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
-        Jason Wang <jasowang@redhat.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v3 1/6] dt-bindings: regulator: qcom,spmi-regulator:
+ Convert to dtschema
+Content-Language: en-US
+To:     Robert Marko <robimarko@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        lgirdwood@gmail.com, broonie@kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Julien Grall <julien@xen.org>, Juergen Gross <jgross@suse.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        "Michael S. Tsirkin" <mst@redhat.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:I8P72aKSQ2Xh2Mr8yCIqWgdCOXwuNa3X4bHOcxJ0MPB97DSIZ+s
- kAql0G1eIJVNfZARljZW/QYrd4v7JJSm/ILUPMORBxNPb2+3og2CVeStgww1knQPSx2T/9n
- dQBFUxPl8sf6KyOZlRFvLxILPKNtIVwYIqG6MJms7Fh8tufVHGdHGX61VglJpXjho5CgYJJ
- iN2EjIKBigYpgFL26VtFQ==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:W2fHljF5B7E=:iFwkzB8Hure8dRhEGuKNjg
- Vta7KgCHNXLYD9nafg4UbQIk11Pnqpvjj3dOeklUuNsLLopxFHFjBfFe1WHtTevPSQ8amOkdv
- qPThL+0Fut7MZQXw/ZQ2XY+/OSdzZTkpfEOC8BmMEJSOmU1NCrRKpB68IVkaUHbK0/Av8M0jo
- pPFuYhr/WfZ5d3g//F4tX0zYIGoeJ4cNFJLvLPAwsA5AcwTKaKzDkAVaTOgOXrOVDnhjjpndQ
- pq7pWgKJFAw4ZwKSL/N7OqYA6X91Ybfy3SAGQxoVlijd+tRYVV/j0vfj2GeH7EqTIN6qPNGDE
- WEZoVatsjOqJzAq6DsAUrJ15hU2ALbvV0Pw4tYEl8iEWOwPB23KDSJ58lU0NQrSN1EuAuL0ks
- 5Sy9he1SJN+9VI12u7yLy2ISmKcKhbyUcfpkkgI5GaSHUlWE6an4mJFty4zFr2dKVPHFy0cg9
- mKSkZKbl+slC0yWQYGDxtiBgEufrYbdJep51P1U4Iv0ovxW1JSPy0vfp5XXDf0za1p0fjcDZS
- +oeCR1GvVl+0jDAWAL9auE7NAHaGaTO1ggSjSQDKt6Sff60NTR5BqLTmVH0D7RJ/4ZWoZg4ye
- 7cRKt1EGUkBdirN7jPM0ykH8C8dsedhyxT7Lix7kqcLcUKvlDQf4X4VFAuA8y1tAW3rSee/cL
- zT5sqMgpGqWFwM0LlTg9w4sMTQoJrIYDzsyV09mETP5HOwDDc79t7eKdB6rMnw8rnFPtALdQi
- sjz4ig90G9n/Ti2Bh44/NM19wU+/NYLiiaosrnNvupnn0pULo6ygBlkEePZwVSvvOU0CZkarT
- 1IEcP9vD2Zq6QHD8Gv9CCySKET+XdSzeKEl+obc2R6K87WpbXRRHaFPAdmv5HJeHlZwDmBdQS
- pkWEWtzFopfo4gq1/GTsdmJzxJE1yLsgskWJbd9ww=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>
+References: <20220517205341.536587-1-robimarko@gmail.com>
+ <2905b9ae-df66-eb12-60fd-306ea2d3d626@linaro.org>
+ <CAOX2RU4dH-iUMY8yebEEgdJRqm37AHBMH135YkNsnDJMPZCbPg@mail.gmail.com>
+ <bc13e57f-9701-80c9-8c7a-e491fbcfd181@linaro.org>
+ <CAOX2RU6sW5x-Ufbgz5pxWRnOMj=jrTXqHuba5USKgBnfc+KeJA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAOX2RU6sW5x-Ufbgz5pxWRnOMj=jrTXqHuba5USKgBnfc+KeJA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,42 +84,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, May 7, 2022 at 7:19 PM Oleksandr Tyshchenko <olekstysh@gmail.com> wrote:
->
-> diff --git a/Documentation/devicetree/bindings/virtio/mmio.yaml b/Documentation/devicetree/bindings/virtio/mmio.yaml
-> index 10c22b5..29a0932 100644
-> --- a/Documentation/devicetree/bindings/virtio/mmio.yaml
-> +++ b/Documentation/devicetree/bindings/virtio/mmio.yaml
-> @@ -13,6 +13,9 @@ description:
->    See https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=virtio for
->    more details.
->
-> +allOf:
-> +  - $ref: /schemas/arm/xen,dev-domid.yaml#
-> +
->  properties:
->    compatible:
->      const: virtio,mmio
-> @@ -33,6 +36,10 @@ properties:
->      description: Required for devices making accesses thru an IOMMU.
->      maxItems: 1
->
-> +  xen,dev-domid:
-> +    description: Required when Xen grant mappings need to be enabled for device.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
->  required:
->    - compatible
->    - reg
+On 18/05/2022 16:00, Robert Marko wrote:
+> 
+> Yeah, that was my intention with not having interrupts as the generic property.
+> I will remove them as generic property and only allow them per
+> compatible, cause I tested
+> adding interrupts to a PMIC DTS that does not allow them and make
+> dtbs_check will
+> warn about those being unevaluated.
 
-Sorry for joining the discussion late. Have you considered using the
-generic iommu
-binding here instead of a custom property? This would mean having a device
-node for the grant-table mechanism that can be referred to using the 'iommus'
-phandle property, with the domid as an additional argument.
+Thanks, apologies for the confusion.
 
-It does not quite fit the model that Linux currently uses for iommus,
-as that has an allocator for dma_addr_t space, but it would think it's
-conceptually close enough that it makes sense for the binding.
 
-         Arnd
+Best regards,
+Krzysztof
