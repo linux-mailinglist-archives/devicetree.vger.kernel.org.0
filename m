@@ -2,138 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A56552B5D7
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 11:28:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2FD552B5EF
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 11:29:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233828AbiERJKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 05:10:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39866 "EHLO
+        id S233945AbiERJQg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 05:16:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233888AbiERJKs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 05:10:48 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49135E47;
-        Wed, 18 May 2022 02:10:46 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 51E3C1F4432B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1652865045;
-        bh=FlrKwEJaWOEcsQb+NEXsjeQ2j8JFEBDbmFMsL5Q5hK8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Wqi00/h/rLUy4nZRdCsCz6bv47BFhnhvAHEc1mXljIaU1uSOjfKZGIDCOJhrMZGzd
-         K6uLVba1kIshyPketkRmAvCOlNRsDSe3zDvtqQI/w5CtcnZ2Ht5C5ZgCRQS3rThAGg
-         8wUMyY3AbTkdu177rskNbUU3CpbG1RaIdjbMlMN2F7TZX6c7Sy8qTy8r1QqNq2Du2V
-         pdhc0PWm1xnUFAYxob5AKbjlZXIx8rwEgX1nShxlGy55seZaOQ1hxukhPYoOXbz/8T
-         Ai3s2ZaIA6YjcnRhrlFtNhTilI5ZVOBFatqH8P5+ywsIc4w2YQa7FslrRay9qOmhKq
-         RE2aTol+pl3Vg==
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     yong.wu@mediatek.com
-Cc:     krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
-        matthias.bgg@gmail.com, linux-mediatek@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, konrad.dybcio@somainline.org,
-        marijn.suijten@somainline.org, martin.botka@somainline.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        paul.bouchara@somainline.org, kernel@collabora.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH v3 2/2] memory: mtk-smi: Add support for MT6795 Helio X10
-Date:   Wed, 18 May 2022 11:10:38 +0200
-Message-Id: <20220518091038.22380-3-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220518091038.22380-1-angelogioacchino.delregno@collabora.com>
-References: <20220518091038.22380-1-angelogioacchino.delregno@collabora.com>
+        with ESMTP id S233888AbiERJQc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 05:16:32 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4C9813FA7;
+        Wed, 18 May 2022 02:16:31 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id t6so1783093wra.4;
+        Wed, 18 May 2022 02:16:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=AJ/PeRbastM8KtwKP00d5Dtpk6YYbHWpbi26hK6kis8=;
+        b=Sb6MUDzpI3Do12SoVOog4trxfn9HkOWzjeJE76NDXkSoA5+fRAmSg1quRuL0EaHHMq
+         m6AxmVYU7qZ4kUOuIhQsD2r+4H7X/eY9MdaLsZClCj+chZ/DoiVRhX9q9MC9cVk+qB2u
+         rKLz50JW6LMpRFFumwP9Jdf2NLUMxYBb39/m7I1paORnMA76t7UYktiptr2D7kQNW9fM
+         Ilp+EyfIAquY2zUojfnFJBq50LF3ol0dyv8ykoL/ce1uU9ZpB3AJf2RGUb5yvijmFIHy
+         vhOOAZG3Pzx1dZuw2baXFhCQfbnqUvTEPayqaYHkt2lviWQdjqQoRKNEAeblCa+BKcYt
+         CR+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=AJ/PeRbastM8KtwKP00d5Dtpk6YYbHWpbi26hK6kis8=;
+        b=a4XKxsy+u8fWQHs+030ujNOLIKQvfKHQcOX5dwthkazViDlEgysV0a+cQHNED8iIOe
+         bDsguvUsALfhzx9cyDVL49kyb8mGRtFc27P7t70/k6rNDXX6Ttv0KEGo9M/E/xIcWfv0
+         TXd8Gr4rJKBn7/gVF779S5tIAA+jzZ8WgsyaoD2Cel8PUaPrc1XsAPWQFyOxq3pU3jkg
+         gYGI8yeGAPEfrxTWVIobtniHX6+aDcunIgKcRX+0tJAIFQL3g+p3YiV+pvFzMeBsg+Tk
+         WSSW7jIjNl5gihA/1jM8Jj1QHItbWGLsOxa9DFlABgPrEbKlPApUTl823LDCW6Ng/n7g
+         fb3g==
+X-Gm-Message-State: AOAM530syC9Z2OKC14XH7X+G15H2l2UwDbGPgYNPdTUObMl9n7NHkoWr
+        /W7Jj4EG1aQF+tKtiEnpsv6vg65sFt4=
+X-Google-Smtp-Source: ABdhPJwEWT0S1cQNRyp2Os4DAQEhukNT425BpsOswVM115DyQwaHDTQ4H/1aAl9xuumtGy5hK18drg==
+X-Received: by 2002:a05:6000:1a45:b0:20e:6164:d86c with SMTP id t5-20020a0560001a4500b0020e6164d86cmr1405752wry.561.1652865390262;
+        Wed, 18 May 2022 02:16:30 -0700 (PDT)
+Received: from [192.168.0.36] ([5.225.216.194])
+        by smtp.gmail.com with ESMTPSA id p18-20020a05600c1d9200b00397122e63b6sm1227595wms.29.2022.05.18.02.16.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 May 2022 02:16:29 -0700 (PDT)
+Message-ID: <ad4aac8a-ef1b-d4eb-7045-a46bd39ad3fc@gmail.com>
+Date:   Wed, 18 May 2022 11:16:28 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 1/8] dt-bindings: iommu: mediatek: Add mediatek,infracfg
+ phandle
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, yong.wu@mediatek.com
+Cc:     joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        iommu@lists.linux-foundation.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220517132107.195932-1-angelogioacchino.delregno@collabora.com>
+ <20220517132107.195932-2-angelogioacchino.delregno@collabora.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220517132107.195932-2-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The MediaTek Helio X10 (MT6795) SoC has 5 LARBs and one common SMI
-instance without any sub-common and without GALS.
 
-While the smi-common configuration is specific to this SoC, on the
-LARB side, this is similar to MT8173, in the sense that it doesn't
-need the port in LARB, and the register layout is also compatible
-with that one, which makes us able to fully reuse the smi-larb
-platform data struct that was introduced for MT8173.
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-Reviewed-by: Yong Wu <yong.wu@mediatek.com>
----
- drivers/memory/mtk-smi.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+On 17/05/2022 15:21, AngeloGioacchino Del Regno wrote:
+> Add property "mediatek,infracfg" to let the mtk_iommu driver retrieve
+> a phandle to the infracfg syscon instead of performing a per-soc
+> compatible lookup.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>   Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml | 4 ++++
+>   1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
+> index 2ae3bbad7f1a..78c72c22740b 100644
+> --- a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
+> +++ b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
+> @@ -101,6 +101,10 @@ properties:
+>       items:
+>         - const: bclk
+>   
+> +  mediatek,infracfg:
+> +    $ref: "/schemas/types.yaml#/definitions/phandle"
+> +    description: The phandle to the mediatek infracfg syscon
+> +
+>     mediatek,larbs:
+>       $ref: /schemas/types.yaml#/definitions/phandle-array
+>       minItems: 1
 
-diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
-index 86a3d34f418e..7d26bc3485fd 100644
---- a/drivers/memory/mtk-smi.c
-+++ b/drivers/memory/mtk-smi.c
-@@ -21,11 +21,13 @@
- /* SMI COMMON */
- #define SMI_L1LEN			0x100
- 
-+#define SMI_L1_ARB			0x200
- #define SMI_BUS_SEL			0x220
- #define SMI_BUS_LARB_SHIFT(larbid)	((larbid) << 1)
- /* All are MMU0 defaultly. Only specialize mmu1 here. */
- #define F_MMU1_LARB(larbid)		(0x1 << SMI_BUS_LARB_SHIFT(larbid))
- 
-+#define SMI_READ_FIFO_TH		0x230
- #define SMI_M4U_TH			0x234
- #define SMI_FIFO_TH1			0x238
- #define SMI_FIFO_TH2			0x23c
-@@ -360,6 +362,7 @@ static const struct of_device_id mtk_smi_larb_of_ids[] = {
- 	{.compatible = "mediatek,mt2701-smi-larb", .data = &mtk_smi_larb_mt2701},
- 	{.compatible = "mediatek,mt2712-smi-larb", .data = &mtk_smi_larb_mt2712},
- 	{.compatible = "mediatek,mt6779-smi-larb", .data = &mtk_smi_larb_mt6779},
-+	{.compatible = "mediatek,mt6795-smi-larb", .data = &mtk_smi_larb_mt8173},
- 	{.compatible = "mediatek,mt8167-smi-larb", .data = &mtk_smi_larb_mt8167},
- 	{.compatible = "mediatek,mt8173-smi-larb", .data = &mtk_smi_larb_mt8173},
- 	{.compatible = "mediatek,mt8183-smi-larb", .data = &mtk_smi_larb_mt8183},
-@@ -541,6 +544,13 @@ static struct platform_driver mtk_smi_larb_driver = {
- 	}
- };
- 
-+static const struct mtk_smi_reg_pair mtk_smi_common_mt6795_init[SMI_COMMON_INIT_REGS_NR] = {
-+	{SMI_L1_ARB, 0x1b},
-+	{SMI_M4U_TH, 0xce810c85},
-+	{SMI_FIFO_TH1, 0x43214c8},
-+	{SMI_READ_FIFO_TH, 0x191f},
-+};
-+
- static const struct mtk_smi_reg_pair mtk_smi_common_mt8195_init[SMI_COMMON_INIT_REGS_NR] = {
- 	{SMI_L1LEN, 0xb},
- 	{SMI_M4U_TH, 0xe100e10},
-@@ -565,6 +575,12 @@ static const struct mtk_smi_common_plat mtk_smi_common_mt6779 = {
- 		    F_MMU1_LARB(5) | F_MMU1_LARB(6) | F_MMU1_LARB(7),
- };
- 
-+static const struct mtk_smi_common_plat mtk_smi_common_mt6795 = {
-+	.type	  = MTK_SMI_GEN2,
-+	.bus_sel  = F_MMU1_LARB(0),
-+	.init     = mtk_smi_common_mt6795_init,
-+};
-+
- static const struct mtk_smi_common_plat mtk_smi_common_mt8183 = {
- 	.type     = MTK_SMI_GEN2,
- 	.has_gals = true,
-@@ -609,6 +625,7 @@ static const struct of_device_id mtk_smi_common_of_ids[] = {
- 	{.compatible = "mediatek,mt2701-smi-common", .data = &mtk_smi_common_gen1},
- 	{.compatible = "mediatek,mt2712-smi-common", .data = &mtk_smi_common_gen2},
- 	{.compatible = "mediatek,mt6779-smi-common", .data = &mtk_smi_common_mt6779},
-+	{.compatible = "mediatek,mt6795-smi-common", .data = &mtk_smi_common_mt6795},
- 	{.compatible = "mediatek,mt8167-smi-common", .data = &mtk_smi_common_gen2},
- 	{.compatible = "mediatek,mt8173-smi-common", .data = &mtk_smi_common_gen2},
- 	{.compatible = "mediatek,mt8183-smi-common", .data = &mtk_smi_common_mt8183},
--- 
-2.35.1
+I think we can squash patch 7 in here. Same holds for pericfg
 
+Regards,
+Matthias
