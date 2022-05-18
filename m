@@ -2,135 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B704152AF6E
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 02:55:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 185E152AF70
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 02:57:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232955AbiERAzj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 20:55:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59256 "EHLO
+        id S232882AbiERA5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 20:57:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232502AbiERAzi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 20:55:38 -0400
-Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B1F053E25
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 17:55:38 -0700 (PDT)
-Received: by mail-oo1-f53.google.com with SMTP id q7-20020a4adc47000000b0035f4d798376so137067oov.6
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 17:55:38 -0700 (PDT)
+        with ESMTP id S232110AbiERA5J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 20:57:09 -0400
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44BCC53E19;
+        Tue, 17 May 2022 17:57:09 -0700 (PDT)
+Received: by mail-oi1-f170.google.com with SMTP id w123so939855oiw.5;
+        Tue, 17 May 2022 17:57:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=VYditCrlpDU+v6UE6ybgoJgoFoF//YCll44qfhtcswA=;
-        b=fW01kcFHff88ei9loFocMFuQ0GPcHmmmOsdOWhKXDGU7WWO+KRtpNImduURt3FPv3B
-         NWiB+P2qt7ar8Sp57ZiVQYzJlJdRZlFk6mnrQ6dMt36GutkVlYzIkKiw+ylkInD3836F
-         ddOOq2iv2yoDI4wzSx4N2iPWCJw3AqZT5ZZ4QCEu7KVNh25GIUaYsBNkGiSpyo/ZtKg4
-         3p1CzQp+/aiO9ma/M+3PB+qaDqHL3CRuykcOnxbL2wZv5UdWayR+Zu0TBj+qGkrfEYd3
-         74r3v+/9iGFt6YiRpNJJzIpG3mj/e5f6xgmEqE12wehdQia8Avmw1YkT8eG7AB+d2L2K
-         okVg==
-X-Gm-Message-State: AOAM530EdVZDmPc1bLcVC+cUbOJ7JjlHvE8KT9e0Sw9maFYc6/mC3Cms
-        nghovnQQ+IZkGjY5mr9GbQ==
-X-Google-Smtp-Source: ABdhPJyGOZ4hC/KJGPmAFWSGz1xrAGsSF3hn02Kn1x21JXuyhaawZ6MxDmVkgVhO5BpaquXTknWxOg==
-X-Received: by 2002:a4a:430b:0:b0:35e:a582:5ba1 with SMTP id k11-20020a4a430b000000b0035ea5825ba1mr9128107ooj.75.1652835337382;
-        Tue, 17 May 2022 17:55:37 -0700 (PDT)
+        bh=zJUEU3b8rb1nb3gZa5r/iKHGd0id+dL7Y9fATlK8SrU=;
+        b=t/qV084n7aj2NcuaFVtKUry03lGyBSJn+MK2A99SlgKIPV1bwNR6rFAQk+BMDKmAZ2
+         GOWTqYs0orcBcIJhf/gC/MTz9KI35h4lhVR+d2GIv87Psdup3FRKxelmdpSG599RarK/
+         t0PhhnMhYJ4s6qnoc3UkHVxoqdFAp93kMa+/EEVvpa6nTrEx/NwMWC5szaGELD+tty0z
+         lXTsTMYegkio+hIi7G67x6k+4HzliHyvS7PVRxfAl5j0g5DC2YmEsqP42oF5YxRvRRCT
+         6V8lv4iLKv3faQJG3zJjqwafDyGVLCYbGVxKVXyRSs8fU215MFKLndGTqplaEfpjfdPw
+         3aGQ==
+X-Gm-Message-State: AOAM532QSZop/+ncDVbG2vCKx+7fSq0Ak2+Jkzjn2povxHCIrLYW1NfU
+        sikPK6jjvbvLDDxkxo8arQ==
+X-Google-Smtp-Source: ABdhPJwJFZmM7q7xAG1nA2AgUV70lHhLkxpkmH7nBSa5++5QxxPCmOloP6BqJdC26qLIpGQEKKV68A==
+X-Received: by 2002:aca:4b87:0:b0:326:b2bf:b10a with SMTP id y129-20020aca4b87000000b00326b2bfb10amr17712773oia.213.1652835428557;
+        Tue, 17 May 2022 17:57:08 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id o2-20020a4a4402000000b0035eb4e5a6b6sm408264ooa.12.2022.05.17.17.55.36
+        by smtp.gmail.com with ESMTPSA id w66-20020acaad45000000b0032647f4e437sm308897oie.45.2022.05.17.17.57.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 May 2022 17:55:36 -0700 (PDT)
-Received: (nullmailer pid 1978708 invoked by uid 1000);
-        Wed, 18 May 2022 00:55:35 -0000
-Date:   Tue, 17 May 2022 19:55:35 -0500
+        Tue, 17 May 2022 17:57:07 -0700 (PDT)
+Received: (nullmailer pid 1981029 invoked by uid 1000);
+        Wed, 18 May 2022 00:57:06 -0000
+Date:   Tue, 17 May 2022 19:57:06 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Peter Robinson <pbrobinson@gmail.com>,
-        Melissa Wen <melissa.srw@gmail.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 03/11] dt-bindings: soc: bcm: bcm2835-pm: Add support for
- bcm2711
-Message-ID: <20220518005535.GA1974187-robh@kernel.org>
-References: <20220515202032.3046-1-stefan.wahren@i2se.com>
- <20220515202032.3046-4-stefan.wahren@i2se.com>
+To:     Max Krummenacher <max.oss.09@gmail.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        max.krummenacher@toradex.com,
+        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        devicetree@vger.kernel.org,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Li Yang <leoyang.li@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>
+Subject: Re: [PATCH v1 01/17] dt-bindings: arm: fsl: Add carrier for
+ toradex,apalis-imx6q
+Message-ID: <20220518005706.GA1980955-robh@kernel.org>
+References: <20220516115846.58328-1-max.oss.09@gmail.com>
+ <20220516115846.58328-2-max.oss.09@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220515202032.3046-4-stefan.wahren@i2se.com>
+In-Reply-To: <20220516115846.58328-2-max.oss.09@gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 15, 2022 at 10:20:24PM +0200, Stefan Wahren wrote:
-> Add a new compatible string for BCM2711 and the option to provide a
-> third reg property for the board's new RPiVid ASB.
+On Mon, 16 May 2022 13:58:29 +0200, Max Krummenacher wrote:
+> From: Max Krummenacher <max.krummenacher@toradex.com>
 > 
-> In BCM2711 the new RPiVid ASB took over V3D, which is our only consumer
-> of this driver so far. The old ASB is still be present with ISP and H264
-> bits but no V3D.
+> Add binding for the Ixora V1.2 carrier board our Apalis iMX6D/Q
+> may be mated with.
 > 
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+> Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
 > ---
->  .../bindings/soc/bcm/brcm,bcm2835-pm.yaml     | 19 +++++++++++++------
->  1 file changed, 13 insertions(+), 6 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
-> index 883ab7cb96e9..e13ce98d1753 100644
-> --- a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
-> +++ b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
-> @@ -19,17 +19,24 @@ allOf:
->  properties:
->    compatible:
->      items:
-> -      - const: brcm,bcm2835-pm
-> +      - enum:
-> +          - brcm,bcm2835-pm
-> +          - brcm,bcm2711-pm
->        - const: brcm,bcm2835-pm-wdt
->  
->    reg:
-> -    minItems: 2
-> -    maxItems: 2
-> +    minItems: 1
-> +    maxItems: 3
->  
->    reg-names:
-> -    items:
-> -      - const: pm
-> -      - const: asb
-> +    oneOf:
-> +      - items:
-> +          - const: pm
-> +          - const: asb
-> +      - items:
-> +          - const: pm
-> +          - const: asb
-> +          - const: rpivid_asb
-
-This can be simplified to:
-
-minItems: 2
-items:
-  - const: pm
-  - const: asb
-  - const: rpivid_asb
-
->  
->    "#power-domain-cells":
->      const: 1
-> -- 
-> 2.25.1
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> 
+
+Acked-by: Rob Herring <robh@kernel.org>
