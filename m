@@ -2,64 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C14DD52B740
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 12:13:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7180152B6A7
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 12:12:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234751AbiERJpN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 05:45:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53630 "EHLO
+        id S234540AbiERJq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 05:46:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234729AbiERJoI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 05:44:08 -0400
+        with ESMTP id S234670AbiERJp7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 05:45:59 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E7BB13F1CC;
-        Wed, 18 May 2022 02:43:36 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF33FB0A7E;
+        Wed, 18 May 2022 02:45:37 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9DFF0617A7;
-        Wed, 18 May 2022 09:43:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0031EC385A5;
-        Wed, 18 May 2022 09:43:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1652867012;
-        bh=Jpi/1jh96rWRxGpCkg7Oxud6ZiXGVqLYgED2pDrLhmY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=M4mHEn+Yua3OAv39u2P0/mrjBnr6V7vEfW6IGrTtinTFO/oVBlqrYC5InB64ZqLUO
-         zFzhSAgB065XpSZG3zpEgutJtPt7gTaakexflusTqS0slN7lTzK3emWR+wNR9FhKBk
-         8ZMbxWN3eimSiTdMAbegV1W7tvUnxbKjTzm0yZEf/jvJwOpAFHuQhEZeip6jHDIy9R
-         kvJIoLKoXZicA6X6/FQi8aQQ1B4kvhDG1k+sRuO3612YL12lTL+1032K9AiYgMyNin
-         L7d4KVVprtKvO4YEtke/X6xGZ8QQLshFLyDhDvYQGeCZhvEG+Q9oZNg2pg0wpK4AvR
-         7A4uIrZ0tJs+Q==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1nrGDL-0003Sw-UH; Wed, 18 May 2022 11:43:32 +0200
-Date:   Wed, 18 May 2022 11:43:31 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v10 06/10] PCI: dwc: Handle MSIs routed to multiple GIC
- interrupts
-Message-ID: <YoS/wwkZoaFc76u1@hovoldconsulting.com>
-References: <20220513172622.2968887-1-dmitry.baryshkov@linaro.org>
- <20220513172622.2968887-7-dmitry.baryshkov@linaro.org>
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 60F50617AD;
+        Wed, 18 May 2022 09:45:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDC49C34100;
+        Wed, 18 May 2022 09:45:30 +0000 (UTC)
+Message-ID: <55f5f601-466a-5f90-0c71-1ea1e219ef56@xs4all.nl>
+Date:   Wed, 18 May 2022 11:45:29 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220513172622.2968887-7-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH 06/20] Documention: v4l: Documentation for VP9 CIDs.
+Content-Language: en-US
+To:     Smitha T Murthy <smitha.t@samsung.com>,
+        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
+        mchehab@kernel.org, ezequiel@vanguardiasur.com.ar,
+        jernej.skrabec@gmail.com, benjamin.gaignard@collabora.com,
+        stanimir.varbanov@linaro.org, dillon.minfei@gmail.com,
+        david.plowman@raspberrypi.com, mark.rutland@arm.com,
+        robh+dt@kernel.org, krzk+dt@kernel.org, andi@etezian.org,
+        alim.akhtar@samsung.com, aswani.reddy@samsung.com,
+        pankaj.dubey@samsung.com, linux-fsd@tesla.com
+References: <20220517125548.14746-1-smitha.t@samsung.com>
+ <CGME20220517125608epcas5p48b5d2f91c711e5728f993169b1d4b9a1@epcas5p4.samsung.com>
+ <20220517125548.14746-7-smitha.t@samsung.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <20220517125548.14746-7-smitha.t@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-8.8 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -68,117 +56,212 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 13, 2022 at 08:26:18PM +0300, Dmitry Baryshkov wrote:
-> On some of Qualcomm platforms each group of 32 MSI vectors is routed to the
-> separate GIC interrupt. Implement support for such configurations by
-> parsing "msi0" ... "msiN" interrupts and attaching them to the chained
-> handler.
+Hi Smitha,
+
+On 5/17/22 14:55, Smitha T Murthy wrote:
+> Adds V4l2 controls for VP9 encoder documention.
 > 
-> Note, that if DT doesn't list an array of MSI interrupts and uses single
-> "msi" IRQ, the driver will limit the amount of supported MSI vectors
-> accordingly (to 32).
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Cc: linux-fsd@tesla.com
+> Signed-off-by: Smitha T Murthy <smitha.t@samsung.com>
 > ---
->  .../pci/controller/dwc/pcie-designware-host.c | 38 ++++++++++++++++++-
->  drivers/pci/controller/dwc/pcie-designware.h  |  1 +
->  2 files changed, 38 insertions(+), 1 deletion(-)
+>  .../media/v4l/ext-ctrls-codec.rst             | 167 ++++++++++++++++++
+>  1 file changed, 167 insertions(+)
 > 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> index 70f0435907c1..320a968dd366 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> @@ -288,6 +288,11 @@ static void dw_pcie_msi_init(struct pcie_port *pp)
->  	dw_pcie_writel_dbi(pci, PCIE_MSI_ADDR_HI, upper_32_bits(msi_target));
->  }
+> diff --git a/Documentation/userspace-api/media/v4l/ext-ctrls-codec.rst b/Documentation/userspace-api/media/v4l/ext-ctrls-codec.rst
+> index 4cd7c541fc30..1b617a08f973 100644
+> --- a/Documentation/userspace-api/media/v4l/ext-ctrls-codec.rst
+> +++ b/Documentation/userspace-api/media/v4l/ext-ctrls-codec.rst
+> @@ -2165,6 +2165,16 @@ enum v4l2_mpeg_video_vp8_profile -
+>      * - ``V4L2_MPEG_VIDEO_VP8_PROFILE_3``
+>        - Profile 3
 >  
-> +static const char * const split_msi_names[] = {
-> +	"msi0", "msi1", "msi2", "msi3",
-> +	"msi4", "msi5", "msi6", "msi7",
-> +};
+> +VP9 Control Reference
+> +---------------------
 > +
->  static int dw_pcie_msi_host_init(struct pcie_port *pp)
->  {
->  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> @@ -300,17 +305,48 @@ static int dw_pcie_msi_host_init(struct pcie_port *pp)
->  	for (ctrl = 0; ctrl < num_ctrls; ctrl++)
->  		pp->irq_mask[ctrl] = ~0;
+> +The VP9 controls include controls for encoding parameters of VP9 video
+> +codec.
+> +
+> +.. _vp9-control-id:
+> +
+> +VP9 Control IDs
+> +
+>  .. _v4l2-mpeg-video-vp9-profile:
 >  
-> +	if (pp->has_split_msi_irq) {
-
-You don't need to add this configuration parameter as it can be inferred
-from the devicetree (e.g. if "msi0" is specified).
-
-> +		/*
-> +		 * Parse as many IRQs as described in the DTS. If there are
-> +		 * none, fallback to the single "msi" IRQ.
-> +		 */
-> +		for (ctrl = 0; ctrl < num_ctrls; ctrl++) {
-> +			int irq;
-> +
-> +			if (pp->msi_irq[ctrl])
-> +				continue;
-> +
-> +			irq = platform_get_irq_byname(pdev, split_msi_names[ctrl]);
-
-You need to use platform_get_irq_byname_optional() here or an error will
-still printed if the number of "msi" interrupts is less than 8.
-
-> +			if (irq == -ENXIO) {
-> +				num_ctrls = ctrl;
-> +				break;
-> +			} else if (irq < 0) {
-> +				return dev_err_probe(dev, irq,
-> +						     "Failed to parse MSI IRQ '%s'\n",
-> +						     split_msi_names[ctrl]);
-> +			}
-> +
-> +			pp->msi_irq[ctrl] = irq;
-> +		}
-> +
-> +		if (num_ctrls == 0)
-> +			num_ctrls = 1;
-> +	}
-> +
->  	if (!pp->msi_irq[0]) {
->  		int irq = platform_get_irq_byname_optional(pdev, "msi");
+>  ``V4L2_CID_MPEG_VIDEO_VP9_PROFILE``
+> @@ -2231,6 +2241,163 @@ enum v4l2_mpeg_video_vp9_level -
+>      * - ``V4L2_MPEG_VIDEO_VP9_LEVEL_6_2``
+>        - Level 6.2
 >  
->  		if (irq < 0) {
->  			irq = platform_get_irq(pdev, 0);
->  			if (irq < 0)
-> -				return irq;
-> +				return dev_err_probe(dev, irq, "Failed to parse MSI irq\n");
->  		}
->  		pp->msi_irq[0] = irq;
->  	}
->  
-> +	pp->num_vectors = min_t(u32, pp->num_vectors, num_ctrls * MAX_MSI_IRQS_PER_CTRL);
-> +	dev_dbg(dev, "Using %d MSI vectors\n", pp->num_vectors);
+> +``V4L2_CID_MPEG_VIDEO_VP9_I_FRAME_QP``
+> +    Quantization parameter for an I frame for VP9. Valid range: from 1 to 255.
 
-Can you rework the handling of num_vectors == 0 (in dw_pcie_host_init())
-so that the number is always inferred from the number of "msi"
-interrupts without having to pass in num_vectors == MAX_MSI_IRQS?
+Hmm, for this CID and most of the others you added there already exists a CID:
+V4L2_CID_MPEG_VIDEO_VPX_I_FRAME_QP.
 
-That is
+It's called VPX since it is valid for both VP8 and VP9.
 
-	num_vectors == 0 && "msi" => num_vectors = MSI_DEF_NUM_VECTORS (32)
-	num_vectors == 0 && "msi0".."msin" => num_vectors = n * MAX_MSI_IRQS_PER_CTRL (n * 32)
+So I think quite a few of these VP9 controls can be dropped, unless I am missing
+something?
+
+Regards,
+
+	Hans
 
 > +
->  	pp->msi_irq_chip = &dw_pci_msi_bottom_irq_chip;
+> +``V4L2_CID_MPEG_VIDEO_VP9_P_FRAME_QP``
+> +    Quantization parameter for an P frame for VP9. Valid range: from 1 to 255.
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_MAX_QP``
+> +    Maximum quantization parameter for VP9. Valid range: from 1 to 255.
+> +    Recommended range for MFC is from 230 to 255.
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_MIN_QP``
+> +    Minimum quantization parameter for VP9. Valid range: from 1 to 255.
+> +    Recommended range for MFC is from 1 to 24.
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_RC_FRAME_RATE``
+> +    Indicates the number of evenly spaced subintervals, called ticks, within
+> +    one second. This is a 16 bit unsigned integer and has a maximum value up to
+> +    0xffff and a minimum value of 1.
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_GF_REFRESH_PERIOD``
+> +    Indicates the refresh period of the golden frame for VP9 encoder.
+> +
+> +.. _v4l2-vp9-golden-frame-sel:
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_GOLDEN_FRAMESEL``
+> +    (enum)
+> +
+> +enum v4l2_mpeg_vp9_golden_framesel -
+> +    Selects the golden frame for encoding. Valid when NUM_OF_REF is 2.
+> +    Possible values are:
+> +
+> +.. raw:: latex
+> +
+> +    \footnotesize
+> +
+> +.. tabularcolumns:: |p{9.0cm}|p{8.0cm}|
+> +
+> +.. flat-table::
+> +    :header-rows:  0
+> +    :stub-columns: 0
+> +
+> +    * - ``V4L2_CID_MPEG_VIDEO_VP9_GOLDEN_FRAME_USE_PREV``
+> +      - Use the (n-2)th frame as a golden frame, current frame index being
+> +        'n'.
+> +    * - ``V4L2_CID_MPEG_VIDEO_VP9_GOLDEN_FRAME_USE_REF_PERIOD``
+> +      - Use the previous specific frame indicated by
+> +        ``V4L2_CID_MPEG_VIDEO_VP9_GF_REFRESH_PERIOD`` as a
+> +        golden frame.
+> +
+> +.. raw:: latex
+> +
+> +    \normalsize
+> +
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_HIERARCHY_QP_ENABLE``
+> +    Allows host to specify the quantization parameter values for each
+> +    temporal layer through HIERARCHICAL_QP_LAYER. This is valid only
+> +    if HIERARCHICAL_CODING_LAYER is greater than 1. Setting the control
+> +    value to 1 enables setting of the QP values for the layers.
+> +
+> +.. _v4l2-vp9-ref-number-of-pframes:
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_REF_NUMBER_FOR_PFRAMES``
+> +    (enum)
+> +
+> +enum v4l2_mpeg_vp9_ref_num_for_pframes -
+> +    Number of reference pictures for encoding P frames.
+> +
+> +.. raw:: latex
+> +
+> +    \footnotesize
+> +
+> +.. tabularcolumns:: |p{9.0cm}|p{8.0cm}|
+> +
+> +.. flat-table::
+> +    :header-rows:  0
+> +    :stub-columns: 0
+> +
+> +    * - ``V4L2_CID_MPEG_VIDEO_VP9_1_REF_PFRAME``
+> +      - Indicates one reference frame, last encoded frame will be searched.
+> +    * - ``V4L2_CID_MPEG_VIDEO_VP9_GOLDEN_FRAME_USE_REF_PERIOD``
+> +      - Indicates 2 reference frames, last encoded frame and golden frame
+> +        will be searched.
+> +
+> +.. raw:: latex
+> +
+> +    \normalsize
+> +
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_HIERARCHICAL_CODING_LAYER``
+> +    Indicates the number of hierarchial coding layer.
+> +    In normal encoding (non-hierarchial coding), it should be zero.
+> +    VP9 has upto 3 layer of encoder.
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_HIERARCHY_RC_ENABLE``
+> +    Indicates enabling of bit rate for hierarchical coding layers VP9 encoder.
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_HIER_CODING_L0_BR``
+> +    Indicates bit rate for hierarchical coding layer 0 for VP9 encoder.
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_HIER_CODING_L1_BR``
+> +    Indicates bit rate for hierarchical coding layer 1 for VP9 encoder.
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_HIER_CODING_L2_BR``
+> +    Indicates bit rate for hierarchical coding layer 2 for VP9 encoder.
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_HIER_CODING_L0_QP``
+> +    Indicates quantization parameter for hierarchical coding layer 0.
+> +    Valid range: [V4L2_CID_MPEG_VIDEO_VP9_MIN_QP,
+> +    V4L2_CID_MPEG_VIDEO_VP9_MAX_QP].
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_HIER_CODING_L1_QP``
+> +    Indicates quantization parameter for hierarchical coding layer 1.
+> +    Valid range: [V4L2_CID_MPEG_VIDEO_VP9_MIN_QP,
+> +    V4L2_CID_MPEG_VIDEO_VP9_MAX_QP].
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_HIER_CODING_L2_QP``
+> +    Indicates quantization parameter for hierarchical coding layer 2.
+> +    Valid range: [V4L2_CID_MPEG_VIDEO_VP9_MIN_QP,
+> +    V4L2_CID_MPEG_VIDEO_VP9_MAX_QP].
+> +
+> +.. _v4l2-vp9-max-partition-depth:
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_MAX_PARTITION_DEPTH``
+> +    (enum)
+> +
+> +enum v4l2_mpeg_vp9_num_partitions -
+> +    Indicate maximum coding unit depth.
+> +
+> +.. raw:: latex
+> +
+> +    \footnotesize
+> +
+> +.. tabularcolumns:: |p{9.0cm}|p{8.0cm}|
+> +
+> +.. flat-table::
+> +    :header-rows:  0
+> +    :stub-columns: 0
+> +
+> +    * - ``V4L2_CID_MPEG_VIDEO_VP9_0_PARTITION``
+> +      - No coding unit partition depth.
+> +    * - ``V4L2_CID_MPEG_VIDEO_VP9_1_PARTITION``
+> +      - Allows one coding unit partition depth.
+> +
+> +.. raw:: latex
+> +
+> +    \normalsize
+> +
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_DISABLE_INTRA_PU_SPLIT``
+> +    Zero indicates enable intra NxN PU split.
+> +    One indicates disable intra NxN PU split.
+> +
+> +``V4L2_CID_MPEG_VIDEO_VP9_DISABLE_IVF_HEADER``
+> +    Indicates IVF header generation. Zero indicates enable IVF format.
+> +    One indicates disable IVF format.
+> +
 >  
->  	ret = dw_pcie_allocate_domains(pp);
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index 9c1a38b0a6b3..3aa840a5b19c 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -179,6 +179,7 @@ struct dw_pcie_host_ops {
->  
->  struct pcie_port {
->  	bool			has_msi_ctrl:1;
-> +	bool			has_split_msi_irq:1;
->  	u64			cfg0_base;
->  	void __iomem		*va_cfg0_base;
->  	u32			cfg0_size;
-
-Johan
+>  High Efficiency Video Coding (HEVC/H.265) Control Reference
+>  ===========================================================
