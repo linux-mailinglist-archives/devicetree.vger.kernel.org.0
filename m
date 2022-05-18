@@ -2,112 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2FD552B5EF
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 11:29:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B949352B5E4
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 11:28:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233945AbiERJQg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 05:16:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34028 "EHLO
+        id S234026AbiERJT4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 05:19:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233888AbiERJQc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 05:16:32 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4C9813FA7;
-        Wed, 18 May 2022 02:16:31 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id t6so1783093wra.4;
-        Wed, 18 May 2022 02:16:31 -0700 (PDT)
+        with ESMTP id S234013AbiERJTz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 05:19:55 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6CDD1498EE
+        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 02:19:53 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id u23so2559039lfc.1
+        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 02:19:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=AJ/PeRbastM8KtwKP00d5Dtpk6YYbHWpbi26hK6kis8=;
-        b=Sb6MUDzpI3Do12SoVOog4trxfn9HkOWzjeJE76NDXkSoA5+fRAmSg1quRuL0EaHHMq
-         m6AxmVYU7qZ4kUOuIhQsD2r+4H7X/eY9MdaLsZClCj+chZ/DoiVRhX9q9MC9cVk+qB2u
-         rKLz50JW6LMpRFFumwP9Jdf2NLUMxYBb39/m7I1paORnMA76t7UYktiptr2D7kQNW9fM
-         Ilp+EyfIAquY2zUojfnFJBq50LF3ol0dyv8ykoL/ce1uU9ZpB3AJf2RGUb5yvijmFIHy
-         vhOOAZG3Pzx1dZuw2baXFhCQfbnqUvTEPayqaYHkt2lviWQdjqQoRKNEAeblCa+BKcYt
-         CR+g==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=dj1d7TBWTM4EvNYi+u8WCo4dU6gJLS3xEb0YOid6KaU=;
+        b=soImDP324wce3hTglw183pIBiP9wnQZmmtlD+2Vmx0bmMLCBz6Vn1aSdJU7SUZjk8Y
+         kFVtKHgl3iohmeDgSpP2dtt9XbSF/rEgL+o6gjNeJjl7DW9k3z0al3H9aspKor5sm9tA
+         ghUCu0rUFRMfqowvhmsoxPURAhFANlEZzxMpBxI4PBJ0PtA6/bYN0GRo2Z/MqecjLpTt
+         s0N7VRtB9pJUdnYrzIgqRJ0P/y+borZTAhlYJl396LzYg2jxE4DcswaXlgRioUxZXuPq
+         Fl0SozBJq1g73iwRn8QlziN2FYev4G5MN9FVchd1ZHc9PPMTdkeiv1poDU6U9rTRUAGS
+         pEvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=AJ/PeRbastM8KtwKP00d5Dtpk6YYbHWpbi26hK6kis8=;
-        b=a4XKxsy+u8fWQHs+030ujNOLIKQvfKHQcOX5dwthkazViDlEgysV0a+cQHNED8iIOe
-         bDsguvUsALfhzx9cyDVL49kyb8mGRtFc27P7t70/k6rNDXX6Ttv0KEGo9M/E/xIcWfv0
-         TXd8Gr4rJKBn7/gVF779S5tIAA+jzZ8WgsyaoD2Cel8PUaPrc1XsAPWQFyOxq3pU3jkg
-         gYGI8yeGAPEfrxTWVIobtniHX6+aDcunIgKcRX+0tJAIFQL3g+p3YiV+pvFzMeBsg+Tk
-         WSSW7jIjNl5gihA/1jM8Jj1QHItbWGLsOxa9DFlABgPrEbKlPApUTl823LDCW6Ng/n7g
-         fb3g==
-X-Gm-Message-State: AOAM530syC9Z2OKC14XH7X+G15H2l2UwDbGPgYNPdTUObMl9n7NHkoWr
-        /W7Jj4EG1aQF+tKtiEnpsv6vg65sFt4=
-X-Google-Smtp-Source: ABdhPJwEWT0S1cQNRyp2Os4DAQEhukNT425BpsOswVM115DyQwaHDTQ4H/1aAl9xuumtGy5hK18drg==
-X-Received: by 2002:a05:6000:1a45:b0:20e:6164:d86c with SMTP id t5-20020a0560001a4500b0020e6164d86cmr1405752wry.561.1652865390262;
-        Wed, 18 May 2022 02:16:30 -0700 (PDT)
-Received: from [192.168.0.36] ([5.225.216.194])
-        by smtp.gmail.com with ESMTPSA id p18-20020a05600c1d9200b00397122e63b6sm1227595wms.29.2022.05.18.02.16.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 May 2022 02:16:29 -0700 (PDT)
-Message-ID: <ad4aac8a-ef1b-d4eb-7045-a46bd39ad3fc@gmail.com>
-Date:   Wed, 18 May 2022 11:16:28 +0200
+        bh=dj1d7TBWTM4EvNYi+u8WCo4dU6gJLS3xEb0YOid6KaU=;
+        b=h3od0uKIop5dzS6+FJM/QvpS1xVht1IsJqwpePTn/Z3HsnfhjxK+MeZjNCTSKCiao5
+         bvlnAjLFCPYEzYWRhkeFTcz2XkgOlp1VRlFtzFY7XKjRcl5KRQ1wEarxjuaVgzq/+u2r
+         3euYuVGuOTUPE5NhPRGtMgiX9xJk3iqHHhiDlswq4MDVeGjRgryZY4ruE+m12gcJFK+w
+         d2gxoFaB+M2HQFWgJ8PuKExP9kDbC1y7dKLl9p1j/d8aA+fO67Rh733Zg82/BR/Ybc32
+         DBzLmqWmhYAlazJLXWyVVNJ93hCU4xFa9MBfHS6Sp9xoQcWEAU/WRfF0V2fzTXnyNU5e
+         1oRQ==
+X-Gm-Message-State: AOAM532bVFrHiMdd6bfT24xttIxaxVJ6Di+DuqbsQDbY83QcBPrgVSK0
+        78/80D5VtWQ3v8wEV7/SilxSPg==
+X-Google-Smtp-Source: ABdhPJyiTh1XSjwzviHtvJKWZCIecFgcPt5HA1R8uxTglidoI72iue5gqx++Zns1t/BbqfKllD7oyg==
+X-Received: by 2002:a05:6512:2207:b0:477:b7f3:dbbe with SMTP id h7-20020a056512220700b00477b7f3dbbemr1749533lfu.404.1652865592260;
+        Wed, 18 May 2022 02:19:52 -0700 (PDT)
+Received: from localhost.localdomain (mobile-access-b04822-211.dhcp.inet.fi. [176.72.34.211])
+        by smtp.gmail.com with ESMTPSA id y17-20020a197511000000b0047255d21188sm146728lfe.183.2022.05.18.02.19.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 May 2022 02:19:51 -0700 (PDT)
+From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sm8250: Disable camcc by default
+Date:   Wed, 18 May 2022 12:19:43 +0300
+Message-Id: <20220518091943.734478-1-vladimir.zapolskiy@linaro.org>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 1/8] dt-bindings: iommu: mediatek: Add mediatek,infracfg
- phandle
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, yong.wu@mediatek.com
-Cc:     joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        iommu@lists.linux-foundation.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20220517132107.195932-1-angelogioacchino.delregno@collabora.com>
- <20220517132107.195932-2-angelogioacchino.delregno@collabora.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220517132107.195932-2-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+At the moment there are no changes in SM8250 board files, which require
+camera clock controller to run, whenever it is needed for a particular
+board, the status of camcc device node will be changed in a board file.
 
+Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-On 17/05/2022 15:21, AngeloGioacchino Del Regno wrote:
-> Add property "mediatek,infracfg" to let the mtk_iommu driver retrieve
-> a phandle to the infracfg syscon instead of performing a per-soc
-> compatible lookup.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->   Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml | 4 ++++
->   1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> index 2ae3bbad7f1a..78c72c22740b 100644
-> --- a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> @@ -101,6 +101,10 @@ properties:
->       items:
->         - const: bclk
->   
-> +  mediatek,infracfg:
-> +    $ref: "/schemas/types.yaml#/definitions/phandle"
-> +    description: The phandle to the mediatek infracfg syscon
-> +
->     mediatek,larbs:
->       $ref: /schemas/types.yaml#/definitions/phandle-array
->       minItems: 1
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index 26afaa4f98fe..165b08c707d3 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -3395,6 +3395,7 @@ camcc: clock-controller@ad00000 {
+ 			clock-names = "iface", "bi_tcxo", "bi_tcxo_ao", "sleep_clk";
+ 			power-domains = <&rpmhpd SM8250_MMCX>;
+ 			required-opps = <&rpmhpd_opp_low_svs>;
++			status = "disabled";
+ 			#clock-cells = <1>;
+ 			#reset-cells = <1>;
+ 			#power-domain-cells = <1>;
+-- 
+2.33.0
 
-I think we can squash patch 7 in here. Same holds for pericfg
-
-Regards,
-Matthias
