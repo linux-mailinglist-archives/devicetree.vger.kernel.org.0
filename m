@@ -2,108 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E757C52AF24
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 02:25:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF8E852AF28
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 02:29:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232516AbiERAZe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 20:25:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45472 "EHLO
+        id S232457AbiERA3W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 20:29:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232457AbiERAZd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 20:25:33 -0400
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 078E726133;
-        Tue, 17 May 2022 17:25:32 -0700 (PDT)
-Received: by mail-oi1-f180.google.com with SMTP id e189so857039oia.8;
-        Tue, 17 May 2022 17:25:31 -0700 (PDT)
+        with ESMTP id S232241AbiERA3U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 20:29:20 -0400
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 845B435865;
+        Tue, 17 May 2022 17:29:19 -0700 (PDT)
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-f16a3e0529so752859fac.2;
+        Tue, 17 May 2022 17:29:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=2PN69YcQuRroEf0QfFtNKCNOl7n65i1negbEM5qktIY=;
-        b=38J75vJgBiDnzThl1r83jA1e5GVsND80GTR9dVBmYbG3pLPUZqRoLTZRbAPcpivp7J
-         BKbmrjsI88AvAQWEm9rinVHXT90ylEGZ8xFi82wsDSXVpy79IeTjebqkYRWzmwSxg8tb
-         NdSp8frBLTcY2WJe6AM2u3ft4qGIykgMNl9lEV+A+JH6zlaZL12tT8MrjakLQDLTICkn
-         wMZh9Re/GzQk/QiyRjrdyIFkxTQVGUeYGwS2fQYK1dOncli+fXSTPaQvHTrVW458lkf9
-         52xXEL1xKAV3GdhA10VD+BPvLCPQraUKKm6kMncN607HqJngk4mBREgPHNatzayQYOyR
-         XIWg==
-X-Gm-Message-State: AOAM533FSeLi2eEQsgHtQgY3EOZ4wNGwGBX3dvzPNyETYjsQu9+vMw5M
-        ylbVIRthXw7uH9Zhv/xwpw==
-X-Google-Smtp-Source: ABdhPJziK8pztuaPLKL5LYFdMFqO/56+2LtDMRgd6gaQ462+ZfsGb5YXE9b65MNQRYlF7QOm36X91Q==
-X-Received: by 2002:a05:6808:151f:b0:328:aaa2:10b8 with SMTP id u31-20020a056808151f00b00328aaa210b8mr17147368oiw.60.1652833531280;
-        Tue, 17 May 2022 17:25:31 -0700 (PDT)
+        bh=9TKojzwNIl5X+kje0PBkzlv5STasDpTP+imoZvsmhsU=;
+        b=7hIAQNOD6MwDH54Ir6+1esbmQCATwWU8S/rQeH09JCyZGOi0fiCke6uxG3YMdC2SAZ
+         +fsNPdq3s/+B7vxNDRaazks9DR9DqT5tNo3VM2TzuWsTR54HpZnkNFeww7wkJ7zVumoD
+         VZJKVKE7XVEfxiTmD3shQvNsxitqK27gL0mNx1YqpQKbLzjb+0V9hywjYfdoGhgMg614
+         DP7io5Qop7P2nuBM5PVa6ffBL73YUtgeJdeiFobUlMDpekS/hL6zUfxMCgjKc5lCZjd0
+         Szxbwr5dTf12pMlrtTr9aMb/Y3OXn3XJ7pehgSBnHGzdugWG3DXBa70jVHZEWL4+vItx
+         QTkA==
+X-Gm-Message-State: AOAM533ktr3mrj4CrLOukl2rzuKa8nkGLnwU5VTa7QOSrbQp3LzfL+zp
+        kqs9/rSd3v7Id+wWjCoSKA==
+X-Google-Smtp-Source: ABdhPJw0Bh/BWJ55dEGhve1trL4okx867sRjI5p9REaX9Ukyz4WwvXnocm5Eu0uHWgDBTYJ5+CGv4Q==
+X-Received: by 2002:a05:6870:4201:b0:e6:47c4:e104 with SMTP id u1-20020a056870420100b000e647c4e104mr20277606oac.257.1652833758611;
+        Tue, 17 May 2022 17:29:18 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v196-20020acaaccd000000b00325cda1ff8fsm318670oie.14.2022.05.17.17.25.29
+        by smtp.gmail.com with ESMTPSA id a3-20020a056830008300b006060322126esm306653oto.62.2022.05.17.17.29.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 May 2022 17:25:30 -0700 (PDT)
-Received: (nullmailer pid 1933964 invoked by uid 1000);
-        Wed, 18 May 2022 00:25:29 -0000
-Date:   Tue, 17 May 2022 19:25:29 -0500
+        Tue, 17 May 2022 17:29:17 -0700 (PDT)
+Received: (nullmailer pid 1939467 invoked by uid 1000);
+        Wed, 18 May 2022 00:29:16 -0000
+Date:   Tue, 17 May 2022 19:29:16 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     palmer@dabbelt.com, paul.walmsley@sifive.com,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        wefu@redhat.com, guoren@kernel.org, atishp@atishpatra.org,
-        anup@brainfault.org, mick@ics.forth.gr, samuel@sholland.org,
-        cmuellner@linux.com, philipp.tomsich@vrull.eu, krzk+dt@kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: riscv: document cbom-block-size
-Message-ID: <20220518002529.GA1928329-robh@kernel.org>
-References: <20220511214132.2281431-1-heiko@sntech.de>
- <20220511214132.2281431-2-heiko@sntech.de>
+To:     Peter Chiu <chui-hao.chiu@mediatek.com>
+Cc:     Lorenzo Bianconi <lorenzo.bianconi@redhat.com>,
+        linux-wireless@vger.kernel.org,
+        Evelyn Tsai <evelyn.tsai@mediatek.com>,
+        Ryder Lee <ryder.Lee@mediatek.com>,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        Sam Shih <sam.shih@mediatek.com>,
+        Shayne Chen <shayne.chen@mediatek.com>,
+        Felix Fietkau <nbd@nbd.name>, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH] dt-bindings: net: wireless: mt76: add clock description
+ for MT7986.
+Message-ID: <20220518002916.GA1939404-robh@kernel.org>
+References: <20220512043859.406-1-chui-hao.chiu@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220511214132.2281431-2-heiko@sntech.de>
+In-Reply-To: <20220512043859.406-1-chui-hao.chiu@mediatek.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 11, 2022 at 11:41:30PM +0200, Heiko Stuebner wrote:
-> The Zicbom operates on a block-size defined for the cpu-core,
-> which does not necessarily match other cache-sizes used.
+On Thu, 12 May 2022 12:38:59 +0800, Peter Chiu wrote:
+> Add clocks and clock-names for MT7986.
 > 
-> So add the necessary property for the system to know the core's
-> block-size.
-> 
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> Reviewed-by: Ryder Lee <ryder.lee@mediatek.com>
+> Signed-off-by: Peter Chiu <chui-hao.chiu@mediatek.com>
 > ---
->  Documentation/devicetree/bindings/riscv/cpus.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  .../bindings/net/wireless/mediatek,mt76.yaml        | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> index d632ac76532e..b179bfd155a3 100644
-> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> @@ -63,6 +63,13 @@ properties:
->        - riscv,sv48
->        - riscv,none
->  
-> +  riscv,cbom-block-size:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
 
-Any value 0-2^32 is valid? 
-
-> +    description:
-> +      Blocksize in bytes for the Zicbom cache operations. The block
-> +      size is a property of the core itself and does not necessarily
-> +      match other software defined cache sizes.
-
-What about hardware defined cache sizes? I'm scratching my head as to 
-what a 'software defined cache size' is.
-
-> +
->    riscv,isa:
->      description:
->        Identifies the specific RISC-V instruction set architecture
-> -- 
-> 2.35.1
-> 
-> 
+Acked-by: Rob Herring <robh@kernel.org>
