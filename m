@@ -2,98 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD4E652C744
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 01:02:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 013DC52C78D
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 01:32:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229957AbiERXBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 19:01:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39060 "EHLO
+        id S230448AbiERXcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 19:32:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229797AbiERXBy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 19:01:54 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 960CF939F4;
-        Wed, 18 May 2022 16:01:52 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id er5so4836230edb.12;
-        Wed, 18 May 2022 16:01:52 -0700 (PDT)
+        with ESMTP id S229982AbiERXck (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 19:32:40 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 157A91666B3;
+        Wed, 18 May 2022 16:32:39 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id p4so4827293lfg.4;
+        Wed, 18 May 2022 16:32:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=6ioRF++yogDTNZJ4Kl3hvJYBh4fkIppK/Wa57zbKnxE=;
-        b=dZLYTjgfXvGKrcOJgLdfrcVQmXdbl01y9E2zS2V173AVk0nf87RVXghCqbt/Xf0U3/
-         vs6pOnG88lU9fIFy8G6c3EEngJRmatjEmdB4p7wAybYQAhqZLV8gVmm7C5wWHj+DdbnZ
-         NMvuNYbe+pBaddVyIEc24Zg44oNutQMtXcUOcW7ykeZaKu0XD0tdehGPnYWWcLs6PCys
-         WEOBzd5BL6YkfXOYTpaHPgrhmpMYntvAu39qWo9njGmHzNhLSQDXgY3eLF1rb+/NVqR6
-         4M776LXs0ZDSWkPF+cTalP1idtJNOuApECnawb+wu5esJH9Hdmo6uMXdhLEVAAWiEjsm
-         KFhQ==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=+LGXPC/nc5jPsFNWeFnV3sMHcGrlhqWcYZ7LdmbKRk8=;
+        b=YTHEh7mTOmNtdzt4vQbdAc2SgEofQ268qYKBDuNf/dOC6SxLJE063CXRsT7pOhKL1B
+         EGVemTL1TLKqWYa9CSGx5cbFZ4E9T+4Of+1+hsq50kvDC4VGTl+vLzagzw/9FIiMD3mD
+         68EtqA8PUsGWxuwkNjJN7CN0F5dYVrBn60wH/8QkhglC7NjT1tcsmpDa3P1fOxbvWmqJ
+         GGo/O2fedbOeYWcu0CSzqlUmHH69ulzsmxE4XTaT3WZenUfYjq66nFfHk9uJYHgiBNez
+         3SGwnSe2PpE/fxhUokfLiy6EqKaSwofgOGt66tG6Ex/mFSOaAX1KZIwwHiS95tMT+i/l
+         kFrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=6ioRF++yogDTNZJ4Kl3hvJYBh4fkIppK/Wa57zbKnxE=;
-        b=JUUnv9Kek7JRPZ81WEzIWYMGPEdKk7lIfeozJEUQ9/Vts/8AzpBVXDaCiLHTkuT5/C
-         YTbX88S0bsVrk+vhx8tnbNFXuUHXJf+CCJC1MAaFL1JuZcNAo+RzRAreIDjkQg1rAgop
-         hwGy+Mdfh8ww8cf9BzFSi+Cf6hublDDwP8p+1UoCTixNBFzK1GbPFfuqJM9gpwGNvFIz
-         IhBRIpUY/ykIbEMmsRFNvLB6EhsfwEusxbDon8AeWMXa29NH5t/Gjub+2kQ5B1x7muD1
-         OwxpECYBRlBZPu07lJi6j4YO7G8u/wT6QepdxvYV5JeN9uZPOqnmq13hKLazupgRXyoS
-         farQ==
-X-Gm-Message-State: AOAM531I/Ux4xuNzkCkEIx6YZh3+vwxpyh/2UWIpl+oI3jaWo0x8xGe0
-        shrm1liiTIxG4HjKfO2GMGY=
-X-Google-Smtp-Source: ABdhPJxHfBudDsDKkD0pf8fegVDmKf0xMeiiqzGZrY8gNJ3s++1QVHB8ti+ABqmq90TYEULVO6oLPA==
-X-Received: by 2002:a05:6402:1248:b0:42a:cc7d:2c22 with SMTP id l8-20020a056402124800b0042acc7d2c22mr2253203edw.284.1652914911103;
-        Wed, 18 May 2022 16:01:51 -0700 (PDT)
-Received: from localhost (92.40.203.120.threembb.co.uk. [92.40.203.120])
-        by smtp.gmail.com with ESMTPSA id f13-20020a170906738d00b006f3ef214e0dsm1467626ejl.115.2022.05.18.16.01.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 May 2022 16:01:50 -0700 (PDT)
-Date:   Thu, 19 May 2022 00:02:48 +0100
-From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     dan.carpenter@oracle.com, devicetree@vger.kernel.org,
-        krzk+dt@kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
-        mturquette@baylibre.com, paul@crapouillou.net, robh+dt@kernel.org,
-        tsbogend@alpha.franken.de
-Subject: Re: [PATCH v5 2/2] clk: ingenic-tcu: Fix missing TCU clock for X1000
- SoCs
-Message-ID: <YoV7GKiaosmX6QnQ@localhost>
-References: <20220412122750.279058-1-aidanmacdonald.0x0@gmail.com>
- <20220412122750.279058-3-aidanmacdonald.0x0@gmail.com>
- <20220518204734.89090C34113@smtp.kernel.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=+LGXPC/nc5jPsFNWeFnV3sMHcGrlhqWcYZ7LdmbKRk8=;
+        b=XRWmeA9h/jW7mB0+0mHxKHMmhGYGAGvXdfR0metNHui3bHYfSZqa3uTsDb+LnawV2m
+         CK0MaQcz6sf3ZJs58qMf4ZlwXdtck9NzTOfDra7dTMybDYlScKulycredohOXT0yWH5v
+         ycHsNvYLjzwCbZJaWJgslfESZ6G0bo0xVDpmK5atEYnro1qC9NDOtVIniQjOT+HigdYP
+         MOSLRU+D2NyZtQl968ZH9ntcAaY2ITKjakR9/18d6oM4QsNWv3nDcqfudiMQiNKiLcNR
+         KxM7DAObE67iqtimkJbPshNrdRLakeTnt/jZBzpkPu9O1c84GHVT3IyjajmgIcc+Ghwi
+         NJKA==
+X-Gm-Message-State: AOAM530l4q6yZQrDcMIn+p+zEMONV6Vbz0MxBWLldUmLVpyLCsvVnwnr
+        u4POMkObXQAV9xWhqU5RJHZp8aKCOJw=
+X-Google-Smtp-Source: ABdhPJwjk0UvPnxiWmUdMMDJvHCgF0t+PGqTImMMJx2jyaDgM9Se5UhDGarsoLtoC23AOueCaP89SQ==
+X-Received: by 2002:a19:494b:0:b0:476:5917:b67 with SMTP id l11-20020a19494b000000b0047659170b67mr1293318lfj.452.1652916757237;
+        Wed, 18 May 2022 16:32:37 -0700 (PDT)
+Received: from [192.168.1.7] ([212.22.223.21])
+        by smtp.gmail.com with ESMTPSA id 189-20020a2e09c6000000b00253b5bb829esm358776ljj.98.2022.05.18.16.32.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 May 2022 16:32:36 -0700 (PDT)
+Subject: Re: [PATCH V2 5/7] dt-bindings: Add xen,dev-domid property
+ description for xen-grant DMA ops
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     xen-devel <xen-devel@lists.xenproject.org>,
+        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
+        <virtualization@lists.linux-foundation.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+        Jason Wang <jasowang@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Julien Grall <julien@xen.org>, Juergen Gross <jgross@suse.com>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>
+References: <1651947548-4055-1-git-send-email-olekstysh@gmail.com>
+ <1651947548-4055-6-git-send-email-olekstysh@gmail.com>
+ <CAK8P3a2cAnXr8TDDYTiFxTWzQxa67sGnYDQRRD+=Q8_cSb1mEw@mail.gmail.com>
+ <56e8c32d-6771-7179-005f-26ca58555659@gmail.com>
+ <CAK8P3a1YhkEZ8gcbXHEa5Bwx-4VVRJO8SUHf8=RNWRsc2Yo-+A@mail.gmail.com>
+From:   Oleksandr <olekstysh@gmail.com>
+Message-ID: <460a746c-6b61-214b-4653-44a1430e314d@gmail.com>
+Date:   Thu, 19 May 2022 02:32:35 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220518204734.89090C34113@smtp.kernel.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CAK8P3a1YhkEZ8gcbXHEa5Bwx-4VVRJO8SUHf8=RNWRsc2Yo-+A@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 18, 2022 at 01:47:32PM -0700, Stephen Boyd wrote:
-> Quoting Aidan MacDonald (2022-04-12 05:27:50)
-> > The TCU clock gate on X1000 wasn't requested by the driver and could
-> > be gated automatically later on in boot, which prevents timers from
-> > running and breaks PWM.
-> > 
-> > Add a workaround to support old device trees that don't specify the
-> > "tcu" clock gate. In this case the kernel will print a warning and
-> > attempt to continue without the clock, which is wrong, but it could
-> > work if "clk_ignore_unused" is in the kernel arguments.
-> > 
-> > Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-> > ---
-> 
-> Can I take just this one patch through clk tree without the dts part?
-> dts snippets go through soc trees.
 
-Yeah. The patches can go through in any order but they both need to be
-merged to fix the bug -- each on its own should not change any behavior.
+On 18.05.22 19:39, Arnd Bergmann wrote:
 
+
+Hello Arnd
+
+
+> On Wed, May 18, 2022 at 5:06 PM Oleksandr <olekstysh@gmail.com> wrote:
+>> On 18.05.22 17:32, Arnd Bergmann wrote:
+>>> On Sat, May 7, 2022 at 7:19 PM Oleksandr Tyshchenko <olekstysh@gmail.com> wrote:
+>>>    This would mean having a device
+>>> node for the grant-table mechanism that can be referred to using the 'iommus'
+>>> phandle property, with the domid as an additional argument.
+>> I assume, you are speaking about something like the following?
+>>
+>>
+>> xen_dummy_iommu {
+>>      compatible = "xen,dummy-iommu";
+>>      #iommu-cells = <1>;
+>> };
+>>
+>> virtio@3000 {
+>>      compatible = "virtio,mmio";
+>>      reg = <0x3000 0x100>;
+>>      interrupts = <41>;
+>>
+>>      /* The device is located in Xen domain with ID 1 */
+>>      iommus = <&xen_dummy_iommu 1>;
+>> };
+> Right, that's that's the idea,
+
+thank you for the confirmation
+
+
+
+>   except I would not call it a 'dummy'.
+>  From the perspective of the DT, this behaves just like an IOMMU,
+> even if the exact mechanism is different from most hardware IOMMU
+> implementations.
+
+well, agree
+
+
+>
+>>> It does not quite fit the model that Linux currently uses for iommus,
+>>> as that has an allocator for dma_addr_t space
+>> yes (# 3/7 adds grant-table based allocator)
+>>
+>>
+>>> , but it would think it's
+>>> conceptually close enough that it makes sense for the binding.
+>> Interesting idea. I am wondering, do we need an extra actions for this
+>> to work in Linux guest (dummy IOMMU driver, etc)?
+> It depends on how closely the guest implementation can be made to
+> resemble a normal iommu. If you do allocate dma_addr_t addresses,
+> it may actually be close enough that you can just turn the grant-table
+> code into a normal iommu driver and change nothing else.
+
+Unfortunately, I failed to find a way how use grant references at the 
+iommu_ops level (I mean to fully pretend that we are an IOMMU driver). I 
+am not too familiar with that, so what is written below might be wrong 
+or at least not precise.
+
+The normal IOMMU driver in Linux doesn’t allocate DMA addresses by 
+itself, it just maps (IOVA-PA) what was requested to be mapped by the 
+upper layer. The DMA address allocation is done by the upper layer 
+(DMA-IOMMU which is the glue layer between DMA API and IOMMU API 
+allocates IOVA for PA?). But, all what we need here is just to allocate 
+our specific grant-table based DMA addresses (DMA address = grant 
+reference + offset in the page), so let’s say we need an entity to take 
+a physical address as parameter and return a DMA address (what actually 
+commit #3/7 is doing), and that’s all. So working at the dma_ops layer 
+we get exactly what we need, with the minimal changes to guest 
+infrastructure. In our case the Xen itself acts as an IOMMU.
+
+Assuming that we want to reuse the IOMMU infrastructure somehow for our 
+needs. I think, in that case we will likely need to introduce a new 
+specific IOVA allocator (alongside with a generic one) to be hooked up 
+by the DMA-IOMMU layer if we run on top of Xen. But, even having the 
+specific IOVA allocator to return what we indeed need (DMA address = 
+grant reference + offset in the page) we will still need the specific 
+minimal required IOMMU driver to be present in the system anyway in 
+order to track the mappings(?) and do nothing with them, returning a 
+success (this specific IOMMU driver should have all mandatory callbacks 
+implemented).
+
+I completely agree, it would be really nice to reuse generic IOMMU 
+bindings rather than introducing Xen specific property if what we are 
+trying to implement in current patch series fits in the usage of 
+"iommus" in Linux more-less. But, if we will have to add more 
+complexity/more components to the code for the sake of reusing device 
+tree binding, this raises a question whether that’s worthwhile.
+
+Or I really missed something?
+
+
+>
+>          Arnd
+
+-- 
 Regards,
-Aidan
+
+Oleksandr Tyshchenko
+
