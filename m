@@ -2,173 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8F5252C449
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 22:23:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C74552C441
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 22:23:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242364AbiERUKL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 16:10:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47362 "EHLO
+        id S242350AbiERUSF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 16:18:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242414AbiERUKF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 16:10:05 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EAA72397A7
-        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 13:09:54 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id p189so1715397wmp.3
-        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 13:09:53 -0700 (PDT)
+        with ESMTP id S242366AbiERUSE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 16:18:04 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D4D498085
+        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 13:18:03 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id pq9-20020a17090b3d8900b001df622bf81dso3159976pjb.3
+        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 13:18:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=gmIO/D4Ceaesv/SdaQGf7VpiPn4xB80QGFNJbqSVbYc=;
-        b=vPcmgPS1Zkav7EL8kAY3mLgR+8wgJTaoIpwtC8pZglq1poCcoa4VPa4pSJdm98yba3
-         Dc9i8L8D17fg1dDV1MciA85vi0SwtvTf0cIWWa0jaWi7FlHTh81D3xxtAYUio5a7q9yo
-         oVb1izlVGPk2k31vczCTsEvwhVj4scccR45jYEXUJzfd+kt6Y1S3y8bdLsIML35boUm4
-         D/00jIZVyCNxRNFcViiyr0lvuZb2bnlheBghCO/T6idKUPOe+w2viE9ZGodiSxZ6rPym
-         6w1tRY/kpkOqM0ShsI/anVPC7SJgVvi0Sd3tKll0sY9mdRGB6Bc1w3QjAdiKooMiMpPO
-         ODTg==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=lrrCplGkTlc2to0M0Y2pV85837vmqtd/KGwhdhrKhi8=;
+        b=JfBNeRwiX8RFGH2yxWburUXQyCNA9PF/xQwDM4MudGU+XVTcTVZQ3zU9H2QgDy87R7
+         DDaXEuDvoytxTn5itFKZFTH7Iryu9NDqtCs2g/8Edu/a5coftGQhxL4+FBk+3w79nFtY
+         rYzaEj8mK6gGTKqZVnwDFhroYKyNs/GebLk0KSs4O0OuY2eRskP8skjgztgVtWLw+Ek1
+         q466z3TlenlW/VF5Xr7eWXE+26zYtRVrEsJbrO4Y+VvsxF7XjQASBdpYZ1z4VsUvSOor
+         K81UemxOW95A9VPmAFg5NAwLvkkqK445xJNo26KwHpV/s7Wlta4PH7yLvkEnxOD/BNVN
+         YPAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=gmIO/D4Ceaesv/SdaQGf7VpiPn4xB80QGFNJbqSVbYc=;
-        b=W1zX0HWIVncyP0+BV2cGcrQErabgw9wpW5J2T5mKPEy6ko2a/9KHXaRTt06KSuq0yE
-         kFjIcBWrah0tfcjgjzy6IUgy5c0Ud2Bw9gYKcNT5mw6mMS4o3go97JPSW+BD1SXYWai5
-         s+KvHy4GaEowQVbZlYBeuRtd5ZxZmxlIsKma90YZjk5evlbFObn8+19OY05IxFpR/5/4
-         rwKbsiy22S5DCKzFIvVMWymDB9rfiT0gp+qCyacdZzp0ozKKsWHuE/NstvmBkiYw2jn9
-         2CTlmgWrqdnOGk5WbSlnWnuYKySff4unNvLljgt2eOVZV5+hJXPmdidWfR1BaL60cqEC
-         zm7Q==
-X-Gm-Message-State: AOAM530ahmoQVmEpbl5RGfdrrleBarC2jOSjiExve9JWYASzBxN+t1Zk
-        QIzh3390AHhtuFyVw5nJXvgjRA==
-X-Google-Smtp-Source: ABdhPJwlu63b6+jK/4XJihJY2QnEy9b9pt9pGCMB3OHShfvK84RY+TPog8SwVoHsv1ZZ3Xh7i0PkEA==
-X-Received: by 2002:a05:600c:1c84:b0:394:5de0:2475 with SMTP id k4-20020a05600c1c8400b003945de02475mr888627wms.27.1652904592329;
-        Wed, 18 May 2022 13:09:52 -0700 (PDT)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id o23-20020a05600c511700b0039456c00ba7sm6859281wms.1.2022.05.18.13.09.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 May 2022 13:09:51 -0700 (PDT)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     andrew@lunn.ch, broonie@kernel.org, calvin.johnson@oss.nxp.com,
-        davem@davemloft.net, edumazet@google.com, hkallweit1@gmail.com,
-        jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        kuba@kernel.org, lgirdwood@gmail.com, linux@armlinux.org.uk,
-        pabeni@redhat.com, robh+dt@kernel.org, samuel@sholland.org,
-        wens@csie.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
-        netdev@vger.kernel.org,
-        =?UTF-8?q?Ond=C5=99ej=20Jirman?= <megi@xff.cz>,
-        Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH v2 5/5] arm64: dts: allwinner: orange-pi-3: Enable ethernet
-Date:   Wed, 18 May 2022 20:09:39 +0000
-Message-Id: <20220518200939.689308-6-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220518200939.689308-1-clabbe@baylibre.com>
-References: <20220518200939.689308-1-clabbe@baylibre.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=lrrCplGkTlc2to0M0Y2pV85837vmqtd/KGwhdhrKhi8=;
+        b=k3bYKrs0ZCCrhKTpQhgfFChTwgOV+HJWBy9lsa1s39d0TPTl8QarzSISDxgpumAoIi
+         QcOkhQGt27yy1lwpRErVBo5hWUMjT2UtPYoeS5hJEtRqvGSqEmsqkX6x66HDhee/OUph
+         eyX8bCBQIbLN8jNBRRKBSajvQl67B1xlOZgsllWRhv0qzTHBpLyjLby6NJUkSFE5nbdU
+         m5ait8FxuhlMV+VPKghelyM9EsM1AzrZd79Ww/8xsnyjpcmHWxpOqvOdInwPFscXScrf
+         ThsiVtpPdxBh1aPbSfv4AHRzTh0I9gmjVHhO07okiKYY7x+iCoht+dJAl7CU3docaCiz
+         y18w==
+X-Gm-Message-State: AOAM530JxOHZyxOmZqgPJhz4WR+kb9+vgG7Miw7bMpnEwCDvgAmSx8cq
+        48U8456kaYnmyl+Kcan9kAY=
+X-Google-Smtp-Source: ABdhPJxAoU9urUSJc6vqR4mX5GczVw31V/Zk+K1EKPy/aA4EMSJzn5VEWwnlw1rIMmZmowmtWIK69A==
+X-Received: by 2002:a17:902:f544:b0:161:9465:4421 with SMTP id h4-20020a170902f54400b0016194654421mr1290827plf.90.1652905083067;
+        Wed, 18 May 2022 13:18:03 -0700 (PDT)
+Received: from [192.168.1.3] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
+        by smtp.gmail.com with ESMTPSA id s11-20020a17090302cb00b0015e8d4eb242sm2070919plk.140.2022.05.18.13.18.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 May 2022 13:18:02 -0700 (PDT)
+Message-ID: <49f55379-86b8-1ff2-b540-dff245993e1a@gmail.com>
+Date:   Wed, 18 May 2022 13:18:01 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH RFC] ARM: dts: bcm2711: Fix DMA constrains for newer
+ BCM2711 boards
+Content-Language: en-US
+To:     Stefan Wahren <stefan.wahren@i2se.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     bcm-kernel-feedback-list@broadcom.com,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Peter Robinson <pbrobinson@gmail.com>, matthias.bgg@kernel.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20220413162739.6717-1-stefan.wahren@i2se.com>
+ <37114673-5b31-c03c-fb7e-0b6a05adffd6@i2se.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <37114673-5b31-c03c-fb7e-0b6a05adffd6@i2se.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ondřej Jirman <megi@xff.cz>
 
-Orange Pi 3 has two regulators that power the Realtek RTL8211E
-PHY. According to the datasheet, both regulators need to be enabled
-at the same time, or that "phy-io" should be enabled slightly earlier
-than "phy" regulator.
 
-RTL8211E/RTL8211EG datasheet says:
+On 5/4/2022 2:43 PM, Stefan Wahren wrote:
+> Hi,
+> 
+> Am 13.04.22 um 18:27 schrieb Stefan Wahren:
+>> The commit 3d2cbb644836 ("ARM: dts: bcm2711: Move emmc2 into its own 
+>> bus")
+>> assumed that all bootloader pass the FDT modified by the firmware to the
+>> kernel. But this is not always the case (e.g. Fedora) and cause boot
+>> issues for boards with a BCM2711 C0 SoC (RPi 400, CM4, newer RPi 4 B)
+>> which does have different DMA constraints.
+>>
+>> Since we are not able to detect the SoC revision, let's assume a BCM2711
+>> C0 SoC for bcm2711.dtsi and move the restricted DMA constrains to a
+>> separate RPi 4 B board file just for the old SoC revision.
+>>
+>> Fixes: 3d2cbb644836 ("ARM: dts: bcm2711: Move emmc2 into its own bus")
+>> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+> since there wasn't any feedback yet, i want to ping ...
 
-  Note 4: 2.5V (or 1.8/1.5V) RGMII power should be risen simultaneously
-  or slightly earlier than 3.3V power. Rising 2.5V (or 1.8/1.5V) power
-  later than 3.3V power may lead to errors.
+Could not we just rely on the VPU patching the Device Tree instead of 
+having to differentiate the 2711 revision and having to use different 
+DTS/DTBs?
 
-The timing is set in DT via startup-delay-us.
-
-Signed-off-by: Ondrej Jirman <megi@xff.cz>
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
----
- .../dts/allwinner/sun50i-h6-orangepi-3.dts    | 38 +++++++++++++++++++
- 1 file changed, 38 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-index c45d7b7fb39a..c3749b7302ba 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-@@ -13,6 +13,7 @@ / {
- 	compatible = "xunlong,orangepi-3", "allwinner,sun50i-h6";
- 
- 	aliases {
-+		ethernet0 = &emac;
- 		serial0 = &uart0;
- 		serial1 = &uart1;
- 	};
-@@ -55,6 +56,15 @@ led-1 {
- 		};
- 	};
- 
-+	reg_gmac_2v5: gmac-2v5 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "gmac-2v5";
-+		regulator-min-microvolt = <2500000>;
-+		regulator-max-microvolt = <2500000>;
-+		enable-active-high;
-+		gpio = <&pio 3 6 GPIO_ACTIVE_HIGH>; /* PD6 */
-+	};
-+
- 	reg_vcc5v: vcc5v {
- 		/* board wide 5V supply directly from the DC jack */
- 		compatible = "regulator-fixed";
-@@ -113,6 +123,33 @@ &ehci3 {
- 	status = "okay";
- };
- 
-+&emac {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&ext_rgmii_pins>;
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&ext_rgmii_phy>;
-+	status = "okay";
-+};
-+
-+&mdio {
-+	ext_rgmii_phy: ethernet-phy@1 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <1>;
-+		/*
-+		 * The board uses 2.5V RGMII signalling. Power sequence to enable
-+		 * the phy is to enable GMAC-2V5 and GMAC-3V (aldo2) power rails
-+		 * at the same time and to wait 100ms. The driver enables phy-io
-+		 * first. Delay is achieved with enable-ramp-delay on reg_aldo2.
-+		 */
-+		regulators = <&reg_gmac_2v5>, <&reg_aldo2>;
-+		regulator-names = "phy-io", "phy";
-+
-+		reset-gpios = <&pio 3 14 GPIO_ACTIVE_LOW>; /* PD14 */
-+		reset-assert-us = <15000>;
-+		reset-deassert-us = <40000>;
-+	};
-+};
-+
- &gpu {
- 	mali-supply = <&reg_dcdcc>;
- 	status = "okay";
-@@ -211,6 +248,7 @@ reg_aldo2: aldo2 {
- 				regulator-min-microvolt = <3300000>;
- 				regulator-max-microvolt = <3300000>;
- 				regulator-name = "vcc33-audio-tv-ephy-mac";
-+				regulator-enable-ramp-delay = <100000>;
- 			};
- 
- 			/* ALDO3 is shorted to CLDO1 */
+Also, can we consider that the older B0 are less predominant in the wild 
+than the C0 nowadays, especially with the shortages going on is that 
+even remotely the case?
 -- 
-2.35.1
-
+Florian
