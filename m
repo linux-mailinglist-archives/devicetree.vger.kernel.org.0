@@ -2,78 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 944E252B169
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 06:27:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8275552B160
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 06:27:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229656AbiERESM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 00:18:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38048 "EHLO
+        id S229806AbiEREZF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 00:25:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229597AbiERESK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 00:18:10 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1867526AE6
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 21:18:07 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id wh22so1265841ejb.7
-        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 21:18:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=LepV/V/rw3KHQSLPiaLiP/J9OYk0ZMB5clNI2uCKxco=;
-        b=mRXr4u8V1f/S5RyW1JNxJSUxM+z8+ui74rqnugYbsf5s6dbwGsmqlLlN6ZYgsgxcCG
-         bKqcvOMQ23KO1SE+HPFpaE4W1qrmrT2D8ZaS/yHhKJAVJUeQfwrZc2JzpntyqucghdZ6
-         lX6dQbdT98u6OdtodRJPm107TfKlDpvepIP+w=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LepV/V/rw3KHQSLPiaLiP/J9OYk0ZMB5clNI2uCKxco=;
-        b=xOzSo+t08oL2iKPbYYB8MXNB61XJED5GF0s9plNCbWBm/fqm4qSh6WzgxEaKPq3dYo
-         oGGW/6iLbc0fAwysg+nCbR76C0LoXMjhQOYQGKuOPbAy1DCX8VuQgjQrq+u6jWvrkK8A
-         BB/dbutTs+nO6PGsT03XkpZQitl1ke7dmR4+8ZoVVfWQBflIeLQ5Yay1YaarYAlh5Dtb
-         CnU6vhWF9A1oGeUEsWVQ3VIexUt5/mhtcSND/waruT3B01nsbsgUg1KRPzpMbsVbZnFi
-         DZTUEh60sk2ZLEZZ1o8L8VQKvwKjrB8NJHt9ZOmvpxfzrbMngUMn3yE2Dnioi/Ot/x67
-         NkfA==
-X-Gm-Message-State: AOAM531iVFLtH1HvJOoWe8CCBX4IU618K4zMq+9cZEp4f6pNY5xF1qJ6
-        jKpdNWPXsQ6pBz+hrtvxSC5r5A1Jb/H4BEXGyM2Z+g==
-X-Google-Smtp-Source: ABdhPJx2Eb3PB99mTXrpervjGP3hlbnI5chnI8LPmgJy/jBWlyWBov63NZ3kC2St8DMKHxEfsAkr7rAxBXKeSKpzdBI=
-X-Received: by 2002:a17:906:c142:b0:6da:9781:ae5d with SMTP id
- dp2-20020a170906c14200b006da9781ae5dmr21221643ejc.73.1652847485641; Tue, 17
- May 2022 21:18:05 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220516004311.18358-1-roger.lu@mediatek.com> <CAGXv+5GSdWPZe3fNpBJ_WW0zCL8Skg6fHx9ATxaKU1hyMEt2Ww@mail.gmail.com>
- <7h4k1ndaui.fsf@baylibre.com> <7hy1yzbtb7.fsf@baylibre.com>
-In-Reply-To: <7hy1yzbtb7.fsf@baylibre.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Wed, 18 May 2022 12:17:54 +0800
-Message-ID: <CAGXv+5GT=3m=pVPwUOWR42BR=emCpBXvvoAiRV7YKt2kEKWdAQ@mail.gmail.com>
-Subject: Re: [PATCH v25 0/7] soc: mediatek: SVS: introduce MTK SVS
-To:     Kevin Hilman <khilman@kernel.org>, cw00.choi@samsung.com
-Cc:     Roger Lu <roger.lu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Fan Chen <fan.chen@mediatek.com>,
-        Charles Yang <Charles.Yang@mediatek.com>,
-        Angus Lin <Angus.Lin@mediatek.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jia-wei Chang <jia-wei.chang@mediatek.com>,
-        =?UTF-8?B?UmV4LUJDIENoZW4gKOmZs+afj+i+sCk=?= 
-        <rex-bc.chen@mediatek.com>
+        with ESMTP id S229677AbiEREZE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 00:25:04 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75335326CD;
+        Tue, 17 May 2022 21:25:02 -0700 (PDT)
+X-UUID: c9b7ad4095c84559b58e19bb7ac77634-20220518
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:92fa0d12-539f-4c30-89ed-7a5271ff7ebf,OB:0,LO
+        B:0,IP:0,URL:5,TC:0,Content:20,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,AC
+        TION:release,TS:70
+X-CID-INFO: VERSION:1.1.5,REQID:92fa0d12-539f-4c30-89ed-7a5271ff7ebf,OB:0,LOB:
+        0,IP:0,URL:5,TC:0,Content:20,EDM:0,RT:0,SF:45,FILE:0,RULE:Spam_GS981B3D,AC
+        TION:quarantine,TS:70
+X-CID-META: VersionHash:2a19b09,CLOUDID:db6e95e2-edbf-4bd4-8a34-dfc5f7bb086d,C
+        OID:30f6d911fb82,Recheck:0,SF:28|17|19|48,TC:nil,Content:3,EDM:-3,IP:nil,U
+        RL:1,File:nil,QS:0,BEC:nil
+X-UUID: c9b7ad4095c84559b58e19bb7ac77634-20220518
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1458528257; Wed, 18 May 2022 12:24:57 +0800
+Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Wed, 18 May 2022 12:24:56 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 18 May 2022 12:24:55 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 18 May 2022 12:24:55 +0800
+Message-ID: <3dc39acc0fae4045f7513a71432f99b66fdf9f99.camel@mediatek.com>
+Subject: Re: [PATCH v6 1/4] dt-bindings: display: mediatek: dsi: Convert
+ dsi_dtbinding to .yaml
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <chunkuang.hu@kernel.org>,
+        <p.zabel@pengutronix.de>
+CC:     <devicetree@vger.kernel.org>, <jitao.shi@mediatek.com>,
+        <xinlei.lee@mediatek.com>, <airlied@linux.ie>,
+        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>, <matthias.bgg@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Wed, 18 May 2022 12:24:55 +0800
+In-Reply-To: <20220504091923.2219-2-rex-bc.chen@mediatek.com>
+References: <20220504091923.2219-1-rex-bc.chen@mediatek.com>
+         <20220504091923.2219-2-rex-bc.chen@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,128 +71,237 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-n Wed, May 18, 2022 at 8:03 AM Kevin Hilman <khilman@kernel.org> wrote:
->
-> Kevin Hilman <khilman@kernel.org> writes:
->
-> > Chen-Yu Tsai <wenst@chromium.org> writes:
-> >
-> >> On Mon, May 16, 2022 at 8:43 AM Roger Lu <roger.lu@mediatek.com> wrote:
-> >>>
-> >>> The Smart Voltage Scaling(SVS) engine is a piece of hardware
-> >>> which calculates suitable SVS bank voltages to OPP voltage table.
-> >>> Then, DVFS driver could apply those SVS bank voltages to PMIC/Buck
-> >>> when receiving OPP_EVENT_ADJUST_VOLTAGE.
-> >>>
-> >>> 1. SVS driver uses OPP adjust event in [1] to update OPP table voltage part.
-> >>> 2. SVS driver gets thermal/GPU device by node [2][3] and CPU device by get_cpu_device().
-> >>> After retrieving subsys device, SVS driver calls device_link_add() to make sure probe/suspend callback priority.
-> >>>
-> >>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git/commit/?h=opp/linux-next&id=25cb20a212a1f989385dfe23230817e69c62bee5
-> >>> [2] https://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git/commit/?h=opp/linux-next&id=b325ce39785b1408040d90365a6ab1aa36e94f87
-> >>> [3] https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/commit/?h=v5.16-next/dts64&id=a8168cebf1bca1b5269e8a7eb2626fb76814d6e2
-> >>>
-> >>> Change since v24:
-> >>> - Rebase to Linux 5.18-rc6
-> >>> - Show specific fail log in svs_platform_probe() to help catch which step fails quickly
-> >>> - Remove struct svs_bank member "pd_dev" because all subsys device's power domain has been merged into one node like above [3]
-> >>>
-> >>> Test in below environment:
-> >>> SW: Integration Tree [4] + Thermal patch [5] + SVS v25 (this patchset)
-> >>> HW: mt8183-Krane
-> >>>
-> >>> [4] https://github.com/wens/linux/commits/mt8183-cpufreq-cci-svs-test
-> >>
-> >> I've updated my branch to include all the latest versions of the relevant
-> >> patch series:
-> >>
-> >> - anx7625 DPI bus type series v2 (so the display works)
-> >> - MT8183 thermal series v9 (this seems to have been overlooked by the
-> >> maintainer)
-> >> - MTK SVS driver series v25
-> >> - devfreq: cpu based scaling support to passive governor series v5
-> >> - MTK CCI devfreq series v4
-> >> - MT8183 cpufreq series v7
-> >> - Additional WIP patches for panfrost MTK devfreq
-> >
-> > Thanks for preparing an integration branch Chen-Yu.
-> >
-> > I'm testing this on mt8183-pumpkin with one patch to add the CCI
-> > regulator[1], and the defconfig you posted in a previous rev of this
-> > series, but the CCI driver still causes a fault on boot[2] on my
-> > platform.
-> >
-> > I mentioned in earlier reviews that I think there's potentially a race
-> > between CCI and SVS loading since they are co-dependent.  My hunch is
-> > that this is still not being handled properly.
->
-> Ah, actually it's crashing when I try to boot the platform with
-> `maxcpus=4` on the cmdline (which I have to do because mt8183-pumpkin is
-> unstable upstream with the 2nd cluster enabled.)
->
-> The CCI driver should be a bit more robust about detecting
-> available/online CPUs
+Hi, Rex:
 
-This all seems to be handled in the devfreq passive governor.
+On Wed, 2022-05-04 at 17:19 +0800, Rex-BC Chen wrote:
+> From: Xinlei Lee <xinlei.lee@mediatek.com>
+> 
+> Convert mediatek,dsi.txt to mediatek,dsi.yaml format
 
-And presumably we'd like to have CCI devfreq running even if just one
-core was booted.
+Reviewed-by: CK Hu <ck.hu@mediatek.com>
 
-Added Chanwoo for more ideas.
+> 
+> Signed-off-by: Xinlei Lee <xinlei.lee@mediatek.com>
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> ---
+>  .../display/mediatek/mediatek,dsi.txt         |  62 ----------
+>  .../display/mediatek/mediatek,dsi.yaml        | 115
+> ++++++++++++++++++
+>  2 files changed, 115 insertions(+), 62 deletions(-)
+>  delete mode 100644
+> Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.txt
+>  create mode 100644
+> Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml
+> 
+> diff --git
+> a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.txt
+> b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.txt
+> deleted file mode 100644
+> index 36b01458f45c..000000000000
+> ---
+> a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.txt
+> +++ /dev/null
+> @@ -1,62 +0,0 @@
+> -Mediatek DSI Device
+> -===================
+> -
+> -The Mediatek DSI function block is a sink of the display subsystem
+> and can
+> -drive up to 4-lane MIPI DSI output. Two DSIs can be synchronized for
+> dual-
+> -channel output.
+> -
+> -Required properties:
+> -- compatible: "mediatek,<chip>-dsi"
+> -- the supported chips are mt2701, mt7623, mt8167, mt8173 and mt8183.
+> -- reg: Physical base address and length of the controller's
+> registers
+> -- interrupts: The interrupt signal from the function block.
+> -- clocks: device clocks
+> -  See Documentation/devicetree/bindings/clock/clock-bindings.txt for
+> details.
+> -- clock-names: must contain "engine", "digital", and "hs"
+> -- phys: phandle link to the MIPI D-PHY controller.
+> -- phy-names: must contain "dphy"
+> -- port: Output port node with endpoint definitions as described in
+> -  Documentation/devicetree/bindings/graph.txt. This port should be
+> connected
+> -  to the input port of an attached DSI panel or DSI-to-eDP encoder
+> chip.
+> -
+> -Optional properties:
+> -- resets: list of phandle + reset specifier pair, as described in
+> [1].
+> -
+> -[1] Documentation/devicetree/bindings/reset/reset.txt
+> -
+> -MIPI TX Configuration Module
+> -============================
+> -
+> -See phy/mediatek,dsi-phy.yaml
+> -
+> -Example:
+> -
+> -mipi_tx0: mipi-dphy@10215000 {
+> -	compatible = "mediatek,mt8173-mipi-tx";
+> -	reg = <0 0x10215000 0 0x1000>;
+> -	clocks = <&clk26m>;
+> -	clock-output-names = "mipi_tx0_pll";
+> -	#clock-cells = <0>;
+> -	#phy-cells = <0>;
+> -	drive-strength-microamp = <4600>;
+> -	nvmem-cells= <&mipi_tx_calibration>;
+> -	nvmem-cell-names = "calibration-data";
+> -};
+> -
+> -dsi0: dsi@1401b000 {
+> -	compatible = "mediatek,mt8173-dsi";
+> -	reg = <0 0x1401b000 0 0x1000>;
+> -	interrupts = <GIC_SPI 192 IRQ_TYPE_LEVEL_LOW>;
+> -	clocks = <&mmsys MM_DSI0_ENGINE>, <&mmsys MM_DSI0_DIGITAL>,
+> -		 <&mipi_tx0>;
+> -	clock-names = "engine", "digital", "hs";
+> -	resets = <&mmsys MT8173_MMSYS_SW0_RST_B_DISP_DSI0>;
+> -	phys = <&mipi_tx0>;
+> -	phy-names = "dphy";
+> -
+> -	port {
+> -		dsi0_out: endpoint {
+> -			remote-endpoint = <&panel_in>;
+> -		};
+> -	};
+> -};
+> diff --git
+> a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yam
+> l
+> b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yam
+> l
+> new file mode 100644
+> index 000000000000..fa5bdf28668a
+> --- /dev/null
+> +++
+> b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yam
+> l
+> @@ -0,0 +1,115 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: 
+> https://urldefense.com/v3/__http://devicetree.org/schemas/display/mediatek/mediatek,dsi.yaml*__;Iw!!CTRNKA9wMg0ARbw!zKJCSsOqM0Bn_efj50JX_HvOItJ8ZUdgh54drCoUdMkmnmVb5pH4pd-gj5RZUQ$
+>  
+> +$schema: 
+> https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!zKJCSsOqM0Bn_efj50JX_HvOItJ8ZUdgh54drCoUdMkmnmVb5pH4pd8zHOMcVQ$
+>  
+> +
+> +title: MediaTek DSI Controller Device Tree Bindings
+> +
+> +maintainers:
+> +  - Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> +  - Philipp Zabel <p.zabel@pengutronix.de>
+> +  - Jitao Shi <jitao.shi@mediatek.com>
+> +  - Xinlei Lee <xinlei.lee@mediatek.com>
+> +
+> +description: |
+> +  The MediaTek DSI function block is a sink of the display subsystem
+> and can
+> +  drive up to 4-lane MIPI DSI output. Two DSIs can be synchronized
+> for dual-
+> +  channel output.
+> +
+> +allOf:
+> +  - $ref: /schemas/display/dsi-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - mediatek,mt2701-dsi
+> +      - mediatek,mt7623-dsi
+> +      - mediatek,mt8167-dsi
+> +      - mediatek,mt8173-dsi
+> +      - mediatek,mt8183-dsi
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Engine Clock
+> +      - description: Digital Clock
+> +      - description: HS Clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: engine
+> +      - const: digital
+> +      - const: hs
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  phys:
+> +    maxItems: 1
+> +
+> +  phy-names:
+> +    items:
+> +      - const: dphy
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/properties/port
+> +    description:
+> +      Output port node. This port should be connected to the input
+> +      port of an attached DSI panel or DSI-to-eDP encoder chip.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - power-domains
+> +  - clocks
+> +  - clock-names
+> +  - phys
+> +  - phy-names
+> +  - port
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/mt8183-clk.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/power/mt8183-power.h>
+> +    #include <dt-bindings/phy/phy.h>
+> +    #include <dt-bindings/reset/mt8183-resets.h>
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        dsi0: dsi@14014000 {
+> +            compatible = "mediatek,mt8183-dsi";
+> +            reg = <0 0x14014000 0 0x1000>;
+> +            interrupts = <GIC_SPI 236 IRQ_TYPE_LEVEL_LOW>;
+> +            power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
+> +            clocks = <&mmsys CLK_MM_DSI0_MM>,
+> +                <&mmsys CLK_MM_DSI0_IF>,
+> +                <&mipi_tx0>;
+> +            clock-names = "engine", "digital", "hs";
+> +            resets = <&mmsys MT8183_MMSYS_SW0_RST_B_DISP_DSI0>;
+> +            phys = <&mipi_tx0>;
+> +            phy-names = "dphy";
+> +            port {
+> +                dsi0_out: endpoint {
+> +                    remote-endpoint = <&panel_in>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
 
-ChenYu
-
-
-> If I boot with both clusters, I see SVS probing[1], and I see CCI
-> doing transitions[2]
->
-> Kevin
->
->
-> [1]
-> # dmesg |grep -i svs
-> [    0.739298] mtk-svs 1100b000.svs: M_HW_RES0: 0x00120090
-> [    0.739315] mtk-svs 1100b000.svs: M_HW_RES1: 0xa6fdfb5b
-> [    0.739318] mtk-svs 1100b000.svs: M_HW_RES2: 0x47cb47cb
-> [    0.739321] mtk-svs 1100b000.svs: M_HW_RES3: 0xa6fdfb5b
-> [    0.739324] mtk-svs 1100b000.svs: M_HW_RES4: 0xa6fde4ad
-> [    0.739326] mtk-svs 1100b000.svs: M_HW_RES5: 0x47f84b80
-> [    0.739328] mtk-svs 1100b000.svs: M_HW_RES6: 0xa6fd87a6
-> [    0.739331] mtk-svs 1100b000.svs: M_HW_RES7: 0xa6fddf4a
-> [    0.739333] mtk-svs 1100b000.svs: M_HW_RES8: 0x4bf84be5
-> [    0.739335] mtk-svs 1100b000.svs: M_HW_RES9: 0xa6fd3267
-> [    0.739338] mtk-svs 1100b000.svs: M_HW_RES14: 0x9696d5ab
-> [    0.739340] mtk-svs 1100b000.svs: M_HW_RES15: 0x015a0015
-> [    0.739343] mtk-svs 1100b000.svs: M_HW_RES16: 0xa6fdf05d
-> [    0.739345] mtk-svs 1100b000.svs: M_HW_RES17: 0x47f847e5
-> [    0.739347] mtk-svs 1100b000.svs: M_HW_RES18: 0xa6fdc240
-> [    0.741890]  SVSB_CPU_LITTLE: svs_init01_isr_handler: VDN74~30:0x141c242a~0x2f32373c, DC:0x0316ff30
-> [    0.742165]  SVSB_CPU_BIG: svs_init01_isr_handler: VDN74~30:0x141e262e~0x33373c42, DC:0x031aff50
-> [    0.742431]  SVSB_CCI: svs_init01_isr_handler: VDN74~30:0x13192128~0x2d31383c, DC:0x0314ff20
-> [    0.742696]  SVSB_GPU: svs_init01_isr_handler: VDN74~30:0x1416181a~0x1d202428, DC:0x030efef0
-> [    0.742875]  SVSB_CPU_LITTLE: svs_init02_isr_handler: VOP74~30:0x1d252c33~0x373b3f45, DC:0x031600d0
-> [    0.742989]  SVSB_CPU_BIG: svs_init02_isr_handler: VOP74~30:0x1d262e36~0x3b3f444a, DC:0x031a00b0
-> [    0.743060]  SVSB_CCI: svs_init02_isr_handler: VOP74~30:0x1c222a31~0x353a4045, DC:0x031400e0
-> [    0.743176]  SVSB_GPU: svs_init02_isr_handler: VOP74~30:0x181a1c1e~0x2125282c, DC:0x030e0110
->
-> [2]
-> # cat /sys/class/devfreq/cci/trans_stat
->      From  :   To
->            : 273000000 338000000 403000000 463000000 546000000 624000000 689000000 767000000 845000000 871000000 923000000 9620000001027000000109200000011440000001196000000   time(ms)
->   273000000:         0        77        11        10        34         8         6         8         3         3         0         0         4         1         2        12    135675
->   338000000:        90         0        32         4         7         2         1         0         0         0         0         0         0         0         0         2       664
->   403000000:        20        45         0        35         7         2         0         0         0         0         0         0         0         0         0         0       509
->   463000000:        13         7        53         0        46         4         1         1         1         2         0         1         2         0         0         1       568
->   546000000:        12         5        10        63         0        55         3         3         3         1         3         2         8         3         1        35       858
-> * 624000000:         4         0         2        10        50         0        49         1         1         0         0         1         3         2         0         7       407
->   689000000:         6         1         0         2        18        36         0        47         5         3         1         0         1         0         0        10       388
->   767000000:         2         1         0         3         5        11        42         0        35         4         1         1         2         0         1        23       486
->   845000000:         3         0         0         0         1         0         9        27         0        37         8         1         0         0         2        23       290
->   871000000:         2         0         0         1         0         0         3         9        19         0        29         5         1         1         1        12       179
->   923000000:         0         0         0         0         0         2         2         7        10        13         0        31         1         1         0         4       154
->   962000000:         0         0         0         0         0         1         0         4         3         4        14         0        27         1         0         2       123
->  1027000000:         2         0         0         1         2         2         3         2         1         1         7        11         0        24         2         1       182
->  1092000000:         1         0         0         0         3         2         0         1         2         0         0         1         5         0        25         5       123
->  1144000000:         2         0         0         0         0         0         0         0         2         0         1         1         2         7         0        38       193
->  1196000000:        22         2         1         3        34         6        11        21        26        15         7         1         3         5        19         0      1621
-> Total transition : 1810
