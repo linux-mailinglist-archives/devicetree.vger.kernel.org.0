@@ -2,57 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85C8C52B8FA
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 13:45:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38C0B52B91B
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 13:55:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235688AbiERLm2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 07:42:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35152 "EHLO
+        id S235773AbiERLrC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 07:47:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235677AbiERLm1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 07:42:27 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88EB21DA5B;
-        Wed, 18 May 2022 04:42:25 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 8C8FD1F44EFE
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1652874144;
-        bh=qf83SX+V7kjrLVMgax0hyCtsQnOzDUfXGrMJugntals=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=eCcwRurnQ+5GicCiLUfL2+f27Skpz0cRymPx++02Gs/+Bm9y8LvMU+6E4zFbDOBbB
-         aDxYHbubVrbCA+S5TsXAoq4U9wHNl9b0zGYGbzhdodANtmEmBbhrYx9e+w3rh5TOFb
-         Vyps2S9Wcz1EzWXTa9lJTlDZFDQkW3J3QJ9bGZjEJEc85hByE99hCsirLDdS7SoW0w
-         B66eXlc+ED801BFn9pFvgK96TKw7BuU6+8dsSUCijtBn62fPvpsJc8uT9XlYafrff6
-         yV7b+39Yhj9HoBc5e05dpy412rFo6AmY0TE60FsflL/CVdY2d2PZVklvXG9KaoqU2t
-         FAGEC8vUE9EJw==
-Message-ID: <2550039f-1cfc-eb5d-bbc9-bf82666e9abd@collabora.com>
-Date:   Wed, 18 May 2022 13:42:20 +0200
+        with ESMTP id S235878AbiERLq4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 07:46:56 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D7333337D
+        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 04:46:51 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id h8so2189973ljb.6
+        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 04:46:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=EDiPOA35YpIMmzK7dsSM1qtvLUD5H06MjqcVVznfnc8=;
+        b=GxUQeWpawScCuAuO/Vl1cXyxJaV+vVOfQG8DVLc0IwhvTeh0gzW3LqGLu/OYc/lqUT
+         1pHPWQ2yJRopu2YLSwcgf2H3h0japAKr0Ja+1FenPLLuoct1RHN1c0kcPevjUkYoZPzE
+         1cztIm1FRfcBvnuDwAmNYzde/A9OWVfDH1DdoDCFGL24YK1agIKXAEAZjYMfdPDusvZH
+         3onMgofqkIQMZO8qa7EBhKHjQSYWSmwaBZ3mrP/U9qEH9POYzVeO7qTRYKN8JNRGMoQR
+         qntjz1vdghAyKUekVZU98RugLY9xI2m9SNU2KfJZgPZt9zSmaozi6xaZ5iuAFP2S2Xqt
+         E+cQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=EDiPOA35YpIMmzK7dsSM1qtvLUD5H06MjqcVVznfnc8=;
+        b=rAdCSVhrrff0izlGcW71bJF1uAaywa4PWoLwkAGoezSHvHVOUkYmUX/ukPNNCNDaz4
+         grjDo4aXSQ4GAfM2dQKvouec3IfrnxEBvcs5K1zSZ5eAi/NCO8oVQiH0Bqw8V8DwWpic
+         N0Xf9KTCCNaoxOicMXDaxy5cFF67zcwa2NgayvKUDW6LU9odzEAGP12KMhfsqJZFiyeH
+         1RjPuAwvVfzoNrrO3nZIQIrkFvnshjS/ZrcBoxyvAZ4W+k+NyEXvutb8LaNpYKvRdPdQ
+         3X9ZtieYn01iMvkRAeHj52M0C7acmg5Knn6o6ai4+3YpOyXcCtZwE3l6M1169tJMv2yM
+         ck3g==
+X-Gm-Message-State: AOAM531xS4kQaxHEMp4RvGG59mBh+s49agV0DAj3MVoXpu4Z8LpubUg4
+        jRmrq66xLAb2WqZoyJ19wtzgxw==
+X-Google-Smtp-Source: ABdhPJzVz5C2Bp0+KEsQVVSs0hSJ0o9YxpGpmUSFF/kiVX1ysvgaDMd7Dyc8MR2g9VB8Ei3Pgdy3ug==
+X-Received: by 2002:a2e:7f17:0:b0:253:adc1:697f with SMTP id a23-20020a2e7f17000000b00253adc1697fmr6886566ljd.418.1652874409374;
+        Wed, 18 May 2022 04:46:49 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id c20-20020a2e6814000000b00253ccff0211sm93272lja.118.2022.05.18.04.46.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 May 2022 04:46:48 -0700 (PDT)
+Message-ID: <81dcc83b-7ef0-779e-ad2b-8d0722b48ba4@linaro.org>
+Date:   Wed, 18 May 2022 13:46:47 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v2 1/7] dt-bindings: iommu: mediatek: Add phandles for
- mediatek infra/pericfg
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v2 2/2] dt-bindings: arm: mtk-clocks: Set #clock-cells as
+ required property
 Content-Language: en-US
-To:     Matthias Brugger <matthias.bgg@gmail.com>, yong.wu@mediatek.com
-Cc:     joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        iommu@lists.linux-foundation.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        krzysztof.kozlowski@linaro.org
-References: <20220518100503.37279-1-angelogioacchino.delregno@collabora.com>
- <20220518100503.37279-2-angelogioacchino.delregno@collabora.com>
- <4cfbc8dd-83d3-80df-630d-6f8fb2efb9fd@gmail.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <4cfbc8dd-83d3-80df-630d-6f8fb2efb9fd@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, robh+dt@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        sboyd@kernel.org, chun-jie.chen@mediatek.com,
+        rex-bc.chen@mediatek.com, wenst@chromium.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220518093631.25491-1-angelogioacchino.delregno@collabora.com>
+ <20220518093631.25491-3-angelogioacchino.delregno@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220518093631.25491-3-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,55 +79,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 18/05/22 13:29, Matthias Brugger ha scritto:
+On 18/05/2022 11:36, AngeloGioacchino Del Regno wrote:
+> This is a clock-controller binding, so it needs #clock-cells, or
+> it would be of no use: add that to the list of required properties.
 > 
-> 
-> On 18/05/2022 12:04, AngeloGioacchino Del Regno wrote:
->> Add properties "mediatek,infracfg" and "mediatek,pericfg" to let the
->> mtk_iommu driver retrieve phandles to the infracfg and pericfg syscon(s)
->> instead of performing a per-soc compatible lookup.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   .../devicetree/bindings/iommu/mediatek,iommu.yaml         | 8 ++++++++
->>   1 file changed, 8 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml 
->> b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
->> index 2ae3bbad7f1a..c4af41947593 100644
->> --- a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
->> +++ b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
->> @@ -101,6 +101,10 @@ properties:
->>       items:
->>         - const: bclk
->> +  mediatek,infracfg:
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +    description: The phandle to the mediatek infracfg syscon
->> +
->>     mediatek,larbs:
->>       $ref: /schemas/types.yaml#/definitions/phandle-array
->>       minItems: 1
->> @@ -112,6 +116,10 @@ properties:
->>         Refer to bindings/memory-controllers/mediatek,smi-larb.yaml. It must sort
->>         according to the local arbiter index, like larb0, larb1, larb2...
->> +  mediatek,pericfg:
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +    description: The phandle to the mediatek pericfg syscon
->> +
-> 
-> I didn't explain myself. What I was suguesting was to squash the patch that add 
-> requiered mediatek,infracfg with the patch that adds mediatk,infracfg to the 
-> binding description. And then squash the both patches adding pericfg as well.
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Sorry Matthias, I'm not sure ... I think I'm misunderstanding you again...
-...but if I'm not, I don't think that squashing actual code and bindings together
-is something acceptable?
+These I considered as somehow fixes so I did not ask to remove the Fixes
+tag, so also not squashing. It's fine, though...
 
-I've made that kind of mistake in the past and I was told multiple times that
-dt-bindings changes shall be sent separately from the actual driver changes.
-
-Cheers,
-Angelo
-
-
-
+Best regards,
+Krzysztof
