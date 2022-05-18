@@ -2,55 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 396D252B797
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 12:13:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A14052B710
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 12:12:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234659AbiERJxY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 05:53:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59820 "EHLO
+        id S234794AbiERKD1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 06:03:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234743AbiERJxV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 05:53:21 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B13B15534C;
-        Wed, 18 May 2022 02:53:18 -0700 (PDT)
+        with ESMTP id S234774AbiERKDX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 06:03:23 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92C52BB9;
+        Wed, 18 May 2022 03:03:22 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 61D87B81EF2;
-        Wed, 18 May 2022 09:53:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAFF4C385AA;
-        Wed, 18 May 2022 09:53:15 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 140AE617E5;
+        Wed, 18 May 2022 10:03:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63076C385AA;
+        Wed, 18 May 2022 10:03:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1652867596;
-        bh=5gqBzS4hqEVHVcDeIKJ/pK7OHoUOClp7PDlQPjda0Io=;
+        s=k20201202; t=1652868201;
+        bh=CtHMvnbHliMiyUEZOXIax7E1bJRVQqkba8XZH4l4ixU=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VQu+0AvIuaLFj51kcWbrHdXMufiGQ8dLdZrQMZlv9ew+7v1D5kCkTR+/hu9ihcKRJ
-         Q8px1Mla06YbjbT0IYMlCndab+4tc1Wali8zfU/D2vwDHHaQar0KFyR4Fsyp6xRiCT
-         Ufr2GX85FcQZwHyCv9SmbfCwsmqX72RWWHQyYFdybHhO2TKHVtiXoG8lFfw7ggQLvB
-         sLfGqKxL+I43O2k8lhETvuFZSIGP5V+5beoQkSqPKXxiVb7DmdP/GiiGd3tgk1DJY+
-         CbsK1PHAAC7Fvc8cFPELPKLIpO9Tpa5oSWfiizfdmLgai29x6qrPVNjA7PKMeNrqDi
-         38tZC1y7ziuWg==
-Date:   Wed, 18 May 2022 11:53:12 +0200
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     netdev@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
-        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
-        davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
-        Sam.Shih@mediatek.com, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, robh@kernel.org,
-        lorenzo.bianconi@redhat.com
-Subject: Re: [PATCH v2 net-next 12/15] net: ethernet: mtk_eth_soc: introduce
- MTK_NETSYS_V2 support
-Message-ID: <YoTCCAKpE5ijiom0@lore-desk>
-References: <cover.1652716741.git.lorenzo@kernel.org>
- <cc1bd411e3028e2d6b0365ed5d29f3cea66223f8.1652716741.git.lorenzo@kernel.org>
- <20220517184433.3cb2fd5a@kernel.org>
+        b=F7ZwXRd/VFTTvSuKsdkXBZdfYLh4H4WXZllZOPgmYQ4rK1xICXf1Qd0wlU0KFrmz5
+         yhjrW0EjFkDuf31Xw+dmFG53VLvoexN9Dh1fOl76uVjAgVDawTmjTv6XbDm9Z+4cbw
+         siOMMFpZNc9TlBBfg/i7Ea7iXUlSCjbHNwjRvHuL8noa9otkjAr3xq7E4j2SkjV35s
+         +lBXuAReLqGtfYnpAttGksvB+nrwR32qESsZBR1VWZHAd4Vm+vGLe68l5mG7aXqzD+
+         bBBv4g0nh+Gk5Zh4liaCEFzeuRCSa9im0d7utRcWslMsVZ3fz4HDSSkz8fYuv2JBQ/
+         aTkyptk32BQaA==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1nrGWY-0004uS-By; Wed, 18 May 2022 12:03:22 +0200
+Date:   Wed, 18 May 2022 12:03:22 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v10 10/10] arm64: dts: qcom: sm8250: provide additional
+ MSI interrupts
+Message-ID: <YoTEah//jc8GYItc@hovoldconsulting.com>
+References: <20220513172622.2968887-1-dmitry.baryshkov@linaro.org>
+ <20220513172622.2968887-11-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="py/BeQuNQzkJfHTN"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220517184433.3cb2fd5a@kernel.org>
+In-Reply-To: <20220513172622.2968887-11-dmitry.baryshkov@linaro.org>
 X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -61,74 +68,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, May 13, 2022 at 08:26:22PM +0300, Dmitry Baryshkov wrote:
+> On SM8250 each group of MSI interrupts is mapped to the separate host
+> interrupt. Describe each of interrupts in the device tree for PCIe0
+> host.
+> 
+> Tested on Qualcomm RB5 platform with first group of MSI interrupts being
+> used by the PME and attached ath11k WiFi chip using second group of MSI
+> interrupts.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi | 12 ++++++++++--
+>  1 file changed, 10 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> index 410272a1e19b..523a035ffc5f 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> @@ -1807,8 +1807,16 @@ pcie0: pci@1c00000 {
+>  			ranges = <0x01000000 0x0 0x60200000 0 0x60200000 0x0 0x100000>,
+>  				 <0x02000000 0x0 0x60300000 0 0x60300000 0x0 0x3d00000>;
+>  
+> -			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
+> -			interrupt-names = "msi";
+> +			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "msi0", "msi1", "msi2", "msi3",
+> +					  "msi4", "msi5", "msi6", "msi7";
+>  			#interrupt-cells = <1>;
+>  			interrupt-map-mask = <0 0 0 0x7>;
+>  			interrupt-map = <0 0 0 1 &intc 0 149 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
 
---py/BeQuNQzkJfHTN
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Looks correct now:
 
-On May 17, Jakub Kicinski wrote:
-> On Mon, 16 May 2022 18:06:39 +0200 Lorenzo Bianconi wrote:
-> > +	struct mtk_mac *mac =3D netdev_priv(dev);
-> > +	struct mtk_tx_dma_v2 *desc =3D txd;
-> > +	struct mtk_eth *eth =3D mac->hw;
-> > +	u32 data;
-> > +
-> > +	WRITE_ONCE(desc->txd1, info->addr);
-> > +
-> > +	data =3D TX_DMA_PLEN0(info->size);
-> > +	if (info->last)
-> > +		data |=3D TX_DMA_LS0;
-> > +	WRITE_ONCE(desc->txd3, data);
-> > +
-> > +	if (!info->qid && mac->id)
-> > +		info->qid =3D MTK_QDMA_GMAC2_QID;
-> > +
-> > +	data =3D (mac->id + 1) << TX_DMA_FPORT_SHIFT_V2; /* forward port */
-> > +	data |=3D TX_DMA_SWC_V2 | QID_BITS_V2(info->qid);
-> > +	WRITE_ONCE(desc->txd4, data);
-> > +
-> > +	data =3D 0;
-> > +	if (info->first) {
-> > +		if (info->gso)
-> > +			data |=3D TX_DMA_TSO_V2;
-> > +		/* tx checksum offload */
-> > +		if (info->csum)
-> > +			data |=3D TX_DMA_CHKSUM_V2;
-> > +	}
-> > +	WRITE_ONCE(desc->txd5, data);
-> > +
-> > +	data =3D 0;
-> > +	if (info->first && info->vlan)
-> > +		data |=3D TX_DMA_INS_VLAN_V2 | info->vlan_tci;
-> > +	WRITE_ONCE(desc->txd6, data);
-> > +
-> > +	WRITE_ONCE(desc->txd7, 0);
-> > +	WRITE_ONCE(desc->txd8, 0);
->=20
-> Why all the WRITE_ONCE()? Don't you just need a barrier between writing
-> the descriptor and kicking the HW?=20
-
-I used this approach just to be aligned with current codebase:
-https://github.com/torvalds/linux/blob/master/drivers/net/ethernet/mediatek=
-/mtk_eth_soc.c#L1006
-https://github.com/torvalds/linux/blob/master/drivers/net/ethernet/mediatek=
-/mtk_eth_soc.c#L1031
-
-but I guess we can even convert the code to use barrier instead. Agree?
-
-Regards,
-Lorenzo
-
---py/BeQuNQzkJfHTN
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCYoTCCAAKCRA6cBh0uS2t
-rFcEAPsEE4SH1pWFhrUuCVVh5wJ9R0iCDZrsIRMA13UFQ1FqcAEA/i7P7a2wwN3o
-b/PBY5gsePzROcyMFUtToLos6mKsrwg=
-=kZTh
------END PGP SIGNATURE-----
-
---py/BeQuNQzkJfHTN--
+Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
