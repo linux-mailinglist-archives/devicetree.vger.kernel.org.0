@@ -2,102 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 21E0052B05A
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 03:59:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC1EC52B075
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 04:21:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232197AbiERB73 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 21:59:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35234 "EHLO
+        id S234224AbiERCVi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 22:21:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232050AbiERB72 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 21:59:28 -0400
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D929054BFF;
-        Tue, 17 May 2022 18:59:26 -0700 (PDT)
-Received: by mail-oi1-f175.google.com with SMTP id l16so1069009oil.6;
-        Tue, 17 May 2022 18:59:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=0ErEGE8/dmj2Azoe4zkAGcu/VtrcYAyL6ETVQstf758=;
-        b=3CAoHwb8NNRNHbjfkoFx+Gb5VwXefeh5LsK2iaDhWRG9DOCWXAwoHj16Mx+GhBohqf
-         exXE9pJrZnb1hkYIZ90LYkJKS3IWrf+KiXQkt/aIFivPcgJTKh3p1gkm/1WgF0eF/bx7
-         f+410wFdNL5shUQSQD+DRodUzFqbejhfnSlQqV7LCaFXQPZwOqGrd9YVYZUERj4djVAQ
-         5ySI93OVTJUzneijWWFGOmn81uZC0diYLcWihJrPnfl+B9unUoPSUfqVnW3p047n4sa1
-         0EcPOmenj6yCpSqB7RO99orrmz7M1gCQfxSQGMH10kc8hcnFcOn9CwezCoZX2+XUzimf
-         Un7g==
-X-Gm-Message-State: AOAM530TxRiu7znxZLLWqUy4eAxSO0343HXFaIhK+AAxj+7B/ud5APdl
-        zbSTQnWMvf+be6AhlSiiww==
-X-Google-Smtp-Source: ABdhPJxyOQdpLuVw0xV36ku25ipTMD9vCUe8gXTwtgNZHLBeoLqKQEkvCVw7bsG7o+hu5caGfwojpQ==
-X-Received: by 2002:a05:6808:2017:b0:326:a252:8abf with SMTP id q23-20020a056808201700b00326a2528abfmr11755597oiw.143.1652839166212;
-        Tue, 17 May 2022 18:59:26 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a3-20020a056870374300b000e686d13889sm423835oak.35.2022.05.17.18.59.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 May 2022 18:59:25 -0700 (PDT)
-Received: (nullmailer pid 2069205 invoked by uid 1000);
-        Wed, 18 May 2022 01:59:24 -0000
-Date:   Tue, 17 May 2022 20:59:24 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH net-next v4 05/12] dt-bindings: net: dsa: add bindings
- for Renesas RZ/N1 Advanced 5 port switch
-Message-ID: <20220518015924.GC2049643-robh@kernel.org>
-References: <20220509131900.7840-1-clement.leger@bootlin.com>
- <20220509131900.7840-6-clement.leger@bootlin.com>
- <20220511152221.GA334055-robh@kernel.org>
- <20220511153337.deqxawpbbk3actxf@skbuf>
+        with ESMTP id S233364AbiERCVh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 22:21:37 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7512249F82;
+        Tue, 17 May 2022 19:21:31 -0700 (PDT)
+X-UUID: 24987fdde03547f4a4f61ddc3c3d59c9-20220518
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:9a50530c-7d3f-4e8d-9f52-15af072315cb,OB:0,LO
+        B:0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:51,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:56
+X-CID-INFO: VERSION:1.1.5,REQID:9a50530c-7d3f-4e8d-9f52-15af072315cb,OB:0,LOB:
+        0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:51,FILE:0,RULE:Release_Ham,ACTIO
+        N:release,TS:56
+X-CID-META: VersionHash:2a19b09,CLOUDID:798f8fe2-edbf-4bd4-8a34-dfc5f7bb086d,C
+        OID:82908a5a2e09,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,QS:0,BEC:nil
+X-UUID: 24987fdde03547f4a4f61ddc3c3d59c9-20220518
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1157843924; Wed, 18 May 2022 10:21:26 +0800
+Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Wed, 18 May 2022 10:21:26 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 18 May 2022 10:21:25 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Wed, 18 May 2022 10:21:23 +0800
+Message-ID: <124a48372c1ce0c28433f5c93ba1b4ac222ae9b8.camel@mediatek.com>
+Subject: Re: [PATCH v8 2/2] phy: mediatek: Add PCIe PHY driver
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        "Vinod Koul" <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        "AngeloGioacchino Del Regno" 
+        <angelogioacchino.delregno@collabora.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+CC:     Wei-Shun Chang <weishunc@google.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <randy.wu@mediatek.com>,
+        <jieyy.yang@mediatek.com>, <chuanjia.liu@mediatek.com>,
+        <qizhong.cheng@mediatek.com>, <jian.yang@mediatek.com>
+Date:   Wed, 18 May 2022 10:21:20 +0800
+In-Reply-To: <8affe58a4952d6c405dd41f18c6a7f40b2313fde.camel@mediatek.com>
+References: <20220507060621.32252-1-jianjun.wang@mediatek.com>
+         <20220507060621.32252-3-jianjun.wang@mediatek.com>
+         <8affe58a4952d6c405dd41f18c6a7f40b2313fde.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220511153337.deqxawpbbk3actxf@skbuf>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 11, 2022 at 06:33:37PM +0300, Vladimir Oltean wrote:
-> On Wed, May 11, 2022 at 10:22:21AM -0500, Rob Herring wrote:
-> > > +patternProperties:
-> > > +  "^ethernet-ports$":
+On Wed, 2022-05-11 at 11:22 +0800, Rex-BC Chen wrote:
+> On Sat, 2022-05-07 at 14:06 +0800, Jianjun Wang wrote:
+> > Add PCIe GEN3 PHY driver support on MediaTek chipsets.
 > > 
-> > Move to 'properties', not a pattern.
-> > 
-> > With that,
-> > 
-> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > +
+> > +static int mtk_pcie_phy_probe(struct platform_device *pdev)
+> > +{
+> > +	struct device *dev = &pdev->dev;
+> > +	struct phy_provider *provider;
+> > +	struct mtk_pcie_phy *pcie_phy;
+> > +	int ret;
+> > +
+> > +	pcie_phy = devm_kzalloc(dev, sizeof(*pcie_phy), GFP_KERNEL);
+> > +	if (!pcie_phy)
+> > +		return -ENOMEM;
+> > +
+> > +	pcie_phy->sif_base =
+> > devm_platform_ioremap_resource_byname(pdev, "sif");
+> > +	if (IS_ERR(pcie_phy->sif_base))
+> > +		return dev_err_probe(dev, PTR_ERR(pcie_phy->sif_base),
+> > +				     "Failed to map phy-sif base\n");
+> > +
+> > +	pcie_phy->phy = devm_phy_create(dev, dev->of_node,
+> > &mtk_pcie_phy_ops);
+> > +	if (IS_ERR(pcie_phy->phy))
+> > +		return dev_err_probe(dev, PTR_ERR(pcie_phy->phy),
+> > +				     "Failed to create PCIe phy\n");
+> > +
+> > +	pcie_phy->dev = dev;
+> > +	pcie_phy->data = of_device_get_match_data(dev);
+> > +	if (!pcie_phy->data)
+> > +		return dev_err_probe(dev, -EINVAL, "Failed to get phy
+> > data\n");
+> > +
+> > +	if (pcie_phy->data->sw_efuse_supported) {
+> > +		/*
+> > +		 * Failed to read the efuse data is not a fatal
+> > problem,
+> > +		 * ignore the failure and keep going.
+> > +		 */
+> > +		ret = mtk_pcie_read_efuse(pcie_phy);
+> > +		if (ret == -EPROBE_DEFER)
+> > +			return ret;
 > 
-> Even if it should have been "^(ethernet-)?ports$"?
+> Hello Jianjun,
+> 
+> even though it's not a fatal problem if we can not read efuse, but I
+> tink "ret = -ENOMEM" does not mean we can't read it?
+> 
+> Do we need to handle this?
 
-Why? Allowing 'ports' is for existing users. New ones don't need the 
-variability and should use just 'ethernet-ports'.
+Yes, I think we should handle it in this case, I'll fix it in the next
+version, thanks for your review.
 
-Rob
+Thanks.
+
+> 
+> BRs,
+> Rex
+> > +	}
+> > +
+> > +	phy_set_drvdata(pcie_phy->phy, pcie_phy);
+> > +
+> > +	provider = devm_of_phy_provider_register(dev,
+> > of_phy_simple_xlate);
+> > +	if (IS_ERR(provider))
+> > +		return dev_err_probe(dev, PTR_ERR(provider),
+> > +				     "PCIe phy probe failed\n");
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static const struct mtk_pcie_phy_data mt8195_data = {
+> > +	.num_lanes = 2,
+> > +	.sw_efuse_supported = true,
+> > +};
+> > +
+> > +static const struct of_device_id mtk_pcie_phy_of_match[] = {
+> > +	{ .compatible = "mediatek,mt8195-pcie-phy", .data =
+> > &mt8195_data },
+> > +	{ },
+> > +};
+> > +MODULE_DEVICE_TABLE(of, mtk_pcie_phy_of_match);
+> > +
+> > +static struct platform_driver mtk_pcie_phy_driver = {
+> > +	.probe	= mtk_pcie_phy_probe,
+> > +	.driver	= {
+> > +		.name = "mtk-pcie-phy",
+> > +		.of_match_table = mtk_pcie_phy_of_match,
+> > +	},
+> > +};
+> > +module_platform_driver(mtk_pcie_phy_driver);
+> > +
+> > +MODULE_DESCRIPTION("MediaTek PCIe PHY driver");
+> > +MODULE_AUTHOR("Jianjun Wang <jianjun.wang@mediatek.com>");
+> > +MODULE_LICENSE("GPL");
+> 
+> 
+
