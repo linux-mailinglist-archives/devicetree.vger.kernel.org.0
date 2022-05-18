@@ -2,54 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCF2752C147
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 19:50:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3077B52C1F2
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 20:09:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241183AbiERRof (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 13:44:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35198 "EHLO
+        id S235424AbiERRyl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 13:54:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241077AbiERRof (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 13:44:35 -0400
-Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFE0966FA8;
-        Wed, 18 May 2022 10:44:33 -0700 (PDT)
-Received: from zn.tnic (p200300ea974657d0329c23fffea6a903.dip0.t-ipconnect.de [IPv6:2003:ea:9746:57d0:329c:23ff:fea6:a903])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 482851EC064D;
-        Wed, 18 May 2022 19:44:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1652895868;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=BSrK6ISkCDs9DDx3yHsim7FQBme+cBGtrIf8vV2CXP4=;
-        b=QgCtwW8BgIpZDZ4SVm1lnqK7AQshTGtATAdfZqSJsD/6Kkg3SYkhtLYKOWwFVftsJ8D5fe
-        3VZQm4soeBvt0bQkhY1d9gG8wq2efOLGJ6Wf3PfaeZX9APZ44EtemhKfjBi64QOsfbRvvj
-        xSlR4mBGiMXGqg9F469FxEY6wyydLdw=
-Date:   Wed, 18 May 2022 19:44:27 +0200
-From:   Borislav Petkov <bp@alien8.de>
-To:     Medad CChien <medadyoung@gmail.com>
-Cc:     rric@kernel.org, james.morse@arm.com, tony.luck@intel.com,
-        mchehab@kernel.org, robh+dt@kernel.org, benjaminfair@google.com,
-        yuenn@google.com, venture@google.com, KWLIU@nuvoton.com,
-        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING@nuvoton.com,
-        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
-        ctcchien@nuvoton.com, linux-edac@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        openbmc@lists.ozlabs.org
-Subject: Re: [PATCH v9 1/3] ARM: dts: nuvoton: Add memory controller node
-Message-ID: <YoUwe6Tj4Uh6ukc8@zn.tnic>
-References: <20220510031056.1657-1-ctcchien@nuvoton.com>
- <20220510031056.1657-2-ctcchien@nuvoton.com>
+        with ESMTP id S241140AbiERRyk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 13:54:40 -0400
+Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04F6321A961
+        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 10:54:40 -0700 (PDT)
+Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-2f863469afbso33517557b3.0
+        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 10:54:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=wAFhBNGkOYqIauqmAMb6moZVrSw8HOJBfdYpqesZq6Y=;
+        b=vs9ButGw7170Q/jEs+fO1lQveZiTXXsgwXYCkgtgQO09RlQztc3/GxtOitWuHeXu2+
+         /m5UIMGqa+jiWxNGKo3H1/D9oMvC/sYdhfX+LOTuCNJVTY8nvtyyodAe7NB4yVZ6tK0+
+         c/SdQO3Y6jVZmVJAXeNoY/5fs3sDRwtH/fP80XkLq3cUjQ/Rc4dX5GTWC9+tzMSg48sW
+         Flac7WAF1NQggHKxkWDJIJ6Vh4LASxdp06hGbSQOl1y08Guq5Y61mXm47is1jS7G/Wjl
+         EixXBi++mSL7Xffq0yM4KMyLbCrYwJueODALS+TYjh7Z5o0zOVDvtAixJzlR7m41G89u
+         Jdtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=wAFhBNGkOYqIauqmAMb6moZVrSw8HOJBfdYpqesZq6Y=;
+        b=p+wM8qh3TckSObU5ZwFFopU8IypQ/HvaviHiJfHr0cVtCRH/9wHwpj7AM62Fz4SJFQ
+         8c5E/U0qS+64zPi2NHhjEzMjDYFEiQ+kNYf0mA1YrKnLXiUA3zWsCYL1y+hahxQpakFP
+         NyDWKAMki2Z/eKglBzLjg6sOQOUuvXh2UiGfTwUi1uS3TiQ28kvmwrXnVZGvboX0qQkU
+         OBKdH+ay6l1jVdg05j3UXB6ng/2vTndGZad0KVw9IlysVlGPVXozPrG4pWPAv7irE/5X
+         dxylGziSHJX2DS3EOZUqIjKTMYmIOMnr7aVHjqacVd9HSlS4KxZQ5M6KAKa18JUfKVVV
+         PPgA==
+X-Gm-Message-State: AOAM533ctPiE+Siogf78K3gjJB0JA26PBk9QuvEnuKA+v1pPzogE2XWU
+        JmnM+92XwG2ly3xbkS14wP88HeNsLWxIauBMTJMR3KMiVbGiRg==
+X-Google-Smtp-Source: ABdhPJxcdiytOucNPQKz7tmCfcmD4wZOseejv1XT7mflreTeZKYT19r/h5oY+Ga1GZ2fAhunKyzGPlKDPrqsdZg1R/o=
+X-Received: by 2002:a81:1dcf:0:b0:2fa:d094:14ff with SMTP id
+ d198-20020a811dcf000000b002fad09414ffmr642224ywd.10.1652896479286; Wed, 18
+ May 2022 10:54:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220510031056.1657-2-ctcchien@nuvoton.com>
+References: <20220517101410.3493781-1-andre.przywara@arm.com>
+ <20220517153444.GA1057027-robh@kernel.org> <CAFEAcA8sE8Rj0GmF71ox4BdDr0UcaS4QwiLUVUUFH5oj+hDhfA@mail.gmail.com>
+ <CAL_JsqLRvEn2E7cpTzQJRCJ=aeLjUtKhDimWat=nPtm3QP+cfA@mail.gmail.com>
+ <CAFEAcA_DRoJmnFdyEEcSvCxtPYignZFqQFnHyWkcpyijCBSrCg@mail.gmail.com> <20220518165421.GF3302100-robh@kernel.org>
+In-Reply-To: <20220518165421.GF3302100-robh@kernel.org>
+From:   Peter Maydell <peter.maydell@linaro.org>
+Date:   Wed, 18 May 2022 18:54:28 +0100
+Message-ID: <CAFEAcA80B2aGdaxK2pm7AK84KK_UqwD-KCMKtK6b8fF41MeKRg@mail.gmail.com>
+Subject: Re: [PATCH] of/fdt: Ignore disabled memory nodes
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andre Przywara <andre.przywara@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Ross Burton <ross.burton@arm.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Russell King <linux@armlinux.org.uk>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_FILL_THIS_FORM_SHORT,T_SCC_BODY_TEXT_LINE autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,68 +76,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 10, 2022 at 11:10:54AM +0800, Medad CChien wrote:
-> ECC must be configured in the BootBlock header.
-> Then, you can read error counts via the EDAC kernel framework.
-> 
-> Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
-> ---
->  arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi b/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
-> index 3696980a3da1..ba542b26941e 100644
-> --- a/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
-> +++ b/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
-> @@ -106,6 +106,13 @@
->  		interrupt-parent = <&gic>;
->  		ranges;
->  
-> +		mc: memory-controller@f0824000 {
-> +			compatible = "nuvoton,npcm750-memory-controller";
-> +			reg = <0x0 0xf0824000 0x0 0x1000>;
-> +			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-> +			status = "disabled";
-> +		};
-> +
->  		rstc: rstc@f0801000 {
->  			compatible = "nuvoton,npcm750-reset";
->  			reg = <0xf0801000 0x70>;
-> -- 
+On Wed, 18 May 2022 at 17:54, Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, May 17, 2022 at 08:19:47PM +0100, Peter Maydell wrote:
+> > We generate the DTB with libfdt, so source-only information
+> > isn't something we can put in, I think. (The quoted DT fragment
+> > in this patch's commit message is the result of decompiling
+> > the runtime generated DT binary blob with dtc.)
+>
+> Given the runtime aspect with overlays, it's conceivable that libfdt
+> could support setting labels some day and then dts output maintaining
+> them.
+>
+> We could also consider a standard node name such as 'secure-memory'.
+> It's a whole can of worms though on how secure vs. non-secure memory
+> (and other things) are represented.
 
-Please integrate scripts/checkpatch.pl into your patch creation
-workflow. Some of the warnings/errors *actually* make sense.
+Mmm. We put in the very basic parts years ago in
+Documentation/devicetree/bindings/arm/secure.txt
+which is (and has remained) generally sufficient for the QEMU->Trusted
+Firmware-> maybe uboot->Linux stack, which is pretty much the only use
+case I think. (My intention when we wrote that up was that memory
+that's S-only would be indicated the same way as S-only devices,
+with the secure-status and status properties.)
 
-In this case:
+> > Are we just stuck with what we have for historical reasons ?
+>
+> Yes. If we were designing this, we'd probably have 'compatible =
+> "memory"'. We're likely just stuck with things how they are. Mostly node
+> names haven't been an ABI and we're just trying to be consistent in
+> naming and use of unit-addresses.
 
-WARNING: DT compatible string "nuvoton,npcm750-memory-controller" appears un-documented -- check ./Documentation/devicetree/bindings/
-#35: FILE: arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi:110:
-+                       compatible = "nuvoton,npcm750-memory-controller";
+So, do you think it's worthwhile/a good idea for me to rename
+the DT node that QEMU is currently calling "secmem" to be
+"memory" ? My default is "leave it as it is", for economy of
+effort reasons :-) -- but it's an easy enough change to make.
+Though EDK2's dtb reading code just looks for the first
+"memory" node and assumes it's the big one, so changing the node
+name would make us reliant on the order of the two nodes in the
+DTB unless we fixed EDK2 (which we should probably do anyway, tbh).
 
-For that I'm guessing patch 2 needs to go first in the series.
-
-In any case, the first two need an ACK from devicetree folks.
-
-WARNING: From:/Signed-off-by: email address mismatch: 'From: Medad CChien <medadyoung@gmail.com>' != 'Signed-off-by: Medad CChien <ctcchien@nuvoton.com>'
-
-For this one I wasn't sure so I had to ask: I guess it kinda makes sense
-to have the From: be the same as your SOB email. I.e., make sure the
-right authorship and SOB is maintained even when sending from machines
-with broken email setups.
-
-And that you can fix very easily: just add in your .git/config:
-
-[user]
-        name = Medad CChien
-        email = ctcchien@nuvoton.com
-
-and git would use that as the author and also slap a From: at the
-beginning of the patch with the correct name and email address.
-
-HTH.
-
--- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
+thanks
+-- PMM
