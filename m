@@ -2,259 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D862D52BC54
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 16:16:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34CA052BEA0
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 17:26:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238520AbiEROMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 10:12:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40262 "EHLO
+        id S238553AbiEROVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 10:21:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238524AbiEROMl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 10:12:41 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A57811A492A;
-        Wed, 18 May 2022 07:12:39 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id u30so3859672lfm.9;
-        Wed, 18 May 2022 07:12:39 -0700 (PDT)
+        with ESMTP id S238551AbiEROVS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 10:21:18 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 686CC1C103;
+        Wed, 18 May 2022 07:21:16 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id bq30so3941235lfb.3;
+        Wed, 18 May 2022 07:21:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=zUpra34RHpxyR0Ls3UM9NaIwGbYcisrFEnw8bjZ1+nY=;
-        b=pyUBTpeyMaggkxd4bHlKItfgOSbzEa6zzDLbSMbbVWbXDHlxl6M7pzMumi64afvyYP
-         k/h49AGTStKVVKax+VEoTLbr85i7u5VjBFXxnd85wPhRAvoPXv8ms98ptCoDu6wAMKRw
-         1WT6BaloTu/JPWlqn9v1z4MCeQJnGZyLGByJO7MtTLr7qebyPt0v8yoGcxhmpX/QvfLQ
-         JN3kL8smxfOGZqC4Bsj0XqjKrHLTjov0TkbKHvf4/L0zVjtlxYA6Eo2tra8FlawDvL+l
-         BCrjPpLoQtrzbSkMc2k5L8fenGmWJLBk9sp8gtZOQZ/YO3Ls77mv+tX3eWFyLyqW5zRt
-         77PA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=OgF7hB842Xb1tcpu/exVm00l5yNp9b+2bCf12T/zGxc=;
+        b=e7RUpvLPw1/sKoLVxVoOxzKi3xQRj3PpyVvr333lxyBp/yvOTfwmgKKAHFDm9CshR4
+         NvheW1Z+C/naejxdGvSKLOi7EaEmLYVb2fq254kes7ntQmFcbqCtIH7qgqj0uBlSjewP
+         y3nmYCWY/Wo+7Dyt53yvbAI8H+jCSAP4XJ3P9S/ukSPyKuJY5V2guFPrT2FPhT+LnyX7
+         WmVSTfkIGQgIo6m+LzUYb6iGOdDEWE6hyXuTeyFNzIl1y0R/Tw+BXAbPiVjjc6NEcHA9
+         v0l0cm1kMLgAuH/fG6sa1VdNDaE/61nnECZLz+KEkuIIK2tJpo86oiYElEkpUKfImlF3
+         sLyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=zUpra34RHpxyR0Ls3UM9NaIwGbYcisrFEnw8bjZ1+nY=;
-        b=HtQ7kF1EMT9CqYXgMSqmJSlTIcrkavaNwtEqKrcYfQS3goQ/bZB55/JQ4OWcwiQ3Hn
-         /q9R8ZQqax0jVKpeEuQpCSX0UKA8+rZYOSnyIzBCNvvso0DjxpNk1vx0H55BYxmmYLa0
-         9ExuR21+qQb0uUhKagjkaGxkuKOqS4Yf8Ij0D1Dj7fElj8fw9ZSMhX/0oqfC1Sw2SMU6
-         fpg6nDSqlfd6aXeZR4NIaDp0aexMhEq9ktngtQRSxqjmZxduwc0Yfn+reBCdMtU39CwX
-         7i73eMZsf//3Retd4Ou8HByhTjuV+NH4Yb2ctVT9BW9rwRAwH889Lsw69MphJCJs6RNQ
-         1Oag==
-X-Gm-Message-State: AOAM531HGI/LOw08cDmuxUQNI/NsIhIdSdCuy+x33DljxAry5nrH6I0N
-        26fxgzVOCxQQZyvKwUh1RHA=
-X-Google-Smtp-Source: ABdhPJzp2tFmfVthOY9fdufPSFAz0WW8seYKWhdyy781iXWupDbYQ/8o7UbHzRqy48Qzm/hT285VZg==
-X-Received: by 2002:a05:6512:31c3:b0:473:e6ef:368d with SMTP id j3-20020a05651231c300b00473e6ef368dmr20602037lfe.141.1652883157723;
-        Wed, 18 May 2022 07:12:37 -0700 (PDT)
-Received: from [192.168.1.7] ([212.22.223.21])
-        by smtp.gmail.com with ESMTPSA id v8-20020ac25608000000b0047255d211absm221374lfd.218.2022.05.18.07.12.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 May 2022 07:12:37 -0700 (PDT)
-Subject: Re: [PATCH V2 5/7] dt-bindings: Add xen,dev-domid property
- description for xen-grant DMA ops
-To:     Rob Herring <robh@kernel.org>, Juergen Gross <jgross@suse.com>,
-        Stefano Stabellini <sstabellini@kernel.org>
-Cc:     xen-devel@lists.xenproject.org,
-        virtualization@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
-        Jason Wang <jasowang@redhat.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Julien Grall <julien@xen.org>,
-        "Michael S. Tsirkin" <mst@redhat.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>
-References: <1651947548-4055-1-git-send-email-olekstysh@gmail.com>
- <1651947548-4055-6-git-send-email-olekstysh@gmail.com>
- <20220517002750.GA3638680-robh@kernel.org>
-From:   Oleksandr <olekstysh@gmail.com>
-Message-ID: <fa3be245-ac3c-5637-13a1-3197e78c874d@gmail.com>
-Date:   Wed, 18 May 2022 17:12:35 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=OgF7hB842Xb1tcpu/exVm00l5yNp9b+2bCf12T/zGxc=;
+        b=VQiaBrrk+NcVIYdFLa68mOTJuAGuULjH2pPhsFC1MMVJ/gAvtrgeIr9FwdcqUj/ZJg
+         xtfuwqAYfPb3Avxfa3A4triB3CFfOpcKZxSYDYeFrgLDKYBHamTXLaj4pWGEDtdcSGfs
+         fFZY2oyVVsAh6ab+hp0c7hHea5Rgp1gl983faAq1+GuHHsh5Hm8BYDS+rL3aWw7whOeF
+         qA8iAIekakIEWfzEZzvqJDD50vVy3X3QdASvFI7U5+XCZwBcByqXRjnyEX10D05Ad3Lw
+         tAoKKFuprUokM1g/+D1OK0wUZXE/3gQH68vwNZ62zBsrW2Baoc9ll8eOdcgTsbxSTzsv
+         WPQQ==
+X-Gm-Message-State: AOAM532+iv+YwxbOzbyZR8IorFeF4/ou2wiOUIj9d3DWvlKKAiD1xa5s
+        1hwp0ApHMklMogukx0Sh0rDhM3suLATia+VINUo=
+X-Google-Smtp-Source: ABdhPJwBXTEz06RJoigcTFP/EBVz+helwZx8NYWmO9cAOVwwvhieqj9DYnDaTZICu64zreOkTLHGIXwQvCu7H+MnSEg=
+X-Received: by 2002:ac2:550f:0:b0:477:bc6e:9bcc with SMTP id
+ j15-20020ac2550f000000b00477bc6e9bccmr1697600lfk.279.1652883674662; Wed, 18
+ May 2022 07:21:14 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20220517002750.GA3638680-robh@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220516115846.58328-1-max.oss.09@gmail.com> <20220516115846.58328-12-max.oss.09@gmail.com>
+ <CAOMZO5DhTNDHLt_VZoWqD5dMBHq3rvJ+0j8-4xHHThyqheqcgQ@mail.gmail.com>
+In-Reply-To: <CAOMZO5DhTNDHLt_VZoWqD5dMBHq3rvJ+0j8-4xHHThyqheqcgQ@mail.gmail.com>
+From:   Max Krummenacher <max.oss.09@gmail.com>
+Date:   Wed, 18 May 2022 16:21:03 +0200
+Message-ID: <CAEHkU3Xtm9gk6xXr586M3pm4tPpFA-fGn+QyKXfF+Cqqa8VK8g@mail.gmail.com>
+Subject: Re: [PATCH v1 11/17] ARM: dts: imx6q-apalis: Add ov5640 mipi csi camera
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     Max Krummenacher <max.krummenacher@toradex.com>,
+        Oleksandr Suvorov <oleksandr.suvorov@toradex.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Fabio
 
-On 17.05.22 03:27, Rob Herring wrote:
+On Mon, May 16, 2022 at 2:08 PM Fabio Estevam <festevam@gmail.com> wrote:
+>
+> Hi Max,
+>
+> On Mon, May 16, 2022 at 8:59 AM Max Krummenacher <max.oss.09@gmail.com> wrote:
+> >
+> > From: Oleksandr Suvorov <oleksandr.suvorov@toradex.com>
+> >
+> > The Apalis iMX6 modules allow connecting a mipi-csi video input.
+> > Add support for our OV5640 camera module but have it disabled.
+> > This allows to enable it in an overlay per the current system
+> > configuration.
+> >
+> > Signed-off-by: Oleksandr Suvorov <oleksandr.suvorov@toradex.com>
+> > Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
+> > ---
+> >
+> >  arch/arm/boot/dts/imx6qdl-apalis.dtsi | 67 ++++++++++++++++++++++++++-
+> >  1 file changed, 66 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/arch/arm/boot/dts/imx6qdl-apalis.dtsi b/arch/arm/boot/dts/imx6qdl-apalis.dtsi
+> > index 506d040ea37a..0d1004eede62 100644
+> > --- a/arch/arm/boot/dts/imx6qdl-apalis.dtsi
+> > +++ b/arch/arm/boot/dts/imx6qdl-apalis.dtsi
+> > @@ -29,6 +29,12 @@
+> >                 status = "disabled";
+> >         };
+> >
+> > +       clk_ov5640_osc: clk_ov5640_osc_int {
+>
+> Node names should have "-", not "_"
 
-Hello Rob, all
-
-
-> On Sat, May 07, 2022 at 09:19:06PM +0300, Oleksandr Tyshchenko wrote:
->> From: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
->>
->> Introduce Xen specific binding for the virtualized device (e.g. virtio)
->> to be used by Xen grant DMA-mapping layer in the subsequent commit.
->>
->> This binding indicates that Xen grant mappings scheme needs to be
->> enabled for the device which DT node contains that property and specifies
->> the ID of Xen domain where the corresponding backend resides. The ID
->> (domid) is used as an argument to the grant mapping APIs.
->>
->> This is needed for the option to restrict memory access using Xen grant
->> mappings to work which primary goal is to enable using virtio devices
->> in Xen guests.
->>
->> Signed-off-by: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
->> ---
->> Changes RFC -> V1:
->>     - update commit subject/description and text in description
->>     - move to devicetree/bindings/arm/
->>
->> Changes V1 -> V2:
->>     - update text in description
->>     - change the maintainer of the binding
->>     - fix validation issue
->>     - reference xen,dev-domid.yaml schema from virtio/mmio.yaml
->> ---
->>   .../devicetree/bindings/arm/xen,dev-domid.yaml     | 37 ++++++++++++++++++++++
->>   Documentation/devicetree/bindings/virtio/mmio.yaml |  7 ++++
->>   2 files changed, 44 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml b/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
->> new file mode 100644
->> index 00000000..750e89e
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/arm/xen,dev-domid.yaml
->> @@ -0,0 +1,37 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/arm/xen,dev-domid.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Xen specific binding for virtualized devices (e.g. virtio)
->> +
->> +maintainers:
->> +  - Stefano Stabellini <sstabellini@kernel.org>
->> +
->> +select: true
-> Omit. No need to apply this on every single node.
-
-ok, will do
-
+Ups, missed that one. Will fix it in V2. Thanks.
 
 >
->> +
->> +description:
->> +  This binding indicates that Xen grant mappings need to be enabled for
->> +  the device, and it specifies the ID of the domain where the corresponding
->> +  device (backend) resides. The property is required to restrict memory
->> +  access using Xen grant mappings.
->> +
->> +properties:
->> +  xen,dev-domid:
-> I kind of think 'dev' is redundant. Is there another kind of domid
-> possible?
-
-
-In general, yes. It is driver(frontend) domid. But, at least for now, I 
-don't see why we will need an additional property for that.
-
-
->   Maybe xen,backend-domid or just xen,domid? I don't know Xen
-> too well, so ultimately up to you all.
-
-xen,domid sounds ambiguous to me.
-
-xen,backend-domid sounds perfectly fine to me, I even think it fits better.
-
-
-
-Stefano, Juergen, would you be happy with new xen,backend-domid name?
-
-If yes, Stefano could you please clarify, would you be OK if I retained 
-your R-b tags (for all patches in current series which touch that 
-property) after doing such renaming?
-
-
-
-
+> clk_ov5640_osc: clk-ov5640-osc
 >
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      The domid (domain ID) of the domain where the device (backend) is running.
->> +
->> +additionalProperties: true
->> +
->> +examples:
->> +  - |
->> +    virtio@3000 {
->> +            compatible = "virtio,mmio";
->> +            reg = <0x3000 0x100>;
->> +            interrupts = <41>;
->> +
->> +            /* The device is located in Xen domain with ID 1 */
->> +            xen,dev-domid = <1>;
->> +    };
->> diff --git a/Documentation/devicetree/bindings/virtio/mmio.yaml b/Documentation/devicetree/bindings/virtio/mmio.yaml
->> index 10c22b5..29a0932 100644
->> --- a/Documentation/devicetree/bindings/virtio/mmio.yaml
->> +++ b/Documentation/devicetree/bindings/virtio/mmio.yaml
->> @@ -13,6 +13,9 @@ description:
->>     See https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=virtio for
->>     more details.
->>   
->> +allOf:
->> +  - $ref: /schemas/arm/xen,dev-domid.yaml#
->> +
->>   properties:
->>     compatible:
->>       const: virtio,mmio
->> @@ -33,6 +36,10 @@ properties:
->>       description: Required for devices making accesses thru an IOMMU.
->>       maxItems: 1
->>   
->> +  xen,dev-domid:
->> +    description: Required when Xen grant mappings need to be enabled for device.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
-> No need to define the type again nor describe it again.
+> Also, no need for the _int suffix.
 >
-> Instead, just change additionalProperties to unevaluateProperties in
-> this doc. The diff is the latter takes $ref's into account.
-
-ok, will do. Could you please clarify, shall I use?
-
-unevaluatedProperties: false
-
-or
-
-unevaluatedProperties:
-
-type: object
-
-
-I am not too familiar with this stuff. Both variants seem to pass 
-validation.
-
-
-Thank you.
-
-
+> Just curious: is ov5640 mipi support functional?
 >
->> +
->>   required:
->>     - compatible
->>     - reg
->> -- 
->> 2.7.4
->>
->>
--- 
-Regards,
+> I recalled that I had issues in getting Gstreamer pipeline to capture
+> from the ov5640 mipi.
+>
+> There were some errors related to LP-11 during the start of the capture.
 
-Oleksandr Tyshchenko
+In my (limited) testing I saw no issues that the camera would not come up.
+It takes 2 to 3 seconds until the pipeline is running but I noted no hickups.
+I did this with setting the resolution to 640x480 and 1920x1080 which
+probably would not relate to the LP-11 issue you mention.
 
+I.e. I set up the v4l2 pipeline and start capture to the screen as follows:
+```
+media-ctl -l "'ov5640 1-003c':0 -> 'imx6-mipi-csi2':0[1]"
+media-ctl -l "'imx6-mipi-csi2':2 -> 'ipu1_csi1':0[1]"
+media-ctl -l "'ipu1_csi1':2 -> 'ipu1_csi1 capture':0[1]"
+media-ctl -V "'ov5640 1-003c':0 [fmt:UYVY2X8/640x480 field:none]"
+media-ctl -V "'imx6-mipi-csi2':2 [fmt:UYVY2X8/640x480 field:none]"
+media-ctl -V "'ipu1_csi1':2 [fmt:AYUV32/640x480 field:none]"
+gst-launch-1.0 v4l2src device='/dev/video0' ! videoconvert ! waylandsink
+```
+
+Max
