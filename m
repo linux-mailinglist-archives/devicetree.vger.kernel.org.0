@@ -2,241 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2E1952C3E1
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 21:59:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C02C152C3F0
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 22:07:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242176AbiERT4W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 15:56:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49894 "EHLO
+        id S242291AbiERUCF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 16:02:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242111AbiERT4U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 15:56:20 -0400
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D231D5DE79
-        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 12:56:18 -0700 (PDT)
-Received: by mail-ot1-x336.google.com with SMTP id s18-20020a056830149200b006063fef3e17so2084911otq.12
-        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 12:56:18 -0700 (PDT)
+        with ESMTP id S242284AbiERUCF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 16:02:05 -0400
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A1F814CDF4;
+        Wed, 18 May 2022 13:02:04 -0700 (PDT)
+Received: by mail-pg1-x532.google.com with SMTP id z3so1603536pgn.4;
+        Wed, 18 May 2022 13:02:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=q6k7TwXQDY275UxkUuTVNtao4TZzazR5moehWbU13Bc=;
-        b=g5/fbsGkOpFvl3DvRZPpEo8jogun8jSOWCLsALy94X/VCP6ncGUUeLsIqnLGqdKEzW
-         P8/cLn9bNiLprBIroXErfdY4WYJFHqO/bdJITBfN50ZhToYrp0ye5UhOb1QKEHoifbq8
-         OKiURvgnNxPbcMitcPLkdDI96p+slNJxk/9w4=
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=uqfL2s98jH1KESGEpAYrkz2to9znSXHw/vJwfe+b5DQ=;
+        b=YPVYxFEAxbX9obB0FWsDGjJXZ/xxu0R1tZCQ++6jkOoiO9v559/ECYd0+e/O2SnKIk
+         DbDtz5cgKxPzpnH+uyTvilV8s6IbwTs4inX3uNdgLPM27TDRwtSHqzOkWpM4ch8gryT6
+         AndZRKGF8eXDvaO0E1zoLXJPNO6Ebt5P/rxP9ZuAXcMrgVMTjvDJF86e5CEcHX8KrPw/
+         zt7qqK+70VExBruwYUmRAm7vJNPaBCZEsnDJLYVUSF6gdpChcgPc4WS0zJ2AW2KogD1E
+         d1OEEibKD/Kdsl7l97xR9MOMSbaCdf0VI39+UCXcEtWW6z7FeXiHJvzIqe/8nYP79cFt
+         BP4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=q6k7TwXQDY275UxkUuTVNtao4TZzazR5moehWbU13Bc=;
-        b=2oES38Ox79mLOXb10HQxSS5SV7Ap8eZAxdZ052maWSBZUz91FcrHD+tSpdSIPdaApa
-         5v82fYmYLW5xb+XUo3l06ScrG1H5mCIfVOYd18mdj0r8B/e0Rt4CT2HlDdOhslsk5S6y
-         XAPPm8VR+AsGVwP/jFC0LLgzWdeiBAxPhrnppL2J3zgJQXkkbhueuisKAJoX7b/Tpi56
-         +qZwDOXP8tFK4z1bWOJ64oYsJ3TGUGw1MA3R5ijjXfRl7bXCRY5eFpQoR11TbnDAOatv
-         hPczwhjCu2+MSZSAOs1En8oJo5KHot7vN9wjFTh1nREO3bonjC0/U7yvhWG99hKv+z/U
-         Ad5Q==
-X-Gm-Message-State: AOAM532hsYdz7HNULM3ePAvC9tDjCtG7SZD0g00dW8zNI08sgCfdycKm
-        ZD7m0l7ps79CF0tdfaZ3LWzMplJlIkYRRniY+3Ge/A==
-X-Google-Smtp-Source: ABdhPJwLifvJOWX3yKWzLoGN0MnHOdrbsoJrvUWC4w9Xr9cAvIQorp5Y2A947/vh4RjZprkumyYkzxKdHOHmmWcv7uE=
-X-Received: by 2002:a05:6830:13ce:b0:606:702b:87f0 with SMTP id
- e14-20020a05683013ce00b00606702b87f0mr541140otq.159.1652903777929; Wed, 18
- May 2022 12:56:17 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 18 May 2022 12:56:17 -0700
-MIME-Version: 1.0
-In-Reply-To: <20220518161348.GC3302100-robh@kernel.org>
-References: <20220512013921.164637-1-swboyd@chromium.org> <20220512013921.164637-4-swboyd@chromium.org>
- <20220516152003.GB2659134-robh@kernel.org> <CAE-0n53p1mKME=vfed2SB7UXrg9K+-vbp6JPHJBchJc-Pp1Hgg@mail.gmail.com>
- <20220518161348.GC3302100-robh@kernel.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Wed, 18 May 2022 12:56:17 -0700
-Message-ID: <CAE-0n53CMwtCY6XqYRXBpY5g21cFKyr8BF34t79JfK3dKg8cEg@mail.gmail.com>
-Subject: Re: [PATCH v5 3/3] dt-bindings: cros-ec: Add ChromeOS fingerprint binding
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, patches@lists.linux.dev,
-        devicetree@vger.kernel.org,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=uqfL2s98jH1KESGEpAYrkz2to9znSXHw/vJwfe+b5DQ=;
+        b=2En9iPS6t7TBhlgS9QdWKz15xTbMhNLwmlgY0Ted32tLEvC26Z6CToQIHWTP3njExN
+         6hg5JD3JYAoHQtA4qvWIiRyyr+uoTNgaHHGygfdBlolygesCK8NKLuf2iqaDr/tWQMzI
+         YP+uem6eR7xcEjRx1mkLsC9oOV9IZsnYCtmLtYrO4YgPKNRz1+I0WJEjY6aeSgZbKbh8
+         DchQnSUf1+ZOHWbpqzshYsffUYEzNdDqMjngiHsl0/8momU717xw/Ctx6lOiArvy1L1X
+         NKtI8rLR/Tn8wiEylyufH9UcNeZYmJgRTNuDrMouwTFrPaYgWBB10yztzMyXuS+/mcpv
+         TYyg==
+X-Gm-Message-State: AOAM5337I5O/aV2yXATZHhUIuyX5fi3VtDlYBgcp2AJTXhuWojSJknCJ
+        LuDOp2TKzu3qhagOHVEevL0=
+X-Google-Smtp-Source: ABdhPJyr9iaeXPnDbGCFTOGnkaD+p+nR2I1pLBS5V7XERkYPJllYvgGbkhSs6RXFm2TYStgbhdRVbQ==
+X-Received: by 2002:a65:6919:0:b0:3f6:111c:42d0 with SMTP id s25-20020a656919000000b003f6111c42d0mr881634pgq.449.1652904123979;
+        Wed, 18 May 2022 13:02:03 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id e11-20020a17090a9a8b00b001df4c27e5a5sm3961678pjp.35.2022.05.18.13.02.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 May 2022 13:02:03 -0700 (PDT)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     bcm-kernel-feedback-list@broadcom.com,
+        Anand Gore <anand.gore@broadcom.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     dan.beygelman@broadcom.com, joel.peshkin@broadcom.com,
+        florian.fainelli@broadcom.com, kursad.oney@broadcom.com,
+        William Zhang <william.zhang@broadcom.com>,
+        Arnd Bergmann <arnd@arndb.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        chrome-platform@lists.linux.dev,
-        Guenter Roeck <groeck@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Craig Hesling <hesling@chromium.org>,
-        Tom Hughes <tomhughes@chromium.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Tzung-Bi Shih <tzungbi@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Lee Jones <lee.jones@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, soc@kernel.org
+Subject: Re: [PATCH 1/3] ARM: dts: add dts files for bcmbca soc 63178
+Date:   Wed, 18 May 2022 13:02:01 -0700
+Message-Id: <20220518200201.323063-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220516103801.1.If6875f219ec3c728983c6aec498ef67b43cef8b7@changeid>
+References: <20220516173808.1391482-1-anand.gore@broadcom.com> <20220516103801.1.If6875f219ec3c728983c6aec498ef67b43cef8b7@changeid>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Rob Herring (2022-05-18 09:13:48)
-> On Mon, May 16, 2022 at 12:23:03PM -0700, Stephen Boyd wrote:
-> > Quoting Rob Herring (2022-05-16 08:20:03)
-> > > On Wed, May 11, 2022 at 06:39:21PM -0700, Stephen Boyd wrote:
-> > > > diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> > > > index 409ecef967ce..e5fe60beb9fe 100644
-> > > > --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> > > > +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> > > > +      - items:
-> > > > +          - const: google,cros-ec-i2c
-> > > > +      # For implementations of the FPMCU connected through SPI.
-> > > > +      - items:
-> > > > +          - const: google,cros-ec-fp
-> > > > +          - const: google,cros-ec-spi
-> > > > +      # For implementations of the EC is connected through SPI.
-> > > > +      - items:
-> > > > +          - const: google,cros-ec-spi
-> > > > +      # For implementations of the EC is connected through RPMSG.
-> > > > +      - items:
-> > > > +          - const: google,cros-ec-rpmsg
-> > > >
-> > > >    controller-data:
-> > > >      description:
-> > > > @@ -176,6 +189,37 @@ allOf:
-> > > >          - reg
-> > > >          - interrupts
-> > > >
-> > > > +  - if:
-> > > > +      properties:
-> > > > +        compatible:
-> > > > +          contains:
-> > > > +            const: google,cros-ec-fp
-> > > > +    then:
-> > > > +      properties:
-> > > > +        '#address-cells': false
-> > > > +        '#size-cells': false
-> > > > +        typec: false
-> > > > +        ec-pwm: false
-> > > > +        keyboard-controller: false
-> > > > +        proximity: false
-> > > > +        codecs: false
-> > > > +        cbas: false
-> > > > +
-> > > > +      patternProperties:
-> > > > +        "^i2c-tunnel[0-9]*$": false
-> > > > +        "^regulator@[0-9]+$": false
-> > > > +        "^extcon[0-9]*$": false
-> > >
-> > > Is the list of what's allowed shorter? If so, you could list those
-> > > properties and use 'additionalProperties: false'.
-> >
-> > Yes.
-> >
-> > >
-> > > Or maybe this is a sign that this should be a separate schema document.
-> >
-> > I couldn't figure that out. I tried to add new properties here but it
-> > didn't work.
->
-> Like this?:
->
-> then:
->   properties:
->     allowed-prop-1: true
->     allowed-prop-2: true
->     allowed-prop-3: true
->   additionalProperties: false
+On Mon, 16 May 2022 10:38:06 -0700, Anand Gore <anand.gore@broadcom.com> wrote:
+> Add dts for ARMv7 based broadband SoC BCM63178. bcm63178.dtsi is the
+> SoC description dts header and bcm963178.dts is a simple dts file for
+> Broadcom BCM963178 Reference board that only enable the UART port.
+> 
+> Signed-off-by: Anand Gore <anand.gore@broadcom.com>
+> ---
 
-It doesn't seem to combine constraints?
-
-I get this error:
-
-	Documentation/devicetree/bindings/mfd/google,cros-ec.example.dt.yaml:
-	ec@0: Additional properties are not allowed ('$nodename' was unexpected)
-
-
-with this interdiff. I added the spi properties to reduce the additional
-properties that aren't allowed.
-
----8<----
-diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-index 04b847fd5070..d47c7a273026 100644
---- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-+++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-@@ -18,24 +18,21 @@ description:
-
- properties:
-   compatible:
--    anyOf:
-+    oneOf:
-       - description:
-           For implementations of the EC connected through I2C.
--      - items:
--          - const: google,cros-ec-i2c
-+        const: google,cros-ec-i2c
-       - description:
-           For implementations of the FPMCU connected through SPI.
--      - items:
-+        items:
-           - const: google,cros-ec-fp
-           - const: google,cros-ec-spi
-       - description:
-           For implementations of the EC connected through SPI.
--      - items:
--          - const: google,cros-ec-spi
-+        const: google,cros-ec-spi
-       - description:
-           For implementations of the EC connected through RPMSG.
--      - items:
--          - const: google,cros-ec-rpmsg
-+        const: google,cros-ec-rpmsg
-
-   controller-data:
-     description:
-@@ -200,19 +197,14 @@ allOf:
-             const: google,cros-ec-fp
-     then:
-       properties:
--        '#address-cells': false
--        '#size-cells': false
--        typec: false
--        ec-pwm: false
--        keyboard-controller: false
--        proximity: false
--        codecs: false
--        cbas: false
--
--      patternProperties:
--        "^i2c-tunnel[0-9]*$": false
--        "^regulator@[0-9]+$": false
--        "^extcon[0-9]*$": false
-+        reset-gpios: true
-+        boot0-gpios: true
-+        vdd-supply: true
-+        interrupts: true
-+        compatible: true
-+        reg: true
-+        spi-max-frequency: true
-+      additionalProperties: false
-
-       required:
-         - reset-gpios
-
->
-> > And then when I tried to make a different schema document
-> > it complained that the example for google,cros-ec-spi in here had a
-> > problem.
->
-> You probably need a custom 'select' so that both schemas aren't
-> matching. Otherwise a schema is applied if any of the compatible strings
-> match.
-
-I see. Maybe that's better vs. jamming it all into one file.
-
->
-> > Can properties be defined in this section?
->
-> Yes, but discouraged for vendor specific properties. The if/then should
-> really be just additional constraints.
-
-Ok.
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
+--
+Florian
