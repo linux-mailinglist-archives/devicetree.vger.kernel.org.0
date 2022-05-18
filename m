@@ -2,78 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42B0752BD32
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 16:17:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6DEA52BD4C
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 16:18:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237975AbiERNe3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 09:34:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58400 "EHLO
+        id S238122AbiERNkj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 09:40:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237969AbiERNe2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 09:34:28 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDBE8C9EC7
-        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 06:34:26 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id p4so2271448lfg.4
-        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 06:34:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ah9AxJVzSaQ3+r9Loj2Ovb9Rw/v+KatzxO1BMfL+FaY=;
-        b=nFiI0A8F+bpe92lCYMZLjOahTBeLPTF7XoP3i/HugpXGpP01LeQ+Da0HOCdk1J/fV3
-         a5yB5CyBDxg1uaDGpxPC8rQgswKxkwHw7ZcV/e67uw/uONgEfI1d+AWYM0jY5iw8T05S
-         3TKoSH0uqQSR+FgCmnQAWUsHrXDaM4+SNjsMVZ63+5SJWJwUhmJZ5+jz8Ewaw5cTcXiY
-         wujJxKC3cjeYM9MigEjX6p8X11yvnaQd/LoAR1kD53l3HAXgMIpqhSP5DOyed5RGOI84
-         Rnymh3L840T62/uX5g4OjqLFC7wACi1j1+8PNcl+rF665jt7VRbwEpHAm4Bwq5OSqaTr
-         HEPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ah9AxJVzSaQ3+r9Loj2Ovb9Rw/v+KatzxO1BMfL+FaY=;
-        b=vMKzfc9RGHYDIp19cuKnjIBEpBj8gN4ZpzPGnZ4B0IHCGyAY8wAVhc5urYEM5JIBxh
-         mfonKVfNCmkio22kJDwwEUOFQv6z+IHxX+xGbuDneCi1xSXsl0IupDOEAKM6NTtu6f72
-         APavTLOb7WrdYYzivFfBPJm9k+nZugGhR9Fj8Cj8RtCsNDJVAd3j0F+m04GnYSViUT3v
-         pfM8Ffo63zv3E4B75lg8MMSdfHdC8TTGrS0u6p1ynhcw0wIIEqyuIQHCJVWw5LnNUXKR
-         xsC2Py478pDcWx22TpE/Fjuvm+ksf7u9qXToqKnYbOSQwbGRw5KaSRcQuOztx+PNAkek
-         Q3gw==
-X-Gm-Message-State: AOAM533hfJE5iU3+FiQOLAD4MJuTiC5AoT0vfGea2+kSwRLhTxNZeJ3j
-        tfbueHQwh/FAoRjNH/EyqcbQzQ==
-X-Google-Smtp-Source: ABdhPJy6a4PUHZ2TmWJGHb6uoS9F6DhW9demiYpT4UUbMNLedvB+yPMrdBxn6atjBxVouRAXtP807g==
-X-Received: by 2002:a05:6512:554:b0:472:1891:a14b with SMTP id h20-20020a056512055400b004721891a14bmr20246331lfl.677.1652880865160;
-        Wed, 18 May 2022 06:34:25 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id v14-20020a2e960e000000b00253bff9ded8sm219930ljh.21.2022.05.18.06.34.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 May 2022 06:34:24 -0700 (PDT)
-Message-ID: <bc13e57f-9701-80c9-8c7a-e491fbcfd181@linaro.org>
-Date:   Wed, 18 May 2022 15:34:23 +0200
+        with ESMTP id S238109AbiERNki (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 09:40:38 -0400
+Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [IPv6:2001:4b7a:2000:18::162])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 737DF5F8FF
+        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 06:40:35 -0700 (PDT)
+Received: from [10.1.250.9] (riviera.nat.ds.pw.edu.pl [194.29.137.1])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id F3BBD2060E;
+        Wed, 18 May 2022 15:40:31 +0200 (CEST)
+Message-ID: <77726e82-eaef-4cce-514a-1df04e5c33ee@somainline.org>
+Date:   Wed, 18 May 2022 15:40:30 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v3 1/6] dt-bindings: regulator: qcom,spmi-regulator:
- Convert to dtschema
-Content-Language: en-US
-To:     Robert Marko <robimarko@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        lgirdwood@gmail.com, broonie@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.9.0
+Subject: Re: [PATCH v3 5/6] arm64: dts: ipq8074: add SPMI PMP8074 PMIC
+ regulators
+To:     Robert Marko <robimarko@gmail.com>, agross@kernel.org,
+        bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 References: <20220517205341.536587-1-robimarko@gmail.com>
- <2905b9ae-df66-eb12-60fd-306ea2d3d626@linaro.org>
- <CAOX2RU4dH-iUMY8yebEEgdJRqm37AHBMH135YkNsnDJMPZCbPg@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAOX2RU4dH-iUMY8yebEEgdJRqm37AHBMH135YkNsnDJMPZCbPg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+ <20220517205341.536587-5-robimarko@gmail.com>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+In-Reply-To: <20220517205341.536587-5-robimarko@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,28 +47,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/05/2022 15:25, Robert Marko wrote:
->> I think we misunderstood each other. Old bindings indeed did not require
->> the interrupts, although if present they should be always defined.
->> Therefore here you should specify number of items and their names.
-> 
-> Yeah, I think we are misunderstanding each other.
-> 
-> Old text-based bindings specified the interrupts, but no naming or
-> number was enforced,
-> so I looked into the driver to see what is going on.
-> Only pm8941 has interrupts defined in the driver and DTS, so I added
-> those based on compatible
-> matching, the same as with supplies.
-> My logic was that it was only valid for interrupts to be described if
-> PM8941 was used as describing
-> interrupts for other regulator models will do nothing.
 
-Indeed, you're right, thanks for explanation. Your patch in such case is
-correct way of conversion but allows any number of interrupts with any
-names, so it's to relaxed. Maybe then better go to previous version,
-where these interrupts were defined only for one variant. For other
-variants they would fail on as unevaluated?
+On 17/05/2022 22:53, Robert Marko wrote:
+> PMP8074 is used in IPQ8074 and provides S3 for cores,
+> S4 for UBI core and LDO11 for SDIO/eMMC.
+>
+> So, lets add the nodes in preparation for DVFS later.
+>
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
+> ---
+>   arch/arm64/boot/dts/qcom/ipq8074.dtsi | 34 +++++++++++++++++++++++++++
+>   1 file changed, 34 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> index 789fec7c6aa4..d1a0b77c38a4 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> @@ -5,6 +5,7 @@
+>   
+>   #include <dt-bindings/interrupt-controller/arm-gic.h>
+>   #include <dt-bindings/clock/qcom,gcc-ipq8074.h>
+> +#include <dt-bindings/spmi/spmi.h>
+>   
+>   / {
+>   	model = "Qualcomm Technologies, Inc. IPQ8074";
+> @@ -421,6 +422,39 @@ spmi_bus: spmi@200f000 {
+>   			interrupt-controller;
+>   			#interrupt-cells = <4>;
+>   			cell-index = <0>;
+> +
+> +			pmic@1 {
 
-Best regards,
-Krzysztof
+Hi!
+
+
+These nodes belong in the PMIC DTSI (check pm8150.dtsi and others alike 
+for reference).
+
+
+Konrad
+
+> +				compatible ="qcom,spmi-pmic";
+> +				reg = <0x1 SPMI_USID>;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				regulators {
+> +					compatible = "qcom,pmp8074-regulators";
+> +
+> +					s3: s3 {
+> +						regulator-name = "vdd_s3";
+> +						regulator-min-microvolt = <592000>;
+> +						regulator-max-microvolt = <1064000>;
+> +						regulator-always-on;
+> +						regulator-boot-on;
+> +					};
+> +
+> +					s4: s4 {
+> +						regulator-name = "vdd_s4";
+> +						regulator-min-microvolt = <712000>;
+> +						regulator-max-microvolt = <992000>;
+> +						regulator-always-on;
+> +						regulator-boot-on;
+> +					};
+> +
+> +					l11: l11 {
+> +						regulator-name = "l11";
+> +						regulator-min-microvolt = <1800000>;
+> +						regulator-max-microvolt = <3300000>;
+> +					};
+> +				};
+> +			};
+>   		};
+>   
+>   		sdhc_1: sdhci@7824900 {
+>
