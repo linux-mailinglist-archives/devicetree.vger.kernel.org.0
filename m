@@ -2,96 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60EDA52B343
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 09:28:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 171C752B409
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 09:50:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232078AbiERHYC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 03:24:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52178 "EHLO
+        id S232394AbiERHps (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 03:45:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232056AbiERHYB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 03:24:01 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27AC04D627
-        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 00:23:59 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id k30so1341308wrd.5
-        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 00:23:59 -0700 (PDT)
+        with ESMTP id S232406AbiERHpr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 03:45:47 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7634B119907
+        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 00:45:42 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id t25so2139927lfg.7
+        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 00:45:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=tF/YGASfOyaH8iI5vv3uSJNrq2Gg87HO0wZHDFyPngk=;
-        b=RG9tkY0SlpJCC4fUyPDBYyPxc1bnRxdq9yhw1UbK4P0ZWnyS49MbdRzXriqpHINzhg
-         QB1s8sAKM5MrBJ2M+GOs8vTMSMfcTia4GuWHEjdPj+lj83iWaGO686JHHKdsEu+moN/S
-         MoDOlYHmHlEuU18sVUuboGdeJJQsihjlQSoYroG8sVf4fJKqMLfhnmpksK1oFzMHCNtr
-         wAvYxKXJR5Hs5sJoG3HHUsOJ5klf7Na/hNv8+QVci/I/C/FcdBB6Jr7Jfrj6uRYVfXr1
-         D3YBFwtWVHjsvv6EYzSBbn6vNgzhLCtKReBZvWyNCNi7sYGyKHl1Tq29PhaTYEZaCDxf
-         XeOA==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=l74h/9CSiIDFDguTV3SM7WBot9s5H63otpdl0O2qedY=;
+        b=hSNow+0C8TVnZfavy5d09sBUSkgiBsgb18B7328vv3QwqfbSjN9XysU6AWY+W//nvW
+         jNFlzo+OtIb0KAbTtFcw3qNACx2EeKwAM5kBvZZARfWUds5uOgqLIgiWSriVzvw6LMCy
+         Rp7LBrSrWL2o5F8J6SJxp3VOkipzKQW1JDk1y+BiN3GD9/Qj8XO3/54PnMypEFsB9fcv
+         a/Jdy9WiciUN4rFiJ0oIbMDeCubfbdKIBf2FU5qqlF8xRcnW3T3YtnY8bh/WvS/Ayb/J
+         UxHxg0TxKznUAvIdXiTbX/ISolHwQHdtR9T8/w2LYArmmcxqBKTWtmwfUXRZTB6qpJef
+         2SMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=tF/YGASfOyaH8iI5vv3uSJNrq2Gg87HO0wZHDFyPngk=;
-        b=vUBQ6BdDc43/QfX574aFpDg4JCXEah8C/eyGm+2Wv0V7oRB3hCImTt2zQvfimIYWr2
-         87qzRHI1SLbQ4J4w/xOEgpSMMhyANNbavfX8/tdI1K1Ca/laJUSZR/og5oIXyiDpUX8p
-         T633lG0V8AEsU2Ja7uIVogYsK+ssBIlXFmg5toKkM98V3YfceSVpLNNKcKnqFpss3MRS
-         ujidv05VkefZcsRxQki0/VqKbVzgr5bhb8N3KeTAj416ws4C/N+yUf1mCMAyGdAN6HjS
-         jWPjiwN2/oPgGDB10Dp2IhfFwgl0RCCJPza9Euj3ZbF4PmY1iB2y+iaqiaqaJ+CauIjJ
-         JEMQ==
-X-Gm-Message-State: AOAM531iHpJP7Xd4SGZcP/8QVVaoVkDWBNI7G8UEk0SxXlfoAAJyFO5a
-        7XFjKPAqNnrvhumZUnA+PWMLKw==
-X-Google-Smtp-Source: ABdhPJwD/OM2Sk3G/iloBGcUeXj5wnTIB9bygC4e5ck1U/lgfHV5xDqpe3z/o37CfegDOS5NY6oiMA==
-X-Received: by 2002:a05:6000:1d90:b0:20c:9efd:bd6b with SMTP id bk16-20020a0560001d9000b0020c9efdbd6bmr22300308wrb.605.1652858637676;
-        Wed, 18 May 2022 00:23:57 -0700 (PDT)
-Received: from localhost.localdomain ([2001:861:44c0:66c0:dea9:338d:d500:c574])
-        by smtp.gmail.com with ESMTPSA id e2-20020adfa742000000b0020d0b2de858sm1112113wrd.33.2022.05.18.00.23.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 May 2022 00:23:57 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     linux-amlogic@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Christian Hewitt <christianshewitt@gmail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        Dongjin Kim <tobetter@gmail.com>,
-        Furkan Kardame <f.kardame@manjaro.org>
-Subject: Re: [PATCH] drm/meson: add YUV422 output support
-Date:   Wed, 18 May 2022 09:23:53 +0200
-Message-Id: <165285860562.1281822.12934298648827697620.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220516072245.10745-1-christianshewitt@gmail.com>
-References: <20220516072245.10745-1-christianshewitt@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=l74h/9CSiIDFDguTV3SM7WBot9s5H63otpdl0O2qedY=;
+        b=jN+tmdYhMjWBd/TH78OMQo/h01gzn7sd5A9sV0ohHJCtDJRFLa5OSVvbroD++uK9mX
+         OHaty9J8ppTv6dF4Vo3lIlHltsc4l3MFaSq321tFGlUOgvNoQU6viPDmmOZANym3ktPY
+         vOAqF2Sf9mlNXgCWrRYYowoi22xY/6cOEQF7q0QRzmWxvcMHMjCs3TaRa9MG+ySY2czZ
+         VN0M+wX4Xk22WFCrcyJNBLRFuAPzVlPGPIw98S0oRiL2JGLbP2YvWmr4ZPEiS9T8lbAq
+         /dnrBeTmuVkMm/4fLIjKZBVpBhO+6TxwJHNORWKiJn0uIF37Ww2Y+oGu8M61eXai3GZ5
+         pNUA==
+X-Gm-Message-State: AOAM531fJewEfrRKLs+z5ZpXyCBvMrs0iVKKZK5ll5kpLYIpKEHW225n
+        4GvT8n8PiHKmtDoMXPcJMZ/mzQ==
+X-Google-Smtp-Source: ABdhPJxC7DaRfGoMH6mGwh5VEtuC+9o0de1TBsaxiwBhEaf0Q3qzSEaH4Xy9KVTb46fMKsddaSrUog==
+X-Received: by 2002:a05:6512:66:b0:477:a1e0:8a4 with SMTP id i6-20020a056512006600b00477a1e008a4mr5090208lfo.590.1652859940619;
+        Wed, 18 May 2022 00:45:40 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id u15-20020ac24c2f000000b00477b223ab3fsm126459lfq.167.2022.05.18.00.45.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 May 2022 00:45:40 -0700 (PDT)
+Message-ID: <92258b87-824c-79cc-c775-972018c45c87@linaro.org>
+Date:   Wed, 18 May 2022 09:45:39 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v2 1/6] dt-bindings: regulator: qcom,spmi-regulator:
+ Convert to dtschema
+Content-Language: en-US
+To:     Robert Marko <robimarko@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        lgirdwood@gmail.com, broonie@kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>
+References: <20220517120000.71048-1-robimarko@gmail.com>
+ <12093e84-49b0-d36d-cfde-08ab8af3801c@linaro.org>
+ <CAOX2RU4PpTQJUNkDremkhfdPG-=1NbG5xLmu22zFSOrqKMce5g@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAOX2RU4PpTQJUNkDremkhfdPG-=1NbG5xLmu22zFSOrqKMce5g@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Mon, 16 May 2022 07:22:45 +0000, Christian Hewitt wrote:
-> From: Dongjin Kim <tobetter@gmail.com>
+On 17/05/2022 22:58, Robert Marko wrote:
+> On Tue, 17 May 2022 at 16:47, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 17/05/2022 13:59, Robert Marko wrote:
+>>> Convert the bindings of Qualcomm SPMI regulators to DT schema.
+>>>
+>>> Signed-off-by: Robert Marko <robimarko@gmail.com>
+>>> ---
+>>> I am aware that syscon alone is not really acceptable, its converted
+>>> directly from the old text bindings.
+>>>
+>>> There is also the issue of some MSM8994, MSM8996 and APQ8096 devices using
+>>> '#address-cells', '#size-cells', some even defining reg property for
+>>> regulators.
+>>>
+>>> Any advice on how to solve these issues is appreciated.
+>>>
+>>> Changes in v2:
+>>
+>> Changelog goes after ---
 > 
-> Support YUV422 output from the Amlogic Meson SoC VPU to the HDMI
-> controller. Without this YUV422 format out of the HDMI encoder
-> leads to using the dw-hdmi YUV444 to YUV422 color conversion which
-> gives wrong colors and a green line on the left edge of the screen.
+> Ok, will fix up in v3.
 > 
-> [...]
+> While we are here,
+> any ideas about the DTS-s that use reg and #address/size-cells for
+> regulator subnodes and syscon?
 
-Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
+Ideas for what exactly? It looks like a more of a subsystem convention,
+whether to use unit addresses for children which are not real devices
+(LEDs use unit addresses, regulators do not).
 
-[1/1] drm/meson: add YUV422 output support
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=c193a003dc46ae601f46908b41d6f485b87db1ad
-
--- 
-Neil
+Best regards,
+Krzysztof
