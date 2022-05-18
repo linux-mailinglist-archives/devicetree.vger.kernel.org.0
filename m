@@ -2,66 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 378DA52B4BE
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 10:38:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD09F52B4C3
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 10:38:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232880AbiERIWh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 04:22:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60706 "EHLO
+        id S233141AbiERI1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 04:27:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232879AbiERIWd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 04:22:33 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1588E1059DE
-        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 01:22:30 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id r30so1520585wra.13
-        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 01:22:30 -0700 (PDT)
+        with ESMTP id S233187AbiERI1f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 04:27:35 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09978111BBE
+        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 01:27:22 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id j24so1597359wrb.1
+        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 01:27:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vrull.eu; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=trjJ+b0UjHlSF876BjNjmr4z+E9qBj2MQAPe6nMnBlA=;
-        b=kFQL87UQWcFbmG99QsHcYpdeBr7/o0aCWLZs4cACELBQusFJkwnRf0pnFO4BDWplkx
-         cDH2SaMQtqvmmKd7YarcDr6MKTgLipa+MYrk5MqwCbBnMNf0NtADKSO1xlrn93fWfEL/
-         kOPiVL45nY/gbVwf2E1xkzd1+wEqe/kxQhllGmASlFvU84YmE2Hylbv0Gk16JInDXOvT
-         cqqGAdCBMYABt4E8pwn6a5vPq5uFMzhvZn8SBBEMtLTWXJxLINkJVYQgvss+bOHe0FgK
-         AWYyC7JcIRMSt2qMLbJGKE/3FiNuDammjR3pelAzq11lv/7jtKbhXzmbP7fWxM5jPlte
-         zRbg==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=EjqmNzNHU62tbGWEmGCSZ/quQcHD8ef7lqrbwmVPudg=;
+        b=l0KEje+nRrOVaYyABLHpk/z7KT6s2EzSKaWTOvSZjAdbPwkFb6/+OsoW2dHRIrb4Rs
+         MHfuy2yQx/EsZT0D/AqfHL2hZEw7DKuvSr40QZYcYiNnQ/z9ENrQ7HqkYHZ/DK1O8k8R
+         QQ6WMyrc3XW//fZyijLHTBHrn5zPGiDk0OAJxIfDzLJJmJa50V25x3qpbxzJh00t8cNV
+         TQhVJX2HZ7uYczoOeYS6THjh/QK0IcLJQ+P4KuaZzkC/RZk0bcwVpxx4q3REARP5SLPB
+         Md28A1GdYJxHXtWSDtGTSSCTh/H5MVqAVpkGR50V/JfX6fosGF2ESLexvdLXNd9uxkDY
+         hMMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=trjJ+b0UjHlSF876BjNjmr4z+E9qBj2MQAPe6nMnBlA=;
-        b=fjn9W+A2r8zeBcOCSh5xkFRR/509y/6ikeOpjr/9n2Rg5kbE89m054zBMHysxDyy5K
-         3PWBbhP+EsNUuF/YJns9VkiZ0SZ2elGG+r26YTVBJ07VNTlPvtVI2CnO6vazAwZ3qjt4
-         pu/KlPZ1svCJAjxPMxEotw6FNGR6m0zFVNd3lLgeUTgmDtbVZhpOzf6ILVRKBrUTpDXG
-         EJlLklRjCDAQnbvPUTWwfcCP06CLcapJWZLQaXBQSOB0sVKSnkYQ4Be6zmDaYHNP7SOX
-         miG6k7N0z/7aNq2QmkBkdcx0gol2cyCxTtE5NJfVx14cCyEmTmkEjo34IqpcTV6i7IHX
-         ruAA==
-X-Gm-Message-State: AOAM533Ki1UIwDwsnge8dvVBE77cGA+Is7l87vfGt6EzuVels81ppEeT
-        kW+mLgMVwPa6TYO/elNOKH4DsSG5hDIWLfzbS5508g==
-X-Google-Smtp-Source: ABdhPJyR3TK3AZ6vFSIVdWlbdx57iSv9BfywlkDpHw7WENtz/yeCErgNkkD7SzI8rPZAtra5UA7HzAA1/Ep30orloL4=
-X-Received: by 2002:a5d:618f:0:b0:20c:ffa0:95a8 with SMTP id
- j15-20020a5d618f000000b0020cffa095a8mr15420395wru.306.1652862148610; Wed, 18
- May 2022 01:22:28 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=EjqmNzNHU62tbGWEmGCSZ/quQcHD8ef7lqrbwmVPudg=;
+        b=O7xdcFQjBdfrtpbXrj4gREDAmzlDdsnW4r19UiAAM+FI3A5i89zKdR0N7A4BjHQlIV
+         diHW2Vrw1ahXTitGlovmc6iKA2s5KyNJ91Ma9my87VcEYsGByKjqucd06BEovBQSPT5e
+         gCdc4SSOyHLMku8MN0scMLdCJ3HFVfjgvke27gF9Dhui0BFXQ55JM4iHbAGiCQYyYLPi
+         cVlNbzGu6cvt8Y61cWF3kmH1uosyCtaAxbkk08jcmdQRtgwVfknd5IbekqYsOMV1cZoy
+         JiIJA07vcizkDOuNC4wZUQ10BqtKYYthcnNNIIwOLfb9DlKzJu2vJqqrjwvzRLWaLg0i
+         e+TQ==
+X-Gm-Message-State: AOAM533eavuUT7+CR3F7RgyPJLDZYRGHehB8kvzTp8hgYYTX+aZRJ2y3
+        YmGe8PWK6K65wH7erLspCmmZjg==
+X-Google-Smtp-Source: ABdhPJzsQmvAd0aRM2QlN6e8UT8l1YW2ynIkGdTxBw24pZOfbRtG8tLNrRz+RztnCqXbypwm6Sypcw==
+X-Received: by 2002:a05:6000:2a2:b0:20c:734f:d38a with SMTP id l2-20020a05600002a200b0020c734fd38amr22637848wry.417.1652862439796;
+        Wed, 18 May 2022 01:27:19 -0700 (PDT)
+Received: from ?IPV6:2a01:e34:ed2f:f020:8ba:b9c:a451:5abb? ([2a01:e34:ed2f:f020:8ba:b9c:a451:5abb])
+        by smtp.googlemail.com with ESMTPSA id v13-20020a05600c214d00b003942a244ed1sm1087483wml.22.2022.05.18.01.27.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 May 2022 01:27:19 -0700 (PDT)
+Message-ID: <783127cf-79cf-90f2-4200-30db56a1fd7c@linaro.org>
+Date:   Wed, 18 May 2022 10:27:16 +0200
 MIME-Version: 1.0
-References: <20220511214132.2281431-1-heiko@sntech.de> <20220511214132.2281431-2-heiko@sntech.de>
- <20220518002529.GA1928329-robh@kernel.org>
-In-Reply-To: <20220518002529.GA1928329-robh@kernel.org>
-From:   Philipp Tomsich <philipp.tomsich@vrull.eu>
-Date:   Wed, 18 May 2022 10:22:17 +0200
-Message-ID: <CAAeLtUBLpDHeJHfPtaUb_OLZb_6cUQa1Z_F+06pkdJMSHtWrfQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: riscv: document cbom-block-size
-To:     Rob Herring <robh@kernel.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>, palmer@dabbelt.com,
-        paul.walmsley@sifive.com, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, wefu@redhat.com, guoren@kernel.org,
-        atishp@atishpatra.org, anup@brainfault.org, mick@ics.forth.gr,
-        samuel@sholland.org, cmuellner@linux.com, krzk+dt@kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v9 1/2] dt-bindings: thermal: k3-j72xx: Add VTM bindings
+ documentation
+Content-Language: en-US
+To:     Keerthy <j-keerthy@ti.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, rui.zhang@intel.com,
+        amitk@kernel.org, kristo@kernel.org
+Cc:     rafael@kernel.org, linux-pm@vger.kernel.org, vigneshr@ti.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220517172920.10857-1-j-keerthy@ti.com>
+ <20220517172920.10857-2-j-keerthy@ti.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20220517172920.10857-2-j-keerthy@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -70,64 +77,103 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+David Kruckemyer (who is chairing the CMO task-group within RVI).
 
-On Wed, 18 May 2022 at 02:25, Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, May 11, 2022 at 11:41:30PM +0200, Heiko Stuebner wrote:
-> > The Zicbom operates on a block-size defined for the cpu-core,
-> > which does not necessarily match other cache-sizes used.
-> >
-> > So add the necessary property for the system to know the core's
-> > block-size.
-> >
-> > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> > ---
-> >  Documentation/devicetree/bindings/riscv/cpus.yaml | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > index d632ac76532e..b179bfd155a3 100644
-> > --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > @@ -63,6 +63,13 @@ properties:
-> >        - riscv,sv48
-> >        - riscv,none
-> >
-> > +  riscv,cbom-block-size:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
->
-> Any value 0-2^32 is valid?
->
-> > +    description:
-> > +      Blocksize in bytes for the Zicbom cache operations. The block
-> > +      size is a property of the core itself and does not necessarily
-> > +      match other software defined cache sizes.
->
-> What about hardware defined cache sizes? I'm scratching my head as to
-> what a 'software defined cache size' is.
+Hi Krzysztof,
 
-This seems to be a misnomer, as the specification doesn't use the term
-and rather talks about the "size of a cache block for [operation
-name]".
+I would like to pick this series, does the DT bindings have your blessing ?
 
-There are currently two such 'operation sizes' discoverable by software:
-- size of the cache block for management and prefetch instructions
-- size of the cache block for zero instructions
 
-For whatever it's worth, cache operations in RISC-V attempt to
-disassociate the underlying hardware cache geometry from software.
-See https://github.com/riscv/riscv-CMOs/blob/master/specifications/cmobase-v1.0.1.pdf
-for the CMO specification, and the discoverable parameters are listed
-in section 2.7.
+On 17/05/2022 19:29, Keerthy wrote:
+> Add VTM bindings documentation. In the Voltage Thermal
+> Management Module(VTM), K3 J72XX supplies a voltage
+> reference and a temperature sensor feature that are gathered in the band
+> gap voltage and temperature sensor (VBGAPTS) module. The band
+> gap provides current and voltage reference for its internal
+> circuits and other analog IP blocks. The analog-to-digital
+> converter (ADC) produces an output value that is proportional
+> to the silicon temperature.
+> 
+> Signed-off-by: Keerthy <j-keerthy@ti.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+>   .../bindings/thermal/ti,j72xx-thermal.yaml    | 63 +++++++++++++++++++
+>   1 file changed, 63 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml b/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
+> new file mode 100644
+> index 000000000000..c74f124ebfc0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/thermal/ti,j72xx-thermal.yaml
+> @@ -0,0 +1,63 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/thermal/ti,j72xx-thermal.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments J72XX VTM (DTS) binding
+> +
+> +maintainers:
+> +  - Keerthy <j-keerthy@ti.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,j721e-vtm
+> +      - ti,j7200-vtm
+> +
+> +  reg:
+> +    items:
+> +      - description: VTM cfg1 register space
+> +      - description: VTM cfg2 register space
+> +      - description: VTM efuse register space
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  "#thermal-sensor-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - power-domains
+> +  - "#thermal-sensor-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
+> +    wkup_vtm0: thermal-sensor@42040000 {
+> +        compatible = "ti,j721e-vtm";
+> +        reg = <0x42040000 0x350>,
+> +              <0x42050000 0x350>,
+> +              <0x43000300 0x10>;
+> +        power-domains = <&k3_pds 154 TI_SCI_PD_EXCLUSIVE>;
+> +        #thermal-sensor-cells = <1>;
+> +    };
+> +
+> +    mpu_thermal: mpu-thermal {
+> +        polling-delay-passive = <250>; /* milliseconds */
+> +        polling-delay = <500>; /* milliseconds */
+> +        thermal-sensors = <&wkup_vtm0 0>;
+> +
+> +        trips {
+> +            mpu_crit: mpu-crit {
+> +                temperature = <125000>; /* milliCelsius */
+> +                hysteresis = <2000>; /* milliCelsius */
+> +                type = "critical";
+> +            };
+> +        };
+> +    };
+> +...
 
-Philipp.
 
-> > +
-> >    riscv,isa:
-> >      description:
-> >        Identifies the specific RISC-V instruction set architecture
-> > --
-> > 2.35.1
-> >
-> >
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
