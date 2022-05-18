@@ -2,56 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 400B152B506
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 10:38:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06F1652B4FF
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 10:38:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233079AbiERI3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 04:29:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37484 "EHLO
+        id S233052AbiERI36 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 04:29:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233052AbiERI3b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 04:29:31 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16F95131F1D;
-        Wed, 18 May 2022 01:29:30 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 3EE671F44C48
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1652862568;
-        bh=B5iXBTSLQ4uTMVDMAikh/PyBC8/1DmHnDiYnDQpXUGc=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=VcZSgyDFkXVQ7ZBn6tniLuaZ9UMwP2ol1ef2Kzy5s8z7Xo9QrYRbECkueg5HvXsu7
-         Kj0VuXcW9sczbDy0CexTkc3zMJf3rKpQzlGST0kZr8cbOuqQ9rUy3ht1H7G9Q2rmnU
-         UOlyrtxgsMkLwV4A0gJdMmkKPmLvofWMD6kNgk6rpx+DVqph87f5Qb8dUdTBUjZkzH
-         WDAW1JqlhB3X/IxoSD3TV8WpPVN6JuYGyV4MfFvyWUqZFsIZCMF4nyHI0hwskPq+g7
-         Od19IMjW/qJd5+RBTtB5vaoC921CK71aF1PFQozoeBmiE9QRtEd6h7f4XRjg944Mvv
-         qqJcGEHj8exew==
-Message-ID: <b003c37c-0f2d-31f6-6a74-4e1f0f4a1ccb@collabora.com>
-Date:   Wed, 18 May 2022 10:29:26 +0200
+        with ESMTP id S233182AbiERI35 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 04:29:57 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 665E813D76;
+        Wed, 18 May 2022 01:29:55 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 18E6EB81EEC;
+        Wed, 18 May 2022 08:29:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 487EBC385AA;
+        Wed, 18 May 2022 08:29:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1652862592;
+        bh=0abp1pszzsRBx5y5nc3egC4D4HkrMKsciN1YVkpNL6g=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=IzQG4rxQryyz4XT24Lc3jCcLIMgpq3o5cM4Kw8JjxTBlkVJpFu7k+W8D71NpvrgFJ
+         OQ/jjI3WaTLFvRI26qQ3nw1elquXdpbzm2vrzoSuo/59jHnWoD50iYgo1yQ+A3ZVNc
+         ykQwWV4ptWmohUAA62Inkgc4rFpkgqTJomn+dQhqDc9YkxgKrAsSVN7lILAQvn/AwH
+         MDByP5EQlmIr67oIZU/eVRG7k0rpwe0QqvTj1QNE/+QizdlCPUEFti+DuMBBnPryfB
+         LLrxHxcnb+mJC+LX+EEhLaih3EsAzeaIsmV9HkPQIKIIcrbK9NYIX5tAQ5qLxNO2g5
+         gxVLUGa7S5QOQ==
+Date:   Wed, 18 May 2022 10:29:48 +0200
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     netdev@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
+        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
+        davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
+        Sam.Shih@mediatek.com, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, robh@kernel.org,
+        lorenzo.bianconi@redhat.com
+Subject: Re: [PATCH v2 net-next 04/15] net: ethernet: mtk_eth_soc: add
+ txd_size to mtk_soc_data
+Message-ID: <YoSufPWnGPdtVYZ+@lore-desk>
+References: <cover.1652716741.git.lorenzo@kernel.org>
+ <22bd1bd88c09205b9bf83ea4c3ab030d5dc6e670.1652716741.git.lorenzo@kernel.org>
+ <20220517183311.3d4c76fe@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH 2/8] iommu: mtk_iommu: Lookup phandle to retrieve syscon
- to infracfg
-Content-Language: en-US
-To:     Robin Murphy <robin.murphy@arm.com>, yong.wu@mediatek.com
-Cc:     joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        iommu@lists.linux-foundation.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20220517132107.195932-1-angelogioacchino.delregno@collabora.com>
- <20220517132107.195932-3-angelogioacchino.delregno@collabora.com>
- <16fb07d9-28d8-5c73-1eb5-ec13544d22e5@arm.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <16fb07d9-28d8-5c73-1eb5-ec13544d22e5@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="kza9CdNu8v+g1M7c"
+Content-Disposition: inline
+In-Reply-To: <20220517183311.3d4c76fe@kernel.org>
+X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,110 +61,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 17/05/22 16:12, Robin Murphy ha scritto:
-> On 2022-05-17 14:21, AngeloGioacchino Del Regno wrote:
->> This driver will get support for more SoCs and the list of infracfg
->> compatibles is expected to grow: in order to prevent getting this
->> situation out of control and see a long list of compatible strings,
->> add support to retrieve a handle to infracfg's regmap through a
->> new "mediatek,infracfg" phandle.
->>
->> In order to keep retrocompatibility with older devicetrees, the old
->> way is kept in place, but also a dev_warn() was added to advertise
->> this change in hope that the user will see it and eventually update
->> the devicetree if this is possible.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   drivers/iommu/mtk_iommu.c | 40 +++++++++++++++++++++++++--------------
->>   1 file changed, 26 insertions(+), 14 deletions(-)
->>
->> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
->> index 71b2ace74cd6..cfaaa98d2b50 100644
->> --- a/drivers/iommu/mtk_iommu.c
->> +++ b/drivers/iommu/mtk_iommu.c
->> @@ -1134,22 +1134,34 @@ static int mtk_iommu_probe(struct platform_device *pdev)
->>       data->protect_base = ALIGN(virt_to_phys(protect), MTK_PROTECT_PA_ALIGN);
->>       if (MTK_IOMMU_HAS_FLAG(data->plat_data, HAS_4GB_MODE)) {
->> -        switch (data->plat_data->m4u_plat) {
->> -        case M4U_MT2712:
->> -            p = "mediatek,mt2712-infracfg";
->> -            break;
->> -        case M4U_MT8173:
->> -            p = "mediatek,mt8173-infracfg";
->> -            break;
->> -        default:
->> -            p = NULL;
->> +        infracfg = syscon_regmap_lookup_by_phandle(dev->of_node, 
->> "mediatek,infracfg");
->> +        if (IS_ERR(infracfg)) {
->> +            dev_warn(dev, "Cannot find phandle to mediatek,infracfg:"
->> +                      " Please update your devicetree.\n");
-> 
-> Is this really a dev_warn-level problem? There's no functional impact, given that 
-> we can't stop supporting the original binding any time soon, if ever, so I suspect 
-> this is more likely to just annoy users and CI systems than effect any significant 
-> change.
-> 
 
-The upstream devicetrees were updated to use the new handle and this is a way to
-warn about having outdated DTs... besides, I believe that CIs will always get the
-devicetree from the same tree that the kernel was compiled from (hence no message
-will be thrown).
+--kza9CdNu8v+g1M7c
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-In any case, if you think that a dev_info would be more appropriate, I can change
-that no problem.
+> On Mon, 16 May 2022 18:06:31 +0200 Lorenzo Bianconi wrote:
+> >  	eth->scratch_ring =3D dma_alloc_coherent(eth->dma_dev,
+> > -					       cnt * sizeof(struct mtk_tx_dma),
+> > +					       cnt * soc->txrx.txd_size,
+> >  					       &eth->phy_scratch_ring,
+> >  					       GFP_ATOMIC);
+> >  	if (unlikely(!eth->scratch_ring))
+> >  		return -ENOMEM;
+> > =20
+> > -	eth->scratch_head =3D kcalloc(cnt, MTK_QDMA_PAGE_SIZE,
+> > -				    GFP_KERNEL);
+> > +	eth->scratch_head =3D kcalloc(cnt, MTK_QDMA_PAGE_SIZE, GFP_KERNEL);
+>=20
+> Unrelated, but GFP_ATOMIC right next to GFP_KERNEL caught my attention.
 
->> +            /*
->> +             * Legacy devicetrees will not specify a phandle to
->> +             * mediatek,infracfg: in that case, we use the older
->> +             * way to retrieve a syscon to infra.
->> +             *
->> +             * This is for retrocompatibility purposes only, hence
->> +             * no more compatibles shall be added to this.
->> +             */
->> +            switch (data->plat_data->m4u_plat) {
->> +            case M4U_MT2712:
->> +                p = "mediatek,mt2712-infracfg";
->> +                break;
->> +            case M4U_MT8173:
->> +                p = "mediatek,mt8173-infracfg";
->> +                break;
->> +            default:
->> +                p = NULL;
->> +            }
->> +
->> +            infracfg = syscon_regmap_lookup_by_compatible(p);
-> 
-> Would it not make sense to punt this over to the same mechanism as for pericfg, 
-> such that it simplifies down to something like:
-> 
->      if (IS_ERR(infracfg) && plat_data->infracfg) {
->          infracfg = syscon_regmap_lookup_by_compatible(plat_data->infracfg);
->          ...
->      }
-> 
-> ?
-> 
-> TBH if we're still going to have a load of per-SoC data in the driver anyway then I 
-> don't see that we really gain much by delegating one aspect of it to DT, but meh. I 
-> would note that with the phandle approach, you still need some *other* flag in the 
-> driver to know whether a phandle is expected to be present or not, whereas a NULL 
-> vs. non-NULL string is at least neatly self-describing.
-> 
-
-That would be possible but, as Yong also pointed out, we should try to reduce the
-per-SoC data in the driver by commonizing as much as possible, because this driver
-supports a very long list of SoCs (even though they're not all upstreamed yet),
-and the list is going to grow even more with time: this is also why I have changed
-the MT8195 pericfg regmap lookup with a phandle like I've done for infra.
-
-There would also be another way, which would imply adding a generic compatible
-"mediatek,infracfg" to the infra syscon node, but I really don't like that for
-more than one reason, one of which is that this poses an issue, for which it's
-not guaranteed that the registers are in infracfg and not infracfg_ao (even
-though the offsets are the same), so then we would be back to ground zero.
+ack, mtk_init_fq_dma() is run by mtk_open() so it is ok to use GFP_KERNEL. I
+will fix it in v3.
 
 Regards,
-Angelo
+Lorenzo
 
+--kza9CdNu8v+g1M7c
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCYoSufAAKCRA6cBh0uS2t
+rFYlAQC2wAg1jYAWiba7EodXO/uiiufplKyBb3ecXPYBR62etAD+ND4ZonW4brDP
+P3P5htwp0JlPey9fJNA1452zhxCQOgs=
+=0Wh0
+-----END PGP SIGNATURE-----
+
+--kza9CdNu8v+g1M7c--
