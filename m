@@ -2,57 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7994C52B98D
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 14:14:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 095AC52B9BC
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 14:14:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236127AbiERMKS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 08:10:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37704 "EHLO
+        id S236304AbiERMLZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 08:11:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236083AbiERMKR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 08:10:17 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3BAF14674D;
-        Wed, 18 May 2022 05:10:13 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E55E96120D;
-        Wed, 18 May 2022 12:10:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 4275EC385AA;
-        Wed, 18 May 2022 12:10:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1652875812;
-        bh=PBKXH9hR2tq9LotuNLlBKagto2q0hMT3J7cJiE3d5f8=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=odYTIl2ar8/8n8Q2gfJq7lbz0fXLixEOAD/Kpjg4onSFutGsNF/lQwHY8dxIfPSmk
-         nUqsUbzAPMM2abhG8/y5wHhOqePqUQowWT2/uGZADJbUYiqXAwgAj1KhLGaiIk9EPp
-         dR14Bru3rr30y+emln5KKB87M7GPylxCyhFNgvTiwMM9QEtVCUz5K3BDZkjUzR4FyJ
-         lJAJ1ez61V+PvoDwbZWSrPrSflq7R1Y7I4EYuqQFsl8h8opmzhj3ryh7ZlS96fztMj
-         yfSjrg5McAfPsAY+sNz7yAYeHjRcBPErnZmRwyY0X665Nw0Ti2eF8BxWNPnaeMtwsP
-         urnMYmlJIfeQQ==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 24723F0392C;
-        Wed, 18 May 2022 12:10:12 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S236293AbiERMLN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 08:11:13 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05BD835845
+        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 05:11:11 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id bu29so3332766lfb.0
+        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 05:11:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nUFvXB8NXMFcyU7UqQtHGu+yWvXe5nBkItYTmYIGtoU=;
+        b=MZncvBXNIASuguQoyC0dPlNo13lla4FLlCdQfqMPgXDOWl7K3C2kzKve6FJd2VIDAe
+         kiYnDNFqDIRcs5R7W2ELHMoZlZ7oxCTX4Qc+uHTnhK+xgfZ+5I+xLyqr38V0jlyGbNiu
+         g6VWxLp6wpUC5vuGZzR1n5FpZhwQa7lqLGoBTIYqXQJmSxxbuvd7FM/oD0MmKfufD0Qu
+         ykfkRT6wRT4+aFJBwuu/IWXXIfphzFJCUaWwSxICOTHhUiBaBa9o0zFgjI2/HkXC7Eja
+         uigOojG9GGZdnkQ4D+lGRR9xiH5VnTRW6bBlS52qummqcHrvcuPgnDWh6JOjoxucUWS6
+         74OA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nUFvXB8NXMFcyU7UqQtHGu+yWvXe5nBkItYTmYIGtoU=;
+        b=v7GP0CKx7pikyKJ0DYgq0lkVMXw0AGRxEGwdytpZg+ChQqdJmxChfTUCPo71XY0XIn
+         IgcL793nrla13WsoRD1CrSLbcL7N+l/J2hIHXfMZTvYXAfUqoZJXObdWYT4HWTjKl/7u
+         2rVtG127Mx7QP2udMcouT5z5SSoa0NTfhTwRL8mRbegXBY78l4Mo8EqjPfOMnr2ory3G
+         qF+Yl/NaKd0YcHyWQv7Rc0P+PHR6qePI35xMBDDypkV/kND2FyXqRf/GspMstBYqLshj
+         weRVvyDEi5OaK5lR8NB6xbru8xB0ugWjSjrxLdv4byQgZBcdzcozESDizo6nvBfgJ1DU
+         fP0A==
+X-Gm-Message-State: AOAM530DJUy/n6U4/5l5Esm4Dw3LX7QleSkGq5ph8bAry0E00O0aKXmz
+        ZuzblrbF/1COcaV0AzvQPbnrog==
+X-Google-Smtp-Source: ABdhPJydAp5C4QR31PB6tNqxtPVxmkq1XR/QpCAPPE05LbQTnj16rSElfQrK1y+UDah+wKvJgYaRaA==
+X-Received: by 2002:a05:6512:39c1:b0:44a:e25d:47fd with SMTP id k1-20020a05651239c100b0044ae25d47fdmr19960149lfu.580.1652875869362;
+        Wed, 18 May 2022 05:11:09 -0700 (PDT)
+Received: from localhost.localdomain (mobile-access-b04822-211.dhcp.inet.fi. [176.72.34.211])
+        by smtp.gmail.com with ESMTPSA id o8-20020a2ebd88000000b0024f3d1daeccsm194460ljq.84.2022.05.18.05.11.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 May 2022 05:11:08 -0700 (PDT)
+From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+To:     Robert Foss <robert.foss@linaro.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH 0/2] media: dt-bindings: media: sm8250-camss: Add power-domain-names property
+Date:   Wed, 18 May 2022 15:11:02 +0300
+Message-Id: <20220518121104.951621-1-vladimir.zapolskiy@linaro.org>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH 0/2] armada-3720-turris-mox and orion-mdio
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <165287581214.23704.818165167398483936.git-patchwork-notify@kernel.org>
-Date:   Wed, 18 May 2022 12:10:12 +0000
-References: <20220516224801.1656752-1-chris.packham@alliedtelesis.co.nz>
-In-Reply-To: <20220516224801.1656752-1-chris.packham@alliedtelesis.co.nz>
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, andrew@lunn.ch,
-        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
-        kabel@kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -61,30 +73,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+QCOM SM8250 camera subsystem depends on three power domains, at the moment
+all of them are not differentiated one from another, however the power
+domains compose a hierarchical structure with vfe0 and vfe1 as subdomains
+of titan_top, also managing vfe0 and vfe1 separately allows to get more
+fine-grained power control in runtime.
 
-This series was applied to netdev/net-next.git (master)
-by David S. Miller <davem@davemloft.net>:
+The change relates to my review comment for v2 of CAMSS on SM8250 submission:
 
-On Tue, 17 May 2022 10:47:59 +1200 you wrote:
-> This is a follow up to the change that converted the orion-mdio dt-binding from
-> txt to DT schema format. At the time I thought the binding needed
-> 'unevaluatedProperties: false' because the core mdio.yaml binding didn't handle
-> the DSA switches. In reality it was simply the invalid reg property causing the
-> downstream nodes to be unevaluated. Fixing the reg nodes means we can set
-> 'unevaluatedProperties: true'
-> 
-> [...]
+   https://lore.kernel.org/all/13ad033e-cd5d-3a8c-b036-50a3ac4245c0@linaro.org/
 
-Here is the summary with links:
-  - [1/2] arm64: dts: armada-3720-turris-mox: Correct reg property for mdio devices
-    https://git.kernel.org/netdev/net-next/c/9fd914bb05c2
-  - [2/2] dt-bindings: net: marvell,orion-mdio: Set unevaluatedProperties to false
-    https://git.kernel.org/netdev/net-next/c/32d0efabeec0
+Apparently it becomes important to manage CAMSS power domains much better for
+newer platforms, this referes to platforms with Titan GDSC, for instance CAMSS
+on SM8450 has 6 power domains, and dealing with them in bulk is not an option.
 
-You are awesome, thank you!
+There was a note in commit 2f6f8af67203 ("media: camss: Refactor VFE power
+domain toggling") about problems with power VFE domains on/off, but perhaps
+it's related to the fact that Titan GDSC is a special power domain and VFE
+are subdomains, the latter shall not be enabled earlier than the Titan, but
+the driver did not construct a proper hierarchy and leaves a room for races.
+
+The change should have no implications on any SM8250 CAMSS users, since
+none of the supported in upstream boards enables the camss device tree node.
+The correspondent changes in the driver will follow this dt specific series.
+
+Most likely a similar change is required for SDM845 platform, but it would
+need additional investigation and testing.
+
+Vladimir Zapolskiy (2):
+  media: dt-bindings: media: sm8250-camss: Add power-domain-names property
+  arm64: dts: qcom: sm8250: camss: Add power-domain-names property
+
+ .../devicetree/bindings/media/qcom,sm8250-camss.yaml       | 7 +++++++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi                       | 1 +
+ 2 files changed, 8 insertions(+)
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.33.0
 
