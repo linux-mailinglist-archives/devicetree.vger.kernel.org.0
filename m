@@ -2,44 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BEB352BCF4
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 16:17:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C383652BBF1
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 16:15:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238088AbiERNms (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 09:42:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36938 "EHLO
+        id S238176AbiERNq1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 09:46:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238077AbiERNmr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 09:42:47 -0400
-Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [IPv6:2001:4b7a:2000:18::162])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BACF1A0AC9
-        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 06:42:46 -0700 (PDT)
-Received: from [10.1.250.9] (riviera.nat.ds.pw.edu.pl [194.29.137.1])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id C2AE720602;
-        Wed, 18 May 2022 15:42:44 +0200 (CEST)
-Message-ID: <d60f32dc-a9f5-95ad-245e-6b9521d73fce@somainline.org>
-Date:   Wed, 18 May 2022 15:42:44 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.9.0
-Subject: Re: [PATCH v3 4/6] regulator: qcom_spmi: Add support for PMP8074
- regulators
-To:     Robert Marko <robimarko@gmail.com>, agross@kernel.org,
-        bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220517205341.536587-1-robimarko@gmail.com>
- <20220517205341.536587-4-robimarko@gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20220517205341.536587-4-robimarko@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        with ESMTP id S238226AbiERNqP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 09:46:15 -0400
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43524178545;
+        Wed, 18 May 2022 06:46:14 -0700 (PDT)
+Received: by mail-oi1-f179.google.com with SMTP id m25so2703243oih.2;
+        Wed, 18 May 2022 06:46:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=8zKhwIJo0gXsAIWGyUaFPT+x1Z1JcWrSNyRipuSmgqs=;
+        b=XAYaYQo0XENnCRuTqedzjgHnvmrnMP3qHTiIfD3MQXm9Zw0tPMj7IPP2mSoGz88C4m
+         OvyAk9oeNtR0YfisR9SMXbBoUUCrGvRUVhpRVrI4uS+JaiDuy0hEpP7xWKSBj8teY8ah
+         PYb+LzdfZ35BZ7eZJuYRrnv1FB57fVTGeMKsyiQclYcZNN2MjMHnm6nIrPXJYv71BTiu
+         B6S6h0Z8kK+8MQc11xg+OEDcTG3GzsAdq+CziqaRh3JGAutLuM/NFQqPuxhpnoy0rcTu
+         rQ014a4usHBPlDEHawN+CQAq/YZ+CIOWlKTUB8UwM9hm2KzPEHp7Z7GXwLkbDZLqI4WU
+         dpCQ==
+X-Gm-Message-State: AOAM533BWhFC6xf3l4U/lbVz5nckYD/hp4OuX0q7eCofNGVh9MBho1dq
+        QBwRiRIqCiRGWVEK8bwYqw==
+X-Google-Smtp-Source: ABdhPJyDA0UeGAJChEEw2/YIUdPOq9UuLN/6prgGz2LmxT7diCMuhTs+SznglSjuWfgpvESbht/lYg==
+X-Received: by 2002:a05:6808:1287:b0:326:d23f:f251 with SMTP id a7-20020a056808128700b00326d23ff251mr16746oiw.155.1652881573534;
+        Wed, 18 May 2022 06:46:13 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id i3-20020a9d53c3000000b0060603221239sm776619oth.9.2022.05.18.06.46.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 May 2022 06:46:12 -0700 (PDT)
+Received: (nullmailer pid 3186179 invoked by uid 1000);
+        Wed, 18 May 2022 13:46:11 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     marijn.suijten@somainline.org, jason-jh.lin@mediatek.com,
+        konrad.dybcio@somainline.org, linux-kernel@vger.kernel.org,
+        paul.bouchara@somainline.org, krzysztof.kozlowski+dt@linaro.org,
+        phone-devel@vger.kernel.org, y.oudjana@protonmail.com,
+        chun-jie.chen@mediatek.com, sboyd@kernel.org,
+        p.zabel@pengutronix.de, ~postmarketos/upstreaming@lists.sr.ht,
+        matthias.bgg@gmail.com, rex-bc.chen@mediatek.com,
+        mturquette@baylibre.com, kernel@collabora.com,
+        linux-clk@vger.kernel.org, tinghan.shen@mediatek.com,
+        sam.shih@mediatek.com, robh+dt@kernel.org, fparent@baylibre.com,
+        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        miles.chen@mediatek.com, ck.hu@mediatek.com, ikjn@chromium.org,
+        wenst@chromium.org, linux-arm-kernel@lists.infradead.org,
+        martin.botka@somainline.org, weiyi.lu@mediatek.com,
+        bgolaszewski@baylibre.com
+In-Reply-To: <20220518111652.223727-5-angelogioacchino.delregno@collabora.com>
+References: <20220518111652.223727-1-angelogioacchino.delregno@collabora.com> <20220518111652.223727-5-angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v2 4/7] dt-bindings: clock: mediatek: Add clock driver bindings for MT6795
+Date:   Wed, 18 May 2022 08:46:11 -0500
+Message-Id: <1652881571.539429.3186178.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -47,61 +72,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 17/05/2022 22:53, Robert Marko wrote:
-> PMP8074 is a companion PMIC for the Qualcomm IPQ8074 WiSoC-s.
->
-> It features 5 HF-SMPS and 13 LDO regulators.
->
-> This commit adds support for S3 and S4 HF-SMPS buck regulators of
-> the HFS430 type and LDO11 of the HT_P150 type.
-> S3 is the CPU cluster voltage supply, S4 supplies the UBI32 NPU cores
-> and LDO11 is the SDIO/eMMC I/O voltage regulator required for high speeds.
->
-> Signed-off-by: Robert Marko <robimarko@gmail.com>
+On Wed, 18 May 2022 13:16:49 +0200, AngeloGioacchino Del Regno wrote:
+> Add the bindings for the clock drivers of the MediaTek Helio X10
+> MT6795 SoC.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
->   drivers/regulator/qcom_spmi-regulator.c | 8 ++++++++
->   1 file changed, 8 insertions(+)
->
-> diff --git a/drivers/regulator/qcom_spmi-regulator.c b/drivers/regulator/qcom_spmi-regulator.c
-> index 38bbc70241ae..696b088aae40 100644
-> --- a/drivers/regulator/qcom_spmi-regulator.c
-> +++ b/drivers/regulator/qcom_spmi-regulator.c
-> @@ -2137,6 +2137,13 @@ static const struct spmi_regulator_data pms405_regulators[] = {
->   	{ }
->   };
->   
-> +static const struct spmi_regulator_data pmp8074_regulators[] = {
+>  .../bindings/clock/mediatek,mt6795-clock.yaml | 66 +++++++++++++++++
+>  .../clock/mediatek,mt6795-sys-clock.yaml      | 74 +++++++++++++++++++
+>  2 files changed, 140 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt6795-clock.yaml
+>  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt6795-sys-clock.yaml
+> 
 
-Please sort the struct alphabletically.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
+yamllint warnings/errors:
 
-> +	{ "s3", 0x1a00, "vdd_s3"},
-> +	{ "s4", 0x1d00, "vdd_s4"},
-> +	{ "l11", 0x4a00, "vdd_l10_l11_l12_l13"},
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/clock/mediatek,mt6795-sys-clock.example.dts:35.13-21 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:364: Documentation/devicetree/bindings/clock/mediatek,mt6795-sys-clock.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1401: dt_binding_check] Error 2
 
-Are the other regulators somehow not controllable through SPMI? Please 
-leave a comment if that's the case.
+doc reference errors (make refcheckdocs):
 
+See https://patchwork.ozlabs.org/patch/
 
-> +	{ }
-> +};
-> +
->   static const struct of_device_id qcom_spmi_regulator_match[] = {
->   	{ .compatible = "qcom,pm8004-regulators", .data = &pm8004_regulators },
->   	{ .compatible = "qcom,pm8005-regulators", .data = &pm8005_regulators },
-> @@ -2150,6 +2157,7 @@ static const struct of_device_id qcom_spmi_regulator_match[] = {
->   	{ .compatible = "qcom,pm660-regulators", .data = &pm660_regulators },
->   	{ .compatible = "qcom,pm660l-regulators", .data = &pm660l_regulators },
->   	{ .compatible = "qcom,pms405-regulators", .data = &pms405_regulators },
-> +	{ .compatible = "qcom,pmp8074-regulators", .data = &pmp8074_regulators },
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-Please sort the compatible too.
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
+pip3 install dtschema --upgrade
 
-Konrad
+Please check and re-submit.
 
->   	{ }
->   };
->   MODULE_DEVICE_TABLE(of, qcom_spmi_regulator_match);
->
