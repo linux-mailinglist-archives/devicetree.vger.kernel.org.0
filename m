@@ -2,186 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6B0352C23B
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 20:27:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F36452C232
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 20:27:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241315AbiERSRe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 14:17:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50056 "EHLO
+        id S240516AbiERS0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 14:26:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240092AbiERSRe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 14:17:34 -0400
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4279F17DDF1;
-        Wed, 18 May 2022 11:17:33 -0700 (PDT)
-Received: by mail-oi1-f171.google.com with SMTP id w127so237608oie.1;
-        Wed, 18 May 2022 11:17:33 -0700 (PDT)
+        with ESMTP id S241366AbiERS0F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 14:26:05 -0400
+Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 452F17CDE7;
+        Wed, 18 May 2022 11:26:03 -0700 (PDT)
+Received: by mail-qv1-xf32.google.com with SMTP id y20so2108011qvx.3;
+        Wed, 18 May 2022 11:26:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=nfgYoWCNYtN7yDfm2+d3s9VvRbNwsmq2M10lbEvV91w=;
+        b=BU4UhCSBQmodnhlemcE31H7c2P5bS4uD95BTXf+A6pZjh/XS3tC1t1En3GecHCtM0t
+         mXQzgOkt6y2dhDUY4NaqxzkRzFnNMxFB4vbJUXChGiDaCeCFkzu5wJklFunrx/hsoTT4
+         DDRXS8UCcvLanVCmZV8nJjMyto4R6qqi3P1Tm23y4csTS2oY7xthDULzOf5X+hnuKGaJ
+         X03is8tUWDjhmeZkDo6Ma0u3ZEmvm5T17uAkkGtZd6pAO5HEFbHOq5jKBTJEThCQyV8/
+         EMQVr/w2ANjh/ZxHtdzRLqqlA8lxcIh0UiG47/f0dRuTjnFXUSDrVFyIgBdYSFOEHDqo
+         hfLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=JHB4mxwuxXLtxgR0b4MAdhznA0CHuJezj+quJiq9BUc=;
-        b=HxGlrN1QejU/psK562dsmR6sLYQ3HSnuVjsT5I4OgPv4kYoDMFDHy+Q+mEGpr3Tg3N
-         Lx8VpEKcQmQlvy0kVII5nwrW9oa8Zj5bHFGPqTjJ15LdAXkXdPHf2OYjYhQLaSUZvvwL
-         tBA2iqVPNPq/JAAkOj9jruVHAbpA2ZLn8tl7aa//EwxPicxqEKyHaS0p1rxE39nPRBin
-         ejCB058xgCr4jVLQ14r6XB3W8EUVekZ4hA+iekuM7R16RTk46zAoBamn7jYtkb6RPymn
-         JyFvPrfnoubRvNYIGlV8UBHd5Y9M3Warsln9XsShcNKwFDroCPacnAcQqHXg18afrqjr
-         j72w==
-X-Gm-Message-State: AOAM532shSVrVa4JeK2Lpd124YHPnE7vjbr2W6WRU90TyDNR1D64+i0D
-        LmoemR5D3GJPGueZ4F/PTQ==
-X-Google-Smtp-Source: ABdhPJwvC1l1x1uCUV1cpREPMBP26niSwJLo+XNIq7PloD4/cp1Dj6DMnFz6u4WHLF8c3hlHNwUWQw==
-X-Received: by 2002:a05:6808:3091:b0:326:cd17:fed4 with SMTP id bl17-20020a056808309100b00326cd17fed4mr726863oib.51.1652897852071;
-        Wed, 18 May 2022 11:17:32 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id p4-20020a4a8144000000b0035eb4e5a6d0sm1240542oog.38.2022.05.18.11.17.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 May 2022 11:17:31 -0700 (PDT)
-Received: (nullmailer pid 3626486 invoked by uid 1000);
-        Wed, 18 May 2022 18:17:30 -0000
-Date:   Wed, 18 May 2022 13:17:30 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Subject: Re: [RFC 1/8] dt-bindings: soc: renesas: Add RZ/G2L POEG binding
-Message-ID: <20220518181730.GH3302100-robh@kernel.org>
-References: <20220510151112.16249-1-biju.das.jz@bp.renesas.com>
- <20220510151112.16249-2-biju.das.jz@bp.renesas.com>
- <20220517210407.GA1635524-robh@kernel.org>
- <OS0PR01MB5922FC66FD4EF05F31B17D3386D19@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nfgYoWCNYtN7yDfm2+d3s9VvRbNwsmq2M10lbEvV91w=;
+        b=jEkzD9UEu6pILcZi/1ENbeJH4Hq/TWjVTgnaXOVX4TUzZpm+WdgRLN9Vdy/muXFNuY
+         uWzTT9Lv6ga4Zio3pFFppxWsVtOesA0B6NeRFFtov4GAeNI2ydW19QY89Y6ASDrGjjLn
+         F3OAqfRYH0/6nEnwy47LL7bYssq7cMOMdaBsHXIHDT7tWluqBcezOxRpD+ZfYXKhdcV/
+         Ie5kZRoj6v49L2kcTU5OY+d1/k0ddDnk9hlJDoutsF8i/hiB9Ja5qehR/LaKLQ906j8c
+         5MP1gb/fmECdQLiir5Uj0smk+IbPAKuNGGBHEcKWMY09CUim7oqK3HC3lYDgvjqeOK/O
+         31ZQ==
+X-Gm-Message-State: AOAM532XZ59VtOhDzBX4Jv/UX92XQMdB08L+J31totlxfI2bZdJaicUv
+        cV7Aw3gwk43uJDSkjGOqLYEGA8iPGgaeRffX/lk=
+X-Google-Smtp-Source: ABdhPJxjdpnM2ndfyB5ODLWDF8yv7yrQbec+TF3B+bzIAyN+RclUCT2TptIXCHT028RbwipcOB7Y/r3VopoJQUn8u/U=
+X-Received: by 2002:a05:6214:48f:b0:461:d4fe:4eed with SMTP id
+ ay15-20020a056214048f00b00461d4fe4eedmr859981qvb.48.1652898362364; Wed, 18
+ May 2022 11:26:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <OS0PR01MB5922FC66FD4EF05F31B17D3386D19@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+References: <20220517205341.536587-1-robimarko@gmail.com> <20220517205341.536587-4-robimarko@gmail.com>
+ <d60f32dc-a9f5-95ad-245e-6b9521d73fce@somainline.org> <CAOX2RU7jCdggA8y1cE4sfZLw_niDUNkG8pkJ=d=5mM1BbrrBQA@mail.gmail.com>
+In-Reply-To: <CAOX2RU7jCdggA8y1cE4sfZLw_niDUNkG8pkJ=d=5mM1BbrrBQA@mail.gmail.com>
+From:   Robert Marko <robimarko@gmail.com>
+Date:   Wed, 18 May 2022 20:25:51 +0200
+Message-ID: <CAOX2RU4wVXvm93Z5u1hEEUxn4S2YDGHVq_89Z7b-ryf0t7iJSg@mail.gmail.com>
+Subject: Re: [PATCH v3 4/6] regulator: qcom_spmi: Add support for PMP8074 regulators
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        lgirdwood@gmail.com, broonie@kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 18, 2022 at 05:58:00AM +0000, Biju Das wrote:
-> Hi Rob,
-> 
-> Thanks for the feedback.
-> 
-> > Subject: Re: [RFC 1/8] dt-bindings: soc: renesas: Add RZ/G2L POEG binding
-> > 
-> > On Tue, May 10, 2022 at 04:11:05PM +0100, Biju Das wrote:
-> > > Add device tree bindings for the RZ/G2L Port Output Enable for GPT
-> > (POEG).
+On Wed, 18 May 2022 at 19:31, Robert Marko <robimarko@gmail.com> wrote:
+>
+> On Wed, 18 May 2022 at 15:42, Konrad Dybcio
+> <konrad.dybcio@somainline.org> wrote:
+> >
+> >
+> > On 17/05/2022 22:53, Robert Marko wrote:
+> > > PMP8074 is a companion PMIC for the Qualcomm IPQ8074 WiSoC-s.
 > > >
-> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > It features 5 HF-SMPS and 13 LDO regulators.
+> > >
+> > > This commit adds support for S3 and S4 HF-SMPS buck regulators of
+> > > the HFS430 type and LDO11 of the HT_P150 type.
+> > > S3 is the CPU cluster voltage supply, S4 supplies the UBI32 NPU cores
+> > > and LDO11 is the SDIO/eMMC I/O voltage regulator required for high speeds.
+> > >
+> > > Signed-off-by: Robert Marko <robimarko@gmail.com>
 > > > ---
-> > >  .../soc/renesas/renesas,rzg2l-poeg.yaml       | 65 +++++++++++++++++++
-> > >  1 file changed, 65 insertions(+)
-> > >  create mode 100644
-> > > Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-poeg.yaml
+> > >   drivers/regulator/qcom_spmi-regulator.c | 8 ++++++++
+> > >   1 file changed, 8 insertions(+)
 > > >
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-poeg.yam
-> > > l
-> > > b/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-poeg.yam
-> > > l
-> > > new file mode 100644
-> > > index 000000000000..5737dbf3fa45
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-poeg
-> > > +++ .yaml
-> > > @@ -0,0 +1,65 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
-> > > +---
-> > > +$id:
-> "
-> > > +
-> > > +title: Renesas RZ/G2L Port Output Enable for GPT (POEG)
-> > > +
-> > > +maintainers:
-> > > +  - Biju Das <biju.das.jz@bp.renesas.com>
-> > > +
-> > > +description:
-> > 
-> > '|' needed.
-> 
-> OK.
-> 
-> > 
-> > > +  The output pins of the general PWM timer (GPT) can be disabled by
-> > > + using  the port output enabling function for the GPT (POEG).
-> > > + Specifically,  either of the following ways can be used.
-> > > +  * Input level detection of the GTETRGA to GTETRGD pins.
-> > > +  * Output-disable request from the GPT.
-> > > +  * Register settings.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    items:
-> > > +      - enum:
-> > > +          - renesas,r9a07g044-poeg  # RZ/G2{L,LC}
-> > > +          - renesas,r9a07g054-poeg  # RZ/V2L
-> > > +      - const: renesas,rzg2l-poeg
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    maxItems: 1
-> > > +
-> > > +  power-domains:
-> > > +    maxItems: 1
-> > > +
-> > > +  resets:
-> > > +    maxItems: 1
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - interrupts
-> > > +  - clocks
-> > > +  - power-domains
-> > > +  - resets
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/clock/r9a07g044-cpg.h>
-> > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > > +
-> > > +    poeggd: poeg@10049400 {
-> > > +        compatible = "renesas,r9a07g044-poeg", "renesas,rzg2l-poeg";
-> > > +        reg = <0x10049400 0x4>;
-> > 
-> > This looks like it is part of some larger block?
-> 
-> There are 2 IP blocks GPT(PWM) and POEG with its own resources like (register map, clk, reset and interrupts)
-> 
-> Larger block is GPT, which has lot of functionalities. The output from GPT block can be disabled
-> by this IP either by external trigger, request from GPT(Deadtime error, both output low/high)
-> or explicit software control). This IP has only a single register. Currently I am not sure which framework
-> to be used for this IP?? Or should it be merged with larger block GPT by combining the resources?
+> > > diff --git a/drivers/regulator/qcom_spmi-regulator.c b/drivers/regulator/qcom_spmi-regulator.c
+> > > index 38bbc70241ae..696b088aae40 100644
+> > > --- a/drivers/regulator/qcom_spmi-regulator.c
+> > > +++ b/drivers/regulator/qcom_spmi-regulator.c
+> > > @@ -2137,6 +2137,13 @@ static const struct spmi_regulator_data pms405_regulators[] = {
+> > >       { }
+> > >   };
+> > >
+> > > +static const struct spmi_regulator_data pmp8074_regulators[] = {
+> >
+> > Please sort the struct alphabletically.
+>
+> Hi,
+> Will fixup in v3.
+>
+> >
+> >
+> > > +     { "s3", 0x1a00, "vdd_s3"},
+> > > +     { "s4", 0x1d00, "vdd_s4"},
+> > > +     { "l11", 0x4a00, "vdd_l10_l11_l12_l13"},
+> >
+> > Are the other regulators somehow not controllable through SPMI? Please
+> > leave a comment if that's the case.
+>
+> No, they are all controllable via SPMI as far as I know.
+> Though the output table completely leaves out L7, L9, and L10.
+> L5 and L6 are specified as Ebuck-4 subtypes (0x3d), while L10 is not
+> listed at all (0x34).
 
-Usually, IP blocks would have some minimum address alignment (typ 4K or 
-64K to be page aligned), but if there's no other IP in this address 
-range as-is is fine. The question is what's before or after the above 
-address?
+Ok, I dug a bit further and L5/6 are HT_P600 and are easily supportable.
+L10 is an HT_P50 type but it's listed as unused and left disabled, I don't know
+its supported output voltage range.
 
-Rob
+Regards,
+Robert
+
+> These are not currently supported and I don't have enough information
+> to support them.
+> L1, L2, L3, L4, L7, L8, L9, L11, L12, and L13 appear to have their
+> subtype already supported.
+> L1, L2, L3, L8, L9 subtype (0x32)
+> L4 subtype (0x30)
+> L7, L11, L12, L13 subtype (0x35)
+>
+> S3, S4, and L11 are the most important ones.
+> >
+> >
+> > > +     { }
+> > > +};
+> > > +
+> > >   static const struct of_device_id qcom_spmi_regulator_match[] = {
+> > >       { .compatible = "qcom,pm8004-regulators", .data = &pm8004_regulators },
+> > >       { .compatible = "qcom,pm8005-regulators", .data = &pm8005_regulators },
+> > > @@ -2150,6 +2157,7 @@ static const struct of_device_id qcom_spmi_regulator_match[] = {
+> > >       { .compatible = "qcom,pm660-regulators", .data = &pm660_regulators },
+> > >       { .compatible = "qcom,pm660l-regulators", .data = &pm660l_regulators },
+> > >       { .compatible = "qcom,pms405-regulators", .data = &pms405_regulators },
+> > > +     { .compatible = "qcom,pmp8074-regulators", .data = &pmp8074_regulators },
+> >
+> > Please sort the compatible too.
+>
+> Will fixup in v3.
+>
+> Regards,
+> Robert
+> >
+> >
+> > Konrad
+> >
+> > >       { }
+> > >   };
+> > >   MODULE_DEVICE_TABLE(of, qcom_spmi_regulator_match);
+> > >
