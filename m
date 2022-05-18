@@ -2,73 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E163452C25C
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 20:37:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F3D252C288
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 20:45:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241454AbiERSg5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 14:36:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49338 "EHLO
+        id S241531AbiERSnL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 14:43:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241296AbiERSg4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 14:36:56 -0400
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 796321C345C;
-        Wed, 18 May 2022 11:36:55 -0700 (PDT)
-Received: by mail-yb1-xb32.google.com with SMTP id q135so5154018ybg.10;
-        Wed, 18 May 2022 11:36:55 -0700 (PDT)
+        with ESMTP id S241539AbiERSnJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 14:43:09 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 375B420D26D;
+        Wed, 18 May 2022 11:43:08 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id v191-20020a1cacc8000000b00397001398c0so3673583wme.5;
+        Wed, 18 May 2022 11:43:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Z+wFB5Fdlp80HPZ0rDBxYUuhgX0VkiUoP9qDKbx3W6U=;
-        b=i6uC2Gh7/Iu4IYcfm/izqjPXBLaBPFh9F7S/XxDzPCmeusV+g95LEEU2TxZ5+Eybcn
-         vSzevKbVChVrkixF3JhT34XLebrh3DBiRdNizqnmoccc/nzrX0H+Ex8ugdsNGzIh/3mp
-         DURbMuGpIoI7NC9lUr37VzbvjkZDgfAUGnfu5dUJGaQnxnp+qHdXtIKe6ZGFOdDoWxUD
-         taiDR28BLZGYDqhf0KXaaSv1F61XaDLid7rjBpqWmRBCp9r4fm4agcJmke60LmtzsERZ
-         Qdk63z7GJw7R0h4N0rg79sOYS+UIrCGEEr46NyYvPgb2cHD7dn6HAE+GYbmg6lnG42D6
-         4u9g==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=629EuCNPVzAl5BBiBBvqoC7bqwWqe2HUHf+13KFi4EU=;
+        b=N7x9i4oKZ4spJf0nC2xpourbHxhcMVu1vA8uxqp5db6agGtadWpvfKgcSZy22+razd
+         khZ0cUQWoy5hjWYylmTD1NFHpSGizMg6fRaNDnQm2QlQ+aEarO4QJ32JZyYRTsyngtjX
+         6dPEhuvVZUaye94Mqb90L+BRJwrvfHuiMaoC17GrGBnJ8e3R8mVi8MjvFDOMlUePZCD9
+         0VfRzgsQox21clqN0799qYokGk+yT8mwnpyR3Uc1sSL1Bz8Dp3HffTJ+w0+tkV0l2T78
+         rPoQT5NzN3z6Mn088Dl9UpHyCbOjYnttWzROnXrzuHSba7O4XP3RKFmu83NAVelwIKkC
+         xTyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Z+wFB5Fdlp80HPZ0rDBxYUuhgX0VkiUoP9qDKbx3W6U=;
-        b=2jCpqcCFrCNOBNUdtDqBlJeqvsuFg+OVf4NK7iayON38XOFpdngItq3YRP79ABpxfa
-         AsEJkxN2xpTqlPjchWkYDenJFLRaDDHGiYTAxSigpKbsmdK1vQAU0SxwmrdtRFYp+29J
-         OAJV0ArGfrEwy0HC8q6oRvNF7YR5gl+aNLLJqVBOHhAi7czTGEoSNBK605Jh963objFn
-         7rqumDaz5B8WIkcpFbrtTN76WdqVDCZDSH9pURkYIKXgpwLzz1RGLXZX8CihN+AM5Lbe
-         i1yaD2xFZkI4ld2eCgNR/xtOJFWwFOQw8mxvEh30lhErmICX1aAaThBQ/6CAJqYjcFRD
-         abQQ==
-X-Gm-Message-State: AOAM530kcWi3LG7rSlhuAX9heYXd0QRjYy5lqE7s1tNRxb/PTEkO186a
-        O4sXFVvRa3rIv4k8T6dOpTE1ucMkb+GP0BVK4BU=
-X-Google-Smtp-Source: ABdhPJxomAexeHpFDfrCohF3Dr3KktAL/UvFbfVdhyWtHW79Q4HxbdlPH0duXEI0EhEhmuUukOhmCshmVdmPlacd24s=
-X-Received: by 2002:a05:6902:1407:b0:64a:ecc7:aa2 with SMTP id
- z7-20020a056902140700b0064aecc70aa2mr937661ybu.645.1652899014699; Wed, 18 May
- 2022 11:36:54 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220511183210.5248-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220511183210.5248-5-prabhakar.mahadev-lad.rj@bp.renesas.com> <CACRpkdYQAsam_v0XHm-A_trbyifj1pBQq5N+zc9KVw1vXVTYUw@mail.gmail.com>
-In-Reply-To: <CACRpkdYQAsam_v0XHm-A_trbyifj1pBQq5N+zc9KVw1vXVTYUw@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Wed, 18 May 2022 19:36:28 +0100
-Message-ID: <CA+V-a8v_bCtoipKXyYoHsSku0-AbABi6Wj0RsHrj7_Sk4MUJyg@mail.gmail.com>
-Subject: Re: [PATCH v3 4/5] gpio: gpiolib: Add ngirq member to struct gpio_irq_chip
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=629EuCNPVzAl5BBiBBvqoC7bqwWqe2HUHf+13KFi4EU=;
+        b=E5xBz0gefq7ItEmEWuw28CaIGSI8Mo+UyFoKPqNxHwzpf2j53A5nKO3JzjaQKdKsNn
+         cRTkQi89aujPYD/WUYzkUC79PXLc1RQAbrSKUmu3XTvnl9ymksyKvOl7/NIwvVRuNMmE
+         qKlLw/zzvYBJMEbrapoLPVEOZhqHFi2eI5p9ftnfnDybk3KGhPYbRy2coj1UPWDYCqTU
+         rUo87VJ2oSjeWreYtA7zB0uf1nAf3pNJeNW42CMr6cD55Ak/znrc2H4YfB/9nsJ42+oK
+         y1HD8zR570G/FR3vcIisCyJqE/uH6vKMhyUUd2OzFIQiYKZuhjqveio2tW0LqO9af4+V
+         CAaw==
+X-Gm-Message-State: AOAM532rbira6jZwiK82CKE6WHfic4g6HSDQB5YLpLUhdM0KCUGIjPi5
+        vbiYDAkgMygzfcTJQSgQDgVhNfS1XNc=
+X-Google-Smtp-Source: ABdhPJwv3JxgSmNPpRs7CVBBT2W/2LDoLrHtng0kDykKkolE2BmoGPlfR5Iwtvh5hNhPGcBkeIxznw==
+X-Received: by 2002:a7b:cb84:0:b0:382:a9b9:2339 with SMTP id m4-20020a7bcb84000000b00382a9b92339mr1137496wmi.91.1652899386459;
+        Wed, 18 May 2022 11:43:06 -0700 (PDT)
+Received: from localhost.localdomain (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
+        by smtp.googlemail.com with ESMTPSA id q9-20020adf9dc9000000b0020d02ddf4d5sm2768546wre.5.2022.05.18.11.43.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 May 2022 11:43:05 -0700 (PDT)
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Manivannan Sadhasivam <mani@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        linux-mtd@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Ansuel Smith <ansuelsmth@gmail.com>
+Subject: [PATCH v3 0/2] Add support for unprotected spare data page
+Date:   Wed, 18 May 2022 20:42:54 +0200
+Message-Id: <20220518184256.21238-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -79,35 +75,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+Some background about this.
+On original qsdk ipq8064 based firmware there was a big separation from
+boot partition and user partition. With boot partition we refer to
+partition used to init the router (bootloader, spm firmware and other
+internal stuff) With user partition we refer to linux partition and data
+partition not used to init the router.
+When someone had to write to these boot partition a special mode was
+needed, to switch the nand driver to this special configuration.
 
-Thank you for the review.
+Upstream version of the nandc driver totally dropped this and the result
+is that if someone try to read data from these partition a CRC warning
+is printed and if someone try to write that (if for example someone
+wants to replace the bootloader) result is a broken system as the data
+is badly written.
 
-On Fri, May 13, 2022 at 9:47 PM Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> On Wed, May 11, 2022 at 8:32 PM Lad Prabhakar
-> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
->
-> > Supported GPIO IRQs by the chip is not always equal to the number of GPIO
-> > pins. For example on Renesas RZ/G2L SoC where it has GPIO0-122 pins but at
-> > a give point a maximum of only 32 GPIO pins can be used as IRQ lines in
-> > the IRQC domain.
-> >
-> > This patch adds ngirq member to struct gpio_irq_chip and passes this as a
-> > size to irq_domain_create_hierarchy()/irq_domain_create_simple() if it is
-> > being set in the driver otherwise fallbacks to using ngpio.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> As Geert says, I think you can just use .valid_mask for this,
-> what do you say?
->
-I don't think Geert is suggesting that. The .valid_mask option is one
-time setting but what I need is something dynamic i.e. out of 392 GPIO
-pins any 32 can be used as an interrupt pin. Also with this patch we
-also save on memory [0].
+This series comes to fix this.
 
-[0] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/kernel/irq/irqdomain.c?h=next-20220518#n153
+A user can declare offset and size of these special partition using the
+qcom,boot-pages binding.
 
-Cheers,
-Prabhakar
+An initial implementation of this assumed that the boot-pages started
+from the start of the nand but we discover that some device have backup
+of these special partition and we can have situation where we have this
+partition scheme
+- APPSBL (require special mode)
+- APPSBLENV (doesn't require special mode)
+- ART
+- APPSBLBK (back of APPSBL require special mode)
+- APPSBLENVBK (back of APPSBLENV doesn't require special mode)
+With this configuration we need to declare sparse boot page and we can't
+assume boot-pages always starts from the start of the nand.
+
+A user can use this form to declare sparse boot pages
+qcom,boot-pages = <0x0 0x0c80000 0x0c80000 0x0500000>;
+
+The driver internally will parse this array, convert it to nand pages
+and check internally on every read/write if this special configuration
+should used for that page or the normal one.
+
+The reason for all of this is that qcom FOR SOME REASON, disable ECC for
+spare data only for these boot partition and we need to reflect this
+special configuration to mute these warning and to permit actually
+writing to these pages.
+
+v3:
+- Fix typo in Docmunetation commit desription
+- Add items description for uint32-matrix
+v2:
+- Add fixes from Krzysztof in Documentation
+
+Ansuel Smith (2):
+  mtd: nand: raw: qcom_nandc: add support for unprotected spare data
+    pages
+  dt-bindings: mtd: qcom_nandc: document qcom,boot-pages binding
+
+ .../devicetree/bindings/mtd/qcom,nandc.yaml   |  26 +++
+ drivers/mtd/nand/raw/qcom_nandc.c             | 148 +++++++++++++++++-
+ 2 files changed, 169 insertions(+), 5 deletions(-)
+
+-- 
+2.34.1
+
