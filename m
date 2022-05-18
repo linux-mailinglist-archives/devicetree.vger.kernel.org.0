@@ -2,190 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3FCC52B546
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 11:01:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB1DB52B63F
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 11:29:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233624AbiERI6F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 04:58:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57486 "EHLO
+        id S233712AbiERJDO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 05:03:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233637AbiERI6E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 04:58:04 -0400
-X-Greylist: delayed 346 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 18 May 2022 01:57:49 PDT
-Received: from 3.mo548.mail-out.ovh.net (3.mo548.mail-out.ovh.net [188.165.32.156])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A4FE2ADD
-        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 01:57:49 -0700 (PDT)
-Received: from mxplan5.mail.ovh.net (unknown [10.108.1.6])
-        by mo548.mail-out.ovh.net (Postfix) with ESMTPS id A88812369D;
-        Wed, 18 May 2022 08:52:00 +0000 (UTC)
-Received: from kaod.org (37.59.142.107) by DAG4EX1.mxp5.local (172.16.2.31)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Wed, 18 May
- 2022 10:51:59 +0200
-Authentication-Results: garm.ovh; auth=pass (GARM-107S0014f754fc7-15cb-49af-bbdd-8a187c23a99f,
-                    DB10E105899AAE3BCA8ABEF0D93527152A7ECCF8) smtp.auth=clg@kaod.org
-X-OVh-ClientIp: 82.64.250.170
-Message-ID: <b3bfa5a6-caac-94ed-6741-04db9c2a9ee0@kaod.org>
-Date:   Wed, 18 May 2022 10:51:58 +0200
+        with ESMTP id S233682AbiERJDN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 05:03:13 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02E20131F0E;
+        Wed, 18 May 2022 02:03:07 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1nrFa3-0007Q7-65; Wed, 18 May 2022 11:02:55 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Rob Herring <robh@kernel.org>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>
+Cc:     palmer@dabbelt.com, paul.walmsley@sifive.com,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        wefu@redhat.com, guoren@kernel.org, atishp@atishpatra.org,
+        anup@brainfault.org, mick@ics.forth.gr, samuel@sholland.org,
+        cmuellner@linux.com, krzk+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: riscv: document cbom-block-size
+Date:   Wed, 18 May 2022 11:02:54 +0200
+Message-ID: <1893094.PYKUYFuaPT@diego>
+In-Reply-To: <CAAeLtUBLpDHeJHfPtaUb_OLZb_6cUQa1Z_F+06pkdJMSHtWrfQ@mail.gmail.com>
+References: <20220511214132.2281431-1-heiko@sntech.de> <20220518002529.GA1928329-robh@kernel.org> <CAAeLtUBLpDHeJHfPtaUb_OLZb_6cUQa1Z_F+06pkdJMSHtWrfQ@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [RFC PATCH 3/6] mtd: spi-nor: core: run calibration when
- initialization is done
-Content-Language: en-US
-To:     Pratyush Yadav <p.yadav@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-CC:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Michael Walle <michael@walle.cc>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Mark Brown <broonie@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mtd@lists.infradead.org>, <linux-spi@vger.kernel.org>,
-        Joel Stanley <joel@jms.id.au>
-References: <20210311191216.7363-1-p.yadav@ti.com>
- <20210311191216.7363-4-p.yadav@ti.com> <20220517160226.4107f282@xps-13>
- <20220518060640.os5fp5rez4ie7qc4@ti.com> <20220518091931.279c5398@xps-13>
- <20220518075651.mvdhfnfbgutecgyq@ti.com>
-From:   =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>
-In-Reply-To: <20220518075651.mvdhfnfbgutecgyq@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [37.59.142.107]
-X-ClientProxiedBy: DAG1EX2.mxp5.local (172.16.2.2) To DAG4EX1.mxp5.local
- (172.16.2.31)
-X-Ovh-Tracer-GUID: 37372b08-b3f9-44cc-83f6-bcc565d4553b
-X-Ovh-Tracer-Id: 12947848930754923396
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrheelgddtjecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfhisehtjeertddtfeejnecuhfhrohhmpeevrogurhhitggpnfgvpgfiohgrthgvrhcuoegtlhhgsehkrghougdrohhrgheqnecuggftrfgrthhtvghrnhepleelieeigfekfeeitddvieegteeuteekffekleehuefgteetgedvkefghefggfeknecukfhppedtrddtrddtrddtpdefjedrheelrddugedvrddutdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehmgihplhgrnhehrdhmrghilhdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheptghlgheskhgrohgurdhorhhgpdhnsggprhgtphhtthhopedupdhrtghpthhtohepjhhovghlsehjmhhsrdhiugdrrghu
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
-
-On 5/18/22 09:56, Pratyush Yadav wrote:
-> On 18/05/22 09:19AM, Miquel Raynal wrote:
->> Hi Pratyush,
->>
->> p.yadav@ti.com wrote on Wed, 18 May 2022 11:37:05 +0530:
->>
->>> +Cedric
->>>
->>> On 17/05/22 04:02PM, Miquel Raynal wrote:
->>>> Hi Pratyush,
->>>>
->>>> p.yadav@ti.com wrote on Fri, 12 Mar 2021 00:42:13 +0530:
->>>>    
->>>>> Once the flash is initialized tell the controller it can run
->>>>> calibration procedures if needed. This can be useful when calibration is
->>>>> needed to run at higher clock speeds.
->>>>>
->>>>> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
->>>>> ---
->>>>>   drivers/mtd/spi-nor/core.c | 12 ++++++++++--
->>>>>   1 file changed, 10 insertions(+), 2 deletions(-)
->>>>>
->>>>> diff --git a/drivers/mtd/spi-nor/core.c b/drivers/mtd/spi-nor/core.c
->>>>> index 88888df009f0..e0cbcaf1be89 100644
->>>>> --- a/drivers/mtd/spi-nor/core.c
->>>>> +++ b/drivers/mtd/spi-nor/core.c
->>>>> @@ -3650,6 +3650,7 @@ static int spi_nor_probe(struct spi_mem *spimem)
->>>>>   	 * checking what's really supported using spi_mem_supports_op().
->>>>>   	 */
->>>>>   	const struct spi_nor_hwcaps hwcaps = { .mask = SNOR_HWCAPS_ALL };
->>>>> +	struct spi_mem_op op;
->>>>>   	char *flash_name;
->>>>>   	int ret;
->>>>>   
->>>>> @@ -3709,8 +3710,15 @@ static int spi_nor_probe(struct spi_mem *spimem)
->>>>>   	if (ret)
->>>>>   		return ret;
->>>>>   
->>>>> -	return mtd_device_register(&nor->mtd, data ? data->parts : NULL,
->>>>> -				   data ? data->nr_parts : 0);
->>>>> +	ret = mtd_device_register(&nor->mtd, data ? data->parts : NULL,
->>>>> +				  data ? data->nr_parts : 0);
->>>>> +	if (ret)
->>>>> +		return ret;
->>>>> +
->>>>> +	op = spi_nor_spimem_get_read_op(nor);
->>>>
->>>> Isn't this too specific? I really don't know much about spi-nors, but I
->>>> find odd to have this op being created here, why not moving this into
->>>> the _do_calibration() helper?
->>>
->>> Maybe the naming confused you but this is a function in the SPI NOR
->>> core, not in SPI MEM. SPI NOR supports both SPI MEM based controllers
->>> and "legacy" controllers, so the convention is to add the "spimem"
->>> prefix before SPI MEM specific functions. So I don't get the comment
->>> about it being too specific. It is too specific to what?
->>
->> Mmh right, it's fine then.
->>
->>>
->>> And how can spi_mem_do_calibration() know what op the flash uses to read
->>> data? SPI NOR or SPI NAND would know it, but not SPI MEM. That is why we
->>> pass in that information to spi_mem_do_calibration().
->>
->> But here the op is "spi-nor wide", I would have expected a
->> per-device op. But that is not a big deal, that is something that can
->> also be updated later if needed I guess.
+Am Mittwoch, 18. Mai 2022, 10:22:17 CEST schrieb Philipp Tomsich:
+> +David Kruckemyer (who is chairing the CMO task-group within RVI).
 > 
-> It is per-device. The op is generated using nor->read_opcode,
-> nor->addr_width, nor->read_dummy, etc. So if you have 2 NOR flashes on
-> your system with different opcodes, it would work for both.
+> On Wed, 18 May 2022 at 02:25, Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Wed, May 11, 2022 at 11:41:30PM +0200, Heiko Stuebner wrote:
+> > > The Zicbom operates on a block-size defined for the cpu-core,
+> > > which does not necessarily match other cache-sizes used.
+> > >
+> > > So add the necessary property for the system to know the core's
+> > > block-size.
+> > >
+> > > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> > > ---
+> > >  Documentation/devicetree/bindings/riscv/cpus.yaml | 7 +++++++
+> > >  1 file changed, 7 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > > index d632ac76532e..b179bfd155a3 100644
+> > > --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > > +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> > > @@ -63,6 +63,13 @@ properties:
+> > >        - riscv,sv48
+> > >        - riscv,none
+> > >
+> > > +  riscv,cbom-block-size:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> >
+> > Any value 0-2^32 is valid?
+> >
+> > > +    description:
+> > > +      Blocksize in bytes for the Zicbom cache operations. The block
+> > > +      size is a property of the core itself and does not necessarily
+> > > +      match other software defined cache sizes.
+> >
+> > What about hardware defined cache sizes? I'm scratching my head as to
+> > what a 'software defined cache size' is.
+
+I agree that this should be worded better. The intent was to tell that this
+is different from say the l1-cache-block-size.
+
+I.e. these values can be the same but don't need to be. But I guess I got
+too much lead on by a kernel implementation detail (L1_CACHE_BYTES constant)
+
+
+> This seems to be a misnomer, as the specification doesn't use the term
+> and rather talks about the "size of a cache block for [operation
+> name]".
 > 
->>
->> One last question, is there something that mtd_device_register() does
->> that is really needed for the calibration to work? Otherwise I would
->> rather prefer to have that calibration happening before the user gets
->> access to the device.
+> There are currently two such 'operation sizes' discoverable by software:
+> - size of the cache block for management and prefetch instructions
+> - size of the cache block for zero instructions
+> 
+> For whatever it's worth, cache operations in RISC-V attempt to
+> disassociate the underlying hardware cache geometry from software.
+> See https://github.com/riscv/riscv-CMOs/blob/master/specifications/cmobase-v1.0.1.pdf
+> for the CMO specification, and the discoverable parameters are listed
+> in section 2.7.
+> 
+> Philipp.
+> 
+> > > +
+> > >    riscv,isa:
+> > >      description:
+> > >        Identifies the specific RISC-V instruction set architecture
+> > > --
+> > > 2.35.1
+> > >
+> > >
+> 
 
-Which would mean calling it right after :
 
-	ret = spi_nor_create_read_dirmap(nor);
-	if (ret)
-		return ret;
 
-	ret = spi_nor_create_write_dirmap(nor);
-	if (ret)
-		return ret;
 
-> The calibration works by reading a known pattern that is already written
-> to the flash again and again and seeing what delays work and what don't.
-> For that to happen, the controller driver needs to know where the
-> pattern is stored. 
-
-Why don't you simply choose some random place, first 16KB for instance,
-and check that the data is random enough ? If not, declare calibration
-not possible and choose a default safe setting which is anyhow a
-requirement for calibration. Retry at reboot as data might have changed.
-
-> This series does that by looking at the MTD
-> partitions. For that to happen, we need to create those partitions
-> first, which happens after mtd_device_register().
-
-hmm, that might work for some boards. This is not at all the case for
-the BMC boards. Vendors can put any kind of flash model and/or layout
-and the driver needs to be more generic.
-
-> But I am planning to use device tree to get that information now so this
-> should no longer be needed and we can do calibration before registering
-> the device with MTD.
-
-Perfect, we can move the calibration hook in spi_nor_create_read_dirmap()
-then, or in devm_spi_mem_dirmap_create(), which would make more sense IMHO.
-
-Thanks,
-
-C.
