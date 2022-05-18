@@ -2,94 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB98E52BF69
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 18:13:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4970452BF05
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 18:13:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239272AbiERP3N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 11:29:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60196 "EHLO
+        id S239290AbiERP3a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 11:29:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229496AbiERP3M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 11:29:12 -0400
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBAA71B434D;
-        Wed, 18 May 2022 08:29:11 -0700 (PDT)
-Received: from pps.filterd (m0098394.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 24IEkaBF003744;
-        Wed, 18 May 2022 15:28:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=XigF0c1XIn0zOqzJy9+wjaCAz2NNx/WGj+88bUxBk3s=;
- b=e31joTDg2P04/oTRJxv/M5EzXdzjy9eTU5BchsfgNUET4/+duoSkaQX1RsfnAJx5aQTA
- R+qfIfEjgRr7GwW81sDqd2OiMVvfZfo2zrgP5e3Ox8+p1pHVrDNpSaxjIsj4aFXKWm5N
- QeJ+Ygl1vz/VFjoILRXFXCNQJsZlVnheIVz1So4MuDIXGYqTFf9cml1DmsEws5K/2j2q
- qb0LWpzeKYaHwIrU1jaVe4BNFsYcNSXC7vxZR05rq4xdr69GlZUfp288vnge1ZiCNoIp
- Wtj5+/S6UENlQ7P31wQaeig21a/PxJe+8UrzwLNdCxPoysJ572PFvTnx0gurUd6ZdTGa uA== 
-Received: from ppma03dal.us.ibm.com (b.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.11])
-        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3g52v1939j-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 18 May 2022 15:28:46 +0000
-Received: from pps.filterd (ppma03dal.us.ibm.com [127.0.0.1])
-        by ppma03dal.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 24IFJsxn032267;
-        Wed, 18 May 2022 15:28:45 GMT
-Received: from b01cxnp23032.gho.pok.ibm.com (b01cxnp23032.gho.pok.ibm.com [9.57.198.27])
-        by ppma03dal.us.ibm.com with ESMTP id 3g242ammws-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 18 May 2022 15:28:45 +0000
-Received: from b01ledav005.gho.pok.ibm.com (b01ledav005.gho.pok.ibm.com [9.57.199.110])
-        by b01cxnp23032.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 24IFSiMn16384412
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 18 May 2022 15:28:44 GMT
-Received: from b01ledav005.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 38457AE068;
-        Wed, 18 May 2022 15:28:44 +0000 (GMT)
-Received: from b01ledav005.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 3DF8CAE064;
-        Wed, 18 May 2022 15:28:43 +0000 (GMT)
-Received: from [9.163.6.139] (unknown [9.163.6.139])
-        by b01ledav005.gho.pok.ibm.com (Postfix) with ESMTP;
-        Wed, 18 May 2022 15:28:43 +0000 (GMT)
-Message-ID: <bbeaa4b6-1412-dfac-a6ef-dbcd9f1e3f5c@linux.ibm.com>
-Date:   Wed, 18 May 2022 10:28:42 -0500
+        with ESMTP id S239283AbiERP32 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 11:29:28 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88C481BE972;
+        Wed, 18 May 2022 08:29:26 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id h14so3229630wrc.6;
+        Wed, 18 May 2022 08:29:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=L9LLbTJecM2+Gol/XKLTvu9gjYd8YO6104B2zHq2tR8=;
+        b=ltUs138Bdx3d66Ugiw+/V53Zi29vH+2z11EU5nuF+tYbIPOm04PRN3WFguQYw4YjwQ
+         Azn4YmzIS32VsEs7zLtmsxKfapNIm3f0o/Ga6GQtu8rl1NOsXzt41knSkK/jiY/NdYpB
+         CTYUGFUssWTTxD2jSU0ag+CwgCXpvAJ4mnDsgL6RYRHk1ilsfYkTktS4WvibXK71Xl9N
+         P/5pVAjE5k/d4VxFwAnZUokWb4fREaoNQ1qxbOE401peIDrqvDHVsXSlLFdxKCTYX9Sh
+         WzofBGEuSGp1l8AMWhqRLm8EaFMYHgFFdXSuQRq98rYTEXDrdclIsyBq7lxw1LWSnGaE
+         lpfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=L9LLbTJecM2+Gol/XKLTvu9gjYd8YO6104B2zHq2tR8=;
+        b=l6Dkbt/kjuCr6VRWVLKQJpf+ljmFMx3euv0A22OUiuHT9pI+ICFb+iF4bwLNOltMbK
+         V72xVjulr6A4RFylrnUjA3rFmGpnrqfgTFFDG8DRj9jUtnL8zAmYX6DfNZe/6M0prLmN
+         lQqaJvu911LUf1eMLtaZ21EVKshe+BIHq13Ai2AY7BBSc81Ol0onFZZfyLMw5JKUFIeh
+         lbXxLcKtj1NjJqjZN/zFRQ9zHgHvY52Toc4IsRM6HRajB+Vjmrjy98j1MBQtLi2LKLYf
+         eQyoNVelKXL4g1jzc9ksTonWuv1MqPxmCW+FMumWHNmGBCcRidhYAI91x9LpbFCo0YGD
+         e5bQ==
+X-Gm-Message-State: AOAM533t9P9MY8nLaKFc1HOZmpnViPiIctrRPh9/ZxQTHsa1I4gs7QPC
+        gwc6lzrkzJaaMA7Ua6HozNM=
+X-Google-Smtp-Source: ABdhPJyNBVv6hgk0mSbEMs8PC438YDcloF/c3bcW5X/NP/lgqjAY83XT59kEsZDMtpdWf3kBkE58lg==
+X-Received: by 2002:adf:f90d:0:b0:20c:de32:4d35 with SMTP id b13-20020adff90d000000b0020cde324d35mr179613wrr.583.1652887764738;
+        Wed, 18 May 2022 08:29:24 -0700 (PDT)
+Received: from orome ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id l16-20020a05600c1d1000b0039444973258sm6173377wms.0.2022.05.18.08.29.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 May 2022 08:29:23 -0700 (PDT)
+Date:   Wed, 18 May 2022 17:29:20 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Janne Grunau <j@jannau.net>
+Cc:     Rob Herring <robh+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Sameer Pujar <spujar@nvidia.com>, devicetree@vger.kernel.org,
+        iommu@lists.linux-foundation.org, linux-tegra@vger.kernel.org,
+        asahi@lists.linux.dev
+Subject: Re: [PATCH v5 0/5] iommu: Support mappings/reservations in
+ reserved-memory regions
+Message-ID: <YoUQ0HlhwGiFPUrz@orome>
+References: <20220512190052.1152377-1-thierry.reding@gmail.com>
+ <20220515103544.GC26732@jannau.net>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v2 0/2] iio: humidity: si7020: Check device property for
- skipping reset in probe
-Content-Language: en-US
-To:     Peter Rosin <peda@axentia.se>, Jonathan Cameron <jic23@kernel.org>,
-        devicetree@vger.kernel.org
-Cc:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        lars@metafoo.de, miltonm@us.ibm.com, linux-i2c@vger.kernel.org
-References: <20220512162020.33450-1-eajames@linux.ibm.com>
- <20220512174859.000042b6@Huawei.com>
- <4fd44316-689e-1b72-d483-2c617d2a455d@linux.ibm.com>
- <20220513174531.00007b9b@Huawei.com>
- <b2761479-50fe-0dce-62a2-3beff5cdef9d@axentia.se>
- <20220514144318.309be1ec@jic23-huawei>
- <0569bb70-e2dc-de85-268d-30ee7c9491fb@axentia.se>
-From:   Eddie James <eajames@linux.ibm.com>
-In-Reply-To: <0569bb70-e2dc-de85-268d-30ee7c9491fb@axentia.se>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: 0OUP7aMAEDo8lO89jTJcQU-rsYsSvMhB
-X-Proofpoint-GUID: 0OUP7aMAEDo8lO89jTJcQU-rsYsSvMhB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.874,Hydra:6.0.486,FMLib:17.11.64.514
- definitions=2022-05-18_05,2022-05-17_02,2022-02-23_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 impostorscore=0
- bulkscore=0 malwarescore=0 suspectscore=0 spamscore=0 phishscore=0
- mlxscore=0 clxscore=1011 mlxlogscore=999 priorityscore=1501
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2202240000 definitions=main-2205180089
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="JWsdxCgDOF9zoQXr"
+Content-Disposition: inline
+In-Reply-To: <20220515103544.GC26732@jannau.net>
+User-Agent: Mutt/2.2.4 (c3baa83e) (2022-04-30)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -97,109 +82,153 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 5/14/22 10:02, Peter Rosin wrote:
-> 2022-05-14 at 15:43, Jonathan Cameron wrote:
->> On Sat, 14 May 2022 00:48:51 +0200
->> Peter Rosin <peda@axentia.se> wrote:
->>
->>> Hi!
->>>
->>> 2022-05-13 at 18:45, Jonathan Cameron wrote:
->>>> On Thu, 12 May 2022 12:08:07 -0500
->>>> Eddie James <eajames@linux.ibm.com> wrote:
->>>>    
->>>>> On 5/12/22 11:48, Jonathan Cameron wrote:
->>>>>> On Thu, 12 May 2022 11:20:18 -0500
->>>>>> Eddie James <eajames@linux.ibm.com> wrote:
->>>>>>     
->>>>>>> I2C commands issued after the SI7020 is starting up or after reset
->>>>>>> can potentially upset the startup sequence. Therefore, the host
->>>>>>> needs to wait for the startup sequence to finish before issuing
->>>>>>> further i2c commands. This is impractical in cases where the SI7020
->>>>>>> is on a shared bus or behind a mux, which may switch channels at
->>>>>>> any time (generating I2C traffic). Therefore, check for a device
->>>>>>> property that indicates that the driver should skip resetting the
->>>>>>> device when probing.
->>>>>> Why not lock the bus?  It's not ideal, but then not resetting and hence
->>>>>> potentially ending up in an unknown state isn't great either.
->>>>>
->>>>> Agreed, but locking the bus doesn't work in the case where the chip is
->>>>> behind a mux. The mux core driver deselects the mux immediately after
->>>>> the transfer to reset the si7020, causing some i2c traffic, breaking the
->>>>> si7020. So it would also be a requirement to configure the mux to idle
->>>>> as-is... That's why I went with the optional skipping of the reset.
->>>>> Maybe I should add the bus lock too?
->>>>>   
->>>> +Cc Peter and linux-i2c for advice as we should resolve any potential
->>>> issue with the mux side of things rather than hiding it in the driver
->>>> (if possible!)
->>> IIUC, the chip in question cannot handle *any* action on the I2C bus
->>> for 15ms (or so) after a "soft reset", or something bad<tm> happens
->>> (or at least may happen).
->>>
->>> If that's the case, then providing a means of skipping the reset is
->>> insufficient. If you don't lock the bus, you would need to *always*
->>> skip the reset, because you don't know for certain if something else
->>> does I2C xfers.
->>>
->>> So, in order to make the soft reset not be totally dangerous even in
->>> a normal non-muxed environment, the bus must be locked for the 15ms.
->>>
->>> However, Eddie is correct in that the I2C mux code may indeed do its
->>> muxing xfer right after the soft reset command. There is currently
->>> no way to avoid that muxing xfer. However, it should be noted that
->>> there are ways to mux an I2C bus without using xfers on the bus
->>> itself, so it's not problematic for *all* mux variants.
->>>
->>> It can be debated if the problem should be worked around with extra
->>> dt properties like this, or if a capability should be added to delay
->>> a trailing muxing xfer.
->>>
->>> I bet there are other broken chips that have drivers that do in fact
->>> lock the bus to give the chip a break, but then it all stumbles
->>> because of the unexpected noise if there's a (wrong kind of) mux in
->>> the mix.
->> Ok, so for now I think we need the bus lock for the reset + either
->> a work around similar to this series, or additions to the i2c mux code
->> to stop it doing a muxing xfer if the bus is locked?
-> I think there might be cases where it might be valid to restore the mux
-> directly after an xfer even if the mux is externally locked prior to the
-> muxed xfer. But I'm not sure? In any case, it will be a bit convoluted
-> for the mux code to remember that it might need to restore the mux
-> later. And it will get even hairier when multiple levels of muxing is
-> considered...
->
-> Maybe some kind of hook/callback that could be installed temporarily on
-> the I2C adapter that is called right after the "real" xfer, where the
-> driver could then make the needed mdelay call?
->
-> I.e.
-> 1. lock the bus
-> 2. install this new hook/callback
-> 3. do an unlocked xfer, get notified and call mdelay
-> 5. uninstall the hook/callback
-> 6. unlock the bus
->
-> The hook/callback could be uninstalled automatically on unlock, then
-> you would not need to handle multiple notifications. But then again,
-> there is probably some existing framework that should be used that
-> handles all than neatly and efficiently.
+--JWsdxCgDOF9zoQXr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Sun, May 15, 2022 at 12:35:44PM +0200, Janne Grunau wrote:
+> Hej,
+>=20
+> I'm working on the display controller for Apple silicon SoCs and will=20
+> add some comments with support for it in mind.
+>=20
+> added asahi@lists.linux.dev to CC for the Apple silicon related aspects
+>=20
+> On 2022-05-12 21:00:47 +0200, Thierry Reding wrote:
+> >=20
+> > this is another attempt at solving the problem of passing IOMMU
+> > configuration via device tree. It has significantly evolved since the
+> > last attempt, based on the discussion that followed. The discussion can
+> > be found here:
+> >=20
+> >   https://lore.kernel.org/all/20210423163234.3651547-1-thierry.reding@g=
+mail.com/
+> >=20
+> > Rather than using a memory-region specifier, this new version introduces
+> > a new "iommu-addresses" property for the reserved-memory regions
+> > themselves.
+>=20
+> If experimented with both proposed bindings for dcp and I think this=20
+> binding is easer to understand and to work with.
+>=20
+> > These are used to describe either a static mapping or
+> > reservation that should be created for a given device. If both "reg" and
+> > "iommu-addresses" properties are given, a mapping will be created
+> > (typically this would be an identity mapping)
+>=20
+> dcp on Apple silicon will not use identity mappings. The IOMMU supports=
+=20
+> identity mapping but the pre-configured mappings setup by Apple's system=
+=20
+> firmware will not work with identity mapping. It maps multiple regions=20
+> which are incompatible with a linear identity mapping. In addition the=20
+> embbeded aarch64 micro controllers used in the display subsystem appears=
+=20
+> to use a heap mapped at low IOVA space starting at 0.
+>=20
+> > whereas if only an "iommu-addresses" property is specified, a=20
+> > reservation for the specified range will be installed.
+> >=20
+> > An example is included in the DT bindings, but here is an extract of
+> > what I've used to test this:
+> >=20
+> > 	reserved-memory {
+> > 		#address-cells =3D <2>;
+> > 		#size-cells =3D <2>;
+> > 		ranges;
+> >=20
+> > 		/*
+> > 		 * Creates an identity mapping for the framebuffer that
+> > 		 * the firmware has setup to scan out a bootsplash from.
+> > 		 */
+> > 		fb: framebuffer@92cb2000 {
+> > 			reg =3D <0x0 0x92cb2000 0x0 0x00800000>;
+> > 			iommu-addresses =3D <&dc0 0x0 0x92cb2000 0x0 0x00800000>;
+> > 		};
+>=20
+> The binding supports mapping the same region to multiple devices. The=20
+> code supports that and it will be used on Apple silicon. Not necessary=20
+> to extend and complicate the example for I wanted to mention it=20
+> explicitly.
+>=20
+> >=20
+> > 		/*
+> > 		 * Creates a reservation in the IOVA space to prevent
+> > 		 * any buffers from being mapped to that region. Note
+> > 		 * that on Tegra the range is actually quite different
+> > 		 * from this, but it would conflict with the display
+> > 		 * driver that I tested this against, so this is just
+> > 		 * a dummy region for testing.
+> > 		 */
+> > 		adsp: reservation-adsp {
+> > 			iommu-addresses =3D <&dc0 0x0 0x90000000 0x0 0x00010000>;
+> > 		};
+> > 	};
+> >=20
+> > 	host1x@50000000 {
+> > 		dc@54200000 {
+> > 			memory-region =3D <&fb>, <&adsp>;
+> > 		};
+> > 	};
+> >=20
+> > This is abbreviated a little to focus on the essentials. Note also that
+> > the ADSP reservation is not actually used on this device and the driver
+> > for this doesn't exist yet, but I wanted to include this variant for
+> > testing, because we'll want to use these bindings for the reservation
+> > use-case as well at some point.
+> >=20
+> > Adding Alyssa and Janne who have in the past tried to make these
+> > bindings work on Apple M1. Also adding Sameer from the Tegra audio team
+> > to look at the ADSP reservation and double-check that this is suitable
+> > for our needs.
+>=20
+> The binding itself is sufficient for the needs of the display subsystem=
+=20
+> on Apple silicon. The device tree parsing code for reserved regions is=20
+> of limited use in it's current form. We will have either to extend or=20
+> duplicate it to retrieve the non-identity mappings. That's our problem=20
+> to solve.
 
-Hm, interesting. Sounds a bit complicated, though very flexible. For a 
-less flexible, but less complex, approch, we could add a i2c_msg flag 
-that says to do a delay in the core? And then si7020 could just submit a 
-couple of raw messages rather than smbus... What do you think?
+I had looked at it a bit to see if I could easily implement that, but
+the direct mapping support in the IOMMU subsystem currently only
+supports either reservations or identity mappings, so arbitrary mappings
+would either have to be added to that code, or it would have to take a
+different code path that basically goes through the same steps, except
+that it uses different physical and I/O virtual addresses.
 
+The easiest, I think, would be for struct iommu_resv_region to be
+extended with a pair of start/length fields for the I/O virtual address
+and then the rest of the code should mostly work. This shouldn't even be
+very invasive, maybe just adding a version of iommu_alloc_resv_region()
+that takes the I/O virtual addresses as additional parameters.
 
-Thanks,
+Come to think of it, the current code could probably be improved a bit
+by checking if the addresses in the reg and iommu-addresses properties
+match. Currently the code just ignores the reserved memory region's
+"reg" property, so one could technically set up a mapping that points to
+physical memory that the device doesn't "own".
 
-Eddie
+Thierry
 
+--JWsdxCgDOF9zoQXr
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
->
-> Me waves hand a bit...
->
-> Cheers,
-> Peter
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmKFEM4ACgkQ3SOs138+
+s6FH5hAAltE4HtuVrS9ClCWOHTJmFHhrFtlbv9trGdfDlv3UdPT41oShZt9bt0gh
+0daHxlzSmUsMU0YTDmUx3CQQK7ec9z+DktHV9n9eU6HyehBWTjttJzJf1L4CaUTc
+MjNCm1R1O8ytiH3H5mcPIVpiw17X3cKYeuwS0TcUgEmEknPVAHViHFvW01toaZSN
+0L6PBANJsZjJ2sGFxNQs+Hj6xcwxdlq8Ub+AKxz0zcV/Z7IHclr/+yNNzUbQC67R
+gZMkGkWm665ucqA3sFXuDM+gaR7bfCsDYDpP/M62yM3MwKL/CR8ALk6t5/dFIsRj
+47hhFH0znXng1+KmSISQ1UWA2LUpJz4IwR+JCXob2z7cJOjzC8RY/8tSGfNsJRs6
+cgaBoa+i1ApCnkX6PvnDWcgGB/tG+GDQgI0O955XOGaskNjy5jNcJWk04++gAQbz
+ZrSMIxi2rBTQZLaxzc5s+MKInI2o0VTWQqkTw5ClW1uXNNqBpqV+D62uSc70GW1H
+jOrbZ3RkhmVRvXr5iWKMnne7XBGky7J4gc4UpA/7iUdi0qYRd4ju+8KpsRfeWhq6
+nP6vLONYS5IXgGxR3zvEhWqrtjQTWUrW8EUCbwylo2Lm0pmlCDAadoTWMHq/wry6
+2c/MYkpNS8jJNtJoLkIhr+rIloUpci6apBVn3HM+2vicQYVYnEc=
+=2ao1
+-----END PGP SIGNATURE-----
+
+--JWsdxCgDOF9zoQXr--
