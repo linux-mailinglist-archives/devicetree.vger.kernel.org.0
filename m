@@ -2,138 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 822C052BCE4
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 16:17:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23B1652BD1F
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 16:17:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237030AbiERMsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 08:48:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33692 "EHLO
+        id S237342AbiERMr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 08:47:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237572AbiERMqF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 08:46:05 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D87511632AC;
-        Wed, 18 May 2022 05:43:04 -0700 (PDT)
+        with ESMTP id S237491AbiERMqD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 08:46:03 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93CE915E4A7;
+        Wed, 18 May 2022 05:42:43 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id h5so1407131wrb.11;
+        Wed, 18 May 2022 05:42:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1652877785; x=1684413785;
-  h=from:to:cc:subject:date:message-id:mime-version;
-  bh=s1haGoMzWn+D78/Wjs5Eo95uLM9lSkcETlTB2+3u46w=;
-  b=hnpwlAkkzVzs23vGtWnOfs/wUZonfu7p2syRxT77kFgjRaBgptaGyWRy
-   YYYiBm8r2Oajs5yr+k9fV8Xhg4g7sBXtbvnNC+CC+2Vf3zZNLQg0WYlG3
-   dxcU+71xKU3D09DqeYMl7Ix3sgK4GFLhl4PTJQ1/2cnTmDp/Nq87w0ki4
-   4=;
-Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
-  by alexa-out.qualcomm.com with ESMTP; 18 May 2022 05:43:03 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 May 2022 05:43:03 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 18 May 2022 05:43:02 -0700
-Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 18 May 2022 05:42:56 -0700
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
-        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
-        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
-        <judyhsiao@chromium.org>, <vkoul@kernel.org>
-CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Subject: [PATCH v2] ASoC: qcom: soundwire: Add support for controlling audio CGCR from HLOS
-Date:   Wed, 18 May 2022 18:12:35 +0530
-Message-ID: <1652877755-25120-1-git-send-email-quic_srivasam@quicinc.com>
-X-Mailer: git-send-email 2.7.4
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=r0WuRCy57ME9/b73IbyYep69ZR4IeytcwMJ87H82uU4=;
+        b=jSk9+R8cxOeyXi6+E2PLQfSYK70xpVuVe83u7ZfgcCItTFwW8cQextP7wiQhazKYby
+         Rn+QK29RRxrCkm2pRDX83SnjP+4w93vAUOHStuqpCXO7IjjshbbcbB+pqypG4zPf56eD
+         Fh5vvrqvZs2ss7QHRAxfDntjiKalEAcJ7QYr8iGZDeXcu3f2eppi6cWO9d/ZMQniH1Oe
+         fZMstEv3t7ymdNlGverS97CjQCQpQtLsHgm4wm/pFrZOPgDs7aPOCsDSFllttmG1kHxR
+         3TXaNPTRVlGaGpSyEtk5dnEveoF6q8Ed/Zt7rFC1+E9Fz5gZCvJCDnb4r6DmtWbl4a/r
+         Ft/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=r0WuRCy57ME9/b73IbyYep69ZR4IeytcwMJ87H82uU4=;
+        b=JuetbVqh5PDdSoaNn1Mh/n2sOIzLpuj80zS8SztnX8KYz2KKcq/rSQFVhxuLLpWl+z
+         8uZyAcarVMnjw/HjY2OGlwzF//3Chrey+bt9mQ+hulwJE0m8q+z/IFvn98jst2C9eD8I
+         scUdO28vZtcqaWL6APYOaUc7xKJBkGT0DJZ+Ew5C9oWp70BDt4Aywt4nDD/d0vl+/nQl
+         wUZh2ZubWjyVgINZxVKXXF9/CZUcgg97nE5N/kyyVlNd5eZNLAgb6Vzz85EH2eACscFW
+         NpzqpoZnc/ueG6jQrR3Yc1GMVgRu8sxidTxfkSjYocJRpUSu0KZ5PN2Z9nKvRXAW/6Pm
+         MAHw==
+X-Gm-Message-State: AOAM532vtJcvQMZdF2jerASrb8fbi2rsiPWaj2YcZGdz8GJOUn8TYtMK
+        IDndnK3toQlVXvkU1b/0ka8=
+X-Google-Smtp-Source: ABdhPJy2nI4P7bisbWR4+W5tEvfQfujR3047/B/qd+1mcJvJxceYo6djk+kfpCVY4+oN49C/QJ7DBw==
+X-Received: by 2002:adf:f545:0:b0:20e:63b9:37ea with SMTP id j5-20020adff545000000b0020e63b937eamr1150863wrp.210.1652877761929;
+        Wed, 18 May 2022 05:42:41 -0700 (PDT)
+Received: from orome ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id v65-20020a1cac44000000b003947b59dfdesm5310670wme.36.2022.05.18.05.42.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 May 2022 05:42:40 -0700 (PDT)
+Date:   Wed, 18 May 2022 14:42:38 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Janne Grunau <j@jannau.net>
+Cc:     Rob Herring <robh+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Sameer Pujar <spujar@nvidia.com>, devicetree@vger.kernel.org,
+        iommu@lists.linux-foundation.org, linux-tegra@vger.kernel.org,
+        asahi@lists.linux.dev
+Subject: Re: [PATCH v5 2/5] iommu: Implement of_iommu_get_resv_regions()
+Message-ID: <YoTpvpHcB5j5x1Gn@orome>
+References: <20220512190052.1152377-1-thierry.reding@gmail.com>
+ <20220512190052.1152377-3-thierry.reding@gmail.com>
+ <20220515111038.GE26732@jannau.net>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="NPNozwqlKWDehmxJ"
+Content-Disposition: inline
+In-Reply-To: <20220515111038.GE26732@jannau.net>
+User-Agent: Mutt/2.2.4 (c3baa83e) (2022-04-30)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for controlling soundwire audio CGCR interface using clock
-framework to make hclk ungating with software. As per new hardware
-changes, software has to always ungate hclk if soundwire is operational
-and keep it running. This requirement is for latest LPASS chipsets for
-RX, TX and WSA path to work.
 
-Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
----
-This patch set depends on:
-    -- Clock driver patches for CGCR reset control support.
-	--- https://patchwork.kernel.org/project/linux-arm-msm/list/?series=638002
-	--- https://patchwork.kernel.org/project/linux-arm-msm/list/?series=637998	
+--NPNozwqlKWDehmxJ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Changes since v1:
-    -- Add audio cgcr reset control in runtime PM resume handler.
-    -- Update dependency list.
+On Sun, May 15, 2022 at 01:10:38PM +0200, Janne Grunau wrote:
+> On 2022-05-12 21:00:49 +0200, Thierry Reding wrote:
+> > From: Thierry Reding <treding@nvidia.com>
+> >=20
+> > This is an implementation that IOMMU drivers can use to obtain reserved
+> > memory regions from a device tree node. It uses the reserved-memory DT
+> > bindings to find the regions associated with a given device. If these
+> > regions are marked accordingly, identity mappings will be created for
+> > them in the IOMMU domain that the devices will be attached to.
+> >=20
+> > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > ---
+> > Changes in v5:
+> > - update for new "iommu-addresses" device tree bindings
+> >=20
+> > Changes in v4:
+> > - fix build failure on !CONFIG_OF_ADDRESS
+> >=20
+> > Changes in v3:
+> > - change "active" property to identity mapping flag that is part of the
+> >   memory region specifier (as defined by #memory-region-cells) to allow
+> >   per-reference flags to be used
+> >=20
+> > Changes in v2:
+> > - use "active" property to determine whether direct mappings are needed
+> >=20
+> >  drivers/iommu/of_iommu.c | 90 ++++++++++++++++++++++++++++++++++++++++
+> >  include/linux/of_iommu.h |  8 ++++
+> >  2 files changed, 98 insertions(+)
+> >=20
+> > diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
+> > index 5696314ae69e..9e341b5e307f 100644
+> > --- a/drivers/iommu/of_iommu.c
+> > +++ b/drivers/iommu/of_iommu.c
+> > @@ -11,12 +11,15 @@
+> >  #include <linux/module.h>
+> >  #include <linux/msi.h>
+> >  #include <linux/of.h>
+> > +#include <linux/of_address.h>
+> >  #include <linux/of_iommu.h>
+> >  #include <linux/of_pci.h>
+> >  #include <linux/pci.h>
+> >  #include <linux/slab.h>
+> >  #include <linux/fsl/mc.h>
+> > =20
+> > +#include <dt-bindings/reserved-memory.h>
+> > +
+> >  #define NO_IOMMU	1
+> > =20
+> >  static int of_iommu_xlate(struct device *dev,
+> > @@ -172,3 +175,90 @@ const struct iommu_ops *of_iommu_configure(struct =
+device *dev,
+> > =20
+> >  	return ops;
+> >  }
+> > +
+> > +/**
+> > + * of_iommu_get_resv_regions - reserved region driver helper for devic=
+e tree
+> > + * @dev: device for which to get reserved regions
+> > + * @list: reserved region list
+> > + *
+> > + * IOMMU drivers can use this to implement their .get_resv_regions() c=
+allback
+> > + * for memory regions attached to a device tree node. See the reserved=
+-memory
+> > + * device tree bindings on how to use these:
+> > + *
+> > + *   Documentation/devicetree/bindings/reserved-memory/reserved-memory=
+=2Etxt
+> > + */
+> > +void of_iommu_get_resv_regions(struct device *dev, struct list_head *l=
+ist)
+> > +{
+> > +#if IS_ENABLED(CONFIG_OF_ADDRESS)
+> > +	struct of_phandle_iterator it;
+> > +	int err;
+> > +
+> > +	of_for_each_phandle(&it, err, dev->of_node, "memory-region", NULL, 0)=
+ {
+> > +		struct iommu_resv_region *region;
+> > +		struct resource res;
+> > +		const __be32 *maps;
+> > +		int size;
+>=20
+> Adding 'if (!of_device_is_available(it.node)) continue;' here would help=
+=20
+> backwards compatibility. My plan was to add the reserved regions with=20
+> "iommu-addresses" with all zero adresses and sizes with status =3D=20
+> "disabled" to the devicetree. A bootloader update is required to fill=20
+> those.
 
- drivers/soundwire/qcom.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Yes, good point. My plan was originally to have the bootloader/firmware
+generate these nodes in their entirety, but yeah, prepopulating them and
+having firmware just fill in updated values and setting status =3D "okay"
+seems reasonable to me.
 
-diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-index da1ad7e..445e481 100644
---- a/drivers/soundwire/qcom.c
-+++ b/drivers/soundwire/qcom.c
-@@ -13,6 +13,7 @@
- #include <linux/of_device.h>
- #include <linux/pm_runtime.h>
- #include <linux/regmap.h>
-+#include <linux/reset.h>
- #include <linux/slab.h>
- #include <linux/pm_wakeirq.h>
- #include <linux/slimbus.h>
-@@ -142,6 +143,7 @@ struct qcom_swrm_ctrl {
- 	struct device *dev;
- 	struct regmap *regmap;
- 	void __iomem *mmio;
-+	struct reset_control *audio_cgcr;
- #ifdef CONFIG_DEBUG_FS
- 	struct dentry *debugfs;
- #endif
-@@ -656,6 +658,8 @@ static int qcom_swrm_init(struct qcom_swrm_ctrl *ctrl)
- 	val = FIELD_PREP(SWRM_MCP_FRAME_CTRL_BANK_ROW_CTRL_BMSK, ctrl->rows_index);
- 	val |= FIELD_PREP(SWRM_MCP_FRAME_CTRL_BANK_COL_CTRL_BMSK, ctrl->cols_index);
- 
-+	reset_control_reset(ctrl->audio_cgcr);
-+
- 	ctrl->reg_write(ctrl, SWRM_MCP_FRAME_CTRL_BANK_ADDR(0), val);
- 
- 	/* Enable Auto enumeration */
-@@ -1333,6 +1337,10 @@ static int qcom_swrm_probe(struct platform_device *pdev)
- 	ctrl->bus.compute_params = &qcom_swrm_compute_params;
- 	ctrl->bus.clk_stop_timeout = 300;
- 
-+	ctrl->audio_cgcr = devm_reset_control_get_exclusive(dev, "swr_audio_cgcr");
-+	if (IS_ERR(ctrl->audio_cgcr))
-+		dev_err(dev, "Failed to get audio_cgcr reset required for soundwire-v1.6.0\n");
-+
- 	ret = qcom_swrm_get_port_config(ctrl);
- 	if (ret)
- 		goto err_clk;
-@@ -1486,6 +1494,8 @@ static int __maybe_unused swrm_runtime_resume(struct device *dev)
- 		qcom_swrm_get_device_status(ctrl);
- 		sdw_handle_slave_status(&ctrl->bus, ctrl->status);
- 	} else {
-+		reset_control_reset(ctrl->audio_cgcr);
-+
- 		ctrl->reg_write(ctrl, SWRM_MCP_BUS_CTRL, SWRM_MCP_BUS_CLK_START);
- 		ctrl->reg_write(ctrl, SWRM_INTERRUPT_CLEAR,
- 			SWRM_INTERRUPT_STATUS_MASTER_CLASH_DET);
--- 
-2.7.4
+> > +
+> > +		memset(&res, 0, sizeof(res));
+> > +
+> > +		/*
+> > +		 * The "reg" property is optional and can be omitted by reserved-mem=
+ory regions
+> > +		 * that represent reservations in the IOVA space, which are regions =
+that should
+> > +		 * not be mapped.
+> > +		 */
+> > +		if (of_find_property(it.node, "reg", NULL)) {
+> > +			err =3D of_address_to_resource(it.node, 0, &res);
+> > +			if (err < 0) {
+> > +				dev_err(dev, "failed to parse memory region %pOF: %d\n",
+> > +					it.node, err);
+> > +				continue;
+> > +			}
+> > +		}
+> > +
+> > +		maps =3D of_get_property(it.node, "iommu-addresses", &size);
+> > +		if (maps) {
+> > +			const __be32 *end =3D maps + size / sizeof(__be32);
+> > +			struct device_node *np;
+> > +			unsigned int index =3D 0;
+> > +			u32 phandle;
+> > +			int na, ns;
+> > +
+> > +			while (maps < end) {
+> > +				phys_addr_t start, end;
+> > +				size_t length;
+> > +
+> > +				phandle =3D be32_to_cpup(maps++);
+> > +				np =3D of_find_node_by_phandle(phandle);
+> > +				na =3D of_n_addr_cells(np);
+> > +				ns =3D of_n_size_cells(np);
+> > +
+> > +				start =3D of_translate_dma_address(np, maps);
+> > +				length =3D of_read_number(maps + na, ns);
+>=20
+> alternatively we could handle mappings/reservations with length 0 as=20
+> error and skip them.
 
+I think we could do both.
+
+Thanks for the feedback,
+Thierry
+
+--NPNozwqlKWDehmxJ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmKE6bsACgkQ3SOs138+
+s6GnoQ//ZtatYKK568WV/5A02Y6Y4bGmQfrBw6kNbrHVG8OKoG1PQLnD0xP1anMx
+pmZ4hK/aaLHCYeaGvTka7zvBp+qJTJ8C1eM5klaC5QnPlIRMEQlqbSrdYJopAvnv
+TdX4oMOUb8CUMkEZiZ75dSc7ullskwt6GXCcp5TLqezlmZVxEGmYCm+/7ZcBFJ60
+MbFuUPOZ366DtKo8a70ltZWq8vXhIeiK3muRoLObACIezgZEwOyPRHSATLGw+ppq
+Fj36MTdnmxw7DBHm3z/9rF7mvtyiEcSdJpYMKaeuxg32e3/nVc1mhDUf4hm/cra8
+CWRts2tbJG45mq94HwkkEX8JUmhfosnznPWxCfNA40e3D4gE6M5iOhh0zneD9DPL
+fLV9t5B54ysUDbtWpVZkvBsoJhqjNGd/vXB6zVF89siHq4jEvKt9HO4bZe6NjvvY
+g8ZP1upF+8ZhnUfF/W+idNlQ/apg5cikNLgDlg2ldoHsy7oZ0wH0YadZsmSj56zI
+kjGfW2U0rng6c3rn0XIAkjDQTR7TmzRETXD3Bg9VPiAQtkjk6Y5NCZQ0RUmPS4xP
+l1pkZKAd5ySaD6fMJmg+tFMDv/MoM64nzKDTxTN4uRdE1uSdwNxj8+1huBtyyu49
+en+d+Pb/BZ46uK+5bukIOTV8e2NxUq33LhK1+YiClpS59wzS0jk=
+=MV9M
+-----END PGP SIGNATURE-----
+
+--NPNozwqlKWDehmxJ--
