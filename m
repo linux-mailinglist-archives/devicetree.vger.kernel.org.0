@@ -2,194 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D55452AEEA
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 01:59:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B43052AEEE
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 02:03:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232197AbiEQX7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 May 2022 19:59:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53880 "EHLO
+        id S232240AbiERADq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 May 2022 20:03:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232226AbiEQX7g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 19:59:36 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3420353B6E;
-        Tue, 17 May 2022 16:59:34 -0700 (PDT)
-Received: from tr.lan (ip-86-49-12-201.net.upcbroadband.cz [86.49.12.201])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id E8EFB84253;
-        Wed, 18 May 2022 01:59:31 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1652831972;
-        bh=3IXanpwxKJqg6DbP8AshOQri6FpiAaXyP74Si8i9PB4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=web7YqY1FQMWRMPsCz3wFml5yyu8urXAdfRPuq0Lyev9kD7RhsyO3Odj1DPgv1Sil
-         4liZ4bx8pvRdgfjVQvAY5CpTXdo8kpTI2BPczaYV8kNs56llS2NVjbsVI5QXcypVXu
-         zSxcRA5Ov5pTDgw93IK5Q8qIHVLVzu5P8aiBEt1b6fJXCn3diraeVrcWyVVz4OsGdH
-         SnMVf1B0+Vf9pXsEePy80QhO/2VNtUyzzf9A1VdxU39M1qO6q4yXtgTnBpUrSqvQNv
-         RtVf8TAX/25E86JGMivQMhNczXnreIs1y4XIMl63lqN7adaKCiivE71vWKQj59FVr0
-         8aQTAHGby+hEw==
-From:   Marek Vasut <marex@denx.de>
-To:     linux-clk@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+        with ESMTP id S230443AbiERADq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 May 2022 20:03:46 -0400
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 859885007E
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 17:03:42 -0700 (PDT)
+Received: by mail-pf1-f170.google.com with SMTP id k16so583377pff.5
+        for <devicetree@vger.kernel.org>; Tue, 17 May 2022 17:03:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=pZZ1RAN9cPRk/Qge3KkDOqi4GWvevp8ef2NrscIFKTQ=;
+        b=suTvt+d6euQV1Wg80DfYgt4oaKuPrexm4ARNli4cfnPHyQZaOUUWp/WrwzxSOHp9YQ
+         vUE1+q5EQhcpnJ353bU/xu8ThlJCvjBTCHLwfx4RkDfZl2gOezKslfJn7F+GUfYWGbGQ
+         YDz28Kpwm6jvXP9BNdLpoKZRO8MpSY6KVDQT6+tnTqatdJbptYOsHz+pA8vdz6rzBnNC
+         pcYH4WGi+AUx6pEv0GwJPvhO6bFx4aQ9WwS2mukFTQ5Bu1Xh5/vjEbOJ7wLOLcXZa6Uh
+         FH8Q7RDm+wrHS4fSRHojKP19MU9orlmW7urXvtxxwoiFjyWG33RpaZG9Dzzahdfo9sdg
+         Ag4g==
+X-Gm-Message-State: AOAM531TZTY539Bh5PUw+EQ4Oo7uTqIO1TyZXwWe2ZX43Oc3fD5TbLr5
+        6h+rR/abBTPuI0ymhKj84cRz+A==
+X-Google-Smtp-Source: ABdhPJze71LfyHGtUryYts/K86VvVcJZneqITDpkKyXA3xjg1dVRUvhbpblPTygFKPW2vZo9qVVDSQ==
+X-Received: by 2002:a05:6a00:23ca:b0:50e:827:9253 with SMTP id g10-20020a056a0023ca00b0050e08279253mr24812900pfc.20.1652832221811;
+        Tue, 17 May 2022 17:03:41 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id r25-20020a634419000000b003c66480613esm116531pga.80.2022.05.17.17.03.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 May 2022 17:03:41 -0700 (PDT)
+From:   Kevin Hilman <khilman@kernel.org>
+To:     Chen-Yu Tsai <wenst@chromium.org>, Roger Lu <roger.lu@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v3 2/2] clk: Introduce 'critical-clocks' property
-Date:   Wed, 18 May 2022 01:59:19 +0200
-Message-Id: <20220517235919.200375-2-marex@denx.de>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220517235919.200375-1-marex@denx.de>
-References: <20220517235919.200375-1-marex@denx.de>
+        Nicolas Boichat <drinkcat@google.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Fan Chen <fan.chen@mediatek.com>,
+        Charles Yang <Charles.Yang@mediatek.com>,
+        Angus Lin <Angus.Lin@mediatek.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jia-wei Chang <jia-wei.chang@mediatek.com>,
+        =?utf-8?B?UmV4LUJDIENoZW4gKOmZs+afj+i+sCk=?= 
+        <rex-bc.chen@mediatek.com>
+Subject: Re: [PATCH v25 0/7] soc: mediatek: SVS: introduce MTK SVS
+In-Reply-To: <7h4k1ndaui.fsf@baylibre.com>
+References: <20220516004311.18358-1-roger.lu@mediatek.com>
+ <CAGXv+5GSdWPZe3fNpBJ_WW0zCL8Skg6fHx9ATxaKU1hyMEt2Ww@mail.gmail.com>
+ <7h4k1ndaui.fsf@baylibre.com>
+Date:   Tue, 17 May 2022 17:03:40 -0700
+Message-ID: <7hy1yzbtb7.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some platforms require select clock to be always running, e.g. because
-those clock supply vital devices which are not otherwise attached to
-the system and thus do not have a matching DT node and clock consumer.
+Kevin Hilman <khilman@kernel.org> writes:
 
-An example is a system where the SoC serves as a crystal oscillator
-replacement for a programmable logic device. The "critical-clocks"
-property of a clock controller allows listing clock which must never
-be turned off.
+> Chen-Yu Tsai <wenst@chromium.org> writes:
+>
+>> On Mon, May 16, 2022 at 8:43 AM Roger Lu <roger.lu@mediatek.com> wrote:
+>>>
+>>> The Smart Voltage Scaling(SVS) engine is a piece of hardware
+>>> which calculates suitable SVS bank voltages to OPP voltage table.
+>>> Then, DVFS driver could apply those SVS bank voltages to PMIC/Buck
+>>> when receiving OPP_EVENT_ADJUST_VOLTAGE.
+>>>
+>>> 1. SVS driver uses OPP adjust event in [1] to update OPP table voltage part.
+>>> 2. SVS driver gets thermal/GPU device by node [2][3] and CPU device by get_cpu_device().
+>>> After retrieving subsys device, SVS driver calls device_link_add() to make sure probe/suspend callback priority.
+>>>
+>>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git/commit/?h=opp/linux-next&id=25cb20a212a1f989385dfe23230817e69c62bee5
+>>> [2] https://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git/commit/?h=opp/linux-next&id=b325ce39785b1408040d90365a6ab1aa36e94f87
+>>> [3] https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/commit/?h=v5.16-next/dts64&id=a8168cebf1bca1b5269e8a7eb2626fb76814d6e2
+>>>
+>>> Change since v24:
+>>> - Rebase to Linux 5.18-rc6
+>>> - Show specific fail log in svs_platform_probe() to help catch which step fails quickly
+>>> - Remove struct svs_bank member "pd_dev" because all subsys device's power domain has been merged into one node like above [3]
+>>>
+>>> Test in below environment:
+>>> SW: Integration Tree [4] + Thermal patch [5] + SVS v25 (this patchset)
+>>> HW: mt8183-Krane
+>>>
+>>> [4] https://github.com/wens/linux/commits/mt8183-cpufreq-cci-svs-test
+>>
+>> I've updated my branch to include all the latest versions of the relevant
+>> patch series:
+>>
+>> - anx7625 DPI bus type series v2 (so the display works)
+>> - MT8183 thermal series v9 (this seems to have been overlooked by the
+>> maintainer)
+>> - MTK SVS driver series v25
+>> - devfreq: cpu based scaling support to passive governor series v5
+>> - MTK CCI devfreq series v4
+>> - MT8183 cpufreq series v7
+>> - Additional WIP patches for panfrost MTK devfreq
+>
+> Thanks for preparing an integration branch Chen-Yu.
+>
+> I'm testing this on mt8183-pumpkin with one patch to add the CCI
+> regulator[1], and the defconfig you posted in a previous rev of this
+> series, but the CCI driver still causes a fault on boot[2] on my
+> platform.
+>
+> I mentioned in earlier reviews that I think there's potentially a race
+> between CCI and SVS loading since they are co-dependent.  My hunch is
+> that this is still not being handled properly.
 
-Clock listed in the "critical-clocks" property may have other consumers
-in DT, listing the clock in "critical-clocks" only assures those clock
-are never turned off, and none of these optional additional consumers
-can turn the clock off either. This is achieved by adding CLK_IS_CRITICAL
-flag to these critical clock.
+Ah, actually it's crashing when I try to boot the platform with
+`maxcpus=4` on the cmdline (which I have to do because mt8183-pumpkin is
+unstable upstream with the 2nd cluster enabled.)
 
-This flag has thus far been added to select clock by hard-coding it in
-various clock drivers, this patch provides generic DT interface to add
-the flag to arbitrary clock that may be critical.
+The CCI driver should be a bit more robust about detecting
+available/online CPUs
 
-The implementation is modeled after "protected-clocks", except the protected
-clock property is currently driver specific. This patch attempts to provide
-a generic implementation of "critical-clocks" instead.
+If I boot with both clusters, I see SVS probing[1], and I see CCI 
+doing transitions[2]
 
-Unlike "assigned-clocks", the "critical-clocks" must be parsed much earlier
-in __clk_register() to assign CLK_IS_CRITICAL flag to clk_init_data .flags
-field.
+Kevin
 
-The new match_clkspec() callback is used to determine whether struct clk_hw
-that is currently being registered matches the clock specifier in the DT
-"critical-clocks" property, and if so, then the CLK_IS_CRITICAL is added to
-these newly registered clock. This callback can only be driver specific.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Andrew Morton <akpm@linux-foundation.org>
-Cc: Michael Turquette <mturquette@baylibre.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Stephen Boyd <sboyd@kernel.org>
-Cc: devicetree@vger.kernel.org
-To: linux-clk@vger.kernel.org
----
-V2: - Warn in case critical-clock field cannot be parsed and skip those clock
-    - Use match_clkspec() only for non-zero clock-cells controllers
-    - Pull the critical-clock code into __clk_register_critical_clock()
-    - Update commit message
-V3: - Pick np from clk_core->of_node
----
- drivers/clk/clk.c            | 44 ++++++++++++++++++++++++++++++++++++
- include/linux/clk-provider.h |  3 +++
- 2 files changed, 47 insertions(+)
+[1]
+# dmesg |grep -i svs
+[    0.739298] mtk-svs 1100b000.svs: M_HW_RES0: 0x00120090
+[    0.739315] mtk-svs 1100b000.svs: M_HW_RES1: 0xa6fdfb5b
+[    0.739318] mtk-svs 1100b000.svs: M_HW_RES2: 0x47cb47cb
+[    0.739321] mtk-svs 1100b000.svs: M_HW_RES3: 0xa6fdfb5b
+[    0.739324] mtk-svs 1100b000.svs: M_HW_RES4: 0xa6fde4ad
+[    0.739326] mtk-svs 1100b000.svs: M_HW_RES5: 0x47f84b80
+[    0.739328] mtk-svs 1100b000.svs: M_HW_RES6: 0xa6fd87a6
+[    0.739331] mtk-svs 1100b000.svs: M_HW_RES7: 0xa6fddf4a
+[    0.739333] mtk-svs 1100b000.svs: M_HW_RES8: 0x4bf84be5
+[    0.739335] mtk-svs 1100b000.svs: M_HW_RES9: 0xa6fd3267
+[    0.739338] mtk-svs 1100b000.svs: M_HW_RES14: 0x9696d5ab
+[    0.739340] mtk-svs 1100b000.svs: M_HW_RES15: 0x015a0015
+[    0.739343] mtk-svs 1100b000.svs: M_HW_RES16: 0xa6fdf05d
+[    0.739345] mtk-svs 1100b000.svs: M_HW_RES17: 0x47f847e5
+[    0.739347] mtk-svs 1100b000.svs: M_HW_RES18: 0xa6fdc240
+[    0.741890]  SVSB_CPU_LITTLE: svs_init01_isr_handler: VDN74~30:0x141c242a~0x2f32373c, DC:0x0316ff30
+[    0.742165]  SVSB_CPU_BIG: svs_init01_isr_handler: VDN74~30:0x141e262e~0x33373c42, DC:0x031aff50
+[    0.742431]  SVSB_CCI: svs_init01_isr_handler: VDN74~30:0x13192128~0x2d31383c, DC:0x0314ff20
+[    0.742696]  SVSB_GPU: svs_init01_isr_handler: VDN74~30:0x1416181a~0x1d202428, DC:0x030efef0
+[    0.742875]  SVSB_CPU_LITTLE: svs_init02_isr_handler: VOP74~30:0x1d252c33~0x373b3f45, DC:0x031600d0
+[    0.742989]  SVSB_CPU_BIG: svs_init02_isr_handler: VOP74~30:0x1d262e36~0x3b3f444a, DC:0x031a00b0
+[    0.743060]  SVSB_CCI: svs_init02_isr_handler: VOP74~30:0x1c222a31~0x353a4045, DC:0x031400e0
+[    0.743176]  SVSB_GPU: svs_init02_isr_handler: VOP74~30:0x181a1c1e~0x2125282c, DC:0x030e0110
 
-diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-index f00d4c1158d72..e04bca5e1ff30 100644
---- a/drivers/clk/clk.c
-+++ b/drivers/clk/clk.c
-@@ -3902,6 +3902,48 @@ static void clk_core_free_parent_map(struct clk_core *core)
- 	kfree(core->parents);
- }
- 
-+static void
-+__clk_register_critical_clock(struct clk_core *core, struct clk_hw *hw)
-+{
-+	struct device_node *np = core->of_node;
-+	struct of_phandle_args clkspec;
-+	u32 clksize, clktotal;
-+	int ret, i, index;
-+
-+	if (!np)
-+		return;
-+
-+	if (of_property_read_u32(np, "#clock-cells", &clksize))
-+		return;
-+
-+	/* Clock node with #clock-cells = <0> uses critical-clocks; */
-+	if (clksize == 0) {
-+		if (of_property_read_bool(np, "critical-clocks"))
-+			core->flags |= CLK_IS_CRITICAL;
-+		return;
-+	}
-+
-+	if (!core->ops->match_clkspec)
-+		return;
-+
-+	clkspec.np = np;
-+	clktotal = of_property_count_u32_elems(np, "critical-clocks");
-+	clktotal /= clksize;
-+	for (index = 0; index < clktotal; index++) {
-+		for (i = 0; i < clksize; i++) {
-+			ret = of_property_read_u32_index(np, "critical-clocks",
-+							 (index * clksize) + i,
-+							 &(clkspec.args[i]));
-+			if (ret) {
-+				pr_warn("Skipping critical-clocks index %d (ret=%d)\n",
-+					i, ret);
-+			}
-+		}
-+		if (!core->ops->match_clkspec(hw, &clkspec))
-+			core->flags |= CLK_IS_CRITICAL;
-+	}
-+}
-+
- static struct clk *
- __clk_register(struct device *dev, struct device_node *np, struct clk_hw *hw)
- {
-@@ -3946,6 +3988,8 @@ __clk_register(struct device *dev, struct device_node *np, struct clk_hw *hw)
- 	core->min_rate = 0;
- 	core->max_rate = ULONG_MAX;
- 
-+	__clk_register_critical_clock(core, hw);
-+
- 	ret = clk_core_populate_parent_map(core, init);
- 	if (ret)
- 		goto fail_parents;
-diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
-index c10dc4c659e23..f65f6ef4e9985 100644
---- a/include/linux/clk-provider.h
-+++ b/include/linux/clk-provider.h
-@@ -205,6 +205,8 @@ struct clk_duty {
-  *		directory is provided as an argument.  Called with
-  *		prepare_lock held.  Returns 0 on success, -EERROR otherwise.
-  *
-+ * @match_clkspec: Check whether clk_hw matches DT clock specifier.
-+ *		Returns 0 on success, -EERROR otherwise.
-  *
-  * The clk_enable/clk_disable and clk_prepare/clk_unprepare pairs allow
-  * implementations to split any work between atomic (enable) and sleepable
-@@ -252,6 +254,7 @@ struct clk_ops {
- 	int		(*init)(struct clk_hw *hw);
- 	void		(*terminate)(struct clk_hw *hw);
- 	void		(*debug_init)(struct clk_hw *hw, struct dentry *dentry);
-+	int		(*match_clkspec)(struct clk_hw *hw, struct of_phandle_args *clkspec);
- };
- 
- /**
--- 
-2.35.1
-
+[2]
+# cat /sys/class/devfreq/cci/trans_stat 
+     From  :   To
+           : 273000000 338000000 403000000 463000000 546000000 624000000 689000000 767000000 845000000 871000000 923000000 9620000001027000000109200000011440000001196000000   time(ms)
+  273000000:         0        77        11        10        34         8         6         8         3         3         0         0         4         1         2        12    135675
+  338000000:        90         0        32         4         7         2         1         0         0         0         0         0         0         0         0         2       664
+  403000000:        20        45         0        35         7         2         0         0         0         0         0         0         0         0         0         0       509
+  463000000:        13         7        53         0        46         4         1         1         1         2         0         1         2         0         0         1       568
+  546000000:        12         5        10        63         0        55         3         3         3         1         3         2         8         3         1        35       858
+* 624000000:         4         0         2        10        50         0        49         1         1         0         0         1         3         2         0         7       407
+  689000000:         6         1         0         2        18        36         0        47         5         3         1         0         1         0         0        10       388
+  767000000:         2         1         0         3         5        11        42         0        35         4         1         1         2         0         1        23       486
+  845000000:         3         0         0         0         1         0         9        27         0        37         8         1         0         0         2        23       290
+  871000000:         2         0         0         1         0         0         3         9        19         0        29         5         1         1         1        12       179
+  923000000:         0         0         0         0         0         2         2         7        10        13         0        31         1         1         0         4       154
+  962000000:         0         0         0         0         0         1         0         4         3         4        14         0        27         1         0         2       123
+ 1027000000:         2         0         0         1         2         2         3         2         1         1         7        11         0        24         2         1       182
+ 1092000000:         1         0         0         0         3         2         0         1         2         0         0         1         5         0        25         5       123
+ 1144000000:         2         0         0         0         0         0         0         0         2         0         1         1         2         7         0        38       193
+ 1196000000:        22         2         1         3        34         6        11        21        26        15         7         1         3         5        19         0      1621
+Total transition : 1810
