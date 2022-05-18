@@ -2,69 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C383652BBF1
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 16:15:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85DEE52BCB1
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 16:17:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238176AbiERNq1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 09:46:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46764 "EHLO
+        id S230026AbiERNw4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 09:52:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238226AbiERNqP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 09:46:15 -0400
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43524178545;
-        Wed, 18 May 2022 06:46:14 -0700 (PDT)
-Received: by mail-oi1-f179.google.com with SMTP id m25so2703243oih.2;
-        Wed, 18 May 2022 06:46:14 -0700 (PDT)
+        with ESMTP id S238164AbiERNwz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 09:52:55 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9AA41C6CA9
+        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 06:52:53 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id z2so3995033ejj.3
+        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 06:52:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Ez+ANy+RKejIxGfGKCpQHExRQ8gPkVRdNNVMgRcAEvs=;
+        b=l+B5/IQS1OJOGyccBY+I+FFBICuXQ8yUtCmCCF2WEyxnm6nWdLG8Gt5bvVLQpbVJFC
+         K+cw9GJWrDbztXJFqHpYaOEBIbUH3FObZR0D/91fWkPjNVPsiOkjFfngH/BNLi30DudR
+         qDb63Cg0rwBwB37UWAF3UdNK2phTKwO6T+Luc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=8zKhwIJo0gXsAIWGyUaFPT+x1Z1JcWrSNyRipuSmgqs=;
-        b=XAYaYQo0XENnCRuTqedzjgHnvmrnMP3qHTiIfD3MQXm9Zw0tPMj7IPP2mSoGz88C4m
-         OvyAk9oeNtR0YfisR9SMXbBoUUCrGvRUVhpRVrI4uS+JaiDuy0hEpP7xWKSBj8teY8ah
-         PYb+LzdfZ35BZ7eZJuYRrnv1FB57fVTGeMKsyiQclYcZNN2MjMHnm6nIrPXJYv71BTiu
-         B6S6h0Z8kK+8MQc11xg+OEDcTG3GzsAdq+CziqaRh3JGAutLuM/NFQqPuxhpnoy0rcTu
-         rQ014a4usHBPlDEHawN+CQAq/YZ+CIOWlKTUB8UwM9hm2KzPEHp7Z7GXwLkbDZLqI4WU
-         dpCQ==
-X-Gm-Message-State: AOAM533BWhFC6xf3l4U/lbVz5nckYD/hp4OuX0q7eCofNGVh9MBho1dq
-        QBwRiRIqCiRGWVEK8bwYqw==
-X-Google-Smtp-Source: ABdhPJyDA0UeGAJChEEw2/YIUdPOq9UuLN/6prgGz2LmxT7diCMuhTs+SznglSjuWfgpvESbht/lYg==
-X-Received: by 2002:a05:6808:1287:b0:326:d23f:f251 with SMTP id a7-20020a056808128700b00326d23ff251mr16746oiw.155.1652881573534;
-        Wed, 18 May 2022 06:46:13 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id i3-20020a9d53c3000000b0060603221239sm776619oth.9.2022.05.18.06.46.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 May 2022 06:46:12 -0700 (PDT)
-Received: (nullmailer pid 3186179 invoked by uid 1000);
-        Wed, 18 May 2022 13:46:11 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     marijn.suijten@somainline.org, jason-jh.lin@mediatek.com,
-        konrad.dybcio@somainline.org, linux-kernel@vger.kernel.org,
-        paul.bouchara@somainline.org, krzysztof.kozlowski+dt@linaro.org,
-        phone-devel@vger.kernel.org, y.oudjana@protonmail.com,
-        chun-jie.chen@mediatek.com, sboyd@kernel.org,
-        p.zabel@pengutronix.de, ~postmarketos/upstreaming@lists.sr.ht,
-        matthias.bgg@gmail.com, rex-bc.chen@mediatek.com,
-        mturquette@baylibre.com, kernel@collabora.com,
-        linux-clk@vger.kernel.org, tinghan.shen@mediatek.com,
-        sam.shih@mediatek.com, robh+dt@kernel.org, fparent@baylibre.com,
-        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        miles.chen@mediatek.com, ck.hu@mediatek.com, ikjn@chromium.org,
-        wenst@chromium.org, linux-arm-kernel@lists.infradead.org,
-        martin.botka@somainline.org, weiyi.lu@mediatek.com,
-        bgolaszewski@baylibre.com
-In-Reply-To: <20220518111652.223727-5-angelogioacchino.delregno@collabora.com>
-References: <20220518111652.223727-1-angelogioacchino.delregno@collabora.com> <20220518111652.223727-5-angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH v2 4/7] dt-bindings: clock: mediatek: Add clock driver bindings for MT6795
-Date:   Wed, 18 May 2022 08:46:11 -0500
-Message-Id: <1652881571.539429.3186178.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Ez+ANy+RKejIxGfGKCpQHExRQ8gPkVRdNNVMgRcAEvs=;
+        b=ckXiPN9ofi/jLrONI4cKHo5TbPyO4jVqbhy++3uRU7tO0mAxDIJs1gpqOFwyiUd8NR
+         sOGL15wh1xccnM/MxzzXHSNubqoQPya/0cebjOK+F9RuHLwyEqSQoUc+AbRRMXh0xlIy
+         8r8umA2SBL/pqV9khmSZWm9O9ARY3dfhOMl0OA0QKbR2btzgrGf7zjhueSy0cX7abXoV
+         iiWObV2w4ALq+lcyRyJ0lgKozahy8W55l2AIVZme18TLPNTiove1lA7B0ASzgGJudou6
+         H0yx4DuCxYsKMVTjtZbNe1WGQEX82gmVm6VbJpPdZO/6DyMLNh10FaKj5R+HHEFV+Yfs
+         V2Gw==
+X-Gm-Message-State: AOAM532F8/dHey5GtEZ8Dsnfs5H0xtQGe+v6tIGMQ2Ch0V6qhauAsZ9q
+        xiRLE5MKM+9660Dgug2ZbfnxfefPJL18XNd9Tos=
+X-Google-Smtp-Source: ABdhPJwxaDB9gL8h/kfQJXFcuBwSnu2/uDbrKTM4Z/UlCQyD9y7km4JOy8vZkCNJFVEPkB5C2/Oe3A==
+X-Received: by 2002:a17:907:868e:b0:6fe:293:e7cc with SMTP id qa14-20020a170907868e00b006fe0293e7ccmr22275836ejc.716.1652881971666;
+        Wed, 18 May 2022 06:52:51 -0700 (PDT)
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com. [209.85.221.45])
+        by smtp.gmail.com with ESMTPSA id n20-20020a509354000000b0042aa23fa93bsm1459866eda.20.2022.05.18.06.52.50
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 May 2022 06:52:50 -0700 (PDT)
+Received: by mail-wr1-f45.google.com with SMTP id w4so2794115wrg.12
+        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 06:52:50 -0700 (PDT)
+X-Received: by 2002:a05:6000:1c03:b0:20e:5cac:1eb5 with SMTP id
+ ba3-20020a0560001c0300b0020e5cac1eb5mr5326338wrb.422.1652881969929; Wed, 18
+ May 2022 06:52:49 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220510154406.v5.1.Id769ddc5dbf570ccb511db96da59f97d08f75a9c@changeid>
+ <20220510154406.v5.3.I0977b1a08830d0caa8bfb1bdedb4ecceac709a7f@changeid>
+In-Reply-To: <20220510154406.v5.3.I0977b1a08830d0caa8bfb1bdedb4ecceac709a7f@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 18 May 2022 06:52:37 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=X4wekMgpT-o6Oy4_1n1YssJbUgyyeBxiHSk334UKqYyQ@mail.gmail.com>
+Message-ID: <CAD=FV=X4wekMgpT-o6Oy4_1n1YssJbUgyyeBxiHSk334UKqYyQ@mail.gmail.com>
+Subject: Re: [PATCH v5 3/5] arm64: dts: qcom: sc7180: Add quackingstick dts files
+To:     "Joseph S. Barrera III" <joebar@chromium.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,43 +80,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 18 May 2022 13:16:49 +0200, AngeloGioacchino Del Regno wrote:
-> Add the bindings for the clock drivers of the MediaTek Helio X10
-> MT6795 SoC.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Hi,
+
+On Tue, May 10, 2022 at 3:46 PM Joseph S. Barrera III
+<joebar@chromium.org> wrote:
+>
+> Quackingstick is a trogdor-based board. These dts files are copies from
+> the downstream Chrome OS 5.4 kernel, but with downstream bits removed.
+>
+> Signed-off-by: Joseph S. Barrera III <joebar@chromium.org>
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+>
 > ---
->  .../bindings/clock/mediatek,mt6795-clock.yaml | 66 +++++++++++++++++
->  .../clock/mediatek,mt6795-sys-clock.yaml      | 74 +++++++++++++++++++
->  2 files changed, 140 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt6795-clock.yaml
->  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt6795-sys-clock.yaml
-> 
+>
+> Changes in v5:
+> - Removed extra newline
+> - Added comment that compatible will be filled in per-board
+>
+> Changes in v4:
+> - Added missing version history
+>
+> Changes in v3:
+> - First inclusion in this series
+>
+>  arch/arm64/boot/dts/qcom/Makefile             |   2 +
+>  .../sc7180-trogdor-quackingstick-r0-lte.dts   |  38 ++
+>  .../qcom/sc7180-trogdor-quackingstick-r0.dts  |  26 ++
+>  .../qcom/sc7180-trogdor-quackingstick.dtsi    | 324 ++++++++++++++++++
+>  4 files changed, 390 insertions(+)
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Just so it doesn't get lost, I saw another downstream change fly by.
+Since you already have to spin for v6, you should incorporate that
+too:
 
-yamllint warnings/errors:
+https://crrev.com/c/3652958
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/clock/mediatek,mt6795-sys-clock.example.dts:35.13-21 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:364: Documentation/devicetree/bindings/clock/mediatek,mt6795-sys-clock.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1401: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+-Doug
