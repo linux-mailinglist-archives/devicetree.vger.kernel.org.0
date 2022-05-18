@@ -2,128 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 973AE52C6A5
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 00:53:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD4E652C744
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 01:02:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230085AbiERWxE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 18:53:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59746 "EHLO
+        id S229957AbiERXBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 19:01:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbiERWxA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 18:53:00 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D6B914C774
-        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 15:52:59 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id oe17-20020a17090b395100b001df77d29587so7027212pjb.2
-        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 15:52:59 -0700 (PDT)
+        with ESMTP id S229797AbiERXBy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 19:01:54 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 960CF939F4;
+        Wed, 18 May 2022 16:01:52 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id er5so4836230edb.12;
+        Wed, 18 May 2022 16:01:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=89xJl/5AucW2svLYY82lzLas3d/413S0Fsu8gNXuG9M=;
-        b=BrtidlQe1FgptHjDWtJaGPrkEPtqkg0V2+26eRRvqBzgrLI/Xk3q2SRVlhKFUw3czv
-         ripjKhwfJzjJIGYlDMW15Yy+CMkyvuB13oJ8RDgbHk04q67vPa4HW0QR7ZUbiWU8NFGe
-         XNS0fCL9ZiPZayBM5GdFmA67fj4XhRGF4E/ig=
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=6ioRF++yogDTNZJ4Kl3hvJYBh4fkIppK/Wa57zbKnxE=;
+        b=dZLYTjgfXvGKrcOJgLdfrcVQmXdbl01y9E2zS2V173AVk0nf87RVXghCqbt/Xf0U3/
+         vs6pOnG88lU9fIFy8G6c3EEngJRmatjEmdB4p7wAybYQAhqZLV8gVmm7C5wWHj+DdbnZ
+         NMvuNYbe+pBaddVyIEc24Zg44oNutQMtXcUOcW7ykeZaKu0XD0tdehGPnYWWcLs6PCys
+         WEOBzd5BL6YkfXOYTpaHPgrhmpMYntvAu39qWo9njGmHzNhLSQDXgY3eLF1rb+/NVqR6
+         4M776LXs0ZDSWkPF+cTalP1idtJNOuApECnawb+wu5esJH9Hdmo6uMXdhLEVAAWiEjsm
+         KFhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=89xJl/5AucW2svLYY82lzLas3d/413S0Fsu8gNXuG9M=;
-        b=chqK4T72lnnED5UcvcFa1TZNUUoqwRsxr60dvsCXXruSnD96u1BtYW7jSsN7lsbPcq
-         lT6nBDZCM9VBqmSWQql6NfwdbYic6QUpIvElQ5HyjwpEsuI/gobN6f4petLSqUp6TddR
-         J4AuPgYYA3tfbJQt8wjp/QUxyPR9se9ZEFaLLZ0zxxMbJ7sXpv3/AB0hsjR/XhCdbPCq
-         45FgQ+r85f2lYHDBvLA86PHxN88joam4HqjJsFCNbrc5kQ89cgtgxIzKndfR0r/h2It1
-         b00c6rk+tSWR8TDWh5Cwo+I3gsZR1fopYLH4ROtKCE/YGxoQO7ZFBz5HzkltkWesSgHI
-         duVw==
-X-Gm-Message-State: AOAM533IcAHtz/Yfjn/q/2Gn/Jqnq4WAOLDZ6iedTcKz0PQ2IG4pMt+P
-        ZQcrnTWKYTSfOGLIithyoQUVEjZPKJ7AzQ==
-X-Google-Smtp-Source: ABdhPJxGXJRcQd8UATDMy3zIg1etHJVVL5FlHgTkB/BAVp75YVd/+bX2Pn+xzQclDoPUJolDy6VxMQ==
-X-Received: by 2002:a17:903:1c6:b0:161:9fbc:5a6 with SMTP id e6-20020a17090301c600b001619fbc05a6mr1787688plh.65.1652914378674;
-        Wed, 18 May 2022 15:52:58 -0700 (PDT)
-Received: from localhost ([2620:15c:11a:202:e229:79ea:227e:d9dd])
-        by smtp.gmail.com with UTF8SMTPSA id w26-20020a62c71a000000b0050dc7628167sm2490226pfg.65.2022.05.18.15.52.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 May 2022 15:52:58 -0700 (PDT)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Douglas Anderson <dianders@chromium.org>,
-        linux-arm-msm@vger.kernel.org, Kevin Lund <kglund@google.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH] arm64: dts: qcom: sc7280: Enable wifi for Chrome OS boards
-Date:   Wed, 18 May 2022 15:52:55 -0700
-Message-Id: <20220518155252.1.I176d4254c79cfaafa38cbe36f066f02f819df9b6@changeid>
-X-Mailer: git-send-email 2.36.1.124.g0e6072fb45-goog
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=6ioRF++yogDTNZJ4Kl3hvJYBh4fkIppK/Wa57zbKnxE=;
+        b=JUUnv9Kek7JRPZ81WEzIWYMGPEdKk7lIfeozJEUQ9/Vts/8AzpBVXDaCiLHTkuT5/C
+         YTbX88S0bsVrk+vhx8tnbNFXuUHXJf+CCJC1MAaFL1JuZcNAo+RzRAreIDjkQg1rAgop
+         hwGy+Mdfh8ww8cf9BzFSi+Cf6hublDDwP8p+1UoCTixNBFzK1GbPFfuqJM9gpwGNvFIz
+         IhBRIpUY/ykIbEMmsRFNvLB6EhsfwEusxbDon8AeWMXa29NH5t/Gjub+2kQ5B1x7muD1
+         OwxpECYBRlBZPu07lJi6j4YO7G8u/wT6QepdxvYV5JeN9uZPOqnmq13hKLazupgRXyoS
+         farQ==
+X-Gm-Message-State: AOAM531I/Ux4xuNzkCkEIx6YZh3+vwxpyh/2UWIpl+oI3jaWo0x8xGe0
+        shrm1liiTIxG4HjKfO2GMGY=
+X-Google-Smtp-Source: ABdhPJxHfBudDsDKkD0pf8fegVDmKf0xMeiiqzGZrY8gNJ3s++1QVHB8ti+ABqmq90TYEULVO6oLPA==
+X-Received: by 2002:a05:6402:1248:b0:42a:cc7d:2c22 with SMTP id l8-20020a056402124800b0042acc7d2c22mr2253203edw.284.1652914911103;
+        Wed, 18 May 2022 16:01:51 -0700 (PDT)
+Received: from localhost (92.40.203.120.threembb.co.uk. [92.40.203.120])
+        by smtp.gmail.com with ESMTPSA id f13-20020a170906738d00b006f3ef214e0dsm1467626ejl.115.2022.05.18.16.01.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 May 2022 16:01:50 -0700 (PDT)
+Date:   Thu, 19 May 2022 00:02:48 +0100
+From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     dan.carpenter@oracle.com, devicetree@vger.kernel.org,
+        krzk+dt@kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+        mturquette@baylibre.com, paul@crapouillou.net, robh+dt@kernel.org,
+        tsbogend@alpha.franken.de
+Subject: Re: [PATCH v5 2/2] clk: ingenic-tcu: Fix missing TCU clock for X1000
+ SoCs
+Message-ID: <YoV7GKiaosmX6QnQ@localhost>
+References: <20220412122750.279058-1-aidanmacdonald.0x0@gmail.com>
+ <20220412122750.279058-3-aidanmacdonald.0x0@gmail.com>
+ <20220518204734.89090C34113@smtp.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220518204734.89090C34113@smtp.kernel.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the 'wifi' and 'remoteproc_wpss' nodes for all sc7280
-based Chrome OS boards. Delete the corresponding entries from
-sc7280-idp.dtsi since this file includes sc7280-chrome-common.dtsi.
+On Wed, May 18, 2022 at 01:47:32PM -0700, Stephen Boyd wrote:
+> Quoting Aidan MacDonald (2022-04-12 05:27:50)
+> > The TCU clock gate on X1000 wasn't requested by the driver and could
+> > be gated automatically later on in boot, which prevents timers from
+> > running and breaks PWM.
+> > 
+> > Add a workaround to support old device trees that don't specify the
+> > "tcu" clock gate. In this case the kernel will print a warning and
+> > attempt to continue without the clock, which is wrong, but it could
+> > work if "clk_ignore_unused" is in the kernel arguments.
+> > 
+> > Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+> > ---
+> 
+> Can I take just this one patch through clk tree without the dts part?
+> dts snippets go through soc trees.
 
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
----
+Yeah. The patches can go through in any order but they both need to be
+merged to fix the bug -- each on its own should not change any behavior.
 
- arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi | 13 +++++++++++++
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi           | 11 -----------
- 2 files changed, 13 insertions(+), 11 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-index 9f4a9c263c35..0002e389bbe2 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
-@@ -91,7 +91,20 @@ &remoteproc_mpss {
- 	memory-region = <&mba_mem>, <&mpss_mem>;
- };
- 
-+&remoteproc_wpss {
-+	status = "okay";
-+	firmware-name = "ath11k/WCN6750/hw1.0/wpss.mdt";
-+};
-+
- /* Increase the size from 2.5MB to 8MB */
- &rmtfs_mem {
- 	reg = <0x0 0x9c900000 0x0 0x800000>;
- };
-+
-+&wifi {
-+	status = "okay";
-+
-+	wifi-firmware {
-+		iommus = <&apps_smmu 0x1c02 0x1>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index 5eb668991e24..9cea8fc7ff8b 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -560,14 +560,3 @@ sw_ctrl: sw-ctrl {
- 		bias-pull-down;
- 	};
- };
--
--&remoteproc_wpss {
--	status = "okay";
--};
--
--&wifi {
--	status = "okay";
--	wifi-firmware {
--		iommus = <&apps_smmu 0x1c02 0x1>;
--	};
--};
--- 
-2.36.1.124.g0e6072fb45-goog
-
+Regards,
+Aidan
