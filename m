@@ -2,286 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0367652C34B
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 21:28:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABACC52C379
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 21:35:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241909AbiERT1v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 15:27:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34088 "EHLO
+        id S241917AbiERT3s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 15:29:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241959AbiERT0a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 15:26:30 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF48835DDD;
-        Wed, 18 May 2022 12:26:28 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id a23so3683715ljd.9;
-        Wed, 18 May 2022 12:26:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=LJX3AisiurXZoiui3Et8QtmT0gkjoXJj1LK+vbdvp1s=;
-        b=kVXm3fVaDrCw/7A3pQ/Wb9jC7JSMfEdHMXEhDCFBQXq/7UFQSSwwNioPMAWQhYjyUq
-         sCkRu2h+p9zsnIcGDX9gu7VIxzsiTbCZ5L1sKFpkRuv9DsfWSOcuOZaHz6O+E94FIS+p
-         IYi6g5TSmJlyBlhUSEsAlSvC/pmJX3miBPjFdIQVdCWjwMl7Y2oga2D5I1Dir8qHjfJz
-         leYWErekvS8k2TkWdH4UtQzRvHgRRsikv9Uwju+Cd9S0QvbP4HIPDWJhUSgSpq7ul/XJ
-         twE3MWMJIoZbOQU4gYGwYCI4A5Cc7nlKM3CppT9UDYJlydQmbb8bGg1LF/5+4c/gG/HO
-         DMcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=LJX3AisiurXZoiui3Et8QtmT0gkjoXJj1LK+vbdvp1s=;
-        b=celTZCa6PzqKr3Ua65o2wvFJmDvqfLOZ7UhC5mhnPDfVCo2gXF2/aIsbrwP6R1zw3v
-         1z3v8bB6NvZj7icCu1q5qsHhchTwP/O1w36eAoWxn0oG/VYeUZYkWppY6fQ99DOjWSqY
-         uc9NkyvGU9Jlcp+moEP4Vrlm+JXe4xta1iSrPhRq7r7jQQAenvzTFedFWPEceOzLiynM
-         6joU5X+Qn/k0bTBDr/g3o9YR1V7xL74stuL+0PSBdvFjESD3h/yjBYFSCBVMQC/rVTHz
-         nyPrb/aICAaa3T0cDDdR/H6E3+cm2DcZP5t/icx+/u+UFi0l5Wv3VPYDz6BI9W+hyNfR
-         1VKA==
-X-Gm-Message-State: AOAM532Ti1iyZ2sKGPovrKUmD9hrXDfnKNYnLWhSwfCTyTOKjV78rs2F
-        0ctIB8wU9wsQcf6g80zB/p0=
-X-Google-Smtp-Source: ABdhPJxNb4EAiC07ONAlvyeJ367ZCRT/5pJzGzbZ0HyineDUpl2vFkJ5vfcMykc+aHPZ9Tra+vXUdQ==
-X-Received: by 2002:a05:651c:1617:b0:247:fd84:2195 with SMTP id f23-20020a05651c161700b00247fd842195mr528641ljq.356.1652901986919;
-        Wed, 18 May 2022 12:26:26 -0700 (PDT)
-Received: from mobilestation ([95.79.189.214])
-        by smtp.gmail.com with ESMTPSA id f14-20020a056512360e00b0047255d2111fsm35381lfs.78.2022.05.18.12.26.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 May 2022 12:26:26 -0700 (PDT)
-Date:   Wed, 18 May 2022 22:26:23 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Frank Li <Frank.Li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 15/17] PCI: dwc: Introduce dma-ranges property support
- for RC-host
-Message-ID: <20220518192623.fl3ogcxlurcd6okd@mobilestation>
-References: <20220503214638.1895-1-Sergey.Semin@baikalelectronics.ru>
- <20220503214638.1895-16-Sergey.Semin@baikalelectronics.ru>
- <20220512135708.GC35848@thinkpad>
- <20220512194135.ku73pae2xdvyocx7@mobilestation>
- <20220517172042.GC4528@thinkpad>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220517172042.GC4528@thinkpad>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S241821AbiERT3s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 15:29:48 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BA2805EDE6;
+        Wed, 18 May 2022 12:29:45 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.91,235,1647270000"; 
+   d="scan'208";a="121408998"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 19 May 2022 04:29:45 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id CE7764004CF5;
+        Thu, 19 May 2022 04:29:37 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Marc Zyngier <maz@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-gpio@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v4 0/7] Renesas RZ/G2L IRQC support
+Date:   Wed, 18 May 2022 20:29:17 +0100
+Message-Id: <20220518192924.20948-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 17, 2022 at 10:50:42PM +0530, Manivannan Sadhasivam wrote:
-> On Thu, May 12, 2022 at 10:41:35PM +0300, Serge Semin wrote:
-> > On Thu, May 12, 2022 at 07:27:08PM +0530, Manivannan Sadhasivam wrote:
-> > > On Wed, May 04, 2022 at 12:46:36AM +0300, Serge Semin wrote:
-> > > > In accordance with the generic PCIe Root Port DT-bindings the "dma-ranges"
-> > > > property has the same format as the "ranges" property. The only difference
-> > > > is in their semantics. The "dma-ranges" property describes the PCIe-to-CPU
-> > > > memory mapping in opposite to the CPU-to-PCIe mapping of the "ranges"
-> > > > property. Even though the DW PCIe controllers are normally equipped with
-> > > > internal Address Translation Unit which inbound and outbound tables can be
-> > > > used to implement both properties semantics, it was surprise for me to
-> > > > discover that the host-related part of the DW PCIe driver currently
-> > > > supports the "ranges" property only while the "dma-ranges" windows are
-> > > > just ignored. Having the "dma-ranges" supported in the driver would be
-> > > > very handy for the platforms, that don't tolerate the 1:1 CPU-PCIe memory
-> > > > mapping and require customized the PCIe memory layout. So let's fix that
-> > > > by introducing the "dma-ranges" property support.
-> > > > 
-> > > > First of all we suggest to rename the dw_pcie_prog_inbound_atu() method to
-> > > > dw_pcie_prog_ep_inbound_atu() and create a new version of the
-> > > > dw_pcie_prog_inbound_atu() function. Thus we'll have two methods for RC
-> > > > and EP controllers respectively in the same way as it has been developed
-> > > > for the outbound ATU setup methods.
-> > > > 
-> > > > Secondly aside with the memory window index and type the new
-> > > > dw_pcie_prog_inbound_atu() function will accept CPU address, PCIe address
-> > > > and size as its arguments. These parameters define the PCIe and CPU memory
-> > > > ranges which will be used to setup the respective inbound ATU mapping. The
-> > > > passed parameters need to be verified against the ATU ranges constraints
-> > > > in the same way as it is done for the outbound ranges.
-> > > > 
-> > > > Finally the DMA-ranges detected for the PCIe controller need to be
-> > > > converted into the inbound ATU entries during the host controller
-> > > > initialization procedure. It will be done in the framework of the
-> > > > dw_pcie_iatu_setup() method. Note before setting the inbound ranges up we
-> > > > need to disable all the inbound ATU entries in order to prevent unexpected
-> > > > PCIe TLPs translations defined by some third party software like
-> > > > bootloader.
-> > > > 
-> > > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > > > ---
-> > > >  .../pci/controller/dwc/pcie-designware-ep.c   |  4 +-
-> > > >  .../pci/controller/dwc/pcie-designware-host.c | 32 ++++++++++-
-> > > >  drivers/pci/controller/dwc/pcie-designware.c  | 57 ++++++++++++++++++-
-> > > >  drivers/pci/controller/dwc/pcie-designware.h  |  6 +-
-> > > >  4 files changed, 90 insertions(+), 9 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> > > > index c62640201246..9b0540cfa9e8 100644
-> > > > --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
-> > > > +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> > > > @@ -167,8 +167,8 @@ static int dw_pcie_ep_inbound_atu(struct dw_pcie_ep *ep, u8 func_no, int type,
-> > > >  		return -EINVAL;
-> > > >  	}
-> > > >  
-> > > > -	ret = dw_pcie_prog_inbound_atu(pci, func_no, free_win, type,
-> > > > -				       cpu_addr, bar);
-> > > > +	ret = dw_pcie_prog_ep_inbound_atu(pci, func_no, free_win, type,
-> > > > +					  cpu_addr, bar);
-> > > >  	if (ret < 0) {
-> > > >  		dev_err(pci->dev, "Failed to program IB window\n");
-> > > >  		return ret;
-> > > > diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > > index 7caca6c575a5..9cb406f5c185 100644
-> > > > --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > > +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > > @@ -612,12 +612,15 @@ static int dw_pcie_iatu_setup(struct pcie_port *pp)
-> > > >  	}
-> > > >  
-> > > >  	/*
-> > > > -	 * Ensure all outbound windows are disabled before proceeding with
-> > > > -	 * the MEM/IO ranges setups.
-> > > > +	 * Ensure all out/inbound windows are disabled before proceeding with
-> > > > +	 * the MEM/IO (dma-)ranges setups.
-> > > >  	 */
-> > > >  	for (i = 0; i < pci->num_ob_windows; i++)
-> > > >  		dw_pcie_disable_atu(pci, PCIE_ATU_REGION_DIR_OB, i);
-> > > >  
-> > > > +	for (i = 0; i < pci->num_ib_windows; i++)
-> > > > +		dw_pcie_disable_atu(pci, PCIE_ATU_REGION_DIR_IB, i);
-> > > > +
-> > > >  	i = 0;
-> > > >  	resource_list_for_each_entry(entry, &pp->bridge->windows) {
-> > > >  		if (resource_type(entry->res) != IORESOURCE_MEM)
-> > > > @@ -654,9 +657,32 @@ static int dw_pcie_iatu_setup(struct pcie_port *pp)
-> > > >  	}
-> > > >  
-> > > >  	if (pci->num_ob_windows <= i)
-> > > > -		dev_warn(pci->dev, "Resources exceed number of ATU entries (%d)\n",
-> > > > +		dev_warn(pci->dev, "Ranges exceed outbound iATU size (%d)\n",
-> > > >  			 pci->num_ob_windows);
-> > > >  
-> > > > +	i = 0;
-> > > > +	resource_list_for_each_entry(entry, &pp->bridge->dma_ranges) {
-> > > > +		if (resource_type(entry->res) != IORESOURCE_MEM)
-> > > > +			continue;
-> > > > +
-> > > > +		if (pci->num_ib_windows <= i)
-> > > > +			break;
-> > > > +
-> > > > +		ret = dw_pcie_prog_inbound_atu(pci, i++, PCIE_ATU_TYPE_MEM,
-> > > > +					       entry->res->start,
-> > > > +					       entry->res->start - entry->offset,
-> > > > +					       resource_size(entry->res));
-> > > > +		if (ret) {
-> > > > +			dev_err(pci->dev, "Failed to set DMA range %pr\n",
-> > > > +				entry->res);
-> > > > +			return ret;
-> > > > +		}
-> > > > +	}
-> > > > +
-> > > > +	if (pci->num_ib_windows <= i)
-> > > > +		dev_warn(pci->dev, "Dma-ranges exceed inbound iATU size (%u)\n",
-> > > > +			 pci->num_ib_windows);
-> > > > +
-> > > >  	return 0;
-> > > >  }
-> > > >  
-> > > > diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-> > > > index 747e252c09e6..33718ed6c511 100644
-> > > > --- a/drivers/pci/controller/dwc/pcie-designware.c
-> > > > +++ b/drivers/pci/controller/dwc/pcie-designware.c
-> > > > @@ -397,8 +397,61 @@ static inline void dw_pcie_writel_atu_ib(struct dw_pcie *pci, u32 index, u32 reg
-> > > >  	dw_pcie_writel_atu(pci, PCIE_ATU_REGION_DIR_IB, index, reg, val);
-> > > >  }
-> > > >  
-> > > > -int dw_pcie_prog_inbound_atu(struct dw_pcie *pci, u8 func_no, int index,
-> > > > -			     int type, u64 cpu_addr, u8 bar)
-> > > > +int dw_pcie_prog_inbound_atu(struct dw_pcie *pci, int index, int type,
-> > > > +			     u64 cpu_addr, u64 pci_addr, u64 size)
-> > > > +{
-> > > > +	u64 limit_addr = pci_addr + size - 1;
-> > > > +	u32 retries, val;
-> > > > +
-> > > > +	if ((limit_addr & ~pci->region_limit) != (pci_addr & ~pci->region_limit) ||
-> > > > +	    !IS_ALIGNED(cpu_addr, pci->region_align) ||
-> > > > +	    !IS_ALIGNED(pci_addr, pci->region_align) ||
-> > > > +	    !IS_ALIGNED(size, pci->region_align) ||
-> > > 
-> > 
-> > > Why do you want the size to be aligned? What if I want to transfer a small size
-> > > buffer?
-> > > 
-> > > Same question applies to outbound programming as well.
-> > 
-> > You can't program a region with the unaligned size by the DW PCIe CSRs
-> > design. The limit address lower bits are read-only and fixed with
-> > one's in accordance with the IP-core synthesize parameter
-> > CX_ATU_MIN_REGION_SIZE. So the mapping is always performed in the
-> > CX_ATU_MIN_REGION_SIZE chunks.
-> > 
-> > IATU_LIMIT_ADDR_OFF_{IN,OUT}BOUND.LIMIT_ADDR_HW = 
-> > {(CX_ATU_MIN_REGION_SIZE == 65536) ? "0xffff" :
-> >  (CX_ATU_MIN_REGION_SIZE == 32768) ? "0x7fff" :
-> >  (CX_ATU_MIN_REGION_SIZE == 16384) ? "0x3fff" :
-> >  (CX_ATU_MIN_REGION_SIZE == 8192)  ? "0x1fff" :
-> >  (CX_ATU_MIN_REGION_SIZE == 4096)  ? "0xfff" : "0xffff"}
-> > 
-> 
+Hi All,
 
-> Right. Even though the minimum size that could be mapped is 4k, I could still
-> use that 4k size for mapping small buffers also. So you should not be erroring
-> out here if the size is not aligned. 
+The RZ/G2L Interrupt Controller is a front-end for the GIC found on
+Renesas RZ/G2L SoC's with below pins:
+- IRQ sense select for 8 external interrupts, mapped to 8 GIC SPI
+  interrupts
+- GPIO pins used as external interrupt input pins out of GPIOINT0-122 a
+  maximum of only 32 can be mapped to 32 GIC SPI interrupts,
+- NMI edge select.
 
-Why would you need to do that? Even if you do and the operation
-doesn't return an error (or at least splash the syslog with a
-warning), the hardware would expand the mapping up to the aligned size
-anyway. Such implicit behavior would have given your software an
-impression that the mapping was performed in the way you asked with
-the size you specified so the upper part of the unaligned range is
-free to be used for something else. If the range is accessed, instead
-of a bus error or silent IO termination it may cause unexpected result
-of creating random PCIe bus traffic. So I'd rather have the
-code/platform setup fixed right from the start instead of waiting for
-the hard to find bug cause.
+                                                             _____________
+                                                             |    GIC     |
+                                                             |  ________  |
+                                      ____________           | |        | |
+NMI --------------------------------->|          |  SPI0-479 | | GIC-600| |
+             _______                  |          |------------>|        | |
+             |      |                 |          |  PPI16-31 | |        | |
+             |      | IRQ0-IRQ7       |   IRQC   |------------>|        | |
+P0_P48_4 --->| GPIO |---------------->|          |           | |________| |
+             |      |GPIOINT0-122     |          |           |            |
+             |      |---------------->| TINT0-31 |           |            |
+             |______|                 |__________|           |____________|
 
-> I know that it is a waste of memory but that doesn't mean that it won't work.
+The proposed patches add hierarchical IRQ domain, one in IRQC driver and
+another in pinctrl driver. Upon interrupt requests map the interrupt to
+GIC. Out of GPIOINT0-122 only 32 can be mapped to GIC SPI, this mapping is
+handled by the pinctrl and IRQC driver.
 
-The correct statement in this case would be "it won't work in a way
-you expected, but with the implicit side effect applied to the memory
-above the requested one."
+Cheers,
+Prabhakar
 
--Sergey
+Changes for v3->v4:
+* Updated description for interrupts-cells property in patch #1
+* Dropped the patch which overriding free callback in gpiolib
+* Used devm helpers in patch#2
+* Patch #4, #5 and #6 are newly added
+* In patch #7 dropped using gpio offset as hwirq
+* Implemented immutable GPIO in patch #7
+* Implemented child_offset_to_irq() callback in patch #7
 
-> 
-> Thanks,
-> Mani
-> 
-> > -Sergey
-> > 
-> > > 
-> > > Thanks,
-> > > Mani
-> > > 
-> > > -- 
-> > > மணிவண்ணன் சதாசிவம்
-> 
-> -- 
-> மணிவண்ணன் சதாசிவம்
+Changes for v2->v3:
+* Updated description for interrupts-cells property in patch #1
+* Included RB tag from Geert for binding patch
+* Fixed review comments pointed by Geert, Biju and Sergei.
+
+Changes for v1->v2:
+* Included RB tag from Rob
+* Fixed review comments pointed by Geert
+* included GPIO driver changes
+
+Changes for RFCV4 -> V1:
+* Used unevaluatedProperties.
+* Altered the sequence of reg property
+* Set the parent type
+* Used raw_spin_lock() instead of raw_spin_lock_irqsave()
+* Simplified parsing IRQ map.
+* Will send the GPIO and pinctrl changes as part of separate series
+
+Changes for RFC v4:
+* Used locking while RMW
+* Now using interrupts property instead of interrupt-map
+* Patch series depends on [0]
+* Updated binding doc
+* Fixed comments pointed by Andy
+
+[0] https://patchwork.kernel.org/project/linux-renesas-soc/patch/
+20220316200633.28974-1-prabhakar.mahadev-lad.rj@xxxxxxxxxxxxxx/
+
+Changes for RFC v3:
+-> Re-structured the driver as a hierarchical irq domain instead of chained
+-> made use of IRQCHIP_* macros
+-> dropped locking
+-> Added support for IRQ0-7 interrupts
+-> Introduced 2 new patches for GPIOLIB
+-> Switched to using GPIOLIB for irqdomains in pinctrl
+
+RFC v2: https://patchwork.kernel.org/project/linux-renesas-soc/cover/
+20210921193028.13099-1-prabhakar.mahadev-lad.rj@xxxxxxxxxxxxxx/
+
+RFC v1: https://patchwork.kernel.org/project/linux-renesas-soc/cover/
+20210803175109.1729-1-prabhakar.mahadev-lad.rj@xxxxxxxxxxxxxx/
+
+Lad Prabhakar (7):
+  dt-bindings: interrupt-controller: Add Renesas RZ/G2L Interrupt
+    Controller
+  irqchip: Add RZ/G2L IA55 Interrupt Controller driver
+  gpio: gpiolib: Add ngirq member to struct gpio_irq_chip
+  gpio: gpiolib: Dont assume child_offset_to_irq callback always
+    succeeds
+  gpio: gpiolib: Add a check to validate GPIO hwirq
+  dt-bindings: pinctrl: renesas,rzg2l-pinctrl: Document the properties
+    to handle GPIO IRQ
+  pinctrl: renesas: pinctrl-rzg2l: Add IRQ domain to handle GPIO
+    interrupt
+
+ .../renesas,rzg2l-irqc.yaml                   | 133 ++++++
+ .../pinctrl/renesas,rzg2l-pinctrl.yaml        |  16 +
+ drivers/gpio/gpio-tegra186.c                  |  14 +-
+ drivers/gpio/gpiolib.c                        |  38 +-
+ drivers/irqchip/Kconfig                       |   8 +
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-renesas-rzg2l.c           | 425 ++++++++++++++++++
+ drivers/pinctrl/qcom/pinctrl-spmi-gpio.c      |   7 +-
+ drivers/pinctrl/qcom/pinctrl-spmi-mpp.c       |   7 +-
+ drivers/pinctrl/qcom/pinctrl-ssbi-gpio.c      |   7 +-
+ drivers/pinctrl/qcom/pinctrl-ssbi-mpp.c       |   7 +-
+ drivers/pinctrl/renesas/pinctrl-rzg2l.c       | 221 +++++++++
+ include/linux/gpio/driver.h                   |  17 +-
+ 13 files changed, 880 insertions(+), 21 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
+ create mode 100644 drivers/irqchip/irq-renesas-rzg2l.c
+
+-- 
+2.25.1
+
