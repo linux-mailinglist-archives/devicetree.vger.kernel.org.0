@@ -2,233 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4970452BF05
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 18:13:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5850E52BEED
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 18:13:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239290AbiERP3a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 11:29:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33240 "EHLO
+        id S239461AbiERPfP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 11:35:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239283AbiERP32 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 11:29:28 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88C481BE972;
-        Wed, 18 May 2022 08:29:26 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id h14so3229630wrc.6;
-        Wed, 18 May 2022 08:29:26 -0700 (PDT)
+        with ESMTP id S239459AbiERPfN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 11:35:13 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D35279835
+        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 08:35:11 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id n6so1373015wms.0
+        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 08:35:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=L9LLbTJecM2+Gol/XKLTvu9gjYd8YO6104B2zHq2tR8=;
-        b=ltUs138Bdx3d66Ugiw+/V53Zi29vH+2z11EU5nuF+tYbIPOm04PRN3WFguQYw4YjwQ
-         Azn4YmzIS32VsEs7zLtmsxKfapNIm3f0o/Ga6GQtu8rl1NOsXzt41knSkK/jiY/NdYpB
-         CTYUGFUssWTTxD2jSU0ag+CwgCXpvAJ4mnDsgL6RYRHk1ilsfYkTktS4WvibXK71Xl9N
-         P/5pVAjE5k/d4VxFwAnZUokWb4fREaoNQ1qxbOE401peIDrqvDHVsXSlLFdxKCTYX9Sh
-         WzofBGEuSGp1l8AMWhqRLm8EaFMYHgFFdXSuQRq98rYTEXDrdclIsyBq7lxw1LWSnGaE
-         lpfw==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=1k9s1VyRT5qdsyVYSsVS4g8dr+t4pbwtVP3vJMMJ0Tk=;
+        b=bF1gVETtXN5CfyL5cKmcje9earBCnj4fwq5VN2yE60xmijJpoefEOPoXwEEk+tJjcT
+         sm6kNbUeE2d+Zh+lu5/s8u15LR2kplEX3DGCocsjj8p0bMuwZ/vyXAsVq3B8E7oupPKH
+         TQW5Wno48QjJKHhDOBmJwtP6zsBMUSHdf9ub268Hzu0x3NWFBKAhbwASDgkOLQe9PMo2
+         59/d58F0T73mLdsEkK305K55D4gbbuhtDDCCxj0gpXF69Ug9sGW1i47LBF2daxrtkFDL
+         0jB7p0c4n2RRcnRUMVejy46LyR0/OvZ+aVs+cdW98czbvzUnIkqDM9d9ggvUkozu9ISf
+         wMYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=L9LLbTJecM2+Gol/XKLTvu9gjYd8YO6104B2zHq2tR8=;
-        b=l6Dkbt/kjuCr6VRWVLKQJpf+ljmFMx3euv0A22OUiuHT9pI+ICFb+iF4bwLNOltMbK
-         V72xVjulr6A4RFylrnUjA3rFmGpnrqfgTFFDG8DRj9jUtnL8zAmYX6DfNZe/6M0prLmN
-         lQqaJvu911LUf1eMLtaZ21EVKshe+BIHq13Ai2AY7BBSc81Ol0onFZZfyLMw5JKUFIeh
-         lbXxLcKtj1NjJqjZN/zFRQ9zHgHvY52Toc4IsRM6HRajB+Vjmrjy98j1MBQtLi2LKLYf
-         eQyoNVelKXL4g1jzc9ksTonWuv1MqPxmCW+FMumWHNmGBCcRidhYAI91x9LpbFCo0YGD
-         e5bQ==
-X-Gm-Message-State: AOAM533t9P9MY8nLaKFc1HOZmpnViPiIctrRPh9/ZxQTHsa1I4gs7QPC
-        gwc6lzrkzJaaMA7Ua6HozNM=
-X-Google-Smtp-Source: ABdhPJyNBVv6hgk0mSbEMs8PC438YDcloF/c3bcW5X/NP/lgqjAY83XT59kEsZDMtpdWf3kBkE58lg==
-X-Received: by 2002:adf:f90d:0:b0:20c:de32:4d35 with SMTP id b13-20020adff90d000000b0020cde324d35mr179613wrr.583.1652887764738;
-        Wed, 18 May 2022 08:29:24 -0700 (PDT)
-Received: from orome ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id l16-20020a05600c1d1000b0039444973258sm6173377wms.0.2022.05.18.08.29.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 May 2022 08:29:23 -0700 (PDT)
-Date:   Wed, 18 May 2022 17:29:20 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Janne Grunau <j@jannau.net>
-Cc:     Rob Herring <robh+dt@kernel.org>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Nicolin Chen <nicolinc@nvidia.com>,
-        Krishna Reddy <vdumpa@nvidia.com>,
-        Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Sameer Pujar <spujar@nvidia.com>, devicetree@vger.kernel.org,
-        iommu@lists.linux-foundation.org, linux-tegra@vger.kernel.org,
-        asahi@lists.linux.dev
-Subject: Re: [PATCH v5 0/5] iommu: Support mappings/reservations in
- reserved-memory regions
-Message-ID: <YoUQ0HlhwGiFPUrz@orome>
-References: <20220512190052.1152377-1-thierry.reding@gmail.com>
- <20220515103544.GC26732@jannau.net>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=1k9s1VyRT5qdsyVYSsVS4g8dr+t4pbwtVP3vJMMJ0Tk=;
+        b=QVxb0NNi5JujO5NRZCopGd+JOpNOEwGGKVQRPeQ2OvPBORGk++2tcyp+qNw9/n4ya3
+         9Sz4mQwWcuIyLEgDcKFWIlt/XSThw6iiLf79kBHfdiSmLSAOXpPIhnmtRigGwznFTsXw
+         FooXP3un2Ze56Kk67t7Tro/4ncTFF7bJ6Rb2pDz0HfjPJmPD27N+W8BE2G97WhVul/pf
+         k9rN/7ZrXZ4MfHbXby2CvASvsnAXuIe7frUHraKze4ugd+NX5DVpXHrgw725PAXrTik7
+         Poj645yETmqQ3q0Nj8TvBqlvgYf2OHY/2/NRld+uEe5zIDccexFtEb8vuecd+y1SthsK
+         bV3A==
+X-Gm-Message-State: AOAM530H3sjTk3kFR2HF0MlnuhXncBA+8xEBrtdkNlnHxGZgQAtVI/eb
+        XceXvkjI12wc8Kkw3fTRofwQWA==
+X-Google-Smtp-Source: ABdhPJwVY1/mQkzWCqkeSRRRNIXzNrBBLXWpdqnQocArgEvAhBU811vAGXWm3Pw98/mwX21+ivwuAA==
+X-Received: by 2002:a1c:5459:0:b0:394:1191:a1ff with SMTP id p25-20020a1c5459000000b003941191a1ffmr486529wmi.96.1652888109964;
+        Wed, 18 May 2022 08:35:09 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id t12-20020adfba4c000000b0020c5253d91esm2273298wrg.106.2022.05.18.08.35.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 May 2022 08:35:09 -0700 (PDT)
+Message-ID: <22f4a9c7-31e6-10c1-6230-cbd3c0972fdc@linaro.org>
+Date:   Wed, 18 May 2022 16:35:08 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="JWsdxCgDOF9zoQXr"
-Content-Disposition: inline
-In-Reply-To: <20220515103544.GC26732@jannau.net>
-User-Agent: Mutt/2.2.4 (c3baa83e) (2022-04-30)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH 1/1] arm64: dts: qcom: qrb5165-rb5: Enable the IMX577 on
+ cam1
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
+        bjorn.andersson@linaro.org
+Cc:     vladimir.zapolskiy@linaro.org, mchehab@kernel.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, mmitkov@quicinc.com, jgrahsl@snap.com,
+        hfink@snap.com
+References: <20220518133004.342775-1-bryan.odonoghue@linaro.org>
+ <20220518133004.342775-2-bryan.odonoghue@linaro.org>
+ <58af3b06-97fe-fd29-b6e3-fa68737b1d96@somainline.org>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <58af3b06-97fe-fd29-b6e3-fa68737b1d96@somainline.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 18/05/2022 14:55, Konrad Dybcio wrote:
+> Hi!
+> 
+> 
+> On 18/05/2022 15:30, Bryan O'Donoghue wrote:
+>> The IMX577 is on CCI1/CSI2 providing four lanes of camera data.
+> 
+> Commit says IMX577, code says IMX412.
+> 
+> 
 
---JWsdxCgDOF9zoQXr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The silicon enabling code for imx412 from Sony is the same as is used on 
+imx577.
 
-On Sun, May 15, 2022 at 12:35:44PM +0200, Janne Grunau wrote:
-> Hej,
->=20
-> I'm working on the display controller for Apple silicon SoCs and will=20
-> add some comments with support for it in mind.
->=20
-> added asahi@lists.linux.dev to CC for the Apple silicon related aspects
->=20
-> On 2022-05-12 21:00:47 +0200, Thierry Reding wrote:
-> >=20
-> > this is another attempt at solving the problem of passing IOMMU
-> > configuration via device tree. It has significantly evolved since the
-> > last attempt, based on the discussion that followed. The discussion can
-> > be found here:
-> >=20
-> >   https://lore.kernel.org/all/20210423163234.3651547-1-thierry.reding@g=
-mail.com/
-> >=20
-> > Rather than using a memory-region specifier, this new version introduces
-> > a new "iommu-addresses" property for the reserved-memory regions
-> > themselves.
->=20
-> If experimented with both proposed bindings for dcp and I think this=20
-> binding is easer to understand and to work with.
->=20
-> > These are used to describe either a static mapping or
-> > reservation that should be created for a given device. If both "reg" and
-> > "iommu-addresses" properties are given, a mapping will be created
-> > (typically this would be an identity mapping)
->=20
-> dcp on Apple silicon will not use identity mappings. The IOMMU supports=
-=20
-> identity mapping but the pre-configured mappings setup by Apple's system=
-=20
-> firmware will not work with identity mapping. It maps multiple regions=20
-> which are incompatible with a linear identity mapping. In addition the=20
-> embbeded aarch64 micro controllers used in the display subsystem appears=
-=20
-> to use a heap mapped at low IOVA space starting at 0.
->=20
-> > whereas if only an "iommu-addresses" property is specified, a=20
-> > reservation for the specified range will be installed.
-> >=20
-> > An example is included in the DT bindings, but here is an extract of
-> > what I've used to test this:
-> >=20
-> > 	reserved-memory {
-> > 		#address-cells =3D <2>;
-> > 		#size-cells =3D <2>;
-> > 		ranges;
-> >=20
-> > 		/*
-> > 		 * Creates an identity mapping for the framebuffer that
-> > 		 * the firmware has setup to scan out a bootsplash from.
-> > 		 */
-> > 		fb: framebuffer@92cb2000 {
-> > 			reg =3D <0x0 0x92cb2000 0x0 0x00800000>;
-> > 			iommu-addresses =3D <&dc0 0x0 0x92cb2000 0x0 0x00800000>;
-> > 		};
->=20
-> The binding supports mapping the same region to multiple devices. The=20
-> code supports that and it will be used on Apple silicon. Not necessary=20
-> to extend and complicate the example for I wanted to mention it=20
-> explicitly.
->=20
-> >=20
-> > 		/*
-> > 		 * Creates a reservation in the IOVA space to prevent
-> > 		 * any buffers from being mapped to that region. Note
-> > 		 * that on Tegra the range is actually quite different
-> > 		 * from this, but it would conflict with the display
-> > 		 * driver that I tested this against, so this is just
-> > 		 * a dummy region for testing.
-> > 		 */
-> > 		adsp: reservation-adsp {
-> > 			iommu-addresses =3D <&dc0 0x0 0x90000000 0x0 0x00010000>;
-> > 		};
-> > 	};
-> >=20
-> > 	host1x@50000000 {
-> > 		dc@54200000 {
-> > 			memory-region =3D <&fb>, <&adsp>;
-> > 		};
-> > 	};
-> >=20
-> > This is abbreviated a little to focus on the essentials. Note also that
-> > the ADSP reservation is not actually used on this device and the driver
-> > for this doesn't exist yet, but I wanted to include this variant for
-> > testing, because we'll want to use these bindings for the reservation
-> > use-case as well at some point.
-> >=20
-> > Adding Alyssa and Janne who have in the past tried to make these
-> > bindings work on Apple M1. Also adding Sameer from the Tegra audio team
-> > to look at the ADSP reservation and double-check that this is suitable
-> > for our needs.
->=20
-> The binding itself is sufficient for the needs of the display subsystem=
-=20
-> on Apple silicon. The device tree parsing code for reserved regions is=20
-> of limited use in it's current form. We will have either to extend or=20
-> duplicate it to retrieve the non-identity mappings. That's our problem=20
-> to solve.
+We have an imx577. I'll explain the difference in the V2 commit though.
 
-I had looked at it a bit to see if I could easily implement that, but
-the direct mapping support in the IOMMU subsystem currently only
-supports either reservations or identity mappings, so arbitrary mappings
-would either have to be added to that code, or it would have to take a
-different code path that basically goes through the same steps, except
-that it uses different physical and I/O virtual addresses.
+>>
+>> An example media-ctl pipeline is:
+>>
+>> media-ctl --reset
+>> media-ctl -v -d /dev/media0 -V '"imx412 
+>> '20-001a'":0[fmt:SRGGB10/4056x3040 field:none]'
+>> media-ctl -V '"msm_csiphy2":0[fmt:SRGGB10/4056x3040]'
+>> media-ctl -V '"msm_csid0":0[fmt:SRGGB10/4056x3040]'
+>> media-ctl -V '"msm_vfe0_rdi0":0[fmt:SRGGB10/4056x3040]'
+>> media-ctl -l '"msm_csiphy2":1->"msm_csid0":0[1]'
+>> media-ctl -l '"msm_csid0":1->"msm_vfe0_rdi0":0[1]'
+>>
+>> yavta -B capture-mplane -c -I -n 5 -f SRGGB10P -s 4056x3040 -F 
+>> /dev/video0
+>>
+>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 98 ++++++++++++++++++++++++
+>>   1 file changed, 98 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts 
+>> b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+>> index 0e63f707b911..48b31790c434 100644
+>> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+>> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+>> @@ -1203,6 +1203,43 @@ sdc2_card_det_n: sd-card-det-n {
+>>           function = "gpio";
+>>           bias-pull-up;
+>>       };
+>> +
+>> +    cam2_default: cam2-default {
+>> +        rst {
+>> +            pins = "gpio78";
+>> +            function = "gpio";
+>> +
+>> +            drive-strength = <2>;
+>> +            bias-disable;
+> 
+> Other pins in this DT don't have a newline between function and 
+> drive-strength, please remove it for consistency.
+> 
+> 
+>> +        };
+>> +
+>> +        mclk {
+>> +            pins = "gpio96";
+>> +            function = "cam_mclk";
+>> +
+>> +            drive-strength = <16>;
+>> +            bias-disable;
+>> +        };
+>> +    };
+>> +
+>> +    cam2_suspend: cam2-suspend {
+>> +        rst {
+>> +            pins = "gpio78";
+>> +            function = "gpio";
+>> +
+>> +            drive-strength = <2>;
+>> +            bias-pull-down;
+>> +            output-low;
+>> +        };
+>> +
+>> +        mclk {
+>> +            pins = "gpio96";
+>> +            function = "cam_mclk";
+>> +
+>> +            drive-strength = <2>;
+>> +            bias-disable;
+>> +        };
+>> +    };
+>>   };
+>>   &uart12 {
+>> @@ -1294,3 +1331,64 @@ &qup_spi0_data_clk {
+>>       drive-strength = <6>;
+>>       bias-disable;
+>>   };
+>> +
+>> +&camcc {
+>> +    status = "okay";
+>> +};
+> 
+> It's enabled by default.
 
-The easiest, I think, would be for struct iommu_resv_region to be
-extended with a pair of start/length fields for the I/O virtual address
-and then the rest of the code should mostly work. This shouldn't even be
-very invasive, maybe just adding a version of iommu_alloc_resv_region()
-that takes the I/O virtual addresses as additional parameters.
+I'm assuming Vladimir's patch to disable by default goes in.
+I'll include his patch as #1 in V2 so its clear on this point.
 
-Come to think of it, the current code could probably be improved a bit
-by checking if the addresses in the reg and iommu-addresses properties
-match. Currently the code just ignores the reserved memory region's
-"reg" property, so one could technically set up a mapping that points to
-physical memory that the device doesn't "own".
+> 
+>> +
+>> +&camss {
+>> +    status = "okay";
+>> +    vdda-phy-supply = <&vreg_l5a_0p88>;
+>> +    vdda-pll-supply = <&vreg_l9a_1p2>;
+>> +
+>> +    ports {
+> 
+> Maybe the port definitions along with #-cells here and on camss could be 
+> moved to the SoC DTSI?
 
-Thierry
+Makes sense.
 
---JWsdxCgDOF9zoQXr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmKFEM4ACgkQ3SOs138+
-s6FH5hAAltE4HtuVrS9ClCWOHTJmFHhrFtlbv9trGdfDlv3UdPT41oShZt9bt0gh
-0daHxlzSmUsMU0YTDmUx3CQQK7ec9z+DktHV9n9eU6HyehBWTjttJzJf1L4CaUTc
-MjNCm1R1O8ytiH3H5mcPIVpiw17X3cKYeuwS0TcUgEmEknPVAHViHFvW01toaZSN
-0L6PBANJsZjJ2sGFxNQs+Hj6xcwxdlq8Ub+AKxz0zcV/Z7IHclr/+yNNzUbQC67R
-gZMkGkWm665ucqA3sFXuDM+gaR7bfCsDYDpP/M62yM3MwKL/CR8ALk6t5/dFIsRj
-47hhFH0znXng1+KmSISQ1UWA2LUpJz4IwR+JCXob2z7cJOjzC8RY/8tSGfNsJRs6
-cgaBoa+i1ApCnkX6PvnDWcgGB/tG+GDQgI0O955XOGaskNjy5jNcJWk04++gAQbz
-ZrSMIxi2rBTQZLaxzc5s+MKInI2o0VTWQqkTw5ClW1uXNNqBpqV+D62uSc70GW1H
-jOrbZ3RkhmVRvXr5iWKMnne7XBGky7J4gc4UpA/7iUdi0qYRd4ju+8KpsRfeWhq6
-nP6vLONYS5IXgGxR3zvEhWqrtjQTWUrW8EUCbwylo2Lm0pmlCDAadoTWMHq/wry6
-2c/MYkpNS8jJNtJoLkIhr+rIloUpci6apBVn3HM+2vicQYVYnEc=
-=2ao1
------END PGP SIGNATURE-----
-
---JWsdxCgDOF9zoQXr--
+---
+bod
