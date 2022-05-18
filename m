@@ -2,123 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DFF952C28C
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 20:45:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 495A052C2A9
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 20:53:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241520AbiERSnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 14:43:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47940 "EHLO
+        id S241550AbiERSqL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 14:46:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241507AbiERSnm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 14:43:42 -0400
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC73F229FC7;
-        Wed, 18 May 2022 11:43:41 -0700 (PDT)
-Received: by mail-oi1-f182.google.com with SMTP id m25so3769966oih.2;
-        Wed, 18 May 2022 11:43:41 -0700 (PDT)
+        with ESMTP id S241655AbiERSqI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 14:46:08 -0400
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44164248CF;
+        Wed, 18 May 2022 11:46:07 -0700 (PDT)
+Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-f189b07f57so3917271fac.1;
+        Wed, 18 May 2022 11:46:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=nSo8w7W+OSVBY2zTRn/yV76t4zc61Jk0JXEwQ0qGoEY=;
-        b=SHV6PYnlUN8AMBsiC0jO/VprGHwi5z6Rsr6YCjmXu+QooHFk2VlaFmk04Tq1CRJ6x1
-         iFTPVQPMy3UnBLuPZUztLFghIsiOY9PiI6I4O7t+JrlbLfr5y978xPCLhXQXlng2mWs2
-         0t5txWnINGr2d15/cvuq6JIackbAW760mJu5yDY/SSNAurAGTSdzyFoMNEmncz3NAiyI
-         jmt0XwTNw5N6/mrrgwB+ziZ2n0aYgPGGCs++43hMaXxZRePGGNabEV6sdx5VWl0DQW9W
-         OAGuJFyr0mD/uWv2PMklt5p0tyyovgaUeiKL217hRoP148tWx2Hf/SmcRrrUnTMBbNym
-         iMAQ==
-X-Gm-Message-State: AOAM531Iwcrt2/njF/7LmLIFoInmy+KG36hoPFdCj/X8vBIjqGYlcC4b
-        osU/GNHXlXLpDoBmvfBBWQ==
-X-Google-Smtp-Source: ABdhPJxURTR1dLIW0z+AO7IFoBsGn5LcndospzqQor1Bg/tjfzW1ykX2baF3rSpYYdFTb74t+ZoaaA==
-X-Received: by 2002:a05:6808:f8e:b0:328:a601:a425 with SMTP id o14-20020a0568080f8e00b00328a601a425mr590558oiw.253.1652899421160;
-        Wed, 18 May 2022 11:43:41 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=pKIi5KmcpwiUvvttWh4e21qCKlHTXQLcc0WGZMCMfyo=;
+        b=lMpy8WOaer/+IC0gTQTUz+pndHdr7nl3nN8K7If4VmXJuG8J+LfohhW+MIO2MlF9TO
+         +eEnjmFpOkfzgk9MkfiDCNqqhANJlUpa8nP0l+NtXoFSKJvlPh6ar3IK+j/wWdXLc9Nx
+         NoA1aAyKQ4s7OEHGKPSgjybhtv0SEZraWv0bOoU0f1ocqOl1GW0V6Wa9dSlwRwW5mh+2
+         0LdzMghRsJ2CSbLj2kFfDKJv8RR+UBtGxAkGYv+u4uWYL7r1u/3ms/6qyWG5P2d6CINM
+         j3sgF4DsNP0eYdPS6m6hvyeQ3wbeEP/elXJbXfotVt+g7FqY8NEbmOitlPdf71Ne+nyG
+         XCGQ==
+X-Gm-Message-State: AOAM531IQ1zPENyzCyNUun4fYYclcCb8hhThQPewgp5XTPHh+ZjZVnfa
+        nxeR+Ynn5F+0Cp8Q9yFl9g==
+X-Google-Smtp-Source: ABdhPJzCbZpysYPkJ/ZU+Q27by+oDlv1fIMc02MZVxt6o5neKQP74ZuGayT1T/hdza+xq9Rr6yMpGw==
+X-Received: by 2002:a05:6871:69e:b0:f1:cbce:6ac4 with SMTP id l30-20020a056871069e00b000f1cbce6ac4mr889356oao.286.1652899566551;
+        Wed, 18 May 2022 11:46:06 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id q19-20020a4a8353000000b00333220959b9sm1265718oog.1.2022.05.18.11.43.39
+        by smtp.gmail.com with ESMTPSA id e21-20020a9d63d5000000b00605da994088sm1030657otl.2.2022.05.18.11.46.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 May 2022 11:43:40 -0700 (PDT)
-Received: (nullmailer pid 3669786 invoked by uid 1000);
-        Wed, 18 May 2022 18:43:39 -0000
-Date:   Wed, 18 May 2022 13:43:39 -0500
+        Wed, 18 May 2022 11:46:05 -0700 (PDT)
+Received: (nullmailer pid 3673824 invoked by uid 1000);
+        Wed, 18 May 2022 18:46:04 -0000
+Date:   Wed, 18 May 2022 13:46:04 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     yong.wu@mediatek.com, joro@8bytes.org, will@kernel.org,
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, yong.wu@mediatek.com,
+        joro@8bytes.org, will@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
         iommu@lists.linux-foundation.org,
         linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 7/8] dt-bindings: iommu: mediatek: Require
- mediatek,infracfg for mt2712/8173
-Message-ID: <20220518184339.GJ3302100-robh@kernel.org>
+Subject: Re: [PATCH 2/8] iommu: mtk_iommu: Lookup phandle to retrieve syscon
+ to infracfg
+Message-ID: <20220518184604.GK3302100-robh@kernel.org>
 References: <20220517132107.195932-1-angelogioacchino.delregno@collabora.com>
- <20220517132107.195932-8-angelogioacchino.delregno@collabora.com>
- <20220518014143.GA2024242-robh@kernel.org>
- <4ed63c3a-ec47-5801-ab89-b7d1a597c0da@collabora.com>
+ <20220517132107.195932-3-angelogioacchino.delregno@collabora.com>
+ <16fb07d9-28d8-5c73-1eb5-ec13544d22e5@arm.com>
+ <b003c37c-0f2d-31f6-6a74-4e1f0f4a1ccb@collabora.com>
+ <a063199a-72dd-d2ab-10bb-7130697c5611@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <4ed63c3a-ec47-5801-ab89-b7d1a597c0da@collabora.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <a063199a-72dd-d2ab-10bb-7130697c5611@arm.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 18, 2022 at 10:14:43AM +0200, AngeloGioacchino Del Regno wrote:
-> Il 18/05/22 03:41, Rob Herring ha scritto:
-> > On Tue, May 17, 2022 at 03:21:06PM +0200, AngeloGioacchino Del Regno wrote:
-> > > Both MT2712 and MT8173 got a mediatek,infracfg phandle: add that to
-> > > the required properties for these SoCs to deprecate the old way of
-> > > looking for SoC-specific infracfg compatible in the entire devicetree.
+On Wed, May 18, 2022 at 12:07:58PM +0100, Robin Murphy wrote:
+> On 2022-05-18 09:29, AngeloGioacchino Del Regno wrote:
+> > Il 17/05/22 16:12, Robin Murphy ha scritto:
+> > > On 2022-05-17 14:21, AngeloGioacchino Del Regno wrote:
+> > > > This driver will get support for more SoCs and the list of infracfg
+> > > > compatibles is expected to grow: in order to prevent getting this
+> > > > situation out of control and see a long list of compatible strings,
+> > > > add support to retrieve a handle to infracfg's regmap through a
+> > > > new "mediatek,infracfg" phandle.
+> > > > 
+> > > > In order to keep retrocompatibility with older devicetrees, the old
+> > > > way is kept in place, but also a dev_warn() was added to advertise
+> > > > this change in hope that the user will see it and eventually update
+> > > > the devicetree if this is possible.
+> > > > 
+> > > > Signed-off-by: AngeloGioacchino Del Regno
+> > > > <angelogioacchino.delregno@collabora.com>
+> > > > ---
+> > > >   drivers/iommu/mtk_iommu.c | 40 +++++++++++++++++++++++++--------------
+> > > >   1 file changed, 26 insertions(+), 14 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
+> > > > index 71b2ace74cd6..cfaaa98d2b50 100644
+> > > > --- a/drivers/iommu/mtk_iommu.c
+> > > > +++ b/drivers/iommu/mtk_iommu.c
+> > > > @@ -1134,22 +1134,34 @@ static int mtk_iommu_probe(struct
+> > > > platform_device *pdev)
+> > > >       data->protect_base = ALIGN(virt_to_phys(protect),
+> > > > MTK_PROTECT_PA_ALIGN);
+> > > >       if (MTK_IOMMU_HAS_FLAG(data->plat_data, HAS_4GB_MODE)) {
+> > > > -        switch (data->plat_data->m4u_plat) {
+> > > > -        case M4U_MT2712:
+> > > > -            p = "mediatek,mt2712-infracfg";
+> > > > -            break;
+> > > > -        case M4U_MT8173:
+> > > > -            p = "mediatek,mt8173-infracfg";
+> > > > -            break;
+> > > > -        default:
+> > > > -            p = NULL;
+> > > > +        infracfg =
+> > > > syscon_regmap_lookup_by_phandle(dev->of_node,
+> > > > "mediatek,infracfg");
+> > > > +        if (IS_ERR(infracfg)) {
+> > > > +            dev_warn(dev, "Cannot find phandle to mediatek,infracfg:"
+> > > > +                      " Please update your devicetree.\n");
+> > > 
+> > > Is this really a dev_warn-level problem? There's no functional
+> > > impact, given that we can't stop supporting the original binding any
+> > > time soon, if ever, so I suspect this is more likely to just annoy
+> > > users and CI systems than effect any significant change.
+> > > 
 > > 
-> > Wait, what? If there's only one possible node that can match, I prefer
-> > the 'old way'. Until we implemented a phandle cache, searching the
-> > entire tree was how phandle lookups worked too, so not any better.
+> > The upstream devicetrees were updated to use the new handle and this is
+> > a way to
+> > warn about having outdated DTs... besides, I believe that CIs will
+> > always get the
+> > devicetree from the same tree that the kernel was compiled from (hence
+> > no message
+> > will be thrown).
 > > 
-> > But if this makes things more consistent,
-> > 
-> > Acked-by: Rob Herring <robh@kernel.org>
+> > In any case, if you think that a dev_info would be more appropriate, I
+> > can change
+> > that no problem.
 > 
+> If there's some functional impact from using the old binding vs. the new one
+> then it's reasonable to inform the user of that (as we do in arm-smmu, for
+> example).
 > 
-> Hello Rob,
-> 
-> This makes things definitely more consistent, as it's done like that on
-> mtk-pm-domains and other mtk drivers as well.
-> 
-> The main reason why this phandle is useful, here and in other drivers, is
-> that we're seeing a list of compatibles that is growing more and more, so
-> you see stuff like (mockup names warning):
-> 
-> switch (some_model)
-> case MT1000:
-> 	p = "mediatek,mt1000-infracfg";
-> 	break;
-> case MT1001:
-> 	p = "mediatek,mt1001-infracfg";
-> 	break;
-> case MT1002:
-> 	p = "mediatek,mt1002-infracfg";
-> 	break;
-> .....add another 20 SoCs, replicate this switch for 4/5 drivers....
+> However if you change an established binding for non-functional reasons,
+> then you get to support both bindings, and it's not the end user's problem
+> at all. There seems to be zero reason to update an existing DTB for this
+> difference alone, so TBH I don't think it deserves a message at all.
 
-This type of property is used for poking random bits in another block 
-(that's usually a collection of random bits). These interfaces don't 
-tend to be that stable across many SoC generations. As there's no 
-abstraction beyond perhaps what the offset is, the client side ends up 
-needing to know the specifics of that block anyways. If the block is 
-that stable, then perhaps it needs a common fallback compatible.
-
-Sometimes these instances are also just places we haven't created a 
-common subsystem for.
-
-> and this is why I want the mtk_iommu driver to also get that phandle like
-> some other drivers are already doing.
-
-As I said, fine.
+It's also not the kernel's job to validate the DT. It's horrible at it 
+and we have something else now.
 
 Rob
