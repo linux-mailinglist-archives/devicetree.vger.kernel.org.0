@@ -2,111 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9392452BE03
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 17:25:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FD8752BE31
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 17:26:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238565AbiERO2q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 10:28:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51434 "EHLO
+        id S238575AbiEROcg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 10:32:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238563AbiERO2p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 10:28:45 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E3D4AE272;
-        Wed, 18 May 2022 07:28:44 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id p22so3926937lfo.10;
-        Wed, 18 May 2022 07:28:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=f2asfCeFU8cxuqhZ8P9yqC7YEl+u0MhBiTAzL9Svh7A=;
-        b=GmR8tJF+da69/ciqhoEMUlRXNwY1NUWXLCdla2Iu0ylQrvgqJoaWgHVOQj0I/BO/Yt
-         nP4pPV2Kh56+9lbMh47i6yH9vGRnw2GTipLOgIx+vR+o1Z19nkbhutn80ixKS4ga71jK
-         A+ydg7x70pVAreJc50GlbW+OwN4b1u438Z94tANm2MAVc58md+nH8YLzs76lB2twLY0D
-         0bjCE4/cf9hyv05pUsTplflbdMB6BwJCjDvEXdlQ5+2eCdzPFvSK51qLn+aQF9t0mpAp
-         H2KU6PUOJmea42Z4FOKIZhF2ehzOT0AGgCkSpXpTU+CqqcJKgs/va/ovxPFOCXf81M73
-         bWlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=f2asfCeFU8cxuqhZ8P9yqC7YEl+u0MhBiTAzL9Svh7A=;
-        b=36Ii1TxGVGh/ouMaNsYieULjVjiwS7xN7gErghLFGIgGfxNL+Ejrfwfbt9Ldv3E51x
-         aVkEDT+uUmJoGk8PTfmtfH62E6HSRDmHVOaLHEqPEWQ9H6dOPu+DpM1NwEEIOT+YK+YP
-         TqRjyoCl/Y6iDKEl9YgwuD5GpE2cu9wbIk8PpxyJBaouxPZncwUowezEH5qvPTWgY8RP
-         XAD5XJ2pj1MJwtQF5zoITWQMXqwpqRRPRNjkOtND5L4IsE3eXX/Gnlnlka1adSF9z8k/
-         KAz1Ib3oWHUzDbXDNyxfnq4qZv+GvCQxnAJoGV1Xo16VCz2kd1TipMpdKAzb8pCkhXzX
-         olrw==
-X-Gm-Message-State: AOAM532Dv1qZhEvYIH53LG0MiG2JfR2iIj2A8vpePoTTKkBl0RpmP2JO
-        i4A2KpFKE97hHK0rgKrPhkgtGFc+Cj3YneSIkTg=
-X-Google-Smtp-Source: ABdhPJzhrFJxl5/2J/veCGoYkn9Nu3bLLfWmyPSxzWdQt4Lt0dmM4NhnyYCHFhjGCnAmfT4rPU9IGMBqwfLndhZJouw=
-X-Received: by 2002:a19:8c1a:0:b0:472:315:48db with SMTP id
- o26-20020a198c1a000000b00472031548dbmr20359645lfd.235.1652884122909; Wed, 18
- May 2022 07:28:42 -0700 (PDT)
+        with ESMTP id S238567AbiEROcf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 10:32:35 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5008913CA38;
+        Wed, 18 May 2022 07:32:33 -0700 (PDT)
+Received: from mail-yw1-f175.google.com ([209.85.128.175]) by
+ mrelayeu.kundenserver.de (mreue106 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1MDPqi-1nzcRl0xTq-00ATkr; Wed, 18 May 2022 16:32:31 +0200
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-2ec42eae76bso26304877b3.10;
+        Wed, 18 May 2022 07:32:30 -0700 (PDT)
+X-Gm-Message-State: AOAM533Sr58KVGRRaHUSQv7V1Nd3Y10h59aVcVe1VZBmEOHeyDkrAXNy
+        Qjmy8ydJ9C89ob4MgbgsZM5qhzuQiuvEasBy7G8=
+X-Google-Smtp-Source: ABdhPJxlE4uUCuxvYT1DUTMaDWGZzPyyY5pBzmvWGxQQ4rCwL5f9fheKzGazF0y+V/+NQaENE1GQBL2EymP+kgt99NY=
+X-Received: by 2002:a81:6283:0:b0:2ff:2443:6f3c with SMTP id
+ w125-20020a816283000000b002ff24436f3cmr9731868ywb.135.1652884349891; Wed, 18
+ May 2022 07:32:29 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220516115846.58328-1-max.oss.09@gmail.com> <20220516115846.58328-12-max.oss.09@gmail.com>
- <CAOMZO5BtQtX2873RQJ6hB0rAZThJ82mf4gTm9JboAkMrwq+f6g@mail.gmail.com>
-In-Reply-To: <CAOMZO5BtQtX2873RQJ6hB0rAZThJ82mf4gTm9JboAkMrwq+f6g@mail.gmail.com>
-From:   Max Krummenacher <max.oss.09@gmail.com>
-Date:   Wed, 18 May 2022 16:28:31 +0200
-Message-ID: <CAEHkU3VKf9xNMMEcW39imkysH31e8SLtdOj-c+_EYkxMW2qN=w@mail.gmail.com>
-Subject: Re: [PATCH v1 11/17] ARM: dts: imx6q-apalis: Add ov5640 mipi csi camera
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     Max Krummenacher <max.krummenacher@toradex.com>,
-        Oleksandr Suvorov <oleksandr.suvorov@toradex.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+References: <1651947548-4055-1-git-send-email-olekstysh@gmail.com> <1651947548-4055-6-git-send-email-olekstysh@gmail.com>
+In-Reply-To: <1651947548-4055-6-git-send-email-olekstysh@gmail.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Wed, 18 May 2022 15:32:27 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a2cAnXr8TDDYTiFxTWzQxa67sGnYDQRRD+=Q8_cSb1mEw@mail.gmail.com>
+Message-ID: <CAK8P3a2cAnXr8TDDYTiFxTWzQxa67sGnYDQRRD+=Q8_cSb1mEw@mail.gmail.com>
+Subject: Re: [PATCH V2 5/7] dt-bindings: Add xen,dev-domid property
+ description for xen-grant DMA ops
+To:     Oleksandr Tyshchenko <olekstysh@gmail.com>
+Cc:     xen-devel <xen-devel@lists.xenproject.org>,
+        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
+        <virtualization@lists.linux-foundation.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+        Jason Wang <jasowang@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Julien Grall <julien@xen.org>, Juergen Gross <jgross@suse.com>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Provags-ID: V03:K1:I8P72aKSQ2Xh2Mr8yCIqWgdCOXwuNa3X4bHOcxJ0MPB97DSIZ+s
+ kAql0G1eIJVNfZARljZW/QYrd4v7JJSm/ILUPMORBxNPb2+3og2CVeStgww1knQPSx2T/9n
+ dQBFUxPl8sf6KyOZlRFvLxILPKNtIVwYIqG6MJms7Fh8tufVHGdHGX61VglJpXjho5CgYJJ
+ iN2EjIKBigYpgFL26VtFQ==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:W2fHljF5B7E=:iFwkzB8Hure8dRhEGuKNjg
+ Vta7KgCHNXLYD9nafg4UbQIk11Pnqpvjj3dOeklUuNsLLopxFHFjBfFe1WHtTevPSQ8amOkdv
+ qPThL+0Fut7MZQXw/ZQ2XY+/OSdzZTkpfEOC8BmMEJSOmU1NCrRKpB68IVkaUHbK0/Av8M0jo
+ pPFuYhr/WfZ5d3g//F4tX0zYIGoeJ4cNFJLvLPAwsA5AcwTKaKzDkAVaTOgOXrOVDnhjjpndQ
+ pq7pWgKJFAw4ZwKSL/N7OqYA6X91Ybfy3SAGQxoVlijd+tRYVV/j0vfj2GeH7EqTIN6qPNGDE
+ WEZoVatsjOqJzAq6DsAUrJ15hU2ALbvV0Pw4tYEl8iEWOwPB23KDSJ58lU0NQrSN1EuAuL0ks
+ 5Sy9he1SJN+9VI12u7yLy2ISmKcKhbyUcfpkkgI5GaSHUlWE6an4mJFty4zFr2dKVPHFy0cg9
+ mKSkZKbl+slC0yWQYGDxtiBgEufrYbdJep51P1U4Iv0ovxW1JSPy0vfp5XXDf0za1p0fjcDZS
+ +oeCR1GvVl+0jDAWAL9auE7NAHaGaTO1ggSjSQDKt6Sff60NTR5BqLTmVH0D7RJ/4ZWoZg4ye
+ 7cRKt1EGUkBdirN7jPM0ykH8C8dsedhyxT7Lix7kqcLcUKvlDQf4X4VFAuA8y1tAW3rSee/cL
+ zT5sqMgpGqWFwM0LlTg9w4sMTQoJrIYDzsyV09mETP5HOwDDc79t7eKdB6rMnw8rnFPtALdQi
+ sjz4ig90G9n/Ti2Bh44/NM19wU+/NYLiiaosrnNvupnn0pULo6ygBlkEePZwVSvvOU0CZkarT
+ 1IEcP9vD2Zq6QHD8Gv9CCySKET+XdSzeKEl+obc2R6K87WpbXRRHaFPAdmv5HJeHlZwDmBdQS
+ pkWEWtzFopfo4gq1/GTsdmJzxJE1yLsgskWJbd9ww=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabio
+On Sat, May 7, 2022 at 7:19 PM Oleksandr Tyshchenko <olekstysh@gmail.com> wrote:
+>
+> diff --git a/Documentation/devicetree/bindings/virtio/mmio.yaml b/Documentation/devicetree/bindings/virtio/mmio.yaml
+> index 10c22b5..29a0932 100644
+> --- a/Documentation/devicetree/bindings/virtio/mmio.yaml
+> +++ b/Documentation/devicetree/bindings/virtio/mmio.yaml
+> @@ -13,6 +13,9 @@ description:
+>    See https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=virtio for
+>    more details.
+>
+> +allOf:
+> +  - $ref: /schemas/arm/xen,dev-domid.yaml#
+> +
+>  properties:
+>    compatible:
+>      const: virtio,mmio
+> @@ -33,6 +36,10 @@ properties:
+>      description: Required for devices making accesses thru an IOMMU.
+>      maxItems: 1
+>
+> +  xen,dev-domid:
+> +    description: Required when Xen grant mappings need to be enabled for device.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+>  required:
+>    - compatible
+>    - reg
 
-On Tue, May 17, 2022 at 8:28 PM Fabio Estevam <festevam@gmail.com> wrote:
->
-> Hi Max,
->
-> On Mon, May 16, 2022 at 8:59 AM Max Krummenacher <max.oss.09@gmail.com> wrote:
->
-> > +       ov5640_csi_cam: ov5640_mipi@3c {
-> > +               compatible = "ovti,ov5640";
->
-> Does it make sense to describe the ov5640 camera in the Apalis SoM dtsi?
->
-> The camera is not populated in the SoM. What if the customer baseboard
-> uses a different camera?
->
-> The same applies to the adv720 description.
+Sorry for joining the discussion late. Have you considered using the
+generic iommu
+binding here instead of a custom property? This would mean having a device
+node for the grant-table mechanism that can be referred to using the 'iommus'
+phandle property, with the domid as an additional argument.
 
-We moved to a pattern where we do describe the 'Toradex' peripherals
-in the SoM dtsi but
-keep their status disabled. Then if the peripheral is on the carrier
-board we only have to
-enable it in the carrier board dts, for peripherals attached to the
-carrier boards (e.g. like the
-cameras) we enable it in device tree overlays.
-This did reduce code duplication a lot.
-A customer who attaches a different camera would add its camera node
-in its device tree
-or overlay and keep the ov5640 or adv7280 nodes disabled.
+It does not quite fit the model that Linux currently uses for iommus,
+as that has an allocator for dma_addr_t space, but it would think it's
+conceptually close enough that it makes sense for the binding.
 
-So I would rather not change anything here.
-
-Max
+         Arnd
