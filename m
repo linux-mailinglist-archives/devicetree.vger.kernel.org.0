@@ -2,111 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B51B52BFEC
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 19:09:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5A9352C0C7
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 19:10:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240265AbiERQdB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 12:33:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46906 "EHLO
+        id S240336AbiERQj2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 12:39:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240247AbiERQdA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 12:33:00 -0400
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC457187072;
-        Wed, 18 May 2022 09:32:57 -0700 (PDT)
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-d39f741ba0so3349719fac.13;
-        Wed, 18 May 2022 09:32:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=EE6DC5ExVq8aMmee7fTZv4EanXPMS3zovzIBFDm5qOE=;
-        b=N7GTzGPw6hAModwK3YyKoJwo10kmlTDi07W5URh9rP6VbCLr2w9t159w5gWdpEcrcV
-         /Q9Z8jA3payvKJeX1c9SL6z1OkKt2U/ATGflj5R2HB/GXDP5jB5ecAoy4h5aQTzmXRr2
-         ZI4U2OSq3wIPp4XuASAxsuTUw4BW9tFzXLktZ3xDitbQnX+rBIc1N8DVgxyLf5/bwep2
-         vlU2Gzmq1HrVjwNXw6HyD28WT44HN67zgusL80glIaWl6slHI/ct6JYSpA+/0Kg8Qwje
-         BGZEYUsM+AmanhP4qF9g0NQOAWbACXaFhZ2mZsr65PKmwDxT1vEqvkX95tCYRU1RzaFz
-         J2sg==
-X-Gm-Message-State: AOAM533rKx3pYTeZ8QzUph+AuFaOHUWwsHhZEQMgyTVyZfTg2VKqireR
-        qNi5VliN2qAPTB3Qpo5CBA==
-X-Google-Smtp-Source: ABdhPJwmr/kDN+wzoMMh+jlHqvdXGEwQrm1thk30Gnkj4oU7nJTEBk8hoN2a/t33ZJCojbIQw4SvNQ==
-X-Received: by 2002:a05:6870:41cc:b0:f1:b014:1107 with SMTP id z12-20020a05687041cc00b000f1b0141107mr164731oac.185.1652891576647;
-        Wed, 18 May 2022 09:32:56 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r3-20020a4a83c3000000b0035eb4e5a6c2sm1123684oog.24.2022.05.18.09.32.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 May 2022 09:32:55 -0700 (PDT)
-Received: (nullmailer pid 3454369 invoked by uid 1000);
-        Wed, 18 May 2022 16:32:55 -0000
-Date:   Wed, 18 May 2022 11:32:55 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Shreeya Patel <shreeya.patel@collabora.com>
-Cc:     jic23@kernel.org, lars@metafoo.de, Zhigang.Shi@liteon.com,
-        krisman@collabora.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com, alvaro.soliverez@collabora.com,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v4 1/3] dt-bindings: vendor-prefixes: Add 'ltr' as
- deprecated vendor prefix
-Message-ID: <20220518163255.GE3302100-robh@kernel.org>
-References: <20220511094024.175994-1-shreeya.patel@collabora.com>
- <20220511094024.175994-2-shreeya.patel@collabora.com>
- <20220516170058.GA2825626-robh@kernel.org>
- <83907dd2-2a53-2448-576b-ae26462d432a@collabora.com>
+        with ESMTP id S240340AbiERQj2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 12:39:28 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.74])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E39316F93F;
+        Wed, 18 May 2022 09:39:26 -0700 (PDT)
+Received: from mail-yb1-f175.google.com ([209.85.219.175]) by
+ mrelayeu.kundenserver.de (mreue108 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1N63JO-1npMbU28vQ-016PHS; Wed, 18 May 2022 18:39:24 +0200
+Received: by mail-yb1-f175.google.com with SMTP id v71so4646073ybi.4;
+        Wed, 18 May 2022 09:39:24 -0700 (PDT)
+X-Gm-Message-State: AOAM532l8m8lEszDoj70Q9bmmqfVAJcoCtndPIiTWhKzJVVK4wAiysQj
+        LqvGooPp3FLdd8CL4XL5Tw25IChUez5HjYRD8bc=
+X-Google-Smtp-Source: ABdhPJzgO+qZWLWCVNG0zigCWvcyaAMnm3eGdOmvWgnrUQyVgjytOzSGXEWpAN07OlHuwbLMC0znLO5cjVzishwdUG8=
+X-Received: by 2002:a25:cfd7:0:b0:64d:9526:1ed4 with SMTP id
+ f206-20020a25cfd7000000b0064d95261ed4mr487184ybg.106.1652891963222; Wed, 18
+ May 2022 09:39:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <83907dd2-2a53-2448-576b-ae26462d432a@collabora.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <1651947548-4055-1-git-send-email-olekstysh@gmail.com>
+ <1651947548-4055-6-git-send-email-olekstysh@gmail.com> <CAK8P3a2cAnXr8TDDYTiFxTWzQxa67sGnYDQRRD+=Q8_cSb1mEw@mail.gmail.com>
+ <56e8c32d-6771-7179-005f-26ca58555659@gmail.com>
+In-Reply-To: <56e8c32d-6771-7179-005f-26ca58555659@gmail.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Wed, 18 May 2022 17:39:23 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a1YhkEZ8gcbXHEa5Bwx-4VVRJO8SUHf8=RNWRsc2Yo-+A@mail.gmail.com>
+Message-ID: <CAK8P3a1YhkEZ8gcbXHEa5Bwx-4VVRJO8SUHf8=RNWRsc2Yo-+A@mail.gmail.com>
+Subject: Re: [PATCH V2 5/7] dt-bindings: Add xen,dev-domid property
+ description for xen-grant DMA ops
+To:     Oleksandr <olekstysh@gmail.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        xen-devel <xen-devel@lists.xenproject.org>,
+        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
+        <virtualization@lists.linux-foundation.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+        Jason Wang <jasowang@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Julien Grall <julien@xen.org>, Juergen Gross <jgross@suse.com>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:l6Zmm0Lt2Cs3Lj3V/oRAG1XoFxKRLpZyyELmAAmBae16I65msdd
+ 5JM6bkwu7sJPAOaiw//CuKljLbLeZcxBAaKafhVBllY8NkFvtnW312uXnwxG1PpeLelGKJe
+ qMT6rxYcCLtfBuOzoyCyJGtUnj3lnf2371xiIqY969MkIQzN0PTHgOe65AdXgsRe8p2wPUZ
+ Ci1OTFOHAUzcBUD0PNqIg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:S6JupdEVbEI=:IVS+G9GEQ5TsiitUcqK9BO
+ jzKYAZxO0bn70RdppsRPMUII0MihQqTtSkOAPfNbM9AQQap4U25NhvYinbRizJuqEXvEtP+gs
+ O1iqiZ9m2GrrLMDYQrYBxYaUUaqrdxR9hmy6NxiAcvaKezWxmQwgrqQzJxsn+S2iCpeBBQseZ
+ j3W8mN0IiiQ3YTY6gQBAhzLM0h/UyjuHJwBixIhjd/ur6fQ8hrZSiNU+jMcUfFQjT5yo1FcZu
+ iFcj9L6FnlPAIE/XQ1t3wgDwNXmts8ZZ1jWheZ0mXGl1e1eCxMjn0JOetjO5KR9hDZX8l2Jig
+ M/KDdEZakfN9yjk9a6f/nNKT2orkGPoYLy/8zlVJCSMMqJ5f9ri1M1GkiNb7IvFjAIZK5MLdS
+ KSK5zCvAjwSkRg04WBRwYRyUIUc6vUJAGbnprDlOF6K6SHUiMoYPiE5VMHsB+uPfc9f6tSMyF
+ Ql9dh1/fvuG4eOHt5V8OXugiwgpuXthOW4W5DlRrydmY9kXFt3p43WdoiL3Mo/QSfx6TPy/5q
+ PVeQ1Lr995aIILAGl+mTbHbprEMoK1ukNI4rW6E+SRGpF+/Gli22rJiGtn83yV3GRR+oJ9aD8
+ P6IsGMrtmCrOKs0aXm6phDpv+qwcX1vBSCZnGCH/XdMUUXSMpXVxdbrjt4RPnnQOP9KMJdQRb
+ hNwKjMOrMoYk9fXPqg9mu0Z9cawdyi8w7V6iVWcK0khHf/qNQPwbovPxG17h0Ao+SUfRFs1JN
+ MMaVUJOGfXc0fRfN6WWDrOFc0uGrMr7phYr0JQ==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 17, 2022 at 04:07:33PM +0530, Shreeya Patel wrote:
-> 
-> On 16/05/22 22:30, Rob Herring wrote:
-> > On Wed, May 11, 2022 at 03:10:22PM +0530, Shreeya Patel wrote:
-> > > 'liteon' is the correct vendor prefix for devices released by
-> > > LITE-ON Technology Corp. But one of the released device which uses
-> > > ltr216a light sensor exposes the vendor prefix name as 'ltr' through
-> > > ACPI.
-> > ACPI? NAK.
-> > 
-> > There are no cases of 'ltr' for DT, so fix ACPI.
-> 
-> Hi Rob,
-> 
-> Yes, we understand there are no cases of 'ltr', but we have released devices
-> which uses this string for probing the ltrf216a light sensor driver ( x86
-> with DT )
+On Wed, May 18, 2022 at 5:06 PM Oleksandr <olekstysh@gmail.com> wrote:
+> On 18.05.22 17:32, Arnd Bergmann wrote:
+> > On Sat, May 7, 2022 at 7:19 PM Oleksandr Tyshchenko <olekstysh@gmail.com> wrote:
+>
+> >   This would mean having a device
+> > node for the grant-table mechanism that can be referred to using the 'iommus'
+> > phandle property, with the domid as an additional argument.
+>
+> I assume, you are speaking about something like the following?
+>
+>
+> xen_dummy_iommu {
+>     compatible = "xen,dummy-iommu";
+>     #iommu-cells = <1>;
+> };
+>
+> virtio@3000 {
+>     compatible = "virtio,mmio";
+>     reg = <0x3000 0x100>;
+>     interrupts = <41>;
+>
+>     /* The device is located in Xen domain with ID 1 */
+>     iommus = <&xen_dummy_iommu 1>;
+> };
 
-That's not what your commit message says.
+Right, that's that's the idea, except I would not call it a 'dummy'.
+From the perspective of the DT, this behaves just like an IOMMU,
+even if the exact mechanism is different from most hardware IOMMU
+implementations.
 
-Even if this is DT based, given an undocumented vendor string is used, 
-it seems doubtful the rest of the binding would match upstream. What 
-about the rest of the DTB? Got a pointer to it or want to publish it?
+> > It does not quite fit the model that Linux currently uses for iommus,
+> > as that has an allocator for dma_addr_t space
+>
+> yes (# 3/7 adds grant-table based allocator)
+>
+>
+> > , but it would think it's
+> > conceptually close enough that it makes sense for the binding.
+>
+> Interesting idea. I am wondering, do we need an extra actions for this
+> to work in Linux guest (dummy IOMMU driver, etc)?
 
-> If we don't document this in vendor-prefixes.yaml, then the following
-> warning
-> is generated.
-> 
-> WARNING: DT compatible string vendor "ltr" appears un-documented -- check
-> ./Documentation/devicetree/bindings/vendor-prefixes.yaml 364: FILE:
-> drivers/iio/light/ltrf216a.c:313: + { .compatible = "ltr,ltrf216a" },
-> 
-> 
-> Can you suggest us what would be the right way to fix this warning if not
-> documenting
-> in vendor-prefixes.yaml?
+It depends on how closely the guest implementation can be made to
+resemble a normal iommu. If you do allocate dma_addr_t addresses,
+it may actually be close enough that you can just turn the grant-table
+code into a normal iommu driver and change nothing else.
 
-Fix the DT. We don't accept bindings simply because they are already 
-used in the field. If this was the only issue, it would be fine, but I 
-suspect it's the tip of the iceberg.
-
-Rob
+        Arnd
