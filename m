@@ -2,105 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15D4F52B97C
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 14:14:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D629152B98B
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 14:14:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236192AbiERMLY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 08:11:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42124 "EHLO
+        id S236289AbiERMNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 08:13:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236311AbiERMLP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 08:11:15 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1378A3C702
-        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 05:11:13 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id d15so3260680lfk.5
-        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 05:11:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=/ENvXu+nmn3kyb9H+0ZeCKYYHHyXbkqj1LHdwtAGdSg=;
-        b=whGvaDFXtPjWJjERWS3MYYHUgg39F7kI65IjOQv09J4z265YWLvU27qa6tdsTR7Eln
-         nT3Oq2UZF7zHS96hgzVIgjzMoZtwWlE2sHQGq7QJSJstqXXrHUKSOxK5o35iqc4X1qm/
-         BdmY6W23p3ZVWpbcgdp4lSZ4L4c2JeJCVF+W55wRnoIX7iHTUGW8/9xr4TYCw2g0d971
-         +B0qTyFdV7itCadyuD1K5LYVLv4uzeie/Y3SBzVhJqGR1UGtVUlVF3/4ayGLdgYyGcQQ
-         J9BWPUAxtYvWVaXbTi6aB730Y3rHRMo2pQ41/Q2SezRzYsbvI9gj54eteYOpZJj/bVt+
-         33Mw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=/ENvXu+nmn3kyb9H+0ZeCKYYHHyXbkqj1LHdwtAGdSg=;
-        b=aunSRsou/OhkVyU2n5ZSMpuEeWVYPhntIC+8ViQbNvKfafGH1aejsFf977m/FWu5VW
-         cv0ReWl2SdVfuZWjF6bvjIWZr02TPSf4wn0hAG0mIr4iG8TppprVxcws/FtECtCLPOxe
-         5ueOvG3m2Q4oCY3WYTk3+Fq0lHR3dDGYv6aIIhsUptWX6+HSSHar+miyyizU1PFqhpAQ
-         mdwzo4kkNbV63fdktfMrR9kVcrayJuj+qeX+1XK2YZCr0sackvKgjGlPJ9LStGyCPZqO
-         VACK0L+cMxSyeeB8zeiRwCmrr3opr4J3q+/yYH6HVXLHGT/6FjSxAKwtyutFm2dGlkLr
-         /+iw==
-X-Gm-Message-State: AOAM530FXwnZjXYitYTbR39Fr9l9L8EoaxZE9xkIbAhSB9D2G10BlOgA
-        f/GRBuZ/Il5Le9nQgdLoMrXNhg==
-X-Google-Smtp-Source: ABdhPJxeHTzzDWGQYLcuzUk6Jc2MaylhGO874SauCO4XaqINd6x6qsTPHrJq4q/KH4b8aHCf8iT4pg==
-X-Received: by 2002:a05:6512:6d2:b0:473:a7cb:8f06 with SMTP id u18-20020a05651206d200b00473a7cb8f06mr20341004lff.267.1652875871450;
-        Wed, 18 May 2022 05:11:11 -0700 (PDT)
-Received: from localhost.localdomain (mobile-access-b04822-211.dhcp.inet.fi. [176.72.34.211])
-        by smtp.gmail.com with ESMTPSA id o8-20020a2ebd88000000b0024f3d1daeccsm194460ljq.84.2022.05.18.05.11.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 May 2022 05:11:11 -0700 (PDT)
-From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-To:     Robert Foss <robert.foss@linaro.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: qcom: sm8250: camss: Add power-domain-names property
-Date:   Wed, 18 May 2022 15:11:04 +0300
-Message-Id: <20220518121104.951621-3-vladimir.zapolskiy@linaro.org>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20220518121104.951621-1-vladimir.zapolskiy@linaro.org>
-References: <20220518121104.951621-1-vladimir.zapolskiy@linaro.org>
+        with ESMTP id S236267AbiERMNW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 08:13:22 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20F7C16647C;
+        Wed, 18 May 2022 05:13:06 -0700 (PDT)
+Received: from mail-yw1-f171.google.com ([209.85.128.171]) by
+ mrelayeu.kundenserver.de (mreue106 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1N3K9E-1ninzO3Mm2-010NS2; Wed, 18 May 2022 14:13:05 +0200
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-2ef5380669cso21757527b3.9;
+        Wed, 18 May 2022 05:13:04 -0700 (PDT)
+X-Gm-Message-State: AOAM533WFZbmctZ48/8LoVTYNDrYAjdAD6HJ5kGa+eFx3AMaBuc1umGx
+        7jIb8a6u6GRTGg8EF51d7NA9eD5doXqswrJsI2k=
+X-Google-Smtp-Source: ABdhPJww4o6KC19Bdx3y+Y9+BEECGSt26A7Urzyyba0OuquV/hIeym4xoshJpgwWoBBDawOH5VaMVVqfZTQGwVugx8c=
+X-Received: by 2002:a81:456:0:b0:2fe:dee5:fbbc with SMTP id
+ 83-20020a810456000000b002fedee5fbbcmr20604776ywe.249.1652875983425; Wed, 18
+ May 2022 05:13:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220516163310.44842-1-nick.hawkins@hpe.com>
+In-Reply-To: <20220516163310.44842-1-nick.hawkins@hpe.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Wed, 18 May 2022 13:13:05 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a0914=TM9f1CNcg_PXfHvt6nHDPyrvLp=0KO4hZM2GT5w@mail.gmail.com>
+Message-ID: <CAK8P3a0914=TM9f1CNcg_PXfHvt6nHDPyrvLp=0KO4hZM2GT5w@mail.gmail.com>
+Subject: Re: [PATCH v8 0/8] Introduce HPE GXP Architecture
+To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
+Cc:     "Verdun, Jean-Marie" <verdun@hpe.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Russell King - ARM Linux <linux@armlinux.org.uk>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        SoC Team <soc@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
+        Joel Stanley <joel@jms.id.au>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:bydMuVtSfsxmxw1dETS7deuD573u5VRVlreV62FDWZCuxVkVs5m
+ m/BlQ3z2fTcGSokvu/fL0b1hNvD/SKEjP5bVC2+KL5NTMFY4074kJfHxr0cazzqfKlzLlnX
+ 7deLur69HKUxusSC/uH3fjS1aWnTy9r87dAWEM1GJfDJvz9ZiaCnAAvnrMvZFAQUApy+b5G
+ I8DdgtpQv3ZEinOXv/qNQ==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:bUur6YHxCdI=:t+hhY/5KzTjCZpCa+RWXg1
+ A1+xKDu9yxP7y185JnFxMHYj9CUQHAbxi51w60/V2b3I47x12bIIPxeRFGet7qCN3QXVzfZhb
+ zim6r8NSFZ4ol7kIR+kd172yZiUFcXkrJVnZ7sAFegmiXDTXNPX09dyD9HJllOvN2N7eQuLa1
+ PbF7SQ7jlfkvHseJLc3YtKZHN6/WpyvCf/a1uwRgR0I1TQYtraIg+1l+ZTkVsslxMmNecQKqe
+ nu1wFsGrUACHZjBC1eIXAY1PNaf2B7lHz1003x9qxnLi43W5TmJLfwQofYceXv8Rn7eL2aMAm
+ PWJbvrQX3LPue04TZKETnSoXR5D4ET4ptuRwWPAtjWYZEYTONa+aeFKcPKkQi11luGfXEUsQ9
+ /N6KAdL2XZo7R+BC4RkUmEm7M0T14wZyqv/6gMKcEwLsZUXwFqpxz4G91CvKpz3GVLJMW1ftZ
+ WflWCX9/faS5Jwxfe+FPQc58Fb8xYIv0a3WyiXI0n+Ltw18ifk1xTX4e0e8cyOJyQ1YvVvlPU
+ 1rATssIj1Qb/Kfnt1pvmOQ9VyT/Ts7AQHHDxCqpfvAwZVpTBNVdc+Bo7UDYOKP0IeJag4BfEV
+ Sae8fnGIWpCkZkbnaPKx/hr5CMfmRpECLXqG0ZVwJOcJPJTPnORAxxpLgaEiWKG2y40HDHTWt
+ KpzOTG2/EVJj+c5nniiAlQ+QFWvZ8wD87+KjQCf+JLYXIYBDptl1ILZ8rzjkxBi0jBMY9xScl
+ UclB3I4NSBH61t3wL8FXJ+hiSPB8KmPASnUSxnLCcWaPBGUyA6gC9hDMGqOKa+f1Yw1J8XGNV
+ 1F8WeBawLkS9o2dVpRII7H/FKZMJYeQP2vkYhq21cyTV0cUKZLAZeVlPI3mgNfpshkCk9l4x6
+ GKz2dvsxt8saw2CmZGB14mm/+FtvSX4L1+h0BmrM8=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-QCOM SM8250 camera subsystem depends on three power domains, at the moment
-all of them are not differentiated one from another, however the power
-domains compose a hierarchical structure with vfe0 and vfe1 as subdomains
-of titan_top, also managing vfe0 and vfe1 separately allows to get more
-fine-grained power control in runtime.
+On Mon, May 16, 2022 at 5:33 PM <nick.hawkins@hpe.com> wrote:
+>
+> From: Nick Hawkins <nick.hawkins@hpe.com>
+>
+> Changes since v7:
+>  *Fixed comment format in watchdog driver
+>  *Added the Acked-by tag to the device tree patch.
+>  *Resubmitted the dt-bindings patches hpe,gxp and hpe,gxp-timer with
+>   Reviewed-by tags from previous patch in descriptions to keep patchset
+>   continuity for v8.
 
-The change should have no implications on any SM8250 CAMSS users, since
-none of the boards supported in upstream enables the camss device tree node.
+Hi Nick,
 
-Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+I have preliminarily applied this version into a the arm/late branch,
+but since I'm
+travelling at the moment, I cannot actually push that branch out for linux-next
+before the coming merge window.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 26afaa4f98fe..d7bd20412f06 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -3289,6 +3289,7 @@ camss: camss@ac6a000 {
- 			power-domains = <&camcc IFE_0_GDSC>,
- 					<&camcc IFE_1_GDSC>,
- 					<&camcc TITAN_TOP_GDSC>;
-+			power-domain-names = "vfe0", "vfe1", "titan_top";
- 
- 			clocks = <&gcc GCC_CAMERA_AHB_CLK>,
- 				 <&gcc GCC_CAMERA_HF_AXI_CLK>,
--- 
-2.33.0
+My feeling is that this should just wait until 5.20 now, but if you
+and others others
+feel strongly about it, I could send it during the second half of the
+merge window.
 
+It still needs to pass all the CI build tests, but at least it's
+unlikely that there
+are any runtime regressions for other platforms.
+
+         Arnd
