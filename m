@@ -2,242 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6905852BCC2
-	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 16:17:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C757652BCAF
+	for <lists+devicetree@lfdr.de>; Wed, 18 May 2022 16:17:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238390AbiEROFF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 10:05:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60558 "EHLO
+        id S238418AbiEROH1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 10:07:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238374AbiEROFE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 10:05:04 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 499AC146751
-        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 07:05:02 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id e4so2112002ljb.13
-        for <devicetree@vger.kernel.org>; Wed, 18 May 2022 07:05:02 -0700 (PDT)
+        with ESMTP id S238442AbiEROHZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 10:07:25 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5600860A8B;
+        Wed, 18 May 2022 07:07:24 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id l19so2661958ljb.7;
+        Wed, 18 May 2022 07:07:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=4be4XubXmodsQyyIZAOkjAtM6Y2yi67Gjsh2Z2W5A8w=;
-        b=B6uPnx2xGjPw06R1UIM+lD30VHrMv5OhwsWQ8+ZAW5SxHNeWTpVOPGbmHSPVDlw+VD
-         9hM8p1R05Zt5FumNjBx203Sk2906de2TwWSKdYv6AM+idQZGWkVGnYe5oJuU74fkoGNs
-         pD1yeutRT8vpCyOKZQeL23PSd5ESE+XZOrlm0qkQCrS1ADSD1dezVE8xzc5SLkgldtw7
-         SHKsBotZV6yO6u5MK1s9oW2Hs32jctzRRsAUyekvWgy4tszBFmWIrrIMVUOi5IlxetsR
-         IaAi/eYrCeF88eTbVzVzbFNoGaRXRUJ2d81S7iyh2ZxOcT4OT9knD2aTze222THtluzM
-         H3nQ==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=tUatQ9xZn9LWvvc+mLHXb05n0nL6xTDEP0ScWdFDiM0=;
+        b=UTulVSX+Rey9WdkqBwoBNc4OSVPQhahjKH6xbHK6FBW0aHlMQyFMfQkaia/biOkV/p
+         3Nz0cP1KZRyl3CCZQMRl9xAXVEVGKADEUhYm9FIQ0g3QE+1RodNHDbPr3ScNVDUtWLfy
+         Faa6Rb6QxjWXqRtUAuN2FxM6z4ovRaPJyjFghNQp3OzjyqsNG1zDhbUmpEowCVnON530
+         CrmW+BrY1VjZO/WYCnJov6KQQp2922pWYrDnq4HjMglTGh61rIaeoX/h/9pdWUo20BHd
+         +uFwSbRhdRMfJpjPEtIWyYONTnh95ipsOB2wNBr0aPcetTmvOqH9a8zVclshK3PPMcQ2
+         AfYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=4be4XubXmodsQyyIZAOkjAtM6Y2yi67Gjsh2Z2W5A8w=;
-        b=u8Qz9jmLA2ITu5qF7zSoNUoWhIl3kFudrefmzEbyzdSJVBr7jDAV7p/oN7rWpPssOQ
-         omydZlZWHU9mXFqfu/jMGl0qPgzpYcvvrMHbwPgbM4t/lqD1ty3TGk3YsAwwJdngWaWF
-         lY5sEWplO2akXVa9gJ7Hg0ge9ZJr609hQ+E6ayqgbHaDlzUmNjce+totuTLjMQMOqEXK
-         kCC2DA/q07+yzuQP6KR9bnCC1I4V5c6+cVRCA8Y8ztZZ2ZxDKjF40ZsOyQRTLb0zm7Gy
-         7M6yFZmKpSUVydgAex+p696Yv9siT2fQNi65gEWBEAncsTiA+hsQeWee/H+aU8OjzAsk
-         9cQg==
-X-Gm-Message-State: AOAM532T5qZxt0OPovknnvMJY8KR1pVYBvUbjb6iRl5U6QiMW6z2ZFCk
-        bRRE7q7qQOBnokeLDi4p1CMerg==
-X-Google-Smtp-Source: ABdhPJyum/9upK7pIF0FGYulA7ZOiN+2Cg4PV9d6rFilhc3AYLNoZbZVZDEpBgHKeiY1v87z+TObOg==
-X-Received: by 2002:a2e:9e41:0:b0:253:c37c:378b with SMTP id g1-20020a2e9e41000000b00253c37c378bmr3573907ljk.202.1652882700578;
-        Wed, 18 May 2022 07:05:00 -0700 (PDT)
-Received: from [192.168.1.102] (mobile-access-b04822-211.dhcp.inet.fi. [176.72.34.211])
-        by smtp.gmail.com with ESMTPSA id q21-20020ac25295000000b0047255d211e4sm217587lfm.275.2022.05.18.07.04.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 May 2022 07:05:00 -0700 (PDT)
-Message-ID: <0864eed7-bba2-59ec-dc5f-b491ce114798@linaro.org>
-Date:   Wed, 18 May 2022 17:04:41 +0300
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=tUatQ9xZn9LWvvc+mLHXb05n0nL6xTDEP0ScWdFDiM0=;
+        b=oSRlI3RLD1t/JXnqIFYHLIS47JYBpr5vkmc1OzcDgXPekamlruiHeatL2BbkHM9VUs
+         UN9P1veE3Yz6cJ38bnglJ0mO37izVZfnZgSufBTD9bsnG27xQsGy376vlQfd7njjFc/a
+         aCNorargKE75qqXyuW4zvy1+Ae2ee7gr9/HbTffLesFOUu544TCcfptbw26fdz+G/qLe
+         +WePMi4G9Jw+mXs9Y+6ifznu6dbVMYO/bc4jILeP398biccuW+4Z6A+gPd7HYFx7YYC4
+         7gqsT7g4qP8gBCXPiKbUxqQa8UHUbkgCPeIIQBN8iwWQdC7jPS2vP9OOoDCSMgwGU4fI
+         21cQ==
+X-Gm-Message-State: AOAM531N2VIshAc3+OuFSZMoYse68iAL5Ih+hGV9VPxXsFK5A7N9mQ1Y
+        cKnKJ6nNP77Qu7T6291jUTojaFe9A3EUiFXDACshMMvl
+X-Google-Smtp-Source: ABdhPJxy6I2TBeYmu+Es4D7wxTOZOFj1XQFiA7wbrOSGjx99NDBoGwPOlsY4xtRSGq50KcTGavY9QpVl34+Q1Vd+xxE=
+X-Received: by 2002:a2e:b4b9:0:b0:253:bddf:d144 with SMTP id
+ q25-20020a2eb4b9000000b00253bddfd144mr3839962ljm.505.1652882842578; Wed, 18
+ May 2022 07:07:22 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 1/1] arm64: dts: qcom: qrb5165-rb5: Enable the IMX577 on
- cam1
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
-        bjorn.andersson@linaro.org
-Cc:     mchehab@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, mmitkov@quicinc.com, jgrahsl@snap.com,
-        hfink@snap.com
-References: <20220518133004.342775-1-bryan.odonoghue@linaro.org>
- <20220518133004.342775-2-bryan.odonoghue@linaro.org>
- <58af3b06-97fe-fd29-b6e3-fa68737b1d96@somainline.org>
-From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <58af3b06-97fe-fd29-b6e3-fa68737b1d96@somainline.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220516115846.58328-1-max.oss.09@gmail.com> <20220516115846.58328-13-max.oss.09@gmail.com>
+ <CAOMZO5DzVFRW=HF-oO96THqDqmHsJywityDKFF7YNZTtCdjAuw@mail.gmail.com>
+In-Reply-To: <CAOMZO5DzVFRW=HF-oO96THqDqmHsJywityDKFF7YNZTtCdjAuw@mail.gmail.com>
+From:   Max Krummenacher <max.oss.09@gmail.com>
+Date:   Wed, 18 May 2022 16:07:11 +0200
+Message-ID: <CAEHkU3XR9_iVqes4mHrD-x+5Ae__1fAbv=U5R9Ae0TPPmwfAZw@mail.gmail.com>
+Subject: Re: [PATCH v1 12/17] ARM: dts: imx6q-apalis: Add adv7280 video input
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     Max Krummenacher <max.krummenacher@toradex.com>,
+        Oleksandr Suvorov <oleksandr.suvorov@toradex.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Konrad,
+Hi Fabio
 
-On 5/18/22 16:55, Konrad Dybcio wrote:
-> Hi!
-> 
-> 
-> On 18/05/2022 15:30, Bryan O'Donoghue wrote:
->> The IMX577 is on CCI1/CSI2 providing four lanes of camera data.
-> 
-> Commit says IMX577, code says IMX412.
-> 
-> 
->>
->> An example media-ctl pipeline is:
->>
->> media-ctl --reset
->> media-ctl -v -d /dev/media0 -V '"imx412 '20-001a'":0[fmt:SRGGB10/4056x3040 field:none]'
->> media-ctl -V '"msm_csiphy2":0[fmt:SRGGB10/4056x3040]'
->> media-ctl -V '"msm_csid0":0[fmt:SRGGB10/4056x3040]'
->> media-ctl -V '"msm_vfe0_rdi0":0[fmt:SRGGB10/4056x3040]'
->> media-ctl -l '"msm_csiphy2":1->"msm_csid0":0[1]'
->> media-ctl -l '"msm_csid0":1->"msm_vfe0_rdi0":0[1]'
->>
->> yavta -B capture-mplane -c -I -n 5 -f SRGGB10P -s 4056x3040 -F /dev/video0
->>
->> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->> ---
->>    arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 98 ++++++++++++++++++++++++
->>    1 file changed, 98 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
->> index 0e63f707b911..48b31790c434 100644
->> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
->> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
->> @@ -1203,6 +1203,43 @@ sdc2_card_det_n: sd-card-det-n {
->>    		function = "gpio";
->>    		bias-pull-up;
->>    	};
->> +
->> +	cam2_default: cam2-default {
->> +		rst {
->> +			pins = "gpio78";
->> +			function = "gpio";
->> +
->> +			drive-strength = <2>;
->> +			bias-disable;
-> 
-> Other pins in this DT don't have a newline between function and
-> drive-strength, please remove it for consistency.
-> 
-> 
->> +		};
->> +
->> +		mclk {
->> +			pins = "gpio96";
->> +			function = "cam_mclk";
->> +
->> +			drive-strength = <16>;
->> +			bias-disable;
->> +		};
->> +	};
->> +
->> +	cam2_suspend: cam2-suspend {
->> +		rst {
->> +			pins = "gpio78";
->> +			function = "gpio";
->> +
->> +			drive-strength = <2>;
->> +			bias-pull-down;
->> +			output-low;
->> +		};
->> +
->> +		mclk {
->> +			pins = "gpio96";
->> +			function = "cam_mclk";
->> +
->> +			drive-strength = <2>;
->> +			bias-disable;
->> +		};
->> +	};
->>    };
->>    
->>    &uart12 {
->> @@ -1294,3 +1331,64 @@ &qup_spi0_data_clk {
->>    	drive-strength = <6>;
->>    	bias-disable;
->>    };
->> +
->> +&camcc {
->> +	status = "okay";
->> +};
-> 
-> It's enabled by default.
-> 
+On Mon, May 16, 2022 at 2:10 PM Fabio Estevam <festevam@gmail.com> wrote:
+>
+> Hi Max,
+>
+> On Mon, May 16, 2022 at 8:59 AM Max Krummenacher <max.oss.09@gmail.com> wrote:
+>
+> > +       adv_7280: adv7280@21 {
+> > +               compatible = "adi,adv7280";
+> > +               reg = <0x21>;
+> > +               pinctrl-names = "default";
+> > +               pinctrl-0 = <&pinctrl_ipu1_csi0>;
+>
+> I suggest passing "adv,force-bt656-4" property as this fixes sync problems.
 
-I'd prefer to see the camera clock controller disabled by default.
+I will add the property in a V2 of the patchset. Thanks for the suggestion.
+With my setup, i.e. PAL camera as the signal source I see no
+noticeable change though.
 
-https://lore.kernel.org/linux-devicetree/20220518091943.734478-1-vladimir.zapolskiy@linaro.org/
-
->> +
->> +&camss {
->> +	status = "okay";
->> +	vdda-phy-supply = <&vreg_l5a_0p88>;
->> +	vdda-pll-supply = <&vreg_l9a_1p2>;
->> +
->> +	ports {
-> 
-> Maybe the port definitions along with #-cells here and on camss could be
-> moved to the SoC DTSI?
-> 
-
-I agree with it.
-
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +
->> +		/* The port index denotes CSIPHY id i.e. csiphy2 */
->> +		port@2 {
->> +			reg = <2>;
->> +			csiphy2_ep: endpoint {
->> +				clock-lanes = <7>;
->> +				data-lanes = <0 1 2 3>;
->> +				remote-endpoint = <&imx412_ep>;
->> +			};
->> +
->> +		};
->> +	};
->> +};
->> +
->> +&cci1 {
->> +	status = "okay";
->> +};
->> +
->> +&cci1_i2c0 {
->> +	camera@1a {
->> +		compatible = "sony,imx412";
->> +		reg = <0x1a>;
->> +
->> +		reset-gpios = <&tlmm 78 GPIO_ACTIVE_LOW>;
->> +		pinctrl-names = "default", "suspend";
->> +		pinctrl-0 = <&cam2_default>;
->> +		pinctrl-1 = <&cam2_suspend>;
->> +
->> +		clocks = <&camcc CAM_CC_MCLK2_CLK>;
->> +		assigned-clocks = <&camcc CAM_CC_MCLK2_CLK>;
->> +		assigned-clock-rates = <24000000>;
->> +
->> +		power-domains = <&camcc TITAN_TOP_GDSC>;
->> +		dovdd-supply  = <&vreg_l7f_1p8>;
->> +		avdd-supply = <&vdc_5v>;
->> +		dvdd-supply = <&vdc_5v>;
->> +
->> +		status = "okay";
-> 
-> It's enabled by default.
-> 
-
---
-Best wishes,
-Vladimir
+Max
