@@ -2,63 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E274652E00F
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 00:40:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D27352E01A
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 00:49:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245523AbiESWk0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 18:40:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45506 "EHLO
+        id S245569AbiESWtw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 18:49:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232318AbiESWkY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 18:40:24 -0400
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E1CD6A012
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 15:40:23 -0700 (PDT)
-Received: by mail-pl1-x631.google.com with SMTP id 10so2524213plj.0
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 15:40:23 -0700 (PDT)
+        with ESMTP id S245565AbiESWtw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 18:49:52 -0400
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AA5992D05
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 15:49:51 -0700 (PDT)
+Received: by mail-pg1-x52c.google.com with SMTP id z3so4770173pgn.4
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 15:49:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=3ZQEdNolUQPiRhMJeKJgbf+Cnmh94zniPqxn9XCK4hk=;
-        b=BHNShkMSBGRajgbmCkPaZutKY4iz3LIS/Xk/j7mbRuvPEGmatdYHTU72yYjAgPjnTS
-         HFBW03kQzOnn8LmmDMFKNIofYy3dphebkupTx5X2xX92ogNC/bZEkx5mPiUsCoI52a9z
-         8HtkX4G18AL67ZtCCUrft06ynQemWChYL9I60=
+        bh=2saWhTUkQyJcpgT7NxUB7z/NXdbK6i7lrg+kRf0ua9U=;
+        b=XR8IkIQ/tR5EztT9hnYQ4x7VxP4o4xaG5dTpLJjw9cv9KgR/KLelp6gzgfjHqSDtFa
+         eyOx3SMraPd44sPl7slCZaAIPIx+uRuqYgS/fuDaTNK+jzVC2gOOwyHn3KOJjUt7M0CO
+         w5lPeMFS26r8UJteLxgDLt7VEhRBwUbkjZQz8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=3ZQEdNolUQPiRhMJeKJgbf+Cnmh94zniPqxn9XCK4hk=;
-        b=YR4HBYbvsjVBF0PM3V1s0GsXu82sgtRTra+Mh8/XugHwrZBUPg3V7yRrKZLpgdGiMO
-         MvdCpkN5NmXeCB9nXIUsazfC+7wj/Pm/imXxL84JsufQhdP57Uy8kiSRni31w8bWO7+h
-         hoNTRmGfsDoC/k8dvjVtf0pLkx+KxVJylJ6v+9scVk9SqUJAoR/8YdrkMlyn+FZf0PJC
-         ShMPdof90gTRtvIBc2QUS5GJJ8Xxm1ExuNcWv+dwB6mGWNuwSMoZ7TLmuov/CNZEmtbR
-         3A1vWxgf7D16eThbpIj9cqANLpVYA1eFgnSoxK8x7IN+lCnSDyPKhVGW/wLNxp7RWWyX
-         70oA==
-X-Gm-Message-State: AOAM530xgC84w6NUvmofHM7rkKRyUl8EjdWdjDXnvxRCBMi7KrgTr5il
-        MDXeaON/pchVNpk2sHuLbx7dNWxwxmZ2iQ==
-X-Google-Smtp-Source: ABdhPJz5BA+IKB7+7JxtlVC3So2qYw3COr3GbpE2eUw8zxbDbCUhSn5WBHaqDaoyX2RDDUWYxVAGxA==
-X-Received: by 2002:a17:902:6901:b0:15e:ed3c:4eaf with SMTP id j1-20020a170902690100b0015eed3c4eafmr6978969plk.168.1653000022907;
-        Thu, 19 May 2022 15:40:22 -0700 (PDT)
+        bh=2saWhTUkQyJcpgT7NxUB7z/NXdbK6i7lrg+kRf0ua9U=;
+        b=estqAyl29+N+CMRlWa7dheUJyV7IH/WLepPJaiHUiy8cVs2ZCFZd69umWX5aJDDERz
+         461RP1pmCxTQW0khaSTEm2m77Ny5vOblxC4fKCfUqfjsXppFyiuuH3fSq24GR0FkFxm7
+         QvXoVIGSpHpreB8eX0ByZAoE6u641+VbPDf0QbVvU7gDPx0AjSt72Ql7OQdpKn73dy1z
+         U4wVDROTsgq0SdgArv53rU+2Zkt94bmk4fg6nEdQyw4A8A7AhfhpFC02rz5ZWU3QFoKi
+         f8U6zR5MTDxqXpjwu7mPCKpjZTBcrU6Z8m2La+90M2icC30uzuRyA24kJmSQLl/xt3gA
+         TnHQ==
+X-Gm-Message-State: AOAM532xzpkB3UtTyVactexr3byCCTBTSg7gQvY0tIYP03G0CRSpc+G6
+        7nLMA+g/lOtZX6Sn274nJrdu4Q==
+X-Google-Smtp-Source: ABdhPJxer1ytTKqzuWdCAQPhuryAQnKEqKOoHDjZgBuvh+jzhLmIgZvHny5FEURz6eAXn2cn5dwDJg==
+X-Received: by 2002:a05:6a00:24c1:b0:50d:33cf:811f with SMTP id d1-20020a056a0024c100b0050d33cf811fmr7009401pfv.78.1653000590606;
+        Thu, 19 May 2022 15:49:50 -0700 (PDT)
 Received: from localhost ([2620:15c:11a:202:5332:2096:60a3:3455])
-        by smtp.gmail.com with UTF8SMTPSA id f10-20020a63f10a000000b003c2698d199bsm4089335pgi.25.2022.05.19.15.40.21
+        by smtp.gmail.com with UTF8SMTPSA id z10-20020a17090a170a00b001dc1e6db7c2sm295791pjd.57.2022.05.19.15.49.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 May 2022 15:40:22 -0700 (PDT)
-Date:   Thu, 19 May 2022 15:40:21 -0700
+        Thu, 19 May 2022 15:49:49 -0700 (PDT)
+Date:   Thu, 19 May 2022 15:49:48 -0700
 From:   Matthias Kaehlcke <mka@chromium.org>
 To:     Tzung-Bi Shih <tzungbi@kernel.org>
 Cc:     bleung@chromium.org, groeck@chromium.org, robh+dt@kernel.org,
         chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 5/5] platform/chrome: cros_kbd_led_backlight: support
- EC PWM backend
-Message-ID: <YobHVST2Nfn+z8n6@google.com>
+        linux-kernel@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v3 4/5] platform/chrome: cros_kbd_led_backlight: support
+ OF match
+Message-ID: <YobJjMmVOv1lBI/y@google.com>
 References: <20220321085547.1162312-1-tzungbi@kernel.org>
- <20220321085547.1162312-6-tzungbi@kernel.org>
+ <20220321085547.1162312-5-tzungbi@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220321085547.1162312-6-tzungbi@kernel.org>
+In-Reply-To: <20220321085547.1162312-5-tzungbi@kernel.org>
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -69,265 +69,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 21, 2022 at 04:55:47PM +0800, Tzung-Bi Shih wrote:
-> EC PWM backend uses EC_CMD_PWM_SET_KEYBOARD_BACKLIGHT and
-> EC_CMD_PWM_GET_KEYBOARD_BACKLIGHT for setting and getting the brightness
-> respectively.
+On Mon, Mar 21, 2022 at 04:55:46PM +0800, Tzung-Bi Shih wrote:
+> For letting device tree based machines to use the driver, support OF match.
 > 
+> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 > Signed-off-by: Tzung-Bi Shih <tzungbi@kernel.org>
 > ---
 > Changes from v2:
-> - Turn CROS_KBD_LED_BACKLIGHT_EC_PWM to boolean.
-> - Use #ifdef for boolean CROS_KBD_LED_BACKLIGHT_EC_PWM.
+> - Add commit message.
+> - Add R-b tag.
 > 
 > Changes from v1:
+> (https://patchwork.kernel.org/project/chrome-platform/patch/20220214053646.3088298-5-tzungbi@google.com/)
 > - Update email address accordingly.
+> - Use device_get_match_data() per review comment in v1.
 > 
->  drivers/platform/chrome/Kconfig               |   6 +
->  .../platform/chrome/cros_kbd_led_backlight.c  | 126 +++++++++++++++---
->  2 files changed, 117 insertions(+), 15 deletions(-)
+>  drivers/platform/chrome/cros_kbd_led_backlight.c | 15 ++++++++++++++-
+>  1 file changed, 14 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/platform/chrome/Kconfig b/drivers/platform/chrome/Kconfig
-> index 3f74679a556c..e02789d7c0d4 100644
-> --- a/drivers/platform/chrome/Kconfig
-> +++ b/drivers/platform/chrome/Kconfig
-> @@ -142,6 +142,12 @@ config CROS_KBD_LED_BACKLIGHT_ACPI
->  	help
->  	  ChromeOS keyboard backlight ACPI backend.
->  
-> +config CROS_KBD_LED_BACKLIGHT_EC_PWM
-> +	bool "ChromeOS keyboard backlight EC PWM backend"
-> +	depends on CROS_EC && CROS_KBD_LED_BACKLIGHT
-> +	help
-> +	  ChromeOS keyboard backlight EC PWM backend.
-> +
->  config CROS_EC_CHARDEV
->  	tristate "ChromeOS EC miscdevice"
->  	depends on MFD_CROS_EC_DEV
 > diff --git a/drivers/platform/chrome/cros_kbd_led_backlight.c b/drivers/platform/chrome/cros_kbd_led_backlight.c
-> index 5cbe27cb4610..8c35dd2fa607 100644
+> index 05b4f274086b..5cbe27cb4610 100644
 > --- a/drivers/platform/chrome/cros_kbd_led_backlight.c
 > +++ b/drivers/platform/chrome/cros_kbd_led_backlight.c
-> @@ -11,10 +11,17 @@
+> @@ -10,7 +10,9 @@
+>  #include <linux/kernel.h>
 >  #include <linux/leds.h>
 >  #include <linux/module.h>
->  #include <linux/of.h>
-> +#include <linux/platform_data/cros_ec_commands.h>
-> +#include <linux/platform_data/cros_ec_proto.h>
+> +#include <linux/of.h>
 >  #include <linux/platform_device.h>
->  #include <linux/property.h>
+> +#include <linux/property.h>
 >  #include <linux/slab.h>
 >  
-> +struct keyboard_led_private {
-
-Why 'private', isn't this more a 'cros_ec_kdb_bl' or similar?
-
-> +	struct led_classdev cdev;
-> +	struct cros_ec_device *ec;
-> +};
-> +
 >  /**
->   * struct keyboard_led_drvdata - keyboard LED driver data.
->   * @init:			Init function.
-> @@ -40,6 +47,8 @@ struct keyboard_led_drvdata {
->  	enum led_brightness max_brightness;
->  };
->  
-> +#define KEYBOARD_BACKLIGHT_MAX 100
-> +
->  #ifdef CONFIG_CROS_KBD_LED_BACKLIGHT_ACPI
->  
->  /* Keyboard LED ACPI Device must be defined in firmware */
-> @@ -47,8 +56,6 @@ struct keyboard_led_drvdata {
->  #define ACPI_KEYBOARD_BACKLIGHT_READ	ACPI_KEYBOARD_BACKLIGHT_DEVICE ".KBQC"
->  #define ACPI_KEYBOARD_BACKLIGHT_WRITE	ACPI_KEYBOARD_BACKLIGHT_DEVICE ".KBCM"
->  
-> -#define ACPI_KEYBOARD_BACKLIGHT_MAX		100
-> -
->  static void keyboard_led_set_brightness_acpi(struct led_classdev *cdev,
->  					     enum led_brightness brightness)
->  {
-> @@ -107,7 +114,7 @@ static const struct keyboard_led_drvdata keyboard_led_drvdata_acpi = {
->  	.init = keyboard_led_init_acpi,
->  	.brightness_set = keyboard_led_set_brightness_acpi,
->  	.brightness_get = keyboard_led_get_brightness_acpi,
-> -	.max_brightness = ACPI_KEYBOARD_BACKLIGHT_MAX,
-> +	.max_brightness = KEYBOARD_BACKLIGHT_MAX,
->  };
->  
->  #else /* CONFIG_CROS_KBD_LED_BACKLIGHT_ACPI */
-> @@ -123,34 +130,122 @@ static const struct keyboard_led_drvdata keyboard_led_drvdata_acpi = {
->  
->  #endif /* CONFIG_CROS_KBD_LED_BACKLIGHT_ACPI */
->  
-> +#ifdef CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM
-> +
-> +static int
-> +keyboard_led_set_brightness_blocking_ec_pwm(struct led_classdev *cdev,
-> +					    enum led_brightness brightness)
-
-nit: since there is only a blocking version of .set_brightness you could omit
-'blocking' in the function name.
-
-> +{
-> +	struct {
-> +		struct cros_ec_command msg;
-> +		struct ec_params_pwm_set_keyboard_backlight params;
-> +	} __packed buf;
-> +	struct ec_params_pwm_set_keyboard_backlight *params = &buf.params;
-> +	struct cros_ec_command *msg = &buf.msg;
-> +	struct keyboard_led_private *private =
-> +		container_of(cdev, struct keyboard_led_private, cdev);
-> +
-> +	memset(&buf, 0, sizeof(buf));
-> +
-> +	msg->version = 0;
-
-not strictly needed since you do the memset above, I guess it's
-fine to keep the assignment if you want to be explicit about the
-version.
-
-> +	msg->command = EC_CMD_PWM_SET_KEYBOARD_BACKLIGHT;
-> +	msg->insize = 0;
-> +	msg->outsize = sizeof(*params);
-> +
-> +	params->percent = brightness;
-> +
-> +	return cros_ec_cmd_xfer_status(private->ec, msg);
-> +}
-> +
-> +static enum led_brightness
-> +keyboard_led_get_brightness_ec_pwm(struct led_classdev *cdev)
-> +{
-> +	struct {
-> +		struct cros_ec_command msg;
-> +		struct ec_response_pwm_get_keyboard_backlight resp;
-> +	} __packed buf;
-> +	struct ec_response_pwm_get_keyboard_backlight *resp = &buf.resp;
-> +	struct cros_ec_command *msg = &buf.msg;
-> +	struct keyboard_led_private *private =
-> +		container_of(cdev, struct keyboard_led_private, cdev);
-> +	int ret;
-> +
-> +	memset(&buf, 0, sizeof(buf));
-> +
-> +	msg->version = 0;
-> +	msg->command = EC_CMD_PWM_GET_KEYBOARD_BACKLIGHT;
-> +	msg->insize = sizeof(*resp);
-> +	msg->outsize = 0;
-> +
-> +	ret = cros_ec_cmd_xfer_status(private->ec, msg);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return resp->percent;
-> +}
-> +
-> +static int keyboard_led_init_ec_pwm(struct platform_device *pdev)
-> +{
-> +	struct keyboard_led_private *private = platform_get_drvdata(pdev);
-> +
-> +	private->ec = dev_get_drvdata(pdev->dev.parent);
-> +	if (!private->ec) {
-> +		dev_err(&pdev->dev, "no parent EC device\n");
-> +		return -EINVAL;
-> +	}
-
-The only thing this 'init' function does is assigning private->ec. Wouldn't
-it be clearer to do this directly in probe() from where callback is called?
-It could be with the condition that the device as a DT node.
-
-Is it actually possible that the keyboard backlight device gets instantiated
-if there is no EC parent?
-
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct keyboard_led_drvdata keyboard_led_drvdata_ec_pwm = {
-> +	.init = keyboard_led_init_ec_pwm,
-> +	.brightness_set_blocking = keyboard_led_set_brightness_blocking_ec_pwm,
-> +	.brightness_get = keyboard_led_get_brightness_ec_pwm,
-> +	.max_brightness = KEYBOARD_BACKLIGHT_MAX,
-> +};
-> +
-> +#else /* CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM */
-> +
-> +static int keyboard_led_init_ec_pwm_null(struct platform_device *pdev)
-> +{
-> +	return -EOPNOTSUPP;
-> +}
-> +
-> +static const struct keyboard_led_drvdata keyboard_led_drvdata_ec_pwm = {
-> +	.init = keyboard_led_init_ec_pwm_null,
-
-Is this really needed?
-
-keyboard_led_probe() checks if .init is assigned before invoking the callback:
-
-	if (drvdata->init) {
-		error = drvdata->init(pdev);
-
-The whole 'else' branch could be eliminated if .of_match_table of the driver
-only is assigned when CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM is set. IMO that
-would preferable over creating 'stubs'.
-
-> +};
-> +
-> +#endif /* CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM */
-> +
->  static int keyboard_led_probe(struct platform_device *pdev)
->  {
-> -	struct led_classdev *cdev;
+> @@ -127,7 +129,7 @@ static int keyboard_led_probe(struct platform_device *pdev)
 >  	const struct keyboard_led_drvdata *drvdata;
-> +	struct keyboard_led_private *private;
 >  	int error;
 >  
->  	drvdata = device_get_match_data(&pdev->dev);
+> -	drvdata = acpi_device_get_match_data(&pdev->dev);
+> +	drvdata = device_get_match_data(&pdev->dev);
 >  	if (!drvdata)
 >  		return -EINVAL;
 >  
-> +	private = devm_kzalloc(&pdev->dev, sizeof(*private), GFP_KERNEL);
-> +	if (!private)
-> +		return -ENOMEM;
-> +	platform_set_drvdata(pdev, private);
+> @@ -163,10 +165,21 @@ static const struct acpi_device_id keyboard_led_acpi_match[] = {
+>  MODULE_DEVICE_TABLE(acpi, keyboard_led_acpi_match);
+>  #endif
+>  
+> +#ifdef CONFIG_OF
+> +static const struct of_device_id keyboard_led_of_match[] = {
+> +	{
+> +		.compatible = "google,cros-kbd-led-backlight",
+> +	},
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, keyboard_led_of_match);
+> +#endif
 > +
->  	if (drvdata->init) {
->  		error = drvdata->init(pdev);
->  		if (error)
->  			return error;
->  	}
->  
-> -	cdev = devm_kzalloc(&pdev->dev, sizeof(*cdev), GFP_KERNEL);
-> -	if (!cdev)
-> -		return -ENOMEM;
-> -
-> -	cdev->name = "chromeos::kbd_backlight";
-> -	cdev->flags |= LED_CORE_SUSPENDRESUME;
-> -	cdev->max_brightness = drvdata->max_brightness;
-> -	cdev->brightness_set = drvdata->brightness_set;
-> -	cdev->brightness_set_blocking = drvdata->brightness_set_blocking;
-> -	cdev->brightness_get = drvdata->brightness_get;
-> +	private->cdev.name = "chromeos::kbd_backlight";
-> +	private->cdev.flags |= LED_CORE_SUSPENDRESUME;
-> +	private->cdev.max_brightness = drvdata->max_brightness;
-> +	private->cdev.brightness_set = drvdata->brightness_set;
-> +	private->cdev.brightness_set_blocking = drvdata->brightness_set_blocking;
-> +	private->cdev.brightness_get = drvdata->brightness_get;
->  
-> -	error = devm_led_classdev_register(&pdev->dev, cdev);
-> +	error = devm_led_classdev_register(&pdev->dev, &private->cdev);
->  	if (error)
->  		return error;
->  
-> @@ -169,6 +264,7 @@ MODULE_DEVICE_TABLE(acpi, keyboard_led_acpi_match);
->  static const struct of_device_id keyboard_led_of_match[] = {
->  	{
->  		.compatible = "google,cros-kbd-led-backlight",
-> +		.data = &keyboard_led_drvdata_ec_pwm,
->  	},
->  	{}
->  };
-> -- 
-> 2.35.1.894.gb6a874cedc-goog
-> 
+>  static struct platform_driver keyboard_led_driver = {
+>  	.driver		= {
+>  		.name	= "chromeos-keyboard-leds",
+>  		.acpi_match_table = ACPI_PTR(keyboard_led_acpi_match),
+> +		.of_match_table = of_match_ptr(keyboard_led_of_match),
+
+In patch "[5/5] platform/chrome: cros_kbd_led_backlight: support EC PWM
+backend" [1] you create the 'stubs' keyboard_led_init_ec_pwm_null() and
+keyboard_led_drvdata_ec_pwm when CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM
+isn't set, only to have something to assign to keyboard_led_of_match.data.
+Instead you could assign .of_match_table only if CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM
+is set.
+
+[1] https://patchwork.kernel.org/project/chrome-platform/patch/20220321085547.1162312-6-tzungbi@kernel.org/
+
