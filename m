@@ -2,63 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D27352E01A
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 00:49:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BDB952E02E
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 01:01:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245569AbiESWtw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 18:49:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37222 "EHLO
+        id S245119AbiESXBC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 19:01:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245565AbiESWtw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 18:49:52 -0400
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AA5992D05
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 15:49:51 -0700 (PDT)
-Received: by mail-pg1-x52c.google.com with SMTP id z3so4770173pgn.4
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 15:49:51 -0700 (PDT)
+        with ESMTP id S230502AbiESXA6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 19:00:58 -0400
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4C1CDFF5
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 16:00:55 -0700 (PDT)
+Received: by mail-pj1-x1034.google.com with SMTP id ev18so6515449pjb.4
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 16:00:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=2saWhTUkQyJcpgT7NxUB7z/NXdbK6i7lrg+kRf0ua9U=;
-        b=XR8IkIQ/tR5EztT9hnYQ4x7VxP4o4xaG5dTpLJjw9cv9KgR/KLelp6gzgfjHqSDtFa
-         eyOx3SMraPd44sPl7slCZaAIPIx+uRuqYgS/fuDaTNK+jzVC2gOOwyHn3KOJjUt7M0CO
-         w5lPeMFS26r8UJteLxgDLt7VEhRBwUbkjZQz8=
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/+cnG0T1VfIcJDi4Tnrthnwsto5lgJAgXz/DN8hILeM=;
+        b=E9ICPWOHq0JDDEynKw8oMU09qUbnljwf2UPOKuvme7k2m0oT7juy2tMyXCboV6z0Lh
+         9sycljyk3NTft1DtA3PpNilaiobcApb+u6c2Qk4y2hu8ia/1wHl4muP/PDNNaJjK9m/4
+         IK0ZSFu8FZ5vG+vqOMAswOwCk+TcIYUkKesBQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=2saWhTUkQyJcpgT7NxUB7z/NXdbK6i7lrg+kRf0ua9U=;
-        b=estqAyl29+N+CMRlWa7dheUJyV7IH/WLepPJaiHUiy8cVs2ZCFZd69umWX5aJDDERz
-         461RP1pmCxTQW0khaSTEm2m77Ny5vOblxC4fKCfUqfjsXppFyiuuH3fSq24GR0FkFxm7
-         QvXoVIGSpHpreB8eX0ByZAoE6u641+VbPDf0QbVvU7gDPx0AjSt72Ql7OQdpKn73dy1z
-         U4wVDROTsgq0SdgArv53rU+2Zkt94bmk4fg6nEdQyw4A8A7AhfhpFC02rz5ZWU3QFoKi
-         f8U6zR5MTDxqXpjwu7mPCKpjZTBcrU6Z8m2La+90M2icC30uzuRyA24kJmSQLl/xt3gA
-         TnHQ==
-X-Gm-Message-State: AOAM532xzpkB3UtTyVactexr3byCCTBTSg7gQvY0tIYP03G0CRSpc+G6
-        7nLMA+g/lOtZX6Sn274nJrdu4Q==
-X-Google-Smtp-Source: ABdhPJxer1ytTKqzuWdCAQPhuryAQnKEqKOoHDjZgBuvh+jzhLmIgZvHny5FEURz6eAXn2cn5dwDJg==
-X-Received: by 2002:a05:6a00:24c1:b0:50d:33cf:811f with SMTP id d1-20020a056a0024c100b0050d33cf811fmr7009401pfv.78.1653000590606;
-        Thu, 19 May 2022 15:49:50 -0700 (PDT)
-Received: from localhost ([2620:15c:11a:202:5332:2096:60a3:3455])
-        by smtp.gmail.com with UTF8SMTPSA id z10-20020a17090a170a00b001dc1e6db7c2sm295791pjd.57.2022.05.19.15.49.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 May 2022 15:49:49 -0700 (PDT)
-Date:   Thu, 19 May 2022 15:49:48 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Tzung-Bi Shih <tzungbi@kernel.org>
-Cc:     bleung@chromium.org, groeck@chromium.org, robh+dt@kernel.org,
-        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v3 4/5] platform/chrome: cros_kbd_led_backlight: support
- OF match
-Message-ID: <YobJjMmVOv1lBI/y@google.com>
-References: <20220321085547.1162312-1-tzungbi@kernel.org>
- <20220321085547.1162312-5-tzungbi@kernel.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/+cnG0T1VfIcJDi4Tnrthnwsto5lgJAgXz/DN8hILeM=;
+        b=cF/m+luib5VAtFzofGQ1Kw+oaywmwz5O/IqDVYmXD2ziaZmxe5Wb7NkVa13NEmsEYC
+         6HprxV96OG/ccH3kg0O/ajqzx5kwsOVmi3jsXbm7azEY78vfHuOy2OpFuOu7ZgnhXDfl
+         byt7/VrAAZtUyGn+w9fObyIKJiS8CKAD4EuTvqzaV66Wd0x4lkIgYrnYxeWtlF4MI09r
+         n7uao/laSPNSaaxYQ5pP2QosQFjQm78PKKBjt/SXiRB5mzKfj56KlcUFWadd7UGFh+XL
+         nru26d1+xVkxFpDaNj5/24qwXbMvz/vn+Ny6tV8D6uA5MUc4vOVZlgGRuxXgJhiP8ulA
+         RftA==
+X-Gm-Message-State: AOAM533yunvJpBNy7bXvmFKAKIT492Jm/Pzd1ixB+c5DI01sYln48ZPg
+        mFIVvoniHqD43XVKxWl2nudYUQ==
+X-Google-Smtp-Source: ABdhPJw+ZRz4Jko72uPDZg2ZBv9BBdBcNFqM9VVfrbGvBZTPeeJB4aIvFwTEqu0JM4pnp3rKOYazRA==
+X-Received: by 2002:a17:90a:9311:b0:1dc:8d06:eb1b with SMTP id p17-20020a17090a931100b001dc8d06eb1bmr7490101pjo.41.1653001255156;
+        Thu, 19 May 2022 16:00:55 -0700 (PDT)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:e45f:1f3c:299b:4d86])
+        by smtp.gmail.com with ESMTPSA id m10-20020a056a00080a00b0050dc762819csm202411pfk.118.2022.05.19.16.00.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 May 2022 16:00:54 -0700 (PDT)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     Jiri Kosina <jikos@kernel.org>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     swboyd@chromium.org, linux-input@vger.kernel.org, mka@chromium.org,
+        devicetree@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: HID: i2c-hid: elan: Introduce bindings for Elan eKTH6915
+Date:   Thu, 19 May 2022 16:00:02 -0700
+Message-Id: <20220519155925.1.Iedc61f9ef220a89af6a031200a7850a27a440134@changeid>
+X-Mailer: git-send-email 2.36.1.124.g0e6072fb45-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220321085547.1162312-5-tzungbi@kernel.org>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -69,73 +70,113 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 21, 2022 at 04:55:46PM +0800, Tzung-Bi Shih wrote:
-> For letting device tree based machines to use the driver, support OF match.
-> 
-> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-> Signed-off-by: Tzung-Bi Shih <tzungbi@kernel.org>
-> ---
-> Changes from v2:
-> - Add commit message.
-> - Add R-b tag.
-> 
-> Changes from v1:
-> (https://patchwork.kernel.org/project/chrome-platform/patch/20220214053646.3088298-5-tzungbi@google.com/)
-> - Update email address accordingly.
-> - Use device_get_match_data() per review comment in v1.
-> 
->  drivers/platform/chrome/cros_kbd_led_backlight.c | 15 ++++++++++++++-
->  1 file changed, 14 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/platform/chrome/cros_kbd_led_backlight.c b/drivers/platform/chrome/cros_kbd_led_backlight.c
-> index 05b4f274086b..5cbe27cb4610 100644
-> --- a/drivers/platform/chrome/cros_kbd_led_backlight.c
-> +++ b/drivers/platform/chrome/cros_kbd_led_backlight.c
-> @@ -10,7 +10,9 @@
->  #include <linux/kernel.h>
->  #include <linux/leds.h>
->  #include <linux/module.h>
-> +#include <linux/of.h>
->  #include <linux/platform_device.h>
-> +#include <linux/property.h>
->  #include <linux/slab.h>
->  
->  /**
-> @@ -127,7 +129,7 @@ static int keyboard_led_probe(struct platform_device *pdev)
->  	const struct keyboard_led_drvdata *drvdata;
->  	int error;
->  
-> -	drvdata = acpi_device_get_match_data(&pdev->dev);
-> +	drvdata = device_get_match_data(&pdev->dev);
->  	if (!drvdata)
->  		return -EINVAL;
->  
-> @@ -163,10 +165,21 @@ static const struct acpi_device_id keyboard_led_acpi_match[] = {
->  MODULE_DEVICE_TABLE(acpi, keyboard_led_acpi_match);
->  #endif
->  
-> +#ifdef CONFIG_OF
-> +static const struct of_device_id keyboard_led_of_match[] = {
-> +	{
-> +		.compatible = "google,cros-kbd-led-backlight",
-> +	},
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, keyboard_led_of_match);
-> +#endif
-> +
->  static struct platform_driver keyboard_led_driver = {
->  	.driver		= {
->  		.name	= "chromeos-keyboard-leds",
->  		.acpi_match_table = ACPI_PTR(keyboard_led_acpi_match),
-> +		.of_match_table = of_match_ptr(keyboard_led_of_match),
+Like many i2c-hid touchscreen controllers, the Elan eKTH6915
+controller has a reset gpio. For the Goodix GT7375P touchscreen the
+decision was to add a new binding rather than trying to add a new GPIO
+to the existing i2c-hid binding. We'll follow the lead and do it here,
+too.
 
-In patch "[5/5] platform/chrome: cros_kbd_led_backlight: support EC PWM
-backend" [1] you create the 'stubs' keyboard_led_init_ec_pwm_null() and
-keyboard_led_drvdata_ec_pwm when CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM
-isn't set, only to have something to assign to keyboard_led_of_match.data.
-Instead you could assign .of_match_table only if CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM
-is set.
+SIDE NOTE: the Elan eKTH6915 is a touchscreen _controller_ that's
+included as a part on some touchscreens. The reset line isn't truly
+necessary for the functioning of the touchscreen, so it's possible
+that some designs won't have it hooked up and will just guarantee the
+power sequencing requirements with RLC circuits. Thus, we'll mark the
+reset gpio as optional.
 
-[1] https://patchwork.kernel.org/project/chrome-platform/patch/20220321085547.1162312-6-tzungbi@kernel.org/
+Note that if the reset GPIO isn't used there's actually no true need
+to use the "elan,ekth6915" compatible instead of the "hid-over-i2c" on
+Linux. However:
+- Officially using just "hid-over-i2c" for this device violates the
+  existing "hid-over-i2c" bindings. The bindings say that you're not
+  supposed to use "post-power-on-delay-ms" without specifying a more
+  specific compatible. Currently the Linux driver doesn't enforce
+  this, but it violates the bindings to just use
+  "hid-over-i2c". ...and if you're going to add a more specific
+  compatible anyway, might as well do it right.
+- Using this compatible means we don't need to specify
+  "hid-descr-addr" since it's inferred from the compatible.
+- Using this compatible means that the regulator names match the names
+  on the Elan datasheet (vcc33 / vccio) vs the generic hid-over-i2c
+  (vdd / vddl).
+
+Signed-off-by: Douglas Anderson <dianders@chromium.org>
+---
+
+ .../bindings/input/elan,ekth6915.yaml         | 65 +++++++++++++++++++
+ 1 file changed, 65 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/elan,ekth6915.yaml
+
+diff --git a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
+new file mode 100644
+index 000000000000..05e6f2df604c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
+@@ -0,0 +1,65 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/elan,ekth6915.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Elan eKTH6915 touchscreen controller
++
++maintainers:
++  - Douglas Anderson <dianders@chromium.org>
++
++description:
++  Supports the Elan eKTH6915 touchscreen controller.
++  This touchscreen controller uses the i2c-hid protocol with a reset GPIO.
++
++properties:
++  compatible:
++    items:
++      - const: elan,ekth6915
++
++  reg:
++    const: 0x10
++
++  interrupts:
++    maxItems: 1
++
++  reset-gpios:
++    description: Reset GPIO; not all touchscreens using eKTH6915 hook this up.
++
++  vcc33-supply:
++    description: The 3.3V supply to the touchscreen.
++
++  vccio-supply:
++    description:
++      The IO supply to the touchscreen. Need not be specified if this is the
++      same as the 3.3V supply.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - vcc33-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      ap_ts: touchscreen@10 {
++        compatible = "elan,ekth6915";
++        reg = <0x10>;
++
++        interrupt-parent = <&tlmm>;
++        interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
++
++        reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
++        vcc33-supply = <&pp3300_ts>;
++      };
++    };
+-- 
+2.36.1.124.g0e6072fb45-goog
 
