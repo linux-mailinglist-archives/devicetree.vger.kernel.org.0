@@ -2,55 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AA1552DDC0
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 21:23:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08F7E52DDF3
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 21:48:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244468AbiESTXL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 15:23:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47008 "EHLO
+        id S243558AbiESTs0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 15:48:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243925AbiESTXG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 15:23:06 -0400
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7120C58E43;
-        Thu, 19 May 2022 12:23:05 -0700 (PDT)
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-f1eafa567cso4539458fac.8;
-        Thu, 19 May 2022 12:23:05 -0700 (PDT)
+        with ESMTP id S240779AbiESTsZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 15:48:25 -0400
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B491ED8FA;
+        Thu, 19 May 2022 12:48:24 -0700 (PDT)
+Received: by mail-oi1-f181.google.com with SMTP id t144so4444596oie.7;
+        Thu, 19 May 2022 12:48:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=xUdBpJfFH6LsWjA2eoyMRt5PLk894PaKnYn1kRRc6EM=;
-        b=S3p/lOOvitntaO0p4qxXxG3uRZB7nk+Ha4aZOGejrs50Wbi/mW0Zhd/JVN/f8AqsBC
-         Btar3UDwkW0/OOLNUSL4UW1MCCb7R0eWYd9SEnS7n7del3Owa+/H+U9jrXddkWh+c5NW
-         ho0r4HicsYsUySJXx+qwRm2KNJEpGbsdltjHZWh8iz0qZu8gvS44L0uAtVqvia9rthc5
-         X525jYjrTeVwudjAlvqQidMYGWxboW8rmo+E3TOEXdM+1Q8Uv5ibbDzwef0BlavIl1oM
-         4luguN8jKmWNjEWGUTdOwSGjCx8hDo5sWmTD4sj4Z85OAUcJ5GYfBiixMMQcePPIHVUs
-         LKRw==
-X-Gm-Message-State: AOAM530+mdkTYxvIsAHkRS7dpfC+hVCJrBcYCFuBiYPhJTxT0Bm/EhdL
-        E9G/oEGhNR6/IPsrpKjGwg==
-X-Google-Smtp-Source: ABdhPJxlKaVBcMdiefUM0cnmhHo2Lr8eBJpDbB9PytEPQAGPaO56TKyr0H1SyDe14GDzXH7AZl00sg==
-X-Received: by 2002:a05:6870:6307:b0:e9:6ed6:cb2f with SMTP id s7-20020a056870630700b000e96ed6cb2fmr3606109oao.26.1652988184484;
-        Thu, 19 May 2022 12:23:04 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=VIsxZb3blRqHveZZ1vGHzZvKm0j5k9bs5pNXv4/1iRw=;
+        b=DfTudoFhP7NlkM3vwK6c5oxIiwwewS/bNl020/XClYOIi7S1+Mos2FQswnSu0QflAC
+         0cg3e/MFxAm7+oH3HVSkPhLyQXtb9A5gGF5mgFgoyOnx9h8dguEs16GlIkQiw8aXJWjG
+         Hlu5tzDb7McqRz8zGGRgJsumyY3aKoTJ4ZljUsnbr2GWlIfjB+5HRyBa1ZZ5rCDzPYjs
+         sBAePVnZpyk5X8XSLVRyQk89za57G1JUJGZTLVd57d2yctyzlTOZi0qbmgcxUCZtzec/
+         5sFjqTcaUyS5HXZPfbD5O8egtHzx4JnHGPlWopMSf/v9xuDAlPAf5gH70PQz1SKI8q4w
+         6rkA==
+X-Gm-Message-State: AOAM532EaURk1dSJbgnIlBX4r0Z27HvTR2pxmtt8ojPGVXNzZI4Fwddo
+        1xIaSIdKivi9lEyEbLTXwg==
+X-Google-Smtp-Source: ABdhPJznjYxOKubyLqrHc8K4JIoqeBTU25Rk4zIlngny0HhJr/+0rpaykQKsYWnr3T8r+X5F4uMRsA==
+X-Received: by 2002:a05:6808:f8a:b0:326:de54:a750 with SMTP id o10-20020a0568080f8a00b00326de54a750mr3381561oiw.272.1652989703540;
+        Thu, 19 May 2022 12:48:23 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id i186-20020acab8c3000000b00325cda1ffb9sm43087oif.56.2022.05.19.12.23.03
+        by smtp.gmail.com with ESMTPSA id d15-20020a056830004f00b0060613c844adsm105593otp.10.2022.05.19.12.48.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 May 2022 12:23:03 -0700 (PDT)
-Received: (nullmailer pid 2044191 invoked by uid 1000);
-        Thu, 19 May 2022 19:23:01 -0000
+        Thu, 19 May 2022 12:48:22 -0700 (PDT)
+Received: (nullmailer pid 2081471 invoked by uid 1000);
+        Thu, 19 May 2022 19:48:21 -0000
+Date:   Thu, 19 May 2022 14:48:21 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Sibi Sankar <quic_sibis@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, robh+dt@kernel.org,
-        mka@chromium.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, agross@kernel.org, mathieu.poirier@linaro.org,
-        devicetree@vger.kernel.org, ohad@wizery.com,
-        krzysztof.kozlowski+dt@linaro.org, bjorn.andersson@linaro.org,
-        linux-remoteproc@vger.kernel.org
-In-Reply-To: <1652978825-5304-3-git-send-email-quic_sibis@quicinc.com>
-References: <1652978825-5304-1-git-send-email-quic_sibis@quicinc.com> <1652978825-5304-3-git-send-email-quic_sibis@quicinc.com>
-Subject: Re: [PATCH v4 2/3] dt-bindings: remoteproc: qcom: Convert SC7280 MSS bindings to YAML
-Date:   Thu, 19 May 2022 14:23:01 -0500
-Message-Id: <1652988181.135820.2044190.nullmailer@robh.at.kernel.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     linux-kernel@vger.kernel.org, patches@lists.linux.dev,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        chrome-platform@lists.linux.dev,
+        Guenter Roeck <groeck@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Craig Hesling <hesling@chromium.org>,
+        Tom Hughes <tomhughes@chromium.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        Tzung-Bi Shih <tzungbi@kernel.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        Lee Jones <lee.jones@linaro.org>
+Subject: Re: [PATCH v5 3/3] dt-bindings: cros-ec: Add ChromeOS fingerprint
+ binding
+Message-ID: <20220519194821.GA2071376-robh@kernel.org>
+References: <20220512013921.164637-1-swboyd@chromium.org>
+ <20220512013921.164637-4-swboyd@chromium.org>
+ <20220516152003.GB2659134-robh@kernel.org>
+ <CAE-0n53p1mKME=vfed2SB7UXrg9K+-vbp6JPHJBchJc-Pp1Hgg@mail.gmail.com>
+ <20220518161348.GC3302100-robh@kernel.org>
+ <CAE-0n53CMwtCY6XqYRXBpY5g21cFKyr8BF34t79JfK3dKg8cEg@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAE-0n53CMwtCY6XqYRXBpY5g21cFKyr8BF34t79JfK3dKg8cEg@mail.gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -62,48 +78,85 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 19 May 2022 22:17:04 +0530, Sibi Sankar wrote:
-> Convert SC7280 MSS PIL loading bindings to YAML.
+On Wed, May 18, 2022 at 12:56:17PM -0700, Stephen Boyd wrote:
+> Quoting Rob Herring (2022-05-18 09:13:48)
+> > On Mon, May 16, 2022 at 12:23:03PM -0700, Stephen Boyd wrote:
+> > > Quoting Rob Herring (2022-05-16 08:20:03)
+> > > > On Wed, May 11, 2022 at 06:39:21PM -0700, Stephen Boyd wrote:
+> > > > > diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> > > > > index 409ecef967ce..e5fe60beb9fe 100644
+> > > > > --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> > > > > +      - items:
+> > > > > +          - const: google,cros-ec-i2c
+> > > > > +      # For implementations of the FPMCU connected through SPI.
+> > > > > +      - items:
+> > > > > +          - const: google,cros-ec-fp
+> > > > > +          - const: google,cros-ec-spi
+> > > > > +      # For implementations of the EC is connected through SPI.
+> > > > > +      - items:
+> > > > > +          - const: google,cros-ec-spi
+> > > > > +      # For implementations of the EC is connected through RPMSG.
+> > > > > +      - items:
+> > > > > +          - const: google,cros-ec-rpmsg
+> > > > >
+> > > > >    controller-data:
+> > > > >      description:
+> > > > > @@ -176,6 +189,37 @@ allOf:
+> > > > >          - reg
+> > > > >          - interrupts
+> > > > >
+> > > > > +  - if:
+> > > > > +      properties:
+> > > > > +        compatible:
+> > > > > +          contains:
+> > > > > +            const: google,cros-ec-fp
+> > > > > +    then:
+> > > > > +      properties:
+> > > > > +        '#address-cells': false
+> > > > > +        '#size-cells': false
+> > > > > +        typec: false
+> > > > > +        ec-pwm: false
+> > > > > +        keyboard-controller: false
+> > > > > +        proximity: false
+> > > > > +        codecs: false
+> > > > > +        cbas: false
+> > > > > +
+> > > > > +      patternProperties:
+> > > > > +        "^i2c-tunnel[0-9]*$": false
+> > > > > +        "^regulator@[0-9]+$": false
+> > > > > +        "^extcon[0-9]*$": false
+> > > >
+> > > > Is the list of what's allowed shorter? If so, you could list those
+> > > > properties and use 'additionalProperties: false'.
+> > >
+> > > Yes.
+> > >
+> > > >
+> > > > Or maybe this is a sign that this should be a separate schema document.
+> > >
+> > > I couldn't figure that out. I tried to add new properties here but it
+> > > didn't work.
+> >
+> > Like this?:
+> >
+> > then:
+> >   properties:
+> >     allowed-prop-1: true
+> >     allowed-prop-2: true
+> >     allowed-prop-3: true
+> >   additionalProperties: false
 > 
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> ---
+> It doesn't seem to combine constraints?
 > 
-> v4:
->  * Remove older bindings [Matthias/Krzysztof]
->  * Misc. Fixes [Krzysztof]
->  * Rebased on v2 of Krzysztof's bindings cleanups
+> I get this error:
 > 
-> v3:
->  * Re-ordered clock list, fixed pdc_sync typo [Rob/Matthias]
-> 
->  .../devicetree/bindings/remoteproc/qcom,q6v5.txt   |  31 +--
->  .../bindings/remoteproc/qcom,sc7280-mss-pil.yaml   | 250 +++++++++++++++++++++
->  2 files changed, 252 insertions(+), 29 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml
-> 
+> 	Documentation/devicetree/bindings/mfd/google,cros-ec.example.dt.yaml:
+> 	ec@0: Additional properties are not allowed ('$nodename' was unexpected)
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+That would be a bug or limitation in the tools. We would need to add 
+all the other properties we automatically add as well... I think either 
+leaving it as-is or a separate file is going to be the better route 
+here.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/remoteproc/qcom,glink-edge.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.example.dtb: remoteproc@4080000: glink-edge: False schema does not allow {'interrupts-extended': [[4294967295, 2, 0, 1]], 'mboxes': [[4294967295, 2, 0]], 'label': ['modem'], 'qcom,remote-pid': [[1]]}
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Rob
