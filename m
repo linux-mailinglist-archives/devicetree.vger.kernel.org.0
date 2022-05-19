@@ -2,73 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E8B952CB9B
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 07:46:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAAF652CBB7
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 08:03:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234152AbiESFpU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 01:45:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51876 "EHLO
+        id S232854AbiESGDi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 02:03:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234154AbiESFpO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 01:45:14 -0400
-Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 330AEBA57B;
-        Wed, 18 May 2022 22:45:13 -0700 (PDT)
-Received: by mail-yb1-xb36.google.com with SMTP id i11so7203828ybq.9;
-        Wed, 18 May 2022 22:45:13 -0700 (PDT)
+        with ESMTP id S232839AbiESGDh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 02:03:37 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2769661635;
+        Wed, 18 May 2022 23:03:32 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id h29so7302544lfj.2;
+        Wed, 18 May 2022 23:03:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OO5QfkSjnZ/cUUUJ0aPadwaoIkqNmNY8ULRaHcmvwDI=;
-        b=LlU651kk2sjEpLEGf81r+AAuqbC1cCColEFLQMJpvNK2KJZXq3EteAT2fkzG+fBJLq
-         J3uWu4ZpkZvauoeZn4SqYuOd3WlnzNscTxb+tITJ29GVpXzRf5KJPimMSAEatrK6VLdd
-         VojQFvyEQec5wkJ5w4G0F3Fws5pPia44QYC6Tpo/Eduy7zY+pmVH0grE+Bdt9c77jFrv
-         uAGRsjUej2bsi9hJZTAEnzFdulu39S6CaFvuW5vTJGCpRbLrGgds3iyg7n/kt0zbbkwT
-         PLMVtgYEwPT5aqyGuHDNYSHb4W44bz0uhWpHq4N97n3bb6EWsP/Gp6lSspz54Ip0ohi8
-         Yt4Q==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=X+iyqLf77Krjb4QH3xlKBzqBdXBeBxfWT5vFT9hWB/E=;
+        b=jMiIn+oPqAbUSnsl0S1EqWOpvRnIcpeNMiwZI6oyIi8xhmBfbS0iXSTPrI9fRM0yK3
+         shzE8bDkGkYA9EhOOUX0QU0wLP4QQoFJglzVWFRGUFihYkHMmO4E6qMuMAwRmBE3Fb29
+         LEbCqY6aee+/3T+wPLd3RffpjN6/xgG291hMA+v9JF2TUTVdVeWsT6J6ofyyeD01qlKm
+         fBBHfR1YeYk1vyGq0IXKTNfhaswYcqCTmShveU5CSbuNb0b2uKBm9D5eUMnaLKaogBcO
+         IVdN60uPvVqB2IVOgavpFDPsgOrh/GOMGkUwu0zXQ//s/G6C/9uX5K58kzqdB8e9hAMB
+         XgEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OO5QfkSjnZ/cUUUJ0aPadwaoIkqNmNY8ULRaHcmvwDI=;
-        b=xl63eaerSJe27zur1iM3Jio1xfzugWN9T3K49AZwmWdUPZgqgCx+LamXFLTab03lwO
-         vWcJHFGS4wHi1orOcY0tAqncicFweUEgQ7aExc/Lh5ZpLBZLbna2SaUBbQLO0YGlnmUA
-         XtA0kDbXZZQ40DbIQUhlqqjy9X8LntCIfytOC+WMZKtJoTfO2JticfDgzw2XdHfYMPl0
-         PYQpS0YqsQTA16M/SWI5BsE2VbyShTv5zs46ht/pPXQdvusAcXvaFhBGFDqpTOHotIH+
-         m48eRSCbTmeILYdc+ATVumQuQJyu7vvkiHbprZZPImVaVHAhfWLKUlW7BJ6Ku7gUxgmK
-         HFBw==
-X-Gm-Message-State: AOAM531EmhYNi/LHUO9TBpI9O0fVDXuFIp/zq42E2JrDLy8EI6uYIkfg
-        7hvHqbks2toRxp9EHEkwuuUERwcRRj+FTpJRuVGcNPpECFw3lA==
-X-Google-Smtp-Source: ABdhPJw6GBlelR+tbudinQOnNGE8N4fHr2U489qVow3itikJQLf6uJMmLuAe8AFXaamN81tR1nT/2QX8pO95R5L8e1s=
-X-Received: by 2002:a25:ad8a:0:b0:64d:e1ef:a214 with SMTP id
- z10-20020a25ad8a000000b0064de1efa214mr2766567ybi.417.1652939112051; Wed, 18
- May 2022 22:45:12 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220505193143.31826-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220505193143.31826-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdX0egGvyu94-=tJdvW0=q6Y==ZNkexCJpnmrNJezuiqDw@mail.gmail.com>
-In-Reply-To: <CAMuHMdX0egGvyu94-=tJdvW0=q6Y==ZNkexCJpnmrNJezuiqDw@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Thu, 19 May 2022 06:44:45 +0100
-Message-ID: <CA+V-a8sxZOZRXG_gsCnQGJdNDw-uVLmuTZ-dOsmUfhS9KL0Esg@mail.gmail.com>
-Subject: Re: [RFC PATCH 1/4] dt-bindings: clock: r9a07g043-cpg: Add Renesas
- RZ/Five CPG Clock and Reset Definitions
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=X+iyqLf77Krjb4QH3xlKBzqBdXBeBxfWT5vFT9hWB/E=;
+        b=VFJjq3A0yvOghofrMz1EKm4VsrG2qcVksid0zWrzODQC6sXxmMA5m8maf/TIw4ROla
+         790V/KIZ99k0JTg3EA50tPMWTYQuQTWE1DFsJUV3bAXGH0q0sUrpgEuCsIdHbDIPMPdd
+         RqhgLY4Qb5eTa4C+tU3XuDeYnoLlS50qnGdmLe3ZNTX9Jp/8RHQyvuH1DH5w1drqpvZx
+         6WBUd84ffLafQqPi+8TrrWUVGCHSUeYWFKVT8wjsHduurjWxgRWZ7LQ4JhXgbZkf8Ogo
+         08rvjRl2mPZayN2vKSBWMNyfsOEZOWOQiREBJAKTx+3UXL0oEUyPg8f24aEjWLmTS5nv
+         Zuug==
+X-Gm-Message-State: AOAM5332TaNPzXcRA8kdFrL7mEWJOn1XthVnwQ5S5q9c4+xv6gMtjjDN
+        vM9fVfqdGJKxYOfgnmEx6As=
+X-Google-Smtp-Source: ABdhPJzwmwkFDCRWW2Cad13XCWqyTTIZvwGLTYnv5Wt5Re5HVYbl0W10atfcLup8GeN/5VWUJmeMMg==
+X-Received: by 2002:a05:6512:ace:b0:473:ba5b:8e06 with SMTP id n14-20020a0565120ace00b00473ba5b8e06mr2114663lfu.614.1652940210293;
+        Wed, 18 May 2022 23:03:30 -0700 (PDT)
+Received: from [192.168.1.7] ([212.22.223.21])
+        by smtp.gmail.com with ESMTPSA id z9-20020ac25de9000000b0047255d211b3sm159674lfq.226.2022.05.18.23.03.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 May 2022 23:03:29 -0700 (PDT)
+Subject: Re: [PATCH V2 5/7] dt-bindings: Add xen,dev-domid property
+ description for xen-grant DMA ops
+To:     Stefano Stabellini <sstabellini@kernel.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        xen-devel <xen-devel@lists.xenproject.org>,
+        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
+        <virtualization@lists.linux-foundation.org>,
+        DTML <devicetree@vger.kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+        Jason Wang <jasowang@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Julien Grall <julien@xen.org>, Juergen Gross <jgross@suse.com>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>
+References: <1651947548-4055-1-git-send-email-olekstysh@gmail.com>
+ <1651947548-4055-6-git-send-email-olekstysh@gmail.com>
+ <CAK8P3a2cAnXr8TDDYTiFxTWzQxa67sGnYDQRRD+=Q8_cSb1mEw@mail.gmail.com>
+ <56e8c32d-6771-7179-005f-26ca58555659@gmail.com>
+ <CAK8P3a1YhkEZ8gcbXHEa5Bwx-4VVRJO8SUHf8=RNWRsc2Yo-+A@mail.gmail.com>
+ <460a746c-6b61-214b-4653-44a1430e314d@gmail.com>
+ <alpine.DEB.2.22.394.2205181802310.1905099@ubuntu-linux-20-04-desktop>
+From:   Oleksandr <olekstysh@gmail.com>
+Message-ID: <6f469e9c-c26e-f4be-9a85-710afb0d77eb@gmail.com>
+Date:   Thu, 19 May 2022 09:03:28 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <alpine.DEB.2.22.394.2205181802310.1905099@ubuntu-linux-20-04-desktop>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,61 +93,115 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
 
-Thank you for the review.
+On 19.05.22 04:06, Stefano Stabellini wrote:
 
-On Tue, May 10, 2022 at 3:02 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar,
->
-> Thanks for your patch!
->
-> On Thu, May 5, 2022 at 9:32 PM Lad Prabhakar
-> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > Renesas RZ/Five SoC has almost the same clock structure compared to the
-> > Renesas RZ/G2UL SoC, re-use the r9a07g043-cpg.h header file and just
-> > ammend the RZ/Five CPG clock and reset definitions.
->
-> amend
->
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> > --- a/include/dt-bindings/clock/r9a07g043-cpg.h
-> > +++ b/include/dt-bindings/clock/r9a07g043-cpg.h
-> > @@ -108,6 +108,15 @@
-> >  #define R9A07G043_ADC_ADCLK            76
-> >  #define R9A07G043_ADC_PCLK             77
-> >  #define R9A07G043_TSU_PCLK             78
-> > +#define R9A07G043_NCEPLDM_DM_CLK       79      /* RZ/Five Only */
->
-> While NCEPLDM_DM_CLK is listed in the clock list spreadsheet, its
-> control bit is not documented.
->
-> > +#define R9A07G043_NCEPLDM_ACLK         80      /* RZ/Five Only */
-> > +#define R9A07G043_NCEPLDM_TCK          81      /* RZ/Five Only */
->
-> While NCEPLDM_TCK is listed in the clock list spreadsheet, its
-> control bit is not documented.
->
-I have got the feedback for the above, NCEPLDM_DM_CLK and NCEPLDM_TCK
-clocks cannot be stopped as a result there are no register bits for it
-in the HW manual (clock spreadsheet will be updated). I will drop this
-and send a v2 including your RB.
 
-Cheers,
-Prabhakar
+Hello Stefano
 
-> The rest LGTM, so with the above clarified
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> On Thu, 19 May 2022, Oleksandr wrote:
+>>> On Wed, May 18, 2022 at 5:06 PM Oleksandr <olekstysh@gmail.com> wrote:
+>>>> On 18.05.22 17:32, Arnd Bergmann wrote:
+>>>>> On Sat, May 7, 2022 at 7:19 PM Oleksandr Tyshchenko
+>>>>> <olekstysh@gmail.com> wrote:
+>>>>>     This would mean having a device
+>>>>> node for the grant-table mechanism that can be referred to using the
+>>>>> 'iommus'
+>>>>> phandle property, with the domid as an additional argument.
+>>>> I assume, you are speaking about something like the following?
+>>>>
+>>>>
+>>>> xen_dummy_iommu {
+>>>>       compatible = "xen,dummy-iommu";
+>>>>       #iommu-cells = <1>;
+>>>> };
+>>>>
+>>>> virtio@3000 {
+>>>>       compatible = "virtio,mmio";
+>>>>       reg = <0x3000 0x100>;
+>>>>       interrupts = <41>;
+>>>>
+>>>>       /* The device is located in Xen domain with ID 1 */
+>>>>       iommus = <&xen_dummy_iommu 1>;
+>>>> };
+>>> Right, that's that's the idea,
+>> thank you for the confirmation
+>>
+>>
+>>
+>>>    except I would not call it a 'dummy'.
+>>>   From the perspective of the DT, this behaves just like an IOMMU,
+>>> even if the exact mechanism is different from most hardware IOMMU
+>>> implementations.
+>> well, agree
+>>
+>>
+>>>>> It does not quite fit the model that Linux currently uses for iommus,
+>>>>> as that has an allocator for dma_addr_t space
+>>>> yes (# 3/7 adds grant-table based allocator)
+>>>>
+>>>>
+>>>>> , but it would think it's
+>>>>> conceptually close enough that it makes sense for the binding.
+>>>> Interesting idea. I am wondering, do we need an extra actions for this
+>>>> to work in Linux guest (dummy IOMMU driver, etc)?
+>>> It depends on how closely the guest implementation can be made to
+>>> resemble a normal iommu. If you do allocate dma_addr_t addresses,
+>>> it may actually be close enough that you can just turn the grant-table
+>>> code into a normal iommu driver and change nothing else.
+>> Unfortunately, I failed to find a way how use grant references at the
+>> iommu_ops level (I mean to fully pretend that we are an IOMMU driver). I am
+>> not too familiar with that, so what is written below might be wrong or at
+>> least not precise.
+>>
+>> The normal IOMMU driver in Linux doesn’t allocate DMA addresses by itself, it
+>> just maps (IOVA-PA) what was requested to be mapped by the upper layer. The
+>> DMA address allocation is done by the upper layer (DMA-IOMMU which is the glue
+>> layer between DMA API and IOMMU API allocates IOVA for PA?). But, all what we
+>> need here is just to allocate our specific grant-table based DMA addresses
+>> (DMA address = grant reference + offset in the page), so let’s say we need an
+>> entity to take a physical address as parameter and return a DMA address (what
+>> actually commit #3/7 is doing), and that’s all. So working at the dma_ops
+>> layer we get exactly what we need, with the minimal changes to guest
+>> infrastructure. In our case the Xen itself acts as an IOMMU.
+>>
+>> Assuming that we want to reuse the IOMMU infrastructure somehow for our needs.
+>> I think, in that case we will likely need to introduce a new specific IOVA
+>> allocator (alongside with a generic one) to be hooked up by the DMA-IOMMU
+>> layer if we run on top of Xen. But, even having the specific IOVA allocator to
+>> return what we indeed need (DMA address = grant reference + offset in the
+>> page) we will still need the specific minimal required IOMMU driver to be
+>> present in the system anyway in order to track the mappings(?) and do nothing
+>> with them, returning a success (this specific IOMMU driver should have all
+>> mandatory callbacks implemented).
+>>
+>> I completely agree, it would be really nice to reuse generic IOMMU bindings
+>> rather than introducing Xen specific property if what we are trying to
+>> implement in current patch series fits in the usage of "iommus" in Linux
+>> more-less. But, if we will have to add more complexity/more components to the
+>> code for the sake of reusing device tree binding, this raises a question
+>> whether that’s worthwhile.
+>>
+>> Or I really missed something?
+> I think Arnd was primarily suggesting to reuse the IOMMU Device Tree
+> bindings, not necessarily the IOMMU drivers framework in Linux (although
+> that would be an added bonus.)
 >
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+> I know from previous discussions with you that making the grant table
+> fit in the existing IOMMU drivers model is difficult, but just reusing
+> the Device Tree bindings seems feasible?
+
+I started experimenting with that. As wrote in a separate email, I got a 
+deferred probe timeout,
+
+after inserting required nodes into guest device tree, which seems to be 
+a consequence of the unavailability of IOMMU, I will continue to 
+investigate this question.
+
+
+
+-- 
+Regards,
+
+Oleksandr Tyshchenko
+
