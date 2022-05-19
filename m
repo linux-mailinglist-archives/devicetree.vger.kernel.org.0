@@ -2,55 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16C9F52D3E5
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 15:26:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFC3D52D3FC
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 15:30:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238738AbiESN0g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 09:26:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38708 "EHLO
+        id S238799AbiESNa2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 09:30:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238747AbiESN0f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 09:26:35 -0400
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C927878934
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 06:26:28 -0700 (PDT)
-Received: by mail-yb1-xb2c.google.com with SMTP id i11so9023117ybq.9
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 06:26:28 -0700 (PDT)
+        with ESMTP id S238802AbiESNa0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 09:30:26 -0400
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A185CEBA3
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 06:30:19 -0700 (PDT)
+Received: by mail-yb1-xb2a.google.com with SMTP id e78so9010903ybc.12
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 06:30:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=z5eeUrHtwQHbc6kaHl37fkm5yyYSJ3/NPDe4LUQNYaQ=;
-        b=lNW2+XcTGLbi1+LXuiK4XEnrpSLle5RMVnyjNvveZzNRjxf4nkBUmmVo/ruNTuf2H1
-         FRL56+rcK5fujjAzKuS2aIiEt6TdXMxQ2rDuc9/2zLu4hPdhqfizoUhJ28ktwhsfwfJx
-         iyCUnQLs199tkUf0OruWOAoG/rc4k8gP835uiyfPGQhIIX1rZKHtzdQkENvd6yKaxeyW
-         TpQcrv8v6pz8UJS0UC0641dYqH7upkPFTXE7/dSbqO1eCIuBQgLhFg4fRE0HQE6ya/qh
-         pjeJ3GpLiV9Z8fJHM9VFpVPtPp2GgE9G92HXmm50Q1IExX046y3eBcw1XIkZHXIzSxWl
-         Q4/g==
+        bh=Ea9SWDA6wvriBFyiWmSM/cUBDRlPeKx6B/XCiADE6Cg=;
+        b=ks6F3fTckOrmjWS0ClW006McxhjxXzbDAmClZ85Ndf/WMrVkPSfxPwMkCJ5+JB/Zly
+         zqD5LIxa+lWehhvWN4Mf2NAHwpS/L4Y90P7fnLH5GPIKVSen0ZQFicNPS4BO/kxG2Hi7
+         9+VqUpx3JpcDW4Kk2EBUINsel5EOpG7wvvFrLGI/79QAayI4cP63wE/0zgtW6uCGI/46
+         NbjttW4tN3/OkWR6s6nrDwk1Vto3pC3uUL5jEpueyGDrGhBIRRoelrsklzxX3c65f6dY
+         nVGShTwmklzNOXcRrUN7VvADdrC/n6x9IsBvYl4aTfA7ntFmcUWmig7WU3bTqN+epHWp
+         Pvtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=z5eeUrHtwQHbc6kaHl37fkm5yyYSJ3/NPDe4LUQNYaQ=;
-        b=2DkRs+GwcUM/2C+x2NSv/YRcMnhkOxLjK+ZVkk7FICRoZEWhyu4GMdCbV9ngP5IvHi
-         HIT6cupIJA1nmqZA2amfgxjLkj6gnRNlDhGa5JLeKNztAoopOn48+/Px7q2g0e9I2wEj
-         XUfbEw8jdScr17xghy3KuNy2Kd0IaZLRfjE5bbBILdN5vpcznj9j1v9HmHJ89zuIsvG2
-         3r9qUZN6yJqJR5zE51B8o+UiXu1Nx984v9t8vlMJiOUgtIIfFgIy/ezqNPrg7UBzhgmU
-         BtTmVh/9UkMp6x6iPuYQOGWfyZaBAaDLW6M4srP6R3gY/kaWTRHMDnKISLzBCDJMS0xm
-         JBmQ==
-X-Gm-Message-State: AOAM533V5u4w17So2DAKyeHKHXhueCCL9aHB8MvqFG4yFnp/nl+sbDHp
-        7yZAKMtlSr+bqiZodOzBOvg7gtzNysbXuZfwRqz73A==
-X-Google-Smtp-Source: ABdhPJytRO15F5eDU0jXHSWp5kq18gT9NfI7pAX6nfu7aDP5oAJbZzHxiDIaTQJqTR/TTs/Y+WBbEx/KIJBm/mEY+pw=
-X-Received: by 2002:a25:e78a:0:b0:64d:672b:af3c with SMTP id
- e132-20020a25e78a000000b0064d672baf3cmr4567338ybh.369.1652966787547; Thu, 19
- May 2022 06:26:27 -0700 (PDT)
+        bh=Ea9SWDA6wvriBFyiWmSM/cUBDRlPeKx6B/XCiADE6Cg=;
+        b=HU4oP0igBwP5RM9Ajtwmr9HUuvWxMkv3IUviwxGEjlmDIp9KLZpzsXVVqgXP0VhfjV
+         BFmXpZo2zZWGJfs14fV8az+S0006AMgDUkLMRq/r3eZe+zFM5cGGfxs/Zh8o/7zWVrS2
+         MQ81cfD4d1YtVmWlKxRBmW8biHXEteffwJOsdmnNM3PaQown5++8PhnyJSzjLpOwm4mu
+         g7aquGUA/IvMeg+LH4PSGSjPhrFQxUIS/pKShguaaosY2NooIa51xA+pBGXMbHEIYIhn
+         GB930pzKWHTjFZ5L/mUOaNtmVjAESyV+3X29x2tPTZCv1wuYxsXelaYPhmimLGiFPLbs
+         rJ6w==
+X-Gm-Message-State: AOAM531+aCjbQ3a1g4U6upNDwWd69FbNVJIeT8sfI+yOBwB1nJj6weik
+        etAaOMwlYPfczQuY6z0Vc64trEh501Q8AK9Ley10Ig==
+X-Google-Smtp-Source: ABdhPJx5ABKP9iZZdCdL37HDpt4btHGxSXXOR0fGwkumd4vTxNoxrgrIZ9EOp8UTgSt1tW+U2kK3C15aGRatb6Ii7AA=
+X-Received: by 2002:a5b:691:0:b0:64d:ab44:f12e with SMTP id
+ j17-20020a5b0691000000b0064dab44f12emr4304244ybq.533.1652967018884; Thu, 19
+ May 2022 06:30:18 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220518192924.20948-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220518192924.20948-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20220518192924.20948-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20220518192924.20948-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220518192924.20948-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20220518192924.20948-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 19 May 2022 15:26:16 +0200
-Message-ID: <CACRpkda1pfL8tk0S_0bHvj4kWYrLTTeOz3b_A9qK5DJwHWeTXw@mail.gmail.com>
-Subject: Re: [PATCH v4 3/7] gpio: gpiolib: Add ngirq member to struct gpio_irq_chip
+Date:   Thu, 19 May 2022 15:30:07 +0200
+Message-ID: <CACRpkdYt-doG_i2T9jjDCb8=oJFR_7Z8RCwW+S05qd90E3FgLg@mail.gmail.com>
+Subject: Re: [PATCH v4 4/7] gpio: gpiolib: Dont assume child_offset_to_irq
+ callback always succeeds
 To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Cc:     Marc Zyngier <maz@kernel.org>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
@@ -74,7 +75,7 @@ Cc:     Marc Zyngier <maz@kernel.org>,
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,27 +86,19 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Wed, May 18, 2022 at 9:30 PM Lad Prabhakar
 <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
 
-> Supported GPIO IRQs by the chip is not always equal to the number of GPIO
-> pins. For example on Renesas RZ/G2L SoC where it has GPIO0-122 pins but at
-> a given point a maximum of only 32 GPIO pins can be used as IRQ lines in
-> the IRQC domain.
+> On Renesas RZ/G2L SoC not all the GPIO pins can be simultaneously used as
+> interrupts. The SoC allows 32 interrupts which is first come first serve
+> basis and is dynamic i.e. if there is a free slot (after rmmod) this can
+> be used by other GPIO pins being used as an interrupt.
 >
-> This patch adds ngirq member to struct gpio_irq_chip and passes this as a
-> size to irq_domain_create_hierarchy()/irq_domain_create_simple() if it is
-> being set in the driver otherwise fallbacks to using ngpio.
+> To handle such cases change child_offset_to_irq() callback to return error
+> codes in case of failure. All the users of child_offset_to_irq() callback
+> are also updated with this API change.
 >
 > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-NAK
-
-As pointed out this is a property of the hardware and thus you should
-derive this property of the hardware from the compatible string.
-
-For example by passing per-variant .data in struct of_device_id.
-
-Unique hardware properties means unique hardware means it should
-have a unique compatible string. Otherwise something is wrong
-with the compatibles.
+This looks very useful!
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
 Linus Walleij
