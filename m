@@ -2,175 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7477652C7E8
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 01:48:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1E5F52C85F
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 02:08:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230426AbiERXsk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 May 2022 19:48:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40410 "EHLO
+        id S230261AbiESAI2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 May 2022 20:08:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231489AbiERXsg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 19:48:36 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BCADF5A0;
-        Wed, 18 May 2022 16:48:34 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id h29so6285133lfj.2;
-        Wed, 18 May 2022 16:48:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=1UX9tyiY5Mk4r18rRaJBtwzhf1ZkmkQKY6AoHo3gkeU=;
-        b=EOyUOmigcDiFSJvJvzr7SPnBBZOwM/2TtEwTD7jMMFA5XBQ/9fKlvqJpOV7W2t8GbK
-         B8/80L59bPmxdfqwuyULyEbfFosEabN28Arqc/CGnHTIyHRWiujQceUHclJvVfjgVYQE
-         lokfslEw8Tlser1eUC0JYMR5PPVVJ66H2uLntTHLTSKGDfRzDozIrZEVxY0wHtbsuiSL
-         w835ogeyqZnJtEHC22eLFPj298OPdDLzS0I2dBzRyEHdWjzjYo5AQPhBrPsryyU3qyDc
-         FgR/E/y5U41uYg8J4mT74V4NTW17TC7cHmZbDghtyW0LTdgdlc5AuS0pbYMOpYZikfZO
-         Yo4g==
+        with ESMTP id S231965AbiESAIV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 May 2022 20:08:21 -0400
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DB02DE327;
+        Wed, 18 May 2022 17:08:12 -0700 (PDT)
+Received: by mail-oi1-f181.google.com with SMTP id m25so4666730oih.2;
+        Wed, 18 May 2022 17:08:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=1UX9tyiY5Mk4r18rRaJBtwzhf1ZkmkQKY6AoHo3gkeU=;
-        b=PWX/C94a6/2nmEANcUPhYlKdk8HRJh0Q3do7d0tbXJEMT96cMMDMRibrvv7cM5jkjw
-         bzmGMTnSDboWujKy2EFtEiw7hGwvrd5HcDaqsmOE1+wTkNkaZ8gyb2mkal5aG9g+WKLn
-         im78WYiCKILfuZvYE4eHMQNZonnTYt/4IARg+2NxfWUjD7gZXLRZyturyyok413Whhth
-         cThAMr2eNPVYWanS/p42ABCWa8l8yfQXeirA46UpfU3RAcRJGq2t84T8qiKpbG0bnCLz
-         EFOctIs1iDQgHxogWaxwnE3Gx5IZzTLOuuQFEzjsRQJlHsT76wwLSz+LSRfl+XKACvD0
-         5Wag==
-X-Gm-Message-State: AOAM533M515XbZJR5QF/TJdU+9YWV3Z296q6Qssoqm67vT9GC/oB0sGR
-        XR1f2SbvRGoCFlccX5RiB0c=
-X-Google-Smtp-Source: ABdhPJzSuJPZWc7BEOcp2vhD63R+kj8rGQqC2ji1faQfxLn5GP6aKbG88ceT3bgy+m/z5SjBgVVpFA==
-X-Received: by 2002:a05:6512:169a:b0:44a:fea7:50a5 with SMTP id bu26-20020a056512169a00b0044afea750a5mr1314227lfb.498.1652917712865;
-        Wed, 18 May 2022 16:48:32 -0700 (PDT)
-Received: from [192.168.1.7] ([212.22.223.21])
-        by smtp.gmail.com with ESMTPSA id q7-20020ac25107000000b0047255d211e3sm83430lfb.274.2022.05.18.16.48.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 May 2022 16:48:32 -0700 (PDT)
-Subject: Re: [PATCH V2 5/7] dt-bindings: Add xen,dev-domid property
- description for xen-grant DMA ops
-To:     Rob Herring <robh@kernel.org>, Arnd Bergmann <arnd@arndb.de>
-Cc:     xen-devel <xen-devel@lists.xenproject.org>,
-        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
-        <virtualization@lists.linux-foundation.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
-        Jason Wang <jasowang@redhat.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Julien Grall <julien@xen.org>, Juergen Gross <jgross@suse.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        "Michael S. Tsirkin" <mst@redhat.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>
-References: <1651947548-4055-1-git-send-email-olekstysh@gmail.com>
- <1651947548-4055-6-git-send-email-olekstysh@gmail.com>
- <CAK8P3a2cAnXr8TDDYTiFxTWzQxa67sGnYDQRRD+=Q8_cSb1mEw@mail.gmail.com>
- <20220518185904.GA3685644-robh@kernel.org>
-From:   Oleksandr <olekstysh@gmail.com>
-Message-ID: <40758f3b-cab3-2096-1711-18837bc2f73b@gmail.com>
-Date:   Thu, 19 May 2022 02:48:31 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <20220518185904.GA3685644-robh@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=vCQnkYgc1zVHenxwoyabefaogr520hch3r3ycwfJxBY=;
+        b=yihaYLqPs2+rTqBNUBjTTQROLZ9EWIIrDkqeh1dCc+ScLg46UxYmX8/TirpdvT2uqq
+         AX9LdvRz2ApBmvQiBkDcnq0lri+f5avVP5p/WSMSCOfJStRFltwkiiQMwHsYyPSGe9xC
+         0FCTS+29optLI6yxozLTGaigurfyYHTMq8QHw3ACfOcK5Nzxadrnql9Izpdo9W9vO0YW
+         UyF5AxkpN6gASxvOK+AfAadUJ3rROQ6cmnu3H/h+zyskLlhyf05fXtYoTXbDpYdvx81K
+         BdoM06Ri/R/c52BHd7e2jwF4vpYhffqH5HFwM26J0NmrmdvcpBRCDIoXSWLcbAOpg556
+         SqyA==
+X-Gm-Message-State: AOAM533BShjBUemMCMHszNxUESZxhIGt0B+k119jnErYQ+GH6GmoehUI
+        eEUFeqbMh38bhaS6ghuH4g==
+X-Google-Smtp-Source: ABdhPJxpp9m6M87ZFeTNPEQnDSUwEbSseDW7JPj0qpBLpkd8eWwd79O5OpLHulj0YFHL7xqDn/FaSQ==
+X-Received: by 2002:a05:6808:10ca:b0:32a:dc6a:da6f with SMTP id s10-20020a05680810ca00b0032adc6ada6fmr1406701ois.41.1652918891363;
+        Wed, 18 May 2022 17:08:11 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id m18-20020a9d7e92000000b0060603221268sm1222721otp.56.2022.05.18.17.08.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 May 2022 17:08:10 -0700 (PDT)
+Received: (nullmailer pid 50697 invoked by uid 1000);
+        Thu, 19 May 2022 00:08:09 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Corentin Labbe <clabbe@baylibre.com>
+Cc:     pabeni@redhat.com, linux-arm-kernel@lists.infradead.org,
+        samuel@sholland.org, kuba@kernel.org, broonie@kernel.org,
+        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
+        edumazet@google.com, hkallweit1@gmail.com, wens@csie.org,
+        andrew@lunn.ch, davem@davemloft.net, linux-sunxi@lists.linux.dev,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        jernej.skrabec@gmail.com, calvin.johnson@oss.nxp.com,
+        netdev@vger.kernel.org, linux@armlinux.org.uk, robh+dt@kernel.org
+In-Reply-To: <20220518200939.689308-5-clabbe@baylibre.com>
+References: <20220518200939.689308-1-clabbe@baylibre.com> <20220518200939.689308-5-clabbe@baylibre.com>
+Subject: Re: [PATCH v2 4/5] dt-bindings: net: Add documentation for optional regulators
+Date:   Wed, 18 May 2022 19:08:09 -0500
+Message-Id: <1652918889.376228.50696.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 18 May 2022 20:09:38 +0000, Corentin Labbe wrote:
+> Add entries for the new optional regulators.
+> 
+> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> ---
+>  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
 
-On 18.05.22 21:59, Rob Herring wrote:
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Hello Rob, Arnd
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/net/ethernet-phy.yaml:149:8: [warning] wrong indentation: expected 6 but found 7 (indentation)
 
-> On Wed, May 18, 2022 at 03:32:27PM +0100, Arnd Bergmann wrote:
->> On Sat, May 7, 2022 at 7:19 PM Oleksandr Tyshchenko <olekstysh@gmail.com> wrote:
->>> diff --git a/Documentation/devicetree/bindings/virtio/mmio.yaml b/Documentation/devicetree/bindings/virtio/mmio.yaml
->>> index 10c22b5..29a0932 100644
->>> --- a/Documentation/devicetree/bindings/virtio/mmio.yaml
->>> +++ b/Documentation/devicetree/bindings/virtio/mmio.yaml
->>> @@ -13,6 +13,9 @@ description:
->>>     See https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=virtio for
->>>     more details.
->>>
->>> +allOf:
->>> +  - $ref: /schemas/arm/xen,dev-domid.yaml#
->>> +
->>>   properties:
->>>     compatible:
->>>       const: virtio,mmio
->>> @@ -33,6 +36,10 @@ properties:
->>>       description: Required for devices making accesses thru an IOMMU.
->>>       maxItems: 1
->>>
->>> +  xen,dev-domid:
->>> +    description: Required when Xen grant mappings need to be enabled for device.
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +
->>>   required:
->>>     - compatible
->>>     - reg
->> Sorry for joining the discussion late. Have you considered using the
->> generic iommu
->> binding here instead of a custom property? This would mean having a device
->> node for the grant-table mechanism that can be referred to using the 'iommus'
->> phandle property, with the domid as an additional argument.
->>
->> It does not quite fit the model that Linux currently uses for iommus,
->> as that has an allocator for dma_addr_t space, but it would think it's
->> conceptually close enough that it makes sense for the binding.
-> Something common is almost always better.
+dtschema/dtc warnings/errors:
 
-agree
+doc reference errors (make refcheckdocs):
 
+See https://patchwork.ozlabs.org/patch/
 
->
-> That may also have the issue that fw_devlink will make the 'iommu'
-> driver a dependency to probe.
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-Looks like I ran into it while experimenting. I generated the following 
-nodes in guest DT using Xen toolstack:
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-[snip]
+pip3 install dtschema --upgrade
 
-         xen_dummy_iommu {
-                 compatible = "xen,dummy-iommu";
-                 #iommu-cells = <0x01>;
-                 phandle = <0xfde9>;
-         };
-         virtio@2000000 {
-                 compatible = "virtio,mmio";
-                 reg = <0x00 0x2000000 0x00 0x200>;
-                 interrupts = <0x00 0x01 0xf01>;
-                 interrupt-parent = <0xfde8>;
-                 dma-coherent;
-                 iommus = <0xfde9 0x01>;
-         };
-
-[snip]
-
-
-And got:
-
-virtio-mmio 2000000.virtio: deferred probe timeout, ignoring dependency
-
-
->
-> Rob
-
--- 
-Regards,
-
-Oleksandr Tyshchenko
+Please check and re-submit.
 
