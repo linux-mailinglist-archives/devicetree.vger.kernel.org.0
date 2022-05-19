@@ -2,50 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9922252D042
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 12:18:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FE6652D055
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 12:21:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231224AbiESKSQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 06:18:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55880 "EHLO
+        id S236689AbiESKTj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 06:19:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229541AbiESKSP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 06:18:15 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43FAF4B1F6;
-        Thu, 19 May 2022 03:18:14 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id DF3511F45A06
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1652955492;
-        bh=elCw2GMrP8XUYjnKjTriaCAevspHDdoKTgv83FjGUQU=;
-        h=From:To:Cc:Subject:Date:From;
-        b=nAMtX5wELFg2hOQVO1y45d6Jnkm2Xjzqzw8l7ncUlQmQzG2Z9r4PZE8CyUZJ054Dn
-         mKhxljLL5HVBu4OQCCj5dYlsTPL8o6Kxt31hQvZTi5xf5hRutyOSv6X4seoX3kKoMc
-         nYa0Gt0zSDykj76rSHcB8QdkIYrGxsjQxE5swhZ0YH9LOuE9GOChIVowhKKiVGvNLC
-         njiS7HoQiodiUIlaY2e99UZ5o5gpGrN7IayPYU8ZfnShMHgb5ZO12JPKOC/QC4k+mO
-         OS3rz1wd4UfNqcPN9VIRG+R7GxXtz43D5t+SrrkI3CIDroP4r1ag0P4biKVG+/xJDW
-         8U6TDDJhKBV/w==
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     robh+dt@kernel.org
-Cc:     jassisinghbrar@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, houlong.wei@mediatek.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH] dt-bindings: mailbox: mtk-gce: Convert txt to json-schema
-Date:   Thu, 19 May 2022 12:18:06 +0200
-Message-Id: <20220519101806.18097-1-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S236617AbiESKTR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 06:19:17 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 310DCA76F1
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 03:19:16 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id fd25so6416853edb.3
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 03:19:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rQZDF0ST+m3bjXxhfgKrKul8Pa3ypLxrdFU2KUJN6Wo=;
+        b=yulejd8gCAcfcCJ6Hbz4UE8pg5QLnb0fCWsWWDGcCpZEpalnvHluHjDTMZwcUqEvBS
+         TI1P7Eeo1L0VCdNbVplivDDT9YvH3KKapVz0QSM1jyBdfiESxEjiQstdwStrjVgcJZJ6
+         J8DQD+pHP+InweqD5x6O7wh4QBqZN1xSGdDl9Ga1NsZPoSHHIB/6hb2Mzu2ddIDy/sgd
+         wKmI25hsNlrcSz+C43HCmX0vIbFJqymCTcCdfA9j0SBuBc6a2Qj1QntZeO9u+M/9yx+I
+         ATGXd4ebtIyF8nektWoOXEDUzVs0I+Z4eYU0SRVjZJs4A9g5dcczKHkbezctiENN1R+8
+         IYUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rQZDF0ST+m3bjXxhfgKrKul8Pa3ypLxrdFU2KUJN6Wo=;
+        b=4Zk3LZA5TGCzeVik/oykoqx+1XLDGqT0uPcNzCxhsqjazcbRfNHEImNZXmztB3CHem
+         /oiKuaOsxMcYPoVOxVsmfIvlO7mZr97lG74X1bLvQ/u59bLeNBz4EpDF0CxIv42owiHa
+         V+nIwI3i82VtyoL7h8SlX64gVGjj+7Za6izsaMwFb4AIKVHTKzyK4KAMiELY3QdEHYIA
+         FgRw/lgcurUuVrRUApNpXmqr7AVEwDaPX+iV801P8bdBkZGF9yofFjJ3Mfic2Wo9+oGO
+         NYDjnRk/ecpmzVJSeJaiJl5EYELRJN14QmjxsdNGpK4bJNq6PVNeIe1Xvy2d4hOdn5qe
+         ZcSg==
+X-Gm-Message-State: AOAM533ofV0LxL124F9CmYaZes4YFM+CkHF5B/TsySUB48sNeTxlrhrV
+        tOoW1G8qhEIBp/6tJg9fOZI0CDqS5UiENUr0OSWBZg==
+X-Google-Smtp-Source: ABdhPJxJRotEBuFNPsVGhczRDFHSLngF16rHucpJb9tpSyucqiOctuqwe+PayGCiBANvsl1m3CDpzIzQ37sdH0gPy2I=
+X-Received: by 2002:aa7:cb1a:0:b0:41c:dd9c:2eaa with SMTP id
+ s26-20020aa7cb1a000000b0041cdd9c2eaamr4404541edt.119.1652955554524; Thu, 19
+ May 2022 03:19:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220518194426.3784095-1-tanmay.shah@xilinx.com>
+In-Reply-To: <20220518194426.3784095-1-tanmay.shah@xilinx.com>
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+Date:   Thu, 19 May 2022 11:19:03 +0100
+Message-ID: <CANLsYkw9HuLso9bGL4fM7C9qH+basgKA9yKFwms4WB4OUHqymQ@mail.gmail.com>
+Subject: Re: [PATCH v5 0/6] Add Xilinx RPU subsystem support
+To:     Tanmay Shah <tanmay.shah@xilinx.com>
+Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        michal.simek@xilinx.com, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -53,225 +67,118 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the mtk-gce documentation from freeform text format to a
-json-schema.
+Hi Tanmay,
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- .../bindings/mailbox/mediatek,gce-mbox.yaml   | 114 ++++++++++++++++++
- .../devicetree/bindings/mailbox/mtk-gce.txt   |  82 -------------
- 2 files changed, 114 insertions(+), 82 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/mailbox/mediatek,gce-mbox.yaml
- delete mode 100644 Documentation/devicetree/bindings/mailbox/mtk-gce.txt
+I have replaced the previous version of this set with this one in my
+queue.  That way you don't go back to the bottom.
 
-diff --git a/Documentation/devicetree/bindings/mailbox/mediatek,gce-mbox.yaml b/Documentation/devicetree/bindings/mailbox/mediatek,gce-mbox.yaml
-new file mode 100644
-index 000000000000..750391b4038c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mailbox/mediatek,gce-mbox.yaml
-@@ -0,0 +1,114 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mailbox/mediatek,gce-mbox.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek Global Command Engine (GCE) mailbox
-+
-+maintainers:
-+  - Houlong Wei <houlong.wei@mediatek.com>
-+
-+description: |
-+  The Global Command Engine (GCE) is used to help read/write registers
-+  with critical time limitation, such as updating display configuration
-+  during the vblank.
-+  The GCE can be used to implement the Command Queue (CMDQ) driver.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mediatek,mt6779-gce
-+      - mediatek,mt8173-gce
-+      - mediatek,mt8183-gce
-+      - mediatek,mt8186-gce
-+      - mediatek,mt8192-gce
-+      - mediatek,mt8195-gce
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: gce
-+
-+  '#mbox-cells':
-+    description: |
-+      The first cell describes the mailbox channel, which is the GCE Thread ID;
-+      The second cell describes the priority of the GCE thread.
-+    const: 2
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - '#mbox-cells'
-+
-+additionalProperties: false
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - mediatek,mt8195-gce
-+    then:
-+      properties:
-+        clocks:
-+          maxItems: 2
-+
-+        clock-names:
-+          items:
-+            - const: gce0
-+            - const: gce1
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/clock/mt8173-clk.h>
-+    #include <dt-bindings/gce/mt8173-gce.h>
-+
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        gce: mailbox@10212000 {
-+            compatible = "mediatek,mt8173-gce";
-+            reg = <0 0x10212000 0 0x1000>;
-+            interrupts = <GIC_SPI 135 IRQ_TYPE_LEVEL_LOW>;
-+            clocks = <&infracfg CLK_INFRA_GCE>;
-+            clock-names = "gce";
-+            #mbox-cells = <2>;
-+        };
-+
-+        /* Client device using a GCE Thread */
-+        mmsys: syscon@14000000 {
-+            compatible = "mediatek,mt8173-mmsys", "syscon";
-+            reg = <0 0x14000000 0 0x1000>;
-+            mboxes = <&gce 0 CMDQ_THR_PRIO_HIGHEST>,
-+                     <&gce 1 CMDQ_THR_PRIO_HIGHEST>;
-+            mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0 0x1000>;
-+            #clock-cells = <1>;
-+            #reset-cells = <1>;
-+        };
-+
-+        /* Client device listening to specific GCE Events */
-+        mutex: mutex@14020000 {
-+            compatible = "mediatek,mt8173-disp-mutex";
-+            reg = <0 0x14020000 0 0x1000>;
-+            interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_LOW>;
-+            power-domains = <&spm 1>;
-+            clocks = <&mmsys CLK_MM_MUTEX_32K>;
-+            mediatek,gce-events = <CMDQ_EVENT_MUTEX0_STREAM_EOF>,
-+                                  <CMDQ_EVENT_MUTEX1_STREAM_EOF>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/mailbox/mtk-gce.txt b/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
-deleted file mode 100644
-index c2aeba63bd47..000000000000
---- a/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
-+++ /dev/null
-@@ -1,82 +0,0 @@
--MediaTek GCE
--===============
--
--The Global Command Engine (GCE) is used to help read/write registers with
--critical time limitation, such as updating display configuration during the
--vblank. The GCE can be used to implement the Command Queue (CMDQ) driver.
--
--CMDQ driver uses mailbox framework for communication. Please refer to
--mailbox.txt for generic information about mailbox device-tree bindings.
--
--Required properties:
--- compatible: can be "mediatek,mt8173-gce", "mediatek,mt8183-gce",
--  "mediatek,mt8186-gce", "mediatek,mt8192-gce", "mediatek,mt8195-gce" or
--  "mediatek,mt6779-gce".
--- reg: Address range of the GCE unit
--- interrupts: The interrupt signal from the GCE block
--- clock: Clocks according to the common clock binding
--- clock-names: Must be "gce" to stand for GCE clock
--- #mbox-cells: Should be 2.
--	<&phandle channel priority>
--	phandle: Label name of a gce node.
--	channel: Channel of mailbox. Be equal to the thread id of GCE.
--	priority: Priority of GCE thread.
--
--Required properties for a client device:
--- mboxes: Client use mailbox to communicate with GCE, it should have this
--  property and list of phandle, mailbox specifiers.
--Optional properties for a client device:
--- mediatek,gce-client-reg: Specify the sub-system id which is corresponding
--  to the register address, it should have this property and list of phandle,
--  sub-system specifiers.
--  <&phandle subsys_number start_offset size>
--  phandle: Label name of a gce node.
--  subsys_number: specify the sub-system id which is corresponding
--                 to the register address.
--  start_offset: the start offset of register address that GCE can access.
--  size: the total size of register address that GCE can access.
--
--Optional properties for a client mutex node:
--- mediatek,gce-events: GCE events used by clients. The event numbers are
--  defined in 'dt-bindings/gce/<chip>-gce.h'.
--
--Some vaules of properties are defined in 'dt-bindings/gce/mt8173-gce.h',
--'dt-bindings/gce/mt8183-gce.h', 'dt-bindings/gce/mt8186-gce.h'
--'dt-bindings/gce/mt8192-gce.h', 'dt-bindings/gce/mt8195-gce.h' or
--'dt-bindings/gce/mt6779-gce.h'.
--Such as sub-system ids, thread priority, event ids.
--
--Example:
--
--	gce: gce@10212000 {
--		compatible = "mediatek,mt8173-gce";
--		reg = <0 0x10212000 0 0x1000>;
--		interrupts = <GIC_SPI 135 IRQ_TYPE_LEVEL_LOW>;
--		clocks = <&infracfg CLK_INFRA_GCE>;
--		clock-names = "gce";
--		#mbox-cells = <2>;
--	};
--
--Example for a client device:
--
--	mmsys: clock-controller@14000000 {
--		compatible = "mediatek,mt8173-mmsys";
--		mboxes = <&gce 0 CMDQ_THR_PRIO_LOWEST>,
--			 <&gce 1 CMDQ_THR_PRIO_LOWEST>;
--		mutex-event-eof = <CMDQ_EVENT_MUTEX0_STREAM_EOF
--				CMDQ_EVENT_MUTEX1_STREAM_EOF>;
--		mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x3000 0x1000>,
--					  <&gce SUBSYS_1401XXXX 0x2000 0x100>;
--		...
--	};
--
--Example for a client mutex node:
--	mutex: mutex@14020000 {
--		compatible = "mediatek,mt8173-disp-mutex";
--		reg = <0 0x14020000 0 0x1000>;
--		interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_LOW>;
--		power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
--		clocks = <&mmsys CLK_MM_MUTEX_32K>;
--		mediatek,gce-events = <CMDQ_EVENT_MUTEX0_STREAM_EOF>,
--				      <CMDQ_EVENT_MUTEX1_STREAM_EOF>;
--	};
--- 
-2.35.1
+Thanks,
+Mathieu.
 
+On Wed, 18 May 2022 at 20:46, Tanmay Shah <tanmay.shah@xilinx.com> wrote:
+>
+> This patch series adds bindings document for RPU subsystem found on Xilinx
+> ZynqMP platforms. It also adds device nodes and driver to enable RPU
+> subsystem in split mode and lockstep mode.
+>
+> Xilinx ZynqMP platform contains Remote Processing Unit(RPU). RPU subsystem
+> contains two arm cortex r5f cores. RPU subsystem can be configured in
+> split mode, lockstep mode and single-cpu mode.
+>
+> RPU subsystem also contains 4 Tightly Coupled Memory(TCM) banks.
+> In lockstep mode, all 4 banks are combined and total of 256KB memory is
+> made available to r5 core0. In split mode, both cores can access two
+> TCM banks i.e. 128 KB.
+>
+> RPU can also fetch data and execute instructions from DDR memory along with
+> TCM memory.
+> ---
+>
+> Changes in v5:
+>   - Add constraints of the possible values of xlnx,cluster-mode property
+>   - fix description of power-domains property for r5 core
+>   - Remove reg, address-cells and size-cells properties as it is not required
+>   - Fix description of mboxes property
+>   - Add description of each memory-region and remove old .txt binding link
+>     reference in the description
+>   - Remove optional reg property from r5fss node
+>   - Move r5fss node out of axi node
+>
+> Changes in v4:
+>   - Add memory-region, mboxes and mbox-names properties in dt-bindings example
+>   - Add reserved memory region node and use it in Xilinx dt RPU subsystem node
+>   - Remove redundant header files
+>   - use dev_err_probe() to report errors during probe
+>   - Fix missing check on error code returned by zynqmp_r5_add_rproc_core()
+>   - Fix memory leaks all over the driver when resource allocation fails for any core
+>   - make cluster mode check only at one place
+>   - remove redundant initialization of variable
+>   - remove redundant use of of_node_put()
+>   - Fix Comment format problem
+>   - Assign offset of zynqmp_tcm_banks instead of duplicating it
+>   - Add tcm and memory regions rproc carveouts during prepare instead of parse_fw
+>   - Remove rproc_mem_entry object from r5_core
+>   - Use put_device() and rproc_del() APIs to fix memory leaks
+>   - Replace pr_* with dev_*. This was missed in v3, fix now.
+>   - Use "GPL" instead of "GPL v2" in MODULE_LICENSE macro. This was reported by checkpatch script.
+>
+> Changes in v3:
+>   - Fix checkpatch script indentation warning
+>   - Remove unused variable from xilinx remoteproc driver
+>   - use C style comments, i.e /*...*/
+>   - Remove redundant debug information which can be derived using /proc/device-tree
+>   - Fix multiline comment format
+>   - s/"final fot TCM"/"final for TCM"
+>   - Function devm_kzalloc() does not return an code on error, just NULL.
+>     Remove redundant error check for this function throughout the driver.
+>   - Fix RPU mode configuration and add documentation accordingly
+>   - Get rid of the indentations to match function documentation style with rest of the driver
+>   - Fix memory leak by only using r5_rproc->priv and not replace it with new instance
+>   - Use 'i' for the outer loop and 'j' for the inner one as per convention
+>   - Remove redundant error and NULL checks throughout the driver
+>   - Use devm_kcalloc() when more than one element is required
+>   - Add memory-regions carveouts during driver probe instead of parse_fw call
+>     This removes redundant copy of reserved_mem object in r5_core structure.
+>   - Fix memory leak by using of_node_put()
+>   - Fix indentation of tcm_mem_map function args
+>   - Remove redundant init of variables
+>   - Initialize tcm bank size variable for lockstep mode
+>   - Replace u32 with phys_addr_t for variable stroing memory bank address
+>   - Add documentation of TCM behavior in lockstep mode
+>   - Use dev_get_drvdata instead of platform driver API
+>   - Remove info level messages
+>   - Fix checkpatch.pl warnings
+>   - Add documentation for the Xilinx r5f platform to understand driver design
+>
+> Changes in v2:
+>   - Remove proprietary copyright footer from cover letter
+>
+>
+> Ben Levinsky (3):
+>   firmware: xilinx: Add ZynqMP firmware ioctl enums for RPU
+>     configuration.
+>   firmware: xilinx: Add shutdown/wakeup APIs
+>   firmware: xilinx: Add RPU configuration APIs
+>
+> Tanmay Shah (3):
+>   dt-bindings: remoteproc: Add Xilinx RPU subsystem bindings
+>   arm64: dts: xilinx: zynqmp: Add RPU subsystem device node
+>   drivers: remoteproc: Add Xilinx r5 remoteproc driver
+>
+>  .../bindings/remoteproc/xlnx,r5f-rproc.yaml   |  128 ++
+>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |   33 +
+>  drivers/firmware/xilinx/zynqmp.c              |   97 ++
+>  drivers/remoteproc/Kconfig                    |   12 +
+>  drivers/remoteproc/Makefile                   |    1 +
+>  drivers/remoteproc/xlnx_r5_remoteproc.c       | 1045 +++++++++++++++++
+>  include/dt-bindings/power/xlnx-zynqmp-power.h |    6 +
+>  include/linux/firmware/xlnx-zynqmp.h          |   60 +
+>  8 files changed, 1382 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
+>  create mode 100644 drivers/remoteproc/xlnx_r5_remoteproc.c
+>
+>
+> base-commit: 01a1a0c8d456b11f2f6b9b822414481beaa44d6f
+> --
+> 2.25.1
+>
