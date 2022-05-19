@@ -2,118 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EEEDF52DBCA
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 19:50:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C197A52DC09
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 19:54:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243182AbiESRtt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 13:49:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51306 "EHLO
+        id S243538AbiESRyf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 13:54:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242496AbiESRti (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 13:49:38 -0400
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 938DAAF303;
-        Thu, 19 May 2022 10:49:00 -0700 (PDT)
-Received: by mail-qv1-f49.google.com with SMTP id j3so5158838qvn.0;
-        Thu, 19 May 2022 10:49:00 -0700 (PDT)
+        with ESMTP id S243460AbiESRxu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 13:53:50 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8DCDCDA;
+        Thu, 19 May 2022 10:53:45 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id gi33so2910061ejc.3;
+        Thu, 19 May 2022 10:53:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=sgrwK+j2yWEYF7Mxi+16rw3HUhKH66/j3hYzPNTlcSA=;
+        b=Xv+IVeuC6ykZjSTEAJ1vQKfNgthe84KfbhJQv2WeHw56k8pzOVi5p4kyDM0dfdnNgi
+         JlZ27xvO5us6L161Mz8p7WqSOLcqFe/8FxMJMYY6IuEhHmgLd1VT2fMHvaI1tjP4BoBQ
+         9lc07RayOlQ+OXgCbSFc2zzQZsM/YuXKvM0O5ohf7bBJ/3WuAk+YYQRwT2hTr0UcsFWK
+         f+AusIB+ahDRCKvWyjzBn3S3CpYPfair2XHqi96KQVhA0VNWhhpefWnE5vEZjgzStpGB
+         yCFzQucfP+aLdEjaigqOfwlvxkSNhyYVWuOLXDbUf85FvjH3iLkTbEb55YbE11XL4UM9
+         V58Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ypz7+YxgISOOflvYtmwnpKygymqNnA7Map87dQNKlcs=;
-        b=2PENtJvcVjDtbysgbjoIPodk1YP5YvyIInfhwrV6XBobmsM/GXlt7hmw2mAAyWnPZw
-         n/8IwhWbtsxYEBEaYcbwjMTBnFbqI5M5Fy1RtiSX8x8YE3QvBPv10V7630pepan8JOcK
-         GXFrmFtdXGicyQYaSTF712C+eRVaq2irb0dkKGeLk/VtyUHW7eJDFDIxIMpRLUC+prAp
-         eyOUWY9L2oheoDah65Uc/slL/iCNshanCUZoS01f6OjGTALY5jTfpVMVtse6rbkbc/6R
-         kjb+GRY0EH528s3rLxz20JfWs9jpbrEh+M6ZVsB0HBgmhGh0AVzilaOrunZI1og8gBiC
-         l/xQ==
-X-Gm-Message-State: AOAM532U5nSCR4uq379vt3n1kO2iQtfp/E2oqC6WuGe7cXJfUvrIAPtu
-        yHIsm4aMmVPKSTPcdVO1eSxCYEnP9sBOsg==
-X-Google-Smtp-Source: ABdhPJw5tyo+TSVr8lt/1CZ1cJBraalNy3xt8peVxfJUpEdgSgWClwdBxmOpiVoknVbmEvN0vxf2kA==
-X-Received: by 2002:a05:6214:5298:b0:461:c745:3b87 with SMTP id kj24-20020a056214529800b00461c7453b87mr5154812qvb.61.1652982539242;
-        Thu, 19 May 2022 10:48:59 -0700 (PDT)
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
-        by smtp.gmail.com with ESMTPSA id l63-20020a37a242000000b0069fc13ce21bsm1628795qke.76.2022.05.19.10.48.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 May 2022 10:48:58 -0700 (PDT)
-Received: by mail-yb1-f172.google.com with SMTP id t26so10309046ybt.3;
-        Thu, 19 May 2022 10:48:58 -0700 (PDT)
-X-Received: by 2002:a25:4289:0:b0:64d:746f:5311 with SMTP id
- p131-20020a254289000000b0064d746f5311mr5263711yba.89.1652982538414; Thu, 19
- May 2022 10:48:58 -0700 (PDT)
-MIME-Version: 1.0
-References: <YoUBh5BSsURDO71Z@chrisdown.name> <CAMuHMdU2tUU6FAM-nK9oxd0GwcO3WwvZp9Um4=w5By+N0P0kXA@mail.gmail.com>
- <YoZWFi0AtmA9fvv/@chrisdown.name>
-In-Reply-To: <YoZWFi0AtmA9fvv/@chrisdown.name>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 19 May 2022 19:48:46 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU5=XW28XBdEx9ofrrysUCqqtoaS7=0U8Mr7TF3XdntWw@mail.gmail.com>
-Message-ID: <CAMuHMdU5=XW28XBdEx9ofrrysUCqqtoaS7=0U8Mr7TF3XdntWw@mail.gmail.com>
-Subject: Re: [RFC PATCH] printk: console: Allow each console to have its own loglevel
-To:     Chris Down <chris@chrisdown.name>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Petr Mladek <pmladek@suse.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kernel Team <kernel-team@fb.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=sgrwK+j2yWEYF7Mxi+16rw3HUhKH66/j3hYzPNTlcSA=;
+        b=5SPSTtEesYRzp9hWN9m1y1ZaiILYjj7MDk4EnFGttQ1SCYucvZpQJQQDJCCMy8O7cy
+         Uzfs/ZLUCpV9Y3tTIGrj/2OvpsB/JAdonOYVVdiG/xZWnTXD4aLQEFgkhyBFO7syOl8M
+         OKGwZxQ9+L77ZLSMlAwGg6xtHtE59eolGrO1RC6wKlV9WmwUVmWb6EiD73UzMrDTTt6l
+         /LX9w+4WPL82v+k99LBelNMOzHrDJojVM4wpp63rtr7X0qt+p+yupDd69+sK+ak+Ui0D
+         RgbMrlGMO1J8XTAuPrIOAb4pUw/pu+AdPVp04rPc+tATR4mUhIDFQTutps3BEa7RaS9A
+         5PqA==
+X-Gm-Message-State: AOAM530SRlnxL+5VTUGk6qEHqB90pJ3zweoWYbiMVvhySDjZ4x70q6rP
+        6bl00+xeh91zs33ZyLb3MYUZMepYX2w=
+X-Google-Smtp-Source: ABdhPJwCT7BuWabCj+hO3YTl6oimsYDda1ZBuXZU0EaMF92dBAmBSQiNVA3e5WNe4LllDTMiMsIfWw==
+X-Received: by 2002:a17:906:cb97:b0:6f3:c671:a337 with SMTP id mf23-20020a170906cb9700b006f3c671a337mr5288125ejb.93.1652982824048;
+        Thu, 19 May 2022 10:53:44 -0700 (PDT)
+Received: from skbuf ([188.25.255.186])
+        by smtp.gmail.com with ESMTPSA id j4-20020a170906104400b006f52dbc192bsm2383809ejj.37.2022.05.19.10.53.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 May 2022 10:53:43 -0700 (PDT)
+Date:   Thu, 19 May 2022 20:53:41 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next v5 01/13] net: dsa: allow port_bridge_join() to
+ override extack message
+Message-ID: <20220519175341.fheue7mng3os7hkl@skbuf>
+References: <20220519153107.696864-1-clement.leger@bootlin.com>
+ <20220519153107.696864-2-clement.leger@bootlin.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220519153107.696864-2-clement.leger@bootlin.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chris,
+On Thu, May 19, 2022 at 05:30:55PM +0200, Clément Léger wrote:
+> Some drivers might report that they are unable to bridge ports by
+> returning -EOPNOTSUPP, but still wants to override extack message.
+> In order to do so, in dsa_slave_changeupper(), if port_bridge_join()
+> returns -EOPNOTSUPP, check if extack message is set and if so, do not
+> override it.
+> 
+> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> ---
 
-CC DT
-
-On Thu, May 19, 2022 at 4:37 PM Chris Down <chris@chrisdown.name> wrote:
-> Geert Uytterhoeven writes:
-> >All of the above options are appropriate for "classic" systems,
-> >where the console device is selected using the "console=" option.
-> >
-> >On systems using Device tree, the serial console device is selected
-> >using the "chosen/stout-path" property in DT, and the graphical
-> >console is usually auto-detected and auto-enabled through DRM.
-> >Do you envision a way to specify a specific console loglevel on the
-> >kernel command line on such systems?
->
-> Interesting question! I hadn't really thought about device tree. I actually
-> have very little understanding of how it works to be honest :-)
->
-> I'm happy to add loglevel support to device tree, I assume I'd add another
-> property under the chosen node, like chosen/stdout-loglevel.
-
-Please do not add a new property there.
-IMHO, the loglevel should be specified on the kernel command line,
-and not be fixed using a DT property.
-
-Typically, boot loaders (e.g. U-Boot) replace the command line
-specified in chosen/stdout-path in DT by something retrieved from
-the boot environment (e.g. user-specifief bootargs in NVMEM).
-
-> I have some questions, though:
->
-> 1. It looks like DT is standardised. Do I need to get standards approval first?
-> 2. Is there documentation on how to reliably test DT changes?
-
-The DT specification can be found at
-https://www.devicetree.org/specifications/
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
