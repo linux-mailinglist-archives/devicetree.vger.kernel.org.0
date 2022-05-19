@@ -2,63 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 126B152E00A
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 00:35:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E274652E00F
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 00:40:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245514AbiESWfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 18:35:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39248 "EHLO
+        id S245523AbiESWk0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 18:40:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239262AbiESWfP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 18:35:15 -0400
-Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com [IPv6:2001:4860:4864:20::30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D9F3C0388
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 15:35:13 -0700 (PDT)
-Received: by mail-oa1-x30.google.com with SMTP id 586e51a60fabf-e5e433d66dso8463599fac.5
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 15:35:13 -0700 (PDT)
+        with ESMTP id S232318AbiESWkY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 18:40:24 -0400
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E1CD6A012
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 15:40:23 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id 10so2524213plj.0
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 15:40:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=VjlrbV4vJKI8XrHdrvSp11oTKl50bHpTcvsdSZU8U4M=;
-        b=XkI+w/MjL3A6mJl2TFEUT88gLNyZg00mKX8nHV7mXLrN8otWS80SaNXd/6sNN2XUTo
-         oZ+Tp90Cs1lq2W9ocDlCd23qD8CaCLRgFr3Mk8m9L4k0AktuSg7PaUdLtT8S9CHKYj5y
-         caMezmMFbAAhbmPNUrkS5UN0NVPZA+odXJR2g=
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=3ZQEdNolUQPiRhMJeKJgbf+Cnmh94zniPqxn9XCK4hk=;
+        b=BHNShkMSBGRajgbmCkPaZutKY4iz3LIS/Xk/j7mbRuvPEGmatdYHTU72yYjAgPjnTS
+         HFBW03kQzOnn8LmmDMFKNIofYy3dphebkupTx5X2xX92ogNC/bZEkx5mPiUsCoI52a9z
+         8HtkX4G18AL67ZtCCUrft06ynQemWChYL9I60=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=VjlrbV4vJKI8XrHdrvSp11oTKl50bHpTcvsdSZU8U4M=;
-        b=2bO//KWBwS826EO0gIp3mo9EGEEyYPLhseyrG/RLBuJTjM1hwZg3o/X70RT5sUyltt
-         QAt5wnQKlA/VxUotPidl63bqRDs8u3ixup77iAjNj061FZTYagiMXc70wBguwBjXR9g2
-         oxAw/TjPNx8IvSVmNjAsBc4Yok9v+z7u46Lct+8erq3zkopE0vajtnYJCqGGPM+htpAQ
-         RC6PdA3khuwV6YyrtVQLF0HF8mtUAJZP3XTpQAzig6tk19MoVvlh5HnBn+Cyz/yUy7Gg
-         qew+vmjGYllwXeSJJsZqffAYhx8jUgbc5Pzmqvn21zIIIer22BIO2PHSRNdhc6c+SfmX
-         v22A==
-X-Gm-Message-State: AOAM533FsX/JD/5A3laZXJLPz7kN46w31a6um3/wNWyMOkdHM7zb5akh
-        X83/S8hZDi5twm5BjMcsaJE0hLESVvUMnnfmihxNhg==
-X-Google-Smtp-Source: ABdhPJyHbu0BSr9LBi52hxpKPmXOdW1xCXpPhmUrDoe9clR+KRpEObjnicQVOt9bttlw1GiBXVL+iYfOG64eiydGEFw=
-X-Received: by 2002:a05:6870:240d:b0:f1:b878:e97c with SMTP id
- n13-20020a056870240d00b000f1b878e97cmr3776843oap.193.1652999712543; Thu, 19
- May 2022 15:35:12 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 19 May 2022 15:35:11 -0700
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=3ZQEdNolUQPiRhMJeKJgbf+Cnmh94zniPqxn9XCK4hk=;
+        b=YR4HBYbvsjVBF0PM3V1s0GsXu82sgtRTra+Mh8/XugHwrZBUPg3V7yRrKZLpgdGiMO
+         MvdCpkN5NmXeCB9nXIUsazfC+7wj/Pm/imXxL84JsufQhdP57Uy8kiSRni31w8bWO7+h
+         hoNTRmGfsDoC/k8dvjVtf0pLkx+KxVJylJ6v+9scVk9SqUJAoR/8YdrkMlyn+FZf0PJC
+         ShMPdof90gTRtvIBc2QUS5GJJ8Xxm1ExuNcWv+dwB6mGWNuwSMoZ7TLmuov/CNZEmtbR
+         3A1vWxgf7D16eThbpIj9cqANLpVYA1eFgnSoxK8x7IN+lCnSDyPKhVGW/wLNxp7RWWyX
+         70oA==
+X-Gm-Message-State: AOAM530xgC84w6NUvmofHM7rkKRyUl8EjdWdjDXnvxRCBMi7KrgTr5il
+        MDXeaON/pchVNpk2sHuLbx7dNWxwxmZ2iQ==
+X-Google-Smtp-Source: ABdhPJz5BA+IKB7+7JxtlVC3So2qYw3COr3GbpE2eUw8zxbDbCUhSn5WBHaqDaoyX2RDDUWYxVAGxA==
+X-Received: by 2002:a17:902:6901:b0:15e:ed3c:4eaf with SMTP id j1-20020a170902690100b0015eed3c4eafmr6978969plk.168.1653000022907;
+        Thu, 19 May 2022 15:40:22 -0700 (PDT)
+Received: from localhost ([2620:15c:11a:202:5332:2096:60a3:3455])
+        by smtp.gmail.com with UTF8SMTPSA id f10-20020a63f10a000000b003c2698d199bsm4089335pgi.25.2022.05.19.15.40.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 May 2022 15:40:22 -0700 (PDT)
+Date:   Thu, 19 May 2022 15:40:21 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Tzung-Bi Shih <tzungbi@kernel.org>
+Cc:     bleung@chromium.org, groeck@chromium.org, robh+dt@kernel.org,
+        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 5/5] platform/chrome: cros_kbd_led_backlight: support
+ EC PWM backend
+Message-ID: <YobHVST2Nfn+z8n6@google.com>
+References: <20220321085547.1162312-1-tzungbi@kernel.org>
+ <20220321085547.1162312-6-tzungbi@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <1652978825-5304-3-git-send-email-quic_sibis@quicinc.com>
-References: <1652978825-5304-1-git-send-email-quic_sibis@quicinc.com> <1652978825-5304-3-git-send-email-quic_sibis@quicinc.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Thu, 19 May 2022 15:35:11 -0700
-Message-ID: <CAE-0n50iYAUmj6GEdCuOJ1d_SgeeFWtoxqWf7qN=jZ_js4wBcQ@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] dt-bindings: remoteproc: qcom: Convert SC7280 MSS
- bindings to YAML
-To:     Sibi Sankar <quic_sibis@quicinc.com>, bjorn.andersson@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-Cc:     ohad@wizery.com, agross@kernel.org, mathieu.poirier@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mka@chromium.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220321085547.1162312-6-tzungbi@kernel.org>
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -69,137 +69,265 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Sibi Sankar (2022-05-19 09:47:04)
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml
-> new file mode 100644
-> index 000000000000..a936d84eefa6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml
-> @@ -0,0 +1,250 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/remoteproc/qcom,sc7280-mss-pil.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+On Mon, Mar 21, 2022 at 04:55:47PM +0800, Tzung-Bi Shih wrote:
+> EC PWM backend uses EC_CMD_PWM_SET_KEYBOARD_BACKLIGHT and
+> EC_CMD_PWM_GET_KEYBOARD_BACKLIGHT for setting and getting the brightness
+> respectively.
+> 
+> Signed-off-by: Tzung-Bi Shih <tzungbi@kernel.org>
+> ---
+> Changes from v2:
+> - Turn CROS_KBD_LED_BACKLIGHT_EC_PWM to boolean.
+> - Use #ifdef for boolean CROS_KBD_LED_BACKLIGHT_EC_PWM.
+> 
+> Changes from v1:
+> - Update email address accordingly.
+> 
+>  drivers/platform/chrome/Kconfig               |   6 +
+>  .../platform/chrome/cros_kbd_led_backlight.c  | 126 +++++++++++++++---
+>  2 files changed, 117 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/platform/chrome/Kconfig b/drivers/platform/chrome/Kconfig
+> index 3f74679a556c..e02789d7c0d4 100644
+> --- a/drivers/platform/chrome/Kconfig
+> +++ b/drivers/platform/chrome/Kconfig
+> @@ -142,6 +142,12 @@ config CROS_KBD_LED_BACKLIGHT_ACPI
+>  	help
+>  	  ChromeOS keyboard backlight ACPI backend.
+>  
+> +config CROS_KBD_LED_BACKLIGHT_EC_PWM
+> +	bool "ChromeOS keyboard backlight EC PWM backend"
+> +	depends on CROS_EC && CROS_KBD_LED_BACKLIGHT
+> +	help
+> +	  ChromeOS keyboard backlight EC PWM backend.
 > +
-> +title: Qualcomm SC7280 MSS Peripheral Image Loader
-> +
-> +maintainers:
-> +  - Sibi Sankar <quic_sibis@quicinc.com>
-> +
-> +description:
-> +  This document describes the hardware for a component that loads and boots firmware
-> +  on the Qualcomm Technology Inc. SC7280 Modem Hexagon Core.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,sc7280-mss-pil
-> +
-[..]
-> +
-> +  resets:
-> +    items:
-> +      - description: AOSS restart
-> +      - description: PDC reset
-> +
-> +  reset-names:
-> +    items:
-> +      - const: mss_restart
-> +      - const: pdc_reset
-> +
-> +  memory-region:
-> +    maxItems: 2
-> +    description: Phandle reference to the reserved-memory for the MBA region followed
-> +                 by the modem region.
-> +
-> +  firmware-name:
-> +    $ref: /schemas/types.yaml#/definitions/string-array
-> +    maxItems: 2
+>  config CROS_EC_CHARDEV
+>  	tristate "ChromeOS EC miscdevice"
+>  	depends on MFD_CROS_EC_DEV
+> diff --git a/drivers/platform/chrome/cros_kbd_led_backlight.c b/drivers/platform/chrome/cros_kbd_led_backlight.c
+> index 5cbe27cb4610..8c35dd2fa607 100644
+> --- a/drivers/platform/chrome/cros_kbd_led_backlight.c
+> +++ b/drivers/platform/chrome/cros_kbd_led_backlight.c
+> @@ -11,10 +11,17 @@
+>  #include <linux/leds.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+> +#include <linux/platform_data/cros_ec_commands.h>
+> +#include <linux/platform_data/cros_ec_proto.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/property.h>
+>  #include <linux/slab.h>
+>  
+> +struct keyboard_led_private {
 
-Instead of maxItems can this be
+Why 'private', isn't this more a 'cros_ec_kdb_bl' or similar?
 
-       items:
-         - description: Name of MBA firmware
-	 - description: Name of modem firmware
+> +	struct led_classdev cdev;
+> +	struct cros_ec_device *ec;
+> +};
+> +
+>  /**
+>   * struct keyboard_led_drvdata - keyboard LED driver data.
+>   * @init:			Init function.
+> @@ -40,6 +47,8 @@ struct keyboard_led_drvdata {
+>  	enum led_brightness max_brightness;
+>  };
+>  
+> +#define KEYBOARD_BACKLIGHT_MAX 100
+> +
+>  #ifdef CONFIG_CROS_KBD_LED_BACKLIGHT_ACPI
+>  
+>  /* Keyboard LED ACPI Device must be defined in firmware */
+> @@ -47,8 +56,6 @@ struct keyboard_led_drvdata {
+>  #define ACPI_KEYBOARD_BACKLIGHT_READ	ACPI_KEYBOARD_BACKLIGHT_DEVICE ".KBQC"
+>  #define ACPI_KEYBOARD_BACKLIGHT_WRITE	ACPI_KEYBOARD_BACKLIGHT_DEVICE ".KBCM"
+>  
+> -#define ACPI_KEYBOARD_BACKLIGHT_MAX		100
+> -
+>  static void keyboard_led_set_brightness_acpi(struct led_classdev *cdev,
+>  					     enum led_brightness brightness)
+>  {
+> @@ -107,7 +114,7 @@ static const struct keyboard_led_drvdata keyboard_led_drvdata_acpi = {
+>  	.init = keyboard_led_init_acpi,
+>  	.brightness_set = keyboard_led_set_brightness_acpi,
+>  	.brightness_get = keyboard_led_get_brightness_acpi,
+> -	.max_brightness = ACPI_KEYBOARD_BACKLIGHT_MAX,
+> +	.max_brightness = KEYBOARD_BACKLIGHT_MAX,
+>  };
+>  
+>  #else /* CONFIG_CROS_KBD_LED_BACKLIGHT_ACPI */
+> @@ -123,34 +130,122 @@ static const struct keyboard_led_drvdata keyboard_led_drvdata_acpi = {
+>  
+>  #endif /* CONFIG_CROS_KBD_LED_BACKLIGHT_ACPI */
+>  
+> +#ifdef CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM
+> +
+> +static int
+> +keyboard_led_set_brightness_blocking_ec_pwm(struct led_classdev *cdev,
+> +					    enum led_brightness brightness)
 
-so that we know the order? Same for 'memory-region' above.
+nit: since there is only a blocking version of .set_brightness you could omit
+'blocking' in the function name.
 
-> +    description:
-> +      The name of the MBA and modem firmware to be loaded for this remote processor.
+> +{
+> +	struct {
+> +		struct cros_ec_command msg;
+> +		struct ec_params_pwm_set_keyboard_backlight params;
+> +	} __packed buf;
+> +	struct ec_params_pwm_set_keyboard_backlight *params = &buf.params;
+> +	struct cros_ec_command *msg = &buf.msg;
+> +	struct keyboard_led_private *private =
+> +		container_of(cdev, struct keyboard_led_private, cdev);
 > +
-> +  qcom,halt-regs:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +	memset(&buf, 0, sizeof(buf));
+> +
+> +	msg->version = 0;
 
-Should this have maxItems: 1? Or that's implicit from description?
+not strictly needed since you do the memset above, I guess it's
+fine to keep the assignment if you want to be explicit about the
+version.
 
-> +    description:
-> +      Phandle reference to a syscon representing TCSR followed by the
-> +      four offsets within syscon for q6, modem, nc and vq6 halt registers.
+> +	msg->command = EC_CMD_PWM_SET_KEYBOARD_BACKLIGHT;
+> +	msg->insize = 0;
+> +	msg->outsize = sizeof(*params);
 > +
-> +  qcom,ext-regs:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +	params->percent = brightness;
+> +
+> +	return cros_ec_cmd_xfer_status(private->ec, msg);
+> +}
+> +
+> +static enum led_brightness
+> +keyboard_led_get_brightness_ec_pwm(struct led_classdev *cdev)
+> +{
+> +	struct {
+> +		struct cros_ec_command msg;
+> +		struct ec_response_pwm_get_keyboard_backlight resp;
+> +	} __packed buf;
+> +	struct ec_response_pwm_get_keyboard_backlight *resp = &buf.resp;
+> +	struct cros_ec_command *msg = &buf.msg;
+> +	struct keyboard_led_private *private =
+> +		container_of(cdev, struct keyboard_led_private, cdev);
+> +	int ret;
+> +
+> +	memset(&buf, 0, sizeof(buf));
+> +
+> +	msg->version = 0;
+> +	msg->command = EC_CMD_PWM_GET_KEYBOARD_BACKLIGHT;
+> +	msg->insize = sizeof(*resp);
+> +	msg->outsize = 0;
+> +
+> +	ret = cros_ec_cmd_xfer_status(private->ec, msg);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return resp->percent;
+> +}
+> +
+> +static int keyboard_led_init_ec_pwm(struct platform_device *pdev)
+> +{
+> +	struct keyboard_led_private *private = platform_get_drvdata(pdev);
+> +
+> +	private->ec = dev_get_drvdata(pdev->dev.parent);
+> +	if (!private->ec) {
+> +		dev_err(&pdev->dev, "no parent EC device\n");
+> +		return -EINVAL;
+> +	}
 
-Should this have min/maxItems: 2?
+The only thing this 'init' function does is assigning private->ec. Wouldn't
+it be clearer to do this directly in probe() from where callback is called?
+It could be with the condition that the device as a DT node.
 
-> +    description:
-> +      Two phandle references to syscons representing TCSR_REG and TCSR register
-> +      space followed by the two offsets within the syscon to force_clk_en/rscc_disable
-> +      and axim1_clk_off/crypto_clk_off registers respectively.
-> +
-> +  qcom,qaccept-regs:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description:
-> +      Phandle reference to a syscon representing TCSR followed by the
-> +      three offsets within syscon for mdm, cx and axi qaccept registers.
-> +
-> +  qcom,qmp:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: Reference to the AOSS side-channel message RAM.
-> +
-> +  qcom,smem-states:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: States used by the AP to signal the Hexagon core
-> +    items:
-> +      - description: Stop the modem
-
-This one did items for a phandle array so I think we should follow the
-same above.
+Is it actually possible that the keyboard backlight device gets instantiated
+if there is no EC parent?
 
 > +
-> +  qcom,smem-state-names:
-> +    description: The names of the state bits used for SMP2P output
-> +    const: stop
+> +	return 0;
+> +}
 > +
-> +  glink-edge:
-> +    $ref: qcom,glink-edge.yaml#
-> +    description:
-> +      Qualcomm G-Link subnode which represents communication edge, channels
-> +      and devices related to the DSP.
-[..]
-> +        power-domain-names = "cx", "mss";
+> +static const struct keyboard_led_drvdata keyboard_led_drvdata_ec_pwm = {
+> +	.init = keyboard_led_init_ec_pwm,
+> +	.brightness_set_blocking = keyboard_led_set_brightness_blocking_ec_pwm,
+> +	.brightness_get = keyboard_led_get_brightness_ec_pwm,
+> +	.max_brightness = KEYBOARD_BACKLIGHT_MAX,
+> +};
 > +
-> +        memory-region = <&mba_mem>, <&mpss_mem>;
+> +#else /* CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM */
 > +
-> +        qcom,qmp = <&aoss_qmp>;
+> +static int keyboard_led_init_ec_pwm_null(struct platform_device *pdev)
+> +{
+> +	return -EOPNOTSUPP;
+> +}
 > +
-> +        qcom,smem-states = <&modem_smp2p_out 0>;
-> +        qcom,smem-state-names = "stop";
-> +
-> +        resets = <&aoss_reset AOSS_CC_MSS_RESTART>,
-> +                 <&pdc_reset PDC_MODEM_SYNC_RESET>;
-> +        reset-names = "mss_restart", "pdc_reset";
-> +
-> +        qcom,halt-regs = <&tcsr_mutex 0x23000 0x25000 0x28000 0x33000>;
-> +        qcom,ext-regs = <&tcsr 0x10000 0x10004 &tcsr_mutex 0x26004 0x26008>;
+> +static const struct keyboard_led_drvdata keyboard_led_drvdata_ec_pwm = {
+> +	.init = keyboard_led_init_ec_pwm_null,
 
-Because it's two items I'd expect:
-	
-	<&tcsr 0x10000 0x10004>, <&tcsr_mutex 0x26004 0x26008>;
+Is this really needed?
 
-> +        qcom,qaccept-regs = <&tcsr_mutex 0x23030 0x23040 0x23020>;
+keyboard_led_probe() checks if .init is assigned before invoking the callback:
+
+	if (drvdata->init) {
+		error = drvdata->init(pdev);
+
+The whole 'else' branch could be eliminated if .of_match_table of the driver
+only is assigned when CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM is set. IMO that
+would preferable over creating 'stubs'.
+
+> +};
 > +
-> +        glink-edge {
-> +            interrupts-extended = <&ipcc IPCC_CLIENT_MPSS
-> +                                   IPCC_MPROC_SIGNAL_GLINK_QMP
-> +                                   IRQ_TYPE_EDGE_RISING>;
+> +#endif /* CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM */
+> +
+>  static int keyboard_led_probe(struct platform_device *pdev)
+>  {
+> -	struct led_classdev *cdev;
+>  	const struct keyboard_led_drvdata *drvdata;
+> +	struct keyboard_led_private *private;
+>  	int error;
+>  
+>  	drvdata = device_get_match_data(&pdev->dev);
+>  	if (!drvdata)
+>  		return -EINVAL;
+>  
+> +	private = devm_kzalloc(&pdev->dev, sizeof(*private), GFP_KERNEL);
+> +	if (!private)
+> +		return -ENOMEM;
+> +	platform_set_drvdata(pdev, private);
+> +
+>  	if (drvdata->init) {
+>  		error = drvdata->init(pdev);
+>  		if (error)
+>  			return error;
+>  	}
+>  
+> -	cdev = devm_kzalloc(&pdev->dev, sizeof(*cdev), GFP_KERNEL);
+> -	if (!cdev)
+> -		return -ENOMEM;
+> -
+> -	cdev->name = "chromeos::kbd_backlight";
+> -	cdev->flags |= LED_CORE_SUSPENDRESUME;
+> -	cdev->max_brightness = drvdata->max_brightness;
+> -	cdev->brightness_set = drvdata->brightness_set;
+> -	cdev->brightness_set_blocking = drvdata->brightness_set_blocking;
+> -	cdev->brightness_get = drvdata->brightness_get;
+> +	private->cdev.name = "chromeos::kbd_backlight";
+> +	private->cdev.flags |= LED_CORE_SUSPENDRESUME;
+> +	private->cdev.max_brightness = drvdata->max_brightness;
+> +	private->cdev.brightness_set = drvdata->brightness_set;
+> +	private->cdev.brightness_set_blocking = drvdata->brightness_set_blocking;
+> +	private->cdev.brightness_get = drvdata->brightness_get;
+>  
+> -	error = devm_led_classdev_register(&pdev->dev, cdev);
+> +	error = devm_led_classdev_register(&pdev->dev, &private->cdev);
+>  	if (error)
+>  		return error;
+>  
+> @@ -169,6 +264,7 @@ MODULE_DEVICE_TABLE(acpi, keyboard_led_acpi_match);
+>  static const struct of_device_id keyboard_led_of_match[] = {
+>  	{
+>  		.compatible = "google,cros-kbd-led-backlight",
+> +		.data = &keyboard_led_drvdata_ec_pwm,
+>  	},
+>  	{}
+>  };
+> -- 
+> 2.35.1.894.gb6a874cedc-goog
+> 
