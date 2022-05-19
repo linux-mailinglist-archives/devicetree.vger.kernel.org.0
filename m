@@ -2,202 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D5CE52CEB7
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 10:53:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA3AB52CEEE
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 11:07:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235624AbiESIxh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 04:53:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33770 "EHLO
+        id S232289AbiESJHI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 05:07:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230124AbiESIxg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 04:53:36 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0183C9CF51;
-        Thu, 19 May 2022 01:53:34 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id DA2951F4581E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1652950413;
-        bh=pXYO/JUu84qXpcGnHGzcLC9avotZHwX2ZHKuRJqCO4k=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=cGDtHUQ3m9zfrkF2XgejG2YVt17eVFnRcUfcbnnohf0M5QxVuIApZ4msi6pYSNmJn
-         3ko2Rf/5qw8SBMyJEVfLQ3h7khZGb8lxlmyHeILsD3Cn8wfHW+gSY03EmYnY4kPg++
-         gkBvecEzGu/FurE23QHMctNi1Vk8j5yTWNrgHL98dgAZNwhaC5zDtVR2GtXj4rLt0a
-         sa9uBsEXO/6dkGTKwRxvlHMvMiQXT9zDl46nJUfLcO0d9HQZaSQuFnPJlnTnIcEGOc
-         3eNVytoFR/IUdgNPdo2AtH/WKOj0QoVbXQE+vcqJu9zYzUJVjqNDoY+BkCMj52/Y8T
-         XpzpqXUw8PgKg==
-Message-ID: <4fccf1ef-5dd2-5159-7f89-7c60fd281197@collabora.com>
-Date:   Thu, 19 May 2022 10:53:29 +0200
+        with ESMTP id S230333AbiESJHH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 05:07:07 -0400
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 810EF2E9E0;
+        Thu, 19 May 2022 02:07:06 -0700 (PDT)
+Received: by mail-qt1-f171.google.com with SMTP id x7so1157009qta.6;
+        Thu, 19 May 2022 02:07:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AJsS+F/k/6P8jpC2HJqU3RUJq/XbSaz5+vmAseD4Zn8=;
+        b=nBLs3zyfvlIbLbDJVkg+dYaiC3W3VkWocdKKbMVn5iubo2WKd9ob0Ylr9oVDrhiQcB
+         /Bwvl0hXKt627A0cKLMw45G4kOSmowp9rqqmJ+vaeO/tiAkxMixRJlzO9ol7DfKpqGFD
+         CXq+g3KER/d4aCLNX2xRgMZYMPLS1GpWHQpH7WmOd4R40F37Qli6Aft5dCSiKpC9Ncln
+         A2Tdy75fVa+yob2u1PwrtNTRuCDgwH3iHj1hkomFoFAf+p37hJWx2wWyUW0+zSnS2di+
+         SNg18ISDGH6/2v5JEpOmnDMORrM5qqEN/OUS1S9lNJUgEo5Q+Rwj0JVuBa3aHcYh5R3j
+         9OhQ==
+X-Gm-Message-State: AOAM5320YUyAgG8+wISnWyzhhTtk7KAnXjQbq0KKYOWlr6SnYtufa2UM
+        pzJwIQj7QEjydpe6rjdzJz2qh0JcIGNIpg==
+X-Google-Smtp-Source: ABdhPJzoI9+1XGLgOYAzsU0n/6uaathH9eyCmOL0V3WCTYpBVXe++BNttf/gkPqq8AewAZf+ghi+lg==
+X-Received: by 2002:ac8:5713:0:b0:2f3:d872:2fa8 with SMTP id 19-20020ac85713000000b002f3d8722fa8mr2925892qtw.49.1652951225516;
+        Thu, 19 May 2022 02:07:05 -0700 (PDT)
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com. [209.85.219.170])
+        by smtp.gmail.com with ESMTPSA id r74-20020a37444d000000b006a330abc56fsm766552qka.1.2022.05.19.02.07.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 May 2022 02:07:04 -0700 (PDT)
+Received: by mail-yb1-f170.google.com with SMTP id p139so7884094ybc.11;
+        Thu, 19 May 2022 02:07:02 -0700 (PDT)
+X-Received: by 2002:a25:4289:0:b0:64d:746f:5311 with SMTP id
+ p131-20020a254289000000b0064d746f5311mr3124109yba.89.1652951222317; Thu, 19
+ May 2022 02:07:02 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v2 6/7] clk: mediatek: Export required symbols to compile
- clk drivers as module
-Content-Language: en-US
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     Miles Chen <miles.chen@mediatek.com>, bgolaszewski@baylibre.com,
-        chun-jie.chen@mediatek.com, ck.hu@mediatek.com,
-        devicetree@vger.kernel.org, fparent@baylibre.com,
-        ikjn@chromium.org, jason-jh.lin@mediatek.com, kernel@collabora.com,
-        konrad.dybcio@somainline.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        marijn.suijten@somainline.org, martin.botka@somainline.org,
-        matthias.bgg@gmail.com, mturquette@baylibre.com,
-        p.zabel@pengutronix.de, paul.bouchara@somainline.org,
-        phone-devel@vger.kernel.org, rex-bc.chen@mediatek.com,
-        robh+dt@kernel.org, sam.shih@mediatek.com, sboyd@kernel.org,
-        tinghan.shen@mediatek.com, weiyi.lu@mediatek.com,
-        y.oudjana@protonmail.com, ~postmarketos/upstreaming@lists.sr.ht
-References: <20220518111652.223727-7-angelogioacchino.delregno@collabora.com>
- <20220519044153.11078-1-miles.chen@mediatek.com>
- <7e60b63c-2bf7-a77e-fe0f-a891efa77a47@collabora.com>
- <CAGXv+5FiteAu7in-CnmVUkDKy=ub1X6etyK1--PHPYKO3FPa=w@mail.gmail.com>
- <3981552b-2153-1b87-f345-2b1f9be6c56f@collabora.com>
- <CAGXv+5GwqLKvM3yReZMW92ZC3nDwdbD+_x8ROBOjppgnsgGkyw@mail.gmail.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <CAGXv+5GwqLKvM3yReZMW92ZC3nDwdbD+_x8ROBOjppgnsgGkyw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220510151112.16249-1-biju.das.jz@bp.renesas.com>
+ <20220510151112.16249-2-biju.das.jz@bp.renesas.com> <20220517210407.GA1635524-robh@kernel.org>
+ <OS0PR01MB5922FC66FD4EF05F31B17D3386D19@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <20220518181730.GH3302100-robh@kernel.org> <OS0PR01MB5922BC7AAC6154DEF7B98F0386D19@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+In-Reply-To: <OS0PR01MB5922BC7AAC6154DEF7B98F0386D19@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 19 May 2022 11:06:50 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWPy4HmPrfnL8kZmFBBcHY-EoNm7Z6CoJyudhKornTS=g@mail.gmail.com>
+Message-ID: <CAMuHMdWPy4HmPrfnL8kZmFBBcHY-EoNm7Z6CoJyudhKornTS=g@mail.gmail.com>
+Subject: Re: [RFC 1/8] dt-bindings: soc: renesas: Add RZ/G2L POEG binding
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 19/05/22 10:45, Chen-Yu Tsai ha scritto:
-> On Thu, May 19, 2022 at 4:26 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->> Il 19/05/22 10:15, Chen-Yu Tsai ha scritto:
->>> On Thu, May 19, 2022 at 4:05 PM AngeloGioacchino Del Regno
->>> <angelogioacchino.delregno@collabora.com> wrote:
->>>>
->>>> Il 19/05/22 06:41, Miles Chen ha scritto:
->>>>>
->>>>> Hi Angelo,
->>>>>
->>>>>> In order to compile the clock drivers for various MediaTek SoCs as
->>>>>> modules, it is necessary to export a few functions from the MediaTek
->>>>>> specific clocks (and reset) libraries.
->>>>>>
->>>>>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>>>>> ---
->>>>>> drivers/clk/mediatek/clk-apmixed.c | 1 +
->>>>>> drivers/clk/mediatek/clk-cpumux.c  | 2 ++
->>>>>> drivers/clk/mediatek/clk-mtk.c     | 2 ++
->>>>>> drivers/clk/mediatek/reset.c       | 1 +
->>>>>> 4 files changed, 6 insertions(+)
->>>>>>
->>>>>> diff --git a/drivers/clk/mediatek/clk-apmixed.c b/drivers/clk/mediatek/clk-apmixed.c
->>>>>> index 6b0ab0a346e8..f126da693a7f 100644
->>>>>> --- a/drivers/clk/mediatek/clk-apmixed.c
->>>>>> +++ b/drivers/clk/mediatek/clk-apmixed.c
->>>>>> @@ -98,5 +98,6 @@ struct clk_hw *mtk_clk_register_ref2usb_tx(const char *name,
->>>>>>
->>>>>>        return &tx->hw;
->>>>>> }
->>>>>> +EXPORT_SYMBOL_GPL(mtk_clk_register_ref2usb_tx);
->>>>>>
->>>>>> MODULE_LICENSE("GPL");
->>>>>> diff --git a/drivers/clk/mediatek/clk-cpumux.c b/drivers/clk/mediatek/clk-cpumux.c
->>>>>> index 2b5d48591738..25618eff6f2a 100644
->>>>>> --- a/drivers/clk/mediatek/clk-cpumux.c
->>>>>> +++ b/drivers/clk/mediatek/clk-cpumux.c
->>>>>> @@ -150,6 +150,7 @@ int mtk_clk_register_cpumuxes(struct device_node *node,
->>>>>>
->>>>>>        return PTR_ERR(hw);
->>>>>> }
->>>>>> +EXPORT_SYMBOL_GPL(mtk_clk_register_cpumuxes);
->>>>>>
->>>>>> void mtk_clk_unregister_cpumuxes(const struct mtk_composite *clks, int num,
->>>>>>                                 struct clk_hw_onecell_data *clk_data)
->>>>>> @@ -166,5 +167,6 @@ void mtk_clk_unregister_cpumuxes(const struct mtk_composite *clks, int num,
->>>>>>                clk_data->hws[mux->id] = ERR_PTR(-ENOENT);
->>>>>>        }
->>>>>> }
->>>>>> +EXPORT_SYMBOL_GPL(mtk_clk_unregister_cpumuxes);
->>>>>>
->>>>>> MODULE_LICENSE("GPL");
->>>>>> diff --git a/drivers/clk/mediatek/clk-mtk.c b/drivers/clk/mediatek/clk-mtk.c
->>>>>> index 05a188c62119..41e60a7e8ff9 100644
->>>>>> --- a/drivers/clk/mediatek/clk-mtk.c
->>>>>> +++ b/drivers/clk/mediatek/clk-mtk.c
->>>>>> @@ -459,6 +459,7 @@ int mtk_clk_simple_probe(struct platform_device *pdev)
->>>>>>        mtk_free_clk_data(clk_data);
->>>>>>        return r;
->>>>>> }
->>>>>> +EXPORT_SYMBOL_GPL(mtk_clk_simple_probe);
->>>>>>
->>>>>> int mtk_clk_simple_remove(struct platform_device *pdev)
->>>>>> {
->>>>>> @@ -472,5 +473,6 @@ int mtk_clk_simple_remove(struct platform_device *pdev)
->>>>>>
->>>>>>        return 0;
->>>>>> }
->>>>>> +EXPORT_SYMBOL_GPL(mtk_clk_simple_remove);
->>>>>
->>>>> Thanks, I need this too. I am preparing a patch to use mtk_clk_simple_remove/mtk_clk_simple_probe
->>>>> for MT6779 clks first and maybe I can apply this to all MediaTek clk drivers.
->>>>>
->>>>> Reviewed-by: Miles Chen <miles.chen@mediatek.com>
->>>>
->>>> Hello Miles,
->>>>
->>>> thanks for telling me, because my next step would have been exactly what
->>>> you're doing, for all MediaTek clk drivers... otherwise we'd be doing
->>>> redundant work going afterwards.
->>>
->>> Should we consider using symbol namespaces (EXPORT_SYMBOL_NS)?
->>>
->>
->> I don't think we should... I don't know if any module in the common clock
->> framework is doing that, but if we want some symbol namespace separation,
->> we would want that "at least" on the entire MediaTek framework, right? :-)
-> 
-> The sunxi-ng clk driver recently started doing this. See:
-> 
->      http://git.kernel.org/torvalds/c/551b62b1e4cb64d3b42da0fbfdcd26a5fcd684be
+Hi Biju,
 
-That's good. And...that's one of the examples for which using "a trick" is
-shorter and enhances maintainability!
+On Wed, May 18, 2022 at 8:34 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > Subject: Re: [RFC 1/8] dt-bindings: soc: renesas: Add RZ/G2L POEG binding
+> > On Wed, May 18, 2022 at 05:58:00AM +0000, Biju Das wrote:
+> > > > Subject: Re: [RFC 1/8] dt-bindings: soc: renesas: Add RZ/G2L POEG
+> > > > binding
+> > > >
+> > > > On Tue, May 10, 2022 at 04:11:05PM +0100, Biju Das wrote:
+> > > > > Add device tree bindings for the RZ/G2L Port Output Enable for GPT
+> > > > (POEG).
+> > > > >
+> > > > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-> 
-> And it's being done for all kinds of common driver libraries.
-> 
-> I agree that it would be done for the entire MediaTek framework.
-> 
->> In that case, we can simply keep using EXPORT_SYMBOL_GPL() and change the
->> Makefile in this directory to add:
->>
->>          ccflags-y += -DDEFAULT_SYMBOL_NAMESPACE=COMMON_CLK_MEDIATEK
-> 
-> Oh, I didn't know of this trick. Nice. :D
-> 
-> I think we still need to add MODULE_IMPORT_NS() statements, right?
-> 
+> > > > > +examples:
+> > > > > +  - |
+> > > > > +    #include <dt-bindings/clock/r9a07g044-cpg.h>
+> > > > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > > > +
+> > > > > +    poeggd: poeg@10049400 {
+> > > > > +        compatible = "renesas,r9a07g044-poeg", "renesas,rzg2l-poeg";
+> > > > > +        reg = <0x10049400 0x4>;
+> > > >
+> > > > This looks like it is part of some larger block?
+> > >
+> > > There are 2 IP blocks GPT(PWM) and POEG with its own resources like
+> > > (register map, clk, reset and interrupts)
+> > >
+> > > Larger block is GPT, which has lot of functionalities. The output from
+> > > GPT block can be disabled by this IP either by external trigger,
+> > > request from GPT(Deadtime error, both output low/high) or explicit
+> > > software control). This IP has only a single register. Currently I am not
+> > sure which framework to be used for this IP?? Or should it be merged with
 
-I haven't experimented with the IMPORT, but I believe if that's relative to
-files in the same Makefile, we won't need to add that... let's make some
-experiments :-)
+Yeah, POEG is a weird beast.
+Some of it fits under pin control, but not all of it.
+From a quick glance, most of its configuration is intended to be
+static, i.e. could be done from DT, like pin control?
+I have no idea how to use the POEG interrupts, though.
 
->> ...but that's surely out of scope for this specific patch series.
->>
->> What do you think?
-> 
-> It's definitely out of scope, but nice to have, to reduce the size of the
-> default symbol table, and limit the usage of the symbols the driver exports.
-> 
+> > larger block GPT by combining the resources?
+> >
+> > Usually, IP blocks would have some minimum address alignment (typ 4K or 64K
+> > to be page aligned), but if there's no other IP in this address range as-is
+> > is fine. The question is what's before or after the above address?
+>
+> As per the HW manual, before GPT IP block and after POE3 block(Port Output Enable 3 (POE3) for MTU).
+>
+> Before
+> H'0_1004_8000 H'0_1004_87FF 2 Kbytes GPT
+>
+> After
+> H'0_1004_9800 H'0_1004_9BFF 1 Kbyte POE3
+>
+> Please find the address map for the IP blocks near to it.
+>
+> H'0_1004_A000 H'0_1004_A3FF 1 Kbyte SSIF ch1
+> H'0_1004_9C00 H'0_1004_9FFF 1 Kbyte SSIF ch0
+> H'0_1004_9800 H'0_1004_9BFF 1 Kbyte POE3
+> H'0_1004_9400 H'0_1004_97FF 1 Kbyte POEGD
+> H'0_1004_9000 H'0_1004_93FF 1 Kbyte POEGC
+> H'0_1004_8C00 H'0_1004_8FFF 1 Kbyte POEGB
+> H'0_1004_8800 H'0_1004_8BFF 1 Kbyte POEGA
+> H'0_1004_8000 H'0_1004_87FF 2 Kbytes GPT
 
-Agreed.
+This is actually 8 x 256 bytes, for 8 GPT instances.
 
-> Regards
-> ChenYu
+> H'0_1004_7000 H'0_1004_7FFF 4 Kbytes SRC (Reg)
+> H'0_1004_0000 H'0_1004_6FFF 28 Kbytes SRC (Memory)
 
+So you can combine GPT and POEG[A-D] into a single block.
+However, doing so will make life harder when reusing the driver on
+an SoC with a different layout, or a different number of POEG blocks
+and GPT channels.
 
+BTW, POE3 is a similar (in spirit) block on top of the MTU
+(Multi-Function Timer Pulse Unit 3, which seems to be an
+ enhanced version of the already-supported MTU2 on RZ/A1?).
+But the POE3 block is not located next to the MTU block, so you cannot
+combine them without overlap.
 
+Note that the minimum page size on Cortex-A seems to be 4 kiB, and
+several blocks are spaced apart less, so even with a different OS
+than Linux you cannot implement page-based access control.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
