@@ -2,107 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52D2552DA44
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 18:30:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3309852DA90
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 18:47:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242039AbiESQaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 12:30:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34244 "EHLO
+        id S236553AbiESQre (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 12:47:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242055AbiESQ37 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 12:29:59 -0400
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B814AD809D;
-        Thu, 19 May 2022 09:29:58 -0700 (PDT)
-Received: by mail-oi1-x233.google.com with SMTP id v65so7057121oig.10;
-        Thu, 19 May 2022 09:29:58 -0700 (PDT)
+        with ESMTP id S234294AbiESQrd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 12:47:33 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC5215B88D;
+        Thu, 19 May 2022 09:47:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=eDj9YtrL+ME/X2nogJu52e1JjwHXOpFB8AWWGPpN1JI=;
-        b=GopHsktLl1FQHiOTG2Rcl7tq6cJcuAMLUPz/tIktAVi4pFMYnsHSyGZ/yNj18WFDUC
-         qVvLfkJjJBsrQ9FK3hKmBv/G2kWYIIGctov/JcnxBJpj6Fo2Dq5vH+K+7J1L7e3ChsVa
-         oAlXRfBGdaapF58zbqZnvfDY2J/15YRO/sx91miCOxpNhbrH1aACE9iUw3kp/XAd/jXG
-         ofWGsCWs9xkx9zdWP8X82Sp5A10NP+d+jfb8DWv6t59TgMlOZBxPdhYxOKuSVmklg2NU
-         v+UThHdaGO4a2MCA1BahEdkdwuOOSV8jATDUHhwsurxzLnXZY8qRsUj4SWzrHpMK2+LW
-         wt6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=eDj9YtrL+ME/X2nogJu52e1JjwHXOpFB8AWWGPpN1JI=;
-        b=T8RUsbMGELUCmtmzg8T8jFGnwT0tVYkCkm5CFVN2bqyHlDLG2b8e9p4eOEXAQaFkpw
-         VZCxo8MGClQhVKLPveD0buAnKt/bH8wwSJJWNcHl5SWck2wDaxmJrzNtiPcShrRbrt1P
-         6RSybmr3VMwZiknDbujUU5AXom8D/eS67QY3U6eKfebHhKeuddYSVKr6lgjMNP234U1V
-         aw7HbOi6lUxXAGRSRTuPsTHyJftq8XZCeJXfUQkS7OUO8GWF8cih0H94HuFRgq5xa/z5
-         dz7h2af4BNmjo9h0NYtEWNF+3VkhSjTgC0DGCo6ixbgfC3awEW6TTKPAyFTIOeSIxpXJ
-         TnAQ==
-X-Gm-Message-State: AOAM531crKHeDg9fhJT/Ptm6DtUqjuaJZz1IRDA3YC8NVUuRaih0VKIr
-        6OXCRZxk1eIaUhnUjk43JfA=
-X-Google-Smtp-Source: ABdhPJyRSED3NYB6g3npUapZBROIw+TePvZdH0R/K6jTKuECnoY/NSeSywuMIYCDp1g99Vxzp2Wo5Q==
-X-Received: by 2002:a05:6808:ec7:b0:322:2bcc:42c2 with SMTP id q7-20020a0568080ec700b003222bcc42c2mr3283588oiv.168.1652977796926;
-        Thu, 19 May 2022 09:29:56 -0700 (PDT)
-Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
-        by smtp.gmail.com with ESMTPSA id n4-20020a056870844400b000e92295f8acsm36562oak.2.2022.05.19.09.29.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 May 2022 09:29:56 -0700 (PDT)
-From:   Chris Morgan <macroalpha82@gmail.com>
-To:     dri-devel@lists.freedesktop.org
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mchehab@kernel.org,
-        emma@anholt.net, mripard@kernel.org,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>
-Subject: [RESEND 6/6 v2] drm/vc4: dpi: Support DPI interface in mode3 for RGB565
-Date:   Thu, 19 May 2022 11:29:35 -0500
-Message-Id: <20220519162935.1585-7-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220519162935.1585-1-macroalpha82@gmail.com>
-References: <20220519162935.1585-1-macroalpha82@gmail.com>
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1652978852; x=1684514852;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=LXflJd7Y5VHLQK0MN/gT14zJ94O0px+SUp5tuELlX4Y=;
+  b=a7lQh8ruUi5PU7MLLuzE8E8FFtoY75MCcPLv2Gp6uUa6Ek4vGcJKTvvP
+   IfYuvwYjpXX+cVaeHUi4bZWZzgpMRppABKqR25XarR/ny2dSnGOP8prHq
+   NBDmLy63vDAQyppmdzsW+pYf/iNSkuX3UF0O5wyyTcW8Ad6gYZuPxaCqg
+   w=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 19 May 2022 09:47:32 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 May 2022 09:47:31 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 19 May 2022 09:47:31 -0700
+Received: from blr-ubuntu-87.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 19 May 2022 09:47:27 -0700
+From:   Sibi Sankar <quic_sibis@quicinc.com>
+To:     <bjorn.andersson@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <ohad@wizery.com>, <agross@kernel.org>,
+        <mathieu.poirier@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
+        <mka@chromium.org>, Sibi Sankar <quic_sibis@quicinc.com>
+Subject: [PATCH v4 0/3] Add support for proxy interconnect bandwidth votes
+Date:   Thu, 19 May 2022 22:17:02 +0530
+Message-ID: <1652978825-5304-1-git-send-email-quic_sibis@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chris Morgan <macromorgan@hotmail.com>
+Add proxy interconnect bandwidth votes during modem bootup on SC7280 SoCs.
 
-Add support for the VC4 DPI driver to utilize DPI mode 3. This is
-defined here as xxxRRRRRxxGGGGGGxxxBBBBB:
-https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#parallel-display-interface-dpi
+V4:
+ * Remove older bindings [Matthias/Krzysztof]
+ * Convert sc7180/sc7280 to yaml and leave the rest to Sireesh's series
+ * Rebased on v2 of Krzysztof's bindings cleanups
+ * Misc. Fixes [Krzysztof]
 
-This mode is required to use the Geekworm MZP280 DPI display.
+V3:
+ * Re-ordered clock list, fixed pdc_sync typo [Rob/Matthias]
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-Reviewed-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
----
- drivers/gpu/drm/vc4/vc4_dpi.c | 4 ++++
- 1 file changed, 4 insertions(+)
+V2:
+ * Dropped patch 3 from version 1 [Sub with Bjorn's patch]
+ * Add YAML support [Krzysztof]
+ * Drop interconnect names [Bjorn]
 
-diff --git a/drivers/gpu/drm/vc4/vc4_dpi.c b/drivers/gpu/drm/vc4/vc4_dpi.c
-index c180eb60b..3c58ade25 100644
---- a/drivers/gpu/drm/vc4/vc4_dpi.c
-+++ b/drivers/gpu/drm/vc4/vc4_dpi.c
-@@ -173,6 +173,10 @@ static void vc4_dpi_encoder_enable(struct drm_encoder *encoder)
- 			dpi_c |= VC4_SET_FIELD(DPI_FORMAT_16BIT_565_RGB_3,
- 					       DPI_FORMAT);
- 			break;
-+		case MEDIA_BUS_FMT_RGB565_1X24_CPADHI:
-+			dpi_c |= VC4_SET_FIELD(DPI_FORMAT_16BIT_565_RGB_2,
-+					       DPI_FORMAT);
-+			break;
- 		default:
- 			DRM_ERROR("Unknown media bus format %d\n", bus_format);
- 			break;
+ Depends on:
+ https://lore.kernel.org/lkml/20220517070113.18023-1-krzysztof.kozlowski@linaro.org/
+
+Sibi Sankar (3):
+  arm64: dts: qcom: sc7280: Add proxy interconnect requirements for
+    modem
+  dt-bindings: remoteproc: qcom: Convert SC7280 MSS bindings to YAML
+  dt-bindings: remoteproc: qcom: Convert SC7180 MSS bindings to YAML
+
+ .../devicetree/bindings/remoteproc/qcom,q6v5.txt   |  47 +---
+ .../bindings/remoteproc/qcom,sc7180-mss-pil.yaml   | 236 +++++++++++++++++++
+ .../bindings/remoteproc/qcom,sc7280-mss-pil.yaml   | 250 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi |   1 +
+ 4 files changed, 489 insertions(+), 45 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml
+
 -- 
-2.25.1
+2.7.4
 
