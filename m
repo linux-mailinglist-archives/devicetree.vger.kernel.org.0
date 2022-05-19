@@ -2,252 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D1AC52DA29
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 18:27:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A04552DA30
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 18:28:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241683AbiESQ1H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 12:27:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60278 "EHLO
+        id S237849AbiESQ2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 12:28:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241995AbiESQ1D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 12:27:03 -0400
-Received: from mail-vs1-xe2b.google.com (mail-vs1-xe2b.google.com [IPv6:2607:f8b0:4864:20::e2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CC6DD4115
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 09:27:01 -0700 (PDT)
-Received: by mail-vs1-xe2b.google.com with SMTP id d22so5959944vsf.2
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 09:27:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:user-agent:references:in-reply-to:mime-version:date:message-id
-         :subject:to:cc;
-        bh=D3BsvTGZmL9aXn8JC2DlxbBhxOaQqmVN5f5pOf4WE4o=;
-        b=Wdbve9pVOQfTCQ8qHIZq21Qqz+xsUOAaavE8ZtUJ9EblcqE54EBHnNXjuCxpwYGpor
-         x4JgBbxZg77ZEAnCTT0kqlEZ/o/n17D8A0eVw1bfm2qy1z6ki8Rk1os7osw5nwYQtmDJ
-         dWe7PFxstS5Yi5ZvCBNqRNNi55N7BlBUXf4UbrdAgQFpVWfVo7+Qk0uy/cnuWKCmsn1F
-         B7HDdWZgo2ml5tOL/yDMoTEHgTVr2MA4oll4/SoapPprGkcSufMBge8WouN5+m6vPQ49
-         A+4KWf4Mi66zOuv/wwToUPvT+BZC3ilqbBHUO6PSVKpTz/Hmp8QRDEB6XzvnVrGrAt6Y
-         o6eg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:user-agent:references:in-reply-to
-         :mime-version:date:message-id:subject:to:cc;
-        bh=D3BsvTGZmL9aXn8JC2DlxbBhxOaQqmVN5f5pOf4WE4o=;
-        b=zDa282TVcoxniV83A2Z/2T3dMhvqDyAy43ZnJa2Nizy45lp+Rca33EFhMOPq0gOWQ8
-         y/IGQQUUFZ12WmJPnTsW9+LeR5YmtzKdr3u6CE9undh14U6JWP0COKfh2FMbGkCySyEB
-         RoTVAv34aXFe3e5nnwh5PLTUow56FDfs7cn9OtTRNCUB3qlOb4Y0Rb8+Wj4wqu5dGio4
-         ltr1ECbb5WWBbKrv2Xvbuv3fZ2N2tKXSpFjRhuvRW9N4YPTzM/PIfkOr3M7mSUJO2UUi
-         f8l/FoRksAlYlR/BEGD7RGzF20JA9XIw5ROgSiMn0OzgpsnK5bVUEuT1r/7PRdS6+LZB
-         u3Fg==
-X-Gm-Message-State: AOAM531+Xptbao295OdiCGGq0xpW4ULfD0gytgNobS3+O6YSJxJTAqB9
-        d4vrZGpCHBW2qV/x/52MKo0ERs6E7yGLRS2SEbsCzQ==
-X-Google-Smtp-Source: ABdhPJx+NNr1h6VgTuwMD1Bhi8EcRUBgWUvE0krCGgcnnrPzo4cs17ylt6Dfy/iIo/Qh4cdkDItrCl7KQ2kO/HmmW/M=
-X-Received: by 2002:a67:d516:0:b0:335:c0b5:1e5d with SMTP id
- l22-20020a67d516000000b00335c0b51e5dmr2517279vsj.13.1652977620240; Thu, 19
- May 2022 09:27:00 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 19 May 2022 09:26:59 -0700
-From:   Guillaume Ranquet <granquet@baylibre.com>
-User-Agent: meli 0.7.2
-References: <20220327223927.20848-1-granquet@baylibre.com> <20220327223927.20848-19-granquet@baylibre.com>
- <20220429083933.q3w75q3zuyyuvo4w@houat> <CABnWg9tzhZjrdKT4chkDrY-uH8BMUoxyNLUSwfuG6Sv1J+8ddg@mail.gmail.com>
- <20220512074446.ihilbbnbuwesxbbg@houat>
-In-Reply-To: <20220512074446.ihilbbnbuwesxbbg@houat>
+        with ESMTP id S229645AbiESQ2u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 12:28:50 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F15B8D4122
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 09:28:48 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nrj13-0003N4-Cf; Thu, 19 May 2022 18:28:45 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nrj12-003Jhj-UD; Thu, 19 May 2022 18:28:43 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nrj10-00AnKT-Sg; Thu, 19 May 2022 18:28:42 +0200
+From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v4 1/2] dt-bindings: mfd: stm32-timers: Document how to specify interrupts
+Date:   Thu, 19 May 2022 18:28:37 +0200
+Message-Id: <20220519162838.695404-1-u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Date:   Thu, 19 May 2022 09:26:59 -0700
-Message-ID: <CABnWg9tHRc_7VZ1z6NeMEDfQvxam_xOimBnM=hzBUqkhzPOSCA@mail.gmail.com>
-Subject: Re: [PATCH v9 18/22] drm/mediatek: Add mt8195 Embedded DisplayPort driver
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     airlied@linux.ie, angelogioacchino.delregno@collabora.com,
-        chunfeng.yun@mediatek.com, chunkuang.hu@kernel.org,
-        ck.hu@mediatek.com, daniel@ffwll.ch, deller@gmx.de,
-        jitao.shi@mediatek.com, kishon@ti.com, krzk+dt@kernel.org,
-        maarten.lankhorst@linux.intel.com, matthias.bgg@gmail.com,
-        p.zabel@pengutronix.de, robh+dt@kernel.org, tzimmermann@suse.de,
-        vkoul@kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-phy@lists.infradead.org, markyacoub@google.com,
-        Markus Schneider-Pargmann <msp@baylibre.com>,
-        kernel test robot <lkp@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1265; h=from:subject; bh=ncCq/TA6V9++RyI13hNtZmFRXl6sYaVPYUg+GsnWc4c=; b=owEBbQGS/pANAwAKAcH8FHityuwJAcsmYgBihnAvGhr9nOa0pWJvT9RF6KrW8un7+4LqzYSTdrrq 7XxKJoKJATMEAAEKAB0WIQR+cioWkBis/z50pAvB/BR4rcrsCQUCYoZwLwAKCRDB/BR4rcrsCdhcB/ 0aGmpznMXf+zDA6YDJLSLaxSjny+WbP0F3Cc3Pn7dsB9ht0CHucxsktO89aPqv2hKiSU+5eX9dVJ1G 8IQsdD+qU9YmG4+cQU7FS6Uh1bCnEkEsZgD+rVXrBs8GSlNVU7/gpLjFzqmrfQhKmgJu4JNkHQo0lE oQ8CCYPb+aMlJmBgb4PWaU9DcL/eFZL5JhQ359mQyv/7/3Jwt5bqvW0nlKiR2kVNF5FDSRcB1ljWSx yfRs2btxvYs+aY7LwIn/lGzXTzZFj9iSR6ERq2bdo3hIgnUS1XjH9hiLrHkaOFwSAopukk+wSWOTB5 wqIU+rFg025Z3c4VxTAfD22qNVePAA
+X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 12 May 2022 09:44, Maxime Ripard <maxime@cerno.tech> wrote:
->Hi,
->
->On Wed, May 11, 2022 at 05:59:13AM -0700, Guillaume Ranquet wrote:
->> >> +#include <drm/drm_atomic_helper.h>
->> >> +#include <drm/drm_bridge.h>
->> >> +#include <drm/drm_crtc.h>
->> >> +#include <drm/dp/drm_dp_helper.h>
->> >> +#include <drm/drm_edid.h>
->> >> +#include <drm/drm_of.h>
->> >> +#include <drm/drm_panel.h>
->> >> +#include <drm/drm_print.h>
->> >> +#include <drm/drm_probe_helper.h>
->> >> +#include <linux/arm-smccc.h>
->> >> +#include <linux/clk.h>
->> >> +#include <linux/delay.h>
->> >> +#include <linux/errno.h>
->> >> +#include <linux/kernel.h>
->> >> +#include <linux/mfd/syscon.h>
->> >> +#include <linux/nvmem-consumer.h>
->> >> +#include <linux/of.h>
->> >> +#include <linux/of_irq.h>
->> >> +#include <linux/of_platform.h>
->> >> +#include <linux/phy/phy.h>
->> >> +#include <linux/platform_device.h>
->> >> +#include <linux/pm_runtime.h>
->> >> +#include <linux/regmap.h>
->> >> +#include <sound/hdmi-codec.h>
->> >> +#include <video/videomode.h>
->> >> +
->> >> +#include "mtk_dp_reg.h"
->> >> +
->> >> +#define MTK_DP_AUX_WAIT_REPLY_COUNT 20
->> >> +#define MTK_DP_CHECK_SINK_CAP_TIMEOUT_COUNT 3
->> >> +
->> >> +//TODO: platform/device data or dts?
->> >
->> >DTS :)
->>
->> It's probably going to be a platform_data struct for v10...
->> If I have time, I'll change it to a dts property for v10.
->
->I can't really imagine a case where we would need platform_data
->nowadays. If you have a device tree, then it should be part of the
->binding.
->
->What issue would you like to address by using a platform_data?
->
+The timer units in the stm32mp1 CPUs have interrupts, depending on the
+timer flavour either one "global" or four dedicated ones. Document how
+to formalize these in a device tree.
 
-Ok, I'll migrate to dt then. I didn't realize platform_data were depreciated.
+Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+---
+Changes since v3:
+  - Do the things Rob suggested in reqly to v1 which I didn't notice
+    until Fabrice told me in reply to v3.
 
-Angelo wants the MAX_LINRATE and MAX_LANES defines to be configurable.
-I imagined platform_data would be more appropriate as (per my understanding) the
-limitation is associated with a specific SoC.
+ .../devicetree/bindings/mfd/st,stm32-timers.yaml  | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
->> >> +static enum drm_connector_status mtk_dp_bdg_detect(struct drm_bridge *bridge)
->> >> +{
->> >> +	return connector_status_connected;
->> >> +}
->> >
->> >I'm not quite sure what's going on there. You seem to have some support
->> >for HPD interrupts above, but you always report the display as
->> >connected?
->> >
->> >I'd assume that either you don't have HPD support and then always report
->> >it as connected, or you have HPD support and report the current status
->> >in detect, but that combination seems weird.
->>
->> The HPD logic needs more work, some things have been broken when I split
->> the driver into three patches eDP - DP - Audio
->> The assumption at first was that eDP didn't need any HPD handling... but it
->> seems I was wrong and the eDP driver needs to be reworked.
->
->That can be made into a patch of its own if you prefer.
->
->You first introduce the driver without status reporting (always
->returning connected or unknown), and then add the needed bits for HPD.
->
->However, that first patch shouldn't contain the interrupt plumbing and
->so on, it's just confusing.
->
+diff --git a/Documentation/devicetree/bindings/mfd/st,stm32-timers.yaml b/Documentation/devicetree/bindings/mfd/st,stm32-timers.yaml
+index 10b330d42901..5b05b2ec1728 100644
+--- a/Documentation/devicetree/bindings/mfd/st,stm32-timers.yaml
++++ b/Documentation/devicetree/bindings/mfd/st,stm32-timers.yaml
+@@ -46,6 +46,21 @@ properties:
+     minItems: 1
+     maxItems: 7
+ 
++  interrupts:
++    oneOf:
++      - maxItems: 1
++      - maxItems: 4
++
++  interrupt-names:
++    oneOf:
++      - items:
++          - const: global
++      - items:
++          - const: brk
++          - const: up
++          - const: trg-com
++          - const: cc
++
+   "#address-cells":
+     const: 1
+ 
 
-After discussing a while with Mediatek, it appears that hot plug detection
-needs to be handled even for eDP... (which is always connected).
-So I'll revert to the split I made earlier in v8 where hot plug detection was
-part of the eDP patch the addition of the External display port was a
-trivial patch [1].
+base-commit: 3123109284176b1532874591f7c81f3837bbdc17
+-- 
+2.35.1
 
->> >> +static struct edid *mtk_dp_get_edid(struct drm_bridge *bridge,
->> >> +				    struct drm_connector *connector)
->> >> +{
->> >> +	struct mtk_dp *mtk_dp = mtk_dp_from_bridge(bridge);
->> >> +	bool enabled = mtk_dp->enabled;
->> >> +	struct edid *new_edid = NULL;
->> >> +
->> >> +	if (!enabled)
->> >> +		drm_bridge_chain_pre_enable(bridge);
->> >> +
->> >> +	drm_dp_dpcd_writeb(&mtk_dp->aux, DP_SET_POWER, DP_SET_POWER_D0);
->> >> +	usleep_range(2000, 5000);
->> >> +
->> >> +	if (mtk_dp_plug_state(mtk_dp))
->> >> +		new_edid = drm_get_edid(connector, &mtk_dp->aux.ddc);
->> >> +
->> >> +	if (!enabled)
->> >> +		drm_bridge_chain_post_disable(bridge);
->> >
->> >Are you sure we can't get a mode set while get_edid is called?
->> >
->> >If we can, then you could end up disabling the device while it's being
->> >powered on.
->>
->> I'm a bit unsure, I need to spend more time in the drm stack to make sure.
->> I'll get back to you when I have a definitive answer.
->
->So, it looks like it's ok.
->
->get_edid is your implementation of get_modes, which is called by
->drm_helper_probe_single_connector_modes
->
->https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/drm_probe_helper.c#L416
->
->This is the standard implemantion of fill_modes, which is called
->whenever the get_connector ioctl is called (or similar paths, like
->drm_client_modeset_probe)
->
->drm_helper_probe_single_connector_modes is under the assumption that the
->mode_config.mutex is held though, and that the big lock. So it should be
->serialized there.
->
->Just for future proofing though, it would be better to use refcounting
->there. Would runtime_pm work for you there?
->
-
-Thx for looking into this for me.
-Not sure runtime_pm works here as it would only refcount if compiled
-with CONFIG_PM?
-I'd rather use the enabled field as a refcounter instead of a boolean.
-
-Unless I'm totally missing your point?
-
-Thx,
-Guillaume.
-
->> >> +static void mtk_dp_parse_drm_mode_timings(struct mtk_dp *mtk_dp,
->> >> +					  struct drm_display_mode *mode)
->> >> +{
->> >> +	struct mtk_dp_timings *timings = &mtk_dp->info.timings;
->> >> +
->> >> +	drm_display_mode_to_videomode(mode, &timings->vm);
->> >> +	timings->frame_rate = mode->clock * 1000 / mode->htotal / mode->vtotal;
->> >
->> >drm_mode_vrefresh()
->> >
->> >> +	timings->htotal = mode->htotal;
->> >> +	timings->vtotal = mode->vtotal;
->> >> +}
->> >
->> >It's not really clear to me why you need to duplicate drm_display_mode
->> >here?
->> >
->> It's saved to be re-used in mtk_dp_set_msa().
->> It's not ideal, I'll check if I can get the mode directly from mtk_dp_set_msa()
->
->Yeah, it looks like mtk_dp_set_msa() uses fairly straightforward values,
->this will be just as easy with drm_display_mode.
->
->Maxime
-
-
-[1] https://patchwork.kernel.org/project/linux-mediatek/patch/20220218145437.18563-17-granquet@baylibre.com/
