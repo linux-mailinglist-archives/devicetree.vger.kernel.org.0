@@ -2,137 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2067E52DD50
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 21:01:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12E2A52DDB9
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 21:23:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244288AbiESTBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 15:01:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58600 "EHLO
+        id S244396AbiESTXI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 15:23:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244275AbiESTBd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 15:01:33 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5F93532FC;
-        Thu, 19 May 2022 12:01:29 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id k126so3387738wme.2;
-        Thu, 19 May 2022 12:01:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=iFLnLP7/OEuz4wdRDIn1ORAc4gGIzikzoEkwYYDgvJg=;
-        b=pEKTjR6x27IA9qHOPQmR8lGbD+qmD1MFFfvO5Fo2WxWCMdjGvVNsnGfhtxeJcJwavw
-         2Jz75TW+zFV8/MyE+XkuDCk7JgfbjfYB1AJpPOKrtIvURmna+8dfDA39Vl3zlLuGJ1tu
-         JITeyYoywHsvh0ZvySVoVcT3K6evGfCgd9unj85iqx9Hy3xNA9muKVgOxiF3qiKngM0R
-         hBbQEn+BU8I1fOOxTxaTeYNoi/XU/ZkZ6sm21AJ+HepoxwlOW8BGoeU1T04FROIesBYw
-         eaafM4qQsE/o6eXy8FpLrQib86NqfEDu0mFlKe6Jci0UWjYPEiFo+DpcU+CX2d9NZ4rc
-         zjqA==
+        with ESMTP id S243893AbiESTXE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 15:23:04 -0400
+Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 865A3541AD;
+        Thu, 19 May 2022 12:23:03 -0700 (PDT)
+Received: by mail-ot1-f48.google.com with SMTP id r3-20020a9d5cc3000000b0060ae1789875so1832002oti.13;
+        Thu, 19 May 2022 12:23:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=iFLnLP7/OEuz4wdRDIn1ORAc4gGIzikzoEkwYYDgvJg=;
-        b=SUjjqaKDvaGw8CCxsPpeEWtaVgeJDM5VQN1jkaCGfxf334fpRenENArx79X7CXzsT7
-         zZMmwnh0/tkmLN8AKt/Df7wT7njQ9tQxYovdLOAHUOV8//LZRuxYni3v1/PNp88Y5aS0
-         kPXj2gmkDokuaXc/aMKSDajNnOy0LOtJrSQV6rgWnrMdq73n75nCC4pfAwOYiH57uLbs
-         OyEyVOpKpylBJldAL9V/QbZQyPa9bl3YnmTvcG8ycouZe25W45z1TTfTdjXwzON00qnL
-         MAJmu9NqdM2iKTE6lNOG4SEhLrexElc+unm+Ik7hogcTeJa9Qbuk1ODyMEbChfSon0XT
-         TJLA==
-X-Gm-Message-State: AOAM531aZa6rcI+O/gyLWSBY8cyG6LN0T6xsBSF8xyVlS+kDq3ro8Igx
-        xgdf/xY73xDkoMlZY9Y8jfw=
-X-Google-Smtp-Source: ABdhPJzBDLRZjlSbYLz0uYv/HMjZXBE35+YIa6k2BqBn3h6pAKwLPh6Ct9EGeA+dXiOIsb3a3+w+qg==
-X-Received: by 2002:a05:600c:acf:b0:397:345f:fe10 with SMTP id c15-20020a05600c0acf00b00397345ffe10mr2022718wmr.15.1652986887545;
-        Thu, 19 May 2022 12:01:27 -0700 (PDT)
-Received: from localhost.localdomain (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
-        by smtp.googlemail.com with ESMTPSA id h11-20020a05600c414b00b00395b809dfd3sm333767wmm.12.2022.05.19.12.01.26
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=orrXJpfL6g4XiiOjKR9Uk/mezcrEThgaAMQXh56e974=;
+        b=erhTU/50Mvx3uIC8gPjVe5Nq7uOfgdNekdVA3fcqrVtiZVCl7g4nQiP+GVIc9T995S
+         fpNLQv8B9qQs3BPq9kbp1g520bc0Ngexp+vWkin4uxNVJKOopO0LiKsx4MdHYRzzxfYA
+         gRfZ9i9wH//AxkoNpjb5J07Ikh3biC1NNopkHv9snD0dhDUnt8B65qhfZECNtjXSzc+N
+         LD/GeLZ5nnnE0E0oMYv9PCcartlaxRjqdc9138V712+o4QcvttSOninyivfAv9O2lEy7
+         ba6DRn6nc8S6uhpKvt39wkmV+HkX7eWv+OyAd9ipdJm0fznW4tPFIf6xaYNVN5dgDS9b
+         ARrw==
+X-Gm-Message-State: AOAM5309GyHVzbV7bE3nNiKpTjJIq+XzRkG9IBzazHtiXr5DiCDYmZbp
+        ME09Iy1SeYLlOZls6au9lkFZ13ayIQ==
+X-Google-Smtp-Source: ABdhPJxa3ixUPZOqLI2uyA1deo55I/uUmEcrt+gWB5r7hOqwqFoCHJGoLjwwQDY+i31j1fH/bgfP0A==
+X-Received: by 2002:a9d:4698:0:b0:60a:eb23:ff1 with SMTP id z24-20020a9d4698000000b0060aeb230ff1mr800653ote.24.1652988182743;
+        Thu, 19 May 2022 12:23:02 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id ed11-20020a056870b78b00b000f200873c09sm64952oab.27.2022.05.19.12.23.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 May 2022 12:01:27 -0700 (PDT)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Manivannan Sadhasivam <mani@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mtd@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>
-Subject: [PATCH v4 2/2] dt-bindings: mtd: qcom_nandc: document qcom,boot-pages binding
-Date:   Thu, 19 May 2022 21:01:12 +0200
-Message-Id: <20220519190112.6344-3-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220519190112.6344-1-ansuelsmth@gmail.com>
-References: <20220519190112.6344-1-ansuelsmth@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Thu, 19 May 2022 12:23:02 -0700 (PDT)
+Received: (nullmailer pid 2044188 invoked by uid 1000);
+        Thu, 19 May 2022 19:23:01 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Harsh Agarwal <quic_harshq@quicinc.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>, quic_pkondeti@quicinc.com,
+        quic_ppratap@quicinc.com, linux-usb@vger.kernel.org,
+        Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+In-Reply-To: <1652963695-10109-2-git-send-email-quic_harshq@quicinc.com>
+References: <1652963695-10109-1-git-send-email-quic_harshq@quicinc.com> <1652963695-10109-2-git-send-email-quic_harshq@quicinc.com>
+Subject: Re: [RFC 1/2] dt-bindings: usb: dwc3: Add support for multiport related properties
+Date:   Thu, 19 May 2022 14:23:01 -0500
+Message-Id: <1652988181.087976.2044186.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document new qcom,boot-pages binding used to apply special
-read/write configuration to boot pages.
+On Thu, 19 May 2022 18:04:54 +0530, Harsh Agarwal wrote:
+> Added support for multiport, mport, num-ssphy and num-hsphy
+> properties. These properties are used to support devices having
+> a multiport controller.
+> 
+> Signed-off-by: Harsh Agarwal <quic_harshq@quicinc.com>
+> ---
+>  .../devicetree/bindings/usb/snps,dwc3.yaml         | 55 ++++++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+> 
 
-QCOM apply a special configuration where spare data is not protected
-by ECC for some special pages (used for boot partition). Add
-Documentation on how to declare these special pages.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
----
- .../devicetree/bindings/mtd/qcom,nandc.yaml   | 26 +++++++++++++++++++
- 1 file changed, 26 insertions(+)
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/usb/snps,dwc3.yaml:367:8: [warning] wrong indentation: expected 6 but found 7 (indentation)
+./Documentation/devicetree/bindings/usb/snps,dwc3.yaml:368:10: [warning] wrong indentation: expected 11 but found 9 (indentation)
+./Documentation/devicetree/bindings/usb/snps,dwc3.yaml:370:11: [warning] wrong indentation: expected 11 but found 10 (indentation)
+./Documentation/devicetree/bindings/usb/snps,dwc3.yaml:409:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
 
-diff --git a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-index 84ad7ff30121..a59ae9525f4e 100644
---- a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-+++ b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-@@ -102,6 +102,30 @@ allOf:
-             - const: rx
-             - const: cmd
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,ipq806x-nand
-+
-+    then:
-+      properties:
-+        qcom,boot-pages:
-+          $ref: /schemas/types.yaml#/definitions/uint32-matrix
-+          items:
-+            items:
-+              - description: offset
-+              - description: size
-+          description:
-+            Some special page used by boot partition have spare data
-+            not protected by ECC. Use this to declare these special page
-+            by defining first the offset and then the size.
-+
-+            It's in the form of <offset1 size1 offset2 size2 offset3 ...>
-+
-+            Refer to the ipq8064 example on how to use this special binding.
-+
- required:
-   - compatible
-   - reg
-@@ -135,6 +159,8 @@ examples:
-         nand-ecc-strength = <4>;
-         nand-bus-width = <8>;
- 
-+        qcom,boot-pages = <0x0 0x58a0000>;
-+
-         partitions {
-           compatible = "fixed-partitions";
-           #address-cells = <1>;
--- 
-2.34.1
+dtschema/dtc warnings/errors:
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/usb/snps,dwc3.example.dts'
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-extract-example", line 52, in <module>
+    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
+  File "/usr/local/lib/python3.10/dist-packages/ruamel/yaml/main.py", line 434, in load
+    return constructor.get_single_data()
+  File "/usr/local/lib/python3.10/dist-packages/ruamel/yaml/constructor.py", line 119, in get_single_data
+    node = self.composer.get_single_node()
+  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
+  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 852, in _ruamel_yaml.CParser._compose_sequence_node
+  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
+ruamel.yaml.scanner.ScannerError: while scanning a block scalar
+  in "<unicode string>", line 401, column 5
+found a tab character where an indentation space is expected
+  in "<unicode string>", line 409, column 1
+make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/usb/snps,dwc3.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml
+./Documentation/devicetree/bindings/usb/snps,dwc3.yaml:  while scanning a block scalar
+  in "<unicode string>", line 401, column 5
+found a tab character where an indentation space is expected
+  in "<unicode string>", line 409, column 1
+./Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml
+./Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml
+./Documentation/devicetree/bindings/usb/qcom,dwc3.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml
+./Documentation/devicetree/bindings/usb/fsl,imx8mp-dwc3.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml
+./Documentation/devicetree/bindings/usb/ti,keystone-dwc3.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml
+./Documentation/devicetree/bindings/usb/intel,keembay-dwc3.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml
+./Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/usb/snps,dwc3.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/snps,dwc3.yaml: ignoring, error parsing file
+make: *** [Makefile:1401: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
