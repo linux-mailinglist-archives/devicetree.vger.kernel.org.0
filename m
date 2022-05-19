@@ -2,72 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C77F52D9CB
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 18:07:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7374752D9F0
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 18:13:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241742AbiESQHj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 12:07:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52378 "EHLO
+        id S239788AbiESQMc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 12:12:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241748AbiESQHf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 12:07:35 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9831B369C4
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 09:07:33 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id qe3-20020a17090b4f8300b001dc24e4da73so6298788pjb.1
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 09:07:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=vCPJKfu2oCo3i3xfxQhF4mnOjWu7Adqh9L+m1Zagfr0=;
-        b=GaqVQKsxA6ix9Bsatt+I5CsjaAIQEaSZbzLk9E1xDSCgs0QZQNX+z/1BGz4/N4qGU2
-         FUsGHNI3UZZcPeYGbFu400r/YKfLxm6JLeUq/lUS/1O87JVFh/LPzyXkA8CW3/gOVW81
-         +15tbkWi0q+owvBHGj9l2DYhTXl1PqNkQzPtY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vCPJKfu2oCo3i3xfxQhF4mnOjWu7Adqh9L+m1Zagfr0=;
-        b=3kQ98LyWcncBMjzJABN7vS9pO13Vku6Ucm/5UD0Y5z+u+lnfklZmi4NQlTayqwm1OH
-         QSCyN2zlUZKfFMc8kkADFzLNZWDyvBQzkStVGPdUxwtxEMoP4leXwkYo/PMNz4q3VsPb
-         J3KxI/0Ex50IfxJdsSjHBDYsMujbhYTq9sheJH5y7CyX5DXcq+LnQ4SbadIckjpGakvb
-         kDL8DRJpTpAvrS/G4qtrIm4AOuEiQ3NAocYOW6PX78w+BNW7qsGGa1XKO8PpCHVxjNcB
-         QJkQt8Ufr2pgPpYAvzuFZvcDd2wz2bnbGN/7UiNL0xOivjmH0xzFcbfFkItgchP0c+qa
-         oqHA==
-X-Gm-Message-State: AOAM532RoVffY4gOwI2tFHOVrXST80ZlhSpYesXatBNziABpwf5I4Du0
-        f4/bMk4W7/IpytkYq1eUQT6yUg==
-X-Google-Smtp-Source: ABdhPJwLsJF8qU7yTq05vzlOk9lTd0uC0zK41oeCXBlgmhVRtr/qW6q2lxRAhULfDPPc4BNK/MrikA==
-X-Received: by 2002:a17:903:1c1:b0:161:aa16:f279 with SMTP id e1-20020a17090301c100b00161aa16f279mr5496491plh.88.1652976452932;
-        Thu, 19 May 2022 09:07:32 -0700 (PDT)
-Received: from localhost ([2620:15c:11a:202:e229:79ea:227e:d9dd])
-        by smtp.gmail.com with UTF8SMTPSA id d132-20020a621d8a000000b0050dc76281bcsm4290876pfd.150.2022.05.19.09.07.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 May 2022 09:07:32 -0700 (PDT)
-Date:   Thu, 19 May 2022 09:07:31 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Judy Hsiao <judyhsiao@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        dianders@chromium.org, cychiang@google.com, judyhsiao@google.com,
-        tzungbi@chromium.org, swboyd@chromium.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [v1 3/3] arm64: dts: qcom: sc7280: include
- sc7280-herobrine-audio-rt5682.dtsi in villager and herobrine-r1
-Message-ID: <YoZrQ0kkNoqtPHU0@google.com>
-References: <20220519084119.675990-1-judyhsiao@chromium.org>
- <20220519084119.675990-4-judyhsiao@chromium.org>
+        with ESMTP id S241874AbiESQMa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 12:12:30 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 539A9C6E5F;
+        Thu, 19 May 2022 09:12:27 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B8C5361C50;
+        Thu, 19 May 2022 16:12:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A769C385AA;
+        Thu, 19 May 2022 16:12:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1652976746;
+        bh=PLx3iUUZ7laxx5o2O5313UEeec1L4dfiFRAgBbsJ7ig=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=ZP8oZmEet8O8mjGO0MyRU3bVx4+QfoncrK2vEoIRmghpw3nzt4F04TJNhsxpcjFwW
+         f0eZhvofHUTgRFCOLat9M+vlg1vjqVx1RwpZizfO0jodO7C2S0NCP4u79XNqd/CXr1
+         u70yvkF4xyQnp8lwiUXYGA+nAUtoO6xC168qme2XspynnCQ9fjiW2mY5asrSGR8czl
+         j0VfgpR3wYFfr8kldMyji0p6qQgliU+xDKy/nbYCysRgZaJGd9rU0gGSwDdosOi0Vj
+         iCx4M83llWXmeYiLcOsv417GH7nYqmlxmu9nOK+yH34VOZb3z8CY53EE2Aso7jQJoB
+         Dp6h0GRwcgBsQ==
+Date:   Thu, 19 May 2022 09:12:24 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Lorenzo Bianconi <lorenzo@kernel.org>
+Cc:     netdev@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
+        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
+        davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
+        Sam.Shih@mediatek.com, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, robh@kernel.org,
+        lorenzo.bianconi@redhat.com
+Subject: Re: [PATCH v2 net-next 11/15] net: ethernet: mtk_eth_soc: introduce
+ device register map
+Message-ID: <20220519091224.4409b54d@kernel.org>
+In-Reply-To: <YoX3AMlBFfDcl69o@lore-desk>
+References: <cover.1652716741.git.lorenzo@kernel.org>
+        <78e8c6ed230130b75aae77e6d05a9b35e298860a.1652716741.git.lorenzo@kernel.org>
+        <20220517184122.522ed708@kernel.org>
+        <YoTA+5gLC4zhoQ0F@lore-desk>
+        <20220518084431.66aa1737@kernel.org>
+        <YoX3AMlBFfDcl69o@lore-desk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220519084119.675990-4-judyhsiao@chromium.org>
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,10 +63,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 19, 2022 at 08:41:19AM +0000, Judy Hsiao wrote:
-> Include sc7280-herobrine-audio-rt5682.dtsi in villager and herobrine-r1 as
-> these boards use rt5682 codec.
+On Thu, 19 May 2022 09:51:28 +0200 Lorenzo Bianconi wrote:
+> > I don't think there's a best known practice, you'll have to exercise
+> > your judgment. Taking a look at a random example of MTK_PDMA_INT_STATUS.
+> > Looks like that one is already assigned to eth->tx_int_status_reg.
+> > Maybe that can be generalized? Personally I'd forgo the macros
+> > completely and just use eth->soc->register_name in the code.  
 > 
-> Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
+> I personally think the code is easier to read if we use macros in this case.
+> Let's consider MTK_LRO_CTRL_DW1_CFG(), it depends on the particular soc based
+> on the register map and even on the ring index. I guess the best trade-off we
+> can get is to explicitly pass eth to the macros as parameter when needed.
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+Yeah, do you, I was just sharing what my knee jerk direction would be.
+You know the code better.
