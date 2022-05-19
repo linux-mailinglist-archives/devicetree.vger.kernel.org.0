@@ -2,89 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6539E52D129
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 13:09:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5879252D137
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 13:13:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237130AbiESLJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 07:09:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40344 "EHLO
+        id S232611AbiESLNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 07:13:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237250AbiESLJM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 07:09:12 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69C9CB0423
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 04:09:08 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id h8so5800835ljb.6
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 04:09:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=d9tsDzycNDQtyXb+uzUhE/Vj3/eBul9/CRUr39TZ7YM=;
-        b=tvEsLWk3oy5qYfUCcCnVNJNqpOEnBOhzyZDZUkaVXXsdEVlOTgYN59oUlIizbV3K4s
-         D2WJt1YzT8vpjaaOpTnMvPkO5W91XTUbuGZzG+UnQT1p7FayUURJ6tcqy7Q/Og7EDHLn
-         jBNgrJkmsBJNU65K4C9Cy0Gfz3iGhDie5JBv7jTcGmrrOubpi+5RK7KGaSubtivuYQQJ
-         W7XcKPMkvAe/gpNSw8kAV+5SJu7fZichfL0qcWaAdvSl9Wl8LrlA9CUBjVs00fyyn0r3
-         g7Id/6p6Bpm/iCSp4wndiSYLtoPGvY0FAxWUSy8OLYshQ3wKHXXOUrFNB6b6MUZVrElt
-         wshA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=d9tsDzycNDQtyXb+uzUhE/Vj3/eBul9/CRUr39TZ7YM=;
-        b=v/CVZcRVWokcQ+C4ARg3+aKhg2fqIZ3Zd92MqCSS+Ld2tCZ/ns/aoXzShik1YKvykQ
-         FtGPCpZonAwFyKT46RR6FU6ma4SrT2/fReQet1G9DhjiskYZNEt7IRFtC0VBLp8AzZXT
-         kOHegrEIU0kYg93ssshih6n3lqenT5/X8z0Df4IZosa1HC7V/CsyRVQdXn0DZdmoE9qa
-         H4XXBuR2TaADd2uwPO8/s3aSDdJ89PTnBZqUVHK5x1ssxj2ALz3Np6A+mjuI6QMZ7pvT
-         OdGxjSj6mlXgLz8eLaaPdlKJJ2fTf+G8Qow+I3VaNR7xJcNOU/mkpWtF96t4rL/HsbK5
-         EzVA==
-X-Gm-Message-State: AOAM532nH1AyDq1M7dVCMr4vhxW5huZKwEQRuff2+UeyMbrMoBSyaN+m
-        /Khy3X1m/Hxob61NWdbs8oTtGg==
-X-Google-Smtp-Source: ABdhPJygQr09G7a7f1Eid+lKDW1Ht335u5ibdZu4/60chhKSqwbj8nDeaJfqLkos6Ah1zqEuywyxKQ==
-X-Received: by 2002:a2e:9e41:0:b0:253:c37c:378b with SMTP id g1-20020a2e9e41000000b00253c37c378bmr2333147ljk.202.1652958546776;
-        Thu, 19 May 2022 04:09:06 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id m18-20020ac24292000000b00477a6c2d2e3sm251405lfh.229.2022.05.19.04.09.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 May 2022 04:09:06 -0700 (PDT)
-Message-ID: <7f9418b5-cc1f-bb9c-583e-97490fc69684@linaro.org>
-Date:   Thu, 19 May 2022 13:09:05 +0200
+        with ESMTP id S229554AbiESLNi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 07:13:38 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1304939DC;
+        Thu, 19 May 2022 04:13:32 -0700 (PDT)
+X-UUID: 063b111e7c2f4d5f9cbbd243862060e1-20220519
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:46651679-1f31-4533-aab8-1a9d27747305,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:2a19b09,CLOUDID:a15dcde2-edbf-4bd4-8a34-dfc5f7bb086d,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:0,BEC:nil
+X-UUID: 063b111e7c2f4d5f9cbbd243862060e1-20220519
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
+        (envelope-from <axe.yang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 944173554; Thu, 19 May 2022 19:13:27 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Thu, 19 May 2022 19:13:26 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 19 May 2022 19:13:25 +0800
+From:   Axe Yang <axe.yang@mediatek.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>
+CC:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Satya Tangirala <satyat@google.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Axe Yang <axe.yang@mediatek.com>, Lucas Stach <dev@lynxeye.de>,
+        Eric Biggers <ebiggers@google.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kiwoong Kim <kwmad.kim@samsung.com>,
+        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
+        <angelogioacchino.delregno@collabora.com>,
+        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v10 0/3] mmc: mediatek: add support for SDIO async IRQ
+Date:   Thu, 19 May 2022 19:13:20 +0800
+Message-ID: <20220519111323.14586-1-axe.yang@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v4 1/6] dt-bindings: regulator: qcom,spmi-regulator:
- Convert to dtschema
-Content-Language: en-US
-To:     Robert Marko <robimarko@gmail.com>, agross@kernel.org,
-        bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        konrad.dybcio@somainline.org
-References: <20220518184825.1034976-1-robimarko@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220518184825.1034976-1-robimarko@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/05/2022 20:48, Robert Marko wrote:
-> Convert the bindings of Qualcomm SPMI regulators to DT schema.
-> 
-> Signed-off-by: Robert Marko <robimarko@gmail.com>
+Changes in v10:
+- add sample node for SDIO host which support wakeup interrupt in yaml
+- skip MMC_PM_WAKE_SDIO_IRQ check before enable SDIO async interrupt
+- add MMC_PM_KEEP_POWER check before SDIO eint pinstate parsing
+- use dev_pm_set_dedicated_wake_irq_reverse() to correct irq control sequence
+- set dedicated irq in msdc_enable_sdio_irq() rather than msdc_drv_probe()
+- remove unnecessary wake irq control, rpm/dpm system shall manage that
+- move wake irq/msdc irq control back to system suspend phase, use rpm_suspend
+  and rpm_resume to ensure irq control sequence:
+     disable msdc irq -> enable wake irq -> disable wake irq -> enable msdc irq
+- simplify variables, check pins_eint to know whether wakeup settings are managed
+
+Changes in v9:
+- remove pinctrl "state_dat1"
+
+Changes in v8:
+- remove maxItems property under pinctrl-names property
+
+Changes in v7:
+- add device_init_wakeup() to register SDIO host as wakeup source
+
+Changes in v6:
+- abandon cap-sdio-async-irq flag, use wakeup-source flag instead
+- extend interrupts and pinctrls in mediatek mmc host controller DT documents
+- add mmc_card_enable_async_irq() to access enable_async_irq flag
+- simplify wakeup irq implementation with dedicate wake up irq related interface
+
+Changes in v5:
+- resort variables to reversed xmas tree order
+- restore old copyright year range and add current year back
+
+Changes in v4:
+- add MMC_CAP2_SDIO_ASYNC_IRQ judge before lookup eint pinctrl
+- replace spin_lock_irqsave() variant with spin_lock() in eint irq handler
+
+Changes in v3:
+- correct abbreviations with capital letters in commit message
+- replace copyright year with 2022 in mtk-sd.c
+- remove unnessary pointer casting
+- adjust variable order to reversed xmas tree
+- remove a redundant blank line
+- refine if statement, following standard pattern
+
+Changes in v2:
+- change flag name from 'cap-sdio-async-int' to 'cap-sdio-async-irq'
+- change corresponding macro names from xxx_INT to xxx_IRQ
+- resort new member in msdc_host structure
+- refine function msdc_request_dat1_eint_irq()
+- rename msdc_{suspend,resume} function names, add suffix '_noirq'
+- add MMC_CAP2_NO_SDIO judgement before parse eint related pin setting
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Axe Yang (3):
+  dt-bindings: mmc: mtk-sd: extend interrupts and pinctrls properties
+  mmc: core: Add support for SDIO wakeup interrupt
+  mmc: mediatek: add support for SDIO eint wakup IRQ
+
+ .../devicetree/bindings/mmc/mtk-sd.yaml       | 53 +++++++++++++-
+ drivers/mmc/core/sdio.c                       | 14 ++++
+ drivers/mmc/host/mtk-sd.c                     | 73 +++++++++++++++++--
+ include/linux/mmc/card.h                      |  8 +-
+ include/linux/mmc/sdio.h                      |  5 ++
+ 5 files changed, 145 insertions(+), 8 deletions(-)
+
+-- 
+2.18.0
 
 
-Best regards,
-Krzysztof
