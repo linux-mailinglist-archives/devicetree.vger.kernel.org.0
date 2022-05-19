@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 916DD52CD82
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 09:51:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56F6452CD95
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 09:52:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235020AbiESHvb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 03:51:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49076 "EHLO
+        id S235002AbiESHvh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 03:51:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235013AbiESHv3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 03:51:29 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C28DE1E3F6
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 00:51:27 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id u27so5075223wru.8
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 00:51:27 -0700 (PDT)
+        with ESMTP id S234890AbiESHvb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 03:51:31 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A3B82316F
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 00:51:29 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id j24so5926823wrb.1
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 00:51:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=R8nd64bbYuPtZbk3gzEjUJPg36SEhyQKMYL9m18hVxQ=;
-        b=K9Not7I+PyZgkrTUlvVKLMxK26XXWC22aRyuioGV9vGEC1RwgFJcdeonATmNFFb0yn
-         46pEFPaO2T4rV+mpEXbhUEk5k6oW2w3YTlo+wy7Lf2uGFDuesPGQwQ4zun5zlSMEzDco
-         nFYuNMv5mFtLPDjKpooejPiTdUsLRq1sfAFLE=
+        bh=cyCpX1ZmR/kf8pzgbwKyX7fP0Ivtmtw9DDuTffHF0T4=;
+        b=mRbqHyr2HlEx8B9iL3PZn3B6Y/2EcOxqC7Oc10pNva4YC9BpH4UDUlJCXjzUeDYIuj
+         ZpwOOGPe3exSHd6UMinRc2gLRx4/Z9ROf1Q3HTj+wc47ub5Vfc76ldTgKnxBc0wS7u7j
+         bI1bfWnvn1IYn1pr1W4bAMW+UBN1nm8wBCgRo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=R8nd64bbYuPtZbk3gzEjUJPg36SEhyQKMYL9m18hVxQ=;
-        b=NW+k5kXMaiTgsB8ilCDrlMaWvyOHL19cCTFTF/35OLvkT6W4wV+oPQWADtol5jHIl0
-         JjbqlaRfxODnQ+zdgyqp/a7ddnOr9qe5Z8CU/PnHqYzA/w3uMFU2I0MTLYwaji2d11eD
-         U/LCJsDdzleKGy6B3S67a+wno5jJFuonQ96dHiymlrS4IMqaOuSpWHqqstsDftYpROq1
-         FbF95j0em6bYeBP+oKulhG/kbJOFrYD7d7BATLh9GFzbsuuBsVdNgDIXSIHA4uq0KHSH
-         p2PDos6Bky2fCCP4yZ5Ig6rxt9xFSlFUPzay1cJ/wTD3urJfUpx6rtmJ79HuV4OaZrS/
-         5yhw==
-X-Gm-Message-State: AOAM5313gplRrNZwSPH2UQDMFhejC1QEgw5+hkrJkzWxPDRu3PRsGyWs
-        zAB/Li4/H9Gea59yMqJaeuQ07Q==
-X-Google-Smtp-Source: ABdhPJxmIkNAYgF+QDQxw92qkyMAyQOfu9THq+oITmvFlxH/AZHtvenhrXRlRO0Ke8oDbg6nXEcIKA==
-X-Received: by 2002:adf:f046:0:b0:20d:e9f:9ed6 with SMTP id t6-20020adff046000000b0020d0e9f9ed6mr2861358wro.539.1652946686410;
-        Thu, 19 May 2022 00:51:26 -0700 (PDT)
+        bh=cyCpX1ZmR/kf8pzgbwKyX7fP0Ivtmtw9DDuTffHF0T4=;
+        b=Aa5traqj3LFLP97gCKqhbNoFb1igOv54evgPbPlAayCexj8CWnnsp56gJgnJYAoFLq
+         0FjVgKCGa2dD39DTZw2MckHJB0ozVfWka6G0Mk5S5gDSyU/gD62qZ280uP2NHh+4xg6h
+         fQsDunjekg4iXUHWGw/HQf5tjfmoJgey4C2vy1hrBN1SRPhltUH42rhl6AdAGViIqbw4
+         ArnU+ENeYxtdYNS/i+5rFOkufm86OJc871k5i4D7ME9EMko41yTx0DPFtrljMcDcqS5n
+         Tuv6rAj7s9KX8LEBpSYPduLy8KMusXPogn7P8UdecOmy0d24p0oAHoGn622E2xuS1FgJ
+         wq5A==
+X-Gm-Message-State: AOAM5336N7DSvdBh4O9MJ/lwdzs7EZUcJ2Q4MHQfXTLKWPWp5NGVZqBO
+        UlMzFgSd79IxlvMzAVWU+uryFw==
+X-Google-Smtp-Source: ABdhPJzEJ//yF1pX5Q/0fs/Nw2UrvupH4A6Tv5qSwJnPr9e0MfJTTN+XjNenDXGXnNNXvzBojuMQag==
+X-Received: by 2002:a05:6000:1a87:b0:20c:687f:6d10 with SMTP id f7-20020a0560001a8700b0020c687f6d10mr2791038wry.574.1652946688579;
+        Thu, 19 May 2022 00:51:28 -0700 (PDT)
 Received: from tom-ThinkPad-T14s-Gen-2i.station (net-188-217-53-154.cust.vodafonedsl.it. [188.217.53.154])
-        by smtp.gmail.com with ESMTPSA id c6-20020a05600c4a0600b003942a244ebfsm3370254wmp.4.2022.05.19.00.51.25
+        by smtp.gmail.com with ESMTPSA id c6-20020a05600c4a0600b003942a244ebfsm3370254wmp.4.2022.05.19.00.51.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 May 2022 00:51:26 -0700 (PDT)
+        Thu, 19 May 2022 00:51:28 -0700 (PDT)
 From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
 Cc:     tommaso.merciai@amarulasolutions.com, linuxfancy@googlegroups.com,
         linux-amarula@amarulasolutions.com, michael@amarulasolutions.com,
@@ -55,9 +55,9 @@ Cc:     tommaso.merciai@amarulasolutions.com, linuxfancy@googlegroups.com,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-media@vger.kernel.org
-Subject: [PATCH 3/4] arm64: dts: rockchip: px30: add mux for mipi-pdn pad
-Date:   Thu, 19 May 2022 09:51:16 +0200
-Message-Id: <20220519075117.1003520-4-tommaso.merciai@amarulasolutions.com>
+Subject: [PATCH 4/4] arm64: dts: rockchip: px30: use rk gpio naming convention into reset-gpios
+Date:   Thu, 19 May 2022 09:51:17 +0200
+Message-Id: <20220519075117.1003520-5-tommaso.merciai@amarulasolutions.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220519075117.1003520-1-tommaso.merciai@amarulasolutions.com>
 References: <20220519075117.1003520-1-tommaso.merciai@amarulasolutions.com>
@@ -74,41 +74,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add right mux for mipi-pdn. Mux this pad as gpio2 14
+Use rk gpio naming convention into reset-gpios of ov5695 camera
 
 Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
 Tested-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
 ---
- arch/arm64/boot/dts/rockchip/px30-evb.dts | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/rockchip/px30-evb.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/rockchip/px30-evb.dts b/arch/arm64/boot/dts/rockchip/px30-evb.dts
-index 53930e28eadf..0d05a1b098bc 100644
+index 0d05a1b098bc..07008d84434c 100644
 --- a/arch/arm64/boot/dts/rockchip/px30-evb.dts
 +++ b/arch/arm64/boot/dts/rockchip/px30-evb.dts
 @@ -450,8 +450,8 @@ ov5695: ov5695@36 {
  		dvdd-supply = <&vcc1v5_dvp>;
  		dovdd-supply = <&vcc1v8_dvp>;
  		pinctrl-names = "default";
--		pinctrl-0 = <&cif_clkout_m0>;
- 		reset-gpios = <&gpio2 14 GPIO_ACTIVE_LOW>;
-+		pinctrl-0 = <&cif_clkout_m0 &mipi_pdn>;
+-		reset-gpios = <&gpio2 14 GPIO_ACTIVE_LOW>;
+ 		pinctrl-0 = <&cif_clkout_m0 &mipi_pdn>;
++		reset-gpios = <&gpio2 RK_PB6 GPIO_ACTIVE_LOW>;
  
  		port {
  			ucam_out: endpoint {
-@@ -544,6 +544,12 @@ cif_clkout_m0: cif-clkout-m0 {
- 				<2 RK_PB3 1 &pcfg_pull_none_12ma>;
- 		};
- 	};
-+
-+	mipi {
-+		mipi_pdn: mipi-pdn {
-+			rockchip,pins = <2 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
- };
- 
- &pmu_io_domains {
 -- 
 2.25.1
 
