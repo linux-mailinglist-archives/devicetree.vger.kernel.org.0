@@ -2,174 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA3AB52CEEE
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 11:07:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FF7352CF09
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 11:09:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232289AbiESJHI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 05:07:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59468 "EHLO
+        id S231249AbiESJJz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 05:09:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230333AbiESJHH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 05:07:07 -0400
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 810EF2E9E0;
-        Thu, 19 May 2022 02:07:06 -0700 (PDT)
-Received: by mail-qt1-f171.google.com with SMTP id x7so1157009qta.6;
-        Thu, 19 May 2022 02:07:06 -0700 (PDT)
+        with ESMTP id S232339AbiESJJz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 05:09:55 -0400
+Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 824D549FB7
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 02:09:53 -0700 (PDT)
+Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-2f83983782fso50303917b3.6
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 02:09:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=fTYN8SQA1Kibj+1iEMNK2WJ4kiFH1jZy+Z6ZLSVIzN0=;
+        b=hvulyA/9nIvcQL349rFarbnddLvY9KxNXVzOwnuziFMGzgoXJafIeq4MkYBy6jLk6W
+         s3M1vHrQCdqvZAScHSvOaiC24sEZLHS49j0W88ksuOnZWzOJcz/qal8MrrGbJgy3AxE/
+         jC8pn9TpW1Fsn7CRdkMKMPRWnyntyy4uNhTFYqyIsPsY3xLU+1Tj8BSmdpt+ZPQQREut
+         hKV7/XAof2E30dQbV/qIr57X2zMxMUYLPtvgd3NWcR1W//0MOFeYlipiFSPiPdoYTRkl
+         EVNnGm474dJJ1JPi1bY7lymcKpQU0jo24pOGJbZyS5KotlMFZoWGsrDcpf3mxJcprTz2
+         2QvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=AJsS+F/k/6P8jpC2HJqU3RUJq/XbSaz5+vmAseD4Zn8=;
-        b=nBLs3zyfvlIbLbDJVkg+dYaiC3W3VkWocdKKbMVn5iubo2WKd9ob0Ylr9oVDrhiQcB
-         /Bwvl0hXKt627A0cKLMw45G4kOSmowp9rqqmJ+vaeO/tiAkxMixRJlzO9ol7DfKpqGFD
-         CXq+g3KER/d4aCLNX2xRgMZYMPLS1GpWHQpH7WmOd4R40F37Qli6Aft5dCSiKpC9Ncln
-         A2Tdy75fVa+yob2u1PwrtNTRuCDgwH3iHj1hkomFoFAf+p37hJWx2wWyUW0+zSnS2di+
-         SNg18ISDGH6/2v5JEpOmnDMORrM5qqEN/OUS1S9lNJUgEo5Q+Rwj0JVuBa3aHcYh5R3j
-         9OhQ==
-X-Gm-Message-State: AOAM5320YUyAgG8+wISnWyzhhTtk7KAnXjQbq0KKYOWlr6SnYtufa2UM
-        pzJwIQj7QEjydpe6rjdzJz2qh0JcIGNIpg==
-X-Google-Smtp-Source: ABdhPJzoI9+1XGLgOYAzsU0n/6uaathH9eyCmOL0V3WCTYpBVXe++BNttf/gkPqq8AewAZf+ghi+lg==
-X-Received: by 2002:ac8:5713:0:b0:2f3:d872:2fa8 with SMTP id 19-20020ac85713000000b002f3d8722fa8mr2925892qtw.49.1652951225516;
-        Thu, 19 May 2022 02:07:05 -0700 (PDT)
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com. [209.85.219.170])
-        by smtp.gmail.com with ESMTPSA id r74-20020a37444d000000b006a330abc56fsm766552qka.1.2022.05.19.02.07.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 May 2022 02:07:04 -0700 (PDT)
-Received: by mail-yb1-f170.google.com with SMTP id p139so7884094ybc.11;
-        Thu, 19 May 2022 02:07:02 -0700 (PDT)
-X-Received: by 2002:a25:4289:0:b0:64d:746f:5311 with SMTP id
- p131-20020a254289000000b0064d746f5311mr3124109yba.89.1652951222317; Thu, 19
- May 2022 02:07:02 -0700 (PDT)
+        bh=fTYN8SQA1Kibj+1iEMNK2WJ4kiFH1jZy+Z6ZLSVIzN0=;
+        b=3bt+5pVN5YgDT4xbaBEEtaxTwQaPhyS/OUViy4MSY2NDmBv5+Nb0yikApZorDUnaJs
+         E8DSBnowhcmCrHzUOQmQZd7ZHDRxXNardirs6vMuv78pVJmuYqo7D4tpJw+0xtL7dpwv
+         aLKllG3dZ30C29SOH87TFVrwzwSZiPTNugBtoRU/0V7QjfwW3qEFT7F4qJRv/X2/caKB
+         mgXNBpDw0lJqxV5tM5mZfNk3b4+PUgSDPxcWsm1ZLZBdS/ff9UTyKCjEX3fo5BpFbO7C
+         ozLi8XeuteCdsRFhqmKJMequnHKSpVQ8tlc04+h6MfguO7rpxJc0+3zhb5JC9Igwlqd+
+         eRmw==
+X-Gm-Message-State: AOAM531isM0h8+iV/q0Ui9b9pBMfMlo4uEKaMehv5sOdGPNVa+/3moBj
+        ndFSJqCSrHoPhNq4XZr/AGoqrEcGgitFvYJNXqScGg==
+X-Google-Smtp-Source: ABdhPJwWgBnbFPBng8jyysNwYozhHy5L14kmJuY8TO30we9HAg0aLzdUurH9h7SgBVzWDxYOJ2zAzts+I/soNqiTxJU=
+X-Received: by 2002:a0d:c4c2:0:b0:2f1:6c00:9eb4 with SMTP id
+ g185-20020a0dc4c2000000b002f16c009eb4mr3757471ywd.448.1652951392715; Thu, 19
+ May 2022 02:09:52 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220510151112.16249-1-biju.das.jz@bp.renesas.com>
- <20220510151112.16249-2-biju.das.jz@bp.renesas.com> <20220517210407.GA1635524-robh@kernel.org>
- <OS0PR01MB5922FC66FD4EF05F31B17D3386D19@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <20220518181730.GH3302100-robh@kernel.org> <OS0PR01MB5922BC7AAC6154DEF7B98F0386D19@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-In-Reply-To: <OS0PR01MB5922BC7AAC6154DEF7B98F0386D19@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 19 May 2022 11:06:50 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWPy4HmPrfnL8kZmFBBcHY-EoNm7Z6CoJyudhKornTS=g@mail.gmail.com>
-Message-ID: <CAMuHMdWPy4HmPrfnL8kZmFBBcHY-EoNm7Z6CoJyudhKornTS=g@mail.gmail.com>
-Subject: Re: [RFC 1/8] dt-bindings: soc: renesas: Add RZ/G2L POEG binding
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh@kernel.org>,
+References: <cover.1651835715.git.jo@jsfamily.in> <BY5PR02MB7009B91FB7306503B58C264BD9C59@BY5PR02MB7009.namprd02.prod.outlook.com>
+ <CACRpkdYhkP9RYj98Lu=zkt+6aefx172R=8JtvOFpvh2uJ4byKA@mail.gmail.com> <BY5PR02MB7009831D8BC4DB2B34739CB6D9CF9@BY5PR02MB7009.namprd02.prod.outlook.com>
+In-Reply-To: <BY5PR02MB7009831D8BC4DB2B34739CB6D9CF9@BY5PR02MB7009.namprd02.prod.outlook.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 19 May 2022 11:09:41 +0200
+Message-ID: <CACRpkdZw+MwU42s8BWHkN2T3A-a-TGML8jJ0kQteMOE06m0UXg@mail.gmail.com>
+Subject: Re: [PATCH 3/3] drm/panel: introduce ebbg,ft8719 panel
+To:     Joel Selvaraj <jo@jsfamily.in>
+Cc:     devicetree@vger.kernel.org, Hao Fang <fanghao11@huawei.com>,
+        David Airlie <airlied@linux.ie>,
+        Shawn Guo <shawnguo@kernel.org>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
+        Corentin Labbe <clabbe@baylibre.com>,
+        phone-devel@vger.kernel.org, Sam Ravnborg <sam@ravnborg.org>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        ~postmarketos/upstreaming@lists.sr.ht
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
-
-On Wed, May 18, 2022 at 8:34 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > Subject: Re: [RFC 1/8] dt-bindings: soc: renesas: Add RZ/G2L POEG binding
-> > On Wed, May 18, 2022 at 05:58:00AM +0000, Biju Das wrote:
-> > > > Subject: Re: [RFC 1/8] dt-bindings: soc: renesas: Add RZ/G2L POEG
-> > > > binding
-> > > >
-> > > > On Tue, May 10, 2022 at 04:11:05PM +0100, Biju Das wrote:
-> > > > > Add device tree bindings for the RZ/G2L Port Output Enable for GPT
-> > > > (POEG).
-> > > > >
-> > > > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-
-> > > > > +examples:
-> > > > > +  - |
-> > > > > +    #include <dt-bindings/clock/r9a07g044-cpg.h>
-> > > > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > > > > +
-> > > > > +    poeggd: poeg@10049400 {
-> > > > > +        compatible = "renesas,r9a07g044-poeg", "renesas,rzg2l-poeg";
-> > > > > +        reg = <0x10049400 0x4>;
-> > > >
-> > > > This looks like it is part of some larger block?
-> > >
-> > > There are 2 IP blocks GPT(PWM) and POEG with its own resources like
-> > > (register map, clk, reset and interrupts)
-> > >
-> > > Larger block is GPT, which has lot of functionalities. The output from
-> > > GPT block can be disabled by this IP either by external trigger,
-> > > request from GPT(Deadtime error, both output low/high) or explicit
-> > > software control). This IP has only a single register. Currently I am not
-> > sure which framework to be used for this IP?? Or should it be merged with
-
-Yeah, POEG is a weird beast.
-Some of it fits under pin control, but not all of it.
-From a quick glance, most of its configuration is intended to be
-static, i.e. could be done from DT, like pin control?
-I have no idea how to use the POEG interrupts, though.
-
-> > larger block GPT by combining the resources?
+On Mon, May 16, 2022 at 2:56 PM Joel Selvaraj <jo@jsfamily.in> wrote:
+> On 13/05/22 03:21, Linus Walleij wrote:
+> > On Fri, May 6, 2022 at 2:18 PM Joel Selvaraj <jo@jsfamily.in> wrote:
+> >> +#define dsi_dcs_write_seq(dsi, seq...) do {                            \
+> >> +               static const u8 d[] = { seq };                          \
+> >> +               int ret;                                                \
+> >> +               ret = mipi_dsi_dcs_write_buffer(dsi, d, ARRAY_SIZE(d)); \
+> >> +               if (ret < 0)                                            \
+> >> +                       return ret;                                     \
+> >> +       } while (0)
 > >
-> > Usually, IP blocks would have some minimum address alignment (typ 4K or 64K
-> > to be page aligned), but if there's no other IP in this address range as-is
-> > is fine. The question is what's before or after the above address?
+> > First I don't see what the do {} while (0) buys you, just use
+> > a basic block {}.
 >
-> As per the HW manual, before GPT IP block and after POE3 block(Port Output Enable 3 (POE3) for MTU).
+> The do {} while (0) in macro ensures there is a semicolon when it's
+> used. With normal blocking, it would have issues with if conditions?
+> I read about them here: https://stackoverflow.com/a/2381339
+
+Hm that seems true, it enforces the semicolon ; at the end of the
+statement which is nice. I suppose we should fix the other macro
+as well.
+
+Noralf added this ({}) form in 02dd95fe31693, so maybe he wants
+to chip in.
+
+> > Second look at mipi_dbi_command() in include/drm/drm_mipi_dbi.h
+> > this is very similar.
 >
-> Before
-> H'0_1004_8000 H'0_1004_87FF 2 Kbytes GPT
+> Does the ({..}) style blocking used in mipi_dbi_command help workaround
+> the semicolon issue I mentioned above?
+
+Nope. But add the rate limited error print please!
+
+> > It's dubious that you always have dsi_dcs_write_seq()
+> > followed by dsi_generic_write_seq().
+> >
+> > That means mipi_dsi_generic_write() followed by
+> > mipi_dsi_dcs_write_buffer(). But if you look at these
+> > commands in drivers/gpu/drm/drm_mipi_dsi.c
+> > you see that they do the same thing!
 >
-> After
-> H'0_1004_9800 H'0_1004_9BFF 1 Kbyte POE3
+> They almost do the same thing except for the msg.type values? Mostly the
+> msg.type value is used to just check whether it's a long or short write
+> in the msm dsi_host code. However, in mipi_dsi_create_packet function,
+> the msg->type value is used to calculate packet->header[0] as follows:
 >
-> Please find the address map for the IP blocks near to it.
+> packet->header[0] = ((msg->channel & 0x3) << 6) | (msg->type & 0x3f);
 >
-> H'0_1004_A000 H'0_1004_A3FF 1 Kbyte SSIF ch1
-> H'0_1004_9C00 H'0_1004_9FFF 1 Kbyte SSIF ch0
-> H'0_1004_9800 H'0_1004_9BFF 1 Kbyte POE3
-> H'0_1004_9400 H'0_1004_97FF 1 Kbyte POEGD
-> H'0_1004_9000 H'0_1004_93FF 1 Kbyte POEGC
-> H'0_1004_8C00 H'0_1004_8FFF 1 Kbyte POEGB
-> H'0_1004_8800 H'0_1004_8BFF 1 Kbyte POEGA
-> H'0_1004_8000 H'0_1004_87FF 2 Kbytes GPT
+> Wouldn't the difference between the mipi_dsi_dcs_write_buffer's and
+> mipi_dsi_generic_write's msg.type values cause issue here?
+>
+> I tried using mipi_dsi_dcs_write_buffer for all commands and the panel
+> worked fine, but I am not sure if it's correct to do so?
 
-This is actually 8 x 256 bytes, for 8 GPT instances.
+I think it's fine? The only issue would be if there is a DSI host controller
+that only supports short writes, and in that case it should emulate
+long writes by breaking long messages apart. (My amateur view at least.)
 
-> H'0_1004_7000 H'0_1004_7FFF 4 Kbytes SRC (Reg)
-> H'0_1004_0000 H'0_1004_6FFF 28 Kbytes SRC (Memory)
+> > Lots of magic numbers. You don't have a datasheet do you?
+> > So you could #define some of the magic?
+>
+> Unfortunately, I don't have a datasheet and the power on sequence is
+> taken from downstream android dts. It works pretty well though. So I
+> don't think I can #define any of these magic.
 
-So you can combine GPT and POEG[A-D] into a single block.
-However, doing so will make life harder when reusing the driver on
-an SoC with a different layout, or a different number of POEG blocks
-and GPT channels.
+If you know which display controller the display is using (usually
+Novatek nnnnn, Ilitek nnnn etc someting like that) there is often
+a datasheet for the display controller available but the display per
+se often obscures the display controller.
 
-BTW, POE3 is a similar (in spirit) block on top of the MTU
-(Multi-Function Timer Pulse Unit 3, which seems to be an
- enhanced version of the already-supported MTU2 on RZ/A1?).
-But the POE3 block is not located next to the MTU block, so you cannot
-combine them without overlap.
+>  > Doesn't it work to combine them into one call for each
+>  > pair?
+>  >> +       dsi_dcs_write_seq(dsi, );
+>  >> +       dsi_generic_write_seq(dsi, 0xff, 0x87, 0x19);
+>
+> By using a macro? We can... but I am not sure what (0x00, 0x80), (0x00,
+> 0xa0),etc type of commands signify without the datasheet, so I am not
+> sure what to name them in the macro and make any sensible meaning out of it.
 
-Note that the minimum page size on Cortex-A seems to be 4 kiB, and
-several blocks are spaced apart less, so even with a different OS
-than Linux you cannot implement page-based access control.
+I meant just sending dsi_generic_write_seq() with everything in
+it:
 
-Gr{oetje,eeting}s,
+dsi_generic_write_seq(dsi, 0x00, 0x80, 0xff, 0x87, 0x19);
 
-                        Geert
+Instead of two writes. Doesn't this work?
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Yours,
+Linus Walleij
