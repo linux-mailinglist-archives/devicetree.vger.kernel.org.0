@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AA8152CE84
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 10:41:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 026D352CE8A
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 10:42:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235096AbiESIls (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 04:41:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57704 "EHLO
+        id S235537AbiESIlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 04:41:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235503AbiESIlr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 04:41:47 -0400
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68FFD6B036
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 01:41:46 -0700 (PDT)
-Received: by mail-pl1-x634.google.com with SMTP id i17so4173968pla.10
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 01:41:46 -0700 (PDT)
+        with ESMTP id S235518AbiESIlw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 04:41:52 -0400
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8EBF712D2
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 01:41:50 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id n8so4201990plh.1
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 01:41:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=BeyPRgXV6R69fCc8NB7DOVZ/M+tjtQuZOgPzKJMOoU0=;
-        b=O+59+mVXhHaNLtySVWGIOlyQeB2NuasroODMWBN/ZQL/mkC9HAsI7ak95yBuOqU3e+
-         CO2uiW+Ij8RkAvQEykR7vlTpfRXGsHImFJcob2OBvsDX29uMB64gO/7wKEhbvlOIzPt0
-         FFp611gxKBk0fW1hS4bV59E/AE+MGHKpMQeek=
+        bh=E29o2OrjQJPX4ejfeiUBtB17vXGy1rGi2BaTBPCNZj8=;
+        b=OQCPMxY349PjztzMOplaJS4Sp7Ei3DLYM4PURvx8vBKfBbFrl76ZpS+P5xkgoI0z2b
+         gs8N5c69+Y2gb6URk5Pmfu45f7mEJX5nQS0xJSvm0iHnbbKkHAKSjcPTSMqCvy8KtQ1q
+         qVOfLGRPkiyuZVwwyTkrOPw/J81/wgW/kjKME=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=BeyPRgXV6R69fCc8NB7DOVZ/M+tjtQuZOgPzKJMOoU0=;
-        b=V2AKu45PfhqKlcwASHasqA31pJJYRPNw8tf8zsAHION6zEsPjmTOi5dmoJ53Or7r2T
-         UZBmWboQspj6ABqiTwssCsIAdCFP0FMt6RPfdzrF6wkWePM4M2KIk7h2mumO3bec0IV5
-         +wRM0hm9k1c/fke7+34kwrNxSqbexwLotADPyw8szvx9Y9UkToRg285ZC/8pr7PrXVUM
-         xVcCOv86U76okpEdaRmAu85Innev6evRQwEeGlS8tHxMq1tmNfjQRIR973TKLoC9H4t5
-         HXDmOtIJTbGl+X7H1tW+Q8vh26DMPh40Im3U18u/zGs8PBReT2YY1yrZXr4TLxYQ76m+
-         bZhg==
-X-Gm-Message-State: AOAM531pimQ/hOkMHZ+8q86xdeZ+un9rCSfd0LVUdkD7d+ZSBKvmwzdS
-        Z0LH1bj92/8YiSNTbeRSSk78YA==
-X-Google-Smtp-Source: ABdhPJy1BehqzaPWoPY6ZsIPaNIucqksWRIRqGHRvFgeS+FiaoDVf/faVp+eB9T7uqN+qHx6cld/dg==
-X-Received: by 2002:a17:902:b588:b0:161:64fe:af8c with SMTP id a8-20020a170902b58800b0016164feaf8cmr3807527pls.26.1652949705948;
-        Thu, 19 May 2022 01:41:45 -0700 (PDT)
+        bh=E29o2OrjQJPX4ejfeiUBtB17vXGy1rGi2BaTBPCNZj8=;
+        b=lvZniTjb4rf9+4Ea9fQTUzPnBDIpwHg2bIzGxpB/FvOBCADgcXq/BMPV9exNJptLbp
+         2wTZioduES6vcx51Wp30pR+SseHC8ZH5JrPVmD8/xT0+0CNpwR/+B4m1nLVjEtLvgHIv
+         BEMJ9+skE5heYEyM1mxKWyhMW1LjW/f362mhAWJIJyrntT5m3FGbx8MRgcwmQ8CHHb1A
+         Bn1NfK2byeHYmIljCQ87/Cb2okjYCgyCsJ+xzKoTfUHn3iLdQUCHM5KtN50Gf9zv6Mp1
+         7/9BEJLszbmAwL5xciWYw7qYFK3ypDEFbHai7opX3JFQPStmJDHNTJVsc5yzcbIhNB4P
+         evhg==
+X-Gm-Message-State: AOAM5321z4v5eIuJJe8FeLPpUne9sAXE+tR7H5kbMo72Yf5xY8aBl0J/
+        xkJPhO6HoN3VFg2MnvipRJkrbg==
+X-Google-Smtp-Source: ABdhPJzHRinj2Abx9GWDGmJvozeWDISKzzVCZPFsstS82nev1wiETtBwp6tSU18WCQHuyZ6xRGoZeg==
+X-Received: by 2002:a17:90b:1808:b0:1dc:8904:76a1 with SMTP id lw8-20020a17090b180800b001dc890476a1mr4053595pjb.202.1652949710113;
+        Thu, 19 May 2022 01:41:50 -0700 (PDT)
 Received: from judyhsiao0319.c.googlers.com.com (164.135.233.35.bc.googleusercontent.com. [35.233.135.164])
-        by smtp.gmail.com with ESMTPSA id m10-20020a170902f20a00b0015f33717794sm3066185plc.42.2022.05.19.01.41.45
+        by smtp.gmail.com with ESMTPSA id m10-20020a170902f20a00b0015f33717794sm3066185plc.42.2022.05.19.01.41.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 May 2022 01:41:45 -0700 (PDT)
+        Thu, 19 May 2022 01:41:49 -0700 (PDT)
 From:   Judy Hsiao <judyhsiao@chromium.org>
 To:     Andy Gross <agross@kernel.org>
 Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -54,9 +54,9 @@ Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         linux-arm-kernel@lists.infradead.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, Judy Hsiao <judyhsiao@chromium.org>
-Subject: [v1 1/3] arm64: dts: qcom: sc7280: Add drive strength property for secondary MI2S
-Date:   Thu, 19 May 2022 08:41:17 +0000
-Message-Id: <20220519084119.675990-2-judyhsiao@chromium.org>
+Subject: [v1 2/3] arm64: dts: qcom: sc7280: Add sc7280-herobrine-audio-rt5682.dtsi
+Date:   Thu, 19 May 2022 08:41:18 +0000
+Message-Id: <20220519084119.675990-3-judyhsiao@chromium.org>
 X-Mailer: git-send-email 2.36.1.124.g0e6072fb45-goog
 In-Reply-To: <20220519084119.675990-1-judyhsiao@chromium.org>
 References: <20220519084119.675990-1-judyhsiao@chromium.org>
@@ -64,7 +64,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,38 +72,144 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add drive strength property for secondary MI2S on sc7280 based platforms
+Audio dtsi for sc7280 boards that using rt5682 headset codec:
+1. Add dt nodes for sound card which use I2S playback and record
+   through rt5682s and I2S playback through max98357a.
+2. Enable lpass cpu node and add pin control and dai-links.
 
 Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
 ---
- arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ .../qcom/sc7280-herobrine-audio-rt5682.dtsi   | 121 ++++++++++++++++++
+ 1 file changed, 121 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-index 9cb1bc8ed6b5..6d8744e130b0 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-@@ -612,6 +612,20 @@ &dp_hot_plug_det {
- 	bias-disable;
- };
- 
-+&mi2s1_data0 {
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
+new file mode 100644
+index 000000000000..9e449817f6fd
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
+@@ -0,0 +1,121 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ *
++ * This file defines the common audio settings for the child boards using rt5682 codec.
++ *
++ * Copyright 2022 Google LLC.
++ */
++
++/ {
++	/* BOARD-SPECIFIC TOP LEVEL NODES */
++	sound: sound {
++		compatible = "google,sc7280-herobrine";
++		model = "sc7280-rt5682-max98360a-1mic";
++
++		status = "okay";
++		audio-routing =
++			"Headphone Jack", "HPOL",
++			"Headphone Jack", "HPOR";
++
++		#address-cells = <1>;
++		#size-cells = <0>;
++		#sound-dai-cells = <0>;
++
++		dai-link@0 {
++			link-name = "MAX98360";
++			reg = <0>;
++
++			cpu {
++				sound-dai = <&lpass_cpu MI2S_SECONDARY>;
++			};
++
++			codec {
++				sound-dai = <&max98360a>;
++			};
++		};
++
++		dai-link@1 {
++			link-name = "ALC5682";
++			reg = <1>;
++
++			cpu {
++				sound-dai = <&lpass_cpu MI2S_PRIMARY>;
++			};
++
++			codec {
++				sound-dai = <&alc5682 0 /* aif1 */>;
++			};
++		};
++	};
++};
++
++hp_i2c: &i2c2 {
++	status = "okay";
++	clock-frequency = <400000>;
++
++	alc5682: codec@1a {
++		compatible = "realtek,rt5682s";
++		reg = <0x1a>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&hp_irq>;
++
++		#sound-dai-cells = <1>;
++
++		interrupt-parent = <&tlmm>;
++		interrupts = <101 IRQ_TYPE_EDGE_BOTH>;
++
++		AVDD-supply = <&pp1800_alc5682>;
++		MICVDD-supply = <&pp3300_codec>;
++
++		realtek,dmic1-data-pin = <1>;
++		realtek,dmic1-clk-pin = <2>;
++		realtek,jd-src = <1>;
++		realtek,dmic-clk-rate-hz = <2048000>;
++	};
++};
++
++&lpass_cpu {
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&mi2s0_data0 &mi2s0_data1 &mi2s0_mclk &mi2s0_sclk &mi2s0_ws
++		     &mi2s1_data0 &mi2s1_sclk &mi2s1_ws>;
++
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	dai-link@0 {
++		reg = <MI2S_PRIMARY>;
++		qcom,playback-sd-lines = <1>;
++		qcom,capture-sd-lines = <0>;
++	};
++
++	dai-link@1 {
++		reg = <MI2S_SECONDARY>;
++		qcom,playback-sd-lines = <0>;
++	};
++};
++
++&mi2s0_data0 {
 +	drive-strength = <6>;
 +	bias-disable;
 +};
 +
-+&mi2s1_sclk {
++&mi2s0_data1 {
 +	drive-strength = <6>;
 +	bias-disable;
 +};
 +
-+&mi2s1_ws {
++&mi2s0_mclk {
 +	drive-strength = <6>;
++	bias-disable;
 +};
 +
- &pcie1_clkreq_n {
- 	bias-pull-up;
- 	drive-strength = <2>;
++&mi2s0_sclk {
++	drive-strength = <6>;
++	bias-disable;
++};
++
++&mi2s0_ws {
++	drive-strength = <6>;
++};
 -- 
 2.36.1.124.g0e6072fb45-goog
 
