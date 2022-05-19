@@ -2,60 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8915252CD8E
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 09:52:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5040B52CDDB
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 10:04:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231838AbiESHvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 03:51:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49630 "EHLO
+        id S235128AbiESIDV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 04:03:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235014AbiESHvf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 03:51:35 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E84131DC6;
-        Thu, 19 May 2022 00:51:33 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4CFEF616F6;
-        Thu, 19 May 2022 07:51:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 369D2C34100;
-        Thu, 19 May 2022 07:51:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1652946692;
-        bh=FfHT4dH2rOQjGAgKaeBVEfcrb90XoHDYJNfYFwMsxqA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Wdv6bZZW5o0QW+rLup4siFbRoAjk45vnoN2mBGF4tNrdcd66OnuMRG65UQonX8drr
-         8lGlydQqEA1F4HaXRjzM2tLRFkz1VPSZNN7REHWsnI4pFXI6LsbLxiHzqMrXTD4Uck
-         LWfKHIP977c130bKAkPbczwSlC0tqqYAwJf61e6dWPNJupadE/Z0aG6+CZ8mAeIPF2
-         FBPYyqQIr43HrGQhWuginBW4P5SG1y7+Xxh1cS93ikwaxiRVMzhYM4yRy6YZ8YeXnN
-         FHmDu0tjisuECWEyEVCML7hB8WY3PbV/B/JOyv115n0FBHEB72P08WuToCiISPBZKJ
-         +rjLTLvUacrpw==
-Date:   Thu, 19 May 2022 09:51:28 +0200
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     netdev@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
-        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
-        davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
-        Sam.Shih@mediatek.com, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, robh@kernel.org,
-        lorenzo.bianconi@redhat.com
-Subject: Re: [PATCH v2 net-next 11/15] net: ethernet: mtk_eth_soc: introduce
- device register map
-Message-ID: <YoX3AMlBFfDcl69o@lore-desk>
-References: <cover.1652716741.git.lorenzo@kernel.org>
- <78e8c6ed230130b75aae77e6d05a9b35e298860a.1652716741.git.lorenzo@kernel.org>
- <20220517184122.522ed708@kernel.org>
- <YoTA+5gLC4zhoQ0F@lore-desk>
- <20220518084431.66aa1737@kernel.org>
+        with ESMTP id S231538AbiESIDU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 04:03:20 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E9C45717A
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 01:03:18 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id f4so7665535lfu.12
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 01:03:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=h+5XYMbcVG/ukMH+8rM5pkWmGEN5A1VDZBupz3IskQ4=;
+        b=ookNFxXo3dqEYboeqhuxEAIDVKM2ggkLyyJZrAXTVDXa5x4KcT3z346tW+efpnrjmX
+         S+56zMWLsReakocli3x4AXTS6EqN32Nr2yCmZy03cUO4PcNLp1h6yCHSiA4+YFQ7WMRU
+         LICyzxNlOt5FHOVfS3CFn1v/esPjRtQ1eNyKuNk+bg3N84W2THm/XuJ1JDJhpRv/Xh98
+         ZFQT/WlNnMoVu4UXqHIARzIW/yx0OUE6MMvP7MhZup2YEdqEjZbW1gHifpJa9qdhmkEs
+         HgHgYcV2D6Ona9aCCBBoA/5TAJ5K/8qobzisYfzFzNB5MOKFhRJqh1B5wd9qQcunFkyM
+         gY/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=h+5XYMbcVG/ukMH+8rM5pkWmGEN5A1VDZBupz3IskQ4=;
+        b=dLZTRYN/xLSUSMPX2ARmY0O4v+CJxAxDbfySh/hrdu8+WEaOR32UiacMus7dyhjmJ7
+         2pDfhQS6g7Go7dd8DUkgsI/6Ann3V+Xrs3Y2nJ+voxBVD8LCVb+vv5mHpqCUEeZmgq1x
+         gIIB10hQzIZZ1M4wLfGwzPB0MSczQqlIJgOep0MJOlfLXtpMx0Mf+VLMQ3V1f34bQLni
+         6aC7K1fE+dhpVMJzofFeDt1Jyd1wKIRccDNw1akRhBLQbn67hTaGzTQA/IV5DbjcHtOb
+         wQTIQHtuxk/PD16cd5cvKIrXIUW/TjU3apuochHC6wPYuNxLWPSjQIH6vIiAxc/Mdubp
+         TSvA==
+X-Gm-Message-State: AOAM530C1zcVhzgVBys4g9mruHE6cogdjwD98pXiPXnH8IqF+W85mRQb
+        EL6hC4rROpuoQMZKnar7bxKHYw==
+X-Google-Smtp-Source: ABdhPJzcdAmmROIvWFwwSM91fShqeasCgr925FoWEh4W9HiVHNX3YCiZf/CDs2u8H05VevxjMEcRTA==
+X-Received: by 2002:a05:6512:449:b0:477:cb59:9fe5 with SMTP id y9-20020a056512044900b00477cb599fe5mr558965lfk.40.1652947396699;
+        Thu, 19 May 2022 01:03:16 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id n14-20020ac242ce000000b0047255d211b8sm195035lfl.231.2022.05.19.01.03.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 May 2022 01:03:16 -0700 (PDT)
+Message-ID: <65a4c28d-6702-3a9f-f837-1ea69a428777@linaro.org>
+Date:   Thu, 19 May 2022 10:03:14 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="8OQvFQTAYPTT9lFf"
-Content-Disposition: inline
-In-Reply-To: <20220518084431.66aa1737@kernel.org>
-X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [RFC PATCH v2 4/6] PM: opp: allow control of multiple clocks
+Content-Language: en-US
+To:     Stephen Boyd <sboyd@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-scsi@vger.kernel.org
+References: <20220411154347.491396-1-krzysztof.kozlowski@linaro.org>
+ <20220411154347.491396-5-krzysztof.kozlowski@linaro.org>
+ <20220425072710.v6gwo4gu3aouezg4@vireshk-i7>
+ <dea39b1f-0091-2690-7f07-108d07ef9f3c@linaro.org>
+ <20220510044053.ykn6ygnbeokhzrsa@vireshk-i7>
+ <1e533194-7047-8342-b426-f607fddbfaa3@linaro.org>
+ <20220511050643.hd5tcrojb3wkbg7t@vireshk-i7>
+ <20220518235708.1A04CC385A9@smtp.kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220518235708.1A04CC385A9@smtp.kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,56 +94,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 19/05/2022 01:57, Stephen Boyd wrote:
+> Quoting Viresh Kumar (2022-05-10 22:06:43)
+>> On 10-05-22, 15:09, Krzysztof Kozlowski wrote:
+>>> On 10/05/2022 06:40, Viresh Kumar wrote:
+>>>> IMHO, this is broken by design. I can easily see that someone wants to
+>>>> have few variants of all other frequencies for the same frequency of
+>>>> the so called "main" clock, i.e. multiple OPPs with same "main" freq
+>>>> value.  I don't think we can mark the clocks "main" or otherwise as
+>>>> easily for every platform.
+>>>>
+>>>> Stephen, any inputs on this ?
+>>>
+>>> In such case, matching opps by frequency would be a quite different API.
+>>> The drivers can use now:
+>>> https://github.com/krzk/linux/commit/ebc31798494fcc66389ae409dce6d9489c16156a#diff-b6370444c32afa2e55d9b6150f355ba6f4d20c5ed5da5399ea8295d323de8267R1200
+>>>
+>>> If you assume that this frequency can be used for multiple OPPs, then
+>>> the API should be different. Something like:
+>>> int dev_pm_opp_set_rate(struct device *dev, unsigned long *target_freqs,
+>>>                         size_t num_freqs);
+>>
+>> At this point I am not looking for a new API, but just continuing the discussion
+>> to understand what different hardwares want or look like.
+> 
+> I think for UFS they don't want a rate API at all. They want to set a
+> "clock gear" and that translates into whatever that means for OPP; be it
+> a clk frequency (or two), an interconnect bandwidth (or multiple?), and some
+> performance state (or many) for any power domains. I think the gear
+> design is built into the UFS spec. If it isn't then I'm misremembering
+> things.
 
---8OQvFQTAYPTT9lFf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Yes, true. The clock frequencies are still changed with each gear, but
+in general the UFS indeed operates on gear concept.
 
-> On Wed, 18 May 2022 11:48:43 +0200 Lorenzo Bianconi wrote:
-> > > On Mon, 16 May 2022 18:06:38 +0200 Lorenzo Bianconi wrote: =20
-> > > >  /* PDMA RX Base Pointer Register */
-> > > > -#define MTK_PRX_BASE_PTR0	0x900
-> > > > +#define MTK_PRX_BASE_PTR0	(eth->soc->reg_map[MTK_PDMA_BASE] + 0x10=
-0)
-> > > >  #define MTK_PRX_BASE_PTR_CFG(x)	(MTK_PRX_BASE_PTR0 + (x * 0x10)) =
-=20
-> > >=20
-> > > Implicit macro arguments are really unpleasant for people doing
-> > > tree-wide changes or otherwise unfamiliar with the driver.
-> > >=20
-> > > Nothing we can do to avoid this? =20
-> >=20
-> > I used this approach in order to have just few changes in the codebase.=
- I guess the best
-> > option would be to explicitly add eth parameter to the register macros,=
- what do you think?
->=20
-> I don't think there's a best known practice, you'll have to exercise
-> your judgment. Taking a look at a random example of MTK_PDMA_INT_STATUS.
-> Looks like that one is already assigned to eth->tx_int_status_reg.
-> Maybe that can be generalized? Personally I'd forgo the macros
-> completely and just use eth->soc->register_name in the code.
-
-I personally think the code is easier to read if we use macros in this case.
-Let's consider MTK_LRO_CTRL_DW1_CFG(), it depends on the particular soc bas=
-ed
-on the register map and even on the ring index. I guess the best trade-off =
-we
-can get is to explicitly pass eth to the macros as parameter when needed.
-
-Regards,
-Lorenzo
-
---8OQvFQTAYPTT9lFf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCYoX3AAAKCRA6cBh0uS2t
-rMJTAP9dIIJyzXlJOTfk8iKUs4K1OR4VWsGZQxS/9U+Knpof5QD/ared7Qln5hSb
-jxz/VwPojHBJxLWHwNrp4ROvp7awIwA=
-=/+XK
------END PGP SIGNATURE-----
-
---8OQvFQTAYPTT9lFf--
+Best regards,
+Krzysztof
