@@ -2,209 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1F2B52DA31
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 18:28:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 280FB52DA37
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 18:29:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238045AbiESQ2v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 12:28:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33526 "EHLO
+        id S242024AbiESQ3z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 12:29:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229645AbiESQ2v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 12:28:51 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13C55D4123
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 09:28:49 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nrj13-0003N5-Cf; Thu, 19 May 2022 18:28:45 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nrj13-003Jhm-7S; Thu, 19 May 2022 18:28:43 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nrj11-00AnKW-3u; Thu, 19 May 2022 18:28:43 +0200
-From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v4 2/2] ARM: dts: stm32mp15x: Add timer interrupts
-Date:   Thu, 19 May 2022 18:28:38 +0200
-Message-Id: <20220519162838.695404-2-u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220519162838.695404-1-u.kleine-koenig@pengutronix.de>
-References: <20220519162838.695404-1-u.kleine-koenig@pengutronix.de>
+        with ESMTP id S242030AbiESQ3y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 12:29:54 -0400
+Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEC29D80BD;
+        Thu, 19 May 2022 09:29:51 -0700 (PDT)
+Received: by mail-oi1-x22c.google.com with SMTP id t144so3833282oie.7;
+        Thu, 19 May 2022 09:29:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nb+0LTfVaj8me5eEZibYeHxpIZnXgwjVRTYa6w5qhzY=;
+        b=NYj5CO2VsMSeZfNk5uQQDLZWkX1iD5+rTQlPxO2qRHZTTl85aPPJ06nmfxTMPs65KE
+         u9DnkncSOpJMFJw7zRUxMgaFdjFqcO15dzXKBAuTgrQdzp4XtIuDikbxor3m9vHMkyJE
+         bBPtwqX0ReAgQlPzMdLZcXyU2kIJ0VPp6m7kc+tPavyKFrUeiGUxIvBq6MciM2GJgL7b
+         yHOMmU7x5L/3ic91Y62JHVbn0bM9DB3xIoAzVP1j0MLnSx+1yOrKtom3IDEeC3pGaQJI
+         JB6tSgYHnmLUF4g5JTMh5YtIL2faD/iQSK2+WfD51liOK2vMxcd+RiuhZ4xkAL8sXp6q
+         Vk6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nb+0LTfVaj8me5eEZibYeHxpIZnXgwjVRTYa6w5qhzY=;
+        b=F+ZqeZRkA01LyMgHGrwcOa1F2EwRl269Uxrqo8MrOul3hUTaOjsFmTcPchUMLwI9JN
+         OdejTVxJPVGk1/pPJeYx+bv3yDkxCWKpFqSiNByXsokHIoXgyuSxf0IJ0RT8ygn8TFMZ
+         uY566SdJHH57oymLVjVmf7d6/ebzndr6+iS2o3c8XSCIv0TaJ4zImTkoZGHoC/8p/JtS
+         wbLnYcs9hJu9xp030YEwsl3MmxuE0r5ZMJ9xoPwI6wRJOJdWjHexlI5fYgC0Htcs11wO
+         NcfEbNTBnJEp42/wX0bVQLSOp2AUB6AiKeIvGRV1mUEQCmNn4mUGfclzw3j1JMjXlz5n
+         gfLA==
+X-Gm-Message-State: AOAM530DXzK7Zn6Jqt+mjmXqH3g17RBv4jVG9YysbbS7dwR4JZ6y9ubv
+        uoFVc4aYIFOf7qXsJYMJ98valYGXvbnvlg==
+X-Google-Smtp-Source: ABdhPJwDVr9wsNlcIGh7UsCVXq9QcbbDq+mPnQX5EXGmcbCwnYewaZLTbFKIopObZcvOGyloWf9phg==
+X-Received: by 2002:a05:6808:140c:b0:326:cd8f:eb71 with SMTP id w12-20020a056808140c00b00326cd8feb71mr3296913oiv.257.1652977789643;
+        Thu, 19 May 2022 09:29:49 -0700 (PDT)
+Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
+        by smtp.gmail.com with ESMTPSA id n4-20020a056870844400b000e92295f8acsm36562oak.2.2022.05.19.09.29.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 May 2022 09:29:49 -0700 (PDT)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     dri-devel@lists.freedesktop.org
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, mchehab@kernel.org,
+        emma@anholt.net, mripard@kernel.org,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: [RESEND 0/6 v2] Support Geekworm MZP280 Panel for Raspberry Pi
+Date:   Thu, 19 May 2022 11:29:29 -0500
+Message-Id: <20220519162935.1585-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5309; h=from:subject; bh=y5fAVyEAIgUYzDJ9yAgTwAOsHYtt+sv987yLXwn0MMw=; b=owEBbQGS/pANAwAKAcH8FHityuwJAcsmYgBihnAzDDTn9itzz1sovbwXTCCPNDIebecKLNY2KRbC ndlsFaGJATMEAAEKAB0WIQR+cioWkBis/z50pAvB/BR4rcrsCQUCYoZwMwAKCRDB/BR4rcrsCTrNB/ 4uqa6sMOYdithxs/NPiygF1Z17vyCYrGwAwh9NLwRHhBw5TElxZSPdNXwOnJSw22GfvIyWIRYujwLg w8eKiJWNLubu/5AJdY4KUT/PC0alT5sssyAhwAiLwJjrz4Xs4bxUWsDjXbEVpxW48O/kRvYGAxgeiW 7lUZKlj9lwmgx30l4w7ML61+nf+nerqlpdQ0P0ZMVRj+6JkdUvXYRWkFwsLOix/Mgja7iVn9zP/rC6 vLKTAmRfT4OjS8GiFK4PWVVIvqDulj1woWhwEnIng937CvTA/dTvplZGHRorZQhaX8GDu5JXuROqzw E88KE2tggHdqETLBI2WRv6+zP3TWPx
-X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The timer units in the stm32mp15x CPUs have interrupts, depending on the
-timer flavour either one "global" or four dedicated ones. Add the irqs
-to the timer units on stm32mp15x.
+From: Chris Morgan <macromorgan@hotmail.com>
 
-Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
----
- arch/arm/boot/dts/stm32mp151.dtsi | 34 +++++++++++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
+This patch series is to add support for the MZP280 panel for the
+Raspberry Pi. This panel requires adding support for Mode 3 of the
+Raspberry Pi DPI connector, which necessitates a new media bus format.
 
-diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
-index f9aa9af31efd..ae290a04771a 100644
---- a/arch/arm/boot/dts/stm32mp151.dtsi
-+++ b/arch/arm/boot/dts/stm32mp151.dtsi
-@@ -127,6 +127,8 @@ timers2: timer@40000000 {
- 			#size-cells = <0>;
- 			compatible = "st,stm32-timers";
- 			reg = <0x40000000 0x400>;
-+			interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "global";
- 			clocks = <&rcc TIM2_K>;
- 			clock-names = "int";
- 			dmas = <&dmamux1 18 0x400 0x1>,
-@@ -160,6 +162,8 @@ timers3: timer@40001000 {
- 			#size-cells = <0>;
- 			compatible = "st,stm32-timers";
- 			reg = <0x40001000 0x400>;
-+			interrupts = <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "global";
- 			clocks = <&rcc TIM3_K>;
- 			clock-names = "int";
- 			dmas = <&dmamux1 23 0x400 0x1>,
-@@ -194,6 +198,8 @@ timers4: timer@40002000 {
- 			#size-cells = <0>;
- 			compatible = "st,stm32-timers";
- 			reg = <0x40002000 0x400>;
-+			interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "global";
- 			clocks = <&rcc TIM4_K>;
- 			clock-names = "int";
- 			dmas = <&dmamux1 29 0x400 0x1>,
-@@ -226,6 +232,8 @@ timers5: timer@40003000 {
- 			#size-cells = <0>;
- 			compatible = "st,stm32-timers";
- 			reg = <0x40003000 0x400>;
-+			interrupts = <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "global";
- 			clocks = <&rcc TIM5_K>;
- 			clock-names = "int";
- 			dmas = <&dmamux1 55 0x400 0x1>,
-@@ -260,6 +268,8 @@ timers6: timer@40004000 {
- 			#size-cells = <0>;
- 			compatible = "st,stm32-timers";
- 			reg = <0x40004000 0x400>;
-+			interrupts = <GIC_SPI 54 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "global";
- 			clocks = <&rcc TIM6_K>;
- 			clock-names = "int";
- 			dmas = <&dmamux1 69 0x400 0x1>;
-@@ -278,6 +288,8 @@ timers7: timer@40005000 {
- 			#size-cells = <0>;
- 			compatible = "st,stm32-timers";
- 			reg = <0x40005000 0x400>;
-+			interrupts = <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "global";
- 			clocks = <&rcc TIM7_K>;
- 			clock-names = "int";
- 			dmas = <&dmamux1 70 0x400 0x1>;
-@@ -296,6 +308,8 @@ timers12: timer@40006000 {
- 			#size-cells = <0>;
- 			compatible = "st,stm32-timers";
- 			reg = <0x40006000 0x400>;
-+			interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "global";
- 			clocks = <&rcc TIM12_K>;
- 			clock-names = "int";
- 			status = "disabled";
-@@ -318,6 +332,8 @@ timers13: timer@40007000 {
- 			#size-cells = <0>;
- 			compatible = "st,stm32-timers";
- 			reg = <0x40007000 0x400>;
-+			interrupts = <GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "global";
- 			clocks = <&rcc TIM13_K>;
- 			clock-names = "int";
- 			status = "disabled";
-@@ -340,6 +356,8 @@ timers14: timer@40008000 {
- 			#size-cells = <0>;
- 			compatible = "st,stm32-timers";
- 			reg = <0x40008000 0x400>;
-+			interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "global";
- 			clocks = <&rcc TIM14_K>;
- 			clock-names = "int";
- 			status = "disabled";
-@@ -623,6 +641,11 @@ timers1: timer@44000000 {
- 			#size-cells = <0>;
- 			compatible = "st,stm32-timers";
- 			reg = <0x44000000 0x400>;
-+			interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "brk", "up", "trg-com", "cc";
- 			clocks = <&rcc TIM1_K>;
- 			clock-names = "int";
- 			dmas = <&dmamux1 11 0x400 0x1>,
-@@ -659,6 +682,11 @@ timers8: timer@44001000 {
- 			#size-cells = <0>;
- 			compatible = "st,stm32-timers";
- 			reg = <0x44001000 0x400>;
-+			interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "brk", "up", "trg-com", "cc";
- 			clocks = <&rcc TIM8_K>;
- 			clock-names = "int";
- 			dmas = <&dmamux1 47 0x400 0x1>,
-@@ -746,6 +774,8 @@ timers15: timer@44006000 {
- 			#size-cells = <0>;
- 			compatible = "st,stm32-timers";
- 			reg = <0x44006000 0x400>;
-+			interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "global";
- 			clocks = <&rcc TIM15_K>;
- 			clock-names = "int";
- 			dmas = <&dmamux1 105 0x400 0x1>,
-@@ -773,6 +803,8 @@ timers16: timer@44007000 {
- 			#size-cells = <0>;
- 			compatible = "st,stm32-timers";
- 			reg = <0x44007000 0x400>;
-+			interrupts = <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "global";
- 			clocks = <&rcc TIM16_K>;
- 			clock-names = "int";
- 			dmas = <&dmamux1 109 0x400 0x1>,
-@@ -797,6 +829,8 @@ timers17: timer@44008000 {
- 			#size-cells = <0>;
- 			compatible = "st,stm32-timers";
- 			reg = <0x44008000 0x400>;
-+			interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "global";
- 			clocks = <&rcc TIM17_K>;
- 			clock-names = "int";
- 			dmas = <&dmamux1 111 0x400 0x1>,
+This patch series has been tested on my Raspberry Pi 4 with version 1
+of the panel in question.
+
+Changes since V1:
+
+ - Added documentation for vendor string.
+
+Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+
+Chris Morgan (6):
+  dt-bindings: vendor-prefixes: Add Geekworm
+  media: uapi: Document format MEDIA_BUS_FMT_RGB565_1X24_CPADHI
+  media: uapi: add MEDIA_BUS_FMT_RGB565_1X24_CPADHI
+  dt-bindings: display: simple: add Geekworm MZP280 Panel
+  drm/panel: simple: add Geekworm MZP280 Panel
+  drm/vc4: dpi: Support DPI interface in mode3 for RGB565
+
+ .../bindings/display/panel/panel-simple.yaml  |  2 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+ .../media/v4l/subdev-formats.rst              | 37 +++++++++++++++++++
+ drivers/gpu/drm/panel/panel-simple.c          | 29 +++++++++++++++
+ drivers/gpu/drm/vc4/vc4_dpi.c                 |  4 ++
+ include/uapi/linux/media-bus-format.h         |  3 +-
+ 6 files changed, 76 insertions(+), 1 deletion(-)
+
 -- 
-2.35.1
+2.25.1
 
