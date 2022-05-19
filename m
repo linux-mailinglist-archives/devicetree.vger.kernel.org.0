@@ -2,52 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B840552E06E
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 01:17:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB17752E0D6
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 01:53:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343511AbiESXR3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 19:17:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32830 "EHLO
+        id S243332AbiESXvc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 19:51:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237386AbiESXR2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 19:17:28 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D244E8BA0;
-        Thu, 19 May 2022 16:17:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 6844CB828CC;
-        Thu, 19 May 2022 23:17:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BEB3C385AA;
-        Thu, 19 May 2022 23:17:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1653002245;
-        bh=u3LSNocOTwuPd9KtxemKZdkfKzpqcbGjvJH7pyNSGXE=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=qq15Itd3+U+Id1OdlSaz5bB1NKH5f0V1En2jcJEP5yEvCkwaOh+qYXFmIKcMagt+7
-         Yott4qAL+1/WC9ISKm8TAgp9sfWRx2by99tx0B+G+97trzTLImodCUT2UN303IfaLZ
-         LkM/gUWCP9Vikl7nU3YjRIZtBnFuQ5qf8rvZR8qTIWzVfJ9yY/Xj53LhHm4WwvtTjD
-         wM9Ty2p0hxN3qfqnpgHEsf8YsTLJXx9okehAMPTu4NZ+FlcPvZE8EVybwCKrG9Ff8y
-         qmD1Hr+AovKko1sE8yLz9tDHUwr8LcmIvxVkva6+7eO5+ZS2Bn1GVNU40zrfxZkUBL
-         L4NnB3OzkNdRw==
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S1343781AbiESXvb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 19:51:31 -0400
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2DBB3F331
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 16:51:27 -0700 (PDT)
+Received: by mail-pg1-x52f.google.com with SMTP id a19so6349195pgw.6
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 16:51:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=O68zOwYSR6b5bIhMSQfgIGQAc/cdqbvjZPUOTjfh09U=;
+        b=gfq/frvCvea+Jl6JVCs1ZnXx5YZ0mp2A2abNlzF2s1fF+s7AzqcGazJmmNCb0KNec1
+         SEy2fOrPkGUDjf4hzrsvvImF+GP4koXcKJDVLDEZW3cy9mDDq8vBNdh3K8GxLU+l48SL
+         uY3ACHgkzO5q9VYZ5ncO9sHAMFGRBHXLhaB60=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=O68zOwYSR6b5bIhMSQfgIGQAc/cdqbvjZPUOTjfh09U=;
+        b=5MLus74WBCQH3oQw0LFsy7PWZYROnmUkZvjgyL7R8qCMWJY0aTr4H0pR4x/j+UnNQN
+         sHz/I8fnTipFtdn6dZw6LyikQgKYXUkc0VlpgFCIz1orxVMYDGQ0bEAdtM5c1znlYP4D
+         1fosgQtded2tdZvqYU9EgFrULtK5aKF4FOEB9w0y1ZYbljVGz5WMkHkxM72H/4DZXVJj
+         jtrlTbjFMEzIlyNFKUkNNl625+q7ZL2aUbRC0azhmW+shvLGim9dJCkJClXe8s0/5KEp
+         6tikOTkOyD5+AJuWDRIKvRXWzzQiBP1Q2OBaXCztw+Sf8T6lcMQJD9FmaA1naBUkTIYV
+         t1TA==
+X-Gm-Message-State: AOAM533vn5NWOf89ivdyInelerquhCBoiXpu3XjK3F1t15P/u+HizPat
+        bqUqEEs57GBQ/IfPbXECKe1R3w==
+X-Google-Smtp-Source: ABdhPJyamfEkeHtpOdtcg6ZxrEdQGZCexKa9myBcRzDRrg9mGVcijU6CctbM2iy+F++LJtTegbPK0A==
+X-Received: by 2002:aa7:83d0:0:b0:50c:eb2b:8e8a with SMTP id j16-20020aa783d0000000b0050ceb2b8e8amr6950116pfn.31.1653004287251;
+        Thu, 19 May 2022 16:51:27 -0700 (PDT)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:e45f:1f3c:299b:4d86])
+        by smtp.gmail.com with ESMTPSA id m2-20020a6545c2000000b003c18ab7389asm4128992pgr.36.2022.05.19.16.51.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 May 2022 16:51:26 -0700 (PDT)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>, linux-arm-msm@vger.kernel.org,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        "Joseph S . Barrera III" <joebar@chromium.org>,
+        patches@lists.linux.dev, devicetree@vger.kernel.org,
+        Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Julius Werner <jwerner@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/5] dt-bindings: Document how Chromebooks with depthcharge boot
+Date:   Thu, 19 May 2022 16:51:05 -0700
+Message-Id: <20220519164914.v3.1.I71e42c6174f1cec17da3024c9f73ba373263b9b6@changeid>
+X-Mailer: git-send-email 2.36.1.124.g0e6072fb45-goog
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20220428152719.2263164-1-robh@kernel.org>
-References: <20220428152719.2263164-1-robh@kernel.org>
-Subject: Re: [dtschema PATCH] schemas: clock: Add example for 'clock-indices'
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Stephen Boyd <sboyd@codeaurora.org>,
-        Ben Dooks <ben.dooks@codethink.co.uk>
-To:     Rob Herring <robh@kernel.org>, devicetree-spec@vger.kernel.org,
-        devicetree@vger.kernel.org
-Date:   Thu, 19 May 2022 16:17:23 -0700
-User-Agent: alot/0.10
-Message-Id: <20220519231725.2BEB3C385AA@smtp.kernel.org>
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,15 +75,98 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Rob Herring (2022-04-28 08:27:19)
-> Add description for assigned-clocks properties from clock-binding.txt in
-> the Linux kernel.
->=20
-> This is relicensed from GPL-2.0 (the default) to BSD-2-Clause. The Cc list
-> are the original authors.
->=20
-> Cc: Ben Dooks <ben.dooks@codethink.co.uk>
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
+This documents how many Chromebooks pick the device tree that will be
+passed to the OS and can help understand the revisions / skus listed
+as the top-level "compatible" in many Chromebooks.
 
-Acked-by: Stephen Boyd <sboyd@kernel.org>
+Signed-off-by: Douglas Anderson <dianders@chromium.org>
+---
+In my opinion this could land through the Qualcomm dts64 tree, mostly
+because I want to land bindings patches in that tree that refer to
+it. Since it's a new file it seems like there ought to be few
+objections?
+
+Changes in v3:
+- Fix up typos as per Matthias.
+- Move under Documentation/arm/google/ as per Krzysztof.
+- Add missing newline at end of file.
+
+Changes in v2:
+- ("Document how Chromebooks with depthcharge boot") new for v2.
+
+ .../arm/google/chromebook-boot-flow.rst       | 63 +++++++++++++++++++
+ 1 file changed, 63 insertions(+)
+ create mode 100644 Documentation/arm/google/chromebook-boot-flow.rst
+
+diff --git a/Documentation/arm/google/chromebook-boot-flow.rst b/Documentation/arm/google/chromebook-boot-flow.rst
+new file mode 100644
+index 000000000000..92d8a658ceaa
+--- /dev/null
++++ b/Documentation/arm/google/chromebook-boot-flow.rst
+@@ -0,0 +1,63 @@
++.. SPDX-License-Identifier: GPL-2.0
++
++======================================
++Chromebook Boot Flow
++======================================
++
++Most recent Chromebooks that use device tree are using the opensource
++depthcharge bootloader. Depthcharge expects the OS to be packaged as a "FIT
++Image" which contains an OS image as well as a collection of device trees. It
++is up to depthcharge to pick the right device tree from the FIT Image and
++provide it to the OS.
++
++The scheme that depthcharge uses to pick the device tree takes into account
++three variables:
++- Board name, specified at compile time.
++- Board revision number, read from GPIO strappings at boot time.
++- SKU number, read from GPIO strappings at boot time.
++
++For recent Chromebooks, depthcharge creates a match list that looks like this:
++- google,$(BOARD)-rev$(REV)-sku$(SKU)
++- google,$(BOARD)-rev$(REV)
++- google,$(BOARD)-sku$(SKU)
++- google,$(BOARD)
++
++Note that some older Chromebooks use a slightly different list that may
++not include sku matching or may prioritize sku/rev differently.
++
++Note that for some boards there may be extra board-specific logic to inject
++extra compatibles into the list, but this is uncommon.
++
++Depthcharge will look through all device trees in the FIT image trying to
++find one that matches the most specific compatible. It will then look
++through all device trees in the FIT image trying to find the one that
++matches the _second most_ specific compatible, etc.
++
++When searching for a device tree, depthcharge doesn't care where the
++compatible falls within a given device tree. As an example, if we're on
++board "lazor", rev 4, sku 0 and we have two device trees:
++- "google,lazor-rev5-sku0", "google,lazor-rev4-sku0", "qcom,sc7180"
++- "google,lazor", "qcom,sc7180"
++
++Then depthcharge will pick the first device tree even though
++"google,lazor-rev4-sku0" was the second compatible listed in that device tree.
++This is because it is a more specific compatible than "google,lazor".
++
++It should be noted that depthcharge does not have any smarts to try to
++match board or SKU revisions that are "close by". That is to say that
++if depthcharge knows it's on "rev4" of a board but there is no "rev4"
++device tree then depthcharge _won't_ look for a "rev3" device tree.
++
++In general when any significant changes are made to a board the board
++revision number is increased even if none of those changes need to
++be reflected in the device tree. Thus it's fairly common to see device
++trees with multiple revisions.
++
++It should be noted that, taking into account the above system that
++depthcharge has, the most flexibility is achieved if the device tree
++supporting the newest revision(s) of a board omits the "-rev{REV}"
++compatible strings. When this is done then if you get a new board
++revision and try to run old software on it then we'll at pick the most
++reasonable device tree. If it turns out that the new revision actually
++has no device-tree visible changes then we'll not only pick the most
++reasonable device tree, we'll pick the exact right one.
+-- 
+2.36.1.124.g0e6072fb45-goog
+
