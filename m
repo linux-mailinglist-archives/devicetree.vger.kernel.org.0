@@ -2,160 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C414A52DCB4
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 20:25:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AA4652DCC0
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 20:28:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243851AbiESSZN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 14:25:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44796 "EHLO
+        id S243887AbiESS2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 14:28:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241385AbiESSZL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 14:25:11 -0400
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C574CEBE88
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 11:25:08 -0700 (PDT)
-Received: by mail-pj1-f50.google.com with SMTP id oe17-20020a17090b395100b001df77d29587so9496223pjb.2
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 11:25:08 -0700 (PDT)
+        with ESMTP id S243885AbiESS2R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 14:28:17 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17441C6E79;
+        Thu, 19 May 2022 11:28:16 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id y13so10803793eje.2;
+        Thu, 19 May 2022 11:28:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=1sDcNbgzxstYFS1dCzzCYng8q+gbAciBWtOhDHr35lY=;
+        b=Qs068JdV71v2mLkWZADWIvNoA1hKeNDw694CzcnIbE5aoHv7lctOcj8yQGD2Zdp1kZ
+         lANiJLLPG3z92YN1RjSOR2GcIGFyfij/ngDjp2qPmj1U8eBWhRfYZlPqKUh5nA6mdv7N
+         V1EudqXB83vYPlhgMoskMW56c8DD9sWnkYOQ5CYZQDJJJzpCKy0sIZXOffIVgUZiSuEk
+         /hHxSQCth7cK//2VrlSsdYy72uD6tn6OP4FRNg1VZ3MmwfIPTMngEJ85eZ3zNjbm8/Ks
+         OOaBDj/US9MMPJU/jI/1OfBhlVhty6vXCvyCGLSnmkOkcitSFVj4Tyz6i98VKh/2QrzX
+         YnMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=yYJ5d8JV3t4O7WcoAyfX+3lgnKWLdKUEPNKkivp4FxE=;
-        b=0j+livz1279XRGJ6M0X1G77wCroVz9NyTNfkm6nqfYlU+jzaA8NxfmbodVkWIKWoNR
-         AEnX4fSi6OrBkCwscXmhLYNUC95xqPc1zn80A0akNvLE67PErlmPiz9X3NLl1iteuoSH
-         0U2CN/FqBvxB8hy9maCaYRwKrdIzsFIKy3RCEBQeb4eBbbdLsznUnCvaapAJwVgShFy4
-         3KGPzXnHhp1QTlPfuwXb2zss4xTyl+py4sqURPSSDzl85vpqLuQMFuSHbTpsTV/BEMMu
-         umbtXGYUNgb+G7m3jm53mdh5AnMnj8oCERVVPiigfXoJDa6g20USwv7csokb+srx1jjz
-         wJZQ==
-X-Gm-Message-State: AOAM533vPs/jtZAuWaMdQDflyBjPCBPz2yuS33YoryQnAyhbVRahaHRP
-        3ha+sV4oZx6gnQkaXG6mpa5nKg==
-X-Google-Smtp-Source: ABdhPJxJuiO93xsMywzWjqiZThDp7pcpVoqDBgq85ICeMcDEB034hBaCoXLEhaErUk+3R3vaFW18kQ==
-X-Received: by 2002:a17:902:e415:b0:161:d804:dc6c with SMTP id m21-20020a170902e41500b00161d804dc6cmr5341884ple.50.1652984708201;
-        Thu, 19 May 2022 11:25:08 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id 76-20020a63044f000000b003db141a5f26sm3868353pge.1.2022.05.19.11.25.07
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=1sDcNbgzxstYFS1dCzzCYng8q+gbAciBWtOhDHr35lY=;
+        b=kX53wh1Mh8zP4HmcdcXVxziw55am1xvDUJQkBRKCm6HYfC1ZMrjg/Qpmp7fwQlAzs2
+         L5tdmb94x20a9pQZ3F3lapj9Kia+aFS6tO8OyzKgI5X+KNUjaz+uxKNlVzRLeL1R0duz
+         IQPy5Lj4GWh365qUA+S27c+hDX388h0rQOIP4uIe0GEkrUQYbo5RIAdqFj71zAqRuhc6
+         C9dhAEFVWxAnCgOMq2Shlb0Y6kJEHFka5Llrgs+kCGkO2TNF0OIk3VRfpmBcMXAsAc95
+         Fiyl0H4+3EXpPfDejVqCSF2H307kUcCmURbb8fdkMDNeDnLt/NYw2iNo+q0dcXKz1lP9
+         yeNA==
+X-Gm-Message-State: AOAM530sy8L7DWG5VYPHQj4kve3oEqsQ1eTyj94bllGd0FHpbxpGKhFm
+        1ebwKVShfeB7OGFU4BWbR0o=
+X-Google-Smtp-Source: ABdhPJxLX2HTJhx/MNiPan0SKInfK85r5Zi6aqFuFnQoZBbncjAdDbtmhjNjxDP+kVf3c4hgBhLGUw==
+X-Received: by 2002:a17:906:dc8b:b0:6fe:920b:61ff with SMTP id cs11-20020a170906dc8b00b006fe920b61ffmr5609038ejc.565.1652984894651;
+        Thu, 19 May 2022 11:28:14 -0700 (PDT)
+Received: from skbuf ([188.25.255.186])
+        by smtp.gmail.com with ESMTPSA id yl15-20020a17090693ef00b006f3ef214e69sm2321301ejb.207.2022.05.19.11.28.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 May 2022 11:25:07 -0700 (PDT)
-From:   Kevin Hilman <khilman@kernel.org>
-To:     Chen-Yu Tsai <wenst@chromium.org>, cw00.choi@samsung.com
-Cc:     Roger Lu <roger.lu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Thu, 19 May 2022 11:28:14 -0700 (PDT)
+Date:   Thu, 19 May 2022 21:28:12 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Fan Chen <fan.chen@mediatek.com>,
-        Charles Yang <Charles.Yang@mediatek.com>,
-        Angus Lin <Angus.Lin@mediatek.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jia-wei Chang <jia-wei.chang@mediatek.com>,
-        =?utf-8?B?UmV4LUJDIENoZW4gKOmZs+afj+i+sCk=?= 
-        <rex-bc.chen@mediatek.com>
-Subject: Re: [PATCH v25 0/7] soc: mediatek: SVS: introduce MTK SVS
-In-Reply-To: <CAGXv+5GT=3m=pVPwUOWR42BR=emCpBXvvoAiRV7YKt2kEKWdAQ@mail.gmail.com>
-References: <20220516004311.18358-1-roger.lu@mediatek.com>
- <CAGXv+5GSdWPZe3fNpBJ_WW0zCL8Skg6fHx9ATxaKU1hyMEt2Ww@mail.gmail.com>
- <7h4k1ndaui.fsf@baylibre.com> <7hy1yzbtb7.fsf@baylibre.com>
- <CAGXv+5GT=3m=pVPwUOWR42BR=emCpBXvvoAiRV7YKt2kEKWdAQ@mail.gmail.com>
-Date:   Thu, 19 May 2022 11:25:07 -0700
-Message-ID: <7hmtfdbcsc.fsf@baylibre.com>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next v5 12/13] ARM: dts: r9a06g032: describe switch
+Message-ID: <20220519182812.lmp2gp6m47jt742y@skbuf>
+References: <20220519153107.696864-1-clement.leger@bootlin.com>
+ <20220519153107.696864-13-clement.leger@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220519153107.696864-13-clement.leger@bootlin.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Chen-Yu Tsai <wenst@chromium.org> writes:
+On Thu, May 19, 2022 at 05:31:06PM +0200, Clément Léger wrote:
+> Add description of the switch that is present on the RZ/N1 SoC.
+> 
+> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> ---
+>  arch/arm/boot/dts/r9a06g032.dtsi | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/r9a06g032.dtsi b/arch/arm/boot/dts/r9a06g032.dtsi
+> index 31c4b2e2950a..20d3dce632ce 100644
+> --- a/arch/arm/boot/dts/r9a06g032.dtsi
+> +++ b/arch/arm/boot/dts/r9a06g032.dtsi
+> @@ -255,6 +255,15 @@ mii_conv5: mii-conv@5 {
+>  			};
+>  		};
+>  
+> +		switch: switch@44050000 {
+> +			compatible = "renesas,r9a06g032-a5psw", "renesas,rzn1-a5psw";
+> +			reg = <0x44050000 0x10000>;
+> +			clocks = <&sysctrl R9A06G032_HCLK_SWITCH>,
+> +				 <&sysctrl R9A06G032_CLK_SWITCH>;
+> +			clock-names = "hclk", "clk";
+> +			status = "disabled";
 
-> n Wed, May 18, 2022 at 8:03 AM Kevin Hilman <khilman@kernel.org> wrote:
->>
->> Kevin Hilman <khilman@kernel.org> writes:
->>
->> > Chen-Yu Tsai <wenst@chromium.org> writes:
->> >
->> >> On Mon, May 16, 2022 at 8:43 AM Roger Lu <roger.lu@mediatek.com> wrote:
->> >>>
->> >>> The Smart Voltage Scaling(SVS) engine is a piece of hardware
->> >>> which calculates suitable SVS bank voltages to OPP voltage table.
->> >>> Then, DVFS driver could apply those SVS bank voltages to PMIC/Buck
->> >>> when receiving OPP_EVENT_ADJUST_VOLTAGE.
->> >>>
->> >>> 1. SVS driver uses OPP adjust event in [1] to update OPP table voltage part.
->> >>> 2. SVS driver gets thermal/GPU device by node [2][3] and CPU device by get_cpu_device().
->> >>> After retrieving subsys device, SVS driver calls device_link_add() to make sure probe/suspend callback priority.
->> >>>
->> >>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git/commit/?h=opp/linux-next&id=25cb20a212a1f989385dfe23230817e69c62bee5
->> >>> [2] https://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git/commit/?h=opp/linux-next&id=b325ce39785b1408040d90365a6ab1aa36e94f87
->> >>> [3] https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/commit/?h=v5.16-next/dts64&id=a8168cebf1bca1b5269e8a7eb2626fb76814d6e2
->> >>>
->> >>> Change since v24:
->> >>> - Rebase to Linux 5.18-rc6
->> >>> - Show specific fail log in svs_platform_probe() to help catch which step fails quickly
->> >>> - Remove struct svs_bank member "pd_dev" because all subsys device's power domain has been merged into one node like above [3]
->> >>>
->> >>> Test in below environment:
->> >>> SW: Integration Tree [4] + Thermal patch [5] + SVS v25 (this patchset)
->> >>> HW: mt8183-Krane
->> >>>
->> >>> [4] https://github.com/wens/linux/commits/mt8183-cpufreq-cci-svs-test
->> >>
->> >> I've updated my branch to include all the latest versions of the relevant
->> >> patch series:
->> >>
->> >> - anx7625 DPI bus type series v2 (so the display works)
->> >> - MT8183 thermal series v9 (this seems to have been overlooked by the
->> >> maintainer)
->> >> - MTK SVS driver series v25
->> >> - devfreq: cpu based scaling support to passive governor series v5
->> >> - MTK CCI devfreq series v4
->> >> - MT8183 cpufreq series v7
->> >> - Additional WIP patches for panfrost MTK devfreq
->> >
->> > Thanks for preparing an integration branch Chen-Yu.
->> >
->> > I'm testing this on mt8183-pumpkin with one patch to add the CCI
->> > regulator[1], and the defconfig you posted in a previous rev of this
->> > series, but the CCI driver still causes a fault on boot[2] on my
->> > platform.
->> >
->> > I mentioned in earlier reviews that I think there's potentially a race
->> > between CCI and SVS loading since they are co-dependent.  My hunch is
->> > that this is still not being handled properly.
->>
->> Ah, actually it's crashing when I try to boot the platform with
->> `maxcpus=4` on the cmdline (which I have to do because mt8183-pumpkin is
->> unstable upstream with the 2nd cluster enabled.)
->>
->> The CCI driver should be a bit more robust about detecting
->> available/online CPUs
->
-> This all seems to be handled in the devfreq passive governor.
+Does the switch port count depend on anything? If it doesn't, maybe you
+could add the "ethernet-ports" node and all the ports here, with status
+= "disabled", so that board files don't need to spell them out each time?
+I'm also thinking you could define the fixed-link and phy-mode = "internal"
+property of the CPU port with this occasion. That surely isn't a
+per-board thing.
 
-Well, that's the initial crash.  But the SVS driver will also go through
-its svs_mt8183_banks[] array (including both big & little clusters) and
-try to init SVS, so presumably that will have some problems also if only
-one cluster is enabled.
-
-> And presumably we'd like to have CCI devfreq running even if just one
-> core was booted.
-
-Yes, I assume so also.
-
-> Added Chanwoo for more ideas.
-
-OK, thanks.
-
-Kevin
+> +		};
+> +
+>  		gic: interrupt-controller@44101000 {
+>  			compatible = "arm,gic-400", "arm,cortex-a7-gic";
+>  			interrupt-controller;
+> -- 
+> 2.36.0
+> 
