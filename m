@@ -2,62 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD7F152D331
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 14:56:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1CCF52D367
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 15:02:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238323AbiESMz5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 08:55:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34548 "EHLO
+        id S237647AbiESNCJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 09:02:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238241AbiESMzn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 08:55:43 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA76CBDA1E;
-        Thu, 19 May 2022 05:55:39 -0700 (PDT)
-X-UUID: 734d8a495d9e463b9f876011ab6f3eca-20220519
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:a1a72a25-b103-4463-9a73-55cd78f88cc2,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:-5
-X-CID-META: VersionHash:2a19b09,CLOUDID:248ccfe2-edbf-4bd4-8a34-dfc5f7bb086d,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:0,BEC:nil
-X-UUID: 734d8a495d9e463b9f876011ab6f3eca-20220519
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 723433210; Thu, 19 May 2022 20:55:33 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Thu, 19 May 2022 20:55:31 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 19 May 2022 20:55:31 +0800
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <p.zabel@pengutronix.de>,
-        <angelogioacchino.delregno@collabora.com>,
-        <chun-jie.chen@mediatek.com>, <wenst@chromium.org>,
-        <runyang.chen@mediatek.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Rex-BC Chen <rex-bc.chen@mediatek.com>
-Subject: [PATCH v7 19/19] clk: mediatek: reset: Add infra_ao reset support for MT8186
-Date:   Thu, 19 May 2022 20:55:27 +0800
-Message-ID: <20220519125527.18544-20-rex-bc.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220519125527.18544-1-rex-bc.chen@mediatek.com>
-References: <20220519125527.18544-1-rex-bc.chen@mediatek.com>
+        with ESMTP id S235936AbiESNCI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 09:02:08 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9C4D62A2D
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 06:02:05 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id t25so8993016lfg.7
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 06:02:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ZSu0XTILVshJ9x+raeV7MMtJ9MSB+JWGEzTTcAYgGH8=;
+        b=xqED8FRRBUVTJs7yZwduUBlQVzuTT6nBQqS8MK6cY4tL4aSDZSi5uEDOJeQkjNDaPN
+         G8YSKiHjSHkGbcos8Waq3CA5OaE7m3AQ8fcvT8MARoiuiJUfjTxrGZpJmIX5Js3HHQdo
+         xaT6kf/P4GruZnyXpl+5b/UVlDa14h+BGYixzLR9AmpwXeEY82HH1tn4ZzjhwOSsHOE/
+         kujzLJWw5HlwRzqYnhohpDYWZMe9H2ovChf7ZJrWULZD2bzNg0zCMKwbXzY1xJGW+r5G
+         E4B6PuJ45TgHO0NE5Tp/TKHh6LCqbIqQDV3P/+kRu2Gjg03dItAs60osg+4Grcx6zX1f
+         2w/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ZSu0XTILVshJ9x+raeV7MMtJ9MSB+JWGEzTTcAYgGH8=;
+        b=Gc2joXg2rByL98ckb2wosg5t9V5iVdi6/YCyoSxsr47BLY/QvfMneXXqiU8QdvRH60
+         +LCChod9pG6Rz3756tq96XXoecVox3vnKLat5fmEVpjaaOSFD07o8NpQq7uqqU6EkMZq
+         lfL+a8XGKg30DV1nRgFKm7hdC7g9hejIdZv/pPMSU2iNnjZLXI0uaT4GNERd/+v8Ys48
+         Rh9WRvQib6mFrW71hSAl43+EkHmP5Fw2nudw0OQJERFTnGjjIqiGKGRDQ7XBpxpcH0ap
+         f87XhDTyzTzSjEkE4KAH475Y72/nZTFlGQr8FbhQm7mykZaoS0UXB+O0kXWZ3DeYNmo6
+         y2Uw==
+X-Gm-Message-State: AOAM530KJ/ajcAeKD21aD/lx4vm6fRsgUc9xvIay9Y8DWyMaRSriy2R+
+        knp8kw/jNWkm1T3BTiWuquoVm4pfjJGPJj491jgcDQ==
+X-Google-Smtp-Source: ABdhPJylwHp+PNUHX0L3veOS1GtM4Mw0E0JPCmgEyCyRHaCw2NGWeTZfPTo+jpC/foRCai/LLqJubn4J1RgwqQDBofA=
+X-Received: by 2002:a05:6512:70b:b0:477:a832:7d07 with SMTP id
+ b11-20020a056512070b00b00477a8327d07mr3144930lfs.71.1652965323773; Thu, 19
+ May 2022 06:02:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+References: <1652275016-13423-1-git-send-email-quic_mkshah@quicinc.com> <1652275016-13423-2-git-send-email-quic_mkshah@quicinc.com>
+In-Reply-To: <1652275016-13423-2-git-send-email-quic_mkshah@quicinc.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 19 May 2022 15:01:27 +0200
+Message-ID: <CAPDyKFoDmTMfGNsvv-DJqrV-xX=nLKfR-fjSOB_1JBbHm+nzqA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/6] dt-bindings: soc: qcom: Update devicetree binding
+ document for rpmh-rsc
+To:     Maulik Shah <quic_mkshah@quicinc.com>
+Cc:     bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        rafael@kernel.org, daniel.lezcano@linaro.org,
+        quic_lsrao@quicinc.com, quic_rjendra@quicinc.com,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,60 +69,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The infra_ao reset is needed for MT8186.
-- Add mtk_clk_rst_desc for MT8186.
-- Add register reset controller function for MT8186 infra_ao.
-- Add infra_ao_idx_map for MT8186.
+On Wed, 11 May 2022 at 15:17, Maulik Shah <quic_mkshah@quicinc.com> wrote:
+>
+> The change documents power-domains property for RSC device.
+> This optional property points to corresponding PM domain node.
+>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Maulik Shah <quic_mkshah@quicinc.com>
 
-Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
----
- drivers/clk/mediatek/clk-mt8186-infra_ao.c | 23 ++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
 
-diff --git a/drivers/clk/mediatek/clk-mt8186-infra_ao.c b/drivers/clk/mediatek/clk-mt8186-infra_ao.c
-index 2a7adc25abaa..df2a6bd1aefa 100644
---- a/drivers/clk/mediatek/clk-mt8186-infra_ao.c
-+++ b/drivers/clk/mediatek/clk-mt8186-infra_ao.c
-@@ -6,6 +6,7 @@
- #include <linux/clk-provider.h>
- #include <linux/platform_device.h>
- #include <dt-bindings/clock/mt8186-clk.h>
-+#include <dt-bindings/reset/mt8186-resets.h>
- 
- #include "clk-gate.h"
- #include "clk-mtk.h"
-@@ -191,9 +192,31 @@ static const struct mtk_gate infra_ao_clks[] = {
- 	GATE_INFRA_AO3(CLK_INFRA_AO_FLASHIF_66M, "infra_ao_flashif_66m", "top_axi", 29),
- };
- 
-+static u16 infra_ao_rst_ofs[] = {
-+	INFRA_RST0_SET_OFFSET,
-+	INFRA_RST1_SET_OFFSET,
-+	INFRA_RST2_SET_OFFSET,
-+	INFRA_RST3_SET_OFFSET,
-+	INFRA_RST4_SET_OFFSET,
-+};
-+
-+static u16 infra_ao_idx_map[] = {
-+	[MT8186_INFRA_THERMAL_CTRL_RST] = 0 * RST_NR_PER_BANK + 0,
-+	[MT8186_INFRA_PTP_CTRL_RST] = 1 * RST_NR_PER_BANK + 0,
-+};
-+
-+static struct mtk_clk_rst_desc infra_ao_rst_desc = {
-+	.version = MTK_RST_SET_CLR,
-+	.rst_bank_ofs = infra_ao_rst_ofs,
-+	.rst_bank_nr = ARRAY_SIZE(infra_ao_rst_ofs),
-+	.rst_idx_map = infra_ao_idx_map,
-+	.rst_idx_map_nr = ARRAY_SIZE(infra_ao_idx_map),
-+};
-+
- static const struct mtk_clk_desc infra_ao_desc = {
- 	.clks = infra_ao_clks,
- 	.num_clks = ARRAY_SIZE(infra_ao_clks),
-+	.rst_desc = &infra_ao_rst_desc,
- };
- 
- static const struct of_device_id of_match_clk_mt8186_infra_ao[] = {
--- 
-2.18.0
+Kind regards
+Uffe
 
+
+> ---
+>  Documentation/devicetree/bindings/soc/qcom/qcom,rpmh-rsc.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,rpmh-rsc.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,rpmh-rsc.yaml
+> index f5ecf4a..7683cc9 100644
+> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,rpmh-rsc.yaml
+> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,rpmh-rsc.yaml
+> @@ -110,6 +110,9 @@ properties:
+>        - const: drv-2
+>        - const: drv-3
+>
+> +  power-domains:
+> +    maxItems: 1
+> +
+>    bcm-voter:
+>      $ref: /schemas/interconnect/qcom,bcm-voter.yaml#
+>
+> @@ -162,6 +165,7 @@ examples:
+>                            <SLEEP_TCS   3>,
+>                            <WAKE_TCS    3>,
+>                            <CONTROL_TCS 1>;
+> +        power-domains = <&CLUSTER_PD>;
+>        };
+>
+>    - |
+> @@ -208,6 +212,7 @@ examples:
+>                            <SLEEP_TCS   3>,
+>                            <WAKE_TCS    3>,
+>                            <CONTROL_TCS 0>;
+> +        power-domains = <&CLUSTER_PD>;
+>
+>          clock-controller {
+>              compatible = "qcom,sm8350-rpmh-clk";
+> --
+> 2.7.4
+>
