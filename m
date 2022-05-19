@@ -2,110 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83BDA52D3B9
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 15:16:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B901552D3D0
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 15:21:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233807AbiESNP5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 09:15:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47036 "EHLO
+        id S233037AbiESNV0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 09:21:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234080AbiESNP4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 09:15:56 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53EC6646C;
-        Thu, 19 May 2022 06:15:54 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id n6so2888160wms.0;
-        Thu, 19 May 2022 06:15:54 -0700 (PDT)
+        with ESMTP id S238688AbiESNVY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 09:21:24 -0400
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F310C13D39
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 06:21:22 -0700 (PDT)
+Received: by mail-yb1-xb2c.google.com with SMTP id x2so8676034ybi.8
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 06:21:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=Pp2u8adaeiVjAOQPo7uviaRpGC989a2Z1dhW4/bgQQE=;
-        b=ExHb+cFqw/V7KxYvQxunB9ssbGzkJEkN9HDCfEsGMGljtEJ4yZyNaZ2oqfJv9FjbaD
-         lmTEhrgAVMmUv7tvcr8yF2RONlTPix//ON0GPv4iK/+ugRfJN3F4yTb3JjHEM6xjhvQt
-         5Mw+SxC5kqJPvIqGtoQiAcxyQpD2PCX0VBwdU=
+        bh=/8rkuhaZCQOmIIWlvL2cVDQe2QMeTYPgrGWngEZIrx4=;
+        b=qAA8lOXG8uIzKLnoeK5xsx2x0vRWX6tIuU9hSyCXncTSHBvHstrpTc1JZ2HDD3F2i3
+         ZiJShiWWKUvTsCocOYW3LlqNcwSZxAw1B17JguGYGXm9o4c/Ek35ZgLsaqrPYMeRxM3h
+         dtkxIKXN0cMeYzdq/p9LKfP1XzkcvsZkNkh5eLdQdw15AK5kP9rFQL/BOHi36WsAHR1I
+         Iny/GWuPfSty3YalC4ZbKxm6kNV/C24UCgpxKW011EinRM7XCCpE0vvdoumFNoGNp39K
+         MMqaKtM4GWk9RaCv87OsZr0ywEpbFiQ2OEArEnn88yAjH2sJtRabYx/32nWpvP/haUdB
+         3vDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Pp2u8adaeiVjAOQPo7uviaRpGC989a2Z1dhW4/bgQQE=;
-        b=T8PrK0CRwMtOXj5ZfKmV00VjZffh/1nPZM/WQfXX/i/z1jKk7CsnwcETubZW8raBCH
-         Cumzdyh9DQMuwoJ67iI7I/DIOInKc5gUkQjVlqIIcFOER/4b7l+xO7PIXuSkXjs7Wchi
-         kFc6txuP36pAoIXuUH0UDNlBbXOLtXm6msPQFtPC5mq+j9yPG8/rTkIkzuDypufnClbb
-         XrShfvjPcOrQNBprQaOXXnfXWn1R8XyX0JNmOIOpCj0/Egbil/grKzeJ6QNK9xeWvtbe
-         a6+UEFrMS9vHsk8XL4to53dPFdkqdPhMaFD2Y6hHjQdhTAJUlJOng/FCs361Wd/hu8LL
-         V4tA==
-X-Gm-Message-State: AOAM53018QBV/MXrEO8go25s0b6/vleVJHeWE3xAZhKr2LMB/t4UyFoS
-        aPd5G4IGdzjxTRx5RZSis7S/DtUQopR/xy3Mv4Y=
-X-Google-Smtp-Source: ABdhPJyARNN9JGSBx0lw6/N1VuA9RmZVUqBJDIG99T/jhQsAgNiWljmPf8WtCPtRbG+p4MrHeMq+oKFUA4a7VGMnMkY=
-X-Received: by 2002:a7b:cd82:0:b0:389:77ef:66d7 with SMTP id
- y2-20020a7bcd82000000b0038977ef66d7mr3658957wmj.171.1652966152666; Thu, 19
- May 2022 06:15:52 -0700 (PDT)
+        bh=/8rkuhaZCQOmIIWlvL2cVDQe2QMeTYPgrGWngEZIrx4=;
+        b=l/qGjGzQBQeij1R5raeBI6a5YOBjsA/Ui2YAawB61InCc+VaDSd5JvWY+fz7gO/Odx
+         vwHzD2P7XCsixlXya8MjPtu/dhONdPGAX/ZUfxBaLTlOwZnEOrzMo5R54paEHULDb8yj
+         PC34fbTand1ZKGqpwwnezdZtZjMy8Vp/YQq0QHMQbWiYdsESA+JKUEMot7BQv9XbEO61
+         Qah7I4Gv/iyjFBo6m7g+y4/srISvFj30l3dA17RecPTcxKQcquiqGebVM7hOeclt3FD7
+         NMsmIXoa+rfeqszCW85MP6M28vxzIYIaAjQ/dATL+FK6mnQIO5T5OvhCcLY1pMHXil+c
+         rhYQ==
+X-Gm-Message-State: AOAM532Jc5PLZuqwH+hTwgC8OLHSO1I9NZT3j5PtCnzg9uaFswz6ea6l
+        9rPHSE0TcZZXPbJKRjyo7unzdyCjeNITyf0QjeNvRg==
+X-Google-Smtp-Source: ABdhPJzT0GGkpIhtRDpezEb7oVDQoA8RCO+/1yU04m2HB9xz8AvRn7VrjVu0qhzkauTfGr4IKwQcrnIptuIlhYb5Yek=
+X-Received: by 2002:a05:6902:526:b0:64d:b6ab:f91d with SMTP id
+ y6-20020a056902052600b0064db6abf91dmr4494072ybs.295.1652966482209; Thu, 19
+ May 2022 06:21:22 -0700 (PDT)
 MIME-Version: 1.0
-References: <SG2PR06MB23155E8A6193118544A7DBF3E61E9@SG2PR06MB2315.apcprd06.prod.outlook.com>
-In-Reply-To: <SG2PR06MB23155E8A6193118544A7DBF3E61E9@SG2PR06MB2315.apcprd06.prod.outlook.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Thu, 19 May 2022 13:15:41 +0000
-Message-ID: <CACPK8Xev-AYtrWzZyMGj8eBkTP2YXjnX=M+4UUGgfRZYeGMPtA@mail.gmail.com>
-Subject: Re: [PATCH v4 3/3] ARM: dts: aspeed: ast2600-evb: Enable virtual hub
-To:     Howard Chiu <howard_chiu@aspeedtech.com>
-Cc:     Andrew Jeffery <andrew@aj.id.au>, Rob Herring <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Troy Lee <troy_lee@aspeedtech.com>
+References: <20220511183210.5248-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220511183210.5248-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CACRpkdYQAsam_v0XHm-A_trbyifj1pBQq5N+zc9KVw1vXVTYUw@mail.gmail.com> <CA+V-a8v_bCtoipKXyYoHsSku0-AbABi6Wj0RsHrj7_Sk4MUJyg@mail.gmail.com>
+In-Reply-To: <CA+V-a8v_bCtoipKXyYoHsSku0-AbABi6Wj0RsHrj7_Sk4MUJyg@mail.gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 19 May 2022 15:21:10 +0200
+Message-ID: <CACRpkda9xiPMa6BBXUNsoJ7SQ9N6t=K422bh0Dh4HUBnotVYxg@mail.gmail.com>
+Subject: Re: [PATCH v3 4/5] gpio: gpiolib: Add ngirq member to struct gpio_irq_chip
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 29 Mar 2022 at 03:24, Howard Chiu <howard_chiu@aspeedtech.com> wrote:
->
-> Enable Aspeed VHub for HID emulation
->
-> Signed-off-by: Howard Chiu <howard_chiu@aspeedtech.com>
-> ---
->  arch/arm/boot/dts/aspeed-ast2600-evb.dts | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/aspeed-ast2600-evb.dts b/arch/arm/boot/dts/aspeed-ast2600-evb.dts
-> index 158b88f38d2c..b98cdad86e90 100644
-> --- a/arch/arm/boot/dts/aspeed-ast2600-evb.dts
-> +++ b/arch/arm/boot/dts/aspeed-ast2600-evb.dts
-> @@ -314,6 +314,11 @@ &sdhci1 {
->         clk-phase-sd-hs = <7>, <200>;
->  };
->
-> +&vhub {
-> +       status = "okay";
-> +       pinctrl-names = "default";
-> +};
+On Wed, May 18, 2022 at 8:36 PM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
 
-When booting with this patch applied we see:
+> > As Geert says, I think you can just use .valid_mask for this,
+> > what do you say?
+> >
+> I don't think Geert is suggesting that. The .valid_mask option is one
+> time setting but what I need is something dynamic i.e. out of 392 GPIO
+> pins any 32 can be used as an interrupt pin.
 
-[    1.596377] aspeed-g6-pinctrl 1e6e2000.syscon:pinctrl: pin A4
-already requested by 1e6a1000.usb; cannot claim for 1e6a0000.usb-vhub
-[    1.596678] aspeed-g6-pinctrl 1e6e2000.syscon:pinctrl: pin-252
-(1e6a0000.usb-vhub) status -22
-[    1.596947] aspeed-g6-pinctrl 1e6e2000.syscon:pinctrl: could not
-request pin 252 (A4) from group USBA  on device aspeed-g6-pinctrl
-[    1.597238] aspeed_vhub 1e6a0000.usb-vhub: Error applying setting,
-reverse things back
+So why can't this just be determined from the compatible?
+This does not sound like a configuration option at all but something
+related to the IP block per se, and then you know that if it has
+a certain compatible then it has this property.
 
-
-> +
->  &video {
->         status = "okay";
->         memory-region = <&video_engine_memory>;
-> --
-> 2.25.1
->
+Yours,
+Linus Walleij
