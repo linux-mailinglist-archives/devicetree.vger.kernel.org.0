@@ -2,66 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D4B352CD08
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 09:29:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8E0E52CD4F
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 09:41:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232373AbiESH1k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 03:27:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50592 "EHLO
+        id S229796AbiESHlJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 03:41:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234853AbiESH10 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 03:27:26 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0A058CB10
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 00:27:02 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id l7-20020a17090aaa8700b001dd1a5b9965so4445649pjq.2
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 00:27:02 -0700 (PDT)
+        with ESMTP id S234967AbiESHlE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 03:41:04 -0400
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E520E17581
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 00:41:01 -0700 (PDT)
+Received: by mail-pj1-x1034.google.com with SMTP id l7-20020a17090aaa8700b001dd1a5b9965so4476648pjq.2
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 00:41:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=aAwl0nMeiuQyulzpnQY+0Q3CMgejgrLMRz8aWvv0M80=;
-        b=TCm4dq7k42XhcVURpAi98W3DD52g+rV9t2retTLhSARqOR3vx0HOSAEBHAd+IT0vqW
-         NCYdc4hzFxG5KHr44IxqM2KzakWaqafx5DwQW/baXPYYt9/0/QCh0zLdjV4YDWMgaoMM
-         G+7u+3OlAY3yeCssSlYR9pIe3ZnfyvvitTnK4=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=6BFj6eL9xI6o3HeDTuj7wVAbVfHCB9+3bO6BLJqKQQk=;
+        b=J9toYYkDK+rR/yLELx3wocA959PZJuK8FvgzCR91wivnMOQYh8kZxsMRC73Ojtbd31
+         PWNqP7M3XnRdyCqsh0dWQGjrKamfmJ2MRlPP30SsrVknM8RskQtajHiUMZ2uYlW3UqMF
+         qBMopa0W5EqpueQAO6kkYz/IFzQ+r68zdjkxR0m3CSWDs71+lk0s6dsSH+2Jj8wMnNP1
+         VX+eU6Vx/9SdegX/CrFao91Zp6PVyJ5ecNsZj8doIW3OsgQS0I6AsXDGQco8sWwkSyu6
+         qh01535S1r+aD7649viQb+oWrMjdcri08hbdE4d8nTzD1qlugbJMADELDMDp8cOrdgoi
+         LmCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=aAwl0nMeiuQyulzpnQY+0Q3CMgejgrLMRz8aWvv0M80=;
-        b=F5EWhNfp5PCIwJihp+8RYV8M0OtVLGej0nyiGgBBpFlKHYyJMQr6U1jAQTXDBl1mTL
-         P7SfwZ/5gm16aGeEe6e/B0xgk3MxdO/bPzMO+Qrv+9LZRCRs9eryJ7g3oip+xzPEa5Iw
-         BG/Ia3+K1pppcYxiXUvHm3PFsbc0Y/H4Dkzja+AI2g0XpLLsGjMrt2wu92k+riqJVJs2
-         De0tEalLwSIdKM8Ja2ovun4TTEYULcbIlvK4NUfoRKpdAqLInYgYHruZfoeoZiOqx1TK
-         d9S/tiShbYsgd/cDkjBPd/wnUZqr6QM8lR/kBljv0648Xa/xYezcDhIpSGIVhOJvUuOw
-         /P9w==
-X-Gm-Message-State: AOAM531PUJlMn5xsiGns+qC0SB/wRpezUwVkYq5+diIFm+5LB9a722xE
-        eBAq3qZhwU7xXpp0f0dsHpC9Gw==
-X-Google-Smtp-Source: ABdhPJwxYC9vOe2OgP9SywcJgr2vVxIIiMIGMDJNVZ/f/acPVTzBxtTzRayEoSDDSXE/IjWNvND/Hg==
-X-Received: by 2002:a17:902:cf4a:b0:161:64f4:52d8 with SMTP id e10-20020a170902cf4a00b0016164f452d8mr3433156plg.83.1652945221701;
-        Thu, 19 May 2022 00:27:01 -0700 (PDT)
-Received: from treapking.tpe.corp.google.com ([2401:fa00:1:10:7f93:9f84:d846:5099])
-        by smtp.gmail.com with ESMTPSA id y23-20020aa78057000000b0050dc76281d8sm3296106pfm.178.2022.05.19.00.26.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 May 2022 00:27:01 -0700 (PDT)
-From:   Pin-Yen Lin <treapking@chromium.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Pin-Yen Lin <treapking@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH] arm64: dts: mt8173: Fix elm panel DT node
-Date:   Thu, 19 May 2022 15:26:49 +0800
-Message-Id: <20220519072649.1493706-1-treapking@chromium.org>
-X-Mailer: git-send-email 2.36.1.124.g0e6072fb45-goog
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=6BFj6eL9xI6o3HeDTuj7wVAbVfHCB9+3bO6BLJqKQQk=;
+        b=mE0dwW2yodMUrmq7dQr36lOV2FNPxj0F/+xmGVIw4QRX5nb6Q0nlqX9GX0XmSiJ1BX
+         wds7+rc7Fp2q4Hbp2ThQQ/UaflKKBVGLli9n5sHmsdXWZnwhNZt5C/1eMXTHvwtKP7nX
+         kL4lWgBLXNqJN4Iw5+1BJXma6jUn2xLj8HQj8JVVXZseDYa6qf2FqmyNfvMR/UwYgCK6
+         SRD2CzEy4zpwDtCF3Ua8ust+ocDqQNPu67923mQAMb94ZsZ6oOgZzLpQT2Wz7peERehp
+         bn3oarryXv1ucSEjj+jukp8ro7Yc1SrFlAMyJtSudpJUqN/YAe3C4Hzr/mbNgcBDJtmJ
+         R5zA==
+X-Gm-Message-State: AOAM532AP5FFr/JryvUnqYl8ndtJIK65cTZOkAhJNOvdR6Tpw9GBQnSC
+        LNYZwUKcSjpmzWVFH9oQ2SFb
+X-Google-Smtp-Source: ABdhPJzqdsuT3wpL7sE+JxxSPZtMtWpG3EF3tleN1ucGqzcW3hAkoTtUt75yzx+p9W/b3RWxzN0AgQ==
+X-Received: by 2002:a17:902:da8b:b0:15e:aba7:43fe with SMTP id j11-20020a170902da8b00b0015eaba743femr3349537plx.9.1652946061239;
+        Thu, 19 May 2022 00:41:01 -0700 (PDT)
+Received: from workstation ([117.202.185.140])
+        by smtp.gmail.com with ESMTPSA id j19-20020a056a00235300b0050dc76281a3sm3330134pfj.125.2022.05.19.00.40.56
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 19 May 2022 00:41:00 -0700 (PDT)
+Date:   Thu, 19 May 2022 13:10:53 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Frank Li <Frank.Li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 15/17] PCI: dwc: Introduce dma-ranges property support
+ for RC-host
+Message-ID: <20220519074053.GA24064@workstation>
+References: <20220503214638.1895-1-Sergey.Semin@baikalelectronics.ru>
+ <20220503214638.1895-16-Sergey.Semin@baikalelectronics.ru>
+ <20220512135708.GC35848@thinkpad>
+ <20220512194135.ku73pae2xdvyocx7@mobilestation>
+ <20220517172042.GC4528@thinkpad>
+ <20220518192623.fl3ogcxlurcd6okd@mobilestation>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+In-Reply-To: <20220518192623.fl3ogcxlurcd6okd@mobilestation>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,62 +89,215 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Move the panel DT node under `aux-bus` node so it won't use the buggy
-`ps8640_bridge_get_edid` to get display modes. Also change the
-compatible string to "edp-panel" because the predefined
-`lg_lp129qe_mode` is not working.
+On Wed, May 18, 2022 at 10:26:23PM +0300, Serge Semin wrote:
+> On Tue, May 17, 2022 at 10:50:42PM +0530, Manivannan Sadhasivam wrote:
+> > On Thu, May 12, 2022 at 10:41:35PM +0300, Serge Semin wrote:
+> > > On Thu, May 12, 2022 at 07:27:08PM +0530, Manivannan Sadhasivam wrote:
+> > > > On Wed, May 04, 2022 at 12:46:36AM +0300, Serge Semin wrote:
+> > > > > In accordance with the generic PCIe Root Port DT-bindings the "dma-ranges"
+> > > > > property has the same format as the "ranges" property. The only difference
+> > > > > is in their semantics. The "dma-ranges" property describes the PCIe-to-CPU
+> > > > > memory mapping in opposite to the CPU-to-PCIe mapping of the "ranges"
+> > > > > property. Even though the DW PCIe controllers are normally equipped with
+> > > > > internal Address Translation Unit which inbound and outbound tables can be
+> > > > > used to implement both properties semantics, it was surprise for me to
+> > > > > discover that the host-related part of the DW PCIe driver currently
+> > > > > supports the "ranges" property only while the "dma-ranges" windows are
+> > > > > just ignored. Having the "dma-ranges" supported in the driver would be
+> > > > > very handy for the platforms, that don't tolerate the 1:1 CPU-PCIe memory
+> > > > > mapping and require customized the PCIe memory layout. So let's fix that
+> > > > > by introducing the "dma-ranges" property support.
+> > > > > 
+> > > > > First of all we suggest to rename the dw_pcie_prog_inbound_atu() method to
+> > > > > dw_pcie_prog_ep_inbound_atu() and create a new version of the
+> > > > > dw_pcie_prog_inbound_atu() function. Thus we'll have two methods for RC
+> > > > > and EP controllers respectively in the same way as it has been developed
+> > > > > for the outbound ATU setup methods.
+> > > > > 
+> > > > > Secondly aside with the memory window index and type the new
+> > > > > dw_pcie_prog_inbound_atu() function will accept CPU address, PCIe address
+> > > > > and size as its arguments. These parameters define the PCIe and CPU memory
+> > > > > ranges which will be used to setup the respective inbound ATU mapping. The
+> > > > > passed parameters need to be verified against the ATU ranges constraints
+> > > > > in the same way as it is done for the outbound ranges.
+> > > > > 
+> > > > > Finally the DMA-ranges detected for the PCIe controller need to be
+> > > > > converted into the inbound ATU entries during the host controller
+> > > > > initialization procedure. It will be done in the framework of the
+> > > > > dw_pcie_iatu_setup() method. Note before setting the inbound ranges up we
+> > > > > need to disable all the inbound ATU entries in order to prevent unexpected
+> > > > > PCIe TLPs translations defined by some third party software like
+> > > > > bootloader.
+> > > > > 
+> > > > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > > > > ---
+> > > > >  .../pci/controller/dwc/pcie-designware-ep.c   |  4 +-
+> > > > >  .../pci/controller/dwc/pcie-designware-host.c | 32 ++++++++++-
+> > > > >  drivers/pci/controller/dwc/pcie-designware.c  | 57 ++++++++++++++++++-
+> > > > >  drivers/pci/controller/dwc/pcie-designware.h  |  6 +-
+> > > > >  4 files changed, 90 insertions(+), 9 deletions(-)
+> > > > > 
+> > > > > diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> > > > > index c62640201246..9b0540cfa9e8 100644
+> > > > > --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
+> > > > > +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> > > > > @@ -167,8 +167,8 @@ static int dw_pcie_ep_inbound_atu(struct dw_pcie_ep *ep, u8 func_no, int type,
+> > > > >  		return -EINVAL;
+> > > > >  	}
+> > > > >  
+> > > > > -	ret = dw_pcie_prog_inbound_atu(pci, func_no, free_win, type,
+> > > > > -				       cpu_addr, bar);
+> > > > > +	ret = dw_pcie_prog_ep_inbound_atu(pci, func_no, free_win, type,
+> > > > > +					  cpu_addr, bar);
+> > > > >  	if (ret < 0) {
+> > > > >  		dev_err(pci->dev, "Failed to program IB window\n");
+> > > > >  		return ret;
+> > > > > diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> > > > > index 7caca6c575a5..9cb406f5c185 100644
+> > > > > --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> > > > > +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> > > > > @@ -612,12 +612,15 @@ static int dw_pcie_iatu_setup(struct pcie_port *pp)
+> > > > >  	}
+> > > > >  
+> > > > >  	/*
+> > > > > -	 * Ensure all outbound windows are disabled before proceeding with
+> > > > > -	 * the MEM/IO ranges setups.
+> > > > > +	 * Ensure all out/inbound windows are disabled before proceeding with
+> > > > > +	 * the MEM/IO (dma-)ranges setups.
+> > > > >  	 */
+> > > > >  	for (i = 0; i < pci->num_ob_windows; i++)
+> > > > >  		dw_pcie_disable_atu(pci, PCIE_ATU_REGION_DIR_OB, i);
+> > > > >  
+> > > > > +	for (i = 0; i < pci->num_ib_windows; i++)
+> > > > > +		dw_pcie_disable_atu(pci, PCIE_ATU_REGION_DIR_IB, i);
+> > > > > +
+> > > > >  	i = 0;
+> > > > >  	resource_list_for_each_entry(entry, &pp->bridge->windows) {
+> > > > >  		if (resource_type(entry->res) != IORESOURCE_MEM)
+> > > > > @@ -654,9 +657,32 @@ static int dw_pcie_iatu_setup(struct pcie_port *pp)
+> > > > >  	}
+> > > > >  
+> > > > >  	if (pci->num_ob_windows <= i)
+> > > > > -		dev_warn(pci->dev, "Resources exceed number of ATU entries (%d)\n",
+> > > > > +		dev_warn(pci->dev, "Ranges exceed outbound iATU size (%d)\n",
+> > > > >  			 pci->num_ob_windows);
+> > > > >  
+> > > > > +	i = 0;
+> > > > > +	resource_list_for_each_entry(entry, &pp->bridge->dma_ranges) {
+> > > > > +		if (resource_type(entry->res) != IORESOURCE_MEM)
+> > > > > +			continue;
+> > > > > +
+> > > > > +		if (pci->num_ib_windows <= i)
+> > > > > +			break;
+> > > > > +
+> > > > > +		ret = dw_pcie_prog_inbound_atu(pci, i++, PCIE_ATU_TYPE_MEM,
+> > > > > +					       entry->res->start,
+> > > > > +					       entry->res->start - entry->offset,
+> > > > > +					       resource_size(entry->res));
+> > > > > +		if (ret) {
+> > > > > +			dev_err(pci->dev, "Failed to set DMA range %pr\n",
+> > > > > +				entry->res);
+> > > > > +			return ret;
+> > > > > +		}
+> > > > > +	}
+> > > > > +
+> > > > > +	if (pci->num_ib_windows <= i)
+> > > > > +		dev_warn(pci->dev, "Dma-ranges exceed inbound iATU size (%u)\n",
+> > > > > +			 pci->num_ib_windows);
+> > > > > +
+> > > > >  	return 0;
+> > > > >  }
+> > > > >  
+> > > > > diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
+> > > > > index 747e252c09e6..33718ed6c511 100644
+> > > > > --- a/drivers/pci/controller/dwc/pcie-designware.c
+> > > > > +++ b/drivers/pci/controller/dwc/pcie-designware.c
+> > > > > @@ -397,8 +397,61 @@ static inline void dw_pcie_writel_atu_ib(struct dw_pcie *pci, u32 index, u32 reg
+> > > > >  	dw_pcie_writel_atu(pci, PCIE_ATU_REGION_DIR_IB, index, reg, val);
+> > > > >  }
+> > > > >  
+> > > > > -int dw_pcie_prog_inbound_atu(struct dw_pcie *pci, u8 func_no, int index,
+> > > > > -			     int type, u64 cpu_addr, u8 bar)
+> > > > > +int dw_pcie_prog_inbound_atu(struct dw_pcie *pci, int index, int type,
+> > > > > +			     u64 cpu_addr, u64 pci_addr, u64 size)
+> > > > > +{
+> > > > > +	u64 limit_addr = pci_addr + size - 1;
+> > > > > +	u32 retries, val;
+> > > > > +
+> > > > > +	if ((limit_addr & ~pci->region_limit) != (pci_addr & ~pci->region_limit) ||
+> > > > > +	    !IS_ALIGNED(cpu_addr, pci->region_align) ||
+> > > > > +	    !IS_ALIGNED(pci_addr, pci->region_align) ||
+> > > > > +	    !IS_ALIGNED(size, pci->region_align) ||
+> > > > 
+> > > 
+> > > > Why do you want the size to be aligned? What if I want to transfer a small size
+> > > > buffer?
+> > > > 
+> > > > Same question applies to outbound programming as well.
+> > > 
+> > > You can't program a region with the unaligned size by the DW PCIe CSRs
+> > > design. The limit address lower bits are read-only and fixed with
+> > > one's in accordance with the IP-core synthesize parameter
+> > > CX_ATU_MIN_REGION_SIZE. So the mapping is always performed in the
+> > > CX_ATU_MIN_REGION_SIZE chunks.
+> > > 
+> > > IATU_LIMIT_ADDR_OFF_{IN,OUT}BOUND.LIMIT_ADDR_HW = 
+> > > {(CX_ATU_MIN_REGION_SIZE == 65536) ? "0xffff" :
+> > >  (CX_ATU_MIN_REGION_SIZE == 32768) ? "0x7fff" :
+> > >  (CX_ATU_MIN_REGION_SIZE == 16384) ? "0x3fff" :
+> > >  (CX_ATU_MIN_REGION_SIZE == 8192)  ? "0x1fff" :
+> > >  (CX_ATU_MIN_REGION_SIZE == 4096)  ? "0xfff" : "0xffff"}
+> > > 
+> > 
+> 
+> > Right. Even though the minimum size that could be mapped is 4k, I could still
+> > use that 4k size for mapping small buffers also. So you should not be erroring
+> > out here if the size is not aligned. 
+> 
+> Why would you need to do that? Even if you do and the operation
+> doesn't return an error (or at least splash the syslog with a
+> warning), the hardware would expand the mapping up to the aligned size
+> anyway. Such implicit behavior would have given your software an
+> impression that the mapping was performed in the way you asked with
+> the size you specified so the upper part of the unaligned range is
+> free to be used for something else. If the range is accessed, instead
+> of a bus error or silent IO termination it may cause unexpected result
+> of creating random PCIe bus traffic. So I'd rather have the
+> code/platform setup fixed right from the start instead of waiting for
+> the hard to find bug cause.
+> 
 
-Signed-off-by: Pin-Yen Lin <treapking@chromium.org>
-Fixes: 689b937bedde ("arm64: dts: mediatek: add mt8173 elm and hana board")
----
+The application I'm working on is MHI bus. As per the design, it needs to copy
+16byte data to ring buffers in the host memory. If I use iATU, then I
+cannot copy those small data with the size alignment.
 
- arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 26 +++++++++++---------
- 1 file changed, 14 insertions(+), 12 deletions(-)
+> > I know that it is a waste of memory but that doesn't mean that it won't work.
+> 
+> The correct statement in this case would be "it won't work in a way
+> you expected, but with the implicit side effect applied to the memory
+> above the requested one."
+> 
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-index 9c75fbb31f98..1e0802a6f6d2 100644
---- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-@@ -90,18 +90,6 @@ volume_up {
- 		};
- 	};
- 
--	panel: panel {
--		compatible = "lg,lp120up1";
--		power-supply = <&panel_fixed_3v3>;
--		backlight = <&backlight>;
--
--		port {
--			panel_in: endpoint {
--				remote-endpoint = <&ps8640_out>;
--			};
--		};
--	};
--
- 	panel_fixed_3v3: regulator1 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "PANEL_3V3";
-@@ -282,6 +270,20 @@ ps8640_out: endpoint {
- 				};
- 			};
- 		};
-+
-+		aux-bus {
-+			panel {
-+				compatible = "edp-panel";
-+				power-supply = <&panel_fixed_3v3>;
-+				backlight = <&backlight>;
-+
-+				port {
-+					panel_in: endpoint {
-+						remote-endpoint = <&ps8640_out>;
-+					};
-+				};
-+			};
-+		};
- 	};
- };
- 
--- 
-2.36.1.124.g0e6072fb45-goog
+Agree but that would only happen when the application does out of bound
+access and in that case the issue is with the application.
 
+Thanks,
+Mani
+
+> -Sergey
+> 
+> > 
+> > Thanks,
+> > Mani
+> > 
+> > > -Sergey
+> > > 
+> > > > 
+> > > > Thanks,
+> > > > Mani
+> > > > 
+> > > > -- 
+> > > > மணிவண்ணன் சதாசிவம்
+> > 
+> > -- 
+> > மணிவண்ணன் சதாசிவம்
