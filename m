@@ -2,76 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BD6B52DF11
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 23:20:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95A7052DF99
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 23:53:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245101AbiESVUK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 17:20:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49606 "EHLO
+        id S245295AbiESVxS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 17:53:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231966AbiESVUI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 17:20:08 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EF53ED726;
-        Thu, 19 May 2022 14:20:07 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 52B84B8250B;
-        Thu, 19 May 2022 21:20:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79C6FC385AA;
-        Thu, 19 May 2022 21:19:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1652995205;
-        bh=SvQDWvHaw/Ro4+sDEA3LzYO4ioj59uSH1d5BBRvD684=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lZPvgxQ/0GEOJbdI/RsIgFr7yLZfcUJvpqzkwIfYr6DnYL+2Rhom2zrrp9ZJYTqpF
-         2BbR9KFYoHbcXxtwZrm5jEIxoonOr6uHesOrfW2SzdnjGAFe7wRyLtBeOLomEHF142
-         GyhjeqDrl/+/XblALv6RzMdFZz//uCum30g8tGHTm+Jh2eHBkWU+fpxNxNOYIVKpdO
-         Yz+zapxuT0saXPNbmmikHL5VGRFl3k5i/okcNGRFGOcWY43CajAV5gIwlk5K91/tPl
-         FY3nh2Cq1LMWd9FJmk7x7tKje3C8gCWlhNIHrrazJdMY61SXsJMc302TGt3KV0Bc7z
-         VYeES8NTlFwKw==
-Date:   Thu, 19 May 2022 22:19:54 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Kalle Valo <kvalo@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Matt Mackall <mpm@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        dri-devel@lists.freedesktop.org, linux-gpio@vger.kernel.org,
-        linux-input@vger.kernel.org, chrome-platform@lists.linux.dev,
-        linux-media@vger.kernel.org, netdev@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-crypto@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-serial@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: Fix properties without any type
-Message-ID: <Yoa0egr9vhTHcxjp@sirena.org.uk>
-References: <20220519211411.2200720-1-robh@kernel.org>
+        with ESMTP id S245238AbiESVxR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 17:53:17 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CBEA562DF
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 14:53:15 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id i23so7736960ljb.4
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 14:53:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language
+         :from:to:cc:references:in-reply-to:content-transfer-encoding;
+        bh=82NZuQY377Ihw3HW2I+gVmVonHsYI+8hlsd5Oyk8KqM=;
+        b=Y2HM83ZwKGVd2oQPvq7hWt7bevOdzWVBmTADVZQusS/XkBl9LkgVa7Jrqd+euW+7WL
+         cSTyNefh7hCVX/KmxN0F9N68IIAI+TVO+ptr9nZ9Vrp86+Ih1XP3mxxA8yhxryfFqt2N
+         ikmzKnLP+ymvFeawGzPDeXXxqOSXi4YXFQFfqGK9ZFPzgVh9vhrrjw9rfTSCOhLLUV9U
+         l/VXYtfTPjJDFg83oI39DUvSm0GvvyAShvxoE2AvdSqtaoavx1ZVNFy22Vq4wZrH1tSA
+         xDo6Ms8TJgAURKvI9wNMVysy8kVhxVxzALwlSUdYx0WTPr9SFbU9yOPkoXSDJejoXXnr
+         inNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:from:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=82NZuQY377Ihw3HW2I+gVmVonHsYI+8hlsd5Oyk8KqM=;
+        b=vhn+qUMRpsz72Q4JFwnwrQaUh8FPbpr/5egWnKITDOKlBAAEwLwsg1uSY56MZ7wuLZ
+         DDVRfMUvy1/qL5cmp0y0hk9DDtCcIKn/9HYF2iodfWpDMva0Bo9OqnYxViQ3ZfhV8YRt
+         lip/hO/FTyKd8V9jbMDTEUPmUujmbxNh9EZN2ztoPF0QQs96MhIAcgfvGfZgARqW0vU0
+         JlTGIWbwutBJv3rVBuohnEb8AODBJ0q9nzFLEmsDT8BfSVduQ1ppCWpdr/tiecpkuLZ/
+         1Pm+sKE++BoB9dcO1mEdHdOibb79KeMmgHvtiJZpaUu2VWzTWNB+2AouJGr0jeh2t5kt
+         2ZyQ==
+X-Gm-Message-State: AOAM531F/Khov/VIBwBGDK2hjcrQIOfcxBaD3LN7RekwEGmG4TNDsNeQ
+        lB81RbB2AsWDJJLg00YOB0ercw==
+X-Google-Smtp-Source: ABdhPJwIid+306dVJaEE+OZZU1A40yZDIWW8vC5Q5e+PfDdit1T3JGqCz84V3v58s4LvLXgVpYzocA==
+X-Received: by 2002:a2e:a90c:0:b0:253:cdf8:3682 with SMTP id j12-20020a2ea90c000000b00253cdf83682mr3834925ljq.236.1652997193833;
+        Thu, 19 May 2022 14:53:13 -0700 (PDT)
+Received: from [192.168.1.102] (mobile-access-b04822-211.dhcp.inet.fi. [176.72.34.211])
+        by smtp.gmail.com with ESMTPSA id t8-20020a2e7808000000b00253d77ad51asm58796ljc.10.2022.05.19.14.53.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 May 2022 14:53:13 -0700 (PDT)
+Message-ID: <06baf3b7-6b2d-4cc6-64d7-7bd1b3a18335@linaro.org>
+Date:   Fri, 20 May 2022 00:53:02 +0300
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="eXFy+XxgE7404o6q"
-Content-Disposition: inline
-In-Reply-To: <20220519211411.2200720-1-robh@kernel.org>
-X-Cookie: Some restrictions may apply.
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 0/2] media: dt-bindings: media: sm8250-camss: Add
+ power-domain-names property
+Content-Language: en-US
+From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+To:     Robert Foss <robert.foss@linaro.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220518121104.951621-1-vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20220518121104.951621-1-vladimir.zapolskiy@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,36 +80,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 5/18/22 15:11, Vladimir Zapolskiy wrote:
+> QCOM SM8250 camera subsystem depends on three power domains, at the moment
+> all of them are not differentiated one from another, however the power
+> domains compose a hierarchical structure with vfe0 and vfe1 as subdomains
+> of titan_top, also managing vfe0 and vfe1 separately allows to get more
+> fine-grained power control in runtime.
+> 
+> The change relates to my review comment for v2 of CAMSS on SM8250 submission:
+> 
+>     https://lore.kernel.org/all/13ad033e-cd5d-3a8c-b036-50a3ac4245c0@linaro.org/
+> 
+> Apparently it becomes important to manage CAMSS power domains much better for
+> newer platforms, this referes to platforms with Titan GDSC, for instance CAMSS
+> on SM8450 has 6 power domains, and dealing with them in bulk is not an option.
+> 
+> There was a note in commit 2f6f8af67203 ("media: camss: Refactor VFE power
+> domain toggling") about problems with power VFE domains on/off, but perhaps
+> it's related to the fact that Titan GDSC is a special power domain and VFE
+> are subdomains, the latter shall not be enabled earlier than the Titan, but
+> the driver did not construct a proper hierarchy and leaves a room for races.
+> 
+> The change should have no implications on any SM8250 CAMSS users, since
+> none of the supported in upstream boards enables the camss device tree node.
+> The correspondent changes in the driver will follow this dt specific series.
+> 
+> Most likely a similar change is required for SDM845 platform, but it would
+> need additional investigation and testing.
+> 
+> Vladimir Zapolskiy (2):
+>    media: dt-bindings: media: sm8250-camss: Add power-domain-names property
+>    arm64: dts: qcom: sm8250: camss: Add power-domain-names property
+> 
+>   .../devicetree/bindings/media/qcom,sm8250-camss.yaml       | 7 +++++++
+>   arch/arm64/boot/dts/qcom/sm8250.dtsi                       | 1 +
+>   2 files changed, 8 insertions(+)
+> 
 
---eXFy+XxgE7404o6q
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+These changes will be unneeded, if it is reliable to state that the order
+of 'power-domains' array values is fixed.
 
-On Thu, May 19, 2022 at 04:14:11PM -0500, Rob Herring wrote:
-> Now that the schema tools can extract type information for all
-> properties (in order to decode dtb files), finding properties missing
-> any type definition is fairly trivial though not yet automated.
->=20
-> Fix the various property schemas which are missing a type. Most of these
-> tend to be device specific properties which don't have a vendor prefix.
-> A vendor prefix is how we normally ensure a type is defined.
+ From Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
 
-Acked-by: Mark Brown <broonie@kernel.org>
+   power-domains:
+     items:
+       - description: IFE0 GDSC - Image Front End, Global Distributed Switch Controller.
+       - description: IFE1 GDSC - Image Front End, Global Distributed Switch Controller.
+       - description: Titan GDSC - Titan ISP Block, Global Distributed Switch Controller.
 
---eXFy+XxgE7404o6q
-Content-Type: application/pgp-signature; name="signature.asc"
+Apparently it's insufficient to ensure the fixed order of the power domains
+by running a check against the schema, and likely it can not be improved,
+but please correct me here, if I'm wrong.
 
------BEGIN PGP SIGNATURE-----
+That's said, what is the preferred way here? Leave everything as is and rely
+on the order of item descriptions, or add a new power-domain-names property?
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmKGtHkACgkQJNaLcl1U
-h9CTcgf/YrxaonL9unlOXD9rVNzVh2gBFZV2wTefQuNDSwkIM40MNQLcoafgcXo5
-gFwpnXnCULN4HW9E4gsxeDnj3lcvR/bPgnNtrHetwyPKH/I99KJSgtm6605GyKWF
-4d5cVzASF5iCk9z6tn51f2x6jCCLVkVoAOOohCc3nYr1YbXRtQSnKKS8vYaNyqVq
-/sELkTEEdwMdl9AML+9S0amyFoPS92ZdcFlFWZIjjzPmidXQxZuL7tGvs9O56vj+
-QUESokWc4u2ziIcTQT9X0XXb9dDJjhXWaFiHNc38F7o+ad3kBXAhgzzBzMC/6fLI
-/352XipOMFDBOV9MMA03nK4kEtXQBA==
-=MbOe
------END PGP SIGNATURE-----
-
---eXFy+XxgE7404o6q--
+--
+Best wishes,
+Vladimir
