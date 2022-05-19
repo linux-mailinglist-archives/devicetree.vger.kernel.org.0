@@ -2,129 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C84AA52D5A1
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 16:10:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D05452D5BB
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 16:16:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231908AbiESOKX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 10:10:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52990 "EHLO
+        id S237820AbiESOQ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 10:16:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239016AbiESOKW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 10:10:22 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D37FC6129E;
-        Thu, 19 May 2022 07:10:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=to/gE6L+q0zD4a47p6IDhLpRguUiZpp9mAgkla7qJ7w=; b=fOisF9OLkcQKp7mCPGiV7oQ0KG
-        iIsn968OLmZfCCPxAoYGt1QY7qjDErfEHRSX/U8Qoc4u+s95/8HirfQZqAfvgSb3xCAHmmckLEdI6
-        zcbXwTbWcv9vTVOJfNqqYHvGy0M+6HQwM8QgCAS/FwgWiyRNob/BYq2ge+eElw6YqlwY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1nrgr1-003Ukg-2y; Thu, 19 May 2022 16:10:15 +0200
-Date:   Thu, 19 May 2022 16:10:15 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc:     davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-arm-kernel@lists.infradead.org,
-        Richard Cochran <richardcochran@gmail.com>,
-        Horatiu.Vultur@microchip.com, Allan.Nielsen@microchip.com,
-        UNGLinuxDriver@microchip.com
-Subject: Re: [PATCH net-next 4/6] net: phy: Add support for inband extensions
-Message-ID: <YoZPx3s353hJcGnt@lunn.ch>
-References: <20220519135647.465653-1-maxime.chevallier@bootlin.com>
- <20220519135647.465653-5-maxime.chevallier@bootlin.com>
+        with ESMTP id S233051AbiESOQY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 10:16:24 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D59664727;
+        Thu, 19 May 2022 07:16:22 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: nfraprado)
+        with ESMTPSA id C206B1F45D2E
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1652969781;
+        bh=XbAw2pqdCdBIkgqghfc0hWUSQub6dtMpVtqgjfj/UEI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=WhooF1ket7xkncwQFrVakvcjQz5Cnqvyn17ORhSJ1X1ouQpSeqoIEl54SKARlaAUQ
+         XDB3L3hEfaQ3zJgJZS9sJOiWSg9TivMcVCyCyg2e290tkoiopeKV+xMfTfEIzWtclI
+         IUKwk6LxPyBb5doe6T20ga9qzlBqN10pZROpBhOmzCLv+3Y8LiddH1y3myjkKcEZ8x
+         0JBCuuHpH+8asdc3gg6CNCY5hNZQJ9DLqOYeXO1OlqBfh3TcneYMBeMaJSlbt2lCbr
+         0VSeYgTwtYfQxJoO9ePC5wzLSMPUtTrUQ7NNMyqdKA5m73pRl3b/+4FGmbSCkVgSwz
+         sU3cJTdzjkxZw==
+Date:   Thu, 19 May 2022 10:16:15 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Chen-Yu Tsai <wenst@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxim Kutnij <gtk3@inbox.ru>, Rob Herring <robh+dt@kernel.org>,
+        Sam Shih <sam.shih@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v3 00/16] Introduce support for MediaTek MT8192 Google
+ Chromebooks
+Message-ID: <20220519141615.2ojp3pihvmwgg5zs@notapiano>
+References: <20220512205602.158273-1-nfraprado@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20220519135647.465653-5-maxime.chevallier@bootlin.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220512205602.158273-1-nfraprado@collabora.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +static int phy_set_inband_ext(struct phy_device *phydev, u32 mask, u32 ext)
-> +{
-> +	int ret;
-> +
-> +	if (!phy_interface_has_inband_ext(phydev->interface))
-> +		return -EOPNOTSUPP;
-> +
-> +	if (!phydev->drv->inband_ext_config)
-> +		return -EOPNOTSUPP;
-> +
-> +	ret = phydev->drv->inband_ext_config(phydev, mask, ext);
-> +	if (ret)
-> +		return ret;
-> +
-> +	phydev->inband_ext.enabled &= ~mask;
-> +	phydev->inband_ext.enabled |= (mask & ext);
+On Thu, May 12, 2022 at 04:55:46PM -0400, Nícolas F. R. A. Prado wrote:
+> 
+> This series introduces Devicetrees for the MT8192-based Asurada platform
+> as well as Asurada Spherion and Asurada Hayato boards.
+> 
+> Support for the boards is added to the extent that is currently enabled
+> in the mt8192.dtsi, as to not add any dependencies to this series.
+> 
+> This series was peer-reviewed internally before submission.
 
-You appear to be missing locking in this patchset.
+Hi,
 
-> +int phy_inband_ext_enable(struct phy_device *phydev, u32 ext)
-> +{
-> +	return phy_set_inband_ext(phydev, ext, ext);
+it was noticed that there are some inconsistencies in the pinctrl-mt8192.c
+driver and patches will be sent to fix them. Since this series would add the
+first users for the mt8192 pinctrl, let's hold off this series for now, in order
+to avoid any ABI breakage. After the pinctrl patches land, I'll do any updates
+needed in the DT and send a new version for this series.
 
-There should be an -EOPNOTSUPP here is requested to enable an
-extension which is not available.
+Thanks,
+Nícolas
 
-> +}
-> +EXPORT_SYMBOL(phy_inband_ext_enable);
-> +
-> +int phy_inband_ext_disable(struct phy_device *phydev, u32 ext)
-> +{
-> +	return phy_set_inband_ext(phydev, ext, 0);
-
-And the same here.
-
-> +}
-> +EXPORT_SYMBOL(phy_inband_ext_disable);
-> +
-> +int phy_inband_ext_set_available(struct phy_device *phydev, u32 mask, u32 ext)
-> +{
-> +	if (!(mask & phydev->drv->inband_ext))
-> +		return -EOPNOTSUPP;
-> +
-> +	phydev->inband_ext.available &= ~mask;
-> +	phydev->inband_ext.available |= (mask & ext);
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(phy_inband_ext_set_available);
-> +
-> diff --git a/include/linux/phy.h b/include/linux/phy.h
-> index 4a2731c78590..6b08f49bce5b 100644
-> --- a/include/linux/phy.h
-> +++ b/include/linux/phy.h
-> @@ -190,6 +190,21 @@ static inline void phy_interface_set_rgmii(unsigned long *intf)
->  	__set_bit(PHY_INTERFACE_MODE_RGMII_TXID, intf);
->  }
->  
-> +/*
-> + * TODO : Doc
-> + */
-> +enum {
-> +	__PHY_INBAND_EXT_PCH = 0,
-> +};
-> +
-> +#define PHY_INBAND_EXT_PCH	BIT(__PHY_INBAND_EXT_PCH)
-
-the documentation is important here, since it makes it clear if these
-are values directly taken from the specification, or if these are
-linux specific, and the driver needs to map from linux to whatever the
-spec calls them.
-
-     Andrew
+> 
+> v2: https://lore.kernel.org/all/20220505194550.3094656-1-nfraprado@collabora.com/
+> v1: https://lore.kernel.org/all/20220316151327.564214-1-nfraprado@collabora.com/
+> 
+> Changes in v3:
+> - Renamed regulator nodes to be generic
+> - Fixed keyboard layout for Hayato
+> 
+> Changes in v2:
+> - Added patches 1-2 for Mediatek board dt-bindings
+> - Added patches 13-16 enabling hardware for Asurada that has since been
+>   enabled on mt8192.dtsi
+> 
+> Nícolas F. R. A. Prado (16):
+>   dt-bindings: arm64: dts: mediatek: Add mt8192-asurada-spherion
+>   dt-bindings: arm64: dts: mediatek: Add mt8192-asurada-hayato
+>   arm64: dts: mediatek: Introduce MT8192-based Asurada board family
+>   arm64: dts: mediatek: asurada: Document GPIO names
+>   arm64: dts: mediatek: asurada: Add system-wide power supplies
+>   arm64: dts: mediatek: asurada: Enable and configure I2C and SPI busses
+>   arm64: dts: mediatek: asurada: Add ChromeOS EC
+>   arm64: dts: mediatek: asurada: Add keyboard mapping for the top row
+>   arm64: dts: mediatek: asurada: Add Cr50 TPM
+>   arm64: dts: mediatek: asurada: Add Elan eKTH3000 I2C trackpad
+>   arm64: dts: mediatek: asurada: Add I2C touchscreen
+>   arm64: dts: mediatek: spherion: Add keyboard backlight
+>   arm64: dts: mediatek: asurada: Enable XHCI
+>   arm64: dts: mediatek: asurada: Enable PCIe and add WiFi
+>   arm64: dts: mediatek: asurada: Add MT6359 PMIC
+>   arm64: dts: mediatek: asurada: Add SPMI regulators
+> 
+>  .../devicetree/bindings/arm/mediatek.yaml     |  13 +
+>  arch/arm64/boot/dts/mediatek/Makefile         |   2 +
+>  .../dts/mediatek/mt8192-asurada-hayato-r1.dts |  47 ++
+>  .../mediatek/mt8192-asurada-spherion-r0.dts   |  62 ++
+>  .../boot/dts/mediatek/mt8192-asurada.dtsi     | 748 ++++++++++++++++++
+>  5 files changed, 872 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dts
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+> 
+> -- 
+> 2.36.1
