@@ -2,100 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56F6452CD95
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 09:52:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8915252CD8E
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 09:52:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235002AbiESHvh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 03:51:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49232 "EHLO
+        id S231838AbiESHvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 03:51:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234890AbiESHvb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 03:51:31 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A3B82316F
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 00:51:29 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id j24so5926823wrb.1
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 00:51:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=cyCpX1ZmR/kf8pzgbwKyX7fP0Ivtmtw9DDuTffHF0T4=;
-        b=mRbqHyr2HlEx8B9iL3PZn3B6Y/2EcOxqC7Oc10pNva4YC9BpH4UDUlJCXjzUeDYIuj
-         ZpwOOGPe3exSHd6UMinRc2gLRx4/Z9ROf1Q3HTj+wc47ub5Vfc76ldTgKnxBc0wS7u7j
-         bI1bfWnvn1IYn1pr1W4bAMW+UBN1nm8wBCgRo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=cyCpX1ZmR/kf8pzgbwKyX7fP0Ivtmtw9DDuTffHF0T4=;
-        b=Aa5traqj3LFLP97gCKqhbNoFb1igOv54evgPbPlAayCexj8CWnnsp56gJgnJYAoFLq
-         0FjVgKCGa2dD39DTZw2MckHJB0ozVfWka6G0Mk5S5gDSyU/gD62qZ280uP2NHh+4xg6h
-         fQsDunjekg4iXUHWGw/HQf5tjfmoJgey4C2vy1hrBN1SRPhltUH42rhl6AdAGViIqbw4
-         ArnU+ENeYxtdYNS/i+5rFOkufm86OJc871k5i4D7ME9EMko41yTx0DPFtrljMcDcqS5n
-         Tuv6rAj7s9KX8LEBpSYPduLy8KMusXPogn7P8UdecOmy0d24p0oAHoGn622E2xuS1FgJ
-         wq5A==
-X-Gm-Message-State: AOAM5336N7DSvdBh4O9MJ/lwdzs7EZUcJ2Q4MHQfXTLKWPWp5NGVZqBO
-        UlMzFgSd79IxlvMzAVWU+uryFw==
-X-Google-Smtp-Source: ABdhPJzEJ//yF1pX5Q/0fs/Nw2UrvupH4A6Tv5qSwJnPr9e0MfJTTN+XjNenDXGXnNNXvzBojuMQag==
-X-Received: by 2002:a05:6000:1a87:b0:20c:687f:6d10 with SMTP id f7-20020a0560001a8700b0020c687f6d10mr2791038wry.574.1652946688579;
-        Thu, 19 May 2022 00:51:28 -0700 (PDT)
-Received: from tom-ThinkPad-T14s-Gen-2i.station (net-188-217-53-154.cust.vodafonedsl.it. [188.217.53.154])
-        by smtp.gmail.com with ESMTPSA id c6-20020a05600c4a0600b003942a244ebfsm3370254wmp.4.2022.05.19.00.51.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 May 2022 00:51:28 -0700 (PDT)
-From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-Cc:     tommaso.merciai@amarulasolutions.com, linuxfancy@googlegroups.com,
-        linux-amarula@amarulasolutions.com, michael@amarulasolutions.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shunqian Zheng <zhengsq@rock-chips.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org
-Subject: [PATCH 4/4] arm64: dts: rockchip: px30: use rk gpio naming convention into reset-gpios
-Date:   Thu, 19 May 2022 09:51:17 +0200
-Message-Id: <20220519075117.1003520-5-tommaso.merciai@amarulasolutions.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220519075117.1003520-1-tommaso.merciai@amarulasolutions.com>
-References: <20220519075117.1003520-1-tommaso.merciai@amarulasolutions.com>
+        with ESMTP id S235014AbiESHvf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 03:51:35 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E84131DC6;
+        Thu, 19 May 2022 00:51:33 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4CFEF616F6;
+        Thu, 19 May 2022 07:51:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 369D2C34100;
+        Thu, 19 May 2022 07:51:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1652946692;
+        bh=FfHT4dH2rOQjGAgKaeBVEfcrb90XoHDYJNfYFwMsxqA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Wdv6bZZW5o0QW+rLup4siFbRoAjk45vnoN2mBGF4tNrdcd66OnuMRG65UQonX8drr
+         8lGlydQqEA1F4HaXRjzM2tLRFkz1VPSZNN7REHWsnI4pFXI6LsbLxiHzqMrXTD4Uck
+         LWfKHIP977c130bKAkPbczwSlC0tqqYAwJf61e6dWPNJupadE/Z0aG6+CZ8mAeIPF2
+         FBPYyqQIr43HrGQhWuginBW4P5SG1y7+Xxh1cS93ikwaxiRVMzhYM4yRy6YZ8YeXnN
+         FHmDu0tjisuECWEyEVCML7hB8WY3PbV/B/JOyv115n0FBHEB72P08WuToCiISPBZKJ
+         +rjLTLvUacrpw==
+Date:   Thu, 19 May 2022 09:51:28 +0200
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     netdev@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
+        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
+        davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
+        Sam.Shih@mediatek.com, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, robh@kernel.org,
+        lorenzo.bianconi@redhat.com
+Subject: Re: [PATCH v2 net-next 11/15] net: ethernet: mtk_eth_soc: introduce
+ device register map
+Message-ID: <YoX3AMlBFfDcl69o@lore-desk>
+References: <cover.1652716741.git.lorenzo@kernel.org>
+ <78e8c6ed230130b75aae77e6d05a9b35e298860a.1652716741.git.lorenzo@kernel.org>
+ <20220517184122.522ed708@kernel.org>
+ <YoTA+5gLC4zhoQ0F@lore-desk>
+ <20220518084431.66aa1737@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="8OQvFQTAYPTT9lFf"
+Content-Disposition: inline
+In-Reply-To: <20220518084431.66aa1737@kernel.org>
+X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use rk gpio naming convention into reset-gpios of ov5695 camera
 
-Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-Tested-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
----
- arch/arm64/boot/dts/rockchip/px30-evb.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--8OQvFQTAYPTT9lFf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/rockchip/px30-evb.dts b/arch/arm64/boot/dts/rockchip/px30-evb.dts
-index 0d05a1b098bc..07008d84434c 100644
---- a/arch/arm64/boot/dts/rockchip/px30-evb.dts
-+++ b/arch/arm64/boot/dts/rockchip/px30-evb.dts
-@@ -450,8 +450,8 @@ ov5695: ov5695@36 {
- 		dvdd-supply = <&vcc1v5_dvp>;
- 		dovdd-supply = <&vcc1v8_dvp>;
- 		pinctrl-names = "default";
--		reset-gpios = <&gpio2 14 GPIO_ACTIVE_LOW>;
- 		pinctrl-0 = <&cif_clkout_m0 &mipi_pdn>;
-+		reset-gpios = <&gpio2 RK_PB6 GPIO_ACTIVE_LOW>;
- 
- 		port {
- 			ucam_out: endpoint {
--- 
-2.25.1
+> On Wed, 18 May 2022 11:48:43 +0200 Lorenzo Bianconi wrote:
+> > > On Mon, 16 May 2022 18:06:38 +0200 Lorenzo Bianconi wrote: =20
+> > > >  /* PDMA RX Base Pointer Register */
+> > > > -#define MTK_PRX_BASE_PTR0	0x900
+> > > > +#define MTK_PRX_BASE_PTR0	(eth->soc->reg_map[MTK_PDMA_BASE] + 0x10=
+0)
+> > > >  #define MTK_PRX_BASE_PTR_CFG(x)	(MTK_PRX_BASE_PTR0 + (x * 0x10)) =
+=20
+> > >=20
+> > > Implicit macro arguments are really unpleasant for people doing
+> > > tree-wide changes or otherwise unfamiliar with the driver.
+> > >=20
+> > > Nothing we can do to avoid this? =20
+> >=20
+> > I used this approach in order to have just few changes in the codebase.=
+ I guess the best
+> > option would be to explicitly add eth parameter to the register macros,=
+ what do you think?
+>=20
+> I don't think there's a best known practice, you'll have to exercise
+> your judgment. Taking a look at a random example of MTK_PDMA_INT_STATUS.
+> Looks like that one is already assigned to eth->tx_int_status_reg.
+> Maybe that can be generalized? Personally I'd forgo the macros
+> completely and just use eth->soc->register_name in the code.
 
+I personally think the code is easier to read if we use macros in this case.
+Let's consider MTK_LRO_CTRL_DW1_CFG(), it depends on the particular soc bas=
+ed
+on the register map and even on the ring index. I guess the best trade-off =
+we
+can get is to explicitly pass eth to the macros as parameter when needed.
+
+Regards,
+Lorenzo
+
+--8OQvFQTAYPTT9lFf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCYoX3AAAKCRA6cBh0uS2t
+rMJTAP9dIIJyzXlJOTfk8iKUs4K1OR4VWsGZQxS/9U+Knpof5QD/ared7Qln5hSb
+jxz/VwPojHBJxLWHwNrp4ROvp7awIwA=
+=/+XK
+-----END PGP SIGNATURE-----
+
+--8OQvFQTAYPTT9lFf--
