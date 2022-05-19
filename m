@@ -2,317 +2,368 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A7A452CBCC
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 08:11:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C3CE52CC27
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 08:47:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234371AbiESGKC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 02:10:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40366 "EHLO
+        id S234459AbiESGrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 02:47:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234351AbiESGJy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 02:09:54 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D86AB819B8;
-        Wed, 18 May 2022 23:09:52 -0700 (PDT)
-X-UUID: 9ba28cab7c924802835b32dfd15a037b-20220519
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:6d510757-2d8c-4851-a206-8bb9821fef8c,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:2a19b09,CLOUDID:1de5d079-5ef6-470b-96c9-bdb8ced32786,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:0,BEC:nil
-X-UUID: 9ba28cab7c924802835b32dfd15a037b-20220519
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <jia-wei.chang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 221176302; Thu, 19 May 2022 14:09:50 +0800
-Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Thu, 19 May 2022 14:09:49 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 19 May 2022 14:09:49 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 19 May 2022 14:09:48 +0800
-From:   Tim Chang <jia-wei.chang@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Roger Lu <roger.lu@mediatek.com>,
-        Kevin Hilman <khilman@kernel.org>,
-        Jia-Wei Chang <jia-wei.chang@mediatek.com>
-CC:     <devicetree@vger.kernel.org>,
+        with ESMTP id S234460AbiESGrK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 02:47:10 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91D73396AE;
+        Wed, 18 May 2022 23:47:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1652942828; x=1684478828;
+  h=message-id:date:subject:from:to:cc:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=OlPDbguvYV660WhI+ipu9LuTnUPzf1Pkm9y5LxupaXU=;
+  b=RLjQsoOTs7osH6+yfw7+maPHcbv5LMsNBgvR1IeFpVbfOa37SrWHvWfh
+   YjxUsTh0nc8jlFgw4smNedDwquBFNsZi+QEa4F0VdK2ydjViop/D4Gv+T
+   50ZChV/kzmW+UlYLal7zDt+iTTPsvNoyL/xXIP0WOriy7FDgzstSTMEAU
+   7fpGMG3+PpqtqgRPY3gxtu29F4qWnhCfgYzVHdxoqZafSseqDO81er4wJ
+   AYZTqrKJ9pHS+ZWxOa1SXYa8wUS9F4RySt9uu6UouAR+ntahIzGensmBt
+   pgnNQgG3QsLDypRKASmRlyhoQMD7gmRI+j9WdnA4SQk0LoZt5CXuTeuiI
+   g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10351"; a="271747725"
+X-IronPort-AV: E=Sophos;i="5.91,236,1647327600"; 
+   d="scan'208";a="271747725"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 May 2022 23:47:08 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,236,1647327600"; 
+   d="scan'208";a="570033531"
+Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
+  by orsmga007.jf.intel.com with ESMTP; 18 May 2022 23:47:07 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27; Wed, 18 May 2022 23:47:07 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.27 via Frontend Transport; Wed, 18 May 2022 23:47:07 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.27; Wed, 18 May 2022 23:47:06 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=OvuczKegH131nW45Ffq2qqRxti7JvAleK/IEsQeq135LVdck+HeJXcDRAIPsv6DpKKE7D2+5z/wMdbqYTohdkl9iCMZM9qAYmXj7ynKFUnsYvOcgc4PAQYfM1gvMcsf8PvGhNW1b7GnRhbgLc4E3FdtcHpXbk0ZrqWipUG4h0zvP2I6HK0YJegIQaqP9LHXN1Q0G26Lj3yOxtAvYC7dotqmOrUjtxdiao/vZ8P/kzDDyHcq33LfwfUz6SzL/VyzP6zXuifoDNYt8AWOqpcFP31EDIjvwjRCueeRUiOKNBAodRRP0KIWv9ovqNTdVv3TMrDf/j0aHBfDY9tkoLLxokw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=civEA9BgXWiA9A+rhOK9nGaw8S55P9vnuEzjns2CAZk=;
+ b=F4aHddB3OOBbTzKiPMuCfx2B9xKGIN2TI3gcKjlfB1gWeq7YpE5g66jsXRvawtsSS2azZrZF2+k+SW3txxPaL7GBjNzkMinTgBHR5FFbeA6Yiv8P8eAW1KF22aHVf9sZ7GUkEGBJDg67j/EBha4iUY4KPJYpsXeHhN7/BAlgDXVgzxk9WjQeLhmy0Qqvryo8E8sfrzm/YbS/tWwX6BACqJ6PYu9rE/Qnhvwv9p0nZTbez+ZWjwrrmc17qc9Jg1FAi6ZiAVzd2bLKz4eUiKRgOBJ1AlndTJwToDb6zdBS3zPILyNHYYPh2oFupz/xo5MMMI7hcvwcyZs5aD0qm0lpww==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM6PR11MB3180.namprd11.prod.outlook.com (2603:10b6:5:9::13) by
+ MWHPR11MB1487.namprd11.prod.outlook.com (2603:10b6:301:b::17) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5273.15; Thu, 19 May 2022 06:47:04 +0000
+Received: from DM6PR11MB3180.namprd11.prod.outlook.com
+ ([fe80::b1fa:393c:9fb6:6871]) by DM6PR11MB3180.namprd11.prod.outlook.com
+ ([fe80::b1fa:393c:9fb6:6871%5]) with mapi id 15.20.5250.019; Thu, 19 May 2022
+ 06:47:04 +0000
+Message-ID: <b1584fe0-9180-c19a-97c4-689eb3169869@intel.com>
+Date:   Thu, 19 May 2022 08:46:54 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.9.0
+Subject: Re: [PATCH 04/20] media: s5p-mfc: Rename IS_MFCV10 macro
+Content-Language: en-US
+From:   Andrzej Hajda <andrzej.hajda@intel.com>
+To:     Smitha T Murthy <smitha.t@samsung.com>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <hsinyi@google.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH v2 4/4] soc: mediatek: svs: add support for mt8195
-Date:   Thu, 19 May 2022 14:09:24 +0800
-Message-ID: <20220519060924.13493-5-jia-wei.chang@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220519060924.13493-1-jia-wei.chang@mediatek.com>
-References: <20220519060924.13493-1-jia-wei.chang@mediatek.com>
+        <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <m.szyprowski@samsung.com>, <mchehab@kernel.org>,
+        <hverkuil-cisco@xs4all.nl>, <ezequiel@vanguardiasur.com.ar>,
+        <jernej.skrabec@gmail.com>, <benjamin.gaignard@collabora.com>,
+        <stanimir.varbanov@linaro.org>, <dillon.minfei@gmail.com>,
+        <david.plowman@raspberrypi.com>, <mark.rutland@arm.com>,
+        <robh+dt@kernel.org>, <krzk+dt@kernel.org>, <andi@etezian.org>,
+        <alim.akhtar@samsung.com>, <aswani.reddy@samsung.com>,
+        <pankaj.dubey@samsung.com>, <linux-fsd@tesla.com>
+References: <20220517125548.14746-1-smitha.t@samsung.com>
+ <CGME20220517125601epcas5p47dfcac0c5e0c412eb0c335759c51c941@epcas5p4.samsung.com>
+ <20220517125548.14746-5-smitha.t@samsung.com>
+ <002e5ec2-478d-ca10-5a71-5390dfb69173@intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <002e5ec2-478d-ca10-5a71-5390dfb69173@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: AM6PR10CA0043.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:209:80::20) To DM6PR11MB3180.namprd11.prod.outlook.com
+ (2603:10b6:5:9::13)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 40c06a66-12dd-4be5-4a07-08da3963625a
+X-MS-TrafficTypeDiagnostic: MWHPR11MB1487:EE_
+X-Microsoft-Antispam-PRVS: <MWHPR11MB1487579A816EB0EAA1CB710FEBD09@MWHPR11MB1487.namprd11.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: hLqOPEqx5kcdqNNjmFf5GAlitoKnxUx2wqw40CaxCEVDZ5mV33NQG62g7N3pQT+VoolH6pI6tnoBK25iEMh2YSewLsoieOJNq5PrYBFPODi6t8G3SC2OtM5CAwLarwL5Xhcd3378Bd0oRw0U4vuPYNa/EyVOa4+gcd3s+n2nh53WrHi6fHQ6mfVqoP0wJ2zXS7Z2celd30bRbrOP1QCca2Y/o8CmuaMf1P/B3Qg6aFzfuQ8D+l9z8Vb+tpjFetkid/59fq1tC8o+LT1uHjm1jo/hFB3uu3nIInJUArNISueTh8IIDv8/pUOO07NhaJSb+zerqn/jdbKOhlHBt49Vfl6afrdjbhC9VVzAn8PD1QAjD0lohs+mlhxFmPpmspfHHp7lrqV7Iv5SObU9UyvArUG7G3Mp0mU6ijuSm3YdGJwqiYkk0BEoryUWTin+Q/Q1lo3ht3V7qP+aGc93pMDSGzv7BjqRZoDPeCOEt4Cn2UYQ58LU6gilBjvhMKgcHx8hB0y+rctU2CCQj13ru7LGYgeaHKyCxAGIHO2CJxgexFq8KJ8eT5C+ieqEu7B9/ENZzrsZwHuJNYwP6aLxDiz5bGpITCAF8I5Yq2pIjYZCdOGQ3laUVUoLAZoZJLU7lgL1TGO69FP8StXrXZ/zMiSf9o5H81xEP4+QdAOxnuYvm0ciqM4ywo+I2109Dut1e9XFBFpT02yTRUnfdGve+/Ca6N67vmmLkw12fW97qfEHVRs=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3180.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(4326008)(8676002)(66946007)(6666004)(82960400001)(66556008)(66476007)(6486002)(2906002)(36916002)(5660300002)(508600001)(8936002)(38100700002)(7416002)(44832011)(36756003)(2616005)(186003)(316002)(26005)(31696002)(6506007)(86362001)(83380400001)(6512007)(31686004)(53546011)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R3lEZE5ZcXhGci9ySWhRRWozTW9UNlhJaVJEOVNTeUI3K3Qwd212eDlMM1FY?=
+ =?utf-8?B?ajM1dTBCNkN3bHdmSmdvWTZYQkpFZ1doMHl5RnNocTJOWHh5L2hOcVV4QWg4?=
+ =?utf-8?B?MGM1UTE3OE03dDBucWRCajFIeXZySUkrc2lTUzVpQU9wVE1JMGIvbjhEWXJt?=
+ =?utf-8?B?S01KRm9FZUNNTytpK0hleENENklscUdMcVgrbUZxdGlWa1pZMDVEY1k2M21n?=
+ =?utf-8?B?RVRmeW9OeU5maGZpM0VWbDE5a1dKRDN4aC9HSk81TVNnMWZNQlhBckJlMUcz?=
+ =?utf-8?B?ZGNnK0hhcHd4eWNUaUhtR3p6M3pBclhyc0RmbW1wWlRYWWZxTmEzdlRsR2ti?=
+ =?utf-8?B?SDJyVzZJTHVrd2JhU3BPRDN4TlVhTURoRVlhSTRwRi9xWVg1bS9zeGl6ZjFs?=
+ =?utf-8?B?a2NJb2RVOE91dXROQXp5N0IvVW5hQ2RnQlVab2V2cmFURWVmWTZ2QzJLaysv?=
+ =?utf-8?B?ZGo4N1RjRng0ekYyUDJzdFVJRzJ1UENUWFhUaGQrMFJGRVhubnhCT1dqQ2N2?=
+ =?utf-8?B?ZnViN3ozalNmeDJGZ2NRTk11dHErYWlEVmJ1UUNHSU5iQWpMblpveVVHZE0v?=
+ =?utf-8?B?VXlkcEJhS3ArR3pISkxCam5ubWtHM0tYUnBiQVh4Q1YrWHE0WUFHdVFDaDMx?=
+ =?utf-8?B?TzY1Z21MeWJBbVFiUzJuelNZM0lYRkdEbW56Zmp4Qmdjd1QwckdFUzJ2MXhH?=
+ =?utf-8?B?MC8wUFFWWGUvbWNXTWRMSG1NMUV0Uis5NG8yOE9LMXJhcDBsVUl6NitpVkk3?=
+ =?utf-8?B?ZXZtMzdqbElZMG80S3hidUNxUmRuSys5ZUVJZEZ6aWozNGFkZms1OWVIQzBt?=
+ =?utf-8?B?djJSTUdSM2VOQm5Db1VUMzhTaWh2ajNMNGRhcjBrNHl3UVNjUUt6cUhpR3NK?=
+ =?utf-8?B?ZWRyYTUvYU80MStuNUViZC9PRStvTDRoZGNWaWN5YW1SdWJSN1FhbTA0ajFn?=
+ =?utf-8?B?Q1E2QXhWREhSTFhIekVmKzBYWnBTaHBKU1lBUFJqMzFNYWxvQ1JLTStLR3N3?=
+ =?utf-8?B?K0QvWG5iOEhZYW1Yems2MTZyeXl1VG83KzFXTXRHeXlhSkUvQkUrRm5OMTZn?=
+ =?utf-8?B?SDNLMWlQY3VxVUZzUVZMYmM3aXNjTitqMGd5TjFiMHJ6ajVGdEFONkZKV3pC?=
+ =?utf-8?B?cFdnS1U1WVVrb3FLWEN1cXM2WG83WUQvU2RZdEZjTnF6eHRSOG8yT1ErSmpO?=
+ =?utf-8?B?N0trMVkwZUIvRmFjbm85Mnc2MGh0WmdNMllFT29RY3lYbTFydVdPaTVaeUVo?=
+ =?utf-8?B?ZDlFQmVMa01SdmcxMmlHRmhnVlV0OTg0blVHUDY1Q05lQkl0OWVjdlZmblNZ?=
+ =?utf-8?B?cVppR243V3kyWEtxL0E3RXBxU09vMC9jcE1Ca3F0bDg3VE9RenRDQk8vQWRl?=
+ =?utf-8?B?ZUtsYTU3VGRzRHpSNW85cHI1a0ltZUpNUjdrTnU3dWN3b01hT3laQU1Qamhx?=
+ =?utf-8?B?ajdFdmlENUhKL1hTNTBhS1hWMW1KUUl3Y2N5OWhlLzFEeDY1QUZ0OHQ0TGlD?=
+ =?utf-8?B?Szc3V0YrcHNrSTRXVzhXMUVNeVdqNThGM29pVXFJR0dLZTJ6WkZYK2VuRGJC?=
+ =?utf-8?B?dVROb1FEa2FxeHVMbmVzZDZUQUhWd0xITmQzd0drNnVRSFpKNmNNU0FDVlFt?=
+ =?utf-8?B?N1o3ZVlZQVZaV0ZNSm5Ic2hJcFo4TS92SklCOGk0Tk10QmR1RHhCSUVtRnU4?=
+ =?utf-8?B?dk1LamVPQTRhRmd0cUlnZi8rQ1VIU2JhMGlZTnA4S0hTMHprWnRRbHB0clhw?=
+ =?utf-8?B?M0JLOG44SEUzWWxZMGppVkFVSk5ZVktHbjNCTUlUNkkwK1Mwamw3MHgwWEx4?=
+ =?utf-8?B?QWFsMHBBUVpJTU5FWEtkOWk4c2sxeGtIQS85c0ZLT244RlN0NW5uSTVNOHNm?=
+ =?utf-8?B?UDI5bHdzbjQ0MG1MU012enpIYkVrbkJVY0swd3lYd0x6MzR6SW9XMmxSVXU5?=
+ =?utf-8?B?RnphcU5aSko0d2tOenRwT20rVm53VkJma3FRRlg2NkJQOVd3Tmlhb3dlZVhU?=
+ =?utf-8?B?NmswR09CV1BKZHo1VHlnMHNMRitkdis0QVVSU0YzdkNaNExRSVNybFRITDR0?=
+ =?utf-8?B?cVkzTTJHTkJWZ2dEcEwrbXAweG1wdXNleFVlRTRRVzVPSldzUUdhMDAxNVgr?=
+ =?utf-8?B?T3dCc0tJUTRkK1ZtWk5EL0s3K3REY2ljcGRQS1EyYThPT0ZrSCs1ZVB0U2o5?=
+ =?utf-8?B?U2RValI4eEdyNEFhNjFiWlA0UEdsMXZkRWl1NURjRkFNcld0cHZQNFN4bzZG?=
+ =?utf-8?B?aEpNajJtSFc0aXE3bmlzYlAzMTI1UERBNzB0bE9TR3U2V3k0c3ZiQ1dwNWt1?=
+ =?utf-8?B?ZWJXQ2hqVmtuaGRhT2pkeVIySHhIaitKTU9tT3JZSzVQSDhVTUpLc3d4b1R0?=
+ =?utf-8?Q?IFHzbYOrZS26YH1s=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 40c06a66-12dd-4be5-4a07-08da3963625a
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3180.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 May 2022 06:47:04.3944
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: a53JVYlNMLU/YVT3zpw5cxP6v5UcU0hTD4I/zdemRIx2vK/b7rH2ymxM6m//DS03Pen82/RO2doXiaKYM9AVBg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR11MB1487
+X-OriginatorOrg: intel.com
+X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jia-Wei Chang <jia-wei.chang@mediatek.com>
 
-To support svs on MT8195, add corresponding bank information, platform
-data, probe and parsing function.
 
-Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
----
- drivers/soc/mediatek/mtk-svs.c | 193 +++++++++++++++++++++++++++++++++
- 1 file changed, 193 insertions(+)
+On 18.05.2022 10:41, Andrzej Hajda wrote:
+>
+>
+> On 17.05.2022 14:55, Smitha T Murthy wrote:
+>> Renames macro IS_MFCV10 to IS_MFCV10_PLUS so that the MFCv10
+>> code can be resued for MFCv12 support. Since some part of MFCv10
+>> specific code holds good for MFCv12 also.
+>>
+>> Cc: linux-fsd@tesla.com
+>> Signed-off-by: Smitha T Murthy <smitha.t@samsung.com>
+>> ---
+>>   .../platform/samsung/s5p-mfc/s5p_mfc_common.h |  4 +--
+>>   .../platform/samsung/s5p-mfc/s5p_mfc_ctrl.c   |  2 +-
+>>   .../platform/samsung/s5p-mfc/s5p_mfc_opr_v6.c | 28 +++++++++----------
+>>   3 files changed, 17 insertions(+), 17 deletions(-)
+>>
+>> diff --git a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_common.h 
+>> b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_common.h
+>> index 5304f42c8c72..ae266d8518d1 100644
+>> --- a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_common.h
+>> +++ b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_common.h
+>> @@ -774,8 +774,8 @@ void s5p_mfc_cleanup_queue(struct list_head *lh, 
+>> struct vb2_queue *vq);
+>>   #define IS_MFCV6_PLUS(dev)    (dev->variant->version >= 0x60 ? 1 : 0)
+>>   #define IS_MFCV7_PLUS(dev)    (dev->variant->version >= 0x70 ? 1 : 0)
+>>   #define IS_MFCV8_PLUS(dev)    (dev->variant->version >= 0x80 ? 1 : 0)
+>> -#define IS_MFCV10(dev)        (dev->variant->version >= 0xA0 ? 1 : 0)
+>> -#define FW_HAS_E_MIN_SCRATCH_BUF(dev) (IS_MFCV10(dev))
+>> +#define IS_MFCV10_PLUS(dev)    (dev->variant->version >= 0xA0 ? 1 : 0)
+>
+> The " ? 1 : 0" part of the macro is redundant, you can remove it here 
+> and in other IS_MFC*_PLUS macros.
 
-diff --git a/drivers/soc/mediatek/mtk-svs.c b/drivers/soc/mediatek/mtk-svs.c
-index 656d0361ff7d..919226faee6d 100644
---- a/drivers/soc/mediatek/mtk-svs.c
-+++ b/drivers/soc/mediatek/mtk-svs.c
-@@ -1680,6 +1680,92 @@ static int svs_bank_resource_setup(struct svs_platform *svsp)
- 	return 0;
- }
- 
-+static bool svs_mt8195_efuse_parsing(struct svs_platform *svsp)
-+{
-+	struct svs_bank *svsb;
-+	struct nvmem_cell *cell;
-+	u32 idx, i, ft_pgm, vmin, golden_temp;
-+
-+	for (i = 0; i < svsp->efuse_max; i++)
-+		if (svsp->efuse[i])
-+			dev_info(svsp->dev, "M_HW_RES%d: 0x%08x\n",
-+				 i, svsp->efuse[i]);
-+
-+	if (!svsp->efuse[10]) {
-+		dev_notice(svsp->dev, "svs_efuse[10] = 0x0?\n");
-+		return false;
-+	}
-+
-+	/* Svs efuse parsing */
-+	ft_pgm = svsp->efuse[0] & GENMASK(7, 0);
-+	vmin = (svsp->efuse[19] >> 4) & GENMASK(1, 0);
-+
-+	for (idx = 0; idx < svsp->bank_max; idx++) {
-+		svsb = &svsp->banks[idx];
-+
-+		if (svsb->sw_id != SVSB_GPU)
-+			return false;
-+
-+		if (vmin == 0x1)
-+			svsb->vmin = 0x1e;
-+
-+		if (ft_pgm == 0)
-+			svsb->volt_flags |= SVSB_INIT01_VOLT_IGNORE;
-+
-+		if (svsb->type == SVSB_LOW) {
-+			svsb->mtdes = svsp->efuse[10] & GENMASK(7, 0);
-+			svsb->bdes = (svsp->efuse[10] >> 16) & GENMASK(7, 0);
-+			svsb->mdes = (svsp->efuse[10] >> 24) & GENMASK(7, 0);
-+			svsb->dcbdet = (svsp->efuse[8]) & GENMASK(7, 0);
-+			svsb->dcmdet = (svsp->efuse[8] >> 8) & GENMASK(7, 0);
-+		} else if (svsb->type == SVSB_HIGH) {
-+			svsb->mtdes = svsp->efuse[9] & GENMASK(7, 0);
-+			svsb->bdes = (svsp->efuse[9] >> 16) & GENMASK(7, 0);
-+			svsb->mdes = (svsp->efuse[9] >> 24) & GENMASK(7, 0);
-+			svsb->dcbdet = (svsp->efuse[8]) & GENMASK(7, 0);
-+			svsb->dcmdet = (svsp->efuse[8] >> 8) & GENMASK(7, 0);
-+		}
-+
-+		svsb->vmax += svsb->dvt_fixed;
-+	}
-+
-+	/* Thermal efuse parsing */
-+	cell = nvmem_cell_get(svsp->dev, "t-calibration-data");
-+	if (IS_ERR_OR_NULL(cell)) {
-+		dev_err(svsp->dev, "no \"t-calibration-data\"? %ld\n",
-+			PTR_ERR(cell));
-+		return false;
-+	}
-+
-+	svsp->tefuse = nvmem_cell_read(cell, &svsp->tefuse_max);
-+	if (IS_ERR(svsp->tefuse)) {
-+		dev_err(svsp->dev, "cannot read thermal efuse: %ld\n",
-+			PTR_ERR(svsp->tefuse));
-+		nvmem_cell_put(cell);
-+		return false;
-+	}
-+
-+	svsp->tefuse_max /= sizeof(u32);
-+	nvmem_cell_put(cell);
-+
-+	for (i = 0; i < svsp->tefuse_max; i++)
-+		if (svsp->tefuse[i] != 0)
-+			break;
-+
-+	if (i == svsp->tefuse_max)
-+		golden_temp = 50; /* All thermal efuse data are 0 */
-+	else
-+		golden_temp = (svsp->tefuse[0] >> 24) & GENMASK(7, 0);
-+
-+	for (idx = 0; idx < svsp->bank_max; idx++) {
-+		svsb = &svsp->banks[idx];
-+		svsb->mts = 500;
-+		svsb->bts = (((500 * golden_temp + 250460) / 1000) - 25) * 4;
-+	}
-+
-+	return true;
-+}
-+
- static bool svs_mt8192_efuse_parsing(struct svs_platform *svsp)
- {
- 	struct svs_bank *svsb;
-@@ -2141,6 +2227,39 @@ static struct device *svs_add_device_link(struct svs_platform *svsp,
- 	return dev;
- }
- 
-+static int svs_mt8195_platform_probe(struct svs_platform *svsp)
-+{
-+	struct device *dev;
-+	struct svs_bank *svsb;
-+	u32 idx;
-+
-+	svsp->rst = devm_reset_control_get_optional(svsp->dev, "svs_rst");
-+	if (IS_ERR(svsp->rst))
-+		return dev_err_probe(svsp->dev, PTR_ERR(svsp->rst),
-+				     "cannot get svs reset control\n");
-+
-+	dev = svs_add_device_link(svsp, "lvts");
-+	if (IS_ERR(dev))
-+		return dev_err_probe(svsp->dev, PTR_ERR(dev),
-+				     "failed to get lvts device\n");
-+
-+	for (idx = 0; idx < svsp->bank_max; idx++) {
-+		svsb = &svsp->banks[idx];
-+
-+		if (svsb->type == SVSB_HIGH)
-+			svsb->opp_dev = svs_add_device_link(svsp, "mali");
-+		else if (svsb->type == SVSB_LOW)
-+			svsb->opp_dev = svs_get_subsys_device(svsp, "mali");
-+
-+		if (IS_ERR(svsb->opp_dev))
-+			return dev_err_probe(svsp->dev, PTR_ERR(svsb->opp_dev),
-+					     "failed to get OPP device for bank %d\n",
-+					     idx);
-+	}
-+
-+	return 0;
-+}
-+
- static int svs_mt8192_platform_probe(struct svs_platform *svsp)
- {
- 	struct device *dev;
-@@ -2257,6 +2376,67 @@ static int svs_mt8183_platform_probe(struct svs_platform *svsp)
- 	return 0;
- }
- 
-+static struct svs_bank svs_mt8195_banks[] = {
-+	{
-+		.sw_id			= SVSB_GPU,
-+		.type			= SVSB_LOW,
-+		.set_freq_pct		= svs_set_bank_freq_pct_v3,
-+		.get_volts		= svs_get_bank_volts_v3,
-+		.tzone_name		= "gpu1",
-+		.volt_flags		= SVSB_REMOVE_DVTFIXED_VOLT,
-+		.mode_support		= SVSB_MODE_INIT02,
-+		.opp_count		= MAX_OPP_ENTRIES,
-+		.freq_base		= 640000000,
-+		.turn_freq_base		= 640000000,
-+		.volt_step		= 6250,
-+		.volt_base		= 400000,
-+		.vmax			= 0x38,
-+		.vmin			= 0x14,
-+		.age_config		= 0x555555,
-+		.dc_config		= 0x1,
-+		.dvt_fixed		= 0x1,
-+		.vco			= 0x18,
-+		.chk_shift		= 0x87,
-+		.core_sel		= 0x0fff0100,
-+		.int_st			= BIT(0),
-+		.ctl0			= 0x00540003,
-+		.tzone_htemp		= 85000,
-+		.tzone_htemp_voffset	= 0,
-+		.tzone_ltemp		= 25000,
-+		.tzone_ltemp_voffset	= 7,
-+	},
-+	{
-+		.sw_id			= SVSB_GPU,
-+		.type			= SVSB_HIGH,
-+		.set_freq_pct		= svs_set_bank_freq_pct_v3,
-+		.get_volts		= svs_get_bank_volts_v3,
-+		.tzone_name		= "gpu1",
-+		.volt_flags		= SVSB_REMOVE_DVTFIXED_VOLT |
-+					  SVSB_MON_VOLT_IGNORE,
-+		.mode_support		= SVSB_MODE_INIT02 | SVSB_MODE_MON,
-+		.opp_count		= MAX_OPP_ENTRIES,
-+		.freq_base		= 880000000,
-+		.turn_freq_base		= 640000000,
-+		.vboot			= 0x38,
-+		.volt_step		= 6250,
-+		.volt_base		= 400000,
-+		.vmax			= 0x38,
-+		.vmin			= 0x14,
-+		.age_config		= 0x555555,
-+		.dc_config		= 0x1,
-+		.dvt_fixed		= 0x6,
-+		.vco			= 0x18,
-+		.chk_shift		= 0x87,
-+		.core_sel		= 0x0fff0101,
-+		.int_st			= BIT(1),
-+		.ctl0			= 0x00540003,
-+		.tzone_htemp		= 85000,
-+		.tzone_htemp_voffset	= 0,
-+		.tzone_ltemp		= 25000,
-+		.tzone_ltemp_voffset	= 7,
-+	},
-+};
-+
- static struct svs_bank svs_mt8192_banks[] = {
- 	{
- 		.sw_id			= SVSB_GPU,
-@@ -2559,6 +2739,16 @@ static struct svs_bank svs_mt8183_banks[] = {
- 	},
- };
- 
-+static const struct svs_platform_data svs_mt8195_platform_data = {
-+	.name = "mt8195-svs",
-+	.banks = svs_mt8195_banks,
-+	.efuse_parsing = svs_mt8195_efuse_parsing,
-+	.probe = svs_mt8195_platform_probe,
-+	.irqflags = IRQF_TRIGGER_HIGH,
-+	.regs = svs_regs_v2,
-+	.bank_max = ARRAY_SIZE(svs_mt8195_banks),
-+};
-+
- static const struct svs_platform_data svs_mt8192_platform_data = {
- 	.name = "mt8192-svs",
- 	.banks = svs_mt8192_banks,
-@@ -2591,6 +2781,9 @@ static const struct svs_platform_data svs_mt8183_platform_data = {
- 
- static const struct of_device_id svs_of_match[] = {
- 	{
-+		.compatible = "mediatek,mt8195-svs",
-+		.data = &svs_mt8195_platform_data,
-+	}, {
- 		.compatible = "mediatek,mt8192-svs",
- 		.data = &svs_mt8192_platform_data,
- 	}, {
--- 
-2.18.0
+Moreover the history shows that IS_MFCVxx becomes IS_MFCVxx_PLUS, after 
+next version, maybe you should use the new name, to avoid this renaming.
+
+Regards
+Andrzej
+
+>
+>> +#define FW_HAS_E_MIN_SCRATCH_BUF(dev) (IS_MFCV10_PLUS(dev))
+>>     #define MFC_V5_BIT    BIT(0)
+>>   #define MFC_V6_BIT    BIT(1)
+>> diff --git a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_ctrl.c 
+>> b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_ctrl.c
+>> index 72d70984e99a..ffe9f7e79eca 100644
+>> --- a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_ctrl.c
+>> +++ b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_ctrl.c
+>> @@ -236,7 +236,7 @@ int s5p_mfc_init_hw(struct s5p_mfc_dev *dev)
+>>       else
+>>           mfc_write(dev, 0x3ff, S5P_FIMV_SW_RESET);
+>>   -    if (IS_MFCV10(dev))
+>> +    if (IS_MFCV10_PLUS(dev))
+>>           mfc_write(dev, 0x0, S5P_FIMV_MFC_CLOCK_OFF_V10);
+>>         mfc_debug(2, "Will now wait for completion of firmware 
+>> transfer\n");
+>> diff --git a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_opr_v6.c 
+>> b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_opr_v6.c
+>> index 8227004f6746..728d255e65fc 100644
+>> --- a/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_opr_v6.c
+>> +++ b/drivers/media/platform/samsung/s5p-mfc/s5p_mfc_opr_v6.c
+>> @@ -72,9 +72,9 @@ static int s5p_mfc_alloc_codec_buffers_v6(struct 
+>> s5p_mfc_ctx *ctx)
+>>                 ctx->luma_size, ctx->chroma_size, ctx->mv_size);
+>>           mfc_debug(2, "Totals bufs: %d\n", ctx->total_dpb_count);
+>>       } else if (ctx->type == MFCINST_ENCODER) {
+>> -        if (IS_MFCV10(dev)) {
+>> +        if (IS_MFCV10_PLUS(dev))
+>>               ctx->tmv_buffer_size = 0;
+>> -        } else if (IS_MFCV8_PLUS(dev))
+>> +        else if (IS_MFCV8_PLUS(dev))
+>>               ctx->tmv_buffer_size = S5P_FIMV_NUM_TMV_BUFFERS_V6 *
+>>               ALIGN(S5P_FIMV_TMV_BUFFER_SIZE_V8(mb_width, mb_height),
+>>               S5P_FIMV_TMV_BUFFER_ALIGN_V6);
+>> @@ -82,7 +82,7 @@ static int s5p_mfc_alloc_codec_buffers_v6(struct 
+>> s5p_mfc_ctx *ctx)
+>>               ctx->tmv_buffer_size = S5P_FIMV_NUM_TMV_BUFFERS_V6 *
+>>               ALIGN(S5P_FIMV_TMV_BUFFER_SIZE_V6(mb_width, mb_height),
+>>               S5P_FIMV_TMV_BUFFER_ALIGN_V6);
+>> -        if (IS_MFCV10(dev)) {
+>> +        if (IS_MFCV10_PLUS(dev)) {
+>>               lcu_width = S5P_MFC_LCU_WIDTH(ctx->img_width);
+>>               lcu_height = S5P_MFC_LCU_HEIGHT(ctx->img_height);
+>>               if (ctx->codec_mode != S5P_FIMV_CODEC_HEVC_ENC) {
+>> @@ -133,7 +133,7 @@ static int s5p_mfc_alloc_codec_buffers_v6(struct 
+>> s5p_mfc_ctx *ctx)
+>>       switch (ctx->codec_mode) {
+>>       case S5P_MFC_CODEC_H264_DEC:
+>>       case S5P_MFC_CODEC_H264_MVC_DEC:
+>> -        if (IS_MFCV10(dev))
+>> +        if (IS_MFCV10_PLUS(dev))
+>>               mfc_debug(2, "Use min scratch buffer size\n");
+>>           else if (IS_MFCV8_PLUS(dev))
+>>               ctx->scratch_buf_size =
+>> @@ -152,7 +152,7 @@ static int s5p_mfc_alloc_codec_buffers_v6(struct 
+>> s5p_mfc_ctx *ctx)
+>>               (ctx->mv_count * ctx->mv_size);
+>>           break;
+>>       case S5P_MFC_CODEC_MPEG4_DEC:
+>> -        if (IS_MFCV10(dev))
+>> +        if (IS_MFCV10_PLUS(dev))
+>>               mfc_debug(2, "Use min scratch buffer size\n");
+>>           else if (IS_MFCV7_PLUS(dev)) {
+>>               ctx->scratch_buf_size =
+>> @@ -172,7 +172,7 @@ static int s5p_mfc_alloc_codec_buffers_v6(struct 
+>> s5p_mfc_ctx *ctx)
+>>           break;
+>>       case S5P_MFC_CODEC_VC1RCV_DEC:
+>>       case S5P_MFC_CODEC_VC1_DEC:
+>> -        if (IS_MFCV10(dev))
+>> +        if (IS_MFCV10_PLUS(dev))
+>>               mfc_debug(2, "Use min scratch buffer size\n");
+>>           else
+>>               ctx->scratch_buf_size =
+>> @@ -189,7 +189,7 @@ static int s5p_mfc_alloc_codec_buffers_v6(struct 
+>> s5p_mfc_ctx *ctx)
+>>           ctx->bank2.size = 0;
+>>           break;
+>>       case S5P_MFC_CODEC_H263_DEC:
+>> -        if (IS_MFCV10(dev))
+>> +        if (IS_MFCV10_PLUS(dev))
+>>               mfc_debug(2, "Use min scratch buffer size\n");
+>>           else
+>>               ctx->scratch_buf_size =
+>> @@ -201,7 +201,7 @@ static int s5p_mfc_alloc_codec_buffers_v6(struct 
+>> s5p_mfc_ctx *ctx)
+>>           ctx->bank1.size = ctx->scratch_buf_size;
+>>           break;
+>>       case S5P_MFC_CODEC_VP8_DEC:
+>> -        if (IS_MFCV10(dev))
+>> +        if (IS_MFCV10_PLUS(dev))
+>>               mfc_debug(2, "Use min scratch buffer size\n");
+>>           else if (IS_MFCV8_PLUS(dev))
+>>               ctx->scratch_buf_size =
+>> @@ -230,7 +230,7 @@ static int s5p_mfc_alloc_codec_buffers_v6(struct 
+>> s5p_mfc_ctx *ctx)
+>>               DEC_VP9_STATIC_BUFFER_SIZE;
+>>           break;
+>>       case S5P_MFC_CODEC_H264_ENC:
+>> -        if (IS_MFCV10(dev)) {
+>> +        if (IS_MFCV10_PLUS(dev)) {
+>>               mfc_debug(2, "Use min scratch buffer size\n");
+>>               ctx->me_buffer_size =
+>>               ALIGN(ENC_V100_H264_ME_SIZE(mb_width, mb_height), 16);
+>> @@ -254,7 +254,7 @@ static int s5p_mfc_alloc_codec_buffers_v6(struct 
+>> s5p_mfc_ctx *ctx)
+>>           break;
+>>       case S5P_MFC_CODEC_MPEG4_ENC:
+>>       case S5P_MFC_CODEC_H263_ENC:
+>> -        if (IS_MFCV10(dev)) {
+>> +        if (IS_MFCV10_PLUS(dev)) {
+>>               mfc_debug(2, "Use min scratch buffer size\n");
+>>               ctx->me_buffer_size =
+>>                   ALIGN(ENC_V100_MPEG4_ME_SIZE(mb_width,
+>> @@ -273,7 +273,7 @@ static int s5p_mfc_alloc_codec_buffers_v6(struct 
+>> s5p_mfc_ctx *ctx)
+>>           ctx->bank2.size = 0;
+>>           break;
+>>       case S5P_MFC_CODEC_VP8_ENC:
+>> -        if (IS_MFCV10(dev)) {
+>> +        if (IS_MFCV10_PLUS(dev)) {
+>>               mfc_debug(2, "Use min scratch buffer size\n");
+>>               ctx->me_buffer_size =
+>>                   ALIGN(ENC_V100_VP8_ME_SIZE(mb_width, mb_height),
+>> @@ -452,7 +452,7 @@ static void s5p_mfc_dec_calc_dpb_size_v6(struct 
+>> s5p_mfc_ctx *ctx)
+>>         if (ctx->codec_mode == S5P_MFC_CODEC_H264_DEC ||
+>>               ctx->codec_mode == S5P_MFC_CODEC_H264_MVC_DEC) {
+>> -        if (IS_MFCV10(dev)) {
+>> +        if (IS_MFCV10_PLUS(dev)) {
+>>               ctx->mv_size = S5P_MFC_DEC_MV_SIZE_V10(ctx->img_width,
+>>                       ctx->img_height);
+>>           } else {
+>> @@ -668,7 +668,7 @@ static int s5p_mfc_set_enc_ref_buffer_v6(struct 
+>> s5p_mfc_ctx *ctx)
+>>         mfc_debug(2, "Buf1: %p (%d)\n", (void *)buf_addr1, buf_size1);
+>>   -    if (IS_MFCV10(dev)) {
+>> +    if (IS_MFCV10_PLUS(dev)) {
+>>           /* start address of per buffer is aligned */
+>>           for (i = 0; i < ctx->pb_count; i++) {
+>>               writel(buf_addr1, mfc_regs->e_luma_dpb + (4 * i));
+>> @@ -2455,7 +2455,7 @@ const struct s5p_mfc_regs 
+>> *s5p_mfc_init_regs_v6_plus(struct s5p_mfc_dev *dev)
+>>       R(e_h264_options, S5P_FIMV_E_H264_OPTIONS_V8);
+>>       R(e_min_scratch_buffer_size, 
+>> S5P_FIMV_E_MIN_SCRATCH_BUFFER_SIZE_V8);
+>>   -    if (!IS_MFCV10(dev))
+>> +    if (!IS_MFCV10_PLUS(dev))
+>>           goto done;
+>>         /* Initialize registers used in MFC v10 only.
+>
 
