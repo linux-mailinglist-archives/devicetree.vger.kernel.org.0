@@ -2,83 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D01EC52CDE7
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 10:06:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A397452CDF9
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 10:12:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231358AbiESIGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 04:06:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50088 "EHLO
+        id S235251AbiESILs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 04:11:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235210AbiESIGQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 04:06:16 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEDB155340
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 01:06:14 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id f4so7677432lfu.12
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 01:06:14 -0700 (PDT)
+        with ESMTP id S235185AbiESILq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 04:11:46 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 145E05EDD6
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 01:11:44 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id f9so8470090ejc.0
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 01:11:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=YQu4TSu2p0KMGwL1YiCJK+tIvwswRm4g+esi1EtLUqY=;
-        b=o1apGfVokpVYUvl11XsDGw3sWAaJlnSrEiMNO9glke1zNuuTNworCaiu1tmv55uxg/
-         4O4XmJmvlHX98cUknYG54RMHW0iYedyKoLd2nzud8R0yBBNCI4h4uQar3VFd12gH/Z7k
-         zIblUDwVHJPgcOG5BTvBf5UcwPJWwTSmf4h5ScV0X23a3QFdtbEvpde/5S8N7uow+MIs
-         L8Fi31CUT6M687O4q/Miv1SfmXLtYFj6xS1gh6PSD6aTAebK1S5jOrY3TzquWUZNtUn0
-         Xa46PSfa4877JX8WeBwhhzc3pWPFJFG6mZijTWP4xuIYXBbd+uXv1C4zefE6ZBvTHEVI
-         9AAw==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=01228AsAW87u3V4vkE8Gdp75PpcK5YiypQ0QBFNy3Fo=;
+        b=fyqnVlGla7N4lQ5uwn8e1++nR5hMcVfH7kXZQI8dELebvdx5wPXYCoEaQ4C87TZKZb
+         qH6CdEFNVlapKLhCj99xyjQxf1VcaZ5TtbUaMKjoLY/in6GwqZcXS+42KdFB0vUzPvQx
+         lzfvA3ZG3agZdJ4K7WGDR3LIwxpLVJycMi1YA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=YQu4TSu2p0KMGwL1YiCJK+tIvwswRm4g+esi1EtLUqY=;
-        b=KzbJKN7BhWs1xiuyaUpNCxQajSLRSygmJ4O0a+q0FOC5qAWX2vzQaFK6DqNPMNoHcu
-         0FrO1cQSrrYcTtMohzdLM7QnkcRFPUy9lnK/YZkNNYxsSUcoNYQ60Ol4s7FVKa0YCI49
-         L8cbWc8hDTVMYGFlzVif01uogjWgPb0kMC2jw0VhcL/qiNIvslpYEEV6R8OpMulGyJT8
-         82f1kBRrbFxL+U2KJsJXSsAOGzGMu2ymfzl7g5qRSv/kY0pxxpzgTRGkgKxHI0dETfoI
-         JbPtDuBV6nDzokg2dmKELOGCNMmBVWvIykeMF/xHNhjPv+Otzn+nUQgCWU1a/YNNHh82
-         X36w==
-X-Gm-Message-State: AOAM531R8C0xijDSpvZUeZgDQ4zKcenOUp6VKVorTFK9awaWxUAAeZaT
-        EYPU12exD3wbRNIou98av8Nspw==
-X-Google-Smtp-Source: ABdhPJynRmhFrlhx3kRSatFsRgdvlOCMXWMPPfZKsFEulfDFTderFYUY4ADZeD8pVWnFHXOACwdNqg==
-X-Received: by 2002:a05:6512:2256:b0:473:a584:9905 with SMTP id i22-20020a056512225600b00473a5849905mr2437032lfu.639.1652947570707;
-        Thu, 19 May 2022 01:06:10 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id s18-20020a2e9c12000000b00253d5618718sm140705lji.34.2022.05.19.01.06.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 May 2022 01:06:10 -0700 (PDT)
-Message-ID: <04837608-8c12-5bc0-9eca-fdcac83c5c4f@linaro.org>
-Date:   Thu, 19 May 2022 10:06:09 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=01228AsAW87u3V4vkE8Gdp75PpcK5YiypQ0QBFNy3Fo=;
+        b=b5ipAWEc/VGTxJH6YE2o+fMo9wyORtkzeqpPzIrEp05Ek6NNYeaeGIYdHzl17Dh9mE
+         HOn21OpLHiZtFtOXuYERqct02PYC6OhNKUlsovFdly0mfrRPiPGVHxZ7oyg/emQTjyZF
+         ATD0BFFHtUTzes3Ctzd9hQyj/HVYBNCKyRltvATRRSowT/xh247+u0+DWkyf5e+2kUWz
+         MqtzFmahFq4OBboUtpAHyAKpjOhaEBXJa9Q1LmrWhNsVfZcOXb7DAHuQ9dsAAfFaco6d
+         ai2vawpFOxaXZsZIhl2C8OHBL4AZ/w8d23qthuAZnXCP1bgfVHwwDJ8kzpcfMbDjdBnb
+         QQew==
+X-Gm-Message-State: AOAM532j1yw2Fc70vUCneJweFQ3+N7yVILRVO7/h/jomyHDIYqbs8o4h
+        jCpVZamfaJAcXXWGNLGCTk7EnusH3tFn1wByjeUkiw==
+X-Google-Smtp-Source: ABdhPJzdkLMSSx0pz3mvtK7JWYgQo736KqrmG37YE3VmOXM1RmsRocrZV0O4P9+IYgPClG3/SwjKr46CzO94QFvxqI0=
+X-Received: by 2002:a17:907:3f8e:b0:6f4:4723:4185 with SMTP id
+ hr14-20020a1709073f8e00b006f447234185mr3050546ejc.359.1652947902583; Thu, 19
+ May 2022 01:11:42 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [RFC net-next] dt-bindings: net: xilinx: document xilinx emaclite
- driver binding
-Content-Language: en-US
-To:     Radhey Shyam Pandey <radheys@xilinx.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        Harini Katakam <harinik@xilinx.com>
-Cc:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        git <git@xilinx.com>
-References: <1652373596-5994-1-git-send-email-radhey.shyam.pandey@xilinx.com>
- <8b441f8f-7aa2-0fab-9b90-6618a1e8c899@linaro.org>
- <SA1PR02MB856027DD26AAB5C38C345BBAC7D19@SA1PR02MB8560.namprd02.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <SA1PR02MB856027DD26AAB5C38C345BBAC7D19@SA1PR02MB8560.namprd02.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20220518111652.223727-8-angelogioacchino.delregno@collabora.com> <20220519045340.11198-1-miles.chen@mediatek.com>
+In-Reply-To: <20220519045340.11198-1-miles.chen@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Thu, 19 May 2022 16:11:31 +0800
+Message-ID: <CAGXv+5E0k1c3f1KnhUFs-kBVYqLH726UvhAaiBk=NMkR7+8H8g@mail.gmail.com>
+Subject: Re: [PATCH v2 7/7] clk: mediatek: Add MediaTek Helio X10 MT6795 clock drivers
+To:     Miles Chen <miles.chen@mediatek.com>
+Cc:     angelogioacchino.delregno@collabora.com, bgolaszewski@baylibre.com,
+        chun-jie.chen@mediatek.com, ck.hu@mediatek.com,
+        devicetree@vger.kernel.org, fparent@baylibre.com,
+        ikjn@chromium.org, jason-jh.lin@mediatek.com, kernel@collabora.com,
+        konrad.dybcio@somainline.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        marijn.suijten@somainline.org, martin.botka@somainline.org,
+        matthias.bgg@gmail.com, mturquette@baylibre.com,
+        p.zabel@pengutronix.de, paul.bouchara@somainline.org,
+        phone-devel@vger.kernel.org, rex-bc.chen@mediatek.com,
+        robh+dt@kernel.org, sam.shih@mediatek.com, sboyd@kernel.org,
+        tinghan.shen@mediatek.com, weiyi.lu@mediatek.com,
+        y.oudjana@protonmail.com, ~postmarketos/upstreaming@lists.sr.ht
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,39 +74,139 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/05/2022 17:47, Radhey Shyam Pandey wrote:
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: Friday, May 13, 2022 2:23 PM
->> To: Radhey Shyam Pandey <radheys@xilinx.com>; davem@davemloft.net;
->> edumazet@google.com; kuba@kernel.org; pabeni@redhat.com;
->> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org; Harini Katakam
->> <harinik@xilinx.com>
->> Cc: netdev@vger.kernel.org; devicetree@vger.kernel.org; linux-
->> kernel@vger.kernel.org; git <git@xilinx.com>
->> Subject: Re: [RFC net-next] dt-bindings: net: xilinx: document xilinx emaclite
->> driver binding
->>
->> On 12/05/2022 18:39, Radhey Shyam Pandey wrote:
->>> Add basic description for the xilinx emaclite driver DT bindings.
->>>
->>> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
->>> ---
->>>  .../bindings/net/xlnx,emaclite.yaml           | 60 +++++++++++++++++++
->>>  1 file changed, 60 insertions(+)
->>>  create mode 100644
->>> Documentation/devicetree/bindings/net/xlnx,emaclite.yaml
->>
->> Why is this RFC? Do you expect DT maintainers review or not? Maybe there is
->> no point for us to review something which is not going to be applied?
-> 
-> I intentionally made it RFC so that all aspects are reviewed as this driver didn't
-> had an existing binding. I will send out next version with below comment 
-> addressed. Thanks!
+On Thu, May 19, 2022 at 12:53 PM Miles Chen <miles.chen@mediatek.com> wrote:
+>
+>
+> Hi Angelo,
+>
+> >Add the clock drivers for the entire clock tree of MediaTek Helio X10
+> >MT6795, including system clocks (apmixedsys, infracfg, pericfg, topckgen)
+> >and multimedia clocks (mmsys, mfg, vdecsys, vencsys).
+> >
+> >Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> >---
+> > drivers/clk/mediatek/Kconfig                 |  37 ++
+> > drivers/clk/mediatek/Makefile                |   6 +
+> > drivers/clk/mediatek/clk-mt6795-apmixedsys.c | 157 +++++
+> > drivers/clk/mediatek/clk-mt6795-infracfg.c   | 148 +++++
+> > drivers/clk/mediatek/clk-mt6795-mfg.c        |  50 ++
+> > drivers/clk/mediatek/clk-mt6795-mm.c         | 106 ++++
+> > drivers/clk/mediatek/clk-mt6795-pericfg.c    | 160 +++++
+> > drivers/clk/mediatek/clk-mt6795-topckgen.c   | 611 +++++++++++++++++++
+> > drivers/clk/mediatek/clk-mt6795-vdecsys.c    |  55 ++
+> > drivers/clk/mediatek/clk-mt6795-vencsys.c    |  50 ++
+> > 10 files changed, 1380 insertions(+)
+> > create mode 100644 drivers/clk/mediatek/clk-mt6795-apmixedsys.c
+> > create mode 100644 drivers/clk/mediatek/clk-mt6795-infracfg.c
+> > create mode 100644 drivers/clk/mediatek/clk-mt6795-mfg.c
+> > create mode 100644 drivers/clk/mediatek/clk-mt6795-mm.c
+> > create mode 100644 drivers/clk/mediatek/clk-mt6795-pericfg.c
+> > create mode 100644 drivers/clk/mediatek/clk-mt6795-topckgen.c
+> > create mode 100644 drivers/clk/mediatek/clk-mt6795-vdecsys.c
+> > create mode 100644 drivers/clk/mediatek/clk-mt6795-vencsys.c
+> >
+> >diff --git a/drivers/clk/mediatek/Kconfig b/drivers/clk/mediatek/Kconfig
+> >index d5936cfb3bee..da8142dff3c3 100644
+> >--- a/drivers/clk/mediatek/Kconfig
+> >+++ b/drivers/clk/mediatek/Kconfig
+> >@@ -259,6 +259,43 @@ config COMMON_CLK_MT6779_AUDSYS
+> >       help
+> >         This driver supports Mediatek MT6779 audsys clocks.
+> >
+> >+config COMMON_CLK_MT6795
+> >+      tristate "Clock driver for MediaTek MT6795"
+> >+      depends on ARCH_MEDIATEK || COMPILE_TEST
+> >+      select COMMON_CLK_MEDIATEK
+> >+      default ARCH_MEDIATEK
+> >+      help
+> >+        This driver supports MediaTek MT6795 basic clocks and clocks
+> >+        required for various peripherals found on MediaTek.
+>
+> Thanks for doing this, I was wondering if we can use only COMMON_CLK_MT6795 to build all
+> clk-mt6795-*? like CONFIG_COMMON_CLK_MT8195 style:
+>
+> obj-$(CONFIG_COMMON_CLK_MT8195) += clk-mt8195-apmixedsys.o clk-mt8195-topckgen.o \
+>                                    clk-mt8195-peri_ao.o clk-mt8195-infra_ao.o \
+>                                    clk-mt8195-cam.o clk-mt8195-ccu.o clk-mt8195-img.o \
+>                                    clk-mt8195-ipe.o clk-mt8195-mfg.o clk-mt8195-scp_adsp.o \
+>                                    clk-mt8195-vdec.o clk-mt8195-vdo0.o clk-mt8195-vdo1.o \
+>                                    clk-mt8195-venc.o clk-mt8195-vpp0.o clk-mt8195-vpp1.o \
+>                                    clk-mt8195-wpe.o clk-mt8195-imp_iic_wrap.o \
+>                                    clk-mt8195-apusys_pll.o
+>
+> So we do not have to keep other COMMON_CLK_MT6795_* configs.
 
-RFC means you develop something which is not ready, not sure how to do
-it, you send an initial idea. Sending a regular bindings as RFC, without
-explaining what you expect, is a bit confusing.
++1 to that. I'm not sure if splitting the Kconfig symbols by subsystem
+ever made sense. Either you want a fully functioning system, or you
+don't want support for a given SoC built-in.
 
-Best regards,
-Krzysztof
+Reducing the number of Kconfig symbols also helps people running randconfig
+tests.
+
+
+ChenYu
+
+>
+> thanks,
+> Miles
+>
+> >+
+> >+config COMMON_CLK_MT6795_MFGCFG
+> >+      tristate "Clock driver for MediaTek MT6795 mfgcfg"
+> >+      depends on COMMON_CLK_MT6795
+> >+      default COMMON_CLK_MT6795
+> >+      help
+> >+        This driver supports MediaTek MT6795 mfgcfg clocks.
+> >+
+> >+config COMMON_CLK_MT6795_MMSYS
+> >+       tristate "Clock driver for MediaTek MT6795 mmsys"
+> >+       depends on COMMON_CLK_MT6795
+> >+      default COMMON_CLK_MT6795
+> >+       help
+> >+         This driver supports MediaTek MT6795 mmsys clocks.
+> >+
+> >+config COMMON_CLK_MT6795_VDECSYS
+> >+      tristate "Clock driver for MediaTek MT6795 VDECSYS"
+> >+      depends on COMMON_CLK_MT6795
+> >+      default COMMON_CLK_MT6795
+> >+      help
+> >+        This driver supports MediaTek MT6795 vdecsys clocks.
+> >+
+> >+config COMMON_CLK_MT6795_VENCSYS
+> >+      tristate "Clock driver for MediaTek MT6795 VENCSYS"
+> >+      depends on COMMON_CLK_MT6795
+> >+      default COMMON_CLK_MT6795
+> >+      help
+> >+        This driver supports MediaTek MT6795 vencsys clocks.
+> >+
+> > config COMMON_CLK_MT6797
+> >       bool "Clock driver for MediaTek MT6797"
+> >       depends on (ARCH_MEDIATEK && ARM64) || COMPILE_TEST
+> >diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
+> >index caf2ce93d666..57f0bf90e934 100644
+> >--- a/drivers/clk/mediatek/Makefile
+> >+++ b/drivers/clk/mediatek/Makefile
+> >@@ -17,6 +17,12 @@ obj-$(CONFIG_COMMON_CLK_MT6779_VDECSYS) += clk-mt6779-vdec.o
+> > obj-$(CONFIG_COMMON_CLK_MT6779_VENCSYS) += clk-mt6779-venc.o
+> > obj-$(CONFIG_COMMON_CLK_MT6779_MFGCFG) += clk-mt6779-mfg.o
+> > obj-$(CONFIG_COMMON_CLK_MT6779_AUDSYS) += clk-mt6779-aud.o
+> >+obj-$(CONFIG_COMMON_CLK_MT6795) += clk-mt6795-apmixedsys.o clk-mt6795-infracfg.o \
+> >+                                 clk-mt6795-pericfg.o clk-mt6795-topckgen.o
+> >+obj-$(CONFIG_COMMON_CLK_MT6795_MFGCFG) += clk-mt6795-mfg.o
+> >+obj-$(CONFIG_COMMON_CLK_MT6795_MMSYS) += clk-mt6795-mm.o
+> >+obj-$(CONFIG_COMMON_CLK_MT6795_VDECSYS) += clk-mt6795-vdecsys.o
+> >+obj-$(CONFIG_COMMON_CLK_MT6795_VENCSYS) += clk-mt6795-vencsys.o
+>
+>
+>
+> > obj-$(CONFIG_COMMON_CLK_MT6797) += clk-mt6797.o
+> > obj-$(CONFIG_COMMON_CLK_MT6797_IMGSYS) += clk-mt6797-img.o
+> > obj-$(CONFIG_COMMON_CLK_MT6797_MMSYS) += clk-mt6797-mm.o
+> >diff --git a/drivers/clk/mediatek/clk-mt6795-apmixedsys.c b/drivers/clk/mediatek/clk-mt6795-apmixedsys.c
+> >new file mode 100644
+> >index 000000000000..766e83765cbb
+> >--- /dev/null
+> >+++ b/drivers/clk/mediatek/clk-mt6795-apmixedsys.c
+> >@@ -0,0 +1,157 @@
+> >+// SPDX-License-Identifier: GPL-2.0-only
+> >+/*
