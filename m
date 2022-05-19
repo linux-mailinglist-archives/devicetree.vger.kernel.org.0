@@ -2,87 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AA4652DCC0
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 20:28:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFBF752DD0E
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 20:49:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243887AbiESS2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 14:28:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54968 "EHLO
+        id S233763AbiESSt1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 14:49:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243885AbiESS2R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 14:28:17 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17441C6E79;
-        Thu, 19 May 2022 11:28:16 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id y13so10803793eje.2;
-        Thu, 19 May 2022 11:28:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=1sDcNbgzxstYFS1dCzzCYng8q+gbAciBWtOhDHr35lY=;
-        b=Qs068JdV71v2mLkWZADWIvNoA1hKeNDw694CzcnIbE5aoHv7lctOcj8yQGD2Zdp1kZ
-         lANiJLLPG3z92YN1RjSOR2GcIGFyfij/ngDjp2qPmj1U8eBWhRfYZlPqKUh5nA6mdv7N
-         V1EudqXB83vYPlhgMoskMW56c8DD9sWnkYOQ5CYZQDJJJzpCKy0sIZXOffIVgUZiSuEk
-         /hHxSQCth7cK//2VrlSsdYy72uD6tn6OP4FRNg1VZ3MmwfIPTMngEJ85eZ3zNjbm8/Ks
-         OOaBDj/US9MMPJU/jI/1OfBhlVhty6vXCvyCGLSnmkOkcitSFVj4Tyz6i98VKh/2QrzX
-         YnMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=1sDcNbgzxstYFS1dCzzCYng8q+gbAciBWtOhDHr35lY=;
-        b=kX53wh1Mh8zP4HmcdcXVxziw55am1xvDUJQkBRKCm6HYfC1ZMrjg/Qpmp7fwQlAzs2
-         L5tdmb94x20a9pQZ3F3lapj9Kia+aFS6tO8OyzKgI5X+KNUjaz+uxKNlVzRLeL1R0duz
-         IQPy5Lj4GWh365qUA+S27c+hDX388h0rQOIP4uIe0GEkrUQYbo5RIAdqFj71zAqRuhc6
-         C9dhAEFVWxAnCgOMq2Shlb0Y6kJEHFka5Llrgs+kCGkO2TNF0OIk3VRfpmBcMXAsAc95
-         Fiyl0H4+3EXpPfDejVqCSF2H307kUcCmURbb8fdkMDNeDnLt/NYw2iNo+q0dcXKz1lP9
-         yeNA==
-X-Gm-Message-State: AOAM530sy8L7DWG5VYPHQj4kve3oEqsQ1eTyj94bllGd0FHpbxpGKhFm
-        1ebwKVShfeB7OGFU4BWbR0o=
-X-Google-Smtp-Source: ABdhPJxLX2HTJhx/MNiPan0SKInfK85r5Zi6aqFuFnQoZBbncjAdDbtmhjNjxDP+kVf3c4hgBhLGUw==
-X-Received: by 2002:a17:906:dc8b:b0:6fe:920b:61ff with SMTP id cs11-20020a170906dc8b00b006fe920b61ffmr5609038ejc.565.1652984894651;
-        Thu, 19 May 2022 11:28:14 -0700 (PDT)
-Received: from skbuf ([188.25.255.186])
-        by smtp.gmail.com with ESMTPSA id yl15-20020a17090693ef00b006f3ef214e69sm2321301ejb.207.2022.05.19.11.28.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 May 2022 11:28:14 -0700 (PDT)
-Date:   Thu, 19 May 2022 21:28:12 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH net-next v5 12/13] ARM: dts: r9a06g032: describe switch
-Message-ID: <20220519182812.lmp2gp6m47jt742y@skbuf>
-References: <20220519153107.696864-1-clement.leger@bootlin.com>
- <20220519153107.696864-13-clement.leger@bootlin.com>
+        with ESMTP id S233634AbiESSt0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 14:49:26 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A8E29D057
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 11:49:24 -0700 (PDT)
+Received: from [192.168.1.107] ([37.4.249.149]) by mrelayeu.kundenserver.de
+ (mreue012 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1MkEdF-1nTk3u0Jp3-00kgV7; Thu, 19 May 2022 20:48:59 +0200
+Message-ID: <0ff629de-24eb-c09f-6b1b-cddd4c533820@i2se.com>
+Date:   Thu, 19 May 2022 20:48:57 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220519153107.696864-13-clement.leger@bootlin.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH RFC] ARM: dts: bcm2711: Fix DMA constrains for newer
+ BCM2711 boards
+Content-Language: en-US
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     bcm-kernel-feedback-list@broadcom.com,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Peter Robinson <pbrobinson@gmail.com>, matthias.bgg@kernel.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20220413162739.6717-1-stefan.wahren@i2se.com>
+ <37114673-5b31-c03c-fb7e-0b6a05adffd6@i2se.com>
+ <49f55379-86b8-1ff2-b540-dff245993e1a@gmail.com>
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+In-Reply-To: <49f55379-86b8-1ff2-b540-dff245993e1a@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Provags-ID: V03:K1:KxVYuuSFQLV7xnR9OPuaVADEyzMLuUu9Jy2JYNonmuL8E9tfRvJ
+ bCBY7LhxWY67IoGgi8pf+sQgVer6CGfSmSFrr5eCLLzxUJ4eTDnEFYtJsz7bc6lEjON/IVT
+ ls8gOSH/nX7VB11ppxxqyACQi81RYvUUFK3LeFCAGBUDHX6FVqzm65DrXZYwxWaHMZXDpSF
+ +e9HKH4jzjzbwiCcefAtA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:Id19xmDs3Ec=:KQdDZdyDyTJXCKW/yL9MOb
+ V/BzLE0bpDnitEEao5yB+oNu5ro0FgUEEKBdXeP7BZTbfeLI70J914SWKoU9b6PKrT4mXLYgM
+ +Z2Bxar+pij9eViux+oEVvr1zEE7kT9mG1MsMUDJi+NdiC0YThegcQDWJtLFOZ7o84ax1/Lik
+ dHEbxO0L3fyumhsaD5bMCp8+mqi6KCOj/I3aztxQuesTLKp7pLz8kqwK6kmPS1q22nNrPu6QP
+ yawoQ9HEiZqY2kc91zRdbnWPxyh3mtuHdU9P64mJRtJ442O4Yyn85ZUTy9qinKCMPUV0ERWNT
+ YVHDoJTWCxzr+dpK21ZIFl98gbri9HsmdCW6VzBlM5UQ7shPqeasGud10WTYV7wFEt1MBoK3o
+ HPoJOsPGYJeYvMDYvkKKWvAcDa962fgbCfLqvCrJEPZh7YKa2uQ3v9NfDFX9o5HlrbknSxMQa
+ x4JV0bxuqhDGx887XBEK4TgLXCS/vCpegQFctXUvv3Pqr7IHkbi1X5o3Uv0vQe1sLv8m5RiDT
+ UgR4bCcWnEWVr0FlO/eLypmE7ASyw+ko7Dd5BrcB62iTOBK10r8CJoyfodISRGLVpXwgEvTZI
+ +l43SjCi91QrVuz/GcFVLa6hbHAjcs1CAd+DbdSiNgi9japZSzZzsyS78MFLSoZzPHJxM94GZ
+ rzRZiygZFcvz/QbrVYl5IU1sFu4BLn9kgZxFdULRpAp26dcF7KC+Mx5EKkBgRdrkTzBHWYo8g
+ 2GDwKeaZeZ2GHx6ovGLz2NuNV6G/8/EC0PxujtGdSd66ZfuC/NfYDaQW/Co=
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -91,42 +68,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 19, 2022 at 05:31:06PM +0200, Clément Léger wrote:
-> Add description of the switch that is present on the RZ/N1 SoC.
-> 
-> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
-> ---
->  arch/arm/boot/dts/r9a06g032.dtsi | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/r9a06g032.dtsi b/arch/arm/boot/dts/r9a06g032.dtsi
-> index 31c4b2e2950a..20d3dce632ce 100644
-> --- a/arch/arm/boot/dts/r9a06g032.dtsi
-> +++ b/arch/arm/boot/dts/r9a06g032.dtsi
-> @@ -255,6 +255,15 @@ mii_conv5: mii-conv@5 {
->  			};
->  		};
->  
-> +		switch: switch@44050000 {
-> +			compatible = "renesas,r9a06g032-a5psw", "renesas,rzn1-a5psw";
-> +			reg = <0x44050000 0x10000>;
-> +			clocks = <&sysctrl R9A06G032_HCLK_SWITCH>,
-> +				 <&sysctrl R9A06G032_CLK_SWITCH>;
-> +			clock-names = "hclk", "clk";
-> +			status = "disabled";
-
-Does the switch port count depend on anything? If it doesn't, maybe you
-could add the "ethernet-ports" node and all the ports here, with status
-= "disabled", so that board files don't need to spell them out each time?
-I'm also thinking you could define the fixed-link and phy-mode = "internal"
-property of the CPU port with this occasion. That surely isn't a
-per-board thing.
-
-> +		};
-> +
->  		gic: interrupt-controller@44101000 {
->  			compatible = "arm,gic-400", "arm,cortex-a7-gic";
->  			interrupt-controller;
-> -- 
-> 2.36.0
-> 
+Am 18.05.22 um 22:18 schrieb Florian Fainelli:
+>
+>
+> On 5/4/2022 2:43 PM, Stefan Wahren wrote:
+>> Hi,
+>>
+>> Am 13.04.22 um 18:27 schrieb Stefan Wahren:
+>>> The commit 3d2cbb644836 ("ARM: dts: bcm2711: Move emmc2 into its own 
+>>> bus")
+>>> assumed that all bootloader pass the FDT modified by the firmware to 
+>>> the
+>>> kernel. But this is not always the case (e.g. Fedora) and cause boot
+>>> issues for boards with a BCM2711 C0 SoC (RPi 400, CM4, newer RPi 4 B)
+>>> which does have different DMA constraints.
+>>>
+>>> Since we are not able to detect the SoC revision, let's assume a 
+>>> BCM2711
+>>> C0 SoC for bcm2711.dtsi and move the restricted DMA constrains to a
+>>> separate RPi 4 B board file just for the old SoC revision.
+>>>
+>>> Fixes: 3d2cbb644836 ("ARM: dts: bcm2711: Move emmc2 into its own bus")
+>>> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+>> since there wasn't any feedback yet, i want to ping ...
+>
+> Could not we just rely on the VPU patching the Device Tree instead of 
+> having to differentiate the 2711 revision and having to use different 
+> DTS/DTBs?
+As long as every bootloader in the boot chain take care everything is 
+fine. The problem is the VPU firmware is closed source, so only a few 
+people knows about the hardware differences. So the idea was to make it 
+more transparent and yes i'm also not happy with this patch.
+>
+> Also, can we consider that the older B0 are less predominant in the 
+> wild than the C0 nowadays, especially with the shortages going on is 
+> that even remotely the case?
+So your idea is to make C0 the default and let the firmware patch the B0 
+part? I must confess that i never tested this.
