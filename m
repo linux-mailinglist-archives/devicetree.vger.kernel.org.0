@@ -2,107 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0B5A52D008
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 12:01:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0EA352D018
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 12:07:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236396AbiESKBq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 06:01:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48168 "EHLO
+        id S233052AbiESKFj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 06:05:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231345AbiESKBp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 06:01:45 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 963C328703
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 03:01:43 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id 27so655904ljw.0
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 03:01:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=6Hbm4yf+el+tFvaYL/Hvdyk+jw+gD0Z8FpjuTi6F8CU=;
-        b=P3L8qPnk9J8q7Zmcw3q2yp9RZ77/2vt5h5v0nFjmLXhTJYpiPjlsnDl5P+8MwP+NSC
-         3PkYgzQ1jAQmLXEabJeL9tzRY1hXakzBjEGyaT7JJXuB8Qw/9N+Ne+AVaudI2MagqZ1v
-         ti1ll9I6Y39tXbMlaqmSqRuRZFcgmfPELczHvDO/aJYVvHzHcfQ35pcnO/g2pOOlgcUw
-         2x3Kxv99LTluz3noQcNDRK3caIScYCxr22H64K6hk0Z+Xbe9RxkdpvKoOVC+0G/B9MVQ
-         bt9A2PyJp7/HWCA1BOLj6EBYnRqE5JbE4ZRS97Ko2wAc9MYnEOXNxUsmhnEOw+IxiIvF
-         aYFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=6Hbm4yf+el+tFvaYL/Hvdyk+jw+gD0Z8FpjuTi6F8CU=;
-        b=x6sLgWqxW2rzDd64txyMC20AkBBKwuikPlSD0hBEw4otktxHNkWeXkwx3c9fSMAztT
-         VwVwSH+baHhaCji9v1J39pJVGs3UO7jXDpcBLqkuA9oPtouw2KY0uOPkcc+jWQ8byBza
-         wvqdLIu7iICYuErDHQz9OTibtAlZ4mE2bQ+uODGDrMwpjeUz2PI1YBeiOdxNFq/rg+jS
-         iEGon2xmiATm6Op6qlK4obeah+ICamCPVdew3tIOxEsyozAlYSwwqTVOIs31umwd+kNq
-         OQ0WTpr9rswU4REjEp2c18kRrX/Ot0FK59ajguGECktQLpyW8WYY9pzjHz1p8pvzDb59
-         zJqw==
-X-Gm-Message-State: AOAM5335Ba4+wEEeeXAj/1j+lcg21NP+QZuELzRYy4iS0ANyet1M8Xaj
-        yMkhxh6gRL62/WQ0VQQx4MvWeA==
-X-Google-Smtp-Source: ABdhPJwpGabBICjeLnO2G6OFpyyw8fKv8lMujCQy0oQKn4FP4GwvqoEWRaXCpGPRnFALGTLcUHV5Ig==
-X-Received: by 2002:a2e:bd12:0:b0:250:d1a0:217e with SMTP id n18-20020a2ebd12000000b00250d1a0217emr2182112ljq.310.1652954501959;
-        Thu, 19 May 2022 03:01:41 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id k30-20020a0565123d9e00b00477cbc03a42sm67023lfv.84.2022.05.19.03.01.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 May 2022 03:01:41 -0700 (PDT)
-Message-ID: <3bb95350-01cc-b15b-3589-16019e3e9105@linaro.org>
-Date:   Thu, 19 May 2022 12:01:40 +0200
+        with ESMTP id S236526AbiESKFg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 06:05:36 -0400
+Received: from m12-16.163.com (m12-16.163.com [220.181.12.16])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 89C199C2F8;
+        Thu, 19 May 2022 03:05:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+        s=s110527; h=Message-ID:Date:MIME-Version:Subject:From; bh=FZ3hy
+        egvo2S44gZY7fZKV/hVLJK/8ShMe+XuaT4PYxc=; b=dxl60OA1T6jte5C/lcC2p
+        G/JraAB2FkY3J+YMjw76lediE6XrGrQUz+X5TwvvviQm5qFJV+7zkiMje1iNUS99
+        5yO0O+0qch0kPhXkFgedPGrNcQsb+JcVAL4wPx3mI5tG5xkdtjBHCVfKI8bYIjps
+        glABlVo6Mna6eQwC9OO4pc=
+Received: from [192.168.3.103] (unknown [218.201.129.20])
+        by smtp12 (Coremail) with SMTP id EMCowABHHpAxFoZiI0+HAQ--.1426S2;
+        Thu, 19 May 2022 18:04:35 +0800 (CST)
+Message-ID: <264cb004-677a-13df-cc68-676ef3c2e7d8@163.com>
+Date:   Thu, 19 May 2022 18:04:33 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: msm8996-xiaomi-natrium: Add support
- for Xiaomi Mi 5s Plus
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH v4 0/2] ARM: sun8i-r40: Enable usb otg support
 Content-Language: en-US
-To:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        Andy Gross <agross@kernel.org>
-Cc:     Alec Su <ae40515@yahoo.com.tw>, bjorn.andersson@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        sboyd@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220519074112.25600-1-ae40515@yahoo.com.tw>
- <20220519074112.25600-2-ae40515@yahoo.com.tw>
- <3644ad8a-d5d8-8ea2-b659-029619c64f1f@linaro.org>
- <NqQY5WA6i6jOhK8lZ-YD4kWA57qJCSIGJE6_xAQmOiFJ4a-msHcn7oakouduiLhODYlfWVvgr-E5S6m43Ab6EUFa0ZPYV0kPGeYbVV7zpUI=@protonmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <NqQY5WA6i6jOhK8lZ-YD4kWA57qJCSIGJE6_xAQmOiFJ4a-msHcn7oakouduiLhODYlfWVvgr-E5S6m43Ab6EUFa0ZPYV0kPGeYbVV7zpUI=@protonmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To:     linux-sunxi@lists.linux.dev
+Cc:     Andre Przywara <andre.przywara@arm.com>,
+        Evgeny Boger <boger@wirenboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220518101706.26869-1-qianfanguijin@163.com>
+From:   qianfan <qianfanguijin@163.com>
+In-Reply-To: <20220518101706.26869-1-qianfanguijin@163.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: EMCowABHHpAxFoZiI0+HAQ--.1426S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxCw1UGr45urW7uF48Gw1DAwb_yoW5urWDpF
+        W7XrZ3Gw1kt343AFW3WFWUXa1fA3yrZ3yUJrn3tFy8Ar43ur4DA3ZrKrZ8KasrWr17Zw47
+        Kwn5Jrn7Krn0gF7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+        9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jONVkUUUUU=
+X-Originating-IP: [218.201.129.20]
+X-CM-SenderInfo: htld0w5dqj3xxmlqqiywtou0bp/1tbiXBMG7VXl29+6cQAAsb
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/05/2022 11:57, Yassine Oudjana wrote:
->>
->> There is no such property documented. Either add bindings, or drop.
->>
->>> + qcom,board-id = <47 0>;
->>
->>
->> The same.
-> 
-> These properties are already used in many device trees; they are
-> needed to let the bootloader pick a DTB, but yes they aren't
-> documented currently. devicetree/bindings/arm/qcom.yaml would
-> probably be a good place to put them.
-
-Which means each person is using them and not caring about
-documenting... they need to be documented. I am not even sure if they
-should be accepted.
-
-The DTS describes hardware, not bootloader specific details. The
-hardware - board - is defined by compatible and bootloader should use
-it. Adding new properties because someone decided "I don't like
-compatibles" is not appropriate.
 
 
-Best regards,
-Krzysztof
+在 2022/5/18 18:17, qianfanguijin@163.com 写道:
+> From: qianfan Zhao <qianfanguijin@163.com>
+>
+> History:
+> =======
+>
+> v4(2022-05-18):
+> - Enable both musb and OHCI/EHCI support
+>
+> Tests:
+> ======
+>
+> All test cases were tested on bananapi-m2-ultra.
+>
+> 1. USB DEVICE(ping test)
+>
+> Enable usb gadget rndis network, ping m2u on ubuntu host:
+>
+> ➜  ~ ping 192.168.200.2
+> PING 192.168.200.2 (192.168.200.2) 56(84) bytes of data.
+> 64 bytes from 192.168.200.2: icmp_seq=1 ttl=64 time=0.544 ms
+> 64 bytes from 192.168.200.2: icmp_seq=2 ttl=64 time=0.269 ms
+> 64 bytes from 192.168.200.2: icmp_seq=3 ttl=64 time=0.300 ms
+> 64 bytes from 192.168.200.2: icmp_seq=4 ttl=64 time=0.295 ms
+> 64 bytes from 192.168.200.2: icmp_seq=5 ttl=64 time=0.283 ms
+> 64 bytes from 192.168.200.2: icmp_seq=6 ttl=64 time=0.226 ms
+> 64 bytes from 192.168.200.2: icmp_seq=7 ttl=64 time=0.246 ms
+> 64 bytes from 192.168.200.2: icmp_seq=8 ttl=64 time=0.204 ms
+> 64 bytes from 192.168.200.2: icmp_seq=9 ttl=64 time=0.302 ms
+> 64 bytes from 192.168.200.2: icmp_seq=10 ttl=64 time=0.249 ms
+> 64 bytes from 192.168.200.2: icmp_seq=11 ttl=64 time=0.459 ms
+> 64 bytes from 192.168.200.2: icmp_seq=12 ttl=64 time=0.232 ms
+> 64 bytes from 192.168.200.2: icmp_seq=13 ttl=64 time=0.275 ms
+> 64 bytes from 192.168.200.2: icmp_seq=14 ttl=64 time=0.243 ms
+>
+> 2. USB HOST(OHCI)
+>
+> Connect an usb serial port on OTG port, nex t is the kernel log:
+>
+> [   27.824137] usb 2-1: new full-speed USB device number 2 using ohci-platform
+> [   28.865504] cdc_acm 2-1:1.0: ttyACM0: USB ACM device
+> [   29.565509] cdc_acm 2-1:1.2: ttyACM1: USB ACM device
+>
+> 3. USB HOST(EHCI)
+>
+> Connect an usb storage on OTG port, next is the kernel log:
+>
+> [   17.754147] usb 1-1: new high-speed USB device number 2 using ehci-platform
+> [   17.955995] usb-storage 1-1:1.0: USB Mass Storage device detected
+> [   18.024497] scsi host1: usb-storage 1-1:1.0
+> [   19.035091] scsi 1:0:0:0: Direct-Access     General  USB Flash Disk   1.0  PQ: 0 ANSI: 2
+> [   19.049717] sd 1:0:0:0: [sda] 7831552 512-byte logical blocks: (4.01 GB/3.73 GiB)
+> [   19.060873] sd 1:0:0:0: [sda] Write Protect is off
+> [   19.071018] sd 1:0:0:0: [sda] No Caching mode page found
+> [   19.076437] sd 1:0:0:0: [sda] Assuming drive cache: write through
+> [   19.093566]  sda: sda1
+> [   19.103492] sd 1:0:0:0: [sda] Attached SCSI removable disk
+>
+> issues:
+> =======
+>
+> The system power often turned off when I plugged an usb device into the OTG port.
+> It's not clear why.
+It is not caused by software.
+
+According to the schematic of M2U, there is a 100uF capacitor on the 
+USBVBUS,
+but noting on ACIN. The board is powered by ACIN when I test usb otg,
+plugged an usb storage into the otg port, USB0 enter host mode and will
+enable the USBVBUS power supply through N_VBUSEN. At this time due to the
+limits of ACIN, the input voltage dropped and AXP enter shutdown protection
+state.
+
+This problem was sloved when I mounted a large capacitor on ACIN.
+Both usb device and host stack can work fine now.
+>
+> qianfan Zhao (2):
+>    ARM: dts: sun8i-r40: Add USB0_OTG/HOST support
+>    ARM: dts: bananapi-m2-ultra: Enable USB0_OTG and HOST support
+>
+>   .../boot/dts/sun8i-r40-bananapi-m2-ultra.dts  | 39 +++++++++++++++++++
+>   arch/arm/boot/dts/sun8i-r40.dtsi              | 34 ++++++++++++++++
+>   2 files changed, 73 insertions(+)
+>
+
