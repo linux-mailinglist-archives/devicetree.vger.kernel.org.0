@@ -2,120 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 265BF52D148
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 13:18:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39E6852D154
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 13:22:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231968AbiESLSo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 07:18:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60246 "EHLO
+        id S236154AbiESLWL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 07:22:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230008AbiESLSn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 07:18:43 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB73AA501D;
-        Thu, 19 May 2022 04:18:40 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 294EA1F45A60
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1652959119;
-        bh=8hHuB3iHrcQC4fZoJfLi8hVlnXkttGVOtI+EU+Ln4bY=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=kNIuRzKxMhgD6upJLoGW4KXkvrPyPPNaTjtKrzGhVwZ4+O5k1tWYP5R6kRZ+IYT+J
-         +atXn1qrvnV2JlvB0+3tGpNwpFnt9fQSoOUVzuLRYLHZzrvmccL4/8bRhc6UCaZaah
-         V+lOKHmNH0nafJ4RlygrDiu1Kt8eC1b1tmkwSreJs4sFZ4VjHkEio+SftcbeswhHF+
-         akrlMLbeNQH8eC0AR1pzL4Drni98XU7Ki00K7QqDEYQLWqPpvbeflCMGwi+pRRbyiA
-         UgPGV44+4ccNcANnHzuo8BHoV6evaHbLu+EQYtPewZQfaV37MZEljFs/Of5SfxIpFA
-         FTa0rCBgWVigw==
-Message-ID: <d8de6b98-23a3-1991-8ceb-24098c38c335@collabora.com>
-Date:   Thu, 19 May 2022 13:18:35 +0200
+        with ESMTP id S232529AbiESLWK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 07:22:10 -0400
+Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6AA83EB9F;
+        Thu, 19 May 2022 04:22:09 -0700 (PDT)
+Received: by mail-qv1-xf32.google.com with SMTP id y20so4309976qvx.3;
+        Thu, 19 May 2022 04:22:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=7BdjFDXDnxUjm7j6k5q7Kxu4c2cwbFqYPCxZS6zuqxo=;
+        b=hMKm6jsKzjqEdOGCZHwzBQGiShlBMZDUYRYcrKTYGTi4eL7ik6xnF1uVrU2MqRdwGl
+         4SeGSen+5/FFe+xbHzwlrAWsjksnoMUB4D6g+IaveRs7Kdus1hiyz7Cr0ILUTS/kXzh+
+         4rrAvGPRPCYo/1VHnb2C9sZqA1SL5z8KaAZFNUEodWgnVVmQJfBZQyuP1UfWfBfBOr/7
+         rB9Ppq5D4vDRV0xJaTeaEWc8SZKbR0IkcAW1DweFeOncjiOT5Gzle+D2hr8RkyriIuxr
+         7MtIWxdJH43PLAk+49MXfFdECCTNSXifgWEk4KRwBagsa2GFES1mvH6y5EIxevHzNzoy
+         /stw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=7BdjFDXDnxUjm7j6k5q7Kxu4c2cwbFqYPCxZS6zuqxo=;
+        b=JtueDx0gPyep8hsztLa1JRqmdq8/7gdArmYwWQn68skI1NwSRoX7ihqewIEXYjN5AM
+         7pwxKiHSHJmGI+C0sn3NN3Z1Qh/E1iT+P8vqs6r5E/bjGbzSWr6lR/KEdd9D9ielvDMg
+         TbKz7VRhOSxXgwqob6eHs8GLxhlkMmxCCyTqv+KU9YtKKP+N/mBWrJXRFozOyeaNRY9b
+         8+OR9hM8uyp1G6e+vKmyoLRRR8mPl6z+wALEwZW/T6/lUBV2dcZF+SmAJqekH8BJ7jFw
+         TgbXN5JekjbXHHMc+HuOdqMXMniWaS4ArxHo12Hpq886ccEnKQqifMvm4rCBNPSXKSgk
+         5Agg==
+X-Gm-Message-State: AOAM532VIrziIje/XApV77YSA316CGz5ZNDEnitzY/J3mNRpmgnjxib6
+        oIiM71IW5LjKGaPPn06Je5J3DrP9+tTEIYlN7oM=
+X-Google-Smtp-Source: ABdhPJxLhdpP5H29s1X67RNrL/m+5o9e0OA57DOxQ1UYzD82HkG4/G++oXvkN3CyBMkVW6rslRr7hPgK/Q/zvRMRtmg=
+X-Received: by 2002:a05:6214:48f:b0:461:d4fe:4eed with SMTP id
+ ay15-20020a056214048f00b00461d4fe4eedmr3434798qvb.48.1652959328792; Thu, 19
+ May 2022 04:22:08 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v10 1/3] dt-bindings: mmc: mtk-sd: extend interrupts and
- pinctrls properties
-Content-Language: en-US
-To:     Axe Yang <axe.yang@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+References: <20220518184825.1034976-1-robimarko@gmail.com> <20220518184825.1034976-6-robimarko@gmail.com>
+ <015c60e9-78f6-f0f0-5af0-733a78fbdf65@linaro.org>
+In-Reply-To: <015c60e9-78f6-f0f0-5af0-733a78fbdf65@linaro.org>
+From:   Robert Marko <robimarko@gmail.com>
+Date:   Thu, 19 May 2022 13:21:57 +0200
+Message-ID: <CAOX2RU4--VULzvc9NGc4zWV4jpD+riM+9Ff8mqU834a6vQFc5Q@mail.gmail.com>
+Subject: Re: [PATCH v4 6/6] arm64: dts: qcom: Add PMP8074 DTSI
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        lgirdwood@gmail.com, broonie@kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>
-Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Satya Tangirala <satyat@google.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Lucas Stach <dev@lynxeye.de>,
-        Eric Biggers <ebiggers@google.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kiwoong Kim <kwmad.kim@samsung.com>,
-        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220519111323.14586-1-axe.yang@mediatek.com>
- <20220519111323.14586-2-axe.yang@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220519111323.14586-2-axe.yang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 19/05/22 13:13, Axe Yang ha scritto:
-> Extend interrupts and pinctrls for SDIO wakeup interrupt feature.
-> This feature allow SDIO devices alarm asynchronous interrupt to host
-> even when host stop providing clock to SDIO card. An extra wakeup
-> interrupt and pinctrl states for SDIO DAT1 pin state switching are
-> required in this scenario.
-> 
-> Signed-off-by: Axe Yang <axe.yang@mediatek.com>
-> ---
->   .../devicetree/bindings/mmc/mtk-sd.yaml       | 53 ++++++++++++++++++-
->   1 file changed, 52 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> index 2a2e9fa8c188..b068ab67a054 100644
-> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> @@ -72,12 +72,26 @@ properties:
->         - const: ahb_cg
->   
->     interrupts:
-> -    maxItems: 1
-> +    description:
-> +      Should at least contain MSDC GIC interrupt. To support SDIO in-band wakeup, an extended
-> +      interrupt is required and be configured as wakeup source irq.
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: msdc_irq
->   
+On Thu, 19 May 2022 at 13:07, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 18/05/2022 20:48, Robert Marko wrote:
+> > PMP8074 is a companion PMIC to the Qualcomm IPQ8074 series that is
+> > controlled via SPMI.
+> >
+> > Since we now have support for the regulators inside of it add DTSI
+> > for it.
+> >
+> > Signed-off-by: Robert Marko <robimarko@gmail.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/pmp8074.dtsi | 38 +++++++++++++++++++++++++++
+>
+> This file is not referenced by anything, thus not possible to compile
+> nor verify.
 
-That ain't right. You have two interrupts, so you describe two interrupts:
+That is correct, I can include it on HK01 which has an SDHCI controller
+and thus can consume L11 for VQMMC so that HS200 and higher work.
 
-interrupt-names:
-   minItems: 1
-   items:
-     - const: msdc
-     - const: sdio-wakeup
-
-...also, I personally don't like the "_irq" suffix: we're specifying interrupts in
-interrupt-names, so it sounds a bit redundant.
-
-You're free to keep it, if you really like it though.
+I wanted to include the nodes directly in the SoC DTSI and set L11 as VQMMC
+for SDHCI there as this is a companion PMIC and always present, but
+the established
+procedure is for the PMIC to have its own DTSI and then be included per board.
 
 Regards,
-Angelo
+Robert
+>
+>
+> Best regards,
+> Krzysztof
