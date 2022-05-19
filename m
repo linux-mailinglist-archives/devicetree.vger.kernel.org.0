@@ -2,150 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E558052D1D3
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 13:54:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51CA852D1EA
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 13:59:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237568AbiESLyE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 07:54:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60530 "EHLO
+        id S232820AbiESL6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 07:58:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237555AbiESLyC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 07:54:02 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 177CFB82EE
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 04:54:01 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id t25so8676241lfg.7
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 04:54:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ynDwu8qGPWur+txmdTa4k/0YDzFSlIMmuvwA/VUCzcg=;
-        b=jWqkmG8QV2PoxNQ+o66kt3qtyZtYpeRrP0rJugh+e9gH7kcVEzZP/yKcacr0y3PwnM
-         p6GWvmgX/7czZPAsvDZ4xZjdAlAzssas+2F3n7NaeCxka+Qx6SVxBqHy74aV1LUSP8wE
-         b78Aubz4phDjpsq/KvNzv5s6HoFZGaagE66QShjpuCgkg85VUbpimlSM6/iTU/awIcqd
-         eVdvZ90WBF24MmzYWZdtQfbJMQF4l7BxFR33NPOKECuK1l/MNwaGxcNgOYkAgWQoclVh
-         Ho+xvNP3G7uobjrmOL7i2LM3vbraoxMEUu3ldCiaf3dlfttj4WWpDkrWcDHg0i1HIxCa
-         7oMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ynDwu8qGPWur+txmdTa4k/0YDzFSlIMmuvwA/VUCzcg=;
-        b=XLKuGC++ka3Z6yr+UmKaMM3+eDc5O2oPXuKUlMnzIIu2CRCfLC2sZl9ehUoJHOlGKz
-         Tik0tJ5vLgSL0ts7sarr7CrhmXUZFgpjtz2TSNPxrhrIc6Sa6rXCHyzMVy+SNalBKqpg
-         lsdKQ2WOJzlzayOjQN+P15Gz1s/Byl+t77jpBknufKjQSk40XiyMki3lZ95hbsenZbkP
-         uqKe/wTX3+ZczxBt0NV/VNxKXkwhLbmd6C3/E0AJ+H+/hvVDDR0M/n+ZAkbfAquXTrOi
-         7plLqc3fqGUiBDWy873b79OtAewjE9HWrBshEg8LiNY/SyuOeu+sBGikIQnZXiqMZRJx
-         mYnQ==
-X-Gm-Message-State: AOAM533Pj3gx/m2lzqsI84UHtDhXyh/pHcs18coaWak2+1hIm//x7y4Y
-        flyoIvBQZcIFU1lmVm52jW0OFQ==
-X-Google-Smtp-Source: ABdhPJyy+batuU6U7KxzGS5lRyhCFXqpKpfzC73MofPOeIr+/BfU8dM/DOOI35JzL47clkdUE0q8CQ==
-X-Received: by 2002:a05:6512:2397:b0:473:a6d9:5138 with SMTP id c23-20020a056512239700b00473a6d95138mr3117561lfv.332.1652961239433;
-        Thu, 19 May 2022 04:53:59 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id o22-20020a2e9456000000b0024f3d1dae84sm571111ljh.12.2022.05.19.04.53.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 May 2022 04:53:58 -0700 (PDT)
-Message-ID: <8a90ffbc-b376-9115-fb91-0b46d98873b7@linaro.org>
-Date:   Thu, 19 May 2022 13:53:57 +0200
+        with ESMTP id S230251AbiESL6z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 07:58:55 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB686B82FA;
+        Thu, 19 May 2022 04:58:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=g1oTV/kiNlqtvr56G3igwM2BGyOYTI/eWu/vmBAuTXk=; b=E5LplxY+FEFhpWVX4xxIC2piq9
+        oWx/pDouOHP7HZjRouoMkAsc7fkJ9bNIhJK8lINHPPCj2eC0bM6GLKrF3/d1tx0w+9r+o+ZJO1ags
+        nEPL7PEpmQDfAynliZIiL+KgEo8sUz2T+lJeuyTqhr6t3xOBT0PtZik2vezYNWsZUzu0=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nrenK-003TeY-Hz; Thu, 19 May 2022 13:58:18 +0200
+Date:   Thu, 19 May 2022 13:58:18 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        calvin.johnson@oss.nxp.com, davem@davemloft.net,
+        edumazet@google.com, hkallweit1@gmail.com,
+        jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        kuba@kernel.org, lgirdwood@gmail.com, linux@armlinux.org.uk,
+        pabeni@redhat.com, robh+dt@kernel.org, samuel@sholland.org,
+        wens@csie.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, netdev@vger.kernel.org
+Subject: Re: [PATCH v2 4/5] dt-bindings: net: Add documentation for optional
+ regulators
+Message-ID: <YoYw2lKbgCiDXP0A@lunn.ch>
+References: <20220518200939.689308-1-clabbe@baylibre.com>
+ <20220518200939.689308-5-clabbe@baylibre.com>
+ <95f3f0a4-17e6-ec5f-6f2f-23a5a4993a44@linaro.org>
+ <YoYqmAB3P7fNOSVG@sirena.org.uk>
+ <c74b0524-60c6-c3af-e35f-13521ba2b02e@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: Removal of qcom,board-id and qcom,msm-id
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Andy Gross <agross@kernel.org>,
-        Olof Johansson <olof@lixom.net>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <a3c932d1-a102-ce18-deea-18cbbd05ecab@linaro.org>
- <35051bec-98ea-b4c5-f734-06b3f22f3562@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <35051bec-98ea-b4c5-f734-06b3f22f3562@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c74b0524-60c6-c3af-e35f-13521ba2b02e@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/05/2022 13:39, Dmitry Baryshkov wrote:
-> On 19/05/2022 13:44, Krzysztof Kozlowski wrote:
->> Hi,
->>
->> There was an old effort of removal of qcom,board-id and qcom,msm-id
->> properties from Qualcomm SoC-based boards like [1].
->>
->> First approach was to document them, which (obviously) was not well
->> received [2] [3] [4].
->>
->> The solution from Stephen was to encode these in the board compatible,
->> so bootloader can extract that information. That seemed to receive
->> positive comments, at least from Rob. [5]
->>
->> It was 2015... ~7 years later we are still things doing the same way,
->> still with undocumented properties: qcom,board-id and qcom,msm-id.
->>
->>
->> I would like to revive that topic, but before I start doing something
->> pointless - any guidance on last patch from Stephen [5]? Was it ok? Some
->> early NAKs?
+On Thu, May 19, 2022 at 01:33:21PM +0200, Krzysztof Kozlowski wrote:
+> On 19/05/2022 13:31, Mark Brown wrote:
+> > On Thu, May 19, 2022 at 11:55:28AM +0200, Krzysztof Kozlowski wrote:
+> >> On 18/05/2022 22:09, Corentin Labbe wrote:
+> > 
+> >>> +  regulators:
+> >>> +    description:
+> >>> +       List of phandle to regulators needed for the PHY
+> > 
+> >> I don't understand that... is your PHY defining the regulators or using
+> >> supplies? If it needs a regulator (as a supply), you need to document
+> >> supplies, using existing bindings.
+> > 
+> > They're trying to have a generic driver which works with any random PHY
+> > so the binding has no idea what supplies it might need.
 > 
-> I do not quite fancy the idea of using extra tools to process dtb files. 
-> At this moment it is possible to concatenate several kernel-generated 
-> dtb files together. AOSP developers use this to have an image that boots 
-> on both RB3 and RB5 boards.
-> 
-> I think that changing compat strings only makes sense if Qualcomm would 
-> use such compat strings in future. Otherwise we end up in a position 
-> where we have custom bootloaders for the RB3/RB5/etc, but the majority 
-> of the board requires extra processing steps.
+> OK, that makes sense, but then question is why not using existing
+> naming, so "supplies" and "supply-names"?
 
-This was discussed in [2] [3] and [4] (previous links) and did not pass.
+I'm not saying it is not possible, but in general, the names are not
+interesting. All that is needed is that they are all on, or
+potentially all off to save power on shutdown. We don't care how many
+there are, or what order they are enabled.
 
-Do you have any new arguments for above objections from Arnd, Olof and
-Rob? I don't think patch will get accepted if previous concerns during
-review are not addressed...
+Ethernet PHY can have multiple supplies. For example there can be two
+digital voltages and one analogue. Most designs just hard wire them
+always on. It would not be unreasonable to have one GPIO which
+controls all three. Or there could be one GPIO for the two digital
+supplies, and one for the analogue. Or potentially, three GPIOs.
 
-> 
-> So, I think, we should drop the unspecified usid aliases, document the 
-> board-id/msm-id/pmic-id properties and stick with them. 
+Given all the different ways the board could be designed, i doubt any
+driver is going to want to control its supplies in an way other than
+all on, or all off. 802.3 clause 22 defines a standardized way to put
+a PHY into a low power mode. Using that one bit is much simpler than
+trying to figure out how a board is wired.
 
-The existing properties need anyway documenting, probably as deprecated
-so the schema can pass, because we cannot fix the bootloaders easly.
+However, the API/binding should be generic, usable for other use
+cases. Nobody has needed an API like this before, but it is not to say
+it might have other uses in the future. So maybe "supplies" and
+"supply-names" is useful, but we still need a way to enumerate them as
+a list without caring how many there are, or what their names are.
 
-> They might be 
-> ugly, but they are expected/processed by the majority of devices present 
-> in the wild.
-
-Any change in DTS affects only future devices, so not in the wild...
-
-> 
->> [1]
->> https://elixir.bootlin.com/linux/v5.18-rc7/source/arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts#L14
->>
->> [2] https://lore.kernel.org/all/7229476.C4So9noUlf@wuerfel/
->> [3]
->> https://lore.kernel.org/all/1450371534-10923-20-git-send-email-mtitinger+renesas@baylibre.com/
->> [4] https://lore.kernel.org/all/20151119153640.GC893@linaro.org/
->> [5]
->> https://lore.kernel.org/all/1448062280-15406-1-git-send-email-sboyd@codeaurora.org/
->>
->> Best regards,
->> Krzysztof
-> 
-> 
-
-
-Best regards,
-Krzysztof
+  Andrew
