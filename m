@@ -2,183 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FE6652D055
-	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 12:21:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 480A552D052
+	for <lists+devicetree@lfdr.de>; Thu, 19 May 2022 12:21:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236689AbiESKTj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 06:19:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56536 "EHLO
+        id S235251AbiESKUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 06:20:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236617AbiESKTR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 06:19:17 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 310DCA76F1
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 03:19:16 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id fd25so6416853edb.3
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 03:19:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=rQZDF0ST+m3bjXxhfgKrKul8Pa3ypLxrdFU2KUJN6Wo=;
-        b=yulejd8gCAcfcCJ6Hbz4UE8pg5QLnb0fCWsWWDGcCpZEpalnvHluHjDTMZwcUqEvBS
-         TI1P7Eeo1L0VCdNbVplivDDT9YvH3KKapVz0QSM1jyBdfiESxEjiQstdwStrjVgcJZJ6
-         J8DQD+pHP+InweqD5x6O7wh4QBqZN1xSGdDl9Ga1NsZPoSHHIB/6hb2Mzu2ddIDy/sgd
-         wKmI25hsNlrcSz+C43HCmX0vIbFJqymCTcCdfA9j0SBuBc6a2Qj1QntZeO9u+M/9yx+I
-         ATGXd4ebtIyF8nektWoOXEDUzVs0I+Z4eYU0SRVjZJs4A9g5dcczKHkbezctiENN1R+8
-         IYUg==
+        with ESMTP id S236768AbiESKUF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 06:20:05 -0400
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E075AEE33;
+        Thu, 19 May 2022 03:19:59 -0700 (PDT)
+Received: by mail-qt1-f180.google.com with SMTP id i20so4439761qti.11;
+        Thu, 19 May 2022 03:19:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=rQZDF0ST+m3bjXxhfgKrKul8Pa3ypLxrdFU2KUJN6Wo=;
-        b=4Zk3LZA5TGCzeVik/oykoqx+1XLDGqT0uPcNzCxhsqjazcbRfNHEImNZXmztB3CHem
-         /oiKuaOsxMcYPoVOxVsmfIvlO7mZr97lG74X1bLvQ/u59bLeNBz4EpDF0CxIv42owiHa
-         V+nIwI3i82VtyoL7h8SlX64gVGjj+7Za6izsaMwFb4AIKVHTKzyK4KAMiELY3QdEHYIA
-         FgRw/lgcurUuVrRUApNpXmqr7AVEwDaPX+iV801P8bdBkZGF9yofFjJ3Mfic2Wo9+oGO
-         NYDjnRk/ecpmzVJSeJaiJl5EYELRJN14QmjxsdNGpK4bJNq6PVNeIe1Xvy2d4hOdn5qe
-         ZcSg==
-X-Gm-Message-State: AOAM533ofV0LxL124F9CmYaZes4YFM+CkHF5B/TsySUB48sNeTxlrhrV
-        tOoW1G8qhEIBp/6tJg9fOZI0CDqS5UiENUr0OSWBZg==
-X-Google-Smtp-Source: ABdhPJxJRotEBuFNPsVGhczRDFHSLngF16rHucpJb9tpSyucqiOctuqwe+PayGCiBANvsl1m3CDpzIzQ37sdH0gPy2I=
-X-Received: by 2002:aa7:cb1a:0:b0:41c:dd9c:2eaa with SMTP id
- s26-20020aa7cb1a000000b0041cdd9c2eaamr4404541edt.119.1652955554524; Thu, 19
- May 2022 03:19:14 -0700 (PDT)
+        bh=eL9MIMmXb+DZaq6vr6BbVmUp5SemuWgZsAc5myxClhA=;
+        b=y6KtOzwBJdqajm4Dng1KFBHUmVQ3ZqLl++7zx8f/1ry+YgDrbuIJirJgM8kZFou5Ex
+         cO6dkp8/dZm9acaYbOjbXhbV2M8jKr2ZCDS5yDk01XZpExgjjxpMQcqR5NcQgGkyqV07
+         3vYUvmtuZy4ScQtru3R6y8Ai8/kfq3Rfvtvn4CFA81THGhG4drO2VogkpiQnrpeWCsSq
+         PEEiq/AeXEeBOmetemFSq7kXC32BDxMqnwH1IEw7r4UXot2p8qiOyVF0Qz/lYelH6ktL
+         efXcDH2PCgCCCn/bIVlnWEwjkAjXhVBNFU52yI4qdqWbkxhXzu0idh3nqP9X5DkGSDW5
+         GQYQ==
+X-Gm-Message-State: AOAM533hlKTU7/HR1PcTdh2h1EqcMUPiKhubbvgzWsDNtg0kfuarID0J
+        L2/Qjy6fEhuE7nPclxTgT+ClxIJhMrv0PA==
+X-Google-Smtp-Source: ABdhPJxyBl2YeT2rjvZTwedOhVM3vStCXbLnmD6Ny5qd67o/G+6kSuMDg1Fa6FLdMIo76xHz1Nemug==
+X-Received: by 2002:ac8:5b56:0:b0:2f3:eb25:910e with SMTP id n22-20020ac85b56000000b002f3eb25910emr3109341qtw.616.1652955597943;
+        Thu, 19 May 2022 03:19:57 -0700 (PDT)
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
+        by smtp.gmail.com with ESMTPSA id he17-20020a05622a601100b002f39b99f6c3sm1010634qtb.93.2022.05.19.03.19.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 May 2022 03:19:56 -0700 (PDT)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-2fee010f509so51625517b3.11;
+        Thu, 19 May 2022 03:19:56 -0700 (PDT)
+X-Received: by 2002:a81:6588:0:b0:2f8:b75e:1e1a with SMTP id
+ z130-20020a816588000000b002f8b75e1e1amr4011497ywb.358.1652955595834; Thu, 19
+ May 2022 03:19:55 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220518194426.3784095-1-tanmay.shah@xilinx.com>
-In-Reply-To: <20220518194426.3784095-1-tanmay.shah@xilinx.com>
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-Date:   Thu, 19 May 2022 11:19:03 +0100
-Message-ID: <CANLsYkw9HuLso9bGL4fM7C9qH+basgKA9yKFwms4WB4OUHqymQ@mail.gmail.com>
-Subject: Re: [PATCH v5 0/6] Add Xilinx RPU subsystem support
-To:     Tanmay Shah <tanmay.shah@xilinx.com>
-Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        michal.simek@xilinx.com, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
+References: <20220517081645.3764-1-phil.edworthy@renesas.com> <20220517081645.3764-3-phil.edworthy@renesas.com>
+In-Reply-To: <20220517081645.3764-3-phil.edworthy@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 19 May 2022 12:19:44 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUEwEwbpTZq2AV+-YiPKXgaTb8t6Nx3zxeUF0JtEfT8BA@mail.gmail.com>
+Message-ID: <CAMuHMdUEwEwbpTZq2AV+-YiPKXgaTb8t6Nx3zxeUF0JtEfT8BA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] arm64: dts: renesas: rzv2m evk: Enable ethernet
+To:     Phil Edworthy <phil.edworthy@renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Biju Das <biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tanmay,
+Hi Phil,
 
-I have replaced the previous version of this set with this one in my
-queue.  That way you don't go back to the bottom.
-
-Thanks,
-Mathieu.
-
-On Wed, 18 May 2022 at 20:46, Tanmay Shah <tanmay.shah@xilinx.com> wrote:
+On Tue, May 17, 2022 at 10:17 AM Phil Edworthy
+<phil.edworthy@renesas.com> wrote:
+> Enable Ethernet interface on RZ/V2M EVK.
 >
-> This patch series adds bindings document for RPU subsystem found on Xilinx
-> ZynqMP platforms. It also adds device nodes and driver to enable RPU
-> subsystem in split mode and lockstep mode.
->
-> Xilinx ZynqMP platform contains Remote Processing Unit(RPU). RPU subsystem
-> contains two arm cortex r5f cores. RPU subsystem can be configured in
-> split mode, lockstep mode and single-cpu mode.
->
-> RPU subsystem also contains 4 Tightly Coupled Memory(TCM) banks.
-> In lockstep mode, all 4 banks are combined and total of 256KB memory is
-> made available to r5 core0. In split mode, both cores can access two
-> TCM banks i.e. 128 KB.
->
-> RPU can also fetch data and execute instructions from DDR memory along with
-> TCM memory.
+> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 > ---
->
-> Changes in v5:
->   - Add constraints of the possible values of xlnx,cluster-mode property
->   - fix description of power-domains property for r5 core
->   - Remove reg, address-cells and size-cells properties as it is not required
->   - Fix description of mboxes property
->   - Add description of each memory-region and remove old .txt binding link
->     reference in the description
->   - Remove optional reg property from r5fss node
->   - Move r5fss node out of axi node
->
-> Changes in v4:
->   - Add memory-region, mboxes and mbox-names properties in dt-bindings example
->   - Add reserved memory region node and use it in Xilinx dt RPU subsystem node
->   - Remove redundant header files
->   - use dev_err_probe() to report errors during probe
->   - Fix missing check on error code returned by zynqmp_r5_add_rproc_core()
->   - Fix memory leaks all over the driver when resource allocation fails for any core
->   - make cluster mode check only at one place
->   - remove redundant initialization of variable
->   - remove redundant use of of_node_put()
->   - Fix Comment format problem
->   - Assign offset of zynqmp_tcm_banks instead of duplicating it
->   - Add tcm and memory regions rproc carveouts during prepare instead of parse_fw
->   - Remove rproc_mem_entry object from r5_core
->   - Use put_device() and rproc_del() APIs to fix memory leaks
->   - Replace pr_* with dev_*. This was missed in v3, fix now.
->   - Use "GPL" instead of "GPL v2" in MODULE_LICENSE macro. This was reported by checkpatch script.
->
-> Changes in v3:
->   - Fix checkpatch script indentation warning
->   - Remove unused variable from xilinx remoteproc driver
->   - use C style comments, i.e /*...*/
->   - Remove redundant debug information which can be derived using /proc/device-tree
->   - Fix multiline comment format
->   - s/"final fot TCM"/"final for TCM"
->   - Function devm_kzalloc() does not return an code on error, just NULL.
->     Remove redundant error check for this function throughout the driver.
->   - Fix RPU mode configuration and add documentation accordingly
->   - Get rid of the indentations to match function documentation style with rest of the driver
->   - Fix memory leak by only using r5_rproc->priv and not replace it with new instance
->   - Use 'i' for the outer loop and 'j' for the inner one as per convention
->   - Remove redundant error and NULL checks throughout the driver
->   - Use devm_kcalloc() when more than one element is required
->   - Add memory-regions carveouts during driver probe instead of parse_fw call
->     This removes redundant copy of reserved_mem object in r5_core structure.
->   - Fix memory leak by using of_node_put()
->   - Fix indentation of tcm_mem_map function args
->   - Remove redundant init of variables
->   - Initialize tcm bank size variable for lockstep mode
->   - Replace u32 with phys_addr_t for variable stroing memory bank address
->   - Add documentation of TCM behavior in lockstep mode
->   - Use dev_get_drvdata instead of platform driver API
->   - Remove info level messages
->   - Fix checkpatch.pl warnings
->   - Add documentation for the Xilinx r5f platform to understand driver design
->
-> Changes in v2:
->   - Remove proprietary copyright footer from cover letter
->
->
-> Ben Levinsky (3):
->   firmware: xilinx: Add ZynqMP firmware ioctl enums for RPU
->     configuration.
->   firmware: xilinx: Add shutdown/wakeup APIs
->   firmware: xilinx: Add RPU configuration APIs
->
-> Tanmay Shah (3):
->   dt-bindings: remoteproc: Add Xilinx RPU subsystem bindings
->   arm64: dts: xilinx: zynqmp: Add RPU subsystem device node
->   drivers: remoteproc: Add Xilinx r5 remoteproc driver
->
->  .../bindings/remoteproc/xlnx,r5f-rproc.yaml   |  128 ++
->  arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |   33 +
->  drivers/firmware/xilinx/zynqmp.c              |   97 ++
->  drivers/remoteproc/Kconfig                    |   12 +
->  drivers/remoteproc/Makefile                   |    1 +
->  drivers/remoteproc/xlnx_r5_remoteproc.c       | 1045 +++++++++++++++++
->  include/dt-bindings/power/xlnx-zynqmp-power.h |    6 +
->  include/linux/firmware/xlnx-zynqmp.h          |   60 +
->  8 files changed, 1382 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
->  create mode 100644 drivers/remoteproc/xlnx_r5_remoteproc.c
->
->
-> base-commit: 01a1a0c8d456b11f2f6b9b822414481beaa44d6f
-> --
-> 2.25.1
->
+> v2:
+>  - No change
+
+Thanks for your patch!
+
+> --- a/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
+> @@ -42,3 +43,16 @@ &extal_clk {
+>  &uart0 {
+>         status = "okay";
+>  };
+> +
+> +&avb {
+> +       renesas,no-ether-link;
+> +       phy-handle = <&phy0>;
+> +       phy-mode = "gmii";
+> +       status = "okay";
+> +
+> +       phy0: ethernet-phy@0 {
+> +               compatible = "ethernet-phy-id0022.1622",
+
+My schematics says RTL8211FG-CG, not Micrel KSZ9031?
+I.e. "ethernet-phy-id001c.c916"?
+
+As there is no PHY reset to deassert, you can remove the compatible
+property, and check what's read back from the PHY ID registers.
+
+I'd say you can just drop the compatible value completely, but you
+would have to readd it anyway when the PHY reset is documented.
+
+> +                            "ethernet-phy-ieee802.3-c22";
+> +               reg = <0>;
+
+Once you have GPIO/IRQ support, you can add the interrupts and
+resets properties, pointing to P16_12 resp. P17_00.
+
+> +       };
+> +};
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
