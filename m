@@ -2,115 +2,261 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55FA052EBAF
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 14:12:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ABC852EBBE
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 14:16:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349067AbiETMM0 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 20 May 2022 08:12:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46624 "EHLO
+        id S231415AbiETMQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 08:16:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349060AbiETMMZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 08:12:25 -0400
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96066153526;
-        Fri, 20 May 2022 05:12:24 -0700 (PDT)
-Received: by mail-qv1-f41.google.com with SMTP id s5so6505508qvo.12;
-        Fri, 20 May 2022 05:12:24 -0700 (PDT)
+        with ESMTP id S1349015AbiETMP6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 08:15:58 -0400
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41FBE17588
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 05:15:56 -0700 (PDT)
+Received: by mail-pg1-x531.google.com with SMTP id h186so7591387pgc.3
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 05:15:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=OETsO97P9OTn3i8JVZqW/9SMFtUksaPSlL7UCEzUAzY=;
+        b=iobEZhw1P+K2DA9o0zWlma72G6zfwmLqDOlenNQJf5qv5zfsHP7QVj1lCp/5EaA5TC
+         xKSVvhl56oDVf3L5CtdsvcdXp+NeGLvJBiP4Cix9eR/a8rbUaXVCKH5qTHSpvRwRjcUn
+         lf2Ju0ZPu81iBhBS7DfE0xZpgAOZHZKl6c8ZAvqP+SBJulV7QY8m8Yxu8NuMIRTvGrgk
+         cqzPezHftcF1Exk/XLc1RDrGEt1PnUxByEF+6ZCnuLALM/jmfDyMu05diGH7iEu+xN38
+         ZqU0NrXroSN9l+dRBj2ziAISjcH8cNxTfT3PS9NkP7+733zeLwPifJ9f+vKBGoXchAZ/
+         bErA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=txKFbhPEueIo/aj6c1+wzIrPvMm+5Ur9CFzaUN2DGCU=;
-        b=wGmR9+ZDYNEGn2IPBM2LXDNkJeBt0iOS9b3DlbTogKHuauzOoO9sBRexDhFZgX9P6e
-         3JTCIbZH22hOW5vJ/oaAG39iLUvj+RYGhp0qOdhaPg6vkPBvuf58CbY2OhmlD/wWQl9c
-         IgRL3Tlid5Dnwf8MdK4OTIGFBPcyz/hBiCPtu96NSOOE+b3UhNu/wqv/ZgyqQsAkJ1O1
-         VJY/LylhTPYfw49yi5OYcHASMWoFjr/vhV0VKfN5BGTVGWhtYF7O0v+2HennZlNiM0ML
-         NXDH3x2LY7vMv2XDy+E6ILLctK/asUoLGu17Hx6lhem7FCGqOKcEZ1kTuUkNqMWwwJT4
-         q2xw==
-X-Gm-Message-State: AOAM532CxsCPvD0L01CfaqE2552CgjDTnMXtX/HEfywmEEO/oPoE7SAM
-        0tMotVS6QJrpF19/LKNQSvDp9+R6GrRV8Q==
-X-Google-Smtp-Source: ABdhPJwAOlNx2QwqG6tMwk4V+tBjpJ/rAke1ZNihGpNxbdutNmhrUejVWY5cguWX0t5YuglTSVdB/Q==
-X-Received: by 2002:ad4:574f:0:b0:461:df46:af7b with SMTP id q15-20020ad4574f000000b00461df46af7bmr7548074qvx.53.1653048743205;
-        Fri, 20 May 2022 05:12:23 -0700 (PDT)
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
-        by smtp.gmail.com with ESMTPSA id d23-20020ac84e37000000b002f3ce9c0601sm3077053qtw.3.2022.05.20.05.12.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 May 2022 05:12:22 -0700 (PDT)
-Received: by mail-yb1-f169.google.com with SMTP id a3so13865583ybg.5;
-        Fri, 20 May 2022 05:12:22 -0700 (PDT)
-X-Received: by 2002:a05:6902:389:b0:633:31c1:d0f7 with SMTP id
- f9-20020a056902038900b0063331c1d0f7mr8926767ybs.543.1653048742167; Fri, 20
- May 2022 05:12:22 -0700 (PDT)
+        bh=OETsO97P9OTn3i8JVZqW/9SMFtUksaPSlL7UCEzUAzY=;
+        b=uskCaDrImmuKxDSQ0B+ze4Doqc1iBPF7OBfY16/uUDILkDIcSqCUr5Z37iWORu9E0x
+         A6wkJQEWPd0jrDvcdBmLfS9vaAHqSXb90PT1DyZqCMs4qXq7k3dUGa1waHMR7Y1TTLXk
+         YGa31A1fSQ7Va4kM+AIokiqDsGJIbvId4QXxXRWhrzK0TOy5Zz5SsFahr85QLb+NzmDW
+         bNZdrV1+LemALUbsLLojKM1GPz4jRHqOyxzg7wt7Mb5mhoBCzs+VaN2o7TgeZFqBwM+A
+         ebXwHflqb/Znln9Rdun3s6bgM1UEz87UGhLjUecLj0mcf5AgEDgvy8T5z1Kl5JwUvSAb
+         AESA==
+X-Gm-Message-State: AOAM531kuo4jSF+sk+ZlhnEXWLOPsDi3qPWswu6BJuIoLTVbtJtNBct5
+        gUUKO8KZ/KAijMz9XA8dIXGnuKKaTHst6EHm3fhhZJuS6Oxbdn7/
+X-Google-Smtp-Source: ABdhPJzseX1bQyLqGtMff2kt+2WicT2z7kxZnLhotvy4lqtvQ2qoLl/EmtXZWXGjfU8rGB3PC72etCeRilCLXx34Dp0=
+X-Received: by 2002:a63:f0a:0:b0:3c6:e825:2431 with SMTP id
+ e10-20020a630f0a000000b003c6e8252431mr8212287pgl.166.1653048955650; Fri, 20
+ May 2022 05:15:55 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220520094155.313784-1-herve.codina@bootlin.com>
-In-Reply-To: <20220520094155.313784-1-herve.codina@bootlin.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 20 May 2022 14:12:10 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWc2W1YY=EP49bQ07bO4-WqQh-MbAPr7s153VqSCxmk2w@mail.gmail.com>
-Message-ID: <CAMuHMdWc2W1YY=EP49bQ07bO4-WqQh-MbAPr7s153VqSCxmk2w@mail.gmail.com>
-Subject: Re: [PATCH v6 0/6] RZN1 USB Host support
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
+References: <20220422072841.2206452-1-s.hauer@pengutronix.de>
+ <23894515.EfDdHjke4D@phil> <CAO_Mup+SCgeK9rBjYqnnOpJWUNXyJdXV9pjWXqi571sznS9-LA@mail.gmail.com>
+ <20220520101200.GI25578@pengutronix.de> <CAMdYzYrcku+F048macOcedQ-pVo+GMC+5iwODMhxJXtvY_zZTQ@mail.gmail.com>
+In-Reply-To: <CAMdYzYrcku+F048macOcedQ-pVo+GMC+5iwODMhxJXtvY_zZTQ@mail.gmail.com>
+From:   Maya Matuszczyk <maccraft123mc@gmail.com>
+Date:   Fri, 20 May 2022 14:15:19 +0200
+Message-ID: <CAO_Mup+GJBuhdMWxHZZfxdErc1cq102i87LxHCqRhoJC0zBCNw@mail.gmail.com>
+Subject: Re: [PATCH v11 00/24] drm/rockchip: RK356x VOP2 support
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        Heiko Stuebner <heiko@sntech.de>,
+        dri-devel@lists.freedesktop.org,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>, kernel@pengutronix.de,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hervé,
-
-On Fri, May 20, 2022 at 11:42 AM Herve Codina <herve.codina@bootlin.com> wrote:
-> This series add support for the USB Host controllers available on
-> RZN1 (r9a06g032) SOC.
+pt., 20 maj 2022 o 13:56 Peter Geis <pgwipeout@gmail.com> napisa=C5=82(a):
 >
-> These USB Host controllers are PCI OHCI/EHCI controllers located
-> behind a bridge.
+> On Fri, May 20, 2022 at 6:12 AM Sascha Hauer <s.hauer@pengutronix.de> wro=
+te:
+> >
+> > Hi Maya,
+> >
+> > On Fri, May 20, 2022 at 12:02:33PM +0200, Maya Matuszczyk wrote:
+> > > Hello,
+> > >
+> > > wt., 17 maj 2022 o 20:28 Heiko Stuebner <heiko@sntech.de> napisa=C5=
+=82(a):
+> > > >
+> > > > Am Freitag, 22. April 2022, 09:28:17 CEST schrieb Sascha Hauer:
+> > > > > It's v11 time. There's only one small change to v10. Discussion s=
+eems to
+> > > > > have settled now. Is there anything left that prevents the series=
+ from
+> > > > > being merged? I'd really like to have it in during the next merge
+> > > > > window.
+> > > > >
+> > > > > This series still depends on:
+> > > > > drm/rockchip: Refactor IOMMU initialisation (https://lists.freede=
+sktop.org/archives/dri-devel/2022-April/349548.html)
+> > > > > arm64: dts: rockchip: add basic dts for the radxa rock3 model a
+> > > > >
+> > > > > Sascha
+> > > >
+> > > > I've now picked up everything except the hdmi-rate stuff in some wa=
+y.
+> > > > The driver changes will go into 5.19 and the DT-changes into 5.20.
+> > > >
+> > > > I'll now move the series out of my focus and would expect further
+> > > > hdmi rate voodoo to start a new series :-) .
+> > > >
+> > > > Thanks to all involved for working on this.
+> > > > Heiko
+> > >
+> > > What do I need besides this patch series, mentioned before IOMMU refa=
+ctor,
+> > > and DTS changes for MIPI-DSI support on RK356x?
+> > > I'm working on mainline kernel support for a a RK3566 board with
+> > > a DSI display.
+> >
+> > Apart from these patches you'll need updates for the DSI. I've pushed
+> > these once to
+> > https://git.pengutronix.de/cgit/sha/linux/log/?h=3Drockchip-vop2-mipi
+> > Particularly I think you need:
+> >
+> > 383ff250345f0 drm: rockchip: dw-mipi-dsi: Call host attach from probe
+> > e79a16ead833d dw-mipi-dsi-rockchip: increase bandwidth
+> > ac400bdd8d0cb drm: rockchip: dw-mipi-dsi-rockchip: Add rk3568 support
+> > b6b7fabbc9fe2 drm: panel-simple: Add init sequence support
+> > 3c13a030e92f3 arm64: dts: rockchip: rk3568-evb: Add Display support
+> > 3433935a31675 arm64: dts: rockchip: rk356x: Add dsi nodes
+> >
+> > I'm not sure how well these fit onto the current state. I'll likely
+> > update the branch when the VOP2 has hit mainline after the next merge
+> > window. I have no plans currently to upstream the DSI bits though.
+>
+> Yeah DSI needs a bit of love with the merged version. Even updating
+> the series to the new version we get a null pointer exception:
+>
+> [    2.304528] Unable to handle kernel NULL pointer dereference at
+> virtual address 0000000000000250
+> [    2.305311] Mem abort info:
+> [    2.305563]   ESR =3D 0x96000005
+> [    2.305839]   EC =3D 0x25: DABT (current EL), IL =3D 32 bits
+> [    2.306311]   SET =3D 0, FnV =3D 0
+> [    2.306586]   EA =3D 0, S1PTW =3D 0
+> [    2.306868]   FSC =3D 0x05: level 1 translation fault
+> [    2.307301] Data abort info:
+> [    2.307559]   ISV =3D 0, ISS =3D 0x00000005
+> [    2.307926]   CM =3D 0, WnR =3D 0
+> [    2.308197] [0000000000000250] user address but active_mm is swapper
+> [    2.308763] Internal error: Oops: 96000005 [#1] PREEMPT SMP
+> [    2.309260] Modules linked in:
+> [    2.309541] CPU: 0 PID: 51 Comm: kworker/u8:1 Not tainted
+> 5.18.0-rc2-00072-g4d2476a40e3e-dirty #307
+> [    2.310343] Hardware name: Pine64 RK3566 Quartz64-A Board (DT)
+> [    2.310862] Workqueue: events_unbound deferred_probe_work_func
+> [    2.311391] pstate: 80400009 (Nzcv daif +PAN -UAO -TCO -DIT -SSBS BTYP=
+E=3D--)
+> [    2.312010] pc : __drm_crtc_init_with_planes+0x44/0x2d0
+> [    2.312482] lr : drm_crtc_init_with_planes+0x64/0x94
+> [    2.312929] sp : ffffffc00aaa3830
+> [    2.313226] x29: ffffffc00aaa3830 x28: 0000000000000001 x27: ffffffc00=
+aaa38c0
+> [    2.313866] x26: ffffffc009950fb0 x25: ffffff8100f24080 x24: ffffffc00=
+9452748
+> [    2.314504] x23: ffffffc009950fb0 x22: 0000000000000000 x21: 000000000=
+0000008
+> [    2.315142] x20: ffffff8100d1e800 x19: ffffff8100f244e8 x18: 00000000f=
+ffffffd
+> [    2.315781] x17: 08000000000000d1 x16: 0800000000000091 x15: 000000000=
+0000020
+> [    2.316419] x14: 0000000000000000 x13: ffffff8100f24478 x12: ffffff810=
+0f2445d
+> [    2.317057] x11: ffffffc00aaa3920 x10: ffffffc00aaa3920 x9 : ffffffc00=
+8843994
+> [    2.317694] x8 : ffffffc00aaa3910 x7 : ffffffc00aaa3910 x6 : ffffffc00=
+aaa38c0
+> [    2.318333] x5 : ffffffc009950fb0 x4 : ffffffc0094522a0 x3 : 000000000=
+0000000
+> [    2.318970] x2 : 0000000000000008 x1 : ffffff8100f244e8 x0 : ffffff810=
+0d1e800
+> [    2.319609] Call trace:
+> [    2.319829]  __drm_crtc_init_with_planes+0x44/0x2d0
+> [    2.320268]  drm_crtc_init_with_planes+0x64/0x94
+> [    2.320684]  vop2_bind+0x61c/0x960
+> [    2.320996]  component_bind_all+0x10c/0x270
+> [    2.321374]  rockchip_drm_bind+0xc0/0x20c
+> [    2.321738]  try_to_bring_up_aggregate_device+0x16c/0x1e0
+> [    2.322221]  __component_add+0xac/0x17c
+> [    2.322568]  component_add+0x20/0x30
+> [    2.322890]  dw_mipi_dsi_rockchip_host_attach+0x60/0x11c
+> [    2.323365]  dw_mipi_dsi_host_attach+0x80/0xd4
+> [    2.323767]  mipi_dsi_attach+0x34/0x50
+> [    2.324107]  feiyang_dsi_probe+0x100/0x17c
+> [    2.324476]  mipi_dsi_drv_probe+0x2c/0x40
+> [    2.324838]  really_probe.part.0+0xa4/0x2a0
+> [    2.325215]  __driver_probe_device+0xa0/0x150
+> [    2.325607]  driver_probe_device+0x48/0x150
+> [    2.325983]  __device_attach_driver+0xc0/0x130
+> [    2.326381]  bus_for_each_drv+0x84/0xe0
+> [    2.326729]  __device_attach+0xe4/0x190
+> [    2.327075]  device_initial_probe+0x20/0x30
+> [    2.327451]  bus_probe_device+0xa4/0xb0
+> [    2.327798]  deferred_probe_work_func+0x94/0xcc
+> [    2.328204]  process_one_work+0x1dc/0x450
+> [    2.328569]  worker_thread+0x2d0/0x450
+> [    2.328909]  kthread+0x100/0x110
+> [    2.329204]  ret_from_fork+0x10/0x20
+> [    2.329534] Code: aa0503fa f9002bfb aa0603fb b40000c2 (b9424840)
+> [    2.330077] ---[ end trace 0000000000000000 ]---
+>
+> Which equates to:
+> (gdb) l *__drm_crtc_init_with_planes+0x44
+> 0xffffffc0088436ac is in __drm_crtc_init_with_planes
+> (drivers/gpu/drm/drm_crtc.c:254).
+> 249                                            const char *name, va_list =
+ap)
+> 250     {
+> 251             struct drm_mode_config *config =3D &dev->mode_config;
+> 252             int ret;
+> 253
+> 254             WARN_ON(primary && primary->type !=3D DRM_PLANE_TYPE_PRIM=
+ARY);
+> 255             WARN_ON(cursor && cursor->type !=3D DRM_PLANE_TYPE_CURSOR=
+);
+> 256
+> 257             /* crtc index is used with 32bit bitmasks */
+> 258             if (WARN_ON(config->num_crtc >=3D 32))
+>
+> Of course it's entirely possible I missed something here in my port to
+> the latest version. But if this is configuration in the device tree it
+> strikes me as odd that a NPE could be triggered.
 
-Thanks for your series!
+I encounter this issue too,
+Using only vp0 is a work around.
+So:
 
-> Herve Codina (6):
->   dt-bindings: PCI: pci-rcar-gen2: Convert bindings to json-schema
->   dt-bindings: PCI: renesas,pci-rcar-gen2: Add device tree support for
->     r9a06g032
->   PCI: rcar-gen2: Add RZ/N1 SOCs family compatible string
->   ARM: dts: r9a06g032: Add internal PCI bridge node
->   ARM: dts: r9a06g032: Add USB PHY DT support
->   ARM: dts: r9a06g032: Link the PCI USB devices to the USB PHY
+- vp0 routed to dsi, vp1 routed to hdmi -> NPE
+- vp1 routed to dsi, vp0 routed to hdmi -> NPE
+- vp0 routed to dsi -> [1]
+- vp0 routed to hdmi -> Working
 
-As I had applied v5 of the last 3 patches to renesas-devel, and they
-are already present in soc/for-next, there is no need to resend them.
+I'm currently trying to figure out why [1] happens at all,
+and was planning on reporting the NPE once i had dsi working,
+as I wasn't sure if it was issue on my end.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+[1]:
+[    0.362056] rockchip-drm display-subsystem: bound fe040000.vop (ops
+0xffff800008635a60)
+[    0.363026] [drm:drm_bridge_attach] *ERROR* failed to attach bridge
+/dsi@fe060000 to encoder DSI-50: -22
+[    0.363899] dw-mipi-dsi-rockchip fe060000.dsi:
+[drm:dw_mipi_dsi_rockchip_bind] *ERROR* Failed to bind: -22
+[    0.364848] rockchip-drm display-subsystem: failed to bind
+fe060000.dsi (ops 0xffff80000863ae48): -22
+[    0.365868] rockchip-drm display-subsystem: adev bind failed: -22
+[    0.366447] dw-mipi-dsi-rockchip fe060000.dsi:
+[drm:dw_mipi_dsi_rockchip_probe] *ERROR* Failed to register component:
+-22
