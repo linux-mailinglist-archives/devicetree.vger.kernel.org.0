@@ -2,235 +2,267 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C70BF52E7A7
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 10:34:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2643F52E7B2
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 10:35:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347022AbiETIeU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 04:34:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47398 "EHLO
+        id S1345067AbiETIfa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 04:35:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347463AbiETIdp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 04:33:45 -0400
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A83A158948;
-        Fri, 20 May 2022 01:33:08 -0700 (PDT)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id A58A124001C;
-        Fri, 20 May 2022 08:33:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1653035587;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=8uycxO5fJimk0zTNVtpGUm4BdARppNdHxB7/Xtb6ANM=;
-        b=gPStD7GoQ1fffRcB8mNyIeGO4ElBHqlR+svkzdvU8QApZyJqS1PVnyFh7PeqBwiNpTMn7d
-        ouuZxIXXLukQpNS3trpXZDxz6MQ501jIhKFYwZo0rTAn5UOvzx4Q5v3EVmZEJ4uNF0s8ny
-        y2Cqj5hCfUaR8PeKkFvkLiXfXw2WYRb3OZW2Ce0gsEfHAQljuQC+1tdNhrWYhkWq/EvkGf
-        3BAFdvPdRW+rvd0Koff9tM6D9NW16Xt59P4VFnjBltmgINsAdWDqq9fyjB1sCD6RLOX6tp
-        v5jAShkIh6yeXsnvBHrQ5aphV3gIMPONSezL3gjvsSw3mf+mLTXJFpzN13yPDQ==
-Date:   Fri, 20 May 2022 10:31:52 +0200
-From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?UTF-8?B?TWlxdcOobA==?= Raynal <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>
-Subject: Re: [PATCH net-next v5 11/13] ARM: dts: r9a06g032: describe GMAC2
-Message-ID: <20220520103152.48f7b178@fixe.home>
-In-Reply-To: <CAMuHMdXTrZnGVt44hg5QUvuS5cZABmRncgNYtatkmk8VcH7gew@mail.gmail.com>
-References: <20220519153107.696864-1-clement.leger@bootlin.com>
-        <20220519153107.696864-12-clement.leger@bootlin.com>
-        <CAMuHMdUJpNSyX0qK64+W1G6P1S-78mb_+D0-w3kHOFY3VVkANQ@mail.gmail.com>
-        <20220520101332.0905739f@fixe.home>
-        <CAMuHMdXTrZnGVt44hg5QUvuS5cZABmRncgNYtatkmk8VcH7gew@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S1344658AbiETIf1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 04:35:27 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 699BB40A22;
+        Fri, 20 May 2022 01:35:23 -0700 (PDT)
+X-UUID: 07e51fdc60124ace873be9560f264f7d-20220520
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:3b110d5e-afd3-4d48-990f-b1997d9f61ee,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:2a19b09,CLOUDID:1cc9ede2-edbf-4bd4-8a34-dfc5f7bb086d,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
+        ,QS:0,BEC:nil
+X-UUID: 07e51fdc60124ace873be9560f264f7d-20220520
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <miles.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 948682526; Fri, 20 May 2022 16:35:16 +0800
+Received: from MTKMBS07N2.mediatek.inc (172.21.101.141) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Fri, 20 May 2022 16:35:15 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 20 May 2022 16:35:15 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 20 May 2022 16:35:14 +0800
+From:   Miles Chen <miles.chen@mediatek.com>
+To:     <yassine.oudjana@gmail.com>
+CC:     <angelogioacchino.delregno@collabora.com>,
+        <bgolaszewski@baylibre.com>, <chun-jie.chen@mediatek.com>,
+        <devicetree@vger.kernel.org>, <ikjn@chromium.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <matthias.bgg@gmail.com>,
+        <miles.chen@mediatek.com>, <mturquette@baylibre.com>,
+        <p.zabel@pengutronix.de>, <robh+dt@kernel.org>,
+        <sam.shih@mediatek.com>, <sboyd@kernel.org>,
+        <tinghan.shen@mediatek.com>, <weiyi.lu@mediatek.com>,
+        <wenst@chromium.org>, <y.oudjana@protonmail.com>,
+        <~postmarketos/upstreaming@lists.sr.ht>
+Subject: Re: [PATCH v2 4/4] clk: mediatek: Add drivers for MediaTek MT6735 main clock drivers
+Date:   Fri, 20 May 2022 16:35:14 +0800
+Message-ID: <20220520083514.27891-1-miles.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <20220519142211.458336-5-y.oudjana@protonmail.com>
+References: <20220519142211.458336-5-y.oudjana@protonmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Fri, 20 May 2022 10:25:37 +0200,
-Geert Uytterhoeven <geert@linux-m68k.org> a =C3=A9crit :
+hi Yassine,
 
-> Hi Cl=C3=A9ment,
->=20
-> On Fri, May 20, 2022 at 10:14 AM Cl=C3=A9ment L=C3=A9ger
-> <clement.leger@bootlin.com> wrote:
-> > Le Fri, 20 May 2022 09:18:58 +0200,
-> > Geert Uytterhoeven <geert@linux-m68k.org> a =C3=A9crit : =20
-> > > On Thu, May 19, 2022 at 5:32 PM Cl=C3=A9ment L=C3=A9ger <clement.lege=
-r@bootlin.com> wrote: =20
-> > > > RZ/N1 SoC includes two MAC named GMACx that are compatible with the
-> > > > "snps,dwmac" driver. GMAC1 is connected directly to the MII convert=
-er
-> > > > port 1. GMAC2 however can be used as the MAC for the switch CPU
-> > > > management port or can be muxed to be connected directly to the MII
-> > > > converter port 2. This commit add description for the GMAC2 which w=
-ill
-> > > > be used by the switch description.
-> > > >
-> > > > Signed-off-by: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com> =
-=20
->=20
-> > > > --- a/arch/arm/boot/dts/r9a06g032.dtsi
-> > > > +++ b/arch/arm/boot/dts/r9a06g032.dtsi
-> > > > @@ -200,6 +200,23 @@ nand_controller: nand-controller@40102000 {
-> > > >                         status =3D "disabled";
-> > > >                 };
-> > > >
-> > > > +               gmac2: ethernet@44002000 {
-> > > > +                       compatible =3D "snps,dwmac"; =20
-> > >
-> > > Does this need an SoC-specific compatible value? =20
-> >
-> > Indeed, it might be useful to introduce a specific SoC compatible since
-> > in a near future, there might be some specific support for that gmac.
-> > Here is an overview of the gmac connection on the SoC:
-> >
-> >                                           =E2=94=8C=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90   =
-=E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=90
-> >                                           =E2=94=82         =E2=94=82  =
- =E2=94=82          =E2=94=82
-> >                                           =E2=94=82  GMAC2  =E2=94=82  =
- =E2=94=82  GMAC1   =E2=94=82
-> >                                           =E2=94=82         =E2=94=82  =
- =E2=94=82          =E2=94=82
-> >                                           =E2=94=94=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=AC=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98   =
-=E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=AC=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=98
-> >                                               =E2=94=82               =
-=E2=94=82
-> >                                               =E2=94=82               =
-=E2=94=82
-> >                                               =E2=94=82               =
-=E2=94=82
-> >                                          =E2=94=8C=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=96=BC=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=90        =E2=94=82
-> >                                          =E2=94=82           =E2=94=82 =
-       =E2=94=82
-> >             =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=A4  SWITCH   =
-=E2=94=82        =E2=94=82
-> >             =E2=94=82                            =E2=94=82           =
-=E2=94=82        =E2=94=82
-> >             =E2=94=82          =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=B4=E2=94=80=E2=94=AC=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=AC=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=98        =E2=94=82
-> >             =E2=94=82          =E2=94=82            =E2=94=8C=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98    =E2=94=82        =
-     =E2=94=82
-> >             =E2=94=82          =E2=94=82            =E2=94=82          =
- =E2=94=82             =E2=94=82
-> >        =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=96=BC=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=96=BC=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=96=BC=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=96=BC=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=96=BC=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=90
-> >        =E2=94=82                      MII Converter                    =
-    =E2=94=82
-> >        =E2=94=82                                                       =
-    =E2=94=82
-> >        =E2=94=82                                                       =
-    =E2=94=82
-> >        =E2=94=82 port 1      port 2       port 3      port 4       port=
- 5  =E2=94=82
-> >        =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=98
-> >
-> > As you can see, the GMAC1 is directly connected to MIIC converter and
-> > thus will need a "pcs-handle" property to point on the MII converter
-> > port whereas the GMAC2 is directly connected to the switch in GMII.
-> >
-> > Is "renesas,r9a06g032-gmac2", "renesas,rzn1-switch-gmac2" looks ok
-> > for you for this one ? =20
->=20
-> Why "switch" in the family-specific value, but not in the SoC-specific
-> value?
+> Add drivers for MT6735 apmixedsys, topckgen, infracfg and pericfg
+> clock and reset controllers. These provide the base clocks on the
+> platform, and should be enough to bring up all essential blocks
+> including PWRAP, MSDC and peripherals (UART, I2C, SPI).
+> 
+> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+> ---
+> Dependencies:
+> - clk: mediatek: Move to struct clk_hw provider APIs (series)
+>   https://patchwork.kernel.org/project/linux-mediatek/cover/20220510104804.544597-1-wenst@chromium.org/ 
+> - Cleanup MediaTek clk reset drivers and support MT8192/MT8195 (series)
+>   https://patchwork.kernel.org/project/linux-mediatek/cover/20220503093856.22250-1-rex-bc.chen@mediatek.com/
+> - Export required symbols to compile clk drivers as module (single patch)
+>   https://patchwork.kernel.org/project/linux-mediatek/patch/20220518111652.223727-7-angelogioacchino.delregno@collabora.com/
+> - clk: mediatek: Improvements to simple probe/remove and reset controller unregistration
+>   https://patchwork.kernel.org/project/linux-clk/cover/20220519134728.456643-1-y.oudjana@protonmail.com/
+> 
+>  MAINTAINERS                                  |    4 +
+>  drivers/clk/mediatek/Kconfig                 |    9 +
+>  drivers/clk/mediatek/Makefile                |    1 +
+>  drivers/clk/mediatek/clk-mt6735-apmixedsys.c |  235 ++++
 
-That's a typo, switch should be removed.
+...snip...
 
->=20
-> Are GMAC1 and GMAC2 really different, or are they identical, and is
-> the only difference in the wiring, which can be detected at run-time
-> using this "pcs-handle" property? If they're identical, they should
-> use the same compatible value.
+> +#define APLL2_CON0		0x284
+> +#define APLL2_CON1		0x288
+> +#define APLL2_CON2		0x28c
+> +#define APLL2_PWR_CON0		0x294
+> +
+> +#define CON0_RST_BAR		BIT(24)
+> +
+> +static const struct mtk_pll_data apmixedsys_plls[] = {
+> +	{
+> +		.id = ARMPLL,
+> +		.name = "armpll",
+> +		.parent_name = "clk26m",
+> +
+> +		.reg = ARMPLL_CON0,
+> +		.pwr_reg = ARMPLL_PWR_CON0,
+> +		.en_mask = 0x00000001,
+> +
+> +		.pd_reg = ARMPLL_CON1,
+> +		.pd_shift = 24,
+> +
+> +		.pcw_reg = ARMPLL_CON1,
+> +		.pcw_chg_reg = ARMPLL_CON1,
+> +		.pcwbits = 21,
+> +
+> +		.flags = PLL_AO
 
-They are actually identical except the requirement for a "pcs-handle"
-for gmac1. I thought about using different compatible to enforce this by
-making it "required" with the "renesas,r9a06g032-gmac1" compatible but
-not the "renesas,r9a06g032-gmac2" one. If it's ok for you to let it
-optional and use a single compatible, I'm ok with that !
+Thanks for submitting this patch.
+
+I compare this with drivers/clk/mediatek/clk-mt7986-apmixed.c,
+and other clk files are using macros to make the mtk_pll_data array
+more readable.
+
+Would you mind following the same style for all c files, please?
+
+e.g.,
+	static const struct mtk_pll_data plls[] = {
+		PLL(CLK_APMIXED_ARMPLL, "armpll", 0x0200, 0x020C, 0x00000001, 0, 32,
+				0x0200, 4, 0, 0x0204, 0),
+		PLL(CLK_APMIXED_NET2PLL, "net2pll", 0x0210, 0x021C, 0x00000001, 0, 32,
+				0x0210, 4, 0, 0x0214, 0),                                           
+		...
+	};
+
+> +	},
+> +	{
+> +		.id = MAINPLL,
+> +		.name = "mainpll",
+> +		.parent_name = "clk26m",
+> +
+> +		.reg = MAINPLL_CON0,
+> +		.pwr_reg = MAINPLL_PWR_CON0,
+> +		.en_mask = 0xf0000101,
+> +
+> +		.pd_reg = MAINPLL_CON1,
+> +		.pd_shift = 24,
+> +
+> +		.pcw_reg = MAINPLL_CON1,
+> +		.pcw_chg_reg = MAINPLL_CON1,
+> +		.pcwbits = 21,
+> +
+> +		.flags = HAVE_RST_BAR,
+> +		.rst_bar_mask = CON0_RST_BAR
+> +	},
+> +	{
+> +		.id = UNIVPLL,
+> +		.name = "univpll",
+> +		.parent_name = "clk26m",
+> +
+> +		.reg = UNIVPLL_CON0,
+> +		.pwr_reg = UNIVPLL_PWR_CON0,
+> +		.en_mask = 0xfc000001,
+> +
+> +		.pd_reg = UNIVPLL_CON1,
+> +		.pd_shift = 24,
+> +
+> +		.pcw_reg = UNIVPLL_CON1,
+> +		.pcw_chg_reg = UNIVPLL_CON1,
+> +		.pcwbits = 21,
+> +
+> +		.flags = HAVE_RST_BAR,
+> +		.rst_bar_mask = CON0_RST_BAR
+> +	},
+> +	{
+> +		.id = MMPLL,
+> +		.name = "mmpll",
+> +		.parent_name = "clk26m",
+> +
+> +		.reg = MMPLL_CON0,
+> +		.pwr_reg = MMPLL_PWR_CON0,
+> +		.en_mask = 0x00000001,
+> +
+> +		.pd_reg = MMPLL_CON1,
+> +		.pd_shift = 24,
+> +
+> +		.pcw_reg = MMPLL_CON1,
+> +		.pcw_chg_reg = MMPLL_CON1,
+> +		.pcwbits = 21
+> +	},
+> +	{
+> +		.id = MSDCPLL,
+> +		.name = "msdcpll",
+> +		.parent_name = "clk26m",
+> +
+> +		.reg = MSDCPLL_CON0,
+> +		.pwr_reg = MSDCPLL_PWR_CON0,
+> +		.en_mask = 0x00000001,
+> +
+> +		.pd_reg = MSDCPLL_CON1,
+> +		.pd_shift = 24,
+> +
+> +		.pcw_reg = MSDCPLL_CON1,
+> +		.pcw_chg_reg = MSDCPLL_CON1,
+> +		.pcwbits = 21,
+> +	},
+> +	{
+> +		.id = VENCPLL,
+> +		.name = "vencpll",
+> +		.parent_name = "clk26m",
+> +
+> +		.reg = VENCPLL_CON0,
+> +		.pwr_reg = VENCPLL_PWR_CON0,
+> +		.en_mask = 0x00000001,
+> +
+> +		.pd_reg = VENCPLL_CON1,
+> +		.pd_shift = 24,
+> +
+> +		.pcw_reg = VENCPLL_CON1,
+> +		.pcw_chg_reg = VENCPLL_CON1,
+> +		.pcwbits = 21,
+> +
+> +		.flags = HAVE_RST_BAR,
+> +		.rst_bar_mask = CON0_RST_BAR
+> +	},
+> +	{
+> +		.id = TVDPLL,
+> +		.name = "tvdpll",
+> +		.parent_name = "clk26m",
+> +
+> +		.reg = TVDPLL_CON0,
+> +		.pwr_reg = TVDPLL_PWR_CON0,
+> +		.en_mask = 0x00000001,
+> +
+> +		.pd_reg = TVDPLL_CON1,
+> +		.pd_shift = 24,
+> +
+> +		.pcw_reg = TVDPLL_CON1,
+> +		.pcw_chg_reg = TVDPLL_CON1,
+> +		.pcwbits = 21
+> +	},
+> +	{
+> +		.id = APLL1,
+> +		.name = "apll1",
+> +		.parent_name = "clk26m",
+> +
+> +		.reg = APLL1_CON0,
+> +		.pwr_reg = APLL1_PWR_CON0,
+> +module_platform_driver(clk_mt6735_apmixedsys);
+> +
+> +MODULE_AUTHOR("Yassine Oudjana <y.oudjana@protonmail.com>");
+> +MODULE_DESCRIPTION("Mediatek MT6735 apmixedsys clock driver");
+
+Would you mind changing all Mediatek to MediaTek?
+i.e.,
+
+s/Mediatek/MediaTek/
 
 
-Thanks !
-
->=20
-> Thanks!
->=20
-> Gr{oetje,eeting}s,
->=20
->                         Geert
->=20
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
-8k.org
->=20
-> In personal conversations with technical people, I call myself a hacker. =
-But
-> when I'm talking to journalists I just say "programmer" or something like=
- that.
->                                 -- Linus Torvalds
-
-
-
---=20
-Cl=C3=A9ment L=C3=A9ger,
-Embedded Linux and Kernel engineer at Bootlin
-https://bootlin.com
+thanks,
+Miles
+> +MODULE_LICENSE("GPL");
