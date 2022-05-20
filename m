@@ -2,94 +2,368 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 266D452E420
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 06:55:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2508A52E431
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 07:10:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243700AbiETEy6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 00:54:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48412 "EHLO
+        id S1345386AbiETFIt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 01:08:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235022AbiETEy5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 00:54:57 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39009674EE;
-        Thu, 19 May 2022 21:54:50 -0700 (PDT)
-X-UUID: e072c075cd874dff8f6dfe1aa6c4e30c-20220520
+        with ESMTP id S236697AbiETFIs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 01:08:48 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE8BF5A162;
+        Thu, 19 May 2022 22:08:44 -0700 (PDT)
+X-UUID: 669120a6ef3849ba98dec79670ee9a76-20220520
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:a057667c-2344-48a6-a407-c9831addb816,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:2a19b09,CLOUDID:be52e5e2-edbf-4bd4-8a34-dfc5f7bb086d,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:0,BEC:nil
-X-UUID: e072c075cd874dff8f6dfe1aa6c4e30c-20220520
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
-        (envelope-from <miles.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 729493440; Fri, 20 May 2022 12:54:45 +0800
+X-CID-O-INFO: VERSION:1.1.5,REQID:bdbf0688-9713-4d5a-a998-582b6da77e28,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:54,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:54
+X-CID-INFO: VERSION:1.1.5,REQID:bdbf0688-9713-4d5a-a998-582b6da77e28,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:54,FILE:0,RULE:Release_HamU,ACTI
+        ON:release,TS:54
+X-CID-META: VersionHash:2a19b09,CLOUDID:a2b4f579-5ef6-470b-96c9-bdb8ced32786,C
+        OID:e9539d5b2519,Recheck:0,SF:28|16|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:0,BEC:nil
+X-UUID: 669120a6ef3849ba98dec79670ee9a76-20220520
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <jia-wei.chang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1411693651; Fri, 20 May 2022 13:08:39 +0800
 Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Fri, 20 May 2022 12:54:44 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Fri, 20 May 2022 13:08:38 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
  mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 20 May 2022 12:54:43 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.3 via Frontend Transport; Fri, 20 May 2022 12:54:43 +0800
-From:   Miles Chen <miles.chen@mediatek.com>
-To:     <angelogioacchino.delregno@collabora.com>
-CC:     <bgolaszewski@baylibre.com>, <chun-jie.chen@mediatek.com>,
-        <ck.hu@mediatek.com>, <devicetree@vger.kernel.org>,
-        <fparent@baylibre.com>, <ikjn@chromium.org>,
-        <jason-jh.lin@mediatek.com>, <kernel@collabora.com>,
-        <konrad.dybcio@somainline.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
+ 15.0.1497.2; Fri, 20 May 2022 13:08:38 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 20 May 2022 13:08:38 +0800
+Message-ID: <095dd1c9d136e956ee2b53c90796bfc6a794d4e8.camel@mediatek.com>
+Subject: Re: [PATCH v2 4/4] soc: mediatek: svs: add support for mt8195
+From:   Jia-Wei Chang <jia-wei.chang@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Roger Lu <roger.lu@mediatek.com>,
+        Kevin Hilman <khilman@kernel.org>
+CC:     <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <linux-mediatek@lists.infradead.org>,
-        <marijn.suijten@somainline.org>, <martin.botka@somainline.org>,
-        <matthias.bgg@gmail.com>, <miles.chen@mediatek.com>,
-        <mturquette@baylibre.com>, <p.zabel@pengutronix.de>,
-        <paul.bouchara@somainline.org>, <phone-devel@vger.kernel.org>,
-        <rex-bc.chen@mediatek.com>, <robh+dt@kernel.org>,
-        <sam.shih@mediatek.com>, <sboyd@kernel.org>,
-        <tinghan.shen@mediatek.com>, <weiyi.lu@mediatek.com>,
-        <wenst@chromium.org>, <y.oudjana@protonmail.com>,
-        <~postmarketos/upstreaming@lists.sr.ht>
-Subject: Re: [PATCH v2 7/7] clk: mediatek: Add MediaTek Helio X10 MT6795 clock drivers
-Date:   Fri, 20 May 2022 12:54:38 +0800
-Message-ID: <20220520045438.25661-1-miles.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <a253f338-c162-17b8-f412-95cd63195151@collabora.com>
-References: <a253f338-c162-17b8-f412-95cd63195151@collabora.com>
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <hsinyi@google.com>
+Date:   Fri, 20 May 2022 13:08:38 +0800
+In-Reply-To: <2f2b6002-d505-48f3-cf10-5680d3280024@collabora.com>
+References: <20220519060924.13493-1-jia-wei.chang@mediatek.com>
+         <20220519060924.13493-5-jia-wei.chang@mediatek.com>
+         <2f2b6002-d505-48f3-cf10-5680d3280024@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 X-MTK:  N
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Angelo,
+On Thu, 2022-05-19 at 10:34 +0200, AngeloGioacchino Del Regno wrote:
+> Il 19/05/22 08:09, Tim Chang ha scritto:
+> > From: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> > 
+> > To support svs on MT8195, add corresponding bank information,
+> > platform
+> > data, probe and parsing function.
+> > 
+> > Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> 
+> Hello Jia-Wei,
+> thanks for the patch!
+> 
+> However, there are a few things to improve...
+> 
+> > ---
+> >   drivers/soc/mediatek/mtk-svs.c | 193
+> > +++++++++++++++++++++++++++++++++
+> >   1 file changed, 193 insertions(+)
+> > 
+> > diff --git a/drivers/soc/mediatek/mtk-svs.c
+> > b/drivers/soc/mediatek/mtk-svs.c
+> > index 656d0361ff7d..919226faee6d 100644
+> > --- a/drivers/soc/mediatek/mtk-svs.c
+> > +++ b/drivers/soc/mediatek/mtk-svs.c
+> > @@ -1680,6 +1680,92 @@ static int svs_bank_resource_setup(struct
+> > svs_platform *svsp)
+> >   	return 0;
+> >   }
+> >   
+> > +static bool svs_mt8195_efuse_parsing(struct svs_platform *svsp)
+> > +{
+> > +	struct svs_bank *svsb;
+> > +	struct nvmem_cell *cell;
+> > +	u32 idx, i, ft_pgm, vmin, golden_temp;
+> > +
+> > +	for (i = 0; i < svsp->efuse_max; i++)
+> > +		if (svsp->efuse[i])
+> > +			dev_info(svsp->dev, "M_HW_RES%d: 0x%08x\n",
+> > +				 i, svsp->efuse[i]);
+> > +
+> > +	if (!svsp->efuse[10]) {
+> > +		dev_notice(svsp->dev, "svs_efuse[10] = 0x0?\n");
+> > +		return false;
+> > +	}
+> > +
+> > +	/* Svs efuse parsing */
+> > +	ft_pgm = svsp->efuse[0] & GENMASK(7, 0);
+> > +	vmin = (svsp->efuse[19] >> 4) & GENMASK(1, 0);
+> > +
+> > +	for (idx = 0; idx < svsp->bank_max; idx++) {
+> > +		svsb = &svsp->banks[idx];
+> > +
+> > +		if (svsb->sw_id != SVSB_GPU)
+> > +			return false;
+> > +
+> > +		if (vmin == 0x1)
+> > +			svsb->vmin = 0x1e;
+> > +
+> > +		if (ft_pgm == 0)
+> > +			svsb->volt_flags |= SVSB_INIT01_VOLT_IGNORE;
+> > +
+> > +		if (svsb->type == SVSB_LOW) {
+> > +			svsb->mtdes = svsp->efuse[10] & GENMASK(7, 0);
+> > +			svsb->bdes = (svsp->efuse[10] >> 16) &
+> > GENMASK(7, 0);
+> > +			svsb->mdes = (svsp->efuse[10] >> 24) &
+> > GENMASK(7, 0);
+> > +			svsb->dcbdet = (svsp->efuse[8]) & GENMASK(7,
+> > 0);
+> > +			svsb->dcmdet = (svsp->efuse[8] >> 8) &
+> > GENMASK(7, 0);
+> > +		} else if (svsb->type == SVSB_HIGH) {
+> > +			svsb->mtdes = svsp->efuse[9] & GENMASK(7, 0);
+> > +			svsb->bdes = (svsp->efuse[9] >> 16) &
+> > GENMASK(7, 0);
+> > +			svsb->mdes = (svsp->efuse[9] >> 24) &
+> > GENMASK(7, 0);
+> > +			svsb->dcbdet = (svsp->efuse[8]) & GENMASK(7,
+> > 0);
+> > +			svsb->dcmdet = (svsp->efuse[8] >> 8) &
+> > GENMASK(7, 0);
+> > +		}
+> > +
+> > +		svsb->vmax += svsb->dvt_fixed;
+> > +	}
+> > +
+> > +	/* Thermal efuse parsing */
+> > +	cell = nvmem_cell_get(svsp->dev, "t-calibration-data");
+> > +	if (IS_ERR_OR_NULL(cell)) {
+> > +		dev_err(svsp->dev, "no \"t-calibration-data\"? %ld\n",
+> > +			PTR_ERR(cell));
+> > +		return false;
+> > +	}
+> > +
+> > +	svsp->tefuse = nvmem_cell_read(cell, &svsp->tefuse_max);
+> > +	if (IS_ERR(svsp->tefuse)) {
+> > +		dev_err(svsp->dev, "cannot read thermal efuse: %ld\n",
+> > +			PTR_ERR(svsp->tefuse));
+> > +		nvmem_cell_put(cell);
+> > +		return false;
+> > +	}
+> > +
+> > +	svsp->tefuse_max /= sizeof(u32);
+> > +	nvmem_cell_put(cell);
+> > +
+> > +	for (i = 0; i < svsp->tefuse_max; i++)
+> > +		if (svsp->tefuse[i] != 0)
+> > +			break;
+> > +
+> > +	if (i == svsp->tefuse_max)
+> > +		golden_temp = 50; /* All thermal efuse data are 0 */
+> > +	else
+> > +		golden_temp = (svsp->tefuse[0] >> 24) & GENMASK(7, 0);
+> > +
+> > +	for (idx = 0; idx < svsp->bank_max; idx++) {
+> > +		svsb = &svsp->banks[idx];
+> > +		svsb->mts = 500;
+> > +		svsb->bts = (((500 * golden_temp + 250460) / 1000) -
+> > 25) * 4;
+> > +	}
+> > +
+> > +	return true;
+> > +}
+> > +
+> >   static bool svs_mt8192_efuse_parsing(struct svs_platform *svsp)
+> >   {
+> >   	struct svs_bank *svsb;
+> > @@ -2141,6 +2227,39 @@ static struct device
+> > *svs_add_device_link(struct svs_platform *svsp,
+> >   	return dev;
+> >   }
+> >   
+> > +static int svs_mt8195_platform_probe(struct svs_platform *svsp)
+> 
+> We can reuse svs_mt8192_platform_probe() for MT8195, as this is
+> simply
+> a duplicate of that.
 
->For MT8195... and 92, 83, 73... and others from the same era, being them for
->chromebooks, iot, smartphones and whatever else... yeah you're totally right.
->
->The issue starts raising when looking at older SoCs featuring an older bootloader
->that does have a kernel size limitation; for example, to make the loader happy on
->MT6795, I had to strip the defconfig a lot and keep the Android-style boot.img
->smaller than 10MB (that's Image.gz-dtb + ramdisk).
+Sure, I will remove svs_mt8195_platform_probe and reuse
+svs_mt8192_platform_probe instead in the next version.
 
-I think you have the point :-)
-I did not consider the older SoCs case you mentioned and there is a real 10MB limit.
-I'm fine with this.
+> 
+> > +{
+> > +	struct device *dev;
+> > +	struct svs_bank *svsb;
+> > +	u32 idx;
+> > +
+> > +	svsp->rst = devm_reset_control_get_optional(svsp->dev,
+> > "svs_rst");
+> > +	if (IS_ERR(svsp->rst))
+> > +		return dev_err_probe(svsp->dev, PTR_ERR(svsp->rst),
+> > +				     "cannot get svs reset control\n");
+> > +
+> > +	dev = svs_add_device_link(svsp, "lvts");
+> > +	if (IS_ERR(dev))
+> > +		return dev_err_probe(svsp->dev, PTR_ERR(dev),
+> > +				     "failed to get lvts device\n");
+> > +
+> > +	for (idx = 0; idx < svsp->bank_max; idx++) {
+> > +		svsb = &svsp->banks[idx];
+> > +
+> > +		if (svsb->type == SVSB_HIGH)
+> > +			svsb->opp_dev = svs_add_device_link(svsp,
+> > "mali");
+> > +		else if (svsb->type == SVSB_LOW)
+> > +			svsb->opp_dev = svs_get_subsys_device(svsp,
+> > "mali");
+> > +
+> > +		if (IS_ERR(svsb->opp_dev))
+> > +			return dev_err_probe(svsp->dev, PTR_ERR(svsb-
+> > >opp_dev),
+> > +					     "failed to get OPP device
+> > for bank %d\n",
+> > +					     idx);
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> >   static int svs_mt8192_platform_probe(struct svs_platform *svsp)
+> >   {
+> >   	struct device *dev;
+> > @@ -2257,6 +2376,67 @@ static int svs_mt8183_platform_probe(struct
+> > svs_platform *svsp)
+> >   	return 0;
+> >   }
+> >   
+> > +static struct svs_bank svs_mt8195_banks[] = {
+> > +	{
+> > +		.sw_id			= SVSB_GPU,
+> > +		.type			= SVSB_LOW,
+> > +		.set_freq_pct		= svs_set_bank_freq_pct_v3,
+> > +		.get_volts		= svs_get_bank_volts_v3,
+> > +		.tzone_name		= "gpu1",
+> > +		.volt_flags		= SVSB_REMOVE_DVTFIXED_VOLT,
+> > +		.mode_support		= SVSB_MODE_INIT02,
+> > +		.opp_count		= MAX_OPP_ENTRIES,
+> > +		.freq_base		= 640000000,
+> > +		.turn_freq_base		= 640000000,
+> > +		.volt_step		= 6250,
+> > +		.volt_base		= 400000,
+> > +		.vmax			= 0x38,
+> > +		.vmin			= 0x14,
+> > +		.age_config		= 0x555555,
+> > +		.dc_config		= 0x1,
+> > +		.dvt_fixed		= 0x1,
+> > +		.vco			= 0x18,
+> > +		.chk_shift		= 0x87,
+> > +		.core_sel		= 0x0fff0100,
+> > +		.int_st			= BIT(0),
+> > +		.ctl0			= 0x00540003,
+> 
+> 
+> > +		.tzone_htemp		= 85000,
+> > +		.tzone_htemp_voffset	= 0,
+> > +		.tzone_ltemp		= 25000,
+> > +		.tzone_ltemp_voffset	= 7,
+> 
+> tzone_{h,l}temp(_voffset) params are used only when (volt_flags &
+> SVSB_MODE_MON).
+> On this entry, there's no MON mode, so these four are useless: please
+> remove.
 
-ChenYu, What do you think?
+Sure, I will remove them in the next version.
 
-thanks,
-Miles
+> 
+> > +	},
+> > +	{
+> > +		.sw_id			= SVSB_GPU,
+> > +		.type			= SVSB_HIGH,
+> > +		.set_freq_pct		= svs_set_bank_freq_pct_v3,
+> > +		.get_volts		= svs_get_bank_volts_v3,
+> > +		.tzone_name		= "gpu1",
+> > +		.volt_flags		= SVSB_REMOVE_DVTFIXED_VOLT |
+> > +					  SVSB_MON_VOLT_IGNORE,
+> > +		.mode_support		= SVSB_MODE_INIT02 |
+> > SVSB_MODE_MON,
+> > +		.opp_count		= MAX_OPP_ENTRIES,
+> > +		.freq_base		= 880000000,
+> > +		.turn_freq_base		= 640000000,
+> > +		.vboot			= 0x38,
+> > +		.volt_step		= 6250,
+> > +		.volt_base		= 400000,
+> > +		.vmax			= 0x38,
+> > +		.vmin			= 0x14,
+> > +		.age_config		= 0x555555,
+> > +		.dc_config		= 0x1,
+> > +		.dvt_fixed		= 0x6,
+> > +		.vco			= 0x18,
+> > +		.chk_shift		= 0x87,
+> > +		.core_sel		= 0x0fff0101,
+> > +		.int_st			= BIT(1),
+> > +		.ctl0			= 0x00540003,
+> > +		.tzone_htemp		= 85000,
+> > +		.tzone_htemp_voffset	= 0,
+> > +		.tzone_ltemp		= 25000,
+> > +		.tzone_ltemp_voffset	= 7,
+> > +	},
+> > +};
+> > +
+> >   static struct svs_bank svs_mt8192_banks[] = {
+> >   	{
+> >   		.sw_id			= SVSB_GPU,
+> > @@ -2559,6 +2739,16 @@ static struct svs_bank svs_mt8183_banks[] =
+> > {
+> >   	},
+> >   };
+> >   
+> > +static const struct svs_platform_data svs_mt8195_platform_data = {
+> > +	.name = "mt8195-svs",
+> > +	.banks = svs_mt8195_banks,
+> > +	.efuse_parsing = svs_mt8195_efuse_parsing,
+> > +	.probe = svs_mt8195_platform_probe,
+> 
+> 	.probe = svs_mt8192_platform_probe,
+
+I will use mt8192's instead in the next version.
+Thanks.
+
+> 
+> > +	.irqflags = IRQF_TRIGGER_HIGH,
+> > +	.regs = svs_regs_v2,
+> > +	.bank_max = ARRAY_SIZE(svs_mt8195_banks),
+> > +};
+> > +
+> 
+> Regards,
+> Angelo
+> 
+
