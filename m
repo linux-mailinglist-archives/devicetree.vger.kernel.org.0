@@ -2,114 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0C9E52EB90
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 14:08:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C10F752EB93
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 14:09:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245294AbiETMIf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 08:08:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38206 "EHLO
+        id S1345245AbiETMJf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 08:09:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243021AbiETMIf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 08:08:35 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE69514674E
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 05:08:33 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id h14so11249731wrc.6
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 05:08:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=o5HF6tE0A9hZV5uqp555c3BroFMC/aJ+EGKuqyLJpVg=;
-        b=RY49bW4Sen7bZq2QSxrLSm7Lbm/m83AjvjOEzzs00aqp7l+TPSpteivwevfzd1Z7ze
-         FrXWzoCG5EJYG4O0HaCXfe8eBpWcyDpnMkMRLhmPMPNQdQOi4yUB5uoRlH+NQPBfEDyW
-         3jeFXA+3vtwOGImVbAL7A9tiaplg/RSISgj3FCqNwOphy5uSwGdP3/FlFFE/qsh5LLXx
-         VidKM8TzLdWax1sulYH3Q0YFAtpJGpiXERcnu4IsOcY9ftsvFAc3lRIOC5HbfIdMtFds
-         HQ/bbLH/gHBYvKzVqUXQEPjIcUFDKX4MYQ8VmwS3jEHsZB2HC2ysFHBGOJQqqxt77Ssv
-         5EyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=o5HF6tE0A9hZV5uqp555c3BroFMC/aJ+EGKuqyLJpVg=;
-        b=13syU0YHSQCS0TiSaaYLoHFM8UjoBWZLIayKOXZK0gS9YgSe0JHEo6jxhDyAkQDYU4
-         dpPBqdbDE8fjzXQoAAKmP+RqZIbfuaw/CcfztNz0bo/UxvIYZ4jKbGv+jkuiipi+W2LP
-         15BVYIT3lmzTg33J5Oe7rqN2+ZoNHWTlPqapMlRkbfGNFBUyuBxCQH2adBEpxwoCP+cf
-         r+iFwa48l2trNlbuSqWlrA52+SEJy3wzs1ynzrNQ2s2UIxV7kB/JcYr3aweoEPQAPITn
-         MctFGE1dsfYBo96xIktkExupWuqee81eqFjlrCFikYpNA/NcPNgd6juPadOtPnIg1hPW
-         ayIA==
-X-Gm-Message-State: AOAM531CjnLp4iC6j8NdVz4t6VewPgjcjB3AO+vruhBoU0UsfbwNwKkY
-        KpmVn1O0YmcQel0UpIH+vPTD6Q==
-X-Google-Smtp-Source: ABdhPJy1M3oBig5dhhlUe5LElOMWhZRzXErep0V49RbUgzjhLti0/RzqULL8Y5RK9eC3JHc/Scb2bw==
-X-Received: by 2002:adf:e386:0:b0:20d:12c3:dfdb with SMTP id e6-20020adfe386000000b0020d12c3dfdbmr8203268wrm.570.1653048512317;
-        Fri, 20 May 2022 05:08:32 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id u6-20020adfc646000000b0020d0c48d135sm2428599wrg.15.2022.05.20.05.08.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 May 2022 05:08:31 -0700 (PDT)
-Date:   Fri, 20 May 2022 13:08:29 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        heiko@sntech.de, zyw@rock-chips.com, zhangqing@rock-chips.com,
-        devicetree@vger.kernel.org, Chris Morgan <macromorgan@hotmail.com>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH] [RESEND, v5] dt-bindings: mfd: rk808: Convert bindings
- to yaml
-Message-ID: <YoeEve6GwzcSF5vH@google.com>
-References: <20220519161731.1168-1-macroalpha82@gmail.com>
+        with ESMTP id S241234AbiETMJc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 08:09:32 -0400
+Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AE6514FC8F;
+        Fri, 20 May 2022 05:09:31 -0700 (PDT)
+Received: from zn.tnic (p200300ea974657be329c23fffea6a903.dip0.t-ipconnect.de [IPv6:2003:ea:9746:57be:329c:23ff:fea6:a903])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 1D61B1EC0432;
+        Fri, 20 May 2022 14:09:26 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1653048566;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=wAUEpaxcn1VjODERDlTBwD2l2P5Ti2X7RxSfo/FhO7g=;
+        b=AqccEl2YFLgHBwWukfM15c26wLyTYp0BTcTwKa5inCPcJkkJ2RtctkhhZRtxbyPGKt3hqq
+        Fe8H2STvPhOoTipdnMQQYblJR7q+zAcAMhK9FaKkyY+rLrq3bTZNJn0a1+j8kB+iUppIny
+        oFERssQ2eEB/XA65/bk9GLDZJb0c+NQ=
+Date:   Fri, 20 May 2022 14:09:21 +0200
+From:   Borislav Petkov <bp@alien8.de>
+To:     Medad Young <medadyoung@gmail.com>
+Cc:     rric@kernel.org, James Morse <james.morse@arm.com>,
+        tony.luck@intel.com, Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Patrick Venture <venture@google.com>, KWLIU@nuvoton.com,
+        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING <KFTING@nuvoton.com>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>, ctcchien@nuvoton.com,
+        linux-edac <linux-edac@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>
+Subject: Re: [PATCH v9 1/3] ARM: dts: nuvoton: Add memory controller node
+Message-ID: <YoeE8cBhUkF3K44/@zn.tnic>
+References: <20220510031056.1657-1-ctcchien@nuvoton.com>
+ <20220510031056.1657-2-ctcchien@nuvoton.com>
+ <YoUwe6Tj4Uh6ukc8@zn.tnic>
+ <CAHpyw9fjThEP4NuU08aNJ_raHpq9-j9KgBb8YuZ_shXTjhm3JA@mail.gmail.com>
+ <YoYPGWreQuF9QZzc@zn.tnic>
+ <CAHpyw9es-n+bW9SsGBmmr3ghBFk8Q8E6ZTbE42BpU-6p8LfHtw@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220519161731.1168-1-macroalpha82@gmail.com>
+In-Reply-To: <CAHpyw9es-n+bW9SsGBmmr3ghBFk8Q8E6ZTbE42BpU-6p8LfHtw@mail.gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 19 May 2022, Chris Morgan wrote:
+On Fri, May 20, 2022 at 10:31:05AM +0800, Medad Young wrote:
+> for the second warning, I did upadate my .git/config according to your
+> advise. but I thought I met orthe problem, I will try to fix it
 
-> From: Chris Morgan <macromorgan@hotmail.com>
-> 
-> Convert the rk808 bindings into yaml format. clock-output-names varies
-> in maxItems depending on whether or not the clock-cells is 0 or 1. For
-> the rk805, rk809, and rk817. This preserves behavior with the existing
-> driver handling setting the clock for these specific PMICs. When this
-> driver is corrected and the devicetrees updated this logic can be
-> removed (since the rk805, rk808, and rk817 only have one actual clock).
-> 
-> Note this patch was previously sent as a series, all of the patches in
-> the series except this one have been committed to mainline.
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->  .../devicetree/bindings/mfd/rk808.txt         | 465 ------------------
->  .../bindings/mfd/rockchip,rk805.yaml          | 219 +++++++++
->  .../bindings/mfd/rockchip,rk808.yaml          | 257 ++++++++++
->  .../bindings/mfd/rockchip,rk809.yaml          | 284 +++++++++++
->  .../bindings/mfd/rockchip,rk817.yaml          | 330 +++++++++++++
->  .../bindings/mfd/rockchip,rk818.yaml          | 282 +++++++++++
->  6 files changed, 1372 insertions(+), 465 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mfd/rk808.txt
->  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk805.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk808.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk817.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk818.yaml
+You need to do "git commit --amend" on the patch so that it updates the
+author.
 
-Applied, thanks.
+> for the first warning, did I really need to fix it?
+
+Yes, you need to fix both.
+
+Again, before you send, run checkpatch on your patches, one by one.
 
 -- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
