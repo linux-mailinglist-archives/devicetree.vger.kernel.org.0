@@ -2,192 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E79552F208
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 20:07:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6162752F209
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 20:07:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351133AbiETSHA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 14:07:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55806 "EHLO
+        id S1352405AbiETSHN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 14:07:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237434AbiETSG7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 14:06:59 -0400
-Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com [IPv6:2607:f8b0:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F2E6169E06
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 11:06:58 -0700 (PDT)
-Received: by mail-oi1-x244.google.com with SMTP id n24so10780458oie.12
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 11:06:58 -0700 (PDT)
+        with ESMTP id S1349410AbiETSHN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 14:07:13 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 588B018C055
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 11:07:11 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id y32so15649421lfa.6
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 11:07:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=6TvO6ltEPc55hdd51dO8QieztisDj+/DK5rZti30QmA=;
-        b=HndbR1kULKCeNwqq8x8viUWfvXAy0X8oM7xNvG6nqi+UbJKdbiW8Up3FSPchVvA8Oa
-         ddpIXKceZiRhuOMyMDLb/hdr+IjUixSVhzfODV13qdstIBAISdyNC6jhqgiepM5r4rBv
-         J/In0pHBPo8ccrCeIiEOJDHYNt8GKLENqi7K4v75ymTqp4M32ypRh5Jkixg50L1u+Mgl
-         mb+PHRYJPg4dPHuQ7K72OYxvKsqdMUBts4s35FOzm8kE7uFts3AE+zTUxN/0b0tO6IJb
-         dxwWe+m3yLTFCeJBaj/tEj0xtdx3++m/zDe+48ZLBTzYSaxsFCkcIE/1bfLeBTMjloXO
-         GY+g==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=mAvXka/K4vTJUVKh3HywAZKjh1VdtKdtrBO8nUgt5Kg=;
+        b=PCNc9mYnLFMk26nSYKsrGsijruCcAel2lWQCYv9ECe28Fo9kSEsSMMaTSQM6ge+ABP
+         osBN3Jq7eGDCxyxDubAUNSy/QdOrMbPd8m8a2jjy1d++mWkBOmHtUZvyKF40o+UgVF+b
+         MKXCHwBSiRSfFBklCPeE0Yn/8veTWixIekjBLXWziP7q6nnp39oJpWvCKZGkAcMSuIgY
+         H92FAPwmaK1N2DceUhzwqz4cvuvhZuRrXS7j0QTvXhCJTzlsGEZxbUhn53whzDupCLUg
+         w1P9Ygz0ed2axHdtch68jpb2AQspu+M/JeD2J9IVTBAdzIy9TN8u6dwg9jPs+zuw0qNM
+         18cw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=6TvO6ltEPc55hdd51dO8QieztisDj+/DK5rZti30QmA=;
-        b=2EVczR7nCuI2ncRWXK/Sa8Qs90NXjrqq9otCC8oIVut7W6TLiJfuioycZm0OV9/2j6
-         uVe9tdK9Xai1bQ0aOGYxk8jlKqoPlTZ2gOgyVj0U51piRSRyyK7A4NR0SJQV9lUU07Or
-         qNJ1VmryCjJ8XFxGwAY7LqoOHUOCNkcqUnczshACKJuavkEwZAp2i/uxqW8K71d0gpQg
-         n38K3khi0WLsmqmNKgoMTDdSzn7nyPArYz9EDmt2vBhzI2A1VbW8tas/Tfjb0TfJFc2c
-         O12VUypx/UvZg+u1Q3MlBaqhf977kAb4+n8aSpZ10LqyXSXW82wD2ThbGL6QNrtnwSPw
-         SEAA==
-X-Gm-Message-State: AOAM533WS4OOT5IqvfP0BLz+IAm6UPa4WiEaiSubJzidwNStpNuZB/PM
-        k07JRTppH5x+OaMJTqOh623TQCDHRezzGSzHgOI=
-X-Google-Smtp-Source: ABdhPJxNoVu3D1Wj5cUj5i89nPNVmkj3jiBcooIDeROpk5TbSS2y+5ySWUCetfvZ1Y8dKKppbfVgF7bkwJksRDvWM0c=
-X-Received: by 2002:a05:6808:10cc:b0:326:de69:f3cd with SMTP id
- s12-20020a05680810cc00b00326de69f3cdmr6680021ois.187.1653070017770; Fri, 20
- May 2022 11:06:57 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=mAvXka/K4vTJUVKh3HywAZKjh1VdtKdtrBO8nUgt5Kg=;
+        b=qvEXpZXokYBH1tBf3G5zKw2CoxYjrkN1GENXP8BFJ4Ejg389YCnhg7MDWEA0qlhM5O
+         2FAPmqMlexuVrhaZduPWWQIrBa7fo+XsvkeAPrKc6mbwuZCfjgqRy/QUp683tLZ0qTMy
+         Mi4KS/SfI3LyDovqxnYmVvY9wYbLwz97U+5yy1tJ5Aw/65AXHda/x2r7lxAHb4vNEf+W
+         y0srpDhCcwAhmR6/JTpFIU73qjWwhKtf5kgJOdWrkYbf3G4bI7sRcnzkHvbRzrh5hivm
+         m/smGk2SATypLBGNZ26HtGSbsGg9uE3BTAeThPeeqRpt1eTRuul0O9xQklFy7bRIHwnP
+         wN3g==
+X-Gm-Message-State: AOAM532DoC7uWTFsSblE3fmaKNvKO4jHNMhWB4x9ZYMHpS9ot6Vzop4+
+        p18AQW7Iv/yOVHtlnto/aI/uCzbEVyR6vg==
+X-Google-Smtp-Source: ABdhPJwBww574ZY9b1SAauSjxGUH1kZvIesP7vieS+Ben2OWqZcPw3ilAvLP2FM61MpucttomLTlfQ==
+X-Received: by 2002:a05:6512:a92:b0:45c:6b70:c892 with SMTP id m18-20020a0565120a9200b0045c6b70c892mr7719027lfu.124.1653070029620;
+        Fri, 20 May 2022 11:07:09 -0700 (PDT)
+Received: from ?IPV6:2001:470:dd84:abc0::8a5? ([2001:470:dd84:abc0::8a5])
+        by smtp.gmail.com with ESMTPSA id q11-20020ac25fcb000000b0047255d211bcsm740429lfg.235.2022.05.20.11.07.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 May 2022 11:07:09 -0700 (PDT)
+Message-ID: <ad3c5881-9e59-795d-0735-f23ba815a31b@linaro.org>
+Date:   Fri, 20 May 2022 21:07:07 +0300
 MIME-Version: 1.0
-Received: by 2002:a05:6850:185:b0:2d7:1146:e654 with HTTP; Fri, 20 May 2022
- 11:06:57 -0700 (PDT)
-Reply-To: Westernunionrespond@gmx.com
-From:   Faso Liza619 <nkabore97@gmail.com>
-Date:   Fri, 20 May 2022 18:06:57 +0000
-Message-ID: <CAP5-3acNmxn6HR18pZZLAvKX19KZ6mNvXU8wRUW6aKzktsQJhQ@mail.gmail.com>
-Subject: PAYMENT THROUGH WESTEN UNION
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=7.4 required=5.0 tests=ADVANCE_FEE_4_NEW_MONEY,
-        BAYES_50,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FREEMAIL_REPLYTO,
-        LOTS_OF_MONEY,MILLION_USD,MONEY_FRAUD_5,MONEY_FREEMAIL_REPTO,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,SUBJ_ALL_CAPS,
-        T_SCC_BODY_TEXT_LINE,UNDISC_FREEM,UNDISC_MONEY autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v10 06/10] PCI: dwc: Handle MSIs routed to multiple GIC
+ interrupts
+Content-Language: en-GB
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220513172622.2968887-1-dmitry.baryshkov@linaro.org>
+ <20220513172622.2968887-7-dmitry.baryshkov@linaro.org>
+ <YoS/wwkZoaFc76u1@hovoldconsulting.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <YoS/wwkZoaFc76u1@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
-X-Spam-Report: *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5112]
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [nkabore97[at]gmail.com]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2607:f8b0:4864:20:0:0:0:244 listed in]
-        [list.dnswl.org]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [nkabore97[at]gmail.com]
-        *  0.5 SUBJ_ALL_CAPS Subject is all capitals
-        *  0.2 MILLION_USD BODY: Talks about millions of dollars
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        *  0.0 LOTS_OF_MONEY Huge... sums of money
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  3.4 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  0.0 MONEY_FREEMAIL_REPTO Lots of money from someone using free
-        *      email?
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-        *  1.4 UNDISC_MONEY Undisclosed recipients + money/fraud signs
-        *  0.0 ADVANCE_FEE_4_NEW_MONEY Advance Fee fraud and lots of money
-        *  0.0 MONEY_FRAUD_5 Lots of money and many fraud phrases
-X-Spam-Level: *******
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-GREETING:BENEFICIARY
+On 18/05/2022 12:43, Johan Hovold wrote:
+> On Fri, May 13, 2022 at 08:26:18PM +0300, Dmitry Baryshkov wrote:
+>> On some of Qualcomm platforms each group of 32 MSI vectors is routed to the
+>> separate GIC interrupt. Implement support for such configurations by
+>> parsing "msi0" ... "msiN" interrupts and attaching them to the chained
+>> handler.
+>>
+>> Note, that if DT doesn't list an array of MSI interrupts and uses single
+>> "msi" IRQ, the driver will limit the amount of supported MSI vectors
+>> accordingly (to 32).
+>>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   .../pci/controller/dwc/pcie-designware-host.c | 38 ++++++++++++++++++-
+>>   drivers/pci/controller/dwc/pcie-designware.h  |  1 +
+>>   2 files changed, 38 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+>> index 70f0435907c1..320a968dd366 100644
+>> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+>> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+>> @@ -288,6 +288,11 @@ static void dw_pcie_msi_init(struct pcie_port *pp)
+>>   	dw_pcie_writel_dbi(pci, PCIE_MSI_ADDR_HI, upper_32_bits(msi_target));
+>>   }
+>>   
+>> +static const char * const split_msi_names[] = {
+>> +	"msi0", "msi1", "msi2", "msi3",
+>> +	"msi4", "msi5", "msi6", "msi7",
+>> +};
+>> +
+>>   static int dw_pcie_msi_host_init(struct pcie_port *pp)
+>>   {
+>>   	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+>> @@ -300,17 +305,48 @@ static int dw_pcie_msi_host_init(struct pcie_port *pp)
+>>   	for (ctrl = 0; ctrl < num_ctrls; ctrl++)
+>>   		pp->irq_mask[ctrl] = ~0;
+>>   
+>> +	if (pp->has_split_msi_irq) {
+> 
+> You don't need to add this configuration parameter as it can be inferred
+> from the devicetree (e.g. if "msi0" is specified).
+> 
+>> +		/*
+>> +		 * Parse as many IRQs as described in the DTS. If there are
+>> +		 * none, fallback to the single "msi" IRQ.
+>> +		 */
+>> +		for (ctrl = 0; ctrl < num_ctrls; ctrl++) {
+>> +			int irq;
+>> +
+>> +			if (pp->msi_irq[ctrl])
+>> +				continue;
+>> +
+>> +			irq = platform_get_irq_byname(pdev, split_msi_names[ctrl]);
+> 
+> You need to use platform_get_irq_byname_optional() here or an error will
+> still printed if the number of "msi" interrupts is less than 8.
+> 
+>> +			if (irq == -ENXIO) {
+>> +				num_ctrls = ctrl;
+>> +				break;
+>> +			} else if (irq < 0) {
+>> +				return dev_err_probe(dev, irq,
+>> +						     "Failed to parse MSI IRQ '%s'\n",
+>> +						     split_msi_names[ctrl]);
+>> +			}
+>> +
+>> +			pp->msi_irq[ctrl] = irq;
+>> +		}
+>> +
+>> +		if (num_ctrls == 0)
+>> +			num_ctrls = 1;
+>> +	}
+>> +
+>>   	if (!pp->msi_irq[0]) {
+>>   		int irq = platform_get_irq_byname_optional(pdev, "msi");
+>>   
+>>   		if (irq < 0) {
+>>   			irq = platform_get_irq(pdev, 0);
+>>   			if (irq < 0)
+>> -				return irq;
+>> +				return dev_err_probe(dev, irq, "Failed to parse MSI irq\n");
+>>   		}
+>>   		pp->msi_irq[0] = irq;
+>>   	}
+>>   
+>> +	pp->num_vectors = min_t(u32, pp->num_vectors, num_ctrls * MAX_MSI_IRQS_PER_CTRL);
+>> +	dev_dbg(dev, "Using %d MSI vectors\n", pp->num_vectors);
+> 
+> Can you rework the handling of num_vectors == 0 (in dw_pcie_host_init())
+> so that the number is always inferred from the number of "msi"
+> interrupts without having to pass in num_vectors == MAX_MSI_IRQS?
+
+It wasn't that easy, but I think I ended up doing it properly.
+
+> 
+> That is
+> 
+> 	num_vectors == 0 && "msi" => num_vectors = MSI_DEF_NUM_VECTORS (32)
+> 	num_vectors == 0 && "msi0".."msin" => num_vectors = n * MAX_MSI_IRQS_PER_CTRL (n * 32)
+> 
+>> +
+>>   	pp->msi_irq_chip = &dw_pci_msi_bottom_irq_chip;
+>>   
+>>   	ret = dw_pcie_allocate_domains(pp);
+>> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+>> index 9c1a38b0a6b3..3aa840a5b19c 100644
+>> --- a/drivers/pci/controller/dwc/pcie-designware.h
+>> +++ b/drivers/pci/controller/dwc/pcie-designware.h
+>> @@ -179,6 +179,7 @@ struct dw_pcie_host_ops {
+>>   
+>>   struct pcie_port {
+>>   	bool			has_msi_ctrl:1;
+>> +	bool			has_split_msi_irq:1;
+>>   	u64			cfg0_base;
+>>   	void __iomem		*va_cfg0_base;
+>>   	u32			cfg0_size;
+> 
+> Johan
 
 
-
-
-
-You are welcome to Western Union Money Transfer head office Burkina Faso.
-
-
-
-
-
-Am Barr Liza Faso by name, The new director of Western Union Foreign Operation.
-
-
-
-
-I resumed work today 30th of March 2022 and your daily transfer file
-was submitted as pending payment in our western union office and after
-my verification, I called the formal Accountant Officer in-charge of
-your payment to find out the reason why they are delaying your daily
-transfer and he explained that you was unable to activate your daily
-installment account fully.
-
-
-
-However, I don't know your financial capability at this moment and it
-was the reason why I decided to help in this matter just to make it
-easy for you to start receiving your daily transfer because I know
-that when you receive the total sum $1.5 million usd that you will
-definitely compensate me.
-
-
-
-I don't want you to lose this fund at this stage after all your
-efforts. Most wise people prefer to use this medium western union
-money transfer now as the best and reliable means of transfer,Kindly
-take control of yourself and leave everything to God because I know
-that from now on, you will be the one to say that our lord is good, so
-I will advice you to send me your direct phone number because I will
-text you the MTCN through SMS and attach other information and send
-through your email box, including all documents involve in the
-transaction.
-
-
-For this moment I will be very glad for your quick response by sending
-sum of $35.00 so that I will quickly do the needful and finalize
-everything within 2:43pm our local time here, I am giving you every
-assurance that as soon as I receive the $35.00 that I will activate
-your daily installment account and proceed with your first transfer of
-$5,000.00 before 2:43pm our local time because I will close once its
-5:30pm.
-
-
-Be aware that all verification's and arrangement involve in this
-transfer has being made in your favour. So I need your maximum
-co-operation to ensure that strictest confidence is maintained to
-avoid any further delay.
-
-
-
-Send the $35.00 through Western Union Money Transfer to below
-following information and get back to me with copy of the Western
-Union slip OK?
-
-
-
-Receiver's Name...............
-Country.... Burkina Faso
-Amount .......$35 USD
-
-
-I felt pains after going through your payment file and found the
-reason why you have not start receiving your fund from this department
-and ready to do my utmost to make sure you receive it all OK?
-
-
-Be rest assured that I will activate your daily installment account
-and post your first $5,000 USD for you to pick-up today as soon as we
-receive the fee from you today.
-email respound.   Westernunionrespond@gmx.com
-
-
-
-
-Yours
-
-faithfully,
-Barrister Liza Faso
-New Managing Director
-Western Union Foreign Operation
+-- 
+With best wishes
+Dmitry
