@@ -2,94 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3801252EEE5
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 17:19:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 630B552EF1D
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 17:24:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350684AbiETPTC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 11:19:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50122 "EHLO
+        id S1350833AbiETPYH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 11:24:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343812AbiETPTB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 11:19:01 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39DF417788A;
-        Fri, 20 May 2022 08:19:01 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id 5B1971F46586
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1653059940;
-        bh=YQ31OR4ZEDVzd2CcVyEsIJ0oD9usN7dRjGllBd1TqMc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=I9k2T7C3tWF2Q3ecHJRuck5leEQwLkSwMo5DGMerg1mS8Fr1EogfPo6jonnSsp4g7
-         Xw/fpwTKwWh1esgVSCvVPbiZTYPUKvdEDFGGTZ6wvbSRWULRyV9d6KMSqc5vhK7GUZ
-         URBfBdk9fvBJiiMUTml9XZzIW+It09ZGGGev+NcCA6uVo5/B10pF6kU3JA8nIoZPNQ
-         R5aQ98ClKg4IaWUZHu8WvxcXjOWN3SPxm942NPVV1Gh6ynm+Xc1T+iytkEIiMtyT6G
-         ml7WR6OSxIvUhUcjkWkYci1HAMrMp6UHqOJRwIcj3BWXnEbBfC9UCMo1DIwqkQhF17
-         HkK472iVQYwtQ==
-Date:   Fri, 20 May 2022 11:18:54 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, matthias.bgg@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        p.zabel@pengutronix.de, angelogioacchino.delregno@collabora.com,
-        chun-jie.chen@mediatek.com, wenst@chromium.org,
-        runyang.chen@mediatek.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v7 07/19] clk: mediatek: reset: Support nonsequence base
- offsets of reset registers
-Message-ID: <20220520151854.kkr2tezmrfniks4j@notapiano>
-References: <20220519125527.18544-1-rex-bc.chen@mediatek.com>
- <20220519125527.18544-8-rex-bc.chen@mediatek.com>
+        with ESMTP id S1350831AbiETPYF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 11:24:05 -0400
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D308617855D;
+        Fri, 20 May 2022 08:23:57 -0700 (PDT)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 23225FF809;
+        Fri, 20 May 2022 15:23:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1653060236;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=y2eVv2sbUXjs+9RjlT2SeuyRq4O8E4/f2RMuQg0THiI=;
+        b=GeW2ux4oA0T5tY4/Oz5778QiBwJAqCaEtqHvz0IktDXqURyB3nKl8PRDSob4ipt+UJ+clQ
+        RHgA+1ViJcedEMObN3EDKXNNkjC1A9f8Du99IDEW+FNTHKVla8JUn+/LLgEaGNaXr4MILQ
+        11Cu1m4cFTVsGWXYLPSq7uTXWYafEE9qb8dr1jKEmbfL2GIMzopgOgjqepC9lUiHRxAxMq
+        FZQO+KJxEZPtLzPJoE+/XIhozOXQ6l9pRO/WHy+z73K47u1rfY8cZRhlH7tRZ1tbjjnilG
+        wdbNWOecFk1qbrlbmEj4D0npoVAZr46UB2w4W2GiNNidXC2jG5DBKaNlhvuQyQ==
+Date:   Fri, 20 May 2022 17:22:44 +0200
+From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?UTF-8?B?TWlxdcOobA==?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next v5 05/13] net: pcs: add Renesas MII converter
+ driver
+Message-ID: <20220520172244.1f17f736@fixe.home>
+In-Reply-To: <20220520084914.5x6bfu4qaza4tqcz@skbuf>
+References: <20220519153107.696864-1-clement.leger@bootlin.com>
+        <20220519153107.696864-6-clement.leger@bootlin.com>
+        <YoZvZj9sQL2GZAI3@shell.armlinux.org.uk>
+        <20220520095241.6bbccdf0@fixe.home>
+        <20220520084914.5x6bfu4qaza4tqcz@skbuf>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220519125527.18544-8-rex-bc.chen@mediatek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rex,
+Le Fri, 20 May 2022 11:49:14 +0300,
+Vladimir Oltean <olteanv@gmail.com> a =C3=A9crit :
 
-On Thu, May 19, 2022 at 08:55:15PM +0800, Rex-BC Chen wrote:
-> The bank offsets are not serial for all reset registers.
-> For example, there are five infra reset banks for MT8192: 0x120, 0x130,
-> 0x140, 0x150 and 0x730.
-> 
-> To support this,
-> - Change reg_ofs to rst_bank_ofs which is a pointer to base offsets of
->   the reset register.
-> - Add a new define RST_NR_PER_BANK to define reset number for each
->   reset bank.
-> 
-> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
+> On Fri, May 20, 2022 at 09:52:41AM +0200, Cl=C3=A9ment L=C3=A9ger wrote:
+> > > Also, as a request to unbind this driver would be disasterous to user=
+s,
+> > > I think you should set ".suppress_bind_attrs =3D true" to prevent the
+> > > sysfs bind/unbind facility being available. This doesn't completely
+> > > solve the problem. =20
+> >=20
+> > Acked. What should I do to make it more robust ? Should I use a
+> > refcount per pdev and check that in the remove() callback to avoid
+> > removing the pdev if used ? =20
+>=20
+> I wonder, if you call device_link_add(ds->dev, miic->dev, DL_FLAG_AUTOREM=
+OVE_CONSUMER),
+> wouldn't that be enough to auto-unbind the DSA driver when the MII
+> converter driver unbinds?
 
-<snip>
+I looiked at that a bit and I'm not sure how to achieve that cleanly. If
+I need to create this link, then I need to do it once for the dsa switch
+device. However, currently, the way I get the references to the MII
+converter are via the pcs-handle properties which are for each port.
 
-> diff --git a/drivers/clk/mediatek/clk-mt2701-g3d.c b/drivers/clk/mediatek/clk-mt2701-g3d.c
-> index 9cfd589939e5..5cbc5c42204d 100644
-> --- a/drivers/clk/mediatek/clk-mt2701-g3d.c
-> +++ b/drivers/clk/mediatek/clk-mt2701-g3d.c
-> @@ -35,10 +35,12 @@ static const struct mtk_gate g3d_clks[] = {
->  	GATE_G3D(CLK_G3DSYS_CORE, "g3d_core", "mfg_sel", 0),
->  };
->  
-> +static u16 rst_ofs[] = { 0xC, };
+So, I'm not sure creating the link multiple times in miic_create() would
+be ok and also, I'm not sure how to create the link once without adding
+a specific property which points on the MII converter node and use that
+to create the link by adding miic_device_add_link() for instance.
 
-Very nitpicky, but you could have left the hex lowercase '0xc'.
+Do you have any preference ?
 
 Thanks,
-Nícolas
+
+--=20
+Cl=C3=A9ment L=C3=A9ger,
+Embedded Linux and Kernel engineer at Bootlin
+https://bootlin.com
