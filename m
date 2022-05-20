@@ -2,76 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69F9A52EA21
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 12:46:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EA6652EA25
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 12:47:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230100AbiETKqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 06:46:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58402 "EHLO
+        id S1348224AbiETKrq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 06:47:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348254AbiETKqb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 06:46:31 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6B6F1C92C
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 03:46:29 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id u7so8501796ljd.11
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 03:46:29 -0700 (PDT)
+        with ESMTP id S234978AbiETKro (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 06:47:44 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 356243DA51
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 03:47:42 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id bu29so13709793lfb.0
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 03:47:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=NpVWvREIh58/LHu13eUchb+fJEVBqK/3PdnkHXlwMgE=;
-        b=SZwKyWRAArJ9d5hGnCd+KJRQ4gwh9P0wHi5G6rlL/9KC5j7YCGSYbrcRAxjJth0yAA
-         oPXwWx1dfUB8EXqJsIKK0kZfn6CZSMcHiKf7RDBzNZbKi0zc18nAoADeTpob/TVSIM9V
-         UIC/8hQu9zLuAY3BALIFAC7Ay6JFoX9dNvKKPdsXxL2yn+r+ybOLocSPfl9OR/d1zZAq
-         SiobhJ/nV3TAk3yPaLCqS6sNycjgIeP42Vr9WYpCPQyJEVzGLw6bVbcjdJPMCpMVmtuQ
-         FnEI26iVD3jOeyVkpZlhuqOzJherI6A3SfXO7wc8a4ccx8KTOmdjoc0fl9JYi6mk+Ak5
-         qHTA==
+        bh=+V2iz2tpQK2VKoncM7tkrBv1RkUo/3iqip/6pL9NBT0=;
+        b=SKmRAZSXq6NcW5nvMbo+k7TZRg6TyPM5f2AjErTZEBcrBgOgabUGKwc8xAokfk2tuh
+         L+joztkQ3ieF24XRT8dlfHbSLX7tiImMFgLoCdnTJ/naAyPzS+iBPtQeAJIdLnF0+hPr
+         Gi9zavVwcM/VY8p9WEDyu4TnOI4EtWafOePyADGDB8axC+ARvyyYUrwB8m/LOWc0hiJx
+         9z3C3wcYiF4gXBjNcEvQGAUimLhtTmFMQ2PlRFzqc3Gazi2nNEDYu5mi70tlt0KkaT5V
+         6kUPoI4lPgqQB5gmOMVpPHO7KWnPfgBqHNwymV/9sOkal23GRlHzZMN3YY7ZnlwCcotK
+         6GlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=NpVWvREIh58/LHu13eUchb+fJEVBqK/3PdnkHXlwMgE=;
-        b=ZhQDCEFqIhleX06kt+SxgoqCu2bad1b6tbJL7GXu+ygu9LgyawZ7jqxH9jC/pirUFG
-         v/DIuS9jME8ePZ5O7iqj5jwHN8bMTLiTlDLEUNp0Bh7PTN3GWK7HEpTmm1TzWEWsGVR0
-         sdh+49GZVsEgxOgxtbp/mb8uejZN7gh8XMGjoHIwLRW9y2RMp/iBdl01ApobJks6TS8d
-         4DuyC67ZcAWWoIfJhN18pZb1TlLlyw8wplUPFkB27TRjkKBm2Dkw+m/AB7HAFc3hJYQH
-         mN2mu4lXZsFlxDFv7rewV/E8alM79mNd9llWPrH7veNniLAU6pvORN25H/dAF4nEb2RP
-         ML1g==
-X-Gm-Message-State: AOAM531OeSjkyl+ALftq8guh0+KXKCQRSUFHYfYWnuB4s5/ok6w7Vvka
-        d6ZBS1Wk1gMMf8BKXpXZK8D99Q==
-X-Google-Smtp-Source: ABdhPJzEYbhH3kFvrJ4gGx6P3qn8f2dClOO6VYa+DUtkKv4APbXFg/fHqfFNqceqseNkigxPmf2rtw==
-X-Received: by 2002:a2e:804e:0:b0:253:cb15:38ba with SMTP id p14-20020a2e804e000000b00253cb1538bamr5297526ljg.204.1653043588322;
-        Fri, 20 May 2022 03:46:28 -0700 (PDT)
+        bh=+V2iz2tpQK2VKoncM7tkrBv1RkUo/3iqip/6pL9NBT0=;
+        b=ZJkg4vd4iUpklh/ykhaMkaObupCWuG4CP2gZYUb1ayccuuaBb8laEeHJk0ybd+u2Be
+         i15kQelb+kLztPpZysd4k4tqoaKNz1zF7FRaQyB5ReQcb9JOtZk1F3m+BlhJw0/epUdn
+         6pwTH3uJMSn7bATJBgEp8UuBxC2p+SzRMLi94oy0yAyK6HxAlbLTXE1hUH8zbCeCsWEF
+         70eJLM5GvmjKDHahMrPODb5adFTD4Jtnyt5Zhch4QUCDHmrK1GHYUbDPOesIvLyQofC8
+         JkhdDXg3R4wLnC8P1ZZrXtUtIIQy3O20GjrHAIEeWLp5iVwRZQi4XWK5lTFu1xDJa4Rr
+         9buA==
+X-Gm-Message-State: AOAM530/8CAhN+Y7SIB1m6A6wb4W7cb/FlFbZK3A5139jx7454uuyez+
+        KaMNNFQfWPDy347X6pXtenr/tg==
+X-Google-Smtp-Source: ABdhPJzntRsz8vlnhJmvVEsolPIB/+0IL2XNDAx06SGJOFAXhwrA5h6ElrgsomuzRBpoBB9guHpRNg==
+X-Received: by 2002:a05:6512:3f94:b0:474:68e:46c3 with SMTP id x20-20020a0565123f9400b00474068e46c3mr6786689lfa.431.1653043660624;
+        Fri, 20 May 2022 03:47:40 -0700 (PDT)
 Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id x9-20020a056512078900b0047255d211f9sm611468lfr.296.2022.05.20.03.46.27
+        by smtp.gmail.com with ESMTPSA id y20-20020a2eb014000000b00253ceefb668sm259262ljk.60.2022.05.20.03.47.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 May 2022 03:46:27 -0700 (PDT)
-Message-ID: <13662a9c-19c6-cb3d-6073-c87835a3c95d@linaro.org>
-Date:   Fri, 20 May 2022 12:46:26 +0200
+        Fri, 20 May 2022 03:47:40 -0700 (PDT)
+Message-ID: <a2b67f62-b000-5ba3-6989-32221c26f7f0@linaro.org>
+Date:   Fri, 20 May 2022 12:47:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH] arm64: dts: exynoautov9: add syscon reboot/reboot_mode
- support
+Subject: Re: [PATCH] dt-bindings: clock: exynosautov9: correct count of NR_CLK
 Content-Language: en-US
 To:     Chanho Park <chanho61.park@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
         Chanwoo Choi <cw00.choi@samsung.com>,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
-References: <CGME20220520045124epcas2p12235472b7e9f7588003a7c8c238e8866@epcas2p1.samsung.com>
- <20220520045210.55132-1-chanho61.park@samsung.com>
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <CGME20220520030551epcas2p1a67b9f026ce2ec56b0a167026ef96baf@epcas2p1.samsung.com>
+ <20220520030625.145324-1-chanho61.park@samsung.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220520045210.55132-1-chanho61.park@samsung.com>
+In-Reply-To: <20220520030625.145324-1-chanho61.park@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,53 +82,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/05/2022 06:52, Chanho Park wrote:
-> Reboot of exynosautov9 SoC can be handled by setting the bit(
-> SWRESET_SYSTEM[1]) of SYSTEM_CONFIGURATION register(PMU + 0x3a00).
-> syscon-reboot-mode can be used to indicate the reboot mode for
-> bootloader. SYSIP_DAT0 register(PMU + 0x810) will not be cleared after
-> reboot so bootloader can enter the boot mode according to the value.
+On 20/05/2022 05:06, Chanho Park wrote:
+> _NR_CLKS which can be used to register clocks via nr_clk_ids. The clock
+> IDs are started from 1. So, _NR_CLKS should be defined to "the last
+> clock id + 1"
 > 
+> Fixes: 680e1c8370a2 ("dt-bindings: clock: add clock binding definitions for Exynos Auto v9")
 > Signed-off-by: Chanho Park <chanho61.park@samsung.com>
-> ---
->  arch/arm64/boot/dts/exynos/exynosautov9.dtsi | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> index 0ce46ec5cdc3..d99e53406ee0 100644
-> --- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> @@ -312,6 +312,22 @@ pinctrl_peric1: pinctrl@10830000 {
->  		pmu_system_controller: system-controller@10460000 {
->  			compatible = "samsung,exynos7-pmu", "syscon";
->  			reg = <0x10460000 0x10000>;
-> +
-> +			reboot: syscon-reboot {
-> +				compatible = "syscon-reboot";
-> +				regmap = <&pmu_system_controller>;
-> +				offset = <0x3a00>; /* SYSTEM_CONFIGURATION */
-> +				value = <0x2>;
-> +				mask = <0x2>;
-> +			};
-> +
-> +			reboot_mode: syscon-reboot-mode {
 
-Node name: just "reboot-mode"
 
-> +				compatible = "syscon-reboot-mode";
-> +				offset = <0x810>; /* SYSIP_DAT0 */
-> +				mode-bootloader = <0xfc>;
-> +				mode-fastboot = <0xfa>;
-> +				mode-recovery = <0xff>;
-
-These are magic values understood by firmware, so please add a header
-for them (something like include/dt-bindings/soc/rockchip,boot-mode.h
-but with some prefixes like EXYNOSAUTOV9_BOOT_FASTBOOT))
-
-> +			};
->  		};
->  
->  		syscon_fsys2: syscon@17c20000 {
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
