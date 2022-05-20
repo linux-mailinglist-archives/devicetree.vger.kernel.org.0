@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5C7C52EF92
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 17:45:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05E0152EFA2
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 17:47:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351054AbiETPpo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 11:45:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42746 "EHLO
+        id S1351074AbiETPpt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 11:45:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351064AbiETPpl (ORCPT
+        with ESMTP id S1351078AbiETPpl (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 11:45:41 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7827C179970
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 08:45:28 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id ev18so8380525pjb.4
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 08:45:28 -0700 (PDT)
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67546179954
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 08:45:29 -0700 (PDT)
+Received: by mail-pj1-x1034.google.com with SMTP id w17-20020a17090a529100b001db302efed6so8183361pjh.4
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 08:45:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
         h=subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding:cc:from:to;
-        bh=U/MW6rSbN5zBgusIBhKQzePh9cnp8uaNotWlLIHTUsY=;
-        b=JQyzbPvORX1IKsTlWc0qkUHSKntueefkGU8dfB3thfUfkSYRjG91vooo6vChrw9Bf7
-         9Z5XY/rjVuwzsrlkQA5pcgEYx+QnJKtt5nmCn9DhLAdeLEqucw8pOG8J12o96ngdNp5g
-         itgIArPjfmV3PmE0JpQd4a+cAR95KxK2BRwn0m7OypbO/75j+MGw0tQDgXO551FebRyN
-         04wS/DqNscTUoNHtWgoitV/Yu0wzpeaqdS7LdRbwE65wXveDL69cHyxRiC2N2xewmWjM
-         UTbLdEVcVlOT/o6zIiNUwcdDEW8akpNDod5tvoD9ZEXINE7/RJScDiChs8rEREGK9MC4
-         rYKg==
+        bh=vc6UzMZJ99rPT/oGbTC9rWGA9q53ZOjUpC79nvKqcAU=;
+        b=xn7tGQsd1Ammyb30tKhGhYaTasZDR6D+KopoaEElpoNqc6cGf0hpG8c/xcaW+oBpAb
+         NQDMz08xYT3+AcMmulQAk6hqyDWTp+nOeQiNtJHz9aUl3GAakkxCzJCkqmNuICNj6ku9
+         Vl5uzJywr8dENe3WususOJPHvvwQ2N9Zb7UXl2j98MpGfkZKlVUup3aNUYpiWXSSsMnF
+         HepGggexSW9DzDTaB5r53P4KdrOWLX4hD7rWWZIHZzryaJzlILIHBDAqaXM69uvA+q0+
+         HTb8rFfgcXIiymlN8fTxxIcV4a/06ryRKb3FCuQF+PfCqhJ1VLcOJ4sJZ6Wafv1dnUgs
+         vWtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding:cc:from:to;
-        bh=U/MW6rSbN5zBgusIBhKQzePh9cnp8uaNotWlLIHTUsY=;
-        b=bZthdkI4oGmna0ZSiwhO3blaQNWx1wUwOSWkCFC33HCW39Mim3njuajEQuRw/6ADDO
-         UJBZnFgckAOqz/2cG+OfJ7vvrW8M2i9NU7R6hyJxQTDd9eDkf9mOCsSj/sSXWmAU4xrK
-         rCYc8cn0Xt27PNl6G+I3tRS4seWNv1IFCKGFFMmluF4Thanb72xk3E2VwNWk7VlU+wRB
-         rZRKQdOkF+kNkXThBi7odU2bQiByxxB+Q9wtKXn9GL3qXarYjJ1EgychJIw9JEVgdFGT
-         csw5MVB8/XO+K1VZ1e4UaFvJwkc4vaitcfcMeQNwyOMVmBXusza7Eh8trN/tAPwmqr88
-         EHrg==
-X-Gm-Message-State: AOAM5337nIZHDUOSEqHHyaQJHMzAqitKjNwjvvZAfWp9NO6pwsHJT+C/
-        FSBHkdhspXxP7Ec0FtagIAbSHg==
-X-Google-Smtp-Source: ABdhPJxcVY/NCwkycro4XerYgWAVjh079yzImy34/DKN8DSXqYHS1KYB9wqnCW7AFPycA9lFB2mEsg==
-X-Received: by 2002:a17:902:7788:b0:15e:ec55:2cfd with SMTP id o8-20020a170902778800b0015eec552cfdmr10405450pll.113.1653061527803;
-        Fri, 20 May 2022 08:45:27 -0700 (PDT)
+        bh=vc6UzMZJ99rPT/oGbTC9rWGA9q53ZOjUpC79nvKqcAU=;
+        b=gvbODe23/y8pDt+HcctLjMiuDn7CVGxzpOpQxoYQAggN3FOMq5Bw4wByfMOBedENzO
+         hpv0s0cA1BdrHmnUv8suh8AcJmRnysH0n+zvXxnrmFFEdPhfFFJMcQZoo0J9e817KEGk
+         Nbe/nfpUWLV+gyvIPLo1SlNbrIzNwvZVRRVYakWDnlba/RFDagvJU8Voc1Tg5gx9sHbf
+         0zl+1fF6H3dydJnALDNgPKb2N5YG2NtQRCDU/VOFKpb8mhtv2IPvDpJGwtWrXywSFzgt
+         lfxH+pA+vExtICnYtSamcYH1IfMR6YEXzQbGfIoBw/ACqU4rbd4rCt9UMjaEMogqlH0S
+         CErA==
+X-Gm-Message-State: AOAM533oXgfUrZgIw2tZoP72/FkS9kGm4329rAIDKBbYyNqMsr4roRoN
+        4si4ovdx7/l6piKG4a9orzG0Ww==
+X-Google-Smtp-Source: ABdhPJztQKNxzDANcIjGDZLNAGCofYLcLEa+w82rs1Ze6iiV8t755M1LTaCfj73BRJaCli8PyHWtOQ==
+X-Received: by 2002:a17:902:8c98:b0:15f:3e78:dc43 with SMTP id t24-20020a1709028c9800b0015f3e78dc43mr10194800plo.120.1653061528884;
+        Fri, 20 May 2022 08:45:28 -0700 (PDT)
 Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
-        by smtp.gmail.com with ESMTPSA id p11-20020a17090a4f0b00b001df78f27c10sm2091006pjh.42.2022.05.20.08.45.27
+        by smtp.gmail.com with ESMTPSA id hi4-20020a17090b30c400b001cda0b69a30sm1987977pjb.52.2022.05.20.08.45.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 May 2022 08:45:27 -0700 (PDT)
-Subject: [PATCH v1 4/5] RISC-V: purgatory: Use XLEN-length loads to support rv32
-Date:   Fri, 20 May 2022 08:44:30 -0700
-Message-Id: <20220520154430.18593-5-palmer@rivosinc.com>
+        Fri, 20 May 2022 08:45:28 -0700 (PDT)
+Subject: [PATCH v1 5/5] RISC-V: Allow kexec_file() on 32-bit platforms
+Date:   Fri, 20 May 2022 08:44:31 -0700
+Message-Id: <20220520154430.18593-6-palmer@rivosinc.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220520154430.18593-1-palmer@rivosinc.com>
 References: <20220520154430.18593-1-palmer@rivosinc.com>
@@ -68,8 +68,7 @@ From:   Palmer Dabbelt <palmer@rivosinc.com>
 To:     lizhengyu3@huawei.com
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -78,45 +77,26 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Palmer Dabbelt <palmer@rivosinc.com>
 
-This uses an explicit "ld" to load up target address, which dosn't work
-on rv32.  Convert it to a REG_L macro, like everywhere else.
+With the build issues now sorted out we can enable kexec_file() on
+32-bit platforms as well.
 
 Signed-off-by: Palmer Dabbelt <palmer@rivosinc.com>
 ---
- arch/riscv/purgatory/entry.S | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ arch/riscv/Kconfig | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/riscv/purgatory/entry.S b/arch/riscv/purgatory/entry.S
-index 0194f4554130..71c50fef051c 100644
---- a/arch/riscv/purgatory/entry.S
-+++ b/arch/riscv/purgatory/entry.S
-@@ -8,6 +8,8 @@
-  *
-  */
- 
-+#include <asm/asm.h>
-+
- .macro	size, sym:req
- 	.size \sym, . - \sym
- .endm
-@@ -26,7 +28,7 @@ purgatory_start:
- 	/* Start new image. */
- 	mv	a0, s0
- 	mv	a1, s1
--	ld	a2, riscv_kernel_entry
-+	REG_L	a2, riscv_kernel_entry
- 	jr	a2
- 
- size purgatory_start
-@@ -41,7 +43,7 @@ size purgatory_start
- 
- .globl riscv_kernel_entry
- riscv_kernel_entry:
--	.quad	0
-+	REG_ASM	0
- size riscv_kernel_entry
- 
- .end
+diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+index 898052ff743e..a246f2fe60c2 100644
+--- a/arch/riscv/Kconfig
++++ b/arch/riscv/Kconfig
+@@ -388,7 +388,6 @@ config KEXEC_FILE
+ 	select KEXEC_CORE
+ 	select KEXEC_ELF
+ 	select HAVE_IMA_KEXEC if IMA
+-	depends on 64BIT
+ 	help
+ 	  This is new version of kexec system call. This system call is
+ 	  file based and takes file descriptors as system call argument
 -- 
 2.34.1
 
