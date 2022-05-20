@@ -2,278 +2,252 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A48C852EE8D
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 16:57:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2727A52EEA9
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 17:06:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240332AbiETO5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 10:57:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35252 "EHLO
+        id S1350594AbiETPGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 11:06:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231347AbiETO5o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 10:57:44 -0400
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2DC31737EF;
-        Fri, 20 May 2022 07:57:41 -0700 (PDT)
-Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 417914000F;
-        Fri, 20 May 2022 14:57:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1653058659;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=Pejjagd04uhGPBvwZNzDzgti8YXBTsaNP9vyEjKnY7U=;
-        b=R8lUCqKdq6VkpW+RkJQqRfPxOtgyJmB7MgNyodMsLkrlpUMLgjXJMWh1XK77oaZagjKEW3
-        fkMRmlBi2mx8JovhnmEme+9fbyxNvN1gTkwWpVjzxq5tfgk8hy96lBfN0EmosDEuFnhwMa
-        X+bcS9mOVAZYt9bSaFZPdBdQJjrzXpAk8xOiCMI0ZjtB9gSks84DJvxwTUPRsVaZiDiuo+
-        S4hU42KH18PCDdxKVQnR+VsfpyXJtez1Znh+8Cjmi0MPL1TvuuGRq4zkRRvIeBdRIfRACK
-        0SlFu1D+rrHSxujdVNkvfLXbi0c+xIg7NtB+9Qz+NwkHMmEsruV97ljBWXnnCg==
-Date:   Fri, 20 May 2022 16:57:35 +0200
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Sakari Ailus <sakari.ailus@iki.fi>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 3/4] staging: media: Add support for the Allwinner A31
- ISP
-Message-ID: <YoesXywA4yzBDSwU@aptenodytes>
-References: <20220415153708.637804-1-paul.kocialkowski@bootlin.com>
- <20220415153708.637804-4-paul.kocialkowski@bootlin.com>
- <YmqFQSRBsqs4ghNQ@valkosipuli.retiisi.eu>
- <Ymqk89e+mn/1kLLx@aptenodytes>
- <YmsCJicyzf+Bz98y@valkosipuli.retiisi.eu>
+        with ESMTP id S1350595AbiETPGN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 11:06:13 -0400
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8A952E9DC;
+        Fri, 20 May 2022 08:06:11 -0700 (PDT)
+Received: by mail-oi1-f174.google.com with SMTP id v9so5614273oie.5;
+        Fri, 20 May 2022 08:06:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=MMzrxEofByja+qMgDSjgy43yQLfQq7Ckp2duOorHFa8=;
+        b=gR+ffFHbTVFviwr8zEkdQhwdv01AZZ0F1p4AZlTRtlgC1kQkBoFFna+WFpJ6ILK9tj
+         9WDMViKswqorkPWbM52W6b8CVTNbR2w/YS0fFyH2opCLkvkFEQIi+D4iJhF6PU0sMKWQ
+         qQ8gAyu+5lsK+nQ0VJS+jED8KJ1IkxDsy43aHRx0dAJ93Gy95zLiZe8mRqQxIn7vCi0M
+         gdz3Yqp7F5AQN+m0S53Ujxx+4351JT81D2DpIapVu7HzEV/Ikw57we25zGNmtmVJaCT1
+         V32AXm1ryObcPCSpy721Ql1kkK+/FkApN3pVWhAqPwM4Frd98hm7w4g5r2YBfdYyK43O
+         fx+g==
+X-Gm-Message-State: AOAM532HYZxsJbBLKM9CDL9uTYaSECRrvEHMFckyz2l3AEfUhesHOE+T
+        tXo4XeSYpMUVP0Ruzv0h7A==
+X-Google-Smtp-Source: ABdhPJyDjyMabagci+qzfR5r1nT/tLH/Z2mobu3J0sl1sdPEQh5b1iEMdO7Ks9T0n2XCpPm3zQi2AQ==
+X-Received: by 2002:a05:6808:3099:b0:32b:77c:669c with SMTP id bl25-20020a056808309900b0032b077c669cmr1094167oib.297.1653059171059;
+        Fri, 20 May 2022 08:06:11 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id h62-20020acab741000000b0032ae70865e3sm1094313oif.14.2022.05.20.08.06.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 May 2022 08:06:10 -0700 (PDT)
+Received: (nullmailer pid 3857203 invoked by uid 1000);
+        Fri, 20 May 2022 15:06:09 -0000
+Date:   Fri, 20 May 2022 10:06:09 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Rahul Tanwar <rtanwar@maxlinear.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Frank Li <Frank.Li@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v2 05/17] PCI: dwc: Convert to using native IP-core
+ versions representation
+Message-ID: <20220520150609.GA3853502-robh@kernel.org>
+References: <20220503214638.1895-1-Sergey.Semin@baikalelectronics.ru>
+ <20220503214638.1895-6-Sergey.Semin@baikalelectronics.ru>
+ <20220516203003.GB3209795-robh@kernel.org>
+ <20220520092954.fz62wbrpj7qss6pj@mobilestation>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="FAoW3tsaHuiF93BU"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YmsCJicyzf+Bz98y@valkosipuli.retiisi.eu>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20220520092954.fz62wbrpj7qss6pj@mobilestation>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, May 20, 2022 at 12:29:54PM +0300, Serge Semin wrote:
+> On Mon, May 16, 2022 at 03:30:03PM -0500, Rob Herring wrote:
+> > On Wed, May 04, 2022 at 12:46:26AM +0300, Serge Semin wrote:
+> > > Since DWC PCIe v4.70a the controller version can be read from the
+> > > PORT_LOGIC.PCIE_VERSION_OFF register. Version is represented in the FourCC
+> > > format [1]. It's standard versioning approach for the Synopsys DWC
+> > > IP-cores. Moreover some of the DWC kernel drivers already make use of it
+> > > to fixup version-dependent functionality (See DWC USB3, Stmicro STMMAC or
+> > > recent DW SPI driver). In order to preserve the standard version
+> > > representation and prevent the data conversion back and forth, we suggest
+> > > to preserve the native version representation in the DWC PCIe driver too
+> > > in the same way as it has already been done in the rest of the DWC
+> > > drivers. IP-core version reading from the CSR will be introduced in the
+> > > next commit together with a simple macro-based API to use it.
+> > > 
+> > > [1] https://en.wikipedia.org/wiki/FourCC
+> > > 
+> > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > > ---
+> > >  drivers/pci/controller/dwc/pci-keystone.c    | 12 ++++++------
+> > >  drivers/pci/controller/dwc/pcie-designware.c |  8 ++++----
+> > >  drivers/pci/controller/dwc/pcie-designware.h | 10 +++++++++-
+> > >  drivers/pci/controller/dwc/pcie-intel-gw.c   |  4 ++--
+> > >  drivers/pci/controller/dwc/pcie-tegra194.c   |  2 +-
+> > >  5 files changed, 22 insertions(+), 14 deletions(-)
+> > > 
+> > > diff --git a/drivers/pci/controller/dwc/pci-keystone.c b/drivers/pci/controller/dwc/pci-keystone.c
+> > > index d10e5fd0f83c..c51018c68b56 100644
+> > > --- a/drivers/pci/controller/dwc/pci-keystone.c
+> > > +++ b/drivers/pci/controller/dwc/pci-keystone.c
+> > > @@ -109,7 +109,7 @@ struct ks_pcie_of_data {
+> > >  	enum dw_pcie_device_mode mode;
+> > >  	const struct dw_pcie_host_ops *host_ops;
+> > >  	const struct dw_pcie_ep_ops *ep_ops;
+> > > -	unsigned int version;
+> > > +	u32 version;
+> > >  };
+> > >  
+> > >  struct keystone_pcie {
+> > > @@ -1069,19 +1069,19 @@ static int ks_pcie_am654_set_mode(struct device *dev,
+> > >  
+> > >  static const struct ks_pcie_of_data ks_pcie_rc_of_data = {
+> > >  	.host_ops = &ks_pcie_host_ops,
+> > > -	.version = 0x365A,
+> > > +	.version = DW_PCIE_VER_365A,
+> > >  };
+> > >  
+> > >  static const struct ks_pcie_of_data ks_pcie_am654_rc_of_data = {
+> > >  	.host_ops = &ks_pcie_am654_host_ops,
+> > >  	.mode = DW_PCIE_RC_TYPE,
+> > > -	.version = 0x490A,
+> > > +	.version = DW_PCIE_VER_490A,
+> > >  };
+> > >  
+> > >  static const struct ks_pcie_of_data ks_pcie_am654_ep_of_data = {
+> > >  	.ep_ops = &ks_pcie_am654_ep_ops,
+> > >  	.mode = DW_PCIE_EP_TYPE,
+> > > -	.version = 0x490A,
+> > > +	.version = DW_PCIE_VER_490A,
+> > >  };
+> > >  
+> > >  static const struct of_device_id ks_pcie_of_match[] = {
+> > > @@ -1114,12 +1114,12 @@ static int __init ks_pcie_probe(struct platform_device *pdev)
+> > >  	struct device_link **link;
+> > >  	struct gpio_desc *gpiod;
+> > >  	struct resource *res;
+> > > -	unsigned int version;
+> > >  	void __iomem *base;
+> > >  	u32 num_viewport;
+> > >  	struct phy **phy;
+> > >  	u32 num_lanes;
+> > >  	char name[10];
+> > > +	u32 version;
+> > >  	int ret;
+> > >  	int irq;
+> > >  	int i;
+> > > @@ -1233,7 +1233,7 @@ static int __init ks_pcie_probe(struct platform_device *pdev)
+> > >  		goto err_get_sync;
+> > >  	}
+> > >  
+> > > -	if (pci->version >= 0x480A)
+> > > +	if (pci->version >= DW_PCIE_VER_480A)
+> > >  		ret = ks_pcie_am654_set_mode(dev, mode);
+> > >  	else
+> > >  		ret = ks_pcie_set_mode(dev);
+> > > diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
+> > > index 1682f477bf20..3ebb7bfee10f 100644
+> > > --- a/drivers/pci/controller/dwc/pcie-designware.c
+> > > +++ b/drivers/pci/controller/dwc/pcie-designware.c
+> > > @@ -289,7 +289,7 @@ static void dw_pcie_prog_outbound_atu_unroll(struct dw_pcie *pci, u8 func_no,
+> > >  	val = type | PCIE_ATU_FUNC_NUM(func_no);
+> > >  	if (upper_32_bits(limit_addr) > upper_32_bits(cpu_addr))
+> > >  		val |= PCIE_ATU_INCREASE_REGION_SIZE;
+> > > -	if (pci->version == 0x490A)
+> > > +	if (pci->version == DW_PCIE_VER_490A)
+> > >  		val = dw_pcie_enable_ecrc(val);
+> > >  	dw_pcie_writel_ob_unroll(pci, index, PCIE_ATU_UNR_REGION_CTRL1, val);
+> > >  	dw_pcie_writel_ob_unroll(pci, index, PCIE_ATU_UNR_REGION_CTRL2,
+> > > @@ -336,7 +336,7 @@ static void __dw_pcie_prog_outbound_atu(struct dw_pcie *pci, u8 func_no,
+> > >  			   upper_32_bits(cpu_addr));
+> > >  	dw_pcie_writel_dbi(pci, PCIE_ATU_LIMIT,
+> > >  			   lower_32_bits(limit_addr));
+> > > -	if (pci->version >= 0x460A)
+> > > +	if (pci->version >= DW_PCIE_VER_460A)
+> > >  		dw_pcie_writel_dbi(pci, PCIE_ATU_UPPER_LIMIT,
+> > >  				   upper_32_bits(limit_addr));
+> > >  	dw_pcie_writel_dbi(pci, PCIE_ATU_LOWER_TARGET,
+> > > @@ -345,9 +345,9 @@ static void __dw_pcie_prog_outbound_atu(struct dw_pcie *pci, u8 func_no,
+> > >  			   upper_32_bits(pci_addr));
+> > >  	val = type | PCIE_ATU_FUNC_NUM(func_no);
+> > >  	if (upper_32_bits(limit_addr) > upper_32_bits(cpu_addr) &&
+> > > -	    pci->version >= 0x460A)
+> > > +	    pci->version >= DW_PCIE_VER_460A)
+> > >  		val |= PCIE_ATU_INCREASE_REGION_SIZE;
+> > > -	if (pci->version == 0x490A)
+> > > +	if (pci->version == DW_PCIE_VER_490A)
+> > >  		val = dw_pcie_enable_ecrc(val);
+> > >  	dw_pcie_writel_dbi(pci, PCIE_ATU_CR1, val);
+> > >  	dw_pcie_writel_dbi(pci, PCIE_ATU_CR2, PCIE_ATU_ENABLE);
+> > > diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+> > > index 7d6e9b7576be..5be43c662176 100644
+> > > --- a/drivers/pci/controller/dwc/pcie-designware.h
+> > > +++ b/drivers/pci/controller/dwc/pcie-designware.h
+> > > @@ -20,6 +20,14 @@
+> > >  #include <linux/pci-epc.h>
+> > >  #include <linux/pci-epf.h>
+> > >  
+> > > +/* DWC PCIe IP-core versions (native support since v4.70a) */
+> > > +#define DW_PCIE_VER_365A		0x3336352a
+> > > +#define DW_PCIE_VER_460A		0x3436302a
+> > > +#define DW_PCIE_VER_470A		0x3437302a
+> > > +#define DW_PCIE_VER_480A		0x3438302a
+> > > +#define DW_PCIE_VER_490A		0x3439302a
+> > > +#define DW_PCIE_VER_520A		0x3532302a
+> > > +
+> > >  /* Parameters for the waiting for link up routine */
+> > >  #define LINK_WAIT_MAX_RETRIES		10
+> > >  #define LINK_WAIT_USLEEP_MIN		90000
+> > > @@ -269,7 +277,7 @@ struct dw_pcie {
+> > >  	struct pcie_port	pp;
+> > >  	struct dw_pcie_ep	ep;
+> > >  	const struct dw_pcie_ops *ops;
+> > > -	unsigned int		version;
+> > > +	u32			version;
+> > >  	int			num_lanes;
+> > >  	int			link_gen;
+> > >  	u8			n_fts[2];
+> > > diff --git a/drivers/pci/controller/dwc/pcie-intel-gw.c b/drivers/pci/controller/dwc/pcie-intel-gw.c
+> > > index 5ba144924ff8..786af2ba379f 100644
+> > > --- a/drivers/pci/controller/dwc/pcie-intel-gw.c
+> > > +++ b/drivers/pci/controller/dwc/pcie-intel-gw.c
+> > > @@ -59,7 +59,7 @@
+> > >  #define RESET_INTERVAL_MS		100
+> > >  
+> > >  struct intel_pcie_soc {
+> > > -	unsigned int	pcie_ver;
+> > > +	u32	pcie_ver;
+> > 
+> 
+> > This is not used by the Intel driver code, but just passed to the DWC 
+> > core code. Given that and that the IP version is new enough, this should 
+> > be removed one the detection is in place.
+> 
+> Ok. I'll drop it in an additional patch placed after the version
+> detection patch in the series. What about the Tegra 194 code? Shall I
+> drop it from there too? I've got DW PCIe 4.90a reference manual here.
+> It states there are the PCIE_VERSION_NUMBER_OFF and
+> PCIE_VERSION_TYPE_OFF registers in the port logic reg space. So the
+> removal shall not cause problems.
 
---FAoW3tsaHuiF93BU
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Yes, anywhere we can remove it would be good.
 
-Hi Sakari,
-
-On Fri 29 Apr 22, 00:07, Sakari Ailus wrote:
-> Hi Paul,
->=20
-> On Thu, Apr 28, 2022 at 04:30:11PM +0200, Paul Kocialkowski wrote:
-> > Hi Sakari,
-> >=20
-> > On Thu 28 Apr 22, 15:14, Sakari Ailus wrote:
-> > > Hi Paul,
-> > >=20
-> > > Thanks for the set.
-> > >=20
-> > > A few comments below.
-> >=20
-> > Thanks a lot for your review!
->=20
-> You're welcome!
->=20
-> ...
->=20
-> > > I understand this is an online ISP. How do you schedule the video buf=
-fer
-> > > queues? Say, what happens if it's time to set up buffers for a frame =
-and
-> > > there's a buffer queued in the parameter queue but not in the image d=
-ata
-> > > queue? Or the other way around?
-> >=20
-> > The ISP works in a quite atypical way, with a DMA buffer that is used to
-> > hold upcoming parameters (including buffer addresses) and a bit in a "d=
-irect"
-> > register to schedule the update of the parameters at next vsync.
-> >=20
-> > The update (setting the bit) is triggered whenever new parameters are
-> > submitted via the params video device or whenever there's a capture buf=
-fer
-> > available in the capture video device.
-> >=20
-> > So you don't particularly need to have one parameter buffer matching a =
-capture
-> > buffer, the two can be updated independently. Of course, a capture buff=
-er will
-> > only be returned after another buffer becomes active.
->=20
-> This also means it's not possible to associate a capture buffer to a
-> parameter buffer by other means than timing --- which is unreliable. The
-> request API would allow that but it's not free of issues either.
-
-Yes the request API seems like a good fit for this. Note that the returned
-sequence number in dequeued buffers for the capture and meta video devices
-should match though, so userspace still has a way to know which captured bu=
-ffer
-used parameters from which meta params buffer.
-
-> Alternatively, I think in this case you could always require the capture
-> buffer and grab a parameter buffer when it's available. As ISPs are
-> generally requiring device specific control software, this shouldn't be a
-> problem really.
-
-I think this is pretty much what happens already.
-
-> I wonder what Laurent thinks.
->=20
-> >=20
-> > I hope this answers your concern!
-> >=20
-> > [...]
-> >=20
-> > > > +static int sun6i_isp_tables_setup(struct sun6i_isp_device *isp_dev)
-> > > > +{
-> > > > +	struct sun6i_isp_tables *tables =3D &isp_dev->tables;
-> > > > +	int ret;
-> > > > +
-> > > > +	/* Sizes are hardcoded for now but actually depend on the platfor=
-m. */
-> > >=20
-> > > Would it be cleaner to have them defined in a platform-specific way, =
-e.g.
-> > > in a struct you obtain using device_get_match_data()?
-> >=20
-> > Absolutely! I didn't do it at this stage since only one platform is sup=
-ported
-> > but we could just as well introduce a variant structure already for the=
- table
-> > sizes.
->=20
-> I think that would be nice already, especially if you know these are going
-> to be different. Otherwise macros could be an option.
-
-Understood!
-
-> ...
->=20
-> > > > +	ret =3D v4l2_ctrl_handler_init(&v4l2->ctrl_handler, 0);
-> > >=20
-> > > I suppose you intend to add controls later on?
-> >=20
-> > I might be wrong but I thought this was necessary to expose sensor cont=
-rols
-> > registered by subdevs that end up attached to this v4l2 device.
-> >=20
-> > I doubt the drivers itself will expose controls otherwise.
->=20
-> Now that this is an MC-enabled driver, the subdev controls should be
-> accessed through the subdev nodes only. Adding them to the video device's
-> control handler is quite hackish and not guaranteed to even work (as e.g.
-> multiple subdevs can have the same control).
-
-Yes I was wondering what would happen in that case. I'll drop the ctrls
-handling in the next iteration then.
-
-Paul
-
-> ...
->=20
-> > > > +{
-> > > > +	struct sun6i_isp_device *isp_dev =3D video_drvdata(file);
-> > > > +	struct video_device *video_dev =3D &isp_dev->capture.video_dev;
-> > > > +	struct mutex *lock =3D &isp_dev->capture.lock;
-> > > > +	int ret;
-> > > > +
-> > > > +	if (mutex_lock_interruptible(lock))
-> > > > +		return -ERESTARTSYS;
-> > > > +
-> > > > +	ret =3D v4l2_pipeline_pm_get(&video_dev->entity);
-> > >=20
-> > > Do you need this?
-> > >=20
-> > > Drivers should primarily depend on runtime PM, this is only needed for
-> > > compatibility reasons. Instead I'd like to see sensor drivers being m=
-oved
-> > > to runtime PM.
-> >=20
-> > Yes it's still needed to support sensor drivers that don't use rpm yet.
->=20
-> To that I suggested adding runtime PM support for the affected sensors.
-> This doesn't seem to get done otherwise. E.g. ipu3-cio2 driver does not
-> call s_power() on sensor subdevs.
->=20
-> ...
->=20
-> > > > +	ret =3D video_register_device(video_dev, VFL_TYPE_VIDEO, -1);
-> > > > +	if (ret) {
-> > > > +		v4l2_err(v4l2_dev, "failed to register video device: %d\n",
-> > > > +			 ret);
-> > > > +		goto error_media_entity;
-> > > > +	}
-> > > > +
-> > > > +	v4l2_info(v4l2_dev, "device %s registered as %s\n", video_dev->na=
-me,
-> > > > +		  video_device_node_name(video_dev));
-> > >=20
-> > > This isn't really driver specific. I'd drop it.
-> >=20
-> > I agree but I see that many drivers are doing it and the information can
-> > actually be quite useful at times.
->=20
-> You can get that information using media-ctl -e 'entity name'.
->=20
-> I guess this could be also added to video_register_device() on debug leve=
-l.
->=20
-> > > > +struct sun6i_isp_params_config_bdnf {
-> > > > +	__u8	in_dis_min; // 8
-> > > > +	__u8	in_dis_max; // 10
-> > >=20
-> > > Are these default values or something else? Better documentation was =
-in the
-> > > TODO.txt file already.
-> >=20
-> > Yes that's the default register values, but these comments are and over=
-look on
-> > my side and should be removed.
->=20
-> I'm fine leaving these here. Just wondering. Up to you.
->=20
-> --=20
-> Kind regards,
->=20
-> Sakari Ailus
-
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
-
---FAoW3tsaHuiF93BU
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmKHrF8ACgkQ3cLmz3+f
-v9HhUggAlMjbtLYEq3V4Mz0xX1XuzbkyKEzMNadNg6z6gQ4YaVnXpvpyFH4M35Zq
-aK+9CBzhgAy7OPfzxZ7SLijO27vEApEjQsxF79cI+VAb6TsTxcdT0wvYW3DyPVV7
-CM8qYR6k7r1TrbPP2S2tpm2e0o2vgMAg3YIYvs183GelA3KO+XAAlKiNf/hxvcPX
-jZ9x2twYZxuw5SdKU+HwVwKJqGxF6cbJ82VSuO6vBp3McxB+GP6C5lXR360UJNcN
-TDxgvMYYqruqriEcxQubPYwV6ndB6l1LZDo0PJMi9FmdYL4T2K0oc5J0IqpiKu/a
-Ax3F0ID+oBjpErydkMbGHXrEN/aLug==
-=+4MT
------END PGP SIGNATURE-----
-
---FAoW3tsaHuiF93BU--
+Rob
