@@ -2,202 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8C1E52EA6C
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 13:01:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5828252EA7F
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 13:08:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235945AbiETLBN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 07:01:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55952 "EHLO
+        id S1348408AbiETLIq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 07:08:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348320AbiETLBK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 07:01:10 -0400
-Received: from smtpo49.interia.pl (smtpo49.interia.pl [217.74.67.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D909E19280
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 04:01:06 -0700 (PDT)
-X-Interia-R: Interia
-X-Interia-R-IP: 80.68.225.159
-X-Interia-R-Helo: <t480s.localdomain>
-Received: from t480s.localdomain (unknown [80.68.225.159])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by poczta.interia.pl (INTERIA.PL) with ESMTPSA;
-        Fri, 20 May 2022 13:01:03 +0200 (CEST)
-Date:   Fri, 20 May 2022 13:01:02 +0200
-From:   Slawomir Stepien <sst@poczta.fm>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, przemyslaw.cencner@nokia.com,
-        krzysztof.adamski@nokia.com, alexander.sverdlin@nokia.com,
-        Slawomir Stepien <slawomir.stepien@nokia.com>
-Subject: Re: [PATCH 7/8] hwmon: (lm90) read the channel's label from
- device-tree
-Message-ID: <Yod07jXUCEQIYcRj@t480s.localdomain>
-References: <20220520093243.2523749-1-sst@poczta.fm>
- <20220520093243.2523749-8-sst@poczta.fm>
- <bb833b7d-d3c1-0f63-019c-439ed0ec9aad@linaro.org>
+        with ESMTP id S1348381AbiETLIn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 07:08:43 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B01945E158;
+        Fri, 20 May 2022 04:08:42 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id h11so9192792eda.8;
+        Fri, 20 May 2022 04:08:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:subject:to:cc:message-id:in-reply-to:references
+         :mime-version;
+        bh=wlQFcAca27d557iyLHKZteGlwX1770hELz16/xPa+8Q=;
+        b=bklKJ6UXW0xCPulf0dQx92suPVOMuz5yaRi7JTRNFJ7r4rIggcoMihm4zRWqbP8F5x
+         9m3fANlOUQwSl7ioBZzNZBTs5jfsrLLwTTR96TwMQr1Mcat07nhwNMTja/igVl+wL/kQ
+         PH03npVCT599dBx5BJe6bOQmfUACCoPKRfWG/44qMo+V3RAXVEl4WjxJdT17n67vwB7k
+         ojWj8SNTvlWzIw/suxss3I4oPViyocM9sBbm3OaQKx8qi6TKMHOf9l5rPiUJYrwwcfsF
+         x0G5lNy5dV17oAX2BbBEdNMK0PNrzNiR3amGgoRqnc8V78uLRpdziYwemlzLMi1w78cT
+         703w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:subject:to:cc:message-id:in-reply-to
+         :references:mime-version;
+        bh=wlQFcAca27d557iyLHKZteGlwX1770hELz16/xPa+8Q=;
+        b=5xi5RGOTyk3rFoUncNC9yx7x11QFtrS+9Ym8KY7X1BXKg6kRaU3+eSZxPkv1Q6lDzx
+         r03oUWw/JlRNxaN5II3HoP0RHldwtyZmDwnypqmbyLH8rLCqnWPkThcHVTu0b7/g2cx8
+         bElBUC1/scZZGng4ogZtIuNso53XQDHxZay102Au9ICMAvbgfmK5Ol9TjiBYZ7yXY9x8
+         obc0lYXW90Jv7G8G00Io66bgL1GVdc1H0GZukYSFiLxoONbepD2trmM6yUBdENvsh34V
+         CTTYiqPt603z9mE6gtNDqOtUcP0ShFl7Rus8ptSnvl7pDufG9t0EvbsEp6o7pYe1nodr
+         8Szg==
+X-Gm-Message-State: AOAM531HXPgFXs5569sTzFmP+N6OA4lTb7HxT4AvhGTuhGuPyOCT6Aon
+        NyMpsPA3YcgUkmBH5IRcbneGUoWGQl3FoTFN
+X-Google-Smtp-Source: ABdhPJxf/pqeax60rE9s5Nx9mijIV86CCyBP/x+MpqXmCQE5BL3CUFZiZs7lK9NHw5gJl382GO8pjA==
+X-Received: by 2002:aa7:d911:0:b0:42a:af69:e167 with SMTP id a17-20020aa7d911000000b0042aaf69e167mr10106367edr.54.1653044921181;
+        Fri, 20 May 2022 04:08:41 -0700 (PDT)
+Received: from yassine-HP ([2001:1670:c:db50:2f51:85b4:f668:c64f])
+        by smtp.gmail.com with ESMTPSA id eo20-20020a1709069b1400b006f3ef214e58sm3038018ejc.190.2022.05.20.04.08.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 May 2022 04:08:40 -0700 (PDT)
+Date:   Fri, 20 May 2022 15:08:26 +0400
+From:   Yassine Oudjana <yassine.oudjana@gmail.com>
+Subject: Re: [PATCH v2 4/4] clk: mediatek: Add drivers for MediaTek MT6735
+ main clock drivers
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Miles Chen <miles.chen@mediatek.com>, bgolaszewski@baylibre.com,
+        chun-jie.chen@mediatek.com, devicetree@vger.kernel.org,
+        ikjn@chromium.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        matthias.bgg@gmail.com, mturquette@baylibre.com,
+        p.zabel@pengutronix.de, robh+dt@kernel.org, sam.shih@mediatek.com,
+        sboyd@kernel.org, tinghan.shen@mediatek.com, weiyi.lu@mediatek.com,
+        wenst@chromium.org, y.oudjana@protonmail.com,
+        ~postmarketos/upstreaming@lists.sr.ht
+Message-Id: <2MH6CR.16DFWCVHBCV@gmail.com>
+In-Reply-To: <c7b98ee4-cd4f-d7b7-726d-1acd4fafd50a@collabora.com>
+References: <NJC6CR.M4CF312LSXXV1@gmail.com>
+        <20220520093501.28758-1-miles.chen@mediatek.com>
+        <c7b98ee4-cd4f-d7b7-726d-1acd4fafd50a@collabora.com>
+X-Mailer: geary/40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bb833b7d-d3c1-0f63-019c-439ed0ec9aad@linaro.org>
-X-Interia-Antivirus: OK
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=interia.pl;
-        s=biztos; t=1653044464;
-        bh=2krsosTeFPZot//+uFIYAKcDFb6jn30dmLGFk7hewv0=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-        b=IOMvv6GqVCXOctcxzRrlTj8jLoYYXviRZEBZLufDiyq2T5dpWRnO2HVM59TMOwj5O
-         5UpQ9Ks9ytba6druZPIekyUmPYi1AdW3NtHXaTxY7DH6MdnWiwTSiMK9zQ184ZkySw
-         tfqM0ODoYI6BhOkx4/xdEQ+gZY+o7qMjrzSq7zM4=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,FREEMAIL_FROM,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii; format=flowed
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On maj 20, 2022 12:15, Krzysztof Kozlowski wrote:
-> On 20/05/2022 11:32, Slawomir Stepien wrote:
-> > From: Slawomir Stepien <slawomir.stepien@nokia.com>
-> > 
-> > Try to read the channel's label from device-tree. Having label in
-> > device-tree node is not mandatory.
-> > 
-> > Signed-off-by: Slawomir Stepien <slawomir.stepien@nokia.com>
-> > ---
-> >  drivers/hwmon/lm90.c | 70 ++++++++++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 70 insertions(+)
-> > 
-> > diff --git a/drivers/hwmon/lm90.c b/drivers/hwmon/lm90.c
-> > index 67d48707a8d6..e81cc21e525f 100644
-> > --- a/drivers/hwmon/lm90.c
-> > +++ b/drivers/hwmon/lm90.c
-> > @@ -525,6 +525,7 @@ struct lm90_data {
-> >  	struct i2c_client *client;
-> >  	struct device *hwmon_dev;
-> >  	u32 channel_config[MAX_CHANNELS + 1];
-> > +	const char *channel_label[MAX_CHANNELS];
-> >  	struct hwmon_channel_info temp_info;
-> >  	const struct hwmon_channel_info *info[MAX_CHANNELS];
-> >  	struct hwmon_chip_info chip;
-> > @@ -1393,6 +1394,7 @@ static umode_t lm90_temp_is_visible(const void *data, u32 attr, int channel)
-> >  	case hwmon_temp_emergency_alarm:
-> >  	case hwmon_temp_emergency_hyst:
-> >  	case hwmon_temp_fault:
-> > +	case hwmon_temp_label:
-> >  		return 0444;
-> >  	case hwmon_temp_min:
-> >  	case hwmon_temp_max:
-> > @@ -1486,6 +1488,16 @@ static int lm90_read(struct device *dev, enum hwmon_sensor_types type,
-> >  	}
-> >  }
-> >  
-> > +static int lm90_read_string(struct device *dev, enum hwmon_sensor_types type,
-> > +			    u32 attr, int channel, const char **str)
-> > +{
-> > +	struct lm90_data *data = dev_get_drvdata(dev);
-> > +
-> > +	*str = data->channel_label[channel];
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  static int lm90_write(struct device *dev, enum hwmon_sensor_types type,
-> >  		      u32 attr, int channel, long val)
-> >  {
-> > @@ -1904,10 +1916,64 @@ static void lm90_regulator_disable(void *regulator)
-> >  	regulator_disable(regulator);
-> >  }
-> >  
-> > +static int lm90_probe_channel_from_dt(struct i2c_client *client,
-> > +				      struct device_node *child,
-> > +				      struct lm90_data *data)
-> > +{
-> > +	u32 id;
-> > +	int err;
-> > +	struct device *dev = &client->dev;
-> > +
-> > +	err = of_property_read_u32(child, "reg", &id);
-> > +	if (err) {
-> > +		dev_err(dev, "missing reg property of %pOFn\n", child);
-> > +		return err;
-> > +	}
-> > +
-> > +	if (id >= MAX_CHANNELS) {
-> > +		dev_err(dev, "invalid reg %d in %pOFn\n", id, child);
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	err = of_property_read_string(child, "label", &data->channel_label[id]);
-> > +	if (err == -ENODATA || err == -EILSEQ) {
-> > +		dev_err(dev, "invalid label in %pOFn\n", child);
+
+On Fri, May 20 2022 at 12:26:25 +0200, AngeloGioacchino Del Regno 
+<angelogioacchino.delregno@collabora.com> wrote:
+> Il 20/05/22 11:35, Miles Chen ha scritto:
+>> 
+>>>> 
+>>>> Thanks for submitting this patch.
+>>>> 
+>>>> I compare this with drivers/clk/mediatek/clk-mt7986-apmixed.c,
+>>>> and other clk files are using macros to make the mtk_pll_data array
+>>>> more readable.
+>>> 
+>>> I'd actually argue that macros make it less readable. While reading
+>>> other drivers I had a lot of trouble figuring out which argument
+>>> is which field of the struct, and had to constantly go back to the
+>>> macro definitions and count arguments to find it. Having it this
+>>> way, each value is labeled clearly with the field it's in. I think
+>>> the tradeoff between line count and readability here is worth it.
+>> 
+>> It is easier for multiple developers to work together if we have a 
+>> common style.
+>> 
+>> How do you think?
+>> 
 > 
-> You did not make it a required property, so why failing?
-
-But if you have it in device-tree, then at least inform the user that there is some problem with it.
-
-> > +		return err;
-> > +	}
-> > +
-> > +	if (data->channel_label[id])
-> > +		data->channel_config[id] |= HWMON_T_LABEL;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int lm90_parse_dt_channel_info(struct i2c_client *client,
-> > +				      struct lm90_data *data)
-> > +{
-> > +	int err;
-> > +	struct device_node *child;
-> > +	struct device *dev = &client->dev;
-> > +	const struct device_node *np = dev->of_node;
-> > +
-> > +	for_each_child_of_node(np, child) {
-> > +		if (strcmp(child->name, "channel"))
-> > +			continue;
-> > +
-> > +		err = lm90_probe_channel_from_dt(client, child, data);
-> > +		if (err) {
-> > +			of_node_put(child);
-> > +			return err;
-> > +		}
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  
+> In my opinion, Yassine is definitely right about this one: unrolling 
+> these macros
+> will make the code more readable, even though this has the side 
+> effect of making
+> it bigger in the source code form (obviously, when compiled, it's 
+> going to be the
+> exact same size).
 > 
-> No need for double blank lines.
-
-Will fix in v2.
-
-> >  static const struct hwmon_ops lm90_ops = {
-> >  	.is_visible = lm90_is_visible,
-> >  	.read = lm90_read,
-> > +	.read_string = lm90_read_string,
-> >  	.write = lm90_write,
-> >  };
-> >  
-> > @@ -2027,6 +2093,10 @@ static int lm90_probe(struct i2c_client *client)
-> >  					return err;
-> >  			}
-> >  		}
-> > +
-> > +		err = lm90_parse_dt_channel_info(client, data);
-> > +		if (err)
-> > +			return err;
-> >  	}
-> >  
-> >  	/* Initialize the LM90 chip */
+> I wouldn't mind getting this clock driver in without the usage of 
+> macros, as much
+> as I wouldn't mind converting all of the existing drivers to 
+> open-code everything
+> instead of using macros that you have to find in various headers... 
+> this practice
+> was done in multiple drivers (clock or elsewhere), so I don't think 
+> that it would
+> actually be a bad idea to do it here on MediaTek too, even though I'm 
+> not aware of
+> any *rule* that may want us to do that: if you check across 
+> drivers/clk/*, there's
+> a big split in how drivers are made, where some are using macros 
+> (davinci, renesas,
+> samsung, sprd, etc), and some are not (bcm, sunxi-ng, qcom, tegra, 
+> versatile, etc),
+> so it's really "do it as you wish"...
+> 
+> ... *but:*
+> 
+> Apart from that, I also don't think that it is a good idea to convert 
+> the other
+> MTK clock drivers right now, as this would make the upstreaming of 
+> MediaTek clock
+> drivers harder for some of the community in this moment... especially 
+> when we look
+> at how many MTK SoCs are out there in the wild, and how many we have 
+> upstream:
+> something like 10% of them, or less.
+> 
+> I see the huge benefit of having a bigger community around MediaTek 
+> platforms as
+> that's beneficial to get a way better support and solidity for all 
+> SoCs as they
+> are sharing the same drivers and same framework, and expanding the 
+> support to more
+> of them will only make it better with highly valuable community 
+> contributions.
 > 
 > 
-> Best regards,
-> Krzysztof
+> That said, Yassine, you should've understood that you have my full 
+> support on
+> unrolling these macros - but it's not time to do that yet: you 
+> definitely know
+> that MediaTek clock drivers are going through a big cleanup phase 
+> which is, at
+> this point, unavoidable... if we are able to get the aid of scripts 
+> (cocci and
+> others), that will make our life easier in this cleanup, and will 
+> also make us
+> able to perform the entire cleanup with less effort and in less 
+> overall time.
+> 
+> With that, I'm sad but I have to support Miles' decision on this one, 
+> and I also
+> have to ask you to use macros in this driver.
+> 
+> 
+> I am sure - and it is my wish - to see MediaTek clock drivers 
+> open-coding stuff
+> instead of using macros, but that's something for the future - which 
+> will happen
+> after the more important cleanups.
+> 
+> After all, it will be just about running "gcc -E xxxx.c" and 
+> copy-pasting the
+> unrolled macros to the clock drivers, which will be pretty fast and 
+> straightforward.
+> 
+> Sorry for the wall of text, by the way.
+> 
+> Cheers,
+> Angelo
 
--- 
-Slawomir Stepien
+Fair enough. I'll switch to macros in the next version.
+
+Thanks,
+Yassine
+
+
