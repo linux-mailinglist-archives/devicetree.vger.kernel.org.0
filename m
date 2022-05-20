@@ -2,108 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A458D52EC5D
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 14:41:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B954D52EC75
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 14:45:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349336AbiETMld (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 08:41:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35332 "EHLO
+        id S233881AbiETMpG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 08:45:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349483AbiETMlF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 08:41:05 -0400
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 264016444;
-        Fri, 20 May 2022 05:40:59 -0700 (PDT)
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id B8527FF813;
-        Fri, 20 May 2022 12:40:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1653050457;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=GABvmK7x6IZrbpyIge9zdiMR5X//miDJAFxM5vKP/m8=;
-        b=DMu2i747HBDEsQQJ4uIGtlwYM9XVMHJ9zbat2Zc2t45+VtHl8O4HR/uqnksJze2iQvgvzb
-        d8CgOheHLgT70aYZTZE54fZ78wrgS2aj4S4VEN2oDuu5WOx3TOmK8UOB1ag12dTtqA6STW
-        rF75ba4wIw+pjF28BRt7jNCGxQmG25CMObXWCnVcI8lsGAjSNs+ymlWF7cUKu1WTTN0PVk
-        qbbqIcFtX7EWmO7tLgWyxwM4uVginN8pAS35EDnbXsbq8Mhe6RQanZI80d8wY0fVXIeWxi
-        7ZlPUvZSn2zuE1dNA169OO3Q1yVv9wYGu/Pe6jKtz7yrlQX//iOcUQCJEDTsLQ==
-Date:   Fri, 20 May 2022 14:40:52 +0200
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof =?UTF-8?B?V2lsY3p5xYRza2k=?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: Re: [PATCH v6 0/6] RZN1 USB Host support
-Message-ID: <20220520144052.2f7ba2ca@bootlin.com>
-In-Reply-To: <CAMuHMdWc2W1YY=EP49bQ07bO4-WqQh-MbAPr7s153VqSCxmk2w@mail.gmail.com>
-References: <20220520094155.313784-1-herve.codina@bootlin.com>
-        <CAMuHMdWc2W1YY=EP49bQ07bO4-WqQh-MbAPr7s153VqSCxmk2w@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.31; x86_64-redhat-linux-gnu)
+        with ESMTP id S229637AbiETMpF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 08:45:05 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D191F16669E
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 05:45:03 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id y13so14671118eje.2
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 05:45:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=B/mZ7MFm1dOVaCLYGQEi4EQ8ExNWz/5KR67NVfFoY0g=;
+        b=SakBP01uPEnc5oblt4gIOYRw2LvQ4rSm3K4ceAYFJOEMPxodtzQp915jFKpjndAJA6
+         mG+6e0qdIr1aNaoIk+pU7Ayx64SBcXezEmGJXSJO3fRaBeZtj6Q7lowwNLFR0fgfc2mm
+         gR3ykuZGi9rj/J656663d0E0/vs+Mg0X5x2KKgr+QcGR/vw7KWlBad1RNL9Ibez6MzWz
+         4HrQ6TM/V0O3QG9UV9ug6V7UwEj/s86YRrl3PwLqhSQXVG37yH+Ue63jbRkTj0BDUDAM
+         CZObf2oAmCZcLcTUJK4EsfXM62l6Z0/m+aQ5vaVgfXJDE2mIQEKuF3VXEOuUQexntWJt
+         ipdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=B/mZ7MFm1dOVaCLYGQEi4EQ8ExNWz/5KR67NVfFoY0g=;
+        b=sji/vuOPUCV9qzMxYmvOh+ZaJq4CkLQCg4rl6qR1zVU2tqFzS/gYGOmvn3cNkbhCLV
+         OX7fVgH6mK20sYxvgktM/v0r5hpwu2rWF5hgtOyVUXF0uOrlqqdYJEN+JMn5BNGijUBI
+         /RfX6m7yJgCSBe1lhiKmxYPnZ4K45xJJmJeNE1/lfx/PAO7fn8QNLr2Ii7pSq7K5dnzf
+         SzKkf/fKC5BpXuY8C+2ihuVadOc/oUcg7kX4hKfuzaEmdpHq5+MRGXy7DZ5v9yLrlgNb
+         T4hu42cZjzIzYIvRhcUPhugxRJ6kyKe+yqF8+NXWdBMvItI7W81JfgJ30roas7omoDvb
+         mLdQ==
+X-Gm-Message-State: AOAM531tgR/oX9DzoE5fddBVx6jpSRrcsxA9dOOT05hj/7jHPM2Tsu07
+        U7oJRxvzzhlKANAoL4c+Yss7iw==
+X-Google-Smtp-Source: ABdhPJyR1/rLHZpVTdcjEHT7B/WAnFCVRCR0K6KbpXZORfk4Tg5GqrVerAf7bsJ2t4JecApZUmCrcg==
+X-Received: by 2002:a17:906:90c9:b0:6fe:9e40:5cc with SMTP id v9-20020a17090690c900b006fe9e4005ccmr6042055ejw.367.1653050702344;
+        Fri, 20 May 2022 05:45:02 -0700 (PDT)
+Received: from prec5560.. (freifunk-gw.bsa1-cpe1.syseleven.net. [176.74.57.43])
+        by smtp.gmail.com with ESMTPSA id g19-20020aa7c853000000b0042ac0e79bb6sm4257495edt.45.2022.05.20.05.45.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 May 2022 05:45:01 -0700 (PDT)
+From:   Robert Foss <robert.foss@linaro.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Robert Foss <robert.foss@linaro.org>
+Subject: [PATCH v1] dt-bindings: clock: qcom: Relicense to GPL2 + BSD
+Date:   Fri, 20 May 2022 14:44:47 +0200
+Message-Id: <20220520124447.31289-1-robert.foss@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 May 2022 14:12:10 +0200
-Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+Qualcomm has given permission for all the dt-bindings to be dual
+licensed. All of the Linaro authored bindings are easy to change, in
+terms of the permissions & copyrights, so they've been bundled in this
+commit.
 
-> Hi Herv=C3=A9,
->=20
-> On Fri, May 20, 2022 at 11:42 AM Herve Codina <herve.codina@bootlin.com> =
-wrote:
-> > This series add support for the USB Host controllers available on
-> > RZN1 (r9a06g032) SOC.
-> >
-> > These USB Host controllers are PCI OHCI/EHCI controllers located
-> > behind a bridge. =20
->=20
-> Thanks for your series!
->=20
-> > Herve Codina (6):
-> >   dt-bindings: PCI: pci-rcar-gen2: Convert bindings to json-schema
-> >   dt-bindings: PCI: renesas,pci-rcar-gen2: Add device tree support for
-> >     r9a06g032
-> >   PCI: rcar-gen2: Add RZ/N1 SOCs family compatible string
-> >   ARM: dts: r9a06g032: Add internal PCI bridge node
-> >   ARM: dts: r9a06g032: Add USB PHY DT support
-> >   ARM: dts: r9a06g032: Link the PCI USB devices to the USB PHY =20
->=20
-> As I had applied v5 of the last 3 patches to renesas-devel, and they
-> are already present in soc/for-next, there is no need to resend them.
+Additionally clean up the syntax of some of the copyright statements.
 
-Thanks. I note that for the next version of this series if needed.
+Signed-off-by: Robert Foss <robert.foss@linaro.org>
+---
 
-Regards,
-Herv=C3=A9
+There are more Qcom bindings that should have the license updated
+to GPL2+BSD, but since they haven't been authored or copyrighted
+by Linaro, I think I'll have to hunt down the authors individually.
 
---=20
-Herv=C3=A9 Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+ include/dt-bindings/clock/qcom,dispcc-sm8250.h        | 2 +-
+ include/dt-bindings/clock/qcom,gcc-msm8916.h          | 2 +-
+ include/dt-bindings/clock/qcom,gcc-msm8939.h          | 2 +-
+ include/dt-bindings/clock/qcom,gcc-msm8996.h          | 2 +-
+ include/dt-bindings/clock/qcom,gcc-msm8998.h          | 2 +-
+ include/dt-bindings/clock/qcom,gcc-qcs404.h           | 2 +-
+ include/dt-bindings/clock/qcom,gcc-sm8150.h           | 2 +-
+ include/dt-bindings/clock/qcom,rpmcc.h                | 2 +-
+ include/dt-bindings/clock/qcom,rpmh.h                 | 6 ++++--
+ include/dt-bindings/clock/qcom,sm8250-lpass-aoncc.h   | 2 +-
+ include/dt-bindings/clock/qcom,sm8250-lpass-audiocc.h | 2 +-
+ include/dt-bindings/clock/qcom,turingcc-qcs404.h      | 2 +-
+ 12 files changed, 15 insertions(+), 13 deletions(-)
+
+diff --git a/include/dt-bindings/clock/qcom,dispcc-sm8250.h b/include/dt-bindings/clock/qcom,dispcc-sm8250.h
+index ce001cbbc27fb..c139b7f7be203 100644
+--- a/include/dt-bindings/clock/qcom,dispcc-sm8250.h
++++ b/include/dt-bindings/clock/qcom,dispcc-sm8250.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: GPL-2.0 */
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+ /*
+  * Copyright (c) 2018-2020, The Linux Foundation. All rights reserved.
+  */
+diff --git a/include/dt-bindings/clock/qcom,gcc-msm8916.h b/include/dt-bindings/clock/qcom,gcc-msm8916.h
+index 5630344061841..52db6cd222c96 100644
+--- a/include/dt-bindings/clock/qcom,gcc-msm8916.h
++++ b/include/dt-bindings/clock/qcom,gcc-msm8916.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: GPL-2.0-only */
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+ /*
+  * Copyright 2015 Linaro Limited
+  */
+diff --git a/include/dt-bindings/clock/qcom,gcc-msm8939.h b/include/dt-bindings/clock/qcom,gcc-msm8939.h
+index 0634467c4ce5a..338b93ba75182 100644
+--- a/include/dt-bindings/clock/qcom,gcc-msm8939.h
++++ b/include/dt-bindings/clock/qcom,gcc-msm8939.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: GPL-2.0-only */
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+ /*
+  * Copyright 2020 Linaro Limited
+  */
+diff --git a/include/dt-bindings/clock/qcom,gcc-msm8996.h b/include/dt-bindings/clock/qcom,gcc-msm8996.h
+index 03bf49d43d24c..fb1523c3b44ee 100644
+--- a/include/dt-bindings/clock/qcom,gcc-msm8996.h
++++ b/include/dt-bindings/clock/qcom,gcc-msm8996.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: GPL-2.0-only */
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+ /*
+  * Copyright (c) 2015, The Linux Foundation. All rights reserved.
+  */
+diff --git a/include/dt-bindings/clock/qcom,gcc-msm8998.h b/include/dt-bindings/clock/qcom,gcc-msm8998.h
+index 1badb4f9c58fd..6566881f7056e 100644
+--- a/include/dt-bindings/clock/qcom,gcc-msm8998.h
++++ b/include/dt-bindings/clock/qcom,gcc-msm8998.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: GPL-2.0-only */
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+ /*
+  * Copyright (c) 2016, The Linux Foundation. All rights reserved.
+  */
+diff --git a/include/dt-bindings/clock/qcom,gcc-qcs404.h b/include/dt-bindings/clock/qcom,gcc-qcs404.h
+index bc30515433470..c8d4c7f993418 100644
+--- a/include/dt-bindings/clock/qcom,gcc-qcs404.h
++++ b/include/dt-bindings/clock/qcom,gcc-qcs404.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: GPL-2.0 */
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+ /*
+  * Copyright (c) 2018, The Linux Foundation. All rights reserved.
+  */
+diff --git a/include/dt-bindings/clock/qcom,gcc-sm8150.h b/include/dt-bindings/clock/qcom,gcc-sm8150.h
+index dfefd5e8bf6e9..614ab995de4c0 100644
+--- a/include/dt-bindings/clock/qcom,gcc-sm8150.h
++++ b/include/dt-bindings/clock/qcom,gcc-sm8150.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: GPL-2.0 */
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+ /*
+  * Copyright (c) 2019, The Linux Foundation. All rights reserved.
+  */
+diff --git a/include/dt-bindings/clock/qcom,rpmcc.h b/include/dt-bindings/clock/qcom,rpmcc.h
+index 015db95303d19..c0c21762b2340 100644
+--- a/include/dt-bindings/clock/qcom,rpmcc.h
++++ b/include/dt-bindings/clock/qcom,rpmcc.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: GPL-2.0-only */
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+ /*
+  * Copyright 2015 Linaro Limited
+  */
+diff --git a/include/dt-bindings/clock/qcom,rpmh.h b/include/dt-bindings/clock/qcom,rpmh.h
+index 0a7d1be0d1246..2d882cb44e8bf 100644
+--- a/include/dt-bindings/clock/qcom,rpmh.h
++++ b/include/dt-bindings/clock/qcom,rpmh.h
+@@ -1,5 +1,7 @@
+-/* SPDX-License-Identifier: GPL-2.0 */
+-/* Copyright (c) 2018, 2020, The Linux Foundation. All rights reserved. */
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++/*
++ * Copyright (c) 2018, 2020, The Linux Foundation. All rights reserved.
++ */
+ 
+ 
+ #ifndef _DT_BINDINGS_CLK_MSM_RPMH_H
+diff --git a/include/dt-bindings/clock/qcom,sm8250-lpass-aoncc.h b/include/dt-bindings/clock/qcom,sm8250-lpass-aoncc.h
+index f5a1cfac86129..35e952aa00fcd 100644
+--- a/include/dt-bindings/clock/qcom,sm8250-lpass-aoncc.h
++++ b/include/dt-bindings/clock/qcom,sm8250-lpass-aoncc.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: GPL-2.0 */
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+ 
+ #ifndef _DT_BINDINGS_CLK_LPASS_AONCC_SM8250_H
+ #define _DT_BINDINGS_CLK_LPASS_AONCC_SM8250_H
+diff --git a/include/dt-bindings/clock/qcom,sm8250-lpass-audiocc.h b/include/dt-bindings/clock/qcom,sm8250-lpass-audiocc.h
+index a1aa6cb5d8400..9d4eca95a8984 100644
+--- a/include/dt-bindings/clock/qcom,sm8250-lpass-audiocc.h
++++ b/include/dt-bindings/clock/qcom,sm8250-lpass-audiocc.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: GPL-2.0 */
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+ 
+ #ifndef _DT_BINDINGS_CLK_LPASS_AUDIOCC_SM8250_H
+ #define _DT_BINDINGS_CLK_LPASS_AUDIOCC_SM8250_H
+diff --git a/include/dt-bindings/clock/qcom,turingcc-qcs404.h b/include/dt-bindings/clock/qcom,turingcc-qcs404.h
+index 838faef57c670..cea4894089729 100644
+--- a/include/dt-bindings/clock/qcom,turingcc-qcs404.h
++++ b/include/dt-bindings/clock/qcom,turingcc-qcs404.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: GPL-2.0 */
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+ /*
+  * Copyright (c) 2019, Linaro Ltd
+  */
+-- 
+2.34.1
+
