@@ -2,139 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66ED252EE06
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 16:22:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65D9752EE08
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 16:22:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346967AbiETOWt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 10:22:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58636 "EHLO
+        id S1350220AbiETOWw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 10:22:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345975AbiETOWs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 10:22:48 -0400
-Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8135599680;
-        Fri, 20 May 2022 07:22:46 -0700 (PDT)
-Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-e656032735so10536591fac.0;
-        Fri, 20 May 2022 07:22:46 -0700 (PDT)
+        with ESMTP id S1345975AbiETOWw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 10:22:52 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CF8916329D;
+        Fri, 20 May 2022 07:22:51 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id o22so9837327ljp.8;
+        Fri, 20 May 2022 07:22:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=sender:message-id:date:mime-version:user-agent:content-language:to
-         :cc:references:from:subject:in-reply-to:content-transfer-encoding;
-        bh=NNG0/cFL3AeUZtl53fmWMe05hES2gJFL9P71rTMoX34=;
-        b=caIEzkmbjlnUED+MjaA8/1SLAhysfVtiBZXt6nwAjPbJn4KpN/L+ZNGo7r8pDJmH4q
-         7SGagIWE2XXt4EawrvWlg8Csih2m/WHp5ViwMm24KIJF/OB19drkEXElYxWoC2bYi+kY
-         rCsdrhj5My7zR0Qwa8gQpSzw3iCb5TX2pYN0Gs0GpzQlxRMEVjH1qUJ9322Tqb1P3mdW
-         sR+wY2ceJAFBAl6WWGxwefIV5r8nft/z62vwcrxpnr6YgW4ZnOv6Sed7JKpyZIdF6e7Q
-         nSX1c6X26Gm7MsKm4dDItAfRazNN+jFPwWCAerqrAnTkAXL/sHrLEZVv1zkBouIx4lrE
-         EWkg==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=m/O8UBKE0c2cSYufgjXBbNvLdDE1ALuRtN6rsL7jV4U=;
+        b=Y1n9Tpe6rOxQyxePWnDR1MaQDvfpGxBGwVuDCY1yXBOYEgPEjnN1XN6rYIHpAeVbL4
+         u09U6NhvUpj+CX5cPGqgcEv9QTndEm7qNfvKNBc/Fk2GjqaIqQwmzF8Juns3jFsnfYDI
+         OC3OYS5xLjXLkORT6TJCO5Q1KLlccUr2QwrSt5Alee+t49+mDWgrCtM1DO4LZIKyxl4H
+         5ZKt9Gug9r11C8IO4WvXs5rSaaAsfdDbhwEW0furWWyejeTQs09uR7HZbifCIhDR7xZ2
+         WTF22eaVs2CuwS8jd/3segFqU7vV1MXXMewC7OtmlZagRZDQalKLgEknB8xwBdr9tGQT
+         o85Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
-         :content-language:to:cc:references:from:subject:in-reply-to
-         :content-transfer-encoding;
-        bh=NNG0/cFL3AeUZtl53fmWMe05hES2gJFL9P71rTMoX34=;
-        b=RTmVVFq/ua92xU777+g1UjJd4ny1p2fCq159wkmlPR9qV3XM8vBOyUdlNBxL4TqMdr
-         XY6Jt93b1G3Adx43yDezXm/ih/tMnYVzQWEg+8yRpvvAl6q+ylHOfdUJYY+w8KtIGz4W
-         bh/9yH+6KA2jLFGfjXIBG1qrNcC8W4p0xRbPyzh/X/1uZotQpr/bu2O/l1AHVhi1ewxI
-         fM5wj72v+zGRfhqUbiC2w47EMR9EFHhSn+O/a8WeF1Bz0au4vwrPswj4N7jBQ1yZ+eS/
-         LXRp2jX6AfvRhvv/IphAFT4VngT/I4syrQyFjg3LUVAy3m1I1YFeuzLPEjSqw+gZ6a0B
-         8G2w==
-X-Gm-Message-State: AOAM531h93Y/hb7O2h4pabAFCvv/5vILCWwcG9zqf/rE3gkduc2gmZAv
-        AnuhDgMXdkExOGvluQKDMEM=
-X-Google-Smtp-Source: ABdhPJxpz/w0SPG1qGQ8p307VYi+CirvgZUTrGfFgR66aMj3TAHJLlIAjPU8VrjziY90zN2O91iv0w==
-X-Received: by 2002:a05:6870:b30a:b0:f1:90bb:d4ae with SMTP id a10-20020a056870b30a00b000f190bbd4aemr5594991oao.299.1653056565512;
-        Fri, 20 May 2022 07:22:45 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id p21-20020a4a8e95000000b0040e5ff4a737sm986099ook.26.2022.05.20.07.22.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 May 2022 07:22:44 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <f124cbcb-3fca-3f1c-f47e-730f15c1f074@roeck-us.net>
-Date:   Fri, 20 May 2022 07:22:42 -0700
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=m/O8UBKE0c2cSYufgjXBbNvLdDE1ALuRtN6rsL7jV4U=;
+        b=OzVqVqka4KxN+i9gSvIMDmn4bupEh7KjbLC0Ln27Wiqj1RyluEiQlduDI+2wGZYS8a
+         JzpnyJbmXOvzxQTbWhcC3i5fHt4oAJQmDeb2KRnT8UMzxp1GTrSfH8+XsxdRRTdmfpdS
+         Q8/yX0mhKPL67tJn2tIKRCpGWi1g7G39d2pT2D1iVhRe+0od1eFIV+wtLjR3uz8Cl3IU
+         WildLWbSUOvDawODuGOZrDNTptYi5idusUoRy3QuVLMEwWAgZW8YbqQo0DR1Jl//FhVF
+         FiCSzgupKu/m+51aaH1mYt67pZpsjaJfQ7KEpVG9y98VkUs2aiawansta6v5YA0xVX1I
+         N1KA==
+X-Gm-Message-State: AOAM533jEb5coC1a8ep60TyKIG73hh0idbQMh5pBJRWK+71fIsPcx4kN
+        8JdcKITveZLXSLyyCOGh8W4=
+X-Google-Smtp-Source: ABdhPJyuKO7AzKSZ1dg5Btd/SfXZvnHzAuI8HlG677gz26ktEZ3LD4xIAFSufc94XaudHIKZGHVxCg==
+X-Received: by 2002:a2e:9d87:0:b0:253:e12a:916a with SMTP id c7-20020a2e9d87000000b00253e12a916amr2197ljj.502.1653056569307;
+        Fri, 20 May 2022 07:22:49 -0700 (PDT)
+Received: from orome ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id c5-20020a056512324500b00477b6ffffa6sm679897lfr.65.2022.05.20.07.22.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 May 2022 07:22:48 -0700 (PDT)
+Date:   Fri, 20 May 2022 16:22:45 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, kernel@collabora.com,
+        nfraprado@collabora.com
+Subject: Re: [PATCH 0/2] MediaTek Helio X10 MT6795 - PWM driver
+Message-ID: <YoekNfGTvCfjDMDp@orome>
+References: <20220503105405.54832-1-angelogioacchino.delregno@collabora.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Slawomir Stepien <sst@poczta.fm>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     jdelvare@suse.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, przemyslaw.cencner@nokia.com,
-        krzysztof.adamski@nokia.com, alexander.sverdlin@nokia.com,
-        Slawomir Stepien <slawomir.stepien@nokia.com>
-References: <20220520093243.2523749-1-sst@poczta.fm>
- <20220520093243.2523749-4-sst@poczta.fm>
- <3ea92486-0cf9-ce3d-d1b6-7a76f1d5a129@linaro.org>
- <0b84d109-d6be-dfba-99bb-0b7136af875e@roeck-us.net>
- <b5ff0f2c-d741-6dec-c306-b54cb5075ccf@linaro.org>
-From:   Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH 3/8] dt-bindings: hwmon: Allow specifying channels for
- lm90
-In-Reply-To: <b5ff0f2c-d741-6dec-c306-b54cb5075ccf@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="UWrvBWnZYpzwCo1F"
+Content-Disposition: inline
+In-Reply-To: <20220503105405.54832-1-angelogioacchino.delregno@collabora.com>
+User-Agent: Mutt/2.2.4 (c3baa83e) (2022-04-30)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/20/22 07:09, Krzysztof Kozlowski wrote:
-> On 20/05/2022 15:42, Guenter Roeck wrote:
->>>
->>>> +          A descriptive name for this channel, like "ambient" or "psu".
->>>> +
->>>> +      offset:
->>>> +        description: |
->>>
->>> This does not look like standard property, so you need vendor and unit
->>> suffix.
->>>
->>
->> Temperature offset is a standard property for temperature sensor
-> 
-> The original description was strictly connected to registers, so that
-> one as not a standard. It seems it was just a wording...
-> 
->> chips with external channels, implemented by a diode or transistor.
->> Making it non-standard will mean that we'll have lots of
->> "vendor,offset" properties, one each for each vendor selling
->> temperature sensor chips with external channels. This gets
->> more complicated here because the lm90 driver does support chips
->> from several different vendors. Almost all of them support
->> this functionality. Which vendor do you select in this case ?
->>
->> I would suggest to use temperature-offset-milliseconds, though.
-> 
-> Yes, this sounds good. Just not seconds but millicelsius, I guess?
-> 
 
-Uuh, yes. Sorry, must be too early in the morning here.
+--UWrvBWnZYpzwCo1F
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->>
->>>> +          The value (millidegree Celsius) to be programmed in the channel specific offset register
->>>> +          (if supported by device).
->>>
->>> You described programming model which should not be put in the bindings.
->>> Please describe the hardware.
->>>
->>
->> It is a configuration value, which is hardware dependent because
->> it depends on the temperature diode or transistor connected to the chip.
-> 
-> Sure, so this could be reworded "Offset against some base value for each
-> channel temperature", or something similar (you know better than me).
-> Referring to registers and where exactly this should be programmed in
-> the device is related to device programming model, not to bindings.
-> 
+On Tue, May 03, 2022 at 12:54:03PM +0200, AngeloGioacchino Del Regno wrote:
+> In an effort to give some love to the apparently forgotten MT6795 SoC,
+> I am upstreaming more components that are necessary to support platforms
+> powered by this one apart from a simple boot to serial console.
+>=20
+> This series introduces support for the PWMs found in Helio X10.
+>=20
+> Tested on a Sony Xperia M5 (codename "Holly") smartphone.
+>=20
+> AngeloGioacchino Del Regno (2):
+>   pwm: pwm-mediatek: Add support for MediaTek Helio X10 MT6795
+>   dt-bindings: pwm: pwm-mediatek: Add documentation for MT6795 SoC
+>=20
+>  Documentation/devicetree/bindings/pwm/pwm-mediatek.txt | 1 +
+>  drivers/pwm/pwm-mediatek.c                             | 7 +++++++
+>  2 files changed, 8 insertions(+)
 
-Maybe something like "Temperature offset to be added to or
-subtracted from remote temperature measurements".
+Applied, thanks.
 
-Thanks,
-Guenter
+Thierry
+
+--UWrvBWnZYpzwCo1F
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmKHpDUACgkQ3SOs138+
+s6FFHQ/9HkWx87OkIttu0M8J/TwAIYF6wGE76TI54RMoEBlGQLLIbfjkJx4wI7bq
+kQh7j6LLB9exFF5WaP+HmskXzadBSEBJH1/H7e9/cLMGiJABtx/KfDjQrKslw4kg
+qXupNoRExePzrFUMte/Yo9VOZCb750W7j7ummOoxOJLPBQXZ0TiY/ryiedBvDNHI
+qw5tePjX6Tv+hP8SuLeJCH9KGaYK4oUJVNd8P1F+zMlvdlFpVoZ48PBNcTPyUxFA
+VC/cwXb7I2qce1FoVjQT9K+hON7qzr/VLo5sSOI/QITo5pvIFVTgU++gY2GvgIuF
+ukgWprZSIjFYWxCe053sKNFnzaJZ5V1CFKylpsw5864AsSo8PSwcLjjytsc/cF5I
+o4Ke9j0IR22lhc89h/eJOpVPuZEUFes6pQtMUUFUcuCEksfODlJs5l2X1KKnivo4
++b21+ryugvr12Yogf0VGiU0JUS2KgfqbF5hduIuQesXoLoTXVgy885DqmPuI8Tmz
+zyoZNj2a1qysVYdsybkFDuNmFy9rqzZmqQjuSIF/jrh4YnEaOaSHCI4ApQFB1vQN
+LOIFk8pw+vlH7WV51n+0RIRWpB77Q3LWsu0kIZq0tZZnYXe9td6sOXEtoSAHyxLE
+ir6jzWbR/cJEJ8ImS/7YaeQpzUa+OQQ+U4HchIpQQ8E+to20dnM=
+=7cPS
+-----END PGP SIGNATURE-----
+
+--UWrvBWnZYpzwCo1F--
