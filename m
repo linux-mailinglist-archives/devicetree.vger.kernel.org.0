@@ -2,103 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEC6252EC26
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 14:33:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37D2352EC3E
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 14:37:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349385AbiETMdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 08:33:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53384 "EHLO
+        id S244836AbiETMhe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 08:37:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349345AbiETMdL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 08:33:11 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF968166099
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 05:33:06 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id u23so14096766lfc.1
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 05:33:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=0nYhv1nPF+LOWvBH2h9U+emDwliIywhBz9unRXuVff8=;
-        b=CDIy1o7JzUQ8oO1748IY88xdw8Ua+rGPADPPyoThG/Xnlz/eHKS4pb2QGraPmx2knR
-         upjQAjqiHsd3dsMrTZnGFpmPoq4DpY1EP5OHEBoluomy6KSQaBUQVgy0WSLcfXJz3yKE
-         nmS4P72VtJSS+7h54PJUGI6I+MOcF33XNV6H7p8lxvaApeDM1ef5T85CdoUgA3mbvhx4
-         Drf4ql4fyKQMyc7KLxDJSkLCvDtEx/W3mmP0LgFPQlJxVOMHgwsqbAoDCDIqmEuRTmJT
-         b4eEh+r+AGI15VYc2PgfIM2f+s7NzQSjkhzqd18caoEIChhFhAFad1zSV/oatzFndsJJ
-         28mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=0nYhv1nPF+LOWvBH2h9U+emDwliIywhBz9unRXuVff8=;
-        b=qUwHE3fX9MQRdXSyf5gzaFf+T9ss0H5H6BEJgLtN70tWW8DlMdGp0XE9rnB9mp7RkR
-         N+F7Jyyjt0D7d+kYmm48034GQ+U+xYjq2/Xvig0UZnsuL2OXLvJOhIoLst7GFUtpCgcK
-         bQJQUP4TehWh7Hg1h+bc+h7sMvI6Aewb1SaWswIbKuFzmXsUeXdpfS8751tSXZ82es7p
-         qOakOGdIJZlBUMIQNhvcX5sWn947szmsdKmn4GgP+D4XwnoD9wNk0CG+Xu0wSZPGDMIL
-         j7l/JOGWhtmhSG76fHcOPxhmc+tQ5ZwTkGE5y75Hcg4qceZfrC2QlHuaCwf6vMHJY1Ew
-         lTMQ==
-X-Gm-Message-State: AOAM532zLqGPyaY16I2H9RWw/nHeyXwHSiE9xA4FuM9IjveH8dbMWmaj
-        Zc74prbXeodyJ62JHOUmQTVoSrfLAILW42tt
-X-Google-Smtp-Source: ABdhPJzH0eTCGcr4er18fwN1OAwNl7z7bDJwYFHVl/nuToICzEzhRN22hemPJ9frItGFrqfqVlRceg==
-X-Received: by 2002:a05:6512:139a:b0:474:15ce:9204 with SMTP id p26-20020a056512139a00b0047415ce9204mr6535256lfa.461.1653049986242;
-        Fri, 20 May 2022 05:33:06 -0700 (PDT)
-Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id a14-20020a056512374e00b0047255d211bfsm643973lfs.238.2022.05.20.05.33.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 May 2022 05:33:05 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S231533AbiETMhc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 08:37:32 -0400
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C0655F8C5;
+        Fri, 20 May 2022 05:37:31 -0700 (PDT)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 9BF98FF802;
+        Fri, 20 May 2022 12:37:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1653050249;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=WKwb1xLxCKHxo8kAUv0MtGuwurU5vlydm6P3+DNROh4=;
+        b=l1f6zb6+GSbPTbWj42ElyYGLAOZKQx2M9xqWd+ieBlHSzmFo3aXx/ZqXctiDFGskM+Ez1H
+        xMTSUcOwgdMAuos1ERIEoYjZM1SQOPXUIIvLX/aj9mBM7HnK2fAWTnW1o/H64SKZm2ss9p
+        nSJEQLe/EZafTHiTY4mtYE/7AD988/9Pq2WqCS+JCsAZ6/+cHA90jLevilumLWZ2eIO2k5
+        YNtg7YfcjKbkn+TI4+b5vl/aXFW1VieMOVMPXO2EoAfR0vQYBqLNoNgEfhEKuXGuevdC3Q
+        hHRHJ+/DEkh3h/2aMzgtW4wty+JV2YHauQvA6S4ZgF3WH8OWUITMpxm79SyTCQ==
+Date:   Fri, 20 May 2022 14:37:26 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@codeaurora.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 9/9] dt-bindings: arm: qcom: add missing SM8350 board compatibles
-Date:   Fri, 20 May 2022 14:32:52 +0200
-Message-Id: <20220520123252.365762-9-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220520123252.365762-1-krzysztof.kozlowski@linaro.org>
-References: <20220520123252.365762-1-krzysztof.kozlowski@linaro.org>
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 3/3] ARM: dts: lan966x: Add UDPHS support
+Message-ID: <20220520143726.6dd324fb@bootlin.com>
+In-Reply-To: <2945e445-3453-a45f-7d3d-3b07bf350b47@linaro.org>
+References: <20220513105850.310375-1-herve.codina@bootlin.com>
+        <20220513105850.310375-4-herve.codina@bootlin.com>
+        <2945e445-3453-a45f-7d3d-3b07bf350b47@linaro.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.31; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document several board compatibles already present in Linux kernel.
+Hi Krzysztof, Sergei
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/arm/qcom.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+On Fri, 13 May 2022 14:54:26 +0200
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-index abc5f709678c..25ae8a850be1 100644
---- a/Documentation/devicetree/bindings/arm/qcom.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-@@ -319,8 +319,11 @@ properties:
- 
-       - items:
-           - enum:
-+              - microsoft,surface-duo2
-               - qcom,sm8350-hdk
-               - qcom,sm8350-mtp
-+              - sony,pdx214-generic
-+              - sony,pdx215-generic
-           - const: qcom,sm8350
- 
-       - items:
--- 
-2.32.0
+> On 13/05/2022 12:58, Herve Codina wrote:
+> > Add UDPHS (the USB High Speed Device Port controller) support.
+> > The UDPHS IP present in the lan966x SOC is the same as the one
+> > present in the SAMA5D3 SOC
+> >=20
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > ---
+> >  arch/arm/boot/dts/lan966x.dtsi | 11 +++++++++++
+> >  1 file changed, 11 insertions(+)
+> >=20
+> > diff --git a/arch/arm/boot/dts/lan966x.dtsi b/arch/arm/boot/dts/lan966x=
+.dtsi
+> > index 7d2869648050..4c09f3166d27 100644
+> > --- a/arch/arm/boot/dts/lan966x.dtsi
+> > +++ b/arch/arm/boot/dts/lan966x.dtsi
+> > @@ -211,6 +211,17 @@ can0: can@e081c000 {
+> >  			status =3D "disabled";
+> >  		};
+> > =20
+> > +		udc: udphs@e0808000 { =20
+>=20
+> Generic node names, so it looks like usb. For example HCD schema
+> requires it. I am not sure which bindings are used here, but anyway once
+> they might require usb...
+>=20
 
+HCD are related to the Host controller.
+Here we are talking about a device.
+
+In existing bindings related to USB device (or OTG as an OTG can be a
+host or a device) on several SOCs, we can find:
+- usb1: gadget@fffa4000
+- usb_otg: usb@1c13000
+- usb: usb@47400000
+- udc: usb@13040000
+- usb_otg_hs: usb_otg_hs@4a0ab000
+
+
+So I will change to
+  udc: usb@e0808000
+
+Is that ok for you ?
+
+Regards,
+Herve
+
+--=20
+Herv=C3=A9 Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
