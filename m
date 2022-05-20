@@ -2,234 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ED0B52ED45
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 15:37:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B48652ED4E
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 15:38:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349867AbiETNhv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 09:37:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33100 "EHLO
+        id S1349878AbiETNio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 09:38:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345592AbiETNhs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 09:37:48 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C699AABF69
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 06:37:45 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 24K8Zk4R020575;
-        Fri, 20 May 2022 15:37:18 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=RaAxrMrTs+miyXLoIokOwv2YkNg3Rluz8qGa0ZB8SJw=;
- b=WWDd6v6LY5lEzVBOuBzo18RQaV1q1OFdgCFfI39srh+Yw4ozXmyqusDyJZla7EivTegG
- ePl7u3iJGj0vclRFxfXkCZeypN6z+SB73VfYEKmTw9YbuuzbXZEHJCZIkL3lMI5BCgll
- xZVpMHeWcHnPjm9cIu55JZ9Ftu5eoAWkQWSCmLPyR/wnx5DLc5C4HYITlRoUyFKs+LUq
- am0dDcgUzaAesDI/G2bBBfZ07HxVby4eOdYgtI79X9AAPuOs/4fe6jXJoJswn9c1yTgn
- SgLPnvzwSeVX7g8EbosZX3Jrxad5U953ivyZpQJLZPoXCuCLCsGFIT2elh8yh+lcoOxP FA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3g23aj8gy7-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 20 May 2022 15:37:18 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 30B1F100044;
-        Fri, 20 May 2022 15:37:17 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 128FF233C71;
-        Fri, 20 May 2022 15:37:07 +0200 (CEST)
-Received: from [10.48.1.102] (10.75.127.46) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Fri, 20 May
- 2022 15:37:05 +0200
-Message-ID: <d47fecb5-9f62-292b-f797-d63a771133df@foss.st.com>
-Date:   Fri, 20 May 2022 15:37:05 +0200
+        with ESMTP id S1349865AbiETNim (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 09:38:42 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AC7D16ABD1
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 06:38:40 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id i23so9718756ljb.4
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 06:38:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=BJ6cahNcHV64dckbcdagFZ3sXXRYfeYn07qe+/rH0Js=;
+        b=Swsr4EYUUhBGy78gK70OvbbFgbl+xy4A36NGHggg9MIrLAwzJ3L8g3yIQ9pJiZcHPg
+         5Z4AjQmI8LhFAkWKs1ms85fN0rwO2dGcB0PkM3c3Q4Mp5uIz+pxLR0FI+u/YiXj3PnjT
+         xEfvLERea7XgQ27+5UU7YDdcRvLRe7KZYXOw/kzR7YpmI+WPjHYHicrGkoIpCSwixvEF
+         qX2B9OqRIDzWJEChsL8RoJG7AkW0ohMp4f9j9uxYBDLdctrCwEbp4cg9bWR+ILHo2lj4
+         gELpWVXkRWAkzYZWD98W4c8v3VVw3H2s8R1CMwWGfB+7L6geo0EvtMEjMNVBE4VJukVy
+         +Yfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=BJ6cahNcHV64dckbcdagFZ3sXXRYfeYn07qe+/rH0Js=;
+        b=aoPhl/MhKeF6xW66CCstjjY1HPtB0cK47+RpZKMESnVs/S29thVsIOC7yFEHl3VzYN
+         MatK6td8Lc1//Hs0BR8pYyUswb2qHt9lb1YG4bpU2gp+JVyA0rdRGsHosl2T4c535PO3
+         N1oudyTYBeBGaaSZF+yWHrsH6HVFEwwrmm/2jAG8FtCyapnOd8J/ciEwqDFoZF9D/22j
+         TRBg9VfCr6Lam9sHTqhZxy4Y3QnIUn9PozqRtHfQL2o/EgSQLkByzgPFDej133KwgL3b
+         DukcUubjnthO6wJHlRyHWW5YuOQDMcfKTq0YI+p3/L8INp0+62dBz3d0uI883vksZIEc
+         ybNA==
+X-Gm-Message-State: AOAM532t5zWzsnKeSoY7Y2UHTsm/PUl8jgOQ+8lfY8Fvc8WftdVcztob
+        gF6q5S90LuNvXCa9uSxmnIlGXA==
+X-Google-Smtp-Source: ABdhPJz7+4KDKaqz3IBBXBx/FkONS5BgchZ7fWWMZ6ZrP5bc3A9c1J212pfOKC8DCyjp/llbwrwJOA==
+X-Received: by 2002:a2e:b8d0:0:b0:253:ca3b:f0ad with SMTP id s16-20020a2eb8d0000000b00253ca3bf0admr5740825ljp.334.1653053918597;
+        Fri, 20 May 2022 06:38:38 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id o14-20020ac25e2e000000b0047255d210e3sm667857lfg.18.2022.05.20.06.38.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 May 2022 06:38:37 -0700 (PDT)
+Message-ID: <d26c7ebd-fc1a-391e-39e4-5ec41bf4fbfa@linaro.org>
+Date:   Fri, 20 May 2022 15:38:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v4 2/2] ARM: dts: stm32mp15x: Add timer interrupts
+Subject: Re: [PATCH 2/3] dt-bindings: usb: atmel: Add Microchip LAN966x
+ compatible string
 Content-Language: en-US
-To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <kernel@pengutronix.de>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20220519162838.695404-1-u.kleine-koenig@pengutronix.de>
- <20220519162838.695404-2-u.kleine-koenig@pengutronix.de>
-From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-In-Reply-To: <20220519162838.695404-2-u.kleine-koenig@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.75.127.46]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.874,Hydra:6.0.486,FMLib:17.11.64.514
- definitions=2022-05-20_04,2022-05-20_02,2022-02-23_01
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20220513105850.310375-1-herve.codina@bootlin.com>
+ <20220513105850.310375-3-herve.codina@bootlin.com>
+ <8f0d4127-7e66-cf50-21c9-99680f737e30@linaro.org>
+ <20220520133426.3b4728ae@bootlin.com>
+ <b087c34f-0e2f-edd0-a738-3ffc2853a41b@linaro.org>
+ <20220520142109.57b84da2@bootlin.com>
+ <01b31a02-523e-10bf-3b46-5b830e456522@linaro.org>
+ <20220520150243.625723fa@bootlin.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220520150243.625723fa@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/19/22 18:28, Uwe Kleine-König wrote:
-> The timer units in the stm32mp15x CPUs have interrupts, depending on the
-> timer flavour either one "global" or four dedicated ones. Add the irqs
-> to the timer units on stm32mp15x.
+On 20/05/2022 15:02, Herve Codina wrote:
+> On Fri, 20 May 2022 14:50:24 +0200
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 > 
-> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-
-Hi Uwe,
-
-You can add my:
-Reviewed-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-
-Best Regards,
-Thanks
-Fabrice
-
-> ---
->  arch/arm/boot/dts/stm32mp151.dtsi | 34 +++++++++++++++++++++++++++++++
->  1 file changed, 34 insertions(+)
+>> On 20/05/2022 14:21, Herve Codina wrote:
+>>>>> I think it makes sense to keep 'microchip,lan966x-udc' for the USB
+>>>>> device controller (same controller on LAN9662 and LAN9668) and so
+>>>>> keeping the same rules as for other common parts.    
+>>>>
+>>>> Having wildcard was rather a mistake and we already started correcting
+>>>> it, so keeping the "mistake" neither gives you consistency, nor
+>>>> correctness...
+>>>>  
+>>>
+>>> I think that the "family" compatible should be present.
+>>> This one allows to define the common parts in the common
+>>> .dtsi file (lan966x.dtsi in our case).
+>>>
+>>> What do you think about:
+>>> - microchip,lan9662-udc
+>>> - microchip,lan9668-udc
+>>> - microchip,lan966-udc  <-- Family
+>>>
+>>> lan966 is defined as the family compatible string since (1) in
+>>> bindings/arm/atmel-at91.yaml and in Documentation/arm/microchip.rst
+>>>   
+>>
+>> You can add some family compatible, if it makes sense. I don't get why
+>> do you mention it - we did not discuss family names, but using
+>> wildcards... Just please do not add wildcards.
 > 
-> diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
-> index f9aa9af31efd..ae290a04771a 100644
-> --- a/arch/arm/boot/dts/stm32mp151.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp151.dtsi
-> @@ -127,6 +127,8 @@ timers2: timer@40000000 {
->  			#size-cells = <0>;
->  			compatible = "st,stm32-timers";
->  			reg = <0x40000000 0x400>;
-> +			interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "global";
->  			clocks = <&rcc TIM2_K>;
->  			clock-names = "int";
->  			dmas = <&dmamux1 18 0x400 0x1>,
-> @@ -160,6 +162,8 @@ timers3: timer@40001000 {
->  			#size-cells = <0>;
->  			compatible = "st,stm32-timers";
->  			reg = <0x40001000 0x400>;
-> +			interrupts = <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "global";
->  			clocks = <&rcc TIM3_K>;
->  			clock-names = "int";
->  			dmas = <&dmamux1 23 0x400 0x1>,
-> @@ -194,6 +198,8 @@ timers4: timer@40002000 {
->  			#size-cells = <0>;
->  			compatible = "st,stm32-timers";
->  			reg = <0x40002000 0x400>;
-> +			interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "global";
->  			clocks = <&rcc TIM4_K>;
->  			clock-names = "int";
->  			dmas = <&dmamux1 29 0x400 0x1>,
-> @@ -226,6 +232,8 @@ timers5: timer@40003000 {
->  			#size-cells = <0>;
->  			compatible = "st,stm32-timers";
->  			reg = <0x40003000 0x400>;
-> +			interrupts = <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "global";
->  			clocks = <&rcc TIM5_K>;
->  			clock-names = "int";
->  			dmas = <&dmamux1 55 0x400 0x1>,
-> @@ -260,6 +268,8 @@ timers6: timer@40004000 {
->  			#size-cells = <0>;
->  			compatible = "st,stm32-timers";
->  			reg = <0x40004000 0x400>;
-> +			interrupts = <GIC_SPI 54 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "global";
->  			clocks = <&rcc TIM6_K>;
->  			clock-names = "int";
->  			dmas = <&dmamux1 69 0x400 0x1>;
-> @@ -278,6 +288,8 @@ timers7: timer@40005000 {
->  			#size-cells = <0>;
->  			compatible = "st,stm32-timers";
->  			reg = <0x40005000 0x400>;
-> +			interrupts = <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "global";
->  			clocks = <&rcc TIM7_K>;
->  			clock-names = "int";
->  			dmas = <&dmamux1 70 0x400 0x1>;
-> @@ -296,6 +308,8 @@ timers12: timer@40006000 {
->  			#size-cells = <0>;
->  			compatible = "st,stm32-timers";
->  			reg = <0x40006000 0x400>;
-> +			interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "global";
->  			clocks = <&rcc TIM12_K>;
->  			clock-names = "int";
->  			status = "disabled";
-> @@ -318,6 +332,8 @@ timers13: timer@40007000 {
->  			#size-cells = <0>;
->  			compatible = "st,stm32-timers";
->  			reg = <0x40007000 0x400>;
-> +			interrupts = <GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "global";
->  			clocks = <&rcc TIM13_K>;
->  			clock-names = "int";
->  			status = "disabled";
-> @@ -340,6 +356,8 @@ timers14: timer@40008000 {
->  			#size-cells = <0>;
->  			compatible = "st,stm32-timers";
->  			reg = <0x40008000 0x400>;
-> +			interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "global";
->  			clocks = <&rcc TIM14_K>;
->  			clock-names = "int";
->  			status = "disabled";
-> @@ -623,6 +641,11 @@ timers1: timer@44000000 {
->  			#size-cells = <0>;
->  			compatible = "st,stm32-timers";
->  			reg = <0x44000000 0x400>;
-> +			interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "brk", "up", "trg-com", "cc";
->  			clocks = <&rcc TIM1_K>;
->  			clock-names = "int";
->  			dmas = <&dmamux1 11 0x400 0x1>,
-> @@ -659,6 +682,11 @@ timers8: timer@44001000 {
->  			#size-cells = <0>;
->  			compatible = "st,stm32-timers";
->  			reg = <0x44001000 0x400>;
-> +			interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "brk", "up", "trg-com", "cc";
->  			clocks = <&rcc TIM8_K>;
->  			clock-names = "int";
->  			dmas = <&dmamux1 47 0x400 0x1>,
-> @@ -746,6 +774,8 @@ timers15: timer@44006000 {
->  			#size-cells = <0>;
->  			compatible = "st,stm32-timers";
->  			reg = <0x44006000 0x400>;
-> +			interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "global";
->  			clocks = <&rcc TIM15_K>;
->  			clock-names = "int";
->  			dmas = <&dmamux1 105 0x400 0x1>,
-> @@ -773,6 +803,8 @@ timers16: timer@44007000 {
->  			#size-cells = <0>;
->  			compatible = "st,stm32-timers";
->  			reg = <0x44007000 0x400>;
-> +			interrupts = <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "global";
->  			clocks = <&rcc TIM16_K>;
->  			clock-names = "int";
->  			dmas = <&dmamux1 109 0x400 0x1>,
-> @@ -797,6 +829,8 @@ timers17: timer@44008000 {
->  			#size-cells = <0>;
->  			compatible = "st,stm32-timers";
->  			reg = <0x44008000 0x400>;
-> +			interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "global";
->  			clocks = <&rcc TIM17_K>;
->  			clock-names = "int";
->  			dmas = <&dmamux1 111 0x400 0x1>,
+> Well, I mentioned it as I will only use the family compatible string
+> and not the SOC (lan9662 or lan9668) compatible string in lan966x.dtsi.
+> In this case, the family compatible string can be seen as a kind of
+> "wildcard".
+
+I understood as "the "family" compatible should be present" as you want
+to add it as a fallback. It would be okay (assuming devices indeed share
+family design). If you want to use it as the only one, then it is again
+not a recommended approach. Please use specific compatibles.
+
+I mean, why do we have this discussion? What is the benefit for you to
+implement something not-recommended by Devicetree spec and style?
+
+Best regards,
+Krzysztof
