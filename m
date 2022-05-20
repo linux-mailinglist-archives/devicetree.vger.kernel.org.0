@@ -2,165 +2,294 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E33F252E989
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 11:59:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D61E52E963
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 11:53:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233699AbiETJ7q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 05:59:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34688 "EHLO
+        id S1347963AbiETJxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 05:53:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229809AbiETJ7p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 05:59:45 -0400
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2113.outbound.protection.outlook.com [40.107.114.113])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 102376D4E8;
-        Fri, 20 May 2022 02:59:44 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fwO36EBHpOUAOpCWJWlUJh8tgx6aYKTh0p8pUUpLvKS4eRRn8mEf7qTRxb54XwXTdaAIDZd+ydnBLLBnQHYrEdx6f/6l4jSwUxOO5Htf2IRYh8zR2ExQNjDsjFOfRuMdOo6d1uVZlgQeB1TaCnFiWjor4JjlD9aXHAPeP3nYMsNE5hdb9cYJ3lrj+U3mmlYoYWQt6VK0YuoB6uWXNguSuN1HBZESL1THGHW4tikFELxnjBQOgYvId0/xhm2nvW0OPQil/jaBCMtapeW+MCa11ol73/V1w9wJju1XKHu0wtbPord8lBjjNcKBCzd2QNUnztXQPWDTbFjZYn4wXkm4JA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jBEKWF6YlkeEvF/PW191pc4x/onW1tIggzqGkS1lWkw=;
- b=Le2EK15W9WWOK9B2ROv9MmruRMecmX1fMa7/5bfqSRhspu9oRX/kukhgGYfFgMGf73b30Smy/rqVUzbUzKZQktr9l0VTsDnfgUj9sFcajQX5jB5ortvKbegcj/SOkbU/74SJQH50Q4tEoqLXQqqKTnu++EtmMblrxOmtleah2vnaXXureWCMbkS7JvSaSM7xYzVrx4PLk2weYmuC9cC1lDdCbJv/7WO8sK5eaRzNix/oHVFHWqA2G0aLCsHtQXJKTZfOAX03x1jNKXVclt4CZmqsBIQ5tzHQeCut3/dDJYKrO7XfsVSxU5E0KsQ06tcNOoTkvwqIdKfRvwRdRGpEtg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jBEKWF6YlkeEvF/PW191pc4x/onW1tIggzqGkS1lWkw=;
- b=iqtz3uMyMRpZb0rcdYbVM1Cep2xxCFeRD0PYyvMaptE+suXpQbiF/VH7FKb+o33Awf6u4/z76fVjEbSvH6gqfB9oHOQqE607mOI9y0hTNJQRpubf5Y4asA2egeslMvtnNnHlNmVU8qsE7NnV14m7FseQIHj9YAx+bSJcVQbuEaE=
-Received: from TYYPR01MB7086.jpnprd01.prod.outlook.com (2603:1096:400:de::11)
- by TYCPR01MB8737.jpnprd01.prod.outlook.com (2603:1096:400:10f::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5273.14; Fri, 20 May
- 2022 09:59:42 +0000
-Received: from TYYPR01MB7086.jpnprd01.prod.outlook.com
- ([fe80::e180:5c8b:8ddf:7244]) by TYYPR01MB7086.jpnprd01.prod.outlook.com
- ([fe80::e180:5c8b:8ddf:7244%8]) with mapi id 15.20.5273.017; Fri, 20 May 2022
- 09:59:42 +0000
-From:   Phil Edworthy <phil.edworthy@renesas.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Biju Das <biju.das.jz@bp.renesas.com>
-Subject: RE: [PATCH v2 2/2] arm64: dts: renesas: rzv2m evk: Enable ethernet
-Thread-Topic: [PATCH v2 2/2] arm64: dts: renesas: rzv2m evk: Enable ethernet
-Thread-Index: AQHYacaLtn40hL/80UKfmnJTDjshxK0mAF0AgAFyDRA=
-Date:   Fri, 20 May 2022 09:59:41 +0000
-Message-ID: <TYYPR01MB70863BDC5BAEACF9AECF6C70F5D39@TYYPR01MB7086.jpnprd01.prod.outlook.com>
-References: <20220517081645.3764-1-phil.edworthy@renesas.com>
- <20220517081645.3764-3-phil.edworthy@renesas.com>
- <CAMuHMdUEwEwbpTZq2AV+-YiPKXgaTb8t6Nx3zxeUF0JtEfT8BA@mail.gmail.com>
-In-Reply-To: <CAMuHMdUEwEwbpTZq2AV+-YiPKXgaTb8t6Nx3zxeUF0JtEfT8BA@mail.gmail.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: adb9860e-2f66-4600-c3e3-08da3a4775d5
-x-ms-traffictypediagnostic: TYCPR01MB8737:EE_
-x-microsoft-antispam-prvs: <TYCPR01MB8737F934E39B6FE4E6CF148BF5D39@TYCPR01MB8737.jpnprd01.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 6G87CAMBZ2AiWlcfzGRMoDnKWNwTs1Mk7e33L2TWnucaHcsqU6MePYBqXtMfltdvxcLmhtkDQOQnv3/607Rhh9TIZbHPD2JlRCQ/A20a4blh1y4vWGWAImUvNGqaeI7XqjOk0ieX4i3gKtNAR/NO4axuTwQhKoWSBiUbYsO0FvAMxU/B2XObssWDuBao2awEiAlxDBrojAc+VoraMMolCoRiEiSbptwVVXgJSvt8joAzTK/6hrKzIPLjbRThrp68xVVfvvDT/tRN8ph6jhsTuiB3fgfz/j75m/Yw/+GJvsyHMlgUI2csBp/rfd6MRZLoQMpg6hq1a6XXWsutBTctr+6B4FQdjvUgEDlPDUk59beXU2sLdoBexUzq9Rc7su5kjpNKGZOndTaXINNAeowwEaBgGEc8Wx/qYS1XqG52CsBbhdEHlL+AaxeGEQwShvS1MxXyiy5I3bLGrIstG6iUqvVA1LIZ9JRrHPcky/2O9QAk+eWOwoWs3adQLGjXYGQv6svCPBDgvmaQKeOCNOT4/JMiL82gLtMkUvGawANQGVYTWoGGcn9i3+G5Sq8O0rjnM8aHk/a8PPBnBoXcHLPbWK5vTH6nFv6rCzomPsecvPJDO6y9juCT4moMRo2kVfA7B8JW/m6HOnBNukjFOWtbq+Jyt2xj5yUEIUScbp7B+C0+umv6h4ugdZmkwRw2WtMZDvRSSo6KBcRc0iaUsvxOIA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYYPR01MB7086.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(186003)(107886003)(122000001)(55016003)(4326008)(26005)(5660300002)(9686003)(6506007)(7696005)(53546011)(38070700005)(38100700002)(86362001)(66476007)(54906003)(316002)(71200400001)(508600001)(33656002)(52536014)(2906002)(8676002)(83380400001)(76116006)(8936002)(66946007)(64756008)(66446008)(66556008)(6916009)(44832011);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?akpaWG03TDhnRVJaSzhhQ2xOZWNiZ29oaDgxamU2WTl5K2lUSkxnMDc5M0ZM?=
- =?utf-8?B?TUYzditHVmRMMzZubWx3NWwyQmg4bWlZMzkyTVJTakZNZ1hIYTFzSktoU3RE?=
- =?utf-8?B?bW43VVlOOUVFSTFpdjl3TFhtaHNEeDlkYUNDVHJtNmRxODR0UWtDT0ZBMTRD?=
- =?utf-8?B?M1poMGlNUm9mV25xeGtVdWlBUnI5cnRwOVlRU3JiejVpNkhSdDRhL2lLYkVG?=
- =?utf-8?B?cFptNUlQTWdOZjVWVlZFLzFxR0lGa0Jva1pxaUpnNy9Td2NWcmZqUGJ6MldK?=
- =?utf-8?B?WFIvcGRCcUNsbVlORzkrMHB1cjFDV09MRllZbFNETWhraERsU1hNQlBMWENj?=
- =?utf-8?B?d3IwcVhOM2pzUnpVZSt4bFpDSlN3a2dyNi9sMUdnZnFMaFNYdjNhQ3poNzVF?=
- =?utf-8?B?MWprN1FYcGtIUm9scjlKZmtEMVBTa3ZPZjNNU0VwQW5lMXFRUlVJemJIRGpM?=
- =?utf-8?B?YmlSVThPYlFEMVlPaGZneS90RVJEMkFTelBCc2hSZmdUUnVybXpCdmFPd091?=
- =?utf-8?B?Wm0yMWpOcW44bm1qRVYvMW11V3U0RCtRZ1lnWXNaTnYwOVZaNk43S0o0Njd0?=
- =?utf-8?B?bzlJMXNZZ2FtdE42ellMOHZMS2NSRjJaejJoOENSNzNsdDZmVVBjTGN0SDNE?=
- =?utf-8?B?RWROdit3Q3BIdkZxbHVxT052VDN5ZXhZSGxUZDA1dWhqZUo5cS9EVW1KOGJ1?=
- =?utf-8?B?cXhnZjBadkFkUFgweGJRTjh2dnBUSmJVT09sWU00U0M4YXJzYW94WFp0VEJ5?=
- =?utf-8?B?RS9XaEVFVzVmbU1XQktXdGd2dFFLKytkaHZpb3BYTEovenZoTDNXVlBWblQv?=
- =?utf-8?B?cWNiZGlCbmpXbVlaRldlVmhKdWRKZUpWbEh0blhncEJpdGdHZWxzRUt4V29O?=
- =?utf-8?B?WGpHTTlLcFJVZVg5dUdQak1EVXpxMnhlWWlxTC83OVUyTWZtcTE2aFdGZzRL?=
- =?utf-8?B?TnVReDBuQnJZUFQvNDNHSGZwV2ZvTENjQzhQclFwSllPOTRxTDB2YTcvZXEw?=
- =?utf-8?B?MkxaRG1jT2IxS0R6QitaUkVXb0lISmpObFZoN010QTRUZm51ZnNMcjlnK2xO?=
- =?utf-8?B?SXdWM0lPWFdubnpOZW1rQTJhMDMzQ1ZrdkdSbDdOSCszVzNHNG1VcnEvdUd5?=
- =?utf-8?B?QUdleVMxK2RINmVwT1JMYmsyVUJCM3lGU0JJSTdtczBCL1hSb1VjNWlXbXE2?=
- =?utf-8?B?SWZwZzR0Q0I0UTVraU5IU0FEM3hXNkZHdFVwcVNOSlRDdVR2d2RLR3FPMFdt?=
- =?utf-8?B?dnJWQXJZSUoreEwzNUYyWFlBRVFKLzBFaGpoczRyZzU4N0dGNTRGUW83MFBY?=
- =?utf-8?B?OXc3TExGRXJZcmRWMHAzdE9qdG1oR1k0VTZBamZnQTFYM0ZVMHI3QURDbWkx?=
- =?utf-8?B?cDdTenJQdU8wKzFqWTRjaForVFpYVWx1bFlwbC9rbStIY3VtWUJ1WGpWUFFF?=
- =?utf-8?B?OGJkTGg5ZlhpSFh3V0JqYmp3TFZES2ZWUTVqLzRJZ0ZwNFRGM1c3d0pjaDF3?=
- =?utf-8?B?MXZ4V0pyenBtejdtU1psME96L2p4VXBYWklZYmtKQmVUVm1yVkZ4NE9oTE1D?=
- =?utf-8?B?aU84ZmpVZE03MlJPUVV2QkJGMEZuWGhEMHI2SHplM095Q0RhckJwWE9DMjdD?=
- =?utf-8?B?Ni9zTytwTGd2d2NkWEFKVDY3YkM4alVuR3lNdE43QTUwSG5OSDE1ZnZQMk5M?=
- =?utf-8?B?WHlzTDFxc3gzMzFNR3BRQ3hEQ0hWbkFmYVFFbm1vWlVzd25RUXNWT0NMZzNw?=
- =?utf-8?B?eWtocXU3ZllVdkRMaG5paXZtME9jZzVVVDRPaFN2OFp2T3RkalM3ZVZDSUFR?=
- =?utf-8?B?Uk9WYzk1aWg2aUhIdCt5K3dYeU83MmI0U3BrOGlHZzlhcmZLa25JNkVsQzZ4?=
- =?utf-8?B?bU5RZ00vSnpBY0JBMXFVVU1uWmFWRTVOU0w5aHN2YlUwQ1g3WmptSWFQZmpp?=
- =?utf-8?B?WW9ZNzk2R1FFQmFIL1BIUnRVdDRRWmRpY3IxMEQ3NFhIUGZaNVhXdGIzWXkx?=
- =?utf-8?B?LzUyOHd6YVA2WGNkVHdzZWZ3K2pFY3dFUU0yNzVJVGk2NUpuTU5oM29vbEVn?=
- =?utf-8?B?ZHh5eTV3cTZCZDB1ZG5oSGlvTUh2cWNwWGR0QUxQYlVuNjdsYklMN1V4UHFq?=
- =?utf-8?B?THRqNWZ0OEVTbFJXbFlCemg1ZVdhLzNtZ21KV1NlSFBDVEVBa2hXRDVJQ1JL?=
- =?utf-8?B?VUdpS05xQXBBdlhoZk9wZ0VRWklpQjBwdjQ1cS9OOS9mMDZlcHpKbmFSUnU0?=
- =?utf-8?B?Wit5T01mR21nNk80ZzhKUzFjUDVYTnpwSmhKQjJwSGErWFVJblA0N0FsSGwv?=
- =?utf-8?B?VTY2R2FOckJvR3ZJdUQ1THEzNzRnZlFUK29HN2VhMzYxQVJtVmZSTldMZTh6?=
- =?utf-8?Q?wbcdln6bcpg5hKJk=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S244586AbiETJxe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 05:53:34 -0400
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EB851498DD
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 02:53:32 -0700 (PDT)
+Received: from epcas1p3.samsung.com (unknown [182.195.41.47])
+        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20220520095328epoutp02cb90b3e1ad65684871e705bab9b9ade6~wx343AAXd2061420614epoutp02h
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 09:53:28 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20220520095328epoutp02cb90b3e1ad65684871e705bab9b9ade6~wx343AAXd2061420614epoutp02h
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1653040408;
+        bh=nbJ7UWW7ivT1HIaQuG8XTTy89+C6/yNHA4oAaEHtNqs=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=V3JzrirJotMovsJofUdAh95aoFGDv3Kvn5zXNx7JDz+7J43qyRV2YJU2gRNboMSfC
+         JOKcO1SfBzpXldnGoD8kTdh6NfJR/nBpNwd39r9qILovB01stwutnnAPQNj31Enkf9
+         gv36hxnWgZvNuImeIoYZMJwinbHnWKine5qhLKgg=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas1p3.samsung.com (KnoxPortal) with ESMTP id
+        20220520095327epcas1p351ae2febf4395766a8d314ee8534e14e~wx34RoyZu3084430844epcas1p3T;
+        Fri, 20 May 2022 09:53:27 +0000 (GMT)
+Received: from epsmges1p1.samsung.com (unknown [182.195.36.136]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4L4MVZ1NhVz4x9Q0; Fri, 20 May
+        2022 09:53:26 +0000 (GMT)
+Received: from epcas1p3.samsung.com ( [182.195.41.47]) by
+        epsmges1p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+        E1.23.10063.51567826; Fri, 20 May 2022 18:53:26 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas1p4.samsung.com (KnoxPortal) with ESMTPA id
+        20220520095325epcas1p4ad7d5c5e4cff944f6f67a5bd0ba9af87~wx32YnA131083610836epcas1p47;
+        Fri, 20 May 2022 09:53:25 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20220520095325epsmtrp2eb3f663933e317e81df6ef23884b9aa4~wx32WOKXk2199021990epsmtrp2Q;
+        Fri, 20 May 2022 09:53:25 +0000 (GMT)
+X-AuditID: b6c32a35-1f1ff7000000274f-55-628765154624
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        21.46.11276.51567826; Fri, 20 May 2022 18:53:25 +0900 (KST)
+Received: from [10.113.221.102] (unknown [10.113.221.102]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20220520095324epsmtip27687a67ded3390f89917c98115a2612e~wx31xvksN0376803768epsmtip2g;
+        Fri, 20 May 2022 09:53:24 +0000 (GMT)
+Subject: Re: [PATCH v25 0/7] soc: mediatek: SVS: introduce MTK SVS
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     Kevin Hilman <khilman@kernel.org>,
+        Roger Lu <roger.lu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Fan Chen <fan.chen@mediatek.com>,
+        Charles Yang <Charles.Yang@mediatek.com>,
+        Angus Lin <Angus.Lin@mediatek.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jia-wei Chang <jia-wei.chang@mediatek.com>,
+        =?UTF-8?B?UmV4LUJDIENoZW4gKOmZs+afj+i+sCk=?= 
+        <rex-bc.chen@mediatek.com>
+From:   Chanwoo Choi <cw00.choi@samsung.com>
+Organization: Samsung Electronics
+Message-ID: <eacf7a67-bc64-a764-e23d-c733a4666b8a@samsung.com>
+Date:   Fri, 20 May 2022 19:20:00 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:59.0) Gecko/20100101
+        Thunderbird/59.0
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYYPR01MB7086.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: adb9860e-2f66-4600-c3e3-08da3a4775d5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 May 2022 09:59:42.0067
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: bJ6mXxtDF3qz75Jz6bqR+OfR6HN+glVeuWBNyFkcCeSNVCqTjVS027AYAMXsQBmqdVtxQ6aEhs7NkOUfHFUxm+TmPHad1tBjWX0w18YGtk0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB8737
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CAGXv+5EsgiXCpe-8H0cQ=qm_Nq+yfM_a4b1L=hOFP6mcwfZymw@mail.gmail.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Tf1BUVRTHu28f+wNm9bXy47JqwlNrpIBd2aXLAmbpyHOsicbqD2cMH/Bg
+        d9hf7Y8mf1RbECyGCjEEgiEKGpEhrMSvYBkJW4jQcBUVWrRZDIEQExcRstplsfjve+75nHvO
+        9945XJYgkyPkKtQGRqemlSTbF2/8YUNkeCCTkyxquIehhx9XcpCrxISj410XfZB90MVCv8x/
+        zUYzv85jyNZRxUG3zzkxZHEOuLOtx9jIntkP0PShLoBGTvyMoVPX+jH0SVYU+mO2D0OO4W4c
+        3a8148jaW8xCn7Z3cZDdWc9Gfw/U46gk2+6zOYg6U34GUGWmfpxqKXVwqAqLkbLU5LKpc1Uf
+        UVk9HTh15LGIanlo4lC2600YNW15JtFvV0acnKFTGV0Io07RpCrU6fHkjp1JW5Kk0SJxuDgG
+        vUiGqGkVE09ufTUxfJtC6TZMhrxHK43uo0RarycjN8XpNEYDEyLX6A3xJKNNVWql2gg9rdIb
+        1ekRasYgE4tEG6VucE+GvG/4Aa4tlLxf9VuVjwl0P38Q8LiQkMDvy0+Ag8CXKyCaASyrb8G9
+        wX0Ac1y1i5kZAMfqRjlPSj6vdrI9WkC0A3ijguuFpgAcsOYvJFYQr8ChjlG35nL9ifWwtW2l
+        h2ERTjZ0uBpxD8MmwmDHnesL/HIiFF6ddQKP5hOb4Mz4aR+Pxt21RQ7bAhNAvA17GrMWmadh
+        z9GRhXt4xBvw5g3vcCwiCA6OHMe8eg1smjzG8jSGRBMPftNdj3kdbIVjjiOLblbAcVvDohbC
+        6bvtbG9BJoCmO0PAG+QBeOH3w7iXioIdpwoxjzUWsQGebY30HofClvkvgbfzMnjXlefjQSDB
+        h+ZsgRdZC+23HIszBMPKnFx2PiBLl/gpXeKhdImH0v+bVQC8BgQyWr0qndGLteL/vjtFo7KA
+        hW0IkzaDgsl7EZ0A44JOALks0p8PVFnJAn4qvXcfo9Mk6YxKRt8JpO4XLmAJA1I07nVSG5LE
+        khiRJHpjlASJo8VkEL/mi15aQKTTBiaDYbSM7kkdxuUJTRhD15kTRMIPFRPpia2vxc6NzTVs
+        W5ZA7/7rhVV1Mrbv/urpbwvXxV147JpYK/hn7Cr1YGi1ZM2W2uL8tFnZ4YwDlyb+7F3nGqwp
+        j5nIV2Szz4cro3ekJXzl985N3+jtO+tsac9dCjqbrH4rvSCsrUHRV9C564OiXL7xO2vfnK16
+        dHPsT8+e16mQ+U1EBBeVBfvfqtt+bVA2+bJs97tiILHe9ivMazOHvq7jXUyLuHK6uUTZH9eO
+        hTqNllj71KNHJ1f+iPZM4nq1YIalKM6RFq+SZ/UIzcvrM6OeCjR1W0asq6+s/0w63Ht5/5T1
+        pQOu4TX79soukwFHx08ylXNBvvJA3gSJ6+W0OIyl09P/Aj40N/eWBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrLIsWRmVeSWpSXmKPExsWy7bCSvK5oanuSwfKvghbfGxezW3yd0cBi
+        Mf/IOVaLy7e+Mltc+L2SzeLbnd9MFsf3L2G3eLr5MZPFpsfXgLK75rBZXG6+yGjxufcIo8WT
+        hWeYLJZev8hk0dRibPHmx1kmi7v3TrBYfFrXwWKx7/R0ZovWvUfYLS4/3shm8e/aRhaLGW2X
+        WR3EPdbMW8PoMbvhIovHzll32T0WbCr12LSqk81j85J6j5aT+1k8+v8aeOz83sDucfzGdiaP
+        z5vkArijuGxSUnMyy1KL9O0SuDLO3vvCUjDZpGLJwyWsDYwntLsYOTkkBEwkJq14zNbFyMUh
+        JLCbUeLbvgWsEAlJiWkXjzJ3MXIA2cIShw8XQ9S8ZZSYOOELC0iNsICTxO39z9lAakQEVCV2
+        7ZEGqWEWeMomcfXTARaIhm/MEvuerGAHaWAT0JLY/+IGG4jNL6AocfXHY0YQm1fATuLbq2Vg
+        i1mABk29exysRlQgTGLnksdMEDWCEidnPgFbzCkQKHH/5nOwmcwC6hJ/5l1ihrDFJW49mc8E
+        YctLbH87h3kCo/AsJO2zkLTMQtIyC0nLAkaWVYySqQXFuem5xYYFhnmp5XrFibnFpXnpesn5
+        uZsYwSlCS3MH4/ZVH/QOMTJxMB5ilOBgVhLhZcxtSRLiTUmsrEotyo8vKs1JLT7EKM3BoiTO
+        e6HrZLyQQHpiSWp2ampBahFMlomDU6qBKfSI4fM6my61S51vP8jOkus+Z+iXWtfuuDLOYZ0z
+        w4z0px2qnOcsMn9rzrs6Z0P3YU3XIHuZTznT96qcK0tmlNuw1Wfro9dtzdPYZA73feWPadVN
+        WDvxnLq5U6iU66/0vb7zgtPqpyQlF61Mm1jHXc2hYvtZ2S+5bWqo0I5wdYb8me/PHU0v4wnb
+        6Oqn4Ox9udtq2+4t/doBEet7fUpP5nmdqT2aLa82ralnRqzdh1VzlghdWsCcKqV74fubLxGe
+        XwIrWydxWkUePrDnvCuvh3yQyotre79YvTqfNmFzYvQUC6YFwWneotxp5l2f+R277ed9uufX
+        ncvvzHOyMWz29IfZtxJyhVZNEL4XGKLEUpyRaKjFXFScCABX1kywgAMAAA==
+X-CMS-MailID: 20220520095325epcas1p4ad7d5c5e4cff944f6f67a5bd0ba9af87
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: SVC_REQ_APPROVE
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220519182512epcas1p3020bd4713580c9244f759971b8bd2c3a
+References: <20220516004311.18358-1-roger.lu@mediatek.com>
+        <CAGXv+5GSdWPZe3fNpBJ_WW0zCL8Skg6fHx9ATxaKU1hyMEt2Ww@mail.gmail.com>
+        <7h4k1ndaui.fsf@baylibre.com> <7hy1yzbtb7.fsf@baylibre.com>
+        <CAGXv+5GT=3m=pVPwUOWR42BR=emCpBXvvoAiRV7YKt2kEKWdAQ@mail.gmail.com>
+        <CGME20220519182512epcas1p3020bd4713580c9244f759971b8bd2c3a@epcas1p3.samsung.com>
+        <7hmtfdbcsc.fsf@baylibre.com>
+        <5a1767dc-ba2d-4de5-d8fe-2f308d3318a9@samsung.com>
+        <CAGXv+5EsgiXCpe-8H0cQ=qm_Nq+yfM_a4b1L=hOFP6mcwfZymw@mail.gmail.com>
+X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgR2VlcnQsDQoNClRoYW5rcyBmb3IgeW91ciByZXZpZXchDQoNCk9uIDE5IE1heSAyMDIyIDEx
-OjIwIEdlZXJ0IFV5dHRlcmhvZXZlbiB3cm90ZToNCj4gT24gVHVlLCBNYXkgMTcsIDIwMjIgYXQg
-MTA6MTcgQU0gUGhpbCBFZHdvcnRoeSA8cGhpbC5lZHdvcnRoeUByZW5lc2FzLmNvbT4NCj4gd3Jv
-dGU6DQo+ID4gRW5hYmxlIEV0aGVybmV0IGludGVyZmFjZSBvbiBSWi9WMk0gRVZLLg0KPiA+DQo+
-ID4gU2lnbmVkLW9mZi1ieTogUGhpbCBFZHdvcnRoeSA8cGhpbC5lZHdvcnRoeUByZW5lc2FzLmNv
-bT4NCj4gPiBSZXZpZXdlZC1ieTogQmlqdSBEYXMgPGJpanUuZGFzLmp6QGJwLnJlbmVzYXMuY29t
-Pg0KPiA+IC0tLQ0KPiA+IHYyOg0KPiA+ICAtIE5vIGNoYW5nZQ0KPiANCj4gVGhhbmtzIGZvciB5
-b3VyIHBhdGNoIQ0KPiANCj4gPiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL3JlbmVzYXMvcjlh
-MDlnMDExLXYybWV2azIuZHRzDQo+ID4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9yZW5lc2Fz
-L3I5YTA5ZzAxMS12Mm1ldmsyLmR0cw0KPiA+IEBAIC00MiwzICs0MywxNiBAQCAmZXh0YWxfY2xr
-IHsNCj4gPiAgJnVhcnQwIHsNCj4gPiAgICAgICAgIHN0YXR1cyA9ICJva2F5IjsNCj4gPiAgfTsN
-Cj4gPiArDQo+ID4gKyZhdmIgew0KPiA+ICsgICAgICAgcmVuZXNhcyxuby1ldGhlci1saW5rOw0K
-PiA+ICsgICAgICAgcGh5LWhhbmRsZSA9IDwmcGh5MD47DQo+ID4gKyAgICAgICBwaHktbW9kZSA9
-ICJnbWlpIjsNCj4gPiArICAgICAgIHN0YXR1cyA9ICJva2F5IjsNCj4gPiArDQo+ID4gKyAgICAg
-ICBwaHkwOiBldGhlcm5ldC1waHlAMCB7DQo+ID4gKyAgICAgICAgICAgICAgIGNvbXBhdGlibGUg
-PSAiZXRoZXJuZXQtcGh5LWlkMDAyMi4xNjIyIiwNCj4gDQo+IE15IHNjaGVtYXRpY3Mgc2F5cyBS
-VEw4MjExRkctQ0csIG5vdCBNaWNyZWwgS1NaOTAzMT8NCj4gSS5lLiAiZXRoZXJuZXQtcGh5LWlk
-MDAxYy5jOTE2Ij8NClllcywgeW91IGFyZSBjb3JyZWN0LCBJIGhhdmUgc2luY2UgZHVtcGVkIHRo
-ZSBpZCBpbiBnZXRfcGh5X2MyMl9pZCgpLg0KU29ycnksIEkgc2hvdWxkIGhhdmUgY2hlY2tlZCB0
-aGF0IHRoZSBCU1Agd2FzIGNvcnJlY3QuDQoNCj4gQXMgdGhlcmUgaXMgbm8gUEhZIHJlc2V0IHRv
-IGRlYXNzZXJ0LCB5b3UgY2FuIHJlbW92ZSB0aGUgY29tcGF0aWJsZQ0KPiBwcm9wZXJ0eSwgYW5k
-IGNoZWNrIHdoYXQncyByZWFkIGJhY2sgZnJvbSB0aGUgUEhZIElEIHJlZ2lzdGVycy4NCj4gDQo+
-IEknZCBzYXkgeW91IGNhbiBqdXN0IGRyb3AgdGhlIGNvbXBhdGlibGUgdmFsdWUgY29tcGxldGVs
-eSwgYnV0IHlvdSB3b3VsZA0KPiBoYXZlIHRvIHJlYWRkIGl0IGFueXdheSB3aGVuIHRoZSBQSFkg
-cmVzZXQgaXMgZG9jdW1lbnRlZC4NCj4gDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAiZXRoZXJuZXQtcGh5LWllZWU4MDIuMy1jMjIiOw0KPiA+ICsgICAgICAgICAgICAgICByZWcg
-PSA8MD47DQo+IA0KPiBPbmNlIHlvdSBoYXZlIEdQSU8vSVJRIHN1cHBvcnQsIHlvdSBjYW4gYWRk
-IHRoZSBpbnRlcnJ1cHRzIGFuZCByZXNldHMNCj4gcHJvcGVydGllcywgcG9pbnRpbmcgdG8gUDE2
-XzEyIHJlc3AuIFAxN18wMC4NCldpbGwgZG8hDQoNClRoYW5rcw0KUGhpbA0K
+Hi Kevin,
+
+On 5/20/22 11:42 AM, Chen-Yu Tsai wrote:
+> On Fri, May 20, 2022 at 9:28 AM Chanwoo Choi <cw00.choi@samsung.com> wrote:
+>>
+>> Hi Kevin, Chen-Yu,
+>>
+>> On 5/20/22 3:25 AM, Kevin Hilman wrote:
+>>> Chen-Yu Tsai <wenst@chromium.org> writes:
+>>>
+>>>> n Wed, May 18, 2022 at 8:03 AM Kevin Hilman <khilman@kernel.org> wrote:
+>>>>>
+>>>>> Kevin Hilman <khilman@kernel.org> writes:
+>>>>>
+>>>>>> Chen-Yu Tsai <wenst@chromium.org> writes:
+>>>>>>
+>>>>>>> On Mon, May 16, 2022 at 8:43 AM Roger Lu <roger.lu@mediatek.com> wrote:
+>>>>>>>>
+>>>>>>>> The Smart Voltage Scaling(SVS) engine is a piece of hardware
+>>>>>>>> which calculates suitable SVS bank voltages to OPP voltage table.
+>>>>>>>> Then, DVFS driver could apply those SVS bank voltages to PMIC/Buck
+>>>>>>>> when receiving OPP_EVENT_ADJUST_VOLTAGE.
+>>>>>>>>
+>>>>>>>> 1. SVS driver uses OPP adjust event in [1] to update OPP table voltage part.
+>>>>>>>> 2. SVS driver gets thermal/GPU device by node [2][3] and CPU device by get_cpu_device().
+>>>>>>>> After retrieving subsys device, SVS driver calls device_link_add() to make sure probe/suspend callback priority.
+>>>>>>>>
+>>>>>>>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git/commit/?h=opp/linux-next&id=25cb20a212a1f989385dfe23230817e69c62bee5
+>>>>>>>> [2] https://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git/commit/?h=opp/linux-next&id=b325ce39785b1408040d90365a6ab1aa36e94f87
+>>>>>>>> [3] https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/commit/?h=v5.16-next/dts64&id=a8168cebf1bca1b5269e8a7eb2626fb76814d6e2
+>>>>>>>>
+>>>>>>>> Change since v24:
+>>>>>>>> - Rebase to Linux 5.18-rc6
+>>>>>>>> - Show specific fail log in svs_platform_probe() to help catch which step fails quickly
+>>>>>>>> - Remove struct svs_bank member "pd_dev" because all subsys device's power domain has been merged into one node like above [3]
+>>>>>>>>
+>>>>>>>> Test in below environment:
+>>>>>>>> SW: Integration Tree [4] + Thermal patch [5] + SVS v25 (this patchset)
+>>>>>>>> HW: mt8183-Krane
+>>>>>>>>
+>>>>>>>> [4] https://protect2.fireeye.com/v1/url?k=847bae75-e5f0bb43-847a253a-000babff9b5d-0b6f42041b9dea1d&q=1&e=37a26c43-8564-4808-9701-dc76d1ebbb27&u=https%3A%2F%2Fgithub.com%2Fwens%2Flinux%2Fcommits%2Fmt8183-cpufreq-cci-svs-test
+>>>>>>>
+>>>>>>> I've updated my branch to include all the latest versions of the relevant
+>>>>>>> patch series:
+>>>>>>>
+>>>>>>> - anx7625 DPI bus type series v2 (so the display works)
+>>>>>>> - MT8183 thermal series v9 (this seems to have been overlooked by the
+>>>>>>> maintainer)
+>>>>>>> - MTK SVS driver series v25
+>>>>>>> - devfreq: cpu based scaling support to passive governor series v5
+>>>>>>> - MTK CCI devfreq series v4
+>>>>>>> - MT8183 cpufreq series v7
+>>>>>>> - Additional WIP patches for panfrost MTK devfreq
+>>>>>>
+>>>>>> Thanks for preparing an integration branch Chen-Yu.
+>>>>>>
+>>>>>> I'm testing this on mt8183-pumpkin with one patch to add the CCI
+>>>>>> regulator[1], and the defconfig you posted in a previous rev of this
+>>>>>> series, but the CCI driver still causes a fault on boot[2] on my
+>>>>>> platform.
+>>>>>>
+>>>>>> I mentioned in earlier reviews that I think there's potentially a race
+>>>>>> between CCI and SVS loading since they are co-dependent.  My hunch is
+>>>>>> that this is still not being handled properly.
+>>>>>
+>>>>> Ah, actually it's crashing when I try to boot the platform with
+>>>>> `maxcpus=4` on the cmdline (which I have to do because mt8183-pumpkin is
+>>>>> unstable upstream with the 2nd cluster enabled.)
+>>
+>> This warning message is printed by 'WARN_ON(cpufreq_passive_unregister_notifier(devfreq))'
+>> on devfreq passive governor.
+>>
+>> If the cpufreq drivers are not probed before of probing cci devfreq driver
+>> with passive governor, passive governor shows this warning message.
+>> Because passive governor with CPUFREQ_PARENT_DEV depends on the cpufreq driver
+>> in order to get 'struct cpufreq_policy'[2].
+>>
+>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git/tree/drivers/devfreq/governor_passive.c?h=devfreq-testing#n339
+>> [2] https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git/tree/drivers/devfreq/governor_passive.c?h=devfreq-testing#n282
+>>
+>> But, as I knew, this message might not stop the kernel. Just show the warning
+>> message and then return -EPROBE_DEFER error. It means that maybe try to
+>> probe the cci devfreq driver on late time of kernel booting
+>> and then will be working. But, I need the full kernel booting log
+>> and the booting sequence of between cpufreq and cci devfreq driver.
+> 
+> Maybe just use a standard dev_warn() instead? WARN_ON causes all sorts
+> of panicking in developers' minds. :p
+> 
+>> In order to fix your issue, could you share the full booting log?
+>> And if possible, please explain the more detailed something about this.
+> 
+> The shortened version is that on an 8 core system, with maxcpus=4,
+> only the first four cores are booted and have cpufreq associated.
+> I've not actually used this mechanism, so I don't really know what
+> happens if the other cores are brought up later with hotplug. Is
+> cpufreq expected to attach to them?
+> 
+> Maybe Kevin can add some more details.
+> 
+> 
+> ChenYu
+> 
+> 
+>>>>>
+>>>>> The CCI driver should be a bit more robust about detecting
+>>>>> available/online CPUs
+>>>>
+>>>> This all seems to be handled in the devfreq passive governor.
+>>>
+>>> Well, that's the initial crash.  But the SVS driver will also go through
+>>> its svs_mt8183_banks[] array (including both big & little clusters) and
+>>> try to init SVS, so presumably that will have some problems also if only
+>>> one cluster is enabled.
+>>>
+>>>> And presumably we'd like to have CCI devfreq running even if just one
+>>>> core was booted.
+>>>
+>>> Yes, I assume so also.
+>>>
+>>>> Added Chanwoo for more ideas.
+>>>
+>>> OK, thanks.
+>>>
+>>> Kevin
+
+
+I tested the passive governor with my temporary test code
+on odroid-xu3 which contains the big.LITTLE cluster (Octa-core).
+
+
+[Sequence of cpufreq/devfreq driver]
+1. Turn on all cpus
+2. Probed cpufreq driver
+3. Probed devfreq driver using passive governor with CPUFREQ_PARENT_DEV
+
+In my test case, there are no warning message during kernel booting.
+Also when scaling the cpu frequency of cpus of big.LITTLE clusters,
+temporary devfreq driver receives the notfication and then
+calculate the target frequency of devfreq device by iterating online cpu.
+
+If there are any h/w constraints on your case, please let me know.
+
+-- 
+Best Regards,
+Chanwoo Choi
+Samsung Electronics
