@@ -2,85 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DB3052EB02
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 13:40:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51F5D52EB07
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 13:41:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348626AbiETLkd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 07:40:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37120 "EHLO
+        id S236544AbiETLlq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 07:41:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348673AbiETLkS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 07:40:18 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09FF315BAF4
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 04:40:17 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id f4so13794288lfu.12
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 04:40:16 -0700 (PDT)
+        with ESMTP id S236511AbiETLlp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 07:41:45 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF22E27FF9
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 04:41:39 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id bq30so13883195lfb.3
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 04:41:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=QjR0cp2E5WyeJeKKWqWkDDhLDsPyWHtfSubP9NbP2ok=;
-        b=z7lXIzJipVL1DFjw5V22zxLyciQIqvoAMmbg7hOziOU/QJtn/Nn4BjAJy9G7UPMOIf
-         D7AWXzPpElU4KE2dkNShGr9iIvKaCppr/JYmr0r/qikXKmYBakV0eJnI1GKEF7g2kzX+
-         b0LItq6ahMXGbM0j2IVXIz3+apmqY58odUSjsuL5re7vuegzZtE+EQx6i54tzzbW5QFa
-         z3j4kGhZc3PBLXDk8ksG8NfkqkMdoNGtZkSE7CQOegiIaPLpqVT7R8kSwooxKFS3mfMO
-         etHmBxh7C7+TisQCkjLaUb9MvkdyI/LDulCohSLfDIdjvBUNSNCiAqhg76F+vVrNGgO8
-         5wTw==
+        bh=5jC48Ht+Bcyme4Q7fEnWzFy8YbanLkE++0WXdYNkUu4=;
+        b=ZoKgeB5FjwyDJ75wjq4ksZf9hKTd50hwZnEqNvTHYsaD5jWzg7FC8c0LAWWTIzy/NP
+         LafKvOr7q4axNuz1/LBQvKY/ZxQAqjYegtJQskJZ8HAXX7wrQOtIrF9oa520cm/lQ2sy
+         Pe0uMM0Rf7aY2sx9WnOoLDtK/J4ZsUANi+aUKi0GZNyCsS9x8BYQzckSq2F8OQv440t2
+         JVZFP7njEw4vxM6EkIjLd1Mv+D+fxAxCYtalNvj+3NhbCu9ulXuaop1Hhsbizisii8tF
+         aZBY+NAjTMy/R0Lmy9IDqRGKDtP8lwxLx4KPH89g7Z4B5oU0tNgL1uadKZW7x1P929oU
+         GC9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=QjR0cp2E5WyeJeKKWqWkDDhLDsPyWHtfSubP9NbP2ok=;
-        b=N0sF8cY88L1jlM4et4xhDJi3BWQG8U8Tmh2akjo40hvqQtge3FbK00EozrjJt4n7rX
-         wNde994vWBJn3UduyiwdPAmBCV178R1B1BMgewy4jZg1PSUumqpMfi4AVtXyA6aVOPB6
-         mkAGLjPDgMNNaYMbeuK7jL5VbsohYup7EaCnkJEPpEqdeyyM7b4IGWAiGDMBWkzG8jlu
-         /sU3Z3Zv2OqNlOvX4gbb+d38ATImqFGnmBxlWo57rj/6/Z37Y50pB4fujWGZ/2z/8nu3
-         3bqNzCvItRzQRTguuKDHQvQmVcUZDqNf9DHW7UJfq4s5fCpSPgKXJi/cKFYPeFy+Fj2V
-         u6tQ==
-X-Gm-Message-State: AOAM531Mi28ehHLVacgiX/obSY5ECyHL9PZ0h+QWDToYPekDy/QsHjXy
-        Bw3FWhdJc7okOGGjWo6QkzcUBQ==
-X-Google-Smtp-Source: ABdhPJxd6iblFhYvucmLequOAvrsZJv7bQpp9hEpKuhaf8ii9yoAX9DyoEh/rGP+ykc/8mrj7AJ9DA==
-X-Received: by 2002:a05:6512:1287:b0:473:b904:b27c with SMTP id u7-20020a056512128700b00473b904b27cmr6729249lfs.361.1653046815359;
-        Fri, 20 May 2022 04:40:15 -0700 (PDT)
+        bh=5jC48Ht+Bcyme4Q7fEnWzFy8YbanLkE++0WXdYNkUu4=;
+        b=bVA2MpXbV/xRgFf6Se18EUA0GsR7sE2xxWmDH1SnFhAwY5PJkvRogW1pCxStCxyaij
+         eaB0oWeMnU5AileoZGdzoEgnSEH6HlSmVooqgJViXwfBy9CQflqdwYGGsWQPwF422dV0
+         zMgBqjN9F/AkaB18nrpWS9srmkmVj9GwSEl/dRvXbD0eO47bta1GCMiGZ12NTkDdZmmS
+         6r7y9QwtlqYYqjmvX1sT8WdJLeiYWb3lNPKjFag4DmErne+Wn066dDfopMxXII5Pufrk
+         hLx0Ivzz9iDSm4U01RfV4v1QowhcitF5TpN0BJGeNDuhzgBHuzsT2MbJ2lA+rIPsjaQe
+         9Pgw==
+X-Gm-Message-State: AOAM533TdPnap9V08bRye0R4UmHoy/PVBzhpqOwL5QsmmuSBZYsQTiGG
+        X1C2VlA35E7kqcHeCabyhSWq4g==
+X-Google-Smtp-Source: ABdhPJwiNxvzF9ggZuaPT1v3jo3hAgqnvSiiwWt+/3HYd82G69B7oqELDm0x9dVgJhTLOYzdOZ0eYA==
+X-Received: by 2002:a05:6512:2146:b0:477:c619:ec2d with SMTP id s6-20020a056512214600b00477c619ec2dmr6044077lfr.179.1653046898235;
+        Fri, 20 May 2022 04:41:38 -0700 (PDT)
 Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id q1-20020ac25fc1000000b0047255d210eesm630756lfg.29.2022.05.20.04.40.13
+        by smtp.gmail.com with ESMTPSA id a9-20020a2e9809000000b0024f3d1daeebsm283070ljj.115.2022.05.20.04.41.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 May 2022 04:40:14 -0700 (PDT)
-Message-ID: <b087c34f-0e2f-edd0-a738-3ffc2853a41b@linaro.org>
-Date:   Fri, 20 May 2022 13:40:13 +0200
+        Fri, 20 May 2022 04:41:37 -0700 (PDT)
+Message-ID: <edfc8e63-74d0-0f4c-20a0-7e6c8d7d9a5a@linaro.org>
+Date:   Fri, 20 May 2022 13:41:34 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH 2/3] dt-bindings: usb: atmel: Add Microchip LAN966x
- compatible string
+Subject: Re: [PATCH 7/8] hwmon: (lm90) read the channel's label from
+ device-tree
 Content-Language: en-US
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20220513105850.310375-1-herve.codina@bootlin.com>
- <20220513105850.310375-3-herve.codina@bootlin.com>
- <8f0d4127-7e66-cf50-21c9-99680f737e30@linaro.org>
- <20220520133426.3b4728ae@bootlin.com>
+To:     Slawomir Stepien <sst@poczta.fm>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, przemyslaw.cencner@nokia.com,
+        krzysztof.adamski@nokia.com, alexander.sverdlin@nokia.com,
+        Slawomir Stepien <slawomir.stepien@nokia.com>
+References: <20220520093243.2523749-1-sst@poczta.fm>
+ <20220520093243.2523749-8-sst@poczta.fm>
+ <bb833b7d-d3c1-0f63-019c-439ed0ec9aad@linaro.org>
+ <Yod07jXUCEQIYcRj@t480s.localdomain>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220520133426.3b4728ae@bootlin.com>
+In-Reply-To: <Yod07jXUCEQIYcRj@t480s.localdomain>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,60 +80,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/05/2022 13:34, Herve Codina wrote:
-> On Fri, 13 May 2022 14:57:55 +0200
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> 
->> On 13/05/2022 12:58, Herve Codina wrote:
->>> The USB device controller available in the Microchip LAN966x SOC
->>> is the same IP as the one present in the SAMA5D3 SOC.
->>>
->>> Add the LAN966x compatible string and set the SAMA5D3 compatible
->>> string as a fallback for the LAN966x.
->>>
->>> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
->>> ---
->>>  Documentation/devicetree/bindings/usb/atmel-usb.txt | 3 +++
->>>  1 file changed, 3 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/usb/atmel-usb.txt b/Documentation/devicetree/bindings/usb/atmel-usb.txt
->>> index f512f0290728..a6fab7d63f37 100644
->>> --- a/Documentation/devicetree/bindings/usb/atmel-usb.txt
->>> +++ b/Documentation/devicetree/bindings/usb/atmel-usb.txt
->>> @@ -87,6 +87,9 @@ Required properties:
->>>  	       "atmel,at91sam9g45-udc"
->>>  	       "atmel,sama5d3-udc"
->>>  	       "microchip,sam9x60-udc"
->>> +	       "microchip,lan996x-udc"  
+On 20/05/2022 13:01, Slawomir Stepien wrote:
+
+>>> +static int lm90_probe_channel_from_dt(struct i2c_client *client,
+>>> +				      struct device_node *child,
+>>> +				      struct lm90_data *data)
+>>> +{
+>>> +	u32 id;
+>>> +	int err;
+>>> +	struct device *dev = &client->dev;
+>>> +
+>>> +	err = of_property_read_u32(child, "reg", &id);
+>>> +	if (err) {
+>>> +		dev_err(dev, "missing reg property of %pOFn\n", child);
+>>> +		return err;
+>>> +	}
+>>> +
+>>> +	if (id >= MAX_CHANNELS) {
+>>> +		dev_err(dev, "invalid reg %d in %pOFn\n", id, child);
+>>> +		return -EINVAL;
+>>> +	}
+>>> +
+>>> +	err = of_property_read_string(child, "label", &data->channel_label[id]);
+>>> +	if (err == -ENODATA || err == -EILSEQ) {
+>>> +		dev_err(dev, "invalid label in %pOFn\n", child);
 >>
->> No wildcards please, especially that it closely fits previous wildcard
->> (lan996x includes lan9960 which looks a lot like sam9x60...)
->>
+>> You did not make it a required property, so why failing?
 > 
-> Well, first, I made a mistake. It should be lan966x instead of lan996x.
-> 
-> This family is composed of the LAN9662 and the LAN9668 SOCs.
-> 
-> Related to the wilcard, lan966x is used in several bindings for common
-> parts used by both SOCs:
-> - microchip,lan966x-gck
-> - microchip,lan966x-cpu-syscon
-> - microchip,lan966x-switch
-> - microchip,lan966x-miim
-> - microchip,lan966x-serdes
-> - microchip,lan966x-pinctrl
+> But if you have it in device-tree, then at least inform the user that there is some problem with it.
 
-And for new bindings I pointed that it is not preferred, so already few
-other started using specific compatible.
-
-> 
-> I think it makes sense to keep 'microchip,lan966x-udc' for the USB
-> device controller (same controller on LAN9662 and LAN9668) and so
-> keeping the same rules as for other common parts.
-
-Having wildcard was rather a mistake and we already started correcting
-it, so keeping the "mistake" neither gives you consistency, nor
-correctness...
+Hm, true, the missing property would return EINVAL. Sounds good then.
+x
 
 
 Best regards,
