@@ -2,38 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDFF552EE35
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 16:32:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45B3552EE36
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 16:32:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350319AbiETOcR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1350310AbiETOcR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 20 May 2022 10:32:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46336 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350313AbiETOcQ (ORCPT
+        with ESMTP id S1350304AbiETOcQ (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 10:32:16 -0400
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 564B15AA54;
-        Fri, 20 May 2022 07:32:14 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63905169E20;
+        Fri, 20 May 2022 07:32:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1653057134; x=1684593134;
+  t=1653057135; x=1684593135;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=G0U51dIDeKS9iJa8qsaG7KUn90eS3J81yP2z2SUNTgg=;
-  b=IRh8RbE3rJIvSAKHkuuiR78CduiTvScKV2rZpQ7ELnY+DNu5QHxDJKC7
-   LGeqRvwWaZfBfRaiFS1lQLnSwRGTv+hIQ00dfXug8SbIujwfU9hHE5Zcx
-   yeMTh6R8vo3YhxFMAFASdlhAjngTeJ/VcVWK2s2pnG7sZs7ehye7Kmuh9
-   slC+H6EhZjdShIWTKicO+97iTEwykhF8TxfvfEIAB6kbJUpL94ePzF/f4
-   dF0ISlJZISd2fcJq1/BpOIydn5BzGN7cOB0eRrySChz3Aq4vvf82cozYA
-   VuxiIuA0XWcwzsfmEopD2MgP/BbIny6YeZ2Gpvim5henBv41PE1dYb02T
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10353"; a="271439339"
+  bh=7k1HLML8EiHrtt/rP2Re4XQ7J53RxaR/YSDTSazTTZk=;
+  b=g/wkxz54qfWo+hDubXtDAvqJ7IMBHI9zSqhLk8/oPpvqt6vCgPLho/NA
+   9e+ABIF6HnW5LgFfx3faRcXqTU+8APrja9upx6vFEwEZavaNfJNvN+1xz
+   fJ7QlXWL8T0uX3aS00MRPB/Qq4kAqa1mpkJIyvqMsf2hy7pq0MY9FoS7l
+   4D5Fx1zGncZQ4WsBa21e+jvaDplZe6AKwUrvaQYujxXW806OGK0sr0fJh
+   FFZ2O5XLTuZMxyKmdHwNTe+YZdZtgDqc0D8xuWKWcMbAHZ1usmJn/CHPO
+   5TzOJkJ61Xh3bZnpd2I+seHAB3iLl7sQ/vG1nXy7DXDOZtU8R71qhjsJO
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10353"; a="271439341"
 X-IronPort-AV: E=Sophos;i="5.91,239,1647327600"; 
-   d="scan'208";a="271439339"
+   d="scan'208";a="271439341"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 May 2022 07:32:10 -0700
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 May 2022 07:32:11 -0700
 X-IronPort-AV: E=Sophos;i="5.91,239,1647327600"; 
-   d="scan'208";a="662286644"
+   d="scan'208";a="662286645"
 Received: from rhweight-wrk1.ra.intel.com ([137.102.106.43])
   by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 May 2022 07:32:10 -0700
 From:   matthew.gerlach@linux.intel.com
@@ -42,9 +42,9 @@ To:     dinguyen@kernel.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org
 Cc:     Matthew Gerlach <matthew.gerlach@linux.intel.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v6 1/3] dt-bindings: soc: add bindings for Intel HPS Copy Engine
-Date:   Fri, 20 May 2022 07:32:06 -0700
-Message-Id: <20220520143208.1160506-2-matthew.gerlach@linux.intel.com>
+Subject: [PATCH v6 2/3] dt-bindings: intel: add binding for Intel n6000
+Date:   Fri, 20 May 2022 07:32:07 -0700
+Message-Id: <20220520143208.1160506-3-matthew.gerlach@linux.intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220520143208.1160506-1-matthew.gerlach@linux.intel.com>
 References: <20220520143208.1160506-1-matthew.gerlach@linux.intel.com>
@@ -62,80 +62,29 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
 
-Add device tree bindings documentation for the Intel Hard
-Processor System (HPS) Copy Engine.
+Add the binding string for the Agilex based Intel n6000 board.
 
 Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
-v6:
-  - move from soc/intel to the dma directory
-  - remove unnecessary parent device tree node from example
-
-v5:
-  - add Reviewed-by: Krzysztof Kozlowski
-
-v4:
-  - move from soc to soc/intel/
-
 v3:
-  - remove unused label
-  - move from misc to soc
-  - remove 0x from #address-cells/#size-cells values
-  - change hps_cp_eng@0 to dma-controller@0
-  - remote inaccurate 'items:' tag
+  - added Acked-by
 ---
- .../bindings/dma/intel,hps-copy-engine.yaml   | 41 +++++++++++++++++++
- 1 file changed, 41 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/dma/intel,hps-copy-engine.yaml
+ Documentation/devicetree/bindings/arm/intel,socfpga.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/dma/intel,hps-copy-engine.yaml b/Documentation/devicetree/bindings/dma/intel,hps-copy-engine.yaml
-new file mode 100644
-index 000000000000..6332305db1de
---- /dev/null
-+++ b/Documentation/devicetree/bindings/dma/intel,hps-copy-engine.yaml
-@@ -0,0 +1,41 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright (C) 2022, Intel Corporation
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/dma/intel,hps-copy-engine.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Intel HPS Copy Engine
-+
-+maintainers:
-+  - Matthew Gerlach <matthew.gerlach@linux.intel.com>
-+
-+description: |
-+  The Intel Hard Processor System (HPS) Copy Engine is an IP block used to copy
-+  a bootable image from host memory to HPS DDR.  Additionally, there is a
-+  register the HPS can use to indicate the state of booting the copied image as
-+  well as a keep-a-live indication to the host.
-+
-+properties:
-+  compatible:
-+    const: intel,hps-copy-engine
-+
-+  '#dma-cells':
-+    const: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    dma-controller@0 {
-+        compatible = "intel,hps-copy-engine";
-+        reg = <0x00000000 0x00001000>;
-+        #dma-cells = <1>;
-+    };
+diff --git a/Documentation/devicetree/bindings/arm/intel,socfpga.yaml b/Documentation/devicetree/bindings/arm/intel,socfpga.yaml
+index 6e043459fcd5..61a454a40e87 100644
+--- a/Documentation/devicetree/bindings/arm/intel,socfpga.yaml
++++ b/Documentation/devicetree/bindings/arm/intel,socfpga.yaml
+@@ -18,6 +18,7 @@ properties:
+         items:
+           - enum:
+               - intel,n5x-socdk
++              - intel,socfpga-agilex-n6000
+               - intel,socfpga-agilex-socdk
+           - const: intel,socfpga-agilex
+ 
 -- 
 2.25.1
 
