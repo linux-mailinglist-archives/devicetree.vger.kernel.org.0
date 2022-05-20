@@ -2,179 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18C5152EE38
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 16:32:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 176E952EE64
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 16:45:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350321AbiETOcT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 10:32:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46334 "EHLO
+        id S1350432AbiETOpk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 10:45:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350311AbiETOcQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 10:32:16 -0400
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78E795DA36;
-        Fri, 20 May 2022 07:32:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1653057134; x=1684593134;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Rj7oGtN5LoVAeeqFFjCZt1C5yNvjDB+nOkDtsQLjZRE=;
-  b=FtWgxLgaJYXyx1X4sYVM4XDWkMRi/il0xnJYcUuDsioxlPGim6f3bKsn
-   ooRb1GX/i7RBPYGscIxd03R0R7ObfrTeBVHKCE5Jg/9HUQSQQ9SMdBVcF
-   tr0w5VpyYirAAJY08gFRDmKP/Iw5CaWQ2/yePm8M1BWznHvtXfqDOCynZ
-   sOGzVKaC6redgz/I/yZuMRFJcBkls8kZahoEG0WmC0Mee0HImP+YgbSmc
-   Sc3/0VDNFxJnL+OJLa+FX9o/EtWrN2L6YAmC57/9zT+UZl1Kzi/JcCUz8
-   5LUI7Oj/1mUrKbnczizjID5XEw466gN+x44EGn7y8aukwke2AH5RUptQD
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10353"; a="271439346"
-X-IronPort-AV: E=Sophos;i="5.91,239,1647327600"; 
-   d="scan'208";a="271439346"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 May 2022 07:32:11 -0700
-X-IronPort-AV: E=Sophos;i="5.91,239,1647327600"; 
-   d="scan'208";a="662286646"
-Received: from rhweight-wrk1.ra.intel.com ([137.102.106.43])
-  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 May 2022 07:32:10 -0700
-From:   matthew.gerlach@linux.intel.com
-To:     dinguyen@kernel.org, robh+dt@kernel.org,
+        with ESMTP id S244390AbiETOpi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 10:45:38 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B918170F28;
+        Fri, 20 May 2022 07:45:35 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7DDF8618DC;
+        Fri, 20 May 2022 14:45:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE8C1C385A9;
+        Fri, 20 May 2022 14:45:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1653057934;
+        bh=eyy20eLaoZHHhlcdY5b3GARHaDk/Ynm0A8xek9N7alE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hmtDN6rzpqT+fYQz7hSlNwVBz6PdgaCRI/+fJz0yhqebalgYoTqztGhfml4F5z/XW
+         gs67hODZJYg7mmnma+XHmFxHpsoU24dDBPX6Ryslvk4ir075rW0zF3LS7fKUzlg8Tt
+         8XbL1UbUZTCMK/JkbAWRdsAXAhq/iC5E9b01q4tAhBjTSNBcsKg0XfeK7HXhwBOsoi
+         QUI1RzLfxraasVYNWRBQxspfvrbtit1S8xkfcQ4XDe77dNw2qIPogeoEUOJfRoCYRP
+         Tu/TCg7LwF7BjrwIgHVkXJAJvYsmjICk3xMhO2CtF7Mqtbj75oFSVNcXC0n0Cbfttd
+         LYWcH0eTSLc/w==
+Date:   Fri, 20 May 2022 15:45:29 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     Matthew Gerlach <matthew.gerlach@linux.intel.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v6 3/3] arm64: dts: intel: add device tree for n6000
-Date:   Fri, 20 May 2022 07:32:08 -0700
-Message-Id: <20220520143208.1160506-4-matthew.gerlach@linux.intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220520143208.1160506-1-matthew.gerlach@linux.intel.com>
-References: <20220520143208.1160506-1-matthew.gerlach@linux.intel.com>
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 2/4] regulator: Add driver for MT6331 PMIC regulators
+Message-ID: <YoepiTUfdhkYByo7@sirena.org.uk>
+References: <20220520133305.265310-1-angelogioacchino.delregno@collabora.com>
+ <20220520133305.265310-3-angelogioacchino.delregno@collabora.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="p7DW/tPgeQFzSu9V"
+Content-Disposition: inline
+In-Reply-To: <20220520133305.265310-3-angelogioacchino.delregno@collabora.com>
+X-Cookie: Happy feast of the pig!
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
 
-Add a device tree for the n6000 instantiation of Agilex
-Hard Processor System (HPS).
+--p7DW/tPgeQFzSu9V
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-v5:
-  - add Acked-by: Krzysztof Kozlowski
+On Fri, May 20, 2022 at 03:33:03PM +0200, AngeloGioacchino Del Regno wrote:
 
-v3:
-  - add unit number to memory node
-  - remove unused label
-  - remove 0x from #address-cells/#size-cells values
-  - change hps_cp_eng@0 to dma-controller@0
-  - remove spi node with unaccepted compatible value
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2022 Collabora Ltd.
+> + * Author: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> + *
 
-v2:
-  - fix copy engine node name
-  - fix compatible field for copy engine
-  - remove redundant status field
-  - add compatibility field for the board
-  - fix SPDX
-  - fix how osc1 clock frequency is set
----
- arch/arm64/boot/dts/intel/Makefile            |  3 +-
- .../boot/dts/intel/socfpga_agilex_n6000.dts   | 66 +++++++++++++++++++
- 2 files changed, 68 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
+Please make the entire comment a C++ one so things look more
+intentional.
 
-diff --git a/arch/arm64/boot/dts/intel/Makefile b/arch/arm64/boot/dts/intel/Makefile
-index 0b5477442263..c2a723838344 100644
---- a/arch/arm64/boot/dts/intel/Makefile
-+++ b/arch/arm64/boot/dts/intel/Makefile
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0-only
--dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += socfpga_agilex_socdk.dtb \
-+dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += socfpga_agilex_n6000.dtb \
-+				socfpga_agilex_socdk.dtb \
- 				socfpga_agilex_socdk_nand.dtb \
- 				socfpga_n5x_socdk.dtb
- dtb-$(CONFIG_ARCH_KEEMBAY) += keembay-evm.dtb
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts b/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
-new file mode 100644
-index 000000000000..6231a69204b1
---- /dev/null
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex_n6000.dts
-@@ -0,0 +1,66 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2021-2022, Intel Corporation
-+ */
-+#include "socfpga_agilex.dtsi"
-+
-+/ {
-+	model = "SoCFPGA Agilex n6000";
-+	compatible = "intel,socfpga-agilex-n6000", "intel,socfpga-agilex";
-+
-+	aliases {
-+		serial0 = &uart1;
-+		serial1 = &uart0;
-+		ethernet0 = &gmac0;
-+		ethernet1 = &gmac1;
-+		ethernet2 = &gmac2;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		/* We expect the bootloader to fill in the reg */
-+		reg = <0 0 0 0>;
-+	};
-+
-+	soc {
-+		bus@80000000 {
-+			compatible = "simple-bus";
-+			reg = <0x80000000 0x60000000>,
-+				<0xf9000000 0x00100000>;
-+			reg-names = "axi_h2f", "axi_h2f_lw";
-+			#address-cells = <2>;
-+			#size-cells = <1>;
-+			ranges = <0x00000000 0x00000000 0xf9000000 0x00001000>;
-+
-+			dma-controller@0 {
-+				compatible = "intel,hps-copy-engine";
-+				reg = <0x00000000 0x00000000 0x00001000>;
-+				#dma-cells = <1>;
-+			};
-+		};
-+	};
-+};
-+
-+&osc1 {
-+	clock-frequency = <25000000>;
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&watchdog0 {
-+	status = "okay";
-+};
-+
-+&fpga_mgr {
-+	status = "disabled";
-+};
--- 
-2.25.1
+> +static const unsigned int ldo_volt_table10[] = {
+> +	1200000, 1300000, 1500000, 1800000,
+> +	1200000, 1300000, 1500000, 1800000,
+> +	1200000, 1300000, 1500000, 1800000,
+> +	1200000, 1300000, 1500000, 1800000,
+> +};
 
+So the top bits of the voltate selection field just get ignored?  Might
+be easier to just write the code to not include the top bits.
+
+> +static int mt6331_get_status(struct regulator_dev *rdev)
+> +{
+> +	struct mt6331_regulator_info *info = rdev_get_drvdata(rdev);
+> +	u32 reg, en_mask, regval;
+> +	int ret;
+> +
+> +	if (info->qi > 0) {
+> +		reg = info->desc.enable_reg;
+> +		en_mask = info->qi;
+
+If the regulator doesn't have status readback it shouldn't provide a
+get_status() operation.
+
+> +static int mt6331_ldo_set_mode(struct regulator_dev *rdev, unsigned int mode)
+> +{
+> +	int ret, val = 0;
+> +	struct mt6331_regulator_info *info = rdev_get_drvdata(rdev);
+> +
+> +	if (!info->modeset_mask) {
+> +		dev_err(&rdev->dev, "regulator %s doesn't support set_mode\n",
+> +			info->desc.name);
+> +		return -EINVAL;
+> +	}
+
+Just don't provide the operation for these regulators then.  That'll
+mean a separate ops struct but that's fine.
+
+--p7DW/tPgeQFzSu9V
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmKHqYgACgkQJNaLcl1U
+h9CxpAf8Dcb0LgYJswtynhjrPmCXq5dYmagsB3EUxbEJcZXLX4uvOC2xRrQ8qv1F
+COwjJwhrHEDaeQGrX0LjxykTeI3RGn4fZGaIOgXtPrqAxETrp25ihtDuIU90LKAr
+cWrj82iP0HLYuKvPlkUh1uWlSMZ6vGh2WsJHhpNUIvZHd6swxslp3AXbS5L3hiTz
+K8Vq+Vw0TI800vnGy2PysQVb9bM5C7XUtnDOdyrYUl8PEDuJdnuLwiKNF+wZ1WpB
+R9ieqffSRUpsFsbJlWueKBcB/8UcHLJ+joI5/SYiL28Xz2fyM6ICUf6tHTARD++r
+JM7ueL0Tht/hfeIyuPT987jU5lqPJg==
+=7pHa
+-----END PGP SIGNATURE-----
+
+--p7DW/tPgeQFzSu9V--
