@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3843552EC24
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 14:33:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F4F452EC25
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 14:33:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349318AbiETMdG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 08:33:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53146 "EHLO
+        id S1349353AbiETMdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 08:33:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349316AbiETMdE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 08:33:04 -0400
+        with ESMTP id S1349321AbiETMdG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 08:33:06 -0400
 Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B2F4163F7E
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 05:33:03 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id v8so12138846lfd.8
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 05:33:03 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67E5C1649AC
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 05:33:04 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id br17so1758417lfb.2
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 05:33:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=MUfpYM4VmS1R+1NDhvJz7pPXB5CM1cLHG7yxQvCsNVc=;
-        b=WZ850odhLPTluXPNOhp3oI8Rcp3RoJhpI3ZiGuWJIUQhgOKGEjn2KI7IEtO8nBiWUn
-         d4fg09AMECFWWL1HTdwnNF2nCpfQqMQbzVO8FDUMuvYGqGgoZePRoP/AsqyQ60MupXPX
-         AFigzSAJ1WtV+lZXZTtROlL/ykzv+Aj05x7bbXsZkIME1vQQN1sIFjgae7cUwD5u9wCP
-         Eocz4zYqA8kC88yNssOGHym0rG6FbO73iT1HQZYagzeWRGvAN2tpsjHM14EIT0mV46uf
-         rQqzykk1WbjHuzl225sBNRvg6itJKErQ/mpOZloubTfxln+M9WporvAT5ROj8jDjn0pC
-         3M5g==
+        bh=i/aIUrpsKDFkb2PtZyjpbDt+s3NhcE5u/+lbGK3NjUY=;
+        b=iCJRdzkFT1ZubmdfYQd64C1TC5jdqGyIOgk4znR+Rovw/CpGrzVGQNhcJM1GnuEEPH
+         r4SX9JbA0OJ7AqIjQcivfCcRsUutBX+y6RKkkbk/VmucoM89/i54Oh5OBN2NmcsI92ZV
+         N0VmcFDXDbFqLRSlAoNs5lOSLLzC+aN2gR4rCYEdc9bezb+FPaVs5UbO9Vst67sshQHk
+         rZ+YI70q1CchQHpQWRp4cY0ysXTG3JyMe+2s0XdqGNFo1EE31bqejc6ZSeEPcT1VaT3T
+         8Vj4JuZXv8tKILaVpksGyGxGVeQP7NTLm91LIEBKnsRfdY+RENnoipm7DrPQzJ6jhraq
+         ZPtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=MUfpYM4VmS1R+1NDhvJz7pPXB5CM1cLHG7yxQvCsNVc=;
-        b=UjbuOV2fgWyNhDHvFZ61JArHKVK0EzMUwZ2BE69uVzIYqB1EuDK+gF7UzSwEav4ttO
-         GsbhteKRmHjPWsqLh8VEzD+1TFgP+kG0Tw2cgMbusWGeCaDnHu5NJJEW1a5PMf7Zg4aK
-         CJ+iplcVEHtYk5CF9KxfspvKe9XpkIbSe1QCJW+EWd+NnfwwDbBtfrH4r+/FwsdeGwRV
-         TVHGgO4SY58uJ9w4P3dbNyymT0o7qWCrYclHq93D3oQPWGXwnzuf+x9em8FnqiWaCm4x
-         456gqmCdm1vcF5qAnUPfN0oUzKScpokAnGr1qspOdCuMIlRov+yhrCZ/38oQtEqkM5wP
-         j6Eg==
-X-Gm-Message-State: AOAM530gktOv0R8U8vnvo2+UX1bvdQJULSEZla9cOHx3h9JuGF3eidhm
-        fq3RFvbddkrgEDyKpfdiD2d+QQ==
-X-Google-Smtp-Source: ABdhPJwH/VBqgDR3cuPxXemZpD+Ep7SJet8ZXgKR5MYnS392i+V1jeppE3lDr83IAWMsxMNcg99KhA==
-X-Received: by 2002:a05:6512:3f1a:b0:477:8ecd:368c with SMTP id y26-20020a0565123f1a00b004778ecd368cmr6772401lfa.403.1653049981393;
-        Fri, 20 May 2022 05:33:01 -0700 (PDT)
+        bh=i/aIUrpsKDFkb2PtZyjpbDt+s3NhcE5u/+lbGK3NjUY=;
+        b=6o12h429sEvQ1gPb1ClsDIf5yvnlSaUCiZXv3snST0cOhFZqWqyyS+TF9YItY4M/o0
+         gA0LPhdtk+m2O/G+T2aPF2pG0hgGT4qU8da2Jit8Qi/rinlK1aBl2Shh10vTrcSAQCOs
+         HmVm91xyemFCGkM82VfdUxlFNaHFfdiUKgh+1zdr+ZbxgAzd14wU3Exhqq/wjGBaX3rN
+         sxUr8i0szUM/aIEPkV7KM+3xX+lW8zYwdSBI8nD5v5eCldbselMOnQGLGrbfpHg2POcH
+         S/qt2PW2eMYaJ6KmFy36EsHtFB1anQrLdjEMIY+dE35etrFbEq65xUufTtAJB6Ake63K
+         bqcw==
+X-Gm-Message-State: AOAM532TO+T36hic8Bgd4HVFlqq9c6B7Xeds034JY5fdb+gfwl/J//xW
+        wf3vho9BG/dKRYclU6oa0y3FFg==
+X-Google-Smtp-Source: ABdhPJxs7ZiA8bXdf1OPj9XzEyRB83z5mMcZK6wof1lVFn1dYgGffzuCxvEOlE15k9wDlYNs/OzwxA==
+X-Received: by 2002:a05:6512:3047:b0:473:cf43:6d8f with SMTP id b7-20020a056512304700b00473cf436d8fmr7157165lfb.380.1653049982540;
+        Fri, 20 May 2022 05:33:02 -0700 (PDT)
 Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id a14-20020a056512374e00b0047255d211bfsm643973lfs.238.2022.05.20.05.33.00
+        by smtp.gmail.com with ESMTPSA id a14-20020a056512374e00b0047255d211bfsm643973lfs.238.2022.05.20.05.33.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 May 2022 05:33:00 -0700 (PDT)
+        Fri, 20 May 2022 05:33:02 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -58,9 +58,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 5/9] dt-bindings: arm: qcom: add missing MSM8916 board compatibles
-Date:   Fri, 20 May 2022 14:32:48 +0200
-Message-Id: <20220520123252.365762-5-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 6/9] dt-bindings: arm: qcom: add missing MSM8994 board compatibles
+Date:   Fri, 20 May 2022 14:32:49 +0200
+Message-Id: <20220520123252.365762-6-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220520123252.365762-1-krzysztof.kozlowski@linaro.org>
 References: <20220520123252.365762-1-krzysztof.kozlowski@linaro.org>
@@ -80,28 +80,23 @@ Document several board compatibles already present in Linux kernel.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/arm/qcom.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+ Documentation/devicetree/bindings/arm/qcom.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-index 88759f8a3049..71d857dcf6b6 100644
+index 71d857dcf6b6..a08f297c9d5d 100644
 --- a/Documentation/devicetree/bindings/arm/qcom.yaml
 +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-@@ -160,8 +160,14 @@ properties:
-       - items:
-           - enum:
-               - alcatel,idol347
-+              - asus,z00l
-+              - huawei,g7
-+              - longcheer,l8910
-               - samsung,a3u-eur
-               - samsung,a5u-eur
-+              - samsung,j5
-+              - samsung,serranove
-+              - wingtech,wt88047
-           - const: qcom,msm8916
+@@ -182,6 +182,9 @@ properties:
  
        - items:
+           - enum:
++              - huawei,angler
++              - microsoft,cityman
++              - sony,ivy-row
+               - sony,karin-row
+               - sony,satsuki-row
+               - sony,sumire-row
 -- 
 2.32.0
 
