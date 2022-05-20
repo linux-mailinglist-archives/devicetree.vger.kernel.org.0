@@ -2,69 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 563E152F47F
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 22:38:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0617452F481
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 22:38:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353495AbiETUiD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 16:38:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37172 "EHLO
+        id S1353499AbiETUid (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 16:38:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349771AbiETUiC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 16:38:02 -0400
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6045419FB25
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 13:38:01 -0700 (PDT)
-Received: by mail-oi1-x233.google.com with SMTP id v66so11267651oib.3
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 13:38:01 -0700 (PDT)
+        with ESMTP id S235788AbiETUid (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 16:38:33 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8835D029C
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 13:38:31 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id rs12so5910306ejb.13
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 13:38:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=XdQ54rbpqYvGNbI94ee1Aky8XoFj7o6SUF46CZVfiN4=;
-        b=hGVbRnhuCUsA7bBxm1jXglNj0M4A5uWOLbZL5AIXbyqoc+LL8xMyGTWkc0jBWM9G5I
-         cb8IsWVIGCSkYX3UH6k43iEJWn3FK5SNewHW81MOG6KdqiinW8vnxXh3CWbOShRTsj/y
-         qU20Tb2v5yBUH3Nnhnb4zmtAJ0C6mN+BTuMb0=
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rbQPTM72ehryL5FYoSB2A2iBAshky0xebXkx4czYmNQ=;
+        b=IPxznzUvQHNK+9WYxlWPVLNwNj8TMm7NjtzE+16cNKZ7k1Cf1JV3GKzDx5ZrujI/QS
+         pR+FSDdXdcSJ/Xwso2HdPJSioY6htXGkjVUEHNZOzb6syjEJTudTxwgdBS4pCtkJ/1OJ
+         9KRXQpOW9LNh2cpV3Uk4IEODtoEFlosdmyXC0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=XdQ54rbpqYvGNbI94ee1Aky8XoFj7o6SUF46CZVfiN4=;
-        b=C+OAY1BEWP8ZYnYBg0y3bhnGOFBLV6WSjLcR/mPZGU4P6jdqLLA/Gr+bH7oE1G/YZg
-         VH4PLN9SOMbHJOeWavu7yezWOSGbRrm00fLi0Lk1IHYQm5X3HSiZ1/nh7kJWWHDUaTQw
-         /xOcYf6Iyh5P2I3Kra5Lw+xifQlSxfGRCaWAsSYYlf9gH9094zBJIIDmRELiNmyKAkxp
-         DI6nizUlVPDWXObkzbZ6SnzokM+iv7Z/9QIRII8iF6uHH6uy3KWK105Tmi+tyCEctGbP
-         a9+NTBi9jUN9qeuvp4XaSqesQADbvltNlWFst9Gdo0BTphBOgzln1jv/YEE51zz4/yet
-         Tihg==
-X-Gm-Message-State: AOAM533VimgmyD8q9tV6A0mZj7TywrJBikSamvWzWhPjYF4IYzM6fg61
-        mA3Kagv3aw6/JoyxxROyhIjzlK/bXMEY7vH8Cs9crg==
-X-Google-Smtp-Source: ABdhPJx2ZXh9WbynSbhPjcPZhEQqIdnt2/D/vPTAW+3Hd/TEuhNZ0OKfdeoUPFA1x7Ghd1ESi9sF62pOTWaQMba6H08=
-X-Received: by 2002:a05:6808:23c3:b0:326:bd8d:7993 with SMTP id
- bq3-20020a05680823c300b00326bd8d7993mr6651718oib.63.1653079080739; Fri, 20
- May 2022 13:38:00 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 20 May 2022 13:38:00 -0700
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rbQPTM72ehryL5FYoSB2A2iBAshky0xebXkx4czYmNQ=;
+        b=o/M4ymBxywMs6I1zAKwCrSMo/zhK7SnsvfN5ieXSXH/5ABdPs2OVTISVQ3RgQVt6UF
+         EDBE+PesgTMJKk2EaYC47rqZPEWcLg9KdIW9/TzHDIh8mUrBrqFj58urTMB/tsQo+JZf
+         HFtHsJ7hIK4QnbdhQ1FhXvAqiRl4HyxGaYaJjJH45QBsQ9f4v33yoDU+uGXnTn7wRtUA
+         KD2AW78FwK5rAL3959vEB5Q1rDwkXV5Gy4HRFwnXwG/RZr0jAETWtGvsAeOMz6CKJQEP
+         f9d7qfum1ACNZ5E8tOX9JxzingMzwOVy0FHXN9T1+xFcQK6qA17fXHFkoCP6slQp+Zm1
+         ZT1g==
+X-Gm-Message-State: AOAM532Nt4Uor/ywknX1W+ztWEeLyFSUnwLDT02/5px5tDnnNdcoADo7
+        u37vaXyGdwICgktkXKY7xwghqVwqR0aszoxZ7Io=
+X-Google-Smtp-Source: ABdhPJzdc2N8UyEdxDpCczgN3AEVuwwMUaPu3qM5KSmruZ7k+UMGk1SZ/7yQ2U/+tHC4iLHdD9awUg==
+X-Received: by 2002:a17:906:d550:b0:6f4:abbd:d033 with SMTP id cr16-20020a170906d55000b006f4abbdd033mr10227284ejc.200.1653079110001;
+        Fri, 20 May 2022 13:38:30 -0700 (PDT)
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com. [209.85.221.51])
+        by smtp.gmail.com with ESMTPSA id s27-20020a170906221b00b006f3ef214e73sm3470996ejs.217.2022.05.20.13.38.28
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 May 2022 13:38:29 -0700 (PDT)
+Received: by mail-wr1-f51.google.com with SMTP id h14so12960583wrc.6
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 13:38:28 -0700 (PDT)
+X-Received: by 2002:a5d:5009:0:b0:20d:846:f4da with SMTP id
+ e9-20020a5d5009000000b0020d0846f4damr9841738wrt.301.1653079108326; Fri, 20
+ May 2022 13:38:28 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20220520161004.1141554-2-judyhsiao@chromium.org>
-References: <20220520161004.1141554-1-judyhsiao@chromium.org> <20220520161004.1141554-2-judyhsiao@chromium.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Fri, 20 May 2022 13:38:00 -0700
-Message-ID: <CAE-0n53e0bq_MbfgZYdxatP8CpGVMKkBKOnSDOV+MvbBFB6wOA@mail.gmail.com>
-Subject: Re: [v2 1/3] arm64: dts: qcom: sc7280: herobrine: Add pinconf
- settings for mi2s1
-To:     Andy Gross <agross@kernel.org>, Judy Hsiao <judyhsiao@chromium.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+References: <20220520124834.1.I7c51c6255bb53086a82c5b3f4fafffcc5ccbc4ae@changeid>
+ <CAD=FV=X4GBLoTuOcHetAFXWLQKFF0yn=E5yv0ExTg8Mwrw1iUw@mail.gmail.com> <Yof6MeM1Ohthe7Fq@google.com>
+In-Reply-To: <Yof6MeM1Ohthe7Fq@google.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 20 May 2022 13:38:15 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=VKqnTWDP9vkxhsR_QVj5rXNXNNwjTaQX431J1JQBTSqA@mail.gmail.com>
+Message-ID: <CAD=FV=VKqnTWDP9vkxhsR_QVj5rXNXNNwjTaQX431J1JQBTSqA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Enable keyboard backlight for villager
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        dianders@chromium.org, mka@chromium.org, cychiang@google.com,
-        judyhsiao@google.com, tzungbi@chromium.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,42 +79,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Judy Hsiao (2022-05-20 09:10:02)
-> 1. Add drive strength property for mi2s1 on sc7280 based platforms.
-> 2. Disbale the pull-up mi2s1_data0, mi2s1_sclk.
+Hi,
 
-s/Disbale/Disable/
-
-The commit text is a list of things done but no reason why they're done.
-I'd appreciate more freeform text with a blurb why a drive strength is
-chosen and why pulls are disabled.
-
-> Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
+On Fri, May 20, 2022 at 1:29 PM Matthias Kaehlcke <mka@chromium.org> wrote:
 >
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-> index 9cb1bc8ed6b5..6d8744e130b0 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-> @@ -612,6 +612,20 @@ &dp_hot_plug_det {
->         bias-disable;
->  };
+> On Fri, May 20, 2022 at 12:57:50PM -0700, Doug Anderson wrote:
+> > Hi,
+> >
+> > On Fri, May 20, 2022 at 12:48 PM Matthias Kaehlcke <mka@chromium.org> wrote:
+> > >
+> > > Villager has a backlit keyboard, enable support for the backlight.
+> > >
+> > > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> > > ---
+> > >
+> > >  arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts | 8 ++++++++
+> > >  arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi            | 2 +-
+> > >  2 files changed, 9 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts
+> > > index d3d6ffad4eff..b6a6a1454883 100644
+> > > --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts
+> > > +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts
+> > > @@ -58,6 +58,10 @@ &ap_sar_sensor1 {
+> > >         status = "okay";
+> > >  };
+> > >
+> > > +&keyboard_backlight {
+> > > +       status = "okay";
+> > > +};
+> >
+> > Instead of doing this, can you just get rid of the status = "disabled"
+> > in herobrine.dtsi? I don't think there's any benefit to having two
+> > levels of "disabled" in the herobrine device tree.
 >
-> +&mi2s1_data0 {
-> +       drive-strength = <6>;
-> +       bias-disable;
+> Sure.
+>
+> I guess the 'disabled' status was put as a micro-optimization to avoid
+> probing the 'pwm-leds' driver on boards that don't have any such LEDs. In
+> practical terms it shouldn't really make a difference in terms of memory
+> or CPU.
 
-Is there an external pull on this line?
+Just to be clear, I was suggesting leaving the "disabled" at the
+pwm-leds level but removing the one at the "keyboard_backlight" level.
+I don't expect us to have any pwm_leds on herobrine devices that
+aren't for the keyboard backlight. If/when we do we can always add the
+two-levels of disabled back in...
 
-> +};
-> +
-> +&mi2s1_sclk {
-> +       drive-strength = <6>;
-> +       bias-disable;
-
-Is there an external pull on this line? If so please add that details as
-a comment like we do for other external pulls.
-
-> +};
+-Doug
