@@ -2,139 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B48652ED4E
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 15:38:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A32AF52ED5F
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 15:42:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349878AbiETNio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 09:38:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34450 "EHLO
+        id S1349859AbiETNm5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 09:42:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349865AbiETNim (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 09:38:42 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AC7D16ABD1
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 06:38:40 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id i23so9718756ljb.4
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 06:38:40 -0700 (PDT)
+        with ESMTP id S1343596AbiETNm4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 09:42:56 -0400
+Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com [IPv6:2001:4860:4864:20::30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1120AFACD;
+        Fri, 20 May 2022 06:42:55 -0700 (PDT)
+Received: by mail-oa1-x30.google.com with SMTP id 586e51a60fabf-f18e6ff0f6so10299782fac.11;
+        Fri, 20 May 2022 06:42:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=BJ6cahNcHV64dckbcdagFZ3sXXRYfeYn07qe+/rH0Js=;
-        b=Swsr4EYUUhBGy78gK70OvbbFgbl+xy4A36NGHggg9MIrLAwzJ3L8g3yIQ9pJiZcHPg
-         5Z4AjQmI8LhFAkWKs1ms85fN0rwO2dGcB0PkM3c3Q4Mp5uIz+pxLR0FI+u/YiXj3PnjT
-         xEfvLERea7XgQ27+5UU7YDdcRvLRe7KZYXOw/kzR7YpmI+WPjHYHicrGkoIpCSwixvEF
-         qX2B9OqRIDzWJEChsL8RoJG7AkW0ohMp4f9j9uxYBDLdctrCwEbp4cg9bWR+ILHo2lj4
-         gELpWVXkRWAkzYZWD98W4c8v3VVw3H2s8R1CMwWGfB+7L6geo0EvtMEjMNVBE4VJukVy
-         +Yfg==
+        d=gmail.com; s=20210112;
+        h=sender:message-id:date:mime-version:user-agent:content-language:to
+         :cc:references:from:subject:in-reply-to:content-transfer-encoding;
+        bh=4sjnV/DDCWmm3iG72Xau4YVUbPuvXBST7UIstJ3zKyA=;
+        b=RmQVVuk1z/crRTK+8bBhne4wsV9v6WxV6hoD/iWd3BBBrwWL8BlsEnNcGelF9w/gTm
+         YBq+rMks5nekVULzkzf37PLerXBVr0gsXHIMprywWjv6EO6s7K1qMB8nIimcaOGSfIay
+         teaP3IQ4M6Jmgtr5tRJGKu3UZy5bBly8zzxm3A/8N7OYykVe1g+QUpJg6+NjH5z4hjXL
+         EyyJqGMiET6p3i9L67tLLe6/oPFTgSOiT2XTkXGMzWztTeapbbpgpTZmoLotn8JvInjr
+         T1ZWHIf09nRpEpDVbFPzeqi7s+5FtGRW1WCyhI0RKMUPpFq3oeJX6Yl3penVX5jXSmRv
+         eqxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
+         :content-language:to:cc:references:from:subject:in-reply-to
          :content-transfer-encoding;
-        bh=BJ6cahNcHV64dckbcdagFZ3sXXRYfeYn07qe+/rH0Js=;
-        b=aoPhl/MhKeF6xW66CCstjjY1HPtB0cK47+RpZKMESnVs/S29thVsIOC7yFEHl3VzYN
-         MatK6td8Lc1//Hs0BR8pYyUswb2qHt9lb1YG4bpU2gp+JVyA0rdRGsHosl2T4c535PO3
-         N1oudyTYBeBGaaSZF+yWHrsH6HVFEwwrmm/2jAG8FtCyapnOd8J/ciEwqDFoZF9D/22j
-         TRBg9VfCr6Lam9sHTqhZxy4Y3QnIUn9PozqRtHfQL2o/EgSQLkByzgPFDej133KwgL3b
-         DukcUubjnthO6wJHlRyHWW5YuOQDMcfKTq0YI+p3/L8INp0+62dBz3d0uI883vksZIEc
-         ybNA==
-X-Gm-Message-State: AOAM532t5zWzsnKeSoY7Y2UHTsm/PUl8jgOQ+8lfY8Fvc8WftdVcztob
-        gF6q5S90LuNvXCa9uSxmnIlGXA==
-X-Google-Smtp-Source: ABdhPJz7+4KDKaqz3IBBXBx/FkONS5BgchZ7fWWMZ6ZrP5bc3A9c1J212pfOKC8DCyjp/llbwrwJOA==
-X-Received: by 2002:a2e:b8d0:0:b0:253:ca3b:f0ad with SMTP id s16-20020a2eb8d0000000b00253ca3bf0admr5740825ljp.334.1653053918597;
-        Fri, 20 May 2022 06:38:38 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id o14-20020ac25e2e000000b0047255d210e3sm667857lfg.18.2022.05.20.06.38.37
+        bh=4sjnV/DDCWmm3iG72Xau4YVUbPuvXBST7UIstJ3zKyA=;
+        b=RA+f0k/U+EDmk7AHRybE9EjcZJ+V0bB6+ZBq4RTY/0giR0/lwXJ7oGw8S/WqXkMSJ7
+         6WtSVbTVxdvBOHZ7CmsX0PyzfovDtcne5V3M/0FK7yr8KSDSjoDJ+rym96m5T9Hsk2al
+         ilKe2QqeZejqHnrigJ70QYevgNBtDlzh6Pby8sOYDZaDeQkSbM72RQDQryV69soVw2dh
+         Ji6rjD1Ywgdx07Z7rVeElTcfS2N/HpEp15ab+i+8Sbb3pT0zTq0jH068ZYZ5VfXBSeu1
+         SEAzKLL/99VTholb4X41BHYggt+qgtW5NV5ihAXGB71/1Ap7H+TLeTRm7BOjYsuuPZ2W
+         GsqQ==
+X-Gm-Message-State: AOAM5310DqqWxGeOYDAXtt4zR2o5Wj66RaHYyP/FnKt2KR7cNxX9w/zH
+        RAVjsOo8g+aOXcvNp+G3Zi0=
+X-Google-Smtp-Source: ABdhPJyK4r8T/x4abpb56C3DNWPOFu/dlI7orXYwBBiiVXZ8Ef9Dh0kqk91Zx24yBVsQq89ztSnBDg==
+X-Received: by 2002:a05:6870:6011:b0:e6:5604:d757 with SMTP id t17-20020a056870601100b000e65604d757mr5816104oaa.204.1653054174188;
+        Fri, 20 May 2022 06:42:54 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id o83-20020acabe56000000b0032603df9d24sm959574oif.47.2022.05.20.06.42.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 May 2022 06:38:37 -0700 (PDT)
-Message-ID: <d26c7ebd-fc1a-391e-39e4-5ec41bf4fbfa@linaro.org>
-Date:   Fri, 20 May 2022 15:38:36 +0200
+        Fri, 20 May 2022 06:42:52 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <0b84d109-d6be-dfba-99bb-0b7136af875e@roeck-us.net>
+Date:   Fri, 20 May 2022 06:42:48 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH 2/3] dt-bindings: usb: atmel: Add Microchip LAN966x
- compatible string
 Content-Language: en-US
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20220513105850.310375-1-herve.codina@bootlin.com>
- <20220513105850.310375-3-herve.codina@bootlin.com>
- <8f0d4127-7e66-cf50-21c9-99680f737e30@linaro.org>
- <20220520133426.3b4728ae@bootlin.com>
- <b087c34f-0e2f-edd0-a738-3ffc2853a41b@linaro.org>
- <20220520142109.57b84da2@bootlin.com>
- <01b31a02-523e-10bf-3b46-5b830e456522@linaro.org>
- <20220520150243.625723fa@bootlin.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220520150243.625723fa@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Slawomir Stepien <sst@poczta.fm>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     jdelvare@suse.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, przemyslaw.cencner@nokia.com,
+        krzysztof.adamski@nokia.com, alexander.sverdlin@nokia.com,
+        Slawomir Stepien <slawomir.stepien@nokia.com>
+References: <20220520093243.2523749-1-sst@poczta.fm>
+ <20220520093243.2523749-4-sst@poczta.fm>
+ <3ea92486-0cf9-ce3d-d1b6-7a76f1d5a129@linaro.org>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH 3/8] dt-bindings: hwmon: Allow specifying channels for
+ lm90
+In-Reply-To: <3ea92486-0cf9-ce3d-d1b6-7a76f1d5a129@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/05/2022 15:02, Herve Codina wrote:
-> On Fri, 20 May 2022 14:50:24 +0200
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> 
->> On 20/05/2022 14:21, Herve Codina wrote:
->>>>> I think it makes sense to keep 'microchip,lan966x-udc' for the USB
->>>>> device controller (same controller on LAN9662 and LAN9668) and so
->>>>> keeping the same rules as for other common parts.    
->>>>
->>>> Having wildcard was rather a mistake and we already started correcting
->>>> it, so keeping the "mistake" neither gives you consistency, nor
->>>> correctness...
->>>>  
->>>
->>> I think that the "family" compatible should be present.
->>> This one allows to define the common parts in the common
->>> .dtsi file (lan966x.dtsi in our case).
->>>
->>> What do you think about:
->>> - microchip,lan9662-udc
->>> - microchip,lan9668-udc
->>> - microchip,lan966-udc  <-- Family
->>>
->>> lan966 is defined as the family compatible string since (1) in
->>> bindings/arm/atmel-at91.yaml and in Documentation/arm/microchip.rst
->>>   
+On 5/20/22 03:13, Krzysztof Kozlowski wrote:
+> On 20/05/2022 11:32, Slawomir Stepien wrote:
+>> From: Slawomir Stepien <slawomir.stepien@nokia.com>
 >>
->> You can add some family compatible, if it makes sense. I don't get why
->> do you mention it - we did not discuss family names, but using
->> wildcards... Just please do not add wildcards.
+>> Add binding description for temperature channels. Currently, support for
+>> label and offset is implemented.
+>>
+>> Signed-off-by: Slawomir Stepien <slawomir.stepien@nokia.com>
+>> ---
+>>   .../bindings/hwmon/national,lm90.yaml         | 39 +++++++++++++++++++
+>>   1 file changed, 39 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/hwmon/national,lm90.yaml b/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
+>> index 066c02541fcf..9a5aa78d4db1 100644
+>> --- a/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
+>> +++ b/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
+>> @@ -62,6 +62,37 @@ required:
+>>   
+>>   additionalProperties: false
+>>   
+>> +patternProperties:
 > 
-> Well, I mentioned it as I will only use the family compatible string
-> and not the SOC (lan9662 or lan9668) compatible string in lan966x.dtsi.
-> In this case, the family compatible string can be seen as a kind of
-> "wildcard".
+> Which models use this?
+> 
+>> +  "^channel@([0-2])$":
+>> +    type: object
+>> +    description: |
+> 
+> No need for |
+> 
+>> +      Represents channels of the device and their specific configuration.
+>> +
+>> +    properties:
+>> +      reg:
+>> +        description: |
+> 
+> The same.
+> 
+>> +          The channel number. 0 is local channel, 1-2 are remote channels.
+>> +        items:
+>> +          minimum: 0
+>> +          maximum: 2
+>> +
+>> +      label:
+>> +        description: |
+> 
+> The same.
+> 
+>> +          A descriptive name for this channel, like "ambient" or "psu".
+>> +
+>> +      offset:
+>> +        description: |
+> 
+> This does not look like standard property, so you need vendor and unit
+> suffix.
+> 
 
-I understood as "the "family" compatible should be present" as you want
-to add it as a fallback. It would be okay (assuming devices indeed share
-family design). If you want to use it as the only one, then it is again
-not a recommended approach. Please use specific compatibles.
+Temperature offset is a standard property for temperature sensor
+chips with external channels, implemented by a diode or transistor.
+Making it non-standard will mean that we'll have lots of
+"vendor,offset" properties, one each for each vendor selling
+temperature sensor chips with external channels. This gets
+more complicated here because the lm90 driver does support chips
+from several different vendors. Almost all of them support
+this functionality. Which vendor do you select in this case ?
 
-I mean, why do we have this discussion? What is the benefit for you to
-implement something not-recommended by Devicetree spec and style?
+I would suggest to use temperature-offset-milliseconds, though.
 
-Best regards,
-Krzysztof
+>> +          The value (millidegree Celsius) to be programmed in the channel specific offset register
+>> +          (if supported by device).
+> 
+> You described programming model which should not be put in the bindings.
+> Please describe the hardware.
+> 
+
+It is a configuration value, which is hardware dependent because
+it depends on the temperature diode or transistor connected to the chip.
+
+Guenter
+
+>> +          For remote channels only.
+>> +        $ref: /schemas/types.yaml#/definitions/int32
+>> +        default: 0
+>> +
+>> +    required:
+>> +      - reg
+>> +
+>> +    additionalProperties: false
+>> +
+>>   examples:
+>>     - |
+>>       #include <dt-bindings/interrupt-controller/irq.h>
+>> @@ -76,5 +107,13 @@ examples:
+>>               vcc-supply = <&palmas_ldo6_reg>;
+>>               interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
+>>               #thermal-sensor-cells = <1>;
+>> +            #address-cells = <1>;
+>> +            #size-cells = <0>;
+> I assume you tested the bindings with dt_bindings_check?
+> 
+> I have some doubts, as this should fail.
+> 
+>> +
+>> +            channel@0 {
+>> +                reg = <0x0>;
+>> +                label = "internal";
+>> +                offset = <1000>;
+>> +            };
+>>           };
+>>       };
+> 
+> 
+> Best regards,
+> Krzysztof
+
