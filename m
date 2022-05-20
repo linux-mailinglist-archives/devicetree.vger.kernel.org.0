@@ -2,149 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E3B352EB08
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 13:42:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 806E652EB22
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 13:51:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245364AbiETLmO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 07:42:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42872 "EHLO
+        id S1348711AbiETLvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 07:51:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236511AbiETLmN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 07:42:13 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE6BAD029D
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 04:42:10 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id m20so15070297ejj.10
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 04:42:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair;
-        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
-         :from:to:references:in-reply-to;
-        bh=wS/ZZ/XGdYJivGUIc7glIv8A/QnED+cfdPx1Mf0OR3o=;
-        b=GB72r8xYURZ6bzQkm22Tu7tonI4ZKXJGQRhTtyxiRTudpMondZELrlYY1Xhwk/RTh7
-         5Zeda7d68kYmu4UCNIN7fS1lTpbwBNmqbf4icxZKokgVZAw3IURsvL0hYvjRsQQt94SW
-         8g3F5Vr/0cKVHhCmBXZcWzC0wiq7c3V0JSaC3VnVhKiPnqLTbIVVrxOldU6Csho//iAb
-         i+1fml2hr9pQ0FUoqm5dGGC4coiMNgTvLt6e50kn9jusRG5SCBeCbTcL00riYCnnhFaf
-         YFkN3NQQ4g90z5x59jFrDWx4eRldBx1pjejiDJWfm3XVu8iRY29x1FFUUaukXe6wZQ0h
-         /hHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:content-transfer-encoding:date
-         :message-id:cc:subject:from:to:references:in-reply-to;
-        bh=wS/ZZ/XGdYJivGUIc7glIv8A/QnED+cfdPx1Mf0OR3o=;
-        b=dNQts9cGLMyekhCGdHH3QRoTc5J8WJnRCSDBr/lOJVTSrd8fBafYcchpbA+V0BurfE
-         gMu4RXkb+M97fpMPVodiy4HPZSwRS85iq5mID51JSseB1UV1Hvg9MizNR8rNi9eo5XnQ
-         4lhw9J2l6LhndiihteqdYsMbuR+K/xQzsLF3ypVKvQRuSjpgWAokRSBX24Maq1Og9IVz
-         68QhbW0nhnQRRNbUidQV+L8UnvI+nf64Ov4+dQXmxxBw6Fog3tAnCJwWu07j3SltK6Ow
-         0rlhFsl9rAml90mlRGb1bFldJlcA53JefvsyvNj/dfxuG645B+Qn41afkiCUNybLDYY5
-         DH0w==
-X-Gm-Message-State: AOAM530GIZT+lMFY44gwMoXgKzGdxOSWLF1WDfPSm/BjYw+oOfn8HVDG
-        pV8VXwA4pRZ3fiLGkVrKQbFtQg==
-X-Google-Smtp-Source: ABdhPJy7fnm73XK7inxXakUomDMt4LomtggIToBNbNojpFIo5Eg5Y2uqDhzYDPx7fPeRzTTy50Yt/g==
-X-Received: by 2002:a17:906:7b82:b0:6f3:ee8d:b959 with SMTP id s2-20020a1709067b8200b006f3ee8db959mr8591524ejo.458.1653046929316;
-        Fri, 20 May 2022 04:42:09 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id w6-20020a170907270600b006f3ef214dedsm3036390ejk.83.2022.05.20.04.42.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 May 2022 04:42:08 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S1348709AbiETLvO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 07:51:14 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45BB2120AC;
+        Fri, 20 May 2022 04:51:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1653047440;
+        bh=k4fKVQvURjqEQ8MtrJ2m1VCLQBvog7lyn9M2Wt/lV0Q=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=MKjD+jclEwCeFylv0hyyBS+WvHTmuPewzMPlTAPq4SzQ7HIxWMHCty6ASa4JQwjts
+         i4zZ0vYjycUJIHJPXmCz4RSB5WtmU7htC0/jVaXw49EzRSz0Oe593S1T5DNGJ3Bj8A
+         duJ+9EBhv28L9SHCZLW8pavMUMEJSrR/3AitmwCI=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [217.61.152.153] ([217.61.152.153]) by web-mail.gmx.net
+ (3c-app-gmx-bap67.server.lan [172.19.172.67]) (via HTTP); Fri, 20 May 2022
+ 13:50:39 +0200
+MIME-Version: 1.0
+Message-ID: <trinity-940b8fcf-17e7-4445-8aeb-e17f36b41b4b-1653047439840@3c-app-gmx-bap67>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Frank Wunderlich <linux@fw-web.de>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Vinod Koul <vkoul@kernel.org>,
+        Johan Jonker <jbx6244@gmail.com>,
+        linux-rockchip@lists.infradead.org, linux-pci@vger.kernel.org,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>
+Subject: Aw: Re: Re: [RFC v3 1/5] dt-bindings: phy: rockchip: add PCIe v3
+ phy
 Content-Type: text/plain; charset=UTF-8
-Date:   Fri, 20 May 2022 13:42:08 +0200
-Message-Id: <CK4K8B8KQICX.LX0G6HW66RNU@otso>
-Cc:     <~postmarketos/upstreaming@lists.sr.ht>,
-        <phone-devel@vger.kernel.org>, "Andy Gross" <agross@kernel.org>,
-        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
-        "Georgi Djakov" <djakov@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Odelu Kukatla" <okukatla@codeaurora.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/5] dt-bindings: interconnect: qcom: Reuse new
- rpmh-common bindings
-From:   "Luca Weiss" <luca.weiss@fairphone.com>
-To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>
-X-Mailer: aerc 0.9.0
-References: <20220520070318.48521-1-luca.weiss@fairphone.com>
- <20220520070318.48521-4-luca.weiss@fairphone.com>
- <d1072c55-9e1c-83df-0184-7405448bbade@linaro.org>
-In-Reply-To: <d1072c55-9e1c-83df-0184-7405448bbade@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Date:   Fri, 20 May 2022 13:50:39 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <20220518155551.GB3302100-robh@kernel.org>
+References: <20220514115946.8858-1-linux@fw-web.de>
+ <20220514115946.8858-2-linux@fw-web.de>
+ <1652570081.002742.3276245.nullmailer@robh.at.kernel.org>
+ <trinity-02ad648c-f6f8-4383-b389-a0578d5a02d2-1652615387162@3c-app-gmx-bap15>
+ <20220516173537.GA2942634-robh@kernel.org>
+ <9496CAFB-6CB6-4BDA-A539-3A6E1B562299@public-files.de>
+ <20220518155551.GB3302100-robh@kernel.org>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:SD3Edrf+NaJ//x8ye3V+dsdMGeWh8sRcrH6vyLezIFMvvRfi2kD/w+du5767L1pt7TB3A
+ 9diq3JRpFJSmaDntiITaiJm2eZhpyfFCpjcf93y/5BMa+mMkKuIkHOmuN6fjAMElAvyjrbt9h18s
+ Amtj5SSaEGyHSUtMkNjocxpSMH1INw1kDjl/7AAAPbCPR0mgoLp+E63LMkBfCG09Z4O0eh1HeXkl
+ 47XVC40CdkXePpbMILRd5yP3FSHED6RQrQaoKM95aJmTccxHuQRmMjL4SS33OZ+NxgGLSUqzUKr4
+ KE=
+X-UI-Out-Filterresults: notjunk:1;V03:K0:ldW5S2z+XIU=:UXxS08Sj+aFSCv9KzQQTl2
+ 1XnLZLY0FknaXahW1slqvCuFzb2THKkDUdph5QOpPyccApSaQNyeQNhYPecZryHHRWDOx8uga
+ QIgdI3TCF3BNeFm047mDBshfAQ8psCtAMxAKCxojFBNNP9lLT9+nbg6LjUdWukSQCPPDbYpjD
+ hot81cTZ7C3snYY/gUT9GE7zCEPV+M7OZMLBjktjReL4t32VaHwn/du6LM9G22CigWHx27jAq
+ 6L16V9eeFWFRy8/rAxw3p+Wa8jCMFdcRuUPGSrEZgML3oRmkOK2KFrREdnOvg4I+knqORYl1k
+ pxjxw+AKFkrZiSgX+2pGV3bwCi9iudf70ZU+lpIsPDPX3pYezIyfYHlzxLKmf2v1kiyfM1hiC
+ a3EtG1Y0sIPo1sTnWDWBkmcby0riINfmxzTAqZytZ6RUIlHpmxebFsyxFxXskq+GGz63GDjmz
+ ZLHoeoRMb5EwAJCf1W1/o7GCSSi8HGqkOEFoFvxY4RDU3Gj9jILxOJfxNiF3A1cuukwBfhum6
+ C6wWfevuyyn7z3AgZdiIed+IgAVCYQRdPkz3JJ9zu/n6l+KFbhzebzwbcoLoOqW5twRWa4vw8
+ BXsNil/j02qVXJm5RaYlhMsjbHBAvnU8X7LnCCuv9FS4C5NaXy4zKI+FA/gAWXMn4bLErlz69
+ RtPNKV8cf+qA4/tQYbR2TZ+gI34nUo2dSlpvDbaIYN08WxG+AGf+qkZAqRS2wJGZPCL6zcgxy
+ GI5EFSSu3thLB62bHwpa/wmuTpY5N8hblFje+N0jkUQL7fexaX5FgO8DamSspHAIWKCAESzvO
+ jMNrQLd
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Hi,
 
-On Fri May 20, 2022 at 12:33 PM CEST, Krzysztof Kozlowski wrote:
-> On 20/05/2022 09:03, Luca Weiss wrote:
-> > Stop defining the properties twice and use the ones provided in the new
-> > qcom,rpmh-common.yaml.
-> >=20
-> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> > ---
-> > Changes since v1:
-> > * New patch
-> >=20
-> >  .../bindings/interconnect/qcom,rpmh.yaml      | 22 +++++--------------
-> >  1 file changed, 5 insertions(+), 17 deletions(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/interconnect/qcom,rpmh.y=
-aml b/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
-> > index fae3363fed02..e822dc099339 100644
-> > --- a/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
-> > +++ b/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
-> > @@ -18,6 +18,9 @@ description: |
-> >     least one RPMh device child node pertaining to their RSC and each p=
-rovider
-> >     can map to multiple RPMh resources.
-> > =20
-> > +allOf:
-> > +  - $ref: qcom,rpmh-common.yaml#
-> > +
-> >  properties:
-> >    reg:
-> >      maxItems: 1
-> > @@ -131,28 +134,13 @@ properties:
-> >        - qcom,sm8450-pcie-anoc
-> >        - qcom,sm8450-system-noc
-> > =20
-> > -  '#interconnect-cells':
-> > -    enum: [ 1, 2 ]
-> > -
-> > -  qcom,bcm-voters:
-> > -    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > -    items:
-> > -      maxItems: 1
-> > -    description: |
-> > -      List of phandles to qcom,bcm-voter nodes that are required by
-> > -      this interconnect to send RPMh commands.
-> > -
-> > -  qcom,bcm-voter-names:
-> > -    description: |
-> > -      Names for each of the qcom,bcm-voters specified.
-> > +  '#interconnect-cells': true
-> > =20
->
-> So this explains why your previous patch had such values... The order is
-> messed up - first you move common parts to common file, then you add
-> SM6350 support.
+fixed reg-error by using 32bit-address in example, in my test output is clean.
 
-Right, that makes much more sense. Will split out qcom,rpmh-common first
-and use in rpmh.yaml and then afterwards introduce sm6350.
++++ b/Documentation/devicetree/bindings/phy/rockchip,pcie3-phy.yaml
+@@ -68,7 +68,7 @@ examples:
+     #include <dt-bindings/clock/rk3568-cru.h>
+     pcie30phy: phy@fe8c0000 {
+       compatible = "rockchip,rk3568-pcie3-phy";
+-      reg = <0x0 0xfe8c0000 0x0 0x20000>;
++      reg = <0xfe8c0000 0x20000>;
 
-Regards
-Luca
 
->
->
-> Best regards,
-> Krzysztof
+i hope yours is clean too
 
+
+regarding data-lanes instead of own lane-map, Peter and me only find this in special
+bindings outside the phy-"namespace" like this.
+
+https://elixir.bootlin.com/linux/v5.18-rc7/source/Documentation/devicetree/bindings/media/video-interfaces.yaml#L157
+
+do you mean converting this binding and add it there and base out binding on it?
+
+https://elixir.bootlin.com/linux/v5.18-rc7/source/Documentation/devicetree/bindings/phy/phy-bindings.txt
+
+regards Frank
