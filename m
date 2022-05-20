@@ -2,239 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1516A52E70F
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 10:14:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76AE752E714
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 10:16:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346862AbiETIOu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 04:14:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38206 "EHLO
+        id S1346889AbiETIQC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 04:16:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346876AbiETIOs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 04:14:48 -0400
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BF3B1271A7;
-        Fri, 20 May 2022 01:14:45 -0700 (PDT)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id F389D60011;
-        Fri, 20 May 2022 08:14:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1653034484;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Bc7UGMYsnzw6kppIUMYQ6w3HCbQTV2JavDJn16CiLWs=;
-        b=B3UPGYHh/MFenN+SGYf42FlOzx1XBlBg+yOYxWDfKkF3peYwAzFCj8+jh8dj9OOugTZS9a
-        7IpKbPkpoGCWCdl1mDB7DMoyBOotILQg7QjubU/5BS57OV30rBaPv7/u91ciPlP88XAglH
-        wRc82rWorsEitq1QkWybn3v8GSnAtb/I1Z4VizY90K04gavHrF+KYRFw2L0tv/d3B6DC6l
-        gmgpVbR3Nvj+7kAOVSTtXV/xkvRJYqGG1XZll1nDPDesoOPRxHCyYcZAixxftekJUeS3E6
-        ZL4c0eVztlulCSceOf3yJWY4gSQy5k7W8QHX8qdiYYQ3rzw1jS0Po8bxis6eCA==
-Date:   Fri, 20 May 2022 10:13:32 +0200
-From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?UTF-8?B?TWlxdcOobA==?= Raynal <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>
-Subject: Re: [PATCH net-next v5 11/13] ARM: dts: r9a06g032: describe GMAC2
-Message-ID: <20220520101332.0905739f@fixe.home>
-In-Reply-To: <CAMuHMdUJpNSyX0qK64+W1G6P1S-78mb_+D0-w3kHOFY3VVkANQ@mail.gmail.com>
-References: <20220519153107.696864-1-clement.leger@bootlin.com>
-        <20220519153107.696864-12-clement.leger@bootlin.com>
-        <CAMuHMdUJpNSyX0qK64+W1G6P1S-78mb_+D0-w3kHOFY3VVkANQ@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S1346869AbiETIQB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 04:16:01 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 694A72E6A7
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 01:15:58 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id d15so13041294lfk.5
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 01:15:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=3WMyBzBsRRCp6gbma/PbvD8+LxmLfC0Z+aWsUUO5v2Q=;
+        b=r8VE/uCTjI1e7vSggfcD/lYcs0j1kTxOduTx3B/oYII5BDkRCTFH8oLlvB4Tof2u4D
+         srS0Okq1V37kNOj+J0SbInhv+n24I+vkVDFIQ06wiyfkkAzCCe9TxOnztwm7TOy6OsRi
+         r5uotICug85Fom3LRI5GHqRjAM8dyJmTIGZF9JAucv5bIUju3LizX2JH3cDTsYdCbpV+
+         /dvm7USDxXWWjZiaqH9X3v9iH33NRi/011BF43EKMgU10d+u7pRuZbxa93+hEVU19CmH
+         96GhWRfNlrjwi2H3D3shQ/vvJUvLQKZraiyEi3N6ReCkaB6uTsZR35TzIS1CiM6YfP1Q
+         uSxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=3WMyBzBsRRCp6gbma/PbvD8+LxmLfC0Z+aWsUUO5v2Q=;
+        b=fTzLnvh3lfLWx0A5qWWerk6BUE2+MPiq7ZiyqRkga5RPGjxsiwTI340RZ7uvMbCZug
+         iRCx3+GQeSYzB2b2LmXo0Obmw3H0Ye0SC7TH1pC1koAYxhXAo7lPyRp6VD2FoCtSLEU5
+         WObWe2XCKJIP3zViW2tHyxXbAl6B0aP8v5hZmFsHAz+uFC8WrCBOwBF5hiBhOgbDNcRS
+         dVVowtJC3QeUJlK61x/0wyFCW65TDQeg5v8o4eghi2yLm9E3SxkYLLaTpvAnqePK9JZ7
+         LigcyW2xY+6lnkxcf1ESESyNVHmninB7Ox0OunC/ob4+3NTKu2s/L6y8FuHI+44TS/fn
+         LLpw==
+X-Gm-Message-State: AOAM532aWgg8n36FobVCnpZiCdzoBFOV6/14f5zS5ziWYDTMRZq5ru7w
+        BD4pYcpUJko66V5wMoIftuxA6Q==
+X-Google-Smtp-Source: ABdhPJwykLzONsSZWY9axC9eeMj14sgcODVg3yQ+6KyFmWtA4KaDq9yJKAlnTHB1z/K2FxU5uXKaeQ==
+X-Received: by 2002:a05:6512:3d1a:b0:477:ae14:9778 with SMTP id d26-20020a0565123d1a00b00477ae149778mr6380088lfv.72.1653034556706;
+        Fri, 20 May 2022 01:15:56 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id x17-20020a05651c105100b0024f3d1dae9esm222920ljm.38.2022.05.20.01.15.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 May 2022 01:15:56 -0700 (PDT)
+Message-ID: <45e78390-5f91-7ac7-45d8-5796bc608234@linaro.org>
+Date:   Fri, 20 May 2022 10:15:54 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH] dt-bindings: mailbox: mtk-gce: Convert txt to json-schema
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, robh+dt@kernel.org
+Cc:     jassisinghbrar@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, houlong.wei@mediatek.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20220519101806.18097-1-angelogioacchino.delregno@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220519101806.18097-1-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Fri, 20 May 2022 09:18:58 +0200,
-Geert Uytterhoeven <geert@linux-m68k.org> a =C3=A9crit :
+On 19/05/2022 12:18, AngeloGioacchino Del Regno wrote:
+> Convert the mtk-gce documentation from freeform text format to a
+> json-schema.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  .../bindings/mailbox/mediatek,gce-mbox.yaml   | 114 ++++++++++++++++++
+>  .../devicetree/bindings/mailbox/mtk-gce.txt   |  82 -------------
+>  2 files changed, 114 insertions(+), 82 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/mediatek,gce-mbox.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mailbox/mtk-gce.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/mailbox/mediatek,gce-mbox.yaml b/Documentation/devicetree/bindings/mailbox/mediatek,gce-mbox.yaml
+> new file mode 100644
+> index 000000000000..750391b4038c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mailbox/mediatek,gce-mbox.yaml
+> @@ -0,0 +1,114 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mailbox/mediatek,gce-mbox.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek Global Command Engine (GCE) mailbox
+> +
+> +maintainers:
+> +  - Houlong Wei <houlong.wei@mediatek.com>
+> +
+> +description: |
+> +  The Global Command Engine (GCE) is used to help read/write registers
+> +  with critical time limitation, such as updating display configuration
+> +  during the vblank.
+> +  The GCE can be used to implement the Command Queue (CMDQ) driver.
 
-> Hi Cl=C3=A9ment
->=20
-> On Thu, May 19, 2022 at 5:32 PM Cl=C3=A9ment L=C3=A9ger <clement.leger@bo=
-otlin.com> wrote:
-> > RZ/N1 SoC includes two MAC named GMACx that are compatible with the
-> > "snps,dwmac" driver. GMAC1 is connected directly to the MII converter
-> > port 1. GMAC2 however can be used as the MAC for the switch CPU
-> > management port or can be muxed to be connected directly to the MII
-> > converter port 2. This commit add description for the GMAC2 which will
-> > be used by the switch description.
-> >
-> > Signed-off-by: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com> =20
->=20
-> Thanks for your patch!
->=20
-> > --- a/arch/arm/boot/dts/r9a06g032.dtsi
-> > +++ b/arch/arm/boot/dts/r9a06g032.dtsi
-> > @@ -200,6 +200,23 @@ nand_controller: nand-controller@40102000 {
-> >                         status =3D "disabled";
-> >                 };
-> >
-> > +               gmac2: ethernet@44002000 {
-> > +                       compatible =3D "snps,dwmac"; =20
->=20
-> Does this need an SoC-specific compatible value?
+Mention the headers in description.
 
-Indeed, it might be useful to introduce a specific SoC compatible since
-in a near future, there might be some specific support for that gmac.
-Here is an overview of the gmac connection on the SoC:
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - mediatek,mt6779-gce
+> +      - mediatek,mt8173-gce
+> +      - mediatek,mt8183-gce
+> +      - mediatek,mt8186-gce
+> +      - mediatek,mt8192-gce
+> +      - mediatek,mt8195-gce
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: gce
+> +
+> +  '#mbox-cells':
+> +    description: |
+> +      The first cell describes the mailbox channel, which is the GCE Thread ID;
+> +      The second cell describes the priority of the GCE thread.
+> +    const: 2
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - '#mbox-cells'
+> +
+> +additionalProperties: false
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - mediatek,mt8195-gce
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 2
 
-                                          =E2=94=8C=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90   =E2=94=
-=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=90
-                                          =E2=94=82         =E2=94=82   =E2=
-=94=82          =E2=94=82
-                                          =E2=94=82  GMAC2  =E2=94=82   =E2=
-=94=82  GMAC1   =E2=94=82
-                                          =E2=94=82         =E2=94=82   =E2=
-=94=82          =E2=94=82
-                                          =E2=94=94=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=AC=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98   =E2=94=
-=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=AC=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=98
-                                              =E2=94=82               =E2=
-=94=82
-                                              =E2=94=82               =E2=
-=94=82
-                                              =E2=94=82               =E2=
-=94=82
-                                         =E2=94=8C=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=80=E2=96=BC=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
-=E2=94=90        =E2=94=82
-                                         =E2=94=82           =E2=94=82     =
-   =E2=94=82
-            =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=A4  SWITCH   =E2=94=
-=82        =E2=94=82
-            =E2=94=82                            =E2=94=82           =E2=94=
-=82        =E2=94=82
-            =E2=94=82          =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=B4=E2=94=80=E2=94=AC=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=AC=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=98        =E2=94=82
-            =E2=94=82          =E2=94=82            =E2=94=8C=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98    =E2=94=82           =
-  =E2=94=82
-            =E2=94=82          =E2=94=82            =E2=94=82           =E2=
-=94=82             =E2=94=82
-       =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=96=BC=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=96=BC=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=96=BC=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=96=BC=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=96=BC=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=90
-       =E2=94=82                      MII Converter                        =
-=E2=94=82
-       =E2=94=82                                                           =
-=E2=94=82
-       =E2=94=82                                                           =
-=E2=94=82
-       =E2=94=82 port 1      port 2       port 3      port 4       port 5  =
-=E2=94=82
-       =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=98
+Are you sure this works on mt8195-gce?
 
-As you can see, the GMAC1 is directly connected to MIIC converter and
-thus will need a "pcs-handle" property to point on the MII converter
-port whereas the GMAC2 is directly connected to the switch in GMII.
+> +
+> +        clock-names:
+> +          items:
+> +            - const: gce0
+> +            - const: gce1
+> +
 
-Is "renesas,r9a06g032-gmac2", "renesas,rzn1-switch-gmac2" looks ok for
-you for this one ?
-
-Thanks,
-
-Cl=C3=A9ment
-
->=20
-> > +                       reg =3D <0x44002000 0x2000>;
-> > +                       interrupt-parent =3D <&gic>;
-> > +                       interrupts =3D <GIC_SPI 37
-> > IRQ_TYPE_LEVEL_HIGH>,
-> > +                                    <GIC_SPI 39
-> > IRQ_TYPE_LEVEL_HIGH>,
-> > +                                    <GIC_SPI 38
-> > IRQ_TYPE_LEVEL_HIGH>;
-> > +                       interrupt-names =3D "macirq", "eth_wake_irq",
-> > "eth_lpi";
-> > +                       clock-names =3D "stmmaceth";
-> > +                       clocks =3D <&sysctrl R9A06G032_HCLK_GMAC1>; =20
->=20
-> Missing "power-domains", also in the DT bindings.
-> The driver already uses Runtime PM.
-
-Ok,I'll add that to the DT and modify the DWMAC bindings.
-
->=20
-> > +                       snps,multicast-filter-bins =3D <256>;
-> > +                       snps,perfect-filter-entries =3D <128>;
-> > +                       tx-fifo-depth =3D <2048>;
-> > +                       rx-fifo-depth =3D <4096>;
-> > +                       status =3D "disabled";
-> > +               };
-> > +
-> >                 eth_miic: eth-miic@44030000 {
-> >                         compatible =3D "renesas,r9a06g032-miic",
-> > "renesas,rzn1-miic"; #address-cells =3D <1>; =20
->=20
-> Gr{oetje,eeting}s,
->=20
->                         Geert
->=20
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 --
-> geert@linux-m68k.org
->=20
-> In personal conversations with technical people, I call myself a
-> hacker. But when I'm talking to journalists I just say "programmer"
-> or something like that. -- Linus Torvalds
-
-
-
---=20
-Cl=C3=A9ment L=C3=A9ger,
-Embedded Linux and Kernel engineer at Bootlin
-https://bootlin.com
+Best regards,
+Krzysztof
