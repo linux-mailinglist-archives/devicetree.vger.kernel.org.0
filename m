@@ -2,144 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20E3552E29D
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 04:46:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57B6D52E2F1
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 05:14:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344810AbiETCqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 22:46:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54068 "EHLO
+        id S1345140AbiETDON (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 23:14:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344807AbiETCqN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 22:46:13 -0400
+        with ESMTP id S1345110AbiETDOK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 23:14:10 -0400
 Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68B0D58E70
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 19:46:08 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EB1514A246
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 20:13:59 -0700 (PDT)
 Received: from epcas1p3.samsung.com (unknown [182.195.41.47])
-        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220520024603epoutp03f3dc8ea3045dd0f9f50d53c8db5f84b6~wsCtAn1Mz3085330853epoutp03O
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 02:46:03 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220520024603epoutp03f3dc8ea3045dd0f9f50d53c8db5f84b6~wsCtAn1Mz3085330853epoutp03O
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220520031357epoutp03285721bb74b52761ea2da45a092252c8~wsbEKmxVc2507225072epoutp03g
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 03:13:57 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220520031357epoutp03285721bb74b52761ea2da45a092252c8~wsbEKmxVc2507225072epoutp03g
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1653014763;
-        bh=pNwd+tG5/5Th2TaXiJdgPU0+4OREyHFZPZACOtCzGwo=;
+        s=mail20170921; t=1653016437;
+        bh=qYM0UTxJNeaJrHpm5Xdc9Da5RIb/dbJklFYHKmNgef4=;
         h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=mL95xUAwWAKdOD8Rxo1Sgi9jsDBgq8jf9eDdje4Om9iBkn6F4A9n4nePxUOdINJZn
-         Qmxi8NP7EMryGlzP20kAFcb8/hrqHaWWaRIa3//5x6qpJA5jq/U2/S8l4c21QcVDsg
-         uL8bllJdxea6o0IjBR1pJJ8iztcc+oKiroyEc8Ao=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-        epcas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20220520024602epcas1p101fd352055afd50ab10860434a668044~wsCsRq4ps1499814998epcas1p1g;
-        Fri, 20 May 2022 02:46:02 +0000 (GMT)
-Received: from epsmges1p3.samsung.com (unknown [182.195.36.134]) by
-        epsnrtp1.localdomain (Postfix) with ESMTP id 4L4B1N5w7zz4x9Pp; Fri, 20 May
-        2022 02:46:00 +0000 (GMT)
-Received: from epcas1p1.samsung.com ( [182.195.41.45]) by
-        epsmges1p3.samsung.com (Symantec Messaging Gateway) with SMTP id
-        BE.1E.10038.8E007826; Fri, 20 May 2022 11:46:00 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas1p3.samsung.com (KnoxPortal) with ESMTPA id
-        20220520024600epcas1p340ac0aa2dcf54e4b69180e8d4483bd18~wsCqkBSnO0345903459epcas1p3W;
-        Fri, 20 May 2022 02:46:00 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20220520024600epsmtrp2d94a309fb79df1a06022261361dd966e~wsCqiuVGy2863728637epsmtrp2-;
-        Fri, 20 May 2022 02:46:00 +0000 (GMT)
-X-AuditID: b6c32a37-127ff70000002736-50-628700e88ece
+        b=bDkBP3/ZdLBgVwo+hNsbviz9Ld+fDJocMVzCsBsjAku6nbdlP5iTG7KMbTpXLZ8sr
+         J1gdztpO1D05wKnapDRoTAhsNjfBsebwcHNeuvq1Z5UBM1OH0M/dezcduzfsBMJ/wy
+         XD7o9SFLcVw0kMhjLI4qtj9W1ZDTk2aGCtE/Af/Q=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20220520031356epcas1p209464a65c809a581511fa06e096f115c~wsbDv0m8_1395213952epcas1p2I;
+        Fri, 20 May 2022 03:13:56 +0000 (GMT)
+Received: from epsmges1p1.samsung.com (unknown [182.195.38.236]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4L4Bdb1lCJz4x9Px; Fri, 20 May
+        2022 03:13:55 +0000 (GMT)
+Received: from epcas1p2.samsung.com ( [182.195.41.46]) by
+        epsmges1p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+        56.06.10063.37707826; Fri, 20 May 2022 12:13:55 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas1p4.samsung.com (KnoxPortal) with ESMTPA id
+        20220520031354epcas1p4553a0a66ee74ccf9fdd9551fc682896c~wsbBpjoEW2056020560epcas1p4h;
+        Fri, 20 May 2022 03:13:54 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20220520031354epsmtrp139e8fd4b517e66fa77d1874bd913a77f~wsbBotNle0505205052epsmtrp1k;
+        Fri, 20 May 2022 03:13:54 +0000 (GMT)
+X-AuditID: b6c32a35-1dbff7000000274f-1b-62870773d98f
 Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        04.76.08924.8E007826; Fri, 20 May 2022 11:46:00 +0900 (KST)
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        A1.5C.11276.27707826; Fri, 20 May 2022 12:13:54 +0900 (KST)
 Received: from [10.113.221.102] (unknown [10.113.221.102]) by
         epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20220520024559epsmtip1aa1b59a3005b8fe5f752d9712e6eb50c~wsCqG38ll1417514175epsmtip1W;
-        Fri, 20 May 2022 02:45:59 +0000 (GMT)
-Subject: Re: [PATCH v25 0/7] soc: mediatek: SVS: introduce MTK SVS
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     Kevin Hilman <khilman@kernel.org>,
-        Roger Lu <roger.lu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
+        20220520031354epsmtip106cc04f23d2587ce0f8d6fea984d1bb9~wsbBaVVwg3033330333epsmtip1V;
+        Fri, 20 May 2022 03:13:54 +0000 (GMT)
+Subject: Re: [PATCH] dt-bindings: clock: exynosautov9: correct count of
+ NR_CLK
+To:     Chanho Park <chanho61.park@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Fan Chen <fan.chen@mediatek.com>,
-        Charles Yang <Charles.Yang@mediatek.com>,
-        Angus Lin <Angus.Lin@mediatek.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jia-wei Chang <jia-wei.chang@mediatek.com>,
-        =?UTF-8?B?UmV4LUJDIENoZW4gKOmZs+afj+i+sCk=?= 
-        <rex-bc.chen@mediatek.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
 From:   Chanwoo Choi <cw00.choi@samsung.com>
 Organization: Samsung Electronics
-Message-ID: <7beea208-7d40-1c7d-9c70-6437440d22da@samsung.com>
-Date:   Fri, 20 May 2022 12:12:18 +0900
+Message-ID: <a114746d-9f7a-acce-c9eb-7af6dd8eae89@samsung.com>
+Date:   Fri, 20 May 2022 12:40:30 +0900
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:59.0) Gecko/20100101
         Thunderbird/59.0
 MIME-Version: 1.0
-In-Reply-To: <CAGXv+5EsgiXCpe-8H0cQ=qm_Nq+yfM_a4b1L=hOFP6mcwfZymw@mail.gmail.com>
+In-Reply-To: <20220520030625.145324-1-chanho61.park@samsung.com>
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Tf1RTZRjHfe8ud8NaXRHYG5wMr9YRarABm9ccHk8g53b0BJ2OFpw64wL3
-        AALb2t3K7A+n/JwhipxAFwYKFE5O4TBwOyEKJL/EohUgRD8YIhoosAhOO0gbF4v/vs/zfr7v
-        837f97wCnk8OP0CQodIxWhWdRWDr0ab2YLF4cl1BsuTTATG5cLSaT86fMaBkZcdtL9I+PM8j
-        f3BdxMi/f3EhZGdrDZ+82+hASItjwL1qq8BIe04/IJ0nOgA5fv4WQtYO9iPksdwIcmqxDyFH
-        f+1CybmvClHyWm85j8xr6eCTdsdljHw8cBklz+TbvXaLqPrP6wH1maEfpaymUT5VZdFTFrMR
-        oxprjlC53a0odXJJQlkXDHyqc6gZoZyWTfFPJWYq0hk6ldEGMaoUdWqGKi2K2PuWMlopk0uk
-        YukOcjsRpKKzmSgiZl+8ODYjyx2YCPqAztK7W/E0yxJhuxRatV7HBKWrWV0UwWhSszQyTShL
-        Z7N6VVqoitG9KpVIwmVuMCkzfdY8w9MUSw5NVpXyDaB823HgLYB4JLxYdxocB+sFPvhVAK+V
-        XcK4Yg7AkesLCFc4ASw+3+H1xNLcf3eVsgH4R0EPyhWPAPypdATzUBvx1+BI6z23Fgh88Reh
-        7dtAD8PDHRgcnW9CPQyGh8DWyaEV/ll8M/x50QE8WojvguaeKsTjRd3eBrPM0/bDD8DuptxV
-        ZAPsPju+so03/ib87c49vkfzcBEcHq9EOP0CbJ6u4HnmQrzRGy73VSNcghj4xXLeapqN8EHn
-        FT6nA6DzYQvGGXIANEyOAK4oAvC7iWKUoyJga23pyul4eDD82hbGtTdDq+sc4CY/Ax/OF3l5
-        EIgLYWG+D4dsgfbfR1fP8BysLjBipwBhWpPHtCaDaU0G0//DqgBqBv6Mhs1OY1ipJuK/505R
-        Z1vAym8I2X4VlE3PhLYBRADaABTwCF8hyM5N9hGm0h8dZrRqpVafxbBtQOa+4BJegF+K2v2d
-        VDqlNHKHJFIeHhFJSuVSQiQ0l/XSPngarWMyGUbDaJ/4EIF3gAE5ESoyvkv7TW+6IJ8VxaXM
-        Hba73tAWn1UcBG/71rQ3vt77o/8+bbW+9qQxvoGoq1B2P7p/ejDQ4WdahDXXxyaU/KEyy7pj
-        STH79++RLe/dWtTyYIPr+5rAPsVMXcLMuYNxRnrx/aUrRy7djNPfCovOyZtKxpYSopIEW9vT
-        Ev1dATcc792OVcu9dpbvPjR4YeyovDAxXmH6UB2d65wd679vtimsSMKdp0c+uRFiH63XKybK
-        gu02dvivl8ZU+YioYYrqvWks2TYxbm3z6/lm+s+6qY+/dO7ssmlaQPiDxQOTryT75iUTz4eX
-        iF9+p8O0pT7P2lHJxo4ljsucfGHX43/2oATKptPSEJ6Wpf8FAoiXi5YEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SaUwTURSFfTPjdChpHAqEZ9WqVcRUrYBgntEQIxrHBI3EuOCGo4y40Iod
-        cE2gAlZsgpgYt4qlIkatuFDEAlaRTUTRUOuK4jZFMIJBtEIUF0pjwr8v95zv/LoULu0gZNRm
-        TQqn1bBJClJM3KhRyKe0DzmwPtSZG4h69p0VIfcJHYHyax8NRc5mN46afl0k0Y/XvzBUX1ko
-        Qq0lAoaswrP+tCKPRM5MB0DfcmoBcp1pxNC55w4MZWRNQx29DzHU8uYegbqvZBPo9oPjONp/
-        q1aEnEIxif48KybQCb1z6OwgpshUBJhTOgfBlBtbRIzZmspYLQdJpqQwnclqqCSY3N+hTHmP
-        TsTUv7BhzDerfLHvSvGsBC5p8w5OOzVqnXjTV0sXnnwodFe7+YhIB45PNAAfCtIR0OZoJQ1A
-        TEnpMgArhCeYNxgOjznqcAOg+tkf1tTw3k4ngMU/9SJPx5+eA19VtpGeTgAdDCvsIzwdnG4l
-        4dPuO4RX+IHD264LAwJJK2Fl+wvSw8PosfBprwA8LKGjoOW+GfMMEf1D1yyRnnMgvQyWFwqY
-        t+IHG066CA/70LHw7cu2gUmcDoF9pse4l4Ngsysf8/JoaOvMww8Df+Mg3ThIMQ5SjIMUMyAs
-        YDiXzKsT1XxYcriG26niWTWfqklUbdimtoKBh1Aqy4Dd0qWqBhgFqgGkcEWABKiz1kslCezu
-        PZx2W7w2NYnjq8EIilAESZoMDfFSOpFN4bZyXDKn/Z9ilI9Mh8UAP/ndyOjGdnytJrb2/crl
-        SlWWTtv2HYTHpObO/ZIm7LDPl+VOvCwb93OF/vX5z9bl4vOUQqqJ2Vu1MKp+yUx7xrvre90R
-        O/uitcVv4B0Vz1NzDOOzLzpLJ42OKHA7PrHbhUNKkX5Yk//IlISiq9Hh7rp96pyt+owtMr9M
-        x9GlrYtY6x+TfN5sU+xGfHIVOX0GON2hf1twy+4KUcROW5oz4Wz5GXSvNCA9e5Rk/6WCtGZj
-        Xs8jPC2uwRy8pa93QkvnFHP6qpZGP4uLPRoXFumbWdddiAd+SPhbkb+6pm+BfLcQ9vLBGFP8
-        muCbVTZ9wPiukT20bwlSfTyWYvt+X0Hwm9gwJa7l2X+Ix37+fwMAAA==
-X-CMS-MailID: 20220520024600epcas1p340ac0aa2dcf54e4b69180e8d4483bd18
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrEJsWRmVeSWpSXmKPExsWy7bCmnm4xe3uSwbSz3BYP5m1js7i8X9ti
+        /pFzrBZ9Lx4yW3zsucdqMeP8PiaLi6dcLVr3HmG3OPymndXi37WNLBardv1hdOD2eH+jld1j
+        56y77B6bVnWyedy5tofNo2/LKkaPz5vkAtiism0yUhNTUosUUvOS81My89JtlbyD453jTc0M
+        DHUNLS3MlRTyEnNTbZVcfAJ03TJzgK5TUihLzCkFCgUkFhcr6dvZFOWXlqQqZOQXl9gqpRak
+        5BSYFugVJ+YWl+al6+WlllgZGhgYmQIVJmRnXNp2jangoHDFoTf8DYwn+bsYOTkkBEwkdv06
+        z9jFyMUhJLCDUeL6rmNMEM4nRokF65ewQTjfGCXWPG9hgWm5u2EuC0RiL6PE2SOfoKreM0rM
+        ePaTFaRKWCBA4uf/2+wgCRGBdUwS+3fPYAVxmAXaGSXufp/CDlLFJqAlsf/FDTYQm19AUeLq
+        j8eMIDavgJ1Ey4XNzCA2i4CqxNwDT8DiogJhEie3tUDVCEqcnPkE7CZOAQeJJV3TweLMAuIS
+        t57MZ4Kw5SW2v53DDLJYQuAIh8TvSZ2sEE+4SJy/3sEMYQtLvDq+hR3ClpJ42d/GDtHQzCjR
+        8OI2I4TTwyhx9FkfNAiMJfYvnQy0ggNohabE+l36EGFFiZ2/50JdwSfx7msPK0iJhACvREeb
+        EESJssTlB3eZIGxJicXtnWwTGJVmIflnFpIfZiH5YRbCsgWMLKsYxVILinPTU4sNCwzhEZ6c
+        n7uJEZx4tUx3ME58+0HvECMTB+MhRgkOZiURXsbcliQh3pTEyqrUovz4otKc1OJDjKbAEJ7I
+        LCWanA9M/Xkl8YYmlgYmZkbGJhaGZoZK4ryrpp1OFBJITyxJzU5NLUgtgulj4uCUamA6lfDU
+        +Nv6W8f57V9tZlHd0rl31a+AyfxTdgVfUbIJszv9+9DngL6oG75Kk+cdWBO9mv9C1I+ZB5lZ
+        t5yVrpjZGpbjY6/Cqvq+2M/qm9mydW1/LArOtnd0pD+8Uye1pntjVEPpXllzue3HglUWdgpP
+        zlDkj+686F/Yen5y5s36Eo6lbo8Wfr2xJY9rS3iPWgDD2oyl60/qrd3Gz7Fxzbs/norf/2w4
+        EN0rXey5IEvm0PNdVSzfkp0OPI47b3gin6FY+J/bt7kF1pPfCK+8d3hu9Ly4Nof4wKw/m99x
+        /S3Tuj4pVKr2keqd7kyBABn3g2s2n1v7f6Fk4Y953o+XiJgeTtb7veD+sYJ9MgYNjXM4lFiK
+        MxINtZiLihMBPO2EikUEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprFIsWRmVeSWpSXmKPExsWy7bCSnG4Re3uSwdJ+CYsH87axWVzer20x
+        /8g5Vou+Fw+ZLT723GO1mHF+H5PFxVOuFq17j7BbHH7Tzmrx79pGFotVu/4wOnB7vL/Ryu6x
+        c9Zddo9NqzrZPO5c28Pm0bdlFaPH501yAWxRXDYpqTmZZalF+nYJXBmXtl1jKjgoXHHoDX8D
+        40n+LkZODgkBE4m7G+aydDFycQgJ7GaUOLV2DhtEQlJi2sWjzF2MHEC2sMThw8UQNW8ZJdYd
+        aWYEqREW8JO4/OYCE4gtIrCBSWLLviSQImaBVkaJOys+sEN0TGaU2DWnjRmkik1AS2L/ixtg
+        G/gFFCWu/ngMNolXwE6i5cJmsBoWAVWJuQeegMVFBcIkdi55zARRIyhxcuYTFhCbU8BBYknX
+        dLAaZgF1iT/zLjFD2OISt57MZ4Kw5SW2v53DPIFReBaS9llIWmYhaZmFpGUBI8sqRsnUguLc
+        9NxiwwLDvNRyveLE3OLSvHS95PzcTYzg6NPS3MG4fdUHvUOMTByMhxglOJiVRHgZc1uShHhT
+        EiurUovy44tKc1KLDzFKc7AoifNe6DoZLySQnliSmp2aWpBaBJNl4uCUamDa+3176H5JTjn7
+        E+f8ih4lb0/uURUq5T4Qs/YDo82nIOmA4sWL3u1fxpzCP7/5/PyQALbXegfuzLNf65H+jeWC
+        xa+t2XZLZwsHiaxmX3BD9vj2pOcTr+gaB+h7q37k+cs54WniFL67l7z/zf+h+nGCf8LL8Hdb
+        JUtbnetv3X40YWWh5Svpcp7dCx5cNV2SszsreEXETF5zf5G0dX6dDxaVXl2mqyb7SvKH5sF5
+        +zVvnLI7NGeW8748z3un5l5k2ck+4XPX/4NLP7KvChA4tNFqnZ2Q4fewsHULFggYCpmv+q5v
+        e+Pz6+UWJgs2101WW3y66jJHvtXpg85nF3pm/WfxEyr9tdZs3fTrAftyF/VYVSixFGckGmox
+        FxUnAgCLHwoFLQMAAA==
+X-CMS-MailID: 20220520031354epcas1p4553a0a66ee74ccf9fdd9551fc682896c
 X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
 X-Sendblock-Type: SVC_REQ_APPROVE
 CMS-TYPE: 101P
 DLP-Filter: Pass
 X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220519182512epcas1p3020bd4713580c9244f759971b8bd2c3a
-References: <20220516004311.18358-1-roger.lu@mediatek.com>
-        <CAGXv+5GSdWPZe3fNpBJ_WW0zCL8Skg6fHx9ATxaKU1hyMEt2Ww@mail.gmail.com>
-        <7h4k1ndaui.fsf@baylibre.com> <7hy1yzbtb7.fsf@baylibre.com>
-        <CAGXv+5GT=3m=pVPwUOWR42BR=emCpBXvvoAiRV7YKt2kEKWdAQ@mail.gmail.com>
-        <CGME20220519182512epcas1p3020bd4713580c9244f759971b8bd2c3a@epcas1p3.samsung.com>
-        <7hmtfdbcsc.fsf@baylibre.com>
-        <5a1767dc-ba2d-4de5-d8fe-2f308d3318a9@samsung.com>
-        <CAGXv+5EsgiXCpe-8H0cQ=qm_Nq+yfM_a4b1L=hOFP6mcwfZymw@mail.gmail.com>
+X-CMS-RootMailID: 20220520030551epcas2p1a67b9f026ce2ec56b0a167026ef96baf
+References: <CGME20220520030551epcas2p1a67b9f026ce2ec56b0a167026ef96baf@epcas2p1.samsung.com>
+        <20220520030625.145324-1-chanho61.park@samsung.com>
 X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -147,141 +128,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/20/22 11:42 AM, Chen-Yu Tsai wrote:
-> On Fri, May 20, 2022 at 9:28 AM Chanwoo Choi <cw00.choi@samsung.com> wrote:
->>
->> Hi Kevin, Chen-Yu,
->>
->> On 5/20/22 3:25 AM, Kevin Hilman wrote:
->>> Chen-Yu Tsai <wenst@chromium.org> writes:
->>>
->>>> n Wed, May 18, 2022 at 8:03 AM Kevin Hilman <khilman@kernel.org> wrote:
->>>>>
->>>>> Kevin Hilman <khilman@kernel.org> writes:
->>>>>
->>>>>> Chen-Yu Tsai <wenst@chromium.org> writes:
->>>>>>
->>>>>>> On Mon, May 16, 2022 at 8:43 AM Roger Lu <roger.lu@mediatek.com> wrote:
->>>>>>>>
->>>>>>>> The Smart Voltage Scaling(SVS) engine is a piece of hardware
->>>>>>>> which calculates suitable SVS bank voltages to OPP voltage table.
->>>>>>>> Then, DVFS driver could apply those SVS bank voltages to PMIC/Buck
->>>>>>>> when receiving OPP_EVENT_ADJUST_VOLTAGE.
->>>>>>>>
->>>>>>>> 1. SVS driver uses OPP adjust event in [1] to update OPP table voltage part.
->>>>>>>> 2. SVS driver gets thermal/GPU device by node [2][3] and CPU device by get_cpu_device().
->>>>>>>> After retrieving subsys device, SVS driver calls device_link_add() to make sure probe/suspend callback priority.
->>>>>>>>
->>>>>>>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git/commit/?h=opp/linux-next&id=25cb20a212a1f989385dfe23230817e69c62bee5
->>>>>>>> [2] https://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git/commit/?h=opp/linux-next&id=b325ce39785b1408040d90365a6ab1aa36e94f87
->>>>>>>> [3] https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/commit/?h=v5.16-next/dts64&id=a8168cebf1bca1b5269e8a7eb2626fb76814d6e2
->>>>>>>>
->>>>>>>> Change since v24:
->>>>>>>> - Rebase to Linux 5.18-rc6
->>>>>>>> - Show specific fail log in svs_platform_probe() to help catch which step fails quickly
->>>>>>>> - Remove struct svs_bank member "pd_dev" because all subsys device's power domain has been merged into one node like above [3]
->>>>>>>>
->>>>>>>> Test in below environment:
->>>>>>>> SW: Integration Tree [4] + Thermal patch [5] + SVS v25 (this patchset)
->>>>>>>> HW: mt8183-Krane
->>>>>>>>
->>>>>>>> [4] https://protect2.fireeye.com/v1/url?k=847bae75-e5f0bb43-847a253a-000babff9b5d-0b6f42041b9dea1d&q=1&e=37a26c43-8564-4808-9701-dc76d1ebbb27&u=https%3A%2F%2Fgithub.com%2Fwens%2Flinux%2Fcommits%2Fmt8183-cpufreq-cci-svs-test
->>>>>>>
->>>>>>> I've updated my branch to include all the latest versions of the relevant
->>>>>>> patch series:
->>>>>>>
->>>>>>> - anx7625 DPI bus type series v2 (so the display works)
->>>>>>> - MT8183 thermal series v9 (this seems to have been overlooked by the
->>>>>>> maintainer)
->>>>>>> - MTK SVS driver series v25
->>>>>>> - devfreq: cpu based scaling support to passive governor series v5
->>>>>>> - MTK CCI devfreq series v4
->>>>>>> - MT8183 cpufreq series v7
->>>>>>> - Additional WIP patches for panfrost MTK devfreq
->>>>>>
->>>>>> Thanks for preparing an integration branch Chen-Yu.
->>>>>>
->>>>>> I'm testing this on mt8183-pumpkin with one patch to add the CCI
->>>>>> regulator[1], and the defconfig you posted in a previous rev of this
->>>>>> series, but the CCI driver still causes a fault on boot[2] on my
->>>>>> platform.
->>>>>>
->>>>>> I mentioned in earlier reviews that I think there's potentially a race
->>>>>> between CCI and SVS loading since they are co-dependent.  My hunch is
->>>>>> that this is still not being handled properly.
->>>>>
->>>>> Ah, actually it's crashing when I try to boot the platform with
->>>>> `maxcpus=4` on the cmdline (which I have to do because mt8183-pumpkin is
->>>>> unstable upstream with the 2nd cluster enabled.)
->>
->> This warning message is printed by 'WARN_ON(cpufreq_passive_unregister_notifier(devfreq))'
->> on devfreq passive governor.
->>
->> If the cpufreq drivers are not probed before of probing cci devfreq driver
->> with passive governor, passive governor shows this warning message.
->> Because passive governor with CPUFREQ_PARENT_DEV depends on the cpufreq driver
->> in order to get 'struct cpufreq_policy'[2].
->>
->> [1] https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git/tree/drivers/devfreq/governor_passive.c?h=devfreq-testing#n339
->> [2] https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git/tree/drivers/devfreq/governor_passive.c?h=devfreq-testing#n282
->>
->> But, as I knew, this message might not stop the kernel. Just show the warning
->> message and then return -EPROBE_DEFER error. It means that maybe try to
->> probe the cci devfreq driver on late time of kernel booting
->> and then will be working. But, I need the full kernel booting log
->> and the booting sequence of between cpufreq and cci devfreq driver.
+On 5/20/22 12:06 PM, Chanho Park wrote:
+> _NR_CLKS which can be used to register clocks via nr_clk_ids. The clock
+> IDs are started from 1. So, _NR_CLKS should be defined to "the last
+> clock id + 1"
 > 
-> Maybe just use a standard dev_warn() instead? WARN_ON causes all sorts
-> of panicking in developers' minds. :p
-
-OK. I'll use dev_warn() instead of WARN_ON.
-
+> Fixes: 680e1c8370a2 ("dt-bindings: clock: add clock binding definitions for Exynos Auto v9")
+> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+> ---
+>  include/dt-bindings/clock/samsung,exynosautov9.h | 14 +++++++-------
+>  1 file changed, 7 insertions(+), 7 deletions(-)
 > 
->> In order to fix your issue, could you share the full booting log?
->> And if possible, please explain the more detailed something about this.
-> 
-> The shortened version is that on an 8 core system, with maxcpus=4,
-> only the first four cores are booted and have cpufreq associated.
-> I've not actually used this mechanism, so I don't really know what
-> happens if the other cores are brought up later with hotplug. Is
-> cpufreq expected to attach to them?
-> 
-> Maybe Kevin can add some more details.
-> 
-> 
-> ChenYu
-> 
-> 
->>>>>
->>>>> The CCI driver should be a bit more robust about detecting
->>>>> available/online CPUs
->>>>
->>>> This all seems to be handled in the devfreq passive governor.
->>>
->>> Well, that's the initial crash.  But the SVS driver will also go through
->>> its svs_mt8183_banks[] array (including both big & little clusters) and
->>> try to init SVS, so presumably that will have some problems also if only
->>> one cluster is enabled.
->>>
->>>> And presumably we'd like to have CCI devfreq running even if just one
->>>> core was booted.
->>>
->>> Yes, I assume so also.
->>>
->>>> Added Chanwoo for more ideas.
->>>
->>> OK, thanks.
->>>
->>> Kevin
->>
->>
->> --
->> Best Regards,
->> Chanwoo Choi
->> Samsung Electronics
-> 
+> diff --git a/include/dt-bindings/clock/samsung,exynosautov9.h b/include/dt-bindings/clock/samsung,exynosautov9.h
+> index 71ec0a955364..ea9f91b4eb1a 100644
+> --- a/include/dt-bindings/clock/samsung,exynosautov9.h
+> +++ b/include/dt-bindings/clock/samsung,exynosautov9.h
+> @@ -166,7 +166,7 @@
+>  #define GOUT_CLKCMU_PERIC1_IP		248
+>  #define GOUT_CLKCMU_PERIS_BUS		249
+>  
+> -#define TOP_NR_CLK			249
+> +#define TOP_NR_CLK			250
+>  
+>  /* CMU_BUSMC */
+>  #define CLK_MOUT_BUSMC_BUS_USER		1
+> @@ -174,7 +174,7 @@
+>  #define CLK_GOUT_BUSMC_PDMA0_PCLK	3
+>  #define CLK_GOUT_BUSMC_SPDMA_PCLK	4
+>  
+> -#define BUSMC_NR_CLK			4
+> +#define BUSMC_NR_CLK			5
+>  
+>  /* CMU_CORE */
+>  #define CLK_MOUT_CORE_BUS_USER		1
+> @@ -183,7 +183,7 @@
+>  #define CLK_GOUT_CORE_CCI_PCLK		4
+>  #define CLK_GOUT_CORE_CMU_CORE_PCLK	5
+>  
+> -#define CORE_NR_CLK			5
+> +#define CORE_NR_CLK			6
+>  
+>  /* CMU_FSYS2 */
+>  #define CLK_MOUT_FSYS2_BUS_USER		1
+> @@ -194,7 +194,7 @@
+>  #define CLK_GOUT_FSYS2_UFS_EMBD1_ACLK	6
+>  #define CLK_GOUT_FSYS2_UFS_EMBD1_UNIPRO	7
+>  
+> -#define FSYS2_NR_CLK			7
+> +#define FSYS2_NR_CLK			8
+>  
+>  /* CMU_PERIC0 */
+>  #define CLK_MOUT_PERIC0_BUS_USER	1
+> @@ -240,7 +240,7 @@
+>  #define CLK_GOUT_PERIC0_PCLK_10		41
+>  #define CLK_GOUT_PERIC0_PCLK_11		42
+>  
+> -#define PERIC0_NR_CLK			42
+> +#define PERIC0_NR_CLK			43
+>  
+>  /* CMU_PERIC1 */
+>  #define CLK_MOUT_PERIC1_BUS_USER	1
+> @@ -286,7 +286,7 @@
+>  #define CLK_GOUT_PERIC1_PCLK_10		41
+>  #define CLK_GOUT_PERIC1_PCLK_11		42
+>  
+> -#define PERIC1_NR_CLK			42
+> +#define PERIC1_NR_CLK			43
+>  
+>  /* CMU_PERIS */
+>  #define CLK_MOUT_PERIS_BUS_USER		1
+> @@ -294,6 +294,6 @@
+>  #define CLK_GOUT_WDT_CLUSTER0		3
+>  #define CLK_GOUT_WDT_CLUSTER1		4
+>  
+> -#define PERIS_NR_CLK			4
+> +#define PERIS_NR_CLK			5
+>  
+>  #endif /* _DT_BINDINGS_CLOCK_EXYNOSAUTOV9_H */
 > 
 
+Reviewed-by: Chanwoo Choi <cw00.choi@samsung.com>
 
 -- 
 Best Regards,
