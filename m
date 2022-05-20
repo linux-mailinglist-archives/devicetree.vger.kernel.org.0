@@ -2,131 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17AD352E72A
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 10:20:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9E1252E738
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 10:23:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245742AbiETIUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 04:20:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49084 "EHLO
+        id S1346948AbiETIXl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 04:23:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238394AbiETIUS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 04:20:18 -0400
-Received: from mail-vs1-xe2c.google.com (mail-vs1-xe2c.google.com [IPv6:2607:f8b0:4864:20::e2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C85F013C4CB
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 01:20:16 -0700 (PDT)
-Received: by mail-vs1-xe2c.google.com with SMTP id w10so5215053vsa.4
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 01:20:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Pv/fKsgz9HPI18IdLThROlTXnti2XP7bO6uUS4/cBbk=;
-        b=AmJ24kkYrYie9iChmgi42NOfOg6nvWlTD0edH5lPaYYb69mnSM7UawniWYWeTVAFON
-         pVEbFYjPXitTV00v/wrhzVEvrHMRTrmoTcz1dSUf+ZrA9VxB1FXSt47mlj/t6N+hKbHt
-         covKTaINHqrEQAAIB9whygBDTSXCKcX0Kwfpk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Pv/fKsgz9HPI18IdLThROlTXnti2XP7bO6uUS4/cBbk=;
-        b=49RXTw8T8Q/vuQzMBCtCcfdC8aVDrSshQ7CBGIAPAvPZ7Ir/rSokGKxID9c9dg5lg5
-         suKnCKLgNJ8NkvJskADprKtVo9l5BFdd2gka4LzCWuoTrI2yyWx9ppqT68t4mVGjfXVc
-         aPutL94M8hRveoimIhvpMCJ/OCrsb0t6gd/Ze/VUlZI/z8ImoDzWI9cd7nGXpHP+d7pZ
-         g0s7gQ4Mg+jAw+txPy1pZ/3lnwiAds38Fr4Y6imKSpXjFRNo4hPmu8rH1zyVaIfJ1kKi
-         tM52JGof1Wyr7xYTU2c74SuWGV122aMXSP4KURzwEMLQvZ0mOuhwyDI/HK19VNv9Pr3j
-         NYjg==
-X-Gm-Message-State: AOAM533EIqOHmo1XgvoWxd2kYYHWk0i2ODAyqddnLZGeMXZbBOE1/QdG
-        Lp5ydaAM+ZhEcn0sREtnOJ4RoGnB0WHnhJicDgpQ7A==
-X-Google-Smtp-Source: ABdhPJw7jmVO4XgWNSa8qKgVeeQg1b61haWzpxXWWy+teLKQM2728KAprr+EMNGK3y1C1hHG4nO9MDtwkd8lsKpP4l4=
-X-Received: by 2002:a67:d999:0:b0:335:7e5c:63d5 with SMTP id
- u25-20020a67d999000000b003357e5c63d5mr3906889vsj.69.1653034815916; Fri, 20
- May 2022 01:20:15 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220519072649.1493706-1-treapking@chromium.org>
-In-Reply-To: <20220519072649.1493706-1-treapking@chromium.org>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Fri, 20 May 2022 16:19:49 +0800
-Message-ID: <CAJMQK-ipc73LUcK9qt8XtadFCiPTF6f_2Nrh_kdkt0UXgNx7ew@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: mt8173: Fix elm panel DT node
-To:     Pin-Yen Lin <treapking@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S1346932AbiETIXj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 04:23:39 -0400
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48CB3140423;
+        Fri, 20 May 2022 01:23:36 -0700 (PDT)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id C419E6000A;
+        Fri, 20 May 2022 08:23:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1653035014;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=u7ftNRkOl2hUKqnVw602ufHyZi8yLfc1Zwyuxj3PqQU=;
+        b=c5I6dSsQESldKWX+KVZzuJkA3YahNJqcYefiVUApmUcel4osp4QtbFBDjObK519OFyoB0b
+        os093WMhtAX9vCqQWn9bpcqSHketvksEQDVpyhjh9JSEGfJ25AzoCD77dkKqtWgEMQH1M4
+        wBwDPOxYf74MqjtEZm16M9mbRv7CE2Fm9scfGZc1RCSgkX4DL/imWLpspuxsUlVb0smNZe
+        +H3HswE4E9m6q7mi7pmOhhnQEAf3vMEwXJoqvjGFWG3uuWTcERGPzrrYQuUl3FuQFlJrpO
+        hiCnIwdpd6UMi2XAwQOV1IeQXuahbdqG0oLzN4xjgpL5jk9rkYbmdLaKGWVSUQ==
+Date:   Fri, 20 May 2022 10:23:29 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Krzysztof =?UTF-8?B?V2lsY3p5xYRza2k=?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>, linux-pci@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: Re: [PATCH v5 2/6] dt-bindings: PCI: renesas,pci-rcar-gen2: Add
+ device tree support for r9a06g032
+Message-ID: <20220520102329.6b0a58d0@bootlin.com>
+In-Reply-To: <29ba3db6-e5c7-06d3-29d9-918ee5b34555@linaro.org>
+References: <20220429134143.628428-1-herve.codina@bootlin.com>
+        <20220429134143.628428-4-herve.codina@bootlin.com>
+        <29ba3db6-e5c7-06d3-29d9-918ee5b34555@linaro.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.31; x86_64-redhat-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 19, 2022 at 3:27 PM Pin-Yen Lin <treapking@chromium.org> wrote:
->
-> Move the panel DT node under `aux-bus` node so it won't use the buggy
-> `ps8640_bridge_get_edid` to get display modes. Also change the
-> compatible string to "edp-panel" because the predefined
-> `lg_lp129qe_mode` is not working.
->
-> Signed-off-by: Pin-Yen Lin <treapking@chromium.org>
-> Fixes: 689b937bedde ("arm64: dts: mediatek: add mt8173 elm and hana board")
+Hi Krzysztof,
 
-Acked-by: Hsin-Yi Wang <hsinyi@chromium.org>
+On Sun, 1 May 2022 10:51:43 +0200
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-> ---
->
->  arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 26 +++++++++++---------
->  1 file changed, 14 insertions(+), 12 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-> index 9c75fbb31f98..1e0802a6f6d2 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-> @@ -90,18 +90,6 @@ volume_up {
->                 };
->         };
->
-> -       panel: panel {
-> -               compatible = "lg,lp120up1";
-> -               power-supply = <&panel_fixed_3v3>;
-> -               backlight = <&backlight>;
-> -
-> -               port {
-> -                       panel_in: endpoint {
-> -                               remote-endpoint = <&ps8640_out>;
-> -                       };
-> -               };
-> -       };
-> -
->         panel_fixed_3v3: regulator1 {
->                 compatible = "regulator-fixed";
->                 regulator-name = "PANEL_3V3";
-> @@ -282,6 +270,20 @@ ps8640_out: endpoint {
->                                 };
->                         };
->                 };
-> +
-> +               aux-bus {
-> +                       panel {
-> +                               compatible = "edp-panel";
-> +                               power-supply = <&panel_fixed_3v3>;
-> +                               backlight = <&backlight>;
-> +
-> +                               port {
-> +                                       panel_in: endpoint {
-> +                                               remote-endpoint = <&ps8640_out>;
-> +                                       };
-> +                               };
-> +                       };
-> +               };
->         };
->  };
->
-> --
-> 2.36.1.124.g0e6072fb45-goog
->
+[...]
+> >    resets:
+> >      maxItems: 1
+> > @@ -106,13 +106,45 @@ required:
+> >    - interrupt-map
+> >    - interrupt-map-mask
+> >    - clocks
+> > -  - resets
+> >    - power-domains
+> >    - bus-range
+> >    - "#address-cells"
+> >    - "#size-cells"
+> >    - "#interrupt-cells"
+> > =20
+> > +if: =20
+>=20
+> allOf.
+>=20
+> > +  properties:
+> > +    compatible:
+> > +      contains:
+> > +        enum:
+
+I Have an issue with this allOf.
+
+The yaml has the following structure and so has 2 AllOf:
+  ...
+  allOf:
+  - $ref: /schemas/pci/pci-bus.yaml#
+ =20
+  properties:
+    compatible:
+  ...
+  allOf:
+  - if:
+      properties:
+        compatible:
+          contains:
+  ...
+
+
+make dt_binding_check failed with the following error:
+    $ make dt_binding_check DT_SCHEMA_FILES=3Drenesas,pci-rcar-gen2.yaml
+      LINT    Documentation/devicetree/bindings
+    ./Documentation/devicetree/bindings/pci/renesas,pci-rcar-gen2.yaml:115:=
+1: [error] duplication of key "allOf" in mapping (key-duplicates)
+      CHKDT   Documentation/devicetree/bindings/processed-schema.json
+    Traceback (most recent call last):
+      File "/home/hcodina/.local/bin/dt-doc-validate", line 25, in check_doc
+        testtree =3D dtschema.load(filename, line_number=3Dline_number)
+      File "/home/hcodina/.local/lib/python3.10/site-packages/dtschema/lib.=
+py", line 912, in load
+        return yaml.load(f.read())
+      File "/home/hcodina/.local/lib/python3.10/site-packages/ruamel/yaml/m=
+ain.py", line 434, in load
+        return constructor.get_single_data()
+      File "/home/hcodina/.local/lib/python3.10/site-packages/ruamel/yaml/c=
+onstructor.py", line 121, in get_single_data
+        return self.construct_document(node)
+      File "/home/hcodina/.local/lib/python3.10/site-packages/ruamel/yaml/c=
+onstructor.py", line 131, in construct_document
+        for _dummy in generator:
+      File "/home/hcodina/.local/lib/python3.10/site-packages/ruamel/yaml/c=
+onstructor.py", line 674, in construct_yaml_map
+        value =3D self.construct_mapping(node)
+      File "/home/hcodina/.local/lib/python3.10/site-packages/ruamel/yaml/c=
+onstructor.py", line 445, in construct_mapping
+        return BaseConstructor.construct_mapping(self, node, deep=3Ddeep)
+      File "/home/hcodina/.local/lib/python3.10/site-packages/ruamel/yaml/c=
+onstructor.py", line 263, in construct_mapping
+        if self.check_mapping_key(node, key_node, mapping, key, value):
+      File "/home/hcodina/.local/lib/python3.10/site-packages/ruamel/yaml/c=
+onstructor.py", line 294, in check_mapping_key
+        raise DuplicateKeyError(*args)
+    ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
+      in "<unicode string>", line 4, column 1
+    found duplicate key "allOf" with value "[]" (original value: "[]")
+      in "<unicode string>", line 115, column 1
+   =20
+    To suppress this check see:
+        http://yaml.readthedocs.io/en/latest/api.html#duplicate-keys
+   =20
+   =20
+    During handling of the above exception, another exception occurred:
+   =20
+    Traceback (most recent call last):
+      File "/home/hcodina/.local/bin/dt-doc-validate", line 74, in <module>
+        ret =3D check_doc(f)
+      File "/home/hcodina/.local/bin/dt-doc-validate", line 30, in check_doc
+        print(filename + ":", exc.path[-1], exc.message, file=3Dsys.stderr)
+    AttributeError: 'DuplicateKeyError' object has no attribute 'path'
+      SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+    /home/hcodina/project/xxxx/dev/linux/upstream_usb_host/Documentation/de=
+vicetree/bindings/pci/renesas,pci-rcar-gen2.yaml: ignoring, error parsing f=
+ile
+      DTEX    Documentation/devicetree/bindings/pci/renesas,pci-rcar-gen2.e=
+xample.dts
+    Documentation/devicetree/bindings/pci/renesas,pci-rcar-gen2.yaml: found=
+ duplicate key "allOf" with value "[]" (original value: "[]")
+    make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentat=
+ion/devicetree/bindings/pci/renesas,pci-rcar-gen2.example.dts] Error 1
+    make[1]: *** Deleting file 'Documentation/devicetree/bindings/pci/renes=
+as,pci-rcar-gen2.example.dts'
+    make: *** [Makefile:1401: dt_binding_check] Error 2
+    [hcodina@localhost upstream_usb_host]$=20
+   =20
+    [hcodina@localhost upstream_usb_host]$ make ARCH=3Darm CROSS_COMPILE=3D=
+/home/hcodina/toolchain/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf=
+/bin/arm-linux-gnueabihf- dt_binding_check DT_SCHEMA_FILES=3Drenesas,pci-rc=
+ar-gen2.yaml
+      DTEX    Documentation/devicetree/bindings/pci/renesas,pci-rcar-gen2.e=
+xample.dts
+    Documentation/devicetree/bindings/pci/renesas,pci-rcar-gen2.yaml: found=
+ duplicate key "allOf" with value "[]" (original value: "[]")
+    make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentat=
+ion/devicetree/bindings/pci/renesas,pci-rcar-gen2.example.dts] Error 1
+    make[1]: *** Deleting file 'Documentation/devicetree/bindings/pci/renes=
+as,pci-rcar-gen2.example.dts'
+    make: *** [Makefile:1401: dt_binding_check] Error 2
+
+
+Is having a 'allOf' for schemas inclusion and a 'allOf' for conditionnal
+parts allowed ?
+
+
+Regards,
+Herv=C3=A9
+
