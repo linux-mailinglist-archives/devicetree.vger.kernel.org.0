@@ -2,241 +2,288 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A5E252E2E5
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 05:11:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20E3552E29D
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 04:46:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345114AbiETDLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 May 2022 23:11:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41018 "EHLO
+        id S1344810AbiETCqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 May 2022 22:46:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345045AbiETDK6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 23:10:58 -0400
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2050.outbound.protection.outlook.com [40.107.237.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C30112AE16;
-        Thu, 19 May 2022 20:10:56 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cZxd3hjzavVvOmzyAsVNHjFoBKtTdkp/hz5glS872NCMjmS5VlW8RLygB/amwmtOJZ0c6B3rr3OZVu87kmPaLfjUeq0ZymhEohFQQ2lCf8fWl735ZeVftlAjIkGlDYXnXJ5X85h0qJRIKjLWs8/qBv+LXaMZB1eS0gXyKd0f5lWFY6kyDYTWe2gp2wrWNSznIe6l8PjaIxpzo01FXq5xOgNfauB0+a8o/WYimAl9n30K69Y9tKTWfYSvviiKibz9KkrEGKT4+KthS/Ko9mmgLJ0AbdN0YsJeJIvn6mWaWqK6aiQ1eVm6VAdlx8mnc5wRhioSNrFqmPsMv1BFzDSnMw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xc58ztUwCnc1VC1kseQvYguAJCiZ49N+ypQU7gUzRyk=;
- b=jj3O/McZxxGSjqeAC6T63tOl6hjwqwqSX8HzGAniDbaofRN0OLyhFb9q6zjmmK4HB4R8hFAa0AS4RucS1onb5UJFDDdvkQzOCCoCSbbYkkK/mbEMGU7YuQL+MhCItMXyS42JYrRgWtO9EI0rF9sVji144x+IqTRBvemeR/wLb7bDKjvui1NcKiqxGP6JmShdweU4j7plFB/7nlWyGzRFV/GuNjfrLwuOhK6yoBobtqXz9sLUcPAYSeM02Hj5thZqrTuFKslMVUVpXfj4UPJkz3oNl3E8wu6QxruoRdyiRMSYxQJ0V6nqtdb5MMihYPMzjdwnAox778uZXdlUlq6AXQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=linaro.org smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xc58ztUwCnc1VC1kseQvYguAJCiZ49N+ypQU7gUzRyk=;
- b=DR+Qxj1T+qDwnrczVbNLsePx0z2xPK7Kur67gRr8r07gtrAH38cunSVdVJblgo6GG9RbJdntEUGcu+FJWItYn++CL+dFm5FkYr8d/AACVHGcl9dJ7K7iV/q5sM26UzI2K9Krs9wAlOpakGqA7kVc7OiOkWI9iGyCjc4tE6XD124=
-Received: from SN7PR18CA0022.namprd18.prod.outlook.com (2603:10b6:806:f3::21)
- by PH7PR02MB8955.namprd02.prod.outlook.com (2603:10b6:510:1f9::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.18; Fri, 20 May
- 2022 03:10:54 +0000
-Received: from SN1NAM02FT0010.eop-nam02.prod.protection.outlook.com
- (2603:10b6:806:f3:cafe::4d) by SN7PR18CA0022.outlook.office365.com
- (2603:10b6:806:f3::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5273.17 via Frontend
- Transport; Fri, 20 May 2022 03:10:54 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com; pr=C
-Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
- SN1NAM02FT0010.mail.protection.outlook.com (10.97.4.76) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5273.14 via Frontend Transport; Fri, 20 May 2022 03:10:54 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Thu, 19 May 2022 20:10:46 -0700
-Received: from smtp.xilinx.com (172.19.127.95) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Thu, 19 May 2022 20:10:46 -0700
-Envelope-to: mathieu.poirier@linaro.org,
- bjorn.andersson@linaro.org,
- robh+dt@kernel.org,
- krzk+dt@kernel.org,
- linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Received: from [10.23.120.20] (port=64934)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <tanmay.shah@xilinx.com>)
-        id 1nrt2L-0008zb-TB; Thu, 19 May 2022 20:10:46 -0700
-Message-ID: <b4bef7c4-7f12-1cdb-c2f0-a248c125b9b4@xilinx.com>
-Date:   Thu, 19 May 2022 20:10:44 -0700
+        with ESMTP id S1344807AbiETCqN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 May 2022 22:46:13 -0400
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68B0D58E70
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 19:46:08 -0700 (PDT)
+Received: from epcas1p3.samsung.com (unknown [182.195.41.47])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220520024603epoutp03f3dc8ea3045dd0f9f50d53c8db5f84b6~wsCtAn1Mz3085330853epoutp03O
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 02:46:03 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220520024603epoutp03f3dc8ea3045dd0f9f50d53c8db5f84b6~wsCtAn1Mz3085330853epoutp03O
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1653014763;
+        bh=pNwd+tG5/5Th2TaXiJdgPU0+4OREyHFZPZACOtCzGwo=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=mL95xUAwWAKdOD8Rxo1Sgi9jsDBgq8jf9eDdje4Om9iBkn6F4A9n4nePxUOdINJZn
+         Qmxi8NP7EMryGlzP20kAFcb8/hrqHaWWaRIa3//5x6qpJA5jq/U2/S8l4c21QcVDsg
+         uL8bllJdxea6o0IjBR1pJJ8iztcc+oKiroyEc8Ao=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20220520024602epcas1p101fd352055afd50ab10860434a668044~wsCsRq4ps1499814998epcas1p1g;
+        Fri, 20 May 2022 02:46:02 +0000 (GMT)
+Received: from epsmges1p3.samsung.com (unknown [182.195.36.134]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 4L4B1N5w7zz4x9Pp; Fri, 20 May
+        2022 02:46:00 +0000 (GMT)
+Received: from epcas1p1.samsung.com ( [182.195.41.45]) by
+        epsmges1p3.samsung.com (Symantec Messaging Gateway) with SMTP id
+        BE.1E.10038.8E007826; Fri, 20 May 2022 11:46:00 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas1p3.samsung.com (KnoxPortal) with ESMTPA id
+        20220520024600epcas1p340ac0aa2dcf54e4b69180e8d4483bd18~wsCqkBSnO0345903459epcas1p3W;
+        Fri, 20 May 2022 02:46:00 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20220520024600epsmtrp2d94a309fb79df1a06022261361dd966e~wsCqiuVGy2863728637epsmtrp2-;
+        Fri, 20 May 2022 02:46:00 +0000 (GMT)
+X-AuditID: b6c32a37-127ff70000002736-50-628700e88ece
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        04.76.08924.8E007826; Fri, 20 May 2022 11:46:00 +0900 (KST)
+Received: from [10.113.221.102] (unknown [10.113.221.102]) by
+        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20220520024559epsmtip1aa1b59a3005b8fe5f752d9712e6eb50c~wsCqG38ll1417514175epsmtip1W;
+        Fri, 20 May 2022 02:45:59 +0000 (GMT)
+Subject: Re: [PATCH v25 0/7] soc: mediatek: SVS: introduce MTK SVS
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     Kevin Hilman <khilman@kernel.org>,
+        Roger Lu <roger.lu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Fan Chen <fan.chen@mediatek.com>,
+        Charles Yang <Charles.Yang@mediatek.com>,
+        Angus Lin <Angus.Lin@mediatek.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jia-wei Chang <jia-wei.chang@mediatek.com>,
+        =?UTF-8?B?UmV4LUJDIENoZW4gKOmZs+afj+i+sCk=?= 
+        <rex-bc.chen@mediatek.com>
+From:   Chanwoo Choi <cw00.choi@samsung.com>
+Organization: Samsung Electronics
+Message-ID: <7beea208-7d40-1c7d-9c70-6437440d22da@samsung.com>
+Date:   Fri, 20 May 2022 12:12:18 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:59.0) Gecko/20100101
+        Thunderbird/59.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.9.0
-From:   <tanmay.shah@xilinx.com>
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
-        <bjorn.andersson@linaro.org>, <robh+dt@kernel.org>,
-        <krzk+dt@kernel.org>, <michal.simek@xilinx.com>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v5 0/6] Add Xilinx RPU subsystem support
-References: <20220518194426.3784095-1-tanmay.shah@xilinx.com>
- <CANLsYkw9HuLso9bGL4fM7C9qH+basgKA9yKFwms4WB4OUHqymQ@mail.gmail.com>
-In-Reply-To: <CANLsYkw9HuLso9bGL4fM7C9qH+basgKA9yKFwms4WB4OUHqymQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+In-Reply-To: <CAGXv+5EsgiXCpe-8H0cQ=qm_Nq+yfM_a4b1L=hOFP6mcwfZymw@mail.gmail.com>
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6ad0fb10-2d05-4821-e22e-08da3a0e5a3d
-X-MS-TrafficTypeDiagnostic: PH7PR02MB8955:EE_
-X-Microsoft-Antispam-PRVS: <PH7PR02MB8955E8E576CEB5DAFB5FC252CAD39@PH7PR02MB8955.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: N2MvgR4B455eGkuzPFdFONBq+ml3qFy1tLG74J/qi5GIMuonxgGMZdX4a1P2pO99X3IX2CeoKfuYHWkOpasBqcuNXLERa20UogP3PWw0Pjz/QtJaOrBlTib6FqqqvC7Cx1S2HEle/3YK7Tg09JRTt5hz5Aeq2ktdMv5aY53v7utlfK3LI+A35EE/bzRpWYheHAWPbABiYrPxN+o6+nD1n34YGVX9GE3slBQ5sOpJxxHpZPdwkJwCiXpfRx2R6oJKsITJVxvOpwa68LSTQu/DiXodpQIg+nAy7j2Dh6ZZV4P3oSkUdvYRBPOMRQaeXy/Qoa/SpeL+g3Oi3S22xuC+gBW2MbGqWzsVnNHDEEkYXO9/3QPjnktgi3Z7Fgmz7+opshBBpa5Dl+hm2kEKORKthKBLdHLsBSW1ajcGnHca3ixkLnYeCFp7Ffm6hplSaBXJYQWX5XOcNSyhQXbQvUy9XlRrz4k3QS4QvkZ5ZaLCZJzInomO+nWW9CxBn260IOmmhc0BqZNmI9r788tW+oQJrN8yNhx9z6WKoIiCIR/ckFpJwDA++nSkQaor7gpO94NZ6qKyIsyWTQIm3hRjrblUoWrYQYjVOGbMkd0dD/PcdgP5IDmWT5osJpa+fwelhu1Nlx/hE2ydqUwA4rEFWr+VguiBkAhoSZrPi4uu73y7FGx/VI7h8II+eEbzB8S7xDxXJiAkHGD7xqkcKa2O6a7xpJtlwb0/ZmuMfe1wHicFBV6rgNuBRhmDg2uWXCh1QLXp
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(186003)(53546011)(336012)(82310400005)(356005)(110136005)(426003)(47076005)(36756003)(8936002)(9786002)(2876002)(31696002)(2616005)(8676002)(5660300002)(70586007)(83380400001)(26005)(2906002)(31686004)(316002)(508600001)(36860700001)(70206006)(40460700003)(7636003)(50156003)(43740500002)(2101003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 May 2022 03:10:54.3523
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6ad0fb10-2d05-4821-e22e-08da3a0e5a3d
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT0010.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR02MB8955
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Tf1RTZRjHfe8ud8NaXRHYG5wMr9YRarABm9ccHk8g53b0BJ2OFpw64wL3
+        AALb2t3K7A+n/JwhipxAFwYKFE5O4TBwOyEKJL/EohUgRD8YIhoosAhOO0gbF4v/vs/zfr7v
+        837f97wCnk8OP0CQodIxWhWdRWDr0ab2YLF4cl1BsuTTATG5cLSaT86fMaBkZcdtL9I+PM8j
+        f3BdxMi/f3EhZGdrDZ+82+hASItjwL1qq8BIe04/IJ0nOgA5fv4WQtYO9iPksdwIcmqxDyFH
+        f+1CybmvClHyWm85j8xr6eCTdsdljHw8cBklz+TbvXaLqPrP6wH1maEfpaymUT5VZdFTFrMR
+        oxprjlC53a0odXJJQlkXDHyqc6gZoZyWTfFPJWYq0hk6ldEGMaoUdWqGKi2K2PuWMlopk0uk
+        YukOcjsRpKKzmSgiZl+8ODYjyx2YCPqAztK7W/E0yxJhuxRatV7HBKWrWV0UwWhSszQyTShL
+        Z7N6VVqoitG9KpVIwmVuMCkzfdY8w9MUSw5NVpXyDaB823HgLYB4JLxYdxocB+sFPvhVAK+V
+        XcK4Yg7AkesLCFc4ASw+3+H1xNLcf3eVsgH4R0EPyhWPAPypdATzUBvx1+BI6z23Fgh88Reh
+        7dtAD8PDHRgcnW9CPQyGh8DWyaEV/ll8M/x50QE8WojvguaeKsTjRd3eBrPM0/bDD8DuptxV
+        ZAPsPju+so03/ib87c49vkfzcBEcHq9EOP0CbJ6u4HnmQrzRGy73VSNcghj4xXLeapqN8EHn
+        FT6nA6DzYQvGGXIANEyOAK4oAvC7iWKUoyJga23pyul4eDD82hbGtTdDq+sc4CY/Ax/OF3l5
+        EIgLYWG+D4dsgfbfR1fP8BysLjBipwBhWpPHtCaDaU0G0//DqgBqBv6Mhs1OY1ipJuK/505R
+        Z1vAym8I2X4VlE3PhLYBRADaABTwCF8hyM5N9hGm0h8dZrRqpVafxbBtQOa+4BJegF+K2v2d
+        VDqlNHKHJFIeHhFJSuVSQiQ0l/XSPngarWMyGUbDaJ/4EIF3gAE5ESoyvkv7TW+6IJ8VxaXM
+        Hba73tAWn1UcBG/71rQ3vt77o/8+bbW+9qQxvoGoq1B2P7p/ejDQ4WdahDXXxyaU/KEyy7pj
+        STH79++RLe/dWtTyYIPr+5rAPsVMXcLMuYNxRnrx/aUrRy7djNPfCovOyZtKxpYSopIEW9vT
+        Ev1dATcc792OVcu9dpbvPjR4YeyovDAxXmH6UB2d65wd679vtimsSMKdp0c+uRFiH63XKybK
+        gu02dvivl8ZU+YioYYrqvWks2TYxbm3z6/lm+s+6qY+/dO7ssmlaQPiDxQOTryT75iUTz4eX
+        iF9+p8O0pT7P2lHJxo4ljsucfGHX43/2oATKptPSEJ6Wpf8FAoiXi5YEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA02SaUwTURSFfTPjdChpHAqEZ9WqVcRUrYBgntEQIxrHBI3EuOCGo4y40Iod
+        cE2gAlZsgpgYt4qlIkatuFDEAlaRTUTRUOuK4jZFMIJBtEIUF0pjwr8v95zv/LoULu0gZNRm
+        TQqn1bBJClJM3KhRyKe0DzmwPtSZG4h69p0VIfcJHYHyax8NRc5mN46afl0k0Y/XvzBUX1ko
+        Qq0lAoaswrP+tCKPRM5MB0DfcmoBcp1pxNC55w4MZWRNQx29DzHU8uYegbqvZBPo9oPjONp/
+        q1aEnEIxif48KybQCb1z6OwgpshUBJhTOgfBlBtbRIzZmspYLQdJpqQwnclqqCSY3N+hTHmP
+        TsTUv7BhzDerfLHvSvGsBC5p8w5OOzVqnXjTV0sXnnwodFe7+YhIB45PNAAfCtIR0OZoJQ1A
+        TEnpMgArhCeYNxgOjznqcAOg+tkf1tTw3k4ngMU/9SJPx5+eA19VtpGeTgAdDCvsIzwdnG4l
+        4dPuO4RX+IHD264LAwJJK2Fl+wvSw8PosfBprwA8LKGjoOW+GfMMEf1D1yyRnnMgvQyWFwqY
+        t+IHG066CA/70LHw7cu2gUmcDoF9pse4l4Ngsysf8/JoaOvMww8Df+Mg3ThIMQ5SjIMUMyAs
+        YDiXzKsT1XxYcriG26niWTWfqklUbdimtoKBh1Aqy4Dd0qWqBhgFqgGkcEWABKiz1kslCezu
+        PZx2W7w2NYnjq8EIilAESZoMDfFSOpFN4bZyXDKn/Z9ilI9Mh8UAP/ndyOjGdnytJrb2/crl
+        SlWWTtv2HYTHpObO/ZIm7LDPl+VOvCwb93OF/vX5z9bl4vOUQqqJ2Vu1MKp+yUx7xrvre90R
+        O/uitcVv4B0Vz1NzDOOzLzpLJ42OKHA7PrHbhUNKkX5Yk//IlISiq9Hh7rp96pyt+owtMr9M
+        x9GlrYtY6x+TfN5sU+xGfHIVOX0GON2hf1twy+4KUcROW5oz4Wz5GXSvNCA9e5Rk/6WCtGZj
+        Xs8jPC2uwRy8pa93QkvnFHP6qpZGP4uLPRoXFumbWdddiAd+SPhbkb+6pm+BfLcQ9vLBGFP8
+        muCbVTZ9wPiukT20bwlSfTyWYvt+X0Hwm9gwJa7l2X+Ix37+fwMAAA==
+X-CMS-MailID: 20220520024600epcas1p340ac0aa2dcf54e4b69180e8d4483bd18
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: SVC_REQ_APPROVE
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220519182512epcas1p3020bd4713580c9244f759971b8bd2c3a
+References: <20220516004311.18358-1-roger.lu@mediatek.com>
+        <CAGXv+5GSdWPZe3fNpBJ_WW0zCL8Skg6fHx9ATxaKU1hyMEt2Ww@mail.gmail.com>
+        <7h4k1ndaui.fsf@baylibre.com> <7hy1yzbtb7.fsf@baylibre.com>
+        <CAGXv+5GT=3m=pVPwUOWR42BR=emCpBXvvoAiRV7YKt2kEKWdAQ@mail.gmail.com>
+        <CGME20220519182512epcas1p3020bd4713580c9244f759971b8bd2c3a@epcas1p3.samsung.com>
+        <7hmtfdbcsc.fsf@baylibre.com>
+        <5a1767dc-ba2d-4de5-d8fe-2f308d3318a9@samsung.com>
+        <CAGXv+5EsgiXCpe-8H0cQ=qm_Nq+yfM_a4b1L=hOFP6mcwfZymw@mail.gmail.com>
+X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 5/20/22 11:42 AM, Chen-Yu Tsai wrote:
+> On Fri, May 20, 2022 at 9:28 AM Chanwoo Choi <cw00.choi@samsung.com> wrote:
+>>
+>> Hi Kevin, Chen-Yu,
+>>
+>> On 5/20/22 3:25 AM, Kevin Hilman wrote:
+>>> Chen-Yu Tsai <wenst@chromium.org> writes:
+>>>
+>>>> n Wed, May 18, 2022 at 8:03 AM Kevin Hilman <khilman@kernel.org> wrote:
+>>>>>
+>>>>> Kevin Hilman <khilman@kernel.org> writes:
+>>>>>
+>>>>>> Chen-Yu Tsai <wenst@chromium.org> writes:
+>>>>>>
+>>>>>>> On Mon, May 16, 2022 at 8:43 AM Roger Lu <roger.lu@mediatek.com> wrote:
+>>>>>>>>
+>>>>>>>> The Smart Voltage Scaling(SVS) engine is a piece of hardware
+>>>>>>>> which calculates suitable SVS bank voltages to OPP voltage table.
+>>>>>>>> Then, DVFS driver could apply those SVS bank voltages to PMIC/Buck
+>>>>>>>> when receiving OPP_EVENT_ADJUST_VOLTAGE.
+>>>>>>>>
+>>>>>>>> 1. SVS driver uses OPP adjust event in [1] to update OPP table voltage part.
+>>>>>>>> 2. SVS driver gets thermal/GPU device by node [2][3] and CPU device by get_cpu_device().
+>>>>>>>> After retrieving subsys device, SVS driver calls device_link_add() to make sure probe/suspend callback priority.
+>>>>>>>>
+>>>>>>>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git/commit/?h=opp/linux-next&id=25cb20a212a1f989385dfe23230817e69c62bee5
+>>>>>>>> [2] https://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git/commit/?h=opp/linux-next&id=b325ce39785b1408040d90365a6ab1aa36e94f87
+>>>>>>>> [3] https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/commit/?h=v5.16-next/dts64&id=a8168cebf1bca1b5269e8a7eb2626fb76814d6e2
+>>>>>>>>
+>>>>>>>> Change since v24:
+>>>>>>>> - Rebase to Linux 5.18-rc6
+>>>>>>>> - Show specific fail log in svs_platform_probe() to help catch which step fails quickly
+>>>>>>>> - Remove struct svs_bank member "pd_dev" because all subsys device's power domain has been merged into one node like above [3]
+>>>>>>>>
+>>>>>>>> Test in below environment:
+>>>>>>>> SW: Integration Tree [4] + Thermal patch [5] + SVS v25 (this patchset)
+>>>>>>>> HW: mt8183-Krane
+>>>>>>>>
+>>>>>>>> [4] https://protect2.fireeye.com/v1/url?k=847bae75-e5f0bb43-847a253a-000babff9b5d-0b6f42041b9dea1d&q=1&e=37a26c43-8564-4808-9701-dc76d1ebbb27&u=https%3A%2F%2Fgithub.com%2Fwens%2Flinux%2Fcommits%2Fmt8183-cpufreq-cci-svs-test
+>>>>>>>
+>>>>>>> I've updated my branch to include all the latest versions of the relevant
+>>>>>>> patch series:
+>>>>>>>
+>>>>>>> - anx7625 DPI bus type series v2 (so the display works)
+>>>>>>> - MT8183 thermal series v9 (this seems to have been overlooked by the
+>>>>>>> maintainer)
+>>>>>>> - MTK SVS driver series v25
+>>>>>>> - devfreq: cpu based scaling support to passive governor series v5
+>>>>>>> - MTK CCI devfreq series v4
+>>>>>>> - MT8183 cpufreq series v7
+>>>>>>> - Additional WIP patches for panfrost MTK devfreq
+>>>>>>
+>>>>>> Thanks for preparing an integration branch Chen-Yu.
+>>>>>>
+>>>>>> I'm testing this on mt8183-pumpkin with one patch to add the CCI
+>>>>>> regulator[1], and the defconfig you posted in a previous rev of this
+>>>>>> series, but the CCI driver still causes a fault on boot[2] on my
+>>>>>> platform.
+>>>>>>
+>>>>>> I mentioned in earlier reviews that I think there's potentially a race
+>>>>>> between CCI and SVS loading since they are co-dependent.  My hunch is
+>>>>>> that this is still not being handled properly.
+>>>>>
+>>>>> Ah, actually it's crashing when I try to boot the platform with
+>>>>> `maxcpus=4` on the cmdline (which I have to do because mt8183-pumpkin is
+>>>>> unstable upstream with the 2nd cluster enabled.)
+>>
+>> This warning message is printed by 'WARN_ON(cpufreq_passive_unregister_notifier(devfreq))'
+>> on devfreq passive governor.
+>>
+>> If the cpufreq drivers are not probed before of probing cci devfreq driver
+>> with passive governor, passive governor shows this warning message.
+>> Because passive governor with CPUFREQ_PARENT_DEV depends on the cpufreq driver
+>> in order to get 'struct cpufreq_policy'[2].
+>>
+>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git/tree/drivers/devfreq/governor_passive.c?h=devfreq-testing#n339
+>> [2] https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git/tree/drivers/devfreq/governor_passive.c?h=devfreq-testing#n282
+>>
+>> But, as I knew, this message might not stop the kernel. Just show the warning
+>> message and then return -EPROBE_DEFER error. It means that maybe try to
+>> probe the cci devfreq driver on late time of kernel booting
+>> and then will be working. But, I need the full kernel booting log
+>> and the booting sequence of between cpufreq and cci devfreq driver.
+> 
+> Maybe just use a standard dev_warn() instead? WARN_ON causes all sorts
+> of panicking in developers' minds. :p
+
+OK. I'll use dev_warn() instead of WARN_ON.
+
+> 
+>> In order to fix your issue, could you share the full booting log?
+>> And if possible, please explain the more detailed something about this.
+> 
+> The shortened version is that on an 8 core system, with maxcpus=4,
+> only the first four cores are booted and have cpufreq associated.
+> I've not actually used this mechanism, so I don't really know what
+> happens if the other cores are brought up later with hotplug. Is
+> cpufreq expected to attach to them?
+> 
+> Maybe Kevin can add some more details.
+> 
+> 
+> ChenYu
+> 
+> 
+>>>>>
+>>>>> The CCI driver should be a bit more robust about detecting
+>>>>> available/online CPUs
+>>>>
+>>>> This all seems to be handled in the devfreq passive governor.
+>>>
+>>> Well, that's the initial crash.  But the SVS driver will also go through
+>>> its svs_mt8183_banks[] array (including both big & little clusters) and
+>>> try to init SVS, so presumably that will have some problems also if only
+>>> one cluster is enabled.
+>>>
+>>>> And presumably we'd like to have CCI devfreq running even if just one
+>>>> core was booted.
+>>>
+>>> Yes, I assume so also.
+>>>
+>>>> Added Chanwoo for more ideas.
+>>>
+>>> OK, thanks.
+>>>
+>>> Kevin
+>>
+>>
+>> --
+>> Best Regards,
+>> Chanwoo Choi
+>> Samsung Electronics
+> 
+> 
 
 
-On 5/19/22 3:19 AM, Mathieu Poirier <mathieu.poirier@linaro.org> wrote:
-> Hi Tanmay,
-> 
-> I have replaced the previous version of this set with this one in my
-> queue.  That way you don't go back to the bottom.
-> 
-
-Thanks Mathieu. Sure it will help.
-
-> Thanks,
-> Mathieu.
-> 
-> On Wed, 18 May 2022 at 20:46, Tanmay Shah <tanmay.shah@xilinx.com> wrote:
-> >
-> > This patch series adds bindings document for RPU subsystem found on Xilinx
-> > ZynqMP platforms. It also adds device nodes and driver to enable RPU
-> > subsystem in split mode and lockstep mode.
-> >
-> > Xilinx ZynqMP platform contains Remote Processing Unit(RPU). RPU subsystem
-> > contains two arm cortex r5f cores. RPU subsystem can be configured in
-> > split mode, lockstep mode and single-cpu mode.
-> >
-> > RPU subsystem also contains 4 Tightly Coupled Memory(TCM) banks.
-> > In lockstep mode, all 4 banks are combined and total of 256KB memory is
-> > made available to r5 core0. In split mode, both cores can access two
-> > TCM banks i.e. 128 KB.
-> >
-> > RPU can also fetch data and execute instructions from DDR memory along with
-> > TCM memory.
-> > ---
-> >
-> > Changes in v5:
-> >    - Add constraints of the possible values of xlnx,cluster-mode property
-> >    - fix description of power-domains property for r5 core
-> >    - Remove reg, address-cells and size-cells properties as it is not required
-> >    - Fix description of mboxes property
-> >    - Add description of each memory-region and remove old .txt binding link
-> >      reference in the description
-> >    - Remove optional reg property from r5fss node
-> >    - Move r5fss node out of axi node
-> >
-> > Changes in v4:
-> >    - Add memory-region, mboxes and mbox-names properties in dt-bindings example
-> >    - Add reserved memory region node and use it in Xilinx dt RPU subsystem node
-> >    - Remove redundant header files
-> >    - use dev_err_probe() to report errors during probe
-> >    - Fix missing check on error code returned by zynqmp_r5_add_rproc_core()
-> >    - Fix memory leaks all over the driver when resource allocation fails for any core
-> >    - make cluster mode check only at one place
-> >    - remove redundant initialization of variable
-> >    - remove redundant use of of_node_put()
-> >    - Fix Comment format problem
-> >    - Assign offset of zynqmp_tcm_banks instead of duplicating it
-> >    - Add tcm and memory regions rproc carveouts during prepare instead of parse_fw
-> >    - Remove rproc_mem_entry object from r5_core
-> >    - Use put_device() and rproc_del() APIs to fix memory leaks
-> >    - Replace pr_* with dev_*. This was missed in v3, fix now.
-> >    - Use "GPL" instead of "GPL v2" in MODULE_LICENSE macro. This was reported by checkpatch script.
-> >
-> > Changes in v3:
-> >    - Fix checkpatch script indentation warning
-> >    - Remove unused variable from xilinx remoteproc driver
-> >    - use C style comments, i.e /*...*/
-> >    - Remove redundant debug information which can be derived using /proc/device-tree
-> >    - Fix multiline comment format
-> >    - s/"final fot TCM"/"final for TCM"
-> >    - Function devm_kzalloc() does not return an code on error, just NULL.
-> >      Remove redundant error check for this function throughout the driver.
-> >    - Fix RPU mode configuration and add documentation accordingly
-> >    - Get rid of the indentations to match function documentation style with rest of the driver
-> >    - Fix memory leak by only using r5_rproc->priv and not replace it with new instance
-> >    - Use 'i' for the outer loop and 'j' for the inner one as per convention
-> >    - Remove redundant error and NULL checks throughout the driver
-> >    - Use devm_kcalloc() when more than one element is required
-> >    - Add memory-regions carveouts during driver probe instead of parse_fw call
-> >      This removes redundant copy of reserved_mem object in r5_core structure.
-> >    - Fix memory leak by using of_node_put()
-> >    - Fix indentation of tcm_mem_map function args
-> >    - Remove redundant init of variables
-> >    - Initialize tcm bank size variable for lockstep mode
-> >    - Replace u32 with phys_addr_t for variable stroing memory bank address
-> >    - Add documentation of TCM behavior in lockstep mode
-> >    - Use dev_get_drvdata instead of platform driver API
-> >    - Remove info level messages
-> >    - Fix checkpatch.pl warnings
-> >    - Add documentation for the Xilinx r5f platform to understand driver design
-> >
-> > Changes in v2:
-> >    - Remove proprietary copyright footer from cover letter
-> >
-> >
-> > Ben Levinsky (3):
-> >    firmware: xilinx: Add ZynqMP firmware ioctl enums for RPU
-> >      configuration.
-> >    firmware: xilinx: Add shutdown/wakeup APIs
-> >    firmware: xilinx: Add RPU configuration APIs
-> >
-> > Tanmay Shah (3):
-> >    dt-bindings: remoteproc: Add Xilinx RPU subsystem bindings
-> >    arm64: dts: xilinx: zynqmp: Add RPU subsystem device node
-> >    drivers: remoteproc: Add Xilinx r5 remoteproc driver
-> >
-> >   .../bindings/remoteproc/xlnx,r5f-rproc.yaml   |  128 ++
-> >   arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |   33 +
-> >   drivers/firmware/xilinx/zynqmp.c              |   97 ++
-> >   drivers/remoteproc/Kconfig                    |   12 +
-> >   drivers/remoteproc/Makefile                   |    1 +
-> >   drivers/remoteproc/xlnx_r5_remoteproc.c       | 1045 +++++++++++++++++
-> >   include/dt-bindings/power/xlnx-zynqmp-power.h |    6 +
-> >   include/linux/firmware/xlnx-zynqmp.h          |   60 +
-> >   8 files changed, 1382 insertions(+)
-> >   create mode 100644 Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
-> >   create mode 100644 drivers/remoteproc/xlnx_r5_remoteproc.c
-> >
-> >
-> > base-commit: 01a1a0c8d456b11f2f6b9b822414481beaa44d6f
-> > --
-> > 2.25.1
-> >
-> 
+-- 
+Best Regards,
+Chanwoo Choi
+Samsung Electronics
