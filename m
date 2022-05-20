@@ -2,109 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD80052EFE2
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 18:01:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E926352EFE7
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 18:02:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237681AbiETQBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 12:01:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46546 "EHLO
+        id S1351218AbiETQCy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 12:02:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351271AbiETQBG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 12:01:06 -0400
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F0D83DDDC;
-        Fri, 20 May 2022 09:01:05 -0700 (PDT)
-Received: by mail-oi1-x22e.google.com with SMTP id n24so10389153oie.12;
-        Fri, 20 May 2022 09:01:05 -0700 (PDT)
+        with ESMTP id S239950AbiETQCx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 12:02:53 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E56FA54BEB;
+        Fri, 20 May 2022 09:02:51 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id v8so13164467lfd.8;
+        Fri, 20 May 2022 09:02:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=sender:message-id:date:mime-version:user-agent:content-language
-         :from:to:cc:references:subject:in-reply-to:content-transfer-encoding;
-        bh=d+ei73L+89HGx3LtqPAuWtv/FMbZQQLdvvm3n6NjwPw=;
-        b=WMwx4qqg7Zvw19yyJu65QEwIqVE9asKangEyrcLMhRjxl8l7FB4ugCOviOrQxAiTA+
-         OHiy/qA/w8+RpNEwqRH5ZLEfOFnTJZ/F9ydPRVG4ZJVqfqsKIX1q/923i4h3RenXwqDR
-         q8CAQymU1zwxkHb/u7gDIK6qLr0zl1EaN0Riv1bh02YkWAQ8u6FOAE1WS6g2m6yu3oYA
-         JxEE80TbTyJN6wIESGckZY96jCjqjK21dAQbzZL7tIqQ6AX4uDPzhUKxQ5A6Az2dnAk7
-         mefWDwLuMUEMsvlmJBITTjodxE7SLNBpEBW7z7SYWXcDpf6B3X4sxO1AnyqrilZErski
-         Zu2g==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=LkSGf2bxH59WTVp83FSY5qiWK4pwS5blQmXLKyjSPY8=;
+        b=LzZ6uTIeyrfaKNl5cUwwZFfQvtAC3G4sg2F+8g0tpdPj3a30M7PcedfpSmZG2JQh2V
+         QDOHcZN5lPVhVZtsz8VJgniYDuJce1KaaPCM6PLcwNRXpvKzbMSHPs7zuDRRnULQp8NX
+         q4FMcsrqiejZ6LmQ5sd08XNREBDUnariDaESgLhDUwnUSAV/qyUavRSgIRzCxQcEEWCM
+         uUgkP+XKQ1y1m69r1yHxRoHzHnjpHCdGti/85+RKXrnPdgtowx4e2Yechk9n/ggyb+fq
+         Va6w5J5tqm4nQjffYz0tAkCvL/jBpaO1tSu8a5z589JwJUyKO89aQRL7CcFv7nG8h3Pa
+         VR/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
-         :content-language:from:to:cc:references:subject:in-reply-to
-         :content-transfer-encoding;
-        bh=d+ei73L+89HGx3LtqPAuWtv/FMbZQQLdvvm3n6NjwPw=;
-        b=WtVF58VMpSE0QaZdSuZfacQ+wNcmvZxWQl8clbwXRGoWb5vxfcPICLgawNZvrsUcjX
-         O0/SoXcY/HyJrZG7y4VFbTYv7Kk7ngP1GtOBHctguqV2vr4seKlLVku1LehWMveNP1+N
-         NXEhG5ugLGW1rx9sRO5GOK+IMHTntKa21uWzwa3SX8FwpRInrO6/Svai5zTdkEfDZmZT
-         ZM5M2kRnenffoSZ2uCy5p+zSGaem+cBJTSrZgwNblHrAbS9xxPAIs0j+wyheeLba/KbB
-         XLFYMYaeCl5ICdyKKURnJvQ0TVUzcTd+3Aws8zYQ3QUnxWddtIF+GC6yVKvdqB8L2Til
-         Bxng==
-X-Gm-Message-State: AOAM531bjrjKTzWFNk+d/i/kr+9vnfPBR8mLAklc+TRUcU/8EB8y/rWz
-        4A4mOddDc/wNCs7x0moN0uI=
-X-Google-Smtp-Source: ABdhPJwro6w2mgrF65az0vSknujjJ3VjRMgjB6/hgnMQr8R8I2l8gmdmOxheYAIIDY14fSaoGxmRgw==
-X-Received: by 2002:a05:6808:1b11:b0:326:4608:4504 with SMTP id bx17-20020a0568081b1100b0032646084504mr5908968oib.145.1653062464381;
-        Fri, 20 May 2022 09:01:04 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id b129-20020aca3487000000b0032af475f733sm1130687oia.28.2022.05.20.09.01.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 May 2022 09:01:03 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <62a519ee-c909-bdb8-e686-084ffe8a8bcf@roeck-us.net>
-Date:   Fri, 20 May 2022 09:01:02 -0700
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=LkSGf2bxH59WTVp83FSY5qiWK4pwS5blQmXLKyjSPY8=;
+        b=RSu9w2+U8xQ7SApll2fkJkwEy8BlMWve8YXuDRoDN8cDcPLu9qU79GJ3pJzB1NDbxs
+         M5X2QNghlxeJTbr/94MsNTSXbgzOJFZFwQ0UroDxXrBnIctw2O5GKPFD0+Tfu2Z9y+Rq
+         RS2ueaXl/bICMkrI+tcmuUgd3Yz3jLbTXrBEQtuo8QLdNMGiCltQ5x6C1o42NRTSmvNB
+         z0GwYQUjK9i8TKTOM90EhWOK5B2so7xHf8nHek8tRoAyNdr9jOHVBQHrBCeKG2BoLbvd
+         CUTi1bTethJLYQ6K5qUQ6+lydKMhLPyvnape3WhUBcB/s6mRB3KZZIx514UU5AwvBPNa
+         Km3Q==
+X-Gm-Message-State: AOAM5312iarPEUtMH6zmUsxF/IJe/4jXEjpQJWfIMdFdlAVcpQpFOnrE
+        2Gh7dxj+RYKOiYdVS49ELq8ZZX22fQKpZA==
+X-Google-Smtp-Source: ABdhPJy19kEdrGjfue1GtCczQo4F+DapVsY3piSITa4hnXnRq2NVBcozhD80EXbDIrUP8RV2FvDKXA==
+X-Received: by 2002:a19:4303:0:b0:473:f5fb:27b2 with SMTP id q3-20020a194303000000b00473f5fb27b2mr7341009lfa.626.1653062570085;
+        Fri, 20 May 2022 09:02:50 -0700 (PDT)
+Received: from mobilestation ([95.79.189.214])
+        by smtp.gmail.com with ESMTPSA id t5-20020a2e9545000000b00250a19f8b47sm355024ljh.126.2022.05.20.09.02.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 May 2022 09:02:49 -0700 (PDT)
+Date:   Fri, 20 May 2022 19:02:46 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Frank Li <Frank.Li@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 16/17] PCI: dwc: Introduce generic platform clocks and
+ resets sets
+Message-ID: <20220520160246.guczq52v2ycfgc6c@mobilestation>
+References: <20220503214638.1895-1-Sergey.Semin@baikalelectronics.ru>
+ <20220503214638.1895-17-Sergey.Semin@baikalelectronics.ru>
+ <20220516222920.GC3296584-robh@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Content-Language: en-US
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Slawomir Stepien <sst@poczta.fm>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     jdelvare@suse.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, przemyslaw.cencner@nokia.com,
-        krzysztof.adamski@nokia.com, alexander.sverdlin@nokia.com
-References: <20220520093243.2523749-1-sst@poczta.fm>
- <c1b1f02a-42c2-bc67-ab92-c0bf9dabbe94@roeck-us.net>
-Subject: Re: [PATCH 0/8] Add support for ADT7481 in lm90
-In-Reply-To: <c1b1f02a-42c2-bc67-ab92-c0bf9dabbe94@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220516222920.GC3296584-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/20/22 06:45, Guenter Roeck wrote:
-> On 5/20/22 02:32, Slawomir Stepien wrote:
->> From: Slawomir Stepien <slawomir.stepien@nokia.com>
->>
->> This patch series adds support for ADT7481 in lm90.c driver and extends the
->> device-tree options for it.
->>
->> The ADT7481 is quite similar to MAX6696 (already supported in lm90) so a lot of
->> code is reused.
->>
->> One major problem in fitting the ADT7481 in lm90.c is the chip detection.
->> However it seems that the chip has been designed and produced with correct
->> values at locations: 0xfe (manufactured id) and 0xff (chip id), but this is not
->> documented in the datasheet.
->>
+On Mon, May 16, 2022 at 05:29:20PM -0500, Rob Herring wrote:
+> On Wed, May 04, 2022 at 12:46:37AM +0300, Serge Semin wrote:
+> > Currently almost each platform driver uses its own resets and clocks
+> > naming in order to get the corresponding descriptors. It makes the code
+> > harder to maintain and comprehend especially seeing the DWC PCIe core main
+> > resets and clocks signals set hasn't changed much for about at least one
+> > major IP-core release. So in order to organize things around these signals
+> > we suggest to create a generic interface for them in accordance with the
+> > naming introduced in the DWC PCIe IP-core reference manual:
+> > 
+> > Clocks:
+> > - DBI - data bus interface clock (on some DWC PCIe platforms it's
+> >   referred as "pclk", "pcie", "sys", "ahb", "cfg", "iface", "gio", "reg",
+> >   "pcie_apb_sys");
+> > - MSTR - AXI-bus master interface clock (some DWC PCIe glue drivers refer
+> >   to this clock as "port", "bus", "pcie_bus",
+> >   "bus_master/master_bus/axi_m", "pcie_aclk");
+> > - SLV - AXI-bus slave interface clock (also called as "port", "bus",
+> >   "pcie_bus", "bus_slave/slave_bus/axi_s", "pcie_aclk",
+> >   "pcie_inbound_axi");
+> > - PIPE - Core-PCS PIPE interface clock coming from external PHY (it's
+> >   normally named by the platform drivers as just "pipe")
+> > - CORE - primary clock of the controller (none of the platform drivers
+> >   declare such a clock but in accordance with the ref. manual the devices
+> >   may have it separately specified);
+> > - AUX - Auxiliary PMC domain clock (it is named by some platforms as
+> >   "pcie_aux" and just "aux")
+> > - REF - Generic reference clock (it is a generic clock source, which can
+> >   be used as a signal source for multiple interfaces, some platforms call
+> >   it as "ref", "general", "pcie_phy", "pcie_phy_ref").
+> > 
+> > Application resets:
+> > - DBI - Data-bus interface reset (it's CSR interface clock and is normally
+> >   called as "apb" though technically it's not APB but DWC PCIe-specific
+> >   interface);
+> >   apb, sys,
+> > - MSTR -AXI-bus master reset (some platforms call it as "port", "apps",
+> >   "bus", "axi_m");
+> > - SLV - ABI-bus slave reset (some platforms call it as "port", "apps",
+> >   "bus", "axi_s").
+> > 
+> > Core resets:
+> > - NON_STICKY - Non-sticky CSR flags reset;
+> > - STICKY - sticky CSR flags reset;
+> > - PIPE - PIPE-interface (Core-PCS) logic reset (some platforms call it
+> >   just "pipe");
+> > - CORE - controller primary reset (resets everything except PMC module,
+> >   some platforms refer to this signal as "soft", "pci");
+> > - PHY - PCS/PHY block reset (strictly speaking it is normally connected to
+> >   the out of the external block, but the reference manual says it must be
+> >   available for the PMC working correctly, some existing platforms call it
+> >   as "pciephy", "phy", "link");
+> > - HOT - PMC hot reset signal (also called as sleep");
+> > - PWR - cold reset signal (can be referred as "pwr", "turnoff").
+> > 
+> > As you can see each platform uses it's own naming for basically the same
+> > set of the signals. In the framework of this commit we suggest to add a
+> > set of the clocks and signals identifiers and corresponding names for each
+> > denoted entity. The platforms will be able to use them to define local
+> > mapping tables between the generic identifiers and the available set of
+> > the clocks and resets. The tables can be then utilized to create the
+> > corresponding bulk-arrays, which in its turn can be passed to the
+> > clock/reset-bulk API methods to easily get/enable/disable/put,
+> > get/reset/assert/deassert/put all the handlers at once or, if it's
+> > required, manipulate with the handlers individually.
 > 
-> Before we go too far along this route, would you mind using my own patch series
-> as base to implement the devicetree changes ? I had prepared an extensive
-> patch series a while ago, adding not only support for ADT7481 but for
-> several other chips as well, I just never got around to sending it out.
+
+> No doubt there is way to much variation here (ummm, Qcom!). Some 
+> standardization of names in (new) bindings would be good. That's where 
+> we should be defining names IMO.
+
+That's what my patchset starts from. See the {reset,clock,reg}-names
+properties definitions in the snps,dw-pcie-common.yaml schema being added
+in the framework of the patch
+[PATCH v2 01/17] dt-bindings: PCI: dwc: Define common and native DT bindings
+in this series.
+
 > 
+> On the driver side, I'd like to see the DW core handle clocks/resets/phys 
+> at least for the easy cases of just turn on/off all the clocks and 
+> toggle all resets. Perhaps even more minimally, move the clk/reset 
+> struct pointers to the DWC core.
 
-I made my lm90 patch series available in branch hwmon-lm90 of
-git://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git
 
-The patches in this series were module tested and tested on real hardware
-with the test scripts at git@github.com:groeck/module-tests.git;
-look for scripts/lm90-real.sh and scripts/lm90.sh.
+If it was that easy I would have done that in the first place.) Even
+though there is well defined set of the clocks and resets a normal DW
+PCIe RP/EP controller can have (see the list in the patch log), the
+way they are toggled and the signal sources due to the controller
+complexity in the most of the cases is platform-dependent.  Just
+enabling and de-asserting all of them likely will never work. So such
+function would be just useless. In addition to that there are signals
+like app_ltssm_enable or phy/link reset request which needs to be
+checked at some point of the reset procedure. The way these signals
+are available in the system is also platform-dependent (syscon,
+additional CSRs blocks, etc). Thirdly there can be PHY viewport CSRs
+available in the DW PCIe Port Logic CSRs which can be used on the
+platforms to tune the PHY settings up during the cold reset process.
+Finally the platform-specific timings between the reset signals
+assertion/de-assertion need to be preserved. Taking all of that into
+account would cause having a very complicated generic clock/reset
+handling procedure.
 
-Guenter
+Synopsys provides a Verilog module called DWC_pcie_clkrst.v/CLK_RST.v
+which can be used by the platform engineers to implement the clocks
+generation and cold/hot reset without much software interference. But
+it isn't always possible to predict the timings being required on the
+real silicon. So the hw engineers mainly omit such module and rely on the
+software to implement the proper reset procedure, which due to many
+reasons (PHY settings, timings, etc) mostly differs from SoC-to-SoC.
+
+So to speak I don't think that we can (should?) create some truly
+generic at least cold start procedure due to too many variables at
+stake (though the one implemented in my Baikal-T1 PCIe driver, last
+patch in the series, follows the cold procedure described in the hw
+reference manual). At least IMO it won't be possible without many
+hooks inside such method with platform-dependent signals checking and
+delays. So the only generic thing that we can indeed implement is to
+have the clock and reset structure pointers inside the DWC core and
+create a generic platform resources request/release methods. Even in
+that case these methods can't be called from the generic
+host/end-point probe procedure and need to be invoked from the
+platform-specific host_init/host_deinit methods by the platforms
+themself. It's because there are so many platforms already
+implemented. If I try to consolidate all their resource
+request/release parts in a single method, it most likely cause the
+regression.
+
+What do you think if I would just create the arrays with pointers to the
+generic clk/reset structures in the DWC private data, implement their
+request (release won't be required due to devm-methods utilization)
+procedure and use it in the framework of my driver only for now?
+
+> 
+> IOW, I'm not sure this patch is really helpful without some of the above 
+> happening.
+
+Well, I've provided a driver (the last patch in this series) which
+design can be used as a reference to implement the clocks/reset
+request procedure with a help of the submitted in this patch tables.
+But if you are agree with creating a generic resource request method,
+the clocks/reset request part of it can be re-designed, simplified
+and moved to that method.
+
+-Sergey
+
+> 
+> Rob
