@@ -2,108 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2528F52F179
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 19:22:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF16452F18E
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 19:26:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348051AbiETRWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 13:22:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57862 "EHLO
+        id S1352146AbiETRXU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 13:23:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345306AbiETRWH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 13:22:07 -0400
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BAE762135;
-        Fri, 20 May 2022 10:22:06 -0700 (PDT)
-Received: by mail-oi1-f172.google.com with SMTP id q8so10653596oif.13;
-        Fri, 20 May 2022 10:22:06 -0700 (PDT)
+        with ESMTP id S1352147AbiETRXT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 13:23:19 -0400
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AB11187041;
+        Fri, 20 May 2022 10:23:18 -0700 (PDT)
+Received: by mail-yb1-xb2d.google.com with SMTP id j2so15382248ybu.0;
+        Fri, 20 May 2022 10:23:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=bEVFlFzpMhPKagtCAx7Mp2QhohW11+oAJB8JBPmMmio=;
+        b=RilbOgjwVk3qdpZdBXaHinkF+sOe4p1IpWx7P0VZUwxDIyymhVook3pPJc2tM01G5V
+         oIVilPi8Dh0yaEZRr+a2+8xhpslWZQ0UvgXr9ZXTJZR7THqSsAdcAFhRW8DEuxT+kz8q
+         y199zpvhnSuGFbcMcQ3Ojd/LTX35nVJL50k9Ayij2gZb6iySyWjhkEGqm32uLGajRYhM
+         v1Tn8VwPhfD71ngFXoyGGzXffaxIhD8GxxLXWBakqLnpx1Ae0Aa0Uqnp6zIwBWRTQc6l
+         ZVyB/k2CDIj7JcWaHqzJoVaW5PrdBg+dK24jhm9/0ins8yRjE6Ofjxi0AGx8VXy9ylVm
+         HP+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=wHAiN9i9ZSX1pTumLQ9nH/ZihmBygWS3kQh2yk6VlzY=;
-        b=kCQHvQ5LfMKLY88JBjaxxxrZPVl4Icso5Kxjz7Fx4RyhxOF2f1gRqd5b2PsKp+BSYf
-         eP/VPxW7eqxJY1IDJRCBkcTdQFbacdkocfletHIrX79klb/70styPXWWruNDjAf5NU+z
-         h445ru3ahObh3AN4ZExjLNVBxQdKXJGW1r1TH7ljhhKjbUplveHqLgc3SjP8C5UA9RlK
-         m4AK7yt+w5cCLKIoEMZwP99IU60rE4qrdbkmV54U88LnFGsUP24pcT7HsMUfuCtwImt/
-         ARDlEGr6t+RY+avlcljtONGS/XgsK75cecZcBGdjT11xsnLrSgq4XD4au3HIfTLK775E
-         LXQw==
-X-Gm-Message-State: AOAM533ViA4ANxbskPj5GHQNsbXyQWCg3lmBzCIPwrxUy+KtF93NKqDF
-        3TEfHPGdIXZJr6QBVvAJLnp2l+O0iQ==
-X-Google-Smtp-Source: ABdhPJxi7NP17DTt/0hvJT2/+9CPnZvqnnY2qr5s/IkVaF5XjOz+5oZYsts6/rxEmhHjqmwJMp/Tbg==
-X-Received: by 2002:aca:4385:0:b0:326:bf61:67ee with SMTP id q127-20020aca4385000000b00326bf6167eemr6301503oia.55.1653067325770;
-        Fri, 20 May 2022 10:22:05 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id k23-20020a544717000000b00325cda1ff87sm1269136oik.6.2022.05.20.10.22.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 May 2022 10:22:05 -0700 (PDT)
-Received: (nullmailer pid 4085110 invoked by uid 1000);
-        Fri, 20 May 2022 17:22:04 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Phil Edworthy <phil.edworthy@renesas.com>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-gpio@vger.kernel.org
-In-Reply-To: <20220520154051.29088-2-phil.edworthy@renesas.com>
-References: <20220520154051.29088-1-phil.edworthy@renesas.com> <20220520154051.29088-2-phil.edworthy@renesas.com>
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: renesas: Add DT bindings for RZ/V2M pinctrl
-Date:   Fri, 20 May 2022 12:22:04 -0500
-Message-Id: <1653067324.196006.4085109.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bEVFlFzpMhPKagtCAx7Mp2QhohW11+oAJB8JBPmMmio=;
+        b=V4PLTijDMKRWqXDqyHW5qN06UblBZ4jugOOdi/h1K4loc7Df5cqrhCTQ2CIm+yXp+p
+         Y2niFxeOkTXGpzId0fNkSNI8wXSxgwn1KGRUxHEsvSy1lYlQGgvgupfX8y0UO89SRtyj
+         kodAkP/T/dt5WI5ZwLlkmvMiFE931gdh2qen6x1DHo4DkohpS9n4JGahuiCtb7AxLvJR
+         fKjhtRXRNHOUEzdM5SqeOSUSoVl1zWyiOEuFYtsAYLl6Zz+okWIbOOJcNlIsrlEzg1q+
+         JO6B79G79WU5E4mVpOl6ParEfYATVR4uCtgfRsInPCi7/8ru11FhIwTPU1hfyPyLzaVO
+         YDUA==
+X-Gm-Message-State: AOAM530qsnT/qzi71PgTNxL4xszJ5mTLersirowDoPJc0gUI3gTGY6ts
+        yjtYDOl5+hKqeii5zcmfh1CJ6WQbFaC99Exa/mA=
+X-Google-Smtp-Source: ABdhPJwPw5CGdSfMxJ3GUxhEWLIB/0qIUyxWZD4uytMRikLfw1kJBSnyOgJNFluo990grHaPH+H4iHMdzpNYQDOjuhE=
+X-Received: by 2002:a25:3452:0:b0:64e:1776:ce90 with SMTP id
+ b79-20020a253452000000b0064e1776ce90mr10602677yba.261.1653067397554; Fri, 20
+ May 2022 10:23:17 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220513201907.36470-1-kdasu.kdev@gmail.com> <20220513201907.36470-3-kdasu.kdev@gmail.com>
+ <CAPDyKFpF_Swon5ZBRSq7M5Zq=8wUMa1q=68XfaD+RQqKYgNJVg@mail.gmail.com> <CAOGqxeUrEe8GUBiZzAkDKmpp2mQRK501ua6LOnaqyYHDNfawbg@mail.gmail.com>
+In-Reply-To: <CAOGqxeUrEe8GUBiZzAkDKmpp2mQRK501ua6LOnaqyYHDNfawbg@mail.gmail.com>
+From:   Kamal Dasu <kdasu.kdev@gmail.com>
+Date:   Fri, 20 May 2022 13:23:06 -0400
+Message-ID: <CAC=U0a2s7QMRHAktbBn9N8ujiiD6MRbtsOJBxoVDWc0ET3KGwA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] mmc: sdhci-brcmstb: Add ability to increase max clock
+ rate for 72116b0
+To:     Alan Cooper <alcooperx@gmail.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, krzk+dt@kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 May 2022 16:40:50 +0100, Phil Edworthy wrote:
-> Add device tree binding documentation and header file for Renesas
-> RZ/V2M pinctrl.
-> 
-> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
->  .../pinctrl/renesas,rzv2m-pinctrl.yaml        | 174 ++++++++++++++++++
->  include/dt-bindings/pinctrl/rzv2m-pinctrl.h   |  23 +++
->  2 files changed, 197 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/renesas,rzv2m-pinctrl.yaml
->  create mode 100644 include/dt-bindings/pinctrl/rzv2m-pinctrl.h
-> 
+I think I seem to agree now that overloading the meaning of
+max-frequency for the sdio_freq clock might not be a good idea. If
+Uffe is Ok I think I will revert back to using the 'clock-frequency'
+field in the brcmstb,sdhci-brcmstb dt node and implement other
+suggestions as well
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Kamal
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/pinctrl/renesas,rzv2m-pinctrl.example.dts:22:18: fatal error: dt-bindings/clock/r9a09g011-cpg.h: No such file or directory
-   22 |         #include <dt-bindings/clock/r9a09g011-cpg.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:364: Documentation/devicetree/bindings/pinctrl/renesas,rzv2m-pinctrl.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1401: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+On Thu, May 19, 2022 at 10:16 PM Alan Cooper <alcooperx@gmail.com> wrote:
+>
+> This seems confusing and seems to overload the meaning of
+> "max-frequency" which is typically used to limit the clock rate to
+> something slower than what's in the CAPs register as the base clock.
+> Instead we're trying to overclock the controller because the hardware
+> team has verified that it can be run faster than 100MHz which is how
+> the system is configured and is in the CAPs register as the base
+> clock.
+>
+> Al
+>
+> On Tue, May 17, 2022 at 8:50 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> >
+> > On Fri, 13 May 2022 at 22:19, Kamal Dasu <kdasu.kdev@gmail.com> wrote:
+> > >
+> > > From: Al Cooper <alcooperx@gmail.com>
+> > >
+> > > The 72116B0 has improved SDIO controllers that allow the max clock
+> > > rate to be increased from a max of 100MHz to a max of 150MHz. The
+> > > driver will need to get the clock and increase it's default rate
+> > > and override the caps register, that still indicates a max of 100MHz.
+> > > The new clock will be named "sdio_freq" in the DT node's "clock-names"
+> > > list. The driver will use a DT property, "clock-frequency", to
+> >
+> > /s/clock-frequency/max-frequency
+> >
+> >
+> > > enable this functionality and will get the actual rate in MHz
+> > > from the property to allow various speeds to be requested.
+> > >
+> > > Signed-off-by: Al Cooper <alcooperx@gmail.com>
+> > > Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
+> > > ---
+> > >  drivers/mmc/host/sdhci-brcmstb.c | 30 ++++++++++++++++++++++++++++++
+> > >  1 file changed, 30 insertions(+)
+> > >
+> > > diff --git a/drivers/mmc/host/sdhci-brcmstb.c b/drivers/mmc/host/sdhci-brcmstb.c
+> > > index 8eb57de48e0c..a1ffdd3f1640 100644
+> > > --- a/drivers/mmc/host/sdhci-brcmstb.c
+> > > +++ b/drivers/mmc/host/sdhci-brcmstb.c
+> > > @@ -250,6 +250,9 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
+> > >         struct sdhci_pltfm_host *pltfm_host;
+> > >         const struct of_device_id *match;
+> > >         struct sdhci_brcmstb_priv *priv;
+> > > +       struct clk *master_clk;
+> > > +       u32 base_clock_hz = 0;
+> > > +       u32 actual_clock_mhz;
+> > >         struct sdhci_host *host;
+> > >         struct resource *iomem;
+> > >         struct clk *clk;
+> > > @@ -330,6 +333,33 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
+> > >         if (match_priv->flags & BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT)
+> > >                 host->quirks |= SDHCI_QUIRK_BROKEN_TIMEOUT_VAL;
+> > >
+> > > +       /* Change the base clock frequency if the DT property exists */
+> > > +       if (device_property_read_u32(&pdev->dev, "max-frequency",
+> > > +                                    &base_clock_hz) != 0)
+> > > +               goto add_host;
+> >
+> > The max-frequency DT property is already being parsed by
+> > mmc_of_parse() and the value is put in host->mmc->f_max. You could
+> > probably use that instead, right?
+> >
+> > > +
+> > > +       master_clk = devm_clk_get(&pdev->dev, "sdio_freq");
+> > > +       if (IS_ERR(master_clk)) {
+> > > +               dev_warn(&pdev->dev, "Clock for \"sdio_freq\" not found\n");
+> > > +               goto add_host;
+> > > +       } else {
+> > > +               res = clk_prepare_enable(master_clk);
+> > > +               if (res)
+> > > +                       goto err;
+> > > +       }
+> > > +
+> > > +       /* set improved clock rate */
+> > > +       clk_set_rate(master_clk, base_clock_hz);
+> > > +       actual_clock_mhz = clk_get_rate(master_clk) / 1000000;
+> > > +
+> > > +       host->caps &= ~SDHCI_CLOCK_V3_BASE_MASK;
+> > > +       host->caps |= (actual_clock_mhz << SDHCI_CLOCK_BASE_SHIFT);
+> > > +       /* Disable presets because they are now incorrect */
+> > > +       host->quirks2 |= SDHCI_QUIRK2_PRESET_VALUE_BROKEN;
+> > > +       dev_dbg(&pdev->dev, "Base Clock Frequency changed to %dMHz\n",
+> > > +               actual_clock_mhz);
+> > > +
+> > > +add_host:
+> > >         res = sdhci_brcmstb_add_host(host, priv);
+> > >         if (res)
+> > >                 goto err;
+> > > --
+> > > 2.17.1
+> > >
+> >
+> > Kind regards
+> > Uffe
