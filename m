@@ -2,77 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A74752EC88
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 14:47:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AB8852EC8D
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 14:48:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348911AbiETMrN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 08:47:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52776 "EHLO
+        id S1349451AbiETMsc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 08:48:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232158AbiETMrM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 08:47:12 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACED678928
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 05:47:10 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id h8so9545710ljb.6
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 05:47:10 -0700 (PDT)
+        with ESMTP id S231154AbiETMsa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 08:48:30 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B56581666B4
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 05:48:28 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id q130so9559087ljb.5
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 05:48:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=6XjZCY756KPit2Ss8z2BIiQdnfZ6Pvc8gtf2ue1/+6k=;
-        b=vDO+00dTVaD5pXExs+VhEQBJsjL9ZgRmUN2i8NroXb/Lc1Ck0ZJ/xPUBzXkwSp0Biq
-         0z995sBqPSAGxFvKILSw8MX4jhDQI2OVuHtU9Jy7aS0ales7e5WqynDTuLdlqSqvl04C
-         7DNswUskS/DRAHkzCpFE7rb6H9lXP2SKw+9Ktcus3I90x/2okqGhtoCjoKsh2egk4Bnz
-         pza4W7dkEZnZprqZ7KzxB8TLsQgTP64gc9evLU1r53LNp1qyDw5Y8dPdEMLfb5rMqH5a
-         eqd1Rx7lmMReZN26uiVE9Uqoy6Kf2nkKor+lJG2G831hNtKpD/5yCRU2FpJPyPZZ9MAU
-         HWKg==
+        bh=jj/r0+A1LrJnhoO/RRceBUvJ8EYDeEnSUJDuZQ2AlkU=;
+        b=uxoqHZU2Suo3X4RpgDOFGpAW8IcnZR7SmY2BErjtGQhxjegXuxRlx0i7DTWt6r4TRK
+         MB3hLZKUW6Ug65Gu0XO/a51pBTruyXe9i+hnCz+MypQoGBjjxqQrQvK5RGUUxq8FccLM
+         0Ee5XjA2aDcdXJn8t7AT/E95TlAK7x/wXgxDeddjAqnKde6yShTzcwe7cKHwWfZBqjap
+         uxDUYLznxEhqgDL8C4omaR4HNHvPWbz0TibcjF7H6/Rqaf7eFz565jHQzI0SdvF2kTfO
+         oQ08N+ThjwSPI0zYmHDfdeYa3zf2yFr3M6BhTLaYbXoBG4+FqqoChKGlQYLukRQ3/NAx
+         Vymg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=6XjZCY756KPit2Ss8z2BIiQdnfZ6Pvc8gtf2ue1/+6k=;
-        b=ymjvzVarA/vW0yxhbyrMQt6ba02S8zgX1IvQmBw5gmwrG9GfoeHeCBLmbi76ELAyYD
-         psmp+7FoF2vUV9axZoLf5+4I6QYotzh4mKmb1b3Pt+I2j2pbqmOsZLKnHMwuni8IuZ2X
-         pNMQAR7KYtJxnQOiqOjjIssdEMVEe3n3nveHHcBEyWeoW8eSQbWyzQMDPZT0uEl/pYSq
-         whV3xLaj88YXKpndx4NchfBldnGolzCZo7Z429bnBzuTjGDETtPvLJDgo5u7/S9HUs83
-         DA4PFDGfUNCAqvBhf9hQbQcpsjKfBM3SWc/GS49haYydbE9me/pLFV5v+Vx+9xbWrY3D
-         M44A==
-X-Gm-Message-State: AOAM5335e4Eqy4+nE2k9LzA1CyH1JCZXi0DbVQGHursJmF52la8PXpLk
-        HwtV+hAtXDz4kc0RL1JdwYERuQ==
-X-Google-Smtp-Source: ABdhPJzSMwcLqnffUq2TA8e/v4JG+J7i+J339pLj5B4YgUwzCEaHgMJU1oxdENxuhmlLzt2dzVc8Cw==
-X-Received: by 2002:a2e:9941:0:b0:247:dce8:b0ec with SMTP id r1-20020a2e9941000000b00247dce8b0ecmr5588141ljj.404.1653050829034;
-        Fri, 20 May 2022 05:47:09 -0700 (PDT)
+        bh=jj/r0+A1LrJnhoO/RRceBUvJ8EYDeEnSUJDuZQ2AlkU=;
+        b=FlJRlnpshStKFr/wklI73G+1jZ7ylV05jEYD6OjxiaemCilUYhfqhhzl07SDd8eRpk
+         y+k4nIQPznu3ygv+XpdO2LGOMt0CTl1zA34kEpbm2gyuEgRD6zlXH9jL/R7B+OuL0GUn
+         FXNOeeSIZsBLurukGKEkLs3J2cmNr84rnHVoJ0VEUd8Lo1iF8tpi5GCY1pRBB4K8iLRo
+         ha0sv7ppTUUM8OsCK4BEyWL+ybUS+Doc9s10xV5cKjW8xiOfRls9guVebu2Lm21Y9JRy
+         y/wh1G+u9zi5g2lis7gnoKV8PJS0FkqDv7A3r2Cmrxyqu94FoO3NpOmTH9B2aGkSbwsZ
+         7q+Q==
+X-Gm-Message-State: AOAM530hcrWo8GBaM/vtfDHZMk2kJWpy3DL7mRcDCVX7BfYjIVqy/iRF
+        arwDhdTuncC8m4nlybp4p1VhEA==
+X-Google-Smtp-Source: ABdhPJxa22UihYKVAI7lxlpUTP1kaFY94T0cjcRSFc7JjQ7D4nYnaYpvDwIj5qDu/pUUvHvQIfZcaA==
+X-Received: by 2002:a2e:84c9:0:b0:253:bd3e:63b3 with SMTP id q9-20020a2e84c9000000b00253bd3e63b3mr5318183ljh.350.1653050907139;
+        Fri, 20 May 2022 05:48:27 -0700 (PDT)
 Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id q7-20020ac25287000000b0047255d211f4sm646717lfm.291.2022.05.20.05.47.08
+        by smtp.gmail.com with ESMTPSA id b8-20020ac24108000000b0047408564c31sm646938lfi.286.2022.05.20.05.48.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 May 2022 05:47:08 -0700 (PDT)
-Message-ID: <0e0dd0a1-0312-46f0-40b3-d3d2576ef08f@linaro.org>
-Date:   Fri, 20 May 2022 14:47:07 +0200
+        Fri, 20 May 2022 05:48:26 -0700 (PDT)
+Message-ID: <053b0099-6d01-c3a6-f43f-df5ef0424d5c@linaro.org>
+Date:   Fri, 20 May 2022 14:48:25 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH 3/8] dt-bindings: hwmon: Allow specifying channels for
- lm90
+Subject: Re: [PATCH 3/3] ARM: dts: lan966x: Add UDPHS support
 Content-Language: en-US
-To:     Slawomir Stepien <sst@poczta.fm>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, przemyslaw.cencner@nokia.com,
-        krzysztof.adamski@nokia.com, alexander.sverdlin@nokia.com,
-        Slawomir Stepien <slawomir.stepien@nokia.com>
-References: <20220520093243.2523749-1-sst@poczta.fm>
- <20220520093243.2523749-4-sst@poczta.fm>
- <3ea92486-0cf9-ce3d-d1b6-7a76f1d5a129@linaro.org>
- <YoeLuffNoUoNx2Bc@t480s.localdomain>
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20220513105850.310375-1-herve.codina@bootlin.com>
+ <20220513105850.310375-4-herve.codina@bootlin.com>
+ <2945e445-3453-a45f-7d3d-3b07bf350b47@linaro.org>
+ <20220520143726.6dd324fb@bootlin.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <YoeLuffNoUoNx2Bc@t480s.localdomain>
+In-Reply-To: <20220520143726.6dd324fb@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,139 +87,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/05/2022 14:38, Slawomir Stepien wrote:
-> On maj 20, 2022 12:13, Krzysztof Kozlowski wrote:
->> On 20/05/2022 11:32, Slawomir Stepien wrote:
->>> From: Slawomir Stepien <slawomir.stepien@nokia.com>
->>>
->>> Add binding description for temperature channels. Currently, support for
->>> label and offset is implemented.
->>>
->>> Signed-off-by: Slawomir Stepien <slawomir.stepien@nokia.com>
->>> ---
->>>  .../bindings/hwmon/national,lm90.yaml         | 39 +++++++++++++++++++
->>>  1 file changed, 39 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/hwmon/national,lm90.yaml b/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
->>> index 066c02541fcf..9a5aa78d4db1 100644
->>> --- a/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
->>> +++ b/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
->>> @@ -62,6 +62,37 @@ required:
->>>  
->>>  additionalProperties: false
->>>  
->>> +patternProperties:
+On 20/05/2022 14:37, Herve Codina wrote:
+>> Generic node names, so it looks like usb. For example HCD schema
+>> requires it. I am not sure which bindings are used here, but anyway once
+>> they might require usb...
 >>
->> Which models use this?
 > 
-> This is used in tmp421 model.
+> HCD are related to the Host controller.
+> Here we are talking about a device.
+> 
+> In existing bindings related to USB device (or OTG as an OTG can be a
+> host or a device) on several SOCs, we can find:
+> - usb1: gadget@fffa4000
+> - usb_otg: usb@1c13000
+> - usb: usb@47400000
+> - udc: usb@13040000
+> - usb_otg_hs: usb_otg_hs@4a0ab000
+> 
+> 
+> So I will change to
+>   udc: usb@e0808000
+> 
+> Is that ok for you ?
 
-Then please add allOf:if:then disallowing the property for other models.
-
-> 
->>> +  "^channel@([0-2])$":
->>> +    type: object
->>> +    description: |
->>
->> No need for |
-> 
-> Will fix in v2.
-> 
->>> +      Represents channels of the device and their specific configuration.
->>> +
->>> +    properties:
->>> +      reg:
->>> +        description: |
->>
->> The same.
-> 
-> Will fix in v2.
-> 
->>> +          The channel number. 0 is local channel, 1-2 are remote channels.
->>> +        items:
->>> +          minimum: 0
->>> +          maximum: 2
->>> +
->>> +      label:
->>> +        description: |
->>
->> The same.
-> 
-> Will fix in v2.
-> 
->>> +          A descriptive name for this channel, like "ambient" or "psu".
->>> +
->>> +      offset:
->>> +        description: |
->>
->> This does not look like standard property, so you need vendor and unit
->> suffix.
-> 
-> Currently in lm90 we have support for devices that have different width (including sign) for offset
-> register. We have 10 bits, 11 bits and 12 bits. Do I understand correctly that I can use the same
-> vendor prefix if the width is the same? Just like "ti" was used for adi and ti in
-> "ti,extended-range-enable"?
-> 
-> For example:
-> 
-> adi,10-bit-offset-millicelsius # (only for adt7481)
-> adi,11-bit-offset-millicelsius # (for adt7461 but also for lm90 and others)
-> ti,12-bit-offset-millicelsius  # (ti - since only tmp451 and tmp461 supports 12 bit)
-
-Wait, these are then strictly per-compatible, so there is no sense in DT
-property at all.
-
-> 
->>> +          The value (millidegree Celsius) to be programmed in the channel specific offset register
->>> +          (if supported by device).
->>
->> You described programming model which should not be put in the bindings.
->> Please describe the hardware.
-> 
-> I am also not sure about the "-millicelsius" in example above. From device point-of-view, this
-> offset is just two's complement, so is it more desirable to have the values here as just bytes
-> rather than millicelsius?
-
-No, the programming model of a device can change and should be
-abstracted to hardware property.
-
-> 
->>> +          For remote channels only.
->>> +        $ref: /schemas/types.yaml#/definitions/int32
->>> +        default: 0
->>> +
->>> +    required:
->>> +      - reg
->>> +
->>> +    additionalProperties: false
->>> +
->>>  examples:
->>>    - |
->>>      #include <dt-bindings/interrupt-controller/irq.h>
->>> @@ -76,5 +107,13 @@ examples:
->>>              vcc-supply = <&palmas_ldo6_reg>;
->>>              interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
->>>              #thermal-sensor-cells = <1>;
->>> +            #address-cells = <1>;
->>> +            #size-cells = <0>;
->> I assume you tested the bindings with dt_bindings_check?
->>
->> I have some doubts, as this should fail.
-> 
-> I did. All was fine. What should fail here?
-
-This:
-
-linux/out/Documentation/devicetree/bindings/hwmon/national,lm90.example.dtb:
-sensor@4c: '#address-cells', '#size-cells' do not match any of the
-regexes: '^channel@([0-2])$', 'pinctrl-[0-9]+'
-
-	From schema:
-linux/linux/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
-
-
-So no, you did not test it. Asking reviewer to perform a test which you
-can do by yourself is a huge waste of reviewers time.
+Yes, I proposed usb.
 
 Best regards,
 Krzysztof
