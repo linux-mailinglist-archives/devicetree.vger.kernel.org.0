@@ -2,116 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20A5D52EBCE
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 14:17:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7090252EBD5
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 14:19:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349091AbiETMRg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 08:17:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53998 "EHLO
+        id S1349064AbiETMTM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 08:19:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349099AbiETMRf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 08:17:35 -0400
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5301B1632BA
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 05:17:33 -0700 (PDT)
-Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20220520121731epoutp04282a9f40e967178b7c79a7ab7a118688~wz1qm7u9H2594525945epoutp04t
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 12:17:31 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20220520121731epoutp04282a9f40e967178b7c79a7ab7a118688~wz1qm7u9H2594525945epoutp04t
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1653049051;
-        bh=xP99BHy3NDk4ZEKQ8QQmI7N87j2LUxR4osjG49m0npw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=vImv3EEEEW68xwYCkOBZAikjPfSpoRsdooEu8O1DibjEhzlR9rt4iqSTug21hR8/l
-         /jrixACmwnkUNxg8dWU3WEtKdy4kx7xRLvjCjVWB8eGXP1QB8XYVcbFMjw4xKSRkv6
-         hclFH7RYhUuo4T+UzHlyeJTQ9snETiamDWY0wP0w=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas2p1.samsung.com (KnoxPortal) with ESMTP id
-        20220520121730epcas2p16892b99fe18f5b86b3f3ae4ebe3bf6b0~wz1pWUus72976929769epcas2p1N;
-        Fri, 20 May 2022 12:17:30 +0000 (GMT)
-Received: from epsmges2p1.samsung.com (unknown [182.195.36.88]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4L4Qhj3kHvz4x9Pw; Fri, 20 May
-        2022 12:17:25 +0000 (GMT)
-Received: from epcas2p4.samsung.com ( [182.195.41.56]) by
-        epsmges2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-        F5.B5.10069.3D687826; Fri, 20 May 2022 21:17:23 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
-        20220520121722epcas2p460fce9626fe2b4a857925704e2ea5ba1~wz1iWQw7r1929119291epcas2p4z;
-        Fri, 20 May 2022 12:17:22 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20220520121722epsmtrp23182ea775ae890478e0abd7b64a2baaa~wz1iVSx3N1007010070epsmtrp2b;
-        Fri, 20 May 2022 12:17:22 +0000 (GMT)
-X-AuditID: b6c32a45-a79ff70000002755-18-628786d30ba5
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        FD.2A.08924.2D687826; Fri, 20 May 2022 21:17:22 +0900 (KST)
-Received: from localhost.localdomain (unknown [10.229.9.51]) by
-        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20220520121722epsmtip2b508527be974c7daeb8ea103d2a60592~wz1iF8qdz0334103341epsmtip2D;
-        Fri, 20 May 2022 12:17:22 +0000 (GMT)
-From:   Chanho Park <chanho61.park@samsung.com>
-To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
-        linux-watchdog@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, Chanho Park <chanho61.park@samsung.com>
-Subject: [PATCH 4/4] arm64: dts: exynosautov9-sadk: enable watchdog devices
-Date:   Fri, 20 May 2022 21:17:50 +0900
-Message-Id: <20220520121750.71473-5-chanho61.park@samsung.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220520121750.71473-1-chanho61.park@samsung.com>
+        with ESMTP id S1349090AbiETMTI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 08:19:08 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22B1C15F6E5;
+        Fri, 20 May 2022 05:19:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1653049146; x=1684585146;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=Zh3PrYbnrJZd+3AWAAY6JOSRVfxffypaSFcCOCkJEik=;
+  b=kcI6p6OhGi9aljWHbsfOYR4TPJR5ZotnhHL4v1364cwnjL9+5DY/h5oh
+   mYh+qpkesu96zfgriNhkZSCkY5fz1UFeUANPHtsRe3ubhoAs6fSLLHmDi
+   WgEwQdGhetJdDaBDqGFVyw4lI+HyiL3gllmve+y0t72oo13aarp/bDG2Y
+   s=;
+Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 20 May 2022 05:19:05 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 May 2022 05:19:05 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 20 May 2022 05:19:05 -0700
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 20 May 2022 05:19:01 -0700
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_rohkumar@quicinc.com>, <srinivas.kandagatla@linaro.org>,
+        <dianders@chromium.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH v12 00/12] Add soundcard support for sc7280 based platforms.
+Date:   Fri, 20 May 2022 17:48:32 +0530
+Message-ID: <1653049124-24713-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprFJsWRmVeSWpSXmKPExsWy7bCmhe7ltvYkg5aTEhaX92tbzD9yjtVi
-        7+ut7BYzzu9jsrixbh+7xZOFZ5gsWvceYbd43gcUe/zyH7MDp8emVZ1sHneu7WHzWLlmDavH
-        zu8N7B59W1YxenzeJBfAFpVtk5GamJJapJCal5yfkpmXbqvkHRzvHG9qZmCoa2hpYa6kkJeY
-        m2qr5OIToOuWmQN0lJJCWWJOKVAoILG4WEnfzqYov7QkVSEjv7jEVim1ICWnwLxArzgxt7g0
-        L10vL7XEytDAwMgUqDAhO6Pnt1bBItaKtXckGhgPsHQxcnJICJhIfJrykbmLkYtDSGAHo8Sc
-        A3PYIJxPjBJ/d69nhXA+M0r0fjrGCNPSv72bESKxi1Hi1453UM5HRomeT3OZQKrYBHQltjx/
-        BZYQEVjLKPH8+USwWcwgLZvv/wFyODiEBbwlDi9OBWlgEVCV6Nr2nRnE5hWwk7j/+zbUhfIS
-        G+b3gsU5Bewl/j74ywpRIyhxcuYTsBpmoJrmrbPBvpAQ+Mkuse87zK0uEk3HzrFD2MISr45v
-        gbKlJD6/28sGYRdLLJ31iQmiuYFR4vK2X1AJY4lZz9oZQQ5lFtCUWL9LH8SUEFCWOHILai+f
-        RMfhv+wQYV6JjjYhiEZ1iQPbp0OdLyvRPeczK4TtITH7BSxIJzFKHFi+n3UCo8IsJO/MQvLO
-        LITFCxiZVzGKpRYU56anFhsVGMJjODk/dxMjOJFque5gnPz2g94hRiYOxkOMEhzMSiK8jLkt
-        SUK8KYmVValF+fFFpTmpxYcYTYGBPZFZSjQ5H5jK80riDU0sDUzMzAzNjUwNzJXEeb1SNiQK
-        CaQnlqRmp6YWpBbB9DFxcEo1MG3/civc1fqT3NvVDyNP79Tf3Jq4V27dRx62Hc+fuNw6rCvX
-        fHvOVbbbnBZLfktMbjv+OsdgwYMHym99z3Ea1n2bKDTjyq0tl+TmbAj5UTjF9aVVv/I/1neP
-        VzGUhUxntC+wjGu4VPrGq7RY8XGs2wPHleETE/Ma3Vy5b1y7q16cuFcr64prl+jd8uzJFqY8
-        SzfUlm+8M+n/xM2ck+V+mvUsE2E4J3CiUc1ul+KinEup5dYLLiQmBDb0qJ6uKon8t6ZwgbzV
-        2r6ZOmov8yLkeOase7vh9kwFHc4Lx37IPnq4NuDj3oITnQrBDy9N3G/TKm1mx6BtnMIRNCt4
-        xWXZR5FcxcW2u0sFLjnMifSbeUiJpTgj0VCLuag4EQDhmQkJLQQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrELMWRmVeSWpSXmKPExsWy7bCSvO6ltvYkg88dchaX92tbzD9yjtVi
-        7+ut7BYzzu9jsrixbh+7xZOFZ5gsWvceYbd43gcUe/zyH7MDp8emVZ1sHneu7WHzWLlmDavH
-        zu8N7B59W1YxenzeJBfAFsVlk5Kak1mWWqRvl8CV0fNbq2ARa8XaOxINjAdYuhg5OSQETCT6
-        t3czdjFycQgJ7GCUOLhhPxNEQlbi2bsd7BC2sMT9liOsILaQwHtGiSmLtUFsNgFdiS3PX4E1
-        iwisZ5T4tWsmWBGzwD5Gifa5EV2MHBzCAt4ShxengoRZBFQlurZ9ZwaxeQXsJO7/vg11hLzE
-        hvm9YHFOAXuJvw/+Qu2yk5j15TsjRL2gxMmZT1ggxstLNG+dzTyBUWAWktQsJKkFjEyrGCVT
-        C4pz03OLDQuM8lLL9YoTc4tL89L1kvNzNzGCg11LawfjnlUf9A4xMnEwHmKU4GBWEuFlzG1J
-        EuJNSaysSi3Kjy8qzUktPsQozcGiJM57oetkvJBAemJJanZqakFqEUyWiYNTqoHJkNF5QbVu
-        0TWOKT0py6YVXD71+MLt9TX6581vXpXZr8yzUfhCUdf6qvmvu3jD3ku2HZRYGH266qhs1nG2
-        rkUtFt7bjU0ql/NG1d7SOrK9cOuWUwvcV+lrPO6zPafu++ZAOedpkZx8VdZVZsJ6z+en7NqR
-        tCEm/rOP223l2twft9k9/GvrXpbuD4ud7t187pibsWnEjSzTh6oO2w5xTK+SbA/yNrqRXNY7
-        MaPruffBhQ18m14qzYlf/HiV7U5z1o0Tr7w/vTb4sb+6s8ecyLTAa8K75qzexfFjT962c+sm
-        JTyL/rsi9YLQ6isvN3x/9otfh2mXOo/wmg9xYlPXdpTfdLXhSy1x1LM23fOpoMlKiaU4I9FQ
-        i7moOBEA876hO+UCAAA=
-X-CMS-MailID: 20220520121722epcas2p460fce9626fe2b4a857925704e2ea5ba1
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220520121722epcas2p460fce9626fe2b4a857925704e2ea5ba1
-References: <20220520121750.71473-1-chanho61.park@samsung.com>
-        <CGME20220520121722epcas2p460fce9626fe2b4a857925704e2ea5ba1@epcas2p4.samsung.com>
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -119,29 +63,105 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enables two watchdog devices for exynosautov9-sadk board.
+This patch set is to add bolero digital macros, WCD and maxim codecs nodes
+for audio on sc7280 based platforms.
 
-Signed-off-by: Chanho Park <chanho61.park@samsung.com>
----
- arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
+This patch set depends on:
+    -- https://patchwork.kernel.org/project/linux-arm-msm/list/?series=638776
+    -- https://patchwork.kernel.org/project/linux-arm-msm/list/?series=634597
+    -- https://patchwork.kernel.org/project/linux-clk/list/?series=637999
+    -- https://patchwork.kernel.org/project/linux-arm-msm/list/?series=638002
 
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-index 17e568853eb6..ef0285262c84 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-+++ b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-@@ -62,3 +62,11 @@ &usi_0 {
- &xtcxo {
- 	clock-frequency = <26000000>;
- };
-+
-+&watchdog_cl0 {
-+	status = "okay";
-+};
-+
-+&watchdog_cl1 {
-+	status = "okay";
-+};
+Changes Since V11:
+    -- Remove output-low pinconf setting in wcd-reset-n-sleep node.
+    -- Update dependency list.
+Changes Since V10:
+    -- Modify digital macro codecs pin control labels.
+    -- Updated dependency list.
+Changes Since V9:
+    -- Move wcd codec and digital codec nodes to sc7280-qcard file.
+    -- Modify the reg property as per link number in sound node.
+    -- Fix the us-euro pin control usage in wcd codec node.
+    -- Move wcd pin control nodes to specific crd board files.
+    -- Sort max98360a codec node in alphabetical order.
+    -- Modify the commit messages.
+Changes Since V8:
+    -- Split patches as per sc7280 CRD revision 3, 4 and 5 boards.
+    -- Add corresponding dt nodes for herobrine crd boards.
+    -- Update dai-link node names as per dt-bindings in sound node.
+    -- Add reg property in sound node as per dt-bindings which was removed in previous series.
+    -- Fix typo errors.
+    -- Update wcd codec pin control properties in board specific files.
+Changes Since V7:
+    -- Remove redundant interrupt names in soundwire node.
+    -- Fix typo errors.
+    -- Remove redundant reg property in sound node.
+    -- Rebased on top of latest kernel tip.
+Changes Since V6:
+    -- Modify link-names and audio routing in a sound node.
+    -- Move amp_en pin control node to appropriate consumer patch.
+    -- Split patches as per digital macro codecs and board specific codecs and sort it.
+    -- Modify label and node names to lpass specific.
+Changes Since V5:
+    -- Move soc specific bolero digital codec nodes to soc specific file.
+    -- Bring wcd938x codec reset pin control and US/EURO HS selection nodes from other series.
+    -- Change node name and remove redundant status property in sound node.
+Changes Since V4:
+    -- Update nodes in sorting order.
+    -- Update DTS node names as per dt-bindings.
+    -- Update Node properties in proper order.
+    -- Update missing pinctrl properties like US/EURO HS selection, wcd reset control.
+    -- Remove redundant labels.
+    -- Remove unused size cells and address cells in tx macro node.
+    -- Keep all same nodes at one place, which are defined in same file.
+    -- Add max98360a codec node to herobrine board specific targets.
+Changes Since V3:
+    -- Move digital codec macro nodes to board specific dtsi file.
+    -- Update pin controls in lpass cpu node.
+    -- Update dependency patch list.
+    -- Create patches on latest kernel.
+Changes Since V2:
+    -- Add power domains to digital codec macro nodes.
+    -- Change clock node usage in lpass cpu node.
+    -- Add codec mem clock to lpass cpu node.
+    -- Modify the node names to be generic.
+    -- Move sound and codec nodes to root node.
+    -- sort dai links as per reg.
+    -- Fix typo errors.
+Changes Since V1:
+    -- Update the commit message of cpu node patch.
+    -- Add gpio control property to support Euro headset in wcd938x node.
+    -- Fix clock properties in lpass cpu and digital codec macro node.
+
+Srinivasa Rao Mandadapu (12):
+  arm64: dts: qcom: sc7280: Add nodes for soundwire and va tx rx digital
+    macro codecs
+  arm64: dts: qcom: sc7280: Enable digital codecs and soundwire for CRD
+    1.0/2.0 and IDP boards
+  arm64: dts: qcom: sc7280: Enable digital codecs and soundwire for CRD
+    3.0/3.1
+  arm64: dts: qcom: sc7280: Add wcd9385 codec node for CRD 1.0/2.0 and
+    IDP boards
+  arm64: dts: qcom: sc7280: Add wcd9385 codec node for CRD 3.0/3.1
+  arm64: dts: qcom: sc7280: Add max98360a codec for CRD 1.0/2.0 and IDP
+    boards
+  arm64: dts: qcom: sc7280: herobrine: Add max98360a codec node
+  arm64: dts: qcom: sc7280: Add lpass cpu node
+  arm64: dts: qcom: sc7280: Enable lpass cpu node for CRD 1.0/2.0 and
+    IDP boards.
+  arm64: dts: qcom: sc7280: Enable lpass cpu node for CRD 3.0/3.1
+  arm64: dts: qcom: sc7280: Add sound node for CRD 1.0/2.0 and IDP
+    boards
+  arm64: dts: qcom: sc7280: Add sound node for CRD 3.0/3.1
+
+ arch/arm64/boot/dts/qcom/sc7280-crd-r3.dts        |  37 ++++
+ arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts | 150 +++++++++++++++
+ arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi    |   8 +
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi          | 217 ++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi        |  74 ++++++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi              | 190 +++++++++++++++++++
+ 6 files changed, 676 insertions(+)
+
 -- 
-2.36.1
+2.7.4
 
