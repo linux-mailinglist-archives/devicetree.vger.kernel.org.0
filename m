@@ -2,126 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 578E952E6DD
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 10:01:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10D4F52E6F9
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 10:10:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346735AbiETIBt convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 20 May 2022 04:01:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35486 "EHLO
+        id S1346805AbiETIKm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 04:10:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346790AbiETIBs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 04:01:48 -0400
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 972DC37A12;
-        Fri, 20 May 2022 01:01:47 -0700 (PDT)
-Received: by mail-qt1-f178.google.com with SMTP id b9so224922qtx.11;
-        Fri, 20 May 2022 01:01:47 -0700 (PDT)
+        with ESMTP id S232476AbiETIKk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 04:10:40 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0FDB8DDED
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 01:10:38 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id q130so8818594ljb.5
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 01:10:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=/Q2zXV+8LUjkYKDjIzBXp7BrDdbuagm69yyU6TmRueE=;
+        b=PnTRMGFE7BbPHDZAQyZ4YMlza6eW9Ev20ZOHkE79gI1JpTWLE4xJThgm/r5s9t239+
+         fHDAmNvNu0RfGPf9w+ld+P26yWOMR/vjnmPPjeMFv2cqoJhw2SVV9FcPacDaz7H8YUN1
+         0RVqysnTGJwd9fgie+/CoH1MMMRPjf0cVI+BIZoavWtshnVwunP2qywHHpkbzL3lmqfP
+         uUAnoytcdoPfEpWsQzE/u1MOLUmEpU/Wh0lq/7QsS8VZJzfEcth67c7QVTervg3EWohw
+         IPtNpV92Mgp1p954XRHrH6O+QoljU9RGkJEXuJABPnyt3aJ3Jt/RP3bcrPzxSUaONMv5
+         9D0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=H1iVOpRla5rs6rYvY27pFyr760HB96cTo8Ladb3Lo6o=;
-        b=lBHH6y7xt5cg2Cl1+lNnZHtczZi0hkIEMCWn8a8E/7YotQCqL++AP8Y8px5K654cTK
-         QDYIaD9ISI6QOLNcRDFSBVdG1QDF1QeshhWLaV3kupIxKvzRMDBf/sZNM4ctO1w1T5Xc
-         5x9PYZfOhvDsaN67cMUsXfcFlne3Q6JOFXOxMvFb1/oXAbu4MBnzUQFbLUnrPlgvj3pr
-         rAWmYZBu5o/Tx9WBBcYY7uukrph7O9PIWzO1YAKbnwrFbC2cRzltFiLCc6wgrFSx/cs9
-         cMi7JaWvMUqgPaipMrcouwcwwFSz9XnVfVlpIrwoHz26C1FUlae8AFxJ3XvhrnkNUhrr
-         BoWQ==
-X-Gm-Message-State: AOAM533R3xdVpGNwZdVRc58DBxRIPrHhkA0NAQ1RmdbQqn7WG/VD7Ri2
-        CDPCjMqfTal7FujeemX7FEQdJJSaFMhqzw==
-X-Google-Smtp-Source: ABdhPJy9rlq6FYckE6dvWhZXO5Xifn+8i7hpHnmg+AMuwMrCVUiVYubqnyrVW+beXfgSifPp3eGymg==
-X-Received: by 2002:ac8:5c56:0:b0:2f3:bdd1:4f1e with SMTP id j22-20020ac85c56000000b002f3bdd14f1emr6801141qtj.545.1653033706208;
-        Fri, 20 May 2022 01:01:46 -0700 (PDT)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
-        by smtp.gmail.com with ESMTPSA id f9-20020a05622a104900b002f39b99f69fsm3200042qte.57.2022.05.20.01.01.45
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=/Q2zXV+8LUjkYKDjIzBXp7BrDdbuagm69yyU6TmRueE=;
+        b=mWxhnam89KzIbPfFhlh8clFkRHA3Wj1G9UM+wnr/6t3Dg0mnMZmY9EZA757H509P4Y
+         sUjxLNd2i9VQ2Bxpvdgu9wKeHbTj8+2xs6dRuV8o6MFeRP3wKoRTvG5oy7r+9kb70TOT
+         nisPoMDWF/bqwlmMYJhLKbdmKH1U7d7OG0kT8TI6NCTodTVlD+4BdjDecVbfXN8fdMtk
+         UQc+O/DUmy8WEVtwcEWwRaW3J/5ocKzOQe8hDiVV//YMbQYpS5VxocCnEp5P6wWq5G2z
+         y60yS9zApidKdFkp+4OqFbTwW1pyGCHOtPBQS3wbxHfEZJmRVyE5C+4fdYhqSlnUpe4U
+         w6Fg==
+X-Gm-Message-State: AOAM531Kmwmvu+SRHbpsE1IgsaMPrRRpRuwE7In2FW2C75hu6IoGRl7Q
+        CXOdRCvlxLEeTbg3Xlc1yXFMMw==
+X-Google-Smtp-Source: ABdhPJzOxCXf5B4f0uotUCSQeT7IL0G63fQ0rGQ3FRjBwXyQY1KqTrYwI6Xi3xuur/4LN/BEusNRvw==
+X-Received: by 2002:a2e:391c:0:b0:253:c3e8:8e79 with SMTP id g28-20020a2e391c000000b00253c3e88e79mr4694809lja.304.1653034237150;
+        Fri, 20 May 2022 01:10:37 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id d25-20020ac24c99000000b00477b624c0a8sm565749lfl.180.2022.05.20.01.10.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 May 2022 01:01:45 -0700 (PDT)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-2ec42eae76bso79086497b3.10;
-        Fri, 20 May 2022 01:01:45 -0700 (PDT)
-X-Received: by 2002:a81:9b0c:0:b0:2f4:c522:7d3c with SMTP id
- s12-20020a819b0c000000b002f4c5227d3cmr8843852ywg.316.1653033705399; Fri, 20
- May 2022 01:01:45 -0700 (PDT)
+        Fri, 20 May 2022 01:10:36 -0700 (PDT)
+Message-ID: <40562324-8d15-6dd6-46db-053f65b030b6@linaro.org>
+Date:   Fri, 20 May 2022 10:10:35 +0200
 MIME-Version: 1.0
-References: <20220519153107.696864-1-clement.leger@bootlin.com>
- <20220519153107.696864-7-clement.leger@bootlin.com> <CAMuHMdXRCggkTSxfnSHvz3N2Oekuw7y5Sy2AKkqZpZzK_Eg_ng@mail.gmail.com>
- <20220520095730.512bbb8d@fixe.home>
-In-Reply-To: <20220520095730.512bbb8d@fixe.home>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 20 May 2022 10:01:32 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWOMYE7b=auNeVAMDgArso+8vUzkxAwnFxFYtKPxOnjxw@mail.gmail.com>
-Message-ID: <CAMuHMdWOMYE7b=auNeVAMDgArso+8vUzkxAwnFxFYtKPxOnjxw@mail.gmail.com>
-Subject: Re: [PATCH net-next v5 06/13] dt-bindings: net: dsa: add bindings for
- Renesas RZ/N1 Advanced 5 port switch
-To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v2] dt-bindings: serial: mtk-uart: Convert txt to
+ json-schema
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        gregkh@linuxfoundation.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, linux-serial@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20220519152329.55028-1-angelogioacchino.delregno@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220519152329.55028-1-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Clément,
+On 19/05/2022 17:23, AngeloGioacchino Del Regno wrote:
+> Convert the mtk-uart documentation from freeform text to a json-schema.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+> 
+> v2: Changed to also accept just "mediatek,mt6577-uart" as compatible.
+> 
+> 
+>  .../bindings/serial/mediatek,uart.yaml        | 121 ++++++++++++++++++
+>  .../devicetree/bindings/serial/mtk-uart.txt   |  59 ---------
+>  2 files changed, 121 insertions(+), 59 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/serial/mediatek,uart.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/serial/mtk-uart.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/mediatek,uart.yaml b/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
+> new file mode 100644
+> index 000000000000..7929aa123487
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
+> @@ -0,0 +1,121 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/serial/mediatek,uart.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek Universal Asynchronous Receiver/Transmitter (UART)
+> +
+> +maintainers:
+> +  - Matthias Brugger <matthias.bgg@gmail.com>
+> +
+> +allOf:
+> +  - $ref: serial.yaml#
+> +
+> +description: |+
 
-On Fri, May 20, 2022 at 9:58 AM Clément Léger <clement.leger@bootlin.com> wrote:
-> Le Fri, 20 May 2022 09:13:23 +0200,
-> Geert Uytterhoeven <geert@linux-m68k.org> a écrit :
-> > On Thu, May 19, 2022 at 5:32 PM Clément Léger <clement.leger@bootlin.com> wrote:
-> > > Add bindings for Renesas RZ/N1 Advanced 5 port switch. This switch is
-> > > present on Renesas RZ/N1 SoC and was probably provided by MoreThanIP.
-> > > This company does not exists anymore and has been bought by Synopsys.
-> > > Since this IP can't be find anymore in the Synospsy portfolio, lets use
-> > > Renesas as the vendor compatible for this IP.
-> > >
-> > > Signed-off-by: Clément Léger <clement.leger@bootlin.com>
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yaml
+No need for |+
 
-> > Missing "power-domains" property.
->
-> I do not use pm_runtime* in the switch driver. I should probably do that
-> right ?
+> +  The MediaTek UART is based on the basic 8250 UART and compatible
+> +  with 16550A, with enhancements for high speed baud rates and
+> +  support for DMA.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
 
-For now you don't have to.  But I think it is a good idea, and it helps if the
-IP block is ever reused in an SoC with real power areas.
+This is just single item, so no items.
 
-Gr{oetje,eeting}s,
+> +          - const: mediatek,mt6577-uart
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
