@@ -2,241 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B7D252E38F
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 06:19:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C6CB52E409
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 06:51:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234947AbiETETo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 00:19:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43650 "EHLO
+        id S242140AbiETEvi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 00:51:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234784AbiETETn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 00:19:43 -0400
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2083.outbound.protection.outlook.com [40.107.220.83])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFE421498C2;
-        Thu, 19 May 2022 21:19:42 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LT6xGYHxruPr4IYms99gqYEefJ6PL+MLIFzePYXrTM6E1dXL6RJpJw5XL2eviwAMNdQGjAYWeNnz/5yBsMhEyUh/M9dJYCcJyrp6nEuGlDUhkgHy/YAtLtw53QLIHqSXcALJM+alKhhPOmYlCflBmwCeSuP5fIjCP0YDTlBJvqbnGJQGIO9S2lf0VdFlV+ieYfVYku7cjsRfKTBsAtM2QNM7yUS+x0CfCOc5MOJslBzROojzsbpz0SfSleu4h/xMw+cC9/xlochxmYPztWFGw2oP02v09mDHI8SSHGVgCYmKNw/QbfstN487gUXJo59aYMUwu7hcImnYwL9WVoTmfA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6wV4/XnJd+3ErxRNnh2Ow1o/bWSqAnyzLrZDYnNZv0s=;
- b=MIWMX0LZWDv6kpvoJY5T3qRmBCqltm2ryVDrQl4Wi25zIHqfaXoNT6OkZeSYg7dze208OtV3a5JC+iqt8uy8/0rgdzJCVBY8KVnxkdRKT0ufdopVmh4xJiQSO4nOTtx3hVeQnwzAuB0gy8SQ05px2aroC9/PBy3eqXaHwi3ThaO5rf07aWPVwV3bP868hpzt98zCfTaj0pNtqgH3sPvjk5O3kGEh+/z3HHLWiPFZganbKk/egYF4TUJsvQyItbiQSwEOqkXh0dpuHGcTRECqNgTTs6l5S8rbTtzt99PPJftZiE1osslLhoiefaWmy2OCZizxUr6hwReJLQW+TUy8sg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6wV4/XnJd+3ErxRNnh2Ow1o/bWSqAnyzLrZDYnNZv0s=;
- b=BeYAq0nB/O2xoaDLOK/T+Vu+kWtiGRsSyGL5gdOpXorB10hZ2QE1zhQRE12lmdBc8pdL7gfcfaRzslgMvRyZebU7B/39yQ/mxL/KrEM/PhQef2G0qgok/gXBYxrPtcK1jN2lhVfA2NrGp9CaffzRb63lJQFbOpN0bmntKDxxbo7baC8RlCg1RxtaGky/7QXUL0tJpPc2fXIxesfqBYL1lU5UIijFmO4gTEVu/1D1hBjNDulzdLxvouoVR60ea90J1kDCRH6ua+eeMdEkoIluaVqOSs+XyBAgFlLCpRpuyAXQ47N8eSDd3k5iGKg5nYpQI/yfpnesx0QBgEYp5z+5Ew==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CY4PR12MB1576.namprd12.prod.outlook.com (2603:10b6:910:10::9)
- by MN2PR12MB4014.namprd12.prod.outlook.com (2603:10b6:208:16d::31) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.18; Fri, 20 May
- 2022 04:19:40 +0000
-Received: from CY4PR12MB1576.namprd12.prod.outlook.com
- ([fe80::16b:eff7:847b:19e7]) by CY4PR12MB1576.namprd12.prod.outlook.com
- ([fe80::16b:eff7:847b:19e7%10]) with mapi id 15.20.5250.018; Fri, 20 May 2022
- 04:19:39 +0000
-Message-ID: <90680cfb-c611-63cd-ab5f-5afb86c91cec@nvidia.com>
-Date:   Fri, 20 May 2022 09:49:26 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 1/6] ASoC: tegra: Add binding doc for OPE module
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, thierry.reding@gmail.com,
-        catalin.marinas@arm.com, will@kernel.org, perex@perex.cz,
-        tiwai@suse.com
-Cc:     jonathanh@nvidia.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <1652895372-29885-1-git-send-email-spujar@nvidia.com>
- <1652895372-29885-2-git-send-email-spujar@nvidia.com>
- <049173a1-0fa6-510b-9169-ebe869b8a3b3@linaro.org>
-From:   Sameer Pujar <spujar@nvidia.com>
-In-Reply-To: <049173a1-0fa6-510b-9169-ebe869b8a3b3@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA1PR01CA0112.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a00:1::28) To CY4PR12MB1576.namprd12.prod.outlook.com
- (2603:10b6:910:10::9)
+        with ESMTP id S240366AbiETEvh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 00:51:37 -0400
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 907E31EEDA
+        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 21:51:35 -0700 (PDT)
+Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
+        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20220520045132epoutp013e4c332582154df22cd48a1b6875dcb1~wtwQ_MXeK0637806378epoutp01g
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 04:51:32 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20220520045132epoutp013e4c332582154df22cd48a1b6875dcb1~wtwQ_MXeK0637806378epoutp01g
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1653022292;
+        bh=0s/WE1fRITBuNFHC2Z39v8u36PMK9xRG27XBcVT667w=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=uVxDyj75i+Mvgzogj+gs2kquKeeD6Qyt9ERcvRy3Qiqd4C2PB5JYqQcbH+4scV4gL
+         NND8rF3BqT2x6L17DEMza92raGAohd813IgY/xX9opXvIjHGJ35AZlE/EXdvp2DXql
+         7CRy4l8yW/WVWTod1bs7KVyQ2O44Oby/HqbjnRxg=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas2p4.samsung.com (KnoxPortal) with ESMTP id
+        20220520045131epcas2p4a892b08378e752803693d1170ec3ecf6~wtwQV-sZx0684006840epcas2p4H;
+        Fri, 20 May 2022 04:51:31 +0000 (GMT)
+Received: from epsmges2p3.samsung.com (unknown [182.195.36.88]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 4L4Dp83cfRz4x9Pv; Fri, 20 May
+        2022 04:51:28 +0000 (GMT)
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
+        15.03.10028.C4E17826; Fri, 20 May 2022 13:51:24 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
+        20220520045124epcas2p12235472b7e9f7588003a7c8c238e8866~wtwJfJhTV0743507435epcas2p1W;
+        Fri, 20 May 2022 04:51:24 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20220520045124epsmtrp24bdc8a9f36b68e7bd9e0f65929326d56~wtwJeb0yh0544805448epsmtrp2R;
+        Fri, 20 May 2022 04:51:24 +0000 (GMT)
+X-AuditID: b6c32a47-573ff7000000272c-9d-62871e4c2624
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        6D.75.11276.B4E17826; Fri, 20 May 2022 13:51:23 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.51]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20220520045123epsmtip2f2cb8aee8d578ca5265e7bc482cb0130~wtwJR3Swi2365623656epsmtip23;
+        Fri, 20 May 2022 04:51:23 +0000 (GMT)
+From:   Chanho Park <chanho61.park@samsung.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Chanho Park <chanho61.park@samsung.com>
+Subject: [PATCH] arm64: dts: exynoautov9: add syscon reboot/reboot_mode
+ support
+Date:   Fri, 20 May 2022 13:52:10 +0900
+Message-Id: <20220520045210.55132-1-chanho61.park@samsung.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8dfb085d-a150-4178-fddd-08da3a17f4b9
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4014:EE_
-X-Microsoft-Antispam-PRVS: <MN2PR12MB4014CE32B2177CAFDF7C24BCA7D39@MN2PR12MB4014.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: O76k09rGZBBcsFHdItQFHRaxcj0fr/GVirb+t+5tXF7e12h37fL1ADVx355bJ+PPSvLIg01YOjHctzVyiWxnhC80aPHa2bK8Gp23SaQQyDcg05vwVocC1c+RSYvyMwiR3l35cOHXBWRayauLtnzsGVR6v3Vhcj33XnAGQ100PR7hqcxmEsPJ8VWtH10XR3F5POENvTVnpzc6wNI3YRii/HIVJ2g39xo2dSvOJp+3ka0aqUDdWgPkpiJ/3yIM5IO33h6cpEBPnaQOsfnWFWYV3kIERToHeyP+8fBQFdg+eetKYshvc36hvYAqbLL1MhFWk2/ixntJ9OAznug9C0Y/Vq+8/3rBOk2whqnNL0QaBpWshId7UIK3kNJhBBgkXg6v8+RZhoP3QgUCif5maftIVbvIcEkysDDlvudDjV3btpSGpnQqurZAV59Lv/rq9qSrK0wnSXwy3IugCzexlXsjIuxkGMtQhKAcfacSlXWBwOu4cBDul4NeJ077ag8+IUDfAk4wlFlWlWDtiNENXok/BTuyQ1ABF+Fn0JAQ2r1VFW6hXIedIHZt9oP8Q/CGoJaJKrZl+r8H7Hxq+Ef6Z1Eg2PxWLweXr6DJcFEP9sFRQRkzyfuIBzEoQPqlkkNHz1EAeQ7tbB50Rr7QneM6qUwgry1a1Bdo894QOAlOu1BLolsL9WIYOh1DNcBp7h5lkTnOAAjj9co0n9rr8d7QiAyC0y5nwkvIXxGqakF5RvGrFE3I+rhGwD5CBiM+RDs4AwjuaI+hYUQ9i0pqq5uid4eQeA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY4PR12MB1576.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(6512007)(26005)(8676002)(4326008)(5660300002)(2906002)(6486002)(6666004)(6506007)(7416002)(2616005)(38100700002)(8936002)(508600001)(86362001)(53546011)(316002)(31696002)(31686004)(66556008)(66476007)(36756003)(66946007)(186003)(21314003)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cjlVYzNJNGFkTzdKSDlneTZ4MFJybmlhTFU1Zi9mQkxrRUVOb3FKQ1BDN0cz?=
- =?utf-8?B?N3k0Tzg1OVJvNFhPRW9BYmgvdE91YnZjbU0xLzFUVVRPWGJueTVxRVNKTGdq?=
- =?utf-8?B?TExjYTUvVXc1UFZUTDcyT1RWdzJPOS9kRTBUV3BZUDhHYnlGVE4wdkluaVF6?=
- =?utf-8?B?d3MzdUt2TjZ6V0FnTGRVVGxtR21samR3ZUc4QnNseklPMGlmTnNXeEQ4QzNk?=
- =?utf-8?B?U3dIb2NZQUMwNC9GU2E2ZFNjS3hOM1Q4SWxYd1FsNEh0SUc0VTdDVy81eTY0?=
- =?utf-8?B?Z0QyaW5ZTDllSWZBcFNla1l0ajhhc0F0OEhCdnpxS1JDdnJUamFyaDFOSkxu?=
- =?utf-8?B?ekVEY1o2YUhtOEFoSTdYTTdlQnFkZjVwNHNvSU9aVnQwWUh5ckQrdFhZZU04?=
- =?utf-8?B?ZE41ZlY4SFRmWkV4eXVYdTNkWi9LeWlmQktvOU9FeUM3bERRRSs0OGRJcTlh?=
- =?utf-8?B?cWlyVTZIYStVSXhjbWtDelJJclpnY3IxcWdXQXFqQk5SZ3BmdjdDMnRzWG00?=
- =?utf-8?B?dkt6Qm1sVlVPcElac2xVTlZqNG50c1l3RmRBUXlKL0UweFdXSDY0QmVTdnBF?=
- =?utf-8?B?aktNTnIxbEdlL3pJMklnOSttUFoyUVlBZExGMjAvNkptVGpaT0pOMk9jNm8r?=
- =?utf-8?B?b3ltL1IrK0lwY3NMRmpjYzZVOFlkbEFoTzNHL2pGVElya2labFlTVVo2STZJ?=
- =?utf-8?B?Z1BZa2YxYVd6Y1pDWEpYWXBuNFg5TEhOdWx4MW5kaDZVbkx5WFdyZENITzEx?=
- =?utf-8?B?U0t1RGFMaGMvR1QzMVBzdC9Bd2xVakNMMitVR2c0UHRXZkJNUHFWdmN2aVJr?=
- =?utf-8?B?Z0RRVW9TWU9BL1M2UDI4azF6MTd2YW9uaElENHc4R0V0ZTFSZnZra2REOVNr?=
- =?utf-8?B?cDk4SlFrckRXVGpsMFp0MG1DWDQwUHpGQkVHMXlZb05qQWg5VlBBUHJRNGZQ?=
- =?utf-8?B?Y2FpSk1Jd0FUeFdmaFlLMGV3YVpPUDRtclgvNkw2aWw3T21VczNZWXJkeEt4?=
- =?utf-8?B?MERQSDhjWlhGRmpEeUhjVmFqNUVYejJjQUFaYzJGTlgrWVlQSWxrOC8reEMx?=
- =?utf-8?B?dzZVREYvL2lvVTZKalRUK1BXeTdHOHN2SnRVS2tSL3Zmd3haM1lhM1huWE11?=
- =?utf-8?B?OFF3NUJmM2cxT0xWMkxxaUtUUkpFcElHbEJPZTBJUjJsUWtzVHpYMWcwM1VV?=
- =?utf-8?B?bjU0Y1F3Wkx6KzVhVXI1bWMyblhONFIxdlJ5Q00zeXdxcWx1em0rUC9qMGlG?=
- =?utf-8?B?TXowdWdjbDVTTWFTK3ZzaTZTLzlPTklBSE0zT24ydHc3L3AwaTdDRnNzZy9D?=
- =?utf-8?B?dm9IZW5pQkluNVFTVkZQbzlWeVVMSC9aelZjS1VDRitjRlQ5Rk1RQmJySDkw?=
- =?utf-8?B?SnFhcm0rZDRzMkt0UUZreHVjM0xFWWM2TGNOSEE0eTJWSEFUWWtVbEZUZVUv?=
- =?utf-8?B?OFY1WDU0Sm9Fdit6K09YTEp3UVhBbmNaQTdoUytQWUs0YTBmdmtnbmcvNjdZ?=
- =?utf-8?B?cU51eDFrSytuUDFwS2NxOEsrQXgybTdqWVJLcGtNZXlEbit4WEVvODdSUGZi?=
- =?utf-8?B?Z1JQd1lVV1cxY3IzUGhxNFdjTlFPenl1bVhzT01BOTN2UDg0eitKS3ZLeWYr?=
- =?utf-8?B?Z3IzblM2dTJpeEV4S2g4VEppMlRPM2xITHlnMzZ5clV5SHZNUmtUSkppcHFP?=
- =?utf-8?B?R3RYNlJIdmZUSjJvMjB2eHFITHVGOXErWUdFdHIzbGlJaFdwZmNLNG5ubjhR?=
- =?utf-8?B?c1puTE9NbHdyempMRzNPeGhvR1Y0VDNtTUFQNmFWd0RjeWJKK0ZLZERVZm1N?=
- =?utf-8?B?d24yUDBSa3pUMGxCSTZLNWtLME9MaStDMDNVdjh1RHM1ZUVYMXVFZm1BeHhT?=
- =?utf-8?B?QWhkQUwzR3lhZVNCNlRDamp0UmhxZTN2Y1BSUWNEWTd3SWs0a1UzZWFCdFhs?=
- =?utf-8?B?NlhjUzE3djdsem5HRFdNL3JUUjY0N3pWcXM4UlVGanQ3MEZPMDJyK0dCd3l4?=
- =?utf-8?B?bXZVZkxieXR1Y24yUEVrN0VxQTNubnVhc0F5MmR3bEh2dnZQeHVLcFR4N1JS?=
- =?utf-8?B?Ulhub29NdCtlUTBnU0FsdUhQRlI5MnpaZmNxTlF5cm0xYmRtOStTNDhUNjVP?=
- =?utf-8?B?Y0VyZnpGbFQyU25qVGdpY2Jha0hZYVBYMnY4b01XdUtnSzlTYnFEd2hTeHE4?=
- =?utf-8?B?aXhJN0tsbnhCeUtLUTJCQ3ZsSHZ6eWZHT1pnc0trUTltbk94ZU9tZlJlYW9H?=
- =?utf-8?B?dlN3eThaQzRUV21oUy8xK25oWm5Cb0ZnSFZXcmczdnFWc1JKdXNUUEo4dnJN?=
- =?utf-8?B?Rm5VSXBuOGcwNkwwMzJ1K3dEOUlPbitYUGpSTEtpZTRJZVJIcGxPdz09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8dfb085d-a150-4178-fddd-08da3a17f4b9
-X-MS-Exchange-CrossTenant-AuthSource: CY4PR12MB1576.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 May 2022 04:19:39.4897
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XF5EvtqDwxU1hJTgS+gqWkdfA/jCer+vHhHCGiXl0cLdwx6Cki2weWwyG6BHrwmXqNj6esUJMBPtitzqo6+KHg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4014
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrPKsWRmVeSWpSXmKPExsWy7bCmqa6PXHuSweot1hYP5m1js7i8X9vi
+        +pfnrBbzj5xjteh78ZDZYsb5fUwWrXuPsFs879vH5MDhsWlVJ5vHnWt72Dz6tqxi9Pi8SS6A
+        JSrbJiM1MSW1SCE1Lzk/JTMv3VbJOzjeOd7UzMBQ19DSwlxJIS8xN9VWycUnQNctMwfoCiWF
+        ssScUqBQQGJxsZK+nU1RfmlJqkJGfnGJrVJqQUpOgXmBXnFibnFpXrpeXmqJlaGBgZEpUGFC
+        dsbuK/1MBSu5K3ZvDW1gXMzZxcjJISFgIrH8wErWLkYuDiGBHYwS9//9ZYFwPjFKbL7VzQzh
+        fGOUePF9FhNMy6yDbYwQib2MEp2H9zNBOB8ZJVqPr2cDqWIT0JXY8vwVI4gtIhAvcf5NI9hc
+        ZoGXjBInLj1gAUkICwRKHFv6CKyBRUBV4s7sm6wgNq+AnUR3+wEWiHXyEhvm9zJDxAUlTs58
+        AhZnBoo3b50Ndp+EwDl2idXvD7NDNLhILL7xHepWYYlXx7dAxaUkPr/bywZhF0ssnfWJCaK5
+        gVHi8rZfUAljiVnP2oHO5gDaoCmxfpc+iCkhoCxx5BbUXj6JjsN/2SHCvBIdbUIQjeoSB7ZP
+        hzpZVqJ7zmdWCNtDYvL332DDhQRiJb5N3sw6gVF+FpJvZiH5ZhbC3gWMzKsYxVILinPTU4uN
+        CozhsZqcn7uJEZwStdx3MM54+0HvECMTB+MhRgkOZiURXsbcliQh3pTEyqrUovz4otKc1OJD
+        jKbA8J3ILCWanA9Mynkl8YYmlgYmZmaG5kamBuZK4rxeKRsShQTSE0tSs1NTC1KLYPqYODil
+        Gpjab5jm18oJRlxYV6bjGjHZXeqvw8xv29wf6kVG+XxtnGJ43HJfy5KQ+16yktpndDrnbt3y
+        XNn32JRIxsh7Pamae4qEGyvt+aTTlgTPUX2qpWGw51nlWys+q2XLNVovPzyeY162cOtlruN9
+        OrLl4XMzhVnji5cXmnPo5LxkObtg8/LEN0dWa88oOuH6PZNJ7ZuYhVPzdOcLscYGBw8Wu55e
+        FT19KqfLi7v36rOWN31RiHi2MeK9ZtajqXJLyg47spdZVCl271/KfrlG/nZHg7E37/R7wVGH
+        FFuTFoQu5Entv+u3afEc62W5D/Z/6l4cNkmOS6Jx32W7yvBzKzs0RZ+k2X+V0Xr9cMrJC+vU
+        0pVYijMSDbWYi4oTAX9yt7QSBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrDLMWRmVeSWpSXmKPExsWy7bCSvK63XHuSwZedlhYP5m1js7i8X9vi
+        +pfnrBbzj5xjteh78ZDZYsb5fUwWrXuPsFs879vH5MDhsWlVJ5vHnWt72Dz6tqxi9Pi8SS6A
+        JYrLJiU1J7MstUjfLoErY/eVfqaCldwVu7eGNjAu5uxi5OSQEDCRmHWwjbGLkYtDSGA3o8Td
+        jadYIBKyEs/e7WCHsIUl7rccYQWxhQTeM0rc/ANWwyagK7Hl+StGEFtEIF5i6bkfLCCDmAXe
+        Mkr8ezATKMHBISzgLzFltx5IDYuAqsSd2TfB5vAK2El0tx+A2iUvsWF+LzNEXFDi5MwnYHFm
+        oHjz1tnMExj5ZiFJzUKSWsDItIpRMrWgODc9t9iwwDAvtVyvODG3uDQvXS85P3cTIzhAtTR3
+        MG5f9UHvECMTB+MhRgkOZiURXsbcliQh3pTEyqrUovz4otKc1OJDjNIcLErivBe6TsYLCaQn
+        lqRmp6YWpBbBZJk4OKUamGZ6xkf7dDY0xm1/e7l95nG1zTfN9P6fdpKbv0Jw1aYAH8ZnJsYp
+        lSuXVt84+GBpy8Hlst99278p3S69k5z73jFma4GfYWbhm9wzl2O3vnr4IPbXsi0ljTraJe4v
+        Zh+8bJqfNCH2q3CJSLqFO8vbooagRNep34xS/8quj12y7nadJb/kHJHe99esVyXmmln6nIkp
+        1H15TIjjUuODbvE188M32ISEqeedCtGzmmX/f3KP+9TK5BUHUze9n5mlkXmfgyPfWvOU0Iyj
+        hz612UsmPVyTIbx6x6JlDItKggJmfhKWeDWx0Nn+yJd1XqWRp6sa9626E+U65eMSttMSU/SX
+        7/tsOv2YS93VtR8mfWwsPaLEUpyRaKjFXFScCABS6PrBvwIAAA==
+X-CMS-MailID: 20220520045124epcas2p12235472b7e9f7588003a7c8c238e8866
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220520045124epcas2p12235472b7e9f7588003a7c8c238e8866
+References: <CGME20220520045124epcas2p12235472b7e9f7588003a7c8c238e8866@epcas2p1.samsung.com>
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Krzysztof for review.
+Reboot of exynosautov9 SoC can be handled by setting the bit(
+SWRESET_SYSTEM[1]) of SYSTEM_CONFIGURATION register(PMU + 0x3a00).
+syscon-reboot-mode can be used to indicate the reboot mode for
+bootloader. SYSIP_DAT0 register(PMU + 0x810) will not be cleared after
+reboot so bootloader can enter the boot mode according to the value.
 
+Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+---
+ arch/arm64/boot/dts/exynos/exynosautov9.dtsi | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-On 19-05-2022 17:10, Krzysztof Kozlowski wrote:
-> On 18/05/2022 19:36, Sameer Pujar wrote:
->> +description: |
->> +  The Multi Band Dynamic Range Compressor (MBDRC) is part of Output
->> +  Processing Engine (OPE) which interfaces with Audio Hub (AHUB) via
->> +  Audio Client Interface (ACIF). MBDRC can be used as a traditional
->> +  single full band or a dual band or a multi band dynamic processor.
->> +
->> +maintainers:
->> +  - Jon Hunter <jonathanh@nvidia.com>
->> +  - Mohan Kumar <mkumard@nvidia.com>
->> +  - Sameer Pujar <spujar@nvidia.com>
->> +
->> +properties:
->> +  $nodename:
->> +    pattern: "^mbdrc@[0-9a-f]*$"
-> Why? We enforce only generic names in shared schemas and this is neither
-> shared schema nor is it generic name.
-
-Idea was to keep these node names consistent across DT files and parent 
-node can allow a given list of child nodes with strict checks. Does name 
-like "dynamic-range-compressor@xxx"
-
->
->> +
->> +  compatible:
->> +    oneOf:
->> +      - const: nvidia,tegra210-mbdrc
->> +      - items:
->> +          - enum:
->> +              - nvidia,tegra234-mbdrc
->> +              - nvidia,tegra194-mbdrc
->> +              - nvidia,tegra186-mbdrc
->> +          - const: nvidia,tegra210-mbdrc
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +
-> No need for space
-
-will remove
-
-
->> +
->> +  compatible:
->> +    oneOf:
->> +      - const: nvidia,tegra210-ope
->> +      - items:
->> +          - enum:
->> +              - nvidia,tegra234-ope
->> +              - nvidia,tegra194-ope
->> +              - nvidia,tegra186-ope
->> +          - const: nvidia,tegra210-ope
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  "#address-cells":
->> +    const: 1
->> +
->> +  "#size-cells":
->> +    const: 1
->> +
->> +  ranges: true
->> +
->> +  sound-name-prefix:
->> +    pattern: "^OPE[1-9]$"
->> +
->> +  ports:
->> +    $ref: /schemas/graph.yaml#/properties/ports
->> +    properties:
->> +      port@0:
->> +        $ref: audio-graph-port.yaml#
->> +        unevaluatedProperties: false
->> +        description: |
-> No need for |
-
-will remove.
-
-
->
->> +    ope@702d8000 {
-> I would suggest generic node name, if it is possible.
-
-May be "processing-engine@xxx" ?
-
-
-> peq@702d8100 {
-> Generic node name, so this is "equalizer", I guess?
-
-Yes, I can use this name.
+diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
+index 0ce46ec5cdc3..d99e53406ee0 100644
+--- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
+@@ -312,6 +312,22 @@ pinctrl_peric1: pinctrl@10830000 {
+ 		pmu_system_controller: system-controller@10460000 {
+ 			compatible = "samsung,exynos7-pmu", "syscon";
+ 			reg = <0x10460000 0x10000>;
++
++			reboot: syscon-reboot {
++				compatible = "syscon-reboot";
++				regmap = <&pmu_system_controller>;
++				offset = <0x3a00>; /* SYSTEM_CONFIGURATION */
++				value = <0x2>;
++				mask = <0x2>;
++			};
++
++			reboot_mode: syscon-reboot-mode {
++				compatible = "syscon-reboot-mode";
++				offset = <0x810>; /* SYSIP_DAT0 */
++				mode-bootloader = <0xfc>;
++				mode-fastboot = <0xfa>;
++				mode-recovery = <0xff>;
++			};
+ 		};
+ 
+ 		syscon_fsys2: syscon@17c20000 {
+-- 
+2.36.1
 
