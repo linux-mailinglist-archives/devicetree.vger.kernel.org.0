@@ -2,104 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3501E52F2B3
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 20:31:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89EC852F2B7
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 20:31:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352722AbiETSb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 14:31:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38974 "EHLO
+        id S1349281AbiETSb1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 14:31:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352688AbiETSbQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 14:31:16 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8BFD17581;
-        Fri, 20 May 2022 11:31:15 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id v5-20020a17090a7c0500b001df84fa82f8so8508716pjf.5;
-        Fri, 20 May 2022 11:31:15 -0700 (PDT)
+        with ESMTP id S1350027AbiETSbY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 14:31:24 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 751C91BE86
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 11:31:19 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id q1so886098ljb.5
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 11:31:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id;
-        bh=cjt9E9fZMoXkG9/vtMWlRzcB3stg0Ntfb0ElsRksjaE=;
-        b=qkXqaan3fQHT2kMs6+pch85xT5CjG74YwY7ew3wXgVesUBbkP182qTS5et3iyBCifM
-         fQHuFDz9Zyoa6UteUVFmmDpEi/Nvxa/NZ9V2ImQNtAFZ9O+iP8Y4zj9jmZiEmt5cfVir
-         sCERviag0Sip0TiCrrw8MFUMPZ0LIGmk4X535YXrCy2y+i2SOdunnj6ZGg5ZdG4N/XYO
-         TsEqZw+b4UI64UbJuVsDVudHiibMbj72iY9AjKXUTtQ0Lc9fHbLQ0ahu6JtRi5QUrfj6
-         H6lqZoUt+u0u429uObEOBYF+80XZb6ItgW3PZK1GUzP13ZgjtCcmEm80tRZiNdPSbeq9
-         oLaw==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hDT3nE7POQURLYb/miDqjuNBp0Vc/zU4W1xKS1Zir10=;
+        b=LQ1X2o0jTjruEDLpF1w4Gik2FAdbNKxSzQ/KAdqMlUK0G6rXO0Hi4DMd1PQT0UFBlY
+         F9YwD9XzOvqc5TDVg0oVa2+fg6PVz6dk+uPsAYSa4zl+41CrBZDk/H3UEnwft3jChAdo
+         f2PWYXchJF4b0PfzPNqpjaJsPdbNi2OSAub37pexmDkEAJx7TfXlLBXX8EYt5o8OEpKV
+         w8iej8a3PgmlCIkKI0naeE4vqeVWUgThZJw2AfZ9AoByV5qx/hUKwhwvS008142BXgQx
+         grQbClcMvp7Qz/wsAaskcK9VCuSXB5eVIXAcnY+9fcASn8Y79Oa1osTfn3fKIUbX+Naa
+         85hQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=cjt9E9fZMoXkG9/vtMWlRzcB3stg0Ntfb0ElsRksjaE=;
-        b=WgOwdvpAf6GO6lZQUahW8mYIw2DSpKh6ovHYEC778e5ot+v7PDxGjlJMZUQl/Er1l0
-         UaQXxPviQ3pXiXaRFq6+4ZSgzfPbetEqUfRDFL82zO4QR3oVKZ4atmBrzS0q0hLiioHX
-         yadBwcB/YAJu/fjxy3EE1qceRB7PcMtBlQikqLWnleYvd0e1iIu6dDbZCr3Mg4K2D/qc
-         2kqcb1KsyTPpmv6G7ie1NSBu4rL0PJ3KIyrw9Cngo74VmV4eRiOO/wbsUuGCAqfap6Lx
-         hqxS3JTVGMpvfmp8cQWqbsXoPkkwyNaq2LiYPkzvZgaWbSBuwQd6s1jJMVHt7BzCwP0w
-         E9YA==
-X-Gm-Message-State: AOAM532q8YZ0SOv2l8f+rjyBMNLpYKgzZVuzdU+LgJl3QaFZMlMqbALq
-        ZBVMoVa4NrlSxIW3GWotRS8=
-X-Google-Smtp-Source: ABdhPJz1577/M5wA3DentQxDMc+iszhh3Sm7fQDkAsm15OapNGkCXrqfmtlUikxOstU//4Wx934Few==
-X-Received: by 2002:a17:90b:3147:b0:1df:4a21:15c5 with SMTP id ip7-20020a17090b314700b001df4a2115c5mr12285859pjb.25.1653071475415;
-        Fri, 20 May 2022 11:31:15 -0700 (PDT)
-Received: from mail.broadcom.net ([192.19.11.250])
-        by smtp.gmail.com with ESMTPSA id i3-20020a170902c94300b0016168e90f3fsm87476pla.5.2022.05.20.11.31.13
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hDT3nE7POQURLYb/miDqjuNBp0Vc/zU4W1xKS1Zir10=;
+        b=JnVAs+hVt7CiRITWqClDIdNtp2snn2MCmV32rjioPqqFpM2fxsuUdWjAE+XgmhDtCN
+         0LI9qaSePnftaXY2p0HGCcCFIvxO0LTL++j0UpInnCLXMV1S3ZZEMLaPqyO6s7CK+VBf
+         1gRomXGGecYVtDaFJg8uH3YQUXleRziW8VhjXghsebNEP0KREhRHdzTdOYbnKS5FOOsS
+         kZOuJMjmLh6C7C+g1DuWuC4L+78x0cdoG61k91OwGQ6YR+oYTWmxis/awjO7aCtOdIwG
+         Nppa7IwlBQUEOaTz6JpyNH1CrWEs3yim43L0d5qQYa0oU5f76m3xYaII3IKNWXxrX76w
+         LtLw==
+X-Gm-Message-State: AOAM5331rfp1fPrWzFdna5NL1sZwOSI1LYZAQTyt6ZovvV9IJ6lVP2L1
+        X3upiBLaK6Gcq+vo7TNZCRrwzA==
+X-Google-Smtp-Source: ABdhPJzFFnEQGQE1vC/TeRle4tr3ZvGGEAyFLHWCb74mFvPQQE4i9F3W0lIy3u4FYLNagiENGn8BnA==
+X-Received: by 2002:a05:651c:1a0f:b0:253:de1a:f486 with SMTP id by15-20020a05651c1a0f00b00253de1af486mr2397668ljb.29.1653071477481;
+        Fri, 20 May 2022 11:31:17 -0700 (PDT)
+Received: from eriador.lan ([2001:470:dd84:abc0::8a5])
+        by smtp.gmail.com with ESMTPSA id t22-20020a2e9556000000b0024f3d1daef4sm392951ljh.124.2022.05.20.11.31.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 May 2022 11:31:14 -0700 (PDT)
-From:   Kamal Dasu <kdasu.kdev@gmail.com>
-To:     ulf.hansson@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        alcooperx@gmail.com
-Cc:     f.fainelli@gmail.com, bcm-kernel-feedback-list@broadcom.com,
-        adrian.hunter@intel.com, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Kamal Dasu <kdasu.kdev@gmail.com>
-Subject: [PATCH v3 0/2] mmc: sdhci-brcmstb: Add support for optional sdio_freq clock
-Date:   Fri, 20 May 2022 14:31:06 -0400
-Message-Id: <20220520183108.47358-1-kdasu.kdev@gmail.com>
-X-Mailer: git-send-email 2.17.1
+        Fri, 20 May 2022 11:31:16 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        Johan Hovold <johan@kernel.org>
+Subject: [PATCH v11 0/7] PCI: qcom: Fix higher MSI vectors handling
+Date:   Fri, 20 May 2022 21:31:07 +0300
+Message-Id: <20220520183114.1356599-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-v3 changes:
-- PATCH 1/2 v3
- - Based on review comments reverted to using the 'clock-frequency' field
-   in sdhci-brcmstb controller node for the sdio_freq clock 
-- PATCH 2/2 v3
-  - use devm_clk_get_optional() to get sdio_freq clock
-  - look for clock-frequency value if set in the sdhci-brcmstb dt node
-  - Added pmops to unprepare, prepare sdio_freq clock on suspend/resume
-    in addition to the sdhci_pltfm_suspend/resume()  
+I have replied with my Tested-by to the patch at [2], which has landed
+in the linux-next as the commit 20f1bfb8dd62 ("PCI: qcom:
+Add support for handling MSIs from 8 endpoints"). However lately I
+noticed that during the tests I still had 'pcie_pme=nomsi', so the
+device was not forced to use higher MSI vectors.
 
-v2 changes :
-- Added Reviewed-by tag to PATCH v2 1/2
-- In PATCH v2 2/2 Used host->mmc->f_max instead of parsing the device
-  tree again, /s/clock-frequency/max-frequency in commit message 
+After removing this option I noticed that hight MSI vectors are not
+delivered on tested platforms. After additional research I stumbled upon
+a patch in msm-4.14 ([1]), which describes that each group of MSI
+vectors is mapped to the separate interrupt. Implement corresponding
+mapping.
 
-v1 Changes :
-Sending the remaining 2 patches separately after implementing review comments
-for the patches 3/4 and 4/4 as part of the following:
-"mmc: sdhci-brcmstb: host controller clock enhancements"
-https://lore.kernel.org/linux-arm-kernel/96fd3054-17b1-db42-9a44-a60485243807@linaro.org/t/
-changes are rebased over
-git://git.kernel.org/pub/scm/linux/kernel/git/ulfh/mmc.git refs/heads/next
+The first patch in the series is a revert of  [2] (landed in pci-next).
+Either both patches should be applied or both should be dropped.
 
-tested brcm,sdhci-brcmstb.yaml and driver with and without sdio_freq clock.
+Patchseries dependecies: [3] (for the schema change).
+
+Changes since v10:
+ - Remove has_split_msi_irqs flag. Trust DT and use split MSI IRQs if
+   they are described in the DT. This removes the need for the
+   pcie-qcom.c changes (everything is handled by the core (suggested by
+   Johan).
+
+Changes since v9:
+ - Relax requirements and stop validating the DT. If the has_split_msi
+   was specified, parse as many msiN irqs as specified in DT. If there
+   are none, fallback to the single "msi" IRQ.
+
+Changes since v8:
+ - Fix typos noted by Bjorn Helgaas
+ - Add missing links to the patch 1 (revert)
+ - Fix sm8250 interrupt-names (Johan)
+ - Specify num_vectors in qcom configuration data (Johan)
+ - Rework parsing of MSI IRQs (Johan)
+
+Changes since v7:
+ - Move code back to the dwc core driver (as required by Rob),
+ - Change dt schema to require either a single "msi" interrupt or an
+   array of "msi0", "msi1", ... "msi7" IRQs. Disallow specifying a
+   part of the array (the DT should specify the exact amount of MSI IRQs
+   allowing fallback to a single "msi" IRQ),
+ - Fix in the DWC init code for the dma_mapping_error() return value.
+
+Changes since v6:
+ - Fix indentation of the arguments as requested by Stanimir
+
+Changes since v5:
+ - Fixed commit subject and in-comment code according to Bjorn's
+   suggestion,
+ - Changed variable idx to i to follow dw_handle_msi_irq() style.
+
+Changes since v4:
+ - Fix the minItems/maxItems properties in the YAML schema.
+
+Changes since v3:
+ - Reimplement MSI handling scheme in the Qualcomm host controller
+   driver.
+
+Changes since v2:
+ - Fix and rephrase commit message for patch 2.
+
+Changes since v1:
+ - Split a huge patch into three patches as suggested by Bjorn Helgaas
+ - snps,dw-pcie removal is now part of [3]
+
+[1] https://git.codelinaro.org/clo/la/kernel/msm-4.14/-/commit/671a3d5f129f4bfe477152292ada2194c8440d22
+[2] https://lore.kernel.org/linux-arm-msm/20211214101319.25258-1-manivannan.sadhasivam@linaro.org/
+[3] https://lore.kernel.org/linux-arm-msm/20220422211002.2012070-1-dmitry.baryshkov@linaro.org/
 
 
-Kamal Dasu (2):
-  dt-bindings: mmc: Add Broadcom optional sdio_freq clock
-  mmc: sdhci-brcmstb: Add ability to increase max clock rate for 72116b0
+Dmitry Baryshkov (7):
+  PCI: dwc: Convert msi_irq to the array
+  PCI: dwc: split MSI IRQ parsing/allocation to a separate function
+  PCI: dwc: Handle MSIs routed to multiple GIC interrupts
+  PCI: dwc: Implement special ISR handler for split MSI IRQ setup
+  dt-bindings: PCI: qcom: Support additional MSI interrupts
+  arm64: dts: qcom: sm8250: provide additional MSI interrupts
+  dt-bindings: mfd: qcom,qca639x: add binding for QCA639x defvice
 
- .../bindings/mmc/brcm,sdhci-brcmstb.yaml      | 32 +++++++--
- drivers/mmc/host/sdhci-brcmstb.c              | 69 ++++++++++++++++++-
- 2 files changed, 94 insertions(+), 7 deletions(-)
+ .../devicetree/bindings/mfd/qcom,qca639x.yaml |  84 ++++++
+ .../devicetree/bindings/pci/qcom,pcie.yaml    |  53 +++-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |  12 +-
+ drivers/pci/controller/dwc/pci-dra7xx.c       |   2 +-
+ drivers/pci/controller/dwc/pci-exynos.c       |   2 +-
+ .../pci/controller/dwc/pcie-designware-host.c | 239 +++++++++++++-----
+ drivers/pci/controller/dwc/pcie-designware.h  |   2 +-
+ drivers/pci/controller/dwc/pcie-keembay.c     |   2 +-
+ drivers/pci/controller/dwc/pcie-spear13xx.c   |   2 +-
+ drivers/pci/controller/dwc/pcie-tegra194.c    |   2 +-
+ 10 files changed, 326 insertions(+), 74 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/qcom,qca639x.yaml
 
 -- 
-2.17.1
+2.35.1
 
