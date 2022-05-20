@@ -2,18 +2,18 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0209752E955
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 11:51:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5825752E956
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 11:51:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347951AbiETJvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 05:51:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50114 "EHLO
+        id S1347947AbiETJvv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 05:51:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347947AbiETJvg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 05:51:36 -0400
-Received: from smtpo52.interia.pl (smtpo52.interia.pl [217.74.67.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46F31FD343
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 02:51:32 -0700 (PDT)
+        with ESMTP id S1347950AbiETJvs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 05:51:48 -0400
+Received: from smtpo49.interia.pl (smtpo49.interia.pl [217.74.67.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78FA1111BB0
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 02:51:46 -0700 (PDT)
 X-Interia-R: Interia
 X-Interia-R-IP: 80.68.225.159
 X-Interia-R-Helo: <localhost>
@@ -22,29 +22,33 @@ Received: from localhost (unknown [80.68.225.159])
          key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
         by www.poczta.fm (INTERIA.PL) with ESMTPSA;
-        Fri, 20 May 2022 11:51:28 +0200 (CEST)
+        Fri, 20 May 2022 11:51:43 +0200 (CEST)
 From:   Slawomir Stepien <sst@poczta.fm>
 To:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
 Cc:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, przemyslaw.cencner@nokia.com,
-        krzysztof.adamski@nokia.com, alexander.sverdlin@nokia.com
-Subject: [PATCH 0/8] Add support for ADT7481 in lm90
-Date:   Fri, 20 May 2022 11:32:36 +0200
-Message-Id: <20220520093243.2523749-1-sst@poczta.fm>
+        krzysztof.adamski@nokia.com, alexander.sverdlin@nokia.com,
+        Slawomir Stepien <sst@poczta.fm>,
+        Slawomir Stepien <slawomir.stepien@nokia.com>
+Subject: [PATCH 1/8] dt-bindings: hwmon: Add support for ADT7481 in lm90
+Date:   Fri, 20 May 2022 11:32:37 +0200
+Message-Id: <20220520093243.2523749-2-sst@poczta.fm>
 X-Mailer: git-send-email 2.36.1
+In-Reply-To: <20220520093243.2523749-1-sst@poczta.fm>
+References: <20220520093243.2523749-1-sst@poczta.fm>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Interia-Antivirus: OK
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=interia.pl;
-        s=biztos; t=1653040290;
-        bh=gU78ddtmJMMoiasVp7eYRg71sDE4wptebLyLEaI071U=;
+        s=biztos; t=1653040304;
+        bh=rZ3VasfHokP8cmTBuMPcZ2asdVA79OQ/FHbd5JxSj8M=;
         h=From:To:Subject:Date:Message-Id:MIME-Version;
-        b=AkegXx9WvRE2EbE2DCOfF3Q6CbAhc3TD/3gsJcITHVyU72fpobxVJI92WAbDIA+4a
-         itt3ZsU7MDbj9AK3OK003N6nW60aH03I4pZVZhEJFfJlwX/hxXKn1QnFJyM276MpN3
-         se49py3dMMLeUCZ3HEsLGywciWiYIp8x1e5cQhUA=
+        b=T2AwcBbZeb+rHS0/V115GsrTxwtDKFcFUnljlYQN9QII9SbhRvRTDHA6ncAC8AIhk
+         oiht2d2KM0/5RK72m8Qg/zEal2MK5RC7lstezGR7nBtgZBKnduLndaNevH5OSCs5T5
+         vfLmXVODj8ncw2506JjBDuHmyGGC1CjMSAG4lLDE=
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,FREEMAIL_FROM,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,FREEMAIL_FROM,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -53,44 +57,26 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Slawomir Stepien <slawomir.stepien@nokia.com>
 
-This patch series adds support for ADT7481 in lm90.c driver and extends the
-device-tree options for it.
+The ADT7481 sensor is quite similar to MAX6696 so we can reuse a lot of
+code from lm90.c driver.
 
-The ADT7481 is quite similar to MAX6696 (already supported in lm90) so a lot of
-code is reused.
+Signed-off-by: Slawomir Stepien <slawomir.stepien@nokia.com>
+---
+ Documentation/devicetree/bindings/hwmon/national,lm90.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-One major problem in fitting the ADT7481 in lm90.c is the chip detection.
-However it seems that the chip has been designed and produced with correct
-values at locations: 0xfe (manufactured id) and 0xff (chip id), but this is not
-documented in the datasheet.
-
-$ i2cdump -y -f -r 254-255 1 0x4c
-No size specified (using byte-data access)
-     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f    0123456789abcdef
-f0:                                           41 62                  Ab
-
-The device-tree changes allow to: set the extended temperature range mode and
-set the label and offset for specific channel.
-
-Note: previous "attempts" for adding ADT7481 in lm90 where here: [1][2].
-
-[1] https://www.spinics.net/lists/lm-sensors/msg25066.html
-[2] https://marc.info/?l=lm-sensors&m=137786448326215&w=2
-
-Slawomir Stepien (8):
-      dt-bindings: hwmon: Add support for ADT7481 in lm90
-      dt-bindings: hwmon: Add 'extended-range-enable' property support in lm90
-      dt-bindings: hwmon: Allow specifying channels for lm90
-      hwmon: (lm90) add support for ADT7481
-      hwmon: (lm90) define maximum number of channels that are supported
-      hwmon: (lm90) enable the extended temperature range
-      hwmon: (lm90) read the channel's label from device-tree
-      hwmon: (lm90) read the channel's offset from device-tree
-
- .../devicetree/bindings/hwmon/national,lm90.yaml          |  42 ++++
- Documentation/hwmon/lm90.rst                              |  12 +-
- drivers/hwmon/Kconfig                                     |  15 +-
- drivers/hwmon/lm90.c                                      | 251 ++++++++++++++++++++----
- 4 files changed, 271 insertions(+), 49 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/hwmon/national,lm90.yaml b/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
+index 30db92977937..92d97ebefaae 100644
+--- a/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
++++ b/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
+@@ -16,6 +16,7 @@ properties:
+       - adi,adm1032
+       - adi,adt7461
+       - adi,adt7461a
++      - adi,adt7481
+       - dallas,max6646
+       - dallas,max6647
+       - dallas,max6649
+-- 
+2.36.1
 
