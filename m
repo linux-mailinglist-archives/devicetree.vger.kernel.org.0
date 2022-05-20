@@ -2,149 +2,288 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF50152E766
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 10:30:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7D1652E77E
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 10:31:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347053AbiETI3w convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 20 May 2022 04:29:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39552 "EHLO
+        id S1347086AbiETIa4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 04:30:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347014AbiETI3o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 04:29:44 -0400
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3A2F5E166;
-        Fri, 20 May 2022 01:29:43 -0700 (PDT)
-Received: by mail-qt1-f181.google.com with SMTP id 11so4201836qtp.9;
-        Fri, 20 May 2022 01:29:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=vQOf+Td+ygkeVxH/Q4rPVYerZmfW/Jb9XT+06okoXpI=;
-        b=3zG89MuHpotbf+Ws6VqTyT4EWHR8D275ghcUJfZobqyP6jxYOYe/lWBA2EwoVMmAD8
-         vfZoQq4IyYdRJuNXSfVYYbocrousz+jwPzkk/RN0ivwbLqAfOfudIe4L8W2KBSYS26oF
-         bjfmZO8sW/MlD3jk4y77WW+kjXwu6r3vpOOVYZf5ilT/XIvj2sE70kExTIBVsJLZ3QQb
-         F/aQokyus9yU2aDW0zglu4PStivKK3hGUSoiZXE+QLIkkY/U7Dn3Giby6mjYEd69up+n
-         BZadpuqeMoZj5dg03NT0Zeq7UrJOaD7BV+3E3ZKaa8n7B1/AT4GY8iDMQRfgyUIPBFAz
-         hc+Q==
-X-Gm-Message-State: AOAM533yeRvGdTI7F5B2tDzrtAk9tNT99Omryo78IkX3Mpv3W9chOwfr
-        dNccvF/VlkcvEUCnV2zuSq29wsyTSYLMFg==
-X-Google-Smtp-Source: ABdhPJwlZmN9N3HbUeX50IpW7oo4V5w3MCII46HPIX4xlZ3znPCqOSlUCEYOymQ7RxNuUCJu63popQ==
-X-Received: by 2002:ac8:58c9:0:b0:2f3:d8f0:185f with SMTP id u9-20020ac858c9000000b002f3d8f0185fmr6798687qta.381.1653035382854;
-        Fri, 20 May 2022 01:29:42 -0700 (PDT)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
-        by smtp.gmail.com with ESMTPSA id bs26-20020ac86f1a000000b002f39b99f6bdsm2699378qtb.87.2022.05.20.01.29.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 May 2022 01:29:42 -0700 (PDT)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-2ff39b44b06so79589747b3.13;
-        Fri, 20 May 2022 01:29:42 -0700 (PDT)
-X-Received: by 2002:a81:9b0c:0:b0:2f4:c522:7d3c with SMTP id
- s12-20020a819b0c000000b002f4c5227d3cmr8935563ywg.316.1653035382015; Fri, 20
- May 2022 01:29:42 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220429134143.628428-1-herve.codina@bootlin.com>
- <20220429134143.628428-4-herve.codina@bootlin.com> <29ba3db6-e5c7-06d3-29d9-918ee5b34555@linaro.org>
- <20220520102329.6b0a58d0@bootlin.com>
-In-Reply-To: <20220520102329.6b0a58d0@bootlin.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 20 May 2022 10:29:28 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX6zXbFXo-tojpvrbobkWBe0MsjONEgZJismwFvhZ7SKA@mail.gmail.com>
-Message-ID: <CAMuHMdX6zXbFXo-tojpvrbobkWBe0MsjONEgZJismwFvhZ7SKA@mail.gmail.com>
-Subject: Re: [PATCH v5 2/6] dt-bindings: PCI: renesas,pci-rcar-gen2: Add
- device tree support for r9a06g032
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        with ESMTP id S1347153AbiETIao (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 04:30:44 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3761A158948;
+        Fri, 20 May 2022 01:30:14 -0700 (PDT)
+X-UUID: 1af87c79d8b4479e9eba884a63b5d1e9-20220520
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:1108af7f-1158-4623-a023-a887411e6eb9,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:-5
+X-CID-META: VersionHash:2a19b09,CLOUDID:c277fd79-5ef6-470b-96c9-bdb8ced32786,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
+        ,QS:0,BEC:nil
+X-UUID: 1af87c79d8b4479e9eba884a63b5d1e9-20220520
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
+        (envelope-from <moudy.ho@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 822540567; Fri, 20 May 2022 16:30:09 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Fri, 20 May 2022 16:30:08 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 20 May 2022 16:30:07 +0800
+From:   Moudy Ho <moudy.ho@mediatek.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>
+CC:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        <tfiga@chromium.org>, <drinkcat@chromium.org>,
+        <pihsun@chromium.org>, <hsinyi@google.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        <allen-kh.cheng@mediatek.com>, <xiandong.wang@mediatek.com>,
+        <randy.wu@mediatek.com>, <moudy.ho@mediatek.com>,
+        <jason-jh.lin@mediatek.com>, <roy-cw.yeh@mediatek.com>,
+        <river.cheng@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <cellopoint.kai@gmail.com>
+Subject: [PATCH v16 0/4] media: mediatek: support mdp3 on mt8183 platform
+Date:   Fri, 20 May 2022 16:30:02 +0800
+Message-ID: <20220520083006.27789-1-moudy.ho@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR,T_SPF_TEMPERROR,
+        UNPARSEABLE_RELAY autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hervé,
+Change since v15:
+- Depend on:
+  [1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=640926
+- Split the bindings under ./soc/mediatek into a separate patch.
+- Fix data abort in "mdp_auto_release_work"
+- Adjust the steps in the function "mdp_cmdq_send" to make the error handling
+  more reasonable
 
-On Fri, May 20, 2022 at 10:23 AM Herve Codina <herve.codina@bootlin.com> wrote:
+Change since v14:
+- Rebase on v5.18-rc6
+- Depend on:
+  [1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=640926
+- In response to CMDQ API change, replace the function "cmdq_pkt_flush_async"
+  with the standard APIs of mbox
+- Fix the description of "mediatek,gce-client-reg" property in MDP3-related
+  bindings
 
-> On Sun, 1 May 2022 10:51:43 +0200
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->
-> [...]
-> > >    resets:
-> > >      maxItems: 1
-> > > @@ -106,13 +106,45 @@ required:
-> > >    - interrupt-map
-> > >    - interrupt-map-mask
-> > >    - clocks
-> > > -  - resets
-> > >    - power-domains
-> > >    - bus-range
-> > >    - "#address-cells"
-> > >    - "#size-cells"
-> > >    - "#interrupt-cells"
-> > >
-> > > +if:
-> >
-> > allOf.
-> >
-> > > +  properties:
-> > > +    compatible:
-> > > +      contains:
-> > > +        enum:
->
-> I Have an issue with this allOf.
->
-> The yaml has the following structure and so has 2 AllOf:
->   ...
->   allOf:
->   - $ref: /schemas/pci/pci-bus.yaml#
->
->   properties:
->     compatible:
->   ...
->   allOf:
->   - if:
->       properties:
->         compatible:
->           contains:
->   ...
-> Is having a 'allOf' for schemas inclusion and a 'allOf' for conditionnal
-> parts allowed ?
+Change since v13:
+- Rebase on v5.18-rc4
+- Depend on:
+  [1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=636041
+- Remove advanced functionality about ISP settings for direct link cases.
+- Remove the software designation in the mt8183 dts and
+  revise corresponding bindings.
 
-Just combine them into a single "allOf".
-See e.g. Documentation/devicetree/bindings/i2c/renesas,rcar-i2c.yaml.
+Change since v12:
+- Rebase on linux-next
+- Depend on:
+  [1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=630948
+- Remove messages related to routing information in MDP3, and leave the related
+  settings in MMSYS.
+- Remove unnecessary phandle and redundant property in RDMA dt-binding and
+  adjust the corresponding driver.
+- Revise MDP3 node name in dts. 
+- Removed unnecessary functions, mutex and work queue in MDP3 driver
+- Fixed format mapping error for V4L2_PIX_FMT_RGB565X
 
-{oetje,eeting}s,
+Change since v11:
+- Rebase on linux-next tag:next-20220316
+- Depend on:
+  [1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=624281
+- Remove redundant hardware index in data-binding suggested by Rob Herring.
+- Referring to Rob Herring's suggestion to improve some descriptions in the
+  RDMA dt-binding
+- Move MDP3 file folder from "./drive/media/platform/mtk-mdp3" to
+  "./driver/media/platform/mediatek/mdp3"
+- Fixed the V4L2 and MDP color format mapping error in RGB565 which
+  checked by Benjamin Gaignard
 
-                        Geert
+Change since v10:
+- The routing table needs to be discarded, and the calculation result
+  on the SCP side is used to write a suitable mux setting for
+  1 input port and 2 output ports.
+- Adjust dts parsing flow to remove redundant HW IDs.
+- Fix memory leak caused by no free path information in function "mdp_cmdq_send".
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Change since v9:
+- Keep only the MDP3 driver patches and split the remaining mmsys and
+  mutex patches into another mail.
+- Move mutex mod settings to corresponding driver and make relevant adjustments
+  for this in MDP3 driver.
+- Fix compile warning reported by kernel test robot.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Change since v8:
+- Rebase on v5.16-rc2.
+- Refer to Angelo's suggestion, adjust the register writing format to increase
+  readability and significance.
+- Refer to Angelo's suggestion, adjust or reduce inappropriate debugging
+  messages.
+- Refer to Rob Herring's suggestion to correct the the binding file
+  to make it with the specification.
+- Fix compile warning reported by kernel test robot.
+
+Change since v7:
+- Rebase on v5.15-rc6.
+- Revise several V4L2 M2M settings to pass v4l2-compliance test.
+- Integrate those same component dt-binding documents of DRM and MDP, and
+  move them under the MMSYS domain.
+- Split MMSYS and MUTEX into two different files according to
+  their functional properties.
+
+Changes since v6:
+- Refactor GCE event to corresponding node.
+- Fix dt_binding_check fail.
+- Fix compilation errors.
+
+Changes since v5:
+- Rebase on v5.14-rc6.
+- Move MMSYS/Mutex settings to corresponding driver.
+- Revise the software license description and copyright.
+- Remove unnecessary enum. or definitions.
+- Optimize platform/chip definition conditions.
+- Use general printing functions instead of MDP3 private ones.
+- Fix compile warning.
+
+Changes since v4:
+- Rebase on v5.13-rc1.
+- Remove the CMDQ flush flow to match the CMDQ API change.
+- Integrate four of MDP's direct-link subcomponents into MDP controller node
+  from syscon node to avoid illegal clock usage.
+- Rewrite dt-binding in a JSON compatible subset of YAML
+- Fix a bit of macro argument precedence.
+
+Changes since v3:
+- Rebase on v5.9-rc1.
+- modify code for review comment from Rob Herring, cancel multiple nodes using
+  same register base situation.
+- control IOMMU port through pm runtime get/put to DMA components' device.
+- SCP(VPU) driver revision.
+- stop queuing jobs(remove flush_workqueue()) after mdp_m2m_release().
+- add computation of plane address with data_offset.
+- fix scale ratio check issue.
+- add default v4l2_format setting.
+
+Changes since v2:
+- modify code for review comment from Tomasz Figa & Alexandre Courbot
+- review comment from Rob Herring will offer code revision in v4, due to
+  it's related to device node modification, will need to modify code
+  architecture
+
+Changes since v1:
+- modify code for CMDQ v3 API support
+- EC ipi cmd migration
+- fix compliance test fail item (m2m cmd with -f) due to there is two problem in runing all format(-f) cmd:
+1. out of memory before test complete
+        Due to capture buffer mmap (refcount + 1) after reqbuf but seems
+        no corresponding munmap called before device close.
+        There are total 12XX items(formats) in format test and each format
+        alloc 8 capture/output buffers.
+2. unceasingly captureBufs() (randomly)
+        Seems the break statement didn't catch the count == 0 situation:
+        In v4l2-test-buffers.cpp, function: captureBufs()
+                        ...
+                        count--;
+                        if (!node->is_m2m && !count)
+                                break;
+        Log is as attachment
+
+Hi,
+
+This patch is used to present Media Data Path 3 (MDP3)
+which provided scaling and color format conversion.
+support using GCE to write register in critical time limitation.
+support V4L2 m2m device control.
+
+
+Moudy Ho (4):
+  dt-binding: mediatek: add bindings for MediaTek MDP3 components
+  dt-binding: mediatek: add bindings for MediaTek CCORR and WDMA
+  dts: arm64: mt8183: add Mediatek MDP3 nodes
+  media: platform: mtk-mdp3: add Mediatek MDP3 driver
+
+ .../bindings/media/mediatek,mdp3-rdma.yaml    |  85 ++
+ .../bindings/media/mediatek,mdp3-rsz.yaml     |  65 ++
+ .../bindings/media/mediatek,mdp3-wrot.yaml    |  70 ++
+ .../bindings/soc/mediatek/mediatek,ccorr.yaml |  58 +
+ .../bindings/soc/mediatek/mediatek,wdma.yaml  |  71 ++
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      |  79 +-
+ drivers/media/platform/mediatek/Kconfig       |   1 +
+ drivers/media/platform/mediatek/Makefile      |   1 +
+ drivers/media/platform/mediatek/mdp3/Kconfig  |  20 +
+ drivers/media/platform/mediatek/mdp3/Makefile |   6 +
+ .../platform/mediatek/mdp3/mdp_reg_ccorr.h    |  19 +
+ .../platform/mediatek/mdp3/mdp_reg_rdma.h     |  65 ++
+ .../platform/mediatek/mdp3/mdp_reg_rsz.h      |  39 +
+ .../platform/mediatek/mdp3/mdp_reg_wdma.h     |  47 +
+ .../platform/mediatek/mdp3/mdp_reg_wrot.h     |  55 +
+ .../platform/mediatek/mdp3/mtk-img-ipi.h      | 290 +++++
+ .../platform/mediatek/mdp3/mtk-mdp3-cmdq.c    | 487 +++++++++
+ .../platform/mediatek/mdp3/mtk-mdp3-cmdq.h    |  47 +
+ .../platform/mediatek/mdp3/mtk-mdp3-comp.c    | 987 ++++++++++++++++++
+ .../platform/mediatek/mdp3/mtk-mdp3-comp.h    | 185 ++++
+ .../platform/mediatek/mdp3/mtk-mdp3-core.c    | 378 +++++++
+ .../platform/mediatek/mdp3/mtk-mdp3-core.h    |  95 ++
+ .../platform/mediatek/mdp3/mtk-mdp3-m2m.c     | 772 ++++++++++++++
+ .../platform/mediatek/mdp3/mtk-mdp3-m2m.h     |  48 +
+ .../platform/mediatek/mdp3/mtk-mdp3-regs.c    | 736 +++++++++++++
+ .../platform/mediatek/mdp3/mtk-mdp3-regs.h    | 370 +++++++
+ .../platform/mediatek/mdp3/mtk-mdp3-vpu.c     | 312 ++++++
+ .../platform/mediatek/mdp3/mtk-mdp3-vpu.h     |  78 ++
+ 28 files changed, 5465 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-rdma.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-rsz.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-wrot.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,ccorr.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,wdma.yaml
+ create mode 100644 drivers/media/platform/mediatek/mdp3/Kconfig
+ create mode 100644 drivers/media/platform/mediatek/mdp3/Makefile
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mdp_reg_ccorr.h
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mdp_reg_rdma.h
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mdp_reg_rsz.h
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mdp_reg_wdma.h
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mdp_reg_wrot.h
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-img-ipi.h
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-cmdq.c
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-cmdq.h
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-comp.c
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-comp.h
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.c
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.h
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-m2m.c
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-m2m.h
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-regs.c
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-regs.h
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-vpu.c
+ create mode 100644 drivers/media/platform/mediatek/mdp3/mtk-mdp3-vpu.h
+
+-- 
+2.18.0
+
