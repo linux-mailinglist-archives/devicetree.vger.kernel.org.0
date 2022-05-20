@@ -2,69 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CFC452F0F5
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 18:45:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2528F52F179
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 19:22:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351663AbiETQpz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 12:45:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50622 "EHLO
+        id S1348051AbiETRWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 13:22:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351800AbiETQpy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 12:45:54 -0400
-Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D31BDDED8
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 09:45:52 -0700 (PDT)
-Received: by mail-ot1-x32b.google.com with SMTP id l9-20020a056830268900b006054381dd35so5885129otu.4
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 09:45:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=PlINhk7EGOTlZ4qmuhnHPweUlYCEUBqXJztmztIUBZw=;
-        b=ddxIeI9sJFsnX/Vz2xOvpXlnwwYauLTZBX+ayq0TJDXeIOXa+k3eEu6rXI9WC2Gv1K
-         vfrc3f3+84jZlyAtt6x3DdoU8Wj0jVoR6d0z/O/wRvYH/HQcfPrcyMuv6J3l6cKx54af
-         ZZgYW8qlS1qxp7hGHUcsLAg4kXT0CFXTwjVglvPyuxpW9+E92/byqnEm3s8XSKwgG1f7
-         usttOrn8JWmRCiBoD7Kwl8Jh1qoMskvkmrg7JPUJc+9E4dbobBSapJMrXxiyUL8dZN89
-         RabifZoCHLOgnin5RI3sXSVav/MwefPj7FPPhX7YJdbjfFQoAeqx/QC6gDS9RILsYlMj
-         GeDA==
+        with ESMTP id S1345306AbiETRWH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 13:22:07 -0400
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BAE762135;
+        Fri, 20 May 2022 10:22:06 -0700 (PDT)
+Received: by mail-oi1-f172.google.com with SMTP id q8so10653596oif.13;
+        Fri, 20 May 2022 10:22:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=PlINhk7EGOTlZ4qmuhnHPweUlYCEUBqXJztmztIUBZw=;
-        b=PSqYUttlo1eYbyh7DUAkwPIooX7A5Y3hihj3vsFpxtEHKi5c7jKWsdAuPa6mZ3+gvW
-         Elun91mgugbebe0KwHIN306lwrrso3oO02dBnrfqYwmZ97nUXGaHspb3Mj4uHdLT9vQK
-         4AOpmd1Xx688mBB2BnQxWm9AkU++VEEn55lpxjEDI3Q/tXCZZ2b7dUaaBAwfEzyLQqtO
-         +Zp3LHW7L7SZ8JG04owB6K4eZahERORxeLkIbpoRBpwC4Q2s0znXLDq81HDHqmuzEexv
-         IpKnogE1ou+xrkLdOZqBNpMck5HFNFeLFoxs7ucQTpr1AIFVLyiUEedlQiDQWS7XX4DN
-         2j0A==
-X-Gm-Message-State: AOAM532DAPz0pGZWeQ210V6B89IBQAv+ElDhiVy06dH1t9cSl0OmRhkx
-        UY60+FjY8tCnDuDOgNAZAckBzA==
-X-Google-Smtp-Source: ABdhPJyf+/2DFR6FGO/xyM3r5LsVtiMZ7hfwh5hXIy/FNY7AX0/rChz110sR3Cprn6btbbDTdt436w==
-X-Received: by 2002:a05:6830:d7:b0:606:ac62:ed22 with SMTP id x23-20020a05683000d700b00606ac62ed22mr4462496oto.379.1653065152083;
-        Fri, 20 May 2022 09:45:52 -0700 (PDT)
-Received: from ripper.. (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id s184-20020acac2c1000000b0032aed1d25efsm1205014oif.7.2022.05.20.09.45.50
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=wHAiN9i9ZSX1pTumLQ9nH/ZihmBygWS3kQh2yk6VlzY=;
+        b=kCQHvQ5LfMKLY88JBjaxxxrZPVl4Icso5Kxjz7Fx4RyhxOF2f1gRqd5b2PsKp+BSYf
+         eP/VPxW7eqxJY1IDJRCBkcTdQFbacdkocfletHIrX79klb/70styPXWWruNDjAf5NU+z
+         h445ru3ahObh3AN4ZExjLNVBxQdKXJGW1r1TH7ljhhKjbUplveHqLgc3SjP8C5UA9RlK
+         m4AK7yt+w5cCLKIoEMZwP99IU60rE4qrdbkmV54U88LnFGsUP24pcT7HsMUfuCtwImt/
+         ARDlEGr6t+RY+avlcljtONGS/XgsK75cecZcBGdjT11xsnLrSgq4XD4au3HIfTLK775E
+         LXQw==
+X-Gm-Message-State: AOAM533ViA4ANxbskPj5GHQNsbXyQWCg3lmBzCIPwrxUy+KtF93NKqDF
+        3TEfHPGdIXZJr6QBVvAJLnp2l+O0iQ==
+X-Google-Smtp-Source: ABdhPJxi7NP17DTt/0hvJT2/+9CPnZvqnnY2qr5s/IkVaF5XjOz+5oZYsts6/rxEmhHjqmwJMp/Tbg==
+X-Received: by 2002:aca:4385:0:b0:326:bf61:67ee with SMTP id q127-20020aca4385000000b00326bf6167eemr6301503oia.55.1653067325770;
+        Fri, 20 May 2022 10:22:05 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id k23-20020a544717000000b00325cda1ff87sm1269136oik.6.2022.05.20.10.22.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 May 2022 09:45:51 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
+        Fri, 20 May 2022 10:22:05 -0700 (PDT)
+Received: (nullmailer pid 4085110 invoked by uid 1000);
+        Fri, 20 May 2022 17:22:04 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Phil Edworthy <phil.edworthy@renesas.com>
+Cc:     linux-renesas-soc@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kyle Tso <kyletso@google.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, dianders@chromium.org,
-        swboyd@chromium.org, quic_subbaram@quicinc.com,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>
-Subject: [PATCH/RFC] dt-bindings: connector: Add port for OOB notifications
-Date:   Fri, 20 May 2022 09:48:10 -0700
-Message-Id: <20220520164810.141400-1-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.35.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-gpio@vger.kernel.org
+In-Reply-To: <20220520154051.29088-2-phil.edworthy@renesas.com>
+References: <20220520154051.29088-1-phil.edworthy@renesas.com> <20220520154051.29088-2-phil.edworthy@renesas.com>
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: renesas: Add DT bindings for RZ/V2M pinctrl
+Date:   Fri, 20 May 2022 12:22:04 -0500
+Message-Id: <1653067324.196006.4085109.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,154 +64,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In USB Type-C altmode hot plug interrupts are transferred using sideband
-channels. Introduce an additional port in the usb-c-connector to allow
-referencing the recipient of these notifications.
+On Fri, 20 May 2022 16:40:50 +0100, Phil Edworthy wrote:
+> Add device tree binding documentation and header file for Renesas
+> RZ/V2M pinctrl.
+> 
+> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+>  .../pinctrl/renesas,rzv2m-pinctrl.yaml        | 174 ++++++++++++++++++
+>  include/dt-bindings/pinctrl/rzv2m-pinctrl.h   |  23 +++
+>  2 files changed, 197 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/renesas,rzv2m-pinctrl.yaml
+>  create mode 100644 include/dt-bindings/pinctrl/rzv2m-pinctrl.h
+> 
 
-A typical node to be referred is a DisplayPort controller.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
+yamllint warnings/errors:
 
-I have a USB Type-C port manager with two usb-c-connector child nodes and I
-have two display-port controller nodes. I need a way to link each port with
-it's related displayport controller, for the purpose of passing hot-plug events
-from USB PD to the dp driver.
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/pinctrl/renesas,rzv2m-pinctrl.example.dts:22:18: fatal error: dt-bindings/clock/r9a09g011-cpg.h: No such file or directory
+   22 |         #include <dt-bindings/clock/r9a09g011-cpg.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:364: Documentation/devicetree/bindings/pinctrl/renesas,rzv2m-pinctrl.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1401: dt_binding_check] Error 2
 
-The displayport binding [1] specifies port@1 as "Output endpoint of the
-controller" and in case of being connected to an eDP panel or a dp-controller
-this links the node with whatever the output is.
+doc reference errors (make refcheckdocs):
 
-It has been suggested by some to describe the link from the usb-c-connector add
-a displayport = <&phandle> to each usb-c-connector node, but the proposed
-solution here would make the usb-c-connector case follow the same scheme as
-these other cases.
+See https://patchwork.ozlabs.org/patch/
 
-Also, using the graph would allow an implementation of either the tcpm just
-notifying the referenced displayport-controller, or following the dp-controller
-implementation in Linux implement a drm_bridge and use the reference in the
-other direction.
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-To clarify the end result would look something like:
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-tcpm {
-	connector@0 {
-		compatible = "usb-c-connector";
-		reg = <0>;
+pip3 install dtschema --upgrade
 
-		ports {
-			port@0 {
-				reg = <0>;
-				endpoint {
-					remote-endpoint = <&usb0_hs_mux>;
-				};
-			};
-
-			port@1 {
-				reg = <1>;
-				endpoint {
-					remote-endpoint = <&usb0_ss_mux>;
-				};
-			};
-
-			port@2 {
-				reg = <2>;
-				endpoint {
-					remote-endpoint = <&usb0_sbu_switch>;
-				};
-			};
-
-			connector0_dp0: port@3 {
-				reg = <1>;
-				endpoint {
-					remote-endpoint = <&dp0_connector0>;
-				};
-			};
-		};
-	};
-
-	connector@1 {
-		compatible = "usb-c-connector";
-		reg = <1>;
-
-		ports {
-			port@0 {
-				reg = <0>;
-				endpoint {
-					remote-endpoint = <&usb1_hs_mux>;
-				};
-			};
-
-			port@1 {
-				reg = <1>;
-				endpoint {
-					remote-endpoint = <&usb1_ss_mux>;
-				};
-			};
-
-			port@2 {
-				reg = <2>;
-				endpoint {
-					remote-endpoint = <&usb1_sbu_switch>;
-				};
-			};
-
-			connector1_dp1: port@3 {
-				reg = <1>;
-				endpoint {
-					remote-endpoint = <&dp1_connector1>;
-				};
-			};
-		};
-	};
-}
-
-displayport-controller@0 {
-	reg = <0x0>;
-	ports {
-		port@1 {
-			reg = <1>;
-			dp0_connector0: endpoint {
-				remote-endpoint = <&connector0_dp0>;
-			};
-		};
-	};
-};
-
-displayport-controller@1 {
-	reg = <0x1>;
-	ports {
-		port@1 {
-			reg = <1>;
-			dp1_connector1: endpoint {
-				remote-endpoint = <&connector1_dp1>;
-			};
-		};
-	};
-};
-
-[1] https://www.kernel.org/doc/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-
- .../devicetree/bindings/connector/usb-connector.yaml        | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-index 0420fa563532..99d4aeb233e5 100644
---- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
-+++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-@@ -189,6 +189,12 @@ properties:
-         description: Sideband Use (SBU), present in USB-C. This describes the
-           alternate mode connection of which SBU is a part.
- 
-+      port@3:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Out-of-band notifications. This describes the logical
-+          connection to e.g. a DisplayPort controller that should be notified
-+          about hot plug events.
-+
-     required:
-       - port@0
- 
--- 
-2.35.1
+Please check and re-submit.
 
