@@ -2,574 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C32C952ECF9
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 15:20:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ACA352ED04
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 15:23:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349733AbiETNUK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 09:20:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55684 "EHLO
+        id S241531AbiETNXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 09:23:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349728AbiETNUH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 09:20:07 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E6C414A240;
-        Fri, 20 May 2022 06:20:05 -0700 (PDT)
-X-UUID: 2e6f200ab6134bb18d712e6521167295-20220520
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:a95d969a-726c-4a30-8f94-507ee5e0213f,OB:10,L
-        OB:10,IP:0,URL:5,TC:0,Content:-5,EDM:0,RT:0,SF:100,FILE:0,RULE:Release_Ham
-        ,ACTION:release,TS:100
-X-CID-INFO: VERSION:1.1.5,REQID:a95d969a-726c-4a30-8f94-507ee5e0213f,OB:10,LOB
-        :10,IP:0,URL:5,TC:0,Content:-5,EDM:0,RT:0,SF:100,FILE:0,RULE:Spam_GS981B3D
-        ,ACTION:quarantine,TS:100
-X-CID-META: VersionHash:2a19b09,CLOUDID:bfd9057a-5ef6-470b-96c9-bdb8ced32786,C
-        OID:45646d7c9741,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:1,File:nil,QS:0,BEC:nil
-X-UUID: 2e6f200ab6134bb18d712e6521167295-20220520
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <johnson.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 355983162; Fri, 20 May 2022 21:19:59 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Fri, 20 May 2022 21:19:58 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.3 via Frontend Transport; Fri, 20 May 2022 21:19:58 +0800
-From:   Johnson Wang <johnson.wang@mediatek.com>
-To:     <cw00.choi@samsung.com>, <krzk+dt@kernel.org>,
-        <robh+dt@kernel.org>, <kyungmin.park@samsung.com>
-CC:     <khilman@kernel.org>, <linux-pm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <jia-wei.chang@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Johnson Wang <johnson.wang@mediatek.com>
-Subject: [PATCH v5 2/2] PM / devfreq: mediatek: Introduce MediaTek CCI devfreq driver
-Date:   Fri, 20 May 2022 21:19:56 +0800
-Message-ID: <20220520131956.31150-3-johnson.wang@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220520131956.31150-1-johnson.wang@mediatek.com>
-References: <20220520131956.31150-1-johnson.wang@mediatek.com>
+        with ESMTP id S233476AbiETNXt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 09:23:49 -0400
+Received: from smtpo49.interia.pl (smtpo49.interia.pl [217.74.67.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BA9C14916C
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 06:23:44 -0700 (PDT)
+X-Interia-R: Interia
+X-Interia-R-IP: 80.68.225.159
+X-Interia-R-Helo: <t480s.localdomain>
+Received: from t480s.localdomain (unknown [80.68.225.159])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by poczta.interia.pl (INTERIA.PL) with ESMTPSA;
+        Fri, 20 May 2022 15:23:41 +0200 (CEST)
+Date:   Fri, 20 May 2022 15:23:40 +0200
+From:   Slawomir Stepien <sst@poczta.fm>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, przemyslaw.cencner@nokia.com,
+        krzysztof.adamski@nokia.com, alexander.sverdlin@nokia.com,
+        Slawomir Stepien <slawomir.stepien@nokia.com>
+Subject: Re: [PATCH 3/8] dt-bindings: hwmon: Allow specifying channels for
+ lm90
+Message-ID: <YoeWXEb+iNIpFZVR@t480s.localdomain>
+References: <20220520093243.2523749-1-sst@poczta.fm>
+ <20220520093243.2523749-4-sst@poczta.fm>
+ <3ea92486-0cf9-ce3d-d1b6-7a76f1d5a129@linaro.org>
+ <YoeLuffNoUoNx2Bc@t480s.localdomain>
+ <0e0dd0a1-0312-46f0-40b3-d3d2576ef08f@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0e0dd0a1-0312-46f0-40b3-d3d2576ef08f@linaro.org>
+X-Interia-Antivirus: OK
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=interia.pl;
+        s=biztos; t=1653053022;
+        bh=b342xzMLn3SOYVUY09UIgcF3+OVHLlN7134mdWw6HCk=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+        b=m3Sc1rg5sXF1vdC+L/3jCSnVib7YNrTz9oNzikpLHKct9ocm//jVG0y8QK2QzZKaL
+         vw2F8HpWU1m1SZ/OnT3Y5149L0v4rD82a71V1kVq6e3U9sA6lLDEIAnUMpRgZg008j
+         7oz63dsUOSwLHuTG3yktAQkM3nQ82qvG5/DbFwVM=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,FREEMAIL_FROM,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We introduce a devfreq driver for the MediaTek Cache Coherent Interconnect
-(CCI) used by some MediaTek SoCs.
+On maj 20, 2022 14:47, Krzysztof Kozlowski wrote:
+> On 20/05/2022 14:38, Slawomir Stepien wrote:
+> > On maj 20, 2022 12:13, Krzysztof Kozlowski wrote:
+> >> On 20/05/2022 11:32, Slawomir Stepien wrote:
+> >>> From: Slawomir Stepien <slawomir.stepien@nokia.com>
+> >>>
+> >>> Add binding description for temperature channels. Currently, support for
+> >>> label and offset is implemented.
+> >>>
+> >>> Signed-off-by: Slawomir Stepien <slawomir.stepien@nokia.com>
+> >>> ---
+> >>>  .../bindings/hwmon/national,lm90.yaml         | 39 +++++++++++++++++++
+> >>>  1 file changed, 39 insertions(+)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/hwmon/national,lm90.yaml b/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
+> >>> index 066c02541fcf..9a5aa78d4db1 100644
+> >>> --- a/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
+> >>> +++ b/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
+> >>> @@ -62,6 +62,37 @@ required:
+> >>>  
+> >>>  additionalProperties: false
+> >>>  
+> >>> +patternProperties:
+> >>
+> >> Which models use this?
+> > 
+> > This is used in tmp421 model.
+> 
+> Then please add allOf:if:then disallowing the property for other models.
 
-In this driver, we use the passive devfreq driver to get target frequencies
-and adjust voltages accordingly. In MT8183 and MT8186, the MediaTek CCI
-is supplied by the same regulators with the little core CPUs.
+A misunderstanding. The channel node can be used by every device supported by lm90. At least each
+channel of each device can have label.
 
-Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
-Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
-Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
----
-This patch depends on "devfreq-testing"[1].
-[1]https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git/log/?h=devfreq-testing
----
- drivers/devfreq/Kconfig           |  10 +
- drivers/devfreq/Makefile          |   1 +
- drivers/devfreq/mtk-cci-devfreq.c | 447 ++++++++++++++++++++++++++++++
- 3 files changed, 458 insertions(+)
- create mode 100644 drivers/devfreq/mtk-cci-devfreq.c
+> >>> +  "^channel@([0-2])$":
+> >>> +    type: object
+> >>> +    description: |
+> >>
+> >> No need for |
+> > 
+> > Will fix in v2.
+> > 
+> >>> +      Represents channels of the device and their specific configuration.
+> >>> +
+> >>> +    properties:
+> >>> +      reg:
+> >>> +        description: |
+> >>
+> >> The same.
+> > 
+> > Will fix in v2.
+> > 
+> >>> +          The channel number. 0 is local channel, 1-2 are remote channels.
+> >>> +        items:
+> >>> +          minimum: 0
+> >>> +          maximum: 2
+> >>> +
+> >>> +      label:
+> >>> +        description: |
+> >>
+> >> The same.
+> > 
+> > Will fix in v2.
+> > 
+> >>> +          A descriptive name for this channel, like "ambient" or "psu".
+> >>> +
+> >>> +      offset:
+> >>> +        description: |
+> >>
+> >> This does not look like standard property, so you need vendor and unit
+> >> suffix.
+> > 
+> > Currently in lm90 we have support for devices that have different width (including sign) for offset
+> > register. We have 10 bits, 11 bits and 12 bits. Do I understand correctly that I can use the same
+> > vendor prefix if the width is the same? Just like "ti" was used for adi and ti in
+> > "ti,extended-range-enable"?
+> > 
+> > For example:
+> > 
+> > adi,10-bit-offset-millicelsius # (only for adt7481)
+> > adi,11-bit-offset-millicelsius # (for adt7461 but also for lm90 and others)
+> > ti,12-bit-offset-millicelsius  # (ti - since only tmp451 and tmp461 supports 12 bit)
+> 
+> Wait, these are then strictly per-compatible, so there is no sense in DT
+> property at all.
 
-diff --git a/drivers/devfreq/Kconfig b/drivers/devfreq/Kconfig
-index 87eb2b837e68..9754d8b31621 100644
---- a/drivers/devfreq/Kconfig
-+++ b/drivers/devfreq/Kconfig
-@@ -120,6 +120,16 @@ config ARM_TEGRA_DEVFREQ
- 	  It reads ACTMON counters of memory controllers and adjusts the
- 	  operating frequencies and voltages with OPP support.
- 
-+config ARM_MEDIATEK_CCI_DEVFREQ
-+	tristate "MEDIATEK CCI DEVFREQ Driver"
-+	depends on ARM_MEDIATEK_CPUFREQ || COMPILE_TEST
-+	select DEVFREQ_GOV_PASSIVE
-+	help
-+	  This adds a devfreq driver for MediaTek Cache Coherent Interconnect
-+	  which is shared the same regulators with the cpu cluster. It can track
-+	  buck voltages and update a proper CCI frequency. Use the notification
-+	  to get the regulator status.
-+
- config ARM_RK3399_DMC_DEVFREQ
- 	tristate "ARM RK3399 DMC DEVFREQ Driver"
- 	depends on (ARCH_ROCKCHIP && HAVE_ARM_SMCCC) || \
-diff --git a/drivers/devfreq/Makefile b/drivers/devfreq/Makefile
-index 0b6be92a25d9..bf40d04928d0 100644
---- a/drivers/devfreq/Makefile
-+++ b/drivers/devfreq/Makefile
-@@ -11,6 +11,7 @@ obj-$(CONFIG_DEVFREQ_GOV_PASSIVE)	+= governor_passive.o
- obj-$(CONFIG_ARM_EXYNOS_BUS_DEVFREQ)	+= exynos-bus.o
- obj-$(CONFIG_ARM_IMX_BUS_DEVFREQ)	+= imx-bus.o
- obj-$(CONFIG_ARM_IMX8M_DDRC_DEVFREQ)	+= imx8m-ddrc.o
-+obj-$(CONFIG_ARM_MEDIATEK_CCI_DEVFREQ)	+= mtk-cci-devfreq.o
- obj-$(CONFIG_ARM_RK3399_DMC_DEVFREQ)	+= rk3399_dmc.o
- obj-$(CONFIG_ARM_SUN8I_A33_MBUS_DEVFREQ)	+= sun8i-a33-mbus.o
- obj-$(CONFIG_ARM_TEGRA_DEVFREQ)		+= tegra30-devfreq.o
-diff --git a/drivers/devfreq/mtk-cci-devfreq.c b/drivers/devfreq/mtk-cci-devfreq.c
-new file mode 100644
-index 000000000000..2eaff24fb487
---- /dev/null
-+++ b/drivers/devfreq/mtk-cci-devfreq.c
-@@ -0,0 +1,447 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2022 MediaTek Inc.
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/devfreq.h>
-+#include <linux/minmax.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_opp.h>
-+#include <linux/regulator/consumer.h>
-+
-+struct mtk_ccifreq_platform_data {
-+	int min_volt_shift;
-+	int max_volt_shift;
-+	int proc_max_volt;
-+	int sram_min_volt;
-+	int sram_max_volt;
-+};
-+
-+struct mtk_ccifreq_drv {
-+	struct device *dev;
-+	struct devfreq *devfreq;
-+	struct regulator *proc_reg;
-+	struct regulator *sram_reg;
-+	struct clk *cci_clk;
-+	struct clk *inter_clk;
-+	int inter_voltage;
-+	unsigned long pre_freq;
-+	/* Avoid race condition for regulators between notify and policy */
-+	struct mutex reg_lock;
-+	struct notifier_block opp_nb;
-+	const struct mtk_ccifreq_platform_data *soc_data;
-+	int vtrack_max;
-+};
-+
-+static int mtk_ccifreq_set_voltage(struct mtk_ccifreq_drv *drv, int new_voltage)
-+{
-+	const struct mtk_ccifreq_platform_data *soc_data = drv->soc_data;
-+	struct device *dev = drv->dev;
-+	int pre_voltage, pre_vsram, new_vsram, vsram, voltage, ret;
-+	int retry_max = drv->vtrack_max;
-+
-+	if (!drv->sram_reg) {
-+		ret = regulator_set_voltage(drv->proc_reg, new_voltage,
-+					    drv->soc_data->proc_max_volt);
-+		return ret;
-+	}
-+
-+	pre_voltage = regulator_get_voltage(drv->proc_reg);
-+	if (pre_voltage < 0) {
-+		dev_err(dev, "invalid vproc value: %d\n", pre_voltage);
-+		return pre_voltage;
-+	}
-+
-+	pre_vsram = regulator_get_voltage(drv->sram_reg);
-+	if (pre_vsram < 0) {
-+		dev_err(dev, "invalid vsram value: %d\n", pre_vsram);
-+		return pre_vsram;
-+	}
-+
-+	new_vsram = clamp(new_voltage + soc_data->min_volt_shift,
-+			  soc_data->sram_min_volt, soc_data->sram_max_volt);
-+
-+	do {
-+		if (pre_voltage <= new_voltage) {
-+			vsram = clamp(pre_voltage + soc_data->max_volt_shift,
-+				      soc_data->sram_min_volt, new_vsram);
-+			ret = regulator_set_voltage(drv->sram_reg, vsram,
-+						    soc_data->sram_max_volt);
-+			if (ret)
-+				return ret;
-+
-+			if (vsram == soc_data->sram_max_volt ||
-+			    new_vsram == soc_data->sram_min_volt)
-+				voltage = new_voltage;
-+			else
-+				voltage = vsram - soc_data->min_volt_shift;
-+
-+			ret = regulator_set_voltage(drv->proc_reg, voltage,
-+						    soc_data->proc_max_volt);
-+			if (ret) {
-+				regulator_set_voltage(drv->sram_reg, pre_vsram,
-+						      soc_data->sram_max_volt);
-+				return ret;
-+			}
-+		} else if (pre_voltage > new_voltage) {
-+			voltage = max(new_voltage,
-+				      pre_vsram - soc_data->max_volt_shift);
-+			ret = regulator_set_voltage(drv->proc_reg, voltage,
-+						    soc_data->proc_max_volt);
-+			if (ret)
-+				return ret;
-+
-+			if (voltage == new_voltage)
-+				vsram = new_vsram;
-+			else
-+				vsram = max(new_vsram,
-+					    voltage + soc_data->min_volt_shift);
-+
-+			ret = regulator_set_voltage(drv->sram_reg, vsram,
-+						    soc_data->sram_max_volt);
-+			if (ret) {
-+				regulator_set_voltage(drv->proc_reg, pre_voltage,
-+						      soc_data->proc_max_volt);
-+				return ret;
-+			}
-+		}
-+
-+		pre_voltage = voltage;
-+		pre_vsram = vsram;
-+
-+		if (--retry_max < 0) {
-+			dev_err(dev,
-+				"over loop count, failed to set voltage\n");
-+			return -EINVAL;
-+		}
-+	} while (voltage != new_voltage || vsram != new_vsram);
-+
-+	return ret;
-+}
-+
-+static int mtk_ccifreq_target(struct device *dev, unsigned long *freq,
-+			      u32 flags)
-+{
-+	struct mtk_ccifreq_drv *drv = dev_get_drvdata(dev);
-+	struct clk *cci_pll = clk_get_parent(drv->cci_clk);
-+	struct dev_pm_opp *opp;
-+	unsigned long opp_rate;
-+	int voltage, pre_voltage, inter_voltage, target_voltage, ret;
-+
-+	if (!drv)
-+		return -EINVAL;
-+
-+	if (drv->pre_freq == *freq)
-+		return 0;
-+
-+	inter_voltage = drv->inter_voltage;
-+
-+	opp_rate = *freq;
-+	opp = devfreq_recommended_opp(dev, &opp_rate, 1);
-+	if (IS_ERR(opp)) {
-+		dev_err(dev, "failed to find opp for freq: %ld\n", opp_rate);
-+		return PTR_ERR(opp);
-+	}
-+
-+	mutex_lock(&drv->reg_lock);
-+
-+	voltage = dev_pm_opp_get_voltage(opp);
-+	dev_pm_opp_put(opp);
-+
-+	pre_voltage = regulator_get_voltage(drv->proc_reg);
-+	if (pre_voltage < 0) {
-+		dev_err(dev, "invalid vproc value: %d\n", pre_voltage);
-+		ret = pre_voltage;
-+		goto out_unlock;
-+	}
-+
-+	/* scale up: set voltage first then freq. */
-+	target_voltage = max(inter_voltage, voltage);
-+	if (pre_voltage <= target_voltage) {
-+		ret = mtk_ccifreq_set_voltage(drv, target_voltage);
-+		if (ret) {
-+			dev_err(dev, "failed to scale up voltage\n");
-+			goto out_restore_voltage;
-+		}
-+	}
-+
-+	/* switch the cci clock to intermediate clock source. */
-+	ret = clk_set_parent(drv->cci_clk, drv->inter_clk);
-+	if (ret) {
-+		dev_err(dev, "failed to re-parent cci clock\n");
-+		goto out_restore_voltage;
-+	}
-+
-+	/* set the original clock to target rate. */
-+	ret = clk_set_rate(cci_pll, *freq);
-+	if (ret) {
-+		dev_err(dev, "failed to set cci pll rate: %d\n", ret);
-+		clk_set_parent(drv->cci_clk, cci_pll);
-+		goto out_restore_voltage;
-+	}
-+
-+	/* switch the cci clock back to the original clock source. */
-+	ret = clk_set_parent(drv->cci_clk, cci_pll);
-+	if (ret) {
-+		dev_err(dev, "failed to re-parent cci clock\n");
-+		mtk_ccifreq_set_voltage(drv, inter_voltage);
-+		goto out_unlock;
-+	}
-+
-+	/*
-+	 * If the new voltage is lower than the intermediate voltage or the
-+	 * original voltage, scale down to the new voltage.
-+	 */
-+	if (voltage < inter_voltage || voltage < pre_voltage) {
-+		ret = mtk_ccifreq_set_voltage(drv, voltage);
-+		if (ret) {
-+			dev_err(dev, "failed to scale down voltage\n");
-+			goto out_unlock;
-+		}
-+	}
-+
-+	drv->pre_freq = *freq;
-+	mutex_unlock(&drv->reg_lock);
-+
-+	return 0;
-+
-+out_restore_voltage:
-+	mtk_ccifreq_set_voltage(drv, pre_voltage);
-+
-+out_unlock:
-+	mutex_unlock(&drv->reg_lock);
-+	return ret;
-+}
-+
-+static int mtk_ccifreq_opp_notifier(struct notifier_block *nb,
-+				    unsigned long event, void *data)
-+{
-+	struct dev_pm_opp *opp = data;
-+	struct mtk_ccifreq_drv *drv;
-+	unsigned long freq, volt;
-+
-+	drv = container_of(nb, struct mtk_ccifreq_drv, opp_nb);
-+
-+	if (event == OPP_EVENT_ADJUST_VOLTAGE) {
-+		freq = dev_pm_opp_get_freq(opp);
-+
-+		mutex_lock(&drv->reg_lock);
-+		/* current opp item is changed */
-+		if (freq == drv->pre_freq) {
-+			volt = dev_pm_opp_get_voltage(opp);
-+			mtk_ccifreq_set_voltage(drv, volt);
-+		}
-+		mutex_unlock(&drv->reg_lock);
-+	}
-+
-+	return 0;
-+}
-+
-+static struct devfreq_dev_profile mtk_ccifreq_profile = {
-+	.target = mtk_ccifreq_target,
-+};
-+
-+static int mtk_ccifreq_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct mtk_ccifreq_drv *drv;
-+	struct devfreq_passive_data *passive_data;
-+	struct dev_pm_opp *opp;
-+	unsigned long rate, opp_volt;
-+	int ret;
-+
-+	drv = devm_kzalloc(dev, sizeof(*drv), GFP_KERNEL);
-+	if (!drv)
-+		return -ENOMEM;
-+
-+	drv->dev = dev;
-+	drv->soc_data = (const struct mtk_ccifreq_platform_data *)
-+				of_device_get_match_data(&pdev->dev);
-+	mutex_init(&drv->reg_lock);
-+	platform_set_drvdata(pdev, drv);
-+
-+	drv->cci_clk = devm_clk_get(dev, "cci");
-+	if (IS_ERR(drv->cci_clk)) {
-+		ret = PTR_ERR(drv->cci_clk);
-+		return dev_err_probe(dev, ret,
-+				     "failed to get cci clk: %d\n", ret);
-+	}
-+
-+	drv->inter_clk = devm_clk_get(dev, "intermediate");
-+	if (IS_ERR(drv->inter_clk)) {
-+		ret = PTR_ERR(drv->inter_clk);
-+		dev_err_probe(dev, ret,
-+			      "failed to get intermediate clk: %d\n", ret);
-+		goto out_free_resources;
-+	}
-+
-+	drv->proc_reg = devm_regulator_get_optional(dev, "proc");
-+	if (IS_ERR(drv->proc_reg)) {
-+		ret = PTR_ERR(drv->proc_reg);
-+		dev_err_probe(dev, ret,
-+			      "failed to get proc regulator: %d\n", ret);
-+		goto out_free_resources;
-+	}
-+
-+	ret = regulator_enable(drv->proc_reg);
-+	if (ret) {
-+		dev_err(dev, "failed to enable proc regulator\n");
-+		goto out_free_resources;
-+	}
-+
-+	drv->sram_reg = devm_regulator_get_optional(dev, "sram");
-+	if (IS_ERR(drv->sram_reg))
-+		drv->sram_reg = NULL;
-+	else {
-+		ret = regulator_enable(drv->sram_reg);
-+		if (ret) {
-+			dev_err(dev, "failed to enable sram regulator\n");
-+			goto out_free_resources;
-+		}
-+	}
-+
-+	/*
-+	 * We assume min voltage is 0 and tracking target voltage using
-+	 * min_volt_shift for each iteration.
-+	 * The retry_max is 3 times of expected iteration count.
-+	 */
-+	drv->vtrack_max = 3 * DIV_ROUND_UP(max(drv->soc_data->sram_max_volt,
-+					       drv->soc_data->proc_max_volt),
-+					   drv->soc_data->min_volt_shift);
-+
-+	ret = clk_prepare_enable(drv->cci_clk);
-+	if (ret)
-+		goto out_free_resources;
-+
-+	ret = dev_pm_opp_of_add_table(dev);
-+	if (ret) {
-+		dev_err(dev, "failed to add opp table: %d\n", ret);
-+		goto out_disable_cci_clk;
-+	}
-+
-+	rate = clk_get_rate(drv->inter_clk);
-+	opp = dev_pm_opp_find_freq_ceil(dev, &rate);
-+	if (IS_ERR(opp)) {
-+		ret = PTR_ERR(opp);
-+		dev_err(dev, "failed to get intermediate opp: %d\n", ret);
-+		goto out_remove_opp_table;
-+	}
-+	drv->inter_voltage = dev_pm_opp_get_voltage(opp);
-+	dev_pm_opp_put(opp);
-+
-+	rate = U32_MAX;
-+	opp = dev_pm_opp_find_freq_floor(drv->dev, &rate);
-+	if (IS_ERR(opp)) {
-+		dev_err(dev, "failed to get opp\n");
-+		ret = PTR_ERR(opp);
-+		goto out_remove_opp_table;
-+	}
-+
-+	opp_volt = dev_pm_opp_get_voltage(opp);
-+	dev_pm_opp_put(opp);
-+	ret = mtk_ccifreq_set_voltage(drv, opp_volt);
-+	if (ret) {
-+		dev_err(dev, "failed to scale to highest voltage %lu in proc_reg\n",
-+			opp_volt);
-+		goto out_remove_opp_table;
-+	}
-+
-+	passive_data = devm_kzalloc(dev, sizeof(struct devfreq_passive_data),
-+				    GFP_KERNEL);
-+	if (!passive_data) {
-+		ret = -ENOMEM;
-+		goto out_remove_opp_table;
-+	}
-+
-+	passive_data->parent_type = CPUFREQ_PARENT_DEV;
-+	drv->devfreq = devm_devfreq_add_device(dev, &mtk_ccifreq_profile,
-+					       DEVFREQ_GOV_PASSIVE,
-+					       passive_data);
-+	if (IS_ERR(drv->devfreq)) {
-+		ret = -EPROBE_DEFER;
-+		dev_err(dev, "failed to add devfreq device: %ld\n",
-+			PTR_ERR(drv->devfreq));
-+		goto out_remove_opp_table;
-+	}
-+
-+	drv->opp_nb.notifier_call = mtk_ccifreq_opp_notifier;
-+	ret = dev_pm_opp_register_notifier(dev, &drv->opp_nb);
-+	if (ret) {
-+		dev_err(dev, "failed to register opp notifier: %d\n", ret);
-+		goto out_remove_devfreq_device;
-+	}
-+	return 0;
-+
-+out_remove_devfreq_device:
-+	devm_devfreq_remove_device(dev, drv->devfreq);
-+
-+out_remove_opp_table:
-+	dev_pm_opp_of_remove_table(dev);
-+
-+out_disable_cci_clk:
-+	clk_disable_unprepare(drv->cci_clk);
-+
-+out_free_resources:
-+	if (regulator_is_enabled(drv->proc_reg))
-+		regulator_disable(drv->proc_reg);
-+	if (drv->sram_reg && regulator_is_enabled(drv->sram_reg))
-+		regulator_disable(drv->sram_reg);
-+
-+	return ret;
-+}
-+
-+static int mtk_ccifreq_remove(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct mtk_ccifreq_drv *drv;
-+
-+	drv = platform_get_drvdata(pdev);
-+
-+	dev_pm_opp_unregister_notifier(dev, &drv->opp_nb);
-+	dev_pm_opp_of_remove_table(dev);
-+	clk_disable_unprepare(drv->cci_clk);
-+	regulator_disable(drv->proc_reg);
-+	if (drv->sram_reg)
-+		regulator_disable(drv->sram_reg);
-+
-+	return 0;
-+}
-+
-+static const struct mtk_ccifreq_platform_data mt8183_platform_data = {
-+	.min_volt_shift = 100000,
-+	.max_volt_shift = 200000,
-+	.proc_max_volt = 1150000,
-+};
-+
-+static const struct mtk_ccifreq_platform_data mt8186_platform_data = {
-+	.min_volt_shift = 100000,
-+	.max_volt_shift = 250000,
-+	.proc_max_volt = 1118750,
-+	.sram_min_volt = 850000,
-+	.sram_max_volt = 1118750,
-+};
-+
-+static const struct of_device_id mtk_ccifreq_machines[] = {
-+	{ .compatible = "mediatek,mt8183-cci", .data = &mt8183_platform_data },
-+	{ .compatible = "mediatek,mt8186-cci", .data = &mt8186_platform_data },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, mtk_ccifreq_machines);
-+
-+static struct platform_driver mtk_ccifreq_platdrv = {
-+	.probe	= mtk_ccifreq_probe,
-+	.remove	= mtk_ccifreq_remove,
-+	.driver = {
-+		.name = "mtk-ccifreq",
-+		.of_match_table = mtk_ccifreq_machines,
-+	},
-+};
-+module_platform_driver(mtk_ccifreq_platdrv);
-+
-+MODULE_DESCRIPTION("MediaTek CCI devfreq driver");
-+MODULE_AUTHOR("Jia-Wei Chang <jia-wei.chang@mediatek.com>");
-+MODULE_LICENSE("GPL v2");
+But isn't the value of offset a hardware-design-time calculation? So if I have a piece of
+hardware that describes itself using device-tree, then offset information should be stored on the
+device-tree rather then be "calculated" by the software running on that piece of hardware?
+
+And what if such piece of hardware has been changed (e.g. new PCB version) and now the offset are
+different? Then if device-tree is on hardware (e.g. on EEPROM) with new offsets, then software would
+not require a change to support this new hardware version.
+
+> >>> +          The value (millidegree Celsius) to be programmed in the channel specific offset register
+> >>> +          (if supported by device).
+> >>
+> >> You described programming model which should not be put in the bindings.
+> >> Please describe the hardware.
+> > 
+> > I am also not sure about the "-millicelsius" in example above. From device point-of-view, this
+> > offset is just two's complement, so is it more desirable to have the values here as just bytes
+> > rather than millicelsius?
+> 
+> No, the programming model of a device can change and should be
+> abstracted to hardware property.
+
+OK, so I will leave millicelsius as the unit.
+
+> >>> +          For remote channels only.
+> >>> +        $ref: /schemas/types.yaml#/definitions/int32
+> >>> +        default: 0
+> >>> +
+> >>> +    required:
+> >>> +      - reg
+> >>> +
+> >>> +    additionalProperties: false
+> >>> +
+> >>>  examples:
+> >>>    - |
+> >>>      #include <dt-bindings/interrupt-controller/irq.h>
+> >>> @@ -76,5 +107,13 @@ examples:
+> >>>              vcc-supply = <&palmas_ldo6_reg>;
+> >>>              interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
+> >>>              #thermal-sensor-cells = <1>;
+> >>> +            #address-cells = <1>;
+> >>> +            #size-cells = <0>;
+> >> I assume you tested the bindings with dt_bindings_check?
+> >>
+> >> I have some doubts, as this should fail.
+> > 
+> > I did. All was fine. What should fail here?
+> 
+> This:
+> 
+> linux/out/Documentation/devicetree/bindings/hwmon/national,lm90.example.dtb:
+> sensor@4c: '#address-cells', '#size-cells' do not match any of the
+> regexes: '^channel@([0-2])$', 'pinctrl-[0-9]+'
+> 
+> 	From schema:
+> linux/linux/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
+> 
+> 
+> So no, you did not test it. Asking reviewer to perform a test which you
+> can do by yourself is a huge waste of reviewers time.
+
+Ah I see it too. This is not stopping the make dt_bindings_check and that is why I have missed it.
+My apologies! I will be more careful next time!
+
 -- 
-2.18.0
-
+Slawomir Stepien
