@@ -2,140 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0832452E8E8
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 11:35:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 512BE52E901
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 11:41:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343963AbiETJfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 05:35:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46404 "EHLO
+        id S1347740AbiETJlP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 05:41:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244061AbiETJfQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 05:35:16 -0400
+        with ESMTP id S1343582AbiETJlD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 05:41:03 -0400
 Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87C8713C4E8;
-        Fri, 20 May 2022 02:35:07 -0700 (PDT)
-X-UUID: d4d55e255c6f408eb54e4156e458e00f-20220520
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 624752DD5D;
+        Fri, 20 May 2022 02:41:00 -0700 (PDT)
+X-UUID: 4b1d1c2740b841b4a2762fc0400074f7-20220520
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:71912025-9eb1-4f1e-b74d-aa9b9de228f8,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:45
-X-CID-INFO: VERSION:1.1.5,REQID:71912025-9eb1-4f1e-b74d-aa9b9de228f8,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
-        N:release,TS:45
-X-CID-META: VersionHash:2a19b09,CLOUDID:a357007a-5ef6-470b-96c9-bdb8ced32786,C
-        OID:b0708b025ba7,Recheck:0,SF:28|17|19|48,TC:nil,Content:-5,EDM:-3,IP:nil,
-        URL:0,File:nil,QS:0,BEC:nil
-X-UUID: d4d55e255c6f408eb54e4156e458e00f-20220520
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <miles.chen@mediatek.com>)
+X-CID-O-INFO: VERSION:1.1.5,REQID:ab825165-707d-46ca-bd20-42a6777e6e33,OB:0,LO
+        B:0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:54,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:59
+X-CID-INFO: VERSION:1.1.5,REQID:ab825165-707d-46ca-bd20-42a6777e6e33,OB:0,LOB:
+        0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:54,FILE:0,RULE:Release_HamU,ACTI
+        ON:release,TS:59
+X-CID-META: VersionHash:2a19b09,CLOUDID:3689007a-5ef6-470b-96c9-bdb8ced32786,C
+        OID:0ea0a549b8f2,Recheck:0,SF:28|16|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,QS:0,BEC:nil
+X-UUID: 4b1d1c2740b841b4a2762fc0400074f7-20220520
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <johnson.wang@mediatek.com>)
         (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1819122944; Fri, 20 May 2022 17:35:02 +0800
+        with ESMTP id 1710984426; Fri, 20 May 2022 17:40:55 +0800
 Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Fri, 20 May 2022 17:35:01 +0800
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Fri, 20 May 2022 17:40:55 +0800
 Received: from mtkcas11.mediatek.inc (172.21.101.40) by
  mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 20 May 2022 17:35:01 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ 15.0.1497.2; Fri, 20 May 2022 17:40:55 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 20 May 2022 17:35:00 +0800
-From:   Miles Chen <miles.chen@mediatek.com>
-To:     <yassine.oudjana@gmail.com>
-CC:     <angelogioacchino.delregno@collabora.com>,
-        <bgolaszewski@baylibre.com>, <chun-jie.chen@mediatek.com>,
-        <devicetree@vger.kernel.org>, <ikjn@chromium.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
+ Transport; Fri, 20 May 2022 17:40:54 +0800
+Message-ID: <9b6e304e69e0d6064893534831d70df58f932843.camel@mediatek.com>
+Subject: Re: [RESEND v4 1/2] dt-bindings: interconnect: Add MediaTek CCI
+ dt-bindings
+From:   Johnson Wang <johnson.wang@mediatek.com>
+To:     Chen-Yu Tsai <wenst@chromium.org>
+CC:     <cw00.choi@samsung.com>, <krzk+dt@kernel.org>,
+        <robh+dt@kernel.org>, <kyungmin.park@samsung.com>,
+        <djakov@kernel.org>, <khilman@kernel.org>,
+        <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <matthias.bgg@gmail.com>,
-        <miles.chen@mediatek.com>, <mturquette@baylibre.com>,
-        <p.zabel@pengutronix.de>, <robh+dt@kernel.org>,
-        <sam.shih@mediatek.com>, <sboyd@kernel.org>,
-        <tinghan.shen@mediatek.com>, <weiyi.lu@mediatek.com>,
-        <wenst@chromium.org>, <y.oudjana@protonmail.com>,
-        <~postmarketos/upstreaming@lists.sr.ht>
-Subject: Re: [PATCH v2 4/4] clk: mediatek: Add drivers for MediaTek MT6735 main clock drivers
-Date:   Fri, 20 May 2022 17:35:01 +0800
-Message-ID: <20220520093501.28758-1-miles.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <NJC6CR.M4CF312LSXXV1@gmail.com>
-References: <NJC6CR.M4CF312LSXXV1@gmail.com>
+        <linux-mediatek@lists.infradead.org>, <jia-wei.chang@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Fri, 20 May 2022 17:40:54 +0800
+In-Reply-To: <CAGXv+5FqjDX7y_bR0Y=2xCnCqwtAB2S+3Fn==adxJJqanv8=YQ@mail.gmail.com>
+References: <20220513032832.17645-1-johnson.wang@mediatek.com>
+         <20220513032832.17645-2-johnson.wang@mediatek.com>
+         <CAGXv+5FqjDX7y_bR0Y=2xCnCqwtAB2S+3Fn==adxJJqanv8=YQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 2022-05-13 at 11:35 +0800, Chen-Yu Tsai wrote:
+> On Fri, May 13, 2022 at 11:31 AM Johnson Wang <
+> johnson.wang@mediatek.com> wrote:
+> > 
+> > Add devicetree binding of MediaTek CCI on MT8183 and MT8186.
+> > 
+> > Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> > Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
+> > ---
+> >  .../bindings/interconnect/mediatek,cci.yaml   | 140
+> > ++++++++++++++++++
+> >  MAINTAINERS                                   |   1 +
+> >  2 files changed, 141 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
+> > 
+> > diff --git
+> > a/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
+> > b/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
+> > new file mode 100644
+> > index 000000000000..034c3b38ca3d
+> > --- /dev/null
+> > +++
+> > b/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
+> > @@ -0,0 +1,140 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: 
+> > https://urldefense.com/v3/__http://devicetree.org/schemas/interconnect/mediatek,cci.yaml*__;Iw!!CTRNKA9wMg0ARbw!0vYE2yw5meNp-VKz6-Xp4C_qT8rz0tpzc0iPAGI__dVczbtBVpOcQfxdrQADjIdqtgDrrni0ZKWuBFP1QcwD0mHhOw$
+> >  
+> > +$schema: 
+> > https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!0vYE2yw5meNp-VKz6-Xp4C_qT8rz0tpzc0iPAGI__dVczbtBVpOcQfxdrQADjIdqtgDrrni0ZKWuBFP1QcxLQ8hn_A$
+> >  
+> > +
+> > +title: MediaTek Cache Coherent Interconnect (CCI) frequency and
+> > voltage scaling
+> > +
+> > +maintainers:
+> > +  - Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> > +  - Johnson Wang <johnson.wang@mediatek.com>
+> > +
+> > +description: |
+> > +  MediaTek Cache Coherent Interconnect (CCI) is a hardware engine
+> > used by
+> > +  MT8183 and MT8186 SoCs to scale the frequency and adjust the
+> > voltage in
+> > +  hardware. It can also optimize the voltage to reduce the power
+> > consumption.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - mediatek,mt8183-cci
+> > +      - mediatek,mt8186-cci
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description:
+> > +          The multiplexer for clock input of the bus.
+> > +      - description:
+> > +          A parent of "cpu" clock which is used as an intermediate
+> > clock source
+> 
+> Replace "cpu" with "bus"?
+> 
+> > +          when the original CPU is under transition and not stable
+> > yet.
+> 
+> 
+> And also, "when the original clock source (PLL) is under transition
+> ..."
+> 
+> Otherwise,
+> 
+> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
 
->> 
->> Thanks for submitting this patch.
->> 
->> I compare this with drivers/clk/mediatek/clk-mt7986-apmixed.c,
->> and other clk files are using macros to make the mtk_pll_data array
->> more readable.
->
->I'd actually argue that macros make it less readable. While reading
->other drivers I had a lot of trouble figuring out which argument
->is which field of the struct, and had to constantly go back to the
->macro definitions and count arguments to find it. Having it this
->way, each value is labeled clearly with the field it's in. I think
->the tradeoff between line count and readability here is worth it.
+Hi Chen-Yu,
 
-It is easier for multiple developers to work together if we have a common style.
+I will modify them in the next version.
 
-How do you think?
+BRs,
+Johnson Wang
 
-Thanks,
-Miles
-
->
->> 
->> Would you mind following the same style for all c files, please?
->> 
->> e.g.,
->> 	static const struct mtk_pll_data plls[] = {
->> 		PLL(CLK_APMIXED_ARMPLL, "armpll", 0x0200, 0x020C, 0x00000001, 0, 32,
->> 				0x0200, 4, 0, 0x0204, 0),
->> 		PLL(CLK_APMIXED_NET2PLL, "net2pll", 0x0210, 0x021C, 0x00000001, 0, 
->> 32,
->> 				0x0210, 4, 0, 0x0214, 0),
->> 		...
->> 	};
->> 
->>>  +	},
->>>  +		.reg = APLL1_CON0,
->>>  +		.pwr_reg = APLL1_PWR_CON0,
->>>  +module_platform_driver(clk_mt6735_apmixedsys);
->>>  +
->>>  +MODULE_AUTHOR("Yassine Oudjana <y.oudjana@protonmail.com>");
->>>  +MODULE_DESCRIPTION("Mediatek MT6735 apmixedsys clock driver");
->> 
->> Would you mind changing all Mediatek to MediaTek?
->> i.e.,
->> 
->> s/Mediatek/MediaTek/
->> 
->
->Sure. Will fix it.
-
-thanks
->
->> 
->> thanks,
->> Miles
->>  +MODULE_LICENSE("GPL");
->> 
->
->Thanks,
->Yassine
->
->
->
->
