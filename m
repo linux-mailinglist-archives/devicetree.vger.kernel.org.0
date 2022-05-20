@@ -2,85 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C10F752EB93
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 14:09:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55FA052EBAF
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 14:12:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345245AbiETMJf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 08:09:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38740 "EHLO
+        id S1349067AbiETMM0 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 20 May 2022 08:12:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241234AbiETMJc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 08:09:32 -0400
-Received: from mail.skyhub.de (mail.skyhub.de [5.9.137.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AE6514FC8F;
-        Fri, 20 May 2022 05:09:31 -0700 (PDT)
-Received: from zn.tnic (p200300ea974657be329c23fffea6a903.dip0.t-ipconnect.de [IPv6:2003:ea:9746:57be:329c:23ff:fea6:a903])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 1D61B1EC0432;
-        Fri, 20 May 2022 14:09:26 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1653048566;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=wAUEpaxcn1VjODERDlTBwD2l2P5Ti2X7RxSfo/FhO7g=;
-        b=AqccEl2YFLgHBwWukfM15c26wLyTYp0BTcTwKa5inCPcJkkJ2RtctkhhZRtxbyPGKt3hqq
-        Fe8H2STvPhOoTipdnMQQYblJR7q+zAcAMhK9FaKkyY+rLrq3bTZNJn0a1+j8kB+iUppIny
-        oFERssQ2eEB/XA65/bk9GLDZJb0c+NQ=
-Date:   Fri, 20 May 2022 14:09:21 +0200
-From:   Borislav Petkov <bp@alien8.de>
-To:     Medad Young <medadyoung@gmail.com>
-Cc:     rric@kernel.org, James Morse <james.morse@arm.com>,
-        tony.luck@intel.com, Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Patrick Venture <venture@google.com>, KWLIU@nuvoton.com,
-        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING <KFTING@nuvoton.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>, ctcchien@nuvoton.com,
-        linux-edac <linux-edac@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>
-Subject: Re: [PATCH v9 1/3] ARM: dts: nuvoton: Add memory controller node
-Message-ID: <YoeE8cBhUkF3K44/@zn.tnic>
-References: <20220510031056.1657-1-ctcchien@nuvoton.com>
- <20220510031056.1657-2-ctcchien@nuvoton.com>
- <YoUwe6Tj4Uh6ukc8@zn.tnic>
- <CAHpyw9fjThEP4NuU08aNJ_raHpq9-j9KgBb8YuZ_shXTjhm3JA@mail.gmail.com>
- <YoYPGWreQuF9QZzc@zn.tnic>
- <CAHpyw9es-n+bW9SsGBmmr3ghBFk8Q8E6ZTbE42BpU-6p8LfHtw@mail.gmail.com>
+        with ESMTP id S1349060AbiETMMZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 08:12:25 -0400
+Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96066153526;
+        Fri, 20 May 2022 05:12:24 -0700 (PDT)
+Received: by mail-qv1-f41.google.com with SMTP id s5so6505508qvo.12;
+        Fri, 20 May 2022 05:12:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=txKFbhPEueIo/aj6c1+wzIrPvMm+5Ur9CFzaUN2DGCU=;
+        b=wGmR9+ZDYNEGn2IPBM2LXDNkJeBt0iOS9b3DlbTogKHuauzOoO9sBRexDhFZgX9P6e
+         3JTCIbZH22hOW5vJ/oaAG39iLUvj+RYGhp0qOdhaPg6vkPBvuf58CbY2OhmlD/wWQl9c
+         IgRL3Tlid5Dnwf8MdK4OTIGFBPcyz/hBiCPtu96NSOOE+b3UhNu/wqv/ZgyqQsAkJ1O1
+         VJY/LylhTPYfw49yi5OYcHASMWoFjr/vhV0VKfN5BGTVGWhtYF7O0v+2HennZlNiM0ML
+         NXDH3x2LY7vMv2XDy+E6ILLctK/asUoLGu17Hx6lhem7FCGqOKcEZ1kTuUkNqMWwwJT4
+         q2xw==
+X-Gm-Message-State: AOAM532CxsCPvD0L01CfaqE2552CgjDTnMXtX/HEfywmEEO/oPoE7SAM
+        0tMotVS6QJrpF19/LKNQSvDp9+R6GrRV8Q==
+X-Google-Smtp-Source: ABdhPJwAOlNx2QwqG6tMwk4V+tBjpJ/rAke1ZNihGpNxbdutNmhrUejVWY5cguWX0t5YuglTSVdB/Q==
+X-Received: by 2002:ad4:574f:0:b0:461:df46:af7b with SMTP id q15-20020ad4574f000000b00461df46af7bmr7548074qvx.53.1653048743205;
+        Fri, 20 May 2022 05:12:23 -0700 (PDT)
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
+        by smtp.gmail.com with ESMTPSA id d23-20020ac84e37000000b002f3ce9c0601sm3077053qtw.3.2022.05.20.05.12.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 May 2022 05:12:22 -0700 (PDT)
+Received: by mail-yb1-f169.google.com with SMTP id a3so13865583ybg.5;
+        Fri, 20 May 2022 05:12:22 -0700 (PDT)
+X-Received: by 2002:a05:6902:389:b0:633:31c1:d0f7 with SMTP id
+ f9-20020a056902038900b0063331c1d0f7mr8926767ybs.543.1653048742167; Fri, 20
+ May 2022 05:12:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAHpyw9es-n+bW9SsGBmmr3ghBFk8Q8E6ZTbE42BpU-6p8LfHtw@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220520094155.313784-1-herve.codina@bootlin.com>
+In-Reply-To: <20220520094155.313784-1-herve.codina@bootlin.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 20 May 2022 14:12:10 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWc2W1YY=EP49bQ07bO4-WqQh-MbAPr7s153VqSCxmk2w@mail.gmail.com>
+Message-ID: <CAMuHMdWc2W1YY=EP49bQ07bO4-WqQh-MbAPr7s153VqSCxmk2w@mail.gmail.com>
+Subject: Re: [PATCH v6 0/6] RZN1 USB Host support
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 20, 2022 at 10:31:05AM +0800, Medad Young wrote:
-> for the second warning, I did upadate my .git/config according to your
-> advise. but I thought I met orthe problem, I will try to fix it
+Hi Hervé,
 
-You need to do "git commit --amend" on the patch so that it updates the
-author.
+On Fri, May 20, 2022 at 11:42 AM Herve Codina <herve.codina@bootlin.com> wrote:
+> This series add support for the USB Host controllers available on
+> RZN1 (r9a06g032) SOC.
+>
+> These USB Host controllers are PCI OHCI/EHCI controllers located
+> behind a bridge.
 
-> for the first warning, did I really need to fix it?
+Thanks for your series!
 
-Yes, you need to fix both.
+> Herve Codina (6):
+>   dt-bindings: PCI: pci-rcar-gen2: Convert bindings to json-schema
+>   dt-bindings: PCI: renesas,pci-rcar-gen2: Add device tree support for
+>     r9a06g032
+>   PCI: rcar-gen2: Add RZ/N1 SOCs family compatible string
+>   ARM: dts: r9a06g032: Add internal PCI bridge node
+>   ARM: dts: r9a06g032: Add USB PHY DT support
+>   ARM: dts: r9a06g032: Link the PCI USB devices to the USB PHY
 
-Again, before you send, run checkpatch on your patches, one by one.
+As I had applied v5 of the last 3 patches to renesas-devel, and they
+are already present in soc/for-next, there is no need to resend them.
 
--- 
-Regards/Gruss,
-    Boris.
+Gr{oetje,eeting}s,
 
-https://people.kernel.org/tglx/notes-about-netiquette
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
