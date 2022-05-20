@@ -2,75 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B7AA52E9B8
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 12:15:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5162F52E9C4
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 12:19:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348013AbiETKPI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 06:15:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57982 "EHLO
+        id S1348088AbiETKTV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 06:19:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240366AbiETKPH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 06:15:07 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A309514ACA0
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 03:15:05 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id r3so2266110ljd.7
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 03:15:05 -0700 (PDT)
+        with ESMTP id S1347290AbiETKTR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 06:19:17 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A655714AF58
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 03:19:15 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id o22so9131961ljp.8
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 03:19:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=VByhnDQJjyit3XbvoILIz79WkuHOVOnt4ThORqkI0rY=;
-        b=BTiq2RjVXei6JDjuFbPEbimPE/lhY95DCNsNd7SVzIa+Yk35+TfBN8g/85Uwa/LJf8
-         CgnmmPrJeBCt6ZbUeR5mfovOeWBwUrAV5rMLpjeIjiqNY/6OkogOEXtWijjE04bK3qG2
-         XD41UGhT9NMftPISwpqf4vJ1Y381yS2IUthwalNVoBpwUmQcibKwn8x0E4M6Tx88BLdZ
-         oPOXYOGY2QeOi5MDz7HsuNV1nGqbWcR1YAgWMx4HjiHNIjtmqyEE0aEoAzZew7i2pgut
-         vqO63gBX9sUIgqHpP6N7sk0kc6joxmbH5GCZIt/7uRL77soYpG2C3rJV9f4rf5uezLLI
-         B3yg==
+        bh=qC4Olf3TBGA3MotPYbQLIM34p+fB/nDlozQzZDrBQBk=;
+        b=TRs4rMcCAVRW9/+gyu2GMjvXZyCPcqFpOTYZ7FzW5y6x5LKb+wP8FpcAt0/ZMVUCih
+         ZDif5/ECPUi9qdeS5wmkjHR/hxJFlOmRzDvyttaeChD2/TElvKqvRxVUNACRbBWvFunr
+         OxKMY2BJapKXlCAozP+UhfirIr8tSfSSttaBF5fyhZRyyktW0bhAiepbW0x8SIH7ZDuU
+         tJp8EyFs8cupA5bFJdcRDF88ZqyT44XkPaqapkL7hkQ+SghTNeb4OxK7K4gWohd47fuA
+         4uELozEYuW7ssvi338yBHgQIiM/JY/2btQfzXBM1tLWOH8C0UjWxlZDV4eXFQH84smeH
+         d31w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=VByhnDQJjyit3XbvoILIz79WkuHOVOnt4ThORqkI0rY=;
-        b=nLFxMIGnBAp2BbCaa8Unt3GI908zDW78eAhrkKrxKzMAQGaK6+iQ89TM7dfnT7N7sn
-         HgzfWx9Ee1t9aBi2BPJup6ItXrdzTRyb+M0wnOo2Yehz2Q8Fpb0HT2l0C3eBdx4/SCci
-         h2vHWsk0mQ3nxqpI2DDymQnxZ7fXdqOa+GHaZ6HMA9lwTLQVb+hwRxyhZ3GSJR3aoFVZ
-         3YbriJn7TDptZ+f0uF9sKp9iYhZwLTeQ0/4uPKMb5XyeUhTPWvwHmqMpV8MTfMrmLbGi
-         MLJpfs0VsWg0h4fljLZZF8dw4XAOzTwlCk04XVjMZMsfTfuKEng8qGtC7ODAQCFRUdqh
-         Y/GQ==
-X-Gm-Message-State: AOAM531jyqQNgTpAksOydZ/JVVxwzvpo/xl+OUvwQAWaisQ7dG44+W7z
-        SnRUdZSzekFw6J71fGum36rzSkJ2V0n4l5Jf
-X-Google-Smtp-Source: ABdhPJxADUhzCOxS4ratvgNbNzTEr268BvZS1UpghTV3rQkah4DNfW3tdrTKaqKTg6PaRA9wygjLBA==
-X-Received: by 2002:a2e:82c5:0:b0:247:e81f:8b02 with SMTP id n5-20020a2e82c5000000b00247e81f8b02mr5256193ljh.90.1653041703999;
-        Fri, 20 May 2022 03:15:03 -0700 (PDT)
+        bh=qC4Olf3TBGA3MotPYbQLIM34p+fB/nDlozQzZDrBQBk=;
+        b=25OCgYDPAV4yv+w98tSZo/lNvNUaUe7YYUoLpZSnmCwWRnee2UtzoWqAO9t7FWHJLq
+         TRv9/8wVdAb9qpYbMI6eCT5+laiCEUxAy+NbgmAgo6Sqy/lFQgEt8Yu0A7IFeHyODild
+         hyYwamQzej4opHJIEP90j0H8T0fNvoe81vB/0pZcHczMkCPnDej/FOZidpRabQJW1Y+h
+         jfZZFx2/S9bsUvzv0cPRmNGrr2FMDjkUmfp6ywZsAVJpAOB1TNd1ta2coVtEXCVJnuGP
+         MwJq3CWnWHb2mF4JYjabUZYW8kN8Zf7q9JTR56x3k4V5atjxo88mXFcSvGNs5sajCNNJ
+         ywnQ==
+X-Gm-Message-State: AOAM530iBaHaWh2a2ch61hCSxTy7ZoMQjitF7tTqvI6/A5aHKIA2x6t/
+        XLOFJ4AqaCxQbQC4NsjO+hOUHQ==
+X-Google-Smtp-Source: ABdhPJz5R0gOM+LR5VrdWtX2EWAzFoI4W3cbw6McoMSSQnAw/WK6yf40qF0stxViEQS8Atvn2d+6/A==
+X-Received: by 2002:a2e:884b:0:b0:253:d431:45f0 with SMTP id z11-20020a2e884b000000b00253d43145f0mr4587867ljj.70.1653041954080;
+        Fri, 20 May 2022 03:19:14 -0700 (PDT)
 Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id y12-20020ac255ac000000b0047255d210fcsm607984lfg.43.2022.05.20.03.15.02
+        by smtp.gmail.com with ESMTPSA id b4-20020a056512024400b00477a6c86f17sm610621lfo.8.2022.05.20.03.19.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 May 2022 03:15:03 -0700 (PDT)
-Message-ID: <bb833b7d-d3c1-0f63-019c-439ed0ec9aad@linaro.org>
-Date:   Fri, 20 May 2022 12:15:02 +0200
+        Fri, 20 May 2022 03:19:13 -0700 (PDT)
+Message-ID: <56a6dc27-35ef-68a9-e990-7d989450ba89@linaro.org>
+Date:   Fri, 20 May 2022 12:19:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH 7/8] hwmon: (lm90) read the channel's label from
- device-tree
+Subject: Re: [PATCH v2 4/5] dt-bindings: net: Add documentation for optional
+ regulators
 Content-Language: en-US
-To:     Slawomir Stepien <sst@poczta.fm>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, przemyslaw.cencner@nokia.com,
-        krzysztof.adamski@nokia.com, alexander.sverdlin@nokia.com,
-        Slawomir Stepien <slawomir.stepien@nokia.com>
-References: <20220520093243.2523749-1-sst@poczta.fm>
- <20220520093243.2523749-8-sst@poczta.fm>
+To:     LABBE Corentin <clabbe@baylibre.com>
+Cc:     Mark Brown <broonie@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        calvin.johnson@oss.nxp.com, davem@davemloft.net,
+        edumazet@google.com, hkallweit1@gmail.com,
+        jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        kuba@kernel.org, lgirdwood@gmail.com, linux@armlinux.org.uk,
+        pabeni@redhat.com, robh+dt@kernel.org, samuel@sholland.org,
+        wens@csie.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, netdev@vger.kernel.org
+References: <20220518200939.689308-1-clabbe@baylibre.com>
+ <20220518200939.689308-5-clabbe@baylibre.com>
+ <95f3f0a4-17e6-ec5f-6f2f-23a5a4993a44@linaro.org>
+ <YoYqmAB3P7fNOSVG@sirena.org.uk>
+ <c74b0524-60c6-c3af-e35f-13521ba2b02e@linaro.org> <YoYw2lKbgCiDXP0A@lunn.ch>
+ <YoZm9eabWy/FNKu1@sirena.org.uk>
+ <0518eef1-75a6-fbfe-96d8-bb1fc4e5178a@linaro.org> <YodOO6PfsjelCa1x@Red>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220520093243.2523749-8-sst@poczta.fm>
+In-Reply-To: <YodOO6PfsjelCa1x@Red>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,136 +87,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/05/2022 11:32, Slawomir Stepien wrote:
-> From: Slawomir Stepien <slawomir.stepien@nokia.com>
+On 20/05/2022 10:15, LABBE Corentin wrote:
 > 
-> Try to read the channel's label from device-tree. Having label in
-> device-tree node is not mandatory.
-> 
-> Signed-off-by: Slawomir Stepien <slawomir.stepien@nokia.com>
-> ---
->  drivers/hwmon/lm90.c | 70 ++++++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 70 insertions(+)
-> 
-> diff --git a/drivers/hwmon/lm90.c b/drivers/hwmon/lm90.c
-> index 67d48707a8d6..e81cc21e525f 100644
-> --- a/drivers/hwmon/lm90.c
-> +++ b/drivers/hwmon/lm90.c
-> @@ -525,6 +525,7 @@ struct lm90_data {
->  	struct i2c_client *client;
->  	struct device *hwmon_dev;
->  	u32 channel_config[MAX_CHANNELS + 1];
-> +	const char *channel_label[MAX_CHANNELS];
->  	struct hwmon_channel_info temp_info;
->  	const struct hwmon_channel_info *info[MAX_CHANNELS];
->  	struct hwmon_chip_info chip;
-> @@ -1393,6 +1394,7 @@ static umode_t lm90_temp_is_visible(const void *data, u32 attr, int channel)
->  	case hwmon_temp_emergency_alarm:
->  	case hwmon_temp_emergency_hyst:
->  	case hwmon_temp_fault:
-> +	case hwmon_temp_label:
->  		return 0444;
->  	case hwmon_temp_min:
->  	case hwmon_temp_max:
-> @@ -1486,6 +1488,16 @@ static int lm90_read(struct device *dev, enum hwmon_sensor_types type,
->  	}
->  }
->  
-> +static int lm90_read_string(struct device *dev, enum hwmon_sensor_types type,
-> +			    u32 attr, int channel, const char **str)
-> +{
-> +	struct lm90_data *data = dev_get_drvdata(dev);
-> +
-> +	*str = data->channel_label[channel];
-> +
-> +	return 0;
-> +}
-> +
->  static int lm90_write(struct device *dev, enum hwmon_sensor_types type,
->  		      u32 attr, int channel, long val)
->  {
-> @@ -1904,10 +1916,64 @@ static void lm90_regulator_disable(void *regulator)
->  	regulator_disable(regulator);
->  }
->  
-> +static int lm90_probe_channel_from_dt(struct i2c_client *client,
-> +				      struct device_node *child,
-> +				      struct lm90_data *data)
-> +{
-> +	u32 id;
-> +	int err;
-> +	struct device *dev = &client->dev;
-> +
-> +	err = of_property_read_u32(child, "reg", &id);
-> +	if (err) {
-> +		dev_err(dev, "missing reg property of %pOFn\n", child);
-> +		return err;
-> +	}
-> +
-> +	if (id >= MAX_CHANNELS) {
-> +		dev_err(dev, "invalid reg %d in %pOFn\n", id, child);
-> +		return -EINVAL;
-> +	}
-> +
-> +	err = of_property_read_string(child, "label", &data->channel_label[id]);
-> +	if (err == -ENODATA || err == -EILSEQ) {
-> +		dev_err(dev, "invalid label in %pOFn\n", child);
+> I agree that supplies and supply-names are better.
+> But in another answer Rob is against it, so if I understand well, we are stuck to use individual xxx-supply.
+> I will try to create a new regulator_get_bulk_all() which scan all properties matching xxx-supply
 
-You did not make it a required property, so why failing?
-
-> +		return err;
-> +	}
-> +
-> +	if (data->channel_label[id])
-> +		data->channel_config[id] |= HWMON_T_LABEL;
-> +
-> +	return 0;
-> +}
-> +
-> +static int lm90_parse_dt_channel_info(struct i2c_client *client,
-> +				      struct lm90_data *data)
-> +{
-> +	int err;
-> +	struct device_node *child;
-> +	struct device *dev = &client->dev;
-> +	const struct device_node *np = dev->of_node;
-> +
-> +	for_each_child_of_node(np, child) {
-> +		if (strcmp(child->name, "channel"))
-> +			continue;
-> +
-> +		err = lm90_probe_channel_from_dt(client, child, data);
-> +		if (err) {
-> +			of_node_put(child);
-> +			return err;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  
-
-No need for double blank lines.
-
->  static const struct hwmon_ops lm90_ops = {
->  	.is_visible = lm90_is_visible,
->  	.read = lm90_read,
-> +	.read_string = lm90_read_string,
->  	.write = lm90_write,
->  };
->  
-> @@ -2027,6 +2093,10 @@ static int lm90_probe(struct i2c_client *client)
->  					return err;
->  			}
->  		}
-> +
-> +		err = lm90_parse_dt_channel_info(client, data);
-> +		if (err)
-> +			return err;
->  	}
->  
->  	/* Initialize the LM90 chip */
+Yep.
 
 
 Best regards,
