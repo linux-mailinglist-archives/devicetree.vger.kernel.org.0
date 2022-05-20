@@ -2,68 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7932952F213
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 20:09:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5939852F21C
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 20:11:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237901AbiETSJD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 14:09:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57050 "EHLO
+        id S235816AbiETSLZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 14:11:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231983AbiETSJC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 14:09:02 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B70A018C059;
-        Fri, 20 May 2022 11:08:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1653070139; x=1684606139;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=knFYaVRPtMVRb8qpLq9fJgECyjoHfreaopnzSRfpyUM=;
-  b=yuDshxUd0lESpZVtck8DrZAy2NG/+U1xaQNGbtEAtOFJWaNTWXg2G1Ew
-   4GtOKgpv/QfcAj97SGwYLLV4GKDlcsJjM9dxyJ4evRbudkYLpvOoEeX3s
-   v26hRIIY311nPwixVyQPgrXNZFfgETiXz4Q2thidcX5VQ+R2z9hjBsFWg
-   E=;
-Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 20 May 2022 11:08:59 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 May 2022 11:08:59 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Fri, 20 May 2022 11:08:58 -0700
-Received: from [10.79.43.230] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Fri, 20 May
- 2022 11:08:55 -0700
-Subject: Re: [PATCH v4 1/3] arm64: dts: qcom: sc7280: Add proxy interconnect
- requirements for modem
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <ohad@wizery.com>, <agross@kernel.org>,
-        <mathieu.poirier@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
-        <mka@chromium.org>
-References: <1652978825-5304-1-git-send-email-quic_sibis@quicinc.com>
- <1652978825-5304-2-git-send-email-quic_sibis@quicinc.com>
- <YoaqDcB6wkd4zOWR@ripper>
-From:   Sibi Sankar <quic_sibis@quicinc.com>
-Message-ID: <031ebead-4b0d-8493-d8f8-96f2ff9d938a@quicinc.com>
-Date:   Fri, 20 May 2022 23:38:52 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        with ESMTP id S230318AbiETSLY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 14:11:24 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2DD0580D2;
+        Fri, 20 May 2022 11:11:21 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8D7B86178C;
+        Fri, 20 May 2022 18:11:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72113C385A9;
+        Fri, 20 May 2022 18:11:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1653070281;
+        bh=k/yJclsWlrwAFMAoHXAQBg8IUcASAQM+ZxdCKiEZ3o0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=gWzdXZX8E2cheZv2N7f9vQRmDrxDCYMjKMAirb/L+ZiAI9bkMaqPQX8dgplfBW2l+
+         urhqN5F3kd0I4MidxnVeVINAjqG74n/jsqvgm8dWzeQLeHV+vaownZI4tK/sVQmoI4
+         NYrOBX1gSF0oGs1l8at4wRt8ingJR7/BCodpA8nAXUCvQ6WyLVeJRYjkv9qMqdfi1V
+         mrPcUlH1bqw8lgWlgaKa+Yw1xmDty+3YAkaFmHgbYwvU7Mvo7wcPl3HojbAKVRQrO4
+         lvbn3IMpKp49shNVCCCuUbUyHNQN0hrOz0D6gePQWsnXjquhjyAwJxDRHx+33m0o07
+         zF5GPSVolicxw==
+Date:   Fri, 20 May 2022 20:11:16 +0200
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     netdev@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
+        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
+        davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
+        Sam.Shih@mediatek.com, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, robh@kernel.org,
+        lorenzo.bianconi@redhat.com
+Subject: Re: [PATCH v2 net-next 11/15] net: ethernet: mtk_eth_soc: introduce
+ device register map
+Message-ID: <YofZxFO2nGuPCyZi@lore-desk>
+References: <cover.1652716741.git.lorenzo@kernel.org>
+ <78e8c6ed230130b75aae77e6d05a9b35e298860a.1652716741.git.lorenzo@kernel.org>
+ <20220517184122.522ed708@kernel.org>
+ <YoTA+5gLC4zhoQ0F@lore-desk>
+ <20220518084431.66aa1737@kernel.org>
+ <YoX3AMlBFfDcl69o@lore-desk>
+ <20220519091224.4409b54d@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <YoaqDcB6wkd4zOWR@ripper>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Hegm7aOIsPhLkENM"
+Content-Disposition: inline
+In-Reply-To: <20220519091224.4409b54d@kernel.org>
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,48 +65,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Bjorn,
-Thanks for taking time to review the series.
 
-On 5/20/22 2:05 AM, Bjorn Andersson wrote:
-> On Thu 19 May 09:47 PDT 2022, Sibi Sankar wrote:
-> 
->> Add interconnects that are required to be proxy voted upon during modem
->> bootup on SC7280 SoCs.
-> 
-> This looks reasonable, but how come the vote is only for DDR frequency?
-> What about the buses between modem and ddr?
+--Hegm7aOIsPhLkENM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The proxy votes that are put in aren't for perf related reasons, the
-modem was getting llcc timeouts while trying to read contents from 
-memory. The hw team recommended the proxy votes as the fix.
+> On Thu, 19 May 2022 09:51:28 +0200 Lorenzo Bianconi wrote:
+> > > I don't think there's a best known practice, you'll have to exercise
+> > > your judgment. Taking a look at a random example of MTK_PDMA_INT_STAT=
+US.
+> > > Looks like that one is already assigned to eth->tx_int_status_reg.
+> > > Maybe that can be generalized? Personally I'd forgo the macros
+> > > completely and just use eth->soc->register_name in the code. =20
+> >=20
+> > I personally think the code is easier to read if we use macros in this =
+case.
+> > Let's consider MTK_LRO_CTRL_DW1_CFG(), it depends on the particular soc=
+ based
+> > on the register map and even on the ring index. I guess the best trade-=
+off we
+> > can get is to explicitly pass eth to the macros as parameter when neede=
+d.
+>=20
+> Yeah, do you, I was just sharing what my knee jerk direction would be.
+> You know the code better.
 
--Sibi
+reworking the code I introduced a register map removing the macro dependenc=
+y.
+I will post v3 soon.
 
-> 
-> Regards,
-> Bjorn
-> 
->>
->> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
->> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
->> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
->> index 9f4a9c263c35..91aad86cc708 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
->> @@ -88,6 +88,7 @@
->>   	status = "okay";
->>   	compatible = "qcom,sc7280-mss-pil";
->>   	iommus = <&apps_smmu 0x124 0x0>, <&apps_smmu 0x488 0x7>;
->> +	interconnects = <&mc_virt MASTER_LLCC 0 &mc_virt SLAVE_EBI1 0>;
->>   	memory-region = <&mba_mem>, <&mpss_mem>;
->>   };
->>   
->> -- 
->> 2.7.4
->>
+Regards,
+Lorenzo
+
+--Hegm7aOIsPhLkENM
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCYofZxAAKCRA6cBh0uS2t
+rHdnAPwNnnUCfrfNOQE+XS8G2+JVOD3zD5Mm04pipDf4xGwi2AEAwmpnbYwRQlnZ
+ivMIn2SWK8Rx8uxbKDxQAGNFLEFD6A8=
+=XugI
+-----END PGP SIGNATURE-----
+
+--Hegm7aOIsPhLkENM--
