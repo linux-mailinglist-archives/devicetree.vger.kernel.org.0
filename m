@@ -2,158 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C6CB52E409
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 06:51:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD93652E41D
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 06:53:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242140AbiETEvi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 00:51:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42974 "EHLO
+        id S237626AbiETEx3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 00:53:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240366AbiETEvh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 00:51:37 -0400
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 907E31EEDA
-        for <devicetree@vger.kernel.org>; Thu, 19 May 2022 21:51:35 -0700 (PDT)
-Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
-        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20220520045132epoutp013e4c332582154df22cd48a1b6875dcb1~wtwQ_MXeK0637806378epoutp01g
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 04:51:32 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20220520045132epoutp013e4c332582154df22cd48a1b6875dcb1~wtwQ_MXeK0637806378epoutp01g
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1653022292;
-        bh=0s/WE1fRITBuNFHC2Z39v8u36PMK9xRG27XBcVT667w=;
-        h=From:To:Cc:Subject:Date:References:From;
-        b=uVxDyj75i+Mvgzogj+gs2kquKeeD6Qyt9ERcvRy3Qiqd4C2PB5JYqQcbH+4scV4gL
-         NND8rF3BqT2x6L17DEMza92raGAohd813IgY/xX9opXvIjHGJ35AZlE/EXdvp2DXql
-         7CRy4l8yW/WVWTod1bs7KVyQ2O44Oby/HqbjnRxg=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-        epcas2p4.samsung.com (KnoxPortal) with ESMTP id
-        20220520045131epcas2p4a892b08378e752803693d1170ec3ecf6~wtwQV-sZx0684006840epcas2p4H;
-        Fri, 20 May 2022 04:51:31 +0000 (GMT)
-Received: from epsmges2p3.samsung.com (unknown [182.195.36.88]) by
-        epsnrtp1.localdomain (Postfix) with ESMTP id 4L4Dp83cfRz4x9Pv; Fri, 20 May
-        2022 04:51:28 +0000 (GMT)
-Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
-        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
-        15.03.10028.C4E17826; Fri, 20 May 2022 13:51:24 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
-        20220520045124epcas2p12235472b7e9f7588003a7c8c238e8866~wtwJfJhTV0743507435epcas2p1W;
-        Fri, 20 May 2022 04:51:24 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20220520045124epsmtrp24bdc8a9f36b68e7bd9e0f65929326d56~wtwJeb0yh0544805448epsmtrp2R;
-        Fri, 20 May 2022 04:51:24 +0000 (GMT)
-X-AuditID: b6c32a47-573ff7000000272c-9d-62871e4c2624
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        6D.75.11276.B4E17826; Fri, 20 May 2022 13:51:23 +0900 (KST)
-Received: from localhost.localdomain (unknown [10.229.9.51]) by
-        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20220520045123epsmtip2f2cb8aee8d578ca5265e7bc482cb0130~wtwJR3Swi2365623656epsmtip23;
-        Fri, 20 May 2022 04:51:23 +0000 (GMT)
-From:   Chanho Park <chanho61.park@samsung.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chanho Park <chanho61.park@samsung.com>
-Subject: [PATCH] arm64: dts: exynoautov9: add syscon reboot/reboot_mode
- support
-Date:   Fri, 20 May 2022 13:52:10 +0900
-Message-Id: <20220520045210.55132-1-chanho61.park@samsung.com>
-X-Mailer: git-send-email 2.36.1
+        with ESMTP id S1345466AbiETEx1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 00:53:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96BE514ACA9;
+        Thu, 19 May 2022 21:53:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6C5C061D3D;
+        Fri, 20 May 2022 04:53:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73763C385A9;
+        Fri, 20 May 2022 04:53:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1653022403;
+        bh=APGPDdy5nqlALidXofvxDcr/grRV+XFXUdq+7hIgFnU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DMwCVIFwPEg43th+Ec07N5q1FIq7SvUByh3BajNgz7VUy4ECUHHdgiUhKE6xuOkNh
+         q0Y28OIeHsmPc/ir6DY44uQ+5+TG+Rjcypu/mLzFw9wgV/dBKNyhwWOZH1oEbGqVaa
+         RCSAhy6b4NBNuk/Lp1pBqoUfAx9wvyQ43+3YtTJAXIZAcpAMSmOXuRA7S8P0XvCdPW
+         WoyMnB03t5mpdbs9+DoCac5+CztvI0ob3/F0unW7gFkKMaXNLcmmWJDhxGLRkaiF+F
+         ckqlOcZZ3x56i32XoahQMSzi2TXcf/xtaR8YUdotQ9hlF+GolZY/ggmvnw+W5w5fiQ
+         tjazeBW1uq9Ow==
+Date:   Fri, 20 May 2022 12:53:20 +0800
+From:   Tzung-Bi Shih <tzungbi@kernel.org>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     bleung@chromium.org, groeck@chromium.org, robh+dt@kernel.org,
+        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 5/5] platform/chrome: cros_kbd_led_backlight: support
+ EC PWM backend
+Message-ID: <YocewB/lLJhIAuQP@google.com>
+References: <20220321085547.1162312-1-tzungbi@kernel.org>
+ <20220321085547.1162312-6-tzungbi@kernel.org>
+ <YobHVST2Nfn+z8n6@google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrPKsWRmVeSWpSXmKPExsWy7bCmqa6PXHuSweot1hYP5m1js7i8X9vi
-        +pfnrBbzj5xjteh78ZDZYsb5fUwWrXuPsFs879vH5MDhsWlVJ5vHnWt72Dz6tqxi9Pi8SS6A
-        JSrbJiM1MSW1SCE1Lzk/JTMv3VbJOzjeOd7UzMBQ19DSwlxJIS8xN9VWycUnQNctMwfoCiWF
-        ssScUqBQQGJxsZK+nU1RfmlJqkJGfnGJrVJqQUpOgXmBXnFibnFpXrpeXmqJlaGBgZEpUGFC
-        dsbuK/1MBSu5K3ZvDW1gXMzZxcjJISFgIrH8wErWLkYuDiGBHYwS9//9ZYFwPjFKbL7VzQzh
-        fGOUePF9FhNMy6yDbYwQib2MEp2H9zNBOB8ZJVqPr2cDqWIT0JXY8vwVI4gtIhAvcf5NI9hc
-        ZoGXjBInLj1gAUkICwRKHFv6CKyBRUBV4s7sm6wgNq+AnUR3+wEWiHXyEhvm9zJDxAUlTs58
-        AhZnBoo3b50Ndp+EwDl2idXvD7NDNLhILL7xHepWYYlXx7dAxaUkPr/bywZhF0ssnfWJCaK5
-        gVHi8rZfUAljiVnP2oHO5gDaoCmxfpc+iCkhoCxx5BbUXj6JjsN/2SHCvBIdbUIQjeoSB7ZP
-        hzpZVqJ7zmdWCNtDYvL332DDhQRiJb5N3sw6gVF+FpJvZiH5ZhbC3gWMzKsYxVILinPTU4uN
-        CozhsZqcn7uJEZwStdx3MM54+0HvECMTB+MhRgkOZiURXsbcliQh3pTEyqrUovz4otKc1OJD
-        jKbA8J3ILCWanA9Mynkl8YYmlgYmZmaG5kamBuZK4rxeKRsShQTSE0tSs1NTC1KLYPqYODil
-        Gpjab5jm18oJRlxYV6bjGjHZXeqvw8xv29wf6kVG+XxtnGJ43HJfy5KQ+16yktpndDrnbt3y
-        XNn32JRIxsh7Pamae4qEGyvt+aTTlgTPUX2qpWGw51nlWys+q2XLNVovPzyeY162cOtlruN9
-        OrLl4XMzhVnji5cXmnPo5LxkObtg8/LEN0dWa88oOuH6PZNJ7ZuYhVPzdOcLscYGBw8Wu55e
-        FT19KqfLi7v36rOWN31RiHi2MeK9ZtajqXJLyg47spdZVCl271/KfrlG/nZHg7E37/R7wVGH
-        FFuTFoQu5Entv+u3afEc62W5D/Z/6l4cNkmOS6Jx32W7yvBzKzs0RZ+k2X+V0Xr9cMrJC+vU
-        0pVYijMSDbWYi4oTAX9yt7QSBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrDLMWRmVeSWpSXmKPExsWy7bCSvK63XHuSwZedlhYP5m1js7i8X9vi
-        +pfnrBbzj5xjteh78ZDZYsb5fUwWrXuPsFs879vH5MDhsWlVJ5vHnWt72Dz6tqxi9Pi8SS6A
-        JYrLJiU1J7MstUjfLoErY/eVfqaCldwVu7eGNjAu5uxi5OSQEDCRmHWwjbGLkYtDSGA3o8Td
-        jadYIBKyEs/e7WCHsIUl7rccYQWxhQTeM0rc/ANWwyagK7Hl+StGEFtEIF5i6bkfLCCDmAXe
-        Mkr8ezATKMHBISzgLzFltx5IDYuAqsSd2TfB5vAK2El0tx+A2iUvsWF+LzNEXFDi5MwnYHFm
-        oHjz1tnMExj5ZiFJzUKSWsDItIpRMrWgODc9t9iwwDAvtVyvODG3uDQvXS85P3cTIzhAtTR3
-        MG5f9UHvECMTB+MhRgkOZiURXsbcliQh3pTEyqrUovz4otKc1OJDjNIcLErivBe6TsYLCaQn
-        lqRmp6YWpBbBZJk4OKUamGZ6xkf7dDY0xm1/e7l95nG1zTfN9P6fdpKbv0Jw1aYAH8ZnJsYp
-        lSuXVt84+GBpy8Hlst99278p3S69k5z73jFma4GfYWbhm9wzl2O3vnr4IPbXsi0ljTraJe4v
-        Zh+8bJqfNCH2q3CJSLqFO8vbooagRNep34xS/8quj12y7nadJb/kHJHe99esVyXmmln6nIkp
-        1H15TIjjUuODbvE188M32ISEqeedCtGzmmX/f3KP+9TK5BUHUze9n5mlkXmfgyPfWvOU0Iyj
-        hz612UsmPVyTIbx6x6JlDItKggJmfhKWeDWx0Nn+yJd1XqWRp6sa9626E+U65eMSttMSU/SX
-        7/tsOv2YS93VtR8mfWwsPaLEUpyRaKjFXFScCABS6PrBvwIAAA==
-X-CMS-MailID: 20220520045124epcas2p12235472b7e9f7588003a7c8c238e8866
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220520045124epcas2p12235472b7e9f7588003a7c8c238e8866
-References: <CGME20220520045124epcas2p12235472b7e9f7588003a7c8c238e8866@epcas2p1.samsung.com>
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YobHVST2Nfn+z8n6@google.com>
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reboot of exynosautov9 SoC can be handled by setting the bit(
-SWRESET_SYSTEM[1]) of SYSTEM_CONFIGURATION register(PMU + 0x3a00).
-syscon-reboot-mode can be used to indicate the reboot mode for
-bootloader. SYSIP_DAT0 register(PMU + 0x810) will not be cleared after
-reboot so bootloader can enter the boot mode according to the value.
+On Thu, May 19, 2022 at 03:40:21PM -0700, Matthias Kaehlcke wrote:
+> On Mon, Mar 21, 2022 at 04:55:47PM +0800, Tzung-Bi Shih wrote:
+> > +struct keyboard_led_private {
+> 
+> Why 'private', isn't this more a 'cros_ec_kdb_bl' or similar?
 
-Signed-off-by: Chanho Park <chanho61.park@samsung.com>
----
- arch/arm64/boot/dts/exynos/exynosautov9.dtsi | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+It is just drvdata.  I would prefer to keep the original prefix
+"keyboard_led_" if you wouldn't have strong opinion.
 
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-index 0ce46ec5cdc3..d99e53406ee0 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-@@ -312,6 +312,22 @@ pinctrl_peric1: pinctrl@10830000 {
- 		pmu_system_controller: system-controller@10460000 {
- 			compatible = "samsung,exynos7-pmu", "syscon";
- 			reg = <0x10460000 0x10000>;
-+
-+			reboot: syscon-reboot {
-+				compatible = "syscon-reboot";
-+				regmap = <&pmu_system_controller>;
-+				offset = <0x3a00>; /* SYSTEM_CONFIGURATION */
-+				value = <0x2>;
-+				mask = <0x2>;
-+			};
-+
-+			reboot_mode: syscon-reboot-mode {
-+				compatible = "syscon-reboot-mode";
-+				offset = <0x810>; /* SYSIP_DAT0 */
-+				mode-bootloader = <0xfc>;
-+				mode-fastboot = <0xfa>;
-+				mode-recovery = <0xff>;
-+			};
- 		};
- 
- 		syscon_fsys2: syscon@17c20000 {
--- 
-2.36.1
+> > +static int
+> > +keyboard_led_set_brightness_blocking_ec_pwm(struct led_classdev *cdev,
+> > +					    enum led_brightness brightness)
+> 
+> nit: since there is only a blocking version of .set_brightness you could omit
+> 'blocking' in the function name.
 
+Ack, will fix it in next version.
+
+> > +	struct {
+> > +		struct cros_ec_command msg;
+> > +		struct ec_params_pwm_set_keyboard_backlight params;
+> > +	} __packed buf;
+> > +	struct ec_params_pwm_set_keyboard_backlight *params = &buf.params;
+> > +	struct cros_ec_command *msg = &buf.msg;
+> > +	struct keyboard_led_private *private =
+> > +		container_of(cdev, struct keyboard_led_private, cdev);
+> > +
+> > +	memset(&buf, 0, sizeof(buf));
+> > +
+> > +	msg->version = 0;
+> 
+> not strictly needed since you do the memset above, I guess it's
+> fine to keep the assignment if you want to be explicit about the
+> version.
+
+Ack, let's remove them in next version.
+
+> > +static int keyboard_led_init_ec_pwm(struct platform_device *pdev)
+> > +{
+> > +	struct keyboard_led_private *private = platform_get_drvdata(pdev);
+> > +
+> > +	private->ec = dev_get_drvdata(pdev->dev.parent);
+> > +	if (!private->ec) {
+> > +		dev_err(&pdev->dev, "no parent EC device\n");
+> > +		return -EINVAL;
+> > +	}
+> 
+> The only thing this 'init' function does is assigning private->ec. Wouldn't
+> it be clearer to do this directly in probe() from where callback is called?
+> It could be with the condition that the device as a DT node.
+
+No.  The probe() isn't aware of the device is from ACPI or OF.
+
+> Is it actually possible that the keyboard backlight device gets instantiated
+> if there is no EC parent?
+
+It shouldn't be but just in case.
+
+> > +static const struct keyboard_led_drvdata keyboard_led_drvdata_ec_pwm = {
+> > +	.init = keyboard_led_init_ec_pwm_null,
+> 
+> Is this really needed?
+> 
+> keyboard_led_probe() checks if .init is assigned before invoking the callback:
+> 
+> 	if (drvdata->init) {
+> 		error = drvdata->init(pdev);
+> 
+> The whole 'else' branch could be eliminated if .of_match_table of the driver
+> only is assigned when CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM is set. IMO that
+> would preferable over creating 'stubs'.
+
+CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM and CONFIG_OF are independent.  The stubs
+were created to avoid compile errors if CONFIG_OF=y but
+CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM=n.
+
+However, I just realized it could also have compile errors if CONFIG_OF=n and
+CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM=y.  The `keyboard_led_drvdata_ec_pwm` is
+unused.
+
+In any case, I agree with you.  Let's remove the stubs in next version.  I
+would use __maybe_unused for some of them.
