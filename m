@@ -2,134 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 10D4F52E6F9
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 10:10:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1516A52E70F
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 10:14:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346805AbiETIKm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 04:10:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55364 "EHLO
+        id S1346862AbiETIOu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 04:14:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232476AbiETIKk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 04:10:40 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0FDB8DDED
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 01:10:38 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id q130so8818594ljb.5
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 01:10:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=/Q2zXV+8LUjkYKDjIzBXp7BrDdbuagm69yyU6TmRueE=;
-        b=PnTRMGFE7BbPHDZAQyZ4YMlza6eW9Ev20ZOHkE79gI1JpTWLE4xJThgm/r5s9t239+
-         fHDAmNvNu0RfGPf9w+ld+P26yWOMR/vjnmPPjeMFv2cqoJhw2SVV9FcPacDaz7H8YUN1
-         0RVqysnTGJwd9fgie+/CoH1MMMRPjf0cVI+BIZoavWtshnVwunP2qywHHpkbzL3lmqfP
-         uUAnoytcdoPfEpWsQzE/u1MOLUmEpU/Wh0lq/7QsS8VZJzfEcth67c7QVTervg3EWohw
-         IPtNpV92Mgp1p954XRHrH6O+QoljU9RGkJEXuJABPnyt3aJ3Jt/RP3bcrPzxSUaONMv5
-         9D0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=/Q2zXV+8LUjkYKDjIzBXp7BrDdbuagm69yyU6TmRueE=;
-        b=mWxhnam89KzIbPfFhlh8clFkRHA3Wj1G9UM+wnr/6t3Dg0mnMZmY9EZA757H509P4Y
-         sUjxLNd2i9VQ2Bxpvdgu9wKeHbTj8+2xs6dRuV8o6MFeRP3wKoRTvG5oy7r+9kb70TOT
-         nisPoMDWF/bqwlmMYJhLKbdmKH1U7d7OG0kT8TI6NCTodTVlD+4BdjDecVbfXN8fdMtk
-         UQc+O/DUmy8WEVtwcEWwRaW3J/5ocKzOQe8hDiVV//YMbQYpS5VxocCnEp5P6wWq5G2z
-         y60yS9zApidKdFkp+4OqFbTwW1pyGCHOtPBQS3wbxHfEZJmRVyE5C+4fdYhqSlnUpe4U
-         w6Fg==
-X-Gm-Message-State: AOAM531Kmwmvu+SRHbpsE1IgsaMPrRRpRuwE7In2FW2C75hu6IoGRl7Q
-        CXOdRCvlxLEeTbg3Xlc1yXFMMw==
-X-Google-Smtp-Source: ABdhPJzOxCXf5B4f0uotUCSQeT7IL0G63fQ0rGQ3FRjBwXyQY1KqTrYwI6Xi3xuur/4LN/BEusNRvw==
-X-Received: by 2002:a2e:391c:0:b0:253:c3e8:8e79 with SMTP id g28-20020a2e391c000000b00253c3e88e79mr4694809lja.304.1653034237150;
-        Fri, 20 May 2022 01:10:37 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id d25-20020ac24c99000000b00477b624c0a8sm565749lfl.180.2022.05.20.01.10.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 May 2022 01:10:36 -0700 (PDT)
-Message-ID: <40562324-8d15-6dd6-46db-053f65b030b6@linaro.org>
-Date:   Fri, 20 May 2022 10:10:35 +0200
+        with ESMTP id S1346876AbiETIOs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 04:14:48 -0400
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BF3B1271A7;
+        Fri, 20 May 2022 01:14:45 -0700 (PDT)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id F389D60011;
+        Fri, 20 May 2022 08:14:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1653034484;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Bc7UGMYsnzw6kppIUMYQ6w3HCbQTV2JavDJn16CiLWs=;
+        b=B3UPGYHh/MFenN+SGYf42FlOzx1XBlBg+yOYxWDfKkF3peYwAzFCj8+jh8dj9OOugTZS9a
+        7IpKbPkpoGCWCdl1mDB7DMoyBOotILQg7QjubU/5BS57OV30rBaPv7/u91ciPlP88XAglH
+        wRc82rWorsEitq1QkWybn3v8GSnAtb/I1Z4VizY90K04gavHrF+KYRFw2L0tv/d3B6DC6l
+        gmgpVbR3Nvj+7kAOVSTtXV/xkvRJYqGG1XZll1nDPDesoOPRxHCyYcZAixxftekJUeS3E6
+        ZL4c0eVztlulCSceOf3yJWY4gSQy5k7W8QHX8qdiYYQ3rzw1jS0Po8bxis6eCA==
+Date:   Fri, 20 May 2022 10:13:32 +0200
+From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>,
+        =?UTF-8?B?TWlxdcOobA==?= Raynal <miquel.raynal@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>
+Subject: Re: [PATCH net-next v5 11/13] ARM: dts: r9a06g032: describe GMAC2
+Message-ID: <20220520101332.0905739f@fixe.home>
+In-Reply-To: <CAMuHMdUJpNSyX0qK64+W1G6P1S-78mb_+D0-w3kHOFY3VVkANQ@mail.gmail.com>
+References: <20220519153107.696864-1-clement.leger@bootlin.com>
+        <20220519153107.696864-12-clement.leger@bootlin.com>
+        <CAMuHMdUJpNSyX0qK64+W1G6P1S-78mb_+D0-w3kHOFY3VVkANQ@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v2] dt-bindings: serial: mtk-uart: Convert txt to
- json-schema
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        gregkh@linuxfoundation.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, linux-serial@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20220519152329.55028-1-angelogioacchino.delregno@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220519152329.55028-1-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/05/2022 17:23, AngeloGioacchino Del Regno wrote:
-> Convert the mtk-uart documentation from freeform text to a json-schema.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
-> 
-> v2: Changed to also accept just "mediatek,mt6577-uart" as compatible.
-> 
-> 
->  .../bindings/serial/mediatek,uart.yaml        | 121 ++++++++++++++++++
->  .../devicetree/bindings/serial/mtk-uart.txt   |  59 ---------
->  2 files changed, 121 insertions(+), 59 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/serial/mediatek,uart.yaml
->  delete mode 100644 Documentation/devicetree/bindings/serial/mtk-uart.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/mediatek,uart.yaml b/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
-> new file mode 100644
-> index 000000000000..7929aa123487
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
-> @@ -0,0 +1,121 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/serial/mediatek,uart.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek Universal Asynchronous Receiver/Transmitter (UART)
-> +
-> +maintainers:
-> +  - Matthias Brugger <matthias.bgg@gmail.com>
-> +
-> +allOf:
-> +  - $ref: serial.yaml#
-> +
-> +description: |+
+Le Fri, 20 May 2022 09:18:58 +0200,
+Geert Uytterhoeven <geert@linux-m68k.org> a =C3=A9crit :
 
-No need for |+
+> Hi Cl=C3=A9ment
+>=20
+> On Thu, May 19, 2022 at 5:32 PM Cl=C3=A9ment L=C3=A9ger <clement.leger@bo=
+otlin.com> wrote:
+> > RZ/N1 SoC includes two MAC named GMACx that are compatible with the
+> > "snps,dwmac" driver. GMAC1 is connected directly to the MII converter
+> > port 1. GMAC2 however can be used as the MAC for the switch CPU
+> > management port or can be muxed to be connected directly to the MII
+> > converter port 2. This commit add description for the GMAC2 which will
+> > be used by the switch description.
+> >
+> > Signed-off-by: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com> =20
+>=20
+> Thanks for your patch!
+>=20
+> > --- a/arch/arm/boot/dts/r9a06g032.dtsi
+> > +++ b/arch/arm/boot/dts/r9a06g032.dtsi
+> > @@ -200,6 +200,23 @@ nand_controller: nand-controller@40102000 {
+> >                         status =3D "disabled";
+> >                 };
+> >
+> > +               gmac2: ethernet@44002000 {
+> > +                       compatible =3D "snps,dwmac"; =20
+>=20
+> Does this need an SoC-specific compatible value?
 
-> +  The MediaTek UART is based on the basic 8250 UART and compatible
-> +  with 16550A, with enhancements for high speed baud rates and
-> +  support for DMA.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
+Indeed, it might be useful to introduce a specific SoC compatible since
+in a near future, there might be some specific support for that gmac.
+Here is an overview of the gmac connection on the SoC:
 
-This is just single item, so no items.
+                                          =E2=94=8C=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90   =E2=94=
+=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=90
+                                          =E2=94=82         =E2=94=82   =E2=
+=94=82          =E2=94=82
+                                          =E2=94=82  GMAC2  =E2=94=82   =E2=
+=94=82  GMAC1   =E2=94=82
+                                          =E2=94=82         =E2=94=82   =E2=
+=94=82          =E2=94=82
+                                          =E2=94=94=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=AC=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98   =E2=94=
+=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=AC=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=98
+                                              =E2=94=82               =E2=
+=94=82
+                                              =E2=94=82               =E2=
+=94=82
+                                              =E2=94=82               =E2=
+=94=82
+                                         =E2=94=8C=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=96=BC=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=90        =E2=94=82
+                                         =E2=94=82           =E2=94=82     =
+   =E2=94=82
+            =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=A4  SWITCH   =E2=94=
+=82        =E2=94=82
+            =E2=94=82                            =E2=94=82           =E2=94=
+=82        =E2=94=82
+            =E2=94=82          =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=B4=E2=94=80=E2=94=AC=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=AC=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=98        =E2=94=82
+            =E2=94=82          =E2=94=82            =E2=94=8C=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98    =E2=94=82           =
+  =E2=94=82
+            =E2=94=82          =E2=94=82            =E2=94=82           =E2=
+=94=82             =E2=94=82
+       =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=96=BC=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=96=BC=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=96=BC=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=96=BC=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=96=BC=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=90
+       =E2=94=82                      MII Converter                        =
+=E2=94=82
+       =E2=94=82                                                           =
+=E2=94=82
+       =E2=94=82                                                           =
+=E2=94=82
+       =E2=94=82 port 1      port 2       port 3      port 4       port 5  =
+=E2=94=82
+       =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=98
 
-> +          - const: mediatek,mt6577-uart
+As you can see, the GMAC1 is directly connected to MIIC converter and
+thus will need a "pcs-handle" property to point on the MII converter
+port whereas the GMAC2 is directly connected to the switch in GMII.
 
-Best regards,
-Krzysztof
+Is "renesas,r9a06g032-gmac2", "renesas,rzn1-switch-gmac2" looks ok for
+you for this one ?
+
+Thanks,
+
+Cl=C3=A9ment
+
+>=20
+> > +                       reg =3D <0x44002000 0x2000>;
+> > +                       interrupt-parent =3D <&gic>;
+> > +                       interrupts =3D <GIC_SPI 37
+> > IRQ_TYPE_LEVEL_HIGH>,
+> > +                                    <GIC_SPI 39
+> > IRQ_TYPE_LEVEL_HIGH>,
+> > +                                    <GIC_SPI 38
+> > IRQ_TYPE_LEVEL_HIGH>;
+> > +                       interrupt-names =3D "macirq", "eth_wake_irq",
+> > "eth_lpi";
+> > +                       clock-names =3D "stmmaceth";
+> > +                       clocks =3D <&sysctrl R9A06G032_HCLK_GMAC1>; =20
+>=20
+> Missing "power-domains", also in the DT bindings.
+> The driver already uses Runtime PM.
+
+Ok,I'll add that to the DT and modify the DWMAC bindings.
+
+>=20
+> > +                       snps,multicast-filter-bins =3D <256>;
+> > +                       snps,perfect-filter-entries =3D <128>;
+> > +                       tx-fifo-depth =3D <2048>;
+> > +                       rx-fifo-depth =3D <4096>;
+> > +                       status =3D "disabled";
+> > +               };
+> > +
+> >                 eth_miic: eth-miic@44030000 {
+> >                         compatible =3D "renesas,r9a06g032-miic",
+> > "renesas,rzn1-miic"; #address-cells =3D <1>; =20
+>=20
+> Gr{oetje,eeting}s,
+>=20
+>                         Geert
+>=20
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 --
+> geert@linux-m68k.org
+>=20
+> In personal conversations with technical people, I call myself a
+> hacker. But when I'm talking to journalists I just say "programmer"
+> or something like that. -- Linus Torvalds
+
+
+
+--=20
+Cl=C3=A9ment L=C3=A9ger,
+Embedded Linux and Kernel engineer at Bootlin
+https://bootlin.com
