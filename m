@@ -2,195 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5828252EA7F
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 13:08:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B108C52EA93
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 13:16:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348408AbiETLIq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 07:08:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40386 "EHLO
+        id S1346859AbiETLQO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 07:16:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348381AbiETLIn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 07:08:43 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B01945E158;
-        Fri, 20 May 2022 04:08:42 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id h11so9192792eda.8;
-        Fri, 20 May 2022 04:08:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:subject:to:cc:message-id:in-reply-to:references
-         :mime-version;
-        bh=wlQFcAca27d557iyLHKZteGlwX1770hELz16/xPa+8Q=;
-        b=bklKJ6UXW0xCPulf0dQx92suPVOMuz5yaRi7JTRNFJ7r4rIggcoMihm4zRWqbP8F5x
-         9m3fANlOUQwSl7ioBZzNZBTs5jfsrLLwTTR96TwMQr1Mcat07nhwNMTja/igVl+wL/kQ
-         PH03npVCT599dBx5BJe6bOQmfUACCoPKRfWG/44qMo+V3RAXVEl4WjxJdT17n67vwB7k
-         ojWj8SNTvlWzIw/suxss3I4oPViyocM9sBbm3OaQKx8qi6TKMHOf9l5rPiUJYrwwcfsF
-         x0G5lNy5dV17oAX2BbBEdNMK0PNrzNiR3amGgoRqnc8V78uLRpdziYwemlzLMi1w78cT
-         703w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:subject:to:cc:message-id:in-reply-to
-         :references:mime-version;
-        bh=wlQFcAca27d557iyLHKZteGlwX1770hELz16/xPa+8Q=;
-        b=5xi5RGOTyk3rFoUncNC9yx7x11QFtrS+9Ym8KY7X1BXKg6kRaU3+eSZxPkv1Q6lDzx
-         r03oUWw/JlRNxaN5II3HoP0RHldwtyZmDwnypqmbyLH8rLCqnWPkThcHVTu0b7/g2cx8
-         bElBUC1/scZZGng4ogZtIuNso53XQDHxZay102Au9ICMAvbgfmK5Ol9TjiBYZ7yXY9x8
-         obc0lYXW90Jv7G8G00Io66bgL1GVdc1H0GZukYSFiLxoONbepD2trmM6yUBdENvsh34V
-         CTTYiqPt603z9mE6gtNDqOtUcP0ShFl7Rus8ptSnvl7pDufG9t0EvbsEp6o7pYe1nodr
-         8Szg==
-X-Gm-Message-State: AOAM531HXPgFXs5569sTzFmP+N6OA4lTb7HxT4AvhGTuhGuPyOCT6Aon
-        NyMpsPA3YcgUkmBH5IRcbneGUoWGQl3FoTFN
-X-Google-Smtp-Source: ABdhPJxf/pqeax60rE9s5Nx9mijIV86CCyBP/x+MpqXmCQE5BL3CUFZiZs7lK9NHw5gJl382GO8pjA==
-X-Received: by 2002:aa7:d911:0:b0:42a:af69:e167 with SMTP id a17-20020aa7d911000000b0042aaf69e167mr10106367edr.54.1653044921181;
-        Fri, 20 May 2022 04:08:41 -0700 (PDT)
-Received: from yassine-HP ([2001:1670:c:db50:2f51:85b4:f668:c64f])
-        by smtp.gmail.com with ESMTPSA id eo20-20020a1709069b1400b006f3ef214e58sm3038018ejc.190.2022.05.20.04.08.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 May 2022 04:08:40 -0700 (PDT)
-Date:   Fri, 20 May 2022 15:08:26 +0400
-From:   Yassine Oudjana <yassine.oudjana@gmail.com>
-Subject: Re: [PATCH v2 4/4] clk: mediatek: Add drivers for MediaTek MT6735
- main clock drivers
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Miles Chen <miles.chen@mediatek.com>, bgolaszewski@baylibre.com,
-        chun-jie.chen@mediatek.com, devicetree@vger.kernel.org,
-        ikjn@chromium.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        matthias.bgg@gmail.com, mturquette@baylibre.com,
-        p.zabel@pengutronix.de, robh+dt@kernel.org, sam.shih@mediatek.com,
-        sboyd@kernel.org, tinghan.shen@mediatek.com, weiyi.lu@mediatek.com,
-        wenst@chromium.org, y.oudjana@protonmail.com,
-        ~postmarketos/upstreaming@lists.sr.ht
-Message-Id: <2MH6CR.16DFWCVHBCV@gmail.com>
-In-Reply-To: <c7b98ee4-cd4f-d7b7-726d-1acd4fafd50a@collabora.com>
-References: <NJC6CR.M4CF312LSXXV1@gmail.com>
-        <20220520093501.28758-1-miles.chen@mediatek.com>
-        <c7b98ee4-cd4f-d7b7-726d-1acd4fafd50a@collabora.com>
-X-Mailer: geary/40.0
+        with ESMTP id S1348456AbiETLQD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 07:16:03 -0400
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ECA21928D
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 04:15:57 -0700 (PDT)
+Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20220520111551epoutp0459466e72e878662bb2f9a788159f40f0~wy-1ISgXW0957109571epoutp04x
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 11:15:51 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20220520111551epoutp0459466e72e878662bb2f9a788159f40f0~wy-1ISgXW0957109571epoutp04x
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1653045351;
+        bh=MbeoaHZGV9CVwGzNLBVOMT/bPCHrNf1iASg45DjTmJY=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=G6cA0yivuiVFAZJuOB09gjsQUnEVmoAp12sRhxUJ7TmkDJpOUhvumN4RAywnNDtb2
+         wkp41xl7kDjrm8Ntb1foB/CGUmxzKK4XqXbaYUmjHlaB4MxrV/YbtTfvcfd0ixCVLy
+         o1qldK7xMW5dcaGuF8t1tEgYuqBopaXp8n2yEBdw=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas2p2.samsung.com (KnoxPortal) with ESMTP id
+        20220520111551epcas2p2aca39289ccfa7c57ef2ba235b34e4b91~wy-0f_vds0977809778epcas2p2k;
+        Fri, 20 May 2022 11:15:51 +0000 (GMT)
+Received: from epsmges2p4.samsung.com (unknown [182.195.36.97]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4L4PKb6BRsz4x9Pv; Fri, 20 May
+        2022 11:15:47 +0000 (GMT)
+Received: from epcas2p4.samsung.com ( [182.195.41.56]) by
+        epsmges2p4.samsung.com (Symantec Messaging Gateway) with SMTP id
+        6F.E1.09694.36877826; Fri, 20 May 2022 20:15:47 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
+        20220520111546epcas2p27c26450593cfa1e1a81feda17a608d84~wy-wKP_3Y0977809778epcas2p2f;
+        Fri, 20 May 2022 11:15:46 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20220520111546epsmtrp268dd2522eec6e34ac2f09b7fc9690d30~wy-wJfoxb0556005560epsmtrp2g;
+        Fri, 20 May 2022 11:15:46 +0000 (GMT)
+X-AuditID: b6c32a48-495ff700000025de-a4-628778630585
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        EC.57.08924.26877826; Fri, 20 May 2022 20:15:46 +0900 (KST)
+Received: from KORCO082417 (unknown [10.229.8.121]) by epsmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20220520111546epsmtip22770db12b6988b6efaf91e60b7388a59~wy-v_W2PE2119721197epsmtip2B;
+        Fri, 20 May 2022 11:15:46 +0000 (GMT)
+From:   "Chanho Park" <chanho61.park@samsung.com>
+To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
+        "'Rob Herring'" <robh+dt@kernel.org>,
+        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>
+Cc:     "'Alim Akhtar'" <alim.akhtar@samsung.com>,
+        "'Chanwoo Choi'" <cw00.choi@samsung.com>,
+        "'Sam Protsenko'" <semen.protsenko@linaro.org>,
+        <linux-samsung-soc@vger.kernel.org>, <devicetree@vger.kernel.org>
+In-Reply-To: <13662a9c-19c6-cb3d-6073-c87835a3c95d@linaro.org>
+Subject: RE: [PATCH] arm64: dts: exynoautov9: add syscon reboot/reboot_mode
+ support
+Date:   Fri, 20 May 2022 20:15:46 +0900
+Message-ID: <000001d86c3a$f40179b0$dc046d10$@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQKfh8+LtggeRy9cOhE7Y4PFrR7r6QFietrKArVFK9qreKWsUA==
+Content-Language: ko
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprJJsWRmVeSWpSXmKPExsWy7bCmhW5yRXuSwaJ5uhYP5m1js7j+5Tmr
+        xfwj51gt+l48ZLbY+3oru8WM8/uYLFr3HmG3eN63j8mBw2PTqk42jzvX9rB59G1ZxejxeZNc
+        AEtUtk1GamJKapFCal5yfkpmXrqtkndwvHO8qZmBoa6hpYW5kkJeYm6qrZKLT4CuW2YO0BlK
+        CmWJOaVAoYDE4mIlfTubovzSklSFjPziElul1IKUnALzAr3ixNzi0rx0vbzUEitDAwMjU6DC
+        hOyMywc3shc846qYc6+TqYHxOEcXIyeHhICJxMul9xm7GLk4hAR2MEpM3/QPyvnEKHF+32VW
+        kCohgc+MEu/m1cF0nJ93hAWiaBejxNH3a5khnBeMEg2Nv9lAqtgE9CVedmxjBUmICCxmlDje
+        tY0NxGEWOMcoMeHbeiaQKk4BO4ljX5+B2cICoRIbDkwD62YRUJXom9cNZvMKWEq8/PuYCcIW
+        lDg58wkLiM0sIC+x/e0cZoibFCR+Pl0GdquIgJNE04XvjBA1IhKzO9vAzpMQmMohcW7WNagG
+        F4nb7yaxQdjCEq+Ob2GHsKUkPr/bCxUvllg66xMTRHMDo8Tlbb+gEsYSs561A23gANqgKbF+
+        lz6IKSGgLHHkFtRtfBIdh/+yQ4R5JTrahCAa1SUObJ/OAmHLSnTP+cw6gVFpFpLPZiH5bBaS
+        D2Yh7FrAyLKKUSy1oDg3PbXYqMAEHt3J+bmbGMFpVMtjB+Pstx/0DjEycTAeYpTgYFYS4WXM
+        bUkS4k1JrKxKLcqPLyrNSS0+xGgKDOuJzFKiyfnARJ5XEm9oYmlgYmZmaG5kamCuJM7rlbIh
+        UUggPbEkNTs1tSC1CKaPiYNTqoFpd+mH3X5ONtkLOvaeVbXVMJLrCXz78XPnsTeawQmZS784
+        2otbNef6q16+Nuvqryv+Jw5G3Pat+V+7Q/b61BRXk9jTR2bemO3KrX16886P5vvP3Lj06KV6
+        UfWuRc66W1vF2HdKvt8n3DN/T3v1jia/lofd2movKx581bnt+OW74vxUu3tL7Q2XlZ077cFz
+        8bHhDZbKE1VN95v32f6sWnxLn3UG+8qFSbHMhqoB+YmFaQcTnn0wSvdtPrflzdTuScHsr9uP
+        /+/17pPcs74vfKeVs8/trmXLo5PP6ehF9LzjPPZr86L5cydv+P0hPeP9zqiLN1d/2H/vxVfu
+        bAW7fe+6vi3t1EyKDMpRvnewOPxrrhJLcUaioRZzUXEiAFTa65wsBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmplkeLIzCtJLcpLzFFi42LZdlhJXjepoj3J4NxmeYsH87axWVz/8pzV
+        Yv6Rc6wWfS8eMlvsfb2V3WLG+X1MFq17j7BbPO/bx+TA4bFpVSebx51re9g8+rasYvT4vEku
+        gCWKyyYlNSezLLVI3y6BK+PywY3sBc+4Kubc62RqYDzO0cXIySEhYCJxft4Rli5GLg4hgR2M
+        Erd2/GWHSMhKPHu3A8oWlrjfcoQVougZo8SHlo2MIAk2AX2Jlx3bwBIiAosZJfZPusQKkmAW
+        uMQocfKaJ0THIUaJ1bv+gCU4Bewkjn19xgRiCwsESzz+1ssMYrMIqEr0zetmA7F5BSwlXv59
+        zARhC0qcnPmEBWKotsTTm0+hbHmJ7W/nMEOcpyDx8+kysPkiAk4STRe+M0LUiEjM7mxjnsAo
+        PAvJqFlIRs1CMmoWkpYFjCyrGCVTC4pz03OLDQuM8lLL9YoTc4tL89L1kvNzNzGCY0pLawfj
+        nlUf9A4xMnEwAj3JwawkwsuY25IkxJuSWFmVWpQfX1Sak1p8iFGag0VJnPdC18l4IYH0xJLU
+        7NTUgtQimCwTB6dUA1Pdwgy/MHnOXNaTjHp/IjZ07uf63a06o+/lhlUN/W9cF80znXeC12Qa
+        y9Py+DvPd2QoqAm6r0uN4k1o49gV8uFu/iR24V8X1HILVFc+VnH98axmvpGEdELa4VtON29o
+        s14uvxEzd8uOJys6lxx4eHPfV8vvX8redF1kKT8w/a7zjmlX6rkYGe2ObIjbylg8QUWdk6Fl
+        sePRW2bzj+s1RBTNvpKi/jogL3xjpl7fD/VO2a1TD57q3sXxueivhk7/CqYSmSzd/J36Hj/j
+        Vz8+2tIasEq5+M7uWS17Y67/2+26bbOh9PG/O3wP/1jkXxblJc4oOqFUb4LSf7MvXyO3lRQa
+        smy8yxgfIiA0ofjJ9RQlluKMREMt5qLiRABkosy2GAMAAA==
+X-CMS-MailID: 20220520111546epcas2p27c26450593cfa1e1a81feda17a608d84
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220520045124epcas2p12235472b7e9f7588003a7c8c238e8866
+References: <CGME20220520045124epcas2p12235472b7e9f7588003a7c8c238e8866@epcas2p1.samsung.com>
+        <20220520045210.55132-1-chanho61.park@samsung.com>
+        <13662a9c-19c6-cb3d-6073-c87835a3c95d@linaro.org>
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+> > diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
+> > b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
+> > index 0ce46ec5cdc3..d99e53406ee0 100644
+> > --- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
+> > +++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
+> > @@ -312,6 +312,22 @@ pinctrl_peric1: pinctrl@10830000 {
+> >  		pmu_system_controller: system-controller@10460000 {
+> >  			compatible = "samsung,exynos7-pmu", "syscon";
+> >  			reg = <0x10460000 0x10000>;
+> > +
+> > +			reboot: syscon-reboot {
+> > +				compatible = "syscon-reboot";
+> > +				regmap = <&pmu_system_controller>;
+> > +				offset = <0x3a00>; /* SYSTEM_CONFIGURATION */
+> > +				value = <0x2>;
+> > +				mask = <0x2>;
+> > +			};
+> > +
+> > +			reboot_mode: syscon-reboot-mode {
+> 
+> Node name: just "reboot-mode"
 
-On Fri, May 20 2022 at 12:26:25 +0200, AngeloGioacchino Del Regno 
-<angelogioacchino.delregno@collabora.com> wrote:
-> Il 20/05/22 11:35, Miles Chen ha scritto:
->> 
->>>> 
->>>> Thanks for submitting this patch.
->>>> 
->>>> I compare this with drivers/clk/mediatek/clk-mt7986-apmixed.c,
->>>> and other clk files are using macros to make the mtk_pll_data array
->>>> more readable.
->>> 
->>> I'd actually argue that macros make it less readable. While reading
->>> other drivers I had a lot of trouble figuring out which argument
->>> is which field of the struct, and had to constantly go back to the
->>> macro definitions and count arguments to find it. Having it this
->>> way, each value is labeled clearly with the field it's in. I think
->>> the tradeoff between line count and readability here is worth it.
->> 
->> It is easier for multiple developers to work together if we have a 
->> common style.
->> 
->> How do you think?
->> 
-> 
-> In my opinion, Yassine is definitely right about this one: unrolling 
-> these macros
-> will make the code more readable, even though this has the side 
-> effect of making
-> it bigger in the source code form (obviously, when compiled, it's 
-> going to be the
-> exact same size).
-> 
-> I wouldn't mind getting this clock driver in without the usage of 
-> macros, as much
-> as I wouldn't mind converting all of the existing drivers to 
-> open-code everything
-> instead of using macros that you have to find in various headers... 
-> this practice
-> was done in multiple drivers (clock or elsewhere), so I don't think 
-> that it would
-> actually be a bad idea to do it here on MediaTek too, even though I'm 
-> not aware of
-> any *rule* that may want us to do that: if you check across 
-> drivers/clk/*, there's
-> a big split in how drivers are made, where some are using macros 
-> (davinci, renesas,
-> samsung, sprd, etc), and some are not (bcm, sunxi-ng, qcom, tegra, 
-> versatile, etc),
-> so it's really "do it as you wish"...
-> 
-> ... *but:*
-> 
-> Apart from that, I also don't think that it is a good idea to convert 
-> the other
-> MTK clock drivers right now, as this would make the upstreaming of 
-> MediaTek clock
-> drivers harder for some of the community in this moment... especially 
-> when we look
-> at how many MTK SoCs are out there in the wild, and how many we have 
-> upstream:
-> something like 10% of them, or less.
-> 
-> I see the huge benefit of having a bigger community around MediaTek 
-> platforms as
-> that's beneficial to get a way better support and solidity for all 
-> SoCs as they
-> are sharing the same drivers and same framework, and expanding the 
-> support to more
-> of them will only make it better with highly valuable community 
-> contributions.
-> 
-> 
-> That said, Yassine, you should've understood that you have my full 
-> support on
-> unrolling these macros - but it's not time to do that yet: you 
-> definitely know
-> that MediaTek clock drivers are going through a big cleanup phase 
-> which is, at
-> this point, unavoidable... if we are able to get the aid of scripts 
-> (cocci and
-> others), that will make our life easier in this cleanup, and will 
-> also make us
-> able to perform the entire cleanup with less effort and in less 
-> overall time.
-> 
-> With that, I'm sad but I have to support Miles' decision on this one, 
-> and I also
-> have to ask you to use macros in this driver.
-> 
-> 
-> I am sure - and it is my wish - to see MediaTek clock drivers 
-> open-coding stuff
-> instead of using macros, but that's something for the future - which 
-> will happen
-> after the more important cleanups.
-> 
-> After all, it will be just about running "gcc -E xxxx.c" and 
-> copy-pasting the
-> unrolled macros to the clock drivers, which will be pretty fast and 
-> straightforward.
-> 
-> Sorry for the wall of text, by the way.
-> 
-> Cheers,
-> Angelo
+Okay. I'll just put "reboot-mode {" without the label.
 
-Fair enough. I'll switch to macros in the next version.
+> 
+> > +				compatible = "syscon-reboot-mode";
+> > +				offset = <0x810>; /* SYSIP_DAT0 */
+> > +				mode-bootloader = <0xfc>;
+> > +				mode-fastboot = <0xfa>;
+> > +				mode-recovery = <0xff>;
+> 
+> These are magic values understood by firmware, so please add a header for
+> them (something like include/dt-bindings/soc/rockchip,boot-mode.h
+> but with some prefixes like EXYNOSAUTOV9_BOOT_FASTBOOT))
 
-Thanks,
-Yassine
+Okay. I'll add samsung,boot-mode.h and put them with the prefix.
 
+Best Regards,
+Chanho Park
 
