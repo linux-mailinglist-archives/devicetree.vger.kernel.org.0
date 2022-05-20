@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8E1C52EFA5
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 17:47:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5C7C52EF92
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 17:45:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351088AbiETPpu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 11:45:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42756 "EHLO
+        id S1351054AbiETPpo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 11:45:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351057AbiETPpk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 11:45:40 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2ED8F1796F5
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 08:45:27 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id nr2-20020a17090b240200b001df2b1bfc40so11805124pjb.5
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 08:45:27 -0700 (PDT)
+        with ESMTP id S1351064AbiETPpl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 11:45:41 -0400
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7827C179970
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 08:45:28 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id ev18so8380525pjb.4
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 08:45:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
         h=subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding:cc:from:to;
-        bh=VE2vUXFOy2mJkujHyFNt0HPmwfcDu8WrrrqGHwab5YA=;
-        b=tuEF1onridrYFom6GHGoVmHMvyrHQV/Jf6B0yeiPYn43PWuCZ4txpDmw1dqIEPI397
-         t5iPNCMjW7PoX+tc8jbAUuH+BtaBGhp84qL41HRaB+DxQsJQC5EubyjCwjzedw8vRa0M
-         DOZewV7xP26BcxzG8nNBVz/1ZAHv+yYAEcqmwxfbbXeF+P45JlXSS2N9YAx08Gm4/53w
-         jkQMCSJDbP6WMAnG9MJccNFyCBJ6Bz0WlkimSCCLCsYlwwcNmedJ2b3qjgTg30qXLW6B
-         y3T1P3I694ihOLCY/fCBx+g/6qUP2n1uyx7/SrJKVy53gR9qE31qHY2VU7Q+nBgZveBu
-         z18Q==
+        bh=U/MW6rSbN5zBgusIBhKQzePh9cnp8uaNotWlLIHTUsY=;
+        b=JQyzbPvORX1IKsTlWc0qkUHSKntueefkGU8dfB3thfUfkSYRjG91vooo6vChrw9Bf7
+         9Z5XY/rjVuwzsrlkQA5pcgEYx+QnJKtt5nmCn9DhLAdeLEqucw8pOG8J12o96ngdNp5g
+         itgIArPjfmV3PmE0JpQd4a+cAR95KxK2BRwn0m7OypbO/75j+MGw0tQDgXO551FebRyN
+         04wS/DqNscTUoNHtWgoitV/Yu0wzpeaqdS7LdRbwE65wXveDL69cHyxRiC2N2xewmWjM
+         UTbLdEVcVlOT/o6zIiNUwcdDEW8akpNDod5tvoD9ZEXINE7/RJScDiChs8rEREGK9MC4
+         rYKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding:cc:from:to;
-        bh=VE2vUXFOy2mJkujHyFNt0HPmwfcDu8WrrrqGHwab5YA=;
-        b=HzCRT+FPX5kkZssKshaKqGReIboLZmza4D1U/W+CwZDN7gvR7/v+e4e1o/Q0CdRZ0z
-         W8uOuQGtMM0HMYRot87fbDH9uNs9xGvxHbM2PCbViMQOiVx5W+c8qmJg3joidiMDu7cd
-         4nOCW+d4BRynZqHfearU1f61Jj+UeEP+VsZoWHlwCrn39SstgtuDfjRBPIP37wuvFDbm
-         VOo0rjM98+t8jet8FDLwoADbXZUOVbCG7N4By5A+JEiQiuU7wruV/4TCeXEen3rfnkAi
-         wLgqrQ3yHcqyrUL8hXzRjM20+U/npa36t+iVOLSaQwr7dCT2pi6BfaKOr6m7nLHfcz5G
-         iswQ==
-X-Gm-Message-State: AOAM530qiX7WX7SrrDbWLEjHALQo0rT8rNIqb57yb5DyJAgv9xgEIix5
-        Hp72L+VRRwuuOh8WS6bemQzeyQ==
-X-Google-Smtp-Source: ABdhPJxutQunHuqBnSDi1AyU5l++uXDUp12EI7aTjzru4LJnptzsRLuteBJZfMF6zOk21wIEpEwfSA==
-X-Received: by 2002:a17:90b:4b02:b0:1df:d622:dd07 with SMTP id lx2-20020a17090b4b0200b001dfd622dd07mr10203411pjb.160.1653061526701;
-        Fri, 20 May 2022 08:45:26 -0700 (PDT)
+        bh=U/MW6rSbN5zBgusIBhKQzePh9cnp8uaNotWlLIHTUsY=;
+        b=bZthdkI4oGmna0ZSiwhO3blaQNWx1wUwOSWkCFC33HCW39Mim3njuajEQuRw/6ADDO
+         UJBZnFgckAOqz/2cG+OfJ7vvrW8M2i9NU7R6hyJxQTDd9eDkf9mOCsSj/sSXWmAU4xrK
+         rCYc8cn0Xt27PNl6G+I3tRS4seWNv1IFCKGFFMmluF4Thanb72xk3E2VwNWk7VlU+wRB
+         rZRKQdOkF+kNkXThBi7odU2bQiByxxB+Q9wtKXn9GL3qXarYjJ1EgychJIw9JEVgdFGT
+         csw5MVB8/XO+K1VZ1e4UaFvJwkc4vaitcfcMeQNwyOMVmBXusza7Eh8trN/tAPwmqr88
+         EHrg==
+X-Gm-Message-State: AOAM5337nIZHDUOSEqHHyaQJHMzAqitKjNwjvvZAfWp9NO6pwsHJT+C/
+        FSBHkdhspXxP7Ec0FtagIAbSHg==
+X-Google-Smtp-Source: ABdhPJxcVY/NCwkycro4XerYgWAVjh079yzImy34/DKN8DSXqYHS1KYB9wqnCW7AFPycA9lFB2mEsg==
+X-Received: by 2002:a17:902:7788:b0:15e:ec55:2cfd with SMTP id o8-20020a170902778800b0015eec552cfdmr10405450pll.113.1653061527803;
+        Fri, 20 May 2022 08:45:27 -0700 (PDT)
 Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
-        by smtp.gmail.com with ESMTPSA id a12-20020a62bd0c000000b0050dc7628188sm1982140pff.98.2022.05.20.08.45.26
+        by smtp.gmail.com with ESMTPSA id p11-20020a17090a4f0b00b001df78f27c10sm2091006pjh.42.2022.05.20.08.45.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 May 2022 08:45:26 -0700 (PDT)
-Subject: [PATCH v1 3/5] RISC-V: kexec: Use Elf64 on 64-bit targets
-Date:   Fri, 20 May 2022 08:44:29 -0700
-Message-Id: <20220520154430.18593-4-palmer@rivosinc.com>
+        Fri, 20 May 2022 08:45:27 -0700 (PDT)
+Subject: [PATCH v1 4/5] RISC-V: purgatory: Use XLEN-length loads to support rv32
+Date:   Fri, 20 May 2022 08:44:30 -0700
+Message-Id: <20220520154430.18593-5-palmer@rivosinc.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220520154430.18593-1-palmer@rivosinc.com>
 References: <20220520154430.18593-1-palmer@rivosinc.com>
@@ -78,40 +78,45 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Palmer Dabbelt <palmer@rivosinc.com>
 
-Most of the Elf macros automatically select the correct Elf type, this
-converts the one explicit Elf64 usage to depend on XLEN.
+This uses an explicit "ld" to load up target address, which dosn't work
+on rv32.  Convert it to a REG_L macro, like everywhere else.
 
 Signed-off-by: Palmer Dabbelt <palmer@rivosinc.com>
 ---
- arch/riscv/kernel/elf_kexec.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ arch/riscv/purgatory/entry.S | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/arch/riscv/kernel/elf_kexec.c b/arch/riscv/kernel/elf_kexec.c
-index 9cb85095fd45..4532e3cf17a5 100644
---- a/arch/riscv/kernel/elf_kexec.c
-+++ b/arch/riscv/kernel/elf_kexec.c
-@@ -342,6 +342,12 @@ static void *elf_kexec_load(struct kimage *image, char *kernel_buf,
- #define CLEAN_IMM(type, x) \
- 	((~ENCODE_##type##_IMM((uint64_t)(-1))) & (x))
+diff --git a/arch/riscv/purgatory/entry.S b/arch/riscv/purgatory/entry.S
+index 0194f4554130..71c50fef051c 100644
+--- a/arch/riscv/purgatory/entry.S
++++ b/arch/riscv/purgatory/entry.S
+@@ -8,6 +8,8 @@
+  *
+  */
  
-+#if __riscv_xlen == 32
-+#define ELFN(T) ELF32 ## T
-+#else
-+#define ELFN(T) ELF64 ## T
-+#endif
++#include <asm/asm.h>
 +
- int arch_kexec_apply_relocations_add(struct purgatory_info *pi,
- 				     Elf_Shdr *section,
- 				     const Elf_Shdr *relsec,
-@@ -367,7 +373,7 @@ int arch_kexec_apply_relocations_add(struct purgatory_info *pi,
- 		void *loc;		/* tmp location to modify */
+ .macro	size, sym:req
+ 	.size \sym, . - \sym
+ .endm
+@@ -26,7 +28,7 @@ purgatory_start:
+ 	/* Start new image. */
+ 	mv	a0, s0
+ 	mv	a1, s1
+-	ld	a2, riscv_kernel_entry
++	REG_L	a2, riscv_kernel_entry
+ 	jr	a2
  
- 		sym = (void *)pi->ehdr + symtab->sh_offset;
--		sym += ELF64_R_SYM(relas[i].r_info);
-+		sym += ELFN(_R_SYM)(relas[i].r_info);
+ size purgatory_start
+@@ -41,7 +43,7 @@ size purgatory_start
  
- 		if (sym->st_name)
- 			name = strtab + sym->st_name;
+ .globl riscv_kernel_entry
+ riscv_kernel_entry:
+-	.quad	0
++	REG_ASM	0
+ size riscv_kernel_entry
+ 
+ .end
 -- 
 2.34.1
 
