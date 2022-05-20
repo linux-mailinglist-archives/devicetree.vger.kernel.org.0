@@ -2,119 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B108C52EA93
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 13:16:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5315952EAD9
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 13:32:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346859AbiETLQO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 07:16:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49806 "EHLO
+        id S1348541AbiETLb5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 07:31:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348456AbiETLQD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 07:16:03 -0400
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ECA21928D
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 04:15:57 -0700 (PDT)
-Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20220520111551epoutp0459466e72e878662bb2f9a788159f40f0~wy-1ISgXW0957109571epoutp04x
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 11:15:51 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20220520111551epoutp0459466e72e878662bb2f9a788159f40f0~wy-1ISgXW0957109571epoutp04x
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1653045351;
-        bh=MbeoaHZGV9CVwGzNLBVOMT/bPCHrNf1iASg45DjTmJY=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=G6cA0yivuiVFAZJuOB09gjsQUnEVmoAp12sRhxUJ7TmkDJpOUhvumN4RAywnNDtb2
-         wkp41xl7kDjrm8Ntb1foB/CGUmxzKK4XqXbaYUmjHlaB4MxrV/YbtTfvcfd0ixCVLy
-         o1qldK7xMW5dcaGuF8t1tEgYuqBopaXp8n2yEBdw=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas2p2.samsung.com (KnoxPortal) with ESMTP id
-        20220520111551epcas2p2aca39289ccfa7c57ef2ba235b34e4b91~wy-0f_vds0977809778epcas2p2k;
-        Fri, 20 May 2022 11:15:51 +0000 (GMT)
-Received: from epsmges2p4.samsung.com (unknown [182.195.36.97]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4L4PKb6BRsz4x9Pv; Fri, 20 May
-        2022 11:15:47 +0000 (GMT)
-Received: from epcas2p4.samsung.com ( [182.195.41.56]) by
-        epsmges2p4.samsung.com (Symantec Messaging Gateway) with SMTP id
-        6F.E1.09694.36877826; Fri, 20 May 2022 20:15:47 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
-        20220520111546epcas2p27c26450593cfa1e1a81feda17a608d84~wy-wKP_3Y0977809778epcas2p2f;
-        Fri, 20 May 2022 11:15:46 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20220520111546epsmtrp268dd2522eec6e34ac2f09b7fc9690d30~wy-wJfoxb0556005560epsmtrp2g;
-        Fri, 20 May 2022 11:15:46 +0000 (GMT)
-X-AuditID: b6c32a48-495ff700000025de-a4-628778630585
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        EC.57.08924.26877826; Fri, 20 May 2022 20:15:46 +0900 (KST)
-Received: from KORCO082417 (unknown [10.229.8.121]) by epsmtip2.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20220520111546epsmtip22770db12b6988b6efaf91e60b7388a59~wy-v_W2PE2119721197epsmtip2B;
-        Fri, 20 May 2022 11:15:46 +0000 (GMT)
-From:   "Chanho Park" <chanho61.park@samsung.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-        "'Rob Herring'" <robh+dt@kernel.org>,
-        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "'Alim Akhtar'" <alim.akhtar@samsung.com>,
-        "'Chanwoo Choi'" <cw00.choi@samsung.com>,
-        "'Sam Protsenko'" <semen.protsenko@linaro.org>,
-        <linux-samsung-soc@vger.kernel.org>, <devicetree@vger.kernel.org>
-In-Reply-To: <13662a9c-19c6-cb3d-6073-c87835a3c95d@linaro.org>
-Subject: RE: [PATCH] arm64: dts: exynoautov9: add syscon reboot/reboot_mode
- support
-Date:   Fri, 20 May 2022 20:15:46 +0900
-Message-ID: <000001d86c3a$f40179b0$dc046d10$@samsung.com>
+        with ESMTP id S1348496AbiETLby (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 07:31:54 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E39E031220
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 04:31:50 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id ck4so10786218ejb.8
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 04:31:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0NvptFqrj7j0InVdvvMmgqzBzN84J9LRB794rQxkFdY=;
+        b=re4Sm8tWAvFHp6bKgAYMf09Z79Kgi3OEdhOIiBZ7/Rn2QXbgu5Ly14y4/nQN7Y/aTo
+         VlgbB9yG7Rlr2cuoabCyBxc2bGDLVKK0lXBLnASl6zsHCcOeA+1KzIBeqFsR+y75i5XZ
+         XvFFiPa9GJ2QyyaAdSmJuFi5RyYukwsFD78F77Gu/KxBhoXO8QeL/xhxXqgh8n2pVQ16
+         5uSsdoWXuRrwj+2ip8smJzRExeR9DRqgQ7nZOdTto/19ei6AXbORk/Mx4Jr1TH0FheIZ
+         Rjk53cTk2OReyJUGfCv97XHsZ5d+q5q5c0jA2xxlOnKUomCD8mRuslxc9zsWStq2ZrCv
+         ptCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0NvptFqrj7j0InVdvvMmgqzBzN84J9LRB794rQxkFdY=;
+        b=pBXEuKnkmQz6DqpfkAm3vOn92NbEKWoN9xj6XRCXK6c/JA5ywjEv/xYnJbyaXdtudR
+         R4I0phKmIQLlLNM2nnUj94DHBaRQuwckD6oi0CD5gLesoph+/h9Jj5FEiPdA/Xwfi4+u
+         Db7PRa2U4mA8QqSecvD1jIUD15VIw3WXxwHC7xnAFo7Sxr6ngxsV1mAry3/IfhJQ7Hy9
+         U9lM8JLZ2l8RyQjFSdjK/SFE+/D2FBzUoPbC4ZcQxeqpZFYbQNFE8Wnt7LT8OHqRRmtS
+         PXZjEC2LkT4aCmHUXd7UOENlpIrfogmBkaSTIRHMJ65Y7vn/pZCDv7ekocyJtYr8/Ym6
+         kdOQ==
+X-Gm-Message-State: AOAM530nejYLQg8mjSDUcNO7o+nmJM2QWvhNUzmzK7NDrbVIpYTuJ8bs
+        pExy1neJ90yMuY+jXAbne1h6KdRdiCIdxuoLK5Jo0w==
+X-Google-Smtp-Source: ABdhPJyAADo7d4aXCmDNCVnTVXprJXf99iw8JPsCwtJN6tP2yH5Av5Yx22hVAD/QFIma8grUrwXZC/mCf6Av3T8PJbw=
+X-Received: by 2002:a17:907:6eab:b0:6fe:b5e2:7b0e with SMTP id
+ sh43-20020a1709076eab00b006feb5e27b0emr1053811ejc.736.1653046309443; Fri, 20
+ May 2022 04:31:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQKfh8+LtggeRy9cOhE7Y4PFrR7r6QFietrKArVFK9qreKWsUA==
-Content-Language: ko
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprJJsWRmVeSWpSXmKPExsWy7bCmhW5yRXuSwaJ5uhYP5m1js7j+5Tmr
-        xfwj51gt+l48ZLbY+3oru8WM8/uYLFr3HmG3eN63j8mBw2PTqk42jzvX9rB59G1ZxejxeZNc
-        AEtUtk1GamJKapFCal5yfkpmXrqtkndwvHO8qZmBoa6hpYW5kkJeYm6qrZKLT4CuW2YO0BlK
-        CmWJOaVAoYDE4mIlfTubovzSklSFjPziElul1IKUnALzAr3ixNzi0rx0vbzUEitDAwMjU6DC
-        hOyMywc3shc846qYc6+TqYHxOEcXIyeHhICJxMul9xm7GLk4hAR2MEpM3/QPyvnEKHF+32VW
-        kCohgc+MEu/m1cF0nJ93hAWiaBejxNH3a5khnBeMEg2Nv9lAqtgE9CVedmxjBUmICCxmlDje
-        tY0NxGEWOMcoMeHbeiaQKk4BO4ljX5+B2cICoRIbDkwD62YRUJXom9cNZvMKWEq8/PuYCcIW
-        lDg58wkLiM0sIC+x/e0cZoibFCR+Pl0GdquIgJNE04XvjBA1IhKzO9vAzpMQmMohcW7WNagG
-        F4nb7yaxQdjCEq+Ob2GHsKUkPr/bCxUvllg66xMTRHMDo8Tlbb+gEsYSs561A23gANqgKbF+
-        lz6IKSGgLHHkFtRtfBIdh/+yQ4R5JTrahCAa1SUObJ/OAmHLSnTP+cw6gVFpFpLPZiH5bBaS
-        D2Yh7FrAyLKKUSy1oDg3PbXYqMAEHt3J+bmbGMFpVMtjB+Pstx/0DjEycTAeYpTgYFYS4WXM
-        bUkS4k1JrKxKLcqPLyrNSS0+xGgKDOuJzFKiyfnARJ5XEm9oYmlgYmZmaG5kamCuJM7rlbIh
-        UUggPbEkNTs1tSC1CKaPiYNTqoFpd+mH3X5ONtkLOvaeVbXVMJLrCXz78XPnsTeawQmZS784
-        2otbNef6q16+Nuvqryv+Jw5G3Pat+V+7Q/b61BRXk9jTR2bemO3KrX16886P5vvP3Lj06KV6
-        UfWuRc66W1vF2HdKvt8n3DN/T3v1jia/lofd2movKx581bnt+OW74vxUu3tL7Q2XlZ077cFz
-        8bHhDZbKE1VN95v32f6sWnxLn3UG+8qFSbHMhqoB+YmFaQcTnn0wSvdtPrflzdTuScHsr9uP
-        /+/17pPcs74vfKeVs8/trmXLo5PP6ehF9LzjPPZr86L5cydv+P0hPeP9zqiLN1d/2H/vxVfu
-        bAW7fe+6vi3t1EyKDMpRvnewOPxrrhJLcUaioRZzUXEiAFTa65wsBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmplkeLIzCtJLcpLzFFi42LZdlhJXjepoj3J4NxmeYsH87axWVz/8pzV
-        Yv6Rc6wWfS8eMlvsfb2V3WLG+X1MFq17j7BbPO/bx+TA4bFpVSebx51re9g8+rasYvT4vEku
-        gCWKyyYlNSezLLVI3y6BK+PywY3sBc+4Kubc62RqYDzO0cXIySEhYCJxft4Rli5GLg4hgR2M
-        Erd2/GWHSMhKPHu3A8oWlrjfcoQVougZo8SHlo2MIAk2AX2Jlx3bwBIiAosZJfZPusQKkmAW
-        uMQocfKaJ0THIUaJ1bv+gCU4Bewkjn19xgRiCwsESzz+1ssMYrMIqEr0zetmA7F5BSwlXv59
-        zARhC0qcnPmEBWKotsTTm0+hbHmJ7W/nMEOcpyDx8+kysPkiAk4STRe+M0LUiEjM7mxjnsAo
-        PAvJqFlIRs1CMmoWkpYFjCyrGCVTC4pz03OLDQuM8lLL9YoTc4tL89L1kvNzNzGCY0pLawfj
-        nlUf9A4xMnEwAj3JwawkwsuY25IkxJuSWFmVWpQfX1Sak1p8iFGag0VJnPdC18l4IYH0xJLU
-        7NTUgtQimCwTB6dUA1Pdwgy/MHnOXNaTjHp/IjZ07uf63a06o+/lhlUN/W9cF80znXeC12Qa
-        y9Py+DvPd2QoqAm6r0uN4k1o49gV8uFu/iR24V8X1HILVFc+VnH98axmvpGEdELa4VtON29o
-        s14uvxEzd8uOJys6lxx4eHPfV8vvX8redF1kKT8w/a7zjmlX6rkYGe2ObIjbylg8QUWdk6Fl
-        sePRW2bzj+s1RBTNvpKi/jogL3xjpl7fD/VO2a1TD57q3sXxueivhk7/CqYSmSzd/J36Hj/j
-        Vz8+2tIasEq5+M7uWS17Y67/2+26bbOh9PG/O3wP/1jkXxblJc4oOqFUb4LSf7MvXyO3lRQa
-        smy8yxgfIiA0ofjJ9RQlluKMREMt5qLiRABkosy2GAMAAA==
-X-CMS-MailID: 20220520111546epcas2p27c26450593cfa1e1a81feda17a608d84
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220520045124epcas2p12235472b7e9f7588003a7c8c238e8866
-References: <CGME20220520045124epcas2p12235472b7e9f7588003a7c8c238e8866@epcas2p1.samsung.com>
-        <20220520045210.55132-1-chanho61.park@samsung.com>
-        <13662a9c-19c6-cb3d-6073-c87835a3c95d@linaro.org>
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+References: <20220519211411.2200720-1-robh@kernel.org>
+In-Reply-To: <20220519211411.2200720-1-robh@kernel.org>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Fri, 20 May 2022 13:31:38 +0200
+Message-ID: <CAMRc=McjvTE27BMbN-_W+Fdd7CJcswZQYsB-4N8cj=WfAQ9QOQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: Fix properties without any type
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Kalle Valo <kvalo@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Brown <broonie@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Input <linux-input@vger.kernel.org>,
+        chrome-platform@lists.linux.dev,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>, linux-pci@vger.kernel.org,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        "open list:HARDWARE RANDOM NUMBER GENERATOR CORE" 
+        <linux-crypto@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-serial@vger.kernel.org,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -123,43 +96,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> > b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> > index 0ce46ec5cdc3..d99e53406ee0 100644
-> > --- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> > +++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> > @@ -312,6 +312,22 @@ pinctrl_peric1: pinctrl@10830000 {
-> >  		pmu_system_controller: system-controller@10460000 {
-> >  			compatible = "samsung,exynos7-pmu", "syscon";
-> >  			reg = <0x10460000 0x10000>;
-> > +
-> > +			reboot: syscon-reboot {
-> > +				compatible = "syscon-reboot";
-> > +				regmap = <&pmu_system_controller>;
-> > +				offset = <0x3a00>; /* SYSTEM_CONFIGURATION */
-> > +				value = <0x2>;
-> > +				mask = <0x2>;
-> > +			};
-> > +
-> > +			reboot_mode: syscon-reboot-mode {
-> 
-> Node name: just "reboot-mode"
+On Thu, May 19, 2022 at 11:14 PM Rob Herring <robh@kernel.org> wrote:
+>
+> Now that the schema tools can extract type information for all
+> properties (in order to decode dtb files), finding properties missing
+> any type definition is fairly trivial though not yet automated.
+>
+> Fix the various property schemas which are missing a type. Most of these
+> tend to be device specific properties which don't have a vendor prefix.
+> A vendor prefix is how we normally ensure a type is defined.
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../arm/hisilicon/controller/hip04-bootwrapper.yaml       | 5 +++--
+>  .../bindings/display/bridge/toshiba,tc358768.yaml         | 1 +
+>  .../devicetree/bindings/display/panel/panel-timing.yaml   | 5 +++++
+>  .../bindings/display/panel/raydium,rm67191.yaml           | 1 +
+>  .../bindings/display/panel/samsung,s6e8aa0.yaml           | 1 +
+>  .../devicetree/bindings/gpio/fairchild,74hc595.yaml       | 1 +
+>  .../devicetree/bindings/input/google,cros-ec-keyb.yaml    | 1 +
+>  .../devicetree/bindings/input/matrix-keymap.yaml          | 4 ++++
+>  Documentation/devicetree/bindings/media/i2c/adv7604.yaml  | 3 ++-
+>  Documentation/devicetree/bindings/mux/reg-mux.yaml        | 8 ++++++--
+>  Documentation/devicetree/bindings/net/cdns,macb.yaml      | 1 +
+>  Documentation/devicetree/bindings/net/ingenic,mac.yaml    | 1 +
+>  .../devicetree/bindings/net/ti,davinci-mdio.yaml          | 1 +
+>  .../devicetree/bindings/net/wireless/ti,wlcore.yaml       | 2 ++
+>  .../devicetree/bindings/pci/snps,dw-pcie-ep.yaml          | 6 ++++--
+>  Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml   | 2 ++
+>  .../devicetree/bindings/pinctrl/canaan,k210-fpioa.yaml    | 2 ++
+>  Documentation/devicetree/bindings/power/avs/qcom,cpr.yaml | 1 +
+>  .../devicetree/bindings/power/supply/battery.yaml         | 7 ++++++-
+>  .../devicetree/bindings/power/supply/charger-manager.yaml | 1 +
+>  Documentation/devicetree/bindings/rng/st,stm32-rng.yaml   | 1 +
+>  Documentation/devicetree/bindings/serial/8250.yaml        | 1 +
+>  .../devicetree/bindings/sound/audio-graph-card2.yaml      | 3 +++
+>  .../devicetree/bindings/sound/imx-audio-hdmi.yaml         | 3 +++
+>  Documentation/devicetree/bindings/usb/smsc,usb3503.yaml   | 1 +
+>  25 files changed, 55 insertions(+), 8 deletions(-)
+>
 
-Okay. I'll just put "reboot-mode {" without the label.
+For GPIO:
 
-> 
-> > +				compatible = "syscon-reboot-mode";
-> > +				offset = <0x810>; /* SYSIP_DAT0 */
-> > +				mode-bootloader = <0xfc>;
-> > +				mode-fastboot = <0xfa>;
-> > +				mode-recovery = <0xff>;
-> 
-> These are magic values understood by firmware, so please add a header for
-> them (something like include/dt-bindings/soc/rockchip,boot-mode.h
-> but with some prefixes like EXYNOSAUTOV9_BOOT_FASTBOOT))
-
-Okay. I'll add samsung,boot-mode.h and put them with the prefix.
-
-Best Regards,
-Chanho Park
-
+Acked-by: Bartosz Golaszewski <brgl@bgdev.pl>
