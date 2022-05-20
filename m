@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EB5552EC31
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 14:33:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6252452EC2D
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 14:33:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349309AbiETMd1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 08:33:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53376 "EHLO
+        id S1349340AbiETMdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 08:33:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349335AbiETMdJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 08:33:09 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60F31163F69
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 05:33:04 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id w14so14014131lfl.13
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 05:33:04 -0700 (PDT)
+        with ESMTP id S1349343AbiETMdL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 08:33:11 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEDBE166097
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 05:33:06 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id c19so973376lfv.5
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 05:33:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=hRNYPngTV+U+MXi/lSp4vZpHzlUN8RyLOj3ZsKeL1G4=;
-        b=l6tzYjvUol1igMfcE1sAQeFoh0wrBh2vxblUVk8bco+xUl8Fm5Ow69Xopuqdsb5BAP
-         bc1hQX0D829cx+784vZX7jMmbPe/tqALc08p99X8j/PhbYTkxQyNIBqlpmjOw6TSpwtG
-         1U0Lw3dNXjdgTn4veFZmNW6o0+1223UBYOPqphOL1r09K5Y6DM8tU8LhbttgvcAud+C6
-         XdKesSy6TIQ1yyWuawyt8j3nvJW70aqrSrJAkCIBHOqxUygd48s4D0/lvu+5bRWsYUoZ
-         unZiOIC+5vvKkClXl0ki7VnA8R5WT/oExVw615UYzt1ppw4AMHrNyTcSiiyAPwcNI+MD
-         EOtQ==
+        bh=Hn3/9kUSa1/kuIhOYNB1KYwxshqDjg7Lqg5RGdir50Q=;
+        b=GTnkzypVpWOR58+R3H1CHNGDU57dIHIQa9bX4qEssKnYbQmaeDGq8hM850mBnNo5zx
+         YBrM3kOxfR8t3ZRiDMvHRVo6C0hPxa9/1JjG0PtfLvETPU8L2pREFiZy4j+WQWfPE8md
+         EKTxZ2alLFMLyPz59p2Kd8BYWhn6cM72dnCt7LEYcA1JSSAy2kneAiumPc55yrR5eDdr
+         +I1ZE6eZpGubLarXHWZj7zmzM27BA+Zotj8kCeLLfF51vZaeiH4+TyKmAjbfOzgcMCMp
+         ewqDWn0owSfEhq15M0KWK7mKoBlKhfJ3MJp/U0sTQ3cmImNW0jWszy53hpCgaEXURFvl
+         /hUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=hRNYPngTV+U+MXi/lSp4vZpHzlUN8RyLOj3ZsKeL1G4=;
-        b=HXBw7ZoIC+FYo6iAM6bl1OVypOdaaGeSGi131O06aWhLv/VqdRrMCsGylnefhR7VSB
-         rnSa+BNXXlo2gIvqpHhu3VIHkWWXoNuZRDzTJEVPR8e4FPcivFscdtWssMOherjZMhq0
-         LoLEbEuA8bmNofI47+58xViFzCon6r5RV/IJiukcfLwuFXVcCQyrmatrYWo32Q5+/+2A
-         +Y6df7fn1770c7hgDmKEbGYrvbrG1PtsA7w/HVWE0pdq55pIltNQnKi+fbHh0Z75JI1I
-         n5sA/t51BZhpaqRx/iKNsA77iV0lBOHH0vZZL3FStkfqfbz7yh3YnZoRWvaVAVhaPPp5
-         W/Cw==
-X-Gm-Message-State: AOAM531XkpgIkgtr2YpJHVrhqjxVuJ3ddTF6NKq5xBmOWSnxlHzLn6KY
-        fRQVJERFuIuwMpxzNxw98tj/pQ==
-X-Google-Smtp-Source: ABdhPJwJ0WSDAtXXmEVPvzjb6YV3MaY/0VDb2R7sc/gkBysh+OexhqhKzoTU19ay/TnRVXDfLlYyGw==
-X-Received: by 2002:a05:6512:2806:b0:478:54db:fa23 with SMTP id cf6-20020a056512280600b0047854dbfa23mr1718508lfb.253.1653049983941;
-        Fri, 20 May 2022 05:33:03 -0700 (PDT)
+        bh=Hn3/9kUSa1/kuIhOYNB1KYwxshqDjg7Lqg5RGdir50Q=;
+        b=EvqBjxJlo8jj9liPkOLNFaR0A98DVP3gpCNDy+kKVY5AQ/MsLNrFwmAL9ghk+1MeNf
+         agpW1QM906b6qppwv6Ix3mdPPYgQJMAtmmc976dDGnNHFT695Am1gvMYCPA1y0rBpJ3z
+         /Y3lvs7wYLHKBMJrAaRUTJzbh1+719C89ZuZh57jeynTZcAp6MCB8YFlMyIEwTv7FSdI
+         gn40LKWHp+sisKrjZmleWUJwVtfFKc2lW7u1/92JgQG2YuU+Dzpf2QT1jvZ9tzq33JYs
+         jQpD7Fj696mlxpwhNW1585C08kWLd+mHKdykbYDWhK+/N4x7Zg6c05CrOquIZ71/aMIn
+         mJ8g==
+X-Gm-Message-State: AOAM533vQezGzGBKYMzlRU1AfEWiDEUuB578DPSod1GbyKZEeH91Lj5K
+        0pH4hLfG5kHNnFBDmxCSX/kSiD647qZ1wmm1
+X-Google-Smtp-Source: ABdhPJxyK4/5DD5Ttz5+aitQgtY5m2pgRLdttq2MCPEn7e2qdAntd/di98ShYfStffq2IN+/ziz/XA==
+X-Received: by 2002:a05:6512:3e24:b0:478:55ff:8e44 with SMTP id i36-20020a0565123e2400b0047855ff8e44mr1320030lfv.78.1653049985071;
+        Fri, 20 May 2022 05:33:05 -0700 (PDT)
 Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id a14-20020a056512374e00b0047255d211bfsm643973lfs.238.2022.05.20.05.33.02
+        by smtp.gmail.com with ESMTPSA id a14-20020a056512374e00b0047255d211bfsm643973lfs.238.2022.05.20.05.33.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 May 2022 05:33:03 -0700 (PDT)
+        Fri, 20 May 2022 05:33:04 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -58,9 +58,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 7/9] dt-bindings: arm: qcom: add missing SM8150 board compatibles
-Date:   Fri, 20 May 2022 14:32:50 +0200
-Message-Id: <20220520123252.365762-7-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 8/9] dt-bindings: arm: qcom: add missing SM8250 board compatibles
+Date:   Fri, 20 May 2022 14:32:51 +0200
+Message-Id: <20220520123252.365762-8-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220520123252.365762-1-krzysztof.kozlowski@linaro.org>
 References: <20220520123252.365762-1-krzysztof.kozlowski@linaro.org>
@@ -80,23 +80,22 @@ Document several board compatibles already present in Linux kernel.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/arm/qcom.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+ Documentation/devicetree/bindings/arm/qcom.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-index a08f297c9d5d..7b6deb766c6c 100644
+index 7b6deb766c6c..abc5f709678c 100644
 --- a/Documentation/devicetree/bindings/arm/qcom.yaml
 +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-@@ -301,7 +301,11 @@ properties:
- 
+@@ -311,7 +311,10 @@ properties:
        - items:
            - enum:
-+              - microsoft,surface-duo
-+              - qcom,sm8150-hdk
-               - qcom,sm8150-mtp
-+              - sony,bahamut-generic
-+              - sony,griffin-generic
-           - const: qcom,sm8150
+               - qcom,qrb5165-rb5
++              - qcom,sm8250-hdk
+               - qcom,sm8250-mtp
++              - sony,pdx203-generic
++              - sony,pdx206-generic
+           - const: qcom,sm8250
  
        - items:
 -- 
