@@ -2,167 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A430652ED39
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 15:35:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3900752ED46
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 15:37:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347485AbiETNfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 09:35:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52730 "EHLO
+        id S1345592AbiETNhw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 09:37:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349828AbiETNfD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 09:35:03 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5AF716A25A
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 06:35:01 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id l13so7697997lfp.11
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 06:35:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=69D+YW++MHNclxhmoeey4e8MxuVXH7gjgrPLCg8Fvps=;
-        b=laP3lG1AW3H2ExBxVrqD7NrSHCAmKTYoc7xvAoAj4sZss+bPSlBg+s7373ROM/d7+n
-         DFcK4qOJrMimpDkohZUpUizODbeuDNNwUd8onvJh+REDGjkXaVEkKzKxsYW7kqo2Qfb+
-         PTYZuJLqclzTaoE2DJ3zyQrp+aEsoBLSV/wF04jphjQz0NSoj11oJMIqVoRmfeJ60XLN
-         /jamq1q8JFSC4jV5VdHQUWBjx7n0Uqcpm2bsnCko+L8RteE4UpvZbvHlncCi7TacPRUU
-         N18ayBUEZw2CqyPHwhiiLfcGlE2s9fPUqfbMGSJqATDqQXc5I64c8NdyQZqAP8v92C+f
-         1HNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=69D+YW++MHNclxhmoeey4e8MxuVXH7gjgrPLCg8Fvps=;
-        b=s/y+Xk+UYOLoYsjsvgCMwviJfTL57Z3MYnU8KhSLa4/hgkXjjCafszucldc2SZ4MQ1
-         eTVQGXRL8HCo0NxpH5Lr7OyXoupiApCuxN0QjOnUGPopMU8p6jd+WYB6RfEy+BwY/q2M
-         j5/LAIeJySA6hrQmzDsmwdJRA8nl1T7mCglPJcoGUlYPgdbIxsBFuuQQ1zNxRk73klF0
-         WljadJAvAJn99mIZ1YfY6doM2wabQ1h3jzbiwxb+LNqWbDDEBD7kxzlMHHewcVrRS5Me
-         fZ+P8jJSUWBLT4DOlwTCDbZViUvRM2152BPlwqcaaP9V9VRi57e1yXJ2gjXJC91c7NIk
-         JtSQ==
-X-Gm-Message-State: AOAM533z+ctOBA1cjD3R/aK/q18zDW8ws37+LN3yBbfh2/gvE5fabS5a
-        c1EVC+dMHhvfDT51fIWLnsnTTw==
-X-Google-Smtp-Source: ABdhPJzqmPszJcZRXvOjBAV566VdlFtzlV4R3Bn7VkNgsJcs0BfFN+2qr/4VUbR5RI1DRihyTUGpgQ==
-X-Received: by 2002:ac2:42d1:0:b0:474:68f:2e48 with SMTP id n17-20020ac242d1000000b00474068f2e48mr6815458lfl.215.1653053700025;
-        Fri, 20 May 2022 06:35:00 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id d25-20020ac244d9000000b0047255d21165sm664300lfm.148.2022.05.20.06.34.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 May 2022 06:34:59 -0700 (PDT)
-Message-ID: <a3e0fb6b-064a-c0a5-2189-488c6f19cb96@linaro.org>
-Date:   Fri, 20 May 2022 15:34:58 +0200
+        with ESMTP id S1349823AbiETNhs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 09:37:48 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 462B9169E3B
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 06:37:47 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 24KC5lLW004845;
+        Fri, 20 May 2022 15:37:18 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=EWqpQF3gyIEpXuoGoxFjVR5sJZAkS9thASy95mo2gLk=;
+ b=XySLmH8+CsqbK/oh3XOX+GIZuOg40bzGyXtse9RJ/M337Lcxd8wbl/gJVno/7bpYbPDM
+ Tw7QZVhEsM0wXdmpM1xxryOy37lgb5Kipo4RDlXoa4Wdzkf4Qe5I2kRc5mFjX4bib2am
+ fmN3XeoOeemC1pUCBU3GH2vFlWrZq0/AHsvPgH6UaxwjWtAOGOeWKskfYmFHpPDHTpFw
+ C+RZ+cK5igukUmBcDYbcPYVmXc00s2TdCm+ZGt3A/tseyRS285yU8xZxw54j5ybpzUMf
+ rExolZEb3PHeGTjgNIgNNuIPIMVPjcox5sJV2yDbfY6rCAaSDlwSkeEVUvCuWqavINGn GA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3g21umcwkd-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 20 May 2022 15:37:18 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id A5FB6100040;
+        Fri, 20 May 2022 15:37:16 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0C0D123301F;
+        Fri, 20 May 2022 15:37:05 +0200 (CEST)
+Received: from [10.48.1.102] (10.75.127.44) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Fri, 20 May
+ 2022 15:37:01 +0200
+Message-ID: <a1b9a37e-a049-136d-5320-9a413873ded3@foss.st.com>
+Date:   Fri, 20 May 2022 15:37:01 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH 3/8] dt-bindings: hwmon: Allow specifying channels for
- lm90
+Subject: Re: [PATCH v4 1/2] dt-bindings: mfd: stm32-timers: Document how to
+ specify interrupts
 Content-Language: en-US
-To:     Slawomir Stepien <sst@poczta.fm>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, przemyslaw.cencner@nokia.com,
-        krzysztof.adamski@nokia.com, alexander.sverdlin@nokia.com,
-        Slawomir Stepien <slawomir.stepien@nokia.com>
-References: <20220520093243.2523749-1-sst@poczta.fm>
- <20220520093243.2523749-4-sst@poczta.fm>
- <3ea92486-0cf9-ce3d-d1b6-7a76f1d5a129@linaro.org>
- <YoeLuffNoUoNx2Bc@t480s.localdomain>
- <0e0dd0a1-0312-46f0-40b3-d3d2576ef08f@linaro.org>
- <YoeWXEb+iNIpFZVR@t480s.localdomain>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <YoeWXEb+iNIpFZVR@t480s.localdomain>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <kernel@pengutronix.de>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20220519162838.695404-1-u.kleine-koenig@pengutronix.de>
+From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+In-Reply-To: <20220519162838.695404-1-u.kleine-koenig@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.75.127.44]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.874,Hydra:6.0.486,FMLib:17.11.64.514
+ definitions=2022-05-20_04,2022-05-20_02,2022-02-23_01
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/05/2022 15:23, Slawomir Stepien wrote:
->>>>>  
->>>>> +patternProperties:
->>>>
->>>> Which models use this?
->>>
->>> This is used in tmp421 model.
->>
->> Then please add allOf:if:then disallowing the property for other models.
+On 5/19/22 18:28, Uwe Kleine-König wrote:
+> The timer units in the stm32mp1 CPUs have interrupts, depending on the
+> timer flavour either one "global" or four dedicated ones. Document how
+> to formalize these in a device tree.
 > 
-> A misunderstanding. The channel node can be used by every device supported by lm90. At least each
-> channel of each device can have label.
+> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
 
-OK
+Hi Uwe,
 
+You can add my:
+Reviewed-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+
+Best Regards,
+Thanks
+Fabrice
+
+> ---
+> Changes since v3:
+>   - Do the things Rob suggested in reqly to v1 which I didn't notice
+>     until Fabrice told me in reply to v3.
 > 
->>>>> +  "^channel@([0-2])$":
->>>>> +    type: object
->>>>> +    description: |
->>>>
->>>> No need for |
->>>
->>> Will fix in v2.
->>>
->>>>> +      Represents channels of the device and their specific configuration.
->>>>> +
->>>>> +    properties:
->>>>> +      reg:
->>>>> +        description: |
->>>>
->>>> The same.
->>>
->>> Will fix in v2.
->>>
->>>>> +          The channel number. 0 is local channel, 1-2 are remote channels.
->>>>> +        items:
->>>>> +          minimum: 0
->>>>> +          maximum: 2
->>>>> +
->>>>> +      label:
->>>>> +        description: |
->>>>
->>>> The same.
->>>
->>> Will fix in v2.
->>>
->>>>> +          A descriptive name for this channel, like "ambient" or "psu".
->>>>> +
->>>>> +      offset:
->>>>> +        description: |
->>>>
->>>> This does not look like standard property, so you need vendor and unit
->>>> suffix.
->>>
->>> Currently in lm90 we have support for devices that have different width (including sign) for offset
->>> register. We have 10 bits, 11 bits and 12 bits. Do I understand correctly that I can use the same
->>> vendor prefix if the width is the same? Just like "ti" was used for adi and ti in
->>> "ti,extended-range-enable"?
->>>
->>> For example:
->>>
->>> adi,10-bit-offset-millicelsius # (only for adt7481)
->>> adi,11-bit-offset-millicelsius # (for adt7461 but also for lm90 and others)
->>> ti,12-bit-offset-millicelsius  # (ti - since only tmp451 and tmp461 supports 12 bit)
->>
->> Wait, these are then strictly per-compatible, so there is no sense in DT
->> property at all.
+>  .../devicetree/bindings/mfd/st,stm32-timers.yaml  | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 > 
-> But isn't the value of offset a hardware-design-time calculation? So if I have a piece of
-> hardware that describes itself using device-tree, then offset information should be stored on the
-> device-tree rather then be "calculated" by the software running on that piece of hardware?
+> diff --git a/Documentation/devicetree/bindings/mfd/st,stm32-timers.yaml b/Documentation/devicetree/bindings/mfd/st,stm32-timers.yaml
+> index 10b330d42901..5b05b2ec1728 100644
+> --- a/Documentation/devicetree/bindings/mfd/st,stm32-timers.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/st,stm32-timers.yaml
+> @@ -46,6 +46,21 @@ properties:
+>      minItems: 1
+>      maxItems: 7
+>  
+> +  interrupts:
+> +    oneOf:
+> +      - maxItems: 1
+> +      - maxItems: 4
+> +
+> +  interrupt-names:
+> +    oneOf:
+> +      - items:
+> +          - const: global
+> +      - items:
+> +          - const: brk
+> +          - const: up
+> +          - const: trg-com
+> +          - const: cc
+> +
+>    "#address-cells":
+>      const: 1
+>  
 > 
-> And what if such piece of hardware has been changed (e.g. new PCB version) and now the offset are
-> different? Then if device-tree is on hardware (e.g. on EEPROM) with new offsets, then software would
-> not require a change to support this new hardware version.
-
-OK, I misunderstood.
-
-This should be only one property then, choose some reasonable vendor,
-and in allOf:if:then you can put constraints about minimum/maximum
-values per model.
-
-Best regards,
-Krzysztof
+> base-commit: 3123109284176b1532874591f7c81f3837bbdc17
