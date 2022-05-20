@@ -2,148 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E79A52EFD4
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 17:58:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD80052EFE2
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 18:01:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351213AbiETP6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 11:58:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43914 "EHLO
+        id S237681AbiETQBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 12:01:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237537AbiETP6U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 11:58:20 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B5B917996B;
-        Fri, 20 May 2022 08:58:19 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id n13so14524214ejv.1;
-        Fri, 20 May 2022 08:58:19 -0700 (PDT)
+        with ESMTP id S1351271AbiETQBG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 12:01:06 -0400
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F0D83DDDC;
+        Fri, 20 May 2022 09:01:05 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id n24so10389153oie.12;
+        Fri, 20 May 2022 09:01:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=hzj89I5NOL6ORkKQyqqIAZvRUbPw4e9Z+bizamZOyYg=;
-        b=k2ZGbTJes1BaQb8+bLQb5jerCqD+YxZmwHgd0i4k3LBJctG8BYkUUs12O25fYlCA/M
-         v+k9SEt8KJ0/y9nl5MkPlv4kHVbUEbmww6Ar5sPG9aRwzwpI3mdCU8bVxsnegJlaD6fs
-         0IvLGhhpiERRxep2KGZq6wkgCTu0f5vASos0fNCjHXN3p68dGqkm7YI8Ha+Z+2Egq0e8
-         FbErVraZd5hj7IA5SfTUDk8NXvpNXf3U1EflqvF0vb0noybIQlf28kiM6CzvK3md66Bw
-         Z7imSycLMDtzDPwdq8A9qce1Xj5xFK6rX4Dhzwtmss7xTuwyosFKgTtB1QQfTGKe/Q9h
-         TYlw==
+        h=sender:message-id:date:mime-version:user-agent:content-language
+         :from:to:cc:references:subject:in-reply-to:content-transfer-encoding;
+        bh=d+ei73L+89HGx3LtqPAuWtv/FMbZQQLdvvm3n6NjwPw=;
+        b=WMwx4qqg7Zvw19yyJu65QEwIqVE9asKangEyrcLMhRjxl8l7FB4ugCOviOrQxAiTA+
+         OHiy/qA/w8+RpNEwqRH5ZLEfOFnTJZ/F9ydPRVG4ZJVqfqsKIX1q/923i4h3RenXwqDR
+         q8CAQymU1zwxkHb/u7gDIK6qLr0zl1EaN0Riv1bh02YkWAQ8u6FOAE1WS6g2m6yu3oYA
+         JxEE80TbTyJN6wIESGckZY96jCjqjK21dAQbzZL7tIqQ6AX4uDPzhUKxQ5A6Az2dnAk7
+         mefWDwLuMUEMsvlmJBITTjodxE7SLNBpEBW7z7SYWXcDpf6B3X4sxO1AnyqrilZErski
+         Zu2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=hzj89I5NOL6ORkKQyqqIAZvRUbPw4e9Z+bizamZOyYg=;
-        b=pESGKba/XQcn/0nypLTxN5/pDSSdNbW7ATzSH0eecUep2vZh/8R+2YLtk2fLg+QGFb
-         T1K2Ll3gdP3KE/iDciKI9ELRDe7x+R+O9zVEzmEMtNxu+jm+gkHW1FSs9hP4B6Klq/oj
-         ExsEby8ecGa8nzxLLJzO498AL0GwIUGZE+/5HLy33VTDigveIq/DeTYv1g3sQBADvlmv
-         BPQSOuR3vGsah1kbF7TelXnZhU/yulqSqzqiRlNbRMCMUdimOddexzfQP3+waMVCLIG+
-         CQGuUKMb5tm0FH+D+TzDcHFgi+MUDjBSUirvAq2lOzxbh/ZdeYu7Gse5hu3rM3RV7KVu
-         +a+A==
-X-Gm-Message-State: AOAM530CCxY7yNi/joVVRpaBH6MIW5OaUTi34WTtGdt7ZwibwmLAe1a3
-        dbKHC/EHx4OvUfrr5V5AtB2tjGeOriQ=
-X-Google-Smtp-Source: ABdhPJy1gEbu8XuYo4yUphHITL2Yrx03sLzRQjrY0/y17Otr1QjDCddz4+JS5AO1C4XNlnZzf110Lw==
-X-Received: by 2002:a17:906:5204:b0:6fe:902a:da93 with SMTP id g4-20020a170906520400b006fe902ada93mr9942728ejm.155.1653062297564;
-        Fri, 20 May 2022 08:58:17 -0700 (PDT)
-Received: from skbuf ([188.25.255.186])
-        by smtp.gmail.com with ESMTPSA id 16-20020a17090601d000b006f3ef214db3sm3349200ejj.25.2022.05.20.08.58.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 May 2022 08:58:16 -0700 (PDT)
-Date:   Fri, 20 May 2022 18:58:15 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-Cc:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        =?utf-8?Q?Miqu=C3=A8l?= Raynal <miquel.raynal@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH net-next v5 05/13] net: pcs: add Renesas MII converter
- driver
-Message-ID: <20220520155815.dtilf65h4dyo4md6@skbuf>
-References: <20220519153107.696864-1-clement.leger@bootlin.com>
- <20220519153107.696864-6-clement.leger@bootlin.com>
- <YoZvZj9sQL2GZAI3@shell.armlinux.org.uk>
- <20220520095241.6bbccdf0@fixe.home>
- <20220520084914.5x6bfu4qaza4tqcz@skbuf>
- <20220520172244.1f17f736@fixe.home>
- <20220520154440.jtswi6oyjpseffpu@skbuf>
- <20220520174934.3b9feb88@fixe.home>
+        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
+         :content-language:from:to:cc:references:subject:in-reply-to
+         :content-transfer-encoding;
+        bh=d+ei73L+89HGx3LtqPAuWtv/FMbZQQLdvvm3n6NjwPw=;
+        b=WtVF58VMpSE0QaZdSuZfacQ+wNcmvZxWQl8clbwXRGoWb5vxfcPICLgawNZvrsUcjX
+         O0/SoXcY/HyJrZG7y4VFbTYv7Kk7ngP1GtOBHctguqV2vr4seKlLVku1LehWMveNP1+N
+         NXEhG5ugLGW1rx9sRO5GOK+IMHTntKa21uWzwa3SX8FwpRInrO6/Svai5zTdkEfDZmZT
+         ZM5M2kRnenffoSZ2uCy5p+zSGaem+cBJTSrZgwNblHrAbS9xxPAIs0j+wyheeLba/KbB
+         XLFYMYaeCl5ICdyKKURnJvQ0TVUzcTd+3Aws8zYQ3QUnxWddtIF+GC6yVKvdqB8L2Til
+         Bxng==
+X-Gm-Message-State: AOAM531bjrjKTzWFNk+d/i/kr+9vnfPBR8mLAklc+TRUcU/8EB8y/rWz
+        4A4mOddDc/wNCs7x0moN0uI=
+X-Google-Smtp-Source: ABdhPJwro6w2mgrF65az0vSknujjJ3VjRMgjB6/hgnMQr8R8I2l8gmdmOxheYAIIDY14fSaoGxmRgw==
+X-Received: by 2002:a05:6808:1b11:b0:326:4608:4504 with SMTP id bx17-20020a0568081b1100b0032646084504mr5908968oib.145.1653062464381;
+        Fri, 20 May 2022 09:01:04 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id b129-20020aca3487000000b0032af475f733sm1130687oia.28.2022.05.20.09.01.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 May 2022 09:01:03 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <62a519ee-c909-bdb8-e686-084ffe8a8bcf@roeck-us.net>
+Date:   Fri, 20 May 2022 09:01:02 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220520174934.3b9feb88@fixe.home>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Content-Language: en-US
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Slawomir Stepien <sst@poczta.fm>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     jdelvare@suse.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, przemyslaw.cencner@nokia.com,
+        krzysztof.adamski@nokia.com, alexander.sverdlin@nokia.com
+References: <20220520093243.2523749-1-sst@poczta.fm>
+ <c1b1f02a-42c2-bc67-ab92-c0bf9dabbe94@roeck-us.net>
+Subject: Re: [PATCH 0/8] Add support for ADT7481 in lm90
+In-Reply-To: <c1b1f02a-42c2-bc67-ab92-c0bf9dabbe94@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 20, 2022 at 05:49:34PM +0200, Clément Léger wrote:
-> Le Fri, 20 May 2022 18:44:40 +0300,
-> Vladimir Oltean <olteanv@gmail.com> a écrit :
+On 5/20/22 06:45, Guenter Roeck wrote:
+> On 5/20/22 02:32, Slawomir Stepien wrote:
+>> From: Slawomir Stepien <slawomir.stepien@nokia.com>
+>>
+>> This patch series adds support for ADT7481 in lm90.c driver and extends the
+>> device-tree options for it.
+>>
+>> The ADT7481 is quite similar to MAX6696 (already supported in lm90) so a lot of
+>> code is reused.
+>>
+>> One major problem in fitting the ADT7481 in lm90.c is the chip detection.
+>> However it seems that the chip has been designed and produced with correct
+>> values at locations: 0xfe (manufactured id) and 0xff (chip id), but this is not
+>> documented in the datasheet.
+>>
 > 
-> > On Fri, May 20, 2022 at 05:22:44PM +0200, Clément Léger wrote:
-> > > Le Fri, 20 May 2022 11:49:14 +0300,
-> > > Vladimir Oltean <olteanv@gmail.com> a écrit :
-> > >  
-> > > > On Fri, May 20, 2022 at 09:52:41AM +0200, Clément Léger wrote:  
-> > > > > > Also, as a request to unbind this driver would be disasterous to users,
-> > > > > > I think you should set ".suppress_bind_attrs = true" to prevent the
-> > > > > > sysfs bind/unbind facility being available. This doesn't completely
-> > > > > > solve the problem.  
-> > > > >
-> > > > > Acked. What should I do to make it more robust ? Should I use a
-> > > > > refcount per pdev and check that in the remove() callback to avoid
-> > > > > removing the pdev if used ?  
-> > > >
-> > > > I wonder, if you call device_link_add(ds->dev, miic->dev, DL_FLAG_AUTOREMOVE_CONSUMER),
-> > > > wouldn't that be enough to auto-unbind the DSA driver when the MII
-> > > > converter driver unbinds?  
-> > >
-> > > I looiked at that a bit and I'm not sure how to achieve that cleanly. If
-> > > I need to create this link, then I need to do it once for the dsa switch
-> > > device. However, currently, the way I get the references to the MII
-> > > converter are via the pcs-handle properties which are for each port.
-> > >
-> > > So, I'm not sure creating the link multiple times in miic_create() would
-> > > be ok and also, I'm not sure how to create the link once without adding
-> > > a specific property which points on the MII converter node and use that
-> > > to create the link by adding miic_device_add_link() for instance.
-> > >
-> > > Do you have any preference ?  
-> > 
-> > The simplest (although not the most elegant) way would probably be to
-> > pass the ds->dev as a second argument to miic_create(), and call
-> > device_link_add() multiple times, letting all but the first call fail,
-> > and ignoring the resulting NULL return code. Maybe others have a better idea.
+> Before we go too far along this route, would you mind using my own patch series
+> as base to implement the devicetree changes ? I had prepared an extensive
+> patch series a while ago, adding not only support for ADT7481 but for
+> several other chips as well, I just never got around to sending it out.
 > 
-> That's indeed what I started to do although it's nasty to say the
-> least... Moreover, the device_link_del() calls in miic_destroy() would
-> have to be carefully made after all miic ports have been
-> destroyed. Not sure this is going to be cleaner ! I'll try to think
-> about it a bit more.
 
-Wait... the whole idea with AUTOREMOVE_CONSUMER is that you _don't_
-remove the device link.. you let it sit there such that the device core
-knows there are other consumers it needs to remove when this driver
-unbinds from the device.
+I made my lm90 patch series available in branch hwmon-lm90 of
+git://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git
+
+The patches in this series were module tested and tested on real hardware
+with the test scripts at git@github.com:groeck/module-tests.git;
+look for scripts/lm90-real.sh and scripts/lm90.sh.
+
+Guenter
