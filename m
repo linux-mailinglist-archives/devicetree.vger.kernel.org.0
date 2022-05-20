@@ -2,77 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D81852EE0E
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 16:24:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 694E052EE2E
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 16:31:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350218AbiETOYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 10:24:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59678 "EHLO
+        id S1344237AbiETObQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 10:31:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345583AbiETOYh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 10:24:37 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 609A4166D5C
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 07:24:35 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id l13so7943497lfp.11
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 07:24:35 -0700 (PDT)
+        with ESMTP id S229991AbiETObO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 10:31:14 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C55B051597
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 07:31:12 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id o22so9862997ljp.8
+        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 07:31:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=8qK1C/fXcj1Bx31GwrbgIHQcHFBncp+gQ5Gc0QhkCVs=;
-        b=XX0K4MWrxSFsvmT0HwgfuHMG+PL/FDHT2earFmJZKpu92EmvkETnV90r/whOD+/lL/
-         nGVWqi/eYsZYX2P8CBT16ewGnaf+AMkQk/1oQm2tdWIH3Fe4KXAWxkkSUCiTSqomOoCK
-         WmDEeN67QmThoa9r3L66RSklPVtI/Ja/zILbnI/URnPDcTYIEPEVpyxBW48RUS+xTHnr
-         C1ZCvj2Mr3gvzekOMt6lDvaxKe3SgWMSMxhcqKjm3V7jipK6Ktbo5JKqe60kmm3Vhs6E
-         SMCGwv7oQ92A5Q2QjLfxfBwIeIvz6D0LWbSY26f2rZmldPZ31ChLWmA+T2EJGcDpyekH
-         z5Tg==
+        bh=nkSW2oaaDKiMdbKfgXW7BQe6QXekh/YBIPFTwRJSJIk=;
+        b=mKiG96Pm61qDOC9vnwjJVN6GHxfwdC4TfxhqHHOrtND0CcXN1kEreVLEb7SrVBY0Z+
+         +fHy5cuo7DNnAM+vjVpb+b6RMu9Rmwp/6JrQyW4cDN1l5zFJAWw1ZLb1c4IMVeLufahd
+         iaQOXVBOWkos34pSOWiif37lU7mqQ3SBE/I0A7DyH3ZjTWG6eSsofxFU9OWkJdRyfxQF
+         IrtQUt5qq+JqSSZyli3Gw7zZTJthmHXRlomqru2HgMC8igAyioSXryUbmflp2R4HC143
+         Alm5Qx3UuqlA6QzD5cF6uC8sxI222kkwC4p6VnyAC2Rwr/I6c5fkVKvzmxqAWQ7z9OKL
+         +C9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=8qK1C/fXcj1Bx31GwrbgIHQcHFBncp+gQ5Gc0QhkCVs=;
-        b=FPWo3n5FuG8+jkO9PKx5wD3TDc/rFisJ5a7E+k7gW23PmhXiUMmENIKRTaXf+mj4zh
-         m2YZHOZbTxcizUycVJz9N5xDrxgaK0F1OdqREHcYKAb9RLBvfX4vF9TyKWO84lIWYBQI
-         MFeBTDolHj37fC+UdP+0OztZvzAlcKaKAZTzL6hTtgCJvgYKK3ujM3DfEEsYyyiBd/zQ
-         hw/eutHyJBsD3NnAMgtWwBPExDxBQqWuq86Cf7Im1JZMT9uIuzjboJkVgK7DexxT4srQ
-         VShoVb3SlTlhOfINvVUwUInAs/5WoIPRMG+tkhbMGPu+qsgXSI3C6WvyTFgHLon+y261
-         ID4w==
-X-Gm-Message-State: AOAM533eAW32jSk+R88u4mLb4dEi1GOTvVXYu0tjFJnIDJ57/TT2Z2Lf
-        YIFEposefAtVp51nWGVv2UdSwQ==
-X-Google-Smtp-Source: ABdhPJwwrJPm4H3reVCsciJsAq6hR9ACJ31onH+YD27Kg88MIvoXnWyGyYu+ftDUc43IRAua/VsZiA==
-X-Received: by 2002:a05:6512:110d:b0:473:d519:5764 with SMTP id l13-20020a056512110d00b00473d5195764mr7385296lfg.128.1653056673730;
-        Fri, 20 May 2022 07:24:33 -0700 (PDT)
+        bh=nkSW2oaaDKiMdbKfgXW7BQe6QXekh/YBIPFTwRJSJIk=;
+        b=bpzfQzWcqUdpUXuLiHd96bCpC4Dcv3Yr9nQtRHD67DUFuypDoGeTSl3BD0nFkAKger
+         u5ILSO117qIHPf5k2YmtNYGZOQSLB5k+QLYqd74gVFqA79liNb8YOiafQWzfZvnN0ORD
+         +i48mO6HTmNfbwMr2C466mTwRcP/LbqxA/3zre+qLeFipbwZJZk5MfraWGI0x5QtzJlU
+         OoID1tdpuKUMKR/A6NJfzXzGLsy0j8JldA2u3afdzWsrK4P0XQdIJiI7r4S3Ute/5I2P
+         AEhMhg4Qivv/W7iMiDsL4o/yfDdCQFjWIVCBYY2fowha6czX/nwHQUwERpL/lUP4wvxc
+         eUKA==
+X-Gm-Message-State: AOAM530eddjpkabm+Sl722sdmrMOFKi+c5ySpkfcMZCVN66II6yPi0CV
+        4uryLJ2ggxMxauZeN8XLFMkK/g==
+X-Google-Smtp-Source: ABdhPJw1vIGajKIAguRW4MI/QH6zomI0ebNNSq+36VZ0WJFMba2FY4A7X7wfcRqA+6ZRN+E6iDfRtg==
+X-Received: by 2002:a2e:854c:0:b0:24f:2aaa:12a1 with SMTP id u12-20020a2e854c000000b0024f2aaa12a1mr5662994ljj.60.1653057070747;
+        Fri, 20 May 2022 07:31:10 -0700 (PDT)
 Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id o25-20020a056512051900b0047255d2117asm678537lfb.169.2022.05.20.07.24.32
+        by smtp.gmail.com with ESMTPSA id h13-20020ac2596d000000b004779f2f2bd0sm684259lfp.44.2022.05.20.07.31.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 May 2022 07:24:33 -0700 (PDT)
-Message-ID: <b9487ffe-7ed5-077c-3c2c-886746457365@linaro.org>
-Date:   Fri, 20 May 2022 16:24:31 +0200
+        Fri, 20 May 2022 07:31:09 -0700 (PDT)
+Message-ID: <6ee28892-b3a3-588b-e6d6-edada4a89632@linaro.org>
+Date:   Fri, 20 May 2022 16:31:08 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v2 2/5] dt-bindings: interconnect: Add Qualcomm SM6350 NoC
- support
+Subject: Re: [PATCH v2] ARM: dts: aspeed: Adding Jabil Rubypass BMC
 Content-Language: en-US
-To:     Luca Weiss <luca.weiss@fairphone.com>,
-        linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Odelu Kukatla <okukatla@codeaurora.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220520070318.48521-1-luca.weiss@fairphone.com>
- <20220520070318.48521-3-luca.weiss@fairphone.com>
- <7b451dfb-8353-4a4e-1834-a01feaa267d2@linaro.org>
- <CK4KPEWM9165.2LR9ZUG2GGK6Q@otso>
+To:     David Wang <David_Wang6097@jabil.com>,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
+Cc:     edward_chen@jabil.com
+References: <20220520120212.3589911-1-David_Wang6097@jabil.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CK4KPEWM9165.2LR9ZUG2GGK6Q@otso>
+In-Reply-To: <20220520120212.3589911-1-David_Wang6097@jabil.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,160 +74,426 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/05/2022 14:04, Luca Weiss wrote:
-> Hi Krzysztof,
+On 20/05/2022 14:02, David Wang wrote:
+> The initial introduction of the jabil server with AST2600 BMC SoC.
 > 
-> Thanks for the review!
+> Signed-off-by: David Wang <David_Wang6097@jabil.com>
+> ---
+>  arch/arm/boot/dts/Makefile                    |   3 +-
+>  .../boot/dts/aspeed-bmc-jabil-rubypass.dts    | 479 ++++++++++++++++++
+>  2 files changed, 481 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/arm/boot/dts/aspeed-bmc-jabil-rubypass.dts
 > 
-> On Fri May 20, 2022 at 12:31 PM CEST, Krzysztof Kozlowski wrote:
->> On 20/05/2022 09:03, Luca Weiss wrote:
->>> Add bindings for Qualcomm SM6350 Network-On-Chip interconnect devices.
->>>
->>> As SM6350 has two pairs of NoCs sharing the same reg, allow this in the
->>> binding documentation, as was done for qcm2290.
->>>
->>> Because the main qcom,rpmh.yaml file is getting too complicated for our
->>> use cases, create a new qcom,rpmh-common.yaml and a separate
->>> qcom,sm6350-rpmh.yaml that defines our new bindings.
->>>
->>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->>> ---
->>> Changes since v1:
->>> * Split sm6350 into separate yaml with new rpmh-common.yaml
->>>
->>>  .../interconnect/qcom,rpmh-common.yaml        |  41 +++++
->>>  .../interconnect/qcom,sm6350-rpmh.yaml        |  82 ++++++++++
->>>  .../dt-bindings/interconnect/qcom,sm6350.h    | 148 ++++++++++++++++++
->>>  3 files changed, 271 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,rpmh-common.yaml
->>>  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sm6350-rpmh.yaml
->>>  create mode 100644 include/dt-bindings/interconnect/qcom,sm6350.h
->>>
->>> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,rpmh-common.yaml b/Documentation/devicetree/bindings/interconnect/qcom,rpmh-common.yaml
->>> new file mode 100644
->>> index 000000000000..6121eea3e87d
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/interconnect/qcom,rpmh-common.yaml
->>> @@ -0,0 +1,41 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/interconnect/qcom,rpmh-common.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Qualcomm RPMh Network-On-Chip Interconnect
->>> +
->>> +maintainers:
->>> +  - Georgi Djakov <georgi.djakov@linaro.org>
->>> +  - Odelu Kukatla <okukatla@codeaurora.org>
->>
->> Is this valid email address?
-> 
-> Will put Georgi and Bjorn as maintainers, as per your other email.
-> 
->>
->>> +
->>> +description: |
->>> +   RPMh interconnect providers support system bandwidth requirements through
->>> +   RPMh hardware accelerators known as Bus Clock Manager (BCM). The provider is
->>> +   able to communicate with the BCM through the Resource State Coordinator (RSC)
->>> +   associated with each execution environment. Provider nodes must point to at
->>> +   least one RPMh device child node pertaining to their RSC and each provider
->>> +   can map to multiple RPMh resources.
->>> +
->>> +properties:
->>> +  '#interconnect-cells':
->>> +    enum: [ 1, 2 ]
->>
->> Why this is an enum?
-> 
-> As a start, just adding that the definitions are copied from
-> qcom,rpmh.yaml so it's not my invention :) Of course that doesn't mean
-> that it should be improved where possible!
-> 
-> Either value is supported by the driver (and used upstream). But perhaps
-> it can use a description to define what the 'parameters' mean.
-> 
-> The second (optional) parameters "is to support different bandwidth
-> configurations that are toggled by RPMh, depending on the power state of
-> the CPU."[0]
-> 
-> A commit message for sc7180 calls it the "tag information" and "The
-> consumers can specify the path tag as an additional argument to the
-> endpoints."[1]
-> 
-> Not sure how to properly describe the first property, I guess the
-> interconnect endpoint? Maybe Georgi can help here.
-> 
-> 
-> [0] https://lore.kernel.org/linux-arm-msm/b079a211-d387-7958-bbe2-c41cac00d269@kernel.org/
-> [1] https://git.kernel.org/torvalds/c/e23b122
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 7c16f8a2b738..9c395178fc89 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -1566,4 +1566,5 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+>  	aspeed-bmc-tyan-s8036.dtb \
+>  	aspeed-bmc-vegman-n110.dtb \
+>  	aspeed-bmc-vegman-rx20.dtb \
+> -	aspeed-bmc-vegman-sx20.dtb
+> +	aspeed-bmc-vegman-sx20.dtb \
+> +	aspeed-bmc-jabil-rubypass.dtb
+> diff --git a/arch/arm/boot/dts/aspeed-bmc-jabil-rubypass.dts b/arch/arm/boot/dts/aspeed-bmc-jabil-rubypass.dts
+> new file mode 100644
+> index 000000000000..5e46af30c9e9
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/aspeed-bmc-jabil-rubypass.dts
+> @@ -0,0 +1,479 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +
+> +/dts-v1/;
+> +
+> +#include "aspeed-g6.dtsi"
+> +#include <dt-bindings/gpio/aspeed-gpio.h>
+> +
+> +/ {
+> +	model = "Jabil rbp";
+> +	compatible = "jabil,rbp", "aspeed,ast2600";
 
-Hm, indeed driver supports variable values. It's fine then.
+You need to document the new compatible. checkpatch should warn about
+this, didn't it?
 
-> 
->>
->>> +
->>> +  qcom,bcm-voters:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->>> +    items:
->>
->> Please implement my previous comments.
-> 
-> Sorry, I looked over the comment in v1.
-> 
-> As far as I can tell in current code only 1 item is used.
-> 
-> If the second parameter of_bcm_voter_get would be used as non-NULL then
-> qcom,bcm-voter-names gets looked up and the N-th value in qcom,bcm-voters
-> used. But currently qcom,bcm-voter-names is not actively used so only
-> one gets used.
-> 
-> Do you have a recommendation what to put here? A synthetic limit like
-> 32 just to have a number there?
+> +
+> +	chosen {
+> +		bootargs = "console=ttyS4,115200n8";
 
-Let's go with maxItems:1, for both fields.
+Please use stdout-path instead.
 
-> 
->>
->>> +      maxItems: 1
->>> +    description: |
->>
->> No need for |
-> 
-> ack
-> 
->>
->>> +      List of phandles to qcom,bcm-voter nodes that are required by
->>> +      this interconnect to send RPMh commands.
->>> +
->>> +  qcom,bcm-voter-names:
->>
->> What names do you expect here?
-> 
-> Currently unused in mainline but newer downstream kernels[2] use "hlos"
-> as first parameter, and e.g. "disp" as second one that goes to a
-> qcom,bcm-voter that's a child of disp_rsc. Not sure exactly what that
-> does.
-> 
-> [2] https://github.com/atomsand/android_kernel_qcom_devicetree/blob/a6d50810116e8314d64eb63b8862c207b974e0c7/qcom/waipio.dtsi#L1701-L1793
 
-The bindings example uses apps and disp, so here would be only "apps".
+> +	};
+> +
+> +	memory@80000000 {
+> +		device_type = "memory";
+> +		reg = <0x80000000 0x80000000>;
+> +	};
+> +
+> +	reserved-memory {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges;
+> +
+> +		gfx_memory: framebuffer {
+> +			size = <0x01000000>;
+> +			alignment = <0x01000000>;
+> +			compatible = "shared-dma-pool";
+> +			reusable;
+> +		};
+> +	};
+> +
+> +	vcc_sdhci0: regulator-vcc-sdhci0 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "SDHCI0 Vcc";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpios = <&gpio0 ASPEED_GPIO(V, 0) GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +	};
+> +
+> +
+> +	vccq_sdhci0: regulator-vccq-sdhci0 {
+> +		compatible = "regulator-gpio";
+> +		regulator-name = "SDHCI0 VccQ";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpios = <&gpio0 ASPEED_GPIO(V, 1) GPIO_ACTIVE_HIGH>;
+> +		gpios-states = <1>;
+> +		states = <3300000 1>,
+> +			 <1800000 0>;
+> +	};
+> +
+> +	vcc_sdhci1: regulator-vcc-sdhci1 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "SDHCI1 Vcc";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpios = <&gpio0 ASPEED_GPIO(V, 2) GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +	};
+> +
+> +	vccq_sdhci1: regulator-vccq-sdhci1 {
+> +		compatible = "regulator-gpio";
+> +		regulator-name = "SDHCI1 VccQ";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpios = <&gpio0 ASPEED_GPIO(V, 3) GPIO_ACTIVE_HIGH>;
+> +		gpios-states = <1>;
+> +		states = <3300000 1>,
+> +			 <1800000 0>;
+> +	};
+> +
+> +	leds {
+> +				compatible = "gpio-leds";
 
->>> +
->>> +  '#interconnect-cells': true
->>
->> Since you defined it as enum in rpmh-common, you really expect here
->> different values?
-> 
-> Doesn't ": true" here just mean we want the value from the allOf: -
-> $ref?
-> But we could in theory make interconnect-cells only accept <2> for
-> sm6350.
+Wrong indentation.
 
-Yes, and the $ref defines it as [1, 2], so initially I thought this
-should be narrowed. However it seems 1 or 2 are still valid for all of
-Qcom interconnects, so your "true" is correct.
+> +
+> +				identify {
+
+Generic node names, so "led-0"
+
+> +						default-state = "off";
+> +						gpios = <&gpio0 ASPEED_GPIO(B, 7) GPIO_ACTIVE_LOW>;
+
+Missing several LED properties.
+
+> +				};
+> +
+> +				status_amber {
+
+Generic node names, no underscores in node names, so "led-1" etc.
+
+> +						default-state = "off";
+> +						gpios = <&gpio0 ASPEED_GPIO(G, 3) GPIO_ACTIVE_LOW>;
+> +				};
+> +
+> +				status_green {
+> +						default-state = "keep";
+> +						gpios = <&gpio0 ASPEED_GPIO(G, 2) GPIO_ACTIVE_LOW>;
+> +				};
+> +
+> +				status_susack {
+> +						default-state = "off";
+> +						gpios = <&gpio0 ASPEED_GPIO(V, 6) GPIO_ACTIVE_LOW>;
+> +				};
+> +
+> +				fan1_fault{
+> +						default-state = "off";
+> +						gpios = <&gpio3_71 0 GPIO_ACTIVE_HIGH>;
+> +				};
+
+Missing blank line.
+
+> +				fan2_fault{
+> +						default-state = "off";
+> +				};
+
+Ditto......
+
+> +				fan3_fault{
+> +						default-state = "off";
+> +						gpios = <&gpio3_71 2 GPIO_ACTIVE_HIGH>;
+> +				};
+> +				fan4_fault{
+> +						default-state = "off";
+> +						gpios = <&gpio3_71 3 GPIO_ACTIVE_HIGH>;
+> +				};
+> +				fan5_fault{
+> +						default-state = "off";
+> +						gpios = <&gpio3_71 4 GPIO_ACTIVE_HIGH>;
+> +				};
+> +				fan6_fault{
+> +						default-state = "off";
+> +						gpios = <&gpio3_71 5 GPIO_ACTIVE_HIGH>;
+> +				};
+> +
+> +				power_amber {
+> +						default-state = "off";
+> +						gpios = <&gpio0 ASPEED_GPIO(Y, 0) GPIO_ACTIVE_LOW>;
+> +				};
+> +		};
+> +};
+> +
+> +&mdio0 {
+> +	status = "okay";
+> +
+> +	ethphy0: ethernet-phy@0 {
+> +		compatible = "ethernet-phy-ieee802.3-c22";
+> +		reg = <0>;
+> +	};
+> +};
+> +
+> +&mdio1 {
+> +	status = "okay";
+> +
+> +	ethphy1: ethernet-phy@0 {
+> +		compatible = "ethernet-phy-ieee802.3-c22";
+> +		reg = <0>;
+> +	};
+> +};
+> +
+> +&mdio2 {
+> +	status = "okay";
+> +
+> +	ethphy2: ethernet-phy@0 {
+> +		compatible = "ethernet-phy-ieee802.3-c22";
+> +		reg = <0>;
+> +	};
+> +};
+> +
+> +&mdio3 {
+> +	status = "okay";
+> +
+> +	ethphy3: ethernet-phy@0 {
+> +		compatible = "ethernet-phy-ieee802.3-c22";
+> +		reg = <0>;
+> +	};
+> +};
+> +
+> +&mac0 {
+> +	status = "okay";
+> +
+> +	phy-mode = "rgmii-rxid";
+> +	phy-handle = <&ethphy0>;
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_rgmii1_default>;
+> +};
+> +
+> +
+
+Too many blank lines.
+
+> +&mac1 {
+> +	status = "okay";
+> +
+> +	phy-mode = "rgmii-rxid";
+> +	phy-handle = <&ethphy1>;
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_rgmii2_default>;
+> +};
+> +
+> +&mac2 {
+> +	status = "okay";
+> +
+> +	phy-mode = "rgmii";
+> +	phy-handle = <&ethphy2>;
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_rgmii3_default>;
+> +};
+> +
+> +&mac3 {
+> +	status = "okay";
+> +
+> +	phy-mode = "rgmii";
+> +	phy-handle = <&ethphy3>;
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_rgmii4_default>;
+> +};
+> +
+> +&emmc_controller {
+> +	status = "okay";
+> +};
+> +
+> +&emmc {
+> +	non-removable;
+> +	bus-width = <4>;
+> +	max-frequency = <100000000>;
+> +	clk-phase-mmc-hs200 = <9>, <225>;
+> +};
+> +
+> +&rtc {
+> +	status = "okay";
+> +};
+> +
+> +&fmc {
+> +	status = "okay";
+> +	flash@0 {
+> +		status = "okay";
+> +		m25p,fast-read;
+> +		label = "bmc";
+> +		spi-max-frequency = <50000000>;
+> +#include "openbmc-flash-layout-128.dtsi"
+> +	};
+> +};
+> +
+> +&spi1 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_spi1_default>;
+> +
+> +	flash@0 {
+> +		status = "okay";
+> +		m25p,fast-read;
+> +		label = "pnor";
+> +		spi-max-frequency = <100000000>;
+> +	};
+> +};
+> +
+> +&uart1 {
+> +		status = "okay";
+
+What's with this indentation?
+
+> +		pinctrl-0 = <&pinctrl_txd1_default
+> +					&pinctrl_rxd1_default
+> +					&pinctrl_nrts1_default
+> +					&pinctrl_ndtr1_default
+> +					&pinctrl_ndsr1_default
+> +					&pinctrl_ncts1_default
+> +					&pinctrl_ndcd1_default
+> +					&pinctrl_nri1_default>;
+> +};
+> +
+> +&uart2 {
+> +		status = "okay";
+> +		pinctrl-0 = <&pinctrl_txd2_default
+> +					&pinctrl_rxd2_default
+> +					&pinctrl_nrts2_default
+> +					&pinctrl_ndtr2_default
+> +					&pinctrl_ndsr2_default
+> +					&pinctrl_ncts2_default
+> +					&pinctrl_ndcd2_default
+> +					&pinctrl_nri2_default>;
+> +};
+> +
+> +&uart3 {
+> +		status = "okay";
+> +};
+> +
+> +&uart4 {
+> +		status = "okay";
+> +};
+> +
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +
+> +	temp@2e {
+
+generic node names, so "temperature-sensor" or just "sensor"
+
+
+> +		compatible = "adi,adt7490";
+> +		reg = <0x2e>;
+> +	};
+> +};
+> +
+> +&i2c1 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c2 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c3 {
+> +	multi-master;
+> +	status = "okay";
+> +
+> +	gpio@70 {
+> +		compatible = "nxp,pca9538";
+> +		reg = <0x70>;
+> +		interrupt-parent = <&gpio0>;
+> +		interrupts = <ASPEED_GPIO(O, 7) IRQ_TYPE_EDGE_FALLING>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		gpio-line-names =
+> +			"presence-fan1-n", "presence-fan2-n", "presence-fan3-n", "presence-fan4-n",
+> +			"presence-fan5-n", "presence-fan6-n", "", "";
+> +	};
+> +
+> +	gpio3_71:gpio@71 {
+> +		compatible = "nxp,pca9538";
+> +		reg = <0x71>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		gpio-line-names =
+> +			"led-fan1-fault", "led-fan2-fault", "led-fan3-fault", "led-fan4-fault",
+> +			"led-fan5-fault", "led-fan6-fault", "", "";
+> +	};
+> +};
+> +
+> +&i2c4 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c5 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c6 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c7 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c8 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c9 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c12 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c13 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c14 {
+> +	status = "okay";
+
+You enable quite a lot of empty busses. Why?
 
 
 Best regards,
