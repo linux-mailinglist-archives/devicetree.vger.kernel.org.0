@@ -2,103 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9377E52ECCE
-	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 15:02:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE7FE52ECD3
+	for <lists+devicetree@lfdr.de>; Fri, 20 May 2022 15:02:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242062AbiETNCC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 09:02:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57734 "EHLO
+        id S1346985AbiETNCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 09:02:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236247AbiETNCB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 09:02:01 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A6711AF13
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 06:02:00 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id f4so14148461lfu.12
-        for <devicetree@vger.kernel.org>; Fri, 20 May 2022 06:02:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=JuZHQ6f7UwG9sEcrBgd7CjvcA+TEESz6YOxMScXKub4=;
-        b=oe7Ihu+Q38xydzIWx7L1VP2mveLIrDlraThtNZ/ZoAz2/WRIXeZBgN41A/MlyIrclb
-         OrX55qBrx2BeXGVMyQKJbo8sTNu1m0W/RI7XqzVOHPKzCVEtYZnvMUGxFIcRe2ku3vab
-         nwDsk93wl9k0K2zNJAs0PP78ghFBgt3k+U/qwe1a+5tmVnQ790bG2ZRF+bm8Og18bq4D
-         qiKQA+S5Bq6mbVtHuUk1zZm0+HdDEDMuIA62eCVS8LFH+eewGz4diDxDPYrnXemlBhfn
-         nhmz/94tEOF8VvLgU7moZKumeAShxaGFQwb50yMb4q+gRqyKCUG2dJw/rM3D6yu14Xb9
-         CWpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=JuZHQ6f7UwG9sEcrBgd7CjvcA+TEESz6YOxMScXKub4=;
-        b=JYna5fHBmt73FOrOw22X6h3psoKLAFNziMiT5iczxujvDhwZvZ69xHJZ8FyZOOoAyh
-         g2/fSXZVaSuMylIW/96kf9EysBrvmkA2jo0Cv1uRkstjsxiWqyiFkjFVU5oTLUaZ9HHc
-         lYsh2reW0Ncnlx2wR71A6XeohnCwlQstkUXp1fYHx73j9t2lfCNu4HwPXwDa6Oxt6RJY
-         jaI5XV0IeUJrCTflBx6psGlx7VLuDrB2slRqR1d5JWbwRMM+rwTOqYQgdip6MNGWtEED
-         nW0+Scg3q8MJmXZ1rVfHK3qYncv/2qYmCSL6mue6fVr78xuRmUlnfv/GnK5+iXqbkpI/
-         e4Dw==
-X-Gm-Message-State: AOAM533iaBD78RjRtg6vLjeaxno33sJF2wBwI1GadSaziJsSqpPz9LFT
-        1cwCwv3YZfK+XymzlOE90Hwmrw==
-X-Google-Smtp-Source: ABdhPJxWUauG7t9fEtUHzFuI8dk+jUlB1lV9RhKNo3qpTJb8fi//3+EhuolJeMHUbppfvl9h7cj5gA==
-X-Received: by 2002:a19:4306:0:b0:471:bc59:aeb1 with SMTP id q6-20020a194306000000b00471bc59aeb1mr6715970lfa.566.1653051718531;
-        Fri, 20 May 2022 06:01:58 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id b9-20020a056512024900b0047255d21148sm653005lfo.119.2022.05.20.06.01.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 May 2022 06:01:58 -0700 (PDT)
-Message-ID: <4c0c64ac-df79-f677-c6bb-1ba52af41bea@linaro.org>
-Date:   Fri, 20 May 2022 15:01:56 +0200
+        with ESMTP id S230453AbiETNCw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 09:02:52 -0400
+Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [IPv6:2001:4b98:dc4:8::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3FD91053C9;
+        Fri, 20 May 2022 06:02:49 -0700 (PDT)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 59257100012;
+        Fri, 20 May 2022 13:02:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1653051768;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=sM+OQWMMenMdJO9VR7JqvfPNJ36dVqv2du9IbwKv91Y=;
+        b=GYqkhhX9Ravj9OLkpyMQwENtAgyIVKU1s2TSxcGELOwbbLIgP1KvDYQgmETc6+ntlED7F2
+        Gwk6Lmfpx7++EE+pMxjdgZY6PIOUe4cEgCiWEM18wnF8dJnZbzb+eGlwTmk/ofyZwHEgzD
+        twsN10wNEhd9HJFh3UBM2m1JE89kf61LlRBYXGDvzqcKDczAlcpSBSH7rKok5MzRo3dgpD
+        7WedWx1CTlj+H3qkGhWC4sXiCcZdRxi0eukArpQDvrd04mT8e6pOI1RNKFVEacoUX/RisY
+        oZvZ42roNURnuYz/BAJ4L2KS9NokcxmLAYRRpZWuYmNN2INs39YX6JUJXQYalQ==
+Date:   Fri, 20 May 2022 15:02:43 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 2/3] dt-bindings: usb: atmel: Add Microchip LAN966x
+ compatible string
+Message-ID: <20220520150243.625723fa@bootlin.com>
+In-Reply-To: <01b31a02-523e-10bf-3b46-5b830e456522@linaro.org>
+References: <20220513105850.310375-1-herve.codina@bootlin.com>
+        <20220513105850.310375-3-herve.codina@bootlin.com>
+        <8f0d4127-7e66-cf50-21c9-99680f737e30@linaro.org>
+        <20220520133426.3b4728ae@bootlin.com>
+        <b087c34f-0e2f-edd0-a738-3ffc2853a41b@linaro.org>
+        <20220520142109.57b84da2@bootlin.com>
+        <01b31a02-523e-10bf-3b46-5b830e456522@linaro.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.31; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 2/4] watchdog: s3c2410_wdt: support exynosautov9 watchdog
-Content-Language: en-US
-To:     Chanho Park <chanho61.park@samsung.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
-        linux-watchdog@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220520121750.71473-1-chanho61.park@samsung.com>
- <CGME20220520121722epcas2p25b1d7b12db6030b490f191c2ae3e9f9d@epcas2p2.samsung.com>
- <20220520121750.71473-3-chanho61.park@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220520121750.71473-3-chanho61.park@samsung.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/05/2022 14:17, Chanho Park wrote:
+On Fri, 20 May 2022 14:50:24 +0200
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-> @@ -644,9 +675,11 @@ s3c2410_get_wdt_drv_data(struct platform_device *pdev)
->  
->  		switch (index) {
->  		case 0:
-> -			return &drv_data_exynos850_cl0;
-> +			return variant;
->  		case 1:
-> -			return &drv_data_exynos850_cl1;
-> +			return (variant == &drv_data_exynos850_cl0) ?
-> +				&drv_data_exynos850_cl1 :
-> +				&drv_data_exynosautov9_cl1;
+> On 20/05/2022 14:21, Herve Codina wrote:
+> >>> I think it makes sense to keep 'microchip,lan966x-udc' for the USB
+> >>> device controller (same controller on LAN9662 and LAN9668) and so
+> >>> keeping the same rules as for other common parts.   =20
+> >>
+> >> Having wildcard was rather a mistake and we already started correcting
+> >> it, so keeping the "mistake" neither gives you consistency, nor
+> >> correctness...
+> >> =20
+> >=20
+> > I think that the "family" compatible should be present.
+> > This one allows to define the common parts in the common
+> > .dtsi file (lan966x.dtsi in our case).
+> >=20
+> > What do you think about:
+> > - microchip,lan9662-udc
+> > - microchip,lan9668-udc
+> > - microchip,lan966-udc  <-- Family
+> >=20
+> > lan966 is defined as the family compatible string since (1) in
+> > bindings/arm/atmel-at91.yaml and in Documentation/arm/microchip.rst
+> >  =20
+>=20
+> You can add some family compatible, if it makes sense. I don't get why
+> do you mention it - we did not discuss family names, but using
+> wildcards... Just please do not add wildcards.
 
-This stops scaling... it's fine now, but any next variant will require
-some rework.
+Well, I mentioned it as I will only use the family compatible string
+and not the SOC (lan9662 or lan9668) compatible string in lan966x.dtsi.
+In this case, the family compatible string can be seen as a kind of
+"wildcard".
 
+Regards,
+Herv=C3=A9
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
+--=20
+Herv=C3=A9 Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
