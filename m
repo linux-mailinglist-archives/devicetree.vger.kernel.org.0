@@ -2,44 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2BC052FEBC
-	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 20:19:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F065C52FECE
+	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 20:27:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229670AbiEUSTa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 May 2022 14:19:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50644 "EHLO
+        id S1344352AbiEUS1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 May 2022 14:27:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232371AbiEUST3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 14:19:29 -0400
-Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [5.144.164.166])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF9143BF91
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 11:19:27 -0700 (PDT)
+        with ESMTP id S240843AbiEUS1q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 14:27:46 -0400
+Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [5.144.164.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6236B4B1F6
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 11:27:45 -0700 (PDT)
 Received: from SoMainline.org (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 484373F648;
-        Sat, 21 May 2022 20:19:25 +0200 (CEST)
-Date:   Sat, 21 May 2022 20:19:23 +0200
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 3F5913F664;
+        Sat, 21 May 2022 20:27:43 +0200 (CEST)
+Date:   Sat, 21 May 2022 20:27:42 +0200
 From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
 Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Subject: Re: [PATCH v6 01/11] arm64: dts: qcom: sdm630: disable dsi0/dsi0_phy
- by default
-Message-ID: <20220521181923.uqje7rclvblj6ofk@SoMainline.org>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 07/11] arm64: dts: qcom: sdm630: fix gpu's
+ interconnect path
+Message-ID: <20220521182742.vaisrfzuqyrnsv7u@SoMainline.org>
 References: <20220521152049.1490220-1-dmitry.baryshkov@linaro.org>
- <20220521152049.1490220-2-dmitry.baryshkov@linaro.org>
- <20220521160652.oyqvurbjql23n243@SoMainline.org>
- <45462192-7c88-cdd9-19ae-e078915bf6c8@linaro.org>
+ <20220521152049.1490220-8-dmitry.baryshkov@linaro.org>
+ <20220521161750.3jvvmlfrvk6yxwkp@SoMainline.org>
+ <aed5ee02-90d3-fa0d-3563-c83987d011a3@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <45462192-7c88-cdd9-19ae-e078915bf6c8@linaro.org>
+In-Reply-To: <aed5ee02-90d3-fa0d-3563-c83987d011a3@kernel.org>
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
@@ -49,34 +48,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-05-21 18:49:36, Krzysztof Kozlowski wrote:
-> On 21/05/2022 18:06, Marijn Suijten wrote:
-> > On 2022-05-21 18:20:39, Dmitry Baryshkov wrote:
-> >> Follow the typical practice and keep DSI0/DSI0 PHY disabled by default.
-> >> They should be enabled in the board DT files. No existing boards use
-> >> them at this moment.
-> >>
-> >> Suggested-by: Marijn Suijten <marijn.suijten@somainline.org>
-> >> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> >> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On 2022-05-21 18:51:07, Krzysztof Kozlowski wrote:
+> On 21/05/2022 18:17, Marijn Suijten wrote:
 > > 
-> > I also added my:
-> > 
-> > Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
-> > 
-> > To v5, to confirm the Suggested-by.
+> > And also added my Reviewed-by there.  I think it is normal to have a
+> > Reviewed-by on top of a Suggested-by/Reported-by, so that I as reviewer
+> > confirm the contents of the patch?
 > 
-> Reviewed-by tag is not used to confirm other tags like reported or
-> suggested. It means you performed the review and you state what is
-> described in "Reviewer's statement of oversight".
+> The review tag is not used to confirm anything like that.
 
-That is obviously implied, otherwise I wouldn't have sent a Reviewed-by
-in the first place.
+It is used to acknowledge that I agree on (confirm) the contents of the
+patch as per how a review usually works.  I have reviewed the patch,
+double-checked the numbers on my end.  That's the "contents of the
+patch"?
 
-However, I don't think Suggested-by quite carries the load of a
-Reviewed-by (at all...), so I don't understand why my Reviewed-by's have
-strangely been picked up for every patch except those where my name is
-already listed as Suggested-by or Reported-by, those are completely
-separate things.
+> > Since this is the third patch missing these, It may just have been an
+> > oversight.
+> 
+> If your review was meeting the criteria of "Reviewer's statement of
+> oversight", then of course should be added here.
+
+That's what I said above, the Reviewed-by goes on top of the Reported-by
+as the latter doesn't imply the former at all.
 
 - Marijn
