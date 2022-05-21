@@ -2,65 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1028C52FF68
-	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 22:34:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88C0552FF6A
+	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 22:35:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244606AbiEUUe4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 May 2022 16:34:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59576 "EHLO
+        id S1345732AbiEUUfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 May 2022 16:35:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240502AbiEUUez (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 16:34:55 -0400
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B625338BE0;
-        Sat, 21 May 2022 13:34:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1653165294; x=1684701294;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=U53QBVnQjgrZwXCmHNKU8vM4EN7VyzE4dG5Eg1eRKBU=;
-  b=oFBWnyun3v2d6phSv+G3umEqeXli2+w+IV9Re+7hpW51BEHybtbmyJP6
-   x4a6/ZPzftiehlttA2+gIw6zBMLHyBQsGKqMXq/Rhbdzo1bl46J+QYt+c
-   l8yvkzVKVFq6LLERXrREIhbvBojGnwjMxXZ+GrLxQrWm22CNVda8hNRzh
-   364ImFVhLNgA0sIT6GvFABYYpjhSK6p3rQiB9Vwn81dBiwTzhv7vJSpTO
-   LhRb1nj/WUkcSvWeg6Ta2GDCF+83W99FzQ503YOzvLnQdmioyMEicvTAL
-   2whOqRk5+CCTuutem+6A1STbFf+NMasYZYTxQ3C/nZyfIHpbqlDvqh9ft
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10354"; a="333533404"
-X-IronPort-AV: E=Sophos;i="5.91,243,1647327600"; 
-   d="scan'208";a="333533404"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 May 2022 13:34:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,243,1647327600"; 
-   d="scan'208";a="607545747"
-Received: from lkp-server02.sh.intel.com (HELO 242b25809ac7) ([10.239.97.151])
-  by orsmga001.jf.intel.com with ESMTP; 21 May 2022 13:34:52 -0700
-Received: from kbuild by 242b25809ac7 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nsVoJ-0006bQ-JH;
-        Sat, 21 May 2022 20:34:51 +0000
-Date:   Sun, 22 May 2022 04:34:05 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Phil Edworthy <phil.edworthy@renesas.com>,
+        with ESMTP id S1345557AbiEUUfZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 16:35:25 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAED739168
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 13:35:23 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id w14so19511581lfl.13
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 13:35:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Wyu29O4vbuOVcOvLqIlFC0WcvehDVW1zIPP03IpVfEw=;
+        b=BwoOwiRjyuSrf6M4weFPP/uBKTzLYCIaWZ9rViBDY6kjzG7xTVLBZQY/wcS4h+wtxm
+         AeyLAHR4fZ6N114UgqI9loxfHpRhXnpqoReOVlhLMI9uoppf4fI/UqGgTy1tnzOfiATV
+         H+41SgwC8PXaTWB1+AR/zOmmO87ptNpAD9o6XlVgxSAuHwAQucKijtbLCYGxp/637Q5e
+         wQ3GeDm3soH1NIxWsAukqlTfzvSm9tMc076Lu311DlNwSij1Er09KWQc0hkEzJSd18u7
+         QqQvLEw5EDGtZsNXVcoV3pOkSVviaRkv2FMdXJKrMxJDOD7lUG8XjCWZ1u8ehUI2UEik
+         pItA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Wyu29O4vbuOVcOvLqIlFC0WcvehDVW1zIPP03IpVfEw=;
+        b=BVWmlxMtJ/FOiOgjyU7y1m/phx39jcgKm8260IT2cm7Div/4y6UQhVlqfey0jP0BeE
+         zxx9SrSKC7Sc2s2vc4P1M0ABCoBCrtaTtE2PsYzRRf6Gi+wGCTRTbcm9Y0ITl4lb+snq
+         9zArwL0lPqLUYI7BK/Th5XTm/x1Zvz/mqGOuX77CZt284fUgChok13JRPPfdYKA5YrBV
+         fcktIbCOIbapxQAnJxFT4tu1tSCF7JLWbExmRBiNzi9Nr7xy8zvSzjkJS7QiaQW1JxWr
+         o/HYBqWy6D4DSErEYp/noUvd80cPOC0zt5jlLRm7hjdzowW8gtO0MneKhiG4lcRG6+15
+         MiWg==
+X-Gm-Message-State: AOAM530KiRrZtRpkuS6ki31ar7MNdgfU6aITpudU2wc3caY0aaKFPCxY
+        ybnmdyDCHlovaR7D1cZhh9iQ5Q==
+X-Google-Smtp-Source: ABdhPJzQvc8gBXS7d3lrkkU9bjcpWDMZdRsIj25fWJfQ49DUIO3NL5NoGqVtqbNSZ3CgjWEd9/WBgg==
+X-Received: by 2002:a05:6512:3c82:b0:478:5dde:4865 with SMTP id h2-20020a0565123c8200b004785dde4865mr3430309lfv.424.1653165322175;
+        Sat, 21 May 2022 13:35:22 -0700 (PDT)
+Received: from eriador.lan ([2001:470:dd84:abc0::8a5])
+        by smtp.gmail.com with ESMTPSA id q18-20020a056512211200b00477930c48dasm1179729lfr.184.2022.05.21.13.35.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 21 May 2022 13:35:21 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     kbuild-all@lists.01.org, Phil Edworthy <phil.edworthy@renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH v3] arm64: dts: renesas: rzv2m evk: Enable ethernet
-Message-ID: <202205220428.1iv6rKAJ-lkp@intel.com>
-References: <20220520100736.15182-1-phil.edworthy@renesas.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>
+Subject: [PATCH v2 0/4] arm64: dts: qcom: enable CDSP and MSS on ifc6560 board
+Date:   Sat, 21 May 2022 23:35:16 +0300
+Message-Id: <20220521203520.1513565-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220520100736.15182-1-phil.edworthy@renesas.com>
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,39 +71,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Phil,
+Add support for the CDSP (existing only on SDM660) and MSS remote
+processors (SDM630/636/660). Enable them on the IFC6560 board.
 
-Thank you for the patch! Yet something to improve:
+This patch series depends on the main IFC6560 series.
 
-[auto build test ERROR on geert-renesas-devel/next]
-[cannot apply to krzk/for-next v5.18-rc7]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Changes since v1:
+- Account for the sdm636 platform. Moved all common device nodes to
+  sdm636 and added cdsp to sdm660 only.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Phil-Edworthy/arm64-dts-renesas-rzv2m-evk-Enable-ethernet/20220520-180929
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-devel.git next
-config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20220522/202205220428.1iv6rKAJ-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 11.3.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/bae3dc745b58471823c22e98b6dbfb0ef17e213a
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Phil-Edworthy/arm64-dts-renesas-rzv2m-evk-Enable-ethernet/20220520-180929
-        git checkout bae3dc745b58471823c22e98b6dbfb0ef17e213a
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash
+Dmitry Baryshkov (4):
+  arm64: dts: qcom: sdm660: move device nodes to sdm636
+  arm64: dts: qcom: sdm660: add device node for the compute PAS
+  arm64: dts: qcom: sdm630: add device node for the modem PAS
+  arm64: dts: qcom: sda660-inforce-ifc6560: enable cdsp and modem
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
->> Error: arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts:47.1-5 Label or path avb not found
-   FATAL ERROR: Syntax error parsing input tree
+ .../boot/dts/qcom/sda660-inforce-ifc6560.dts  |  10 +
+ arch/arm64/boot/dts/qcom/sdm630.dtsi          |  59 ++++
+ arch/arm64/boot/dts/qcom/sdm636.dtsi          | 253 ++++++++++++++-
+ arch/arm64/boot/dts/qcom/sdm660.dtsi          | 292 ++++--------------
+ 4 files changed, 374 insertions(+), 240 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.35.1
+
