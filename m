@@ -2,74 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B97F52FD95
-	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 17:13:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 633EF52FD9C
+	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 17:14:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232483AbiEUPND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 May 2022 11:13:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37268 "EHLO
+        id S244890AbiEUPOo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 May 2022 11:14:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241662AbiEUPNC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 11:13:02 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 811AC554AD
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:12:58 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id bq30so18821240lfb.3
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:12:58 -0700 (PDT)
+        with ESMTP id S244849AbiEUPOn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 11:14:43 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D61B9554AD
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:14:41 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id bu29so18872613lfb.0
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:14:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Jk8LaQh3YbYcgetXkqyBJpq8LYQteQJ9EbjKOpTl0XY=;
-        b=oGIquCyjTa0KYp6tHKz3oefhMdccABhkE4D7b90SYfLT5XULA4lw+u6xfvLSufi/dF
-         NCULivkTUv3fXSRlUYn4cEHbDx6WGdAq2W91sR+9n6AbecrbJiovgm6dYyxCx/AIwGsC
-         qGbMaTByAgUSifSq0sW583YfPXVDXTluKd0qnGrGlnwLyTi8UgVbwYOG3mM8LMsVRp8d
-         1dFJ422/GfrNVIR8IaqYhpESo6BheeQN9HsEBZzwJY+trSKTiIzdKD4NY2V/ejnoxUY9
-         ftWUjFrBdlCy1g7z0N59nJx34G61hPNcgIHw80QuFpAV14tURwW+UpsqzF3Yww2qwuhK
-         gjHw==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=IVrVm4lSXqU5biEI9mdh0jre39IASlXjjmo6QOig9Tg=;
+        b=SwTmFKXT+/5fPsDfWxS6xOsleNDsDZUYcGxqWB5+m2IiMPPvVJSxl8+NeJeue960sT
+         7fusG/WujXGe5l3qNTROQu+D5AaPYqrzxEyRbl9NEj52/BIGjbiO5JGjOGDttT5qpQnL
+         eUiVj1w+gbv7wWzhCE7aEnCz35y2OPYvcSRauHMv0OOTttkVbHo/JQ9WxH+/XjcF2hsU
+         sBma0pWirzLqONUe23yxMNpMR8JP4NeftMuXC+UfC7NGUKamwClp1DJoko2J1fhxyy6m
+         HEqqIBEvkAWyLEUckCIz+P0ohCYQCb24WpWDsvUDA0vmiXYMtYmp7i5Hd915cKVerxbz
+         kvUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=Jk8LaQh3YbYcgetXkqyBJpq8LYQteQJ9EbjKOpTl0XY=;
-        b=BtfbB2Fc1oFZPBmNYymgV4lJokWDl2ERn4YE7NK17VrM+mKMPA4JCU5MyzORwD7Gp3
-         c8WqxIUIOMc8gqk8S8MLPjBGp903HtGDl58pQAaxzVM3sRe8VBWYTvcv/YOwvwhdoogN
-         iVIBn+za4YUWWAJUrRU4KEqhcdwygejPE/rWwqIVbEoUKNyDLAA/g/Ll/IOqMPaKctpI
-         xWVbfr9woXOVMjq0OpEva4oqFn645BDoCc01N6TQgxEN0PLhizyWY9nlxigaLON11rGu
-         7mBvUafYxvlO0j87XdIY6T0hTV1FTkrGQxFLYSomKV/RksNEFD6IA0Qe+AcHmPpEP8Tk
-         uP9g==
-X-Gm-Message-State: AOAM530CvTdXWuXWLETa5h1ce8gy5UUnRsZLiWYaAQk02USkN7gVwNmk
-        JxOA6eitZwIIWcrms5VR7zmHlQ==
-X-Google-Smtp-Source: ABdhPJzHBGbNgQUS6N5McRNLoRvhDms8eVo9NAyIsoae8EZeyxTurbcJ6pSNiu3YwGjGlMOUPBD83Q==
-X-Received: by 2002:ac2:484e:0:b0:477:b102:c8df with SMTP id 14-20020ac2484e000000b00477b102c8dfmr10795390lfy.415.1653145976844;
-        Sat, 21 May 2022 08:12:56 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id f11-20020a05651c02cb00b00253e1fca85asm318558ljo.85.2022.05.21.08.12.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 21 May 2022 08:12:56 -0700 (PDT)
-Message-ID: <45fea4a1-387f-9684-a90b-58b695b54172@linaro.org>
-Date:   Sat, 21 May 2022 17:12:54 +0200
+        bh=IVrVm4lSXqU5biEI9mdh0jre39IASlXjjmo6QOig9Tg=;
+        b=YDR2e8UtaCf60p/9EI8Aglyni1sETXR+htqMwaWPpwAjXix1cCh8dPJm0fAH8N6hrK
+         F3KK60EsgIYuhUViP6H6t3I8ZF5106EcGibspfg3+YJUrKT8eIX62N67+yLIrUED5Ra9
+         AlNHIzJ+FaUX3kwzQWYVQwpgL9et1nCpgVRLibxXpnsk9BrH4hjp+oOTbkjSp15/9wRf
+         j7Ie0s15gT4DvaT+IOIBmNClaasgTAUpgOLTVxrq0yBYKbGkPKnQN7Ceg+KjEYfOmQJ0
+         dV1f76y/LmMMEsGS5vVIEo98Vex6pv8rOv19oWihERHfONfSwV/8iKhIB7ChpZ2m90bV
+         UZBA==
+X-Gm-Message-State: AOAM530c/tx3CQv9CAIIgRyVlbXt8NvgEHd4kKveE4mNZMdOI4xPk/Hc
+        h0eDNRuDhAdVPWF2OY/ETV42aQ==
+X-Google-Smtp-Source: ABdhPJyxroTl2iSpRmG+DIWc3EEE2wlSHABfRDwZDTTP7JwHUOuhvZnNzsDi1ATHf4/MvY7fLFLv+w==
+X-Received: by 2002:a05:6512:1321:b0:477:9f1a:a5dd with SMTP id x33-20020a056512132100b004779f1aa5ddmr10623558lfu.443.1653146080255;
+        Sat, 21 May 2022 08:14:40 -0700 (PDT)
+Received: from eriador.lumag.spb.ru ([94.25.229.156])
+        by smtp.gmail.com with ESMTPSA id v22-20020a2e7a16000000b0024f3d1daedfsm716849ljc.103.2022.05.21.08.14.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 21 May 2022 08:14:39 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v6 0/4] arm: qcom: qcom-apq8064: add separate device node for tsens
+Date:   Sat, 21 May 2022 18:14:33 +0300
+Message-Id: <20220521151437.1489111-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v5 1/6] dt-bindings: remoteproc: Add Xilinx RPU subsystem
- bindings
-Content-Language: en-US
-To:     Tanmay Shah <tanmay.shah@xilinx.com>, bjorn.andersson@linaro.org,
-        mathieu.poirier@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        michal.simek@xilinx.com
-Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20220518194426.3784095-1-tanmay.shah@xilinx.com>
- <20220518194426.3784095-2-tanmay.shah@xilinx.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220518194426.3784095-2-tanmay.shah@xilinx.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,105 +72,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/05/2022 21:44, Tanmay Shah wrote:
-> +description: |
-> +  The Xilinx platforms include a pair of Cortex-R5F processors (RPU) for
-> +  real-time processing based on the Cortex-R5F processor core from ARM.
-> +  The Cortex-R5F processor implements the Arm v7-R architecture and includes a
-> +  floating-point unit that implements the Arm VFPv3 instruction set.
-> +
-> +properties:
-> +  compatible:
-> +    const: xlnx,zynqmp-r5fss
-> +
-> +  xlnx,cluster-mode:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1, 2]
-> +    description: |
-> +      The RPU MPCore can operate in split mode(Dual-processor performance), Safety
-> +      lock-step mode(Both RPU cores execute the same code in lock-step,
-> +      clock-for-clock) or Single CPU mode (RPU core 0 can be held in reset while
-> +      core 1 runs normally). The processor does not support dynamic configuration.
-> +      Switching between modes is only permitted immediately after a processor reset.
-> +      If set to  1 then lockstep mode and if 0 then split mode.
-> +      If set to  2 then single CPU mode. When not defined, default will be lockstep mode.
-> +
-> +patternProperties:
-> +  "^r5f-[a-f0-9]+$":
-> +    type: object
-> +    description: |
-> +      The RPU is located in the Low Power Domain of the Processor Subsystem.
-> +      Each processor includes separate L1 instruction and data caches and
-> +      tightly coupled memories (TCM). System memory is cacheable, but the TCM
-> +      memory space is non-cacheable.
-> +
-> +      Each RPU contains one 64KB memory and two 32KB memories that
-> +      are accessed via the TCM A and B port interfaces, for a total of 128KB
-> +      per processor. In lock-step mode, the processor has access to 256KB of
-> +      TCM memory.
-> +
-> +    properties:
-> +      compatible:
-> +        const: xlnx,zynqmp-r5f
-> +
-> +      power-domains:
-> +        description: RPU core PM domain specifier
-> +        maxItems: 1
-> +
-> +      mboxes:
-> +        items:
-> +          - description: mailbox channel to send data to RPU
-> +          - description: mailbox channel to receive data from RPU
-> +        minItems: 1
-> +
-> +      mbox-names:
-> +        items:
-> +          - const: tx
-> +          - const: rx
-> +        minItems: 1
-> +
-> +      sram:
-> +        $ref: /schemas/types.yaml#/definitions/phandle-array
-> +        minItems: 1
+Currently gcc-msm8960 driver manually creates tsens device. Instantiate
+the device using DT node instead. This makes the APQ8064 follow the
+IPQ8064 device tree schema (which is also closer to the way tsens
+devices are described on newer Qualcomm platforms).
 
-maxItems instead
+Compatibility with the previous devices trees is kept intact.
 
-> +        description: |
-> +          phandles to one or more reserved on-chip SRAM regions. Other than TCM,
-> +          the RPU can execute instructions and access data from, the OCM memory,
-> +          the main DDR memory, and other system memories.
-> +
-> +          The regions should be defined as child nodes of the respective SRAM
-> +          node, and should be defined as per the generic bindings in,
-> +          Documentation/devicetree/bindings/sram/sram.yaml
-> +
-> +      memory-region:
-> +        description: |
-> +          List of phandles to the reserved memory regions associated with the
-> +          remoteproc device. This is variable and describes the memories shared with
-> +          the remote processor (e.g. remoteproc firmware and carveouts, rpmsg
-> +          vrings, ...). This reserved memory region will be allocated on DDR memory.
-> +        minItems: 1
-> +        items:
-> +          - description: region used for RPU firmware image section
-> +          - description: vdev buffer
-> +          - description: vring0
-> +          - description: vring1
-> +        additionalItems: true
+Changes since v5:
+- Inherited the gcc-msm8960 patch from another patchseries.
+- Marked old nvmem/thermal sensor properties as deprecated (Krzyshtof).
 
-How did this one appear here? It does not look correct, so why do you
-need it?
+Changes since v4:
+- Added thermal-sensor description to the qcom,gcc-apq8064 schema
 
-> +
-> +    required:
-> +      - compatible
-> +      - power-domains
-> +
-> +    unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +\
+Changes since v3:
+- Fix a typo qcom,gcc-msm8060 -> qcom,gcc-msm8960 (noted by Krzyshtof)
+- Fixed indentation in the example (also noted by Krzyshtof)
 
-Best regards,
-Krzysztof
+Changes since v2:
+- Remove patches merged by Daniel
+- Rephrase commit messages to emphasize that these changes make apq8064
+  follow ipq8064
+
+Changes since v1:
+- populate child devices in gcc-msm8960
+- add syscon to the gcc device tree node
+
+Dmitry Baryshkov (4):
+  dt-bindings: clock: qcom,gcc-apq8064: move msm8960 compat from
+    gcc-other.yaml
+  dt-bindings: clock: qcom,gcc-apq8064: split tsens to the child node
+  clk: qcom: gcc-msm8960: create tsens device if there are no child
+    nodes
+  arm: dts: qcom-apq8064: create tsens device node
+
+ .../bindings/clock/qcom,gcc-apq8064.yaml      | 40 ++++++++++++++-----
+ .../bindings/clock/qcom,gcc-other.yaml        |  5 +--
+ arch/arm/boot/dts/qcom-apq8064.dtsi           | 25 ++++++++----
+ drivers/clk/qcom/gcc-msm8960.c                |  6 ++-
+ 4 files changed, 55 insertions(+), 21 deletions(-)
+
+-- 
+2.35.1
+
