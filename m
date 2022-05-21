@@ -2,71 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4B6B52FDA8
-	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 17:14:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 319B452FDAB
+	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 17:16:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236596AbiEUPOv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 May 2022 11:14:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38404 "EHLO
+        id S234927AbiEUPQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 May 2022 11:16:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349696AbiEUPOt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 11:14:49 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEFA256216
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:14:47 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id u30so18774220lfm.9
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:14:47 -0700 (PDT)
+        with ESMTP id S230321AbiEUPQd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 11:16:33 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D39C148336
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:16:31 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id s5so12489151ljd.10
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:16:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=AvVifaO9p+JFw30NVykbo4mkyi37xpDmxYCbuCucK8M=;
-        b=gJFk/utYk7tEDr3TiCLcmebSKUjrCeU+VIZ6I+wLtkFUise5ohQVyMMxkrUvbVVIwr
-         E3ZcTVr90anB6NFLfq0bitQyQL7x0UnNTYKmeSbVuXYtomM7v3HFB2K8gon3+s/+n9i5
-         OmwzJpXQDl5aCssHquJf56G+YdZmKsMS5g/eOVsexujdKrWyxNs7zzjLZq6M5RUmXIJ/
-         s7KeJuwXhVeeX58ogd3cJIyLhvc1OK38/l/4Li/ovJk6vJbGXz0TgWRPxpYVZ25SqevJ
-         +NZTK5cIWbjeR11e3RnppLBIRye0w6xjToTEUVNva9yvdmxvuv48QfU6zeytRrLrNdXI
-         +0TQ==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=OwTRfuiq4wbJs1UPblU1Ai6E4P1iaPJzr05lyZ6KhnI=;
+        b=oSgokVp5OlVIODHY5N5GNj0wUk+aJ5aYIiEMK3jeSa+VyDPVQNPcGj9CwvZ3ttExBk
+         DnXHylAt4l9zFP9k/nKa7EzFR2XqSNZ/zX7ImH22xypOxLN92StlP+AUW1y4grUbGAAK
+         /iJweiiavumFe+PwqcI1jYGK/p/34sBU48dydF66oMBPSuV5QA9Y2bsbAsn20rPkkP6n
+         h5ngZPcrMnhYKE7CxHm6MuiTeQYK5J7j0mgvF1eoHXcL6V3IYPReaBH1qCJ+tldIjDeG
+         Zc6jVW/bKcRdUpdO6geFDs//HieMORaZjeTsiRAmCfgDQ1KY2KS4eJyoMsZ0vjltH/cE
+         Ydmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=AvVifaO9p+JFw30NVykbo4mkyi37xpDmxYCbuCucK8M=;
-        b=HACphtH5G+V+vSJh/Ohd9tZeU6nLhj2D1IuvWKzMmtRLsxteRF3MioWNe+vaA+xO22
-         VDKxIIQxUm34hu9ZDomiDfRSiR1c9bPCUfLE9gWdWCSGQTN34AsN9C05PFdtaKtZdNgS
-         aXH2Ly41cm0EQwmUxoQsgWWq6yFOF6Ey5FqPxg+t1ItVNTDI2a4tQwYW7BjR2Sim9z+p
-         luVDLz10XYVsbVt7B6In2XrAGFnEBawrRriM3embhdCu1ZnLGSmthgxocInjIOpmFrkA
-         kkx7kFtTkrUGd8/z+hf1QmWQLQLCyd8DXzjFGNQ591y38tqEHZnkH3CPMtKa4gR2tAVq
-         5EXQ==
-X-Gm-Message-State: AOAM53054h8nHcyFD0tZrtVHPPSNcwU6IzIDWtnYKakingLP20sH9WKu
-        L2wiHAurG/8AGgx231+ik6PFCw==
-X-Google-Smtp-Source: ABdhPJyEF/PmsCSZKm9rhGinAIjLGKp+WnOdtCw5Ykbhm++dVKLJfZ0m3F//cu2F69h8E9bJVeu4/g==
-X-Received: by 2002:a05:6512:3502:b0:476:c68d:8b0d with SMTP id h2-20020a056512350200b00476c68d8b0dmr10868706lfs.113.1653146086058;
-        Sat, 21 May 2022 08:14:46 -0700 (PDT)
-Received: from eriador.lumag.spb.ru ([94.25.229.156])
-        by smtp.gmail.com with ESMTPSA id v22-20020a2e7a16000000b0024f3d1daedfsm716849ljc.103.2022.05.21.08.14.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 May 2022 08:14:45 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v6 4/4] arm: dts: qcom-apq8064: create tsens device node
-Date:   Sat, 21 May 2022 18:14:37 +0300
-Message-Id: <20220521151437.1489111-5-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220521151437.1489111-1-dmitry.baryshkov@linaro.org>
-References: <20220521151437.1489111-1-dmitry.baryshkov@linaro.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=OwTRfuiq4wbJs1UPblU1Ai6E4P1iaPJzr05lyZ6KhnI=;
+        b=QlGBlOSKPRikpO9yvu/u3h2mPrtnMl6204T7eyuhvJmsoBC0DdCMy/uSX0cJLfRGDO
+         5OYiKvkXIFSLo9tBh54iez4Ved/9MYpjh1okQomMkPmWJG8pEnkycexluL2q2BY5Bi+9
+         wHyNeQ/QfDkrkdeJWhOIQaHUAhqlJeASvZo4bFMMHohD15JxddtEfb5FnAKblin2gi4a
+         ZFbVQWuNcZ/sNZsv2Cq9+cp+ya2X160cn4syTuQf7o4k5l3juZuiOQFYdP+S0+CaxcAg
+         JrbspdFZyKbKbyE08j/IsdTIO3xoGNT7UeTwUZY8pxs79InpKjOSYqUcJ7Ts+hOtf00n
+         L3/Q==
+X-Gm-Message-State: AOAM533ZbuRuXJ3NcxzMjSpKKdPPDHJfmye2PbQN/uIYJn5eVb3TMHF+
+        HVob9Om0Vo2VwyPNDYmFWafyaw==
+X-Google-Smtp-Source: ABdhPJwTyVrUjRiZ6MmJtbI7Lw6764FySyF8c9QDeEnIXPLaSPyiRXtIVNCOVwYB8VU/JErfNiPF7g==
+X-Received: by 2002:a2e:a4a6:0:b0:253:dfb7:d9 with SMTP id g6-20020a2ea4a6000000b00253dfb700d9mr3701379ljm.399.1653146190266;
+        Sat, 21 May 2022 08:16:30 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id dt8-20020a0565122a8800b00477cdd53190sm834182lfb.74.2022.05.21.08.16.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 21 May 2022 08:16:29 -0700 (PDT)
+Message-ID: <f960933d-b19b-2ce2-f9a6-6610119fa56e@linaro.org>
+Date:   Sat, 21 May 2022 17:16:28 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 2/2] dt-bindings: i2c: dw: Add Intel's SoCFPGA I2C
+ controller
+Content-Language: en-US
+To:     Dinh Nguyen <dinguyen@kernel.org>, jarkko.nikula@linux.intel.com
+Cc:     andriy.shevchenko@linux.intel.com, mika.westerberg@linux.intel.com,
+        robh+dt@kernel.org, krzk+dt@kernel.org, linux-i2c@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220518202217.85803-1-dinguyen@kernel.org>
+ <20220518202217.85803-2-dinguyen@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220518202217.85803-2-dinguyen@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,84 +76,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Create separate device node for thermal sensors on apq8064 platform.
-Move related properties to the newly created device tree node.
-This harmonizes apq8064 and ipq8064 device trees and allows gcc device
-to be probed earlier by removing dependency on QFPROM nodes.
+On 18/05/2022 22:22, Dinh Nguyen wrote:
+> The I2C pins on Intel's SoCFPGA platform are not connected to GPIOs and
+> thus cannot be recovered by the standard GPIO method.
+> 
+> Document the "intel,socfpga-i2c" binding.
+> 
+> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm/boot/dts/qcom-apq8064.dtsi | 25 +++++++++++++++++--------
- 1 file changed, 17 insertions(+), 8 deletions(-)
 
-diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
-index 34c0ba7fa358..0d323c208978 100644
---- a/arch/arm/boot/dts/qcom-apq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
-@@ -105,7 +105,7 @@ cpu0-thermal {
- 			polling-delay-passive = <250>;
- 			polling-delay = <1000>;
- 
--			thermal-sensors = <&gcc 7>;
-+			thermal-sensors = <&tsens 7>;
- 			coefficients = <1199 0>;
- 
- 			trips {
-@@ -126,7 +126,7 @@ cpu1-thermal {
- 			polling-delay-passive = <250>;
- 			polling-delay = <1000>;
- 
--			thermal-sensors = <&gcc 8>;
-+			thermal-sensors = <&tsens 8>;
- 			coefficients = <1132 0>;
- 
- 			trips {
-@@ -147,7 +147,7 @@ cpu2-thermal {
- 			polling-delay-passive = <250>;
- 			polling-delay = <1000>;
- 
--			thermal-sensors = <&gcc 9>;
-+			thermal-sensors = <&tsens 9>;
- 			coefficients = <1199 0>;
- 
- 			trips {
-@@ -168,7 +168,7 @@ cpu3-thermal {
- 			polling-delay-passive = <250>;
- 			polling-delay = <1000>;
- 
--			thermal-sensors = <&gcc 10>;
-+			thermal-sensors = <&tsens 10>;
- 			coefficients = <1132 0>;
- 
- 			trips {
-@@ -810,14 +810,23 @@ tsens_backup: backup_calib {
- 		};
- 
- 		gcc: clock-controller@900000 {
--			compatible = "qcom,gcc-apq8064";
-+			compatible = "qcom,gcc-apq8064", "syscon";
- 			reg = <0x00900000 0x4000>;
--			nvmem-cells = <&tsens_calib>, <&tsens_backup>;
--			nvmem-cell-names = "calib", "calib_backup";
- 			#clock-cells = <1>;
- 			#power-domain-cells = <1>;
- 			#reset-cells = <1>;
--			#thermal-sensor-cells = <1>;
-+
-+			tsens: thermal-sensor {
-+				compatible = "qcom,msm8960-tsens";
-+
-+				nvmem-cells = <&tsens_calib>, <&tsens_backup>;
-+				nvmem-cell-names = "calib", "calib_backup";
-+				interrupts = <GIC_SPI 178 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-names = "uplow";
-+
-+				#qcom,sensors = <11>;
-+				#thermal-sensor-cells = <1>;
-+			};
- 		};
- 
- 		lcc: clock-controller@28000000 {
--- 
-2.35.1
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+
+Best regards,
+Krzysztof
