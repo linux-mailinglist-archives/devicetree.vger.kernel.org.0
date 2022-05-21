@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70D9D52FDA4
-	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 17:14:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4B6B52FDA8
+	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 17:14:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244849AbiEUPOt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 May 2022 11:14:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38362 "EHLO
+        id S236596AbiEUPOv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 May 2022 11:14:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245227AbiEUPOr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 11:14:47 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D5E756210
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:14:46 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id br17so6481983lfb.2
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:14:46 -0700 (PDT)
+        with ESMTP id S1349696AbiEUPOt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 11:14:49 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEFA256216
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:14:47 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id u30so18774220lfm.9
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:14:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=qCBZ0j+ES0QNdxwqckFAUR3wGLW9E7d1PkVjGCIYt/4=;
-        b=hzG9FNEkMe+dTUP2kJxaSwv6J4SipHrlqe1p0Pz8ZXmAGWn+hH0N4v4EEAzbn0J2Uu
-         cBu9FsyMTQJPIqQYu/pXkch6p/l6hIp9ij9r+IMUaafA73aQ+BjKKq4HQ27HpJ0umSqL
-         oGzyKzOe29KGTLQj8AA6kYJGTapyJKZXJVmb7SNsz++Ra6D697zsfQKMvWL8QG5uR40W
-         Wpyzn2+ZKCfrooPMXbq5WSz/dKbxwiAlpicz7owCMZssQ0FT5DgcXg0tv7zcEjtyKh3T
-         rROuFmfE+mcqNnCmu5fr5hVin2MqHuz1VsSQsqvOZqb4Tmc6fb1r2AejH6prrExiu0bx
-         XZVg==
+        bh=AvVifaO9p+JFw30NVykbo4mkyi37xpDmxYCbuCucK8M=;
+        b=gJFk/utYk7tEDr3TiCLcmebSKUjrCeU+VIZ6I+wLtkFUise5ohQVyMMxkrUvbVVIwr
+         E3ZcTVr90anB6NFLfq0bitQyQL7x0UnNTYKmeSbVuXYtomM7v3HFB2K8gon3+s/+n9i5
+         OmwzJpXQDl5aCssHquJf56G+YdZmKsMS5g/eOVsexujdKrWyxNs7zzjLZq6M5RUmXIJ/
+         s7KeJuwXhVeeX58ogd3cJIyLhvc1OK38/l/4Li/ovJk6vJbGXz0TgWRPxpYVZ25SqevJ
+         +NZTK5cIWbjeR11e3RnppLBIRye0w6xjToTEUVNva9yvdmxvuv48QfU6zeytRrLrNdXI
+         +0TQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=qCBZ0j+ES0QNdxwqckFAUR3wGLW9E7d1PkVjGCIYt/4=;
-        b=0nd4TBQTuA1mOzi7pjQ7jRi8PxHRIjhzgckJV6hW7Dvu3DTTiLhXC23FR3FvDhBWLC
-         5DiTdZ7hr84mj8tOAVBjmNdx5z5chUBDgpgYNEHBUDtzuFFIs8g7LFt9+t9ZV5IbEUGx
-         ru5uoNsBigA2J/Pf3cpKPSW6fqUbtr7vNAa+bqmx/3/HRlz7BQAMkV47hpGJeXGNOCSL
-         f3RmBnC3RckbWv5lYq/gAVusKeKPiaNwZy1Y47wAp429xuzTth3yqojbFAvD7K8COZHy
-         quvOEw0tzNhERLtsi31dQuQy0MuMKm25RvGRDylsOLsmkKk1ISmVQjUCNJmEqu3swSAe
-         we9A==
-X-Gm-Message-State: AOAM533yygyCa2gTmSz0aLab+kFuHz++F0+6xPiNdE7653aqMRPyKaZw
-        hq3/p1JLrCO7DzLKMkkgXvjo4b4d5DnlFw==
-X-Google-Smtp-Source: ABdhPJx/0yIIyAnQHBUfRGiVS5yqAF9VpDKkIoDrjdRFBF0oNiDlId4enthaB42ekdhjApUQ+KHZww==
-X-Received: by 2002:a19:f818:0:b0:472:3d96:bd2d with SMTP id a24-20020a19f818000000b004723d96bd2dmr10647863lff.329.1653146084762;
-        Sat, 21 May 2022 08:14:44 -0700 (PDT)
+        bh=AvVifaO9p+JFw30NVykbo4mkyi37xpDmxYCbuCucK8M=;
+        b=HACphtH5G+V+vSJh/Ohd9tZeU6nLhj2D1IuvWKzMmtRLsxteRF3MioWNe+vaA+xO22
+         VDKxIIQxUm34hu9ZDomiDfRSiR1c9bPCUfLE9gWdWCSGQTN34AsN9C05PFdtaKtZdNgS
+         aXH2Ly41cm0EQwmUxoQsgWWq6yFOF6Ey5FqPxg+t1ItVNTDI2a4tQwYW7BjR2Sim9z+p
+         luVDLz10XYVsbVt7B6In2XrAGFnEBawrRriM3embhdCu1ZnLGSmthgxocInjIOpmFrkA
+         kkx7kFtTkrUGd8/z+hf1QmWQLQLCyd8DXzjFGNQ591y38tqEHZnkH3CPMtKa4gR2tAVq
+         5EXQ==
+X-Gm-Message-State: AOAM53054h8nHcyFD0tZrtVHPPSNcwU6IzIDWtnYKakingLP20sH9WKu
+        L2wiHAurG/8AGgx231+ik6PFCw==
+X-Google-Smtp-Source: ABdhPJyEF/PmsCSZKm9rhGinAIjLGKp+WnOdtCw5Ykbhm++dVKLJfZ0m3F//cu2F69h8E9bJVeu4/g==
+X-Received: by 2002:a05:6512:3502:b0:476:c68d:8b0d with SMTP id h2-20020a056512350200b00476c68d8b0dmr10868706lfs.113.1653146086058;
+        Sat, 21 May 2022 08:14:46 -0700 (PDT)
 Received: from eriador.lumag.spb.ru ([94.25.229.156])
-        by smtp.gmail.com with ESMTPSA id v22-20020a2e7a16000000b0024f3d1daedfsm716849ljc.103.2022.05.21.08.14.43
+        by smtp.gmail.com with ESMTPSA id v22-20020a2e7a16000000b0024f3d1daedfsm716849ljc.103.2022.05.21.08.14.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 May 2022 08:14:44 -0700 (PDT)
+        Sat, 21 May 2022 08:14:45 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -56,9 +56,9 @@ To:     Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzk@kernel.org>
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH v6 3/4] clk: qcom: gcc-msm8960: create tsens device if there are no child nodes
-Date:   Sat, 21 May 2022 18:14:36 +0300
-Message-Id: <20220521151437.1489111-4-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v6 4/4] arm: dts: qcom-apq8064: create tsens device node
+Date:   Sat, 21 May 2022 18:14:37 +0300
+Message-Id: <20220521151437.1489111-5-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220521151437.1489111-1-dmitry.baryshkov@linaro.org>
 References: <20220521151437.1489111-1-dmitry.baryshkov@linaro.org>
@@ -74,44 +74,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently gcc-msm8960 driver manually creates tsens platform device
-manually. It would be better to follow IPQ8064 approach, where tsens
-device is defined as gcc's child device in the device tree. If nothing
-else, it removes gcc's dependency on QFPROM, thus allowing clock
-controller to be probed earlier.
-
-Don't create it in case there are available child nodes (tsens) inside
-the gcc's device tree node.
+Create separate device node for thermal sensors on apq8064 platform.
+Move related properties to the newly created device tree node.
+This harmonizes apq8064 and ipq8064 device trees and allows gcc device
+to be probed earlier by removing dependency on QFPROM nodes.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/clk/qcom/gcc-msm8960.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ arch/arm/boot/dts/qcom-apq8064.dtsi | 25 +++++++++++++++++--------
+ 1 file changed, 17 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/clk/qcom/gcc-msm8960.c b/drivers/clk/qcom/gcc-msm8960.c
-index 051745ef99c8..a6e13b91e4c8 100644
---- a/drivers/clk/qcom/gcc-msm8960.c
-+++ b/drivers/clk/qcom/gcc-msm8960.c
-@@ -3641,6 +3641,9 @@ static int gcc_msm8960_probe(struct platform_device *pdev)
- 		hfpll_l2.d = &hfpll_l2_8064_data;
- 	}
+diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
+index 34c0ba7fa358..0d323c208978 100644
+--- a/arch/arm/boot/dts/qcom-apq8064.dtsi
++++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
+@@ -105,7 +105,7 @@ cpu0-thermal {
+ 			polling-delay-passive = <250>;
+ 			polling-delay = <1000>;
  
-+	if (of_get_available_child_count(pdev->dev.of_node) != 0)
-+		return devm_of_platform_populate(&pdev->dev);
+-			thermal-sensors = <&gcc 7>;
++			thermal-sensors = <&tsens 7>;
+ 			coefficients = <1199 0>;
+ 
+ 			trips {
+@@ -126,7 +126,7 @@ cpu1-thermal {
+ 			polling-delay-passive = <250>;
+ 			polling-delay = <1000>;
+ 
+-			thermal-sensors = <&gcc 8>;
++			thermal-sensors = <&tsens 8>;
+ 			coefficients = <1132 0>;
+ 
+ 			trips {
+@@ -147,7 +147,7 @@ cpu2-thermal {
+ 			polling-delay-passive = <250>;
+ 			polling-delay = <1000>;
+ 
+-			thermal-sensors = <&gcc 9>;
++			thermal-sensors = <&tsens 9>;
+ 			coefficients = <1199 0>;
+ 
+ 			trips {
+@@ -168,7 +168,7 @@ cpu3-thermal {
+ 			polling-delay-passive = <250>;
+ 			polling-delay = <1000>;
+ 
+-			thermal-sensors = <&gcc 10>;
++			thermal-sensors = <&tsens 10>;
+ 			coefficients = <1132 0>;
+ 
+ 			trips {
+@@ -810,14 +810,23 @@ tsens_backup: backup_calib {
+ 		};
+ 
+ 		gcc: clock-controller@900000 {
+-			compatible = "qcom,gcc-apq8064";
++			compatible = "qcom,gcc-apq8064", "syscon";
+ 			reg = <0x00900000 0x4000>;
+-			nvmem-cells = <&tsens_calib>, <&tsens_backup>;
+-			nvmem-cell-names = "calib", "calib_backup";
+ 			#clock-cells = <1>;
+ 			#power-domain-cells = <1>;
+ 			#reset-cells = <1>;
+-			#thermal-sensor-cells = <1>;
 +
- 	tsens = platform_device_register_data(&pdev->dev, "qcom-tsens", -1,
- 					      NULL, 0);
- 	if (IS_ERR(tsens))
-@@ -3655,7 +3658,8 @@ static int gcc_msm8960_remove(struct platform_device *pdev)
- {
- 	struct platform_device *tsens = platform_get_drvdata(pdev);
++			tsens: thermal-sensor {
++				compatible = "qcom,msm8960-tsens";
++
++				nvmem-cells = <&tsens_calib>, <&tsens_backup>;
++				nvmem-cell-names = "calib", "calib_backup";
++				interrupts = <GIC_SPI 178 IRQ_TYPE_LEVEL_HIGH>;
++				interrupt-names = "uplow";
++
++				#qcom,sensors = <11>;
++				#thermal-sensor-cells = <1>;
++			};
+ 		};
  
--	platform_device_unregister(tsens);
-+	if (tsens)
-+		platform_device_unregister(tsens);
- 
- 	return 0;
- }
+ 		lcc: clock-controller@28000000 {
 -- 
 2.35.1
 
