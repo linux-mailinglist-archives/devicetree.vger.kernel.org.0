@@ -2,72 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F6F152FDCE
-	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 17:24:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 883B552FDD2
+	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 17:26:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355388AbiEUPYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 May 2022 11:24:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54080 "EHLO
+        id S245094AbiEUP0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 May 2022 11:26:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239672AbiEUPYY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 11:24:24 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABEAC93466
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:24:23 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id f4so18756923lfu.12
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:24:23 -0700 (PDT)
+        with ESMTP id S245192AbiEUP0L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 11:26:11 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DD3522B04
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:26:10 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id bu29so18900821lfb.0
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:26:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=CJkhEfssZ1BBajH4a78QgJeIvXv9tPvvFZTXYZYK5WA=;
-        b=stcDvw2efBjXUVD+LgS821+CqRfQqT5CIwCHlvwXIgvxDFOxyPdb0vfHChx4Iso8qT
-         jQgfHwnPu5xPntjsS0qvKcywrnKieu+XGQbSAtsIzIQGJAgh+NcfhrBOqGIUI5jbhw6t
-         e46V9mm19CfrjSkXJ3xUTbyOsdZK2LcAKdAYdPTZuHnmBUOXQelnqZFa+DZyZRXbAkCO
-         GfCiG4dtu2B2UGBWIQYurv38N3ALT+OBwz+v+WBknIPGZEUzH057srPCmxbf+nKnf0uA
-         +YLjjPAfjEnkdMt7YHBbnDwmFEafobdPnGdptRDRsK/3OaJoB1af4ZeYnhm35n5vmVU8
-         FOqQ==
+        bh=l0FO30ijLD2RBWmW1sZZ75F8v77vXVlWEzIkxrjeYNU=;
+        b=FjdK5L+i0BohRG/pLptNfBiNkz2x/G+YooeR/rWNH/YP1sG4rxSCENq5HoI4V5OgSA
+         KaB7rzqZHIK1sfLeem7jNce6svhn8G303eCviULO7ViPW4bV7oap1gr+SsHs9MI3CBxv
+         sOQMyxEEN0N/8UKfZ7OH0T0H/5sY2EGso8e6D0+AMIx4W2GThEWxCzmFIRW3G7x1RDOw
+         LdWgqGZQvXlGIqiDIQdEuDcXYBkH7Vh76Wng9W2EwmXuUwMZrG7w9VeUoO2GjPtNT9+2
+         nU+Z2XlM+6i9j/L9wnSk1vxGJv4XNtyuf8R55yBDvvKrf8Al+xtvfa89QWMnpo840A2H
+         fNrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=CJkhEfssZ1BBajH4a78QgJeIvXv9tPvvFZTXYZYK5WA=;
-        b=kM3B0LyN2vSpr6EWnQhWJbZQrTyyvuj4DZLqNIHwoiWzOh3h6SMhFfTU1DhR6twsOw
-         SKdgAb95SlF6Tz9mHCwtJBS9h6d1pToV8nnEjqlVt6cKdsqu2lmwnErJaJAS8HHma9ux
-         2JAFkRpcVjRcxroMQ7NYVv1izC0wZ5FRQvh/3aVYi5uGTmsrAZhwbLE6sNyjwnN9UeFQ
-         xtqp2yA8V5Jj0JuPzBkrdcNwp221QV79Wu/7ldRjV01IkN70s9CsCSKeegEOo4l67SK5
-         qpi2tlcm30gY6COTjnDHih2FhtJKJQ1iDc009eOvF7Di7CYggkBMfRCeboBVuksk2z+6
-         nfFw==
-X-Gm-Message-State: AOAM533JEOKz6l/ABRizgFxcsv6RpFcc8Y/ac/Jpn+I5jmgtzlxYuOr3
-        CgmHge9j3H/yZ+Udj//KsdWlUZIIY6+zHSpH
-X-Google-Smtp-Source: ABdhPJyhLUZEE3ixw5JcnXmxUBJ7o134ZD/XU/hdbbznOJv0u/6InKS51qqX+SPPunJINfiLc1sSVQ==
-X-Received: by 2002:a05:6512:1691:b0:46f:1e0:d0 with SMTP id bu17-20020a056512169100b0046f01e000d0mr10114108lfb.91.1653146662107;
-        Sat, 21 May 2022 08:24:22 -0700 (PDT)
+        bh=l0FO30ijLD2RBWmW1sZZ75F8v77vXVlWEzIkxrjeYNU=;
+        b=cBJhzFUn/E8j2/LDIjnq+sZnECjMZn7BQG/xTmPRCZ3PMCBm3A4xAPWsAXn3h1LAPY
+         7CAAvHbG2m8r9eqS5Uz1yBqnnxNel5XLFfDFoID5RzecQRBeKzOczMYM9qL866b6tV1E
+         iYfQsTiSOwlFjHMWBN56huIjZSdO0Q+cUwL2HMJujkDycvw6C3PM6bn1uvaDgrhV6FJ2
+         X1plc5/F6m0fbZ8y84JT1Yi+efk2lkDTSbhq7WCYDktPycmX3WmUUhucLxrTfzRBTJNA
+         jqoR3K47WbdHy7mZ7HNadzhamfKWw164w7El9DTNmzVLz3boWh44MJhPNvkALKtnKWwM
+         Wjlg==
+X-Gm-Message-State: AOAM530wCcOugYv+EAFVdiwZKtPu0nJL01LDGc2aWBAgh9jfj67UR3AD
+        2R1gpGWhlcPunIOEgk7j8vigCw==
+X-Google-Smtp-Source: ABdhPJwkn1JS3+QEw42fCfDl+jEUY3dLUq7WDEaEUgKq4tTlc3DQYjH0oQJcUokZCtSFnga4kPd9YA==
+X-Received: by 2002:ac2:4e10:0:b0:473:c870:f93b with SMTP id e16-20020ac24e10000000b00473c870f93bmr10765667lfr.517.1653146768784;
+        Sat, 21 May 2022 08:26:08 -0700 (PDT)
 Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id r18-20020a2e80d2000000b0024f3d1dae83sm753086ljg.11.2022.05.21.08.24.20
+        by smtp.gmail.com with ESMTPSA id v8-20020a056512348800b0047255d21186sm1094474lfr.181.2022.05.21.08.26.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 21 May 2022 08:24:21 -0700 (PDT)
-Message-ID: <dfb17f12-3d12-6959-5067-978809392938@linaro.org>
-Date:   Sat, 21 May 2022 17:24:20 +0200
+        Sat, 21 May 2022 08:26:08 -0700 (PDT)
+Message-ID: <d09435fd-8216-ad01-05f2-d2c2c6b98aaa@linaro.org>
+Date:   Sat, 21 May 2022 17:26:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v6 2/4] dt-bindings: clock: qcom,gcc-apq8064: split tsens
- to the child node
+Subject: Re: [PATCH] dt-bindings: clock: gcc-apq8084: merge to gcc-other.yaml
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220521151437.1489111-1-dmitry.baryshkov@linaro.org>
- <20220521151437.1489111-3-dmitry.baryshkov@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220521150835.1488683-1-dmitry.baryshkov@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220521151437.1489111-3-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220521150835.1488683-1-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,15 +75,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/05/2022 17:14, Dmitry Baryshkov wrote:
-> Split tsens properties to the child node of the gcc. This follows the
-> lead of ipq8064 (which also uses a separate node for tsens) and makes
-> device tree closer to other platforms, where tsens is a completely
-> separate device.
+On 21/05/2022 17:08, Dmitry Baryshkov wrote:
+> There is no need to have separate bindings file for the
+> qcom,gcc-apq8084, merge it to qcom,gcc-other.yaml.
 > 
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
+This makes sense and we already discussed it was preferred over my patch.
+
+
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
