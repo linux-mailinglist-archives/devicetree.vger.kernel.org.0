@@ -2,65 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 998EC52FD8D
-	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 17:08:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B97F52FD95
+	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 17:13:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355358AbiEUPIn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 May 2022 11:08:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58460 "EHLO
+        id S232483AbiEUPND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 May 2022 11:13:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355331AbiEUPIl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 11:08:41 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 532E69B190
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:08:39 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id bu29so18857419lfb.0
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:08:39 -0700 (PDT)
+        with ESMTP id S241662AbiEUPNC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 11:13:02 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 811AC554AD
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:12:58 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id bq30so18821240lfb.3
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:12:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=HtwAokPU2B1Ue8VZ+Mhso521LTdtryIMRvjLLTgDQ7k=;
-        b=RlLTuHzO2gTmE1gbkptXbHFtUPAtK4t1BM2+R8gdycRnAgzXtoOiAebc7rxiHFU9bN
-         1vrWiUZh6FLPbtbWFO2M1n/u0HZqMvV0VVenj4JxgG36yzEgJ4j+Wmu9EQWaokqHQmt5
-         nmaG2DQsVE2R2EKwK4octPVVbHG4uxEa2VlnpcnmDq5g+vvOsJnUtzgGr/78Huczvln2
-         wtnfv+P2r6qzL9usdac9sf+DwR2AJGI9APL384z7r2ng5UEJndNiWcFwf6CAK0XDglLD
-         UC6wZkQTITNmYaGeAY0ldqNhfYRamRn9CQj1Y3mBUj9zgwveWCFFRcHn8x3AYyhBJjK6
-         BF5w==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Jk8LaQh3YbYcgetXkqyBJpq8LYQteQJ9EbjKOpTl0XY=;
+        b=oGIquCyjTa0KYp6tHKz3oefhMdccABhkE4D7b90SYfLT5XULA4lw+u6xfvLSufi/dF
+         NCULivkTUv3fXSRlUYn4cEHbDx6WGdAq2W91sR+9n6AbecrbJiovgm6dYyxCx/AIwGsC
+         qGbMaTByAgUSifSq0sW583YfPXVDXTluKd0qnGrGlnwLyTi8UgVbwYOG3mM8LMsVRp8d
+         1dFJ422/GfrNVIR8IaqYhpESo6BheeQN9HsEBZzwJY+trSKTiIzdKD4NY2V/ejnoxUY9
+         ftWUjFrBdlCy1g7z0N59nJx34G61hPNcgIHw80QuFpAV14tURwW+UpsqzF3Yww2qwuhK
+         gjHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=HtwAokPU2B1Ue8VZ+Mhso521LTdtryIMRvjLLTgDQ7k=;
-        b=4A1pmTOg+Qz2VgxtGIcOC2xmhCyW/qu/chFuD/uxrgnQEPEjmULbjhboHW9XKCfK2u
-         FoutkGvgHlaad6dTiL7MFx4r8lVyM63K9Le8SAw3ELckmr0kL3s6dslkblj/Xgv5sqWU
-         3jEY6DcKxqqIIuJg2nH3p7LWZNWxDWEV/EobSc4SwUFi4U8yis6X8zf3LY6I52o4oDl3
-         VUIkZwdRhM+wWyWcfYWpQaBlqzO5B9qPjTxJK4lQRvz/ytm94tbBE0/t6yvD3CKVYQzk
-         qJpwQiB5Go8I/aRptNpFCZeFCRRA4CfU3enRFJAU6Ti9Mh/NhMxcVVkEUhEPbpKotKX/
-         P2Lg==
-X-Gm-Message-State: AOAM532liG9L+OoUtOeZzleGZN8jmR/m8Pf1uTiKwxQt3o0TNF0XC+Qh
-        7HyrOCizOoE5kzbb898KbjMQPg==
-X-Google-Smtp-Source: ABdhPJxQ0cM7CyZksNaxeqRisfVWsfpHm6NfqH0j7jaFAXhta4K5PcpVK+WKhvCl6G75z7ddl216wQ==
-X-Received: by 2002:ac2:4c54:0:b0:473:a414:1768 with SMTP id o20-20020ac24c54000000b00473a4141768mr10329423lfk.537.1653145717565;
-        Sat, 21 May 2022 08:08:37 -0700 (PDT)
-Received: from eriador.lumag.spb.ru ([94.25.229.156])
-        by smtp.gmail.com with ESMTPSA id a4-20020ac25204000000b00477a1b603basm1087709lfl.98.2022.05.21.08.08.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 May 2022 08:08:37 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: clock: gcc-apq8084: merge to gcc-other.yaml
-Date:   Sat, 21 May 2022 18:08:35 +0300
-Message-Id: <20220521150835.1488683-1-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
+        bh=Jk8LaQh3YbYcgetXkqyBJpq8LYQteQJ9EbjKOpTl0XY=;
+        b=BtfbB2Fc1oFZPBmNYymgV4lJokWDl2ERn4YE7NK17VrM+mKMPA4JCU5MyzORwD7Gp3
+         c8WqxIUIOMc8gqk8S8MLPjBGp903HtGDl58pQAaxzVM3sRe8VBWYTvcv/YOwvwhdoogN
+         iVIBn+za4YUWWAJUrRU4KEqhcdwygejPE/rWwqIVbEoUKNyDLAA/g/Ll/IOqMPaKctpI
+         xWVbfr9woXOVMjq0OpEva4oqFn645BDoCc01N6TQgxEN0PLhizyWY9nlxigaLON11rGu
+         7mBvUafYxvlO0j87XdIY6T0hTV1FTkrGQxFLYSomKV/RksNEFD6IA0Qe+AcHmPpEP8Tk
+         uP9g==
+X-Gm-Message-State: AOAM530CvTdXWuXWLETa5h1ce8gy5UUnRsZLiWYaAQk02USkN7gVwNmk
+        JxOA6eitZwIIWcrms5VR7zmHlQ==
+X-Google-Smtp-Source: ABdhPJzHBGbNgQUS6N5McRNLoRvhDms8eVo9NAyIsoae8EZeyxTurbcJ6pSNiu3YwGjGlMOUPBD83Q==
+X-Received: by 2002:ac2:484e:0:b0:477:b102:c8df with SMTP id 14-20020ac2484e000000b00477b102c8dfmr10795390lfy.415.1653145976844;
+        Sat, 21 May 2022 08:12:56 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id f11-20020a05651c02cb00b00253e1fca85asm318558ljo.85.2022.05.21.08.12.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 21 May 2022 08:12:56 -0700 (PDT)
+Message-ID: <45fea4a1-387f-9684-a90b-58b695b54172@linaro.org>
+Date:   Sat, 21 May 2022 17:12:54 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v5 1/6] dt-bindings: remoteproc: Add Xilinx RPU subsystem
+ bindings
+Content-Language: en-US
+To:     Tanmay Shah <tanmay.shah@xilinx.com>, bjorn.andersson@linaro.org,
+        mathieu.poirier@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        michal.simek@xilinx.com
+Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220518194426.3784095-1-tanmay.shah@xilinx.com>
+ <20220518194426.3784095-2-tanmay.shah@xilinx.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220518194426.3784095-2-tanmay.shah@xilinx.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -69,85 +77,105 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is no need to have separate bindings file for the
-qcom,gcc-apq8084, merge it to qcom,gcc-other.yaml.
+On 18/05/2022 21:44, Tanmay Shah wrote:
+> +description: |
+> +  The Xilinx platforms include a pair of Cortex-R5F processors (RPU) for
+> +  real-time processing based on the Cortex-R5F processor core from ARM.
+> +  The Cortex-R5F processor implements the Arm v7-R architecture and includes a
+> +  floating-point unit that implements the Arm VFPv3 instruction set.
+> +
+> +properties:
+> +  compatible:
+> +    const: xlnx,zynqmp-r5fss
+> +
+> +  xlnx,cluster-mode:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1, 2]
+> +    description: |
+> +      The RPU MPCore can operate in split mode(Dual-processor performance), Safety
+> +      lock-step mode(Both RPU cores execute the same code in lock-step,
+> +      clock-for-clock) or Single CPU mode (RPU core 0 can be held in reset while
+> +      core 1 runs normally). The processor does not support dynamic configuration.
+> +      Switching between modes is only permitted immediately after a processor reset.
+> +      If set to  1 then lockstep mode and if 0 then split mode.
+> +      If set to  2 then single CPU mode. When not defined, default will be lockstep mode.
+> +
+> +patternProperties:
+> +  "^r5f-[a-f0-9]+$":
+> +    type: object
+> +    description: |
+> +      The RPU is located in the Low Power Domain of the Processor Subsystem.
+> +      Each processor includes separate L1 instruction and data caches and
+> +      tightly coupled memories (TCM). System memory is cacheable, but the TCM
+> +      memory space is non-cacheable.
+> +
+> +      Each RPU contains one 64KB memory and two 32KB memories that
+> +      are accessed via the TCM A and B port interfaces, for a total of 128KB
+> +      per processor. In lock-step mode, the processor has access to 256KB of
+> +      TCM memory.
+> +
+> +    properties:
+> +      compatible:
+> +        const: xlnx,zynqmp-r5f
+> +
+> +      power-domains:
+> +        description: RPU core PM domain specifier
+> +        maxItems: 1
+> +
+> +      mboxes:
+> +        items:
+> +          - description: mailbox channel to send data to RPU
+> +          - description: mailbox channel to receive data from RPU
+> +        minItems: 1
+> +
+> +      mbox-names:
+> +        items:
+> +          - const: tx
+> +          - const: rx
+> +        minItems: 1
+> +
+> +      sram:
+> +        $ref: /schemas/types.yaml#/definitions/phandle-array
+> +        minItems: 1
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- .../bindings/clock/qcom,gcc-apq8084.yaml      | 42 -------------------
- .../bindings/clock/qcom,gcc-other.yaml        |  3 ++
- 2 files changed, 3 insertions(+), 42 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml
+maxItems instead
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml
-deleted file mode 100644
-index 397fb918e032..000000000000
---- a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8084.yaml
-+++ /dev/null
-@@ -1,42 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
--%YAML 1.2
-----
--$id: http://devicetree.org/schemas/clock/qcom,gcc-apq8084.yaml#
--$schema: http://devicetree.org/meta-schemas/core.yaml#
--
--title: Qualcomm Global Clock & Reset Controller Binding for APQ8084
--
--maintainers:
--  - Stephen Boyd <sboyd@kernel.org>
--  - Taniya Das <quic_tdas@quicinc.com>
--
--description: |
--  Qualcomm global clock control module which supports the clocks, resets and
--  power domains on APQ8084.
--
--  See also::
--  - dt-bindings/clock/qcom,gcc-apq8084.h
--  - dt-bindings/reset/qcom,gcc-apq8084.h
--
--allOf:
--  - $ref: qcom,gcc.yaml#
--
--properties:
--  compatible:
--    const: qcom,gcc-apq8084
--
--required:
--  - compatible
--
--unevaluatedProperties: false
--
--examples:
--  - |
--    clock-controller@fc400000 {
--        compatible = "qcom,gcc-apq8084";
--        reg = <0xfc400000 0x4000>;
--        #clock-cells = <1>;
--        #reset-cells = <1>;
--        #power-domain-cells = <1>;
--    };
--...
-diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
-index 6c45e0f85494..142402f29d98 100644
---- a/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
-@@ -15,6 +15,8 @@ description: |
-   power domains.
- 
-   See also:
-+  - dt-bindings/clock/qcom,gcc-apq8084.h
-+  - dt-bindings/reset/qcom,gcc-apq8084.h
-   - dt-bindings/clock/qcom,gcc-ipq4019.h
-   - dt-bindings/clock/qcom,gcc-ipq6018.h
-   - dt-bindings/reset/qcom,gcc-ipq6018.h
-@@ -36,6 +38,7 @@ allOf:
- properties:
-   compatible:
-     enum:
-+      - qcom,gcc-apq8084
-       - qcom,gcc-ipq4019
-       - qcom,gcc-ipq6018
-       - qcom,gcc-mdm9607
--- 
-2.35.1
+> +        description: |
+> +          phandles to one or more reserved on-chip SRAM regions. Other than TCM,
+> +          the RPU can execute instructions and access data from, the OCM memory,
+> +          the main DDR memory, and other system memories.
+> +
+> +          The regions should be defined as child nodes of the respective SRAM
+> +          node, and should be defined as per the generic bindings in,
+> +          Documentation/devicetree/bindings/sram/sram.yaml
+> +
+> +      memory-region:
+> +        description: |
+> +          List of phandles to the reserved memory regions associated with the
+> +          remoteproc device. This is variable and describes the memories shared with
+> +          the remote processor (e.g. remoteproc firmware and carveouts, rpmsg
+> +          vrings, ...). This reserved memory region will be allocated on DDR memory.
+> +        minItems: 1
+> +        items:
+> +          - description: region used for RPU firmware image section
+> +          - description: vdev buffer
+> +          - description: vring0
+> +          - description: vring1
+> +        additionalItems: true
 
+How did this one appear here? It does not look correct, so why do you
+need it?
+
+> +
+> +    required:
+> +      - compatible
+> +      - power-domains
+> +
+> +    unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +\
+
+Best regards,
+Krzysztof
