@@ -2,44 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F065C52FECE
-	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 20:27:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29B9952FF07
+	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 21:44:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344352AbiEUS1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 May 2022 14:27:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34884 "EHLO
+        id S1345081AbiEUTog (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 May 2022 15:44:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240843AbiEUS1q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 14:27:46 -0400
-Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [5.144.164.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6236B4B1F6
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 11:27:45 -0700 (PDT)
-Received: from SoMainline.org (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 3F5913F664;
-        Sat, 21 May 2022 20:27:43 +0200 (CEST)
-Date:   Sat, 21 May 2022 20:27:42 +0200
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        with ESMTP id S238301AbiEUTof (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 15:44:35 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BF7C62109
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 12:44:34 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id v9so3701299lja.12
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 12:44:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=J4Kh+2UVktysEZz8Svixt4GFp/EX0ebHeDHECRVVv60=;
+        b=rWMJ2LvEnRWyYhc05dc4atzntl4IVwj3jrzk/9ZzqnIgjfGRTZwcYO/Kup4k6B8DIW
+         uWyU/RNbeph2KTDPxm3mx8SEpDUpTtQBgb9oijkYcOv/jdA7pb1Lfrkr5acHpTv8ajPn
+         nkZRJHZIfmFIONNSdWCu+2CZta02edkcjGUPd1/wJEMpgNXytRy5sgDyheOd/t7bqZm4
+         dd6r/tJiO5cC5elT+WxUjHC2TIDD4gOjx/kXNBY1hGdRyXlpQTbVo3DWU16qhGmn2KvO
+         FYMMSzTiGJ8VWYkzQbqTGBiEeRh1eXGWsUHbmccBuFFw4VZ/bsoRmlLNQ4Ac6SS0RFgw
+         uF9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=J4Kh+2UVktysEZz8Svixt4GFp/EX0ebHeDHECRVVv60=;
+        b=AA8wRaxEhfzTg+svxt4YelOWLn3J/qnOwxqEkP05izJxpirS+IOvoqMwhErqBDiNE2
+         8qapagg1r9MqCrdSOfJ/5t6BeEpAczToO9QQ476erK7RsF6q1bsnknLPcklCV69rtubT
+         /lr/0ldPrx0PUEh71t7QKQaZR44KyNiCRi89qtKCeBceDGw1KwLY8H/ru7eiIcgISY/o
+         TI/cOJ4cnbQ/8HdjhcOBqKYQvWmb8jLi1ylI9+tsKD5LfDPKUJxZTvpRvRgBN/qCbxYs
+         jg4CTqdy8DvhrCCaKbM6jZSmma8WJ+mGVZMEEhY6g2eR8dhLz36MP9vu5KV+t6Olb+w1
+         0K8w==
+X-Gm-Message-State: AOAM533TEO7Bhrb7eWw7m1bJaHUsNksJP9ZYYPfjAtd6CaYH5jX0qmsL
+        M/HULGtncIsecDEWzXHeOuNxtJaAfDZLrg==
+X-Google-Smtp-Source: ABdhPJxvURIqwrmBDRNotFEhy5SbdES8aH1odhld9ZUGw3PVwoGw1B1x5BL39alpU/qmQUZEXLf+Vw==
+X-Received: by 2002:a05:651c:211a:b0:253:df5a:f821 with SMTP id a26-20020a05651c211a00b00253df5af821mr4406439ljq.414.1653162272561;
+        Sat, 21 May 2022 12:44:32 -0700 (PDT)
+Received: from ?IPV6:2001:470:dd84:abc0::8a5? ([2001:470:dd84:abc0::8a5])
+        by smtp.gmail.com with ESMTPSA id c11-20020a056512104b00b00477ce466e59sm894916lfb.153.2022.05.21.12.44.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 21 May 2022 12:44:32 -0700 (PDT)
+Message-ID: <dd817f29-74d3-bff4-c7d8-5b2fe1190d2a@linaro.org>
+Date:   Sat, 21 May 2022 22:44:31 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH] dt-bindings: clock: gcc-apq8084: merge to gcc-other.yaml
+Content-Language: en-GB
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 07/11] arm64: dts: qcom: sdm630: fix gpu's
- interconnect path
-Message-ID: <20220521182742.vaisrfzuqyrnsv7u@SoMainline.org>
-References: <20220521152049.1490220-1-dmitry.baryshkov@linaro.org>
- <20220521152049.1490220-8-dmitry.baryshkov@linaro.org>
- <20220521161750.3jvvmlfrvk6yxwkp@SoMainline.org>
- <aed5ee02-90d3-fa0d-3563-c83987d011a3@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aed5ee02-90d3-fa0d-3563-c83987d011a3@kernel.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220521150835.1488683-1-dmitry.baryshkov@linaro.org>
+ <d09435fd-8216-ad01-05f2-d2c2c6b98aaa@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <d09435fd-8216-ad01-05f2-d2c2c6b98aaa@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -48,27 +76,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-05-21 18:51:07, Krzysztof Kozlowski wrote:
-> On 21/05/2022 18:17, Marijn Suijten wrote:
-> > 
-> > And also added my Reviewed-by there.  I think it is normal to have a
-> > Reviewed-by on top of a Suggested-by/Reported-by, so that I as reviewer
-> > confirm the contents of the patch?
+On 21/05/2022 18:26, Krzysztof Kozlowski wrote:
+> On 21/05/2022 17:08, Dmitry Baryshkov wrote:
+>> There is no need to have separate bindings file for the
+>> qcom,gcc-apq8084, merge it to qcom,gcc-other.yaml.
+>>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > 
-> The review tag is not used to confirm anything like that.
+> This makes sense and we already discussed it was preferred over my patch.
 
-It is used to acknowledge that I agree on (confirm) the contents of the
-patch as per how a review usually works.  I have reviewed the patch,
-double-checked the numbers on my end.  That's the "contents of the
-patch"?
+Yes, but for some reason Bjorn has merged your patch, so I had to rebase 
+this one.
 
-> > Since this is the third patch missing these, It may just have been an
-> > oversight.
-> 
-> If your review was meeting the criteria of "Reviewer's statement of
-> oversight", then of course should be added here.
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-That's what I said above, the Reviewed-by goes on top of the Reported-by
-as the latter doesn't imply the former at all.
 
-- Marijn
+-- 
+With best wishes
+Dmitry
