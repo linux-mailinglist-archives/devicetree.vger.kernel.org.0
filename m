@@ -2,41 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2531752FE14
-	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 18:19:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 743A052FE17
+	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 18:21:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245263AbiEUQTV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 May 2022 12:19:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56944 "EHLO
+        id S245506AbiEUQVI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 May 2022 12:21:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239518AbiEUQTU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 12:19:20 -0400
+        with ESMTP id S237279AbiEUQU5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 12:20:57 -0400
 Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [IPv6:2001:4b7a:2000:18::162])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B35E877F2F
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 09:19:19 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69BC718342
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 09:20:54 -0700 (PDT)
 Received: from SoMainline.org (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 2B2352006E;
-        Sat, 21 May 2022 18:19:18 +0200 (CEST)
-Date:   Sat, 21 May 2022 18:19:17 +0200
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 94C5D20612;
+        Sat, 21 May 2022 18:20:52 +0200 (CEST)
+Date:   Sat, 21 May 2022 18:20:51 +0200
 From:   Marijn Suijten <marijn.suijten@somainline.org>
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 09/11] arm64: dts: qcom: sdm660: move SDHC2 card
- detect pinconf to board files
-Message-ID: <20220521161917.3bo7hf75dkmu34gk@SoMainline.org>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v6 11/11] dt-bindings: arm: qcom: document sda660 SoC and
+ ifc6560 board
+Message-ID: <20220521162051.jufjhqzz4wte3h6z@SoMainline.org>
 References: <20220521152049.1490220-1-dmitry.baryshkov@linaro.org>
- <20220521152049.1490220-10-dmitry.baryshkov@linaro.org>
+ <20220521152049.1490220-12-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220521152049.1490220-10-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220521152049.1490220-12-dmitry.baryshkov@linaro.org>
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
@@ -46,106 +47,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-05-21 18:20:47, Dmitry Baryshkov wrote:
-> This results in dts duplication, but per mutual agreement card detect
-> pin configuration belongs to the board files. Move it from the SoC
-> dtsi to the board DT files.
+On 2022-05-21 18:20:49, Dmitry Baryshkov wrote:
+> Add binding documentation for the Inforce IFC6560 board which uses
+> Snapdragon SDA660.
 > 
-> Suggested-by: Marijn Suijten <marijn.suijten@somainline.org>
+> Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+Nit: don't dt-bindings patches go _before_ using these in dts?  In ohter
+words, should patch 10 and 11 be swapped?
 
 > ---
->  .../boot/dts/qcom/sdm630-sony-xperia-nile.dtsi   | 16 ++++++++++++++++
->  arch/arm64/boot/dts/qcom/sdm630.dtsi             | 12 ------------
->  .../boot/dts/qcom/sdm660-xiaomi-lavender.dts     | 16 ++++++++++++++++
->  3 files changed, 32 insertions(+), 12 deletions(-)
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-> index 00baacf28c63..ccde9951e4fb 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-> @@ -549,6 +549,22 @@ vreg_l19a_3p3: l19 {
->  	};
->  };
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index 129cdd246223..ac4ee0f874ea 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -41,6 +41,7 @@ description: |
+>          sa8155p
+>          sc7180
+>          sc7280
+> +        sda660
+>          sdm630
+>          sdm632
+>          sdm660
+> @@ -225,6 +226,11 @@ properties:
+>                - google,senor
+>            - const: qcom,sc7280
 >  
-> +&sdc2_state_on {
-> +	sd-cd {
-> +		pins = "gpio54";
-> +		bias-pull-up;
-> +		drive-strength = <2>;
-> +	};
-> +};
+> +      - items:
+> +          - enum:
+> +              - inforce,ifc6560
+> +          - const: qcom,sda660
 > +
-> +&sdc2_state_off {
-> +	sd-cd {
-> +		pins = "gpio54";
-> +		bias-disable;
-> +		drive-strength = <2>;
-> +	};
-> +};
-> +
->  &sdhc_1 {
->  	status = "okay";
->  	supports-cqe;
-> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> index bcda3a1dd249..e6de49e14840 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> @@ -983,12 +983,6 @@ data {
->  					bias-pull-up;
->  					drive-strength = <10>;
->  				};
-> -
-> -				sd-cd {
-> -					pins = "gpio54";
-> -					bias-pull-up;
-> -					drive-strength = <2>;
-> -				};
->  			};
->  
->  			sdc2_state_off: sdc2-off {
-> @@ -1009,12 +1003,6 @@ data {
->  					bias-pull-up;
->  					drive-strength = <2>;
->  				};
-> -
-> -				sd-cd {
-> -					pins = "gpio54";
-> -					bias-disable;
-> -					drive-strength = <2>;
-> -				};
->  			};
->  		};
->  
-> diff --git a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-> index 9280c1f0c334..2b1216502eb0 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-> @@ -363,6 +363,22 @@ vreg_l19a_3p3: l19 {
->  	};
->  };
->  
-> +&sdc2_state_on {
-> +	sd-cd {
-> +		pins = "gpio54";
-> +		bias-pull-up;
-> +		drive-strength = <2>;
-> +	};
-> +};
-> +
-> +&sdc2_state_off {
-> +	sd-cd {
-> +		pins = "gpio54";
-> +		bias-disable;
-> +		drive-strength = <2>;
-> +	};
-> +};
-> +
->  &sdhc_1 {
->  	status = "okay";
->  	supports-cqe;
+>        - items:
+>            - enum:
+>                - fairphone,fp3
 > -- 
 > 2.35.1
 > 
