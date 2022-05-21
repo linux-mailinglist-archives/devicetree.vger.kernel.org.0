@@ -2,103 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74A3452FC6B
-	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 14:38:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DC9852FC75
+	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 14:54:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232693AbiEUMio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 May 2022 08:38:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37204 "EHLO
+        id S243447AbiEUMx7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 May 2022 08:53:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230389AbiEUMin (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 08:38:43 -0400
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90E604B878;
-        Sat, 21 May 2022 05:38:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1653136722; x=1684672722;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=IyTRlf+BZEOiH+hxY/98sq/q/v9Xw3LX1jAeSkinu6s=;
-  b=HqZgDv7+3xqxYKBDKusjkKnju2h6Ys0e+dZkvW7pVjR2Ittud8PxMwXQ
-   Kstf4O4EU/xp0QcRekxzjNxxqohGkVq9fDWdFFWHSwn5zoCG392b8TyK2
-   xohurPx72T0XSS76OB82wMFQlrXbdDelP+fEBNjkR3dwdDrInh//GJ1Cs
-   d8aEsJRjBHxFYz5Xc9YNPA8I0dD88HbF6nn46xOAOpzEocmwttWLX92yq
-   UU3NgspBvoqOxwXeS21m1LLkaiyX1paibkAeTvle4fUveJya+ll2/BEpG
-   kogJBeZO2gpgtX3hAoe68MIEVDm/jDJmP9u2SYUkyf1OOAAl5QzyTxzi0
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10353"; a="298162701"
-X-IronPort-AV: E=Sophos;i="5.91,242,1647327600"; 
-   d="scan'208";a="298162701"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 May 2022 05:38:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,242,1647327600"; 
-   d="scan'208";a="702190401"
-Received: from lkp-server02.sh.intel.com (HELO 242b25809ac7) ([10.239.97.151])
-  by orsmga004.jf.intel.com with ESMTP; 21 May 2022 05:38:40 -0700
-Received: from kbuild by 242b25809ac7 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nsONT-0006IU-Fz;
-        Sat, 21 May 2022 12:38:39 +0000
-Date:   Sat, 21 May 2022 20:37:58 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     David Wang <David_Wang6097@jabil.com>,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
-Cc:     kbuild-all@lists.01.org, edward_chen@jabil.com,
-        David_Wang6097@jabil.com
-Subject: Re: [PATCH v2] ARM: dts: aspeed: Adding Jabil Rubypass BMC
-Message-ID: <202205212020.z9X7PjMn-lkp@intel.com>
-References: <20220520120212.3589911-1-David_Wang6097@jabil.com>
+        with ESMTP id S1345578AbiEUMxz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 08:53:55 -0400
+Received: from mail-vs1-xe34.google.com (mail-vs1-xe34.google.com [IPv6:2607:f8b0:4864:20::e34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 523B857108;
+        Sat, 21 May 2022 05:53:54 -0700 (PDT)
+Received: by mail-vs1-xe34.google.com with SMTP id j7so9950032vsj.7;
+        Sat, 21 May 2022 05:53:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=ppjd92OlVB/MwGNt1qmR+MgTYt3GgGkBdJL3bf51wdM=;
+        b=JUAHcif5tx1tsh8a9gOkhHOqrYPFKfupYtbTdOzIJkq8DfYK0/Z21ySt2t1TfrpqEH
+         KsGTrg8Iau6UiiyYg2+i94lQcE/fRGC7VJyWcjm9T6Bx34VKYryJWrkyPVs++2IThb9L
+         sSXLTpUpWZgI3X1yvvBgb8mP5Hxz+VWJm/d67G5Gm/tY05/8pHWd7f4jXlygSouAtcyA
+         77vC70LozhWzjEl5r9JsSCPs7+U/Gj3nTJIGBzkmdlHmSoLsBY6bknQLmcqyq+/5oBgE
+         W/KH4goKZkwIb6cvacuT/XBe/4HMHyjWlpdK3ShXvFgILx5kDFVGEH6IR1Qr9beu0toi
+         BdLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=ppjd92OlVB/MwGNt1qmR+MgTYt3GgGkBdJL3bf51wdM=;
+        b=f5W7spL3tBTKiLPmwRZgdSnBGO0QSvQKXZX45X0NC4IUs+VO5BvH/fuQkQw85iULdf
+         wgWpiYWE5vihgUESo0YJKCxr+KVlaB3sb8w3u8iSHHejimuDQduNBZIrFgSgPpHf9ViK
+         YvL/xtc1/ujbxLQ1YB+hAAw2G+KF3p1H5wRvGDGs8sio4lXCgFWYAO9a77kByQuFJlSD
+         zNePyU3W64S5o8O37yaiv84P1NZaI7Z9Iv4x5rpv57yV6N+JP9vWZ5JOEbEHi0Fij6gd
+         94u7iMWDXIZHbrWI5aV+IY4/eHjgSdtgOs/jAxpMGDbsl8Nwb8DkLGf3Zv+T6fEW7uIB
+         eesQ==
+X-Gm-Message-State: AOAM531Ti9+IQo5psnJppQIWYeOIKC3zf5s3yvHGiFk/H8rlsyeoai9f
+        26s2XeqA8U/6mzxGMwhc3zyVypBOWkm4h1hfPQ==
+X-Google-Smtp-Source: ABdhPJwogOGnDsSgDr+VBYrBTjLQWEj688uoqfvwo2KbNQeayXtr4cwnf42U1VjjRzlgShtbdXe2UHFhH1TP4DRzzG4=
+X-Received: by 2002:a05:6102:3ec8:b0:335:d67e:7535 with SMTP id
+ n8-20020a0561023ec800b00335d67e7535mr5759276vsv.47.1653137633399; Sat, 21 May
+ 2022 05:53:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220520120212.3589911-1-David_Wang6097@jabil.com>
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220517101142.28421-1-warp5tw@gmail.com> <20220517101142.28421-4-warp5tw@gmail.com>
+ <Yoh9208mogGeWPYe@shikoro>
+In-Reply-To: <Yoh9208mogGeWPYe@shikoro>
+From:   Tyrone Ting <warp5tw@gmail.com>
+Date:   Sat, 21 May 2022 20:53:41 +0800
+Message-ID: <CACD3sJa0adxqmzOV9OFz-XzYrtNUq-g=9E99mBWT=zo0RshwQQ@mail.gmail.com>
+Subject: Re: [PATCH v5 03/10] i2c: npcm: Remove unused variable clk_regmap
+To:     Wolfram Sang <wsa@kernel.org>, Tyrone Ting <warp5tw@gmail.com>,
+        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        andriy.shevchenko@linux.intel.com, jarkko.nikula@linux.intel.com,
+        semen.protsenko@linaro.org, rafal@milecki.pl, sven@svenpeter.dev,
+        jsd@semihalf.com, lukas.bulwahn@gmail.com, arnd@arndb.de,
+        olof@lixom.net, tali.perry@nuvoton.com, Avi.Fishman@nuvoton.com,
+        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
+        kfting@nuvoton.com, openbmc@lists.ozlabs.org,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     jie.deng@intel.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi David,
+Hi Wolfram:
 
-Thank you for the patch! Yet something to improve:
+Thank you for your help and review.
 
-[auto build test ERROR on linux/master]
-[also build test ERROR on soc/for-next linus/master v5.18-rc7]
-[cannot apply to joel-aspeed/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Wolfram Sang <wsa@kernel.org> =E6=96=BC 2022=E5=B9=B45=E6=9C=8821=E6=97=A5 =
+=E9=80=B1=E5=85=AD =E4=B8=8B=E5=8D=881:51=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Tue, May 17, 2022 at 06:11:35PM +0800, Tyrone Ting wrote:
+> > From: Tali Perry <tali.perry1@gmail.com>
+> >
+> > Remove unused variable clk_regmap.
+> >
+> > Fixes: 56a1485b102e ("i2c: npcm7xx: Add Nuvoton NPCM I2C controller dri=
+ver")
+> > Signed-off-by: Tali Perry <tali.perry1@gmail.com>
+> > Signed-off-by: Tyrone Ting <kfting@nuvoton.com>
+> > Reviewed-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+>
+> Applied to for-next, thanks!
+>
+> I dropped the Fixes tag, doesn't look like a bugfix to me.
+>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/David-Wang/ARM-dts-aspeed-Adding-Jabil-Rubypass-BMC/20220520-200353
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git 3d7285a335edaf23b699e87c528cf0b0070e3293
-config: arm-allmodconfig (https://download.01.org/0day-ci/archive/20220521/202205212020.z9X7PjMn-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 11.3.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/c8cda754bc90e31e4f419ddb60cfbedecb9e022d
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review David-Wang/ARM-dts-aspeed-Adding-Jabil-Rubypass-BMC/20220520-200353
-        git checkout c8cda754bc90e31e4f419ddb60cfbedecb9e022d
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
->> Error: arch/arm/boot/dts/aspeed-bmc-jabil-rubypass.dts:425.1-5 Label or path gfx not found
-   FATAL ERROR: Syntax error parsing input tree
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+Best Regards,
+Tyrone
