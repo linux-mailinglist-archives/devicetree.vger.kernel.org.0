@@ -2,117 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC57352F9B7
-	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 09:32:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E80152FA49
+	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 11:22:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241040AbiEUHcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 May 2022 03:32:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45574 "EHLO
+        id S241858AbiEUJWz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 May 2022 05:22:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235342AbiEUHcj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 03:32:39 -0400
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 868C517064A;
-        Sat, 21 May 2022 00:32:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1653118358; x=1684654358;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=hoOOM5CAOzlhTkn74IGlT9QSDPamrwRXxRrc9NAlZrY=;
-  b=Fl93PkkOglGtRPBOVFD08/Y9W3BlZxLs74nQRzPi6oXDqQYeBzzNt64Z
-   kROOr3tLFyvl6BB0Ts0a6esuIHu0OhwxO44A/9K9P3mktUFX5/3/Hmi+T
-   KB/fk+B9VCIrkvYLGIcVAdzC15Uri4p2kXU+9pANKxvSqMq/LB5EJmTGa
-   d0MvmZQb+uv3AR2qob19h+jLCh41x1M2lLRdHVTXJNjJzxYcqteyUsnXb
-   y0RQzbhMrZgZPsy2IY1sVOihM8ufehPCr3bFp0VJxj/dWJM7UB6nYn7qa
-   DZ6c/ymKjoRr5Mg6LGiAFqQe28lEJm6pY8MFu0PtGZTUY/LHBimmEAyQU
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10353"; a="359225709"
-X-IronPort-AV: E=Sophos;i="5.91,240,1647327600"; 
-   d="scan'208";a="359225709"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 May 2022 00:32:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,240,1647327600"; 
-   d="scan'208";a="702123548"
-Received: from lkp-server02.sh.intel.com (HELO 242b25809ac7) ([10.239.97.151])
-  by orsmga004.jf.intel.com with ESMTP; 21 May 2022 00:32:33 -0700
-Received: from kbuild by 242b25809ac7 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nsJbE-00064p-N4;
-        Sat, 21 May 2022 07:32:32 +0000
-Date:   Sat, 21 May 2022 15:32:27 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Qin Jian <qinjian@cqplus1.com>, sboyd@kernel.org
-Cc:     Paul Gazzillo <paul@pgazz.com>,
-        Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-        kbuild-all@lists.01.org, krzysztof.kozlowski@linaro.org,
-        robh+dt@kernel.org, mturquette@baylibre.com, tglx@linutronix.de,
-        maz@kernel.org, p.zabel@pengutronix.de, linux@armlinux.org.uk,
-        arnd@arndb.de, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, Qin Jian <qinjian@cqplus1.com>
-Subject: Re: [PATCH v16 08/10] ARM: sunplus: Add initial support for Sunplus
- SP7021 SoC
-Message-ID: <202205211551.WXBmoQuh-lkp@intel.com>
-References: <5b8f48113ddea6a1e8cdd6b1b6e5c9999dbe7332.1653027644.git.qinjian@cqplus1.com>
+        with ESMTP id S230144AbiEUJWy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 05:22:54 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BC535FF20;
+        Sat, 21 May 2022 02:22:53 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id y32so17935201lfa.6;
+        Sat, 21 May 2022 02:22:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=xSyipWzorTdApD5hrRaa+nfQZ/aw7gdMuxHBe7jS38A=;
+        b=CzZBBjq3IOtZg3o41CjyZtHO4GWSWmOMRR8i2cL0rW279ta4tuwiVm3y09R3Mh0NSr
+         9om8PIxVHWHD46udUf8GwqvPgDSFHQHT7D+3j1ExzZZzyQuR9pIe9BjWllWJoaiz6fUd
+         Ufa9bl8DKAsayliGX1vkxQYZ8Q5ImmEyMv5n+2G1PHkgGmEfg58kuSxmCA/3uubQGFIS
+         hpc+ge6QIiqpj/Z7/7dBUNbZgv8ym9/rBjDug4kzdBU88JnUd13CtMu1gBE1QopfA5qg
+         Mb0vuWP2gdruH2xXv0fJKYUNVj8HWDdDM8S3xrUgVmjEIoEbW8iHM2t160fOUNXKQokI
+         Sneg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=xSyipWzorTdApD5hrRaa+nfQZ/aw7gdMuxHBe7jS38A=;
+        b=Cru7UW+QqoJ6moF0awwTh3euLtD2dAfrY8qlqE0PaVQSGBYZisCi5P+XIfsK2n7jSc
+         uKpA4NzMUsQdnBxBxV2ISt6uKyyu4TJ5WxB5dTcYDRblO8gCEGnpIDNAjZCo27yqHIjs
+         UxZCDjWZnzd8edQjce+MfnjXXvAhwZtD7ymVqYmzkZwv7ctn+d5brZcuRcOaKko9OlLi
+         Qs2NFOFj/VwJCyqHAuzRwTdcUAJgYtCCwy6ArmXnLuZGcb+Qxno6BydmyUE4N0ZcUGZQ
+         teJvbkmihg3aRbiJHM4uFMfYNBE9mXHdZODceLsUYBrgJOiiDtmPif0jns48AyEjBeDZ
+         bXcA==
+X-Gm-Message-State: AOAM531+UKIP0gl541Ph7gx/nGL4/Kxa5yukmc/ky0P5K0V9ckOJ9Ykp
+        kB7eKoLXdRfh8VXJavczsvQ=
+X-Google-Smtp-Source: ABdhPJwqzAH9mwnk7Q3kT/zCIM9JpdEx0e/aHxhgjPrkO5JLsy17sG1nmg7lfgJDNZsE2e27ZzHkgg==
+X-Received: by 2002:a05:6512:3e26:b0:478:5972:54b7 with SMTP id i38-20020a0565123e2600b00478597254b7mr3674055lfv.646.1653124971545;
+        Sat, 21 May 2022 02:22:51 -0700 (PDT)
+Received: from mobilestation ([95.79.189.214])
+        by smtp.gmail.com with ESMTPSA id c11-20020a056512104b00b00477ce466e59sm712506lfb.153.2022.05.21.02.22.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 21 May 2022 02:22:50 -0700 (PDT)
+Date:   Sat, 21 May 2022 12:22:48 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 01/23] dt-bindings: ata: ahci-platform: Drop
+ dma-coherent property declaration
+Message-ID: <20220521092248.7i53lxf3gx26fmi5@mobilestation>
+References: <20220511231810.4928-1-Sergey.Semin@baikalelectronics.ru>
+ <20220511231810.4928-2-Sergey.Semin@baikalelectronics.ru>
+ <20220517185841.GA1388602-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <5b8f48113ddea6a1e8cdd6b1b6e5c9999dbe7332.1653027644.git.qinjian@cqplus1.com>
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220517185841.GA1388602-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Qin,
+On Tue, May 17, 2022 at 01:58:41PM -0500, Rob Herring wrote:
+> On Thu, May 12, 2022 at 02:17:48AM +0300, Serge Semin wrote:
+> > It's redundant to have the 'dma-coherent' property explicitly specified in
+> > the DT schema because it's a generic property described in the core
+> > DT-schema by which the property is always evaluated.
+> 
 
-I love your patch! Perhaps something to improve:
+> It is not redundant.
+> 
+> The core schema defines the property (as a boolean), but this schema 
+> defines it being used in this binding. Otherwise, it won't be allowed.
 
-[auto build test WARNING on pza/reset/next]
-[also build test WARNING on robh/for-next clk/clk-next tip/irq/core linus/master v5.18-rc7 next-20220520]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+I thought that the generic properties like ranges, dma-ranges, etc
+including the dma-coherent one due to being defined in the dt-core
+schema are always evaluated. As such seeing the unevaluatedProperties
+property is set to false here, they can be used in the DT-nodes with
+no need to be explicitly specified in the DT node bindings. In
+addition to that I tested this assumption by dropping the dma-coherent
+property definition from the AHCI-common schema and executed the
+DT-bindings check procedure. No error has been spotted:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Qin-Jian/Add-Sunplus-SP7021-SoC-Support/20220520-150501
-base:   https://git.pengutronix.de/git/pza/linux reset/next
-config: (https://download.01.org/0day-ci/archive/20220521/202205211551.WXBmoQuh-lkp@intel.com/config)
-reproduce:
-        # https://github.com/intel-lab-lkp/linux/commit/a18534d0375224dcbfbd6d313ec16c9042212661
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Qin-Jian/Add-Sunplus-SP7021-SoC-Support/20220520-150501
-        git checkout a18534d0375224dcbfbd6d313ec16c9042212661
-        # 1. reproduce by kismet
-           # install kmax per https://github.com/paulgazz/kmax/blob/master/README.md
-           kismet --linux-ksrc=linux --selectees CONFIG_SERIAL_SUNPLUS_CONSOLE --selectors CONFIG_SOC_SP7021 -a=arm
-        # 2. reproduce by make
-           # save the config file to linux source tree
-           cd linux
-           make ARCH=arm olddefconfig
+> [fancer@mobilestation] kernel $ cat Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml | grep dma-coherent
+>        dma-coherent;
+> [fancer@mobilestation] kernel $ make -j8 DT_SCHEMA_FILES=Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml dt_binding_check
+>   LINT    Documentation/devicetree/bindings
+>   DTEX    Documentation/devicetree/bindings/ata/snps,dwc-ahci.example.dts
+>   CHKDT   Documentation/devicetree/bindings/processed-schema.json
+>   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>   DTC     Documentation/devicetree/bindings/ata/snps,dwc-ahci.example.dtb
+>   CHECK   Documentation/devicetree/bindings/ata/snps,dwc-ahci.example.dtb
+> [fancer@mobilestation] kernel $ cat Documentation/devicetree/bindings/ata/snps,dwc-ahci.example.dts | grep dma-coherent
+>           dma-coherent;
+> [fancer@mobilestation] kernel $ echo $?
+> 0
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+Due to that here are a few backward questions:
+1) Am I doing something wrong in the framework of the DT-bindings
+evaluation? Really I even tried to specify unknown property in the
+DT-bindings example like "bla-bla-bla;" and no evaluation error was
+printed. Anyway If what you are saying was correct I would have got an
+error during the DT-bindings evaluation, but as you can see there was
+none.
+2) Am I wrong in thinking that the unevaluatedProperties setting
+concerns the generic properties defined in the DT-core schema? If it
+doesn't concern the generic properties then does it work for the
+$ref'ed schemas only? 
 
 
-kismet warnings: (new ones prefixed by >>)
->> kismet: WARNING: unmet direct dependencies detected for SERIAL_SUNPLUS_CONSOLE when selected by SOC_SP7021
-   
-   WARNING: unmet direct dependencies detected for SERIAL_SUNPLUS
-     Depends on [n]: TTY [=n] && HAS_IOMEM [=y] && (ARCH_SUNPLUS [=y] || COMPILE_TEST [=n])
-     Selected by [y]:
-     - SOC_SP7021 [=y] && ARCH_SUNPLUS [=y]
-   
-   WARNING: unmet direct dependencies detected for SERIAL_SUNPLUS_CONSOLE
-     Depends on [n]: TTY [=n] && HAS_IOMEM [=y] && SERIAL_SUNPLUS [=y]
-     Selected by [y]:
-     - SOC_SP7021 [=y] && ARCH_SUNPLUS [=y]
+Getting back to the patch topic. We need to drop the dma-coherent
+property from the schema anyway. AHCI-specification doesn't
+regulate the DMA operations coherency. The dma-coherent property is
+more specific to the particular controller implementation mainly
+dependent on the platform settings. So I'll change the patch log, but
+get to keep the patch in the series. What do you think?
 
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+-Sergey
+
+> 
+> Rob
