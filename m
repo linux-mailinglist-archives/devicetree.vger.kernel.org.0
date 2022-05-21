@@ -2,70 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2818E52FF72
-	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 22:35:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76C0552FFBD
+	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 00:15:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345777AbiEUUfc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 May 2022 16:35:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59806 "EHLO
+        id S1346782AbiEUWPd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 May 2022 18:15:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229832AbiEUUfa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 16:35:30 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD334393CE
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 13:35:29 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id f4so19508980lfu.12
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 13:35:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=NikKax1TY449HcRi8lZ9MlsO8yEVEfcjkxzb8ZcULgo=;
-        b=O/RRBcYY/bPHmEN+np/9vlrRuefSdq2JQqhkUk04++cqHAuzxWyCU5iY4DbkckED6G
-         XkVjqvtw/1QPNLnxZl+YcHPqTFhRsod5zRq1uUcxXE8OZJ9KaSycnJf/6Dn6IZ8wK//I
-         3b/WmoOhZjxrotRwcSXUdnV6uBeEQSK+EVDjNeB7K1cJPWCudK7Izd3k/f+SMVmHbE14
-         E5sQLsE7esQG5exxY0iiXHayIRl/oM358apHBraf5ZxUgsdWAyCH90mLfJbUJ8A6LHPY
-         vi6wIpcCiz+wsEWmxnWRRp/AdODvHjZ94RhOc0r42GsUXbFzMDtJlGYeq8n9aXJu+9sm
-         dXYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=NikKax1TY449HcRi8lZ9MlsO8yEVEfcjkxzb8ZcULgo=;
-        b=OkxLW7lH5NCwL3L1sLXzwCz+wg64b1RHh/J8GrKsZocbQryC9FD6BT+yYORT7kF73V
-         JqZ2y/AUY8sh9uemtEiSWDrvHIXaODmYIncatWmbYocXR17AYYsx9WuSgkOWBU4qqAVT
-         mEBF+gqfODinMrR+qO314DFgbgcrz0FlF/FEXVBuQz8VTW0nJRHPk9vKFzRHIGANYN2R
-         HheOCHu0W7/ljkGLGeQuBvDKbwsahFa3GdUXgPputdmuacu7/JOnxaH/gIXuzdpVQ3li
-         q+J0lkW/9HVL/xImxy/6YP5yePY5sqfthYuzJmn+XiLUdBNdjPwdx8vUjOBp5HAApEDX
-         vW7Q==
-X-Gm-Message-State: AOAM533Noh0Lobvvuu1kBcX2Igor/X7TWaN3f1CgfQ6puDixEvkUzbCB
-        6Vn+PZ9tMweDy+1NtJF3HQFrzg==
-X-Google-Smtp-Source: ABdhPJxD+UZZs7+foO+tu1pmUUY7hWuW8wVO+fP8W9lEEH1F6hxpje5cJ3XzOe822Y3X0W528xowOg==
-X-Received: by 2002:a05:6512:1311:b0:474:315e:8aaf with SMTP id x17-20020a056512131100b00474315e8aafmr11350115lfu.421.1653165327776;
-        Sat, 21 May 2022 13:35:27 -0700 (PDT)
-Received: from eriador.lan ([2001:470:dd84:abc0::8a5])
-        by smtp.gmail.com with ESMTPSA id q18-20020a056512211200b00477930c48dasm1179729lfr.184.2022.05.21.13.35.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 May 2022 13:35:27 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
+        with ESMTP id S229961AbiEUWPb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 18:15:31 -0400
+Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [5.144.164.167])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50E7B4507D
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 15:15:29 -0700 (PDT)
+Received: from SoMainline.org (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 3F19F3F637;
+        Sun, 22 May 2022 00:15:27 +0200 (CEST)
+Date:   Sun, 22 May 2022 00:15:26 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>
-Subject: [PATCH v2 4/4] arm64: dts: qcom: sda660-inforce-ifc6560: enable cdsp and modem
-Date:   Sat, 21 May 2022 23:35:20 +0300
-Message-Id: <20220521203520.1513565-5-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220521203520.1513565-1-dmitry.baryshkov@linaro.org>
-References: <20220521203520.1513565-1-dmitry.baryshkov@linaro.org>
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: Re: [PATCH v6 01/11] arm64: dts: qcom: sdm630: disable dsi0/dsi0_phy
+ by default
+Message-ID: <20220521221526.fadfblxd3inaqj35@SoMainline.org>
+References: <20220521152049.1490220-1-dmitry.baryshkov@linaro.org>
+ <20220521152049.1490220-2-dmitry.baryshkov@linaro.org>
+ <20220521160652.oyqvurbjql23n243@SoMainline.org>
+ <86ac74b5-2964-fd0d-bf50-12aee73d5fec@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <86ac74b5-2964-fd0d-bf50-12aee73d5fec@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,41 +49,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable CDSP and modem devices on the Inforce IFC6560 board.
+On 2022-05-21 23:13:49, Dmitry Baryshkov wrote:
+> On 21/05/2022 19:06, Marijn Suijten wrote:
+> > On 2022-05-21 18:20:39, Dmitry Baryshkov wrote:
+> >> Follow the typical practice and keep DSI0/DSI0 PHY disabled by default.
+> >> They should be enabled in the board DT files. No existing boards use
+> >> them at this moment.
+> >>
+> >> Suggested-by: Marijn Suijten <marijn.suijten@somainline.org>
+> >> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> >> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > 
+> > I also added my:
+> > 
+> > Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+> 
+> Please excuse me. I didn't pick up your R-b tags by mistake.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+No worries, it just seemed coincidental to have them picked up on every
+patch except the ones which already had a Suggested/Reported-by tag,
+thanks for picking them up now!
 
-diff --git a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
-index 28050bc5f081..0bf9c86aaefe 100644
---- a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
-+++ b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
-@@ -183,6 +183,11 @@ bluetooth {
- 	};
- };
- 
-+&cdsp_pil {
-+	status = "okay";
-+	firmware-name = "qcom/ifc6560/cdsp.mbn";
-+};
-+
- &dsi0 {
- 	status = "okay";
- 	vdda-supply = <&vreg_l1a_1p225>;
-@@ -206,6 +211,11 @@ &mmss_smmu {
- 	status = "okay";
- };
- 
-+&mss_pil {
-+	status = "okay";
-+	firmware-name = "qcom/ifc6560/mba.mbn", "qcom/ifc6560/modem.mbn";
-+};
-+
- &pon_pwrkey {
- 	status = "okay";
- };
--- 
-2.35.1
-
+- Marijn
