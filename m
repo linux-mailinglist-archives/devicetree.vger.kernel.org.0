@@ -2,71 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7E9A52F874
-	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 06:17:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D88BE52F8AF
+	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 06:27:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349055AbiEUERH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 May 2022 00:17:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44154 "EHLO
+        id S237953AbiEUE1u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 May 2022 00:27:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354627AbiEUEQm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 00:16:42 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A96D1EC6A;
-        Fri, 20 May 2022 21:16:31 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D286EB80011;
-        Sat, 21 May 2022 04:16:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86C38C385AA;
-        Sat, 21 May 2022 04:16:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1653106588;
-        bh=4wNqefbzGqvHmEmwIjbKQ79o6ZIZqb1FpmXJ7eMWmVs=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=mXrTBOLkUTk9NIIuBmLk+PsjjlsRVlzb5ppywkNfus6xDNVwfhSFNyKX8sFk2T9jQ
-         f2AIUBno2z1WKXU2e6VOQjW/D7exSZGAtpmisrLaCyyftDWUPq6Gm+F7EWi4/DBL1q
-         tIAdXtxi7dZWWMCDZZNFl4zVry6pIvnScNMWhQULWzgt1xzhbTTG1t1LaATkIJdJgy
-         8VtTcnsyTQ4RcZMJzWSuZ76redz44iJD8+578kSbkpziJ2J/m732V8TUhU+q1l9hPs
-         PinwljdRK2T7Dz+pfoWgqjSikpPhYlngMy9AJ7ZI+sgprb3dftxeJm3Wxb+TOUYMcF
-         2wF/q07n0BDnQ==
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S235127AbiEUE1s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 00:27:48 -0400
+Received: from m12-11.163.com (m12-11.163.com [220.181.12.11])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CDD50185402;
+        Fri, 20 May 2022 21:27:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+        s=s110527; h=Message-ID:Date:MIME-Version:Subject:From; bh=e/Ov0
+        lqfN8UhhLpL9Uu3zMOTTxiC1rpZZKHr2yVZ1rg=; b=SOmvlyvIh+C35HVGHw9ut
+        vnAzVXnWv6hCPtoNlcLmBJxQ1f9+l7sSd4uAx0L8lahEzSZcaveZgtGTIxoFFgtG
+        3OlhvOBCUZxKaxIympHFAqbfu5aY3LI1Vxwc/nPnLys3evL3zUFkRvSxI9pj9JKv
+        rpRVjY1uuq0QI+yAR3HKsw=
+Received: from [192.168.3.102] (unknown [218.201.129.20])
+        by smtp7 (Coremail) with SMTP id C8CowAAnZ3vjaYhiPV91Dg--.11075S2;
+        Sat, 21 May 2022 12:26:12 +0800 (CST)
+Message-ID: <0936de49-a349-8fd4-2598-2a8995b01c86@163.com>
+Date:   Sat, 21 May 2022 12:26:12 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20220516070600.7692-12-gabriel.fernandez@foss.st.com>
-References: <20220516070600.7692-1-gabriel.fernandez@foss.st.com> <20220516070600.7692-12-gabriel.fernandez@foss.st.com>
-Subject: Re: [PATCH v4 11/14] clk: stm32mp13: add safe mux management
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-To:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 20 May 2022 21:16:26 -0700
-User-Agent: alot/0.10
-Message-Id: <20220521041628.86C38C385AA@smtp.kernel.org>
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH v4 0/2] ARM: sun8i-r40: Enable usb otg support
+Content-Language: en-US
+To:     Evgeny Boger <boger@wirenboard.com>
+Cc:     andre.przywara@arm.com, devicetree@vger.kernel.org,
+        jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, robh+dt@kernel.org,
+        samuel@sholland.org, wens@csie.org
+References: <264cb004-677a-13df-cc68-676ef3c2e7d8@163.com>
+ <ec5f7fe8-d47d-ce7f-0e0a-2bdf41a88ba2@wirenboard.com>
+From:   qianfan <qianfanguijin@163.com>
+In-Reply-To: <ec5f7fe8-d47d-ce7f-0e0a-2bdf41a88ba2@wirenboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: C8CowAAnZ3vjaYhiPV91Dg--.11075S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxZryDKFW7AF1fJFW5Aw48Crg_yoW5AF1fpF
+        W8KrW3Cr4vk3y0y3yqgw48uFWjqrs5KF43Ga1kGw48X3s8AasYvr1IyrW5ta48ZFn3Xay2
+        qFy5X3WDW3WqyaDanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+        9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07joksgUUUUU=
+X-Originating-IP: [218.201.129.20]
+X-CM-SenderInfo: htld0w5dqj3xxmlqqiywtou0bp/xtbB2AwI7WBHKkk3ygAAsI
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting gabriel.fernandez@foss.st.com (2022-05-16 00:05:57)
-> From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
->=20
-> Some muxes need to set a the safe position when clock is off.
->=20
-> Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-> ---
 
-Applied to clk-next
+
+在 2022/5/20 4:54, Evgeny Boger 写道:
+> Hi qianfan,
+>
+> As Allwinner A40i user, let me first thank you for your effort for 
+> making better upstream support for R40!
+>
+> However, I would strongly suggest *not* to add USB support to one more 
+> Allwinner SoC in this particular way.
+> The problem is, this approach consists of a number of carefully 
+> crafted hacks in device tree to make current drivers work on Allwinner 
+> hardware without modification to the drivers.
+>
+> a few examples:
+>
+> 1) please notice how ohci0 and ehci0 nodes do not contain reference to 
+> usb phy. It is done intentionally, otherwise EHCI will reset musb mode.
+> Of course omitting phy reference here is also completely breaking 
+> power cycling in case of usb error and otherwise messes with a power 
+> management.
+>
+> 2) one must always enable ohci, ehci and usb_otg nodes at the same 
+> time. If one forgets to enable ohci/ehci nodes while enabling usb_otg 
+> node, the system will silently fail to work as USB host.
+>
+> 3) For host-only mode we still have to enable usb_otg node despite no 
+> role switching is needed. That's because phy reference is missing in 
+> ehci/ohci, so the ehci/ohci driver won't enable the PHY.
+> Also I might be wrong, but I think phy won't be routed to ehci/ohci 
+> controllers is this case.
+>
+> 4) musb host controller is initialized and present to hardware though 
+> never actually used
+>
+> To summarize, not only the resulting device tree is not describing the 
+> hardware properly, it is creating device tree configuration which will 
+> be very hard to support in future, once proper driver support is in 
+> place.
+PHY setting is did in MUSB driver, so we need enable MUSB regardless of 
+host mode.
+
+I know your's point, OHCI/EHCI need do more works to init USBPHY, it 
+shoule be able to work
+in dependently, but I don't have the ability to deal with these things 
+right now, I need
+learn more things about OHCI/EHCI, that's a long-term goal.
+
+So now I need to make the whole usb work and do some tests as much as 
+possible,
+hoping to merge this patch into master. Some other optimizations can be 
+made later.
+
+Thanks for yours guide.
+>
+>
+> At Wiren Board kernel tree we tried to untangle this issue [1-6]. 
+> Unfortunately I didn't have time to prepare it for kernel submission 
+> yet, but I think I better submit it as RFC to get a feedback from you 
+> and others.
+>
+>
+> [1] 
+> https://github.com/wirenboard/linux/commit/359abbbd86ddff4d3c61179c882c286de32bb089
+> [2] 
+> https://github.com/wirenboard/linux/commit/6327f9d7972c21b229fb83457fdde643b31553f9
+> [3] 
+> https://github.com/wirenboard/linux/commit/f01f4c66758bde460a4d8c5b54ecee3b585c0232
+> [4] 
+> https://github.com/wirenboard/linux/commit/c27598ad601e5a46f624b73412a531d6f1f63d37
+> [5] 
+> https://github.com/wirenboard/linux/commit/5796d6eebb86b32a3751b2038b63af46f94954b3
+> [6] 
+> https://github.com/wirenboard/linux/commit/0928a675d875f9c2849fd3a9888f718bbb673bda
+>
+>
+
