@@ -2,73 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 778DE52FD17
-	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 16:05:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 741B352FD3F
+	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 16:25:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353872AbiEUOFK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 May 2022 10:05:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35824 "EHLO
+        id S244426AbiEUOZM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 May 2022 10:25:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231633AbiEUOFG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 10:05:06 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98E01562C8
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 07:05:04 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id 27so7435061ljw.0
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 07:05:04 -0700 (PDT)
+        with ESMTP id S230426AbiEUOZM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 10:25:12 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1444369ED
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 07:25:10 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id l13so11990474lfp.11
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 07:25:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=d1kYyv5ThMhL++IEPezH6L3/JQfTCn2bBC3uluzdASE=;
-        b=zZBZG+77Ro4UojerpsPaGBJsTYHFLKxtpL9lewzUMg1c4KkDTo4DessCZvZOHpRba8
-         DYu7ITDh7Utd+YoskwDItroRXLSYDcUrhqkIeQ/L8wQ+n1ik1FLZPdKe9Yo5kPujQQvy
-         HQXhDmawQgnVR/hhTssCDYriad6YcC7bqXo9Sq9jD4ZJfj5611kwAqmwKB6Vn8xP1FBG
-         bbj2O/h+Dw/qHNLqZe7kU65yxuxlpmI6BH+c6QfWR8pqemXpQdk+H563662lR/JD/gCq
-         dXNAgWllWX901z12Lr5leue7nNUq9DMmvum7jYf2AbVTbT2TXCdYSgQ2xU+iVXw0vYca
-         zncw==
+        bh=IbbNsxWO/m2lPWhlsd3aTys0/Azk77kx0rBYcjjzxrw=;
+        b=X7Xpxa/+7lKMnKDnsjZKhJ62fLY3M/Bnlu2oTHf1xVs0aDuL6HaFBRursY1TX571Mz
+         CTTvITI8UTOU0bVIRqJzdeoY9tvL74IRnKuafMd0fKQhr9aSrbySUUUfjoGyIaRQ8Bsd
+         rq1ehvsn+QNWX8JuMg83bVBb141ynroEuXWJ54qYYeJNfrsA7F4ia7U9kRAVJc63vT8S
+         4M8f3yEPO65NtNNJ20uF0+3gHIQXGAHNLaNEEZlWrWLCWQf/zI0YohR609F9v+5+nhJi
+         E9Zz7Cp9Fq5GYIbAveb2cQk/sth5VKAI5afZFuEbTy+sHdwhZvLjaJUyOwfHt6o67Z0q
+         RxgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=d1kYyv5ThMhL++IEPezH6L3/JQfTCn2bBC3uluzdASE=;
-        b=xRWEe7z04KihIoJFijFDaZAtJbVunLyFAa0HiRyPnSX7Pfh0YCIvkhC+s35v+O6/nx
-         mVqqQF2sQXXtROKXI4XtrCiRyvAvxaa2pHAyZFfCAp6H/xfHIGyu0AoyDEubAJdUGW5l
-         lqK9hCrVrjh6o+fEa0qComHd/9oLyz1ZeTOXNB9AvoRRFi+U1HcHO43jvre5zgDiCXn5
-         MuSTWkXrTbwtFMWSbazcZrgxH7B075RBXwrecTdjpscb6/meaB1eF6yeR33ROqWGyrVQ
-         /NoAAz8725LMb7oO+Ltm8chO9QfJ4Vw+QzkdIINR9zU/h7cxcvk+r3fuAPbqDAgtQhcU
-         Ttmg==
-X-Gm-Message-State: AOAM531SLdXi3EjgH2R8DYWs3q1tykY6EeDezju/oz514gmgChRpK6vn
-        j4Spo8SQ2Au6RAtkNnya45vX5Q==
-X-Google-Smtp-Source: ABdhPJwZEhOHqoesMgIauedpx3ogq6lMvJjNB5YML4uG6u/SJasUNr+u1EP6LiAEWRpx4u0gHGXrOQ==
-X-Received: by 2002:a2e:9348:0:b0:249:7117:b7ad with SMTP id m8-20020a2e9348000000b002497117b7admr8023603ljh.85.1653141902955;
-        Sat, 21 May 2022 07:05:02 -0700 (PDT)
+        bh=IbbNsxWO/m2lPWhlsd3aTys0/Azk77kx0rBYcjjzxrw=;
+        b=GfLI22DWUFSWvbKZrq2vHOrvfQTnyOu1Uyr8JYBzsxYPwgxNbCxizF06kTNX5I3TZl
+         lePWlEB4pcqU7sF94D7YSk+EzTZYZDrJPA4MsLtHYAJzAP6BZ7rLvpsx85eWz40BtIqI
+         UVKZpC3U9S4ONlpNCouSecaXZ5EaGld3TanadmVwSICfiyDu3A6fLDu2+Gq8BA9ym8kb
+         1tmcZ8FRdI3hakAs5oGwOqEnPj+NLtHMtX3NnyfnR6mLLjKmkHx6p8l2I/dmqboPM8TK
+         /rWE67SaHFaxGwohX2/oBp2uVwd208FNrwLWF+79i15HYw0ddju42LlKzLMbBQf/LPcT
+         8n7Q==
+X-Gm-Message-State: AOAM532C5QZ3CdQwvZsbR9+WuFUFYiX0vbT3XoUKRxmQgL8vNtelFgvk
+        7QqXuR1HJigE0TgZ+azFwtebtw==
+X-Google-Smtp-Source: ABdhPJxWmFsSb0Vzg1NAnz2GPn7MlkNF023jy6AnGMkyrTd5OmsIHxz8MDigJ2L10kwaol2EYaevwQ==
+X-Received: by 2002:a05:6512:c0e:b0:478:5a91:20bb with SMTP id z14-20020a0565120c0e00b004785a9120bbmr3982177lfu.587.1653143109161;
+        Sat, 21 May 2022 07:25:09 -0700 (PDT)
 Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id a4-20020ac25204000000b00477a1b603basm1068915lfl.98.2022.05.21.07.05.01
+        by smtp.gmail.com with ESMTPSA id r26-20020a2e995a000000b0024f3d1daea0sm724179ljj.40.2022.05.21.07.25.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 21 May 2022 07:05:02 -0700 (PDT)
-Message-ID: <288690ac-b23b-92f8-64b4-d994f249f21c@linaro.org>
-Date:   Sat, 21 May 2022 16:05:01 +0200
+        Sat, 21 May 2022 07:25:08 -0700 (PDT)
+Message-ID: <7fd80a4b-5e60-0117-b790-359f6d94aeef@linaro.org>
+Date:   Sat, 21 May 2022 16:25:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v2 2/2] dt-bindings: arm: mtk-clocks: Set #clock-cells as
- required property
+Subject: Re: [PATCH] dt-bindings: mips: Convert plain text file to ReST
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        sboyd@kernel.org, chun-jie.chen@mediatek.com,
-        rex-bc.chen@mediatek.com, wenst@chromium.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220518093631.25491-1-angelogioacchino.delregno@collabora.com>
- <20220518093631.25491-3-angelogioacchino.delregno@collabora.com>
- <20220520221910.GA348732-robh@kernel.org>
+To:     Soumya Negi <soumya.negi97@gmail.com>,
+        Shuah Khan <skhan@linuxfoundation.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-kernel-mentees@lists.linuxfoundation.org,
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220521015613.6197-1-soumya.negi97@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220520221910.GA348732-robh@kernel.org>
+In-Reply-To: <20220521015613.6197-1-soumya.negi97@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,30 +78,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/05/2022 00:19, Rob Herring wrote:
-> On Wed, May 18, 2022 at 11:36:31AM +0200, AngeloGioacchino Del Regno wrote:
->> This is a clock-controller binding, so it needs #clock-cells, or
->> it would be of no use: add that to the list of required properties.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  .../devicetree/bindings/arm/mediatek/mediatek,mt8186-clock.yaml  | 1 +
->>  .../bindings/arm/mediatek/mediatek,mt8186-sys-clock.yaml         | 1 +
->>  .../devicetree/bindings/arm/mediatek/mediatek,mt8192-clock.yaml  | 1 +
->>  .../bindings/arm/mediatek/mediatek,mt8192-sys-clock.yaml         | 1 +
->>  .../devicetree/bindings/arm/mediatek/mediatek,mt8195-clock.yaml  | 1 +
->>  .../bindings/arm/mediatek/mediatek,mt8195-sys-clock.yaml         | 1 +
->>  6 files changed, 6 insertions(+)
+On 21/05/2022 03:56, Soumya Negi wrote:
+> Converts .txt documentation file to ReST format(.rst).
 > 
-> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Soumya Negi <soumya.negi97@gmail.com>
+> ---
+>  .../devicetree/bindings/mips/cpu_irq.rst      | 56 +++++++++++++++++++
+>  1 file changed, 56 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mips/cpu_irq.rst
 > 
-> Wasn't there some discussion about moving these to bindings/clocks/? 
-> Maybe that was another one, it's all a blur...
+> diff --git a/Documentation/devicetree/bindings/mips/cpu_irq.rst b/Documentation/devicetree/bindings/mips/cpu_irq.rst
+> new file mode 100644
+> index 000000000000..601cc12caa2a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mips/cpu_irq.rst
+> @@ -0,0 +1,56 @@
+> +=============================
+> +MIPS CPU interrupt controller
+> +=============================
+> +
+> +On MIPS the ``mips_cpu_irq_of_init()`` helper can be used to initialize the 8 CPU
+> +IRQs from a devicetree file and create a ``irq_domain`` for IRQ controller.
 
-Yes, there was such idea although I am not sure if this is worth by
-itself - messes up with the git history.
+Bindings is not a place for code. No.
+
+> +
+> +With the ``irq_domain`` in place we can describe how the 8 IRQs are wired to the
+> +platforms internal interrupt controller cascade.
+> +
+> +Below is an example of a platform describing the cascade inside the devicetree
+> +and the code used to load it inside ``arch_init_irq()``.
+> +
+> +Required properties
+> +-------------------
+> +* compatible: Should be **"mti,cpu-interrupt-controller"**
+
+If you wanted to add bindings, please use DT schema format (see
+writing-schema, writing-bindings and example-schema files).
 
 
 Best regards,
