@@ -2,70 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 741B352FD3F
-	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 16:25:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E54FC52FD51
+	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 16:33:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244426AbiEUOZM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 May 2022 10:25:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39362 "EHLO
+        id S1349044AbiEUOdO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 May 2022 10:33:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230426AbiEUOZM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 10:25:12 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1444369ED
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 07:25:10 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id l13so11990474lfp.11
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 07:25:10 -0700 (PDT)
+        with ESMTP id S1353833AbiEUOdM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 10:33:12 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C2635D649
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 07:33:10 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id v8so16743838lfd.8
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 07:33:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=IbbNsxWO/m2lPWhlsd3aTys0/Azk77kx0rBYcjjzxrw=;
-        b=X7Xpxa/+7lKMnKDnsjZKhJ62fLY3M/Bnlu2oTHf1xVs0aDuL6HaFBRursY1TX571Mz
-         CTTvITI8UTOU0bVIRqJzdeoY9tvL74IRnKuafMd0fKQhr9aSrbySUUUfjoGyIaRQ8Bsd
-         rq1ehvsn+QNWX8JuMg83bVBb141ynroEuXWJ54qYYeJNfrsA7F4ia7U9kRAVJc63vT8S
-         4M8f3yEPO65NtNNJ20uF0+3gHIQXGAHNLaNEEZlWrWLCWQf/zI0YohR609F9v+5+nhJi
-         E9Zz7Cp9Fq5GYIbAveb2cQk/sth5VKAI5afZFuEbTy+sHdwhZvLjaJUyOwfHt6o67Z0q
-         RxgA==
+        bh=Hn1tpaExx4W+/e0w4YZThPk8OvIZPTL/mPjUx1/h2t4=;
+        b=cKZtkaIjNKIn8y6S+OXauTN4MPMFZ8458LigpDSBhWV76hYXxYBdqHWjYYzTFz9gzK
+         9J8yEJ9NsTW4U0FxzdG4RKJr4DMj81BSBvuJgKyYZ77lvujT3ufH15rxd+/L8KtBb5le
+         LeQSrU494fo6TMGAJQOP2cTf+5AIZ6EO/EIzZIRIpF5Lpp8/AwKlx79/PRfwcHw93UrB
+         kr/NZdnBb0ysyfY96bSS0k4xXjPormKhzj5JKYhy/rspkqFDzHc4Cnr8TVt0YDItzc+o
+         9Rd63W88lrb2ERvIb9uW6v5IKs0EmuW2S+GdliJIqeuQzRlG1AI9rtaxLb4F2rwojlAm
+         Vlcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=IbbNsxWO/m2lPWhlsd3aTys0/Azk77kx0rBYcjjzxrw=;
-        b=GfLI22DWUFSWvbKZrq2vHOrvfQTnyOu1Uyr8JYBzsxYPwgxNbCxizF06kTNX5I3TZl
-         lePWlEB4pcqU7sF94D7YSk+EzTZYZDrJPA4MsLtHYAJzAP6BZ7rLvpsx85eWz40BtIqI
-         UVKZpC3U9S4ONlpNCouSecaXZ5EaGld3TanadmVwSICfiyDu3A6fLDu2+Gq8BA9ym8kb
-         1tmcZ8FRdI3hakAs5oGwOqEnPj+NLtHMtX3NnyfnR6mLLjKmkHx6p8l2I/dmqboPM8TK
-         /rWE67SaHFaxGwohX2/oBp2uVwd208FNrwLWF+79i15HYw0ddju42LlKzLMbBQf/LPcT
-         8n7Q==
-X-Gm-Message-State: AOAM532C5QZ3CdQwvZsbR9+WuFUFYiX0vbT3XoUKRxmQgL8vNtelFgvk
-        7QqXuR1HJigE0TgZ+azFwtebtw==
-X-Google-Smtp-Source: ABdhPJxWmFsSb0Vzg1NAnz2GPn7MlkNF023jy6AnGMkyrTd5OmsIHxz8MDigJ2L10kwaol2EYaevwQ==
-X-Received: by 2002:a05:6512:c0e:b0:478:5a91:20bb with SMTP id z14-20020a0565120c0e00b004785a9120bbmr3982177lfu.587.1653143109161;
-        Sat, 21 May 2022 07:25:09 -0700 (PDT)
+        bh=Hn1tpaExx4W+/e0w4YZThPk8OvIZPTL/mPjUx1/h2t4=;
+        b=XriHdVEKcA40MyLoY0Ce8KZ5EXU8bL+HpE6DuaG15Icrm104tkEh1V9jCfPQmme8LG
+         0++B1YmX+B8wpwfqOQDFzerJDznffTkDJAzaBrsdHbWb/5kEq1YDxTGowDNCU4cr8VYK
+         JG3Xtua7BcVMZsrN2mHdhIWYnxFpIoE6kHeug6nfiKLFmP9MSMdshkjEnr+r8xsXey5z
+         kebm+7AQJQjUf1cG9IbrpMunjRPi/uJRp/teGTiTfwf65U19GbznHgqxqhRQIb7eMfjK
+         eAIRdapKjfVtW1eSrp+OiL/OjQx7+6YtElZ3oTq6+O3VSO/4+40tfybia8B7xU0SNthn
+         Liig==
+X-Gm-Message-State: AOAM531/Gdb5cXvQEKWy70Lu/dypxFBHEobauhFkG9bZuvKbhBD1Neqp
+        mXP4HzjQVQAYt8KzrAskmQnMIw==
+X-Google-Smtp-Source: ABdhPJyx6Mwjo8UHnCdnLrCqjRw6qNRdRwXtYGACm3ClOhYNuNa7LoKqXYd5gtbZXBA3V855VgXOlQ==
+X-Received: by 2002:a05:6512:ad2:b0:478:623e:ca73 with SMTP id n18-20020a0565120ad200b00478623eca73mr1771941lfu.290.1653143588422;
+        Sat, 21 May 2022 07:33:08 -0700 (PDT)
 Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id r26-20020a2e995a000000b0024f3d1daea0sm724179ljj.40.2022.05.21.07.25.08
+        by smtp.gmail.com with ESMTPSA id s25-20020a2e81d9000000b00253bb2564cbsm726024ljg.134.2022.05.21.07.33.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 21 May 2022 07:25:08 -0700 (PDT)
-Message-ID: <7fd80a4b-5e60-0117-b790-359f6d94aeef@linaro.org>
-Date:   Sat, 21 May 2022 16:25:07 +0200
+        Sat, 21 May 2022 07:33:07 -0700 (PDT)
+Message-ID: <2a7ff8d1-9ef8-af6c-e541-80417aba7782@linaro.org>
+Date:   Sat, 21 May 2022 16:33:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH] dt-bindings: mips: Convert plain text file to ReST
+Subject: Re: [PATCH v4 2/3] dt-bindings: remoteproc: qcom: Convert SC7280 MSS
+ bindings to YAML
 Content-Language: en-US
-To:     Soumya Negi <soumya.negi97@gmail.com>,
-        Shuah Khan <skhan@linuxfoundation.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-kernel-mentees@lists.linuxfoundation.org,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220521015613.6197-1-soumya.negi97@gmail.com>
+To:     Sibi Sankar <quic_sibis@quicinc.com>,
+        Stephen Boyd <swboyd@chromium.org>, bjorn.andersson@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Cc:     ohad@wizery.com, agross@kernel.org, mathieu.poirier@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mka@chromium.org
+References: <1652978825-5304-1-git-send-email-quic_sibis@quicinc.com>
+ <1652978825-5304-3-git-send-email-quic_sibis@quicinc.com>
+ <CAE-0n50iYAUmj6GEdCuOJ1d_SgeeFWtoxqWf7qN=jZ_js4wBcQ@mail.gmail.com>
+ <1289c2e4-5607-b515-88b1-f44585e62cd3@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220521015613.6197-1-soumya.negi97@gmail.com>
+In-Reply-To: <1289c2e4-5607-b515-88b1-f44585e62cd3@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,43 +81,120 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/05/2022 03:56, Soumya Negi wrote:
-> Converts .txt documentation file to ReST format(.rst).
+On 20/05/2022 20:46, Sibi Sankar wrote:
+>>> +  memory-region:
+>>> +    maxItems: 2
+>>> +    description: Phandle reference to the reserved-memory for the MBA region followed
+>>> +                 by the modem region.
+>>> +
+>>> +  firmware-name:
+>>> +    $ref: /schemas/types.yaml#/definitions/string-array
+>>> +    maxItems: 2
+>>
+>> Instead of maxItems can this be
+>>
+>>         items:
+>>           - description: Name of MBA firmware
+>> 	 - description: Name of modem firmware
+>>
+>> so that we know the order? Same for 'memory-region' above.
 > 
-> Signed-off-by: Soumya Negi <soumya.negi97@gmail.com>
-> ---
->  .../devicetree/bindings/mips/cpu_irq.rst      | 56 +++++++++++++++++++
->  1 file changed, 56 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mips/cpu_irq.rst
+> ack
 > 
-> diff --git a/Documentation/devicetree/bindings/mips/cpu_irq.rst b/Documentation/devicetree/bindings/mips/cpu_irq.rst
-> new file mode 100644
-> index 000000000000..601cc12caa2a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mips/cpu_irq.rst
-> @@ -0,0 +1,56 @@
-> +=============================
-> +MIPS CPU interrupt controller
-> +=============================
-> +
-> +On MIPS the ``mips_cpu_irq_of_init()`` helper can be used to initialize the 8 CPU
-> +IRQs from a devicetree file and create a ``irq_domain`` for IRQ controller.
+>>
+>>> +    description:
+>>> +      The name of the MBA and modem firmware to be loaded for this remote processor.
+>>> +
+>>> +  qcom,halt-regs:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>>
+>> Should this have maxItems: 1? Or that's implicit from description?
+> 
+> It's implicit!
 
-Bindings is not a place for code. No.
+I am not aware of such implicit rule in schema. maxItems are always
+required. If this is maxItems:1 it is not even an array.
 
-> +
-> +With the ``irq_domain`` in place we can describe how the 8 IRQs are wired to the
-> +platforms internal interrupt controller cascade.
-> +
-> +Below is an example of a platform describing the cascade inside the devicetree
-> +and the code used to load it inside ``arch_init_irq()``.
-> +
-> +Required properties
-> +-------------------
-> +* compatible: Should be **"mti,cpu-interrupt-controller"**
+> 
+>>
+>>> +    description:
+>>> +      Phandle reference to a syscon representing TCSR followed by the
+>>> +      four offsets within syscon for q6, modem, nc and vq6 halt registers.
+>>> +
+>>> +  qcom,ext-regs:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>>
+>> Should this have min/maxItems: 2?
+> 
+> ack
 
-If you wanted to add bindings, please use DT schema format (see
-writing-schema, writing-bindings and example-schema files).
+You should also define the items. This applies to all such fields. Check
+the examples of syscon consumers.
+
+> 
+>>
+>>> +    description:
+>>> +      Two phandle references to syscons representing TCSR_REG and TCSR register
+>>> +      space followed by the two offsets within the syscon to force_clk_en/rscc_disable
+>>> +      and axim1_clk_off/crypto_clk_off registers respectively.
+>>> +
+>>> +  qcom,qaccept-regs:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>>> +    description:
+>>> +      Phandle reference to a syscon representing TCSR followed by the
+>>> +      three offsets within syscon for mdm, cx and axi qaccept registers.
+>>> +
+>>> +  qcom,qmp:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>> +    description: Reference to the AOSS side-channel message RAM.
+>>> +
+>>> +  qcom,smem-states:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>>> +    description: States used by the AP to signal the Hexagon core
+>>> +    items:
+>>> +      - description: Stop the modem
+>>
+>> This one did items for a phandle array so I think we should follow the
+>> same above.
+> 
+> ack
+> 
+>>
+>>> +
+>>> +  qcom,smem-state-names:
+>>> +    description: The names of the state bits used for SMP2P output
+>>> +    const: stop
+>>> +
+>>> +  glink-edge:
+>>> +    $ref: qcom,glink-edge.yaml#
+>>> +    description:
+>>> +      Qualcomm G-Link subnode which represents communication edge, channels
+>>> +      and devices related to the DSP.
+>> [..]
+>>> +        power-domain-names = "cx", "mss";
+>>> +
+>>> +        memory-region = <&mba_mem>, <&mpss_mem>;
+>>> +
+>>> +        qcom,qmp = <&aoss_qmp>;
+>>> +
+>>> +        qcom,smem-states = <&modem_smp2p_out 0>;
+>>> +        qcom,smem-state-names = "stop";
+>>> +
+>>> +        resets = <&aoss_reset AOSS_CC_MSS_RESTART>,
+>>> +                 <&pdc_reset PDC_MODEM_SYNC_RESET>;
+>>> +        reset-names = "mss_restart", "pdc_reset";
+>>> +
+>>> +        qcom,halt-regs = <&tcsr_mutex 0x23000 0x25000 0x28000 0x33000>;
+>>> +        qcom,ext-regs = <&tcsr 0x10000 0x10004 &tcsr_mutex 0x26004 0x26008>;
+>>
+>> Because it's two items I'd expect:
+>> 	
+>> 	<&tcsr 0x10000 0x10004>, <&tcsr_mutex 0x26004 0x26008>;
+> 
+> I guess both the ways work since the driver uses
+> of_parse_phandle_with_fixed_args.
+
+But only one is correct...
 
 
 Best regards,
