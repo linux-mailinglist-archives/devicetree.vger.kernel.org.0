@@ -2,105 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1ACF152F8AD
-	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 06:27:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C394F52F8BF
+	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 06:50:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233461AbiEUE1g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 May 2022 00:27:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36414 "EHLO
+        id S1349327AbiEUEui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 May 2022 00:50:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230143AbiEUE1f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 00:27:35 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 255F117EC38;
-        Fri, 20 May 2022 21:27:31 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D1119B80011;
-        Sat, 21 May 2022 04:27:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80B92C385A5;
-        Sat, 21 May 2022 04:27:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1653107248;
-        bh=VR2e2nGywKJO8BXGBw7bDB50ksSQe7j9hsFNTsbScHo=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=rQtOWkLe4RREd5CSnrIlDauiRGtpW4gIDDk8Hu4bg6ROvhBQKh1NWU50VKus7fduU
-         TZa3rxoZikGUUAsMh4tXjyAxlCkK9/aC0TOt6pknNei9PQ2F2WPXMs01zGk5ydQW4l
-         pdv5mrATPOVaa+dzTGql53SDZMnJ/cBIPm49xF1jK5hv1+ffzaXfKTNfCtiO6yP0Vf
-         WBH5sl+go4s6b7Rl0tnwa0NuvDN8kY4kN7tEGmNi4+/ly1sxrz6l8CvZK+Y+alQfjV
-         JBGV66UaC83Nw6z7JwfyuxGn+/x21RPviW9hl5OhG5LbcVn8TwKan8tt5B33nrD3KZ
-         p1iYsCqUBkJ7g==
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S1349247AbiEUEug (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 00:50:36 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E356ABF4C;
+        Fri, 20 May 2022 21:50:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1653108635; x=1684644635;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=itrPZ10vCeHTeIr/aBAglfxYV5UcpuxZ5RfmgaB90ME=;
+  b=EJM7hO7NJWfcxPPKxVfAMs8Z8yhkP8VrNI6VXLwBP4YNXXJP/RwIHtAo
+   ZyAEt+ThfJzA5nTILgz7RGYV7TLAa6yG1aDLJmNQwqeOXddmjMzMHbdaa
+   3hUBHdbFxHxlkQ3DF5oO0heusqeYThLZpAU4IlrJRmmKEMgwlUlkf3Yq/
+   Mladc3sSPGDKL0uLCeBQel/tMZiDJ5J/4W7ru4nDgxOIRuCDmOuLjubJX
+   9S2ntzlgiUCo05OAi5tH5NTkuwtMl1lgat/ylM1sf4+X3l/eKrK2DRrVE
+   bH115v14+OsdkL1la7Gc4GHy2VlDGgAGq51pyt0OIKYZSX0STnNjRfylH
+   g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10353"; a="260392867"
+X-IronPort-AV: E=Sophos;i="5.91,240,1647327600"; 
+   d="scan'208";a="260392867"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 May 2022 21:50:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,240,1647327600"; 
+   d="scan'208";a="576507411"
+Received: from lkp-server02.sh.intel.com (HELO 242b25809ac7) ([10.239.97.151])
+  by fmsmga007.fm.intel.com with ESMTP; 20 May 2022 21:50:30 -0700
+Received: from kbuild by 242b25809ac7 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1nsH4P-0005wk-Dn;
+        Sat, 21 May 2022 04:50:29 +0000
+Date:   Sat, 21 May 2022 12:50:26 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
+        bjorn.andersson@linaro.org
+Cc:     kbuild-all@lists.01.org, vladimir.zapolskiy@linaro.org,
+        mchehab@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, mmitkov@quicinc.com, jgrahsl@snap.com,
+        hfink@snap.com, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: Re: [PATCH 1/1] arm64: dts: qcom: qrb5165-rb5: Enable the IMX577 on
+ cam1
+Message-ID: <202205211233.z5zpxDvl-lkp@intel.com>
+References: <20220518133004.342775-2-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20220520094323.754971-5-wenst@chromium.org>
-References: <20220520094323.754971-1-wenst@chromium.org> <20220520094323.754971-5-wenst@chromium.org>
-Subject: Re: [PATCH 4/4] clk: mediatek: mt8183: Add clk mux notifier for MFG mux
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Chen-Yu Tsai <wenst@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Miles Chen <miles.chen@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-To:     Chen-Yu Tsai <wenst@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>
-Date:   Fri, 20 May 2022 21:27:26 -0700
-User-Agent: alot/0.10
-Message-Id: <20220521042728.80B92C385A5@smtp.kernel.org>
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220518133004.342775-2-bryan.odonoghue@linaro.org>
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Chen-Yu Tsai (2022-05-20 02:43:23)
-> diff --git a/drivers/clk/mediatek/clk-mt8183.c b/drivers/clk/mediatek/clk=
--mt8183.c
-> index 8a755fadebb5..afef3738396e 100644
-> --- a/drivers/clk/mediatek/clk-mt8183.c
-> +++ b/drivers/clk/mediatek/clk-mt8183.c
-> @@ -1217,6 +1219,25 @@ static int clk_mt8183_top_probe(struct platform_de=
-vice *pdev)
->         mtk_clk_register_gates(node, top_clks, ARRAY_SIZE(top_clks),
->                 top_clk_data);
-> =20
-> +       /* Register mux notifier for MFG mux */
+Hi Bryan,
 
-This comment sort of indicates it should be another function for this
-block called "register mfg mux notifier".
+I love your patch! Yet something to improve:
 
-> +       mfg_mux_nb =3D devm_kzalloc(&pdev->dev, sizeof(*mfg_mux_nb), GFP_=
-KERNEL);
-> +       if (!mfg_mux_nb)
-> +               return -ENOMEM;
-> +
-> +       for (i =3D 0; i < ARRAY_SIZE(top_muxes); i++)
-> +               if (top_muxes[i].id =3D=3D CLK_TOP_MUX_MFG)
-> +                       break;
-> +       if (i =3D=3D ARRAY_SIZE(top_muxes))
-> +               return -EINVAL;
-> +
-> +       mfg_mux_nb->mux =3D &top_muxes[i];
-> +       mfg_mux_nb->bypass_index =3D 0; // Bypass to 26M crystal
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on v5.18-rc7]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-Use /* these types of comments */
+url:    https://github.com/intel-lab-lkp/linux/commits/Bryan-O-Donoghue/Switch-on-IMX577-on-RB5/20220518-213438
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20220521/202205211233.z5zpxDvl-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 11.3.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/9d9ad87ded5bf5f2f790a549863ad3d63b7336f3
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Bryan-O-Donoghue/Switch-on-IMX577-on-RB5/20220518-213438
+        git checkout 9d9ad87ded5bf5f2f790a549863ad3d63b7336f3
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash
 
-> +       ret =3D devm_mtk_clk_mux_notifier_register(&pdev->dev,
-> +                                                top_clk_data->hws[CLK_TO=
-P_MUX_MFG]->clk,
-> +                                                mfg_mux_nb);
-> +       if (ret)
-> +               return ret;
-> +
->         return of_clk_add_hw_provider(node, of_clk_hw_onecell_get,
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+>> Error: arch/arm64/boot/dts/qcom/qrb5165-rb5.dts:1335.1-7 Label or path camcc not found
+>> Error: arch/arm64/boot/dts/qcom/qrb5165-rb5.dts:1339.1-7 Label or path camss not found
+>> Error: arch/arm64/boot/dts/qcom/qrb5165-rb5.dts:1361.1-6 Label or path cci1 not found
+>> Error: arch/arm64/boot/dts/qcom/qrb5165-rb5.dts:1375.20-21 syntax error
+   FATAL ERROR: Unable to parse input tree
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
