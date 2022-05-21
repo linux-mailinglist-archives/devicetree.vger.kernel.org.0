@@ -2,71 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADEAF52FD67
-	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 16:41:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E401B52FD73
+	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 16:44:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238494AbiEUOlZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 May 2022 10:41:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42298 "EHLO
+        id S236959AbiEUOoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 May 2022 10:44:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355296AbiEUOlE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 10:41:04 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0551412AAA
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 07:40:58 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id u7so11739621ljd.11
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 07:40:57 -0700 (PDT)
+        with ESMTP id S1345223AbiEUOoI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 10:44:08 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEE4C6A00B
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 07:44:06 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id 27so7503313ljw.0
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 07:44:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=LxFUgiNVciv/W8ZtHs9d3GAs5Rmd048FQ4zmny+B+pw=;
-        b=AkjMk7cfzFpy/3MkLjibCyOtBl4UKyhVM5iB638FNB0COGIpbyXJ9lmtH1KP0rGLcN
-         cJ4iFUb554Pfq77EW3zguqhNuVJTKOf2OcLg18rMEPuY59WdxNe1Oo9W6YjKGKmGPDve
-         0nh3nx4vunHE5KmquxmiC4tqCARZL24FD/Dz+0SY9wKeujOVvBDX4nDR7IjFNQgDXKBN
-         JS24Yvupjj9oo8AUsbQ0f6x/1UNXDLs+jkymMV25UQOWVP+PGGfNynh6BiyjEnTeSbmY
-         Wqa+PQh8DMbRKgToN+d2NRhNbdH7VTtKPR0lnfVBC2HPMmqjz/A0eamxMKK203kNYJrm
-         6P0w==
+        bh=/cbTtBq59WXX2nYbXhKg+bCe+ywZbzVEJW+eIz8/F80=;
+        b=QAZgPLmzBIyLU+16M8XZQRVYtmRhWu+CjNFiDeV3+mFGN5fPMSwVjoeWS+0qsl4PrE
+         VcoTqUd9WD99J7jM7nCYgRLwj7Wj4HggL91Gq4JNoBlLbls/qzU73Ipf6R2nkRDX9IU3
+         /3e8wI3YSCnDLHdr9ySCPAjGzth+ET+iNOhDFGTKZLXlsD/p+dfjQu4LGVN6/Y2qSnRR
+         +9uSUIB5ELflGPbOqQpuAIm2fBLIMrDQkOYkK54QPSVw1mB5phMawMB2RaLaG3vVGpEr
+         iHJ4sYZLt9yql1tMqszxGRRVCECe1/p7ebBDnKiLAH4pW+ne7J+He0S9t1mdl5FuUWs3
+         uVtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=LxFUgiNVciv/W8ZtHs9d3GAs5Rmd048FQ4zmny+B+pw=;
-        b=mndPcpA0r4vyx1xG1DeViRcgyl6sHW0mWuAPt12VqZgq+q9vdbBcFWWMgx5ZQfv8n8
-         Gad5qNcP970fd3mow/MkqdDeKYr581pMTZyKgTbkM3YgqiQW40tjKxAddBZVIG7X3ruX
-         AyvGzPUYJjzi0npjQ1cZhWXUClDgWjsGa1soS7DaWlAabRPKvmi2Jcij744Df2FEvIZY
-         vM0qLf/Ht4xHSCVY6+8g4H+cjvflCdR+kJ8GevNZLjz4BNLOPs36vM54wi18fnY71TYr
-         6NulCqsPnfNs7gRJ7QFbtkb8oQ620xuWtNExQTB1LyO6Lc08tn8gWPJ2DiTxyBv9/KQR
-         i+fQ==
-X-Gm-Message-State: AOAM533ffNCXTaCsPgtWUPcFTBxEcIk7PQkOnUPlHrW75hypbU7/OcO9
-        xzFhDQ22ZyPCRAbJQGBO13rKGA==
-X-Google-Smtp-Source: ABdhPJxps9GV+yRWGawxgG+Pz6I2lgGdZiPB+Mj7qyuiM5JY7RRCBXJ6BbqfIh9EzhnSj6om1UUuYg==
-X-Received: by 2002:a2e:97da:0:b0:253:c987:cb43 with SMTP id m26-20020a2e97da000000b00253c987cb43mr8381829ljj.473.1653144056354;
-        Sat, 21 May 2022 07:40:56 -0700 (PDT)
+        bh=/cbTtBq59WXX2nYbXhKg+bCe+ywZbzVEJW+eIz8/F80=;
+        b=GO3jj45x3DqoN67Y1/t4bE7DhOzqs0H07JLumQoUYrUjqdjLJYLv5373mBfb6pqQKM
+         SvSt4Lap4v2qjuzUTY1SbUuYXje0ZAfczWd0/5Z4k3cXR7LsfBmpe3ew6Kri9+Kk9MxL
+         HBZiXzc0c7X54XbU/wJ6RiXwPQCe+5oEBypOOkC7Lw5Qv9JH+wgLIQ0H3RxCc/avPkxi
+         VvnQJh6JEJ59ZraiKJVWKwPKriealXt5aTNJqt+yR0t7Xg+DrzhJ+OMaE+oDQ4iatq7n
+         Hky1tLLq6Votb9Hn7IZaM+WYeCK6iHhCqfvg20144XxRhRyTnrHPHU3xvzJhOtlPW6Ua
+         4y3Q==
+X-Gm-Message-State: AOAM530OoPgyS2bZInM+dUpKni3y/d232J0nrVAv6/ZvO82BOsBL3ICd
+        Z3anLzb6hb2lf+1pb0oXZ2905g==
+X-Google-Smtp-Source: ABdhPJzEd+pCyalQMTT1oPB9QGqDCUMDyYeZg56h0jH74pn/hH6+cCG2iNDJsYa8hkjoxqddALRSVg==
+X-Received: by 2002:a05:651c:1542:b0:249:5d86:3164 with SMTP id y2-20020a05651c154200b002495d863164mr8498632ljp.500.1653144245237;
+        Sat, 21 May 2022 07:44:05 -0700 (PDT)
 Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id m4-20020a056512358400b0047255d21137sm1081811lfr.102.2022.05.21.07.40.55
+        by smtp.gmail.com with ESMTPSA id h15-20020a2ea48f000000b00253bd1d1a84sm733337lji.16.2022.05.21.07.44.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 21 May 2022 07:40:55 -0700 (PDT)
-Message-ID: <f5982143-bca5-79c8-7e0a-f37dd098d481@linaro.org>
-Date:   Sat, 21 May 2022 16:40:54 +0200
+        Sat, 21 May 2022 07:44:04 -0700 (PDT)
+Message-ID: <0a924446-7ced-79cf-2183-10df81c0e450@linaro.org>
+Date:   Sat, 21 May 2022 16:44:03 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH 3/4] dt-bindings: regulator: Add bindings for MT6332
- regulator
+Subject: Re: [PATCH v2 1/2] dt-bindings: soc: add samsung,boot-mode
+ definitions
 Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, lgirdwood@gmail.com
-Cc:     broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20220520133305.265310-1-angelogioacchino.delregno@collabora.com>
- <20220520133305.265310-4-angelogioacchino.delregno@collabora.com>
+To:     Chanho Park <chanho61.park@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220520115250.57785-1-chanho61.park@samsung.com>
+ <CGME20220520115216epcas2p20de68c07071435ae33b50c7b664a20eb@epcas2p2.samsung.com>
+ <20220520115250.57785-2-chanho61.park@samsung.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220520133305.265310-4-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220520115250.57785-2-chanho61.park@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,37 +80,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/05/2022 15:33, AngeloGioacchino Del Regno wrote:
-> Add devicetree bindings for the regulators found in the MT6332 PMIC.
+On 20/05/2022 13:52, Chanho Park wrote:
+> Adds samsung,boot-mode.h header file which contains boot mode
+> definitions for bootloader. As for now, there are only boot mode
+> definitions for Exynos Auto v9 SoC.
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+
+Thank you for your patch. There is something to discuss/improve.
+
 > ---
->  .../bindings/regulator/mt6332-regulator.yaml  | 111 ++++++++++++++++++
->  1 file changed, 111 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/mt6332-regulator.yaml
+>  include/dt-bindings/soc/samsung,boot-mode.h | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+>  create mode 100644 include/dt-bindings/soc/samsung,boot-mode.h
 > 
-> diff --git a/Documentation/devicetree/bindings/regulator/mt6332-regulator.yaml b/Documentation/devicetree/bindings/regulator/mt6332-regulator.yaml
+> diff --git a/include/dt-bindings/soc/samsung,boot-mode.h b/include/dt-bindings/soc/samsung,boot-mode.h
 > new file mode 100644
-> index 000000000000..51077a865dbe
+> index 000000000000..f1d03d96f45c
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/mt6332-regulator.yaml
+> +++ b/include/dt-bindings/soc/samsung,boot-mode.h
+> @@ -0,0 +1,12 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
 
-Same comments as your other patch,
+Dual license:
+GPL-2.0-only OR BSD-2-Clause
 
-> @@ -0,0 +1,111 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/mt6332-regulator.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: MT6332 Regulator from MediaTek Integrated
+> +#ifndef __SAMSUNG_BOOT_MODE_H
+
+__DT_BINDINGS_SAMSUNG_BOOT_MODE_H
+
+> +#define __SAMSUNG_BOOT_MODE_H
 > +
-> +maintainers:
-> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> +/* Boot mode definitions for Exynos Auto v9 SoC */
 > +
-> +description: |
-> +  List of regulators provided by this controller. It is named
+> +#define EXYNOSAUTOV9_BOOT_FASTBOOT	(0xfa)
+> +#define EXYNOSAUTOV9_BOOT_BOOTLOADER	(0xfc)
+> +#define EXYNOSAUTOV9_BOOT_RECOVERY	(0xff)
+
+No need for ().
+
+> +
+> +#endif
 
 
 Best regards,
