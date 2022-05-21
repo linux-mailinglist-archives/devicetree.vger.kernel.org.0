@@ -2,62 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D6B852FDBD
-	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 17:21:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75D5652FDBB
+	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 17:21:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355367AbiEUPVQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 May 2022 11:21:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45620 "EHLO
+        id S1355352AbiEUPVO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 May 2022 11:21:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355374AbiEUPVC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 11:21:02 -0400
+        with ESMTP id S1355381AbiEUPVE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 11:21:04 -0400
 Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AABABC93
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:20:59 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id l13so12135489lfp.11
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:20:59 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBC0C64DB
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:21:01 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id f4so18748862lfu.12
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:21:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=tlRHmgPz4LKIxlJZY56dKqZYBftzR9zIcahl7t/spec=;
-        b=FghNZdxGwghuxdTekvFwLm22ky0yXa05KEsrGVIdW1cuCDFtCfYShFQRfdpkkcIAbw
-         6WdzuNgjXwIC+VooOLOWA7Hl11hS35V2PDQzutStB1LF2qSKbWzY1eshptWE4kOSoFRx
-         iDIdemEGLAMEntHw+5ZjmUjKdE10ZqYcFllhUVjnNK/VbclFJWlsOgj63yzclAk38I8L
-         g8/9OZI9C/mgfoYIyRBr6kN0vjevwKQy2j+AxtOzIJNe2Nar9AqmWUxegtzPUTgeb7fe
-         PqeFloKoz25L+E6g6UhTuggsmkSw18RIChheI9RO1bwG0+XwYcPNae0jfpalwooFbhQH
-         WfBg==
+        bh=GRnP0k72A6Rn/P6bIjVlTkWcKN2lm4vnrIO3tU5Omrk=;
+        b=AFUSXGtB8lu2pPAa8udoMd5XTuIreIfhtZEBcUW2m6+0fEuHqjTuzuRn6qclUJ3K1e
+         zmay8wx7mBaItAZUbRJgw2ftungZm5oTS6J9rDA9VqeBJBy2+b/jg1G8xNF7hPIhJNVZ
+         lEy8P6pRlK396QIMxMZIyTKg29SYDRm+meZ1I/orUw9K8VZh+nfAjJUjsO4N3p2d8V7C
+         vCPBmEjWlR/sS6oyNOFNoxktdBmf/tXX1xAmMwaqwqLYV31mvZ9p2kkXY7AA3Mf2y8Hv
+         9rif08qEvIyQGfp12qUEfl6WLhMWViMclKbkNuvWUZ69jBOLhNon8KBnTb4TEk3/uuw0
+         LVnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=tlRHmgPz4LKIxlJZY56dKqZYBftzR9zIcahl7t/spec=;
-        b=GJTTigokYfAUl3cF9dVxORy5nKPMqdIez4KzXUxQK0pqo2UDkBvSQ7GV6fauiP1SG5
-         3jtdnxGPjxTNI9q7E139DLccWlL7n+e3WYq43DueSXrv90UusEyvwqHao2YuqOUXdwPi
-         LiKFkJP/zz/gO92EjzO04Z5JQCWWiq+U52wFZSxHLMAxnz4OocYySBB8gFP3e7UEwVFR
-         +ix7PLHJFmrGK8PquKp1TE/V380zXyKiluG0vTSzNR9DDfdiaBTObdmLfSBnRgyCKgvU
-         iG2nCmdhQFhmjNeJpuDVhtU7fDv8vNqS8VNiMTFAUXoXf95vgBlaKZwOGWyqTOfG3PUU
-         gIzg==
-X-Gm-Message-State: AOAM532nWl8RP0ilgB8+XlMggIUfTyH9Wuk+tEe0lF1mOiqNg44GXzm+
-        aGTTC5uglPKJnOp5dXoAbBc6Bg==
-X-Google-Smtp-Source: ABdhPJxgIL+Cc5c4uyhBq2/VSx9y557I8YpUCEoNJG7CRaAE++rInxZ8TNIZO+/0IIyErULLv8MVEA==
-X-Received: by 2002:a05:6512:10cf:b0:473:b735:4fae with SMTP id k15-20020a05651210cf00b00473b7354faemr10518377lfg.93.1653146458991;
-        Sat, 21 May 2022 08:20:58 -0700 (PDT)
+        bh=GRnP0k72A6Rn/P6bIjVlTkWcKN2lm4vnrIO3tU5Omrk=;
+        b=kwi7a8G+VMDKswElFbK2F3Izt83LJxuYjlZUj0m3PZawNuFe/W1Agljc8+/jaaqsMK
+         jX4angmNbF8et0MGQeEIkn4qlrtjK3rnqXQPzNveG8o5RwXAMTxatMgrtJ8P7c5xyhhN
+         5vHwTf3l+i5a9PHWPPbjHqioe/liqE4o5dIJjZVXRnKy4XUtCp3ZVY2Jnp66rsCiQNJr
+         pzsztDtRgdFszlX+WIqwA4p9kMA8peXB9++EaqNWSwWAllKD3tuOQZK0Nfde7nnVWrZ1
+         bEoBP2RcrHc2qEyItrr2Hlv9Q4SH87CzLuBLLcEX6wXWi4XCqW7WCSQIAAFnzbfODuWv
+         3IjQ==
+X-Gm-Message-State: AOAM530DWOzDQ2LFG4bdO1rWqermBXUWDW/by8x3TJZH7IzwQQ637nr/
+        vNdMa+0s1cIQHprkU5huyN/QKw==
+X-Google-Smtp-Source: ABdhPJyuuHkY6QQaXpjnMTtwahK2Z8xKOhSZkLkI2uumSWw2Xg7eO7BA9BbG6h4Xd6MIsjzKpLLc/A==
+X-Received: by 2002:a05:6512:23aa:b0:477:cfc0:c1cf with SMTP id c42-20020a05651223aa00b00477cfc0c1cfmr7137894lfv.360.1653146460239;
+        Sat, 21 May 2022 08:21:00 -0700 (PDT)
 Received: from eriador.lumag.spb.ru ([94.25.229.156])
-        by smtp.gmail.com with ESMTPSA id k8-20020a2e92c8000000b0024f3d1daeccsm739933ljh.84.2022.05.21.08.20.57
+        by smtp.gmail.com with ESMTPSA id k8-20020a2e92c8000000b0024f3d1daeccsm739933ljh.84.2022.05.21.08.20.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 May 2022 08:20:58 -0700 (PDT)
+        Sat, 21 May 2022 08:20:59 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk@kernel.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Subject: [PATCH v6 05/11] arm64: dts: qcom: sdm630: rename qusb2phy to qusb2phy0
-Date:   Sat, 21 May 2022 18:20:43 +0300
-Message-Id: <20220521152049.1490220-6-dmitry.baryshkov@linaro.org>
+        Marijn Suijten <marijn.suijten@somainline.org>
+Subject: [PATCH v6 06/11] arm64: dts: qcom: sdm630: add second (HS) USB host support
+Date:   Sat, 21 May 2022 18:20:44 +0300
+Message-Id: <20220521152049.1490220-7-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220521152049.1490220-1-dmitry.baryshkov@linaro.org>
 References: <20220521152049.1490220-1-dmitry.baryshkov@linaro.org>
@@ -73,64 +72,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In preparation to adding second USB host/PHY pair, change first USB
-PHY's label to qusb2phy0.
+Add DT entries for the second DWC3 USB host, which is limited to the
+USB2.0 (HighSpeed), and the corresponding QUSB PHY.
 
-Suggested-by: Marijn Suijten <marijn.suijten@somainline.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/sdm630.dtsi                  | 4 ++--
- arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts   | 2 +-
- 3 files changed, 4 insertions(+), 4 deletions(-)
+ arch/arm64/boot/dts/qcom/sdm630.dtsi | 55 ++++++++++++++++++++++++++++
+ 1 file changed, 55 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-index 42af1fade461..00baacf28c63 100644
---- a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-@@ -224,7 +224,7 @@ &pon_resin {
- 	linux,code = <KEY_VOLUMEUP>;
- };
- 
--&qusb2phy {
-+&qusb2phy0 {
- 	status = "okay";
- 
- 	vdd-supply = <&vreg_l1b_0p925>;
 diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-index 5be0ec06ed86..eb8504e5735c 100644
+index eb8504e5735c..2b5dbc12bdf8 100644
 --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-@@ -1250,13 +1250,13 @@ usb3_dwc3: usb@a800000 {
- 				 * haven't seen any devices making use of it.
- 				 */
- 				maximum-speed = "high-speed";
--				phys = <&qusb2phy>;
-+				phys = <&qusb2phy0>;
- 				phy-names = "usb2-phy";
- 				snps,hird-threshold = /bits/ 8 <0>;
+@@ -1270,6 +1270,20 @@ qusb2phy0: phy@c012000 {
+ 			status = "disabled";
+ 		};
+ 
++		qusb2phy1: phy@c014000 {
++			compatible = "qcom,sdm660-qusb2-phy";
++			reg = <0x0c014000 0x180>;
++			#phy-cells = <0>;
++
++			clocks = <&gcc GCC_USB_PHY_CFG_AHB2PHY_CLK>,
++				 <&gcc GCC_RX1_USB2_CLKREF_CLK>;
++			clock-names = "cfg_ahb", "ref";
++
++			resets = <&gcc GCC_QUSB2PHY_SEC_BCR>;
++			nvmem-cells = <&qusb2_hstx_trim>;
++			status = "disabled";
++		};
++
+ 		sdhc_2: sdhci@c084000 {
+ 			compatible = "qcom,sdm630-sdhci", "qcom,sdhci-msm-v5";
+ 			reg = <0x0c084000 0x1000>;
+@@ -1375,6 +1389,47 @@ opp-384000000 {
  			};
  		};
  
--		qusb2phy: phy@c012000 {
-+		qusb2phy0: phy@c012000 {
- 			compatible = "qcom,sdm660-qusb2-phy";
- 			reg = <0x0c012000 0x180>;
- 			#phy-cells = <0>;
-diff --git a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-index dcbaacf18f66..9280c1f0c334 100644
---- a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-@@ -103,7 +103,7 @@ &pon_resin {
- 	linux,code = <KEY_VOLUMEDOWN>;
- };
- 
--&qusb2phy {
-+&qusb2phy0 {
- 	status = "okay";
- 
- 	vdd-supply = <&vreg_l1b_0p925>;
++		usb2: usb@c2f8800 {
++			compatible = "qcom,sdm660-dwc3", "qcom,dwc3";
++			reg = <0x0c2f8800 0x400>;
++			status = "disabled";
++			#address-cells = <1>;
++			#size-cells = <1>;
++			ranges;
++
++			clocks = <&gcc GCC_CFG_NOC_USB2_AXI_CLK>,
++				 <&gcc GCC_USB20_MASTER_CLK>,
++				 <&gcc GCC_USB20_MOCK_UTMI_CLK>,
++				 <&gcc GCC_USB20_SLEEP_CLK>;
++			clock-names = "cfg_noc", "core",
++				      "mock_utmi", "sleep";
++
++			assigned-clocks = <&gcc GCC_USB20_MOCK_UTMI_CLK>,
++					  <&gcc GCC_USB20_MASTER_CLK>;
++			assigned-clock-rates = <19200000>, <60000000>;
++
++			interrupts = <GIC_SPI 348 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "hs_phy_irq";
++
++			qcom,select-utmi-as-pipe-clk;
++
++			resets = <&gcc GCC_USB_20_BCR>;
++
++			usb2_dwc3: usb@c200000 {
++				compatible = "snps,dwc3";
++				reg = <0x0c200000 0xc8d0>;
++				interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>;
++				snps,dis_u2_susphy_quirk;
++				snps,dis_enblslpm_quirk;
++
++				/* This is the HS-only host */
++				maximum-speed = "high-speed";
++				phys = <&qusb2phy1>;
++				phy-names = "usb2-phy";
++				snps,hird-threshold = /bits/ 8 <0>;
++			};
++		};
++
+ 		mmcc: clock-controller@c8c0000 {
+ 			compatible = "qcom,mmcc-sdm630";
+ 			reg = <0x0c8c0000 0x40000>;
 -- 
 2.35.1
 
