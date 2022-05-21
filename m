@@ -2,139 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E80152FA49
-	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 11:22:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82C7852FA63
+	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 11:49:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241858AbiEUJWz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 May 2022 05:22:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46986 "EHLO
+        id S237942AbiEUJop (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 May 2022 05:44:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230144AbiEUJWy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 05:22:54 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BC535FF20;
-        Sat, 21 May 2022 02:22:53 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id y32so17935201lfa.6;
-        Sat, 21 May 2022 02:22:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=xSyipWzorTdApD5hrRaa+nfQZ/aw7gdMuxHBe7jS38A=;
-        b=CzZBBjq3IOtZg3o41CjyZtHO4GWSWmOMRR8i2cL0rW279ta4tuwiVm3y09R3Mh0NSr
-         9om8PIxVHWHD46udUf8GwqvPgDSFHQHT7D+3j1ExzZZzyQuR9pIe9BjWllWJoaiz6fUd
-         Ufa9bl8DKAsayliGX1vkxQYZ8Q5ImmEyMv5n+2G1PHkgGmEfg58kuSxmCA/3uubQGFIS
-         hpc+ge6QIiqpj/Z7/7dBUNbZgv8ym9/rBjDug4kzdBU88JnUd13CtMu1gBE1QopfA5qg
-         Mb0vuWP2gdruH2xXv0fJKYUNVj8HWDdDM8S3xrUgVmjEIoEbW8iHM2t160fOUNXKQokI
-         Sneg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=xSyipWzorTdApD5hrRaa+nfQZ/aw7gdMuxHBe7jS38A=;
-        b=Cru7UW+QqoJ6moF0awwTh3euLtD2dAfrY8qlqE0PaVQSGBYZisCi5P+XIfsK2n7jSc
-         uKpA4NzMUsQdnBxBxV2ISt6uKyyu4TJ5WxB5dTcYDRblO8gCEGnpIDNAjZCo27yqHIjs
-         UxZCDjWZnzd8edQjce+MfnjXXvAhwZtD7ymVqYmzkZwv7ctn+d5brZcuRcOaKko9OlLi
-         Qs2NFOFj/VwJCyqHAuzRwTdcUAJgYtCCwy6ArmXnLuZGcb+Qxno6BydmyUE4N0ZcUGZQ
-         teJvbkmihg3aRbiJHM4uFMfYNBE9mXHdZODceLsUYBrgJOiiDtmPif0jns48AyEjBeDZ
-         bXcA==
-X-Gm-Message-State: AOAM531+UKIP0gl541Ph7gx/nGL4/Kxa5yukmc/ky0P5K0V9ckOJ9Ykp
-        kB7eKoLXdRfh8VXJavczsvQ=
-X-Google-Smtp-Source: ABdhPJwqzAH9mwnk7Q3kT/zCIM9JpdEx0e/aHxhgjPrkO5JLsy17sG1nmg7lfgJDNZsE2e27ZzHkgg==
-X-Received: by 2002:a05:6512:3e26:b0:478:5972:54b7 with SMTP id i38-20020a0565123e2600b00478597254b7mr3674055lfv.646.1653124971545;
-        Sat, 21 May 2022 02:22:51 -0700 (PDT)
-Received: from mobilestation ([95.79.189.214])
-        by smtp.gmail.com with ESMTPSA id c11-20020a056512104b00b00477ce466e59sm712506lfb.153.2022.05.21.02.22.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 May 2022 02:22:50 -0700 (PDT)
-Date:   Sat, 21 May 2022 12:22:48 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 01/23] dt-bindings: ata: ahci-platform: Drop
- dma-coherent property declaration
-Message-ID: <20220521092248.7i53lxf3gx26fmi5@mobilestation>
-References: <20220511231810.4928-1-Sergey.Semin@baikalelectronics.ru>
- <20220511231810.4928-2-Sergey.Semin@baikalelectronics.ru>
- <20220517185841.GA1388602-robh@kernel.org>
+        with ESMTP id S234199AbiEUJol (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 05:44:41 -0400
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83BF15BD2E;
+        Sat, 21 May 2022 02:44:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1653126279; x=1684662279;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=CyElkUixF8lvdj70ORq0rLvjq2VxXO4qRJDmlrfQAXc=;
+  b=L0mdijWrsSAkA/A8mZ4nbZocIlR1H3iSn5OzzN530vHz/RD8yfgNJEtp
+   DD0e8VyqgNt2aBOOC6rbihcsIMVKkP60YFtONcl79+gGZh23b5jBILmCs
+   8j+ZVKhDcggHFn/L5Ek07VFyUjd1ekgZn9ZOURI/FQgTa2DwjT6I8PShi
+   JLPnGIVXT7cHvGyl1I6gx0jNsgK5TlHf+eTmvH4sW+pQFO9BSNpDKBEZL
+   HqlmRbjz6ZB0QByX8Kc4hdvfYzZefGOjoGQdw0nrE/mAFyyN6hx5ytgTC
+   BfIQIN0USfjZ1rpb5mbe18ax4BGHs+t7cBqExfbXLIbPiU+Mh0HJJWlxR
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10353"; a="298145942"
+X-IronPort-AV: E=Sophos;i="5.91,242,1647327600"; 
+   d="scan'208";a="298145942"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 May 2022 02:44:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,242,1647327600"; 
+   d="scan'208";a="818943906"
+Received: from lkp-server02.sh.intel.com (HELO 242b25809ac7) ([10.239.97.151])
+  by fmsmga006.fm.intel.com with ESMTP; 21 May 2022 02:44:35 -0700
+Received: from kbuild by 242b25809ac7 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1nsLf0-0006AE-Tt;
+        Sat, 21 May 2022 09:44:34 +0000
+Date:   Sat, 21 May 2022 17:44:00 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Qin Jian <qinjian@cqplus1.com>, sboyd@kernel.org
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        krzysztof.kozlowski@linaro.org, robh+dt@kernel.org,
+        mturquette@baylibre.com, tglx@linutronix.de, maz@kernel.org,
+        p.zabel@pengutronix.de, linux@armlinux.org.uk, arnd@arndb.de,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        Qin Jian <qinjian@cqplus1.com>
+Subject: Re: [PATCH v16 05/10] clk: Add Sunplus SP7021 clock driver
+Message-ID: <202205211701.QKHjaFD8-lkp@intel.com>
+References: <573fdd7360c1e57eccc79b151a1edf7f58c0708b.1653027644.git.qinjian@cqplus1.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220517185841.GA1388602-robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <573fdd7360c1e57eccc79b151a1edf7f58c0708b.1653027644.git.qinjian@cqplus1.com>
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 17, 2022 at 01:58:41PM -0500, Rob Herring wrote:
-> On Thu, May 12, 2022 at 02:17:48AM +0300, Serge Semin wrote:
-> > It's redundant to have the 'dma-coherent' property explicitly specified in
-> > the DT schema because it's a generic property described in the core
-> > DT-schema by which the property is always evaluated.
-> 
+Hi Qin,
 
-> It is not redundant.
-> 
-> The core schema defines the property (as a boolean), but this schema 
-> defines it being used in this binding. Otherwise, it won't be allowed.
+I love your patch! Perhaps something to improve:
 
-I thought that the generic properties like ranges, dma-ranges, etc
-including the dma-coherent one due to being defined in the dt-core
-schema are always evaluated. As such seeing the unevaluatedProperties
-property is set to false here, they can be used in the DT-nodes with
-no need to be explicitly specified in the DT node bindings. In
-addition to that I tested this assumption by dropping the dma-coherent
-property definition from the AHCI-common schema and executed the
-DT-bindings check procedure. No error has been spotted:
+[auto build test WARNING on pza/reset/next]
+[also build test WARNING on robh/for-next tip/irq/core linus/master v5.18-rc7 next-20220520]
+[cannot apply to clk/clk-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-> [fancer@mobilestation] kernel $ cat Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml | grep dma-coherent
->        dma-coherent;
-> [fancer@mobilestation] kernel $ make -j8 DT_SCHEMA_FILES=Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml dt_binding_check
->   LINT    Documentation/devicetree/bindings
->   DTEX    Documentation/devicetree/bindings/ata/snps,dwc-ahci.example.dts
->   CHKDT   Documentation/devicetree/bindings/processed-schema.json
->   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
->   DTC     Documentation/devicetree/bindings/ata/snps,dwc-ahci.example.dtb
->   CHECK   Documentation/devicetree/bindings/ata/snps,dwc-ahci.example.dtb
-> [fancer@mobilestation] kernel $ cat Documentation/devicetree/bindings/ata/snps,dwc-ahci.example.dts | grep dma-coherent
->           dma-coherent;
-> [fancer@mobilestation] kernel $ echo $?
-> 0
+url:    https://github.com/intel-lab-lkp/linux/commits/Qin-Jian/Add-Sunplus-SP7021-SoC-Support/20220520-150501
+base:   https://git.pengutronix.de/git/pza/linux reset/next
+config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20220521/202205211701.QKHjaFD8-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project e00cbbec06c08dc616a0d52a20f678b8fbd4e304)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install arm64 cross compiling tool for clang build
+        # apt-get install binutils-aarch64-linux-gnu
+        # https://github.com/intel-lab-lkp/linux/commit/a1d62767c4450c6ec48f1c63cb58ca8a2dcd6977
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Qin-Jian/Add-Sunplus-SP7021-SoC-Support/20220520-150501
+        git checkout a1d62767c4450c6ec48f1c63cb58ca8a2dcd6977
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash arch/arm64/mm/ drivers/clk/
 
-Due to that here are a few backward questions:
-1) Am I doing something wrong in the framework of the DT-bindings
-evaluation? Really I even tried to specify unknown property in the
-DT-bindings example like "bla-bla-bla;" and no evaluation error was
-printed. Anyway If what you are saying was correct I would have got an
-error during the DT-bindings evaluation, but as you can see there was
-none.
-2) Am I wrong in thinking that the unevaluatedProperties setting
-concerns the generic properties defined in the DT-core schema? If it
-doesn't concern the generic properties then does it work for the
-$ref'ed schemas only? 
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/clk/clk-sp7021.c:317:8: warning: result of comparison of constant 18446744073709551615 with expression of type 'typeof (_Generic((_m), char: (unsigned char)0, unsigned char: (unsigned char)0, signed char: (unsigned char)0, unsigned short: (unsigned short)0, short: (unsigned short)0, unsigned int: (unsigned int)0, int: (unsigned int)0, unsigned long: (unsigned long)0, long: (unsigned long)0, unsigned long long: (unsigned long long)0, long long: (unsigned long long)0, default: (_m)))' (aka 'unsigned int') is always false [-Wtautological-constant-out-of-range-compare]
+           r0 |= HWM_FIELD_PREP(MASK_SEL_FRA, clk->p[SEL_FRA]);
+                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/clk/clk-sp7021.c:44:15: note: expanded from macro 'HWM_FIELD_PREP'
+           (_m << 16) | FIELD_PREP(_m, value);     \
+                        ^~~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:114:3: note: expanded from macro 'FIELD_PREP'
+                   __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
+                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:71:53: note: expanded from macro '__BF_FIELD_CHECK'
+                   BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >     \
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+   note: (skipping 1 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+   include/linux/compiler_types.h:352:22: note: expanded from macro 'compiletime_assert'
+           _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+           ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/compiler_types.h:340:23: note: expanded from macro '_compiletime_assert'
+           __compiletime_assert(condition, msg, prefix, suffix)
+           ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/compiler_types.h:332:9: note: expanded from macro '__compiletime_assert'
+                   if (!(condition))                                       \
+                         ^~~~~~~~~
+   drivers/clk/clk-sp7021.c:318:8: warning: result of comparison of constant 18446744073709551615 with expression of type 'typeof (_Generic((_m), char: (unsigned char)0, unsigned char: (unsigned char)0, signed char: (unsigned char)0, unsigned short: (unsigned short)0, short: (unsigned short)0, unsigned int: (unsigned int)0, int: (unsigned int)0, unsigned long: (unsigned long)0, long: (unsigned long)0, unsigned long long: (unsigned long long)0, long long: (unsigned long long)0, default: (_m)))' (aka 'unsigned int') is always false [-Wtautological-constant-out-of-range-compare]
+           r0 |= HWM_FIELD_PREP(MASK_SDM_MOD, clk->p[SDM_MOD]);
+                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/clk/clk-sp7021.c:44:15: note: expanded from macro 'HWM_FIELD_PREP'
+           (_m << 16) | FIELD_PREP(_m, value);     \
+                        ^~~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:114:3: note: expanded from macro 'FIELD_PREP'
+                   __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
+                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:71:53: note: expanded from macro '__BF_FIELD_CHECK'
+                   BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >     \
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+   note: (skipping 1 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+   include/linux/compiler_types.h:352:22: note: expanded from macro 'compiletime_assert'
+           _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+           ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/compiler_types.h:340:23: note: expanded from macro '_compiletime_assert'
+           __compiletime_assert(condition, msg, prefix, suffix)
+           ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/compiler_types.h:332:9: note: expanded from macro '__compiletime_assert'
+                   if (!(condition))                                       \
+                         ^~~~~~~~~
+   drivers/clk/clk-sp7021.c:319:8: warning: result of comparison of constant 18446744073709551615 with expression of type 'typeof (_Generic((_m), char: (unsigned char)0, unsigned char: (unsigned char)0, signed char: (unsigned char)0, unsigned short: (unsigned short)0, short: (unsigned short)0, unsigned int: (unsigned int)0, int: (unsigned int)0, unsigned long: (unsigned long)0, long: (unsigned long)0, unsigned long long: (unsigned long long)0, long long: (unsigned long long)0, default: (_m)))' (aka 'unsigned int') is always false [-Wtautological-constant-out-of-range-compare]
+           r0 |= HWM_FIELD_PREP(MASK_PH_SEL, clk->p[PH_SEL]);
+                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/clk/clk-sp7021.c:44:15: note: expanded from macro 'HWM_FIELD_PREP'
+           (_m << 16) | FIELD_PREP(_m, value);     \
+                        ^~~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:114:3: note: expanded from macro 'FIELD_PREP'
+                   __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
+                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:71:53: note: expanded from macro '__BF_FIELD_CHECK'
+                   BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >     \
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+   note: (skipping 1 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+   include/linux/compiler_types.h:352:22: note: expanded from macro 'compiletime_assert'
+           _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+           ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/compiler_types.h:340:23: note: expanded from macro '_compiletime_assert'
+           __compiletime_assert(condition, msg, prefix, suffix)
+           ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/compiler_types.h:332:9: note: expanded from macro '__compiletime_assert'
+                   if (!(condition))                                       \
+                         ^~~~~~~~~
+   drivers/clk/clk-sp7021.c:320:8: warning: result of comparison of constant 18446744073709551615 with expression of type 'typeof (_Generic((_m), char: (unsigned char)0, unsigned char: (unsigned char)0, signed char: (unsigned char)0, unsigned short: (unsigned short)0, short: (unsigned short)0, unsigned int: (unsigned int)0, int: (unsigned int)0, unsigned long: (unsigned long)0, long: (unsigned long)0, unsigned long long: (unsigned long long)0, long long: (unsigned long long)0, default: (_m)))' (aka 'unsigned int') is always false [-Wtautological-constant-out-of-range-compare]
+           r0 |= HWM_FIELD_PREP(MASK_NFRA, clk->p[NFRA]);
+                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/clk/clk-sp7021.c:44:15: note: expanded from macro 'HWM_FIELD_PREP'
+           (_m << 16) | FIELD_PREP(_m, value);     \
+                        ^~~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:114:3: note: expanded from macro 'FIELD_PREP'
+                   __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
+                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:71:53: note: expanded from macro '__BF_FIELD_CHECK'
+                   BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >     \
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+   note: (skipping 1 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
+   include/linux/compiler_types.h:352:22: note: expanded from macro 'compiletime_assert'
+           _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+           ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/compiler_types.h:340:23: note: expanded from macro '_compiletime_assert'
+           __compiletime_assert(condition, msg, prefix, suffix)
+           ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/compiler_types.h:332:9: note: expanded from macro '__compiletime_assert'
+                   if (!(condition))                                       \
+                         ^~~~~~~~~
+   drivers/clk/clk-sp7021.c:322:8: warning: result of comparison of constant 18446744073709551615 with expression of type 'typeof (_Generic((_m), char: (unsigned char)0, unsigned char: (unsigned char)0, signed char: (unsigned char)0, unsigned short: (unsigned short)0, short: (unsigned short)0, unsigned int: (unsigned int)0, int: (unsigned int)0, unsigned long: (unsigned long)0, long: (unsigned long)0, unsigned long long: (unsigned long long)0, long long: (unsigned long long)0, default: (_m)))' (aka 'unsigned int') is always false [-Wtautological-constant-out-of-range-compare]
+           r1  = HWM_FIELD_PREP(MASK_DIVR, clk->p[DIVR]);
+                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/clk/clk-sp7021.c:44:15: note: expanded from macro 'HWM_FIELD_PREP'
+           (_m << 16) | FIELD_PREP(_m, value);     \
+                        ^~~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:114:3: note: expanded from macro 'FIELD_PREP'
+                   __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
+                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/bitfield.h:71:53: note: expanded from macro '__BF_FIELD_CHECK'
+                   BUILD_BUG_ON_MSG(__bf_cast_unsigned(_mask, _mask) >     \
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+   note: (skipping 1 expansions in backtrace; use -fmacro-backtrace-limit=0 to see all)
 
 
-Getting back to the patch topic. We need to drop the dma-coherent
-property from the schema anyway. AHCI-specification doesn't
-regulate the DMA operations coherency. The dma-coherent property is
-more specific to the particular controller implementation mainly
-dependent on the platform settings. So I'll change the patch log, but
-get to keep the patch in the series. What do you think?
+vim +317 drivers/clk/clk-sp7021.c
 
--Sergey
+   310	
+   311	static int plltv_set_rate(struct sp_pll *clk)
+   312	{
+   313		unsigned long flags;
+   314		u32 r0, r1, r2;
+   315	
+   316		r0  = BIT(clk->bp_bit + 16);
+ > 317		r0 |= HWM_FIELD_PREP(MASK_SEL_FRA, clk->p[SEL_FRA]);
+   318		r0 |= HWM_FIELD_PREP(MASK_SDM_MOD, clk->p[SDM_MOD]);
+   319		r0 |= HWM_FIELD_PREP(MASK_PH_SEL, clk->p[PH_SEL]);
+   320		r0 |= HWM_FIELD_PREP(MASK_NFRA, clk->p[NFRA]);
+   321	
+   322		r1  = HWM_FIELD_PREP(MASK_DIVR, clk->p[DIVR]);
+   323	
+   324		r2  = HWM_FIELD_PREP(MASK_DIVN, clk->p[DIVN] - 1);
+   325		r2 |= HWM_FIELD_PREP(MASK_DIVM, clk->p[DIVM] - 1);
+   326	
+   327		spin_lock_irqsave(&clk->lock, flags);
+   328		writel(r0, clk->reg);
+   329		writel(r1, clk->reg + 4);
+   330		writel(r2, clk->reg + 8);
+   331		spin_unlock_irqrestore(&clk->lock, flags);
+   332	
+   333		return 0;
+   334	}
+   335	
 
-> 
-> Rob
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
