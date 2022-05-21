@@ -2,67 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AED452FA91
-	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 12:11:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3459A52FACA
+	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 13:10:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349861AbiEUKLS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 May 2022 06:11:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38514 "EHLO
+        id S235388AbiEULKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 May 2022 07:10:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242374AbiEUKLD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 06:11:03 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CB2230F5E
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 03:10:59 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id bq30so18093173lfb.3
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 03:10:59 -0700 (PDT)
+        with ESMTP id S232599AbiEULKd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 07:10:33 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA2BDC9ECC
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 04:10:31 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id w14so18140539lfl.13
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 04:10:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:sender:from:date:message-id:subject:to;
-        bh=SvKsWt9LONNBbmyn76CUaIRFpx6XrGejj9uupqUqu0c=;
-        b=jmYcmHBDc9fD7fMjnX/OCB5Era38eSDBSyPvxPxWFK6XXO3Cp4mOwlwjfT2gg1z5R9
-         /ItstLkOEd6p/toV10X9P3Ee2bd9mQBdHUKDgfspCFEIqTxaAUFHNjpzhGa2xAhuorsC
-         JeIBZrLBnVMCUGnunpqvStpPyJ9CiYFpRQ6GSBNARHJUOdZ++E5Ao8QPQnQ6IPbIgi8x
-         /fc/JmpgUE1epg0IAl6oQxl8C0ZXowu2iXiwaMtfxqwOY7qYDnhymceoRvIGL7svmQ2h
-         2nsBBv97+e8zTYbIkts3xDqPrujIFfofQGc7saYL5Y46/FUkx12BkbLlK3zMYzmNHr8i
-         5FsQ==
+        d=wirenboard-com.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Xqs6YalYM/kNVrXG6osA8oyceYVKDzeo65YCCK/3l9g=;
+        b=mj9BhqTSoYRQOMpfY3xrHR1CAdK7oXyc/d/CHN9V196CT6I3GKWesOrdpv7vpjewcj
+         Hns8zTN5aHbBex299iCJZLioczKpCpgY4iYn8SExl4Ud269BQW1SfXM4epNO2FQXFmOU
+         PZAIq64XOxX+bn3OURD/M6lymXfdoIRHpwvmhVwyacgLe5weG9omzuDkyu4EO+Rfm/78
+         sJREgrfKdXOqo4ZkdZddQ18V0QQzncdc54M3CHmJRvNzTTgYyfTvbFbdtonL6Ywy1vSK
+         dAAHVpj3I21t2p8C3Q6wBdRuJPYnZaIfi6pH77si3ohvp6jbfZ/I/la/KbTAYwqQJVQk
+         LhUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-         :to;
-        bh=SvKsWt9LONNBbmyn76CUaIRFpx6XrGejj9uupqUqu0c=;
-        b=m3mIyeuZDs332xEoGh4BuOnpC+xWVorilvuSDXVAX/u8JOyAH8i6sWhdeNVysMaw+e
-         2njbtFKE3l5lM92huNtvA1hGlLErSlthGz+lbkoXROTofmbOkMePZ/Kz3rWlUFpiLWO1
-         oUMstc3/z7aMMeAqMsFON9ONscu9KLukzw6gHTn1ZSWr80cpQOaoTwl9bW2EvsFm/nHj
-         L1LR63qMPFx+zzB6oFp798HuFSKa18smTwoa5TnktK+drX0bc8e8WS1aqG8cPYVNy6Yp
-         ikGPGB9kbfRjGeKdl4CIjCfqQZcfufO01kaldqA5Cp8QsMcqYKhInKoof4l8eDVQQQrQ
-         behA==
-X-Gm-Message-State: AOAM532EkL+0L1OvIpmYUxgj0NJvw4zot2D0/hUmAoWkQ6CxbDKMtVH2
-        WRag3/Mf3BFqh3h/0qnAZG2KNq93jHRPoU/50Ww=
-X-Google-Smtp-Source: ABdhPJxC34aQ8YDy4Z6RVScJJo6H4DBy+iH5x4eAhhhHLCzCBVwc+zcSnGLcXaqp+26XgzVhqwR0xOHh7sIO68aRw2Y=
-X-Received: by 2002:a05:6512:2312:b0:472:5de2:ddf0 with SMTP id
- o18-20020a056512231200b004725de2ddf0mr9503175lfu.134.1653127857477; Sat, 21
- May 2022 03:10:57 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Xqs6YalYM/kNVrXG6osA8oyceYVKDzeo65YCCK/3l9g=;
+        b=j3K/AdKsLhJGaeE7NMyvmpWN24Zib7xhmnedVCpkHY7yfyiPU3AeAoh991u0h61t/w
+         CmEO1ipJikBPqTPhBl9tThKIdz5TqERm9Aqxi6sczuHCOge9UuazLlGYgweilaLmrf0H
+         hxT6epFuJYYGtS8wSqZR7RhCrM6AddIeQtqCFecFS/YOA41Y8oBztP7Sd1+OYLbUY/UC
+         FwXjAaBmQay+IlAeXSz+xyxMg3SVbmMhmewJj7urZLw+nNPLbvq9kQMzPDK+30itvFos
+         Vlp8pqWU2dCNL3xYlrd4mMmi0orUe3/WZM/MM5FYtkO1bFrYDlAoTRTaoMgtpFblf4BR
+         EoWQ==
+X-Gm-Message-State: AOAM531uZLV9kDbuLMAVYgVq+zXqttGtj+nzzTLRStrHBoonosYcJlcE
+        rN6Rd5CwSxff/X+Sa5d8xs0bsw==
+X-Google-Smtp-Source: ABdhPJy6SkyZ59wlAQLT8eiNrpq3N/c796d8ejEmHOPq5HL32Hsz14BhU927QwnR8drIMEjP9AeEQA==
+X-Received: by 2002:a05:6512:13a9:b0:448:9dd3:b84 with SMTP id p41-20020a05651213a900b004489dd30b84mr9864847lfa.556.1653131429762;
+        Sat, 21 May 2022 04:10:29 -0700 (PDT)
+Received: from [192.168.1.21] ([78.109.71.116])
+        by smtp.googlemail.com with ESMTPSA id o24-20020a056512051800b0047255d21201sm1013555lfb.304.2022.05.21.04.10.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 21 May 2022 04:10:27 -0700 (PDT)
+Message-ID: <21a659db-f64c-fbea-b3e7-ccc27aec29a0@wirenboard.com>
+Date:   Sat, 21 May 2022 14:10:25 +0300
 MIME-Version: 1.0
-Sender: zanbuida3@gmail.com
-Received: by 2002:a05:6512:2f4:0:0:0:0 with HTTP; Sat, 21 May 2022 03:10:56
- -0700 (PDT)
-From:   zanda vermaelen <zandavermaelen2@gmail.com>
-Date:   Sat, 21 May 2022 12:10:56 +0200
-X-Google-Sender-Auth: iE5N-s93Ni_p8-mNfIzFHIs1dps
-Message-ID: <CALQADQBBDwtE4CqShiGfLaZTwKm5vYJsbtupcDaT94aU9WDxpg@mail.gmail.com>
-Subject: hello
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=0.8 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v4 0/2] ARM: sun8i-r40: Enable usb otg support
+Content-Language: en-GB
+To:     qianfan <qianfanguijin@163.com>
+Cc:     andre.przywara@arm.com, devicetree@vger.kernel.org,
+        jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, robh+dt@kernel.org,
+        samuel@sholland.org, wens@csie.org
+References: <264cb004-677a-13df-cc68-676ef3c2e7d8@163.com>
+ <ec5f7fe8-d47d-ce7f-0e0a-2bdf41a88ba2@wirenboard.com>
+ <0936de49-a349-8fd4-2598-2a8995b01c86@163.com>
+From:   Evgeny Boger <boger@wirenboard.com>
+In-Reply-To: <0936de49-a349-8fd4-2598-2a8995b01c86@163.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
+
+my point is not that your patch is good enough.
+
+My point is that it would be very difficult to maintain backward 
+compatibility with this device tree once proper driver support is 
+implemented.
+
+
+On 5/21/22 07:26, qianfan wrote:
+>
+>
+> 在 2022/5/20 4:54, Evgeny Boger 写道:
+>> Hi qianfan,
+>>
+>> As Allwinner A40i user, let me first thank you for your effort for 
+>> making better upstream support for R40!
+>>
+>> However, I would strongly suggest *not* to add USB support to one 
+>> more Allwinner SoC in this particular way.
+>> The problem is, this approach consists of a number of carefully 
+>> crafted hacks in device tree to make current drivers work on 
+>> Allwinner hardware without modification to the drivers.
+>>
+>> a few examples:
+>>
+>> 1) please notice how ohci0 and ehci0 nodes do not contain reference 
+>> to usb phy. It is done intentionally, otherwise EHCI will reset musb 
+>> mode.
+>> Of course omitting phy reference here is also completely breaking 
+>> power cycling in case of usb error and otherwise messes with a power 
+>> management.
+>>
+>> 2) one must always enable ohci, ehci and usb_otg nodes at the same 
+>> time. If one forgets to enable ohci/ehci nodes while enabling usb_otg 
+>> node, the system will silently fail to work as USB host.
+>>
+>> 3) For host-only mode we still have to enable usb_otg node despite no 
+>> role switching is needed. That's because phy reference is missing in 
+>> ehci/ohci, so the ehci/ohci driver won't enable the PHY.
+>> Also I might be wrong, but I think phy won't be routed to ehci/ohci 
+>> controllers is this case.
+>>
+>> 4) musb host controller is initialized and present to hardware though 
+>> never actually used
+>>
+>> To summarize, not only the resulting device tree is not describing 
+>> the hardware properly, it is creating device tree configuration which 
+>> will be very hard to support in future, once proper driver support is 
+>> in place.
+> PHY setting is did in MUSB driver, so we need enable MUSB regardless 
+> of host mode.
+>
+> I know your's point, OHCI/EHCI need do more works to init USBPHY, it 
+> shoule be able to work
+> in dependently, but I don't have the ability to deal with these things 
+> right now, I need
+> learn more things about OHCI/EHCI, that's a long-term goal.
+>
+> So now I need to make the whole usb work and do some tests as much as 
+> possible,
+> hoping to merge this patch into master. Some other optimizations can 
+> be made later.
+>
+> Thanks for yours guide.
+>>
+>>
+>> At Wiren Board kernel tree we tried to untangle this issue [1-6]. 
+>> Unfortunately I didn't have time to prepare it for kernel submission 
+>> yet, but I think I better submit it as RFC to get a feedback from you 
+>> and others.
+>>
+>>
+>> [1] 
+>> https://github.com/wirenboard/linux/commit/359abbbd86ddff4d3c61179c882c286de32bb089
+>> [2] 
+>> https://github.com/wirenboard/linux/commit/6327f9d7972c21b229fb83457fdde643b31553f9
+>> [3] 
+>> https://github.com/wirenboard/linux/commit/f01f4c66758bde460a4d8c5b54ecee3b585c0232
+>> [4] 
+>> https://github.com/wirenboard/linux/commit/c27598ad601e5a46f624b73412a531d6f1f63d37
+>> [5] 
+>> https://github.com/wirenboard/linux/commit/5796d6eebb86b32a3751b2038b63af46f94954b3
+>> [6] 
+>> https://github.com/wirenboard/linux/commit/0928a675d875f9c2849fd3a9888f718bbb673bda
+>>
+>>
+>
+
+
 -- 
-I haven't gotten a reply from u after my last email
+Kind regards,
+Evgeny Boger
+CTO @ Wiren Board
++49 3046690053
+https://wirenboard.com/
+
