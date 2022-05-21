@@ -2,77 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CC5252F754
-	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 03:26:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A765F52F76C
+	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 03:56:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238243AbiEUBZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 May 2022 21:25:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57670 "EHLO
+        id S239155AbiEUB4y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 May 2022 21:56:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235400AbiEUBZv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 21:25:51 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1AB823152;
-        Fri, 20 May 2022 18:25:49 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E3F1D61EA2;
-        Sat, 21 May 2022 01:25:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D933DC385A9;
-        Sat, 21 May 2022 01:25:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1653096346;
-        bh=yMocOcmC33NsOkfqFgLCpjgPvld2Y6qIGt0yG2xZxT8=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=Ld2JXAiNS2E9dtYRfU0l1Jf9/Ef0Kp18tzj0enX1dCPEJhIbYGbAedQ758PqZsmP7
-         WuCtRsaoo6c3iAMf+27A7DmVq86QfZ3WPFS8dzssv4e6OIryYZOsSxJBBb+M3f/4Eo
-         SZJPmFsVdPTSksz/sSNVb641Kq6tCy0Hkz87rgdp3iE+rBWiSoBmiJ2LSXWFIv7Mor
-         YrBHLQZIw99Xx/jcl17pcqLFMb4zyr9S3734AZwvKHrzM5nRvYD+Cn5CFEUSBLGrgd
-         DJPAMaPVNYuBHmjZoAAynhaY+03mr+SomSslpxKRSR0fUF47y7LynTpcHac7Vn+QHs
-         K4wZ3KhQfBpsQ==
-Date:   Fri, 20 May 2022 18:25:44 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Lorenzo Bianconi <lorenzo@kernel.org>
-Cc:     netdev@vger.kernel.org, nbd@nbd.name, john@phrozen.org,
-        sean.wang@mediatek.com, Mark-MC.Lee@mediatek.com,
-        davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
-        Sam.Shih@mediatek.com, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, robh@kernel.org,
-        lorenzo.bianconi@redhat.com
-Subject: Re: [PATCH v3 net-next 00/16] introduce mt7986 ethernet support
-Message-ID: <20220520182544.1af8f5bf@kernel.org>
-In-Reply-To: <cover.1653069056.git.lorenzo@kernel.org>
-References: <cover.1653069056.git.lorenzo@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S239135AbiEUB4x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 May 2022 21:56:53 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A922340EF;
+        Fri, 20 May 2022 18:56:52 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id w17-20020a17090a529100b001db302efed6so9148518pjh.4;
+        Fri, 20 May 2022 18:56:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=QSpdu/egxZKM3RI4Cm6qIa5QbmxuKJHaffE0Voql3CE=;
+        b=n+FCuihC/ER3eImgCgVl3ISMdL+95BNlaHQw2lyKmlIWK0/C9MflJZI4U1bkGDVOpb
+         2Y9d9Q2wCR0VGI14/T6bU8wFszFL0MsWZLtTRwYp09WuvUAfy7f3Lx2Ngvg1ApFtUUJM
+         XLe4MXpetTLfTrLksxd1C3bOPSywH9oiSVCXw8zFn0q0ygk3qJluuoYxQk18Vz7bEx6m
+         m5oZPk/H+5naWH7V7TYaDBstM+WVxYlnRLXuSejjhSCjNEhtJdHGwAV9VfAM05Zm7jwE
+         Xg4TAgoAdkxuFrqEWAeZ/ooJVllGKV/pHsyAyn+TrGKOOtK6EJr7D6dTuedpX7qnqWK9
+         bJhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=QSpdu/egxZKM3RI4Cm6qIa5QbmxuKJHaffE0Voql3CE=;
+        b=e78KLueaO4D4+bj8hJC4gpRR8f7cg8AYpSfMS8x9hcIC7jk/RjfEGHebVmMAohINeK
+         saBmzzKVXeXqH/dpRZ4vZEOPwOhd90AhoC+KUHCfhdlpm03MeboxPlKhYDldv+ts/gp/
+         gF+x7Ds4Vzvt2JDJcpkfVT+YpCMjp6ds61kxnNfv39uPFOfAaTEc3KjeKMNkk9Y0mZD1
+         DybVNtu0ZVM4rmU7h3GNtqi6AVM8362wVBhOHSupG36jO1GHmrTwjO+YYmA5rCG2eKwI
+         YSL1V9U7Y2IAhrcwSb3Enjys1l50jymXkmnWp/VYZwoJcsRB4LKCUR/4Inv6ZXefNhIq
+         uBgA==
+X-Gm-Message-State: AOAM533fRD9ve24brAtMohEMzjdeJEC/g/TGil7CT628sAnCBydCgTZu
+        AnETUR47tkJM9XVSiZGePA8UCFRhFx+9gA==
+X-Google-Smtp-Source: ABdhPJwB33uNJRdpq/U3R+hTLr5qXtUv3ydzsK2RhgBiLI9R27LrrZiyuE+0kc4bRBlkBq6A88c6Ow==
+X-Received: by 2002:a17:902:ce87:b0:15e:a619:4294 with SMTP id f7-20020a170902ce8700b0015ea6194294mr12482580plg.157.1653098211441;
+        Fri, 20 May 2022 18:56:51 -0700 (PDT)
+Received: from Negi ([207.151.52.3])
+        by smtp.gmail.com with ESMTPSA id n9-20020a629709000000b0050df474e4d2sm2381525pfe.218.2022.05.20.18.56.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 May 2022 18:56:50 -0700 (PDT)
+From:   Soumya Negi <soumya.negi97@gmail.com>
+To:     Shuah Khan <skhan@linuxfoundation.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Soumya Negi <soumya.negi97@gmail.com>,
+        linux-kernel-mentees@lists.linuxfoundation.org,
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: mips: Convert plain text file to ReST
+Date:   Fri, 20 May 2022 18:56:13 -0700
+Message-Id: <20220521015613.6197-1-soumya.negi97@gmail.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 May 2022 20:11:23 +0200 Lorenzo Bianconi wrote:
-> Add support for mt7986-eth driver available on mt7986 soc.
->=20
-> Changes since v2:
-> - rely on GFP_KERNEL whenever possible
-> - define mtk_reg_map struct to introduce soc register map and avoid macros
-> - improve comments
->=20
-> Changes since v1:
-> - drop SRAM option
-> - convert ring->dma to void
-> - convert scratch_ring to void
-> - enable port4
-> - fix irq dts bindings
-> - drop gmac1 support from mt7986a-rfb dts for the moment
+Converts .txt documentation file to ReST format(.rst).
 
-=F0=9F=91=8D
+Signed-off-by: Soumya Negi <soumya.negi97@gmail.com>
+---
+ .../devicetree/bindings/mips/cpu_irq.rst      | 56 +++++++++++++++++++
+ 1 file changed, 56 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mips/cpu_irq.rst
 
-Acked-by: Jakub Kicinski <kuba@kernel.org>
+diff --git a/Documentation/devicetree/bindings/mips/cpu_irq.rst b/Documentation/devicetree/bindings/mips/cpu_irq.rst
+new file mode 100644
+index 000000000000..601cc12caa2a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mips/cpu_irq.rst
+@@ -0,0 +1,56 @@
++=============================
++MIPS CPU interrupt controller
++=============================
++
++On MIPS the ``mips_cpu_irq_of_init()`` helper can be used to initialize the 8 CPU
++IRQs from a devicetree file and create a ``irq_domain`` for IRQ controller.
++
++With the ``irq_domain`` in place we can describe how the 8 IRQs are wired to the
++platforms internal interrupt controller cascade.
++
++Below is an example of a platform describing the cascade inside the devicetree
++and the code used to load it inside ``arch_init_irq()``.
++
++Required properties
++-------------------
++* compatible: Should be **"mti,cpu-interrupt-controller"**
++
++Example devicetree
++------------------
++::
++
++	cpu-irq: cpu-irq {
++		#address-cells = <0>;
++
++		interrupt-controller;
++		#interrupt-cells = <1>;
++
++		compatible = "mti,cpu-interrupt-controller";
++	};
++
++	intc: intc@200 {
++		compatible = "ralink,rt2880-intc";
++		reg = <0x200 0x100>;
++
++		interrupt-controller;
++		#interrupt-cells = <1>;
++
++		interrupt-parent = <&cpu-irq>;
++		interrupts = <2>;
++	};
++
++
++Example platform ``irq.c``
++--------------------------
++::
++
++	static struct of_device_id __initdata of_irq_ids[] = {
++		{ .compatible = "mti,cpu-interrupt-controller", .data = mips_cpu_irq_of_init },
++		{ .compatible = "ralink,rt2880-intc", .data = intc_of_init },
++		{},
++	};
++
++	void __init arch_init_irq(void)
++	{
++		of_irq_init(of_irq_ids);
++	}
+-- 
+2.17.1
+
