@@ -2,77 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E401B52FD73
-	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 16:44:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5322E52FD74
+	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 16:47:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236959AbiEUOoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 May 2022 10:44:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49110 "EHLO
+        id S244481AbiEUOr1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 May 2022 10:47:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345223AbiEUOoI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 10:44:08 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEE4C6A00B
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 07:44:06 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 27so7503313ljw.0
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 07:44:06 -0700 (PDT)
+        with ESMTP id S235335AbiEUOr0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 10:47:26 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3937C38BCD
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 07:47:24 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id g16so12472752lja.3
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 07:47:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=/cbTtBq59WXX2nYbXhKg+bCe+ywZbzVEJW+eIz8/F80=;
-        b=QAZgPLmzBIyLU+16M8XZQRVYtmRhWu+CjNFiDeV3+mFGN5fPMSwVjoeWS+0qsl4PrE
-         VcoTqUd9WD99J7jM7nCYgRLwj7Wj4HggL91Gq4JNoBlLbls/qzU73Ipf6R2nkRDX9IU3
-         /3e8wI3YSCnDLHdr9ySCPAjGzth+ET+iNOhDFGTKZLXlsD/p+dfjQu4LGVN6/Y2qSnRR
-         +9uSUIB5ELflGPbOqQpuAIm2fBLIMrDQkOYkK54QPSVw1mB5phMawMB2RaLaG3vVGpEr
-         iHJ4sYZLt9yql1tMqszxGRRVCECe1/p7ebBDnKiLAH4pW+ne7J+He0S9t1mdl5FuUWs3
-         uVtw==
+        bh=GA9mH3WMjJ81/KtiwkTGrl8ViPGWKsxe+KmmYU4d55c=;
+        b=iI3a2SiDH/iSRcCbU5DZSdvnCE4aXHkpw1R4259OfFl83UOz43+MiiVxfX79FXB5S+
+         ZV3jeFVLIQSuOacpFTWb/Te+pfqkBIjmgYj1sQ2qWHsvW6aSxvTO/YHoYor1dw5GbWSP
+         7SwZ2KZ7da6fBn4j1aRYntoulkLXuPD5aGDVDDLqyz38EZqW5OqfU+a6QnN/AsLd0bcD
+         brhRxS8y7n7KcoAAqEzuvRteyqJc+KXY4o/Ch6s0ZwvZHgjeXM/ORd2vwI6CjY310C0F
+         YosbvJcblorpPS0UDGUxXE0okaILSYgcKnnF7fhmYMo+WfCKl1vFV6Z16xczqFLEPlI8
+         BMvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=/cbTtBq59WXX2nYbXhKg+bCe+ywZbzVEJW+eIz8/F80=;
-        b=GO3jj45x3DqoN67Y1/t4bE7DhOzqs0H07JLumQoUYrUjqdjLJYLv5373mBfb6pqQKM
-         SvSt4Lap4v2qjuzUTY1SbUuYXje0ZAfczWd0/5Z4k3cXR7LsfBmpe3ew6Kri9+Kk9MxL
-         HBZiXzc0c7X54XbU/wJ6RiXwPQCe+5oEBypOOkC7Lw5Qv9JH+wgLIQ0H3RxCc/avPkxi
-         VvnQJh6JEJ59ZraiKJVWKwPKriealXt5aTNJqt+yR0t7Xg+DrzhJ+OMaE+oDQ4iatq7n
-         Hky1tLLq6Votb9Hn7IZaM+WYeCK6iHhCqfvg20144XxRhRyTnrHPHU3xvzJhOtlPW6Ua
-         4y3Q==
-X-Gm-Message-State: AOAM530OoPgyS2bZInM+dUpKni3y/d232J0nrVAv6/ZvO82BOsBL3ICd
-        Z3anLzb6hb2lf+1pb0oXZ2905g==
-X-Google-Smtp-Source: ABdhPJzEd+pCyalQMTT1oPB9QGqDCUMDyYeZg56h0jH74pn/hH6+cCG2iNDJsYa8hkjoxqddALRSVg==
-X-Received: by 2002:a05:651c:1542:b0:249:5d86:3164 with SMTP id y2-20020a05651c154200b002495d863164mr8498632ljp.500.1653144245237;
-        Sat, 21 May 2022 07:44:05 -0700 (PDT)
+        bh=GA9mH3WMjJ81/KtiwkTGrl8ViPGWKsxe+KmmYU4d55c=;
+        b=ZblHevSFJ95Zl3nCj8M0139+XWy4VDHW1xMnVjRE7jzq3E3tLYUQw0XpFicax40xJ6
+         xnDuUn2JC7QVKdQcFvCkYODF8h4XsdKNCNYUvPP3vjMYs0E63u9T93AKV67Cj7gZFOzh
+         zhswnBkfjroyH0nPhv77gMBDN8Hn0g1ytgfeNiShEGLTBWq79G56OWfm5b/taWQGr2lT
+         xw4DiY4crDXPX5cUEqJJjT9rG2GtGVdkOAnKa6Icuc89Ts8x4oKn3sC1lwUmI80fvDgS
+         2o8Gmih6rwcWHUICNCXODJjLFUpOyN+qnw9ujv5CO7sjbc/d5netTaepgIBbJ7u5L98e
+         7uGA==
+X-Gm-Message-State: AOAM532UqWn3VyBu1Uq4oQK4wuSxZoEeTT2HXaKGpeaBYBunXCYMQJa6
+        Uc9Yh40Fn07Q7Mfl6MxpVfm+Lw==
+X-Google-Smtp-Source: ABdhPJxKxT0rGNcjo687Mv1XSend6B1Z3ulp/F5QTfbTr9XxXWmKcdIUtY6i5aFwu8TEVOY6WHQ1eg==
+X-Received: by 2002:a2e:b60a:0:b0:253:d4a0:7b31 with SMTP id r10-20020a2eb60a000000b00253d4a07b31mr7400184ljn.20.1653144442583;
+        Sat, 21 May 2022 07:47:22 -0700 (PDT)
 Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id h15-20020a2ea48f000000b00253bd1d1a84sm733337lji.16.2022.05.21.07.44.04
+        by smtp.gmail.com with ESMTPSA id h20-20020a197014000000b0047855972515sm609253lfc.72.2022.05.21.07.47.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 21 May 2022 07:44:04 -0700 (PDT)
-Message-ID: <0a924446-7ced-79cf-2183-10df81c0e450@linaro.org>
-Date:   Sat, 21 May 2022 16:44:03 +0200
+        Sat, 21 May 2022 07:47:22 -0700 (PDT)
+Message-ID: <f82571e7-566e-6d72-415b-deb73187d1cf@linaro.org>
+Date:   Sat, 21 May 2022 16:47:20 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: soc: add samsung,boot-mode
- definitions
+Subject: Re: [PATCH 2/2] dt-bindings: arm: Convert CoreSight CPU debug to DT
+ schema
 Content-Language: en-US
-To:     Chanho Park <chanho61.park@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220520115250.57785-1-chanho61.park@samsung.com>
- <CGME20220520115216epcas2p20de68c07071435ae33b50c7b664a20eb@epcas2p2.samsung.com>
- <20220520115250.57785-2-chanho61.park@samsung.com>
+To:     Rob Herring <robh@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Mike Leach <mike.leach@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20220520214416.302127-1-robh@kernel.org>
+ <20220520214416.302127-3-robh@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220520115250.57785-2-chanho61.park@samsung.com>
+In-Reply-To: <20220520214416.302127-3-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,49 +80,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/05/2022 13:52, Chanho Park wrote:
-> Adds samsung,boot-mode.h header file which contains boot mode
-> definitions for bootloader. As for now, there are only boot mode
-> definitions for Exynos Auto v9 SoC.
+On 20/05/2022 23:44, Rob Herring wrote:
+> Convert the CoreSight CPU debug binding to DT schema format.
 > 
-> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Thank you for your patch. There is something to discuss/improve.
-
-> ---
->  include/dt-bindings/soc/samsung,boot-mode.h | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
->  create mode 100644 include/dt-bindings/soc/samsung,boot-mode.h
-> 
-> diff --git a/include/dt-bindings/soc/samsung,boot-mode.h b/include/dt-bindings/soc/samsung,boot-mode.h
-> new file mode 100644
-> index 000000000000..f1d03d96f45c
-> --- /dev/null
-> +++ b/include/dt-bindings/soc/samsung,boot-mode.h
-> @@ -0,0 +1,12 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-
-Dual license:
-GPL-2.0-only OR BSD-2-Clause
-
-> +
-> +#ifndef __SAMSUNG_BOOT_MODE_H
-
-__DT_BINDINGS_SAMSUNG_BOOT_MODE_H
-
-> +#define __SAMSUNG_BOOT_MODE_H
-> +
-> +/* Boot mode definitions for Exynos Auto v9 SoC */
-> +
-> +#define EXYNOSAUTOV9_BOOT_FASTBOOT	(0xfa)
-> +#define EXYNOSAUTOV9_BOOT_BOOTLOADER	(0xfc)
-> +#define EXYNOSAUTOV9_BOOT_RECOVERY	(0xff)
-
-No need for ().
-
-> +
-> +#endif
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
