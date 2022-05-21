@@ -2,72 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 319B452FDAB
-	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 17:16:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3076152FDB2
+	for <lists+devicetree@lfdr.de>; Sat, 21 May 2022 17:21:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234927AbiEUPQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 May 2022 11:16:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40804 "EHLO
+        id S1349696AbiEUPVK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 May 2022 11:21:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230321AbiEUPQd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 11:16:33 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D39C148336
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:16:31 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id s5so12489151ljd.10
-        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:16:31 -0700 (PDT)
+        with ESMTP id S244629AbiEUPU5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 May 2022 11:20:57 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83D929FE0
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:20:53 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id u7so11810753ljd.11
+        for <devicetree@vger.kernel.org>; Sat, 21 May 2022 08:20:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=OwTRfuiq4wbJs1UPblU1Ai6E4P1iaPJzr05lyZ6KhnI=;
-        b=oSgokVp5OlVIODHY5N5GNj0wUk+aJ5aYIiEMK3jeSa+VyDPVQNPcGj9CwvZ3ttExBk
-         DnXHylAt4l9zFP9k/nKa7EzFR2XqSNZ/zX7ImH22xypOxLN92StlP+AUW1y4grUbGAAK
-         /iJweiiavumFe+PwqcI1jYGK/p/34sBU48dydF66oMBPSuV5QA9Y2bsbAsn20rPkkP6n
-         h5ngZPcrMnhYKE7CxHm6MuiTeQYK5J7j0mgvF1eoHXcL6V3IYPReaBH1qCJ+tldIjDeG
-         Zc6jVW/bKcRdUpdO6geFDs//HieMORaZjeTsiRAmCfgDQ1KY2KS4eJyoMsZ0vjltH/cE
-         Ydmg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=pbCJumIvaZj2zpN+SmeDlo0xua0tKmGkiZ0bd1awMlM=;
+        b=safdv9AlTVvzf+MXK8qkbmhtKfLwz8OfmujIPkUKxio4+8wkBg5FZ81PEJiSruI/uk
+         EjMdakx9InmElN1wU66yPxOUVOCwNoqXrHXjm4bJFPKE7+Q/AJ4krDZTnng7r4AnMMEt
+         SnM7rTV9VMCGnvSOcX/4QBYnxyF53rkGEuz6I2cfAaGPKgJeM30bqcm4WSdlold7Sesj
+         Q1tuuT4vAlJQqSG2T0/pmiCsFXIGGTV3TRbJO+eOHTF51EVEo1Tenbj2IHoxTj7ZXIE4
+         Bvqya4yDbGrLQgJsy8QrGbS0sDhMAhcHu7UznPcVvZqCaznIKC5uKk0fRXWBJeZXS58z
+         xDWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=OwTRfuiq4wbJs1UPblU1Ai6E4P1iaPJzr05lyZ6KhnI=;
-        b=QlGBlOSKPRikpO9yvu/u3h2mPrtnMl6204T7eyuhvJmsoBC0DdCMy/uSX0cJLfRGDO
-         5OYiKvkXIFSLo9tBh54iez4Ved/9MYpjh1okQomMkPmWJG8pEnkycexluL2q2BY5Bi+9
-         wHyNeQ/QfDkrkdeJWhOIQaHUAhqlJeASvZo4bFMMHohD15JxddtEfb5FnAKblin2gi4a
-         ZFbVQWuNcZ/sNZsv2Cq9+cp+ya2X160cn4syTuQf7o4k5l3juZuiOQFYdP+S0+CaxcAg
-         JrbspdFZyKbKbyE08j/IsdTIO3xoGNT7UeTwUZY8pxs79InpKjOSYqUcJ7Ts+hOtf00n
-         L3/Q==
-X-Gm-Message-State: AOAM533ZbuRuXJ3NcxzMjSpKKdPPDHJfmye2PbQN/uIYJn5eVb3TMHF+
-        HVob9Om0Vo2VwyPNDYmFWafyaw==
-X-Google-Smtp-Source: ABdhPJwTyVrUjRiZ6MmJtbI7Lw6764FySyF8c9QDeEnIXPLaSPyiRXtIVNCOVwYB8VU/JErfNiPF7g==
-X-Received: by 2002:a2e:a4a6:0:b0:253:dfb7:d9 with SMTP id g6-20020a2ea4a6000000b00253dfb700d9mr3701379ljm.399.1653146190266;
-        Sat, 21 May 2022 08:16:30 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id dt8-20020a0565122a8800b00477cdd53190sm834182lfb.74.2022.05.21.08.16.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 21 May 2022 08:16:29 -0700 (PDT)
-Message-ID: <f960933d-b19b-2ce2-f9a6-6610119fa56e@linaro.org>
-Date:   Sat, 21 May 2022 17:16:28 +0200
+        bh=pbCJumIvaZj2zpN+SmeDlo0xua0tKmGkiZ0bd1awMlM=;
+        b=UTHaR3XAakG2xZ+f3SDRslyg8gzgfxrT7Qt8jdeta5ffb24DqAdrHMkhbZ2N+Wgq/M
+         SuAxhGpo7N6Qq5d5mikg4qwUzwNqH5NfkdG/P5bpPGmxAS/vehXb8PAjITWnzE0S7qMi
+         zMg92y9NdM+m4VSuHxkDwyiDhqGNG8IbiD9NcyKeXzpxXXUjhjZjUB44Om74clcuy1hY
+         77gJu5hOsCwfC2sq0X2C7MGDAjRoK9U4MGziiMUqZOT2A4HUo1IRH7r+P/ULpEjZPu+M
+         lRruLb0fEKwQ2UT0vyJ79im0jPuZ+6lyZFj4r9CwQRbOqqA8CaDbTK+krfEQATfi/RXU
+         XIZA==
+X-Gm-Message-State: AOAM530+faK9NfhUQGc9vrHno0BnoDqCZegGcDvVAMU+F8kBt0sqL/4p
+        ar8lxS56aeLOZj5euJXMugNUmw==
+X-Google-Smtp-Source: ABdhPJw9NQFQOX/HhXYmY+TWv9ieRs/iJhrWRfzq5NFWY7NzypY1x1ESxJty2DFnlzO7oO/Q1eFxjw==
+X-Received: by 2002:a05:651c:10a8:b0:253:c8a7:3afd with SMTP id k8-20020a05651c10a800b00253c8a73afdmr8356824ljn.431.1653146451876;
+        Sat, 21 May 2022 08:20:51 -0700 (PDT)
+Received: from eriador.lumag.spb.ru ([94.25.229.156])
+        by smtp.gmail.com with ESMTPSA id k8-20020a2e92c8000000b0024f3d1daeccsm739933ljh.84.2022.05.21.08.20.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 21 May 2022 08:20:51 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v6 00/11] arm64: dts: qcom: initial Inforce IFC6560 board support
+Date:   Sat, 21 May 2022 18:20:38 +0300
+Message-Id: <20220521152049.1490220-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 2/2] dt-bindings: i2c: dw: Add Intel's SoCFPGA I2C
- controller
-Content-Language: en-US
-To:     Dinh Nguyen <dinguyen@kernel.org>, jarkko.nikula@linux.intel.com
-Cc:     andriy.shevchenko@linux.intel.com, mika.westerberg@linux.intel.com,
-        robh+dt@kernel.org, krzk+dt@kernel.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220518202217.85803-1-dinguyen@kernel.org>
- <20220518202217.85803-2-dinguyen@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220518202217.85803-2-dinguyen@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -76,17 +69,89 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/05/2022 22:22, Dinh Nguyen wrote:
-> The I2C pins on Intel's SoCFPGA platform are not connected to GPIOs and
-> thus cannot be recovered by the standard GPIO method.
-> 
-> Document the "intel,socfpga-i2c" binding.
-> 
-> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+This work is largely based on the previous work by Bjorn Andersson ([1])
+
+Changes since v5:
+- Drop icc patch, as there are questions whether the original paths are
+  valid. It will be submitted separately.
+
+Changes since v4:
+- Remove unused mdp and sd-card-det-n DT nodes from the ifc6560 dts
+  (thanks to Konrad).
+
+Changes since v3 (most points based on review by Marijn):
+- Fixed a typo in dsi0 patch
+- Fixed indentation here and there
+- Renamed qusb2phy to qusb2phy0 to play better with qusb2phy1
+- Fixed the ICC path for the GPU
+- Fixed sdhc2 pinconf for sdm636-sony-xperia-ganges-mermaid
+- Moved SDHC2 card detect gpio pin to board files
+
+Changes since v2:
+- Removed useless enablement of mdp node from the board file. It is
+  already enabled in the SoC dtsi file.
+
+Changes since v1 (mostly based on Kondrad's review):
+- Also disabled dsi0/dsi0 phy in sdm630.dtsi
+- Removed the clock from BAM DMA devices rather than disabling them
+  completely
+- Replaced numbers with symbolic names for interconnects in sdm630.dtsi
+- Switched to "qcom,sda660" as a fallback compatible string
+- Added dt-bindings for the qcom,sda660 compat
+- Removed extra nesting level from the adsp firmware path
+- Replaced numbers with proper symbolic names in the board file
+- Added chassis-type property
+- Changed the order of blsp entries in the board file
+- Removed spurious newlines
+- Changed the order of regulator properties
+- Changed the DSI data-lines to list all four lanes. Still use just
+  three lanes for the adv bridge (and describe the reason in the
+  comment)
+
+Changes since Bjorn's v2:
+- Disable dsi1, dsi1 phy, GPU by default in sdm660.dtsi/sdm630.dtsi
+- Fix qusb2phy ref clock
+- Added USB2 host support to sdm630.dtsi
+- Renamed DTS to follow SoC-vendor-board pattern
+- Fixed vph_pwr voltage
+- Removed extra/unrelated comments
+- Added keys, USB2, USB3,
+- Added configuration for the attached HDMI bridge
+- Enabled MDP, MDSS and DSI0/DSI0 PHY devices
+- Removed uart pinctrl and /reserved-mem nodes (present in main dtsi
+  file)
+- Added card detection for the SDCC2
+- Disabled BLSP BAM DMA devices, they make the board reset during boot
+
+[1] https://lore.kernel.org/linux-arm-msm/20210825221110.1498718-1-bjorn.andersson@linaro.org/#t
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Dmitry Baryshkov (11):
+  arm64: dts: qcom: sdm630: disable dsi0/dsi0_phy by default
+  arm64: dts: qcom: sdm660: disable dsi1/dsi1_phy by default
+  arm64: dts: qcom: sdm630: disable GPU by default
+  arm64: dts: qcom: sdm630: fix the qusb2phy ref clock
+  arm64: dts: qcom: sdm630: rename qusb2phy to qusb2phy0
+  arm64: dts: qcom: sdm630: add second (HS) USB host support
+  arm64: dts: qcom: sdm630: fix gpu's interconnect path
+  arm64: dts: qcom: sdm636-sony-xperia-ganges-mermaid: correct sdc2
+    pinconf
+  arm64: dts: qcom: sdm660: move SDHC2 card detect pinconf to board
+    files
+  arm64: dts: qcom: sdm660: Add initial Inforce IFC6560 board support
+  dt-bindings: arm: qcom: document sda660 SoC and ifc6560 board
 
+ .../devicetree/bindings/arm/qcom.yaml         |   6 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../boot/dts/qcom/sda660-inforce-ifc6560.dts  | 461 ++++++++++++++++++
+ .../dts/qcom/sdm630-sony-xperia-nile.dtsi     |  18 +-
+ arch/arm64/boot/dts/qcom/sdm630.dtsi          |  81 ++-
+ .../sdm636-sony-xperia-ganges-mermaid.dts     |   2 +-
+ .../boot/dts/qcom/sdm660-xiaomi-lavender.dts  |  18 +-
+ arch/arm64/boot/dts/qcom/sdm660.dtsi          |   3 +
+ 8 files changed, 571 insertions(+), 19 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
 
-Best regards,
-Krzysztof
+-- 
+2.35.1
+
