@@ -2,46 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E8025302A6
-	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 13:28:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A428A5302C7
+	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 13:49:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237459AbiEVL2h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 May 2022 07:28:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51744 "EHLO
+        id S1343566AbiEVLtS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 May 2022 07:49:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235232AbiEVL2g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 07:28:36 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFDA82ED68;
-        Sun, 22 May 2022 04:28:35 -0700 (PDT)
+        with ESMTP id S242696AbiEVLtO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 07:49:14 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BA1515FF2;
+        Sun, 22 May 2022 04:49:13 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6DC7A60EFA;
-        Sun, 22 May 2022 11:28:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42281C385AA;
-        Sun, 22 May 2022 11:28:31 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A349BB80AF8;
+        Sun, 22 May 2022 11:49:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E62DFC385AA;
+        Sun, 22 May 2022 11:49:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1653218914;
-        bh=I1TCglVaUOlQv9NY1yHyp/8XZg1F5alSwioMHOuiLOI=;
+        s=k20201202; t=1653220150;
+        bh=DQpkpsyyty5lU5glAQWkGYGLNU1ybDvumKMYKx96+Ug=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=edEcURbzrSmVoivNV/l85Tcq/+YRXHI5cR2eu5pjA0Sv23Xrjb5FPT6Cz09vqcn0R
-         yHBK+QMqd0ivdLGszxp2I5NBWvlXmwOCxBGlslpJF7A/X/ZgLy4w0sUo9hq02CYU2z
-         9qsRJ/da2mX9NBOMmlIQ+P7ewqEYlWswU0j98Jr1zA298CkHTqGimkGArz3zkgVo/z
-         8midgGKhZB94LkCA57NlQ469ykb4sJaaX94An75MYXn/tBLyU83636n3dNRdPuPdvd
-         4TgYLqw2kY93fwc5gey0G/gLo9ZYJURsKm28iDBmUOt1oo+zhPd0QyNBm1a8geSZx8
-         z23vmr7EtANbw==
-Date:   Sun, 22 May 2022 12:37:19 +0100
+        b=ayYnnRK08GKJePYnThXmP9se4mCv3GE8CU8Xj05IZLCvNLCKhC8QKknbP99BiT3G4
+         XR5Z8NNnsC2nN+50nkNhRS9fHI5STjxrTz50qsNVOjcN6KhZMVc3Jp+nQTq9MIeh4J
+         FFSSwdLSq5y2n+N6fSBrHasVZRdy7lak+5PnXavXkkeAAsbOEaLzvaRvURIY6zL/Xs
+         TUQyxOgtBu1JqBnfiqbI72AZzrPRczVmniWAYz1sYB/1jGDHovcB6rj043E+L3i7s5
+         H27ILzdqv/q+WdXLW6hcDqwgb7g87ssEo0H+b3LGuCpyNFsvT5b9AP53CUdzMN+W7P
+         0P1YFYy2is0yA==
+Date:   Sun, 22 May 2022 12:57:55 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
-Cc:     lars@metafoo.de, mchehab+huawei@kernel.org, ardeleanalex@gmail.com,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, mike.looijmans@topic.nl,
-        devicetree@vger.kernel.org, thomas.haemmerle@leica-geosystems.com
-Subject: Re: [PATCH V3 0/6] iio: accel: bmi088: support BMI085 BMI090L
-Message-ID: <20220522123719.3e34bb6e@jic23-huawei>
-In-Reply-To: <20220518150425.927988-1-Qing-wu.Li@leica-geosystems.com.cn>
-References: <20220518150425.927988-1-Qing-wu.Li@leica-geosystems.com.cn>
+To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+Cc:     Peter Rosin <peda@axentia.se>, <linux-kernel@vger.kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sean Nyekjaer <sean@geanix.com>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 0/2] Add support for texas dac121c081 to the dac5571
+ driver
+Message-ID: <20220522125755.099b5452@jic23-huawei>
+In-Reply-To: <20220512140232.000078c1@Huawei.com>
+References: <42db911c-5eba-0511-3e8c-8011a2a5b44a@axentia.se>
+        <20220428204439.4ec2b4ae@jic23-huawei>
+        <20220501190349.54aa48a3@jic23-huawei>
+        <06546c40-639a-01e4-ed99-4895edfe8211@axentia.se>
+        <20220512140232.000078c1@Huawei.com>
 X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -56,45 +63,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 18 May 2022 15:04:19 +0000
-LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn> wrote:
+On Thu, 12 May 2022 14:02:32 +0100
+Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
 
-> Modified the units after application of scale from 100*m/s^2 to m/s^2,
-> since the units in the ABI documents are m/s^2.
-> Add supports for the BMI085 accelerometer.
-> Add supports for the BMI090L accelerometer.
-> Make it possible to config scales.
+> On Thu, 12 May 2022 10:59:48 +0200
+> Peter Rosin <peda@axentia.se> wrote:
 > 
-> Change in V3: 
+> > HI!
+> > 
+> > 2022-05-01 at 20:03, Jonathan Cameron wrote:  
+> > > On Thu, 28 Apr 2022 20:44:39 +0100
+> > > Jonathan Cameron <jic23@kernel.org> wrote:
+> > >     
+> > >> On Mon, 25 Apr 2022 22:46:30 +0200
+> > >> Peter Rosin <peda@axentia.se> wrote:
+> > >>    
+> > >>> Hi!
+> > >>>
+> > >>> The new chip works much like the other chips supported by the driver, so
+> > >>> this is just adding another compatible to the list.
+> > >>>
+> > >>> Chenages since v1:
+> > >>> - Guenter Roeck noticed elsewhere that my mail setup was botched and
+> > >>>   that my patches were clobbered. Hopefully fixed. *blush*
+> > >>> - added tags from Sean Nyekjaer and Rob Herring      
+> > >>
+> > >> Applied.  Thanks    
+> > > 
+> > > Backed out temporarily because they have crossed with a fix (that I'd
+> > > forgotten about) and were requiring a non trivial merge in linux-next.
+> > > 
+> > > https://patchwork.kernel.org/project/linux-iio/patch/20220324234340.32402-1-laurent.pinchart@ideasonboard.com/
+> > > 
+> > > Hopefully that will get resolved in my upstream fairly soon and I can
+> > > fix this one up whilst applying it myself.    
+> > 
+> > Looks like it might be time to bring this one in from the cold?  
 > 
-> Use FIELD_GET for checking register range. Reorder the chip info and 
-> dt-bindings alphabetical. Add of_id_table. Modify the logic of loading
-> sensor chip info. If the device was found in the table but the device 
-> tree binding is different, the driver will carry on with the detected
-> chip with a warning. If no matching device was found, the driver load
-> the binding chip.
+> Nearly.  I have a pull request out to Greg. Once he's taken that
+> I'll fastforward the togreg branch to include the fix and
+> can then apply this.
 
-All looks good to me. Unfortunately we've missed the 5.19 merge window
-now as it will probably open shortly.  As such we have lots of time so
-I'll leave this on list for a little longer for others to take a look at.
+Now we are good. Applied to the togreg branch of iio.git and added the
+tweak needed to provide data in the of_device_id table.
+
+Unfortunately timing is against me this time, and unless the merge window
+is delayed this is now 5.20 material.
+
 Thanks,
 
 Jonathan
 
 > 
+> Jonathan
 > 
-> LI Qingwu (6):
->   iio: accel: bmi088: Modified the scale calculate
->   iio: accel: bmi088: Make it possible to config scales
->   iio: accel: bmi088: modified the device name
->   iio: accel: bmi088: Add support for bmi085 accel
->   iio: accel: bmi088: Add support for bmi090l accel
->   dt-bindings: iio: accel: Add bmi085 and bmi090l bindings
-> 
->  .../bindings/iio/accel/bosch,bmi088.yaml      |  2 +
->  drivers/iio/accel/bmi088-accel-core.c         | 96 +++++++++++++++----
->  drivers/iio/accel/bmi088-accel-spi.c          | 17 +++-
->  drivers/iio/accel/bmi088-accel.h              |  9 +-
->  4 files changed, 100 insertions(+), 24 deletions(-)
+> > 
+> > Cheers,
+> > Peter  
 > 
 
