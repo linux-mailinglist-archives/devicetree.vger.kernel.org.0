@@ -2,127 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC50D5304E2
-	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 19:10:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F4DF5304E9
+	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 19:21:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344173AbiEVRKh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 May 2022 13:10:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39436 "EHLO
+        id S232802AbiEVRVw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 May 2022 13:21:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231946AbiEVRKg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 13:10:36 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F1213A73F
-        for <devicetree@vger.kernel.org>; Sun, 22 May 2022 10:10:34 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id u27so17134343wru.8
-        for <devicetree@vger.kernel.org>; Sun, 22 May 2022 10:10:34 -0700 (PDT)
+        with ESMTP id S232098AbiEVRVv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 13:21:51 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C201D26562
+        for <devicetree@vger.kernel.org>; Sun, 22 May 2022 10:21:48 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id t25so21971458lfg.7
+        for <devicetree@vger.kernel.org>; Sun, 22 May 2022 10:21:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=UC29fQRATexTT7tJzzddZ4rno6ylvbw/uHwKcWDyCEE=;
-        b=p28KdpWyxvmBBqgGUVYoQNauk6dvzewKdhb69i+ywXo4dc1zSCobjzRGwYRYRvEE5F
-         3xWJfjot8sqqWL+Vcpy5xztbdIwzPaFW4fZaf5xeJbAuwT9L+7T6gezExk/ZZoJ0AFbZ
-         MOX9/QfszSYEmaHiHv8pmYLtmRpXkS4Gv5XAKW9epALT9W9+HRln4LQJj01iKrQjHi4Y
-         5DMxzyQg6FWsn5eJEmlYLMBgKkK7Nxg6TXxfmAdzzRG78xHbCF3s2xQ0BNtcBwxcwkdY
-         qsvW/SIL53EsXLXUQnCOkwQM8Tx0NQlRShLvYJVmF+3jixq5F59jRZpJoThLNrJVKhV0
-         zBjA==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=35cINdG4aKyvkMTNqLECMQ6LpQDha8n1Ps7uhOu4v+k=;
+        b=f2FDUnqInwufGy8gdJQxjQjX2B2lmZ7dhKYRkltHSOZw31TObrnUW5fvxLyuJPUZew
+         H5gL9iYu1NqkTZTO/PknCgSMxu7fMg+dqsv5IpgMIxAHgpp2y8TGDd+wsNEBSDdPQK8Q
+         8zNcNSnf/ArwQhiGMHR8tGHftZH7YewVGVOjIWFH0gzmnSNKCnAG2FJoDMSo8Mx0oOl7
+         TpdB/QQyK3btafai5GmPByEuQKI0FTAcJN3qYKKKNP2Twc7ZOC17+ag3xFRrvMTiexYq
+         +MmrE8//BB5jmS0o7E5CkkbjBp5+9mYrhdqk7zJ400Dz4az1TrhFVnvtQiIBGyoCoyP0
+         uL8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=UC29fQRATexTT7tJzzddZ4rno6ylvbw/uHwKcWDyCEE=;
-        b=nFd4vCq4LjQ8kgksjurrVPPdDd+/4uKtPXNPbf53PzgbczkQYy3mqvb5CKuB72vigv
-         D38jjzo2N89YtoLlfkdzE5wKoSGAaagwBXSNJekw/3xCv68pLeECF3P37scECYdK/JB7
-         zAjCrvSV17OsfdOd1k0jaa0tJg0hS7XSADct9jSCLP1ext7PxYHmOXZZFgN8CRvb8N3g
-         NOtabUxr91aYfUoACimFZwM+24kddBAOvwLjB1pfk8piFKYshzvq/pqxdtsqvMDQ/EH4
-         SRLw8gQE2WzVIwUsUNP2evWQYvaP9gbY+q7flKT2o7+N0gnkC5zYt9zP9X9sr0Qqkw3I
-         enDw==
-X-Gm-Message-State: AOAM532Mo9XDeghayRmJuC6phWudDyM0Qn32tICJD4RUpCiok4SgxMij
-        Gzq9HbzCfLWIezIMM64UetvAlKGTsSTcX2Hv
-X-Google-Smtp-Source: ABdhPJxp94yPqyr6oChze4h7ciJv1e+SH3bxLIjuxj6SYnkGaQCd+h8o9Bj9MHbehTvZ+6UT1rH9cw==
-X-Received: by 2002:adf:dbce:0:b0:20c:f507:8ef9 with SMTP id e14-20020adfdbce000000b0020cf5078ef9mr15958406wrj.29.1653239433052;
-        Sun, 22 May 2022 10:10:33 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id k41-20020a05600c1ca900b0039747cf8354sm2144778wms.39.2022.05.22.10.10.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 22 May 2022 10:10:32 -0700 (PDT)
-Message-ID: <19c92f9d-fa1c-fbe8-50ef-324da3e00695@linaro.org>
-Date:   Sun, 22 May 2022 18:10:31 +0100
+        bh=35cINdG4aKyvkMTNqLECMQ6LpQDha8n1Ps7uhOu4v+k=;
+        b=CnfpocjsjoDt+t3UsRuI/RK6GauuTi7R/RPRJks4wAIkjTWHfvGZoyvWM73CXRoefy
+         tEQPX5PlZR19hWV20ybn0ROaWAQSo/X3cJrZytwri1Tgl1Vc21mK4nBpnQuQsq/AAVMb
+         kf3tQ4sdhjUcTgPyZTrhYpOKnapfeaM+z9p83Qy3huAemGbNoA+SJJ+IUEh5oS4UldAY
+         rofyqb3Q4dRa17xZLoTGyFXLxU2tpIdgENRXgYpknvaKxl+Ioof03U1iYsSGPL2PnS+t
+         7WxnZl1OAGtU709wcq4iiCcpLDiG1vNNcw2XcsOwi82NTLgOm6o3TNEPX8noBlm5SPlM
+         w/Vg==
+X-Gm-Message-State: AOAM531HKa090G9gBfQRj4CPpEaTlsreqU3B9O7wrQqRrdu3I8yosgWH
+        FhCwrhMPvZQaUid1OpndGaY=
+X-Google-Smtp-Source: ABdhPJxC+Dc1ZQZs1hKM6kdDFny5WIDxLDCNcBbjVrKc4LOoLeaV2Vj0ngL7LZUlrQVl/mwHKQA4XA==
+X-Received: by 2002:a19:7613:0:b0:477:bf3e:db7 with SMTP id c19-20020a197613000000b00477bf3e0db7mr13851533lff.454.1653240107008;
+        Sun, 22 May 2022 10:21:47 -0700 (PDT)
+Received: from localhost.localdomain (ppp91-122-164-134.pppoe.avangarddsl.ru. [91.122.164.134])
+        by smtp.gmail.com with ESMTPSA id l15-20020ac24a8f000000b00473f03f22a3sm1527691lfp.58.2022.05.22.10.21.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 May 2022 10:21:46 -0700 (PDT)
+From:   Andrei Lalaev <andrey.lalaev@gmail.com>
+To:     wens@csie.org, jernej.skrabec@gmail.com, samuel@sholland.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
+        Andrei Lalaev <andrey.lalaev@gmail.com>
+Subject: [PATCH] arm: dts: sunxi: h3/h5: add gpio-ranges for pio and r_pio
+Date:   Sun, 22 May 2022 20:20:19 +0300
+Message-Id: <20220522172018.238564-1-andrey.lalaev@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH 1/1] arm64: dts: qcom: qrb5165-rb5: Enable the IMX577 on
- cam1
-Content-Language: en-US
-To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
-        bjorn.andersson@linaro.org
-Cc:     mchehab@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, mmitkov@quicinc.com, jgrahsl@snap.com,
-        hfink@snap.com
-References: <20220518133004.342775-1-bryan.odonoghue@linaro.org>
- <20220518133004.342775-2-bryan.odonoghue@linaro.org>
- <33abcc93-13f1-d6f5-36a3-6ab796f124f9@linaro.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <33abcc93-13f1-d6f5-36a3-6ab796f124f9@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/05/2022 20:09, Vladimir Zapolskiy wrote:
-> 
-> I run on you branch on top of linux-next, but switch build options from 
-> modules to built-in
-> 
->     CONFIG_I2C_QCOM_CCI=y
->     CONFIG_VIDEO_QCOM_CAMSS=y
-> 
-> I didn't get the sensor initialized and hence there is no /dev/media0 node:
-> 
-> [    0.620205] i2c-qcom-cci ac50000.cci: Found 19200000 cci clk rate 
-> while 37500000 was expected
-> [    0.620551] i2c 20-001a: Fixing up cyclic dependency with ac6a000.camss
-> [    0.620754] imx412 20-001a: Looking up dovdd-supply from device tree
-> [    0.620797] imx412 20-001a: Looking up avdd-supply from device tree
-> [    0.620860] imx412 20-001a: Looking up dvdd-supply from device tree
-> [    0.620876] duplicated lane 1 in clock-lanes, using defaults
-> [    0.622789] imx412 20-001a: failed to find sensor: -5
-> [    0.622880] imx412: probe of 20-001a failed with error -5
-> 
-> I believe the problem could be related to CCI, please remind me, are 
-> there I2C bus pull-ups?
+Without this property the next node can't be hogged:
+&r_pio {
+	test_hog {
+		gpio-hog;
+		gpios = <0 6 GPIO_ACTIVE_HIGH>;
+		output-high;
+	};
+};
+And the appropriate error message:
+"requesting hog GPIO test_hog (chip 1f02c00.pinctrl, offset 6) failed, -517"
 
-Hmm.
+This problem occurs because the "pinctrl-sunxi" calls
+"gpiochip_add_data" that parses "gpio-ranges"
+(using "of_gpiochip_add_pin_range") and registers hogs
+(using "of_gpiochip_scan_gpios").
+So when the gpiolib tries to register hogs it can't find any ranges and
+fails.
 
-Just trying to replicate this on linux-next
-
-https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=linux-next-22-05-22%2bimx577-rb5
-
-root@linaro-gnome:~# zcat /proc/config.gz | grep -e CONFIG_I2C_QCOM_CCI 
--e CONFIG_VIDEO_QCOM_CAMSS
-CONFIG_I2C_QCOM_CCI=y
-CONFIG_VIDEO_QCOM_CAMSS=y
-
-root@linaro-gnome:~# uname -a
-Linux linaro-gnome 5.18.0-rc7-next-20220518-00006-g3beef4d1d353-dirty 
-#40 SMP PREEMPT Sun May 22 17:53:29 IST 2022 aarch64 GNU/Linux
-
-root@linaro-gnome:~# cam -l
-Available cameras:
-1: 'imx412' (/base/soc@0/cci@ac50000/i2c-bus@0/camera@1a)
-
-are you compiling everything in ?
-
+Signed-off-by: Andrei Lalaev <andrey.lalaev@gmail.com>
 ---
-bod
+ arch/arm/boot/dts/sunxi-h3-h5.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/arm/boot/dts/sunxi-h3-h5.dtsi b/arch/arm/boot/dts/sunxi-h3-h5.dtsi
+index d7e9f977f986..4193bf962b7d 100644
+--- a/arch/arm/boot/dts/sunxi-h3-h5.dtsi
++++ b/arch/arm/boot/dts/sunxi-h3-h5.dtsi
+@@ -404,6 +404,9 @@ pio: pinctrl@1c20800 {
+ 			#gpio-cells = <3>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <3>;
++			gpio-ranges = <&pio 0 0 22>, <&pio 64 64 17>,
++				      <&pio 96 96 18>, <&pio 128 128 16>,
++				      <&pio 160 160 7>, <&pio 192 192 14>;
+ 
+ 			csi_pins: csi-pins {
+ 				pins = "PE0", "PE2", "PE3", "PE4", "PE5",
+@@ -937,6 +940,7 @@ r_pio: pinctrl@1f02c00 {
+ 			#gpio-cells = <3>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <3>;
++			gpio-ranges = <&r_pio 0 352 12>;
+ 
+ 			r_ir_rx_pin: r-ir-rx-pin {
+ 				pins = "PL11";
+-- 
+2.25.1
+
