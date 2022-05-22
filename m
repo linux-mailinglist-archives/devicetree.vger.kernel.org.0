@@ -2,40 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D89225305AD
-	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 21:52:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C9505305BD
+	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 22:09:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232399AbiEVTwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 May 2022 15:52:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33994 "EHLO
+        id S1347073AbiEVUJq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 May 2022 16:09:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351111AbiEVTwH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 15:52:07 -0400
-Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [5.144.164.164])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08B09B6F;
-        Sun, 22 May 2022 12:51:48 -0700 (PDT)
-Received: from asfdasdfasdf2.riviera.ds.pw.edu.pl (riviera.nat.ds.pw.edu.pl [194.29.137.1])
-        (using TLSv1.3 with cipher TLS_CHACHA20_POLY1305_SHA256 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA512)
+        with ESMTP id S230015AbiEVUJq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 16:09:46 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D814C3632D;
+        Sun, 22 May 2022 13:09:44 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 348C41FC90;
-        Sun, 22 May 2022 21:51:44 +0200 (CEST)
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-To:     krzysztof.kozlowski@linaro.org
-Cc:     agross@kernel.org, arnd@arndb.de, bjorn.andersson@linaro.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, olof@lixom.net, robh@kernel.org,
-        sboyd@kernel.org, Konrad Dybcio <konrad.dybcio@somainline.org>
-Subject: Re: Removal of qcom,board-id and qcom,msm-id
-Date:   Sun, 22 May 2022 21:51:38 +0200
-Message-Id: <20220522195138.35943-1-konrad.dybcio@somainline.org>
-X-Mailer: git-send-email 2.32.0 (Apple Git-132)
-In-Reply-To: <a3c932d1-a102-ce18-deea-18cbbd05ecab@linaro.org>
-References: <a3c932d1-a102-ce18-deea-18cbbd05ecab@linaro.org>
+        by ams.source.kernel.org (Postfix) with ESMTPS id 83C34B80B02;
+        Sun, 22 May 2022 20:09:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 606B4C385AA;
+        Sun, 22 May 2022 20:09:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1653250182;
+        bh=5mvMD8PeuzewniacwEHPb6i08ZXSrJgyrbjHN+zLXvo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Y9+Jk+4dRba0T68o3Xji13zINRlcHq3We92wtyMOzDynsqze7islOUS3w7w41+ocg
+         feDqnn7mM79WHjfXL1IZeQpc1RoWUtZ0s8cwvch4/iqFI9zKtNXUYrqSh2s8jZL9qi
+         am3kj3a1b5tbWL5ySclsK7CczRk9unC3YuHtdB8vCX4G7fm3MBwqQv/2xUT2m1/TKK
+         E0Em5IrVeShA1fEjlP0GynIf0WXNeWFg13k1K/nWTMjQwiHT1Rs9RhIzwpBRG/TQ0i
+         CV1o7q5wPBhp8gwBOvKhYY0dkH5d8hLb4bHclHwqb0XWVTw+KwRqgtgwNLUZXOjN0W
+         krLroMeCX6i1g==
+Date:   Sun, 22 May 2022 22:09:35 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Tali Perry <tali.perry1@gmail.com>
+Cc:     Tyrone Ting <warp5tw@gmail.com>, avifishman70@gmail.com,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        jarkko.nikula@linux.intel.com, semen.protsenko@linaro.org,
+        rafal@milecki.pl, sven@svenpeter.dev, jsd@semihalf.com,
+        jie.deng@intel.com, lukas.bulwahn@gmail.com, arnd@arndb.de,
+        olof@lixom.net, Tali Perry <tali.perry@nuvoton.com>,
+        Avi Fishman <Avi.Fishman@nuvoton.com>,
+        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
+        kfting@nuvoton.com, OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v5 08/10] i2c: npcm: Remove own slave addresses 2:10
+Message-ID: <YoqYf0KdNEabT7Mu@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Tali Perry <tali.perry1@gmail.com>, Tyrone Ting <warp5tw@gmail.com>,
+        avifishman70@gmail.com, Tomer Maimon <tmaimon77@gmail.com>,
+        Patrick Venture <venture@google.com>, Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Rob Herring <robh+dt@kernel.org>, krzysztof.kozlowski+dt@linaro.org,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        jarkko.nikula@linux.intel.com, semen.protsenko@linaro.org,
+        rafal@milecki.pl, sven@svenpeter.dev, jsd@semihalf.com,
+        jie.deng@intel.com, lukas.bulwahn@gmail.com, arnd@arndb.de,
+        olof@lixom.net, Tali Perry <tali.perry@nuvoton.com>,
+        Avi Fishman <Avi.Fishman@nuvoton.com>, tomer.maimon@nuvoton.com,
+        KWLIU@nuvoton.com, JJLIU0@nuvoton.com, kfting@nuvoton.com,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20220517101142.28421-1-warp5tw@gmail.com>
+ <20220517101142.28421-9-warp5tw@gmail.com>
+ <Yoh/nEYPu++LZSvb@shikoro>
+ <CAHb3i=uKwe1RdvzQA=oO6zNmEvyA_awx09+C2w8kbRq_NGi54w@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ADMt7ReWlnMJvaGx"
+Content-Disposition: inline
+In-Reply-To: <CAHb3i=uKwe1RdvzQA=oO6zNmEvyA_awx09+C2w8kbRq_NGi54w@mail.gmail.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -43,51 +90,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-removing these properties will not bring almost any benefit (other than making
-some checks happy any saving some <200 LoC) and will make the lives of almost
-all people doing independent development for linux-on-msm harder. There are
-almost unironically like 3 people outside Linaro and QUIC who have
-non-vendor-fused development boards AND the sources to rebuild the
-bootloader on their own. Making it harder to boot is only going to
-discourage people from developing on these devices, which is already not
-that pleasant, especially with newer platforms where you have to fight with
-the oh-so-bright ideas of Android boot chain..
+--ADMt7ReWlnMJvaGx
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-This only concerns devices released before sm8350, as the new ones will not
-even boot with these properties present (or at least SONY Sagami, but I
-doubt it's an isolated case), so other than completing support for older
-devices, it won't be an issue going forward, anyway. But there are give
-or take 50 locked down devices in mainline right now, and many more waiting
-to be upstreamed in various downstream close-to-mainline trees that should
-not be disregarded just because Qualcomm is far from the best at making
-their BSP software stack clean.
+Hi Tali,
 
-One solution is to chainload another, (n+1)-stage bootloader, but this is
-not ideal, as:
+> So when we encounter a deadlock with this spinlock we decided to get rid of this
+> unused feature and get both a stable fix for the issue + performance benefits.
+> We work closely with all our customers so we know that this HW
+> feature is useless to them.
 
-1) the stock bootloader can boot Linux just fine on most devices (except
-for single exceptions, where beloved OEMs didn't implement arm64 booting or
-something)
+Okay, fair enough. Thanks for the detailed explanation!
 
-2) the boot chain on MSM is already 3- or 4- stage and adding to that will
-only create an unnecessary mess
+> > Why do we keep this array if we drop the support?
+> >
+> This array represents the HW so we left it as-is. But I agree it can
+> be shortened to one\two.
 
-3) the job of kernel people is not to break userspace. If the
-device can not even exit bootloader after a kernel upgrade, it's a big
-failure.
+Would be nice, I think.
 
-If you *really really really* want these either gone or documented, we can
-for example use them in the SOCID driver, read the values from DTB and
-compare against what SMEM has to say and for example print a warning when
-there are inconsistencies or use it as a fallback when it fails for any
-reason, such as using a newer SoC on an older kernel, without updates
-for SOCID read (which are sometimes necessary, which was the case for 8450
-recently, iirc).
+> OK, we will move the last two to a separate patch. BTW, this change
+> appears in the title as well.
 
-My stance is to just leave them as is, as moving them anywhere, or removing
-them at all will cause unnecessary mess and waste time that could have been
-spent on more glaring issues..
+Yes, but I still think it should be a seperate change.
 
-Konrad
+> But now I'm not sure: if you already apply for-next patches [1:7], and
+> we change patch [8:10]
+> do we need to re-submit [1:7]?
+
+Nope, they are already in linux-next. They seemed like good fixes even
+without the support for the new SoC, so I applied them right away. I
+hope this was okay.
+
+> Thanks, Wolfram, for your review!
+> Much appreciated
+
+You are welcome :)
+
+Happy hacking,
+
+   Wolfram
+
+
+--ADMt7ReWlnMJvaGx
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmKKmHsACgkQFA3kzBSg
+KbYIFQ//T8e9vEjUkF1e/qapo9hAzPMaLW6dsVuIFb2K9pfQQMmA8ZZsG8Lp2uwP
+MdHX2nnZrtHiC9oMo8CshGv5yK2pGsZOqGBdEqyZ2/VobZYqXRzk4iaTYZMXsP0z
+NedO8w4D86f09sl9iJXUdAba21fEjsJusZsOSkctsLCOXhCWPO3uPTKAQB6pB14Z
+9PKs4E6UVDA9VDLo9FllxLjVOecx/A95l+0qpyjiQxtWKWeFi6gC6zI++LJ9aboi
+5qoyXIQleMJvOMjm0uxWRT4LeVog9uVp7+LOTo2C24QIn0LCM//NVcytIOonx7Zb
+80fATJ4mrpBBICLdd4Hy3lZV8BnpxhPeh7Iq913fkff6B3H7Y/CleHGPIvzEKgaC
+YICyGbtAKHh9rdOQimoqjRnks1E8EesgzmGxSMz+ySNgP984vXURsaJSF4Roz2II
+9hJC+FOEeAgPyGbL/zEVhbitI723CqOg3TKyfv5tV4WZVFyRQkFNLS8If+fDziD8
+B//2/6LuFiZREGASOKSqpXC8hDVutEZWvHOjjjpivsVZ425QdC09N4BQ+SRgzlMQ
+yrzDygQrqSkJILWh+K+MMx/ArQO8FF0O2LVI8b8ANLMAhxfCaDGNesK4R3DR4eLo
++FZ09CL6DcX7nu9XMAu6qammXWDwcPK9dBaRA9oTPPq7+JM7YWw=
+=dZim
+-----END PGP SIGNATURE-----
+
+--ADMt7ReWlnMJvaGx--
