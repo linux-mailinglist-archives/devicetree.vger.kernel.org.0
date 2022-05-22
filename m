@@ -2,70 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCBC653060B
-	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 23:03:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08C5D530627
+	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 23:27:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346241AbiEVVDn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 May 2022 17:03:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36698 "EHLO
+        id S231134AbiEVV1I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 May 2022 17:27:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231455AbiEVVDm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 17:03:42 -0400
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4D193A184
-        for <devicetree@vger.kernel.org>; Sun, 22 May 2022 14:03:40 -0700 (PDT)
-Received: by mail-yb1-xb2c.google.com with SMTP id t26so22316640ybt.3
-        for <devicetree@vger.kernel.org>; Sun, 22 May 2022 14:03:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=mxiplx6RkaytXlrRSYKEQ3O7D7iVT1tPh1nthwSj52s=;
-        b=RbDrWXHdFHp710mS+KTiAsacnf8zZILcSCFAvEkg5tmJgLLY/OtbMort7xqYxWhFm1
-         B63F83m/TsJitosRLG9h1UU7sTJgEl2o0kxZLELo45zT7IQbsHmvcQLe85BW4Hwg39R3
-         RF6agLIV8dwzLNzS0ZneQZfYKDN+0zJEyEqF4KrbH/7NdQbPKsgTypg7ov0+ZyIxNfn0
-         K4Yx7/ANDGLxI4vpoC8vaRzg4kQer11hgvl5J5PUOZQ886qcziOGaC4DbWnyJ6iRGiwm
-         Pwv5e1iC13g8GFOolW4/mrl5DycCQ0GMGRuBZ+H/CRK/dzIRiT/h/UN6Kqcdak6QtZCu
-         AcSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=mxiplx6RkaytXlrRSYKEQ3O7D7iVT1tPh1nthwSj52s=;
-        b=2lTCu6hkhLxuVZ2Xd1OlUL4h+XSg7VArjsrgZk7SXFsBRfFlv31tP8QXIPjwzw6t0A
-         eMkSSKdT7rJBMHAiLq96utTpLp+hhmQO43fV689amsxBn0ijYCeNfZagp5lg1DmTO3ig
-         idWTQnXw9o9pV8GpNPkZYIgsxTAGNgmh8ETc0HzX9RDM9kyUFcmkY3/yvzxIic2BMgTI
-         AlrxcagA+4yG9RQjChEjRwhLH78IEDvlbDfW9uBaekBpVWz9Fg6XcR2OOgFCoxim2ejU
-         0mOjQ/T/Vp3CmsttJ7qjHo3w8T4Rget7woL/8puV+k4vG4L7ywD5cixEkbvW+aEg7iD7
-         KAUw==
-X-Gm-Message-State: AOAM530oaTAK0QUM8htVwKiJ9enh4sUVQ2XVTzwG6RF1r4F2E14b2x+R
-        UT0V6foNkKUpzopzzY3jQDWmE/5VJIUslUfwczrN+g==
-X-Google-Smtp-Source: ABdhPJwTBwnyeOqQ+H1oLaBkNCWS83VGkpo6Am+xihPb5+nNh3oq+bfFbsJAeD9vmSzwzBPnHIMQc7QlkN/SRG5gFlU=
-X-Received: by 2002:a5b:302:0:b0:64b:a20a:fcd9 with SMTP id
- j2-20020a5b0302000000b0064ba20afcd9mr18570383ybp.492.1653253419976; Sun, 22
- May 2022 14:03:39 -0700 (PDT)
+        with ESMTP id S1347792AbiEVV1C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 17:27:02 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EAE8C2FFE3
+        for <devicetree@vger.kernel.org>; Sun, 22 May 2022 14:26:58 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7CB22113E;
+        Sun, 22 May 2022 14:26:58 -0700 (PDT)
+Received: from slackpad.lan (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4D58A3F66F;
+        Sun, 22 May 2022 14:26:57 -0700 (PDT)
+Date:   Sun, 22 May 2022 22:26:30 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Andrei Lalaev <andrey.lalaev@gmail.com>
+Cc:     wens@csie.org, jernej.skrabec@gmail.com, samuel@sholland.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH] arm: dts: sunxi: h3/h5: add gpio-ranges for pio and
+ r_pio
+Message-ID: <20220522222630.7faab948@slackpad.lan>
+In-Reply-To: <20220522172018.238564-1-andrey.lalaev@gmail.com>
+References: <20220522172018.238564-1-andrey.lalaev@gmail.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 MIME-Version: 1.0
-References: <20220521200734.421223-1-a.fatoum@pengutronix.de>
-In-Reply-To: <20220521200734.421223-1-a.fatoum@pengutronix.de>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 22 May 2022 23:03:28 +0200
-Message-ID: <CACRpkdbKUHu-T2whY4wgk5xnR7X-hptEg+Jm5Hudq8ieQi3VwA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: bluetooth: broadcom: Add BCM4349B1 DT binding
-To:     Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc:     Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, kernel@pengutronix.de,
-        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,19 +45,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, May 21, 2022 at 10:07 PM Ahmad Fatoum <a.fatoum@pengutronix.de> wrote:
+On Sun, 22 May 2022 20:20:19 +0300
+Andrei Lalaev <andrey.lalaev@gmail.com> wrote:
 
-> The BCM4349B1 chip is a single-chip Bluetooth 5.0 controller and
-> Transceiver. It is contained in the CYW/BCM89359 WiFi+BT package.
+> Without this property the next node can't be hogged:
+> &r_pio {
+> 	test_hog {
+> 		gpio-hog;
+> 		gpios = <0 6 GPIO_ACTIVE_HIGH>;
+> 		output-high;
+> 	};
+> };
+> And the appropriate error message:
+> "requesting hog GPIO test_hog (chip 1f02c00.pinctrl, offset 6) failed, -517"
+> 
+> This problem occurs because the "pinctrl-sunxi" calls
+> "gpiochip_add_data" that parses "gpio-ranges"
+> (using "of_gpiochip_add_pin_range") and registers hogs
+> (using "of_gpiochip_scan_gpios").
+> So when the gpiolib tries to register hogs it can't find any ranges and
+> fails.
+> 
+> Signed-off-by: Andrei Lalaev <andrey.lalaev@gmail.com>
+> ---
+>  arch/arm/boot/dts/sunxi-h3-h5.dtsi | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/sunxi-h3-h5.dtsi b/arch/arm/boot/dts/sunxi-h3-h5.dtsi
+> index d7e9f977f986..4193bf962b7d 100644
+> --- a/arch/arm/boot/dts/sunxi-h3-h5.dtsi
+> +++ b/arch/arm/boot/dts/sunxi-h3-h5.dtsi
+> @@ -404,6 +404,9 @@ pio: pinctrl@1c20800 {
+>  			#gpio-cells = <3>;
+>  			interrupt-controller;
+>  			#interrupt-cells = <3>;
+> +			gpio-ranges = <&pio 0 0 22>, <&pio 64 64 17>,
+> +				      <&pio 96 96 18>, <&pio 128 128 16>,
+> +				      <&pio 160 160 7>, <&pio 192 192 14>;
 
-So the BT and the package have two different names.
+But this is somewhat redundant information, because the pinctrl driver
+knows about those values, as they are derived from the big struct
+sunxi_desc_pin definition.
+So wouldn't it be smarter to put a call to
+gpiochip_add_pingroup_range() somewhere into the sunxi pinctrl driver,
+so that it would automatically work for all SoCs?
 
-> +      - brcm,bcm4349-bt
+Cheers,
+Andre
 
-Then why do you have to tag on "-bt" on this compatible?
+>  
+>  			csi_pins: csi-pins {
+>  				pins = "PE0", "PE2", "PE3", "PE4", "PE5",
+> @@ -937,6 +940,7 @@ r_pio: pinctrl@1f02c00 {
+>  			#gpio-cells = <3>;
+>  			interrupt-controller;
+>  			#interrupt-cells = <3>;
+> +			gpio-ranges = <&r_pio 0 352 12>;
+>  
+>  			r_ir_rx_pin: r-ir-rx-pin {
+>  				pins = "PL11";
 
-That is typically used when the wifi and bt has the *same* name, so
-the only way to distinguish between them is a suffix.
-
-Yours,
-Linus Walleij
