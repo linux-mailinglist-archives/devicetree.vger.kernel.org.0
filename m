@@ -2,162 +2,945 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 942935303C1
-	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 17:09:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0C635303CD
+	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 17:23:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237937AbiEVPI6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 May 2022 11:08:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53360 "EHLO
+        id S1347863AbiEVPW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 May 2022 11:22:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230290AbiEVPI5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 11:08:57 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F90D3A5E3;
-        Sun, 22 May 2022 08:08:56 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id t25so21663807lfg.7;
-        Sun, 22 May 2022 08:08:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=7g33WtJZnwYfTwI509SCQTLTp308sKh4zxrRwkR1M1s=;
-        b=c9godQeu8vT6tVI38R1L6EOrm/QCt0Dhf+GHnwxRq87S+8EkI8WDYvJwOpXYMmqTfU
-         NVFnu/NyWq6zD2OV9YQliMk56QUSHyaAAGRdCOnTJEhcyvnJKRrhy1n1RmMu30OdR4LE
-         oMus8NGN3R7ajDoZ9C3RaELEvF2upqn/8EEhXd8P05R6qtDCuSbACIca1sgo+7xwkS7L
-         OYImqumpCGnmWr4y7RQgQ6LjgSSSmB6jMPFOc1Vok/xV9KSS6UqU7VZ1WwCU2SCmkRuh
-         R65o4FbSOdvbgkLdlVUWtxYLnqnw08OCVETFf1s7ba+ireDyLj9HebRVvBUe5iH2q+qB
-         +bvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=7g33WtJZnwYfTwI509SCQTLTp308sKh4zxrRwkR1M1s=;
-        b=6/K5ADP226pLqU/xcpo26cIiKIQNna2aeqT9F54QuQXfzVozYzctG3ZAhuD1QTEexL
-         C9caK1rHctgjDWR1vPAY3hbvlBPBtzL05VsHpYX+qJ6Irf8+tXXz0AO2S8r8r6jqipKq
-         4Gjp0q3DBrgCeMPqFKGlSgFRbT7eriERjdgQdAXBDDYIHM6I6+msNjQD2e5et0bI/5ra
-         lamvT8IpT2xFGeejUBGAy8HPBdvmUBZM4vR+HEGgGaUkJSulPbpQLGJZydfegP/8x9TG
-         iFHpLjpQCOAKE0Llo2ariQ6foZeEYUYoA4vMy4QIsMvC6NoD3TOXI6H4dHnw+H3XenbJ
-         8/wQ==
-X-Gm-Message-State: AOAM530kAFlM6fVtOh3hvz+X6mCbCSBKb3eSvQTGGRtSgpGCZf4BkkxA
-        VtDeusGH+9LCoknwoeRw021wBLB23C4=
-X-Google-Smtp-Source: ABdhPJxzA2qZom1Ij7EyzIN6/ZFfQuqaXx91/vip/JYRQgoWg6l/FagtzgXOmgXgUFQGvHDMHRth7Q==
-X-Received: by 2002:ac2:4289:0:b0:477:b3eb:f2f with SMTP id m9-20020ac24289000000b00477b3eb0f2fmr14069215lfh.386.1653232134406;
-        Sun, 22 May 2022 08:08:54 -0700 (PDT)
-Received: from mobilestation ([95.79.189.214])
-        by smtp.gmail.com with ESMTPSA id i22-20020a2e8096000000b00250664c906asm1224927ljg.133.2022.05.22.08.08.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 May 2022 08:08:53 -0700 (PDT)
-Date:   Sun, 22 May 2022 18:08:51 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 03/23] dt-bindings: ata: ahci-platform: Clarify common
- AHCI props constraints
-Message-ID: <20220522150851.x4unzszwd3lh52qt@mobilestation>
-References: <20220511231810.4928-1-Sergey.Semin@baikalelectronics.ru>
- <20220511231810.4928-4-Sergey.Semin@baikalelectronics.ru>
- <20220517191409.GA1445438-robh@kernel.org>
+        with ESMTP id S230290AbiEVPW5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 11:22:57 -0400
+Received: from classfun-node2.classfun.cn (node2.classfun.cn [104.168.173.154])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EC5FB29CA6;
+        Sun, 22 May 2022 08:22:50 -0700 (PDT)
+Received: from classfun.cn (unknown [129.204.178.38])
+        by classfun-node2.classfun.cn (Postfix) with ESMTP id 53E9F100E68;
+        Sun, 22 May 2022 23:22:49 +0800 (CST)
+Received: from [192.168.0.160] (unknown [124.72.161.110])
+        (Authenticated sender: bigfoot)
+        by classfun.cn (Postfix) with ESMTPSA id 7586878938;
+        Sun, 22 May 2022 23:22:40 +0800 (CST)
+Message-ID: <8b2518af-6a11-ee8d-501a-48a54595a569@classfun.cn>
+Date:   Sun, 22 May 2022 23:22:46 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220517191409.GA1445438-robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH 2/2] Add support for Xiaomi MIX 3 (perseus) smartpohone.
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-arm-msm@vger.kernel.org
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        keescook@chromium.org, anton@enomsg.org, ccross@android.com,
+        tony.luck@intel.com, angelogioacchino.delregno@somainline.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220521053947.1375824-1-bigfoot@classfun.cn>
+ <20220521053947.1375824-2-bigfoot@classfun.cn>
+ <5368fec8-89a1-0360-bca8-d7fab79b2069@somainline.org>
+From:   Junhao Xie <bigfoot@classfun.cn>
+In-Reply-To: <5368fec8-89a1-0360-bca8-d7fab79b2069@somainline.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,KHOP_HELO_FCRDNS,
+        NICE_REPLY_A,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 17, 2022 at 02:14:09PM -0500, Rob Herring wrote:
-> On Thu, May 12, 2022 at 02:17:50AM +0300, Serge Semin wrote:
-> > Indeed in accordance with what is imeplemtned in the AHCI paltform driver
-> > and the way the AHCI DT nodes are defined in the DT files we can add the
-> > next AHCI DT properties constraints: AHCI CSR ID is fixed to 'ahci', PHY
-> > name is fixed to 'sata-phy', AHCI controller can't have more than 32 ports
-> > by design.
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > 
-> > Changelog v2:
-> > - This is a new patch created after rebasing v1 onto the 5.18-rc3 kernel.
-> > ---
-> >  .../devicetree/bindings/ata/ahci-common.yaml      | 15 ++++++++++-----
-> >  1 file changed, 10 insertions(+), 5 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/ata/ahci-common.yaml b/Documentation/devicetree/bindings/ata/ahci-common.yaml
-> > index 620042ca12e7..a7d1a8353de3 100644
-> > --- a/Documentation/devicetree/bindings/ata/ahci-common.yaml
-> > +++ b/Documentation/devicetree/bindings/ata/ahci-common.yaml
-> > @@ -31,6 +31,8 @@ properties:
-> >  
-> >    reg-names:
-> >      description: CSR space IDs
-> > +    contains:
-> > +      const: ahci
+On 2022/05/22 16:50, Konrad Dybcio wrote:
 > 
-
-> Okay, with this it makes sense to keep. The others still should go.
-
-Ok.
-
--Sergey
-
 > 
-> >  
-> >    interrupts:
-> >      description:
-> > @@ -71,14 +73,13 @@ properties:
-> >      maxItems: 1
-> >  
-> >    phy-names:
-> > -    maxItems: 1
-> > +    const: sata-phy
-> >  
-> >    ports-implemented:
-> >      $ref: '/schemas/types.yaml#/definitions/uint32'
-> >      description:
-> >        Mask that indicates which ports the HBA supports. Useful if PI is not
-> >        programmed by the BIOS, which is true for some embedded SoC's.
-> > -    maximum: 0x1f
-> >  
-> >  patternProperties:
-> >    "^sata-port@[0-9a-f]+$":
-> > @@ -89,8 +90,12 @@ patternProperties:
-> >  
-> >      properties:
-> >        reg:
-> > -        description: AHCI SATA port identifier
-> > -        maxItems: 1
-> > +        description:
-> > +          AHCI SATA port identifier. By design AHCI controller can't have
-> > +          more than 32 ports due to the CAP.NP fields and PI register size
-> > +          constraints.
-> > +        minimum: 0
-> > +        maximum: 31
-> >  
-> >        phys:
-> >          description: Individual AHCI SATA port PHY
-> > @@ -98,7 +103,7 @@ patternProperties:
-> >  
-> >        phy-names:
-> >          description: AHCI SATA port PHY ID
-> > -        maxItems: 1
-> > +        const: sata-phy
-> >  
-> >        target-supply:
-> >          description: Power regulator for SATA port target device
-> > -- 
-> > 2.35.1
-> > 
-> > 
+> On 21.05.2022 07:39, Junhao Xie wrote:
+>> Currently working features:
+>> - UFS
+>> - GPU
+>> - Video decode/encode
+>> - USB Type C port in peripheral mode
+>> - Modem (LTE / SMS)
+>> - Four buttons (AI/Power/VolUp/VolDown)
+>> - Bluetooth
+>> - Wi-Fi
+>>
+>> Signed-off-by: Junhao Xie <bigfoot@classfun.cn>
+>> ---
+>>  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>>  .../boot/dts/qcom/sdm845-xiaomi-perseus.dts   | 799 ++++++++++++++++++
+>>  2 files changed, 800 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/qcom/sdm845-xiaomi-perseus.dts
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+>> index f9e6343acd03..af23c3bd3e81 100644
+>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>> @@ -106,6 +106,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-sony-xperia-tama-akari.dtb
+>>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-sony-xperia-tama-akatsuki.dtb
+>>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-sony-xperia-tama-apollo.dtb
+>>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-xiaomi-beryllium.dtb
+>> +dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-xiaomi-perseus.dtb
+>>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-shift-axolotl.dtb
+>>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
+>>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-samsung-w737.dtb
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-perseus.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-perseus.dts
+>> new file mode 100644
+>> index 000000000000..a049936f2a96
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-perseus.dts
+>> @@ -0,0 +1,799 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Copyright (c) 2021, BigfootACA <bigfoot@classfun.cn>
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include <dt-bindings/gpio/gpio.h>
+> This one is already included in sdm845.dtsi
+> 
+>> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+>> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>> +#include <dt-bindings/input/linux-event-codes.h>
+>> +#include "sdm845.dtsi"
+>> +#include "pm8998.dtsi"
+>> +#include "pmi8998.dtsi"
+>> +
+>> +/*
+>> + * Delete following upstream (sdm845.dtsi) reserved
+>> + * memory mappings which are different in this device.
+>> + */
+>> +/delete-node/ &rmtfs_mem;
+>> +/delete-node/ &adsp_mem;
+>> +/delete-node/ &wlan_msa_mem;
+>> +/delete-node/ &mpss_region;
+>> +/delete-node/ &venus_mem;
+>> +/delete-node/ &cdsp_mem;
+>> +/delete-node/ &mba_region;
+>> +/delete-node/ &slpi_mem;
+>> +/delete-node/ &spss_mem;
+>> +
+>> +/ {
+>> +	model = "Xiaomi MIX 3";
+> I think this one still had "Mi" in the name.
+> 
+>> +	compatible = "xiaomi,perseus", "qcom,sdm845";
+>> +	chassis-type = "handset";
+>> +
+>> +	/* required for bootloader to select correct board */
+>> +	qcom,board-id = <0x63 0x0>;
+>> +	qcom,msm-id = <321 0x20001>;
+>> +
+>> +	aliases {
+>> +		serial0 = &uart9;
+>> +		hsuart0 = &uart6;
+>> +		bluetooth0 = &bluetooth;
+>> +		wifi0 = &wifi;
+>> +		display0 = &framebuffer0;
+> Please sort these alphabetically and check if the display0 alias is even necessary
+>> +	};
+>> +
+>> +	chosen {
+>> +		#address-cells = <2>;
+>> +		#size-cells = <2>;
+>> +		ranges;
+>> +
+>> +		// For simplefb hack
+> Not sure if this comment is necesary, but if you think so, please make it /* like this */
+>> +		stdout-path = "display0";
+> This may be superfluous
+>> +		framebuffer0: framebuffer@9d400000 {
+>> +			status = "okay";
+> This is definitely not necessary
+>> +			compatible = "simple-framebuffer";
+>> +			reg = <0 0x9D400000 0 0x2400000>;
+> Please use lowercase hex
+>> +			width = <1080>;
+>> +			height = <2340>;
+>> +			stride = <(1080 * 4)>;
+>> +			format = "a8r8g8b8";
+>> +		};
+>> +	};
+>> +
+>> +	vph_pwr: vph-pwr-regulator {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "vph_pwr";
+>> +		regulator-min-microvolt = <3700000>;
+>> +		regulator-max-microvolt = <3700000>;
+>> +	};
+>> +
+>> +	/*
+>> +	 * Apparently RPMh does not provide support for PM8998 S4 because it
+>> +	 * is always-on; model it as a fixed regulator.
+>> +	 */
+>> +	vreg_s4a_1p8: pm8998-smps4 {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "vreg_s4a_1p8";
+>> +		regulator-min-microvolt = <1800000>;
+>> +		regulator-max-microvolt = <1800000>;
+>> +		regulator-always-on;
+>> +		regulator-boot-on;
+>> +		vin-supply = <&vph_pwr>;
+>> +	};
+>> +
+>> +	disp_vci_vreg: disp_vci_vreg {
+> No underscores in node names, applies to all occuences.
+> 
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "disp_vci_vreg";
+>> +		start-delay-us = <4000>;
+>> +		regulator-always-on;
+>> +		regulator-boot-on;
+>> +		enable-active-high;
+>> +		gpio = <&tlmm 99 0>;
+> GPIO_ACTIVE_HIGH, applies to all occurences
+> 
+>> +	};
+>> +
+>> +	disp_vddio_vreg: disp_vddio_vreg {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "disp_vddio_vreg";
+>> +		startup-delay-us = <4000>;
+>> +		regulator-always-on;
+>> +		regulator-boot-on;
+>> +		enable-active-high;
+>> +		gpio = <&tlmm 79 0>;
+>> +	};
+>> +
+>> +	gpio_keys {
+>> +		compatible = "gpio-keys";
+>> +		autorepeat;
+> Not sure if you want autorepeat on the AI key.
+> 
+>> +
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&vol_up_pin_a &ai_key_ctrl>;
+>> +
+>> +		vol-up {
+>> +			label = "Volume Up";
+>> +			linux,code = <KEY_VOLUMEUP>;
+>> +			gpios = <&pm8998_gpio 6 GPIO_ACTIVE_LOW>;
+>> +			debounce-interval = <15>;
+>> +		};
+>> +
+>> +		ai-key {
+>> +			label = "AI Key";
+>> +			linux,code = <KEY_ASSISTANT>;
+>> +			gpios = <&tlmm 44 GPIO_ACTIVE_LOW>;
+>> +			debounce-interval = <39>;
+>> +		};
+> Sort alphabetically, please.
+> 
+>> +	};
+>> +
+>> +	reserved-memory {
+>> +		rmtfs_mem: memory@f6301000 {
+>> +			compatible = "qcom,rmtfs-mem";
+>> +			reg = <0 0xf6301000 0 0x200000>;
+>> +			no-map;
+>> +
+>> +			qcom,client-id = <1>;
+>> +			qcom,vmid = <15>;
+>> +		};
+>> +
+>> +		adsp_mem: memory@8c500000 {
+>> +			reg = <0 0x8c500000 0 0x1e00000>;
+>> +			no-map;
+>> +		};
+>> +
+>> +		wlan_msa_mem: memory@8e300000 {
+>> +			reg = <0 0x8e300000 0 0x100000>;
+>> +			no-map;
+>> +		};
+>> +
+>> +		mpss_region: memory@8e400000 {
+>> +			reg = <0 0x8e400000 0 0x7800000>;
+>> +			no-map;
+>> +		};
+>> +
+>> +		venus_mem: memory@95c00000 {
+>> +			reg = <0 0x95c00000 0 0x500000>;
+>> +			no-map;
+>> +		};
+>> +
+>> +		cdsp_mem: memory@96100000 {
+>> +			reg = <0 0x96100000 0 0x800000>;
+>> +			no-map;
+>> +		};
+>> +
+>> +		mba_region: memory@96900000 {
+>> +			reg = <0 0x96900000 0 0x200000>;
+>> +			no-map;
+>> +		};
+>> +
+>> +		slpi_mem: memory@96b00000 {
+>> +			reg = <0 0x96b00000 0 0x1400000>;
+>> +			no-map;
+>> +		};
+>> +
+>> +		spss_mem: memory@97f00000 {
+>> +			reg = <0 0x97f00000 0 0x100000>;
+>> +			no-map;
+>> +		};
+>> +
+>> +		cont_splash_region: memory@9d400000 {
+>> +			compatible = "removed-dma-pool";
+>> +			reg = <0 0x9D400000 0 0x02400000>;
+> Use lowercase hex, please.
+>> +			no-map;
+>> +		};
+>> +
+>> +		ramoops: ramoops@b0000000 {
+>> +			compatible = "ramoops";
+>> +			reg = <0 0xb0000000 0 0x00400000>;
+> Please remove leading zeroes from the size value. Also applies to all other encounters in this file.
+> 
+>> +			record-size = <0x40000>; /*256x1024*/
+> Not sure if this comment is necessary, but if you want to keep it, add spaces after the opening and before the closing.
+>> +			console-size = <0x40000>;
+>> +			ftrace-size = <0x40000>;
+>> +			pmsg-size = <0x200000>;
+>> +			ecc-size = <0x0>;
+> If it's 0, remove it. Might be useful to set it to 16 though, as this memory easily gets corrupted on reboots.
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +&adsp_pas {
+>> +	status = "okay";
+>> +	firmware-name = "qcom/sdm845/xiaomi/adsp.mbn";
+>> +};
+>> +
+>> +&apps_rsc {
+>> +	pm8998-rpmh-regulators {
+>> +		compatible = "qcom,pm8998-rpmh-regulators";
+>> +		qcom,pmic-id = "a";
+>> +		vdd-s1-supply = <&vph_pwr>;
+>> +		vdd-s2-supply = <&vph_pwr>;
+>> +		vdd-s3-supply = <&vph_pwr>;
+>> +		vdd-s4-supply = <&vph_pwr>;
+>> +		vdd-s5-supply = <&vph_pwr>;
+>> +		vdd-s6-supply = <&vph_pwr>;
+>> +		vdd-s7-supply = <&vph_pwr>;
+>> +		vdd-s8-supply = <&vph_pwr>;
+>> +		vdd-s9-supply = <&vph_pwr>;
+>> +		vdd-s10-supply = <&vph_pwr>;
+>> +		vdd-s11-supply = <&vph_pwr>;
+>> +		vdd-s12-supply = <&vph_pwr>;
+>> +		vdd-s13-supply = <&vph_pwr>;
+>> +		vdd-l1-l27-supply = <&vreg_s7a_1p025>;
+>> +		vdd-l2-l8-l17-supply = <&vreg_s3a_1p35>;
+>> +		vdd-l3-l11-supply = <&vreg_s7a_1p025>;
+>> +		vdd-l4-l5-supply = <&vreg_s7a_1p025>;
+>> +		vdd-l6-supply = <&vph_pwr>;
+>> +		vdd-l7-l12-l14-l15-supply = <&vreg_s5a_2p04>;
+>> +		vdd-l9-supply = <&vreg_bob>;
+>> +		vdd-l10-l23-l25-supply = <&vreg_bob>;
+>> +		vdd-l13-l19-l21-supply = <&vreg_bob>;
+>> +		vdd-l16-l28-supply = <&vreg_bob>;
+>> +		vdd-l18-l22-supply = <&vreg_bob>;
+>> +		vdd-l20-l24-supply = <&vreg_bob>;
+>> +		vdd-l26-supply = <&vreg_s3a_1p35>;
+>> +		vin-lvs-1-2-supply = <&vreg_s4a_1p8>;
+>> +
+>> +		vreg_s2a_1p1: smps2 {
+>> +			regulator-always-on;
+>> +			regulator-min-microvolt = <1100000>;
+>> +			regulator-max-microvolt = <1100000>;
+>> +		};
+>> +
+>> +		vreg_s3a_1p35: smps3 {
+>> +			regulator-min-microvolt = <1352000>;
+>> +			regulator-max-microvolt = <1352000>;
+>> +		};
+>> +
+>> +		vreg_s5a_2p04: smps5 {
+>> +			regulator-always-on;
+>> +			regulator-min-microvolt = <1904000>;
+>> +			regulator-max-microvolt = <2040000>;
+>> +		};
+>> +
+>> +		vreg_s7a_1p025: smps7 {
+>> +			regulator-always-on;
+>> +			regulator-min-microvolt = <900000>;
+>> +			regulator-max-microvolt = <1028000>;
+>> +		};
+>> +
+>> +		vdda_ufs1_core:
+>> +		vreg_l1a_0p875: ldo1 {
+>> +			regulator-min-microvolt = <880000>;
+>> +			regulator-max-microvolt = <880000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l2a_0p875: ldo2 {
+>> +			regulator-min-microvolt = <1200000>;
+>> +			regulator-max-microvolt = <1200000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +			regulator-always-on;
+>> +		};
+>> +
+>> +		reg_l3a_0p875: ldo3 {
+>> +			regulator-min-microvolt = <1000000>;
+>> +			regulator-max-microvolt = <1000000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l5a_0p8: ldo5 {
+>> +			regulator-min-microvolt = <800000>;
+>> +			regulator-max-microvolt = <800000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l6a_1p8: ldo6 {
+>> +			regulator-min-microvolt = <1856000>;
+>> +			regulator-max-microvolt = <1856000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l7a_1p8: ldo7 {
+>> +			regulator-min-microvolt = <1800000>;
+>> +			regulator-max-microvolt = <1800000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l8a_1p2: ldo8 {
+>> +			regulator-min-microvolt = <1200000>;
+>> +			regulator-max-microvolt = <1248000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l9a_2p95: ldo9 {
+>> +			regulator-min-microvolt = <1704000>;
+>> +			regulator-max-microvolt = <2928000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l10a_2p95: ldo10 {
+>> +			regulator-min-microvolt = <1704000>;
+>> +			regulator-max-microvolt = <2928000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l11a_1p05: ldo11 {
+>> +			regulator-min-microvolt = <1000000>;
+>> +			regulator-max-microvolt = <1048000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l12a_1p8: ldo12 {
+>> +			regulator-min-microvolt = <1800000>;
+>> +			regulator-max-microvolt = <1800000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l13a_2p95: ldo13 {
+>> +			regulator-min-microvolt = <1800000>;
+>> +			regulator-max-microvolt = <2960000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l14a_1p8: ldo14 {
+>> +			regulator-min-microvolt = <1800000>;
+>> +			regulator-max-microvolt = <1800000>;
+>> +			regulator-always-on;
+>> +			regulator-boot-on;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l15a_1p8: ldo15 {
+>> +			regulator-min-microvolt = <1800000>;
+>> +			regulator-max-microvolt = <1800000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l16a_2p7: ldo16 {
+>> +			regulator-min-microvolt = <2704000>;
+>> +			regulator-max-microvolt = <2704000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l17a_1p3: ldo17 {
+>> +			regulator-always-on;
+>> +			regulator-min-microvolt = <1304000>;
+>> +			regulator-max-microvolt = <1304000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l18a_2p9: ldo18 {
+>> +			regulator-min-microvolt = <2704000>;
+>> +			regulator-max-microvolt = <2960000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l19a_3p1: ldo19 {
+>> +			regulator-min-microvolt = <2856000>;
+>> +			regulator-max-microvolt = <3104000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l20a_2p95: ldo20 {
+>> +			regulator-min-microvolt = <2704000>;
+>> +			regulator-max-microvolt = <2960000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l21a_2p95: ldo21 {
+>> +			regulator-min-microvolt = <2704000>;
+>> +			regulator-max-microvolt = <2960000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l22a_3p3: ldo22 {
+>> +			regulator-min-microvolt = <2864000>;
+>> +			regulator-max-microvolt = <3312000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l23a_3p3: ldo23 {
+>> +			regulator-min-microvolt = <3000000>;
+>> +			regulator-max-microvolt = <3312000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l24a_3p075: ldo24 {
+>> +			regulator-min-microvolt = <3088000>;
+>> +			regulator-max-microvolt = <3088000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vreg_l25a_3p3: ldo25 {
+>> +			regulator-always-on;
+>> +			regulator-min-microvolt = <3000000>;
+>> +			regulator-max-microvolt = <3312000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +		};
+>> +
+>> +		vdda_mipi_dsi0_1p2:
+>> +		vdda_ufs1_1p2:
+>> +		vreg_l26a_1p2: ldo26 {
+>> +			regulator-min-microvolt = <1200000>;
+>> +			regulator-max-microvolt = <1200000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +			regulator-boot-on;
+>> +		};
+>> +
+>> +		vreg_l28a_3p0: ldo28 {
+>> +			regulator-min-microvolt = <2856000>;
+>> +			regulator-max-microvolt = <3008000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>> +			regulator-always-on;
+>> +		};
+>> +
+>> +		vreg_lvs1a_1p8: lvs1 {
+>> +			regulator-min-microvolt = <1800000>;
+>> +			regulator-max-microvolt = <1800000>;
+>> +			regulator-always-on;
+>> +		};
+>> +
+>> +		vreg_lvs2a_1p8: lvs2 {
+>> +			regulator-min-microvolt = <1800000>;
+>> +			regulator-max-microvolt = <1800000>;
+>> +			regulator-always-on;
+>> +		};
+>> +	};
+>> +
+>> +	pmi8998-rpmh-regulators {
+>> +		compatible = "qcom,pmi8998-rpmh-regulators";
+>> +		qcom,pmic-id = "b";
+>> +		vdd-bob-supply = <&vph_pwr>;
+> Add a newline, please.
+>> +		vreg_bob: bob {
+>> +			regulator-min-microvolt = <3312000>;
+>> +			regulator-max-microvolt = <3600000>;
+>> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_AUTO>;
+>> +			regulator-allow-bypass;
+>> +		};
+>> +	};
+>> +
+>> +	pm8005-rpmh-regulators {
+>> +		compatible = "qcom,pm8005-rpmh-regulators";
+>> +		qcom,pmic-id = "c";
+>> +		vdd-s1-supply = <&vph_pwr>;
+>> +		vdd-s2-supply = <&vph_pwr>;
+>> +		vdd-s3-supply = <&vph_pwr>;
+>> +		vdd-s4-supply = <&vph_pwr>;
+> Add a newline, please.
+>> +		vreg_smp3c_0p6: smps3 {
+>> +			regulator-min-microvolt = <600000>;
+>> +			regulator-max-microvolt = <600000>;
+>> +			regulator-always-on;
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +&cdsp_pas {
+>> +	status = "okay";
+>> +	firmware-name = "qcom/sdm845/xiaomi/cdsp.mbn";
+>> +};
+>> +
+>> +&dsi0 {
+>> +	status = "okay";
+>> +	vdda-supply = <&vdda_mipi_dsi0_1p2>;
+>> +
+>> +	panel@0 {
+>> +		compatible = "samsung,fhd-ea8076";
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+>> +		reg = <0>;
+>> +		vddio-supply = <&vreg_l14a_1p8>;
+>> +		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&sde_dsi_active &sde_te_active>;
+> reg
+> compatible
+> various properties
+> #-cells
+> 
+>> +		port {
+>> +			samsung_fhd_ea8076_in_0: endpoint {
+>> +				remote-endpoint = <&dsi0_out>;
+>> +			};
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +&dsi0_out {
+>> +	remote-endpoint = <&samsung_fhd_ea8076_in_0>;
+>> +	data-lanes = <0 1 2 3>;
+>> +};
+>> +
+>> +&dsi0_phy {
+>> +	status = "okay";
+>> +	vdds-supply = <&vreg_l1a_0p875>;
+>> +};
+>> +
+>> +&gcc {
+>> +	protected-clocks = <GCC_QSPI_CORE_CLK>,
+>> +			   <GCC_QSPI_CORE_CLK_SRC>,
+>> +			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>,
+>> +			   <GCC_LPASS_Q6_AXI_CLK>,
+>> +			   <GCC_LPASS_SWAY_CLK>;
+>> +};
+>> +
+>> +&gmu {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&gpu {
+>> +	status = "okay";
+>> +
+>> +	zap-shader {
+>> +		memory-region = <&gpu_mem>;
+>> +		firmware-name = "qcom/sdm845/xiaomi/a630_zap.mbn";
+>> +	};
+>> +};
+>> +
+>> +&ipa {
+>> +	status = "okay";
+>> +	memory-region = <&ipa_fw_mem>;
+>> +	firmware-name = "qcom/sdm845/xiaomi/ipa_fws.mbn";
+>> +};
+>> +
+>> +&gpi_dma0 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&gpi_dma1 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&i2c3 {
+>> +	status = "okay";
+>> +	#dma-cells = <3>;
+>> +	clock-frequency = <400000>;
+>> +	dmas = <&gpi_dma0 0 3 QCOM_GPI_I2C>,
+>> +	       <&gpi_dma0 1 3 QCOM_GPI_I2C>;
+>> +	dma-names = "tx", "rx";
+> These DMA properties should be in sdm845.dtsi.
+> 
+>> +
+>> +	/* NFC nq-nci @ 0x28 */
+>> +
+>> +};
+>> +
+>> +&i2c5 {
+>> +	status = "okay";
+>> +	#dma-cells = <3>;
+>> +	clock-frequency = <400000>;
+>> +	dmas = <&gpi_dma0 0 5 QCOM_GPI_I2C>,
+>> +	       <&gpi_dma0 1 5 QCOM_GPI_I2C>;
+>> +	dma-names = "tx", "rx";
+>> +
+>> +	/* Audio Codec tas2557 @ 0x4c */
+>> +};
+>> +
+>> +&i2c10 {
+>> +	status = "okay";
+>> +	#dma-cells = <3>;
+>> +	clock-frequency = <400000>;
+>> +	dmas =  <&gpi_dma1 0 2 QCOM_GPI_I2C>,
+>> +	        <&gpi_dma1 1 2 QCOM_GPI_I2C>;
+>> +	dma-names = "tx", "rx";
+>> +
+>> +	/* smb1355 charger @ 0x08, 0x0C */
+> While this is not necessarily code, please keep the hex lowercase.
+> 
+>> +	/* idtp9220 wireless charger @ 0x61 */
+>> +};
+>> +
+>> +&i2c14 {
+>> +	status = "okay";
+>> +	#dma-cells = <3>;
+>> +	clock-frequency = <400000>;
+>> +	dmas =  <&gpi_dma1 0 6 QCOM_GPI_I2C>,
+>> +	        <&gpi_dma1 1 6 QCOM_GPI_I2C>;
+>> +	dma-names = "tx", "rx";
+>> +
+>> +	/* stm fts touchscreen @ 0x49 */
+>> +	/* focaltech touchscreen @ 0x38 */
+>> +	/* atmel touchscreen @ 0x4a */
+>> +};
+>> +
+>> +&mdss {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&mdss_mdp {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&mss_pil {
+>> +	status = "okay";
+>> +	firmware-name = "qcom/sdm845/xiaomi/mba.mbn", "qcom/sdm845/xiaomi/modem.mbn";
+>> +};
+>> +
+>> +&tlmm {
+>> +	sde_dsi_active: sde_dsi_active {
+> No underscores in node names (between : and {, labels can have these), please.
+>> +		mux {
+> Please drop the mux{} and config{}, you can do it like this instead:
+> 
+> sde_dsi_active: sde-dsi-active {
+>     pins = "gpio6", "gpio52";
+>     function = "gpio";
+>     drive-strength = <8>;
+>     bias-disable;
+> }
+>> +			pins = "gpio6", "gpio52";
+>> +			function = "gpio";
+>> +		};
+>> +
+>> +		config {
+>> +			pins = "gpio6", "gpio52";
+>> +			drive-strength = <8>;   /* 8 mA */
+> These comments are not necessary, since they basically repeat what the code syntax says.
+>> +			bias-disable = <0>;   /* no pull */
+> This should be a boolean value (either bias-disable; is present or not).
+> 
+>> +		};
+>> +	};
+>> +
+>> +	sde_dsi_suspend: sde_dsi_suspend {
+>> +		mux {
+>> +			pins = "gpio6", "gpio52";
+>> +			function = "gpio";
+>> +		};
+>> +
+>> +		config {
+>> +			pins = "gpio6", "gpio52";
+>> +			drive-strength = <2>;   /* 2 mA */
+>> +			bias-pull-down; /* PULL DOWN */
+>> +		};
+>> +	};
+>> +
+>> +	sde_te_active: sde_te_active {
+>> +		mux {
+>> +			pins = "gpio10";
+>> +			function = "mdp_vsync";
+>> +		};
+>> +
+>> +		config {
+>> +			pins = "gpio10";
+>> +			drive-strength = <2>;   /* 2 mA */
+>> +			bias-pull-down; /* PULL DOWN */
+>> +		};
+>> +	};
+>> +
+>> +	sde_te_suspend: sde_te_suspend {
+>> +		mux {
+>> +			pins = "gpio10";
+>> +			function = "mdp_vsync";
+>> +		};
+>> +
+>> +		config {
+>> +			pins = "gpio10";
+>> +			drive-strength = <2>;   /* 2 mA */
+>> +			bias-pull-down; /* PULL DOWN */
+>> +		};
+>> +	};
+>> +
+>> +	ai_key_ctrl: ai_key_ctrl {
+>> +		mux {
+>> +			pins = "gpio44";
+>> +			function = "gpio";
+>> +		};
+>> +		config {
+>> +			pins = "gpio44";
+>> +			drive-strength = <2>;   /* 2 mA */
+>> +			bias-pull-up; /* PULL UP */
+>> +			input-enable;
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +&pm8998_gpio {
+>> +	vol_up_pin_a: vol-up-active {
+>> +		pins = "gpio6";
+>> +		function = "normal";
+>> +		input-enable;
+>> +		bias-pull-up;
+>> +		qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
+>> +	};
+>> +};
+>> +
+>> +&pm8998_pon {
+>> +	resin {
+> This definition should be moved to pm8998.dtsi (check how it's done on for example sm8350-sagami and pmk8350).
+> 
+>> +		compatible = "qcom,pm8941-resin";
+>> +		interrupts = <0x0 0x8 1 IRQ_TYPE_EDGE_BOTH>;
+>> +		debounce = <15625>;
+>> +		bias-pull-up;
+>> +		linux,code = <KEY_VOLUMEDOWN>;
+>> +	};
+>> +};
+>> +
+>> +&qupv3_id_0 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&qupv3_id_1 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&tlmm {
+>> +	gpio-reserved-ranges = <0 4>, <81 4>;
+>> +};
+>> +
+>> +&uart9 {
+>> +	status = "okay";
+>> +};
+> Uart9 goes after uart6.
+> 
+>> +
+>> +&uart6 {
+>> +	status = "okay";
+>> +
+>> +	bluetooth: bluetooth {
+>> +		compatible = "qcom,wcn3990-bt";
+>> +		vddio-supply = <&vreg_s4a_1p8>;
+>> +		vddxo-supply = <&vreg_l7a_1p8>;
+>> +		vddrf-supply = <&vreg_l17a_1p3>;
+>> +		vddch0-supply = <&vreg_l25a_3p3>;
+>> +		max-speed = <3200000>;
+>> +	};
+>> +};
+>> +
+>> +
+>> +&usb_1 {
+>> +	status = "okay";
+>> +
+>> +	/* We'll use this as USB 2.0 only */
+>> +	qcom,select-utmi-as-pipe-clk;
+>> +};
+>> +
+>> +&usb_1_dwc3 {
+>> +	dr_mode = "peripheral";
+>> +
+>> +	/* fastest mode for USB 2 */
+>> +	maximum-speed = "high-speed";
+>> +
+>> +	/* Remove USB3 phy */
+>> +	phys = <&usb_1_hsphy>;
+>> +	phy-names = "usb2-phy";
+>> +};
+>> +
+>> +&usb_1_hsphy {
+>> +	status = "okay";
+>> +
+>> +	vdd-supply = <&vreg_l1a_0p875>;
+>> +	vdda-pll-supply = <&vreg_l12a_1p8>;
+>> +	vdda-phy-dpdm-supply = <&vreg_l24a_3p075>;
+>> +
+>> +	qcom,imp-res-offset-value = <8>;
+>> +	qcom,hstx-trim-value = <QUSB2_V2_HSTX_TRIM_21_6_MA>;
+>> +	qcom,preemphasis-level = <QUSB2_V2_PREEMPHASIS_5_PERCENT>;
+>> +	qcom,preemphasis-width = <QUSB2_V2_PREEMPHASIS_WIDTH_HALF_BIT>;
+>> +};
+>> +
+>> +&usb_1_qmpphy {
+>> +	status = "okay";
+>> +
+>> +	vdda-phy-supply = <&vreg_l26a_1p2>;
+>> +	vdda-pll-supply = <&vreg_l1a_0p875>;
+>> +};
+>> +
+>> +&venus {
+> This one is not sorted properly.
+> 
+>> +	status = "okay";
+>> +	firmware-name = "qcom/sdm845/xiaomi/venus.mbn";
+>> +};
+>> +
+>> +&ufs_mem_hc {
+>> +	status = "okay";
+>> +	reset-gpios = <&tlmm 150 GPIO_ACTIVE_LOW>;
+>> +	vcc-supply = <&vreg_l20a_2p95>;
+>> +	vcc-max-microamp = <800000>;
+>> +};
+>> +
+>> +&ufs_mem_phy {
+>> +	status = "okay";
+>> +	vdda-phy-supply = <&vdda_ufs1_core>;
+>> +	vdda-pll-supply = <&vdda_ufs1_1p2>;
+>> +};
+>> +
+>> +&wifi {
+>> +	status = "okay";
+>> +
+>> +	vdd-0.8-cx-mx-supply = <&vreg_l5a_0p8>;
+>> +	vdd-1.8-xo-supply = <&vreg_l7a_1p8>;
+>> +	vdd-1.3-rfa-supply = <&vreg_l17a_1p3>;
+>> +	vdd-3.3-ch0-supply = <&vreg_l25a_3p3>;
+>> +	vdd-3.3-ch1-supply = <&vreg_l23a_3p3>;
+>> +};
+>> +
+>> +/* PINCTRL - additions to nodes defined in sdm845.dtsi */
+> This comment is superfluous.
+> 
+>> +&qup_uart6_default {
+>> +	pinmux {
+>> +		 pins = "gpio45", "gpio46", "gpio47", "gpio48";
+>> +		 function = "qup6";
+>> +	};
+> I'll let this instance of pinmux{} slip through, as it'd require more changes on the SoC DTSI side and also possibly in other devices' trees. I'll send a patch cleaning up sdm845* soon.
+>> +
+>> +	cts {
+>> +		pins = "gpio45";
+>> +		bias-disable;
+>> +	};
+>> +
+>> +	rts-tx {
+>> +		pins = "gpio46", "gpio47";
+>> +		drive-strength = <2>;
+>> +		bias-disable;
+>> +	};
+>> +
+>> +	rx {
+>> +		pins = "gpio48";
+>> +		bias-pull-up;
+>> +	};
+>> +};
+
+I'll fix the commit and resend v2 later, thanks for your reply!
