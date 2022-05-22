@@ -2,97 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41940530450
-	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 17:59:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C8F7530467
+	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 18:18:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349266AbiEVP7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 May 2022 11:59:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37958 "EHLO
+        id S235881AbiEVQSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 May 2022 12:18:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349301AbiEVP5q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 11:57:46 -0400
-Received: from herzl.nuvoton.co.il (unknown [212.199.177.27])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 958D83BA60;
-        Sun, 22 May 2022 08:57:37 -0700 (PDT)
-Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
-        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id 24MFp9aw031646;
-        Sun, 22 May 2022 18:51:09 +0300
-Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
-        id C47B663A4B; Sun, 22 May 2022 18:51:09 +0300 (IDT)
-From:   Tomer Maimon <tmaimon77@gmail.com>
-To:     avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
-        gregkh@linuxfoundation.org, daniel.lezcano@linaro.org,
-        tglx@linutronix.de, wim@linux-watchdog.org, linux@roeck-us.net,
-        catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
-        olof@lixom.net, jirislaby@kernel.org, shawnguo@kernel.org,
-        bjorn.andersson@linaro.org, geert+renesas@glider.be,
-        marcel.ziswiler@toradex.com, vkoul@kernel.org,
-        biju.das.jz@bp.renesas.com, nobuhiro1.iwamatsu@toshiba.co.jp,
-        robert.hancock@calian.com, j.neuschaefer@gmx.net, lkundrak@v3.sk
-Cc:     soc@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Tomer Maimon <tmaimon77@gmail.com>
-Subject: [PATCH v1 19/19] arm64: defconfig: Add Nuvoton NPCM family support
-Date:   Sun, 22 May 2022 18:50:46 +0300
-Message-Id: <20220522155046.260146-20-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20220522155046.260146-1-tmaimon77@gmail.com>
-References: <20220522155046.260146-1-tmaimon77@gmail.com>
+        with ESMTP id S230260AbiEVQSr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 12:18:47 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 256233983D;
+        Sun, 22 May 2022 09:18:46 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 43D07B80CA9;
+        Sun, 22 May 2022 16:18:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40F46C385AA;
+        Sun, 22 May 2022 16:18:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1653236322;
+        bh=pYSFeemrT0C1YzK9cc5ubWYn839pI3mgfE62d/TWJGQ=;
+        h=Date:Subject:To:References:From:In-Reply-To:From;
+        b=jhWUoECn2IgweSYvD9ud/S6HEt7pV3unegslasC03D/usrtvR+NwWbJ/4XaOBtDJ0
+         Ixc92ZyFU+XTOOyTBua3Rlrl2yOZATR3XLUOXJQkjqKa+50F6QXtaubl3fXTp/MdPA
+         XaSiJRu55tIPOrhcppF/5zgDP6/hbRLBZBlALv62RYV76jZs6xcq9ahAcL/LneWz+w
+         DdV+O+87Gp+RmH+e++t5kS/mCIz3aEh5wUYw+qi4YXdBRjJ4221BK3tH17wtdkfe6V
+         mhbANfsBbUNxRr46J1XnRwLFmG7ifMaSeAqppXzcnq7bEtha0FsVXUwnwz2qIHW7J1
+         e6/XdAeWPi/Fg==
+Message-ID: <9d13e27e-4b51-eaa1-81af-20851d3a9fe4@kernel.org>
+Date:   Sun, 22 May 2022 11:18:40 -0500
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-        FORGED_GMAIL_RCVD,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,KHOP_HELO_FCRDNS,NML_ADSP_CUSTOM_MED,
-        SPF_HELO_NONE,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE,UPPERCASE_50_75
-        autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v6 0/3] Add device tree for Intel n6000
+Content-Language: en-US
+To:     matthew.gerlach@linux.intel.com, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+References: <20220520143208.1160506-1-matthew.gerlach@linux.intel.com>
+From:   Dinh Nguyen <dinguyen@kernel.org>
+In-Reply-To: <20220520143208.1160506-1-matthew.gerlach@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-8.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable basic drivers for NPCM8XX booting up support:
-Architecture, Clock, and WD.
+Hi Matthew,
 
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
----
- arch/arm64/configs/defconfig | 3 +++
- 1 file changed, 3 insertions(+)
+On 5/20/22 09:32, matthew.gerlach@linux.intel.com wrote:
+> From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+> 
+> This patch set adds a device tree for the Hard Processor System (HPS)
+> on an Agilex based Intel n6000 board.
+> 
+> Patch 1 defines the device tree binding for the HPS Copy Engine IP
+> used to copy a bootable image from host memory to HPS DDR.
+> 
+> Patch 2 defines the binding for the Intel n6000 board itself.
+> 
+> Patch 3 adds the device tree for the n6000 board.
+> 
+> Changelog v5 -> v6:
+>    - move copy engine binding from soc/intel to dma directory
+>    - remove unnecessary parent device tree node from copy engine example
+> 
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 50aa3d75ab4f..42ad8ac85b99 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -49,6 +49,7 @@ CONFIG_ARCH_MEDIATEK=y
- CONFIG_ARCH_MESON=y
- CONFIG_ARCH_MVEBU=y
- CONFIG_ARCH_MXC=y
-+CONFIG_ARCH_NPCM=y
- CONFIG_ARCH_QCOM=y
- CONFIG_ARCH_RENESAS=y
- CONFIG_ARCH_ROCKCHIP=y
-@@ -617,6 +618,7 @@ CONFIG_RENESAS_WDT=y
- CONFIG_RENESAS_RZG2LWDT=y
- CONFIG_UNIPHIER_WATCHDOG=y
- CONFIG_BCM2835_WDT=y
-+CONFIG_NPCM7XX_WATCHDOG=y
- CONFIG_MFD_ALTERA_SYSMGR=y
- CONFIG_MFD_BD9571MWV=y
- CONFIG_MFD_AXP20X_I2C=y
-@@ -997,6 +999,7 @@ CONFIG_COMMON_CLK_FSL_SAI=y
- CONFIG_COMMON_CLK_S2MPS11=y
- CONFIG_COMMON_CLK_PWM=y
- CONFIG_COMMON_CLK_VC5=y
-+CONFIG_COMMON_CLK_NPCM8XX=y
- CONFIG_COMMON_CLK_BD718XX=m
- CONFIG_CLK_RASPBERRYPI=m
- CONFIG_CLK_IMX8MM=y
--- 
-2.33.0
+I didn't see any pending comments for V5 so I've already queued it up 
+for V5.19.
 
+You can make this change in -rc if you want.
+
+Dinh
