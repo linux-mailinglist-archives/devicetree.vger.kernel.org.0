@@ -2,145 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B0845301CB
-	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 10:14:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A75615301E3
+	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 10:37:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240100AbiEVIOJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 May 2022 04:14:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37630 "EHLO
+        id S242234AbiEVIhJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 May 2022 04:37:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234864AbiEVIOH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 04:14:07 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7AD527FCE
-        for <devicetree@vger.kernel.org>; Sun, 22 May 2022 01:14:05 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id bq30so20854950lfb.3
-        for <devicetree@vger.kernel.org>; Sun, 22 May 2022 01:14:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Et+7DOTTQH1JqVpXKSqRPgxVrV1oOzeHvnh2fubRt1A=;
-        b=k7F8Fidfxb4gmUhFCDJVU0LHLtsVdZsyeamFnEqSX+/iUh9u/66KhhnLYfQkaVuM9B
-         aUT5IqNMGTJ/4Ewd0Vfqc7W05jnqVT27dax0L/Fxh8ZF271LiGTSyOptKN9UK6LQKBJW
-         fYp1vuJzrnTbDPpeEPeHa+2Y7apTU2k6uF/gfoAAdrPLdsWeMpG8LuGhciDFaJ3I8q7F
-         kO5mbYKP3eZiE9xwPOo5ueHOk5GyBlewRHeGDqbU+U/LOfkis6wsyF4hEN66W+QTHnUa
-         yaevaJ1FRUuoWRSfbL1pN5GPlq6ZPB295vwB7buySPS8wf2XTY4ucyU9kQwWTlYixKQ6
-         xoHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Et+7DOTTQH1JqVpXKSqRPgxVrV1oOzeHvnh2fubRt1A=;
-        b=2xxcpsnlM8r6LTPlmwL5y+Pb8Qsy7tTqSgSsoXmUyutV1qzEwQwUoEKTB2M80ANlZ6
-         ccIiSU7OWebd8GjcPfy1umcVm6KDFa9AEv7TUKzBtR1VetdzDhbFjzPYd+X63dhqjfOz
-         RGhIDVAOMrymSY+mSSbSMdbT1pC2JK+FgFLZUizff4uAXc/B7jDP4UKqfNNbQSHTmx7l
-         U/4RWrOmIDaELWbtfdQ2LNXuEB61Ylzg7HL+jtJR+H61QZcf7o7rDExvSa284lP8EB7O
-         EKYXzoWPNIYIljKx9oHmLs0T/fJScGJzc5pJQudpr/KvOPlByhF+NctIMmyG9ZaGfLUk
-         LfIg==
-X-Gm-Message-State: AOAM530zZr1NwjU6z0EpOsKOn1DJfI396SXDbXi3X8OxOxxK2YlV+ula
-        yECsppX2Lc6IjJNDlBz9KzUPCw==
-X-Google-Smtp-Source: ABdhPJw7AMfd8auxqz+NezYyJzs8m23LxjPNettf01T47OdWMoQSUrsWnhIz5oOq++dKWhKByY0tGg==
-X-Received: by 2002:a19:640d:0:b0:472:75e:7373 with SMTP id y13-20020a19640d000000b00472075e7373mr12289744lfb.46.1653207244246;
-        Sun, 22 May 2022 01:14:04 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id m25-20020ac24299000000b0047255d2117csm1362254lfh.171.2022.05.22.01.14.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 22 May 2022 01:14:03 -0700 (PDT)
-Message-ID: <996ac5f2-3cf3-e67a-144b-4fdac9bbc20d@linaro.org>
-Date:   Sun, 22 May 2022 10:14:02 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: net: broadcom-bluetooth: Add property
- for autobaud mode
-Content-Language: en-US
-To:     Hakan Jansson <hakan.jansson@infineon.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S235978AbiEVIhF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 04:37:05 -0400
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54E393615B;
+        Sun, 22 May 2022 01:37:04 -0700 (PDT)
+Received: from g550jk.arnhem.chello.nl (a246182.upc-a.chello.nl [62.163.246.182])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 9805ECCA57;
+        Sun, 22 May 2022 08:36:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1653208592; bh=Dlm1QtEYVmjlsRCPEgwFq+/Acf/7v96KsR+3VSoYFIw=;
+        h=From:To:Cc:Subject:Date;
+        b=roP50mqStHf9xr8yZzNpeuLIxWOxjpfYH0m5EvD+NkWuTBA8tBV1QEenLrqavAQnu
+         oMr5GgljyKwHIPpSaCuod22kJWOyeaVj2Va5gf5DHhEF2CGNMHvLGJxWeg0zIN1thZ
+         4Dn+4z8PS4oZxQmEOcCFqROxesK4q4CtM9rKGVYU=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Luca Weiss <luca@z3ntu.xyz>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        linux-bluetooth@vger.kernel.org
-References: <cover.1653057480.git.hakan.jansson@infineon.com>
- <cb20a6f49c91521d54c847ee4dc14451b0ee91dd.1653057480.git.hakan.jansson@infineon.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <cb20a6f49c91521d54c847ee4dc14451b0ee91dd.1653057480.git.hakan.jansson@infineon.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: qcom-msm8974: fix irq type on blsp2_uart1
+Date:   Sun, 22 May 2022 10:36:18 +0200
+Message-Id: <20220522083618.17894-1-luca@z3ntu.xyz>
+X-Mailer: git-send-email 2.36.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=2.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
+        FROM_SUSPICIOUS_NTLD_FP,PDS_OTHER_BAD_TLD,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: **
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/05/2022 17:07, Hakan Jansson wrote:
-> Some devices (e.g. CYW5557x) require autobaud mode to enable FW loading.
+IRQ_TYPE_NONE is invalid, so use the correct interrupt type.
 
-Which devices support this? You probably need allOf:if:then.
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+---
+ arch/arm/boot/dts/qcom-msm8974.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> Autobaud mode can also be required on some boards where the controller
-> device is using a non-standard baud rate when first powered on.
-> 
-> This patch adds a property, "brcm,uses-autobaud-mode", to enable autobaud
-> mode selection.
+diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
+index 814ad0b46232..f84cdfc4fdcb 100644
+--- a/arch/arm/boot/dts/qcom-msm8974.dtsi
++++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
+@@ -578,7 +578,7 @@ blsp2_dma: dma-controller@f9944000 {
+ 		blsp2_uart1: serial@f995d000 {
+ 			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
+ 			reg = <0xf995d000 0x1000>;
+-			interrupts = <GIC_SPI 113 IRQ_TYPE_NONE>;
++			interrupts = <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&gcc GCC_BLSP2_UART1_APPS_CLK>, <&gcc GCC_BLSP2_AHB_CLK>;
+ 			clock-names = "core", "iface";
+ 			status = "disabled";
+-- 
+2.36.0
 
-Don't use "This patch":
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-
-> 
-> Signed-off-by: Hakan Jansson <hakan.jansson@infineon.com>
-> ---
-> V1 -> V2: Modify property description
-> 
->  .../devicetree/bindings/net/broadcom-bluetooth.yaml      | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
-> index 5aac094fd217..a29f059c21cc 100644
-> --- a/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
-> +++ b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
-> @@ -92,6 +92,15 @@ properties:
->         pcm-sync-mode: slave, master
->         pcm-clock-mode: slave, master
->  
-> +  brcm,uses-autobaud-mode:
-
-Based on description, I understand the host triggers using autobaud.
-However here you word it as "uses", so it is independent of host, it
-looks like property of a device. The commit msg describes it even
-different - "require autobaud".
-
-This leads to second issue - it looks like there is some hardware
-property (requiring to use autobaud) which should be described by
-bindings. But instead you describe desired operational feature.
-
-> +    type: boolean
-> +    description: >
-
-No need for '>'.
-
-> +      Setting this property will make the host (driver) assert the controller
-> +      chip's BT_UART_CTS_N prior to asserting BT_REG_ON. This will make the
-> +      controller start up in autobaud mode. The controller will then detect the
-> +      baud rate of the first incoming (HCI Reset) command from the host and
-> +      subsequently use that baud rate.
-> +
->    interrupts:
->      items:
->        - description: Handle to the line HOST_WAKE used to wake
-
-
-Best regards,
-Krzysztof
