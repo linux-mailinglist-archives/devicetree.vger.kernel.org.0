@@ -2,71 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E430353027E
-	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 12:50:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC098530287
+	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 13:03:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244313AbiEVKuY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 May 2022 06:50:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48934 "EHLO
+        id S234401AbiEVLDn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 May 2022 07:03:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242729AbiEVKuW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 06:50:22 -0400
-Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2E983AA54
-        for <devicetree@vger.kernel.org>; Sun, 22 May 2022 03:50:20 -0700 (PDT)
-Received: by mail-qt1-x830.google.com with SMTP id 11so8599186qtp.9
-        for <devicetree@vger.kernel.org>; Sun, 22 May 2022 03:50:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=rMSZBpH/H/FacBKevZwHpHrOVAuB9nAU7tsT6+kwvqc=;
-        b=BHhQhEKiqcWHuM0HR89BY+qJPcolFZNLLh03Ka5HN2m7kZu6lydvfwQ6O71CKOeLSk
-         LxBDb+LyT3bIOqKn/d9Lxx2uGj3p+9y/Knl+ZN3xKpSzvo4YLpbX9Msc69gr1jP3SiUV
-         h2AhIENOkR5dOXBQEElaz5rCRPToLw0vwvnBo1XHARudU7ApuJGe5FIeCWxu294giFw/
-         EZLyANJmErGToQVMeLjKKxIPdmrMY3c9z0xJYFd8N6KnCk6xfdsn560mVwhVa504JPP5
-         CAiXvWFuZ/9/0fUhNsBulDU4a0hzv7xYMTDwwe5qIzkYqYqCLDPFQo9sE0/EFS8HH06V
-         Z7qA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=rMSZBpH/H/FacBKevZwHpHrOVAuB9nAU7tsT6+kwvqc=;
-        b=f40ppEhF//QL1E7X1u3aJ0ggC8qAiQdvly7C3+kfuUs+PPcSpOTEwbr3RqLVKg57tr
-         WLe/eBrbqBt5VD6419R1eOggLeCjShAZkqiVsLljkN3MbHtMNaKAzaY5Zk4pUdvmIxii
-         P2JP9T+M54eOl42E0wnUmHRjpx/gGp7rG4k08oFkDJf2b2OzSq+Gke7uB3YvwD9CBCRs
-         uIPx5DI9BbEopyMtrHMSx5EAbWbqVKtwHCjqvmdOSpuqHadVDzen9LtFbLDIFPaaSZcw
-         WEi+1fp/xgoQTgr7G0SudupEIL4jKszUv6ZRlnY/UTJK5DpvIbCkv490AcMhMPDXHAbZ
-         31Xw==
-X-Gm-Message-State: AOAM5313oOnjuaMMHeYEbfqFLxc5h/1pSPHEfGBB7dsvCjp2fQ9Ygug6
-        7l2QnOazkfXxuhuJjV1kqeV6ocAmTk/Www/kpVb+ig==
-X-Google-Smtp-Source: ABdhPJzhxA/gSzGAxK5AYEKbcYHlFItto9Bg2bFbvhV3RKrnTCkqWnWhyvSldCQkqjUm0Rl9VTrKiR99DWVvUztZt4Y=
-X-Received: by 2002:a05:622a:188e:b0:2f3:dc9f:946 with SMTP id
- v14-20020a05622a188e00b002f3dc9f0946mr13258860qtc.682.1653216619074; Sun, 22
- May 2022 03:50:19 -0700 (PDT)
+        with ESMTP id S230323AbiEVLDm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 07:03:42 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB0AC39826;
+        Sun, 22 May 2022 04:03:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 1B0E4CE0AF7;
+        Sun, 22 May 2022 11:03:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D511C385AA;
+        Sun, 22 May 2022 11:03:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1653217417;
+        bh=g/rNTBYJ5MYl4gdTdbr4QQaYSLYVvb95mGjKiY//WqU=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=eQUf1wy7rl59gMuCzBlB9LwMrpQb9Hy6yripZO+7Xff/S6cRd0XZNMfDbwscaZLEz
+         fzBGJGElkkDhCgoXcJIyxKGHzjHanzYcoj0ZN+ZTq32RWbWRTWPpkWBECi4O5GF5b0
+         2BEG16Cxmo9wLXsCWnFUqwg5EbLjJHIgDXzq1tl/RlscD4PZ840fMO+XlhPTfRUlbN
+         SA1WINX7bIUpB/KFuCPmqc+V19Sve2VVSbi14NW5ypGCNe7r/OywnKlTzE7PCLHWAj
+         HbKxFf4iWo45z7IibLPJA8eLUehAT3WKKBWJUjKmupL21gV8lnkamplML9RClZbBvh
+         y5fPm6H6MUevA==
+Date:   Sun, 22 May 2022 12:12:22 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+Cc:     lars@metafoo.de, robh+dt@kernel.org, tomas.melin@vaisala.com,
+        andy.shevchenko@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
+Subject: Re: [PATCH V7 4/5] iio: accel: sca3300: Add support for SCL3300
+Message-ID: <20220522121222.4243f67c@jic23-huawei>
+In-Reply-To: <20220522070419.409556-5-Qing-wu.Li@leica-geosystems.com.cn>
+References: <20220522070419.409556-1-Qing-wu.Li@leica-geosystems.com.cn>
+        <20220522070419.409556-5-Qing-wu.Li@leica-geosystems.com.cn>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <a3c932d1-a102-ce18-deea-18cbbd05ecab@linaro.org>
- <35051bec-98ea-b4c5-f734-06b3f22f3562@linaro.org> <8a90ffbc-b376-9115-fb91-0b46d98873b7@linaro.org>
- <40f29157-52c0-001f-6c14-fb90b351756a@linaro.org> <20220519221227.B66D3C385AA@smtp.kernel.org>
- <CAA8EJpqjcAcoooaZ6iTSCy4B1x4=HTUgvJ4VqX_Fr_hSMEbfDA@mail.gmail.com> <eb915633-4d88-ec9a-d51a-7d5f5ecc0843@linaro.org>
-In-Reply-To: <eb915633-4d88-ec9a-d51a-7d5f5ecc0843@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Sun, 22 May 2022 13:50:08 +0300
-Message-ID: <CAA8EJprOg3ZTonrCSbd1a233247G182=VvX4sNeKcGPbmJME3g@mail.gmail.com>
-Subject: Re: Removal of qcom,board-id and qcom,msm-id
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Amit Pundir <amit.pundir@linaro.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Olof Johansson <olof@lixom.net>, Rob Herring <robh@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,50 +56,106 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adding Amit to the CC list.
+On Sun, 22 May 2022 07:04:18 +0000
+LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn> wrote:
 
-On Sun, 22 May 2022 at 13:27, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 20/05/2022 03:39, Dmitry Baryshkov wrote:
-> >
-> >>
-> >> I vaguely recall that the properties had to be extracted during the
-> >> boot.img creation process to create a table of contents header. But
-> >> after some time the bootloader started scanning the DTBs directly for
-> >> the vendor properties and thus the header was deprecated/removed. If the
-> >> bootloader is doing the scanning then I'm not sure what is preventing
-> >> the properties from being documented and allowed. I think the main
-> >> rejection was that the properties were added purely to be extracted
-> >> during post processing and placed into the table of contents header,
-> >> i.e. they weren't actually used by the kernel or the bootloader. If they
-> >> are now used by the bootloader it sounds OK to me if they're kept
-> >> around.
-> >
-> > Yes, as far as I understand, they are used by the bootloader directly.
-> >
->
-> I entirely missed one part - Stephen's patches from 2015 were actually
-> applied and since 2015 we expect all boards to follow convention:
->
-> compatible =
-> "qcom,<SoC>[-<soc_version>][-<foundry_id>]-<board>[/<subtype>][-<board_version>]"
->
-> The patchset was accepted, although in the thread I do not see "Applied"
-> message.
->
-> Stephen,
-> can you or anyone else confirm that the dtbTool Qualcomm uses (and/or
-> bootloader) are adjusted as well to these new compatibles?
->
-> If yes, we can simply remove board-id and msm-id properties from new
-> boards, because 7 years was enough to switch to these new tools...
+> Add support for Murata SCL3300, a 3-axis MEMS accelerometer.
+> Same as SCA3300, it has the accelerometer and temperature output.
+> 
+> Datasheet: www.murata.com/en-us/products/sensor/inclinometer/overview/lineup/scl3300
+> Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
 
-Amit, can you please comment on the AOSP image build process and the
-possibility to drop the board-id/msm-id from the dts files in favour
-of using the dtbTool.
+Hi,
+
+Given you'll be respinning to address Christophe's comment, one trivial
+thing inline (if this had been all that came up I'd have just tweaked
+it whilst applying).
+
+First 4 patches look good to me otherwise. I'll take a look at 5 shortly.
+
+Thanks,
+
+Jonathan
 
 
--- 
-With best wishes
-Dmitry
+> ---
+>  drivers/iio/accel/sca3300.c | 28 ++++++++++++++++++++++++++--
+>  1 file changed, 26 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/iio/accel/sca3300.c b/drivers/iio/accel/sca3300.c
+> index e57aba79c32b..10bedb14d4f0 100644
+> --- a/drivers/iio/accel/sca3300.c
+> +++ b/drivers/iio/accel/sca3300.c
+> @@ -38,6 +38,7 @@
+>  /* Device ID */
+>  #define SCA3300_REG_WHOAMI	0x10
+>  #define SCA3300_WHOAMI_ID	0x51
+> +#define SCL3300_WHOAMI_ID	0xC1
+>  
+>  /* Device return status and mask */
+>  #define SCA3300_VALUE_RS_ERROR	0x3
+> @@ -96,10 +97,18 @@ static const struct iio_chan_spec sca3300_channels[] = {
+>  static const int sca3300_lp_freq[] = {70, 10};
+>  static const int sca3300_lp_freq_map[] = {0, 0, 0, 1};
+>  
+> +static const int scl3300_lp_freq[] = {40, 70, 10};
+> +static const int scl3300_lp_freq_map[] = {0, 1, 2};
+> +
+>  static const int sca3300_accel_scale[][2] = {{0, 370}, {0, 741}, {0, 185}};
+>  static const int sca3300_accel_scale_map[] = {0, 1, 2, 2};
+>  
+> +static const int scl3300_accel_scale[][2] = {{0, 167}, {0, 333}, {0, 83}};
+> +static const int scl3300_accel_scale_map[] = {0, 1, 2};
+> +
+>  static const int sca3300_avail_modes_map[] = {0, 1, 2, 3};
+> +static const int scl3300_avail_modes_map[] = {0, 1, 3};
+> +
+>  static const unsigned long sca3300_scan_masks[] = {
+>  	BIT(SCA3300_ACC_X) | BIT(SCA3300_ACC_Y) | BIT(SCA3300_ACC_Z) |
+>  	BIT(SCA3300_TEMP),
+> @@ -159,6 +168,20 @@ static const struct sca3300_chip_info sca3300_chip_tbl[] = {
+>  		.num_avail_modes = 4,
+>  		.chip_id = SCA3300_WHOAMI_ID,
+>  	},
+> +	{	.scan_masks = sca3300_scan_masks,
+
+	{
+		.scan_masks = ...
+
+> +		.channels = sca3300_channels,
+> +		.num_channels = ARRAY_SIZE(sca3300_channels),
+> +		.num_accel_scales = ARRAY_SIZE(scl3300_accel_scale)*2,
+> +		.accel_scale = scl3300_accel_scale,
+> +		.accel_scale_map = scl3300_accel_scale_map,
+> +		.num_freqs = ARRAY_SIZE(scl3300_lp_freq),
+> +		.freq_table = scl3300_lp_freq,
+> +		.freq_map = scl3300_lp_freq_map,
+> +		.name = "scl3300",
+> +		.avail_modes_table = scl3300_avail_modes_map,
+> +		.num_avail_modes = 3,
+> +		.chip_id = SCL3300_WHOAMI_ID,
+> +	},
+>  };
+>  
+>  DECLARE_CRC8_TABLE(sca3300_crc_table);
+> @@ -444,9 +467,9 @@ static int sca3300_init(struct sca3300_data *sca_data,
+>  
+>  	/*
+>  	 * Wait 1ms after SW-reset command.
+> -	 * Wait 15ms for settling of signal paths.
+> +	 * Wait 25ms for settling of signal paths.
+>  	 */
+> -	usleep_range(16e3, 50e3);
+> +	usleep_range(26e3, 50e3);
+>  
+>  	ret = sca3300_read_reg(sca_data, SCA3300_REG_WHOAMI, &value);
+>  	if (ret)
+> @@ -573,6 +596,7 @@ static int sca3300_probe(struct spi_device *spi)
+>  
+>  static const struct of_device_id sca3300_dt_ids[] = {
+>  	{ .compatible = "murata,sca3300"},
+> +	{ .compatible = "murata,scl3300"},
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, sca3300_dt_ids);
+
