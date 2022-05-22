@@ -2,51 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDA6653029A
-	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 13:17:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E8025302A6
+	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 13:28:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238856AbiEVLRQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 May 2022 07:17:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60974 "EHLO
+        id S237459AbiEVL2h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 May 2022 07:28:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235232AbiEVLRP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 07:17:15 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2B503D1E1;
-        Sun, 22 May 2022 04:17:14 -0700 (PDT)
+        with ESMTP id S235232AbiEVL2g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 07:28:36 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFDA82ED68;
+        Sun, 22 May 2022 04:28:35 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 2FE65B80AFD;
-        Sun, 22 May 2022 11:17:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84466C385AA;
-        Sun, 22 May 2022 11:17:08 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6DC7A60EFA;
+        Sun, 22 May 2022 11:28:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42281C385AA;
+        Sun, 22 May 2022 11:28:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1653218231;
-        bh=FMgjFVda0G8ynRHRjbeXhrPkJH/y/1VulbL8kZ8FO5U=;
+        s=k20201202; t=1653218914;
+        bh=I1TCglVaUOlQv9NY1yHyp/8XZg1F5alSwioMHOuiLOI=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=JQP7/FX4pAUCuhCG47MYkdEGEsGVAtOmlHUI9e/RJrHFXYRIhQEUQ6Nthx/1dWbt0
-         1qmd8pel24MZj+rtu0xUsoZPdjV2/vXvLXevdbDFP9VOlqHywzVupWW3zqxr1vW6vv
-         jqr+r7kDa8MKgvgLXcl6rs3E+g3RRnosp1kFcBffXOBg9xDyMytuJhQ4xHVilKVh54
-         WyIG6LCnVHqrxLtA5qENeMZ3H0/iI8pSsw2npKoeNraquCQcdKspfSbSie5zhz57F2
-         l1wz2BI9yd/T2RjAs7Gtmy+GrCin2aNdI5zjYeC1nWIxyrRNLXyMiSPO+FIOXOlR2f
-         mOaF7U7Gx8wBQ==
-Date:   Sun, 22 May 2022 12:25:55 +0100
+        b=edEcURbzrSmVoivNV/l85Tcq/+YRXHI5cR2eu5pjA0Sv23Xrjb5FPT6Cz09vqcn0R
+         yHBK+QMqd0ivdLGszxp2I5NBWvlXmwOCxBGlslpJF7A/X/ZgLy4w0sUo9hq02CYU2z
+         9qsRJ/da2mX9NBOMmlIQ+P7ewqEYlWswU0j98Jr1zA298CkHTqGimkGArz3zkgVo/z
+         8midgGKhZB94LkCA57NlQ469ykb4sJaaX94An75MYXn/tBLyU83636n3dNRdPuPdvd
+         4TgYLqw2kY93fwc5gey0G/gLo9ZYJURsKm28iDBmUOt1oo+zhPd0QyNBm1a8geSZx8
+         z23vmr7EtANbw==
+Date:   Sun, 22 May 2022 12:37:19 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Tamseel Shams <m.shams@samsung.com>
-Cc:     lars@metafoo.de, robh+dt@kernel.org, krzk+dt@kernel.org,
-        geert@linux-m68k.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, alim.akhtar@samsung.com,
-        paul@crapouillou.net, linux-fsd@tesla.com
-Subject: Re: [PATCH v2 2/3] iio: adc: exynos-adc: Add support for ADC FSD-HW
- controller
-Message-ID: <20220522122555.6c65d2b6@jic23-huawei>
-In-Reply-To: <20220520145820.67667-3-m.shams@samsung.com>
-References: <20220520145820.67667-1-m.shams@samsung.com>
-        <CGME20220520145802epcas5p2153cb572493e3bccd702e0ecce1171fb@epcas5p2.samsung.com>
-        <20220520145820.67667-3-m.shams@samsung.com>
+To:     LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+Cc:     lars@metafoo.de, mchehab+huawei@kernel.org, ardeleanalex@gmail.com,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, mike.looijmans@topic.nl,
+        devicetree@vger.kernel.org, thomas.haemmerle@leica-geosystems.com
+Subject: Re: [PATCH V3 0/6] iio: accel: bmi088: support BMI085 BMI090L
+Message-ID: <20220522123719.3e34bb6e@jic23-huawei>
+In-Reply-To: <20220518150425.927988-1-Qing-wu.Li@leica-geosystems.com.cn>
+References: <20220518150425.927988-1-Qing-wu.Li@leica-geosystems.com.cn>
 X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -61,152 +56,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 May 2022 20:28:19 +0530
-Tamseel Shams <m.shams@samsung.com> wrote:
+On Wed, 18 May 2022 15:04:19 +0000
+LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn> wrote:
 
-> From: Alim Akhtar <alim.akhtar@samsung.com>
+> Modified the units after application of scale from 100*m/s^2 to m/s^2,
+> since the units in the ABI documents are m/s^2.
+> Add supports for the BMI085 accelerometer.
+> Add supports for the BMI090L accelerometer.
+> Make it possible to config scales.
 > 
-> Exynos's ADC-FSD-HW has some difference in registers set, number of
-> programmable channels (16 channel) etc. This patch adds support for
-> ADC-FSD-HW controller version.
+> Change in V3: 
 > 
-> Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
-> Signed-off-by: Tamseel Shams <m.shams@samsung.com>
+> Use FIELD_GET for checking register range. Reorder the chip info and 
+> dt-bindings alphabetical. Add of_id_table. Modify the logic of loading
+> sensor chip info. If the device was found in the table but the device 
+> tree binding is different, the driver will carry on with the detected
+> chip with a warning. If no matching device was found, the driver load
+> the binding chip.
 
-Hi,
-
-One suggestion inline, otherwise LGTM. Plenty of time to tidy this up as
-this won't make the upcoming merge window - I'll be queuing it up for 5.20
-
+All looks good to me. Unfortunately we've missed the 5.19 merge window
+now as it will probably open shortly.  As such we have lots of time so
+I'll leave this on list for a little longer for others to take a look at.
 Thanks,
 
 Jonathan
 
-> ---
-> - Changes since v1
-> * Addressed Jonathan's comment by using already provided isr handle
 > 
->  drivers/iio/adc/exynos_adc.c | 55 ++++++++++++++++++++++++++++++++++++
->  1 file changed, 55 insertions(+)
 > 
-> diff --git a/drivers/iio/adc/exynos_adc.c b/drivers/iio/adc/exynos_adc.c
-> index cff1ba57fb16..183ae591327a 100644
-> --- a/drivers/iio/adc/exynos_adc.c
-> +++ b/drivers/iio/adc/exynos_adc.c
-> @@ -55,6 +55,11 @@
->  #define ADC_V2_INT_ST(x)	((x) + 0x14)
->  #define ADC_V2_VER(x)		((x) + 0x20)
->  
-> +/* ADC_FSD_HW register definitions */
-> +#define ADC_FSD_DAT(x)			((x) + 0x08)
-
-I mention this below, but these different register sets
-should be in the struct exynos_adc_data to avoid the need
-for an if "compatible" == check on each use of them.
-
-
-> +#define ADC_FSD_DAT_SUM(x)		((x) + 0x0C)
-> +#define ADC_FSD_DBG_DATA(x)		((x) + 0x1C)
-> +
->  /* Bit definitions for ADC_V1 */
->  #define ADC_V1_CON_RES		(1u << 16)
->  #define ADC_V1_CON_PRSCEN	(1u << 14)
-> @@ -92,6 +97,7 @@
->  
->  /* Bit definitions for ADC_V2 */
->  #define ADC_V2_CON1_SOFT_RESET	(1u << 2)
-> +#define ADC_V2_CON1_SOFT_NON_RESET	(1u << 1)
->  
->  #define ADC_V2_CON2_OSEL	(1u << 10)
->  #define ADC_V2_CON2_ESEL	(1u << 9)
-> @@ -100,6 +106,7 @@
->  #define ADC_V2_CON2_ACH_SEL(x)	(((x) & 0xF) << 0)
->  #define ADC_V2_CON2_ACH_MASK	0xF
->  
-> +#define MAX_ADC_FSD_CHANNELS		16
->  #define MAX_ADC_V2_CHANNELS		10
->  #define MAX_ADC_V1_CHANNELS		8
->  #define MAX_EXYNOS3250_ADC_CHANNELS	2
-> @@ -484,6 +491,43 @@ static const struct exynos_adc_data exynos7_adc_data = {
->  	.start_conv	= exynos_adc_v2_start_conv,
->  };
->  
-> +static void exynos_adc_fsd_init_hw(struct exynos_adc *info)
-> +{
-> +	u32 con2;
-> +
-> +	writel(ADC_V2_CON1_SOFT_RESET, ADC_V2_CON1(info->regs));
-> +
-> +	writel(ADC_V2_CON1_SOFT_NON_RESET, ADC_V2_CON1(info->regs));
-> +
-> +	con2 = ADC_V2_CON2_C_TIME(6);
-> +	writel(con2, ADC_V2_CON2(info->regs));
-> +
-> +	/* Enable interrupts */
-> +	writel(1, ADC_V2_INT_EN(info->regs));
-> +}
-> +
-> +static void exynos_adc_fsd_exit_hw(struct exynos_adc *info)
-> +{
-> +	u32 con2;
-> +
-> +	con2 = readl(ADC_V2_CON2(info->regs));
-> +	con2 &= ~ADC_V2_CON2_C_TIME(7);
-> +	writel(con2, ADC_V2_CON2(info->regs));
-> +
-> +	/* Disable interrupts */
-> +	writel(0, ADC_V2_INT_EN(info->regs));
-> +}
-> +
-> +static const struct exynos_adc_data fsd_hw_adc_data = {
-> +	.num_channels	= MAX_ADC_FSD_CHANNELS,
-> +	.mask		= ADC_DATX_MASK, /* 12 bit ADC resolution */
-> +
-> +	.init_hw	= exynos_adc_fsd_init_hw,
-> +	.exit_hw	= exynos_adc_fsd_exit_hw,
-> +	.clear_irq	= exynos_adc_v2_clear_irq,
-> +	.start_conv	= exynos_adc_v2_start_conv,
-> +};
-> +
->  static const struct of_device_id exynos_adc_match[] = {
->  	{
->  		.compatible = "samsung,s3c2410-adc",
-> @@ -518,6 +562,9 @@ static const struct of_device_id exynos_adc_match[] = {
->  	}, {
->  		.compatible = "samsung,exynos7-adc",
->  		.data = &exynos7_adc_data,
-> +	}, {
-> +		.compatible = "samsung,exynos-adc-fsd-hw",
-> +		.data = &fsd_hw_adc_data,
->  	},
->  	{},
->  };
-> @@ -626,6 +673,8 @@ static irqreturn_t exynos_adc_isr(int irq, void *dev_id)
->  		info->ts_x = readl(ADC_V1_DATX(info->regs));
->  		info->ts_y = readl(ADC_V1_DATY(info->regs));
->  		writel(ADC_TSC_WAIT4INT | ADC_S3C2443_TSC_UD_SEN, ADC_V1_TSC(info->regs));
-> +	} else if (of_device_is_compatible(info->dev->of_node, "samsung,exynos-adc-fsd-hw")) {
-
-Rather than a fairly expensive look up into a device tree node, why not add
-the information to the struct exynos_adc_adc in some fashion?  Maybe as an offset
-for the register block?
-
- 
-> +		info->value = readl(ADC_FSD_DAT(info->regs)) & mask;
->  	} else {
->  		info->value = readl(ADC_V1_DATX(info->regs)) & mask;
->  	}
-> @@ -719,6 +768,12 @@ static const struct iio_chan_spec exynos_adc_iio_channels[] = {
->  	ADC_CHANNEL(7, "adc7"),
->  	ADC_CHANNEL(8, "adc8"),
->  	ADC_CHANNEL(9, "adc9"),
-> +	ADC_CHANNEL(10, "adc10"),
-> +	ADC_CHANNEL(11, "adc11"),
-> +	ADC_CHANNEL(12, "adc12"),
-> +	ADC_CHANNEL(13, "adc13"),
-> +	ADC_CHANNEL(14, "adc14"),
-> +	ADC_CHANNEL(15, "adc15"),
->  };
->  
->  static int exynos_adc_remove_devices(struct device *dev, void *c)
+> LI Qingwu (6):
+>   iio: accel: bmi088: Modified the scale calculate
+>   iio: accel: bmi088: Make it possible to config scales
+>   iio: accel: bmi088: modified the device name
+>   iio: accel: bmi088: Add support for bmi085 accel
+>   iio: accel: bmi088: Add support for bmi090l accel
+>   dt-bindings: iio: accel: Add bmi085 and bmi090l bindings
+> 
+>  .../bindings/iio/accel/bosch,bmi088.yaml      |  2 +
+>  drivers/iio/accel/bmi088-accel-core.c         | 96 +++++++++++++++----
+>  drivers/iio/accel/bmi088-accel-spi.c          | 17 +++-
+>  drivers/iio/accel/bmi088-accel.h              |  9 +-
+>  4 files changed, 100 insertions(+), 24 deletions(-)
+> 
 
