@@ -2,174 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4148953023D
-	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 11:54:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B0845301CB
+	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 10:14:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243557AbiEVJyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 May 2022 05:54:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45530 "EHLO
+        id S240100AbiEVIOJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 May 2022 04:14:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243816AbiEVJym (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 05:54:42 -0400
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01B733B55B
-        for <devicetree@vger.kernel.org>; Sun, 22 May 2022 02:54:36 -0700 (PDT)
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20220522095435epoutp047bd6dcbeafe955389734cb42b1836a71~xZLbuKJu72338223382epoutp04W
-        for <devicetree@vger.kernel.org>; Sun, 22 May 2022 09:54:35 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20220522095435epoutp047bd6dcbeafe955389734cb42b1836a71~xZLbuKJu72338223382epoutp04W
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1653213275;
-        bh=6EZLFpcIcXAcnbtuz8KzWE4q/yNrSXTZ39BdCObJjg4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=jmf7X5Ro39Scm3ucrRrGxUhfbY3lhXtnP5LcRx0q9EQH8bNRjCq7WufZMGQ7GJ1IQ
-         ILRCPcMyQDduBxC/sQhpVAjz0pYj+DwEXARaww0Y1LPgwSP11N0ABPIfolun45WB4I
-         nMHEfRGWlZ5BjO/whVYWY4JcNkcOHX6gy80EV/Sg=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas5p4.samsung.com (KnoxPortal) with ESMTP id
-        20220522095433epcas5p4368005cc2e7f431fa9f3c42eeeda64e4~xZLaspYbb2175721757epcas5p4S;
-        Sun, 22 May 2022 09:54:33 +0000 (GMT)
-Received: from epsmges5p3new.samsung.com (unknown [182.195.38.176]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4L5bQs6JTtz4x9Pt; Sun, 22 May
-        2022 09:54:29 +0000 (GMT)
-Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
-        epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        E7.EF.09762.5580A826; Sun, 22 May 2022 18:54:29 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-        20220520145804epcas5p2925e66d30b18378fc62c92999ec269f7~w2B184iYh0456204562epcas5p29;
-        Fri, 20 May 2022 14:58:04 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20220520145804epsmtrp138c753df21232041dc3c99f929bd3ee3~w2B17_O4k2887028870epsmtrp1x;
-        Fri, 20 May 2022 14:58:04 +0000 (GMT)
-X-AuditID: b6c32a4b-1fdff70000002622-40-628a08557b85
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        67.E2.11276.C7CA7826; Fri, 20 May 2022 23:58:04 +0900 (KST)
-Received: from Jaguar.sa.corp.samsungelectronics.net (unknown
-        [107.108.73.139]) by epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20220520145802epsmtip1f086d24ad2527b24530cf258e000919e~w2Bz7o-MV1683316833epsmtip1A;
-        Fri, 20 May 2022 14:58:02 +0000 (GMT)
-From:   Tamseel Shams <m.shams@samsung.com>
-To:     jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
-        krzk+dt@kernel.org
-Cc:     geert@linux-m68k.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, alim.akhtar@samsung.com,
-        paul@crapouillou.net, linux-fsd@tesla.com,
-        Tamseel Shams <m.shams@samsung.com>
-Subject: [PATCH v2 3/3] arm64: dts: fsd: Add ADC device tree node
-Date:   Fri, 20 May 2022 20:28:20 +0530
-Message-Id: <20220520145820.67667-4-m.shams@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220520145820.67667-1-m.shams@samsung.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupjk+LIzCtJLcpLzFFi42LZdlhTQzeUoyvJ4OgTI4sH87axWcw/co7V
-        4tmtvUwWD5pWMVm8nHWPzWLJ5PmsFpseX2O1ePgq3GLekXcsFpd3zWGzmHF+H5PF3dbF7Bb9
-        iy+xWLTuPcLuwOex+lI7m8emVZ1sHocOdzB6bF5S77HkzSFWj74tqxg9/jXNZff4vEkugCMq
-        2yYjNTEltUghNS85PyUzL91WyTs43jne1MzAUNfQ0sJcSSEvMTfVVsnFJ0DXLTMH6GwlhbLE
-        nFKgUEBicbGSvp1NUX5pSapCRn5xia1SakFKToFJgV5xYm5xaV66Xl5qiZWhgYGRKVBhQnbG
-        x/kfmQpecFfMuJ/bwHibs4uRk0NCwETiYfNxpi5GLg4hgd2MEuubXrNDOJ8YJb5OOsAG4Xxj
-        lNixdikrTMvc79OhEnsZJX41drOAJIQEWpgk3n6U6GLk4GAT0JQ4fp4bxBQR8Jfo/OsCUs4s
-        sJxJ4vS6aWwg5cICjhKXV8wEm8kioCqxoekCM4jNK2Ah0fxrJyPELnmJ1RsOgMU5BSwlvv5s
-        YgQZJCHQyyHx/e58ZogiF4mmOedYIGxhiVfHt7BD2FISL/vboOx0ibkPe5kg7AKJZbu+Q8Xt
-        JQ5cmcMCcigz0M3rd+lDhGUlpp5aB1bOLMAn0fv7CVQrr8SOeTC2osT/3f1QY8Ql3q2YAg0f
-        D4mOKeeg4dPDKPH5126WCYxysxBWLGBkXMUomVpQnJueWmxaYJyXWg6Ps+T83E2M4ISp5b2D
-        8dGDD3qHGJk4GA8xSnAwK4nwbk/sSBLiTUmsrEotyo8vKs1JLT7EaAoMwInMUqLJ+cCUnVcS
-        b2hiaWBiZmZmYmlsZqgkzivwvzFJSCA9sSQ1OzW1ILUIpo+Jg1OqgWl57roFm/7/Wrpvbvsh
-        pWjzPq4nXZfyixpPnGJ8s9Ju1U7FB2+27r2h/3wOW4lLr3dc/j7PGXGuif3f3kosZJH2PHaL
-        tS0l5LvhJwctjS2ru1Z8rnjrv7RmZYHRG/fco5IxGlIvnlgIGCvtTtwhIN9vm3J9rs/6WRsF
-        z5hskclPMpHU/6N3YipnkcTWmJVT7/uJpnxNTlz9Z6EsC+ebqPuVN/sKu9JTTmp/M+TKcL3r
-        wnFwxcvoqOent/pKrr3JG5lYXB/vdmXD7fM7fp2s5qhbn9hczta82GTG70e/1+ta9ZunnE9W
-        XT4vc/aW4JW1K6MtrBbvCfMy7ufoup7qcOugg3ltc0eOAQ93j6RSixJLcUaioRZzUXEiAIhz
-        Gm4hBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrKLMWRmVeSWpSXmKPExsWy7bCSnG7NmvYkg4MfBCwezNvGZjH/yDlW
-        i2e39jJZPGhaxWTxctY9Noslk+ezWmx6fI3V4uGrcIt5R96xWFzeNYfNYsb5fUwWd1sXs1v0
-        L77EYtG69wi7A5/H6kvtbB6bVnWyeRw63MHosXlJvceSN4dYPfq2rGL0+Nc0l93j8ya5AI4o
-        LpuU1JzMstQifbsEroyP8z8yFbzgrphxP7eB8TZnFyMnh4SAicTc79PZQGwhgd2MEpeaZCDi
-        4hLTfu1nhLCFJVb+e87excgFVNPEJNFyu525i5GDg01AU+L4eW6QGhGBYInFhw4zg9QwC2xk
-        kvi/u4sVJCEs4ChxecVMMJtFQFViQ9MFZhCbV8BCovnXTqgF8hKrNxwAi3MKWEp8/dnECHGQ
-        hcSKxm/MExj5FjAyrGKUTC0ozk3PLTYsMMxLLdcrTswtLs1L10vOz93ECA5pLc0djNtXfdA7
-        xMjEwXiIUYKDWUmElzG3JUmINyWxsiq1KD++qDQntfgQozQHi5I474Wuk/FCAumJJanZqakF
-        qUUwWSYOTqkGpsADZgIz/5/+tKliblbhfc7KwCArY4bEpY7vu+MvrnC9JKBUd6sqeXXFJpGT
-        6qUnrZZr3Dlhs5hTPTYzyOHQhvCYULYzPH/OHBQ2nCiw66Qiw7ztc3YkPniXfCH2R3ux9RSd
-        15avMj+0WrpMbTvhszLw01wdlt3uy+/Ni3437+PbBYJ3NikEtC9Nun01fTEPg19Endav6x1b
-        dlqzL4q4KJslWfh/Qud+wSUvtZ/sYvysWquaY+F6lLlbOkDr//XlEllVP4XvBn19UxhsblGX
-        e6mylTf6idy7CV2fDBi9hIWCJ+4ufShZ6Ff9woRtq+jU/2qMplmTFlr+zLMUjbz40DPg/JUo
-        KZeUvU/e1eefUWIpzkg01GIuKk4EAP29IITYAgAA
-X-CMS-MailID: 20220520145804epcas5p2925e66d30b18378fc62c92999ec269f7
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220520145804epcas5p2925e66d30b18378fc62c92999ec269f7
-References: <20220520145820.67667-1-m.shams@samsung.com>
-        <CGME20220520145804epcas5p2925e66d30b18378fc62c92999ec269f7@epcas5p2.samsung.com>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S234864AbiEVIOH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 04:14:07 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7AD527FCE
+        for <devicetree@vger.kernel.org>; Sun, 22 May 2022 01:14:05 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id bq30so20854950lfb.3
+        for <devicetree@vger.kernel.org>; Sun, 22 May 2022 01:14:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Et+7DOTTQH1JqVpXKSqRPgxVrV1oOzeHvnh2fubRt1A=;
+        b=k7F8Fidfxb4gmUhFCDJVU0LHLtsVdZsyeamFnEqSX+/iUh9u/66KhhnLYfQkaVuM9B
+         aUT5IqNMGTJ/4Ewd0Vfqc7W05jnqVT27dax0L/Fxh8ZF271LiGTSyOptKN9UK6LQKBJW
+         fYp1vuJzrnTbDPpeEPeHa+2Y7apTU2k6uF/gfoAAdrPLdsWeMpG8LuGhciDFaJ3I8q7F
+         kO5mbYKP3eZiE9xwPOo5ueHOk5GyBlewRHeGDqbU+U/LOfkis6wsyF4hEN66W+QTHnUa
+         yaevaJ1FRUuoWRSfbL1pN5GPlq6ZPB295vwB7buySPS8wf2XTY4ucyU9kQwWTlYixKQ6
+         xoHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Et+7DOTTQH1JqVpXKSqRPgxVrV1oOzeHvnh2fubRt1A=;
+        b=2xxcpsnlM8r6LTPlmwL5y+Pb8Qsy7tTqSgSsoXmUyutV1qzEwQwUoEKTB2M80ANlZ6
+         ccIiSU7OWebd8GjcPfy1umcVm6KDFa9AEv7TUKzBtR1VetdzDhbFjzPYd+X63dhqjfOz
+         RGhIDVAOMrymSY+mSSbSMdbT1pC2JK+FgFLZUizff4uAXc/B7jDP4UKqfNNbQSHTmx7l
+         U/4RWrOmIDaELWbtfdQ2LNXuEB61Ylzg7HL+jtJR+H61QZcf7o7rDExvSa284lP8EB7O
+         EKYXzoWPNIYIljKx9oHmLs0T/fJScGJzc5pJQudpr/KvOPlByhF+NctIMmyG9ZaGfLUk
+         LfIg==
+X-Gm-Message-State: AOAM530zZr1NwjU6z0EpOsKOn1DJfI396SXDbXi3X8OxOxxK2YlV+ula
+        yECsppX2Lc6IjJNDlBz9KzUPCw==
+X-Google-Smtp-Source: ABdhPJw7AMfd8auxqz+NezYyJzs8m23LxjPNettf01T47OdWMoQSUrsWnhIz5oOq++dKWhKByY0tGg==
+X-Received: by 2002:a19:640d:0:b0:472:75e:7373 with SMTP id y13-20020a19640d000000b00472075e7373mr12289744lfb.46.1653207244246;
+        Sun, 22 May 2022 01:14:04 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id m25-20020ac24299000000b0047255d2117csm1362254lfh.171.2022.05.22.01.14.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 22 May 2022 01:14:03 -0700 (PDT)
+Message-ID: <996ac5f2-3cf3-e67a-144b-4fdac9bbc20d@linaro.org>
+Date:   Sun, 22 May 2022 10:14:02 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v2 1/2] dt-bindings: net: broadcom-bluetooth: Add property
+ for autobaud mode
+Content-Language: en-US
+To:     Hakan Jansson <hakan.jansson@infineon.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        linux-bluetooth@vger.kernel.org
+References: <cover.1653057480.git.hakan.jansson@infineon.com>
+ <cb20a6f49c91521d54c847ee4dc14451b0ee91dd.1653057480.git.hakan.jansson@infineon.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <cb20a6f49c91521d54c847ee4dc14451b0ee91dd.1653057480.git.hakan.jansson@infineon.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alim Akhtar <alim.akhtar@samsung.com>
+On 20/05/2022 17:07, Hakan Jansson wrote:
+> Some devices (e.g. CYW5557x) require autobaud mode to enable FW loading.
 
-This patch adds ADC device tree node and enables the same
-on fsd platform.
+Which devices support this? You probably need allOf:if:then.
 
-Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
-Signed-off-by: Tamseel Shams <m.shams@samsung.com>
----
-- Changes since v1
-* Addressed Krzysztof's comment for corrections in dt files
+> Autobaud mode can also be required on some boards where the controller
+> device is using a non-standard baud rate when first powered on.
+> 
+> This patch adds a property, "brcm,uses-autobaud-mode", to enable autobaud
+> mode selection.
 
- arch/arm64/boot/dts/tesla/fsd-evb.dts |  4 ++++
- arch/arm64/boot/dts/tesla/fsd.dtsi    | 11 +++++++++++
- 2 files changed, 15 insertions(+)
+Don't use "This patch":
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
 
-diff --git a/arch/arm64/boot/dts/tesla/fsd-evb.dts b/arch/arm64/boot/dts/tesla/fsd-evb.dts
-index 5af560c1b5e6..63f26a85053a 100644
---- a/arch/arm64/boot/dts/tesla/fsd-evb.dts
-+++ b/arch/arm64/boot/dts/tesla/fsd-evb.dts
-@@ -34,6 +34,10 @@
- 	clock-frequency = <24000000>;
- };
- 
-+&adc {
-+	status = "okay";
-+};
-+
- &serial_0 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/tesla/fsd.dtsi b/arch/arm64/boot/dts/tesla/fsd.dtsi
-index 9a652abcbcac..f63624f2f414 100644
---- a/arch/arm64/boot/dts/tesla/fsd.dtsi
-+++ b/arch/arm64/boot/dts/tesla/fsd.dtsi
-@@ -748,6 +748,17 @@
- 			clocks = <&fin_pll>, <&clock_imem IMEM_MCT_PCLK>;
- 			clock-names = "fin_pll", "mct";
- 		};
-+
-+		adc: adc@141a0000 {
-+			compatible = "samsung,exynos-adc-fsd-hw";
-+			reg = <0x0 0x141a0000 0x0 0x100>;
-+			interrupts = <GIC_SPI 173 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clock_peric PERIC_PCLK_ADCIF>;
-+			clock-names = "adc";
-+			#io-channel-cells = <1>;
-+			io-channel-ranges;
-+			status = "disabled";
-+		};
- 	};
- };
- 
--- 
-2.17.1
+> 
+> Signed-off-by: Hakan Jansson <hakan.jansson@infineon.com>
+> ---
+> V1 -> V2: Modify property description
+> 
+>  .../devicetree/bindings/net/broadcom-bluetooth.yaml      | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
+> index 5aac094fd217..a29f059c21cc 100644
+> --- a/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
+> +++ b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
+> @@ -92,6 +92,15 @@ properties:
+>         pcm-sync-mode: slave, master
+>         pcm-clock-mode: slave, master
+>  
+> +  brcm,uses-autobaud-mode:
 
+Based on description, I understand the host triggers using autobaud.
+However here you word it as "uses", so it is independent of host, it
+looks like property of a device. The commit msg describes it even
+different - "require autobaud".
+
+This leads to second issue - it looks like there is some hardware
+property (requiring to use autobaud) which should be described by
+bindings. But instead you describe desired operational feature.
+
+> +    type: boolean
+> +    description: >
+
+No need for '>'.
+
+> +      Setting this property will make the host (driver) assert the controller
+> +      chip's BT_UART_CTS_N prior to asserting BT_REG_ON. This will make the
+> +      controller start up in autobaud mode. The controller will then detect the
+> +      baud rate of the first incoming (HCI Reset) command from the host and
+> +      subsequently use that baud rate.
+> +
+>    interrupts:
+>      items:
+>        - description: Handle to the line HOST_WAKE used to wake
+
+
+Best regards,
+Krzysztof
