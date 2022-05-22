@@ -2,230 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B7EE5304F3
-	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 19:34:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E02E530503
+	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 19:43:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349743AbiEVReR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 May 2022 13:34:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52948 "EHLO
+        id S237813AbiEVRnl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 May 2022 13:43:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238490AbiEVReQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 13:34:16 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A3AA2DD4F;
-        Sun, 22 May 2022 10:34:15 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (unknown [86.8.200.222])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 483AE45F;
-        Sun, 22 May 2022 19:34:11 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1653240852;
-        bh=7MpQyQtc2TVtgxChF+m8fe8kdSmQrvHBDgzor7SU3ZM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=b76UBaw56+3iTwuNMjpS/go4euO+izOU1tmFouq9rysNYQ9Zltpuf0/gJGefURTnc
-         bHx15JyuHsc5CFaBVT7a2qcha1xufhVJFmqnpbxxNOqAAc1veniaDJql3+Czh/HqFs
-         g+ky4DRRl1oPH+McPckf21DmeFO4P8OLNpMZdwI8=
-Date:   Sun, 22 May 2022 20:34:04 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     Sakari Ailus <sakari.ailus@iki.fi>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-staging@lists.linux.dev,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 3/4] staging: media: Add support for the Allwinner A31
- ISP
-Message-ID: <Yop0DGOo1ky2dfnv@pendragon.ideasonboard.com>
-References: <20220415153708.637804-1-paul.kocialkowski@bootlin.com>
- <20220415153708.637804-4-paul.kocialkowski@bootlin.com>
- <YmqFQSRBsqs4ghNQ@valkosipuli.retiisi.eu>
- <Ymqk89e+mn/1kLLx@aptenodytes>
- <YmsCJicyzf+Bz98y@valkosipuli.retiisi.eu>
- <YoesXywA4yzBDSwU@aptenodytes>
+        with ESMTP id S229764AbiEVRnk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 13:43:40 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1781D3968A;
+        Sun, 22 May 2022 10:43:39 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id bq30so22058091lfb.3;
+        Sun, 22 May 2022 10:43:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=cXqTZ3cjvi9NXPyDIk9+YjtNXvi3tP5AIRH9jXxAD+A=;
+        b=lcaqLRZy2DJWntEBdPcJ4L0Svs1tqhjpMDr6iQYrqxNM41QqdlbiXh2JShtsDEr9Fl
+         xxXuiJ2dx+V6yz3ViMK0a24NiZfcY98/PFfuwDIUTYfp3HmHjxtAhiIgP8jZeBcKmGA9
+         7Noe3d3Q3aGL3FI4+LRcMieas072dxPqT+lgkADdZYJmVSTQOP7EoB/mLwGA1zzcH/zu
+         ht7ZDhpTr4+c9RDspPqdelfxNGEjPeArMeYZDN1IJMhcGzfo3RGBmgJVzuQTk5wlsBuS
+         EqfpLtQOlDLCK1fZRDk3+Z/PWYZKfchqdziCxCd6qjQowF0oaeCeff9lGbQJsUl44nLK
+         6/tQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=cXqTZ3cjvi9NXPyDIk9+YjtNXvi3tP5AIRH9jXxAD+A=;
+        b=n6gkdjiqsTIkoY3xV8Q/t3CTYb6cDHCNPDdmfOEX6/OPAu5AfWB6g5+0XVS0H6FI93
+         1sAND21G0aaEdslhXgdWyj+4sC/lVGe0nlGHBMHLpZf8yQ9uehiqYZRv3SOCTaQY+Wum
+         xuzlx01QjPy2rT6M3qA2A5bdyMDCbqp9IeImx7b4nZ92JB9yvAEt4uznF64cP4ZkeibE
+         54TekBNcHWVADFvgg0wxbrD17gm2rh1F+H0ivUsJrOHtkt+XRQgdcSc57ACyCpNHCU69
+         4r6P3AiRN8uBxRlzyzMs0xwL1Z1p8TI3uWj7BuL4Rnk82B9it/eenL8IoQaOM48vL0Jk
+         cvig==
+X-Gm-Message-State: AOAM531UgnTIM1yvWZpb4aa6gAXw568FpP3MeNDZPdpmFOiva2kHMa/W
+        CGHf7DwDOCqloDb1tl49Bzo=
+X-Google-Smtp-Source: ABdhPJxJkcvQEApjpLtEssxzt1CwmQVJRIGNPq4QxWNRUeXwBRWyO7FxB9+JGrjYEtV35dgXBfv7Ew==
+X-Received: by 2002:a05:6512:6cb:b0:478:6420:67f with SMTP id u11-20020a05651206cb00b004786420067fmr4407736lff.77.1653241417274;
+        Sun, 22 May 2022 10:43:37 -0700 (PDT)
+Received: from mobilestation ([95.79.189.214])
+        by smtp.gmail.com with ESMTPSA id p2-20020a2e8042000000b00253c4d434a6sm1284273ljg.127.2022.05.22.10.43.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 May 2022 10:43:36 -0700 (PDT)
+Date:   Sun, 22 May 2022 20:43:34 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 12/23] dt-bindings: ata: ahci: Add platform capability
+ properties
+Message-ID: <20220522174334.cnguiyl7u3nhe7mm@mobilestation>
+References: <20220511231810.4928-1-Sergey.Semin@baikalelectronics.ru>
+ <20220511231810.4928-13-Sergey.Semin@baikalelectronics.ru>
+ <20220517192028.GA1453662-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <YoesXywA4yzBDSwU@aptenodytes>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220517192028.GA1453662-robh@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+On Tue, May 17, 2022 at 02:20:28PM -0500, Rob Herring wrote:
+> On Thu, May 12, 2022 at 02:17:59AM +0300, Serge Semin wrote:
+> > In case if the platform doesn't have BIOS or a comprehensive firmware
+> > installed then the HBA capability flags will be left uninitialized. As a
+> > good alternative we can define a set AHCI DT-node properties to describe
+> > all of HW-init capabilities flags. Luckily there aren't too many of them.
+> > SSS - Staggered Spin-up support and MPS - Mechanical Presence Switch
+> > support determine the corresponding feature availability for whole HBA by
+> > means of the "hba-sss" and "hba-smps" properties.  Each port can have the
+> > "hba-{hpcp,mpsp,cpd,esp,fbscp}" defined indicatating that the port
+> > supports the next functionality: HPCP - HotPlug capable port, MPSP -
+> > Mechanical Presence Switch attached to a port, CPD - Cold Plug detection,
+> > ESP - External SATA Port (eSATA), FBSCP - FIS-based switching capable
+> > port.
+> > 
+> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > 
+> > ---
+> > 
+> > Alternatively we could define them as a bitfield, but having a set of
+> > boolean properties seemed a better idea since in that case we can
+> > implement a simple inter-dependency rules for them, which can't be done
+> > should we take the bitfields path.
+> 
 
-On Fri, May 20, 2022 at 04:57:35PM +0200, Paul Kocialkowski wrote:
-> On Fri 29 Apr 22, 00:07, Sakari Ailus wrote:
-> > On Thu, Apr 28, 2022 at 04:30:11PM +0200, Paul Kocialkowski wrote:
-> > > Hi Sakari,
-> > > 
-> > > On Thu 28 Apr 22, 15:14, Sakari Ailus wrote:
-> > > > Hi Paul,
-> > > > 
-> > > > Thanks for the set.
-> > > > 
-> > > > A few comments below.
-> > > 
-> > > Thanks a lot for your review!
-> > 
-> > You're welcome!
-> > 
-> > ...
-> > 
-> > > > I understand this is an online ISP. How do you schedule the video buffer
-> > > > queues? Say, what happens if it's time to set up buffers for a frame and
-> > > > there's a buffer queued in the parameter queue but not in the image data
-> > > > queue? Or the other way around?
-> > > 
-> > > The ISP works in a quite atypical way, with a DMA buffer that is used to
-> > > hold upcoming parameters (including buffer addresses) and a bit in a "direct"
-> > > register to schedule the update of the parameters at next vsync.
-> > > 
-> > > The update (setting the bit) is triggered whenever new parameters are
-> > > submitted via the params video device or whenever there's a capture buffer
-> > > available in the capture video device.
-> > > 
-> > > So you don't particularly need to have one parameter buffer matching a capture
-> > > buffer, the two can be updated independently. Of course, a capture buffer will
-> > > only be returned after another buffer becomes active.
-> > 
-> > This also means it's not possible to associate a capture buffer to a
-> > parameter buffer by other means than timing --- which is unreliable. The
-> > request API would allow that but it's not free of issues either.
+> I would just provide a CAP register override and be done with it.
 > 
-> Yes the request API seems like a good fit for this. Note that the returned
-> sequence number in dequeued buffers for the capture and meta video devices
-> should match though, so userspace still has a way to know which captured buffer
-> used parameters from which meta params buffer.
-> 
-> > Alternatively, I think in this case you could always require the capture
-> > buffer and grab a parameter buffer when it's available. As ISPs are
-> > generally requiring device specific control software, this shouldn't be a
-> > problem really.
-> 
-> I think this is pretty much what happens already.
-> 
-> > I wonder what Laurent thinks.
+> The boolean fields only let you set a capability, but not unset one. 
+> They would need to be tristate.
 
-If parameters buffers are optional, I think the request API should be
-used, otherwise we won't be able to ensure per-frame control. The
-alternative is to make the parameter buffer mandatory for every frame,
-even if no parameters have changed. Or maybe that's the case already ?
+Ok. I'll convert the boolean properties to the generic (hba-cap) and
+per-port (hba-port-cap) properties with CAP-override fields.
 
-> > > I hope this answers your concern!
-> > > 
-> > > [...]
-> > > 
-> > > > > +static int sun6i_isp_tables_setup(struct sun6i_isp_device *isp_dev)
-> > > > > +{
-> > > > > +	struct sun6i_isp_tables *tables = &isp_dev->tables;
-> > > > > +	int ret;
-> > > > > +
-> > > > > +	/* Sizes are hardcoded for now but actually depend on the platform. */
-> > > > 
-> > > > Would it be cleaner to have them defined in a platform-specific way, e.g.
-> > > > in a struct you obtain using device_get_match_data()?
-> > > 
-> > > Absolutely! I didn't do it at this stage since only one platform is supported
-> > > but we could just as well introduce a variant structure already for the table
-> > > sizes.
-> > 
-> > I think that would be nice already, especially if you know these are going
-> > to be different. Otherwise macros could be an option.
-> 
-> Understood!
-> 
-> > ...
-> > 
-> > > > > +	ret = v4l2_ctrl_handler_init(&v4l2->ctrl_handler, 0);
-> > > > 
-> > > > I suppose you intend to add controls later on?
-> > > 
-> > > I might be wrong but I thought this was necessary to expose sensor controls
-> > > registered by subdevs that end up attached to this v4l2 device.
-> > > 
-> > > I doubt the drivers itself will expose controls otherwise.
-> > 
-> > Now that this is an MC-enabled driver, the subdev controls should be
-> > accessed through the subdev nodes only. Adding them to the video device's
-> > control handler is quite hackish and not guaranteed to even work (as e.g.
-> > multiple subdevs can have the same control).
-> 
-> Yes I was wondering what would happen in that case. I'll drop the ctrls
-> handling in the next iteration then.
-> 
-> Paul
-> 
-> > ...
-> > 
-> > > > > +{
-> > > > > +	struct sun6i_isp_device *isp_dev = video_drvdata(file);
-> > > > > +	struct video_device *video_dev = &isp_dev->capture.video_dev;
-> > > > > +	struct mutex *lock = &isp_dev->capture.lock;
-> > > > > +	int ret;
-> > > > > +
-> > > > > +	if (mutex_lock_interruptible(lock))
-> > > > > +		return -ERESTARTSYS;
-> > > > > +
-> > > > > +	ret = v4l2_pipeline_pm_get(&video_dev->entity);
-> > > > 
-> > > > Do you need this?
-> > > > 
-> > > > Drivers should primarily depend on runtime PM, this is only needed for
-> > > > compatibility reasons. Instead I'd like to see sensor drivers being moved
-> > > > to runtime PM.
-> > > 
-> > > Yes it's still needed to support sensor drivers that don't use rpm yet.
-> > 
-> > To that I suggested adding runtime PM support for the affected sensors.
-> > This doesn't seem to get done otherwise. E.g. ipu3-cio2 driver does not
-> > call s_power() on sensor subdevs.
-> > 
-> > ...
-> > 
-> > > > > +	ret = video_register_device(video_dev, VFL_TYPE_VIDEO, -1);
-> > > > > +	if (ret) {
-> > > > > +		v4l2_err(v4l2_dev, "failed to register video device: %d\n",
-> > > > > +			 ret);
-> > > > > +		goto error_media_entity;
-> > > > > +	}
-> > > > > +
-> > > > > +	v4l2_info(v4l2_dev, "device %s registered as %s\n", video_dev->name,
-> > > > > +		  video_device_node_name(video_dev));
-> > > > 
-> > > > This isn't really driver specific. I'd drop it.
-> > > 
-> > > I agree but I see that many drivers are doing it and the information can
-> > > actually be quite useful at times.
-> > 
-> > You can get that information using media-ctl -e 'entity name'.
-> > 
-> > I guess this could be also added to video_register_device() on debug level.
-> > 
-> > > > > +struct sun6i_isp_params_config_bdnf {
-> > > > > +	__u8	in_dis_min; // 8
-> > > > > +	__u8	in_dis_max; // 10
-> > > > 
-> > > > Are these default values or something else? Better documentation was in the
-> > > > TODO.txt file already.
-> > > 
-> > > Yes that's the default register values, but these comments are and overlook on
-> > > my side and should be removed.
-> > 
-> > I'm fine leaving these here. Just wondering. Up to you.
+-Sergey
 
--- 
-Regards,
-
-Laurent Pinchart
+> 
+> > ---
+> >  .../devicetree/bindings/ata/ahci-common.yaml  | 66 +++++++++++++++++++
+> >  .../bindings/ata/ahci-platform.yaml           | 11 ++++
+> >  2 files changed, 77 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/ata/ahci-common.yaml b/Documentation/devicetree/bindings/ata/ahci-common.yaml
+> > index a7d1a8353de3..a29edfbb25db 100644
+> > --- a/Documentation/devicetree/bindings/ata/ahci-common.yaml
+> > +++ b/Documentation/devicetree/bindings/ata/ahci-common.yaml
+> > @@ -75,6 +75,19 @@ properties:
+> >    phy-names:
+> >      const: sata-phy
+> >  
+> > +  hba-sss:
+> > +    type: boolean
+> > +    description:
+> > +      Staggered Spin-up Support. Indicates whether the HBA supports the
+> > +      staggered spin-up on its ports, for use in balancing power spikes.
+> > +
+> > +  hba-smps:
+> > +    type: boolean
+> > +    description:
+> > +      Mechanical Presence Switch Support. Indicates whether the HBA supports
+> > +      mechanical presence switches on its ports for use in hot plug
+> > +      operations.
+> > +
+> >    ports-implemented:
+> >      $ref: '/schemas/types.yaml#/definitions/uint32'
+> >      description:
+> > @@ -97,6 +110,40 @@ patternProperties:
+> >          minimum: 0
+> >          maximum: 31
+> >  
+> > +      hba-hpcp:
+> > +        type: boolean
+> > +        description:
+> > +          Hot Plug Capable Port. Indicates that this port’s signal and power
+> > +          connectors are externally accessible via a joint signal and power
+> > +          connector for blindmate device hot plug. It is mutually exclusive
+> > +          with the ESP feature.
+> > +
+> > +      hba-mpsp:
+> > +        type: boolean
+> > +        description:
+> > +          Mechanical Presence Switch Attached to Port. Indicates whether
+> > +          the platform an mechanical presence switch attached to this
+> > +          port.
+> > +
+> > +      hba-cpd:
+> > +        type: boolean
+> > +        description:
+> > +          Cold Presence Detection. Indicates whether the platform supports
+> > +          cold presence detection on this port.
+> > +
+> > +      hba-esp:
+> > +        type: boolean
+> > +        description:
+> > +          External SATA Port. Indicates that this port’s signal connector
+> > +          is externally accessible on a signal only connector (e.g. eSATA
+> > +          connector).
+> > +
+> > +      hba-fbscp:
+> > +        type: boolean
+> > +        description:
+> > +          FIS-based Switching Capable Port. Indicates whether this port
+> > +          supports Port Multiplier FIS-based switching.
+> > +
+> >        phys:
+> >          description: Individual AHCI SATA port PHY
+> >          maxItems: 1
+> > @@ -111,6 +158,25 @@ patternProperties:
+> >      required:
+> >        - reg
+> >  
+> > +    # eSATA can't be enabled together with the HotPlug capability
+> > +    oneOf:
+> > +      - required:
+> > +          - hba-hpcp
+> > +      - required:
+> > +          - hba-esp
+> > +      - not:
+> > +          anyOf:
+> > +            - required:
+> > +                - hba-hpcp
+> > +            - required:
+> > +                - hba-esp
+> > +
+> > +    # HotPlug capability must be enabled together with Cold Plug
+> > +    # Detection and Mechanical Presence Switching.
+> > +    dependencies:
+> > +      hba-cpd: ["hba-hpcp"]
+> > +      hba-mpsp: ["hba-hpcp"]
+> > +
+> >      additionalProperties: true
+> >  
+> >  required:
+> > diff --git a/Documentation/devicetree/bindings/ata/ahci-platform.yaml b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
+> > index 76075d3c8987..6cad7e86f3bb 100644
+> > --- a/Documentation/devicetree/bindings/ata/ahci-platform.yaml
+> > +++ b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
+> > @@ -117,14 +117,25 @@ examples:
+> >          #address-cells = <1>;
+> >          #size-cells = <0>;
+> >  
+> > +        hba-smps;
+> > +
+> >          sata0: sata-port@0 {
+> >              reg = <0>;
+> > +
+> > +            hba-fbscp;
+> > +            hba-esp;
+> > +
+> >              phys = <&sata_phy 0>;
+> >              target-supply = <&reg_sata0>;
+> >          };
+> >  
+> >          sata1: sata-port@1 {
+> >              reg = <1>;
+> > +
+> > +            hba-fbscp;
+> > +            hba-hpcp;
+> > +            hba-mpsp;
+> > +
+> >              phys = <&sata_phy 1>;
+> >              target-supply = <&reg_sata1>;
+> >          };
+> > -- 
+> > 2.35.1
+> > 
+> > 
