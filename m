@@ -2,155 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9121F5304CE
-	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 19:02:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC50D5304E2
+	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 19:10:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349253AbiEVRC5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 May 2022 13:02:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60386 "EHLO
+        id S1344173AbiEVRKh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 May 2022 13:10:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235505AbiEVRC4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 13:02:56 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 752233A19B;
-        Sun, 22 May 2022 10:02:48 -0700 (PDT)
-X-UUID: ed3bc3c69b0a480887db130046441547-20220523
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:1ddde99e-4e9c-490d-938c-8c5c580471b1,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:2a19b09,CLOUDID:cbc11be3-edbf-4bd4-8a34-dfc5f7bb086d,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:0,BEC:nil
-X-UUID: ed3bc3c69b0a480887db130046441547-20220523
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
-        (envelope-from <miles.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1835310507; Mon, 23 May 2022 01:02:41 +0800
-Received: from MTKMBS07N2.mediatek.inc (172.21.101.141) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Mon, 23 May 2022 01:02:40 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 23 May 2022 01:02:39 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.3 via Frontend Transport; Mon, 23 May 2022 01:02:39 +0800
-From:   Miles Chen <miles.chen@mediatek.com>
-To:     <angelogioacchino.delregno@collabora.com>
-CC:     <bgolaszewski@baylibre.com>, <chun-jie.chen@mediatek.com>,
-        <devicetree@vger.kernel.org>, <ikjn@chromium.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <matthias.bgg@gmail.com>,
-        <miles.chen@mediatek.com>, <mturquette@baylibre.com>,
-        <p.zabel@pengutronix.de>, <robh+dt@kernel.org>,
-        <sam.shih@mediatek.com>, <sboyd@kernel.org>,
-        <tinghan.shen@mediatek.com>, <weiyi.lu@mediatek.com>,
-        <wenst@chromium.org>, <y.oudjana@protonmail.com>,
-        <yassine.oudjana@gmail.com>,
-        <~postmarketos/upstreaming@lists.sr.ht>
-Subject: Re: [PATCH v2 4/4] clk: mediatek: Add drivers for MediaTek MT6735 main clock drivers
-Date:   Mon, 23 May 2022 01:02:39 +0800
-Message-ID: <20220522170239.18519-1-miles.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <c7b98ee4-cd4f-d7b7-726d-1acd4fafd50a@collabora.com>
-References: <c7b98ee4-cd4f-d7b7-726d-1acd4fafd50a@collabora.com>
+        with ESMTP id S231946AbiEVRKg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 13:10:36 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F1213A73F
+        for <devicetree@vger.kernel.org>; Sun, 22 May 2022 10:10:34 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id u27so17134343wru.8
+        for <devicetree@vger.kernel.org>; Sun, 22 May 2022 10:10:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=UC29fQRATexTT7tJzzddZ4rno6ylvbw/uHwKcWDyCEE=;
+        b=p28KdpWyxvmBBqgGUVYoQNauk6dvzewKdhb69i+ywXo4dc1zSCobjzRGwYRYRvEE5F
+         3xWJfjot8sqqWL+Vcpy5xztbdIwzPaFW4fZaf5xeJbAuwT9L+7T6gezExk/ZZoJ0AFbZ
+         MOX9/QfszSYEmaHiHv8pmYLtmRpXkS4Gv5XAKW9epALT9W9+HRln4LQJj01iKrQjHi4Y
+         5DMxzyQg6FWsn5eJEmlYLMBgKkK7Nxg6TXxfmAdzzRG78xHbCF3s2xQ0BNtcBwxcwkdY
+         qsvW/SIL53EsXLXUQnCOkwQM8Tx0NQlRShLvYJVmF+3jixq5F59jRZpJoThLNrJVKhV0
+         zBjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=UC29fQRATexTT7tJzzddZ4rno6ylvbw/uHwKcWDyCEE=;
+        b=nFd4vCq4LjQ8kgksjurrVPPdDd+/4uKtPXNPbf53PzgbczkQYy3mqvb5CKuB72vigv
+         D38jjzo2N89YtoLlfkdzE5wKoSGAaagwBXSNJekw/3xCv68pLeECF3P37scECYdK/JB7
+         zAjCrvSV17OsfdOd1k0jaa0tJg0hS7XSADct9jSCLP1ext7PxYHmOXZZFgN8CRvb8N3g
+         NOtabUxr91aYfUoACimFZwM+24kddBAOvwLjB1pfk8piFKYshzvq/pqxdtsqvMDQ/EH4
+         SRLw8gQE2WzVIwUsUNP2evWQYvaP9gbY+q7flKT2o7+N0gnkC5zYt9zP9X9sr0Qqkw3I
+         enDw==
+X-Gm-Message-State: AOAM532Mo9XDeghayRmJuC6phWudDyM0Qn32tICJD4RUpCiok4SgxMij
+        Gzq9HbzCfLWIezIMM64UetvAlKGTsSTcX2Hv
+X-Google-Smtp-Source: ABdhPJxp94yPqyr6oChze4h7ciJv1e+SH3bxLIjuxj6SYnkGaQCd+h8o9Bj9MHbehTvZ+6UT1rH9cw==
+X-Received: by 2002:adf:dbce:0:b0:20c:f507:8ef9 with SMTP id e14-20020adfdbce000000b0020cf5078ef9mr15958406wrj.29.1653239433052;
+        Sun, 22 May 2022 10:10:33 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id k41-20020a05600c1ca900b0039747cf8354sm2144778wms.39.2022.05.22.10.10.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 22 May 2022 10:10:32 -0700 (PDT)
+Message-ID: <19c92f9d-fa1c-fbe8-50ef-324da3e00695@linaro.org>
+Date:   Sun, 22 May 2022 18:10:31 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
-        SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH 1/1] arm64: dts: qcom: qrb5165-rb5: Enable the IMX577 on
+ cam1
+Content-Language: en-US
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
+        bjorn.andersson@linaro.org
+Cc:     mchehab@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, mmitkov@quicinc.com, jgrahsl@snap.com,
+        hfink@snap.com
+References: <20220518133004.342775-1-bryan.odonoghue@linaro.org>
+ <20220518133004.342775-2-bryan.odonoghue@linaro.org>
+ <33abcc93-13f1-d6f5-36a3-6ab796f124f9@linaro.org>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <33abcc93-13f1-d6f5-36a3-6ab796f124f9@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Angelo, Yassine,
+On 18/05/2022 20:09, Vladimir Zapolskiy wrote:
+> 
+> I run on you branch on top of linux-next, but switch build options from 
+> modules to built-in
+> 
+>     CONFIG_I2C_QCOM_CCI=y
+>     CONFIG_VIDEO_QCOM_CAMSS=y
+> 
+> I didn't get the sensor initialized and hence there is no /dev/media0 node:
+> 
+> [    0.620205] i2c-qcom-cci ac50000.cci: Found 19200000 cci clk rate 
+> while 37500000 was expected
+> [    0.620551] i2c 20-001a: Fixing up cyclic dependency with ac6a000.camss
+> [    0.620754] imx412 20-001a: Looking up dovdd-supply from device tree
+> [    0.620797] imx412 20-001a: Looking up avdd-supply from device tree
+> [    0.620860] imx412 20-001a: Looking up dvdd-supply from device tree
+> [    0.620876] duplicated lane 1 in clock-lanes, using defaults
+> [    0.622789] imx412 20-001a: failed to find sensor: -5
+> [    0.622880] imx412: probe of 20-001a failed with error -5
+> 
+> I believe the problem could be related to CCI, please remind me, are 
+> there I2C bus pull-ups?
 
->>>
->>> I'd actually argue that macros make it less readable. While reading
->>> other drivers I had a lot of trouble figuring out which argument
->>> is which field of the struct, and had to constantly go back to the
->>> macro definitions and count arguments to find it. Having it this
->>> way, each value is labeled clearly with the field it's in. I think
->>> the tradeoff between line count and readability here is worth it.
->> 
->> It is easier for multiple developers to work together if we have a common style.
->> 
->> How do you think?
->> 
->
->In my opinion, Yassine is definitely right about this one: unrolling these macros
->will make the code more readable, even though this has the side effect of making
->it bigger in the source code form (obviously, when compiled, it's going to be the
->exact same size).
->
->I wouldn't mind getting this clock driver in without the usage of macros, as much
->as I wouldn't mind converting all of the existing drivers to open-code everything
->instead of using macros that you have to find in various headers... this practice
->was done in multiple drivers (clock or elsewhere), so I don't think that it would
->actually be a bad idea to do it here on MediaTek too, even though I'm not aware of
->any *rule* that may want us to do that: if you check across drivers/clk/*, there's
->a big split in how drivers are made, where some are using macros (davinci, renesas,
->samsung, sprd, etc), and some are not (bcm, sunxi-ng, qcom, tegra, versatile, etc),
->so it's really "do it as you wish"...
->
+Hmm.
 
-Thanks for the explanation and guide. I think we can do that for all MediaTek
-clock driver in the future, not having two styles in MediaTek clock driver now.
+Just trying to replicate this on linux-next
 
->
->... *but:*
->
->Apart from that, I also don't think that it is a good idea to convert the other
->MTK clock drivers right now, as this would make the upstreaming of MediaTek clock
->drivers harder for some of the community in this moment... especially when we look
->at how many MTK SoCs are out there in the wild, and how many we have upstream:
->something like 10% of them, or less.
+https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=linux-next-22-05-22%2bimx577-rb5
 
-and thanks for considering this too.
+root@linaro-gnome:~# zcat /proc/config.gz | grep -e CONFIG_I2C_QCOM_CCI 
+-e CONFIG_VIDEO_QCOM_CAMSS
+CONFIG_I2C_QCOM_CCI=y
+CONFIG_VIDEO_QCOM_CAMSS=y
 
->
->I see the huge benefit of having a bigger community around MediaTek platforms as
->that's beneficial to get a way better support and solidity for all SoCs as they
->are sharing the same drivers and same framework, and expanding the support to more
->of them will only make it better with highly valuable community contributions.
->
->
->That said, Yassine, you should've understood that you have my full support on
->unrolling these macros - but it's not time to do that yet: you definitely know
->that MediaTek clock drivers are going through a big cleanup phase which is, at
->this point, unavoidable... if we are able to get the aid of scripts (cocci and
->others), that will make our life easier in this cleanup, and will also make us
->able to perform the entire cleanup with less effort and in less overall time.
->
->With that, I'm sad but I have to support Miles' decision on this one, and I also
->have to ask you to use macros in this driver.
->
->
->I am sure - and it is my wish - to see MediaTek clock drivers open-coding stuff
->instead of using macros, but that's something for the future - which will happen
->after the more important cleanups.
->
->After all, it will be just about running "gcc -E xxxx.c" and copy-pasting the
->unrolled macros to the clock drivers, which will be pretty fast and straightforward.
->
->
->Sorry for the wall of text, by the way.
+root@linaro-gnome:~# uname -a
+Linux linaro-gnome 5.18.0-rc7-next-20220518-00006-g3beef4d1d353-dirty 
+#40 SMP PREEMPT Sun May 22 17:53:29 IST 2022 aarch64 GNU/Linux
 
-Sounds good and I want to say thank you again, I learned a lot from your post
-and patches you submitted.
+root@linaro-gnome:~# cam -l
+Available cameras:
+1: 'imx412' (/base/soc@0/cci@ac50000/i2c-bus@0/camera@1a)
 
-and I also want to say thank you to Yassine for the patch.
+are you compiling everything in ?
 
-thanks,
-Miles
->
->Cheers,
->Angelo
->
+---
+bod
