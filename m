@@ -2,129 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4821753046E
-	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 18:28:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84F955304BF
+	for <lists+devicetree@lfdr.de>; Sun, 22 May 2022 18:46:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348750AbiEVQ2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 May 2022 12:28:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37638 "EHLO
+        id S242879AbiEVQqF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 May 2022 12:46:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348017AbiEVQ22 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 12:28:28 -0400
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D4BB14087;
-        Sun, 22 May 2022 09:28:27 -0700 (PDT)
-Received: from g550jk.arnhem.chello.nl (a246182.upc-a.chello.nl [62.163.246.182])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 188C6CCD4E;
-        Sun, 22 May 2022 16:28:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1653236900; bh=ZlU+QqaeeUpgg6ydwdW9tHYSbBg1JjP1qdMb8cM8JSE=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=hP3NdJf6PTBiI/nZloaHgFq06IVg0B4nvzxBOzwW1puRDXe7bq3v9VvUKjhtE3ZAn
-         tWEeap2QOohVKt/BdbTAWCpfv23yPfccYqkUeOapjMPbABlc8d9MSEMG/Ru5uF5Zad
-         P7JbsE9Np1pU1STE6hVEcHDsT0xZKNJGpJRN/uZ8=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        matti.lehtimaki@gmail.com, Luca Weiss <luca@z3ntu.xyz>
-Subject: [RFC PATCH 14/14] [DNM] media: camss: hacks for MSM8974
-Date:   Sun, 22 May 2022 18:28:02 +0200
-Message-Id: <20220522162802.208275-15-luca@z3ntu.xyz>
-X-Mailer: git-send-email 2.36.0
-In-Reply-To: <20220522162802.208275-1-luca@z3ntu.xyz>
-References: <20220522162802.208275-1-luca@z3ntu.xyz>
+        with ESMTP id S235505AbiEVQqA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 12:46:00 -0400
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98342C3F;
+        Sun, 22 May 2022 09:45:56 -0700 (PDT)
+Received: by mail-ot1-x32d.google.com with SMTP id g13-20020a9d6b0d000000b0060b13026e0dso627337otp.8;
+        Sun, 22 May 2022 09:45:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=A3MW2E4hPy/aQENWXOJ2JWZ+xI8KBMasjdB1XQlQXhk=;
+        b=fKUUM7yY2M3lYi3DacllA37dpumIb+5hsm4dGf862dt912aTwJh8O+JEDrr8XE4/Ao
+         /O+xEx8SUbw2Z+V0qTdJmLn/1+t41l7ol0S7LAxefEQMBwC1XJhqQOtfCtIB73JgXOR3
+         OvjT1vbQbn93hcd2cAQdnZVGk8QLX4BxAh2XE/2kB3vu5Gun01Sq2aL6hCWl19gFDqS+
+         lXWmOGGP8f4NAEyrFbYAffWuz9qh/9lkvljoE2Tk7ZAPBhSnGZIGz36rtY1x1R/nCoRr
+         KMy1HxbOp1tN4zmy2vN1V9LnSn1Tz1sizrk7jMXsGuDrFlZBLzLp+P6BMJ3xlz9i09Q4
+         zZ8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
+         :subject:content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=A3MW2E4hPy/aQENWXOJ2JWZ+xI8KBMasjdB1XQlQXhk=;
+        b=PsV6Dl6fWHWkcpYhMc6q8FdySKWwq3RV9w6/8IK0SIX6uI7v/20RQf6atR3OjfVy3k
+         xBnlmcmUr/aFHAEbYDAYHBY61G8VQ2ErPneOP1QsK6UQUbpQlraOHApvgy1tP6Zy8a4S
+         4CizkQODhv6OSnvOF8sKvSr0C0zG8Nj3Yt7eOesyLPOhqkpHXeW8xT4RlEp/Af9LpDGa
+         2KmxknrNRAaeu8bqYj9e0FiEMJufvn/VuB0bnCO0UkHQgmb6AXfcpvcWW7cPVL/vW5iV
+         SypR7jHGfCZs+4Xr5kL1/sv86EoDXXshPI5w85RbS+xvGVRPlhsomkwQC8P4c6ubJM+R
+         tVzw==
+X-Gm-Message-State: AOAM533MBEXeGN/fuLr9rOi77m2dBqixXL2YOjsifoIKRBslam3JP245
+        JU6DvbDkmtPiOVg0Hu3UiPc=
+X-Google-Smtp-Source: ABdhPJwF7V+fwRvOwZOSp3lwb6vsxQ0qSZ6aw4g7kZDyU1NwNpYq17KF/k0k72MH8MxbQ3y6RscDVw==
+X-Received: by 2002:a05:6830:124e:b0:60a:fff3:c05b with SMTP id s14-20020a056830124e00b0060afff3c05bmr2616441otp.264.1653237955725;
+        Sun, 22 May 2022 09:45:55 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id m12-20020a4a390c000000b0035eb4e5a6cbsm3423043ooa.33.2022.05.22.09.45.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 22 May 2022 09:45:54 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <6d691a7d-7601-a077-fc8e-67e0c4917615@roeck-us.net>
+Date:   Sun, 22 May 2022 09:45:50 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
-        PDS_OTHER_BAD_TLD,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v1 06/19] watchdog: npcm_wdt: Add NPCM845 watchdog support
+Content-Language: en-US
+To:     Tomer Maimon <tmaimon77@gmail.com>, avifishman70@gmail.com,
+        tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
+        yuenn@google.com, benjaminfair@google.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, p.zabel@pengutronix.de,
+        gregkh@linuxfoundation.org, daniel.lezcano@linaro.org,
+        tglx@linutronix.de, wim@linux-watchdog.org,
+        catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
+        olof@lixom.net, jirislaby@kernel.org, shawnguo@kernel.org,
+        bjorn.andersson@linaro.org, geert+renesas@glider.be,
+        marcel.ziswiler@toradex.com, vkoul@kernel.org,
+        biju.das.jz@bp.renesas.com, nobuhiro1.iwamatsu@toshiba.co.jp,
+        robert.hancock@calian.com, j.neuschaefer@gmx.net, lkundrak@v3.sk
+Cc:     soc@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20220522155046.260146-1-tmaimon77@gmail.com>
+ <20220522155046.260146-7-tmaimon77@gmail.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <20220522155046.260146-7-tmaimon77@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove IOMMU_DMA dependency from VIDEO_QCOM_CAMSS: We don't have IOMMU
-on msm8974 yet.
+On 5/22/22 08:50, Tomer Maimon wrote:
+> Add Nuvoton BMC NPCM845 watchdog support.
+> The NPCM845 uses the same watchdog as the NPCM750.
+> 
+> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> ---
+>   drivers/watchdog/npcm_wdt.c | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/watchdog/npcm_wdt.c b/drivers/watchdog/npcm_wdt.c
+> index 28a24caa2627..0b91a3fbec09 100644
+> --- a/drivers/watchdog/npcm_wdt.c
+> +++ b/drivers/watchdog/npcm_wdt.c
+> @@ -231,6 +231,7 @@ static int npcm_wdt_probe(struct platform_device *pdev)
+>   static const struct of_device_id npcm_wdt_match[] = {
+>   	{.compatible = "nuvoton,wpcm450-wdt"},
+>   	{.compatible = "nuvoton,npcm750-wdt"},
+> +	{.compatible = "nuvoton,npcm845-wdt"},
+>   	{},
+>   };
+>   MODULE_DEVICE_TABLE(of, npcm_wdt_match);
 
-DMA_SG -> DMA_CONTIG: Taking a photo without this works but is offset
-and doing weird stuff.
-
-Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
----
- drivers/media/platform/qcom/camss/Kconfig       |  4 ++--
- drivers/media/platform/qcom/camss/camss-video.c | 14 +++++++-------
- 2 files changed, 9 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/media/platform/qcom/camss/Kconfig b/drivers/media/platform/qcom/camss/Kconfig
-index 4eda48cb1adf..e382fd77ecc3 100644
---- a/drivers/media/platform/qcom/camss/Kconfig
-+++ b/drivers/media/platform/qcom/camss/Kconfig
-@@ -2,8 +2,8 @@ config VIDEO_QCOM_CAMSS
- 	tristate "Qualcomm V4L2 Camera Subsystem driver"
- 	depends on V4L_PLATFORM_DRIVERS
- 	depends on VIDEO_DEV
--	depends on (ARCH_QCOM && IOMMU_DMA) || COMPILE_TEST
-+	depends on ARCH_QCOM || COMPILE_TEST
- 	select MEDIA_CONTROLLER
- 	select VIDEO_V4L2_SUBDEV_API
--	select VIDEOBUF2_DMA_SG
-+	select VIDEOBUF2_DMA_CONTIG
- 	select V4L2_FWNODE
-diff --git a/drivers/media/platform/qcom/camss/camss-video.c b/drivers/media/platform/qcom/camss/camss-video.c
-index ca955808fd6d..885a809cc941 100644
---- a/drivers/media/platform/qcom/camss/camss-video.c
-+++ b/drivers/media/platform/qcom/camss/camss-video.c
-@@ -13,7 +13,7 @@
- #include <media/v4l2-device.h>
- #include <media/v4l2-ioctl.h>
- #include <media/v4l2-mc.h>
--#include <media/videobuf2-dma-sg.h>
-+#include <media/videobuf2-dma-contig.h>
- 
- #include "camss-video.h"
- #include "camss.h"
-@@ -410,15 +410,15 @@ static int video_buf_init(struct vb2_buffer *vb)
- 						   vb);
- 	const struct v4l2_pix_format_mplane *format =
- 						&video->active_fmt.fmt.pix_mp;
--	struct sg_table *sgt;
-+	//struct sg_table *sgt;
- 	unsigned int i;
- 
- 	for (i = 0; i < format->num_planes; i++) {
--		sgt = vb2_dma_sg_plane_desc(vb, i);
--		if (!sgt)
--			return -EFAULT;
-+		//sgt = vb2_dma_sg_plane_desc(vb, i);
-+		//if (!sgt)
-+		//	return -EFAULT;
- 
--		buffer->addr[i] = sg_dma_address(sgt->sgl);
-+		buffer->addr[i] = vb2_dma_contig_plane_dma_addr(vb, i); //sg_dma_address(sgt->sgl);
- 	}
- 
- 	if (format->pixelformat == V4L2_PIX_FMT_NV12 ||
-@@ -966,7 +966,7 @@ int msm_video_register(struct camss_video *video, struct v4l2_device *v4l2_dev,
- 
- 	q = &video->vb2_q;
- 	q->drv_priv = video;
--	q->mem_ops = &vb2_dma_sg_memops;
-+	q->mem_ops = &vb2_dma_contig_memops;
- 	q->ops = &msm_video_vb2_q_ops;
- 	q->type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
- 	q->io_modes = VB2_DMABUF | VB2_MMAP | VB2_READ;
--- 
-2.36.0
-
+Acked-by: Guenter Roeck <linux@roeck-us.net>
