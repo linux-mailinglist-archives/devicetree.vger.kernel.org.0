@@ -2,148 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4ECC75310E7
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:20:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 115F6531025
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:19:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235318AbiEWMCm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 08:02:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43446 "EHLO
+        id S235372AbiEWMMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 08:12:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235322AbiEWMCl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 08:02:41 -0400
-Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [5.144.164.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DFDE2AD7;
-        Mon, 23 May 2022 05:02:37 -0700 (PDT)
-Received: from [10.1.250.9] (riviera.nat.ds.pw.edu.pl [194.29.137.1])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id B0E1B3F600;
-        Mon, 23 May 2022 14:02:34 +0200 (CEST)
-Message-ID: <02ab0276-b078-fe66-8596-fcec4378722b@somainline.org>
-Date:   Mon, 23 May 2022 14:02:33 +0200
+        with ESMTP id S235360AbiEWMMU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 08:12:20 -0400
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FDF329C9F
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 05:12:16 -0700 (PDT)
+Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20220523121213epoutp045f9122744d77e118988aed9bc479a81b~xus5EjMyX0148601486epoutp04a
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 12:12:13 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20220523121213epoutp045f9122744d77e118988aed9bc479a81b~xus5EjMyX0148601486epoutp04a
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1653307933;
+        bh=a3X5upy0G/6XSx5f8C2kRlnOVx5CnyfMHG/0jKuJr1U=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=dR24zZMKzVznYT36S3nHtkIEMs4USogUpndEDaTwTI1fTp5/zff0P8LOEIMQjZIyA
+         1L4FoeeGw1Kp3khdhg03ecpkDmLKbmoJx2CfvrQOSo3rldH7YPriFHJRYjXhZNyiGu
+         tVx+WOBxS2juidyU5spILpdYPdUJ67rVOcGm0AOk=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+        epcas2p2.samsung.com (KnoxPortal) with ESMTP id
+        20220523121212epcas2p247f374e1873402793a1543058cf063f7~xus4x7vSI0928709287epcas2p2v;
+        Mon, 23 May 2022 12:12:12 +0000 (GMT)
+Received: from epsmges2p4.samsung.com (unknown [182.195.36.99]) by
+        epsnrtp4.localdomain (Postfix) with ESMTP id 4L6GRG4bqYz4x9Pw; Mon, 23 May
+        2022 12:12:10 +0000 (GMT)
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+        epsmges2p4.samsung.com (Symantec Messaging Gateway) with SMTP id
+        32.16.09694.A1A7B826; Mon, 23 May 2022 21:12:10 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
+        20220523121210epcas2p11d0b4f27edd5a403b2fd7d3833d577ff~xus2RPLfj2307023070epcas2p1T;
+        Mon, 23 May 2022 12:12:10 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20220523121210epsmtrp28a471db664af6a22242722f604ac2f53~xus2Qj3iS2440224402epsmtrp2s;
+        Mon, 23 May 2022 12:12:10 +0000 (GMT)
+X-AuditID: b6c32a48-495ff700000025de-96-628b7a1a6cb4
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        51.6A.08924.A1A7B826; Mon, 23 May 2022 21:12:10 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.51]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20220523121210epsmtip2f555080bae029e34d150c666b2782635~xus2E29u41575615756epsmtip2X;
+        Mon, 23 May 2022 12:12:10 +0000 (GMT)
+From:   Chanho Park <chanho61.park@samsung.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Chanho Park <chanho61.park@samsung.com>
+Subject: [PATCH v3 0/2] syscon reboot/reboot_mode support for exynosautov9
+Date:   Mon, 23 May 2022 21:12:42 +0900
+Message-Id: <20220523121244.67341-1-chanho61.park@samsung.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.9.1
-Subject: Re: Removal of qcom,board-id and qcom,msm-id
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     agross@kernel.org, arnd@arndb.de, bjorn.andersson@linaro.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, olof@lixom.net, robh@kernel.org,
-        sboyd@kernel.org
-References: <a3c932d1-a102-ce18-deea-18cbbd05ecab@linaro.org>
- <20220522195138.35943-1-konrad.dybcio@somainline.org>
- <53d5999b-88ee-24db-fd08-ff9406e2b7b7@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <53d5999b-88ee-24db-fd08-ff9406e2b7b7@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrPKsWRmVeSWpSXmKPExsWy7bCmqa5UVXeSQUenosWDedvYLC7v17a4
+        /uU5q8X8I+dYLfpePGS2mHF+H5NF694j7BbP+/YxOXB4bFrVyeZx59oeNo++LasYPT5vkgtg
+        icq2yUhNTEktUkjNS85PycxLt1XyDo53jjc1MzDUNbS0MFdSyEvMTbVVcvEJ0HXLzAG6Qkmh
+        LDGnFCgUkFhcrKRvZ1OUX1qSqpCRX1xiq5RakJJTYF6gV5yYW1yal66Xl1piZWhgYGQKVJiQ
+        nbFy70u2giNsFXdeLWdqYDzI2sXIySEhYCLRMWELUxcjF4eQwA5Gie+HHjFCOJ8YJQ7+e8kO
+        4XxmlLgxZzE7TMvGB5ehErsYJfYueMcK4XxklFgxex0zSBWbgK7EluevGEFsEYF4ifNvGllA
+        ipgFXjJKnLj0AMjh4BAW8JL49V4apIZFQFXiz/1/TCA2r4CdxNaFnxkhtslLbJjfywwRF5Q4
+        OfMJC4jNDBRv3jqbGWSmhMAldom7LROhPnKRuDh7LjOELSzx6vgWqLOlJD6/28sGYRdLLJ31
+        iQmiuYFR4vK2X1AJY4lZz9oZQY5jFtCUWL9LH8SUEFCWOHILai+fRMfhv+wQYV6JjjYhiEZ1
+        iQPbp7NA2LIS3XM+Q13jITHr0QGwC4QEYiUWfulgncAoPwvJN7OQfDMLYe8CRuZVjGKpBcW5
+        6anFRgUm8FhNzs/dxAhOiVoeOxhnv/2gd4iRiYPxEKMEB7OSCO/2xI4kId6UxMqq1KL8+KLS
+        nNTiQ4ymwPCdyCwlmpwPTMp5JfGGJpYGJmZmhuZGpgbmSuK8XikbEoUE0hNLUrNTUwtSi2D6
+        mDg4pRqY5J2vTBKR7Yh8IjStZt8s1dppfNpTD9/t8Q71btxgc+hpWW9yi9ku392MqVfUe7L/
+        3kra/nC5arrxnZI7681dHS3f3387f5nLnpola/aE1sac7psja3dw0Q/B1o87zBXLk5QOHbh0
+        5qVVgWtvdqQ11zNhqYWpzVFW4jxr7HY7qt0/cLLbqfUWl/EOmQu36jMnXBS9XJ8/b8PfdXM3
+        em0qfSXbzbqsqOjr22oDtr3yPDzbbFu+qF5TDO5WZfglGiae8ugg52KnNW8D0/gtNW2URRaH
+        ymtlbQ/9vmFtqfrFWvOVvFnlXp5mL1NbOPaoLv7S4nW7nenDS5uXRnMfmt2TXLnN9IFswYW9
+        33vDJB8osRRnJBpqMRcVJwIA4G7FfhIEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrHLMWRmVeSWpSXmKPExsWy7bCSvK5UVXeSwZWvvBYP5m1js7i8X9vi
+        +pfnrBbzj5xjteh78ZDZYsb5fUwWrXuPsFs879vH5MDhsWlVJ5vHnWt72Dz6tqxi9Pi8SS6A
+        JYrLJiU1J7MstUjfLoErY+Xel2wFR9gq7rxaztTAeJC1i5GTQ0LARGLjg8vsXYxcHEICOxgl
+        Liz4xQKRkJV49m4HO4QtLHG/5QgrRNF7Ron/mx8zgSTYBHQltjx/xQhiiwjESyw994MFpIhZ
+        4C2jxL8HM4ESHBzCAl4Sv95Lg9SwCKhK/Ln/D6yXV8BOYuvCz4wQC+QlNszvZYaIC0qcnPkE
+        7AhmoHjz1tnMExj5ZiFJzUKSWsDItIpRMrWgODc9t9iwwCgvtVyvODG3uDQvXS85P3cTIzhI
+        tbR2MO5Z9UHvECMTB+MhRgkOZiUR3u2JHUlCvCmJlVWpRfnxRaU5qcWHGKU5WJTEeS90nYwX
+        EkhPLEnNTk0tSC2CyTJxcEo1MHXn9ZxcrTrz3NW5JtpOVoLOOyUWCq+c/K76Ts/+0yxOn1l+
+        F2/V4nsa7lmzfUeK9Qa9wzsuTFD9GrHK8hTn+/XFfx/WXlJ2D626q2b/afmvzJCfX+cvDg5z
+        EPOdGfiwZ9/rf28q0kzY5wsJaUeJ5jho1fJulHsky3xo+TudtmUZjv/MPpif+81UXHl9Waj5
+        8a7Xl/Pl+3N5rj29KHj08tXs1Vv9pGdte+MW/pezr/15wBrmF8kPTvyJWvZ0WaHO+cXKc2oW
+        Ge1m2nLf4lnwzrVfG3iEgzYGK8S+7VZ3CdeYXMOhGaQptpN9gav9mtQ5N1uEPyQseuK06EMN
+        r77kw241W6GMO5//3xSyyDnFz6nEUpyRaKjFXFScCAC5AimnwQIAAA==
+X-CMS-MailID: 20220523121210epcas2p11d0b4f27edd5a403b2fd7d3833d577ff
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220523121210epcas2p11d0b4f27edd5a403b2fd7d3833d577ff
+References: <CGME20220523121210epcas2p11d0b4f27edd5a403b2fd7d3833d577ff@epcas2p1.samsung.com>
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This adds to support syscon reboot and reboot_mode for Exynos Auto v9 SoC.
 
-On 23/05/2022 09:21, Krzysztof Kozlowski wrote:
-> On 22/05/2022 21:51, Konrad Dybcio wrote:
->> Hi,
->>
->> removing these properties will not bring almost any benefit (other than making
->> some checks happy any saving some <200 LoC) and will make the lives of almost
->> all people doing independent development for linux-on-msm harder. There are
->> almost unironically like 3 people outside Linaro and QUIC who have
->> non-vendor-fused development boards AND the sources to rebuild the
->> bootloader on their own. Making it harder to boot is only going to
->> discourage people from developing on these devices, which is already not
->> that pleasant, especially with newer platforms where you have to fight with
->> the oh-so-bright ideas of Android boot chain..
->>
->> This only concerns devices released before sm8350, as the new ones will not
->> even boot with these properties present (or at least SONY Sagami, but I
->> doubt it's an isolated case), so other than completing support for older
->> devices, it won't be an issue going forward, anyway. But there are give
->> or take 50 locked down devices in mainline right now, and many more waiting
->> to be upstreamed in various downstream close-to-mainline trees that should
->> not be disregarded just because Qualcomm is far from the best at making
->> their BSP software stack clean.
-> I actually wonder why do you need these properties for community work on
-> such boards? You ship kernel with one concatenated DTB and the
-> bootloader does not need the board-id/msm-id fields, doesn't it?
+Changes from v2:
+- Change license of samsung,boot-mode.h to (GPL-2.0-only OR BSD-2-Clause)
+- Add copyright of samsung,boot-mode.h
+- Change ifdef guard __DT_BINDINGS_SAMSUNG_BOOT_MODE_H
+- Remove brackets of the definitions
 
-If that were the case, I would have never complained about this! It's 
-the bootloader itself that needs it, you can see it in a "Best match 
-[blah blah] 258/0x1000/...." log line, where it walks through the 
-appended (or otherwise compiled into the boot.img) DTBs and looks for 
-matches for the burnt-in msm-, board- and (on newer-older platforms) 
-pmic-id. If it cannot find these, it refuses to boot with an Android 
-Verified Boot red state and you get a not-so-nice "Your device has been 
-unlocked and the boot image is not working" or something like this on 
-your screen.
+Changes from v1:
+- Add samsung,boot-mode.h header which include reboot mode definitions
+- syscon-reboot-mode -> reboot-mode
 
+Chanho Park (2):
+  dt-bindings: soc: add samsung,boot-mode definitions
+  arm64: dts: exynoautov9: add syscon reboot/reboot_mode support
 
->
-> Not mentioning that in the past bootloader was actually not using these
-> properties at all, because it was the dtbTool who was parsing them.
+ arch/arm64/boot/dts/exynos/exynosautov9.dtsi | 17 +++++++++++++++++
+ include/dt-bindings/soc/samsung,boot-mode.h  | 18 ++++++++++++++++++
+ 2 files changed, 35 insertions(+)
+ create mode 100644 include/dt-bindings/soc/samsung,boot-mode.h
 
-Not sure when that was the case, maybe with very old arm32 bootloaders 
-in the times before I did development on Qualcomm devices.
+-- 
+2.36.1
 
-
->   So
-> in any case either your device works fine without these properties or
-> you have to use dtbTool, right?
-
-To the best of my idea, wrong :( Unless the vendor modified the LK/XBL 
-code on their own, it looks for a "best match" (but if it's not a 
-precise match, it won't even bother trying to boot, just fyi..), meaning 
-it tries to go through a list of SoC ID and revision pairs (msm-id), 
-board IDs (board-id) and PMIC id+rev pairs (pmic-id) and if no match is 
-found, it doesn't even exit the bootloader and says something like "no 
-dtbs found".
-
-
-And hence, they are absolutely necessary one way or another.
-
-
-Konrad
-
->
->> One solution is to chainload another, (n+1)-stage bootloader, but this is
->> not ideal, as:
->>
->> 1) the stock bootloader can boot Linux just fine on most devices (except
->> for single exceptions, where beloved OEMs didn't implement arm64 booting or
->> something)
->>
->> 2) the boot chain on MSM is already 3- or 4- stage and adding to that will
->> only create an unnecessary mess
->>
->> 3) the job of kernel people is not to break userspace. If the
->> device can not even exit bootloader after a kernel upgrade, it's a big
->> failure.
-> The job of kernel people is to follow bindings and since they were
-> introduced 7 years ago, I would say there was plenty of time for that.
->
-> If the dtbTool support for the bindings is there, then there is no
-> breakage, because you had to use dtbTool before so you have to use now.
->
->> If you *really really really* want these either gone or documented, we can
->> for example use them in the SOCID driver, read the values from DTB and
->> compare against what SMEM has to say and for example print a warning when
->> there are inconsistencies or use it as a fallback when it fails for any
->> reason, such as using a newer SoC on an older kernel, without updates
->> for SOCID read (which are sometimes necessary, which was the case for 8450
->> recently, iirc).
->>
->> My stance is to just leave them as is, as moving them anywhere, or removing
->> them at all will cause unnecessary mess and waste time that could have been
->> spent on more glaring issues..
->>
->> Konrad
->
-> Best regards,
-> Krzysztof
