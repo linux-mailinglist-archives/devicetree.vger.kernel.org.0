@@ -2,78 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E077531262
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:22:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B1B6531268
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:22:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238049AbiEWPjt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 11:39:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43128 "EHLO
+        id S238118AbiEWPrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 11:47:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238044AbiEWPjs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 11:39:48 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 286771C922
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 08:39:47 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id h8so17680335ljb.6
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 08:39:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=j7w3vFu2/JjysHkDMsR7t2P3IRWVLaZtVOZBrHf5Z50=;
-        b=UMj/nBuut346RBNVzjPaQHcaii39eb6UdUfzYfUppBqhPapVE2Oq8eaX3g+kg+w1hf
-         ktH3nTD9bWTRrevMgmDuMtru8aQmFRFQWU0DZ46cp/0X/SxahU4Z5+sZtYvLoU0cXade
-         u+cs/by/n52BTv8OFu6HuZTz/7RofPI9iFRd69+W1ZtzIOVz/0iLSHYGvyv96tnApHpw
-         qJPI+kJeOv2FZvZm7dtonX1Go43nhGzWmls0n7sAKhsMPz45plyrLU02hxrxnTg0ANfS
-         /bm07llvuTmeHkmXgBWK87csJ9hxgyDa7GCxTAPqV0ubRCcMFxyMMOs1Kyk8gtcjhL7N
-         2l/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=j7w3vFu2/JjysHkDMsR7t2P3IRWVLaZtVOZBrHf5Z50=;
-        b=xEXe9jZknVn+bFtPuqdLTVyo9y5sNOwsaBbL3MwcBbPJOHswhbxnRkrf1GWVXPwOa5
-         sFaT++MyvlkVJBgUO4/OnZYgkm3E2EWdfBO1gsuAxg59JyZTiG+1JNk/yKTObRyJtT+c
-         oVx0HxKOq8It0cJ/Z7RDwRJ1K3d6uFchyjJ+WAYO5cXX4QrbM9zKhplQxoJ+wMHlXdE9
-         Pv7p3wLn+zZDH9SCPbPRorOJrTAzltrmq2uNbgiVZdWBnZHOqnNYMy539Qw2B2nF04+B
-         D5xa2n5xkomaQGCCfYJhFjwWcQhYP7O8qn7A1INMonC9BG171XJh0Aq4mjNl5eRLCIVt
-         jp3A==
-X-Gm-Message-State: AOAM530V8Bx35hTA/cMjjAQz2MMJfaY6q8QFaboE2XSL02dWEzQIBs0V
-        /eUAdWpT0+EB2jcndGYygM3A+w==
-X-Google-Smtp-Source: ABdhPJzBcwxw3J8gC+HU9XEg2GjIXHOYRVUjF2iN6KgxWFDA3XeMvl6PErRLJA6sI8uYHCW60V72AQ==
-X-Received: by 2002:a2e:8804:0:b0:253:defb:b7a with SMTP id x4-20020a2e8804000000b00253defb0b7amr9143590ljh.470.1653320385331;
-        Mon, 23 May 2022 08:39:45 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id a23-20020a2e8317000000b00253e32aa2c4sm1404539ljh.126.2022.05.23.08.39.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 May 2022 08:39:44 -0700 (PDT)
-Message-ID: <0ab6c10b-48e4-9122-e806-68294e8e3dd5@linaro.org>
-Date:   Mon, 23 May 2022 17:39:43 +0200
+        with ESMTP id S238105AbiEWPrP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 11:47:15 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F12C3153C;
+        Mon, 23 May 2022 08:47:14 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id C14471F409B1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1653320833;
+        bh=Z/KHZc12qDX/inLmL7IrQMICsxClm1H1wZiKgBW9jfM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=kM0euB7OFpPc7UJmj3IbweR+fPqdmbQihUZfPH9mOsVEsAKkQc/wri9NjNBp7RWva
+         vvx0Aw/QUlAHXg8jsJueEGVx6bDWFNau3WnRHV9TgJDndfxtE6AFeEQMifDH96anJb
+         K19HC1XZGVKLj6lJhd5n38CIQoPEURxAowQOMtnO+DjVDmo30ftlAv/0OGLDOAMBUw
+         MpzG6hwM92RDpirHG3hkshg1OW6NZKrQnbHFp1mUm9K+89Oeygc2SfDAwY3E18X6JB
+         1eAdo0uY5PC1FZ/6ZkVAdMPGv8ph7QQAtvNtEh9/geiRTrzw5SVziV3pe3kE8AhHOK
+         v1w3mU1Km1bUw==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     lgirdwood@gmail.com
+Cc:     broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        angelogioacchino.delregno@collabora.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH v3 0/4] MediaTek Helio X10 MT6795 - MT6331/6332 Regulators
+Date:   Mon, 23 May 2022 17:47:05 +0200
+Message-Id: <20220523154709.118663-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 1/3] dt-bindings: leds: Add bindings for the TLC5925
- controller
-Content-Language: en-US
-To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220523084958.2723943-1-jjhiblot@traphandler.com>
- <20220523084958.2723943-2-jjhiblot@traphandler.com>
- <d12a0afc-c040-5615-fc0d-70a5c29bbf0a@linaro.org>
- <0e1e417a-6444-ddb5-5c48-c89bd78c5fe8@traphandler.com>
- <4f766cdb-a33b-2470-5b2e-3945c821ce6c@linaro.org>
- <bcf87cc8-85dc-efd6-1076-91e56ec4286c@traphandler.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <bcf87cc8-85dc-efd6-1076-91e56ec4286c@traphandler.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,96 +52,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/05/2022 17:37, Jean-Jacques Hiblot wrote:
-> 
-> On 23/05/2022 17:30, Krzysztof Kozlowski wrote:
->> On 23/05/2022 17:16, Jean-Jacques Hiblot wrote:
->>> On 23/05/2022 12:14, Krzysztof Kozlowski wrote:
->>>> On 23/05/2022 10:49, Jean-Jacques Hiblot wrote:
->>>>> Add bindings documentation for the TLC5925 LED controller.
->>>>>
->>>>> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
->>>> Thank you for your patch. There is something to discuss/improve.
->>>>
->>>>> ---
->>>>> devicetree@vger.kernel.org
->>>>>    .../bindings/leds/leds-tlc5925.yaml           | 100 ++++++++++++++++++
->>>>>    1 file changed, 100 insertions(+)
->>>>>    create mode 100644 Documentation/devicetree/bindings/leds/leds-tlc5925.yaml
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/leds/leds-tlc5925.yaml b/Documentation/devicetree/bindings/leds/leds-tlc5925.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..156db599d5a1
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/leds/leds-tlc5925.yaml
->>>> Filename: vendor,device
->>>> so "ti,tlc5925-leds.yaml" for example.
->>>>
->>>>
->>>>
->>>>> @@ -0,0 +1,100 @@
->>>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: http://devicetree.org/schemas/leds/leds-tlc5925.yaml#
->>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: LEDs connected to TI TLC5925 controller
->>>>> +
->>>>> +maintainers:
->>>>> +  - Jean-Jacques Hiblot <jjhiblot@traphandler.com>
->>>>> +
->>>>> +description: |
->>>>> +  The TLC5925 is a low-power 16-channel constant-current LED sink driver.
->>>>> +  It is controlled through a SPI interface.
->>>>> +  It is built around a shift register and latches which convert serial
->>>>> +  input data into a parallel output. Several TLC5925 can be chained to
->>>>> +  control more than 16 LEDs with a single chip-select.
->>>>> +  The brightness level cannot be controlled, each LED is either on or off.
->>>>> +
->>>>> +  Each LED is represented as a sub-node of the ti,tlc5925 device.
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    const: ti,tlc5925
->>>>> +
->>>>> +  shift_register_length:
->>>>> +    maxItems: 1
->>>> No...
->>>> 1. Did you test your bindings with dt_binding_check? This fails
->>>> obviously... please, do not send untested bindings.
->>>>
->>>> 2. vendor prefix, no underscores, proper type, maxItems look wrong here
->>>>
->>>>> +    description: |
->>>>> +      The length of the shift register. If several TLC5925 are chained,
->>>>> +      shift_register_length should be set to 16 times the number of TLC5925.
->>>>> +      The value must be a multiple of 8.
->>>>> +
->>>>> +  "#address-cells":
->>>>> +    const: 1
->>>>> +
->>>>> +  "#size-cells":
->>>>> +    const: 0
->>>>> +
->>>>> +  output-enable-b-gpios:
->>>>> +    description: |
->>>>> +      GPIO pins to enable/disable the parallel output. They describe the GPIOs
->>>>> +      connected to the OE/ pin of the TLC5925s.
->>>> maxItems
->>> There is no limitation in the driver itself. The actual number of items
->>> here really depends on the number of chips and how they are wired.
->> So you could daisy chain 4 billion of devices? Because by not using any
->> limit you claim that 4 billion is doable?
-> 
-> You could chain 1000 devices or more and have 16000 leds. It would be a 
-> bit tedious to describe them all in the DTS though.
-> 
-> We can impose a limit but it will be arbitrary. Is this how it is 
-> usually treated ?
+In an effort to give some love to the apparently forgotten MT6795 SoC,
+I am upstreaming more components that are necessary to support platforms
+powered by this one apart from a simple boot to serial console.
 
-1000 is still less than billion, although above that number it probably
-does not make sense to have any limit.
+This series adds support for the regulators found in MT6331 and MT6332
+main/companion PMICs.
 
-Best regards,
-Krzysztof
+Adding support to each driver in each subsystem is done in different
+patch series as to avoid spamming uninteresting patches to maintainers.
+
+This series depends on another two series series [1], [2] named
+"MediaTek Helio X10 MT6795 - MT6331/6332 PMIC Wrapper" and
+"MediaTek Helio X10 MT6795 - MT6331/6332 PMIC MFD integration"
+
+Tested on a MT6795 Sony Xperia M5 (codename "Holly") smartphone.
+
+[1]: https://lore.kernel.org/lkml/20220520124039.228314-1-angelogioacchino.delregno@collabora.com/T/#t
+[2]: https://lore.kernel.org/lkml/20220520124617.228808-1-angelogioacchino.delregno@collabora.com/T/#t
+
+Changes in v3:
+ - Sorry, one of the commits picked both the pre-rename file and
+   the new one... the v3 fixes the mt6332 bindings commit.
+ - Changed comment style on top for mt633[12]-regulator.c as
+   suggested (missed that in v2)
+
+Changes in v2:
+ - Refactored description in dt-bindings
+ - Simplified get_status() function and removed callback
+   where not needed
+ - Simplified set_mode()/get_mode() functions and removed
+   callback where not needed
+ - Added new regulator_ops for no_qi (no .get_status) and
+   for no_ms (no .{get, set}_mode)
+ - Fixed vsel mask on some regulators and removed pattern of
+   repeated voltage entries present in some voltage tables,
+   avoiding to set higher bits for safety
+ - Reordered regulators (and some formatting fixes) in
+   mt6331-regulator.c in per-type alphabetic order
+
+AngeloGioacchino Del Regno (4):
+  dt-bindings: regulator: Add bindings for MT6331 regulator
+  regulator: Add driver for MT6331 PMIC regulators
+  dt-bindings: regulator: Add bindings for MT6332 regulator
+  regulator: Add driver for MT6332 PMIC regulators
+
+ .../regulator/mediatek,mt6331-regulator.yaml  | 273 ++++++++++
+ .../regulator/mediatek,mt6332-regulator.yaml  | 112 ++++
+ drivers/regulator/Kconfig                     |  18 +
+ drivers/regulator/Makefile                    |   2 +
+ drivers/regulator/mt6331-regulator.c          | 507 ++++++++++++++++++
+ drivers/regulator/mt6332-regulator.c          | 422 +++++++++++++++
+ include/linux/regulator/mt6331-regulator.h    |  46 ++
+ include/linux/regulator/mt6332-regulator.h    |  27 +
+ 8 files changed, 1407 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6331-regulator.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6332-regulator.yaml
+ create mode 100644 drivers/regulator/mt6331-regulator.c
+ create mode 100644 drivers/regulator/mt6332-regulator.c
+ create mode 100644 include/linux/regulator/mt6331-regulator.h
+ create mode 100644 include/linux/regulator/mt6332-regulator.h
+
+-- 
+2.35.1
+
