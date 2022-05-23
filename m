@@ -2,285 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2531C531DA9
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 23:23:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F3F6531DC8
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 23:30:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231381AbiEWVXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 17:23:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43038 "EHLO
+        id S231470AbiEWVaP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 17:30:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231666AbiEWVXd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 17:23:33 -0400
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE18E986FB
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 14:23:31 -0700 (PDT)
-Received: by mail-pl1-x62c.google.com with SMTP id c2so14210745plh.2
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 14:23:31 -0700 (PDT)
+        with ESMTP id S231465AbiEWVaF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 17:30:05 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 595FAA3381;
+        Mon, 23 May 2022 14:30:04 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id p19so1092113wmg.2;
+        Mon, 23 May 2022 14:30:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=IOOCRWVQuYLT3FPHZGft954GFHbqYk00WcogZz6fNSc=;
-        b=DMh172YL0SWz0Py50NQZeLA0sEYKpK55bwc4q7lq9cmOEyKsj0IeAuPX555J3dSUnt
-         zNqMBOs2aqG6l36kV77RKtEUqBPJGkGLWndj0J8qwLHonQIXgZ1omt0uQuv7hzJoPOAv
-         dmIERaPWSV6NjGEh3TmVDBuwzCRhes5t9XX7U=
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=szpHbyssy3pR92tHPw2c+r7gOFG688ltDB8dep/mxSw=;
+        b=O+1anRyYFBUQoaX7dUDxSVnoc5f4zDJd+/tIByNkeoinJxa5tIeVZZpelKrE0FqoNo
+         OZgOVS31HeCzlfDb7tpu0Be1eVBZxWJPzx7RfH2OCO73s9WyPFwuoXtDGVVoB8AMb2Yi
+         56M5xUiEf1zCzMnZcBzNT/4cAh1b1CeRF9ah6nVWB8X/UOoWIpJcAXgmi0Ha7udrcy1j
+         699DxcjWIUoATgdE/um3C9/U7wZz6TNAULxRaQoR+jxSfvrh4tyY1twMsgEek7fEEaHk
+         HQ8GOPxI6lv0JPF2hHhzzGpJBDsmH9exbxIWte78wVwxrA5y9b0RzzUaWBtwFS3VzxCJ
+         lCdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=IOOCRWVQuYLT3FPHZGft954GFHbqYk00WcogZz6fNSc=;
-        b=P1f7DWjqJWuATnk61a4YhHccPefAArQmOtLHdN25gIN9FdKpInCQWqueEAq56A/0/p
-         IkOy2asome0sHrW33Yvglr0v0atDtEYh/k8CT7RhCWQJKVsg7fY/8I+1GPxLFbC+9eeC
-         W+L9gQSI3cPemErlEnnrSBO0uN0FkmA5JqK4li4ddswmelCQNTATaQRxbsqzbEDz96EN
-         5Qq9s/dqVPILVbxdEfIihNpOEgCgU6R3xCsShpuCC4bCPB6sMrV8NH8I/WpD9yigJvK1
-         pkFpk4bTlx0/khzM9DokVj9zIQ6NgeB49WEBaM69zmH9b3OvSHUvX93zEhmnzng3LI5G
-         4idQ==
-X-Gm-Message-State: AOAM532f7d+wliMKDCyE8J5y1+3X8TBQMuu81kNAbje4gQaTs9/G4GGB
-        qSGZztX6Og3VNkDOfL1VpS/VTw==
-X-Google-Smtp-Source: ABdhPJwf7Nn4MG1Gs9/6Uf4iOuIkG1SRZfDvZje9RX2YSEEoa0x2v9W0UUyha5liZ667CvK0UX7nLg==
-X-Received: by 2002:a17:90b:4a01:b0:1dc:67b8:983f with SMTP id kk1-20020a17090b4a0100b001dc67b8983fmr980579pjb.1.1653341011249;
-        Mon, 23 May 2022 14:23:31 -0700 (PDT)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:64b0:b6b9:c0f3:1cc8])
-        by smtp.gmail.com with ESMTPSA id x2-20020a170902ec8200b0015e8d4eb234sm5545922plg.126.2022.05.23.14.23.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 May 2022 14:23:30 -0700 (PDT)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Jiri Kosina <jikos@kernel.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        swboyd@chromium.org, mka@chromium.org,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] HID: i2c-hid: elan: Add support for Elan eKTH6915 i2c-hid touchscreens
-Date:   Mon, 23 May 2022 14:23:24 -0700
-Message-Id: <20220523142257.v2.2.I2d3f735a485157eeaa24d60be8a327f98101789d@changeid>
-X-Mailer: git-send-email 2.36.1.124.g0e6072fb45-goog
-In-Reply-To: <20220523142257.v2.1.Iedc61f9ef220a89af6a031200a7850a27a440134@changeid>
-References: <20220523142257.v2.1.Iedc61f9ef220a89af6a031200a7850a27a440134@changeid>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=szpHbyssy3pR92tHPw2c+r7gOFG688ltDB8dep/mxSw=;
+        b=cqcrjN9hT293kJKNVS0KxOZFoxK6DVxpXCAWMIPwnPjxefaDddMYSNZC15CKM5NGZX
+         amlqvKnSxHH5vCyToXyR7Pez6LC/AZLsM99g+LJ6Hduqfz6d7xYiLuMbxiunsD/dIvv7
+         oTUGN/efGLdIVTETd/tbkvJRmEPvNPBd64f+CkRrDjfRD1UG1jfu5mw4DgCyLWRh9Q48
+         huN4Ry4auEnJseWJlkRrBlKHRc/IK9P0OKDYcvKRBLhYDt8PHOkbYEj430FtWa6Dbhgs
+         XP4O/J/fsLjX8drwJcL/pJIHtxJxCU2BvO8i7R18epoAmGQzobeLsws+GiX4GcnaBbsL
+         wGqg==
+X-Gm-Message-State: AOAM533dI2z9TsvVL8R7JetZNFOBaeDB7M8CcAFyVwj7YslBwoTxnIE1
+        NIRsXPfH/YmQ7HEYc+KZI6chbMT5G8/xIqaZkbDQmno0
+X-Google-Smtp-Source: ABdhPJxeVgPf7mVaaoeUZX7Sv2I4aDpFJhfiYqkaHPVJOp3ofkBKRrCA81w/4FTYvTcWJlq3mZoJGSG6A79jb7vL0zU=
+X-Received: by 2002:a05:600c:3843:b0:397:476f:ceb8 with SMTP id
+ s3-20020a05600c384300b00397476fceb8mr860129wmr.200.1653341402568; Mon, 23 May
+ 2022 14:30:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <a3c932d1-a102-ce18-deea-18cbbd05ecab@linaro.org>
+ <20220522195138.35943-1-konrad.dybcio@somainline.org> <53d5999b-88ee-24db-fd08-ff9406e2b7b7@linaro.org>
+In-Reply-To: <53d5999b-88ee-24db-fd08-ff9406e2b7b7@linaro.org>
+From:   Rob Clark <robdclark@gmail.com>
+Date:   Mon, 23 May 2022 14:29:50 -0700
+Message-ID: <CAF6AEGuX9eL8DmBqRj79F3Z9QCAczZDA+Xz-t9CjKQ5+6Phtrw@mail.gmail.com>
+Subject: Re: Removal of qcom,board-id and qcom,msm-id
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Olof Johansson <olof@lixom.net>, Rob Herring <robh@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Like many i2c-hid touchscreen controllers, the Elan eKTH6915 has a
-reset GPIO hooked up to it. According to the datasheet, the way we're
-supposed to turn the touchscreen on is:
+On Mon, May 23, 2022 at 1:21 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 22/05/2022 21:51, Konrad Dybcio wrote:
+> > Hi,
+> >
+> > removing these properties will not bring almost any benefit (other than making
+> > some checks happy any saving some <200 LoC) and will make the lives of almost
+> > all people doing independent development for linux-on-msm harder. There are
+> > almost unironically like 3 people outside Linaro and QUIC who have
+> > non-vendor-fused development boards AND the sources to rebuild the
+> > bootloader on their own. Making it harder to boot is only going to
+> > discourage people from developing on these devices, which is already not
+> > that pleasant, especially with newer platforms where you have to fight with
+> > the oh-so-bright ideas of Android boot chain..
+> >
+> > This only concerns devices released before sm8350, as the new ones will not
+> > even boot with these properties present (or at least SONY Sagami, but I
+> > doubt it's an isolated case), so other than completing support for older
+> > devices, it won't be an issue going forward, anyway. But there are give
+> > or take 50 locked down devices in mainline right now, and many more waiting
+> > to be upstreamed in various downstream close-to-mainline trees that should
+> > not be disregarded just because Qualcomm is far from the best at making
+> > their BSP software stack clean.
+>
+> I actually wonder why do you need these properties for community work on
+> such boards? You ship kernel with one concatenated DTB and the
+> bootloader does not need the board-id/msm-id fields, doesn't it?
+>
+> Not mentioning that in the past bootloader was actually not using these
+> properties at all, because it was the dtbTool who was parsing them. So
+> in any case either your device works fine without these properties or
+> you have to use dtbTool, right?
+>
+> >
+> > One solution is to chainload another, (n+1)-stage bootloader, but this is
+> > not ideal, as:
+> >
+> > 1) the stock bootloader can boot Linux just fine on most devices (except
+> > for single exceptions, where beloved OEMs didn't implement arm64 booting or
+> > something)
+> >
+> > 2) the boot chain on MSM is already 3- or 4- stage and adding to that will
+> > only create an unnecessary mess
+> >
+> > 3) the job of kernel people is not to break userspace. If the
+> > device can not even exit bootloader after a kernel upgrade, it's a big
+> > failure.
+>
+> The job of kernel people is to follow bindings and since they were
+> introduced 7 years ago, I would say there was plenty of time for that.
 
-1. Turn on the 3.3V supply.
-2. Turn on the IO supply. It's OK if this is hardwired to the 3.3V
-   supply, but if it's not then it must be turned on _after_ the 3.3V
-   supply.
-3. Wait >= 1 ms.
-4. Deassert the reset GPIO (reset GPIO is active low, so there would
-   be a leakage path if this was deasserted _before_ the IO supply).
-5. Wait 300 ms.
+Then we should document these fields to reflect reality, rather than
+remove them.  The kernel isn't the only consumer of dtb ;-)
 
-Much of the above can be handled by the generic i2c-hid-of driver, but
-the "reset" GPIO is not supported by that driver. Thus we'll do the
-same as we did for Goodix and add a new tiny driver that uses the
-i2c-hid core.
+> If the dtbTool support for the bindings is there, then there is no
+> breakage, because you had to use dtbTool before so you have to use now.
 
-NOTE: support for this new touchscreen could theorically fit into the
-Goodix driver. I've made it a separate driver because the Elan driver
-supports _two_ regulators and it's unclear exactly how that would fit
-in with commit 18eeef46d359 ("HID: i2c-hid: goodix: Tie the reset line
-to true state of the regulator").
+I don't believe this was the case?  At any rate, why are we trying so
+hard to make our lives harder?  Let's just acknowledge reality
+(bootloader uses these fields), document it, and move on with life
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
-Reviewed-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
----
+BR,
+-R
 
-Changes in v2:
-- Add descriptor_address to data structure and rename.
-
- drivers/hid/i2c-hid/Kconfig           |  15 +++
- drivers/hid/i2c-hid/Makefile          |   1 +
- drivers/hid/i2c-hid/i2c-hid-of-elan.c | 130 ++++++++++++++++++++++++++
- 3 files changed, 146 insertions(+)
- create mode 100644 drivers/hid/i2c-hid/i2c-hid-of-elan.c
-
-diff --git a/drivers/hid/i2c-hid/Kconfig b/drivers/hid/i2c-hid/Kconfig
-index a16c6a69680b..5273ee2bb134 100644
---- a/drivers/hid/i2c-hid/Kconfig
-+++ b/drivers/hid/i2c-hid/Kconfig
-@@ -32,6 +32,21 @@ config I2C_HID_OF
- 	  will be called i2c-hid-of.  It will also build/depend on the
- 	  module i2c-hid.
- 
-+config I2C_HID_OF_ELAN
-+	tristate "Driver for Elan hid-i2c based devices on OF systems"
-+	default n
-+	depends on I2C && INPUT && OF
-+	help
-+	  Say Y here if you want support for Elan i2c devices that use
-+	  the i2c-hid protocol on Open Firmware (Device Tree)-based
-+	  systems.
-+
-+	  If unsure, say N.
-+
-+	  This support is also available as a module.  If so, the module
-+	  will be called i2c-hid-of-elan.  It will also build/depend on
-+	  the module i2c-hid.
-+
- config I2C_HID_OF_GOODIX
- 	tristate "Driver for Goodix hid-i2c based devices on OF systems"
- 	default n
-diff --git a/drivers/hid/i2c-hid/Makefile b/drivers/hid/i2c-hid/Makefile
-index 302545a771f3..55bd5e0f35af 100644
---- a/drivers/hid/i2c-hid/Makefile
-+++ b/drivers/hid/i2c-hid/Makefile
-@@ -10,4 +10,5 @@ i2c-hid-$(CONFIG_DMI)				+= i2c-hid-dmi-quirks.o
- 
- obj-$(CONFIG_I2C_HID_ACPI)			+= i2c-hid-acpi.o
- obj-$(CONFIG_I2C_HID_OF)			+= i2c-hid-of.o
-+obj-$(CONFIG_I2C_HID_OF_ELAN)			+= i2c-hid-of-elan.o
- obj-$(CONFIG_I2C_HID_OF_GOODIX)			+= i2c-hid-of-goodix.o
-diff --git a/drivers/hid/i2c-hid/i2c-hid-of-elan.c b/drivers/hid/i2c-hid/i2c-hid-of-elan.c
-new file mode 100644
-index 000000000000..2d991325e734
---- /dev/null
-+++ b/drivers/hid/i2c-hid/i2c-hid-of-elan.c
-@@ -0,0 +1,130 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Driver for Elan touchscreens that use the i2c-hid protocol.
-+ *
-+ * Copyright 2020 Google LLC
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/device.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/i2c.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/pm.h>
-+#include <linux/regulator/consumer.h>
-+
-+#include "i2c-hid.h"
-+
-+struct elan_i2c_hid_chip_data {
-+	unsigned int post_gpio_reset_delay_ms;
-+	unsigned int post_power_delay_ms;
-+	u16 hid_descriptor_address;
-+};
-+
-+struct i2c_hid_of_elan {
-+	struct i2chid_ops ops;
-+
-+	struct regulator *vcc33;
-+	struct regulator *vccio;
-+	struct gpio_desc *reset_gpio;
-+	const struct elan_i2c_hid_chip_data *chip_data;
-+};
-+
-+static int elan_i2c_hid_power_up(struct i2chid_ops *ops)
-+{
-+	struct i2c_hid_of_elan *ihid_elan =
-+		container_of(ops, struct i2c_hid_of_elan, ops);
-+	int ret;
-+
-+	ret = regulator_enable(ihid_elan->vcc33);
-+	if (ret)
-+		return ret;
-+
-+	ret = regulator_enable(ihid_elan->vccio);
-+	if (ret) {
-+		regulator_disable(ihid_elan->vcc33);
-+		return ret;
-+	}
-+
-+	if (ihid_elan->chip_data->post_power_delay_ms)
-+		msleep(ihid_elan->chip_data->post_power_delay_ms);
-+
-+	gpiod_set_value_cansleep(ihid_elan->reset_gpio, 0);
-+	if (ihid_elan->chip_data->post_gpio_reset_delay_ms)
-+		msleep(ihid_elan->chip_data->post_gpio_reset_delay_ms);
-+
-+	return 0;
-+}
-+
-+static void elan_i2c_hid_power_down(struct i2chid_ops *ops)
-+{
-+	struct i2c_hid_of_elan *ihid_elan =
-+		container_of(ops, struct i2c_hid_of_elan, ops);
-+
-+	gpiod_set_value_cansleep(ihid_elan->reset_gpio, 1);
-+	regulator_disable(ihid_elan->vccio);
-+	regulator_disable(ihid_elan->vcc33);
-+}
-+
-+static int i2c_hid_of_elan_probe(struct i2c_client *client,
-+				 const struct i2c_device_id *id)
-+{
-+	struct i2c_hid_of_elan *ihid_elan;
-+
-+	ihid_elan = devm_kzalloc(&client->dev, sizeof(*ihid_elan), GFP_KERNEL);
-+	if (!ihid_elan)
-+		return -ENOMEM;
-+
-+	ihid_elan->ops.power_up = elan_i2c_hid_power_up;
-+	ihid_elan->ops.power_down = elan_i2c_hid_power_down;
-+
-+	/* Start out with reset asserted */
-+	ihid_elan->reset_gpio =
-+		devm_gpiod_get_optional(&client->dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(ihid_elan->reset_gpio))
-+		return PTR_ERR(ihid_elan->reset_gpio);
-+
-+	ihid_elan->vccio = devm_regulator_get(&client->dev, "vccio");
-+	if (IS_ERR(ihid_elan->vccio))
-+		return PTR_ERR(ihid_elan->vccio);
-+
-+	ihid_elan->vcc33 = devm_regulator_get(&client->dev, "vcc33");
-+	if (IS_ERR(ihid_elan->vcc33))
-+		return PTR_ERR(ihid_elan->vcc33);
-+
-+	ihid_elan->chip_data = device_get_match_data(&client->dev);
-+
-+	return i2c_hid_core_probe(client, &ihid_elan->ops,
-+				  ihid_elan->chip_data->hid_descriptor_address, 0);
-+}
-+
-+static const struct elan_i2c_hid_chip_data elan_ekth6915_chip_data = {
-+	.post_power_delay_ms = 1,
-+	.post_gpio_reset_delay_ms = 300,
-+	.hid_descriptor_address = 0x0001,
-+};
-+
-+static const struct of_device_id elan_i2c_hid_of_match[] = {
-+	{ .compatible = "elan,ekth6915", .data = &elan_ekth6915_chip_data },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, elan_i2c_hid_of_match);
-+
-+static struct i2c_driver elan_i2c_hid_ts_driver = {
-+	.driver = {
-+		.name	= "i2c_hid_of_elan",
-+		.pm	= &i2c_hid_core_pm,
-+		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-+		.of_match_table = of_match_ptr(elan_i2c_hid_of_match),
-+	},
-+	.probe		= i2c_hid_of_elan_probe,
-+	.remove		= i2c_hid_core_remove,
-+	.shutdown	= i2c_hid_core_shutdown,
-+};
-+module_i2c_driver(elan_i2c_hid_ts_driver);
-+
-+MODULE_AUTHOR("Douglas Anderson <dianders@chromium.org>");
-+MODULE_DESCRIPTION("Elan i2c-hid touchscreen driver");
-+MODULE_LICENSE("GPL");
--- 
-2.36.1.124.g0e6072fb45-goog
-
+> >
+> > If you *really really really* want these either gone or documented, we can
+> > for example use them in the SOCID driver, read the values from DTB and
+> > compare against what SMEM has to say and for example print a warning when
+> > there are inconsistencies or use it as a fallback when it fails for any
+> > reason, such as using a newer SoC on an older kernel, without updates
+> > for SOCID read (which are sometimes necessary, which was the case for 8450
+> > recently, iirc).
+> >
+> > My stance is to just leave them as is, as moving them anywhere, or removing
+> > them at all will cause unnecessary mess and waste time that could have been
+> > spent on more glaring issues..
+> >
+> > Konrad
+>
+>
+> Best regards,
+> Krzysztof
