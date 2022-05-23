@@ -2,85 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 152F65312B4
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:23:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7372E5314BE
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:26:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237743AbiEWPRZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 11:17:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44972 "EHLO
+        id S237773AbiEWPXm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 11:23:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237564AbiEWPRY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 11:17:24 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E90CC40E41
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 08:17:22 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id j10so2688292lfe.12
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 08:17:22 -0700 (PDT)
+        with ESMTP id S237828AbiEWPXk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 11:23:40 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 162565DBF0
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 08:23:02 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id h8so17622813ljb.6
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 08:23:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=EuWB8Y7Ah/qV5CnmOJ2acPAV109TTRYKTj1R5AVapBA=;
-        b=Oa/4Hu/NUIM/rsUznqpT2KUk9IBeQFNRqlo2EEH1+xbutUJ/6jU24YHyZ9YCvVgcdG
-         uBvXZJGqt/Ru/mntP0l5k16ANL+XeXDjKl5rwJYQ7cL+LeP7Gc1vTfpi4IUl/hPtfang
-         QZCPzSgWrR2BQtV5O3IPiT/8gkfIoFM/88FUFXs6IICU4CeIp16jXLDgforbuDM8ibeH
-         TILW+AdHRq7V5ktxr783LHt10DhglCf8OTGpNkmAScBkYROWB3dE+5KMQihG3vtAhCHb
-         8WlyurpyZgW82UDIOGgEI7coYhpxmncp5VW4DCfIFKQ2qfqUxAfulF9YbHpHF1zFXCuq
-         7rsQ==
+        bh=D5XQc8wBj+L7y1AKbIXLkcUnNCOQ5528vAYo2Vyy7WQ=;
+        b=M7gmNtjCllRiORAgUIpKMPSb7oS9uKwtrDvNNzoyTSoMLPRhnQOtG/+dKE/mFFVndU
+         OfXjCys6aayQms2XeXouvsn8NgCDzlz0jOVSflxi7+EqCuu+XZjYixHkZyqBHuLr7CDl
+         dD4XtHTv7NOSdCzZTaYJCqNAZvGSGBAPr1ly0HApxqUZGYG8+iDidxUBZAb9UlWAqHV0
+         Coi2FFoPTpsFeNwdSX11azNbYK6bnKxbsLyffFRXG71CUcsDmlq618ZtEM6OHvDrntvy
+         7THTrF2vJ0lk90FcFauZANDwpRTJULBxAKwr6HbwVfOpds4TPAnexwSdK0fzsqFNybYo
+         v+lg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=EuWB8Y7Ah/qV5CnmOJ2acPAV109TTRYKTj1R5AVapBA=;
-        b=3K4DTsaIdfoBXR4pXILZ9sqHvcXiQKPBq8YypD1c0Z5oT6BPQ7NVbpwnfG6PJydG1I
-         tQHGe9qpySmXrGDeVQJYcqlcHPnkwajNu5DkTEcNiH96I3xrFLoBQ8SEWqH9XwbvrAkV
-         BNdJP/fgER6JOXS2zusX9Y5ctNZuNMj2CPUNhgaxgv+qItrB/58oN+xbKgWaU3oYwY/t
-         C6rc2SukjvSFslP7lzEwTPrdtYsBfqjJaMXkt9y93FmdNdUROpqbuCr3WflMt5qeh16n
-         AAkXvcXUlf9YEQd5Voe6N3q7hN+V75xDMAnQQCa+urnZyFsBO3gVW7Dx8fbGpIJNqCJV
-         aXGA==
-X-Gm-Message-State: AOAM532C8jvv/Hh6WfLqeQ6sN9Xo4yNdju10MDTsxDbbYHpptlKvmB/Z
-        MaqcKc0m7dPeuyrCsJZkNCU/dQ==
-X-Google-Smtp-Source: ABdhPJxvfeSkeIlilth/ORM3dyOXG/fXDgX4p/j2ME7Poz6LhSKvE0gTPzOzkZLRdvxfjCRzvSX76w==
-X-Received: by 2002:a05:6512:b8a:b0:477:a934:3e76 with SMTP id b10-20020a0565120b8a00b00477a9343e76mr16684091lfv.275.1653319041200;
-        Mon, 23 May 2022 08:17:21 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id x19-20020a056512131300b00478628920e1sm1064017lfu.103.2022.05.23.08.17.20
+        bh=D5XQc8wBj+L7y1AKbIXLkcUnNCOQ5528vAYo2Vyy7WQ=;
+        b=J/XSSYyyRgKftMYqtp+417E3m7DbHr1kc5LBQXAnO/7vSKCIcFCjPidAKN5f3V6gme
+         ncme+ifMREkHHphDccQUg3WQ/fNMM+v8VmpjUfjVbhGgBLDtgzuMziPCArYNzU06csFW
+         XuU+Wv7/I2406mwz8ydBuosGngMZzN2rb276v+BMfONY2Dr20sCiXqkVaF038a1orJPD
+         iY3eVpoX16RmN5RAo8AJOAjTj8A/L2Tg0B3kBf1MMBNX60nCbEc9dvmIL3lvKtzSduRp
+         APrC7W6s77HOA/vpCi8BGezK/bEIcib2dC9anH7WBizt2Y76nJDFiDvt8OSwW6Ok3AVt
+         gDpQ==
+X-Gm-Message-State: AOAM5318K2kL3dPk7VsvRKhyfyFjcbvls8RugJcPHLxKknWg3qt4e4h5
+        OKVxESS/O2ZGq6yvAFSUusFMhw==
+X-Google-Smtp-Source: ABdhPJyVAM7kdjjShrP2QVKN0ERRYTn2eTJCgTp0tcXYWrz6bJpRhAVwFD/O3F0/8vaeprEbpanvdw==
+X-Received: by 2002:a2e:9655:0:b0:253:d575:9a6d with SMTP id z21-20020a2e9655000000b00253d5759a6dmr12647403ljh.207.1653319380816;
+        Mon, 23 May 2022 08:23:00 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id j16-20020a2e3c10000000b00253c33d30f0sm1889534lja.87.2022.05.23.08.22.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 May 2022 08:17:20 -0700 (PDT)
-Message-ID: <0bc58862-75be-aaa0-9983-6ed2fa2079ec@linaro.org>
-Date:   Mon, 23 May 2022 18:17:19 +0300
+        Mon, 23 May 2022 08:23:00 -0700 (PDT)
+Message-ID: <b60f5fd2-dc48-9375-da1c-ffcfe8292683@linaro.org>
+Date:   Mon, 23 May 2022 17:22:58 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v11 3/7] PCI: dwc: Handle MSIs routed to multiple GIC
- interrupts
-Content-Language: en-GB
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v1 11/19] dt-bindings: reset: npcm: Add support for
+ NPCM8XX
+Content-Language: en-US
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Tomer Maimon <tmaimon77@gmail.com>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220520183114.1356599-1-dmitry.baryshkov@linaro.org>
- <20220520183114.1356599-4-dmitry.baryshkov@linaro.org>
- <Yos9fkgxAN1jJ4jO@hovoldconsulting.com>
- <8ce50a9f-241d-c37a-15e9-1a97d410f61e@linaro.org>
- <YouUCuzjo5u+OEXS@hovoldconsulting.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <YouUCuzjo5u+OEXS@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        =?UTF-8?Q?Bj=c3=b6rn_Andersson?= <bjorn.andersson@linaro.org>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Robert Hancock <robert.hancock@calian.com>,
+        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
+        Lubomir Rintel <lkundrak@v3.sk>, arm-soc <soc@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Linux Watchdog Mailing List <linux-watchdog@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+References: <20220522155046.260146-1-tmaimon77@gmail.com>
+ <20220522155046.260146-12-tmaimon77@gmail.com>
+ <86cd6a37-70ad-3a90-bc8a-dcd8b41f1175@linaro.org>
+ <CAP6Zq1i2Wj4FCA4-eseVoJyMof5=ocFCUcitVquJqYJ4Z3JTYQ@mail.gmail.com>
+ <CAMuHMdVCCrKTpNHng2_kKGViuEXf=O3MsfpjjzMusuUcKE6HiA@mail.gmail.com>
+ <62562cdf-93e3-f642-5bbd-48329eff33ea@linaro.org>
+ <CAMuHMdVFV02t+vbwzEpNbpkSP4M3sGnJpzFMPBw7RkrJ9YvyKw@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAMuHMdVFV02t+vbwzEpNbpkSP4M3sGnJpzFMPBw7RkrJ9YvyKw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,59 +114,122 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/05/2022 17:02, Johan Hovold wrote:
-> On Mon, May 23, 2022 at 04:39:56PM +0300, Dmitry Baryshkov wrote:
->> On 23/05/2022 10:53, Johan Hovold wrote:
->>> On Fri, May 20, 2022 at 09:31:10PM +0300, Dmitry Baryshkov wrote:
+On 23/05/2022 17:11, Geert Uytterhoeven wrote:
+> Hi Krzysztof,
 > 
->>>> +static int dw_pcie_parse_split_msi_irq(struct pcie_port *pp)
->>>> +{
->>>> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
->>>> +	struct device *dev = pci->dev;
->>>> +	struct platform_device *pdev = to_platform_device(dev);
->>>> +	int irq;
->>>> +	u32 ctrl;
->>>> +
->>>> +	irq = platform_get_irq_byname_optional(pdev, split_msi_names[0]);
->>>> +	if (irq == -ENXIO)
->>>> +		return -ENXIO;
+> On Mon, May 23, 2022 at 4:26 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>> On 23/05/2022 16:22, Geert Uytterhoeven wrote:
+>>> On Mon, May 23, 2022 at 4:03 PM Tomer Maimon <tmaimon77@gmail.com> wrote:
+>>>> On Mon, 23 May 2022 at 12:01, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>>>>> On 22/05/2022 17:50, Tomer Maimon wrote:
+>>>>>> Add binding document and device tree binding
+>>>>>> constants for Nuvoton BMC NPCM8XX reset controller.
+>>>>>>
+>>>>>> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
 >>>
->>> You still need to check for other errors and -EPROBE_DEFER here.
+>>>>>> --- /dev/null
+>>>>>> +++ b/include/dt-bindings/reset/nuvoton,npcm8xx-reset.h
+>>>>>> @@ -0,0 +1,124 @@
+>>>>>> +/* SPDX-License-Identifier: GPL-2.0 */
+>>>>>> +// Copyright (c) 2022 Nuvoton Technology corporation.
+>>>>>> +
+>>>>>> +#ifndef _DT_BINDINGS_NPCM8XX_RESET_H
+>>>>>> +#define _DT_BINDINGS_NPCM8XX_RESET_H
+>>>>>> +
+>>>>>> +#define NPCM8XX_RESET_IPSRST1                0x20
+>>>>>> +#define NPCM8XX_RESET_IPSRST2                0x24
+>>>>>> +#define NPCM8XX_RESET_IPSRST3                0x34
+>>>>>> +#define NPCM8XX_RESET_IPSRST4                0x74
+>>>>>
+>>>>> What are these? All IDs should be incremental, decimal and start from 0.
+>>>>
+>>>> Register offset, we use the same method in NPCM7xx. please refer
+>>>> https://elixir.bootlin.com/linux/v5.18/source/include/dt-bindings/reset/nuvoton,npcm7xx-reset.h
+>>>>
+>>>> and the driver asserts the reset according to the reset include definitions
+>>>
+>>> So if they're easy to look up the values, you could do without the
+>>> definitions? Cfr. the interrupts properties in .dtsi files, where we
+>>> typically just use the hardcoded numbers.
+>>>
+>>> If you do decide to keep them, a comment explaining their origins
+>>> would be useful.
+>>>
+>>>>>> +
+>>>>>> +/* Reset lines on IP1 reset module (NPCM8XX_RESET_IPSRST1) */
+>>>>>> +#define NPCM8XX_RESET_GDMA0          3
+>>>>>
+>>>>> IDs start from 0 and do not have holes.
+>>>>
+>>>> This represents the reset BIT in the reset register.
+>>>
+>>> Likewise, I think it's a good idea to document that in a comment, cfr.
+>>> https://elixir.bootlin.com/linux/v5.18/source/include/dt-bindings/power/r8a7795-sysc.h#L8
 >>
->> I think even the if (irq < 0) return irq; will work here.
+>> Renesas is also doing it not correct (just like many others). The
+>> bindings are not for register bits or offsets. Such data can be DTS but
+>> not part of bindings.
 > 
-> No need to print errors unless -EPROBEDEFER as you do below?
+> I think you are taking a too-extremist standpoint.
+> The two extremes are:
+>   1. Numbers correspond to hardware numbers, and are easy to look up
+>     in the hardware documentation (e.g. GIC SPI interrupt numbers).
+>      => Use the hardcoded numbers in DTS.
 
-There is no separate print for the dw_pcie_parse_split_msi_irq() errors.
+And such numbers (like GIC_SPI interrupt numbers) do not go to bindings.
+They go to DTS only.
+
+>   2. Numbers do not correspond to hardware numbers, so we had to
+>      invent our own definitions and numbers, usually loosely
+>      based on some table in the hardware documentation.
+>      The driver will have to look up the numbers in a data
+>      structure, to know how to program the hardware.
+>      The numbers become part of the DT ABI, and cannot be changed
+>      (header file is append-only).
+>      => Use the binding definitions in DTS.
+
+Correct.
+
+However this patch is some mixture of both approaches.
+
+The same pointed by Arnd:
+https://lore.kernel.org/linux-devicetree/CAK8P3a0fDJQvGLEtG0fxLkG08Fh9V7LEMPsx4AaS+2Ldo_xWxw@mail.gmail.com/
+
+> We are taking the middle ground: there is a one-to-one relation between
+> numbers and hardware numbers that can be looked up in or derived from
+> the hardware documentation, but the conversion is non-trivial (for the
+> casual human reviewer), or the documentation refers to names instead
+> of numbers in most sections (e.g. named power domains). Then why not
+> let the numbers match some feature in the hardware (e.g. register
+> offset or register bit)?
+
+Because you are embedding the device programming model into the
+bindings. It's the same as having properties:
+"vendor,value-for-register-xxx"
+
+We do not create bindings to describe programming model but hardware.
+Using the values from programming model is fragile and ties the bindings
+to that one programming model. Programming model can change, e.g. by
+mistake, but bindings should stay independent.
 
 > 
->>>> +
->>>> +	pp->msi_irq[0] = irq;
->>>> +
->>>> +	/* Parse as many IRQs as described in the DTS. */
->>>
->>> s/DTS/devicetree/
->>>
->>>> +	for (ctrl = 1; ctrl < MAX_MSI_CTRLS; ctrl++) {
->>>> +		irq = platform_get_irq_byname_optional(pdev, split_msi_names[ctrl]);
->>>> +		if (irq == -ENXIO)
->>>> +			break;
->>>> +		if (irq < 0)
->>>> +			return dev_err_probe(dev, irq,
->>>> +					     "Failed to parse MSI IRQ '%s'\n",
->>>> +					     split_msi_names[ctrl]);
->>>> +
->>>> +		pp->msi_irq[ctrl] = irq;
->>>> +	}
->>>> +
->>>> +	pp->num_vectors = ctrl * MAX_MSI_IRQS_PER_CTRL;
->>>> +
->>>> +	return 0;
->>>> +}
+>> Imagine now you made mistake in this register
+>> offset and hardware uses slightly different value. What now? Change
+>> bindings? No. Bindings hold here ID, the abstraction, and ID stays fixed.
 > 
-> Johan
+> I see no difference here with using the wrong interrupt number in an
+> interrupts property in DTS.  What do we do in that case? Fix the DTS.
 
+Yes, fix the DTS. DTS are not the bindings. You can fix the DTS. You
+cannot fix the bindings because you affect both driver and DTS.
 
--- 
-With best wishes
-Dmitry
+> 
+> BTW, are you aware of any driver that transforms interrupt numbers
+> obtained from DTS, because the DTS used the wrong number?
+
+Again, what do the DTS has here at all? The interrupt numbers are also
+not included in the bindings, so what does it prove?
+
+Best regards,
+Krzysztof
