@@ -2,173 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 122D5530F40
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:18:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7800530EDF
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:17:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235528AbiEWMge (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 08:36:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45482 "EHLO
+        id S235583AbiEWMkB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 08:40:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235509AbiEWMft (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 08:35:49 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C726D49CBB;
-        Mon, 23 May 2022 05:35:24 -0700 (PDT)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 24N9xcs3026146;
-        Mon, 23 May 2022 14:34:51 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=qIqK8sKEylUqg49Cc+Izo93o3wEhAt3Jq4iiQrYTUbQ=;
- b=6PmZ9b6rKmjdRP4tdvYnyvxBnK6nHrMvYE2wr20DGpObItpskv+GN69bswIDXXVdfLt4
- WFXNY8YEhrBX6ZT/TLCcH+NrGaH4w80XSYp2irmLVpPquWcINhel53BlBSwmNEIkFbR3
- QENy0RM0AkAJoVSpIOSl513OCVsihsAfWToqnEVs8YrX3JkWOdVNh/O/OIpKtPmWjvYC
- obS4NLuJUwsIfmUtEta6n/Lf1OfPQNeShDtGaHQU/x1NtZ02n0M7cyuPIHmjOUDJGv+2
- 39RdwjCKdsfJ5llE4hs3erRbSpSfsyVy3kGLF5lGZmOM+i+KJ+LRfVQ7uyHMGBjtQFzx hQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3g6s02935u-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 23 May 2022 14:34:51 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 182A8100034;
-        Mon, 23 May 2022 14:34:51 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 03D2322789E;
-        Mon, 23 May 2022 14:34:51 +0200 (CEST)
-Received: from [10.201.20.168] (10.75.127.49) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Mon, 23 May
- 2022 14:34:50 +0200
-Message-ID: <ceb2d1a3-dccd-865e-ed74-54444e49f349@foss.st.com>
-Date:   Mon, 23 May 2022 14:34:22 +0200
+        with ESMTP id S235591AbiEWMkA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 08:40:00 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BACA450071
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 05:39:56 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id t25so25352645lfg.7
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 05:39:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=EOL04jP+eE7dVuOg6hEIwWWUW4POczWVTnduH9YcGb0=;
+        b=dscp7lxuXzvAvazXh3XQfmCEddLWn7+ErSWIbZNaa9GV1Dqom5OGQotT1L1vQ40DAr
+         tV+QngMbMinXVaEpFNFUwkuuQcHqPmOWlLg935FyQ/pv365F2DT7ldFDo1cIQOxQIB5k
+         jckxpnwO24VrNYVA7QT9OXE57kv4eu9UXkgvrGE6GMG/k5lxqdMm8sI8hSZO41JxGR4y
+         RDJ4BjpOB5ZZjxx4tISidy3rFFT8CWdujpKaOe/4HyFBGpSNOAxpJSlHIEy4wMrU/Ete
+         /af8YceSz7WRPilhyxLJ5wX0AMt/U++FV4rz6xF4S/2CWIxSJFJ87TE4pDyhah0hbz6l
+         J+pA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=EOL04jP+eE7dVuOg6hEIwWWUW4POczWVTnduH9YcGb0=;
+        b=1TJFg2KGxDWd4ho4ec+pPlXPXVC2ZYx1NjPhqwOzF3XWT4upaaLJdfRayaXpeouJ1q
+         BD4opPEb6fvH0XBodidM2tg85iuOZNZetE9nQBBzOij+XzLDHvzSaHpEfNiMpnGKYMrF
+         4nNmGqg/8YJ/vMZoxi3ff3uOMDtYPr1SSTicQ6XSm3Zg9Ebl/YGSxQCynjCjOPGXOJXQ
+         CGOosnP2KC+mpCGgMCg4ELqHYAmYvjOeubn9/HTpOOtcZoOZlc38yOOtaVFB/HDDVeFD
+         T479Mpf7pTzZ9+ll6wpa/fSiVcLXukDkPtzVaQCz6xKmFhocFmVClGQrtodXqpYZm9if
+         6tXw==
+X-Gm-Message-State: AOAM5339lV8M4KYbb5oNvjNGiWmWei69GZWAdxf1mBZSqsQZGJt3tjtc
+        wh3AQxxs/h3vX7uaSh96f5DNww==
+X-Google-Smtp-Source: ABdhPJwo0PC3SioId0jNkNXBGwmBVrE8rg9qaxlN6Ax4/CUHq/r3fHvRNB3t0H78ZX4YRjchIypaWA==
+X-Received: by 2002:a05:6512:3b93:b0:474:188b:1c99 with SMTP id g19-20020a0565123b9300b00474188b1c99mr16289628lfv.549.1653309594979;
+        Mon, 23 May 2022 05:39:54 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id b23-20020ac25637000000b00477b11144e9sm1959703lff.66.2022.05.23.05.39.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 May 2022 05:39:54 -0700 (PDT)
+Message-ID: <638d6986-616f-4a1c-f1d0-82835b000b2a@linaro.org>
+Date:   Mon, 23 May 2022 15:39:53 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.8.1
-Subject: Re: [PATCH 2/6] dt-bindings: rtc: stm32: add alarm A out property to
- select output
-Content-Language: en-US
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-CC:     Alessandro Zummo <a.zummo@towertech.it>,
+Subject: Re: [RFC PATCH 00/14] CAMSS support for MSM8974
+Content-Language: en-GB
+To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>,
-        <linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20220504130233.330983-1-valentin.caron@foss.st.com>
- <20220504130617.331290-1-valentin.caron@foss.st.com>
- <YnLhw+Y7m8G2xJpK@mail.local>
-From:   Valentin CARON <valentin.caron@foss.st.com>
-In-Reply-To: <YnLhw+Y7m8G2xJpK@mail.local>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.49]
-X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.874,Hydra:6.0.486,FMLib:17.11.64.514
- definitions=2022-05-23_06,2022-05-23_01,2022-02-23_01
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        matti.lehtimaki@gmail.com
+References: <20220522162802.208275-1-luca@z3ntu.xyz>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220522162802.208275-1-luca@z3ntu.xyz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexandre,
+On 22/05/2022 19:27, Luca Weiss wrote:
+> This RFC series adds support for CAMSS and CCI that are found on
+> msm8974, including the OV8865 found on the FP2.
+> 
+> The only reason it's marked RFC is that CAMSS doesn't behave properly on
+> this SoC without the last commit which is obviously not upstreamable.
+> Not sure if this should be a blocker for including most of the other
+> patches because other than that it seems to work fine and I can get a
+> picture from the camera sensor. When/if msm8974 gets IOMMU support I
+> hope this should be resolved and it works without this hack.
+> 
+> I think at least the CCI patches could get applied as they're not
+> dependent on the CAMSS hack?
 
-On 5/4/22 22:27, Alexandre Belloni wrote:
-> Hello,
->
-> On 04/05/2022 15:06:13+0200, Valentin Caron wrote:
->> STM32 RTC can pulse some SOC pins when an alarm of RTC expires.
->>
->> This patch adds property to activate alarm A output. The pulse can
->> output on three pins RTC_OUT1, RTC_OUT2, RTC_OUT2_RMP
->> (PC13, PB2, PI8 on stm32mp15) (PC13, PB2, PI1 on stm32mp13).
->>
->> Signed-off-by: Valentin Caron <valentin.caron@foss.st.com>
->> ---
->>   .../devicetree/bindings/rtc/st,stm32-rtc.yaml | 19 ++++++++++++++++++-
->>   1 file changed, 18 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/rtc/st,stm32-rtc.yaml b/Documentation/devicetree/bindings/rtc/st,stm32-rtc.yaml
->> index 56d46ea35c5d..71e02604e8de 100644
->> --- a/Documentation/devicetree/bindings/rtc/st,stm32-rtc.yaml
->> +++ b/Documentation/devicetree/bindings/rtc/st,stm32-rtc.yaml
->> @@ -59,6 +59,13 @@ properties:
->>         Refer to <include/dt-bindings/rtc/rtc-stm32.h> for the supported values.
->>         Pinctrl state named "default" may be defined to reserve pin for RTC output.
->>   
->> +  st,alarm:
->> +    $ref: "/schemas/types.yaml#/definitions/uint32"
->> +    description: |
->> +      To select and enable RTC Alarm A output.
->> +      Refer to <include/dt-bindings/rtc/rtc-stm32.h> for the supported values.
->> +      Pinctrl state named "default" may be defined to reserve pin for RTC output.
->> +
->>   allOf:
->>     - if:
->>         properties:
->> @@ -75,6 +82,9 @@ allOf:
->>           st,lsco:
->>             maxItems: 0
->>   
->> +        st,alarm:
->> +          maxItems: 0
->> +
->>           clock-names: false
->>   
->>         required:
->> @@ -95,6 +105,9 @@ allOf:
->>           st,lsco:
->>             maxItems: 0
->>   
->> +        st,alarm:
->> +          maxItems: 0
->> +
->>         required:
->>           - clock-names
->>           - st,syscfg
->> @@ -117,6 +130,9 @@ allOf:
->>           st,lsco:
->>             maxItems: 1
->>   
->> +        st,alarm:
->> +          maxItems: 1
->> +
->>         required:
->>           - clock-names
->>   
->> @@ -153,8 +169,9 @@ examples:
->>         clocks = <&rcc RTCAPB>, <&rcc RTC>;
->>         clock-names = "pclk", "rtc_ck";
->>         interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
->> +      st,alarm = <RTC_OUT1>;
->>         st,lsco = <RTC_OUT2_RMP>;
-> Shouldn't that be exactly the opposite? You have two pins that can
-> output different functions. The property should be the pin and the value
-> the function. I'd go even further and I would say this is actually
-> pinmuxing.
->
-You're right, if the property is the pin and the value the function, 
-this looks like a pinctrl node.
-We choose to develop theses functionalities in the reverse order, to 
-avoid the complexity of adding
-the pinctrl framework to our driver. Moreover, LSCO and AlarmA may 
-haven't a peripheral client and
-this would probably require to also implement pinctrl hogging.
+I'd also vote for the camcc patches to be applied.
 
-Is the implementation that we have proposed is acceptable regarding 
-theses elements ?
+As for the camss, I'd suggest to get them verified to work properly with 
+a hacked/non-upstreamable/etc. IOMMU driver if one exists. Otherwise we 
+can easily get into a situation where we merge up code that contains 
+bugs itself.
 
-Thank you,
-Valentin
+Another option might be to actually check whether the device has an 
+IOMMU attached (see device_iommu_mapped()) and to select whether the 
+driver should use SG or CONTIG depending on that.
 
+As an additional note regarding the offset issue you've mentioned. It 
+looks like there is an issue with the swiotlb. On the IFC6410 (apq8064, 
+no IOMMU) I got an issue with the PCI-attached networking card. Received 
+packets are offset by 4 (IIRC) bytes. The same type of adapter works on 
+db820c (apq8096, working IOMMU). What kind of issues did you observe 
+with the camss? If it looks like the issue I had, it might be a symptom 
+of a more generic issue.
+
+> 
+> Luca Weiss (5):
+>    dt-bindings: i2c: qcom-cci: add QCOM MSM8974 compatible
+>    ARM: dts: qcom: msm8974: add CCI bus
+>    ARM: dts: qcom: msm8974: add CAMSS node
+>    ARM: dts: qcom: msm8974-FP2: Add OV8865 rear camera
+>    [DNM] media: camss: hacks for MSM8974
+> 
+> Matti Lehtimäki (9):
+>    media: dt-bindings: media: camss: Add qcom,msm8974-camss binding
+>    media: camss: Add CAMSS_8x74 camss version
+>    media: camss: vfe: Add support for 8x74
+>    media: camss: video: Add support for 8x74
+>    media: camss: csid: Add support for 8x74
+>    media: camss: ispif: Add support for 8x74
+>    media: camss: csiphy: Add support for 8x74
+>    media: camss: Add 8x74 resources
+>    i2c: qcom-cci: add msm8974 compatible
+> 
+>   .../devicetree/bindings/i2c/i2c-qcom-cci.txt  |   7 +-
+>   .../bindings/media/qcom,msm8974-camss.yaml    | 321 ++++++++++++++++++
+>   arch/arm/boot/dts/qcom-msm8974.dtsi           | 184 ++++++++++
+>   .../dts/qcom-msm8974pro-fairphone-fp2.dts     |  70 ++++
+>   drivers/i2c/busses/i2c-qcom-cci.c             |  35 ++
+>   drivers/media/platform/qcom/camss/Kconfig     |   4 +-
+>   .../media/platform/qcom/camss/camss-csid.c    |   3 +-
+>   .../media/platform/qcom/camss/camss-csiphy.c  |   4 +-
+>   .../media/platform/qcom/camss/camss-ispif.c   |   5 +-
+>   drivers/media/platform/qcom/camss/camss-vfe.c |   7 +-
+>   .../media/platform/qcom/camss/camss-video.c   |  17 +-
+>   drivers/media/platform/qcom/camss/camss.c     | 161 +++++++++
+>   drivers/media/platform/qcom/camss/camss.h     |   1 +
+>   13 files changed, 801 insertions(+), 18 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/media/qcom,msm8974-camss.yaml
+> 
+
+
+-- 
+With best wishes
+Dmitry
