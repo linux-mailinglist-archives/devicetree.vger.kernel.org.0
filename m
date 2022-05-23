@@ -2,191 +2,366 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B678530FB7
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:19:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8C93530F65
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:18:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235060AbiEWLy6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 07:54:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54198 "EHLO
+        id S235208AbiEWMAe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 08:00:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235141AbiEWLyt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 07:54:49 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3684515B1;
-        Mon, 23 May 2022 04:54:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1653306888; x=1684842888;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=dZN1kRrWx/r2+ijq8bOfsSzbQOMIw0nqMbgQfjggyOo=;
-  b=cwX4NxvfoTKGAPuRtc/ibsDBZU68mBfP/rau18dbRu0x5kGZhqE4HjLa
-   ArjSI399t/6TqctBthY+z7e39dVc+qXkpzfw1xQaBMxOQ6JpFjJb6PGwx
-   mn4v3BpjKbNA7iCAelv8tKaWbXWlQhcqf136uOX+HCbERqOoOg/g8D1Fu
-   c=;
-Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 23 May 2022 04:54:48 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 May 2022 04:54:47 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 23 May 2022 04:54:47 -0700
-Received: from [10.216.62.60] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 23 May
- 2022 04:54:43 -0700
-Message-ID: <df0fb8cb-79bb-6941-5ce7-baaef2393797@quicinc.com>
-Date:   Mon, 23 May 2022 17:24:39 +0530
+        with ESMTP id S235029AbiEWMAd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 08:00:33 -0400
+Received: from comms.puri.sm (comms.puri.sm [159.203.221.185])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BEFA527D4;
+        Mon, 23 May 2022 05:00:32 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id 90185DFE04;
+        Mon, 23 May 2022 05:00:31 -0700 (PDT)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id M9BmXlNGQRe5; Mon, 23 May 2022 05:00:30 -0700 (PDT)
+Message-ID: <0b5e5757543d198781daf7b151a60e0b78e5b396.camel@puri.sm>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=puri.sm; s=comms;
+        t=1653307230; bh=gcwZoVN5bvENTzP42VF6JBYSHGzfTgu/72Xy8/k8HMs=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=eVIbEgfmmdceLtq3uyndzDhWt/KoBQr6IZg0bXYgncWH0ZIMV/ghWnOlWC/4k6euk
+         EMwTnX9Ps5ovY1dgTpNlI2w+yyddOLh3XffvEZMURRwT0CjvecimPv1Pc8qjh6gRB0
+         UCWcCUTnYv/bEF8DYu0kBPuAJtc2fRqr7EPTBa0nw1gzerSchy/TxT0r4MDUhhIOLA
+         8UwdHl5aA/JCM+1J1FMKBiSOjypGQsfgH7GvlenU3sbslTH9WsKXo/wQZBDVyFfug8
+         gdlE3cxCTMzJJblT7OMcy9i2pN5KW+AMVbdcPlrmpZbimTl3gxPm8LVw0Pw9g8W14s
+         Hp+g+ofE7pdHg==
+Subject: Re: [PATCH V4 07/11] arm64: dts: imx8mq: Enable both G1 and G2
+ VPU's with vpu-blk-ctrl
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     Lucas Stach <l.stach@pengutronix.de>,
+        Adam Ford <aford173@gmail.com>, linux-media@vger.kernel.org
+Cc:     aford@beaconembedded.com, cphealy@gmail.com,
+        kernel test robot <lkp@intel.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-staging@lists.linux.dev
+Date:   Mon, 23 May 2022 14:00:22 +0200
+In-Reply-To: <17c5ef22479cfea3f43dce1885f6613f1bef8064.camel@pengutronix.de>
+References: <20220125171129.472775-1-aford173@gmail.com>
+         <20220125171129.472775-8-aford173@gmail.com>
+         <d6c5c5663f8ae904d409240063295cf516e17dd1.camel@puri.sm>
+         <4b958892ba788a0e9e73a9135c305aacbe33294d.camel@pengutronix.de>
+         <c11a58ecc5da2e206fc2b942980223a04a103f19.camel@puri.sm>
+         <17c5ef22479cfea3f43dce1885f6613f1bef8064.camel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.3-1 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [RFC 1/2] dt-bindings: usb: dwc3: Add support for multiport
- related properties
-Content-Language: en-US
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_pkondeti@quicinc.com>, <quic_ppratap@quicinc.com>
-References: <1652963695-10109-1-git-send-email-quic_harshq@quicinc.com>
- <1652963695-10109-2-git-send-email-quic_harshq@quicinc.com>
- <YohW/W3Mk0J0AKVt@ripper>
-From:   Harsh Agarwal <quic_harshq@quicinc.com>
-In-Reply-To: <YohW/W3Mk0J0AKVt@ripper>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 5/21/2022 8:35 AM, Bjorn Andersson wrote:
-> On Thu 19 May 05:34 PDT 2022, Harsh Agarwal wrote:
->
->> Added support for multiport, mport, num-ssphy and num-hsphy
->> properties. These properties are used to support devices having
->> a multiport controller.
->>
->> Signed-off-by: Harsh Agarwal <quic_harshq@quicinc.com>
-> Please do run dt_binding_check on your bindings, even though they are
-> RFCs.
-There was some dt_binding package issue so I could not run it.
-Thought to check this later since this is RFC.
-Sure, I will check this.
->
->> ---
->>   .../devicetree/bindings/usb/snps,dwc3.yaml         | 55 ++++++++++++++++++++++
->>   1 file changed, 55 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->> index f4471f8..39c61483 100644
->> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->> @@ -341,6 +341,35 @@ properties:
->>         This port is used with the 'usb-role-switch' property  to connect the
->>         dwc3 to type C connector.
->>   
->> +  multiport:
-> Why are you inventing an of_graph lookalike here?
-
-Not really an of_graph lookalike, here we just wanted to add "multiport" 
-node which would have "mport" nodes for every port that it supports.
-We can treat this "multiport" like an object encapsulating other "mport" 
-objects.
-
->
->> +    description:
->> +      If a single USB controller supports multiple ports, then it's referred to as
->> +      a multiport controller. Each port of the multiport controller can support
->> +      either High Speed or Super Speed or both and have their own PHY phandles. Each
->> +      port is represented by "mport" node and all the "mport" nodes are grouped
->> +      together inside the "multiport" node where individual "mport" node defines the
->> +      PHYs supported by that port.
->> +    required:
->> +      - mport
->> +
->> +  num-hsphy:
->> +    description: Total number of HS-PHYs defined by the multiport controller.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
-> I'm expecting that you wont' have any superspeed-only ports. As such
-> this number would imply be the number of ports listed under the node.
-
-Yes we can say that num_hsphy is equal to the number of "mport" nodes as 
-every node will
-have a HSPHY.
-
->
->> +
->> +  num-ssphy:
->> +    description: Total number of SS-PHYs defined by the multiport controller.
->> +    $ref: /schemas/types.yaml#/definitions/uint32
-> Can you please explain why it's necessary to specify usb_nop_phy?
-> Wouldn't it be possible to omit the phy in the case of a HS-only port?
-> In which case this could just be calculated as well.
-Yes we can ignore usb_nop_phy. It's not really necessary at places where 
-we don't have a proper PHY in place.
->
+Am Dienstag, dem 26.04.2022 um 12:43 +0200 schrieb Lucas Stach:
+> Am Dienstag, dem 26.04.2022 um 09:38 +0200 schrieb Martin Kepplinger:
+> > Am Montag, dem 25.04.2022 um 17:34 +0200 schrieb Lucas Stach:
+> > > Hi Martin,
+> > > 
+> > > Am Montag, dem 25.04.2022 um 17:22 +0200 schrieb Martin
+> > > Kepplinger:
+> > > > Am Dienstag, dem 25.01.2022 um 11:11 -0600 schrieb Adam Ford:
+> > > > > With the Hantro G1 and G2 now setup to run independently,
+> > > > > update
+> > > > > the device tree to allow both to operate.  This requires the
+> > > > > vpu-blk-ctrl node to be configured.  Since vpu-blk-ctrl needs
+> > > > > certain clock enabled to handle the gating of the G1 and G2
+> > > > > fuses, the clock-parents and clock-rates for the various
+> > > > > VPU's
+> > > > > to be moved into the pgc_vpu because they cannot get re-
+> > > > > parented
+> > > > > once enabled, and the pgc_vpu is the highest in the chain.
+> > > > > 
+> > > > > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > > > > Reported-by: kernel test robot <lkp@intel.com>
+> > > > > Reviewed-by: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+> > > > > 
+> > > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> > > > > b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> > > > > index 2df2510d0118..549b2440f55d 100644
+> > > > > --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> > > > > +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> > > > > @@ -737,7 +737,21 @@ pgc_gpu: power-domain@5 {
+> > > > >                                         pgc_vpu: power-
+> > > > > domain@6 {
+> > > > >                                                 #power-
+> > > > > domain-
+> > > > > cells =
+> > > > > <0>;
+> > > > >                                                 reg =
+> > > > > <IMX8M_POWER_DOMAIN_VPU>;
+> > > > > -                                               clocks =
+> > > > > <&clk
+> > > > > IMX8MQ_CLK_VPU_DEC_ROOT>;
+> > > > > +                                               clocks =
+> > > > > <&clk
+> > > > > IMX8MQ_CLK_VPU_DEC_ROOT>,
+> > > > > +                                                       
+> > > > > <&clk
+> > > > > IMX8MQ_CLK_VPU_G1_ROOT>,
+> > > > > +                                                       
+> > > > > <&clk
+> > > > > IMX8MQ_CLK_VPU_G2_ROOT>;
+> > > > > +                                               assigned-
+> > > > > clocks =
+> > > > > <&clk IMX8MQ_CLK_VPU_G1>,
+> > > > > +                                                            
+> > > > >     
+> > > > > <&clk IMX8MQ_CLK_VPU_G2>,
+> > > > > +                                                            
+> > > > >     
+> > > > > <&clk IMX8MQ_CLK_VPU_BUS>,
+> > > > > +                                                            
+> > > > >     
+> > > > > <&clk IMX8MQ_VPU_PLL_BYPASS>;
+> > > > > +                                               assigned-
+> > > > > clock-
+> > > > > parents = <&clk IMX8MQ_VPU_PLL_OUT>,
+> > > > > +                                                            
+> > > > >     
+> > > > >     
+> > > > >     <&clk IMX8MQ_VPU_PLL_OUT>,
+> > > > > +                                                            
+> > > > >     
+> > > > >     
+> > > > >     <&clk IMX8MQ_SYS1_PLL_800M>,
+> > > > > +                                                            
+> > > > >     
+> > > > >     
+> > > > >     <&clk IMX8MQ_VPU_PLL>;
+> > > > > +                                               assigned-
+> > > > > clock-
+> > > > > rates
+> > > > > = <600000000>,
+> > > > > +                                                            
+> > > > >     
+> > > > >     
+> > > > >   <600000000>,
+> > > > > +                                                            
+> > > > >     
+> > > > >     
+> > > > >   <800000000>,
+> > > > > +                                                            
+> > > > >     
+> > > > >     
+> > > > >   <0>;
+> > > > >                                         };
+> > > > >  
+> > > > >                                         pgc_disp:
+> > > > > power-domain@7
+> > > > > {
+> > > > > @@ -1457,30 +1471,31 @@ usb3_phy1: usb-phy@382f0040 {
+> > > > >                         status = "disabled";
+> > > > >                 };
+> > > > >  
+> > > > > -               vpu: video-codec@38300000 {
+> > > > > -                       compatible = "nxp,imx8mq-vpu";
+> > > > > -                       reg = <0x38300000 0x10000>,
+> > > > > -                             <0x38310000 0x10000>,
+> > > > > -                             <0x38320000 0x10000>;
+> > > > > -                       reg-names = "g1", "g2", "ctrl";
+> > > > > -                       interrupts = <GIC_SPI 7
+> > > > > IRQ_TYPE_LEVEL_HIGH>,
+> > > > > -                                    <GIC_SPI 8
+> > > > > IRQ_TYPE_LEVEL_HIGH>;
+> > > > > -                       interrupt-names = "g1", "g2";
+> > > > > +               vpu_g1: video-codec@38300000 {
+> > > > > +                       compatible = "nxp,imx8mq-vpu-g1";
+> > > > > +                       reg = <0x38300000 0x10000>;
+> > > > > +                       interrupts = <GIC_SPI 7
+> > > > > IRQ_TYPE_LEVEL_HIGH>;
+> > > > > +                       clocks = <&clk
+> > > > > IMX8MQ_CLK_VPU_G1_ROOT>;
+> > > > > +                       power-domains = <&vpu_blk_ctrl
+> > > > > IMX8MQ_VPUBLK_PD_G1>;
+> > > > > +               };
+> > > > > +
+> > > > > +               vpu_g2: video-codec@38310000 {
+> > > > > +                       compatible = "nxp,imx8mq-vpu-g2";
+> > > > > +                       reg = <0x38310000 0x10000>;
+> > > > > +                       interrupts = <GIC_SPI 8
+> > > > > IRQ_TYPE_LEVEL_HIGH>;
+> > > > > +                       clocks = <&clk
+> > > > > IMX8MQ_CLK_VPU_G2_ROOT>;
+> > > > > +                       power-domains = <&vpu_blk_ctrl
+> > > > > IMX8MQ_VPUBLK_PD_G2>;
+> > > > > +               };
+> > > > > +
+> > > > > +               vpu_blk_ctrl: blk-ctrl@38320000 {
+> > > > > +                       compatible = "fsl,imx8mq-vpu-blk-
+> > > > > ctrl";
+> > > > > +                       reg = <0x38320000 0x100>;
+> > > > > +                       power-domains = <&pgc_vpu>,
+> > > > > <&pgc_vpu>,
+> > > > > <&pgc_vpu>;
+> > > > > +                       power-domain-names = "bus", "g1",
+> > > > > "g2";
+> > > > >                         clocks = <&clk
+> > > > > IMX8MQ_CLK_VPU_G1_ROOT>,
+> > > > > -                                <&clk
+> > > > > IMX8MQ_CLK_VPU_G2_ROOT>,
+> > > > > -                                <&clk
+> > > > > IMX8MQ_CLK_VPU_DEC_ROOT>;
+> > > > > -                       clock-names = "g1", "g2", "bus";
+> > > > > -                       assigned-clocks = <&clk
+> > > > > IMX8MQ_CLK_VPU_G1>,
+> > > > > -                                         <&clk
+> > > > > IMX8MQ_CLK_VPU_G2>,
+> > > > > -                                         <&clk
+> > > > > IMX8MQ_CLK_VPU_BUS>,
+> > > > > -                                         <&clk
+> > > > > IMX8MQ_VPU_PLL_BYPASS>;
+> > > > > -                       assigned-clock-parents = <&clk
+> > > > > IMX8MQ_VPU_PLL_OUT>,
+> > > > > -                                                <&clk
+> > > > > IMX8MQ_VPU_PLL_OUT>,
+> > > > > -                                                <&clk
+> > > > > IMX8MQ_SYS1_PLL_800M>,
+> > > > > -                                                <&clk
+> > > > > IMX8MQ_VPU_PLL>;
+> > > > > -                       assigned-clock-rates = <600000000>,
+> > > > > <600000000>,
+> > > > > -                                              <800000000>,
+> > > > > <0>;
+> > > > > -                       power-domains = <&pgc_vpu>;
+> > > > > +                                <&clk
+> > > > > IMX8MQ_CLK_VPU_G2_ROOT>;
+> > > > > +                       clock-names = "g1", "g2";
+> > > > > +                       #power-domain-cells = <1>;
+> > > > >                 };
+> > > > >  
+> > > > >                 pcie0: pcie@33800000 {
+> > > > 
+> > > > With this update, when testing suspend to ram on imx8mq, I get:
+> > > > 
+> > > > buck4: failed to disable: -ETIMEDOUT
+> > > > 
+> > > > where buck4 is power-supply of pgc_vpu. And thus the transition
+> > > > to
+> > > > suspend (and resuming) fails.
+> > > > 
+> > > > Have you tested system suspend after the imx8m-blk-ctrl update
+> > > > on
+> > > > imx8mq?
+> > > 
+> > > I haven't tested system suspend, don't know if anyone else did.
+> > > However
+> > > I guess that this is just uncovering a preexisting issue in the
+> > > system
+> > > suspend sequencing, which you would also hit if the video
+> > > decoders
+> > > were
+> > > active at system suspend time.
+> > > 
+> > > My guess is that the regulator disable fails, due to the power
+> > > domains
+> > > being disabled quite late in the suspend sequence, where i2c
+> > > communication with the PMIC is no longer possible due to i2c
+> > > being
+> > > suspended already or something like that. Maybe you can dig in a
+> > > bit
+> > > on
+> > > the actual sequence on your system and we can see how we can
+> > > rework
+> > > things to suspend the power domains at a time where communication
+> > > with
+> > > the PMIC is still possible?
+> > 
+> > What exactly would you like to see? Here's all gpcv2 regulators
+> > disabling on suspend. (gpu (domain 5) is disabled by runtime pm
+> > often):
+> > 
+> > [   47.138700] imx-pgc imx-pgc-domain.5: disabling regulator
+> > [   47.298071] Freezing user space processes ... (elapsed 0.008
+> > seconds) done.
+> > [   47.313432] OOM killer disabled.
+> > [   47.316670] Freezing remaining freezable tasks ... (elapsed
+> > 2.221
+> > seconds) done.
+> > [   49.672052] imx8m-blk-ctrl 38320000.blk-ctrl:
+> > imx8m_blk_ctrl_suspend
+> > start
+> > [   49.704417] imx-pgc imx-pgc-domain.0: disabling regulator
+> > [   49.711114] imx-pgc imx-pgc-domain.6: disabling regulator
+> > [   49.819064] buck4: failed to disable: -ETIMEDOUT
+> > 
+> > The stack looks pretty much the same for all of them, from
+> > pm_suspend()
+> > over genpd_suspend_noiry().
+> 
+> So the GPU domain is already suspended before the system suspend,
+> probably due to short runtime PM timeouts.
+> 
+> Can you please check at which point the i2c subsystem is suspended? I
+> think we are already past that point when running the PM domain
+> suspend
+> from a _noirq callback. I'll take a look on how we can properly
+> change
+> this ordering.
+> 
 > Regards,
-> Bjorn
->
->> +
->> +  mport:
->> +    description: Each mport node represents one port of the multiport controller.
->> +    patternProperties: "^mport@[0-9a-f]+$"
->> +    oneOf:
->> +       - required:
->> +         - usb-phy
->> +       - required:
->> +          - phys
->> +          - phy-names
->> +
->>   unevaluatedProperties: false
->>   
->>   required:
->> @@ -369,4 +398,30 @@ examples:
->>         snps,dis_u2_susphy_quirk;
->>         snps,dis_enblslpm_quirk;
->>       };
->> +  - |
->> +    usb@4a000000 {
->> +      compatible = "snps,dwc3";
->> +      reg = <0x4a000000 0xcfff>;
->> +      interrupts = <0 92 4>;
->> +
->> +      multiport {
->> +
->> +	MP_1: mport@1 {
->> +          usb-phy = <&usb2_phy0>, <&usb3_phy0>;
->> +	};
->> +
->> +	MP_2: mport@2 {
->> +          usb-phy = <&usb2_phy1>, <&usb3_phy1>;
->> +	};
->> +
->> +	MP_3: mport@3 {
->> +          usb-phy = <&usb2_phy2>, <&usb_nop_phy>;
->> +	};
->> +
->> +	MP_4: mport@4 {
->> +          usb-phy = <&usb2_phy3>, <&usb_nop_phy>;
->> +	};
->> +
->> +      };
->> +    };
->>   ...
->> -- 
->> 2.7.4
->>
+> Lucas
+> 
+
+hi Lucas, just to update a bit: (I rmmod hantro_vpu because it adds
+another bug but let's ignore for now) when I use a mainline kernel and
+for testing just ignore ETIMEDOUT in gpcv2 on regulator_disable():
+
+-                               return ret;
++                               if (ret == -ETIMEDOUT)
++                                       ret = 0;
++                               else
++                                       return ret;
+
+I see the error message the first time I suspend. Not the consecutive
+times (and the systems seems to be working after resuming).
+
+Now what's weird is when I suspend and resume often, after some time,
+resume will definitely fail. Not sure yet where, but when I add debug
+output for the kernel/ directory, that's usually about where it hangs:
+
+[  969.620825] OOM killer enabled.
+[  969.623971] Restarting tasks ... 
+[  969.624230] systemd-udevd left refrigerator
+[  969.624535] khugepaged left refrigerator
+[  969.624568] gdbus left refrigerator
+[  969.624795] alsa-sink-308b0 left refrigerator
+[  969.626864] pipewire left refrigerator
+[  969.626880] alsa-source-308 left refrigerator
+[  969.626913] alsa-source-300 left refrigerator
+[  969.626920] gmain left refrigerator
+[  969.626949] gvfs-afc-volume left refrigerator
+[  969.626949] systemd left refrigerator
+[  969.626977] gmain left refrigerator
+[  969.627009] chatty left refrigerator
+[  969.627036] gmain left refrigerator
+[  969.627060] gmain left refrigerator
+[  969.627087] gmain left refrigerator
+
+And the above hang ("sometimes") happens for "platform" in pm_test
+already, so I guess it's purely a linux bug.
+
+just so you know, in case that tells you anything more...
+
+thanks,
+
+                         martin
+
+
