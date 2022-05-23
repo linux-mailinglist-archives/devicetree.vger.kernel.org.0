@@ -2,78 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1807953105C
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:20:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46CD2530EDB
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:17:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235838AbiEWNDs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 09:03:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46884 "EHLO
+        id S235982AbiEWNHF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 09:07:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233492AbiEWNDs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 09:03:48 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03CDA2714A
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 06:03:46 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id u30so25443909lfm.9
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 06:03:45 -0700 (PDT)
+        with ESMTP id S236041AbiEWNHA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 09:07:00 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32E5C43AD5
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 06:06:57 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id q1so7457442ljb.5
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 06:06:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=z71NrWZ4zknsDrIoo+iB7dCvZtP2uMdNm3QPfhAif8o=;
-        b=bzd1qj/qFKT8OfqgUqAT3Wtl+EmZf7RH0b71HR/rrXg8NYApV+cGqSsZ+AZV1V7rud
-         9ySbTNcdwNtJIoHRuyQX5bQxvsNdJENR3BC1hgHyooGer/9nIJjCpCKjNxpRKMqQ9W/A
-         IPQBEGPFJLoQPL7Fl7RiTgbRFCEq2VnZlHO9aFBDQH1aydu8ZTsj0xa9XQOQy/tJ1r53
-         j5DHW2fuqbA+sGi8IMlHjwcM2FrfzGOvjtfpyGce7NTiWd9j4qHpH0JsTjIaGDEHb3Wz
-         FnAoSBkQWGH23lna51WTqbWpLOnainyACCGSdLrCkHZ+fBjR1AytIi+4qVeKiS0R5+2H
-         ziwQ==
+        bh=50wuqx97QXZx2zbLRPpUZaCAf982O497zw+lzOUq1k4=;
+        b=SDuGMgEXCGQ1TJ0fNHdXQPIRrrbTcF5QRnV15Th8wlnm6ALDsCXQkDhSc30CAXl9Kp
+         lUcwwo8YPG+ToK1ghL+xsLwZPbKsU3Xs5fTm4yRb1VvjTdISvp+ik2qXsRARg60MQYWC
+         GzqnvLsPLHQQ9m8qRk3NoJy44Um8tv0iazTe+dReBMGQpIWhXgY7sW+X5Q92sAdYY4Up
+         yPMCEKh8i9Ozg5XgOdN0UxNO4J+QgBEZh3/Z8fVZf4cnzrU5tlx9D2h6JrtHwCIXtkCT
+         BYpUW9KmlugPMvChcIWuNOw5mvQnQfIPUm4rq/I+cIqgIavTpZd0JMU/RlcgqLJUgwvk
+         OYWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=z71NrWZ4zknsDrIoo+iB7dCvZtP2uMdNm3QPfhAif8o=;
-        b=1yQ6ZBJ41lgLIf3YEQqQfVnXoaiWdF8+mJg/vQhrT0ye/as8BwKQ5pKnf0RReWYfjS
-         WHX53g9pLZzCMwuFXTcq9beMECy51MPHL5uT0r0dooEnQNVvO9NmzLNRFuk3vyZYxw9G
-         gaDl+J/1cOQvISS6fl67jj90KmffdEoscxu2nSVKPynXqjYgY3nE0X0v64ypzghPZaUh
-         DuaqtvFZMnB6Dep3C+AkZvlkvEQ+5iVIk8+A5Y6FMXBYdsm8o7rwynNNUCo+Kp3y8FQs
-         mpfbjxH9ESQvV31benxUF4bdjbXKZwUi4pCW6zc8SWnbcVoVTQls2pIkX5sgRNRGw22s
-         IHCQ==
-X-Gm-Message-State: AOAM531bIdrQbbJb1RDs61gImDlP+5VuOVHjPe7xpEZdIudlJqnhw14W
-        1wzy+rSjMbRWY8s17SUBjCrPXw==
-X-Google-Smtp-Source: ABdhPJyq6y9OSMA4U7e6i2YMcuLgOdxRayWbuMH/9MhLJwISF/h6mzK0bZFByAbvBLNQzUdsZ7wHag==
-X-Received: by 2002:a05:6512:2256:b0:473:d27f:dd93 with SMTP id i22-20020a056512225600b00473d27fdd93mr16900739lfu.512.1653311024297;
-        Mon, 23 May 2022 06:03:44 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id f10-20020ac2508a000000b0047255d2115csm1968683lfm.139.2022.05.23.06.03.43
+        bh=50wuqx97QXZx2zbLRPpUZaCAf982O497zw+lzOUq1k4=;
+        b=txESCfQzOvwdA6c+dDa8Ex71YXbNgFBFCRFBIuUhK8ROb+lnnKubcfEzQNjZJfkU+W
+         yCmhqrP/bCet1XqiK5mCrpEyOWRIT8iEPV85kWRWN3F973h3/VEYih0uXY23jYusGpwX
+         zrC/ojpLWSjBsGsxmERY74zAcJtTLx8BNsKXk9lHzJDarS1vFWWC2mSJYeunJPxOWnNw
+         UMtuTCstBt+TeXpSrvODRzx7WDoz2hZ1/2CEuxtR/nQJwnTeJmamo6ayeinnSHEuN5IA
+         EzbEFgM1FRSkcwEIhUaAhWCRruGYxluCrzpZnAUgN2XrqL1AiZQu3a2orQ8L71DtCcBL
+         Ex1w==
+X-Gm-Message-State: AOAM533egzwRnfzDSzYQhwkEcsr4WDHU1XOF+lMUkKmF+e2DPgc9IhxJ
+        ST3vXGRJVhB69HFtUrZmks4skg==
+X-Google-Smtp-Source: ABdhPJxW/DBrlG7TEnvWEUg0Nipmvi6wS+g8Y+NMEBmjLhpKfeu4xjRK3q520VX+9jaURA7ei9otVw==
+X-Received: by 2002:a2e:a26d:0:b0:253:d7b4:1d9a with SMTP id k13-20020a2ea26d000000b00253d7b41d9amr11639775ljm.203.1653311215543;
+        Mon, 23 May 2022 06:06:55 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id c6-20020ac24146000000b00477b0cfc990sm1968975lfi.30.2022.05.23.06.06.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 May 2022 06:03:43 -0700 (PDT)
-Message-ID: <1af9f5ff-2115-1809-15b1-fea306a11877@linaro.org>
-Date:   Mon, 23 May 2022 16:03:43 +0300
+        Mon, 23 May 2022 06:06:55 -0700 (PDT)
+Message-ID: <2ccfbfa8-be11-50ed-66ca-3476cbddb320@linaro.org>
+Date:   Mon, 23 May 2022 15:06:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v11 0/7] PCI: qcom: Fix higher MSI vectors handling
-Content-Language: en-GB
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v1 04/19] tty: serial: 8250: Add NPCM845 UART support
+Content-Language: en-US
+To:     Tomer Maimon <tmaimon77@gmail.com>, Arnd Bergmann <arnd@arndb.de>
+Cc:     Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220520183114.1356599-1-dmitry.baryshkov@linaro.org>
- <Yos6zKHUKywKcmzy@hovoldconsulting.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <Yos6zKHUKywKcmzy@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        gregkh <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Olof Johansson <olof@lixom.net>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        robert.hancock@calian.com,
+        nathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Lubomir Rintel <lkundrak@v3.sk>, SoC Team <soc@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+References: <20220522155046.260146-1-tmaimon77@gmail.com>
+ <20220522155046.260146-5-tmaimon77@gmail.com>
+ <CAK8P3a0Nh4m7O_WPe1DTWqwWU32C5khOPH0ir7r_=s106mLv5A@mail.gmail.com>
+ <CAP6Zq1jk=wf3VbxttrHZwS-wywMoO4upgMQH4yr2AeKwYV8G4Q@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAP6Zq1jk=wf3VbxttrHZwS-wywMoO4upgMQH4yr2AeKwYV8G4Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -84,59 +109,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/05/2022 10:42, Johan Hovold wrote:
-> On Fri, May 20, 2022 at 09:31:07PM +0300, Dmitry Baryshkov wrote:
->> I have replied with my Tested-by to the patch at [2], which has landed
->> in the linux-next as the commit 20f1bfb8dd62 ("PCI: qcom:
->> Add support for handling MSIs from 8 endpoints"). However lately I
->> noticed that during the tests I still had 'pcie_pme=nomsi', so the
->> device was not forced to use higher MSI vectors.
->>
->> After removing this option I noticed that hight MSI vectors are not
->> delivered on tested platforms. After additional research I stumbled upon
->> a patch in msm-4.14 ([1]), which describes that each group of MSI
->> vectors is mapped to the separate interrupt. Implement corresponding
->> mapping.
->>
->> The first patch in the series is a revert of  [2] (landed in pci-next).
->> Either both patches should be applied or both should be dropped.
->>
->> Patchseries dependecies: [3] (for the schema change).
->>
->> Changes since v10:
->>   - Remove has_split_msi_irqs flag. Trust DT and use split MSI IRQs if
->>     they are described in the DT. This removes the need for the
->>     pcie-qcom.c changes (everything is handled by the core (suggested by
->>     Johan).
+On 23/05/2022 14:58, Tomer Maimon wrote:
+> Hi Arnd,
 > 
-> You could also mention the rebase and fixed warnings with less than
-> eight msi.
->   
->> [1] https://git.codelinaro.org/clo/la/kernel/msm-4.14/-/commit/671a3d5f129f4bfe477152292ada2194c8440d22
->> [2] https://lore.kernel.org/linux-arm-msm/20211214101319.25258-1-manivannan.sadhasivam@linaro.org/
->> [3] https://lore.kernel.org/linux-arm-msm/20220422211002.2012070-1-dmitry.baryshkov@linaro.org/
->>
->>
->> Dmitry Baryshkov (7):
->>    PCI: dwc: Convert msi_irq to the array
->>    PCI: dwc: split MSI IRQ parsing/allocation to a separate function
->>    PCI: dwc: Handle MSIs routed to multiple GIC interrupts
->>    PCI: dwc: Implement special ISR handler for split MSI IRQ setup
->>    dt-bindings: PCI: qcom: Support additional MSI interrupts
->>    arm64: dts: qcom: sm8250: provide additional MSI interrupts
->>    dt-bindings: mfd: qcom,qca639x: add binding for QCA639x defvice
+> Thanks for your comment.
 > 
-> Looks like you used the wrong offsets from HEAD or something when
-> generating the series as the first two patches ([1] above, which is not
-> yet in linux-next, and the dw_pcie_free_msi() fix) are now missing and
-> the last patch is new and unrelated.
-
-Ugh. Please excuse me.
-
+> On Mon, 23 May 2022 at 14:48, Arnd Bergmann <arnd@arndb.de
+> <mailto:arnd@arndb.de>> wrote:
 > 
-> Johan
+>     On Sun, May 22, 2022 at 5:50 PM Tomer Maimon <tmaimon77@gmail.com
+>     <mailto:tmaimon77@gmail.com>> wrote:
+>     > +++ b/drivers/tty/serial/8250/8250_of.c
+>     > @@ -333,6 +333,7 @@ static const struct of_device_id
+>     of_platform_serial_table[] = {
+>     >         { .compatible = "ti,da830-uart", .data = (void
+>     *)PORT_DA830, },
+>     >         { .compatible = "nuvoton,wpcm450-uart", .data = (void
+>     *)PORT_NPCM, },
+>     >         { .compatible = "nuvoton,npcm750-uart", .data = (void
+>     *)PORT_NPCM, },
+>     > +       { .compatible = "nuvoton,npcm845-uart", .data = (void
+>     *)PORT_NPCM, },
+>     >         { /* end of list */ },
+> 
+>     If these are compatible devices, it's usually easier to claim
+>     compatibility with both the specific chip and the older model
+>     as a fallback, to avoid driver changes. This seems to apply to
+>     the timer and watchdog devices as well.
+> 
+> Just to make sure, Do you mean claim in the device tree?
+> like
+> 
+> compatible = "nuvoton,npcm845-timer", "nuvoton,npcm-timer";
+
+compatible = "nuvoton,npcm845-timer", "nuvoton,npcm750-timer"";
 
 
--- 
-With best wishes
-Dmitry
+Best regards,
+Krzysztof
