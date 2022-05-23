@@ -2,67 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C66A5312F8
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:23:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21090531216
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:22:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236611AbiEWOIT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 10:08:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51772 "EHLO
+        id S236937AbiEWON6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 10:13:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236771AbiEWOIS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 10:08:18 -0400
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D638345043;
-        Mon, 23 May 2022 07:08:17 -0700 (PDT)
-Received: by mail-oi1-f174.google.com with SMTP id q8so17872408oif.13;
-        Mon, 23 May 2022 07:08:17 -0700 (PDT)
+        with ESMTP id S236794AbiEWONy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 10:13:54 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8081448330
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 07:13:52 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id v191-20020a1cacc8000000b00397001398c0so11385727wme.5
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 07:13:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=mXZRehr7T9hWIefevRI5GrRN2Nm99r9FuQutOqdll7s=;
+        b=VgKux45ApDYTG+hKlJeo/k4lhbNzXK3jF1yD9TeQYYdIvrXX2Q5E5Ex5zhQBlZdNos
+         sqJE+1dVfMX1fsT0Bnzm7VEO/GTzEpLWqqmJhY0xlYfFj4kcY4hSEffp7e2n6Q4Qs8ic
+         etQaGBOwetoAngs6gN9PZLg/V9OYwP2Q8q/CMuLQGpe1nW6dbT5vS6NRdK4HSAkUYYEy
+         zykbkA28SKl9c+9OhMnDHuzsSsI17+gdM05wMSFCRoerCyarhyFGM8YuGsRUV5YLjXVl
+         YZJ7mcX2+hnX/Dv8HEKAYWI7PvYYKC5pla2jpKbTdhHHmLloAs4Yk/hFWlK8mwNB5ov6
+         9jOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=c/Revpi/NQeBVLl9e7ZCFj2VurS2hZIRuL3sCTpYBPU=;
-        b=h4bKEGPDUv+aqQGhlSd9nSPZ0PS+CNGGXG2Ia49s/D+obo+afWH4klPjn/agbUpFkJ
-         3viJ2Ig98DMxJ2YQdmvsuqDdtcCopLmSP83shWp5yWok/4FN0omlPHLUjYtB5Il6EziX
-         hvncMkNFF9pvQTMdzY2R90YgF0jqytU11FFIe9hhmFfY0APAQ9PnZ2z6bTMooDCKHoZU
-         9lGVj5J6z/JY4yj96iRddMa1/HtatIIfVx3vB1jlo6xwd4tsOgNP5H6LtSAmtDpdOprK
-         vB2n3WH4xeKWZ7oDVx1O4rr3jjYqE/rQUzrJHmomYSOr+QmKzHMfzJRF+TpHEi0QtAk6
-         LdzA==
-X-Gm-Message-State: AOAM530yjFnzw2DmfPoFXP7nDcB/HHwz7OVfC4d0N0y5hR/jO4KAZZaz
-        rfFv3ctHzBWzlVy/SJuQvQ==
-X-Google-Smtp-Source: ABdhPJzQukjWCQT1QEmWzFgP+OVp9orwtCbowykGqCuwEbqMpR+WgnafwDT9QfD0g/ABT99ODaPCxg==
-X-Received: by 2002:a05:6808:1314:b0:328:eb31:99b6 with SMTP id y20-20020a056808131400b00328eb3199b6mr11775397oiv.12.1653314897097;
-        Mon, 23 May 2022 07:08:17 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id g4-20020a9d6484000000b006060322125asm4025063otl.42.2022.05.23.07.08.15
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=mXZRehr7T9hWIefevRI5GrRN2Nm99r9FuQutOqdll7s=;
+        b=Xd3SCLTERgNUg83nneRkuRtD5HH4WoVPoTlvbAzv0D9gF3BefA/4EiFRLILt/it9lD
+         DjWiIFbOYV3v279g7OvFWJASLIVeA9Q28ggVfwZGLMf2NoRyUzKBdfVkLHsl5EYcMSUt
+         WzZrjU3uTQgARMyEgOEGIbh9dqo4SWIkzPUvEtuhex2I9VvDcQG6VK+gXPLUker2XdjF
+         T1XNytZhPuJRaHFEMDSupS0U7jlqAZ+Lw+eMhPSxO64viYs1+4+R/cfhVirS0Lip3KXn
+         oT01XsZEf3vUoc/Q+flVT+PdmhKS8Rc6l3e5KXYLtEJWjrV54Mu60gAkmOw3LLumt0DC
+         cPVw==
+X-Gm-Message-State: AOAM532A4bCG2qR4VsGqMFGKYTabTFNPqjjVqsPf1fJfKIRMUNR+0l0F
+        2W+eLlYvt9OGOjxXnjoo1HzNzQ==
+X-Google-Smtp-Source: ABdhPJx9YvmtRcBqZ06BkToXm5RyuKl0Z2/PU9GP0ZiNiKl+wrWmBvjElj6fK5W1ayz3UEGRrXy+ZQ==
+X-Received: by 2002:a05:600c:3c99:b0:392:b49c:7b79 with SMTP id bg25-20020a05600c3c9900b00392b49c7b79mr20060163wmb.199.1653315232128;
+        Mon, 23 May 2022 07:13:52 -0700 (PDT)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id r3-20020a7bc083000000b003974d0d981dsm2323296wmh.35.2022.05.23.07.13.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 May 2022 07:08:16 -0700 (PDT)
-Received: (nullmailer pid 1515070 invoked by uid 1000);
-        Mon, 23 May 2022 14:08:15 -0000
-Date:   Mon, 23 May 2022 09:08:15 -0500
-From:   Rob Herring <robh@kernel.org>
+        Mon, 23 May 2022 07:13:51 -0700 (PDT)
+Date:   Mon, 23 May 2022 15:13:49 +0100
+From:   Lee Jones <lee.jones@linaro.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        sboyd@kernel.org, chun-jie.chen@mediatek.com,
-        rex-bc.chen@mediatek.com, wenst@chromium.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] dt-bindings: arm: mtk-clocks: Set #clock-cells as
- required property
-Message-ID: <20220523140815.GA1500210-robh@kernel.org>
-References: <20220518093631.25491-1-angelogioacchino.delregno@collabora.com>
- <20220518093631.25491-3-angelogioacchino.delregno@collabora.com>
- <20220520221910.GA348732-robh@kernel.org>
- <288690ac-b23b-92f8-64b4-d994f249f21c@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        - <patches@opensource.cirrus.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: mfd: wlf,arizona: Add spi-max-frequency
+Message-ID: <YouWnXCcbLFW5p+B@google.com>
+References: <20220504084304.46173-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <288690ac-b23b-92f8-64b4-d994f249f21c@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220504084304.46173-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,33 +73,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, May 21, 2022 at 04:05:01PM +0200, Krzysztof Kozlowski wrote:
-> On 21/05/2022 00:19, Rob Herring wrote:
-> > On Wed, May 18, 2022 at 11:36:31AM +0200, AngeloGioacchino Del Regno wrote:
-> >> This is a clock-controller binding, so it needs #clock-cells, or
-> >> it would be of no use: add that to the list of required properties.
-> >>
-> >> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> >> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-> >> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >> ---
-> >>  .../devicetree/bindings/arm/mediatek/mediatek,mt8186-clock.yaml  | 1 +
-> >>  .../bindings/arm/mediatek/mediatek,mt8186-sys-clock.yaml         | 1 +
-> >>  .../devicetree/bindings/arm/mediatek/mediatek,mt8192-clock.yaml  | 1 +
-> >>  .../bindings/arm/mediatek/mediatek,mt8192-sys-clock.yaml         | 1 +
-> >>  .../devicetree/bindings/arm/mediatek/mediatek,mt8195-clock.yaml  | 1 +
-> >>  .../bindings/arm/mediatek/mediatek,mt8195-sys-clock.yaml         | 1 +
-> >>  6 files changed, 6 insertions(+)
-> > 
-> > Acked-by: Rob Herring <robh@kernel.org>
-> > 
-> > Wasn't there some discussion about moving these to bindings/clocks/? 
-> > Maybe that was another one, it's all a blur...
+On Wed, 04 May 2022, Krzysztof Kozlowski wrote:
+
+> The Wolfson Microelectronics Arizona audio can be connected via SPI bus
+> (e.g. WM5110 on Exynos5433 TM2 board), so allow SPI peripheral
+> properties.
 > 
-> Yes, there was such idea although I am not sure if this is worth by
-> itself - messes up with the git history.
+> Reported-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Changes since v1:
+> 1. Allow all SPI properties, not only max-frequency.
+> ---
+>  Documentation/devicetree/bindings/mfd/wlf,arizona.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-There shouldn't be too much history since converting to schema. For just 
-a move git is smart enough to see across moves.
+Applied, thanks.
 
-Rob
+-- 
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
