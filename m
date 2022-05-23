@@ -2,114 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A533E530FA6
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:19:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7894D530E28
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 12:43:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235083AbiEWLng (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 07:43:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59960 "EHLO
+        id S233693AbiEWKBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 06:01:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235074AbiEWLnf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 07:43:35 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06F31506DA;
-        Mon, 23 May 2022 04:43:33 -0700 (PDT)
-Received: from mail-ot1-f42.google.com ([209.85.210.42]) by
- mrelayeu.kundenserver.de (mreue010 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1M8yPu-1ny2QH3nh0-0066ng; Mon, 23 May 2022 13:43:32 +0200
-Received: by mail-ot1-f42.google.com with SMTP id e11-20020a9d6e0b000000b0060afcbafa80so4418465otr.3;
-        Mon, 23 May 2022 04:43:31 -0700 (PDT)
-X-Gm-Message-State: AOAM530VEDwel10v6P42dzQ6EV0W/ImJ2lYBPfS2Ob6jT5cD6s9b3rRk
-        rep+Z18t15/VrxXwa2LB9oh6NBm7p3HONc7O7mM=
-X-Google-Smtp-Source: ABdhPJxpUCa94Kh6HQKuK56biKlb3vDJKuICvFZFBgpVEpCuri5EfGLbRA6cBhu22Na5oqGEdTcIEn9+H34udGZY6o0=
-X-Received: by 2002:a25:75c5:0:b0:648:dccd:e1c with SMTP id
- q188-20020a2575c5000000b00648dccd0e1cmr21094709ybc.452.1653299785602; Mon, 23
- May 2022 02:56:25 -0700 (PDT)
+        with ESMTP id S233664AbiEWKBR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 06:01:17 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E477E63;
+        Mon, 23 May 2022 03:01:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1653300076; x=1684836076;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=H8dvUUQPrPiU5MNJ9HOR3T88IT8EbdlK5lILf5Y1wJA=;
+  b=jtKsQA8QpG8cabEwoDLQAAILIlphWouYLAX1i+JjmSo6A1WMorF5L/IN
+   uF1ENm9zz2IRlIaSrrNadJzBGUrpFqXLYyOVg9ANnZ/sA13bud4Zuo5pu
+   wP9Bz3TkX3/YL+reN0d4+N2PJuAelJmFuNXLSO4eqSSadZYejmLfp/wbx
+   c=;
+Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 23 May 2022 03:01:16 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 May 2022 03:01:15 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 23 May 2022 03:01:15 -0700
+Received: from hu-tdas-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 23 May 2022 03:01:12 -0700
+From:   Taniya Das <quic_tdas@quicinc.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+CC:     Douglas Anderson <dianders@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Andy Gross <agross@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Subject: [PATCH v5] arm64: dts: qcom: sc7280: Add lpasscore & lpassaudio clock controllers
+Date:   Mon, 23 May 2022 15:30:58 +0530
+Message-ID: <20220523100058.26241-1-quic_tdas@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20220522155046.260146-1-tmaimon77@gmail.com> <20220522155046.260146-5-tmaimon77@gmail.com>
-In-Reply-To: <20220522155046.260146-5-tmaimon77@gmail.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Mon, 23 May 2022 11:56:09 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a0Nh4m7O_WPe1DTWqwWU32C5khOPH0ir7r_=s106mLv5A@mail.gmail.com>
-Message-ID: <CAK8P3a0Nh4m7O_WPe1DTWqwWU32C5khOPH0ir7r_=s106mLv5A@mail.gmail.com>
-Subject: Re: [PATCH v1 04/19] tty: serial: 8250: Add NPCM845 UART support
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        gregkh <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        robert.hancock@calian.com,
-        "nathan=20Neusch=C3=A4fer?=" <j.neuschaefer@gmx.net>,
-        Lubomir Rintel <lkundrak@v3.sk>, SoC Team <soc@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:Eh/qW2KznBfSE/OEBWqMPrKe6wGQVBqS5SXsFUcXmZEqSSuDHwT
- 72VMZAhZPMIqmh+H6lMwP5qwnaEjve33ZMwxkio1HwuhLe3vPgbpqAog7NGZVs3/TT2oIMr
- eLUmXk8B4w648y9F7Bu1gvCHI+0N3M/eyZ0k53KwRmUDovnzg2msAvsumZTmJi6s5Ya1U3b
- XfeBYBqjpRFHOFSgvC5YQ==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:MX/kDM8qFJQ=:CvgCpZv4G2zKoUj2z9ehBD
- q317uwNL18N9Picka94IqPCTYd3CmtXvDVrZ9rwdHuwNOfOByunvQOyYEl5G8UQfzgImVWQBY
- D2Yk6dIUB06pWAOExUyI9NYclahQzC4GJDaRKjYHAZu+iYEzlL52xKUvBX6ZZGlmZHTPGN8YX
- Y/5RUBanuZtJvJ3iqaVWmUtMVIHC1WfhHtvERDNttfphhBU/c3itCrYebF2hY4d41zw4KBDkT
- VwFMXAaE1xna2GBc+ty/P+JeIl+zwKF3spkzznm8v3zF0gKEkK96NRflU70ymEbIXkMlosfa4
- /L7WeQkkTK3JvD6BDaeGnZMFBbTCwZHTtAefhAKghRvOBIPwyn+k5Xf+ohYGEMt6HOWRLJoLV
- sMYIWGyABqjBjoF2fu8Bhd4Z/GzoffvZlG5hEUyOiOaXt+LbNNxrFHXrn2ac34cWnfFoQKO7b
- G/j4oZ1S89kseAeIDBc3zq2pjCdnmeh2aT5VBDIO9EqV7QQNBsGLqHCq6Br+bSWTqOgNqFRiI
- GYuJRIitstsn3UA3Mg3fSmvVvA5S8zK34xsP4Ig9SNK1InEcSdsHPntJvV0R5CDVYUFHVzpLW
- 5TL6tb0Qt79u4jxBCx/txPyQ4vCoPHVuj6/UyE13epLYHMwsTW/lbdmg6GxFOoVpPNtKTs2Dt
- rCVhULYuwi2udYEMOPaNzoEEUAAzZp2AgFWVYAXgWuddQ5uBtMvy3DbQEtX8YYqNOwskHC9Tu
- ZESP5no+BZ2x6s/vpQD5d2oZmYZ4wWiTMydWlWTqt8UDE1ugbhNkqcKztxF/zTHf/0BIFZrRp
- 6kpLar02NBXVZfofCQH0YywcWqyCSP+dynb/W3vwBXGDi7cXGOCLkfF8ak/RImCcA+meyBaWP
- epvJo17x6SJ9CA+eTjtQ==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 22, 2022 at 5:50 PM Tomer Maimon <tmaimon77@gmail.com> wrote:
-> +++ b/drivers/tty/serial/8250/8250_of.c
-> @@ -333,6 +333,7 @@ static const struct of_device_id of_platform_serial_table[] = {
->         { .compatible = "ti,da830-uart", .data = (void *)PORT_DA830, },
->         { .compatible = "nuvoton,wpcm450-uart", .data = (void *)PORT_NPCM, },
->         { .compatible = "nuvoton,npcm750-uart", .data = (void *)PORT_NPCM, },
-> +       { .compatible = "nuvoton,npcm845-uart", .data = (void *)PORT_NPCM, },
->         { /* end of list */ },
+Add the low pass audio clock controller device nodes. Keep the lpasscc
+clock node disabled and enabled for lpass pil based devices.
 
-If these are compatible devices, it's usually easier to claim
-compatibility with both the specific chip and the older model
-as a fallback, to avoid driver changes. This seems to apply to
-the timer and watchdog devices as well.
+Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+---
+[v5]
+ * Update the lpasscore phandle as 'lpass_core' for consistency.
 
-       Arnd
+[v4]
+ * Mark lpasscc[lpasscc@3000000] device node as "disabled".
+
+[v3]
+ * Fix unwanted extra spaces in reg property.
+ * Fix lpass_aon node clock phandle <&lpasscc> to <&lpasscore>
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 44 ++++++++++++++++++++++++++++
+ 1 file changed, 44 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index f0b64be63c21..2c5be0266d38 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -8,6 +8,8 @@
+ #include <dt-bindings/clock/qcom,dispcc-sc7280.h>
+ #include <dt-bindings/clock/qcom,gcc-sc7280.h>
+ #include <dt-bindings/clock/qcom,gpucc-sc7280.h>
++#include <dt-bindings/clock/qcom,lpassaudiocc-sc7280.h>
++#include <dt-bindings/clock/qcom,lpasscorecc-sc7280.h>
+ #include <dt-bindings/clock/qcom,rpmh.h>
+ #include <dt-bindings/clock/qcom,videocc-sc7280.h>
+ #include <dt-bindings/gpio/gpio.h>
+@@ -1978,6 +1980,48 @@
+ 			clocks = <&gcc GCC_CFG_NOC_LPASS_CLK>;
+ 			clock-names = "iface";
+ 			#clock-cells = <1>;
++			status = "disabled";
++		};
++
++		lpass_audiocc: clock-controller@3300000 {
++			compatible = "qcom,sc7280-lpassaudiocc";
++			reg = <0 0x03300000 0 0x30000>;
++			clocks = <&rpmhcc RPMH_CXO_CLK>,
++			       <&lpass_aon LPASS_AON_CC_MAIN_RCG_CLK_SRC>;
++			clock-names = "bi_tcxo", "lpass_aon_cc_main_rcg_clk_src";
++			power-domains = <&lpass_aon LPASS_AON_CC_LPASS_AUDIO_HM_GDSC>;
++			#clock-cells = <1>;
++			#power-domain-cells = <1>;
++		};
++
++		lpass_aon: clock-controller@3380000 {
++			compatible = "qcom,sc7280-lpassaoncc";
++			reg = <0 0x03380000 0 0x30000>;
++			clocks = <&rpmhcc RPMH_CXO_CLK>,
++			       <&rpmhcc RPMH_CXO_CLK_A>,
++			       <&lpass_core LPASS_CORE_CC_CORE_CLK>;
++			clock-names = "bi_tcxo", "bi_tcxo_ao", "iface";
++			#clock-cells = <1>;
++			#power-domain-cells = <1>;
++		};
++
++		lpass_core: clock-controller@3900000 {
++			compatible = "qcom,sc7280-lpasscorecc";
++			reg = <0 0x03900000 0 0x50000>;
++			clocks =  <&rpmhcc RPMH_CXO_CLK>;
++			clock-names = "bi_tcxo";
++			power-domains = <&lpass_hm LPASS_CORE_CC_LPASS_CORE_HM_GDSC>;
++			#clock-cells = <1>;
++			#power-domain-cells = <1>;
++		};
++
++		lpass_hm: clock-controller@3c00000 {
++			compatible = "qcom,sc7280-lpasshm";
++			reg = <0 0x3c00000 0 0x28>;
++			clocks = <&rpmhcc RPMH_CXO_CLK>;
++			clock-names = "bi_tcxo";
++			#clock-cells = <1>;
++			#power-domain-cells = <1>;
+ 		};
+
+ 		lpass_ag_noc: interconnect@3c40000 {
+--
+2.17.1
+
