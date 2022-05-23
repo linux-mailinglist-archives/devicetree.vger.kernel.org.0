@@ -2,50 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B326530B41
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 11:02:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 559AF530C03
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 11:04:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232288AbiEWI6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 04:58:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52344 "EHLO
+        id S232116AbiEWIyx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 04:54:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232273AbiEWI6a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 04:58:30 -0400
-X-Greylist: delayed 497 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 23 May 2022 01:58:27 PDT
-Received: from smtpout1.mo528.mail-out.ovh.net (smtpout1.mo528.mail-out.ovh.net [46.105.34.251])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0C073EAB5;
-        Mon, 23 May 2022 01:58:27 -0700 (PDT)
-Received: from pro2.mail.ovh.net (unknown [10.109.143.120])
-        by mo528.mail-out.ovh.net (Postfix) with ESMTPS id 8F21E10347F4B;
-        Mon, 23 May 2022 10:50:08 +0200 (CEST)
-Received: from localhost.localdomain (88.161.25.233) by DAG1EX2.emp2.local
- (172.16.2.2) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.9; Mon, 23 May
- 2022 10:50:08 +0200
-From:   Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-CC:     <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH 1/3] dt-bindings: leds: Add bindings for the TLC5925 controller
-Date:   Mon, 23 May 2022 10:49:55 +0200
-Message-ID: <20220523084958.2723943-2-jjhiblot@traphandler.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220523084958.2723943-1-jjhiblot@traphandler.com>
-References: <20220523084958.2723943-1-jjhiblot@traphandler.com>
+        with ESMTP id S232047AbiEWIyw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 04:54:52 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24AB03DDF5
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 01:54:50 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id q1so6700573ljb.5
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 01:54:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=CfF5/pWdcRI2Sg4Sp9q18Ut3NdSMP2mrbNrUOH4tHpQ=;
+        b=H04E3Qh+zTkrhDtqT1Pf+lm+z90Q1IJDUjrpShL1b6RHtN5BCmOhFU45XgaLzruEAQ
+         A5fMl9wwVZqcALIuVrSlMDFOms32cB0Kh8A9Dra7P1u/TWSRNmJvGaaa9r+W1KiP59QN
+         6Kv4z77ZaR1HOWXOpL9Yy1bVRhACpLfGfO1/ICZdQ8NRjyTunjfH0E3IMxe+YquB8YFL
+         +rblqL3SZACB4oYbDVhmJJ7xeZ5Gcmmw4LsDMfKpzy8RxbLDszX4lGi0PN7CJqeV0wPZ
+         9bDoBwCrs+sFL1Nr/ZQ/kconVYs8bt0QHOyInH/VY0r+0UHAAKzY5Nv10bvgkCO/NOgC
+         gaFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=CfF5/pWdcRI2Sg4Sp9q18Ut3NdSMP2mrbNrUOH4tHpQ=;
+        b=JhOzzU+iuZ8HN8RKrA2r7lB24Clhxmlqe/UzlrASMxHpJuhqARf23EyjKLbF4ixbRR
+         6a26rOUWbVZZGk3WOGnjj55UJGFuoj711DLITGlsO/ESR0cyIZaQTV73b/totMPar3eG
+         2mxEidINDLJzr22lprOKwLVjdtFGg28F+9a6tO6KOmCvKTh4MUexGOXnWRsr+8kDQjIs
+         9UQE44eUNq1p7K+4RzGoAxcPqbQv7wvTS2MJA2+mVW5gl+h2ncbmrFiKPQ+Y0NUBWmvx
+         bnedCdUmldvewpiCSZj1rUoalIs9p70u55uXsrfmiUqcfuC2fnj+e6Yzm2YBy04zlij3
+         N97w==
+X-Gm-Message-State: AOAM5321D1T4aWoVSLwc1Lep340P/wjGc0jAX2veoV0UE76oRDscdQJ5
+        wEBzJInqCjV3YJm2gk8/+iSSlA==
+X-Google-Smtp-Source: ABdhPJz8ech4AXIZ3Td603lBQrNaXVjP05GbdjiHzoi9KYn0N5iOo6J7vHouIJSze1sRkg0E6MIyRw==
+X-Received: by 2002:a2e:9797:0:b0:253:ccb1:5868 with SMTP id y23-20020a2e9797000000b00253ccb15868mr12838410lji.162.1653296088444;
+        Mon, 23 May 2022 01:54:48 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id y11-20020a2e7d0b000000b00253d95eebe4sm1692364ljc.21.2022.05.23.01.54.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 May 2022 01:54:48 -0700 (PDT)
+Message-ID: <973d75b8-0eb6-ff5b-6cd2-9b7d7c5cbcaa@linaro.org>
+Date:   Mon, 23 May 2022 10:54:46 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [88.161.25.233]
-X-ClientProxiedBy: DAG8EX2.emp2.local (172.16.2.82) To DAG1EX2.emp2.local
- (172.16.2.2)
-X-Ovh-Tracer-Id: 5386305156936645083
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrjedtgddutdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufffkffojghfggfgtghisehtkeertdertddtnecuhfhrohhmpeflvggrnhdqlfgrtghquhgvshcujfhisghlohhtuceojhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmqeenucggtffrrghtthgvrhhnpedttdffveeljeetleeijefhffevtdffleejheejiefgjeeludefvdevjedutdejhfenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecukfhppedtrddtrddtrddtpdekkedrudeiuddrvdehrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehprhhovddrmhgrihhlrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehjjhhhihgslhhothesthhrrghphhgrnhgulhgvrhdrtghomhdpnhgspghrtghpthhtohepuddprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrgh
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v1 10/19] reset: npcm: using syscon instead of device data
+Content-Language: en-US
+To:     Tomer Maimon <tmaimon77@gmail.com>, avifishman70@gmail.com,
+        tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
+        yuenn@google.com, benjaminfair@google.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, p.zabel@pengutronix.de,
+        gregkh@linuxfoundation.org, daniel.lezcano@linaro.org,
+        tglx@linutronix.de, wim@linux-watchdog.org, linux@roeck-us.net,
+        catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
+        olof@lixom.net, jirislaby@kernel.org, shawnguo@kernel.org,
+        bjorn.andersson@linaro.org, geert+renesas@glider.be,
+        marcel.ziswiler@toradex.com, vkoul@kernel.org,
+        biju.das.jz@bp.renesas.com, nobuhiro1.iwamatsu@toshiba.co.jp,
+        robert.hancock@calian.com, j.neuschaefer@gmx.net, lkundrak@v3.sk
+Cc:     soc@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20220522155046.260146-1-tmaimon77@gmail.com>
+ <20220522155046.260146-11-tmaimon77@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220522155046.260146-11-tmaimon77@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -53,121 +88,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings documentation for the TLC5925 LED controller.
+On 22/05/2022 17:50, Tomer Maimon wrote:
+> Using syscon device tree property instead of
+> device data to handle the NPCM GCR registers.
 
-Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
----
-devicetree@vger.kernel.org
- .../bindings/leds/leds-tlc5925.yaml           | 100 ++++++++++++++++++
- 1 file changed, 100 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/leds/leds-tlc5925.yaml
+https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
 
-diff --git a/Documentation/devicetree/bindings/leds/leds-tlc5925.yaml b/Documentation/devicetree/bindings/leds/leds-tlc5925.yaml
-new file mode 100644
-index 000000000000..156db599d5a1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/leds-tlc5925.yaml
-@@ -0,0 +1,100 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/leds-tlc5925.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: LEDs connected to TI TLC5925 controller
-+
-+maintainers:
-+  - Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-+
-+description: |
-+  The TLC5925 is a low-power 16-channel constant-current LED sink driver.
-+  It is controlled through a SPI interface.
-+  It is built around a shift register and latches which convert serial
-+  input data into a parallel output. Several TLC5925 can be chained to
-+  control more than 16 LEDs with a single chip-select.
-+  The brightness level cannot be controlled, each LED is either on or off.
-+
-+  Each LED is represented as a sub-node of the ti,tlc5925 device.
-+
-+properties:
-+  compatible:
-+    const: ti,tlc5925
-+
-+  shift_register_length:
-+    maxItems: 1
-+    description: |
-+      The length of the shift register. If several TLC5925 are chained,
-+      shift_register_length should be set to 16 times the number of TLC5925.
-+      The value must be a multiple of 8.
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+  output-enable-b-gpios:
-+    description: |
-+      GPIO pins to enable/disable the parallel output. They describe the GPIOs
-+      connected to the OE/ pin of the TLC5925s.
-+
-+patternProperties:
-+  "@[a-f0-9]+$":
-+    type: object
-+
-+    $ref: common.yaml#
-+
-+    properties:
-+      reg:
-+        items:
-+        description: |
-+          LED pin number (must be lower than shift_register_length).
-+          The furthest LED down the chain has the pin number 0.
-+
-+    required:
-+      - reg
-+
-+required:
-+  - reg
-+  - "#address-cells"
-+  - "#size-cells"
-+  - shift_register_length
-+
-+examples:
-+  - |
-+    &spi0 {
-+        leds@2 {
-+                compatible = "ti,tlc5925";
-+                reg = <0x02>;
-+                spi-max-frequency = <30000000>;
-+                shift_register_length = <32>;
-+                output-enable-b-gpios = <&gpio0b 9 GPIO_ACTIVE_HIGH>, <&gpio0b 7 GPIO_ACTIVE_HIGH>;
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                led-satus@0 {
-+                        reg = <0>;
-+                        function = LED_FUNCTION_STATUS;
-+                        color = <LED_COLOR_ID_GREEN>;
-+                };
-+
-+                led-satus@4 {
-+                        reg = <4>;
-+                        function = LED_FUNCTION_STATUS;
-+                        color = <LED_COLOR_ID_RED>;
-+                };
-+
-+                led-alive@24 {
-+                        reg = <24>;
-+                        label = "green:alive"
-+                };
-+
-+                led-panic@31 {
-+                        reg = <31>;
-+                        label = "red:panic"
-+                };
-+        };
-+    };
--- 
-2.25.1
+> 
+> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> ---
+>  drivers/reset/reset-npcm.c | 11 +++--------
+>  1 file changed, 3 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/reset/reset-npcm.c b/drivers/reset/reset-npcm.c
+> index 2ea4d3136e15..0c963b21eddc 100644
+> --- a/drivers/reset/reset-npcm.c
+> +++ b/drivers/reset/reset-npcm.c
+> @@ -138,8 +138,7 @@ static int npcm_reset_xlate(struct reset_controller_dev *rcdev,
+>  }
+>  
+>  static const struct of_device_id npcm_rc_match[] = {
+> -	{ .compatible = "nuvoton,npcm750-reset",
+> -		.data = (void *)"nuvoton,npcm750-gcr" },
+> +	{ .compatible = "nuvoton,npcm750-reset"},
+>  	{ }
+>  };
+>  
+> @@ -155,14 +154,10 @@ static int npcm_usb_reset(struct platform_device *pdev, struct npcm_rc_data *rc)
+>  	u32 ipsrst1_bits = 0;
+>  	u32 ipsrst2_bits = NPCM_IPSRST2_USB_HOST;
+>  	u32 ipsrst3_bits = 0;
+> -	const char *gcr_dt;
+>  
+> -	gcr_dt = (const char *)
+> -	of_match_device(dev->driver->of_match_table, dev)->data;
+> -
+> -	gcr_regmap = syscon_regmap_lookup_by_compatible(gcr_dt);
+> +	gcr_regmap = syscon_regmap_lookup_by_phandle(dev->of_node, "syscon");
 
+I think this just broke all existing boards...
+
+Best regards,
+Krzysztof
