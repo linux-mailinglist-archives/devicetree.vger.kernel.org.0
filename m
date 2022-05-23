@@ -2,315 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83FE7530ED6
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:17:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D59953106C
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:20:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235659AbiEWMwF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 08:52:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48200 "EHLO
+        id S235733AbiEWMyC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 08:54:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235586AbiEWMwF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 08:52:05 -0400
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E38DE3DA7A;
-        Mon, 23 May 2022 05:52:01 -0700 (PDT)
-Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 335121C0004;
-        Mon, 23 May 2022 12:51:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1653310320;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=U+H5xu8nCjdPDFB+rNE/Nv2sAZrPCxc01fLrAUYE1eE=;
-        b=OHjPq6PNsRRavWiImrmtBl5h8WOWbZbQ2kehnB7qEoTtWw47+3pwOl5kMlB+tXm/J4wGRv
-        bZ+YCtkRlq+zIhBsnfhcfcieywN68jOpLfntklbqH651Lm1e56yMYVuEV3IA/uKVomqiS9
-        Mv7d4WfJtTbnsT9Mvy0M3mHLJlxasC0WezQ9riLw1XyLIK5cd4kRY682AX78iTkiB2PXm7
-        f/N5mTQPniOhR6SoS5KuaD7b5Tokf9yznWLvBaH3B6yDmcXAFsyVPRaPOgr4y5O96FQVYt
-        0ceQCUoBTL2ZaRlxtx0PfPzk2fIiGuDdWAQ+dYILBy19/kVw95TrVpUZRbKjjQ==
-Date:   Mon, 23 May 2022 14:51:55 +0200
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Sakari Ailus <sakari.ailus@iki.fi>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-staging@lists.linux.dev,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S235740AbiEWMyC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 08:54:02 -0400
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B76018B37;
+        Mon, 23 May 2022 05:54:00 -0700 (PDT)
+Received: by mail-ot1-f46.google.com with SMTP id c15-20020a9d684f000000b0060b097c71ecso3106797oto.10;
+        Mon, 23 May 2022 05:54:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Jq8HRtHzCtz/J4InLS0fIGv9eW9x4bTUmADGdhjM00s=;
+        b=LK/XY3IhpGYkxjB4uAkdFwnaziUwsznJv3dLYlZtjbeKNwN4N6zRF/1BBYMKn26dC3
+         C16EnL788pa0XZhtRmzWjqSDwc4MC7BMXq99ipC9SVSYaeFiAIIRFrNRjiEO0x0QAFue
+         45fz1mtC755ulCVsEJXI4XmLI7xM+/eF38CZmmOQn/cchK5hI/h8Xid+mWFCxOoahpkU
+         I5L2iuKeMmvHphn96XK9ioU2QU8zG+6qZvk4B6JSzgUfK9FRjJ2QiEmfXtBTgs5pwU0Z
+         S69FBtK5lpmETWq0KULIGYCpKgqToYbUDcwH01G4oR0ea4uzozQhUpptJL6SSWRijRB4
+         500A==
+X-Gm-Message-State: AOAM5321gGE88wENTh+/YdMaClX6HT1RTJuGEjcVLIDe2M9GPnjSAl9G
+        GIK8t070WTWOrmTwkOPNGw==
+X-Google-Smtp-Source: ABdhPJxUIH55xkr7wZoXAk0lXYAGkICZiyq04nvXGCbndkBSHCQ2U29sAGiC94do7VnDkG4ApPB8EQ==
+X-Received: by 2002:a05:6830:619:b0:606:a6d2:db5c with SMTP id w25-20020a056830061900b00606a6d2db5cmr8704533oti.85.1653310439471;
+        Mon, 23 May 2022 05:53:59 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id z11-20020a056870e14b00b000f1a2378a12sm3752093oaa.37.2022.05.23.05.53.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 May 2022 05:53:58 -0700 (PDT)
+Received: (nullmailer pid 1409363 invoked by uid 1000);
+        Mon, 23 May 2022 12:53:57 -0000
+Date:   Mon, 23 May 2022 07:53:57 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Mike Leach <mike.leach@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 3/4] staging: media: Add support for the Allwinner A31
- ISP
-Message-ID: <YouDa3mE9+SkKJg/@aptenodytes>
-References: <20220415153708.637804-1-paul.kocialkowski@bootlin.com>
- <20220415153708.637804-4-paul.kocialkowski@bootlin.com>
- <YmqFQSRBsqs4ghNQ@valkosipuli.retiisi.eu>
- <Ymqk89e+mn/1kLLx@aptenodytes>
- <YmsCJicyzf+Bz98y@valkosipuli.retiisi.eu>
- <YoesXywA4yzBDSwU@aptenodytes>
- <Yop0DGOo1ky2dfnv@pendragon.ideasonboard.com>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm: Convert CoreSight bindings to DT
+ schema
+Message-ID: <20220523125357.GA1385486-robh@kernel.org>
+References: <20220520214416.302127-1-robh@kernel.org>
+ <20220520214416.302127-2-robh@kernel.org>
+ <f2073815-3302-d092-5a94-61dcaf72e29c@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="SXPMYzqIrx+IMC+b"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Yop0DGOo1ky2dfnv@pendragon.ideasonboard.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <f2073815-3302-d092-5a94-61dcaf72e29c@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, May 21, 2022 at 04:54:48PM +0200, Krzysztof Kozlowski wrote:
+> On 20/05/2022 23:44, Rob Herring wrote:
+> > Each CoreSight component has slightly different requirements and
+> > nothing applies to every component, so each CoreSight component has its
+> > own schema document.
+> > 
+> 
+> (...)
+> 
+> > +        const: arm,coresight-dynamic-funnel
+> > +  required:
+> > +    - compatible
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/arm/primecell.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - const: arm,coresight-dynamic-funnel
+> > +      - const: arm,primecell
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +
+> > +  clock-names:
+> > +    minItems: 1
+> > +    items:
+> > +      - const: apb_pclk
+> > +      - const: atclk
+> > +
+> > +  in-ports:
+> > +    $ref: /schemas/graph.yaml#/properties/ports
+> 
+> Shouldn't this be with unevaluatedProperties:false?
 
---SXPMYzqIrx+IMC+b
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+No, because the ports definition has 'additionalProperties: false'. That 
+does mean port nodes aren't actually restricted to 0-7 in any way. Not 
+really any way to fix that other than listing #address-cells/#size-cells 
+here or a pattern matching disallowed ports. But I think the limit to 8 
+is just current implementations and perhaps practical limit of how many 
+streams of trace data can be combined.
 
-Hi Laurent,
+> > +
+> > +    patternProperties:
+> > +      '^port(@[0-7])?$':
+> > +        description: Input connections from CoreSight Trace bus
+> > +        $ref: /schemas/graph.yaml#/properties/port
 
-On Sun 22 May 22, 20:34, Laurent Pinchart wrote:
-> Hi Paul,
->=20
-> On Fri, May 20, 2022 at 04:57:35PM +0200, Paul Kocialkowski wrote:
-> > On Fri 29 Apr 22, 00:07, Sakari Ailus wrote:
-> > > On Thu, Apr 28, 2022 at 04:30:11PM +0200, Paul Kocialkowski wrote:
-> > > > Hi Sakari,
-> > > >=20
-> > > > On Thu 28 Apr 22, 15:14, Sakari Ailus wrote:
-> > > > > Hi Paul,
-> > > > >=20
-> > > > > Thanks for the set.
-> > > > >=20
-> > > > > A few comments below.
-> > > >=20
-> > > > Thanks a lot for your review!
-> > >=20
-> > > You're welcome!
-> > >=20
-> > > ...
-> > >=20
-> > > > > I understand this is an online ISP. How do you schedule the video=
- buffer
-> > > > > queues? Say, what happens if it's time to set up buffers for a fr=
-ame and
-> > > > > there's a buffer queued in the parameter queue but not in the ima=
-ge data
-> > > > > queue? Or the other way around?
-> > > >=20
-> > > > The ISP works in a quite atypical way, with a DMA buffer that is us=
-ed to
-> > > > hold upcoming parameters (including buffer addresses) and a bit in =
-a "direct"
-> > > > register to schedule the update of the parameters at next vsync.
-> > > >=20
-> > > > The update (setting the bit) is triggered whenever new parameters a=
-re
-> > > > submitted via the params video device or whenever there's a capture=
- buffer
-> > > > available in the capture video device.
-> > > >=20
-> > > > So you don't particularly need to have one parameter buffer matchin=
-g a capture
-> > > > buffer, the two can be updated independently. Of course, a capture =
-buffer will
-> > > > only be returned after another buffer becomes active.
-> > >=20
-> > > This also means it's not possible to associate a capture buffer to a
-> > > parameter buffer by other means than timing --- which is unreliable. =
-The
-> > > request API would allow that but it's not free of issues either.
-> >=20
-> > Yes the request API seems like a good fit for this. Note that the retur=
-ned
-> > sequence number in dequeued buffers for the capture and meta video devi=
-ces
-> > should match though, so userspace still has a way to know which capture=
-d buffer
-> > used parameters from which meta params buffer.
-> >=20
-> > > Alternatively, I think in this case you could always require the capt=
-ure
-> > > buffer and grab a parameter buffer when it's available. As ISPs are
-> > > generally requiring device specific control software, this shouldn't =
-be a
-> > > problem really.
-> >=20
-> > I think this is pretty much what happens already.
-> >=20
-> > > I wonder what Laurent thinks.
->=20
-> If parameters buffers are optional, I think the request API should be
-> used, otherwise we won't be able to ensure per-frame control. The
-> alternative is to make the parameter buffer mandatory for every frame,
-> even if no parameters have changed. Or maybe that's the case already ?
-
-Currently the parameters are not mandatory (there is a default state set
-by the driver) and queued parameter buffers are applied in the order they
-are submitted.
-
-The request API would make per-frame control possible, but I don't think
-there is a point in making it mandatory. It seems that the situation is very
-similar to what already exists with the rkisp1 driver.
-
-Cheers,
-
-Paul
-
-> > > > I hope this answers your concern!
-> > > >=20
-> > > > [...]
-> > > >=20
-> > > > > > +static int sun6i_isp_tables_setup(struct sun6i_isp_device *isp=
-_dev)
-> > > > > > +{
-> > > > > > +	struct sun6i_isp_tables *tables =3D &isp_dev->tables;
-> > > > > > +	int ret;
-> > > > > > +
-> > > > > > +	/* Sizes are hardcoded for now but actually depend on the pla=
-tform. */
-> > > > >=20
-> > > > > Would it be cleaner to have them defined in a platform-specific w=
-ay, e.g.
-> > > > > in a struct you obtain using device_get_match_data()?
-> > > >=20
-> > > > Absolutely! I didn't do it at this stage since only one platform is=
- supported
-> > > > but we could just as well introduce a variant structure already for=
- the table
-> > > > sizes.
-> > >=20
-> > > I think that would be nice already, especially if you know these are =
-going
-> > > to be different. Otherwise macros could be an option.
-> >=20
-> > Understood!
-> >=20
-> > > ...
-> > >=20
-> > > > > > +	ret =3D v4l2_ctrl_handler_init(&v4l2->ctrl_handler, 0);
-> > > > >=20
-> > > > > I suppose you intend to add controls later on?
-> > > >=20
-> > > > I might be wrong but I thought this was necessary to expose sensor =
-controls
-> > > > registered by subdevs that end up attached to this v4l2 device.
-> > > >=20
-> > > > I doubt the drivers itself will expose controls otherwise.
-> > >=20
-> > > Now that this is an MC-enabled driver, the subdev controls should be
-> > > accessed through the subdev nodes only. Adding them to the video devi=
-ce's
-> > > control handler is quite hackish and not guaranteed to even work (as =
-e.g.
-> > > multiple subdevs can have the same control).
-> >=20
-> > Yes I was wondering what would happen in that case. I'll drop the ctrls
-> > handling in the next iteration then.
-> >=20
-> > Paul
-> >=20
-> > > ...
-> > >=20
-> > > > > > +{
-> > > > > > +	struct sun6i_isp_device *isp_dev =3D video_drvdata(file);
-> > > > > > +	struct video_device *video_dev =3D &isp_dev->capture.video_de=
-v;
-> > > > > > +	struct mutex *lock =3D &isp_dev->capture.lock;
-> > > > > > +	int ret;
-> > > > > > +
-> > > > > > +	if (mutex_lock_interruptible(lock))
-> > > > > > +		return -ERESTARTSYS;
-> > > > > > +
-> > > > > > +	ret =3D v4l2_pipeline_pm_get(&video_dev->entity);
-> > > > >=20
-> > > > > Do you need this?
-> > > > >=20
-> > > > > Drivers should primarily depend on runtime PM, this is only neede=
-d for
-> > > > > compatibility reasons. Instead I'd like to see sensor drivers bei=
-ng moved
-> > > > > to runtime PM.
-> > > >=20
-> > > > Yes it's still needed to support sensor drivers that don't use rpm =
-yet.
-> > >=20
-> > > To that I suggested adding runtime PM support for the affected sensor=
-s.
-> > > This doesn't seem to get done otherwise. E.g. ipu3-cio2 driver does n=
-ot
-> > > call s_power() on sensor subdevs.
-> > >=20
-> > > ...
-> > >=20
-> > > > > > +	ret =3D video_register_device(video_dev, VFL_TYPE_VIDEO, -1);
-> > > > > > +	if (ret) {
-> > > > > > +		v4l2_err(v4l2_dev, "failed to register video device: %d\n",
-> > > > > > +			 ret);
-> > > > > > +		goto error_media_entity;
-> > > > > > +	}
-> > > > > > +
-> > > > > > +	v4l2_info(v4l2_dev, "device %s registered as %s\n", video_dev=
-->name,
-> > > > > > +		  video_device_node_name(video_dev));
-> > > > >=20
-> > > > > This isn't really driver specific. I'd drop it.
-> > > >=20
-> > > > I agree but I see that many drivers are doing it and the informatio=
-n can
-> > > > actually be quite useful at times.
-> > >=20
-> > > You can get that information using media-ctl -e 'entity name'.
-> > >=20
-> > > I guess this could be also added to video_register_device() on debug =
-level.
-> > >=20
-> > > > > > +struct sun6i_isp_params_config_bdnf {
-> > > > > > +	__u8	in_dis_min; // 8
-> > > > > > +	__u8	in_dis_max; // 10
-> > > > >=20
-> > > > > Are these default values or something else? Better documentation =
-was in the
-> > > > > TODO.txt file already.
-> > > >=20
-> > > > Yes that's the default register values, but these comments are and =
-overlook on
-> > > > my side and should be removed.
-> > >=20
-> > > I'm fine leaving these here. Just wondering. Up to you.
->=20
-> --=20
-> Regards,
->=20
-> Laurent Pinchart
-
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
-
---SXPMYzqIrx+IMC+b
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmKLg2sACgkQ3cLmz3+f
-v9HkdAf/c8WwJ1tDC3vE468r7moIH1vWtbKyBlLkj1iB/T6YtO4tadBef69WudfQ
-mEmB43e4AeciElrjs/y0s0lTvbSatpK2BRUg82vQwm7PKUvgefaNkliZsU2WSOeT
-5hbkDNUX1ckQeZxVbpqO7zleFAa+uupHBmzM9c5/mE6g2mYOB9PSyNvNiZSBJUb7
-eM3IilYNswo+nWdcXWR3KYAgePBArQAEyE9IBmQSPrXeBJVj0Hqsti0Z9ANJjOcx
-ZHa0d9TY6SOb/oRw7gPQGj796ZcfYhXrTCStEPYOh304OXSA790Vvd0O6wgPTio9
-8UxE4fCbngH6y23ie+BH3Kl25imuWw==
-=ZrB9
------END PGP SIGNATURE-----
-
---SXPMYzqIrx+IMC+b--
