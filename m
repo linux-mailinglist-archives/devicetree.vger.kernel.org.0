@@ -2,138 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 319C65310BE
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:20:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80458530F5F
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:18:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234205AbiEWKok (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 06:44:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55286 "EHLO
+        id S234344AbiEWKuQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 06:50:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234236AbiEWKoj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 06:44:39 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B64F21833;
-        Mon, 23 May 2022 03:44:36 -0700 (PDT)
-Received: from mail-yb1-f172.google.com ([209.85.219.172]) by
- mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1M2gt5-1nrAXl1qU3-004EAy; Mon, 23 May 2022 12:44:34 +0200
-Received: by mail-yb1-f172.google.com with SMTP id v71so24625779ybi.4;
-        Mon, 23 May 2022 03:44:33 -0700 (PDT)
-X-Gm-Message-State: AOAM530qeCxaHCmTmie4hv7Wx8oD2I4W6nmutjXgFkxho8NzdLnMdAjk
-        LrMYbxgRZCF4bwL8p6q5muFE7gCnVGMfCCzTnEk=
-X-Google-Smtp-Source: ABdhPJzbbTU7bxyEy+V6QZ7ro2Wti/wri258NXrp2iXt1Owp7jIbpPdzCSwsk8vjZl8l7XWvxC1S+1Cf8oUw+fAt8d0=
-X-Received: by 2002:a81:6283:0:b0:2ff:2443:6f3c with SMTP id
- w125-20020a816283000000b002ff24436f3cmr22577090ywb.135.1653302662526; Mon, 23
- May 2022 03:44:22 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220522155046.260146-1-tmaimon77@gmail.com> <20220522155046.260146-13-tmaimon77@gmail.com>
-In-Reply-To: <20220522155046.260146-13-tmaimon77@gmail.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Mon, 23 May 2022 12:44:06 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a0PKvqpTjNeKUm6EnxpmJAtmk1jv+b4YXxr+fXFpsWXtw@mail.gmail.com>
-Message-ID: <CAK8P3a0PKvqpTjNeKUm6EnxpmJAtmk1jv+b4YXxr+fXFpsWXtw@mail.gmail.com>
-Subject: Re: [PATCH v1 12/19] reset: npcm: Add NPCM8XX support
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
+        with ESMTP id S234316AbiEWKuJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 06:50:09 -0400
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80ABD4C795
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 03:50:07 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id e2so9124674wrc.1
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 03:50:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QY0NXpXxssyXYxW2Q3exiUP/wgu4S8DoemCxMIQfBTE=;
+        b=5Yi5yOPTuzEy+RvEjRNlahryNYfO2WYTFkKUlksAlpvowXpuODxy/xc56sWtr/0hvS
+         Po5ahQ2I4pOuMsQM2VCv5eD8eql//fD0PmLYvHIX1ve7MK2mkHMOvEg0UqJMcML5MvfN
+         8eVXFZRQRMXRqqnQEppkvQcV4d0E19p4oGL8ejRXA0d61aXYLta76nRAMTMSmgvVMTpY
+         E8WgS3SnIpaEfmJJ9F0WEiQpY9p06AHmZ/0RIn0JxgNj4BpRO14v4hZA7afKXcEQqIWn
+         JL0ArR+Umw6fkDiv/K5aaYoPt4jWue6AEM60Pe0p7/fs4c4W2Et79phGhSgC4FxG+rxO
+         C3CA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QY0NXpXxssyXYxW2Q3exiUP/wgu4S8DoemCxMIQfBTE=;
+        b=IEyj6Uf9rUzwCbccRBN7hlO0S/Dg+alx42UMu/nztfZXBqZLcCXkCKG2DbIcj1DTIi
+         OGvR+PnhEYgmLdeWK52gsNcD0RzQVlj6WsgKFWnFrFb+VlvQ0LzjGTAiAS6NZkSgcdwT
+         xTLEpU6XmsCOFmj+NB+v0glwUC7n2OyofYk4xxaHnNDWjPfGg8osQjQWpQ2I3JGySdpu
+         qQ/bZd52CXMwgbhQ0vIO4h62+ZESZB/CdhHUShDZis5frxjWkCLwSoVEQO0m7HirUL28
+         arjqRyKk0Tsfbki4cGZN3bdBiXaoLkGYAmVp0Icy6Mm0rg1lNQQxmTxyeaWrofbr+0yr
+         EnXA==
+X-Gm-Message-State: AOAM5308uPcLBoFcn97oYtckXdJCExNfNRJEwOetbvpES6a9uGWEwjIW
+        Lo6BVEhMttgsfKbx/JrIaLvFfA==
+X-Google-Smtp-Source: ABdhPJzP/rJVFU2ynMlYTbXcRO1djmEXdQvtCzYih6wtEb6rjUH0mAOryfUtrfJaXAEevgV8DIPr9A==
+X-Received: by 2002:adf:f1cc:0:b0:20d:b04:1281 with SMTP id z12-20020adff1cc000000b0020d0b041281mr18026498wro.160.1653303006054;
+        Mon, 23 May 2022 03:50:06 -0700 (PDT)
+Received: from localhost.localdomain (2a02-8440-6141-9d1b-3074-96af-9642-0003.rev.sfr.net. [2a02:8440:6141:9d1b:3074:96af:9642:3])
+        by smtp.gmail.com with ESMTPSA id n11-20020a7bc5cb000000b003942a244f38sm8453607wmk.17.2022.05.23.03.50.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 May 2022 03:50:05 -0700 (PDT)
+From:   Guillaume Ranquet <granquet@baylibre.com>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        gregkh <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        robert.hancock@calian.com,
-        "nathan=20Neusch=C3=A4fer?=" <j.neuschaefer@gmx.net>,
-        Lubomir Rintel <lkundrak@v3.sk>, SoC Team <soc@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:YHq8xzHHHcsfvYjSzSq+E07jIVbAebTZh9CDYUzTJWXfz/CNC4d
- DH5SoIfeUq+NJ0Nc8rFHY/R3FL/QCnVF1C9T2g2LIt3h7UY5J4dV1QADFb/h19lg4+G/mrl
- ru20c2th0IR3ckojIyJXvf17QEBdoGmeSS9umxMJsalQdaVTJpPNusRaXfENjA+29+RBrAc
- A/eMxpOhu6DPI5EC1lONg==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:9ufewbixEio=:gfWtISBLRbzNW+tb1mQRxi
- RgBwcoonfggCD2zBJNkDJPyPqTnWOkHKVP/axCZAgbnTPkLvZ/2mvREZwg3UdKBX3CO3ZIFjv
- E039TolbkZpDRUNirOjAR3lT3NgeBloRSOlGOeJTQex5EqZbuGiMXpMhh7Y31sqrw00Auu7e7
- K0PETQTHhahsABg3tFOBRB/9d8CzoVvuFqAPfkYwN9jRBuIIr8p7k3tQixc5ziYPHMRBMIvuN
- 90QsmWW5DFdjia6cYUn/rCb1rs/7PVG1hATqVV9A1y/KdiaxhhVSiO+Jr1mKFqyUFKzDyjn40
- 6QBiCUxQvH2dHfkSOsCIV7SLRaIVY0vr22sv7lnC098XcFCxnC60Pl3rfTOtu03rNvfkjIP0T
- oLqakUs5qn/l7Rv8iGrt7U1liwronrvxkXHblwfQNPgl/7Cf+jIEliL4gBgMiM3Bm6+5r/Hbn
- +32pQWFARuqBiGxY8LZWzp4yMgDb5iY+ddxFr5a2k8YExYeiVgJ5KayzwINNH3VmmAyxoehNT
- shUMVZvkIfQGj8Hf02i9sWWDbaLQGF1q0kot0TzSmG3evTjpCYli0ulX0zBKCi5V3irDgooQx
- EAuDqi9/nUNe9Zz7SBklDNs94WVt7kdJv342pJ6HRxaPeD8kDLin3FB5GDYns1SXrKgPOPBxQ
- YDi19RSwEEsgkEAHLWwo7GL8k3Cq4eubtEj077ejJTxESQq6S7nGyfgB55AEroKcrCxfTA7fX
- w5hu83J7EABn95Y6LqnHFxBT/l+dz3sUf97c3GtpMZ+LCZg9pSYoPGR9fKi8I2iLNQRxkYKbe
- fIsnfsHQSklCj7dKKTo9PAl9aRY8a4gLJwF5bTGDgCCxeTlOBG1Q4rtcCKIruMcVatbRkHoKG
- dYwJFGQOUpAs7KXJFSGt2jnw50VLGiVg5n5rRK6AM=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, Helge Deller <deller@gmx.de>,
+        CK Hu <ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, linux-fbdev@vger.kernel.org
+Subject: [PATCH v10 00/21] drm/mediatek: Add mt8195 DisplayPort driver
+Date:   Mon, 23 May 2022 12:47:33 +0200
+Message-Id: <20220523104758.29531-1-granquet@baylibre.com>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 22, 2022 at 5:50 PM Tomer Maimon <tmaimon77@gmail.com> wrote:
+this series is built around the DisplayPort driver. The dpi/dpintf
+driver and the added helper functions are required for the DisplayPort
+driver to work.
 
->  static const struct of_device_id npcm_rc_match[] = {
->         { .compatible = "nuvoton,npcm750-reset"},
-> +       { .compatible = "nuvoton,npcm845-reset"},
->         { }
->  };
-> +/*
-> + *  The following procedure should be observed in USB PHY, USB device and
-> + *  USB host initialization at BMC boot
-> + */
-> +static int npcm_usb_reset(struct platform_device *pdev, struct npcm_rc_data *rc)
-> +{
-> +       struct device_node *np = pdev->dev.of_node;
-> +       struct device *dev = &pdev->dev;
-> +
-> +       rc->gcr_regmap = syscon_regmap_lookup_by_phandle(dev->of_node, "syscon");
-> +       if (IS_ERR(rc->gcr_regmap)) {
-> +               dev_err(&pdev->dev, "Failed to find gcr syscon");
-> +               return PTR_ERR(rc->gcr_regmap);
-> +       }
-> +
-> +       if (of_device_is_compatible(np, "nuvoton,npcm750-reset"))
-> +               npcm_usb_reset_npcm7xx(rc);
-> +       else if (of_device_is_compatible(np, "nuvoton,npcm845-reset"))
-> +               npcm_usb_reset_npcm8xx(rc);
-> +       else
-> +               return -ENODEV;
->
+This v10 still has some un-answered comments and TODOs for v11.
 
-In place of the string comparison in of_device_is_compatible(), maybe just use
-the .data field of the of_device_id structure to point to the actual
-reset function.
+This has been tested sucessfully on a 5.18-next based "vendor branch".
 
-Alternatively, register two separate platform_driver instances here and
-use separate probe functions that do the soc specific bits and call into
-shared functions for the bits that are the same.
+There's a missing dependency in the mediatek clock framework to allow a
+mux clock to change it's parent automatically on rate change.
+Without this change, the dpi driver won't properly set the clocks on
+mode change and thus nothing will be displayed on screen.
 
-       Arnd
+Changes from v9:
+- The DP-Phy is back to being a child device of the DP driver (as in v8)
+- hot plug detection has been added back to Embedded Display Port... as
+  after discussing with mediatek experts, this is needed eventhough the
+  Embedded Display port is not un-pluggable
+- rebased on linux-next
+- simplified/split train_handler function, as suggested by Rex
+- added comments on the sleep/delays present in the code
+- removed previous patch introducing retries when receiving AUX_DEFER as
+  this is already handled in the dp_aux framework
+- added max-lane and max-linkrate device tree u8 properties instead of
+  hardcoded #defines
+
+Things that are in my todolist for v11:
+- retrieve CK/DE support from panel driver instead of hardcoding it into
+  the dpi driver
+- refcount the dp driver "enabled" status for "future proofing"
+- review the drm_dp_helpers for features/functions that have been
+  re-implemented in the mediatek dp drivers
+
+Older revisions:
+RFC - https://lore.kernel.org/linux-mediatek/20210816192523.1739365-1-msp@baylibre.com/
+v1  - https://lore.kernel.org/linux-mediatek/20210906193529.718845-1-msp@baylibre.com/
+v2  - https://lore.kernel.org/linux-mediatek/20210920084424.231825-1-msp@baylibre.com/
+v3  - https://lore.kernel.org/linux-mediatek/20211001094443.2770169-1-msp@baylibre.com/
+v4  - https://lore.kernel.org/linux-mediatek/20211011094624.3416029-1-msp@baylibre.com/
+v5  - https://lore.kernel.org/all/20211021092707.3562523-1-msp@baylibre.com/
+v6  - https://lore.kernel.org/linux-mediatek/20211110130623.20553-1-granquet@baylibre.com/
+v7  - https://lore.kernel.org/linux-mediatek/20211217150854.2081-1-granquet@baylibre.com/
+v8  - https://lore.kernel.org/linux-mediatek/20220218145437.18563-1-granquet@baylibre.com/
+v9  - https://lore.kernel.org/all/20220327223927.20848-1-granquet@baylibre.com/
+
+Functional dependencies are:
+- Add Mediatek Soc DRM (vdosys0) support for mt8195
+  https://lore.kernel.org/linux-mediatek/20220419094143.9561-2-jason-jh.lin@mediatek.com/
+- Add MediaTek SoC DRM (vdosys1) support for mt8195
+  https://lore.kernel.org/linux-mediatek/20220512053128.31415-1-nancy.lin@mediatek.com/
+
+
+Guillaume Ranquet (15):
+  drm/edid: Convert cea_sad helper struct to kernelDoc
+  drm/edid: Add cea_sad helpers for freq/length
+  drm/mediatek: dpi: move dpi limits to SoC config
+  drm/mediatek: dpi: implement a CK/DE pol toggle in SoC config
+  drm/mediatek: dpi: implement a swap_input toggle in SoC config
+  drm/mediatek: dpi: move dimension mask to SoC config
+  drm/mediatek: dpi: move hvsize_mask to SoC config
+  drm/mediatek: dpi: move swap_shift to SoC config
+  drm/mediatek: dpi: move the yuv422_en_bit to SoC config
+  drm/mediatek: dpi: move the csc_enable bit to SoC config
+  drm/mediatek: dpi: Add dpintf support
+  drm/mediatek: dpi: Only enable dpi after the bridge is enabled
+  drm/meditek: dpi: Add matrix_sel helper
+  drm/mediatek: Add mt8195 External DisplayPort support
+  drm/mediatek: DP audio support for mt8195
+
+Jitao Shi (1):
+  drm/mediatek: add hpd debounce
+
+Markus Schneider-Pargmann (5):
+  dt-bindings: mediatek,dpi: Add DPINTF compatible
+  dt-bindings: mediatek,dp: Add Display Port binding
+  video/hdmi: Add audio_infoframe packing for DP
+  phy: phy-mtk-dp: Add driver for DP phy
+  drm/mediatek: Add mt8195 Embedded DisplayPort driver
+
+ .../display/mediatek/mediatek,dp.yaml         |   99 +
+ .../display/mediatek/mediatek,dpi.yaml        |   13 +-
+ MAINTAINERS                                   |    1 +
+ drivers/gpu/drm/drm_edid.c                    |   74 +
+ drivers/gpu/drm/mediatek/Kconfig              |    8 +
+ drivers/gpu/drm/mediatek/Makefile             |    2 +
+ drivers/gpu/drm/mediatek/mtk_dp.c             | 3419 +++++++++++++++++
+ drivers/gpu/drm/mediatek/mtk_dp_reg.h         |  570 +++
+ drivers/gpu/drm/mediatek/mtk_dpi.c            |  272 +-
+ drivers/gpu/drm/mediatek/mtk_dpi_regs.h       |   38 +
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c   |    8 +
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h   |    1 +
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c        |    8 +-
+ drivers/gpu/drm/mediatek/mtk_drm_drv.h        |    3 +
+ drivers/phy/mediatek/Kconfig                  |    8 +
+ drivers/phy/mediatek/Makefile                 |    1 +
+ drivers/phy/mediatek/phy-mtk-dp.c             |  200 +
+ drivers/video/hdmi.c                          |   82 +-
+ include/drm/dp/drm_dp_helper.h                |    2 +
+ include/drm/drm_edid.h                        |   26 +-
+ include/linux/hdmi.h                          |    7 +-
+ include/linux/soc/mediatek/mtk-mmsys.h        |    4 +-
+ 22 files changed, 4765 insertions(+), 81 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_dp.c
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_dp_reg.h
+ create mode 100644 drivers/phy/mediatek/phy-mtk-dp.c
+
+-- 
+2.35.1
+
