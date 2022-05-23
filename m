@@ -2,63 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B76E1530AE1
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 10:01:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5BEE530A92
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 10:01:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230429AbiEWHmY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 03:42:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48670 "EHLO
+        id S230353AbiEWHpE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 03:45:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230402AbiEWHmY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 03:42:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF10F17AAD;
-        Mon, 23 May 2022 00:42:08 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 53BC1611EA;
-        Mon, 23 May 2022 07:42:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B264CC385A9;
-        Mon, 23 May 2022 07:42:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1653291727;
-        bh=HAjPqoyDD6oHGanrXj5u75+aRxLCv20nYIubEPTBqpo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Yl18+CX+VP/9hYN/HE7P3LbzW6fCp4NMkC7qFpZDMKoOvcqmQITxeGG5uXpov5jUt
-         XRMScnFLJA+mZYF8TOrA/R2Q+FuV44ZXAm46F2gSAadgbTTpF1gBnwKIra2G73usVj
-         OibCFyHe8Xug86Ck6FLc+wpXisPqBDGNgHcWcv97JOolI3y2vRe2n2qZtDBzrSw3tm
-         oD1kqI9q236yKbj19vQlfofGRKUH441Z6G4U/sfanFoHgyn4fsfshAHAu6dMz2gpGo
-         OaFdTv0KtDJNWR70PvFIR+MlE69bW1enP/xXnJqHzr2rt4T02M5FTS6NU5fr7xeDma
-         /f9a536ppnXKQ==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1nt2hY-0001Xt-Cu; Mon, 23 May 2022 09:42:04 +0200
-Date:   Mon, 23 May 2022 09:42:04 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v11 0/7] PCI: qcom: Fix higher MSI vectors handling
-Message-ID: <Yos6zKHUKywKcmzy@hovoldconsulting.com>
-References: <20220520183114.1356599-1-dmitry.baryshkov@linaro.org>
+        with ESMTP id S230204AbiEWHpD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 03:45:03 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52D6417065;
+        Mon, 23 May 2022 00:45:02 -0700 (PDT)
+X-UUID: 04018e99e3d744ec8f540b19ed081c95-20220523
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:a6f4da93-0487-4c71-9118-8817bfa5d73f,OB:10,L
+        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,AC
+        TION:release,TS:45
+X-CID-INFO: VERSION:1.1.5,REQID:a6f4da93-0487-4c71-9118-8817bfa5d73f,OB:10,LOB
+        :0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:45
+X-CID-META: VersionHash:2a19b09,CLOUDID:68f9427a-5ef6-470b-96c9-bdb8ced32786,C
+        OID:18f79406f0a9,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,QS:0,BEC:nil
+X-UUID: 04018e99e3d744ec8f540b19ed081c95-20220523
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <axe.yang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1402844007; Mon, 23 May 2022 15:44:58 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Mon, 23 May 2022 15:44:56 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Mon, 23 May 2022 15:44:55 +0800
+Message-ID: <8362953b3f6e5290cbba3aa06f9bfa2535efadb3.camel@mediatek.com>
+Subject: Re: [PATCH v10 1/3] dt-bindings: mmc: mtk-sd: extend interrupts and
+ pinctrls properties
+From:   Axe Yang <axe.yang@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        "Andrew Jeffery" <andrew@aj.id.au>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Satya Tangirala" <satyat@google.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Eric Biggers <ebiggers@google.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Lucas Stach <dev@lynxeye.de>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>, <linux-mmc@vger.kernel.org>,
+        "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>,
+        Tian Tao <tiantao6@hisilicon.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        <devicetree@vger.kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+        <angelogioacchino.delregno@collabora.com>,
+        Yue Hu <huyue2@yulong.com>, Kiwoong Kim <kwmad.kim@samsung.com>
+Date:   Mon, 23 May 2022 15:44:55 +0800
+In-Reply-To: <1652965539.952223.1359564.nullmailer@robh.at.kernel.org>
+References: <20220519111323.14586-1-axe.yang@mediatek.com>
+         <20220519111323.14586-2-axe.yang@mediatek.com>
+         <1652965539.952223.1359564.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220520183114.1356599-1-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,50 +80,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 20, 2022 at 09:31:07PM +0300, Dmitry Baryshkov wrote:
-> I have replied with my Tested-by to the patch at [2], which has landed
-> in the linux-next as the commit 20f1bfb8dd62 ("PCI: qcom:
-> Add support for handling MSIs from 8 endpoints"). However lately I
-> noticed that during the tests I still had 'pcie_pme=nomsi', so the
-> device was not forced to use higher MSI vectors.
+On Thu, 2022-05-19 at 08:05 -0500, Rob Herring wrote:
+> On Thu, 19 May 2022 19:13:21 +0800, Axe Yang wrote:
+> > Extend interrupts and pinctrls for SDIO wakeup interrupt feature.
+> > This feature allow SDIO devices alarm asynchronous interrupt to
+> > host
+> > even when host stop providing clock to SDIO card. An extra wakeup
+> > interrupt and pinctrl states for SDIO DAT1 pin state switching are
+> > required in this scenario.
+> > 
+> > Signed-off-by: Axe Yang <axe.yang@mediatek.com>
+> > ---
+> >  .../devicetree/bindings/mmc/mtk-sd.yaml       | 53
+> > ++++++++++++++++++-
+> >  1 file changed, 52 insertions(+), 1 deletion(-)
+> > 
 > 
-> After removing this option I noticed that hight MSI vectors are not
-> delivered on tested platforms. After additional research I stumbled upon
-> a patch in msm-4.14 ([1]), which describes that each group of MSI
-> vectors is mapped to the separate interrupt. Implement corresponding
-> mapping.
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m
+> dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 > 
-> The first patch in the series is a revert of  [2] (landed in pci-next).
-> Either both patches should be applied or both should be dropped.
+> yamllint warnings/errors:
 > 
-> Patchseries dependecies: [3] (for the schema change).
+> dtschema/dtc warnings/errors:
+> Error: Documentation/devicetree/bindings/mmc/mtk-
+> sd.example.dts:50.36-37 syntax error
+> FATAL ERROR: Unable to parse input tree
+> make[1]: *** [scripts/Makefile.lib:364:
+> Documentation/devicetree/bindings/mmc/mtk-sd.example.dtb] Error 1
+> make[1]: *** Waiting for unfinished jobs....
+> make: *** [Makefile:1401: dt_binding_check] Error 2
 > 
-> Changes since v10:
->  - Remove has_split_msi_irqs flag. Trust DT and use split MSI IRQs if
->    they are described in the DT. This removes the need for the
->    pcie-qcom.c changes (everything is handled by the core (suggested by
->    Johan).
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/patch/
+> 
+> This check can fail if there are any dependencies. The base for a
+> patch
+> series is generally the most recent rc1.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up
+> to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit.
 
-You could also mention the rebase and fixed warnings with less than
-eight msi.
- 
-> [1] https://git.codelinaro.org/clo/la/kernel/msm-4.14/-/commit/671a3d5f129f4bfe477152292ada2194c8440d22
-> [2] https://lore.kernel.org/linux-arm-msm/20211214101319.25258-1-manivannan.sadhasivam@linaro.org/
-> [3] https://lore.kernel.org/linux-arm-msm/20220422211002.2012070-1-dmitry.baryshkov@linaro.org/
-> 
-> 
-> Dmitry Baryshkov (7):
->   PCI: dwc: Convert msi_irq to the array
->   PCI: dwc: split MSI IRQ parsing/allocation to a separate function
->   PCI: dwc: Handle MSIs routed to multiple GIC interrupts
->   PCI: dwc: Implement special ISR handler for split MSI IRQ setup
->   dt-bindings: PCI: qcom: Support additional MSI interrupts
->   arm64: dts: qcom: sm8250: provide additional MSI interrupts
->   dt-bindings: mfd: qcom,qca639x: add binding for QCA639x defvice
+I reproduced the build error, sorry for that.
+And it has been fixed in v11. 
 
-Looks like you used the wrong offsets from HEAD or something when
-generating the series as the first two patches ([1] above, which is not
-yet in linux-next, and the dw_pcie_free_msi() fix) are now missing and
-the last patch is new and unrelated.
+Regards,
+Axe
 
-Johan
+
