@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9675530FE9
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:19:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73282530EF0
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:17:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234407AbiEWKv5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 06:51:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37672 "EHLO
+        id S234505AbiEWKwA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 06:52:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234579AbiEWKvZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 06:51:25 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A03B026544
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 03:51:24 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id r23so20787802wrr.2
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 03:51:24 -0700 (PDT)
+        with ESMTP id S234604AbiEWKvc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 06:51:32 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5140128E0F
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 03:51:30 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id h14so20761364wrc.6
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 03:51:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=CWgqk9KhFkOffkb3OEMTrNnAfqhM77Ox4JDvfW/o1S8=;
-        b=JdEhccv00JjYKHfLCeZR4SBq3r1mpyIzHgvk2jWMBa66ocy5zkNG+dqpG02U2B2q2h
-         Tjkw4VDmRWqGKrSi9mU5AagmMOybaI/eIkEkeE09PZHVg979ODz5Jjp/v5dI4f/3hJWU
-         WRMWTbgCLTkeVezqAa360Eus1As226/OURVlVyn+52XT6QfeGjrUuZUi9MDK33Pq6nqB
-         ZVBc96O81UYVu/wJS9JCyqra8bVi6dWW651erb9THLCb/zMJycaLyCMJcvj3W3MBdExS
-         zi8hR5nIJAmtFB9zOxjMsTc3HlNcX6vTR6r79xtjeziCBr6IltidQMFpXz0YxO3cNNuv
-         SPLw==
+        bh=JGvhVV4JqPNXk+p5F/0CMZDfiaz8h8RwYuVglR+Hdfg=;
+        b=SSKJwV3dhXlND8s9/ZiSdxc7iQkclv7sEeQvp7zakKPDyj/A5NxLyj/8NxDKainYsZ
+         66XRu7ieISGUu3vhVKtVxx2psktGaF7/gSBqnOdTK2U8Jil0Jl/KKe4qfsA4kW4tZF1m
+         r5otL/wEBNRALQlcdG0qNzyuVqJK0l2zU8WbjDqxutAObwUA7Qn3DryKlBsEox8FuH5X
+         t8kqrsI2tDL7+xTsF+ifFgq/UkscxL6yNBR/R/h7PdHdKrZk9p0geJs2s76EVFYKRTxt
+         ISr80sfHjfhqug2M/MI+VRXzC2M9PBoiVntGVHxAhJXAcDUgzs0+Rh9ku8IA7bpwU3lP
+         WbvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=CWgqk9KhFkOffkb3OEMTrNnAfqhM77Ox4JDvfW/o1S8=;
-        b=v8GOnCUUqLteeexwg2F6DSgxAlKBKX7EO17Q6B6RHjAIp6kW5fZpFgEiwZghC55NUj
-         Vdl9PVKlR6E8bXCHPusKluu3saVPB6P07WTdhcfL+OWt/6lQc6ut57XR6KRPabUchWbq
-         8Yv32cityf1gqVyumTLYuoDL6SaDiAr3dd7oY4hrEyGGEajF16/wUHzkf8IjwzRqdREO
-         kMBjb4LPP1qWy6mituknenTa3wt8KQB1wiGR1baEH46tED+d3SeidDIpIJxflHEJQTUG
-         lMBGf29joO+g1EQUTMJwH9vvOqzLJoBxcCf+U5o1w77+GFYjzYx/XbeRTx6nV6sLuOxW
-         F+cQ==
-X-Gm-Message-State: AOAM532krr3SU3rBHTUGUOPq5nUHNQGje5NC2OAwEsBDDyApAAF9Yq8C
-        xZJZE3+KjJg35y88zlS7o53FvQ==
-X-Google-Smtp-Source: ABdhPJw2E7On4Oju2hfmLb0SDCcJA1GzQfEtMNUlIfdbD/oZpt27PE8H5IfsS//agrMc544Csh+BrA==
-X-Received: by 2002:a5d:4207:0:b0:20e:63c3:e398 with SMTP id n7-20020a5d4207000000b0020e63c3e398mr18892329wrq.642.1653303083160;
-        Mon, 23 May 2022 03:51:23 -0700 (PDT)
+        bh=JGvhVV4JqPNXk+p5F/0CMZDfiaz8h8RwYuVglR+Hdfg=;
+        b=aZ5dcNEZd0sAaABJsgG4s0fhPcYOS/7xW6V7VHPvBp/H5hozHKDf7L2rFRmn+5lakj
+         FUYmxS+O2oMkz9sXhgM4YAaOUXYqfzwfEnF2mmE9qORRLQh8lSre7N8212Ycat7GbPbE
+         oUl8RQGbg3IU+lZcdWDwEQXKPgh6QsTUoR2skPfCRoLs0yMUdHIoOLp5on9wkqXSfjZL
+         u5sVzXhTSMvJLCll2wbYTNu9WqjDy5/lOhSM+KJyLHZsw9IOWZ6kFAu/z2aBNIw5Evjh
+         d6bXR9v9dwtKes8cXuOGeivqo3ZwbKAOikucoxQEhwnArAw2OVORf60VqfBGpBYij+f2
+         Gt6A==
+X-Gm-Message-State: AOAM531aphDYngzObdw5jb76GfzIB05nyQFsE8NjcpgrqVE97yMGgQ/1
+        U1OOxe+yDMAzcA7xouQpTBH6gA==
+X-Google-Smtp-Source: ABdhPJzI1cZH2vxHZeGJbkrpsiAZ+QGY1J5LlXZuKh30WZu+XMTP0w16zzNcwHcU73Y9iru6sVfBIw==
+X-Received: by 2002:a5d:674b:0:b0:20e:6164:d86f with SMTP id l11-20020a5d674b000000b0020e6164d86fmr18179608wrw.297.1653303089880;
+        Mon, 23 May 2022 03:51:29 -0700 (PDT)
 Received: from localhost.localdomain (2a02-8440-6141-9d1b-3074-96af-9642-0003.rev.sfr.net. [2a02:8440:6141:9d1b:3074:96af:9642:3])
-        by smtp.gmail.com with ESMTPSA id n11-20020a7bc5cb000000b003942a244f38sm8453607wmk.17.2022.05.23.03.51.21
+        by smtp.gmail.com with ESMTPSA id n11-20020a7bc5cb000000b003942a244f38sm8453607wmk.17.2022.05.23.03.51.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 May 2022 03:51:22 -0700 (PDT)
+        Mon, 23 May 2022 03:51:29 -0700 (PDT)
 From:   Guillaume Ranquet <granquet@baylibre.com>
 To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
         Philipp Zabel <p.zabel@pengutronix.de>,
@@ -69,9 +69,9 @@ Cc:     AngeloGioacchino Del Regno
         linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-phy@lists.infradead.org, linux-fbdev@vger.kernel.org
-Subject: [PATCH v10 12/21] drm/mediatek: dpi: move the yuv422_en_bit to SoC config
-Date:   Mon, 23 May 2022 12:47:45 +0200
-Message-Id: <20220523104758.29531-13-granquet@baylibre.com>
+Subject: [PATCH v10 13/21] drm/mediatek: dpi: move the csc_enable bit to SoC config
+Date:   Mon, 23 May 2022 12:47:46 +0200
+Message-Id: <20220523104758.29531-14-granquet@baylibre.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220523104758.29531-1-granquet@baylibre.com>
 References: <20220523104758.29531-1-granquet@baylibre.com>
@@ -87,7 +87,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add flexibility by moving the yuv422 en bit to SoC specific config
+Add flexibility by moving the csc_enable bit to SoC specific config
 
 Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
@@ -97,56 +97,56 @@ Reviewed-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
  1 file changed, 7 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediatek/mtk_dpi.c
-index 6d4d8c6ec47d..40254cd9d168 100644
+index 40254cd9d168..eb969c5c5c2e 100644
 --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
 +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-@@ -132,6 +132,7 @@ struct mtk_dpi_conf {
- 	/* HSIZE and VSIZE mask (no shift) */
+@@ -133,6 +133,7 @@ struct mtk_dpi_conf {
  	u32 hvsize_mask;
  	u32 channel_swap_shift;
-+	u32 yuv422_en_bit;
+ 	u32 yuv422_en_bit;
++	u32 csc_enable_bit;
  	const struct mtk_dpi_yc_limit *limit;
  };
  
-@@ -356,7 +357,8 @@ static void mtk_dpi_config_channel_swap(struct mtk_dpi *dpi,
- 
- static void mtk_dpi_config_yuv422_enable(struct mtk_dpi *dpi, bool enable)
- {
--	mtk_dpi_mask(dpi, DPI_CON, enable ? YUV422_EN : 0, YUV422_EN);
-+	mtk_dpi_mask(dpi, DPI_CON, enable ? dpi->conf->yuv422_en_bit : 0,
-+		     dpi->conf->yuv422_en_bit);
- }
+@@ -363,7 +364,8 @@ static void mtk_dpi_config_yuv422_enable(struct mtk_dpi *dpi, bool enable)
  
  static void mtk_dpi_config_csc_enable(struct mtk_dpi *dpi, bool enable)
-@@ -824,6 +826,7 @@ static const struct mtk_dpi_conf mt8173_conf = {
- 	.dimension_mask = HPW_MASK,
+ {
+-	mtk_dpi_mask(dpi, DPI_CON, enable ? CSC_ENABLE : 0, CSC_ENABLE);
++	mtk_dpi_mask(dpi, DPI_CON, enable ? dpi->conf->csc_enable_bit : 0,
++		     dpi->conf->csc_enable_bit);
+ }
+ 
+ static void mtk_dpi_config_swap_input(struct mtk_dpi *dpi, bool enable)
+@@ -827,6 +829,7 @@ static const struct mtk_dpi_conf mt8173_conf = {
  	.hvsize_mask = HSIZE_MASK,
  	.channel_swap_shift = CH_SWAP,
-+	.yuv422_en_bit = YUV422_EN,
+ 	.yuv422_en_bit = YUV422_EN,
++	.csc_enable_bit = CSC_ENABLE,
  	.limit = &mtk_dpi_limit,
  };
  
-@@ -839,6 +842,7 @@ static const struct mtk_dpi_conf mt2701_conf = {
- 	.dimension_mask = HPW_MASK,
+@@ -843,6 +846,7 @@ static const struct mtk_dpi_conf mt2701_conf = {
  	.hvsize_mask = HSIZE_MASK,
  	.channel_swap_shift = CH_SWAP,
-+	.yuv422_en_bit = YUV422_EN,
+ 	.yuv422_en_bit = YUV422_EN,
++	.csc_enable_bit = CSC_ENABLE,
  	.limit = &mtk_dpi_limit,
  };
  
-@@ -853,6 +857,7 @@ static const struct mtk_dpi_conf mt8183_conf = {
- 	.dimension_mask = HPW_MASK,
+@@ -858,6 +862,7 @@ static const struct mtk_dpi_conf mt8183_conf = {
  	.hvsize_mask = HSIZE_MASK,
  	.channel_swap_shift = CH_SWAP,
-+	.yuv422_en_bit = YUV422_EN,
+ 	.yuv422_en_bit = YUV422_EN,
++	.csc_enable_bit = CSC_ENABLE,
  	.limit = &mtk_dpi_limit,
  };
  
-@@ -867,6 +872,7 @@ static const struct mtk_dpi_conf mt8192_conf = {
- 	.dimension_mask = HPW_MASK,
+@@ -873,6 +878,7 @@ static const struct mtk_dpi_conf mt8192_conf = {
  	.hvsize_mask = HSIZE_MASK,
  	.channel_swap_shift = CH_SWAP,
-+	.yuv422_en_bit = YUV422_EN,
+ 	.yuv422_en_bit = YUV422_EN,
++	.csc_enable_bit = CSC_ENABLE,
  	.limit = &mtk_dpi_limit,
  };
  
