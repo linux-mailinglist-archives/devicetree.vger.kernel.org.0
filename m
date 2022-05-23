@@ -2,125 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C224C530E31
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 12:43:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98A4A530E19
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 12:43:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233206AbiEWJeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 05:34:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52594 "EHLO
+        id S233199AbiEWJiT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 05:38:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233370AbiEWJep (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 05:34:45 -0400
-Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DADC4B1F9;
-        Mon, 23 May 2022 02:34:42 -0700 (PDT)
-Received: from zn.tnic (p200300ea974657b3329c23fffea6a903.dip0.t-ipconnect.de [IPv6:2003:ea:9746:57b3:329c:23ff:fea6:a903])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id E65A01EC018C;
-        Mon, 23 May 2022 11:34:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1653298477;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=wfztkaByN97ueSWPSqUqhksXQIUMUHKpNYslfU+pPrg=;
-        b=ebzCyRjlW0zFUmL1cfxuMt0O5oJoWih0LGLxXewxEsVV0HwLlSAaeluWxaSLSeO8QNDjlX
-        RcOcKTTgh1zkPPm6FIe+5BQlCC9pN1+LFFgLzn53igTIFT5imcU7xC2Riu5Mj/+AFraVpv
-        uPGo0V8r+Ar0u93K+6/I7bDk6Lzm3r4=
-Date:   Mon, 23 May 2022 11:34:31 +0200
-From:   Borislav Petkov <bp@alien8.de>
-To:     Medad Young <medadyoung@gmail.com>
-Cc:     rric@kernel.org, James Morse <james.morse@arm.com>,
-        tony.luck@intel.com, Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Patrick Venture <venture@google.com>, KWLIU@nuvoton.com,
-        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING <KFTING@nuvoton.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>, ctcchien@nuvoton.com,
-        linux-edac <linux-edac@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>
-Subject: Re: [PATCH v9 1/3] ARM: dts: nuvoton: Add memory controller node
-Message-ID: <YotVJ+ExcrQshM4A@zn.tnic>
-References: <20220510031056.1657-1-ctcchien@nuvoton.com>
- <20220510031056.1657-2-ctcchien@nuvoton.com>
- <YoUwe6Tj4Uh6ukc8@zn.tnic>
- <CAHpyw9fjThEP4NuU08aNJ_raHpq9-j9KgBb8YuZ_shXTjhm3JA@mail.gmail.com>
- <YoYPGWreQuF9QZzc@zn.tnic>
- <CAHpyw9es-n+bW9SsGBmmr3ghBFk8Q8E6ZTbE42BpU-6p8LfHtw@mail.gmail.com>
- <YoeE8cBhUkF3K44/@zn.tnic>
- <CAHpyw9fAfNf8j++JtLhuudSWj6N1-KAxA_fxEGL998WNVXTPdQ@mail.gmail.com>
+        with ESMTP id S233155AbiEWJiS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 05:38:18 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A16F011468;
+        Mon, 23 May 2022 02:38:15 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 6A2F11F41D24
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1653298694;
+        bh=+mM48zHrs1vI2jvIxwtcOKf64dJhB2TyhpCjZ7uDCtM=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=iST7cAMPBLCjzsMh4n4atbAlZTFPjGXPOe8rZ5qUNBhXeplo0jn6hLuuDtisSlPY4
+         YsOVkJL1PmOxWNYBs+S4e2IGd34M1NWLm3Feooc8JA5axyPU978spk+Y+yhqhr2AH3
+         0s1MmghNKKAx5IPVPM+79b61jMHtsFYDHV1oSygaOh+DpFbc48SQh8lkIPKD1V0oCy
+         8ouPBcCLu1ghmosi6rBOT8OEoMpf15Yu4OeIq1+KhaaC+goYXJDQoSm3vmF6cLTl7l
+         eYU+pD0KMMLQ+srUloQc5maKkMNGLLze2Qq1JAbjVH1v3ZW/twqNSC7oMOXLqAVkAs
+         tf54CFmE3Yptw==
+Message-ID: <0a1c4797-cfdf-1b45-62f0-18ecf78ed335@collabora.com>
+Date:   Mon, 23 May 2022 11:38:11 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAHpyw9fAfNf8j++JtLhuudSWj6N1-KAxA_fxEGL998WNVXTPdQ@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH v3 2/4] soc: mediatek: svs: add support for mt8186
+Content-Language: en-US
+To:     Tim Chang <jia-wei.chang@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Roger Lu <roger.lu@mediatek.com>,
+        Kevin Hilman <khilman@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        hsinyi@google.com
+References: <20220523084034.26802-1-jia-wei.chang@mediatek.com>
+ <20220523084034.26802-3-jia-wei.chang@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220523084034.26802-3-jia-wei.chang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 23, 2022 at 05:06:07PM +0800, Medad Young wrote:
-> I did do "git commit --amend",
-> I beleve the issue is about the mail server I used,
-> I use gmail to send the mail due to the mail server of my company
-> does't support smtp
-> so now I should sign the commit with my gmail account.
+Il 23/05/22 10:40, Tim Chang ha scritto:
+> From: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> 
+> MT8186 svs has a number of banks which used as optimization of opp
+> voltage table for corresponding dvfs drivers.
+> MT8186 svs big core uses 2-line high bank and low bank to optimize the
+> voltage of opp table for higher and lower frequency respectively.
+> 
+> Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>   drivers/soc/mediatek/mtk-svs.c | 351 ++++++++++++++++++++++++++++++++-
+>   1 file changed, 344 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/soc/mediatek/mtk-svs.c b/drivers/soc/mediatek/mtk-svs.c
+> index 606a00a2e57d..656d0361ff7d 100644
+> --- a/drivers/soc/mediatek/mtk-svs.c
+> +++ b/drivers/soc/mediatek/mtk-svs.c
 
-No, you should supply --author too - I had forgotten about that.
+..snip..
 
-commit 0876b99e4aa2bf7113070c9c0f5d0ade7ad91697 (HEAD -> refs/heads/test)
-Author: Medad CChien <medadyoung@gmail.com>
-Date:   Tue May 10 11:10:54 2022 +0800
+> @@ -2245,6 +2569,16 @@ static const struct svs_platform_data svs_mt8192_platform_data = {
+>   	.bank_max = ARRAY_SIZE(svs_mt8192_banks),
+>   };
+>   
+> +static const struct svs_platform_data svs_mt8186_platform_data = {
+> +	.name = "mt8186-svs",
+> +	.banks = svs_mt8186_banks,
+> +	.efuse_parsing = svs_mt8186_efuse_parsing,
+> +	.probe = svs_mt8186_platform_probe,
+> +	.irqflags = IRQF_TRIGGER_HIGH,
 
-    ARM: dts: nuvoton: Add memory controller node
-    
-    ECC must be configured in the BootBlock header.
-    Then, you can read error counts via the EDAC kernel framework.
-    
-    Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
+I know I gave you my R-b tag earlier, but I've just noticed that: please remove
+irqflags, as this kind of flags are specified in devicetree and it is not
+necessary to specify them here.
 
-$  git commit --amend --author="Medad CChien <ctcchien@nuvoton.com>"
-[test 5d6cd85171d1] ARM: dts: nuvoton: Add memory controller node
- Author: Medad CChien <ctcchien@nuvoton.com>
- Date: Tue May 10 11:10:54 2022 +0800
- 1 file changed, 7 insertions(+)
-$ git log -p -1
-commit 5d6cd85171d14e67840e672e2f96a16981243424 (HEAD -> refs/heads/test)
-Author: Medad CChien <ctcchien@nuvoton.com>
-Date:   Tue May 10 11:10:54 2022 +0800
-
-    ARM: dts: nuvoton: Add memory controller node
-    
-    ECC must be configured in the BootBlock header.
-    Then, you can read error counts via the EDAC kernel framework.
-    
-    Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
-
-$ git format-patch -1 -o /tmp/
-/tmp/0001-ARM-dts-nuvoton-Add-memory-controller-node.patch
-
-$ head /tmp/0001-ARM-dts-nuvoton-Add-memory-controller-node.patch
-From 5d6cd85171d14e67840e672e2f96a16981243424 Mon Sep 17 00:00:00 2001
-From: Medad CChien <ctcchien@nuvoton.com>
-		    ^^^^^^^^^^^^^^^^^^^^^^
-
-
-Don't hesitate to look at the manpages if a tool doesn't do what you
-expect it to do.
-
-HTH.
-
--- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
+Thanks,
+Angelo
