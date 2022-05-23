@@ -2,77 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1F6A530D46
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 12:41:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76A57530CA0
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 12:40:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233886AbiEWKHj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 06:07:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53484 "EHLO
+        id S233892AbiEWKOw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 06:14:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233869AbiEWKHh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 06:07:37 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E41F4831C
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 03:07:35 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id j10so1216455lfe.12
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 03:07:35 -0700 (PDT)
+        with ESMTP id S233853AbiEWKOu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 06:14:50 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3D0942488
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 03:14:47 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id 1so3253269ljh.8
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 03:14:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=2thMnipGQrwbIYaTpOIQFKO3y25BWCRS7OoW10wpgPY=;
-        b=gOYwbOEE0W/hGPnlp8cI+mSGkdABURnhZLtBSkEr/fnoUYgGhm5LtYOd5ZDT/33etE
-         d8Ibx95fMhsrpIdwMmHd94qinfWKsSNicrn+OoihHpl/J43cbm4m2UuQTg1tCvowHqEA
-         3/7FFW5aJ/6Tl6ObLR1eXSiYoV/D0FBdrzUdEDZQvus3LdE6v3phScBjxPJfww5hPkG1
-         a7KfbZdNVdEwgi3c2dnGPnMN3EBy6wIosOP4NrpkK++x/yuwD43DiGu3+XVHdbLAFKnz
-         n6Gws1leh/w6RS1FJKYec3eJmH34zhLc9v6I7ROxp/iBRQ/ZCRw8KR0gCQAqNYBC7tuW
-         MoJA==
+        bh=DTFzfs97FGySKOakohZLd/CBj+6KUAF9b0qA3qCgoMw=;
+        b=gMFbmeA3lnmZFoM/x1iVzSdGVpG9K2u4Io4V1OeB9s0OwEauY9FPtlPWee+kYl+Cc7
+         cgriJgvPw1fOW6QbkbM1WMcFZhbQV70nsCl0VwBHjhEn6yK9i8mR+UVzuQR0y0uoyCtv
+         fSySWkMgSf1ifL2jhguyBhOAVuXcOo6v1KsMsodCExQPta4PmVwsEaohhgkwtPjBbCos
+         v4mHYb2t/R9pCQAAVX47eeqPj5kiZNgMkJ9n6O+sTbL6bYhSvj2o8yyVpA41Ez+OZ+wK
+         dLIq4QVddqjGbNqZf30wndeFCcrMwWT2BMVwArbfZfd9rjQqHc8YIfvJYVoVUbFfaM81
+         XAFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=2thMnipGQrwbIYaTpOIQFKO3y25BWCRS7OoW10wpgPY=;
-        b=EY7X+oL+GGVXVB70foTYgc8KlQyfsnkVfko2ppFft5hHb84zy48QpCo2i/CxzopAqn
-         OXmkJcQ1btp4gc5z5LuW8Ig2yMMsLogjbwOIAKyayf5VwgvoK//nbN3XGVgdD8XJHLIb
-         z1Pde+TFe/1dGjTUeUwOyN4y90eruwNF87fG6w0mqVAY9BysFfCO0b1+oX1NseT5ofrB
-         CYwyzhlZNdQRpyLNartDVbiHDaMLFlJTASeLGb7LgtA1Dxisk0QNVvi3jC4Ho2C20T7Y
-         ElFTEQSPDz8bNUVdZ+SS96FZ3T7u+lHwMnVFU2Wnr/bYBrOWlB7P1KZsKH5435wn1Dhy
-         zUfg==
-X-Gm-Message-State: AOAM530/82MScMD5eapzVvo7axsRmpmXsRGDFFGM223oUEFJvcpDm5Z0
-        +98z5KUjc2G4bLR60pffPjOIYQ==
-X-Google-Smtp-Source: ABdhPJxs8EtqrTUt1LqsTXVl5KTJ4MPW7EjahL3tb7tKaF5mJmTmcP25Vknm6BhNib3K941QpLUjEA==
-X-Received: by 2002:a05:6512:32c1:b0:478:710f:d375 with SMTP id f1-20020a05651232c100b00478710fd375mr2677764lfg.147.1653300453721;
-        Mon, 23 May 2022 03:07:33 -0700 (PDT)
+        bh=DTFzfs97FGySKOakohZLd/CBj+6KUAF9b0qA3qCgoMw=;
+        b=4ln47zHDJoUjsKC4I+kVlTKikJOum8XZyU37MagM4Lu8T6PHfD3os2UsP9p/F/hsgP
+         kzAPU6desAIVuImwXjJ8ObMufdrdi5zUasN0Txxls7xAIcl9yFv8hogVfgv4YwI2Gh3e
+         e/eNoIHE2mfX3FKYwBgoflva7n8Ey8iXjyUOnv00dM06NT9wrp9FpFAbrBCi8mvLCXm/
+         Gzkra1zrf6tlRKDVp1gL/U+M6m0/n4bqG7OuWGegVilBPVRPd/6Mlcg55b+d4omPfS6C
+         J/COEDfe6WSQT/0DMtvwVZk2pR2Iieki2otRZEfYw4ZBFWBHRNxd6erGC9zDdowbfd6C
+         DK1Q==
+X-Gm-Message-State: AOAM533oboA5VMF6cVGUwhAPEE18t3aEb61T++r1AdtUDcl7vpNdcIZk
+        MkL/YAdkNwnYhpScljdvrxLZmQ==
+X-Google-Smtp-Source: ABdhPJybMlIwD6+ltyktZPc/eHNgHuIQEUlFFZz6NpeI0qV0IZplIUkZjZlP79fsYNw3onR3Un/dSQ==
+X-Received: by 2002:a2e:9c43:0:b0:250:a467:400 with SMTP id t3-20020a2e9c43000000b00250a4670400mr12511597ljj.348.1653300886072;
+        Mon, 23 May 2022 03:14:46 -0700 (PDT)
 Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id h26-20020a19701a000000b0047255d210fesm1894356lfc.45.2022.05.23.03.07.32
+        by smtp.gmail.com with ESMTPSA id c20-20020a05651c015400b00253cf1c1c15sm1731941ljd.49.2022.05.23.03.14.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 May 2022 03:07:33 -0700 (PDT)
-Message-ID: <36e378f1-9628-b22a-b3bf-2d5ae9e2da33@linaro.org>
-Date:   Mon, 23 May 2022 12:07:32 +0200
+        Mon, 23 May 2022 03:14:45 -0700 (PDT)
+Message-ID: <d12a0afc-c040-5615-fc0d-70a5c29bbf0a@linaro.org>
+Date:   Mon, 23 May 2022 12:14:44 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [RFC PATCH 09/14] dt-bindings: i2c: qcom-cci: add QCOM MSM8974
- compatible
+Subject: Re: [PATCH 1/3] dt-bindings: leds: Add bindings for the TLC5925
+ controller
 Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        matti.lehtimaki@gmail.com
-References: <20220522162802.208275-1-luca@z3ntu.xyz>
- <20220522162802.208275-10-luca@z3ntu.xyz>
+To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220523084958.2723943-1-jjhiblot@traphandler.com>
+ <20220523084958.2723943-2-jjhiblot@traphandler.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220522162802.208275-10-luca@z3ntu.xyz>
+In-Reply-To: <20220523084958.2723943-2-jjhiblot@traphandler.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,18 +77,141 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/05/2022 18:27, Luca Weiss wrote:
-> Add the compatible for the CCI found in MSM8974 which supports two I2C
-> masters.
+On 23/05/2022 10:49, Jean-Jacques Hiblot wrote:
+> Add bindings documentation for the TLC5925 LED controller.
 > 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+
+Thank you for your patch. There is something to discuss/improve.
+
 > ---
->  Documentation/devicetree/bindings/i2c/i2c-qcom-cci.txt | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
+> devicetree@vger.kernel.org
+>  .../bindings/leds/leds-tlc5925.yaml           | 100 ++++++++++++++++++
+>  1 file changed, 100 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/leds-tlc5925.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/leds/leds-tlc5925.yaml b/Documentation/devicetree/bindings/leds/leds-tlc5925.yaml
+> new file mode 100644
+> index 000000000000..156db599d5a1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/leds-tlc5925.yaml
+
+Filename: vendor,device
+so "ti,tlc5925-leds.yaml" for example.
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+> @@ -0,0 +1,100 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/leds-tlc5925.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: LEDs connected to TI TLC5925 controller
+> +
+> +maintainers:
+> +  - Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+> +
+> +description: |
+> +  The TLC5925 is a low-power 16-channel constant-current LED sink driver.
+> +  It is controlled through a SPI interface.
+> +  It is built around a shift register and latches which convert serial
+> +  input data into a parallel output. Several TLC5925 can be chained to
+> +  control more than 16 LEDs with a single chip-select.
+> +  The brightness level cannot be controlled, each LED is either on or off.
+> +
+> +  Each LED is represented as a sub-node of the ti,tlc5925 device.
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,tlc5925
+> +
+> +  shift_register_length:
+> +    maxItems: 1
+
+No...
+1. Did you test your bindings with dt_binding_check? This fails
+obviously... please, do not send untested bindings.
+
+2. vendor prefix, no underscores, proper type, maxItems look wrong here
+
+> +    description: |
+> +      The length of the shift register. If several TLC5925 are chained,
+> +      shift_register_length should be set to 16 times the number of TLC5925.
+> +      The value must be a multiple of 8.
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  output-enable-b-gpios:
+> +    description: |
+> +      GPIO pins to enable/disable the parallel output. They describe the GPIOs
+> +      connected to the OE/ pin of the TLC5925s.
+
+maxItems
+
+
+> +
+> +patternProperties:
+> +  "@[a-f0-9]+$":
+
+How many LEDs you can have here? Usually it is limited, so the pattern
+should be narrowed.
+
+> +    type: object
+> +
+> +    $ref: common.yaml#
+> +
+> +    properties:
+> +      reg:
+> +        items:
+
+Not correct syntax... I will stop reviewing. There is no point to use
+reviewers time to do the job of a tool.
+
+
+> +examples:
+> +  - |
+> +    &spi0 {
+> +        leds@2 {
+> +                compatible = "ti,tlc5925";
+
+Messed up indentation. 4 spaces for DTS example.
+
+> +                reg = <0x02>;
+> +                spi-max-frequency = <30000000>;
+> +                shift_register_length = <32>;
+> +                output-enable-b-gpios = <&gpio0b 9 GPIO_ACTIVE_HIGH>, <&gpio0b 7 GPIO_ACTIVE_HIGH>;
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                led-satus@0 {
+> +                        reg = <0>;
+> +                        function = LED_FUNCTION_STATUS;
+> +                        color = <LED_COLOR_ID_GREEN>;
+> +                };
+> +
+> +                led-satus@4 {
+> +                        reg = <4>;
+> +                        function = LED_FUNCTION_STATUS;
+> +                        color = <LED_COLOR_ID_RED>;
+> +                };
+> +
+> +                led-alive@24 {
+> +                        reg = <24>;
+> +                        label = "green:alive"
+> +                };
+> +
+> +                led-panic@31 {
+> +                        reg = <31>;
+> +                        label = "red:panic"
+> +                };
+> +        };
+> +    };
 
 
 Best regards,
