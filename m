@@ -2,78 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5392531256
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:22:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B0F353149C
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:25:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236575AbiEWNvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 09:51:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44612 "EHLO
+        id S236615AbiEWNxc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 09:53:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236789AbiEWNvF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 09:51:05 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E120A17583
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 06:51:03 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id c19so12607900lfv.5
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 06:51:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=uAXzKyDQ+t6h+S4+NIkziTPLlQ9i5Tq10BEMMZUmQss=;
-        b=Fip6NNMAiaRB7Z8StmtMAN0lXZeUQ5g3+36xC9ypiVaUKn8pJePWW0eOKQlXRX/7at
-         bWmv7jeDuIup3jBskWCKZqhUEvleUqrJjxFYICHivIqco7Yy/akcvNj0uhXc+c5UzzDv
-         ktDwONE5t5pNg26oRwdeyKX4+nMb5FPJhOn2XkSQnU+Sy/dteeBCaII1Yt3pjkelBRQl
-         6qzaqxAEo0+mJmenf9Ho1OiONPrY7ymQQ+AqQsQFUw8CypOwMBP0Jbm1CrYN27Hec1h1
-         lMpVzQ+a6Oi9AP1wh2SfNBAHeLHlbU9FGHdTLwbMUJOEhdpKiW2Xe+Do4OIlVptcAW0F
-         CdEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=uAXzKyDQ+t6h+S4+NIkziTPLlQ9i5Tq10BEMMZUmQss=;
-        b=5q1kmwibKOiAQ7QHkKVNRXb3iAa3qY6lVEKfeh1CttiIRhzOQURO0tziXA5PIYOz8A
-         RKmQW11HUSWyEegcCUEWMHVxKA6dXh8928wHnnC5KRmF9t+v4U/Mimu8QAc4vQFhjmbS
-         PuEe2JOTEMtip9gZjKNiVEO6iESZsys/mMlOvNMs/48I1XlLxRY5n2YTgYsjxwRwHaBo
-         9RqJmYDm6ZQSR7bWPzws8ViG+IbyEvytcQOi41++ZCDMeIUnoKw7iLxwY7hihmsvuBYN
-         snM5Koi+YPtDO73ay1Ec6POed1XaGAp37yD+7Q2zhmhaWsmvuU2wav8qITi2EO41sRxs
-         Is4A==
-X-Gm-Message-State: AOAM531EBQ/Q0kK14hbqUC4QiyRkLv2vdCGIrSpzPwPrB0PkJtMV/UaD
-        9HKi9oE3V/n3dLoZ4Y5FgFXLrw==
-X-Google-Smtp-Source: ABdhPJwGrRxXpollzvYIVkw2Fl6kHuKw0ricDXC/aaLdVEsj32LXv5DkA/n4FjS1R9nA4BPv/XhV6Q==
-X-Received: by 2002:a05:6512:39cb:b0:478:5a36:5fca with SMTP id k11-20020a05651239cb00b004785a365fcamr10490514lfu.409.1653313862247;
-        Mon, 23 May 2022 06:51:02 -0700 (PDT)
-Received: from [192.168.1.102] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id a10-20020ac2520a000000b0047255d211a6sm1983038lfl.213.2022.05.23.06.51.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 May 2022 06:51:01 -0700 (PDT)
-Message-ID: <e7bbe076-a1d1-a005-8110-5d35bc0d80de@linaro.org>
-Date:   Mon, 23 May 2022 16:50:51 +0300
+        with ESMTP id S236606AbiEWNx1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 09:53:27 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 481DE5677E;
+        Mon, 23 May 2022 06:53:26 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 97A941F43599
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1653314005;
+        bh=Dz3ZKPQtwBKUhDVWmG5Z5g8SZn+wliMq5r4L/qYaKxs=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=EVl4yiH5zAw6jU/LesJhdcZjrLZJDkNHinjOf4ToLslJ4PlFJ5m4IaXvTcvkLPhw+
+         JJu5XDjsHAMr713gN3K14F58MK1nRcuE3lIbNjmjJCkDp1hbq9LLXXWZ5SY8L/wq8f
+         E47LCYpkGvzcElhFqW+1zjprXYTK7yF6x5t4D8BQyw74V45JlkAwNiUsmeLKvXjogU
+         JhUArK8+Sw6wgx20cXnvE/PRJID08VdpatPiFR/L56YtsowbVZT3FFn3h+JPAu/n3W
+         3IvxfTISvT7jpWMDT9rURYT0llP1DNBdCFI+lfjD1F7rXxkvrycHOWzAkJ714LL7Vc
+         HPgSCFXWCA/fw==
+Message-ID: <8334772a-6427-352d-4172-ca262267427d@collabora.com>
+Date:   Mon, 23 May 2022 15:53:22 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH 1/1] arm64: dts: qcom: qrb5165-rb5: Enable the IMX577 on
- cam1
+ Thunderbird/91.9.0
+Subject: Re: [PATCH 2/4] regulator: Add driver for MT6331 PMIC regulators
 Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
-        bjorn.andersson@linaro.org
-Cc:     mchehab@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, mmitkov@quicinc.com, jgrahsl@snap.com,
-        hfink@snap.com
-References: <20220518133004.342775-1-bryan.odonoghue@linaro.org>
- <20220518133004.342775-2-bryan.odonoghue@linaro.org>
- <33abcc93-13f1-d6f5-36a3-6ab796f124f9@linaro.org>
- <19c92f9d-fa1c-fbe8-50ef-324da3e00695@linaro.org>
-From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <19c92f9d-fa1c-fbe8-50ef-324da3e00695@linaro.org>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20220520133305.265310-1-angelogioacchino.delregno@collabora.com>
+ <20220520133305.265310-3-angelogioacchino.delregno@collabora.com>
+ <YoepiTUfdhkYByo7@sirena.org.uk>
+ <6cc68be9-e509-eae4-801d-997fdc01dcf2@collabora.com>
+ <YouFcSapkVC7ZfuP@sirena.org.uk>
+ <a6606891-d55f-dbce-7c5a-86390694e1c4@collabora.com>
+ <YouPdNrBS2xwWwlI@sirena.org.uk>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <YouPdNrBS2xwWwlI@sirena.org.uk>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,58 +62,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bryan,
+Il 23/05/22 15:43, Mark Brown ha scritto:
+> On Mon, May 23, 2022 at 03:22:39PM +0200, AngeloGioacchino Del Regno wrote:
+>> Il 23/05/22 15:00, Mark Brown ha scritto:
+> 
+>>> Right, my point here is that it looks awfully like the documentation
+>>> (this came from documentation I guess?) is including some extra bits
+>>> that get ignored in the voltage selection field here.  That seems like a
+>>> weird choice somewhere along the line.
+> 
+>> I wish I had a datasheet for these parts...
+> 
+>> All of this comes from analyzing a running device on the downstream 3.4 kernel
+>> and on understanding the (not really readable) downstream kernel code...
+>> ..but yes, I agree on the fact that this seems to be a weird choice.
+> 
+>> Ah, besides, I hooked up an oscilloscope to the VCAM_IO and I can see that the
+>> vreg really does react as expected upon setting the upper bits.. but since it
+>> still works without, we can safely ignore them, which makes us able to simplify
+>> the driver (as no custom code for that will be required) and, at the same time,
+>> avoid seeing a table of values repeated 4 times in a row.
+> 
+> That seems safer in general if we don't know what those bits are doing -
+> it could be some kind of mode control or something.
+> 
+>> ...so, the regulator will indeed shut itself off and clear either/both the QI_EN
+>> and/or its relative bit in the enable register... I've also just found hints of
+>> the latter (enable register being set to 0) downstream, so I'm sure that this is
+>> indeed right.
+> 
+> That's still not quite the same thing as a status bit, if the regulator
+> disables itself then it won't try to turn itself back on.  Note that the
+> core will fall back on using the enable state if there's no status op so
+> there's no need for this logic, you can just omit the status op and the
+> behaviour will be the same.
 
-On 5/22/22 20:10, Bryan O'Donoghue wrote:
-> On 18/05/2022 20:09, Vladimir Zapolskiy wrote:
->>
->> I run on you branch on top of linux-next, but switch build options from
->> modules to built-in
->>
->>      CONFIG_I2C_QCOM_CCI=y
->>      CONFIG_VIDEO_QCOM_CAMSS=y
->>
->> I didn't get the sensor initialized and hence there is no /dev/media0 node:
->>
->> [    0.620205] i2c-qcom-cci ac50000.cci: Found 19200000 cci clk rate
->> while 37500000 was expected
->> [    0.620551] i2c 20-001a: Fixing up cyclic dependency with ac6a000.camss
->> [    0.620754] imx412 20-001a: Looking up dovdd-supply from device tree
->> [    0.620797] imx412 20-001a: Looking up avdd-supply from device tree
->> [    0.620860] imx412 20-001a: Looking up dvdd-supply from device tree
->> [    0.620876] duplicated lane 1 in clock-lanes, using defaults
->> [    0.622789] imx412 20-001a: failed to find sensor: -5
->> [    0.622880] imx412: probe of 20-001a failed with error -5
->>
->> I believe the problem could be related to CCI, please remind me, are
->> there I2C bus pull-ups?
-> 
-> Hmm.
-> 
-> Just trying to replicate this on linux-next
-> 
-> https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=linux-next-22-05-22%2bimx577-rb5
-> 
-> root@linaro-gnome:~# zcat /proc/config.gz | grep -e CONFIG_I2C_QCOM_CCI
-> -e CONFIG_VIDEO_QCOM_CAMSS
-> CONFIG_I2C_QCOM_CCI=y
-> CONFIG_VIDEO_QCOM_CAMSS=y
-> 
-> root@linaro-gnome:~# uname -a
-> Linux linaro-gnome 5.18.0-rc7-next-20220518-00006-g3beef4d1d353-dirty
-> #40 SMP PREEMPT Sun May 22 17:53:29 IST 2022 aarch64 GNU/Linux
-> 
-> root@linaro-gnome:~# cam -l
-> Available cameras:
-> 1: 'imx412' (/base/soc@0/cci@ac50000/i2c-bus@0/camera@1a)
-> 
-> are you compiling everything in ?
+Ok then, I'll simply remove that!
 
-it's some kind of a race related to probes of CAMSS, CCI and IMX412 drivers.
-
-Since I'm able to reproduce it, I'll take the analysis on myself, and it does not
-interfere with your patch series.
-
---
-Best wishes,
-Vladimir
+Thanks,
+Angelo
