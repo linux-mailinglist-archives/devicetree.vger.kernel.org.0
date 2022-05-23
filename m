@@ -2,133 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AEED53089E
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 07:14:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BB465308AE
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 07:30:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230126AbiEWFON (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 01:14:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34318 "EHLO
+        id S234479AbiEWF2V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 01:28:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230049AbiEWFOM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 01:14:12 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D39BF15833;
-        Sun, 22 May 2022 22:14:10 -0700 (PDT)
-X-UUID: 1e72670177804820a993c9184072fe96-20220523
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:62a28043-4333-4519-9c0a-d4e1df92f655,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:2a19b09,CLOUDID:2a953c7a-5ef6-470b-96c9-bdb8ced32786,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:0,BEC:nil
-X-UUID: 1e72670177804820a993c9184072fe96-20220523
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 503088311; Mon, 23 May 2022 13:14:07 +0800
-Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Mon, 23 May 2022 13:14:06 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 23 May 2022 13:14:06 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 23 May 2022 13:14:06 +0800
-Message-ID: <93464881d214501851eafd55fdb25b69b6bf77e9.camel@mediatek.com>
-Subject: Re: [PATCH v7 13/19] dt-bindings: reset: mediatek: Add infra_ao
- reset index for MT8192/MT8195
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     Stephen Boyd <sboyd@kernel.org>, Chen-Yu Tsai <wenst@chromium.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
-CC:     "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        Chun-Jie Chen =?UTF-8?Q?=28=E9=99=B3=E6=B5=9A=E6=A1=80=29?= 
-        <Chun-Jie.Chen@mediatek.com>,
-        Runyang Chen =?UTF-8?Q?=28=E9=99=88=E6=B6=A6=E6=B4=8B=29?= 
-        <Runyang.Chen@mediatek.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Mon, 23 May 2022 13:14:06 +0800
-In-Reply-To: <20220521042323.BA60AC385A5@smtp.kernel.org>
-References: <20220519125527.18544-1-rex-bc.chen@mediatek.com>
-         <20220519125527.18544-14-rex-bc.chen@mediatek.com>
-         <3f39777a225fac66f01858262defcc11c6135bb2.camel@mediatek.com>
-         <CAGXv+5Ee3QvpHqWeSOFJYmq+P3POFSTB45JM42UNF8pn4b4T9A@mail.gmail.com>
-         <20220521042323.BA60AC385A5@smtp.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229588AbiEWF2T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 01:28:19 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DEC21CB3D
+        for <devicetree@vger.kernel.org>; Sun, 22 May 2022 22:28:16 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id p10so1009134wrg.12
+        for <devicetree@vger.kernel.org>; Sun, 22 May 2022 22:28:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9uMuLZ+WHHh5WrmFB7JGvdrkZLB4YOBUOPeV4QL7yzg=;
+        b=Y7kqAoylA+C6m4MPwSA1YrcUGwM5+kRVXDhOpG5OUxWIJDFnBKuVppwLcraDZBlmau
+         LjKXI0nLbe+RKNA6nAJhuLYnXMdAUKpGtIdVzyeDMvWhkYW27wCNe/Us8RWXHLHT4eFH
+         M9So1Iom6hJn88cvubjLP9h1BZHr/wC5YhtxB69uMa3sl7yewtvD584E7joMhnPQJZwe
+         mhH+j7YGGYZYGJtI9SYQoZxp30voOt8m6e3cXBydM/B54I9+bkzkHXmefoySwmYiFb4O
+         UM8f1/QWB8VRoNLefi0UUGG2cdezs+gIpD/jgnWVy6RceLWCpffPXSl93rCbm+tjDWrq
+         LeZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9uMuLZ+WHHh5WrmFB7JGvdrkZLB4YOBUOPeV4QL7yzg=;
+        b=o8rtsSHOFt6l21IPi8BXXyVetZOI//bX2WIwO0AYMH5lrz7yrBHhuoRBQ2M9RYFVBO
+         cM64cg3mBcDdQtwBqVOP35wNyCZUXqr9fmBPnGffv6o4dWglZWNojuO3kXKKR9NtWsl2
+         qLgKZOV7PWBFRcWPDbAaDS+a7ny4z9geaDPSKzNR1JoGEA1MecYDa865aVoDdCRCrDtv
+         2SBF9EcCgoKQrwEArScMjUQ8RGxrsZr4mLn6IlmntCT3jWJlxwmfGriKkjJawY8v6u+J
+         /4/KlY4Sb3cAWRxGuHYoCoGrKVBK/atx5nofxERzGuZhZOvpitzHEllXmxnXn3BpmL8B
+         Mh0A==
+X-Gm-Message-State: AOAM531F28kHlOLZLpTYWirLeRLG7vxQk37DoUmNFZuedjR4kV2fRwKs
+        q10oTsP592efTgontA8ZTGY10w==
+X-Google-Smtp-Source: ABdhPJwqOjOWSF8b13h1bIXClf8iN5Rml8F4bhr0+MrnoZAuILGzkXIwWfoK9xvvCG7fE0z6uPVXbw==
+X-Received: by 2002:adf:dd8a:0:b0:20d:ff7:ce01 with SMTP id x10-20020adfdd8a000000b0020d0ff7ce01mr17371264wrl.242.1653283694762;
+        Sun, 22 May 2022 22:28:14 -0700 (PDT)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id h2-20020a1ccc02000000b0039466988f6csm7802414wmb.31.2022.05.22.22.28.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 May 2022 22:28:14 -0700 (PDT)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     andrew@lunn.ch, broonie@kernel.org, calvin.johnson@oss.nxp.com,
+        davem@davemloft.net, edumazet@google.com, hkallweit1@gmail.com,
+        jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        kuba@kernel.org, lgirdwood@gmail.com, linux@armlinux.org.uk,
+        pabeni@redhat.com, robh+dt@kernel.org, samuel@sholland.org,
+        wens@csie.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
+        netdev@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH v3 0/3] arm64: add ethernet to orange pi 3
+Date:   Mon, 23 May 2022 05:28:04 +0000
+Message-Id: <20220523052807.4044800-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 2022-05-21 at 12:23 +0800, Stephen Boyd wrote:
-> Quoting Chen-Yu Tsai (2022-05-19 20:10:35)
-> > On Fri, May 20, 2022 at 10:58 AM Rex-BC Chen <
-> > rex-bc.chen@mediatek.com> wrote:
-> > > 
-> > > 
-> > > Hello Stephen,
-> > > 
-> > > this patch will have conflict with Matthias's commit branch for
-> > > include/dt-bindings/reset/mt8192-resets.h.
-> > > 
-> > > It's on linux-next.
-> > > 
-> > > I have fix it in this version, but I think there will be a merge
-> > > conflict if you pick my series in this run.
-> > > 
-> > > 
-https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/include/dt-bindings/reset/mt8192-resets.h?h=next-20220519&id=19c66219e4d5b813ebbd28621cfe9c450659ded7__;!!CTRNKA9wMg0ARbw!xFfRxOWRAvhQMzoKxqRu8xFsMZLpVZEoK0WZBKeMOoeRGBjKphSL2tox-8zWlRwytjtEImTo1VB1f38wwj8XSlyKIw$
-> > >  
-> > 
-> > The commit in question is in Matthias's v5.18-next/dts64 branch,
-> > which also
-> > has the v5.18-next-dts64 tag. The PR for this tag was already
-> > picked up
-> > by the soc maintainers, so I guess we could consider it stable.
-> > 
-> > Matthias, what do you think? Give an ack for the patch to go
-> > through the
-> > clk tree with the tag merged in as dependency? There's a compile
-> > time
-> > dependency between this and the next patch so we can't just split
-> > them
-> > into different trees.
-> > 
-> 
-> It's pretty late to land something that has cross tree dependencies
-> like
-> that so I guess we'll just take up this patch series after the merge
-> window closes.
+Hello
 
-Hello Stephen,
+2 sunxi board still does not have ethernet working, orangepi 1+ and
+orangepi 3.
+This is due to the fact thoses boards have a PHY which need 2 regulators.
 
-Thanks for your big help!
-I will send v8 to modify comments from Nícolas.
+A first attempt by Ondřej Jirman was made to support them was made by adding support in
+stmmac driver:
+https://lore.kernel.org/lkml/20190820145343.29108-6-megous@megous.com/
+Proposal rejected, since regulators need to be handled by the PHY core.
 
-BRs,
-Rex
+My first tentative was to just add handling of phy and phy-io in
+phy-core:
+https://lore.kernel.org/netdev/20220509074857.195302-7-clabbe@baylibre.com/T/
+But having hard-coded phy names was rejected.
+
+Second tentative tryed the same path than clocks and clock-names for
+regulators.
+https://lore.kernel.org/netdev/0518eef1-75a6-fbfe-96d8-bb1fc4e5178a@linaro.org/t/
+But using this was rejected by DT maintainers.
+
+So v3 use a new regulator_bulk_get_all() which grab all supplies
+properties in a DT node.
+But this way could have some problem, a netdev driver could handle
+already its PHY (like dwmac-sun8i already do) and so both phy-core and
+the netdev will use both.
+It is why phy-supply was renamed in ephy-supply in patch #3.
+
+This serie was tested on whole range of board and PHY architecture:
+- internal PHY
+  * sun8i-h3-orangepi-pc
+- external PHY
+  * sun50i-h6-pine-h64
+  * sun8i-r40-bananapi-m2-ultra
+  * sun8i-a83t-bananapi-m3
+  * sun50i-a64-bananapi-m64
+  * sun50i-h6-orangepi-3
+  * sun50i-h5-nanopi-neo-plus2
+
+The resume/suspend of PHY was tested.
+
+Regards
+
+changes since v1:
+- Add regulator_bulk_get_all for ease handling of PHY regulators
+- Removed all convertion patchs to keep DT compatibility.
+
+Changes since v2:
+- removed use of regulator-names and regulators list.
+
+Corentin Labbe (2):
+  regulator: Add regulator_bulk_get_all
+  phy: handle optional regulator for PHY
+
+Ondřej Jirman (1):
+  arm64: dts: allwinner: orange-pi-3: Enable ethernet
+
+ .../dts/allwinner/sun50i-h6-orangepi-3.dts    | 38 ++++++++
+ drivers/net/mdio/Kconfig                      |  1 +
+ drivers/net/mdio/fwnode_mdio.c                | 36 +++++++-
+ drivers/net/phy/phy_device.c                  | 10 ++
+ drivers/regulator/core.c                      | 92 +++++++++++++++++++
+ include/linux/phy.h                           |  3 +
+ include/linux/regulator/consumer.h            |  2 +
+ 7 files changed, 178 insertions(+), 4 deletions(-)
+
+-- 
+2.35.1
 
