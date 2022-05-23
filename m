@@ -2,119 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D1EF5310D0
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:20:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21143530F3D
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:18:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234857AbiEWLac (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 07:30:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35222 "EHLO
+        id S234899AbiEWL2x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 07:28:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234793AbiEWLa1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 07:30:27 -0400
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C1FB4F479
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 04:30:24 -0700 (PDT)
-Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
-        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20220523113022epoutp01453b1de7707ff7cc049dd6ba158ad4a0~xuIWsoOPq1003610036epoutp01e
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 11:30:22 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20220523113022epoutp01453b1de7707ff7cc049dd6ba158ad4a0~xuIWsoOPq1003610036epoutp01e
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1653305422;
-        bh=4IFayU2lfdgNu9EW5xKS0zmUvY4WPz8PL5PJzayhj5E=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=pRkEXneOXeLZl+CVYdMU+/jafXUIobkCRAYWX9ZUMvMv7D5/g89Mn55UpMU+RjthL
-         HKWL0VYeEI6KIqvJCiUhQd/c/qvazWQ70JHg/vpJBWWWXbM28wdWgckBi56lvbYW/J
-         5JH1ZZ0BPAbgi1zkGqUz/emnTv5WhIiux6eE809Q=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-        epcas2p1.samsung.com (KnoxPortal) with ESMTP id
-        20220523113022epcas2p1706d6327843dc6faab846ee2920441ba~xuIWR6uWA3019930199epcas2p1C;
-        Mon, 23 May 2022 11:30:22 +0000 (GMT)
-Received: from epsmges2p3.samsung.com (unknown [182.195.36.89]) by
-        epsnrtp1.localdomain (Postfix) with ESMTP id 4L6FVx70Sbz4x9Pp; Mon, 23 May
-        2022 11:30:17 +0000 (GMT)
-Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
-        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
-        BF.7E.10028.8407B826; Mon, 23 May 2022 20:30:16 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
-        20220523113016epcas2p360bf51a6b39a6e17f258fcae4ee158a5~xuIQzBrAO2186921869epcas2p3u;
-        Mon, 23 May 2022 11:30:16 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20220523113016epsmtrp2bba6fa6640e4263ba5561724c0ebb7ad~xuIQyUVk20080900809epsmtrp2p;
-        Mon, 23 May 2022 11:30:16 +0000 (GMT)
-X-AuditID: b6c32a47-589ff7000000272c-f4-628b70487e36
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        A1.8D.11276.8407B826; Mon, 23 May 2022 20:30:16 +0900 (KST)
-Received: from KORCO082417 (unknown [10.229.8.121]) by epsmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20220523113015epsmtip1988448b1e301280d7630bdf1485edb3b~xuIQpgv1T1284612846epsmtip1z;
-        Mon, 23 May 2022 11:30:15 +0000 (GMT)
-From:   "Chanho Park" <chanho61.park@samsung.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-        "'Wim Van Sebroeck'" <wim@linux-watchdog.org>,
-        "'Guenter Roeck'" <linux@roeck-us.net>,
-        "'Rob Herring'" <robh+dt@kernel.org>
-Cc:     "'Sam Protsenko'" <semen.protsenko@linaro.org>,
-        <linux-watchdog@vger.kernel.org>,
-        <linux-samsung-soc@vger.kernel.org>, <devicetree@vger.kernel.org>
-In-Reply-To: <02fb065d-5ad9-07df-0e1d-1b47beb883dc@linaro.org>
-Subject: RE: [PATCH 3/4] arm64: dts: exynosautov9: add watchdog DT nodes
-Date:   Mon, 23 May 2022 20:30:16 +0900
-Message-ID: <003f01d86e98$798eddc0$6cac9940$@samsung.com>
+        with ESMTP id S234762AbiEWL2r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 07:28:47 -0400
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2062.outbound.protection.outlook.com [40.107.22.62])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF2CB4D251;
+        Mon, 23 May 2022 04:28:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iqXtkfoir29OQBHFuqRWjZ2KJ4dImbZxBjt07F7XHbh1zV3zQu3o7rwoL8CQHBiE49678mXHZIXpPHsfZ8lp/atEXbbksprjN9vT37mSFJqs2GrZgRdREsoKe1KlVsyBDg/TBpUS2QFpaQuIL/4csBWFxnlbFvNaxaVNwGseJ/q9ZGgalHJrmcxpGL+fClinyfr62g5y0kq3rbkci4CsPQquGB6ZVFkQVpd8OwfOpjD6E+r23ZCpDYEorCyRINreROlpIUTerPdaz1ZNr/M+iYNhH8VzdLT46Be7V1A8Jyy5VxTuzlvJBnsVK4MC4UBLTSt2uGaVA3ZW+sKymeEBxw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PZwImjOCqjHC02jp4G/HzBtKNYcrcKqYI+Fe5yxr60E=;
+ b=EQcS6dj3EBtmsQSkuCEFLhUg1EFaxLKUCuxQW8xSCVtRzY+4d02Cumv2Ec51osdsJkGZ0tcz+nNXbmjRKxqgsFAQ+ThxZgOYw58gcv7pBCc1NMhjBzRZUhCg1uPtWPxi/ZV6wJrcBXxnJzHt8jAc8zAFYnO++1gsCHranH8hRpzSiKlaolMb+DcTn8bYO7N7mqNYg5WLMPqNigVglBBRWxCFYQblXlRonczp2QFPznQYBTC1N75rWkyewoI7hpMn5xSx4gvnNnr+fRRhdmemLPlFfRrfPD08edrYXxl1DDgZsn0LoEp7gWNgzcapoy5AIFXTf7k6hsRKOTwfmYUypQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PZwImjOCqjHC02jp4G/HzBtKNYcrcKqYI+Fe5yxr60E=;
+ b=O6DZaJ6BA11dhve6AIYDwLH+YfLK9uozSnMda9BpobNl3uZWVGlGRgiflIf0lwQUH5jgMmayU9wkjw+vv3co7yiAqasN4WDFWJeluqqW1U8u3r8XoyYgK1f2KHDPkk6IQ/4qZqVYws/o8Zys0pxLc7DDMu5A+8UkAqWECZCGsXM=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by AM6PR04MB6296.eurprd04.prod.outlook.com (2603:10a6:20b:b5::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5273.22; Mon, 23 May
+ 2022 11:28:42 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::a892:e4a9:4769:13a5]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::a892:e4a9:4769:13a5%7]) with mapi id 15.20.5273.020; Mon, 23 May 2022
+ 11:28:42 +0000
+From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        sboyd@kernel.org, mturquette@baylibre.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de
+Cc:     aisheng.dong@nxp.com, l.stach@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH 0/7] imx: support i.MX93 SRC and mediamix blk ctrl
+Date:   Mon, 23 May 2022 19:30:22 +0800
+Message-Id: <20220523113029.842753-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR06CA0016.apcprd06.prod.outlook.com
+ (2603:1096:4:186::22) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQFlWeMGeRnkp6RKcHlQJHAIxTVWcwKk/mfLAdT13k8BkyXh8a3iE/tQ
-Content-Language: ko
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprDJsWRmVeSWpSXmKPExsWy7bCmqa5HQXeSwbIWBYv5R86xWux9vZXd
-        Ysb5fUwWN9btY7d4svAMk0Xr3iPsFs/7gGKPX/5jduDw2LSqk83jzrU9bB4r16xh9dj5vYHd
-        4/MmuQDWqGybjNTElNQihdS85PyUzLx0WyXv4HjneFMzA0NdQ0sLcyWFvMTcVFslF58AXbfM
-        HKBblBTKEnNKgUIBicXFSvp2NkX5pSWpChn5xSW2SqkFKTkF5gV6xYm5xaV56Xp5qSVWhgYG
-        RqZAhQnZGWsOdTIW/OWoeP7kIVsD42r2LkZODgkBE4lTe24zdTFycQgJ7GCUOD2tlRUkISTw
-        iVHiw+NQiMQ3Ron9Z66wwXRsevsdqmMvo8TD20tYIJwXjBJT/n4Em8smoC/xsmMbK0hCBKRq
-        0oaDYHOZBWYzSkw8aAhicwrYSVzqnMECYgsLeEjcbZsI1swioCrR37wXKM7BwStgKdHQ7Q0S
-        5hUQlDg58wkLxBhtiWULXzNDXKQg8fPpMrDxIgJuEr8PTmGGqBGRmN3Zxgxyg4TAXA6JLfuO
-        QTW4SJzb08kEYQtLvDq+BRoYUhKf3+2FerNYYumsT0wQzQ2MEpe3/YJKGEvMetbOCHIcs4Cm
-        xPpd+iCmhICyxJFbULfxSXQc/ssOEeaV6GgTgmhUlziwfToLhC0r0T3nM+sERqVZSD6bheSz
-        WUg+mIWwawEjyypGsdSC4tz01GKjAmN4ZCfn525iBCdTLfcdjDPeftA7xMjEwXiIUYKDWUmE
-        d3tiR5IQb0piZVVqUX58UWlOavEhRlNgUE9klhJNzgem87ySeEMTSwMTMzNDcyNTA3MlcV6v
-        lA2JQgLpiSWp2ampBalFMH1MHJxSDUxbjvxI6HuqUlk4c+Z17mlfN2lcqF4z8xBvnjsrf1Kb
-        i+7fN7/Sls+ezTTt+6dXu/epLL/R5tlip/Hp2wad9rRNc0pf3D3mPG37RW5v7X1FikGVP9MX
-        vwo8IVHoKsn+/Jwyk+L+J7csHPmeXtno/r303/V7aoFxX0R9zDj+Hrig+9xX6dpVrv7Nn7JX
-        bOOK4Jw+1561ODavJKzmzStLF2nOLhlv/s2rnXvD21KsEw/PZV0WfeMim52x5rEczvQo+QCF
-        owfsUm4JSPIp/DC8WdltZqb40zZp5nRWKb1deckinHzftLZdjI1aZupempe3VrzZ58hryfN7
-        +l7sfpWs8fEas2Cv3e8rFydohNs/e6fEUpyRaKjFXFScCADIHeypLwQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupgkeLIzCtJLcpLzFFi42LZdlhJTtejoDvJYMlKVov5R86xWux9vZXd
-        Ysb5fUwWN9btY7d4svAMk0Xr3iPsFs/7gGKPX/5jduDw2LSqk83jzrU9bB4r16xh9dj5vYHd
-        4/MmuQDWKC6blNSczLLUIn27BK6MszvOMBdc5qg489GsgbGRvYuRk0NCwERi09vvTF2MXBxC
-        ArsZJbbN/8kGkZCVePZuB1SRsMT9liOsILaQwDNGiTmNSiA2m4C+xMuObawgzSIC+xkl/qyZ
-        AjaJWWAuo0Rv4x92iLFfGSXaj04CG8spYCdxqXMGC4gtLOAhcbdtItgKFgFVif7mvUBxDg5e
-        AUuJhm5vkDCvgKDEyZlPwMqZBbQleh+2MsLYyxa+Zoa4TkHi59NlYNeJCLhJ/D44hRmiRkRi
-        dmcb8wRG4VlIRs1CMmoWklGzkLQsYGRZxSiZWlCcm55bbFhgmJdarlecmFtcmpeul5yfu4kR
-        HFlamjsYt6/6oHeIkYmD8RCjBAezkgjv9sSOJCHelMTKqtSi/Pii0pzU4kOM0hwsSuK8F7pO
-        xgsJpCeWpGanphakFsFkmTg4pRqYIh4HXW/qv1Af8e5n76zDV8+FBZ+fdKM+uMPuyudI3x++
-        GnOlxD/Ny09zcHjh83VlxbGXvK5PmO9JLP2vHfPl2oa9D2cLXfFLTnk7x1OtITO3UEWSd6XH
-        zrlfhDO3vmF9yFN69paHfqZ1TVLAfL+NwRfnq+vb6czre3Lt5s/KeQ5za20mrf/zrjpTJ3T+
-        jIxOqet3ovll9P1fhFb/ynv9LGrFipdrTQLmnvE9mCjAZnJ0hWpNobXT2nMetSK2d2Z27a9y
-        bIjccH5N3jE+C8v66TbxNzsMD20JClzw/RR7H+f0jcsMHJ3DspkO8Gs8TvU9du75u7CJST9e
-        T1U/w+9YKpR4eqNZSLPyqlXRPlnZSizFGYmGWsxFxYkA8/q4NBsDAAA=
-X-CMS-MailID: 20220523113016epcas2p360bf51a6b39a6e17f258fcae4ee158a5
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220520121722epcas2p169b2669f367e7461fa41663f3e90d303
-References: <20220520121750.71473-1-chanho61.park@samsung.com>
-        <CGME20220520121722epcas2p169b2669f367e7461fa41663f3e90d303@epcas2p1.samsung.com>
-        <20220520121750.71473-4-chanho61.park@samsung.com>
-        <02fb065d-5ad9-07df-0e1d-1b47beb883dc@linaro.org>
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 024296cf-a7d7-4373-1447-08da3caf63cb
+X-MS-TrafficTypeDiagnostic: AM6PR04MB6296:EE_
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-Microsoft-Antispam-PRVS: <AM6PR04MB62966F41D7BFD02E256B87B6C9D49@AM6PR04MB6296.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: YlMjPRg8VRNad2x63cLn4+vkwD2JU1n+79lDwFr7ik7GFeVqXUEUxJql5xJ6+Dmf3tUH131RMH6eONOSCMMPz8xDSeA5KpaD8apQcjgTNK8lmxRRzdYPilhN++W4rrDZWV3/MgWUIEHYhbLudI2vXSKGl9zeDISx7SlWLrfr2P3E8JSq6cDOudnDRNqJigHPjfAcpTBNfJWgEG1sNhjl6CIBpAATBuocq/NH2/oohdT5ZcxcE86+vx8SC9CxuCMI5Aq/ZkyvwE57z6itVLXXPkcsG2OQEdlJ9EILXlYGeM4URoeQ8f0EEUfPX83iJJQdBAyNKaZJoTgaRnLsw1qkhPvBZuaWjbSPnWsJ5S6GVmI9ILcvX6B2+3e5OLQ3IbOydkuDcpn6xKSrZHWwt9WNRsLejUkXy3iN0fMaraSsJ/+OGdRDolEERPjv/KaCyeN3xJIZSoWKQt08Bvop33Swq1qns+QsKFkQQAMxu/AyJO6FLYH9yXxYG8bwkhIF9+fJ4gtYclrifgolvZzDL9XsyzerMpNLrFMYURAFPMqWh1qhKftkoyMsiiMhhHZkULOsmyXKhXGWydgKs4j9D7GowjGYxiL+LSF3aFvM4Y9C2NZ3GDYpmfiHyHPwUH0y9KQbNiTFN7WK/iIAkmnrIFKTEtNuaQyIrJnjzzoUYdk0L3xlErHQhpyMBYqjDWLMi8Qem3Tp5QSTi17VL99PTku+nA09J7jxa7w0CiLLCqG5LT39z6/I2IajVE9bjaJjiTi73L6CBwun4CrF9zzHyV03oTZLiMQ1WyTBztMTHro2Qag=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(508600001)(38350700002)(6512007)(6506007)(66946007)(6666004)(38100700002)(52116002)(8936002)(7416002)(26005)(66476007)(66556008)(186003)(316002)(2616005)(2906002)(1076003)(4326008)(8676002)(6486002)(966005)(83380400001)(86362001)(5660300002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?TQFWBl89Dsc0fMYlvWhNmD/adtI58BR78RrR64xHvR21HAzV4xOV9UfIaPf4?=
+ =?us-ascii?Q?NhUTCnGcBtDT38c3NRQ/c32BDKP7hPVbcjVOSJPh74UMYGDfVvHdff8EuGUG?=
+ =?us-ascii?Q?CqGQjAu6lLRDlUOGrVjrphadLs625haFcyWx2XBtkMi+DHLTWQcgBYuVD1tV?=
+ =?us-ascii?Q?RsKcymzGSBZYFaMj2o6Q3tyvRj9263KfWPp+tw6ZRvqlr1NaJqTa6oNd/8rC?=
+ =?us-ascii?Q?5B19V6WsrimnmH4y7byK+yUQQ22BRK9g/b4K2kBDK9aBogjnnDQw1A7eVMad?=
+ =?us-ascii?Q?geNOwTQ7HMbKAfqhluiayVCB5DPk9StWhpUCSvdioCLWHZxOk2ufFbfCPdNf?=
+ =?us-ascii?Q?4+tdXEkgSSMG9dHDIV/Kwiop+BxHvjRCOOigLsXK/THa0Bm5W96i6BxNTMuN?=
+ =?us-ascii?Q?SAoc+5JFdeZ1VNu99Tlus/LshZnDVlhS+5JBMj5WSIYXr2fKoP1rBsHzq94H?=
+ =?us-ascii?Q?k8cq7NU04JfcM9gSn/Ly97YjFfizNjuWGnqJ+sJTa3ox4si54ME6B1eFH7Lp?=
+ =?us-ascii?Q?qdJlJEyeVfX9Anj/Rtnqogj06fxiT37FEgi4ij2fbywbkrx1Oq8sKMQAwpPF?=
+ =?us-ascii?Q?3NQ2xMHq7XOTJHvmbW4+tERJLe5VZTWazFalMwDt66sokHZOXT1fCCC0SaG2?=
+ =?us-ascii?Q?Bq0j37rQqT0ZmcYUT9tESbVJ0sycA8yjtHfLSzqkK1mSZgOV3cS+p/xRlljA?=
+ =?us-ascii?Q?GqRLxB661BP7aVNyjCeSZjhc4Fk1mUir9SQRGtFU6dvYinT64liv7hbbt4uA?=
+ =?us-ascii?Q?Hf15IZlQmjp5FgVfwwNIyguXqQ8YQllbZzexY9J3d0xnWlKmawxkXO9yzRex?=
+ =?us-ascii?Q?+OLgyyCUAjs4GnWWcmE2/gbH8OG+r8oFJxI3ftRHTK8N6af8r9bMfFfld8uk?=
+ =?us-ascii?Q?mks3Ul/G7VjoaFYrhNE33bjFmDJRZGLUiSM7VAj2xO4mdrgTpUYQzI2Q4xYJ?=
+ =?us-ascii?Q?ZF4bE5dO9BWz/E2sJ2ZdCn4EPHoXCDjm+mNewDNOnRI7JrSK1Yfosr3JdMF2?=
+ =?us-ascii?Q?KTeMVvAPWNl1/YayKZ3VJc+EZ681P7Yl4WELNUZEVHcLfAr1NmmlMtPDNSwv?=
+ =?us-ascii?Q?V9ANb/vjN0a+aQjYHB9GGAFKPcMWiwOieLqxEEbRAWA2wQRQjFGVFTVU7B+5?=
+ =?us-ascii?Q?lfC6qZeavw+3J+42TcSTRIXTwLERJ+QgkM4uWahDblpp7r+ZHuxUY/cARqTr?=
+ =?us-ascii?Q?n8C+evjKgL18U53gg+KXUkK3kA320EkEtmLDKJxRerWcvdj/UbBrVv2W4Boc?=
+ =?us-ascii?Q?WVw7qrAJim2Rr90c/DKXsARmz9+SJOCNhQpreceXLEiZyRCWbNQrfKN97kAu?=
+ =?us-ascii?Q?U+dRAa74OigPk1uTK+NNix71Ph1xg9OoFF1JwiuJqrNQqB+VjZE9hBTVSxR/?=
+ =?us-ascii?Q?jGfCxnKF9fFMKTSmPi5ghDKmMZahHITy4mBOLcaWj+EfOArLstVFcg0OstgP?=
+ =?us-ascii?Q?8PnpO8MU9tVdI7jG9XridPN/r1nakljPiCZL84iuwhp8OI8NhwVSNSStHP8X?=
+ =?us-ascii?Q?uTP0BrkCRl/jkI3/fpLppCBD1V8ApXgWWHknwtn+ErnaohBQx5tVSRc4q/Bv?=
+ =?us-ascii?Q?6zKK6hCKvRq3TxR3XIGUeTyBAHgK9w3mBOkoHLYR88/3HpbmUejxpEY6dGrk?=
+ =?us-ascii?Q?m2iOkBZ1d6E004GR3l8mPuABPoc4PpG7xQz3jL0psubtOhopwlVX1QsYCZJ/?=
+ =?us-ascii?Q?mVMMqBMP0Wk74V+nd+WQ+nAIAqgu/rJ8NWU2kXOztXHUfH0eenWemm/BQHOh?=
+ =?us-ascii?Q?ZdO7wBNYVw=3D=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 024296cf-a7d7-4373-1447-08da3caf63cb
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 May 2022 11:28:42.0100
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7TeRJtSR3V0TvkNbp4NX0dS66kyR9eQNTFTvSblhf57hB/NIvp7fztdAqCxhEFqT1vdqDpqvBnasBOmcFVri3g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB6296
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -122,32 +120,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> > b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> > index 3e23db8f09d9..34be955dc2d5 100644
-> > --- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> > +++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> > =40=40 -400,6 +400,28 =40=40 ufs_0: ufs0=4017e00000 =7B
-> >  			samsung,sysreg =3D <&syscon_fsys2 0x710>;
-> >  			status =3D =22disabled=22;
-> >  		=7D;
-> > +
-> > +		watchdog_cl0: watchdog=4010050000 =7B
-> > +			compatible =3D =22samsung,exynosautov9-wdt=22;
-> > +			reg =3D <0x10050000 0x100>;
-> > +			interrupts =3D <GIC_SPI 476 IRQ_TYPE_LEVEL_HIGH>;
-> > +			clocks =3D <&cmu_peris CLK_GOUT_WDT_CLUSTER0>, <&xtcxo>;
-> > +			clock-names =3D =22watchdog=22, =22watchdog_src=22;
-> > +			samsung,syscon-phandle =3D <&pmu_system_controller>;
-> > +			samsung,cluster-index =3D <0>;
-> > +			status =3D =22disabled=22;
->=20
-> Blocks which do not need board-level resources should be enabled by
-> default, so drop status and drop patch =234.
+From: Peng Fan <peng.fan@nxp.com>
 
-Okay. They can be enabled as default. I'll drop the status and =234 patch a=
-s well.
+This patchset is to support i.MX93 SRC and mediamix blk ctrl.
+SRC functions as power domain provider as i.MX8M GPC.
+mediamix blk ctrl is similar with i.MX8M blk ctrl, but much simplier from
+software view.
 
-Best Regards,
-Chanho Park
+Export of_clk_bulk_get_all for driver usage.
+
+Add bindings and dts node
+
+Based on:
+https://patchwork.kernel.org/project/linux-arm-kernel/cover/20220510124050.398891-1-peng.fan@oss.nxp.com/
+
+Peng Fan (7):
+  dt-bindings: soc: add bindings for i.MX93 SRC
+  dt-bindings: soc: add bindings for i.MX93 mediamix blk ctrl
+  clk: export of_clk_bulk_get_all
+  soc: imx: add i.MX93 SRC power domain driver
+  soc: imx: add i.MX93 media blk ctrl driver
+  arm64: dts: imx93: add src node
+  arm64: dts: imx93: add mediamix blk ctrl node
+
+ .../soc/imx/fsl,imx93-media-blk-ctrl.yaml     |  81 +++++
+ .../bindings/soc/imx/fsl,imx93-src.yaml       |  88 +++++
+ arch/arm64/boot/dts/freescale/imx93.dtsi      |  38 ++
+ drivers/clk/clk-bulk.c                        |   3 +-
+ drivers/soc/imx/Kconfig                       |  10 +
+ drivers/soc/imx/Makefile                      |   1 +
+ drivers/soc/imx/imx93-blk-ctrl.c              | 333 ++++++++++++++++++
+ drivers/soc/imx/imx93-pd.c                    | 271 ++++++++++++++
+ include/dt-bindings/power/imx93-power.h       |  17 +
+ include/linux/clk.h                           |   2 +
+ 10 files changed, 843 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx93-src.yaml
+ create mode 100644 drivers/soc/imx/imx93-blk-ctrl.c
+ create mode 100644 drivers/soc/imx/imx93-pd.c
+ create mode 100644 include/dt-bindings/power/imx93-power.h
+
+-- 
+2.25.1
 
