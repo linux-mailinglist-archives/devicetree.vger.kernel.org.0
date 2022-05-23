@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4812530FAC
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:19:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 442F3530EF7
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:17:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234556AbiEWKwH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 06:52:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39000 "EHLO
+        id S234552AbiEWKwG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 06:52:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234676AbiEWKvp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 06:51:45 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 828C82CDFE
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 03:51:44 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id p19so37354wmg.2
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 03:51:44 -0700 (PDT)
+        with ESMTP id S234446AbiEWKvw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 06:51:52 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A4C52E9D4
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 03:51:49 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id u27so19931628wru.8
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 03:51:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=L59GiR9dWwoU3bIhqqTo2XYxtqfhGwikIlZ2jdUecpc=;
-        b=2GpBC1024UFGepfN4EeJgCuO1UN/4rP8fzM4ZTL1Oy3Eb3PQ2YbsieGfwd/wr19Az/
-         vWLap0skRbcSkUKW+aQZeMenpJ688qxeEMD6FtIdTctSUfNDjNU3ehuSa8LsbZCQyUSK
-         Zy+t65L6dGDUIql6D2yeRE+ALRoFTHsQeKMF2wqO2ShIe7QcffeUStrl7exDqGkmebos
-         xLpftSD8FbLe/y/SJYDwky1vcICDBek0D4TMe/W6PIp1v0fzs2QFFKULXHPK5y2KoT2H
-         8pWePMqWJBCozqwdHN94XLhrb7SeHk7Zo861HG5+ZCYdcczXlH57WTcJRxLCU2WW9NiG
-         XpYQ==
+        bh=4zP6HMIa2YPzZ4Ud3UnVV9v/2WWghDZEujrnaWZbPns=;
+        b=CVxXAcJ7h3wlqtwZU9H9KpppU+0u/RTKAuP4gBIGTnyBTrBe1J9DA3/oPGdgksz0xy
+         GLUAXoK2K5PD5Qa5uoLYqngMrUqTrBQJ22WiVornX3mY7lg3WgNkr4opKRljcDGJ+/bZ
+         bW3RuhkiUKraQUELKEkJxDdqc9nVn+Cdrp9idbZpPPJXCWSoi+iPXeHO6GRdDakV8A0+
+         KEZmDMyXYpfBriNae5MHHjylHFP8Q/FOiVWpPyPtKhse51L0ASaj2EH1H/nCY3QgBzmZ
+         PDdfqUyUduPQmp+OuR3gzYBUFeiFmKAZZCk6UmkCYrXc5uFd1B9NK+3wO+q7fCqOFV0R
+         g8Mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=L59GiR9dWwoU3bIhqqTo2XYxtqfhGwikIlZ2jdUecpc=;
-        b=3y5GJ9yEabs4waVa3z3aTW/FTa74XwsjlkM4DkVJLcBP39eNWIudpoMz1iB8uZuk0m
-         OJdxW3cGzR2bUmuoux3pW6M/Yo5fvokkcRAAB/ZB5cf+Gke5W8ZUJ+mi+Tm2Z3zrVJIF
-         2fs4WebN0YdzZXzycQ/2ScPcijbsAFKzxnwz/tw/8gawxnKaV/hOSMy9vWuPXWbFArpq
-         XQbaoBcdwFF3LUINpUFyIelpWMYcQBKjVkelSsgo1FKjgJ4MvaexWzi4b7/9ydn20KlK
-         xZHmWvPW/POsYwpqMvM1ES5TXyWvPPACXOBX8DljV9/ECjzuZZQHt5B8vljFCW7NVq9r
-         ooIQ==
-X-Gm-Message-State: AOAM531srTDf+cREsvFPcAvUSTmt4StmsWwDNhichk8hjEnCeUq3Yzl3
-        ifpSO7CSVozaJ8ovfrE7Da055Q==
-X-Google-Smtp-Source: ABdhPJwNegNr44So8xq4D2p9JaCnMXp0VvpDOo2fky113Q7b9TeovIyeLXQjxBiFJh/CiujqFzERLQ==
-X-Received: by 2002:a05:600c:3048:b0:394:436b:76b6 with SMTP id n8-20020a05600c304800b00394436b76b6mr19844563wmh.63.1653303103041;
-        Mon, 23 May 2022 03:51:43 -0700 (PDT)
+        bh=4zP6HMIa2YPzZ4Ud3UnVV9v/2WWghDZEujrnaWZbPns=;
+        b=fFaayzFgCA9ZOovOEoG2F7SOJLQNlPAtXOBhvy+7TK5JSB1ovSLdb1UvTfpq4Qdhkc
+         WcvT9Pd47IvN7jOO4cBMdbWjcBFKkia52iQNILMnw5FvScYsERssrO3Rf8RIiklTU2w6
+         G4Xlw66qG9WusP5BNa0jLQmzUVZ+BZfWCMKJ+I+sBoKvbKVUqs0Q1idce/aC9614hIE4
+         fyjs8MhOpUur+I9WJQOayku7sDLXCRZpdm46yVluWXnafN0hVcUvU9A6nYFlXAL1dEzr
+         AXuKyOShrcTS/d1lycf5dcG+bjwLr92ETMu3D9V0SLAUWbM733kuki0mEbohY9ye6odG
+         f0Qw==
+X-Gm-Message-State: AOAM531nWdMsliBVPbY7uIrnnZG/uAQb9nsqGiRp/m/pXF7aev9B6RQ4
+        sgPkxTXdrJ7U/xmeJnVFN8Rpbw==
+X-Google-Smtp-Source: ABdhPJyQ9VeNqhjj7qlI7JhdS3acBdep+9UKDmpO3Y91brQHC2cBHqOMlHX3SGs3/FwHb18YDgbYJA==
+X-Received: by 2002:a5d:6484:0:b0:20f:cc0b:e3f1 with SMTP id o4-20020a5d6484000000b0020fcc0be3f1mr8011615wri.237.1653303109362;
+        Mon, 23 May 2022 03:51:49 -0700 (PDT)
 Received: from localhost.localdomain (2a02-8440-6141-9d1b-3074-96af-9642-0003.rev.sfr.net. [2a02:8440:6141:9d1b:3074:96af:9642:3])
-        by smtp.gmail.com with ESMTPSA id n11-20020a7bc5cb000000b003942a244f38sm8453607wmk.17.2022.05.23.03.51.41
+        by smtp.gmail.com with ESMTPSA id n11-20020a7bc5cb000000b003942a244f38sm8453607wmk.17.2022.05.23.03.51.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 May 2022 03:51:42 -0700 (PDT)
+        Mon, 23 May 2022 03:51:48 -0700 (PDT)
 From:   Guillaume Ranquet <granquet@baylibre.com>
 To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
         Philipp Zabel <p.zabel@pengutronix.de>,
@@ -66,9 +66,9 @@ Cc:     dri-devel@lists.freedesktop.org,
         linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-phy@lists.infradead.org, linux-fbdev@vger.kernel.org
-Subject: [PATCH v10 15/21] drm/mediatek: dpi: Only enable dpi after the bridge is enabled
-Date:   Mon, 23 May 2022 12:47:48 +0200
-Message-Id: <20220523104758.29531-16-granquet@baylibre.com>
+Subject: [PATCH v10 16/21] drm/meditek: dpi: Add matrix_sel helper
+Date:   Mon, 23 May 2022 12:47:49 +0200
+Message-Id: <20220523104758.29531-17-granquet@baylibre.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220523104758.29531-1-granquet@baylibre.com>
 References: <20220523104758.29531-1-granquet@baylibre.com>
@@ -76,43 +76,83 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enabling the dpi too early causes glitches on screen.
-
-Move the call to mtk_dpi_enable() at the end of the bridge_enable
-callback to ensure everything is setup properly before enabling dpi.
+Add a mtk_dpi_matrix_sel() helper to update the DPI_MATRIX_SET
+register depending on the color format.
 
 Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
 ---
- drivers/gpu/drm/mediatek/mtk_dpi.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/mediatek/mtk_dpi.c      | 21 +++++++++++++++++++++
+ drivers/gpu/drm/mediatek/mtk_dpi_regs.h |  3 +++
+ 2 files changed, 24 insertions(+)
 
 diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediatek/mtk_dpi.c
-index 763bfb700135..a6b6d62a17e7 100644
+index a6b6d62a17e7..5b88a7ed5845 100644
 --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
 +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-@@ -478,7 +478,6 @@ static int mtk_dpi_power_on(struct mtk_dpi *dpi)
- 	if (dpi->pinctrl && dpi->pins_dpi)
- 		pinctrl_select_state(dpi->pinctrl, dpi->pins_dpi);
- 
--	mtk_dpi_enable(dpi);
- 	return 0;
- 
- err_pixel:
-@@ -711,6 +710,7 @@ static void mtk_dpi_bridge_enable(struct drm_bridge *bridge)
- 
- 	mtk_dpi_power_on(dpi);
- 	mtk_dpi_set_display_mode(dpi, &dpi->mode);
-+	mtk_dpi_enable(dpi);
+@@ -386,6 +386,25 @@ static void mtk_dpi_config_disable_edge(struct mtk_dpi *dpi)
+ 		mtk_dpi_mask(dpi, dpi->conf->reg_h_fre_con, 0, EDGE_SEL_EN);
  }
  
- static enum drm_mode_status
++static void mtk_dpi_matrix_sel(struct mtk_dpi *dpi, enum mtk_dpi_out_color_format format)
++{
++	u32 matrix_sel = 0;
++
++	switch (format) {
++	case MTK_DPI_COLOR_FORMAT_YCBCR_422:
++	case MTK_DPI_COLOR_FORMAT_YCBCR_422_FULL:
++	case MTK_DPI_COLOR_FORMAT_YCBCR_444:
++	case MTK_DPI_COLOR_FORMAT_YCBCR_444_FULL:
++	case MTK_DPI_COLOR_FORMAT_XV_YCC:
++		if (dpi->mode.hdisplay <= 720)
++			matrix_sel = 0x2;
++		break;
++	default:
++		break;
++	}
++	mtk_dpi_mask(dpi, DPI_MATRIX_SET, matrix_sel, INT_MATRIX_SEL_MASK);
++}
++
+ static void mtk_dpi_config_color_format(struct mtk_dpi *dpi,
+ 					enum mtk_dpi_out_color_format format)
+ {
+@@ -393,6 +412,7 @@ static void mtk_dpi_config_color_format(struct mtk_dpi *dpi,
+ 	    (format == MTK_DPI_COLOR_FORMAT_YCBCR_444_FULL)) {
+ 		mtk_dpi_config_yuv422_enable(dpi, false);
+ 		mtk_dpi_config_csc_enable(dpi, true);
++		mtk_dpi_matrix_sel(dpi, format);
+ 		if (dpi->conf->swap_input_support)
+ 			mtk_dpi_config_swap_input(dpi, false);
+ 		mtk_dpi_config_channel_swap(dpi, MTK_DPI_OUT_CHANNEL_SWAP_BGR);
+@@ -400,6 +420,7 @@ static void mtk_dpi_config_color_format(struct mtk_dpi *dpi,
+ 		   (format == MTK_DPI_COLOR_FORMAT_YCBCR_422_FULL)) {
+ 		mtk_dpi_config_yuv422_enable(dpi, true);
+ 		mtk_dpi_config_csc_enable(dpi, true);
++		mtk_dpi_matrix_sel(dpi, format);
+ 		if (dpi->conf->swap_input_support)
+ 			mtk_dpi_config_swap_input(dpi, true);
+ 		mtk_dpi_config_channel_swap(dpi, MTK_DPI_OUT_CHANNEL_SWAP_RGB);
+diff --git a/drivers/gpu/drm/mediatek/mtk_dpi_regs.h b/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
+index dd47dd3f2e4f..91b32dfffced 100644
+--- a/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
++++ b/drivers/gpu/drm/mediatek/mtk_dpi_regs.h
+@@ -231,6 +231,9 @@
+ #define EDGE_SEL_EN			BIT(5)
+ #define H_FRE_2N			BIT(25)
+ 
++#define DPI_MATRIX_SET	0xB4
++#define INT_MATRIX_SEL			BIT(0)
++#define INT_MATRIX_SEL_MASK		(0x1F << 0)
+ #define RGB_TO_JPEG			0x00
+ #define RGB_TO_FULL709			0x01
+ #define RGB_TO_BT601			0x02
 -- 
 2.35.1
 
