@@ -2,84 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8298553144F
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:25:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CAD35314B5
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:26:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238000AbiEWPgp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 11:36:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60328 "EHLO
+        id S238061AbiEWPh4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 11:37:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238064AbiEWPgm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 11:36:42 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E10E2F030
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 08:36:38 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id j10so2780853lfe.12
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 08:36:37 -0700 (PDT)
+        with ESMTP id S238040AbiEWPhx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 11:37:53 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8153930F51
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 08:37:49 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id q1so8005548ljb.5
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 08:37:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=fy8sndVmymYnHbsd90BxGo19Ch5pC4BtvDtl6wCgwzI=;
-        b=CIZ7mIEMv1gh2SbkBbFcVFXuXuPPQnihIVDJX+tgvWkOBdGKRt2O7wv/skEgMs9LAb
-         R0q8c+rSkW9c0yYHyclcPLwr63PLV0U7Hkk+8vLan1QsV51ahf5WY5H+9gDcwqGZFxgW
-         It6kWZBcZzvZP0aapzjK8LPgIze4+MUB3GwssJRXVSlS/SibDCrlpc+HTGpu3ZD2/+am
-         oMBWJXFcRoAyHTDuCkk/5eACnwKrcbpvsMRLYpx6saAjs+e3NwtOMFcAsQnKhokh3x3e
-         zo/x+il7VyCwPLqGk0ekSYtDzYFk6p3YhlWf5Fo2JRzgmcjopJOabOPlo52bd7+bi2Dg
-         BH7g==
+        bh=CNVGYK72FSE/DjXuo5FhnaPlB7gNCfpfmdbuSxUtMOc=;
+        b=iau23czuiMXjm0hyqdsK5LqTD+cKYVfnaA9S+hQdET23Y0mX06Yvmm6kF7vXaHTfPy
+         8//i31Rg+IIST3l9Sr0HyecMRQN5OqkZNKc8CS9yKXVH/8RbMhhmXeqzZSfepaj/zkwe
+         ofB4tGj5QcepTEaNJQGL0uCSEQ2ADJPDbE222xkpnEOy/i6hOMC2Gogln7uIOXz1Z2Un
+         eEdA7dxiMWE4KY6pnEhnPDqWZSOM1zSWeijmWVE9dewujOLdGsLSCspFY3jrwHLY5uJy
+         G/qZz7B6FWs1eIB6vxDShca3e0arrF3KoP7sa7f+DQmKL7DLNfpzlnJHap6kywfaaz7X
+         P+oA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=fy8sndVmymYnHbsd90BxGo19Ch5pC4BtvDtl6wCgwzI=;
-        b=fZ0YBiWR/URXCjWiSALtr/8dByluh1jguji8XWDWndu2r7UGsbLf1EZ9C+d3wper15
-         6v3CBTDshITyA2qukFD0/vcqsh0xxnP2iLh3+wxCEsXPrpxtd0l/A+6s3xw0/6vlNMgO
-         PR1KZ7gAQe//38GjYxScze0rVwHCCrSq+c05ruDiY/lgBxXEYtNO7AuWua1zFAvAmncY
-         j8pFHBjC/La2IAAEwm5HU0qmLOnvs62BPzaduNQSmYtMS+1kOfr1x/0UEy1KoKoMrzty
-         B++iz/ehYiNt4i8AlELHTHM7R8wYxpZgnovh9+pHO8evmdBXmEzfMi+tQG84G+OgZJdh
-         LiRw==
-X-Gm-Message-State: AOAM531yXysr+f+2dBI7DckRysxcOzFnr3KyMvvrS8fwDljkziplmYEn
-        3JJA7nVhUroMuHDk7sNnH0XmuA==
-X-Google-Smtp-Source: ABdhPJwM+QfBAgrq5Qhp7c49bsGzccLRV/RrGdKF+ztxnpFARSizzfmXG8uB0XN/toLfj+JZR5ABHQ==
-X-Received: by 2002:a05:6512:3f26:b0:473:edee:7250 with SMTP id y38-20020a0565123f2600b00473edee7250mr16079456lfa.685.1653320196237;
-        Mon, 23 May 2022 08:36:36 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id t5-20020a056512208500b0047255d211cfsm2033134lfr.254.2022.05.23.08.36.35
+        bh=CNVGYK72FSE/DjXuo5FhnaPlB7gNCfpfmdbuSxUtMOc=;
+        b=0rI9wolIlkqpJNXVxk2NUS7JB+1p+onEg2wxeDfCP8FMEBy7eOaJyCd3klpHOAexKI
+         o4yo0RMxtC8sObw3EbscypJAc529jqZLSJ4X6W29yWWErI9hIHyqZ3/Mq2ZhOFEqoJN8
+         gzvJ8BkYhQt/wfQLdhSvVmQhKLMQHrlzFaLUBe+RALgphhVuwoRzj/glEYF/H2UzB7Ia
+         EbBLJr9vfk3bKiB5W81CXA//bZ67RylmSvdF5SXzD9kYYGGpj1FgjCzdNmGR8+E7fz/K
+         yve5ekfFJDTbA91my8dvyDSXh311wy0rpSDHsnxrl97qisqkUZOImhC5NLfS66K2U2Gf
+         FuGA==
+X-Gm-Message-State: AOAM530D8wtOjXFn/w0EJU1+DDLja006aKk5pkGoBUkwMuj1lAOrmMkT
+        ksi6rUdVpOwcrmJ/XM4fpRnRCg==
+X-Google-Smtp-Source: ABdhPJytSX0vw8XiyL0IPRTPz7bNI0Vb5IqxXheMy8cJ6OyJZo+/AZv6Os8PjXd8yRyNcZKkTN4sOg==
+X-Received: by 2002:a05:651c:b06:b0:253:e51a:c507 with SMTP id b6-20020a05651c0b0600b00253e51ac507mr6361505ljr.420.1653320267494;
+        Mon, 23 May 2022 08:37:47 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id o14-20020a05651205ce00b0047255d211c2sm2036295lfo.241.2022.05.23.08.37.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 May 2022 08:36:35 -0700 (PDT)
-Message-ID: <363d3be3-575d-260f-ece1-0b56b3c134ba@linaro.org>
-Date:   Mon, 23 May 2022 18:36:34 +0300
+        Mon, 23 May 2022 08:37:46 -0700 (PDT)
+Message-ID: <fd52f328-c895-e27e-4807-eb0b8f14a247@linaro.org>
+Date:   Mon, 23 May 2022 17:37:44 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v11 3/7] PCI: dwc: Handle MSIs routed to multiple GIC
- interrupts
-Content-Language: en-GB
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v1 18/19] arm64: dts: nuvoton: Add initial NPCM845 EVB
+ device tree
+Content-Language: en-US
+To:     Tomer Maimon <tmaimon77@gmail.com>, Arnd Bergmann <arnd@arndb.de>
+Cc:     Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220520183114.1356599-1-dmitry.baryshkov@linaro.org>
- <20220520183114.1356599-4-dmitry.baryshkov@linaro.org>
- <Yos9fkgxAN1jJ4jO@hovoldconsulting.com>
- <8ce50a9f-241d-c37a-15e9-1a97d410f61e@linaro.org>
- <YouUCuzjo5u+OEXS@hovoldconsulting.com>
- <0bc58862-75be-aaa0-9983-6ed2fa2079ec@linaro.org>
- <YoupEr0TkgEa1S+/@hovoldconsulting.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <YoupEr0TkgEa1S+/@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        gregkh <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Olof Johansson <olof@lixom.net>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        robert.hancock@calian.com,
+        nathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Lubomir Rintel <lkundrak@v3.sk>, SoC Team <soc@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+References: <20220522155046.260146-1-tmaimon77@gmail.com>
+ <20220522155046.260146-19-tmaimon77@gmail.com>
+ <CAK8P3a1LCkM-w_Oi2qUqgq_Qxsg64uoGg5aaz=X8pBENHBhj0A@mail.gmail.com>
+ <CAP6Zq1j8PEQ2m7rG5YztesiOfXExCr=UMPFhD=Oe+GYDwGP95g@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAP6Zq1j8PEQ2m7rG5YztesiOfXExCr=UMPFhD=Oe+GYDwGP95g@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -90,68 +110,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/05/2022 18:32, Johan Hovold wrote:
-> On Mon, May 23, 2022 at 06:17:19PM +0300, Dmitry Baryshkov wrote:
->> On 23/05/2022 17:02, Johan Hovold wrote:
->>> On Mon, May 23, 2022 at 04:39:56PM +0300, Dmitry Baryshkov wrote:
->>>> On 23/05/2022 10:53, Johan Hovold wrote:
->>>>> On Fri, May 20, 2022 at 09:31:10PM +0300, Dmitry Baryshkov wrote:
->>>
->>>>>> +static int dw_pcie_parse_split_msi_irq(struct pcie_port *pp)
->>>>>> +{
->>>>>> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
->>>>>> +	struct device *dev = pci->dev;
->>>>>> +	struct platform_device *pdev = to_platform_device(dev);
->>>>>> +	int irq;
->>>>>> +	u32 ctrl;
->>>>>> +
->>>>>> +	irq = platform_get_irq_byname_optional(pdev, split_msi_names[0]);
->>>>>> +	if (irq == -ENXIO)
->>>>>> +		return -ENXIO;
->>>>>
->>>>> You still need to check for other errors and -EPROBE_DEFER here.
->>>>
->>>> I think even the if (irq < 0) return irq; will work here.
->>>
->>> No need to print errors unless -EPROBEDEFER as you do below?
->>
->> There is no separate print for the dw_pcie_parse_split_msi_irq() errors.
+On 23/05/2022 16:17, Tomer Maimon wrote:
+> Hi,
 > 
-> I don't understand what you're referring to here.
+> Thanks for your comments.
 > 
-> My question is: Why would you not be printing error messages for msi0 as
-> you are for msi1..msi7 in the loop below.
-
-Yeah, this seems like a correct idea. Thank you!
-
+> the patch will modify according to your comments and will be sent in the
+> next kernel revision 5.19.rc1
 > 
->>>>>> +
->>>>>> +	pp->msi_irq[0] = irq;
->>>>>> +
->>>>>> +	/* Parse as many IRQs as described in the DTS. */
->>>>>
->>>>> s/DTS/devicetree/
->>>>>
->>>>>> +	for (ctrl = 1; ctrl < MAX_MSI_CTRLS; ctrl++) {
->>>>>> +		irq = platform_get_irq_byname_optional(pdev, split_msi_names[ctrl]);
->>>>>> +		if (irq == -ENXIO)
->>>>>> +			break;
->>>>>> +		if (irq < 0)
->>>>>> +			return dev_err_probe(dev, irq,
->>>>>> +					     "Failed to parse MSI IRQ '%s'\n",
->>>>>> +					     split_msi_names[ctrl]);
->>>>>> +
->>>>>> +		pp->msi_irq[ctrl] = irq;
->>>>>> +	}
->>>>>> +
->>>>>> +	pp->num_vectors = ctrl * MAX_MSI_IRQS_PER_CTRL;
->>>>>> +
->>>>>> +	return 0;
->>>>>> +}
-> 
-> Johan
 
+None of your emails reach lists because of using HTML. Please use
+appropriate messaging format.
 
--- 
-With best wishes
-Dmitry
+Best regards,
+Krzysztof
