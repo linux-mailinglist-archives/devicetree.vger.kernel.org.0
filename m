@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3EDB530DE1
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 12:42:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE3F6530D69
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 12:42:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233994AbiEWKQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 06:16:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36926 "EHLO
+        id S233969AbiEWKU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 06:20:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234000AbiEWKQn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 06:16:43 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E42217A97
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 03:16:42 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id br17so12415466lfb.2
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 03:16:42 -0700 (PDT)
+        with ESMTP id S233946AbiEWKUZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 06:20:25 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C50949C97
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 03:20:23 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id w14so24682815lfl.13
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 03:20:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=j8uqO6uQ4ZVj6x5j3Kl+olRHxX/AM+5LdyICh38VHXE=;
-        b=fC9+RpjMk78CzVqFkNwOUai6bcQM0Tesa/wSc2z0nc1VHyYbtwAA/YK9QMSEOKDPgH
-         kdXs5N30fwwWeaLGky3V1M3nn9x2Ews948w5x3UcGetJJiK8MivYnNKOx4gk/7k24//X
-         GVYiJOhGnGqQqp07xLC1ZIU8lJ43U5kGttsu8NMt9uY7gxl0MR+zTmdNtkIsb4Z53WtN
-         Wvykrz9XD+zOTuuMVsayJ5j/mLr+hjNXLik8B+6POPxntfLso+wNK4aqEb47lbQmtCOx
-         Z+nGxbcapTHTjd0+MWxZ4k12vkIV56W2+Ir0XckPrFqWDstrJE52AZZbXUWaN8KEPrvK
-         lfHg==
+        bh=/l3QYEtFbojLl7lV5pai3cRHfBZ+h0566izYZj5zobk=;
+        b=K59cYs+R0/hJqebheRWM0OtWviQ7SBQiO3HxShG4pomW6xuJKMaJ/Ny2bZDHYTV1ar
+         gU7vInJNHABXi/t09KDUiAjvius/JfHMpmSJFznCBEbtaG/9mbKI7UaxHsjcaAh3T8L9
+         W2g0LOQJlUBELDPnHmLriHDRtyKVKm9NBi+67oaG65ZzeHnM7RPLSMB3bW0aH5NhK+3F
+         HtQuIerABd+B+b5v5vPbGBn26R7yvgNuc393NRCyHG7qRvWKkcL9CYg/0MKLj6kkkEUA
+         gltqQU3c7ixAKZgCaC3XRBsBOW8i4n9spp+mQSbI5fnPQABtNoEv3bPPtLt17CxR/V/R
+         z7PA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=j8uqO6uQ4ZVj6x5j3Kl+olRHxX/AM+5LdyICh38VHXE=;
-        b=INMuL3jzHffWPkApo7JT7/lL0YCfPKeY7qjeJ5q2OPyxdWj4ZlnNGxTt4i29cClKgy
-         zFzo/oyhhCELAju7C4Nfx2Chvv3sGHpqUgahiLXrwZP2sB5UGYpJW4cwwCvKBa7z1EdG
-         zoHGn/HxRi+xaIQenCVmM8pHwdHkHMQlhmz1jFakXbcZ9NnVHF0LjGZ1hVsavgPtmqLB
-         eOqFGTNla+9Kbv2rVbov0v/yib0QuRhRWPfESpslUnD77lNNA26VlpjdPfDQgJXUd5G8
-         LmoBpoRwxD1jHM9UIJ2sXmCsFfV9epcawYQYH59cZchWE+xRgi5tVxFxWl8C2fx+/vGJ
-         59HQ==
-X-Gm-Message-State: AOAM5314XffIp6r5z04/9uwLK+kJ6q9knr1XBLpPcOC4NMmOiGvalRls
-        ICdpothXaRCpFLpWDp0V1ycX5Q==
-X-Google-Smtp-Source: ABdhPJxv2fNPrFHFEbYevTCh7ab2jEDuHx62613siI3C1Md983g45XmCnzx8iSep9cpN92v3xEeFzw==
-X-Received: by 2002:a05:6512:6cc:b0:478:6e03:964b with SMTP id u12-20020a05651206cc00b004786e03964bmr3550540lff.283.1653301000478;
-        Mon, 23 May 2022 03:16:40 -0700 (PDT)
+        bh=/l3QYEtFbojLl7lV5pai3cRHfBZ+h0566izYZj5zobk=;
+        b=3sli2lMWuWlMNYvOrVPnt5ncKti17LQrdxhungbLHyMKJQOE3odrw3l/2tH4MTcs4W
+         E6KV1867lbnmvA+l6o4s5I87EFuJ72JB9BqvksQuZPt1vVfPYSoVMcqrOpHM1ELN9V68
+         bHUNdDNRE64W2Z2vka/JocPh6/ydZ3ocf1H8Bzz/218OOMwiyRiixxs7rY+8woApUjOh
+         Ap26NeVln6HyPKNkY942kZli2R5qC4s021tohT6GpBS+oopdHbwvj2FveLMYhebXR9Cs
+         XIPTpNgRwQd6ZARpprRzFgiIJHJsyzTQY9WNyak6dUGU6MxHwune+AL9vpINiBhtxP6F
+         ZgaQ==
+X-Gm-Message-State: AOAM531ZOrRJDPx1wfA9KmTDIa2cluCqKXjSwIXVRxwX9lPqiYotlApW
+        isHT8Jb6A7dWnfEQJOXe//ZJIA==
+X-Google-Smtp-Source: ABdhPJwLWF++6lXrwJkvOsyZfcT1dMhLQpWYwo9OWZ4dveIyYXhHtW42YvshQ//qURY2eqhdqiaI4w==
+X-Received: by 2002:a05:6512:3f92:b0:447:769c:1b2c with SMTP id x18-20020a0565123f9200b00447769c1b2cmr15767086lfa.387.1653301221953;
+        Mon, 23 May 2022 03:20:21 -0700 (PDT)
 Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id n3-20020ac242c3000000b0047255d211e8sm1898666lfl.279.2022.05.23.03.16.39
+        by smtp.gmail.com with ESMTPSA id a1-20020ac25e61000000b004758e5076eesm1901718lfr.118.2022.05.23.03.20.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 May 2022 03:16:40 -0700 (PDT)
-Message-ID: <4cbbd4c2-6d39-da8e-d0fc-c49ba9b8ae7d@linaro.org>
-Date:   Mon, 23 May 2022 12:16:38 +0200
+        Mon, 23 May 2022 03:20:21 -0700 (PDT)
+Message-ID: <b5994aac-f471-52bd-e6a1-6f8cbba62d60@linaro.org>
+Date:   Mon, 23 May 2022 12:20:20 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH v2 1/3] dt-bindings: iio: adc: Add FSD-HW variant
+Subject: Re: [PATCH v2 2/3] iio: adc: exynos-adc: Add support for ADC FSD-HW
+ controller
 Content-Language: en-US
 To:     Tamseel Shams <m.shams@samsung.com>, jic23@kernel.org,
         lars@metafoo.de, robh+dt@kernel.org, krzk+dt@kernel.org
@@ -63,10 +64,10 @@ Cc:     geert@linux-m68k.org, devicetree@vger.kernel.org,
         linux-iio@vger.kernel.org, alim.akhtar@samsung.com,
         paul@crapouillou.net, linux-fsd@tesla.com
 References: <20220520145820.67667-1-m.shams@samsung.com>
- <CGME20220520145759epcas5p240de0ce6d1a1bfea6c8a6bfb61c5d27d@epcas5p2.samsung.com>
- <20220520145820.67667-2-m.shams@samsung.com>
+ <CGME20220520145802epcas5p2153cb572493e3bccd702e0ecce1171fb@epcas5p2.samsung.com>
+ <20220520145820.67667-3-m.shams@samsung.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220520145820.67667-2-m.shams@samsung.com>
+In-Reply-To: <20220520145820.67667-3-m.shams@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,37 +83,16 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 20/05/2022 16:58, Tamseel Shams wrote:
 > From: Alim Akhtar <alim.akhtar@samsung.com>
 > 
-> This patch adds a new compatible string for FSD-HW's
-> ADC variant
+> Exynos's ADC-FSD-HW has some difference in registers set, number of
+> programmable channels (16 channel) etc. This patch adds support for
+> ADC-FSD-HW controller version.
 > 
 > Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
 > Signed-off-by: Tamseel Shams <m.shams@samsung.com>
-> ---
-> - Changes since v1
-> * Addressed Krzysztof's comment to use soc-specific compatible
-> 
->  .../devicetree/bindings/iio/adc/samsung,exynos-adc.yaml          | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml b/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
-> index 81c87295912c..ded0e3f85991 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
-> @@ -14,6 +14,7 @@ properties:
->      enum:
->        - samsung,exynos-adc-v1                 # Exynos5250
->        - samsung,exynos-adc-v2
-> +      - samsung,exynos-adc-fsd-hw
 
-The soc is fsd, so compatible should rather be:
-tesla,fsd-adc
+The compatible needs changing (as commented in bindings).
 
-What does the "HW" mean?
-
->        - samsung,exynos3250-adc
->        - samsung,exynos4212-adc                # Exynos4212 and Exynos4412
->        - samsung,exynos7-adc
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
