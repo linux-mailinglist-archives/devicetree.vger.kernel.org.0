@@ -2,133 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E70255313E6
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:24:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7F0A531438
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:25:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236085AbiEWNWv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 09:22:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42698 "EHLO
+        id S236248AbiEWN2C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 09:28:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236087AbiEWNWs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 09:22:48 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7904631234;
-        Mon, 23 May 2022 06:22:44 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id D4B671F4332B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1653312162;
-        bh=zJBx/meEVKgnjWI/EklM+94hyPmWSwELMNThgJm6lUg=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=BunFdwU73dubqPSW7rx74D895hMJcTYcd6qN8jpL/C2L2dkGSbvdf7x1JTB+M0ZKe
-         0Wxhc3HjHNPcNjomBvWRqZ7e7teC1cQKdJgXMhRZ4N4+dW2dMmF2k/cYamAYO5joX6
-         aTDmvnpDZoJGSyHPSbOYqJbDcFklr4mjrfsMzCjU2pauq31X6Fsp9NcI0oZm1k7C5U
-         NlJjXVTJkRO2QDEn2rurR3ku95M4Tcuz1Adurp5tjqooSo9L4bFwvRd+zFEQbMSGgJ
-         POT/pN634OKMiDfAnFoeuHMOo58bQ3Zh6JpNy5hpvkU0p/U2/XVVhK1ES06H3myDzO
-         7coEpax5GyFfw==
-Message-ID: <a6606891-d55f-dbce-7c5a-86390694e1c4@collabora.com>
-Date:   Mon, 23 May 2022 15:22:39 +0200
+        with ESMTP id S236264AbiEWN1t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 09:27:49 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02FC7C15;
+        Mon, 23 May 2022 06:27:29 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (unknown [141.113.67.45])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9F9404A8;
+        Mon, 23 May 2022 15:27:26 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1653312446;
+        bh=le3nMsKm2R0gz2BHZLkV9dWl4Icu/CxHXa+fx5+7YwY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=FoRrlZb7UqkeXcJqjii8Y8CtSMyHK3GkQ6CI8Psr8mDyBX6zt/Zo/oLhc0zGRDxIZ
+         lE3x9FaFJ0ggZsHT2KJpws0uHE5hKpseYKuIDzjSIW7Hom7718Ueg289VRKbAN8/lw
+         uPVk8fr0s3WZVxy/ddlENjnjXypFIP76EQ2WtcgM=
+Date:   Mon, 23 May 2022 16:27:22 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     Sakari Ailus <sakari.ailus@iki.fi>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-staging@lists.linux.dev,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 3/4] staging: media: Add support for the Allwinner A31
+ ISP
+Message-ID: <YouLusf4sWK9W2J7@pendragon.ideasonboard.com>
+References: <20220415153708.637804-1-paul.kocialkowski@bootlin.com>
+ <20220415153708.637804-4-paul.kocialkowski@bootlin.com>
+ <YmqFQSRBsqs4ghNQ@valkosipuli.retiisi.eu>
+ <Ymqk89e+mn/1kLLx@aptenodytes>
+ <YmsCJicyzf+Bz98y@valkosipuli.retiisi.eu>
+ <YoesXywA4yzBDSwU@aptenodytes>
+ <Yop0DGOo1ky2dfnv@pendragon.ideasonboard.com>
+ <YouDa3mE9+SkKJg/@aptenodytes>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH 2/4] regulator: Add driver for MT6331 PMIC regulators
-Content-Language: en-US
-To:     Mark Brown <broonie@kernel.org>
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20220520133305.265310-1-angelogioacchino.delregno@collabora.com>
- <20220520133305.265310-3-angelogioacchino.delregno@collabora.com>
- <YoepiTUfdhkYByo7@sirena.org.uk>
- <6cc68be9-e509-eae4-801d-997fdc01dcf2@collabora.com>
- <YouFcSapkVC7ZfuP@sirena.org.uk>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <YouFcSapkVC7ZfuP@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <YouDa3mE9+SkKJg/@aptenodytes>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 23/05/22 15:00, Mark Brown ha scritto:
-> On Mon, May 23, 2022 at 02:49:19PM +0200, AngeloGioacchino Del Regno wrote:
->> Il 20/05/22 16:45, Mark Brown ha scritto:
->>> On Fri, May 20, 2022 at 03:33:03PM +0200, AngeloGioacchino Del Regno wrote:
-> 
->>>> +static const unsigned int ldo_volt_table10[] = {
->>>> +	1200000, 1300000, 1500000, 1800000,
->>>> +	1200000, 1300000, 1500000, 1800000,
->>>> +	1200000, 1300000, 1500000, 1800000,
->>>> +	1200000, 1300000, 1500000, 1800000,
->>>> +};
-> 
->>> So the top bits of the voltate selection field just get ignored?  Might
->>> be easier to just write the code to not include the top bits.
->>>
-> 
->> No, they're all valid values for real... but I guess that I can simplify
->> this voltage table by simply modifying the bitmask that we use for the
->> regulators that are using this table....
-> 
-> Right, my point here is that it looks awfully like the documentation
-> (this came from documentation I guess?) is including some extra bits
-> that get ignored in the voltage selection field here.  That seems like a
-> weird choice somewhere along the line.
-> 
+Hi Paul,
 
-I wish I had a datasheet for these parts...
-
-All of this comes from analyzing a running device on the downstream 3.4 kernel
-and on understanding the (not really readable) downstream kernel code...
-..but yes, I agree on the fact that this seems to be a weird choice.
-
-Ah, besides, I hooked up an oscilloscope to the VCAM_IO and I can see that the
-vreg really does react as expected upon setting the upper bits.. but since it
-still works without, we can safely ignore them, which makes us able to simplify
-the driver (as no custom code for that will be required) and, at the same time,
-avoid seeing a table of values repeated 4 times in a row.
-
->>>> +	if (info->qi > 0) {
->>>> +		reg = info->desc.enable_reg;
->>>> +		en_mask = info->qi;
+On Mon, May 23, 2022 at 02:51:55PM +0200, Paul Kocialkowski wrote:
+> On Sun 22 May 22, 20:34, Laurent Pinchart wrote:
+> > On Fri, May 20, 2022 at 04:57:35PM +0200, Paul Kocialkowski wrote:
+> > > On Fri 29 Apr 22, 00:07, Sakari Ailus wrote:
+> > > > On Thu, Apr 28, 2022 at 04:30:11PM +0200, Paul Kocialkowski wrote:
+> > > > > Hi Sakari,
+> > > > > 
+> > > > > On Thu 28 Apr 22, 15:14, Sakari Ailus wrote:
+> > > > > > Hi Paul,
+> > > > > > 
+> > > > > > Thanks for the set.
+> > > > > > 
+> > > > > > A few comments below.
+> > > > > 
+> > > > > Thanks a lot for your review!
+> > > > 
+> > > > You're welcome!
+> > > > 
+> > > > ...
+> > > > 
+> > > > > > I understand this is an online ISP. How do you schedule the video buffer
+> > > > > > queues? Say, what happens if it's time to set up buffers for a frame and
+> > > > > > there's a buffer queued in the parameter queue but not in the image data
+> > > > > > queue? Or the other way around?
+> > > > > 
+> > > > > The ISP works in a quite atypical way, with a DMA buffer that is used to
+> > > > > hold upcoming parameters (including buffer addresses) and a bit in a "direct"
+> > > > > register to schedule the update of the parameters at next vsync.
+> > > > > 
+> > > > > The update (setting the bit) is triggered whenever new parameters are
+> > > > > submitted via the params video device or whenever there's a capture buffer
+> > > > > available in the capture video device.
+> > > > > 
+> > > > > So you don't particularly need to have one parameter buffer matching a capture
+> > > > > buffer, the two can be updated independently. Of course, a capture buffer will
+> > > > > only be returned after another buffer becomes active.
+> > > > 
+> > > > This also means it's not possible to associate a capture buffer to a
+> > > > parameter buffer by other means than timing --- which is unreliable. The
+> > > > request API would allow that but it's not free of issues either.
+> > > 
+> > > Yes the request API seems like a good fit for this. Note that the returned
+> > > sequence number in dequeued buffers for the capture and meta video devices
+> > > should match though, so userspace still has a way to know which captured buffer
+> > > used parameters from which meta params buffer.
+> > > 
+> > > > Alternatively, I think in this case you could always require the capture
+> > > > buffer and grab a parameter buffer when it's available. As ISPs are
+> > > > generally requiring device specific control software, this shouldn't be a
+> > > > problem really.
+> > > 
+> > > I think this is pretty much what happens already.
+> > > 
+> > > > I wonder what Laurent thinks.
+> > 
+> > If parameters buffers are optional, I think the request API should be
+> > used, otherwise we won't be able to ensure per-frame control. The
+> > alternative is to make the parameter buffer mandatory for every frame,
+> > even if no parameters have changed. Or maybe that's the case already ?
 > 
->>> If the regulator doesn't have status readback it shouldn't provide a
->>> get_status() operation.
+> Currently the parameters are not mandatory (there is a default state set
+> by the driver) and queued parameter buffers are applied in the order they
+> are submitted.
 > 
->> What I've understood is that when there's no "QI" flag, the enable register
->> will provide the regulator status (EN/DIS) acting like QI, that's why I've
->> added that if branch...
-> 
->> Anyway, I'll recheck this part before sending the next version!
-> 
-> That would be fairly unusual, often a regulator won't even detect when
-> it's gone out of regulation.
+> The request API would make per-frame control possible, but I don't think
+> there is a point in making it mandatory. It seems that the situation is very
+> similar to what already exists with the rkisp1 driver.
 
-Actually, there *is* support for this kind of detection... luckily the registers
-and masks/bits are all dumped in a "upmu_hw.h" header downstream, regardless of
-whether they're used or not in the code, so at least there's that reference to
-look at... and I can see that there are bits to manage the overcurrent protection
-(OVP) and configurable (OCPLVL) overcurrent protection (OCP_EN / OC_EN)...
+You mentioned that the parameter buffers contain buffer addresses, is
+that the DMA address of the image buffers (input and output) ? If so,
+how does that work, does the kernel patch the parameters buffer provided
+by userspace to fill the DMA addresses in placeholders ?
 
-...so, the regulator will indeed shut itself off and clear either/both the QI_EN
-and/or its relative bit in the enable register... I've also just found hints of
-the latter (enable register being set to 0) downstream, so I'm sure that this is
-indeed right.
+> > > > > I hope this answers your concern!
+> > > > > 
+> > > > > [...]
+> > > > > 
+> > > > > > > +static int sun6i_isp_tables_setup(struct sun6i_isp_device *isp_dev)
+> > > > > > > +{
+> > > > > > > +	struct sun6i_isp_tables *tables = &isp_dev->tables;
+> > > > > > > +	int ret;
+> > > > > > > +
+> > > > > > > +	/* Sizes are hardcoded for now but actually depend on the platform. */
+> > > > > > 
+> > > > > > Would it be cleaner to have them defined in a platform-specific way, e.g.
+> > > > > > in a struct you obtain using device_get_match_data()?
+> > > > > 
+> > > > > Absolutely! I didn't do it at this stage since only one platform is supported
+> > > > > but we could just as well introduce a variant structure already for the table
+> > > > > sizes.
+> > > > 
+> > > > I think that would be nice already, especially if you know these are going
+> > > > to be different. Otherwise macros could be an option.
+> > > 
+> > > Understood!
+> > > 
+> > > > ...
+> > > > 
+> > > > > > > +	ret = v4l2_ctrl_handler_init(&v4l2->ctrl_handler, 0);
+> > > > > > 
+> > > > > > I suppose you intend to add controls later on?
+> > > > > 
+> > > > > I might be wrong but I thought this was necessary to expose sensor controls
+> > > > > registered by subdevs that end up attached to this v4l2 device.
+> > > > > 
+> > > > > I doubt the drivers itself will expose controls otherwise.
+> > > > 
+> > > > Now that this is an MC-enabled driver, the subdev controls should be
+> > > > accessed through the subdev nodes only. Adding them to the video device's
+> > > > control handler is quite hackish and not guaranteed to even work (as e.g.
+> > > > multiple subdevs can have the same control).
+> > > 
+> > > Yes I was wondering what would happen in that case. I'll drop the ctrls
+> > > handling in the next iteration then.
+> > > 
+> > > Paul
+> > > 
+> > > > ...
+> > > > 
+> > > > > > > +{
+> > > > > > > +	struct sun6i_isp_device *isp_dev = video_drvdata(file);
+> > > > > > > +	struct video_device *video_dev = &isp_dev->capture.video_dev;
+> > > > > > > +	struct mutex *lock = &isp_dev->capture.lock;
+> > > > > > > +	int ret;
+> > > > > > > +
+> > > > > > > +	if (mutex_lock_interruptible(lock))
+> > > > > > > +		return -ERESTARTSYS;
+> > > > > > > +
+> > > > > > > +	ret = v4l2_pipeline_pm_get(&video_dev->entity);
+> > > > > > 
+> > > > > > Do you need this?
+> > > > > > 
+> > > > > > Drivers should primarily depend on runtime PM, this is only needed for
+> > > > > > compatibility reasons. Instead I'd like to see sensor drivers being moved
+> > > > > > to runtime PM.
+> > > > > 
+> > > > > Yes it's still needed to support sensor drivers that don't use rpm yet.
+> > > > 
+> > > > To that I suggested adding runtime PM support for the affected sensors.
+> > > > This doesn't seem to get done otherwise. E.g. ipu3-cio2 driver does not
+> > > > call s_power() on sensor subdevs.
+> > > > 
+> > > > ...
+> > > > 
+> > > > > > > +	ret = video_register_device(video_dev, VFL_TYPE_VIDEO, -1);
+> > > > > > > +	if (ret) {
+> > > > > > > +		v4l2_err(v4l2_dev, "failed to register video device: %d\n",
+> > > > > > > +			 ret);
+> > > > > > > +		goto error_media_entity;
+> > > > > > > +	}
+> > > > > > > +
+> > > > > > > +	v4l2_info(v4l2_dev, "device %s registered as %s\n", video_dev->name,
+> > > > > > > +		  video_device_node_name(video_dev));
+> > > > > > 
+> > > > > > This isn't really driver specific. I'd drop it.
+> > > > > 
+> > > > > I agree but I see that many drivers are doing it and the information can
+> > > > > actually be quite useful at times.
+> > > > 
+> > > > You can get that information using media-ctl -e 'entity name'.
+> > > > 
+> > > > I guess this could be also added to video_register_device() on debug level.
+> > > > 
+> > > > > > > +struct sun6i_isp_params_config_bdnf {
+> > > > > > > +	__u8	in_dis_min; // 8
+> > > > > > > +	__u8	in_dis_max; // 10
+> > > > > > 
+> > > > > > Are these default values or something else? Better documentation was in the
+> > > > > > TODO.txt file already.
+> > > > > 
+> > > > > Yes that's the default register values, but these comments are and overlook on
+> > > > > my side and should be removed.
+> > > > 
+> > > > I'm fine leaving these here. Just wondering. Up to you.
 
-And finally... I would really like to test the OCP/OVP features to write some
-code managing that, but I'm using a production smartphone (a Xperia M5, like
-mentioned in the cover letter) for research and testing and you surely understand
-that it's not time yet to take this risk... I will, later - but I have to finish
-the upstreaming of this SoC and platform before chasing the green smoke... :-)
+-- 
+Regards,
 
-
+Laurent Pinchart
