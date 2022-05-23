@@ -2,144 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ED675312F3
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:23:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8E92531347
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:23:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236836AbiEWN5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 09:57:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55252 "EHLO
+        id S236402AbiEWN67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 09:58:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236786AbiEWN5O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 09:57:14 -0400
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB77B5640D;
-        Mon, 23 May 2022 06:57:11 -0700 (PDT)
-Received: by mail-oi1-f181.google.com with SMTP id r68so3678017oie.12;
-        Mon, 23 May 2022 06:57:11 -0700 (PDT)
+        with ESMTP id S236604AbiEWN66 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 09:58:58 -0400
+Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E46DE5712F;
+        Mon, 23 May 2022 06:58:55 -0700 (PDT)
+Received: by mail-qv1-f50.google.com with SMTP id l1so12145540qvh.1;
+        Mon, 23 May 2022 06:58:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Po7FG18ouzsaIFjxHouDmjoMSySPkXjz2dpCEjFO8eo=;
-        b=KkM3K3kVdH+7ev8c1Eu0/vxsMhuzt0iqICeG6cqEkOx4Iy/lbGhdb1i87c1cWVQlqB
-         tPqV4KcT2S+/z5yfeWNDsHb08GsGLzJ/LaDAopo0nbtctSP6HaBZ+Px1D3jtgP9fkwue
-         f36FQmMYKQ2x9Una1bPkL7tFDhOGmqY3F4tR18e3FGwFCYfLR0DkCiVhzji9yyeicKD0
-         UEYJoukndo3wQrxxHACS6ks/WTh7DBel3egNDeUbkb/o51a6MsyFrKeR3WrvJRpDraqH
-         wbReb4qjbWDbwYNF8l8Joypx0/WAwvS9yZEMG5hjSvMRykyA1Nzf7Y/681D2Ikjj+/Wf
-         xa/w==
-X-Gm-Message-State: AOAM53245PhPqp5zGsvL3SdW520DR/0h2u0amU8ulspOSFvLtLTyleRd
-        vgvR2+RKLs/hLjAzrR3wYg==
-X-Google-Smtp-Source: ABdhPJwlzEkicwFPVbidQP0R1gspMyr9ArD/Z5ORMkC6y/9Bomvgsb1YW74/8oDH+BhWuSEvJmr8FQ==
-X-Received: by 2002:aca:d8c5:0:b0:325:e353:a6b9 with SMTP id p188-20020acad8c5000000b00325e353a6b9mr10790833oig.135.1653314230773;
-        Mon, 23 May 2022 06:57:10 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id w12-20020a4ab6cc000000b0035eb4e5a6d0sm4190681ooo.38.2022.05.23.06.57.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 May 2022 06:57:10 -0700 (PDT)
-Received: (nullmailer pid 1499377 invoked by uid 1000);
-        Mon, 23 May 2022 13:57:09 -0000
-Date:   Mon, 23 May 2022 08:57:09 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>
-Cc:     Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Mike Leach <mike.leach@linaro.org>,
-        Leo Yan <leo.yan@linaro.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        "coresight >> Coresight ML" <coresight@lists.linaro.org>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: Convert CoreSight bindings to DT
- schema
-Message-ID: <20220523135709.GB1385486-robh@kernel.org>
-References: <20220520214416.302127-1-robh@kernel.org>
- <20220520214416.302127-2-robh@kernel.org>
- <9a9b40eb-be8d-bf8c-39be-e0abb507820f@arm.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fYWALA3lJgoSN00lrVAVMkJgNm+QYBYbKEt1Mc7Ujl4=;
+        b=cLcoPu+jy2A84xyELl+PC8QHKnEQom/uR+IZrlblq4jaAQdX5bwIx+YC+v8UuYkKbO
+         euvE1owgn5zLGtmYzYKXgXzxoeWkhKISf0CnKf7QAE41WV4i9EfX0aMu8P1ObNUbTpJS
+         Bfp3V0VEf7XvxdyFrIYwTVHaQa5GAv8h/v/MicPbw5w+mqNHeGRfpXMoK9a29mFBc6Z4
+         WJRHy5d10mxvg+WlGgczVPvWGaCwMx3KxcpsN5rZJHKzCLOCyeb8ugHCiJRP9Ob4uGQW
+         M56BlHBCN2Mjgdd5lrws+XYa42sgUDRCXkO0fMl0ddeHqdMkB6+UNj3dZpuf5qtRnjSf
+         LRhQ==
+X-Gm-Message-State: AOAM530F1GbidAqKZCIzTYHIgQ6K9C64jufU3iPVo6W+yrRev/4xSHJV
+        YFS9Kjf5eYBHSkeisttj96rABJShdxRJzw==
+X-Google-Smtp-Source: ABdhPJxn+zxXbkpHwy/aXTGgQgtstkKudNX1BtloONutSOmdlVuT2flBdrV+6ozu5wuVLi91JmXlCg==
+X-Received: by 2002:ad4:5de6:0:b0:462:180d:7038 with SMTP id jn6-20020ad45de6000000b00462180d7038mr10559956qvb.16.1653314334747;
+        Mon, 23 May 2022 06:58:54 -0700 (PDT)
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com. [209.85.219.171])
+        by smtp.gmail.com with ESMTPSA id bi12-20020a05620a318c00b006a370031c3esm3792652qkb.106.2022.05.23.06.58.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 May 2022 06:58:54 -0700 (PDT)
+Received: by mail-yb1-f171.google.com with SMTP id q135so25551127ybg.10;
+        Mon, 23 May 2022 06:58:53 -0700 (PDT)
+X-Received: by 2002:a81:234b:0:b0:2f8:4082:bbd3 with SMTP id
+ j72-20020a81234b000000b002f84082bbd3mr23570342ywj.47.1653314322494; Mon, 23
+ May 2022 06:58:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9a9b40eb-be8d-bf8c-39be-e0abb507820f@arm.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+References: <20220522155046.260146-1-tmaimon77@gmail.com> <20220522155046.260146-18-tmaimon77@gmail.com>
+ <c1b86493-d82d-a639-07af-4c979d733786@linaro.org>
+In-Reply-To: <c1b86493-d82d-a639-07af-4c979d733786@linaro.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 23 May 2022 15:58:31 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWSccO3J5OYrFUn+azKyzYBP1wmuHZoRU2t3PUbkZx1wA@mail.gmail.com>
+Message-ID: <CAMuHMdWSccO3J5OYrFUn+azKyzYBP1wmuHZoRU2t3PUbkZx1wA@mail.gmail.com>
+Subject: Re: [PATCH v1 17/19] arm64: dts: nuvoton: Add initial NPCM8XX device tree
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Tomer Maimon <tmaimon77@gmail.com>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        =?UTF-8?Q?Bj=C3=B6rn_Andersson?= <bjorn.andersson@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Vinod <vkoul@kernel.org>, Biju Das <biju.das.jz@bp.renesas.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Robert Hancock <robert.hancock@calian.com>,
+        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Lubomir Rintel <lkundrak@v3.sk>, arm-soc <soc@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Linux Watchdog Mailing List <linux-watchdog@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 23, 2022 at 12:03:36PM +0100, Suzuki K Poulose wrote:
-> Hi Rob,
-> 
-> Thanks a lot for converting these to yaml. Some minor comments below.
-> 
-> In general, the "clocks" and "clock-names" are optional (e.g, for
-> etm4 with system register access).
+Hi Krzysztof,
 
-Reality, based on running dtbs_checks, seems to be that all 
-instances have them, and the original doc said required.
+On Mon, May 23, 2022 at 11:08 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> On 22/05/2022 17:50, Tomer Maimon wrote:
+> > This adds initial device tree support for the
+> > Nuvoton NPCM845 Board Management controller (BMC) SoC family.
+>
+> Thank you for your patch. There is something to discuss/improve.
+>
+> > The NPCM845 based quad-core Cortex-A35 ARMv8 architecture and
+> > have various peripheral IPs.
+> >
+> > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
 
-> 
-> On 20/05/2022 22:44, Rob Herring wrote:
-> > Each CoreSight component has slightly different requirements and
-> > nothing applies to every component, so each CoreSight component has its
-> > own schema document.
-> > 
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> >   .../bindings/arm/arm,coresight-catu.yaml      | 101 +++++
-> >   .../arm/arm,coresight-dynamic-funnel.yaml     | 126 ++++++
-> >   .../bindings/arm/arm,coresight-etb10.yaml     |  92 ++++
-> >   .../bindings/arm/arm,coresight-etm.yaml       | 156 +++++++
-> >   .../arm/arm,coresight-static-replicator.yaml  |  90 ++++
-> >   .../bindings/arm/arm,coresight-stm.yaml       | 101 +++++
-> >   .../bindings/arm/arm,coresight-tmc.yaml       | 132 ++++++
-> >   .../bindings/arm/arm,coresight-tpiu.yaml      |  91 ++++
-> >   .../devicetree/bindings/arm/coresight.txt     | 402 ------------------
-> >   9 files changed, 889 insertions(+), 402 deletions(-)
-> >   create mode 100644 Documentation/devicetree/bindings/arm/arm,coresight-catu.yaml
-> >   create mode 100644 Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
-> >   create mode 100644 Documentation/devicetree/bindings/arm/arm,coresight-etb10.yaml
-> >   create mode 100644 Documentation/devicetree/bindings/arm/arm,coresight-etm.yaml
-> >   create mode 100644 Documentation/devicetree/bindings/arm/arm,coresight-static-replicator.yaml
-> >   create mode 100644 Documentation/devicetree/bindings/arm/arm,coresight-stm.yaml
-> >   create mode 100644 Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
-> >   create mode 100644 Documentation/devicetree/bindings/arm/arm,coresight-tpiu.yaml
-> >   delete mode 100644 Documentation/devicetree/bindings/arm/coresight.txt
-> 
-> ...
-> 
-> > diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
-> > new file mode 100644
-> > index 000000000000..ee1ce47225be
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
-> > @@ -0,0 +1,132 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/arm/arm,coresight-tmc.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Arm CoreSight Trace Memory Controller
-> > +
-> 
-> ...
-> 
-> > +  out-ports:
-> > +    $ref: /schemas/graph.yaml#/properties/ports
-> > +    additionalProperties: false
-> > +
-> > +    properties:
-> > +      port:
-> > +        description: AXI Master output connection. Used for ETR and ETF
-> > +          configurations.
-> 
-> nit: This is only for ETRs. Never for ETFs.
+> > +             l2: l2-cache {
+> > +                     compatible = "cache";
+>
+> Is this a real compatible? What bindings are you using here?
 
-What about this example[1]? It's not AXI, but ATB actually.
+The compatible value and related properties are defined in the
+Devicetree Specification, v0.4-rc1, Section 3.9 ("Multi-level and
+Shared Cache Nodes (/cpus/cpu*/l?-cache)").
 
-Rob
+The properties are handled by
+dtschema/schemas/cache-controller.yaml, but the latter seems to lack
+any checking on the compatible value?
 
-[1] https://developer.arm.com/documentation/ddi0461/b/Introduction/Example-systems-with-different-configurations/ETF--ETR--and-TPIU
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
