@@ -2,66 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0FD65310B1
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:20:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CC93531060
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:20:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235744AbiEWMyT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 08:54:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53622 "EHLO
+        id S235816AbiEWNAm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 09:00:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235731AbiEWMyR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 08:54:17 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBA441A802
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 05:54:16 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id s14so13001040plk.8
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 05:54:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=I+vGqH+3C1E3CpD3/4I+O6QuVZ7joNauIQKwNIO0kKw=;
-        b=seLJhlqbRbYAeGtnbCF7+eHcU1FPgfpxDnSQ6Lkt70sMtG5iAirhOkuWyyR8QYqkYR
-         ahsTYUKJqZKvhqqgE0068ZprOrAdGyHjSbCnuLpgRwhv7hzXVL9RXZ0QNHPugsEzR+4g
-         WeE+87Wub5gacPpRtSXnFgUJOfrOBU65hpRInaY3AOoIyqLKqpHIB4eTbaCmmbdzpBO7
-         cpLMKLxulmZUVnSSj9MJT5raUx8L+BTgIMZnFvasxdN0AFE1CPPGci3GHJhA7OP8crqW
-         P9or4uhjhUagV5LScIWr4lNj7huwvmHg46i5xakvGs9lxsErulPQtvWiWCaDCMVyRJT6
-         YqFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=I+vGqH+3C1E3CpD3/4I+O6QuVZ7joNauIQKwNIO0kKw=;
-        b=g1hOp6i8fwzkYwkiGVX30Aqfu5RpDWQgU5pJfwk1O8uglkinAQYN1BRoTDzZocYYKh
-         xhBCgzQDWJ+NShV8m410eYKl+6gIuKmE3DE+54j1K3Ixw2MWotCDtGftrCQ9AjCvwmsj
-         BnTCnnXMM+CS2/ptzP1RLe/dpmLZGuN7FBe9xhq4E3S0OGPLI/o9pM+aIRUHdbscD98b
-         J+lXv3vcDMNq0Zt24b/rQ1KoVJBoWoel02+IhSJHzHbfOYCpP05nxzOYzDvq+MlZ2Ld2
-         f9eCsgphAsCTKFriQ0lCzhHYmfGAP9Gd+d1YCUCOVdVeXGfw8tevqSO6KXNhlaiqmK//
-         7ORg==
-X-Gm-Message-State: AOAM531Fa8CCi6josr9Fr/YlJA83IbLpvFEZrYIrpOrFUbpoQroGclk7
-        3F6x5Zcw9G9tmdzUD7FzCgIoDC33Wds2WYlDH7lvGw==
-X-Google-Smtp-Source: ABdhPJwMet/Wx069lnchRvkgjhCl6l69HHssjtZOQy/2qmA7Fm6Yx1UPvTaNVLMgv8Z0GzK0SmzM3++Vn5NXejPqCbA=
-X-Received: by 2002:a17:903:1c6:b0:161:9fbc:5a6 with SMTP id
- e6-20020a17090301c600b001619fbc05a6mr22737538plh.65.1653310456152; Mon, 23
- May 2022 05:54:16 -0700 (PDT)
+        with ESMTP id S235729AbiEWNAk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 09:00:40 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FC4353B49;
+        Mon, 23 May 2022 06:00:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EE84561345;
+        Mon, 23 May 2022 13:00:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C9BDC385A9;
+        Mon, 23 May 2022 13:00:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1653310839;
+        bh=0gJAhDWK23rUCBEAT34CY4awugOC65Cdzpv/yAHbc7M=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Kvm3v85Z6Fv+WogPmdKKfh3PQ36Ep86EwiFoAJsMmlPnVDmEKSnbaoVXbD+mjuCbR
+         7pVZ+OD+zZ6r2qmQ/jY+r4AOsPjfvQ/YJUWrKfxKSX52Wd/FG0clmH1Ew0vASF0kYj
+         zR90qdJyWkxltZQqCpOmgNgpWn9qxiEfIOb04TjwXYVQJJv80Ah0KkmSGSD26cjw7L
+         iKrBXWjokUFPC4ZvISgEpvBp0NZKXeftsNMe7eXtqzoD++yvvrtyLwDyfNTSDq7L93
+         SrZRxRQIbU6BELoDxcDp9N+IPb3T3iQU94Cmyv/++EDAFtRubC8Wolmh+A4ZFKSkxd
+         pkICzjHhbkFpA==
+Date:   Mon, 23 May 2022 14:00:33 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 2/4] regulator: Add driver for MT6331 PMIC regulators
+Message-ID: <YouFcSapkVC7ZfuP@sirena.org.uk>
+References: <20220520133305.265310-1-angelogioacchino.delregno@collabora.com>
+ <20220520133305.265310-3-angelogioacchino.delregno@collabora.com>
+ <YoepiTUfdhkYByo7@sirena.org.uk>
+ <6cc68be9-e509-eae4-801d-997fdc01dcf2@collabora.com>
 MIME-Version: 1.0
-References: <20220523084615.13510-1-robert.foss@linaro.org> <CAG3jFytkFcmYjj6AHye3imsTDyP1LxHQvAzjswuRBsVVHRTnKg@mail.gmail.com>
-In-Reply-To: <CAG3jFytkFcmYjj6AHye3imsTDyP1LxHQvAzjswuRBsVVHRTnKg@mail.gmail.com>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Mon, 23 May 2022 14:54:04 +0200
-Message-ID: <CAG3jFytGDm29GVAQ5bs7XQ+hMDABd7btggFGN2pASBEzRPE50A@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] Revert "drm/bridge: anx7625: Use DPI bus type"
-To:     andrzej.hajda@intel.com, narmstrong@baylibre.com,
-        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@linux.ie,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, xji@analogixsemi.com,
-        hsinyi@chromium.org, sam@ravnborg.org, tzimmermann@suse.de,
-        maxime@cerno.tech, jose.exposito89@gmail.com,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="zrq/BafcBysX3uNy"
+Content-Disposition: inline
+In-Reply-To: <6cc68be9-e509-eae4-801d-997fdc01dcf2@collabora.com>
+X-Cookie: Sales tax applies.
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -70,56 +62,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-These two patches need to be reverted since they were part (3/4 & 4/4)
-of a series, that was partially (1/4 + 2/4) on the linux-media tree.
-These two patches depend on the patches in the media tree, and will
-not build without them, which leaves linux-drm-misc-next in a broken
-state. Let's revert the two latter patches until rc1 has been branched
-and the dependency wont cause issues any more.
 
-On Mon, 23 May 2022 at 14:50, Robert Foss <robert.foss@linaro.org> wrote:
->
-> On Mon, 23 May 2022 at 10:46, Robert Foss <robert.foss@linaro.org> wrote:
-> >
-> > This reverts commit a77c2af0994e24ee36c7ffb6dc852770bdf06fb1.
-> > ---
-> >  drivers/gpu/drm/bridge/analogix/anx7625.c | 8 ++++----
-> >  1 file changed, 4 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
-> > index 01f46d9189c1..53a5da6c49dd 100644
-> > --- a/drivers/gpu/drm/bridge/analogix/anx7625.c
-> > +++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
-> > @@ -1623,14 +1623,14 @@ static int anx7625_parse_dt(struct device *dev,
-> >
-> >         anx7625_get_swing_setting(dev, pdata);
-> >
-> > -       pdata->is_dpi = 0; /* default dsi mode */
-> > +       pdata->is_dpi = 1; /* default dpi mode */
-> >         pdata->mipi_host_node = of_graph_get_remote_node(np, 0, 0);
-> >         if (!pdata->mipi_host_node) {
-> >                 DRM_DEV_ERROR(dev, "fail to get internal panel.\n");
-> >                 return -ENODEV;
-> >         }
-> >
-> > -       bus_type = 0;
-> > +       bus_type = V4L2_FWNODE_BUS_TYPE_PARALLEL;
-> >         mipi_lanes = MAX_LANES_SUPPORT;
-> >         ep0 = of_graph_get_endpoint_by_regs(np, 0, 0);
-> >         if (ep0) {
-> > @@ -1640,8 +1640,8 @@ static int anx7625_parse_dt(struct device *dev,
-> >                 mipi_lanes = of_property_count_u32_elems(ep0, "data-lanes");
-> >         }
-> >
-> > -       if (bus_type == V4L2_FWNODE_BUS_TYPE_DPI) /* bus type is DPI */
-> > -               pdata->is_dpi = 1;
-> > +       if (bus_type == V4L2_FWNODE_BUS_TYPE_PARALLEL) /* bus type is Parallel(DSI) */
-> > +               pdata->is_dpi = 0;
-> >
-> >         pdata->mipi_lanes = mipi_lanes;
-> >         if (pdata->mipi_lanes > MAX_LANES_SUPPORT || pdata->mipi_lanes <= 0)
-> > --
-> > 2.34.1
-> >
->
-> Signed-off-by: Robert Foss <robert.foss@linaro.org>
+--zrq/BafcBysX3uNy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, May 23, 2022 at 02:49:19PM +0200, AngeloGioacchino Del Regno wrote:
+> Il 20/05/22 16:45, Mark Brown ha scritto:
+> > On Fri, May 20, 2022 at 03:33:03PM +0200, AngeloGioacchino Del Regno wr=
+ote:
+
+> > > +static const unsigned int ldo_volt_table10[] =3D {
+> > > +	1200000, 1300000, 1500000, 1800000,
+> > > +	1200000, 1300000, 1500000, 1800000,
+> > > +	1200000, 1300000, 1500000, 1800000,
+> > > +	1200000, 1300000, 1500000, 1800000,
+> > > +};
+
+> > So the top bits of the voltate selection field just get ignored?  Might
+> > be easier to just write the code to not include the top bits.
+> >=20
+
+> No, they're all valid values for real... but I guess that I can simplify
+> this voltage table by simply modifying the bitmask that we use for the
+> regulators that are using this table....
+
+Right, my point here is that it looks awfully like the documentation
+(this came from documentation I guess?) is including some extra bits
+that get ignored in the voltage selection field here.  That seems like a
+weird choice somewhere along the line.
+
+> > > +	if (info->qi > 0) {
+> > > +		reg =3D info->desc.enable_reg;
+> > > +		en_mask =3D info->qi;
+
+> > If the regulator doesn't have status readback it shouldn't provide a
+> > get_status() operation.
+
+> What I've understood is that when there's no "QI" flag, the enable regist=
+er
+> will provide the regulator status (EN/DIS) acting like QI, that's why I've
+> added that if branch...
+
+> Anyway, I'll recheck this part before sending the next version!
+
+That would be fairly unusual, often a regulator won't even detect when
+it's gone out of regulation.
+
+--zrq/BafcBysX3uNy
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmKLhXEACgkQJNaLcl1U
+h9A4gAf/S2iKtIJE+f3lzVnAs3dpnbYYgTd2ZdrDVFtyW/cH6sKeRTKVzvHefnRc
+t3SVVtMNVJ2TZNiO+p1WAm9qU/X1Z1QCsnD+8fqRl5GdVHLLcZCbajSb661dRKYg
+mg9WRUMZ66mk6o8F3mU1v1Ov5oitF2ng4hT9GLseXXyaLKd/72OwO/yhzLItjUWN
+IQmSkytWOrEJIUjDQcvzBkCIREMjOKASkpwfkVN0h08n5GoedQ/DrQL/hQ/vojrh
+Jc3FdWtaYWIxa9bUCOPWMAkJPvxS8BE1xkOxrS+I/BnD66WTigrlJRdnsIEy1XzJ
+51w8eBJpVpXGsRyh2h3SzY0hPouSHg==
+=YULk
+-----END PGP SIGNATURE-----
+
+--zrq/BafcBysX3uNy--
