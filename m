@@ -2,59 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8012530CE7
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 12:41:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 686E9530D1A
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 12:41:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233416AbiEWJih (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 05:38:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33898 "EHLO
+        id S233448AbiEWJkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 05:40:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233394AbiEWJiX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 05:38:23 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0671863FF;
-        Mon, 23 May 2022 02:38:21 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id A64751F426E8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1653298698;
-        bh=XvaiufkFnN1wMlfvWPGiVI99J1BcUL6VmHZvtPIs1vM=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=J3u7n8+ezDneiHNhUBpp+KDQ0k6O3Slu7Ag9EoZBw4/fJx9FORvGjuEQ3g79+vbRI
-         u1TR3W8Nlhoyi+mXH5Pe3Hg3ZwrCDHZk/aj7YqIgApW1JWsDnxY/RiNfBEKv15wjDo
-         Je8cDqtkSt+nFrtWHGoHiGRqtc2+cmvXoLapIEf1h8vlJVmMhdGQ43BTwttlACBcu/
-         s1gGnZ69LsTBCaCHHBV5QKhORxXk9tYuzndFX/8FV/FPqEw5drdpJyOKvT/kbGs4x5
-         eZfmh9xaB4C58q1aVCCqzFxAiiDTjwqvu6sPZPS5l0NMNwQfMlrihU/5JPty1/nkhY
-         gp0kO1HWK02lQ==
-Message-ID: <d9563b65-2391-d32c-8a07-ca7a13cae7c7@collabora.com>
-Date:   Mon, 23 May 2022 11:38:14 +0200
+        with ESMTP id S233475AbiEWJkW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 05:40:22 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AC421EED9;
+        Mon, 23 May 2022 02:40:19 -0700 (PDT)
+Received: from mail-yb1-f179.google.com ([209.85.219.179]) by
+ mrelayeu.kundenserver.de (mreue107 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1MCayD-1o152Q2tDn-009keD; Mon, 23 May 2022 11:40:17 +0200
+Received: by mail-yb1-f179.google.com with SMTP id x2so24035398ybi.8;
+        Mon, 23 May 2022 02:40:17 -0700 (PDT)
+X-Gm-Message-State: AOAM533jYsDxsPXRyDKVdyfflbydYmIwRi4A/bU3dlBPnBtiArvpWuWn
+        PT6IYiRzFL4Slp6ai/6YYmEjSael8VOAdtFhr9w=
+X-Google-Smtp-Source: ABdhPJwPSWjf0+4YNJaSIgYV3+A8L+w17pCRPMTjSGU6t40/PC+JSliP4KqFNtyVOp/6cKrGh1RaU8G2YIBlaJLXrPQ=
+X-Received: by 2002:a25:c747:0:b0:64f:62fb:f55e with SMTP id
+ w68-20020a25c747000000b0064f62fbf55emr13651825ybe.106.1653298805675; Mon, 23
+ May 2022 02:40:05 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v3 4/4] soc: mediatek: svs: add support for mt8195
-Content-Language: en-US
-To:     Tim Chang <jia-wei.chang@mediatek.com>,
+References: <20220522155046.260146-1-tmaimon77@gmail.com> <20220522155046.260146-19-tmaimon77@gmail.com>
+In-Reply-To: <20220522155046.260146-19-tmaimon77@gmail.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Mon, 23 May 2022 11:39:48 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a1LCkM-w_Oi2qUqgq_Qxsg64uoGg5aaz=X8pBENHBhj0A@mail.gmail.com>
+Message-ID: <CAK8P3a1LCkM-w_Oi2qUqgq_Qxsg64uoGg5aaz=X8pBENHBhj0A@mail.gmail.com>
+Subject: Re: [PATCH v1 18/19] arm64: dts: nuvoton: Add initial NPCM845 EVB
+ device tree
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Cc:     Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Philipp Zabel <p.zabel@pengutronix.de>,
-        Roger Lu <roger.lu@mediatek.com>,
-        Kevin Hilman <khilman@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        hsinyi@google.com
-References: <20220523084034.26802-1-jia-wei.chang@mediatek.com>
- <20220523084034.26802-5-jia-wei.chang@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220523084034.26802-5-jia-wei.chang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        gregkh <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        robert.hancock@calian.com,
+        "nathan=20Neusch=C3=A4fer?=" <j.neuschaefer@gmx.net>,
+        Lubomir Rintel <lkundrak@v3.sk>, SoC Team <soc@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:n7zvqzJoyeIQrt0t+bbdn3QVYisX2S5bXfz3u0VUhVzjsm2+x+o
+ 659/sfSLnFqNBG7X7VtbYSKUHJCRzLZl40EszBTEYhCu20ZCEsrGsEmNe7Ab7THLuGp+tMJ
+ grFXdUbW4oucpYzpzItMge4A6IxrrQMX94YKma6DD8XWZYfzC70RbHiunite5+fqf89+eXN
+ LIbl0pJkO4UAdKfAmCifw==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:2Z5BTVOu2s8=:cPSYfOv2MjhdvbMxTorHlS
+ rLOLv/JIQN8ZNLEEprUL4opOISkNGyOHPLhQKpnatFNPTFFK02SGwqdbwGA0rASndK3H8NgsF
+ LZN/NZTFC3UWBK9dYkR+3nhaYyNEBsujW6GSyVgBo4qjC3thY8Y7VHbAbIq4yKL5TFmEejH/c
+ rxSVFWZNU9ayduqPmLC0YauJf9eSOUEumcaGtfToKFbiLxH3PpzVdPP+mNqVH627ZJPcLyH1/
+ pZWGY73x5YfhQOG8wH2pRENhz2XhpJGDtPYQdOPRI0qEQy9B3feuoXtBT8nk4vs0RthkhUjVG
+ YTMcCHeG+PGuvjeq1PW7hCCppuC56oraAaein7sADyfAA/hkici9fEeglyVbU73OHFNqNrQqC
+ o3QzyBh6ySmIZoIMOt0GNUm8i4QF+zHvhlYKDQb/Bs1WnMv7NIj36tNEJQx6SJ/x7kGE+/+oq
+ n/QUiVPXGaEfRoxpLDRDxk6IYWCAVX0ZTbIryM7UUsH7ZWCpYlPXDmpGUBLDVxXRIMm59HZ1z
+ Pt4zHYKLBv6RwUu/+ybaRsPbj+WCF8QeUz8E+57JEvpuHEuB8dhV3GX6tlUQr4WPzKecDqqz4
+ T32am9CBSUCwexZ1cSPdYtC5Q/Trv951eX9cSIIaoujwBZAOQcvFLVj7djbC/M6ZNUgSm0WMe
+ CRMLZxuiIRLiSk990cWjlHcSxnpkVyf3vjbUChAduqG+XGP2T3WYkoUq0APyG5N4yq1GQr6Tb
+ mq6s0kHhLW6onkYm489d0lZtKdHS3W3AkyjFaMovTV7mqs5ywNjC/fIsp17D1OtR9M6boXjPy
+ OO1nH20/LhOtiqXq99IR9CUpxNLN1GkRgqFVx9OQsVJWROkdKXtTn+ST8u8/5SCfR+l+8/pJs
+ Rgkjp4U1VhoUWZ7g6s3dnRWuluTCjnnmNDLILdiVg=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,42 +99,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 23/05/22 10:40, Tim Chang ha scritto:
-> From: Jia-Wei Chang <jia-wei.chang@mediatek.com>
-> 
-> To support svs on MT8195, add corresponding bank information, platform
-> data, probe and parsing function.
-> 
-> Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+On Sun, May 22, 2022 at 5:50 PM Tomer Maimon <tmaimon77@gmail.com> wrote:
+> +/ {
+> +       model = "Nuvoton npcm845 Development Board (Device Tree)";
+> +       compatible = "nuvoton,npcm845";
+> +
+> +       aliases {
+> +               serial0 = &serial0;
+> +               serial1 = &serial1;
+> +               serial2 = &serial2;
+> +               serial3 = &serial3;
+> +       };
 
+> +               apb {
+> +                       serial0: serial@0 {
+> +                               status = "okay";
+> +                       };
+> +
+> +                       serial1: serial@1000 {
+> +                               status = "disabled";
+> +                       };
+> +
+> +                       serial2: serial@2000 {
+> +                               status = "disabled";
+> +                       };
+> +
+> +                       serial3: serial@3000 {
+> +                               status = "disabled";
+> +                       };
 
+Please drop the aliases for disabled uarts. It probably also makes
+sense to have the status="disabled" properties in the .dtsi file and
+only override them when you explicitly want to enable a uart for a
+board.
 
-> ---
->   drivers/soc/mediatek/mtk-svs.c | 151 +++++++++++++++++++++++++++++++++
->   1 file changed, 151 insertions(+)
-> 
-> diff --git a/drivers/soc/mediatek/mtk-svs.c b/drivers/soc/mediatek/mtk-svs.c
-> index 656d0361ff7d..bb5021648143 100644
-> --- a/drivers/soc/mediatek/mtk-svs.c
-> +++ b/drivers/soc/mediatek/mtk-svs.c
-> @@ -1680,6 +1680,89 @@ static int svs_bank_resource_setup(struct svs_platform *svsp)
-
-..snip..
-
-> @@ -2559,6 +2697,16 @@ static struct svs_bank svs_mt8183_banks[] = {
->   	},
->   };
->   
-> +static const struct svs_platform_data svs_mt8195_platform_data = {
-> +	.name = "mt8195-svs",
-> +	.banks = svs_mt8195_banks,
-> +	.efuse_parsing = svs_mt8195_efuse_parsing,
-> +	.probe = svs_mt8192_platform_probe,
-> +	.irqflags = IRQF_TRIGGER_HIGH,
-
-Interrupt flags are specified in devicetree; avoid declaring irqflags.
-
-After that:
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
+       Arnd
