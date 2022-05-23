@@ -2,197 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4F1D531085
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:20:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA1E353105A
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:20:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235972AbiEWNHV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 09:07:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52264 "EHLO
+        id S235935AbiEWNKg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 09:10:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235874AbiEWNHT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 09:07:19 -0400
-Received: from smtpout1.mo528.mail-out.ovh.net (smtpout1.mo528.mail-out.ovh.net [46.105.34.251])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3F2C49935;
-        Mon, 23 May 2022 06:07:15 -0700 (PDT)
-Received: from pro2.mail.ovh.net (unknown [10.109.138.188])
-        by mo528.mail-out.ovh.net (Postfix) with ESMTPS id D667410363FD1;
-        Mon, 23 May 2022 15:07:13 +0200 (CEST)
-Received: from [192.168.1.42] (88.161.25.233) by DAG1EX2.emp2.local
- (172.16.2.2) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.9; Mon, 23 May
- 2022 15:07:13 +0200
-Message-ID: <eb043379-bb33-096a-d7b0-f333d00554dd@traphandler.com>
-Date:   Mon, 23 May 2022 15:07:13 +0200
+        with ESMTP id S235923AbiEWNK3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 09:10:29 -0400
+Received: from relay-us1.mymailcheap.com (relay-us1.mymailcheap.com [51.81.35.219])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4763454185;
+        Mon, 23 May 2022 06:10:27 -0700 (PDT)
+Received: from relay5.mymailcheap.com (relay5.mymailcheap.com [159.100.241.64])
+        by relay-us1.mymailcheap.com (Postfix) with ESMTPS id 23A0520158;
+        Mon, 23 May 2022 13:10:26 +0000 (UTC)
+Received: from relay1.mymailcheap.com (relay1.mymailcheap.com [149.56.97.132])
+        by relay5.mymailcheap.com (Postfix) with ESMTPS id 9A1CA200FE;
+        Mon, 23 May 2022 13:10:22 +0000 (UTC)
+Received: from filter1.mymailcheap.com (filter1.mymailcheap.com [149.56.130.247])
+        by relay1.mymailcheap.com (Postfix) with ESMTPS id 8D02A3F203;
+        Mon, 23 May 2022 13:10:20 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+        by filter1.mymailcheap.com (Postfix) with ESMTP id 81A6F2A384;
+        Mon, 23 May 2022 13:10:20 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at filter1.mymailcheap.com
+Received: from filter1.mymailcheap.com ([127.0.0.1])
+        by localhost (filter1.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id xRHO4Msw78f3; Mon, 23 May 2022 13:10:19 +0000 (UTC)
+Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
+        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by filter1.mymailcheap.com (Postfix) with ESMTPS;
+        Mon, 23 May 2022 13:10:19 +0000 (UTC)
+Received: from edelgard.icenowy.me (unknown [59.41.161.142])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail20.mymailcheap.com (Postfix) with ESMTPSA id 0A57A4010C;
+        Mon, 23 May 2022 13:10:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
+        t=1653311418; bh=tCctaG9lD2zZr9aAnMweZ8VtB5FmvJDDCVIR2dwhiCs=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=tRLM43pIC2yfKKJHo3qlEzTagk6+uyxU63u5TDAZSqr8UH0/qUAC6YkzqLh4l3Vbl
+         OPF42qDhNsnkbu02SqvDqdxFTzKSlvyvGcxO64mHyt2vhuwu9uebOiqfC+Jtknf3M9
+         jSZP+HgNm5aa3QPBl25NebIs2VAsIB0njuwI+o3s=
+Message-ID: <265770e7055837fee26a7a66ce1fcbc7989eaf99.camel@aosc.io>
+Subject: Re: [PATCH v4 0/2] ARM: sun8i-r40: Enable usb otg support
+From:   Icenowy Zheng <icenowy@aosc.io>
+To:     Evgeny Boger <boger@wirenboard.com>, qianfanguijin@163.com
+Cc:     andre.przywara@arm.com, devicetree@vger.kernel.org,
+        jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, robh+dt@kernel.org,
+        samuel@sholland.org, wens@csie.org
+Date:   Mon, 23 May 2022 21:10:09 +0800
+In-Reply-To: <ec5f7fe8-d47d-ce7f-0e0a-2bdf41a88ba2@wirenboard.com>
+References: <264cb004-677a-13df-cc68-676ef3c2e7d8@163.com>
+         <ec5f7fe8-d47d-ce7f-0e0a-2bdf41a88ba2@wirenboard.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 1/3] dt-bindings: leds: Add bindings for the TLC5925
- controller
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-CC:     <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20220523084958.2723943-1-jjhiblot@traphandler.com>
- <20220523084958.2723943-2-jjhiblot@traphandler.com>
- <d12a0afc-c040-5615-fc0d-70a5c29bbf0a@linaro.org>
-From:   Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-In-Reply-To: <d12a0afc-c040-5615-fc0d-70a5c29bbf0a@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [88.161.25.233]
-X-ClientProxiedBy: CAS4.emp2.local (172.16.1.4) To DAG1EX2.emp2.local
- (172.16.2.2)
-X-Ovh-Tracer-Id: 9728056670395120091
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrjedugdeftdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfhisehtjeertddtfeejnecuhfhrohhmpeflvggrnhdqlfgrtghquhgvshcujfhisghlohhtuceojhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmqeenucggtffrrghtthgvrhhnpeeugfevvdeludefkeejleetvdejueduvddtteejfeejvdevheekueefiefhlefgkeenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecukfhppedtrddtrddtrddtpdekkedrudeiuddrvdehrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehprhhovddrmhgrihhlrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehjjhhhihgslhhothesthhrrghphhgrnhgulhgvrhdrtghomhdpnhgspghrtghpthhtohepuddprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrgh
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_SOFTFAIL,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+在 2022-05-19星期四的 23:54 +0300，Evgeny Boger写道：
+> Hi qianfan,
+> 
+> As Allwinner A40i user, let me first thank you for your effort for 
+> making better upstream support for R40!
+> 
+> However, I would strongly suggest *not* to add USB support to one
+> more 
+> Allwinner SoC in this particular way.
+> The problem is, this approach consists of a number of carefully
+> crafted 
+> hacks in device tree to make current drivers work on Allwinner
+> hardware 
+> without modification to the drivers.
+> 
+> a few examples:
+> 
+> 1) please notice how ohci0 and ehci0 nodes do not contain reference
+> to 
+> usb phy. It is done intentionally, otherwise EHCI will reset musb
+> mode.
+> Of course omitting phy reference here is also completely breaking
+> power 
+> cycling in case of usb error and otherwise messes with a power
+> management.
+> 
+> 2) one must always enable ohci, ehci and usb_otg nodes at the same
+> time. 
+> If one forgets to enable ohci/ehci nodes while enabling usb_otg node,
+> the system will silently fail to work as USB host.
+> 
+> 3) For host-only mode we still have to enable usb_otg node despite no
+> role switching is needed. That's because phy reference is missing in 
+> ehci/ohci, so the ehci/ohci driver won't enable the PHY.
+> Also I might be wrong, but I think phy won't be routed to ehci/ohci 
+> controllers is this case.
+> 
+> 4) musb host controller is initialized and present to hardware though
+> never actually used
+> 
+> To summarize, not only the resulting device tree is not describing
+> the 
+> hardware properly, it is creating device tree configuration which
+> will 
+> be very hard to support in future, once proper driver support is in
+> place.
+> 
+> 
+> At Wiren Board kernel tree we tried to untangle this issue [1-6]. 
+> Unfortunately I didn't have time to prepare it for kernel submission 
+> yet, but I think I better submit it as RFC to get a feedback from you
+> and others.
 
-On 23/05/2022 12:14, Krzysztof Kozlowski wrote:
-> On 23/05/2022 10:49, Jean-Jacques Hiblot wrote:
->> Add bindings documentation for the TLC5925 LED controller.
->>
->> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-> Thank you for your patch. There is something to discuss/improve.
+Please cc me in the following patches because it's me who makes the
+whole dual route thing hacky.
 
-Thanks for the review. I didn't know about dt_binding_check.
+> 
+> 
+> [1] 
+> https://github.com/wirenboard/linux/commit/359abbbd86ddff4d3c61179c882c286de32bb089
+> [2] 
+> https://github.com/wirenboard/linux/commit/6327f9d7972c21b229fb83457fdde643b31553f9
+> [3] 
+> https://github.com/wirenboard/linux/commit/f01f4c66758bde460a4d8c5b54ecee3b585c0232
+> [4] 
+> https://github.com/wirenboard/linux/commit/c27598ad601e5a46f624b73412a531d6f1f63d37
+> [5] 
+> https://github.com/wirenboard/linux/commit/5796d6eebb86b32a3751b2038b63af46f94954b3
+> [6] 
+> https://github.com/wirenboard/linux/commit/0928a675d875f9c2849fd3a9888f718bbb673bda
+> 
+> 
 
-I'll make sure it passes next time.
 
-JJ
-
->> ---
->> devicetree@vger.kernel.org
->>   .../bindings/leds/leds-tlc5925.yaml           | 100 ++++++++++++++++++
->>   1 file changed, 100 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/leds/leds-tlc5925.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/leds/leds-tlc5925.yaml b/Documentation/devicetree/bindings/leds/leds-tlc5925.yaml
->> new file mode 100644
->> index 000000000000..156db599d5a1
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/leds/leds-tlc5925.yaml
-> Filename: vendor,device
-> so "ti,tlc5925-leds.yaml" for example.
->
->
->
->> @@ -0,0 +1,100 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/leds/leds-tlc5925.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: LEDs connected to TI TLC5925 controller
->> +
->> +maintainers:
->> +  - Jean-Jacques Hiblot <jjhiblot@traphandler.com>
->> +
->> +description: |
->> +  The TLC5925 is a low-power 16-channel constant-current LED sink driver.
->> +  It is controlled through a SPI interface.
->> +  It is built around a shift register and latches which convert serial
->> +  input data into a parallel output. Several TLC5925 can be chained to
->> +  control more than 16 LEDs with a single chip-select.
->> +  The brightness level cannot be controlled, each LED is either on or off.
->> +
->> +  Each LED is represented as a sub-node of the ti,tlc5925 device.
->> +
->> +properties:
->> +  compatible:
->> +    const: ti,tlc5925
->> +
->> +  shift_register_length:
->> +    maxItems: 1
-> No...
-> 1. Did you test your bindings with dt_binding_check? This fails
-> obviously... please, do not send untested bindings.
->
-> 2. vendor prefix, no underscores, proper type, maxItems look wrong here
->
->> +    description: |
->> +      The length of the shift register. If several TLC5925 are chained,
->> +      shift_register_length should be set to 16 times the number of TLC5925.
->> +      The value must be a multiple of 8.
->> +
->> +  "#address-cells":
->> +    const: 1
->> +
->> +  "#size-cells":
->> +    const: 0
->> +
->> +  output-enable-b-gpios:
->> +    description: |
->> +      GPIO pins to enable/disable the parallel output. They describe the GPIOs
->> +      connected to the OE/ pin of the TLC5925s.
-> maxItems
->
->
->> +
->> +patternProperties:
->> +  "@[a-f0-9]+$":
-> How many LEDs you can have here? Usually it is limited, so the pattern
-> should be narrowed.
->
->> +    type: object
->> +
->> +    $ref: common.yaml#
->> +
->> +    properties:
->> +      reg:
->> +        items:
-> Not correct syntax... I will stop reviewing. There is no point to use
-> reviewers time to do the job of a tool.
->
->
->> +examples:
->> +  - |
->> +    &spi0 {
->> +        leds@2 {
->> +                compatible = "ti,tlc5925";
-> Messed up indentation. 4 spaces for DTS example.
->
->> +                reg = <0x02>;
->> +                spi-max-frequency = <30000000>;
->> +                shift_register_length = <32>;
->> +                output-enable-b-gpios = <&gpio0b 9 GPIO_ACTIVE_HIGH>, <&gpio0b 7 GPIO_ACTIVE_HIGH>;
->> +                #address-cells = <1>;
->> +                #size-cells = <0>;
->> +
->> +                led-satus@0 {
->> +                        reg = <0>;
->> +                        function = LED_FUNCTION_STATUS;
->> +                        color = <LED_COLOR_ID_GREEN>;
->> +                };
->> +
->> +                led-satus@4 {
->> +                        reg = <4>;
->> +                        function = LED_FUNCTION_STATUS;
->> +                        color = <LED_COLOR_ID_RED>;
->> +                };
->> +
->> +                led-alive@24 {
->> +                        reg = <24>;
->> +                        label = "green:alive"
->> +                };
->> +
->> +                led-panic@31 {
->> +                        reg = <31>;
->> +                        label = "red:panic"
->> +                };
->> +        };
->> +    };
->
-> Best regards,
-> Krzysztof
