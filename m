@@ -2,161 +2,272 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B8FF531856
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 22:53:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31F33531CA1
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 22:57:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238966AbiEWQlj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 12:41:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60306 "EHLO
+        id S239227AbiEWQ4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 12:56:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238979AbiEWQli (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 12:41:38 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F5C5248FA;
-        Mon, 23 May 2022 09:41:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1653324096; x=1684860096;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=2+Eqlq+Lez3z65syX1lv+ITX8fTEVdJaf1yC4Vp1bDE=;
-  b=kpOJAVEcK2HV/2FyzDht75hIR0TtvcVB2ZFdFngzD2UQhQW/MGmfUy++
-   TOPdo6keEp6t249jzGUDKDpFEMvxU8oiHLGxsDQUuYh8fQ+I/8M4oYAfC
-   0v3fOpPLdLm7nQKBmAYw8NY0bqIllwGrLftOYkR9Xac5OkHdGhaz+If7c
-   M=;
-Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 23 May 2022 09:41:35 -0700
-X-QCInternal: smtphost
-Received: from unknown (HELO nasanex01a.na.qualcomm.com) ([10.52.223.231])
-  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 May 2022 09:41:35 -0700
-Received: from [10.110.74.125] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 23 May
- 2022 09:41:34 -0700
-Message-ID: <196459ad-704d-020c-c485-842f613ae618@quicinc.com>
-Date:   Mon, 23 May 2022 09:41:34 -0700
+        with ESMTP id S239229AbiEWQ4O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 12:56:14 -0400
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E40F4E40;
+        Mon, 23 May 2022 09:56:12 -0700 (PDT)
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-edeb6c3642so19212178fac.3;
+        Mon, 23 May 2022 09:56:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=FfAOhZNasQcy6TRDHmB8U+mc653MKDmGV3a61UnarkE=;
+        b=4KkfVM5goTSkVfLLz4yJUTYK9jwLwzP8f/PpRo8aB8IkJKQi4ENdB4cz/bZLj0eHjb
+         YEXOmwJPZz219J0oESUvV2cbqkJIpqB2mqP/ypOKRIxZB5Q9ecba77zNia8ciYFPTPbk
+         vrPNx2dzj7Nu7sb5kIUa1SknUEJwHpW4RVMX3HI+Rcflbis/zJ+RO3KVWPHkHoMAjboW
+         RPDv58ohM5ox6JZFx3SnjCEC6tUT4eWwAHijPFqTXLOB6kbQmb/HSuAr60U1UXZA/cFV
+         IF9PfZ6TLKCtKhg8wZAkXPMRJlyHYLB34KalgVgU4A29QzcRkpiOUSSNuUBlkObVOCfG
+         wCkw==
+X-Gm-Message-State: AOAM533vkLoWrjdNEctnWHVHHnoq5MUMqieCqa4zrXOERLLWtvOXgsOu
+        fOCXzySz8awOAEzcFjzLRA==
+X-Google-Smtp-Source: ABdhPJzG3ZFQrmj1v1yitS4jTC5DzQZmWnfRLp9MNvhBwUQ6yufF6JdEMRoPfxaQK0q/QMOIiKOBDg==
+X-Received: by 2002:a05:6870:5823:b0:f2:2dfd:8df0 with SMTP id r35-20020a056870582300b000f22dfd8df0mr6004573oap.157.1653324972043;
+        Mon, 23 May 2022 09:56:12 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id eb38-20020a056870a8a600b000edf5a12baasm3976216oab.46.2022.05.23.09.56.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 May 2022 09:56:11 -0700 (PDT)
+Received: (nullmailer pid 1750116 invoked by uid 1000);
+        Mon, 23 May 2022 16:56:09 -0000
+Date:   Mon, 23 May 2022 11:56:09 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Kalle Valo <kvalo@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Brown <broonie@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        dri-devel@lists.freedesktop.org, linux-gpio@vger.kernel.org,
+        linux-input@vger.kernel.org, chrome-platform@lists.linux.dev,
+        linux-media@vger.kernel.org, netdev@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-crypto@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-serial@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Fix properties without any type
+Message-ID: <20220523165609.GA1743214-robh@kernel.org>
+References: <20220519211411.2200720-1-robh@kernel.org>
+ <6ae55a29-0b29-f53c-c9bd-fae929f3caf7@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: Removal of qcom,board-id and qcom,msm-id
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-CC:     <agross@kernel.org>, <arnd@arndb.de>, <bjorn.andersson@linaro.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <olof@lixom.net>,
-        <robh@kernel.org>, <sboyd@kernel.org>
-References: <a3c932d1-a102-ce18-deea-18cbbd05ecab@linaro.org>
- <20220522195138.35943-1-konrad.dybcio@somainline.org>
- <53d5999b-88ee-24db-fd08-ff9406e2b7b7@linaro.org>
- <02ab0276-b078-fe66-8596-fcec4378722b@somainline.org>
- <49a52870-9aab-c4bd-2077-66732f42bbba@linaro.org>
-From:   Trilok Soni <quic_tsoni@quicinc.com>
-In-Reply-To: <49a52870-9aab-c4bd-2077-66732f42bbba@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6ae55a29-0b29-f53c-c9bd-fae929f3caf7@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Krzysztof,
-
-On 5/23/2022 5:14 AM, Krzysztof Kozlowski wrote:
-> On 23/05/2022 14:02, Konrad Dybcio wrote:
->>
->> On 23/05/2022 09:21, Krzysztof Kozlowski wrote:
->>> On 22/05/2022 21:51, Konrad Dybcio wrote:
->>>> Hi,
->>>>
->>>> removing these properties will not bring almost any benefit (other than making
->>>> some checks happy any saving some <200 LoC) and will make the lives of almost
->>>> all people doing independent development for linux-on-msm harder. There are
->>>> almost unironically like 3 people outside Linaro and QUIC who have
->>>> non-vendor-fused development boards AND the sources to rebuild the
->>>> bootloader on their own. Making it harder to boot is only going to
->>>> discourage people from developing on these devices, which is already not
->>>> that pleasant, especially with newer platforms where you have to fight with
->>>> the oh-so-bright ideas of Android boot chain..
->>>>
->>>> This only concerns devices released before sm8350, as the new ones will not
->>>> even boot with these properties present (or at least SONY Sagami, but I
->>>> doubt it's an isolated case), so other than completing support for older
->>>> devices, it won't be an issue going forward, anyway. But there are give
->>>> or take 50 locked down devices in mainline right now, and many more waiting
->>>> to be upstreamed in various downstream close-to-mainline trees that should
->>>> not be disregarded just because Qualcomm is far from the best at making
->>>> their BSP software stack clean.
->>> I actually wonder why do you need these properties for community work on
->>> such boards? You ship kernel with one concatenated DTB and the
->>> bootloader does not need the board-id/msm-id fields, doesn't it?
->>
->> If that were the case, I would have never complained about this! It's
->> the bootloader itself that needs it, you can see it in a "Best match
->> [blah blah] 258/0x1000/...." log line, where it walks through the
->> appended (or otherwise compiled into the boot.img) DTBs and looks for
->> matches for the burnt-in msm-, board- and (on newer-older platforms)
->> pmic-id. If it cannot find these, it refuses to boot with an Android
->> Verified Boot red state and you get a not-so-nice "Your device has been
->> unlocked and the boot image is not working" or something like this on
->> your screen.
->>
->>
->>>
->>> Not mentioning that in the past bootloader was actually not using these
->>> properties at all, because it was the dtbTool who was parsing them.
->>
->> Not sure when that was the case, maybe with very old arm32 bootloaders
->> in the times before I did development on Qualcomm devices.
->>
->>
->>>    So
->>> in any case either your device works fine without these properties or
->>> you have to use dtbTool, right?
->>
->> To the best of my idea, wrong :( Unless the vendor modified the LK/XBL
->> code on their own, it looks for a "best match" (but if it's not a
->> precise match, it won't even bother trying to boot, just fyi..), meaning
->> it tries to go through a list of SoC ID and revision pairs (msm-id),
->> board IDs (board-id) and PMIC id+rev pairs (pmic-id) and if no match is
->> found, it doesn't even exit the bootloader and says something like "no
->> dtbs found".
+On Sat, May 21, 2022 at 05:03:41PM +0200, Krzysztof Kozlowski wrote:
+> On 19/05/2022 23:14, Rob Herring wrote:
+> > Now that the schema tools can extract type information for all
+> > properties (in order to decode dtb files), finding properties missing
+> > any type definition is fairly trivial though not yet automated.
+> > 
+> > Fix the various property schemas which are missing a type. Most of these
+> > tend to be device specific properties which don't have a vendor prefix.
+> > A vendor prefix is how we normally ensure a type is defined.
+> > 
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> >  .../arm/hisilicon/controller/hip04-bootwrapper.yaml       | 5 +++--
+> >  .../bindings/display/bridge/toshiba,tc358768.yaml         | 1 +
+> >  .../devicetree/bindings/display/panel/panel-timing.yaml   | 5 +++++
+> >  .../bindings/display/panel/raydium,rm67191.yaml           | 1 +
+> >  .../bindings/display/panel/samsung,s6e8aa0.yaml           | 1 +
+> >  .../devicetree/bindings/gpio/fairchild,74hc595.yaml       | 1 +
+> >  .../devicetree/bindings/input/google,cros-ec-keyb.yaml    | 1 +
+> >  .../devicetree/bindings/input/matrix-keymap.yaml          | 4 ++++
+> >  Documentation/devicetree/bindings/media/i2c/adv7604.yaml  | 3 ++-
+> >  Documentation/devicetree/bindings/mux/reg-mux.yaml        | 8 ++++++--
+> >  Documentation/devicetree/bindings/net/cdns,macb.yaml      | 1 +
+> >  Documentation/devicetree/bindings/net/ingenic,mac.yaml    | 1 +
+> >  .../devicetree/bindings/net/ti,davinci-mdio.yaml          | 1 +
+> >  .../devicetree/bindings/net/wireless/ti,wlcore.yaml       | 2 ++
+> >  .../devicetree/bindings/pci/snps,dw-pcie-ep.yaml          | 6 ++++--
+> >  Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml   | 2 ++
+> >  .../devicetree/bindings/pinctrl/canaan,k210-fpioa.yaml    | 2 ++
+> >  Documentation/devicetree/bindings/power/avs/qcom,cpr.yaml | 1 +
+> >  .../devicetree/bindings/power/supply/battery.yaml         | 7 ++++++-
+> >  .../devicetree/bindings/power/supply/charger-manager.yaml | 1 +
+> >  Documentation/devicetree/bindings/rng/st,stm32-rng.yaml   | 1 +
+> >  Documentation/devicetree/bindings/serial/8250.yaml        | 1 +
+> >  .../devicetree/bindings/sound/audio-graph-card2.yaml      | 3 +++
+> >  .../devicetree/bindings/sound/imx-audio-hdmi.yaml         | 3 +++
+> >  Documentation/devicetree/bindings/usb/smsc,usb3503.yaml   | 1 +
+> >  25 files changed, 55 insertions(+), 8 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hip04-bootwrapper.yaml b/Documentation/devicetree/bindings/arm/hisilicon/controller/hip04-bootwrapper.yaml
+> > index 7378159e61df..483caf0ce25b 100644
+> > --- a/Documentation/devicetree/bindings/arm/hisilicon/controller/hip04-bootwrapper.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/hisilicon/controller/hip04-bootwrapper.yaml
+> > @@ -17,14 +17,15 @@ properties:
+> >        - const: hisilicon,hip04-bootwrapper
+> >  
+> >    boot-method:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> >      description: |
+> >        Address and size of boot method.
+> >        [0]: bootwrapper physical address
+> >        [1]: bootwrapper size
+> >        [2]: relocation physical address
+> >        [3]: relocation size
+> > -    minItems: 1
+> > -    maxItems: 2
+> > +    minItems: 2
+> > +    maxItems: 4
+> >  
+> >  required:
+> >    - compatible
+> > diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
+> > index 3bd670b8e5cd..0b6f5bef120f 100644
+> > --- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
+> > +++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
+> > @@ -58,6 +58,7 @@ properties:
+> >  
+> >              properties:
+> >                data-lines:
+> > +                $ref: /schemas/types.yaml#/definitions/uint32
+> >                  enum: [ 16, 18, 24 ]
+> >  
+> >        port@1:
+> > diff --git a/Documentation/devicetree/bindings/display/panel/panel-timing.yaml b/Documentation/devicetree/bindings/display/panel/panel-timing.yaml
+> > index 7749de95ee40..229e3b36ee29 100644
+> > --- a/Documentation/devicetree/bindings/display/panel/panel-timing.yaml
+> > +++ b/Documentation/devicetree/bindings/display/panel/panel-timing.yaml
+> > @@ -146,6 +146,7 @@ properties:
+> >        Horizontal sync pulse.
+> >        0 selects active low, 1 selects active high.
+> >        If omitted then it is not used by the hardware
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> >      enum: [0, 1]
+> >  
+> >    vsync-active:
+> > @@ -153,6 +154,7 @@ properties:
+> >        Vertical sync pulse.
+> >        0 selects active low, 1 selects active high.
+> >        If omitted then it is not used by the hardware
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> >      enum: [0, 1]
+> >  
+> >    de-active:
+> > @@ -160,6 +162,7 @@ properties:
+> >        Data enable.
+> >        0 selects active low, 1 selects active high.
+> >        If omitted then it is not used by the hardware
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> >      enum: [0, 1]
+> >  
+> >    pixelclk-active:
+> > @@ -169,6 +172,7 @@ properties:
+> >        sample data on rising edge.
+> >        Use 1 to drive pixel data on rising edge and
+> >        sample data on falling edge
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> >      enum: [0, 1]
+> >  
+> >    syncclk-active:
+> > @@ -179,6 +183,7 @@ properties:
+> >        sample sync on rising edge of pixel clock.
+> >        Use 1 to drive sync on rising edge and
+> >        sample sync on falling edge of pixel clock
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> >      enum: [0, 1]
+> >  
+> >    interlaced:
+> > diff --git a/Documentation/devicetree/bindings/display/panel/raydium,rm67191.yaml b/Documentation/devicetree/bindings/display/panel/raydium,rm67191.yaml
+> > index 745dd247c409..617aa8c8c03a 100644
+> > --- a/Documentation/devicetree/bindings/display/panel/raydium,rm67191.yaml
+> > +++ b/Documentation/devicetree/bindings/display/panel/raydium,rm67191.yaml
+> > @@ -24,6 +24,7 @@ properties:
+> >  
+> >    dsi-lanes:
+> >      description: Number of DSI lanes to be used must be <3> or <4>
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> >      enum: [3, 4]
+> >  
+> >    v3p3-supply:
+> > diff --git a/Documentation/devicetree/bindings/display/panel/samsung,s6e8aa0.yaml b/Documentation/devicetree/bindings/display/panel/samsung,s6e8aa0.yaml
+> > index ca959451557e..1cdc91b3439f 100644
+> > --- a/Documentation/devicetree/bindings/display/panel/samsung,s6e8aa0.yaml
+> > +++ b/Documentation/devicetree/bindings/display/panel/samsung,s6e8aa0.yaml
+> > @@ -36,6 +36,7 @@ properties:
+> >  
+> >    init-delay:
+> >      description: delay after initialization sequence [ms]
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> >  
+> >    panel-width-mm:
+> >      description: physical panel width [mm]
+> > diff --git a/Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml b/Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml
+> > index 5fe19fa5f67c..a99e7842ca17 100644
+> > --- a/Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml
+> > +++ b/Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml
+> > @@ -26,6 +26,7 @@ properties:
+> >      const: 2
+> >  
+> >    registers-number:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> >      description: Number of daisy-chained shift registers
+> >  
+> >    enable-gpios:
+> > diff --git a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+> > index e8f137abb03c..aa61fe64be63 100644
+> > --- a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+> > +++ b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
+> > @@ -31,6 +31,7 @@ properties:
+> >      type: boolean
+> >  
+> >    function-row-physmap:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> >      minItems: 1
+> >      maxItems: 15
+> >      description: |
+> > diff --git a/Documentation/devicetree/bindings/input/matrix-keymap.yaml b/Documentation/devicetree/bindings/input/matrix-keymap.yaml
+> > index 6699d5e32dca..9f703bb51e12 100644
+> > --- a/Documentation/devicetree/bindings/input/matrix-keymap.yaml
+> > +++ b/Documentation/devicetree/bindings/input/matrix-keymap.yaml
+> > @@ -27,6 +27,10 @@ properties:
+> >        column and linux key-code. The 32-bit big endian cell is packed as:
+> >            row << 24 | column << 16 | key-code
+> >  
+> > +  linux,no-autorepeat:
+> > +    type: boolean
+> > +    description: Disable keyrepeat
 > 
-> This would mean that dtbTool as described in the actual patch [1] is not
-> used and bootloader ignores the table. If that's the case, the commit
-> and requirement of such complex board-foundry-pmic-compatibles should be
-> dropped. So I am getting now to what Dmitry said...
-> 
-> [1]
-> https://lore.kernel.org/all/1448062280-15406-2-git-send-email-sboyd@codeaurora.org/
+> This should be rather a separate patch - it's documenting a missing
+> property, not only a type.
 
+Yes, I've dropped this hunk while applying.
 
-The link above is from 2015. Lot has changed downstream. Most of what 
-was mentioned by Konrad is right. Application bootloader acts on picking 
-on platform DTBO based on the platform ID plus some combinations like 
-PMIC etc; These platform DTBOs gets overlay on top of SOC DTB by the 
-Application bootloader.
-
-We have moved to DTBO for all the latest targets, but I can understand 
-that some old targets at upstream could be using the very old approaches.
-
-Downstream all of the platforms including the DTBO files will need 
-board-id and msm-id since we also do the compile time stitching of dtb + 
-dtbo and dtbo + dtbo to generate the proper SOC DTB and PLATFORM DTBOs 
-which gets flashed in the DTBO partition and follows the Android boot 
-requirements. Application bootloader then picks the right Platform DTBO 
-as mentioned above w/ the right SOC DTB. It gets more complicated w/ GKI 
-new requirements every year (better for GKI, may not be better for 
-upstream kernel + downstream bootloader combination).
-
----Trilok Soni
-
-
+Rob
