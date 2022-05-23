@@ -2,173 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 225EC5308BE
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 07:30:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 624AF5308D6
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 07:35:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354341AbiEWF21 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 01:28:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51708 "EHLO
+        id S235880AbiEWFfD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 01:35:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355571AbiEWF2V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 01:28:21 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A49551CB3D
-        for <devicetree@vger.kernel.org>; Sun, 22 May 2022 22:28:19 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id s28so19504965wrb.7
-        for <devicetree@vger.kernel.org>; Sun, 22 May 2022 22:28:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=kwRG8kJghq1J9woEQ8/8+NXh3AtgpEI2TuVWVjMfZMk=;
-        b=0HpAzyrF8+FK9s9Lv6r8HnmS4n2VHb3e9NI+PYcrMI8MijK0B5XoHtXRkv0pI5tmky
-         DTvP09m+Llj+BF8ipr7By+iseFMo7gGLtq7vYu96ZGeSz8zR0CmdFjxa2rF61Q3PyTwY
-         5fEIB+1cjJNCHPS/dqw3StWXVMUIT3lUwunNjpKiEUWCJwQHOQjt+RFSK+miW6Z4zbXs
-         MWvJvH5fNK1m37DX7lV/wbjEtMDmkUVmoLJADDbcCKXYidinq0Ke37o8BrAO6EZyFLdC
-         sFfsslVnXtIGNMmhcoHGHRzHo5UgF4kTZ2ol6Bar+kuhYmFZ4qSF3OhS2bQXw91eRaVo
-         C3Og==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=kwRG8kJghq1J9woEQ8/8+NXh3AtgpEI2TuVWVjMfZMk=;
-        b=3Wd5Howh5GFgFcDIhFxAwInbf9qB3jrscGJcLw0bCWB981JtCyA17uHOMpIqjvv+J9
-         9wD3LE1E2itAhyp6OIND34/ZqhCsvfAQKD5AN7FfH1UJqTm9XsTy1CB+Km4RkzgK6HWY
-         L8fnwCv4EplOBI0wgkBs9JP/d4EY51vsyrN8iW/wy8dkr0C8X/Wz/7pGQqj5y/xOItUn
-         Q8DVBlfI1d0g100Db14Pbooc+05VHE2Q7Oadt+AbK90BnqrnzOjKdoAVk1e6jDvvYHCr
-         61Msv+7ElRH7VDeIZZ01Mun1znGD1Dn/ZuHaQ6j8Sxm6+GW0In+Amyb6tZjcC6bOZoFO
-         PZNw==
-X-Gm-Message-State: AOAM530NrJp58X5LuklmpdavFDhyiJSxFpn0RaCFdE+2Tl6GjF90/FPP
-        tchNyHDDMDyk5xDqCYXIEDDVmg==
-X-Google-Smtp-Source: ABdhPJy4dOiHRi8RxJS1vDYeuYztM8ZLIeJ4Hy3+HL2NtCowcnxhvWlaJf6kQexvMGXqL2AAqtP4hw==
-X-Received: by 2002:a5d:4bd2:0:b0:20f:cb39:c035 with SMTP id l18-20020a5d4bd2000000b0020fcb39c035mr6890506wrt.709.1653283698116;
-        Sun, 22 May 2022 22:28:18 -0700 (PDT)
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id h2-20020a1ccc02000000b0039466988f6csm7802414wmb.31.2022.05.22.22.28.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 May 2022 22:28:17 -0700 (PDT)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     andrew@lunn.ch, broonie@kernel.org, calvin.johnson@oss.nxp.com,
-        davem@davemloft.net, edumazet@google.com, hkallweit1@gmail.com,
-        jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        kuba@kernel.org, lgirdwood@gmail.com, linux@armlinux.org.uk,
-        pabeni@redhat.com, robh+dt@kernel.org, samuel@sholland.org,
-        wens@csie.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
-        netdev@vger.kernel.org,
-        =?UTF-8?q?Ond=C5=99ej=20Jirman?= <megi@xff.cz>,
-        Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH v3 3/3] arm64: dts: allwinner: orange-pi-3: Enable ethernet
-Date:   Mon, 23 May 2022 05:28:07 +0000
-Message-Id: <20220523052807.4044800-4-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220523052807.4044800-1-clabbe@baylibre.com>
-References: <20220523052807.4044800-1-clabbe@baylibre.com>
+        with ESMTP id S235790AbiEWFfC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 01:35:02 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88F2E6369;
+        Sun, 22 May 2022 22:35:01 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 3781BB80EEA;
+        Mon, 23 May 2022 05:35:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8566FC385AA;
+        Mon, 23 May 2022 05:34:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1653284098;
+        bh=59aObhjNO8Z2LsPLJEv4aHcBY2sHGOp9xKD+PqwFhAw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=YUCrrRvA88IECsXfWkp6n3zw/ONyN7raP6WiBgjISWGHfclJomg0wJU3wwXwtf7kc
+         vTdzHa43QK7IblMUR2hZBk0giWK+VpVN565OPfe1eTLjWgKRfwqxtIoDl8LLby0Th2
+         iPlA4qiUIUrvaUvmB/8KEi2Af1roL43YRWk7H4perfo/KvYhdiwrVo4e5qDUAXds4e
+         n10sW7oFjJmrHtnTJl5rYGe6JNO2hjU95DnaZfrzd5Cr7WRq8UhMS45IH6o5J0/Zm7
+         UlcaoEDxyYVzNOpmZviXOjAPg7/KC1PUjvHMPi2Jid6DmW7uZz04xI2Plr+qrZ4XNg
+         v9XNcaeHGMHNw==
+Date:   Mon, 23 May 2022 13:34:55 +0800
+From:   Tzung-Bi Shih <tzungbi@kernel.org>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     bleung@chromium.org, groeck@chromium.org, robh+dt@kernel.org,
+        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 5/5] platform/chrome: cros_kbd_led_backlight: support
+ EC PWM backend
+Message-ID: <Yosc/6izBDYYKpFC@google.com>
+References: <20220321085547.1162312-1-tzungbi@kernel.org>
+ <20220321085547.1162312-6-tzungbi@kernel.org>
+ <YobHVST2Nfn+z8n6@google.com>
+ <YocewB/lLJhIAuQP@google.com>
+ <YoezzzLdVfb0K7Ak@google.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YoezzzLdVfb0K7Ak@google.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ondřej Jirman <megi@xff.cz>
+On Fri, May 20, 2022 at 08:29:19AM -0700, Matthias Kaehlcke wrote:
+> On Fri, May 20, 2022 at 12:53:20PM +0800, Tzung-Bi Shih wrote:
+> > On Thu, May 19, 2022 at 03:40:21PM -0700, Matthias Kaehlcke wrote:
+> > > On Mon, Mar 21, 2022 at 04:55:47PM +0800, Tzung-Bi Shih wrote:
+> > > > +struct keyboard_led_private {
+> > > 
+> > > Why 'private', isn't this more a 'cros_ec_kdb_bl' or similar?
+> > 
+> > It is just drvdata.
+> 
+> The data structure represents an instance of the device, as such it
+> is an important part of the driver, drvdata is just a way to attach
+> it to the platform device.
+> 
+> > I would prefer to keep the original prefix "keyboard_led_" if you wouldn't
+> > have strong opinion.
+> 
+> I'm fine with 'keyboard_led', but object to the 'private' part. In the
+> kernel 'private' fields are typically used when a driver consists of a
+> generic part and a device specific part. The driver has a 'private'
+> void* field that points to a device specific data structure about which
+> the generic driver is agnostic. This data structure is only used by the
+> device specific implementation. That isn't the case here, so naming the
+> structure anything 'private' is misleading.
 
-Orange Pi 3 has two regulators that power the Realtek RTL8211E
-PHY. According to the datasheet, both regulators need to be enabled
-at the same time, or that "phy-io" should be enabled slightly earlier
-than "phy" regulator.
+The struct in the case is device specific.  I don't see a problem to name it
+*private* as there are a lot of more existing examples.
 
-RTL8211E/RTL8211EG datasheet says:
+$ grep -R 'struct .*_priv.* {' drivers/
+drivers/pinctrl/bcm/pinctrl-bcm6358.c:struct bcm6358_priv {
 
-  Note 4: 2.5V (or 1.8/1.5V) RGMII power should be risen simultaneously
-  or slightly earlier than 3.3V power. Rising 2.5V (or 1.8/1.5V) power
-  later than 3.3V power may lead to errors.
+$ grep -R 'struct .*_priv.* {' sound/soc/codecs/
+sound/soc/codecs/rt286.c:struct rt286_priv {
 
-The timing is set in DT via startup-delay-us.
+I would get rid of the term "private" if it could be confusing.
 
-Signed-off-by: Ondrej Jirman <megi@xff.cz>
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
----
- .../dts/allwinner/sun50i-h6-orangepi-3.dts    | 38 +++++++++++++++++++
- 1 file changed, 38 insertions(+)
+> > > > +static int keyboard_led_init_ec_pwm(struct platform_device *pdev)
+> > > > +{
+> > > > +	struct keyboard_led_private *private = platform_get_drvdata(pdev);
+> > > > +
+> > > > +	private->ec = dev_get_drvdata(pdev->dev.parent);
+> > > > +	if (!private->ec) {
+> > > > +		dev_err(&pdev->dev, "no parent EC device\n");
+> > > > +		return -EINVAL;
+> > > > +	}
+> > > 
+> > > The only thing this 'init' function does is assigning private->ec. Wouldn't
+> > > it be clearer to do this directly in probe() from where callback is called?
+> > > It could be with the condition that the device as a DT node.
+> > 
+> > No.  The probe() isn't aware of the device is from ACPI or OF.
+> 
+> But it could be:
+> 
+> 	if (pdev->dev.of_node)
+> 		kbd_led->ec = dev_get_drvdata(pdev->dev.parent);
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-index c45d7b7fb39a..2760a0bf76d5 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-@@ -13,6 +13,7 @@ / {
- 	compatible = "xunlong,orangepi-3", "allwinner,sun50i-h6";
- 
- 	aliases {
-+		ethernet0 = &emac;
- 		serial0 = &uart0;
- 		serial1 = &uart1;
- 	};
-@@ -55,6 +56,15 @@ led-1 {
- 		};
- 	};
- 
-+	reg_gmac_2v5: gmac-2v5 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "gmac-2v5";
-+		regulator-min-microvolt = <2500000>;
-+		regulator-max-microvolt = <2500000>;
-+		enable-active-high;
-+		gpio = <&pio 3 6 GPIO_ACTIVE_HIGH>; /* PD6 */
-+	};
-+
- 	reg_vcc5v: vcc5v {
- 		/* board wide 5V supply directly from the DC jack */
- 		compatible = "regulator-fixed";
-@@ -113,6 +123,33 @@ &ehci3 {
- 	status = "okay";
- };
- 
-+&emac {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&ext_rgmii_pins>;
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&ext_rgmii_phy>;
-+	status = "okay";
-+};
-+
-+&mdio {
-+	ext_rgmii_phy: ethernet-phy@1 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <1>;
-+		/*
-+		 * The board uses 2.5V RGMII signalling. Power sequence to enable
-+		 * the phy is to enable GMAC-2V5 and GMAC-3V (aldo2) power rails
-+		 * at the same time and to wait 100ms. The driver enables phy-io
-+		 * first. Delay is achieved with enable-ramp-delay on reg_aldo2.
-+		 */
-+		phy-io-supply = <&reg_gmac_2v5>;
-+		ephy-supply = <&reg_aldo2>;
-+
-+		reset-gpios = <&pio 3 14 GPIO_ACTIVE_LOW>; /* PD14 */
-+		reset-assert-us = <15000>;
-+		reset-deassert-us = <40000>;
-+	};
-+};
-+
- &gpu {
- 	mali-supply = <&reg_dcdcc>;
- 	status = "okay";
-@@ -211,6 +248,7 @@ reg_aldo2: aldo2 {
- 				regulator-min-microvolt = <3300000>;
- 				regulator-max-microvolt = <3300000>;
- 				regulator-name = "vcc33-audio-tv-ephy-mac";
-+				regulator-enable-ramp-delay = <100000>;
- 			};
- 
- 			/* ALDO3 is shorted to CLDO1 */
--- 
-2.35.1
+The 'init' callback isn't only for OF but also ACPI.  I would prefer to keep
+the 'init' function and let probe() have no awareness about them.
 
+> > > Is it actually possible that the keyboard backlight device gets instantiated
+> > > if there is no EC parent?
+> > 
+> > It shouldn't be but just in case.
+> 
+> If this can only occur due to an error in common kernel frameworks then
+> the check should be omitted IMO.
+
+The check is referenced from [1].  I would prefer to keep it instead of
+crashing kernel if anything went wrong.
+
+[1]: https://elixir.bootlin.com/linux/v5.18-rc7/source/drivers/pwm/pwm-cros-ec.c#L244
+
+> 
+> > > > +static const struct keyboard_led_drvdata keyboard_led_drvdata_ec_pwm = {
+> > > > +	.init = keyboard_led_init_ec_pwm_null,
+> > > 
+> > > Is this really needed?
+> > > 
+> > > keyboard_led_probe() checks if .init is assigned before invoking the callback:
+> > > 
+> > > 	if (drvdata->init) {
+> > > 		error = drvdata->init(pdev);
+> > > 
+> > > The whole 'else' branch could be eliminated if .of_match_table of the driver
+> > > only is assigned when CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM is set. IMO that
+> > > would preferable over creating 'stubs'.
+> > 
+> > CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM and CONFIG_OF are independent.  The stubs
+> > were created to avoid compile errors if CONFIG_OF=y but
+> > CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM=n.
+> 
+> Is there functional version of the driver that uses instantiation through the
+> device tree if CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM=n? If not .of_match_table
+> should not be assigned.
+
+CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM and CONFIG_OF are independent.
+CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM is also designed to work with CONFIG_ACPI.
