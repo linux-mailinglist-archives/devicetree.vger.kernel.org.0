@@ -2,123 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19ED75317CD
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 22:53:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BD00531AF1
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 22:56:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241086AbiEWSr7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 14:47:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43446 "EHLO
+        id S229561AbiEWTMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 15:12:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243134AbiEWSrj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 14:47:39 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7F8F92872E
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 11:31:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1653330622;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=+GHDu8bX018Pj56HhIIQXnjcT5ZvQ3bky+5co5y7CGo=;
-        b=GxdkuVQwAKotC5mXQEw2wmn84Dyt4pwmCpvHYswabV4SVjmATsenFyPekfR+Xt5kIn0FL2
-        TZozsXW79oAsSsvT+8oz7H1iaybe/3TPGw/i7w1tY3MxVp9Eqin24sGNYc7uNIWgmSsJUv
-        ax/2AwFojxR+lbnmRkUgVFYdj2NmqqE=
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
- [209.85.222.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-221-tqTjh-c_N_ykupd3EHgRKQ-1; Mon, 23 May 2022 14:30:20 -0400
-X-MC-Unique: tqTjh-c_N_ykupd3EHgRKQ-1
-Received: by mail-qk1-f200.google.com with SMTP id z8-20020ae9c108000000b006a376d119c6so3392301qki.21
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 11:30:20 -0700 (PDT)
+        with ESMTP id S229907AbiEWTL6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 15:11:58 -0400
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97FB9127184;
+        Mon, 23 May 2022 11:47:06 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id oe17-20020a17090b395100b001df77d29587so79466pjb.2;
+        Mon, 23 May 2022 11:47:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=76y2+oo/qoXjDueiDl15GinWPP3MWuyZztlDDTW4C/M=;
+        b=F4PlRYXJF2/GFGMk4w6a7AxUnjicJVCwRusnWkr1inPCRqBzTVedrz5vRAOFJzoHU7
+         WNRAVJ8aU3StNlBBA3b4ER8ntGB0aBFL9Kng1oJxAse4h4Yl5agPyt0t3j8UEM0wE6Hf
+         9XlQt43WSUJvxGNloCUAmPn+Db2vQZAAY2YDHth1oEtIOL89N0SVMLf8J8wuhssKiWMF
+         TxpWsZ09eE3Rxi2t+EALL/qFpYR/Fjawm6KlFGFOyWXw4HInsaW/3TjoS0iViCALkb6/
+         Mh467VsaT2bJT0ids++DspMVGP3tzlVkXrs7unHw81dDb5+bHjQR20T08WC8/OQGZdGE
+         K2Vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=+GHDu8bX018Pj56HhIIQXnjcT5ZvQ3bky+5co5y7CGo=;
-        b=HEsZfq68N6F8CMI2xjeV9MPrYWPjPx6DIMOrFXMS2gwipJLvibFnNKjA1bvcYooYFH
-         YUICo+CA1ttOxPI58IKkA9Fx/bhlPbotHTV/K4NqKK99X0Xd6Vf3LaxBw5Cy/P65T4dv
-         9897INLDgD1SOoMLUrTJ36V4qvsIYW3k9siUDhgjspYaxzgt2epdRXTIKcOSysDj+JXY
-         kHAHasPB8bPZ7OqVCshbjAZi/A0UkgNV3XaFSpMVNlU2WqbphM6P4a4U5NsoNx2pMpRR
-         L9NJYUDQ7N5W4SSQMbtRdbQdqPxkLfZ1J79nkgL6TmCsc60et+L0XQEfFIccwAsqRAwl
-         B9OQ==
-X-Gm-Message-State: AOAM533ansYWvs5uXrNXaw7QvviCxzOhurQGZrx+aFA8zvcyGAn9gnSQ
-        bHFNCp+6Goze92h87497ZgYz5OxdlHp3IvngqiY50MEe8hRtP3P2iMuPMhVWPy5ZPXKVr40fq8a
-        365UW++6PmxiLZmOYnpXbmQ==
-X-Received: by 2002:a05:620a:29ce:b0:6a0:e9a:f7a2 with SMTP id s14-20020a05620a29ce00b006a00e9af7a2mr14909674qkp.479.1653330620346;
-        Mon, 23 May 2022 11:30:20 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyiHkoWHUvw+vM4ygrqlFJMksFa2jJVr/bYTmHbbZwPGQtQuPfxdNSMdEAKmnGv/bC5IUBo3Q==
-X-Received: by 2002:a05:620a:29ce:b0:6a0:e9a:f7a2 with SMTP id s14-20020a05620a29ce00b006a00e9af7a2mr14909649qkp.479.1653330620095;
-        Mon, 23 May 2022 11:30:20 -0700 (PDT)
-Received: from xps13 (c-98-239-145-235.hsd1.wv.comcast.net. [98.239.145.235])
-        by smtp.gmail.com with ESMTPSA id m201-20020a37a3d2000000b006a34f6a7840sm4630388qke.57.2022.05.23.11.30.19
+         :mime-version:content-disposition:in-reply-to;
+        bh=76y2+oo/qoXjDueiDl15GinWPP3MWuyZztlDDTW4C/M=;
+        b=yWS2PDZ4no+eHNnxdXGgeX3xWcDoDubp9ez1NoMQU8Z9Ns0e5w/Iu12eWxzDOi29ux
+         SZWaXrcqiCkD8KWQTFCT0SBM68+wfm/AHdtPGy1NbwOx/rhweBbGFVzA8BVHgtCEqJOa
+         TGTRJMrogUfpQEKla7DvfdFVLNpD+65YZWTI4oIcj8xT9N+goaGOjJ2WWTdshu0BisE/
+         7RKN2ZkN2zQU6IdKFgMHiUaXF6p1VUy5oIdd/5y8I7M6huj53HL3SZXtyOZBywb5j5jK
+         +YU/XtWLAp5hkgsZaOGQKRPGAkMUO74kxfUF+oz/wUHLKw8qyNu10gb4OReIsb+Qx/l8
+         rA7A==
+X-Gm-Message-State: AOAM533g97ygDo+edrS19Xz62WHUYu+8t+yPhQ8vCFb7x2CwWmWMaRan
+        5demWMg+GwK3E4+YnJhivMg=
+X-Google-Smtp-Source: ABdhPJya/XVPBAZBJWCeJgtfcR/OthObwsxduUh9+jPxAPH/otv1kUfC0sA+9tHxzhgCAjUQbVSr6g==
+X-Received: by 2002:a17:90b:4b0a:b0:1df:deda:7880 with SMTP id lx10-20020a17090b4b0a00b001dfdeda7880mr372129pjb.53.1653331625696;
+        Mon, 23 May 2022 11:47:05 -0700 (PDT)
+Received: from google.com ([2620:15c:202:201:ce25:f34f:c90d:61fa])
+        by smtp.gmail.com with ESMTPSA id y132-20020a62ce8a000000b00518285976cdsm7519431pfg.9.2022.05.23.11.47.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 May 2022 11:30:19 -0700 (PDT)
-Date:   Mon, 23 May 2022 14:30:18 -0400
-From:   Brian Masney <bmasney@redhat.com>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        matti.lehtimaki@gmail.com
-Subject: Re: [RFC PATCH 00/14] CAMSS support for MSM8974
-Message-ID: <YovSurcGlyPW7v9s@xps13>
-References: <20220522162802.208275-1-luca@z3ntu.xyz>
- <638d6986-616f-4a1c-f1d0-82835b000b2a@linaro.org>
+        Mon, 23 May 2022 11:47:04 -0700 (PDT)
+Date:   Mon, 23 May 2022 11:47:01 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Robin van der Gracht <robin@protonic.nl>,
+        Miguel Ojeda <ojeda@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Olof Johansson <olof@lixom.net>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: input: matrix-keymap: Add common
+ 'linux,no-autorepeat' property
+Message-ID: <YovWpSvabyhcYnzL@google.com>
+References: <20220523170449.1763039-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <638d6986-616f-4a1c-f1d0-82835b000b2a@linaro.org>
-User-Agent: Mutt/2.2.1 (2022-02-19)
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220523170449.1763039-1-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 23, 2022 at 03:39:53PM +0300, Dmitry Baryshkov wrote:
-> On 22/05/2022 19:27, Luca Weiss wrote:
-> > This RFC series adds support for CAMSS and CCI that are found on
-> > msm8974, including the OV8865 found on the FP2.
-> > 
-> > The only reason it's marked RFC is that CAMSS doesn't behave properly on
-> > this SoC without the last commit which is obviously not upstreamable.
-> > Not sure if this should be a blocker for including most of the other
-> > patches because other than that it seems to work fine and I can get a
-> > picture from the camera sensor. When/if msm8974 gets IOMMU support I
-> > hope this should be resolved and it works without this hack.
-> > 
-> > I think at least the CCI patches could get applied as they're not
-> > dependent on the CAMSS hack?
-> 
-> I'd also vote for the camcc patches to be applied.
-> 
-> As for the camss, I'd suggest to get them verified to work properly with a
-> hacked/non-upstreamable/etc. IOMMU driver if one exists. Otherwise we can
-> easily get into a situation where we merge up code that contains bugs
-> itself.
+On Mon, May 23, 2022 at 12:04:49PM -0500, Rob Herring wrote:
+> 'linux,no-autorepeat' is a common property used in multiple bindings,
+> but doesn't have a common type definition nor description. Add a common
+> definition and drop the now redundant description from
+> holtek,ht16k33.yaml.
 
-Last I checked, there's no IOMMU driver for msm8974 that works with an
-upstream kernel at the moment. About 2 years ago, I took a stab at
-attempting to enable IOMMU for the display and ran into some issues that
-I documented at:
+We have "autorepeat" in the common input binding description, should we
+not promote it over "no-autorepeat"?
 
-https://lore.kernel.org/lkml/20200109002606.35653-1-masneyb@onstation.org/
+Thanks.
 
-I'm not familiar with this part of the hardware and haven't had time
-since then to look into this further.
-
-Brian
-
+-- 
+Dmitry
