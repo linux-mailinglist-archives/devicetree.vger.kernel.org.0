@@ -2,268 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 934D6530C34
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 11:04:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C24C4530BF5
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 11:04:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232049AbiEWIl5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 04:41:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34696 "EHLO
+        id S232135AbiEWIqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 04:46:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232075AbiEWIly (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 04:41:54 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E8721EC57;
-        Mon, 23 May 2022 01:41:51 -0700 (PDT)
-X-UUID: 64227949a1c44b0bbeb91b1f87e3725f-20220523
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:a1dee87f-ea0c-4fc0-b504-90e5b700601c,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:2a19b09,CLOUDID:2784457a-5ef6-470b-96c9-bdb8ced32786,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:0,BEC:nil
-X-UUID: 64227949a1c44b0bbeb91b1f87e3725f-20220523
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
-        (envelope-from <jia-wei.chang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1695062629; Mon, 23 May 2022 16:41:47 +0800
-Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Mon, 23 May 2022 16:41:45 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 23 May 2022 16:41:45 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 23 May 2022 16:41:45 +0800
-From:   Tim Chang <jia-wei.chang@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Roger Lu <roger.lu@mediatek.com>,
-        Kevin Hilman <khilman@kernel.org>,
-        Jia-Wei Chang <jia-wei.chang@mediatek.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <hsinyi@google.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH v3 4/4] soc: mediatek: svs: add support for mt8195
-Date:   Mon, 23 May 2022 16:40:34 +0800
-Message-ID: <20220523084034.26802-5-jia-wei.chang@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220523084034.26802-1-jia-wei.chang@mediatek.com>
-References: <20220523084034.26802-1-jia-wei.chang@mediatek.com>
+        with ESMTP id S232027AbiEWIqg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 04:46:36 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6593E5FD9
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 01:46:35 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id jx22so13782575ejb.12
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 01:46:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8KZ9e+aFywu8cob9B7lyv8cw/GG4lY7xYjZnUL2c5Po=;
+        b=x6a0/a59LPzK/XbjLygNZX+iuxxHylNyyOs3r109raURIjnZdsiY/qUM3RzicmAgRL
+         g0Nd5CRWwWwTy/qomFzYeX3g/CjTeg2mI7yEXg0HQhnb90sMlip0m/Ew6N+3nNvXE6gg
+         9d6FbvhKtkLNXd2qpA354YSaJhzZ6YGKFn+L22TnIUZ23k2hlEo1EFe8LMk6lNiViNpp
+         /X2reVm7Zce6S8CAWolYqpb/uizlg/dfwAU1vjiPCCPvPXlrV2wxK3PwFSC2tMnga59d
+         ZwxJqzZutwdSpR1Ku3+rfFSeqBer6+OuTmQK+ZjCTgRJS/1k9W2ZQS7pp8ag13X7jC1m
+         hyZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8KZ9e+aFywu8cob9B7lyv8cw/GG4lY7xYjZnUL2c5Po=;
+        b=1bwnB/oeXZuMKDpdn7oRF0L6/5OWvvBt7x8CI+Gdu4hD3F/0B0ybL5K9hbAn8bezkP
+         OWGUJCQd9Egy5vKeg3xNzy6qM6Vq4hsli5C0XDp+/91spInO7C9gOX0zlhVFb1LNXQwX
+         Ee5I+LAhE/jh9CRupJKh/4EgZ1Wpt2sNh0m2c2Snun5+vRFWszabqhGWXJo0bDFu6hba
+         TawSJFxYioUKQV9tH77VAqHcqEEc7rAlup2HS+syCkUyBzyjpJV2Y7U2QC011zi9nJMe
+         a6XmIIWjH0rDLS4IxvFXxMUh/5JtQ4QgufJNmdZ3+6SMQfrouhmLsGV/zWsU1KqnAEwR
+         SRrw==
+X-Gm-Message-State: AOAM530erw3B0lGgVyN5Wyr4wYGk8Upax30E0Voao0cAE+Kcive8rY1e
+        8KeYzeKf5aeZdlOY+vWB4r4NjQ==
+X-Google-Smtp-Source: ABdhPJwDRYBw80yFFSMqilCh6Rwe3b3/Gwjq4XKqz2jH2FgXaRVvRV2qPJPfLQhSkrW6CBKtFhnKdw==
+X-Received: by 2002:a17:907:78cb:b0:6fe:9ca3:2a9b with SMTP id kv11-20020a17090778cb00b006fe9ca32a9bmr17175623ejc.727.1653295593558;
+        Mon, 23 May 2022 01:46:33 -0700 (PDT)
+Received: from prec5560.. ([176.74.57.19])
+        by smtp.gmail.com with ESMTPSA id s17-20020a1709060c1100b006fee27d471csm905706ejf.150.2022.05.23.01.46.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 May 2022 01:46:32 -0700 (PDT)
+From:   Robert Foss <robert.foss@linaro.org>
+To:     andrzej.hajda@intel.com, narmstrong@baylibre.com,
+        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
+        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@linux.ie,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, xji@analogixsemi.com,
+        hsinyi@chromium.org, sam@ravnborg.org, tzimmermann@suse.de,
+        maxime@cerno.tech, jose.exposito89@gmail.com,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v1 1/2] Revert "drm/bridge: anx7625: Use DPI bus type"
+Date:   Mon, 23 May 2022 10:46:14 +0200
+Message-Id: <20220523084615.13510-1-robert.foss@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jia-Wei Chang <jia-wei.chang@mediatek.com>
-
-To support svs on MT8195, add corresponding bank information, platform
-data, probe and parsing function.
-
-Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+This reverts commit a77c2af0994e24ee36c7ffb6dc852770bdf06fb1.
 ---
- drivers/soc/mediatek/mtk-svs.c | 151 +++++++++++++++++++++++++++++++++
- 1 file changed, 151 insertions(+)
+ drivers/gpu/drm/bridge/analogix/anx7625.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/soc/mediatek/mtk-svs.c b/drivers/soc/mediatek/mtk-svs.c
-index 656d0361ff7d..bb5021648143 100644
---- a/drivers/soc/mediatek/mtk-svs.c
-+++ b/drivers/soc/mediatek/mtk-svs.c
-@@ -1680,6 +1680,89 @@ static int svs_bank_resource_setup(struct svs_platform *svsp)
- 	return 0;
- }
+diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
+index 01f46d9189c1..53a5da6c49dd 100644
+--- a/drivers/gpu/drm/bridge/analogix/anx7625.c
++++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
+@@ -1623,14 +1623,14 @@ static int anx7625_parse_dt(struct device *dev,
  
-+static bool svs_mt8195_efuse_parsing(struct svs_platform *svsp)
-+{
-+	struct svs_bank *svsb;
-+	struct nvmem_cell *cell;
-+	u32 idx, i, ft_pgm, vmin, golden_temp;
-+
-+	for (i = 0; i < svsp->efuse_max; i++)
-+		if (svsp->efuse[i])
-+			dev_info(svsp->dev, "M_HW_RES%d: 0x%08x\n",
-+				 i, svsp->efuse[i]);
-+
-+	if (!svsp->efuse[10]) {
-+		dev_notice(svsp->dev, "svs_efuse[10] = 0x0?\n");
-+		return false;
-+	}
-+
-+	/* Svs efuse parsing */
-+	ft_pgm = svsp->efuse[0] & GENMASK(7, 0);
-+	vmin = (svsp->efuse[19] >> 4) & GENMASK(1, 0);
-+
-+	for (idx = 0; idx < svsp->bank_max; idx++) {
-+		svsb = &svsp->banks[idx];
-+
-+		if (vmin == 0x1)
-+			svsb->vmin = 0x1e;
-+
-+		if (ft_pgm == 0)
-+			svsb->volt_flags |= SVSB_INIT01_VOLT_IGNORE;
-+
-+		if (svsb->type == SVSB_LOW) {
-+			svsb->mtdes = svsp->efuse[10] & GENMASK(7, 0);
-+			svsb->bdes = (svsp->efuse[10] >> 16) & GENMASK(7, 0);
-+			svsb->mdes = (svsp->efuse[10] >> 24) & GENMASK(7, 0);
-+			svsb->dcbdet = (svsp->efuse[8]) & GENMASK(7, 0);
-+			svsb->dcmdet = (svsp->efuse[8] >> 8) & GENMASK(7, 0);
-+		} else if (svsb->type == SVSB_HIGH) {
-+			svsb->mtdes = svsp->efuse[9] & GENMASK(7, 0);
-+			svsb->bdes = (svsp->efuse[9] >> 16) & GENMASK(7, 0);
-+			svsb->mdes = (svsp->efuse[9] >> 24) & GENMASK(7, 0);
-+			svsb->dcbdet = (svsp->efuse[8]) & GENMASK(7, 0);
-+			svsb->dcmdet = (svsp->efuse[8] >> 8) & GENMASK(7, 0);
-+		}
-+
-+		svsb->vmax += svsb->dvt_fixed;
-+	}
-+
-+	/* Thermal efuse parsing */
-+	cell = nvmem_cell_get(svsp->dev, "t-calibration-data");
-+	if (IS_ERR_OR_NULL(cell)) {
-+		dev_err(svsp->dev, "no \"t-calibration-data\"? %ld\n",
-+			PTR_ERR(cell));
-+		return false;
-+	}
-+
-+	svsp->tefuse = nvmem_cell_read(cell, &svsp->tefuse_max);
-+	if (IS_ERR(svsp->tefuse)) {
-+		dev_err(svsp->dev, "cannot read thermal efuse: %ld\n",
-+			PTR_ERR(svsp->tefuse));
-+		nvmem_cell_put(cell);
-+		return false;
-+	}
-+
-+	svsp->tefuse_max /= sizeof(u32);
-+	nvmem_cell_put(cell);
-+
-+	for (i = 0; i < svsp->tefuse_max; i++)
-+		if (svsp->tefuse[i] != 0)
-+			break;
-+
-+	if (i == svsp->tefuse_max)
-+		golden_temp = 50; /* All thermal efuse data are 0 */
-+	else
-+		golden_temp = (svsp->tefuse[0] >> 24) & GENMASK(7, 0);
-+
-+	for (idx = 0; idx < svsp->bank_max; idx++) {
-+		svsb = &svsp->banks[idx];
-+		svsb->mts = 500;
-+		svsb->bts = (((500 * golden_temp + 250460) / 1000) - 25) * 4;
-+	}
-+
-+	return true;
-+}
-+
- static bool svs_mt8192_efuse_parsing(struct svs_platform *svsp)
- {
- 	struct svs_bank *svsb;
-@@ -2257,6 +2340,61 @@ static int svs_mt8183_platform_probe(struct svs_platform *svsp)
- 	return 0;
- }
+ 	anx7625_get_swing_setting(dev, pdata);
  
-+static struct svs_bank svs_mt8195_banks[] = {
-+	{
-+		.sw_id			= SVSB_GPU,
-+		.type			= SVSB_LOW,
-+		.set_freq_pct		= svs_set_bank_freq_pct_v3,
-+		.get_volts		= svs_get_bank_volts_v3,
-+		.volt_flags		= SVSB_REMOVE_DVTFIXED_VOLT,
-+		.mode_support		= SVSB_MODE_INIT02,
-+		.opp_count		= MAX_OPP_ENTRIES,
-+		.freq_base		= 640000000,
-+		.turn_freq_base		= 640000000,
-+		.volt_step		= 6250,
-+		.volt_base		= 400000,
-+		.vmax			= 0x38,
-+		.vmin			= 0x14,
-+		.age_config		= 0x555555,
-+		.dc_config		= 0x1,
-+		.dvt_fixed		= 0x1,
-+		.vco			= 0x18,
-+		.chk_shift		= 0x87,
-+		.core_sel		= 0x0fff0100,
-+		.int_st			= BIT(0),
-+		.ctl0			= 0x00540003,
-+	},
-+	{
-+		.sw_id			= SVSB_GPU,
-+		.type			= SVSB_HIGH,
-+		.set_freq_pct		= svs_set_bank_freq_pct_v3,
-+		.get_volts		= svs_get_bank_volts_v3,
-+		.tzone_name		= "gpu1",
-+		.volt_flags		= SVSB_REMOVE_DVTFIXED_VOLT |
-+					  SVSB_MON_VOLT_IGNORE,
-+		.mode_support		= SVSB_MODE_INIT02 | SVSB_MODE_MON,
-+		.opp_count		= MAX_OPP_ENTRIES,
-+		.freq_base		= 880000000,
-+		.turn_freq_base		= 640000000,
-+		.volt_step		= 6250,
-+		.volt_base		= 400000,
-+		.vmax			= 0x38,
-+		.vmin			= 0x14,
-+		.age_config		= 0x555555,
-+		.dc_config		= 0x1,
-+		.dvt_fixed		= 0x6,
-+		.vco			= 0x18,
-+		.chk_shift		= 0x87,
-+		.core_sel		= 0x0fff0101,
-+		.int_st			= BIT(1),
-+		.ctl0			= 0x00540003,
-+		.tzone_htemp		= 85000,
-+		.tzone_htemp_voffset	= 0,
-+		.tzone_ltemp		= 25000,
-+		.tzone_ltemp_voffset	= 7,
-+	},
-+};
-+
- static struct svs_bank svs_mt8192_banks[] = {
- 	{
- 		.sw_id			= SVSB_GPU,
-@@ -2559,6 +2697,16 @@ static struct svs_bank svs_mt8183_banks[] = {
- 	},
- };
+-	pdata->is_dpi = 0; /* default dsi mode */
++	pdata->is_dpi = 1; /* default dpi mode */
+ 	pdata->mipi_host_node = of_graph_get_remote_node(np, 0, 0);
+ 	if (!pdata->mipi_host_node) {
+ 		DRM_DEV_ERROR(dev, "fail to get internal panel.\n");
+ 		return -ENODEV;
+ 	}
  
-+static const struct svs_platform_data svs_mt8195_platform_data = {
-+	.name = "mt8195-svs",
-+	.banks = svs_mt8195_banks,
-+	.efuse_parsing = svs_mt8195_efuse_parsing,
-+	.probe = svs_mt8192_platform_probe,
-+	.irqflags = IRQF_TRIGGER_HIGH,
-+	.regs = svs_regs_v2,
-+	.bank_max = ARRAY_SIZE(svs_mt8195_banks),
-+};
-+
- static const struct svs_platform_data svs_mt8192_platform_data = {
- 	.name = "mt8192-svs",
- 	.banks = svs_mt8192_banks,
-@@ -2591,6 +2739,9 @@ static const struct svs_platform_data svs_mt8183_platform_data = {
+-	bus_type = 0;
++	bus_type = V4L2_FWNODE_BUS_TYPE_PARALLEL;
+ 	mipi_lanes = MAX_LANES_SUPPORT;
+ 	ep0 = of_graph_get_endpoint_by_regs(np, 0, 0);
+ 	if (ep0) {
+@@ -1640,8 +1640,8 @@ static int anx7625_parse_dt(struct device *dev,
+ 		mipi_lanes = of_property_count_u32_elems(ep0, "data-lanes");
+ 	}
  
- static const struct of_device_id svs_of_match[] = {
- 	{
-+		.compatible = "mediatek,mt8195-svs",
-+		.data = &svs_mt8195_platform_data,
-+	}, {
- 		.compatible = "mediatek,mt8192-svs",
- 		.data = &svs_mt8192_platform_data,
- 	}, {
+-	if (bus_type == V4L2_FWNODE_BUS_TYPE_DPI) /* bus type is DPI */
+-		pdata->is_dpi = 1;
++	if (bus_type == V4L2_FWNODE_BUS_TYPE_PARALLEL) /* bus type is Parallel(DSI) */
++		pdata->is_dpi = 0;
+ 
+ 	pdata->mipi_lanes = mipi_lanes;
+ 	if (pdata->mipi_lanes > MAX_LANES_SUPPORT || pdata->mipi_lanes <= 0)
 -- 
-2.18.0
+2.34.1
 
