@@ -2,123 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7E99531AA8
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 22:55:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15268531B4D
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 22:56:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241294AbiEWSXb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 14:23:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55198 "EHLO
+        id S237601AbiEWSjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 14:39:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244542AbiEWSVq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 14:21:46 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4BADED8D1
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 10:57:50 -0700 (PDT)
+        with ESMTP id S243346AbiEWSi6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 14:38:58 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69D8517568F
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 11:18:50 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id q1so8519338ljb.5
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 11:18:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1653328670; x=1684864670;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=mXVbIgERAy3ndTKUp7On5d88E3AS71EIW+x0hE4wKn8=;
-  b=kAXxxIi66gA21dfYIxzL24T4AqhqLEz7QJNQfQTbMyQV4aF6+D/Rcrnh
-   OrTe4VBtAHYuP70GwvZFmisGK7fdcMnm86XEoVTsPg5NNInXG66MGJ+Y1
-   yvTsMG3kpNEup09b9ggQS5Y/5zGunHxB6qcHqN2+AI9SJm4BRqSK9T3wO
-   c=;
-Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 23 May 2022 10:56:55 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 May 2022 10:56:54 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 23 May 2022 10:56:54 -0700
-Received: from maru.qualcomm.com (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 23 May
- 2022 10:56:52 -0700
-From:   Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
-To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        "Rob Herring" <robh+dt@kernel.org>,
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=eAQjizdLMl0Og1Syh05TGYx3nDIu1bvaAdxxkO91pXc=;
+        b=Xz/+ngiHZLU9VwBl+7Luw5ffHNsi7153XfZJfen02t4elYmbpulimWOBz6wHn2whaJ
+         o/vzT6zZPFhuYBlnAPkxMdyYJH5RjTphhtOu93tOyqReY4H967iD9zyMkg1XaeU6SKWO
+         rED7tQfjF/isLqr/x42tcQfQzci8So87XHF/EYuyB+NXvdw1ZWSsn4jy1vDuEhxaAHFc
+         rg00Olj5WT0WWFk8uoiA8Gn6G9g2iRBAqxbwW3v26G4czDmjpV7bbqFhl96RJCIwoAEE
+         ECyn7mwX1I8J7vpLY7ve0BTLh7egBLJMiXDW+0TN3ZaADg4fkjezs0SEKIA38Fn8NTZC
+         jA9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=eAQjizdLMl0Og1Syh05TGYx3nDIu1bvaAdxxkO91pXc=;
+        b=1mqivQG14dMWdap0sKYkjOC4rbdEIXKsA+5fEm1d1Wi4KZNE7FJclwSqEHqECT0ljw
+         D41OJcK6wladgzrLuhFmln+2XzF8Ih95C9o02LloimHIM28I/zJs/ZVIw+e40TT1TC+M
+         wr9fEy7V19LYfkS3gKZx0aLHQXESofss6AfhFR4W9cZRDrORuM0eeIx3zTjJzrAjF8Yj
+         pjS0S9sC7ShGqKJqsPIlpPLc1+39iAIH4eTGgohKT0ujQc2Mq8cU3/FpuXwLrpFeD9kX
+         wY9llYmHEh8ON9F91DSyZUsQR7ZYZr1HY9AG4jgUGIrLGlfT28SsnShw7bFnhKShV9ag
+         EGYw==
+X-Gm-Message-State: AOAM530/Sh8eXh1Vg7VNNSjM/2h95C+UFvp6Sv7sAezSIB3qyC8+j7xC
+        i94OKvALuQIm6QhdiXqhVTVnvQ==
+X-Google-Smtp-Source: ABdhPJxkXlYvwuGBh7AjqRFTUdGyWMLJlRzap7FAFnLgcAvA2yviMC0HTLtxyX1WCVX2S8UFSi/JXw==
+X-Received: by 2002:a05:651c:102a:b0:253:ee90:98ba with SMTP id w10-20020a05651c102a00b00253ee9098bamr2317457ljm.415.1653329918093;
+        Mon, 23 May 2022 11:18:38 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id j20-20020a2e6e14000000b0024f3d1daedesm1904127ljc.102.2022.05.23.11.18.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 May 2022 11:18:37 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        "Andrew Jeffery" <andrew@aj.id.au>
-CC:     Jamie Iles <quic_jiles@quicinc.com>,
-        Graeme Gregory <quic_ggregory@quicinc.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>,
-        "Jae Hyun Yoo" <quic_jaehyoo@quicinc.com>
-Subject: [PATCH -next] ARM: dts: aspeed: nuvia: rename vendor nuvia to qcom
-Date:   Mon, 23 May 2022 10:56:40 -0700
-Message-ID: <20220523175640.60155-1-quic_jaehyoo@quicinc.com>
-X-Mailer: git-send-email 2.25.1
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v12 0/8] PCI: qcom: Fix higher MSI vectors handling
+Date:   Mon, 23 May 2022 21:18:28 +0300
+Message-Id: <20220523181836.2019180-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Nuvia has been acquired by Qualcomm and the vendor name 'nuvia' will
-not be used anymore so rename aspeed-bmc-nuvia-dc-scm.dts to
-aspeed-bmc-qcom-dc-scm-v1.dts and change 'nuvia' to 'qcom' as its vendor
-name in the file.
+I have replied with my Tested-by to the patch at [2], which has landed
+in the linux-next as the commit 20f1bfb8dd62 ("PCI: qcom:
+Add support for handling MSIs from 8 endpoints"). However lately I
+noticed that during the tests I still had 'pcie_pme=nomsi', so the
+device was not forced to use higher MSI vectors.
 
-Signed-off-by: Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
----
- arch/arm/boot/dts/Makefile                                    | 2 +-
- ...eed-bmc-nuvia-dc-scm.dts => aspeed-bmc-qcom-dc-scm-v1.dts} | 4 ++--
- 2 files changed, 3 insertions(+), 3 deletions(-)
- rename arch/arm/boot/dts/{aspeed-bmc-nuvia-dc-scm.dts => aspeed-bmc-qcom-dc-scm-v1.dts} (97%)
+After removing this option I noticed that hight MSI vectors are not
+delivered on tested platforms. After additional research I stumbled upon
+a patch in msm-4.14 ([1]), which describes that each group of MSI
+vectors is mapped to the separate interrupt. Implement corresponding
+mapping.
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 03f5b3a15415..2a3c95387613 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1584,7 +1584,6 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-lenovo-hr630.dtb \
- 	aspeed-bmc-lenovo-hr855xg2.dtb \
- 	aspeed-bmc-microsoft-olympus.dtb \
--	aspeed-bmc-nuvia-dc-scm.dtb \
- 	aspeed-bmc-opp-lanyang.dtb \
- 	aspeed-bmc-opp-mihawk.dtb \
- 	aspeed-bmc-opp-mowgli.dtb \
-@@ -1597,6 +1596,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-opp-witherspoon.dtb \
- 	aspeed-bmc-opp-zaius.dtb \
- 	aspeed-bmc-portwell-neptune.dtb \
-+	aspeed-bmc-qcom-dc-scm-v1.dtb \
- 	aspeed-bmc-quanta-q71l.dtb \
- 	aspeed-bmc-quanta-s6q.dtb \
- 	aspeed-bmc-supermicro-x11spi.dtb \
-diff --git a/arch/arm/boot/dts/aspeed-bmc-nuvia-dc-scm.dts b/arch/arm/boot/dts/aspeed-bmc-qcom-dc-scm-v1.dts
-similarity index 97%
-rename from arch/arm/boot/dts/aspeed-bmc-nuvia-dc-scm.dts
-rename to arch/arm/boot/dts/aspeed-bmc-qcom-dc-scm-v1.dts
-index f4a97cfb0f23..259ef3f54c5c 100644
---- a/arch/arm/boot/dts/aspeed-bmc-nuvia-dc-scm.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-qcom-dc-scm-v1.dts
-@@ -6,8 +6,8 @@
- #include "aspeed-g6.dtsi"
- 
- / {
--	model = "Nuvia DC-SCM BMC";
--	compatible = "nuvia,dc-scm-bmc", "aspeed,ast2600";
-+	model = "Qualcomm DC-SCM V1 BMC";
-+	compatible = "qcom,dc-scm-v1-bmc", "aspeed,ast2600";
- 
- 	aliases {
- 		serial4 = &uart5;
+The first patch in the series is a revert of  [2] (landed in pci-next).
+Either both patches should be applied or both should be dropped.
+
+Patchseries dependecies: [3] (for the schema change).
+
+Changes since v11 (suggested by Johan):
+ - Added back reporting errors for the "msi0" interrupt,
+ - Stopped overriding num_vectors field if it is less than the amount of
+   MSI vectors deduced from interrupt list,
+ - Added a warning (and an override) if the host specifies more MSI
+   vectors than available,
+ - Moved has_split_msi_irq variable to the patch where it is used.
+
+Changes since v10:
+ - Remove has_split_msi_irqs flag. Trust DT and use split MSI IRQs if
+   they are described in the DT. This removes the need for the
+   pcie-qcom.c changes (everything is handled by the core (suggested by
+   Johan).
+ - Rebased on top of Lorenzo's DWC branch
+
+Changes since v9:
+ - Relax requirements and stop validating the DT. If the has_split_msi
+   was specified, parse as many msiN irqs as specified in DT. If there
+   are none, fallback to the single "msi" IRQ.
+
+Changes since v8:
+ - Fix typos noted by Bjorn Helgaas
+ - Add missing links to the patch 1 (revert)
+ - Fix sm8250 interrupt-names (Johan)
+ - Specify num_vectors in qcom configuration data (Johan)
+ - Rework parsing of MSI IRQs (Johan)
+
+Changes since v7:
+ - Move code back to the dwc core driver (as required by Rob),
+ - Change dt schema to require either a single "msi" interrupt or an
+   array of "msi0", "msi1", ... "msi7" IRQs. Disallow specifying a
+   part of the array (the DT should specify the exact amount of MSI IRQs
+   allowing fallback to a single "msi" IRQ),
+ - Fix in the DWC init code for the dma_mapping_error() return value.
+
+Changes since v6:
+ - Fix indentation of the arguments as requested by Stanimir
+
+Changes since v5:
+ - Fixed commit subject and in-comment code according to Bjorn's
+   suggestion,
+ - Changed variable idx to i to follow dw_handle_msi_irq() style.
+
+Changes since v4:
+ - Fix the minItems/maxItems properties in the YAML schema.
+
+Changes since v3:
+ - Reimplement MSI handling scheme in the Qualcomm host controller
+   driver.
+
+Changes since v2:
+ - Fix and rephrase commit message for patch 2.
+
+Changes since v1:
+ - Split a huge patch into three patches as suggested by Bjorn Helgaas
+ - snps,dw-pcie removal is now part of [3]
+
+[1] https://git.codelinaro.org/clo/la/kernel/msm-4.14/-/commit/671a3d5f129f4bfe477152292ada2194c8440d22
+[2] https://lore.kernel.org/linux-arm-msm/20211214101319.25258-1-manivannan.sadhasivam@linaro.org/
+[3] https://lore.kernel.org/linux-arm-msm/20220422211002.2012070-1-dmitry.baryshkov@linaro.org/
+
+
+Dmitry Baryshkov (8):
+  PCI: qcom: Revert "PCI: qcom: Add support for handling MSIs from 8
+    endpoints"
+  PCI: dwc: Correct msi_irq condition in dw_pcie_free_msi()
+  PCI: dwc: Convert msi_irq to the array
+  PCI: dwc: split MSI IRQ parsing/allocation to a separate function
+  PCI: dwc: Handle MSIs routed to multiple GIC interrupts
+  PCI: dwc: Implement special ISR handler for split MSI IRQ setup
+  dt-bindings: PCI: qcom: Support additional MSI interrupts
+  arm64: dts: qcom: sm8250: provide additional MSI interrupts
+
+ .../devicetree/bindings/pci/qcom,pcie.yaml    |  53 +++-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |  12 +-
+ drivers/pci/controller/dwc/pci-dra7xx.c       |   2 +-
+ drivers/pci/controller/dwc/pci-exynos.c       |   2 +-
+ .../pci/controller/dwc/pcie-designware-host.c | 243 +++++++++++++-----
+ drivers/pci/controller/dwc/pcie-designware.h  |   2 +-
+ drivers/pci/controller/dwc/pcie-keembay.c     |   2 +-
+ drivers/pci/controller/dwc/pcie-qcom.c        |   1 -
+ drivers/pci/controller/dwc/pcie-spear13xx.c   |   2 +-
+ drivers/pci/controller/dwc/pcie-tegra194.c    |   2 +-
+ 10 files changed, 246 insertions(+), 75 deletions(-)
+
 -- 
-2.25.1
+2.35.1
 
