@@ -2,115 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE6B85310EC
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:20:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56386531020
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:19:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235391AbiEWMZ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 08:25:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57770 "EHLO
+        id S235405AbiEWMcg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 08:32:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235333AbiEWMZ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 08:25:57 -0400
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9A7DFF8;
-        Mon, 23 May 2022 05:25:56 -0700 (PDT)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-e93bbb54f9so18162327fac.12;
-        Mon, 23 May 2022 05:25:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=m/GTLwoTiTehcRS4r9a+ERLbn5bIsSAK2Ky6sWKNN9Q=;
-        b=X9NwGgiKvXtec91ZzOnkufErn3M0W3j43DhaRGzCbkq/qD1FRySacAImN5za9zzXBs
-         nEpusZvVSel5YQARUYBRXKtfLRREDu+vbQeP/qcFMLRbEWrayDZ/1nu5bmocHhWjPcgc
-         Vp1RlMwcC2h47c1hbfGhAdS/eMPxG/mIu3/FvSLNGIt7jYYUwP+82q34nlR6gTcujIzt
-         CeNe76rj+jHEaxojHtrjUlIF36Q48+kPwckuDeYcvecJ83ksdOiZI2/w3jhRTgkx5L8b
-         +j21+0U5M3TX2tWyUmFQst62CgDS6BBmhBi1ABsD4zdH/W9ItBlSj+rFASPxi8Imrnvd
-         b7mQ==
-X-Gm-Message-State: AOAM530BEQIcxIRgELZfLotGHFYVwJ6cWNNcHSyUQQ1pN2weGaCZHbh3
-        HS+eyl3RKzHsl5liaFe5xA==
-X-Google-Smtp-Source: ABdhPJyakI0goXn872cMHPFcb39rYcWU/v/szd30xaKjCwB1d4ycwJxN1SyKvhnnoyGPlYMPK/+eZA==
-X-Received: by 2002:a05:6870:538f:b0:e1:def7:7640 with SMTP id h15-20020a056870538f00b000e1def77640mr11205240oan.34.1653308755763;
-        Mon, 23 May 2022 05:25:55 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id x14-20020a05683000ce00b0060603221261sm3946145oto.49.2022.05.23.05.25.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 May 2022 05:25:55 -0700 (PDT)
-Received: (nullmailer pid 1362443 invoked by uid 1000);
-        Mon, 23 May 2022 12:25:54 -0000
-Date:   Mon, 23 May 2022 07:25:54 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Harsh Agarwal <quic_harshq@quicinc.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com
-Subject: Re: [RFC 1/2] dt-bindings: usb: dwc3: Add support for multiport
- related properties
-Message-ID: <20220523122554.GA416176-robh@kernel.org>
-References: <1652963695-10109-1-git-send-email-quic_harshq@quicinc.com>
- <1652963695-10109-2-git-send-email-quic_harshq@quicinc.com>
+        with ESMTP id S235417AbiEWMcd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 08:32:33 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E0B3427E6
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 05:32:31 -0700 (PDT)
+Received: from tr.lan (ip-86-49-12-201.net.upcbroadband.cz [86.49.12.201])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 661E78405A;
+        Mon, 23 May 2022 14:32:28 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1653309148;
+        bh=IzA7L8qOjI88qhKIqI5rjTpURawuwiBN15MPJ8tzApI=;
+        h=From:To:Cc:Subject:Date:From;
+        b=DvTi0rQ3jP9YZUhJRGJTEfPok/BygKoBjdxXFzbCHq4tODd7o4mG68ElbnuRtVLoB
+         IbDdNVy3cYbSEmmcnoQjfj345+D6OvwLk2BF/Ds39njIDBS9yfj3q+cfW9uG/UqRHZ
+         m6rIKj7lzP7cpGLLU2pncexiAAUGt8nVOaEQfwgX/HnHB6aWFE5e8dvDbUbzUbryH2
+         +yk35x4iNCJd9WaeRVm+TSGfIPZIfHPNLoxwaaOKs/hWDhv+CpHeaQdESu1wcc8+3P
+         Sk2TzQ+uoWhE9rIzTmyZPoi2F/Xjfx/WboMYGwtP8YfCLGcRv2UUrVmVGK9Rkk2UlZ
+         HsaCTLjbEIvRQ==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@denx.de>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx8mm: Add SNVS LPGPR
+Date:   Mon, 23 May 2022 14:32:23 +0200
+Message-Id: <20220523123223.9031-1-marex@denx.de>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1652963695-10109-2-git-send-email-quic_harshq@quicinc.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 19, 2022 at 06:04:54PM +0530, Harsh Agarwal wrote:
-> Added support for multiport, mport, num-ssphy and num-hsphy
-> properties. These properties are used to support devices having
-> a multiport controller.
-> 
-> Signed-off-by: Harsh Agarwal <quic_harshq@quicinc.com>
-> ---
->  .../devicetree/bindings/usb/snps,dwc3.yaml         | 55 ++++++++++++++++++++++
->  1 file changed, 55 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> index f4471f8..39c61483 100644
-> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> @@ -341,6 +341,35 @@ properties:
->        This port is used with the 'usb-role-switch' property  to connect the
->        dwc3 to type C connector.
->  
-> +  multiport:
-> +    description:
-> +      If a single USB controller supports multiple ports, then it's referred to as
-> +      a multiport controller. Each port of the multiport controller can support
-> +      either High Speed or Super Speed or both and have their own PHY phandles. Each
-> +      port is represented by "mport" node and all the "mport" nodes are grouped
-> +      together inside the "multiport" node where individual "mport" node defines the
-> +      PHYs supported by that port.
-> +    required:
-> +      - mport
-> +
-> +  num-hsphy:
-> +    description: Total number of HS-PHYs defined by the multiport controller.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +  num-ssphy:
-> +    description: Total number of SS-PHYs defined by the multiport controller.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
+Add SNVS LPGPR bindings to MX8M Mini, the LPGPR is used to store
+boot counter.
 
-These seem redundant. Can't you count ports/phys?
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Fabio Estevam <festevam@denx.de>
+Cc: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: devicetree@vger.kernel.org
+To: linux-arm-kernel@lists.infradead.org
+---
+NOTE: Depends on
+  https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git/commit/?h=for-next&id=fee6de80bdd3df976a43f3092a165cb43c072f20
+---
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-> +
-> +  mport:
-> +    description: Each mport node represents one port of the multiport controller.
-> +    patternProperties: "^mport@[0-9a-f]+$"
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+index facf3ca4d52e0..c5515a6f129c7 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+@@ -611,6 +611,11 @@ snvs_pwrkey: snvs-powerkey {
+ 					wakeup-source;
+ 					status = "disabled";
+ 				};
++
++				snvs_lpgpr: snvs-lpgpr {
++					compatible = "fsl,imx8mm-snvs-lpgpr",
++						     "fsl,imx7d-snvs-lpgpr";
++				};
+ 			};
+ 
+ 			clk: clock-controller@30380000 {
+-- 
+2.35.1
 
-Think about how the USB device binding fits into this. A hub vs. 
-multiple root ports doesn't seem much different.
-
-Rob
