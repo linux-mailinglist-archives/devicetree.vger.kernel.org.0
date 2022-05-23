@@ -2,98 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA6C053131A
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:23:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5392531256
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:22:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236518AbiEWNpj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 09:45:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60246 "EHLO
+        id S236575AbiEWNvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 09:51:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236497AbiEWNpi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 09:45:38 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8DBC55375
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 06:45:36 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id u30so25650456lfm.9
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 06:45:36 -0700 (PDT)
+        with ESMTP id S236789AbiEWNvF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 09:51:05 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E120A17583
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 06:51:03 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id c19so12607900lfv.5
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 06:51:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=zc+H13M7Untcjwr72zICcQjR3S3/6AC2C3IvRsS1YwE=;
-        b=z8izSdPl0Mu0tqiQDCU131vyaSxZTaquXhrE1uVwkbEE8mczLsr8wjL8/+YYtgKxIy
-         QNYcFlVBCUPUH7rRRGQUGcdiQss40NqB1QxOCvv/+3RZkr0xBNt5zafpeBpj4/UGIaa9
-         Bx+MN+htpLYPg4i8ASbECiSSSiokzLbPte2Cclf/rMOjuuYsH/TJIMNL4iOCUueEowQr
-         qNsiZhJBxTBysmCTSxJw1jp8R051VVOf6ppv+wESpZqyMpF6FkZe304dAvZNJWXfMVSm
-         QtZapxr3CD9mw8T8vWcJS5PTt9Dvj9BHU2idrV8uSN3DzfMsrgpmdrwoOjEbmP2t9DWF
-         PUdA==
+        bh=uAXzKyDQ+t6h+S4+NIkziTPLlQ9i5Tq10BEMMZUmQss=;
+        b=Fip6NNMAiaRB7Z8StmtMAN0lXZeUQ5g3+36xC9ypiVaUKn8pJePWW0eOKQlXRX/7at
+         bWmv7jeDuIup3jBskWCKZqhUEvleUqrJjxFYICHivIqco7Yy/akcvNj0uhXc+c5UzzDv
+         ktDwONE5t5pNg26oRwdeyKX4+nMb5FPJhOn2XkSQnU+Sy/dteeBCaII1Yt3pjkelBRQl
+         6qzaqxAEo0+mJmenf9Ho1OiONPrY7ymQQ+AqQsQFUw8CypOwMBP0Jbm1CrYN27Hec1h1
+         lMpVzQ+a6Oi9AP1wh2SfNBAHeLHlbU9FGHdTLwbMUJOEhdpKiW2Xe+Do4OIlVptcAW0F
+         CdEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=zc+H13M7Untcjwr72zICcQjR3S3/6AC2C3IvRsS1YwE=;
-        b=WnLHte27GO5Z0JUwWUTXEqudzWL1KZQdoXEsNAaRcYDtNrFeb/8btRdIVs1d9eEDeu
-         pc50TBKFH4AEwh7un3asMUmMIr/zCPUAraZB14BNprJXBevYTf2NNuV4d0DvaYb+oVdv
-         WGOPDrSPr6KH2hpU1trYXT1Kw8Q3DcmNy8mSHkeEgcYnkTtYCGSw0/49abBh2AUytzBG
-         7IPRyC1qb+xvM18n54H8/FHMj3U/MxFmQeGLs3p4Vjm3dr8I86vUgWF/UsUFCaIHQ+EH
-         sCbv26lNBA3g1MtRyvwu3LzdUJq+P/FlZcdYFSNESPcnL4MMzne2LzEIEdMTDwNw9Zgo
-         zXfA==
-X-Gm-Message-State: AOAM531wS8Viua3X0u86yJSXhlfgXUlAlO5Li+/QSo7gY9uDrXXFHVu4
-        NBu18RpsfoOhK6sIVJEtja47mw==
-X-Google-Smtp-Source: ABdhPJxvtrvCzlWyYIRa7RH0L8nWT5DlujuzYkpsoahxhweS6xiwwYRH8VmTez+Udy3bnTWkvO6fUQ==
-X-Received: by 2002:ac2:41cf:0:b0:478:69ce:f6ed with SMTP id d15-20020ac241cf000000b0047869cef6edmr5795048lfi.186.1653313535162;
-        Mon, 23 May 2022 06:45:35 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id a4-20020ac25204000000b00477a1b603basm1987170lfl.98.2022.05.23.06.45.33
+        bh=uAXzKyDQ+t6h+S4+NIkziTPLlQ9i5Tq10BEMMZUmQss=;
+        b=5q1kmwibKOiAQ7QHkKVNRXb3iAa3qY6lVEKfeh1CttiIRhzOQURO0tziXA5PIYOz8A
+         RKmQW11HUSWyEegcCUEWMHVxKA6dXh8928wHnnC5KRmF9t+v4U/Mimu8QAc4vQFhjmbS
+         PuEe2JOTEMtip9gZjKNiVEO6iESZsys/mMlOvNMs/48I1XlLxRY5n2YTgYsjxwRwHaBo
+         9RqJmYDm6ZQSR7bWPzws8ViG+IbyEvytcQOi41++ZCDMeIUnoKw7iLxwY7hihmsvuBYN
+         snM5Koi+YPtDO73ay1Ec6POed1XaGAp37yD+7Q2zhmhaWsmvuU2wav8qITi2EO41sRxs
+         Is4A==
+X-Gm-Message-State: AOAM531EBQ/Q0kK14hbqUC4QiyRkLv2vdCGIrSpzPwPrB0PkJtMV/UaD
+        9HKi9oE3V/n3dLoZ4Y5FgFXLrw==
+X-Google-Smtp-Source: ABdhPJwGrRxXpollzvYIVkw2Fl6kHuKw0ricDXC/aaLdVEsj32LXv5DkA/n4FjS1R9nA4BPv/XhV6Q==
+X-Received: by 2002:a05:6512:39cb:b0:478:5a36:5fca with SMTP id k11-20020a05651239cb00b004785a365fcamr10490514lfu.409.1653313862247;
+        Mon, 23 May 2022 06:51:02 -0700 (PDT)
+Received: from [192.168.1.102] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id a10-20020ac2520a000000b0047255d211a6sm1983038lfl.213.2022.05.23.06.51.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 May 2022 06:45:34 -0700 (PDT)
-Message-ID: <661ebb3d-f1c1-1a6a-8723-4d3dff2b92b4@linaro.org>
-Date:   Mon, 23 May 2022 15:45:32 +0200
+        Mon, 23 May 2022 06:51:01 -0700 (PDT)
+Message-ID: <e7bbe076-a1d1-a005-8110-5d35bc0d80de@linaro.org>
+Date:   Mon, 23 May 2022 16:50:51 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v1 09/19] dt-bindings: reset: add syscon property
+ Thunderbird/91.7.0
+Subject: Re: [PATCH 1/1] arm64: dts: qcom: qrb5165-rb5: Enable the IMX577 on
+ cam1
 Content-Language: en-US
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, catalin.marinas@arm.com,
-        will@kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>, jirislaby@kernel.org,
-        shawnguo@kernel.org, bjorn.andersson@linaro.org,
-        geert+renesas@glider.be, marcel.ziswiler@toradex.com,
-        Vinod Koul <vkoul@kernel.org>, biju.das.jz@bp.renesas.com,
-        nobuhiro1.iwamatsu@toshiba.co.jp, robert.hancock@calian.com,
-        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
-        lkundrak@v3.sk, soc@kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-watchdog@vger.kernel.org,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-References: <20220522155046.260146-1-tmaimon77@gmail.com>
- <20220522155046.260146-10-tmaimon77@gmail.com>
- <d02b042c-7f6e-8d2b-a5eb-c7ac4a0eea7d@linaro.org>
- <CAP6Zq1gGZguC9h4A6KL8x1QLf3MAZvvBiA2nmcK_4PS7AdNa+Q@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAP6Zq1gGZguC9h4A6KL8x1QLf3MAZvvBiA2nmcK_4PS7AdNa+Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
+        bjorn.andersson@linaro.org
+Cc:     mchehab@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, mmitkov@quicinc.com, jgrahsl@snap.com,
+        hfink@snap.com
+References: <20220518133004.342775-1-bryan.odonoghue@linaro.org>
+ <20220518133004.342775-2-bryan.odonoghue@linaro.org>
+ <33abcc93-13f1-d6f5-36a3-6ab796f124f9@linaro.org>
+ <19c92f9d-fa1c-fbe8-50ef-324da3e00695@linaro.org>
+From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <19c92f9d-fa1c-fbe8-50ef-324da3e00695@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -101,24 +81,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/05/2022 15:44, Tomer Maimon wrote:
-> On Mon, 23 May 2022 at 10:39, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org <mailto:krzysztof.kozlowski@linaro.org>>
-> wrote:
+Hi Bryan,
+
+On 5/22/22 20:10, Bryan O'Donoghue wrote:
+> On 18/05/2022 20:09, Vladimir Zapolskiy wrote:
+>>
+>> I run on you branch on top of linux-next, but switch build options from
+>> modules to built-in
+>>
+>>      CONFIG_I2C_QCOM_CCI=y
+>>      CONFIG_VIDEO_QCOM_CAMSS=y
+>>
+>> I didn't get the sensor initialized and hence there is no /dev/media0 node:
+>>
+>> [    0.620205] i2c-qcom-cci ac50000.cci: Found 19200000 cci clk rate
+>> while 37500000 was expected
+>> [    0.620551] i2c 20-001a: Fixing up cyclic dependency with ac6a000.camss
+>> [    0.620754] imx412 20-001a: Looking up dovdd-supply from device tree
+>> [    0.620797] imx412 20-001a: Looking up avdd-supply from device tree
+>> [    0.620860] imx412 20-001a: Looking up dvdd-supply from device tree
+>> [    0.620876] duplicated lane 1 in clock-lanes, using defaults
+>> [    0.622789] imx412 20-001a: failed to find sensor: -5
+>> [    0.622880] imx412: probe of 20-001a failed with error -5
+>>
+>> I believe the problem could be related to CCI, please remind me, are
+>> there I2C bus pull-ups?
 > 
->     On 22/05/2022 17:50, Tomer Maimon wrote:
->     > Describe syscon property that handles GCR registers
->     > in Nuvoton BMC NPCM reset driver.
+> Hmm.
 > 
->     Please wrap according to Linux standards:
->     https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
->     <https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586>
+> Just trying to replicate this on linux-next
 > 
-> Which problem do you see with the commit explanation body?
+> https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=linux-next-22-05-22%2bimx577-rb5
+> 
+> root@linaro-gnome:~# zcat /proc/config.gz | grep -e CONFIG_I2C_QCOM_CCI
+> -e CONFIG_VIDEO_QCOM_CAMSS
+> CONFIG_I2C_QCOM_CCI=y
+> CONFIG_VIDEO_QCOM_CAMSS=y
+> 
+> root@linaro-gnome:~# uname -a
+> Linux linaro-gnome 5.18.0-rc7-next-20220518-00006-g3beef4d1d353-dirty
+> #40 SMP PREEMPT Sun May 22 17:53:29 IST 2022 aarch64 GNU/Linux
+> 
+> root@linaro-gnome:~# cam -l
+> Available cameras:
+> 1: 'imx412' (/base/soc@0/cci@ac50000/i2c-bus@0/camera@1a)
+> 
+> are you compiling everything in ?
 
-It is wrapped not according to Linux standards.
+it's some kind of a race related to probes of CAMSS, CCI and IMX412 drivers.
 
+Since I'm able to reproduce it, I'll take the analysis on myself, and it does not
+interfere with your patch series.
 
-
-Best regards,
-Krzysztof
+--
+Best wishes,
+Vladimir
