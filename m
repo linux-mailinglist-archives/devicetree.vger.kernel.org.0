@@ -2,109 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77151531340
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:23:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F7C8531332
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:23:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237174AbiEWO0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 10:26:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38042 "EHLO
+        id S237131AbiEWOcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 10:32:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237141AbiEWO0p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 10:26:45 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 835712AC6A
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 07:26:43 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id p4so24475191lfg.4
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 07:26:43 -0700 (PDT)
+        with ESMTP id S237180AbiEWOcj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 10:32:39 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49E3A3334E
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 07:32:37 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id gi33so20737461ejc.3
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 07:32:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=G8pSkplAhfSaVtqePqq8XjdcWWlymy9x8EhPSya+xcQ=;
-        b=lyhx55/zAIKWU6MNtflmwMRqCG3WK3SvnlXBXjiHgsLYWJSvlsGHURt2CfjXGw+w5Z
-         9T/POO0IfWlxnm4ldWUCRi3apjNO415HWjuc39OoXNAAwX4IGXl8DNXTlHR+XFeoSJ9p
-         ANhgfgJGy6QNR135WdYD6NGcQ6YwEPM2b22/HGCJoWDokpUm/cpTJdqUsFkRKzI83br0
-         lHzoZTZdQLhPjghrdM9RLgmXELx7Y0Hp5ahgfmltIRWRh0vIOfL6daJIuXxC4l3vqGpQ
-         MvPNaDEINtn11/AdRN7lye2gTDxYFv0orSrAwwsS1jgDwvlJjV1ZgVVNrOdTlpgFMDw2
-         P81A==
+        d=fairphone.com; s=fair;
+        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
+         :from:to:references:in-reply-to;
+        bh=mlEN37RGVVHIHvr+/hBakjwM1KtuFOZ5STJWC6VPCe4=;
+        b=Rcj4RHh43jilygk/Vks3FrXhRojthZEyi5e2TNhpmMYxd9vZI96vQ9WaZOyTTw7Am8
+         FpK6yZOa40KBLEsOTHiassJOaUUZVs2jXPuV2dIKLl46bdK6lwUOmR+f/8pBfm0FRS2+
+         cS3bssbbTMu/a/92yFs9/Ou3qcRZoCM4wwu5uJxOZGQr7TM40i9HEB/tPD4WMx/DPYTA
+         +NPXoSYnVdLSPjy4fM8ZRZfsCXoIvuDJ/GflHI7aDqnd2mC8nh6SHaY9XuhX3CmLGil3
+         W59GLADwbzpdcsyiqZ/MGGQX0R7/nzkCtn7NwXaRe97p54CU2epvXC50b9mzLvUEH/CJ
+         HS/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=G8pSkplAhfSaVtqePqq8XjdcWWlymy9x8EhPSya+xcQ=;
-        b=GA3x9h+ng+IZcKMhkNUhG41sB3GrA04sbYBN7QUX5aWhLohN6tjDLenUfNupQc0NWF
-         SMsJMHUfjo9mHIQ3IbBfSHJHGeUXmyyHpc5l4yx8E5ZvkeZiCIlBo/uFlC5RFnzgSsoW
-         3S0RTKDB2tk6zFzV0FTurwRz1hA7YAWbbx6+kHSX1jHtMa7lqmAp7IUhEYgDj59tXEkr
-         v7pTJD1hRDznSGsGLGMYLq5Umf8izJSKeoFWc6PqAzHX4TyQmbW/i4HhZP0Wlzdq1Ggr
-         0TzanCbAI4kcCfSQAyhDoSYRjs7iavfeCe7iuPn+5FH0KNyFeUtvctxi+6/cyLe8h1X/
-         PQBQ==
-X-Gm-Message-State: AOAM532tR7aT/3ma75bRdSfoVlBuwcYNqgg9vx1VU3bwbH25y0EZg4EO
-        DcWLTrbCskX0/OD5fkP1zZNXJA==
-X-Google-Smtp-Source: ABdhPJz+utSxZTs2n/fqh1e5tT8yA+mZZbm0vbet8rrFRC+nV5H+flGflipWNlxlkpty5umsiRR7UQ==
-X-Received: by 2002:a05:6512:33ce:b0:478:83ea:9e61 with SMTP id d14-20020a05651233ce00b0047883ea9e61mr433374lfg.264.1653316001764;
-        Mon, 23 May 2022 07:26:41 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id h16-20020a0565123c9000b00477a0eb9ab8sm1056497lfv.133.2022.05.23.07.26.39
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:cc:subject:from:to:references:in-reply-to;
+        bh=mlEN37RGVVHIHvr+/hBakjwM1KtuFOZ5STJWC6VPCe4=;
+        b=udDVwhqBi9sm/wxaljYIR8RDAa3g6NLY9MYuQbHngyMFei+sNmPpTcvurU83eqRa+F
+         VoNI5mCugWAH9WECVDZlQj9rbt9GG0d/g5PAWpX7N4SCzDICr+gpjPMxyZpj37a6Uz99
+         Hj1Uv13au0GkJXYrf4oQbCTN3t17yEf5+wPrcmCGE5CWjDtLVezScc1BDFWHkzZth6VT
+         C6mWM2ntWG9mVK6yffAu/ZEt9w09Gd5kJQ55uXQ/sdcivQju4Nd3a/eS7ufCfYLhOtRj
+         r0iowe+oRuV+5At5hgrUm0s5vqjJqujJMDt+DXx571puj8aq+iyMA3W2quPjhQxBhSrO
+         RhGQ==
+X-Gm-Message-State: AOAM532KEGrSBLupqWqbb54Efj9YOIsQ3dAj4dy4ZyFMCDiRQI6wAbXi
+        QBzrr+20d7PHikAHVypEEwvBvQ==
+X-Google-Smtp-Source: ABdhPJyusWKZbqf11Faic6AnpiRE4C9fByFH9k2mbyP2EBgTg9fTPLO26mlUksfmbTdWrZopA5QUqg==
+X-Received: by 2002:a17:907:1612:b0:6fe:d943:312f with SMTP id hb18-20020a170907161200b006fed943312fmr5489472ejc.263.1653316355711;
+        Mon, 23 May 2022 07:32:35 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id y7-20020a1709060a8700b006fec3b2e4f3sm2334343ejf.205.2022.05.23.07.32.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 May 2022 07:26:41 -0700 (PDT)
-Message-ID: <62562cdf-93e3-f642-5bbd-48329eff33ea@linaro.org>
-Date:   Mon, 23 May 2022 16:26:39 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v1 11/19] dt-bindings: reset: npcm: Add support for
- NPCM8XX
-Content-Language: en-US
-To:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Tomer Maimon <tmaimon77@gmail.com>
-Cc:     Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        =?UTF-8?Q?Bj=c3=b6rn_Andersson?= <bjorn.andersson@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Robert Hancock <robert.hancock@calian.com>,
-        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
-        Lubomir Rintel <lkundrak@v3.sk>, arm-soc <soc@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Linux Watchdog Mailing List <linux-watchdog@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-References: <20220522155046.260146-1-tmaimon77@gmail.com>
- <20220522155046.260146-12-tmaimon77@gmail.com>
- <86cd6a37-70ad-3a90-bc8a-dcd8b41f1175@linaro.org>
- <CAP6Zq1i2Wj4FCA4-eseVoJyMof5=ocFCUcitVquJqYJ4Z3JTYQ@mail.gmail.com>
- <CAMuHMdVCCrKTpNHng2_kKGViuEXf=O3MsfpjjzMusuUcKE6HiA@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAMuHMdVCCrKTpNHng2_kKGViuEXf=O3MsfpjjzMusuUcKE6HiA@mail.gmail.com>
+        Mon, 23 May 2022 07:32:35 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Date:   Mon, 23 May 2022 16:32:34 +0200
+Message-Id: <CK77QG2WNJ7B.EIXG4S6SVQ2D@otso>
+Cc:     <~postmarketos/upstreaming@lists.sr.ht>,
+        <phone-devel@vger.kernel.org>, "Andy Gross" <agross@kernel.org>,
+        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
+        "Georgi Djakov" <djakov@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Odelu Kukatla" <okukatla@codeaurora.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/5] dt-bindings: interconnect: Add Qualcomm SM6350
+ NoC support
+From:   "Luca Weiss" <luca.weiss@fairphone.com>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>
+X-Mailer: aerc 0.9.0
+References: <20220520070318.48521-1-luca.weiss@fairphone.com>
+ <20220520070318.48521-3-luca.weiss@fairphone.com>
+ <7b451dfb-8353-4a4e-1834-a01feaa267d2@linaro.org>
+ <CK4KPEWM9165.2LR9ZUG2GGK6Q@otso>
+ <b9487ffe-7ed5-077c-3c2c-886746457365@linaro.org>
+In-Reply-To: <b9487ffe-7ed5-077c-3c2c-886746457365@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -113,62 +83,200 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/05/2022 16:22, Geert Uytterhoeven wrote:
-> Hi Tomer,
-> 
-> On Mon, May 23, 2022 at 4:03 PM Tomer Maimon <tmaimon77@gmail.com> wrote:
->> On Mon, 23 May 2022 at 12:01, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->>> On 22/05/2022 17:50, Tomer Maimon wrote:
->>>> Add binding document and device tree binding
->>>> constants for Nuvoton BMC NPCM8XX reset controller.
->>>>
->>>> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> 
->>>> --- /dev/null
->>>> +++ b/include/dt-bindings/reset/nuvoton,npcm8xx-reset.h
->>>> @@ -0,0 +1,124 @@
->>>> +/* SPDX-License-Identifier: GPL-2.0 */
->>>> +// Copyright (c) 2022 Nuvoton Technology corporation.
->>>> +
->>>> +#ifndef _DT_BINDINGS_NPCM8XX_RESET_H
->>>> +#define _DT_BINDINGS_NPCM8XX_RESET_H
->>>> +
->>>> +#define NPCM8XX_RESET_IPSRST1                0x20
->>>> +#define NPCM8XX_RESET_IPSRST2                0x24
->>>> +#define NPCM8XX_RESET_IPSRST3                0x34
->>>> +#define NPCM8XX_RESET_IPSRST4                0x74
->>>
->>> What are these? All IDs should be incremental, decimal and start from 0.
->>
->> Register offset, we use the same method in NPCM7xx. please refer
->> https://elixir.bootlin.com/linux/v5.18/source/include/dt-bindings/reset/nuvoton,npcm7xx-reset.h
->>
->> and the driver asserts the reset according to the reset include definitions
-> 
-> So if they're easy to look up the values, you could do without the
-> definitions? Cfr. the interrupts properties in .dtsi files, where we
-> typically just use the hardcoded numbers.
-> 
-> If you do decide to keep them, a comment explaining their origins
-> would be useful.
-> 
->>>> +
->>>> +/* Reset lines on IP1 reset module (NPCM8XX_RESET_IPSRST1) */
->>>> +#define NPCM8XX_RESET_GDMA0          3
->>>
->>> IDs start from 0 and do not have holes.
->>
->> This represents the reset BIT in the reset register.
-> 
-> Likewise, I think it's a good idea to document that in a comment, cfr.
-> https://elixir.bootlin.com/linux/v5.18/source/include/dt-bindings/power/r8a7795-sysc.h#L8
+Hi Krzysztof,
 
-Renesas is also doing it not correct (just like many others). The
-bindings are not for register bits or offsets. Such data can be DTS but
-not part of bindings. Imagine now you made mistake in this register
-offset and hardware uses slightly different value. What now? Change
-bindings? No. Bindings hold here ID, the abstraction, and ID stays fixed.
+On Fri May 20, 2022 at 4:24 PM CEST, Krzysztof Kozlowski wrote:
+> On 20/05/2022 14:04, Luca Weiss wrote:
+> > Hi Krzysztof,
+> >=20
+> > Thanks for the review!
+> >=20
+> > On Fri May 20, 2022 at 12:31 PM CEST, Krzysztof Kozlowski wrote:
+> >> On 20/05/2022 09:03, Luca Weiss wrote:
+> >>> Add bindings for Qualcomm SM6350 Network-On-Chip interconnect devices=
+.
+> >>>
+> >>> As SM6350 has two pairs of NoCs sharing the same reg, allow this in t=
+he
+> >>> binding documentation, as was done for qcm2290.
+> >>>
+> >>> Because the main qcom,rpmh.yaml file is getting too complicated for o=
+ur
+> >>> use cases, create a new qcom,rpmh-common.yaml and a separate
+> >>> qcom,sm6350-rpmh.yaml that defines our new bindings.
+> >>>
+> >>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> >>> ---
+> >>> Changes since v1:
+> >>> * Split sm6350 into separate yaml with new rpmh-common.yaml
+> >>>
+> >>>  .../interconnect/qcom,rpmh-common.yaml        |  41 +++++
+> >>>  .../interconnect/qcom,sm6350-rpmh.yaml        |  82 ++++++++++
+> >>>  .../dt-bindings/interconnect/qcom,sm6350.h    | 148 ++++++++++++++++=
+++
+> >>>  3 files changed, 271 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/interconnect/qc=
+om,rpmh-common.yaml
+> >>>  create mode 100644 Documentation/devicetree/bindings/interconnect/qc=
+om,sm6350-rpmh.yaml
+> >>>  create mode 100644 include/dt-bindings/interconnect/qcom,sm6350.h
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,rpmh=
+-common.yaml b/Documentation/devicetree/bindings/interconnect/qcom,rpmh-com=
+mon.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..6121eea3e87d
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/interconnect/qcom,rpmh-common=
+.yaml
+> >>> @@ -0,0 +1,41 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/interconnect/qcom,rpmh-common.yam=
+l#
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: Qualcomm RPMh Network-On-Chip Interconnect
+> >>> +
+> >>> +maintainers:
+> >>> +  - Georgi Djakov <georgi.djakov@linaro.org>
+> >>> +  - Odelu Kukatla <okukatla@codeaurora.org>
+> >>
+> >> Is this valid email address?
+> >=20
+> > Will put Georgi and Bjorn as maintainers, as per your other email.
+> >=20
+> >>
+> >>> +
+> >>> +description: |
+> >>> +   RPMh interconnect providers support system bandwidth requirements=
+ through
+> >>> +   RPMh hardware accelerators known as Bus Clock Manager (BCM). The =
+provider is
+> >>> +   able to communicate with the BCM through the Resource State Coord=
+inator (RSC)
+> >>> +   associated with each execution environment. Provider nodes must p=
+oint to at
+> >>> +   least one RPMh device child node pertaining to their RSC and each=
+ provider
+> >>> +   can map to multiple RPMh resources.
+> >>> +
+> >>> +properties:
+> >>> +  '#interconnect-cells':
+> >>> +    enum: [ 1, 2 ]
+> >>
+> >> Why this is an enum?
+> >=20
+> > As a start, just adding that the definitions are copied from
+> > qcom,rpmh.yaml so it's not my invention :) Of course that doesn't mean
+> > that it should be improved where possible!
+> >=20
+> > Either value is supported by the driver (and used upstream). But perhap=
+s
+> > it can use a description to define what the 'parameters' mean.
+> >=20
+> > The second (optional) parameters "is to support different bandwidth
+> > configurations that are toggled by RPMh, depending on the power state o=
+f
+> > the CPU."[0]
+> >=20
+> > A commit message for sc7180 calls it the "tag information" and "The
+> > consumers can specify the path tag as an additional argument to the
+> > endpoints."[1]
+> >=20
+> > Not sure how to properly describe the first property, I guess the
+> > interconnect endpoint? Maybe Georgi can help here.
+> >=20
+> >=20
+> > [0] https://lore.kernel.org/linux-arm-msm/b079a211-d387-7958-bbe2-c41ca=
+c00d269@kernel.org/
+> > [1] https://git.kernel.org/torvalds/c/e23b122
+>
+> Hm, indeed driver supports variable values. It's fine then.
+>
+> >=20
+> >>
+> >>> +
+> >>> +  qcom,bcm-voters:
+> >>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> >>> +    items:
+> >>
+> >> Please implement my previous comments.
+> >=20
+> > Sorry, I looked over the comment in v1.
+> >=20
+> > As far as I can tell in current code only 1 item is used.
+> >=20
+> > If the second parameter of_bcm_voter_get would be used as non-NULL then
+> > qcom,bcm-voter-names gets looked up and the N-th value in qcom,bcm-vote=
+rs
+> > used. But currently qcom,bcm-voter-names is not actively used so only
+> > one gets used.
+> >=20
+> > Do you have a recommendation what to put here? A synthetic limit like
+> > 32 just to have a number there?
+>
+> Let's go with maxItems:1, for both fields.
 
+Do you mean adjusting the example using:
 
-Best regards,
-Krzysztof
+  qcom,bcm-voter-names =3D "apps", "disp";
+  qcom,bcm-voters =3D <&apps_bcm_voter>, <&disp_bcm_voter>;
+
+in qcom,rpmh.yaml then? Otherwise validation fails with maxItems: 1
+
+>
+> >=20
+> >>
+> >>> +      maxItems: 1
+> >>> +    description: |
+> >>
+> >> No need for |
+> >=20
+> > ack
+> >=20
+> >>
+> >>> +      List of phandles to qcom,bcm-voter nodes that are required by
+> >>> +      this interconnect to send RPMh commands.
+> >>> +
+> >>> +  qcom,bcm-voter-names:
+> >>
+> >> What names do you expect here?
+> >=20
+> > Currently unused in mainline but newer downstream kernels[2] use "hlos"
+> > as first parameter, and e.g. "disp" as second one that goes to a
+> > qcom,bcm-voter that's a child of disp_rsc. Not sure exactly what that
+> > does.
+> >=20
+> > [2] https://github.com/atomsand/android_kernel_qcom_devicetree/blob/a6d=
+50810116e8314d64eb63b8862c207b974e0c7/qcom/waipio.dtsi#L1701-L1793
+>
+> The bindings example uses apps and disp, so here would be only "apps".
+
+Here also the above, allow only "apps" for now in the binding and remove
+"disp" from example?
+
+Regards
+Luca
+
+>
+> >>> +
+> >>> +  '#interconnect-cells': true
+> >>
+> >> Since you defined it as enum in rpmh-common, you really expect here
+> >> different values?
+> >=20
+> > Doesn't ": true" here just mean we want the value from the allOf: -
+> > $ref?
+> > But we could in theory make interconnect-cells only accept <2> for
+> > sm6350.
+>
+> Yes, and the $ref defines it as [1, 2], so initially I thought this
+> should be narrowed. However it seems 1 or 2 are still valid for all of
+> Qcom interconnects, so your "true" is correct.
+>
+>
+> Best regards,
+> Krzysztof
+
