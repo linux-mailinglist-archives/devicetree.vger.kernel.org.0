@@ -2,59 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2AFA530E48
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 12:43:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF5D0530D6C
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 12:42:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232828AbiEWJR1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 05:17:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37346 "EHLO
+        id S233169AbiEWJb5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 05:31:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232816AbiEWJR0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 05:17:26 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C350B1C915;
-        Mon, 23 May 2022 02:17:25 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 9BD4C1F42CC0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1653297444;
-        bh=REzwy2jbEfxDlRNJ3gYCepX00BBtXmnPigKqEo22lqY=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=D9FDcKpm/V6yRmd3FNGHKKAzj+bP6sI/RUvJnUGA/L9Q6NnMjaWZiLg17f8OgDGs6
-         /kqGAl1ZRQJr/1ejHXORNPOvXyy0OcCizWKPiZ1gymqf6/d7cQwbxcfku2jJUrYuH0
-         BUWQ68P3a9lWBYW6+n3G8Hsb909xRgIF1gnftepXT0yyZjPRTgCDoMXtJScnBdDeRf
-         Mfb/mKZ/CsAltCPWmyxDZ1zpIZ4gJijxWsfI4sdSkZKUqmfvsuyRBLMhmFN/qTzzQf
-         m62m4JEBtGiXw/bPkfhRDGdCrtBZMVZDhpPwe5d4uDzhVSLw+E+tI8uxxB7726VuWm
-         kkKvbGsDoNX4g==
-Message-ID: <fed16322-1ffb-7744-38c5-4854882778e0@collabora.com>
-Date:   Mon, 23 May 2022 11:17:21 +0200
+        with ESMTP id S233203AbiEWJbx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 05:31:53 -0400
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A521B167E9;
+        Mon, 23 May 2022 02:31:46 -0700 (PDT)
+Received: from uucp (helo=alpha)
+        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
+        id 1nt4Os-0001Pn-01; Mon, 23 May 2022 11:30:54 +0200
+Received: by alpha.franken.de (Postfix, from userid 1000)
+        id 154F5C02F4; Mon, 23 May 2022 11:19:17 +0200 (CEST)
+Date:   Mon, 23 May 2022 11:19:17 +0200
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     =?utf-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
+        <zhouyanjie@wanyeetech.com>
+Cc:     paul@crapouillou.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
+        rick.tyliu@ingenic.com
+Subject: Re: [PATCH 0/3] Refresh device tree and defconfig for Ingenic SoCs
+ and boards.
+Message-ID: <20220523091916.GF5069@alpha.franken.de>
+References: <1652384021-46309-1-git-send-email-zhouyanjie@wanyeetech.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v8 19/19] clk: mediatek: reset: Add infra_ao reset support
- for MT8186
-Content-Language: en-US
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, mturquette@baylibre.com,
-        sboyd@kernel.org, matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     p.zabel@pengutronix.de, nfraprado@collabora.com,
-        chun-jie.chen@mediatek.com, wenst@chromium.org,
-        runyang.chen@mediatek.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220523060056.24396-1-rex-bc.chen@mediatek.com>
- <20220523060056.24396-20-rex-bc.chen@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220523060056.24396-20-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+In-Reply-To: <1652384021-46309-1-git-send-email-zhouyanjie@wanyeetech.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,16 +47,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 23/05/22 08:00, Rex-BC Chen ha scritto:
-> The infra_ao reset is needed for MT8186.
-> - Add mtk_clk_rst_desc for MT8186.
-> - Add register reset controller function for MT8186 infra_ao.
-> - Add infra_ao_idx_map for MT8186.
+On Fri, May 13, 2022 at 03:33:38AM +0800, 周琰杰 (Zhou Yanjie) wrote:
+> 1.Add PWM node for X1830 SoC from Ingenic.
+> 2.Add SSI nodes for X1000 SoC and X1830 SoC from Ingenic.
+> 3.Refresh SSI related nodes in CU1000-Neo and CU1830-Neo.
+> 4.The X1830 SoC used by the CU1830-Neo and the X1000 SoC
+>   used by the CU1000-Neo are both single-core processors,
+>   therefore the "OST_CLK_PERCPU_TIMER" ABI should not be
+>   used in the OST nodes of the CU1830-Neo and CU1000-Neo,
+>   it is just a coincidence that there is no problem now.
+>   So replace the misused "OST_CLK_PERCPU_TIMER" ABI with
+>   the correct "OST_CLK_EVENT_TIMER" ABI.
+> 5.Refresh the defconfig files of the CU1000-Neo board and
+>   the CU1830-Neo board, remove the selection of SPI-GPIO,
+>   and add the selection of SSI.
 > 
-> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-> Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> Tested-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> 周琰杰 (Zhou Yanjie) (3):
+>   MIPS: Ingenic: Add PWM nodes for X1830.
+>   MIPS: Ingenic: Refresh device tree for Ingenic SoCs and boards.
+>   MIPS: Ingenic: Refresh defconfig for CU1000-Neo and CU1830-Neo.
+> 
+>  arch/mips/boot/dts/ingenic/cu1000-neo.dts | 77 ++++++++++++++++---------------
+>  arch/mips/boot/dts/ingenic/cu1830-neo.dts | 76 +++++++++++++++---------------
+>  arch/mips/boot/dts/ingenic/x1000.dtsi     | 20 ++++++++
+>  arch/mips/boot/dts/ingenic/x1830.dtsi     | 53 +++++++++++++++++++++
+>  arch/mips/configs/cu1000-neo_defconfig    |  2 +-
+>  arch/mips/configs/cu1830-neo_defconfig    |  2 +-
+>  6 files changed, 154 insertions(+), 76 deletions(-)
+> 
+> -- 
+> 2.7.4
 
-For the code:
+seried applied to mips-next.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Thomas.
+
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
