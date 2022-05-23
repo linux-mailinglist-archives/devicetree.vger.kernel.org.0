@@ -2,65 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73705530B82
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 11:03:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0EC4530B9E
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 11:03:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232194AbiEWI5V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 04:57:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50804 "EHLO
+        id S232366AbiEWI7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 04:59:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232122AbiEWI5R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 04:57:17 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A723B2126A;
-        Mon, 23 May 2022 01:57:15 -0700 (PDT)
-X-UUID: aa432fb806074429acbcf2fa9dfe86da-20220523
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:f8b41018-8812-4d8f-bbfb-801da19abe5f,OB:0,LO
-        B:0,IP:0,URL:5,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:0
-X-CID-META: VersionHash:2a19b09,CLOUDID:3f37467a-5ef6-470b-96c9-bdb8ced32786,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:0,BEC:nil
-X-UUID: aa432fb806074429acbcf2fa9dfe86da-20220523
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
-        (envelope-from <jia-wei.chang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 791407665; Mon, 23 May 2022 16:57:09 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Mon, 23 May 2022 16:57:08 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Mon, 23 May 2022 16:57:08 +0800
-Message-ID: <f2dd851bdabe03c67da520ec1d2cdfdadc95e6f3.camel@mediatek.com>
-Subject: Re: [PATCH v2 0/4] soc: mediatek: svs: add support for mt8186 and
-From:   Jia-Wei Chang <jia-wei.chang@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232308AbiEWI7j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 04:59:39 -0400
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41A023EF3A
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 01:59:38 -0700 (PDT)
+Received: by mail-pg1-x534.google.com with SMTP id q76so13106629pgq.10
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 01:59:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=NMEwaRdkK6gE09/mmANscyqoJ+JW8Xoy8gSdws+X3CU=;
+        b=mkNY3d+5RlbDWdouuXPsy1WvOh+zU87uNKtUTkm9AcaCWm0r9V283zxllQK6aSJoKQ
+         Ucs1qBRgu/49mmaFA5seFi/iJq6QCbChfS2b7YwFwaXDRy1MIYOlLE9ekoe27o4nQtan
+         EYO88bor9rTAR40gMFXe1fFcDUiNgsEuJjG1E=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=NMEwaRdkK6gE09/mmANscyqoJ+JW8Xoy8gSdws+X3CU=;
+        b=td0GijS2ycPs+hqGhGmf20+ZrqouBgqTwTDIh3Mwz8RC+62oON34J1J8RBIO6uwI4N
+         Z8Uzo+t305/BRCBChWTgDc+R8BMiQ0SgAldPYRjS932bri55nAH019QL8h0VZylNZ/5Z
+         b6ywE2Akmbo+baPlc6J2r0fuEUx8B2KaB9g+jL2YvkUmyV/0f/FIJ2Hksj+K0sNQq21K
+         CtSQ/neAUNj+krsQU3Pm1SFp9WZN1zWAT8urEEAXGNfiyKAcjUQ8Wme8dQK7UnVUS9sb
+         joqcwc2xwWn8AHRkrwTvFpwONxKNx769E9t5zcUQvPN8c85sYWNL3pA2NfhB4MLBHhv9
+         MAag==
+X-Gm-Message-State: AOAM531IhxZdRVFBrwgo6eX2AJpyIkE7CNTIHE5WC6fFY8Yd+M/XztVW
+        IlmJEqj8zVoSKprlGJ8Ai+w9Sw==
+X-Google-Smtp-Source: ABdhPJzNLddUk7ipQY1wuXRZkYOdiG4wWOnnnSjuM50zWAjN7OkfYPxwabHbECLBOj6SZkTW6IPA+A==
+X-Received: by 2002:a65:6413:0:b0:3f5:f306:d2f7 with SMTP id a19-20020a656413000000b003f5f306d2f7mr19551046pgv.341.1653296377785;
+        Mon, 23 May 2022 01:59:37 -0700 (PDT)
+Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:1b8:7eae:9793:ff95])
+        by smtp.gmail.com with ESMTPSA id e11-20020a170902cf4b00b0015e8d4eb22csm4524719plg.118.2022.05.23.01.59.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 May 2022 01:59:37 -0700 (PDT)
+From:   Chen-Yu Tsai <wenst@chromium.org>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Chen-Yu Tsai <wenst@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Roger Lu <roger.lu@mediatek.com>,
-        Kevin Hilman <khilman@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <hsinyi@google.com>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        Miles Chen <miles.chen@mediatek.com>,
         AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Date:   Mon, 23 May 2022 16:57:08 +0800
-In-Reply-To: <20220523084034.26802-1-jia-wei.chang@mediatek.com>
-References: <20220523084034.26802-1-jia-wei.chang@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/4] clk: mediatek: mt8183: Fix GPU/MFG clock rate changing
+Date:   Mon, 23 May 2022 16:59:19 +0800
+Message-Id: <20220523085923.1430470-1-wenst@chromium.org>
+X-Mailer: git-send-email 2.36.1.124.g0e6072fb45-goog
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,39 +74,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-05-23 at 16:40 +0800, Tim Chang wrote:
+Hi everyone,
 
-The Subject is for [Patch v3 0/4] rather than v2.
-Sorry for my typo.
+This is v2 of my MT8183 GPU clock rate fix series.
 
-> From: Jia-Wei Chang <jia-wei.chang@mediatek.com>
-> 
-> This series supports MT8186 and MT8195 Smart Voltage Scaling (SVS)
-> hardware which used as optimization of opp voltage table for
-> corresponding dvfs drivers.
-> 
-> This series is based on Roger's series [1].
-> [1]: Message ID: 20220516004311.18358-1-roger.lu@mediatek.com
-> 
-> Change since v2:
-> - Reuse platform probe of MT8192 for MT8195.
-> - Remove unnecessary svs bank parameters of MT8195.
-> - Remove sw id check for MT8195 efuse parsing.
-> 
-> Change since v1:
-> - Add myself as a co-maintainer of mtk-svs.yaml.
-> - Fix MT8186 error handling in platform probe.
-> - Add dt-bindings and support for MT8195 platform.
-> 
-> Jia-Wei Chang (4):
->   dt-bindings: soc: mediatek: add mt8186 svs dt-bindings
->   soc: mediatek: svs: add support for mt8186
->   dt-bindings: soc: mediatek: add mt8195 svs dt-bindings
->   soc: mediatek: svs: add support for mt8195
-> 
->  .../bindings/soc/mediatek/mtk-svs.yaml        |   3 +
->  drivers/soc/mediatek/mtk-svs.c                | 502
-> +++++++++++++++++-
->  2 files changed, 498 insertions(+), 7 deletions(-)
-> 
+Changes since v1;
+- Moved clk notifier registration into separate function
+- Fixed comment style
+
+This series fixes the clock rate changing for the GPU. This work came
+about as part of adding DVFS support for the Mali GPU on MT8183, to
+support efforts in testing the SVS patches [1] on MT8183.
+
+This series fixes a couple things:
+
+1. Fix the clock reference for the GPU. The device tree incorrectly
+   references the top level PLL, when in fact it is fed from the clock
+   gate in the MFGCFG block. Fixed in patch 1.
+
+2. Clock rate requests on the MFG clock gate aren't propagated up the
+   tree. Fixed in patch 2 by adding CLK_SET_RATE_PARENT.
+
+3. MFG clock needs to be temporarily muxed away from MFG PLL during PLL
+   reconfiguration, to avoid glitches. This is done using a notifier.
+   The framework is added in patch 3, and added to the driver in patch 4.
+
+This is based on my "clk: mediatek: Move to struct clk_hw provider APIs"
+series version 3 [2], which was just merged.
+
+Please have a look.
+
+The GPU DVFS stuff will be sent separately, as that part is a bit more
+contentious, and the changes span more subsystems.
+
+
+Regards
+ChenYu
+
+[1] https://lore.kernel.org/linux-mediatek/20220516004311.18358-1-roger.lu@mediatek.com/
+[2] https://lore.kernel.org/linux-mediatek/20220519071610.423372-1-wenst@chromium.org/
+
+Chen-Yu Tsai (4):
+  arm64: dts: mt8183: Fix Mali GPU clock
+  clk: mediatek: mt8183: mfgcfg: Propagate rate changes to parent
+  clk: mediatek: mux: add clk notifier functions
+  clk: mediatek: mt8183: Add clk mux notifier for MFG mux
+
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi |  2 +-
+ drivers/clk/mediatek/clk-mt8183-mfgcfg.c |  6 ++--
+ drivers/clk/mediatek/clk-mt8183.c        | 28 ++++++++++++++++
+ drivers/clk/mediatek/clk-mux.c           | 42 ++++++++++++++++++++++++
+ drivers/clk/mediatek/clk-mux.h           | 15 +++++++++
+ 5 files changed, 89 insertions(+), 4 deletions(-)
+
+-- 
+2.36.1.124.g0e6072fb45-goog
 
