@@ -2,68 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C57F53070F
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 03:19:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C066353079E
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 04:23:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244914AbiEWBTg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 May 2022 21:19:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48434 "EHLO
+        id S229725AbiEWCXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 May 2022 22:23:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242395AbiEWBTf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 21:19:35 -0400
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D758B63;
-        Sun, 22 May 2022 18:19:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1653268774; x=1684804774;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=78kjYs7ZIDlhmHigjs7ovuAb6IYSuJcnZJtEKzQWmnM=;
-  b=JRCQU8GmuT/NtDyYCOZ7SvKDvVXxZd0bFI+v2jHCXSPLsLnNhkUi2HNq
-   MfOAbaVvjiijfLQvOAojxGavIhwMSsYzDjwWxSCqWU1ZtHKcp9kV6RMMl
-   nYFdxT1jp8swi4/tdnxGpdCiKijkHmWAQpwE8HG401gP5Zn9+dQsfA17A
-   CtcPBuewDglqQlpLcPW9m5pk1DPiULubyL3M1Or5FfyLuT9TT/K1UIEKu
-   Bm9OBkjSXgOWS7Fecm6l76hH3UhQkX+fYrTawhTLUJUKQEzvG+i7a/jJp
-   cZsstbpncPwIUBEre1HvnGTlozwB1j1APVuOzrsNYoaTO1FHFjorZOCzg
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10355"; a="336126828"
-X-IronPort-AV: E=Sophos;i="5.91,245,1647327600"; 
-   d="scan'208";a="336126828"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 May 2022 18:19:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,245,1647327600"; 
-   d="scan'208";a="629101669"
-Received: from lkp-server01.sh.intel.com (HELO db63a1be7222) ([10.239.97.150])
-  by fmsmga008.fm.intel.com with ESMTP; 22 May 2022 18:19:28 -0700
-Received: from kbuild by db63a1be7222 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nswjH-0000ms-Oz;
-        Mon, 23 May 2022 01:19:27 +0000
-Date:   Mon, 23 May 2022 09:18:32 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Judy Hsiao <judyhsiao@chromium.org>, Andy Gross <agross@kernel.org>
-Cc:     kbuild-all@lists.01.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S1352264AbiEWCXq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 May 2022 22:23:46 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D23D3668E;
+        Sun, 22 May 2022 19:23:41 -0700 (PDT)
+X-UUID: 2106b57dfb15452ab38b03e275ddf03e-20220523
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:82fb58b2-77f8-4c66-ae5f-cec585b30937,OB:0,LO
+        B:0,IP:0,URL:25,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:25
+X-CID-META: VersionHash:2a19b09,CLOUDID:9b92357a-5ef6-470b-96c9-bdb8ced32786,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
+        ,QS:0,BEC:nil
+X-UUID: 2106b57dfb15452ab38b03e275ddf03e-20220523
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 493076538; Mon, 23 May 2022 10:23:36 +0800
+Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Mon, 23 May 2022 10:23:36 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 23 May 2022 10:23:36 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Mon, 23 May 2022 10:23:32 +0800
+Message-ID: <79706876349c3670f8831e75f70722f0bca200cb.camel@mediatek.com>
+Subject: Re: [PATCH v9 1/2] dt-bindings: phy: mediatek: Add YAML schema for
+ PCIe PHY
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Jianjun Wang <jianjun.wang@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        dianders@chromium.org, mka@chromium.org, cychiang@google.com,
-        judyhsiao@google.com, tzungbi@chromium.org, swboyd@chromium.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Judy Hsiao <judyhsiao@chromium.org>
-Subject: Re: [v1 3/3] arm64: dts: qcom: sc7280: include
- sc7280-herobrine-audio-rt5682.dtsi in villager and herobrine-r1
-Message-ID: <202205230902.SjYN7dSW-lkp@intel.com>
-References: <20220519084119.675990-4-judyhsiao@chromium.org>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Chen-Yu Tsai" <wenst@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+CC:     Wei-Shun Chang <weishunc@google.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <rex-bc.chen@mediatek.com>,
+        <randy.wu@mediatek.com>, <jieyy.yang@mediatek.com>,
+        <chuanjia.liu@mediatek.com>, <qizhong.cheng@mediatek.com>,
+        <jian.yang@mediatek.com>
+Date:   Mon, 23 May 2022 10:23:31 +0800
+In-Reply-To: <20220520064920.27313-2-jianjun.wang@mediatek.com>
+References: <20220520064920.27313-1-jianjun.wang@mediatek.com>
+         <20220520064920.27313-2-jianjun.wang@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220519084119.675990-4-judyhsiao@chromium.org>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,42 +76,106 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Judy,
+On Fri, 2022-05-20 at 14:49 +0800, Jianjun Wang wrote:
+> Add YAML schema documentation for PCIe PHY on MediaTek chipsets.
+> 
+> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
+> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Reviewed-by: AngeloGioacchino Del Regno <
+> angelogioacchino.delregno@collabora.com>
+> ---
+>  .../bindings/phy/mediatek,pcie-phy.yaml       | 75
+> +++++++++++++++++++
+>  1 file changed, 75 insertions(+)
+>  create mode 100644
+> Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/mediatek,pcie-
+> phy.yaml b/Documentation/devicetree/bindings/phy/mediatek,pcie-
+> phy.yaml
+> new file mode 100644
+> index 000000000000..422750cc4121
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
+> @@ -0,0 +1,75 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/mediatek,pcie-phy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek PCIe PHY
+> +
+> +maintainers:
+> +  - Jianjun Wang <jianjun.wang@mediatek.com>
+> +
+> +description: |
+> +  The PCIe PHY supports physical layer functionality for PCIe Gen3
+> port.
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt8195-pcie-phy
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  reg-names:
+> +    items:
+> +      - const: sif
+> +
+> +  "#phy-cells":
+> +    const: 0
+> +
+> +  nvmem-cells:
+> +    maxItems: 7
+Seems no need 'maxItems', we can get it from items of 'nvmem-cell-
+names'
 
-Thank you for the patch! Yet something to improve:
+> +    description:
+> +      Phandles to nvmem cell that contains the efuse data, if
+> unspecified,
+> +      default value is used.
+> +
+> +  nvmem-cell-names:
+> +    items:
+> +      - const: glb_intr
+> +      - const: tx_ln0_pmos
+> +      - const: tx_ln0_nmos
+> +      - const: rx_ln0
+> +      - const: tx_ln1_pmos
+> +      - const: tx_ln1_nmos
+> +      - const: rx_ln1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - "#phy-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    phy@11e80000 {
+> +        compatible = "mediatek,mt8195-pcie-phy";
+> +        #phy-cells = <0>;
+> +        reg = <0x11e80000 0x10000>;
+> +        reg-names = "sif";
+> +        nvmem-cells = <&pciephy_glb_intr>,
+> +                      <&pciephy_tx_ln0_pmos>,
+> +                      <&pciephy_tx_ln0_nmos>,
+> +                      <&pciephy_rx_ln0>,
+> +                      <&pciephy_tx_ln1_pmos>,
+> +                      <&pciephy_tx_ln1_nmos>,
+> +                      <&pciephy_rx_ln1>;
+> +        nvmem-cell-names = "glb_intr", "tx_ln0_pmos",
+> +                           "tx_ln0_nmos", "rx_ln0",
+> +                           "tx_ln1_pmos", "tx_ln1_nmos",
+> +                           "rx_ln1";
+> +        power-domains = <&spm 2>;
+> +    };
 
-[auto build test ERROR on soc/for-next]
-[cannot apply to robh/for-next arm/for-next arm64/for-next/core clk/clk-next kvmarm/next rockchip/for-next shawnguo/for-next keystone/next v5.18]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Judy-Hsiao/Add-dtsi-for-sc7280-boards-that-using-rt5682-codec/20220519-164227
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git for-next
-config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20220523/202205230902.SjYN7dSW-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 11.3.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/7d7f6f8d1383ed458da5ba18090dd7ce30e1c96b
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Judy-Hsiao/Add-dtsi-for-sc7280-boards-that-using-rt5682-codec/20220519-164227
-        git checkout 7d7f6f8d1383ed458da5ba18090dd7ce30e1c96b
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   Error: arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi:615.1-13 Label or path mi2s1_data0 not found
-   Error: arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi:620.1-12 Label or path mi2s1_sclk not found
-   Error: arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi:625.1-10 Label or path mi2s1_ws not found
->> Error: arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi:29.29-30 syntax error
-   FATAL ERROR: Unable to parse input tree
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
