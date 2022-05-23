@@ -2,59 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B0F353149C
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:25:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ED675312F3
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:23:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236615AbiEWNxc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 09:53:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49040 "EHLO
+        id S236836AbiEWN5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 09:57:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236606AbiEWNx1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 09:53:27 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 481DE5677E;
-        Mon, 23 May 2022 06:53:26 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 97A941F43599
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1653314005;
-        bh=Dz3ZKPQtwBKUhDVWmG5Z5g8SZn+wliMq5r4L/qYaKxs=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=EVl4yiH5zAw6jU/LesJhdcZjrLZJDkNHinjOf4ToLslJ4PlFJ5m4IaXvTcvkLPhw+
-         JJu5XDjsHAMr713gN3K14F58MK1nRcuE3lIbNjmjJCkDp1hbq9LLXXWZ5SY8L/wq8f
-         E47LCYpkGvzcElhFqW+1zjprXYTK7yF6x5t4D8BQyw74V45JlkAwNiUsmeLKvXjogU
-         JhUArK8+Sw6wgx20cXnvE/PRJID08VdpatPiFR/L56YtsowbVZT3FFn3h+JPAu/n3W
-         3IvxfTISvT7jpWMDT9rURYT0llP1DNBdCFI+lfjD1F7rXxkvrycHOWzAkJ714LL7Vc
-         HPgSCFXWCA/fw==
-Message-ID: <8334772a-6427-352d-4172-ca262267427d@collabora.com>
-Date:   Mon, 23 May 2022 15:53:22 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH 2/4] regulator: Add driver for MT6331 PMIC regulators
-Content-Language: en-US
-To:     Mark Brown <broonie@kernel.org>
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        with ESMTP id S236786AbiEWN5O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 09:57:14 -0400
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB77B5640D;
+        Mon, 23 May 2022 06:57:11 -0700 (PDT)
+Received: by mail-oi1-f181.google.com with SMTP id r68so3678017oie.12;
+        Mon, 23 May 2022 06:57:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Po7FG18ouzsaIFjxHouDmjoMSySPkXjz2dpCEjFO8eo=;
+        b=KkM3K3kVdH+7ev8c1Eu0/vxsMhuzt0iqICeG6cqEkOx4Iy/lbGhdb1i87c1cWVQlqB
+         tPqV4KcT2S+/z5yfeWNDsHb08GsGLzJ/LaDAopo0nbtctSP6HaBZ+Px1D3jtgP9fkwue
+         f36FQmMYKQ2x9Una1bPkL7tFDhOGmqY3F4tR18e3FGwFCYfLR0DkCiVhzji9yyeicKD0
+         UEYJoukndo3wQrxxHACS6ks/WTh7DBel3egNDeUbkb/o51a6MsyFrKeR3WrvJRpDraqH
+         wbReb4qjbWDbwYNF8l8Joypx0/WAwvS9yZEMG5hjSvMRykyA1Nzf7Y/681D2Ikjj+/Wf
+         xa/w==
+X-Gm-Message-State: AOAM53245PhPqp5zGsvL3SdW520DR/0h2u0amU8ulspOSFvLtLTyleRd
+        vgvR2+RKLs/hLjAzrR3wYg==
+X-Google-Smtp-Source: ABdhPJwlzEkicwFPVbidQP0R1gspMyr9ArD/Z5ORMkC6y/9Bomvgsb1YW74/8oDH+BhWuSEvJmr8FQ==
+X-Received: by 2002:aca:d8c5:0:b0:325:e353:a6b9 with SMTP id p188-20020acad8c5000000b00325e353a6b9mr10790833oig.135.1653314230773;
+        Mon, 23 May 2022 06:57:10 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id w12-20020a4ab6cc000000b0035eb4e5a6d0sm4190681ooo.38.2022.05.23.06.57.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 May 2022 06:57:10 -0700 (PDT)
+Received: (nullmailer pid 1499377 invoked by uid 1000);
+        Mon, 23 May 2022 13:57:09 -0000
+Date:   Mon, 23 May 2022 08:57:09 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Suzuki K Poulose <suzuki.poulose@arm.com>
+Cc:     Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Mike Leach <mike.leach@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20220520133305.265310-1-angelogioacchino.delregno@collabora.com>
- <20220520133305.265310-3-angelogioacchino.delregno@collabora.com>
- <YoepiTUfdhkYByo7@sirena.org.uk>
- <6cc68be9-e509-eae4-801d-997fdc01dcf2@collabora.com>
- <YouFcSapkVC7ZfuP@sirena.org.uk>
- <a6606891-d55f-dbce-7c5a-86390694e1c4@collabora.com>
- <YouPdNrBS2xwWwlI@sirena.org.uk>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <YouPdNrBS2xwWwlI@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        "coresight >> Coresight ML" <coresight@lists.linaro.org>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: Convert CoreSight bindings to DT
+ schema
+Message-ID: <20220523135709.GB1385486-robh@kernel.org>
+References: <20220520214416.302127-1-robh@kernel.org>
+ <20220520214416.302127-2-robh@kernel.org>
+ <9a9b40eb-be8d-bf8c-39be-e0abb507820f@arm.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9a9b40eb-be8d-bf8c-39be-e0abb507820f@arm.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,42 +69,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 23/05/22 15:43, Mark Brown ha scritto:
-> On Mon, May 23, 2022 at 03:22:39PM +0200, AngeloGioacchino Del Regno wrote:
->> Il 23/05/22 15:00, Mark Brown ha scritto:
+On Mon, May 23, 2022 at 12:03:36PM +0100, Suzuki K Poulose wrote:
+> Hi Rob,
 > 
->>> Right, my point here is that it looks awfully like the documentation
->>> (this came from documentation I guess?) is including some extra bits
->>> that get ignored in the voltage selection field here.  That seems like a
->>> weird choice somewhere along the line.
+> Thanks a lot for converting these to yaml. Some minor comments below.
 > 
->> I wish I had a datasheet for these parts...
-> 
->> All of this comes from analyzing a running device on the downstream 3.4 kernel
->> and on understanding the (not really readable) downstream kernel code...
->> ..but yes, I agree on the fact that this seems to be a weird choice.
-> 
->> Ah, besides, I hooked up an oscilloscope to the VCAM_IO and I can see that the
->> vreg really does react as expected upon setting the upper bits.. but since it
->> still works without, we can safely ignore them, which makes us able to simplify
->> the driver (as no custom code for that will be required) and, at the same time,
->> avoid seeing a table of values repeated 4 times in a row.
-> 
-> That seems safer in general if we don't know what those bits are doing -
-> it could be some kind of mode control or something.
-> 
->> ...so, the regulator will indeed shut itself off and clear either/both the QI_EN
->> and/or its relative bit in the enable register... I've also just found hints of
->> the latter (enable register being set to 0) downstream, so I'm sure that this is
->> indeed right.
-> 
-> That's still not quite the same thing as a status bit, if the regulator
-> disables itself then it won't try to turn itself back on.  Note that the
-> core will fall back on using the enable state if there's no status op so
-> there's no need for this logic, you can just omit the status op and the
-> behaviour will be the same.
+> In general, the "clocks" and "clock-names" are optional (e.g, for
+> etm4 with system register access).
 
-Ok then, I'll simply remove that!
+Reality, based on running dtbs_checks, seems to be that all 
+instances have them, and the original doc said required.
 
-Thanks,
-Angelo
+> 
+> On 20/05/2022 22:44, Rob Herring wrote:
+> > Each CoreSight component has slightly different requirements and
+> > nothing applies to every component, so each CoreSight component has its
+> > own schema document.
+> > 
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> >   .../bindings/arm/arm,coresight-catu.yaml      | 101 +++++
+> >   .../arm/arm,coresight-dynamic-funnel.yaml     | 126 ++++++
+> >   .../bindings/arm/arm,coresight-etb10.yaml     |  92 ++++
+> >   .../bindings/arm/arm,coresight-etm.yaml       | 156 +++++++
+> >   .../arm/arm,coresight-static-replicator.yaml  |  90 ++++
+> >   .../bindings/arm/arm,coresight-stm.yaml       | 101 +++++
+> >   .../bindings/arm/arm,coresight-tmc.yaml       | 132 ++++++
+> >   .../bindings/arm/arm,coresight-tpiu.yaml      |  91 ++++
+> >   .../devicetree/bindings/arm/coresight.txt     | 402 ------------------
+> >   9 files changed, 889 insertions(+), 402 deletions(-)
+> >   create mode 100644 Documentation/devicetree/bindings/arm/arm,coresight-catu.yaml
+> >   create mode 100644 Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
+> >   create mode 100644 Documentation/devicetree/bindings/arm/arm,coresight-etb10.yaml
+> >   create mode 100644 Documentation/devicetree/bindings/arm/arm,coresight-etm.yaml
+> >   create mode 100644 Documentation/devicetree/bindings/arm/arm,coresight-static-replicator.yaml
+> >   create mode 100644 Documentation/devicetree/bindings/arm/arm,coresight-stm.yaml
+> >   create mode 100644 Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
+> >   create mode 100644 Documentation/devicetree/bindings/arm/arm,coresight-tpiu.yaml
+> >   delete mode 100644 Documentation/devicetree/bindings/arm/coresight.txt
+> 
+> ...
+> 
+> > diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
+> > new file mode 100644
+> > index 000000000000..ee1ce47225be
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
+> > @@ -0,0 +1,132 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/arm/arm,coresight-tmc.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Arm CoreSight Trace Memory Controller
+> > +
+> 
+> ...
+> 
+> > +  out-ports:
+> > +    $ref: /schemas/graph.yaml#/properties/ports
+> > +    additionalProperties: false
+> > +
+> > +    properties:
+> > +      port:
+> > +        description: AXI Master output connection. Used for ETR and ETF
+> > +          configurations.
+> 
+> nit: This is only for ETRs. Never for ETFs.
+
+What about this example[1]? It's not AXI, but ATB actually.
+
+Rob
+
+[1] https://developer.arm.com/documentation/ddi0461/b/Introduction/Example-systems-with-different-configurations/ETF--ETR--and-TPIU
