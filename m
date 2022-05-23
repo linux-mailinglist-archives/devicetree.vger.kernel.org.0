@@ -2,68 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF4AD5312A5
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:22:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DA76531257
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:22:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238421AbiEWQGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 12:06:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60872 "EHLO
+        id S238604AbiEWQKT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 12:10:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238432AbiEWQGO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 12:06:14 -0400
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8547215714
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 09:06:11 -0700 (PDT)
-Received: by mail-pg1-x530.google.com with SMTP id h186so14070054pgc.3
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 09:06:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=e7s4FvKYqhrIHrfJIpxpjB/w24p/UdFVYWYWqUaWKCk=;
-        b=u+/2mCLf6J1KoFIelxvEXFdSh+jzSICBISVLI//JWNo14YyvAtMd+uX8X8iD/e1aoa
-         fQXmAEVpeFJuFcRR8TmCaETYwyz92alhGttYY10gtz6DFZUKDEAvsbuiQ8PLIQlm7Apf
-         Puy2AmshCtrB/5CF9y8MnlDJRHQOm+gQo87KIkWvBTYonePUjdkXmp4fBuQqEgK1hDuW
-         ZopWDEGPHj9aBmoCu+NsIBqFxoA2ohlyKykn8L2/zrMxCMh6UE55yEg4VqGU0uTCe8HV
-         ZNXsRNK8UnxkJYnjh6VxjVAooHu3tCwDlw1g+RIwhqwh9q/qP1SR1rfjnOpsDm2E8S/i
-         QaFA==
+        with ESMTP id S238589AbiEWQKS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 12:10:18 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3396C64BC5
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 09:10:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1653322216;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=uRKL91EqCGrYR3jhbmoJxjNS6DqoFl91Xh8EB9KpYsw=;
+        b=hTgUmnDNi1DyLvi8PTgP13h4BzbSe18C/sIfRx4CKf5igtrGrlTRuUdhFC79A/YWFd6dyE
+        UFrZFfF1HRp9NMZl2hFI8T6MslPp1wXlmCJ4teio084PW6McnjAbdIA5UfZa0abZihOdGS
+        9CVeUXdMO5tpt5Js92SB5mZXJ75+ZBQ=
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
+ [209.85.160.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-611-LpVWcSs3Ok6gWAzPIH8hDw-1; Mon, 23 May 2022 12:10:12 -0400
+X-MC-Unique: LpVWcSs3Ok6gWAzPIH8hDw-1
+Received: by mail-qt1-f200.google.com with SMTP id r22-20020ac84256000000b002f91745ec68so8234526qtm.2
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 09:10:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=e7s4FvKYqhrIHrfJIpxpjB/w24p/UdFVYWYWqUaWKCk=;
-        b=rF7SZI9Jclbxw7Xmspww0j0zjBtjErnWrgLJFEuNHGQGUH84IJXXq56WgHkFB/hrB7
-         aeEEZDfpNiuPD+0PAl7jl7L1vK/91qstNNliUNEVlPkMLUVUoI+izo1OKYlyP7L/UiVD
-         hxv/kYtMNYnsFfEQ8hc/dErcu4uZbY3hzUX4y6ss4HlcfWR8Gz8KXGB0IlIn6imEGC10
-         84dMKEwW+G2xNwNV9iKldVVbA4S2C9Tn0LjSKsoiKFjCzBWX+hjOsWmDp+c7o29ArlXM
-         nt1Pf2hoKBSBqMd/jJrci47Uoeiv/d+yWXF7NMkleGD4TQTjtoAIa39s8mjz5Dz2qDEM
-         NbIg==
-X-Gm-Message-State: AOAM530SEZx3lVhR8byHeX4aCfMa9M786ex5wVPGQ0zaF0n1FpSUhAcd
-        NyU5ObKVJJgPgxES34+fKneEcdEytbH+i+OGHKEXHQ==
-X-Google-Smtp-Source: ABdhPJxYg9Yh2GQWHiZaU+6ZG0i119MD2rlka3d2WGblGGuHQ6wLbqOifgvk6vMY4clWHQGKswYOx7D+Pjege3lot0g=
-X-Received: by 2002:a63:6901:0:b0:3f9:caa5:cffc with SMTP id
- e1-20020a636901000000b003f9caa5cffcmr13163645pgc.324.1653321971054; Mon, 23
- May 2022 09:06:11 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=uRKL91EqCGrYR3jhbmoJxjNS6DqoFl91Xh8EB9KpYsw=;
+        b=CqKeK4r8EOiemj5Yzk3uaOCIW8dzu99wK/Fk/nUzDDNDqTisDaQYfSSVV4WAfgBf6O
+         fBGkpMyymnWlXgU1Bq6lb7LMAh5IKiC719SNO070rTHUfNI+rHWWs9eRJEZkET6tj5jY
+         GsxsEQ0PtFFyDr322P159vCegAaOZSHtkGzxCxNZfrf+BUGPkh/v8D3B0CtVsoRLGvQp
+         OzCu5dL904al1PLpd8ar3Puj1esS38C39sSnx+qQZCj2J1pV+3P+bLzBwR5SxzfVBTCD
+         7JuU6oKAhfyEd7RBYj9jdndwV7P0fjxaFNTZYgUjjsBkK2c3mQugHJajxoX67zkDdGp3
+         YO6w==
+X-Gm-Message-State: AOAM531udE86EGQ0PLEAEP6H2tezqMOuVojNBuV1rFz6mbYl5jm9WiuP
+        8CCKUuKCWlp2K4iUuCca6vhm9CmbQ1GgL5BQicuWQ4pcJSdbXvHL7DBgmDc7x88ss2aO6mq1sdk
+        dty2LU/zVF9htffySLKneUQ==
+X-Received: by 2002:a05:620a:178d:b0:6a4:61f1:742a with SMTP id ay13-20020a05620a178d00b006a461f1742amr691917qkb.523.1653322212137;
+        Mon, 23 May 2022 09:10:12 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJww1EFdhXdnjSHa1uTotEqVgJ5iYRqKpJaihahEbjr36wXhmpyPJZYwVC3c1eGAq35iKZ0Q1A==
+X-Received: by 2002:a05:620a:178d:b0:6a4:61f1:742a with SMTP id ay13-20020a05620a178d00b006a461f1742amr691896qkb.523.1653322211904;
+        Mon, 23 May 2022 09:10:11 -0700 (PDT)
+Received: from xps13 (c-98-239-145-235.hsd1.wv.comcast.net. [98.239.145.235])
+        by smtp.gmail.com with ESMTPSA id u3-20020a05622a198300b002f92a5a396esm4907505qtc.3.2022.05.23.09.10.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 May 2022 09:10:11 -0700 (PDT)
+Date:   Mon, 23 May 2022 12:10:10 -0400
+From:   Brian Masney <bmasney@redhat.com>
+To:     Harsh Agarwal <quic_harshq@quicinc.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com
+Subject: Re: [RFC 2/2] usb: dwc3: Refactor PHY logic to support Multiport
+ Controller
+Message-ID: <Youx4uztX0RNRVkd@xps13>
+References: <1652963695-10109-1-git-send-email-quic_harshq@quicinc.com>
+ <1652963695-10109-3-git-send-email-quic_harshq@quicinc.com>
 MIME-Version: 1.0
-References: <20220523084615.13510-1-robert.foss@linaro.org>
- <CAG3jFytkFcmYjj6AHye3imsTDyP1LxHQvAzjswuRBsVVHRTnKg@mail.gmail.com> <CAG3jFytGDm29GVAQ5bs7XQ+hMDABd7btggFGN2pASBEzRPE50A@mail.gmail.com>
-In-Reply-To: <CAG3jFytGDm29GVAQ5bs7XQ+hMDABd7btggFGN2pASBEzRPE50A@mail.gmail.com>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Mon, 23 May 2022 18:05:59 +0200
-Message-ID: <CAG3jFyuRXLp3iS53rhXc9_-mT18kGcxNDHAA6UjMk7y_p_mwkQ@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] Revert "drm/bridge: anx7625: Use DPI bus type"
-To:     andrzej.hajda@intel.com, narmstrong@baylibre.com,
-        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@linux.ie,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, xji@analogixsemi.com,
-        hsinyi@chromium.org, sam@ravnborg.org, tzimmermann@suse.de,
-        maxime@cerno.tech, jose.exposito89@gmail.com,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1652963695-10109-3-git-send-email-quic_harshq@quicinc.com>
+User-Agent: Mutt/2.2.1 (2022-02-19)
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,60 +82,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 23 May 2022 at 14:54, Robert Foss <robert.foss@linaro.org> wrote:
->
-> These two patches need to be reverted since they were part (3/4 & 4/4)
-> of a series, that was partially (1/4 + 2/4) on the linux-media tree.
-> These two patches depend on the patches in the media tree, and will
-> not build without them, which leaves linux-drm-misc-next in a broken
-> state. Let's revert the two latter patches until rc1 has been branched
-> and the dependency wont cause issues any more.
->
-> On Mon, 23 May 2022 at 14:50, Robert Foss <robert.foss@linaro.org> wrote:
-> >
-> > On Mon, 23 May 2022 at 10:46, Robert Foss <robert.foss@linaro.org> wrote:
-> > >
-> > > This reverts commit a77c2af0994e24ee36c7ffb6dc852770bdf06fb1.
-> > > ---
-> > >  drivers/gpu/drm/bridge/analogix/anx7625.c | 8 ++++----
-> > >  1 file changed, 4 insertions(+), 4 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
-> > > index 01f46d9189c1..53a5da6c49dd 100644
-> > > --- a/drivers/gpu/drm/bridge/analogix/anx7625.c
-> > > +++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
-> > > @@ -1623,14 +1623,14 @@ static int anx7625_parse_dt(struct device *dev,
-> > >
-> > >         anx7625_get_swing_setting(dev, pdata);
-> > >
-> > > -       pdata->is_dpi = 0; /* default dsi mode */
-> > > +       pdata->is_dpi = 1; /* default dpi mode */
-> > >         pdata->mipi_host_node = of_graph_get_remote_node(np, 0, 0);
-> > >         if (!pdata->mipi_host_node) {
-> > >                 DRM_DEV_ERROR(dev, "fail to get internal panel.\n");
-> > >                 return -ENODEV;
-> > >         }
-> > >
-> > > -       bus_type = 0;
-> > > +       bus_type = V4L2_FWNODE_BUS_TYPE_PARALLEL;
-> > >         mipi_lanes = MAX_LANES_SUPPORT;
-> > >         ep0 = of_graph_get_endpoint_by_regs(np, 0, 0);
-> > >         if (ep0) {
-> > > @@ -1640,8 +1640,8 @@ static int anx7625_parse_dt(struct device *dev,
-> > >                 mipi_lanes = of_property_count_u32_elems(ep0, "data-lanes");
-> > >         }
-> > >
-> > > -       if (bus_type == V4L2_FWNODE_BUS_TYPE_DPI) /* bus type is DPI */
-> > > -               pdata->is_dpi = 1;
-> > > +       if (bus_type == V4L2_FWNODE_BUS_TYPE_PARALLEL) /* bus type is Parallel(DSI) */
-> > > +               pdata->is_dpi = 0;
-> > >
-> > >         pdata->mipi_lanes = mipi_lanes;
-> > >         if (pdata->mipi_lanes > MAX_LANES_SUPPORT || pdata->mipi_lanes <= 0)
-> > > --
-> > > 2.34.1
-> > >
-> >
-> > Signed-off-by: Robert Foss <robert.foss@linaro.org>
+On Thu, May 19, 2022 at 06:04:55PM +0530, Harsh Agarwal wrote:
+> -	dwc->usb3_generic_phy = devm_phy_get(dev, "usb3-phy");
+> -	if (IS_ERR(dwc->usb3_generic_phy)) {
+> -		ret = PTR_ERR(dwc->usb3_generic_phy);
+> -		if (ret == -ENOSYS || ret == -ENODEV)
+> -			dwc->usb3_generic_phy = NULL;
+> -		else
+> -			return dev_err_probe(dev, ret, "no usb3 phy configured\n");
+> +		if (IS_ERR(dwc->usb2_phy[0])) {
+> +			ret = PTR_ERR(dwc->usb2_phy[0]);
+> +			if (ret == -ENXIO || ret == -ENODEV)
+> +				dwc->usb2_phy[0] = NULL;
+> +			else
+> +				return dev_err_probe(dev, ret, "no usb2 phy configured\n");
+> +		}
+> +
+> +		if (IS_ERR(dwc->usb3_phy[0])) {
+> +			ret = PTR_ERR(dwc->usb3_phy[0]);
+> +			if (ret == -ENXIO || ret == -ENODEV)
+> +				dwc->usb3_phy[0] = NULL;
+> +			else
+> +				return dev_err_probe(dev, ret, "no usb3 phy configured\n");
+> +		}
+> +
+> +		dwc->usb2_generic_phy = devm_phy_get(dev, "usb2-phy");
+> +		if (IS_ERR(dwc->usb2_generic_phy)) {
+> +			ret = PTR_ERR(dwc->usb2_generic_phy);
+> +			if (ret == -ENOSYS || ret == -ENODEV)
+> +				dwc->usb2_generic_phy = NULL;
+> +			else
+> +				return dev_err_probe(dev, ret, "no usb2 phy configured\n");
+> +		}
 
-Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+I know that this block is a copy and paste move from above, but is the
+ENOSYS check really needed? It looks like the phy_get() only returns
+-ENODEV.
+
+> @@ -1147,8 +1149,10 @@ struct dwc3 {
+>  
+>  	struct reset_control	*reset;
+>  
+> -	struct usb_phy		*usb2_phy;
+> -	struct usb_phy		*usb3_phy;
+> +	struct usb_phy		**usb2_phy;
+> +	struct usb_phy		**usb3_phy;
+> +	u32			num_hsphy;
+> +	u32			num_ssphy;
+
+Rename num_hsphy / num_ssphy to num_usb2_phy and num_usb3_phy so this is
+easier to audit.
+
+Brian
+
