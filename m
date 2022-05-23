@@ -2,112 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71C03531238
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:22:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A259553146D
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:25:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237494AbiEWPL6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 11:11:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57632 "EHLO
+        id S237574AbiEWPQO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 11:16:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237579AbiEWPL4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 11:11:56 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C1AC49FB4
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 08:11:55 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id u27so21007622wru.8
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 08:11:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=7h/KQt7Gzc3HQkbNCwwgoLtjOZYGEyw/thG38+Y/9pc=;
-        b=yD4Dk5reZabRrlBn67GpBQPnumgx2fGYw9o8ZEO5TCyXqPollokxS0ADfya/iNX4oA
-         DYdpe3Gy0FlgOGMdMRQwDPh6XJXt90IbeQ2+Np20oK3MfGP4gVCaMiRcTRYyP/YcXEc+
-         u1uV2Uzk6Lasp2C5wTRsSyDQhs7UNs1XCs5Y2Na7PVAivClyMsq9QHTHzrGTNSinQ/xx
-         DVeqRC8DTPeCiGcREFR9xd6VhHIsMwIFxmkNxS+/dZSKUK2+WG4cndcJuqjz44yC7DVr
-         j60q5lfpnSCDeLENH7hdGnszpCeHEY31GbegypiJZYyJSy+mdNFZ4XvDZr28F4BUWe4j
-         yfag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=7h/KQt7Gzc3HQkbNCwwgoLtjOZYGEyw/thG38+Y/9pc=;
-        b=Q++fVRcHg7clbKRvq3jxvempfA3FtSbKaDOGL4WC+nm5A7BQ+M2rbloCuGhVTPP2LC
-         OkBlIKVEwtJiTM7POzQCHEhkiGr4D/F2dZ0JW+DDgdEKWk+jwNgF/GdZmR3horsUi31r
-         enZTjIS2HcMiDlRRUwZTLeyJxF3JFmu9Y6Gh3wsJQHGxPt3q4XmdLPmZBzKtWGWNXEyo
-         7rz3IXxK1Q1jKKj5HJokIbzoaclnXREWPEaG2gEHgQjmNjmY9wt+XquGiyGVEyjqGEQa
-         3EbrrfgzNnhY35rkq4VDODs25suebJerldtT6ds55YVM0BJ1OpSD5zFmLkb3ez25qCjA
-         6HnQ==
-X-Gm-Message-State: AOAM5323aAaLF0Qoe5mOIoFQhuvai9VQ7Rx6b29X/jovf+mlX3aO5pyk
-        7OAV6lstPjLvvS9U3FrvOT7auw==
-X-Google-Smtp-Source: ABdhPJxVUeEdhefzEjlzSC8eYKT+NZnwnK0Pe8cKjJGa59wR4aefUSfAV1iaw6NG/VT/vOtL6bXSPg==
-X-Received: by 2002:a05:6000:18aa:b0:20c:7ec0:b804 with SMTP id b10-20020a05600018aa00b0020c7ec0b804mr18431525wri.128.1653318713774;
-        Mon, 23 May 2022 08:11:53 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id q11-20020adfaa4b000000b0020fc6590a12sm5607184wrd.41.2022.05.23.08.11.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 May 2022 08:11:53 -0700 (PDT)
-Date:   Mon, 23 May 2022 16:11:51 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        patches@lists.linux.dev, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        chrome-platform@lists.linux.dev,
-        Guenter Roeck <groeck@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Craig Hesling <hesling@chromium.org>,
-        Tom Hughes <tomhughes@chromium.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Tzung-Bi Shih <tzungbi@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Benson Leung <bleung@chromium.org>
-Subject: Re: [PATCH v5 1/3] dt-bindings: cros-ec: Fix a typo in description
-Message-ID: <YoukN2uCpL3rmMsQ@google.com>
-References: <20220512013921.164637-1-swboyd@chromium.org>
- <20220512013921.164637-2-swboyd@chromium.org>
+        with ESMTP id S237564AbiEWPQN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 11:16:13 -0400
+Received: from smtpout1.mo528.mail-out.ovh.net (smtpout1.mo528.mail-out.ovh.net [46.105.34.251])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C3981CFD7;
+        Mon, 23 May 2022 08:16:12 -0700 (PDT)
+Received: from pro2.mail.ovh.net (unknown [10.108.20.84])
+        by mo528.mail-out.ovh.net (Postfix) with ESMTPS id 338DA10372A93;
+        Mon, 23 May 2022 17:16:10 +0200 (CEST)
+Received: from [192.168.1.42] (88.161.25.233) by DAG1EX2.emp2.local
+ (172.16.2.2) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.9; Mon, 23 May
+ 2022 17:16:10 +0200
+Message-ID: <0e1e417a-6444-ddb5-5c48-c89bd78c5fe8@traphandler.com>
+Date:   Mon, 23 May 2022 17:16:09 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220512013921.164637-2-swboyd@chromium.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH 1/3] dt-bindings: leds: Add bindings for the TLC5925
+ controller
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC:     <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20220523084958.2723943-1-jjhiblot@traphandler.com>
+ <20220523084958.2723943-2-jjhiblot@traphandler.com>
+ <d12a0afc-c040-5615-fc0d-70a5c29bbf0a@linaro.org>
+From:   Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+In-Reply-To: <d12a0afc-c040-5615-fc0d-70a5c29bbf0a@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [88.161.25.233]
+X-ClientProxiedBy: CAS1.emp2.local (172.16.1.1) To DAG1EX2.emp2.local
+ (172.16.2.2)
+X-Ovh-Tracer-Id: 11905828566854613467
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrjedugdehiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfevfhfhjggtgfhisehtjeertddtfeejnecuhfhrohhmpeflvggrnhdqlfgrtghquhgvshcujfhisghlohhtuceojhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmqeenucggtffrrghtthgvrhhnpeeugfevvdeludefkeejleetvdejueduvddtteejfeejvdevheekueefiefhlefgkeenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecukfhppedtrddtrddtrddtpdekkedrudeiuddrvdehrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehprhhovddrmhgrihhlrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehjjhhhihgslhhothesthhrrghphhgrnhgulhgvrhdrtghomhdpnhgspghrtghpthhtohepuddprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 11 May 2022, Stephen Boyd wrote:
 
-> A 's/pf/of/' on rpmsg-name description.
-> 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: <devicetree@vger.kernel.org>
-> Cc: <chrome-platform@lists.linux.dev>
-> Cc: Guenter Roeck <groeck@chromium.org>
-> Cc: Douglas Anderson <dianders@chromium.org>
-> Cc: Craig Hesling <hesling@chromium.org>
-> Cc: Tom Hughes <tomhughes@chromium.org>
-> Cc: Alexandru M Stan <amstan@chromium.org>
-> Cc: Tzung-Bi Shih <tzungbi@kernel.org>
-> Cc: Matthias Kaehlcke <mka@chromium.org>
-> Cc: Benson Leung <bleung@chromium.org>
-> Cc: Lee Jones <lee.jones@linaro.org>
-> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-> ---
->  Documentation/devicetree/bindings/mfd/google,cros-ec.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+On 23/05/2022 12:14, Krzysztof Kozlowski wrote:
+> On 23/05/2022 10:49, Jean-Jacques Hiblot wrote:
+>> Add bindings documentation for the TLC5925 LED controller.
+>>
+>> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+> Thank you for your patch. There is something to discuss/improve.
+>
+>> ---
+>> devicetree@vger.kernel.org
+>>   .../bindings/leds/leds-tlc5925.yaml           | 100 ++++++++++++++++++
+>>   1 file changed, 100 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/leds/leds-tlc5925.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/leds/leds-tlc5925.yaml b/Documentation/devicetree/bindings/leds/leds-tlc5925.yaml
+>> new file mode 100644
+>> index 000000000000..156db599d5a1
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/leds/leds-tlc5925.yaml
+> Filename: vendor,device
+> so "ti,tlc5925-leds.yaml" for example.
+>
+>
+>
+>> @@ -0,0 +1,100 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/leds/leds-tlc5925.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: LEDs connected to TI TLC5925 controller
+>> +
+>> +maintainers:
+>> +  - Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+>> +
+>> +description: |
+>> +  The TLC5925 is a low-power 16-channel constant-current LED sink driver.
+>> +  It is controlled through a SPI interface.
+>> +  It is built around a shift register and latches which convert serial
+>> +  input data into a parallel output. Several TLC5925 can be chained to
+>> +  control more than 16 LEDs with a single chip-select.
+>> +  The brightness level cannot be controlled, each LED is either on or off.
+>> +
+>> +  Each LED is represented as a sub-node of the ti,tlc5925 device.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: ti,tlc5925
+>> +
+>> +  shift_register_length:
+>> +    maxItems: 1
+> No...
+> 1. Did you test your bindings with dt_binding_check? This fails
+> obviously... please, do not send untested bindings.
+>
+> 2. vendor prefix, no underscores, proper type, maxItems look wrong here
+>
+>> +    description: |
+>> +      The length of the shift register. If several TLC5925 are chained,
+>> +      shift_register_length should be set to 16 times the number of TLC5925.
+>> +      The value must be a multiple of 8.
+>> +
+>> +  "#address-cells":
+>> +    const: 1
+>> +
+>> +  "#size-cells":
+>> +    const: 0
+>> +
+>> +  output-enable-b-gpios:
+>> +    description: |
+>> +      GPIO pins to enable/disable the parallel output. They describe the GPIOs
+>> +      connected to the OE/ pin of the TLC5925s.
+> maxItems
 
-Applied, thanks.
+There is no limitation in the driver itself. The actual number of items 
+here really depends on the number of chips and how they are wired.
 
--- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+>
+>
+>> +
+>> +patternProperties:
+>> +  "@[a-f0-9]+$":
+> How many LEDs you can have here? Usually it is limited, so the pattern
+> should be narrowed.
+
+There is no limitation here either. The chips can be chained to augment 
+the number of LEDs.
+
+The max number of LED is equal to the length of the shift-register.
+
+
+Jean-Jacques
+
+>
+>> +    type: object
+>> +
+>> +    $ref: common.yaml#
+>> +
+>> +    properties:
+>> +      reg:
+>> +        items:
+> Not correct syntax... I will stop reviewing. There is no point to use
+> reviewers time to do the job of a tool.
+>
+>
+>> +examples:
+>> +  - |
+>> +    &spi0 {
+>> +        leds@2 {
+>> +                compatible = "ti,tlc5925";
+> Messed up indentation. 4 spaces for DTS example.
+>
+>> +                reg = <0x02>;
+>> +                spi-max-frequency = <30000000>;
+>> +                shift_register_length = <32>;
+>> +                output-enable-b-gpios = <&gpio0b 9 GPIO_ACTIVE_HIGH>, <&gpio0b 7 GPIO_ACTIVE_HIGH>;
+>> +                #address-cells = <1>;
+>> +                #size-cells = <0>;
+>> +
+>> +                led-satus@0 {
+>> +                        reg = <0>;
+>> +                        function = LED_FUNCTION_STATUS;
+>> +                        color = <LED_COLOR_ID_GREEN>;
+>> +                };
+>> +
+>> +                led-satus@4 {
+>> +                        reg = <4>;
+>> +                        function = LED_FUNCTION_STATUS;
+>> +                        color = <LED_COLOR_ID_RED>;
+>> +                };
+>> +
+>> +                led-alive@24 {
+>> +                        reg = <24>;
+>> +                        label = "green:alive"
+>> +                };
+>> +
+>> +                led-panic@31 {
+>> +                        reg = <31>;
+>> +                        label = "red:panic"
+>> +                };
+>> +        };
+>> +    };
+>
+> Best regards,
+> Krzysztof
