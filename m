@@ -2,247 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7F0A531438
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:25:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A29C531211
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:22:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236248AbiEWN2C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 09:28:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33632 "EHLO
+        id S236373AbiEWN3e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 09:29:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236264AbiEWN1t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 09:27:49 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02FC7C15;
-        Mon, 23 May 2022 06:27:29 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (unknown [141.113.67.45])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9F9404A8;
-        Mon, 23 May 2022 15:27:26 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1653312446;
-        bh=le3nMsKm2R0gz2BHZLkV9dWl4Icu/CxHXa+fx5+7YwY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FoRrlZb7UqkeXcJqjii8Y8CtSMyHK3GkQ6CI8Psr8mDyBX6zt/Zo/oLhc0zGRDxIZ
-         lE3x9FaFJ0ggZsHT2KJpws0uHE5hKpseYKuIDzjSIW7Hom7718Ueg289VRKbAN8/lw
-         uPVk8fr0s3WZVxy/ddlENjnjXypFIP76EQ2WtcgM=
-Date:   Mon, 23 May 2022 16:27:22 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     Sakari Ailus <sakari.ailus@iki.fi>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-staging@lists.linux.dev,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 3/4] staging: media: Add support for the Allwinner A31
- ISP
-Message-ID: <YouLusf4sWK9W2J7@pendragon.ideasonboard.com>
-References: <20220415153708.637804-1-paul.kocialkowski@bootlin.com>
- <20220415153708.637804-4-paul.kocialkowski@bootlin.com>
- <YmqFQSRBsqs4ghNQ@valkosipuli.retiisi.eu>
- <Ymqk89e+mn/1kLLx@aptenodytes>
- <YmsCJicyzf+Bz98y@valkosipuli.retiisi.eu>
- <YoesXywA4yzBDSwU@aptenodytes>
- <Yop0DGOo1ky2dfnv@pendragon.ideasonboard.com>
- <YouDa3mE9+SkKJg/@aptenodytes>
+        with ESMTP id S236300AbiEWN3M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 09:29:12 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3557E393FA;
+        Mon, 23 May 2022 06:29:08 -0700 (PDT)
+X-UUID: 0851c2ce6f1e4613afc54bce9409e3cc-20220523
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:11f78a66-a325-4ebe-89d4-afbc2643f1f5,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:2a19b09,CLOUDID:05f93de3-edbf-4bd4-8a34-dfc5f7bb086d,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:0,BEC:nil
+X-UUID: 0851c2ce6f1e4613afc54bce9409e3cc-20220523
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
+        (envelope-from <jiaxin.yu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1221026251; Mon, 23 May 2022 21:29:02 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Mon, 23 May 2022 21:29:00 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 23 May 2022 21:29:00 +0800
+From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <angelogioacchino.delregno@collabora.com>
+CC:     <aaronyu@google.com>, <matthias.bgg@gmail.com>,
+        <trevor.wu@mediatek.com>, <tzungbi@google.com>,
+        <julianbraha@gmail.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>
+Subject: [PATCH v5 00/20] ASoC: mediatek: Add support for MT8186 SoC
+Date:   Mon, 23 May 2022 21:28:38 +0800
+Message-ID: <20220523132858.22166-1-jiaxin.yu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YouDa3mE9+SkKJg/@aptenodytes>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+This series of patches adds support for Mediatek AFE of MT8186 Soc.
+Patches are based on broonie tree "for-next" branch.
 
-On Mon, May 23, 2022 at 02:51:55PM +0200, Paul Kocialkowski wrote:
-> On Sun 22 May 22, 20:34, Laurent Pinchart wrote:
-> > On Fri, May 20, 2022 at 04:57:35PM +0200, Paul Kocialkowski wrote:
-> > > On Fri 29 Apr 22, 00:07, Sakari Ailus wrote:
-> > > > On Thu, Apr 28, 2022 at 04:30:11PM +0200, Paul Kocialkowski wrote:
-> > > > > Hi Sakari,
-> > > > > 
-> > > > > On Thu 28 Apr 22, 15:14, Sakari Ailus wrote:
-> > > > > > Hi Paul,
-> > > > > > 
-> > > > > > Thanks for the set.
-> > > > > > 
-> > > > > > A few comments below.
-> > > > > 
-> > > > > Thanks a lot for your review!
-> > > > 
-> > > > You're welcome!
-> > > > 
-> > > > ...
-> > > > 
-> > > > > > I understand this is an online ISP. How do you schedule the video buffer
-> > > > > > queues? Say, what happens if it's time to set up buffers for a frame and
-> > > > > > there's a buffer queued in the parameter queue but not in the image data
-> > > > > > queue? Or the other way around?
-> > > > > 
-> > > > > The ISP works in a quite atypical way, with a DMA buffer that is used to
-> > > > > hold upcoming parameters (including buffer addresses) and a bit in a "direct"
-> > > > > register to schedule the update of the parameters at next vsync.
-> > > > > 
-> > > > > The update (setting the bit) is triggered whenever new parameters are
-> > > > > submitted via the params video device or whenever there's a capture buffer
-> > > > > available in the capture video device.
-> > > > > 
-> > > > > So you don't particularly need to have one parameter buffer matching a capture
-> > > > > buffer, the two can be updated independently. Of course, a capture buffer will
-> > > > > only be returned after another buffer becomes active.
-> > > > 
-> > > > This also means it's not possible to associate a capture buffer to a
-> > > > parameter buffer by other means than timing --- which is unreliable. The
-> > > > request API would allow that but it's not free of issues either.
-> > > 
-> > > Yes the request API seems like a good fit for this. Note that the returned
-> > > sequence number in dequeued buffers for the capture and meta video devices
-> > > should match though, so userspace still has a way to know which captured buffer
-> > > used parameters from which meta params buffer.
-> > > 
-> > > > Alternatively, I think in this case you could always require the capture
-> > > > buffer and grab a parameter buffer when it's available. As ISPs are
-> > > > generally requiring device specific control software, this shouldn't be a
-> > > > problem really.
-> > > 
-> > > I think this is pretty much what happens already.
-> > > 
-> > > > I wonder what Laurent thinks.
-> > 
-> > If parameters buffers are optional, I think the request API should be
-> > used, otherwise we won't be able to ensure per-frame control. The
-> > alternative is to make the parameter buffer mandatory for every frame,
-> > even if no parameters have changed. Or maybe that's the case already ?
-> 
-> Currently the parameters are not mandatory (there is a default state set
-> by the driver) and queued parameter buffers are applied in the order they
-> are submitted.
-> 
-> The request API would make per-frame control possible, but I don't think
-> there is a point in making it mandatory. It seems that the situation is very
-> similar to what already exists with the rkisp1 driver.
+Changes since v4:
+  - [v5 07/20]
+    - remove unsusd controls
+  - [v5 09/20]
+    - correct indent error
+  - [v5 10/20]
+  - [v5 13/20]
+  - [v5 14/20]
+    - fix the return value if the value is different from the previous
+      value in mixer controls
+  - [v5 17/20]
+  - [v5 19/20]
+    - correct the compatible name with '_' instead of '-'
+  - [v5 18/20]
+  - [v5 20/20]
+    - correct the yaml after 'pip3 install dtschema --upgrade'
 
-You mentioned that the parameter buffers contain buffer addresses, is
-that the DMA address of the image buffers (input and output) ? If so,
-how does that work, does the kernel patch the parameters buffer provided
-by userspace to fill the DMA addresses in placeholders ?
+Changes since v3:
+  - [v4 09/18]
+    - remove DEBUG_COEFF debugging code
+  - [v4 10/18]
+    - simplify the logic of the code
+  - [v4 13/18]
+    - split out the MT6366 bits into mt8186-mt6366-commom.c
+    - fix build error of "error: 'struct dev_pm_info' has no member named 'runtime_error'"
+    - fix bug of adda dai driver
+    - add route for pcm interface channel 2.
+  - [v4 15/18]
+  - [v4 17/18]
+    - commonize the configuration of the codec
+    - move MT6366 common bits into mt8186-mt6366-common.c
 
-> > > > > I hope this answers your concern!
-> > > > > 
-> > > > > [...]
-> > > > > 
-> > > > > > > +static int sun6i_isp_tables_setup(struct sun6i_isp_device *isp_dev)
-> > > > > > > +{
-> > > > > > > +	struct sun6i_isp_tables *tables = &isp_dev->tables;
-> > > > > > > +	int ret;
-> > > > > > > +
-> > > > > > > +	/* Sizes are hardcoded for now but actually depend on the platform. */
-> > > > > > 
-> > > > > > Would it be cleaner to have them defined in a platform-specific way, e.g.
-> > > > > > in a struct you obtain using device_get_match_data()?
-> > > > > 
-> > > > > Absolutely! I didn't do it at this stage since only one platform is supported
-> > > > > but we could just as well introduce a variant structure already for the table
-> > > > > sizes.
-> > > > 
-> > > > I think that would be nice already, especially if you know these are going
-> > > > to be different. Otherwise macros could be an option.
-> > > 
-> > > Understood!
-> > > 
-> > > > ...
-> > > > 
-> > > > > > > +	ret = v4l2_ctrl_handler_init(&v4l2->ctrl_handler, 0);
-> > > > > > 
-> > > > > > I suppose you intend to add controls later on?
-> > > > > 
-> > > > > I might be wrong but I thought this was necessary to expose sensor controls
-> > > > > registered by subdevs that end up attached to this v4l2 device.
-> > > > > 
-> > > > > I doubt the drivers itself will expose controls otherwise.
-> > > > 
-> > > > Now that this is an MC-enabled driver, the subdev controls should be
-> > > > accessed through the subdev nodes only. Adding them to the video device's
-> > > > control handler is quite hackish and not guaranteed to even work (as e.g.
-> > > > multiple subdevs can have the same control).
-> > > 
-> > > Yes I was wondering what would happen in that case. I'll drop the ctrls
-> > > handling in the next iteration then.
-> > > 
-> > > Paul
-> > > 
-> > > > ...
-> > > > 
-> > > > > > > +{
-> > > > > > > +	struct sun6i_isp_device *isp_dev = video_drvdata(file);
-> > > > > > > +	struct video_device *video_dev = &isp_dev->capture.video_dev;
-> > > > > > > +	struct mutex *lock = &isp_dev->capture.lock;
-> > > > > > > +	int ret;
-> > > > > > > +
-> > > > > > > +	if (mutex_lock_interruptible(lock))
-> > > > > > > +		return -ERESTARTSYS;
-> > > > > > > +
-> > > > > > > +	ret = v4l2_pipeline_pm_get(&video_dev->entity);
-> > > > > > 
-> > > > > > Do you need this?
-> > > > > > 
-> > > > > > Drivers should primarily depend on runtime PM, this is only needed for
-> > > > > > compatibility reasons. Instead I'd like to see sensor drivers being moved
-> > > > > > to runtime PM.
-> > > > > 
-> > > > > Yes it's still needed to support sensor drivers that don't use rpm yet.
-> > > > 
-> > > > To that I suggested adding runtime PM support for the affected sensors.
-> > > > This doesn't seem to get done otherwise. E.g. ipu3-cio2 driver does not
-> > > > call s_power() on sensor subdevs.
-> > > > 
-> > > > ...
-> > > > 
-> > > > > > > +	ret = video_register_device(video_dev, VFL_TYPE_VIDEO, -1);
-> > > > > > > +	if (ret) {
-> > > > > > > +		v4l2_err(v4l2_dev, "failed to register video device: %d\n",
-> > > > > > > +			 ret);
-> > > > > > > +		goto error_media_entity;
-> > > > > > > +	}
-> > > > > > > +
-> > > > > > > +	v4l2_info(v4l2_dev, "device %s registered as %s\n", video_dev->name,
-> > > > > > > +		  video_device_node_name(video_dev));
-> > > > > > 
-> > > > > > This isn't really driver specific. I'd drop it.
-> > > > > 
-> > > > > I agree but I see that many drivers are doing it and the information can
-> > > > > actually be quite useful at times.
-> > > > 
-> > > > You can get that information using media-ctl -e 'entity name'.
-> > > > 
-> > > > I guess this could be also added to video_register_device() on debug level.
-> > > > 
-> > > > > > > +struct sun6i_isp_params_config_bdnf {
-> > > > > > > +	__u8	in_dis_min; // 8
-> > > > > > > +	__u8	in_dis_max; // 10
-> > > > > > 
-> > > > > > Are these default values or something else? Better documentation was in the
-> > > > > > TODO.txt file already.
-> > > > > 
-> > > > > Yes that's the default register values, but these comments are and overlook on
-> > > > > my side and should be removed.
-> > > > 
-> > > > I'm fine leaving these here. Just wondering. Up to you.
+Changes since v2:
+  - add a new compatible string "mediatek,mt6366-sound"
+  - modify the log level for simplicity
+  - use dev_err_probe(...) instead of dev_err(...) in dev probe()
+  - optimized the logic of some code
+  - use BIT() and GENMASK() macros to descript the registers
+
+  Thanks for AngeloGioacchino's careful reviews.
+
+Changes since v1:
+  [v2 01/17]
+    - add a new ID to the existing mt6358 codec driver
+  [v2 03/17]
+    - modify log level in DAPM events
+    - use standard numeric control with name ending in Switch
+    - return 1 when the value changed in mixer control's .get callback
+  [v2 05/17]
+    - ending in Switch to the standard on/off controls
+    - change to "HW Gain 1 Volume" and "HW Gain 2 Volume"
+  [v2 09/17]
+    - return an error in the default case rather than just picking one of
+      the behaviours when do .set_fmt
+    - use the new defines that are _PROVIDER_MASK, _DAIFMT_CBP_CFP and
+      _DAIFMT_CBC_CFC
+  [v2 10/17]
+  [v2 11/17]
+    - the clock and gpio are aplit out into separate  patches
+
+  The source file's GPL comment use c++ style, and the header fils's GPL
+  comment use c style. We have added "Switch" after the names of all the
+  controls that just are simple on/off.
+
+Jiaxin Yu (20):
+  ASoC: mediatek: mt6366: support for mt6366 codec
+  dt-bindings: mediatek: mt6358: add new compatible for using mt6366
+  ASoC: mediatek: mt8186: support audsys clock control
+  ASoC: mediatek: mt8186: support adda in platform driver
+  ASoC: mediatek: mt8186: support hostless in platform driver
+  ASoC: mediatek: mt8186: support hw gain in platform driver
+  ASoC: mediatek: mt8186: support i2s in platform driver
+  ASoC: mediatek: mt8186: support pcm in platform driver
+  ASoC: mediatek: mt8186: support src in platform driver
+  ASoC: mediatek: mt8186: support tdm in platform driver
+  ASoC: mediatek: mt8186: support audio clock control in platform driver
+  ASoC: mediatek: mt8186: support gpio control in platform driver
+  ASoC: mediatek: mt8186: add misc driver and register definitions
+  ASoC: mediatek: mt8186: add platform driver
+  ASoC: mediatek: mt8186: add mt8186-mt6366 common driver
+  dt-bindings: mediatek: mt8186: add audio afe document
+  ASoC: mediatek: mt8186: add machine driver with mt6366, da7219 and
+    max98357
+  dt-bindings: mediatek: mt8186: add mt8186-mt6366-da7219-max98357
+    document
+  ASoC: mediatek: mt8186: add machine driver with mt6366, rt1019 and
+    rt5682s
+  dt-bindings: mediatek: mt8186: add mt8186-mt6366-rt1019-rt5682s
+    document
+
+ .../devicetree/bindings/sound/mt6358.txt      |    4 +-
+ .../bindings/sound/mt8186-afe-pcm.yaml        |  175 +
+ .../sound/mt8186-mt6366-da7219-max98357.yaml  |   75 +
+ .../sound/mt8186-mt6366-rt1019-rt5682s.yaml   |   75 +
+ sound/soc/codecs/mt6358.c                     |    1 +
+ sound/soc/mediatek/Kconfig                    |   44 +
+ sound/soc/mediatek/Makefile                   |    1 +
+ sound/soc/mediatek/mt8186/Makefile            |   22 +
+ sound/soc/mediatek/mt8186/mt8186-afe-clk.c    |  651 ++++
+ sound/soc/mediatek/mt8186/mt8186-afe-clk.h    |  106 +
+ sound/soc/mediatek/mt8186/mt8186-afe-common.h |  235 ++
+ .../soc/mediatek/mt8186/mt8186-afe-control.c  |  261 ++
+ sound/soc/mediatek/mt8186/mt8186-afe-gpio.c   |  244 ++
+ sound/soc/mediatek/mt8186/mt8186-afe-gpio.h   |   19 +
+ sound/soc/mediatek/mt8186/mt8186-afe-pcm.c    | 3009 +++++++++++++++++
+ sound/soc/mediatek/mt8186/mt8186-audsys-clk.c |  150 +
+ sound/soc/mediatek/mt8186/mt8186-audsys-clk.h |   15 +
+ .../soc/mediatek/mt8186/mt8186-audsys-clkid.h |   45 +
+ sound/soc/mediatek/mt8186/mt8186-dai-adda.c   |  873 +++++
+ .../soc/mediatek/mt8186/mt8186-dai-hostless.c |  298 ++
+ .../soc/mediatek/mt8186/mt8186-dai-hw-gain.c  |  236 ++
+ sound/soc/mediatek/mt8186/mt8186-dai-i2s.c    | 1286 +++++++
+ sound/soc/mediatek/mt8186/mt8186-dai-pcm.c    |  423 +++
+ sound/soc/mediatek/mt8186/mt8186-dai-src.c    |  695 ++++
+ sound/soc/mediatek/mt8186/mt8186-dai-tdm.c    |  698 ++++
+ .../mediatek/mt8186/mt8186-interconnection.h  |   69 +
+ .../soc/mediatek/mt8186/mt8186-misc-control.c |  252 ++
+ .../mediatek/mt8186/mt8186-mt6366-common.c    |   59 +
+ .../mediatek/mt8186/mt8186-mt6366-common.h    |   17 +
+ .../mt8186/mt8186-mt6366-da7219-max98357.c    | 1003 ++++++
+ .../mt8186/mt8186-mt6366-rt1019-rt5682s.c     |  979 ++++++
+ sound/soc/mediatek/mt8186/mt8186-reg.h        | 2913 ++++++++++++++++
+ 32 files changed, 14932 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/mt8186-afe-pcm.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/mt8186-mt6366-da7219-max98357.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/mt8186-mt6366-rt1019-rt5682s.yaml
+ create mode 100644 sound/soc/mediatek/mt8186/Makefile
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-afe-clk.c
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-afe-clk.h
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-afe-common.h
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-afe-control.c
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-afe-gpio.c
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-afe-gpio.h
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-afe-pcm.c
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-audsys-clk.c
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-audsys-clk.h
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-audsys-clkid.h
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-dai-adda.c
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-dai-hostless.c
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-dai-hw-gain.c
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-dai-i2s.c
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-dai-pcm.c
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-dai-src.c
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-dai-tdm.c
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-interconnection.h
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-misc-control.c
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-mt6366-common.c
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-mt6366-common.h
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-mt6366-da7219-max98357.c
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-mt6366-rt1019-rt5682s.c
+ create mode 100644 sound/soc/mediatek/mt8186/mt8186-reg.h
 
 -- 
-Regards,
+2.18.0
 
-Laurent Pinchart
