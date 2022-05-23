@@ -2,64 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA1E353105A
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:20:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B489531048
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:19:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235935AbiEWNKg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 09:10:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56206 "EHLO
+        id S236049AbiEWNLu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 09:11:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235923AbiEWNK3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 09:10:29 -0400
-Received: from relay-us1.mymailcheap.com (relay-us1.mymailcheap.com [51.81.35.219])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4763454185;
-        Mon, 23 May 2022 06:10:27 -0700 (PDT)
-Received: from relay5.mymailcheap.com (relay5.mymailcheap.com [159.100.241.64])
-        by relay-us1.mymailcheap.com (Postfix) with ESMTPS id 23A0520158;
-        Mon, 23 May 2022 13:10:26 +0000 (UTC)
+        with ESMTP id S236011AbiEWNLs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 09:11:48 -0400
+X-Greylist: delayed 78 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 23 May 2022 06:11:39 PDT
 Received: from relay1.mymailcheap.com (relay1.mymailcheap.com [149.56.97.132])
-        by relay5.mymailcheap.com (Postfix) with ESMTPS id 9A1CA200FE;
-        Mon, 23 May 2022 13:10:22 +0000 (UTC)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 329A32B25A;
+        Mon, 23 May 2022 06:11:39 -0700 (PDT)
 Received: from filter1.mymailcheap.com (filter1.mymailcheap.com [149.56.130.247])
-        by relay1.mymailcheap.com (Postfix) with ESMTPS id 8D02A3F203;
-        Mon, 23 May 2022 13:10:20 +0000 (UTC)
+        by relay1.mymailcheap.com (Postfix) with ESMTPS id B600B40003;
+        Mon, 23 May 2022 13:11:38 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-        by filter1.mymailcheap.com (Postfix) with ESMTP id 81A6F2A384;
-        Mon, 23 May 2022 13:10:20 +0000 (UTC)
+        by filter1.mymailcheap.com (Postfix) with ESMTP id ACF512A384;
+        Mon, 23 May 2022 13:11:38 +0000 (UTC)
 X-Virus-Scanned: Debian amavisd-new at filter1.mymailcheap.com
 Received: from filter1.mymailcheap.com ([127.0.0.1])
         by localhost (filter1.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id xRHO4Msw78f3; Mon, 23 May 2022 13:10:19 +0000 (UTC)
+        with ESMTP id 61LqDDjP-nmA; Mon, 23 May 2022 13:11:37 +0000 (UTC)
 Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
         (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
         by filter1.mymailcheap.com (Postfix) with ESMTPS;
-        Mon, 23 May 2022 13:10:19 +0000 (UTC)
+        Mon, 23 May 2022 13:11:37 +0000 (UTC)
 Received: from edelgard.icenowy.me (unknown [59.41.161.142])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by mail20.mymailcheap.com (Postfix) with ESMTPSA id 0A57A4010C;
-        Mon, 23 May 2022 13:10:13 +0000 (UTC)
+        by mail20.mymailcheap.com (Postfix) with ESMTPSA id 3F1A64042B;
+        Mon, 23 May 2022 13:11:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
-        t=1653311418; bh=tCctaG9lD2zZr9aAnMweZ8VtB5FmvJDDCVIR2dwhiCs=;
+        t=1653311497; bh=ZutgL7LOgqqHUCKuYJdshLLeyN4NpumMkRbXwFtmIWc=;
         h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=tRLM43pIC2yfKKJHo3qlEzTagk6+uyxU63u5TDAZSqr8UH0/qUAC6YkzqLh4l3Vbl
-         OPF42qDhNsnkbu02SqvDqdxFTzKSlvyvGcxO64mHyt2vhuwu9uebOiqfC+Jtknf3M9
-         jSZP+HgNm5aa3QPBl25NebIs2VAsIB0njuwI+o3s=
-Message-ID: <265770e7055837fee26a7a66ce1fcbc7989eaf99.camel@aosc.io>
+        b=yjUX9FRtcElJQqRI5wkYcvgURnlwV4EdggER7NXIYqk8SKGq0ot/i89qWil3fL0R7
+         7Z8tWHd6ZjO5WC0ikmZaVBuEEQTGEo4H54EvJtil4v8Cw/zGo8DBYbuXsMP9xBxa6x
+         IJPGTXykbmMb3D96TPfo3I1KfW805+3cjUSxDeiM=
+Message-ID: <a50307f826e8e5f4218bd2bfde23add8a26af0dc.camel@aosc.io>
 Subject: Re: [PATCH v4 0/2] ARM: sun8i-r40: Enable usb otg support
 From:   Icenowy Zheng <icenowy@aosc.io>
-To:     Evgeny Boger <boger@wirenboard.com>, qianfanguijin@163.com
-Cc:     andre.przywara@arm.com, devicetree@vger.kernel.org,
-        jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, robh+dt@kernel.org,
-        samuel@sholland.org, wens@csie.org
-Date:   Mon, 23 May 2022 21:10:09 +0800
-In-Reply-To: <ec5f7fe8-d47d-ce7f-0e0a-2bdf41a88ba2@wirenboard.com>
-References: <264cb004-677a-13df-cc68-676ef3c2e7d8@163.com>
-         <ec5f7fe8-d47d-ce7f-0e0a-2bdf41a88ba2@wirenboard.com>
+To:     qianfanguijin@163.com, linux-sunxi@lists.linux.dev
+Cc:     Andre Przywara <andre.przywara@arm.com>,
+        Evgeny Boger <boger@wirenboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Date:   Mon, 23 May 2022 21:11:29 +0800
+In-Reply-To: <20220518101706.26869-1-qianfanguijin@163.com>
+References: <20220518101706.26869-1-qianfanguijin@163.com>
 Content-Type: text/plain; charset="UTF-8"
 User-Agent: Evolution 3.40.4 
 MIME-Version: 1.0
@@ -73,77 +71,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-在 2022-05-19星期四的 23:54 +0300，Evgeny Boger写道：
-> Hi qianfan,
+在 2022-05-18星期三的 18:17 +0800，qianfanguijin@163.com写道：
+> From: qianfan Zhao <qianfanguijin@163.com>
 > 
-> As Allwinner A40i user, let me first thank you for your effort for 
-> making better upstream support for R40!
+> History:
+> =======
 > 
-> However, I would strongly suggest *not* to add USB support to one
-> more 
-> Allwinner SoC in this particular way.
-> The problem is, this approach consists of a number of carefully
-> crafted 
-> hacks in device tree to make current drivers work on Allwinner
-> hardware 
-> without modification to the drivers.
+> v4(2022-05-18):
+> - Enable both musb and OHCI/EHCI support
 > 
-> a few examples:
+> Tests:
+> ======
 > 
-> 1) please notice how ohci0 and ehci0 nodes do not contain reference
-> to 
-> usb phy. It is done intentionally, otherwise EHCI will reset musb
-> mode.
-> Of course omitting phy reference here is also completely breaking
-> power 
-> cycling in case of usb error and otherwise messes with a power
-> management.
+> All test cases were tested on bananapi-m2-ultra.
 > 
-> 2) one must always enable ohci, ehci and usb_otg nodes at the same
-> time. 
-> If one forgets to enable ohci/ehci nodes while enabling usb_otg node,
-> the system will silently fail to work as USB host.
+> 1. USB DEVICE(ping test)
 > 
-> 3) For host-only mode we still have to enable usb_otg node despite no
-> role switching is needed. That's because phy reference is missing in 
-> ehci/ohci, so the ehci/ohci driver won't enable the PHY.
-> Also I might be wrong, but I think phy won't be routed to ehci/ohci 
-> controllers is this case.
-> 
-> 4) musb host controller is initialized and present to hardware though
-> never actually used
-> 
-> To summarize, not only the resulting device tree is not describing
-> the 
-> hardware properly, it is creating device tree configuration which
-> will 
-> be very hard to support in future, once proper driver support is in
-> place.
-> 
-> 
-> At Wiren Board kernel tree we tried to untangle this issue [1-6]. 
-> Unfortunately I didn't have time to prepare it for kernel submission 
-> yet, but I think I better submit it as RFC to get a feedback from you
-> and others.
+> Enable usb gadget rndis network, ping m2u on ubuntu host:
 
-Please cc me in the following patches because it's me who makes the
-whole dual route thing hacky.
+Interestingly musb previous totally fail when I initially work on R40.
+Maybe some phy-sun4i-usb patches fixed it by accident?
 
 > 
+> ➜  ~ ping 192.168.200.2
+> PING 192.168.200.2 (192.168.200.2) 56(84) bytes of data.
+> 64 bytes from 192.168.200.2: icmp_seq=1 ttl=64 time=0.544 ms
+> 64 bytes from 192.168.200.2: icmp_seq=2 ttl=64 time=0.269 ms
+> 64 bytes from 192.168.200.2: icmp_seq=3 ttl=64 time=0.300 ms
+> 64 bytes from 192.168.200.2: icmp_seq=4 ttl=64 time=0.295 ms
+> 64 bytes from 192.168.200.2: icmp_seq=5 ttl=64 time=0.283 ms
+> 64 bytes from 192.168.200.2: icmp_seq=6 ttl=64 time=0.226 ms
+> 64 bytes from 192.168.200.2: icmp_seq=7 ttl=64 time=0.246 ms
+> 64 bytes from 192.168.200.2: icmp_seq=8 ttl=64 time=0.204 ms
+> 64 bytes from 192.168.200.2: icmp_seq=9 ttl=64 time=0.302 ms
+> 64 bytes from 192.168.200.2: icmp_seq=10 ttl=64 time=0.249 ms
+> 64 bytes from 192.168.200.2: icmp_seq=11 ttl=64 time=0.459 ms
+> 64 bytes from 192.168.200.2: icmp_seq=12 ttl=64 time=0.232 ms
+> 64 bytes from 192.168.200.2: icmp_seq=13 ttl=64 time=0.275 ms
+> 64 bytes from 192.168.200.2: icmp_seq=14 ttl=64 time=0.243 ms
 > 
-> [1] 
-> https://github.com/wirenboard/linux/commit/359abbbd86ddff4d3c61179c882c286de32bb089
-> [2] 
-> https://github.com/wirenboard/linux/commit/6327f9d7972c21b229fb83457fdde643b31553f9
-> [3] 
-> https://github.com/wirenboard/linux/commit/f01f4c66758bde460a4d8c5b54ecee3b585c0232
-> [4] 
-> https://github.com/wirenboard/linux/commit/c27598ad601e5a46f624b73412a531d6f1f63d37
-> [5] 
-> https://github.com/wirenboard/linux/commit/5796d6eebb86b32a3751b2038b63af46f94954b3
-> [6] 
-> https://github.com/wirenboard/linux/commit/0928a675d875f9c2849fd3a9888f718bbb673bda
+> 2. USB HOST(OHCI)
 > 
+> Connect an usb serial port on OTG port, nex t is the kernel log:
+> 
+> [   27.824137] usb 2-1: new full-speed USB device number 2 using
+> ohci-platform
+> [   28.865504] cdc_acm 2-1:1.0: ttyACM0: USB ACM device
+> [   29.565509] cdc_acm 2-1:1.2: ttyACM1: USB ACM device
+> 
+> 3. USB HOST(EHCI)
+> 
+> Connect an usb storage on OTG port, next is the kernel log:
+> 
+> [   17.754147] usb 1-1: new high-speed USB device number 2 using
+> ehci-platform
+> [   17.955995] usb-storage 1-1:1.0: USB Mass Storage device detected
+> [   18.024497] scsi host1: usb-storage 1-1:1.0
+> [   19.035091] scsi 1:0:0:0: Direct-Access     General  USB Flash
+> Disk   1.0  PQ: 0 ANSI: 2
+> [   19.049717] sd 1:0:0:0: [sda] 7831552 512-byte logical blocks:
+> (4.01 GB/3.73 GiB)
+> [   19.060873] sd 1:0:0:0: [sda] Write Protect is off
+> [   19.071018] sd 1:0:0:0: [sda] No Caching mode page found
+> [   19.076437] sd 1:0:0:0: [sda] Assuming drive cache: write through
+> [   19.093566]  sda: sda1
+> [   19.103492] sd 1:0:0:0: [sda] Attached SCSI removable disk
+> 
+> issues:
+> =======
+> 
+> The system power often turned off when I plugged an usb device into
+> the OTG port.
+> It's not clear why.
+> 
+> qianfan Zhao (2):
+>   ARM: dts: sun8i-r40: Add USB0_OTG/HOST support
+>   ARM: dts: bananapi-m2-ultra: Enable USB0_OTG and HOST support
+> 
+>  .../boot/dts/sun8i-r40-bananapi-m2-ultra.dts  | 39
+> +++++++++++++++++++
+>  arch/arm/boot/dts/sun8i-r40.dtsi              | 34 ++++++++++++++++
+>  2 files changed, 73 insertions(+)
 > 
 
 
