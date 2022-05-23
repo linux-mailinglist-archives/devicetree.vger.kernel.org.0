@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92482530BEE
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 11:03:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDA93530B89
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 11:03:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232382AbiEWI7m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 04:59:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54030 "EHLO
+        id S232371AbiEWI7s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 04:59:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232329AbiEWI7l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 04:59:41 -0400
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEE793EF3A
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 01:59:40 -0700 (PDT)
-Received: by mail-pf1-x432.google.com with SMTP id v11so13099967pff.6
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 01:59:40 -0700 (PDT)
+        with ESMTP id S232388AbiEWI7p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 04:59:45 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C32BB3FDAA
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 01:59:43 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id c14so13125689pfn.2
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 01:59:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=N537kmXnIFF/B5MPYA58NfVjnsyjLkZ7UggoyVApuvw=;
-        b=X2xZIXhmJUlFUqC3yKU35eJzJRk0/e3r+c8tWahEJf3KPE2r2Shc1G5fNKe8xOKqFj
-         LPCOssfEm9wvBZ9+ufc07zRl5ZR/EeBa2ro1UOzK5bsJKGQn41AyMAyssS4QFwyZgkTw
-         oWLAJARJfKXShDez4cvMjpfj+7pC3SKDDKLCM=
+        bh=b4toybDv1M53GirTn8tpXa0Kt2GdamhkRh4OIAgDtc4=;
+        b=LugNNq9A1jRao45gwpaFfRD7S7nswT5/bN9+qs88iy9ir1JqkfveP2C+MySEfYAzuT
+         mKzKAUZYqsijwo9LBHKKSONhsZWlCsheFWJWw8pZj7p1XZ1w/RX5nroUBXBpJdPidTen
+         t6o43jxZtOQ2qPp0yLK3E02PfSxGjfxM864AE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=N537kmXnIFF/B5MPYA58NfVjnsyjLkZ7UggoyVApuvw=;
-        b=F7a6BVVJ+VAdhNayoQjdhyy5TIAb4H1ozWBtXnLcCai9m1PTQRJWeH0XjM/2UinLmG
-         Qnz7JsxuRroVKRnVyv+XVBEDpk2/AYCLWN8W9T0UVRzivze+5Zs7R8NTB6eQo9fsvCpx
-         GXXTI5ikvB9hXwJkGfNuYKm0GC6BBtJ9mzQ7oEXHYw7UrqhudbUcRdklCFMCpLueAMTC
-         eKVwAeSYrSpqOIPsxL7ihhmvRJeEhzlt8bZh+7s7QHG6Jq9G+ZnruTlS0f0URLyo3GiE
-         0HLJcHbubJd+GvP9cotu6iO26sn9aelJ3g+66AVJf91+MfESdK6kHv9nhxJ+3pca8Yon
-         2znQ==
-X-Gm-Message-State: AOAM533DwHjolkCsPRMtZlJtjbCy164loNZDaxn7MgFP+sMXMM1G3W+Z
-        t2fY18JBnOun8vLIlubQOHJmOA==
-X-Google-Smtp-Source: ABdhPJyKyy+R8cax5BnnVeWF2iS5z85uLAPJvTYypKsPeT5JuXm1sykaEWUSesO19CI0VaYkJIQvfw==
-X-Received: by 2002:a63:5563:0:b0:3f6:89b:89f3 with SMTP id f35-20020a635563000000b003f6089b89f3mr19106153pgm.419.1653296380565;
-        Mon, 23 May 2022 01:59:40 -0700 (PDT)
+        bh=b4toybDv1M53GirTn8tpXa0Kt2GdamhkRh4OIAgDtc4=;
+        b=CidutULtZSeLTqupu+MF+dgEPOsldxuqJ2bNyxFPWBupJJH2BQg4UP2oViRMnoGcTd
+         7cg5/H59bceA2nLqX6nOBegdjBJ+OM8IVqJxizmyjSlZtONNR/h9s6bY8H7Rizglfc9Y
+         QwPHwvM73WwVKd/QCP0wj/TEJEgjlH3vDnWe+CprWdttIzpeV9kFpTT7bkuM7/haFbKi
+         oHtn9fkDzsD3X6JfaDlc+HqUPvg47NmBFUNZ6+ieC9Q+ov7lsxAYW0xnVLoMapTpVIwV
+         LDYs4hcpTk9XikgC5pnUtWT+oSkGXoVNGMCe7QpvyzSj9VJyt57iIAzLjbLqwr++orf5
+         j7vg==
+X-Gm-Message-State: AOAM530Avl7+lf19Mv0sGYpuN3ZrWiAAVAM8FWIYKW4O21cIaifKsNEL
+        V3acKrb707x3C0+JBUIbqRzXLQ==
+X-Google-Smtp-Source: ABdhPJyzzCmYWZva4xngidgLFHgwZkMLeSN/5IngSAyroT2BA0b9QiJFbU1J1oNzacQ2caYizNg6gw==
+X-Received: by 2002:a65:6cc3:0:b0:3f6:26e9:5c1 with SMTP id g3-20020a656cc3000000b003f626e905c1mr19125032pgw.28.1653296383341;
+        Mon, 23 May 2022 01:59:43 -0700 (PDT)
 Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:1b8:7eae:9793:ff95])
-        by smtp.gmail.com with ESMTPSA id e11-20020a170902cf4b00b0015e8d4eb22csm4524719plg.118.2022.05.23.01.59.38
+        by smtp.gmail.com with ESMTPSA id e11-20020a170902cf4b00b0015e8d4eb22csm4524719plg.118.2022.05.23.01.59.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 May 2022 01:59:40 -0700 (PDT)
+        Mon, 23 May 2022 01:59:42 -0700 (PDT)
 From:   Chen-Yu Tsai <wenst@chromium.org>
 To:     Michael Turquette <mturquette@baylibre.com>,
         Stephen Boyd <sboyd@kernel.org>,
@@ -58,9 +58,9 @@ Cc:     Chen-Yu Tsai <wenst@chromium.org>,
         linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/4] arm64: dts: mt8183: Fix Mali GPU clock
-Date:   Mon, 23 May 2022 16:59:20 +0800
-Message-Id: <20220523085923.1430470-2-wenst@chromium.org>
+Subject: [PATCH v2 2/4] clk: mediatek: mt8183: mfgcfg: Propagate rate changes to parent
+Date:   Mon, 23 May 2022 16:59:21 +0800
+Message-Id: <20220523085923.1430470-3-wenst@chromium.org>
 X-Mailer: git-send-email 2.36.1.124.g0e6072fb45-goog
 In-Reply-To: <20220523085923.1430470-1-wenst@chromium.org>
 References: <20220523085923.1430470-1-wenst@chromium.org>
@@ -76,32 +76,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The actual clock feeding into the Mali GPU on the MT8183 is from the
-clock gate in the MFGCFG block, not CLK_TOP_MFGPLL_CK from the TOPCKGEN
-block, which itself is simply a pass-through placeholder for the MFGPLL
-in the APMIXEDSYS block.
+The only clock in the MT8183 MFGCFG block feeds the GPU. Propagate its
+rate change requests to its parent, so that DVFS for the GPU can work
+properly.
 
-Fix the hardware description with the correct clock reference.
-
-Fixes: a8168cebf1bc ("arm64: dts: mt8183: Add node for the Mali GPU")
+Fixes: acddfc2c261b ("clk: mediatek: Add MT8183 clock support")
 Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 ---
- arch/arm64/boot/dts/mediatek/mt8183.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/clk/mediatek/clk-mt8183-mfgcfg.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index 01e650251928..6ced76a60aab 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -1368,7 +1368,7 @@ gpu: gpu@13040000 {
- 				<GIC_SPI 278 IRQ_TYPE_LEVEL_LOW>;
- 			interrupt-names = "job", "mmu", "gpu";
+diff --git a/drivers/clk/mediatek/clk-mt8183-mfgcfg.c b/drivers/clk/mediatek/clk-mt8183-mfgcfg.c
+index d774edaf760b..230299728859 100644
+--- a/drivers/clk/mediatek/clk-mt8183-mfgcfg.c
++++ b/drivers/clk/mediatek/clk-mt8183-mfgcfg.c
+@@ -18,9 +18,9 @@ static const struct mtk_gate_regs mfg_cg_regs = {
+ 	.sta_ofs = 0x0,
+ };
  
--			clocks = <&topckgen CLK_TOP_MFGPLL_CK>;
-+			clocks = <&mfgcfg CLK_MFG_BG3D>;
+-#define GATE_MFG(_id, _name, _parent, _shift)			\
+-	GATE_MTK(_id, _name, _parent, &mfg_cg_regs, _shift,	\
+-		&mtk_clk_gate_ops_setclr)
++#define GATE_MFG(_id, _name, _parent, _shift)				\
++	GATE_MTK_FLAGS(_id, _name, _parent, &mfg_cg_regs, _shift,	\
++		       &mtk_clk_gate_ops_setclr, CLK_SET_RATE_PARENT)
  
- 			power-domains =
- 				<&spm MT8183_POWER_DOMAIN_MFG_CORE0>,
+ static const struct mtk_gate mfg_clks[] = {
+ 	GATE_MFG(CLK_MFG_BG3D, "mfg_bg3d", "mfg_sel", 0)
 -- 
 2.36.1.124.g0e6072fb45-goog
 
