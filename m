@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD8D2531781
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 22:53:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05D9153162B
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 22:50:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232157AbiEWTju (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 15:39:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58158 "EHLO
+        id S232214AbiEWTjv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 15:39:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232418AbiEWTjf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 15:39:35 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3022D106A4E
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 12:32:08 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id gg20so14924309pjb.1
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 12:32:08 -0700 (PDT)
+        with ESMTP id S232454AbiEWTjg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 15:39:36 -0400
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C33A1078B6
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 12:32:09 -0700 (PDT)
+Received: by mail-pg1-x52c.google.com with SMTP id c22so14530223pgu.2
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 12:32:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=1wnCjP5k4eX2zs3WnXnoMhMGUr28/cypjl3o/2Z6tes=;
-        b=f96L1AT0mMjn1RyAtdZVgkH33HDZ3/VSA/ng8TU23JHBipyGveEAF7DkL2d00oCE6H
-         zIMx6xWWYXMx89FXNceFqwrVXxVGbmsTeNwpkhojYLOXsICJ9JOQ1LKjsOgCtbFgOoK2
-         kZqvPnK/6aGbuIab5p6ELE0mTUnLLj4sS8rFM=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=se1gv6FKWc2mQF+0R3JQfs3NqSabq03RBDglYxWWN7A=;
+        b=le2gVkm6L5LuiRam9nCTm4Wj24nwfbU+3wQgtb8kUHOKzxB30srlECttSlis+VEBem
+         ey6tBpE9xSszV3OWSFNmqsRtEaN8tBU+xkf0Sc5stjtqfrxfrMZWMw4wr4zOnmbokMjZ
+         h/E0tNLgfUefQnFH7GEgsYGLM24ECovsSXpNY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=1wnCjP5k4eX2zs3WnXnoMhMGUr28/cypjl3o/2Z6tes=;
-        b=GjKItU/3tY7Ekuk6GIGbAeEWAQK1ECNNYylbXFQ2Ntj8Nq8zirOfkpTvNLD3CQEKGG
-         AqdvQ3Wm361WkSKTroo4QHAfX1Fhl3ElBF/sk/HxvU67iRLKwVPUjI7a1mCALPKKH96X
-         utp7aeKDuropXJnUTCOPFaFIKgUfRctMzUuadwv9gaJJLBijufewlRCrKhgFz6GE0DDa
-         nQOJiPiGCQSaq26D7Pdqt5hGGYl9Lst2sfBqZQniZjyjmjKDYxkvG2nARHnXHIWgZBDt
-         oENHGArzAup929tVZx07ZtSh6ZQqECbKgwQuGeir8iy2CtjCRtHJEM5wyxfHBizpfvFl
-         tFgA==
-X-Gm-Message-State: AOAM531e3mcbLhQTxc6hQIFER6AfCwBlzdk9eQ5vQ/ZBUFhRxnEwHGd+
-        WgUii1BMqVtceU9omzmK81nNeQ==
-X-Google-Smtp-Source: ABdhPJxX6NxzBbaQ+Q2IdSpZVtxZcdeQA8n0q/eIC47fkQbMLtVd2ZTJsqFGaSkDZy+dM6YShA+Ltw==
-X-Received: by 2002:a17:903:1104:b0:15f:bce:1a0c with SMTP id n4-20020a170903110400b0015f0bce1a0cmr23570068plh.149.1653334327861;
-        Mon, 23 May 2022 12:32:07 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=se1gv6FKWc2mQF+0R3JQfs3NqSabq03RBDglYxWWN7A=;
+        b=j4e7my2n7AJ8cAJmIprq+IYM8RRwN9mxDDuThBnfnjWJtKQWLxPVVUchD3N4aBuS+G
+         i1Cx6OcSOf8obH+djn/50YL3d9/Jcg9h+AM7qxsY3vuAwfO3GlJ0abJDBdOjPODHv4zU
+         Czy95AhpJ8smYqm/rrwvuFdIr3PEC1SmyI1zBGpj3uXP/PCOZwiyeJCGPii4ehftDrCk
+         /bStug6V5rj1MevUILvYRauM3YubEsjoeasdEZ0G9BgQtUpT0I29BnAJnviqiB+0+IHl
+         TSJUEMmaFpbAhHGej61MFREO7drSfX/8FquKILCle3oyMOYzL/CC/jtnsVTNEEKow9KM
+         jDvg==
+X-Gm-Message-State: AOAM5323h+QlaLsmJRILhTTBcXApZesNTTKgrZxQVA34VCx2szGhH+ue
+        3aRjZTA8v8I8qmFWaSwDlqat2w==
+X-Google-Smtp-Source: ABdhPJyI4gzbQl+r37YzEYsQL+OZUIjN0paUW09/Ya7gT00eZ6ZpWdUH8xzShQ9aAGIoMHAPIiwofA==
+X-Received: by 2002:a05:6a00:140f:b0:4e0:6995:9c48 with SMTP id l15-20020a056a00140f00b004e069959c48mr24736401pfu.59.1653334329218;
+        Mon, 23 May 2022 12:32:09 -0700 (PDT)
 Received: from localhost ([2620:15c:11a:202:46dd:d5d8:48f6:713e])
-        by smtp.gmail.com with UTF8SMTPSA id p8-20020a637f48000000b003c14af50631sm5138505pgn.73.2022.05.23.12.32.07
+        by smtp.gmail.com with UTF8SMTPSA id q9-20020a170902f78900b0015e8d4eb292sm3518878pln.220.2022.05.23.12.32.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 May 2022 12:32:07 -0700 (PDT)
+        Mon, 23 May 2022 12:32:09 -0700 (PDT)
 From:   Matthias Kaehlcke <mka@chromium.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -52,15 +52,17 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         Douglas Anderson <dianders@chromium.org>,
         linux-kernel@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH v2 1/2] arm64: dts: qcom: sc7280: herobrine: Don't disable the keyboard backlight node
-Date:   Mon, 23 May 2022 12:32:03 -0700
-Message-Id: <20220523123157.v2.1.I47ec78581907f7ef024f10bc085f970abf01ec11@changeid>
+Subject: [PATCH v2 2/2] arm64: dts: qcom: sc7280: Enable keyboard backlight for villager
+Date:   Mon, 23 May 2022 12:32:04 -0700
+Message-Id: <20220523123157.v2.2.I3d1b5a109675a0cc90e66a4e0b45cb823edbdee7@changeid>
 X-Mailer: git-send-email 2.36.1.124.g0e6072fb45-goog
+In-Reply-To: <20220523123157.v2.1.I47ec78581907f7ef024f10bc085f970abf01ec11@changeid>
+References: <20220523123157.v2.1.I47ec78581907f7ef024f10bc085f970abf01ec11@changeid>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,43 +70,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On herobrine boards the keyboard backlight is controlled through the
-PWM LED driver. Currently both the PWM LED node and the node for the
-keyboard backlight are disabled in sc7280-herobrine.dtsi, which
-requires boards with a backlit keyboard to enable both nodes. There
-are no other PWM LEDs on herobrine boards besides the keyboard
-backlight, delete the 'disabled' status from the keyboard backlight
-node, with that boards only have to enable the 'pwmleds' node for
-keyboard backlight support.
-
-Also add a label to the 'pwmleds' node to allow board files to refer to
-it with a phandle.
+Villager has a backlit keyboard, enable support for the backlight.
 
 Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 ---
 
 (no changes since v1)
 
- arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-index 9cb1bc8ed6b5..55b513912e79 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-@@ -295,11 +295,10 @@ pp1200_wf_cam: pp1200-wf-cam-regulator {
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts
+index d3d6ffad4eff..290cd3b1f1f1 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts
++++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts
+@@ -76,6 +76,10 @@ &pcie1_phy {
+ 	status = "okay";
+ };
  
- 	/* BOARD-SPECIFIC TOP LEVEL NODES */
- 
--	pwmleds {
-+	pwmleds: pwmleds {
- 		compatible = "pwm-leds";
- 		status = "disabled";
- 		keyboard_backlight: keyboard-backlight {
--			status = "disabled";
- 			label = "cros_ec::kbd_backlight";
- 			pwms = <&cros_ec_pwm 0>;
- 			max-brightness = <1023>;
++&pwmleds {
++	status = "okay";
++};
++
+ /* For eMMC */
+ &sdhc_1 {
+ 	status = "okay";
 -- 
 2.36.1.124.g0e6072fb45-goog
 
