@@ -2,189 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD0F4530ED1
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 15:17:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9977B530DB5
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 12:42:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235122AbiEWL7C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 07:59:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34576 "EHLO
+        id S233607AbiEWJzT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 05:55:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235029AbiEWL7C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 07:59:02 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.73])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D4E81CB1C;
-        Mon, 23 May 2022 04:58:59 -0700 (PDT)
-Received: from mail-yb1-f173.google.com ([209.85.219.173]) by
- mrelayeu.kundenserver.de (mreue108 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1Mn2iP-1nT52E0Xbj-00k5Tu; Mon, 23 May 2022 13:58:57 +0200
-Received: by mail-yb1-f173.google.com with SMTP id a3so24960405ybg.5;
-        Mon, 23 May 2022 04:58:56 -0700 (PDT)
-X-Gm-Message-State: AOAM532veqWEdm/lhII2OzRXSKBOkHqyrMl9LFSUykEXp2oHMti99YIr
-        XHpY3GjPUUXf5iVhbHnpRDhlpNzVAZI6mQPiiyI=
-X-Google-Smtp-Source: ABdhPJww6UI3VHujKsiD4GORINdaaD7sInRUTDtpI+wOKYOknAfrhPLfgU/Tcrezf+twApFr3bW/yO+tBPWuypHA/W0=
-X-Received: by 2002:a25:c747:0:b0:64f:62fb:f55e with SMTP id
- w68-20020a25c747000000b0064f62fbf55emr13692906ybe.106.1653299558644; Mon, 23
- May 2022 02:52:38 -0700 (PDT)
+        with ESMTP id S233565AbiEWJzS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 05:55:18 -0400
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 570F21A3A5;
+        Mon, 23 May 2022 02:55:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1653299717; x=1684835717;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=eqM+jPOTUeunb8PUCCDFxOTPR27hmR70Sc5kkvXLcJ0=;
+  b=ddtIb2IBr49mgoQc0pV+QWuSM3yE3dBuI7Y+aJTWYU/QYMEYYCEKkKfO
+   ZuVHYs27aWylfX5rQa4UqJYmTQm6zWTGe3FRVwCnCcR5UFk7bCK7hcfsA
+   h3Ge3Q8SICAP8nu6pulazfINS49761Ej6dVBvzR7wPzvxhKOu/TB5yGxn
+   626TZeYeFuZ1N5mBTvJgOg8/+NnW8wfAp4c5ldYBLuWIgMAR0o7/mJipt
+   N6fyDgopt1sbz6xJmdXncKyjBGRhXYVFlUoMIvIO9NvpZeSz2d2qaFBJM
+   DRNqM/0StIe58Q3xeyOfxXOgovKYEfSlq+C09uq9QDWeLFqT2pVS/24yt
+   g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10355"; a="273288353"
+X-IronPort-AV: E=Sophos;i="5.91,246,1647327600"; 
+   d="scan'208";a="273288353"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 May 2022 02:55:08 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,246,1647327600"; 
+   d="scan'208";a="629291059"
+Received: from lkp-server01.sh.intel.com (HELO db63a1be7222) ([10.239.97.150])
+  by fmsmga008.fm.intel.com with ESMTP; 23 May 2022 02:54:53 -0700
+Received: from kbuild by db63a1be7222 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1nt4m4-00013A-G3;
+        Mon, 23 May 2022 09:54:52 +0000
+Date:   Mon, 23 May 2022 17:54:25 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Corentin Labbe <clabbe@baylibre.com>, andrew@lunn.ch,
+        broonie@kernel.org, calvin.johnson@oss.nxp.com,
+        davem@davemloft.net, edumazet@google.com, hkallweit1@gmail.com,
+        jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        kuba@kernel.org, lgirdwood@gmail.com, linux@armlinux.org.uk,
+        pabeni@redhat.com, robh+dt@kernel.org, samuel@sholland.org,
+        wens@csie.org
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
+        netdev@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>
+Subject: Re: [PATCH v3 1/3] regulator: Add regulator_bulk_get_all
+Message-ID: <202205231748.IZoXf2Sf-lkp@intel.com>
+References: <20220523052807.4044800-2-clabbe@baylibre.com>
 MIME-Version: 1.0
-References: <20220522155046.260146-1-tmaimon77@gmail.com>
-In-Reply-To: <20220522155046.260146-1-tmaimon77@gmail.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Mon, 23 May 2022 11:52:22 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a2CUy17vbd5Go523894vcF_oLz=dAR7JNLsUuR1Gsc9sA@mail.gmail.com>
-Message-ID: <CAK8P3a2CUy17vbd5Go523894vcF_oLz=dAR7JNLsUuR1Gsc9sA@mail.gmail.com>
-Subject: Re: [PATCH v1 00/19] Introduce Nuvoton Arbel NPCM8XX BMC SoC
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        gregkh <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        robert.hancock@calian.com,
-        "nathan=20Neusch=C3=A4fer?=" <j.neuschaefer@gmx.net>,
-        Lubomir Rintel <lkundrak@v3.sk>, SoC Team <soc@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:K2R+uAYYvavIOQlbMP3GLCeRXnol3L+0VpJyijg1+MUeIWxNLX7
- lNFWjJX6Cv4Is7pwQkqi+RoqhDoEwUE378KnS4nslJeKUWa4650jXF+D2LPeoM1XCs7QGvw
- MpKbPu/uiR2Rfhau1JOLSKA93AIsrltZjMkDphSwbaLua95IcOfLpqQJfs4U5yNJRYWg+gh
- NgsZ5HOHmJaiPgTfsswuA==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:leD/+n0eHbs=:mDqVauFrvVHcOs81g3yIXC
- MTLRWcCg76/Ryh14JfUC37tXuFN4ICUccXdk9dp84bpNcEczf10bpN3I6sghDBi1BDiHoM4No
- RtQ3wUYCkbV084hfn41QnJJytlO2/+J0mt8TZXU6gx1pe7NXfWLw4xO3xGNgLbK3C60nAyPVP
- LaA0UumGtVwOpWDyuKILdH+/eAVuL7cjyU86OeybvtAtxOWC4OG4EnUjYFVzuZskeJVgNnahr
- jaCsklePVvLqWNi9VYhTl7lm84o/FlFu5hqT2aQHtV9GGlQ5n6otkcrUI6c1uWG3CLGa+EOR3
- Vf1upv32PaGG9VWIXIWuQJuGMzmT8JYJAG7w3zFbCQzW0LQSnb21N1hwIGkLb16C414gvByce
- 68Osn/r8eDXqCs804PL69yZYBkVNXdrbHM9JcMPvnoPDkLoqbiX4fEAzOhyeeTo7i6/4QCfKy
- MZBEdP7cABkJYQpyy9UCrD2XRO2TmKYYEp85jeycA0hwh+gpHfwlLYkK1PbuExIngScxRRkYt
- BcNQ0CR3GDph53q81ianNmLrRz+rBFeH+LyTwZvg3h1BE+lHqvaxvC+4lf/yNR978FYaGQWuc
- LxYojiRfRiGy3dU8UAcG2NCv5O+iQLMGLIlBdi0UEtnlk0JLo6PB5hry1yOvVzPjj2W+hHlBa
- USUxfhJTxxMdMWG8Ia31kgurB1rHC1sEoxNSFBalWMAvqjTsDtmuzX37SKR/bLcsryFd9khpS
- 3IOfue31wKTaozFrI+ue4XmzXp9bt18Q+2WX6LybAxm3npWpYu64o/0AeP2xWQH03bX4YA3FJ
- Rqc2yA0Llk0nSzi+0Cv+5xpHytwSB7WnTpCVOlSE1KrTQbHr+oiip/Lxb4JkpiEClEqBsU7K5
- smDV24Nm2eKEMbW1WwgFKql5lxbIZ2nSJc4e/IlMQ=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220523052807.4044800-2-clabbe@baylibre.com>
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 22, 2022 at 5:50 PM Tomer Maimon <tmaimon77@gmail.com> wrote:
->
-> This patchset  adds initial support for the Nuvoton
-> Arbel NPCM8XX Board Management controller (BMC) SoC family.
->
-> The Nuvoton Arbel NPCM8XX SoC is a fourth-generation BMC.
-> The NPCM8XX computing subsystem comprises a quadcore ARM
-> Cortex A35 ARM-V8 architecture.
->
-> This patchset adds minimal architecture and drivers such as:
-> Clocksource, Clock, Reset, and WD.
->
-> Some of the Arbel NPCM8XX peripherals are based on Poleg NPCM7XX.
->
-> This patchset was tested on the Arbel NPCM8XX evaluation board.
+Hi Corentin,
 
-Thanks for your submission. Please note a few things about the process here:
+I love your patch! Yet something to improve:
 
-- The merge window is currently open, which means a lo
+[auto build test ERROR on broonie-regulator/for-next]
+[also build test ERROR on sunxi/sunxi/for-next linus/master v5.18 next-20220520]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-Some of the Arbel NPCM8XX peripherals are based on Poleg NPCM7XX.
+url:    https://github.com/intel-lab-lkp/linux/commits/Corentin-Labbe/arm64-add-ethernet-to-orange-pi-3/20220523-133344
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+config: i386-randconfig-a012-20220523 (https://download.01.org/0day-ci/archive/20220523/202205231748.IZoXf2Sf-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 768a1ca5eccb678947f4155e38a5f5744dcefb56)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/179be86f748a2cce87423bb16f4f967c97bf5d9b
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Corentin-Labbe/arm64-add-ethernet-to-orange-pi-3/20220523-133344
+        git checkout 179be86f748a2cce87423bb16f4f967c97bf5d9b
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash
 
-This patchset was tested on the Arbel NPCM8XX evaluation board.
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
 
-Tomer Maimon (19):
-  dt-bindings: timer: npcm: Add npcm845 compatible string
-  clocksource: timer-npcm7xx: Add NPCM845 timer support
-  dt-bindings: serial: 8250: Add npcm845 compatible string
-  tty: serial: 8250: Add NPCM845 UART support
-  dt-bindings: watchdog: npcm: Add npcm845 compatible string
-  watchdog: npcm_wdt: Add NPCM845 watchdog support
-  dt-binding: clk: npcm845: Add binding for Nuvoton NPCM8XX Clock
-  clk: npcm8xx: add clock controller
-  dt-bindings: reset: add syscon property
-  reset: npcm: using syscon instead of device data
-  dt-bindings: reset: npcm: Add support for NPCM8XX
-  reset: npcm: Add NPCM8XX support
-  dt-bindings: arm: npcm: Add maintainer
-  dt-bindings: arm: npcm: Add nuvoton,npcm845 compatible string
-  dt-bindings: arm: npcm: Add nuvoton,npcm845 GCR compatible string
-  arm64: npcm: Add support for Nuvoton NPCM8XX BMC SoC
-  arm64: dts: nuvoton: Add initial NPCM8XX device tree
-  arm64: dts: nuvoton: Add initial NPCM845 EVB device tree
-  arm64: defconfig: Add Nuvoton NPCM family supportt of maintainers
-  won't be reviewing your patches at the moment. It may be better to wait
-  for the -rc1 to be out before sending out v2
+All errors (new ones prefixed by >>):
 
-- don't send your patches to soc@kernel.org unless you want me to pick
-  them up into the soc tree and they have been reviewed already. The series
-  is clearly still under review at the moment, and I expect it to go through
-  a few revisions first.
+>> drivers/regulator/core.c:4870:2: error: call to undeclared function 'for_each_property_of_node'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+           for_each_property_of_node(np, prop) {
+           ^
+>> drivers/regulator/core.c:4870:37: error: expected ';' after expression
+           for_each_property_of_node(np, prop) {
+                                              ^
+                                              ;
+>> drivers/regulator/core.c:4873:4: error: 'continue' statement not in loop statement
+                           continue;
+                           ^
+   drivers/regulator/core.c:4876:4: error: 'continue' statement not in loop statement
+                           continue;
+                           ^
+   drivers/regulator/core.c:4887:4: error: 'continue' statement not in loop statement
+                           continue;
+                           ^
+   5 errors generated.
 
-- gmail marked your emails as possible spam for me. I don't know what
-  happened here, but you may want to look into this to ensure that
-  everybody receives it.
 
-Some of the Arbel NPCM8XX peripherals are based on Poleg NPCM7XX.
+vim +/for_each_property_of_node +4870 drivers/regulator/core.c
 
-This patchset was tested on the Arbel NPCM8XX evaluation board.
+  4839	
+  4840	/*
+  4841	 * regulator_bulk_get_all - get multiple regulator consumers
+  4842	 *
+  4843	 * @dev:	Device to supply
+  4844	 * @np:		device node to search for consumers
+  4845	 * @consumers:  Configuration of consumers; clients are stored here.
+  4846	 *
+  4847	 * @return number of regulators on success, an errno on failure.
+  4848	 *
+  4849	 * This helper function allows drivers to get several regulator
+  4850	 * consumers in one operation.  If any of the regulators cannot be
+  4851	 * acquired then any regulators that were allocated will be freed
+  4852	 * before returning to the caller.
+  4853	 */
+  4854	int regulator_bulk_get_all(struct device *dev, struct device_node *np,
+  4855				   struct regulator_bulk_data **consumers)
+  4856	{
+  4857		int num_consumers = 0;
+  4858		struct regulator *tmp;
+  4859		struct property *prop;
+  4860		int i, n = 0, ret;
+  4861		char name[64];
+  4862	
+  4863		*consumers = NULL;
+  4864	
+  4865	/*
+  4866	 * first pass: get numbers of xxx-supply
+  4867	 * second pass: fill consumers
+  4868	 * */
+  4869	restart:
+> 4870		for_each_property_of_node(np, prop) {
+  4871			i = is_supply_name(prop->name);
+  4872			if (i == 0)
+> 4873				continue;
+  4874			if (!*consumers) {
+  4875				num_consumers++;
+  4876				continue;
+  4877			} else {
+  4878				memcpy(name, prop->name, i);
+  4879				name[i] = '\0';
+  4880				tmp = regulator_get(dev, name);
+  4881				if (!tmp) {
+  4882					ret = -EINVAL;
+  4883					goto error;
+  4884				}
+  4885				(*consumers)[n].consumer = tmp;
+  4886				n++;
+  4887				continue;
+  4888			}
+  4889		}
+  4890		if (*consumers)
+  4891			return num_consumers;
+  4892		if (num_consumers == 0)
+  4893			return 0;
+  4894		*consumers = kmalloc_array(num_consumers,
+  4895					   sizeof(struct regulator_bulk_data),
+  4896					   GFP_KERNEL);
+  4897		if (!*consumers)
+  4898			return -ENOMEM;
+  4899		goto restart;
+  4900	
+  4901	error:
+  4902		while (--n >= 0)
+  4903			regulator_put(consumers[n]->consumer);
+  4904		return ret;
+  4905	}
+  4906	EXPORT_SYMBOL_GPL(regulator_bulk_get_all);
+  4907	
 
-Tomer Maimon (19):
-  dt-bindings: timer: npcm: Add npcm845 compatible string
-  clocksource: timer-npcm7xx: Add NPCM845 timer support
-  dt-bindings: serial: 8250: Add npcm845 compatible string
-  tty: serial: 8250: Add NPCM845 UART support
-  dt-bindings: watchdog: npcm: Add npcm845 compatible string
-  watchdog: npcm_wdt: Add NPCM845 watchdog support
-  dt-binding: clk: npcm845: Add binding for Nuvoton NPCM8XX Clock
-  clk: npcm8xx: add clock controller
-  dt-bindings: reset: add syscon property
-  reset: npcm: using syscon instead of device data
-  dt-bindings: reset: npcm: Add support for NPCM8XX
-  reset: npcm: Add NPCM8XX support
-  dt-bindings: arm: npcm: Add maintainer
-  dt-bindings: arm: npcm: Add nuvoton,npcm845 compatible string
-  dt-bindings: arm: npcm: Add nuvoton,npcm845 GCR compatible string
-  arm64: npcm: Add support for Nuvoton NPCM8XX BMC SoC
-  arm64: dts: nuvoton: Add initial NPCM8XX device tree
-  arm64: dts: nuvoton: Add initial NPCM845 EVB device tree
-  arm64: defconfig: Add Nuvoton NPCM family support
-
-- For an initial platform submission, I can merge the
-  clk/clocksource/serial/reset drivers along with the platform if they
-  have an Ack from the subsystem maintainers. I would normally
-  not include the watchdog patch in this as it's not essential, but
-  I suppose that it's fine if you only do a oneline change and it
-  has an Ack. If you have other nonessential drivers that need changes,
-  best submit them separately though.
-
-         Arnd
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
