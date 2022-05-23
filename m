@@ -2,68 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0EDF5312EE
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:23:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1712D5311F7
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:21:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236430AbiEWN3o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 09:29:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44586 "EHLO
+        id S236336AbiEWNkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 09:40:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236355AbiEWN32 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 09:29:28 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06D3539158;
-        Mon, 23 May 2022 06:29:24 -0700 (PDT)
-X-UUID: c1bc8a75783245159fc01e86e701549b-20220523
-X-CID-P-RULE: Spam_GS6885AD
-X-CID-O-INFO: VERSION:1.1.5,REQID:3fb5f878-bca2-4a0f-9558-90ef349916f8,OB:0,LO
-        B:20,IP:0,URL:25,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS6885AD
-        ,ACTION:quarantine,TS:120
-X-CID-INFO: VERSION:1.1.5,REQID:3fb5f878-bca2-4a0f-9558-90ef349916f8,OB:0,LOB:
-        20,IP:0,URL:25,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,A
-        CTION:quarantine,TS:120
-X-CID-META: VersionHash:2a19b09,CLOUDID:44fa3de3-edbf-4bd4-8a34-dfc5f7bb086d,C
-        OID:e8d14b50625a,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:1,File:nil,QS:0,BEC:nil
-X-UUID: c1bc8a75783245159fc01e86e701549b-20220523
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <jiaxin.yu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 644441066; Mon, 23 May 2022 21:29:22 +0800
-Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Mon, 23 May 2022 21:29:21 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 23 May 2022 21:29:20 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 23 May 2022 21:29:19 +0800
-From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
-To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <angelogioacchino.delregno@collabora.com>
-CC:     <aaronyu@google.com>, <matthias.bgg@gmail.com>,
-        <trevor.wu@mediatek.com>, <tzungbi@google.com>,
-        <julianbraha@gmail.com>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>
-Subject: [PATCH v5 20/20] dt-bindings: mediatek: mt8186: add mt8186-mt6366-rt1019-rt5682s document
-Date:   Mon, 23 May 2022 21:28:58 +0800
-Message-ID: <20220523132858.22166-21-jiaxin.yu@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220523132858.22166-1-jiaxin.yu@mediatek.com>
-References: <20220523132858.22166-1-jiaxin.yu@mediatek.com>
+        with ESMTP id S236324AbiEWNkC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 09:40:02 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE91154BD0
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 06:39:59 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id t25so25646747lfg.7
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 06:39:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=7jVIoyXDoN8BUaXwgx72nxc8bY3gSk2cGnS+pPrO6YI=;
+        b=N7Icjhgo9jczhWrqVMUjdJbL2WO6Ll9oe6tZ2viprpIUaf71DwfU0rnyRAXW6XurJR
+         AYDGI0z/2rYKfJbxgShe6vWCsGnENWLJFD/B+G+incKjN3f19CBYo3YMLnEDlOPttOdE
+         GFW7qmb/C4qP/QJqY4vyVnFIVIDwms9bAfshrjfi/rrGOXT4o+CIA4lAnpmv/sdomKv3
+         pjIBw0duxpQgD2bSx2bIQuqQdhXS+c6qxS6VAUIUspTv/7KjfyJjw5fR+RvCY/uvkNN/
+         ihvmT1Kbky9MGkJOMzLZJwOmVaJnGNDrNQv/GI6SYtx2zO29PFkBJeokxXADNeVyHvEX
+         Fdtw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=7jVIoyXDoN8BUaXwgx72nxc8bY3gSk2cGnS+pPrO6YI=;
+        b=CNAz53VIfm3OIoKhj2lX+do+LJlyjxx4nyC3HnBLcHOEmZYzQrOPwvQU0KV0pftEj+
+         1pVD/f/PYnUwSy+iWnQEU7nBmjra/oC/fwPpYZfAzW4tA5k+s7PkMFFBkoV2+ukLM67l
+         76Wrm0DzXwIk4VG8phEX2rf5CVCYq0KnCvHlMv9u4MxztSyPvHvHaMQ4T1NSqtC/Id3k
+         F2kOK+coVCkyVx0nibcSYMGQo4BdBJlT5hYfx1oVtgONl+oGoPoNxpZ/sPpk5aiDZgeq
+         ctab5+Udw3ilouk89XJbVFG366mLRWjsEgIwnKrhZ2pYBwfuMZeiPe0oxNmj4bR6IOKE
+         l4TA==
+X-Gm-Message-State: AOAM532UxL1mxJm8CsScHrvc90po97jtA9GkFwmfBTh/SjPWluwzpyCJ
+        Zdf0alHQ9rEtTGHVchtuHpq0HpJId94OJA==
+X-Google-Smtp-Source: ABdhPJxm4/cQN0TPD9jcD041vnU1p5Wwv6GY89h3dMAa3runVjnRLnAeAW11yi0gz29FUf7wXL7qDw==
+X-Received: by 2002:a05:6512:3f15:b0:477:ce24:4e1f with SMTP id y21-20020a0565123f1500b00477ce244e1fmr13087186lfa.355.1653313198006;
+        Mon, 23 May 2022 06:39:58 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id d19-20020a2e3313000000b0024b14fa6061sm1840791ljc.1.2022.05.23.06.39.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 May 2022 06:39:57 -0700 (PDT)
+Message-ID: <8ce50a9f-241d-c37a-15e9-1a97d410f61e@linaro.org>
+Date:   Mon, 23 May 2022 16:39:56 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v11 3/7] PCI: dwc: Handle MSIs routed to multiple GIC
+ interrupts
+Content-Language: en-GB
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220520183114.1356599-1-dmitry.baryshkov@linaro.org>
+ <20220520183114.1356599-4-dmitry.baryshkov@linaro.org>
+ <Yos9fkgxAN1jJ4jO@hovoldconsulting.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <Yos9fkgxAN1jJ4jO@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,95 +86,142 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add document for mt8186 board with mt6366, rt1019 and rt5682s.
+On 23/05/2022 10:53, Johan Hovold wrote:
+> On Fri, May 20, 2022 at 09:31:10PM +0300, Dmitry Baryshkov wrote:
+>> On some of Qualcomm platforms each group of 32 MSI vectors is routed to the
+>> separate GIC interrupt. Implement support for such configurations by
+>> parsing "msi0" ... "msiN" interrupts and attaching them to the chained
+>> handler.
+>>
+>> Note, that if DT doesn't list an array of MSI interrupts and uses single
+>> "msi" IRQ, the driver will limit the amount of supported MSI vectors
+>> accordingly (to 32).
+>>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   .../pci/controller/dwc/pcie-designware-host.c | 58 +++++++++++++++++--
+>>   1 file changed, 54 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+>> index a076abe6611c..381bc24d5715 100644
+>> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+>> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+>> @@ -288,6 +288,43 @@ static void dw_pcie_msi_init(struct pcie_port *pp)
+>>   	dw_pcie_writel_dbi(pci, PCIE_MSI_ADDR_HI, upper_32_bits(msi_target));
+>>   }
+>>   
+>> +static const char * const split_msi_names[] = {
+>> +	"msi0", "msi1", "msi2", "msi3",
+>> +	"msi4", "msi5", "msi6", "msi7",
+>> +};
+>> +
+>> +static int dw_pcie_parse_split_msi_irq(struct pcie_port *pp)
+>> +{
+>> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+>> +	struct device *dev = pci->dev;
+>> +	struct platform_device *pdev = to_platform_device(dev);
+>> +	int irq;
+>> +	u32 ctrl;
+>> +
+>> +	irq = platform_get_irq_byname_optional(pdev, split_msi_names[0]);
+>> +	if (irq == -ENXIO)
+>> +		return -ENXIO;
+> 
+> You still need to check for other errors and -EPROBE_DEFER here.
 
-Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
----
- .../sound/mt8186-mt6366-rt1019-rt5682s.yaml   | 75 +++++++++++++++++++
- 1 file changed, 75 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/mt8186-mt6366-rt1019-rt5682s.yaml
+I think even the if (irq < 0) return irq; will work here.
 
-diff --git a/Documentation/devicetree/bindings/sound/mt8186-mt6366-rt1019-rt5682s.yaml b/Documentation/devicetree/bindings/sound/mt8186-mt6366-rt1019-rt5682s.yaml
-new file mode 100644
-index 000000000000..059a7629b2d3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/mt8186-mt6366-rt1019-rt5682s.yaml
-@@ -0,0 +1,75 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/mt8186-mt6366-rt1019-rt5682s.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Mediatek MT8186 with MT6366, RT1019 and RT5682S ASoC sound card driver
-+
-+maintainers:
-+  - Jiaxin Yu <jiaxin.yu@mediatek.com>
-+
-+description:
-+  This binding describes the MT8186 sound card.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mediatek,mt8186-mt6366-rt1019-rt5682s-sound
-+
-+  mediatek,platform:
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+    description: The phandle of MT8186 ASoC platform.
-+
-+  headset-codec:
-+    type: object
-+    additionalProperties: false
-+    properties:
-+      sound-dai:
-+        maxItems: 1
-+    required:
-+      - sound-dai
-+
-+  playback-codecs:
-+    type: object
-+    additionalProperties: false
-+    properties:
-+      sound-dai:
-+        items:
-+          - description: phandle of dp codec
-+          - description: phandle of l channel speaker codec
-+          - description: phandle of r channel speaker codec
-+        minItems: 2
-+    required:
-+      - sound-dai
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - mediatek,platform
-+  - headset-codec
-+  - playback-codecs
-+
-+examples:
-+  - |
-+
-+    sound: mt8186-sound {
-+        compatible = "mediatek,mt8186-mt6366-rt1019-rt5682s-sound";
-+        mediatek,platform = <&afe>;
-+        pinctrl-names = "aud_clk_mosi_off",
-+                        "aud_clk_mosi_on";
-+        pinctrl-0 = <&aud_clk_mosi_off>;
-+        pinctrl-1 = <&aud_clk_mosi_on>;
-+
-+        headset-codec {
-+            sound-dai = <&rt5682s>;
-+        };
-+
-+        playback-codecs {
-+             sound-dai = <&it6505dptx>,
-+                         <&rt1019p>;
-+        };
-+    };
-+
-+...
+> 
+>> +
+>> +	pp->msi_irq[0] = irq;
+>> +
+>> +	/* Parse as many IRQs as described in the DTS. */
+> 
+> s/DTS/devicetree/
+> 
+>> +	for (ctrl = 1; ctrl < MAX_MSI_CTRLS; ctrl++) {
+>> +		irq = platform_get_irq_byname_optional(pdev, split_msi_names[ctrl]);
+>> +		if (irq == -ENXIO)
+>> +			break;
+>> +		if (irq < 0)
+>> +			return dev_err_probe(dev, irq,
+>> +					     "Failed to parse MSI IRQ '%s'\n",
+>> +					     split_msi_names[ctrl]);
+>> +
+>> +		pp->msi_irq[ctrl] = irq;
+>> +	}
+>> +
+>> +	pp->num_vectors = ctrl * MAX_MSI_IRQS_PER_CTRL;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>   static int dw_pcie_msi_host_init(struct pcie_port *pp)
+>>   {
+>>   	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+>> @@ -295,22 +332,34 @@ static int dw_pcie_msi_host_init(struct pcie_port *pp)
+>>   	struct platform_device *pdev = to_platform_device(dev);
+>>   	int ret;
+>>   	u32 ctrl, num_ctrls;
+>> +	bool has_split_msi_irq = false;
+> 
+> This one should go in the follow-on patch that starts using it.
+> 
+>> -	num_ctrls = pp->num_vectors / MAX_MSI_IRQS_PER_CTRL;
+>> -	for (ctrl = 0; ctrl < num_ctrls; ctrl++)
+>> +	for (ctrl = 0; ctrl < MAX_MSI_CTRLS; ctrl++)
+>>   		pp->irq_mask[ctrl] = ~0;
+>>   
+>> +	if (!pp->msi_irq[0]) {
+>> +		ret = dw_pcie_parse_split_msi_irq(pp);
+>> +		if (ret < 0 && ret != -ENXIO)
+>> +			return ret;
+>> +	}
+>> +
+>> +	if (!pp->num_vectors)
+>> +		pp->num_vectors = MSI_DEF_NUM_VECTORS;
+> 
+> This works, but now you override num_vectors unconditionally when using
+> split msis (and not just when num_vectors is set to zero) >
+> Is it work allowing to use num_vectors as a maximum as in previous
+> versions (if only for consistency)?
+
+Let me take a look.
+
+> 
+>> +	num_ctrls = pp->num_vectors / MAX_MSI_IRQS_PER_CTRL;
+>> +
+>>   	if (!pp->msi_irq[0]) {
+>>   		int irq = platform_get_irq_byname_optional(pdev, "msi");
+>>   
+>>   		if (irq < 0) {
+>>   			irq = platform_get_irq(pdev, 0);
+>>   			if (irq < 0)
+>> -				return irq;
+>> +				return dev_err_probe(dev, irq, "Failed to parse MSI irq\n");
+>>   		}
+>>   		pp->msi_irq[0] = irq;
+>>   	}
+>>   
+>> +	dev_dbg(dev, "Using %d MSI vectors\n", pp->num_vectors);
+>> +
+>>   	pp->msi_irq_chip = &dw_pci_msi_bottom_irq_chip;
+>>   
+>>   	ret = dw_pcie_allocate_domains(pp);
+>> @@ -407,7 +456,8 @@ int dw_pcie_host_init(struct pcie_port *pp)
+>>   				     of_property_read_bool(np, "msi-parent") ||
+>>   				     of_property_read_bool(np, "msi-map"));
+>>   
+>> -		if (!pp->num_vectors) {
+>> +		/* for the has_msi_ctrl the default assignment is handled inside dw_pcie_msi_host_init() */
+>> +		if (!pp->has_msi_ctrl && !pp->num_vectors) {
+>>   			pp->num_vectors = MSI_DEF_NUM_VECTORS;
+>>   		} else if (pp->num_vectors > MAX_MSI_IRQS) {
+>>   			dev_err(dev, "Invalid number of vectors\n");
+> 
+> Johan
+
+
 -- 
-2.18.0
-
+With best wishes
+Dmitry
