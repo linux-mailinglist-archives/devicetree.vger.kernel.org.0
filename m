@@ -2,78 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69BAE531C29
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 22:57:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30E9D5316F8
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 22:52:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229565AbiEWTPL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 15:15:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53174 "EHLO
+        id S229450AbiEWT0r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 15:26:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229835AbiEWTNo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 15:13:44 -0400
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EBA18CCEA
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 11:48:11 -0700 (PDT)
-Received: by mail-pf1-x432.google.com with SMTP id z25so1769697pfr.1
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 11:48:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=nLb+QNOlLrmnjGmbCc4cBD9THL8cLJijlBwsUv7Yj+0=;
-        b=7q5AvmJyA6JKQ6Eu+mRPtBRXj8ayTLjjc9laEl3IAQTOcm4i31M11AK5e1B7dbrVdM
-         Nt94/lVT3BU2QHlboFGFeeorycdJKl8SO8iA2SaZdsmnur/ybAIV8CXv0XDHCwPaxqHG
-         UZlRT0kPYj8ZB17IVXyb10r8n0k05XD6hOgCA76N9lE/0v2W+o4ljzBe1gh53+fWoXmq
-         Frs8s5GH6D6JCDhAyoN3sz13uUF0Y2AaMzc7mjELjw0jshHBJ2SPoyApA3oHIq2y1kde
-         ZnGdvJvicByjfY27b4PYG4aonwmAjkHW5YxYECo/ZrGOIAb5/pKbc3GbS3RQtsZOdZIL
-         qlXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=nLb+QNOlLrmnjGmbCc4cBD9THL8cLJijlBwsUv7Yj+0=;
-        b=HTJiTIAfJK9t55N5dqYA7t0IBq/POz9A8+7MGPq//2f6NNFzlgaEcL2UBY+zrR1rAn
-         DNvC/h30vkXvWRSSoglDY5QBtxG4JtxgtqqKHxfwoTPRBvkVPUoZ+umTBEHMy8EDMkPy
-         /rw/7rBd2P+1f2lH4hFujNH8Bd61zNd+iUWjFSfvQsa493dGVwFmGDH0sALrN0xNDzu5
-         ZXhUV8LA7Nu5pLqFdIjV9Iu5ZDxzY8AgzrQnUp/c/JFO237RL2+yIYUBTLbmgf7OJBxy
-         /lJbM4uC4N8XT3VKiPKLFBo3CChRYYBhWEWUrFfyu7MgxnhAeaXy4AAwjkeCkXTt9arO
-         1Wzw==
-X-Gm-Message-State: AOAM533QW2hvLB0z+jrlUUc3c8aG1eHLi48hgbhwL43YsCaOnw1/AVpF
-        wP58d/PG+MH8AZMK12RaRKXwuiFSEkxGHx03gAqQZJghJr4=
-X-Google-Smtp-Source: ABdhPJxXB2uf13Hv8DHZCFacAhqHSty8tb0o6r+b2jnBBbVZaOTV5CVnW5PRbnP4CQxq6Xy/u4U6jTIlMLcwL2hFeCQ=
-X-Received: by 2002:a63:8a4c:0:b0:3fa:218c:5c12 with SMTP id
- y73-20020a638a4c000000b003fa218c5c12mr8020259pgd.115.1653331690719; Mon, 23
- May 2022 11:48:10 -0700 (PDT)
+        with ESMTP id S229959AbiEWT0c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 15:26:32 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65574187D94;
+        Mon, 23 May 2022 12:05:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=/VahUGf3jIouTElSgvltjM8fcx6Y4GBfBctItJCCR8o=; b=PhFghKivnQDS61KDy635j7S0Ny
+        j3o3syCqONvFNZAeGYDvsVE33SAl6yc0pW2Ui4S8fLpFh9+zSdcsFkjMc6xkj4EFp2fBPvMXeuR+Y
+        TwcttVSLoUY20v/HHtaDDPkcSvvU6YTQjwzMtkDlrOm2RHZ2rLKBksmQ+abD1/1ZyhXE=;
+Received: from p200300ccff0dcc001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff0d:cc00:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1ntDN9-0004DT-LY; Mon, 23 May 2022 21:05:43 +0200
+Date:   Mon, 23 May 2022 21:05:42 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        arnd@arndb.de, olof@lixom.net, soc@kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, l.stach@pengutronix.de,
+        alexander.stein@ew.tq-group.com, marcel.ziswiler@toradex.com,
+        linux@rempel-privat.de, matthias.schiffer@ew.tq-group.com,
+        cniedermaier@dh-electronics.com, sebastian.reichel@collabora.com,
+        leoyang.li@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        nicolecrivain@gmail.com
+Subject: Re: [PATCH 2/2] ARM: dts: imx: Add devicetree for Kobo Aura 2
+Message-ID: <20220523210542.0735dd5f@aktux>
+In-Reply-To: <402c7e38-7ad0-581f-146d-3db88e77d37c@linaro.org>
+References: <20220522214415.254959-1-andreas@kemnade.info>
+        <20220522214415.254959-3-andreas@kemnade.info>
+        <402c7e38-7ad0-581f-146d-3db88e77d37c@linaro.org>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <1646644054-24421-1-git-send-email-hongxing.zhu@nxp.com>
- <1646644054-24421-6-git-send-email-hongxing.zhu@nxp.com> <fc2c6ddbf55723ac4c0f366e5a6131afafe546aa.camel@pengutronix.de>
- <AS8PR04MB8676F9A410442049E3DCA1F68CF39@AS8PR04MB8676.eurprd04.prod.outlook.com>
-In-Reply-To: <AS8PR04MB8676F9A410442049E3DCA1F68CF39@AS8PR04MB8676.eurprd04.prod.outlook.com>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Mon, 23 May 2022 11:47:59 -0700
-Message-ID: <CAJ+vNU271mS78iC7qFnaF1owzTF6+DWEY7gYVAQNmwiQk2-H0w@mail.gmail.com>
-Subject: Re: [PATCH v2 5/7] arm64: dts: imx8mp: add the iMX8MP PCIe support
-To:     Hongxing Zhu <hongxing.zhu@nxp.com>
-Cc:     Lucas Stach <l.stach@pengutronix.de>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Score: -1.0 (-)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,146 +61,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Apr 17, 2022 at 10:00 PM Hongxing Zhu <hongxing.zhu@nxp.com> wrote:
->
-> > -----Original Message-----
-> > From: Lucas Stach <l.stach@pengutronix.de>
-> > Sent: 2022=E5=B9=B44=E6=9C=8815=E6=97=A5 5:03
-> > To: Hongxing Zhu <hongxing.zhu@nxp.com>; p.zabel@pengutronix.de;
-> > bhelgaas@google.com; lorenzo.pieralisi@arm.com; robh@kernel.org;
-> > shawnguo@kernel.org; vkoul@kernel.org; alexander.stein@ew.tq-group.com
-> > Cc: linux-phy@lists.infradead.org; devicetree@vger.kernel.org;
-> > linux-pci@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
-> > linux-kernel@vger.kernel.org; kernel@pengutronix.de; dl-linux-imx
-> > <linux-imx@nxp.com>
-> > Subject: Re: [PATCH v2 5/7] arm64: dts: imx8mp: add the iMX8MP PCIe
-> > support
-> >
-> > Am Montag, dem 07.03.2022 um 17:07 +0800 schrieb Richard Zhu:
-> > > Add the i.MX8MP PCIe support.
-> > >
-> > > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> > > ---
-> > >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 46
-> > > ++++++++++++++++++++++-
-> > >  1 file changed, 45 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > index b40a5646f205..e7b3d8029e34 100644
-> > > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > @@ -5,6 +5,7 @@
-> > >
-> > >  #include <dt-bindings/clock/imx8mp-clock.h>
-> > >  #include <dt-bindings/power/imx8mp-power.h>
-> > > +#include <dt-bindings/reset/imx8mp-reset.h>
-> > >  #include <dt-bindings/gpio/gpio.h>
-> > >  #include <dt-bindings/input/input.h>
-> > >  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > > @@ -375,7 +376,8 @@ iomuxc: pinctrl@30330000 {
-> > >                     };
-> > >
-> > >                     gpr: iomuxc-gpr@30340000 {
-> > > -                           compatible =3D "fsl,imx8mp-iomuxc-gpr", "=
-syscon";
-> > > +                           compatible =3D "fsl,imx8mp-iomuxc-gpr",
-> > > +                                        "fsl,imx6q-iomuxc-gpr", "sys=
-con";
-> > >                             reg =3D <0x30340000 0x10000>;
-> > >                     };
-> > >
-> > > @@ -965,6 +967,17 @@ aips4: bus@32c00000 {
-> > >                     #size-cells =3D <1>;
-> > >                     ranges;
-> > >
-> > > +                   pcie_phy: pcie-phy@32f00000 {
-> > > +                           compatible =3D "fsl,imx8mp-pcie-phy";
-> > > +                           reg =3D <0x32f00000 0x10000>;
-> > > +                           resets =3D <&src IMX8MP_RESET_PCIEPHY>,
-> > > +                                    <&src IMX8MP_RESET_PCIEPHY_PERST=
->;
-> > > +                           reset-names =3D "pciephy", "perst";
-> > > +                           power-domains =3D <&hsio_blk_ctrl
-> > IMX8MP_HSIOBLK_PD_PCIE_PHY>;
-> > > +                           #phy-cells =3D <0>;
-> > > +                           status =3D "disabled";
-> > > +                   };
-> > > +
-> > >                     hsio_blk_ctrl: blk-ctrl@32f10000 {
-> > >                             compatible =3D "fsl,imx8mp-hsio-blk-ctrl"=
-, "syscon";
-> > >                             reg =3D <0x32f10000 0x24>;
-> > > @@ -980,6 +993,37 @@ hsio_blk_ctrl: blk-ctrl@32f10000 {
-> > >                     };
-> > >             };
-> > >
-> > > +           pcie: pcie@33800000 {
-> > > +                   compatible =3D "fsl,imx8mp-pcie";
-> > > +                   reg =3D <0x33800000 0x400000>, <0x1ff00000 0x8000=
-0>;
-> > > +                   reg-names =3D "dbi", "config";
-> > > +                   #address-cells =3D <3>;
-> > > +                   #size-cells =3D <2>;
-> > > +                   device_type =3D "pci";
-> > > +                   bus-range =3D <0x00 0xff>;
-> > > +                   ranges =3D  <0x81000000 0 0x00000000 0x1ff80000 0
-> > 0x00010000 /* downstream I/O 64KB */
-> > > +                              0x82000000 0 0x18000000 0x18000000 0
-> > 0x07f00000>; /* non-prefetchable memory */
-> > > +                   num-lanes =3D <1>;
-> > > +                   num-viewport =3D <4>;
-> > > +                   interrupts =3D <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
-> > > +                   interrupt-names =3D "msi";
-> > > +                   #interrupt-cells =3D <1>;
-> > > +                   interrupt-map-mask =3D <0 0 0 0x7>;
-> > > +                   interrupt-map =3D <0 0 0 1 &gic GIC_SPI 126
-> > IRQ_TYPE_LEVEL_HIGH>,
-> > > +                                   <0 0 0 2 &gic GIC_SPI 125 IRQ_TYP=
-E_LEVEL_HIGH>,
-> > > +                                   <0 0 0 3 &gic GIC_SPI 124 IRQ_TYP=
-E_LEVEL_HIGH>,
-> > > +                                   <0 0 0 4 &gic GIC_SPI 123 IRQ_TYP=
-E_LEVEL_HIGH>;
-> > > +                   fsl,max-link-speed =3D <3>;
-> >
-> > I believe that imx6_pcie_start_link does not properly handle Gen3 speed=
-s.
-> Good caught.
-> The according link_gen condition should be changed in driver too.
-> Would be changed in next version.
-> Thanks.
->
-> Best Regards
-> Richard Zhu
-> >
-> > Regards,
-> > Lucas
-> >
-> > > +                   linux,pci-domain =3D <0>;
-> > > +                   power-domains =3D <&hsio_blk_ctrl IMX8MP_HSIOBLK_=
-PD_PCIE>;
-> > > +                   resets =3D <&src IMX8MP_RESET_PCIE_CTRL_APPS_EN>,
-> > > +                            <&src IMX8MP_RESET_PCIE_CTRL_APPS_TURNOF=
-F>;
-> > > +                   reset-names =3D "apps", "turnoff";
-> > > +                   phys =3D <&pcie_phy>;
-> > > +                   phy-names =3D "pcie-phy";
-> > > +                   status =3D "disabled";
-> > > +           };
-> > > +
-> > >             gpu3d: gpu@38000000 {
-> > >                     compatible =3D "vivante,gc";
-> > >                     reg =3D <0x38000000 0x8000>;
-> >
->
+On Mon, 23 May 2022 12:03:09 +0200
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-Richard,
+[...]
+> > +
+> > +	gpio_keys: gpio-keys {
+> > +		compatible = "gpio-keys";
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_gpio_keys>;
+> > +
+> > +		cover {  
+> 
+> Generic node names. You could add suffix if needed, so either key or
+> key-cover.
+> 
+hmm, the example in
+Documentation/devicetree/bindings/input/gpio-keys.yaml
 
-Do you have an updated series for IMX8MP PCIe yet? I believe
-everything you were waiting on is now merged (blk-ctrl and
-power-domain).
+shows names like I did. I usually expect to trust binding documentation
+to have something acceptable.
 
-Best Regards,
+> > +			label = "Cover";
+> > +			gpios = <&gpio5 12 GPIO_ACTIVE_LOW>;
+> > +			linux,code = <SW_LID>;
+> > +			linux,input-type = <EV_SW>;
+> > +			wakeup-source;
+> > +		};
+> > +
+> > +		power {
+> > +			label = "Power";
+> > +			gpios = <&gpio5 8 GPIO_ACTIVE_LOW>;
+> > +			linux,code = <KEY_POWER>;
+> > +			wakeup-source;
+> > +		};
+> > +	};
+> > +
+> > +	leds: leds {
+> > +		compatible = "gpio-leds";
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&pinctrl_led>;
+> > +
+> > +		on {  
+> 
+> The same. You also need property for color.
+> 
+here the documentation clearly indicates led-.*|led
 
-Tim
+Regards,
+Andreas
