@@ -2,57 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AA0B53143D
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:25:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF4AD5312A5
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 18:22:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238329AbiEWQGN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 12:06:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60768 "EHLO
+        id S238421AbiEWQGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 12:06:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238482AbiEWQGL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 12:06:11 -0400
-Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D5D8186CC
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 09:06:08 -0700 (PDT)
-Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-edf3b6b0f2so19006482fac.9
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 09:06:08 -0700 (PDT)
+        with ESMTP id S238432AbiEWQGO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 12:06:14 -0400
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8547215714
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 09:06:11 -0700 (PDT)
+Received: by mail-pg1-x530.google.com with SMTP id h186so14070054pgc.3
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 09:06:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ffwll.ch; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=wfWyXqKDw6KMyeqQToN3+pb4tfYQnyQoFUsrYr2tg34=;
-        b=kU/xLlvMMyizZPnrw/4g+bnPtd5LqlyHH+Wc94Nexqf4uQOgnwARiQhcDDDorC42GV
-         f+4eN4fP6cKJUo1p5XyyBY5O+rFnPqiEyC9e6YUpIxAbC67AnnKN5mqBPvGl846M+Ft8
-         Th/vxhr4vaBwomnkON2BJHdsPuv4Y2lnbNQAY=
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=e7s4FvKYqhrIHrfJIpxpjB/w24p/UdFVYWYWqUaWKCk=;
+        b=u+/2mCLf6J1KoFIelxvEXFdSh+jzSICBISVLI//JWNo14YyvAtMd+uX8X8iD/e1aoa
+         fQXmAEVpeFJuFcRR8TmCaETYwyz92alhGttYY10gtz6DFZUKDEAvsbuiQ8PLIQlm7Apf
+         Puy2AmshCtrB/5CF9y8MnlDJRHQOm+gQo87KIkWvBTYonePUjdkXmp4fBuQqEgK1hDuW
+         ZopWDEGPHj9aBmoCu+NsIBqFxoA2ohlyKykn8L2/zrMxCMh6UE55yEg4VqGU0uTCe8HV
+         ZNXsRNK8UnxkJYnjh6VxjVAooHu3tCwDlw1g+RIwhqwh9q/qP1SR1rfjnOpsDm2E8S/i
+         QaFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=wfWyXqKDw6KMyeqQToN3+pb4tfYQnyQoFUsrYr2tg34=;
-        b=7zcRvmvrR0meYJar85UbD9xO1B4TpZVx1R5RyGmnqCtBCIiJgJyXG6nOo5kPQeCx9o
-         mjQyu9y3dLt+Xj+tzsmLqc2tNwbietYw4vZZf2RQrwypkX/xTGocoW6ekl4jhOQ20OFj
-         VN63yMVqHwditnBUGXmgNdkRp5mIVfVXzHqLePpPJ1TxdHw1ccYWOgsDpSs+Nm1NxQHQ
-         ZwBdWoIi08Q8LOva2D8IRVUwxSHXEDCplmSusUt1vKWo93SdUVECJYTzVTgEgDuxDPAx
-         SfGfR8UZzafIIKW6dRb/94Qw00AA9CHWlYWjOJWSO67XsbXam9Lo0E6zSYZHgaxG5G15
-         bJ0A==
-X-Gm-Message-State: AOAM5320OBLmtgaWGWBkBXELfq0nBltUd+hLheGpVGZWd+BndHZHK0z0
-        QEP2DjrdYK1aZW8zTMPCcCd5klVdlfoclqthMo1Faw==
-X-Google-Smtp-Source: ABdhPJxCSCqEX0AX/mFMKV9Nszvd1kSvfb5PoopVXRLMDu0j/BF8/r6jTeX7U8ExRKBQB1j15KZ26tYC51B1MxbiPjE=
-X-Received: by 2002:a05:6870:eaa5:b0:da:b3f:2b45 with SMTP id
- s37-20020a056870eaa500b000da0b3f2b45mr13576965oap.228.1653321967446; Mon, 23
- May 2022 09:06:07 -0700 (PDT)
+         :message-id:subject:to;
+        bh=e7s4FvKYqhrIHrfJIpxpjB/w24p/UdFVYWYWqUaWKCk=;
+        b=rF7SZI9Jclbxw7Xmspww0j0zjBtjErnWrgLJFEuNHGQGUH84IJXXq56WgHkFB/hrB7
+         aeEEZDfpNiuPD+0PAl7jl7L1vK/91qstNNliUNEVlPkMLUVUoI+izo1OKYlyP7L/UiVD
+         hxv/kYtMNYnsFfEQ8hc/dErcu4uZbY3hzUX4y6ss4HlcfWR8Gz8KXGB0IlIn6imEGC10
+         84dMKEwW+G2xNwNV9iKldVVbA4S2C9Tn0LjSKsoiKFjCzBWX+hjOsWmDp+c7o29ArlXM
+         nt1Pf2hoKBSBqMd/jJrci47Uoeiv/d+yWXF7NMkleGD4TQTjtoAIa39s8mjz5Dz2qDEM
+         NbIg==
+X-Gm-Message-State: AOAM530SEZx3lVhR8byHeX4aCfMa9M786ex5wVPGQ0zaF0n1FpSUhAcd
+        NyU5ObKVJJgPgxES34+fKneEcdEytbH+i+OGHKEXHQ==
+X-Google-Smtp-Source: ABdhPJxYg9Yh2GQWHiZaU+6ZG0i119MD2rlka3d2WGblGGuHQ6wLbqOifgvk6vMY4clWHQGKswYOx7D+Pjege3lot0g=
+X-Received: by 2002:a63:6901:0:b0:3f9:caa5:cffc with SMTP id
+ e1-20020a636901000000b003f9caa5cffcmr13163645pgc.324.1653321971054; Mon, 23
+ May 2022 09:06:11 -0700 (PDT)
 MIME-Version: 1.0
 References: <20220523084615.13510-1-robert.foss@linaro.org>
  <CAG3jFytkFcmYjj6AHye3imsTDyP1LxHQvAzjswuRBsVVHRTnKg@mail.gmail.com> <CAG3jFytGDm29GVAQ5bs7XQ+hMDABd7btggFGN2pASBEzRPE50A@mail.gmail.com>
 In-Reply-To: <CAG3jFytGDm29GVAQ5bs7XQ+hMDABd7btggFGN2pASBEzRPE50A@mail.gmail.com>
-From:   Daniel Vetter <daniel@ffwll.ch>
-Date:   Mon, 23 May 2022 18:05:56 +0200
-Message-ID: <CAKMK7uGmnM1GXi_6yovZApBo34B5ojrN1KZOqpKBDgUUDorQ6w@mail.gmail.com>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Mon, 23 May 2022 18:05:59 +0200
+Message-ID: <CAG3jFyuRXLp3iS53rhXc9_-mT18kGcxNDHAA6UjMk7y_p_mwkQ@mail.gmail.com>
 Subject: Re: [PATCH v1 1/2] Revert "drm/bridge: anx7625: Use DPI bus type"
-To:     Robert Foss <robert.foss@linaro.org>
-Cc:     andrzej.hajda@intel.com, narmstrong@baylibre.com,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@gmail.com, airlied@linux.ie, robh+dt@kernel.org,
+To:     andrzej.hajda@intel.com, narmstrong@baylibre.com,
+        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
+        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@linux.ie,
+        daniel@ffwll.ch, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, xji@analogixsemi.com,
         hsinyi@chromium.org, sam@ravnborg.org, tzimmermann@suse.de,
         maxime@cerno.tech, jose.exposito89@gmail.com,
@@ -61,7 +63,7 @@ Cc:     andrzej.hajda@intel.com, narmstrong@baylibre.com,
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,20 +72,13 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On Mon, 23 May 2022 at 14:54, Robert Foss <robert.foss@linaro.org> wrote:
+>
 > These two patches need to be reverted since they were part (3/4 & 4/4)
 > of a series, that was partially (1/4 + 2/4) on the linux-media tree.
 > These two patches depend on the patches in the media tree, and will
 > not build without them, which leaves linux-drm-misc-next in a broken
 > state. Let's revert the two latter patches until rc1 has been branched
-
-"rc1 has been backmerged into drm-misc-next" is missing here.
-
 > and the dependency wont cause issues any more.
-
-With explainer and sob added to both:
-
-Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-
 >
 > On Mon, 23 May 2022 at 14:50, Robert Foss <robert.foss@linaro.org> wrote:
 > >
@@ -132,9 +127,4 @@ Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 > >
 > > Signed-off-by: Robert Foss <robert.foss@linaro.org>
 
-
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
