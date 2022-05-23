@@ -2,65 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12650530B65
-	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 11:03:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64BE3530B9D
+	for <lists+devicetree@lfdr.de>; Mon, 23 May 2022 11:03:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231728AbiEWITC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 04:19:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34180 "EHLO
+        id S231489AbiEWIWy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 04:22:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231724AbiEWITC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 04:19:02 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61B0F6177
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 01:18:57 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id fw21-20020a17090b129500b001df9f62edd6so10531391pjb.0
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 01:18:57 -0700 (PDT)
+        with ESMTP id S231587AbiEWIWv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 04:22:51 -0400
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FABC2314C
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 01:22:50 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id z11so3530702pjc.3
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 01:22:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=f4J0ESP/V8Vnwz/yuHg3Z4IrDVJhBwYlkrbCGVndRBM=;
-        b=bO7z+R1t9wUhLnnnWDfhz6Zk6h2YBjLIxo/j4Y1MwDtpeUwI3PjDO9YQ56IeGCrnJ2
-         NcI5ekA6n2uks0MZqmmN3YR/0KlfnZDYlxt9So3GHsCdp4v4wRNBUWuHTgjXRxkmkZMe
-         I4r59ygYODe9ZgZTrQeb35X67mNcZ1baihrC8=
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=W+44BSSlN1XE65CChHOFpA2+bmaSayBXAi8yg7sU14k=;
+        b=Q2TUZwWb3O8USHfgIO9tS+qDCKQ4aHCFf5zVdpZ4kZL/ae6pcScOhVImdn+XIsDcvj
+         kF8PDjhYBd9Ql4uU/PgJb0rtPsN5CZTjI/FBvXaDrgt1BSctQlerLchZPIZ0UIVfPvWW
+         gEK/YC/JXT+hRjEiaupO7Dk9pghVmeLndrcGo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=f4J0ESP/V8Vnwz/yuHg3Z4IrDVJhBwYlkrbCGVndRBM=;
-        b=5mpKv/3a1wppdfK2PihJAVjrEi2ISPUSJH4dzSgCJiU6+EWYFRESWj6pFFSfwDziwA
-         GadAjkrvj1j5iTDgzCgv1W+ieT648PaahXrZV7yM/QRX2UQXl3VnzhbTerBXgPv7V869
-         r+NowEJC1kwIqGdkDvC281Pmiyp14ieQnkmRJsCa+QRNFh0Os7f18XLfZb+s8H+8Fe8Y
-         jxnxB3YJaRrzNVQovHn7L/pMZ1Y28uv5GXwj1nAXwS3LMAzf7LoRL2ye60OPzrxpJ4Nx
-         HWXRWSTwiwgjPekISq16SsqHbgQDcr0DqYOpOCu7Nvz4MuYsGJ6nHGqITpFG5faXL1UG
-         bGaw==
-X-Gm-Message-State: AOAM533inFwRlQPALdsdAqTOijmALFMcQFCWBZJPbC7BlL8daDIotit+
-        64c3gxqwmxcPOBN4tXqU2qRWlExv386bnaIA4bNDSw==
-X-Google-Smtp-Source: ABdhPJyz7VKSjCLQcQvZEV0siVQk9omWx/CGAhMugNLkeDy42Ha1soXO862Gh9FBtycwWIni79O56+SGwz+by46Kqd8=
-X-Received: by 2002:a17:90b:4c47:b0:1df:ad5b:e32e with SMTP id
- np7-20020a17090b4c4700b001dfad5be32emr24827089pjb.59.1653293936890; Mon, 23
- May 2022 01:18:56 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=W+44BSSlN1XE65CChHOFpA2+bmaSayBXAi8yg7sU14k=;
+        b=vkUtEGZFx4EnnMJ/ThUJWdRQXEWmkIdSRnA2rMuFAPnFxYZc1rGhbiUCnrXdRY6zuk
+         4XStyHTL1bWpt47pCoh7KBGxHUJZxZK8YuJ1SB372s8gHXsE1EKAeBfpGcJsZXV9hI64
+         PcomuN0sJC7V3kWZ1Oo26VvhmNMS12yIK+IXT5fx88/wEN0gjGcMUpbT6FtXbe+b4Blt
+         qxJMYGGDgqWzTi63ct1uPjuEH93YocTRcmChScW6AhHTbO4lXo2+CgK2zc/B264Lt1Zj
+         PNRH8A6hoctpSocdLgPnu9o+up5XmCBtgtilXvb95efC3gePpatwqZG99M48Vb+Ku0SW
+         t2fQ==
+X-Gm-Message-State: AOAM5317FsXvwCWAPJmB02ilhfCLmpLbPvD5nHN2Lvp7SOOgN6DG+32F
+        mpaVcquUJaF28/aYrHAhc5Emdw==
+X-Google-Smtp-Source: ABdhPJzHXp4n75/dUnjS1z28pKIVVr4s/o0CZ70SogSxK0Bf83YapNMXVetV8ByWrj7BP/CYF/FRBQ==
+X-Received: by 2002:a17:90b:1808:b0:1e0:4dbc:8781 with SMTP id lw8-20020a17090b180800b001e04dbc8781mr4230775pjb.58.1653294169493;
+        Mon, 23 May 2022 01:22:49 -0700 (PDT)
+Received: from treapking.tpe.corp.google.com ([2401:fa00:1:10:1547:329:6bd:3965])
+        by smtp.gmail.com with ESMTPSA id t13-20020a63b24d000000b003fa321e9463sm2277982pgo.58.2022.05.23.01.22.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 May 2022 01:22:48 -0700 (PDT)
+From:   Pin-Yen Lin <treapking@chromium.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Pin-Yen Lin <treapking@chromium.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH v2] arm64: dts: mt8173: Fix elm panel DT node
+Date:   Mon, 23 May 2022 16:22:39 +0800
+Message-Id: <20220523162235.v2.1.I8f6449d46305a0e89845cf191e10c042736a1688@changeid>
+X-Mailer: git-send-email 2.36.1.124.g0e6072fb45-goog
 MIME-Version: 1.0
-References: <20220519075117.1003520-1-tommaso.merciai@amarulasolutions.com> <20220519075117.1003520-4-tommaso.merciai@amarulasolutions.com>
-In-Reply-To: <20220519075117.1003520-4-tommaso.merciai@amarulasolutions.com>
-From:   Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
-Date:   Mon, 23 May 2022 10:18:46 +0200
-Message-ID: <CAOf5uwkHm1Az+WOCy4bgoqJje2hVqfqVAQFBkZ==OEgXAhLJ+g@mail.gmail.com>
-Subject: Re: [PATCH 3/4] arm64: dts: rockchip: px30: add mux for mipi-pdn pad
-To:     Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-Cc:     linuxfancy@googlegroups.com, linux-amarula@amarulasolutions.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shunqian Zheng <zhengsq@rock-chips.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -69,64 +67,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+Move the panel DT node under `aux-bus` node so it won't use the buggy
+`ps8640_bridge_get_edid` to get display modes. Also change the
+compatible string to "edp-panel" because the predefined
+`lg_lp129qe_mode` is not working.
 
-On Thu, May 19, 2022 at 9:51 AM Tommaso Merciai
-<tommaso.merciai@amarulasolutions.com> wrote:
->
-> Add right mux for mipi-pdn. Mux this pad as gpio2 14
->
-> Signed-off-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-> Tested-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-> ---
->  arch/arm64/boot/dts/rockchip/px30-evb.dts | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/rockchip/px30-evb.dts b/arch/arm64/boot/dts/rockchip/px30-evb.dts
-> index 53930e28eadf..0d05a1b098bc 100644
-> --- a/arch/arm64/boot/dts/rockchip/px30-evb.dts
-> +++ b/arch/arm64/boot/dts/rockchip/px30-evb.dts
-> @@ -450,8 +450,8 @@ ov5695: ov5695@36 {
->                 dvdd-supply = <&vcc1v5_dvp>;
->                 dovdd-supply = <&vcc1v8_dvp>;
->                 pinctrl-names = "default";
-> -               pinctrl-0 = <&cif_clkout_m0>;
->                 reset-gpios = <&gpio2 14 GPIO_ACTIVE_LOW>;
-> +               pinctrl-0 = <&cif_clkout_m0 &mipi_pdn>;
->
->                 port {
->                         ucam_out: endpoint {
-> @@ -544,6 +544,12 @@ cif_clkout_m0: cif-clkout-m0 {
->                                 <2 RK_PB3 1 &pcfg_pull_none_12ma>;
->                 };
->         };
-> +
-> +       mipi {
-> +               mipi_pdn: mipi-pdn {
-> +                       rockchip,pins = <2 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
-> +               };
-> +       };
->  };
->
+Signed-off-by: Pin-Yen Lin <treapking@chromium.org>
+---
 
-Reviewed-by: Michael Trimarchi <michael@amarulasolutions.com>
+Changes in v2:
+- Remove the Fixes tag because this change is not compatible with the
+  old kernel versions.
 
-Michael
->  &pmu_io_domains {
-> --
-> 2.25.1
->
+ arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 26 +++++++++++---------
+ 1 file changed, 14 insertions(+), 12 deletions(-)
 
-
+diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+index 9c75fbb31f98..1e0802a6f6d2 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+@@ -90,18 +90,6 @@ volume_up {
+ 		};
+ 	};
+ 
+-	panel: panel {
+-		compatible = "lg,lp120up1";
+-		power-supply = <&panel_fixed_3v3>;
+-		backlight = <&backlight>;
+-
+-		port {
+-			panel_in: endpoint {
+-				remote-endpoint = <&ps8640_out>;
+-			};
+-		};
+-	};
+-
+ 	panel_fixed_3v3: regulator1 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "PANEL_3V3";
+@@ -282,6 +270,20 @@ ps8640_out: endpoint {
+ 				};
+ 			};
+ 		};
++
++		aux-bus {
++			panel {
++				compatible = "edp-panel";
++				power-supply = <&panel_fixed_3v3>;
++				backlight = <&backlight>;
++
++				port {
++					panel_in: endpoint {
++						remote-endpoint = <&ps8640_out>;
++					};
++				};
++			};
++		};
+ 	};
+ };
+ 
 -- 
-Michael Nazzareno Trimarchi
-Co-Founder & Chief Executive Officer
-M. +39 347 913 2170
-michael@amarulasolutions.com
-__________________________________
+2.36.1.124.g0e6072fb45-goog
 
-Amarula Solutions BV
-Joop Geesinkweg 125, 1114 AB, Amsterdam, NL
-T. +31 (0)85 111 9172
-info@amarulasolutions.com
-www.amarulasolutions.com
