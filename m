@@ -2,92 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6732532C01
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 16:10:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4314532C07
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 16:12:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237197AbiEXOJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 10:09:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50302 "EHLO
+        id S231281AbiEXOMF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 10:12:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230209AbiEXOJo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 10:09:44 -0400
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65D5027FDA;
-        Tue, 24 May 2022 07:09:43 -0700 (PDT)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-edeb6c3642so22373416fac.3;
-        Tue, 24 May 2022 07:09:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=nG80lP1Xa2erat+zWawIK5ymOe8Cuz6sDbYS9+ykkrA=;
-        b=xA7cQC+JDISweNmgTwA+kkLsnhn4XHS0rFoZUxZDcnYc1pI0TXbNVpmpfcdDM24u5q
-         PghtN+TOv+bEZVni+uZX55gfNTalLQaYYc9TwCBbQTc3zn1lbLA/HAiFEMK1mdqgRs0W
-         Zns+3aNiet0y5vyuMWhv7t/KfmzIL/IEoBm9WywDWRBFN/OSiC7/C0Ein0xLPvfrWNey
-         ++7978EAUcGme+3tgvheYxce/vhqiI0zK3BKX8F/UjP/38iAV8ML3daeae7IQ3g5aVbf
-         pn/p3G9y6u0E78vWVHAub3hGaBHKJ/VJejFUGBpQqd0AhkpRzjgwErE+SJaLxGUIyk7r
-         Slwg==
-X-Gm-Message-State: AOAM532wsuA/EmAz3mhRgKPzGtsSpox2oZhLP1j1f8l178KVQqTfFy2k
-        Z2E5x2Dd8wjYHswuMks0gA==
-X-Google-Smtp-Source: ABdhPJzQJqlYCgtjgQgfukGhoMZ9vX8fGvWFxtOAAHoPf47UrRhdP+w+huaQWy1Q5wEXsjg773nsYQ==
-X-Received: by 2002:a05:6870:524c:b0:f2:ae90:dae1 with SMTP id o12-20020a056870524c00b000f2ae90dae1mr732345oai.198.1653401382620;
-        Tue, 24 May 2022 07:09:42 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id y41-20020a4a982c000000b0035eb4e5a6c7sm5392287ooi.29.2022.05.24.07.09.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 May 2022 07:09:41 -0700 (PDT)
-Received: (nullmailer pid 3697144 invoked by uid 1000);
-        Tue, 24 May 2022 14:09:40 -0000
-Date:   Tue, 24 May 2022 09:09:40 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Sibi Sankar <quic_sibis@quicinc.com>
-Cc:     bjorn.andersson@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        ohad@wizery.com, agross@kernel.org, mathieu.poirier@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, mka@chromium.org
-Subject: Re: [PATCH v4 3/3] dt-bindings: remoteproc: qcom: Convert SC7180 MSS
- bindings to YAML
-Message-ID: <20220524140940.GA3687200-robh@kernel.org>
-References: <1652978825-5304-1-git-send-email-quic_sibis@quicinc.com>
- <1652978825-5304-4-git-send-email-quic_sibis@quicinc.com>
- <20220520224011.GA374485-robh@kernel.org>
- <b495fa6c-6964-d8fa-0baf-acd719cd8779@quicinc.com>
+        with ESMTP id S230209AbiEXOME (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 10:12:04 -0400
+Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D9814F9F7
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 07:12:01 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed30:4593:272c:6293:e2cc])
+        by baptiste.telenet-ops.be with bizsmtp
+        id aeBv270132jQL2A01eBvKB; Tue, 24 May 2022 16:11:59 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1ntVGN-001Uwr-33; Tue, 24 May 2022 16:11:55 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1ntVGM-000POV-KT; Tue, 24 May 2022 16:11:54 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Michael Hennerich <michael.hennerich@analog.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>,
+        Josua Mayer <josua@solid-run.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: net: adin: Fix adi,phy-output-clock description syntax
+Date:   Tue, 24 May 2022 16:11:53 +0200
+Message-Id: <6fcef2665a6cd86a021509a84c5956ec2efd93ed.1653401420.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b495fa6c-6964-d8fa-0baf-acd719cd8779@quicinc.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 24, 2022 at 07:40:51AM +0530, Sibi Sankar wrote:
-> Hey Rob,
-> Thanks for taking time to review the series.
-> 
-> On 5/21/22 4:10 AM, Rob Herring wrote:
-> > On Thu, May 19, 2022 at 10:17:05PM +0530, Sibi Sankar wrote:
-> > > Convert SC7180 MSS PIL loading bindings to YAML.
-> > 
-> > I suppose there is a reason the sc7180 is being split out and the only
-> > one converted, but this doesn't tell me.
-> 
-> https://lore.kernel.org/all/e3543961-1645-b02a-c869-f8fa1ad2d41c@quicinc.com/#t
-> 
-> The reason for the split was discussed on the list ^^, thought it
-> wouldn't make much sense adding any of it to the commit message.
+"make dt_binding_check":
 
-Why not? If you did, then we wouldn't be having this conversation.
+    Documentation/devicetree/bindings/net/adi,adin.yaml:40:77: [error] syntax error: mapping values are not allowed here (syntax)
 
-Commit messages, at a minimum, should answer why are you making the 
-change. They don't really need to explain what the change is. We can all 
-read the diff to understand that.
+The first line of the description ends with a colon, hence the block
+needs to be marked with a "|".
 
-Rob
+Fixes: 1f77204e11f8b9e5 ("dt-bindings: net: adin: document phy clock output properties")
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+ Documentation/devicetree/bindings/net/adi,adin.yaml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/net/adi,adin.yaml b/Documentation/devicetree/bindings/net/adi,adin.yaml
+index 77750df0c2c45e19..88611720545df2ce 100644
+--- a/Documentation/devicetree/bindings/net/adi,adin.yaml
++++ b/Documentation/devicetree/bindings/net/adi,adin.yaml
+@@ -37,7 +37,8 @@ properties:
+     default: 8
+ 
+   adi,phy-output-clock:
+-    description: Select clock output on GP_CLK pin. Two clocks are available:
++    description: |
++      Select clock output on GP_CLK pin. Two clocks are available:
+       A 25MHz reference and a free-running 125MHz.
+       The phy can alternatively automatically switch between the reference and
+       the 125MHz clocks based on its internal state.
+-- 
+2.25.1
+
