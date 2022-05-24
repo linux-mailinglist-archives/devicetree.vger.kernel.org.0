@@ -2,150 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C25A532633
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 11:16:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D50953263C
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 11:19:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235233AbiEXJQj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 05:16:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43414 "EHLO
+        id S233643AbiEXJTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 05:19:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235224AbiEXJQi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 05:16:38 -0400
-Received: from m12-16.163.com (m12-16.163.com [220.181.12.16])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BBA831D314;
-        Tue, 24 May 2022 02:16:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-        s=s110527; h=Message-ID:Date:MIME-Version:Subject:From; bh=6bHKB
-        N/3QBi7HzN/vwEopZXo21vzzru1+xafDO7zm/8=; b=L7Q/+yfYROd3FnDLltavy
-        zVXjGu/4+M1TvU/HFo0Kxipslob/GjEvc4qu9bv5toD1N8hbvys54EP1BwB9yGfu
-        6cmneO10AQFXUby3pKbx9+JQkp+CxEUeejCv0FEfUtqJFupl/EzUJLs7jvx/4la0
-        2UE0pmtRUcWcw6aMN2qKas=
-Received: from [192.168.3.102] (unknown [218.201.129.20])
-        by smtp12 (Coremail) with SMTP id EMCowABnTDU8ooxiXDX+BA--.128S2;
-        Tue, 24 May 2022 17:15:43 +0800 (CST)
-Message-ID: <12833b83-59a9-a808-4d62-60658df8d628@163.com>
-Date:   Tue, 24 May 2022 17:15:40 +0800
+        with ESMTP id S235282AbiEXJTV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 05:19:21 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 288FE63BD2
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 02:19:17 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id m11so8703915ljc.1
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 02:19:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=+Niw7yGnL20+GOOqZstdr0jY47BSBTsmVF0esVnrOoU=;
+        b=hBgqF51egRRRpK5ROssbMOsnBHZkpb14VjYKSk4amJX6s2phfdQzunu0CpQ9Dw0LnF
+         GspY4wM3l7i7okD+Yd6VJnU/sQhGM5DT0dmU7OlUATQLSuyOardrb8kQjQGd7iaGz+JQ
+         hg7LXVVzZ+ViDvGBCqcIS1o60FmiZMGtZr8CLk1CkqMvHBm2Csb4WVdJ/pDuasFIaFLn
+         CDrZPh3WmBQZf0j+5HGHT7MFzCSDtLJN/cD7KU/gBB1olBl3dbQuxG2OMTqUtHCMPYbN
+         4475rFIiv60wCs9+pve8mGr8PzgdKf/Xs/4fSrRveN58TDmisoqOcEpWf7rCKU3Zc3nK
+         sRpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=+Niw7yGnL20+GOOqZstdr0jY47BSBTsmVF0esVnrOoU=;
+        b=4FAtAEhaS+gHPrlB4Fu/REmq/7qMJVOjNTzcvNygai4O0bax4zmfI1zYsf/8GHDFhx
+         nYUBJtpGHZHW+MpS/2qYRr3gH/YZuv0KxgLTrCcNPop8uUMpjZj9jbIhUYl2hnTa8/jd
+         yGsgd+/ggxrsEkIXviLqOnV8iLOqU8ojqsFTYyFlTIiZ0+UBiEPpBGzr+nFVw2FqbWQy
+         fEUTw559yiQwP+sRLchidH+QidpvhpJO9l08nqK4BPJZ8goIVEItkJH2V8HFmU0E29w2
+         rkx/6hOVd/9uGhjvxmf10xGDS4KZSJQE3Tk3sUQey+tRiHEBj1T7w4NN0j9qsZfwizRB
+         nuJQ==
+X-Gm-Message-State: AOAM532nFN7A3OZ4Le8WtjqG6oFqO19+5q/i9cflA5uWa0mvlx0SVROK
+        629gLP/mu9rtG5IIup8JfAJDxA==
+X-Google-Smtp-Source: ABdhPJznpV2FUoCtb1XbNeFXg7bMAoJTuMYnDIlZJD+gLtUepUGBy4u89LrrCyXkaFuoNCi1VLc3Ng==
+X-Received: by 2002:a05:651c:a11:b0:253:f347:734a with SMTP id k17-20020a05651c0a1100b00253f347734amr2373641ljq.449.1653383955367;
+        Tue, 24 May 2022 02:19:15 -0700 (PDT)
+Received: from [172.20.68.48] ([91.221.145.6])
+        by smtp.gmail.com with ESMTPSA id b14-20020a2eb90e000000b00253bc0f63ffsm2323272ljb.13.2022.05.24.02.19.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 May 2022 02:19:14 -0700 (PDT)
+Message-ID: <1b117e49-28d0-da75-68ee-c2fcef9fc9a9@linaro.org>
+Date:   Tue, 24 May 2022 11:19:12 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v4 0/2] ARM: sun8i-r40: Enable usb otg support
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v5 1/6] dt-bindings: remoteproc: Add Xilinx RPU subsystem
+ bindings
 Content-Language: en-US
-To:     Icenowy Zheng <icenowy@aosc.io>, linux-sunxi@lists.linux.dev
-Cc:     Andre Przywara <andre.przywara@arm.com>,
-        Evgeny Boger <boger@wirenboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20220518101706.26869-1-qianfanguijin@163.com>
- <a50307f826e8e5f4218bd2bfde23add8a26af0dc.camel@aosc.io>
-From:   qianfan <qianfanguijin@163.com>
-In-Reply-To: <a50307f826e8e5f4218bd2bfde23add8a26af0dc.camel@aosc.io>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: EMCowABnTDU8ooxiXDX+BA--.128S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxCw43GFy5WFW7trWfWw4kJFb_yoW5Cw1kpF
-        W7XFZ7Gw1ktw1Syay3ua4UW3y3Z3yrXayjyFn3tFy8Ar13ur1DAanrKr95KasxWr13Zw47
-        Kwn5Jwn3Kr1YgF7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-        9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jONVkUUUUU=
-X-Originating-IP: [218.201.129.20]
-X-CM-SenderInfo: htld0w5dqj3xxmlqqiywtou0bp/xtbBzh8L7WI0UkpUyQAAsk
+To:     Tanmay Shah <tanmay.shah@xilinx.com>, bjorn.andersson@linaro.org,
+        mathieu.poirier@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        michal.simek@xilinx.com
+Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220518194426.3784095-1-tanmay.shah@xilinx.com>
+ <20220518194426.3784095-2-tanmay.shah@xilinx.com>
+ <45fea4a1-387f-9684-a90b-58b695b54172@linaro.org>
+ <c97d61b0-8a38-5054-d5f1-bc7c5e7bcf61@xilinx.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <c97d61b0-8a38-5054-d5f1-bc7c5e7bcf61@xilinx.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 23/05/2022 23:38, Tanmay Shah wrote:
+> Thanks for reviews Krzysztof. Please find my comments below.
+> 
+> On 5/21/22 8:12 AM, Krzysztof Kozlowski wrote:
+>> On 18/05/2022 21:44, Tanmay Shah wrote:
+>>> +description: |
+>>> +  The Xilinx platforms include a pair of Cortex-R5F processors (RPU) for
+>>> +  real-time processing based on the Cortex-R5F processor core from ARM.
+>>> +  The Cortex-R5F processor implements the Arm v7-R architecture and includes a
+>>> +  floating-point unit that implements the Arm VFPv3 instruction set.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: xlnx,zynqmp-r5fss
+>>> +
+>>> +  xlnx,cluster-mode:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    enum: [0, 1, 2]
+>>> +    description: |
+>>> +      The RPU MPCore can operate in split mode(Dual-processor performance), Safety
+>>> +      lock-step mode(Both RPU cores execute the same code in lock-step,
+>>> +      clock-for-clock) or Single CPU mode (RPU core 0 can be held in reset while
+>>> +      core 1 runs normally). The processor does not support dynamic configuration.
+>>> +      Switching between modes is only permitted immediately after a processor reset.
+>>> +      If set to  1 then lockstep mode and if 0 then split mode.
+>>> +      If set to  2 then single CPU mode. When not defined, default will be lockstep mode.
+>>> +
+>>> +patternProperties:
+>>> +  "^r5f-[a-f0-9]+$":
+>>> +    type: object
+>>> +    description: |
+>>> +      The RPU is located in the Low Power Domain of the Processor Subsystem.
+>>> +      Each processor includes separate L1 instruction and data caches and
+>>> +      tightly coupled memories (TCM). System memory is cacheable, but the TCM
+>>> +      memory space is non-cacheable.
+>>> +
+>>> +      Each RPU contains one 64KB memory and two 32KB memories that
+>>> +      are accessed via the TCM A and B port interfaces, for a total of 128KB
+>>> +      per processor. In lock-step mode, the processor has access to 256KB of
+>>> +      TCM memory.
+>>> +
+>>> +    properties:
+>>> +      compatible:
+>>> +        const: xlnx,zynqmp-r5f
+>>> +
+>>> +      power-domains:
+>>> +        description: RPU core PM domain specifier
+>>> +        maxItems: 1
+>>> +
+>>> +      mboxes:
+>>> +        items:
+>>> +          - description: mailbox channel to send data to RPU
+>>> +          - description: mailbox channel to receive data from RPU
+>>> +        minItems: 1
+>>> +
+>>> +      mbox-names:
+>>> +        items:
+>>> +          - const: tx
+>>> +          - const: rx
+>>> +        minItems: 1
+>>> +
+>>> +      sram:
+>>> +        $ref: /schemas/types.yaml#/definitions/phandle-array
+>>> +        minItems: 1
+>> maxItems instead
+> 
+> 
+> Here, I am not sure how many maxItems are really needed as TCM bindings 
+> are not
+> defined yet. For now, I will just keep maxItems as 8. i.e. 4 OCM banks 
+> and 4 TCM
+> banks. However, that can change once bindings are defined.
+> Is that fine?
 
+Yes, although shrinking might not be allowed once binding is being used.
 
-在 2022/5/23 21:11, Icenowy Zheng 写道:
-> 在 2022-05-18星期三的 18:17 +0800，qianfanguijin@163.com写道：
->> From: qianfan Zhao <qianfanguijin@163.com>
+> 
+> 
 >>
->> History:
->> =======
->>
->> v4(2022-05-18):
->> - Enable both musb and OHCI/EHCI support
->>
->> Tests:
->> ======
->>
->> All test cases were tested on bananapi-m2-ultra.
->>
->> 1. USB DEVICE(ping test)
->>
->> Enable usb gadget rndis network, ping m2u on ubuntu host:
-> Interestingly musb previous totally fail when I initially work on R40.
-> Maybe some phy-sun4i-usb patches fixed it by accident?
-Hi, could you please try this patch again?
->
->> ➜  ~ ping 192.168.200.2
->> PING 192.168.200.2 (192.168.200.2) 56(84) bytes of data.
->> 64 bytes from 192.168.200.2: icmp_seq=1 ttl=64 time=0.544 ms
->> 64 bytes from 192.168.200.2: icmp_seq=2 ttl=64 time=0.269 ms
->> 64 bytes from 192.168.200.2: icmp_seq=3 ttl=64 time=0.300 ms
->> 64 bytes from 192.168.200.2: icmp_seq=4 ttl=64 time=0.295 ms
->> 64 bytes from 192.168.200.2: icmp_seq=5 ttl=64 time=0.283 ms
->> 64 bytes from 192.168.200.2: icmp_seq=6 ttl=64 time=0.226 ms
->> 64 bytes from 192.168.200.2: icmp_seq=7 ttl=64 time=0.246 ms
->> 64 bytes from 192.168.200.2: icmp_seq=8 ttl=64 time=0.204 ms
->> 64 bytes from 192.168.200.2: icmp_seq=9 ttl=64 time=0.302 ms
->> 64 bytes from 192.168.200.2: icmp_seq=10 ttl=64 time=0.249 ms
->> 64 bytes from 192.168.200.2: icmp_seq=11 ttl=64 time=0.459 ms
->> 64 bytes from 192.168.200.2: icmp_seq=12 ttl=64 time=0.232 ms
->> 64 bytes from 192.168.200.2: icmp_seq=13 ttl=64 time=0.275 ms
->> 64 bytes from 192.168.200.2: icmp_seq=14 ttl=64 time=0.243 ms
->>
->> 2. USB HOST(OHCI)
->>
->> Connect an usb serial port on OTG port, nex t is the kernel log:
->>
->> [   27.824137] usb 2-1: new full-speed USB device number 2 using
->> ohci-platform
->> [   28.865504] cdc_acm 2-1:1.0: ttyACM0: USB ACM device
->> [   29.565509] cdc_acm 2-1:1.2: ttyACM1: USB ACM device
->>
->> 3. USB HOST(EHCI)
->>
->> Connect an usb storage on OTG port, next is the kernel log:
->>
->> [   17.754147] usb 1-1: new high-speed USB device number 2 using
->> ehci-platform
->> [   17.955995] usb-storage 1-1:1.0: USB Mass Storage device detected
->> [   18.024497] scsi host1: usb-storage 1-1:1.0
->> [   19.035091] scsi 1:0:0:0: Direct-Access     General  USB Flash
->> Disk   1.0  PQ: 0 ANSI: 2
->> [   19.049717] sd 1:0:0:0: [sda] 7831552 512-byte logical blocks:
->> (4.01 GB/3.73 GiB)
->> [   19.060873] sd 1:0:0:0: [sda] Write Protect is off
->> [   19.071018] sd 1:0:0:0: [sda] No Caching mode page found
->> [   19.076437] sd 1:0:0:0: [sda] Assuming drive cache: write through
->> [   19.093566]  sda: sda1
->> [   19.103492] sd 1:0:0:0: [sda] Attached SCSI removable disk
->>
->> issues:
->> =======
->>
->> The system power often turned off when I plugged an usb device into
->> the OTG port.
->> It's not clear why.
->>
->> qianfan Zhao (2):
->>    ARM: dts: sun8i-r40: Add USB0_OTG/HOST support
->>    ARM: dts: bananapi-m2-ultra: Enable USB0_OTG and HOST support
->>
->>   .../boot/dts/sun8i-r40-bananapi-m2-ultra.dts  | 39
->> +++++++++++++++++++
->>   arch/arm/boot/dts/sun8i-r40.dtsi              | 34 ++++++++++++++++
->>   2 files changed, 73 insertions(+)
->>
+>>> +        description: |
+>>> +          phandles to one or more reserved on-chip SRAM regions. Other than TCM,
+>>> +          the RPU can execute instructions and access data from, the OCM memory,
+>>> +          the main DDR memory, and other system memories.
+>>> +
+>>> +          The regions should be defined as child nodes of the respective SRAM
+>>> +          node, and should be defined as per the generic bindings in,
+>>> +          Documentation/devicetree/bindings/sram/sram.yaml
+>>> +
+>>> +      memory-region:
+>>> +        description: |
+>>> +          List of phandles to the reserved memory regions associated with the
+>>> +          remoteproc device. This is variable and describes the memories shared with
+>>> +          the remote processor (e.g. remoteproc firmware and carveouts, rpmsg
+>>> +          vrings, ...). This reserved memory region will be allocated on DDR memory.
+>>> +        minItems: 1
+>>> +        items:
+>>> +          - description: region used for RPU firmware image section
+>>> +          - description: vdev buffer
+>>> +          - description: vring0
+>>> +          - description: vring1
+>>> +        additionalItems: true
+>> How did this one appear here? It does not look correct, so why do you
+>> need it?
+> 
+> 
+> Memory regions listed in items: field here are used for default current 
+> OpenAMP demos. However,
+> other demos can be developed by user that can use more number of memory 
+> regions.
+> As description says, memory-region can have variable number phandles 
+> based on
+> user requirement. So, by additionalItems I just want to notify that user can
+> define more number of regions. We can limit memory-regions with 
+> 'maxItems: 8'.
+> In that case, I will add 'maxItems:' field in next revision and even, 
+> that can change in future.
 
+That sounds fine.
+
+> But, User should have flexibility to define more memory regions than 
+> what is in list
+> of 'items:' field. I think this is similar to what is defined in 
+> ti,k3-r5 bindings.
+> 
+> Please let me know your thoughts.
+
+I see. If schema accepts such combination (listing items + maxItems +
+additionalItems), then it's fine.
+
+> 
+
+Best regards,
+Krzysztof
