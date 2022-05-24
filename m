@@ -2,146 +2,255 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFC8A532908
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 13:31:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25020532918
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 13:34:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236661AbiEXLag (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 07:30:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51512 "EHLO
+        id S236058AbiEXLeT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 07:34:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231184AbiEXLa3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 07:30:29 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44B5087A3F
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 04:30:28 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id u27so24443838wru.8
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 04:30:28 -0700 (PDT)
+        with ESMTP id S235799AbiEXLeT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 07:34:19 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBCA18BD36
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 04:34:17 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id p22so30290219lfo.10
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 04:34:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=N2TjPYBfTxyr+DNrjNs2M1CQcfw6+WY+gUO3SgZbUV8=;
-        b=CQm5UAeg1hkuSSsutDNG5mlSigGV02SDoqjU1pCYNr5ah4YevJSWr4AlQwCQwgTADA
-         Rzxq6t0CYWD0MFIzFIMr8eEcThDGPSsKmJB+J43x5VewBMw0wOPN2v2sStD1uD0CcV+5
-         lMhPO2CuOIiIyfabVPzeLQkFQw3i4iUfhB6CvZq0HgMiLGJ9R+khlNSwcUZoVI1v6JQR
-         fTaGOLJvyrOqKxqeBpyObRLnv8m9iFNcnorpjp5Mljh3Ks4i8eq6kH09cHJ7FGZCKoAC
-         lcYTWNKaE1FjnBW/gzO2bfzncP4dWIxk6CQQa0GO/H2gXyL+cEaFFy6ge2aJgxMRwU0h
-         e4Uw==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=uZXl4RLzzhryYGc4tfKASYNpJNQsDtpLhwIbhtBkN3M=;
+        b=F0L95uV9E/AgMjCwe/WYoZXPBgf+yhKojr2kVa/MF4G527YdhqKjf5Q5Mv33jX2wjv
+         8um03WQLBpIuJmNpyW1rrq6pqd7ivlxlyg1PrupURv1xG17IMWvBwBeZu9kTd+LHA0Tz
+         h5OrSzx1SZfPBfWP/F7dg8OHGsyp8CN5Hcvb0F9yWYY6b5XISZM1TCUoh4AjpWUCIgRR
+         Nb1ypQ1vICq4UmE5ua0Ay+Catlm5Vnlx9Xg9GXX0B23/SCG+R0l19PoP9KA+w36yNG+m
+         BA9zVgqQFeJTh9PyxYLU2HYSTzBlDV4dzhh8qNuiScCk3f1/OMcdWcMNsRcVVn8BsTXT
+         hV5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=N2TjPYBfTxyr+DNrjNs2M1CQcfw6+WY+gUO3SgZbUV8=;
-        b=5B2DHClBLBn6+vvXGuqdDIO98jztTPyeXcJ3iqdPhyGeqxY/HAxKetQk1tX1z0JKDw
-         vjmTQjcJM9XRbDUJgmBcOY9/0AS3Jj66kqnV1iHPeLxdZIRCDmJlYKSl28gtyA0arsZg
-         6YPP4JtDMosUYqYWbdAZBZWmePsHDYfzMMRjjG8jG6hhORoh+xtnyMrMReIuwFtuYJLo
-         uYAOrfWMHtmUMo0UyP9H/xHR3kdeZ0AjIZIHSy0O+VpS+ycwuyrx3NhHFrM9LbU6psZh
-         Vo1HTwkgDZNL+ziHHmZjc+qoAY3b/N1OyGxY/H4jJuMXe0ZGGuX/7ARIyxZo+jG4dhVM
-         tpgw==
-X-Gm-Message-State: AOAM531tiWcuBn1LNPv5bhwL4Ki4P/avLQRjDh611nSa4Vl7hsMomNZE
-        OfMjTk78XblseCdOx+m52YSl1XYawcio6ssMyVSXoQ==
-X-Google-Smtp-Source: ABdhPJws54/M5QyP1Iw/wARcBHxmm+RAXDaP8SIQZviMCw/5pFWp7jBzGSkS9YpnQFEjlgFR7cqirFzWu6hfZyEmRI8=
-X-Received: by 2002:adf:f001:0:b0:20d:22b:183c with SMTP id
- j1-20020adff001000000b0020d022b183cmr22457285wro.313.1653391826736; Tue, 24
- May 2022 04:30:26 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=uZXl4RLzzhryYGc4tfKASYNpJNQsDtpLhwIbhtBkN3M=;
+        b=UXuqZfvNQzBgdfc5k9DTYa0Len/OfbIe3JJt6h3aVAAHYFTITDPxyK4wysH6YJfx6a
+         rI0jzeqsPReEJzJzmKqDYfHf0XrfKMClharUjf+087VFqjYAKV632FIGbl98jUGLOMZx
+         ZkgzsDi4A3sCtNptVseV+41L3W3+jlgC3svzyMsb+gMdpszm0ztIcZnzH+DwJk9CvzZ8
+         iELvAwSxp2rCAPjf+KUHIfyWj9dUSvLC0hv4jsJCRXlo3UVsayIxADwhcJa090Q/acrE
+         68+pNlB5ilFKOunKUMAEjNU6pmUJEW3AwRmaNrJTxJQ2gS7Rn7xhWQrGoihI3d69iXeE
+         aSxQ==
+X-Gm-Message-State: AOAM532rmPcjwyJTxF/skyMEo055Zlug1oU3ak3ZvOYR07akYJ/zUOyd
+        W54KBKyLwdd/ThdN2Mnz6erdDw==
+X-Google-Smtp-Source: ABdhPJw4SRDFxPfuEXUDRQ9DhN6jntw+xx1j8+l9XIR4Izuz22pyXEpmTAY0If5aRfg7SVPU9apKOQ==
+X-Received: by 2002:a05:6512:b9f:b0:478:5bf0:67f9 with SMTP id b31-20020a0565120b9f00b004785bf067f9mr12209045lfv.313.1653392056241;
+        Tue, 24 May 2022 04:34:16 -0700 (PDT)
+Received: from [172.20.68.48] ([91.221.145.6])
+        by smtp.gmail.com with ESMTPSA id i22-20020a2e8656000000b0024f3d1daed0sm2451344ljj.88.2022.05.24.04.34.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 May 2022 04:34:15 -0700 (PDT)
+Message-ID: <f42f4b45-f8cb-8855-8814-5dfaaf446d4a@linaro.org>
+Date:   Tue, 24 May 2022 13:34:11 +0200
 MIME-Version: 1.0
-References: <20220426185245.281182-1-atishp@rivosinc.com> <20220426185245.281182-4-atishp@rivosinc.com>
-In-Reply-To: <20220426185245.281182-4-atishp@rivosinc.com>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Tue, 24 May 2022 17:00:15 +0530
-Message-ID: <CAAhSdy0wbokRNZrXYcARKx=DpGfQ5gFGJ_1K26U0W99-jZcM5g@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] RISC-V: Prefer sstc extension if available
-To:     Atish Patra <atishp@rivosinc.com>
-Cc:     "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        Atish Patra <atishp@atishpatra.org>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        KVM General <kvm@vger.kernel.org>,
-        "open list:KERNEL VIRTUAL MACHINE FOR RISC-V (KVM/riscv)" 
-        <kvm-riscv@lists.infradead.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 1/7] dt-bindings: soc: add bindings for i.MX93 SRC
+Content-Language: en-US
+To:     Peng Fan <peng.fan@nxp.com>,
+        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+Cc:     Aisheng Dong <aisheng.dong@nxp.com>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20220523113029.842753-1-peng.fan@oss.nxp.com>
+ <20220523113029.842753-2-peng.fan@oss.nxp.com>
+ <c2882212-aa1e-4614-c982-43e6c793b34a@linaro.org>
+ <DU0PR04MB9417F22B607C95BDAB84C01488D79@DU0PR04MB9417.eurprd04.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <DU0PR04MB9417F22B607C95BDAB84C01488D79@DU0PR04MB9417.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 27, 2022 at 12:23 AM Atish Patra <atishp@rivosinc.com> wrote:
->
-> RISC-V ISA has sstc extension which allows updating the next clock event
-> via a CSR (stimecmp) instead of an SBI call. This should happen dynamically
-> if sstc extension is available. Otherwise, it will fallback to SBI call
-> to maintain backward compatibility.
->
-> Signed-off-by: Atish Patra <atishp@rivosinc.com>
-> ---
->  drivers/clocksource/timer-riscv.c | 21 ++++++++++++++++++++-
->  1 file changed, 20 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/clocksource/timer-riscv.c b/drivers/clocksource/timer-riscv.c
-> index 1767f8bf2013..d9398ae84a20 100644
-> --- a/drivers/clocksource/timer-riscv.c
-> +++ b/drivers/clocksource/timer-riscv.c
-> @@ -23,11 +23,24 @@
+On 24/05/2022 12:37, Peng Fan wrote:
+>> Subject: Re: [PATCH 1/7] dt-bindings: soc: add bindings for i.MX93 SRC
+>>
+>> On 23/05/2022 13:30, Peng Fan (OSS) wrote:
+>>> From: Peng Fan <peng.fan@nxp.com>
+>>>
+>>> Add bindings for i.MX93 System Reset Controller(SRC). SRC supports
+>>> resets and power gating for mixes.
+>>>
+>>> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+>>> ---
+>>>  .../bindings/soc/imx/fsl,imx93-src.yaml       | 88
+>> +++++++++++++++++++
+>>>  include/dt-bindings/power/imx93-power.h       | 11 +++
+>>>  2 files changed, 99 insertions(+)
+>>>  create mode 100644
+>>> Documentation/devicetree/bindings/soc/imx/fsl,imx93-src.yaml
+>>
+>> File should be in respective subsystem, so probably power/reset?
+> 
+> ok, will put under power.
+> 
+>>
+>>>  create mode 100644 include/dt-bindings/power/imx93-power.h
+>>>
+>>> diff --git
+>>> a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-src.yaml
+>>> b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-src.yaml
+>>> new file mode 100644
+>>> index 000000000000..d45c1458b9c1
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-src.yaml
+>>> @@ -0,0 +1,88 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+>>> +---
+>>> +$id:
+>>> +> > +title: NXP i.MX9 System Reset Controller
+>>> +
+>>> +maintainers:
+>>> +  - Peng Fan <peng.fan@nxp.com>
+>>> +
+>>> +description: |
+>>> +  The System Reset Controller (SRC) is responsible for the generation
+>>> +of
+>>> +  all the system reset signals and boot argument latching.
+>>> +
+>>> +  Its main functions are as follows,
+>>> +  - Deals with all global system reset sources from other modules,
+>>> +    and generates global system reset.
+>>> +  - Responsible for power gating of MIXs (Slices) and their memory
+>>> +    low power control.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>> +      - const: fsl,imx93-src
+>>> +      - const: syscon
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  slice:
+>>
+>> Why do you need this subnode, instead of listing domains here?
+> 
+> I follow
+> Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
+> 
+> There are several slices in SRC, just like there are many pgcs in gpcv2.
 
-Add "#define pr_fmt(fmt)" here since you are using pr_info(...)
+Wait, but you have only one slice and you do no allow more of them. The
+same as for gpcv2 - there is only one pgc. What's the point of that node?
 
->  #include <asm/sbi.h>
->  #include <asm/timex.h>
->
-> +static DEFINE_STATIC_KEY_FALSE(riscv_sstc_available);
-> +
->  static int riscv_clock_next_event(unsigned long delta,
->                 struct clock_event_device *ce)
->  {
-> +       uint64_t next_tval = get_cycles64() + delta;
+> 
+> 
+>>
+>>> +    type: object
+>>> +    description: list of power domains provided by this controller.
+>>> +
+>>
+>> Hm, what about address/size cells? Is syscon schema bringing these?
+> 
+> The slice submode should have address/size cells, but I not
+> meet yaml/dtbs check error. Will add it.
+> 
+> Not sure syscon bringing or not.
+> 
+>>
+>>> +    patternProperties:
+>>> +      "power-domain@[0-9]$":
+>>> +        type: object
+>>
+>> Missing ref to power-domain.yaml
+> 
+> Ok.
+> 
+>>
+>>> +        properties:
+>>> +
+>>> +          '#power-domain-cells':
+>>> +            const: 0
+>>> +
+>>> +          reg:
+>>> +            description: |
+>>> +              Power domain index. Valid values are defined in
+>>> +              include/dt-bindings/power/imx93-power.h for fsl,imx93-src
+>>> +            maxItems: 1
+>>> +
+>>> +          clocks:
+>>> +            description: |
+>>> +              A number of phandles to clocks that need to be enabled
+>>> +              during domain power-up sequencing to ensure reset
+>>> +              propagation into devices located inside this power domain.
+>>> +            minItems: 1
+>>> +            maxItems: 5
+>>> +
+>>> +        required:
+>>> +          - '#power-domain-cells'
+>>> +          - reg
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - slice
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/clock/imx93-clock.h>
+>>> +    #include <dt-bindings/power/imx93-power.h>
+>>> +
+>>> +    src@44460000 {
+>>
+>> reset-controller
+>> or some other generic node name.
+> 
+> It is not a single reset or power domain controller,
+> Currently linux driver just use it as a power domain
+> controller.
 
-Use "u64" here to be consistent with other parts of the kernel.
+Then maybe system-controller.
 
-> +
->         csr_set(CSR_IE, IE_TIE);
-> -       sbi_set_timer(get_cycles64() + delta);
-> +       if (static_branch_likely(&riscv_sstc_available)) {
-> +#if __riscv_xlen == 32
+> 
+> Thanks,
+> Peng.
+> 
+>>
+>>> +        compatible = "fsl,imx93-src", "syscon";
+>>> +        reg = <0x44460000 0x10000>;
+>>> +
+>>> +        slice {
+>>> +                #address-cells = <1>;
+>>> +                #size-cells = <0>;
+>>> +
+>>> +                mediamix: power-domain@0 {
+>>
+>> Best regards,
+>> Krzysztof
 
-Use CONFIG_32BIT here.
 
-> +               csr_write(CSR_STIMECMP, next_tval & 0xFFFFFFFF);
-> +               csr_write(CSR_STIMECMPH, next_tval >> 32);
-> +#else
-> +               csr_write(CSR_STIMECMP, next_tval);
-> +#endif
-> +       } else
-> +               sbi_set_timer(next_tval);
-> +
->         return 0;
->  }
->
-> @@ -165,6 +178,12 @@ static int __init riscv_timer_init_dt(struct device_node *n)
->         if (error)
->                 pr_err("cpu hp setup state failed for RISCV timer [%d]\n",
->                        error);
-> +
-> +       if (riscv_isa_extension_available(NULL, SSTC)) {
-> +               pr_info("Timer interrupt in S-mode is available via sstc extension\n");
-> +               static_branch_enable(&riscv_sstc_available);
-> +       }
-> +
->         return error;
->  }
->
-> --
-> 2.25.1
->
-
-Regards,
-Anup
+Best regards,
+Krzysztof
