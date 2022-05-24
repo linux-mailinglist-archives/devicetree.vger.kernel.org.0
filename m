@@ -2,154 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D45BA532F9A
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 19:27:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C02A532FA0
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 19:28:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237633AbiEXR1g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 13:27:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40212 "EHLO
+        id S239915AbiEXR2R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 13:28:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233462AbiEXR1f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 13:27:35 -0400
-Received: from smtpo49.interia.pl (smtpo49.interia.pl [217.74.67.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3557668990
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 10:27:30 -0700 (PDT)
-X-Interia-R: Interia
-X-Interia-R-IP: 80.68.225.159
-X-Interia-R-Helo: <t480s.localdomain>
-Received: from t480s.localdomain (unknown [80.68.225.159])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by poczta.interia.pl (INTERIA.PL) with ESMTPSA;
-        Tue, 24 May 2022 19:27:27 +0200 (CEST)
-Date:   Tue, 24 May 2022 19:27:25 +0200
-From:   Slawomir Stepien <sst@poczta.fm>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        jdelvare@suse.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, przemyslaw.cencner@nokia.com,
-        krzysztof.adamski@nokia.com, alexander.sverdlin@nokia.com,
-        Slawomir Stepien <slawomir.stepien@nokia.com>
-Subject: Re: [PATCH 3/8] dt-bindings: hwmon: Allow specifying channels for
- lm90
-Message-ID: <Yo0VfVthNdtjIWF+@t480s.localdomain>
-References: <20220520093243.2523749-1-sst@poczta.fm>
- <20220520093243.2523749-4-sst@poczta.fm>
- <3ea92486-0cf9-ce3d-d1b6-7a76f1d5a129@linaro.org>
- <0b84d109-d6be-dfba-99bb-0b7136af875e@roeck-us.net>
- <b5ff0f2c-d741-6dec-c306-b54cb5075ccf@linaro.org>
- <f124cbcb-3fca-3f1c-f47e-730f15c1f074@roeck-us.net>
- <YozHOsSdpWBRNLYt@t480s.localdomain>
- <YozM0L5uftHOgkjL@t480s.localdomain>
+        with ESMTP id S236045AbiEXR2R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 13:28:17 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFDB87DE0B
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 10:28:14 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id f21so23091150ejh.11
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 10:28:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=veu2FPBaI/1DFm4PUFxv9FNq6rpu8nFudiGrwlmGHSM=;
+        b=gZ/XlZBlp4L8IWxs+qoqoVja1YNbIPorTCnCOL3ZtY+iokMWUUaD/qbXxH3FqDY/YK
+         z2IDTP/hvjBYIrG/x3QYmaEeEdyDEheyjvJt2gpG0KV6gQqa1jEST15Jwb+iJG0rGBzz
+         m+ASNmvLNq/1DpUjSDcrb5XeLLw7XO5AXyVgLdNcBCc1RkQ3tE4hDjk0tLb1Ypw2fogP
+         R+Tv/EsU8qKhc2QDewyp6Z4H3wsn3SKJisGTmtnW7PZHcz4DlbCAKqtws7mOWNIYhTEm
+         BphQU5c9xe4GllqpbcDeUDcjVlbjlQuWZ7VTVoGjrCnwhMAPaWbEgDRVa4dx1fS87N9X
+         r5gQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=veu2FPBaI/1DFm4PUFxv9FNq6rpu8nFudiGrwlmGHSM=;
+        b=gRWKO8AfsabN2QRspBc/t+/9GpRzObo55N0P6NfyAQD2y+oIQVO6r2S3IBs7/GDVwe
+         4P/isOq5EjA7/TbCnLb9xRKd7+Y1XQkdant9pk4BBf+dJFSQJ8fLdXQxPNKyND8fd8gj
+         7rI4LVwNGDR8NXxYIiujzmRT7XhFh+YvVrABVcsG1zLoo1OI8pVjY3B95Tbra/UOqCM3
+         eGb3+ZSuFg+2aUgS1oyKYunt8EVLOe2KAvxcezmtpnQQrEZUWO0F9MOBANn5xpPmvWey
+         UKStycmivS9oRkUZYSKnuoZ/Q7hTsln3UdkTtuPPJ7j43hvpRGNG8WRhvN5c+/t1WtKL
+         4qXA==
+X-Gm-Message-State: AOAM532zqgKwmWjuGMMDUCFltu9HJ8nVCMnw8Xg8vsgLG9x7m0K9h9o9
+        h1bU/5PX3CZdtKAcqKSjJaEFuQ==
+X-Google-Smtp-Source: ABdhPJzNuf50ko0QWScaW7JCNXkoXZrgS/sd+uO6LY8fdrjSymVBWa5CO/EMaNYqNM1M5FqG8Jxnlw==
+X-Received: by 2002:a17:906:350f:b0:6fe:a264:2cd1 with SMTP id r15-20020a170906350f00b006fea2642cd1mr20654456eja.735.1653413293370;
+        Tue, 24 May 2022 10:28:13 -0700 (PDT)
+Received: from [192.168.0.177] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id d3-20020a170907272300b006f3ef214e53sm7308396ejl.185.2022.05.24.10.28.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 May 2022 10:28:12 -0700 (PDT)
+Message-ID: <014a6c1c-2795-f066-f103-9a97afc35da7@linaro.org>
+Date:   Tue, 24 May 2022 19:28:10 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YozM0L5uftHOgkjL@t480s.localdomain>
-X-Interia-Antivirus: OK
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=interia.pl;
-        s=biztos; t=1653413248;
-        bh=ZlSTmvT/m6HstUXSbdPJ4qaoowYbpX7dTPrAM846xyA=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-        b=KBTz46JBZ4PW/gxBYFpCGey9EfT2zeEyQUINA+M8ByaQy0JSaFUYgIpd13Y2Xtp8N
-         fT7zYfLS6BtJCGnS3U805TvBepYv+l9ZdXsLW3nmfgXa9/fYRXum0qVW6KtV+FdZbM
-         zhLAdH7S5poVJqRQMaU8xlwVOeQ49eeaN67cS3u4=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,FREEMAIL_FROM,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v5 1/6] dt-bindings: remoteproc: Add Xilinx RPU subsystem
+ bindings
+Content-Language: en-US
+To:     Tanmay Shah <tanmay.shah@xilinx.com>, bjorn.andersson@linaro.org,
+        mathieu.poirier@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        michal.simek@xilinx.com
+Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220518194426.3784095-1-tanmay.shah@xilinx.com>
+ <20220518194426.3784095-2-tanmay.shah@xilinx.com>
+ <45fea4a1-387f-9684-a90b-58b695b54172@linaro.org>
+ <c97d61b0-8a38-5054-d5f1-bc7c5e7bcf61@xilinx.com>
+ <1b117e49-28d0-da75-68ee-c2fcef9fc9a9@linaro.org>
+ <c7b248f4-9ec1-2ae8-c7e3-55f37592f56e@xilinx.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <c7b248f4-9ec1-2ae8-c7e3-55f37592f56e@xilinx.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On maj 24, 2022 14:17, Slawomir Stepien wrote:
-> On maj 24, 2022 13:53, Slawomir Stepien wrote:
-> > On maj 20, 2022 07:22, Guenter Roeck wrote:
-> > > On 5/20/22 07:09, Krzysztof Kozlowski wrote:
-> > > > On 20/05/2022 15:42, Guenter Roeck wrote:
-> > > > > > 
-> > > > > > > +          A descriptive name for this channel, like "ambient" or "psu".
-> > > > > > > +
-> > > > > > > +      offset:
-> > > > > > > +        description: |
-> > > > > > 
-> > > > > > This does not look like standard property, so you need vendor and unit
-> > > > > > suffix.
-> > > > > > 
-> > > > > 
-> > > > > Temperature offset is a standard property for temperature sensor
-> > > > 
-> > > > The original description was strictly connected to registers, so that
-> > > > one as not a standard. It seems it was just a wording...
-> > > > 
-> > > > > chips with external channels, implemented by a diode or transistor.
-> > > > > Making it non-standard will mean that we'll have lots of
-> > > > > "vendor,offset" properties, one each for each vendor selling
-> > > > > temperature sensor chips with external channels. This gets
-> > > > > more complicated here because the lm90 driver does support chips
-> > > > > from several different vendors. Almost all of them support
-> > > > > this functionality. Which vendor do you select in this case ?
-> > > > > 
-> > > > > I would suggest to use temperature-offset-milliseconds, though.
-> > > > 
-> > > > Yes, this sounds good. Just not seconds but millicelsius, I guess?
-> > > > 
-> > > 
-> > > Uuh, yes. Sorry, must be too early in the morning here.
-> > 
-> > Hello
-> > 
-> > I see that: *-millicelsius is defined as uint32-array:
-> >   "-millicelsius$":
-> >     $ref: "types.yaml#/definitions/uint32-array"
-> >     description: Degreee milli-Celsius
-> > 
-> > But it would be nice to have negative values as the prop value, for example <(-1000)>.
-> > 
-> > How should I approach that? Is change to this definition possible? If yes, how should it be
-> > conducted? On github or via device-tree mailing list?
-> > 
-> > Or maybe there is a way to overwrite this (using $defs?) for this particular binding? I haven't
-> > found any solution that will pass dt_binding_check.
+On 24/05/2022 17:43, Tanmay Shah wrote:
+> With this, I will add 'maxItems: 8' in sram and memory-region properties.
 > 
-> Well ok, looks like this:
+> If everything else looks good on schema in this revision, could you 
+> please also review next (dts) patch in this series?
 > 
->       temperature-offset-millicelsius:
->         description: Temperature offset to be added to or subtracted from remote temperature measurements.
->         items:
->           items:
->             type: integer
->             minimum: -128000
->             maximum: 127000
-
-This isn't working...from what I've read we cannot just simply overwrite existing schemas.
-
-Krzysztof, Guenter what I should do? Is there a way to match with uint32-array schema and with
-schema that allows items in array to be below 0 (seems impossible to me)? I've tried a lot of
-combinations today without any luck. Any helpful tips? Thanks!
-
-> Will overwrite the definition...most likely just minimum: -128000 in 2nd items will be enough.
+> If that looks good, can I get your 'rb' on that?
 > 
-> > > > > > > +          The value (millidegree Celsius) to be programmed in the channel specific offset register
-> > > > > > > +          (if supported by device).
-> > > > > > 
-> > > > > > You described programming model which should not be put in the bindings.
-> > > > > > Please describe the hardware.
-> > > > > > 
-> > > > > 
-> > > > > It is a configuration value, which is hardware dependent because
-> > > > > it depends on the temperature diode or transistor connected to the chip.
-> > > > 
-> > > > Sure, so this could be reworded "Offset against some base value for each
-> > > > channel temperature", or something similar (you know better than me).
-> > > > Referring to registers and where exactly this should be programmed in
-> > > > the device is related to device programming model, not to bindings.
-> > > > 
-> > > 
-> > > Maybe something like "Temperature offset to be added to or
-> > > subtracted from remote temperature measurements".
+> so we can reduce scope of reviews for next revisions?
 
--- 
-Slawomir Stepien
+There is no need to resend after receiving a tag, so the amount of
+reviews/versions won't change.
+
+
+Best regards,
+Krzysztof
