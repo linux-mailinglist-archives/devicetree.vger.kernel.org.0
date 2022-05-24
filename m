@@ -2,68 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50AEC532FF4
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 20:00:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AEB053301B
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 20:10:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233941AbiEXR76 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 13:59:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59748 "EHLO
+        id S237893AbiEXSJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 14:09:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230099AbiEXR75 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 13:59:57 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEEBA62137;
-        Tue, 24 May 2022 10:59:55 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0E88361553;
-        Tue, 24 May 2022 17:59:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F4ACC34100;
-        Tue, 24 May 2022 17:59:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1653415194;
-        bh=O23kCg5BjIoTnjoGWgJg0oMLdYIrdRRC0baQ4M1oVo0=;
-        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
-        b=jR9SsuMxiuG5xTMQ18/B5Pk9RuJXhUp2GIykcRgSKtpFkfBWCCD06o05bZ3GHZtkh
-         VTfe9vGuqrXoxL7Jl6KJhbN2kHKrhzYexW/2hHOOmqpEQ6ZmCZ5C2pn+Ud1uurTAvg
-         57f39vFTXq5TMwAp9fkRrkIJe4h/OvMtbh9NZQ1ZI2eFTTv2weGir+6HKkQgIVQVyW
-         EmqU5mn0/Lb0t2CXL/h4sXjdtwGhYHFQjxQFXczaWTs8oFrG+Fi910JO9fYfE+u6/2
-         NsM6uDBXYkGZCvVp9/u8M7vIISP8K6mMBdC5TPIaWiPv5Z9sffeLDGNWiolccS9L3T
-         IVBkU5NfndtBA==
-Date:   Tue, 24 May 2022 10:59:50 -0700 (PDT)
-From:   Stefano Stabellini <sstabellini@kernel.org>
-X-X-Sender: sstabellini@ubuntu-linux-20-04-desktop
-To:     Oleksandr <olekstysh@gmail.com>
-cc:     Stefano Stabellini <sstabellini@kernel.org>,
-        xen-devel <xen-devel@lists.xenproject.org>,
-        "open list:DRM DRIVER FOR QEMU'S CIRRUS DEVICE" 
-        <virtualization@lists.linux-foundation.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
-        Jason Wang <jasowang@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Julien Grall <julien@xen.org>, Juergen Gross <jgross@suse.com>,
-        "Michael S. Tsirkin" <mst@redhat.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>
-Subject: Re: [PATCH V2 5/7] dt-bindings: Add xen,dev-domid property description
- for xen-grant DMA ops
-In-Reply-To: <606dfdcc-ec10-0c4a-04e9-72cd73ee6676@gmail.com>
-Message-ID: <alpine.DEB.2.22.394.2205241058430.1905099@ubuntu-linux-20-04-desktop>
-References: <1651947548-4055-1-git-send-email-olekstysh@gmail.com> <1651947548-4055-6-git-send-email-olekstysh@gmail.com> <CAK8P3a2cAnXr8TDDYTiFxTWzQxa67sGnYDQRRD+=Q8_cSb1mEw@mail.gmail.com> <56e8c32d-6771-7179-005f-26ca58555659@gmail.com>
- <CAK8P3a1YhkEZ8gcbXHEa5Bwx-4VVRJO8SUHf8=RNWRsc2Yo-+A@mail.gmail.com> <460a746c-6b61-214b-4653-44a1430e314d@gmail.com> <alpine.DEB.2.22.394.2205181802310.1905099@ubuntu-linux-20-04-desktop> <6f469e9c-c26e-f4be-9a85-710afb0d77eb@gmail.com>
- <390ba7bb-ee9e-b7b7-5f08-71a7245fa4ec@gmail.com> <alpine.DEB.2.22.394.2205231856330.1905099@ubuntu-linux-20-04-desktop> <606dfdcc-ec10-0c4a-04e9-72cd73ee6676@gmail.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+        with ESMTP id S233757AbiEXSJ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 14:09:58 -0400
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2058.outbound.protection.outlook.com [40.107.243.58])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 397026B09B;
+        Tue, 24 May 2022 11:09:57 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=I+Q2v4tOwGW2d76P1lFxFf0b+ZX8ilcNAVVRmWS9BObDvUhRAsmaDbdZ78DtkQoXLaU1Tl4QUTY1MLAJp2xZOa2ND3S1IEEoBa18rM4d1lTY2CyaoBqJG7idSr9VZ7f89S3iXFBB0b+mKl7+mUa9lWQ2gObGBi1GvTjs2G3DdCIFeSjOkWxebIfMsmHzoKC2T6WXytijkuFbbdEw0y2Hr60BcDpVW6qj4+HZEIWNOiu7LIwjEy5Vd0sLgWa4b2XqmV27nalM7lRt93VgMNgBJ511M+rm/zHSBcaZ0kN3fgDZT808A2fHBuiYR5faTIkI4Ch7C3lNslkoLra53gR0eQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=FEo4fxKPxAxhQDXaa90LCmjmokvxxgdk1UFNmvioJqY=;
+ b=miKz5TxFDSMPude5DCcCSC4B6TQ1DeI2etz7/YmpiawxfLDERgC4pnL3iaW0CM5LtnT8H/4OjBtOwAqlb6k54fRFzVk4vsQqLXpraekb6yqKDozhfhM0G/cZw7ssKdeWq/sFowS6QbJGssBOGVb7gARoQeFDlPGYhtTFjSLGFCrjHl6LNrRm+AkISKYN9kvY6WhWiae49Qn+UaazVsV4Er9tx6BW9s00hMqjLAu9q2i2kd8poeyGM4vL3qUaEX9gmW03LjeriE5P/QEdgOSFy8gLcon8twhBjNLgt7Uued1HNpcatS0T/HThfuXPcNvDK/Q8FmfL9vdlisxXNJIq4g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=linaro.org smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FEo4fxKPxAxhQDXaa90LCmjmokvxxgdk1UFNmvioJqY=;
+ b=cO5WqzL14bsoE1GFabhovIJMLJD7XE/XBTdF/zYnNFy89d5n+hbXGwyFxPgpskALEMeVvjMDUHEEN88q6HwDuh3jABcD/G+f+NAB9wfSgYli55rDxGme7dr66p8QGeFW53wKX8GC0Q1U9IJ7hye39/unA66vRQLZfqq3eX/2XUk=
+Received: from DS7PR07CA0017.namprd07.prod.outlook.com (2603:10b6:5:3af::14)
+ by DM6PR02MB4331.namprd02.prod.outlook.com (2603:10b6:5:27::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5273.17; Tue, 24 May
+ 2022 18:09:54 +0000
+Received: from DM3NAM02FT020.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:5:3af:cafe::85) by DS7PR07CA0017.outlook.office365.com
+ (2603:10b6:5:3af::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5273.14 via Frontend
+ Transport; Tue, 24 May 2022 18:09:54 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com; pr=C
+Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
+ DM3NAM02FT020.mail.protection.outlook.com (10.13.4.146) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5273.14 via Frontend Transport; Tue, 24 May 2022 18:09:54 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Tue, 24 May 2022 11:09:50 -0700
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Tue, 24 May 2022 11:09:50 -0700
+Envelope-to: krzysztof.kozlowski@linaro.org,
+ bjorn.andersson@linaro.org,
+ mathieu.poirier@linaro.org,
+ robh+dt@kernel.org,
+ krzk+dt@kernel.org,
+ linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Received: from [10.23.123.15] (port=51136)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <tanmay.shah@xilinx.com>)
+        id 1ntYyc-0001ek-Lh; Tue, 24 May 2022 11:09:50 -0700
+Message-ID: <266f4fe2-e8b8-24f2-085d-fcdb87f90731@xilinx.com>
+Date:   Tue, 24 May 2022 11:09:49 -0700
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-1170483708-1653415194=:1905099"
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.9.0
+Subject: Re: [PATCH v5 1/6] dt-bindings: remoteproc: Add Xilinx RPU subsystem
+ bindings
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <bjorn.andersson@linaro.org>, <mathieu.poirier@linaro.org>,
+        <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
+        <michal.simek@xilinx.com>
+CC:     <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20220518194426.3784095-1-tanmay.shah@xilinx.com>
+ <20220518194426.3784095-2-tanmay.shah@xilinx.com>
+ <45fea4a1-387f-9684-a90b-58b695b54172@linaro.org>
+ <c97d61b0-8a38-5054-d5f1-bc7c5e7bcf61@xilinx.com>
+ <1b117e49-28d0-da75-68ee-c2fcef9fc9a9@linaro.org>
+ <c7b248f4-9ec1-2ae8-c7e3-55f37592f56e@xilinx.com>
+ <014a6c1c-2795-f066-f103-9a97afc35da7@linaro.org>
+From:   Tanmay Shah <tanmay.shah@xilinx.com>
+In-Reply-To: <014a6c1c-2795-f066-f103-9a97afc35da7@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: e4678abb-5933-4b01-121f-08da3db09ad6
+X-MS-TrafficTypeDiagnostic: DM6PR02MB4331:EE_
+X-Microsoft-Antispam-PRVS: <DM6PR02MB4331A90CD8DD9DD543AE95F8CAD79@DM6PR02MB4331.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 9M4pL3lgWMp1Cb0FKsXYyhGZ69l4aa2oyxz0nGcLxuiRC4bfyIg7uHJg4KV7pNUU/C4OgILUdpOa7huY8Gtx0LcAqb2aNkZqgV59kkh5QlS/TvuLapcZtWztVU7owVOngq8YioEjTIUnzIrJP+cayYf0lW70RpC17YWdQoQq+eyDc6v3Njz7zrYWGsPFrWMP3USBxmAKYFBi57ixQSX4TamUNr7zHN62zSFSEXltmuWEmMNuVJi13+YmM/5HnzrjWk15bRQUTq4f2QjwHbqNZYEMuiR9R0596l9rY1/EY4YracZNQOOWQOIjjupFfFZzoAzAudOWX67G1YYSqzfFoXhlfiYcXtkhnrT/82tymho0WTRgw9uS+MIEvI2Gcxteet8MPEYJixE3BwzzP8s5IYbm/cM2Vw+WMY/ArDf/BGY0mbPpcJx8WXOzlFRTrnoi2j2P2pxK7/HMpHXqcXmUKoJYT9hi/5tWhAtC60CE0cd1DFnWVapEzDwUptfFULqcXgnE1jWTZ0lPvfc/WcDoCvyGGYpGlKxfDvBbbd3eAO58RGeaQnpVOK+lNgCIIYBnOq5q3Q8QgbvBD4EjX3J6UijBoJ2X8/zY+m6G/n2mdAJ1YHtZmvsazg/p5rtKJIwZP0V6wydwMrmF7Eq55et0Oa0efSj7AAEc0r96b5vhkCfy6iY3sxKMSOYxcarL9h9RFSu+6f/VXUeaUJlFKbQNZd7D2KsoQ8KgJf9G5XpVAQA=
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230001)(4636009)(40470700004)(36840700001)(46966006)(8936002)(40460700003)(508600001)(5660300002)(44832011)(4326008)(426003)(336012)(47076005)(9786002)(70586007)(70206006)(8676002)(54906003)(316002)(186003)(6636002)(36860700001)(4744005)(31696002)(110136005)(82310400005)(26005)(36756003)(7636003)(356005)(2906002)(31686004)(2616005)(53546011)(50156003)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 May 2022 18:09:54.6668
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e4678abb-5933-4b01-121f-08da3db09ad6
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM3NAM02FT020.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR02MB4331
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,448 +127,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+On 5/24/22 10:28 AM, Krzysztof Kozlowski wrote:
+> On 24/05/2022 17:43, Tanmay Shah wrote:
+>> With this, I will add 'maxItems: 8' in sram and memory-region properties.
+>>
+>> If everything else looks good on schema in this revision, could you
+>> please also review next (dts) patch in this series?
+>>
+>> If that looks good, can I get your 'rb' on that?
+>>
+>> so we can reduce scope of reviews for next revisions?
+> There is no need to resend after receiving a tag, so the amount of
+> reviews/versions won't change.
 
---8323329-1170483708-1653415194=:1905099
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Ok. So, is it fine if I send new revision once dts patch is reviewed.
 
-On Tue, 24 May 2022, Oleksandr wrote:
-> > On Mon, 23 May 2022, Oleksandr wrote:
-> > > > > On Thu, 19 May 2022, Oleksandr wrote:
-> > > > > > > On Wed, May 18, 2022 at 5:06 PM Oleksandr <olekstysh@gmail.com>
-> > > > > > > wrote:
-> > > > > > > > On 18.05.22 17:32, Arnd Bergmann wrote:
-> > > > > > > > > On Sat, May 7, 2022 at 7:19 PM Oleksandr Tyshchenko
-> > > > > > > > > <olekstysh@gmail.com> wrote:
-> > > > > > > > >      This would mean having a device
-> > > > > > > > > node for the grant-table mechanism that can be referred to
-> > > > > > > > > using
-> > > > > > > > > the
-> > > > > > > > > 'iommus'
-> > > > > > > > > phandle property, with the domid as an additional argument.
-> > > > > > > > I assume, you are speaking about something like the following?
-> > > > > > > > 
-> > > > > > > > 
-> > > > > > > > xen_dummy_iommu {
-> > > > > > > >        compatible = "xen,dummy-iommu";
-> > > > > > > >        #iommu-cells = <1>;
-> > > > > > > > };
-> > > > > > > > 
-> > > > > > > > virtio@3000 {
-> > > > > > > >        compatible = "virtio,mmio";
-> > > > > > > >        reg = <0x3000 0x100>;
-> > > > > > > >        interrupts = <41>;
-> > > > > > > > 
-> > > > > > > >        /* The device is located in Xen domain with ID 1 */
-> > > > > > > >        iommus = <&xen_dummy_iommu 1>;
-> > > > > > > > };
-> > > > > > > Right, that's that's the idea,
-> > > > > > thank you for the confirmation
-> > > > > > 
-> > > > > > 
-> > > > > > 
-> > > > > > >     except I would not call it a 'dummy'.
-> > > > > > >    From the perspective of the DT, this behaves just like an
-> > > > > > > IOMMU,
-> > > > > > > even if the exact mechanism is different from most hardware IOMMU
-> > > > > > > implementations.
-> > > > > > well, agree
-> > > > > > 
-> > > > > > 
-> > > > > > > > > It does not quite fit the model that Linux currently uses for
-> > > > > > > > > iommus,
-> > > > > > > > > as that has an allocator for dma_addr_t space
-> > > > > > > > yes (# 3/7 adds grant-table based allocator)
-> > > > > > > > 
-> > > > > > > > 
-> > > > > > > > > , but it would think it's
-> > > > > > > > > conceptually close enough that it makes sense for the binding.
-> > > > > > > > Interesting idea. I am wondering, do we need an extra actions
-> > > > > > > > for
-> > > > > > > > this
-> > > > > > > > to work in Linux guest (dummy IOMMU driver, etc)?
-> > > > > > > It depends on how closely the guest implementation can be made to
-> > > > > > > resemble a normal iommu. If you do allocate dma_addr_t addresses,
-> > > > > > > it may actually be close enough that you can just turn the
-> > > > > > > grant-table
-> > > > > > > code into a normal iommu driver and change nothing else.
-> > > > > > Unfortunately, I failed to find a way how use grant references at
-> > > > > > the
-> > > > > > iommu_ops level (I mean to fully pretend that we are an IOMMU
-> > > > > > driver). I
-> > > > > > am
-> > > > > > not too familiar with that, so what is written below might be wrong
-> > > > > > or
-> > > > > > at
-> > > > > > least not precise.
-> > > > > > 
-> > > > > > The normal IOMMU driver in Linux doesn’t allocate DMA addresses by
-> > > > > > itself, it
-> > > > > > just maps (IOVA-PA) what was requested to be mapped by the upper
-> > > > > > layer.
-> > > > > > The
-> > > > > > DMA address allocation is done by the upper layer (DMA-IOMMU which
-> > > > > > is
-> > > > > > the glue
-> > > > > > layer between DMA API and IOMMU API allocates IOVA for PA?). But,
-> > > > > > all
-> > > > > > what we
-> > > > > > need here is just to allocate our specific grant-table based DMA
-> > > > > > addresses
-> > > > > > (DMA address = grant reference + offset in the page), so let’s say
-> > > > > > we
-> > > > > > need an
-> > > > > > entity to take a physical address as parameter and return a DMA
-> > > > > > address
-> > > > > > (what
-> > > > > > actually commit #3/7 is doing), and that’s all. So working at the
-> > > > > > dma_ops
-> > > > > > layer we get exactly what we need, with the minimal changes to guest
-> > > > > > infrastructure. In our case the Xen itself acts as an IOMMU.
-> > > > > > 
-> > > > > > Assuming that we want to reuse the IOMMU infrastructure somehow for
-> > > > > > our
-> > > > > > needs.
-> > > > > > I think, in that case we will likely need to introduce a new
-> > > > > > specific
-> > > > > > IOVA
-> > > > > > allocator (alongside with a generic one) to be hooked up by the
-> > > > > > DMA-IOMMU
-> > > > > > layer if we run on top of Xen. But, even having the specific IOVA
-> > > > > > allocator to
-> > > > > > return what we indeed need (DMA address = grant reference + offset
-> > > > > > in
-> > > > > > the
-> > > > > > page) we will still need the specific minimal required IOMMU driver
-> > > > > > to
-> > > > > > be
-> > > > > > present in the system anyway in order to track the mappings(?) and
-> > > > > > do
-> > > > > > nothing
-> > > > > > with them, returning a success (this specific IOMMU driver should
-> > > > > > have
-> > > > > > all
-> > > > > > mandatory callbacks implemented).
-> > > > > > 
-> > > > > > I completely agree, it would be really nice to reuse generic IOMMU
-> > > > > > bindings
-> > > > > > rather than introducing Xen specific property if what we are trying
-> > > > > > to
-> > > > > > implement in current patch series fits in the usage of "iommus" in
-> > > > > > Linux
-> > > > > > more-less. But, if we will have to add more complexity/more
-> > > > > > components
-> > > > > > to the
-> > > > > > code for the sake of reusing device tree binding, this raises a
-> > > > > > question
-> > > > > > whether that’s worthwhile.
-> > > > > > 
-> > > > > > Or I really missed something?
-> > > > > I think Arnd was primarily suggesting to reuse the IOMMU Device Tree
-> > > > > bindings, not necessarily the IOMMU drivers framework in Linux
-> > > > > (although
-> > > > > that would be an added bonus.)
-> > > > > 
-> > > > > I know from previous discussions with you that making the grant table
-> > > > > fit in the existing IOMMU drivers model is difficult, but just reusing
-> > > > > the Device Tree bindings seems feasible?
-> > > > I started experimenting with that. As wrote in a separate email, I got a
-> > > > deferred probe timeout,
-> > > > 
-> > > > after inserting required nodes into guest device tree, which seems to be
-> > > > a
-> > > > consequence of the unavailability of IOMMU, I will continue to
-> > > > investigate
-> > > > this question.
-> > > 
-> > > I have experimented with that. Yes, just reusing the Device Tree bindings
-> > > is
-> > > technically feasible (and we are able to do this by only touching
-> > > grant-dma-ops.c), although deferred probe timeout still stands (as there
-> > > is no
-> > > IOMMU driver being present actually).
-> > > 
-> > > [    0.583771] virtio-mmio 2000000.virtio: deferred probe timeout,
-> > > ignoring
-> > > dependency
-> > > [    0.615556] virtio_blk virtio0: [vda] 4096000 512-byte logical blocks
-> > > (2.10
-> > > GB/1.95 GiB)
-> > > 
-> > > 
-> > > Below the working diff (on top of current series):
-> > > 
-> > > diff --git a/drivers/xen/grant-dma-ops.c b/drivers/xen/grant-dma-ops.c
-> > > index da9c7ff..6586152 100644
-> > > --- a/drivers/xen/grant-dma-ops.c
-> > > +++ b/drivers/xen/grant-dma-ops.c
-> > > @@ -272,17 +272,24 @@ static const struct dma_map_ops xen_grant_dma_ops =
-> > > {
-> > > 
-> > >   bool xen_is_grant_dma_device(struct device *dev)
-> > >   {
-> > > +       struct device_node *iommu_np;
-> > > +       bool has_iommu;
-> > > +
-> > >          /* XXX Handle only DT devices for now */
-> > >          if (!dev->of_node)
-> > >                  return false;
-> > > 
-> > > -       return of_property_read_bool(dev->of_node, "xen,backend-domid");
-> > > +       iommu_np = of_parse_phandle(dev->of_node, "iommus", 0);
-> > > +       has_iommu = iommu_np && of_device_is_compatible(iommu_np,
-> > > "xen,grant-dma");
-> > > +       of_node_put(iommu_np);
-> > > +
-> > > +       return has_iommu;
-> > >   }
-> > > 
-> > >   void xen_grant_setup_dma_ops(struct device *dev)
-> > >   {
-> > >          struct xen_grant_dma_data *data;
-> > > -       uint32_t domid;
-> > > +       struct of_phandle_args iommu_spec;
-> > > 
-> > >          data = find_xen_grant_dma_data(dev);
-> > >          if (data) {
-> > > @@ -294,16 +301,30 @@ void xen_grant_setup_dma_ops(struct device *dev)
-> > >          if (!dev->of_node)
-> > >                  goto err;
-> > > 
-> > > -       if (of_property_read_u32(dev->of_node, "xen,backend-domid",
-> > > &domid)) {
-> > > -               dev_err(dev, "xen,backend-domid property is not
-> > > present\n");
-> > > +       if (of_parse_phandle_with_args(dev->of_node, "iommus",
-> > > "#iommu-cells",
-> > > +                       0, &iommu_spec)) {
-> > > +               dev_err(dev, "Cannot parse iommus property\n");
-> > > +               goto err;
-> > > +       }
-> > > +
-> > > +       if (!of_device_is_compatible(iommu_spec.np, "xen,grant-dma") ||
-> > > +                       iommu_spec.args_count != 1) {
-> > > +               dev_err(dev, "Incompatible IOMMU node\n");
-> > > +               of_node_put(iommu_spec.np);
-> > >                  goto err;
-> > >          }
-> > > 
-> > > +       of_node_put(iommu_spec.np);
-> > > +
-> > >          data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-> > >          if (!data)
-> > >                  goto err;
-> > > 
-> > > -       data->backend_domid = domid;
-> > > +       /*
-> > > +        * The endpoint ID here means the ID of the domain where the
-> > > corresponding
-> > > +        * backend is running
-> > > +        */
-> > > +       data->backend_domid = iommu_spec.args[0];
-> > > 
-> > >          if (xa_err(xa_store(&xen_grant_dma_devices, (unsigned long)dev,
-> > > data,
-> > >                          GFP_KERNEL))) {
-> > > (END)
-> > > 
-> > > 
-> > > 
-> > > Below, the nodes generated by Xen toolstack:
-> > > 
-> > >          xen_grant_dma {
-> > >                  compatible = "xen,grant-dma";
-> > >                  #iommu-cells = <0x01>;
-> > >                  phandle = <0xfde9>;
-> > >          };
-> > > 
-> > >          virtio@2000000 {
-> > >                  compatible = "virtio,mmio";
-> > >                  reg = <0x00 0x2000000 0x00 0x200>;
-> > >                  interrupts = <0x00 0x01 0xf01>;
-> > >                  interrupt-parent = <0xfde8>;
-> > >                  dma-coherent;
-> > >                  iommus = <0xfde9 0x01>;
-> > >          };
-> >   Not bad! I like it.
-> 
-> 
-> Good.
-> 
-> 
-> 
-> >     
-> > > I am wondering, would be the proper solution to eliminate deferred probe
-> > > timeout issue in our particular case (without introducing an extra IOMMU
-> > > driver)?
-> > In reality I don't think there is a way to do that. I would create an
-> > empty skelethon IOMMU driver for xen,grant-dma.
-> 
-> Ok, I found yet another option how we can avoid deferred probe timeout issue.
-> I am not sure whether it will be welcome. But it doesn't really require
-> introducing stub IOMMU driver or other changes in the guest. The idea is to
-> make IOMMU device unavailable (status = "disabled"), this way
-> of_iommu_configure() will treat that as success condition also.
-> 
-> https://elixir.bootlin.com/linux/v5.18/source/drivers/iommu/of_iommu.c#L31
-> https://elixir.bootlin.com/linux/v5.18/source/drivers/iommu/of_iommu.c#L149
-> 
->         xen_grant_dma {
->                 compatible = "xen,grant-dma";
->                 #iommu-cells = <0x01>;
->                 phandle = <0xfde9>;
->                 status = "disabled";
->         };
->         virtio@2000000 {
->                 compatible = "virtio,mmio";
->                 reg = <0x00 0x2000000 0x00 0x200>;
->                 interrupts = <0x00 0x01 0xf01>;
->                 interrupt-parent = <0xfde8>;
->                 dma-coherent;
->                 iommus = <0xfde9 0x01>;
->         };
-> 
-> I have checked, this "fixes" deferred probe timeout issue.
-> 
-> 
-> Or we indeed need to introduce stub IOMMU driver (I placed it to driver/xen
-> instead of driver/iommu, also we can even squash it with grant-dma-ops.c?).
-> This stub driver also results in NO_IOMMU condition (as "of_xlate" callback is
-> not implemented).
-> 
-> diff --git a/drivers/xen/Kconfig b/drivers/xen/Kconfig
-> index a7bd8ce..35b91b9 100644
-> --- a/drivers/xen/Kconfig
-> +++ b/drivers/xen/Kconfig
-> @@ -335,6 +335,10 @@ config XEN_UNPOPULATED_ALLOC
->           having to balloon out RAM regions in order to obtain physical memory
->           space to create such mappings.
-> 
-> +config XEN_GRANT_DMA_IOMMU
-> +       bool
-> +       select IOMMU_API
-> +
->  config XEN_GRANT_DMA_OPS
->         bool
->         select DMA_OPS
-> @@ -343,6 +347,7 @@ config XEN_VIRTIO
->         bool "Xen virtio support"
->         depends on VIRTIO
->         select XEN_GRANT_DMA_OPS
-> +       select XEN_GRANT_DMA_IOMMU
->         help
->           Enable virtio support for running as Xen guest. Depending on the
->           guest type this will require special support on the backend side
-> diff --git a/drivers/xen/Makefile b/drivers/xen/Makefile
-> index 1a23cb0..c0503f1 100644
-> --- a/drivers/xen/Makefile
-> +++ b/drivers/xen/Makefile
-> @@ -40,3 +40,4 @@ xen-privcmd-y                         := privcmd.o
-> privcmd-buf.o
->  obj-$(CONFIG_XEN_FRONT_PGDIR_SHBUF)    += xen-front-pgdir-shbuf.o
->  obj-$(CONFIG_XEN_UNPOPULATED_ALLOC)    += unpopulated-alloc.o
->  obj-$(CONFIG_XEN_GRANT_DMA_OPS)                += grant-dma-ops.o
-> +obj-$(CONFIG_XEN_GRANT_DMA_IOMMU)      += grant-dma-iommu.o
-> diff --git a/drivers/xen/grant-dma-iommu.c b/drivers/xen/grant-dma-iommu.c
-> new file mode 100644
-> index 00000000..b8aad8a
-> --- /dev/null
-> +++ b/drivers/xen/grant-dma-iommu.c
-> @@ -0,0 +1,76 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Stub IOMMU driver which does nothing.
-> + * The main purpose of it being present is to reuse generic device-tree IOMMU
-> + * bindings by Xen grant DMA-mapping layer.
-> + */
-> +
-> +#include <linux/iommu.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +
-> +struct grant_dma_iommu_device {
-> +       struct device *dev;
-> +       struct iommu_device iommu;
-> +};
-> +
-> +/* Nothing is really needed here */
-> +static const struct iommu_ops grant_dma_iommu_ops;
-> +
-> +static const struct of_device_id grant_dma_iommu_of_match[] = {
-> +       { .compatible = "xen,grant-dma" },
-> +       { },
-> +};
-> +
-> +static int grant_dma_iommu_probe(struct platform_device *pdev)
-> +{
-> +       struct grant_dma_iommu_device *mmu;
-> +       int ret;
-> +
-> +       mmu = devm_kzalloc(&pdev->dev, sizeof(*mmu), GFP_KERNEL);
-> +       if (!mmu)
-> +               return -ENOMEM;
-> +
-> +       mmu->dev = &pdev->dev;
-> +
-> +       ret = iommu_device_register(&mmu->iommu, &grant_dma_iommu_ops,
-> &pdev->dev);
-> +       if (ret)
-> +               return ret;
-> +
-> +       platform_set_drvdata(pdev, mmu);
-> +
-> +       return 0;
-> +}
-> +
-> +static int grant_dma_iommu_remove(struct platform_device *pdev)
-> +{
-> +       struct grant_dma_iommu_device *mmu = platform_get_drvdata(pdev);
-> +
-> +       platform_set_drvdata(pdev, NULL);
-> +       iommu_device_unregister(&mmu->iommu);
-> +
-> +       return 0;
-> +}
-> +
-> +static struct platform_driver grant_dma_iommu_driver = {
-> +       .driver = {
-> +               .name = "grant-dma-iommu",
-> +               .of_match_table = grant_dma_iommu_of_match,
-> +       },
-> +       .probe = grant_dma_iommu_probe,
-> +       .remove = grant_dma_iommu_remove,
-> +};
-> +
-> +static int __init grant_dma_iommu_init(void)
-> +{
-> +       struct device_node *iommu_np;
-> +
-> +       iommu_np = of_find_matching_node(NULL, grant_dma_iommu_of_match);
-> +       if (!iommu_np)
-> +               return 0;
-> +
-> +       of_node_put(iommu_np);
-> +
-> +       return platform_driver_register(&grant_dma_iommu_driver);
-> +}
-> +subsys_initcall(grant_dma_iommu_init);
-> 
-> I have checked, this also "fixes" deferred probe timeout issue.
-> 
-> Personally I would prefer the first option, but I would be also happy to use
-> second option in order to unblock the series.
-> 
-> What do the maintainers think?
- 
+That way I can take care of any fixes in dts patch along with bindings 
+in next version.
 
-I don't think it is a good idea to mark the fake IOMMU as disabled
-because it implies that there is no need to use it (no need to use
-dma_ops) which is a problem.
-
-If we don't want the skelethon driver then Rob's suggestion of having a
-skip list for deferred probe is better.
-
-I think the skelethon driver also is totally fine.
---8323329-1170483708-1653415194=:1905099--
+>
+> Best regards,
+> Krzysztof
