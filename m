@@ -2,171 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBB89532FB6
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 19:37:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 303AD532FF3
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 19:59:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236003AbiEXRhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 13:37:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57238 "EHLO
+        id S234461AbiEXR7T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 13:59:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231848AbiEXRhp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 13:37:45 -0400
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A715A1A051
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 10:37:43 -0700 (PDT)
-Received: by mail-oi1-x22e.google.com with SMTP id v9so17563498oie.5
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 10:37:43 -0700 (PDT)
+        with ESMTP id S230099AbiEXR7S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 13:59:18 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61A0562137
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 10:59:17 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id rq11so14805060ejc.4
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 10:59:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=y+so8jn/A+1psHeTytrcnto/0ApO1CXp9P5bUkEghcw=;
-        b=CAYluIse/8jmEookS70e2aRrS1ErAB0r5lTojQ+4MMzIsFuCoOohltVLvXWa51R8Mr
-         rHiNfaqfOwi3iQ2U33+ZA2INbBKz2IqZ3PKhLZl9ApwiGLi3rl6H9vYJmhwVYPbREhaY
-         1tPBi40Jtqp6gHIqIfJddprxNySsAPA6ShZQxnBxjFuuIzFXiwXdNkg0vZonoKClnB6j
-         4/8/2k0ZXmOMLtyKoc+OWnAwxgT5ZyzlPzrh6b8ZjOQPaOK6gRpDSdXqXattt+tLXD8v
-         1xh8NAELCw39sfej9ndCLr5160BWkuMkZgp537lEjByBUO5uwWGPnyIPtoP2q+eyb6Oh
-         N2hQ==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=pO9+5FvH2gC4RB2t7JEHm779XNwPcXe+oKNK7teE6y8=;
+        b=ekHWPPF9gjP9Tq65v4Ro6X4Tzl6+F0xcMBDPNsV3DDFZBfcMjdn7xhs2eHivua+IQK
+         HFzMCiWtXIc3PyOoDasP+m5y+NVdDzgLQKER45wydviPV6eTlQVAB217SJgWvQ3JRBJ3
+         VUvBGXR3gWlhbGZT0iRD+o9L8hG8uagNoUPPnVplbtWdhoX67Dxcm1tWNTCfjQjD5A6P
+         uplzCQMPV/1qRu6rcjhPG5rP43ely3OvJjLYpgzaFv/xIJYQYS8LIgBGXc4/inquZI+3
+         E57unzyRiKDs4ZZoPEuEqK7uyxHS35U/EN6OAqRL2gUy3MTP+YVDkPHHzU6eKSJNOHv8
+         kCew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to:content-transfer-encoding;
-        bh=y+so8jn/A+1psHeTytrcnto/0ApO1CXp9P5bUkEghcw=;
-        b=kjLUzCZFPuC9jDHwigJg+3ZPE5XeOVFkhs+phgJMtqbez/XtKJOr8NsckmJ1vFLnCk
-         benkvEIz4rBKRPRxOevp9tIRxhUARe5wyHwRjH8xwOk/IQu2vg+VYtSsFdYqUvyIPT7a
-         eYlmHK+pEEmCPI/wU/ly897PYPphuoqyXFufrNYKDC5FpczJ9evnO5BgUxpmm8aLEdPm
-         Iqex9Dk+JjylyIlwkJ3t/o+UOKXLo+500YBO0wCS17wGURyKIx9nVP1284sL6fmbI5cQ
-         pHHwjfSO1uRCU3R1gyHJvNdHF6YswSSU1ilTufT+E7J9Y1ACsoaau9LsqiDMFVVl7tM7
-         WujA==
-X-Gm-Message-State: AOAM5337sRbWUHJES8PcGZoLw1ATLJPLr/ZcxYvJv/Il+LCpsHs0ozIw
-        sSliOBauW3XiFEY7vXgltwLVbXSWntMD2ODxcJM=
-X-Google-Smtp-Source: ABdhPJxgDYRoPdxZmMEldGpg0WNUJWh6Bub16M9KXsOBzqtadKlGpTH0qBOtR2kL1ARdjk5oQ/pISi3Fn5T/YHwrhnk=
-X-Received: by 2002:a05:6808:3009:b0:2f9:6119:d676 with SMTP id
- ay9-20020a056808300900b002f96119d676mr2958935oib.205.1653413862546; Tue, 24
- May 2022 10:37:42 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=pO9+5FvH2gC4RB2t7JEHm779XNwPcXe+oKNK7teE6y8=;
+        b=wGZywWzId4RSMYn3ryG1gPkgp/sjZdRlLar8jup856Bi1kemjEzY0uYibCpqqD32FC
+         HYpcstkjhUXABX+5rCxl7ozYaCJ96m43H+yLObYOdW+g4bgwkYLJIG6CMw/WGFLVBCsq
+         TqpTvv2JiLiZcUZtr+TzEbHOri/hsmxTVTuEGujFlnH0JFtvMQEW79T49bNjkik/ak61
+         QU8Y1rBdDPr84/wKE9YkXRjQ0djspV6HC/zD9qOblLoAXaGt4EIugjpwiApp0ZCkfYb+
+         kBeaE5/4JSBrsogpUgCQ6DXC3T5VUSB4cs/VhA48qij6+foYk1EQE59fcqsOagGpfFAN
+         5acg==
+X-Gm-Message-State: AOAM5314GTnmbzXIPYAcvXtLD38qkub4AR2HTOl7TX5NwpFVSm40A6hc
+        r9LUH9nwlIqdzUn/1YYYRV578w==
+X-Google-Smtp-Source: ABdhPJxWVK2ukINulMs9nwTRbFCFJEPYD/aNeNtg8NzCbY+S+OIDYVBI5sP7NK8vTGuPhYuejIZLcA==
+X-Received: by 2002:a17:907:7da3:b0:6f5:2d00:e069 with SMTP id oz35-20020a1709077da300b006f52d00e069mr24451497ejc.743.1653415155919;
+        Tue, 24 May 2022 10:59:15 -0700 (PDT)
+Received: from [192.168.0.177] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id q1-20020aa7d441000000b0042aae0a4699sm9849134edr.60.2022.05.24.10.59.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 May 2022 10:59:15 -0700 (PDT)
+Message-ID: <5e841cdb-ca44-02f9-6c98-3d000b515b6b@linaro.org>
+Date:   Tue, 24 May 2022 19:59:14 +0200
 MIME-Version: 1.0
-Received: by 2002:ac9:144:0:0:0:0:0 with HTTP; Tue, 24 May 2022 10:37:42 -0700 (PDT)
-Reply-To: unitedbankforafricalometogo1@gmail.com
-From:   Amid Noora <amidnoora@gmail.com>
-Date:   Tue, 24 May 2022 17:37:42 +0000
-Message-ID: <CAJc4OnU8xpS_ccmdp756Nn9v0xYSTBN+es+x6QyiK_OM6kNTcg@mail.gmail.com>
-Subject: NUJNO
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: Yes, score=5.1 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
-        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no autolearn_force=no
-        version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2607:f8b0:4864:20:0:0:0:22e listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5000]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
-        *      digit
-        *      [unitedbankforafricalometogo1[at]gmail.com]
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [amidnoora[at]gmail.com]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  3.3 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-X-Spam-Level: *****
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 3/8] dt-bindings: hwmon: Allow specifying channels for
+ lm90
+Content-Language: en-US
+To:     Slawomir Stepien <sst@poczta.fm>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh@kernel.org>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        jdelvare@suse.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, przemyslaw.cencner@nokia.com,
+        krzysztof.adamski@nokia.com, alexander.sverdlin@nokia.com,
+        Slawomir Stepien <slawomir.stepien@nokia.com>
+References: <20220520093243.2523749-1-sst@poczta.fm>
+ <20220520093243.2523749-4-sst@poczta.fm>
+ <3ea92486-0cf9-ce3d-d1b6-7a76f1d5a129@linaro.org>
+ <0b84d109-d6be-dfba-99bb-0b7136af875e@roeck-us.net>
+ <b5ff0f2c-d741-6dec-c306-b54cb5075ccf@linaro.org>
+ <f124cbcb-3fca-3f1c-f47e-730f15c1f074@roeck-us.net>
+ <YozHOsSdpWBRNLYt@t480s.localdomain> <YozM0L5uftHOgkjL@t480s.localdomain>
+ <Yo0VfVthNdtjIWF+@t480s.localdomain>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Yo0VfVthNdtjIWF+@t480s.localdomain>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Pozor, upravi=C4=8Denec,
+On 24/05/2022 19:27, Slawomir Stepien wrote:
+>> Well ok, looks like this:
+>>
+>>       temperature-offset-millicelsius:
+>>         description: Temperature offset to be added to or subtracted from remote temperature measurements.
+>>         items:
+>>           items:
 
-To e-po=C5=A1tno obvestilo prihaja neposredno iz skupine odbora za boj
-proti goljufijam Afri=C5=A1ke unije (AU) Republike Togo v sodelovanju z
-delovno postajo Zdru=C5=BEenih narodov (ZN) Lome-Togo, razred P-4 Po=C5=A1t=
-na
-=C5=A1tevilka-AF /RP/RDBCPN/SHS/0001.v zvezi z obse=C5=BEno racijo (Aretaci=
-je)
-na internetne prevarante. Zaradi visoke stopnje prito=C5=BEb, ki jih
-prejemamo od Zdru=C5=BEenih narodov (ZN) na ravni prevarantov/goljufov z
-afri=C5=A1kimi narodnostmi. Vsi ponudniki internetnih storitev so opazili
-pove=C4=8Dan e-po=C5=A1tni promet, ki izvira iz Afrike na druge celine.
+I think this is not an array, so items are not needed.
 
-V tem napadu je bilo do zdaj aretiranih tristo =C5=A1est (306) prevarantov
-in ta racija =C5=A1e traja. Od njih smo izterjali skupno vsoto 857
-milijonov ameri=C5=A1kih dolarjev, tako denar kot sredstva, za katere je
-bilo potrjeno, da so pri=C5=A1li od njihovih =C5=BErtev. Kot smo na=C5=A1li=
- na
-stotine tiso=C4=8De e-po=C5=A1tnih naslovov =C5=BErtev iz njihovih imenikov=
-. V tem
-trenutku vas kontaktiramo.
+>>             type: integer
 
-Ve=C4=8Dkrat smo brez uspeha posku=C5=A1ali stopiti v stik z vami, zato vam=
- =C5=A1e
-zadnji=C4=8D po=C5=A1iljamo ta opomnik, po katerem od=C5=A1kodninski komisi=
-ji
-Zdru=C5=BEenih narodov ne bo preostalo drugega, kot da prekli=C4=8De va=C5=
-=A1
-od=C5=A1kodninski denar v vi=C5=A1ini 750.000,00 $ in ga ozna=C4=8Di kot ne=
-zahtevano,
-zato nemudoma odgovorite na to pismo, da pojasnite svoje stali=C5=A1=C4=8De=
- v
-tej zadevi, preden bo prepozno, ukrepajte hitro in upo=C5=A1tevajte
-navodila v svoje dobro. Podrobnosti o nadaljnjih na=C4=8Dinih boste dobili,
-ko boste stopili v stik z United Bank of Africa Lome, Togo
+types are instead:
+$ref: /schemas/types.yaml#/definitions/int32
+but I think it still does not work.
 
-=C2=BBDanes pa vas obve=C5=A1=C4=8Damo, da je UBA Bank va=C5=A1 denar nakaz=
-al na kartico
-VISA in tudi pripravljen za dostavo.
-Zdaj se obrnite na generalnega direktorja UBA Bank
-Ime...................... G. Tony Elumelu
-E-po=C5=A1tni naslov........unitedbankforafricalometogo1@gmail.com
+>>             minimum: -128000
+>>             maximum: 127000
+> 
+> This isn't working...from what I've read we cannot just simply overwrite existing schemas.
+> 
+> Krzysztof, Guenter what I should do? Is there a way to match with uint32-array schema and with
+> schema that allows items in array to be below 0 (seems impossible to me)? I've tried a lot of
+> combinations today without any luck. Any helpful tips? Thanks!
+
+However this still does not work. I changed in schema:
+
+   # Temperature
+
+   "-celsius$":
+
+-    $ref: "types.yaml#/definitions/uint32-array"
+
++    $ref: "types.yaml#/definitions/int32-array"
 
 
-Va=C5=A1e podatke je omenil eden od Sindikatov, ki je bil aretiran kot ena
-od njihovih =C5=BErtev operacij. S tem ste opozorjeni, da jim tega
-sporo=C4=8Dila iz kakr=C5=A1nega koli razloga ne posredujte ali podvajate, =
-saj
-je na=C5=A1 agent tajne slu=C5=BEbe ZDA =C5=BEe na sledeh drugim kriminalce=
-m.
+but that does not solve the problem that property is stored as uint32
+and parsed like uint32:
 
-Po=C5=A1ljite mu naslednje podatke za dostavo va=C5=A1e akreditirane kartic=
-e
-VISA na bankomatu na va=C5=A1 naslov.
+    4294967291 is greater than the maximum of 40
 
-Va=C5=A1e polno ime=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D
-Va=C5=A1a dr=C5=BEava porekla=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
-Va=C5=A1 doma=C4=8Di naslov =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D
-E-po=C5=A1tni naslov =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D
-Va=C5=A1a telefonska =C5=A1tevilka =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-Va=C5=A1a starost =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-Va=C5=A1 spol =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D
-Va=C5=A1 poklic =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
 
-N/B ; Zato mi takoj odgovorite danes, da bomo lahko takoj za=C4=8Deli vse
-potrebne procese in protokole za sprostitev va=C5=A1ega sklada za
-od=C5=A1kodnino
-S spo=C5=A1tovanjem,
-Oddelek Odbora za boj proti goljufijam Afri=C5=A1ke unije (AU) Podru=C5=BEn=
-ica
-Republike Togo
+Maybe Rob has some idea. Till then, you can skip minimum.
+
+Best regards,
+Krzysztof
