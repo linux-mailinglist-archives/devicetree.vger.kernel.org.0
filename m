@@ -2,144 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9EA3532620
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 11:10:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C25A532633
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 11:16:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234850AbiEXJHP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 05:07:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56218 "EHLO
+        id S235233AbiEXJQj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 05:16:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234754AbiEXJHO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 05:07:14 -0400
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3D7767D05;
-        Tue, 24 May 2022 02:07:12 -0700 (PDT)
-Received: by mail-yb1-xb2d.google.com with SMTP id p190so2851945ybg.4;
-        Tue, 24 May 2022 02:07:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=9Tx1BWROKP0/4lNYHpybGvkaMQyge6iiz9PNPvD4+qY=;
-        b=aQwUz6+ffoqY1v3jszLqvLwqJB7nzfjWfj+InzeqhN8GQDyYS/b88yLLRogzI3NS01
-         lH6OUz7zukDBCM5O4GlPa2gpHESJc2pU7dJExaOE0VxauQQtzCXHrHxvRzn71j/Y/qR4
-         tdv19sKBPmX5AJPpFh2A7SWjZkiUcWBHd0iEIB0iVZcGEfWXVyp0di3fmvAKZubV8ToU
-         KU6XTCXHpxLEubIapRDOEhbO0/ShqLms1N/zrNDomIRyvjy3iBfOqofJFqmn+KPH2Bde
-         utKp4yORLjuLScNdH0OPOWxD1uJSynt0kElv3Z3NyYpfxu7kjYgtf4Toih2xyLKk6b1n
-         F1hg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9Tx1BWROKP0/4lNYHpybGvkaMQyge6iiz9PNPvD4+qY=;
-        b=nKlrVyy0IXzVkaOjJFt1fHxLIULxhm4ZDdsxqKWYqMInTCgyC4/F8f+yVVCYlX28f3
-         7o7qdRDbOlF3UHNZ4rO5XgJfIyRRaYpnAGUaJXkB378W8GUb1xWJvIl4DtuA+3aV+mJI
-         GYsWt+oZwhtfXmBDsJ+UQRPPbu7sW3oPztCEHUHq6uPMdhYh31J85jN/57KKYzQjOrXP
-         F+1qLSY7WD3140CVNDFhCPmBpnkFw/kVaValpJox8YC8zuhV4X3mr83nqKxWXCm4LjN1
-         j9BuA0QQ76MMN7Sm2vyOCzPDLaXVhcj3qT6Kwd1w0IEdOkvcUWLB6MQI4P8PlgkjkS6P
-         3CMw==
-X-Gm-Message-State: AOAM530b9EUunIHdMb7T5aYabFFJKdtrOYQybUZINECzt8sQwdhDRgSV
-        fHFbaDFC/3VH3mfumJZCk6dr8vmpjtSDY3dgWIM=
-X-Google-Smtp-Source: ABdhPJzM4ZpMtr20WZp/sxrmVJUSKAmBdig4nKMcgZaRdipxdlpEOiglvaxJZe+JMhHfONlZuQBKYRWKkWTKFJNLv9E=
-X-Received: by 2002:a5b:888:0:b0:651:ac74:d084 with SMTP id
- e8-20020a5b0888000000b00651ac74d084mr2445569ybq.218.1653383231923; Tue, 24
- May 2022 02:07:11 -0700 (PDT)
+        with ESMTP id S235224AbiEXJQi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 05:16:38 -0400
+Received: from m12-16.163.com (m12-16.163.com [220.181.12.16])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BBA831D314;
+        Tue, 24 May 2022 02:16:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+        s=s110527; h=Message-ID:Date:MIME-Version:Subject:From; bh=6bHKB
+        N/3QBi7HzN/vwEopZXo21vzzru1+xafDO7zm/8=; b=L7Q/+yfYROd3FnDLltavy
+        zVXjGu/4+M1TvU/HFo0Kxipslob/GjEvc4qu9bv5toD1N8hbvys54EP1BwB9yGfu
+        6cmneO10AQFXUby3pKbx9+JQkp+CxEUeejCv0FEfUtqJFupl/EzUJLs7jvx/4la0
+        2UE0pmtRUcWcw6aMN2qKas=
+Received: from [192.168.3.102] (unknown [218.201.129.20])
+        by smtp12 (Coremail) with SMTP id EMCowABnTDU8ooxiXDX+BA--.128S2;
+        Tue, 24 May 2022 17:15:43 +0800 (CST)
+Message-ID: <12833b83-59a9-a808-4d62-60658df8d628@163.com>
+Date:   Tue, 24 May 2022 17:15:40 +0800
 MIME-Version: 1.0
-References: <20220523174238.28942-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220523174238.28942-4-prabhakar.mahadev-lad.rj@bp.renesas.com> <CACRpkdYaWmD9PTcGgeP5MTe9bXMgmf=tUSDBQ-4VxSfL4qkoeQ@mail.gmail.com>
-In-Reply-To: <CACRpkdYaWmD9PTcGgeP5MTe9bXMgmf=tUSDBQ-4VxSfL4qkoeQ@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Tue, 24 May 2022 10:06:46 +0100
-Message-ID: <CA+V-a8s+dWMwL6zQnWwFAa15sMgPGYrW+GZ=WhSW1tPxgpLOqA@mail.gmail.com>
-Subject: Re: [PATCH v5 3/5] gpio: gpiolib: Allow free() callback to be overridden
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thomas Gleixner <tglx@linutronix.de>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH v4 0/2] ARM: sun8i-r40: Enable usb otg support
+Content-Language: en-US
+To:     Icenowy Zheng <icenowy@aosc.io>, linux-sunxi@lists.linux.dev
+Cc:     Andre Przywara <andre.przywara@arm.com>,
+        Evgeny Boger <boger@wirenboard.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220518101706.26869-1-qianfanguijin@163.com>
+ <a50307f826e8e5f4218bd2bfde23add8a26af0dc.camel@aosc.io>
+From:   qianfan <qianfanguijin@163.com>
+In-Reply-To: <a50307f826e8e5f4218bd2bfde23add8a26af0dc.camel@aosc.io>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: EMCowABnTDU8ooxiXDX+BA--.128S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxCw43GFy5WFW7trWfWw4kJFb_yoW5Cw1kpF
+        W7XFZ7Gw1ktw1Syay3ua4UW3y3Z3yrXayjyFn3tFy8Ar13ur1DAanrKr95KasxWr13Zw47
+        Kwn5Jwn3Kr1YgF7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+        9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jONVkUUUUU=
+X-Originating-IP: [218.201.129.20]
+X-CM-SenderInfo: htld0w5dqj3xxmlqqiywtou0bp/xtbBzh8L7WI0UkpUyQAAsk
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
 
-Thank you for the feedback.
 
-On Tue, May 24, 2022 at 9:54 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+在 2022/5/23 21:11, Icenowy Zheng 写道:
+> 在 2022-05-18星期三的 18:17 +0800，qianfanguijin@163.com写道：
+>> From: qianfan Zhao <qianfanguijin@163.com>
+>>
+>> History:
+>> =======
+>>
+>> v4(2022-05-18):
+>> - Enable both musb and OHCI/EHCI support
+>>
+>> Tests:
+>> ======
+>>
+>> All test cases were tested on bananapi-m2-ultra.
+>>
+>> 1. USB DEVICE(ping test)
+>>
+>> Enable usb gadget rndis network, ping m2u on ubuntu host:
+> Interestingly musb previous totally fail when I initially work on R40.
+> Maybe some phy-sun4i-usb patches fixed it by accident?
+Hi, could you please try this patch again?
 >
-> On Mon, May 23, 2022 at 7:43 PM Lad Prabhakar
-> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
->
-> > Allow free() callback to be overridden from irq_domain_ops for
-> > hierarchical chips.
-> >
-> > This allows drivers to free up resources which are allocated during
-> > child_to_parent_hwirq()/populate_parent_alloc_arg() callbacks.
-> >
-> > On Renesas RZ/G2L platform a bitmap is maintained for TINT slots, a slot
-> > is allocated in child_to_parent_hwirq() callback which is freed up in free
-> > callback hence this override.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
->
-> So that function today looks like this:
->
-> static void gpiochip_hierarchy_setup_domain_ops(struct irq_domain_ops *ops)
-> {
->         ops->activate = gpiochip_irq_domain_activate;
->         ops->deactivate = gpiochip_irq_domain_deactivate;
->         ops->alloc = gpiochip_hierarchy_irq_domain_alloc;
->         ops->free = irq_domain_free_irqs_common;
->
->         /*
->          * We only allow overriding the translate() function for
->          * hierarchical chips, and this should only be done if the user
->          * really need something other than 1:1 translation.
->          */
->         if (!ops->translate)
->                 ops->translate = gpiochip_hierarchy_irq_domain_translate;
-> }
->
-> (...)
-> -       ops->free = irq_domain_free_irqs_common;
-> (...)
-> > +       if (!ops->free)
-> > +               ops->free = irq_domain_free_irqs_common;
->
-> Marc Z is working on cleaning up the way that gpiolib is (ab)using
-> irqchips. We definitely need his ACK if we do things like this.
-> This doesn't look like one of the big offenders to me, but I want
-> to make sure we don't create new problems while Marc is trying
-> to solve the old ones.
->
-Agreed, I had a discussion with Marc on v3 series [0].
+>> ➜  ~ ping 192.168.200.2
+>> PING 192.168.200.2 (192.168.200.2) 56(84) bytes of data.
+>> 64 bytes from 192.168.200.2: icmp_seq=1 ttl=64 time=0.544 ms
+>> 64 bytes from 192.168.200.2: icmp_seq=2 ttl=64 time=0.269 ms
+>> 64 bytes from 192.168.200.2: icmp_seq=3 ttl=64 time=0.300 ms
+>> 64 bytes from 192.168.200.2: icmp_seq=4 ttl=64 time=0.295 ms
+>> 64 bytes from 192.168.200.2: icmp_seq=5 ttl=64 time=0.283 ms
+>> 64 bytes from 192.168.200.2: icmp_seq=6 ttl=64 time=0.226 ms
+>> 64 bytes from 192.168.200.2: icmp_seq=7 ttl=64 time=0.246 ms
+>> 64 bytes from 192.168.200.2: icmp_seq=8 ttl=64 time=0.204 ms
+>> 64 bytes from 192.168.200.2: icmp_seq=9 ttl=64 time=0.302 ms
+>> 64 bytes from 192.168.200.2: icmp_seq=10 ttl=64 time=0.249 ms
+>> 64 bytes from 192.168.200.2: icmp_seq=11 ttl=64 time=0.459 ms
+>> 64 bytes from 192.168.200.2: icmp_seq=12 ttl=64 time=0.232 ms
+>> 64 bytes from 192.168.200.2: icmp_seq=13 ttl=64 time=0.275 ms
+>> 64 bytes from 192.168.200.2: icmp_seq=14 ttl=64 time=0.243 ms
+>>
+>> 2. USB HOST(OHCI)
+>>
+>> Connect an usb serial port on OTG port, nex t is the kernel log:
+>>
+>> [   27.824137] usb 2-1: new full-speed USB device number 2 using
+>> ohci-platform
+>> [   28.865504] cdc_acm 2-1:1.0: ttyACM0: USB ACM device
+>> [   29.565509] cdc_acm 2-1:1.2: ttyACM1: USB ACM device
+>>
+>> 3. USB HOST(EHCI)
+>>
+>> Connect an usb storage on OTG port, next is the kernel log:
+>>
+>> [   17.754147] usb 1-1: new high-speed USB device number 2 using
+>> ehci-platform
+>> [   17.955995] usb-storage 1-1:1.0: USB Mass Storage device detected
+>> [   18.024497] scsi host1: usb-storage 1-1:1.0
+>> [   19.035091] scsi 1:0:0:0: Direct-Access     General  USB Flash
+>> Disk   1.0  PQ: 0 ANSI: 2
+>> [   19.049717] sd 1:0:0:0: [sda] 7831552 512-byte logical blocks:
+>> (4.01 GB/3.73 GiB)
+>> [   19.060873] sd 1:0:0:0: [sda] Write Protect is off
+>> [   19.071018] sd 1:0:0:0: [sda] No Caching mode page found
+>> [   19.076437] sd 1:0:0:0: [sda] Assuming drive cache: write through
+>> [   19.093566]  sda: sda1
+>> [   19.103492] sd 1:0:0:0: [sda] Attached SCSI removable disk
+>>
+>> issues:
+>> =======
+>>
+>> The system power often turned off when I plugged an usb device into
+>> the OTG port.
+>> It's not clear why.
+>>
+>> qianfan Zhao (2):
+>>    ARM: dts: sun8i-r40: Add USB0_OTG/HOST support
+>>    ARM: dts: bananapi-m2-ultra: Enable USB0_OTG and HOST support
+>>
+>>   .../boot/dts/sun8i-r40-bananapi-m2-ultra.dts  | 39
+>> +++++++++++++++++++
+>>   arch/arm/boot/dts/sun8i-r40.dtsi              | 34 ++++++++++++++++
+>>   2 files changed, 73 insertions(+)
+>>
 
-[0] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220511183210.5248-4-prabhakar.mahadev-lad.rj@bp.renesas.com/
-
-Cheers,
-Prabhakar
