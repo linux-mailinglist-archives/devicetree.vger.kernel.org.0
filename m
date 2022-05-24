@@ -2,220 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 660FB533140
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 21:05:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 324D75331EB
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 21:52:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236009AbiEXTFR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 15:05:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55310 "EHLO
+        id S241060AbiEXTwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 15:52:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241009AbiEXTFH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 15:05:07 -0400
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2112.outbound.protection.outlook.com [40.107.114.112])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E80CF2F;
-        Tue, 24 May 2022 12:04:43 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dID/ZIoR5L2hB/hyuq+XHnmDyKCxYeclpLBMhmArw6WH4928gBWFg3QJZ0UPMz/5auamWkwPv4rF9gAXuk3TUmpr5QIg3szF28FwG7m4UOALuI8pq1H+BPr3yLG/uS5JFIKXz3DWQdvKU9myt4hkclATZxcqb0EqmGA5Niyc8i+E5b53zEjakaOR+JXSamwT3Pu8K7MrjCcF0NEZFI233R80Mgg3PcQdjEPmYkwuLHKFjlXdqnvYciTQ6r0HEW8jhl/Ceg3v+CzGfEzpJm2RWxz/q/0Ll7H8g6xOmagBIvzoWTlT2G2c9GKpP6OK9wAvL2Xzh3K/DVANVtzpmTwuww==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iD+fekhtuxPuoCrt6NvCPmgaR3/4PrP1IdeY8AWhAr8=;
- b=ExCgGkrlmo4TjBlksieyNlvV9ZDuhe8FKxz6XnXoyQjMpjGmbbdpr28dh+tdJCiLXYbj1jn4NnFJtFydqIscxzF/8uk0ZLFvEY/pnIwy3VOh8Db03OsJu9FbyJ8x35UF8FkXIumOrpQBjhk3GK7p7kjW9Me0OLBFbQNusG27FKVQ6X14dDTwHvLjrh8BFNEytHV5Gpi+hgttKIargysLIh3N9eEczT9DzIlgBdzR3ATyjGPLuJlz5hgeRd5F2sh4SMLV9MmH3EujYqAfZifBJjFgEf0zJqJx1o6OwKNMC8kxWZOquph6qXb2LckE1WX1I7teaQ+MBHiOdfANcAQJIg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iD+fekhtuxPuoCrt6NvCPmgaR3/4PrP1IdeY8AWhAr8=;
- b=Cr1QWz2PizTv9q4JkZxfMOaMzNrBSoY10AW1RmTtEkmmJAilY+Y1YssjXaYkVWIKfUXn/+5oM5Yxv1AeAGb76NhQPSTly4qljx+im1bDmU7Ie93dOTCRo+C8gVC2wM5gu/i8yJ4yc9RXEniM/Eri8xOXqgnead/sQ+rSgHA02iM=
-Received: from TYYPR01MB7086.jpnprd01.prod.outlook.com (2603:1096:400:de::11)
- by OS3PR01MB7683.jpnprd01.prod.outlook.com (2603:1096:604:14b::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.13; Tue, 24 May
- 2022 19:04:41 +0000
-Received: from TYYPR01MB7086.jpnprd01.prod.outlook.com
- ([fe80::e180:5c8b:8ddf:7244]) by TYYPR01MB7086.jpnprd01.prod.outlook.com
- ([fe80::e180:5c8b:8ddf:7244%8]) with mapi id 15.20.5273.023; Tue, 24 May 2022
- 19:04:40 +0000
-From:   Phil Edworthy <phil.edworthy@renesas.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH 1/2] dt-bindings: pinctrl: renesas: Add DT bindings for
- RZ/V2M pinctrl
-Thread-Topic: [PATCH 1/2] dt-bindings: pinctrl: renesas: Add DT bindings for
- RZ/V2M pinctrl
-Thread-Index: AQHYbGAJuUt0o0UhwkGKZGmmj+mQHK0uZKUAgAAEFEA=
-Date:   Tue, 24 May 2022 19:04:40 +0000
-Message-ID: <TYYPR01MB7086F6CF69073EE5B6A86A80F5D79@TYYPR01MB7086.jpnprd01.prod.outlook.com>
-References: <20220520154051.29088-1-phil.edworthy@renesas.com>
- <20220520154051.29088-2-phil.edworthy@renesas.com>
- <20220524184720.GA4138401-robh@kernel.org>
-In-Reply-To: <20220524184720.GA4138401-robh@kernel.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 825a92f3-51ea-4693-813a-08da3db8418c
-x-ms-traffictypediagnostic: OS3PR01MB7683:EE_
-x-microsoft-antispam-prvs: <OS3PR01MB7683BE4B98DAB3F00B6B3283F5D79@OS3PR01MB7683.jpnprd01.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: qlEx7md7MUDcJU4b8Eg0sQAJTmJSaDQ1otgBaCVDkHqce/dJiNdk5t/TpNGkV7BgEklT42s2O0Ue9BcOgHDqrVB9/Subsj0UvJUAQqxcKPWmpii3RN0M+xUA/Cj9mr0cTNO6VQC7dAAJX7F9hQHtNv1t+eO4DgzYcpTzFRc8z4w9U0BR+MUzMnMqv3HeaHYeg559mbrjwrhXqNhRYz/XKUvePtB0L9+g0ELjAgLPPdzgFHvJ/Ct0pkq86Q/FJfVnCdpT/wVEyatMApcTYNYTeg/fjeh/5ufy2026xYjFmT3tWcR+qpR183bkmO5CrKd6AND3hfI6aqwB1UdIqKK++aSlQaHELyhpWo7uJQ7OFM+yiZL7QE6s2cHqj0Rd0D3BL6E41pTF/gRcQpNffGxGvA4e6tdhC0UvTXSh3McJ6R7e12FqUE7719YMq9bl3f9HEeln3T9AhyK/rb42S2eXE24uUAx3V7k9rp7yGhLZMVVlrfZr2icOXU/o1LWeplEcaKMHTeebSOuo5FketnIknDYRyh4a7l5Y44Ov4W+GGuvvo4SpCsf1448iU9UXiwD0rE3hRLwNonBv2PRBDgagrslhYEJfJXTzwD7IrsHuDaqtBPAb/uU+mwQAXxYLiHeiK7QLu8izrmjw7QQE84xUx91XTjbX/6nOlmDAVN3b3YmvdN6I69bW9MDY7gI2J1SQE6ane++gWOLXkD/MkiSHqoTIjID6VAXWILSYpFJpeoWE3Cc63nEwTd+U46IG+eh5kCc9D68DpWpO6yFlWXBtRurdF1/IsMV19onUZH2ojQo=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYYPR01MB7086.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(66946007)(6506007)(55016003)(26005)(9686003)(66476007)(4326008)(66446008)(64756008)(44832011)(7696005)(66556008)(8676002)(76116006)(71200400001)(86362001)(508600001)(5660300002)(33656002)(52536014)(2906002)(966005)(122000001)(316002)(38100700002)(8936002)(38070700005)(186003)(6916009)(54906003)(53546011);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?VhSOnVstezbG10wsoO/Tu9EFXHoYkYJud5ofvgFDmD8NcXlVfF/NUQjeVNWo?=
- =?us-ascii?Q?LN4aQOBLvOJV6rPc1Umz5BET0u37AW6cxWFOjdDAAdkIH8XYhP4AmiJTBvFl?=
- =?us-ascii?Q?46lUMpNKdfhSS4ne/KnsS5/UKL9FK6UD7J8mUbdROv4ImmqpK7/FcCDKYUZ6?=
- =?us-ascii?Q?Os7SLeLaFTcemTGBNNC/F0qfZDdNt/+lXZNfd893zx3gHpnBaOhXVXAXBp7e?=
- =?us-ascii?Q?D2LHSdgkbL6PMvlmwyLfmmtHK1eNX1k7R0cTzXdE0g2APV5D4a94+QhF9TCF?=
- =?us-ascii?Q?+STQZymztRfryZ5t8wf2mgDbjpxgOp0FoLvYKYSNNv7Px4M49pxKs1v5a9Rs?=
- =?us-ascii?Q?7l5yWre+23CpByVjRmJYF8AJXyK18Osk9k+cx8bIdpJiN0b46HcJdB98E1kg?=
- =?us-ascii?Q?1ziw++OTvIGNEu7GuO9ymfpFsNRIh8ELa4gTzI8QHIzNMRhJXu6zcL/5JAV+?=
- =?us-ascii?Q?CHIn+kjybSWfNtTeB79pTKmpCPtlHqQDycc96cHX/1f3Mk5RyOZD1XF0HbAH?=
- =?us-ascii?Q?yI6mcLTJIAy4DEljmNYu24n8sXXn2EFFQWYciq1xg8XYLszgXizzwMjHbChE?=
- =?us-ascii?Q?qcCmQMnAz4xOAZT7nC4zvROAru0qxy9Kc77u+mk1D6L4x+LJSBHpk9Cf0KEd?=
- =?us-ascii?Q?cMMwvHM0nlgW8Bq3RWi7OZqo7zXZm72+LHhKgdAoqzDZkEXN6o+3AHVaOff/?=
- =?us-ascii?Q?E06cmuhJIa7eX8SBEO453otgG0iNLgCaerrgdTCaLuxcyoixqqnP7kti6lqk?=
- =?us-ascii?Q?vco7VUuMrVsAWQbBViuethGjApY67Z58zX+v0V02WrwaM4wOVBSlkilK0h6H?=
- =?us-ascii?Q?U4pa+jN7fAs7fgGZOvhHLfHttcIEr9yGp6476Dmto9kYnbLlTxtJIt6YJcnU?=
- =?us-ascii?Q?UgAC2i2jml7cbI4an8vU/H82ox/8L8Wi/BIfM5ZcTmM2S6gtIDLcS8RF2GXf?=
- =?us-ascii?Q?Wv8IOllh3pEJiUGB+k8kTVC8825QxrrYUzXXBBLvU5ldaa44/AAD42i3ptEh?=
- =?us-ascii?Q?syvJhGfZ3KR+GZQbWCgZVmRnSdCxKnh203cc7juyrnNBfGlqvmoHxzwh70xM?=
- =?us-ascii?Q?bIfZgvUzZfKTg2byhFcFRZrJmz+NvtBwCy8gLrE6DWQwiE16MF4MeVykIYwe?=
- =?us-ascii?Q?voTD1ANjdFXR/Oo/GGi/1iGWv8FARZP2yyMUN2ijd0Td8jcaDdrETVqM82w/?=
- =?us-ascii?Q?saZunaxaXFD8F5QWOUJyjdu0wNaoW5nqoteMRZh10Pcv+Q7qtAq+qqBqXjDP?=
- =?us-ascii?Q?g1G9LVqNfFYUpuNbZ/d6HB5yWVG3ktW5ULRIxGVxi9Gi8o+SahGYMJayfjZ5?=
- =?us-ascii?Q?rGMgK6jSd40Lld5YA2O4Tr5E8M9q9F5HTf07S9UVBLaLhptu2TaM9pIWDsn1?=
- =?us-ascii?Q?omqo+V2vOdAmvFVL4MxD4Mc+wubXUVNqeAY+u+ciiSJfhkcfXactvuZ1JPVA?=
- =?us-ascii?Q?HOMtchBpOym7S9BeEJSQtLJr3jSMWSepDk++py0p7h6ukKhk6zLIwNyQoYII?=
- =?us-ascii?Q?+zR3yKBISPJEYL06rtxPEVpkip4LPfmqRVI0coarcS4iZv/QA5llGck7rWPM?=
- =?us-ascii?Q?dDIUPRGEpCgajXrb6WAtTcvfEJxh5RG+TLb2yKq0kqMTkTZGBspY1deD4m0C?=
- =?us-ascii?Q?3LcjlTsSzzTyHyAMdbNObitLnpSUQxW2sgchRpXxyFucRfKMdbTzqfFy0Nr5?=
- =?us-ascii?Q?eIN10uE5t1gDiFPwzHFugmuldRPigMTjm0cAlcPizd85CMFC/MfGRunpSi0J?=
- =?us-ascii?Q?kVn4xHKMOtYULwz3Wa5y0yGBtyYtRPY=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S241046AbiEXTwT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 15:52:19 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08DE851E6D
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 12:52:18 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id z11so7940725pjc.3
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 12:52:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=jqoWghnRf4IApUvhfymreoEWbSDArTcoutoZjM72nXw=;
+        b=EO0wzmRiymk1VXgWWvRRc3IHLLstcNdXRpjX+Qa/zhBCeIa2SsovD9R4dbZnORQcKn
+         0PZkzsed6rURkYHuk1sc0+T3gfc+W2e9X472k+b53Yvdk84aAiZALjWq3FaN5kE2PsYu
+         7sH8pkQe344lomsZEo8R5RF/g6Z0uKDLmtsts=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=jqoWghnRf4IApUvhfymreoEWbSDArTcoutoZjM72nXw=;
+        b=EHOLUlSUajpw4NwQkGuXka3/FyDKPoMhzkroRL/fEcDzgJ7tsBMekLRrd9sM2xoBOR
+         e35yFtmGxzTNzlnTwgG05U0bVMZdAp/6Fm6ZrSbmQE+1TQ8X6p/wWw27c5p/6fScOhjR
+         6pgI481+W6kVUda2SelTmH318jqn3YTAxFWaRFlBq8u2hA9Q0l815QKmTjYKC+JRqVCP
+         XnPnzr2X09ZMdmbKpJDQueNozis0lWOW7bvlavua+MnVkhdKurVkyJvSrU1kYQ3jylR8
+         kRpUYD21K7nvFPye2KEkhxKv8uW97oEKwrMhGDeqKjZbqsGz3Vf5PPIZRREGE54JwBYc
+         BtIQ==
+X-Gm-Message-State: AOAM530T3hPcWTWQGZenYMD9mnxOPUUNtjOub6LS/V1QxU0qO6T6wtpW
+        N9QU/QtBYoi/+8HfOiCPDJz1Dw==
+X-Google-Smtp-Source: ABdhPJxYA5tWQzLCi4DBahLvoLKWqro2fm9zEi8W+x+XadWNi0GLmwBwwM5KV4GMoCy0dGBpiZhVRg==
+X-Received: by 2002:a17:90b:4b90:b0:1e0:1b0:1a1 with SMTP id lr16-20020a17090b4b9000b001e001b001a1mr6348302pjb.70.1653421937516;
+        Tue, 24 May 2022 12:52:17 -0700 (PDT)
+Received: from localhost ([2620:15c:11a:202:d9e2:8472:9ac:8532])
+        by smtp.gmail.com with UTF8SMTPSA id t28-20020a62d15c000000b0050dc762815csm9767703pfl.54.2022.05.24.12.52.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 May 2022 12:52:17 -0700 (PDT)
+Date:   Tue, 24 May 2022 12:52:15 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Tzung-Bi Shih <tzungbi@kernel.org>
+Cc:     bleung@chromium.org, groeck@chromium.org, robh+dt@kernel.org,
+        chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 5/5] platform/chrome: cros_kbd_led_backlight: support
+ EC PWM backend
+Message-ID: <Yo03b5GtGgF/kVb3@google.com>
+References: <20220321085547.1162312-1-tzungbi@kernel.org>
+ <20220321085547.1162312-6-tzungbi@kernel.org>
+ <YobHVST2Nfn+z8n6@google.com>
+ <YocewB/lLJhIAuQP@google.com>
+ <YoezzzLdVfb0K7Ak@google.com>
+ <Yosc/6izBDYYKpFC@google.com>
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYYPR01MB7086.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 825a92f3-51ea-4693-813a-08da3db8418c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 May 2022 19:04:40.9038
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 7Dp3mxqog44X09DVNcN3bNplZqYttEbNczUzaIrwIj0XM7t3KwAkR+Lyc+wbXuEYwGNn27t0ZvlPlkeXzRqw/VTdsBkDD7MULogpHsFwXJ8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB7683
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Yosc/6izBDYYKpFC@google.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob
+On Mon, May 23, 2022 at 01:34:55PM +0800, Tzung-Bi Shih wrote:
+> On Fri, May 20, 2022 at 08:29:19AM -0700, Matthias Kaehlcke wrote:
+> > On Fri, May 20, 2022 at 12:53:20PM +0800, Tzung-Bi Shih wrote:
+> > > On Thu, May 19, 2022 at 03:40:21PM -0700, Matthias Kaehlcke wrote:
+> > > > On Mon, Mar 21, 2022 at 04:55:47PM +0800, Tzung-Bi Shih wrote:
+> > > > > +struct keyboard_led_private {
+> > > > 
+> > > > Why 'private', isn't this more a 'cros_ec_kdb_bl' or similar?
+> > > 
+> > > It is just drvdata.
+> > 
+> > The data structure represents an instance of the device, as such it
+> > is an important part of the driver, drvdata is just a way to attach
+> > it to the platform device.
+> > 
+> > > I would prefer to keep the original prefix "keyboard_led_" if you wouldn't
+> > > have strong opinion.
+> > 
+> > I'm fine with 'keyboard_led', but object to the 'private' part. In the
+> > kernel 'private' fields are typically used when a driver consists of a
+> > generic part and a device specific part. The driver has a 'private'
+> > void* field that points to a device specific data structure about which
+> > the generic driver is agnostic. This data structure is only used by the
+> > device specific implementation. That isn't the case here, so naming the
+> > structure anything 'private' is misleading.
+> 
+> The struct in the case is device specific.  I don't see a problem to name it
+> *private* as there are a lot of more existing examples.
+> 
+> $ grep -R 'struct .*_priv.* {' drivers/
+> drivers/pinctrl/bcm/pinctrl-bcm6358.c:struct bcm6358_priv {
+> 
+> $ grep -R 'struct .*_priv.* {' sound/soc/codecs/
+> sound/soc/codecs/rt286.c:struct rt286_priv {
+> 
+> I would get rid of the term "private" if it could be confusing.
 
-Thanks for the review!
+Ok, I hadn't come across that use of 'private' yet, but apparently it's not
+that uncommon. Personally I prefer variables with specific names, but maybe
+for others 'private' just spells out clearly what a struct is about ¯\_(ツ)_/¯
 
-On 24 May 2022 19:47 Rob Herring wrote:
-> On Fri, May 20, 2022 at 04:40:50PM +0100, Phil Edworthy wrote:
-> > Add device tree binding documentation and header file for Renesas
-> > RZ/V2M pinctrl.
-> >
-> > Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
-> > Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
-> >  .../pinctrl/renesas,rzv2m-pinctrl.yaml        | 174 ++++++++++++++++++
-> >  include/dt-bindings/pinctrl/rzv2m-pinctrl.h   |  23 +++
-> >  2 files changed, 197 insertions(+)
-> >  create mode 100644
-> Documentation/devicetree/bindings/pinctrl/renesas,rzv2m-pinctrl.yaml
-> >  create mode 100644 include/dt-bindings/pinctrl/rzv2m-pinctrl.h
-> >
-> > diff --git a/Documentation/devicetree/bindings/pinctrl/renesas,rzv2m-
-> pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/renesas,rzv2m-
-> pinctrl.yaml
-> > new file mode 100644
-> > index 000000000000..305e836cf0a3
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/pinctrl/renesas,rzv2m-
-> pinctrl.yaml
-> > @@ -0,0 +1,174 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/pinctrl/renesas,rzv2m-pinctrl.yaml#=
-=20
-> > +$schema: http://devicetree.org/schemas/pinctrl/renesas,rzv2m-pinctrl.y=
-aml#
-> > +
-> > +title: Renesas RZ/V2M combined Pin and GPIO controller
-> > +
-> > +maintainers:
-> > +  - Geert Uytterhoeven <geert+renesas@glider.be>
-> > +  - Phil Edworthy <phil.edworthy@renesas.com>
-> > +
-> > +description:
-> > +  The Renesas RZ/V2M SoC features a combined Pin and GPIO controller.
-> > +  Pin multiplexing and GPIO configuration is performed on a per-pin
-> basis.
-> > +  Each port features up to 16 pins, each of them configurable for GPIO
-> function
-> > +  (port mode) or in alternate function mode.
-> > +  Up to 8 different alternate function modes exist for each single pin=
-.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
-> > +          - const: renesas,r9a09g011-pinctrl # RZ/V2M
->=20
-> With only 1, you can drop 'oneOf' and 'items'.
-Will do!
+> > > > > +static int keyboard_led_init_ec_pwm(struct platform_device *pdev)
+> > > > > +{
+> > > > > +	struct keyboard_led_private *private = platform_get_drvdata(pdev);
+> > > > > +
+> > > > > +	private->ec = dev_get_drvdata(pdev->dev.parent);
+> > > > > +	if (!private->ec) {
+> > > > > +		dev_err(&pdev->dev, "no parent EC device\n");
+> > > > > +		return -EINVAL;
+> > > > > +	}
+> > > > 
+> > > > The only thing this 'init' function does is assigning private->ec. Wouldn't
+> > > > it be clearer to do this directly in probe() from where callback is called?
+> > > > It could be with the condition that the device as a DT node.
+> > > 
+> > > No.  The probe() isn't aware of the device is from ACPI or OF.
+> > 
+> > But it could be:
+> > 
+> > 	if (pdev->dev.of_node)
+> > 		kbd_led->ec = dev_get_drvdata(pdev->dev.parent);
+> 
+> The 'init' callback isn't only for OF but also ACPI.  I would prefer to keep
+> the 'init' function and let probe() have no awareness about them.
 
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  gpio-controller: true
-> > +
-> > +  '#gpio-cells':
-> > +    const: 2
-> > +    description:
-> > +      The first cell contains the global GPIO port index, constructed
-> using the
-> > +      RZV2M_GPIO() helper macro in <dt-bindings/pinctrl/rzv2m-
-> pinctrl.h> and the
-> > +      second cell represents consumer flag as mentioned in
-> ../gpio/gpio.txt
-> > +      E.g. "RZV2M_GPIO(8, 1)" for P8_1.
-> > +
-> > +  gpio-ranges:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 39
->=20
-> Needs some description as to what all these are. If it is not all the
-> same kind of interrupt, then each one has to be listed.
-Ok, I'll see what is best to describe these.
+Ah ok, then it makes sense, I think my brain conflated this with the unnecessary
+keyboard_led_init_acpi_null stub.
 
-Thanks
-Phil
+> > > > Is it actually possible that the keyboard backlight device gets instantiated
+> > > > if there is no EC parent?
+> > > 
+> > > It shouldn't be but just in case.
+> > 
+> > If this can only occur due to an error in common kernel frameworks then
+> > the check should be omitted IMO.
+> 
+> The check is referenced from [1].  I would prefer to keep it instead of
+> crashing kernel if anything went wrong.
+> 
+> [1]: https://elixir.bootlin.com/linux/v5.18-rc7/source/drivers/pwm/pwm-cros-ec.c#L244
+
+Ok, maybe there are cases where the EC parent could go away. Let's hope it
+doesn't happen after the keyboard backlight got probed :)
+
+> > 
+> > > > > +static const struct keyboard_led_drvdata keyboard_led_drvdata_ec_pwm = {
+> > > > > +	.init = keyboard_led_init_ec_pwm_null,
+> > > > 
+> > > > Is this really needed?
+> > > > 
+> > > > keyboard_led_probe() checks if .init is assigned before invoking the callback:
+> > > > 
+> > > > 	if (drvdata->init) {
+> > > > 		error = drvdata->init(pdev);
+> > > > 
+> > > > The whole 'else' branch could be eliminated if .of_match_table of the driver
+> > > > only is assigned when CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM is set. IMO that
+> > > > would preferable over creating 'stubs'.
+> > > 
+> > > CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM and CONFIG_OF are independent.  The stubs
+> > > were created to avoid compile errors if CONFIG_OF=y but
+> > > CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM=n.
+> > 
+> > Is there functional version of the driver that uses instantiation through the
+> > device tree if CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM=n? If not .of_match_table
+> > should not be assigned.
+> 
+> CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM and CONFIG_OF are independent.
+> CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM is also designed to work with CONFIG_ACPI.
+
+I understand that CONFIG_CROS_KBD_LED_BACKLIGHT_EC_PWM also works with
+CONFIG_ACPI, but in that case the driver uses .acpi_match_table, not
+.of_match_table. So you wouldn't have to define 'keyboard_led_of_match'
+if you did this:
+
+static struct platform_driver keyboard_led_driver = {
+        .driver         = {
+                .name   = "chromeos-keyboard-leds",
+                .acpi_match_table = ACPI_PTR(keyboard_led_acpi_match),
+#ifdef CONFIG_OF
+		.of_match_table = of_match_ptr(keyboard_led_of_match),
+#endif
+        },
+        .probe          = keyboard_led_probe,
+;
