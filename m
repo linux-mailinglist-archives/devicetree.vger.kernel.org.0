@@ -2,101 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F407353330E
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 23:40:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BD3D533319
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 23:44:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234542AbiEXVkQ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 24 May 2022 17:40:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50380 "EHLO
+        id S237659AbiEXVoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 17:44:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233088AbiEXVkP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 17:40:15 -0400
-Received: from sender11-of-o53.zoho.eu (sender11-of-o53.zoho.eu [31.186.226.239])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D085B7C17D
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 14:40:14 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1653427343; cv=none; 
-        d=zohomail.eu; s=zohoarc; 
-        b=kqM4+zIYq7/2DiNmY1b/2BUBM7CawdxeHcYf2GLk1PZ3EwHkzorjAsqoQa9il+fnqqrFtkHi1QLzQrdqtHUQeEeK5+bYmp2Tbw5Y0NX5Ire1Iavm4lZHDWZtcsCiMmkTpsGt4nr7cdTNAAG9LwgSSKFhKefrH6BT2poKaBKBSZg=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
-        t=1653427343; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=p78ImhfqTFopguatUP5w6vRv8Q5bGiDPqYuQUSvDOYo=; 
-        b=N78zQsuV7d3OmTg7HQwYpF2M6PEkJraykhYRvjXZvNGjklgzOs0FMDoOxReAN9Ia3JaisU9qFc47uE4DAwNP7EyAzckycdibreXlGIWBhv0DlOG+pQNuBzgM/zan3+VYdUFNbW3qpMXDDpPiUPBDSZDLQT+QqLTzwZo4M/orsVs=
-ARC-Authentication-Results: i=1; mx.zohomail.eu;
-        spf=pass  smtp.mailfrom=hostmaster@neglo.de;
-        dmarc=pass header.from=<bage@debian.org>
-Received: from localhost.localdomain (port-92-194-239-176.dynamic.as20676.net [92.194.239.176]) by mx.zoho.eu
-        with SMTPS id 1653427342834591.1104242641796; Tue, 24 May 2022 23:22:22 +0200 (CEST)
-From:   Bastian Germann <bage@debian.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kubakici@wp.pl>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org
-Cc:     Vasily Khoruzhick <anarsoul@gmail.com>,
-        Bastian Germann <bage@debian.org>
-Message-ID: <20220524212155.16944-4-bage@debian.org>
-Subject: [PATCH v2 3/3] arm64: allwinner: a64: enable Bluetooth On Pinebook
-Date:   Tue, 24 May 2022 23:21:54 +0200
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220524212155.16944-1-bage@debian.org>
-References: <20220524212155.16944-1-bage@debian.org>
+        with ESMTP id S232887AbiEXVog (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 17:44:36 -0400
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA5FF7DE00
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 14:44:35 -0700 (PDT)
+Received: by mail-pg1-x532.google.com with SMTP id t28so9755270pga.6
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 14:44:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=tdwGjLIYtWqSmu4a56WsblDf3vmkiiXdBBRqZtk4IQA=;
+        b=CuE1tQFSmFVJONeZAL2ThFeB1vwnSfXzq20k9Ovt4tQxLU7TJ23JFm4sQVvfgfOHpO
+         Sa+5HkQjHK3IdvBheLqRfLW1kI03jDepbgOkcxI9o+lvYjSXo2zrKOUfAI3T+u4CxO+b
+         i6o/oSBBJ0Jnzvgq8zHo2W6K+MEnlXla0lLQ8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=tdwGjLIYtWqSmu4a56WsblDf3vmkiiXdBBRqZtk4IQA=;
+        b=yd/Ru8HFmZLtJhhuqWfO1lJqlkYt+v0BDU/E6VNZ0pYk25d5cKpgbbQMWVzWgOXOna
+         Tx8Xy6EGzEeYDz+3cbXsff//To2pJwaWFvjxOa2U0oPNawHh0xo+0Zq/4eQMZoLoppNH
+         Y778eeavcsjodE4DGqob26PywgiBb7lQKqXRwQj/uq3W5/B++NLXfV44GIEa4aP439pD
+         +dXha2+JceTEBcOynjoyVy/KCvLFqoQkCQ09A8rfCnoc7HLKUwf2KsOT8bnXaATZJntO
+         h5mhMltNdJXO1SdJVlG3f65yUrQ7iAKxqyORklOrT3F4zYRx2x4zQXYRS07cbpQXqbAj
+         NFxg==
+X-Gm-Message-State: AOAM530fAHBrY0XOM77KaywW3pnjaL7LM0pYDMiw13JUGdQDONbQk7Ta
+        IV+z2dN3P4wNatLKFWAvLyiqlQ==
+X-Google-Smtp-Source: ABdhPJyJSoSMADvSLYVlL/2kUNvKx6n1UYhKgAQ/pEqNXyseFU7Q4J/kE1GmzKPcau1xYFh10SCG7g==
+X-Received: by 2002:a05:6a00:a8b:b0:4cd:6030:4df3 with SMTP id b11-20020a056a000a8b00b004cd60304df3mr30432733pfl.40.1653428675455;
+        Tue, 24 May 2022 14:44:35 -0700 (PDT)
+Received: from localhost ([2620:15c:11a:202:4d83:f549:9abd:427])
+        by smtp.gmail.com with UTF8SMTPSA id e4-20020a170902e0c400b00161947ecc82sm387777pla.199.2022.05.24.14.44.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 May 2022 14:44:35 -0700 (PDT)
+Date:   Tue, 24 May 2022 14:44:33 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Tzung-Bi Shih <tzungbi@kernel.org>
+Cc:     bleung@chromium.org, groeck@chromium.org, robh+dt@kernel.org,
+        chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 5/5] platform/chrome: cros_kbd_led_backlight: support
+ EC PWM backend
+Message-ID: <Yo1RwaTYUtWWfdDg@google.com>
+References: <20220523090822.3035189-1-tzungbi@kernel.org>
+ <20220523090822.3035189-6-tzungbi@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset=utf8
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220523090822.3035189-6-tzungbi@kernel.org>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vasily Khoruzhick <anarsoul@gmail.com>
+On Mon, May 23, 2022 at 05:08:22PM +0800, Tzung-Bi Shih wrote:
+> EC PWM backend uses EC_CMD_PWM_SET_KEYBOARD_BACKLIGHT and
+> EC_CMD_PWM_GET_KEYBOARD_BACKLIGHT for setting and getting the brightness
+> respectively.
+> 
+> Signed-off-by: Tzung-Bi Shih <tzungbi@kernel.org>
 
-Pinebook has an RTL8723CS WiFi + BT chip, BT is connected to UART1
-and uses PL5 as device wake GPIO, PL6 as host wake GPIO the I2C
-controlling signals are connected to R_I2C bus.
-
-Enable it in the device tree.
-
-Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
-[add uart-has-rtscts]
-Signed-off-by: Bastian Germann <bage@debian.org>
----
- .../boot/dts/allwinner/sun50i-a64-pinebook.dts      | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts
-index 63571df24da4..70d823f8c837 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts
-@@ -406,6 +406,19 @@ &uart0 {
- 	status = "okay";
- };
- 
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
-+	uart-has-rtscts;
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "realtek,rtl8723cs-bt";
-+		device-wake-gpios = <&r_pio 0 5 GPIO_ACTIVE_LOW>; /* PL5 */
-+		host-wake-gpios = <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /* PL6 */
-+	};
-+};
-+
- &usb_otg {
- 	dr_mode = "host";
- };
--- 
-2.36.1
-
-
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+Tested-by: Matthias Kaehlcke <mka@chromium.org>
