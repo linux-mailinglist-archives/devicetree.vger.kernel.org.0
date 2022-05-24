@@ -2,78 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07FA6532F2B
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 18:44:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA9C8532F89
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 19:22:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239624AbiEXQom (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 12:44:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48794 "EHLO
+        id S238474AbiEXRWa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 13:22:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236156AbiEXQol (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 12:44:41 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55FE25F278
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 09:44:39 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id s28so26392375wrb.7
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 09:44:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nexus-software-ie.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Rwol75CyD22GB+azy1Wfb8UM7WKUYecam29j0+8w0Ds=;
-        b=AcYNkjrduWPhMPZ9eJMqBTw39Am01PGf/zmGJPTUGgbAUn87jaKs/ueKmdyGsfZVnn
-         O56OtEvddGE+Y/w7Rk6YMRm/Ch7fLM3zN84ngKys0xL39qiY+kNirzmMoQ27iQQuG1BP
-         1ZU/75TGmGS97T10Gb6roP/OvW5XxC7TR6yIvgsGLV4N9sMvpicXph3wHok//4xSbXSQ
-         b0POhcs7UXUn+0Toonc5tyAE/5GfQ3vtY41pQ1yEGsxeuLInH5f2VLrI6vj9nkMC3gik
-         FCdcGRwNOER9zYFEiBkmLqAftjCnmv79ntDGZoHjzUerPfbq1OWg2Ie6+QdvwvujTXjO
-         DcDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Rwol75CyD22GB+azy1Wfb8UM7WKUYecam29j0+8w0Ds=;
-        b=qOUkoYIkPOMyAYn56g6LmuHKieACqG49HQG+P4uH2SpzGX98dme7lVECd8mJrKffK7
-         ZzoC9pLUEOKtG3UPuHlbsEfq0NwvSBb4VNT94RRes/Gtt2Pr0/UMfb0YD0obc4wOIf6X
-         btHrBqqlzdiiLsjDYhCs3YSKV0l9tr3Fj71ORttkJDjM/NN24t6bCtoGhoeRIpykh6pu
-         yfc4z5AQLRZT1Cdh9Rb+QHG0Fuu9FBhfEaGc90XWd/gcse9WWwwT/GE9f2yWQ1Yt/dIU
-         FJaaURxAFrsmvJusF59z7gGaw6CVuGQqB778P7LVU0zXeQ+srNfKfL/qrut4hp8GbIhU
-         uF1A==
-X-Gm-Message-State: AOAM531q36JJnEh/phzewtuDe/Deau94AxAM1NYQfv+hy3Eh6hGa5oli
-        huNZERezgWhUNRmpyr61Uz5hLA==
-X-Google-Smtp-Source: ABdhPJx1U0/7EZnEBQLMEiIuCol1THiU31e5Z21aOY17NPbYAijEjm+yap7k148vhVFlfzqRnG7PKg==
-X-Received: by 2002:a5d:6c64:0:b0:20f:f413:8af8 with SMTP id r4-20020a5d6c64000000b0020ff4138af8mr2847216wrz.129.1653410677949;
-        Tue, 24 May 2022 09:44:37 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id e8-20020adfa448000000b0020c5253d8e5sm13594295wra.49.2022.05.24.09.44.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 May 2022 09:44:37 -0700 (PDT)
-Message-ID: <dc087955-4d00-454e-b242-7741ded6aa5b@nexus-software.ie>
-Date:   Tue, 24 May 2022 17:44:36 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: qrb5165-rb5: Enable the IMX577
- on cam2
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
-        bjorn.andersson@linaro.org, vladimir.zapolskiy@linaro.org,
-        mchehab@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, mmitkov@quicinc.com, jgrahsl@snap.com,
-        hfink@snap.com
-References: <20220524140207.2758605-1-bryan.odonoghue@linaro.org>
- <20220524140207.2758605-5-bryan.odonoghue@linaro.org>
- <CAA8EJpqUkeReqnhcURpftpJmFth9-3OGQoAkFqd7Y06EjfraRg@mail.gmail.com>
-From:   Bryan O'Donoghue <pure.logic@nexus-software.ie>
-In-Reply-To: <CAA8EJpqUkeReqnhcURpftpJmFth9-3OGQoAkFqd7Y06EjfraRg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        with ESMTP id S234441AbiEXRW3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 13:22:29 -0400
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 67C536EC4A;
+        Tue, 24 May 2022 10:22:28 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.91,248,1647270000"; 
+   d="scan'208";a="120749683"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 25 May 2022 02:22:27 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 146E9400F50C;
+        Wed, 25 May 2022 02:22:21 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH RFC 0/2] Add PLIC support for Renesas RZ/Five SoC
+Date:   Tue, 24 May 2022 18:22:12 +0100
+Message-Id: <20220524172214.5104-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,20 +49,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/05/2022 17:21, Dmitry Baryshkov wrote:
-> On Tue, 24 May 2022 at 17:02, Bryan O'Donoghue
-> <bryan.odonoghue@linaro.org> wrote:
->>
->> The IMX577 is on CCI1/CSI2 providing four lanes of camera data.
-> 
-> By default the RB5 doesn't employ the navigation mezzanine. Thus I
-> suggest adding a new DTS file that will include the qrb5165-rb5.dts
-> and extend it with camcc/camss setup.
+Hi All,
 
-It makes sense to me.
+This patch series adds PLIC support for Renesas RZ/Five SoC.
 
-I'll wait to hear from Robert and Bjorn. We can take the opportunity to 
-do it for RB3 too.
+Sending this as an RFC based on the discussion [0].
 
----
-bod
+This patches have been tested with I2C and DMAC interface as these
+blocks have edge interrupts.
+
+[0] https://lore.kernel.org/linux-arm-kernel/87o80a7t2z.wl-maz@kernel.org/T/
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (2):
+  dt-bindings: interrupt-controller: sifive,plic: Document Renesas
+    RZ/Five SoC
+  irqchip/sifive-plic: Add support for Renesas RZ/Five SoC
+
+ .../sifive,plic-1.0.0.yaml                    | 38 +++++++++-
+ drivers/irqchip/Kconfig                       |  1 +
+ drivers/irqchip/irq-sifive-plic.c             | 71 ++++++++++++++++++-
+ 3 files changed, 105 insertions(+), 5 deletions(-)
+
+-- 
+2.25.1
+
