@@ -2,262 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C926A5329B1
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 13:50:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D41DA5329C0
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 13:54:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236269AbiEXLua (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 07:50:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34398 "EHLO
+        id S237032AbiEXLxr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 07:53:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235951AbiEXLu3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 07:50:29 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 615A72A709;
-        Tue, 24 May 2022 04:50:27 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id E59EC1F43B14
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1653393025;
-        bh=jeLT50JLqlVRVb/Mw9cwiM57a6SZA+DS0GFPVnc6CFQ=;
-        h=From:To:Cc:Subject:Date:From;
-        b=Xs3kmbfBIDlWtUB9pUgMRmNwjQFDRQpVvpDP033s7nYE8OBbS+Vmyo2rU/4l8izM7
-         3t5VEG/ygQHG1FvC91j/slt9hK0d5g6JFb2/vzwHBq2vINL8kbrZpH9zLeVR2uSD2N
-         B0Lj6H9GrZ110YPiVjISuIvEk2Vcn6zCBk0iLnqqpkyDqk6vuGW5ppDV1H0JZexBtX
-         veWBs0YsqXRA9dPeh7OoRoJSiHepv67/MJ3t46rw37MBXEB0dDmQCf+h2hpDuQ0Z0q
-         wqq8btiM7WrPJSKI6Di4rMVuGsT/1fb8oN8iWn+g91c0ZB5jdLnvhSL2EqbrcbRoH7
-         lYcGoKBmA4b0Q==
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     gregkh@linuxfoundation.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, linux-serial@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH v3] dt-bindings: serial: mtk-uart: Convert txt to json-schema
-Date:   Tue, 24 May 2022 13:50:19 +0200
-Message-Id: <20220524115019.97246-1-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S236667AbiEXLxq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 07:53:46 -0400
+Received: from smtpo49.interia.pl (smtpo49.interia.pl [217.74.67.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4412A5C869
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 04:53:42 -0700 (PDT)
+X-Interia-R: Interia
+X-Interia-R-IP: 80.68.225.159
+X-Interia-R-Helo: <t480s.localdomain>
+Received: from t480s.localdomain (unknown [80.68.225.159])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by poczta.interia.pl (INTERIA.PL) with ESMTPSA;
+        Tue, 24 May 2022 13:53:31 +0200 (CEST)
+Date:   Tue, 24 May 2022 13:53:30 +0200
+From:   Slawomir Stepien <sst@poczta.fm>
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        jdelvare@suse.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, przemyslaw.cencner@nokia.com,
+        krzysztof.adamski@nokia.com, alexander.sverdlin@nokia.com,
+        Slawomir Stepien <slawomir.stepien@nokia.com>
+Subject: Re: [PATCH 3/8] dt-bindings: hwmon: Allow specifying channels for
+ lm90
+Message-ID: <YozHOsSdpWBRNLYt@t480s.localdomain>
+References: <20220520093243.2523749-1-sst@poczta.fm>
+ <20220520093243.2523749-4-sst@poczta.fm>
+ <3ea92486-0cf9-ce3d-d1b6-7a76f1d5a129@linaro.org>
+ <0b84d109-d6be-dfba-99bb-0b7136af875e@roeck-us.net>
+ <b5ff0f2c-d741-6dec-c306-b54cb5075ccf@linaro.org>
+ <f124cbcb-3fca-3f1c-f47e-730f15c1f074@roeck-us.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f124cbcb-3fca-3f1c-f47e-730f15c1f074@roeck-us.net>
+X-Interia-Antivirus: OK
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=interia.pl;
+        s=biztos; t=1653393219;
+        bh=C+pwYwF7ugkhsSL6kKuY8lVCVBSN/b/W4iJt21bRSRc=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+        b=VGGc6/ONXNY+iTWIT7yYzLaj3ovJbpUYFFxN+mmpGT3wCQavddwi898QU46kvaFW/
+         JvgXvtzYBa3o/Q9m/hEg2Et718of7MS/nds2TqmlItWo2ZOA6/H6Zo6zWzg4ctcizb
+         ZS3SYZqE/fulzy9K8GfUGcopF0wKyjm5xaYy/W8M=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,FREEMAIL_FROM,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the mtk-uart documentation from freeform text to a json-schema.
+On maj 20, 2022 07:22, Guenter Roeck wrote:
+> On 5/20/22 07:09, Krzysztof Kozlowski wrote:
+> > On 20/05/2022 15:42, Guenter Roeck wrote:
+> > > > 
+> > > > > +          A descriptive name for this channel, like "ambient" or "psu".
+> > > > > +
+> > > > > +      offset:
+> > > > > +        description: |
+> > > > 
+> > > > This does not look like standard property, so you need vendor and unit
+> > > > suffix.
+> > > > 
+> > > 
+> > > Temperature offset is a standard property for temperature sensor
+> > 
+> > The original description was strictly connected to registers, so that
+> > one as not a standard. It seems it was just a wording...
+> > 
+> > > chips with external channels, implemented by a diode or transistor.
+> > > Making it non-standard will mean that we'll have lots of
+> > > "vendor,offset" properties, one each for each vendor selling
+> > > temperature sensor chips with external channels. This gets
+> > > more complicated here because the lm90 driver does support chips
+> > > from several different vendors. Almost all of them support
+> > > this functionality. Which vendor do you select in this case ?
+> > > 
+> > > I would suggest to use temperature-offset-milliseconds, though.
+> > 
+> > Yes, this sounds good. Just not seconds but millicelsius, I guess?
+> > 
+> 
+> Uuh, yes. Sorry, must be too early in the morning here.
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
+Hello
 
-v3: Addressed issues found in Krzysztof's review
-v2: Changed to also accept just "mediatek,mt6577-uart" as compatible.
+I see that: *-millicelsius is defined as uint32-array:
+  "-millicelsius$":
+    $ref: "types.yaml#/definitions/uint32-array"
+    description: Degreee milli-Celsius
 
- .../bindings/serial/mediatek,uart.yaml        | 120 ++++++++++++++++++
- .../devicetree/bindings/serial/mtk-uart.txt   |  59 ---------
- 2 files changed, 120 insertions(+), 59 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/serial/mediatek,uart.yaml
- delete mode 100644 Documentation/devicetree/bindings/serial/mtk-uart.txt
+But it would be nice to have negative values as the prop value, for example <(-1000)>.
 
-diff --git a/Documentation/devicetree/bindings/serial/mediatek,uart.yaml b/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
-new file mode 100644
-index 000000000000..4ff27d6d4d5b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
-@@ -0,0 +1,120 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/serial/mediatek,uart.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek Universal Asynchronous Receiver/Transmitter (UART)
-+
-+maintainers:
-+  - Matthias Brugger <matthias.bgg@gmail.com>
-+
-+allOf:
-+  - $ref: serial.yaml#
-+
-+description: |
-+  The MediaTek UART is based on the basic 8250 UART and compatible
-+  with 16550A, with enhancements for high speed baud rates and
-+  support for DMA.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: mediatek,mt6577-uart
-+      - items:
-+          - enum:
-+              - mediatek,mt2701-uart
-+              - mediatek,mt2712-uart
-+              - mediatek,mt6580-uart
-+              - mediatek,mt6582-uart
-+              - mediatek,mt6589-uart
-+              - mediatek,mt6755-uart
-+              - mediatek,mt6765-uart
-+              - mediatek,mt6779-uart
-+              - mediatek,mt6795-uart
-+              - mediatek,mt6797-uart
-+              - mediatek,mt7622-uart
-+              - mediatek,mt7623-uart
-+              - mediatek,mt7629-uart
-+              - mediatek,mt7986-uart
-+              - mediatek,mt8127-uart
-+              - mediatek,mt8135-uart
-+              - mediatek,mt8173-uart
-+              - mediatek,mt8183-uart
-+              - mediatek,mt8186-uart
-+              - mediatek,mt8192-uart
-+              - mediatek,mt8195-uart
-+              - mediatek,mt8516-uart
-+          - const: mediatek,mt6577-uart
-+
-+  reg:
-+    description: The base address of the UART register bank
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 1
-+    items:
-+      - description: The clock the baudrate is derived from
-+      - description: The bus clock for register accesses
-+
-+  clock-names:
-+    minItems: 1
-+    items:
-+      - const: baud
-+      - const: bus
-+
-+  dmas:
-+    items:
-+      - description: phandle to TX DMA
-+      - description: phandle to RX DMA
-+
-+  dma-names:
-+    items:
-+      - const: tx
-+      - const: rx
-+
-+  interrupts:
-+    minItems: 1
-+    maxItems: 2
-+
-+  interrupt-names:
-+    description:
-+      The UART interrupt and optionally the RX in-band wakeup interrupt.
-+    minItems: 1
-+    items:
-+      - const: uart
-+      - const: wakeup
-+
-+  pinctrl-0: true
-+  pinctrl-1: true
-+
-+  pinctrl-names:
-+    minItems: 1
-+    items:
-+      - const: default
-+      - const: sleep
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - interrupts
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    serial@11006000 {
-+        compatible = "mediatek,mt6589-uart", "mediatek,mt6577-uart";
-+        reg = <0x11006000 0x400>;
-+        interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_LOW>,
-+                     <GIC_SPI 52 IRQ_TYPE_EDGE_FALLING>;
-+        interrupt-names = "uart", "wakeup";
-+        clocks = <&uart_clk>, <&bus_clk>;
-+        clock-names = "baud", "bus";
-+        pinctrl-0 = <&uart_pin>;
-+        pinctrl-1 = <&uart_pin_sleep>;
-+        pinctrl-names = "default", "sleep";
-+    };
-diff --git a/Documentation/devicetree/bindings/serial/mtk-uart.txt b/Documentation/devicetree/bindings/serial/mtk-uart.txt
-deleted file mode 100644
-index 113b5d6a2245..000000000000
---- a/Documentation/devicetree/bindings/serial/mtk-uart.txt
-+++ /dev/null
-@@ -1,59 +0,0 @@
--* MediaTek Universal Asynchronous Receiver/Transmitter (UART)
--
--Required properties:
--- compatible should contain:
--  * "mediatek,mt2701-uart" for MT2701 compatible UARTS
--  * "mediatek,mt2712-uart" for MT2712 compatible UARTS
--  * "mediatek,mt6580-uart" for MT6580 compatible UARTS
--  * "mediatek,mt6582-uart" for MT6582 compatible UARTS
--  * "mediatek,mt6589-uart" for MT6589 compatible UARTS
--  * "mediatek,mt6755-uart" for MT6755 compatible UARTS
--  * "mediatek,mt6765-uart" for MT6765 compatible UARTS
--  * "mediatek,mt6779-uart" for MT6779 compatible UARTS
--  * "mediatek,mt6795-uart" for MT6795 compatible UARTS
--  * "mediatek,mt6797-uart" for MT6797 compatible UARTS
--  * "mediatek,mt7622-uart" for MT7622 compatible UARTS
--  * "mediatek,mt7623-uart" for MT7623 compatible UARTS
--  * "mediatek,mt7629-uart" for MT7629 compatible UARTS
--  * "mediatek,mt7986-uart", "mediatek,mt6577-uart" for MT7986 compatible UARTS
--  * "mediatek,mt8127-uart" for MT8127 compatible UARTS
--  * "mediatek,mt8135-uart" for MT8135 compatible UARTS
--  * "mediatek,mt8173-uart" for MT8173 compatible UARTS
--  * "mediatek,mt8183-uart", "mediatek,mt6577-uart" for MT8183 compatible UARTS
--  * "mediatek,mt8186-uart", "mediatek,mt6577-uart" for MT8183 compatible UARTS
--  * "mediatek,mt8192-uart", "mediatek,mt6577-uart" for MT8192 compatible UARTS
--  * "mediatek,mt8195-uart", "mediatek,mt6577-uart" for MT8195 compatible UARTS
--  * "mediatek,mt8516-uart" for MT8516 compatible UARTS
--  * "mediatek,mt6577-uart" for MT6577 and all of the above
--
--- reg: The base address of the UART register bank.
--
--- interrupts:
--  index 0: an interrupt specifier for the UART controller itself
--  index 1: optional, an interrupt specifier with edge sensitivity on Rx pin to
--           support Rx in-band wake up. If one would like to use this feature,
--           one must create an addtional pinctrl to reconfigure Rx pin to normal
--           GPIO before suspend.
--
--- clocks : Must contain an entry for each entry in clock-names.
--  See ../clocks/clock-bindings.txt for details.
--- clock-names:
--  - "baud": The clock the baudrate is derived from
--  - "bus": The bus clock for register accesses (optional)
--
--For compatibility with older device trees an unnamed clock is used for the
--baud clock if the baudclk does not exist. Do not use this for new designs.
--
--Example:
--
--	uart0: serial@11006000 {
--		compatible = "mediatek,mt6589-uart", "mediatek,mt6577-uart";
--		reg = <0x11006000 0x400>;
--		interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_LOW>,
--			     <GIC_SPI 52 IRQ_TYPE_EDGE_FALLING>;
--		clocks = <&uart_clk>, <&bus_clk>;
--		clock-names = "baud", "bus";
--		pinctrl-names = "default", "sleep";
--		pinctrl-0 = <&uart_pin>;
--		pinctrl-1 = <&uart_pin_sleep>;
--	};
+How should I approach that? Is change to this definition possible? If yes, how should it be
+conducted? On github or via device-tree mailing list?
+
+Or maybe there is a way to overwrite this (using $defs?) for this particular binding? I haven't
+found any solution that will pass dt_binding_check.
+
+> > > > > +          The value (millidegree Celsius) to be programmed in the channel specific offset register
+> > > > > +          (if supported by device).
+> > > > 
+> > > > You described programming model which should not be put in the bindings.
+> > > > Please describe the hardware.
+> > > > 
+> > > 
+> > > It is a configuration value, which is hardware dependent because
+> > > it depends on the temperature diode or transistor connected to the chip.
+> > 
+> > Sure, so this could be reworded "Offset against some base value for each
+> > channel temperature", or something similar (you know better than me).
+> > Referring to registers and where exactly this should be programmed in
+> > the device is related to device programming model, not to bindings.
+> > 
+> 
+> Maybe something like "Temperature offset to be added to or
+> subtracted from remote temperature measurements".
+
 -- 
-2.35.1
-
+Slawomir Stepien
