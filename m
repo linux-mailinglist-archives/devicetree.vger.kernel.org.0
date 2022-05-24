@@ -2,202 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6205E5332DC
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 23:13:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BEE0533306
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 23:38:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240850AbiEXVNy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 17:13:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39016 "EHLO
+        id S234583AbiEXViX convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 24 May 2022 17:38:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234686AbiEXVNx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 17:13:53 -0400
-Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [IPv6:2001:4b7a:2000:18::167])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0033053E34
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 14:13:50 -0700 (PDT)
-Received: from [10.1.250.9] (riviera.nat.ds.pw.edu.pl [194.29.137.1])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id ADAF33F6BE;
-        Tue, 24 May 2022 23:36:03 +0200 (CEST)
-Message-ID: <311a23c9-e31d-e20d-8ba9-80d3197e8d1d@somainline.org>
-Date:   Tue, 24 May 2022 23:13:47 +0200
+        with ESMTP id S231725AbiEXViR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 17:38:17 -0400
+X-Greylist: delayed 910 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 24 May 2022 14:38:14 PDT
+Received: from sender11-of-o53.zoho.eu (sender11-of-o53.zoho.eu [31.186.226.239])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A38F57C173
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 14:38:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1653427341; cv=none; 
+        d=zohomail.eu; s=zohoarc; 
+        b=RDDY9bThuyuptIf+ctqCWHQ+TX2DXrCRDM475nm00NC9aIXdMxh8kCFdzYARvieGZjc1UbwDkHu8DK8hmH4cwhfBTIek/TxRuOHHOJCXECu2EaaFSpYA1bFEfZ8j+FnXWcD2lQOQlydnRAH90Mu0PmiEvPF6nqYA5DnAaB0BGks=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
+        t=1653427341; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
+        bh=eUsYtGvjMVMeiJbcfkFwYYtNYc+bXWXsUkZz7xnU2AE=; 
+        b=bx7m7ovII/BQ4+3ZQfx9WOO/sNeWbeEGaMPNItlzzN5+mm1hf5CxuMtuPyNSRGxnvF3tq/aoGLlFkIBdmXjNg5GQgvOEHs+lG86eyJK6XMQ76o7wSZAwKF6VoxioQRzAyRs3io4aMKhMY//taRESiiOf0UmifqLiwaQDkRe5cn8=
+ARC-Authentication-Results: i=1; mx.zohomail.eu;
+        spf=pass  smtp.mailfrom=hostmaster@neglo.de;
+        dmarc=pass header.from=<bage@debian.org>
+Received: from localhost.localdomain (port-92-194-239-176.dynamic.as20676.net [92.194.239.176]) by mx.zoho.eu
+        with SMTPS id 165342733992663.21335406305718; Tue, 24 May 2022 23:22:19 +0200 (CEST)
+From:   Bastian Germann <bage@debian.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kubakici@wp.pl>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org
+Cc:     Bastian Germann <bage@debian.org>,
+        Vasily Khoruzhick <anarsoul@gmail.com>
+Message-ID: <20220524212155.16944-1-bage@debian.org>
+Subject: [PATCH v2 0/3] arm64: allwinner: a64: add bluetooth support for Pinebook
+Date:   Tue, 24 May 2022 23:21:51 +0200
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.9.1
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Add touchscreen to villager
-To:     Douglas Anderson <dianders@chromium.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220524134840.1.I80072b8815ac08c12af8f379a33cc2d83693dc51@changeid>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20220524134840.1.I80072b8815ac08c12af8f379a33cc2d83693dc51@changeid>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=utf8
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Pinebook uses RTL8723CS for WiFi and bluetooth. Unfortunately RTL8723CS
+has broken BT-4.1 support, so it requires a quirk.
 
-On 24/05/2022 22:48, Douglas Anderson wrote:
-> This adds the touchscreen to the sc7280-herobrine-villager device
-> tree. Note that the touchscreen on villager actually uses the reset
-> line and thus we use the more specific "elan,ekth6915" compatible
-> which allows us to specify the reset.
->
-> The fact that villager's touchscreen uses the reset line can be
-> contrasted against the touchscreen for CRD/herobrine-r1. On those
-> boards, even though the touchscreen goes to the display, it's not
-> hooked up to anything there.
->
-> In order to keep the line parked on herobrine/CRD, we'll move the
-> pullup from the qcard.dtsi file to the specific boards. This allows us
-> to disable the pullup in the villager device tree since the pin is an
-> output.
->
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> ---
-> This uses bindings introduced in the patch ("dt-bindings: HID:
-> i2c-hid: elan: Introduce bindings for Elan eKTH6915") [1].
->
-> [1] https://lore.kernel.org/r/20220523142257.v2.1.Iedc61f9ef220a89af6a031200a7850a27a440134@changeid
->
->   .../boot/dts/qcom/sc7280-herobrine-crd.dts    | 11 ++++++++
->   .../qcom/sc7280-herobrine-herobrine-r1.dts    | 11 ++++++++
->   .../dts/qcom/sc7280-herobrine-villager-r0.dts | 25 +++++++++++++++++++
->   arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi    |  1 -
->   4 files changed, 47 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-> index a4ac33c4fd59..b79d84d7870a 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-> @@ -134,6 +134,17 @@ &sdhc_2 {
->   	status = "okay";
->   };
->   
-> +/* PINCTRL - ADDITIONS TO NODES IN PARENT DEVICE TREE FILES */
+Add a quirk, wire up 8723CS support in btrtl and enable bluetooth
+in Pinebook dts.
 
-Please drop this line, this isn't msm-3.4. It's immediately obvious that 
-if a pin is referenced by a label and it is not defined in this file 
-(because otherwise it wouldn't be both defined and referenced here..), 
-it comes from a previously included device tree.
+This series was sent in July 2020 by Vasily Khoruzhick.
+This is a rebase on the current tree.
+I have tested it to work on the Pinebook.
+
+Changelog:
+v2:
+   * Rebase
+   * Add uart-has-rtscts to device tree as requested by reviewer
+
+Vasily Khoruzhick (3):
+  Bluetooth: Add new quirk for broken local ext features max_page
+  Bluetooth: btrtl: add support for the RTL8723CS
+  arm64: allwinner: a64: enable Bluetooth On Pinebook
+
+ .../dts/allwinner/sun50i-a64-pinebook.dts     |  13 ++
+ drivers/bluetooth/btrtl.c                     | 120 +++++++++++++++++-
+ drivers/bluetooth/btrtl.h                     |   5 +
+ drivers/bluetooth/hci_h5.c                    |   4 +
+ include/net/bluetooth/hci.h                   |   7 +
+ net/bluetooth/hci_event.c                     |   4 +-
+ 6 files changed, 148 insertions(+), 5 deletions(-)
+
+-- 
+2.36.1
 
 
-> +
-> +/*
-> + * This pin goes to the display panel but then doesn't actually do anything
-> + * on the panel itself (it doesn't connect to the touchscreen controller).
-> + * We'll set a pullup here just to park the line.
-> + */
-> +&ts_rst_conn {
-> +	bias-pull-up;
-> +};
-> +
->   /* PINCTRL - BOARD-SPECIFIC */
->   
->   /*
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
-> index b69ca09d9bfb..c1647a85a371 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
-> @@ -128,6 +128,17 @@ &sdhc_2 {
->   	status = "okay";
->   };
->   
-> +/* PINCTRL - ADDITIONS TO NODES IN PARENT DEVICE TREE FILES */
-
-Ditto
-
-
-> +
-> +/*
-> + * This pin goes to the display panel but then doesn't actually do anything
-> + * on the panel itself (it doesn't connect to the touchscreen controller).
-> + * We'll set a pullup here just to park the line.
-> + */
-> +&ts_rst_conn {
-> +	bias-pull-up;
-> +};
-> +
->   /* PINCTRL - BOARD-SPECIFIC */
->   
->   /*
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts
-> index d3d6ffad4eff..950b69448109 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts
-> @@ -46,6 +46,25 @@ trackpad: trackpad@2c {
->   	};
->   };
->   
-> +ts_i2c: &i2c13 {
-> +	status = "okay";
-> +	clock-frequency = <400000>;
-> +
-> +	ap_ts: touchscreen@10 {
-> +		compatible = "elan,ekth6915";
-> +		reg = <0x10>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&ts_int_conn>, <&ts_rst_conn>;
-> +
-> +		interrupt-parent = <&tlmm>;
-> +		interrupts = <55 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +		reset-gpios = <&tlmm 54 GPIO_ACTIVE_LOW>;
-> +
-> +		vcc33-supply = <&ts_avdd>;
-> +	};
-> +};
-> +
->   &ap_sar_sensor_i2c {
->   	status = "okay";
->   };
-> @@ -81,6 +100,12 @@ &sdhc_1 {
->   	status = "okay";
->   };
->   
-> +/* PINCTRL - ADDITIONS TO NODES IN PARENT DEVICE TREE FILES */
-
-Ditto
-
-
-> +
-> +&ts_rst_conn {
-> +	bias-disable;
-> +};
-> +
->   /* PINCTRL - BOARD-SPECIFIC */
->   
->   /*
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
-> index d59002d4492e..404936c6bf20 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
-> @@ -604,7 +604,6 @@ ts_int_conn: ts-int-conn {
->   	ts_rst_conn: ts-rst-conn {
->   		pins = "gpio54";
->   		function = "gpio";
-> -		bias-pull-up;
-
-If you overwrite it where it should be overwritten, wouldn't it make 
-more sense to leave bias-pull-up here as a default configuration for 
-boards that don't have a peculiar routed-but-NC line?
-
-
-Konrad
-
->   		drive-strength = <2>;
->   	};
->   };
->
