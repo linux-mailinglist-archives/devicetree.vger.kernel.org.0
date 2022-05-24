@@ -2,71 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFA335326D3
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 11:51:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE15D5326E2
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 11:55:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235875AbiEXJuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 05:50:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43214 "EHLO
+        id S232017AbiEXJxY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 05:53:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230354AbiEXJuX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 05:50:23 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76F2A6D4C2
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 02:50:22 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id q1so10560339ljb.5
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 02:50:22 -0700 (PDT)
+        with ESMTP id S232183AbiEXJxX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 05:53:23 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3A6F612B9
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 02:53:21 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id v8so27995604lfd.8
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 02:53:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=G5WlWLi6CTURLGag3t+5CNRf4lZCgCTJvDTMTbTzQ5s=;
-        b=M5ncORw3o6tH0W6GJp/VpORJZBt9q4377NZcTfDcKeo1/AQf38SDgEJiTum+C02xgc
-         r4QaJJ+obzajUh+DovgWFW42ZkroAxdOoffR7GZhttn1jnPQp3TV5ZWcpJfqYQrCFV6L
-         57BRFW0TbWj5Oc5tZNBBqfpwr7W6AAgPIBI2pS8LZnAtnE+MEpd4xGPt6NXBEIR9McxM
-         maGD+k8hr8IO056uwFRRKdMrsrk7dXrwIrpZQ0bokeNSqP+M3uMIsPiHmJ+FsyPUOiBL
-         NibYJZfMinCiQEXphf+a1ecq+yd7bfS4GmXu5raI7xcXYVJliT7pFVK5U9jyEgqkBtOZ
-         e7tg==
+        bh=f3EaAl5YGKF2nwF2lKP9920mWbceFLAyXVzRrf1riF4=;
+        b=qwBgfbWmJ9JO/NgcfvPrVh7ad1QWFamF+e+B5pOruIZiFpe8i1j29cDKqxSyNDtwuc
+         dCACEEqZrA1t/50tI9dLJSXuvzcJAp6HKn2mdr/1aHSg75me98KAHY2XEko0pI/6ls8Q
+         UTAFzkLewsrgTD64NlNPSfGlFs8Ow3ezNBCoFI7kefPrYNfGnahzmoG/5rwGyqLiWJHO
+         rnQYvkH7qPc3DofvTAGVhjUyQ8KD3QyWv/YoLDOvY19wC305TWSeyT/SDZIAmqKEgoNZ
+         leh4jRMT59ev6gAtfo7GFtcmWnGlDH/chAsuaI0bb5xRcybKJlq8zokwGkJSrjIa65lt
+         2kgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=G5WlWLi6CTURLGag3t+5CNRf4lZCgCTJvDTMTbTzQ5s=;
-        b=d+0QL6vtRSm624r+M/y3Yg2STNl+RRUBn8r66wd88Adggp/FOknDU0OZ7zW1gxRJjs
-         ie6TxQ6JZKspI1ODQMc0qaT83ZxsgX2DSJI9iNLzUn3F4xgP15NX++M55mzJY6zFmtr3
-         QuVbotyWjL2qi7mA8seJVLz1dFIU4KExiKUfX+4HRI5wxUrjqaDorNmDmpUhmJWKKyTd
-         xL0BU2xRnfCuGkDMqN+SYtv1YMywQKzMPoFeBNszJarHAGZTz9Jo95trum/MDWmZon6E
-         ilxFRm2UBafNJrK7820Hc+6qoSs9oOpeJVBR3Jle4oSfmS4/v6vzcl7mbTG5qBfT1IMW
-         Y4OQ==
-X-Gm-Message-State: AOAM532vpU+lx5wvLH8pJ5IYv0xyjWREkOHFFsZWQqSXMcINDMWR5EBx
-        pIrczcbJW0MkCLn7W7y0fbGasWzNvBW90g==
-X-Google-Smtp-Source: ABdhPJzADTR5ZRgZ2CtrdOGOpAvEuXwgcWWGhbFMTvfVxCiP3KAzV1YJN8j3H75tLbWtQ/a5Bfw4zg==
-X-Received: by 2002:a2e:91d9:0:b0:253:d761:130 with SMTP id u25-20020a2e91d9000000b00253d7610130mr14134812ljg.7.1653385820828;
-        Tue, 24 May 2022 02:50:20 -0700 (PDT)
+        bh=f3EaAl5YGKF2nwF2lKP9920mWbceFLAyXVzRrf1riF4=;
+        b=BO2+QBidthta/WgUzdF3ZqXJFBbDUKNYTL2npe922BcNdw5+82xQH1N2z1JWlxOtw6
+         mydcE9bky0uQ47VWpuaD2nN/dCe/8d+wqni9CelGGMQub12v8YuroPJRjL8L5euEXkUy
+         aV7FtOmAbZ1SFvIIMYNbJvEFolOYXva4hpbaxzyUFb7kWx6UYKKsOG/bRXoXp3aKzsFz
+         P4Yedt49V98W77W5Dn/yCv/QqH2PRswgdqyetWFufh6yvaoxG8BxeBC4Sarau4Rc5CAI
+         TAMjsM7Zc6oAZ82cP1J+XpmG2if1JpFQPeVx23eG0E8G62XM1yRpxKowRUiSYk0FddXD
+         8N5A==
+X-Gm-Message-State: AOAM5301TJT1pxhbcE7cZ9Ji78qHydllnzgLHQsdtrrJgzDqXGHlSDPh
+        576enw+yFho4JYHVfSz4BGT0GA==
+X-Google-Smtp-Source: ABdhPJx1PniuT5qa9mQZG/emNiS0626VVTzY6C2GFS7u3+z9a2qzGnnM6NLsqhcyXb+NByXjxm/3GA==
+X-Received: by 2002:a19:e050:0:b0:477:b0ae:1312 with SMTP id g16-20020a19e050000000b00477b0ae1312mr18329856lfj.357.1653386000033;
+        Tue, 24 May 2022 02:53:20 -0700 (PDT)
 Received: from [172.20.68.48] ([91.221.145.6])
-        by smtp.gmail.com with ESMTPSA id m10-20020a056512358a00b0047255d21152sm2441897lfr.129.2022.05.24.02.50.19
+        by smtp.gmail.com with ESMTPSA id o10-20020ac2434a000000b0047255d211b4sm2442218lfl.227.2022.05.24.02.53.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 May 2022 02:50:20 -0700 (PDT)
-Message-ID: <a59707ea-0b58-0f3a-b39c-bc33d0625c8e@linaro.org>
-Date:   Tue, 24 May 2022 11:50:17 +0200
+        Tue, 24 May 2022 02:53:19 -0700 (PDT)
+Message-ID: <dd67a453-b75b-d092-f999-3faf05ef8160@linaro.org>
+Date:   Tue, 24 May 2022 11:53:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH v2] arm64: dts: mt7986: add built-in Wi-Fi device nodes
+Subject: Re: [PATCH -next] ARM: dts: aspeed: nuvia: rename vendor nuvia to
+ qcom
 Content-Language: en-US
-To:     Peter Chiu <chui-hao.chiu@mediatek.com>,
+To:     Jae Hyun Yoo <quic_jaehyoo@quicinc.com>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     devicetree@vger.kernel.org, Ryder Lee <ryder.Lee@mediatek.com>,
-        Evelyn Tsai <evelyn.tsai@mediatek.com>,
-        Sam Shih <sam.shih@mediatek.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220524032430.6261-1-chui-hao.chiu@mediatek.com>
+        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
+Cc:     Jamie Iles <quic_jiles@quicinc.com>,
+        Graeme Gregory <quic_ggregory@quicinc.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org
+References: <20220523175640.60155-1-quic_jaehyoo@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220524032430.6261-1-chui-hao.chiu@mediatek.com>
+In-Reply-To: <20220523175640.60155-1-quic_jaehyoo@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,150 +80,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/05/2022 05:24, Peter Chiu wrote:
-> This enables built-in 802.11ax Wi-Fi support.
+On 23/05/2022 19:56, Jae Hyun Yoo wrote:
+> Nuvia has been acquired by Qualcomm and the vendor name 'nuvia' will
+> not be used anymore so rename aspeed-bmc-nuvia-dc-scm.dts to
+> aspeed-bmc-qcom-dc-scm-v1.dts and change 'nuvia' to 'qcom' as its vendor
+> name in the file.
+
+And all users of this DTB now have to update their bootloaders, scripts,
+installation methods. We did not rename FSL or Marvell boards, so
+neither should be renamed this one.
+
 > 
-> Reviewed-by: Sam Shih <sam.shih@mediatek.com>
-> Reviewed-by: Ryder Lee <ryder.lee@mediatek.com>
-> Signed-off-by: Peter Chiu <chui-hao.chiu@mediatek.com>
+> Signed-off-by: Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
 > ---
-> v2: add clocks and clock-names
-> ---
->  arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts | 41 +++++++++++++++++++
->  arch/arm64/boot/dts/mediatek/mt7986a.dtsi    | 22 ++++++++++
->  arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts | 43 ++++++++++++++++++++
->  3 files changed, 106 insertions(+)
+>  arch/arm/boot/dts/Makefile                                    | 2 +-
+>  ...eed-bmc-nuvia-dc-scm.dts => aspeed-bmc-qcom-dc-scm-v1.dts} | 4 ++--
+>  2 files changed, 3 insertions(+), 3 deletions(-)
+>  rename arch/arm/boot/dts/{aspeed-bmc-nuvia-dc-scm.dts => aspeed-bmc-qcom-dc-scm-v1.dts} (97%)
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-> index 24c155c71f0d..359e14f8e9f1 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-> @@ -57,6 +57,13 @@
->  	status = "okay";
->  };
->  
-> +&wmac {
-> +	status = "okay";
-> +	pinctrl-names = "default", "dbdc";
-> +	pinctrl-0 = <&wf_2g_5g_pins>;
-> +	pinctrl-1 = <&wf_dbdc_pins>;
-> +};
-> +
->  &pio {
->  	pcie_pins: pcie-pins {
->  		mux {
-> @@ -99,6 +106,40 @@
->  			groups = "jtag";
->  		};
->  	};
-> +
-> +	wf_2g_5g_pins: wf_2g_5g-pins {
-> +		mux {
-> +			function = "wifi";
-> +			groups = "wf_2g", "wf_5g";
-> +		};
-> +		conf {
-> +			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
-> +			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
-> +			       "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
-> +			       "WF0_TOP_CLK", "WF0_TOP_DATA", "WF1_HB1",
-> +			       "WF1_HB2", "WF1_HB3", "WF1_HB4", "WF1_HB0",
-> +			       "WF1_HB5", "WF1_HB6", "WF1_HB7", "WF1_HB8",
-> +			       "WF1_TOP_CLK", "WF1_TOP_DATA";
-> +			drive-strength = <4>;
-> +		};
-> +	};
-> +
-> +	wf_dbdc_pins: wf_dbdc-pins {
-> +		mux {
-> +			function = "wifi";
-> +			groups = "wf_dbdc";
-> +		};
-> +		conf {
-> +			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
-> +			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
-> +			       "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
-> +			       "WF0_TOP_CLK", "WF0_TOP_DATA", "WF1_HB1",
-> +			       "WF1_HB2", "WF1_HB3", "WF1_HB4", "WF1_HB0",
-> +			       "WF1_HB5", "WF1_HB6", "WF1_HB7", "WF1_HB8",
-> +			       "WF1_TOP_CLK", "WF1_TOP_DATA";
-> +			drive-strength = <4>;
-> +		};
-> +	};
->  };
->  
->  &spi0 {
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> index 9663a0779416..47d719fb66fb 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> @@ -8,6 +8,7 @@
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/clock/mt7986-clk.h>
->  #include <dt-bindings/phy/phy.h>
-> +#include <dt-bindings/reset/mt7986-resets.h>
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 03f5b3a15415..2a3c95387613 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -1584,7 +1584,6 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+>  	aspeed-bmc-lenovo-hr630.dtb \
+>  	aspeed-bmc-lenovo-hr855xg2.dtb \
+>  	aspeed-bmc-microsoft-olympus.dtb \
+> -	aspeed-bmc-nuvia-dc-scm.dtb \
+>  	aspeed-bmc-opp-lanyang.dtb \
+>  	aspeed-bmc-opp-mihawk.dtb \
+>  	aspeed-bmc-opp-mowgli.dtb \
+> @@ -1597,6 +1596,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+>  	aspeed-bmc-opp-witherspoon.dtb \
+>  	aspeed-bmc-opp-zaius.dtb \
+>  	aspeed-bmc-portwell-neptune.dtb \
+> +	aspeed-bmc-qcom-dc-scm-v1.dtb \
+>  	aspeed-bmc-quanta-q71l.dtb \
+>  	aspeed-bmc-quanta-s6q.dtb \
+>  	aspeed-bmc-supermicro-x11spi.dtb \
+> diff --git a/arch/arm/boot/dts/aspeed-bmc-nuvia-dc-scm.dts b/arch/arm/boot/dts/aspeed-bmc-qcom-dc-scm-v1.dts
+> similarity index 97%
+> rename from arch/arm/boot/dts/aspeed-bmc-nuvia-dc-scm.dts
+> rename to arch/arm/boot/dts/aspeed-bmc-qcom-dc-scm-v1.dts
+> index f4a97cfb0f23..259ef3f54c5c 100644
+> --- a/arch/arm/boot/dts/aspeed-bmc-nuvia-dc-scm.dts
+> +++ b/arch/arm/boot/dts/aspeed-bmc-qcom-dc-scm-v1.dts
+> @@ -6,8 +6,8 @@
+>  #include "aspeed-g6.dtsi"
 >  
 >  / {
->  	interrupt-parent = <&gic>;
-> @@ -80,6 +81,11 @@
->  			reg = <0 0x43000000 0 0x30000>;
->  			no-map;
->  		};
-> +
-> +		wmcpu_emi: wmcpu-reserved@4fc00000 {
-> +			no-map;
-> +			reg = <0 0x4fc00000 0 0x00100000>;
-> +		};
->  	};
->  
->  	timer {
-> @@ -381,6 +387,22 @@
->  			 #reset-cells = <1>;
->  		};
->  
-> +		wmac: wmac@18000000 {
+> -	model = "Nuvia DC-SCM BMC";
+> -	compatible = "nuvia,dc-scm-bmc", "aspeed,ast2600";
+> +	model = "Qualcomm DC-SCM V1 BMC";
+> +	compatible = "qcom,dc-scm-v1-bmc", "aspeed,ast2600";
 
-This is wifi, right? If so, then generic node name - wifi.
 
-> +			compatible = "mediatek,mt7986-wmac";
-> +			resets = <&watchdog MT7986_TOPRGU_CONSYS_SW_RST>;
-> +			reset-names = "consys";
-> +			clocks = <&topckgen CLK_TOP_CONN_MCUSYS_SEL>,
-> +				 <&topckgen CLK_TOP_AP2CNN_HOST_SEL>;
-> +			clock-names = "mcu", "ap2conn";
-> +			reg = <0 0x18000000 0 0x1000000>,
-> +			      <0 0x10003000 0 0x1000>,
-> +			      <0 0x11d10000 0 0x1000>;
-> +			interrupts = <GIC_SPI 213 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 214 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 216 IRQ_TYPE_LEVEL_HIGH>;
-> +			memory-region = <&wmcpu_emi>;
-> +		};
->  	};
->  
->  };
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-> index d4078feb4aad..f25312c9a289 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-> @@ -97,3 +97,46 @@
->  &usb_phy {
->  	status = "okay";
->  };
-> +
-> +&wmac {
-> +	status = "okay";
-> +	pinctrl-names = "default", "dbdc";
-> +	pinctrl-0 = <&wf_2g_5g_pins>;
-> +	pinctrl-1 = <&wf_dbdc_pins>;
-> +};
-> +
-> +&pio {
-> +	wf_2g_5g_pins: wf_2g_5g-pins {
-
-No underscores in node names, unless binding requires them... but it
-should not as this is not allowed character.
+You need also change bindings.
 
 
 Best regards,
