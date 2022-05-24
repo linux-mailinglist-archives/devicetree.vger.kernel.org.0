@@ -2,71 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93576532835
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 12:50:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C9D1532879
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 13:04:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232521AbiEXKt7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 06:49:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35980 "EHLO
+        id S234374AbiEXLEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 07:04:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229534AbiEXKt6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 06:49:58 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45F1D5F8DA;
-        Tue, 24 May 2022 03:49:57 -0700 (PDT)
+        with ESMTP id S235915AbiEXLEU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 07:04:20 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3D368FFBE
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 04:04:17 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id w14so30153361lfl.13
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 04:04:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1653389397; x=1684925397;
-  h=message-id:date:mime-version:subject:to:references:from:
-   in-reply-to:content-transfer-encoding;
-  bh=Tk/huaI+Brj6VolyTS3vaRaaffgo18jJiY/piQh5zVQ=;
-  b=JMxdD/KNFlqL2GSVFSTx3Owy9pgL4I27Vp7arGu5oDpqZzC3tGfikt3+
-   K2CzFZTNgbq/UfqsSyBW1FfXuTvUztDXQG2CBDv30GDvd3algQDBZoQxK
-   5nyvdqZJ3svKIJYhzU2CPXY73Ig7+HusftXvy0wLhWB4HaNtRpx0gLnyD
-   A=;
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 24 May 2022 03:49:56 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 May 2022 03:49:56 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 24 May 2022 03:49:55 -0700
-Received: from [10.216.5.195] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Tue, 24 May
- 2022 03:49:49 -0700
-Message-ID: <51b8aca1-e038-4907-e973-ebdbebaf9b28@quicinc.com>
-Date:   Tue, 24 May 2022 16:19:47 +0530
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=hPNoCC9bCYBSqlvmlNYnCR/CEL5z/MBO4GRQRBu2SQ4=;
+        b=dA4KevZFwM0GA6ikLM4CQSpLnMQZoHGlBfnsB4u4wf26cUuuFTFQ7Lmwehv5yWosP1
+         +erWYpxy1I6uy+YdTsSqf5HzY47VmUtyNZBzCM34NH1TQIjnXK2VVq6jGfTllnLlTxA1
+         w9Ky2l4IeFehM0AEjfpz+F8eJrEgswepUjtHnlwoksmNRbHum8BENMOVbYVmTkUIX/kG
+         CvOp1RGolCVyVjX9JZx0z54FP8xB+Wk/rBMJfoDUh1fBGqtK1MgOrUXGBdEhddDRbW2o
+         S+jgCSu5bJHprvsFz98itVCR0GJEi7zM+COaK4rmJk+WSfaQjII0DBA4XZ+cc4AKj6Sx
+         ANOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=hPNoCC9bCYBSqlvmlNYnCR/CEL5z/MBO4GRQRBu2SQ4=;
+        b=BPozYktH6WOwQM0vKBijJR0/F/KE6Cyfg0WF10RsSslv5iSaWAz0lPsLsmZpciNiFv
+         W5UizWuO3mF5fV10V7OPuyv0VJYnBs+7eiihv6t1xe/Cfu+E9/eRpd9tnCaeJqfCHDEc
+         Np6ymhBB4xWBWAHEt9capHDiFE5wJazl9Hdzz0vmkOo/ZxetRbq4u7rr4QyStqLsMSOV
+         PzGQkLjh0bVYLWiNU41Z/RwssS7gbF7/tVNTuixW3c0+TxyaPvYdVsPtR59JccW/3UaM
+         2H88qNi0OKBKHBWaaP5LZhzctXTPr5iFpUY9c8Gh7Riwshk5LpOZxrNGN+c3U7POFK8f
+         wYXA==
+X-Gm-Message-State: AOAM531NEmOUHJy0YRaEqGh71f3bkrQwU+fuT9CO+gxgwd6cW/lJqraF
+        9hkrzZ9Gx0eK6WLL8qr4KO+Mjg==
+X-Google-Smtp-Source: ABdhPJw2upydtAoXKYn4a3Gqa3QqfoUFFOC52J/y7lFhp6vDr43KdpAMMfe6F1biVkI4W6nLqT/LfQ==
+X-Received: by 2002:a05:6512:201a:b0:478:5adc:fbbb with SMTP id a26-20020a056512201a00b004785adcfbbbmr12704734lfb.687.1653390255946;
+        Tue, 24 May 2022 04:04:15 -0700 (PDT)
+Received: from [172.20.68.48] ([91.221.145.6])
+        by smtp.gmail.com with ESMTPSA id d22-20020a2e3316000000b00253deeaeb3dsm2313662ljc.131.2022.05.24.04.04.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 May 2022 04:04:15 -0700 (PDT)
+Message-ID: <2cf38dea-0754-e63b-4832-a0b2aa966c61@linaro.org>
+Date:   Tue, 24 May 2022 13:04:11 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH v2] ASoC: qcom: soundwire: Add support for controlling
- audio CGCR from HLOS
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH] arm64: dts: Add support for Stratix 10 Software Virtual
+ Platform
 Content-Language: en-US
-To:     Stephen Boyd <swboyd@chromium.org>, <agross@kernel.org>,
-        <alsa-devel@alsa-project.org>, <bgoswami@quicinc.com>,
-        <bjorn.andersson@linaro.org>, <broonie@kernel.org>,
-        <devicetree@vger.kernel.org>, <judyhsiao@chromium.org>,
-        <lgirdwood@gmail.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <perex@perex.cz>,
-        <quic_plai@quicinc.com>, <quic_rohkumar@quicinc.com>,
-        <robh+dt@kernel.org>, <srinivas.kandagatla@linaro.org>,
-        <tiwai@suse.com>, <vkoul@kernel.org>
-References: <1652877755-25120-1-git-send-email-quic_srivasam@quicinc.com>
- <CAE-0n53g9rWks+euk5KHBzmJNEB3xLbJzMgCxN52DO5x+9-Wgg@mail.gmail.com>
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Organization: Qualcomm
-In-Reply-To: <CAE-0n53g9rWks+euk5KHBzmJNEB3xLbJzMgCxN52DO5x+9-Wgg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     wen.ping.teh@intel.com, Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Yves Vandervennet <yvanderv@opensource.altera.com>,
+        Dinh Nguyen <dinguyen@opensource.altera.com>
+References: <20220524102912.792968-1-wen.ping.teh@intel.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220524102912.792968-1-wen.ping.teh@intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,25 +80,109 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 24/05/2022 12:29, wen.ping.teh@intel.com wrote:
+> From: Teh Wen Ping <wen.ping.teh@intel.com>
+> 
+> Add Stratix 10 Software Virtual Platform device tree
+> 
+> Signed-off-by: Yves Vandervennet <yvanderv@opensource.altera.com>
+> Signed-off-by: Dinh Nguyen <dinguyen@opensource.altera.com>
+> Signed-off-by: Teh Wen Ping <wen.ping.teh@intel.com>
+> ---
+>  arch/arm64/Kconfig.platforms                  |   3 +-
+>  arch/arm64/boot/dts/altera/Makefile           |   3 +-
+>  .../dts/altera/socfpga_stratix10_swvp.dts     | 131 ++++++++++++++++++
+>  3 files changed, 135 insertions(+), 2 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
+> 
+> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+> index de9a18d3026f..48abe5dafaae 100644
+> --- a/arch/arm64/Kconfig.platforms
+> +++ b/arch/arm64/Kconfig.platforms
+> @@ -249,7 +249,8 @@ config ARCH_INTEL_SOCFPGA
+>  	bool "Intel's SoCFPGA ARMv8 Families"
+>  	help
+>  	  This enables support for Intel's SoCFPGA ARMv8 families:
+> -	  Stratix 10 (ex. Altera), Agilex and eASIC N5X.
+> +	  Stratix 10 (ex. Altera), Stratix10 Software Virtual Platform,
+> +	  Agilex and eASIC N5X.
+>  
+>  config ARCH_SYNQUACER
+>  	bool "Socionext SynQuacer SoC Family"
+> diff --git a/arch/arm64/boot/dts/altera/Makefile b/arch/arm64/boot/dts/altera/Makefile
+> index 4db83fbeb115..1bf0c472f6b4 100644
+> --- a/arch/arm64/boot/dts/altera/Makefile
+> +++ b/arch/arm64/boot/dts/altera/Makefile
+> @@ -1,3 +1,4 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += socfpga_stratix10_socdk.dtb \
+> -				socfpga_stratix10_socdk_nand.dtb
+> +				socfpga_stratix10_socdk_nand.dtb \
+> +				socfpga_stratix10_swvp.dtb
+> diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
+> new file mode 100644
+> index 000000000000..209e26d3611b
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
+> @@ -0,0 +1,131 @@
+> +// SPDX-License-Identifier:     GPL-2.0
 
-On 5/21/2022 8:43 AM, Stephen Boyd wrote:
-Thanks for your time Stephen!!!
-> Quoting Srinivasa Rao Mandadapu (2022-05-18 05:42:35)
->> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
->> index da1ad7e..445e481 100644
->> --- a/drivers/soundwire/qcom.c
->> +++ b/drivers/soundwire/qcom.c
->> @@ -1333,6 +1337,10 @@ static int qcom_swrm_probe(struct platform_device *pdev)
->>          ctrl->bus.compute_params = &qcom_swrm_compute_params;
->>          ctrl->bus.clk_stop_timeout = 300;
->>
->> +       ctrl->audio_cgcr = devm_reset_control_get_exclusive(dev, "swr_audio_cgcr");
->> +       if (IS_ERR(ctrl->audio_cgcr))
->> +               dev_err(dev, "Failed to get audio_cgcr reset required for soundwire-v1.6.0\n");
-> Why is there no return on error here? Is the reset optional?
-Yes it's optional. For older platforms this is not required.
->
->> +
->>          ret = qcom_swrm_get_port_config(ctrl);
->>          if (ret)
->>                  goto err_clk;
+No need for indentation before GPL.
+
+> +/*
+> + * Copyright (C) 2022, Intel Corporation
+> + */
+> +
+> +#include "socfpga_stratix10.dtsi"
+> +
+> +/ {
+> +	model = "SOCFPGA Stratix 10 SWVP";
+> +	compatible = "arm,foundation-aarch64", "arm,vexpress";
+
+Does not look like compatible for stratix at all... Please do not invent
+stuff but take a look at existing code and customize it.
+
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +		serial1 = &uart1;
+> +
+> +		timer0 = &timer0;
+> +		timer1 = &timer1;
+> +		timer2 = &timer2;
+> +		timer3 = &timer3;
+> +
+> +		ethernet0 = &gmac0;
+> +		ethernet1 = &gmac1;
+> +		ethernet2 = &gmac2;
+> +	};
+> +
+> +	chosen {
+> +		bootargs = "rdinit=/sbin/init ip=dhcp mem=2048M";
+
+Bo bootargs,
+
+> +		stdout-path = "serial1:115200n8";
+> +		linux,initrd-start = <0x10000000>;
+> +		linux,initrd-end = <0x125c8324>;
+> +	};
+> +
+> +	memory {
+> +		device_type = "memory";
+> +		reg = <0x0 0x0 0x0 0x80000000>;
+> +	};
+> +
+> +	soc {
+> +		clocks {
+> +			osc1 {
+> +				clock-frequency = <25000000>;
+
+Override by label.
+
+> +			};
+> +		};
+> +
+
+
+Best regards,
+Krzysztof
