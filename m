@@ -2,243 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4352D5328D8
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 13:23:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5ABA5328DF
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 13:24:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236415AbiEXLXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 07:23:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39940 "EHLO
+        id S236546AbiEXLYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 07:24:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235766AbiEXLXR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 07:23:17 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1ADEA78938;
-        Tue, 24 May 2022 04:23:16 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CBE2E1FB;
-        Tue, 24 May 2022 04:23:15 -0700 (PDT)
-Received: from [10.57.82.55] (unknown [10.57.82.55])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7989D3F73D;
-        Tue, 24 May 2022 04:23:12 -0700 (PDT)
-Message-ID: <7439ce39-a2c2-7310-27d3-08ba2ed75ac9@arm.com>
-Date:   Tue, 24 May 2022 12:23:05 +0100
+        with ESMTP id S233640AbiEXLYa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 07:24:30 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C99A278938
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 04:24:29 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id r126-20020a1c4484000000b00397345f2c6fso884010wma.4
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 04:24:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=yfCYl4aV74lIhtPwwS5Hj7a7JLAdHT5HtAXAEPKuxxw=;
+        b=SkEJCBhdLlFzmsU79CLKeBLhUBGc21SllCmNz5BJw0D+GbWUAg3Zor9zFl//oWG9OQ
+         1KqWUyp7inB2ZpNmoLokYAd8tGeJKSoR6AekxiFG2LEQatcPdWNKdIJWK29PLSmaZsB5
+         JxL1fWSOpTzkKylyxE3ZuvMWFMEstvhrZYDbUuNk/rZ5Zx4zngCqCIbqcQ6YH/vuBi20
+         VIks0/oZF9dqUp065iC0043Ymy+cQlQwBdgRz00WN4dOlxYm0cxnVAM5rVfDclmsh21e
+         3fWOrYqDrjvFiqnovynEsyG8xRnUrUKu6yIGDITpsgMjPaUn6Cg+Ts3d7vsLJrCJ2tZH
+         tHfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=yfCYl4aV74lIhtPwwS5Hj7a7JLAdHT5HtAXAEPKuxxw=;
+        b=hLlzNYJ0gbOB3GpGTFr6GmanL5fG6j7wBqXr5KBeqALppCNLJYE3sJg7d85N44dIzt
+         Kuk9aXOYU1M9KZQnAdo7eXcYa8uTNnYzsOkozU4fVl71DiIHHCoyeodBG1YEKHQsnXyf
+         z3Kyxy3bS2yW1t0petHpjuBGk5DVvL6dXfQnae41pq853jjMfQZfhMobvIdA2VA0/E1t
+         eFET2pTA59bg1JJKQJ7zqvJXZvr6TX6Ww8nfGO1zsHujkx6OEtbE9pCLdAUlAodsamaj
+         VJ3+48bfEVL17Ojkft2uLmXtw7mpc+OuLAruGBSKWgcXIcEQzK0YZb+6RjK8P4ydteLI
+         zKfQ==
+X-Gm-Message-State: AOAM531XCaduTVKB+K0gThfb51dWHVF7qnTudUKc1bbR1h/qu6e76xHt
+        xUqW/8YE7IFI/aSbg5LCNv3S2xcBB1FuR+7/Sq801Q==
+X-Google-Smtp-Source: ABdhPJw17mFO2a4bDkcxbKfi5pHfVkge6/luoUZPssTZkTO6b1Ep89/x1yZbqkfqlaxo1Z8MUx6f2F8ncymnnSC1FM0=
+X-Received: by 2002:a05:600c:5112:b0:397:53f5:e15b with SMTP id
+ o18-20020a05600c511200b0039753f5e15bmr3292625wms.93.1653391468187; Tue, 24
+ May 2022 04:24:28 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH] arm64: dts: Add support for Stratix 10 Software Virtual
- Platform
-Content-Language: en-GB
-To:     wen.ping.teh@intel.com, Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Yves Vandervennet <yvanderv@opensource.altera.com>,
-        Dinh Nguyen <dinguyen@opensource.altera.com>
-References: <20220524102912.792968-1-wen.ping.teh@intel.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20220524102912.792968-1-wen.ping.teh@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-10.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220426185245.281182-1-atishp@rivosinc.com> <20220426185245.281182-2-atishp@rivosinc.com>
+In-Reply-To: <20220426185245.281182-2-atishp@rivosinc.com>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Tue, 24 May 2022 16:54:16 +0530
+Message-ID: <CAAhSdy2Xco9wZrQ8tFfFNkNxkOcDksvi3EySdVNFtKGxVyceYQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] RISC-V: Add SSTC extension CSR details
+To:     Atish Patra <atishp@rivosinc.com>
+Cc:     "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Atish Patra <atishp@atishpatra.org>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        KVM General <kvm@vger.kernel.org>,
+        "open list:KERNEL VIRTUAL MACHINE FOR RISC-V (KVM/riscv)" 
+        <kvm-riscv@lists.infradead.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-05-24 11:29, wen.ping.teh@intel.com wrote:
-> From: Teh Wen Ping <wen.ping.teh@intel.com>
-> 
-> Add Stratix 10 Software Virtual Platform device tree
-> 
-> Signed-off-by: Yves Vandervennet <yvanderv@opensource.altera.com>
-> Signed-off-by: Dinh Nguyen <dinguyen@opensource.altera.com>
-> Signed-off-by: Teh Wen Ping <wen.ping.teh@intel.com>
+On Wed, Apr 27, 2022 at 12:23 AM Atish Patra <atishp@rivosinc.com> wrote:
+>
+> This patch just introduces the required CSR fields related to the
+> SSTC extension.
+>
+> Signed-off-by: Atish Patra <atishp@rivosinc.com>
+
+Looks good to me.
+
+Reviewed-by: Anup Patel <anup@brainfault.org>
+
+Regards,
+Anup
+
 > ---
->   arch/arm64/Kconfig.platforms                  |   3 +-
->   arch/arm64/boot/dts/altera/Makefile           |   3 +-
->   .../dts/altera/socfpga_stratix10_swvp.dts     | 131 ++++++++++++++++++
->   3 files changed, 135 insertions(+), 2 deletions(-)
->   create mode 100644 arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
-> 
-> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-> index de9a18d3026f..48abe5dafaae 100644
-> --- a/arch/arm64/Kconfig.platforms
-> +++ b/arch/arm64/Kconfig.platforms
-> @@ -249,7 +249,8 @@ config ARCH_INTEL_SOCFPGA
->   	bool "Intel's SoCFPGA ARMv8 Families"
->   	help
->   	  This enables support for Intel's SoCFPGA ARMv8 families:
-> -	  Stratix 10 (ex. Altera), Agilex and eASIC N5X.
-> +	  Stratix 10 (ex. Altera), Stratix10 Software Virtual Platform,
-> +	  Agilex and eASIC N5X.
->   
->   config ARCH_SYNQUACER
->   	bool "Socionext SynQuacer SoC Family"
-> diff --git a/arch/arm64/boot/dts/altera/Makefile b/arch/arm64/boot/dts/altera/Makefile
-> index 4db83fbeb115..1bf0c472f6b4 100644
-> --- a/arch/arm64/boot/dts/altera/Makefile
-> +++ b/arch/arm64/boot/dts/altera/Makefile
-> @@ -1,3 +1,4 @@
->   # SPDX-License-Identifier: GPL-2.0-only
->   dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += socfpga_stratix10_socdk.dtb \
-> -				socfpga_stratix10_socdk_nand.dtb
-> +				socfpga_stratix10_socdk_nand.dtb \
-> +				socfpga_stratix10_swvp.dtb
-> diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
-> new file mode 100644
-> index 000000000000..209e26d3611b
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
-> @@ -0,0 +1,131 @@
-> +// SPDX-License-Identifier:     GPL-2.0
-> +/*
-> + * Copyright (C) 2022, Intel Corporation
-> + */
+>  arch/riscv/include/asm/csr.h | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+>
+> diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
+> index e935f27b10fd..10f4e1c36908 100644
+> --- a/arch/riscv/include/asm/csr.h
+> +++ b/arch/riscv/include/asm/csr.h
+> @@ -227,6 +227,9 @@
+>  #define CSR_SIP                        0x144
+>  #define CSR_SATP               0x180
+>
+> +#define CSR_STIMECMP           0x14D
+> +#define CSR_STIMECMPH          0x15D
 > +
-> +#include "socfpga_stratix10.dtsi"
+>  #define CSR_VSSTATUS           0x200
+>  #define CSR_VSIE               0x204
+>  #define CSR_VSTVEC             0x205
+> @@ -236,6 +239,8 @@
+>  #define CSR_VSTVAL             0x243
+>  #define CSR_VSIP               0x244
+>  #define CSR_VSATP              0x280
+> +#define CSR_VSTIMECMP          0x24D
+> +#define CSR_VSTIMECMPH         0x25D
+>
+>  #define CSR_HSTATUS            0x600
+>  #define CSR_HEDELEG            0x602
+> @@ -251,6 +256,8 @@
+>  #define CSR_HTINST             0x64a
+>  #define CSR_HGATP              0x680
+>  #define CSR_HGEIP              0xe12
+> +#define CSR_HENVCFG            0x60A
+> +#define CSR_HENVCFGH           0x61A
+>
+>  #define CSR_MSTATUS            0x300
+>  #define CSR_MISA               0x301
+> @@ -312,6 +319,10 @@
+>  #define IE_TIE         (_AC(0x1, UL) << RV_IRQ_TIMER)
+>  #define IE_EIE         (_AC(0x1, UL) << RV_IRQ_EXT)
+>
+> +/* ENVCFG related bits */
+> +#define HENVCFG_STCE   63
+> +#define HENVCFGH_STCE  31
 > +
-> +/ {
-> +	model = "SOCFPGA Stratix 10 SWVP";
-> +	compatible = "arm,foundation-aarch64", "arm,vexpress";
-
-This is definitely not compatible with any Arm Versatile Express 
-platform. It doesn't even have RAM in the same place, for starters.
-
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +		serial1 = &uart1;
-> +
-> +		timer0 = &timer0;
-> +		timer1 = &timer1;
-> +		timer2 = &timer2;
-> +		timer3 = &timer3;
-> +
-> +		ethernet0 = &gmac0;
-> +		ethernet1 = &gmac1;
-> +		ethernet2 = &gmac2;
-> +	};
-> +
-> +	chosen {
-> +		bootargs = "rdinit=/sbin/init ip=dhcp mem=2048M";
-> +		stdout-path = "serial1:115200n8";
-> +		linux,initrd-start = <0x10000000>;
-> +		linux,initrd-end = <0x125c8324>;
-> +	};
-> +
-> +	memory {
-> +		device_type = "memory";
-> +		reg = <0x0 0x0 0x0 0x80000000>;
-> +	};
-> +
-> +	soc {
-> +		clocks {
-> +			osc1 {
-> +				clock-frequency = <25000000>;
-> +			};
-> +		};
-> +
-> +		l2-cache@fffff000 {
-> +			compatible = "arm,pl310-cache";
-
-Yikes, I hope not!
-
-I didn't think AArch64 even allows outer caches that don't honour CPU 
-cache maintenance by VA? Either way I can't imagine we'd ever accept 
-PL310 support in mainline, so even if your model does actually have this 
-for some inexplicable reason, I don't think there's any point exposing 
-it in the DT.
-
-Robin.
-
-> +			reg = <0xfffff000 0x1000>;
-> +			interrupts = <0x0 0x12 0x4>;
-> +			cache-unified;
-> +			cache-level = <0x2>;
-> +			linux,phandle = <0x1>;
-> +		};
-> +	};
-> +};
-> +
-> +&cpu0 {
-> +	enable-method = "spin-table";
-> +	cpu-release-addr = <0x0 0x0000fff8>;
-> +};
-> +
-> +&cpu1 {
-> +	enable-method = "spin-table";
-> +	cpu-release-addr = <0x0 0x0000fff8>;
-> +};
-> +
-> +&cpu2 {
-> +	enable-method = "spin-table";
-> +	cpu-release-addr = <0x0 0x0000fff8>;
-> +};
-> +
-> +&cpu3 {
-> +	enable-method = "spin-table";
-> +	cpu-release-addr = <0x0 0x0000fff8>;
-> +};
-> +
-> +&gmac0 {
-> +	status = "okay";
-> +	phy-mode = "rgmii";
-> +	phy-addr = <0xffffffff>;
-> +	snps,max-mtu = <0x0>;
-> +};
-> +
-> +&gmac1 {
-> +	status = "okay";
-> +	phy-mode = "rgmii";
-> +	phy-addr = <0xffffffff>;
-> +};
-> +
-> +&gmac2 {
-> +	status = "okay";
-> +	phy-mode = "rgmii";
-> +	phy-addr = <0xffffffff>;
-> +};
-> +
-> +&mmc {
-> +	status = "okay";
-> +	altr,dw-mshc-ciu-div = <0x3>;
-> +	altr,dw-mshc-sdr-timing = <0x0 0x3>;
-> +	cap-sd-highspeed;
-> +	cap-mmc-highspeed;
-> +	broken-cd;
-> +	bus-width = <4>;
-> +};
-> +
-> +&uart0 {
-> +	status = "okay";
-> +};
-> +
-> +&uart1 {
-> +	status = "okay";
-> +};
-> +
-> +&usb0 {
-> +	clocks = <&clkmgr STRATIX10_L4_MP_CLK>;
-> +	status = "okay";
-> +};
-> +
-> +&usb1 {
-> +	clocks = <&clkmgr STRATIX10_L4_MP_CLK>;
-> +	status = "okay";
-> +};
-> +
-> +&rst {
-> +	altr,modrst-offset = <0x20>;
-> +};
-> +
-> +&sysmgr {
-> +	reg = <0xffd12000 0x1000>;
-> +	interrupts = <0x0 0x10 0x4>;
-> +	cpu1-start-addr = <0xffd06230>;
-> +};
+>  #ifndef __ASSEMBLY__
+>
+>  #define csr_swap(csr, val)                                     \
+> --
+> 2.25.1
+>
