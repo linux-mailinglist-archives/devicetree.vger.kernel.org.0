@@ -2,200 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0318532710
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 12:07:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BFEC532778
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 12:25:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231975AbiEXKHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 06:07:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46202 "EHLO
+        id S236067AbiEXKYt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 06:24:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231942AbiEXKHk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 06:07:40 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF47279830
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 03:07:38 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id g7so933644lja.3
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 03:07:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=62u0OdiZGmktFTh3AqaIrUZUI/D7c2ipqL+QehY9CTA=;
-        b=kjYAiJhl1gZx0UVhGbW3xraCltid4zvCU7U7jlILyDeNpk7RL49N9xtrUzHCfqHoyE
-         0XskJ1LUFzgrNk1/eqwsOYLzzjwxM1QDz9JKf0v4WMoZ3iri9Z5VR0vtLFbRx/jlYvpI
-         4PcuqrljaltA6MiNhRaO3YvHfeBOXAkXaYjIoQGdxc/rxBZaSHLaX+SLqkgsW+z3oybW
-         eTlEO9kIgs13OkWITy/zdISSacu6gFPW6CbOobcpLKBzOALKXmLqWdms6B7yXEQ62lpK
-         pg6O42tiNAohq9S55rRoO7Ye686vP3pXDO1JM2PhyKL8vRnFMNgKbGf8htaUHW5v9WnG
-         RUHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=62u0OdiZGmktFTh3AqaIrUZUI/D7c2ipqL+QehY9CTA=;
-        b=P1+Ydh7u2KelV4ozKB7d87V6PojiUt9hFTmzJAZhwDTmZ8KANA4YevoNT7ekln0GjT
-         DU3QHFetOyV/UqcHS3R4db//5XXsTVQm3+ByKI5SIWPVrd03TakBli4OoqKCOPRU5cK4
-         x5GDQ3IWN3i5+eT1aH0FF43chU7rSHxybWGf3HYEzyAgNddH3TgZGTTxz2DMbuU8oGKh
-         mhYyonTvSSJv+z2WHACzMFJPDynEVTZV2gGvh6asqvxBnxB2MZroxdDIIngNhG7Bjjdq
-         eSGGIQU8DZBDbZ8ozoaQ0iVEwyDPilXgmeuetsyF7hlsHD/UFGhiGGrPpzm+NfNmXl9P
-         3TYg==
-X-Gm-Message-State: AOAM5314RuHMIMFwQ/qFYil/j0CnL57R6838IumOrItiKRiDlDqFmaTT
-        QvsDDFGQ4McTTy/q1qkZuxMrbg==
-X-Google-Smtp-Source: ABdhPJy9L8ZYpXgX23qTOsfzdXeE19zccHaN4htCW5tI6QmMZjSGG6wzVErzNA91bPLofI0APu1QhA==
-X-Received: by 2002:a2e:391a:0:b0:253:c3e8:9387 with SMTP id g26-20020a2e391a000000b00253c3e89387mr15179864lja.156.1653386857129;
-        Tue, 24 May 2022 03:07:37 -0700 (PDT)
-Received: from [172.20.68.48] ([91.221.145.6])
-        by smtp.gmail.com with ESMTPSA id j30-20020ac2551e000000b0047255d211a2sm2451930lfk.209.2022.05.24.03.07.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 May 2022 03:07:36 -0700 (PDT)
-Message-ID: <c2882212-aa1e-4614-c982-43e6c793b34a@linaro.org>
-Date:   Tue, 24 May 2022 12:07:34 +0200
+        with ESMTP id S236066AbiEXKYt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 06:24:49 -0400
+X-Greylist: delayed 723 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 24 May 2022 03:24:47 PDT
+Received: from oftenbest.adminbbserv.bond (adminbbserv.bond [213.108.199.214])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D8CD64D17
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 03:24:47 -0700 (PDT)
+Received: from webmail.adminbbserv.bond (localhost.localdomain [IPv6:::1])
+        by oftenbest.adminbbserv.bond (Postfix) with ESMTPSA id 082085D07;
+        Tue, 24 May 2022 06:12:39 -0400 (EDT)
+Authentication-Results: oftenbest.adminbbserv.bond;
+        spf=pass (sender IP is ::1) smtp.mailfrom=trade@adminbbserv.bond smtp.helo=webmail.adminbbserv.bond
+Received-SPF: pass (oftenbest.adminbbserv.bond: connection is authenticated)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 1/7] dt-bindings: soc: add bindings for i.MX93 SRC
-Content-Language: en-US
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, sboyd@kernel.org,
-        mturquette@baylibre.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de
-Cc:     aisheng.dong@nxp.com, l.stach@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
-References: <20220523113029.842753-1-peng.fan@oss.nxp.com>
- <20220523113029.842753-2-peng.fan@oss.nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220523113029.842753-2-peng.fan@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Date:   Tue, 24 May 2022 11:12:38 +0100
+From:   HR <trade@adminbbserv.bond>
+To:     undisclosed-recipients:;
+Subject: Alkalmaz
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <09c90b222fb2dc5e3488a4aec1a1b696@adminbbserv.bond>
+X-Sender: trade@adminbbserv.bond
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=2.8 required=5.0 tests=BAYES_50,FORGED_SPF_HELO,
+        KHOP_HELO_FCRDNS,MIXED_ES,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: **
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/05/2022 13:30, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Add bindings for i.MX93 System Reset Controller(SRC). SRC supports
-> resets and power gating for mixes.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../bindings/soc/imx/fsl,imx93-src.yaml       | 88 +++++++++++++++++++
->  include/dt-bindings/power/imx93-power.h       | 11 +++
->  2 files changed, 99 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx93-src.yaml
 
-File should be in respective subsystem, so probably power/reset?
 
->  create mode 100644 include/dt-bindings/power/imx93-power.h
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-src.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-src.yaml
-> new file mode 100644
-> index 000000000000..d45c1458b9c1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-src.yaml
-> @@ -0,0 +1,88 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/imx/fsl,imx93-src.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP i.MX9 System Reset Controller
-> +
-> +maintainers:
-> +  - Peng Fan <peng.fan@nxp.com>
-> +
-> +description: |
-> +  The System Reset Controller (SRC) is responsible for the generation of
-> +  all the system reset signals and boot argument latching.
-> +
-> +  Its main functions are as follows,
-> +  - Deals with all global system reset sources from other modules,
-> +    and generates global system reset.
-> +  - Responsible for power gating of MIXs (Slices) and their memory
-> +    low power control.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: fsl,imx93-src
-> +      - const: syscon
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  slice:
+Helló,
 
-Why do you need this subnode, instead of listing domains here?
+Örömmel értesítjük Önt egy elérhető távmunka részmunkaidős ügyintézői 
+állásról, heti 500 eurós bérért. Ha az időbeosztása elég rugalmas ahhoz, 
+hogy betöltse ezt a pozíciót, kérjük, írjon az 
+"apply@blenheimbuildings.uk" címre a pozícióval kapcsolatos további 
+részletekért. Kérjük, jelentkezéskor tüntesse fel mobiltelefonszámát, 
+valamint a lakóhelyét. Figyelem: Ez a pozíció érkezési sorrendben 
+foglalható el.
 
-> +    type: object
-> +    description: list of power domains provided by this controller.
-> +
-
-Hm, what about address/size cells? Is syscon schema bringing these?
-
-> +    patternProperties:
-> +      "power-domain@[0-9]$":
-> +        type: object
-
-Missing ref to power-domain.yaml
-
-> +        properties:
-> +
-> +          '#power-domain-cells':
-> +            const: 0
-> +
-> +          reg:
-> +            description: |
-> +              Power domain index. Valid values are defined in
-> +              include/dt-bindings/power/imx93-power.h for fsl,imx93-src
-> +            maxItems: 1
-> +
-> +          clocks:
-> +            description: |
-> +              A number of phandles to clocks that need to be enabled
-> +              during domain power-up sequencing to ensure reset
-> +              propagation into devices located inside this power domain.
-> +            minItems: 1
-> +            maxItems: 5
-> +
-> +        required:
-> +          - '#power-domain-cells'
-> +          - reg
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - slice
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx93-clock.h>
-> +    #include <dt-bindings/power/imx93-power.h>
-> +
-> +    src@44460000 {
-
-reset-controller
-or some other generic node name.
-
-> +        compatible = "fsl,imx93-src", "syscon";
-> +        reg = <0x44460000 0x10000>;
-> +
-> +        slice {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                mediamix: power-domain@0 {
-
-Best regards,
-Krzysztof
+Üdvözlettel
+Bánkiné Józsa Mária
+HR vezető/tanácsadó
+Magyarországi Munkaügyi Hivatal.
