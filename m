@@ -2,62 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E142D532F27
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 18:43:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07FA6532F2B
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 18:44:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239498AbiEXQn2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 12:43:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48068 "EHLO
+        id S239624AbiEXQom (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 12:44:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233170AbiEXQn0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 12:43:26 -0400
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4637C434A4;
-        Tue, 24 May 2022 09:43:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1653410606; x=1684946606;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=6UMCM+RBG4JBxylz5LrdwSJ2Dpx/YvGxgj1zkXLPFqU=;
-  b=mm8KztO4bQQJJq/lPq2pbpmiL8iulFLxtKAR2UUQKq14t9sECpMDknYW
-   Nni94xUpT6nAGFIhtGTtHhnGgoGOUWQSLI4nOkd3v1bgWPZ+jT7Bi0tOa
-   t7kYzlVV2I1gXr+8527SiQmYUpWFVryX3uVkrlOLmc4AzKavx24D5Kd+3
-   PFm0Hn/zIaV6R/90ZLftKeqpjaPtH90JNxKC4O42YQRWDRi5F8tzCJmOP
-   YeceXTxETuL8YuFZQRcvfFxtrekLyFiNOtppxFGof6pmD5DfWx8lXl95h
-   fJGdrvBKoi5JZ/FSzLhi7Id/NNZPS1zzJaxw964xZfMiIoAH4iF7jPaBp
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10357"; a="336634859"
-X-IronPort-AV: E=Sophos;i="5.91,248,1647327600"; 
-   d="scan'208";a="336634859"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 May 2022 09:43:25 -0700
-X-IronPort-AV: E=Sophos;i="5.91,248,1647327600"; 
-   d="scan'208";a="548544106"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 May 2022 09:43:23 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1ntXcv-000KF8-7Y;
-        Tue, 24 May 2022 19:43:21 +0300
-Date:   Tue, 24 May 2022 19:43:21 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Dinh Nguyen <dinguyen@kernel.org>
-Cc:     jarkko.nikula@linux.intel.com, mika.westerberg@linux.intel.com,
-        robh+dt@kernel.org, krzk+dt@kernel.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCHv2 1/2] i2c: designware: introduce a custom scl recovery
- for SoCFPGA platforms
-Message-ID: <Yo0LKQchQwitJVHm@smile.fi.intel.com>
-References: <20220524135441.420600-1-dinguyen@kernel.org>
+        with ESMTP id S236156AbiEXQol (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 12:44:41 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55FE25F278
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 09:44:39 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id s28so26392375wrb.7
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 09:44:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nexus-software-ie.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Rwol75CyD22GB+azy1Wfb8UM7WKUYecam29j0+8w0Ds=;
+        b=AcYNkjrduWPhMPZ9eJMqBTw39Am01PGf/zmGJPTUGgbAUn87jaKs/ueKmdyGsfZVnn
+         O56OtEvddGE+Y/w7Rk6YMRm/Ch7fLM3zN84ngKys0xL39qiY+kNirzmMoQ27iQQuG1BP
+         1ZU/75TGmGS97T10Gb6roP/OvW5XxC7TR6yIvgsGLV4N9sMvpicXph3wHok//4xSbXSQ
+         b0POhcs7UXUn+0Toonc5tyAE/5GfQ3vtY41pQ1yEGsxeuLInH5f2VLrI6vj9nkMC3gik
+         FCdcGRwNOER9zYFEiBkmLqAftjCnmv79ntDGZoHjzUerPfbq1OWg2Ie6+QdvwvujTXjO
+         DcDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Rwol75CyD22GB+azy1Wfb8UM7WKUYecam29j0+8w0Ds=;
+        b=qOUkoYIkPOMyAYn56g6LmuHKieACqG49HQG+P4uH2SpzGX98dme7lVECd8mJrKffK7
+         ZzoC9pLUEOKtG3UPuHlbsEfq0NwvSBb4VNT94RRes/Gtt2Pr0/UMfb0YD0obc4wOIf6X
+         btHrBqqlzdiiLsjDYhCs3YSKV0l9tr3Fj71ORttkJDjM/NN24t6bCtoGhoeRIpykh6pu
+         yfc4z5AQLRZT1Cdh9Rb+QHG0Fuu9FBhfEaGc90XWd/gcse9WWwwT/GE9f2yWQ1Yt/dIU
+         FJaaURxAFrsmvJusF59z7gGaw6CVuGQqB778P7LVU0zXeQ+srNfKfL/qrut4hp8GbIhU
+         uF1A==
+X-Gm-Message-State: AOAM531q36JJnEh/phzewtuDe/Deau94AxAM1NYQfv+hy3Eh6hGa5oli
+        huNZERezgWhUNRmpyr61Uz5hLA==
+X-Google-Smtp-Source: ABdhPJx1U0/7EZnEBQLMEiIuCol1THiU31e5Z21aOY17NPbYAijEjm+yap7k148vhVFlfzqRnG7PKg==
+X-Received: by 2002:a5d:6c64:0:b0:20f:f413:8af8 with SMTP id r4-20020a5d6c64000000b0020ff4138af8mr2847216wrz.129.1653410677949;
+        Tue, 24 May 2022 09:44:37 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id e8-20020adfa448000000b0020c5253d8e5sm13594295wra.49.2022.05.24.09.44.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 May 2022 09:44:37 -0700 (PDT)
+Message-ID: <dc087955-4d00-454e-b242-7741ded6aa5b@nexus-software.ie>
+Date:   Tue, 24 May 2022 17:44:36 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220524135441.420600-1-dinguyen@kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: qrb5165-rb5: Enable the IMX577
+ on cam2
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
+        bjorn.andersson@linaro.org, vladimir.zapolskiy@linaro.org,
+        mchehab@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, mmitkov@quicinc.com, jgrahsl@snap.com,
+        hfink@snap.com
+References: <20220524140207.2758605-1-bryan.odonoghue@linaro.org>
+ <20220524140207.2758605-5-bryan.odonoghue@linaro.org>
+ <CAA8EJpqUkeReqnhcURpftpJmFth9-3OGQoAkFqd7Y06EjfraRg@mail.gmail.com>
+From:   Bryan O'Donoghue <pure.logic@nexus-software.ie>
+In-Reply-To: <CAA8EJpqUkeReqnhcURpftpJmFth9-3OGQoAkFqd7Y06EjfraRg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,34 +81,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 24, 2022 at 08:54:40AM -0500, Dinh Nguyen wrote:
-> The I2C pins on the SoCFPGA platforms do not go through a GPIO module,
-> thus cannot be recovered by the default method of by doing a GPIO access.
-> Only a reset of the I2C IP block can a recovery be successful.
+On 24/05/2022 17:21, Dmitry Baryshkov wrote:
+> On Tue, 24 May 2022 at 17:02, Bryan O'Donoghue
+> <bryan.odonoghue@linaro.org> wrote:
+>>
+>> The IMX577 is on CCI1/CSI2 providing four lanes of camera data.
+> 
+> By default the RB5 doesn't employ the navigation mezzanine. Thus I
+> suggest adding a new DTS file that will include the qrb5165-rb5.dts
+> and extend it with camcc/camss setup.
 
-Better now, but see my additional comments.
+It makes sense to me.
 
-...
+I'll wait to hear from Robert and Bjorn. We can take the opportunity to 
+do it for RB3 too.
 
-> +	switch (dev->flags & MODEL_MASK) {
-> +	case MODEL_SOCFPGA:
-> +		rinfo->recover_bus = i2c_socfpga_scl_recovery;
-> +		break;
-> +	default:
-> +		rinfo->recover_bus = i2c_generic_scl_recovery;
-> +		break;
-> +	}
-
-> +	adap->bus_recovery_info = rinfo;
-
-Usually we do not assign the pointer while data structure is incomplete.
-That's said, please leave this line as it was.
-
-On top of that, why you can't move the above switch to the place where old
-function was assigned?
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+---
+bod
