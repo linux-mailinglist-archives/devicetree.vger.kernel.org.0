@@ -2,87 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F237553305D
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 20:24:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3478C533063
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 20:26:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240304AbiEXSYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 14:24:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48872 "EHLO
+        id S240330AbiEXS0W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 14:26:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240290AbiEXSYa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 14:24:30 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07AC48A303;
-        Tue, 24 May 2022 11:24:30 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S240185AbiEXS0V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 14:26:21 -0400
+Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [IPv6:2001:4b7a:2000:18::164])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ED251D326
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 11:26:17 -0700 (PDT)
+Received: from SoMainline.org (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id AFED2B817F2;
-        Tue, 24 May 2022 18:24:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B8C7C34100;
-        Tue, 24 May 2022 18:24:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1653416667;
-        bh=PaaPMtyl3CpkNEzDJiWcGRpMZpJ/HowDIzdVOpjc9oA=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=A4U3hf5bmSfuPqXdP3wptw+XkYJoWkdqpnzsF6TmLspwyGau5Vu7YxxSt5fDY0F9Z
-         DkQr0hyLbPbq6gD7obJvTo+NgO1vP9ol74qs7CflFz/6v3jznryTI09PynK06A564n
-         Y4JI8c0FLCQpfPbpdufk6fbL4oHqUxZwIonp0K2upUWG1s5IKpV1wmpBShHuRJDx7w
-         fYEPmZ/MgQtBuJC8ceHPR/UiXm60XdTvvmPMPwfv39HS0rOPT49q58HFN9leA02PD9
-         U6g+/byi3Q3Fn2OOfhHdcxucVkTk9tlKPzpG4c/StyiNvjeq5OfvRTd2slmdj140be
-         lDf4QZoFvCs0Q==
-Date:   Tue, 24 May 2022 11:24:25 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Michael Hennerich <michael.hennerich@analog.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Josua Mayer <josua@solid-run.com>,
-        netdev <netdev@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Alexandru Tachici <alexandru.tachici@analog.com>
-Subject: Re: [PATCH] dt-bindings: net: adin: Fix adi,phy-output-clock
- description syntax
-Message-ID: <20220524112425.72f8c6e0@kernel.org>
-In-Reply-To: <CAMuHMdU3efmsc0-o6DJb013dg83pfdM-e3WiS+CjgzSuTceEQA@mail.gmail.com>
-References: <6fcef2665a6cd86a021509a84c5956ec2efd93ed.1653401420.git.geert+renesas@glider.be>
-        <CAMuHMdU3efmsc0-o6DJb013dg83pfdM-e3WiS+CjgzSuTceEQA@mail.gmail.com>
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 6177A2058D;
+        Tue, 24 May 2022 20:26:15 +0200 (CEST)
+Date:   Tue, 24 May 2022 20:26:14 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Pavel Machek <pavel@ucw.cz>, Richard Purdie <rpurdie@rpsys.net>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] leds: Add driver for Qualcomm LPG
+Message-ID: <20220524182614.rwqjcmglc6jawbxq@SoMainline.org>
+References: <20170323055435.29197-1-bjorn.andersson@linaro.org>
+ <20220523163038.GA9124@duo.ucw.cz>
+ <CAOCOHw7N9EHcxSSe6n8828oy2fh6xNxRYf9OUXkY4SQh6gtVLw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAOCOHw7N9EHcxSSe6n8828oy2fh6xNxRYf9OUXkY4SQh6gtVLw@mail.gmail.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 24 May 2022 16:30:18 +0200 Geert Uytterhoeven wrote:
-> On Tue, May 24, 2022 at 4:12 PM Geert Uytterhoeven
-> <geert+renesas@glider.be> wrote:
-> > "make dt_binding_check":
+On 2022-05-24 10:02:51, Bjorn Andersson wrote:
+[..]
+> > I'd really like to see the patch fixing the pattern interface (or
+> > disabling it). I don't want to push the tree to Linus with that bug.
 > >
-> >     Documentation/devicetree/bindings/net/adi,adin.yaml:40:77: [error] syntax error: mapping values are not allowed here (syntax)
-> >
-> > The first line of the description ends with a colon, hence the block
-> > needs to be marked with a "|".
-> >
-> > Fixes: 1f77204e11f8b9e5 ("dt-bindings: net: adin: document phy clock output properties")
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > ---
-> >  Documentation/devicetree/bindings/net/adi,adin.yaml | 3 ++-  
 > 
-> Alexandru Ardelean's email address bounces, while he is listed as
-> a maintainer in several DT bindings files.
+> Please find a proposed update to lpg_pattern_set() and the documentation at:
+> https://lore.kernel.org/linux-arm-msm/20220523233719.1496297-1-bjorn.andersson@linaro.org/T/#u
+> 
+> @Marijn, would love to get your input on this proposal.
 
-Let's CC Alexandru Tachici, maybe he knows if we need to update 
-and to what.
+Thanks, it looks good from a first observation but I'll test out the
+implementation later.  Meanwhile, curious to your progress on processing
+the last review :)
+
+- Marijn
