@@ -2,76 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6383153234B
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 08:36:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F3EC532399
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 09:04:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233684AbiEXGgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 02:36:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33638 "EHLO
+        id S234416AbiEXHEQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 03:04:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233612AbiEXGgR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 02:36:17 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 540FA3ED15
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 23:36:14 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id t25so29176133lfg.7
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 23:36:14 -0700 (PDT)
+        with ESMTP id S231145AbiEXHEP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 03:04:15 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E7767CDE6
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 00:04:14 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id a23so19766999ljd.9
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 00:04:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=naO7MfUZImeoXwi1QHGtkiW2IkE7ZgBBCUBLVbjErGs=;
-        b=tdjIKMzaQGMRuZHzjqWMkQra9s66xVHja7tX0VNqSU+hLS1xiKmO98GEsEHeZz20Q4
-         QOovmZrew5aKqPKVV4p1RZ9PIl9t9fopan9WMpWk6KICBShIF1tpQt1OUuts2E2HdXKz
-         PM1erRGq8wUDW1cwHx20Zohwi9i2Wt4lrqjBEp1hwNx88XexxzM4c64fUqssIJaT6+OJ
-         DB1TJURiECE8uVjIk7F8qGvTEKr9zBlKfkoU01fmgJ9e4iQ3lrgcuPT9VaLsVtPa719n
-         XxoDN6f+N/vWHsivFgCB9d/OVB7gDy98z28Ypnqz90lefgNwdygLE+qkIKao+lwTdUO5
-         OnpQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gaJhjmwqczm2UYXAEhvO2v8f6V5xAgILsqBVg/JTTfw=;
+        b=VoWqY7LHF9P/vlorHNABRn3Lwgpm0nOfqWW+i07nErI62PRwJMq7U7M22ov2GQ96Gj
+         6FEbuxxVCcszDcaSdhwtC4fUTnnlVtZjFtZOZpp4jix08SZpqkV8L89/CSNCPeUNSrC+
+         qEv8t1AKdjVlr3/Tjc45z/UcwKV3yey1SG8jvQ6Sotf8jxwsEnYWv7+P9E652YrJ7ZQU
+         wmlE79vQqjouBb6uQiPsvC/XgiHHOgOX2OTWSMVItaPKkvuaywtDmpO7RHWP1y5ikd/F
+         S4ZwneXPGuTgH6VzRqUpuW8TGiBQe7VAU62ITWXrdnh1X2ULGO9T+YzzZdjUh9bTbpzs
+         8g2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=naO7MfUZImeoXwi1QHGtkiW2IkE7ZgBBCUBLVbjErGs=;
-        b=Kxe0Xc7BnJEo1F7IF8mr+lk5Xah1J/Jn5FCp/0detTt5jmshOaxvsOmzeReJBhcKWe
-         JkHjV4Q4yqkcH9ZuzONPPF85Ran/Nw39NWsKBT2IjZJftaftU/D+ZNBHN63upa9Ch4Cs
-         em5iNWqI0q5ehZWsASLxGgsWuttY5BWSojdWwJEdeqYU7AqNTUo5QuhNpTZBooLC4q/n
-         pbTNCfs2ubIJqIqL5AQEAFhFASCqLZ7PA3XvRNq4PtJ9GSa1eUFqhMl8nxVNKw+1Nev8
-         Z5AaiEbcajZhKzinQ+RqvR1D+zE66aHSwD8NYoGrbMaqX+i7BB2QGCYuvo2UWoMIeC1M
-         aG6w==
-X-Gm-Message-State: AOAM532SwzGa8yEzelZtGIcw/08051eAgDg2cUQyWwnxTr3M4HlgC1xu
-        V7j3GPejOyNT8K+weHWi2KvbHQ==
-X-Google-Smtp-Source: ABdhPJznnkdfT2gEMM9zUFDFG/znJx0xsTuJYEjWAjhGfeGvsJeGRt1A3uUGSXqiLqwuYnVjGudssA==
-X-Received: by 2002:a05:6512:1585:b0:448:3936:a5a0 with SMTP id bp5-20020a056512158500b004483936a5a0mr18327566lfb.108.1653374172109;
-        Mon, 23 May 2022 23:36:12 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id c3-20020a056512074300b0047255d2115asm2356464lfs.137.2022.05.23.23.36.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 May 2022 23:36:11 -0700 (PDT)
-Message-ID: <0d48b3fa-d6db-68d8-93a0-79902a119735@linaro.org>
-Date:   Tue, 24 May 2022 08:36:10 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 1/2] dt-bindings: leds: lp50xx: correct reg/unit addresses
- in example
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Pavel Machek <pavel@ucw.cz>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dan Murphy <dmurphy@ti.com>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>
-References: <20220518082215.14358-1-krzysztof.kozlowski@linaro.org>
- <20220523213528.GA2227380-robh@kernel.org>
+        bh=gaJhjmwqczm2UYXAEhvO2v8f6V5xAgILsqBVg/JTTfw=;
+        b=YrPhQyqM5p83e1eXpsDmEukel5n2sd31vAvQsrt2hKerg2xy4rWdVj5uqhOhRlx1TN
+         yqWMaH7Ii4brIFcOFOz+IzdcrrUIhL1BXh9cqhcl5lSR2q1ICUX90cIbDHnuDvb/H+WP
+         NRJCXCV1gf3QuUYq8HibsCAXUzNm+eI854xSIVb9c3lXmLfJKPNeNvY7TBg8l/AQjei9
+         uxY3htFYJSUY5wFd/0qAEAIT92WCuhJv0uKqLOT9qKVQS8KNOb/0qvI/Z0q0F0gI6Lyq
+         0l1fDp35yho3XhAAEr6zJzp5rToOXVH3OJ0zLS/9UxRMq/aiFDz5UKgUARhAs9MiPFKx
+         /NBQ==
+X-Gm-Message-State: AOAM533XaSGsgSQeqQyOC63GWmIrD4Fc2OpbQZ/j8s4NCjhsXNi5PXfF
+        IAmRFVJWLNJXcxO8Yo/4r0clYg==
+X-Google-Smtp-Source: ABdhPJzSKnjnAYuNMX9kHQ2kVrZI1whSyhNNKeUSeT0d8Nn57g588/W24ySsouKqFXRKCn6HmsfGug==
+X-Received: by 2002:a2e:8404:0:b0:250:cde7:e9e3 with SMTP id z4-20020a2e8404000000b00250cde7e9e3mr15286313ljg.289.1653375851311;
+        Tue, 24 May 2022 00:04:11 -0700 (PDT)
+Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id u28-20020ac251dc000000b0047791125880sm2373479lfm.267.2022.05.24.00.04.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 May 2022 00:04:10 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220523213528.GA2227380-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: soc: qcom,smd: do not use pattern for simple rpm-requests string
+Date:   Tue, 24 May 2022 09:04:08 +0200
+Message-Id: <20220524070408.39505-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,64 +71,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/05/2022 23:35, Rob Herring wrote:
-> On Wed, May 18, 2022 at 10:22:14AM +0200, Krzysztof Kozlowski wrote:
->> The multi-led node defined address/size cells, so it intended to have
->> children with unit addresses.
->>
->> The second multi-led's reg property defined three LED indexes within one
->> reg item, which is not correct - these are three separate items.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> ---
->>
->> Cc: Kyle Swenson <kyle.swenson@est.tech>
->> ---
->>  .../devicetree/bindings/leds/leds-lp50xx.yaml | 22 ++++++++++++-------
->>  1 file changed, 14 insertions(+), 8 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml b/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
->> index f12fe5b53f30..dc1ac905bb91 100644
->> --- a/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
->> +++ b/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
->> @@ -99,35 +99,41 @@ examples:
->>                 color = <LED_COLOR_ID_RGB>;
->>                 function = LED_FUNCTION_CHARGING;
->>  
->> -               led-0 {
->> +               led@0 {
->> +                   reg = <0x0>;
->>                     color = <LED_COLOR_ID_RED>;
->>                 };
->>  
->> -               led-1 {
->> +               led@1 {
->> +                   reg = <0x1>;
->>                     color = <LED_COLOR_ID_GREEN>;
->>                 };
->>  
->> -               led-2 {
->> +               led@2 {
->> +                   reg = <0x2>;
->>                     color = <LED_COLOR_ID_BLUE>;
->>                 };
->>            };
->>  
->>            multi-led@2 {
->>              #address-cells = <1>;
->> -            #size-cells = <2>;
->> -            reg = <0x2 0x3 0x5>;
->> +            #size-cells = <0>;
->> +            reg = <0x3>, <0x4>, <0x5>;
-> 
-> The unit-address is 2, but the reg value is 3?
+patternProperties should not be used for properties with a simple string
+as name:
 
-Right, the multi-led should be also @3 to match the reg and first led in
-children.
+  Documentation/devicetree/bindings/soc/qcom/qcom,smd.yaml: patternProperties:^(.*-edge|rpm)$:patternProperties:
+    '^rpm-requests$' should not be valid under {'pattern': '^\\^[a-zA-Z0-9,\\-._#]+\\$$'}
 
-Thanks.
+Fixes: 375eed5f51a8 ("dt-bindings: soc: qcom,smd: convert to dtschema")
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/soc/qcom/qcom,smd.yaml | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,smd.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,smd.yaml
+index e6f9ffa1c0ea..bca07bb13ebf 100644
+--- a/Documentation/devicetree/bindings/soc/qcom/qcom,smd.yaml
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom,smd.yaml
+@@ -66,9 +66,7 @@ patternProperties:
+           The identifier for the remote processor as known by the rest of the
+           system.
+ 
+-    # Binding for edge subnodes is not complete
+-    patternProperties:
+-      "^rpm-requests$":
++      rpm-requests:
+         type: object
+         description:
+           In turn, subnodes of the "edges" represent devices tied to SMD
+-- 
+2.34.1
 
-Best regards,
-Krzysztof
