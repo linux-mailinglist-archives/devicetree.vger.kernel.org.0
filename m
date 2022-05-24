@@ -2,57 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9689B5327DE
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 12:39:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93576532835
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 12:50:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236304AbiEXKiF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 06:38:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46506 "EHLO
+        id S232521AbiEXKt7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 06:49:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236299AbiEXKiE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 06:38:04 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80F93252B6;
-        Tue, 24 May 2022 03:38:03 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id D37631F42A6B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1653388682;
-        bh=kAIOsWqAMnO77xueu3Jw6gGhUwicsViTsQBfZcFuvfs=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=EhUmzDLt6WDvpAqb5EoHZudGltwo6RmNjLHv4rh3UaVC471tvIHAk82ala1QPJl99
-         xiSAKZuUauXTZpDGcHpXBB+zHXy/J44Q6vVUfMmo4OSxHqEFDCzC044JpOYku6f1sD
-         +lLQgGimgCA3B5OPv9ry5dhNGjvwVxjEZxn7v4ufcMBTH2A87yqjblnZrKzLK1LMIQ
-         XRk3/+O+IiauYLSBowNKvl4mQCCpT6aJFHmrfMaL34CLciLXQgphyp5RLTOANxtHXl
-         uBLpXyoHIF75EPNqToXQjColYdiaNmBya3lbmq6w+oLokegoTlKfXRYpnk+9clenan
-         96rqLBFKEBwog==
-Message-ID: <d97f0fd1-bbaf-331c-6b51-fc72648fab43@collabora.com>
-Date:   Tue, 24 May 2022 12:37:59 +0200
+        with ESMTP id S229534AbiEXKt6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 06:49:58 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45F1D5F8DA;
+        Tue, 24 May 2022 03:49:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1653389397; x=1684925397;
+  h=message-id:date:mime-version:subject:to:references:from:
+   in-reply-to:content-transfer-encoding;
+  bh=Tk/huaI+Brj6VolyTS3vaRaaffgo18jJiY/piQh5zVQ=;
+  b=JMxdD/KNFlqL2GSVFSTx3Owy9pgL4I27Vp7arGu5oDpqZzC3tGfikt3+
+   K2CzFZTNgbq/UfqsSyBW1FfXuTvUztDXQG2CBDv30GDvd3algQDBZoQxK
+   5nyvdqZJ3svKIJYhzU2CPXY73Ig7+HusftXvy0wLhWB4HaNtRpx0gLnyD
+   A=;
+Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 24 May 2022 03:49:56 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 May 2022 03:49:56 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 24 May 2022 03:49:55 -0700
+Received: from [10.216.5.195] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Tue, 24 May
+ 2022 03:49:49 -0700
+Message-ID: <51b8aca1-e038-4907-e973-ebdbebaf9b28@quicinc.com>
+Date:   Tue, 24 May 2022 16:19:47 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH 1/4] dt-bindings: usb: mtk-xhci: add support 'resets'
- property
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v2] ASoC: qcom: soundwire: Add support for controlling
+ audio CGCR from HLOS
 Content-Language: en-US
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Eddie Hung <eddie.hung@mediatek.com>
-References: <20220523090449.14430-1-chunfeng.yun@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220523090449.14430-1-chunfeng.yun@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Stephen Boyd <swboyd@chromium.org>, <agross@kernel.org>,
+        <alsa-devel@alsa-project.org>, <bgoswami@quicinc.com>,
+        <bjorn.andersson@linaro.org>, <broonie@kernel.org>,
+        <devicetree@vger.kernel.org>, <judyhsiao@chromium.org>,
+        <lgirdwood@gmail.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <perex@perex.cz>,
+        <quic_plai@quicinc.com>, <quic_rohkumar@quicinc.com>,
+        <robh+dt@kernel.org>, <srinivas.kandagatla@linaro.org>,
+        <tiwai@suse.com>, <vkoul@kernel.org>
+References: <1652877755-25120-1-git-send-email-quic_srivasam@quicinc.com>
+ <CAE-0n53g9rWks+euk5KHBzmJNEB3xLbJzMgCxN52DO5x+9-Wgg@mail.gmail.com>
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Organization: Qualcomm
+In-Reply-To: <CAE-0n53g9rWks+euk5KHBzmJNEB3xLbJzMgCxN52DO5x+9-Wgg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,12 +74,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 23/05/22 11:04, Chunfeng Yun ha scritto:
-> Add 'resets' property to support IP reset usually by top pericfg.
-> 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-
-
+On 5/21/2022 8:43 AM, Stephen Boyd wrote:
+Thanks for your time Stephen!!!
+> Quoting Srinivasa Rao Mandadapu (2022-05-18 05:42:35)
+>> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
+>> index da1ad7e..445e481 100644
+>> --- a/drivers/soundwire/qcom.c
+>> +++ b/drivers/soundwire/qcom.c
+>> @@ -1333,6 +1337,10 @@ static int qcom_swrm_probe(struct platform_device *pdev)
+>>          ctrl->bus.compute_params = &qcom_swrm_compute_params;
+>>          ctrl->bus.clk_stop_timeout = 300;
+>>
+>> +       ctrl->audio_cgcr = devm_reset_control_get_exclusive(dev, "swr_audio_cgcr");
+>> +       if (IS_ERR(ctrl->audio_cgcr))
+>> +               dev_err(dev, "Failed to get audio_cgcr reset required for soundwire-v1.6.0\n");
+> Why is there no return on error here? Is the reset optional?
+Yes it's optional. For older platforms this is not required.
+>
+>> +
+>>          ret = qcom_swrm_get_port_config(ctrl);
+>>          if (ret)
+>>                  goto err_clk;
