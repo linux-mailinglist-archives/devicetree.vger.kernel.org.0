@@ -2,75 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15A115326C1
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 11:47:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFA335326D3
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 11:51:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235849AbiEXJqq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 05:46:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38380 "EHLO
+        id S235875AbiEXJuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 05:50:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233831AbiEXJqp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 05:46:45 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE93B2CE13
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 02:46:43 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id bu29so29970647lfb.0
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 02:46:43 -0700 (PDT)
+        with ESMTP id S230354AbiEXJuX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 05:50:23 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76F2A6D4C2
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 02:50:22 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id q1so10560339ljb.5
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 02:50:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=IMbxClHWPS03PbbitBq3EQjBaeTdpKNatYW1zH8rzVo=;
-        b=YHoPt3HgNPBuYbbTNSRtINqeAZgMQZGvk+Za2ftRzKkNR9F9TWpSdCLuDANiVg4Ha5
-         HlebbofUvH/fLuZbeMQf0JsfDkjNoZfqiR56opCYbjizHVYfPHHBXmbNXPMFRW+AuNlo
-         xgaP/P2zVxyM8M0vuMHEdVM6b1ZV4L773kW3vlt7onYfpkCLa8yHzER9NeB0QxlTS6/m
-         VwIDL8qnKLc/t2L1mpbtzn7Vv5VTcPDN6XE/LizsVC9VoIdYRqe7kuoMgnEC3PWyVvtk
-         zj2TohBH9rkF2xAPJzaRBkQSyqluadvDmaDntru1tLs9PrsNVrd9JyKqeiIZpjP3FSCA
-         fzVA==
+        bh=G5WlWLi6CTURLGag3t+5CNRf4lZCgCTJvDTMTbTzQ5s=;
+        b=M5ncORw3o6tH0W6GJp/VpORJZBt9q4377NZcTfDcKeo1/AQf38SDgEJiTum+C02xgc
+         r4QaJJ+obzajUh+DovgWFW42ZkroAxdOoffR7GZhttn1jnPQp3TV5ZWcpJfqYQrCFV6L
+         57BRFW0TbWj5Oc5tZNBBqfpwr7W6AAgPIBI2pS8LZnAtnE+MEpd4xGPt6NXBEIR9McxM
+         maGD+k8hr8IO056uwFRRKdMrsrk7dXrwIrpZQ0bokeNSqP+M3uMIsPiHmJ+FsyPUOiBL
+         NibYJZfMinCiQEXphf+a1ecq+yd7bfS4GmXu5raI7xcXYVJliT7pFVK5U9jyEgqkBtOZ
+         e7tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=IMbxClHWPS03PbbitBq3EQjBaeTdpKNatYW1zH8rzVo=;
-        b=zRDBFWc1xe5lBslOAGDNWooW7ZbRaCawC1lg+Jf/2i4OgudPxvBNn60Ea39Z/5Lag0
-         zF9fRCu+b/h1rmiGmz9hSAHHKAcY4sZ6SL4gb27PBBHmo3lL962ZYXVj7tTtU1WexONd
-         9zdzhTlMwglcBOw7g4AfRh6PjihgGNjK9X0CoU2HRIZas69RwTnHiT4I1DX1p0HSbIv+
-         uBBDkX8NwU6anj4sbD/rOL7wqvPzXStot2HLt7nhiQn1WCQCnx+SqKy8Y4bCpSliXzGW
-         hrVH5Qeij0BNjQHKiCC7Q9Ry2WIgSjx5WlITc205Qtz4TTJzcUDeCec85mBxcdtbjnSS
-         ZPvQ==
-X-Gm-Message-State: AOAM533+im+6UKhnyPNXOgyzaJhGCKB4dXMuR8EgB66RnMxFtzHVjcsj
-        ODFNR7KVWpJMZIZogS5VPve+zw==
-X-Google-Smtp-Source: ABdhPJxYev9XNLxFP7wwILeL72uQun1SCV/fVs8X5/P+XotqeyeO0wiY2eMv6f5dNGdPO9WpfO3cZA==
-X-Received: by 2002:a05:6512:12c6:b0:477:990f:f56e with SMTP id p6-20020a05651212c600b00477990ff56emr18743357lfg.249.1653385602190;
-        Tue, 24 May 2022 02:46:42 -0700 (PDT)
+        bh=G5WlWLi6CTURLGag3t+5CNRf4lZCgCTJvDTMTbTzQ5s=;
+        b=d+0QL6vtRSm624r+M/y3Yg2STNl+RRUBn8r66wd88Adggp/FOknDU0OZ7zW1gxRJjs
+         ie6TxQ6JZKspI1ODQMc0qaT83ZxsgX2DSJI9iNLzUn3F4xgP15NX++M55mzJY6zFmtr3
+         QuVbotyWjL2qi7mA8seJVLz1dFIU4KExiKUfX+4HRI5wxUrjqaDorNmDmpUhmJWKKyTd
+         xL0BU2xRnfCuGkDMqN+SYtv1YMywQKzMPoFeBNszJarHAGZTz9Jo95trum/MDWmZon6E
+         ilxFRm2UBafNJrK7820Hc+6qoSs9oOpeJVBR3Jle4oSfmS4/v6vzcl7mbTG5qBfT1IMW
+         Y4OQ==
+X-Gm-Message-State: AOAM532vpU+lx5wvLH8pJ5IYv0xyjWREkOHFFsZWQqSXMcINDMWR5EBx
+        pIrczcbJW0MkCLn7W7y0fbGasWzNvBW90g==
+X-Google-Smtp-Source: ABdhPJzADTR5ZRgZ2CtrdOGOpAvEuXwgcWWGhbFMTvfVxCiP3KAzV1YJN8j3H75tLbWtQ/a5Bfw4zg==
+X-Received: by 2002:a2e:91d9:0:b0:253:d761:130 with SMTP id u25-20020a2e91d9000000b00253d7610130mr14134812ljg.7.1653385820828;
+        Tue, 24 May 2022 02:50:20 -0700 (PDT)
 Received: from [172.20.68.48] ([91.221.145.6])
-        by smtp.gmail.com with ESMTPSA id q17-20020ac25111000000b0047861cba7bdsm1613359lfb.53.2022.05.24.02.46.41
+        by smtp.gmail.com with ESMTPSA id m10-20020a056512358a00b0047255d21152sm2441897lfr.129.2022.05.24.02.50.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 May 2022 02:46:41 -0700 (PDT)
-Message-ID: <cbaf3536-d89d-08cf-1f47-d298ee11a80e@linaro.org>
-Date:   Tue, 24 May 2022 11:46:39 +0200
+        Tue, 24 May 2022 02:50:20 -0700 (PDT)
+Message-ID: <a59707ea-0b58-0f3a-b39c-bc33d0625c8e@linaro.org>
+Date:   Tue, 24 May 2022 11:50:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH V2 1/2] bindings: fsl-imx-sdma: Document 'HDMI Audio'
- transfer
+Subject: Re: [PATCH v2] arm64: dts: mt7986: add built-in Wi-Fi device nodes
 Content-Language: en-US
-To:     Joy Zou <joy.zou@nxp.com>, vkoul@kernel.org
-Cc:     shengjiu.wang@nxp.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20220524080337.1322240-1-joy.zou@nxp.com>
+To:     Peter Chiu <chui-hao.chiu@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     devicetree@vger.kernel.org, Ryder Lee <ryder.Lee@mediatek.com>,
+        Evelyn Tsai <evelyn.tsai@mediatek.com>,
+        Sam Shih <sam.shih@mediatek.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220524032430.6261-1-chui-hao.chiu@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220524080337.1322240-1-joy.zou@nxp.com>
+In-Reply-To: <20220524032430.6261-1-chui-hao.chiu@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,196 +79,150 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/05/2022 10:03, Joy Zou wrote:
-> Add HDMI Audio transfer type.
+On 24/05/2022 05:24, Peter Chiu wrote:
+> This enables built-in 802.11ax Wi-Fi support.
 > 
-> convert the sdma bindings txt into yaml in v2.
-> 
-> Signed-off-by: Joy Zou <joy.zou@nxp.com>
+> Reviewed-by: Sam Shih <sam.shih@mediatek.com>
+> Reviewed-by: Ryder Lee <ryder.lee@mediatek.com>
+> Signed-off-by: Peter Chiu <chui-hao.chiu@mediatek.com>
 > ---
-> Changes since v1:
-> convert the sdma bindings txt into yaml in v2.
+> v2: add clocks and clock-names
 > ---
->  .../devicetree/bindings/dma/fsl-imx-sdma.yaml | 135 ++++++++++++++++++
-
-There is no conversion here, only new file...
-
->  1 file changed, 135 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dma/fsl-imx-sdma.yaml
+>  arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts | 41 +++++++++++++++++++
+>  arch/arm64/boot/dts/mediatek/mt7986a.dtsi    | 22 ++++++++++
+>  arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts | 43 ++++++++++++++++++++
+>  3 files changed, 106 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/dma/fsl-imx-sdma.yaml b/Documentation/devicetree/bindings/dma/fsl-imx-sdma.yaml
-> new file mode 100644
-> index 000000000000..5b4f7a09a395
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/fsl-imx-sdma.yaml
-
-Filename: fsl,imx-sdma.yaml
-
-> @@ -0,0 +1,135 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dma/fsl-imx-sdma.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+> index 24c155c71f0d..359e14f8e9f1 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+> @@ -57,6 +57,13 @@
+>  	status = "okay";
+>  };
+>  
+> +&wmac {
+> +	status = "okay";
+> +	pinctrl-names = "default", "dbdc";
+> +	pinctrl-0 = <&wf_2g_5g_pins>;
+> +	pinctrl-1 = <&wf_dbdc_pins>;
+> +};
 > +
-> +title: Freescale Smart Direct Memory Access (SDMA) Controller for i.MX
+>  &pio {
+>  	pcie_pins: pcie-pins {
+>  		mux {
+> @@ -99,6 +106,40 @@
+>  			groups = "jtag";
+>  		};
+>  	};
 > +
-> +maintainers:
-> +  - Vinod Koul <vkoul@kernel.org>
-
-This should not be subsystem maintainer but someone closer to the actual
-device.
-
+> +	wf_2g_5g_pins: wf_2g_5g-pins {
+> +		mux {
+> +			function = "wifi";
+> +			groups = "wf_2g", "wf_5g";
+> +		};
+> +		conf {
+> +			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
+> +			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
+> +			       "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
+> +			       "WF0_TOP_CLK", "WF0_TOP_DATA", "WF1_HB1",
+> +			       "WF1_HB2", "WF1_HB3", "WF1_HB4", "WF1_HB0",
+> +			       "WF1_HB5", "WF1_HB6", "WF1_HB7", "WF1_HB8",
+> +			       "WF1_TOP_CLK", "WF1_TOP_DATA";
+> +			drive-strength = <4>;
+> +		};
+> +	};
 > +
-> +allOf:
-> +  - $ref: "dma-controller.yaml#"
+> +	wf_dbdc_pins: wf_dbdc-pins {
+> +		mux {
+> +			function = "wifi";
+> +			groups = "wf_dbdc";
+> +		};
+> +		conf {
+> +			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
+> +			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
+> +			       "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
+> +			       "WF0_TOP_CLK", "WF0_TOP_DATA", "WF1_HB1",
+> +			       "WF1_HB2", "WF1_HB3", "WF1_HB4", "WF1_HB0",
+> +			       "WF1_HB5", "WF1_HB6", "WF1_HB7", "WF1_HB8",
+> +			       "WF1_TOP_CLK", "WF1_TOP_DATA";
+> +			drive-strength = <4>;
+> +		};
+> +	};
+>  };
+>  
+>  &spi0 {
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+> index 9663a0779416..47d719fb66fb 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+> @@ -8,6 +8,7 @@
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/clock/mt7986-clk.h>
+>  #include <dt-bindings/phy/phy.h>
+> +#include <dt-bindings/reset/mt7986-resets.h>
+>  
+>  / {
+>  	interrupt-parent = <&gic>;
+> @@ -80,6 +81,11 @@
+>  			reg = <0 0x43000000 0 0x30000>;
+>  			no-map;
+>  		};
 > +
-> +# Everything else is described in the common file
+> +		wmcpu_emi: wmcpu-reserved@4fc00000 {
+> +			no-map;
+> +			reg = <0 0x4fc00000 0 0x00100000>;
+> +		};
+>  	};
+>  
+>  	timer {
+> @@ -381,6 +387,22 @@
+>  			 #reset-cells = <1>;
+>  		};
+>  
+> +		wmac: wmac@18000000 {
 
-Skip the comment please.
+This is wifi, right? If so, then generic node name - wifi.
 
+> +			compatible = "mediatek,mt7986-wmac";
+> +			resets = <&watchdog MT7986_TOPRGU_CONSYS_SW_RST>;
+> +			reset-names = "consys";
+> +			clocks = <&topckgen CLK_TOP_CONN_MCUSYS_SEL>,
+> +				 <&topckgen CLK_TOP_AP2CNN_HOST_SEL>;
+> +			clock-names = "mcu", "ap2conn";
+> +			reg = <0 0x18000000 0 0x1000000>,
+> +			      <0 0x10003000 0 0x1000>,
+> +			      <0 0x11d10000 0 0x1000>;
+> +			interrupts = <GIC_SPI 213 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 214 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 216 IRQ_TYPE_LEVEL_HIGH>;
+> +			memory-region = <&wmcpu_emi>;
+> +		};
+>  	};
+>  
+>  };
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
+> index d4078feb4aad..f25312c9a289 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
+> @@ -97,3 +97,46 @@
+>  &usb_phy {
+>  	status = "okay";
+>  };
 > +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - fsl,imx25-sdma
-> +          - fsl,imx31-sdma
-> +          - fsl,imx31-to1-sdma
-> +          - fsl,imx31-to2-sdma
-> +          - fsl,imx35-to1-sdma
-> +          - fsl,imx35-to2-sdma
-> +          - fsl,imx51-sdma
-> +          - fsl,imx53-sdma
-> +          - fsl,imx6q-sdma
-> +          - fsl,imx7d-sdma
-> +          - fsl,imx6sx-sdma
-> +          - fsl,imx6ul-sdma
-> +          - fsl,imx8mm-sdma
-> +          - fsl,imx8mn-sdma
-> +          - fsl,imx8mp-sdma
-> +      - enum:
-> +          - fsl,imx35-sdma
-> +          - fsl,imx8mq-sdma
-
-No, fallback cannot be variable. I doubt that
-fsl,imx25-sdma+fsl,imx8mq-sdma makes any sense!
-
-Additionally, this does not match existing DTS. Please run `make
-dtbs_check`.
-
+> +&wmac {
+> +	status = "okay";
+> +	pinctrl-names = "default", "dbdc";
+> +	pinctrl-0 = <&wf_2g_5g_pins>;
+> +	pinctrl-1 = <&wf_dbdc_pins>;
+> +};
 > +
-> +  reg:
-> +    description: Should contain SDMA registers location and length
+> +&pio {
+> +	wf_2g_5g_pins: wf_2g_5g-pins {
 
-Skip description. Uou need to add maxItems
-
-> +
-> +  interrupts:
-> +    description: Should contain SDMA interrupt
-
-Skip description. Uou need to add maxItems
-
-
-> +
-> +  fsl,sdma-ram-script-name:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description: Should contain the full path of SDMA RAM scripts firmware.
-> +
-> +  "#dma-cells":
-> +    const: 3
-> +    description: |
-> +      The first cell: request/event ID
-> +
-> +      The second cell: peripheral types ID
-> +        enum:
-> +          - MCU domain SSI: 0
-> +          - Shared SSI: 1
-> +          - MMC: 2
-> +          - SDHC: 3
-> +          - MCU domain UART: 4
-> +          - Shared UART: 5
-> +          - FIRI: 6
-> +          - MCU domain CSPI: 7
-> +          - Shared CSPI: 8
-> +          - SIM: 9
-> +          - ATA: 10
-> +          - CCM: 11
-> +          - External peripheral: 12
-> +          - Memory Stick Host Controller: 13
-> +          - Shared Memory Stick Host Controller: 14
-> +          - DSP: 15
-> +          - Memory: 16
-> +          - FIFO type Memory: 17
-> +          - SPDIF: 18
-> +          - IPU Memory: 19
-> +          - ASRC: 20
-> +          - ESAI: 21
-> +          - SSI Dual FIFO: 22
-> +              description: needs firmware more than ver 2> +          - Shared ASRC: 23
-> +          - SAI: 24
-> +          - HDMI Audio: 25
-> +
-> +       The third cell: transfer priority ID
-> +         enum:
-> +           - High: 0
-> +           - Medium: 1
-> +           - Low: 2
-> +
-> +  gpr:
-> +    description: The phandle to the General Purpose Register (GPR) node
-
-type/ref needed
-
-> +
-> +  fsl,sdma-event-remap:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    description: |
-> +      Register bits of sdma event remap, the format is <reg shift val>.
-> +      - reg: the GPR register offset
-> +      - shift: the bit position inside the GPR register
-> +      - val: the value of the bit (0 or 1)
-
-Need maxItems or items with description.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - fsl,sdma-ram-script-name
-> +  - "#dma-cells"
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    sdma: dma-controller@83fb0000 {
-> +      compatible = "fsl,imx51-sdma", "fsl,imx35-sdma";
-> +      reg = <0x83fb0000 0x4000>;
-> +      interrupts = <6>;
-> +      #dma-cells = <3>;
-> +      fsl,sdma-ram-script-name = "sdma-imx51.bin";
-> +    };
-> +
-> +#DMA clients connected to the i.MX SDMA controller must use the format
-> +#described in the dma-controller.yaml file.
-> +  - |
-> +    ssi2: ssi@70014000 {
-
-Skip consumer example, it's obvious.
-
-> +      compatible = "fsl,imx51-ssi", "fsl,imx21-ssi";
-> +      reg = <0x70014000 0x4000>;
-> +      interrupts = <30>;
-> +      clocks = <&clks 49>;
-> +      dmas = <&sdma 24 1 0>,
-> +             <&sdma 25 1 0>;
-> +      dma-names = "rx", "tx";
-> +      fsl,fifo-depth = <15>;
-> +    };
-> +
-> +...
+No underscores in node names, unless binding requires them... but it
+should not as this is not allowed character.
 
 
 Best regards,
