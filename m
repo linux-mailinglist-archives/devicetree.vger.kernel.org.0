@@ -2,53 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 123C8532BB8
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 15:55:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04BF3532BDD
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 16:02:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237986AbiEXNyy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 09:54:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53916 "EHLO
+        id S238077AbiEXOCR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 10:02:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236290AbiEXNyx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 09:54:53 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C66D89728E;
-        Tue, 24 May 2022 06:54:51 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 1D567CE1B57;
-        Tue, 24 May 2022 13:54:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70FC1C36AE5;
-        Tue, 24 May 2022 13:54:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1653400488;
-        bh=8gk1BM4Q1BDX3V8XDZBmAWQIJt29q+UopM2y8lNtbOE=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=BBwNijMXc2LMi8dhfbzHQDZKNwtbup7Mw+jy4ZxZECi51B68LzJlMgY1AfFlDN8/K
-         3y70fHazj/UtsyZgxMwRd2F/tlNWoP0MRaXPs0L9+IWC8U/wVTDCh63V3PlCO5raaP
-         z5ZMCHrFQomJ8EQ9vcCXdTybpEmJ56XcSNWlDAEb/f7mYDNkQQRr3GHtGVQnnEtJJK
-         5JMBYE5hPcYlvwA4DAmzNnL0Yj4ADbOhUefqAilHp9oqfix67cZui+OELQIs1Hj7yO
-         68Y90E2wVg+UQUA3G7wWIbNCTh2KbKQutUuQBwkrJQ7vqxXVTYR+myHWFiUToEvnRM
-         8ykLP8OVFffDA==
-From:   Dinh Nguyen <dinguyen@kernel.org>
-To:     jarkko.nikula@linux.intel.com
-Cc:     dinguyen@kernel.org, andriy.shevchenko@linux.intel.com,
-        mika.westerberg@linux.intel.com, robh+dt@kernel.org,
-        krzk+dt@kernel.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCHv2 2/2] dt-bindings: i2c: dw: Add Intel's SoCFPGA I2C controller
-Date:   Tue, 24 May 2022 08:54:41 -0500
-Message-Id: <20220524135441.420600-2-dinguyen@kernel.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220524135441.420600-1-dinguyen@kernel.org>
-References: <20220524135441.420600-1-dinguyen@kernel.org>
+        with ESMTP id S238070AbiEXOCO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 10:02:14 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43D00403DA
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 07:02:12 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id p5-20020a1c2905000000b003970dd5404dso1478983wmp.0
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 07:02:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=sqf3aADiltdClrrlBqK9iuPQhOsobmKVutlcvdUuPOw=;
+        b=S0MSdkj1h7I6qxUoPqr6SjfQuxm44YfuMUZxpamDCVz4sbAhPsdCBA6h+4f1sPfyWe
+         ereYc96/w2uTZ87XB0W7CMo2jbvCJDgBaig2/iqtb0fwjuwt0uoRq2PGZIFdcQFIPxKE
+         aSmDsb/4p8vqBBzg3jAfQlUJRviSdd7HXblSzKcPjC6U/1JVCYvXyZ+3O2DQ9mlTcsiw
+         grLGxshUn1RZi6Ck4bTP1FoVZQ4ePGIOMVNgNG5AE9DOjHe2dS4Omj8tCRKJcpEaqyld
+         s/tJr+VLwcqxsvQUP7zrMEyQFh4j0qMI9cfJ38OlO8qLWMURvd59OjuYsjlz2bxFV+pY
+         2V1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=sqf3aADiltdClrrlBqK9iuPQhOsobmKVutlcvdUuPOw=;
+        b=4/lguAqe4TXmU5rYIauZ4/ZGSmZIXCYOOwJopg4lx6+b/ZFhivd+z+yTDYiKw+G2ZR
+         DnQlO9XKFGEMgCnYoC1lduN5Y9PNOkgKHpBSXdw/vwLhZUo+ggvDtpdgItTp/DmM2x4J
+         obm2R8DWSHPBk6zCyems3EyvunSX/WljatKCZ57YhOlRiJeUrfxSLIWSKVedTT+hclVR
+         R2F+vPAN3GuDcvxY8NlhUrc0t5bxHiB0rnSEwzC4dsOsmhowkcYjlQH53ItV//PO0AGU
+         cVRden7dG61UyFS3MELyQejWjB8Kg0sqNoCdzxENfSlKp1hbTZsh2+7wxsqvrRC9kRfi
+         2AMw==
+X-Gm-Message-State: AOAM530nW6W3OX8N/OPgzJcojxOLcwvPA9UmmT0KtFoLGj+Bus1PipsE
+        QDohwhWuhnNeOrJqtSIj3TW30g==
+X-Google-Smtp-Source: ABdhPJwPcnsIpMdSgU4cMCyaF/GbDGQ7PpPRBQvG3CnmZnZqXdWwM4kHuKq7zxc5TbDhyMivPHo3/w==
+X-Received: by 2002:a05:600c:209:b0:397:4a0f:7 with SMTP id 9-20020a05600c020900b003974a0f0007mr3883119wmi.91.1653400930565;
+        Tue, 24 May 2022 07:02:10 -0700 (PDT)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id f9-20020adfc989000000b0020c5253d8e0sm12829030wrh.44.2022.05.24.07.02.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 May 2022 07:02:09 -0700 (PDT)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
+        bjorn.andersson@linaro.org
+Cc:     vladimir.zapolskiy@linaro.org, mchehab@kernel.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, mmitkov@quicinc.com, jgrahsl@snap.com,
+        hfink@snap.com, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: [PATCH v2 0/4] Switch on IMX577 on RB5 with a new CCI fix
+Date:   Tue, 24 May 2022 15:02:03 +0100
+Message-Id: <20220524140207.2758605-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,32 +71,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The I2C pins on Intel's SoCFPGA platform are not connected to GPIOs and
-thus cannot be recovered by the standard GPIO method.
+V2:
 
-Document the "intel,socfpga-i2c" binding.
+- Adds fix for bug identified by Vladimir
+  The CCI i2c_adapter_add() and pm_runtime_enable() are racy.
+  This is a generic problem not related to the rb5/imx577 but, for the sake
+  of our conversation/review's context I'll add it into this series.
+- Include Vladimir's camcc patch
+  I've also opted to include Vladimir's disable of camcc to make the enable
+  of it in my patchset logical.
+- Move address/size cells Konrad
+- Remove newline in pin definitions - Konrad
+- Remove sensor 'status = "okay"' - Konrad
+- Add comment to qrb5165-rb5.dts re: imx412 and imx577 difference - Konrad
+- Move pin definitions to 8250 dtsi - Vladimir
+- Drop power domain from sensor definition - Vladimir
+- Correct to "add to cam2" not "cam1" in commit log - bod
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
----
-v2: Added Acked-by
----
- Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+To make verification of the CCI race eaiser I've provided a defconfig both
+with and without modules enabled.
 
-diff --git a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
-index d9293c57f573..a130059e97ab 100644
---- a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
-+++ b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
-@@ -33,6 +33,8 @@ properties:
-           - const: snps,designware-i2c
-       - description: Baikal-T1 SoC System I2C controller
-         const: baikal,bt1-sys-i2c
-+      - description: Intel's SoCFPGA I2C controller
-+        const: intel,socfpga-i2c
- 
-   reg:
-     minItems: 1
+Link: https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=linux-next-24-05-22%2bimx577-rb5
+Link: https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=linux-next-24-05-22%2bimx577-rb5-compiled-in
+
+git diff linaro/linux-next-22-05-22+imx577-rb5 linaro/linux-next-24-05-22+imx577-rb5
+
+V1:
+Linux-next now has everything we need to switch on this sensor both in the
+qcom DTS and in the imx412 driver.
+
+After this, no further dts or driver work is required to capture images on
+the RB5.
+
+Here's a bootable linux-next with a kernel config. I added Vladimir's
+power-domain changes on-top to verify nothing breaks for me.
+
+https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=linux-next-18-05-22%2bimx577-rb5
+
+Bryan O'Donoghue (3):
+  i2c: qcom-cci: Fix ordering of pm_runtime_xx and i2c_add_adapter
+  arm64: dts: qcom: sm8250: camss: Define ports address/size cells
+  arm64: dts: qcom: qrb5165-rb5: Enable the IMX577 on cam2
+
+Vladimir Zapolskiy (1):
+  arm64: dts: qcom: sm8250: Disable camcc by default
+
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 60 ++++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi     | 39 +++++++++++++++
+ drivers/i2c/busses/i2c-qcom-cci.c        | 14 ++++--
+ 3 files changed, 108 insertions(+), 5 deletions(-)
+
 -- 
-2.25.1
+2.36.1
 
