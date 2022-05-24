@@ -2,315 +2,343 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B351532A47
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 14:22:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFAB1532A7D
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 14:38:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237305AbiEXMVR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 08:21:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59566 "EHLO
+        id S237407AbiEXMhr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 08:37:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237309AbiEXMVM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 08:21:12 -0400
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2081.outbound.protection.outlook.com [40.107.92.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6061F22B2C;
-        Tue, 24 May 2022 05:21:11 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ChA37k7fsPoBl331COnbhZZ5LU32eAZrreqNSliCUjJPhWhlRgSoIhXUbhf/qWzQZrLu7CipcuPYiyLRIbEaXTKyY8zVW7JqPsDuhvQ//WE7XvSyrDLotT+lnT7hILcwY99AIjWw+2mFcZUtA62dIlljDm/DUrQRCGa+sFZTOh4aj9YQ5+DvaEzms9G0Q0F9OQQKM8BKwUYxvhBRgBUL0CIegS07cjHX2Fl8x7DQo+CBvh3pzv36A8luF1W/eB0ijvN07+UCufo5sG8isaonlr7sP7+Rltl5cZiQor4QjR0vYTfwKjd9QHZ67W1NSdSRq5jqKq+4iZryajedh9pn6Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Y7zBHUlJRyr/5u5bxn/3CKGMEjXYJUFT28/l881yas4=;
- b=f6UpEL79GD/nXjDU45/sEey+FIavOutKWtqF74YCCRxjwOYMDyFNxjXl9N+r3ZIhsFWBGFtUS7iAPn+QX7JiAKhiWnBoHVO28rh9lN1iJ/NttNjs43gn5EsmrFtt1Q+j/LK41wIVLYooq33JXvP5t2TGjUpXRl6UI9l/Ua1lt+IJzZSMwqSUQESv/6nKFEutpHmmetQSBhgq557poUUuCEj2sdEun7g0zs710m87d8C9EBCN5dzOKPCEJAqTfF+JIXjmlXsatdcYjihDrec6rzH/LNgphB2xMWf1ZgK6myeVNHZXwRyDaZie6JoGNm5VTDnrJW8gcyWaBJOqi4plFQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=towertech.it smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y7zBHUlJRyr/5u5bxn/3CKGMEjXYJUFT28/l881yas4=;
- b=MlN4xeaOH9aXWl6ov3MWgiknXPBlZu4L87BI4fGyAl/5CJcFAPhkPbwaVsVaPJZfLdTPU0WTU0DfwI9vPJxTx/S9bzOjKEAJ9bNWtNY+e+a92LIQtDKB+vLZTmWtKsrQ/ArC1NjLpQpDUTKoagmMY24O81+YtuYIKMW49s39iao=
-Received: from DM5PR11CA0006.namprd11.prod.outlook.com (2603:10b6:3:115::16)
- by SJ0PR02MB8369.namprd02.prod.outlook.com (2603:10b6:a03:3e4::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5273.14; Tue, 24 May
- 2022 12:21:07 +0000
-Received: from DM3NAM02FT039.eop-nam02.prod.protection.outlook.com
- (2603:10b6:3:115:cafe::e5) by DM5PR11CA0006.outlook.office365.com
- (2603:10b6:3:115::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5273.20 via Frontend
- Transport; Tue, 24 May 2022 12:21:07 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com; pr=C
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- DM3NAM02FT039.mail.protection.outlook.com (10.13.5.22) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5273.14 via Frontend Transport; Tue, 24 May 2022 12:21:06 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Tue, 24 May 2022 05:21:01 -0700
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Tue, 24 May 2022 05:21:01 -0700
-Envelope-to: git@xilinx.com,
- a.zummo@towertech.it,
- alexandre.belloni@bootlin.com,
- robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org,
- devicetree@vger.kernel.org,
- linux-rtc@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Received: from [172.23.66.193] (port=41286 helo=xhdsneeli40u.xilinx.com)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <srinivas.neeli@xilinx.com>)
-        id 1ntTX2-000DAp-5L; Tue, 24 May 2022 05:21:00 -0700
-From:   Srinivas Neeli <srinivas.neeli@xilinx.com>
-To:     <a.zummo@towertech.it>, <alexandre.belloni@bootlin.com>,
-        <robh+dt@kernel.org>, <michal.simek@xilinx.com>,
-        <sgoud@xilinx.com>, <shubhraj@xilinx.com>
-CC:     <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
-        <linux-rtc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <git@xilinx.com>,
-        Srinivas Neeli <srinivas.neeli@xilinx.com>
-Subject: [PATCH V4 2/2] rtc: zynqmp: Add calibration set and get support
-Date:   Tue, 24 May 2022 17:50:50 +0530
-Message-ID: <20220524122050.48553-2-srinivas.neeli@xilinx.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220524122050.48553-1-srinivas.neeli@xilinx.com>
-References: <20220524122050.48553-1-srinivas.neeli@xilinx.com>
+        with ESMTP id S237409AbiEXMhn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 08:37:43 -0400
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4A937CDF6;
+        Tue, 24 May 2022 05:37:36 -0700 (PDT)
+Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 960BF40018;
+        Tue, 24 May 2022 12:37:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1653395854;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=6TmRvXMBXKzvHnQeIS3dP+SHVdrOjsDZ1s/a3SWwHws=;
+        b=TlhQ9+91r4lJZTfdlIaV8PxM5C2m21D8wmvVhnZZ2GFWlzYESUcYoKKZyS33NyYRu7yHP8
+        Ey0PCjcFYeBUQak/3Lm2ltpuVoS3uwbHR5wyc+6xY1Omdssy8cxbSewgU5QlZwbkQ63hps
+        VcwXSaHoFKbwoE+MQs5cYGZsH0PKQGSftrlu3Tz5IPAyn+6vvXjlv+BV3Hi5EkJIYklWcH
+        ou1rD6ELM2X0tIlgNCzjW1aLJoLi+czfQ1fdKnJWG3gTENGCWwH7kLUIkJgCVvqC0Zykar
+        OSpMkoldOFwFMtRHtR6PfBpxXivEqezaykvbX9lI1lQRpl7j04uWCb//jtYCuw==
+Date:   Tue, 24 May 2022 14:37:30 +0200
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Sakari Ailus <sakari.ailus@iki.fi>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-staging@lists.linux.dev,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 3/4] staging: media: Add support for the Allwinner A31
+ ISP
+Message-ID: <YozRiiN7LM0dzbjq@aptenodytes>
+References: <20220415153708.637804-1-paul.kocialkowski@bootlin.com>
+ <20220415153708.637804-4-paul.kocialkowski@bootlin.com>
+ <YmqFQSRBsqs4ghNQ@valkosipuli.retiisi.eu>
+ <Ymqk89e+mn/1kLLx@aptenodytes>
+ <YmsCJicyzf+Bz98y@valkosipuli.retiisi.eu>
+ <YoesXywA4yzBDSwU@aptenodytes>
+ <Yop0DGOo1ky2dfnv@pendragon.ideasonboard.com>
+ <YouDa3mE9+SkKJg/@aptenodytes>
+ <YouLusf4sWK9W2J7@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: d700e678-d45f-43c6-e6bd-08da3d7fe0bb
-X-MS-TrafficTypeDiagnostic: SJ0PR02MB8369:EE_
-X-Microsoft-Antispam-PRVS: <SJ0PR02MB8369945EE1A582755A070B94AFD79@SJ0PR02MB8369.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: TkfWzqeVVcIQI9+aLRETfC7EqguxVXmASkPAUqh00fNBgqVrDs+HEI5qiRnnwlTxLGPE3Y2PvNmaQwZtaUtodqJzrvO9n89QjIOG8L4hxft6BMEkuorfxYZeo0hzfcjAXc6ryb+q5hPCz5KSnF/49GId5/uGdt4clneYhsvodZCC8LZhDZAy80eQ1Ip8wD1BS5vV2uFZKdMo4UrY0uz9Rso4o9WIqc9QNDRdm/TiNDGMncDcTVL2RlYhr4W4vs410NjJjDtwP1DvdXhZBKvTch984rzw20CvgT8gTA8jw3IZFOHxkB9obtG5PMOubXZcXaPAokzDnuDOACkq01tBDRnldqvU1hGKOVPYILOM5P7hAsYfXzNR0nO00kFhxZS8NB2SOHg00qmfwThWuH4eMDpJAfUkle9NfQbzJ7UBvxgbfkIoZavSRrPewJIAjppOrKhdXFEmP+LyyZUG5eLzw3fweujrRUMIlSsgKpJOPPUJDSwuKtaUoiOQI4mUXjt79EjEkY5x08ka4uncz90T+eAQiZKjd0kUgxD/SD91toKJvev7cUZPfkCS42h/NZfmLZW7P45C9UPjIlXnUOewClIkGRlY5/h2upnzyfHC+6Dccd0hO5zkxdvAGE7mMjhE+IID9K0XyV6Qlg5/s+MOCHto14UeNvmTomrGJhPHaAaWeE/giNmybWZQKt+8xcN9LUdzeBXUTXqi7I/A7EYcHUc1BtlNKfWmTYl/WC+1p7A=
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230001)(4636009)(46966006)(36840700001)(40470700004)(70206006)(4326008)(70586007)(8676002)(336012)(47076005)(426003)(82310400005)(26005)(36756003)(7636003)(40460700003)(316002)(508600001)(36860700001)(7696005)(5660300002)(1076003)(6666004)(8936002)(54906003)(9786002)(110136005)(2906002)(107886003)(186003)(6636002)(44832011)(2616005)(83380400001)(356005)(102446001)(2101003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 May 2022 12:21:06.5960
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d700e678-d45f-43c6-e6bd-08da3d7fe0bb
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM3NAM02FT039.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR02MB8369
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="JFVjsol0NsyPDSxX"
+Content-Disposition: inline
+In-Reply-To: <YouLusf4sWK9W2J7@pendragon.ideasonboard.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Zynqmp RTC controller has a calibration feature to compensate
-time deviation due to input clock inaccuracy.
-Set and get calibration API's are used for setting and getting
-calibration value from the controller calibration register.
-As per RTC spec default calibration value is 0x7FFF.
 
-Signed-off-by: Srinivas Neeli <srinivas.neeli@xilinx.com>
----
-Changes in V4:
--Updated MIN and MAX calibration values.
--Updated RTC default calibration value to 0x7FFF.
-Changes in V3:
--Calculated tick_mult using crystal frequency.
--Calibration register updating based on crystal frequency in probe.
--Supressed MIN an MAX calibration values,Will send separate patch in future.
-Changes in V2:
--Removed unused macro.
--Updated code with review comments.
----
- drivers/rtc/rtc-zynqmp.c | 115 ++++++++++++++++++++++++++++++++-------
- 1 file changed, 95 insertions(+), 20 deletions(-)
+--JFVjsol0NsyPDSxX
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/rtc/rtc-zynqmp.c b/drivers/rtc/rtc-zynqmp.c
-index f440bb52be92..ea9feca0299a 100644
---- a/drivers/rtc/rtc-zynqmp.c
-+++ b/drivers/rtc/rtc-zynqmp.c
-@@ -6,6 +6,7 @@
-  *
-  */
- 
-+#include <linux/clk.h>
- #include <linux/delay.h>
- #include <linux/init.h>
- #include <linux/io.h>
-@@ -36,17 +37,23 @@
- #define RTC_OSC_EN		BIT(24)
- #define RTC_BATT_EN		BIT(31)
- 
--#define RTC_CALIB_DEF		0x198233
-+#define RTC_CALIB_DEF		0x7FFF
- #define RTC_CALIB_MASK		0x1FFFFF
- #define RTC_ALRM_MASK          BIT(1)
- #define RTC_MSEC               1000
-+#define RTC_FR_MASK		0xF0000
-+#define RTC_FR_MAX_TICKS	16
-+#define RTC_PPB			1000000000LL
-+#define RTC_MIN_OFFSET		-32768000
-+#define RTC_MAX_OFFSET		32767000
- 
- struct xlnx_rtc_dev {
- 	struct rtc_device	*rtc;
- 	void __iomem		*reg_base;
- 	int			alarm_irq;
- 	int			sec_irq;
--	unsigned int		calibval;
-+	struct clk		*rtc_clk;
-+	unsigned int		freq;
- };
- 
- static int xlnx_rtc_set_time(struct device *dev, struct rtc_time *tm)
-@@ -61,13 +68,6 @@ static int xlnx_rtc_set_time(struct device *dev, struct rtc_time *tm)
- 	 */
- 	new_time = rtc_tm_to_time64(tm) + 1;
- 
--	/*
--	 * Writing into calibration register will clear the Tick Counter and
--	 * force the next second to be signaled exactly in 1 second period
--	 */
--	xrtcdev->calibval &= RTC_CALIB_MASK;
--	writel(xrtcdev->calibval, (xrtcdev->reg_base + RTC_CALIB_WR));
--
- 	writel(new_time, xrtcdev->reg_base + RTC_SET_TM_WR);
- 
- 	/*
-@@ -173,15 +173,76 @@ static void xlnx_init_rtc(struct xlnx_rtc_dev *xrtcdev)
- 	rtc_ctrl = readl(xrtcdev->reg_base + RTC_CTRL);
- 	rtc_ctrl |= RTC_BATT_EN;
- 	writel(rtc_ctrl, xrtcdev->reg_base + RTC_CTRL);
-+}
- 
--	/*
--	 * Based on crystal freq of 33.330 KHz
--	 * set the seconds counter and enable, set fractions counter
--	 * to default value suggested as per design spec
--	 * to correct RTC delay in frequency over period of time.
-+static int xlnx_rtc_read_offset(struct device *dev, long *offset)
-+{
-+	struct xlnx_rtc_dev *xrtcdev = dev_get_drvdata(dev);
-+	unsigned long long rtc_ppb = RTC_PPB;
-+	unsigned int tick_mult = do_div(rtc_ppb, xrtcdev->freq);
-+	unsigned int calibval;
-+	long offset_val;
-+
-+	calibval = readl(xrtcdev->reg_base + RTC_CALIB_RD);
-+	/* Offset with seconds ticks */
-+	offset_val = calibval & RTC_TICK_MASK;
-+	offset_val = offset_val - RTC_CALIB_DEF;
-+	offset_val = offset_val * tick_mult;
-+
-+	/* Offset with fractional ticks */
-+	if (calibval & RTC_FR_EN)
-+		offset_val += ((calibval & RTC_FR_MASK) >> RTC_FR_DATSHIFT)
-+			* (tick_mult / RTC_FR_MAX_TICKS);
-+	*offset = offset_val;
-+
-+	return 0;
-+}
-+
-+static int xlnx_rtc_set_offset(struct device *dev, long offset)
-+{
-+	struct xlnx_rtc_dev *xrtcdev = dev_get_drvdata(dev);
-+	unsigned long long rtc_ppb = RTC_PPB;
-+	unsigned int tick_mult = do_div(rtc_ppb, xrtcdev->freq);
-+	unsigned char fract_tick;
-+	unsigned int calibval;
-+	short int  max_tick;
-+	int fract_offset;
-+
-+	if (offset < RTC_MIN_OFFSET || offset > RTC_MAX_OFFSET)
-+		return -ERANGE;
-+
-+	/* Number ticks for given offset */
-+	max_tick = div_s64_rem(offset, tick_mult, &fract_offset);
-+
-+	/* Number fractional ticks for given offset */
-+	if (fract_offset) {
-+		if (fract_offset < 0) {
-+			fract_offset = fract_offset + tick_mult;
-+			max_tick--;
-+		}
-+		if (fract_offset > (tick_mult / RTC_FR_MAX_TICKS)) {
-+			for (fract_tick = 1; fract_tick < 16; fract_tick++) {
-+				if (fract_offset <=
-+				    (fract_tick *
-+				     (tick_mult / RTC_FR_MAX_TICKS)))
-+					break;
-+			}
-+		}
-+	}
-+
-+	/* Zynqmp RTC uses second and fractional tick
-+	 * counters for compensation
- 	 */
--	xrtcdev->calibval &= RTC_CALIB_MASK;
--	writel(xrtcdev->calibval, (xrtcdev->reg_base + RTC_CALIB_WR));
-+	calibval = max_tick + RTC_CALIB_DEF;
-+
-+	if (fract_tick)
-+		calibval |= RTC_FR_EN;
-+
-+	calibval |= (fract_tick << RTC_FR_DATSHIFT);
-+
-+	writel(calibval, (xrtcdev->reg_base + RTC_CALIB_WR));
-+
-+	return 0;
- }
- 
- static const struct rtc_class_ops xlnx_rtc_ops = {
-@@ -190,6 +251,8 @@ static const struct rtc_class_ops xlnx_rtc_ops = {
- 	.read_alarm	  = xlnx_rtc_read_alarm,
- 	.set_alarm	  = xlnx_rtc_set_alarm,
- 	.alarm_irq_enable = xlnx_rtc_alarm_irq_enable,
-+	.read_offset	  = xlnx_rtc_read_offset,
-+	.set_offset	  = xlnx_rtc_set_offset,
- };
- 
- static irqreturn_t xlnx_rtc_interrupt(int irq, void *id)
-@@ -255,10 +318,22 @@ static int xlnx_rtc_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
--	ret = of_property_read_u32(pdev->dev.of_node, "calibration",
--				   &xrtcdev->calibval);
--	if (ret)
--		xrtcdev->calibval = RTC_CALIB_DEF;
-+	/* Getting the rtc_clk info */
-+	xrtcdev->rtc_clk = devm_clk_get_optional(&pdev->dev, "rtc_clk");
-+	if (IS_ERR(xrtcdev->rtc_clk)) {
-+		if (PTR_ERR(xrtcdev->rtc_clk) != -EPROBE_DEFER)
-+			dev_warn(&pdev->dev, "Device clock not found.\n");
-+	}
-+	xrtcdev->freq = clk_get_rate(xrtcdev->rtc_clk);
-+	if (!xrtcdev->freq) {
-+		ret = of_property_read_u32(pdev->dev.of_node, "calibration",
-+					   &xrtcdev->freq);
-+		if (ret)
-+			xrtcdev->freq = RTC_CALIB_DEF;
-+	}
-+	ret = readl(xrtcdev->reg_base + RTC_CALIB_RD);
-+	if (!ret)
-+		writel(xrtcdev->freq, (xrtcdev->reg_base + RTC_CALIB_WR));
- 
- 	xlnx_init_rtc(xrtcdev);
- 
--- 
-2.17.1
+Hi Laurent,
 
+On Mon 23 May 22, 16:27, Laurent Pinchart wrote:
+> Hi Paul,
+>=20
+> On Mon, May 23, 2022 at 02:51:55PM +0200, Paul Kocialkowski wrote:
+> > On Sun 22 May 22, 20:34, Laurent Pinchart wrote:
+> > > On Fri, May 20, 2022 at 04:57:35PM +0200, Paul Kocialkowski wrote:
+> > > > On Fri 29 Apr 22, 00:07, Sakari Ailus wrote:
+> > > > > On Thu, Apr 28, 2022 at 04:30:11PM +0200, Paul Kocialkowski wrote:
+> > > > > > Hi Sakari,
+> > > > > >=20
+> > > > > > On Thu 28 Apr 22, 15:14, Sakari Ailus wrote:
+> > > > > > > Hi Paul,
+> > > > > > >=20
+> > > > > > > Thanks for the set.
+> > > > > > >=20
+> > > > > > > A few comments below.
+> > > > > >=20
+> > > > > > Thanks a lot for your review!
+> > > > >=20
+> > > > > You're welcome!
+> > > > >=20
+> > > > > ...
+> > > > >=20
+> > > > > > > I understand this is an online ISP. How do you schedule the v=
+ideo buffer
+> > > > > > > queues? Say, what happens if it's time to set up buffers for =
+a frame and
+> > > > > > > there's a buffer queued in the parameter queue but not in the=
+ image data
+> > > > > > > queue? Or the other way around?
+> > > > > >=20
+> > > > > > The ISP works in a quite atypical way, with a DMA buffer that i=
+s used to
+> > > > > > hold upcoming parameters (including buffer addresses) and a bit=
+ in a "direct"
+> > > > > > register to schedule the update of the parameters at next vsync.
+> > > > > >=20
+> > > > > > The update (setting the bit) is triggered whenever new paramete=
+rs are
+> > > > > > submitted via the params video device or whenever there's a cap=
+ture buffer
+> > > > > > available in the capture video device.
+> > > > > >=20
+> > > > > > So you don't particularly need to have one parameter buffer mat=
+ching a capture
+> > > > > > buffer, the two can be updated independently. Of course, a capt=
+ure buffer will
+> > > > > > only be returned after another buffer becomes active.
+> > > > >=20
+> > > > > This also means it's not possible to associate a capture buffer t=
+o a
+> > > > > parameter buffer by other means than timing --- which is unreliab=
+le. The
+> > > > > request API would allow that but it's not free of issues either.
+> > > >=20
+> > > > Yes the request API seems like a good fit for this. Note that the r=
+eturned
+> > > > sequence number in dequeued buffers for the capture and meta video =
+devices
+> > > > should match though, so userspace still has a way to know which cap=
+tured buffer
+> > > > used parameters from which meta params buffer.
+> > > >=20
+> > > > > Alternatively, I think in this case you could always require the =
+capture
+> > > > > buffer and grab a parameter buffer when it's available. As ISPs a=
+re
+> > > > > generally requiring device specific control software, this should=
+n't be a
+> > > > > problem really.
+> > > >=20
+> > > > I think this is pretty much what happens already.
+> > > >=20
+> > > > > I wonder what Laurent thinks.
+> > >=20
+> > > If parameters buffers are optional, I think the request API should be
+> > > used, otherwise we won't be able to ensure per-frame control. The
+> > > alternative is to make the parameter buffer mandatory for every frame,
+> > > even if no parameters have changed. Or maybe that's the case already ?
+> >=20
+> > Currently the parameters are not mandatory (there is a default state set
+> > by the driver) and queued parameter buffers are applied in the order th=
+ey
+> > are submitted.
+> >=20
+> > The request API would make per-frame control possible, but I don't think
+> > there is a point in making it mandatory. It seems that the situation is=
+ very
+> > similar to what already exists with the rkisp1 driver.
+>=20
+> You mentioned that the parameter buffers contain buffer addresses, is
+> that the DMA address of the image buffers (input and output) ? If so,
+> how does that work, does the kernel patch the parameters buffer provided
+> by userspace to fill the DMA addresses in placeholders ?
+
+Ah there might be a misunderstanding here: the hardware has a notion of
+"parameters buffer" which a DMA buffer that holds the next values of most of
+the registers (including the DMA adresses of dst buffers).
+
+However the parameters buffers for configuring the ISP are uAPI structures
+which are distinct from the registers of the hardware. It's these structures
+that are provided to the driver via a dedicated meta-output video device,
+by userspace. Of course the values from the uAPI parameters buffers also en=
+d up
+in the hardware parameters.
+
+I hope this clarifies things a bit!
+
+Paul
+
+> > > > > > I hope this answers your concern!
+> > > > > >=20
+> > > > > > [...]
+> > > > > >=20
+> > > > > > > > +static int sun6i_isp_tables_setup(struct sun6i_isp_device =
+*isp_dev)
+> > > > > > > > +{
+> > > > > > > > +	struct sun6i_isp_tables *tables =3D &isp_dev->tables;
+> > > > > > > > +	int ret;
+> > > > > > > > +
+> > > > > > > > +	/* Sizes are hardcoded for now but actually depend on the=
+ platform. */
+> > > > > > >=20
+> > > > > > > Would it be cleaner to have them defined in a platform-specif=
+ic way, e.g.
+> > > > > > > in a struct you obtain using device_get_match_data()?
+> > > > > >=20
+> > > > > > Absolutely! I didn't do it at this stage since only one platfor=
+m is supported
+> > > > > > but we could just as well introduce a variant structure already=
+ for the table
+> > > > > > sizes.
+> > > > >=20
+> > > > > I think that would be nice already, especially if you know these =
+are going
+> > > > > to be different. Otherwise macros could be an option.
+> > > >=20
+> > > > Understood!
+> > > >=20
+> > > > > ...
+> > > > >=20
+> > > > > > > > +	ret =3D v4l2_ctrl_handler_init(&v4l2->ctrl_handler, 0);
+> > > > > > >=20
+> > > > > > > I suppose you intend to add controls later on?
+> > > > > >=20
+> > > > > > I might be wrong but I thought this was necessary to expose sen=
+sor controls
+> > > > > > registered by subdevs that end up attached to this v4l2 device.
+> > > > > >=20
+> > > > > > I doubt the drivers itself will expose controls otherwise.
+> > > > >=20
+> > > > > Now that this is an MC-enabled driver, the subdev controls should=
+ be
+> > > > > accessed through the subdev nodes only. Adding them to the video =
+device's
+> > > > > control handler is quite hackish and not guaranteed to even work =
+(as e.g.
+> > > > > multiple subdevs can have the same control).
+> > > >=20
+> > > > Yes I was wondering what would happen in that case. I'll drop the c=
+trls
+> > > > handling in the next iteration then.
+> > > >=20
+> > > > Paul
+> > > >=20
+> > > > > ...
+> > > > >=20
+> > > > > > > > +{
+> > > > > > > > +	struct sun6i_isp_device *isp_dev =3D video_drvdata(file);
+> > > > > > > > +	struct video_device *video_dev =3D &isp_dev->capture.vide=
+o_dev;
+> > > > > > > > +	struct mutex *lock =3D &isp_dev->capture.lock;
+> > > > > > > > +	int ret;
+> > > > > > > > +
+> > > > > > > > +	if (mutex_lock_interruptible(lock))
+> > > > > > > > +		return -ERESTARTSYS;
+> > > > > > > > +
+> > > > > > > > +	ret =3D v4l2_pipeline_pm_get(&video_dev->entity);
+> > > > > > >=20
+> > > > > > > Do you need this?
+> > > > > > >=20
+> > > > > > > Drivers should primarily depend on runtime PM, this is only n=
+eeded for
+> > > > > > > compatibility reasons. Instead I'd like to see sensor drivers=
+ being moved
+> > > > > > > to runtime PM.
+> > > > > >=20
+> > > > > > Yes it's still needed to support sensor drivers that don't use =
+rpm yet.
+> > > > >=20
+> > > > > To that I suggested adding runtime PM support for the affected se=
+nsors.
+> > > > > This doesn't seem to get done otherwise. E.g. ipu3-cio2 driver do=
+es not
+> > > > > call s_power() on sensor subdevs.
+> > > > >=20
+> > > > > ...
+> > > > >=20
+> > > > > > > > +	ret =3D video_register_device(video_dev, VFL_TYPE_VIDEO, =
+-1);
+> > > > > > > > +	if (ret) {
+> > > > > > > > +		v4l2_err(v4l2_dev, "failed to register video device: %d\=
+n",
+> > > > > > > > +			 ret);
+> > > > > > > > +		goto error_media_entity;
+> > > > > > > > +	}
+> > > > > > > > +
+> > > > > > > > +	v4l2_info(v4l2_dev, "device %s registered as %s\n", video=
+_dev->name,
+> > > > > > > > +		  video_device_node_name(video_dev));
+> > > > > > >=20
+> > > > > > > This isn't really driver specific. I'd drop it.
+> > > > > >=20
+> > > > > > I agree but I see that many drivers are doing it and the inform=
+ation can
+> > > > > > actually be quite useful at times.
+> > > > >=20
+> > > > > You can get that information using media-ctl -e 'entity name'.
+> > > > >=20
+> > > > > I guess this could be also added to video_register_device() on de=
+bug level.
+> > > > >=20
+> > > > > > > > +struct sun6i_isp_params_config_bdnf {
+> > > > > > > > +	__u8	in_dis_min; // 8
+> > > > > > > > +	__u8	in_dis_max; // 10
+> > > > > > >=20
+> > > > > > > Are these default values or something else? Better documentat=
+ion was in the
+> > > > > > > TODO.txt file already.
+> > > > > >=20
+> > > > > > Yes that's the default register values, but these comments are =
+and overlook on
+> > > > > > my side and should be removed.
+> > > > >=20
+> > > > > I'm fine leaving these here. Just wondering. Up to you.
+>=20
+> --=20
+> Regards,
+>=20
+> Laurent Pinchart
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--JFVjsol0NsyPDSxX
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmKM0YoACgkQ3cLmz3+f
+v9G+Ogf7B1TmIO1K4sACLe/AMewXZ771xdAEhH55RqAjbRvriNNH7aF05wYXLa9D
+3B1gi7maOrrFR5Fn2VzMcZk9tGAIb80tt4AkbcQ0Acv3UgiZ0raEYWjH9mv5zJLv
+5kJ6SgXpSt0k3JP1u5E8/r+YjFnfGKP5yaEr2AYIhYx3rqANCUbXzaQ834jPogUE
+bxQAAGS1R8MOQTSIKMt+V4TmrcoTG3l31IAtW8bX+3T+/KbLVJE78TAF/I2j9H5w
+LMrOwVe+nlPbnWIwJtjciXTPXig+Do6YOU5SFgOkRFuFyIJzCx1PXZuqFJIR9uFY
+t5j8F2P7EA/nvoAc98QhXVGrDdj6vg==
+=osVl
+-----END PGP SIGNATURE-----
+
+--JFVjsol0NsyPDSxX--
