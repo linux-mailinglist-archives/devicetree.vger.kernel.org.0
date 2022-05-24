@@ -2,69 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FD85532329
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 08:28:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6383153234B
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 08:36:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234988AbiEXG2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 02:28:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48252 "EHLO
+        id S233684AbiEXGgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 02:36:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235043AbiEXG2N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 02:28:13 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 536ED71DB7
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 23:28:09 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id eg11so21710858edb.11
-        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 23:28:09 -0700 (PDT)
+        with ESMTP id S233612AbiEXGgR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 02:36:17 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 540FA3ED15
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 23:36:14 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id t25so29176133lfg.7
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 23:36:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=N3jdbvgtlnw8zIaSv0DQqGc3caOnAXLJMAe+8f0UCS0=;
-        b=O5lAcyn/cym/3OrYhOLamVEgFGcZ2RXZc2FY/HnELt4FLoY5cU6Qzd1dh/CbLJMwNP
-         qKUgSM+Muoz1BLCPqw4YgLhVdAV7cvJn8lsQADC+YX0odK5WcxdVUpSqQIpNLI+vWSVR
-         bGYPWSffJOcjIzQxvLSsgg4r+doFWCFL4Ke0s=
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=naO7MfUZImeoXwi1QHGtkiW2IkE7ZgBBCUBLVbjErGs=;
+        b=tdjIKMzaQGMRuZHzjqWMkQra9s66xVHja7tX0VNqSU+hLS1xiKmO98GEsEHeZz20Q4
+         QOovmZrew5aKqPKVV4p1RZ9PIl9t9fopan9WMpWk6KICBShIF1tpQt1OUuts2E2HdXKz
+         PM1erRGq8wUDW1cwHx20Zohwi9i2Wt4lrqjBEp1hwNx88XexxzM4c64fUqssIJaT6+OJ
+         DB1TJURiECE8uVjIk7F8qGvTEKr9zBlKfkoU01fmgJ9e4iQ3lrgcuPT9VaLsVtPa719n
+         XxoDN6f+N/vWHsivFgCB9d/OVB7gDy98z28Ypnqz90lefgNwdygLE+qkIKao+lwTdUO5
+         OnpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=N3jdbvgtlnw8zIaSv0DQqGc3caOnAXLJMAe+8f0UCS0=;
-        b=KpDU165MeElYtNYEuoakosgHW7eVNMUr1yVHMdqKY7+t5QLHoVnZcj9LZHJgG3Zbwb
-         pAifj7lsrM/eg7iY7Ge6PCQ4KoZ3Q8ap/WC7aHPFFxsawiWMomdi7fqJEhNlBle1ryQB
-         G6OJ0R5QkbPRXFZDq11H2//qmGa/sKWvorJLOJrGTmy6LRio6fvWnqU4ASE8FK5Ngi/P
-         cmWcEN+Q8hoT/PIPAEW/Ivd9sxg4+n0+8k0NjxkQgcCvQofpxkd930uXcJ1p1LdzHrnA
-         AdKh9NYCdXmVV3k+ztRMpoLETZc6E8U5LGUlxqwgFMiFcaQu+prcLz3SvBgliysTx2PG
-         eH9Q==
-X-Gm-Message-State: AOAM532xZ9V5gyyCnvbkEIyP8InzMFaoG9xLteDA56tXoxxaYAx2NKNl
-        zdgG3xwZ9M/oSVPAAmZkevuHpgZJROmJdiDZ2syKqw==
-X-Google-Smtp-Source: ABdhPJzBItlY43uGQ1di/pvyiuI5cG2uV8pK8/a3MYLK073piDHgVWBSg8bsrQX2VghdcQWs8SvYrgrhAjczS+pKxbA=
-X-Received: by 2002:a05:6402:d51:b0:42a:b2cc:33b2 with SMTP id
- ec17-20020a0564020d5100b0042ab2cc33b2mr27392564edb.248.1653373687924; Mon, 23
- May 2022 23:28:07 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=naO7MfUZImeoXwi1QHGtkiW2IkE7ZgBBCUBLVbjErGs=;
+        b=Kxe0Xc7BnJEo1F7IF8mr+lk5Xah1J/Jn5FCp/0detTt5jmshOaxvsOmzeReJBhcKWe
+         JkHjV4Q4yqkcH9ZuzONPPF85Ran/Nw39NWsKBT2IjZJftaftU/D+ZNBHN63upa9Ch4Cs
+         em5iNWqI0q5ehZWsASLxGgsWuttY5BWSojdWwJEdeqYU7AqNTUo5QuhNpTZBooLC4q/n
+         pbTNCfs2ubIJqIqL5AQEAFhFASCqLZ7PA3XvRNq4PtJ9GSa1eUFqhMl8nxVNKw+1Nev8
+         Z5AaiEbcajZhKzinQ+RqvR1D+zE66aHSwD8NYoGrbMaqX+i7BB2QGCYuvo2UWoMIeC1M
+         aG6w==
+X-Gm-Message-State: AOAM532SwzGa8yEzelZtGIcw/08051eAgDg2cUQyWwnxTr3M4HlgC1xu
+        V7j3GPejOyNT8K+weHWi2KvbHQ==
+X-Google-Smtp-Source: ABdhPJznnkdfT2gEMM9zUFDFG/znJx0xsTuJYEjWAjhGfeGvsJeGRt1A3uUGSXqiLqwuYnVjGudssA==
+X-Received: by 2002:a05:6512:1585:b0:448:3936:a5a0 with SMTP id bp5-20020a056512158500b004483936a5a0mr18327566lfb.108.1653374172109;
+        Mon, 23 May 2022 23:36:12 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id c3-20020a056512074300b0047255d2115asm2356464lfs.137.2022.05.23.23.36.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 May 2022 23:36:11 -0700 (PDT)
+Message-ID: <0d48b3fa-d6db-68d8-93a0-79902a119735@linaro.org>
+Date:   Tue, 24 May 2022 08:36:10 +0200
 MIME-Version: 1.0
-References: <20220523102339.21927-1-matthias.bgg@kernel.org>
-In-Reply-To: <20220523102339.21927-1-matthias.bgg@kernel.org>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Tue, 24 May 2022 14:27:56 +0800
-Message-ID: <CAGXv+5Gx6oGvvL1aSWfZC8cpE7mFyr5g66c=AHm3jkNCuXzakg@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] Delete MT8192 msdc gate (was "clk: mediatek:
- Delete MT8192 msdc gate")
-To:     matthias.bgg@kernel.org
-Cc:     mturquette@baylibre.com, sboyd@kernel.org,
-        allen-kh.cheng@mediatek.com, weiyi.lu@mediatek.com,
-        chun-jie.chen@mediatek.com, linux-kernel@vger.kernel.org,
-        ikjn@chromium.org, miles.chen@mediatek.com, robh+dt@kernel.org,
-        linux-mediatek@lists.infradead.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        angelogioacchino.delregno@collabora.com,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 1/2] dt-bindings: leds: lp50xx: correct reg/unit addresses
+ in example
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Pavel Machek <pavel@ucw.cz>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dan Murphy <dmurphy@ti.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Kyle Swenson <kyle.swenson@est.tech>
+References: <20220518082215.14358-1-krzysztof.kozlowski@linaro.org>
+ <20220523213528.GA2227380-robh@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220523213528.GA2227380-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,30 +80,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 23, 2022 at 7:19 PM <matthias.bgg@kernel.org> wrote:
->
-> From: Matthias Brugger <matthias.bgg@gmail.com>
->
->
-> The mt8192-msdc clock is only a single clock gate. This gate is accessed
-> from the mmc driver directly. With
-> 4a1d1379ebf6 ("arm64: dts: mt8192: Add mmc device nodes")
-> the only consumer of this binding was deleted. Delete the binding
-> decription and the clock driver bound to it.
->
-> Changes in v3:
-> - Update commit message to explain better why we do ABI breakage here
-> - add Reviewed-by tag
->
-> Changes in v2:
-> - Delete compatible in binding descprition as well
-> - Add RvB tags
-> - add Reviewed-by tag
->
-> Matthias Brugger (2):
->   dt-bindings: ARM: Mediatek: Remove msdc binding of MT8192 clock
->   clk: mediatek: Delete MT8192 msdc gate
+On 23/05/2022 23:35, Rob Herring wrote:
+> On Wed, May 18, 2022 at 10:22:14AM +0200, Krzysztof Kozlowski wrote:
+>> The multi-led node defined address/size cells, so it intended to have
+>> children with unit addresses.
+>>
+>> The second multi-led's reg property defined three LED indexes within one
+>> reg item, which is not correct - these are three separate items.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> ---
+>>
+>> Cc: Kyle Swenson <kyle.swenson@est.tech>
+>> ---
+>>  .../devicetree/bindings/leds/leds-lp50xx.yaml | 22 ++++++++++++-------
+>>  1 file changed, 14 insertions(+), 8 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml b/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
+>> index f12fe5b53f30..dc1ac905bb91 100644
+>> --- a/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
+>> +++ b/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
+>> @@ -99,35 +99,41 @@ examples:
+>>                 color = <LED_COLOR_ID_RGB>;
+>>                 function = LED_FUNCTION_CHARGING;
+>>  
+>> -               led-0 {
+>> +               led@0 {
+>> +                   reg = <0x0>;
+>>                     color = <LED_COLOR_ID_RED>;
+>>                 };
+>>  
+>> -               led-1 {
+>> +               led@1 {
+>> +                   reg = <0x1>;
+>>                     color = <LED_COLOR_ID_GREEN>;
+>>                 };
+>>  
+>> -               led-2 {
+>> +               led@2 {
+>> +                   reg = <0x2>;
+>>                     color = <LED_COLOR_ID_BLUE>;
+>>                 };
+>>            };
+>>  
+>>            multi-led@2 {
+>>              #address-cells = <1>;
+>> -            #size-cells = <2>;
+>> -            reg = <0x2 0x3 0x5>;
+>> +            #size-cells = <0>;
+>> +            reg = <0x3>, <0x4>, <0x5>;
+> 
+> The unit-address is 2, but the reg value is 3?
 
-Whole series is
+Right, the multi-led should be also @3 to match the reg and first led in
+children.
 
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+Thanks.
+
+
+Best regards,
+Krzysztof
