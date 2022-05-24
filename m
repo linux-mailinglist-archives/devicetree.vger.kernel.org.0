@@ -2,226 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E34F5532FB4
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 19:34:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBB89532FB6
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 19:37:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240015AbiEXRek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 13:34:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51728 "EHLO
+        id S236003AbiEXRhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 13:37:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239502AbiEXRej (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 13:34:39 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A9DA6972A
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 10:34:37 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id f21so23124625ejh.11
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 10:34:37 -0700 (PDT)
+        with ESMTP id S231848AbiEXRhp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 13:37:45 -0400
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A715A1A051
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 10:37:43 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id v9so17563498oie.5
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 10:37:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=7DverL1ikxumj0Y3SFmQnwkR+piWdmMTQZvxAemn6kg=;
-        b=V89TtH6YxlERZjNMpwaZ7/EbItHp+lpN/gdBIAq7W6qyJ1BSDvTsnbh6X+tbiB2iO3
-         H0aGmE97Es4AHjKcV632zSXln4gtsbR8C6PG80krEaad5saYT+2ThuWzUL3G7nnKXR8A
-         5DADenUHUhtOq5BjFPMQ4e+Rl4IapVObF4Enb7os+83JQ1IMKqupbJbQkxnTYxl9IUzA
-         g0jIkckPdIpMsIi46J3ahcnKuma2FguT4pgchM2ZXYrU0IT5IKEq6BehVE0nmubLHZR5
-         q+3LyXMv/ch7zK/C2rm7Wbwvl0+TZAiva78782l/HPi2tKL8d3AwMaJ/4NmlKRC6pDgx
-         P20w==
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=y+so8jn/A+1psHeTytrcnto/0ApO1CXp9P5bUkEghcw=;
+        b=CAYluIse/8jmEookS70e2aRrS1ErAB0r5lTojQ+4MMzIsFuCoOohltVLvXWa51R8Mr
+         rHiNfaqfOwi3iQ2U33+ZA2INbBKz2IqZ3PKhLZl9ApwiGLi3rl6H9vYJmhwVYPbREhaY
+         1tPBi40Jtqp6gHIqIfJddprxNySsAPA6ShZQxnBxjFuuIzFXiwXdNkg0vZonoKClnB6j
+         4/8/2k0ZXmOMLtyKoc+OWnAwxgT5ZyzlPzrh6b8ZjOQPaOK6gRpDSdXqXattt+tLXD8v
+         1xh8NAELCw39sfej9ndCLr5160BWkuMkZgp537lEjByBUO5uwWGPnyIPtoP2q+eyb6Oh
+         N2hQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=7DverL1ikxumj0Y3SFmQnwkR+piWdmMTQZvxAemn6kg=;
-        b=t1zgve8FTjgnzjI86OmRJaw9wVLlkV3mLYJpj2QUDFEHu6RL5oBHNIAv+/Kaf9GlMh
-         tBdSzFhlaEg6sVdIl6Iu/HFIpNHy0AFK5bo68APww+LxEWa/YaEjmDVBM8I9Qj2P86vY
-         uWwX+MxSS71LLncF4+6E3NlGPGztvmPHouOBwyInDegPifeIiH69Mqrb8mncDBiWbIzL
-         yMBm02N/oT897WnxcqJ5aZ09ZHdvS4c+1waKj+0/HVZky3EkTOmq1peFZgDE4u6qopQj
-         +lbt3b3oOjNMZvOjae2GjaBc7xFnj4X4qcT8lbDc/xCugSPQ/ipYRwhLQfUQz+M6NpZo
-         NzvA==
-X-Gm-Message-State: AOAM531e/ulWfSUNRYGthYxE4Bx/co3pyCt6QRbcHPatiDpIHZrV35yt
-        w1H7bjGROmpPYqMCE1OCS2IzmA==
-X-Google-Smtp-Source: ABdhPJwaQaTi86z4BOl9sm+ut14vP2KRQeJAkL8eABsQ+gRMQjfXVeyKRqO2XpaD7Akox5WIy9RO6w==
-X-Received: by 2002:a17:906:2cc8:b0:6fd:d8d8:b8f3 with SMTP id r8-20020a1709062cc800b006fdd8d8b8f3mr25538894ejr.384.1653413675583;
-        Tue, 24 May 2022 10:34:35 -0700 (PDT)
-Received: from [192.168.0.177] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id qu14-20020a170907110e00b006fec0d03da7sm3649676ejb.76.2022.05.24.10.34.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 May 2022 10:34:35 -0700 (PDT)
-Message-ID: <c6b11622-fd28-4da2-54d5-4ea0ff41f2d9@linaro.org>
-Date:   Tue, 24 May 2022 19:34:34 +0200
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to:content-transfer-encoding;
+        bh=y+so8jn/A+1psHeTytrcnto/0ApO1CXp9P5bUkEghcw=;
+        b=kjLUzCZFPuC9jDHwigJg+3ZPE5XeOVFkhs+phgJMtqbez/XtKJOr8NsckmJ1vFLnCk
+         benkvEIz4rBKRPRxOevp9tIRxhUARe5wyHwRjH8xwOk/IQu2vg+VYtSsFdYqUvyIPT7a
+         eYlmHK+pEEmCPI/wU/ly897PYPphuoqyXFufrNYKDC5FpczJ9evnO5BgUxpmm8aLEdPm
+         Iqex9Dk+JjylyIlwkJ3t/o+UOKXLo+500YBO0wCS17wGURyKIx9nVP1284sL6fmbI5cQ
+         pHHwjfSO1uRCU3R1gyHJvNdHF6YswSSU1ilTufT+E7J9Y1ACsoaau9LsqiDMFVVl7tM7
+         WujA==
+X-Gm-Message-State: AOAM5337sRbWUHJES8PcGZoLw1ATLJPLr/ZcxYvJv/Il+LCpsHs0ozIw
+        sSliOBauW3XiFEY7vXgltwLVbXSWntMD2ODxcJM=
+X-Google-Smtp-Source: ABdhPJxgDYRoPdxZmMEldGpg0WNUJWh6Bub16M9KXsOBzqtadKlGpTH0qBOtR2kL1ARdjk5oQ/pISi3Fn5T/YHwrhnk=
+X-Received: by 2002:a05:6808:3009:b0:2f9:6119:d676 with SMTP id
+ ay9-20020a056808300900b002f96119d676mr2958935oib.205.1653413862546; Tue, 24
+ May 2022 10:37:42 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] dt-bindings: mailbox: mtk-gce: Convert txt to json-schema
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, robh+dt@kernel.org
-Cc:     jassisinghbrar@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, houlong.wei@mediatek.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20220519101806.18097-1-angelogioacchino.delregno@collabora.com>
- <45e78390-5f91-7ac7-45d8-5796bc608234@linaro.org>
- <8d1411a7-0714-1667-ffd4-3de99732b1a3@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <8d1411a7-0714-1667-ffd4-3de99732b1a3@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Received: by 2002:ac9:144:0:0:0:0:0 with HTTP; Tue, 24 May 2022 10:37:42 -0700 (PDT)
+Reply-To: unitedbankforafricalometogo1@gmail.com
+From:   Amid Noora <amidnoora@gmail.com>
+Date:   Tue, 24 May 2022 17:37:42 +0000
+Message-ID: <CAJc4OnU8xpS_ccmdp756Nn9v0xYSTBN+es+x6QyiK_OM6kNTcg@mail.gmail.com>
+Subject: NUJNO
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: Yes, score=5.1 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
+        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2607:f8b0:4864:20:0:0:0:22e listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5000]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+        *      digit
+        *      [unitedbankforafricalometogo1[at]gmail.com]
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [amidnoora[at]gmail.com]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
+        *  3.3 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/05/2022 14:18, AngeloGioacchino Del Regno wrote:
-> Il 20/05/22 10:15, Krzysztof Kozlowski ha scritto:
->> On 19/05/2022 12:18, AngeloGioacchino Del Regno wrote:
->>> Convert the mtk-gce documentation from freeform text format to a
->>> json-schema.
->>>
->>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>> ---
->>>   .../bindings/mailbox/mediatek,gce-mbox.yaml   | 114 ++++++++++++++++++
->>>   .../devicetree/bindings/mailbox/mtk-gce.txt   |  82 -------------
->>>   2 files changed, 114 insertions(+), 82 deletions(-)
->>>   create mode 100644 Documentation/devicetree/bindings/mailbox/mediatek,gce-mbox.yaml
->>>   delete mode 100644 Documentation/devicetree/bindings/mailbox/mtk-gce.txt
->>>
->>> diff --git a/Documentation/devicetree/bindings/mailbox/mediatek,gce-mbox.yaml b/Documentation/devicetree/bindings/mailbox/mediatek,gce-mbox.yaml
->>> new file mode 100644
->>> index 000000000000..750391b4038c
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/mailbox/mediatek,gce-mbox.yaml
->>> @@ -0,0 +1,114 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/mailbox/mediatek,gce-mbox.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: MediaTek Global Command Engine (GCE) mailbox
->>> +
->>> +maintainers:
->>> +  - Houlong Wei <houlong.wei@mediatek.com>
->>> +
->>> +description: |
->>> +  The Global Command Engine (GCE) is used to help read/write registers
->>> +  with critical time limitation, such as updating display configuration
->>> +  during the vblank.
->>> +  The GCE can be used to implement the Command Queue (CMDQ) driver.
->>
->> Mention the headers in description.
->>
-> 
->    Values for properties used by the GCE, such as sub-system IDs, thread
-> 
->    priority and event IDs are defined in 'dt-bindings/gce/<chip>-gce.h'.
-> 
-> Would that be enough, or should I list all of the headers?
+Pozor, upravi=C4=8Denec,
 
-Yes.
+To e-po=C5=A1tno obvestilo prihaja neposredno iz skupine odbora za boj
+proti goljufijam Afri=C5=A1ke unije (AU) Republike Togo v sodelovanju z
+delovno postajo Zdru=C5=BEenih narodov (ZN) Lome-Togo, razred P-4 Po=C5=A1t=
+na
+=C5=A1tevilka-AF /RP/RDBCPN/SHS/0001.v zvezi z obse=C5=BEno racijo (Aretaci=
+je)
+na internetne prevarante. Zaradi visoke stopnje prito=C5=BEb, ki jih
+prejemamo od Zdru=C5=BEenih narodov (ZN) na ravni prevarantov/goljufov z
+afri=C5=A1kimi narodnostmi. Vsi ponudniki internetnih storitev so opazili
+pove=C4=8Dan e-po=C5=A1tni promet, ki izvira iz Afrike na druge celine.
 
-> 
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - mediatek,mt6779-gce
->>> +      - mediatek,mt8173-gce
->>> +      - mediatek,mt8183-gce
->>> +      - mediatek,mt8186-gce
->>> +      - mediatek,mt8192-gce
->>> +      - mediatek,mt8195-gce
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>> +  clocks:
->>> +    maxItems: 1
->>> +
->>> +  clock-names:
->>> +    items:
->>> +      - const: gce
->>> +
->>> +  '#mbox-cells':
->>> +    description: |
->>> +      The first cell describes the mailbox channel, which is the GCE Thread ID;
->>> +      The second cell describes the priority of the GCE thread.
->>> +    const: 2
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - interrupts
->>> +  - clocks
->>> +  - clock-names
->>> +  - '#mbox-cells'
->>> +
->>> +additionalProperties: false
->>> +
->>> +allOf:
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          enum:
->>> +            - mediatek,mt8195-gce
->>> +    then:
->>> +      properties:
->>> +        clocks:
->>> +          maxItems: 2
->>
->> Are you sure this works on mt8195-gce?
->>
-> 
-> Thanks for that, I've just rechecked the driver and.. no, that won't
-> work for MT8195: it's just one clock there (like the others) and the
-> clock names aren't even enforced, as the driver is always taking the
-> clock at index 0.
+V tem napadu je bilo do zdaj aretiranih tristo =C5=A1est (306) prevarantov
+in ta racija =C5=A1e traja. Od njih smo izterjali skupno vsoto 857
+milijonov ameri=C5=A1kih dolarjev, tako denar kot sredstva, za katere je
+bilo potrjeno, da so pri=C5=A1li od njihovih =C5=BErtev. Kot smo na=C5=A1li=
+ na
+stotine tiso=C4=8De e-po=C5=A1tnih naslovov =C5=BErtev iz njihovih imenikov=
+. V tem
+trenutku vas kontaktiramo.
 
-I was not thinking about driver, although it's nice that my review
-helped in that. What I was mentioning, is your bindings behave correctly
-for mediatek,mt8195-gce DTS? You have maxItems:1 and maxItems:2, so
-usually it was failing, AFAIR.
+Ve=C4=8Dkrat smo brez uspeha posku=C5=A1ali stopiti v stik z vami, zato vam=
+ =C5=A1e
+zadnji=C4=8D po=C5=A1iljamo ta opomnik, po katerem od=C5=A1kodninski komisi=
+ji
+Zdru=C5=BEenih narodov ne bo preostalo drugega, kot da prekli=C4=8De va=C5=
+=A1
+od=C5=A1kodninski denar v vi=C5=A1ini 750.000,00 $ in ga ozna=C4=8Di kot ne=
+zahtevano,
+zato nemudoma odgovorite na to pismo, da pojasnite svoje stali=C5=A1=C4=8De=
+ v
+tej zadevi, preden bo prepozno, ukrepajte hitro in upo=C5=A1tevajte
+navodila v svoje dobro. Podrobnosti o nadaljnjih na=C4=8Dinih boste dobili,
+ko boste stopili v stik z United Bank of Africa Lome, Togo
 
-The same with clock-names - I think the schema should fail here.
+=C2=BBDanes pa vas obve=C5=A1=C4=8Damo, da je UBA Bank va=C5=A1 denar nakaz=
+al na kartico
+VISA in tudi pripravljen za dostavo.
+Zdaj se obrnite na generalnega direktorja UBA Bank
+Ime...................... G. Tony Elumelu
+E-po=C5=A1tni naslov........unitedbankforafricalometogo1@gmail.com
 
 
-> 
-> I got confused because the driver uses a slightly different kind of
-> logic when probing on SoCs with multiple mailboxes, specifically:
->   - For single mailbox, having a clock with name "gce" is enforced
->     as it's grabbing it with devm_clk_get(dev, clk_name), where the
->     clock name is declared in a string called "clk_name";
->   - For multiple mailboxes, it's looking for an of_alias, declared
->     in an array of strings called "clk_names" and getting the clock
->     with of_clk_get(node, 0).
-> 
-> 
-> So there comes my confusion, recapping:
-> 
-> static const char * const clk_name = "gce";
->                   <- this is a clock name
-> static const char * const clk_names[] = { "gce0", "gce1" }; <- OF alias names
-> 
-> 
-> At this point, I think that the best idea would be to fix this issue
-> first... luckily there's no MT8195 devicetree upstream yet, so I would
-> technically not be breaking any ABI by changing it to be the same as
-> the others.
+Va=C5=A1e podatke je omenil eden od Sindikatov, ki je bil aretiran kot ena
+od njihovih =C5=BErtev operacij. S tem ste opozorjeni, da jim tega
+sporo=C4=8Dila iz kakr=C5=A1nega koli razloga ne posredujte ali podvajate, =
+saj
+je na=C5=A1 agent tajne slu=C5=BEbe ZDA =C5=BEe na sledeh drugim kriminalce=
+m.
 
-All this sounds a bit unrelated to the bindings. Anyway, gce for one
-case and gce0+gce1 for other, are okay, although schema looks a bit more
-complicated. See for example:
-https://lore.kernel.org/linux-devicetree/20220523181836.2019180-8-dmitry.baryshkov@linaro.org/
+Po=C5=A1ljite mu naslednje podatke za dostavo va=C5=A1e akreditirane kartic=
+e
+VISA na bankomatu na va=C5=A1 naslov.
 
-Best regards,
-Krzysztof
+Va=C5=A1e polno ime=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D
+Va=C5=A1a dr=C5=BEava porekla=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D
+Va=C5=A1 doma=C4=8Di naslov =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D
+E-po=C5=A1tni naslov =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D
+Va=C5=A1a telefonska =C5=A1tevilka =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+Va=C5=A1a starost =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+Va=C5=A1 spol =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D
+Va=C5=A1 poklic =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+
+N/B ; Zato mi takoj odgovorite danes, da bomo lahko takoj za=C4=8Deli vse
+potrebne procese in protokole za sprostitev va=C5=A1ega sklada za
+od=C5=A1kodnino
+S spo=C5=A1tovanjem,
+Oddelek Odbora za boj proti goljufijam Afri=C5=A1ke unije (AU) Podru=C5=BEn=
+ica
+Republike Togo
