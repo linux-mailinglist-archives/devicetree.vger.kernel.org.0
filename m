@@ -2,76 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB627533237
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 22:14:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B959A533299
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 22:49:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239985AbiEXUOI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 16:14:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47166 "EHLO
+        id S241710AbiEXUtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 16:49:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237809AbiEXUOH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 16:14:07 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8938582165
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 13:14:06 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id t5so1100024edc.2
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 13:14:06 -0700 (PDT)
+        with ESMTP id S241705AbiEXUtS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 16:49:18 -0400
+Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A679737A0
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 13:49:16 -0700 (PDT)
+Received: by mail-pf1-x42a.google.com with SMTP id c14so17484206pfn.2
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 13:49:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Fm1tpFca2YWIuBpxTTGZclIqJvsNWlMgZzoZ+c6L03Y=;
-        b=b2xojrV+9PHgmFBI5/KZgSAhUS6qJGPSbk0j023/DmgkixIJ82kiPaixoGsAceFnPU
-         tmLhJG5uFbhpEQFyCoCqxi+ONAQtwawp3km4d+FSGp0XNsH2t3JltLDqkxzgxegOCVSQ
-         HAIMqwagKJMLCuEMJTTrTyYdY1duBRichZylDdPbAl/4zor/WB1YEAidS22+JxNs28tU
-         BryV29mbgMbFif0NNdDe6R5mLgsY0HBdGdeKreX4/f10bQyKlN6qAjTVFJxKWRY/UJMk
-         7W519LPilUuaMQknyi4G0+O8RKAkVzph87M90NU7bmPhtwra+wGAubTv+ezsSoOaf4MR
-         OY+w==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=e9ahkSLTtuvwLRoOkp0E00xXCsWuniaEqLjpRE+FmXM=;
+        b=AXCr0XgSkVrF9pCBmMIp3f38r3JJf2AjRX5w1UCFvFugMSOA8Se7MLQ1xl6emdyIx8
+         LeVkeS3aM38TUQ7nGBZOro8M5oQFFf+AWzi00HrtsjExVGtL7W9u/n55/660ncvC6u71
+         yFlf5B3NV8qkExYAo9G9O3AQ+mBqAJgEvCy1k=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=Fm1tpFca2YWIuBpxTTGZclIqJvsNWlMgZzoZ+c6L03Y=;
-        b=OrqYjkBH2ysT7zif74ySA0iuxDxPG/fK814QqtnutZzhnf+quPCLVOy+AkFq98pKUQ
-         9M4NsTC/33DGBsGZDII1RTXYWsGl3JH99EwDDdN5xrz1Z0MIBPBNqJDAEGbFOOcHnTqX
-         aDzX6T0PeQC6YVWMlEDIpKaX6BYiMptxS2dZqyuewlpo/68Cyt9BwymbjiccGp70ol5W
-         kJEZsKaFCoYjUhcxZ49beyUiy2HhQvqscQJydIsaXwi3Flj84TMRpazE3w/9c9b2eUss
-         JxcpZtXQlCG2DQkcKHrAfVERa272ei0V3Z3yEtjuc753p2v936fHTFIAkIIwLnMJVRhx
-         7xfQ==
-X-Gm-Message-State: AOAM531NP/al7xgQTehqwh8FyUjTSAgIlDZ1osLT65WiJf0Zf9OCmx4r
-        StxvcjT4Dtdm5bg/tmxQRSGF/Q==
-X-Google-Smtp-Source: ABdhPJxYconPOKdPTtXM3P9lkUnV1bFUE4Pa1l2up9yo4tsa/rU7pkuKObtyf6INae21cJZAZHhOKA==
-X-Received: by 2002:a05:6402:388d:b0:42a:ba9f:f85c with SMTP id fd13-20020a056402388d00b0042aba9ff85cmr31318770edb.292.1653423245180;
-        Tue, 24 May 2022 13:14:05 -0700 (PDT)
-Received: from [192.168.0.177] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id 16-20020a17090601d000b006f3ef214db3sm7555530ejj.25.2022.05.24.13.14.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 May 2022 13:14:03 -0700 (PDT)
-Message-ID: <b70a58ef-af3a-f4d9-37fe-688c600523a2@linaro.org>
-Date:   Tue, 24 May 2022 22:14:01 +0200
+        bh=e9ahkSLTtuvwLRoOkp0E00xXCsWuniaEqLjpRE+FmXM=;
+        b=l+o9zd6dpe25rDjaWfTqt8xtH9l6N6sh6IYhTmE2y7bu5PH5XJvm9WaFKNJjezyXpO
+         U0UrYy3Pg3dgBTLDkH/xnFKzR4ie9VW3vUNy3TUd+wpO9NtwcCfyMHweJ7cZ4zJFkXlK
+         NdW0XlJbn8Pe2hfaeDbgcENj0t+Lh2uK7M0uDZrS0pTxL4detqZKPfS9JyaRDl4IQJsA
+         IjRz+kvxBEeANe5/hSFbHIrywm+KrQv629Idnr9FF9mOtlzs3qMSHY2kvzajmZEnV1Kr
+         hX8wxAN/NlwuYiuoKDIc+OhRnMGg+KY3PijMaf2PgHIpt1mw+1xiUznJW5qv4OqO2PaX
+         Dnpw==
+X-Gm-Message-State: AOAM531k7s7iQwN653+CbGrTB+5pNR0qfPn23DqwmbzreX/LugmJGpao
+        FIqgglTMNDBjsXu/e5JyXK/oZw==
+X-Google-Smtp-Source: ABdhPJwCz55uI2qGOYgI22kmaw7O/6E1G/+i+42mFsW1jnbNomUOjxKNl3/aN6OfdEf3gmO/FAvfvQ==
+X-Received: by 2002:a63:4204:0:b0:3f6:4a4f:5a96 with SMTP id p4-20020a634204000000b003f64a4f5a96mr23128307pga.10.1653425355851;
+        Tue, 24 May 2022 13:49:15 -0700 (PDT)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:e1fc:e14a:1559:6e05])
+        by smtp.gmail.com with ESMTPSA id n11-20020a65450b000000b003fa5b550303sm3988813pgq.68.2022.05.24.13.49.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 May 2022 13:49:15 -0700 (PDT)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sc7280: Add touchscreen to villager
+Date:   Tue, 24 May 2022 13:48:49 -0700
+Message-Id: <20220524134840.1.I80072b8815ac08c12af8f379a33cc2d83693dc51@changeid>
+X-Mailer: git-send-email 2.36.1.124.g0e6072fb45-goog
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v3] dt-bindings: serial: mtk-uart: Convert txt to
- json-schema
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        gregkh@linuxfoundation.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, linux-serial@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20220524115019.97246-1-angelogioacchino.delregno@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220524115019.97246-1-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,14 +69,133 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/05/2022 13:50, AngeloGioacchino Del Regno wrote:
-> Convert the mtk-uart documentation from freeform text to a json-schema.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+This adds the touchscreen to the sc7280-herobrine-villager device
+tree. Note that the touchscreen on villager actually uses the reset
+line and thus we use the more specific "elan,ekth6915" compatible
+which allows us to specify the reset.
 
+The fact that villager's touchscreen uses the reset line can be
+contrasted against the touchscreen for CRD/herobrine-r1. On those
+boards, even though the touchscreen goes to the display, it's not
+hooked up to anything there.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In order to keep the line parked on herobrine/CRD, we'll move the
+pullup from the qcard.dtsi file to the specific boards. This allows us
+to disable the pullup in the villager device tree since the pin is an
+output.
 
+Signed-off-by: Douglas Anderson <dianders@chromium.org>
+---
+This uses bindings introduced in the patch ("dt-bindings: HID:
+i2c-hid: elan: Introduce bindings for Elan eKTH6915") [1].
 
-Best regards,
-Krzysztof
+[1] https://lore.kernel.org/r/20220523142257.v2.1.Iedc61f9ef220a89af6a031200a7850a27a440134@changeid
+
+ .../boot/dts/qcom/sc7280-herobrine-crd.dts    | 11 ++++++++
+ .../qcom/sc7280-herobrine-herobrine-r1.dts    | 11 ++++++++
+ .../dts/qcom/sc7280-herobrine-villager-r0.dts | 25 +++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi    |  1 -
+ 4 files changed, 47 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
+index a4ac33c4fd59..b79d84d7870a 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
++++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
+@@ -134,6 +134,17 @@ &sdhc_2 {
+ 	status = "okay";
+ };
+ 
++/* PINCTRL - ADDITIONS TO NODES IN PARENT DEVICE TREE FILES */
++
++/*
++ * This pin goes to the display panel but then doesn't actually do anything
++ * on the panel itself (it doesn't connect to the touchscreen controller).
++ * We'll set a pullup here just to park the line.
++ */
++&ts_rst_conn {
++	bias-pull-up;
++};
++
+ /* PINCTRL - BOARD-SPECIFIC */
+ 
+ /*
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
+index b69ca09d9bfb..c1647a85a371 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
++++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
+@@ -128,6 +128,17 @@ &sdhc_2 {
+ 	status = "okay";
+ };
+ 
++/* PINCTRL - ADDITIONS TO NODES IN PARENT DEVICE TREE FILES */
++
++/*
++ * This pin goes to the display panel but then doesn't actually do anything
++ * on the panel itself (it doesn't connect to the touchscreen controller).
++ * We'll set a pullup here just to park the line.
++ */
++&ts_rst_conn {
++	bias-pull-up;
++};
++
+ /* PINCTRL - BOARD-SPECIFIC */
+ 
+ /*
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts
+index d3d6ffad4eff..950b69448109 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts
++++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts
+@@ -46,6 +46,25 @@ trackpad: trackpad@2c {
+ 	};
+ };
+ 
++ts_i2c: &i2c13 {
++	status = "okay";
++	clock-frequency = <400000>;
++
++	ap_ts: touchscreen@10 {
++		compatible = "elan,ekth6915";
++		reg = <0x10>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&ts_int_conn>, <&ts_rst_conn>;
++
++		interrupt-parent = <&tlmm>;
++		interrupts = <55 IRQ_TYPE_LEVEL_LOW>;
++
++		reset-gpios = <&tlmm 54 GPIO_ACTIVE_LOW>;
++
++		vcc33-supply = <&ts_avdd>;
++	};
++};
++
+ &ap_sar_sensor_i2c {
+ 	status = "okay";
+ };
+@@ -81,6 +100,12 @@ &sdhc_1 {
+ 	status = "okay";
+ };
+ 
++/* PINCTRL - ADDITIONS TO NODES IN PARENT DEVICE TREE FILES */
++
++&ts_rst_conn {
++	bias-disable;
++};
++
+ /* PINCTRL - BOARD-SPECIFIC */
+ 
+ /*
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
+index d59002d4492e..404936c6bf20 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
+@@ -604,7 +604,6 @@ ts_int_conn: ts-int-conn {
+ 	ts_rst_conn: ts-rst-conn {
+ 		pins = "gpio54";
+ 		function = "gpio";
+-		bias-pull-up;
+ 		drive-strength = <2>;
+ 	};
+ };
+-- 
+2.36.1.124.g0e6072fb45-goog
+
