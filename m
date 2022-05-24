@@ -2,66 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1859A532CC8
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 17:03:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B9F3532D15
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 17:15:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238333AbiEXPDF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 11:03:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33122 "EHLO
+        id S231466AbiEXPPU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 11:15:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238108AbiEXPDE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 11:03:04 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A78678A33D
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 08:03:03 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id q21so15739443ejm.1
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 08:03:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=DlQEZ/gCc3QpUXehaN1GEEfOCVI81XCJ2rd4OltFdLY=;
-        b=CbNc1wxia4KBEnPojOwiwyFFW4lhBKRf4AQt/+oQ3TR8JoKODULUGG36Ybz8lklHLj
-         L6zd81OhoNFtQdzWk3JnSpvvQeD9/k+wmO7sOhIrSK0u/1YI/HJngN7SSxXuQ9A23p0/
-         PBjADz9nDQP9Py1zA+vYmC/eIvp1CfMTlYZN0zZ1Wxx+rIxWfIc6Umoo1SMLcZVFwvHL
-         +8Rg9i8OTAnChsU+N3sBsft+ZwPVVRVipal3rAR2RxAv0D+b1O9anbkY6UfjcMkyHzi0
-         zbrTbd7o8+x9SZDqISgByUttWLIFYko/kvdNsMpBgxE9GAw28KiuSo/i2w15EPbM1r4t
-         io9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=DlQEZ/gCc3QpUXehaN1GEEfOCVI81XCJ2rd4OltFdLY=;
-        b=zPLYC411VF5DZWFWYqPgE5hdIvXxirWeX46R+u9zy5yqZOFemM8kdvKTVtd4gzNMAm
-         t3PGGPCCkI8djkuHbwSvzHN/3Pum347fQIj2dT/oEDAr9+4VGmqeE/UBwKq/mw9DXOjf
-         +/ry85Anw0jktjiGXu0YI42ipIWnEFD6+e/D3QNGh6LwHZZ1awNpszCF1JbQBcukfOfc
-         N7X0uAHgovETr3Wa7bC+lDr6nYRQFaGQ7LURHFqWThrJxC6GcESg/Yikz8cxgDH0Dwze
-         aGBWKZFeCZ+oD9Ll8mp0sGDk5rAdGDNDFSAZDXZwh3orBFUxj1GH/jADgFbVHu+wC1Ot
-         /HPg==
-X-Gm-Message-State: AOAM533TIjKJP6mUECPgNkXLpG7N0GNnHTnuDHLdLMyC69o0UQPkQNrV
-        Hb8g84kkk/9sLDifR0ie44rvCQGhYaarfKD5quh97A==
-X-Google-Smtp-Source: ABdhPJzT/FI/PkyFzW9TIbfxwAFTxWm8y8bCfFXrNT9T+t7BemqsE+qUfpfq2j+/xSzZ88zaoNI8smzlJkq8rYwpRc0=
-X-Received: by 2002:a17:906:974c:b0:6fa:8c68:62a8 with SMTP id
- o12-20020a170906974c00b006fa8c6862a8mr25615119ejy.293.1653404582161; Tue, 24
- May 2022 08:03:02 -0700 (PDT)
+        with ESMTP id S230269AbiEXPPT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 11:15:19 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C5C18AE48;
+        Tue, 24 May 2022 08:15:18 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 828A31F42456
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1653405317;
+        bh=Iy3W7rUkg3Wow+MZYHzeedJhzvCA8F8HfCiBIaNRcSg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=LzoGjsp25sHcTcIYJViMp7m2j6vnZuvi4sm3nrlS35epZfkDtMwnny6NOI/sxz9dz
+         NOcYDskKVd19p0bCZKDqjOdtrEXjbXKy/4kajTDsE+CsJ4Gc3PLEpEgTeqfE9Wu3Zc
+         hLdCRghmeF6cM/JekAX5BRAONvqraYEunuKK5KDTEFrfPnavCZXRShLk+pNE8bquTc
+         k8vyCX4ucyaKw6b72Mds2yaZAQ+bTULriIO07qtpy0XLJAsL7Rmh0CYTuQ+lFvMvte
+         YE+8fHnkAsmW45qLEDGWflkXTQR07JdFTpl1YgE7IoqeGH8wdr6e5Iw5OgH5BiN7tV
+         68OTzC0AaAIYA==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     jassisinghbrar@gmail.com
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, houlong.wei@mediatek.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: [PATCH v2 0/2] MediaTek GCE json-schema and multi-gce clocks
+Date:   Tue, 24 May 2022 17:15:10 +0200
+Message-Id: <20220524151512.247435-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-References: <20170323055435.29197-1-bjorn.andersson@linaro.org> <20220523163038.GA9124@duo.ucw.cz>
-In-Reply-To: <20220523163038.GA9124@duo.ucw.cz>
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-Date:   Tue, 24 May 2022 10:02:51 -0500
-Message-ID: <CAOCOHw7N9EHcxSSe6n8828oy2fh6xNxRYf9OUXkY4SQh6gtVLw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] leds: Add driver for Qualcomm LPG
-To:     Pavel Machek <pavel@ucw.cz>,
-        Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     Richard Purdie <rpurdie@rpsys.net>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,25 +53,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 23, 2022 at 11:30 AM Pavel Machek <pavel@ucw.cz> wrote:
->
-> Hi!
->
-> > The Light Pulse Generator (LPG) is a PWM-block found in a wide range of
-> > PMICs from Qualcomm. It can operate on fixed parameters or based on a
-> > lookup-table, altering the duty cycle over time - which provides the
-> > means for e.g. hardware assisted transitions of LED brightness.
-> >
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
->
-> I'd really like to see the patch fixing the pattern interface (or
-> disabling it). I don't want to push the tree to Linus with that bug.
->
+v1 of "dt-bindings: mailbox: mtk-gce: Convert txt to json-schema"
+exposed some readability issues for the mtk-cmdq-mailbox driver but,
+upon further inspection, I've found that there is a shorter way to
+achieve the Multi-GCE support as it's limited to simply managing two
+clocks instead of one.
 
-Please find a proposed update to lpg_pattern_set() and the documentation at:
-https://lore.kernel.org/linux-arm-msm/20220523233719.1496297-1-bjorn.andersson@linaro.org/T/#u
+This series converts the mtk-gce freeform documentation to json-schema
+and adds a second clock for the dual-gce (multi-gce) case, as to stop
+looking for aliases in the entire devicetree to get clocks from the
+secondary GCE node: declaring both clocks on both nodes is simply the
+right thing to do, as operating one GCE Mailbox requires both clocks
+to be enabled, since there may be interop between the two GCEs.
 
-@Marijn, would love to get your input on this proposal.
+For now, the only Dual-GCE SoC is MT8195, for which no devicetree is
+upstream yet.
 
-Regards,
-Bjorn
+AngeloGioacchino Del Regno (2):
+  dt-bindings: mailbox: mtk-gce: Convert txt to json-schema
+  mailbox: mtk-cmdq-mailbox: Simplify getting multi-gce clocks
+
+ .../bindings/mailbox/mediatek,gce-mbox.yaml   | 124 ++++++++++++++++++
+ .../devicetree/bindings/mailbox/mtk-gce.txt   |  82 ------------
+ drivers/mailbox/mtk-cmdq-mailbox.c            |  32 +----
+ 3 files changed, 131 insertions(+), 107 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/mediatek,gce-mbox.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mailbox/mtk-gce.txt
+
+-- 
+2.35.1
+
