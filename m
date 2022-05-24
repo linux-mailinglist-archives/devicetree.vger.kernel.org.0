@@ -2,43 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99126532506
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 10:13:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CECE5325AD
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 10:56:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231587AbiEXINn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 04:13:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47400 "EHLO
+        id S233673AbiEXIy6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 04:54:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231720AbiEXINm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 04:13:42 -0400
-X-Greylist: delayed 76 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 24 May 2022 01:13:39 PDT
-Received: from atl4mhfb04.myregisteredsite.com (atl4mhfb04.myregisteredsite.com [209.17.115.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E826877F02
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 01:13:38 -0700 (PDT)
-Received: from jax4mhob15.registeredsite.com (jax4mhob15.registeredsite.com [64.69.218.103])
-        by atl4mhfb04.myregisteredsite.com (8.14.4/8.14.4) with ESMTP id 24O8CLoU027580
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 04:12:21 -0400
-Received: from mailpod.hostingplatform.com ([10.30.71.203])
-        by jax4mhob15.registeredsite.com (8.14.4/8.14.4) with ESMTP id 24O8CJgO027983
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL)
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 04:12:19 -0400
-Received: (qmail 5159 invoked by uid 0); 24 May 2022 08:12:18 -0000
-X-TCPREMOTEIP: 204.168.181.193
-X-Authenticated-UID: mike@milosoftware.com
-Received: from unknown (HELO phenom.domain?not?set.invalid) (mike@milosoftware.com@204.168.181.193)
-  by 0 with ESMTPA; 24 May 2022 08:12:18 -0000
-From:   Mike Looijmans <mike.looijmans@topic.nl>
-To:     linux-input@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, dmitry.torokhov@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        martink@posteo.de, geert+renesas@glider.be, john@metanate.com,
-        hechtb@gmail.com, Mike Looijmans <mike.looijmans@topic.nl>
-Subject: [PATCH] Input: st1232 - Support power supply regulators
-Date:   Tue, 24 May 2022 10:12:16 +0200
-Message-Id: <20220524081216.8550-1-mike.looijmans@topic.nl>
-X-Mailer: git-send-email 2.17.1
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_FAIL,SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE autolearn=no
+        with ESMTP id S233512AbiEXIy5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 04:54:57 -0400
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D617D74DE9
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 01:54:51 -0700 (PDT)
+Received: by mail-yb1-xb29.google.com with SMTP id q184so853240ybg.11
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 01:54:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=uqZD+ogOM6DMMZNvJXo9UtOZIWjh9lX3b715CP395Rw=;
+        b=YalnveRKXo/MmbpOdqU9xl8clAnBE9reOoViC11TCrupa/uAC8igoDuIf3X98aDlr0
+         H9spduLwCrMws7VKbclVVDyvNS+SeJv/VSzmN3fB9isHzsz1ENnXF+krtD7RxE9bkxH8
+         rOqQ5OdY/HBgvkzG9OMNS4P8S/HhS0cHV97ThG5d8PdMP9BWI3TLDafyp+g2WvGb2GMm
+         BLEJQQoYT0B/gLoXkpOmoQZd3rra/n4iHf8wSinAaYNfaKkLSmKZiY2h/WjA1QgUezC0
+         OIF5UOQRmY5VpKS441Rwybtwepuab+IatetBAcDmHu/W9nU8ORpJ6omFL1pw2NJ5gb1j
+         gZAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=uqZD+ogOM6DMMZNvJXo9UtOZIWjh9lX3b715CP395Rw=;
+        b=KcDim900O/9fErcYH94x5xRBFhBsoH4h9s+D/lZrdFQqK3PXOThXtah6Q8gdFCGeqF
+         2j5G9RoqVwmIjUsFzSqFqZ0oU47q0gQ6iEfdDtrzUYbcA7un6NRPl1XxWBnz1PdggNhb
+         8oLPTm02C7B7fpFHm9Rp69eDrv/M0OPUaaE7shhlNDuXmWxYdCnRq153Ed4AXSiCGkEQ
+         JHxofbg+EsUb8AhBBylLXU5JrttpfNn5EDcyUIc/7qrzs3SuWrrp55V5sdA28kvZMM8W
+         KhWEpeVarxy/LQlLWmLv9Wps7VzgIzfDwJosoTM8pu2N7AA6EzpgjV1FS2cwSkWhtpY+
+         XCog==
+X-Gm-Message-State: AOAM532jNWzYWmlZLWH3EgqFxxIcC7gKYyGjqpLMbzsuMuKcOV3XGWV6
+        YfRu7gHjKEbD6D0xTeAgVmpyxjpQzzOSkWJPH36z2Q==
+X-Google-Smtp-Source: ABdhPJwmTZMv++iingNx6Cx2coJjp0zLQsy9Binu+PO+H9btH3fjaVRzSwcDgANvXo1lN7abVTZY0I5SNNywjxprtt8=
+X-Received: by 2002:a25:2c82:0:b0:64d:62a1:850b with SMTP id
+ s124-20020a252c82000000b0064d62a1850bmr25986931ybs.291.1653382490845; Tue, 24
+ May 2022 01:54:50 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220523174238.28942-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220523174238.28942-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20220523174238.28942-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 24 May 2022 10:54:39 +0200
+Message-ID: <CACRpkdYaWmD9PTcGgeP5MTe9bXMgmf=tUSDBQ-4VxSfL4qkoeQ@mail.gmail.com>
+Subject: Re: [PATCH v5 3/5] gpio: gpiolib: Allow free() callback to be overridden
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Marc Zyngier <maz@kernel.org>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-gpio@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -46,148 +82,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the VDD and IOVDD power supply inputs. This allows the
-chip to share its supplies with other components (e.g. panel) and manage
-them.
+On Mon, May 23, 2022 at 7:43 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
 
-Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
----
- .../input/touchscreen/sitronix,st1232.yaml    |  6 +++
- drivers/input/touchscreen/st1232.c            | 54 ++++++++++++++++---
- 2 files changed, 52 insertions(+), 8 deletions(-)
+> Allow free() callback to be overridden from irq_domain_ops for
+> hierarchical chips.
+>
+> This allows drivers to free up resources which are allocated during
+> child_to_parent_hwirq()/populate_parent_alloc_arg() callbacks.
+>
+> On Renesas RZ/G2L platform a bitmap is maintained for TINT slots, a slot
+> is allocated in child_to_parent_hwirq() callback which is freed up in free
+> callback hence this override.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/sitronix,st1232.yaml b/Documentation/devicetree/bindings/input/touchscreen/sitronix,st1232.yaml
-index 1d8ca19fd37a..240be8d49232 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/sitronix,st1232.yaml
-+++ b/Documentation/devicetree/bindings/input/touchscreen/sitronix,st1232.yaml
-@@ -28,6 +28,12 @@ properties:
-     description: A phandle to the reset GPIO
-     maxItems: 1
- 
-+  vdd-supply:
-+    description: Power supply regulator for the chip
-+
-+  vddio-supply:
-+    description: Power supply regulator for the I2C bus
-+
- required:
-   - compatible
-   - reg
-diff --git a/drivers/input/touchscreen/st1232.c b/drivers/input/touchscreen/st1232.c
-index e38ba3e4f183..d9c9f6f1f11a 100644
---- a/drivers/input/touchscreen/st1232.c
-+++ b/drivers/input/touchscreen/st1232.c
-@@ -44,6 +44,11 @@
- #define REG_XY_COORDINATES	0x12
- #define ST_TS_MAX_FINGERS	10
- 
-+enum st1232_regulators {
-+	ST1232_REGULATOR_VDD,
-+	ST1232_REGULATOR_IOVDD,
-+};
-+
- struct st_chip_info {
- 	bool	have_z;
- 	u16	max_area;
-@@ -56,6 +61,7 @@ struct st1232_ts_data {
- 	struct touchscreen_properties prop;
- 	struct dev_pm_qos_request low_latency_req;
- 	struct gpio_desc *reset_gpio;
-+	struct regulator_bulk_data regulators[2];
- 	const struct st_chip_info *chip_info;
- 	int read_buf_len;
- 	u8 *read_buf;
-@@ -197,17 +203,36 @@ static irqreturn_t st1232_ts_irq_handler(int irq, void *dev_id)
- 	return IRQ_HANDLED;
- }
- 
--static void st1232_ts_power(struct st1232_ts_data *ts, bool poweron)
-+static int st1232_ts_power_on(struct st1232_ts_data *ts)
-+{
-+	int err;
-+
-+	err = regulator_bulk_enable(ARRAY_SIZE(ts->regulators), ts->regulators);
-+	if (err)
-+		return err;
-+
-+	usleep_range(5000, 6000);
-+
-+	if (ts->reset_gpio)
-+		gpiod_set_value_cansleep(ts->reset_gpio, 0);
-+
-+	return 0;
-+}
-+
-+static void st1232_ts_power_off(struct st1232_ts_data *ts)
- {
- 	if (ts->reset_gpio)
--		gpiod_set_value_cansleep(ts->reset_gpio, !poweron);
-+		gpiod_set_value_cansleep(ts->reset_gpio, 1);
-+	usleep_range(100, 150);
-+	regulator_bulk_disable(ARRAY_SIZE(ts->regulators), ts->regulators);
- }
- 
--static void st1232_ts_power_off(void *data)
-+static void st1232_ts_power_off_action(void *data)
- {
--	st1232_ts_power(data, false);
-+	st1232_ts_power_off(data);
- }
- 
-+
- static const struct st_chip_info st1232_chip_info = {
- 	.have_z		= true,
- 	.max_area	= 0xff,
-@@ -266,6 +291,14 @@ static int st1232_ts_probe(struct i2c_client *client,
- 	ts->client = client;
- 	ts->input_dev = input_dev;
- 
-+	ts->regulators[ST1232_REGULATOR_VDD].supply = "vdd";
-+	ts->regulators[ST1232_REGULATOR_IOVDD].supply = "iovdd";
-+	error = devm_regulator_bulk_get(&client->dev,
-+					ARRAY_SIZE(ts->regulators),
-+					ts->regulators);
-+	if (error)
-+		return error;
-+
- 	ts->reset_gpio = devm_gpiod_get_optional(&client->dev, NULL,
- 						 GPIOD_OUT_HIGH);
- 	if (IS_ERR(ts->reset_gpio)) {
-@@ -275,9 +308,14 @@ static int st1232_ts_probe(struct i2c_client *client,
- 		return error;
- 	}
- 
--	st1232_ts_power(ts, true);
-+	error = st1232_ts_power_on(ts);
-+	if (error) {
-+		dev_err(&client->dev, "Failed to power on: %d\n", error);
-+		return error;
-+	}
- 
--	error = devm_add_action_or_reset(&client->dev, st1232_ts_power_off, ts);
-+	error = devm_add_action_or_reset(&client->dev,
-+					 st1232_ts_power_off_action, ts);
- 	if (error) {
- 		dev_err(&client->dev,
- 			"Failed to install power off action: %d\n", error);
-@@ -348,7 +386,7 @@ static int __maybe_unused st1232_ts_suspend(struct device *dev)
- 	disable_irq(client->irq);
- 
- 	if (!device_may_wakeup(&client->dev))
--		st1232_ts_power(ts, false);
-+		st1232_ts_power_off(ts);
- 
- 	return 0;
- }
-@@ -359,7 +397,7 @@ static int __maybe_unused st1232_ts_resume(struct device *dev)
- 	struct st1232_ts_data *ts = i2c_get_clientdata(client);
- 
- 	if (!device_may_wakeup(&client->dev))
--		st1232_ts_power(ts, true);
-+		st1232_ts_power_on(ts);
- 
- 	enable_irq(client->irq);
- 
--- 
-2.17.1
+So that function today looks like this:
 
+static void gpiochip_hierarchy_setup_domain_ops(struct irq_domain_ops *ops)
+{
+        ops->activate = gpiochip_irq_domain_activate;
+        ops->deactivate = gpiochip_irq_domain_deactivate;
+        ops->alloc = gpiochip_hierarchy_irq_domain_alloc;
+        ops->free = irq_domain_free_irqs_common;
+
+        /*
+         * We only allow overriding the translate() function for
+         * hierarchical chips, and this should only be done if the user
+         * really need something other than 1:1 translation.
+         */
+        if (!ops->translate)
+                ops->translate = gpiochip_hierarchy_irq_domain_translate;
+}
+
+(...)
+-       ops->free = irq_domain_free_irqs_common;
+(...)
+> +       if (!ops->free)
+> +               ops->free = irq_domain_free_irqs_common;
+
+Marc Z is working on cleaning up the way that gpiolib is (ab)using
+irqchips. We definitely need his ACK if we do things like this.
+This doesn't look like one of the big offenders to me, but I want
+to make sure we don't create new problems while Marc is trying
+to solve the old ones.
+
+Yours,
+Linus Walleij
