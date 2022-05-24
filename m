@@ -2,83 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDD6F53266D
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 11:30:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 662D0532678
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 11:33:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234728AbiEXJ3l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 05:29:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37654 "EHLO
+        id S235634AbiEXJbr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 05:31:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235562AbiEXJ3k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 05:29:40 -0400
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 850C033E1E
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 02:29:38 -0700 (PDT)
-Received: by mail-yb1-xb2f.google.com with SMTP id s14so2510947ybc.10
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 02:29:38 -0700 (PDT)
+        with ESMTP id S233022AbiEXJbr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 05:31:47 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F18FD4E398
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 02:31:44 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id v8so27907387lfd.8
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 02:31:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=HVD805PIWF+vPNoBSV15VHHtEetrJAxgrnMmdyS5kRQ=;
-        b=S0mvoueLkkCMEb0khGrKphavMKc90PQbW1hZrqOzWs1cit1wqnOgBEbOhwC2Gm1gcj
-         kIHM1+IQNCQTcaoja5VpEYpV4co8AzCNNu+83KAIk53kLqOmI2hfP1Ar9xXxIieD16Om
-         xjzFu5740eVTIKeVCbdUJGmwGM0Rkl5LQ+ZYKyjPu4YPaP+cGshdi94MjFCF/XNepcPw
-         oYZJyyObKJcD+Yod/TT0w5hVunqVNuqN1+xGJPHLYopcydm+GoghNABwOFA16ah6fLCU
-         dQB3qPEbBbhUjnXIz4bp3atdEuAhPeAjinnOqRPhWOrHjmxFQ8/GB4oqJh3UN8Mnv3dI
-         /e3Q==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9nrI7YiSyYQ7Y/X0QFQ+SqgqG6o8iofh9fkLStbCKSA=;
+        b=AdCDXmVIvkLD95zyxngXCxPArySis6nnzTDFoOS/AHX6lNFbSnK2tArP/ANsSMcfwB
+         r+SWu81KcvPVKroFGu8s2JJVBTg1j6/cDvGIJCI+s5q1Kd0tO2CcC2e5m0x6517E35pV
+         F6pXBV09ZEiLjGe0suJcvtEW3NPXLlT1EJ5BrRbeGQyGq6eA0RHkFLcm2zICD/Sjih4P
+         IMfzWJ+8iBAFcIpEpIJUDaGnQboFnHFeLFsApdprNTXgeRgepGXkcj2crgSQKcmOr1ll
+         OmSOhYMOGqgyg0qfk9yI3L9S6Vf2sPdSjE/TacO3oouOmTh0fnp1ZNQihKjIe0CYTIxq
+         r6KA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HVD805PIWF+vPNoBSV15VHHtEetrJAxgrnMmdyS5kRQ=;
-        b=FaiA8DLlrpWOHZoV/u4b6fOJj0WlzVR3s8xshDymMWRePRCpEyR2kx14A85v2IAapf
-         EE53rWCGAcUeTWcVvxEfJDhrJAw08CLQfBTMSQdtv5hoIr7441R/coi16m5hnMMokm/t
-         gEY8+yMv6YUJdGr0Fsm52AV3HF5b7xdvFqAA52qswrfSIY1B1paaU7dNcPEsimFeMz2+
-         RQEMmqc6cGVl7LkVtdTBnyNaZRfOKTPLo/yZ71dLprJBAY7WFSLPzbWeINB/7BLQumrK
-         quW7LuqpJ6TMWvloTVy4oUQK3QhYTBtiQkXmL5f8E1FMtwoWDJqBgH/B4XEQRqZFDQ4q
-         AEEA==
-X-Gm-Message-State: AOAM533GE3XGtA/B7Xbj/QtZ0aFvVI2IC/ZYB5RTSddiCDkaIwz73KUL
-        g9oau7Rlgb+3+DOL+3QPvXDMNuIqJgmIec0doKPrpg==
-X-Google-Smtp-Source: ABdhPJwSufTp3IMXxz6Jk+46mDzRwOrdHVqjcyhgQZKrft4yGeS0BqvUhfbsZIAkn9moT48nyJeOgOP8pXv2k6Y8YBs=
-X-Received: by 2002:a05:6902:704:b0:64d:f270:22b0 with SMTP id
- k4-20020a056902070400b0064df27022b0mr25054247ybt.626.1653384577755; Tue, 24
- May 2022 02:29:37 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220523174238.28942-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220523174238.28942-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CACRpkdYaWmD9PTcGgeP5MTe9bXMgmf=tUSDBQ-4VxSfL4qkoeQ@mail.gmail.com> <CA+V-a8s+dWMwL6zQnWwFAa15sMgPGYrW+GZ=WhSW1tPxgpLOqA@mail.gmail.com>
-In-Reply-To: <CA+V-a8s+dWMwL6zQnWwFAa15sMgPGYrW+GZ=WhSW1tPxgpLOqA@mail.gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 24 May 2022 11:29:26 +0200
-Message-ID: <CACRpkdb43hCCp43p5wmmfhh_6Qr-bAB2vYo7tX27MTGwfjbPGw@mail.gmail.com>
-Subject: Re: [PATCH v5 3/5] gpio: gpiolib: Allow free() callback to be overridden
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thomas Gleixner <tglx@linutronix.de>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9nrI7YiSyYQ7Y/X0QFQ+SqgqG6o8iofh9fkLStbCKSA=;
+        b=kbPEQhLivO79NzbIrOMUM4KrmiRLU0Oadj3XBd7Mv5tvRaEX3mTSxmkAt+bEoijYON
+         PxAPgvWgnEwocmlTiMvqP1qQbz1fsjlDLHVMUX/WRK61/I+Et9YhA7D5B7PrCe32T0TA
+         KncfKZq5t5mrRG9NjceETJRdke9cMpqu/vzSg3E1IrwEUlvNlbk/6rDRvZELFdcct9TP
+         GEuyd//oh2AnlcmTAKthxFPv6PihT2go9LfnRZ7bfrSK3mbmX5veW8GCKkbs9huE4nu+
+         yW/Aala7M72b61YYp1l3Bmnqvk1+eHt1dge5fnUj2kopS2vfQv+B7nUM8ZxZ/l8+Cozr
+         Qm1Q==
+X-Gm-Message-State: AOAM530lq9QaB/XwTjj7Gk/TJTL6y2W8CxOF/rNxoKI2D3UgHutUGZVl
+        HIHcpWD3mKXg+jqDt/X7uV6veQ==
+X-Google-Smtp-Source: ABdhPJwFxrAvDTuvMQYljVIrHPBvZF52hEqcTEDK4dnVxRLtDEczUbqMN3la4jkBhGwCJ+/VU8CNpw==
+X-Received: by 2002:a05:6512:3d8c:b0:478:7996:935d with SMTP id k12-20020a0565123d8c00b004787996935dmr5158485lfv.542.1653384703330;
+        Tue, 24 May 2022 02:31:43 -0700 (PDT)
+Received: from krzk-bin.. ([91.221.145.6])
+        by smtp.gmail.com with ESMTPSA id q30-20020ac2515e000000b0047255d2112asm2443218lfd.89.2022.05.24.02.31.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 May 2022 02:31:42 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        Jeff LaBundy <jeff@labundy.com>, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH] dt-bindings: input: use generic node names
+Date:   Tue, 24 May 2022 11:31:36 +0200
+Message-Id: <20220524093136.7980-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,62 +71,105 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 24, 2022 at 11:07 AM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
-> On Tue, May 24, 2022 at 9:54 AM Linus Walleij <linus.walleij@linaro.org> wrote:
-> >
-> > On Mon, May 23, 2022 at 7:43 PM Lad Prabhakar
-> > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> >
-> > > Allow free() callback to be overridden from irq_domain_ops for
-> > > hierarchical chips.
-> > >
-> > > This allows drivers to free up resources which are allocated during
-> > > child_to_parent_hwirq()/populate_parent_alloc_arg() callbacks.
-> > >
-> > > On Renesas RZ/G2L platform a bitmap is maintained for TINT slots, a slot
-> > > is allocated in child_to_parent_hwirq() callback which is freed up in free
-> > > callback hence this override.
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> >
-> > So that function today looks like this:
-> >
-> > static void gpiochip_hierarchy_setup_domain_ops(struct irq_domain_ops *ops)
-> > {
-> >         ops->activate = gpiochip_irq_domain_activate;
-> >         ops->deactivate = gpiochip_irq_domain_deactivate;
-> >         ops->alloc = gpiochip_hierarchy_irq_domain_alloc;
-> >         ops->free = irq_domain_free_irqs_common;
-> >
-> >         /*
-> >          * We only allow overriding the translate() function for
-> >          * hierarchical chips, and this should only be done if the user
-> >          * really need something other than 1:1 translation.
-> >          */
-> >         if (!ops->translate)
-> >                 ops->translate = gpiochip_hierarchy_irq_domain_translate;
-> > }
-> >
-> > (...)
-> > -       ops->free = irq_domain_free_irqs_common;
-> > (...)
-> > > +       if (!ops->free)
-> > > +               ops->free = irq_domain_free_irqs_common;
-> >
-> > Marc Z is working on cleaning up the way that gpiolib is (ab)using
-> > irqchips. We definitely need his ACK if we do things like this.
-> > This doesn't look like one of the big offenders to me, but I want
-> > to make sure we don't create new problems while Marc is trying
-> > to solve the old ones.
-> >
-> Agreed, I had a discussion with Marc on v3 series [0].
+Devicetree specification expects nodes to have generic names, if
+possible, so replace custom ones with something generic.  For gpio-keys,
+the more popular format is "key-xxx" instead of "xxx-key", so choose the
+first one.
 
-Hm yeah I guess I am just stepping on Marc's toes with all my mails :(
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I'll try to just wait for Marc's Reviewed-by instead and not add to the noise,
-I'm probably just wrong.
+---
 
-Yours,
-Linus Walleij
+Cc: Andreas Kemnade <andreas@kemnade.info>
+---
+ .../devicetree/bindings/input/fsl,mpr121-touchkey.yaml        | 4 ++--
+ Documentation/devicetree/bindings/input/gpio-keys.yaml        | 4 ++--
+ Documentation/devicetree/bindings/input/iqs269a.yaml          | 2 +-
+ Documentation/devicetree/bindings/input/iqs626a.yaml          | 2 +-
+ .../devicetree/bindings/input/microchip,cap11xx.yaml          | 2 +-
+ 5 files changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml b/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
+index 878464f128dc..5139af287d3e 100644
+--- a/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
++++ b/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
+@@ -57,7 +57,7 @@ examples:
+         #address-cells = <1>;
+         #size-cells = <0>;
+ 
+-        mpr121@5a {
++        touchkey@5a {
+             compatible = "fsl,mpr121-touchkey";
+             reg = <0x5a>;
+             interrupt-parent = <&gpio1>;
+@@ -77,7 +77,7 @@ examples:
+         #address-cells = <1>;
+         #size-cells = <0>;
+ 
+-        mpr121@5a {
++        touchkey@5a {
+             compatible = "fsl,mpr121-touchkey";
+             reg = <0x5a>;
+             poll-interval = <20>;
+diff --git a/Documentation/devicetree/bindings/input/gpio-keys.yaml b/Documentation/devicetree/bindings/input/gpio-keys.yaml
+index 7fe1966ea28a..93f601c58984 100644
+--- a/Documentation/devicetree/bindings/input/gpio-keys.yaml
++++ b/Documentation/devicetree/bindings/input/gpio-keys.yaml
+@@ -127,13 +127,13 @@ examples:
+         compatible = "gpio-keys";
+         autorepeat;
+ 
+-        up {
++        key-up {
+             label = "GPIO Key UP";
+             linux,code = <103>;
+             gpios = <&gpio1 0 1>;
+         };
+ 
+-        down {
++        key-down {
+             label = "GPIO Key DOWN";
+             linux,code = <108>;
+             interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
+diff --git a/Documentation/devicetree/bindings/input/iqs269a.yaml b/Documentation/devicetree/bindings/input/iqs269a.yaml
+index 9c154e5e1a91..d84d69f5455d 100644
+--- a/Documentation/devicetree/bindings/input/iqs269a.yaml
++++ b/Documentation/devicetree/bindings/input/iqs269a.yaml
+@@ -475,7 +475,7 @@ examples:
+             #address-cells = <1>;
+             #size-cells = <0>;
+ 
+-            iqs269a@44 {
++            touch@44 {
+                     #address-cells = <1>;
+                     #size-cells = <0>;
+ 
+diff --git a/Documentation/devicetree/bindings/input/iqs626a.yaml b/Documentation/devicetree/bindings/input/iqs626a.yaml
+index 0cb736c541c9..dd727befe564 100644
+--- a/Documentation/devicetree/bindings/input/iqs626a.yaml
++++ b/Documentation/devicetree/bindings/input/iqs626a.yaml
+@@ -751,7 +751,7 @@ examples:
+             #address-cells = <1>;
+             #size-cells = <0>;
+ 
+-            iqs626a@44 {
++            touch@44 {
+                     #address-cells = <1>;
+                     #size-cells = <0>;
+ 
+diff --git a/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+index d5d6bced3148..96358b12f9b2 100644
+--- a/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
++++ b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+@@ -112,7 +112,7 @@ examples:
+       #address-cells = <1>;
+       #size-cells = <0>;
+ 
+-      cap1188@28 {
++      touch@28 {
+         compatible = "microchip,cap1188";
+         interrupt-parent = <&gpio1>;
+         interrupts = <0 0>;
+-- 
+2.34.1
+
