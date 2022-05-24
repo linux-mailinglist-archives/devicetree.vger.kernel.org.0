@@ -2,72 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE15D5326E2
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 11:55:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81F545326EF
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 11:56:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232017AbiEXJxY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 05:53:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54376 "EHLO
+        id S231845AbiEXJ40 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 05:56:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232183AbiEXJxX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 05:53:23 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3A6F612B9
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 02:53:21 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id v8so27995604lfd.8
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 02:53:21 -0700 (PDT)
+        with ESMTP id S235965AbiEXJ4N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 05:56:13 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11CB621E3D
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 02:56:12 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id a23so20225419ljd.9
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 02:56:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=f3EaAl5YGKF2nwF2lKP9920mWbceFLAyXVzRrf1riF4=;
-        b=qwBgfbWmJ9JO/NgcfvPrVh7ad1QWFamF+e+B5pOruIZiFpe8i1j29cDKqxSyNDtwuc
-         dCACEEqZrA1t/50tI9dLJSXuvzcJAp6HKn2mdr/1aHSg75me98KAHY2XEko0pI/6ls8Q
-         UTAFzkLewsrgTD64NlNPSfGlFs8Ow3ezNBCoFI7kefPrYNfGnahzmoG/5rwGyqLiWJHO
-         rnQYvkH7qPc3DofvTAGVhjUyQ8KD3QyWv/YoLDOvY19wC305TWSeyT/SDZIAmqKEgoNZ
-         leh4jRMT59ev6gAtfo7GFtcmWnGlDH/chAsuaI0bb5xRcybKJlq8zokwGkJSrjIa65lt
-         2kgw==
+        bh=TNrztLGI7YmluKNlO8mQvCDSwLHT2q37DR0pu3wOwMc=;
+        b=bqvCUGJAQAzLwY3sfu1hbgOSI+pcfdQAwtt01ZRg7d6FXrdv14i3c6V7VthX2NnZVo
+         onXYiwgJZj1ydS1utpVk1BTcqiUNMjiYwvA8Cx2NiqpgQelMQPvIWQnSfR32Q2hexpRY
+         Hf0pgJ+TdTcfVH9uyqE4FQCz6Q1AVtEiFyIH7dnG3sjGVnw/UA1vU4od1jqPrKSQx9H5
+         24cMcqUL63dp3SLHwRkMAjo4mkg8zm1+B9lC+/x4WkeuecgZReWPwYV8wDEgdoK3YrN6
+         wo4ACh6sSfdaBjU+dZWa+ReWcC24f3W5rVIq5PBwAwA5a0xFEGs6DDycoEMP8kjOmxie
+         ZlWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=f3EaAl5YGKF2nwF2lKP9920mWbceFLAyXVzRrf1riF4=;
-        b=BO2+QBidthta/WgUzdF3ZqXJFBbDUKNYTL2npe922BcNdw5+82xQH1N2z1JWlxOtw6
-         mydcE9bky0uQ47VWpuaD2nN/dCe/8d+wqni9CelGGMQub12v8YuroPJRjL8L5euEXkUy
-         aV7FtOmAbZ1SFvIIMYNbJvEFolOYXva4hpbaxzyUFb7kWx6UYKKsOG/bRXoXp3aKzsFz
-         P4Yedt49V98W77W5Dn/yCv/QqH2PRswgdqyetWFufh6yvaoxG8BxeBC4Sarau4Rc5CAI
-         TAMjsM7Zc6oAZ82cP1J+XpmG2if1JpFQPeVx23eG0E8G62XM1yRpxKowRUiSYk0FddXD
-         8N5A==
-X-Gm-Message-State: AOAM5301TJT1pxhbcE7cZ9Ji78qHydllnzgLHQsdtrrJgzDqXGHlSDPh
-        576enw+yFho4JYHVfSz4BGT0GA==
-X-Google-Smtp-Source: ABdhPJx1PniuT5qa9mQZG/emNiS0626VVTzY6C2GFS7u3+z9a2qzGnnM6NLsqhcyXb+NByXjxm/3GA==
-X-Received: by 2002:a19:e050:0:b0:477:b0ae:1312 with SMTP id g16-20020a19e050000000b00477b0ae1312mr18329856lfj.357.1653386000033;
-        Tue, 24 May 2022 02:53:20 -0700 (PDT)
+        bh=TNrztLGI7YmluKNlO8mQvCDSwLHT2q37DR0pu3wOwMc=;
+        b=4b6dJTj8OexSt1F7qUGnyBf/rUtwJuBkq2MPUsNw/Z2g0l6wAeaHc8E/A37BaSIqEa
+         3lcZwIQb1hCF44Zb/NMwCvt3lwK0M8AoyKqlFIttsH5vpkJjLv01UqP8mPxuDLgYEIwq
+         XjGlsIiSMuIt7b9t+8K3+pYfGzxmiuiozACFVTZ1US0TG8TlzurY2VhYMddltzInMNlK
+         lHMnbZEqD/kdrNQlDJ4gWfveBBxXleoBlBEZI42Ro7HLuNcAm6+yBEajxEsqNEUGnex0
+         BMBED7i9iPQmvHigfwLM5gkzX/s/yytVuRXB+fkzxm3ScezPD/HztBhTTwVh/WNBZaK0
+         Wg0A==
+X-Gm-Message-State: AOAM5327F5+QoSDJ2fiQXbcPl9Th0SbPC3h8Op6q9osFn1z/EMr8wpMY
+        qmBvvH7ZsVauXMOQSfU8CL0vcQ==
+X-Google-Smtp-Source: ABdhPJxlLaugH14+WpTAZ8MmbT2RoFjMZQ35niE7QMkyFmwOWotHwAsSlzZKvQdJTQZo0h/iFrNSrA==
+X-Received: by 2002:a05:651c:ba4:b0:253:dfde:d7e with SMTP id bg36-20020a05651c0ba400b00253dfde0d7emr10774791ljb.436.1653386170432;
+        Tue, 24 May 2022 02:56:10 -0700 (PDT)
 Received: from [172.20.68.48] ([91.221.145.6])
-        by smtp.gmail.com with ESMTPSA id o10-20020ac2434a000000b0047255d211b4sm2442218lfl.227.2022.05.24.02.53.19
+        by smtp.gmail.com with ESMTPSA id y24-20020ac24218000000b0047255d21184sm2449009lfh.179.2022.05.24.02.56.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 24 May 2022 02:53:19 -0700 (PDT)
-Message-ID: <dd67a453-b75b-d092-f999-3faf05ef8160@linaro.org>
-Date:   Tue, 24 May 2022 11:53:17 +0200
+        Tue, 24 May 2022 02:56:09 -0700 (PDT)
+Message-ID: <e7014cdd-5865-90b6-54f6-b0594839603a@linaro.org>
+Date:   Tue, 24 May 2022 11:56:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH -next] ARM: dts: aspeed: nuvia: rename vendor nuvia to
- qcom
+Subject: Re: [PATCH v3 1/4] dt-bindings: regulator: Add bindings for MT6331
+ regulator
 Content-Language: en-US
-To:     Jae Hyun Yoo <quic_jaehyoo@quicinc.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
-Cc:     Jamie Iles <quic_jiles@quicinc.com>,
-        Graeme Gregory <quic_ggregory@quicinc.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org
-References: <20220523175640.60155-1-quic_jaehyoo@quicinc.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, lgirdwood@gmail.com
+Cc:     broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20220523154709.118663-1-angelogioacchino.delregno@collabora.com>
+ <20220523154709.118663-2-angelogioacchino.delregno@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220523175640.60155-1-quic_jaehyoo@quicinc.com>
+In-Reply-To: <20220523154709.118663-2-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,62 +79,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/05/2022 19:56, Jae Hyun Yoo wrote:
-> Nuvia has been acquired by Qualcomm and the vendor name 'nuvia' will
-> not be used anymore so rename aspeed-bmc-nuvia-dc-scm.dts to
-> aspeed-bmc-qcom-dc-scm-v1.dts and change 'nuvia' to 'qcom' as its vendor
-> name in the file.
-
-And all users of this DTB now have to update their bootloaders, scripts,
-installation methods. We did not rename FSL or Marvell boards, so
-neither should be renamed this one.
-
+On 23/05/2022 17:47, AngeloGioacchino Del Regno wrote:
+> Add the bindings for the regulators found in the MT6331 PMIC.
 > 
-> Signed-off-by: Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
->  arch/arm/boot/dts/Makefile                                    | 2 +-
->  ...eed-bmc-nuvia-dc-scm.dts => aspeed-bmc-qcom-dc-scm-v1.dts} | 4 ++--
->  2 files changed, 3 insertions(+), 3 deletions(-)
->  rename arch/arm/boot/dts/{aspeed-bmc-nuvia-dc-scm.dts => aspeed-bmc-qcom-dc-scm-v1.dts} (97%)
-> 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 03f5b3a15415..2a3c95387613 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -1584,7 +1584,6 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
->  	aspeed-bmc-lenovo-hr630.dtb \
->  	aspeed-bmc-lenovo-hr855xg2.dtb \
->  	aspeed-bmc-microsoft-olympus.dtb \
-> -	aspeed-bmc-nuvia-dc-scm.dtb \
->  	aspeed-bmc-opp-lanyang.dtb \
->  	aspeed-bmc-opp-mihawk.dtb \
->  	aspeed-bmc-opp-mowgli.dtb \
-> @@ -1597,6 +1596,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
->  	aspeed-bmc-opp-witherspoon.dtb \
->  	aspeed-bmc-opp-zaius.dtb \
->  	aspeed-bmc-portwell-neptune.dtb \
-> +	aspeed-bmc-qcom-dc-scm-v1.dtb \
->  	aspeed-bmc-quanta-q71l.dtb \
->  	aspeed-bmc-quanta-s6q.dtb \
->  	aspeed-bmc-supermicro-x11spi.dtb \
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-nuvia-dc-scm.dts b/arch/arm/boot/dts/aspeed-bmc-qcom-dc-scm-v1.dts
-> similarity index 97%
-> rename from arch/arm/boot/dts/aspeed-bmc-nuvia-dc-scm.dts
-> rename to arch/arm/boot/dts/aspeed-bmc-qcom-dc-scm-v1.dts
-> index f4a97cfb0f23..259ef3f54c5c 100644
-> --- a/arch/arm/boot/dts/aspeed-bmc-nuvia-dc-scm.dts
-> +++ b/arch/arm/boot/dts/aspeed-bmc-qcom-dc-scm-v1.dts
-> @@ -6,8 +6,8 @@
->  #include "aspeed-g6.dtsi"
->  
->  / {
-> -	model = "Nuvia DC-SCM BMC";
-> -	compatible = "nuvia,dc-scm-bmc", "aspeed,ast2600";
-> +	model = "Qualcomm DC-SCM V1 BMC";
-> +	compatible = "qcom,dc-scm-v1-bmc", "aspeed,ast2600";
 
 
-You need also change bindings.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
