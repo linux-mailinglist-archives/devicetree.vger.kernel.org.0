@@ -2,79 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95846532037
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 03:16:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68340532041
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 03:30:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231928AbiEXBQH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 May 2022 21:16:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45564 "EHLO
+        id S232361AbiEXB2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 May 2022 21:28:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232591AbiEXBQF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 21:16:05 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43C4AE37;
-        Mon, 23 May 2022 18:16:03 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id i23so19183473ljb.4;
-        Mon, 23 May 2022 18:16:03 -0700 (PDT)
+        with ESMTP id S232357AbiEXB2X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 May 2022 21:28:23 -0400
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B37C6FD01
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 18:28:22 -0700 (PDT)
+Received: by mail-pl1-x636.google.com with SMTP id i1so14579776plg.7
+        for <devicetree@vger.kernel.org>; Mon, 23 May 2022 18:28:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=google.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=xfZDqs28oyhSqhq27xEhsDuOI5suqfnf7ndJ0VongrY=;
-        b=V9WvkSLF3IrBDVZuHj1fncXQbS4UZP8Bl4vGoQ4cP40GscD6acASvvt3KvV3y2kJbT
-         YRvKI1ek80h6KhZw+b+gzPB6B8GXVuEoXFrqSifxHKEspJKZw7sxwx4Gzoji8uY0Df0M
-         bOvd2jeiBvUM5bbTVTV8eZM2lk/AsAhU/EGkgD3Wh7WUffY6jyjRizHUgtPxZlDyGtsE
-         RiTWo0/o9HaUPCnfFmONEty2uj/HVqALZZwQfzAH1xSY6o44XeVndcsckzs1j7iIbytz
-         4H4DyEiZYzHZCud6z92NKr0NeOT3ij5at8mzNzN6v8DFQ+ZGtsBS69occFDvNVFcII5r
-         hZ+Q==
+         :cc;
+        bh=sRdkO9LWoK6gu3O6tCs/6pS6ffPvexve2L+r8+1P1Mc=;
+        b=MR+QpekimCNHYVTg/y19FR/jbueG7WKak0RbDHffuGp91Uu9dUwWWsmwhZ1meXGDtH
+         u96NPpxkfqqQl5rlTbk9qVerNPjsyG9j0sJWbLBUm0UrNi5iSS27bDVBJBtRnksauOTm
+         K2hHqUZxln7S7HaaFH4vuNV38c4PL0lmy598DMZ3PA42tZNTn+ohVcPS2Wng03+EtV5A
+         5AEEnVEKtMSacNFdvAkti8NswhlkJtJwDSv+0ASp9KafpHpHfZh0MHqzubbWuvwAkcNq
+         tIy3FFCadANe4AiIpFQ4pjtAU5GV6U/NKOFLxtoe2VAXi14HvlCoKysEDynD/GE/ei3h
+         r8RQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=xfZDqs28oyhSqhq27xEhsDuOI5suqfnf7ndJ0VongrY=;
-        b=GbbXOXTXAbvHDUvPw5EJe/x/1KvFxHsDcFL7jdECN4Vq2i9FYyRqLdTwlh/TpzmLgW
-         q1TtCS8lIxt4uGsCwSjEsfgKxH53r5PSWGuX21/XRHwSBTjYPKucPU6P512OhJSntCfY
-         y8y8/9nC5K4qO0wA8hP5AGDezO4l170/xM6fBSt2IG7iD0tf/IJXsfqaxPFzacLWz00x
-         YisEQnwAMqowzBu4G+KrA9OvmmBRvMuzlk3h2PK8/m+I/u5cEb5hIkzd4INC7/4wE8yq
-         3ZvtLDSQuc4UT6y/MoU8MiS/ZSEE4uKsVzKt8kTu2jUux3oceAHY9DmkHvWuN2c4LHDv
-         E3Mw==
-X-Gm-Message-State: AOAM531DGFcnnQGRh5dROH9LQhBW7TdRDKA0VH5nsXTIHKggoKpnf7CF
-        M7r4+otIjceUWNhPbioA5YzlG+pCxex9pxW33LlXZJKHIKRSmg==
-X-Google-Smtp-Source: ABdhPJyMUAWa9cyvBzye0KjjHaKA88ye8dYHy9GbuVdYLtpagId1ddjvvlKbtYqmSMfU8sIThkAM9ZCbSrzqE3dTMAc=
-X-Received: by 2002:a2e:a602:0:b0:253:d7e2:4d8a with SMTP id
- v2-20020a2ea602000000b00253d7e24d8amr12468397ljp.284.1653354961223; Mon, 23
- May 2022 18:16:01 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=sRdkO9LWoK6gu3O6tCs/6pS6ffPvexve2L+r8+1P1Mc=;
+        b=4FhItGV7/v69/nG4ucEXt6FIFtNrm3iAUhAMFYfm9Ru5yBVz7Q+jxkxNGzCsqfRaYt
+         kmBFf5TxvyJL5j5WbHFNaUwEMXARljET9uehMG45lTHxJqonHVXGlX0U2ecuQ35KQRqh
+         hp7u9gpDLggCDVzRe15yXnU+I16fjphOeIQBVOBhjw6V/IURdzlCvxQRsMsWpYpVI9Ek
+         o6ReiPSmvSF2bW5RTOxt717UKKmFHpCPWIsDTz48JFX+Fq7FJQWacdSBZn6cMZu8J17l
+         gfeySlWJsHL+IZU+gfFj0F8i/7TxnnVVk4RRNamts0QQ5vzqwUbNzTbKEhu1V+myEtmt
+         e5fQ==
+X-Gm-Message-State: AOAM533yfGzTAHpruHyRABTwuTHsst7LP0kRAsorHTgbaz9PdW3YB34j
+        ADZQahEbSIcYQBAOmPgJTD2p1Nl7cZ2HQizKQWW8Mg==
+X-Google-Smtp-Source: ABdhPJwD5caICs9kSETeFxAO9el0xMpeE855aAndFiUT36QQ7C+udGQBDWOTuISOgzhnsjSfpzdkzCz5zj3ruW6lPKo=
+X-Received: by 2002:a17:903:40d2:b0:161:a2d9:3230 with SMTP id
+ t18-20020a17090340d200b00161a2d93230mr25125435pld.57.1653355701583; Mon, 23
+ May 2022 18:28:21 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220510031056.1657-1-ctcchien@nuvoton.com> <20220510031056.1657-2-ctcchien@nuvoton.com>
- <YoUwe6Tj4Uh6ukc8@zn.tnic> <CAHpyw9fjThEP4NuU08aNJ_raHpq9-j9KgBb8YuZ_shXTjhm3JA@mail.gmail.com>
- <YoYPGWreQuF9QZzc@zn.tnic> <CAHpyw9es-n+bW9SsGBmmr3ghBFk8Q8E6ZTbE42BpU-6p8LfHtw@mail.gmail.com>
- <YoeE8cBhUkF3K44/@zn.tnic> <CAHpyw9fAfNf8j++JtLhuudSWj6N1-KAxA_fxEGL998WNVXTPdQ@mail.gmail.com>
- <YotVJ+ExcrQshM4A@zn.tnic>
-In-Reply-To: <YotVJ+ExcrQshM4A@zn.tnic>
-From:   Medad Young <medadyoung@gmail.com>
-Date:   Tue, 24 May 2022 09:15:50 +0800
-Message-ID: <CAHpyw9eALo=39N15omAFLA28LySBfPom7ejCfOgW9aS5gTa3Lg@mail.gmail.com>
-Subject: Re: [PATCH v9 1/3] ARM: dts: nuvoton: Add memory controller node
-To:     Borislav Petkov <bp@alien8.de>
-Cc:     rric@kernel.org, James Morse <james.morse@arm.com>,
-        tony.luck@intel.com, Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Patrick Venture <venture@google.com>, KWLIU@nuvoton.com,
-        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING <KFTING@nuvoton.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>, ctcchien@nuvoton.com,
-        linux-edac <linux-edac@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>
+References: <20220523090822.3035189-1-tzungbi@kernel.org> <165335341249.17704.13803710194044994542.git-patchwork-notify@kernel.org>
+In-Reply-To: <165335341249.17704.13803710194044994542.git-patchwork-notify@kernel.org>
+From:   Tzung-Bi Shih <tzungbi@google.com>
+Date:   Tue, 24 May 2022 09:28:10 +0800
+Message-ID: <CA+Px+wU_pbmWOmB9wSOOWCHqsBAGVHy3w6ya_6fj4d0+VtTmBA@mail.gmail.com>
+Subject: Re: [PATCH v4 0/5] platform/chrome: cros_kbd_led_backlight: add EC
+ PWM backend
+To:     patchwork-bot+chrome-platform@kernel.org
+Cc:     Tzung-Bi Shih <tzungbi@kernel.org>, bleung@chromium.org,
+        groeck@chromium.org, robh+dt@kernel.org,
+        chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org,
+        mka@chromium.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,72 +69,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Borislav,
+On Tue, May 24, 2022 at 8:50 AM
+<patchwork-bot+chrome-platform@kernel.org> wrote:
+>
+> Hello:
+>
+> This series was applied to chrome-platform/linux.git (for-kernelci)
+> by Tzung-Bi Shih <tzungbi@kernel.org>:
+>
+> On Mon, 23 May 2022 17:08:17 +0800 you wrote:
+> > The series adds EC PWM as an backend option for ChromeOS keyboard LED
+> > backlight.
+> >
+> > The 1st patch reorder the headers alphabetically.
+> >
+> > The 2nd patch separates the ACPI backend.
+> >
+> > [...]
+>
+> Here is the summary with links:
+>   - [v4,1/5] platform/chrome: cros_kbd_led_backlight: sort headers alphabetically
+>     https://git.kernel.org/chrome-platform/c/a4da30150ab4
+>   - [v4,2/5] platform/chrome: cros_kbd_led_backlight: separate ACPI backend
+>     (no matching commit)
+>   - [v4,3/5] dt-bindings: add google,cros-kbd-led-backlight
+>     (no matching commit)
+>   - [v4,4/5] platform/chrome: cros_kbd_led_backlight: support OF match
+>     (no matching commit)
+>   - [v4,5/5] platform/chrome: cros_kbd_led_backlight: support EC PWM backend
+>     (no matching commit)
 
-thanks for your help.
-
-Borislav Petkov <bp@alien8.de> =E6=96=BC 2022=E5=B9=B45=E6=9C=8823=E6=97=A5=
- =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=885:34=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On Mon, May 23, 2022 at 05:06:07PM +0800, Medad Young wrote:
-> > I did do "git commit --amend",
-> > I beleve the issue is about the mail server I used,
-> > I use gmail to send the mail due to the mail server of my company
-> > does't support smtp
-> > so now I should sign the commit with my gmail account.
->
-> No, you should supply --author too - I had forgotten about that.
->
-> commit 0876b99e4aa2bf7113070c9c0f5d0ade7ad91697 (HEAD -> refs/heads/test)
-> Author: Medad CChien <medadyoung@gmail.com>
-> Date:   Tue May 10 11:10:54 2022 +0800
->
->     ARM: dts: nuvoton: Add memory controller node
->
->     ECC must be configured in the BootBlock header.
->     Then, you can read error counts via the EDAC kernel framework.
->
->     Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
->
-> $  git commit --amend --author=3D"Medad CChien <ctcchien@nuvoton.com>"
-> [test 5d6cd85171d1] ARM: dts: nuvoton: Add memory controller node
->  Author: Medad CChien <ctcchien@nuvoton.com>
->  Date: Tue May 10 11:10:54 2022 +0800
->  1 file changed, 7 insertions(+)
-> $ git log -p -1
-> commit 5d6cd85171d14e67840e672e2f96a16981243424 (HEAD -> refs/heads/test)
-> Author: Medad CChien <ctcchien@nuvoton.com>
-> Date:   Tue May 10 11:10:54 2022 +0800
->
->     ARM: dts: nuvoton: Add memory controller node
->
->     ECC must be configured in the BootBlock header.
->     Then, you can read error counts via the EDAC kernel framework.
->
->     Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
->
-> $ git format-patch -1 -o /tmp/
-> /tmp/0001-ARM-dts-nuvoton-Add-memory-controller-node.patch
->
-> $ head /tmp/0001-ARM-dts-nuvoton-Add-memory-controller-node.patch
-> From 5d6cd85171d14e67840e672e2f96a16981243424 Mon Sep 17 00:00:00 2001
-> From: Medad CChien <ctcchien@nuvoton.com>
->                     ^^^^^^^^^^^^^^^^^^^^^^
->
->
-> Don't hesitate to look at the manpages if a tool doesn't do what you
-> expect it to do.
-
-OK, I will try to supply --author with my original mail server
-
->
-> HTH.
->
-> --
-> Regards/Gruss,
->     Boris.
->
-> https://people.kernel.org/tglx/notes-about-netiquette
-
-B.R.
-Medad
+No.  They haven't all got R-b tags and one of the commits was pushed
+mistakenly.  I have updated the for-kernelci branch again to fix it
+up.
