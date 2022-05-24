@@ -2,108 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82C84532B55
-	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 15:31:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3224A532BBB
+	for <lists+devicetree@lfdr.de>; Tue, 24 May 2022 15:55:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237814AbiEXNbV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 09:31:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38294 "EHLO
+        id S234337AbiEXNyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 09:54:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235112AbiEXNbU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 09:31:20 -0400
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E50BC29803;
-        Tue, 24 May 2022 06:31:19 -0700 (PDT)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-f1d2ea701dso22208934fac.10;
-        Tue, 24 May 2022 06:31:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=p5cQmQBkb3a2eE/BfwyjgVPm7Utat6ARsNInbYc/VSU=;
-        b=CbKJy1bRX1t8tUkg6X0tuy8UTHiXPobesiBf6LKnS3bHaK2lCcoj3Gp9I8a7VWZim7
-         RctKcriHOOy1pysmzTaId4+Z1IqxRc8emhduyKkaHCP4StskjyGTuhAXAV6LeFmdHx4M
-         qVJ1LEGRyy4NJtqBVCWIBLid4HMiBJ3IrYwI7jbUu0SvvWqzhSMxYliyFWDCqajeuzWY
-         G23bLQQRmnF8ElLTR9ESfBJawpAp3unxVwwvWQqtF5h8kZ/GhsggAboov2lqyZ9MQy2i
-         SGnF26NEMDEcvu6GN3fODwOY+GjAbXt/aGBQeLjYdAaUR/ImZwHmz+x+clvdIN9yQNyD
-         aVxA==
-X-Gm-Message-State: AOAM530c0uCAcNihmzJkcApoQzpO7Xm3F+6geVWgbLU1exTMiqySXL/p
-        70i6a+HJg3oLzqQWhMuzSQ==
-X-Google-Smtp-Source: ABdhPJweQLv5lRGuc/KW8gl+tSohsv9m24as7ZDSR5WrD70i/q60K9ei/NBZoFTt66bRcJMeIXepIw==
-X-Received: by 2002:a05:6870:c8a5:b0:f1:65c3:b1e9 with SMTP id er37-20020a056870c8a500b000f165c3b1e9mr2507727oab.36.1653399079185;
-        Tue, 24 May 2022 06:31:19 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id mv15-20020a0568706a8f00b000f29b86f448sm603444oab.38.2022.05.24.06.31.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 May 2022 06:31:18 -0700 (PDT)
-Received: (nullmailer pid 3633153 invoked by uid 1000);
-        Tue, 24 May 2022 13:31:17 -0000
-Date:   Tue, 24 May 2022 08:31:17 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Robin van der Gracht <robin@protonic.nl>,
-        Miguel Ojeda <ojeda@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Olof Johansson <olof@lixom.net>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: input: matrix-keymap: Add common
- 'linux,no-autorepeat' property
-Message-ID: <20220524133117.GA3592577-robh@kernel.org>
-References: <20220523170449.1763039-1-robh@kernel.org>
- <YovWpSvabyhcYnzL@google.com>
- <20220523194503.GA2004570-robh@kernel.org>
- <YowEgvwBOSEK+kd2@google.com>
+        with ESMTP id S229726AbiEXNyB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 09:54:01 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73EDD95A05;
+        Tue, 24 May 2022 06:54:00 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0FC6A61636;
+        Tue, 24 May 2022 13:54:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C7A0C34113;
+        Tue, 24 May 2022 13:53:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1653400439;
+        bh=6XhAFe91uLN8j3psw/ecVh9mNeTClO1Yejx8X4qhAgg=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=C9suI9g8huTwLf7MaZCbKJo41VmU2pTdhJ+uXnvGz8bTnrv2eTwFYuCu7knorWheT
+         62u+cb5Cljq+7V99IibSzNxd5V06LAQBICQR0VH0SyzVvsG/b4NA211J0lI1BzVpsi
+         xIrPR77StwyqAH3U43in8obxBZfjMzfvuR45yQukV37Aq9EtDN1Hk3TT2+Nlrw0Ejy
+         Jv19AF3w5AC8UJ7XDF+75N/4C6Bz6qE66pZitHn7553vwwQ58DHNXfptTrbHcU3X1x
+         NZbJvxTeFGYcHBWXWVVjl3RxZozFkFoEpN3UVdxmgzKSu+QFS4wbh9kolsChJ2V1Mh
+         21971d7pDXgog==
+Message-ID: <4361fb24-593f-0513-4248-bae4f9745f56@kernel.org>
+Date:   Tue, 24 May 2022 08:53:57 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YowEgvwBOSEK+kd2@google.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH] arm64: dts: Add support for Stratix 10 Software Virtual
+ Platform
+Content-Language: en-US
+To:     wen.ping.teh@intel.com, Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Yves Vandervennet <yvanderv@opensource.altera.com>,
+        Dinh Nguyen <dinguyen@opensource.altera.com>
+References: <20220524102912.792968-1-wen.ping.teh@intel.com>
+From:   Dinh Nguyen <dinguyen@kernel.org>
+In-Reply-To: <20220524102912.792968-1-wen.ping.teh@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-11.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 23, 2022 at 03:02:42PM -0700, Dmitry Torokhov wrote:
-> On Mon, May 23, 2022 at 02:45:03PM -0500, Rob Herring wrote:
-> > On Mon, May 23, 2022 at 11:47:01AM -0700, Dmitry Torokhov wrote:
-> > > On Mon, May 23, 2022 at 12:04:49PM -0500, Rob Herring wrote:
-> > > > 'linux,no-autorepeat' is a common property used in multiple bindings,
-> > > > but doesn't have a common type definition nor description. Add a common
-> > > > definition and drop the now redundant description from
-> > > > holtek,ht16k33.yaml.
-> > > 
-> > > We have "autorepeat" in the common input binding description, should we
-> > > not promote it over "no-autorepeat"?
-> > 
-> > We're kind of stuck with it I think. We can't just deprecate one and 
-> > switch existing users as what would neither property present mean?
-> 
-> I agree, we should not change existng bindings.
-> 
-> > 
-> > Hopefully, documented in input.yaml vs. matrix-keypad.yaml is enough to 
-> > say which one is preferred for new users. 
-> 
-> So this is what I have issue with, as I think it will introduce
-> confusion: we have drivers/input/matrix-keymap.c and corresponding
-> binding Documentation/devicetree/bindings/input/matrix-keymap.yaml that
-> deals with parsing keymap-related properties for various matrix keypads.
-> It does not specify autorepeat handling one way or another. Then we have
-> drivers/input/keyboard/matrix_keypad.c that is one implementation of
-> matrix keypads, and it does have linux,no-autorepeat, but it does not
-> mean that other devices resembling matrix keypad are forced to use
-> linux,no-autorepeat. And that is why I think putting this property into
-> the generic binding
-> Documentation/devicetree/bindings/input/matrix-keymap.yaml is not a good
-> idea.
 
-You are right. As it looks like there are only 3 users of 
-linux,no-autorepeat, we can live with multiple definitions. Looks like 
-we have a variety of other autorepeat properties too.
 
-Rob
+On 5/24/22 05:29, wen.ping.teh@intel.com wrote:
+> From: Teh Wen Ping <wen.ping.teh@intel.com>
+> 
+> Add Stratix 10 Software Virtual Platform device tree
+> 
+> Signed-off-by: Yves Vandervennet <yvanderv@opensource.altera.com>
+> Signed-off-by: Dinh Nguyen <dinguyen@opensource.altera.com>
+
+Please remove the above 2 addresses, they no longer exists.
+
+Dinh
