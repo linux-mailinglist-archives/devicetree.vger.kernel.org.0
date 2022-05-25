@@ -2,132 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCF0C53371E
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 09:11:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFF5B533709
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 09:10:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244304AbiEYHL4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 03:11:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53436 "EHLO
+        id S237551AbiEYHKq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 03:10:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244341AbiEYHLo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 03:11:44 -0400
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A13262FA
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 00:05:55 -0700 (PDT)
-Received: by mail-pj1-x1035.google.com with SMTP id cv10so2227277pjb.4
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 00:05:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=GQOgQwVQ/waUJffCDtcivwSbqH5M+zW3KVOXOzVg+3I=;
-        b=hfxeN4TuHwZ+F26aVi1nDnyqqj9hzVXzKQLyUTyyseJ1iA2d76wNddPr+Rs8dRaw8U
-         6g2vsfECGDI/zklJP00Pvjz5teG9nmAJS5uNj3rHFuswYrxKgIoBmlWZoWXCgNjj86Nw
-         Vkffw8Z9LaoNwuAhLW48PfDj+fbdlnQyCDUcNUnhZPqLLqxucNyPXCbFCdNp7qMzjthM
-         mymx77ceQo5I2XfTuxYjsKmFpGcIReYXyG8UMB03cIeWtS+6g/6It1c3bKwQKOmb7bt/
-         dSvKqMiBn0YuUFNtMVFi8MhtNg134bEF2gpV9ILEW7JMJzgsd+aafYU9xoXS2GUdN3qU
-         /ARQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=GQOgQwVQ/waUJffCDtcivwSbqH5M+zW3KVOXOzVg+3I=;
-        b=Bz79PKrfxdj5aZJ8j1nTQWuBPNp4b+TfExIWW+HHTUH+fGmcb/mKzk6Rju5h0sXJ2z
-         3aT9RCQn4Tx8Da3Zzx35lW914gOxi9t+FfP9jZaR1NwQ0LDHhHounp3J0wwxo3Nk2c5x
-         XoPPGOJjjNLV7zqfhhbeLGmCf4hIgNT5XaK5oV9ODFiirqEh4Umb4FPOhgyMegeKA4E0
-         nDMW7+Dbvc3T8QJCdMgxbTOf40zLvk1eRf2OfLMz/x4HzenT67r+LKw40WU+ttxJtlQb
-         d7Z4q4NYP5LOhxFlpjuxFUwh5gUThF4jJV7StlGo4xf1eC8gRCqUyLywhHIgY39mc/Ao
-         wZAA==
-X-Gm-Message-State: AOAM533I7s8e2puyiQyYCcDmxyGpU5amsSpg8ZoNdFdrfeCj2Reu69QU
-        yqQHYttH8D/kewrswx64h6MgYQ==
-X-Google-Smtp-Source: ABdhPJxXwWFCbgZ5LyQsmogKN6LaNXPGnyZsOSm+FR1qUQynXNNGcC3+iJkueuoaM9Wz9sT5XQO9IQ==
-X-Received: by 2002:a17:902:cf05:b0:156:9d:ca01 with SMTP id i5-20020a170902cf0500b00156009dca01mr30978527plg.111.1653462354436;
-        Wed, 25 May 2022 00:05:54 -0700 (PDT)
-Received: from localhost ([122.162.234.2])
-        by smtp.gmail.com with ESMTPSA id b14-20020a170902650e00b001624f2b71b4sm2310001plk.152.2022.05.25.00.05.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 May 2022 00:05:53 -0700 (PDT)
-Date:   Wed, 25 May 2022 12:35:51 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-scsi@vger.kernel.org
-Subject: Re: [RFC PATCH v2 4/6] PM: opp: allow control of multiple clocks
-Message-ID: <20220525070551.guv3csxi5kkqfr4f@vireshk-i7>
-References: <20220411154347.491396-1-krzysztof.kozlowski@linaro.org>
- <20220411154347.491396-5-krzysztof.kozlowski@linaro.org>
- <20220425072710.v6gwo4gu3aouezg4@vireshk-i7>
- <dea39b1f-0091-2690-7f07-108d07ef9f3c@linaro.org>
- <20220510044053.ykn6ygnbeokhzrsa@vireshk-i7>
- <1e533194-7047-8342-b426-f607fddbfaa3@linaro.org>
- <20220511050643.hd5tcrojb3wkbg7t@vireshk-i7>
- <20220518235708.1A04CC385A9@smtp.kernel.org>
- <65a4c28d-6702-3a9f-f837-1ea69a428777@linaro.org>
- <20220520005934.8AB1DC385AA@smtp.kernel.org>
+        with ESMTP id S237011AbiEYHKi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 03:10:38 -0400
+Received: from smtpo52.interia.pl (smtpo52.interia.pl [217.74.67.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 119E411A3F
+        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 00:07:12 -0700 (PDT)
+X-Interia-R: Interia
+X-Interia-R-IP: 80.68.225.159
+X-Interia-R-Helo: <t480s.localdomain>
+Received: from t480s.localdomain (unknown [80.68.225.159])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by poczta.interia.pl (INTERIA.PL) with ESMTPSA;
+        Wed, 25 May 2022 09:07:08 +0200 (CEST)
+Date:   Wed, 25 May 2022 09:07:07 +0200
+From:   Slawomir Stepien <sst@poczta.fm>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        jdelvare@suse.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, przemyslaw.cencner@nokia.com,
+        krzysztof.adamski@nokia.com, alexander.sverdlin@nokia.com,
+        Slawomir Stepien <slawomir.stepien@nokia.com>
+Subject: Re: [PATCH 3/8] dt-bindings: hwmon: Allow specifying channels for
+ lm90
+Message-ID: <Yo3Vm4yAX6E7v0aN@t480s.localdomain>
+References: <20220520093243.2523749-1-sst@poczta.fm>
+ <20220520093243.2523749-4-sst@poczta.fm>
+ <3ea92486-0cf9-ce3d-d1b6-7a76f1d5a129@linaro.org>
+ <0b84d109-d6be-dfba-99bb-0b7136af875e@roeck-us.net>
+ <b5ff0f2c-d741-6dec-c306-b54cb5075ccf@linaro.org>
+ <f124cbcb-3fca-3f1c-f47e-730f15c1f074@roeck-us.net>
+ <YozHOsSdpWBRNLYt@t480s.localdomain>
+ <YozM0L5uftHOgkjL@t480s.localdomain>
+ <Yo0VfVthNdtjIWF+@t480s.localdomain>
+ <5e841cdb-ca44-02f9-6c98-3d000b515b6b@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220520005934.8AB1DC385AA@smtp.kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+In-Reply-To: <5e841cdb-ca44-02f9-6c98-3d000b515b6b@linaro.org>
+X-Interia-Antivirus: OK
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=interia.pl;
+        s=biztos; t=1653462430;
+        bh=alF/L2KheAuMSFd4siclkV/CVPvou05cT5t8mv9BvVo=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+        b=K9rNQ+vgN2r6V6R5Tu8C47SRveMcooy63RHjJYX5eX2W/qRC3fVMZUPPPtiu5THII
+         STkRbKh61fO0SlH7rH76nJOAiqBHk2tu3b0qIsdqbhovyKVtNA5yFGDQcEvmV+ZQRT
+         Ijtz+q5g+KTIJsOQCcjLN4b0ajhAD/MKGY80nEQU=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,FREEMAIL_FROM,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19-05-22, 17:59, Stephen Boyd wrote:
-> This is a general problem with OPP. It is single clk frequency centric,
-> which works well for CPU/GPU devices that work with cpufreq/devfreq.
-> When it comes to other devices though we have to fit OPP into what those
-> devices want, which is something like gears for UFS, or "4k@60" (a
-> resolution) for display hardware.
+On maj 24, 2022 19:59, Krzysztof Kozlowski wrote:
+> On 24/05/2022 19:27, Slawomir Stepien wrote:
+> >> Well ok, looks like this:
+> >>
+> >>       temperature-offset-millicelsius:
+> >>         description: Temperature offset to be added to or subtracted from remote temperature measurements.
+> >>         items:
+> >>           items:
 > 
-> Would adding string labels and/or using an index based API work better
-> for these devices? I think we'd want to extend OPP for display devices
-> to have whatever set of use-cases the device driver wants to handle with
-> string labels. That naturally follows how some SoC manufacturers setup
-> their OPP tables anyway. They may want to bump only the bus bandwidth
-> for different display resolutions while maxing out the clk frequency.
-> Then we could let drivers either construct a string at probe time to get
-> a handle to those OPP entries or index directly. The frequency APIs
-> would stick around for OPP tables that have frequencies and for drivers
-> that want to do cpufreq/devfreq stuff.
+> I think this is not an array, so items are not needed.
 > 
-> UFS may want to use an index based API that matches the gears per the
-> spec. I think it could do that with dev_pm_opp_find_level_exact(),
-> right?
+> >>             type: integer
+> 
+> types are instead:
+> $ref: /schemas/types.yaml#/definitions/int32
+> but I think it still does not work.
+> 
+> >>             minimum: -128000
+> >>             maximum: 127000
+> > 
+> > This isn't working...from what I've read we cannot just simply overwrite existing schemas.
+> > 
+> > Krzysztof, Guenter what I should do? Is there a way to match with uint32-array schema and with
+> > schema that allows items in array to be below 0 (seems impossible to me)? I've tried a lot of
+> > combinations today without any luck. Any helpful tips? Thanks!
+> 
+> However this still does not work. I changed in schema:
+> 
+>    # Temperature
+> 
+>    "-celsius$":
 
-I think we can use "level" for all these use cases to find the OPP, if
-it aligns well with the requirements of all these frameworks.
+I'm using -millicelsius.
 
-FWIW, we already have three ways to find the OPP currently, via
-frequency, level and bandwidth.
+> -    $ref: "types.yaml#/definitions/uint32-array"
+> 
+> +    $ref: "types.yaml#/definitions/int32-array"
 
-> Then the primary problem is the subject of this patch,
-> controlling multiple clks per OPP table. Could that be done by linking
-> one OPP table (for the gears) to an OPP table for each clk? Maybe
-> through 'required-opps'?
+If I drop the "-millicelsius" and set the ref to types.yaml#/definitions/int32, all seems fine (the
+sign is parsed correctly and the max/min are enforced correctly too).
 
-Even in that case we will have an OPP table which will have multiple
-clocks. So it may not matter much which OPP table contains all the
-clocks.
+> but that does not solve the problem that property is stored as uint32
+> and parsed like uint32:
+> 
+>     4294967291 is greater than the maximum of 40
+> 
+> 
+> Maybe Rob has some idea. Till then, you can skip minimum.
+
+I will skip for now. I will send the new series and we can continue the discussion there. Thank you!
 
 -- 
-viresh
+Slawomir Stepien
