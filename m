@@ -2,211 +2,259 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6CDC5337A9
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 09:47:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 703FF5337E4
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 10:01:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234984AbiEYHrA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 03:47:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59526 "EHLO
+        id S229665AbiEYIBO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 04:01:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229854AbiEYHq6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 03:46:58 -0400
-Received: from mx0a-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D04479388;
-        Wed, 25 May 2022 00:46:57 -0700 (PDT)
-Received: from pps.filterd (m0098416.ppops.net [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 24P6LIbc004833;
-        Wed, 25 May 2022 07:46:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
- : in-reply-to : references : date : message-id : mime-version :
- content-type; s=pp1; bh=AxKlKc5CFOm0zoKAftCrN6Z6eRFj3Yw1byWVrpghrWY=;
- b=ZvVEcwe1PlWUIUWrdVyP3XhQIVr2Q1JUjTqzarGcuRhC2zNnJDf7dm45IFEyz2tpLgee
- TzYoOrZqWv5ljmRv1oyJzhMnu+LrmKsdF2n9yTvm/x0ZezV7vRA0KlHgoskPJwijIDj5
- SM0dHInvmSsKgYIPwTgIWg831XjaPf2VjPCofBNVxw2veS3hd2yDDprnTrqa7uz2M5cG
- Y3QN2GrMky4ID8FSFDb4GW4oKRCEZXgYZpqa0+qjoVn587je8emQlE7F3pwXm765ULCk
- jClEnVeoQ0r7Mw5xWY7JP/bCgrRlUQTFYMWJO7jdZE8X5CExRInPjlO4xR8dUiM2b8fH aA== 
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3g9f45hj9p-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 25 May 2022 07:46:44 +0000
-Received: from m0098416.ppops.net (m0098416.ppops.net [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 24P7SOYd024306;
-        Wed, 25 May 2022 07:46:43 GMT
-Received: from ppma03fra.de.ibm.com (6b.4a.5195.ip4.static.sl-reverse.com [149.81.74.107])
-        by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3g9f45hj90-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 25 May 2022 07:46:43 +0000
-Received: from pps.filterd (ppma03fra.de.ibm.com [127.0.0.1])
-        by ppma03fra.de.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 24P7NsmE022928;
-        Wed, 25 May 2022 07:46:41 GMT
-Received: from b06cxnps4075.portsmouth.uk.ibm.com (d06relay12.portsmouth.uk.ibm.com [9.149.109.197])
-        by ppma03fra.de.ibm.com with ESMTP id 3g93ur8k9x-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 25 May 2022 07:46:41 +0000
-Received: from d06av22.portsmouth.uk.ibm.com (d06av22.portsmouth.uk.ibm.com [9.149.105.58])
-        by b06cxnps4075.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 24P7kcHf25559388
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 25 May 2022 07:46:38 GMT
-Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 2D97D4C052;
-        Wed, 25 May 2022 07:46:38 +0000 (GMT)
-Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 60FA04C044;
-        Wed, 25 May 2022 07:46:33 +0000 (GMT)
-Received: from vajain21.in.ibm.com (unknown [9.43.93.43])
-        by d06av22.portsmouth.uk.ibm.com (Postfix) with SMTP;
-        Wed, 25 May 2022 07:46:33 +0000 (GMT)
-Received: by vajain21.in.ibm.com (sSMTP sendmail emulation); Wed, 25 May 2022 13:16:31 +0530
-From:   Vaibhav Jain <vaibhav@linux.ibm.com>
-To:     Ritesh Harjani <ritesh.list@gmail.com>
-Cc:     linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        "Aneesh Kumar K . V" <aneesh.kumar@linux.ibm.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Prakhar Srivastava <prsriva@linux.microsoft.com>,
-        Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
-        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2] of: check previous kernel's ima-kexec-buffer against
- memory bounds
-In-Reply-To: <20220525055149.f4nqx2ocnh3pqnpr@riteshh-domain>
-References: <20220524055042.1527968-1-vaibhav@linux.ibm.com>
- <20220525055149.f4nqx2ocnh3pqnpr@riteshh-domain>
-Date:   Wed, 25 May 2022 13:16:31 +0530
-Message-ID: <87leuqf414.fsf@vajain21.in.ibm.com>
+        with ESMTP id S229629AbiEYIBN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 04:01:13 -0400
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BD4142ED8;
+        Wed, 25 May 2022 01:01:12 -0700 (PDT)
+Received: by mail-qt1-f171.google.com with SMTP id h9so11873660qtx.2;
+        Wed, 25 May 2022 01:01:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rlhkBuzRG2HpsdoImNR9zGgXgfkVtL8VEEmP1MsIdp4=;
+        b=e/dGJoHTdDLkXLNsUeOnQo+c0/GOI+Z8ysk2EYWXuen8VmyvdkuCPEP1bk47021cCn
+         tUU9okQTvpvZxXOP5NYuNfilOMlrtiibo+79lCjHmyM8Hl39FTL2C0meP+snFhc184uu
+         LslRNuFFUgHUjSDi7lFJ3cqwAb3PvputEjMkmMVbGImZYClfbcGZ5RzsNEceUB+DWrRr
+         IGsRRnFVgtyARaV279qlQejA9ow2yHe5o9V/4qn9dLTvkCBWYmEuoMAAS5Ua4ESrdFxw
+         GUxX1K8D5MK/Ok0tYPEm9jdVCgfVm5qOiLp8XoPI518poWDwuqCiB3Wkxec3Tja/XTCy
+         /HNw==
+X-Gm-Message-State: AOAM531OFArkgFw8g39P5rGdXNAlqemCwhEn/wIjOgmeHtYBYSrXnQBA
+        bkFbHEnrwpp7Gd2lVVd4nsco0EpGyFtqIA==
+X-Google-Smtp-Source: ABdhPJyn968E+lnfj0Y4TJSLlb6EF9DLEeRadKECc2P+iM3t5kQtZIWu3sf/mZbnaKMmD1i445JXqw==
+X-Received: by 2002:a05:622a:1108:b0:2f3:d7d1:cf28 with SMTP id e8-20020a05622a110800b002f3d7d1cf28mr23015938qty.481.1653465671266;
+        Wed, 25 May 2022 01:01:11 -0700 (PDT)
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com. [209.85.128.173])
+        by smtp.gmail.com with ESMTPSA id g25-20020ac870d9000000b002f9433ed963sm923254qtp.64.2022.05.25.01.01.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 May 2022 01:01:10 -0700 (PDT)
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-30007f11f88so74701107b3.7;
+        Wed, 25 May 2022 01:01:09 -0700 (PDT)
+X-Received: by 2002:a81:ad11:0:b0:2fe:fb00:a759 with SMTP id
+ l17-20020a81ad11000000b002fefb00a759mr32321342ywh.283.1653465668841; Wed, 25
+ May 2022 01:01:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: manfk7lGh9YjRaxXAgcQiYfILbiqQ7Yv
-X-Proofpoint-ORIG-GUID: ZFyYZaxBpM0_5EbZqJTLcrZOlPRz3P1-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.874,Hydra:6.0.486,FMLib:17.11.64.514
- definitions=2022-05-25_02,2022-05-23_01,2022-02-23_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
- adultscore=0 lowpriorityscore=0 mlxlogscore=999 suspectscore=0
- malwarescore=0 impostorscore=0 bulkscore=0 priorityscore=1501 phishscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2204290000 definitions=main-2205250035
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220524172214.5104-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220524172214.5104-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20220524172214.5104-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 25 May 2022 10:00:56 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdX0pqr8pmbX8OfUyTeEwiFGSG5uyP4nLG1LPy7_zzLPbQ@mail.gmail.com>
+Message-ID: <CAMuHMdX0pqr8pmbX8OfUyTeEwiFGSG5uyP4nLG1LPy7_zzLPbQ@mail.gmail.com>
+Subject: Re: [PATCH RFC 2/2] irqchip/sifive-plic: Add support for Renesas
+ RZ/Five SoC
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ritesh,
-thanks for looking into this patch,
+Hi Prabhakar,
 
-Ritesh Harjani <ritesh.list@gmail.com> writes:
+On Tue, May 24, 2022 at 7:22 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> The Renesas RZ/Five SoC has a RISC-V AX45MP AndesCore with NCEPLIC100. The
+> NCEPLIC100 supports both edge-triggered and level-triggered interrupts. In
+> case of edge-triggered interrupts NCEPLIC100 ignores the next interrupt
+> edge until the previous completion message has been received and
+> NCEPLIC100 doesn't support pending interrupt counter, hence losing the
+> interrupts if not acknowledged in time.
+>
+> So the workaround for edge-triggered interrupts to be handled correctly
+> and without losing is that it needs to be acknowledged first and then
+> handler must be run so that we don't miss on the next edge-triggered
+> interrupt.
+>
+> This patch adds a new compatible string for Renesas RZ/Five SoC and adds
+> support to change interrupt flow based on the interrupt type. It also
+> implements irq_ack and irq_set_type callbacks.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-> Just a minor nit which I noticed.
->
-> On 22/05/24 11:20AM, Vaibhav Jain wrote:
->> Presently ima_get_kexec_buffer() doesn't check if the previous kernel's
->> ima-kexec-buffer lies outside the addressable memory range. This can result
->> in a kernel panic if the new kernel is booted with 'mem=X' arg and the
->> ima-kexec-buffer was allocated beyond that range by the previous kernel.
->> The panic is usually of the form below:
->>
->> $ sudo kexec --initrd initrd vmlinux --append='mem=16G'
->>
->> <snip>
->>  BUG: Unable to handle kernel data access on read at 0xc000c01fff7f0000
->>  Faulting instruction address: 0xc000000000837974
->>  Oops: Kernel access of bad area, sig: 11 [#1]
->> <snip>
->>  NIP [c000000000837974] ima_restore_measurement_list+0x94/0x6c0
->>  LR [c00000000083b55c] ima_load_kexec_buffer+0xac/0x160
->>  Call Trace:
->>  [c00000000371fa80] [c00000000083b55c] ima_load_kexec_buffer+0xac/0x160
->>  [c00000000371fb00] [c0000000020512c4] ima_init+0x80/0x108
->>  [c00000000371fb70] [c0000000020514dc] init_ima+0x4c/0x120
->>  [c00000000371fbf0] [c000000000012240] do_one_initcall+0x60/0x2c0
->>  [c00000000371fcc0] [c000000002004ad0] kernel_init_freeable+0x344/0x3ec
->>  [c00000000371fda0] [c0000000000128a4] kernel_init+0x34/0x1b0
->>  [c00000000371fe10] [c00000000000ce64] ret_from_kernel_thread+0x5c/0x64
->>  Instruction dump:
->>  f92100b8 f92100c0 90e10090 910100a0 4182050c 282a0017 3bc00000 40810330
->>  7c0802a6 fb610198 7c9b2378 f80101d0 <a1240000> 2c090001 40820614 e9240010
->>  ---[ end trace 0000000000000000 ]---
->>
->> Fix this issue by checking returned PFN range of previous kernel's
->> ima-kexec-buffer with pfn_valid to ensure correct memory bounds.
->>
->> Fixes: 467d27824920 ("powerpc: ima: get the kexec buffer passed by the previous kernel")
->> Cc: Frank Rowand <frowand.list@gmail.com>
->> Cc: Prakhar Srivastava <prsriva@linux.microsoft.com>
->> Cc: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
->> Cc: Thiago Jung Bauermann <bauerman@linux.ibm.com>
->> Cc: Rob Herring <robh@kernel.org>
->> Signed-off-by: Vaibhav Jain <vaibhav@linux.ibm.com>
->>
->> ---
->> Changelog
->> ==========
->>
->> v2:
->> * Instead of using memblock to determine the valid bounds use pfn_valid() to do
->> so since memblock may not be available late after the kernel init. [ Mpe ]
->> * Changed the patch prefix from 'powerpc' to 'of' [ Mpe ]
->> * Updated the 'Fixes' tag to point to correct commit that introduced this
->> function. [ Rob ]
->> * Fixed some whitespace/tab issues in the patch description [ Rob ]
->> * Added another check for checking ig 'tmp_size' for ima-kexec-buffer is > 0
->> ---
->>  drivers/of/kexec.c | 17 +++++++++++++++++
->>  1 file changed, 17 insertions(+)
->>
->> diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
->> index 8d374cc552be..879e984fe901 100644
->> --- a/drivers/of/kexec.c
->> +++ b/drivers/of/kexec.c
->> @@ -126,6 +126,7 @@ int ima_get_kexec_buffer(void **addr, size_t *size)
->>  {
->>  	int ret, len;
->>  	unsigned long tmp_addr;
->> +	unsigned int start_pfn, end_pfn;
->
-> ^^^ Shouldn't this be unsigned long?
-Thanks for catching this. Yes that should be 'unsigned long'. Will
-resend the patch with this fixed.
+Thanks for your patch!
 
+> --- a/drivers/irqchip/irq-sifive-plic.c
+> +++ b/drivers/irqchip/irq-sifive-plic.c
+> @@ -60,10 +60,13 @@
+>  #define        PLIC_DISABLE_THRESHOLD          0x7
+>  #define        PLIC_ENABLE_THRESHOLD           0
 >
-> -ritesh
->
->>  	size_t tmp_size;
->>  	const void *prop;
->>
->> @@ -140,6 +141,22 @@ int ima_get_kexec_buffer(void **addr, size_t *size)
->>  	if (ret)
->>  		return ret;
->>
->> +	/* Do some sanity on the returned size for the ima-kexec buffer */
->> +	if (!tmp_size)
->> +		return -ENOENT;
->> +
->> +	/*
->> +	 * Calculate the PFNs for the buffer and ensure
->> +	 * they are with in addressable memory.
->> +	 */
->> +	start_pfn = PHYS_PFN(tmp_addr);
->> +	end_pfn = PHYS_PFN(tmp_addr + tmp_size - 1);
->> +	if (!pfn_valid(start_pfn) || !pfn_valid(end_pfn)) {
->> +		pr_warn("IMA buffer at 0x%lx, size = 0x%zx beyond memory\n",
->> +			tmp_addr, tmp_size);
->> +		return -EINVAL;
->> +	}
->> +
->>  	*addr = __va(tmp_addr);
->>  	*size = tmp_size;
->>
->> --
->> 2.35.1
->>
+> +#define RENESAS_R9A07G043_PLIC         1
+> +
+>  struct plic_priv {
+>         struct cpumask lmask;
+>         struct irq_domain *irqdomain;
+>         void __iomem *regs;
+> +       u8 of_data;
 
--- 
-Cheers
-~ Vaibhav
+Usually it's cleaner to use feature bits instead of enum types.
+
+>  };
+>
+>  struct plic_handler {
+> @@ -163,10 +166,31 @@ static int plic_set_affinity(struct irq_data *d,
+>  }
+>  #endif
+>
+> +static void plic_irq_ack(struct irq_data *d)
+> +{
+> +       struct plic_handler *handler = this_cpu_ptr(&plic_handlers);
+> +
+
+No check for RZ/Five or irq type?
+.irq_ack() seems to be called for level interrupts, too
+(from handle_level_irq() through mask_ack_irq()).
+
+> +       if (irqd_irq_masked(d)) {
+> +               plic_irq_unmask(d);
+> +               writel(d->hwirq, handler->hart_base + CONTEXT_CLAIM);
+> +               plic_irq_mask(d);
+> +       } else {
+> +               writel(d->hwirq, handler->hart_base + CONTEXT_CLAIM);
+> +       }
+> +}
+
+The above is identical to the old plic_irq_eoi()...
+
+> +
+>  static void plic_irq_eoi(struct irq_data *d)
+>  {
+>         struct plic_handler *handler = this_cpu_ptr(&plic_handlers);
+>
+> +       /*
+> +        * For Renesas R9A07G043 SoC if the interrupt type is EDGE
+> +        * we have already acknowledged it in ack callback.
+> +        */
+> +       if (handler->priv->of_data == RENESAS_R9A07G043_PLIC &&
+> +           !irqd_is_level_type(d))
+> +               return;
+> +
+
+... so you can just call into plic_irq_ack() here?
+
+>         if (irqd_irq_masked(d)) {
+>                 plic_irq_unmask(d);
+>                 writel(d->hwirq, handler->hart_base + CONTEXT_CLAIM);
+> @@ -176,11 +200,37 @@ static void plic_irq_eoi(struct irq_data *d)
+>         }
+>  }
+>
+> +static int plic_irq_set_type(struct irq_data *d, unsigned int type)
+> +{
+> +       struct plic_handler *handler = this_cpu_ptr(&plic_handlers);
+> +
+> +       if (handler->priv->of_data != RENESAS_R9A07G043_PLIC)
+> +               return 0;
+> +
+> +       switch (type) {
+> +       case IRQ_TYPE_LEVEL_HIGH:
+> +               irq_set_handler_locked(d, handle_fasteoi_irq);
+> +               break;
+> +
+> +       case IRQ_TYPE_EDGE_RISING:
+> +               irq_set_handler_locked(d, handle_fasteoi_ack_irq);
+> +               break;
+> +
+> +       default:
+> +               return -EINVAL;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+>  static struct irq_chip plic_chip = {
+
+I think this can be const.
+
+>         .name           = "SiFive PLIC",
+>         .irq_mask       = plic_irq_mask,
+>         .irq_unmask     = plic_irq_unmask,
+> +       .irq_ack        = plic_irq_ack,
+
+This causes extra processing on non-affected PLICs.
+Perhaps use a separate irq_chip instance?
+
+>         .irq_eoi        = plic_irq_eoi,
+> +       .irq_set_type   = plic_irq_set_type,
+> +
+>  #ifdef CONFIG_SMP
+>         .irq_set_affinity = plic_set_affinity,
+>  #endif
+> @@ -198,6 +248,19 @@ static int plic_irqdomain_map(struct irq_domain *d, unsigned int irq,
+>         return 0;
+>  }
+>
+> +static int plic_irq_domain_translate(struct irq_domain *d,
+> +                                    struct irq_fwspec *fwspec,
+> +                                    unsigned long *hwirq,
+> +                                    unsigned int *type)
+> +{
+> +       struct plic_priv *priv = d->host_data;
+> +
+> +       if (priv->of_data == RENESAS_R9A07G043_PLIC)
+> +               return irq_domain_translate_twocell(d, fwspec, hwirq, type);
+> +
+> +       return irq_domain_translate_onecell(d, fwspec, hwirq, type);
+
+This one clearly shows the discerning feature: onecell or twocell...
+
+> +}
+> +
+>  static int plic_irq_domain_alloc(struct irq_domain *domain, unsigned int virq,
+>                                  unsigned int nr_irqs, void *arg)
+>  {
+
+> @@ -293,6 +356,9 @@ static int __init plic_init(struct device_node *node,
+>         if (!priv)
+>                 return -ENOMEM;
+>
+> +       if (of_device_is_compatible(node, "renesas-r9a07g043-plic"))
+> +               priv->of_data = RENESAS_R9A07G043_PLIC;
+> +
+
+So perhaps instead just look at #interrupt-cells, and use the onecell
+or twocell irq_chip/irq_domain_ops based on that?
+
+>         priv->regs = of_iomap(node, 0);
+>         if (WARN_ON(!priv->regs)) {
+>                 error = -EIO;
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
