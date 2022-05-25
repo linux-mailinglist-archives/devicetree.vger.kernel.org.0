@@ -2,126 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (unknown [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D66BE533BCF
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 13:33:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74BCC533BEF
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 13:47:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242760AbiEYLd1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 07:33:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52092 "EHLO
+        id S233020AbiEYLq6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 07:46:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230476AbiEYLd0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 07:33:26 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF68592D05
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 04:33:23 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id j10so12053659lfe.12
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 04:33:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=EZsTbG5Ghb36/veeiU7rdV///7+Ve3p/GIrx5IOFMMk=;
-        b=UNaoBdpvQ0Wuh39ejXqVAxIdtogtZgXrbpaaU46uoIDB3jLwniE+a2Gw/eeD8rR8Yx
-         IXV3H3QXBNtA1tMANean66atO0lGhtSaBj/Jzj5RNfrNPf8kn0oSAKPugUTe2FTz20/o
-         5TH60Q4367rsBz1G9RGjIz8XELgZW7TyE43vX+m7/UlPP+AwpSJmlD2QG95/0zMEZsWS
-         tr5G30OGEiKdG5GnVwT8nCeszSZH6QYxn2Btg/docx5if5P9QbJdALM7qEVNf96vCbI4
-         8PVPsXCLlqa2JHW3+x+10k92IUQqj7bsSWQeFQsKgTrtK1cAELhcGiPxPVFOQXESnO70
-         CPFg==
+        with ESMTP id S231176AbiEYLq5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 07:46:57 -0400
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 084F4A205D;
+        Wed, 25 May 2022 04:46:56 -0700 (PDT)
+Received: by mail-qk1-f172.google.com with SMTP id 14so10934912qkl.6;
+        Wed, 25 May 2022 04:46:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=EZsTbG5Ghb36/veeiU7rdV///7+Ve3p/GIrx5IOFMMk=;
-        b=DOth8xDsXicMSKRU31iM4ctMAdZYv0Mcez1FcUhEbPhrkuCaOda8i2wtIsTS8eYwR1
-         3ld4gS5EI34YzRbyDVr9aMnHKH13Ag6PS5r5jE5EmRrozm1XeXDVEzuPYLcN1o8s0VtV
-         ZKSbup4xJBp1auCozpcqUwcXt4q9aL32AhYKrr8Su0a68j1F79uXQn8oyeVMC8xq87H+
-         x/bhcoU69P3Qi+FTvS+2G1QrTINuY82YbyG4Wut7A7h+A4VjkeKd2C9MkZB/R4bJx/lq
-         c8HfsqZhovaTbiWQGg/bKPxWRzhbfkkVKD8r0c7KUeKtE8Mqpot68ZKIOkZ+yC7KOOEr
-         WqPg==
-X-Gm-Message-State: AOAM531UjLKNRzEeRw+h1I82/Gq89sEptLTdAwPNQKGml2racslPpdyP
-        H48ZHk8wZllucFgtADA77si1gA==
-X-Google-Smtp-Source: ABdhPJwxUQcyyc6kFYuWc0GAmuft5s7f8VFDf0BcrceocIyXBLKMhyRoxJLAZ62FMvqZdolc+cbblg==
-X-Received: by 2002:a05:6512:10c2:b0:478:8ea5:f6f9 with SMTP id k2-20020a05651210c200b004788ea5f6f9mr5197816lfg.1.1653478402086;
-        Wed, 25 May 2022 04:33:22 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id h26-20020a19701a000000b0047255d210fesm3063191lfc.45.2022.05.25.04.33.20
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WZEhsrnmH5bWQhJRb1s8S6ZF7bqzQ8zLRH/dG9jf2XA=;
+        b=K9Fo8fHT99W64Tq5wMXujUQrygiKt2jwC2LYB/Fp8IdjGUmuXlW4vD0vPrM2NdebCv
+         SvNe0lUZ2wyva4VCvgamnhIuFEq/WgrzwshnvZR5urJlBmIxCqhcxcgVZYaC/9bT+3e8
+         9J6WAyvSKoUfihvE8lnUOigIrVxmeO+ak/WhnII3SfsDxwwz6bUBA9ggP0p0ThixruQ+
+         H2I2So/tpWAtHDlSiQayORN+eNfBsa2yBGEPAVHZcIoXDjJ/55l7R+MxcdsEjiUNH0t7
+         l5ULZqqgTfyslsTwPKAD2HGPih11uY+LeZ9avjcNBnXUtPm0/aG3ybTk8QWTzDr1t2UM
+         4UBQ==
+X-Gm-Message-State: AOAM530XH4yyzR3p8zp1jTebJ4XOmFADJ2TBIfFUECR3+z+cTkatuGJm
+        ojlk3q70syppEdCXWLPb4QsCy+EcXfbVUQ==
+X-Google-Smtp-Source: ABdhPJy9hyEuoLM663LZg350bTUcyi4EkO1tU/6vEupDEENGK1erELD/OY4LeqWx/UvM47rJzoVL5Q==
+X-Received: by 2002:a05:620a:400e:b0:6a5:7289:c449 with SMTP id h14-20020a05620a400e00b006a57289c449mr5607610qko.561.1653479214997;
+        Wed, 25 May 2022 04:46:54 -0700 (PDT)
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
+        by smtp.gmail.com with ESMTPSA id p6-20020a05620a22e600b0069fc13ce250sm1041292qki.129.2022.05.25.04.46.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 May 2022 04:33:20 -0700 (PDT)
-Message-ID: <1abe03bf-5de5-f73e-1043-46872a38e815@linaro.org>
-Date:   Wed, 25 May 2022 14:33:18 +0300
+        Wed, 25 May 2022 04:46:54 -0700 (PDT)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-300312ba5e2so45534747b3.0;
+        Wed, 25 May 2022 04:46:53 -0700 (PDT)
+X-Received: by 2002:a81:234b:0:b0:2f8:4082:bbd3 with SMTP id
+ j72-20020a81234b000000b002f84082bbd3mr32969304ywj.47.1653479213622; Wed, 25
+ May 2022 04:46:53 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v2 1/7] media: camss: ispif: Correctly reset based on the
- VFE ID
-Content-Language: en-GB
-To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        kholk11@gmail.com, Robert Foss <robert.foss@linaro.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, mchehab@kernel.org,
-        robh+dt@kernel.org, marijns95@gmail.com, konradybcio@gmail.com,
-        martin.botka1@gmail.com, linux-arm-msm@vger.kernel.org,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, todor.too@gmail.com
-References: <20201022174706.8813-1-kholk11@gmail.com>
- <20201022174706.8813-2-kholk11@gmail.com>
- <899412f2-5ee4-cd32-393f-688fc6351437@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <899412f2-5ee4-cd32-393f-688fc6351437@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20220524172214.5104-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220524172214.5104-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdX0pqr8pmbX8OfUyTeEwiFGSG5uyP4nLG1LPy7_zzLPbQ@mail.gmail.com>
+ <CA+V-a8ubrkDU2B=mJopzFrjhv1nVn5EXZmaprta0oj4p3J_N5Q@mail.gmail.com>
+ <CAMuHMdVncBnD25RLLqL2qDFwboPSVvo5faJvamDxPH_wq9r22Q@mail.gmail.com> <CA+V-a8tHfyqJx9YBFX3hJBEKuCbDpminz_4uSLK=MHV7W8-hJg@mail.gmail.com>
+In-Reply-To: <CA+V-a8tHfyqJx9YBFX3hJBEKuCbDpminz_4uSLK=MHV7W8-hJg@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 25 May 2022 13:46:41 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWizSaABqAnwQi-Sa3ceiZV2CnAhiio4aCx_Bd7NvN1NQ@mail.gmail.com>
+Message-ID: <CAMuHMdWizSaABqAnwQi-Sa3ceiZV2CnAhiio4aCx_Bd7NvN1NQ@mail.gmail.com>
+Subject: Re: [PATCH RFC 2/2] irqchip/sifive-plic: Add support for Renesas
+ RZ/Five SoC
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Wow, a patchset from 2020.
+Hi Prabhakar,
 
-On 25/05/2022 12:03, Vladimir Zapolskiy wrote:
-> On 10/22/20 20:47, kholk11@gmail.com wrote:
->> From: AngeloGioacchino Del Regno <kholk11@gmail.com>
->>
->> Resetting the ISPIF VFE0 context is wrong if we are using the VFE1
->> for dual-camera or simply because a secondary camera is connected
->> to it: in this case the reset will always happen on the VFE0 ctx
->> of the ISPIF, which is .. useless.
->>
->> Fix this usecase by adding the ISPIF_RST_CMD_1 address and choose
->> where to do the (or what to) reset based on the VFE line id.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
->> Reviewed-by: Robert Foss <robert.foss@linaro.org>
->> ---
->>   .../media/platform/qcom/camss/camss-ispif.c   | 85 ++++++++++++-------
->>   .../media/platform/qcom/camss/camss-ispif.h   |  2 +-
->>   2 files changed, 56 insertions(+), 31 deletions(-)
->>
+On Wed, May 25, 2022 at 11:43 AM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
+> On Wed, May 25, 2022 at 10:35 AM Geert Uytterhoeven
+> <geert@linux-m68k.org> wrote:
+> > On Wed, May 25, 2022 at 11:01 AM Lad, Prabhakar
+> > <prabhakar.csengg@gmail.com> wrote:
+> > > On Wed, May 25, 2022 at 9:01 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > > On Tue, May 24, 2022 at 7:22 PM Lad Prabhakar
+> > > > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > > > > The Renesas RZ/Five SoC has a RISC-V AX45MP AndesCore with NCEPLIC100. The
+> > > > > NCEPLIC100 supports both edge-triggered and level-triggered interrupts. In
+> > > > > case of edge-triggered interrupts NCEPLIC100 ignores the next interrupt
+> > > > > edge until the previous completion message has been received and
+> > > > > NCEPLIC100 doesn't support pending interrupt counter, hence losing the
+> > > > > interrupts if not acknowledged in time.
+> > > > >
+> > > > > So the workaround for edge-triggered interrupts to be handled correctly
+> > > > > and without losing is that it needs to be acknowledged first and then
+> > > > > handler must be run so that we don't miss on the next edge-triggered
+> > > > > interrupt.
+> > > > >
+> > > > > This patch adds a new compatible string for Renesas RZ/Five SoC and adds
+> > > > > support to change interrupt flow based on the interrupt type. It also
+> > > > > implements irq_ack and irq_set_type callbacks.
+> > > > >
+> > > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > >
+> > > > Thanks for your patch!
+> > > >
+> > > > > --- a/drivers/irqchip/irq-sifive-plic.c
+> > > > > +++ b/drivers/irqchip/irq-sifive-plic.c
+> >
+> > > > > @@ -163,10 +166,31 @@ static int plic_set_affinity(struct irq_data *d,
+> > > > >  }
+> > > > >  #endif
+> > > > >
+> > > > > +static void plic_irq_ack(struct irq_data *d)
+> > > > > +{
+> > > > > +       struct plic_handler *handler = this_cpu_ptr(&plic_handlers);
+> > > > > +
+> > > >
+> > > > No check for RZ/Five or irq type?
+> > > That is because we set the handle_fasteoi_ack_irq() only in case of
+> > > RZ/Five and it is already checked in set_type() callback.
+> > >
+> > > > .irq_ack() seems to be called for level interrupts, too
+> > > > (from handle_level_irq() through mask_ack_irq()).
+> > > >
+> > > Right but we are using handle_fasteoi_irq() for level interrupt which
+> > > doesn't call mask_ack_irq(). And I have confirmed by adding a print in
+> > > ack callback  and just enabling the serial (which has level
+> > > interrupts).
+> >
+> > But handle_fasteoi_irq() is configured only on RZ/Five below?
+> > Which handler is used on non-RZ/Five?
+> >
+> For non RZ/Five, handle_fasteoi_irq() [0] is used for both edge/level
+> interrupts.
+>
+> [0] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/irqchip/irq-sifive-plic.c?h=next-20220525#n195
 
-[skipped]
+Thanks, that was the missing piece!
 
->> @@ -355,7 +379,7 @@ static int ispif_set_power(struct v4l2_subdev *sd, 
->> int on)
->>               goto exit;
->>           }
->> -        ret = ispif_reset(ispif);
->> +        ret = ispif_reset(ispif, line->vfe_id);
-> 
-> But in fact here is an error.
-> 
-> line->vfe_id is never set.
-> 
-> I'm unable to test any fix, since I don't have a correspondent hardware,
-> but I can write a fix for someone's testing.
+Due to the new "select IRQ_FASTEOI_HIERARCHY_HANDLERS", I thought
+your new call to handle_fasteoi_irq() had to be the first one in this
+file...  But that config symbol protects handle_fasteoi_ack_irq(),
+not handle_fasteoi_irq().
 
-I have a sda660 device, but I don't have cameras attached. So one will 
-have to use TPG.
+Gr{oetje,eeting}s,
 
--- 
-With best wishes
-Dmitry
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
