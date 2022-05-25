@@ -2,82 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E28C953373B
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 09:16:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F4C5533755
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 09:28:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244299AbiEYHQi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 03:16:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39442 "EHLO
+        id S231397AbiEYH2G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 03:28:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244300AbiEYHQg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 03:16:36 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93A16D5D
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 00:16:33 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id n8so17849345plh.1
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 00:16:33 -0700 (PDT)
+        with ESMTP id S242353AbiEYH2F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 03:28:05 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A704E113D
+        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 00:28:03 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id v8so32684735lfd.8
+        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 00:28:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=IHGVHIb5ANXtn4ibS4SthwwVSV0T3tFl9yqFg+S5efQ=;
-        b=F7XE3r+vWerFvL4IXruqMH7czf8srjKfekGeCkpCgYTKzlooHsqHwKG6eAQeSpbsTK
-         Uf4K2N3hxe7+X6UV9YGrWqY/EPVQam/GtrkmUTMCAfFQ4A4As7MZR7YjqKhfNnoje0Xk
-         r/F7NXGY1a3ldVn64RMKLKyjeIWlAlhJPFdyWNVWgtcN3df+zMeZtgIdr3PsUL4dnr/M
-         B7Q8i/PmDfv2ZC6myDdKv4BYbYWUEb4gQguW1APqZGGk/g7WKeVJwsa1dcTc3JmfTU+E
-         C22uFvNIgbbAOZVW34zTQerXzsyz0MrYdaxvC0wKHw40nkEawGuFDjK2DFeD94FuEGSk
-         a1sQ==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=2t3XxprCIprt4K6OV63XN2/48WC0q7O+qd6jEf+aQrk=;
+        b=HArMKOtoFawbvN6IWSr8+6UerIemeF/d+pFOGSajbmUyufUZvqq/BxN5LtvPmKgo/3
+         jNRHr7itNJbzQaV0D7bFXe8qp2S5dkia3fRD/UhVsq3WRzhYOD8Gr0Kyv3PbkLqfBdcl
+         /u0PrtY37sVwnwLYaGKLTsF2333rHiCW/IbRb6ha0rIT5qXS5VLOqp8sFDa3IcdpE1g8
+         K2laKSesrwmtiov/tlHRrCFfVRRUR1Ay9HFUsRRS5d+WrwrTgEZzS8RP7IpTEcjYw5hw
+         4v0hwGGi48g9JujJ2Rl95YFyh0IVE7ldIBbIVgcfijyWyuGlzEL0Lwk9u3W1iW4tnoka
+         muOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=IHGVHIb5ANXtn4ibS4SthwwVSV0T3tFl9yqFg+S5efQ=;
-        b=AW0IM6bfep54ZeyX3sZQrVXlTytwRR3bmvC+UewaSKcUdbADs+p71TG2mipsVKnGYe
-         NqurNfPDWpTDxCs3WwtrBAHxC9PV0xMg+NOasIEILwgBtZsaDhKI/oDs09kbgKwOQ3OC
-         Y27Y8cW2H+/tzKQYcuKN8HFAlKVz+DtDyfI4Sl4kldMJF5+Kbl4dKSL+zeqP2pBj1oBG
-         SzW5AV0rh24QgOZPc+Lyanep/Vkx1rruHqyvUWjI3GcWdYfoE3njYmPVOkRcgTxJQ2gA
-         deCWHr7ULmuCbd1iOKPfGqVgW/5jx9wjN0ENiIIpPtHJ2PWvZIYNqdxqBgrWQlpEYVjB
-         DuRQ==
-X-Gm-Message-State: AOAM533zZPxgFtsMU4T3oTdWcnXNG7Q5nNCovHC1H9pm3XNJtSrcVIfE
-        4k14wEonlbb6a8M9LSsCLXMpzw==
-X-Google-Smtp-Source: ABdhPJwOAlJnUaVM2rZHBFQG+/801GI+S/nUYZG7yHAVTLpi/shQAbFkHxuT+ks8sbo1NIkSrnuLzg==
-X-Received: by 2002:a17:902:aa87:b0:162:39b5:3ba3 with SMTP id d7-20020a170902aa8700b0016239b53ba3mr8801134plr.158.1653462993113;
-        Wed, 25 May 2022 00:16:33 -0700 (PDT)
-Received: from localhost ([122.162.234.2])
-        by smtp.gmail.com with ESMTPSA id r9-20020a170903020900b0015e8d4eb276sm8454954plh.192.2022.05.25.00.16.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 May 2022 00:16:32 -0700 (PDT)
-Date:   Wed, 25 May 2022 12:46:30 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: Re: [PATCH v3 4/7] arm64: dts: qcom: sdm845: control RPMHPD
- performance states with UFS
-Message-ID: <20220525071630.irrz24rs73l3ke4o@vireshk-i7>
-References: <20220513061347.46480-1-krzysztof.kozlowski@linaro.org>
- <20220513061347.46480-5-krzysztof.kozlowski@linaro.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=2t3XxprCIprt4K6OV63XN2/48WC0q7O+qd6jEf+aQrk=;
+        b=UorEipDkQBM72h50v6zecWdZ7o2lKJDzPuzgFmqboQYHpGJ2Mdpo+p9225p85Dj1tG
+         drNqxXBZ+KCDbls/0Wzm14G8xCmy/hh3wULxCo1pMPWRxThq5kgtbwg+G8LWyE/pnpmD
+         ZnH7oIk6dXQ1PuYXborbAk1hPc9z+63yiEnwzPzuSq2Iwc9uhjMsSFBBOfsixA/BhLd8
+         jG3/6vyQHmxhC4FAF5l79r1eJ+YYN+PdDGxpci/ox6VIka9p4rlOB2GOTkRPwWWgu24H
+         5LRWXuOOnLYsDTUbrKyGoxvtx4kovGI2PmhHKyi6ItHGMHtWpxZCt+e6BSRTxyvpEDS8
+         hm8Q==
+X-Gm-Message-State: AOAM532JoM+CSkQ2yVhot8QxuJDkEp/CMYAmAvTI5/dUL+O/YcyVyqwq
+        HwmHFd+v1bVraPgdfjtXOOVamQzKvaO8Hw==
+X-Google-Smtp-Source: ABdhPJzBkCF5IHLKrNWMpI/oBZXNz5WzI5k61BEggQ82j2AFpSzhTqywj5QvY0N986fOmwO7v6S+zg==
+X-Received: by 2002:a05:6512:374c:b0:478:5452:cdf8 with SMTP id a12-20020a056512374c00b004785452cdf8mr17723900lfs.601.1653463681924;
+        Wed, 25 May 2022 00:28:01 -0700 (PDT)
+Received: from [192.168.1.102] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id o28-20020ac2495c000000b0047255d211c4sm2948208lfi.243.2022.05.25.00.28.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 May 2022 00:28:01 -0700 (PDT)
+Message-ID: <a398653e-188d-005e-8483-d0886e6a7de9@linaro.org>
+Date:   Wed, 25 May 2022 10:27:47 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220513061347.46480-5-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v2 1/4] i2c: qcom-cci: Fix ordering of pm_runtime_xx and
+ i2c_add_adapter
+Content-Language: en-US
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
+        bjorn.andersson@linaro.org
+Cc:     mchehab@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, mmitkov@quicinc.com, jgrahsl@snap.com,
+        hfink@snap.com
+References: <20220524140207.2758605-1-bryan.odonoghue@linaro.org>
+ <20220524140207.2758605-2-bryan.odonoghue@linaro.org>
+From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20220524140207.2758605-2-bryan.odonoghue@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,30 +79,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13-05-22, 08:13, Krzysztof Kozlowski wrote:
-> +			ufs_opp_table: opp-table {
-> +				compatible = "operating-points-v2";
+Hi Bryan,
+
+On 5/24/22 17:02, Bryan O'Donoghue wrote:
+> When we compile-in the CCI along with the imx412 driver and run on the RB5
+> we see that i2c_add_adapter() causes the probe of the imx412 driver to
+> happen.
+> 
+> This probe tries to perform an i2c xfer() and the xfer() in i2c-qcom-cci.c
+> fails on pm_runtime_get() because the i2c-qcom-cci.c::probe() function has
+> not completed to pm_runtime_enable(dev).
+> 
+> Fix this sequence by ensuring pm_runtime_xxx() calls happen prior to adding
+> the i2c adapter.
+> 
+
+it's a proper root cause disclosure and the fix, thank you.
+
+> Fixes: e517526195de ("i2c: Add Qualcomm CCI I2C driver")
+> Reported-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>   drivers/i2c/busses/i2c-qcom-cci.c | 14 +++++++++-----
+>   1 file changed, 9 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/i2c/busses/i2c-qcom-cci.c b/drivers/i2c/busses/i2c-qcom-cci.c
+> index 5c7cc862f08f..90d02effeae9 100644
+> --- a/drivers/i2c/busses/i2c-qcom-cci.c
+> +++ b/drivers/i2c/busses/i2c-qcom-cci.c
+> @@ -638,6 +638,11 @@ static int cci_probe(struct platform_device *pdev)
+>   	if (ret < 0)
+>   		goto error;
+>   
+> +	pm_runtime_set_autosuspend_delay(dev, MSEC_PER_SEC);
+> +	pm_runtime_use_autosuspend(dev);
+> +	pm_runtime_set_active(dev);
+> +	pm_runtime_enable(dev);
 > +
-> +				opp-50000000 {
-> +					opp-hz = /bits/ 64 <50000000
-> +						 0
-> +						 0
-> +						 37500000
-> +						 0
-> +						 0
-> +						 0
-> +						 0
-> +						 // FIXME: value 0 copied from freq-table-hz
-> +						 0>;
+>   	for (i = 0; i < cci->data->num_masters; i++) {
+>   		if (!cci->master[i].cci)
+>   			continue;
+> @@ -649,14 +654,13 @@ static int cci_probe(struct platform_device *pdev)
+>   		}
+>   	}
+>   
+> -	pm_runtime_set_autosuspend_delay(dev, MSEC_PER_SEC);
+> -	pm_runtime_use_autosuspend(dev);
+> -	pm_runtime_set_active(dev);
+> -	pm_runtime_enable(dev);
+> -
+>   	return 0;
+>   
+>   error_i2c:
+> +	pm_runtime_put(dev);
 
-One general comment, I think this should follow how we specify
-multiple voltages or other fields and so each frequency should be part
-of a different < > braces. Like: opp-hz = /bits/ 64 <5000000>, <0>, ....
+Here pm_runtime_put(dev) should be removed, there is no pm_runtime_get*(dev) above,
+otherwise PM usage counter underflow issues are expected.
 
-Whatever is there between < > seems to be connected, like
-min/max/target for voltage.
+> +	pm_runtime_disable(dev);
+> +	pm_runtime_dont_use_autosuspend(dev);
+> +
+>   	for (--i ; i >= 0; i--) {
+>   		if (cci->master[i].cci) {
+>   			i2c_del_adapter(&cci->master[i].adap);
 
-The code will process both in a similar way though eventually.
+With the correction stated above please feel free to add my tags:
 
--- 
-viresh
+Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Tested-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+
+--
+Best wishes,
+Vladimir
