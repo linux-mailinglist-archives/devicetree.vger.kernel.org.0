@@ -2,147 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9634F534332
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 20:40:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6162253435E
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 20:52:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234907AbiEYSk4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 14:40:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53578 "EHLO
+        id S1343855AbiEYSwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 14:52:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239514AbiEYSkz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 14:40:55 -0400
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8671B36DF
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 11:40:54 -0700 (PDT)
-Received: by mail-pj1-x102d.google.com with SMTP id m14-20020a17090a414e00b001df77d29587so2401939pjg.2
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 11:40:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=kcKV1w2nPlwaIbCWnEveE9hseS5PyiFCk/LlY1siP3E=;
-        b=gF4mzOT2oM4CfPgmn1UlSGGEbwf+gvzsFyifnYVIbjNO0iu8sUlx7k25anA+q/KaOi
-         373snxdX0rBgwl3v9kDUgarArIHyNVdS6o43qZlRlc4EcZFit/EVrtVCsh1VFdW6f3hV
-         35T/ena+zbKsnIdkZeM9Mbe6e3JwSsSvQtZO0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=kcKV1w2nPlwaIbCWnEveE9hseS5PyiFCk/LlY1siP3E=;
-        b=KK5BJVwOD/szuKSEQ7/JWyhcAh68HtNnsY2TQHjjiQp0a7kqLXXd+lfxxXpaXXZyyN
-         VGCDTbO9F/xVJeCcS6r2SkJIY25G9tHfzNVsFv/1w2xpnfKECe0wCwp4hqPFievoGpRH
-         kqnIwOsGItMbF3lMkMgpiEB5eIlFIXvFdqJ9ORgabr4/jghqBWJvjzz+hfJO/tHgNN5b
-         V1t0h46Q49NmPMfHdcTxGK9IDVmq72jJBqlwkfYiOPH9KUX7OvJIshaSJ8KrkU2NelJE
-         ph3VO1LAHeLZ4bnVjvehgNFoKDjrNs5+0NbbbE7U7NPt2hQsGd9yZIGxOfbEcqq5jxhK
-         uoeA==
-X-Gm-Message-State: AOAM533Sgs7WXCwuKY/qWtlkSygkpvUzRrsNpzd2gfGq1VolYmtlunOo
-        LG7WJ+NcZfnTwSdIJxt5dTgXGmOVoQ0Tsg==
-X-Google-Smtp-Source: ABdhPJytsR6CP9N4WKNHzCbzIrM1a3ij8m7Yn9JRjYK1/hXrfhC81XsY53KcEwNKFeCSuEw5eHFn4g==
-X-Received: by 2002:a17:903:2445:b0:161:d47e:88cf with SMTP id l5-20020a170903244500b00161d47e88cfmr33393332pls.67.1653504054374;
-        Wed, 25 May 2022 11:40:54 -0700 (PDT)
-Received: from chromium.org (157.214.185.35.bc.googleusercontent.com. [35.185.214.157])
-        by smtp.gmail.com with ESMTPSA id d1-20020a17090a8d8100b001df93c8e737sm2133845pjo.39.2022.05.25.11.40.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 May 2022 11:40:53 -0700 (PDT)
-Date:   Wed, 25 May 2022 18:40:52 +0000
-From:   Prashant Malani <pmalani@chromium.org>
-To:     Tzung-Bi Shih <tzungbi@kernel.org>
-Cc:     bleung@chromium.org, groeck@chromium.org, robh+dt@kernel.org,
-        chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org,
-        mka@chromium.org, devicetree@vger.kernel.org,
-        Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v4 4/5] platform/chrome: cros_kbd_led_backlight: support
- OF match
-Message-ID: <Yo54NGcb45oNBfUY@chromium.org>
-References: <20220523090822.3035189-1-tzungbi@kernel.org>
- <20220523090822.3035189-5-tzungbi@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220523090822.3035189-5-tzungbi@kernel.org>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        with ESMTP id S233736AbiEYSwS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 14:52:18 -0400
+X-Greylist: delayed 329 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 25 May 2022 11:52:16 PDT
+Received: from ns.iliad.fr (ns.iliad.fr [212.27.33.1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35E62B41F9;
+        Wed, 25 May 2022 11:52:15 -0700 (PDT)
+Received: from ns.iliad.fr (localhost [127.0.0.1])
+        by ns.iliad.fr (Postfix) with ESMTP id 1735520041;
+        Wed, 25 May 2022 20:46:44 +0200 (CEST)
+Received: from sakura (freebox.vlq16.iliad.fr [213.36.7.13])
+        by ns.iliad.fr (Postfix) with ESMTP id 121931FFE1;
+        Wed, 25 May 2022 20:46:44 +0200 (CEST)
+Message-ID: <bd6d97a4cc6665d0ee632444f75e3480160387ec.camel@freebox.fr>
+Subject: Re: [PATCH v7 4/9] ath11k: Add register access logic for WCN6750
+From:   Maxime Bizon <mbizon@freebox.fr>
+Reply-To: mbizon@freebox.fr
+To:     Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
+        ath11k@lists.infradead.org
+Cc:     linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
+        robh@kernel.org, mka@chromium.org
+Date:   Wed, 25 May 2022 20:46:43 +0200
+In-Reply-To: <20220429170502.20080-5-quic_mpubbise@quicinc.com>
+References: <20220429170502.20080-1-quic_mpubbise@quicinc.com>
+         <20220429170502.20080-5-quic_mpubbise@quicinc.com>
+Organization: Freebox
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV using ClamSMTP ; ns.iliad.fr ; Wed May 25 20:46:44 2022 +0200 (CEST)
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tzung-Bi,
 
-On May 23 17:08, Tzung-Bi Shih wrote:
-> For letting device tree based machines to use the driver, support OF match.
-> 
-> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-> Signed-off-by: Tzung-Bi Shih <tzungbi@kernel.org>
-> ---
-> No changes from v3.
-> 
-> Changes from v2:
-> - Add commit message.
-> - Add R-b tag.
-> 
-> Changes from v1:
-> (https://patchwork.kernel.org/project/chrome-platform/patch/20220214053646.3088298-5-tzungbi@google.com/)
-> - Update email address accordingly.
-> - Use device_get_match_data() per review comment in v1.
-> 
->  drivers/platform/chrome/cros_kbd_led_backlight.c | 15 ++++++++++++++-
->  1 file changed, 14 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/platform/chrome/cros_kbd_led_backlight.c b/drivers/platform/chrome/cros_kbd_led_backlight.c
-> index a86d664854ae..4bca880d7721 100644
-> --- a/drivers/platform/chrome/cros_kbd_led_backlight.c
-> +++ b/drivers/platform/chrome/cros_kbd_led_backlight.c
-> @@ -10,7 +10,9 @@
->  #include <linux/kernel.h>
->  #include <linux/leds.h>
->  #include <linux/module.h>
-> +#include <linux/of.h>
->  #include <linux/platform_device.h>
-> +#include <linux/property.h>
+On Fri, 2022-04-29 at 22:34 +0530, Manikanta Pubbisetty wrote:
 
-linux/of.h includes linux/property.h [1]
+Hello Manikanta,
 
-[1] https://elixir.bootlin.com/linux/v5.18/source/include/linux/of.h#L22
+> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-
+> QCAHKSWPL_SILICONZ-1
 
->  #include <linux/slab.h>
+Nope your patch breaks QCN9074:
+
+[   13.660963] ath11k_pci 0000:03:00.0: failed to set pcie link register 0x01e0e0a8: 0xffffffff != 0x00000010
+[   13.675994] ath11k_pci 0000:03:00.0: failed to set sysclk: -110
+
+device still seem to work though
+
+> @@ -134,16 +134,13 @@ EXPORT_SYMBOL(ath11k_pcic_init_msi_config);
+>  static inline u32 ath11k_pcic_get_window_start(struct ath11k_base *ab,
+>  					       u32 offset)
+>  {
+> -	u32 window_start;
+> +	u32 window_start = 0;
 >  
->  /**
-> @@ -116,7 +118,7 @@ static int keyboard_led_probe(struct platform_device *pdev)
->  	const struct keyboard_led_drvdata *drvdata;
->  	int error;
+> -	/* If offset lies within DP register range, use 3rd window */
+>  	if ((offset ^ HAL_SEQ_WCSS_UMAC_OFFSET) < ATH11K_PCI_WINDOW_RANGE_MASK)
+> -		window_start = 3 * ATH11K_PCI_WINDOW_START;
+> -	/* If offset lies within CE register range, use 2nd window */
+> -	else if ((offset ^ HAL_CE_WFSS_CE_REG_BASE) < ATH11K_PCI_WINDOW_RANGE_MASK)
+> -		window_start = 2 * ATH11K_PCI_WINDOW_START;
+> -	else
+> -		window_start = ATH11K_PCI_WINDOW_START;
+> +		window_start = ab->hw_params.dp_window_idx * ATH11K_PCI_WINDOW_START;
+> +	else if ((offset ^ HAL_SEQ_WCSS_UMAC_CE0_SRC_REG(ab)) <
+> +		 ATH11K_PCI_WINDOW_RANGE_MASK)
+> +		window_start = ab->hw_params.ce_window_idx * ATH11K_PCI_WINDOW_START;
 >  
-> -	drvdata = acpi_device_get_match_data(&pdev->dev);
-> +	drvdata = device_get_match_data(&pdev->dev);
->  	if (!drvdata)
->  		return -EINVAL;
+>  	return window_start;
+>  }
+
+
+for some offsets, previous code could return ATH11K_PCI_WINDOW_START,
+whereas new code now returns 0
+
+
+> @@ -162,19 +159,12 @@ void ath11k_pcic_write32(struct ath11k_base *ab, u32 offset, u32 value)
 >  
-> @@ -152,10 +154,21 @@ static const struct acpi_device_id keyboard_led_acpi_match[] = {
->  MODULE_DEVICE_TABLE(acpi, keyboard_led_acpi_match);
->  #endif
->  
-> +#ifdef CONFIG_OF
-> +static const struct of_device_id keyboard_led_of_match[] = {
-> +	{
-> +		.compatible = "google,cros-kbd-led-backlight",
-> +	},
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, keyboard_led_of_match);
-> +#endif
-> +
->  static struct platform_driver keyboard_led_driver = {
->  	.driver		= {
->  		.name	= "chromeos-keyboard-leds",
->  		.acpi_match_table = ACPI_PTR(keyboard_led_acpi_match),
-> +		.of_match_table = of_match_ptr(keyboard_led_of_match),
->  	},
->  	.probe		= keyboard_led_probe,
->  };
-> -- 
-> 2.36.1.124.g0e6072fb45-goog
+>  	if (offset < ATH11K_PCI_WINDOW_START) {
+>  		iowrite32(value, ab->mem  + offset);
+> -	} else {
+> -		if (ab->hw_params.static_window_map)
+> -			window_start = ath11k_pcic_get_window_start(ab, offset);
+> -		else
+> -			window_start = ATH11K_PCI_WINDOW_START;
+> -
+> -		if (window_start == ATH11K_PCI_WINDOW_START &&
+> -		    ab->pci.ops->window_write32) {
+> -			ab->pci.ops->window_write32(ab, offset, value);
+> -		} else {
+> -			iowrite32(value, ab->mem + window_start +
+> -				  (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
+> -		}
+> +	} else if (ab->hw_params.static_window_map) {
+> +		window_start = ath11k_pcic_get_window_start(ab, offset);
+> +		iowrite32(value, ab->mem + window_start +
+> +			  (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
+> +	} else if (ab->pci.ops->window_write32) {
+> +		ab->pci.ops->window_write32(ab, offset, value);
+>  	}
 > 
-> 
+
+with previous code on QCN9074, when ath11k_pcic_get_window_start()
+returned ATH11K_PCI_WINDOW_START, then it would call window_write32()
+
+with new code on QCN9074, static_window_map is true, so window_write32
+will never be called.
+
+>  u32 ath11k_pcic_read32(struct ath11k_base *ab, u32 offset)
+
+ditto here
+
+-- 
+Maxime
+
+
+
