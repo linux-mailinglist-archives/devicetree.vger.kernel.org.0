@@ -2,279 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 914F2533506
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 03:52:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 936BA533556
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 04:32:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243415AbiEYBwA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 21:52:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60710 "EHLO
+        id S243615AbiEYCcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 22:32:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243414AbiEYBv4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 21:51:56 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD7203C4A3;
-        Tue, 24 May 2022 18:51:54 -0700 (PDT)
-X-UUID: 628eefc219134a5ca25ceabe482db1cb-20220525
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:2733d9c8-98aa-409a-a79b-4827db5ae2e7,OB:30,L
-        OB:30,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,
-        ACTION:release,TS:90
-X-CID-INFO: VERSION:1.1.5,REQID:2733d9c8-98aa-409a-a79b-4827db5ae2e7,OB:30,LOB
-        :30,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,
-        ACTION:quarantine,TS:90
-X-CID-META: VersionHash:2a19b09,CLOUDID:73745747-4fb1-496b-8f1d-39e733fed1ea,C
-        OID:1335533dafc4,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:0,BEC:nil
-X-UUID: 628eefc219134a5ca25ceabe482db1cb-20220525
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <axe.yang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1900112737; Wed, 25 May 2022 09:51:50 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Wed, 25 May 2022 09:51:49 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Wed, 25 May 2022 09:51:47 +0800
-From:   Axe Yang <axe.yang@mediatek.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>
-CC:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Satya Tangirala <satyat@google.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Axe Yang <axe.yang@mediatek.com>, Lucas Stach <dev@lynxeye.de>,
-        Eric Biggers <ebiggers@google.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kiwoong Kim <kwmad.kim@samsung.com>,
-        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
-        <angelogioacchino.delregno@collabora.com>,
-        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Yong Mao <yong.mao@mediatek.com>
-Subject: [RESEND v12 3/3] mmc: mediatek: add support for SDIO eint wakup IRQ
-Date:   Wed, 25 May 2022 09:51:40 +0800
-Message-ID: <20220525015140.384-4-axe.yang@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220525015140.384-1-axe.yang@mediatek.com>
-References: <20220525015140.384-1-axe.yang@mediatek.com>
+        with ESMTP id S240739AbiEYCcL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 22:32:11 -0400
+Received: from sonic311-22.consmr.mail.sg3.yahoo.com (sonic311-22.consmr.mail.sg3.yahoo.com [106.10.244.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F40DF419B8
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 19:32:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com.tw; s=s2048; t=1653445926; bh=VnY5er+1i/iJfFZJ2Cn6HWbwgRK414QB8xauHQLJybI=; h=Date:From:Subject:To:Cc:References:In-Reply-To:From:Subject:Reply-To; b=VF5TJI/YE49qXiPMIUTCR6WuRVybXLLqvXrKLifQnW2zDfFz31l8PEUBYBM2eY/60yP7ijDuOMHmEMSibFHmUW4soFhaCAvW3UiPxVWsJDHjOjZQ29u/nudcsqTsdcFimghoO+1vo6ypdYJGtobNdEbxKmEJd7E3SWAHIy6KoPf3zYuTLaPHm4XdMgkajQQg39BZKfcXfI4rqcZ2Yg1FMQuWF3HZKAck0f98Z2HveHG1aOuImqOpUZ/wMMVyuWoXHRKex8N/ZiPa0YsvYhSozvt6kXxLi9XxmaeWs9ZJ9H9Jex85ZxPbSMZ+m8zLnvg9OKRxL6ahFhDfReUH5VKxIQ==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1653445926; bh=0jy1MpYxa3weoEKvTIy8gb3B3360rpPyva+btlgjj9w=; h=X-Sonic-MF:Date:From:Subject:To:From:Subject; b=XP5wlAPLCRgcDtP2IMu+vp4xxjxsRMAXjSaDVMviM7IZU2tFjD7FjGqCL5IA3+rNXgUEMTfgPgNT4SuPt06i0eu8Jzat9vq2g55ypCmFlMkQ8hfaMQLPR9sKpKYm7gqapB+Fy6bX6vcRyjZMyL8wYbev3ShBLJa5aXou35U7io/DB4KUA6lAo/aPtZu0Z+lItOjmyVobu+OcHwdZLyrbrdF1iuU3kni8j5hGL6Vp+Tbfp1s3e2C0T53dH5rZWmbWiqCNJQNvPdFZ2R6gmuoN7Vwr+Kj+bgVGm1TgxQJPvwzP4d0V/OtA4DkdKXUjo48A+j2K42PC6W5UGCy/OWQuwA==
+X-YMail-OSG: oeKMwLEVM1lwMbVSh7GTrehM_I7CgjLQTRoPSgPC5am6BXMSQp.VPb9v19TCmWB
+ TAIk9.59YmxHhNJOETtLhRHEIiIkvBHdHhoFwlCeEnlw.yhKndqgNYDbYYwe5Tm6enBZOqfGW2bT
+ NNQa4OKMllW.6CzyIBA3y0.u8pCqzxnpXSZA379JBWglQ1FyCw0nJj53QIGrknK.92JLZhgYHM7Z
+ CQX2yY8kVDXLHIkmgHEPM0VtK4WWHFf3FHaMjJB2vsLMo.FfOH6QctsaJSEx0ogAJwtkBng5GpbS
+ EMkcq7u.7sQ9L48kYQCEEgFlnNi1ZHYukZM4BC5nj07QeHfVl5x48jeFZ_1HImD0LOBRgzaa0a42
+ qCO0BHVr7d1x2T1OPZlWnhep8RYsdZuoNQhNLRiFTLYlCu40HvT6zqK9QaiRjAvF3BVsweeMru3f
+ utq.FHYl58_lb8vVz7oia2dBouGtH9wp12B4uZpv.a1zslvF927QxdJxKZRULliD5Z8aQdJdgexx
+ 27ALXQ1FOqITCDH4PdyRYXXy3N.Ic6qR0SAOjQ2GHldo.S6.9k7HBP6VLZR_.y1YHNSy91cpFcyu
+ cWkSHNKSx25zPn6q3GiGFwCJeY3WLLRBiDxJlm.kfHG7eMfZ4r0T_nB3kfB2tHwK9n6EwqpNOHc8
+ 8XlNKOkKVHQAMKGdGoSt_thA2QteBYSzJcLetkNvnukjTKqQjpj5rSmo4QsvFiLKmfNPOcCdrAnX
+ hJ7Jw67dzonXkhXMwIxsMeMrsUjtrRym5pdI5DGWVSFn26qrse5pc4qYHH55fYrlQqD4livffEdd
+ ZPwuonvREZVzo8rwPHoln8vkaQ4ZriTs3fT2UyR7Y2zHv76xDhyIF0l6FGl5SQC7DB8m5Rycq3Aa
+ HPz7fhKGBCZqtBySi7wCRieq4YaAqiI78HqiUoaGL_67pxEi40uQy_8xZCAZtJysuM0fgic4cfZV
+ sY3X3lm8dvgytwq_WvwLSEgLf6cLByCsa4i32CtxL0LtHDITs6icF5h1BSQ90wsvHEuWJGsho0d1
+ f7aHm4TGgvLToBs0NKpOT7qPv0qE0e9OJPICRmiFhRhSpQ3DwfDi4i_v6T42V4v5MFSHTN6CFOQg
+ .kWBjhFKFr5OS5oPTItVbtpvKUJv_O3lD0jde6ErfCNQuZPSl1_jxl66FD7YGAtqk89uU.XRcC14
+ DVVn_xF01eFGVTpAsQVGtJErPTtYJrJnNNnqLOQzcO8STGdTlmE3vuMeaAGifEJgWGt1JyNw4Ll.
+ NRJnCly6wXxNRbcu3SCJAxHm4zgDFxhwR6f48ZOmg3U6xC9Vlwb8kWjGtwx9xsfiAUtGGPMIwjs7
+ wIiEa4gpFo7l8O0Ejx_S0_47QkKvCZdNYljfsuekImFOE9MwGafB6WJR9DJriCYoeVyUY625fjbM
+ UIZoS9OOTELrlN3.hsUouskGF8wgQTquBgj7peQ2v1rbQ_l1EqjIoR1hR71dtcCnz2vdWGzLjrlD
+ wMpu_K1QA7RxltjubjRcwYQZ1TvcDrEgW9vTFB.lxladBhxDEA1WOgY2225gkURVMxJ_bPFD6zVE
+ S.4N164h3j6Tk901zpJkNLfiIyoVp7kvuLSgxtGYStTVQ55hAgXJMLUPb6XH7y2HuwisHWNyht_b
+ UHfk6rhifpv6zkyAadn56eTbeflRotBzmhj.8NAMU7T8Q3SxHflO8K6BAny6FFmqcPhRhgCdW10A
+ YuupUCTrHz7BQuGfHg7Ix1ygr8aZtGPLs3EstyVorpCEK5ZJDWiELRPww6e0Wt6srVfmylG7qe4F
+ 8qIvNxsm1bV4RwW.ZodwBHOaF5CXTfwDR0_fRS0n22OGQqy7T2xr29tLA0VB3qJLFFv8FcrB7F1T
+ wH42NE3_0h5VnD.6Jm3.dPDJ_Mw8sZgmX.zrVZroPCOCz3u3aqXaqkuIQrL5LJ880lexsXWNhA0Q
+ Pq1hJiMK0Bxeb2vvaxQDxleA3KOMyKG0l.cKbsUezKsspbD5VEVT3WealGqAwEhhP7c16WkMWzSL
+ AsQS.F4Xk5NEFHY3i2pRu5bXaiYHdpy3EAAzXMcZadfibbe8KOnuZUKD0N7_bz6oiDGB.y.PyOL6
+ vHUsTS0982NzIwnEBERuJ6exI7rJQtT2WWesNtDze3FvIqkYDJ0qZUE1KETHq85TK4zi1BudGIYv
+ Cvdb3ZOhIFyBusZU8lV3rpFHYqtRAr9oIWvGltkmY5z.QSqs4vzULlEwMY6RNj2VC93Bahu2PEwq
+ fpzXPRATImsPCzeDRvsvIeK3MSd36g6sCMUxWjIukGyU8RlkZYytzievc9NSQSDgm2Pwob_u1I5M
+ WJorLC6.Qb_sKQyWgLoaU_PyJ
+X-Sonic-MF: <ae40515@yahoo.com.tw>
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic311.consmr.mail.sg3.yahoo.com with HTTP; Wed, 25 May 2022 02:32:06 +0000
+Received: by hermes--canary-production-sg3-7959d4d9bd-vdvd8 (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 9adf84adf3e681998ec4f854c15dbbca;
+          Wed, 25 May 2022 02:32:05 +0000 (UTC)
+Message-ID: <2054ff7a-b529-3ecd-70ea-5897ac82d0de@yahoo.com.tw>
+Date:   Wed, 25 May 2022 10:32:03 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+From:   Alec Su <ae40515@yahoo.com.tw>
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: msm8996-xiaomi-natrium: Add support
+ for Xiaomi Mi 5s Plus
+To:     kernel test robot <lkp@intel.com>, agross@kernel.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, sboyd@codeaurora.org
+Cc:     kbuild-all@lists.01.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        y.oudjana@protonmail.com
+References: <20220519074112.25600-2-ae40515@yahoo.com.tw>
+ <202205200926.TE2gqa0N-lkp@intel.com>
+Content-Language: en-US
+In-Reply-To: <202205200926.TE2gqa0N-lkp@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailer: WebService/1.1.20225 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for eint IRQ when MSDC is used as an SDIO host. This
-feature requires SDIO device support async IRQ function. With this
-feature, SDIO host can be awakened by SDIO card in suspend state,
-without additional pin.
+On 2022/5/20 09:34, kernel test robot wrote:
+> Hi Alec,
+> 
+> Thank you for the patch! Yet something to improve:
+> 
+> [auto build test ERROR on robh/for-next]
+> [also build test ERROR on v5.18-rc7]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch]
+> 
+> url:    https://github.com/intel-lab-lkp/linux/commits/Alec-Su/arm64-dts-qcom-msm8996-xiaomi-natrium-Add-support-for-Xiaomi-Mi-5s-Plus/20220519-164217
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+> config: arm64-randconfig-r022-20220518 (https://download.01.org/0day-ci/archive/20220520/202205200926.TE2gqa0N-lkp@intel.com/config)
+> compiler: aarch64-linux-gcc (GCC) 11.3.0
+> reproduce (this is a W=1 build):
+>         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>         chmod +x ~/bin/make.cross
+>         # https://github.com/intel-lab-lkp/linux/commit/b35e1afb49b50a1d68a67f66a3eb6c4259f329fb
+>         git remote add linux-review https://github.com/intel-lab-lkp/linux
+>         git fetch --no-tags linux-review Alec-Su/arm64-dts-qcom-msm8996-xiaomi-natrium-Add-support-for-Xiaomi-Mi-5s-Plus/20220519-164217
+>         git checkout b35e1afb49b50a1d68a67f66a3eb6c4259f329fb
+>         # save the config file
+>         mkdir build_dir && cp config build_dir/.config
+>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash
+> 
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
+> 
+> All errors (new ones prefixed by >>):
+> 
+>>> Error: arch/arm64/boot/dts/qcom/msm8996-xiaomi-natrium.dts:79.1-9 Label or path mss_pil not found
+>>> Error: arch/arm64/boot/dts/qcom/msm8996-xiaomi-natrium.dts:106.1-10 Label or path slpi_pil not found
+>    FATAL ERROR: Syntax error parsing input tree
+> 
 
-MSDC driver will time-share the SDIO DAT1 pin. During suspend, MSDC
-turn off clock and switch SDIO DAT1 pin to GPIO mode. And during
-resume, switch GPIO function back to DAT1 mode then turn on clock.
+The labels mss_pil and slpi_pil are in a patch [1] which is already
+existed in linux-next but isn't in mainline yet. It should be fine in
+linux-next.
 
-Some device tree property should be added or modified in MSDC node
-to support SDIO eint IRQ. Pinctrls "state_eint" is mandatory. Since
-this feature depends on asynchronous interrupts, "wakeup-source",
-"keep-power-in-suspend" and "cap-sdio-irq" flags are necessary, and
-the interrupts list should be extended(the interrupt named with
-sdio_wakeup):
-        &mmcX {
-		...
-		interrupt-names = "msdc", "sdio_wakeup";
-		interrupts-extended = <...>,
-                              	      <&pio xxx IRQ_TYPE_LEVEL_LOW>;
-                ...
-                pinctrl-names = "default", "state_uhs", "state_eint";
-                ...
-                pinctrl-2 = <&mmc2_pins_eint>;
-                ...
-                cap-sdio-irq;
-		keep-power-in-suspend;
-		wakeup-source;
-                ...
-        };
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Co-developed-by: Yong Mao <yong.mao@mediatek.com>
-Signed-off-by: Yong Mao <yong.mao@mediatek.com>
-Signed-off-by: Axe Yang <axe.yang@mediatek.com>
----
- drivers/mmc/host/mtk-sd.c | 80 ++++++++++++++++++++++++++++++++++++---
- 1 file changed, 74 insertions(+), 6 deletions(-)
+[1] https://lore.kernel.org/all/20210926190555.278589-6-y.oudjana@protonmail.com/
 
-diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
-index 195dc897188b..2d5b23616df6 100644
---- a/drivers/mmc/host/mtk-sd.c
-+++ b/drivers/mmc/host/mtk-sd.c
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0-only
- /*
-- * Copyright (c) 2014-2015 MediaTek Inc.
-+ * Copyright (c) 2014-2015, 2022 MediaTek Inc.
-  * Author: Chaotian.Jing <chaotian.jing@mediatek.com>
-  */
- 
-@@ -20,6 +20,7 @@
- #include <linux/platform_device.h>
- #include <linux/pm.h>
- #include <linux/pm_runtime.h>
-+#include <linux/pm_wakeirq.h>
- #include <linux/regulator/consumer.h>
- #include <linux/slab.h>
- #include <linux/spinlock.h>
-@@ -440,8 +441,10 @@ struct msdc_host {
- 	struct pinctrl *pinctrl;
- 	struct pinctrl_state *pins_default;
- 	struct pinctrl_state *pins_uhs;
-+	struct pinctrl_state *pins_eint;
- 	struct delayed_work req_timeout;
- 	int irq;		/* host interrupt */
-+	int eint_irq;		/* interrupt from sdio device for waking up system */
- 	struct reset_control *reset;
- 
- 	struct clk *src_clk;	/* msdc source clock */
-@@ -1520,17 +1523,41 @@ static void __msdc_enable_sdio_irq(struct msdc_host *host, int enb)
- 
- static void msdc_enable_sdio_irq(struct mmc_host *mmc, int enb)
- {
--	unsigned long flags;
- 	struct msdc_host *host = mmc_priv(mmc);
-+	unsigned long flags;
-+	int ret;
- 
- 	spin_lock_irqsave(&host->lock, flags);
- 	__msdc_enable_sdio_irq(host, enb);
- 	spin_unlock_irqrestore(&host->lock, flags);
- 
--	if (enb)
--		pm_runtime_get_noresume(host->dev);
--	else
--		pm_runtime_put_noidle(host->dev);
-+	if (mmc_card_enable_async_irq(mmc->card) && host->pins_eint) {
-+		if (enb) {
-+			pinctrl_select_state(host->pinctrl, host->pins_eint);
-+			ret = dev_pm_set_dedicated_wake_irq_reverse(host->dev, host->eint_irq);
-+
-+			if (ret) {
-+				dev_err(host->dev, "Failed to register SDIO wakeup irq!\n");
-+				host->pins_eint = NULL;
-+				pm_runtime_get_noresume(host->dev);
-+			} else {
-+				dev_info(host->dev, "SDIO eint irq: %d!\n", host->eint_irq);
-+				device_init_wakeup(host->dev, true);
-+			}
-+
-+			pinctrl_select_state(host->pinctrl, host->pins_uhs);
-+		} else {
-+			dev_pm_clear_wake_irq(host->dev);
-+		}
-+	} else {
-+		if (enb) {
-+			/* Ensure host->pins_eint is NULL */
-+			host->pins_eint = NULL;
-+			pm_runtime_get_noresume(host->dev);
-+		} else {
-+			pm_runtime_put_noidle(host->dev);
-+		}
-+	}
- }
- 
- static irqreturn_t msdc_cmdq_irq(struct msdc_host *host, u32 intsts)
-@@ -2631,6 +2658,19 @@ static int msdc_drv_probe(struct platform_device *pdev)
- 		goto host_free;
- 	}
- 
-+	/* Support for SDIO eint irq ? */
-+	if ((mmc->pm_caps & MMC_PM_WAKE_SDIO_IRQ) && (mmc->pm_caps & MMC_PM_KEEP_POWER)) {
-+		host->eint_irq = platform_get_irq_byname(pdev, "sdio_wakeup");
-+		if (host->eint_irq > 0) {
-+			host->pins_eint = pinctrl_lookup_state(host->pinctrl, "state_eint");
-+			if (IS_ERR(host->pins_eint)) {
-+				dev_err_probe(&pdev->dev, PTR_ERR(host->pins_eint),
-+					      "Cannot find pinctrl eint!\n");
-+				host->pins_eint = NULL;
-+			}
-+		}
-+	}
-+
- 	msdc_of_property_parse(pdev, host);
- 
- 	host->dev = &pdev->dev;
-@@ -2845,6 +2885,12 @@ static int __maybe_unused msdc_runtime_suspend(struct device *dev)
- 	struct msdc_host *host = mmc_priv(mmc);
- 
- 	msdc_save_reg(host);
-+
-+	if (sdio_irq_claimed(mmc) && host->pins_eint) {
-+		disable_irq(host->irq);
-+		pinctrl_select_state(host->pinctrl, host->pins_eint);
-+		sdr_clr_bits(host->base + SDC_CFG, SDC_CFG_SDIOIDE);
-+	}
- 	msdc_gate_clock(host);
- 	return 0;
- }
-@@ -2860,12 +2906,19 @@ static int __maybe_unused msdc_runtime_resume(struct device *dev)
- 		return ret;
- 
- 	msdc_restore_reg(host);
-+
-+	if (sdio_irq_claimed(mmc) && host->pins_eint) {
-+		sdr_set_bits(host->base + SDC_CFG, SDC_CFG_SDIOIDE);
-+		pinctrl_select_state(host->pinctrl, host->pins_uhs);
-+		enable_irq(host->irq);
-+	}
- 	return 0;
- }
- 
- static int __maybe_unused msdc_suspend(struct device *dev)
- {
- 	struct mmc_host *mmc = dev_get_drvdata(dev);
-+	struct msdc_host *host = mmc_priv(mmc);
- 	int ret;
- 
- 	if (mmc->caps2 & MMC_CAP2_CQE) {
-@@ -2874,11 +2927,26 @@ static int __maybe_unused msdc_suspend(struct device *dev)
- 			return ret;
- 	}
- 
-+	if (sdio_irq_claimed(mmc) && host->pins_eint) {
-+		pm_runtime_put_sync_suspend(dev);
-+
-+		return 0;
-+	}
-+
- 	return pm_runtime_force_suspend(dev);
- }
- 
- static int __maybe_unused msdc_resume(struct device *dev)
- {
-+	struct mmc_host *mmc = dev_get_drvdata(dev);
-+	struct msdc_host *host = mmc_priv(mmc);
-+
-+	if (sdio_irq_claimed(mmc) && host->pins_eint) {
-+		pm_runtime_get_sync(dev);
-+
-+		return 0;
-+	}
-+
- 	return pm_runtime_force_resume(dev);
- }
- 
--- 
-2.25.1
-
+Regards,
+Alec
