@@ -2,87 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43AE4534073
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 17:36:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 010BE53409B
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 17:47:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240764AbiEYPge (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 11:36:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46826 "EHLO
+        id S231421AbiEYPqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 11:46:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233775AbiEYPgd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 11:36:33 -0400
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4821911176
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 08:36:31 -0700 (PDT)
-Received: by mail-pj1-x1035.google.com with SMTP id gk22so1597907pjb.1
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 08:36:31 -0700 (PDT)
+        with ESMTP id S233612AbiEYPqa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 11:46:30 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB931AE263
+        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 08:46:27 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id o29-20020a05600c511d00b00397697f172dso1299116wms.0
+        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 08:46:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=unaVWSxtLrzCkT7W9EU0i2EBbETN7X+EN7c1UsSwH0s=;
-        b=cWwtlMdgHkYd3Z+MwZZVGkeHqFjikelNov58vRx+64+U+d9LBp/xb37sfwuSNvtjbM
-         8JdgqMgu4KCvBW5J2GpD5+kCrnAtM/4hbC+PtGgKva2buhfiVBNoTY2AWsI+n0QO+3Hn
-         ZncYx0anRN4G6RGyGSj4YiYwoA6pLOQjn2ov0=
+        d=pensando.io; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=UrTCiIB5+imBAeHHe5Yk2P2e1nFNoP+klKZAhqbPDdA=;
+        b=MqPIurhFVqpa+pBM1vNQS6bUBZWcTHP2YxERwDnH+bQfrSJK2/72G3Xj7gT+UEioGy
+         thWYm7nOuZQUFNxIv2huTTw/x+VekSpTufiYFUFRGkawxOrxefVaDTY1BSz5YzKXNb3N
+         N68WwPk1+UqgTIjKN5dveLZ8D1OuV7Beewa2kxUojacU7Bp2iSArTdwBToEwZEZGd4Vj
+         mNe2f/owRoeJLfYJRHYnmYyxZRT+hFbQiGMJHYcMVz4o5iqcWa+fTys9HDmTxnnRF79m
+         YZdblvApQE3X8Sz+8/wuOXm/kqKvRy3tyjhXPvV2Tr51KqrC0DPWM7HLycywFd//eT++
+         8jkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=unaVWSxtLrzCkT7W9EU0i2EBbETN7X+EN7c1UsSwH0s=;
-        b=YBZxTqXv0IXrLosp2SlLJUGo0UnO2lR5KKpJASdCGZ+wTOjHu14zBoADk+nLqDbyyf
-         tlYfkvCJjQsAEhVyMBCQj1DMSA+VN9m99x57UA5RHNuAhASxGFSXOvr6+UQw+3FxseVD
-         8gKRMA+1KCeaghNo9Q5519PIlFeMjl5V2JR71H+b7TDuxiYwIqJUgvt38VfGS5lOwLQW
-         Ixq2vDDuvf1B1UKU3sxF+9QeqtoMXfr8nh6PgeHKC43WT9LVC0NVDnd93utScyNvOaWv
-         bSjRsTTSZgOl/rO+53nxaaUMkZK/9U6XC8OS1i02mHcUaVDfoplfZP25lRwlzMEXuqBn
-         M+eQ==
-X-Gm-Message-State: AOAM531sd96IWG4DOqrP7kqaEthyFhgC1GWEEnd2r7DunP6xteRv1sA1
-        Cctvd7HR7/B1g6fMr8mpajX52w==
-X-Google-Smtp-Source: ABdhPJy4QdbW/q506bxZQtetCefQdh5dhyoeRjlnF43bNKBXbqVDO0aUKxNaNJWTslH4nppq38BrPA==
-X-Received: by 2002:a17:90b:3e8a:b0:1e0:4f19:c63b with SMTP id rj10-20020a17090b3e8a00b001e04f19c63bmr11061632pjb.237.1653492990862;
-        Wed, 25 May 2022 08:36:30 -0700 (PDT)
-Received: from localhost ([2620:15c:11a:202:4d83:f549:9abd:427])
-        by smtp.gmail.com with UTF8SMTPSA id t13-20020a63b24d000000b003fa321e9463sm6669598pgo.58.2022.05.25.08.36.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 May 2022 08:36:30 -0700 (PDT)
-Date:   Wed, 25 May 2022 08:36:29 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Judy Hsiao <judyhsiao@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        dianders@chromium.org, cychiang@google.com, judyhsiao@google.com,
-        tzungbi@chromium.org, swboyd@chromium.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [v3 3/3] arm64: dts: qcom: sc7280: include
- sc7280-herobrine-audio-rt5682.dtsi in villager and herobrine-r1
-Message-ID: <Yo5M/Y5IbIPpFtO8@google.com>
-References: <20220525014308.1853576-1-judyhsiao@chromium.org>
- <20220525014308.1853576-4-judyhsiao@chromium.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=UrTCiIB5+imBAeHHe5Yk2P2e1nFNoP+klKZAhqbPDdA=;
+        b=CLzxrHJJfwZpi+gNmOHWdHG0gxslbadp9Ndo3bWD//DEV1q1j7DkrOEYtaqQHJNu1e
+         3nV9Nk//ttXngEJq38orXpaHW08jQTo1pX2cs2ocpBcxD4H2e9TI+xutsldCOG7QeKDT
+         H3N8MUkXjcdc6v63ji7reZmqkz6Uvypeceuon3jXPYV6spP/bMs3O0NDduHa6+E04oSu
+         KBRkdKNuAL0EC19U5YUVYeK9xjcydVJkaxMzATTxhqxBtqLpr2hEiEEDaMWBcRRZGcmB
+         4kbXJRPdtoqXjCNwdADX+nojNYNZkdblFszDrBgWuP5WtBDfAOmk+P5AfephaTlF1HMp
+         sryg==
+X-Gm-Message-State: AOAM531gUgW8W8wQ/rP6jOYYLCngRwMfHhqRi3J9oNJBSm+ubg9rvuRq
+        JY8kPVDA3YC/Tzgc4Cl8dlG50Zp22uRFaOHnbrEPow==
+X-Google-Smtp-Source: ABdhPJwMCeE2M2oBeMoCYDG8p7UZtY8gBrM+hDCF+s5vsXn/s+B7NoTCVj2dK00lSgGxLjxe2HR3aykRV/KV+QWzz/s=
+X-Received: by 2002:a1c:e903:0:b0:397:36b8:795a with SMTP id
+ q3-20020a1ce903000000b0039736b8795amr9116951wmc.98.1653493586128; Wed, 25 May
+ 2022 08:46:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220525014308.1853576-4-judyhsiao@chromium.org>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20220406233648.21644-1-brad@pensando.io> <20220406233648.21644-4-brad@pensando.io>
+ <CAK8P3a2wZwza=tUzxpHTHTnahf-bUS2-e80rW-wzN3aWodD1vQ@mail.gmail.com>
+In-Reply-To: <CAK8P3a2wZwza=tUzxpHTHTnahf-bUS2-e80rW-wzN3aWodD1vQ@mail.gmail.com>
+From:   Brad Larson <brad@pensando.io>
+Date:   Wed, 25 May 2022 08:46:15 -0700
+Message-ID: <CAK9rFnwjeaGALTaDx-0k2OEktSv_UmJK9+uGuy=OFP8dnhNeOQ@mail.gmail.com>
+Subject: Re: [PATCH 03/11] dt-bindings: mmc: Add Pensando Elba SoC binding
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Brown <broonie@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        David Clear <dac2@pensando.io>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 25, 2022 at 01:43:08AM +0000, Judy Hsiao wrote:
-> Include sc7280-herobrine-audio-rt5682.dtsi in villager and herobrine-r1 as
-> these boards use rt5682 codec.
-> 
-> Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
+Hi Arnd,
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+On Wed, Apr 6, 2022 at 11:31 PM Arnd Bergmann <arnd@arndb.de> wrote:
+>
+> On Thu, Apr 7, 2022 at 1:36 AM Brad Larson <brad@pensando.io> wrote:
+> >
+> > --- a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> > +++ b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> > @@ -19,10 +19,12 @@ properties:
+> >        - enum:
+> >            - microchip,mpfs-sd4hc
+> >            - socionext,uniphier-sd4hc
+> > +          - pensando,elba-sd4hc
+> >        - const: cdns,sd4hc
+> >
+> >    reg:
+> > -    maxItems: 1
+> > +    minItems: 1
+> > +    maxItems: 2
+> >
+>
+> Shouldn't the binding describe what the register areas are? If there
+> is only one of them, it is fairly clear, but when you have the choice
+> between one and two, it gets ambiguous, and there is a risk that
+> another SoC might have a different register area in the second entry,
+> making it incompatible.
 
-and you for v2 you also had:
+Thanks for the review.  Changing this to allOf:if:then in updated
+patchset.  The second item is particular to Elba SoC.
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Regards,
+Brad
