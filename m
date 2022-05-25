@@ -2,177 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0857533D2C
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 15:04:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB1FF533D30
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 15:05:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233948AbiEYNEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 09:04:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43246 "EHLO
+        id S236651AbiEYNFQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 09:05:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233151AbiEYNEL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 09:04:11 -0400
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12olkn2095.outbound.protection.outlook.com [40.92.23.95])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7031E75;
-        Wed, 25 May 2022 06:04:08 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lJmpA0zXd0dr2yzhoZ5x210LPQXJnwzOsiFxPqU8nxFWNCvyjJvacb8HcM+5wCjEre90hcx/l1t2sPR1wNhzZBAQU7rZYJVcvmAqjl0CP7ahigYjRYOxEBVcbY2BGDS3oULr3MY1k26l52ybzme3Wyu8Bk3B//nGquhPs6iefohnmS/7jZFHuWjgbN8erLgvHVMcG2j2ayWU2gKuXUxMKHAzH1sG8BblyO9+ZNcot1QZCrNsVV4sjNdlpXLd5QtRK6IUV2KDe6OTQTLjjkqtTzzDeszm+erOsGr8dIiuZEpL+0hZH5MD+wIpunKCkvlZBXk8ZGepU6eV5Q57RUyuwg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=t8wr6wl/CCBGhOuJDN2GHKtgz9DrY8qxIHlWYDCAPjc=;
- b=KcaQS+Lr93RxMx94/ymnBCpKFT+jaq1luaP5HfEx4xyeo6H2tuR5GllDbTzWbUibkWTkzCSwPSAzVXgdWJZeGBlhwsj8BM8NGoL570ZreoyY+9wCwxYzO5WjSELPrHch4J5tVh2SOIHTKRSoNS0uCD2h5xej5lIXJaTHCZ31jlh1gljjmZZA+m2B54+GDjDrRqefICrp9TFoxz6wmNORndmXW0eTenkqKQIL8dPkr4fQBTtkc083S7lXFXpexy2cHO0w3ofnI3vBRdEcCtWbpgqsVFt5U5zLXTnGlrP7hYLVPAtb8roowSV3NJqbUUKbl5OU7XlDpaUrmeMAyd7JRw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-Received: from BY5PR02MB7009.namprd02.prod.outlook.com (2603:10b6:a03:236::13)
- by BYAPR02MB4743.namprd02.prod.outlook.com (2603:10b6:a03:43::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5273.15; Wed, 25 May
- 2022 13:04:06 +0000
-Received: from BY5PR02MB7009.namprd02.prod.outlook.com
- ([fe80::303a:ab1:17c1:2d16]) by BY5PR02MB7009.namprd02.prod.outlook.com
- ([fe80::303a:ab1:17c1:2d16%9]) with mapi id 15.20.5273.023; Wed, 25 May 2022
- 13:04:06 +0000
-Message-ID: <BY5PR02MB70094BBCBE78A146A8C4CA0AD9D69@BY5PR02MB7009.namprd02.prod.outlook.com>
-Date:   Wed, 25 May 2022 18:33:52 +0530
+        with ESMTP id S243902AbiEYNFF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 09:05:05 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A46142E9D5;
+        Wed, 25 May 2022 06:05:03 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 098BF1F44E8C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1653483902;
+        bh=gViAEDYmrng0CSzEk780jnUimbEF/5qLDHyneG+N2y0=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=l1YD1DbCcvxx0b2C9BAQPdR3sMaZT6pjm6m0/b9f9Z53w11xMF/QGKDJdQu4/dO+8
+         Ddj4Wvok1u9FMBprtouSjtEb1qRwZo3tKrnTgJ9ZJG6+bbPtQsrmOnyRs61TuCcFtA
+         JPe3ei96GsuPKoIr9igulzhrqsJCh9+Ie3I5+qTVA8As9U+HjdJpPmu3KPGfmyuFxC
+         NtVRDyRnENOxfwqvpxkopl+p4LDlvsUaQHCnSSsp0iR0FHweY9ZaqME94NXDUQidC8
+         jnUp6b2Wankw5/iPlTSEleo90ERD5EpGQpw0pKy2k2TtVBUyYcdsgidMzBiqLRS6No
+         4OJr/vKoGaM/Q==
+Message-ID: <5cc99fd7-1401-511d-37c3-77f18b08e597@collabora.com>
+Date:   Wed, 25 May 2022 15:04:59 +0200
+MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-From:   Joel Selvaraj <jo@jsfamily.in>
-Subject: Re: [PATCH 3/3] drm/panel: introduce ebbg,ft8719 panel
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     devicetree@vger.kernel.org, Hao Fang <fanghao11@huawei.com>,
-        David Airlie <airlied@linux.ie>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        phone-devel@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
-        Stanislav Jakubek <stano.jakubek@gmail.com>,
-        Corentin Labbe <clabbe@baylibre.com>
-References: <cover.1651835715.git.jo@jsfamily.in>
- <BY5PR02MB7009B91FB7306503B58C264BD9C59@BY5PR02MB7009.namprd02.prod.outlook.com>
- <CACRpkdYhkP9RYj98Lu=zkt+6aefx172R=8JtvOFpvh2uJ4byKA@mail.gmail.com>
- <BY5PR02MB7009831D8BC4DB2B34739CB6D9CF9@BY5PR02MB7009.namprd02.prod.outlook.com>
- <CACRpkdZw+MwU42s8BWHkN2T3A-a-TGML8jJ0kQteMOE06m0UXg@mail.gmail.com>
+ Thunderbird/91.9.0
+Subject: Re: [PATCH v10 19/21] drm/mediatek: Add mt8195 External DisplayPort
+ support
 Content-Language: en-US
-In-Reply-To: <CACRpkdZw+MwU42s8BWHkN2T3A-a-TGML8jJ0kQteMOE06m0UXg@mail.gmail.com>
+To:     Guillaume Ranquet <granquet@baylibre.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, Helge Deller <deller@gmx.de>,
+        CK Hu <ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, linux-fbdev@vger.kernel.org
+References: <20220523104758.29531-1-granquet@baylibre.com>
+ <20220523104758.29531-20-granquet@baylibre.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220523104758.29531-20-granquet@baylibre.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-TMN:  [MH0SfL2yaLWPYC8YG5PuYySeDO4bUJ2z4f+gTErKT6p763BPRR4OamapwxW16J09]
-X-ClientProxiedBy: PN3PR01CA0055.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:99::10) To BY5PR02MB7009.namprd02.prod.outlook.com
- (2603:10b6:a03:236::13)
-X-Microsoft-Original-Message-ID: <b9faa80c-6e9e-e857-a57d-f84b648529f7@jsfamily.in>
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: ef49c964-2ea9-462d-482c-08da3e4f0ba1
-X-MS-TrafficTypeDiagnostic: BYAPR02MB4743:EE_
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: UAERbL+/T4rBvrW3n9EIw1g7p7MdMVUdyb1jMjqlU3CL+DnSLxd/qWycYbzVPe0Sa/kuav73jJ7VfpRAuSZ11XFhriGE5i4ClDtwUwxO0hrwbRna/P7liJ25xllCL0Mdodh+r1PnampRIrHIOzlZ/ClP6y7D5EKIbuyRwk5v0g5gbeguHUx1C06zCJcCTB7dG9yP7RVC/g09HRgTSpDr+UB0fJ9PWKdu7cX6pcoy/Pr2l4zto3EQ1oRjx7ugA4VXQ+W7PMX6Q7T3Psz+epWCejJproWi39xlgvgFiUS4F+QccSmloi+2lu59gqGPIeNpf5Rcuz+GDtXuWAukFjABsU5lbI8eEoJQjon000h6Ot4Zzl8WFkZXzBmbasvKA4LUwaUvmfdXC/Y3JNkxTHNqAlyzKMONIVR3suqPPN1XSNuUDI0H7ALUxQAOLX/3N/HoWKUO/t99cJvPddRoVMIak9QTN0wD3JPdJaNrLVillj3ySyo48oaGXiSAOjHFbRl4ZklFg5fcvdwVyvzEi6xrNP4xfMzhNAtexUDzFltt6ClS7nhXRbVAPDmBIbusmYpwktVUuhYWc6Axrywa6zCk9g==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q05SUjdYcFJMQURta2RqK0Zqb3lVcS9kUDQvaDFiR0JUZEg3UDMxQ1ZuV0JU?=
- =?utf-8?B?YW9WU1IrUXRzYWJhaStSc2dkQzd2WDJTbldxY3dubEF2RGpiSG1VVUk0YmlS?=
- =?utf-8?B?WjkxNmU2eEp5N0VqeWlFMjUrSWExd25NVElsb1g2cFVjZG4vbktkbWlqcHZ4?=
- =?utf-8?B?enV1OElDdm5RdjBvYnkrblFaWEZ2Rjh6R0RxZlVZZVpOaTZoblpnYk5LNE01?=
- =?utf-8?B?eEVxd3JvRkVWR05SUlZUZCsyZWJkREFsWWFBVUJEMnVTL0U0ZnhQU2pVc011?=
- =?utf-8?B?ajBMMktoclViYmo5WlNRMFc4TFJtOXl6YXJHQUE3KzdUbE1wVjNQcGlhUjJZ?=
- =?utf-8?B?bGs5U0FQWllZc090VjdYMy9GaFg1WnFXb0M0NE9EWUVUMlpqYmNUL2ZQeEZ6?=
- =?utf-8?B?WGhsL0l3YS84d0ZLWGl5dGloWWhmWi9RUHFVSTdwRHlGS0gzTmdLWTVNVlZr?=
- =?utf-8?B?ekFZUFFnbGRRQWVLSktoZkRLNkxBOUFUYWdCZDNmTk0rQnpLMm1BQnc0anhU?=
- =?utf-8?B?TUhRNjlSbUlRVFM4cXVKUmRBYzNYZ0JvNFZEdHQrSWVJeWpHcGF0Z1V6NTRH?=
- =?utf-8?B?bDM2WG1JOEt3c0VtTERBZEs3eUlTVWt6b1JDRW9yalFJeUJMUjBIRTRiaUxq?=
- =?utf-8?B?TE94RUFlWXpmNDIwdFB4ajdBSDFwN25qdHZKb050dDV3NzZLekVlK0M4UEJx?=
- =?utf-8?B?TGxQWCttYnhhaGlSYzRtcDVpazJncmwxK2UxRWdaNE1OcTFTRXVtOFV6ckts?=
- =?utf-8?B?cGIrOUFEK3FCNThkREo5ZjBJenU4U0ZLZS9HRnNTRWt6SFd6NVFJVUFHRVBs?=
- =?utf-8?B?VkdDRnV6L1lESXB6Zm5XS0dtdko3Q3RLZVJKaFh0RnZaMUk0MnZyak1CWTVM?=
- =?utf-8?B?dTZ5L2FyQVJkSHpBWEQ4Q29JZE9aL0gzdFkxRU5kMEMwNVdUaVAxc1ZoYVBJ?=
- =?utf-8?B?Y1dwQXlaZ0dnVkdvd1QzMzQyRlMxQXUwUy9kMWdnbGI2VGswd1htaWxqdFRj?=
- =?utf-8?B?V2ZTaDdyUWVEcjQ5TktZN3l5TExWclo1dms3aG1Rc01oWFVYUzlHOWc3TUNl?=
- =?utf-8?B?aUEzVHozRVlNanJGQ2JrZmRWNm01L09VNWJmdTFCVXE3R1BuR09zanNvRGEy?=
- =?utf-8?B?MnBSSnZQeHZyenNSbXhkSElhclFtSUNGUUttS0lXWW93bk43SGRMYkNLOGJ0?=
- =?utf-8?B?bWpSZVQxKzZHSk0xU2hTN1hvQnFUUVp5ak41TC8xZW8yZzNEVldsUU5ycGpO?=
- =?utf-8?B?Q0FBTlljSnZOTmZNZTlCeU9zbVc3ZmJVTzdIbVJKK0dhR0ZrbHdUZ0h0U2py?=
- =?utf-8?B?c1pnOUlGWllTUGFXTUt3V3B6eGNHKzdXNVp3aFJzWXBnVUZhcmxFSmgvTWto?=
- =?utf-8?B?L3FoT0FnQ1FudmxMMFEvMXNBaDZkSHZIcTN4ZFF1dEpOOUFoczgySUtFbjRX?=
- =?utf-8?B?QnJQcWNSblZqcVpOb3VlTEx2OWFjRHZxWmlEOTFiYjhBM1R3WEV4eStKaVVa?=
- =?utf-8?B?MldURTlHVnJFeUo4VDZMNHNZMm9oa3E0MWdCckwyVDdyUmg1NVBEdVFJWTJ2?=
- =?utf-8?B?dzlWQnBzKzg1T2FzdmYzRWptWnk0a0pCcjFxa2NkNkd4WU1ZOFl2NXFaOTZ0?=
- =?utf-8?B?aGdvTzNoem1EK3ZGQ1NJcTFNVm05UUpoQWlaWWhxVzNHeW5zdXY5bVVoVncv?=
- =?utf-8?B?WnQxTUtXRUtRcUdDVnpFczhDWnAxZzNyTER3MEVUbTV5WUZ1ckJRVTFkZXda?=
- =?utf-8?B?aHdMZkkybmJJZ2hlZ3NSeHhnOER1S2pmT2E0WXdBUW85QWR3MmlJVzJlbnhZ?=
- =?utf-8?B?Q2d0eHNlVTZPemliWWh6QzRjNDZZL2VWZlpaMjdDRVVRUWRWZWdQWC83aWN2?=
- =?utf-8?B?S0s2VTBoS2xLSDRmVXJ1dTQyeEtVbWN5Wk1jNElJY0EyYzJ2VTVZTVU1RHND?=
- =?utf-8?B?Qm1Nbi9sdmwra0tMSDNRVnZyL0M3eXhvSzI0ZFYvcXNCRHF4aDVMbDFKN3F6?=
- =?utf-8?B?dkEwMWo3c253PT0=?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-99c3d.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: ef49c964-2ea9-462d-482c-08da3e4f0ba1
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR02MB7009.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2022 13:04:06.8563
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB4743
-X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,FORGED_MUA_MOZILLA,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus Walleij
-
-On 19/05/22 14:39, Linus Walleij wrote:
-> Nope. But add the rate limited error print please!
-
-Will do.
-
->>> Lots of magic numbers. You don't have a datasheet do you?
->>> So you could #define some of the magic?
->>
->> Unfortunately, I don't have a datasheet and the power on sequence is
->> taken from downstream android dts. It works pretty well though. So I
->> don't think I can #define any of these magic.
+Il 23/05/22 12:47, Guillaume Ranquet ha scritto:
+> This patch adds External DisplayPort support to the mt8195 eDP driver.
 > 
-> If you know which display controller the display is using (usually
-> Novatek nnnnn, Ilitek nnnn etc someting like that) there is often
-> a datasheet for the display controller available but the display per
-> se often obscures the display controller.
-
-Well, I recently figured that the panel works perfectly without all the 
-magic commands. So, no need for #defines of those magics/documentation 
-for now.
-
->>   > Doesn't it work to combine them into one call for each
->>   > pair?
->>   >> +       dsi_dcs_write_seq(dsi, );
->>   >> +       dsi_generic_write_seq(dsi, 0xff, 0x87, 0x19);
->>
->> By using a macro? We can... but I am not sure what (0x00, 0x80), (0x00,
->> 0xa0),etc type of commands signify without the datasheet, so I am not
->> sure what to name them in the macro and make any sensible meaning out of it.
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> ---
+>   drivers/gpu/drm/mediatek/mtk_dp.c | 104 +++++++++++++++++++++++-------
+>   1 file changed, 81 insertions(+), 23 deletions(-)
 > 
-> I meant just sending dsi_generic_write_seq() with everything in
-> it:
-> 
-> dsi_generic_write_seq(dsi, 0x00, 0x80, 0xff, 0x87, 0x19);
-> 
-> Instead of two writes. Doesn't this work?
 
-I am not sure about whether it will work. Can multiple DCS commands can 
-be combined into single write? Don't know much about this.
+Your patch [18/21], contained in this series, introduces mtk_dp.c.
+This patch [19/21] cannot be applied cleanly on top of 18/21.
 
-Anyways since the panel works without all these magic commands, these 
-will be removed in the next version.
-
-> Yours,
-> Linus Walleij
-
-Thanks and Regards
-Joel Selvaraj
+What happened here?!?
