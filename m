@@ -2,76 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 894AB533954
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 11:06:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9BD75339BB
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 11:16:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232153AbiEYJFc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 05:05:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48398 "EHLO
+        id S230107AbiEYJQH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 05:16:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239392AbiEYJFT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 05:05:19 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E11C28E1AE
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 02:03:34 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id u7so23036725ljd.11
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 02:03:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ZtbcQaswtU2dqjmT14F4zADH8LUSwksU8SwBMe4IBPA=;
-        b=opkz2jp/Z44y2hsPU1RrbzF5zxhN14QmhBsqNuW9Lf6TfUZsUmqQjM8b3sLjfIWRrO
-         hNcN75Hkau6oHoZK0HCfB+dwqg5e7VHB2G+CDaHopzaKbtDzoi6Ksp8SZT6t3G8fZcWE
-         F2gRZ3alg2G91mCAFdZ3U06Ne1VnkFOgAYAD485uiVB9MW3WJcSflFWaGYCu+RclKp9p
-         afSZ7gzuVH1M5RS+7r0r7dK67RjSSizBh8sAX+PROnsunxjrC22p7bhMWzYA9NGZaF84
-         zSThapjW/b7HyHtapuAXvkNbY/BNkN0LM62/3XAhQmH8nUvX/d/DnS6jJot3V3eN1LXg
-         u95w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ZtbcQaswtU2dqjmT14F4zADH8LUSwksU8SwBMe4IBPA=;
-        b=EUGcycK3fYcNowSBqU7LmjT+PrK5RoLokdJZYSLDD+mOPaiqPtzfuiN8Yupx1Yvlom
-         8ORaasUPU6AUGh10fpB0FTzvR6FR+MEemBt/4cD5Rck6W21/hezjPXbF3UJYR3uYb8ju
-         839zSh20SMy/vNWo2anwxkj4v/sR9iGIn2rLANRglXQw67Dpc1vYy8REUXJ8nYHFTxj1
-         k35K6qotRdWM2mhvZaLYcI2FhQ0OUm8v/B5bOJ2kers50WLj1LTLE5pJhE4BhYPTjKYZ
-         wy1yb59b8ruj7wLeAd+IC9GMZly7dADTXdHt4NeuLxgXz7vA5+zT3gPWEmLQ/+ZG4Syi
-         XT8A==
-X-Gm-Message-State: AOAM532AvpEvkyebUVop1QMBIEsn6UkAbKgTMDlWFynpIf/QrUOGN83G
-        Z1x8Bhbd2bbdHgILtIsZw61m6g==
-X-Google-Smtp-Source: ABdhPJxF0Rcjya/efDJd558P1BUzVdJ3r8QP+mXxGK4ViSdnITnaRGcwqag+tWvCjGDLX7COUChMWQ==
-X-Received: by 2002:a2e:a447:0:b0:249:5d85:aa54 with SMTP id v7-20020a2ea447000000b002495d85aa54mr18397175ljn.528.1653469407942;
-        Wed, 25 May 2022 02:03:27 -0700 (PDT)
-Received: from [192.168.1.102] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id bd24-20020a05651c169800b00253bd515f88sm2917421ljb.68.2022.05.25.02.03.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 May 2022 02:03:27 -0700 (PDT)
-Message-ID: <899412f2-5ee4-cd32-393f-688fc6351437@linaro.org>
-Date:   Wed, 25 May 2022 12:03:26 +0300
+        with ESMTP id S230199AbiEYJOX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 05:14:23 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 037F99859E;
+        Wed, 25 May 2022 02:12:29 -0700 (PDT)
+X-UUID: a29e4ac71ac44126823a06830fe579f1-20220525
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:a9618879-4759-477d-9966-dd0c615016be,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:2a19b09,CLOUDID:bf312eb8-3c45-407b-8f66-25095432a27a,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:0,BEC:nil
+X-UUID: a29e4ac71ac44126823a06830fe579f1-20220525
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
+        (envelope-from <chaotian.jing@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1540264602; Wed, 25 May 2022 17:12:23 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Wed, 25 May 2022 17:12:22 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 25 May 2022 17:12:20 +0800
+Message-ID: <64058817c5e7e3998071098524fff9482cc01ac9.camel@mediatek.com>
+Subject: Re: [RESEND v12 3/3] mmc: mediatek: add support for SDIO eint wakup
+ IRQ
+From:   Chaotian Jing <chaotian.jing@mediatek.com>
+To:     Axe Yang <axe.yang@mediatek.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>
+CC:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Satya Tangirala <satyat@google.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Lucas Stach <dev@lynxeye.de>,
+        Eric Biggers <ebiggers@google.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kiwoong Kim <kwmad.kim@samsung.com>,
+        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
+        <angelogioacchino.delregno@collabora.com>,
+        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Yong Mao <yong.mao@mediatek.com>
+Date:   Wed, 25 May 2022 17:12:20 +0800
+In-Reply-To: <20220525015140.384-4-axe.yang@mediatek.com>
+References: <20220525015140.384-1-axe.yang@mediatek.com>
+         <20220525015140.384-4-axe.yang@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v2 1/7] media: camss: ispif: Correctly reset based on the
- VFE ID
-Content-Language: en-US
-To:     kholk11@gmail.com, Robert Foss <robert.foss@linaro.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, mchehab@kernel.org,
-        robh+dt@kernel.org, marijns95@gmail.com, konradybcio@gmail.com,
-        martin.botka1@gmail.com, linux-arm-msm@vger.kernel.org,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, todor.too@gmail.com
-References: <20201022174706.8813-1-kholk11@gmail.com>
- <20201022174706.8813-2-kholk11@gmail.com>
-From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20201022174706.8813-2-kholk11@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,170 +78,221 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/22/20 20:47, kholk11@gmail.com wrote:
-> From: AngeloGioacchino Del Regno <kholk11@gmail.com>
+On Wed, 2022-05-25 at 09:51 +0800, Axe Yang wrote:
+> Add support for eint IRQ when MSDC is used as an SDIO host. This
+> feature requires SDIO device support async IRQ function. With this
+> feature, SDIO host can be awakened by SDIO card in suspend state,
+> without additional pin.
 > 
-> Resetting the ISPIF VFE0 context is wrong if we are using the VFE1
-> for dual-camera or simply because a secondary camera is connected
-> to it: in this case the reset will always happen on the VFE0 ctx
-> of the ISPIF, which is .. useless.
+> MSDC driver will time-share the SDIO DAT1 pin. During suspend, MSDC
+> turn off clock and switch SDIO DAT1 pin to GPIO mode. And during
+> resume, switch GPIO function back to DAT1 mode then turn on clock.
 > 
-> Fix this usecase by adding the ISPIF_RST_CMD_1 address and choose
-> where to do the (or what to) reset based on the VFE line id.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
-> Reviewed-by: Robert Foss <robert.foss@linaro.org>
+> Some device tree property should be added or modified in MSDC node
+> to support SDIO eint IRQ. Pinctrls "state_eint" is mandatory. Since
+> this feature depends on asynchronous interrupts, "wakeup-source",
+> "keep-power-in-suspend" and "cap-sdio-irq" flags are necessary, and
+> the interrupts list should be extended(the interrupt named with
+> sdio_wakeup):
+>         &mmcX {
+> 		...
+> 		interrupt-names = "msdc", "sdio_wakeup";
+> 		interrupts-extended = <...>,
+>                               	      <&pio xxx
+> IRQ_TYPE_LEVEL_LOW>;
+>                 ...
+>                 pinctrl-names = "default", "state_uhs", "state_eint";
+>                 ...
+>                 pinctrl-2 = <&mmc2_pins_eint>;
+>                 ...
+>                 cap-sdio-irq;
+> 		keep-power-in-suspend;
+> 		wakeup-source;
+>                 ...
+>         };
+> Reviewed-by: AngeloGioacchino Del Regno <
+> angelogioacchino.delregno@collabora.com>
+> Co-developed-by: Yong Mao <yong.mao@mediatek.com>
+> Signed-off-by: Yong Mao <yong.mao@mediatek.com>
+> Signed-off-by: Axe Yang <axe.yang@mediatek.com>
+Reviewed-by: Chaotian Jing <chaotian.jing@mediatek.com>
 > ---
->   .../media/platform/qcom/camss/camss-ispif.c   | 85 ++++++++++++-------
->   .../media/platform/qcom/camss/camss-ispif.h   |  2 +-
->   2 files changed, 56 insertions(+), 31 deletions(-)
+>  drivers/mmc/host/mtk-sd.c | 80 ++++++++++++++++++++++++++++++++++++-
+> --
+>  1 file changed, 74 insertions(+), 6 deletions(-)
 > 
-> diff --git a/drivers/media/platform/qcom/camss/camss-ispif.c b/drivers/media/platform/qcom/camss/camss-ispif.c
-> index db94cfd6c508..754f0d044c38 100644
-> --- a/drivers/media/platform/qcom/camss/camss-ispif.c
-> +++ b/drivers/media/platform/qcom/camss/camss-ispif.c
-> @@ -26,6 +26,7 @@
->   #define MSM_ISPIF_NAME "msm_ispif"
->   
->   #define ISPIF_RST_CMD_0			0x008
-> +#define ISPIF_RST_CMD_1			0x00c
->   #define ISPIF_RST_CMD_0_STROBED_RST_EN		(1 << 0)
->   #define ISPIF_RST_CMD_0_MISC_LOGIC_RST		(1 << 1)
->   #define ISPIF_RST_CMD_0_SW_REG_RST		(1 << 2)
-> @@ -179,7 +180,10 @@ static irqreturn_t ispif_isr_8x96(int irq, void *dev)
->   	writel(0x1, ispif->base + ISPIF_IRQ_GLOBAL_CLEAR_CMD);
->   
->   	if ((value0 >> 27) & 0x1)
-> -		complete(&ispif->reset_complete);
-> +		complete(&ispif->reset_complete[0]);
-> +
-> +	if ((value3 >> 27) & 0x1)
-> +		complete(&ispif->reset_complete[1]);
->   
->   	if (unlikely(value0 & ISPIF_VFE_m_IRQ_STATUS_0_PIX0_OVERFLOW))
->   		dev_err_ratelimited(to_device(ispif), "VFE0 pix0 overflow\n");
-> @@ -237,7 +241,7 @@ static irqreturn_t ispif_isr_8x16(int irq, void *dev)
->   	writel(0x1, ispif->base + ISPIF_IRQ_GLOBAL_CLEAR_CMD);
->   
->   	if ((value0 >> 27) & 0x1)
-> -		complete(&ispif->reset_complete);
-> +		complete(&ispif->reset_complete[0]);
->   
->   	if (unlikely(value0 & ISPIF_VFE_m_IRQ_STATUS_0_PIX0_OVERFLOW))
->   		dev_err_ratelimited(to_device(ispif), "VFE0 pix0 overflow\n");
-> @@ -257,33 +261,18 @@ static irqreturn_t ispif_isr_8x16(int irq, void *dev)
->   	return IRQ_HANDLED;
->   }
->   
-> -/*
-> - * ispif_reset - Trigger reset on ISPIF module and wait to complete
-> - * @ispif: ISPIF device
-> - *
-> - * Return 0 on success or a negative error code otherwise
-> - */
-> -static int ispif_reset(struct ispif_device *ispif)
-> +static int ispif_vfe_reset(struct ispif_device *ispif, u8 vfe_id)
->   {
->   	unsigned long time;
->   	u32 val;
-> -	int ret;
-> -
-> -	ret = camss_pm_domain_on(to_camss(ispif), PM_DOMAIN_VFE0);
-> -	if (ret < 0)
-> -		return ret;
->   
-> -	ret = camss_pm_domain_on(to_camss(ispif), PM_DOMAIN_VFE1);
-> -	if (ret < 0)
-> -		return ret;
-> -
-> -	ret = camss_enable_clocks(ispif->nclocks_for_reset,
-> -				  ispif->clock_for_reset,
-> -				  to_device(ispif));
-> -	if (ret < 0)
-> -		return ret;
-> +	if (vfe_id > (to_camss(ispif)->vfe_num - 1)) {
-> +		dev_err(to_device(ispif),
-> +			"Error: asked reset for invalid VFE%d\n", vfe_id);
-> +		return -ENOENT;
-> +	}
-
-I was stumbled upon this "vfe_num" usage, which seems unnecessary...
-
->   
-> -	reinit_completion(&ispif->reset_complete);
-> +	reinit_completion(&ispif->reset_complete[vfe_id]);
->   
->   	val = ISPIF_RST_CMD_0_STROBED_RST_EN |
->   		ISPIF_RST_CMD_0_MISC_LOGIC_RST |
-> @@ -303,15 +292,50 @@ static int ispif_reset(struct ispif_device *ispif)
->   		ISPIF_RST_CMD_0_RDI_OUTPUT_1_MISR_RST |
->   		ISPIF_RST_CMD_0_RDI_OUTPUT_2_MISR_RST;
->   
-> -	writel_relaxed(val, ispif->base + ISPIF_RST_CMD_0);
-> +	if (vfe_id == 1)
-> +		writel_relaxed(val, ispif->base + ISPIF_RST_CMD_1);
-> +	else
-> +		writel_relaxed(val, ispif->base + ISPIF_RST_CMD_0);
->   
-> -	time = wait_for_completion_timeout(&ispif->reset_complete,
-> +	time = wait_for_completion_timeout(&ispif->reset_complete[vfe_id],
->   		msecs_to_jiffies(ISPIF_RESET_TIMEOUT_MS));
->   	if (!time) {
-> -		dev_err(to_device(ispif), "ISPIF reset timeout\n");
-> -		ret = -EIO;
-> +		dev_err(to_device(ispif),
-> +			"ISPIF for VFE%d reset timeout\n", vfe_id);
-> +		return -EIO;
->   	}
->   
-> +	return 0;
-> +}
-> +
-> +/*
-> + * ispif_reset - Trigger reset on ISPIF module and wait to complete
-> + * @ispif: ISPIF device
-> + *
-> + * Return 0 on success or a negative error code otherwise
-> + */
-> +static int ispif_reset(struct ispif_device *ispif, u8 vfe_id)
-> +{
+> diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
+> index 195dc897188b..2d5b23616df6 100644
+> --- a/drivers/mmc/host/mtk-sd.c
+> +++ b/drivers/mmc/host/mtk-sd.c
+> @@ -1,6 +1,6 @@
+>  // SPDX-License-Identifier: GPL-2.0-only
+>  /*
+> - * Copyright (c) 2014-2015 MediaTek Inc.
+> + * Copyright (c) 2014-2015, 2022 MediaTek Inc.
+>   * Author: Chaotian.Jing <chaotian.jing@mediatek.com>
+>   */
+>  
+> @@ -20,6 +20,7 @@
+>  #include <linux/platform_device.h>
+>  #include <linux/pm.h>
+>  #include <linux/pm_runtime.h>
+> +#include <linux/pm_wakeirq.h>
+>  #include <linux/regulator/consumer.h>
+>  #include <linux/slab.h>
+>  #include <linux/spinlock.h>
+> @@ -440,8 +441,10 @@ struct msdc_host {
+>  	struct pinctrl *pinctrl;
+>  	struct pinctrl_state *pins_default;
+>  	struct pinctrl_state *pins_uhs;
+> +	struct pinctrl_state *pins_eint;
+>  	struct delayed_work req_timeout;
+>  	int irq;		/* host interrupt */
+> +	int eint_irq;		/* interrupt from sdio device for
+> waking up system */
+>  	struct reset_control *reset;
+>  
+>  	struct clk *src_clk;	/* msdc source clock */
+> @@ -1520,17 +1523,41 @@ static void __msdc_enable_sdio_irq(struct
+> msdc_host *host, int enb)
+>  
+>  static void msdc_enable_sdio_irq(struct mmc_host *mmc, int enb)
+>  {
+> -	unsigned long flags;
+>  	struct msdc_host *host = mmc_priv(mmc);
+> +	unsigned long flags;
 > +	int ret;
+>  
+>  	spin_lock_irqsave(&host->lock, flags);
+>  	__msdc_enable_sdio_irq(host, enb);
+>  	spin_unlock_irqrestore(&host->lock, flags);
+>  
+> -	if (enb)
+> -		pm_runtime_get_noresume(host->dev);
+> -	else
+> -		pm_runtime_put_noidle(host->dev);
+> +	if (mmc_card_enable_async_irq(mmc->card) && host->pins_eint) {
+> +		if (enb) {
+> +			pinctrl_select_state(host->pinctrl, host-
+> >pins_eint);
+> +			ret =
+> dev_pm_set_dedicated_wake_irq_reverse(host->dev, host->eint_irq);
 > +
-> +	ret = camss_pm_domain_on(to_camss(ispif), PM_DOMAIN_VFE0);
-> +	if (ret < 0)
-> +		return ret;
+> +			if (ret) {
+> +				dev_err(host->dev, "Failed to register
+> SDIO wakeup irq!\n");
+> +				host->pins_eint = NULL;
+> +				pm_runtime_get_noresume(host->dev);
+> +			} else {
+> +				dev_info(host->dev, "SDIO eint irq:
+> %d!\n", host->eint_irq);
+> +				device_init_wakeup(host->dev, true);
+> +			}
 > +
-> +	ret = camss_pm_domain_on(to_camss(ispif), PM_DOMAIN_VFE1);
-> +	if (ret < 0)
-> +		return ret;
+> +			pinctrl_select_state(host->pinctrl, host-
+> >pins_uhs);
+> +		} else {
+> +			dev_pm_clear_wake_irq(host->dev);
+> +		}
+> +	} else {
+> +		if (enb) {
+> +			/* Ensure host->pins_eint is NULL */
+> +			host->pins_eint = NULL;
+> +			pm_runtime_get_noresume(host->dev);
+> +		} else {
+> +			pm_runtime_put_noidle(host->dev);
+> +		}
+> +	}
+>  }
+>  
+>  static irqreturn_t msdc_cmdq_irq(struct msdc_host *host, u32 intsts)
+> @@ -2631,6 +2658,19 @@ static int msdc_drv_probe(struct
+> platform_device *pdev)
+>  		goto host_free;
+>  	}
+>  
+> +	/* Support for SDIO eint irq ? */
+> +	if ((mmc->pm_caps & MMC_PM_WAKE_SDIO_IRQ) && (mmc->pm_caps &
+> MMC_PM_KEEP_POWER)) {
+> +		host->eint_irq = platform_get_irq_byname(pdev,
+> "sdio_wakeup");
+> +		if (host->eint_irq > 0) {
+> +			host->pins_eint = pinctrl_lookup_state(host-
+> >pinctrl, "state_eint");
+> +			if (IS_ERR(host->pins_eint)) {
+> +				dev_err_probe(&pdev->dev, PTR_ERR(host-
+> >pins_eint),
+> +					      "Cannot find pinctrl
+> eint!\n");
+> +				host->pins_eint = NULL;
+> +			}
+> +		}
+> +	}
 > +
-> +	ret = camss_enable_clocks(ispif->nclocks_for_reset,
-> +				  ispif->clock_for_reset,
-> +				  to_device(ispif));
-> +	if (ret < 0)
-> +		return ret;
+>  	msdc_of_property_parse(pdev, host);
+>  
+>  	host->dev = &pdev->dev;
+> @@ -2845,6 +2885,12 @@ static int __maybe_unused
+> msdc_runtime_suspend(struct device *dev)
+>  	struct msdc_host *host = mmc_priv(mmc);
+>  
+>  	msdc_save_reg(host);
 > +
-> +	ret = ispif_vfe_reset(ispif, vfe_id);
-> +	if (ret)
-> +		dev_dbg(to_device(ispif), "ISPIF Reset failed\n");
+> +	if (sdio_irq_claimed(mmc) && host->pins_eint) {
+> +		disable_irq(host->irq);
+> +		pinctrl_select_state(host->pinctrl, host->pins_eint);
+> +		sdr_clr_bits(host->base + SDC_CFG, SDC_CFG_SDIOIDE);
+> +	}
+>  	msdc_gate_clock(host);
+>  	return 0;
+>  }
+> @@ -2860,12 +2906,19 @@ static int __maybe_unused
+> msdc_runtime_resume(struct device *dev)
+>  		return ret;
+>  
+>  	msdc_restore_reg(host);
 > +
->   	camss_disable_clocks(ispif->nclocks_for_reset, ispif->clock_for_reset);
->   
->   	camss_pm_domain_off(to_camss(ispif), PM_DOMAIN_VFE0);
-> @@ -355,7 +379,7 @@ static int ispif_set_power(struct v4l2_subdev *sd, int on)
->   			goto exit;
->   		}
->   
-> -		ret = ispif_reset(ispif);
-> +		ret = ispif_reset(ispif, line->vfe_id);
+> +	if (sdio_irq_claimed(mmc) && host->pins_eint) {
+> +		sdr_set_bits(host->base + SDC_CFG, SDC_CFG_SDIOIDE);
+> +		pinctrl_select_state(host->pinctrl, host->pins_uhs);
+> +		enable_irq(host->irq);
+> +	}
+>  	return 0;
+>  }
+>  
+>  static int __maybe_unused msdc_suspend(struct device *dev)
+>  {
+>  	struct mmc_host *mmc = dev_get_drvdata(dev);
+> +	struct msdc_host *host = mmc_priv(mmc);
+>  	int ret;
+>  
+>  	if (mmc->caps2 & MMC_CAP2_CQE) {
+> @@ -2874,11 +2927,26 @@ static int __maybe_unused msdc_suspend(struct
+> device *dev)
+>  			return ret;
+>  	}
+>  
+> +	if (sdio_irq_claimed(mmc) && host->pins_eint) {
+> +		pm_runtime_put_sync_suspend(dev);
+> +
+> +		return 0;
+> +	}
+> +
+>  	return pm_runtime_force_suspend(dev);
+>  }
+>  
+>  static int __maybe_unused msdc_resume(struct device *dev)
+>  {
+> +	struct mmc_host *mmc = dev_get_drvdata(dev);
+> +	struct msdc_host *host = mmc_priv(mmc);
+> +
+> +	if (sdio_irq_claimed(mmc) && host->pins_eint) {
+> +		pm_runtime_get_sync(dev);
+> +
+> +		return 0;
+> +	}
+> +
+>  	return pm_runtime_force_resume(dev);
+>  }
+>  
 
-But in fact here is an error.
-
-line->vfe_id is never set.
-
-I'm unable to test any fix, since I don't have a correspondent hardware,
-but I can write a fix for someone's testing.
-
---
-Best wishes,
-Vladimir
