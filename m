@@ -2,159 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85A0C534301
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 20:33:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9634F534332
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 20:40:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238093AbiEYSdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 14:33:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47044 "EHLO
+        id S234907AbiEYSk4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 14:40:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236476AbiEYSdG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 14:33:06 -0400
-Received: from mail.sberdevices.ru (mail.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3332B0D36;
-        Wed, 25 May 2022 11:33:03 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mail.sberdevices.ru (Postfix) with ESMTP id C98E15FD08;
-        Wed, 25 May 2022 21:33:01 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1653503581;
-        bh=tvWh1ibvCJsyGIVQLT1gENhgJ+AQlRqgCyy8xsbnb1A=;
-        h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version;
-        b=SOhR+T1n5P/4AtlMfTu4x8p53WqEqh0DVuYZm9g4Or4kj/XLp/s9t5kf26XvGsdt6
-         vd4/Z08nMNdUcmZF/2/SsgE4csUNpSWq4GCVZHH0gVSna+fmfdibBb29y4FTexVwJB
-         1y2SP17MYLee2aTNYtXX3SmHjnLLALCBv9EiDl/Wk9dkK85EUSlkD0ev+VH91NF2Oq
-         +qAK5FC3RJOQWgpt8SOLXINPiHC6aFwtPQ3ekf3J1SODB+dozKfRqDTHWKLC7mCmqO
-         BRlpUfaFX2Wn9ZE59Yh0i+xObyjSw8uB0Mc7gYp2oopgGFkZV+aMhr41EsBJcRVlqS
-         eSGqBEg1cHLWQ==
-Received: from S-MS-EXCH02.sberdevices.ru (S-MS-EXCH02.sberdevices.ru [172.16.1.5])
-        by mail.sberdevices.ru (Postfix) with ESMTP;
-        Wed, 25 May 2022 21:33:01 +0300 (MSK)
-From:   Dmitry Rokosov <DDRokosov@sberdevices.ru>
-To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "jic23@kernel.org" <jic23@kernel.org>
-CC:     "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel <kernel@sberdevices.ru>,
-        "stano.jakubek@gmail.com" <stano.jakubek@gmail.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
-        "stephan@gerhold.net" <stephan@gerhold.net>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/3] dt-bindings: iio: accel: add dt-binding schema for
- msa311 accel driver
-Thread-Topic: [PATCH v2 3/3] dt-bindings: iio: accel: add dt-binding schema
- for msa311 accel driver
-Thread-Index: AQHYcGNsHieJqKs6FU67Uad334M2Aq0vuKGA
-Date:   Wed, 25 May 2022 18:32:45 +0000
-Message-ID: <20220525183255.lc7hmmcfj47yrxc3@CAB-WSD-L081021.sigma.sbrf.ru>
-References: <20220525181532.6805-1-ddrokosov@sberdevices.ru>
- <20220525181532.6805-4-ddrokosov@sberdevices.ru>
-In-Reply-To: <20220525181532.6805-4-ddrokosov@sberdevices.ru>
-Accept-Language: ru-RU, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.1.12]
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <7F17E0A41BA3844FBDBE49EB9ACAC5FF@sberdevices.ru>
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S239514AbiEYSkz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 14:40:55 -0400
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8671B36DF
+        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 11:40:54 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id m14-20020a17090a414e00b001df77d29587so2401939pjg.2
+        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 11:40:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=kcKV1w2nPlwaIbCWnEveE9hseS5PyiFCk/LlY1siP3E=;
+        b=gF4mzOT2oM4CfPgmn1UlSGGEbwf+gvzsFyifnYVIbjNO0iu8sUlx7k25anA+q/KaOi
+         373snxdX0rBgwl3v9kDUgarArIHyNVdS6o43qZlRlc4EcZFit/EVrtVCsh1VFdW6f3hV
+         35T/ena+zbKsnIdkZeM9Mbe6e3JwSsSvQtZO0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=kcKV1w2nPlwaIbCWnEveE9hseS5PyiFCk/LlY1siP3E=;
+        b=KK5BJVwOD/szuKSEQ7/JWyhcAh68HtNnsY2TQHjjiQp0a7kqLXXd+lfxxXpaXXZyyN
+         VGCDTbO9F/xVJeCcS6r2SkJIY25G9tHfzNVsFv/1w2xpnfKECe0wCwp4hqPFievoGpRH
+         kqnIwOsGItMbF3lMkMgpiEB5eIlFIXvFdqJ9ORgabr4/jghqBWJvjzz+hfJO/tHgNN5b
+         V1t0h46Q49NmPMfHdcTxGK9IDVmq72jJBqlwkfYiOPH9KUX7OvJIshaSJ8KrkU2NelJE
+         ph3VO1LAHeLZ4bnVjvehgNFoKDjrNs5+0NbbbE7U7NPt2hQsGd9yZIGxOfbEcqq5jxhK
+         uoeA==
+X-Gm-Message-State: AOAM533Sgs7WXCwuKY/qWtlkSygkpvUzRrsNpzd2gfGq1VolYmtlunOo
+        LG7WJ+NcZfnTwSdIJxt5dTgXGmOVoQ0Tsg==
+X-Google-Smtp-Source: ABdhPJytsR6CP9N4WKNHzCbzIrM1a3ij8m7Yn9JRjYK1/hXrfhC81XsY53KcEwNKFeCSuEw5eHFn4g==
+X-Received: by 2002:a17:903:2445:b0:161:d47e:88cf with SMTP id l5-20020a170903244500b00161d47e88cfmr33393332pls.67.1653504054374;
+        Wed, 25 May 2022 11:40:54 -0700 (PDT)
+Received: from chromium.org (157.214.185.35.bc.googleusercontent.com. [35.185.214.157])
+        by smtp.gmail.com with ESMTPSA id d1-20020a17090a8d8100b001df93c8e737sm2133845pjo.39.2022.05.25.11.40.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 May 2022 11:40:53 -0700 (PDT)
+Date:   Wed, 25 May 2022 18:40:52 +0000
+From:   Prashant Malani <pmalani@chromium.org>
+To:     Tzung-Bi Shih <tzungbi@kernel.org>
+Cc:     bleung@chromium.org, groeck@chromium.org, robh+dt@kernel.org,
+        chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org,
+        mka@chromium.org, devicetree@vger.kernel.org,
+        Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v4 4/5] platform/chrome: cros_kbd_led_backlight: support
+ OF match
+Message-ID: <Yo54NGcb45oNBfUY@chromium.org>
+References: <20220523090822.3035189-1-tzungbi@kernel.org>
+ <20220523090822.3035189-5-tzungbi@kernel.org>
 MIME-Version: 1.0
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2022/05/25 08:39:00 #19569940
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220523090822.3035189-5-tzungbi@kernel.org>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Jonathan and Rob,
+Hi Tzung-Bi,
 
-I didn't change two places which you mentioned in the v1 review, please
-find my comments below.
+On May 23 17:08, Tzung-Bi Shih wrote:
+> For letting device tree based machines to use the driver, support OF match.
+> 
+> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+> Signed-off-by: Tzung-Bi Shih <tzungbi@kernel.org>
+> ---
+> No changes from v3.
+> 
+> Changes from v2:
+> - Add commit message.
+> - Add R-b tag.
+> 
+> Changes from v1:
+> (https://patchwork.kernel.org/project/chrome-platform/patch/20220214053646.3088298-5-tzungbi@google.com/)
+> - Update email address accordingly.
+> - Use device_get_match_data() per review comment in v1.
+> 
+>  drivers/platform/chrome/cros_kbd_led_backlight.c | 15 ++++++++++++++-
+>  1 file changed, 14 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/platform/chrome/cros_kbd_led_backlight.c b/drivers/platform/chrome/cros_kbd_led_backlight.c
+> index a86d664854ae..4bca880d7721 100644
+> --- a/drivers/platform/chrome/cros_kbd_led_backlight.c
+> +++ b/drivers/platform/chrome/cros_kbd_led_backlight.c
+> @@ -10,7 +10,9 @@
+>  #include <linux/kernel.h>
+>  #include <linux/leds.h>
+>  #include <linux/module.h>
+> +#include <linux/of.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/property.h>
 
-On Wed, May 25, 2022 at 06:15:33PM +0000, Dmitry Rokosov wrote:
+linux/of.h includes linux/property.h [1]
 
-> +  interrupt-names:
-> +    const: irq
-I stay interrupt-names node here, because otherwise dt_binding_check
-command shows such a warning:
+[1] https://elixir.bootlin.com/linux/v5.18/source/include/linux/of.h#L22
 
-=3D=3D=3D=3D
-  CHECK   Documentation/devicetree/bindings/iio/accel/memsensing,msa311.exa=
-mple.dt.yaml
-Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.ya=
-ml: accelerometer@62: 'interrupt-names' does not match any of the regexes: =
-'pinctrl-[0-9]+'
-=3D=3D=3D=3D
-
-I can't delete this node from the example as well, because it's required fo=
-r
-msa311 dts i2c irq declaration.
-
-Please help me to resolve this problem properly if possible. If we can
-ignore such warning I'll delete interrupt-names in the next patchset's
-version.
-
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
+>  #include <linux/slab.h>
+>  
+>  /**
+> @@ -116,7 +118,7 @@ static int keyboard_led_probe(struct platform_device *pdev)
+>  	const struct keyboard_led_drvdata *drvdata;
+>  	int error;
+>  
+> -	drvdata = acpi_device_get_match_data(&pdev->dev);
+> +	drvdata = device_get_match_data(&pdev->dev);
+>  	if (!drvdata)
+>  		return -EINVAL;
+>  
+> @@ -152,10 +154,21 @@ static const struct acpi_device_id keyboard_led_acpi_match[] = {
+>  MODULE_DEVICE_TABLE(acpi, keyboard_led_acpi_match);
+>  #endif
+>  
+> +#ifdef CONFIG_OF
+> +static const struct of_device_id keyboard_led_of_match[] = {
+> +	{
+> +		.compatible = "google,cros-kbd-led-backlight",
+> +	},
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, keyboard_led_of_match);
+> +#endif
 > +
-Properties #address-cells and #size-cells are still located in the
-schema example, because otherwise dt_binding_check raises the below=20
-warnings if we delete these properties:
-
-=3D=3D=3D=3D=3D
-  DTC     Documentation/devicetree/bindings/iio/accel/memsensing,msa311.exa=
-mple.dt.yaml
-Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dts:2=
-7.17-30: Warning (reg_format): /example-0/i2c/accelerometer@62:reg: propert=
-y has invalid length (4 bytes) (#address-cells =3D=3D 2, #size-cells =3D=3D=
- 1)
-Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.ya=
-ml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.ya=
-ml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.ya=
-ml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dts:2=
-4.13-32.11: Warning (i2c_bus_bridge): /example-0/i2c: incorrect #address-ce=
-lls for I2C bus
-Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dts:2=
-4.13-32.11: Warning (i2c_bus_bridge): /example-0/i2c: incorrect #size-cells=
- for I2C bus
-Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.ya=
-ml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.ya=
-ml: Warning (i2c_bus_reg): Failed prerequisite 'i2c_bus_bridge'
-Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.ya=
-ml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dts:2=
-5.30-31.15: Warning (avoid_default_addr_size): /example-0/i2c/accelerometer=
-@62: Relying on default #address-cells value
-Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dts:2=
-5.30-31.15: Warning (avoid_default_addr_size): /example-0/i2c/accelerometer=
-@62: Relying on default #size-cells value
-Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.ya=
-ml: Warning (unique_unit_address_if_enabled): Failed prerequisite 'avoid_de=
-fault_addr_size'
-=3D=3D=3D=3D=3D
-
-What is best way to resolve such issues without providing #address-cells
-and #size-cells values?
-
---=20
-Thank you,
-Dmitry=
+>  static struct platform_driver keyboard_led_driver = {
+>  	.driver		= {
+>  		.name	= "chromeos-keyboard-leds",
+>  		.acpi_match_table = ACPI_PTR(keyboard_led_acpi_match),
+> +		.of_match_table = of_match_ptr(keyboard_led_of_match),
+>  	},
+>  	.probe		= keyboard_led_probe,
+>  };
+> -- 
+> 2.36.1.124.g0e6072fb45-goog
+> 
+> 
