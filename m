@@ -2,209 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 624C6533420
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 01:57:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E05B8533450
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 02:33:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242831AbiEXX53 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 19:57:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48934 "EHLO
+        id S234347AbiEYAdC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 20:33:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242830AbiEXX52 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 19:57:28 -0400
-Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [5.144.164.167])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02713694A5
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 16:57:26 -0700 (PDT)
-Received: from [10.1.250.9] (riviera.nat.ds.pw.edu.pl [194.29.137.1])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id E35CD3F6E1;
-        Wed, 25 May 2022 02:19:39 +0200 (CEST)
-Message-ID: <372d32c3-748f-783b-cafb-a10655ba3f99@somainline.org>
-Date:   Wed, 25 May 2022 01:57:23 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.9.1
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Add touchscreen to villager
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-References: <20220524134840.1.I80072b8815ac08c12af8f379a33cc2d83693dc51@changeid>
- <311a23c9-e31d-e20d-8ba9-80d3197e8d1d@somainline.org>
- <CAD=FV=WKgPWxEL+mhb9cCGOLObJEPtX_sHLQ1z3rz3usDG1m+Q@mail.gmail.com>
- <1d602bb6-d3a4-2ec0-e3e7-d9395edec416@somainline.org>
- <CAD=FV=U2C1W+JHWyGRfyRB=WiPKLYvtjO90UDoJ9p+Xwe09+ow@mail.gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <CAD=FV=U2C1W+JHWyGRfyRB=WiPKLYvtjO90UDoJ9p+Xwe09+ow@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        with ESMTP id S229754AbiEYAdB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 20:33:01 -0400
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C70145A140
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 17:32:59 -0700 (PDT)
+Received: by mail-pf1-x42d.google.com with SMTP id y1so1820933pfr.6
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 17:32:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=gefrV+1JOjH9BTbXBpKIReJi2UHx+cVQU2o1qxq6368=;
+        b=TbueeH0pPgoHJg6uS+OXlrdO/XhsQBW5egyloGOZIuq12FpF+4iX5CN1WzVby7X4ls
+         xMK/Jqie7hPUgzCads3QllmTR571aNy/Mqb7EXY03UlYQlLZle4ubfUpgmS6xkkezWRp
+         7b0qaREIc6fI1Ck1kygfVVf76cOWS7ofF+5FE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=gefrV+1JOjH9BTbXBpKIReJi2UHx+cVQU2o1qxq6368=;
+        b=7SsEU4a75Uje1fw318illcwdSK6axYZEfJEdryWjolubO2M+ZWOZC4OrGxoOX2gFUq
+         bTUV7rcS16PXT8RSKfWcb3gx3asCoB7u86K1fm39lOhOaJqBfhoCGwZ261sRHXUrwpnJ
+         mFyY2+Xip1znLT5eTaMS0A17wVy6K1wIu7GjFGP9rpZ7KkdSzgkAoqWk99F7ijvXOEkr
+         zr5+GbDXySlEK67uqNAmy06rh7Zm5+uflbov4CgdHBM+Fr0cFAN07Xn4TT/a1s0qPFPs
+         PHlFPQ7O+8PmLlyZ6kfnUvvnEDANNgg+2Www/BQSOwFMDBXghYvT1cDMCkyrHKwWeMq9
+         h65w==
+X-Gm-Message-State: AOAM533TJHL4b+ougattMy0OO/mdlAeRN2ePis7gmARwurxUYwBgtuAs
+        nNuD26QJKrEK0GyTo09i/jAyMQ==
+X-Google-Smtp-Source: ABdhPJwNyWxB+5j/vP3v+eOJqPI1wGyV94GoUTqwtI+st5gsykEhZnzoZ3u5YhxzlZq8qOPi1MRX8g==
+X-Received: by 2002:a63:581:0:b0:3f2:6b21:4733 with SMTP id 123-20020a630581000000b003f26b214733mr26410164pgf.90.1653438779247;
+        Tue, 24 May 2022 17:32:59 -0700 (PDT)
+Received: from T3500-3.dhcp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id t71-20020a63784a000000b003db610ebdd0sm7087438pgc.65.2022.05.24.17.32.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 May 2022 17:32:56 -0700 (PDT)
+From:   William Zhang <william.zhang@broadcom.com>
+To:     Linux ARM List <linux-arm-kernel@lists.infradead.org>
+Cc:     samyon.furman@broadcom.com, philippe.reynes@softathome.com,
+        kursad.oney@broadcom.com, florian.fainelli@broadcom.com,
+        joel.peshkin@broadcom.com, anand.gore@broadcom.com,
+        dan.beygelman@broadcom.com, tomer.yacoby@broadcom.com,
+        William Zhang <william.zhang@broadcom.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, soc@kernel.org
+Subject: [PATCH 0/3] arm: bcmbca: add bcm6846 SoC support
+Date:   Tue, 24 May 2022 17:32:33 -0700
+Message-Id: <20220525003236.2699-1-william.zhang@broadcom.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="0000000000001d50c905dfcb3711"
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        MIME_HEADER_CTYPE_ONLY,MIME_NO_TEXT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,T_TVD_MIME_NO_HEADERS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+--0000000000001d50c905dfcb3711
 
-On 25/05/2022 00:55, Doug Anderson wrote:
-> Hi,
->
-> On Tue, May 24, 2022 at 3:41 PM Konrad Dybcio
-> <konrad.dybcio@somainline.org> wrote:
->>
->> On 25/05/2022 00:14, Doug Anderson wrote:
->>> Hi,
->>>
->>> On Tue, May 24, 2022 at 2:13 PM Konrad Dybcio
->>> <konrad.dybcio@somainline.org> wrote:
->>>> On 24/05/2022 22:48, Douglas Anderson wrote:
->>>>> This adds the touchscreen to the sc7280-herobrine-villager device
->>>>> tree. Note that the touchscreen on villager actually uses the reset
->>>>> line and thus we use the more specific "elan,ekth6915" compatible
->>>>> which allows us to specify the reset.
->>>>>
->>>>> The fact that villager's touchscreen uses the reset line can be
->>>>> contrasted against the touchscreen for CRD/herobrine-r1. On those
->>>>> boards, even though the touchscreen goes to the display, it's not
->>>>> hooked up to anything there.
->>>>>
->>>>> In order to keep the line parked on herobrine/CRD, we'll move the
->>>>> pullup from the qcard.dtsi file to the specific boards. This allows us
->>>>> to disable the pullup in the villager device tree since the pin is an
->>>>> output.
->>>>>
->>>>> Signed-off-by: Douglas Anderson <dianders@chromium.org>
->>>>> ---
->>>>> This uses bindings introduced in the patch ("dt-bindings: HID:
->>>>> i2c-hid: elan: Introduce bindings for Elan eKTH6915") [1].
->>>>>
->>>>> [1] https://lore.kernel.org/r/20220523142257.v2.1.Iedc61f9ef220a89af6a031200a7850a27a440134@changeid
->>>>>
->>>>>     .../boot/dts/qcom/sc7280-herobrine-crd.dts    | 11 ++++++++
->>>>>     .../qcom/sc7280-herobrine-herobrine-r1.dts    | 11 ++++++++
->>>>>     .../dts/qcom/sc7280-herobrine-villager-r0.dts | 25 +++++++++++++++++++
->>>>>     arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi    |  1 -
->>>>>     4 files changed, 47 insertions(+), 1 deletion(-)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
->>>>> index a4ac33c4fd59..b79d84d7870a 100644
->>>>> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
->>>>> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
->>>>> @@ -134,6 +134,17 @@ &sdhc_2 {
->>>>>         status = "okay";
->>>>>     };
->>>>>
->>>>> +/* PINCTRL - ADDITIONS TO NODES IN PARENT DEVICE TREE FILES */
->>>> Please drop this line, this isn't msm-3.4. It's immediately obvious that
->>>> if a pin is referenced by a label and it is not defined in this file
->>>> (because otherwise it wouldn't be both defined and referenced here..),
->>>> it comes from a previously included device tree.
->>> In general these headings specify a change in sort ordering. Without
->>> them then either we intersperse pinctrl overrides with other stuff,
->>> which IMO is overall worse or people have no idea why the sort
->>> ordering changes.
->> I get what you mean, but at the end of the day, the entire machine DT
->> specifies all machine-specific changes and only machine-specific
->> changes. They all are a part of a bigger picture, sometimes being
->> downstream from the SoC, sometimes downstream from a common board. I
->> don't think it brings much benefit if at all to separate them into
->> sections like these, if in the end they all correspond to modifications
->> present in the hardware. In its current form, the sorting is all over
->> the place, and ideally we could have labels sorted alphabetically.
-> I think overall DT just made it hard. In my mind the root of the
-> problem is actually that we're trying to avoid replicating hierarchy
-> from the dtsi files that we include. In other words, we try very hard
-> to do:
->
-> &qup_i2c2_data_clk {
->    bias-disable;
-> };
->
-> Instead of replicating the hierarchy in the board dts files, like this:
->
-> / {
->    soc@0 {
->      pinctrl@f100000 {
->        qup-i2c2-data-clk {
->          bias-disable;;
->        };
->      };
->    };
-> };
->
-> (and, of course, you could replicate parts of the hierarchy too).
-
-It was attempted back in 8974 times, but things fell apart pretty 
-quickly, as typos went unnoticed en masse and it resulted in various 
-regressions from creating dead, useless code to things not working for 
-supposedly no reason. Labels make it harder to mess things up like this, 
-as referencing a non-existent one will simply break compilation. Sadly, 
-they still don't fix typos in properties/compatibles, but we have 
-dt-schema for that.
+This change adds the basic support for Broadcom's ARMv7 based
+Broadband SoC BCM6846. The initial support includes a bare-bone dts
+for dual core ARM A7 with a Broadcom uart.
 
 
->
-> When you avoid replicating things then it really causes everything to
-> become scattered / disorganized and I think there's a benefit to
-> trying to enforce some type of ordering.
+William Zhang (3):
+  dt-bindings: arm: add BCM6846 SoC to device tree binding document
+  ARM: dts: add dts files for bcmbca SoC bcm6846
+  MAINTAINERS: add bcm6846 to bcmbca arch entry
 
-Going back to the 8974 example, we've come a really really really long 
-way (you can compare with [1] for example), but yes, we can probably 
-still do a bit better.
+ .../bindings/arm/bcm/brcm,bcmbca.yaml         |   6 +
+ MAINTAINERS                                   |   3 +-
+ arch/arm/boot/dts/Makefile                    |   3 +-
+ arch/arm/boot/dts/bcm6846.dtsi                | 103 ++++++++++++++++++
+ arch/arm/boot/dts/bcm96846.dts                |  30 +++++
+ 5 files changed, 142 insertions(+), 3 deletions(-)
+ create mode 100644 arch/arm/boot/dts/bcm6846.dtsi
+ create mode 100644 arch/arm/boot/dts/bcm96846.dts
 
-
-
->
->> The present solution, in my opinion, causes more disarray as you first
->> have to think about what is the change against and then find it in the
->> corresponding subsection instead of thinking of it as a complete
->> quote-on-quote diff against the parent DTSIs.
-> It's a fair opinion. I'd be interested to know if others feel the same
-> way. In general it feels like a style decision for the people working
-> on these boards, subject to the approval of the Qualcomm tree
-> maintainer(s).
-
-Sure, my opinion is not end-all-be-all.
+-- 
+2.17.1
 
 
->
->
->> Plus, most DTs don't split
->> it like that.
-> I will say that it's hard to compare the trogdor (and now herobrine)
-> situation with most other ARM boards out there. There are _a lot_ of
-> different variants and revisions and it's, IMO, more art than science
-> in trying to balance all of the tradeoffs between duplicating code and
-> ending up with unreadable spaghetti. I won't claim that we made the
-> right tradeoff in every case, but so far experience on trogdor has
-> been that things ended up being fairly understandable I think?
+--0000000000001d50c905dfcb3711
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
-I think the biggest problem for these devices is that often a single 
-revision/model has something very different to others, which makes 
-supporting it require more mess on both sides.. I think it is managed 
-quite sanely, but I also think that /delete-node/ could be used more 
-often instead of copying the same code in n places. While not at the 
-same scale, we have to deal with this mess on Xperias where they are all 
-based on per-SoC common boards and it makes little sense to keep them 
-separate, but unifying them requires some clever positioning to 
-commonize as much as possible.
-
-
-Konrad
-
-
-[1] 
-https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/arch/arm/boot/dts/qcom-msm8974.dtsi?h=v5.10.117
-
->
-> -Doug
+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
+TltlrAeBKRJ1M9O/DY5v7L1Yrs//7XIRg/d2ZPAOSGBQzFYjYTFWwNBiR1s1zP0m2y56DPbS5gwj
+fqAN/I4PJHIvTh3zUgHXNKadYoYRiPHXfaTWO9UhzysOpQIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
+BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
+YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
+BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
+MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
+YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
+Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
+HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
+BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUohM5GmNlGWe5wpzDxzIy
++EgzbRswDQYJKoZIhvcNAQELBQADggEBACKu9JSQAYTlmC+JTniO/C/UcXGonATI/muBjWTxtkHc
+abZtz0uwzzrRrpV+mbHLGVFFeRbXSLvcEzqHp8VomXifEZlfsE9LajSehzaqhd+np+tmUPz1RlI/
+ibZ7vW+1VF18lfoL+wHs2H0fsG6JfoqZldEWYXASXnUrs0iTLgXxvwaQj69cSMuzfFm1X5kWqWCP
+W0KkR8025J0L5L4yXfkSO6psD/k4VcTsMJHLN4RfMuaXIT6EM0cNO6h3GypyTuPf1N1X+F6WQPKb
+1u+rvdML63P9fX7e7mwwGt5klRnf8aK2VU7mIdYCcrFHaKDTW3fkG6kIgrE1wWSgiZYL400xggJt
+MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
+VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw28eX6TfvsbNfu
+SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIImxtQLu9pKc9/5ok6p7dS0BkKkt
+0tGxB4qN/JwKMVOhMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
+MDUyNTAwMzI1OVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
+AwQCATANBgkqhkiG9w0BAQEFAASCAQAXxv1nr1F7EbDLnZG9Z710U/4bMdHhWg8euM8sVs12XZOK
+YdQVCVtFFB0imVa+0IIO2rp2vquxwryB+WKCXYb5u+OKUcLTn8mbcOfYrNG6x/Tv+0U4ZmsQbJQh
+mQNOGgYnnCnMpWhjwMYpARjCdRRBdZt39syMf6v787P+6d6Cw8lGhikbPlmVWhxcr6NciJ6/G1LM
+J79RO22HOdlB33lh1N2ttES+r3AXpHvobwn8Dta/94GK5wQ1PNlWsDzFXDzXyL52cfFS7NMMFHgq
+6Pa0hBmvX21jAX9qj4cPq0bPecs84SKZWzeZ24AZO7IGwmmchhiGQUXpmlZgfz26LaSq
+--0000000000001d50c905dfcb3711--
