@@ -2,117 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6498D533669
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 07:30:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09CDD53366F
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 07:33:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238263AbiEYFau (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 01:30:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57758 "EHLO
+        id S243990AbiEYFdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 01:33:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237184AbiEYFat (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 01:30:49 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BCB3546A8;
-        Tue, 24 May 2022 22:30:48 -0700 (PDT)
+        with ESMTP id S240235AbiEYFdn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 01:33:43 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F30B45E153
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 22:33:41 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id t6so28516601wra.4
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 22:33:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1653456649; x=1684992649;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=DsGKeqfSj16RFm5Jn2/AAf0C5X/Pb5reAu370lQ9uQ0=;
-  b=Op0vyJ52MfmK4RzOqGj0sYDD8weLxP9nEouqyCBGazok1Sfi5T8iH50M
-   4qE61kZ5WaOswl/zg1RT6RYRPgKtFuZVV8CS0nOIk4UUz/ogufp8ou/jo
-   mJ+XciY7zHIMZR1t31h3X9F/ya3AoIKcULOSgiPknboV6w7L1whx9dXfW
-   E=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
-  by alexa-out.qualcomm.com with ESMTP; 24 May 2022 22:30:48 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 May 2022 22:30:47 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 24 May 2022 22:30:47 -0700
-Received: from [10.79.43.230] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Tue, 24 May
- 2022 22:30:43 -0700
-Subject: Re: [PATCH v4 3/3] dt-bindings: remoteproc: qcom: Convert SC7180 MSS
- bindings to YAML
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-CC:     <bjorn.andersson@linaro.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <ohad@wizery.com>, <agross@kernel.org>,
-        <mathieu.poirier@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
-        <mka@chromium.org>
-References: <1652978825-5304-1-git-send-email-quic_sibis@quicinc.com>
- <1652978825-5304-4-git-send-email-quic_sibis@quicinc.com>
- <20220520224011.GA374485-robh@kernel.org>
- <371ce290-1deb-bff2-112b-71be8c005b37@linaro.org>
- <a5ad7884-d2c5-aeb0-405e-0121bb51f0a1@quicinc.com>
- <9badcfce-1db2-5381-bab8-8e52b875cebd@linaro.org>
-From:   Sibi Sankar <quic_sibis@quicinc.com>
-Message-ID: <90645ff6-0446-af02-08fe-d8f022de941a@quicinc.com>
-Date:   Wed, 25 May 2022 11:00:40 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        d=solid-run-com.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=I4hK5ZCESVvpbTHTrxT0YN0GcY2Bf7iPQcvGhFggSYc=;
+        b=BFIQIyLS4d5oDhY7nn7H0yXJOj8jU4DeWl616aK0oj7Qc5GhorMKOliOM+JMXQdN80
+         ANZoj76/ij/MJYvYeymuAc5QyJktm1gaoCQyDoH2t6Q7bMcMMK5sTGZ0oHNyyuOvQOxF
+         EK8qZ9gsRG1XrlbkKf8yTsJYb13uztqXL+62dPV6i9DJ4vEAmr4QgSS2dJimqFvvwod4
+         2PrSLoE+lLkNbKTGJ/1s7nEXsxY53Uw+n5MDLz2SNmiEkbLcP/Zfk52tFl1yhXPtuiYn
+         jKwy71Q4UndY5s9JISTQdLrLuQ6MRWEnEayqZVhCQbRlP6iTKS6oFLeZJ5Z80MsB91gN
+         DrZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=I4hK5ZCESVvpbTHTrxT0YN0GcY2Bf7iPQcvGhFggSYc=;
+        b=n070r6q2+oKPG1AahS8O4ifF4Yhjof6JwG4Niq6seH4mXSg9Y+AZ0CDCuNf7NuF3R4
+         khVgnjuPEUN/2uaQsHZgKS/mm5eEK5E/nyDgciHeFh9Ss2zGnWXmjKxE0q57H1YTqx3q
+         lcY5E05Qaa4smVhWfihmd6JH6oOEAaw1+zeAZB23SayQ5uMlrF7qWFV2CRfPZZpulhQe
+         +bDVSxtej/9kZhp7wL1mYj/8mLobwHJpeLBuPylRu+K5HeSEIxHy35lW9NEeZxElnYbE
+         gNT6Wf5MB/lN2m87qTth30F72DwXk7K0PAmssmGuuSJe2/Dok0XktrjFv7QcCVfPg9+y
+         HVeA==
+X-Gm-Message-State: AOAM531BlpLItUm1LKyShgCfEqsvfj8/vJsXXNFsMYhra9RbtqRsJo3N
+        inNgxlG6rZs38lT1BZezc2O9DQ==
+X-Google-Smtp-Source: ABdhPJzd20+RNjW06lk7cZhooGLWEZy8u7anI95p51+pEWaKkLf1VDIQpKcBRi2Z1NtA6f2UYd0Nlw==
+X-Received: by 2002:a5d:59af:0:b0:20f:d6e8:a5e with SMTP id p15-20020a5d59af000000b0020fd6e80a5emr11689065wrr.507.1653456820595;
+        Tue, 24 May 2022 22:33:40 -0700 (PDT)
+Received: from [192.168.17.225] (bzq-82-81-222-124.cablep.bezeqint.net. [82.81.222.124])
+        by smtp.gmail.com with ESMTPSA id g14-20020a5d46ce000000b0020ff3a2a925sm1271231wrs.63.2022.05.24.22.33.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 May 2022 22:33:39 -0700 (PDT)
+Message-ID: <9b39fdbe-2bbf-c0b7-a6fa-3b05d8136336@solid-run.com>
+Date:   Wed, 25 May 2022 08:33:37 +0300
 MIME-Version: 1.0
-In-Reply-To: <9badcfce-1db2-5381-bab8-8e52b875cebd@linaro.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH] dt-bindings: net: adin: Fix adi,phy-output-clock
+ description syntax
 Content-Language: en-US
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Hennerich <michael.hennerich@analog.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <6fcef2665a6cd86a021509a84c5956ec2efd93ed.1653401420.git.geert+renesas@glider.be>
+From:   Josua Mayer <josua@solid-run.com>
+In-Reply-To: <6fcef2665a6cd86a021509a84c5956ec2efd93ed.1653401420.git.geert+renesas@glider.be>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-6.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Thank you very much for fixing my mistake ... ... fast!
 
-
-On 5/24/22 11:03 PM, Krzysztof Kozlowski wrote:
-> On 24/05/2022 04:00, Sibi Sankar wrote:
->> Hey Rob/Krzysztof,
->>
->> On 5/21/22 8:04 PM, Krzysztof Kozlowski wrote:
->>> On 21/05/2022 00:40, Rob Herring wrote:
->>>> On Thu, May 19, 2022 at 10:17:05PM +0530, Sibi Sankar wrote:
->>>>> Convert SC7180 MSS PIL loading bindings to YAML.
->>>>
->>>> I suppose there is a reason the sc7180 is being split out and the only
->>>> one converted, but this doesn't tell me.
->>>
->>> I am also confused, especially that last time I pointed out that there
->>> is work already:
->>> https://lore.kernel.org/all/20220511161602.117772-7-sireeshkodali1@gmail.com/
->>
->> https://lore.kernel.org/all/e3543961-1645-b02a-c869-f8fa1ad2d41c@quicinc.com/#t
->>
->> The reason for the split was discussed on the list ^^, thought it
->> wouldn't make much sense adding any of it to the commit message.
->> Also since Krzysztof said he wanted a alignment between Sireesh/me
->> we did exchange mails saying I'll take care of SC7180/SC7280 (since
->> they had pas compatible which is overridden by mss compatible) and
->> he could continue with the rest.
+Am 24.05.22 um 17:11 schrieb Geert Uytterhoeven:
+> "make dt_binding_check":
 > 
+>      Documentation/devicetree/bindings/net/adi,adin.yaml:40:77: [error] syntax error: mapping values are not allowed here (syntax)
 > 
-> Sounds good to me, but Rob's got a point - this background should be
-> better explained.
+> The first line of the description ends with a colon, hence the block
+> needs to be marked with a "|".
 > 
-
-ack
-
--Sibi
-
+> Fixes: 1f77204e11f8b9e5 ("dt-bindings: net: adin: document phy clock output properties")
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+>   Documentation/devicetree/bindings/net/adi,adin.yaml | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> Best regards,
-> Krzysztof
-> 
+> diff --git a/Documentation/devicetree/bindings/net/adi,adin.yaml b/Documentation/devicetree/bindings/net/adi,adin.yaml
+> index 77750df0c2c45e19..88611720545df2ce 100644
+> --- a/Documentation/devicetree/bindings/net/adi,adin.yaml
+> +++ b/Documentation/devicetree/bindings/net/adi,adin.yaml
+> @@ -37,7 +37,8 @@ properties:
+>       default: 8
+>   
+>     adi,phy-output-clock:
+> -    description: Select clock output on GP_CLK pin. Two clocks are available:
+> +    description: |
+> +      Select clock output on GP_CLK pin. Two clocks are available:
+>         A 25MHz reference and a free-running 125MHz.
+>         The phy can alternatively automatically switch between the reference and
+>         the 125MHz clocks based on its internal state.
