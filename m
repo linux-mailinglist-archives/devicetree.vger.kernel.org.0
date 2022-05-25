@@ -2,97 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (unknown [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7255D533CB4
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 14:32:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CB1F533CD3
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 14:44:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229590AbiEYMcI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 08:32:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54484 "EHLO
+        id S236861AbiEYMoI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 08:44:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236767AbiEYMcI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 08:32:08 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 639A56D4D9;
-        Wed, 25 May 2022 05:32:07 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id AC9251F44DDB
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1653481926;
-        bh=KKdgy9/aog9w2qO3pPEy2MN18u1D22mqf36NY6y+1tQ=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=N3AXUqtBIPjyyZiUQSQ3UKLRlNb1+ta9KrXc3ZG5Pj2NXlpsWDh57ypRCyxBT9ZHt
-         8Bk5ZDFmS7Wlu9Yf4E7SAhE/+czJouD42S8MzxON0JFQw954iX+y18oQeLPOB9n+Xu
-         kGcg+Y2mUIiRDuPI8xlMDbjR6V2OI3pntHYGkwQCa2LiTWTejpzmAVPuyBZPnkfNj7
-         bETGwxcd3g0w3tJ4jX8eio3c/x7dkyDWOaD8VRTMDifDMavcJzxjulfhzDxRAB/JcE
-         DsboFWBlIzQ2szds3t70nWQWCl7aZX2rA0GynN0DWgIEJ2J/f09+qJX81KbOXspld0
-         pXPHxXGdKDUZw==
-Message-ID: <7ae7e42c-9225-2ff2-f167-8235ab4cadc3@collabora.com>
-Date:   Wed, 25 May 2022 14:32:02 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v10 05/21] video/hdmi: Add audio_infoframe packing for DP
-Content-Language: en-US
-To:     Guillaume Ranquet <granquet@baylibre.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, Helge Deller <deller@gmx.de>,
-        CK Hu <ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>
-Cc:     Markus Schneider-Pargmann <msp@baylibre.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, linux-fbdev@vger.kernel.org
-References: <20220523104758.29531-1-granquet@baylibre.com>
- <20220523104758.29531-6-granquet@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220523104758.29531-6-granquet@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S233719AbiEYMoH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 08:44:07 -0400
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBDB31057F;
+        Wed, 25 May 2022 05:44:05 -0700 (PDT)
+Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-f2c296d320so1652668fac.8;
+        Wed, 25 May 2022 05:44:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=p5CYTgAX8K8u4bnsP29ZIWvZEA8+eTTLk6hO/pi9fro=;
+        b=731cJuKa3rE71gdNlesv4tsAnz/E3QYlVkLA067a6lKQdHY715Lh+xQJXh1Q0uWESr
+         P+9Be7/dxb1AQE4MpafNVLbyIwo0Nft0mpjvQ7nKGLdHiHY+4ytBfowSvchd8VZ7JPhd
+         3OeniONGeOAJHbDDi0YuJXmorM5n3QqzN4+FpriU0izikk6nkoFuh7VwcIk8ZGBYZJIY
+         ZKC1G4FBRiWjOXBixVTSLTN/4ABO4ER/WA1V+krL0vMowTgGBveY8cQQK29pQmHoW+qk
+         xbqrafI8YjcUNnI2qAYLcakoLuCAb4PuPZN51TCR94ydMP7Lo64hiukhj7tVxS/8mDKJ
+         72WQ==
+X-Gm-Message-State: AOAM531plWfRVBfvkp9xF04AGyEuOQ2tli9laAz/2cHS04RaJQEteufh
+        qrbyfYRMwGlDVGKy8oBzLQ==
+X-Google-Smtp-Source: ABdhPJwN33KKYR9Abvw94TG0zy2LwgIN6td85neRCKNuiTaWClSTdJBS75XpFC147g/Wt3rrf6FZRw==
+X-Received: by 2002:a05:6870:f708:b0:f2:8a04:25e5 with SMTP id ej8-20020a056870f70800b000f28a0425e5mr5537659oab.280.1653482645114;
+        Wed, 25 May 2022 05:44:05 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id s16-20020a4aa550000000b0035eb4e5a6c8sm6482022oom.30.2022.05.25.05.44.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 May 2022 05:44:04 -0700 (PDT)
+Received: (nullmailer pid 1760898 invoked by uid 1000);
+        Wed, 25 May 2022 12:44:01 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     michaelsh@nvidia.com
+Cc:     linux-hwmon@vger.kernel.org, robh+dt@kernel.org, vadimp@nvidia.com,
+        linux@roeck-us.net, devicetree@vger.kernel.org
+In-Reply-To: <20220524161755.43833-3-michaelsh@nvidia.com>
+References: <20220524161755.43833-1-michaelsh@nvidia.com> <20220524161755.43833-3-michaelsh@nvidia.com>
+Subject: Re: [PATCH hwmon-next v2 2/3] dt-bindings: hwmon: add Microchip EMC2305 fan controller.
+Date:   Wed, 25 May 2022 07:44:01 -0500
+Message-Id: <1653482641.598528.1760897.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 23/05/22 12:47, Guillaume Ranquet ha scritto:
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
+On Tue, 24 May 2022 19:17:54 +0300, michaelsh@nvidia.com wrote:
+> From: Michael Shych <michaelsh@nvidia.com>
 > 
-> Similar to HDMI, DP uses audio infoframes as well which are structured
-> very similar to the HDMI ones.
+> Add basic description of emc2305 driver device tree binding.
 > 
-> This patch adds a helper function to pack the HDMI audio infoframe for
-> DP, called hdmi_audio_infoframe_pack_for_dp().
-> hdmi_audio_infoframe_pack_only() is split into two parts. One of them
-> packs the payload only and can be used for HDMI and DP.
-> 
-> Also constify the frame parameter in hdmi_audio_infoframe_check() as
-> it is passed to hdmi_audio_infoframe_check_only() which expects a const.
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> Signed-off-by: Michael Shych <michaelsh@nvidia.com>
+> Reviewed-by: Vadim Pasternak <vadimp@nvidia.com>
 > ---
->   drivers/video/hdmi.c           | 82 ++++++++++++++++++++++++++--------
->   include/drm/dp/drm_dp_helper.h |  2 +
-
-this has been moved... again... this time it's include/drm/display/drm_dp_helper.h
-
->   include/linux/hdmi.h           |  7 ++-
->   3 files changed, 71 insertions(+), 20 deletions(-)
+> v1->v2
+> - Fix dt binding check errors;
+> - Add descriptions;
+> - Add missing fields;
+> - Change the patch subject name;
+> - Separate pwm-min, pwm-max per PWM channel.
+> ---
+>  .../bindings/hwmon/microchip,emc2305.yaml          | 87 ++++++++++++++++++++++
+>  1 file changed, 87 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
 > 
+
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/hwmon/microchip,emc2305.example.dts:23.23-26.19: Warning (unit_address_vs_reg): /example-0/fan/microchip,pwms/pwm@0: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/hwmon/microchip,emc2305.example.dts:27.23-30.19: Warning (unit_address_vs_reg): /example-0/fan/microchip,pwms/pwm@1: node has a unit name, but no reg or ranges property
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
