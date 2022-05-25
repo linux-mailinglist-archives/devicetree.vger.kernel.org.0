@@ -2,297 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9BD75339BB
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 11:16:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E172F5339FD
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 11:35:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230107AbiEYJQH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 05:16:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35086 "EHLO
+        id S236373AbiEYJfb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 05:35:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230199AbiEYJOX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 05:14:23 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 037F99859E;
-        Wed, 25 May 2022 02:12:29 -0700 (PDT)
-X-UUID: a29e4ac71ac44126823a06830fe579f1-20220525
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:a9618879-4759-477d-9966-dd0c615016be,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:2a19b09,CLOUDID:bf312eb8-3c45-407b-8f66-25095432a27a,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:0,BEC:nil
-X-UUID: a29e4ac71ac44126823a06830fe579f1-20220525
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
-        (envelope-from <chaotian.jing@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1540264602; Wed, 25 May 2022 17:12:23 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Wed, 25 May 2022 17:12:22 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 25 May 2022 17:12:20 +0800
-Message-ID: <64058817c5e7e3998071098524fff9482cc01ac9.camel@mediatek.com>
-Subject: Re: [RESEND v12 3/3] mmc: mediatek: add support for SDIO eint wakup
- IRQ
-From:   Chaotian Jing <chaotian.jing@mediatek.com>
-To:     Axe Yang <axe.yang@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>
-CC:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Satya Tangirala <satyat@google.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Lucas Stach <dev@lynxeye.de>,
-        Eric Biggers <ebiggers@google.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kiwoong Kim <kwmad.kim@samsung.com>,
-        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
-        <angelogioacchino.delregno@collabora.com>,
-        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Yong Mao <yong.mao@mediatek.com>
-Date:   Wed, 25 May 2022 17:12:20 +0800
-In-Reply-To: <20220525015140.384-4-axe.yang@mediatek.com>
-References: <20220525015140.384-1-axe.yang@mediatek.com>
-         <20220525015140.384-4-axe.yang@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S230165AbiEYJfa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 05:35:30 -0400
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 718848B094;
+        Wed, 25 May 2022 02:35:27 -0700 (PDT)
+Received: by mail-qv1-f44.google.com with SMTP id l1so16033221qvh.1;
+        Wed, 25 May 2022 02:35:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ZTaGoLkIAZLAWf0HUaCretqVIbmJhnkdDonZvTvD9v0=;
+        b=fSwAOHiVX5xiBwxMswDFPIAOdQjHTsEmTIgzXLD9R+aGiV9XI3mH8/8Xx272vFhgiV
+         KgLzz8HNamNJxKUSRf83M3kOTwjdREAhN96M/QmoUoHA+Ce42gaQuns6+2PSbDk4BInU
+         OADwV6CCH9KDYHuYhHI2e+P3T7pJkuUGSi9qdBrLs5nLrS931oZB0r/oPH6dHklmZiM2
+         rcM86nQkATqk8tgsn/0nWaRP/Mg3O9g6cs9+MXJba6btrJsAnU6fJfaqddIr+dKQUToS
+         VjN5D9GhswDSJ1XPAeqXFcbLXczyIjmGSp8nhSURnKolamPeDNTTCMsml4oB4vbLo4GX
+         aI+A==
+X-Gm-Message-State: AOAM530eOpZAm5htUcpl/w4llr82rMAxALh7yZEghXxY0elQW+2ekHTq
+        ML4tYR4bRpMar7ECGg6t4dxXcoDFyAH2HQ==
+X-Google-Smtp-Source: ABdhPJyu9UchkWDz8kQe78B3XOZ7jtdUrx87ePROtPKFyfGef8UVw+JMliXPNphpoQypZYTQV7kR8Q==
+X-Received: by 2002:a05:6214:3005:b0:462:21ca:58b1 with SMTP id ke5-20020a056214300500b0046221ca58b1mr15512249qvb.47.1653471326300;
+        Wed, 25 May 2022 02:35:26 -0700 (PDT)
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
+        by smtp.gmail.com with ESMTPSA id y21-20020a376415000000b0069fc13ce23csm987210qkb.109.2022.05.25.02.35.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 May 2022 02:35:25 -0700 (PDT)
+Received: by mail-yb1-f177.google.com with SMTP id i187so33059878ybg.6;
+        Wed, 25 May 2022 02:35:25 -0700 (PDT)
+X-Received: by 2002:a25:6851:0:b0:655:8432:e88d with SMTP id
+ d78-20020a256851000000b006558432e88dmr4033965ybc.380.1653471324865; Wed, 25
+ May 2022 02:35:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220524172214.5104-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220524172214.5104-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdX0pqr8pmbX8OfUyTeEwiFGSG5uyP4nLG1LPy7_zzLPbQ@mail.gmail.com> <CA+V-a8ubrkDU2B=mJopzFrjhv1nVn5EXZmaprta0oj4p3J_N5Q@mail.gmail.com>
+In-Reply-To: <CA+V-a8ubrkDU2B=mJopzFrjhv1nVn5EXZmaprta0oj4p3J_N5Q@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 25 May 2022 11:35:13 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVncBnD25RLLqL2qDFwboPSVvo5faJvamDxPH_wq9r22Q@mail.gmail.com>
+Message-ID: <CAMuHMdVncBnD25RLLqL2qDFwboPSVvo5faJvamDxPH_wq9r22Q@mail.gmail.com>
+Subject: Re: [PATCH RFC 2/2] irqchip/sifive-plic: Add support for Renesas
+ RZ/Five SoC
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2022-05-25 at 09:51 +0800, Axe Yang wrote:
-> Add support for eint IRQ when MSDC is used as an SDIO host. This
-> feature requires SDIO device support async IRQ function. With this
-> feature, SDIO host can be awakened by SDIO card in suspend state,
-> without additional pin.
-> 
-> MSDC driver will time-share the SDIO DAT1 pin. During suspend, MSDC
-> turn off clock and switch SDIO DAT1 pin to GPIO mode. And during
-> resume, switch GPIO function back to DAT1 mode then turn on clock.
-> 
-> Some device tree property should be added or modified in MSDC node
-> to support SDIO eint IRQ. Pinctrls "state_eint" is mandatory. Since
-> this feature depends on asynchronous interrupts, "wakeup-source",
-> "keep-power-in-suspend" and "cap-sdio-irq" flags are necessary, and
-> the interrupts list should be extended(the interrupt named with
-> sdio_wakeup):
->         &mmcX {
-> 		...
-> 		interrupt-names = "msdc", "sdio_wakeup";
-> 		interrupts-extended = <...>,
->                               	      <&pio xxx
-> IRQ_TYPE_LEVEL_LOW>;
->                 ...
->                 pinctrl-names = "default", "state_uhs", "state_eint";
->                 ...
->                 pinctrl-2 = <&mmc2_pins_eint>;
->                 ...
->                 cap-sdio-irq;
-> 		keep-power-in-suspend;
-> 		wakeup-source;
->                 ...
->         };
-> Reviewed-by: AngeloGioacchino Del Regno <
-> angelogioacchino.delregno@collabora.com>
-> Co-developed-by: Yong Mao <yong.mao@mediatek.com>
-> Signed-off-by: Yong Mao <yong.mao@mediatek.com>
-> Signed-off-by: Axe Yang <axe.yang@mediatek.com>
-Reviewed-by: Chaotian Jing <chaotian.jing@mediatek.com>
-> ---
->  drivers/mmc/host/mtk-sd.c | 80 ++++++++++++++++++++++++++++++++++++-
-> --
->  1 file changed, 74 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
-> index 195dc897188b..2d5b23616df6 100644
-> --- a/drivers/mmc/host/mtk-sd.c
-> +++ b/drivers/mmc/host/mtk-sd.c
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: GPL-2.0-only
->  /*
-> - * Copyright (c) 2014-2015 MediaTek Inc.
-> + * Copyright (c) 2014-2015, 2022 MediaTek Inc.
->   * Author: Chaotian.Jing <chaotian.jing@mediatek.com>
->   */
->  
-> @@ -20,6 +20,7 @@
->  #include <linux/platform_device.h>
->  #include <linux/pm.h>
->  #include <linux/pm_runtime.h>
-> +#include <linux/pm_wakeirq.h>
->  #include <linux/regulator/consumer.h>
->  #include <linux/slab.h>
->  #include <linux/spinlock.h>
-> @@ -440,8 +441,10 @@ struct msdc_host {
->  	struct pinctrl *pinctrl;
->  	struct pinctrl_state *pins_default;
->  	struct pinctrl_state *pins_uhs;
-> +	struct pinctrl_state *pins_eint;
->  	struct delayed_work req_timeout;
->  	int irq;		/* host interrupt */
-> +	int eint_irq;		/* interrupt from sdio device for
-> waking up system */
->  	struct reset_control *reset;
->  
->  	struct clk *src_clk;	/* msdc source clock */
-> @@ -1520,17 +1523,41 @@ static void __msdc_enable_sdio_irq(struct
-> msdc_host *host, int enb)
->  
->  static void msdc_enable_sdio_irq(struct mmc_host *mmc, int enb)
->  {
-> -	unsigned long flags;
->  	struct msdc_host *host = mmc_priv(mmc);
-> +	unsigned long flags;
-> +	int ret;
->  
->  	spin_lock_irqsave(&host->lock, flags);
->  	__msdc_enable_sdio_irq(host, enb);
->  	spin_unlock_irqrestore(&host->lock, flags);
->  
-> -	if (enb)
-> -		pm_runtime_get_noresume(host->dev);
-> -	else
-> -		pm_runtime_put_noidle(host->dev);
-> +	if (mmc_card_enable_async_irq(mmc->card) && host->pins_eint) {
-> +		if (enb) {
-> +			pinctrl_select_state(host->pinctrl, host-
-> >pins_eint);
-> +			ret =
-> dev_pm_set_dedicated_wake_irq_reverse(host->dev, host->eint_irq);
-> +
-> +			if (ret) {
-> +				dev_err(host->dev, "Failed to register
-> SDIO wakeup irq!\n");
-> +				host->pins_eint = NULL;
-> +				pm_runtime_get_noresume(host->dev);
-> +			} else {
-> +				dev_info(host->dev, "SDIO eint irq:
-> %d!\n", host->eint_irq);
-> +				device_init_wakeup(host->dev, true);
-> +			}
-> +
-> +			pinctrl_select_state(host->pinctrl, host-
-> >pins_uhs);
-> +		} else {
-> +			dev_pm_clear_wake_irq(host->dev);
-> +		}
-> +	} else {
-> +		if (enb) {
-> +			/* Ensure host->pins_eint is NULL */
-> +			host->pins_eint = NULL;
-> +			pm_runtime_get_noresume(host->dev);
-> +		} else {
-> +			pm_runtime_put_noidle(host->dev);
-> +		}
-> +	}
->  }
->  
->  static irqreturn_t msdc_cmdq_irq(struct msdc_host *host, u32 intsts)
-> @@ -2631,6 +2658,19 @@ static int msdc_drv_probe(struct
-> platform_device *pdev)
->  		goto host_free;
->  	}
->  
-> +	/* Support for SDIO eint irq ? */
-> +	if ((mmc->pm_caps & MMC_PM_WAKE_SDIO_IRQ) && (mmc->pm_caps &
-> MMC_PM_KEEP_POWER)) {
-> +		host->eint_irq = platform_get_irq_byname(pdev,
-> "sdio_wakeup");
-> +		if (host->eint_irq > 0) {
-> +			host->pins_eint = pinctrl_lookup_state(host-
-> >pinctrl, "state_eint");
-> +			if (IS_ERR(host->pins_eint)) {
-> +				dev_err_probe(&pdev->dev, PTR_ERR(host-
-> >pins_eint),
-> +					      "Cannot find pinctrl
-> eint!\n");
-> +				host->pins_eint = NULL;
-> +			}
-> +		}
-> +	}
-> +
->  	msdc_of_property_parse(pdev, host);
->  
->  	host->dev = &pdev->dev;
-> @@ -2845,6 +2885,12 @@ static int __maybe_unused
-> msdc_runtime_suspend(struct device *dev)
->  	struct msdc_host *host = mmc_priv(mmc);
->  
->  	msdc_save_reg(host);
-> +
-> +	if (sdio_irq_claimed(mmc) && host->pins_eint) {
-> +		disable_irq(host->irq);
-> +		pinctrl_select_state(host->pinctrl, host->pins_eint);
-> +		sdr_clr_bits(host->base + SDC_CFG, SDC_CFG_SDIOIDE);
-> +	}
->  	msdc_gate_clock(host);
->  	return 0;
->  }
-> @@ -2860,12 +2906,19 @@ static int __maybe_unused
-> msdc_runtime_resume(struct device *dev)
->  		return ret;
->  
->  	msdc_restore_reg(host);
-> +
-> +	if (sdio_irq_claimed(mmc) && host->pins_eint) {
-> +		sdr_set_bits(host->base + SDC_CFG, SDC_CFG_SDIOIDE);
-> +		pinctrl_select_state(host->pinctrl, host->pins_uhs);
-> +		enable_irq(host->irq);
-> +	}
->  	return 0;
->  }
->  
->  static int __maybe_unused msdc_suspend(struct device *dev)
->  {
->  	struct mmc_host *mmc = dev_get_drvdata(dev);
-> +	struct msdc_host *host = mmc_priv(mmc);
->  	int ret;
->  
->  	if (mmc->caps2 & MMC_CAP2_CQE) {
-> @@ -2874,11 +2927,26 @@ static int __maybe_unused msdc_suspend(struct
-> device *dev)
->  			return ret;
->  	}
->  
-> +	if (sdio_irq_claimed(mmc) && host->pins_eint) {
-> +		pm_runtime_put_sync_suspend(dev);
-> +
-> +		return 0;
-> +	}
-> +
->  	return pm_runtime_force_suspend(dev);
->  }
->  
->  static int __maybe_unused msdc_resume(struct device *dev)
->  {
-> +	struct mmc_host *mmc = dev_get_drvdata(dev);
-> +	struct msdc_host *host = mmc_priv(mmc);
-> +
-> +	if (sdio_irq_claimed(mmc) && host->pins_eint) {
-> +		pm_runtime_get_sync(dev);
-> +
-> +		return 0;
-> +	}
-> +
->  	return pm_runtime_force_resume(dev);
->  }
->  
+Hi Prabhakar,
 
+On Wed, May 25, 2022 at 11:01 AM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
+> On Wed, May 25, 2022 at 9:01 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Tue, May 24, 2022 at 7:22 PM Lad Prabhakar
+> > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > > The Renesas RZ/Five SoC has a RISC-V AX45MP AndesCore with NCEPLIC100. The
+> > > NCEPLIC100 supports both edge-triggered and level-triggered interrupts. In
+> > > case of edge-triggered interrupts NCEPLIC100 ignores the next interrupt
+> > > edge until the previous completion message has been received and
+> > > NCEPLIC100 doesn't support pending interrupt counter, hence losing the
+> > > interrupts if not acknowledged in time.
+> > >
+> > > So the workaround for edge-triggered interrupts to be handled correctly
+> > > and without losing is that it needs to be acknowledged first and then
+> > > handler must be run so that we don't miss on the next edge-triggered
+> > > interrupt.
+> > >
+> > > This patch adds a new compatible string for Renesas RZ/Five SoC and adds
+> > > support to change interrupt flow based on the interrupt type. It also
+> > > implements irq_ack and irq_set_type callbacks.
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Thanks for your patch!
+> >
+> > > --- a/drivers/irqchip/irq-sifive-plic.c
+> > > +++ b/drivers/irqchip/irq-sifive-plic.c
+
+> > > @@ -163,10 +166,31 @@ static int plic_set_affinity(struct irq_data *d,
+> > >  }
+> > >  #endif
+> > >
+> > > +static void plic_irq_ack(struct irq_data *d)
+> > > +{
+> > > +       struct plic_handler *handler = this_cpu_ptr(&plic_handlers);
+> > > +
+> >
+> > No check for RZ/Five or irq type?
+> That is because we set the handle_fasteoi_ack_irq() only in case of
+> RZ/Five and it is already checked in set_type() callback.
+>
+> > .irq_ack() seems to be called for level interrupts, too
+> > (from handle_level_irq() through mask_ack_irq()).
+> >
+> Right but we are using handle_fasteoi_irq() for level interrupt which
+> doesn't call mask_ack_irq(). And I have confirmed by adding a print in
+> ack callback  and just enabling the serial (which has level
+> interrupts).
+
+But handle_fasteoi_irq() is configured only on RZ/Five below?
+Which handler is used on non-RZ/Five?
+
+I have to admit I'm not that deep into irq handling, and
+adding a print indeed doesn't trigger on Starlight Beta.
+
+> > > @@ -176,11 +200,37 @@ static void plic_irq_eoi(struct irq_data *d)
+> > >         }
+> > >  }
+> > >
+> > > +static int plic_irq_set_type(struct irq_data *d, unsigned int type)
+> > > +{
+> > > +       struct plic_handler *handler = this_cpu_ptr(&plic_handlers);
+> > > +
+> > > +       if (handler->priv->of_data != RENESAS_R9A07G043_PLIC)
+> > > +               return 0;
+> > > +
+> > > +       switch (type) {
+> > > +       case IRQ_TYPE_LEVEL_HIGH:
+> > > +               irq_set_handler_locked(d, handle_fasteoi_irq);
+> > > +               break;
+> > > +
+> > > +       case IRQ_TYPE_EDGE_RISING:
+> > > +               irq_set_handler_locked(d, handle_fasteoi_ack_irq);
+> > > +               break;
+> > > +
+> > > +       default:
+> > > +               return -EINVAL;
+> > > +       }
+> > > +
+> > > +       return 0;
+> > > +}
+> > > +
+> > >  static struct irq_chip plic_chip = {
+> > >         .name           = "SiFive PLIC",
+> > >         .irq_mask       = plic_irq_mask,
+> > >         .irq_unmask     = plic_irq_unmask,
+> > > +       .irq_ack        = plic_irq_ack,
+> >
+> > This causes extra processing on non-affected PLICs.
+> > Perhaps use a separate irq_chip instance?
+> >
+> I don't think so as the handle_fasteoi_ack_irq() is installed only in
+> case of RZ/Five, so irq_ack() will not be called for non-affected
+> PLIC's. Please correct me if I am wrong.
+
+Hence I'll leave this to the irq maintainer...
+
+> > > @@ -293,6 +356,9 @@ static int __init plic_init(struct device_node *node,
+> > >         if (!priv)
+> > >                 return -ENOMEM;
+> > >
+> > > +       if (of_device_is_compatible(node, "renesas-r9a07g043-plic"))
+> > > +               priv->of_data = RENESAS_R9A07G043_PLIC;
+> > > +
+> >
+> > So perhaps instead just look at #interrupt-cells, and use the onecell
+> > or twocell irq_chip/irq_domain_ops based on that?
+> >
+> But we do call plic_irq_domain_translate() in the alloc callback and
+> don't have a node pointer in there to check the interrupt cell count.
+> Or maybe we can store the interrupt cell count in priv and use it
+> accordingly above?
+
+That's a reasonable option.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
