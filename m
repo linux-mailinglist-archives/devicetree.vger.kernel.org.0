@@ -2,133 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6162253435E
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 20:52:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63BB6534364
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 20:59:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343855AbiEYSwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 14:52:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58354 "EHLO
+        id S239980AbiEYS7M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 14:59:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233736AbiEYSwS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 14:52:18 -0400
-X-Greylist: delayed 329 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 25 May 2022 11:52:16 PDT
-Received: from ns.iliad.fr (ns.iliad.fr [212.27.33.1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35E62B41F9;
-        Wed, 25 May 2022 11:52:15 -0700 (PDT)
-Received: from ns.iliad.fr (localhost [127.0.0.1])
-        by ns.iliad.fr (Postfix) with ESMTP id 1735520041;
-        Wed, 25 May 2022 20:46:44 +0200 (CEST)
-Received: from sakura (freebox.vlq16.iliad.fr [213.36.7.13])
-        by ns.iliad.fr (Postfix) with ESMTP id 121931FFE1;
-        Wed, 25 May 2022 20:46:44 +0200 (CEST)
-Message-ID: <bd6d97a4cc6665d0ee632444f75e3480160387ec.camel@freebox.fr>
-Subject: Re: [PATCH v7 4/9] ath11k: Add register access logic for WCN6750
-From:   Maxime Bizon <mbizon@freebox.fr>
-Reply-To: mbizon@freebox.fr
-To:     Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
-        ath11k@lists.infradead.org
-Cc:     linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
-        robh@kernel.org, mka@chromium.org
-Date:   Wed, 25 May 2022 20:46:43 +0200
-In-Reply-To: <20220429170502.20080-5-quic_mpubbise@quicinc.com>
-References: <20220429170502.20080-1-quic_mpubbise@quicinc.com>
-         <20220429170502.20080-5-quic_mpubbise@quicinc.com>
-Organization: Freebox
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: ClamAV using ClamSMTP ; ns.iliad.fr ; Wed May 25 20:46:44 2022 +0200 (CEST)
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S233736AbiEYS7M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 14:59:12 -0400
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 705EC34BA7;
+        Wed, 25 May 2022 11:59:10 -0700 (PDT)
+Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 47504FF808;
+        Wed, 25 May 2022 18:59:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1653505149;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=jnLXgeypjcLq3AOE4VuwscdmaqXfOdF/aYkjU1pKK8s=;
+        b=f068iCrtUo8zoBl7SaKXGdB8kp/sTnbmkDUXR2QCN52JB9Yun5ow4YoDPVKPT1oWYPN4Gt
+        NZXB2HivnUdlq3aYtNyKWdr02vurK3SWTuuwnkUbxpw1QqdPI34jPcq7YMvZb0sNl1qiH0
+        ae79r/WE/y2mYtgksGcaTaLETGvjNvraiKn6n8VO8g+eDcFhux9OsUMnU8QYdk3YDxlcb9
+        RM6X+/We7kToyvYP74awPHstVl2BpTzpJGbxyDXBRbufD59iOuxGIUOAN0BnRSN7ASr6wC
+        iNkgZLXS3zLJIY0ctmkk9jmkUZZCzlLnq1nlfZmNCuybTDWLLI2z+fxW12LtZg==
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Subject: [PATCH v4 0/7] Allwinner A31/A83T MIPI CSI-2 and A31 ISP / Platform Support
+Date:   Wed, 25 May 2022 20:58:46 +0200
+Message-Id: <20220525185853.695931-1-paul.kocialkowski@bootlin.com>
+X-Mailer: git-send-email 2.36.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This new version is an offspring from the big "Allwinner A31/A83T
+MIPI CSI-2 Support and A31 ISP Support" series, which was split into
+individual series for better clarity and handling.
 
-On Fri, 2022-04-29 at 22:34 +0530, Manikanta Pubbisetty wrote:
+This part only concerns Allwinner platform support changes.
+Note that the device-tree bindings for the MIPI CSI-2 controller
+and ISP are still under review in their dedicated series, so these
+patches should probably not be merged yet, although feedback about
+them is welcome.
 
-Hello Manikanta,
+Changes since v3:
+- Reordered v3s mbus compatible in binding;
+- Added collected tag;
+- Removed rejected interconnects fix.
 
-> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-
-> QCAHKSWPL_SILICONZ-1
+Changes since all-in-one v2:
+- Corrected mbus index used for the interconnects;
+- Used extended mbus binding and exported the DRAM clock for that;
+- Reworked the description of the core openfirmware change to give
+  more insight about the situation.
 
-Nope your patch breaks QCN9074:
+Kévin L'hôpital (1):
+  ARM: dts: sun8i: a83t: bananapi-m3: Enable MIPI CSI-2 with OV8865
 
-[   13.660963] ath11k_pci 0000:03:00.0: failed to set pcie link register 0x01e0e0a8: 0xffffffff != 0x00000010
-[   13.675994] ath11k_pci 0000:03:00.0: failed to set sysclk: -110
+Paul Kocialkowski (6):
+  dt-bindings: interconnect: sunxi: Add V3s mbus compatible
+  clk: sunxi-ng: v3s: Export MBUS and DRAM clocks to the public header
+  ARM: dts: sun8i: v3s: Add mbus node to represent the interconnect
+  ARM: dts: sun8i: v3s: Add nodes for MIPI CSI-2 support
+  ARM: dts: sun8i: v3s: Add support for the ISP
+  ARM: dts: sun8i: a83t: Add MIPI CSI-2 controller node
 
-device still seem to work though
-
-> @@ -134,16 +134,13 @@ EXPORT_SYMBOL(ath11k_pcic_init_msi_config);
->  static inline u32 ath11k_pcic_get_window_start(struct ath11k_base *ab,
->  					       u32 offset)
->  {
-> -	u32 window_start;
-> +	u32 window_start = 0;
->  
-> -	/* If offset lies within DP register range, use 3rd window */
->  	if ((offset ^ HAL_SEQ_WCSS_UMAC_OFFSET) < ATH11K_PCI_WINDOW_RANGE_MASK)
-> -		window_start = 3 * ATH11K_PCI_WINDOW_START;
-> -	/* If offset lies within CE register range, use 2nd window */
-> -	else if ((offset ^ HAL_CE_WFSS_CE_REG_BASE) < ATH11K_PCI_WINDOW_RANGE_MASK)
-> -		window_start = 2 * ATH11K_PCI_WINDOW_START;
-> -	else
-> -		window_start = ATH11K_PCI_WINDOW_START;
-> +		window_start = ab->hw_params.dp_window_idx * ATH11K_PCI_WINDOW_START;
-> +	else if ((offset ^ HAL_SEQ_WCSS_UMAC_CE0_SRC_REG(ab)) <
-> +		 ATH11K_PCI_WINDOW_RANGE_MASK)
-> +		window_start = ab->hw_params.ce_window_idx * ATH11K_PCI_WINDOW_START;
->  
->  	return window_start;
->  }
-
-
-for some offsets, previous code could return ATH11K_PCI_WINDOW_START,
-whereas new code now returns 0
-
-
-> @@ -162,19 +159,12 @@ void ath11k_pcic_write32(struct ath11k_base *ab, u32 offset, u32 value)
->  
->  	if (offset < ATH11K_PCI_WINDOW_START) {
->  		iowrite32(value, ab->mem  + offset);
-> -	} else {
-> -		if (ab->hw_params.static_window_map)
-> -			window_start = ath11k_pcic_get_window_start(ab, offset);
-> -		else
-> -			window_start = ATH11K_PCI_WINDOW_START;
-> -
-> -		if (window_start == ATH11K_PCI_WINDOW_START &&
-> -		    ab->pci.ops->window_write32) {
-> -			ab->pci.ops->window_write32(ab, offset, value);
-> -		} else {
-> -			iowrite32(value, ab->mem + window_start +
-> -				  (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
-> -		}
-> +	} else if (ab->hw_params.static_window_map) {
-> +		window_start = ath11k_pcic_get_window_start(ab, offset);
-> +		iowrite32(value, ab->mem + window_start +
-> +			  (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
-> +	} else if (ab->pci.ops->window_write32) {
-> +		ab->pci.ops->window_write32(ab, offset, value);
->  	}
-> 
-
-with previous code on QCN9074, when ath11k_pcic_get_window_start()
-returned ATH11K_PCI_WINDOW_START, then it would call window_write32()
-
-with new code on QCN9074, static_window_map is true, so window_write32
-will never be called.
-
->  u32 ath11k_pcic_read32(struct ath11k_base *ab, u32 offset)
-
-ditto here
+ .../arm/sunxi/allwinner,sun4i-a10-mbus.yaml   |   2 +
+ arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts  | 102 +++++++++++++++
+ arch/arm/boot/dts/sun8i-a83t.dtsi             |  26 ++++
+ arch/arm/boot/dts/sun8i-v3s.dtsi              | 121 ++++++++++++++++++
+ drivers/clk/sunxi-ng/ccu-sun8i-v3s.h          |   4 -
+ include/dt-bindings/clock/sun8i-v3s-ccu.h     |   4 +-
+ 6 files changed, 253 insertions(+), 6 deletions(-)
 
 -- 
-Maxime
-
-
+2.36.1
 
