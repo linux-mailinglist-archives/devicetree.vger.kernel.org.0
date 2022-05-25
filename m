@@ -2,68 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79D20533AC4
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 12:41:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87B93533AF2
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 12:51:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232946AbiEYKlx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 06:41:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50540 "EHLO
+        id S233450AbiEYKvg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 06:51:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229642AbiEYKlw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 06:41:52 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B92C986E7;
-        Wed, 25 May 2022 03:41:51 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 2683B1F448AF
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1653475310;
-        bh=xXH5hN96WvbdMWEtdR67xyJ1Nu1XNE5YBoILGq7ZbpQ=;
-        h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-        b=GPVM261LD27yCOCRgYPXMlzrkHAEPhQ89rHcxGYniANEaVsJsymLMyx1CwnD76jpo
-         DKUEjtN2qnR1ESBC9BhZ91Cz3avwwyzhdQOKDeGAN4ErtgF4V+kDIVXQ509uW/hWRT
-         0xQOmuokQ8lvqgdR4sbjbkYIZ8Cu5dSj3RiGucUWNhQsjZ7fApWtBR45VVX974yrkO
-         B198tAeJ+Bi6SVYt0liqgvPrEnbkDwhSSA0CytvrGumQjHCVw9Wwn1rMA6IW28wSr3
-         vD9MSPkDBGuwCPyg6z0PbGGA9aMIGw4IP34+jTqIjCM2bphQ1dFtp6er0RXBtnZCy9
-         Kfk2xShk+Gj8Q==
-Message-ID: <ae47e12b-396c-a5a0-2da2-2010237fbbc2@collabora.com>
-Date:   Wed, 25 May 2022 12:41:41 +0200
+        with ESMTP id S231229AbiEYKve (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 06:51:34 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB8AAC64
+        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 03:51:30 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id q21so20670468ejm.1
+        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 03:51:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=gPVyJOPCg3ZgGMg0ovPEKPFKhjYsgoChKtc8oyOFFRU=;
+        b=XF3wywkotbRkHHTdHn4JfgqG1bqdlal47P4FVCMhsRRvk+snkzg2N0P0Wfql69oUCe
+         jXxgfBLYwUNoWQETlZyYg3Qb8ZaZYUW+skbeI7CL4HHbR8ZbFKvs9zM4iGrLKz/GvTNT
+         bcXUCd6GYrZDTZYDDYJ+TlgxrpMm8GxDrKY6s25kWZZZXhOy4gceb+OILQfeKbKkMyb0
+         PIbQ4oB4/dQAy6nUgdGvMkVl1E3rVss5LzM5kWBCJOFyCHGET1govgboBw8ZTzBm7YaQ
+         NnvXJRXeo4lxFa6zR144bKgnr9sMH6bMXZJp5Rfjlk33S9IKDqbrybghoBP3Jk5pW16q
+         QjKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=gPVyJOPCg3ZgGMg0ovPEKPFKhjYsgoChKtc8oyOFFRU=;
+        b=aEqlnwIh15zha4X+09nSQyuOyTXD1AqbV6+7EwAiEdDQ3uiIU/cL/EQ38lBnFjiA1U
+         ilQUVV9EdNlJPYwh3hppmK16os65el8BetY7BuyKKKnjKdcRLxHyaiXincdLIzuQck7O
+         QG6A7CNDduhA/FCO3aUE/YJTBukzquaIInJsYzuKUF/4KmXYzNh5g0d67yFIDXQ9FlWR
+         77+C1ixBeXqew7SjIs3sKTIwHO11tBxSz+LeFvvWIRnIWEaHiQ7BUoWB3QIirCd6YpGb
+         lWwMXQl6W47aEpl6FLVblNiQAG8Wo7num2mM8Gf6veWH04zmFN6qHuXx115zI+FibCRd
+         y0Tw==
+X-Gm-Message-State: AOAM532srvZG0TBbRwld0essuDxJVb8PMd4cTOhzxUodq9tiCDFi4QM+
+        Fa+BHU2qMdMZSXSYq8tnNNpcZQ==
+X-Google-Smtp-Source: ABdhPJyIJ0Pos6hMRgwgrSOuuvY86WS/3f7LaN1bSAlLoJJbFB4jHmVwfJhBDUFl1RoFEkvDTb+A1Q==
+X-Received: by 2002:a17:906:328a:b0:6f4:8045:3fe3 with SMTP id 10-20020a170906328a00b006f480453fe3mr29838810ejw.752.1653475889405;
+        Wed, 25 May 2022 03:51:29 -0700 (PDT)
+Received: from [192.168.0.177] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id qf24-20020a1709077f1800b006f3ef214dc3sm1336744ejc.41.2022.05.25.03.51.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 May 2022 03:51:29 -0700 (PDT)
+Message-ID: <4826e2e5-83c0-3d9a-8451-af042d64e94e@linaro.org>
+Date:   Wed, 25 May 2022 12:51:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v7 1/1] firmware: mediatek: add adsp ipc protocol
- interface
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v3] ARM: dts: aspeed: Adding Jabil Rubypass BMC
 Content-Language: en-US
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     Kevin Hilman <khilman@baylibre.com>,
-        Linux-ALSA <alsa-devel@alsa-project.org>, tzungbi@google.com,
-        Chen-Yu Tsai <wenst@chromium.org>, cujomalainey@google.com,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
-        Kai Vehmanen <kai.vehmanen@linux.intel.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        sound-open-firmware@alsa-project.org
-References: <20220407130338.28939-1-allen-kh.cheng@mediatek.com>
- <20220407130338.28939-2-allen-kh.cheng@mediatek.com>
- <54d6c0ff-d93c-0506-4db9-3852c69211ab@collabora.com>
-In-Reply-To: <54d6c0ff-d93c-0506-4db9-3852c69211ab@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To:     David Wang <David_Wang6097@jabil.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     edward_chen@jabil.com, ben_pai@jabil.com
+References: <20220525093927.368131-1-David_Wang6097@jabil.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220525093927.368131-1-David_Wang6097@jabil.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,58 +74,191 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 25/05/22 12:39, AngeloGioacchino Del Regno ha scritto:
-> Il 07/04/22 15:03, Allen-KH Cheng ha scritto:
->> From: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
->>
->> Some of mediatek processors contain
->> the Tensilica HiFix DSP for audio processing.
->>
->> The communication between Host CPU and DSP firmware is
->> taking place using a shared memory area for message passing.
->>
->> ADSP IPC protocol offers (send/recv) interfaces using
->> mediatek-mailbox APIs.
->>
->> We use two mbox channels to implement a request-reply protocol.
->>
->> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
->> Reviewed-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
->> Reviewed-by: Curtis Malainey <cujomalainey@chromium.org>
->> Reviewed-by: Tzung-Bi Shih <tzungbi@google.com>
->> Reviewed-by: YC Hung <yc.hung@mediatek.com>
->> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   drivers/firmware/Kconfig                      |   1 +
->>   drivers/firmware/Makefile                     |   1 +
->>   drivers/firmware/mediatek/Kconfig             |   9 +
->>   drivers/firmware/mediatek/Makefile            |   2 +
->>   drivers/firmware/mediatek/mtk-adsp-ipc.c      | 161 ++++++++++++++++++
->>   .../linux/firmware/mediatek/mtk-adsp-ipc.h    |  65 +++++++
->>   6 files changed, 239 insertions(+)
->>   create mode 100644 drivers/firmware/mediatek/Kconfig
->>   create mode 100644 drivers/firmware/mediatek/Makefile
->>   create mode 100644 drivers/firmware/mediatek/mtk-adsp-ipc.c
->>   create mode 100644 include/linux/firmware/mediatek/mtk-adsp-ipc.h
->>
+On 25/05/2022 11:39, David Wang wrote:
+> The initial introduction of the jabil server with AST2600 BMC SoC.
 > 
-> Gentle ping for this one, as it's getting stale... and it's ready.
+> ---
 > 
-> To add context, this driver is *really* necessary, as support for it
-> is added in the MT8195 ASoC SOF driver as a platform device [1], and the
-> necessary memory regions are coming from the mediatek,mt8195-dsp [2] driver.
+> v3
+> - Adjustment entries are ordered by name.
+> - Remove the bootargs property and modify the stdout-path property.
+> - Group multiple LED devices into a group.
+> - Modify the "gpio3_71" node name format.
+> - Delete unneeded blank line at the end.
 > 
-> [1]: 
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/sound/soc/sof/mediatek/mt8195/mt8195.c?h=next-20220525#n389 
+> v2
+> - Disable empty i2c bus.
+> - Remove gfx node because aspeed-g6.dtsi isn't supported.
+> - Modify the led format and add some properties.
+> - Fix wrong indentation.
+> - Add stdout property in chosen node.
+> - Rename temp to temperature-sensor in i2c bus 0.
 > 
+> ---
 > 
-> [2]: 
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/dsp/mediatek,mt8195-dsp.yaml?h=next-20220525#n61 
+> Signed-off-by: David Wang <David_Wang6097@jabil.com>
+> ---
+>  arch/arm/boot/dts/Makefile                    |   1 +
+>  .../boot/dts/aspeed-bmc-jabil-rubypass.dts    | 442 ++++++++++++++++++
+>  2 files changed, 443 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/aspeed-bmc-jabil-rubypass.dts
 > 
-> 
-> Cheers,
-> Angelo
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 7c16f8a2b738..5339e9339ce4 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -1543,6 +1543,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+>  	aspeed-bmc-intel-s2600wf.dtb \
+>  	aspeed-bmc-inspur-fp5280g2.dtb \
+>  	aspeed-bmc-inspur-nf5280m6.dtb \
+> +	aspeed-bmc-jabil-rubypass.dtb \
+>  	aspeed-bmc-lenovo-hr630.dtb \
+>  	aspeed-bmc-lenovo-hr855xg2.dtb \
+>  	aspeed-bmc-microsoft-olympus.dtb \
+> diff --git a/arch/arm/boot/dts/aspeed-bmc-jabil-rubypass.dts b/arch/arm/boot/dts/aspeed-bmc-jabil-rubypass.dts
+> new file mode 100644
+> index 000000000000..3a835f31a1b2
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/aspeed-bmc-jabil-rubypass.dts
+> @@ -0,0 +1,442 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +
+> +/dts-v1/;
+> +
+> +#include "aspeed-g6.dtsi"
+> +#include <dt-bindings/gpio/aspeed-gpio.h>
+> +#include <dt-bindings/leds/common.h>
+> +
+> +/ {
+> +	model = "Jabil rbp";
+> +	compatible = "aspeed,ast2600";
+
+What happened here? Why the compatible is removed? You received a
+comment from Joel to add it, so silently reversing back is not a proper
+approach.
+
+I wrote last time:
+"You need to document the new compatible."
+
+> +
+> +	chosen {
+> +		stdout-path = "/uart5:115200n8";
+> +	};
+> +
+> +	memory@80000000 {
+> +		device_type = "memory";
+> +		reg = <0x80000000 0x80000000>;
+> +	};
+> +
+> +	vcc_sdhci0: regulator-vcc-sdhci0 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "SDHCI0 Vcc";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpios = <&gpio0 ASPEED_GPIO(V, 0) GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +	};
+> +
+> +
+
+Just one blank line.
+
+> +	vccq_sdhci0: regulator-vccq-sdhci0 {
+> +		compatible = "regulator-gpio";
+> +		regulator-name = "SDHCI0 VccQ";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpios = <&gpio0 ASPEED_GPIO(V, 1) GPIO_ACTIVE_HIGH>;
+> +		gpios-states = <1>;
+> +		states = <3300000 1>,
+> +			 <1800000 0>;
+> +	};
+> +
+> +	vcc_sdhci1: regulator-vcc-sdhci1 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "SDHCI1 Vcc";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpios = <&gpio0 ASPEED_GPIO(V, 2) GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +	};
+> +
+> +	vccq_sdhci1: regulator-vccq-sdhci1 {
+> +		compatible = "regulator-gpio";
+> +		regulator-name = "SDHCI1 VccQ";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpios = <&gpio0 ASPEED_GPIO(V, 3) GPIO_ACTIVE_HIGH>;
+> +		gpios-states = <1>;
+> +		states = <3300000 1>,
+> +			 <1800000 0>;
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +		pinctrl-names = "default";
+> +
+> +		led-0 {
+> +			label = "identify";
+> +			color = <LED_COLOR_ID_BLUE>;
+> +			function = LED_FUNCTION_INDICATOR;
+> +			retain-state-shutdown;
+> +			gpios = <&gpio0 ASPEED_GPIO(B, 7) GPIO_ACTIVE_LOW>;
+> +		};
+> +
+> +		led-1 {
+> +			label = "status_amber";
+> +			color = <LED_COLOR_ID_AMBER>;
+> +			function = LED_FUNCTION_STATUS;
+> +			gpios = <&gpio0 ASPEED_GPIO(G, 3) GPIO_ACTIVE_LOW>;
+> +		};
+> +
+> +		led-2 {
+> +			label = "status_green";
+> +			color = <LED_COLOR_ID_GREEN>;
+> +			default-state = "keep";
+> +			function = LED_FUNCTION_STATUS;
+> +			gpios = <&gpio0 ASPEED_GPIO(G, 2) GPIO_ACTIVE_LOW>;
+> +		};
+> +
+> +		led-3 {
+> +			label = "status_susack";
+> +			function = LED_FUNCTION_STATUS;
+> +			gpios = <&gpio0 ASPEED_GPIO(V, 6) GPIO_ACTIVE_LOW>;
+> +		};
+> +
+> +		led-4{
+
+Missing space
+
+> +			label = "power-amber";
+> +			color = <LED_COLOR_ID_AMBER>;
+> +			function = LED_FUNCTION_POWER;
+> +			gpios = <&gpio0 ASPEED_GPIO(Y, 0) GPIO_ACTIVE_LOW>;
+> +		};
+> +
+
+...
+
+> +
+> +&kcs3 {
+> +	aspeed,lpc-io-reg = <0xCA2>;
+> +	status = "okay";
+> +};
+> +
+> +&kcs4 {
+> +	aspeed,lpc-io-reg = <0xCA4>;
+> +	status = "okay";
+> +};
+> +
+> +&lpc_snoop {
+> +	snoop-ports = <0x80>;
+> +	status = "okay";
+> +};
+> \ No newline at end of file
+
+Now you miss a new line at end of file...
 
 
-I'm sorry, ignore me, another version of this one was already merged.
-
+Best regards,
+Krzysztof
