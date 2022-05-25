@@ -2,109 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2CB25344FE
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 22:36:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 332CF53455C
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 22:53:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243226AbiEYUgE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 16:36:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43802 "EHLO
+        id S235605AbiEYUx4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 16:53:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237203AbiEYUgD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 16:36:03 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37C7C50032
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 13:36:02 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id i40so28479962eda.7
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 13:36:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to:cc
-         :content-transfer-encoding;
-        bh=jF4MxsPSKKSAh34A0y7fWqFeFSCCDQ9NCjS0um7aELU=;
-        b=pGH9nGdOHq3ZUZnXjPjBxv/RbqZcy9yH8P0K4vo0Lomm2Th7cdJUztX4Eq/0cTlsKG
-         0aM6ULkr8/lgAYQhicj3X7xfE71Pw+pLl0nfPFHATrssvoHKX/c0ZdrJfJzn1ne9FUSD
-         jaPAlY0wcKH8pa55rmEuvRATeRMzkA9qK5jM6N2CoHPoacScuad/SJn0d89CZJMYFI91
-         E4Neypm0he8dUlhkgoUtXjI5IKaF1s1ykbGkww+IEXEnkxlV3pLJpMI3VwHmQn+lsvLF
-         +bFnqhuZnsjw3U7u/N/fZ+pBxaaui+grl5H30B5srKFimA84VvSWGZU1e4rdlTr/Ih7K
-         sD0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc
-         :content-transfer-encoding;
-        bh=jF4MxsPSKKSAh34A0y7fWqFeFSCCDQ9NCjS0um7aELU=;
-        b=tM0guyAOhMp5gadu+akTA9QXX0SD4JTLG6C3hvw9+oK2xQwR1IZl6xkX1MRHhXXVrt
-         mEsAdrddcrWjqM5W3KiRTqJiR45EBkgoUTNpXyUvSYMCI1ID2G6sTzhTOa5P41CxnVCr
-         UWxsXVzgXcajgK+SAIsZH42r+Mms7SqEzee11IpTojg1hCd33zGCv1XeWpEi0BIa7PKk
-         Lxkd/5sYlSqXLTLmZhUHwYkFMkVRARdE7y1+TEak+SGR6FFoKtv9K+lUS6GwX+YYq/+d
-         cpqloNGlZfpIKIgnaIOtr8RUYnXqz/Iqj4AcOZsVpsUoManIh5EFs4O0Qrd/PpXV0hmZ
-         oxLQ==
-X-Gm-Message-State: AOAM531XCNhteb4YYJcor/cFqqdz14B69qlU4iuFCL1CYuICdxR44a65
-        GDFlUUX9PZ0HLszmCSRMfKAdViKeBpTddLdWkew=
-X-Google-Smtp-Source: ABdhPJzmsZbtPLGMDE8abkGL67qshcCRsrCvWjydCFpLPxRm+xdk0CP25dgcOAyWUA2vk4x3GcjPY07QTOesPV9Szd0=
-X-Received: by 2002:aa7:c595:0:b0:42a:b571:2726 with SMTP id
- g21-20020aa7c595000000b0042ab5712726mr36977128edq.48.1653510960730; Wed, 25
- May 2022 13:36:00 -0700 (PDT)
+        with ESMTP id S230343AbiEYUxz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 16:53:55 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2848390CC8;
+        Wed, 25 May 2022 13:53:54 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: nfraprado)
+        with ESMTPSA id 841561F4268A
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1653512032;
+        bh=JayclhC6KF2KjXxwe9UBTJau5WIH16YxRj272sxRyX8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ECuo2A5BML0Z5RO9YZdLhFbyvNvnUVwNVOyHg+CvMtoF/sCu8w2tvmgQSxaMXYNq6
+         ZGz/CqMZ7nR48ovPBo2M6Tios2gZJ+M1ey3WbNkCLGyhidE7jpFTNMKY5MuY+eFXRD
+         mjyK9h4+UAm0Mmo5ki9DLv8EjE48UjMr6y8Nx2Sn7dKGt/BFFny9xpciqkcIZQFOLd
+         /uqm/Y/LSF9Zt0ju9E6yTlgWBdZYPA+Q8X8CdD2wSHdR0C6TLD3L7eXrAhNMt+tdie
+         JFL0AEJYHcpu75Fadb+8WGX7WaY3YRCHrF7HFJ86OPYdlG1hKhF6ZNwHIvkVq/yWk3
+         fMz/Lp2SS8m6Q==
+Date:   Wed, 25 May 2022 16:53:46 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     kernel@collabora.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shane Chien <shane.chien@mediatek.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v2] ASoC: dt-bindings: mediatek: mt8192: Add i2s-share
+ properties
+Message-ID: <20220525205346.6ik67nduv3zexl4p@notapiano>
+References: <20220509205847.607076-1-nfraprado@collabora.com>
 MIME-Version: 1.0
-Received: by 2002:ab4:a26b:0:0:0:0:0 with HTTP; Wed, 25 May 2022 13:36:00
- -0700 (PDT)
-From:   Luisa Donstin <luisadonstin@gmail.com>
-Date:   Wed, 25 May 2022 22:36:00 +0200
-Message-ID: <CA+QBM2rD3kH4yrPR=7NDn6oOHWY3UXcBtmoX6c803bGhfORQ8w@mail.gmail.com>
-Subject: Bitte kontaktaufnahme Erforderlich !!! Please Contact Required !!!
-To:     contact@firstdiamondbk.com
-Cc:     info@firstdiamondbk.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=0.6 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220509205847.607076-1-nfraprado@collabora.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Guten Tag,
+On Mon, May 09, 2022 at 04:58:47PM -0400, Nícolas F. R. A. Prado wrote:
+> The Mediatek AFE PCM controller for MT8192 allows two I2S interfaces to
+> share the same clock and act as a single interface with both input and
+> output. Add patterns for these properties in the dt-binding. The
+> property is split into two patterns in order to allow all valid
+> interface pairings.
+> 
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> 
+> ---
+> The series from v1 of this patch was merged although some changes were
+> still needed in this patch, so the v1 of this patch was reverted [1] and
+> this standalone commit addresses the feedback from v1 and readds the
+> property.
+> 
+> [1] https://lore.kernel.org/all/20220509185625.580811-1-nfraprado@collabora.com
+> 
+> v1: https://lore.kernel.org/all/20220429203039.2207848-2-nfraprado@collabora.com/
+> 
+> Changes in v2:
+> - Added "mediatek," prefix to property
+> - Rewrote and added more information to property description
+> - Split into two patterns to validate that output-input pairings are
+>   done
+> 
+>  .../bindings/sound/mt8192-afe-pcm.yaml           | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 
-Ich habe mich nur gefragt, ob Sie meine vorherige E-Mail bekommen
+Gentle ping on this one. Any feedback for v2?
 
-haben ?
-
-Ich habe versucht, Sie per E-Mail zu erreichen.
-
-Kommen Sie bitte schnell zu mir zur=C3=BCck, es ist sehr wichtig.
-
-Danke
-
-Luisa Donstin
-
-luisadonstin@gmail.com
-
-
-
-
-
-
-
-
-
-----------------------------------
-
-
-
-
-Good Afternoon,
-
-I was just wondering if you got my Previous E-mail
-have ?
-
-I tried to reach you by E-mail.
-
-Please come back to me quickly, it is very Important.
-
-Thanks
-
-Luisa Donstin
-
-luisadonstin@gmail.com
+Thanks,
+Nícolas
