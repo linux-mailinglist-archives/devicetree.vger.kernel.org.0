@@ -2,43 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CF1C5334BC
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 03:32:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB1445334D7
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 03:43:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243239AbiEYBco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 21:32:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55440 "EHLO
+        id S243331AbiEYBnV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 21:43:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243233AbiEYBcm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 21:32:42 -0400
-Received: from mo-csw.securemx.jp (mo-csw1515.securemx.jp [210.130.202.154])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E4C957B23;
-        Tue, 24 May 2022 18:32:40 -0700 (PDT)
-Received: by mo-csw.securemx.jp (mx-mo-csw1515) id 24P1W7TH006843; Wed, 25 May 2022 10:32:07 +0900
-X-Iguazu-Qid: 34trSfAbwEbMEl4JJC
-X-Iguazu-QSIG: v=2; s=0; t=1653442327; q=34trSfAbwEbMEl4JJC; m=Qsis1jZV/htQxCw0i55V7ARuLBOxVBW6EAOFcn4Oy/w=
-Received: from imx12-a.toshiba.co.jp (imx12-a.toshiba.co.jp [61.202.160.135])
-        by relay.securemx.jp (mx-mr1511) id 24P1W6AE039192
-        (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
-        Wed, 25 May 2022 10:32:06 +0900
-From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-To:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     yuji2.ishikawa@toshiba.co.jp, devicetree@vger.kernel.org,
+        with ESMTP id S242665AbiEYBnU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 21:43:20 -0400
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A02759968
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 18:43:18 -0700 (PDT)
+Received: by mail-pj1-x1034.google.com with SMTP id m14-20020a17090a414e00b001df77d29587so401675pjg.2
+        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 18:43:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=npLd/1Lsi6JSNLQFgzu2xb0z5npMHCtgiyGSryOfZ7c=;
+        b=CozoGz0XGdL/mwvq821vh9q5hpnpK3zkv9TCBQWm5RetnP/rWWpkJZktWgotaMOhh6
+         lvoR2rQ20CBHIVaSiskfG3GfGlos65goV2wvbcCZsci9umzFCqjCT1DMjeOScmMp/hqq
+         atPt+lPnH21SZsbFXnEdYkDGDezTI+sZT6iKE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=npLd/1Lsi6JSNLQFgzu2xb0z5npMHCtgiyGSryOfZ7c=;
+        b=UAajeqyWniZV7X4Kyt/wKaPA/BOLQXT6MgkB4nMaeu+dwEbrdeABmmlZBphucbuxlH
+         9SOqPZCdb7T4y5ZYxnGYdxNoGxi9jKKO0l2FnKkV/sD3JRikGOZ56+u93YvwcL9Mdt/V
+         6DLKm+3RG1uh7dGT2yUbeMMnNjilgaqkE/0fnBXZ03Zy2XNBvVgzhXmFEmNAijuueoZl
+         IhSK8Y+NGeqtX6qjbYm6XQiMDlbq3Wo2lfQMQ7P6LEOvZpgJXI1b+bE92dmFVCBJMl9h
+         eaXFB5cZ/iA1aAB+YexuZCoCb5lNQ4t4hXWK35VfpFRFODZwrVgk2TcBiV6fjjLnXQmv
+         08WQ==
+X-Gm-Message-State: AOAM533VwZ/PIwU6A2Be/jJFGblGA6ZhBBOMDovI2eSZcSxae2nX2r37
+        m668h+jIQMXelwfzywNk9YmfRQ==
+X-Google-Smtp-Source: ABdhPJzgjy+dhROTUTjm6cU//L1D1t41Msk0mQDiVDwBvGZZIjwh6k3hHGXKOQKh8Wuf4Soy6f5yLw==
+X-Received: by 2002:a17:902:c2d8:b0:15e:fa17:56cc with SMTP id c24-20020a170902c2d800b0015efa1756ccmr30070131pla.40.1653442997893;
+        Tue, 24 May 2022 18:43:17 -0700 (PDT)
+Received: from judyhsiao0319.c.googlers.com.com (164.135.233.35.bc.googleusercontent.com. [35.233.135.164])
+        by smtp.gmail.com with ESMTPSA id n11-20020a1709026a8b00b0015e8d4eb2bcsm7877317plk.262.2022.05.24.18.43.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 May 2022 18:43:17 -0700 (PDT)
+From:   Judy Hsiao <judyhsiao@chromium.org>
+To:     Andy Gross <agross@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        dianders@chromium.org, mka@chromium.org, cychiang@google.com,
+        judyhsiao@google.com, tzungbi@chromium.org, swboyd@chromium.org,
         linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Subject: [PATCH 3/3] MAINTAINERS: Add entries for Toshiba Visconti5 IOMMU
-Date:   Wed, 25 May 2022 10:31:47 +0900
-X-TSB-HOP2: ON
-Message-Id: <20220525013147.2215355-4-nobuhiro1.iwamatsu@toshiba.co.jp>
-X-Mailer: git-send-email 2.36.0
-In-Reply-To: <20220525013147.2215355-1-nobuhiro1.iwamatsu@toshiba.co.jp>
-References: <20220525013147.2215355-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Judy Hsiao <judyhsiao@chromium.org>
+Subject: [v3 0/3] Add dtsi for sc7280 herobrine boards that using rt5682 codec
+Date:   Wed, 25 May 2022 01:43:05 +0000
+Message-Id: <20220525014308.1853576-1-judyhsiao@chromium.org>
+X-Mailer: git-send-email 2.36.1.124.g0e6072fb45-goog
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -46,34 +70,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add entries for Toshiba Visconti5 IOMMU (ATU) binding and driver.
+Put sound node and lpass_cpu node settings for boards that use rt5682
+codec in the sc7280-herobrine-audio-rt5682.dtsi as there are different
+choices of headset codec for herobrine projects. Common audio setting
+for the internal speaker is in sc7280-herobrine.dtsi.
 
-Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+This series depends on:
+"Add lpass pin control support for audio on sc7280 based targets" [1]
+"Add soundcard support for sc7280 based platforms" [2]
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1f4f4ba84c2e..a43023844c87 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2897,6 +2897,7 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/iwamatsu/linux-visconti.git
- F:	Documentation/devicetree/bindings/arm/toshiba.yaml
- F:	Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pipllct.yaml
- F:	Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pismu.yaml
-+F:	Documentation/devicetree/bindings/iommu/toshiba,visconti-atu.yaml
- F:	Documentation/devicetree/bindings/net/toshiba,visconti-dwmac.yaml
- F:	Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
- F:	Documentation/devicetree/bindings/pci/toshiba,visconti-pcie.yaml
-@@ -2904,6 +2905,7 @@ F:	Documentation/devicetree/bindings/pinctrl/toshiba,visconti-pinctrl.yaml
- F:	Documentation/devicetree/bindings/watchdog/toshiba,visconti-wdt.yaml
- F:	arch/arm64/boot/dts/toshiba/
- F:	drivers/clk/visconti/
-+F:	drivers/iommu/visconti-atu.c
- F:	drivers/net/ethernet/stmicro/stmmac/dwmac-visconti.c
- F:	drivers/gpio/gpio-visconti.c
- F:	drivers/pci/controller/dwc/pcie-visconti.c
+[1]
+https://patchwork.kernel.org/project/linux-arm-msm/list/?series=638776
+[2]
+https://patchwork.kernel.org/project/linux-arm-msm/list/?series=643589
+
+
+Changes Since V2:
+    -- Add bias-disable for i2s ws line.
+    -- Fix typo in the commit message.
+
+Changes Since V1:
+    -- Remove sound-dai-cells in sound node.
+    -- Add dependency list.
+    -- Update patch subject.
+
+Judy Hsiao (3):
+  arm64: dts: qcom: sc7280: herobrine: Add pinconf settings for mi2s1
+  arm64: dts: qcom: sc7280: Add sc7280-herobrine-audio-rt5682.dtsi
+  arm64: dts: qcom: sc7280: include sc7280-herobrine-audio-rt5682.dtsi
+    in villager and herobrine-r1
+
+ .../qcom/sc7280-herobrine-audio-rt5682.dtsi   | 121 ++++++++++++++++++
+ .../qcom/sc7280-herobrine-herobrine-r1.dts    |   1 +
+ .../dts/qcom/sc7280-herobrine-villager-r0.dts |   1 +
+ .../arm64/boot/dts/qcom/sc7280-herobrine.dtsi |  15 +++
+ 4 files changed, 138 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
+
 -- 
-2.36.0
-
+2.36.1.124.g0e6072fb45-goog
 
