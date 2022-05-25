@@ -2,426 +2,593 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA344533A02
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 11:37:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAA11533A10
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 11:40:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236725AbiEYJhI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 05:37:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45340 "EHLO
+        id S229620AbiEYJkf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 05:40:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238145AbiEYJhD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 05:37:03 -0400
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B884A45D;
-        Wed, 25 May 2022 02:36:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1653471413; x=1685007413;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=atA+t4suhXgFuNJREMrpllGc91gbbjodM87F/9TfOsE=;
-  b=nOXJTFDmkBlzSZO7RMfqfwne1KB8tZoYGZQSGDTUIyfz+o6wnG1aEDpL
-   wnEk2vzbC33QJAgqHLO/sziyePyUIHuVByJwvKoBc7Iuy6hstZhKbNVa0
-   9EKWub2D2TiGiQQqwi6B4CPaZSfOUPiRKHc6OjIhpBuE7FLmQqGHDHvvA
-   aZKJvVMYGvRp0goLsasSbrm/hoYRM67OHPM1bKSgbMzzyE4bpdkB6Xvue
-   IQkKQgJLH5ZK4kKmfaSdyrzNlpdk5y+vsgsDTKCt/6qz8at/ieWne2xlu
-   2PExfYil5dNA7poNC/7Nqs07hqH7bKR245Z6jqGQh6vV4L17HXaYKEyjF
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10357"; a="336821050"
-X-IronPort-AV: E=Sophos;i="5.91,250,1647327600"; 
-   d="scan'208";a="336821050"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 May 2022 02:36:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,250,1647327600"; 
-   d="scan'208";a="609047945"
-Received: from lkp-server01.sh.intel.com (HELO db63a1be7222) ([10.239.97.150])
-  by orsmga001.jf.intel.com with ESMTP; 25 May 2022 02:36:49 -0700
-Received: from kbuild by db63a1be7222 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1ntnRh-0002vC-7K;
-        Wed, 25 May 2022 09:36:49 +0000
-Date:   Wed, 25 May 2022 17:36:36 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     kbuild-all@lists.01.org, yuji2.ishikawa@toshiba.co.jp,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Subject: Re: [PATCH 1/3] iommu: Add Visconti5 IOMMU driver
-Message-ID: <202205251708.q7cwjpF8-lkp@intel.com>
-References: <20220525013147.2215355-2-nobuhiro1.iwamatsu@toshiba.co.jp>
+        with ESMTP id S234941AbiEYJkd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 05:40:33 -0400
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2096.outbound.protection.outlook.com [40.107.93.96])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ADB9140A1;
+        Wed, 25 May 2022 02:40:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LE0KqgHIcxsaldvqfX6kPbeKUSvaOdeaOZl5G+k2pHri2WLHp4Gs33PlcHgYnOMvMeAJZ/UDH+FuwMNcYr3s8e33mggbaSs3z62Wxk9fsastGPzrfuj6dwawv7a01CgKu8iDjweUGconF78Cej4IqcGEngaXPyTL82stmcpQG2mrZawzWMqZDFdIfGqOFBgLnJtJr8ODMtqcPJLIVJiDgVTBB7jWUzX6NjcV19A74nPVbiqKUg+YPYJ2DYwPXlve6SioGTCLn5WUoTE3PdrzB1/wVIauwMiR91RkmQ//VIiexnOKkYM7y9WW4yAjpXcbO+b94af4R4MtMZA6xBX4lg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LWbXtrHBmIW+THQuRivBCVeR21zlf+u8BqJMAFTfPTQ=;
+ b=S2oRtkSvSNXNSABmqKDSBbJFLfkBlPiAcceV1h6RdGgX6pZAF8iIh3TlqY2rFfkugWCkKHfMQaiwFEFTVfzsEtiKSKcMlwD7/l8I1oVwWD7pFckdekkl63qhMOzIdTkc5zeAQr4CyG3QjTxGZrPeT4klZfiPMatS28m9/XOuUccBROrTLWqHYta5cAGZLeDsPL5oTUTLxd+3xcuDGgXuFy0qDR5Ozu4V3kny2HO/r8t/Dx5zBUk2v09jxdXhnf1JBQ+Y5tRf1gvW4A81JQhh1W2fnWcyhyqHx21RGKYhk5cBgs/CskItK5GGq2GBYE1QiLYZCZnTbTlmcLglhC5byw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 8.14.198.161) smtp.rcpttodomain=kernel.org smtp.mailfrom=jabil.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=jabil.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jabil.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LWbXtrHBmIW+THQuRivBCVeR21zlf+u8BqJMAFTfPTQ=;
+ b=ZHibJcuzHO7CMMDxehzUJ2TfWvZOogwH0KsRtwkdBKYNmSXFev24cpb45zKFjNGIilFSPEdED9BeT5UNYWi5eHFGGMNnrmbgLP7RoAkYVsfpumlf0OMj7qL0ohm1covft1ISZtX2qudN6GtBzV76t4DBoUlkHEFop14LfM2jr4l3ebHhewj7POclBOPkAhuM9ANVsb6aYmVv/+RjVRCXSArdGfVDh3I+wPPtEUCbVvONcjucQRzCZfNpyLgFlICaWWHUP5qz4l10Jk3aZXHQm0S8vmo5xoZGG+RpBVio1qrgT8Mdyz8glrZ3fgtCeDKp+QRQXo2tsxb+j0xJ/xC+TA==
+Received: from MWHPR13CA0033.namprd13.prod.outlook.com (2603:10b6:300:95::19)
+ by MN2PR02MB6464.namprd02.prod.outlook.com (2603:10b6:208:184::29) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.13; Wed, 25 May
+ 2022 09:40:30 +0000
+Received: from CO1NAM11FT021.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:300:95:cafe::eb) by MWHPR13CA0033.outlook.office365.com
+ (2603:10b6:300:95::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.8 via Frontend
+ Transport; Wed, 25 May 2022 09:40:29 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 8.14.198.161)
+ smtp.mailfrom=jabil.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=jabil.com;
+Received-SPF: Pass (protection.outlook.com: domain of jabil.com designates
+ 8.14.198.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=8.14.198.161; helo=jabil.com; pr=C
+Received: from jabil.com (8.14.198.161) by
+ CO1NAM11FT021.mail.protection.outlook.com (10.13.175.51) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5293.13 via Frontend Transport; Wed, 25 May 2022 09:40:29 +0000
+Received: from usplnd0hub02.corp.jabil.org (10.10.47.157) by
+ USPLND0HUB02.corp.JABIL.ORG (10.10.47.157) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Wed, 25 May 2022 04:39:31 -0500
+Received: from JDSBuild.corp.JABIL.ORG (10.10.7.5) by
+ usplnd0hub02.corp.jabil.org (10.10.47.157) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Wed, 25 May 2022 04:39:30 -0500
+From:   David Wang <David_Wang6097@jabil.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <edward_chen@jabil.com>, <ben_pai@jabil.com>,
+        David Wang <David_Wang6097@jabil.com>
+Subject: [PATCH v3] ARM: dts: aspeed: Adding Jabil Rubypass BMC
+Date:   Wed, 25 May 2022 17:39:27 +0800
+Message-ID: <20220525093927.368131-1-David_Wang6097@jabil.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220525013147.2215355-2-nobuhiro1.iwamatsu@toshiba.co.jp>
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 608edfe3-94e3-488e-1044-08da3e329ae0
+X-MS-TrafficTypeDiagnostic: MN2PR02MB6464:EE_
+X-Microsoft-Antispam-PRVS: <MN2PR02MB6464F80DD4A4CB435BD41234EFD69@MN2PR02MB6464.namprd02.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: jOWN3hi3vNV5AwoFMvDcARM6LN3ANZnM5HGpCTItArgQAYh8q3B9pJucT4OFLj8BJ3zEm13eBZVrNfHpS4JRI+ObvdX/Au2KH94O3PNBirMHI6PXYGdRMpIdCOGBR7uYVMthnm0NiSm8X43i9L3UcbddIxFgh7FmOE7qJm2EhE0PdJeMgLa7qhIt6fVoXa77uTaUI8JtpXrWJfcV8ZUpubsJCmXltDfGll35jzXZU2nWnwIAIPtxkdg2tiDyRg5uF2V4Qhak8Q5nY46jZVJR9RKaOmfi+Qdelj8ntKRuilg2pbEmFu5NnKM2Ge+ReO3p97vzkx+i5jFdwW+VwN6/N86EiaRef7IbsJhi9SbPe1Xzgjp7zkYHloABDjylB93or1T8zEuxc5mJDtvyaFK+VyXn3nRXE23AdaiCE77uwxKxf37YDBO7UKq1YVvGxXYkAlNl8/kMlrn5nGggOAJtJKspo4w9sz9MFNyxDPHfCutPO042waVOl5i8fAbOjVDZkYpDBHeqkm3HeGucBs7BlPj+5v2SLpMyfxaiE1Dls2oANz8/KNibxlMdaHk0jwLCZK5GxxaWgtBTpym4Om8BOYLQbXPwHwO47fRjdqJW0+9h7qy2lScrsae3EviKeihZzWiFDvCuaERN0uLDQnUp29py3QuVK0gCh0FJ7cVjbhyt2qBkpjVwQ/TT5zGZx2lUF/27XSBau1HfRttdrpXwCg==
+X-Forefront-Antispam-Report: CIP:8.14.198.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:jabil.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(86362001)(508600001)(6666004)(2616005)(36756003)(26005)(83380400001)(4326008)(8676002)(70586007)(82310400005)(36860700001)(316002)(45080400002)(81166007)(82960400001)(110136005)(54906003)(356005)(2906002)(30864003)(186003)(47076005)(8936002)(336012)(1076003)(5660300002)(107886003)(70206006)(40460700003)(36900700001);DIR:OUT;SFP:1102;
+X-OriginatorOrg: jabil.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2022 09:40:29.2915
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 608edfe3-94e3-488e-1044-08da3e329ae0
+X-MS-Exchange-CrossTenant-Id: bc876b21-f134-4c12-a265-8ed26b7f0f3b
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bc876b21-f134-4c12-a265-8ed26b7f0f3b;Ip=[8.14.198.161];Helo=[jabil.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT021.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR02MB6464
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,WEIRD_QUOTING autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nobuhiro,
+The initial introduction of the jabil server with AST2600 BMC SoC.
 
-I love your patch! Yet something to improve:
+---
 
-[auto build test ERROR on joro-iommu/next]
-[also build test ERROR on arm-perf/for-next/perf soc/for-next linus/master v5.18 next-20220524]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+v3
+- Adjustment entries are ordered by name.
+- Remove the bootargs property and modify the stdout-path property.
+- Group multiple LED devices into a group.
+- Modify the "gpio3_71" node name format.
+- Delete unneeded blank line at the end.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Nobuhiro-Iwamatsu/Add-Visconti5-IOMMU-driver/20220525-093326
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/joro/iommu.git next
-config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20220525/202205251708.q7cwjpF8-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 11.3.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/69bb4f3c2ef0bb1f65922bc72bb31109897a6393
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Nobuhiro-Iwamatsu/Add-Visconti5-IOMMU-driver/20220525-093326
-        git checkout 69bb4f3c2ef0bb1f65922bc72bb31109897a6393
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=alpha SHELL=/bin/bash
+v2
+- Disable empty i2c bus.
+- Remove gfx node because aspeed-g6.dtsi isn't supported.
+- Modify the led format and add some properties.
+- Fix wrong indentation.
+- Add stdout property in chosen node.
+- Rename temp to temperature-sensor in i2c bus 0.
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+---
 
-Note: the linux-review/Nobuhiro-Iwamatsu/Add-Visconti5-IOMMU-driver/20220525-093326 HEAD 07739c72b066c0781c371eec7614ed876441e8dd builds fine.
-      It only hurts bisectability.
+Signed-off-by: David Wang <David_Wang6097@jabil.com>
+---
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../boot/dts/aspeed-bmc-jabil-rubypass.dts    | 442 ++++++++++++++++++
+ 2 files changed, 443 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed-bmc-jabil-rubypass.dts
 
-All errors (new ones prefixed by >>):
-
->> drivers/iommu/visconti-atu.c:47:29: error: field 'iommu' has incomplete type
-      47 |         struct iommu_device iommu;
-         |                             ^~~~~
->> drivers/iommu/visconti-atu.c:62:29: error: field 'io_domain' has incomplete type
-      62 |         struct iommu_domain io_domain;
-         |                             ^~~~~~~~~
-   In file included from include/linux/bits.h:22,
-                    from include/linux/ratelimit_types.h:5,
-                    from include/linux/ratelimit.h:5,
-                    from include/linux/dev_printk.h:16,
-                    from include/linux/device.h:15,
-                    from include/linux/dma-mapping.h:7,
-                    from drivers/iommu/visconti-atu.c:12:
-   drivers/iommu/visconti-atu.c: In function 'to_atu_domain':
-   include/linux/compiler_types.h:293:27: error: expression in static assertion is not an integer
-     293 | #define __same_type(a, b) __builtin_types_compatible_p(typeof(a), typeof(b))
-         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/build_bug.h:78:56: note: in definition of macro '__static_assert'
-      78 | #define __static_assert(expr, msg, ...) _Static_assert(expr, msg)
-         |                                                        ^~~~
-   include/linux/container_of.h:19:9: note: in expansion of macro 'static_assert'
-      19 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
-         |         ^~~~~~~~~~~~~
-   include/linux/container_of.h:19:23: note: in expansion of macro '__same_type'
-      19 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
-         |                       ^~~~~~~~~~~
-   drivers/iommu/visconti-atu.c:70:16: note: in expansion of macro 'container_of'
-      70 |         return container_of(domain, struct visconti_atu_domain, io_domain);
-         |                ^~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c: In function 'visconti_atu_attach_device':
->> drivers/iommu/visconti-atu.c:121:43: error: implicit declaration of function 'dev_iommu_priv_get' [-Werror=implicit-function-declaration]
-     121 |         struct visconti_atu_device *atu = dev_iommu_priv_get(dev);
-         |                                           ^~~~~~~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c:121:43: warning: initialization of 'struct visconti_atu_device *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-   drivers/iommu/visconti-atu.c: In function 'visconti_atu_detach_device':
-   drivers/iommu/visconti-atu.c:150:43: warning: initialization of 'struct visconti_atu_device *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-     150 |         struct visconti_atu_device *atu = dev_iommu_priv_get(dev);
-         |                                           ^~~~~~~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c: At top level:
-   drivers/iommu/visconti-atu.c:196:41: warning: 'struct iommu_iotlb_gather' declared inside parameter list will not be visible outside of this definition or declaration
-     196 |                                  struct iommu_iotlb_gather *iotlb_gather)
-         |                                         ^~~~~~~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c: In function 'visconti_atu_of_xlate':
->> drivers/iommu/visconti-atu.c:262:17: error: implicit declaration of function 'dev_iommu_priv_set' [-Werror=implicit-function-declaration]
-     262 |                 dev_iommu_priv_set(dev, platform_get_drvdata(pdev));
-         |                 ^~~~~~~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c: In function 'visconti_atu_domain_alloc':
->> drivers/iommu/visconti-atu.c:273:21: error: 'IOMMU_DOMAIN_UNMANAGED' undeclared (first use in this function)
-     273 |         if (type != IOMMU_DOMAIN_UNMANAGED && type != IOMMU_DOMAIN_DMA)
-         |                     ^~~~~~~~~~~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c:273:21: note: each undeclared identifier is reported only once for each function it appears in
->> drivers/iommu/visconti-atu.c:273:55: error: 'IOMMU_DOMAIN_DMA' undeclared (first use in this function)
-     273 |         if (type != IOMMU_DOMAIN_UNMANAGED && type != IOMMU_DOMAIN_DMA)
-         |                                                       ^~~~~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c: In function 'visconti_atu_probe_device':
->> drivers/iommu/visconti-atu.c:298:39: error: implicit declaration of function 'dev_iommu_fwspec_get' [-Werror=implicit-function-declaration]
-     298 |         struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
-         |                                       ^~~~~~~~~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c:298:39: warning: initialization of 'struct iommu_fwspec *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
->> drivers/iommu/visconti-atu.c:301:30: error: invalid use of undefined type 'struct iommu_fwspec'
-     301 |         if (!fwspec || fwspec->ops != &visconti_atu_ops)
-         |                              ^~
-   drivers/iommu/visconti-atu.c:304:13: warning: assignment to 'struct visconti_atu_device *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-     304 |         atu = dev_iommu_priv_get(dev);
-         |             ^
-   drivers/iommu/visconti-atu.c: In function 'visconti_atu_release_device':
-   drivers/iommu/visconti-atu.c:310:43: warning: initialization of 'struct visconti_atu_device *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-     310 |         struct visconti_atu_device *atu = dev_iommu_priv_get(dev);
-         |                                           ^~~~~~~~~~~~~~~~~~
->> drivers/iommu/visconti-atu.c:315:9: error: implicit declaration of function 'iommu_fwspec_free' [-Werror=implicit-function-declaration]
-     315 |         iommu_fwspec_free(dev);
-         |         ^~~~~~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c: At top level:
->> drivers/iommu/visconti-atu.c:318:21: error: variable 'visconti_atu_ops' has initializer but incomplete type
-     318 | static const struct iommu_ops visconti_atu_ops = {
-         |                     ^~~~~~~~~
->> drivers/iommu/visconti-atu.c:319:10: error: 'const struct iommu_ops' has no member named 'domain_alloc'
-     319 |         .domain_alloc = visconti_atu_domain_alloc,
-         |          ^~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c:319:25: warning: excess elements in struct initializer
-     319 |         .domain_alloc = visconti_atu_domain_alloc,
-         |                         ^~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c:319:25: note: (near initialization for 'visconti_atu_ops')
->> drivers/iommu/visconti-atu.c:320:10: error: 'const struct iommu_ops' has no member named 'probe_device'
-     320 |         .probe_device = visconti_atu_probe_device,
-         |          ^~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c:320:25: warning: excess elements in struct initializer
-     320 |         .probe_device = visconti_atu_probe_device,
-         |                         ^~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c:320:25: note: (near initialization for 'visconti_atu_ops')
->> drivers/iommu/visconti-atu.c:321:10: error: 'const struct iommu_ops' has no member named 'release_device'
-     321 |         .release_device = visconti_atu_release_device,
-         |          ^~~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c:321:27: warning: excess elements in struct initializer
-     321 |         .release_device = visconti_atu_release_device,
-         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c:321:27: note: (near initialization for 'visconti_atu_ops')
->> drivers/iommu/visconti-atu.c:322:10: error: 'const struct iommu_ops' has no member named 'device_group'
-     322 |         .device_group = generic_device_group,
-         |          ^~~~~~~~~~~~
->> drivers/iommu/visconti-atu.c:322:25: error: 'generic_device_group' undeclared here (not in a function)
-     322 |         .device_group = generic_device_group,
-         |                         ^~~~~~~~~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c:322:25: warning: excess elements in struct initializer
-   drivers/iommu/visconti-atu.c:322:25: note: (near initialization for 'visconti_atu_ops')
->> drivers/iommu/visconti-atu.c:323:10: error: 'const struct iommu_ops' has no member named 'of_xlate'
-     323 |         .of_xlate = visconti_atu_of_xlate,
-         |          ^~~~~~~~
-   drivers/iommu/visconti-atu.c:323:21: warning: excess elements in struct initializer
-     323 |         .of_xlate = visconti_atu_of_xlate,
-         |                     ^~~~~~~~~~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c:323:21: note: (near initialization for 'visconti_atu_ops')
->> drivers/iommu/visconti-atu.c:324:10: error: 'const struct iommu_ops' has no member named 'pgsize_bitmap'
-     324 |         .pgsize_bitmap = ATU_IOMMU_PGSIZE_BITMAP,
-         |          ^~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c:41:33: warning: excess elements in struct initializer
-      41 | #define ATU_IOMMU_PGSIZE_BITMAP 0x7ffff000 /* SZ_1G - SZ_4K */
-         |                                 ^~~~~~~~~~
-   drivers/iommu/visconti-atu.c:324:26: note: in expansion of macro 'ATU_IOMMU_PGSIZE_BITMAP'
-     324 |         .pgsize_bitmap = ATU_IOMMU_PGSIZE_BITMAP,
-         |                          ^~~~~~~~~~~~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c:41:33: note: (near initialization for 'visconti_atu_ops')
-      41 | #define ATU_IOMMU_PGSIZE_BITMAP 0x7ffff000 /* SZ_1G - SZ_4K */
-         |                                 ^~~~~~~~~~
-   drivers/iommu/visconti-atu.c:324:26: note: in expansion of macro 'ATU_IOMMU_PGSIZE_BITMAP'
-     324 |         .pgsize_bitmap = ATU_IOMMU_PGSIZE_BITMAP,
-         |                          ^~~~~~~~~~~~~~~~~~~~~~~
->> drivers/iommu/visconti-atu.c:325:10: error: 'const struct iommu_ops' has no member named 'default_domain_ops'
-     325 |         .default_domain_ops = &(const struct iommu_domain_ops) {
-         |          ^~~~~~~~~~~~~~~~~~
->> drivers/iommu/visconti-atu.c:326:18: error: 'const struct iommu_domain_ops' has no member named 'attach_dev'
-     326 |                 .attach_dev = visconti_atu_attach_device,
-         |                  ^~~~~~~~~~
-   drivers/iommu/visconti-atu.c:326:31: warning: excess elements in struct initializer
-     326 |                 .attach_dev = visconti_atu_attach_device,
-         |                               ^~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c:326:31: note: (near initialization for '(anonymous)')
->> drivers/iommu/visconti-atu.c:327:18: error: 'const struct iommu_domain_ops' has no member named 'detach_dev'
-     327 |                 .detach_dev = visconti_atu_detach_device,
-         |                  ^~~~~~~~~~
-   drivers/iommu/visconti-atu.c:327:31: warning: excess elements in struct initializer
-     327 |                 .detach_dev = visconti_atu_detach_device,
-         |                               ^~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c:327:31: note: (near initialization for '(anonymous)')
-   drivers/iommu/visconti-atu.c:328:18: error: 'const struct iommu_domain_ops' has no member named 'map'
-     328 |                 .map = visconti_atu_map,
-         |                  ^~~
-   drivers/iommu/visconti-atu.c:328:24: warning: excess elements in struct initializer
-     328 |                 .map = visconti_atu_map,
-         |                        ^~~~~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c:328:24: note: (near initialization for '(anonymous)')
-   drivers/iommu/visconti-atu.c:329:18: error: 'const struct iommu_domain_ops' has no member named 'unmap'
-     329 |                 .unmap = visconti_atu_unmap,
-         |                  ^~~~~
-   drivers/iommu/visconti-atu.c:329:26: warning: excess elements in struct initializer
-     329 |                 .unmap = visconti_atu_unmap,
-         |                          ^~~~~~~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c:329:26: note: (near initialization for '(anonymous)')
-   drivers/iommu/visconti-atu.c:330:18: error: 'const struct iommu_domain_ops' has no member named 'iova_to_phys'
-     330 |                 .iova_to_phys = visconti_atu_iova_to_phys,
-         |                  ^~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c:330:33: warning: excess elements in struct initializer
-     330 |                 .iova_to_phys = visconti_atu_iova_to_phys,
-         |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c:330:33: note: (near initialization for '(anonymous)')
-   drivers/iommu/visconti-atu.c:331:18: error: 'const struct iommu_domain_ops' has no member named 'free'
-     331 |                 .free = visconti_atu_domain_free,
-         |                  ^~~~
-   drivers/iommu/visconti-atu.c:331:25: warning: excess elements in struct initializer
-     331 |                 .free = visconti_atu_domain_free,
-         |                         ^~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c:331:25: note: (near initialization for '(anonymous)')
-   drivers/iommu/visconti-atu.c:325:64: error: invalid use of undefined type 'const struct iommu_domain_ops'
-     325 |         .default_domain_ops = &(const struct iommu_domain_ops) {
-         |                                                                ^
-   drivers/iommu/visconti-atu.c:325:31: warning: excess elements in struct initializer
-     325 |         .default_domain_ops = &(const struct iommu_domain_ops) {
-         |                               ^
-   drivers/iommu/visconti-atu.c:325:31: note: (near initialization for 'visconti_atu_ops')
-   drivers/iommu/visconti-atu.c: In function 'visconti_atu_probe':
-   drivers/iommu/visconti-atu.c:366:22: error: implicit declaration of function 'iommu_group_alloc' [-Werror=implicit-function-declaration]
-     366 |         atu->group = iommu_group_alloc();
-         |                      ^~~~~~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c:366:20: warning: assignment to 'struct iommu_group *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-     366 |         atu->group = iommu_group_alloc();
-         |                    ^
-   drivers/iommu/visconti-atu.c:380:15: error: implicit declaration of function 'iommu_device_sysfs_add' [-Werror=implicit-function-declaration]
-     380 |         ret = iommu_device_sysfs_add(&atu->iommu, dev, NULL, dev_name(dev));
-         |               ^~~~~~~~~~~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c:384:15: error: implicit declaration of function 'iommu_device_register'; did you mean 'of_device_register'? [-Werror=implicit-function-declaration]
-     384 |         ret = iommu_device_register(&atu->iommu, &visconti_atu_ops, dev);
-         |               ^~~~~~~~~~~~~~~~~~~~~
-         |               of_device_register
-   drivers/iommu/visconti-atu.c:388:14: error: implicit declaration of function 'iommu_present'; did you mean 'pmd_present'? [-Werror=implicit-function-declaration]
-     388 |         if (!iommu_present(&platform_bus_type))
-         |              ^~~~~~~~~~~~~
-         |              pmd_present
-   drivers/iommu/visconti-atu.c:389:17: error: implicit declaration of function 'bus_set_iommu' [-Werror=implicit-function-declaration]
-     389 |                 bus_set_iommu(&platform_bus_type, &visconti_atu_ops);
-         |                 ^~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c:395:9: error: implicit declaration of function 'iommu_device_sysfs_remove' [-Werror=implicit-function-declaration]
-     395 |         iommu_device_sysfs_remove(&atu->iommu);
-         |         ^~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c: In function 'visconti_atu_remove':
-   drivers/iommu/visconti-atu.c:405:9: error: implicit declaration of function 'iommu_device_unregister'; did you mean 'of_device_unregister'? [-Werror=implicit-function-declaration]
-     405 |         iommu_device_unregister(&atu->iommu);
-         |         ^~~~~~~~~~~~~~~~~~~~~~~
-         |         of_device_unregister
-   drivers/iommu/visconti-atu.c: At top level:
-   drivers/iommu/visconti-atu.c:318:31: error: storage size of 'visconti_atu_ops' isn't known
-     318 | static const struct iommu_ops visconti_atu_ops = {
-         |                               ^~~~~~~~~~~~~~~~
-   drivers/iommu/visconti-atu.c:318:31: error: storage size of 'visconti_atu_ops' isn't known
-   cc1: some warnings being treated as errors
-
-
-vim +/iommu +47 drivers/iommu/visconti-atu.c
-
-    43	
-    44	struct visconti_atu_device {
-    45		struct device *dev;
-    46		void __iomem *base;
-  > 47		struct iommu_device iommu;
-    48		struct iommu_group *group;
-    49	
-    50		unsigned int num_entry;
-    51		unsigned int num_map_entry;
-    52		unsigned int enable_entry;
-    53		unsigned long iova[ATU_MAX_IOMMU_ENTRY];
-    54		phys_addr_t paddr[ATU_MAX_IOMMU_ENTRY];
-    55		size_t size[ATU_MAX_IOMMU_ENTRY];
-    56	
-    57		spinlock_t lock;
-    58	};
-    59	
-    60	struct visconti_atu_domain {
-    61		struct visconti_atu_device *atu;
-  > 62		struct iommu_domain io_domain;
-    63		struct mutex mutex;
-    64	};
-    65	
-    66	static const struct iommu_ops visconti_atu_ops;
-    67	
-    68	static struct visconti_atu_domain *to_atu_domain(struct iommu_domain *domain)
-    69	{
-    70		return container_of(domain, struct visconti_atu_domain, io_domain);
-    71	}
-    72	
-    73	static inline void visconti_atu_write(struct visconti_atu_device *atu, u32 reg,
-    74					      u32 val)
-    75	{
-    76		writel_relaxed(val, atu->base + reg);
-    77	}
-    78	
-    79	static inline u32 visconti_atu_read(struct visconti_atu_device *atu, u32 reg)
-    80	{
-    81		return readl_relaxed(atu->base + reg);
-    82	}
-    83	
-    84	static void visconti_atu_enable_entry(struct visconti_atu_device *atu,
-    85					      int num)
-    86	{
-    87		dev_dbg(atu->dev, "enable ATU: %d\n", atu->enable_entry);
-    88	
-    89		visconti_atu_write(atu, ATU_AT_EN, 0);
-    90		if (atu->enable_entry & BIT(num)) {
-    91			visconti_atu_write(atu,
-    92					   ATU_AT_REG(num, ATU_AT_BLADDR),
-    93					   atu->iova[num]);
-    94			visconti_atu_write(atu,
-    95					   ATU_AT_REG(num, ATU_AT_ELADDR),
-    96					   atu->iova[num] + atu->size[num] - 1);
-    97			visconti_atu_write(atu,
-    98					   ATU_AT_REG(num, ATU_AT_BGADDR0),
-    99					   atu->iova[num] & ATU_BGADDR_MASK);
-   100			visconti_atu_write(atu,
-   101					   ATU_AT_REG(num, ATU_AT_BGADDR1),
-   102					   (atu->iova[num] >> 32) & ATU_BGADDR_MASK);
-   103		}
-   104		visconti_atu_write(atu, ATU_AT_ENTRY_EN, atu->enable_entry);
-   105		visconti_atu_write(atu, ATU_AT_EN, 1);
-   106	}
-   107	
-   108	static void visconti_atu_disable_entry(struct visconti_atu_device *atu)
-   109	{
-   110		dev_dbg(atu->dev, "disable ATU: %d\n", atu->enable_entry);
-   111	
-   112		visconti_atu_write(atu, ATU_AT_EN, 0);
-   113		visconti_atu_write(atu, ATU_AT_ENTRY_EN, atu->enable_entry);
-   114		visconti_atu_write(atu, ATU_AT_EN, 1);
-   115	}
-   116	
-   117	static int visconti_atu_attach_device(struct iommu_domain *io_domain,
-   118					      struct device *dev)
-   119	{
-   120		struct visconti_atu_domain *domain = to_atu_domain(io_domain);
- > 121		struct visconti_atu_device *atu = dev_iommu_priv_get(dev);
-   122		int ret = 0;
-   123	
-   124		if (!atu) {
-   125			dev_err(dev, "Cannot attach to ATU\n");
-   126			return -ENXIO;
-   127		}
-   128	
-   129		mutex_lock(&domain->mutex);
-   130	
-   131		if (!domain->atu) {
-   132			domain->atu = atu;
-   133		} else if (domain->atu != atu) {
-   134			dev_err(dev, "Can't attach ATU %s to domain on ATU %s\n",
-   135				dev_name(atu->dev), dev_name(domain->atu->dev));
-   136			ret = -EINVAL;
-   137		} else {
-   138			dev_warn(dev, "Reusing ATU context\n");
-   139		}
-   140	
-   141		mutex_unlock(&domain->mutex);
-   142	
-   143		return ret;
-   144	}
-   145	
-
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index 7c16f8a2b738..5339e9339ce4 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -1543,6 +1543,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+ 	aspeed-bmc-intel-s2600wf.dtb \
+ 	aspeed-bmc-inspur-fp5280g2.dtb \
+ 	aspeed-bmc-inspur-nf5280m6.dtb \
++	aspeed-bmc-jabil-rubypass.dtb \
+ 	aspeed-bmc-lenovo-hr630.dtb \
+ 	aspeed-bmc-lenovo-hr855xg2.dtb \
+ 	aspeed-bmc-microsoft-olympus.dtb \
+diff --git a/arch/arm/boot/dts/aspeed-bmc-jabil-rubypass.dts b/arch/arm/boot/dts/aspeed-bmc-jabil-rubypass.dts
+new file mode 100644
+index 000000000000..3a835f31a1b2
+--- /dev/null
++++ b/arch/arm/boot/dts/aspeed-bmc-jabil-rubypass.dts
+@@ -0,0 +1,442 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++
++/dts-v1/;
++
++#include "aspeed-g6.dtsi"
++#include <dt-bindings/gpio/aspeed-gpio.h>
++#include <dt-bindings/leds/common.h>
++
++/ {
++	model = "Jabil rbp";
++	compatible = "aspeed,ast2600";
++
++	chosen {
++		stdout-path = "/uart5:115200n8";
++	};
++
++	memory@80000000 {
++		device_type = "memory";
++		reg = <0x80000000 0x80000000>;
++	};
++
++	vcc_sdhci0: regulator-vcc-sdhci0 {
++		compatible = "regulator-fixed";
++		regulator-name = "SDHCI0 Vcc";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		gpios = <&gpio0 ASPEED_GPIO(V, 0) GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++
++
++	vccq_sdhci0: regulator-vccq-sdhci0 {
++		compatible = "regulator-gpio";
++		regulator-name = "SDHCI0 VccQ";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <3300000>;
++		gpios = <&gpio0 ASPEED_GPIO(V, 1) GPIO_ACTIVE_HIGH>;
++		gpios-states = <1>;
++		states = <3300000 1>,
++			 <1800000 0>;
++	};
++
++	vcc_sdhci1: regulator-vcc-sdhci1 {
++		compatible = "regulator-fixed";
++		regulator-name = "SDHCI1 Vcc";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		gpios = <&gpio0 ASPEED_GPIO(V, 2) GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++
++	vccq_sdhci1: regulator-vccq-sdhci1 {
++		compatible = "regulator-gpio";
++		regulator-name = "SDHCI1 VccQ";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <3300000>;
++		gpios = <&gpio0 ASPEED_GPIO(V, 3) GPIO_ACTIVE_HIGH>;
++		gpios-states = <1>;
++		states = <3300000 1>,
++			 <1800000 0>;
++	};
++
++	leds {
++		compatible = "gpio-leds";
++		pinctrl-names = "default";
++
++		led-0 {
++			label = "identify";
++			color = <LED_COLOR_ID_BLUE>;
++			function = LED_FUNCTION_INDICATOR;
++			retain-state-shutdown;
++			gpios = <&gpio0 ASPEED_GPIO(B, 7) GPIO_ACTIVE_LOW>;
++		};
++
++		led-1 {
++			label = "status_amber";
++			color = <LED_COLOR_ID_AMBER>;
++			function = LED_FUNCTION_STATUS;
++			gpios = <&gpio0 ASPEED_GPIO(G, 3) GPIO_ACTIVE_LOW>;
++		};
++
++		led-2 {
++			label = "status_green";
++			color = <LED_COLOR_ID_GREEN>;
++			default-state = "keep";
++			function = LED_FUNCTION_STATUS;
++			gpios = <&gpio0 ASPEED_GPIO(G, 2) GPIO_ACTIVE_LOW>;
++		};
++
++		led-3 {
++			label = "status_susack";
++			function = LED_FUNCTION_STATUS;
++			gpios = <&gpio0 ASPEED_GPIO(V, 6) GPIO_ACTIVE_LOW>;
++		};
++
++		led-4{
++			label = "power-amber";
++			color = <LED_COLOR_ID_AMBER>;
++			function = LED_FUNCTION_POWER;
++			gpios = <&gpio0 ASPEED_GPIO(Y, 0) GPIO_ACTIVE_LOW>;
++		};
++
++		led-5 {
++			label = "fan1-fault";
++			color = <LED_COLOR_ID_YELLOW>;
++			function = LED_FUNCTION_FAULT;
++			retain-state-shutdown;
++			gpios = <&gpio3_71 0 GPIO_ACTIVE_HIGH>;
++		};
++
++		led-6 {
++			label = "fan2-fault";
++			color = <LED_COLOR_ID_YELLOW>;
++			function = LED_FUNCTION_FAULT;
++			retain-state-shutdown;
++			gpios = <&gpio3_71 1 GPIO_ACTIVE_HIGH>;
++		};
++
++		led-7 {
++			label = "fan3-fault";
++			color = <LED_COLOR_ID_YELLOW>;
++			function = LED_FUNCTION_FAULT;
++			retain-state-shutdown;
++			gpios = <&gpio3_71 2 GPIO_ACTIVE_HIGH>;
++		};
++
++		led-8 {
++			label = "fan4-fault";
++			color = <LED_COLOR_ID_YELLOW>;
++			function = LED_FUNCTION_FAULT;
++			retain-state-shutdown;
++			gpios = <&gpio3_71 3 GPIO_ACTIVE_HIGH>;
++		};
++
++		led-9 {
++			label = "fan5-fault";
++			color = <LED_COLOR_ID_YELLOW>;
++			function = LED_FUNCTION_FAULT;
++			retain-state-shutdown;
++			gpios = <&gpio3_71 4 GPIO_ACTIVE_HIGH>;
++		};
++
++		led-10 {
++			label = "fan6-fault";
++			color = <LED_COLOR_ID_YELLOW>;
++			function = LED_FUNCTION_FAULT;
++			retain-state-shutdown;
++			gpios = <&gpio3_71 5 GPIO_ACTIVE_HIGH>;
++		};
++	};
++};
++
++&mdio0 {
++	status = "okay";
++
++	ethphy0: ethernet-phy@0 {
++		compatible = "ethernet-phy-ieee802.3-c22";
++		reg = <0>;
++	};
++};
++
++&mdio1 {
++	status = "okay";
++
++	ethphy1: ethernet-phy@0 {
++		compatible = "ethernet-phy-ieee802.3-c22";
++		reg = <0>;
++	};
++};
++
++&mdio2 {
++	status = "okay";
++
++	ethphy2: ethernet-phy@0 {
++		compatible = "ethernet-phy-ieee802.3-c22";
++		reg = <0>;
++	};
++};
++
++&mdio3 {
++	status = "okay";
++
++	ethphy3: ethernet-phy@0 {
++		compatible = "ethernet-phy-ieee802.3-c22";
++		reg = <0>;
++	};
++};
++
++&mac0 {
++	status = "okay";
++
++	phy-mode = "rgmii-rxid";
++	phy-handle = <&ethphy0>;
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_rgmii1_default>;
++};
++
++&mac1 {
++	status = "okay";
++
++	phy-mode = "rgmii-rxid";
++	phy-handle = <&ethphy1>;
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_rgmii2_default>;
++};
++
++&mac2 {
++	status = "okay";
++
++	phy-mode = "rgmii";
++	phy-handle = <&ethphy2>;
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_rgmii3_default>;
++};
++
++&mac3 {
++	status = "okay";
++
++	phy-mode = "rgmii";
++	phy-handle = <&ethphy3>;
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_rgmii4_default>;
++};
++
++&emmc_controller {
++	status = "okay";
++};
++
++&emmc {
++	non-removable;
++	bus-width = <4>;
++	max-frequency = <100000000>;
++	clk-phase-mmc-hs200 = <9>, <225>;
++};
++
++&rtc {
++	status = "okay";
++};
++
++&fmc {
++	status = "okay";
++	flash@0 {
++		status = "okay";
++		m25p,fast-read;
++		label = "bmc";
++		spi-max-frequency = <50000000>;
++#include "openbmc-flash-layout-128.dtsi"
++	};
++};
++
++&spi1 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_spi1_default>;
++
++	flash@0 {
++		status = "okay";
++		m25p,fast-read;
++		label = "pnor";
++		spi-max-frequency = <100000000>;
++	};
++};
++
++&uart1 {
++	status = "okay";
++	pinctrl-0 = <&pinctrl_txd1_default
++			&pinctrl_rxd1_default
++			&pinctrl_nrts1_default
++			&pinctrl_ndtr1_default
++			&pinctrl_ndsr1_default
++			&pinctrl_ncts1_default
++			&pinctrl_ndcd1_default
++			&pinctrl_nri1_default>;
++};
++
++&uart2 {
++	status = "okay";
++	pinctrl-0 = <&pinctrl_txd2_default
++			&pinctrl_rxd2_default
++			&pinctrl_nrts2_default
++			&pinctrl_ndtr2_default
++			&pinctrl_ndsr2_default
++			&pinctrl_ncts2_default
++			&pinctrl_ndcd2_default
++			&pinctrl_nri2_default>;
++};
++
++&uart3 {
++	status = "okay";
++};
++
++&uart4 {
++	status = "okay";
++};
++
++&i2c0 {
++	status = "okay";
++
++	temperature-sensor@2e {
++		compatible = "adi,adt7490";
++		reg = <0x2e>;
++	};
++};
++
++&i2c3 {
++	multi-master;
++	status = "okay";
++
++	gpio@70 {
++		compatible = "nxp,pca9538";
++		reg = <0x70>;
++		interrupt-parent = <&gpio0>;
++		interrupts = <ASPEED_GPIO(O, 7) IRQ_TYPE_EDGE_FALLING>;
++		gpio-controller;
++		#gpio-cells = <2>;
++		gpio-line-names =
++			"presence-fan1-n", "presence-fan2-n", "presence-fan3-n", "presence-fan4-n",
++			"presence-fan5-n", "presence-fan6-n", "", "";
++	};
++
++	gpio3_71: gpio@71 {
++		compatible = "nxp,pca9538";
++		reg = <0x71>;
++		gpio-controller;
++		#gpio-cells = <2>;
++		gpio-line-names =
++			"led-fan1-fault", "led-fan2-fault", "led-fan3-fault", "led-fan4-fault",
++			"led-fan5-fault", "led-fan6-fault", "", "";
++	};
++};
++
++&fsim0 {
++	status = "okay";
++};
++
++&ehci1 {
++	status = "okay";
++};
++
++&uhci {
++	status = "okay";
++};
++
++&sdc {
++	status = "okay";
++};
++
++/*
++ * The signal voltage of sdhci0 and sdhci1 on AST2600-A2 EVB is able to be
++ * toggled by GPIO pins.
++ * In the reference design, GPIOV0 of AST2600-A2 EVB is connected to the
++ * power load switch that provides 3.3v to sdhci0 vdd, GPIOV1 is connected to
++ * a 1.8v and a 3.3v power load switch that provides signal voltage to
++ * sdhci0 bus.
++ * If GPIOV0 is active high, sdhci0 is enabled, otherwise, sdhci0 is disabled.
++ * If GPIOV1 is active high, 3.3v power load switch is enabled, sdhci0 signal
++ * voltage is 3.3v, otherwise, 1.8v power load switch will be enabled,
++ * sdhci0 signal voltage becomes 1.8v.
++ * AST2600-A2 EVB also supports toggling signal voltage for sdhci1.
++ * The design is the same as sdhci0, it uses GPIOV2 as power-gpio and GPIOV3
++ * as power-switch-gpio.
++ */
++&sdhci0 {
++	status = "okay";
++	bus-width = <4>;
++	max-frequency = <100000000>;
++	sdhci-drive-type = /bits/ 8 <3>;
++	sdhci-caps-mask = <0x7 0x0>;
++	sdhci,wp-inverted;
++	vmmc-supply = <&vcc_sdhci0>;
++	vqmmc-supply = <&vccq_sdhci0>;
++	clk-phase-sd-hs = <7>, <200>;
++};
++
++&sdhci1 {
++	status = "okay";
++	bus-width = <4>;
++	max-frequency = <100000000>;
++	sdhci-drive-type = /bits/ 8 <3>;
++	sdhci-caps-mask = <0x7 0x0>;
++	sdhci,wp-inverted;
++	vmmc-supply = <&vcc_sdhci1>;
++	vqmmc-supply = <&vccq_sdhci1>;
++	clk-phase-sd-hs = <7>, <200>;
++};
++
++&gpio0 {
++	status = "okay";
++	gpio-line-names =
++	/*A0-A7*/       "","","","","","","","",
++	/*B0-B7*/       "presence-ncsi-i210-n","","","","","","","led-identify-n",
++	/*C0-C7*/       "","","","","","","","",
++	/*D0-D7*/       "","","","","","","","",
++	/*E0-E7*/       "","","","","","","","",
++	/*F0-F7*/       "","","","","","","id-button","",
++	/*G0-G7*/       "","","led-status-green-n","led-status-amber-n","","","","",
++	/*H0-H7*/       "","","","","","cpu-caterr","","cpu1-caterr-n",
++	/*I0-I7*/       "","","","","","","","",
++	/*J0-J7*/       "","","","","","","","",
++	/*K0-K7*/       "","","","","","","","",
++	/*L0-L7*/       "","","","","","","","",
++	/*M0-M7*/       "","","","","","","","",
++	/*N0-N7*/       "","","","","","","","",
++	/*O0-O7*/       "","","","","","","nmi-button","",
++	/*P0-P7*/       "reset-button","reset-out","power-button","power-out","","","",
++					"led-hartbeat-n",
++	/*Q0-Q7*/       "","","","","","","","",
++	/*R0-R7*/       "","","","","","","","",
++	/*S0-S7*/       "","","","","","","","",
++	/*T0-T7*/       "","","","","","","","",
++	/*U0-U7*/       "","","","","","","","",
++	/*V0-V7*/       "regulator-vcc-sdhci0","regulator-vccq-sdhci0","regulator-vcc-sdhci1",
++					"regulator-vccq-sdhci1","sio-power-good",
++					"led-bmc-fw-config-done-n","","",
++	/*W0-W7*/       "","","","","","","","",
++	/*X0-X7*/       "cpu-err2","","","","","","","",
++	/*Y0-Y7*/       "led-power-amber","","","","","","","",
++	/*Z0-Z7*/       "cpu-err0","cpu-err1","","","","","","";
++	};
++
++&gpio1 {
++	status = "okay";
++};
++
++&kcs3 {
++	aspeed,lpc-io-reg = <0xCA2>;
++	status = "okay";
++};
++
++&kcs4 {
++	aspeed,lpc-io-reg = <0xCA4>;
++	status = "okay";
++};
++
++&lpc_snoop {
++	snoop-ports = <0x80>;
++	status = "okay";
++};
+\ No newline at end of file
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.30.2
+
