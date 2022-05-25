@@ -2,59 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 332CF53455C
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 22:53:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 480E4534565
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 22:57:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235605AbiEYUx4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 16:53:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43782 "EHLO
+        id S1344053AbiEYU5a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 16:57:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230343AbiEYUxz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 16:53:55 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2848390CC8;
-        Wed, 25 May 2022 13:53:54 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id 841561F4268A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1653512032;
-        bh=JayclhC6KF2KjXxwe9UBTJau5WIH16YxRj272sxRyX8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ECuo2A5BML0Z5RO9YZdLhFbyvNvnUVwNVOyHg+CvMtoF/sCu8w2tvmgQSxaMXYNq6
-         ZGz/CqMZ7nR48ovPBo2M6Tios2gZJ+M1ey3WbNkCLGyhidE7jpFTNMKY5MuY+eFXRD
-         mjyK9h4+UAm0Mmo5ki9DLv8EjE48UjMr6y8Nx2Sn7dKGt/BFFny9xpciqkcIZQFOLd
-         /uqm/Y/LSF9Zt0ju9E6yTlgWBdZYPA+Q8X8CdD2wSHdR0C6TLD3L7eXrAhNMt+tdie
-         JFL0AEJYHcpu75Fadb+8WGX7WaY3YRCHrF7HFJ86OPYdlG1hKhF6ZNwHIvkVq/yWk3
-         fMz/Lp2SS8m6Q==
-Date:   Wed, 25 May 2022 16:53:46 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     kernel@collabora.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>,
+        with ESMTP id S230314AbiEYU53 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 16:57:29 -0400
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3488B8BE8;
+        Wed, 25 May 2022 13:57:28 -0700 (PDT)
+Received: by mail-oi1-f175.google.com with SMTP id t144so23208110oie.7;
+        Wed, 25 May 2022 13:57:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PvdkFEtwnY8PQ1QhT5M3rI8a4A3NL4oFFj4uvWw4Njw=;
+        b=qAAYh8z9W9sthSvaFx8Cqas0uLq+3kwhqX5FF3EF62w2/1fPGqD/406S5MSu814iU8
+         haJGxYkPw2zBRzKOcTUFlr2pyXRqKyClHNoys69tIVjUDip+oehB9jUYvI0PMmmE9l7b
+         DSkuioULJbYIzl1VZalpHQe9RShrxbs/J4A5VdJ8uo0nLw2W+NKnyRBO10X03Kx+joMv
+         y4qNx3wrCPIiH6kEFedXSpcvB7OjOqUUk770Hjr+zV+xBI8ulQQyY2Ee0yTYgLRBHkaS
+         NavKvvRf4hSl/XOcAbXN2cd2IoUerjdU6E/6XAdTgP5jwBrhcb+XWWNgCEhlphf1AZzw
+         cn7w==
+X-Gm-Message-State: AOAM5310KgUdqPZlQNnaoYHP5cfu28MYnVK3sV5d8tzLuswPAvO/eeVL
+        qNfCirGPjkePFjfzshk2/w==
+X-Google-Smtp-Source: ABdhPJyRuiJ/assfY1zLs5zrpGcTguyfUw5N+iA1GV/DKuVDEOa45pd2/EegjcXHekwesofSJm644A==
+X-Received: by 2002:a05:6808:f09:b0:328:b61f:1b52 with SMTP id m9-20020a0568080f0900b00328b61f1b52mr6053707oiw.150.1653512238956;
+        Wed, 25 May 2022 13:57:18 -0700 (PDT)
+Received: from xps15.. (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.googlemail.com with ESMTPSA id r125-20020acada83000000b003289f51c2d7sm6896210oig.34.2022.05.25.13.57.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 May 2022 13:57:18 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shane Chien <shane.chien@mediatek.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2] ASoC: dt-bindings: mediatek: mt8192: Add i2s-share
- properties
-Message-ID: <20220525205346.6ik67nduv3zexl4p@notapiano>
-References: <20220509205847.607076-1-nfraprado@collabora.com>
+        "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: display: ingenic,jz4780-hdmi: Drop undocumented 'ddc-i2c-bus'
+Date:   Wed, 25 May 2022 15:56:26 -0500
+Message-Id: <20220525205626.2482584-1-robh@kernel.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220509205847.607076-1-nfraprado@collabora.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,35 +66,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 09, 2022 at 04:58:47PM -0400, Nícolas F. R. A. Prado wrote:
-> The Mediatek AFE PCM controller for MT8192 allows two I2S interfaces to
-> share the same clock and act as a single interface with both input and
-> output. Add patterns for these properties in the dt-binding. The
-> property is split into two patterns in order to allow all valid
-> interface pairings.
-> 
-> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> 
-> ---
-> The series from v1 of this patch was merged although some changes were
-> still needed in this patch, so the v1 of this patch was reverted [1] and
-> this standalone commit addresses the feedback from v1 and readds the
-> property.
-> 
-> [1] https://lore.kernel.org/all/20220509185625.580811-1-nfraprado@collabora.com
-> 
-> v1: https://lore.kernel.org/all/20220429203039.2207848-2-nfraprado@collabora.com/
-> 
-> Changes in v2:
-> - Added "mediatek," prefix to property
-> - Rewrote and added more information to property description
-> - Split into two patterns to validate that output-input pairings are
->   done
-> 
->  .../bindings/sound/mt8192-afe-pcm.yaml           | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+While 'ddc-i2c-bus' is a common property, it should be in a connector
+node rather than the HDMI bridge node as the I2C bus goes to a
+connector and not the HDMI block. Drop it from the example.
 
-Gentle ping on this one. Any feedback for v2?
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ .../devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml  | 1 -
+ 1 file changed, 1 deletion(-)
 
-Thanks,
-Nícolas
+diff --git a/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml b/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
+index b8219eab4475..89490fdffeb0 100644
+--- a/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
+@@ -55,7 +55,6 @@ examples:
+         compatible = "ingenic,jz4780-dw-hdmi";
+         reg = <0x10180000 0x8000>;
+         reg-io-width = <4>;
+-        ddc-i2c-bus = <&i2c4>;
+         interrupt-parent = <&intc>;
+         interrupts = <3>;
+         clocks = <&cgu JZ4780_CLK_AHB0>, <&cgu JZ4780_CLK_HDMI>;
+-- 
+2.34.1
+
