@@ -2,163 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (unknown [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74BCC533BEF
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 13:47:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF28D533C05
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 13:55:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233020AbiEYLq6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 07:46:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58564 "EHLO
+        id S243018AbiEYLzT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 07:55:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231176AbiEYLq5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 07:46:57 -0400
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 084F4A205D;
-        Wed, 25 May 2022 04:46:56 -0700 (PDT)
-Received: by mail-qk1-f172.google.com with SMTP id 14so10934912qkl.6;
-        Wed, 25 May 2022 04:46:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WZEhsrnmH5bWQhJRb1s8S6ZF7bqzQ8zLRH/dG9jf2XA=;
-        b=K9Fo8fHT99W64Tq5wMXujUQrygiKt2jwC2LYB/Fp8IdjGUmuXlW4vD0vPrM2NdebCv
-         SvNe0lUZ2wyva4VCvgamnhIuFEq/WgrzwshnvZR5urJlBmIxCqhcxcgVZYaC/9bT+3e8
-         9J6WAyvSKoUfihvE8lnUOigIrVxmeO+ak/WhnII3SfsDxwwz6bUBA9ggP0p0ThixruQ+
-         H2I2So/tpWAtHDlSiQayORN+eNfBsa2yBGEPAVHZcIoXDjJ/55l7R+MxcdsEjiUNH0t7
-         l5ULZqqgTfyslsTwPKAD2HGPih11uY+LeZ9avjcNBnXUtPm0/aG3ybTk8QWTzDr1t2UM
-         4UBQ==
-X-Gm-Message-State: AOAM530XH4yyzR3p8zp1jTebJ4XOmFADJ2TBIfFUECR3+z+cTkatuGJm
-        ojlk3q70syppEdCXWLPb4QsCy+EcXfbVUQ==
-X-Google-Smtp-Source: ABdhPJy9hyEuoLM663LZg350bTUcyi4EkO1tU/6vEupDEENGK1erELD/OY4LeqWx/UvM47rJzoVL5Q==
-X-Received: by 2002:a05:620a:400e:b0:6a5:7289:c449 with SMTP id h14-20020a05620a400e00b006a57289c449mr5607610qko.561.1653479214997;
-        Wed, 25 May 2022 04:46:54 -0700 (PDT)
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
-        by smtp.gmail.com with ESMTPSA id p6-20020a05620a22e600b0069fc13ce250sm1041292qki.129.2022.05.25.04.46.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 May 2022 04:46:54 -0700 (PDT)
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-300312ba5e2so45534747b3.0;
-        Wed, 25 May 2022 04:46:53 -0700 (PDT)
-X-Received: by 2002:a81:234b:0:b0:2f8:4082:bbd3 with SMTP id
- j72-20020a81234b000000b002f84082bbd3mr32969304ywj.47.1653479213622; Wed, 25
- May 2022 04:46:53 -0700 (PDT)
+        with ESMTP id S233251AbiEYLzS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 07:55:18 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9777A2069;
+        Wed, 25 May 2022 04:55:16 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 893E61F44CFB
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1653479715;
+        bh=nuxGWQWNesZ/7a6N1/y9rDh1aXO9s7JIDe0xC4nw6GQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=j9yTx8cauhT8UcAVv4U59s0oW4k8pz/Z6K1faqEFRrVipgEVU4Jv55Tslk4Us4zdn
+         qelGzQ1noPB9csE56IIuB+fKDpZc5pnfYXAhBIQLYSItE6nPTl/Y/B6Cv3hGWjYDQP
+         3jjkwRoUKkNMAtFTCNOaYAYgwjlm4+G1FhaN201qJOEwKLkvDbc6FE8kew5EWq8Sgu
+         neVTNTi35gFOCfBXTVj6l2wpwsriJwCvwCwQldtO2r9Dbc+uqLJvHXY4RIU4p27NFI
+         w7ek15EnwpP0EQxN3qTbEFz0J3kygxhtjj2xq6LO+TbHW9GTMMTmgMcqZORZmT5ptW
+         kqVK/YQdIvofg==
+Message-ID: <c1dacdd0-f25e-a522-5d5f-1ef2fe297094@collabora.com>
+Date:   Wed, 25 May 2022 13:55:11 +0200
 MIME-Version: 1.0
-References: <20220524172214.5104-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220524172214.5104-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdX0pqr8pmbX8OfUyTeEwiFGSG5uyP4nLG1LPy7_zzLPbQ@mail.gmail.com>
- <CA+V-a8ubrkDU2B=mJopzFrjhv1nVn5EXZmaprta0oj4p3J_N5Q@mail.gmail.com>
- <CAMuHMdVncBnD25RLLqL2qDFwboPSVvo5faJvamDxPH_wq9r22Q@mail.gmail.com> <CA+V-a8tHfyqJx9YBFX3hJBEKuCbDpminz_4uSLK=MHV7W8-hJg@mail.gmail.com>
-In-Reply-To: <CA+V-a8tHfyqJx9YBFX3hJBEKuCbDpminz_4uSLK=MHV7W8-hJg@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 25 May 2022 13:46:41 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWizSaABqAnwQi-Sa3ceiZV2CnAhiio4aCx_Bd7NvN1NQ@mail.gmail.com>
-Message-ID: <CAMuHMdWizSaABqAnwQi-Sa3ceiZV2CnAhiio4aCx_Bd7NvN1NQ@mail.gmail.com>
-Subject: Re: [PATCH RFC 2/2] irqchip/sifive-plic: Add support for Renesas
- RZ/Five SoC
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH v10 01/21] dt-bindings: mediatek,dpi: Add DPINTF
+ compatible
+Content-Language: en-US
+To:     Guillaume Ranquet <granquet@baylibre.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, Helge Deller <deller@gmx.de>,
+        CK Hu <ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>
+Cc:     Markus Schneider-Pargmann <msp@baylibre.com>,
+        dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, linux-fbdev@vger.kernel.org
+References: <20220523104758.29531-1-granquet@baylibre.com>
+ <20220523104758.29531-2-granquet@baylibre.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220523104758.29531-2-granquet@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+Il 23/05/22 12:47, Guillaume Ranquet ha scritto:
+> From: Markus Schneider-Pargmann <msp@baylibre.com>
+> 
+> DPINTF is similar to DPI but does not have the exact same feature set
+> or register layouts.
+> 
+> DPINTF is the sink of the display pipeline that is connected to the
+> DisplayPort controller and encoder unit. It takes the same clocks as
+> DPI.
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> ---
+>   .../bindings/display/mediatek/mediatek,dpi.yaml     | 13 ++++++++-----
+>   1 file changed, 8 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+> index dd2896a40ff0..6d9f6c11806e 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+> @@ -4,16 +4,16 @@
+>   $id: http://devicetree.org/schemas/display/mediatek/mediatek,dpi.yaml#
+>   $schema: http://devicetree.org/meta-schemas/core.yaml#
+>   
+> -title: mediatek DPI Controller Device Tree Bindings
+> +title: mediatek DPI/DPINTF Controller
+>   
+>   maintainers:
+>     - CK Hu <ck.hu@mediatek.com>
+>     - Jitao shi <jitao.shi@mediatek.com>
+>   
+>   description: |
+> -  The Mediatek DPI function block is a sink of the display subsystem and
+> -  provides 8-bit RGB/YUV444 or 8/10/10-bit YUV422 pixel data on a parallel
+> -  output bus.
+> +  The Mediatek DPI and DPINTF function blocks are a sink of the display
+> +  subsystem and provides 8-bit RGB/YUV444 or 8/10/10-bit YUV422 pixel data on a
+> +  parallel output bus.
+>   
+>   properties:
+>     compatible:
+> @@ -23,6 +23,7 @@ properties:
+>         - mediatek,mt8173-dpi
+>         - mediatek,mt8183-dpi
+>         - mediatek,mt8192-dpi
+> +      - mediatek,mt8195-dpintf
+>   
+>     reg:
+>       maxItems: 1
+> @@ -35,12 +36,14 @@ properties:
+>         - description: Pixel Clock
+>         - description: Engine Clock
+>         - description: DPI PLL
+> +      - description: Optional CK CG Clock
+>   
+>     clock-names:
+>       items:
+>         - const: pixel
+>         - const: engine
+>         - const: pll
+> +      - const: ck_cg
 
-On Wed, May 25, 2022 at 11:43 AM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
-> On Wed, May 25, 2022 at 10:35 AM Geert Uytterhoeven
-> <geert@linux-m68k.org> wrote:
-> > On Wed, May 25, 2022 at 11:01 AM Lad, Prabhakar
-> > <prabhakar.csengg@gmail.com> wrote:
-> > > On Wed, May 25, 2022 at 9:01 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > > On Tue, May 24, 2022 at 7:22 PM Lad Prabhakar
-> > > > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > > > > The Renesas RZ/Five SoC has a RISC-V AX45MP AndesCore with NCEPLIC100. The
-> > > > > NCEPLIC100 supports both edge-triggered and level-triggered interrupts. In
-> > > > > case of edge-triggered interrupts NCEPLIC100 ignores the next interrupt
-> > > > > edge until the previous completion message has been received and
-> > > > > NCEPLIC100 doesn't support pending interrupt counter, hence losing the
-> > > > > interrupts if not acknowledged in time.
-> > > > >
-> > > > > So the workaround for edge-triggered interrupts to be handled correctly
-> > > > > and without losing is that it needs to be acknowledged first and then
-> > > > > handler must be run so that we don't miss on the next edge-triggered
-> > > > > interrupt.
-> > > > >
-> > > > > This patch adds a new compatible string for Renesas RZ/Five SoC and adds
-> > > > > support to change interrupt flow based on the interrupt type. It also
-> > > > > implements irq_ack and irq_set_type callbacks.
-> > > > >
-> > > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > >
-> > > > Thanks for your patch!
-> > > >
-> > > > > --- a/drivers/irqchip/irq-sifive-plic.c
-> > > > > +++ b/drivers/irqchip/irq-sifive-plic.c
-> >
-> > > > > @@ -163,10 +166,31 @@ static int plic_set_affinity(struct irq_data *d,
-> > > > >  }
-> > > > >  #endif
-> > > > >
-> > > > > +static void plic_irq_ack(struct irq_data *d)
-> > > > > +{
-> > > > > +       struct plic_handler *handler = this_cpu_ptr(&plic_handlers);
-> > > > > +
-> > > >
-> > > > No check for RZ/Five or irq type?
-> > > That is because we set the handle_fasteoi_ack_irq() only in case of
-> > > RZ/Five and it is already checked in set_type() callback.
-> > >
-> > > > .irq_ack() seems to be called for level interrupts, too
-> > > > (from handle_level_irq() through mask_ack_irq()).
-> > > >
-> > > Right but we are using handle_fasteoi_irq() for level interrupt which
-> > > doesn't call mask_ack_irq(). And I have confirmed by adding a print in
-> > > ack callback  and just enabling the serial (which has level
-> > > interrupts).
-> >
-> > But handle_fasteoi_irq() is configured only on RZ/Five below?
-> > Which handler is used on non-RZ/Five?
-> >
-> For non RZ/Five, handle_fasteoi_irq() [0] is used for both edge/level
-> interrupts.
->
-> [0] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/irqchip/irq-sifive-plic.c?h=next-20220525#n195
+This is my understanding on how the DisplayPort Interface clocks work on 8195:
 
-Thanks, that was the missing piece!
+The "engine" clock is for the *VPP Engine's DisplayPort ip/block*,
+"pll" is for TVD PLL divider selection
+"pixel" is the gate for the pixel clock to the connected display.
 
-Due to the new "select IRQ_FASTEOI_HIERARCHY_HANDLERS", I thought
-your new call to handle_fasteoi_irq() had to be the first one in this
-file...  But that config symbol protects handle_fasteoi_ack_irq(),
-not handle_fasteoi_irq().
+"ck_cg" is useless, as that's the parent of "pixel" (and will always be)... for
+example, on mt8195... check clk/mediatek/clk-mt8195-vdo0.c - the
+CLK_VDO0_DP_INTF0_DP_INTF clock already has CLK_TOP_EDP as its parent, hence
+enabling the first will enable the latter.
 
-Gr{oetje,eeting}s,
+That said... you can most probably avoid adding the ck_cg clock, as if you try
+to turn that off while it's in use by its children, you'll be only decrementing
+a refcount, but no "real action" will ever take place.
 
-                        Geert
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Regards,
+Angelo
