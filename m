@@ -2,71 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 852C0533F7E
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 16:45:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37A41533FA6
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 16:58:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240770AbiEYOop (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 10:44:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35892 "EHLO
+        id S244568AbiEYO6K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 10:58:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244894AbiEYOoo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 10:44:44 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF951AE244
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 07:44:41 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id f21so28476803ejh.11
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 07:44:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ofMD+z2oV9+oiTcB8ClGG1nsZ8Ej5W9o4q3U+Ksa5Uw=;
-        b=moCAWImdMLqDufc3TXmt5sapIcISEyjUSAghKNBvb4vzVLlS7SwsWQDzYB5QUx7G8Y
-         P7OD3P8faIwsSTTeOa+T+Owj+UCZcdfkgWab1i/PEvYp3RFHdVwGeSbTmyhKGQ+zCF2/
-         q04NK6k+4JVtCWnBc5tcanVUnukRJdkV8eEBu4XYYAFpKJOKO67GC6ehqTrHUXFT+kjx
-         1VDlC5Pg5ZiGbuQqhMBYelc6cFIqbodAHrGMbEEmQdRooZ5vyYFSxF7d2kp2KRir55lW
-         QJmAapvk4RRGjOd5tN7kP3hI3vxBXGYlW6GK8cf8JG6MVlk8MGfFxteLhqD2iqOdKSAW
-         yReA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ofMD+z2oV9+oiTcB8ClGG1nsZ8Ej5W9o4q3U+Ksa5Uw=;
-        b=RvsCcANp+WirTMtvD1GEyNcVykvGGMmnvOI+ICMNI2xYQtCT6MK2LQkZRxxZixLwtC
-         CLD31IirZ+QgCfik8bWsT9OaJ8755pp0qn8yXmUhYMO/ad7wCWoXUPsTIyquaQQQ71Po
-         ko2HsAiY60E95dqObk+BOqBuyfbbsZTn+Tdw1YY+a54Y0ZDcqRbjbUee3GErJVYyB3e3
-         d/f1z/zhxjzAQDp8/cAzbzG/yG/JMXAQQRA88MIypmxv7PXtzOcmOhJEm1we0lWdPWab
-         pOppXyZ18PQX/CTWOd70qynFTs/ogG7NuYhyIRwsD1oOoNsQoWKZrxRSPEBJu3yAIEO+
-         a1uA==
-X-Gm-Message-State: AOAM530juy+dNzicpquCw79jECQTNxy5Eax8gSq/NSTrrar4ejYImwx7
-        KYRH5mYbjrW/u20a4zsufpm/5w==
-X-Google-Smtp-Source: ABdhPJy3PWgO5E6DAJkr5aFegnBB8BHm80d8zEbsc269ulJNaqXw0TFRhzJl3d02E0ccvfCfQ2wCDg==
-X-Received: by 2002:a17:907:9715:b0:6fe:d943:3116 with SMTP id jg21-20020a170907971500b006fed9433116mr14989002ejc.257.1653489880355;
-        Wed, 25 May 2022 07:44:40 -0700 (PDT)
-Received: from otso.. (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id r2-20020a170906550200b006f3ef214de1sm8159596ejp.71.2022.05.25.07.44.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 May 2022 07:44:39 -0700 (PDT)
-From:   Luca Weiss <luca.weiss@fairphone.com>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 5/5] arm64: dts: qcom: sm6350: Add interconnect support
-Date:   Wed, 25 May 2022 16:44:01 +0200
-Message-Id: <20220525144404.200390-6-luca.weiss@fairphone.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220525144404.200390-1-luca.weiss@fairphone.com>
-References: <20220525144404.200390-1-luca.weiss@fairphone.com>
+        with ESMTP id S241939AbiEYO6J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 10:58:09 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C505E6C0FE;
+        Wed, 25 May 2022 07:58:08 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: alyssa)
+        with ESMTPSA id 6B8481F450F4
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1653490687;
+        bh=+4m7P+pQtDoPRLeJ/o/TRoRtSsTCzrenQkb157P79lQ=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=TlKOHXS3aCs3rvje9nB1n31DpTc3NvRCrZn0OdKzxRi9cxs4OLRCPXZpVxuGqj0GX
+         R5j8gxzle1zXngChlMkXIILoTvIpAvjWBNDuIvAM9yY3TXpkf354PccFwBpqSJwbk4
+         qsutJTt2eILUFYhM7/33ZP8HXp3a91pV3NsKqnR4JV4NhaEC++K+n1qcW5h+wpLNDU
+         qcYbmr/ynYBC/IkbqNxvPinv6L1kcyEfKBHzdQrymVcKCQ7NRQ/TzDrQnp5dEWf1y5
+         ILHxR8jodll6ex09bsZZYvTz2ZmLPqXKFQDhoAvMbnZAw/jp2uF6g7j0GuW/xpAOdx
+         J/8Z0nqT5Ving==
+From:   Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+To:     dri-devel@lists.freedesktop.org
+Cc:     Rob Herring <robh@kernel.org>,
+        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        Steven Price <steven.price@arm.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
+        <nfraprado@collabora.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 1/9] dt-bindings: Add compatible for Mali Valhall (JM)
+Date:   Wed, 25 May 2022 10:57:46 -0400
+Message-Id: <20220525145754.25866-2-alyssa.rosenzweig@collabora.com>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220525145754.25866-1-alyssa.rosenzweig@collabora.com>
+References: <20220525145754.25866-1-alyssa.rosenzweig@collabora.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,235 +58,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add all the different NoC providers that are found in SM6350 and
-populate different nodes that use the interconnect properties.
+From the kernel's perspective, (pre-CSF, "Job Manager") Valhall is more
+or less compatible with Bifrost, although they differ to userspace. Add
+a compatible for Valhall to the existing Bifrost bindings documentation.
 
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+As the first SoC with a Valhall GPU receiving mainline support, add a
+specific compatible for the MediaTek MT8192, which instantiates a
+Mali-G57.
+
+v2: Change compatible to arm,mali-valhall-jm (Daniel Stone).
+
+Signed-off-by: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+CC: devicetree@vger.kernel.org
 ---
-Changes since v2:
-* none
+ .../bindings/gpu/arm,mali-bifrost.yaml        | 25 +++++++++++--------
+ 1 file changed, 15 insertions(+), 10 deletions(-)
 
- arch/arm64/boot/dts/qcom/sm6350.dtsi | 109 +++++++++++++++++++++++++++
- 1 file changed, 109 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-index fb1a0f662575..119073f19285 100644
---- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-@@ -1,11 +1,13 @@
- // SPDX-License-Identifier: BSD-3-Clause
- /*
-  * Copyright (c) 2021, Konrad Dybcio <konrad.dybcio@somainline.org>
-+ * Copyright (c) 2022, Luca Weiss <luca.weiss@fairphone.com>
-  */
+diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+index 85f8d4764740..78964c140b46 100644
+--- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
++++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+@@ -14,16 +14,21 @@ properties:
+     pattern: '^gpu@[a-f0-9]+$'
  
- #include <dt-bindings/clock/qcom,gcc-sm6350.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interconnect/qcom,sm6350.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/mailbox/qcom-ipcc.h>
- #include <dt-bindings/power/qcom-rpmpd.h>
-@@ -539,6 +541,10 @@ i2c0: i2c@880000 {
- 				interrupts = <GIC_SPI 601 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_0 0 &clk_virt SLAVE_QUP_CORE_0 0>,
-+						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_0 0>,
-+						<&aggre1_noc MASTER_QUP_0 0 &clk_virt SLAVE_EBI_CH0 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				status = "disabled";
- 			};
+   compatible:
+-    items:
+-      - enum:
+-          - amlogic,meson-g12a-mali
+-          - mediatek,mt8183-mali
+-          - realtek,rtd1619-mali
+-          - renesas,r9a07g044-mali
+-          - renesas,r9a07g054-mali
+-          - rockchip,px30-mali
+-          - rockchip,rk3568-mali
+-      - const: arm,mali-bifrost # Mali Bifrost GPU model/revision is fully discoverable
++    oneOf:
++      - items:
++          - enum:
++              - amlogic,meson-g12a-mali
++              - mediatek,mt8183-mali
++              - realtek,rtd1619-mali
++              - renesas,r9a07g044-mali
++              - renesas,r9a07g054-mali
++              - rockchip,px30-mali
++              - rockchip,rk3568-mali
++          - const: arm,mali-bifrost # Mali Bifrost GPU model/revision is fully discoverable
++      - items:
++          - enum:
++              - mediatek,mt8192-mali
++          - const: arm,mali-valhall-jm # Mali Valhall GPU model/revision is fully discoverable
  
-@@ -552,6 +558,10 @@ i2c2: i2c@888000 {
- 				interrupts = <GIC_SPI 603 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_0 0 &clk_virt SLAVE_QUP_CORE_0 0>,
-+						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_0 0>,
-+						<&aggre1_noc MASTER_QUP_0 0 &clk_virt SLAVE_EBI_CH0 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				status = "disabled";
- 			};
- 		};
-@@ -578,6 +588,10 @@ i2c6: i2c@980000 {
- 				interrupts = <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 0 &clk_virt SLAVE_QUP_CORE_1 0>,
-+						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_1 0>,
-+						<&aggre2_noc MASTER_QUP_1 0 &clk_virt SLAVE_EBI_CH0 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				status = "disabled";
- 			};
- 
-@@ -591,6 +605,10 @@ i2c7: i2c@984000 {
- 				interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 0 &clk_virt SLAVE_QUP_CORE_1 0>,
-+						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_1 0>,
-+						<&aggre2_noc MASTER_QUP_1 0 &clk_virt SLAVE_EBI_CH0 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				status = "disabled";
- 			};
- 
-@@ -604,6 +622,10 @@ i2c8: i2c@988000 {
- 				interrupts = <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 0 &clk_virt SLAVE_QUP_CORE_1 0>,
-+						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_1 0>,
-+						<&aggre2_noc MASTER_QUP_1 0 &clk_virt SLAVE_EBI_CH0 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				status = "disabled";
- 			};
- 
-@@ -615,6 +637,9 @@ uart9: serial@98c000 {
- 				pinctrl-names = "default";
- 				pinctrl-0 = <&qup_uart9_default>;
- 				interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 0 &clk_virt SLAVE_QUP_CORE_1 0>,
-+						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_1 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -628,11 +653,62 @@ i2c10: i2c@990000 {
- 				interrupts = <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-+				interconnects = <&clk_virt MASTER_QUP_CORE_1 0 &clk_virt SLAVE_QUP_CORE_1 0>,
-+						<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_QUP_1 0>,
-+						<&aggre2_noc MASTER_QUP_1 0 &clk_virt SLAVE_EBI_CH0 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				status = "disabled";
- 			};
- 
- 		};
- 
-+		config_noc: interconnect@1500000 {
-+			compatible = "qcom,sm6350-config-noc";
-+			reg = <0 0x01500000 0 0x28000>;
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		system_noc: interconnect@1620000 {
-+			compatible = "qcom,sm6350-system-noc";
-+			reg = <0 0x01620000 0 0x17080>;
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+
-+			clk_virt: interconnect-clk-virt {
-+				compatible = "qcom,sm6350-clk-virt";
-+				#interconnect-cells = <2>;
-+				qcom,bcm-voters = <&apps_bcm_voter>;
-+			};
-+		};
-+
-+		aggre1_noc: interconnect@16e0000 {
-+			compatible = "qcom,sm6350-aggre1-noc";
-+			reg = <0 0x016e0000 0 0x15080>;
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		aggre2_noc: interconnect@1700000 {
-+			compatible = "qcom,sm6350-aggre2-noc";
-+			reg = <0 0x01700000 0 0x1f880>;
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+
-+			compute_noc: interconnect-compute-noc {
-+				compatible = "qcom,sm6350-compute-noc";
-+				#interconnect-cells = <2>;
-+				qcom,bcm-voters = <&apps_bcm_voter>;
-+			};
-+		};
-+
-+		mmss_noc: interconnect@1740000 {
-+			compatible = "qcom,sm6350-mmss-noc";
-+			reg = <0 0x01740000 0 0x1c100>;
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
- 		ufs_mem_hc: ufs@1d84000 {
- 			compatible = "qcom,sm6350-ufshc", "qcom,ufshc",
- 				     "jedec,ufs-2.0";
-@@ -933,6 +1009,10 @@ sdhc_2: sdhci@8804000 {
- 				 <&gcc GCC_SDCC2_APPS_CLK>,
- 				 <&rpmhcc RPMH_CXO_CLK>;
- 			clock-names = "iface", "core", "xo";
-+			interconnects = <&aggre2_noc MASTER_SDCC_2 0 &clk_virt SLAVE_EBI_CH0 0>,
-+					<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_SDCC_2 0>;
-+			interconnect-names = "sdhc-ddr", "cpu-sdhc";
-+
- 			qcom,dll-config = <0x0007642c>;
- 			qcom,ddr-config = <0x80040868>;
- 			power-domains = <&rpmhpd 0>;
-@@ -947,11 +1027,15 @@ sdhc2_opp_table: sdhc2-opp-table {
- 				opp-100000000 {
- 					opp-hz = /bits/ 64 <100000000>;
- 					required-opps = <&rpmhpd_opp_svs_l1>;
-+					opp-peak-kBps = <790000 131000>;
-+					opp-avg-kBps = <50000 50000>;
- 				};
- 
- 				opp-202000000 {
- 					opp-hz = /bits/ 64 <202000000>;
- 					required-opps = <&rpmhpd_opp_nom>;
-+					opp-peak-kBps = <3190000 294000>;
-+					opp-avg-kBps = <261438 300000>;
- 				};
- 			};
- 		};
-@@ -1017,12 +1101,33 @@ dp_phy: dp-phy@88ea200 {
- 			};
- 		};
- 
-+		dc_noc: interconnect@9160000 {
-+			compatible = "qcom,sm6350-dc-noc";
-+			reg = <0 0x09160000 0 0x3200>;
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
- 		system-cache-controller@9200000 {
- 			compatible = "qcom,sm6350-llcc";
- 			reg = <0 0x09200000 0 0x50000>, <0 0x09600000 0 0x50000>;
- 			reg-names = "llcc_base", "llcc_broadcast_base";
- 		};
- 
-+		gem_noc: interconnect@9680000 {
-+			compatible = "qcom,sm6350-gem-noc";
-+			reg = <0 0x09680000 0 0x3e200>;
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		npu_noc: interconnect@9990000 {
-+			compatible = "qcom,sm6350-npu-noc";
-+			reg = <0 0x09990000 0 0x1600>;
-+			#interconnect-cells = <2>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
- 		usb_1: usb@a6f8800 {
- 			compatible = "qcom,sm6350-dwc3", "qcom,dwc3";
- 			reg = <0 0x0a6f8800 0 0x400>;
-@@ -1051,6 +1156,10 @@ usb_1: usb@a6f8800 {
- 
- 			resets = <&gcc GCC_USB30_PRIM_BCR>;
- 
-+			interconnects = <&aggre2_noc MASTER_USB3 0 &clk_virt SLAVE_EBI_CH0 0>,
-+					<&gem_noc MASTER_AMPSS_M0 0 &config_noc SLAVE_USB3 0>;
-+			interconnect-names = "usb-ddr", "apps-usb";
-+
- 			usb_1_dwc3: usb@a600000 {
- 				compatible = "snps,dwc3";
- 				reg = <0 0x0a600000 0 0xcd00>;
+   reg:
+     maxItems: 1
 -- 
-2.36.1
+2.35.1
 
