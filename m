@@ -2,114 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37A41533FA6
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 16:58:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9484F533FC0
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 16:59:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244568AbiEYO6K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 10:58:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34772 "EHLO
+        id S230196AbiEYO7A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 10:59:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241939AbiEYO6J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 10:58:09 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C505E6C0FE;
-        Wed, 25 May 2022 07:58:08 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: alyssa)
-        with ESMTPSA id 6B8481F450F4
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1653490687;
-        bh=+4m7P+pQtDoPRLeJ/o/TRoRtSsTCzrenQkb157P79lQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=TlKOHXS3aCs3rvje9nB1n31DpTc3NvRCrZn0OdKzxRi9cxs4OLRCPXZpVxuGqj0GX
-         R5j8gxzle1zXngChlMkXIILoTvIpAvjWBNDuIvAM9yY3TXpkf354PccFwBpqSJwbk4
-         qsutJTt2eILUFYhM7/33ZP8HXp3a91pV3NsKqnR4JV4NhaEC++K+n1qcW5h+wpLNDU
-         qcYbmr/ynYBC/IkbqNxvPinv6L1kcyEfKBHzdQrymVcKCQ7NRQ/TzDrQnp5dEWf1y5
-         ILHxR8jodll6ex09bsZZYvTz2ZmLPqXKFQDhoAvMbnZAw/jp2uF6g7j0GuW/xpAOdx
-         J/8Z0nqT5Ving==
-From:   Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
-To:     dri-devel@lists.freedesktop.org
-Cc:     Rob Herring <robh@kernel.org>,
-        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
-        Steven Price <steven.price@arm.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
-        <nfraprado@collabora.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v2 1/9] dt-bindings: Add compatible for Mali Valhall (JM)
-Date:   Wed, 25 May 2022 10:57:46 -0400
-Message-Id: <20220525145754.25866-2-alyssa.rosenzweig@collabora.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220525145754.25866-1-alyssa.rosenzweig@collabora.com>
-References: <20220525145754.25866-1-alyssa.rosenzweig@collabora.com>
+        with ESMTP id S244909AbiEYO6z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 10:58:55 -0400
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EDDCAF1C7;
+        Wed, 25 May 2022 07:58:53 -0700 (PDT)
+Received: (Authenticated sender: foss@0leil.net)
+        by mail.gandi.net (Postfix) with ESMTPSA id 4A66C1BF211;
+        Wed, 25 May 2022 14:58:47 +0000 (UTC)
+From:   Quentin Schulz <foss+kernel@0leil.net>
+Cc:     shawnx.tu@intel.com, mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        foss+kernel@0leil.net,
+        Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v5 1/4] media: dt-bindings: ov5675: document YAML binding
+Date:   Wed, 25 May 2022 16:58:30 +0200
+Message-Id: <20220525145833.1165437-1-foss+kernel@0leil.net>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From the kernel's perspective, (pre-CSF, "Job Manager") Valhall is more
-or less compatible with Bifrost, although they differ to userspace. Add
-a compatible for Valhall to the existing Bifrost bindings documentation.
+From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
 
-As the first SoC with a Valhall GPU receiving mainline support, add a
-specific compatible for the MediaTek MT8192, which instantiates a
-Mali-G57.
+This patch adds documentation of device tree in YAML schema for the
+OV5675 CMOS image sensor from Omnivision.
 
-v2: Change compatible to arm,mali-valhall-jm (Daniel Stone).
-
-Signed-off-by: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
-CC: devicetree@vger.kernel.org
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
 ---
- .../bindings/gpu/arm,mali-bifrost.yaml        | 25 +++++++++++--------
- 1 file changed, 15 insertions(+), 10 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-index 85f8d4764740..78964c140b46 100644
---- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-+++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-@@ -14,16 +14,21 @@ properties:
-     pattern: '^gpu@[a-f0-9]+$'
+v4:
+ - added Reviewed-by,
+
+v3:
+ - removed clock-names,
+ - removed clock-frequency,
+ - added all-of of video-interface-devices schema,
+ - added clock frequency range in description,
+ - rephrased definition of supplies,
+ - fixed name of reset gpio,
+ - used schema ref for port and port->endpoint,
+ - removed mentions to driver,
+ - added HW data transfer speed limitation in comment for
+ link-frequencies,
+ - changed root additionalProperties to unevaluatedProperties to not
+ have to list all properties from video-interface-devices schema, such as
+ orientation or rotation,
+ - added maxItems to reset-gpios,
+ - updated example to use assigned-clocks and assigned-clock-rates
+ instead of clock-frequency and clock-names,
+
+v2:
+ - fixed incorrect id,
+ - fixed device tree example by adding missing dt-bindings headers,
+ - fixed device tree example by using vcc_1v2 for dvdd supply, as requested
+ in datasheet,
+
+ .../bindings/media/i2c/ovti,ov5675.yaml       | 123 ++++++++++++++++++
+ MAINTAINERS                                   |   1 +
+ 2 files changed, 124 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5675.yaml
+
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5675.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5675.yaml
+new file mode 100644
+index 0000000000000..f0a48707bed77
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5675.yaml
+@@ -0,0 +1,123 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (c) 2022 Theobroma Systems Design und Consulting GmbH
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/ovti,ov5675.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Omnivision OV5675 CMOS Sensor
++
++maintainers:
++  - Quentin Schulz <quentin.schulz@theobroma-systems.com>
++
++allOf:
++  - $ref: /schemas/media/video-interface-devices.yaml#
++
++description: |
++  The Omnivision OV5675 is a high performance, 1/5-inch, 5 megapixel, CMOS
++  image sensor that delivers 2592x1944 at 30fps. It provides full-frame,
++  sub-sampled, and windowed 10-bit MIPI images in various formats via the
++  Serial Camera Control Bus (SCCB) interface.
++
++  This chip is programmable through I2C and two-wire SCCB. The sensor output
++  is available via CSI-2 serial data output (up to 2-lane).
++
++properties:
++  compatible:
++    const: ovti,ov5675
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    description:
++      System input clock (aka XVCLK). From 6 to 27 MHz.
++    maxItems: 1
++
++  dovdd-supply:
++    description:
++      Digital I/O voltage supply, 1.8 volts.
++
++  avdd-supply:
++    description:
++      Analog voltage supply, 2.8 volts.
++
++  dvdd-supply:
++    description:
++      Digital core voltage supply, 1.2 volts.
++
++  reset-gpios:
++    description:
++      The phandle and specifier for the GPIO that controls sensor reset.
++      This corresponds to the hardware pin XSHUTDN which is physically
++      active low.
++    maxItems: 1
++
++  port:
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          data-lanes:
++            minItems: 1
++            maxItems: 2
++
++          # Supports max data transfer of 900 Mbps per lane
++          link-frequencies: true
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - dovdd-supply
++  - avdd-supply
++  - dvdd-supply
++  - port
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/px30-cru.h>
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/pinctrl/rockchip.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        ov5675: camera@36 {
++            compatible = "ovti,ov5675";
++            reg = <0x36>;
++
++            reset-gpios = <&gpio2 RK_PB1 GPIO_ACTIVE_LOW>;
++            pinctrl-names = "default";
++            pinctrl-0 = <&cif_clkout_m0>;
++
++            clocks = <&cru SCLK_CIF_OUT>;
++            assigned-clocks = <&cru SCLK_CIF_OUT>;
++            assigned-clock-rates = <19200000>;
++
++            avdd-supply = <&vcc_1v8>;
++            dvdd-supply = <&vcc_1v2>;
++            dovdd-supply = <&vcc_2v8>;
++
++            rotation = <90>;
++            orientation = <0>;
++
++            port {
++                ucam_out: endpoint {
++                    remote-endpoint = <&mipi_in_ucam>;
++                    data-lanes = <1 2>;
++                    link-frequencies = /bits/ 64 <450000000>;
++                };
++            };
++        };
++    };
++...
++
+diff --git a/MAINTAINERS b/MAINTAINERS
+index f468864fd268c..549cdec4faaf3 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -14551,6 +14551,7 @@ M:	Shawn Tu <shawnx.tu@intel.com>
+ L:	linux-media@vger.kernel.org
+ S:	Maintained
+ T:	git git://linuxtv.org/media_tree.git
++F:	Documentation/devicetree/bindings/media/i2c/ovti,ov5675.yaml
+ F:	drivers/media/i2c/ov5675.c
  
-   compatible:
--    items:
--      - enum:
--          - amlogic,meson-g12a-mali
--          - mediatek,mt8183-mali
--          - realtek,rtd1619-mali
--          - renesas,r9a07g044-mali
--          - renesas,r9a07g054-mali
--          - rockchip,px30-mali
--          - rockchip,rk3568-mali
--      - const: arm,mali-bifrost # Mali Bifrost GPU model/revision is fully discoverable
-+    oneOf:
-+      - items:
-+          - enum:
-+              - amlogic,meson-g12a-mali
-+              - mediatek,mt8183-mali
-+              - realtek,rtd1619-mali
-+              - renesas,r9a07g044-mali
-+              - renesas,r9a07g054-mali
-+              - rockchip,px30-mali
-+              - rockchip,rk3568-mali
-+          - const: arm,mali-bifrost # Mali Bifrost GPU model/revision is fully discoverable
-+      - items:
-+          - enum:
-+              - mediatek,mt8192-mali
-+          - const: arm,mali-valhall-jm # Mali Valhall GPU model/revision is fully discoverable
- 
-   reg:
-     maxItems: 1
+ OMNIVISION OV5693 SENSOR DRIVER
 -- 
-2.35.1
+2.36.1
 
