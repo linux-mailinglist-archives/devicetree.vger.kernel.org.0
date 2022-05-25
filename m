@@ -2,188 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76E5653457F
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 23:02:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37DD6534618
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 23:55:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344387AbiEYVB7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 17:01:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49262 "EHLO
+        id S234716AbiEYVzF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 17:55:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232019AbiEYVB5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 17:01:57 -0400
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE96435DC7;
-        Wed, 25 May 2022 14:01:55 -0700 (PDT)
-Received: by mail-oi1-f177.google.com with SMTP id w130so63142oig.0;
-        Wed, 25 May 2022 14:01:55 -0700 (PDT)
+        with ESMTP id S232135AbiEYVzE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 17:55:04 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D558B82D9
+        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 14:55:00 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id v4-20020a1cac04000000b00397001398c0so1866169wme.5
+        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 14:55:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pensando.io; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/oBh+Znbc88NiDeYaHpcLs3NJcAFoy3MCBRZMNMGpQw=;
+        b=arfvwNzDDLgge/qyXCYs6mi8SFh5fASF9WAvA3CMnMWaUtgiy3QFHT7IU6lKDS2BVh
+         WrL/CARwCWxnEYK5zRUId/2SUMGApf4e7UBK+Zdn3lso/PvChAqUP9DhzLZq2s/6ZgoD
+         7mVF2DH4324yfM97di0AzI26SutPzq4Md+/+M8nW55zkuz+c1CrrYJII0V/mjGbxhM+k
+         TTm4lUAXyVT4A0fFNZA+IKbEmdamDebiDlU6MnFM2Nw4SFeK4zcsDKm4Tyda/deXw34G
+         fHwUjAUPL/WKKTXeekwmgsvqPXjsSnqJnZO1cJ0qoQ2xA501AnbsFOJueL4csev4WMj4
+         Jorw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=eV5yBS00qx48PlZZxn5CpCblfq4K2A5juZQWoz0DTyQ=;
-        b=b009C+VN1TgeqTm+J8R6jdce0SR5YNYrSxEPGW8kSQQCigU57F8upkRebDJ/+QcSyv
-         /q4WfXhx05ExazXQIsQ4sG3EYa0B8ujxdCKtG9dieR2kaRkHIUFjdQrggoEegX0FaC5O
-         vaPexiJhDmD246s4TOuy2ix9iUyUQ2Zcx4J6dONqY58d5jbpqk8xlaO0Nivo+0iUQ6zq
-         +A3japseOp6nmM6ah2gRgPN+mhpYfjJdQEbB05SC9SNxNAaCBPfmob+0hp2Hq8PTDGM5
-         PIEch3z5L2HClMmXX148q+zmtKH4/Oo+6a/WHs/vTYOLKjL373HOVfJjzJ2Z6SHz/VxN
-         AwxQ==
-X-Gm-Message-State: AOAM532eCqsb+1yZJa8F/pOVi9ZvtfCXYhmkZndrNnUkf20aOicZUOs6
-        4fgvflEJOiF5Mfvp4wSUydNcGoRx4w==
-X-Google-Smtp-Source: ABdhPJw5CRPGykueFSEUBPahgULvafvqctVKF09HWJ0vw1MdPECO0kDWuHEbnvLjKh6QNPWctp7Eqg==
-X-Received: by 2002:a05:6808:16a1:b0:2f9:bfea:e5f3 with SMTP id bb33-20020a05680816a100b002f9bfeae5f3mr6603644oib.28.1653512515113;
-        Wed, 25 May 2022 14:01:55 -0700 (PDT)
-Received: from xps15.. (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.googlemail.com with ESMTPSA id w19-20020a056870431300b000f26a4e2cdfsm3723564oah.18.2022.05.25.14.01.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 May 2022 14:01:54 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Paul Cercueil <paul@crapouillou.net>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mtd@lists.infradead.org
-Subject: [PATCH] dt-bindings: memory-controllers: ingenic: Split out child node properties
-Date:   Wed, 25 May 2022 16:01:40 -0500
-Message-Id: <20220525210140.2489866-1-robh@kernel.org>
-X-Mailer: git-send-email 2.34.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/oBh+Znbc88NiDeYaHpcLs3NJcAFoy3MCBRZMNMGpQw=;
+        b=eryTBu9tUV/WLh83O0kLwewA1mjOj522XEElc2wrDk3DtSdPDp5q5umYVuNWAkMKM2
+         8+mU8e9ltsVaD2Vyn/1WspzHRMRqc0ux5/ZnVDsJNsL8LjKrVY/o6fGrn2Ic2rFCec7d
+         IRnoU+A3VNxSeTmdMVJtZSFRddEuMCx5Fn/3YdeTH0YnO2ACO9HCGyJZqwofPG1zNTRv
+         u/R8BJiDXoKiO8q69kdTRyRD8GGgoKQJC0fzfLfJHbZUoRbWipvhka8r7wSWyDzpdcdj
+         wbTwOgO/nRsN2fBiVFO57DiJ/3JXh26ValaKsXYk31cFoLYAdVPiuKcte1YboF+G7WGv
+         ieqQ==
+X-Gm-Message-State: AOAM532XjPDCDq4XLJcnSn61YZavnkgQyLuW3/EakbM5b2Es6xBA/WKP
+        a1/gTnlpm9TTdu584HkwyNOSVk/fMth7NXNqNdzT+g==
+X-Google-Smtp-Source: ABdhPJwEdTcOuaFFxDw66wiF82VdkmXZa5C+ZdHZn9Ask4eKJm/UyqU4NfEyal57N8Yt5HepbbE1akxgZF/HJ+Ov6SQ=
+X-Received: by 2002:a1c:e903:0:b0:397:36b8:795a with SMTP id
+ q3-20020a1ce903000000b0039736b8795amr10328612wmc.98.1653515698905; Wed, 25
+ May 2022 14:54:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+References: <20220406233648.21644-1-brad@pensando.io> <20220406233648.21644-11-brad@pensando.io>
+ <20220412110622.2xsk3k63dafqxib5@mobilestation>
+In-Reply-To: <20220412110622.2xsk3k63dafqxib5@mobilestation>
+From:   Brad Larson <brad@pensando.io>
+Date:   Wed, 25 May 2022 14:54:47 -0700
+Message-ID: <CAK9rFnzp0+80dX_-NYidfVXWJ1sru5mNk1vgVDzoV7VeEekpwQ@mail.gmail.com>
+Subject: Re: [PATCH 10/11] spi: dw: Add support for Pensando Elba SoC
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Brown <broonie@kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        David Clear <dac2@pensando.io>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Binding schemas which define child node properties such as memory
-controllers with timing properties need a separate schema which can be
-referenced from child device schemas. This is necessary for
-unevaluatedProperties checks to work properly.
+Hi Sergey,
 
-Move the ingenic,nemc child properties to its own file and reference
-from ingenic,nand.yaml which describes a child NAND controller.
+On Tue, Apr 12, 2022 at 4:06 AM Serge Semin <fancer.lancer@gmail.com> wrote:
+>
+> > +static void elba_spics_set_cs(struct dw_spi_elba *dwselba, int cs, int enable)
+> > +{
+> > +     regmap_update_bits(dwselba->regmap, dwselba->reg, ELBA_SPICS_MASK(cs),
+> > +                        ELBA_SPICS_SET(cs, enable));
+> > +}
+> > +
+> > +static void dw_spi_elba_set_cs(struct spi_device *spi, bool enable)
+>
+> The methods naming is ambiguous. Moreover it breaks this module naming
+> convention. Could you change them to something like:
+> dw_spi_elba_override_cs()
+> and
+> dw_spi_elba_set_cs()
+> ?
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- .../ingenic,nemc-peripherals.yaml             | 46 +++++++++++++++++++
- .../memory-controllers/ingenic,nemc.yaml      | 32 -------------
- .../devicetree/bindings/mtd/ingenic,nand.yaml |  1 +
- 3 files changed, 47 insertions(+), 32 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/memory-controllers/ingenic,nemc-peripherals.yaml
+Yes, changed elba_spics_set_cs() -> dw_spi_elba_override_cs()
 
-diff --git a/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc-peripherals.yaml b/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc-peripherals.yaml
-new file mode 100644
-index 000000000000..b8ed52a44d57
---- /dev/null
-+++ b/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc-peripherals.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/memory-controllers/ingenic,nemc-peripherals.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Ingenic SoCs NAND / External Memory Controller (NEMC) devicetree bindings
-+
-+maintainers:
-+  - Paul Cercueil <paul@crapouillou.net>
-+
-+properties:
-+  reg:
-+    minItems: 1
-+    maxItems: 255
-+
-+  ingenic,nemc-bus-width:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [8, 16]
-+    description: Specifies the bus width in bits.
-+
-+  ingenic,nemc-tAS:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Address setup time in nanoseconds.
-+
-+  ingenic,nemc-tAH:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Address hold time in nanoseconds.
-+
-+  ingenic,nemc-tBP:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Burst pitch time in nanoseconds.
-+
-+  ingenic,nemc-tAW:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Address wait time in nanoseconds.
-+
-+  ingenic,nemc-tSTRV:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Static memory recovery time in nanoseconds.
-+
-+required:
-+  - reg
-+
-+additionalProperties: true
-+...
-diff --git a/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc.yaml b/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc.yaml
-index 24f9e1982028..dd13a5106d6c 100644
---- a/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc.yaml
-+++ b/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc.yaml
-@@ -39,38 +39,6 @@ properties:
- patternProperties:
-   ".*@[0-9]+$":
-     type: object
--    properties:
--      reg:
--        minItems: 1
--        maxItems: 255
--
--      ingenic,nemc-bus-width:
--        $ref: /schemas/types.yaml#/definitions/uint32
--        enum: [8, 16]
--        description: Specifies the bus width in bits.
--
--      ingenic,nemc-tAS:
--        $ref: /schemas/types.yaml#/definitions/uint32
--        description: Address setup time in nanoseconds.
--
--      ingenic,nemc-tAH:
--        $ref: /schemas/types.yaml#/definitions/uint32
--        description: Address hold time in nanoseconds.
--
--      ingenic,nemc-tBP:
--        $ref: /schemas/types.yaml#/definitions/uint32
--        description: Burst pitch time in nanoseconds.
--
--      ingenic,nemc-tAW:
--        $ref: /schemas/types.yaml#/definitions/uint32
--        description: Address wait time in nanoseconds.
--
--      ingenic,nemc-tSTRV:
--        $ref: /schemas/types.yaml#/definitions/uint32
--        description: Static memory recovery time in nanoseconds.
--
--    required:
--      - reg
- 
- required:
-   - compatible
-diff --git a/Documentation/devicetree/bindings/mtd/ingenic,nand.yaml b/Documentation/devicetree/bindings/mtd/ingenic,nand.yaml
-index 9de8ef6e59ca..8c272c842bfd 100644
---- a/Documentation/devicetree/bindings/mtd/ingenic,nand.yaml
-+++ b/Documentation/devicetree/bindings/mtd/ingenic,nand.yaml
-@@ -11,6 +11,7 @@ maintainers:
- 
- allOf:
-   - $ref: nand-controller.yaml#
-+  - $ref: /schemas/memory-controllers/ingenic,nemc-peripherals.yaml#
- 
- properties:
-   compatible:
--- 
-2.34.1
+> > +     /* deassert cs */
+>
+> > +     elba_spics_set_cs(dwselba, 0, 1);
+> > +     elba_spics_set_cs(dwselba, 1, 1);
+>
+> What if the CS lines are of the active-high type? In that case basically
+> you get to do the opposite to what you claim in the comment here.
+>
+> Note the CS setting into the deactivated state is done in the spi_setup()
+> method anyway, at the moment of the peripheral SPI device registration
+> stage (see its calling the spi_set_cs() function). Thus what you are doing
+> here is redundant.
 
+Yes this is a redundant initialization and is removed.  For Elba these CS lines
+are active-low only.
+
+Regards,
+Brad
