@@ -2,182 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FD2C533B38
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 13:03:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A44FD533B68
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 13:14:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232482AbiEYLDh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 07:03:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36044 "EHLO
+        id S231699AbiEYLOU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 07:14:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232745AbiEYLDg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 07:03:36 -0400
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam08on2055.outbound.protection.outlook.com [40.107.100.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 576D5338AC;
-        Wed, 25 May 2022 04:03:35 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OMbZMaVzCk/XZEeQvOtIP14W2efYOaIAJsJl9IkdadsbCo8WU9cZ1gkfGLaeTNMInK4niq1sJJoW6F29z8kzcC/vfLcnxUb3SNK/PkY/yIJHljvheybwZDG0A1oLFy9zTpYJxj3mO/bBKqEUPLzCZohhZuNnRWCiUkSb0iPe+t6ScYsp3KEusoBn/I4wNtvEkPuDF4eGvlQta8P9m3k9KZVoC1vLL9UbMWFQBwSdgPUwlrY1E5CVF2rLzPuhiJDg1MxkrbiWcne8MJK0dRMmTEDsCxgkO2s1bHXZ6GiptWwWmJYEmpFgXsbE2WgEYx6anBvmOZTkZNUkyeeK/XlxyQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=L1jD5L3VAYaKpuxITBzzFs7X5sNRA6DLpxXxKRbFpZ0=;
- b=ZjTcawhBF60TZbEto6Bdx9+8HcZ7w7x7MC8EzL3kuE6fCz1ssl+W5F8QYe5qKZs5ORo0p2oSwVQp2kGwTg5r1WPpmmLm76ID+FAXaki5B8RCdrF0TusTdHBlnt8BLa/1NJ/eYUvT4AM9Txp5/wUHu/NaVIvpYSIDsWVEBFSdjOVeHpK/e0caEGklrYpk0NJmgUSc5NHqYszd4PfbP7NVXzUpNq9ZU/AzqE1rJIrOlwTXcO9OcUHGSmBIO44pwBnWoU5jbykzbMWfSTP4t0gwLcn8a4QU2iFlzfLpoVwpGWUp6ZG9LyTqwNKBnpdx1qvM4d/ky1F12TZUZDdWh1u6PA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
- dkim=pass header.d=xilinx.com; arc=none
+        with ESMTP id S229726AbiEYLOT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 07:14:19 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 230248BD04;
+        Wed, 25 May 2022 04:14:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=L1jD5L3VAYaKpuxITBzzFs7X5sNRA6DLpxXxKRbFpZ0=;
- b=ZjR9wM1F+cG0uTM9WMyA+X6Mp58yS8kMdyNs9cZ8+s/U7VTroXiuFvuubB8fJK7a0nvaoTN6tH9DvYNk8DRpJXLsz34O+Mh/MZ+8G2hOCj7NnU76jNaaxaRydVFP69nVwbbQiaEFWT6YRwVumeVghqr7KZnPxW85lYcycnPksMk=
-Received: from BY5PR02MB6947.namprd02.prod.outlook.com (2603:10b6:a03:23e::12)
- by CH2PR02MB6151.namprd02.prod.outlook.com (2603:10b6:610:d::28) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5273.17; Wed, 25 May
- 2022 11:03:32 +0000
-Received: from BY5PR02MB6947.namprd02.prod.outlook.com
- ([fe80::70fe:1953:96d4:dd88]) by BY5PR02MB6947.namprd02.prod.outlook.com
- ([fe80::70fe:1953:96d4:dd88%7]) with mapi id 15.20.5293.013; Wed, 25 May 2022
- 11:03:32 +0000
-From:   Bharat Kumar Gogada <bharatku@xilinx.com>
-To:     Michal Simek <michals@xilinx.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-CC:     "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "robh@kernel.org" <robh@kernel.org>
-Subject: RE: [PATCH v2] dt-bindings: PCI: xilinx-cpm: Fix reg property order
-Thread-Topic: [PATCH v2] dt-bindings: PCI: xilinx-cpm: Fix reg property order
-Thread-Index: AQHYaQ7VIq93UpHHX0WumtBeKR0BEK0hWviAgA4g4AA=
-Date:   Wed, 25 May 2022 11:03:32 +0000
-Message-ID: <BY5PR02MB69472D35FC4774C5B49FC19CA5D69@BY5PR02MB6947.namprd02.prod.outlook.com>
-References: <20220516102217.25960-1-bharat.kumar.gogada@xilinx.com>
- <b9c36db0-fb4f-19d2-68af-25b926cd33b0@xilinx.com>
-In-Reply-To: <b9c36db0-fb4f-19d2-68af-25b926cd33b0@xilinx.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=xilinx.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 810e1f21-53bc-47f7-cd13-08da3e3e34e0
-x-ms-traffictypediagnostic: CH2PR02MB6151:EE_
-x-microsoft-antispam-prvs: <CH2PR02MB61512D75684D4D3A7862B9DBA5D69@CH2PR02MB6151.namprd02.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: gbNBEiO4q+ZF87+1TKW0aNw1WcMnbbeGUaxq9aqu8U0LwC1GWd356gtMatmPmq8CW3y4EjgB1yYLzkRlNy88h7GnzQkCCigxuQPu0j26NflUihcxn0vk/faE7pF0MZ8OzPXgCX0+KthjipMqtz344uEA+qsOMxdKcyjPUeapD5/Dtd0x4s1eTFYGr3ta5wZLyyIO9sDmk/qBqeZVR7yYaLpnW4ISUK/+4puD+CfLkzH8zvxW9ZwdmmYXbU8mPDclPZAojIQVjitMgJ5aMDsskCzcf+ODI/vhINHLWI02sM0F4V/9DpUGCj3NZ069T9Vd2SZMVtNRK9lPqE0TCHx43gtfqC+ONoVBBaUa64sAXnhmUBbXAL9MGXB3a8lyJFw8BQ5s5liS8EJIlCOgXuo9CLEBm2PII+Dzbm29L3Tmr8Wyq9g5wyCcFD+VT0sVu5yI+CsK53/LQkOLF39h3ecTHHq3pH+qOxxGnyREBGBYO9sTwGhfJQToQs00Yyftxz/OHnFpk9T6aSNjiiuIVI8FyleyfL37wg13G/dTExpkNAE/yJvF9H/YeQeBpwZUx8zVqhM4QLKnlBeci3rnZffAKBjU6hrcVZrT0zah8vi7rP1WLkJv7D95gMqBLi+JDDOTR017R6MVCK+XaU56cc52hZLKvW/4DhN2hOGc3uwXK8kgQlWRDyFjhSz64j2XiIfm7XCbltin6dctXpjccs/JRA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR02MB6947.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(7696005)(83380400001)(9686003)(86362001)(26005)(508600001)(186003)(110136005)(66476007)(53546011)(55236004)(6506007)(316002)(4326008)(54906003)(8676002)(66446008)(38100700002)(8936002)(66946007)(76116006)(66556008)(64756008)(38070700005)(71200400001)(2906002)(5660300002)(33656002)(122000001)(55016003)(52536014);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?V05SRHNvT0k4Z0UxaWhvblFtM1FnWFBZMndRcUN5eEg0NExIcUsxaUM4QlBa?=
- =?utf-8?B?Z1NPSndkNzFmSnVCd28rS3c0ZUJYN0JJOU1IYWZLRlVXNkxJT1Mvc3RPR00r?=
- =?utf-8?B?bEkzV3FLV09MSUhLVWpYTWRsOWVHSThPd3U2UmpjenB5bWNxdHBIcGxiZ282?=
- =?utf-8?B?UjBDUXovRW5hNFcrRjk1UkNNNVBrbFpvcm5iZERoM2NCQmwxcFROTkhBWHhI?=
- =?utf-8?B?a2NmbHl1QkZzME13bllGQXQ0dTVwWnhpNXcrM0d0MVlNbWZhNGl5WlV6WjVn?=
- =?utf-8?B?N05sQlYxcmMxbS9RNWJnUi90YmJ2bnU4OHFCclpNbmRHVDR3ZjlOSlNQdkpz?=
- =?utf-8?B?c09GT0t6MzlleURRV0NobURDdENEOS92WDVRWUptRUJmV0t0ZW91R0RhZE80?=
- =?utf-8?B?U0ovc0J6WEdUM2FHZFJmRHYzdjZiRzl2WVlDSmtXeG1maUNwcG16ckJoTjVN?=
- =?utf-8?B?Nmt3dFpkRHBkb2lQYWhIY09JRmZwWHpVRzNLSXNzMC80cTZXS09xRHA1c3Yv?=
- =?utf-8?B?YXJSREFpM3FidEJ6NGxORGQ2OERWR3RXTlEwOHlIUVJwL2s4d0IrQ1BIMDl2?=
- =?utf-8?B?QUNKVmROMzFlSVFoRVhPQnBOTzJIK20wWmxySUhNWVV0RlQ5ZHRlVlFRcU0w?=
- =?utf-8?B?Z3pwUEN5S2FVTlU2a0NucVdNNEhiNCs4MHVnbHRkTllGQzM2RE8vRDZyYzNU?=
- =?utf-8?B?WFRlUmVCRUExa0l1bHp4Y29sc09lU2h3MHZmLzFtczVrWjA5eWNSS1dXN1d5?=
- =?utf-8?B?L1BJdDVWOUwzTFZyNHNMSkJCb01HVTB2RmtQY0N6bDUyeWU0S3k0M1ArRVhQ?=
- =?utf-8?B?UXdmdEowanI4RkUvUnpXRE93Zi90L2hlWkdjb2pSUHRmMVRuMzdtb0pJdXQ5?=
- =?utf-8?B?RHRTbmFHWWJ0MkRVbnZra3BlOGZjRkRvVEl0Z1BOWEJYaGFpclZZMkltd0xj?=
- =?utf-8?B?ejFxbFBMWmpHT3pIK25DSWx1NlhWMzdXcUxZcHpwRTRtMnpkUWJ3ZkYzYUhH?=
- =?utf-8?B?Ull3STNjZ1JITnA5NlZzQmJqT3FZbVNYZ0pVYUVVVFpmek1ZYkxpYXJ0eXl3?=
- =?utf-8?B?cmlPd0RybWlKZ0M4NU5hblJnWE4wN3pzOHU4R1BmeHdGWllVQjZyWVdvbEhz?=
- =?utf-8?B?SjRrNTl0Z0tFMzZ1N0VlZjdpZnNUYzFnZnVQd25UQklsdHo5MFZ0dmNyL3RX?=
- =?utf-8?B?b1ZRaWIvZjUzQWcwbzBPSGJFZEpqcmMwTHU2L2F5TzcyTUNVNHExdDRBVGpO?=
- =?utf-8?B?a0IxOTFLTEowbFQ0cTNhbUhwL3pYaU5KRGVoQlA0c3dlZDFYZGNuZlUzVytS?=
- =?utf-8?B?M3JyY25PSFpNRHdQVVJFbFBHWk80Ym1PcDc2Z3NJZjdFYmdTSy9uMGtvZGNs?=
- =?utf-8?B?UUxwa0EvWDBXYzhsOEtWWi94M3lhREZvOHYxanBMeng0RGo3VVNzbWdNeUxP?=
- =?utf-8?B?dUs2RXRzWFI0cTIxNDJ5QndxQ1Vvd0dibXAxOVF3TmpJNzhrS084RUwzSEtr?=
- =?utf-8?B?OWRLRGQvNWprSDFENUlWbUM3RC95WlhrTUhuYmxFVTk3QVhXengvOU05SmJz?=
- =?utf-8?B?MDB4TEs0eDVWSTlDTzFmTTJXNExhME11ZTZXdHFkTXgwZTk0OEF0L01yYVFL?=
- =?utf-8?B?L0NSVkpKRENnUDhNTFNSUUh4RDQ1eWdsbTF4TUd0WS9yWWpkWHhuRk9xdXgw?=
- =?utf-8?B?YVlFdzlhTkdDNEVnSjdML0ZHYU1lRmxrZmw3SnhoOTVoVUhWSmg1RE9RWmxL?=
- =?utf-8?B?YmhOeldodnAvS2NvdU5YT1RHZ1BHTFFQc3piQ1U3ZEJpZ21QRDZwQUpWdWZa?=
- =?utf-8?B?UWVwY0pRa1B6MnBiUzNud0JSWTRlOWNoemdSVjJDUWgrK3BvY1BRSElMM1g1?=
- =?utf-8?B?SUZJUGUwZ2hWb09yT1NZWFVrdlBQSHNGOWUxVkxYZEM1c0grN2lMRTBRSTZK?=
- =?utf-8?B?dXNVNFpGVWFoTlIvd1N6Ty9DRTRRb0ZWblBmem43eTVVOTZFNW5kVkNBb3A3?=
- =?utf-8?B?MzR6OGpYZHk0dzhKR3hkZWl3Rit5V3l2dlo2TVQyaXI1dll6blp1UnlaUmFU?=
- =?utf-8?B?eEhmR1c3L1FKSEJMM3JsemZaOE45Wi9IWWFsWGxtdnNUeDVwRXY3czY2Z2Fj?=
- =?utf-8?B?UjRlMGprRGRaNnJpdE9KeHl1aTNURlYrY205cXdyTlVocEZESStteFMyR0pY?=
- =?utf-8?B?TEQ5akNmUE1TZXdDNFUxM0pjalFQN2lKeU9jOW9kS21wOEJvZDBLbVZvZzhW?=
- =?utf-8?B?UUs3eUZFNFFCeDlMTEYvSjZZc252T0FvdENHK1BYUExlVUFFanhpSGllb1hj?=
- =?utf-8?Q?6qibuuPQAFb93ZlgDm?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1653477258; x=1685013258;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=aohnXcvCSnlM5giWyMapPEnGKssvZQqYjKbDAOPXV60=;
+  b=GZdpiOt4o47nS+MAN6MleTRJgo6g7noOp5rIzcgOoYO8QhYHNSYk/kPn
+   84IX45Ql81eaGhRWubmbqHPtFBnuCTl8lae5nQIXQXYkmKEQulwmopf6U
+   2k0IYF+QRTKdsvoEgiKP4UYRjmX/jr8UfQTiTwvq5WFNLPczvgnwB7DyM
+   4=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 25 May 2022 04:14:17 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 May 2022 04:14:17 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 25 May 2022 04:14:16 -0700
+Received: from blr-ubuntu-525.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 25 May 2022 04:14:12 -0700
+From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@ieee.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        "Sai Prakash Ranjan" <quic_saipraka@quicinc.com>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+Subject: [PATCH V8 0/7] Add driver support for Data Capture and Compare Engine(DCC) for SM8150,SC7280,SC7180,SDM845
+Date:   Wed, 25 May 2022 16:43:15 +0530
+Message-ID: <cover.1653475467.git.quic_schowdhu@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR02MB6947.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 810e1f21-53bc-47f7-cd13-08da3e3e34e0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 May 2022 11:03:32.1920
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: MKODEhbsq/yHABOpPqucd7kLcVBjblFRKUOi+Rzv4wj7YgqLxYSlSY+q3nczZ8UVfWCAtJnKRzO7N0xeRAmJYw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR02MB6151
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgUm9iLA0KDQpDYW4geW91IHBsZWFzZSBjaGVjayB0aGlzLg0KDQpSZWdhcmRzLA0KQmhhcmF0
-DQoNCj4gDQo+IE9uIDUvMTYvMjIgMTI6MjIsIEJoYXJhdCBLdW1hciBHb2dhZGEgd3JvdGU6DQo+
-ID4gQWxsIGV4aXN0aW5nIHZlbmRvciBEVFNlcyBhcmUgdXNpbmcgImNwbV9zbGNyIiByZWcgZm9s
-bG93ZWQgYnkgImNmZyIgcmVnLg0KPiA+DQo+ID4gVGhpcyBvcmRlciBpcyBhbHNvIHN1Z2dlc3Rl
-ZCBieSBub2RlIG5hbWUgd2hpY2ggaXMgcGNpZUBmY2ExMDAwMCB3aGljaA0KPiA+IHN1Z2dlc3Rz
-IHRoYXQgY3BtX3NsY3IgcmVnaXN0ZXIgc2hvdWxkIGJlIHRoZSBmaXJzdC4NCj4gPg0KPiA+IERy
-aXZlciBpdHNlbGYgaXMgdXNpbmcgZGV2bV9wbGF0Zm9ybV9pb3JlbWFwX3Jlc291cmNlX2J5bmFt
-ZSgpIGZvcg0KPiA+IGJvdGggbmFtZXMgdGhhdCdzIHdoeSB0aGVyZSBpcyBubyBmdW5jdGlvbmFs
-IGNoYW5nZSBldmVuIG9uDQo+ID4gZGVzY3JpcHRpb24gd2hpY2ggYXJlIHVzaW5nIGN1cnJlbnQg
-b3JkZXIuDQo+ID4NCj4gPiBCdXQgc3RpbGwgcHJlZmVyIHRvIGNoYW5nZSBvcmRlciB0byBjb3Zl
-ciBjdXJyZW50bHkgdXNlZCBkZXNjcmlwdGlvbi4NCj4gPiBGaXhlczogZTIyZmFkYjFkMDE0ICgi
-UENJOiB4aWxpbngtY3BtOiBBZGQgWUFNTCBzY2hlbWFzIGZvciBWZXJzYWwgQ1BNDQo+ID4gUm9v
-dCBQb3J0IikNCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IEJoYXJhdCBLdW1hciBHb2dhZGEgPGJo
-YXJhdC5rdW1hci5nb2dhZGFAeGlsaW54LmNvbT4NCj4gPiAtLS0NCj4gPiAgIC4uLi9kZXZpY2V0
-cmVlL2JpbmRpbmdzL3BjaS94aWxpbngtdmVyc2FsLWNwbS55YW1sICAgICB8IDEwICsrKysrLS0t
-LS0NCj4gPiAgIDEgZmlsZSBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0p
-DQo+ID4NCj4gPiBkaWZmIC0tZ2l0DQo+ID4gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
-ZGluZ3MvcGNpL3hpbGlueC12ZXJzYWwtY3BtLnlhbWwNCj4gPiBiL0RvY3VtZW50YXRpb24vZGV2
-aWNldHJlZS9iaW5kaW5ncy9wY2kveGlsaW54LXZlcnNhbC1jcG0ueWFtbA0KPiA+IGluZGV4IDMy
-ZjQ2NDEwODViYy4uY2NhMzk1MzE3YTRjIDEwMDY0NA0KPiA+IC0tLSBhL0RvY3VtZW50YXRpb24v
-ZGV2aWNldHJlZS9iaW5kaW5ncy9wY2kveGlsaW54LXZlcnNhbC1jcG0ueWFtbA0KPiA+ICsrKyBi
-L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9wY2kveGlsaW54LXZlcnNhbC1jcG0u
-eWFtbA0KPiA+IEBAIC0xOCwxMyArMTgsMTMgQEAgcHJvcGVydGllczoNCj4gPg0KPiA+ICAgICBy
-ZWc6DQo+ID4gICAgICAgaXRlbXM6DQo+ID4gLSAgICAgIC0gZGVzY3JpcHRpb246IENvbmZpZ3Vy
-YXRpb24gc3BhY2UgcmVnaW9uIGFuZCBicmlkZ2UgcmVnaXN0ZXJzLg0KPiA+ICAgICAgICAgLSBk
-ZXNjcmlwdGlvbjogQ1BNIHN5c3RlbSBsZXZlbCBjb250cm9sIGFuZCBzdGF0dXMgcmVnaXN0ZXJz
-Lg0KPiA+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBDb25maWd1cmF0aW9uIHNwYWNlIHJlZ2lvbiBh
-bmQgYnJpZGdlIHJlZ2lzdGVycy4NCj4gPg0KPiA+ICAgICByZWctbmFtZXM6DQo+ID4gICAgICAg
-aXRlbXM6DQo+ID4gLSAgICAgIC0gY29uc3Q6IGNmZw0KPiA+ICAgICAgICAgLSBjb25zdDogY3Bt
-X3NsY3INCj4gPiArICAgICAgLSBjb25zdDogY2ZnDQo+ID4NCj4gPiAgICAgaW50ZXJydXB0czoN
-Cj4gPiAgICAgICBtYXhJdGVtczogMQ0KPiA+IEBAIC04Niw5ICs4Niw5IEBAIGV4YW1wbGVzOg0K
-PiA+ICAgICAgICAgICAgICAgICAgICAgICAgICByYW5nZXMgPSA8MHgwMjAwMDAwMCAweDAgMHhl
-MDAwMDAwMCAweDAgMHhlMDAwMDAwMCAweDANCj4gMHgxMDAwMDAwMD4sDQo+ID4gICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgIDwweDQzMDAwMDAwIDB4ODAgMHgwMDAwMDAwMCAweDgw
-IDB4MDAwMDAwMDAgMHgwDQo+IDB4ODAwMDAwMDA+Ow0KPiA+ICAgICAgICAgICAgICAgICAgICAg
-ICAgICBtc2ktbWFwID0gPDB4MCAmaXRzX2dpYyAweDAgMHgxMDAwMD47DQo+ID4gLSAgICAgICAg
-ICAgICAgICAgICAgICAgcmVnID0gPDB4NiAweDAwMDAwMDAwIDB4MCAweDEwMDAwMDAwPiwNCj4g
-PiAtICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8MHgwIDB4ZmNhMTAwMDAgMHgwIDB4MTAw
-MD47DQo+ID4gLSAgICAgICAgICAgICAgICAgICAgICAgcmVnLW5hbWVzID0gImNmZyIsICJjcG1f
-c2xjciI7DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgcmVnID0gPDB4MCAweGZjYTEwMDAw
-IDB4MCAweDEwMDA+LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwweDYgMHgw
-MDAwMDAwMCAweDAgMHgxMDAwMDAwMD47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgcmVn
-LW5hbWVzID0gImNwbV9zbGNyIiwgImNmZyI7DQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAg
-IHBjaWVfaW50Y18wOiBpbnRlcnJ1cHQtY29udHJvbGxlciB7DQo+ID4gICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgI2FkZHJlc3MtY2VsbHMgPSA8MD47DQo+ID4gICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgI2ludGVycnVwdC1jZWxscyA9IDwxPjsNCj4gDQo+IFJldmll
-d2VkLWJ5OiBNaWNoYWwgU2ltZWsgPG1pY2hhbC5zaW1la0BhbWQuY29tPg0KPiANCj4gVGhhbmtz
-LA0KPiBNaWNoYWwNCg==
+DCC(Data Capture and Compare) is a DMA engine designed for debugging purposes.
+In case of a system crash or manual software triggers by the user the DCC hardware
+stores the value at the register addresses which can be used for debugging purposes.
+The DCC driver provides the user with debugfs interface to configure the register
+addresses. The options that the DCC hardware provides include reading from registers,
+writing to registers, first reading and then writing to registers and looping
+through the values of the same register.
+
+In certain cases a register write needs to be executed for accessing the rest of the
+registers, also the user might want to record the changing values of a register with
+time for which he has the option to use the loop feature.
+
+The options mentioned above are exposed to the user by debugfs files once the driver
+is probed. The details and usage of this debugfs files are documented in
+Documentation/ABI/testing/debugfs-driver-dcc.
+
+As an example let us consider a couple of debug scenarios where DCC has been proved to be
+effective for debugging purposes:-
+
+i)TimeStamp Related Issue
+
+On SC7180, there was a coresight timestamp issue where it would occasionally be all 0
+instead of proper timestamp values.
+
+Proper timestamp:
+Idx:3373; ID:10; I_TIMESTAMP : Timestamp.; Updated val = 0x13004d8f5b7aa; CC=0x9e
+
+Zero timestamp:
+Idx:3387; ID:10; I_TIMESTAMP : Timestamp.; Updated val = 0x0; CC=0xa2
+
+Now this is a non-fatal issue and doesn't need a system reset, but still needs
+to be rootcaused and fixed for those who do care about coresight etm traces.
+Since this is a timestamp issue, we would be looking for any timestamp related
+clocks and such.
+
+We get all the clk register details from IP documentation and configure it
+via DCC config_read debugfs node. Before that we set the current linked list.
+
+/* Program the linked list with the addresses */
+echo R 0x10c004 > /sys/kernel/debug/dcc/../3/config
+echo R 0x10c008 > /sys/kernel/debug/dcc/../3/config
+echo R 0x10c00c > /sys/kernel/debug/dcc/../3/config
+echo R 0x10c010 > /sys/kernel/debug/dcc/../3/config
+..... and so on for other timestamp related clk registers
+
+/* Other way of specifying is in "addr len" pair, in below case it
+specifies to capture 4 words starting 0x10C004 */
+
+echo R 0x10C004 4 > /sys/kernel/debug/dcc/../3/config_read
+
+/* Enable DCC */
+echo 1 > /sys/kernel/debug/dcc/../3/enable
+
+/* Run the timestamp test for working case */
+
+/* Send SW trigger */
+echo 1 > /sys/kernel/debug/dcc/../trigger
+
+/* Read SRAM */
+cat /dev/dcc_sram > dcc_sram1.bin
+
+/* Run the timestamp test for non-working case */
+
+/* Send SW trigger */
+echo 1 > /sys/kernel/debug/dcc/../trigger
+
+/* Read SRAM */
+cat /dev/dcc_sram > dcc_sram2.bin
+
+Get the parser from [1] and checkout the latest branch.
+
+/* Parse the SRAM bin */
+python dcc_parser.py -s dcc_sram1.bin --v2 -o output/
+python dcc_parser.py -s dcc_sram2.bin --v2 -o output/
+
+Sample parsed output of dcc_sram1.bin:
+
+<hwioDump version="1">
+        <timestamp>03/14/21</timestamp>
+            <generator>Linux DCC Parser</generator>
+                <chip name="None" version="None">
+                <register address="0x0010c004" value="0x80000000" />
+                <register address="0x0010c008" value="0x00000008" />
+                <register address="0x0010c00c" value="0x80004220" />
+                <register address="0x0010c010" value="0x80000000" />
+            </chip>
+    <next_ll_offset>next_ll_offset : 0x1c </next_ll_offset>
+</hwioDump>
+
+ii)NOC register errors
+
+A particular class of registers called NOC which are functional registers was reporting
+errors while logging the values.To trace these errors the DCC has been used effectively.
+The steps followed were similar to the ones mentioned above.
+In addition to NOC registers a few other dependent registers were configured in DCC to
+monitor it's values during a crash. A look at the dependent register values revealed that
+the crash was happening due to a secured access to one of these dependent registers.
+All these debugging activity and finding the root cause was achieved using DCC.
+
+DCC parser is available at the following open source location
+
+https://source.codeaurora.org/quic/la/platform/vendor/qcom-opensource/tools/tree/dcc_parser
+
+Changes in V8
+
+*The DCC interface for debugfs has been changed as per comments on v7. 
+ The new interface details are documented in Documentation/ABI/testing/debugfs-driver-dcc.
+
+Souradeep Chowdhury (7):
+  dt-bindings: Added the yaml bindings for DCC
+  soc: qcom: dcc:Add driver support for Data Capture and Compare
+    unit(DCC)
+  MAINTAINERS: Add the entry for DCC(Data Capture and Compare) driver
+    support
+  arm64: dts: qcom: sm8150: Add Data Capture and Compare(DCC) support
+    node
+  arm64: dts: qcom: sc7280: Add Data Capture and Compare(DCC) support
+    node
+  arm64: dts: qcom: sc7180: Add Data Capture and Compare(DCC) support
+    node
+  arm64: dts: qcom: sdm845: Add Data Capture and Compare(DCC) support
+    node
+
+ Documentation/ABI/testing/debugfs-driver-dcc       |   95 ++
+ .../devicetree/bindings/arm/msm/qcom,dcc.yaml      |   43 +
+ MAINTAINERS                                        |    8 +
+ arch/arm64/boot/dts/qcom/sc7180.dtsi               |    6 +
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               |    6 +
+ arch/arm64/boot/dts/qcom/sdm845.dtsi               |    6 +
+ arch/arm64/boot/dts/qcom/sm8150.dtsi               |    6 +
+ drivers/soc/qcom/Kconfig                           |    8 +
+ drivers/soc/qcom/Makefile                          |    1 +
+ drivers/soc/qcom/dcc.c                             | 1359 ++++++++++++++++++++
+ 10 files changed, 1538 insertions(+)
+ create mode 100644 Documentation/ABI/testing/debugfs-driver-dcc
+ create mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,dcc.yaml
+ create mode 100644 drivers/soc/qcom/dcc.c
+
+-- 
+2.7.4
+
