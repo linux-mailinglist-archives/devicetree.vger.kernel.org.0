@@ -2,18 +2,18 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3EF953376D
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 09:37:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBDE1533770
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 09:37:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230446AbiEYHhQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 03:37:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46666 "EHLO
+        id S234157AbiEYHhT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 03:37:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229667AbiEYHhP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 03:37:15 -0400
-Received: from smtpo52.interia.pl (smtpo52.interia.pl [217.74.67.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAC065DA03
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 00:37:14 -0700 (PDT)
+        with ESMTP id S231589AbiEYHhR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 03:37:17 -0400
+Received: from smtpo49.interia.pl (smtpo49.interia.pl [217.74.67.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAADA5DBED
+        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 00:37:16 -0700 (PDT)
 X-Interia-R: Interia
 X-Interia-R-IP: 80.68.225.159
 X-Interia-R-Helo: <localhost>
@@ -22,30 +22,32 @@ Received: from localhost (unknown [80.68.225.159])
          key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
         by www.poczta.fm (INTERIA.PL) with ESMTPSA;
-        Wed, 25 May 2022 09:37:11 +0200 (CEST)
+        Wed, 25 May 2022 09:37:13 +0200 (CEST)
 From:   Slawomir Stepien <sst@poczta.fm>
 To:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
 Cc:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, przemyslaw.cencner@nokia.com,
         krzysztof.adamski@nokia.com, alexander.sverdlin@nokia.com,
         sst@poczta.fm, slawomir.stepien@nokia.com
-Subject: Extend the device-tree binding for lm90
-Date:   Wed, 25 May 2022 09:36:50 +0200
-Message-Id: <20220525073657.573327-1-sst@poczta.fm>
+Subject: [PATCH 1/7] dt-bindings: hwmon: Add compatible string for ADT7481 in lm90
+Date:   Wed, 25 May 2022 09:36:51 +0200
+Message-Id: <20220525073657.573327-2-sst@poczta.fm>
 X-Mailer: git-send-email 2.36.1
+In-Reply-To: <20220525073657.573327-1-sst@poczta.fm>
+References: <20220525073657.573327-1-sst@poczta.fm>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Interia-Antivirus: OK
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=interia.pl;
-        s=biztos; t=1653464233;
-        bh=2XR7LcsYHYqTEmlc1MvJknjMnFcNAr6Q09NoCw7+DoI=;
+        s=biztos; t=1653464235;
+        bh=4odEewbwZcaxnfC1CYoMmE2sqvk0v0Ksnmm/yXE9drM=;
         h=From:To:Subject:Date:Message-Id:MIME-Version;
-        b=Sug/nmGTgM/W4PtansM86Ik2BU0hOW3CWECHVmm1khpeEAPKOTLqhrZkIRYfjvSst
-         uOhvhYIV7y+sCJTxMOAJ4e5wamR8kMkJLb5pIppHSNZVO5rw9i1HBGy78tYgCZFrve
-         LjPS66Ine+vqAt833S/y05tvXqAXv//D/xCSXmKk=
+        b=K4kEoXbTzL/PsDerrtcCkkfqNmkTvNrYVRlxf5TeueW9usAkj4MgC4JlORFg7cD1u
+         H1LN8O272i/OoFgz3xyLvGH7TC0DaAwYddKmizCBjyYB/LKJ9yftcw3NI3SojDPUri
+         4gXIBbp58ky8E80JFSnHPGL6HDXiNNl9JKUUjyK0=
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,FREEMAIL_FROM,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,FREEMAIL_FROM,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -54,12 +56,36 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Slawomir Stepien <slawomir.stepien@nokia.com>
 
-This series extends the device-tree binding for lm90.
-Support for channel's label and channel's temperature offset has been added.
+This will allow binding the driver with the device from the device tree.
 
-In lm90.c support for 2nd remote channel's temperature offset has been added (it is useful for
-ADT7481 device) along side the needed changes for new bindings.
+This device can work in extended temperature measurement mode, so add it
+also to the list of devices that support 'ti,extended-range-enable'.
 
-Note: this series has been rebased on hwmon/hwmon-lm90.
+Signed-off-by: Slawomir Stepien <slawomir.stepien@nokia.com>
+---
+ Documentation/devicetree/bindings/hwmon/national,lm90.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/hwmon/national,lm90.yaml b/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
+index b04657849852..82fce96498c7 100644
+--- a/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
++++ b/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
+@@ -16,6 +16,7 @@ properties:
+       - adi,adm1032
+       - adi,adt7461
+       - adi,adt7461a
++      - adi,adt7481
+       - dallas,max6646
+       - dallas,max6647
+       - dallas,max6649
+@@ -70,6 +71,7 @@ allOf:
+               enum:
+                 - adi,adt7461
+                 - adi,adt7461a
++                - adi,adt7481
+                 - ti,tmp451
+                 - ti,tmp461
+     then:
+-- 
+2.36.1
 
