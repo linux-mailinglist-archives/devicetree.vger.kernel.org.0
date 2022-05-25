@@ -2,119 +2,255 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37DD6534618
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 23:55:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9143453462F
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 00:07:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234716AbiEYVzF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 17:55:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41340 "EHLO
+        id S1345199AbiEYWHV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 18:07:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232135AbiEYVzE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 17:55:04 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D558B82D9
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 14:55:00 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id v4-20020a1cac04000000b00397001398c0so1866169wme.5
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 14:55:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pensando.io; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/oBh+Znbc88NiDeYaHpcLs3NJcAFoy3MCBRZMNMGpQw=;
-        b=arfvwNzDDLgge/qyXCYs6mi8SFh5fASF9WAvA3CMnMWaUtgiy3QFHT7IU6lKDS2BVh
-         WrL/CARwCWxnEYK5zRUId/2SUMGApf4e7UBK+Zdn3lso/PvChAqUP9DhzLZq2s/6ZgoD
-         7mVF2DH4324yfM97di0AzI26SutPzq4Md+/+M8nW55zkuz+c1CrrYJII0V/mjGbxhM+k
-         TTm4lUAXyVT4A0fFNZA+IKbEmdamDebiDlU6MnFM2Nw4SFeK4zcsDKm4Tyda/deXw34G
-         fHwUjAUPL/WKKTXeekwmgsvqPXjsSnqJnZO1cJ0qoQ2xA501AnbsFOJueL4csev4WMj4
-         Jorw==
+        with ESMTP id S237130AbiEYWHU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 18:07:20 -0400
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89924E0DE
+        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 15:07:17 -0700 (PDT)
+Received: by mail-pf1-f179.google.com with SMTP id h13so136839pfq.5
+        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 15:07:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/oBh+Znbc88NiDeYaHpcLs3NJcAFoy3MCBRZMNMGpQw=;
-        b=eryTBu9tUV/WLh83O0kLwewA1mjOj522XEElc2wrDk3DtSdPDp5q5umYVuNWAkMKM2
-         8+mU8e9ltsVaD2Vyn/1WspzHRMRqc0ux5/ZnVDsJNsL8LjKrVY/o6fGrn2Ic2rFCec7d
-         IRnoU+A3VNxSeTmdMVJtZSFRddEuMCx5Fn/3YdeTH0YnO2ACO9HCGyJZqwofPG1zNTRv
-         u/R8BJiDXoKiO8q69kdTRyRD8GGgoKQJC0fzfLfJHbZUoRbWipvhka8r7wSWyDzpdcdj
-         wbTwOgO/nRsN2fBiVFO57DiJ/3JXh26ValaKsXYk31cFoLYAdVPiuKcte1YboF+G7WGv
-         ieqQ==
-X-Gm-Message-State: AOAM532XjPDCDq4XLJcnSn61YZavnkgQyLuW3/EakbM5b2Es6xBA/WKP
-        a1/gTnlpm9TTdu584HkwyNOSVk/fMth7NXNqNdzT+g==
-X-Google-Smtp-Source: ABdhPJwEdTcOuaFFxDw66wiF82VdkmXZa5C+ZdHZn9Ask4eKJm/UyqU4NfEyal57N8Yt5HepbbE1akxgZF/HJ+Ov6SQ=
-X-Received: by 2002:a1c:e903:0:b0:397:36b8:795a with SMTP id
- q3-20020a1ce903000000b0039736b8795amr10328612wmc.98.1653515698905; Wed, 25
- May 2022 14:54:58 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=IE2Ntb5oMK4K7amafeNetTiCxxwL4oFF63eZ4S/Cu40=;
+        b=I6Rgk9E8B1fUkbMHiWE6WxUhQ9JY4LDXLTFQ8jPoqB2knByAVMxR262xQU2jf3xzvH
+         1SQfpnhrJ0jSFgtYIRO9WIGtVSrhip9UtZnzkiIUhM46oGp+/GZVrPlS5wgZ7RnY9XYq
+         HfbOHzc0v5lzUe7Y8TdEePBDSVo/nY9OgynsokqqU69sxdVqaE0nB37qZIi0IMAlsLH/
+         bc3pD74Hav3++qi2GP1OqvhqzPB6bdzMEarZbMfdg6UeSDZzmszLRe0jRGJ0LhGWt0CL
+         G2q5qluNSHKNFd5h2S+QrGzQdBMOw0/+WwXrQUGd5VAF6V9Wq3xywOkx4EPBVz9CnG7h
+         BGRQ==
+X-Gm-Message-State: AOAM533NYLbkjNVuBHxTj16HH7xYQ6M8X32M6esUxWNCIsqBgLGrpLpa
+        qneB65wwmosG90SaqcCENo14JwxKfdSY48oX
+X-Google-Smtp-Source: ABdhPJwdqFMCLJa7Y7vyj6CS5A+5uCRs6z3mJZo81jSCPzBgpMhVjT7B8zM+9XXAV6oNybU+EL4RYw==
+X-Received: by 2002:a63:c04a:0:b0:3fa:7277:964c with SMTP id z10-20020a63c04a000000b003fa7277964cmr13087451pgi.499.1653516436926;
+        Wed, 25 May 2022 15:07:16 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id o1-20020a170902d4c100b0015edb22aba1sm10030189plg.270.2022.05.25.15.07.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 May 2022 15:07:16 -0700 (PDT)
+From:   Kevin Hilman <khilman@kernel.org>
+To:     Chen-Yu Tsai <wenst@chromium.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>
+Cc:     Roger Lu <roger.lu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Fan Chen <fan.chen@mediatek.com>,
+        Charles Yang <Charles.Yang@mediatek.com>,
+        Angus Lin <Angus.Lin@mediatek.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jia-wei Chang <jia-wei.chang@mediatek.com>,
+        =?utf-8?B?UmV4LUJDIENoZW4gKOmZs+afj+i+sCk=?= 
+        <rex-bc.chen@mediatek.com>
+Subject: Re: [PATCH v25 0/7] soc: mediatek: SVS: introduce MTK SVS
+In-Reply-To: <CAGXv+5HEG1VJ89LDHJmMvPqafcdb2cuJj2wxv44ozPxDeHj8ig@mail.gmail.com>
+References: <20220516004311.18358-1-roger.lu@mediatek.com>
+ <CAGXv+5GSdWPZe3fNpBJ_WW0zCL8Skg6fHx9ATxaKU1hyMEt2Ww@mail.gmail.com>
+ <7h4k1ndaui.fsf@baylibre.com> <7hy1yzbtb7.fsf@baylibre.com>
+ <CAGXv+5GT=3m=pVPwUOWR42BR=emCpBXvvoAiRV7YKt2kEKWdAQ@mail.gmail.com>
+ <CGME20220519182512epcas1p3020bd4713580c9244f759971b8bd2c3a@epcas1p3.samsung.com>
+ <7hmtfdbcsc.fsf@baylibre.com>
+ <5a1767dc-ba2d-4de5-d8fe-2f308d3318a9@samsung.com>
+ <CAGXv+5EsgiXCpe-8H0cQ=qm_Nq+yfM_a4b1L=hOFP6mcwfZymw@mail.gmail.com>
+ <eacf7a67-bc64-a764-e23d-c733a4666b8a@samsung.com>
+ <CAGXv+5HEG1VJ89LDHJmMvPqafcdb2cuJj2wxv44ozPxDeHj8ig@mail.gmail.com>
+Date:   Wed, 25 May 2022 15:07:15 -0700
+Message-ID: <7hleup9sh8.fsf@baylibre.com>
 MIME-Version: 1.0
-References: <20220406233648.21644-1-brad@pensando.io> <20220406233648.21644-11-brad@pensando.io>
- <20220412110622.2xsk3k63dafqxib5@mobilestation>
-In-Reply-To: <20220412110622.2xsk3k63dafqxib5@mobilestation>
-From:   Brad Larson <brad@pensando.io>
-Date:   Wed, 25 May 2022 14:54:47 -0700
-Message-ID: <CAK9rFnzp0+80dX_-NYidfVXWJ1sru5mNk1vgVDzoV7VeEekpwQ@mail.gmail.com>
-Subject: Re: [PATCH 10/11] spi: dw: Add support for Pensando Elba SoC
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mark Brown <broonie@kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Olof Johansson <olof@lixom.net>,
-        David Clear <dac2@pensando.io>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sergey,
+Chen-Yu Tsai <wenst@chromium.org> writes:
 
-On Tue, Apr 12, 2022 at 4:06 AM Serge Semin <fancer.lancer@gmail.com> wrote:
+> On Fri, May 20, 2022 at 5:53 PM Chanwoo Choi <cw00.choi@samsung.com> wrote:
+>>
+>> Hi Kevin,
+>>
+>> On 5/20/22 11:42 AM, Chen-Yu Tsai wrote:
+>> > On Fri, May 20, 2022 at 9:28 AM Chanwoo Choi <cw00.choi@samsung.com> wrote:
+>> >>
+>> >> Hi Kevin, Chen-Yu,
+>> >>
+>> >> On 5/20/22 3:25 AM, Kevin Hilman wrote:
+>> >>> Chen-Yu Tsai <wenst@chromium.org> writes:
+>> >>>
+>> >>>> n Wed, May 18, 2022 at 8:03 AM Kevin Hilman <khilman@kernel.org> wrote:
+>> >>>>>
+>> >>>>> Kevin Hilman <khilman@kernel.org> writes:
+>> >>>>>
+>> >>>>>> Chen-Yu Tsai <wenst@chromium.org> writes:
+>> >>>>>>
+>> >>>>>>> On Mon, May 16, 2022 at 8:43 AM Roger Lu <roger.lu@mediatek.com> wrote:
+>> >>>>>>>>
+>> >>>>>>>> The Smart Voltage Scaling(SVS) engine is a piece of hardware
+>> >>>>>>>> which calculates suitable SVS bank voltages to OPP voltage table.
+>> >>>>>>>> Then, DVFS driver could apply those SVS bank voltages to PMIC/Buck
+>> >>>>>>>> when receiving OPP_EVENT_ADJUST_VOLTAGE.
+>> >>>>>>>>
+>> >>>>>>>> 1. SVS driver uses OPP adjust event in [1] to update OPP table voltage part.
+>> >>>>>>>> 2. SVS driver gets thermal/GPU device by node [2][3] and CPU device by get_cpu_device().
+>> >>>>>>>> After retrieving subsys device, SVS driver calls device_link_add() to make sure probe/suspend callback priority.
+>> >>>>>>>>
+>> >>>>>>>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git/commit/?h=opp/linux-next&id=25cb20a212a1f989385dfe23230817e69c62bee5
+>> >>>>>>>> [2] https://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git/commit/?h=opp/linux-next&id=b325ce39785b1408040d90365a6ab1aa36e94f87
+>> >>>>>>>> [3] https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/commit/?h=v5.16-next/dts64&id=a8168cebf1bca1b5269e8a7eb2626fb76814d6e2
+>> >>>>>>>>
+>> >>>>>>>> Change since v24:
+>> >>>>>>>> - Rebase to Linux 5.18-rc6
+>> >>>>>>>> - Show specific fail log in svs_platform_probe() to help catch which step fails quickly
+>> >>>>>>>> - Remove struct svs_bank member "pd_dev" because all subsys device's power domain has been merged into one node like above [3]
+>> >>>>>>>>
+>> >>>>>>>> Test in below environment:
+>> >>>>>>>> SW: Integration Tree [4] + Thermal patch [5] + SVS v25 (this patchset)
+>> >>>>>>>> HW: mt8183-Krane
+>> >>>>>>>>
+>> >>>>>>>> [4] https://protect2.fireeye.com/v1/url?k=847bae75-e5f0bb43-847a253a-000babff9b5d-0b6f42041b9dea1d&q=1&e=37a26c43-8564-4808-9701-dc76d1ebbb27&u=https%3A%2F%2Fgithub.com%2Fwens%2Flinux%2Fcommits%2Fmt8183-cpufreq-cci-svs-test
+>> >>>>>>>
+>> >>>>>>> I've updated my branch to include all the latest versions of the relevant
+>> >>>>>>> patch series:
+>> >>>>>>>
+>> >>>>>>> - anx7625 DPI bus type series v2 (so the display works)
+>> >>>>>>> - MT8183 thermal series v9 (this seems to have been overlooked by the
+>> >>>>>>> maintainer)
+>> >>>>>>> - MTK SVS driver series v25
+>> >>>>>>> - devfreq: cpu based scaling support to passive governor series v5
+>> >>>>>>> - MTK CCI devfreq series v4
+>> >>>>>>> - MT8183 cpufreq series v7
+>> >>>>>>> - Additional WIP patches for panfrost MTK devfreq
+>> >>>>>>
+>> >>>>>> Thanks for preparing an integration branch Chen-Yu.
+>> >>>>>>
+>> >>>>>> I'm testing this on mt8183-pumpkin with one patch to add the CCI
+>> >>>>>> regulator[1], and the defconfig you posted in a previous rev of this
+>> >>>>>> series, but the CCI driver still causes a fault on boot[2] on my
+>> >>>>>> platform.
+>> >>>>>>
+>> >>>>>> I mentioned in earlier reviews that I think there's potentially a race
+>> >>>>>> between CCI and SVS loading since they are co-dependent.  My hunch is
+>> >>>>>> that this is still not being handled properly.
+>> >>>>>
+>> >>>>> Ah, actually it's crashing when I try to boot the platform with
+>> >>>>> `maxcpus=4` on the cmdline (which I have to do because mt8183-pumpkin is
+>> >>>>> unstable upstream with the 2nd cluster enabled.)
+>> >>
+>> >> This warning message is printed by 'WARN_ON(cpufreq_passive_unregister_notifier(devfreq))'
+>> >> on devfreq passive governor.
+>> >>
+>> >> If the cpufreq drivers are not probed before of probing cci devfreq driver
+>> >> with passive governor, passive governor shows this warning message.
+>> >> Because passive governor with CPUFREQ_PARENT_DEV depends on the cpufreq driver
+>> >> in order to get 'struct cpufreq_policy'[2].
+>> >>
+>> >> [1] https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git/tree/drivers/devfreq/governor_passive.c?h=devfreq-testing#n339
+>> >> [2] https://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git/tree/drivers/devfreq/governor_passive.c?h=devfreq-testing#n282
+>> >>
+>> >> But, as I knew, this message might not stop the kernel. Just show the warning
+>> >> message and then return -EPROBE_DEFER error. It means that maybe try to
+>> >> probe the cci devfreq driver on late time of kernel booting
+>> >> and then will be working. But, I need the full kernel booting log
+>> >> and the booting sequence of between cpufreq and cci devfreq driver.
+>> >
+>> > Maybe just use a standard dev_warn() instead? WARN_ON causes all sorts
+>> > of panicking in developers' minds. :p
+>> >
+>> >> In order to fix your issue, could you share the full booting log?
+>> >> And if possible, please explain the more detailed something about this.
+>> >
+>> > The shortened version is that on an 8 core system, with maxcpus=4,
+>> > only the first four cores are booted and have cpufreq associated.
+>> > I've not actually used this mechanism, so I don't really know what
+>> > happens if the other cores are brought up later with hotplug. Is
+>> > cpufreq expected to attach to them?
+>> >
+>> > Maybe Kevin can add some more details.
+>> >
+>> >
+>> > ChenYu
+>> >
+>> >
+>> >>>>>
+>> >>>>> The CCI driver should be a bit more robust about detecting
+>> >>>>> available/online CPUs
+>> >>>>
+>> >>>> This all seems to be handled in the devfreq passive governor.
+>> >>>
+>> >>> Well, that's the initial crash.  But the SVS driver will also go through
+>> >>> its svs_mt8183_banks[] array (including both big & little clusters) and
+>> >>> try to init SVS, so presumably that will have some problems also if only
+>> >>> one cluster is enabled.
+>> >>>
+>> >>>> And presumably we'd like to have CCI devfreq running even if just one
+>> >>>> core was booted.
+>> >>>
+>> >>> Yes, I assume so also.
+>> >>>
+>> >>>> Added Chanwoo for more ideas.
+>> >>>
+>> >>> OK, thanks.
+>> >>>
+>> >>> Kevin
+>>
+>>
+>> I tested the passive governor with my temporary test code
+>> on odroid-xu3 which contains the big.LITTLE cluster (Octa-core).
+>>
+>>
+>> [Sequence of cpufreq/devfreq driver]
+>> 1. Turn on all cpus
+>> 2. Probed cpufreq driver
+>> 3. Probed devfreq driver using passive governor with CPUFREQ_PARENT_DEV
+>>
+>> In my test case, there are no warning message during kernel booting.
+>> Also when scaling the cpu frequency of cpus of big.LITTLE clusters,
+>> temporary devfreq driver receives the notfication and then
+>> calculate the target frequency of devfreq device by iterating online cpu.
+>>
+>> If there are any h/w constraints on your case, please let me know.
 >
-> > +static void elba_spics_set_cs(struct dw_spi_elba *dwselba, int cs, int enable)
-> > +{
-> > +     regmap_update_bits(dwselba->regmap, dwselba->reg, ELBA_SPICS_MASK(cs),
-> > +                        ELBA_SPICS_SET(cs, enable));
-> > +}
-> > +
-> > +static void dw_spi_elba_set_cs(struct spi_device *spi, bool enable)
+> Could you run your system with maxcpus=4 added to your cmdline?
+> This is what Kevin was running.
 >
-> The methods naming is ambiguous. Moreover it breaks this module naming
-> convention. Could you change them to something like:
-> dw_spi_elba_override_cs()
-> and
-> dw_spi_elba_set_cs()
-> ?
+> The current result is that the latter four cores aren't booted, so no
+> cpufreq tied to them, and the passive governor will fail to get their
+> cpufreq_policy. As mentioned before, the code path used to have a
+> WARN_ON(). Now it's a dev_warn(). It will still fail initialization
+> though.
+>
+> We're wondering if devfreq passive governor should be made to work
+> even if not all cpu cores are available when it probes.
 
-Yes, changed elba_spics_set_cs() -> dw_spi_elba_override_cs()
+For info, here is a boot log[1] from mt8183-pumpkin board where I'm
+testing Chen-Yu's lastest integration branch.  
 
-> > +     /* deassert cs */
->
-> > +     elba_spics_set_cs(dwselba, 0, 1);
-> > +     elba_spics_set_cs(dwselba, 1, 1);
->
-> What if the CS lines are of the active-high type? In that case basically
-> you get to do the opposite to what you claim in the comment here.
->
-> Note the CS setting into the deactivated state is done in the spi_setup()
-> method anyway, at the moment of the peripheral SPI device registration
-> stage (see its calling the spi_set_cs() function). Thus what you are doing
-> here is redundant.
+As Chen-Yu said, the part that makes it trigger the warn is disabling
+some of the CPUs *at boot time*.  In this case, I'm passing `maxcpus=4`
+on the kernel command line.
 
-Yes this is a redundant initialization and is removed.  For Elba these CS lines
-are active-low only.
+Kevin
 
-Regards,
-Brad
+[1] https://termbin.com/zidi
