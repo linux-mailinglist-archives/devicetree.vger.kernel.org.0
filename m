@@ -2,73 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25EF0533453
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 02:33:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 482EA533466
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 02:42:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241065AbiEYAdP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 May 2022 20:33:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47612 "EHLO
+        id S242304AbiEYAmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 May 2022 20:42:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241106AbiEYAdN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 20:33:13 -0400
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 185405C76C
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 17:33:10 -0700 (PDT)
-Received: by mail-pf1-x436.google.com with SMTP id z25so5143457pfr.1
-        for <devicetree@vger.kernel.org>; Tue, 24 May 2022 17:33:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=C4C/D4T+CUJxvXvtCc8LzXnNYagqhSTrzLZVSiGb5zY=;
-        b=g//OhIA0UTsxXJFmtA6Yjqv1mp+jHeAcfxuLELOuTrgbC8jTtOHm8ixIMhylQiJUUe
-         KF04EdncRzRvqP1+3hoZU3iOad5Hxet3k76doOGDcm+U8bx9PtfxqWLhX3E+2FMDJYfn
-         8Y16xi2U3UIvzxWvQmooV/w22AeNKH+q7ewEM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=C4C/D4T+CUJxvXvtCc8LzXnNYagqhSTrzLZVSiGb5zY=;
-        b=V3T3ivYJedeszxqQELwtkmf5ZC440uqnr1rkNU4Z3Yqz4Zp5pkwspP+fJvVr50sA7i
-         /v9MHWkkp253fwD9a2vU0L2nk8vLxRYChG5WHCzjCSFg8GSrkK0AD2R1Ddd6sxUqGVR4
-         BTMTEyrFl2dJLpddcVh0Ix9k4QC2VXhLR81i9phZOFhL0hfj7NKgkAI6ajt9zM7bunBi
-         YV522leu3mmmjpLdIAXSeYZbytJfB/cj7qPguYkj/zDEXEZE0IAJtAVRY66ctCV7SWPJ
-         7mY2sMW/O0usVQ8shdM0+8VSbePZmnhCiB+ekSTTBgVZrIzaFiskSSngY8T1MwUu5ACL
-         96OA==
-X-Gm-Message-State: AOAM530/vKo6v5Lvo5kzy/oJ+8C5S0tKkPsmTZqA2/YsDkEJ0OlTb+9H
-        BEKMmCxRr5nxR9MAG9O78pGsPQ==
-X-Google-Smtp-Source: ABdhPJyKWWyRzUNEQSFUPvMrVx5fySO0oToibLjAeOhNPvvGU3SjjZj9ykLkFlOZ8RmmVxp82uO9bA==
-X-Received: by 2002:a05:6a00:2408:b0:4f7:a8cb:9b63 with SMTP id z8-20020a056a00240800b004f7a8cb9b63mr31211627pfh.33.1653438789403;
-        Tue, 24 May 2022 17:33:09 -0700 (PDT)
-Received: from T3500-3.dhcp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id t71-20020a63784a000000b003db610ebdd0sm7087438pgc.65.2022.05.24.17.33.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 May 2022 17:33:07 -0700 (PDT)
-From:   William Zhang <william.zhang@broadcom.com>
-To:     Linux ARM List <linux-arm-kernel@lists.infradead.org>
-Cc:     samyon.furman@broadcom.com, philippe.reynes@softathome.com,
-        kursad.oney@broadcom.com, florian.fainelli@broadcom.com,
-        joel.peshkin@broadcom.com, anand.gore@broadcom.com,
-        dan.beygelman@broadcom.com, tomer.yacoby@broadcom.com,
-        William Zhang <william.zhang@broadcom.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, soc@kernel.org
-Subject: [PATCH 2/3] ARM: dts: add dts files for bcmbca SoC bcm6846
-Date:   Tue, 24 May 2022 17:32:35 -0700
-Message-Id: <20220525003236.2699-3-william.zhang@broadcom.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220525003236.2699-1-william.zhang@broadcom.com>
-References: <20220525003236.2699-1-william.zhang@broadcom.com>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000b8d9ae05dfcb371c"
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        MIME_HEADER_CTYPE_ONLY,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_TVD_MIME_NO_HEADERS autolearn=ham
+        with ESMTP id S242341AbiEYAmr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 May 2022 20:42:47 -0400
+Received: from mo-csw.securemx.jp (mo-csw1516.securemx.jp [210.130.202.155])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A3425BD33;
+        Tue, 24 May 2022 17:42:45 -0700 (PDT)
+Received: by mo-csw.securemx.jp (mx-mo-csw1516) id 24P0g8OA027478; Wed, 25 May 2022 09:42:08 +0900
+X-Iguazu-Qid: 34trSfAbwEXhT00Kjh
+X-Iguazu-QSIG: v=2; s=0; t=1653439328; q=34trSfAbwEXhT00Kjh; m=WrncwomgaIZn9ThZbC4RkLuQxNhZSx9PZ9qic9N2SB8=
+Received: from imx2-a.toshiba.co.jp (imx2-a.toshiba.co.jp [106.186.93.35])
+        by relay.securemx.jp (mx-mr1510) id 24P0g6ch021547
+        (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
+        Wed, 25 May 2022 09:42:06 +0900
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GlEw4uOf1BK+0KBb/Ty4AA80Nx1YBPlskOSK93RgfChivq7MLvzLdKEkWf7jp9DUc5xOW4AiGZMf5sS5HAqn8DrT85Oa9PlQtPd+2Dq5GJ95k6oPC82xo81GK3soGPCgA6ca03/aXakJuDoOI4SJ3mLpwA1RBUWPimwMdif2suQHI3hF2+L7wVfJGgJaoZFwpcALGQInjLBaL+PH6CXTFLvkELNfBMtjpajETO/DlWwtEKeGcP6IucnBRAy6wD+I+ycwsXvtPvUnTjCGFbrUgTkLstlqNL8fs736fr5f0fymhhkblgspTF86H1oMpHq9QLmmekqYj6V5OgkVnmW8Dw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kR722t8JeStJnKCOoidoG3cCc3HvLSNLd2qim3XbGlY=;
+ b=oZ1O5+geZmVrEEKI7oAtjxLx+Elt+NLNcAJYtpvRoutij5814+yrBaL7FqDOk4QE+mmy8DasnYD6B0iSpomtEsnntnAaGAN0o0TOk63pUFYQ7kmj0wm4x3at4jnzgDHmXpG0SC06upbV7s5S8hW1vwJmNu42BjEi4m+1rLj4pug99KoHbLcVNkVUM0q2WIoTBTltUtwaPhVvIPKQQ+ZQD4hARYpAUZsSGETNqzM3ad2fFfgs7+EsuV7s6querd7/kE9VRfE/KlpRWJGanPqKKX46IXuQvuyFz9G0DZYicXwkBGp4mtXYhty0qsmmsHUjeiGOEJrP6bYeJzTd8MTfgQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=toshiba.co.jp; dmarc=pass action=none
+ header.from=toshiba.co.jp; dkim=pass header.d=toshiba.co.jp; arc=none
+From:   <nobuhiro1.iwamatsu@toshiba.co.jp>
+To:     <linux@roeck-us.net>, <wim@linux-watchdog.org>
+CC:     <linux-watchdog@vger.kernel.org>, <yuji2.ishikawa@toshiba.co.jp>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <robh+dt@kernel.org>, <krzk+dt@kernel.org>, <robh@kernel.org>
+Subject: RE: [PATCH v2] dt-bindings: watchdog: toshiba,visconti-wdt: Update
+ the common clock properties
+Thread-Topic: [PATCH v2] dt-bindings: watchdog: toshiba,visconti-wdt: Update
+ the common clock properties
+Thread-Index: AQHYbCgX1nI0T0APlEa1ib/ej/b6NK0nesGAgAdMrnA=
+Date:   Wed, 25 May 2022 00:41:59 +0000
+X-TSB-HOP2: ON
+Message-ID: <TYWPR01MB9420E232FCA29F1CB07C0C8C92D69@TYWPR01MB9420.jpnprd01.prod.outlook.com>
+References: <20220520090024.620928-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <6e0f7f48-ecfd-16be-8672-aa4ba11b0c91@roeck-us.net>
+In-Reply-To: <6e0f7f48-ecfd-16be-8672-aa4ba11b0c91@roeck-us.net>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=toshiba.co.jp;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 6d050a1a-29a5-45ab-6b7f-08da3de760a0
+x-ms-traffictypediagnostic: OS3PR01MB9691:EE_
+x-microsoft-antispam-prvs: <OS3PR01MB9691ECAE3F1FE99D2664EBF892D69@OS3PR01MB9691.jpnprd01.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: rD3tDMnkICpY0FSaCZFpLikzuDMJndxBxXJdE4xyvNnPLqzeXRHJ6JUCL0pIfSmzlQq4QT/qNRxUqjRrCz2hpF2ofjeMrkMjIPGRHLbhWolfO6Wcuj2O83BqLL6CS2WcaRAF2YE4VVuQKZONHsxMQ58xvNz0F+8/izx48nTYP20JQeKgK9opPSkfLpv9UlcSDlvltCK1aJTDk1Ujz2Stf/MUtcSvKQJfc0/5k/hCraFClHuBx3qn6WkNpkmU/SW2fBWd/uUhunxZtiHehSLbRmb8uuCP4qDcoOX9kCzKwrhcFP0JhSfG5RaJgVybXU0IX9rBmeRuaSbm/h7QQ8F/rVPs08y+pviIN2nNP27bIxN3EVZCE8lkNSjCQSfvKdeDzWTxFr9xsS/54I7CcMLNi1z8QbA3hoH+0hNE1I6ta5jn+YmjrgsNBTHMBSGVg9U6awQRm/eGPf88f1VvH2e5agPywyHMO5tLbOHmqfN3XbPmlcPfSUeWSHcQR/jZ+P9NL7QhF+n5HeEy7XngfE+kG0x/7ZGnLbsvJ9aq0+h4/MrlA8n9enRK5wB5jGuYpgyEGxcNa/sbGe6NUlTt2+QwIETBTwWSCXrXZUWoDNJaJbNhl5f432gTj9ruLb4s6XuJY+gsrkO/6bHk4mxDHHNNomjAqgplIGuYO0NIdaSU7CT7gHUU/zJ2vshd3M5IougoVmz+IY+IInNCR4xjdbJUCQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYWPR01MB9420.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(38100700002)(4326008)(66446008)(86362001)(55016003)(64756008)(6506007)(66476007)(122000001)(8676002)(66556008)(5660300002)(9686003)(71200400001)(38070700005)(26005)(15650500001)(186003)(110136005)(8936002)(52536014)(83380400001)(53546011)(76116006)(66946007)(2906002)(7696005)(316002)(33656002)(54906003)(508600001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SGhPZlVXcm1teUtwYktQMkpMVENuU0ZwSkFPV1Zpako3Y01jZUNQM3F3bHN3?=
+ =?utf-8?B?dHkrRXFVR1BzTWtQK1M4TzlKMjN6ZE1wcUpLQzBlMmQyUkdQWlYxbFByRU53?=
+ =?utf-8?B?VEF3V0FJdWZFTnlXSnE3QjB6djI0VkhtNGFvcUZKKzBYTFRndUJONDNONjY2?=
+ =?utf-8?B?U3FndDhPMGs1b2pqUUtZMDdnRWc4ZEs1TlFVMHIvVlgyWkFBMmhZcmlCbWFy?=
+ =?utf-8?B?NDlrOHFOVDhLcnRHODNJUmNVbzlPVkl2MWc5djlCMzFya0ZPd2NvcEF5Qndn?=
+ =?utf-8?B?cXBybzdxbUQ4UER3R0tOTm5Vc0tqT2ZBUFFlMHk2U2dFZ3gwZUdKb2t2UDd0?=
+ =?utf-8?B?cjF2cENSNXlOZmFQSkZpUVhVbDFlN3M1bDU0ZGp6RnNhak5EbktTQjVkOWJv?=
+ =?utf-8?B?SDlMSXhGRDErQ0x6RGJxRkFkenA4SjhlbG5qQUh5OW96SUZyTVVTbkxqNGRa?=
+ =?utf-8?B?NkRLOVFsWkFGVXkzL2xlcDdsK2FocUpOaDhOQkIrMGxHS2VFcE4rNEVqUFpU?=
+ =?utf-8?B?YVJwQXhDQmNhZVN5Y0RVVm5xdU9vMFZRc1Q4ZEtsS3BKcHhCOGloSGRLdEVB?=
+ =?utf-8?B?dGRNYmxSOFlWWW9FdC9wWmRJZ0hHL0RKU2Q1RzdreTBGRUpUcDNpc3BTMWlh?=
+ =?utf-8?B?dGsxUFNkcnRGZ0lxK2orVWIzcUsxam5HVWRKbXZadXZGU2NpaS9pNG0yc1FP?=
+ =?utf-8?B?R1ZVK3ZMY1RhUWZpSmRydklMQ3hpeGhFNVc5WmhRbE14bFQ4ZTlsRlJZZ2s2?=
+ =?utf-8?B?RWczbmZTK1ljaUpXZ0lvNHFpVEN0ZmhwTXhuR3Q4MlMxK2NveSs0YmNuZjkx?=
+ =?utf-8?B?bUdvWGc0N1l0WSt1djJsWGkyVGpVZmhqdjFhYmV1VWg4YTVINGRpUEgvWDJy?=
+ =?utf-8?B?WGtjdytaWkMyWlZ5UTVEYnhnV0R5bkhmZURDOXZ5b3BTc0pySU5ZTFg5dlI0?=
+ =?utf-8?B?Q1RFeXRMODRFdTBCemJURktDWE1ZVkNWVzhqbUF6K3BQR3E0ZTRXbUhobFVP?=
+ =?utf-8?B?MHJMSHF1VlpHbGlZSTNSL2RFOWgyNWNlL0h1eTBCWktPZkVDTXJNQVhtYkJx?=
+ =?utf-8?B?Vzlld284TjZ1QVVDT0pwV3FwYlJWM3hRR09rclFpWVdBWlRlaVkySHpOYjFC?=
+ =?utf-8?B?UklBS1hsajFlUmtGdmZrcDhnRUV5bDhjc3FSVE9xeC9XcmNYdGRGaFZGUUNM?=
+ =?utf-8?B?S0tHT1Mrb0N4UDlCbFZ3ZmJORjlpT0JMSEU1TU1kS2pmT1ZNb1hTMXhNWkxh?=
+ =?utf-8?B?bzgwcnNyanZHTUNBeWF2S2RVS09mNWZLdXYya2JHMHRKWm4zSXYzT1V6SEJD?=
+ =?utf-8?B?aGwwLzRDZmJ1Y1Zoei81ZFRadXdISmZkd2l4SnoxeWI2VFliY05YQ3d5ekkw?=
+ =?utf-8?B?QTBObnE2WDdKSGJDaWhhM05QR1VGU2ZWdnExNTVNR0ZTbWNBUWxwaVJlM01C?=
+ =?utf-8?B?endoeG9NeXV3dXJXbXZ6ajNScnRzTlRKakpZYjllNG9pMi9MYWRaUHZxeVJO?=
+ =?utf-8?B?UlI4ZXd3T3BzNCtmbVFqWHF1Q3BHUk43K0Q0aFJraHpSRHBiL1VWZW5iNE9a?=
+ =?utf-8?B?OUkyK1pRVmZaUFBjWUJpSkRNOERQcldXTXZncktOYXN5a2lST3hHUSs2d0Zl?=
+ =?utf-8?B?ODc2Y2RYbmx6NnRacUY2azQwRkNRTXAvMlZoTzhJRm9WRkZRR2xobnhTelJK?=
+ =?utf-8?B?TkdJTUVVQnZ4d3cwQzlNSkNhbVZhNlVrbkNTYkVCQkgzcFV2ekU5RENzMDJY?=
+ =?utf-8?B?UDRBRkdYZUpwVnhnNUh5YmZXVXhXa0tIMWlNKzdUTzREblBiek53QU12ZG01?=
+ =?utf-8?B?cXdYZExsVGdiYU1xdDVZZWhVMzF6bGRNVkVTZFhsOTQzbzlpdXgvcEZvOU5l?=
+ =?utf-8?B?RGlOU1NZOGlEQk11ZVhPajVENGlHdWVIRjBLcDBUM1E1ajZyamxKSmtnaG56?=
+ =?utf-8?B?ZXlLUG1pSWU3Sk5HUG5zRm4zYTdrak5wNFg5TGkvcUl4dEt4dzRDRERaZTR5?=
+ =?utf-8?B?OHpjMEljb2MvWlhPRmFLZ0hiaEp5OHEzelI2dUtzQ1EvK1MwYVNsRUFnbFJj?=
+ =?utf-8?B?MzMyMjhhZndsNmNtMjR5THJ3TDRKL0Z1a1VLc1NHZTRYZlVxbVNVTHJ1V2kr?=
+ =?utf-8?B?YnBPcHFCRGtXa1F2aWVsc2VxS013VWRZM2dtTGY2enQwbVBOV0VDN0tmZHhS?=
+ =?utf-8?B?WndDY2c4WXJlTDBPVmdMeUJvN2F6Q09PcysrZFpZRm5tWGgrNG84MGpSMkNL?=
+ =?utf-8?B?YWtrOSs4MG95RG9CUVpiVkljRldicHVab1dFRWhPMENHM0xmQmNtK0daVlFX?=
+ =?utf-8?B?dy9nRUdKZElkeW0ybEZXUFRzSnppMHVlbCt6a3FVQWRkZHljWWRNY21UbXM2?=
+ =?utf-8?Q?/7oOLhiFX+JuS8DI=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYWPR01MB9420.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6d050a1a-29a5-45ab-6b7f-08da3de760a0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 May 2022 00:41:59.3743
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: f109924e-fb71-4ba0-b2cc-65dcdf6fbe4f
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: mka389DqEZigZXqEJV4Ug6CpQ+R/y1waDr5V9PgvRHOYnF8ZKfW0qygWg+V4ynIYyPsegHnIEzg5yDXoQiB4H6xijwDRGZti5yT1gTp61qxYbGpBAE4vfWlLl4OQuqgm
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB9691
+X-OriginatorOrg: toshiba.co.jp
+MSSCP.TransferMailToMossAgent: 103
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,263 +128,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000b8d9ae05dfcb371c
+SGkgR3VlbnRlciwNCg0KVGhhbmtzIGZvciB5b3VyIHJldmlldy4NCg0KPiAtLS0tLU9yaWdpbmFs
+IE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBHdWVudGVyIFJvZWNrIDxncm9lY2s3QGdtYWlsLmNvbT4g
+T24gQmVoYWxmIE9mIEd1ZW50ZXIgUm9lY2sNCj4gU2VudDogRnJpZGF5LCBNYXkgMjAsIDIwMjIg
+NjoxMSBQTQ0KPiBUbzogaXdhbWF0c3Ugbm9idWhpcm8o5bKp5p2+IOS/oea0iyDilqHvvLPvvLfv
+vKPil6/vvKHvvKPvvLQpDQo+IDxub2J1aGlybzEuaXdhbWF0c3VAdG9zaGliYS5jby5qcD47IFdp
+bSBWYW4gU2Vicm9lY2sNCj4gPHdpbUBsaW51eC13YXRjaGRvZy5vcmc+DQo+IENjOiBsaW51eC13
+YXRjaGRvZ0B2Z2VyLmtlcm5lbC5vcmc7IGlzaGlrYXdhIHl1amko55+z5bedIOaCoOWPuCDil4vv
+vLLvvKTvvKPilqHvvKHvvKkNCj4g77y077yj4peL77yl77yh6ZaLKSA8eXVqaTIuaXNoaWthd2FA
+dG9zaGliYS5jby5qcD47DQo+IGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsg
+bGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsNCj4gZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5v
+cmc7IFJvYiBIZXJyaW5nIDxyb2JoK2R0QGtlcm5lbC5vcmc+OyBLcnp5c3p0b2YNCj4gS296bG93
+c2tpIDxrcnprK2R0QGtlcm5lbC5vcmc+OyBSb2IgSGVycmluZyA8cm9iaEBrZXJuZWwub3JnPg0K
+PiBTdWJqZWN0OiBSZTogW1BBVENIIHYyXSBkdC1iaW5kaW5nczogd2F0Y2hkb2c6IHRvc2hpYmEs
+dmlzY29udGktd2R0OiBVcGRhdGUNCj4gdGhlIGNvbW1vbiBjbG9jayBwcm9wZXJ0aWVzDQo+IA0K
+PiBPbiA1LzIwLzIyIDAyOjAwLCBOb2J1aGlybyBJd2FtYXRzdSB3cm90ZToNCj4gPiBUaGUgY2xv
+Y2sgZm9yIHRoaXMgZHJpdmVyIHN3aXRjaGVkIHRvIHRoZSBjb21tb24gY2xvY2sgY29udHJvbGxl
+ciBkcml2ZXIuDQo+ID4gVGhlcmVmb3JlLCB1cGRhdGUgY29tbW9uIGNsb2NrIHByb3BlcnRpZXMg
+Zm9yIHdhdGNoZG9nIGluIHRoZSBiaW5kaW5nDQo+IGRvY3VtZW50Lg0KPiA+IEFuZCB0aGlzIG1h
+dGNoZWQgdGhpcyBleGFtcGxlIHdpdGggdGhlIGFjdHVhbCBkdHMuDQo+ID4NCj4gPiBTaWduZWQt
+b2ZmLWJ5OiBOb2J1aGlybyBJd2FtYXRzdSA8bm9idWhpcm8xLml3YW1hdHN1QHRvc2hpYmEuY28u
+anA+DQo+ID4gQWNrZWQtYnk6IFJvYiBIZXJyaW5nIDxyb2JoQGtlcm5lbC5vcmc+DQo+ID4gLS0t
+DQo+ID4gICAuLi4vYmluZGluZ3Mvd2F0Y2hkb2cvdG9zaGliYSx2aXNjb250aS13ZHQueWFtbCAg
+ICAgfCAxMw0KPiArKysrLS0tLS0tLS0tDQo+ID4gICAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRp
+b25zKCspLCA5IGRlbGV0aW9ucygtKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdA0KPiA+DQo+IGEvRG9j
+dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3dhdGNoZG9nL3Rvc2hpYmEsdmlzY29udGkt
+d2R0LnlhbWwNCj4gPg0KPiBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy93YXRj
+aGRvZy90b3NoaWJhLHZpc2NvbnRpLXdkdC55YW1sDQo+ID4gaW5kZXggNjkwZTE5Y2U0Yjg3Li41
+MmMwZTBjMDIyZWEgMTAwNjQ0DQo+ID4gLS0tDQo+ID4NCj4gYS9Eb2N1bWVudGF0aW9uL2Rldmlj
+ZXRyZWUvYmluZGluZ3Mvd2F0Y2hkb2cvdG9zaGliYSx2aXNjb250aS13ZHQueWFtbA0KPiA+ICsr
+Kw0KPiBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy93YXRjaGRvZy90b3NoaWJh
+LHZpc2NvbnRpLXdkdC4NCj4gPiArKysgeWFtbA0KPiA+IEBAIC0zNSwyMCArMzUsMTUgQEAgYWRk
+aXRpb25hbFByb3BlcnRpZXM6IGZhbHNlDQo+ID4NCj4gPiAgIGV4YW1wbGVzOg0KPiA+ICAgICAt
+IHwNCj4gPiArICAgICNpbmNsdWRlIDxkdC1iaW5kaW5ncy9jbG9jay90b3NoaWJhLHRtcHY3NzB4
+Lmg+DQo+ID4gKw0KPiA+ICAgICAgIHNvYyB7DQo+ID4gICAgICAgICAgICNhZGRyZXNzLWNlbGxz
+ID0gPDI+Ow0KPiA+ICAgICAgICAgICAjc2l6ZS1jZWxscyA9IDwyPjsNCj4gPg0KPiA+IC0gICAg
+ICAgIHdkdF9jbGs6IHdkdC1jbGsgew0KPiA+IC0gICAgICAgICAgICBjb21wYXRpYmxlID0gImZp
+eGVkLWNsb2NrIjsNCj4gPiAtICAgICAgICAgICAgY2xvY2stZnJlcXVlbmN5ID0gPDE1MDAwMDAw
+MD47DQo+ID4gLSAgICAgICAgICAgICNjbG9jay1jZWxscyA9IDwwPjsNCj4gPiAtICAgICAgICB9
+Ow0KPiA+IC0NCj4gPiAtICAgICAgICB3YXRjaGRvZ0AyODMzMDAwMCB7DQo+ID4gKyAgICAgICAg
+d2R0OiB3YXRjaGRvZ0AyODMzMDAwMCB7DQo+ID4gICAgICAgICAgICAgICBjb21wYXRpYmxlID0g
+InRvc2hpYmEsdmlzY29udGktd2R0IjsNCj4gPiAgICAgICAgICAgICAgIHJlZyA9IDwwIDB4Mjgz
+MzAwMDAgMCAweDEwMDA+Ow0KPiA+IC0gICAgICAgICAgICBjbG9ja3MgPSA8JndkdF9jbGs+Ow0K
+PiA+IC0gICAgICAgICAgICB0aW1lb3V0LXNlYyA9IDwyMD47DQo+ID4gKyAgICAgICAgICAgIGNs
+b2NrcyA9IDwmcGlzbXUgVE1QVjc3MFhfQ0xLX1dEVENMSz47DQo+ID4gICAgICAgICAgIH07DQo+
+ID4gICAgICAgfTsNCj4gDQo+IHdkdDogaXNuJ3QgbmVlZGVkIGluIHRoZSBleGFtcGxlLCBhbmQg
+SSBxdWVzdGlvbiBpZiBpdCByZWFsbHkgaW1wcm92ZXMgdGhlIHF1YWxpdHkNCj4gb2YgdGhlIGV4
+YW1wbGUgdG8gcmVtb3ZlIHRpbWVvdXQtc2VjLg0KDQpPSywgSSBtYWtlIGEgZml4IHRoYXQgZG9l
+c24ndCByZW1vdmUgdGltZW91dC1zZWMuDQoNCkJlc3QgcmVnYXJkcywNCiAgTm9idWhpcm8NCg==
 
-Add dts for ARMv7 based broadband SoC BCM6846. bcm6846.dtsi is the
-SoC description dts header and bcm96846.dts is a simple dts file for
-Broadcom BCM96846 Reference board that only enable the UART port.
-
-Signed-off-by: William Zhang <william.zhang@broadcom.com>
----
-
- arch/arm/boot/dts/Makefile     |   3 +-
- arch/arm/boot/dts/bcm6846.dtsi | 103 +++++++++++++++++++++++++++++++++
- arch/arm/boot/dts/bcm96846.dts |  30 ++++++++++
- 3 files changed, 135 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm/boot/dts/bcm6846.dtsi
- create mode 100644 arch/arm/boot/dts/bcm96846.dts
-
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index edfbedaa6168..b4143031860b 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -182,7 +182,8 @@ dtb-$(CONFIG_ARCH_BERLIN) += \
- dtb-$(CONFIG_ARCH_BRCMSTB) += \
- 	bcm7445-bcm97445svmb.dtb
- dtb-$(CONFIG_ARCH_BCMBCA) += \
--	bcm947622.dtb
-+	bcm947622.dtb \
-+	bcm96846.dtb
- dtb-$(CONFIG_ARCH_CLPS711X) += \
- 	ep7211-edb7211.dtb
- dtb-$(CONFIG_ARCH_DAVINCI) += \
-diff --git a/arch/arm/boot/dts/bcm6846.dtsi b/arch/arm/boot/dts/bcm6846.dtsi
-new file mode 100644
-index 000000000000..e610c102498f
---- /dev/null
-+++ b/arch/arm/boot/dts/bcm6846.dtsi
-@@ -0,0 +1,103 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2022 Broadcom Ltd.
-+ */
-+
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+/ {
-+	compatible = "brcm,bcm6846", "brcm,bcmbca";
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	interrupt-parent = <&gic>;
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		CA7_0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a7";
-+			reg = <0x0>;
-+			next-level-cache = <&L2_0>;
-+			enable-method = "psci";
-+		};
-+
-+		CA7_1: cpu@1 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a7";
-+			reg = <0x1>;
-+			next-level-cache = <&L2_0>;
-+			enable-method = "psci";
-+		};
-+
-+		L2_0: l2-cache0 {
-+			compatible = "cache";
-+		};
-+	};
-+
-+	timer {
-+		compatible = "arm,armv7-timer";
-+		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			<GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			<GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			<GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-+		arm,cpu-registers-not-fw-configured;
-+	};
-+
-+	pmu: pmu {
-+		compatible = "arm,cortex-a7-pmu";
-+		interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
-+			<GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-affinity = <&CA7_0>, <&CA7_1>;
-+	};
-+
-+	clocks: clocks {
-+		periph_clk: periph-clk {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <200000000>;
-+		};
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-0.2";
-+		method = "smc";
-+		cpu_off = <1>;
-+		cpu_on = <2>;
-+	};
-+
-+	axi@81000000 {
-+		compatible = "simple-bus";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0 0x81000000 0x4000>;
-+
-+		gic: interrupt-controller@1000 {
-+			compatible = "arm,cortex-a7-gic";
-+			#interrupt-cells = <3>;
-+			#address-cells = <0>;
-+			interrupt-controller;
-+			reg = <0x1000 0x1000>,
-+				<0x2000 0x2000>;
-+		};
-+	};
-+
-+	bus@ff800000 {
-+		compatible = "simple-bus";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0 0xff800000 0x800000>;
-+
-+		uart0: serial@640 {
-+			compatible = "brcm,bcm6345-uart";
-+			reg = <0x640 0x1b>;
-+			interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&periph_clk>;
-+			clock-names = "refclk";
-+			status = "disabled";
-+		};
-+	};
-+};
-diff --git a/arch/arm/boot/dts/bcm96846.dts b/arch/arm/boot/dts/bcm96846.dts
-new file mode 100644
-index 000000000000..c70ebccabc19
---- /dev/null
-+++ b/arch/arm/boot/dts/bcm96846.dts
-@@ -0,0 +1,30 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2022 Broadcom Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include "bcm6846.dtsi"
-+
-+/ {
-+	model = "Broadcom BCM96846 Reference Board";
-+	compatible = "brcm,bcm96846", "brcm,bcm6846", "brcm,bcmbca";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x08000000>;
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
--- 
-2.17.1
-
-
---000000000000b8d9ae05dfcb371c
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-TltlrAeBKRJ1M9O/DY5v7L1Yrs//7XIRg/d2ZPAOSGBQzFYjYTFWwNBiR1s1zP0m2y56DPbS5gwj
-fqAN/I4PJHIvTh3zUgHXNKadYoYRiPHXfaTWO9UhzysOpQIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
-BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
-YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
-BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
-MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
-YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
-Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
-HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
-BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUohM5GmNlGWe5wpzDxzIy
-+EgzbRswDQYJKoZIhvcNAQELBQADggEBACKu9JSQAYTlmC+JTniO/C/UcXGonATI/muBjWTxtkHc
-abZtz0uwzzrRrpV+mbHLGVFFeRbXSLvcEzqHp8VomXifEZlfsE9LajSehzaqhd+np+tmUPz1RlI/
-ibZ7vW+1VF18lfoL+wHs2H0fsG6JfoqZldEWYXASXnUrs0iTLgXxvwaQj69cSMuzfFm1X5kWqWCP
-W0KkR8025J0L5L4yXfkSO6psD/k4VcTsMJHLN4RfMuaXIT6EM0cNO6h3GypyTuPf1N1X+F6WQPKb
-1u+rvdML63P9fX7e7mwwGt5klRnf8aK2VU7mIdYCcrFHaKDTW3fkG6kIgrE1wWSgiZYL400xggJt
-MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
-VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw28eX6TfvsbNfu
-SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIMSaWdwDrvsLIy6odfxNGLBzqNlI
-2DtJruDExqI3EZlEMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
-MDUyNTAwMzMwOVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
-CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
-AwQCATANBgkqhkiG9w0BAQEFAASCAQDOnlZKqsvD01iADwumIKkdyBwAdh3dkWNe6uPNK/w+h9As
-i4uRkBC5Ns5582u/T6gPHZS1hFw4CLGGdQV++yJd0YBbhYpas509kxIHUM1anbA0JhS24ZVngW2t
-v48f+Crm653S+u7FftrTVw1OFBODf0IWXnHax11KxGm21gQXjZevaz5XDGypB20/RY+Hoc2DUXM6
-yCu29Hq/nrMyrzjWFniIvPjKJt9b/506qIXjoORy9GOfddJHbMAY/C4qFWR0mS9ZQMhHHVVwEFnV
-ddBU2TGVxkZm9mzQIM+OQLYxPsB6LkU/yO9U8vYCsHn4lbahIkDYhcwAaSk18b2P0vVF
---000000000000b8d9ae05dfcb371c--
