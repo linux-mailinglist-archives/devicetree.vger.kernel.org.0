@@ -2,198 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E395533689
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 07:47:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 045B6533692
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 07:52:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243608AbiEYFrw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 01:47:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60456 "EHLO
+        id S244063AbiEYFv6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 01:51:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242356AbiEYFrv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 01:47:51 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26EE46FD2A;
-        Tue, 24 May 2022 22:47:48 -0700 (PDT)
-X-UUID: 9cdba63d1bd644c9b884b8750030e4a9-20220525
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:1a7feff1-630d-461f-8014-f945a40c480e,OB:0,LO
-        B:0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:5
-X-CID-META: VersionHash:2a19b09,CLOUDID:4e2a6147-4fb1-496b-8f1d-39e733fed1ea,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:0,BEC:nil
-X-UUID: 9cdba63d1bd644c9b884b8750030e4a9-20220525
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1984232510; Wed, 25 May 2022 13:47:43 +0800
-Received: from MTKMBS07N2.mediatek.inc (172.21.101.141) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Wed, 25 May 2022 13:47:41 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 25 May 2022 13:47:41 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 25 May 2022 13:47:41 +0800
-Message-ID: <eaed852506a753629d0d76334664c51d98477d14.camel@mediatek.com>
-Subject: Re: [PATCH v10 18/21] drm/mediatek: Add mt8195 Embedded DisplayPort
- driver
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Guillaume Ranquet <granquet@baylibre.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        "Kishon Vijay Abraham I" <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, "Helge Deller" <deller@gmx.de>,
-        Jitao shi <jitao.shi@mediatek.com>
-CC:     Markus Schneider-Pargmann <msp@baylibre.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>, <linux-fbdev@vger.kernel.org>
-Date:   Wed, 25 May 2022 13:47:41 +0800
-In-Reply-To: <20220523104758.29531-19-granquet@baylibre.com>
-References: <20220523104758.29531-1-granquet@baylibre.com>
-         <20220523104758.29531-19-granquet@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S242912AbiEYFv5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 01:51:57 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 382245933B;
+        Tue, 24 May 2022 22:51:55 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id q4so17680520plr.11;
+        Tue, 24 May 2022 22:51:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=sGMC9J3i2A0JEMEBRMvIAV6dTYRQjIEP1weGgAQj+xI=;
+        b=DiEqRXuQ0GoU9KOzRPRrrP85Totp4N3hDUUUgE0VkGyrk02TPDqDfZBf70fDXvngz0
+         mRai2GwSRPKbCa31jEvrNpaxeYx36xCanlyV1jjlbx98ff9RWsD6vnYfgrUPrtW7T7kt
+         42JTkzlNn1glDLKL3mN5I69G1L1fgFFgtjELNHlXMA9xZkSV5ip/IzmXs8EG2kRn/BV4
+         k+u4LL7A/ObwbTk+/E5XNX82YHAVXOMHdR0sGY0oaBIJEk6sw415oGineHm28+2MAsy+
+         jz1lMhLLi6AEbMMo26XkRoKRnvYWV1OYi1nNcCotDO2m78AXiwHkYO1Z4hpj0hR1xiUI
+         LfOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=sGMC9J3i2A0JEMEBRMvIAV6dTYRQjIEP1weGgAQj+xI=;
+        b=yFrAJfvKS3xvboGBgqlGG9nFznLGMzkUbBsAqPz7QjNlos70MPXC5A4qG/2pKv/y9F
+         5ZvfEiFa8fRQ44LEVXTkA6khkxAAvGsehHv7WD25QJPUgc4+qTljAWd+A27UrsLfGgHc
+         WBqkpIqI5KuYtyqtNS7P6jGtecxgmlv7BiwQd8lvL9s72PsBZirq3aDwgFeTfm2LLw+G
+         BV+LhCPm6KTviP9XB5xuNxJQN+k+AxuTXVsghKjJ1cQwOE+djFY8T/lmd32D3//TvmA3
+         dduRGD8uS7FAs0rAPX9lpDH7r5OeUvBa/GF2ncqajT1lOI/B5sMgiCGACiakQ9GPxj6H
+         UqZw==
+X-Gm-Message-State: AOAM531S/ZXJEiIa6e6z+CJJiwchund2lHBZgZ5YfRNS1D5PIDUubQmt
+        sg5/PBwdKueKIn9Byymdnr8=
+X-Google-Smtp-Source: ABdhPJxNwMIEFHQuS5DfF434R//xq5CeNTJMpPj7HDMaFR3KodwuH3+S+ROhhzxSfE9XyFoU1wt8SA==
+X-Received: by 2002:a17:90b:1e46:b0:1e0:10de:f8e4 with SMTP id pi6-20020a17090b1e4600b001e010def8e4mr8587987pjb.7.1653457914739;
+        Tue, 24 May 2022 22:51:54 -0700 (PDT)
+Received: from localhost ([2406:7400:63:4576:a782:286b:de51:79ce])
+        by smtp.gmail.com with ESMTPSA id x17-20020a170902821100b0015e8d4eb2a8sm8134043pln.242.2022.05.24.22.51.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 May 2022 22:51:54 -0700 (PDT)
+Date:   Wed, 25 May 2022 11:21:49 +0530
+From:   Ritesh Harjani <ritesh.list@gmail.com>
+To:     Vaibhav Jain <vaibhav@linux.ibm.com>
+Cc:     linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        "Aneesh Kumar K . V" <aneesh.kumar@linux.ibm.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Prakhar Srivastava <prsriva@linux.microsoft.com>,
+        Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
+        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v2] of: check previous kernel's ima-kexec-buffer against
+ memory bounds
+Message-ID: <20220525055149.f4nqx2ocnh3pqnpr@riteshh-domain>
+References: <20220524055042.1527968-1-vaibhav@linux.ibm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220524055042.1527968-1-vaibhav@linux.ibm.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Guillaume:
 
-On Mon, 2022-05-23 at 12:47 +0200, Guillaume Ranquet wrote:
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
-> 
-> This patch adds a DisplayPort driver for the Mediatek mt8195 SoC.
-> 
-> It supports the mt8195, the embedded DisplayPort units. It offers
-> DisplayPort 1.4 with up to 4 lanes.
-> 
-> The driver creates a child device for the phy. The child device will
-> never exist without the parent being active. As they are sharing a
-> register range, the parent passes a regmap pointer to the child so
-> that
-> both can work with the same register range. The phy driver sets
-> device
-> data that is read by the parent to get the phy device that can be
-> used
-> to control the phy properties.
-> 
-> This driver is based on an initial version by
-> Jason-JH.Lin <jason-jh.lin@mediatek.com>.
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+Just a minor nit which I noticed.
+
+On 22/05/24 11:20AM, Vaibhav Jain wrote:
+> Presently ima_get_kexec_buffer() doesn't check if the previous kernel's
+> ima-kexec-buffer lies outside the addressable memory range. This can result
+> in a kernel panic if the new kernel is booted with 'mem=X' arg and the
+> ima-kexec-buffer was allocated beyond that range by the previous kernel.
+> The panic is usually of the form below:
+>
+> $ sudo kexec --initrd initrd vmlinux --append='mem=16G'
+>
+> <snip>
+>  BUG: Unable to handle kernel data access on read at 0xc000c01fff7f0000
+>  Faulting instruction address: 0xc000000000837974
+>  Oops: Kernel access of bad area, sig: 11 [#1]
+> <snip>
+>  NIP [c000000000837974] ima_restore_measurement_list+0x94/0x6c0
+>  LR [c00000000083b55c] ima_load_kexec_buffer+0xac/0x160
+>  Call Trace:
+>  [c00000000371fa80] [c00000000083b55c] ima_load_kexec_buffer+0xac/0x160
+>  [c00000000371fb00] [c0000000020512c4] ima_init+0x80/0x108
+>  [c00000000371fb70] [c0000000020514dc] init_ima+0x4c/0x120
+>  [c00000000371fbf0] [c000000000012240] do_one_initcall+0x60/0x2c0
+>  [c00000000371fcc0] [c000000002004ad0] kernel_init_freeable+0x344/0x3ec
+>  [c00000000371fda0] [c0000000000128a4] kernel_init+0x34/0x1b0
+>  [c00000000371fe10] [c00000000000ce64] ret_from_kernel_thread+0x5c/0x64
+>  Instruction dump:
+>  f92100b8 f92100c0 90e10090 910100a0 4182050c 282a0017 3bc00000 40810330
+>  7c0802a6 fb610198 7c9b2378 f80101d0 <a1240000> 2c090001 40820614 e9240010
+>  ---[ end trace 0000000000000000 ]---
+>
+> Fix this issue by checking returned PFN range of previous kernel's
+> ima-kexec-buffer with pfn_valid to ensure correct memory bounds.
+>
+> Fixes: 467d27824920 ("powerpc: ima: get the kexec buffer passed by the previous kernel")
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Cc: Prakhar Srivastava <prsriva@linux.microsoft.com>
+> Cc: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+> Cc: Thiago Jung Bauermann <bauerman@linux.ibm.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Signed-off-by: Vaibhav Jain <vaibhav@linux.ibm.com>
+>
 > ---
->  
+> Changelog
+> ==========
+>
+> v2:
+> * Instead of using memblock to determine the valid bounds use pfn_valid() to do
+> so since memblock may not be available late after the kernel init. [ Mpe ]
+> * Changed the patch prefix from 'powerpc' to 'of' [ Mpe ]
+> * Updated the 'Fixes' tag to point to correct commit that introduced this
+> function. [ Rob ]
+> * Fixed some whitespace/tab issues in the patch description [ Rob ]
+> * Added another check for checking ig 'tmp_size' for ima-kexec-buffer is > 0
+> ---
+>  drivers/of/kexec.c | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+>
+> diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
+> index 8d374cc552be..879e984fe901 100644
+> --- a/drivers/of/kexec.c
+> +++ b/drivers/of/kexec.c
+> @@ -126,6 +126,7 @@ int ima_get_kexec_buffer(void **addr, size_t *size)
+>  {
+>  	int ret, len;
+>  	unsigned long tmp_addr;
+> +	unsigned int start_pfn, end_pfn;
 
-[snip]
+^^^ Shouldn't this be unsigned long?
 
+-ritesh
+
+>  	size_t tmp_size;
+>  	const void *prop;
+>
+> @@ -140,6 +141,22 @@ int ima_get_kexec_buffer(void **addr, size_t *size)
+>  	if (ret)
+>  		return ret;
+>
+> +	/* Do some sanity on the returned size for the ima-kexec buffer */
+> +	if (!tmp_size)
+> +		return -ENOENT;
 > +
-> +static irqreturn_t mtk_dp_hpd_event_thread(int hpd, void *dev)
-
-I don't have a DP spec. I find one in [1] but I'm not sure it's real
-spec or not. If it's real, in section 3.1.3.2, it describe:
-
-3.1.3.2 Hot Plug/Unplug Detection
-One signal (HPD) is used by a device (an Upstream device) to detect
-that a Downstream port on the device has been connected to another
-device (the Downstream device). Implementation of HPD is optional for
-an embedded link configuration. At least a “trickle power” must be
-present both in the Upstream and Downstream devices for a Hot Plug
-event to be detected. 
-
-I focus on the statement "Implementation of HPD is optional for an
-embedded link configuration". I'm not sure what does 'optional' mean.
-Does it mean eDP panel without HPD signal is possible? If so, I think
-driver should support eDP panel without HPD signal. Maybe I
-misunderstanding this spec. Please explain for me.
-
-Regards,
-CK
-
-
-[1] https://glenwing.github.io/docs/DP-1.2.pdf
-
-> +{
-> +	struct mtk_dp *mtk_dp = dev;
-> +	int event;
-> +	u8 buf[DP_RECEIVER_CAP_SIZE] = {};
-> +
-> +	event = mtk_dp_plug_state(mtk_dp) ? connector_status_connected
-> :
-> +						  connector_status_disc
-> onnected;
-> +
-> +	if (event < 0)
-> +		return IRQ_HANDLED;
-> +
-> +	if (mtk_dp->drm_dev) {
-> +		dev_info(mtk_dp->dev, "drm_helper_hpd_irq_event\n");
-> +		drm_helper_hpd_irq_event(mtk_dp->bridge.dev);
+> +	/*
+> +	 * Calculate the PFNs for the buffer and ensure
+> +	 * they are with in addressable memory.
+> +	 */
+> +	start_pfn = PHYS_PFN(tmp_addr);
+> +	end_pfn = PHYS_PFN(tmp_addr + tmp_size - 1);
+> +	if (!pfn_valid(start_pfn) || !pfn_valid(end_pfn)) {
+> +		pr_warn("IMA buffer at 0x%lx, size = 0x%zx beyond memory\n",
+> +			tmp_addr, tmp_size);
+> +		return -EINVAL;
 > +	}
 > +
-> +	if (mtk_dp->train_info.cable_state_change) {
-> +		mtk_dp->train_info.cable_state_change = false;
-> +
-> +		mtk_dp->train_state = MTK_DP_TRAIN_STATE_STARTUP;
-> +
-> +		if (!mtk_dp->train_info.cable_plugged_in ||
-> +		    !mtk_dp_plug_state(mtk_dp)) {
-> +			mtk_dp_video_mute(mtk_dp, true);
-> +
-> +			mtk_dp_initialize_priv_data(mtk_dp);
-> +			mtk_dp_set_idle_pattern(mtk_dp, true);
-> +			if (mtk_dp->has_fec)
-> +				mtk_dp_fec_enable(mtk_dp, false);
-> +
-> +			mtk_dp_update_bits(mtk_dp,
-> MTK_DP_TOP_PWR_STATE,
-> +					   DP_PWR_STATE_BANDGAP_TPLL,
-> +					   DP_PWR_STATE_MASK);
-> +		} else {
-> +			mtk_dp_update_bits(mtk_dp,
-> MTK_DP_TOP_PWR_STATE,
-> +					   DP_PWR_STATE_BANDGAP_TPLL_LA
-> NE,
-> +					   DP_PWR_STATE_MASK);
-> +			drm_dp_read_dpcd_caps(&mtk_dp->aux, buf);
-> +			mtk_dp->train_info.link_rate =
-> +				min_t(int, mtk_dp->max_linkrate,
-> +				      buf[mtk_dp->max_linkrate]);
-> +			mtk_dp->train_info.lane_count =
-> +				min_t(int, mtk_dp->max_lanes,
-> +				      drm_dp_max_lane_count(buf));
-> +		}
-> +	}
-> +
-> +	if (mtk_dp->train_info.irq_status & MTK_DP_HPD_INTERRUPT) {
-> +		dev_dbg(mtk_dp->dev, "MTK_DP_HPD_INTERRUPT\n");
-> +		mtk_dp->train_info.irq_status &= ~MTK_DP_HPD_INTERRUPT;
-> +		mtk_dp_hpd_sink_event(mtk_dp);
-> +	}
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-
+>  	*addr = __va(tmp_addr);
+>  	*size = tmp_size;
+>
+> --
+> 2.35.1
+>
