@@ -2,149 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28FCB53377B
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 09:37:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6CDC5337A9
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 09:47:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244355AbiEYHhg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 03:37:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47768 "EHLO
+        id S234984AbiEYHrA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 03:47:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244354AbiEYHh3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 03:37:29 -0400
-Received: from smtpo52.interia.pl (smtpo52.interia.pl [217.74.67.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5F3F606CF
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 00:37:24 -0700 (PDT)
-X-Interia-R: Interia
-X-Interia-R-IP: 80.68.225.159
-X-Interia-R-Helo: <localhost>
-Received: from localhost (unknown [80.68.225.159])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by www.poczta.fm (INTERIA.PL) with ESMTPSA;
-        Wed, 25 May 2022 09:37:21 +0200 (CEST)
-From:   Slawomir Stepien <sst@poczta.fm>
-To:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, przemyslaw.cencner@nokia.com,
-        krzysztof.adamski@nokia.com, alexander.sverdlin@nokia.com,
-        sst@poczta.fm, slawomir.stepien@nokia.com
-Subject: [PATCH 7/7] hwmon: (lm90) Read the channel's temperature offset from device-tree
-Date:   Wed, 25 May 2022 09:36:57 +0200
-Message-Id: <20220525073657.573327-8-sst@poczta.fm>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220525073657.573327-1-sst@poczta.fm>
-References: <20220525073657.573327-1-sst@poczta.fm>
+        with ESMTP id S229854AbiEYHq6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 03:46:58 -0400
+Received: from mx0a-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D04479388;
+        Wed, 25 May 2022 00:46:57 -0700 (PDT)
+Received: from pps.filterd (m0098416.ppops.net [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 24P6LIbc004833;
+        Wed, 25 May 2022 07:46:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : in-reply-to : references : date : message-id : mime-version :
+ content-type; s=pp1; bh=AxKlKc5CFOm0zoKAftCrN6Z6eRFj3Yw1byWVrpghrWY=;
+ b=ZvVEcwe1PlWUIUWrdVyP3XhQIVr2Q1JUjTqzarGcuRhC2zNnJDf7dm45IFEyz2tpLgee
+ TzYoOrZqWv5ljmRv1oyJzhMnu+LrmKsdF2n9yTvm/x0ZezV7vRA0KlHgoskPJwijIDj5
+ SM0dHInvmSsKgYIPwTgIWg831XjaPf2VjPCofBNVxw2veS3hd2yDDprnTrqa7uz2M5cG
+ Y3QN2GrMky4ID8FSFDb4GW4oKRCEZXgYZpqa0+qjoVn587je8emQlE7F3pwXm765ULCk
+ jClEnVeoQ0r7Mw5xWY7JP/bCgrRlUQTFYMWJO7jdZE8X5CExRInPjlO4xR8dUiM2b8fH aA== 
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3g9f45hj9p-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 25 May 2022 07:46:44 +0000
+Received: from m0098416.ppops.net (m0098416.ppops.net [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 24P7SOYd024306;
+        Wed, 25 May 2022 07:46:43 GMT
+Received: from ppma03fra.de.ibm.com (6b.4a.5195.ip4.static.sl-reverse.com [149.81.74.107])
+        by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3g9f45hj90-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 25 May 2022 07:46:43 +0000
+Received: from pps.filterd (ppma03fra.de.ibm.com [127.0.0.1])
+        by ppma03fra.de.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 24P7NsmE022928;
+        Wed, 25 May 2022 07:46:41 GMT
+Received: from b06cxnps4075.portsmouth.uk.ibm.com (d06relay12.portsmouth.uk.ibm.com [9.149.109.197])
+        by ppma03fra.de.ibm.com with ESMTP id 3g93ur8k9x-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 25 May 2022 07:46:41 +0000
+Received: from d06av22.portsmouth.uk.ibm.com (d06av22.portsmouth.uk.ibm.com [9.149.105.58])
+        by b06cxnps4075.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 24P7kcHf25559388
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Wed, 25 May 2022 07:46:38 GMT
+Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 2D97D4C052;
+        Wed, 25 May 2022 07:46:38 +0000 (GMT)
+Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 60FA04C044;
+        Wed, 25 May 2022 07:46:33 +0000 (GMT)
+Received: from vajain21.in.ibm.com (unknown [9.43.93.43])
+        by d06av22.portsmouth.uk.ibm.com (Postfix) with SMTP;
+        Wed, 25 May 2022 07:46:33 +0000 (GMT)
+Received: by vajain21.in.ibm.com (sSMTP sendmail emulation); Wed, 25 May 2022 13:16:31 +0530
+From:   Vaibhav Jain <vaibhav@linux.ibm.com>
+To:     Ritesh Harjani <ritesh.list@gmail.com>
+Cc:     linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        "Aneesh Kumar K . V" <aneesh.kumar@linux.ibm.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Prakhar Srivastava <prsriva@linux.microsoft.com>,
+        Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
+        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v2] of: check previous kernel's ima-kexec-buffer against
+ memory bounds
+In-Reply-To: <20220525055149.f4nqx2ocnh3pqnpr@riteshh-domain>
+References: <20220524055042.1527968-1-vaibhav@linux.ibm.com>
+ <20220525055149.f4nqx2ocnh3pqnpr@riteshh-domain>
+Date:   Wed, 25 May 2022 13:16:31 +0530
+Message-ID: <87leuqf414.fsf@vajain21.in.ibm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Interia-Antivirus: OK
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=interia.pl;
-        s=biztos; t=1653464242;
-        bh=WPeFse8j/Tn4aLsNvbD6wQT1rqQuT88dj0zMJFSIR/w=;
-        h=From:To:Subject:Date:Message-Id:MIME-Version;
-        b=lpk9BnTKhcfeu6Srcb8OPYGsTKMo+3rKz/ykPBYTzY0ioyKMbRTkSX3WaJFEh4jz9
-         EzavTxhtiw5hJeEeDEfNrHHKUTjziRqYzggFMoy05qr9o+U0/aAz02WhOs/Pkb1ol0
-         txQLs7Ic4Czr6Yng6f/JOgFX+/spr0c94Tw12tiQ=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,FREEMAIL_FROM,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: manfk7lGh9YjRaxXAgcQiYfILbiqQ7Yv
+X-Proofpoint-ORIG-GUID: ZFyYZaxBpM0_5EbZqJTLcrZOlPRz3P1-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.874,Hydra:6.0.486,FMLib:17.11.64.514
+ definitions=2022-05-25_02,2022-05-23_01,2022-02-23_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
+ adultscore=0 lowpriorityscore=0 mlxlogscore=999 suspectscore=0
+ malwarescore=0 impostorscore=0 bulkscore=0 priorityscore=1501 phishscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2204290000 definitions=main-2205250035
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Slawomir Stepien <slawomir.stepien@nokia.com>
+Hi Ritesh,
+thanks for looking into this patch,
 
-Try to read the channel's temperature offset from device-tree. Having
-offset in device-tree node is not mandatory. The offset can only be set
-for remote channels.
+Ritesh Harjani <ritesh.list@gmail.com> writes:
 
-Signed-off-by: Slawomir Stepien <slawomir.stepien@nokia.com>
----
- drivers/hwmon/lm90.c | 48 ++++++++++++++++++++++++++++++++------------
- 1 file changed, 35 insertions(+), 13 deletions(-)
+> Just a minor nit which I noticed.
+>
+> On 22/05/24 11:20AM, Vaibhav Jain wrote:
+>> Presently ima_get_kexec_buffer() doesn't check if the previous kernel's
+>> ima-kexec-buffer lies outside the addressable memory range. This can result
+>> in a kernel panic if the new kernel is booted with 'mem=X' arg and the
+>> ima-kexec-buffer was allocated beyond that range by the previous kernel.
+>> The panic is usually of the form below:
+>>
+>> $ sudo kexec --initrd initrd vmlinux --append='mem=16G'
+>>
+>> <snip>
+>>  BUG: Unable to handle kernel data access on read at 0xc000c01fff7f0000
+>>  Faulting instruction address: 0xc000000000837974
+>>  Oops: Kernel access of bad area, sig: 11 [#1]
+>> <snip>
+>>  NIP [c000000000837974] ima_restore_measurement_list+0x94/0x6c0
+>>  LR [c00000000083b55c] ima_load_kexec_buffer+0xac/0x160
+>>  Call Trace:
+>>  [c00000000371fa80] [c00000000083b55c] ima_load_kexec_buffer+0xac/0x160
+>>  [c00000000371fb00] [c0000000020512c4] ima_init+0x80/0x108
+>>  [c00000000371fb70] [c0000000020514dc] init_ima+0x4c/0x120
+>>  [c00000000371fbf0] [c000000000012240] do_one_initcall+0x60/0x2c0
+>>  [c00000000371fcc0] [c000000002004ad0] kernel_init_freeable+0x344/0x3ec
+>>  [c00000000371fda0] [c0000000000128a4] kernel_init+0x34/0x1b0
+>>  [c00000000371fe10] [c00000000000ce64] ret_from_kernel_thread+0x5c/0x64
+>>  Instruction dump:
+>>  f92100b8 f92100c0 90e10090 910100a0 4182050c 282a0017 3bc00000 40810330
+>>  7c0802a6 fb610198 7c9b2378 f80101d0 <a1240000> 2c090001 40820614 e9240010
+>>  ---[ end trace 0000000000000000 ]---
+>>
+>> Fix this issue by checking returned PFN range of previous kernel's
+>> ima-kexec-buffer with pfn_valid to ensure correct memory bounds.
+>>
+>> Fixes: 467d27824920 ("powerpc: ima: get the kexec buffer passed by the previous kernel")
+>> Cc: Frank Rowand <frowand.list@gmail.com>
+>> Cc: Prakhar Srivastava <prsriva@linux.microsoft.com>
+>> Cc: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+>> Cc: Thiago Jung Bauermann <bauerman@linux.ibm.com>
+>> Cc: Rob Herring <robh@kernel.org>
+>> Signed-off-by: Vaibhav Jain <vaibhav@linux.ibm.com>
+>>
+>> ---
+>> Changelog
+>> ==========
+>>
+>> v2:
+>> * Instead of using memblock to determine the valid bounds use pfn_valid() to do
+>> so since memblock may not be available late after the kernel init. [ Mpe ]
+>> * Changed the patch prefix from 'powerpc' to 'of' [ Mpe ]
+>> * Updated the 'Fixes' tag to point to correct commit that introduced this
+>> function. [ Rob ]
+>> * Fixed some whitespace/tab issues in the patch description [ Rob ]
+>> * Added another check for checking ig 'tmp_size' for ima-kexec-buffer is > 0
+>> ---
+>>  drivers/of/kexec.c | 17 +++++++++++++++++
+>>  1 file changed, 17 insertions(+)
+>>
+>> diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
+>> index 8d374cc552be..879e984fe901 100644
+>> --- a/drivers/of/kexec.c
+>> +++ b/drivers/of/kexec.c
+>> @@ -126,6 +126,7 @@ int ima_get_kexec_buffer(void **addr, size_t *size)
+>>  {
+>>  	int ret, len;
+>>  	unsigned long tmp_addr;
+>> +	unsigned int start_pfn, end_pfn;
+>
+> ^^^ Shouldn't this be unsigned long?
+Thanks for catching this. Yes that should be 'unsigned long'. Will
+resend the patch with this fixed.
 
-diff --git a/drivers/hwmon/lm90.c b/drivers/hwmon/lm90.c
-index 3837c4ab5833..12e8e874f1b9 100644
---- a/drivers/hwmon/lm90.c
-+++ b/drivers/hwmon/lm90.c
-@@ -1440,6 +1440,24 @@ static int lm90_set_temphyst(struct lm90_data *data, long val)
- 	return lm90_write_reg(data->client, LM90_REG_TCRIT_HYST, data->temp_hyst);
- }
- 
-+static int lm90_set_temp_offset(struct lm90_data *data, int channel, long val)
-+{
-+	/* Both offset registers have the same resolution */
-+	int res = lm90_temp_get_resolution(data, REMOTE_OFFSET);
-+
-+	val = lm90_temp_to_reg(0, val, res);
-+
-+	if (channel == 1) {
-+		data->temp[REMOTE_OFFSET] = val;
-+		return lm90_write16(data->client, LM90_REG_REMOTE_OFFSH,
-+				    LM90_REG_REMOTE_OFFSL, val);
-+	}
-+
-+	data->temp[REMOTE2_OFFSET] = val;
-+	return lm90_write16(data->client, LM90_REG_REMOTE2_OFFSH,
-+			    LM90_REG_REMOTE2_OFFSL, val);
-+}
-+
- static const u8 lm90_temp_index[MAX_CHANNELS] = {
- 	LOCAL_TEMP, REMOTE_TEMP, REMOTE2_TEMP
- };
-@@ -1577,19 +1595,7 @@ static int lm90_temp_write(struct device *dev, u32 attr, int channel, long val)
- 				    channel, val);
- 		break;
- 	case hwmon_temp_offset:
--		/* Both offset registers have the same resolution */
--		val = lm90_temp_to_reg(0, val,
--				       lm90_temp_get_resolution(data, REMOTE_OFFSET));
--
--		if (channel == 1) {
--			data->temp[REMOTE_OFFSET] = val;
--			err = lm90_write16(data->client, LM90_REG_REMOTE_OFFSH,
--					   LM90_REG_REMOTE_OFFSL, val);
--		} else {
--			data->temp[REMOTE2_OFFSET] = val;
--			err = lm90_write16(data->client, LM90_REG_REMOTE2_OFFSH,
--					   LM90_REG_REMOTE2_OFFSL, val);
--		}
-+		err = lm90_set_temp_offset(data, channel, val);
- 		break;
- 	default:
- 		err = -EOPNOTSUPP;
-@@ -2651,6 +2657,7 @@ static int lm90_probe_channel_from_dt(struct i2c_client *client,
- 				      struct lm90_data *data)
- {
- 	u32 id;
-+	s32 val;
- 	int err;
- 	struct device *dev = &client->dev;
- 
-@@ -2674,6 +2681,21 @@ static int lm90_probe_channel_from_dt(struct i2c_client *client,
- 	if (data->channel_label[id])
- 		data->channel_config[id] |= HWMON_T_LABEL;
- 
-+	err = of_property_read_s32(child, "temperature-offset-millicelsius", &val);
-+	if (!err) {
-+		if (id == 0) {
-+			dev_err(dev, "offset can't be set for internal channel\n");
-+			return -EINVAL;
-+		}
-+
-+		err = lm90_set_temp_offset(data, id, val);
-+		if (err) {
-+			dev_err(dev, "can't set offset %d for channel %d (%d)\n",
-+				val, id, err);
-+			return err;
-+		}
-+	}
-+
- 	return 0;
- }
- 
+>
+> -ritesh
+>
+>>  	size_t tmp_size;
+>>  	const void *prop;
+>>
+>> @@ -140,6 +141,22 @@ int ima_get_kexec_buffer(void **addr, size_t *size)
+>>  	if (ret)
+>>  		return ret;
+>>
+>> +	/* Do some sanity on the returned size for the ima-kexec buffer */
+>> +	if (!tmp_size)
+>> +		return -ENOENT;
+>> +
+>> +	/*
+>> +	 * Calculate the PFNs for the buffer and ensure
+>> +	 * they are with in addressable memory.
+>> +	 */
+>> +	start_pfn = PHYS_PFN(tmp_addr);
+>> +	end_pfn = PHYS_PFN(tmp_addr + tmp_size - 1);
+>> +	if (!pfn_valid(start_pfn) || !pfn_valid(end_pfn)) {
+>> +		pr_warn("IMA buffer at 0x%lx, size = 0x%zx beyond memory\n",
+>> +			tmp_addr, tmp_size);
+>> +		return -EINVAL;
+>> +	}
+>> +
+>>  	*addr = __va(tmp_addr);
+>>  	*size = tmp_size;
+>>
+>> --
+>> 2.35.1
+>>
+
 -- 
-2.36.1
-
+Cheers
+~ Vaibhav
