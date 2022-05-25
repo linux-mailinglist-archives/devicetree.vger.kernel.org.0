@@ -2,100 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5D3D534002
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 17:12:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2E2E53401F
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 17:15:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244974AbiEYPMQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 11:12:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47852 "EHLO
+        id S236215AbiEYPPF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 11:15:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245087AbiEYPLv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 11:11:51 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CF72B0D15
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 08:11:43 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id w2-20020a17090ac98200b001e0519fe5a8so5371348pjt.4
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 08:11:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=JyixjUdddf6I90XP9MdFK6+higCWyl5KeV+gVWtp6WU=;
-        b=f20Va32dKRJKc/hg0L61Ym/jpgUK0f5vPl1fJoIrhHp4ZYZ651lh4oqGY4DK+jeg4J
-         j/5F1rr/CFGPSwCgQSnzLJcizT05k7U/pFvaGcJ5lkhZrGqDWv9IscCatZuGe25yR9q2
-         gcabwG6JEe6AnZbUxaBC1uMGDPQd6VHlNYBrs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=JyixjUdddf6I90XP9MdFK6+higCWyl5KeV+gVWtp6WU=;
-        b=zjATmOIlt8XP6QEooLlyh09fTQyJ24TIxorjxRRtwd1S7OhzVDmNmnYAUdbNm9WoQi
-         ULn2VpG+GwOcwWS75+AurfEcBJtHRab6ypOzeO85urm3gxfLRgG3saglCDNkSnJQ9rHp
-         qfe0PnxVHkj4eWb1ixM+NlGnOePD2k9rL8M4mMUkYR2HzPAxvmegPGQODyJCG0H/X+x0
-         vA9BqwkHZb5A5SV7OB4JEsJwCFNdPrsajlAjlbxXh2iMlphOh9HkAJR5xq+eLY9xOacg
-         rfpkZ8tFVR71wGAjmarmr7n9M1+58iwuWW1VnHodHOKJqaslPPY2+BdYEIPX5rChKrCJ
-         tbew==
-X-Gm-Message-State: AOAM531S4EOufy/KY62AJvHjs5YTWz9tDt4+/HYzJaIasOiabYaf8s01
-        QHk3gPjiOpdWbpjHP3Hive9VBw==
-X-Google-Smtp-Source: ABdhPJxgS1VuqYEu6r9Y57sGqJnQIEGTKr/QvLaXom2H7c4IuIt24COlf9Rl55IoJgxqziOXj1S5PA==
-X-Received: by 2002:a17:90a:6487:b0:1df:7e0f:c93e with SMTP id h7-20020a17090a648700b001df7e0fc93emr10975351pjj.77.1653491502589;
-        Wed, 25 May 2022 08:11:42 -0700 (PDT)
-Received: from localhost ([2620:15c:11a:202:4d83:f549:9abd:427])
-        by smtp.gmail.com with UTF8SMTPSA id a21-20020a637055000000b003c14af505fesm8581222pgn.22.2022.05.25.08.11.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 May 2022 08:11:42 -0700 (PDT)
-Date:   Wed, 25 May 2022 08:11:40 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Tzung-Bi Shih <tzungbi@kernel.org>
-Cc:     bleung@chromium.org, groeck@chromium.org, robh+dt@kernel.org,
-        chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v4 4/5] platform/chrome: cros_kbd_led_backlight: support
- OF match
-Message-ID: <Yo5HLJs81/KoXSBT@google.com>
-References: <20220523090822.3035189-1-tzungbi@kernel.org>
- <20220523090822.3035189-5-tzungbi@kernel.org>
- <Yo07IDqYuQUzeL+N@google.com>
- <Yo2jhTpsa5Vw4+61@google.com>
+        with ESMTP id S245069AbiEYPOx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 11:14:53 -0400
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6B72B0A55
+        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 08:14:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=k1; bh=PmJeUcD7gmhS0PYNVlvnsEYDc66
+        oPHymA7qkWS2f7mc=; b=l6xpk6TF26KM1mnnh0+jz50FYpB78xor+ZgrgkGzOa6
+        /AE5kojTiMnLlP2sgBBwW9mnPWd2Spv7hLf4TLCWD4m9nh5Bjx0BlX7RFlB8wC/r
+        EPoJDhAWWgkiPoHLYjKyPthdV/nL9C63iYoaz5aIwR1E4OtFpfi5rvjYBMcreuxw
+        =
+Received: (qmail 1645302 invoked from network); 25 May 2022 17:13:58 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 25 May 2022 17:13:58 +0200
+X-UD-Smtp-Session: l3s3148p1@hA++hdffyRdZD++C
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     linux-renesas-soc@vger.kernel.org
+Cc:     Linh Phung <linh.phung.jy@renesas.com>,
+        Wolfram Sang <wsa@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: renesas: r8a779f0: Add thermal support
+Date:   Wed, 25 May 2022 17:13:55 +0200
+Message-Id: <20220525151355.24175-1-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <Yo2jhTpsa5Vw4+61@google.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 25, 2022 at 11:33:25AM +0800, Tzung-Bi Shih wrote:
-> On Tue, May 24, 2022 at 01:08:00PM -0700, Matthias Kaehlcke wrote:
-> > On Mon, May 23, 2022 at 05:08:21PM +0800, Tzung-Bi Shih wrote:
-> > > +#ifdef CONFIG_OF
-> > > +static const struct of_device_id keyboard_led_of_match[] = {
-> > > +	{
-> > > +		.compatible = "google,cros-kbd-led-backlight",
-> > > +	},
-> > > +	{}
-> > > +};
-> > > +MODULE_DEVICE_TABLE(of, keyboard_led_of_match);
-> > > +#endif
-> > > +
-> > >  static struct platform_driver keyboard_led_driver = {
-> > >  	.driver		= {
-> > >  		.name	= "chromeos-keyboard-leds",
-> > >  		.acpi_match_table = ACPI_PTR(keyboard_led_acpi_match),
-> > > +		.of_match_table = of_match_ptr(keyboard_led_of_match),
-> > 
-> > You need to put this assignment inside an '#ifdef CONFIG_OF' block,
-> > otherwise the compiler won't find 'keyboard_led_of_match' when
-> > CONFIG_OF isn't set.
-> 
-> It doesn't need as of_match_ptr() already guarded it.
+From: Linh Phung <linh.phung.jy@renesas.com>
 
-I learned something new today :)
+Add support for 3 TSC nodes of thermal. The 4th node is for the control
+domain and not for Linux.
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+Signed-off-by: Linh Phung <linh.phung.jy@renesas.com>
+[wsa: rebased, fixed resource size, removed unused 4th node breaking probe]
+Signed-off-by: Wolfram Sang <wsa@kernel.org>
+---
+
+Works fine on my Spider board and allowed me to disconnect the fan :)
+
+ arch/arm64/boot/dts/renesas/r8a779f0.dtsi | 56 +++++++++++++++++++++++
+ 1 file changed, 56 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/renesas/r8a779f0.dtsi b/arch/arm64/boot/dts/renesas/r8a779f0.dtsi
+index df46fb87cffc..d89064f86d85 100644
+--- a/arch/arm64/boot/dts/renesas/r8a779f0.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a779f0.dtsi
+@@ -157,6 +157,18 @@ sysc: system-controller@e6180000 {
+ 			#power-domain-cells = <1>;
+ 		};
+ 
++		tsc: thermal@e6198000 {
++			compatible = "renesas,r8a779f0-thermal";
++			/* The 4th sensor is in control domain and not for Linux */
++			reg = <0 0xe6198000 0 0x200>,
++			      <0 0xe61a0000 0 0x200>,
++			      <0 0xe61a8000 0 0x200>;
++			clocks = <&cpg CPG_MOD 919>;
++			power-domains = <&sysc R8A779F0_PD_ALWAYS_ON>;
++			resets = <&cpg 919>;
++			#thermal-sensor-cells = <1>;
++		};
++
+ 		i2c0: i2c@e6500000 {
+ 			compatible = "renesas,i2c-r8a779f0",
+ 				     "renesas,rcar-gen4-i2c";
+@@ -360,6 +372,50 @@ prr: chipid@fff00044 {
+ 		};
+ 	};
+ 
++	thermal-zones {
++		sensor_thermal1: sensor-thermal1 {
++			polling-delay-passive = <250>;
++			polling-delay = <1000>;
++			thermal-sensors = <&tsc 0>;
++
++			trips {
++				sensor1_crit: sensor1-crit {
++					temperature = <120000>;
++					hysteresis = <1000>;
++					type = "critical";
++				};
++			};
++		};
++
++		sensor_thermal2: sensor-thermal2 {
++			polling-delay-passive = <250>;
++			polling-delay = <1000>;
++			thermal-sensors = <&tsc 1>;
++
++			trips {
++				sensor2_crit: sensor2-crit {
++					temperature = <120000>;
++					hysteresis = <1000>;
++					type = "critical";
++				};
++			};
++		};
++
++		sensor_thermal3: sensor-thermal3 {
++			polling-delay-passive = <250>;
++			polling-delay = <1000>;
++			thermal-sensors = <&tsc 2>;
++
++			trips {
++				sensor3_crit: sensor3-crit {
++					temperature = <120000>;
++					hysteresis = <1000>;
++					type = "critical";
++				};
++			};
++		};
++	};
++
+ 	timer {
+ 		compatible = "arm,armv8-timer";
+ 		interrupts-extended = <&gic GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>,
+-- 
+2.35.1
+
