@@ -2,50 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E579534682
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 00:34:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 237A85346EB
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 01:10:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245548AbiEYWe3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 18:34:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39018 "EHLO
+        id S237173AbiEYXKl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 19:10:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244460AbiEYWe1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 18:34:27 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33304FD0F;
-        Wed, 25 May 2022 15:34:26 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (ip-109-40-242-63.web.vodafone.de [109.40.242.63])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8B09C563;
-        Thu, 26 May 2022 00:34:23 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1653518063;
-        bh=SEgBW7SHEvO9WqxRVFG1Zg8n5BFJC+ASS7wS2330RpQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=K1mboHc48vmbNTO50G6n+zn3SoJnydnuIxaUVlTQIkB34RM85zmmQ39/6Jt7fqfhZ
-         L45dnG4X6HlTI2Xj1IHPy6lvGm6lDQKgnz0L07hpvXknhrBb5zXkaNwOakaVtrHzDi
-         5EEti13iHMTR+YeWbLGOwdazoUBi9f/wtZr2mQOU=
-Date:   Thu, 26 May 2022 01:34:18 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+        with ESMTP id S239952AbiEYXKk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 19:10:40 -0400
+Received: from aposti.net (aposti.net [89.234.176.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C9D466ADA;
+        Wed, 25 May 2022 16:10:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1653520235; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=G94xiIYp4JaD6Z24NCSIZA2hrRe2VgRo6jmt+CqtRoA=;
+        b=EvXdrcy6vMz4imZ/1j/gjWx4E9yc2khxmyi8Vah6S991CnSswjFfQZleYS9Cr0AYwbvlJ+
+        6pXEwleMXHiZ5Wu2dKWzSpxzszkdh54BJ9NMN9Ir9rRZCLsZgopJo4iWEruq1ZVGr+Xy9e
+        pGaNkYUA0kIthfhnzrRJuDqpyBhnLu0=
+Date:   Thu, 26 May 2022 00:10:25 +0100
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH] dt-bindings: memory-controllers: ingenic: Split out child
+ node properties
 To:     Rob Herring <robh@kernel.org>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "H. Nikolaus Schaller" <hns@goldelico.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: display: ingenic,jz4780-hdmi: Drop
- undocumented 'ddc-i2c-bus'
-Message-ID: <Yo6u6jcVSsTQvRiU@pendragon.ideasonboard.com>
-References: <20220525205626.2482584-1-robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mtd@lists.infradead.org
+Message-Id: <DDOGCR.THWZ3JUKPSSB@crapouillou.net>
+In-Reply-To: <20220525210140.2489866-1-robh@kernel.org>
+References: <20220525210140.2489866-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220525205626.2482584-1-robh@kernel.org>
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
@@ -57,35 +52,156 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Rob,
 
-Thank you for the patch.
-
-On Wed, May 25, 2022 at 03:56:26PM -0500, Rob Herring wrote:
-> While 'ddc-i2c-bus' is a common property, it should be in a connector
-> node rather than the HDMI bridge node as the I2C bus goes to a
-> connector and not the HDMI block. Drop it from the example.
->
+Le mer., mai 25 2022 at 16:01:40 -0500, Rob Herring <robh@kernel.org> a=20
+=E9crit :
+> Binding schemas which define child node properties such as memory
+> controllers with timing properties need a separate schema which can be
+> referenced from child device schemas. This is necessary for
+> unevaluatedProperties checks to work properly.
+>=20
+> Move the ingenic,nemc child properties to its own file and reference
+> from ingenic,nand.yaml which describes a child NAND controller.
+>=20
 > Signed-off-by: Rob Herring <robh@kernel.org>
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Acked-by: Paul Cercueil <paul@crapouillou.net>
+
+Cheers,
+-Paul
 
 > ---
->  .../devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml  | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml b/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
-> index b8219eab4475..89490fdffeb0 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
-> @@ -55,7 +55,6 @@ examples:
->          compatible = "ingenic,jz4780-dw-hdmi";
->          reg = <0x10180000 0x8000>;
->          reg-io-width = <4>;
-> -        ddc-i2c-bus = <&i2c4>;
->          interrupt-parent = <&intc>;
->          interrupts = <3>;
->          clocks = <&cgu JZ4780_CLK_AHB0>, <&cgu JZ4780_CLK_HDMI>;
+>  .../ingenic,nemc-peripherals.yaml             | 46=20
+> +++++++++++++++++++
+>  .../memory-controllers/ingenic,nemc.yaml      | 32 -------------
+>  .../devicetree/bindings/mtd/ingenic,nand.yaml |  1 +
+>  3 files changed, 47 insertions(+), 32 deletions(-)
+>  create mode 100644=20
+> Documentation/devicetree/bindings/memory-controllers/ingenic,nemc-periphe=
+rals.yaml
+>=20
+> diff --git=20
+> a/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc-perip=
+herals.yaml=20
+> b/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc-perip=
+herals.yaml
+> new file mode 100644
+> index 000000000000..b8ed52a44d57
+> --- /dev/null
+> +++=20
+> b/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc-perip=
+herals.yaml
+> @@ -0,0 +1,46 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id:=20
+> http://devicetree.org/schemas/memory-controllers/ingenic,nemc-peripherals=
+.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Ingenic SoCs NAND / External Memory Controller (NEMC)=20
+> devicetree bindings
+> +
+> +maintainers:
+> +  - Paul Cercueil <paul@crapouillou.net>
+> +
+> +properties:
+> +  reg:
+> +    minItems: 1
+> +    maxItems: 255
+> +
+> +  ingenic,nemc-bus-width:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [8, 16]
+> +    description: Specifies the bus width in bits.
+> +
+> +  ingenic,nemc-tAS:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Address setup time in nanoseconds.
+> +
+> +  ingenic,nemc-tAH:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Address hold time in nanoseconds.
+> +
+> +  ingenic,nemc-tBP:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Burst pitch time in nanoseconds.
+> +
+> +  ingenic,nemc-tAW:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Address wait time in nanoseconds.
+> +
+> +  ingenic,nemc-tSTRV:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Static memory recovery time in nanoseconds.
+> +
+> +required:
+> +  - reg
+> +
+> +additionalProperties: true
+> +...
+> diff --git=20
+> a/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc.yaml=20
+> b/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc.yaml
+> index 24f9e1982028..dd13a5106d6c 100644
+> ---=20
+> a/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc.yaml
+> +++=20
+> b/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc.yaml
+> @@ -39,38 +39,6 @@ properties:
+>  patternProperties:
+>    ".*@[0-9]+$":
+>      type: object
+> -    properties:
+> -      reg:
+> -        minItems: 1
+> -        maxItems: 255
+> -
+> -      ingenic,nemc-bus-width:
+> -        $ref: /schemas/types.yaml#/definitions/uint32
+> -        enum: [8, 16]
+> -        description: Specifies the bus width in bits.
+> -
+> -      ingenic,nemc-tAS:
+> -        $ref: /schemas/types.yaml#/definitions/uint32
+> -        description: Address setup time in nanoseconds.
+> -
+> -      ingenic,nemc-tAH:
+> -        $ref: /schemas/types.yaml#/definitions/uint32
+> -        description: Address hold time in nanoseconds.
+> -
+> -      ingenic,nemc-tBP:
+> -        $ref: /schemas/types.yaml#/definitions/uint32
+> -        description: Burst pitch time in nanoseconds.
+> -
+> -      ingenic,nemc-tAW:
+> -        $ref: /schemas/types.yaml#/definitions/uint32
+> -        description: Address wait time in nanoseconds.
+> -
+> -      ingenic,nemc-tSTRV:
+> -        $ref: /schemas/types.yaml#/definitions/uint32
+> -        description: Static memory recovery time in nanoseconds.
+> -
+> -    required:
+> -      - reg
+>=20
+>  required:
+>    - compatible
+> diff --git a/Documentation/devicetree/bindings/mtd/ingenic,nand.yaml=20
+> b/Documentation/devicetree/bindings/mtd/ingenic,nand.yaml
+> index 9de8ef6e59ca..8c272c842bfd 100644
+> --- a/Documentation/devicetree/bindings/mtd/ingenic,nand.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/ingenic,nand.yaml
+> @@ -11,6 +11,7 @@ maintainers:
+>=20
+>  allOf:
+>    - $ref: nand-controller.yaml#
+> +  - $ref: /schemas/memory-controllers/ingenic,nemc-peripherals.yaml#
+>=20
+>  properties:
+>    compatible:
+> --
+> 2.34.1
+>=20
 
--- 
-Regards,
 
-Laurent Pinchart
