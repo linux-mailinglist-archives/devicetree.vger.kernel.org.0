@@ -2,78 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA421533A5E
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 12:02:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7809A533A6B
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 12:08:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241337AbiEYKB6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 06:01:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43446 "EHLO
+        id S238126AbiEYKIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 06:08:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230033AbiEYKBy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 06:01:54 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E136B25C46;
-        Wed, 25 May 2022 03:01:51 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id c19so22097698lfv.5;
-        Wed, 25 May 2022 03:01:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=UC6SLSEFgFoqdIS2QlBVrr0bcViqmEfbMxaWyDKUl8M=;
-        b=F7kl8H1+FaV2Vh1LXn1XnSvsIozWpEd9+HHSz54qJuz2NixS+zjMGe4t5gdVLYHX+z
-         3Dr0bRIkAg4SQ8nxeWsa7ZHi/S7+VXvJznj62MD7jv5yYTEUPFWuYnltbYmRWE0LTpsy
-         pZq4ahW2vIEOFC+FcsGlVMJAJS4Ok563OjrNQRYxUxPt7zVdB+RZYKGKkFmQkxd+pAIi
-         zrF0cLhQCGFXkDrATyxqp9gap3GTe0rj/bV8yBPHjDpctNQUSfm/JvuoZ6HhtuCntvLr
-         sYiPSjgNOctc/BQ4P9BV9FOvs29pBYqZp5k1CuYKWcMg7GtDZgg0tVfIZ3fON0iwf9BS
-         dF6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=UC6SLSEFgFoqdIS2QlBVrr0bcViqmEfbMxaWyDKUl8M=;
-        b=xBMnXDPhnKjoFTJxndVEwntB3DlTryEm5XGD6cuTWwDiSUPPRvcb5hQ7JJ/2EsIvDZ
-         jplp1Ys71Ojy1GCsBlRkyUAKYaCiT646bEpU/noqiRguOTuYgA0OT73maCVcDm3RILOU
-         lO0g87xm40huoEqxKxhRirXU/3coH0ASrcEv+ET1eT79RUuOYME4tmp3Fv5FzevxGNM9
-         k3I6fN5nEB8CEYWOZIijq/pgrbQLE9xzfs6ESl603E0Ibnx6LY1Iey1OuGah2IFP8v/W
-         i5WUzWxAw9oAykVl8LmpEubV/7m0FymTo/AqfsxL+S4Utf7gwWR1lYIS+BQDZFqoC+5N
-         sfzA==
-X-Gm-Message-State: AOAM533T3yNes5L3jymZrpxv52gyjMwCT5D8lzaJ6qx8ynGdFUo2RcWO
-        ZhUXmbIJCZGyoJMwyiIBy/Q=
-X-Google-Smtp-Source: ABdhPJyDA6VfNajwGr+/2coU/jEB6iKPlVDHwq7UqcQffVPL8x+i3wPqmtNMsv+3q9fLIfm3Kg5GBA==
-X-Received: by 2002:a05:6512:3d13:b0:472:5d8d:5202 with SMTP id d19-20020a0565123d1300b004725d8d5202mr22395092lfv.331.1653472910249;
-        Wed, 25 May 2022 03:01:50 -0700 (PDT)
-Received: from mobilestation ([95.79.189.214])
-        by smtp.gmail.com with ESMTPSA id c38-20020a05651223a600b0047855a54704sm2549547lfv.172.2022.05.25.03.01.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 May 2022 03:01:48 -0700 (PDT)
-Date:   Wed, 25 May 2022 13:01:46 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 01/23] dt-bindings: ata: ahci-platform: Drop
- dma-coherent property declaration
-Message-ID: <20220525100146.3xg3vjj4edizl6yb@mobilestation>
-References: <20220511231810.4928-1-Sergey.Semin@baikalelectronics.ru>
- <20220511231810.4928-2-Sergey.Semin@baikalelectronics.ru>
- <20220517185841.GA1388602-robh@kernel.org>
- <20220521092248.7i53lxf3gx26fmi5@mobilestation>
- <20220524145758.GA3730540-robh@kernel.org>
+        with ESMTP id S241554AbiEYKI0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 06:08:26 -0400
+Received: from EUR02-HE1-obe.outbound.protection.outlook.com (mail-eopbgr10084.outbound.protection.outlook.com [40.107.1.84])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DC8490CE1;
+        Wed, 25 May 2022 03:08:24 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=G15r2aTZAeohNqI10smxJYdM6VEzN881zVdmMFsUeZoLVoHnjxQ1rg60eQ9ShcxBxdE2C6Evp4Ct9UlXZogpx97Q524APj5riYEFA9IjWsKEQxrNVAeeum84MiUAtR4pCAnDMFjj0c336UXZUzlktGBiWAuvGOkrc67tTIjcrkK66I4EfyB/DwcNNTIPvM6tqq8ZI5DegkHmZcT4/dfqZUmDwyfhnsEzWCuwimFnkz62tsR7XN7vDiSWsg8/Or601JdvrHKwZtAwXcx7aJmNqPzbltmzMQO1NO31OCcCbuH1KWzFXaie2YzBRE+jU4XPuYTYkItsoFIEmq5puTll6g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kQLD/wtU55dNCOMZqCUrDkoL6KedsiqcsFrkgD+VvZM=;
+ b=aruQBhermfMs3JnjttGOkiiytVvt+zH+qq60ba5tiZ9byCYaBJzM94E1m8OmlD4BZhWX2fejdKlgfFpVZC8ee+sGyHqULBq1M5holuOkVd7rKiC7BoZZigR8CBlyhnWZ2iy/psML4L+TljOh9LxnYeGaUsxPkQb+AeChWjUEmc+k1p5dPvMH211hMJDK6huTDNUcxsBJnZzIsj0u8rsl8mBtOFL32l0mS6ivGme+047g2iZOYFYDBFYMZhVtEXeXUjVwfVpFCD9THWdKMicq7Pw3ZUAwlsqLG+H98KAXGpcuFzo/6NT6BAsrCqqBBcEGDy1B6A683kc9BkYrlBJ6fg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vaisala.com; dmarc=pass action=none header.from=vaisala.com;
+ dkim=pass header.d=vaisala.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vaisala.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kQLD/wtU55dNCOMZqCUrDkoL6KedsiqcsFrkgD+VvZM=;
+ b=RqrZeLtQxQ4REEyJNXTRKj69O+Wv4S3WjsQ9bzLjj5IfZbrOIbnSaE0JyTapSsQ5KQl2c2uXvjj66126EFDsKQ+9/+wemKLHSWYds9fDV5AzhOLSVTVXpkwhV+HCU4Ox+2m80MCJjjExyzFEs6p0xy/ZX7rOj4Z1Xz+A1GO5IN3l2Tdgd6SybrsJOwu1JEQ+qqNGFVinFTjROkADggta/xEt5a6Z9EsMEMghVMWj323gPi8O5YaDSnAeY6jBrwJo0SEgDI2b/faTfvumhfmfksGKMo1EgZJLFuGrkb6CP8spWDc1eY9bO7qwUNPGH7PbozPbzwcLxn+Mz3vzj8w7yA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=vaisala.com;
+Received: from HE1PR0602MB3625.eurprd06.prod.outlook.com (2603:10a6:7:81::18)
+ by AM8PR06MB7489.eurprd06.prod.outlook.com (2603:10a6:20b:366::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.13; Wed, 25 May
+ 2022 10:08:21 +0000
+Received: from HE1PR0602MB3625.eurprd06.prod.outlook.com
+ ([fe80::58ca:a1d:54ff:1473]) by HE1PR0602MB3625.eurprd06.prod.outlook.com
+ ([fe80::58ca:a1d:54ff:1473%3]) with mapi id 15.20.5293.013; Wed, 25 May 2022
+ 10:08:21 +0000
+Message-ID: <aa897c48-57fc-5336-e62c-333ec5cf3416@vaisala.com>
+Date:   Wed, 25 May 2022 13:08:19 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH V8 4/5] iio: accel: sca3300: Add support for SCL3300
+Content-Language: en-US
+To:     LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>, jic23@kernel.org,
+        lars@metafoo.de, robh+dt@kernel.org, andy.shevchenko@gmail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     thomas.haemmerle@leica-geosystems.com, linux-iio@vger.kernel.org
+References: <20220523062312.1401944-1-Qing-wu.Li@leica-geosystems.com.cn>
+ <20220523062312.1401944-5-Qing-wu.Li@leica-geosystems.com.cn>
+From:   Tomas Melin <tomas.melin@vaisala.com>
+In-Reply-To: <20220523062312.1401944-5-Qing-wu.Li@leica-geosystems.com.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: HE1PR0202CA0030.eurprd02.prod.outlook.com
+ (2603:10a6:3:e4::16) To HE1PR0602MB3625.eurprd06.prod.outlook.com
+ (2603:10a6:7:81::18)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220524145758.GA3730540-robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: f6f8df9d-353e-45a6-a3ad-08da3e367f92
+X-MS-TrafficTypeDiagnostic: AM8PR06MB7489:EE_
+X-Microsoft-Antispam-PRVS: <AM8PR06MB7489512DEA8CD849769BF973FDD69@AM8PR06MB7489.eurprd06.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: cqHU9lVhrXurBCK5p7/MAo1rAMA79gFmkS58Lg4WRpm2esp8Qy/7knO0SWLnFEhErYTksqPQ1wWN1B2CVExo9ErgWs524fxUxOeuvbLWVMWB+EaM2TTQq/GW/0yY5mC5VGbwlmJflIzY8Tv/kmndjsziWnXeENPwe8l0HeSm5dyDN96ITcFks3Ik5g8trm9iRYDWvTUb1x0jdmx1Pl5HtN3R/ZiX9XCj7kUdLjeGMU3Zp8n3AyZuPMM0vHdMfAqIvexj23jqY8+ebp7I2L0yMnryuoJ0Bpbl0CTJYKmoiBLReS5m8fuYXQBvXxX5V+9EdYQGcFuVYluahSk9an5aC1Z2N3Y7S6cNdqpGRxK5GONSg9jEzvFBg7kX1ekoSgKBjOzMJQ19Hq1Zrjt9o17w7Diz4XhKMXJCePFHil/QZtmi+dF13mL0qvnTot5v75ai6V2p16eesyqok/7Hd1rL/BAv2IIFNc1SDCnYguJTPqB+cwqs3VtKCgTFyZREqbTpst1Buo2k/KJGJnKk1XqhQfh0jg1ytd4a7v/3v5cTBRvJRG8PAZySTrinEsKx4gGHoyyrekHEo5RtsI9ii74uHytBm4bCYe2ineH8LsdBiI0yLo6Dkq31C08bzlLx7Q/KvITWnvs5e136i+gwntzKf0g1ht0WL0b1PY7LtSD7FHNXOtLyTbFDqsh3oHwii1qzwCeOj6HyGiNGHaihj4xcGKW7kyRHR+Q9LLD12fy3HHJSjD2XD1ha5PCWQhfZLQ8u++E9k2n7z0aEA7o4VmE3gstFS1SSSbn4hLsaRXKxBB1XG1xs46uwISlSApYBKlBj
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1PR0602MB3625.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(15974865002)(6512007)(53546011)(6486002)(26005)(6506007)(316002)(31686004)(186003)(31696002)(86362001)(2616005)(8936002)(2906002)(38100700002)(508600001)(5660300002)(83380400001)(66946007)(66476007)(4326008)(66556008)(8676002)(44832011)(36756003)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Tit5d0JRRFRaL0ZFS2psYnRxL3c3c3dsTzdOZjl3cDFJVVVZa2pqUUZVNkNO?=
+ =?utf-8?B?UXlVb3hKbU5aV2xFMDlQb0tkcUg5ZGRwQVFkQkkwZmFabmZsUXNnYXVTWTFa?=
+ =?utf-8?B?WTZNT2ZXYW1vRURSQTZiWFFRNnRLbVVOeHJBb2xiZEhaSm9UY0lRVXJhZUNi?=
+ =?utf-8?B?YzUrM25mU3V5TkZyWmhBYjRuWFhyZnE0VVYvSUNUSzhGb1RJZVNzZmNXZlRI?=
+ =?utf-8?B?NDNidmV2aXpIWVAvajdsWlh4dnJrRVVvM0lxNDJVNE9wbitNTHdObFpLdTdZ?=
+ =?utf-8?B?ZldsemVwVFFlRUR0RFNqY3ZmMURNdGJHaG5rYU0rZ0ZiVnBYTktYN0JSVFVu?=
+ =?utf-8?B?QzhvVWtCMDBhL21HOXdoSVJQMjNaQ0hpQVh5NEIxRHdRdkdVTlZkc0dTbzZ0?=
+ =?utf-8?B?WndnTFRzMWZ2L1M5TElkYytFdmE4d09WVml2UTcxWVJZSWtYVVFNYklzQURF?=
+ =?utf-8?B?KzBlL2dDbDd0Y3kwMktiRDB3UmhENjMwTit0bkdCalRtajF2QzJ5Yk80aFNy?=
+ =?utf-8?B?SjN4RFZXY0puTlk5YkxORTNIbW9iaXcwZHp2bm0xWTJvOExBNnVBbEdMS0t4?=
+ =?utf-8?B?SFNaVDhzZWVOcERYdDNqeXUycVc4dzVWcEZHUXNjQ0Y4VHc2aWRJNm5oTjk1?=
+ =?utf-8?B?OXZMb2dKOVJ3OElNcVFWSkI2YUl0RWFKT1VhblYyNGZxR3BQMm5uRS9BYlNF?=
+ =?utf-8?B?RXhETEtSZGh2d2JrWVNkR1BtQmxqSURHYmZZMElnb3FQcEtWNzNzMTBlcG04?=
+ =?utf-8?B?ZHUxZVJ3RFgvaG5Ydzl6ZUFjdmd5dUxxUWF2WDVUNzN3TzRoQXphOGw1Ulln?=
+ =?utf-8?B?c1dzZG1jMEMxbUF0RHVoc2pPWmpFZkY1WDZGNFVScDN6NzFsY2diY1oxMkdK?=
+ =?utf-8?B?LzdmcjFudEl4cFhJdGp2YU9Sc3hHcEZFWHY3OTZLaG5lTEcwb0c3b1N2UHZW?=
+ =?utf-8?B?VGFmUld1dk9xc0YyOFZOWlFmMk1Lcll6ZU1jRU1RbjFWWlI3aUdRdXZPbExR?=
+ =?utf-8?B?b1VINVU3TXBsUUNiOG8rQ2ZUaTBSQTdZVk5INXFTMlRTenhDQjJmb2FDS3c2?=
+ =?utf-8?B?QlNUZmpQVGFlZXdjcmtxL09zVWo1TXBOT0J1Q2lUSmdHZ3ZuZkROWlowbFZq?=
+ =?utf-8?B?T1hVNjVhek5DRk5rU1czdzlIdnNBTFNKWTFXWWlvY3BkOEtuQUwxZzc4QUNM?=
+ =?utf-8?B?blBhNmprS3VwVm1jZDZEZjdhUngwdnlUa3E2VTQxQk15M0JWMWk1WGk5L1py?=
+ =?utf-8?B?cWpjVkhRSGFXeHN6eVFzN2huM0g5OWMyYkdvQU5XbXdOR1lZOFJ4V0tmU212?=
+ =?utf-8?B?S3BwRko4UFNYaHBDMWNRdzZZK2huS1llM2I1ZUdWaUw1NHFTT29OV3ZheHNQ?=
+ =?utf-8?B?YXZETVpJR2tvMDdCVVZpN0t5eWR6VjhWcnNLSjNZQUtUUVhRWGtqYzhyZlVZ?=
+ =?utf-8?B?eVFXSndNNDdmWGpvY3JaUm5jYzdRYzJ6QXBISGltUTNKTTIxU2FTWjF5SnZ0?=
+ =?utf-8?B?cG1PT2ZtckdoTFdQT1dXNHZ2bTc0TmtkUHNyUGZwRG5hR3NGSEFxR0pVK3Zh?=
+ =?utf-8?B?aDJlK2FJbCtnVFJseU1xTmpXM3V3eStrVDJkYWZXNTlqdVFIYkg3K0J4K0hF?=
+ =?utf-8?B?ZDlsUmRmR0ZQdUVEZWhReERDT3Ztak0rZG5pODB5WGhQTFE3bGRWcXp3bFlO?=
+ =?utf-8?B?QWZleGtpb3lKMk4xR3ZJT3pYT0NqN3VpOEg1WGJ3Z05OMUtIanNINWZSTW5a?=
+ =?utf-8?B?cjk3WlJ2QjNJVWVKODV5K0E5UGlvclJHekRLdU9zUm0vcWR3RmRtOFc1VDVa?=
+ =?utf-8?B?aHRUSkpYNDRZT1hqOU8xdE5Ma3grVUNnOVp2Y1JmY0V2Qm52SzNVUzdCRS9z?=
+ =?utf-8?B?dkRVZUlBSnVEbFk4MjJtQ2p5Y01jYWFZTHV2RWFBNHlZTW9ZQWZ6dllTSmtN?=
+ =?utf-8?B?UVNDWDhWemM4NlpPMGxjbXRyaTVBelJObFVLVS9ZMWRpLzFTRDI1QVp4YWVV?=
+ =?utf-8?B?NXUvV2lLTG1IendwaGI0S1VieFI2TGQ2SnZYS3R6aWhucXZQV2wyamsxR1NH?=
+ =?utf-8?B?SFBzNWJYSjRFVFdFR0xDQ1J3ZHZxbEtmcUFxdU9DM2hRY3o1ZlpyZHJGWGda?=
+ =?utf-8?B?T0k5Y0U5ZEpQeTRkT3Z1OVZUTGl2Y0dUMU5BVGhMSkdWRjlVMDF2WTI2bFFL?=
+ =?utf-8?B?Y1FMTHl2dW5idUVwaW1HT3Z1SDBqZXM0eUhuK1plMXRuMHdpRFlmMnpzMzFW?=
+ =?utf-8?B?T2NSbXV2ODg0K2Z2UG83WDVyN2I1MkhReHlYUHVzWEh4RVR4bkppUHBpazhJ?=
+ =?utf-8?B?RUJWMStOM0h4T0JKUVBiQWFobys5bGV5OTJjNDgwQ0k3VE4wNlJ3Y0JmVCtG?=
+ =?utf-8?Q?Iug5ReatfmTsZRBc=3D?=
+X-OriginatorOrg: vaisala.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f6f8df9d-353e-45a6-a3ad-08da3e367f92
+X-MS-Exchange-CrossTenant-AuthSource: HE1PR0602MB3625.eurprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2022 10:08:21.7694
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 6d7393e0-41f5-4c2e-9b12-4c2be5da5c57
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: DeyaYOGIyx0WHw4PkObMrK8aG9ARTQaQCiOSwYJSsEkbYUXxRE2a2JIUBT5bOxg/icI0aryezU1ILbJMEUKmnw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR06MB7489
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,126 +131,101 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 24, 2022 at 09:57:58AM -0500, Rob Herring wrote:
-> On Sat, May 21, 2022 at 12:22:48PM +0300, Serge Semin wrote:
-> > On Tue, May 17, 2022 at 01:58:41PM -0500, Rob Herring wrote:
-> > > On Thu, May 12, 2022 at 02:17:48AM +0300, Serge Semin wrote:
-> > > > It's redundant to have the 'dma-coherent' property explicitly specified in
-> > > > the DT schema because it's a generic property described in the core
-> > > > DT-schema by which the property is always evaluated.
-> > > 
-> > 
-> > > It is not redundant.
-> > > 
-> > > The core schema defines the property (as a boolean), but this schema 
-> > > defines it being used in this binding. Otherwise, it won't be allowed.
-> > 
-> > I thought that the generic properties like ranges, dma-ranges, etc
-> > including the dma-coherent one due to being defined in the dt-core
-> > schema are always evaluated. As such seeing the unevaluatedProperties
-> > property is set to false here, they can be used in the DT-nodes with
-> > no need to be explicitly specified in the DT node bindings. In
-> > addition to that I tested this assumption by dropping the dma-coherent
-> > property definition from the AHCI-common schema and executed the
-> > DT-bindings check procedure. No error has been spotted:
+
+
+On 23/05/2022 09:23, LI Qingwu wrote:
+> Add support for Murata SCL3300, a 3-axis MEMS accelerometer.
+> Same as SCA3300, it has the accelerometer and temperature output.
 > 
-
-> Those common properties are always applied, but not at the same time as 
-> a device binding. IOW, it's 2 schemas that are applied to an instance 
-> (node) independently. For things like 'reg', the common schema does type 
-> checks and the device schema does size (number of entries) checks.
+> Datasheet: www.murata.com/en-us/products/sensor/inclinometer/overview/lineup/scl3300
+> Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+> ---
+>  drivers/iio/accel/sca3300.c | 31 +++++++++++++++++++++++++++++--
+>  1 file changed, 29 insertions(+), 2 deletions(-)
 > 
-> There a few things always allowed like 'status', and those are added to 
-> the device schema by the tools.
+> diff --git a/drivers/iio/accel/sca3300.c b/drivers/iio/accel/sca3300.c
+> index 6463d12a9ab9..74e780a7ffcd 100644
+> --- a/drivers/iio/accel/sca3300.c
+> +++ b/drivers/iio/accel/sca3300.c
+> @@ -38,6 +38,7 @@
+>  /* Device ID */
+>  #define SCA3300_REG_WHOAMI	0x10
+>  #define SCA3300_WHOAMI_ID	0x51
+> +#define SCL3300_WHOAMI_ID	0xC1
+>  
+>  /* Device return status and mask */
+>  #define SCA3300_VALUE_RS_ERROR	0x3
+> @@ -96,10 +97,18 @@ static const struct iio_chan_spec sca3300_channels[] = {
+>  static const int sca3300_lp_freq[] = {70, 10};
+>  static const int sca3300_lp_freq_map[] = {0, 0, 0, 1};
+>  
+> +static const int scl3300_lp_freq[] = {40, 70, 10};
+> +static const int scl3300_lp_freq_map[] = {0, 1, 2};
+> +
+>  static const int sca3300_accel_scale[][2] = {{0, 370}, {0, 741}, {0, 185}};
+>  static const int sca3300_accel_scale_map[] = {0, 1, 2, 2};
+>  
+> +static const int scl3300_accel_scale[][2] = {{0, 167}, {0, 333}, {0, 83}};
+> +static const int scl3300_accel_scale_map[] = {0, 1, 2};
+> +
+>  static const int sca3300_avail_modes_map[] = {0, 1, 2, 3};
+> +static const int scl3300_avail_modes_map[] = {0, 1, 3};
+> +
+>  static const unsigned long sca3300_scan_masks[] = {
+>  	BIT(SCA3300_ACC_X) | BIT(SCA3300_ACC_Y) | BIT(SCA3300_ACC_Z) |
+>  	BIT(SCA3300_TEMP),
+> @@ -159,6 +168,21 @@ static const struct sca3300_chip_info sca3300_chip_tbl[] = {
+>  		.num_avail_modes = 4,
+>  		.chip_id = SCA3300_WHOAMI_ID,
+>  	},
+> +	{
+> +		.name = "scl3300",
+> +		.scan_masks = sca3300_scan_masks,
+> +		.channels = sca3300_channels,
+> +		.num_channels = ARRAY_SIZE(sca3300_channels),
+> +		.num_accel_scales = ARRAY_SIZE(scl3300_accel_scale)*2,
+> +		.accel_scale = scl3300_accel_scale,
+> +		.accel_scale_map = scl3300_accel_scale_map,
+> +		.num_freqs = ARRAY_SIZE(scl3300_lp_freq),
+> +		.freq_table = scl3300_lp_freq,
+> +		.freq_map = scl3300_lp_freq_map,
+> +		.avail_modes_table = scl3300_avail_modes_map,
+> +		.num_avail_modes = 3,
+> +		.chip_id = SCL3300_WHOAMI_ID,
+> +	},
+>  };
+>  
+>  DECLARE_CRC8_TABLE(sca3300_crc_table);
+> @@ -443,9 +467,11 @@ static int sca3300_init(struct sca3300_data *sca_data,
+>  
+>  	/*
+>  	 * Wait 1ms after SW-reset command.
+> -	 * Wait 15ms for settling of signal paths.
+> +	 * Wait for the settling of signal paths,
+> +	 * 15ms for SCA3300 and 25ms for SCL3300,
 
-It makes sense now. Thanks for clarification.
+> +	 * take the max of the then.
+There is now a typo here, but I think this line could be left out
+altogether. i.e.
 
-> 
-> > 
-> > > [fancer@mobilestation] kernel $ cat Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml | grep dma-coherent
-> > >        dma-coherent;
-> > > [fancer@mobilestation] kernel $ make -j8 DT_SCHEMA_FILES=Documentation/devicetree/bindings/ata/snps,dwc-ahci.yaml dt_binding_check
-> > >   LINT    Documentation/devicetree/bindings
-> > >   DTEX    Documentation/devicetree/bindings/ata/snps,dwc-ahci.example.dts
-> > >   CHKDT   Documentation/devicetree/bindings/processed-schema.json
-> > >   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-> > >   DTC     Documentation/devicetree/bindings/ata/snps,dwc-ahci.example.dtb
-> > >   CHECK   Documentation/devicetree/bindings/ata/snps,dwc-ahci.example.dtb
-> > > [fancer@mobilestation] kernel $ cat Documentation/devicetree/bindings/ata/snps,dwc-ahci.example.dts | grep dma-coherent
-> > >           dma-coherent;
-> > > [fancer@mobilestation] kernel $ echo $?
-> > > 0
-> > Due to that here are a few backward questions:
-> > 1) Am I doing something wrong in the framework of the DT-bindings
-> > evaluation? Really I even tried to specify unknown property in the
-> > DT-bindings example like "bla-bla-bla;" and no evaluation error was
-> > printed. Anyway If what you are saying was correct I would have got an
-> > error during the DT-bindings evaluation, but as you can see there was
-> > none.
-> 
+> +	 * Wait for the settling of signal paths,
+> +	 * 15ms for SCA3300 and 25ms for SCL3300.
 
-> I think this is a known issue which has a pending fix. If a referenced 
-> schema has 'additionalProperties: true' in it, then the referring schema 
-> never has any unevaluated properties. The fix is pending because all 
-> the schema examples that start failing have to be fixed and in a base 
-> that people work on (i.e. rc1).
 
-Ok. I see. Just to note in case if a non-related schema error is
-found the unknown property error is printed too. Like this:
+Thanks,
+Tomas
 
-/.../ata/snps,dwc-ahci.example.dtb: sata@122f0000: interrupts: [[0, 115, 4], [0, 116, 4]] is too long
-        From schema: /.../ata/snps,dwc-ahci.yaml
-/../ata/snps,dwc-ahci.example.dtb: sata@122f0000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'phys', 'phy-names', 'ports-implemented', 'bla-bla-bla' were unexpected)
-
-If I fix the interrupts-property error, the dt-schema check procedure
-will work just fine.
-
-> 
-> > 2) Am I wrong in thinking that the unevaluatedProperties setting
-> > concerns the generic properties defined in the DT-core schema? 
-> 
-> You are wrong as explained above.
-> 
-> > If it
-> > doesn't concern the generic properties then does it work for the
-> > $ref'ed schemas only? 
-> 
-> Yes, except for the issue making it not work.
-> 
-> > Getting back to the patch topic. We need to drop the dma-coherent
-> > property from the schema anyway. AHCI-specification doesn't
-> > regulate the DMA operations coherency. The dma-coherent property is
-> > more specific to the particular controller implementation mainly
-> > dependent on the platform settings. So I'll change the patch log, but
-> > get to keep the patch in the series. What do you think?
-> 
-> Intel wrote the spec, so they probably assume coherent. In DT, PPC is 
-> default coherent and Arm is default non-coherent.
-> 
-
-> You'll need to add it to whatever specific device schemas need it if you 
-> remove it.
-
-Right. This is what I was going to add to the patch log.
-
-> Personally, I think it is fine where it is. dma-coherent is 
-> valid on any DMA capable device and it's not really a property of the 
-> device, but the system.
-
-Right. It is mainly the platform property. In particular the DMA
-coherency is determined by the system interconnect design. In our case
-the l1 and l2 caches are embedded into the CPU cores block while the
-DDR and other SoC peripheral devices/controllers are attached to the
-cores via a dedicated AXI3 interconnect bus, which has nothing to do
-with the caches. That's why none of the system devices are
-cache-coherent.
-
-> If we could generically identify DMA capable 
-> devices, then dma-coherent would be allowed on them automatically.
-
-Got it. I'll drop this patch then.
-
--Sergey
-
-> 
-> Rob
+>  	 */
+> -	usleep_range(16e3, 50e3);
+> +	usleep_range(26e3, 50e3);
+>  
+>  	ret = sca3300_read_reg(sca_data, SCA3300_REG_WHOAMI, &value);
+>  	if (ret)
+> @@ -572,6 +598,7 @@ static int sca3300_probe(struct spi_device *spi)
+>  
+>  static const struct of_device_id sca3300_dt_ids[] = {
+>  	{ .compatible = "murata,sca3300"},
+> +	{ .compatible = "murata,scl3300"},
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, sca3300_dt_ids);
