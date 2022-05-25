@@ -2,81 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9A2853429E
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 20:00:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DA8853428B
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 19:54:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243604AbiEYSAS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 14:00:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54098 "EHLO
+        id S232408AbiEYRyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 13:54:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343665AbiEYSAO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 14:00:14 -0400
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FEC36D4DB
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 11:00:11 -0700 (PDT)
-Received: by mail-pg1-x52d.google.com with SMTP id v15so5308356pgk.11
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 11:00:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=pCOJwAVhHqabf7q+ofFTKhfH08ncrowINh8zKJmKO8o=;
-        b=fH5vloMgnO8q0+QKAIm8czJR7NH9BJmMdne5Ag+L/GDQCO0gBO5HLcleZSz3O+/WrY
-         Jov0PppgY6/ita+gQd8tm5Ri0XYd1n6NlOefOktjw+IPnLkpFgwbbp+iDrgqP9Emrwva
-         xOU3+QDLodh1nWYbHoJAVL+ToVbcVfbPiIGjc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pCOJwAVhHqabf7q+ofFTKhfH08ncrowINh8zKJmKO8o=;
-        b=JSqfM+U3b5MbJG9Pm0Jnr1dSaQxf6/oe4TfUaXkNlDWFS/gpJR1fTalrFrmcBmNTOR
-         uzi2Gw/8W37SmYrljyR4coHWm1niAL1dkV4jgBqAh2uScGeBzqQARqDRQelKVAh8BpEr
-         H+zAIAJAOLZlyTZeV0LxIJTcRjnND/iSEZy6TxYczgqsd65XtdIGWh1urGIKbd44ciL6
-         PeK+k8wc/ybFW4PFQ4e8p/VLnVPnr1nE9xz6l77ICJd9FbmSUoL+I1j5EHI/k2Xf3jgA
-         8JlvJWfwPspbhRW0qe37CEUvxwupK6Qw77raeDtWMXnwI4+dQa5xBj2+qnr4L2iyK5+1
-         COPw==
-X-Gm-Message-State: AOAM533FFPqbImWc9Z0ToVOIBLVHGFLvJmecCEHUGAtjulAfYOmQHEo1
-        if3OxNGVumBDgmTBsQrdsNh4JlYIz8F4B7g19Yk=
-X-Google-Smtp-Source: ABdhPJzdfX5URnl9v8lkc/REOm752G2r2g3/oBLCSsNTj9DN2iMYPuX2LeQuTEv9Hk3TRP9fC5Bs3Q==
-X-Received: by 2002:a05:6a00:1992:b0:518:da6a:df03 with SMTP id d18-20020a056a00199200b00518da6adf03mr7156686pfl.20.1653501610415;
-        Wed, 25 May 2022 11:00:10 -0700 (PDT)
-Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com. [209.85.215.182])
-        by smtp.gmail.com with ESMTPSA id gw11-20020a17090b0a4b00b001ded0506655sm1912663pjb.51.2022.05.25.11.00.10
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 May 2022 11:00:10 -0700 (PDT)
-Received: by mail-pg1-f182.google.com with SMTP id x12so19485992pgj.7
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 11:00:10 -0700 (PDT)
-X-Received: by 2002:a6b:6b10:0:b0:660:d279:31bb with SMTP id
- g16-20020a6b6b10000000b00660d27931bbmr10484568ioc.47.1653501144197; Wed, 25
- May 2022 10:52:24 -0700 (PDT)
+        with ESMTP id S234253AbiEYRyt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 13:54:49 -0400
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D9F2E021;
+        Wed, 25 May 2022 10:54:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1653501288; x=1685037288;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=vgc3MtIflvORaob8lTqi592HZbL+t/hdZbXZ66gIvX8=;
+  b=j8tnqwWgoth3orU5N9AdlwvCH+wkXlQtflOmQ9o5KPDSfdby1pUFzFiU
+   4LVYiQx+4W1PEYT09l9ElXlIe+sTRI/ao8Nk/XKyqDfPK4WqqbNUD7nrf
+   8xIdqn2pzQGuagshZ/tiIeu8iTqdL7RvSJRAS2/osq46jgdlAzcshy/Zg
+   6qvqipkO97JEo6F4knBQlqG0TXtsSu3mWi0F+/a3cQ+ckWFiyfMCHr1g5
+   eECvVRJ7zHJ/RKZoTo9OhfBxqKFo24l4VfN5R7t3F/F3fSlrBVjtImjDD
+   GDdinyEw+YcXZtr2OR5rzZPzwHJf6ia4/TGYUd6UH02MQW+bUX5zkzWwq
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10358"; a="336943018"
+X-IronPort-AV: E=Sophos;i="5.91,250,1647327600"; 
+   d="scan'208";a="336943018"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 May 2022 10:53:07 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,250,1647327600"; 
+   d="scan'208";a="630460953"
+Received: from lkp-server01.sh.intel.com (HELO db63a1be7222) ([10.239.97.150])
+  by fmsmga008.fm.intel.com with ESMTP; 25 May 2022 10:53:04 -0700
+Received: from kbuild by db63a1be7222 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1ntvBv-0003DF-Dh;
+        Wed, 25 May 2022 17:53:03 +0000
+Date:   Thu, 26 May 2022 01:53:00 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>, jic23@kernel.org,
+        lars@metafoo.de, mchehab+huawei@kernel.org, ardeleanalex@gmail.com,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, mike.looijmans@topic.nl,
+        devicetree@vger.kernel.org
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        thomas.haemmerle@leica-geosystems.com
+Subject: Re: [PATCH V4 1/6] iio: accel: bmi088: Modified the scale calculate
+Message-ID: <202205260151.TTnXYfeD-lkp@intel.com>
+References: <20220525130828.2394919-2-Qing-wu.Li@leica-geosystems.com.cn>
 MIME-Version: 1.0
-References: <20220525014308.1853576-1-judyhsiao@chromium.org> <20220525014308.1853576-4-judyhsiao@chromium.org>
-In-Reply-To: <20220525014308.1853576-4-judyhsiao@chromium.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 25 May 2022 10:52:08 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UfT_TuAS9DaKQ4D3dE_cY=rqPHvSuvkD7SS1egVuFKbA@mail.gmail.com>
-Message-ID: <CAD=FV=UfT_TuAS9DaKQ4D3dE_cY=rqPHvSuvkD7SS1egVuFKbA@mail.gmail.com>
-Subject: Re: [v3 3/3] arm64: dts: qcom: sc7280: include sc7280-herobrine-audio-rt5682.dtsi
- in villager and herobrine-r1
-To:     Judy Hsiao <judyhsiao@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Jimmy Cheng-Yi Chiang <cychiang@google.com>,
-        Judy Hsiao <judyhsiao@google.com>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220525130828.2394919-2-Qing-wu.Li@leica-geosystems.com.cn>
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,19 +67,137 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi LI,
 
-On Tue, May 24, 2022 at 6:43 PM Judy Hsiao <judyhsiao@chromium.org> wrote:
->
-> Include sc7280-herobrine-audio-rt5682.dtsi in villager and herobrine-r1 as
-> these boards use rt5682 codec.
->
-> Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts | 1 +
->  arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0.dts  | 1 +
->  2 files changed, 2 insertions(+)
+Thank you for the patch! Yet something to improve:
 
-Should have carried my review from v2:
+[auto build test ERROR on jic23-iio/togreg]
+[also build test ERROR on v5.18 next-20220525]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+url:    https://github.com/intel-lab-lkp/linux/commits/LI-Qingwu/iio-accel-bmi088-support-BMI085-BMI090L/20220525-211157
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+config: x86_64-randconfig-a016 (https://download.01.org/0day-ci/archive/20220526/202205260151.TTnXYfeD-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project d52a6e75b0c402c7f3b42a2b1b2873f151220947)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/71cdfb0a9a6ddbf8737a46bc6161fb921b1ac2f4
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review LI-Qingwu/iio-accel-bmi088-support-BMI085-BMI090L/20220525-211157
+        git checkout 71cdfb0a9a6ddbf8737a46bc6161fb921b1ac2f4
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+>> drivers/iio/accel/bmi088-accel-core.c:341:10: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+                           reg = FIELD_GET(BMIO088_ACCEL_ACC_RANGE_MSK, reg);
+                                 ^
+   1 error generated.
+
+
+vim +/FIELD_GET +341 drivers/iio/accel/bmi088-accel-core.c
+
+   278	
+   279	static int bmi088_accel_read_raw(struct iio_dev *indio_dev,
+   280					 struct iio_chan_spec const *chan,
+   281					 int *val, int *val2, long mask)
+   282	{
+   283		struct bmi088_accel_data *data = iio_priv(indio_dev);
+   284		struct device *dev = regmap_get_device(data->regmap);
+   285		int ret;
+   286		int reg;
+   287	
+   288		switch (mask) {
+   289		case IIO_CHAN_INFO_RAW:
+   290			switch (chan->type) {
+   291			case IIO_TEMP:
+   292				ret = pm_runtime_resume_and_get(dev);
+   293				if (ret)
+   294					return ret;
+   295	
+   296				ret = bmi088_accel_get_temp(data, val);
+   297				goto out_read_raw_pm_put;
+   298			case IIO_ACCEL:
+   299				ret = pm_runtime_resume_and_get(dev);
+   300				if (ret)
+   301					return ret;
+   302	
+   303				ret = iio_device_claim_direct_mode(indio_dev);
+   304				if (ret)
+   305					goto out_read_raw_pm_put;
+   306	
+   307				ret = bmi088_accel_get_axis(data, chan, val);
+   308				iio_device_release_direct_mode(indio_dev);
+   309				if (!ret)
+   310					ret = IIO_VAL_INT;
+   311	
+   312				goto out_read_raw_pm_put;
+   313			default:
+   314				return -EINVAL;
+   315			}
+   316		case IIO_CHAN_INFO_OFFSET:
+   317			switch (chan->type) {
+   318			case IIO_TEMP:
+   319				/* Offset applies before scale */
+   320				*val = BMI088_ACCEL_TEMP_OFFSET/BMI088_ACCEL_TEMP_UNIT;
+   321				return IIO_VAL_INT;
+   322			default:
+   323				return -EINVAL;
+   324			}
+   325		case IIO_CHAN_INFO_SCALE:
+   326			switch (chan->type) {
+   327			case IIO_TEMP:
+   328				/* 0.125 degrees per LSB */
+   329				*val = BMI088_ACCEL_TEMP_UNIT;
+   330				return IIO_VAL_INT;
+   331			case IIO_ACCEL:
+   332				ret = pm_runtime_resume_and_get(dev);
+   333				if (ret)
+   334					return ret;
+   335	
+   336				ret = regmap_read(data->regmap,
+   337						  BMI088_ACCEL_REG_ACC_RANGE, &reg);
+   338				if (ret)
+   339					goto out_read_raw_pm_put;
+   340	
+ > 341				reg = FIELD_GET(BMIO088_ACCEL_ACC_RANGE_MSK, reg);
+   342				*val  = data->chip_info->scale_table[reg][0];
+   343				*val2 = data->chip_info->scale_table[reg][1];
+   344				ret = IIO_VAL_INT_PLUS_MICRO;
+   345	
+   346				goto out_read_raw_pm_put;
+   347			default:
+   348				return -EINVAL;
+   349			}
+   350		case IIO_CHAN_INFO_SAMP_FREQ:
+   351			ret = pm_runtime_resume_and_get(dev);
+   352			if (ret)
+   353				return ret;
+   354	
+   355			ret = bmi088_accel_get_sample_freq(data, val, val2);
+   356			goto out_read_raw_pm_put;
+   357		default:
+   358			break;
+   359		}
+   360	
+   361		return -EINVAL;
+   362	
+   363	out_read_raw_pm_put:
+   364		pm_runtime_mark_last_busy(dev);
+   365		pm_runtime_put_autosuspend(dev);
+   366	
+   367		return ret;
+   368	}
+   369	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
