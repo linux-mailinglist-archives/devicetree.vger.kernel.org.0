@@ -2,120 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFF5B533709
-	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 09:10:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58DCC53370D
+	for <lists+devicetree@lfdr.de>; Wed, 25 May 2022 09:10:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237551AbiEYHKq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 03:10:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51312 "EHLO
+        id S244174AbiEYHKv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 03:10:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237011AbiEYHKi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 03:10:38 -0400
-Received: from smtpo52.interia.pl (smtpo52.interia.pl [217.74.67.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 119E411A3F
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 00:07:12 -0700 (PDT)
-X-Interia-R: Interia
-X-Interia-R-IP: 80.68.225.159
-X-Interia-R-Helo: <t480s.localdomain>
-Received: from t480s.localdomain (unknown [80.68.225.159])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by poczta.interia.pl (INTERIA.PL) with ESMTPSA;
-        Wed, 25 May 2022 09:07:08 +0200 (CEST)
-Date:   Wed, 25 May 2022 09:07:07 +0200
-From:   Slawomir Stepien <sst@poczta.fm>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        jdelvare@suse.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, przemyslaw.cencner@nokia.com,
-        krzysztof.adamski@nokia.com, alexander.sverdlin@nokia.com,
-        Slawomir Stepien <slawomir.stepien@nokia.com>
-Subject: Re: [PATCH 3/8] dt-bindings: hwmon: Allow specifying channels for
- lm90
-Message-ID: <Yo3Vm4yAX6E7v0aN@t480s.localdomain>
-References: <20220520093243.2523749-1-sst@poczta.fm>
- <20220520093243.2523749-4-sst@poczta.fm>
- <3ea92486-0cf9-ce3d-d1b6-7a76f1d5a129@linaro.org>
- <0b84d109-d6be-dfba-99bb-0b7136af875e@roeck-us.net>
- <b5ff0f2c-d741-6dec-c306-b54cb5075ccf@linaro.org>
- <f124cbcb-3fca-3f1c-f47e-730f15c1f074@roeck-us.net>
- <YozHOsSdpWBRNLYt@t480s.localdomain>
- <YozM0L5uftHOgkjL@t480s.localdomain>
- <Yo0VfVthNdtjIWF+@t480s.localdomain>
- <5e841cdb-ca44-02f9-6c98-3d000b515b6b@linaro.org>
+        with ESMTP id S243985AbiEYHKs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 03:10:48 -0400
+Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [217.70.178.231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A294E9;
+        Wed, 25 May 2022 00:10:46 -0700 (PDT)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPA id 34E00100004;
+        Wed, 25 May 2022 07:10:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1653462644;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=QaLA+/fmAKnmAH5cylenwfL37+xRZpiIvhjB9RDhW1A=;
+        b=oOXemAV0wkCHsRuDmqhLSoWnLjpKDaGFYjgsUgfAlEwN52eNVKz+yH1MQwFc1NIpvzciCS
+        Dk7cyXr6ys6CQ4kt6P8K07C6J6MKPYE3MIFPxIkQ7XsVou6hGtsl0H+bJHn/BkKGbvMd16
+        Bc8px1G3XZl0OBWvSMCOqG3ka63p3vHc1H6qjS3gIjiQxAAPcVJgklFatOZ5qivfrz6E8e
+        C9M3WzzXX4irTaihy2odB2tpTVwc8hFTFigeD8LydNBTxsRIAodY13N+qpVVOLrAPj4afd
+        zp98WVmRi/JKG/64b6wuA6nIet9PUiLswPteG/SRrAVRPf53Gs+0ma8gvzH3dQ==
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Herve Codina <herve.codina@bootlin.com>
+Subject: [PATCH v3 0/3] Microchip LAN966x USB device support
+Date:   Wed, 25 May 2022 09:10:33 +0200
+Message-Id: <20220525071036.223396-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5e841cdb-ca44-02f9-6c98-3d000b515b6b@linaro.org>
-X-Interia-Antivirus: OK
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=interia.pl;
-        s=biztos; t=1653462430;
-        bh=alF/L2KheAuMSFd4siclkV/CVPvou05cT5t8mv9BvVo=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-        b=K9rNQ+vgN2r6V6R5Tu8C47SRveMcooy63RHjJYX5eX2W/qRC3fVMZUPPPtiu5THII
-         STkRbKh61fO0SlH7rH76nJOAiqBHk2tu3b0qIsdqbhovyKVtNA5yFGDQcEvmV+ZQRT
-         Ijtz+q5g+KTIJsOQCcjLN4b0ajhAD/MKGY80nEQU=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,FREEMAIL_FROM,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On maj 24, 2022 19:59, Krzysztof Kozlowski wrote:
-> On 24/05/2022 19:27, Slawomir Stepien wrote:
-> >> Well ok, looks like this:
-> >>
-> >>       temperature-offset-millicelsius:
-> >>         description: Temperature offset to be added to or subtracted from remote temperature measurements.
-> >>         items:
-> >>           items:
-> 
-> I think this is not an array, so items are not needed.
-> 
-> >>             type: integer
-> 
-> types are instead:
-> $ref: /schemas/types.yaml#/definitions/int32
-> but I think it still does not work.
-> 
-> >>             minimum: -128000
-> >>             maximum: 127000
-> > 
-> > This isn't working...from what I've read we cannot just simply overwrite existing schemas.
-> > 
-> > Krzysztof, Guenter what I should do? Is there a way to match with uint32-array schema and with
-> > schema that allows items in array to be below 0 (seems impossible to me)? I've tried a lot of
-> > combinations today without any luck. Any helpful tips? Thanks!
-> 
-> However this still does not work. I changed in schema:
-> 
->    # Temperature
-> 
->    "-celsius$":
+Hi,
 
-I'm using -millicelsius.
+This series add support for the USB device controller available on
+the Microchip LAN966x SOCs (LAN9662 and LAN9668).
 
-> -    $ref: "types.yaml#/definitions/uint32-array"
-> 
-> +    $ref: "types.yaml#/definitions/int32-array"
+Both SOCs have the same controller and this controller is also the
+same as the one present on the SAMAD3 SOC.
 
-If I drop the "-millicelsius" and set the ref to types.yaml#/definitions/int32, all seems fine (the
-sign is parsed correctly and the max/min are enforced correctly too).
+Regards,
+Herve
 
-> but that does not solve the problem that property is stored as uint32
-> and parsed like uint32:
-> 
->     4294967291 is greater than the maximum of 40
-> 
-> 
-> Maybe Rob has some idea. Till then, you can skip minimum.
+Changes v2:
+- Avoid wildcards in the DT compatible string
+- Rename the DT node
 
-I will skip for now. I will send the new series and we can continue the discussion there. Thank you!
+Changes v3:
+- Add Krzysztof's 'Acked-by' on patch 2/3
+- Change node insertion point (sort nodes by base addresses) on patch 3/3
+
+Herve Codina (3):
+  clk: lan966x: Fix the lan966x clock gate register address
+  dt-bindings: usb: atmel: Add Microchip LAN9662 compatible string
+  ARM: dts: lan966x: Add UDPHS support
+
+ Documentation/devicetree/bindings/usb/atmel-usb.txt |  3 +++
+ arch/arm/boot/dts/lan966x.dtsi                      | 11 +++++++++++
+ drivers/clk/clk-lan966x.c                           |  2 +-
+ 3 files changed, 15 insertions(+), 1 deletion(-)
 
 -- 
-Slawomir Stepien
+2.35.3
+
