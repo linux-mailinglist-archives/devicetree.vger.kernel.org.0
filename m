@@ -2,68 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28380534B14
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 10:02:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00136534B22
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 10:04:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241161AbiEZIBr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 04:01:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45780 "EHLO
+        id S1346585AbiEZIEC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 04:04:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237948AbiEZIBq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 04:01:46 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17B6829822
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 01:01:45 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id q15so836910edb.11
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 01:01:45 -0700 (PDT)
+        with ESMTP id S1346631AbiEZID6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 04:03:58 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FE33AFB11
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 01:03:44 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id u20so863528edd.6
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 01:03:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Nd0aS4XTdk1Zg4grTiu5ttSxSBDZV5Q51FAnuUtF0kE=;
-        b=UJ32M+hVRboBmqNhcx1ypbpuPw/R/WvcZBI8hf6IGOtG7cfavIJ1D8Kj4Zr4E/aid+
-         g1zSoCKxaiVeeZXmfy+bzcOQI+EFJ384yQpc8qn2/V3a9l7rmrGMMEssjlVJqSJb0ESZ
-         J7ba5GFQ9gIpw9RkQZGPqa3PMQPkjwJVmoCmScjNjIW/4DtjWpZWtFkI6wc//wKu5brO
-         AVE6pDX7pw9KkSsznTLoLKFlnzqsKjfpxZaLs65/f3+dbmKhauEwjojvE+WtQKOfy8+8
-         S9Qaw0oElSaICzcVPgWZItaYQAa6Gu7f/6arwHUy7vZa7MHmkClUcSjtVlJ23wVmZ7Vi
-         w5YA==
+        bh=H3qZQPfYcQDrwNThr/nx2Fw+OZKl6viapx6qaBl2hyE=;
+        b=L7pdE4ktFCgPkL6z1znNqAG/ruCdJP7IOel1dMAAo0G1ULESc1wjkxFZCUDpeH4whA
+         M4PPaPEWh4AQeuuVmmu0C8DyA2QAUXKPjolhcwMBvBKe9zD46w8rwRhS/7akONDcmJCh
+         zwQf4JptN9e/hx3XKBvBK0FQBEEUm2ezXiUVZL6z0eElfVC6rGr84rtmUYP2vq8JEL1u
+         PPfP8EzBDWD13nPscbhQ6d2lLLtwz1lMjj8YPifJSt4tLaw71g96+8wXv5aXpWh8gWSj
+         2g8V8x765FQD+8SqnaJh6amzLTzz61rPO2QED26y7twwoRdiWPMz0f8zBUCkiEw5UGSM
+         75KA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=Nd0aS4XTdk1Zg4grTiu5ttSxSBDZV5Q51FAnuUtF0kE=;
-        b=DWaru2pvnrk7zB8GtnrC0UIPedMXW5Cm0+6edNAMHSTGiq6lu+px2RbYvY15Y+N6rL
-         jhSgKlTFzWC7Tg2anXhbhZ7sKmfkza2UX3E3ewdSk1da7i4n1hgo0/djsbQR3IzttclD
-         ohsyRE46K5b1cTNEmVJswk73viJer98ZFnlAThxFnskgzR1Fd5oxChz64P9p8yQwDGnQ
-         5vFeTNEAljXGu3jYpQBKF+1nflG71Py6pEAceH2NFKhCPchfiSIbDvtcuRU/5B+caPob
-         8e0gZ+xZXQcMflpYygdeX/hVM3nDj0z6Godp5zNP46semKXtMQfxNF/mbEy7RjOv3eBd
-         ZJJA==
-X-Gm-Message-State: AOAM531/89ZGNAgmNl5432xLj7jbqY5+sS+TopRgwUYewePLhxy+/H6q
-        oQ0CP0jX/uxSJ7J1UMZYapLPpQ==
-X-Google-Smtp-Source: ABdhPJwYpTZwwXvyTIw2oAbj4OEtV+DLj5T9UYsIzWBazg34v5yPvyzB5xo4pW+oXB5N45wIa3IWsg==
-X-Received: by 2002:a05:6402:2995:b0:42a:843f:ac82 with SMTP id eq21-20020a056402299500b0042a843fac82mr38368670edb.370.1653552103549;
-        Thu, 26 May 2022 01:01:43 -0700 (PDT)
+        bh=H3qZQPfYcQDrwNThr/nx2Fw+OZKl6viapx6qaBl2hyE=;
+        b=fZjGtYwrJkD/nhM3lfpTmjRD8CQUD/hffJqK0ZBc4p2XlFI9fg5nwDFwETETrjmiQc
+         6BjvHBJChf70tMvTCjrvTO/gjpi0IDZNpElGQyZi05ftlMfgOl7rJh12G7+LvLeGL3N2
+         aM+hfiAW8A9/9BH4swAxi/n87lDEJupJHi3fD1bBqZZmOfZP5vHoI2hbGFaf8rHP8/rp
+         g2j/T4bUGzJRzlI/LE0tLgnjqW/S5h6YSPPRhKs7Nb7/js0JqaPOdrMEUiFQx+9Zq0t0
+         OyMYfXEaC7HAFoaVMMuOBO6L6Yj9sa8r7jyqF9UVWy12PQaFjCiSwusFysRkRpZf+2nK
+         l/Rw==
+X-Gm-Message-State: AOAM533ccdzhcG04GtX2ITKrKVb8Fqkxz6pjPQUUVo5Cf/VgllejlGI2
+        AEjAA4EoKkTKSEpVRHpNKlE/Qw==
+X-Google-Smtp-Source: ABdhPJwvYIk5z43IfyJP8m+KqMTnieC9EUg4SCQn7QvsiUsnhp9SGjZYLVstYiEf0QOqKiCQCTZyXg==
+X-Received: by 2002:aa7:d851:0:b0:42b:d6f4:bc0e with SMTP id f17-20020aa7d851000000b0042bd6f4bc0emr2933642eds.21.1653552222720;
+        Thu, 26 May 2022 01:03:42 -0700 (PDT)
 Received: from [192.168.0.177] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id n4-20020a1709065e0400b006feb7b1379dsm270061eju.181.2022.05.26.01.01.42
+        by smtp.gmail.com with ESMTPSA id gx27-20020a1709068a5b00b006f3ef214e12sm276736ejc.120.2022.05.26.01.03.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 May 2022 01:01:43 -0700 (PDT)
-Message-ID: <bf9915ca-29cb-01f3-1124-eb17ba60245e@linaro.org>
-Date:   Thu, 26 May 2022 10:01:42 +0200
+        Thu, 26 May 2022 01:03:42 -0700 (PDT)
+Message-ID: <93156c4a-c409-4da5-9960-0443cd64ca70@linaro.org>
+Date:   Thu, 26 May 2022 10:03:41 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH] dt-bindings: dma: fsl-edma: Convert to DT schema
+Subject: Re: [PATCH] arm64: dts: ls-10xx: use generic dma node name
 Content-Language: en-US
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, vkoul@kernel.org,
-        dmaengine@vger.kernel.org, robh+dt@kernel.org,
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, shawnguo@kernel.org,
+        leoyang.li@nxp.com, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, joy.zou@nxp.com,
-        Peng Fan <peng.fan@nxp.com>
-References: <20220526035611.4063102-1-peng.fan@oss.nxp.com>
+Cc:     linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+References: <20220526035449.4062846-1-peng.fan@oss.nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220526035611.4063102-1-peng.fan@oss.nxp.com>
+In-Reply-To: <20220526035449.4062846-1-peng.fan@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -76,299 +75,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/05/2022 05:56, Peng Fan (OSS) wrote:
+On 26/05/2022 05:54, Peng Fan (OSS) wrote:
 > From: Peng Fan <peng.fan@nxp.com>
 > 
-> Convert the eDMA controller binding to DT schema.
+> dma-controller is preferred for dma node.
 > 
 > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../devicetree/bindings/dma/fsl,edma.yaml     | 136 ++++++++++++++++++
->  .../devicetree/bindings/dma/fsl-edma.txt      | 111 --------------
->  2 files changed, 136 insertions(+), 111 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/dma/fsl,edma.yaml
->  delete mode 100644 Documentation/devicetree/bindings/dma/fsl-edma.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/dma/fsl,edma.yaml b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> new file mode 100644
-> index 000000000000..dbb69aca7d67
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> @@ -0,0 +1,136 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dma/fsl,edma.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale enhanced Direct Memory Access(eDMA) Controller
-> +
-> +description: |
-> +  The eDMA channels have multiplex capability by programmble
-
-programmable
-
-> +  memory-mapped registers. channels are split into two groups, called
-> +  DMAMUX0 and DMAMUX1, specific DMA request source can only be multiplexed
-> +  by any channel of certain group, DMAMUX0 or DMAMUX1, but not both.
-> +
-> +maintainers:
-> +  - Peng Fan <peng.fan@nxp.com>
-> +
-> +allOf:
-> +  - $ref: "dma-controller.yaml#"
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: fsl,vf610-edma
-> +      - const: fsl,imx7ulp-edma
-
-These should be one enum.
-
-> +      - items:
-> +          - const: fsl,ls1028a-edma
-> +          - const: fsl,vf610-edma
-> +
-> +  "#dma-cells":
-> +    const: 2
-> +
-> +  dma-channels:
-> +    minItems: 32
-> +    maxItems: 64
-> +
-> +  reg:
-> +    minItems: 2
-> +    maxItems: 65
-
-Old binding mentions only three regions. Why 65?
-
-> +
-> +  interrupts:
-> +    minItems: 2
-> +    maxItems: 65
-
-The maxItems look weird here. Shouldn't this be 17? This needs its own
-constraints in allOf:if:then per variant.
-
-> +
-> +  clocks:
-> +    maxItems: 2
-> +
-> +  big-endian:
-> +    description: |
-> +      If present registers and hardware scatter/gather descriptors of the
-> +      eDMA are implemented in big endian mode, otherwise in little mode.
-> +    type: boolean
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: edma-tx
-> +      - const: edma-err
-
-Put it next to interrupts.
 
 
-> +
-> +required:
-> +  - "#dma-cells"
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - dma-channels
-> +
-> +if:
-
-This should be under allOf and that entire allOf block (with $ref)
-should be located here.
-
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: fsl,imx7ulp-edma
-> +then:
-> +  properties:
-> +    clock-names:
-> +      items:
-> +        - const: dma
-> +        - const: dmamux0
-> +else:
-> +  properties:
-> +    clock-names:
-> +      items:
-> +        - const: dmamux0
-> +        - const: dmamux1
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/vf610-clock.h>
-> +
-> +    edma0: dma-controller@40018000 {
-> +      #dma-cells = <2>;
-> +      compatible = "fsl,vf610-edma";
-> +      reg = <0x40018000 0x2000>,
-> +            <0x40024000 0x1000>,
-> +            <0x40025000 0x1000>;
-> +      interrupts = <0 8 IRQ_TYPE_LEVEL_HIGH>,
-> +                   <0 9 IRQ_TYPE_LEVEL_HIGH>;
-> +      interrupt-names = "edma-tx", "edma-err";
-> +      dma-channels = <32>;
-> +      clock-names = "dmamux0", "dmamux1";
-> +      clocks = <&clks VF610_CLK_DMAMUX0>, <&clks VF610_CLK_DMAMUX1>;
-> +    };
-> +
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/imx7ulp-clock.h>
-> +
-> +    edma1: dma-controller@40080000 {
-> +      #dma-cells = <2>;
-> +      compatible = "fsl,imx7ulp-edma";
-> +      reg = <0x40080000 0x2000>,
-> +            <0x40210000 0x1000>;
-> +      dma-channels = <32>;
-> +      interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
-> +                   <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
-> +                   <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
-> +                   <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
-> +                   <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
-> +                   <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
-> +                   <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-> +                   <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-> +                   <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-> +                   <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
-> +                   <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
-> +                   <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
-> +                   <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
-> +                   <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
-> +                   <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
-> +                   <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>,
-> +                   /* last is eDMA2-ERR interrupt */
-> +                   <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
-> +       clock-names = "dma", "dmamux0";
-> +       clocks = <&pcc2 IMX7ULP_CLK_DMA1>, <&pcc2 IMX7ULP_CLK_DMA_MUX1>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/dma/fsl-edma.txt b/Documentation/devicetree/bindings/dma/fsl-edma.txt
-> deleted file mode 100644
-> index ee1754739b4b..000000000000
-> --- a/Documentation/devicetree/bindings/dma/fsl-edma.txt
-> +++ /dev/null
-> @@ -1,111 +0,0 @@
-> -* Freescale enhanced Direct Memory Access(eDMA) Controller
-> -
-> -  The eDMA channels have multiplex capability by programmble memory-mapped
-> -registers. channels are split into two groups, called DMAMUX0 and DMAMUX1,
-> -specific DMA request source can only be multiplexed by any channel of certain
-> -group, DMAMUX0 or DMAMUX1, but not both.
-> -
-> -* eDMA Controller
-> -Required properties:
-> -- compatible :
-> -	- "fsl,vf610-edma" for eDMA used similar to that on Vybrid vf610 SoC
-> -	- "fsl,imx7ulp-edma" for eDMA2 used similar to that on i.mx7ulp
-> -	- "fsl,ls1028a-edma" followed by "fsl,vf610-edma" for eDMA used on the
-> -	  LS1028A SoC.
-> -- reg : Specifies base physical address(s) and size of the eDMA registers.
-> -	The 1st region is eDMA control register's address and size.
-> -	The 2nd and the 3rd regions are programmable channel multiplexing
-> -	control register's address and size.
-> -- interrupts : A list of interrupt-specifiers, one for each entry in
-> -	interrupt-names on vf610 similar SoC. But for i.mx7ulp per channel
-> -	per transmission interrupt, total 16 channel interrupt and 1
-> -	error interrupt(located in the last), no interrupt-names list on
-> -	i.mx7ulp for clean on dts.
-> -- #dma-cells : Must be <2>.
-> -	The 1st cell specifies the DMAMUX(0 for DMAMUX0 and 1 for DMAMUX1).
-> -	Specific request source can only be multiplexed by specific channels
-> -	group called DMAMUX.
-> -	The 2nd cell specifies the request source(slot) ID.
-> -	See the SoC's reference manual for all the supported request sources.
-> -- dma-channels : Number of channels supported by the controller
-> -- clock-names : A list of channel group clock names. Should contain:
-> -	"dmamux0" - clock name of mux0 group
-> -	"dmamux1" - clock name of mux1 group
-> -	Note: No dmamux0 on i.mx7ulp, but another 'dma' clk added on i.mx7ulp.
-> -- clocks : A list of phandle and clock-specifier pairs, one for each entry in
-> -	clock-names.
-> -
-> -Optional properties:
-> -- big-endian: If present registers and hardware scatter/gather descriptors
-> -	of the eDMA are implemented in big endian mode, otherwise in little
-> -	mode.
-> -- interrupt-names : Should contain the below on vf610 similar SoC but not used
-> -	on i.mx7ulp similar SoC:
-> -	"edma-tx" - the transmission interrupt
-> -	"edma-err" - the error interrupt
-> -
-> -
-> -Examples:
-> -
-> -edma0: dma-controller@40018000 {
-> -	#dma-cells = <2>;
-> -	compatible = "fsl,vf610-edma";
-> -	reg = <0x40018000 0x2000>,
-> -		<0x40024000 0x1000>,
-> -		<0x40025000 0x1000>;
-> -	interrupts = <0 8 IRQ_TYPE_LEVEL_HIGH>,
-> -		<0 9 IRQ_TYPE_LEVEL_HIGH>;
-> -	interrupt-names = "edma-tx", "edma-err";
-> -	dma-channels = <32>;
-> -	clock-names = "dmamux0", "dmamux1";
-> -	clocks = <&clks VF610_CLK_DMAMUX0>,
-> -		<&clks VF610_CLK_DMAMUX1>;
-> -}; /* vf610 */
-> -
-> -edma1: dma-controller@40080000 {
-> -	#dma-cells = <2>;
-> -	compatible = "fsl,imx7ulp-edma";
-> -	reg = <0x40080000 0x2000>,
-> -		<0x40210000 0x1000>;
-> -	dma-channels = <32>;
-> -	interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
-> -		     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
-> -		     <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
-> -		     <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
-> -		     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
-> -		     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
-> -		     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-> -		     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-> -		     <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-> -		     <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
-> -		     <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
-> -		     <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
-> -		     <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
-> -		     <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
-> -		     <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
-> -		     <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>,
-> -		     /* last is eDMA2-ERR interrupt */
-> -		     <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
-> -	clock-names = "dma", "dmamux0";
-> -	clocks = <&pcc2 IMX7ULP_CLK_DMA1>,
-> -		 <&pcc2 IMX7ULP_CLK_DMA_MUX1>;
-> -}; /* i.mx7ulp */
-> -
-> -* DMA clients
-> -DMA client drivers that uses the DMA function must use the format described
-> -in the dma.txt file, using a two-cell specifier for each channel: the 1st
-> -specifies the channel group(DMAMUX) in which this request can be multiplexed,
-> -and the 2nd specifies the request source.
-> -
-> -Examples:
-> -
-> -sai2: sai@40031000 {
-> -	compatible = "fsl,vf610-sai";
-> -	reg = <0x40031000 0x1000>;
-> -	interrupts = <0 86 IRQ_TYPE_LEVEL_HIGH>;
-> -	clock-names = "sai";
-> -	clocks = <&clks VF610_CLK_SAI2>;
-> -	dma-names = "tx", "rx";
-> -	dmas = <&edma0 0 21>,
-> -		<&edma0 0 20>;
-> -};
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
