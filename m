@@ -2,73 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9CFB534F7B
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 14:42:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CDE3534F96
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 14:46:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242717AbiEZMmw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 08:42:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34368 "EHLO
+        id S239795AbiEZMqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 08:46:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237470AbiEZMmu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 08:42:50 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 213906D96D
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 05:42:47 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id o9-20020a17090a0a0900b001df3fc52ea7so4327843pjo.3
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 05:42:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=jdjGxx7PRekSNzvSccskiFkZs4U5abVvScuD8Z3XzKg=;
-        b=Iz1P49Jvu7F3411ROfQcozZqUkFOaQgRNHvjm19nwifaFwsMmfKP2J8QgLd+3E5r9I
-         BTXK+F6GrjZgT+tSWho24f7d4O1cM1o3ssHia+5i9qgBOe9Q7jFWbXYPEQkPSYtyDIr+
-         Skd1qV8Uj8D/9rHuZRyV1ZoseJIBLHItfpe5eykGXtxOzIaaJ/hKietgS2t3EQzR9Gl/
-         DXwBWeqLOEtBS02ycWWJIUJqMGsneyRfT0x5rXJdN1NPKhUPQbtWZJyWN8vRACRZqMC0
-         NZjXm769TCcyszRpSa0YRoET88SHeYC3SCdt9H25Ewj6QGZ8TVMqMa0ooXBU1vqckPKz
-         YCLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=jdjGxx7PRekSNzvSccskiFkZs4U5abVvScuD8Z3XzKg=;
-        b=E6sDGeStZWRgO7EeB5E2KHvi/3s2+hU6hLmdBULyLwwO/qXe0w5rZol9sf3eOzObwa
-         0QfZgpPkUN1DhoJsozI2xlfGAxk1fCC2o8lDBLBuqUgKe48yEyBw6cEH4iYaLwACxdDp
-         0kH7COEzTBoi2agakyCYyTT3m3rkZ8QSULgg8EsFe2ntPGgTTJiMKmWtg9f6di/rJoNf
-         bDq78fxyCbFEPKYJynyeFEJbgVWizfkO20KnYDUSkT7g6YaMw4S3rYk1G3JxIRpBQ3M/
-         tYroeLDDE9fTZTJHNdYXEpVvdLkPQFmweFS7+fZqFE9lvW3vQ6CfzIUosbeLh1tw4BC9
-         Pmbw==
-X-Gm-Message-State: AOAM530gWyAsuYZk10pUQFnPPnYEsD4kR1zaL23bQntsBf0J19M4e+h/
-        e6aID1887eKpi2EJk8put7GiIH6N1w+b3wehUQ/BTw==
-X-Google-Smtp-Source: ABdhPJwSlTKFfEDVZSH4bg6IXzpCeeQ8TDu75ALcCSHTgNKCO3gjRaw+18HZchkUJ4JSXlp3cX5qFz11VXRag++xkQM=
-X-Received: by 2002:a17:903:1cd:b0:163:6697:e6e with SMTP id
- e13-20020a17090301cd00b0016366970e6emr6141774plh.21.1653568966611; Thu, 26
- May 2022 05:42:46 -0700 (PDT)
+        with ESMTP id S239939AbiEZMqa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 08:46:30 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8E481C136;
+        Thu, 26 May 2022 05:46:28 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 52F7761A7C;
+        Thu, 26 May 2022 12:46:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B123BC34116;
+        Thu, 26 May 2022 12:46:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1653569187;
+        bh=aX3XkTNFlbddfM2Uz7FkBiXfKfSrDGVietK6gQgDZCM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=B0ofxPknLB25PRikCSM7JL2+HYZFxCccCBk/ytV+jnoPy8FCWWj45nqSnDmL/CXlf
+         WnE797DjnXyaKAVoGBV7QnDpKkvdOjhqn19BVljcYXPfmPhcn1RXT39rcf29R7coEC
+         06pdXoQkd+SjQuhBGgade787urI7WT7wy2x2mjhothB8J3FYKC0n5WYc7nLzu7FiTN
+         ZMhuHwhTKW6uuMDh71F/tCGSCm7sTbkg3mCi6GHHsApuCI3tV80A3ng/zEU3i/1MAp
+         sTCOqyK/HkaodGygf0qC1580ELm5uQ6k5YgMjuhJD4uXs0wccTn3VZ5UNLZA71qwQ1
+         J4DHqAxtFfEWw==
+Received: by mail-ej1-f50.google.com with SMTP id y13so2845532eje.2;
+        Thu, 26 May 2022 05:46:27 -0700 (PDT)
+X-Gm-Message-State: AOAM5330szRZVbqr7qg5kksG2thX9MP6a/s1Oq/g9gBpKQOUss0GBXfk
+        4/Wax34Snq4venM6+dBl7m4d2MRXUs9NigyzGg==
+X-Google-Smtp-Source: ABdhPJxdAvZ5Z3oR1GucLvBj6d6cfGXYzMzHQadqJjpxVYxGkdqtexgfAKaP9HSSbaBey8Xgwc/lhfdaEAWDD/9EmGI=
+X-Received: by 2002:a17:906:ae43:b0:6fe:a207:5cc3 with SMTP id
+ lf3-20020a170906ae4300b006fea2075cc3mr29379554ejb.19.1653569185897; Thu, 26
+ May 2022 05:46:25 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220522162802.208275-1-luca@z3ntu.xyz> <20220522162802.208275-9-luca@z3ntu.xyz>
-In-Reply-To: <20220522162802.208275-9-luca@z3ntu.xyz>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Thu, 26 May 2022 14:42:35 +0200
-Message-ID: <CAG3jFyuVG9H3P2yUEJRUo9c4xLzax1tTeJYLUpoPOwHdYZ-xNw@mail.gmail.com>
-Subject: Re: [RFC PATCH 08/14] media: camss: Add 8x74 resources
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20220525210117.2489333-1-robh@kernel.org> <35c700f6-ce67-89d5-0f29-426acd33efa9@socionext.com>
+In-Reply-To: <35c700f6-ce67-89d5-0f29-426acd33efa9@socionext.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 26 May 2022 07:46:12 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJqdLrhjCiQ3a1PZvfnW715HhXNMQZea2H78T4U2BqDzA@mail.gmail.com>
+Message-ID: <CAL_JsqJqdLrhjCiQ3a1PZvfnW715HhXNMQZea2H78T4U2BqDzA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: PCI: socionext,uniphier-pcie: Add missing
+ child interrupt controller
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        matti.lehtimaki@gmail.com
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        PCI <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,232 +66,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 22 May 2022 at 18:28, Luca Weiss <luca@z3ntu.xyz> wrote:
+On Thu, May 26, 2022 at 4:02 AM Kunihiko Hayashi
+<hayashi.kunihiko@socionext.com> wrote:
 >
-> From: Matti Lehtim=C3=A4ki <matti.lehtimaki@gmail.com>
+> Hi Rob,
 >
-> Add structs with 8x74 resources. The number of CSIPHY, CSID
-> and VFE hardware modules is the same as 8x96 but the support
-> is otherwise different.
+> On 2022/05/26 6:01, Rob Herring wrote:
+> > The Socionext interrupt controller internal to the the PCI block isn't
+> > documented which causes warnings when unevaluatedProperties check is
+> > also fixed. Add the 'interrupt-controller' child node and properties and
+> > fixup the example so that interrupt properties can be parsed.
 >
-> Signed-off-by: Matti Lehtim=C3=A4ki <matti.lehtimaki@gmail.com>
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
->  drivers/media/platform/qcom/camss/camss.c | 161 ++++++++++++++++++++++
->  1 file changed, 161 insertions(+)
+> Surely internal interrupt controller isn't described, and should be documented.
+> And the child node name "legacy-interrupt-controller" also should be fixed.
 >
-> diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/pl=
-atform/qcom/camss/camss.c
-> index 79ad82e233cb..5a69ce48c792 100644
-> --- a/drivers/media/platform/qcom/camss/camss.c
-> +++ b/drivers/media/platform/qcom/camss/camss.c
-> @@ -126,6 +126,154 @@ static const struct resources vfe_res_8x16[] =3D {
->         }
->  };
->
-> +static const struct resources csiphy_res_8974[] =3D {
-> +       /* CSIPHY0 */
-> +       {
-> +               .regulators =3D { NULL },
-> +               .clock =3D { "top_ahb", "ispif_ahb", "csiphy0_timer" },
-> +               .clock_rate =3D { { 0 },
-> +                               { 0 },
-> +                               { 100000000, 200000000 } },
-> +               .reg =3D { "csiphy0", "csiphy0_clk_mux" },
-> +               .interrupt =3D { "csiphy0" }
-> +       },
-> +
-> +       /* CSIPHY1 */
-> +       {
-> +               .regulators =3D { NULL },
-> +               .clock =3D { "top_ahb", "ispif_ahb", "csiphy1_timer" },
-> +               .clock_rate =3D { { 0 },
-> +                               { 0 },
-> +                               { 100000000, 200000000 } },
-> +               .reg =3D { "csiphy1", "csiphy1_clk_mux" },
-> +               .interrupt =3D { "csiphy1" }
-> +       },
-> +
-> +       /* CSIPHY2 */
-> +       {
-> +               .regulators =3D { NULL },
-> +               .clock =3D { "top_ahb", "ispif_ahb", "csiphy2_timer" },
-> +               .clock_rate =3D { { 0 },
-> +                               { 0 },
-> +                               { 100000000, 200000000 } },
-> +               .reg =3D { "csiphy2", "csiphy2_clk_mux" },
-> +               .interrupt =3D { "csiphy2" }
-> +       }
-> +};
-> +
-> +static const struct resources csid_res_8974[] =3D {
-> +       /* CSID0 */
-> +       {
-> +               .regulators =3D { "vdda" },
-> +               .clock =3D { "top_ahb", "ispif_ahb", "csi0_ahb",
-> +                          "csi0", "csi0_phy", "csi0_pix", "csi0_rdi" },
-> +               .clock_rate =3D { { 0 },
-> +                               { 0 },
-> +                               { 0 },
-> +                               { 100000000, 200000000 },
-> +                               { 0 },
-> +                               { 0 },
-> +                               { 0 } },
-> +               .reg =3D { "csid0" },
-> +               .interrupt =3D { "csid0" }
-> +       },
-> +
-> +       /* CSID1 */
-> +       {
-> +               .regulators =3D { "vdda" },
-> +               .clock =3D { "top_ahb", "ispif_ahb", "csi1_ahb",
-> +                          "csi1", "csi1_phy", "csi1_pix", "csi1_rdi" },
-> +               .clock_rate =3D { { 0 },
-> +                               { 0 },
-> +                               { 0 },
-> +                               { 100000000, 200000000 },
-> +                               { 0 },
-> +                               { 0 },
-> +                               { 0 } },
-> +               .reg =3D { "csid1" },
-> +               .interrupt =3D { "csid1" }
-> +       },
-> +
-> +       /* CSID2 */
-> +       {
-> +               .regulators =3D { "vdda" },
-> +               .clock =3D { "top_ahb", "ispif_ahb", "csi2_ahb",
-> +                          "csi2", "csi2_phy", "csi2_pix", "csi2_rdi" },
-> +               .clock_rate =3D { { 0 },
-> +                               { 0 },
-> +                               { 0 },
-> +                               { 100000000, 200000000 },
-> +                               { 0 },
-> +                               { 0 },
-> +                               { 0 } },
-> +               .reg =3D { "csid2" },
-> +               .interrupt =3D { "csid2" }
-> +       },
-> +
-> +       /* CSID3 */
-> +       {
-> +               .regulators =3D { "vdda" },
-> +               .clock =3D { "top_ahb", "ispif_ahb", "csi3_ahb",
-> +                          "csi3", "csi3_phy", "csi3_pix", "csi3_rdi" },
-> +               .clock_rate =3D { { 0 },
-> +                               { 0 },
-> +                               { 0 },
-> +                               { 100000000, 200000000 },
-> +                               { 0 },
-> +                               { 0 },
-> +                               { 0 } },
-> +               .reg =3D { "csid3" },
-> +               .interrupt =3D { "csid3" }
-> +       }
-> +};
-> +
-> +static const struct resources_ispif ispif_res_8974 =3D {
-> +       /* ISPIF */
-> +       .clock =3D { "top_ahb", "ispif_ahb",
-> +                  "csi0", "csi0_pix", "csi0_rdi",
-> +                  "csi1", "csi1_pix", "csi1_rdi",
-> +                  "csi2", "csi2_pix", "csi2_rdi",
-> +                  "csi3", "csi3_pix", "csi3_rdi" },
-> +       .clock_for_reset =3D { "vfe0", "csi_vfe0",
-> +                  "vfe1", "csi_vfe1" },
-> +       .reg =3D { "ispif", "csi_clk_mux" },
-> +       .interrupt =3D "ispif"
-> +
-> +};
-> +
-> +static const struct resources vfe_res_8974[] =3D {
-> +       /* VFE0 */
-> +       {
-> +               .regulators =3D { NULL },
-> +               .clock =3D { "top_ahb", "vfe0", "csi_vfe0",
-> +                          "iface", "bus" },
-> +               .clock_rate =3D { { 0 },
-> +                               { 50000000, 80000000, 100000000, 16000000=
-0,
-> +                                 177780000, 200000000, 266670000, 320000=
-000,
-> +                                 400000000, 400000000 },
-> +                               { 0 },
-> +                               { 0 },
-> +                               { 0 } },
-> +               .reg =3D { "vfe0" },
-> +               .interrupt =3D { "vfe0" }
-> +       },
-> +       /* VFE1 */
-> +       {
-> +               .regulators =3D { NULL },
-> +               .clock =3D { "top_ahb", "vfe1", "csi_vfe1",
-> +                          "iface", "bus" },
-> +               .clock_rate =3D { { 0 },
-> +                               { 50000000, 80000000, 100000000, 16000000=
-0,
-> +                                 177780000, 200000000, 266670000, 320000=
-000,
-> +                                 400000000, 400000000 },
-> +                               { 0 },
-> +                               { 0 },
-> +                               { 0 } },
-> +               .reg =3D { "vfe1" },
-> +               .interrupt =3D { "vfe1" }
-> +       }
-> +};
-> +
->  static const struct resources csiphy_res_8x96[] =3D {
->         /* CSIPHY0 */
->         {
-> @@ -1132,6 +1280,11 @@ static int camss_init_subdevices(struct camss *cam=
-ss)
->                 csid_res =3D csid_res_8x16;
->                 ispif_res =3D &ispif_res_8x16;
->                 vfe_res =3D vfe_res_8x16;
-> +       } else if (camss->version =3D=3D CAMSS_8x74) {
-> +               csiphy_res =3D csiphy_res_8974;
-> +               csid_res =3D csid_res_8974;
-> +               ispif_res =3D &ispif_res_8974;
-> +               vfe_res =3D vfe_res_8974;
->         } else if (camss->version =3D=3D CAMSS_8x96) {
->                 csiphy_res =3D csiphy_res_8x96;
->                 csid_res =3D csid_res_8x96;
-> @@ -1542,6 +1695,12 @@ static int camss_probe(struct platform_device *pde=
-v)
->                 camss->csiphy_num =3D 2;
->                 camss->csid_num =3D 2;
->                 camss->vfe_num =3D 1;
-> +       } else if (of_device_is_compatible(dev->of_node,
-> +                                          "qcom,msm8974-camss")) {
-> +               camss->version =3D CAMSS_8x74;
-> +               camss->csiphy_num =3D 3;
-> +               camss->csid_num =3D 4;
-> +               camss->vfe_num =3D 2;
->         } else if (of_device_is_compatible(dev->of_node,
->                                            "qcom,msm8996-camss")) {
->                 camss->version =3D CAMSS_8x96;
-> @@ -1586,6 +1745,7 @@ static int camss_probe(struct platform_device *pdev=
-)
->         }
->
->         if (camss->version =3D=3D CAMSS_8x16 ||
-> +           camss->version =3D=3D CAMSS_8x74 ||
->             camss->version =3D=3D CAMSS_8x96) {
->                 camss->ispif =3D devm_kcalloc(dev, 1, sizeof(*camss->ispi=
-f), GFP_KERNEL);
->                 if (!camss->ispif) {
-> @@ -1735,6 +1895,7 @@ static int camss_remove(struct platform_device *pde=
-v)
->
->  static const struct of_device_id camss_dt_match[] =3D {
->         { .compatible =3D "qcom,msm8916-camss" },
-> +       { .compatible =3D "qcom,msm8974-camss" },
->         { .compatible =3D "qcom,msm8996-camss" },
->         { .compatible =3D "qcom,sdm660-camss" },
->         { .compatible =3D "qcom,sdm845-camss" },
-> --
-> 2.36.0
->
+> Reviewed-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 
-Reviewed-by: Robert Foss <robert.foss@linaro.org>
+Thanks.
+
+>
+> BTW I can't reproduce such warnings with my environment.
+> Can you show the command line to reproduce the warnings?
+
+"causes warnings when unevaluatedProperties check is also fixed"
+
+You won't. I have a fix in dtschema pending, but first all the
+warnings that appear need to be fixed.
+
+Rob
