@@ -2,80 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40972534870
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 03:56:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E62FB534873
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 03:57:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235567AbiEZBzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 21:55:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37588 "EHLO
+        id S231338AbiEZB5A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 21:57:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236351AbiEZBzv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 21:55:51 -0400
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 220F5B0D1F;
-        Wed, 25 May 2022 18:55:50 -0700 (PDT)
-Received: by mail-oi1-f172.google.com with SMTP id k186so682621oia.2;
-        Wed, 25 May 2022 18:55:50 -0700 (PDT)
+        with ESMTP id S1344112AbiEZB47 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 21:56:59 -0400
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BC44BC6F8;
+        Wed, 25 May 2022 18:56:57 -0700 (PDT)
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-f2a4c51c45so660110fac.9;
+        Wed, 25 May 2022 18:56:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=JwNSlS7auMvhdZbxyQweykvS8MDOIeXnOtAANqqR/WA=;
-        b=MXrMALlQoOz3XSvimzo0c2UUpsyxRDKe5ch7vHAxAbuVk+HyB6gUgRA77UrRSDQgjH
-         en6C5LNRiKDfYdjVrxkOZcGhIAjXUARDgheiFtz5oCZnO3Zu70CNsKgRaCrx5ne6YSv7
-         w4VgFep5QRxQj4dwAgcioPlJivix6BZfMJxNrB5QuS5MJZpf7+id9LN9X748btG6b6rw
-         Ba0HYj2JixXD8mqt5a+pDr5q0CEGBd3pwOmG0V1xvA8e/OGLLX142+UjKmxz3vI8UbwG
-         UrZZvP2ig+UmK/BF0zDJ+7tVKRsE7ItilYvymof/mhEe6GgTsVmIZnbAeZxYLYao+OeB
-         hAuA==
-X-Gm-Message-State: AOAM532hSvz/MNt0CNfK/iKMMFCx4b9zbGJu9GlSdbDIOaMIhQt6NvUf
-        ZKn6/jKbWXa1U5KqZL0GxQ==
-X-Google-Smtp-Source: ABdhPJxv26vjcAUEWXR2FpLRNwmxJ25iCdLe859oBE6SIUSGOz6Soo76FmWtXiarauQJLr8Le7fmzQ==
-X-Received: by 2002:a05:6808:e8d:b0:322:4fbe:8c5f with SMTP id k13-20020a0568080e8d00b003224fbe8c5fmr19869oil.284.1653530149501;
-        Wed, 25 May 2022 18:55:49 -0700 (PDT)
+        bh=JcpVIfrmuD7j2oz/sjN13IeGVl7vyxQiSgTn0EgwppY=;
+        b=A/5Ba+UxKzbz0MJcIPArS53ZI815+8fH18ib7RxtGgpPitEE2SCCxasYDXCznHDfhI
+         Je/ejhE9uR4Xekk2dHFija4ZLAxCWEVjyeLSPJuixE7he2ZpljrCx4g0C7OJt2VraeE/
+         PkNhtw15B48hR4oBmZMgTWGguSbo/1vHMdEmMHztwLQSztv7rS1fwKd8IlnbbcjRV4jT
+         w8bYyeUPh9EyjT/BOz2kV9DzGdK6xYiN/gG6HFSOLVhuCLsx5ayEaIPvuMejyMA2O2AA
+         W5Qa1c4sdLuCEI+3mpkejvYFm1De+hRbulIVQ2nN8/6bN1HfMgAPC0O6MkWCj6EmWDsB
+         1DKA==
+X-Gm-Message-State: AOAM530JfLjh1SSYmH/aVFbGy9uaFavXh6P6lnHdOb4OYEdqXky/Iu+z
+        JhWEyX6k00y78HI7W+tzbOfJ5jW7iQ==
+X-Google-Smtp-Source: ABdhPJwABXwW7ZLL7SGMOnCVFZ0SqXJLeBo/4cYGzeKaFOPbF2WxlA0Z+faXi2mzKv9iY/uT9h4fjA==
+X-Received: by 2002:a05:6870:8911:b0:f2:985f:e639 with SMTP id i17-20020a056870891100b000f2985fe639mr20157oao.59.1653530216737;
+        Wed, 25 May 2022 18:56:56 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a10-20020a056808128a00b00325cda1ff8dsm231077oiw.12.2022.05.25.18.55.48
+        by smtp.gmail.com with ESMTPSA id z11-20020a056871014b00b000e686d13890sm161808oab.42.2022.05.25.18.56.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 May 2022 18:55:48 -0700 (PDT)
-Received: (nullmailer pid 2893724 invoked by uid 1000);
-        Thu, 26 May 2022 01:55:48 -0000
-Date:   Wed, 25 May 2022 20:55:48 -0500
+        Wed, 25 May 2022 18:56:56 -0700 (PDT)
+Received: (nullmailer pid 2895310 invoked by uid 1000);
+        Thu, 26 May 2022 01:56:55 -0000
+Date:   Wed, 25 May 2022 20:56:55 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Slawomir Stepien <sst@poczta.fm>
-Cc:     alexander.sverdlin@nokia.com, jdelvare@suse.com,
-        linux@roeck-us.net, krzysztof.kozlowski+dt@linaro.org,
-        slawomir.stepien@nokia.com, robh+dt@kernel.org,
-        krzysztof.adamski@nokia.com, devicetree@vger.kernel.org,
-        przemyslaw.cencner@nokia.com, linux-hwmon@vger.kernel.org
-Subject: Re: [PATCH 2/7] dt-bindings: hwmon: Allow specifying channels for
- lm90
-Message-ID: <20220526015548.GA2893672-robh@kernel.org>
-References: <20220525073657.573327-1-sst@poczta.fm>
- <20220525073657.573327-3-sst@poczta.fm>
+To:     Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+Cc:     David Airlie <airlied@linux.ie>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        Steven Price <steven.price@arm.com>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        =?iso-8859-1?Q?N=EDcolas_F_=2E_R_=2E_A_=2E?= Prado 
+        <nfraprado@collabora.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/9] dt-bindings: Add compatible for Mali Valhall (JM)
+Message-ID: <20220526015655.GA2895259-robh@kernel.org>
+References: <20220525145754.25866-1-alyssa.rosenzweig@collabora.com>
+ <20220525145754.25866-2-alyssa.rosenzweig@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220525073657.573327-3-sst@poczta.fm>
+In-Reply-To: <20220525145754.25866-2-alyssa.rosenzweig@collabora.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 25 May 2022 09:36:52 +0200, Slawomir Stepien wrote:
-> From: Slawomir Stepien <slawomir.stepien@nokia.com>
-> 
-> Add binding description for temperature channels. Currently, support for
-> label and temperature-offset-millicelsius is implemented.
-> 
-> Signed-off-by: Slawomir Stepien <slawomir.stepien@nokia.com>
-> ---
->  .../bindings/hwmon/national,lm90.yaml         | 129 ++++++++++++++++++
->  1 file changed, 129 insertions(+)
+On Wed, 25 May 2022 10:57:46 -0400, Alyssa Rosenzweig wrote:
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
