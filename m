@@ -2,75 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05C0F534751
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 02:09:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9320553476B
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 02:19:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345935AbiEZAJe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 20:09:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35250 "EHLO
+        id S1344723AbiEZATu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 20:19:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348029AbiEZAJR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 20:09:17 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7C7D62CC3;
-        Wed, 25 May 2022 17:09:14 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 706B961265;
-        Thu, 26 May 2022 00:09:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D8F5AC3411D;
-        Thu, 26 May 2022 00:09:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1653523753;
-        bh=529V3ZtFytlwcGl2dJT4JDAdZbCo4Wzy4dZEg097m5c=;
-        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
-        b=DDbBOTo9+QeAWtKHElom8+/kTnO4dUK7Mqw8guZWtXbjphc2Gn3Qq2FQS4C6G/iju
-         1gArRCFr3bD3kxSgDhkzY+CuWfjTAJ/gEx53RlIaK3bfqr+qxL0Zc8Eb4F4i54Ov/s
-         RuvMgOAEblBDETKTP3gNkRF0urN5iea8XeIgtcRPUCl2srHQ6nUCNTiNRB6SoGHfVC
-         rEKHW23EjsRzflx6wkOQPG94N2fonb1QVhdBRSTn6miqFjUdcgoVCOQT6EV4IUKVRH
-         zKuZ0aEs4CdUj3PvFRGh4toGX4l371CNL6CHSo9glE45FvI035Vn+aXue+A9jDsZrr
-         VDOjDuLWZeIJQ==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id C83F4F03942;
-        Thu, 26 May 2022 00:09:13 +0000 (UTC)
-Subject: Re: [GIT PULL] Devicetree updates for v5.19
-From:   pr-tracker-bot@kernel.org
-In-Reply-To: <20220524224404.GA373873-robh@kernel.org>
-References: <20220524224404.GA373873-robh@kernel.org>
-X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <20220524224404.GA373873-robh@kernel.org>
-X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-5.19
-X-PR-Tracked-Commit-Id: d036d915b61f23b9e80d93f8a606eebf3bfab73f
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: 86c87bea6b42100c67418af690919c44de6ede6e
-Message-Id: <165352375381.5177.9424932820877351997.pr-tracker-bot@kernel.org>
-Date:   Thu, 26 May 2022 00:09:13 +0000
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S243237AbiEZATt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 20:19:49 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58652A3389
+        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 17:19:47 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id m32-20020a05600c3b2000b0039756bb41f2so203179wms.3
+        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 17:19:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pensando.io; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rvyRm5Q/r/S5AC3OCiGwFo1KyIi4GmHKo/WvAYlzwmY=;
+        b=h/FkCqpobe35YJc146CKhRO71JljnxwQBGwvYvsR9DljgVXTXTpKwLVSMwywDv+1tS
+         Dmc8XCASYU8zmDisPay1AFEHLY3+Z43QB46x1QJO+TJ0mpDDLSfutSKEBeoMSOGdPlzs
+         5M6rpvi548zAECvIetFq8EGO/OutGXBhFJiEqkedkBQypY5HQUENyYB1vkxfqjcJ9gxO
+         Ej9Q0TmI8VT+gXtLkNZ5rxcoq4xqlUDFPbyx2fPGoi+wCkGcbM50nGLE0tiymF+0sDBE
+         QZplrGXTII8qid0zqJiJN/4fjt1WKzFAouk6dfki3ttE0jdPWSDpTTxktrvueHJBKNAx
+         HSwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rvyRm5Q/r/S5AC3OCiGwFo1KyIi4GmHKo/WvAYlzwmY=;
+        b=UNXW6GfV3ySzt5gV50i4Ft5CLvsKWw6pGKrrpDQ883AWtk5oidL7hd4lRm+9e+J1ZZ
+         AsRRSBsyCA7VY87DexT6v8PZszffbcn6pHO9bB2s+2+UHrhPckiharcWv63FYYCLepF7
+         zkIMe6lOL07dIarlpX9wU0GoNUHKn3hPvDwlEfWuD87X+wYwIBZIFPEFYv33s8CKJAOs
+         +DlLJRepnM2UhGXeV3er8LIv5cMvqboLBDufZ3h6fs75i5X/DsTXNbYJSk+kybsLxRle
+         mtyVJX4GJ/y/1jLyQfVF7fpG1yYlvhBXlD8xmxLUumzy8EKaXEHU6bRMAJwQeoQOL3/o
+         eLnw==
+X-Gm-Message-State: AOAM531QZADNNBXmt66lRpaLJphc0QAKZg0+wbwS3hy21HT9UwN2L5Dy
+        KH3A60zQs3XHm5acfnn9r4pgvyF5fr5pAt73uasoLg==
+X-Google-Smtp-Source: ABdhPJy/dRDyn+Keu4U0c9gK7VXdr+BW11BU+IY+GQAiAKGDy36VrSwz2Mg+0dYg+MNRP78khenZHfMasXMazGY+SKQ=
+X-Received: by 2002:a05:600c:3515:b0:394:8c7e:fbde with SMTP id
+ h21-20020a05600c351500b003948c7efbdemr10219880wmq.165.1653524385886; Wed, 25
+ May 2022 17:19:45 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220406233648.21644-1-brad@pensando.io> <20220406233648.21644-12-brad@pensando.io>
+ <eed2f337-3d5a-3440-d19e-c5ff032409ab@linaro.org>
+In-Reply-To: <eed2f337-3d5a-3440-d19e-c5ff032409ab@linaro.org>
+From:   Brad Larson <brad@pensando.io>
+Date:   Wed, 25 May 2022 17:19:34 -0700
+Message-ID: <CAK9rFnzPEq1_zOnHYzTDyOOU9xRsuP-KBEFnc84cRoyfAve+Jg@mail.gmail.com>
+Subject: Re: [PATCH 11/11] arm64: dts: Add Pensando Elba SoC support
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Brown <broonie@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        David Clear <dac2@pensando.io>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pull request you sent on Tue, 24 May 2022 17:44:04 -0500:
+Hi Krzysztof,
 
-> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-5.19
+On Thu, Apr 7, 2022 at 12:06 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 07/04/2022 01:36, Brad Larson wrote:
+> > Add Pensando common and Elba SoC specific device nodes
+> >
+> > +&spi0 {
+> > +     num-cs = <4>;
+> > +     cs-gpios = <0>, <0>, <&porta 1 GPIO_ACTIVE_LOW>,
+> > +                <&porta 7 GPIO_ACTIVE_LOW>;
+> > +     status = "okay";
+> > +     spi0_cs0@0 {
+>
+> Generic node name needed matching the class of a devicxe.
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/86c87bea6b42100c67418af690919c44de6ede6e
+The device on this spi bus is a FPGA with 4 functions and looking at
+other projects I've changed it to a resource-controller node name.  On
+cs0 there is a sub-device reset-controller added in the upcoming
+patchset to enable hardware reset of the eMMC device.
 
-Thank you!
+> > +             compatible = "semtech,sx1301";  /* Enable spidev */
+>
+> This comment is a bit odd... did you just use random compatible from
+> spidev instead of defining proper compatible?
 
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+Yes, because adding a compatible was nacked.  We have a driver added
+(two actually, mfd and reset driver) for the next patch update.
+
+> > +             #address-cells = <1>;
+> > +             #size-cells = <1>;
+>
+> Why address/size cells?
+
+Removed where not needed
+
+> > +             spi-max-frequency = <12000000>;
+> > +             reg = <0>;
+>
+> Please put reg just after compatible. It's the most common pattern.
+
+Yes, moved reg to be right after compatible
+
+> > +     };
+> > +
+> > +     spi0_cs1@1 {
+> > +             compatible = "semtech,sx1301";
+> > +             #address-cells = <1>;
+> > +             #size-cells = <1>;
+> > +             spi-max-frequency = <12000000>;
+> > +             reg = <1>;
+> > +     };
+> > +
+ (...)
+> > +
+> > +             mssoc: mssoc@307c0000 {
+>
+> Generic node name.
+
+Changed to syscon
+
+> > +                     compatible = "syscon", "simple-mfd";
+>
+> This does not look correct. Syscon is okay, but why do you need
+> simple-mfd (there are no children here)?
+
+Yes, removed "simple-mfd"
+
+Regards,
+Brad
