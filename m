@@ -2,73 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 564CF5354EF
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 22:46:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35B6F5354F4
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 22:46:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349157AbiEZUqT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 16:46:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60766 "EHLO
+        id S1349136AbiEZUqf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 16:46:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345492AbiEZUqP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 16:46:15 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA102248EA
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:45:59 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id rq11so5174730ejc.4
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:45:59 -0700 (PDT)
+        with ESMTP id S1349054AbiEZUqT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 16:46:19 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E766713F13
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:46:12 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id fd25so3174921edb.3
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:46:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=6IYNJKDiS0GsxsIfjukniKUSVecFLdtV/BJTHhq/ubw=;
-        b=owB1dleLPG3OEjVQ4kP49KUKmgZfacfRD5gYgPRUOIMN9K8eJhrh7WsqO81aI5JY2N
-         opwnKxla+8MAlR9Zi7c0OeSV+2PWc5oTLpcFm2y1vOUusMOCPrLds6xD1tYc7QBFIKNP
-         NE68c3ZMgmcJmtFzaxACWNdcQZvl/vkOqOuPSvPA+pMkuaXM0qU5gLLEcacIW8wWtSkZ
-         0O03bC5+93aU6iKf/iKLvgxZeIwKJas1lslpIZFSBTUZLYBa+VCcOmniNQaLw7YLE1Ds
-         dMVDslwWbvbc4TevZUSOthF+Q+C2aYrjyBUs604DXzMHMGAIJpNVcLMNW+JqKc4supIG
-         /V8w==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KsaZBsRuA05EIUREKaT6uWWUf8NwbjqVqV7AE7nTWuU=;
+        b=BcG3GQbgtgUVWKJIL9pS1cl+PhYjFfOPC3ea6JJLYZLasXxxf9YqHtdfnk1vHgt9oN
+         dXkvNfUzTUjdbG5iaHDtbTC7BOXBhpgZGZLuQYQozmdemKYFeNYmWVs+jzCkr5gijPP9
+         pu8Vm3V/GmE1WfBcJJ4K1THJt2HVlLxGc41kND9G1ajNnuFoDVl9M3laiooEZSSPXfSC
+         1vqO/Md++rL0A843euiuhBLUTx0Eh1Zq1S7xhD6oP2GUCNnlSTabYcCO6LGpwpKNZu/Q
+         RVSVLzlGU3w5jbqpESra4VVecnEIAJ3IRnKwqcyjmtbK7nwf1DUA2Av/Z8mXY5Mab+lW
+         e/9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=6IYNJKDiS0GsxsIfjukniKUSVecFLdtV/BJTHhq/ubw=;
-        b=7HRSfRvE1hwABcZ0PMarPi9u9xbrRhQ1V36fiRUd9pb5wSjiR6Qo+0Bt9xP+F2l/4e
-         k+OOGX4WeSMf2T0b0xES8dD5TlxhWgsReAQz98xTPgVfpL7aVoM5JQOhn1SwSGdX71O3
-         DdG73VAKiQpOsCvxLFBOj2oIx/Btr4f+jtJJ6I0oT8sB2/vc1+gNcZLe4LsYhOFjy1W0
-         gVDTnwHXdDYAcVOt1nCb0Ez6H6A+T3x6MDRDZMxSXwlqO94nh4ApsQTPywyao5twTUac
-         4K+YkekKFNY0H7JGaBxiBpFeIQnnH8Eq5xf2n+ZKBJ356Wl2OUz3WeLOl5yUbZVI8p1n
-         sv8w==
-X-Gm-Message-State: AOAM532pwLlzXAwzQiPQ+UAOke8YDC42w1aZ4fIRlJ2nlpZVTDTaD47z
-        dTn1JpJswTrFWzFXS4dYiz0vCQ==
-X-Google-Smtp-Source: ABdhPJz8AXnd6L8rAXQTGJvqOqAm1R+IiFsGG7//dQPGu4ApZsgRXYECTsCTneE4TJbZqANQfqfPlw==
-X-Received: by 2002:a17:907:1c81:b0:6ff:335d:a0f7 with SMTP id nb1-20020a1709071c8100b006ff335da0f7mr845104ejc.182.1653597958016;
-        Thu, 26 May 2022 13:45:58 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KsaZBsRuA05EIUREKaT6uWWUf8NwbjqVqV7AE7nTWuU=;
+        b=sE0FK/JsNPQJxBqZFPAlbzGhnG8kmyFVnmACZ9Xt9d9ycO+4jGquaB5slAc3OaZEas
+         Cj8Is0BD+fhkptZaMhy/ouowGqvbqkYzLW2ugT50/5C0p/7r19y7tMvk09oRHZu1BERn
+         ZN9zMs2oVfTJN736oGU+pFDDImHVKiLkRolwZuqTQACv3bNozz1jgspq0mpQYKtrXXKc
+         Zc8GvyzNToCbaXUL5ygoWc1Pqd5D7D9fOyB4cecRCI/OSOAe7mWm34PwjEcr2wIYAgV1
+         3s2MqmFZXE2mNNnAhetrdQzWSUOL0F1vgwy2qVWJFp3wY1Ww/N0hYwgfuH11qD99r+U4
+         vWAA==
+X-Gm-Message-State: AOAM532R/yTGmAof0veWXtW0140DL/wzKMlVV/A5yhP54662JWIDJ8Vv
+        BAU3g+LCjS8mtLu+8PjGhXHM8g==
+X-Google-Smtp-Source: ABdhPJxf+t6ex1yqGxjrKm3rgwAVyW6+45X+S9LTTOg/92RQBOuHNHx7ZIFz79bhaTqMDzO/AluRJA==
+X-Received: by 2002:a05:6402:2071:b0:42b:dfa4:d4e1 with SMTP id bd17-20020a056402207100b0042bdfa4d4e1mr3714379edb.70.1653597971094;
+        Thu, 26 May 2022 13:46:11 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id z1-20020a1709067e4100b006fe8ac6bc69sm827633ejr.140.2022.05.26.13.45.56
+        by smtp.gmail.com with ESMTPSA id gc21-20020a1709072b1500b006ff16f48e2asm813254ejc.76.2022.05.26.13.46.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 May 2022 13:45:57 -0700 (PDT)
+        Thu, 26 May 2022 13:46:10 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        arm@kernel.org, soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        arm@kernel.org, soc@kernel.org, Dinh Nguyen <dinguyen@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] ARM: dts: meson: adjust whitespace around '='
-Date:   Thu, 26 May 2022 22:45:52 +0200
-Message-Id: <20220526204552.832961-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/5] arm64: dts: altera: adjust whitespace around '='
+Date:   Thu, 26 May 2022 22:46:02 +0200
+Message-Id: <20220526204606.833054-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220526204552.832961-1-krzysztof.kozlowski@linaro.org>
-References: <20220526204552.832961-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,58 +80,22 @@ Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Output compared with dtx_diff and fdtdump.
 ---
- arch/arm/boot/dts/meson.dtsi   | 4 ++--
- arch/arm/boot/dts/meson8.dtsi  | 2 +-
- arch/arm/boot/dts/meson8b.dtsi | 2 +-
- 3 files changed, 4 insertions(+), 4 deletions(-)
+ arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/meson.dtsi b/arch/arm/boot/dts/meson.dtsi
-index 26eaba3fa96f..8e3860d5d916 100644
---- a/arch/arm/boot/dts/meson.dtsi
-+++ b/arch/arm/boot/dts/meson.dtsi
-@@ -214,14 +214,14 @@ aobus: aobus@c8100000 {
- 			ranges = <0x0 0xc8100000 0x100000>;
+diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+index aa2bba75265f..db771690641b 100644
+--- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
++++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+@@ -594,7 +594,7 @@ emac0-tx-ecc@ff8c0400 {
+ 		};
  
- 			ao_arc_rproc: remoteproc@1c {
--				compatible= "amlogic,meson-mx-ao-arc";
-+				compatible = "amlogic,meson-mx-ao-arc";
- 				reg = <0x1c 0x8>, <0x38 0x8>;
- 				reg-names = "remap", "cpu";
- 				status = "disabled";
- 			};
- 
- 			ir_receiver: ir-receiver@480 {
--				compatible= "amlogic,meson6-ir";
-+				compatible = "amlogic,meson6-ir";
- 				reg = <0x480 0x20>;
- 				interrupts = <GIC_SPI 15 IRQ_TYPE_EDGE_RISING>;
- 				status = "disabled";
-diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-index 9997a5d0333a..0f8bac8bac8b 100644
---- a/arch/arm/boot/dts/meson8.dtsi
-+++ b/arch/arm/boot/dts/meson8.dtsi
-@@ -430,7 +430,7 @@ mux {
- };
- 
- &ao_arc_rproc {
--	compatible= "amlogic,meson8-ao-arc", "amlogic,meson-mx-ao-arc";
-+	compatible = "amlogic,meson8-ao-arc", "amlogic,meson-mx-ao-arc";
- 	amlogic,secbus2 = <&secbus2>;
- 	sram = <&ao_arc_sram>;
- 	resets = <&reset RESET_MEDIA_CPU>;
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index 94f1c03decce..cf9c04a61ba3 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -384,7 +384,7 @@ mux {
- };
- 
- &ao_arc_rproc {
--	compatible= "amlogic,meson8b-ao-arc", "amlogic,meson-mx-ao-arc";
-+	compatible = "amlogic,meson8b-ao-arc", "amlogic,meson-mx-ao-arc";
- 	amlogic,secbus2 = <&secbus2>;
- 	sram = <&ao_arc_sram>;
- 	resets = <&reset RESET_MEDIA_CPU>;
+ 		qspi: spi@ff8d2000 {
+-			compatible =  "intel,socfpga-qspi", "cdns,qspi-nor";
++			compatible = "intel,socfpga-qspi", "cdns,qspi-nor";
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			reg = <0xff8d2000 0x100>,
 -- 
 2.34.1
 
