@@ -2,126 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65685534B3E
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 10:13:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32D63534B8A
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 10:19:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346621AbiEZINc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 04:13:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59444 "EHLO
+        id S231802AbiEZISq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 04:18:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237858AbiEZINb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 04:13:31 -0400
-Received: from mail-vs1-xe2f.google.com (mail-vs1-xe2f.google.com [IPv6:2607:f8b0:4864:20::e2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C866537BF5;
-        Thu, 26 May 2022 01:13:25 -0700 (PDT)
-Received: by mail-vs1-xe2f.google.com with SMTP id h5so742128vsq.5;
-        Thu, 26 May 2022 01:13:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=zNrA8G7W8xImy1CA/f8Tn4I9dL7mTaFk+uvIb/eV3wY=;
-        b=A/U4yg/dwMTa7ikHjmx0yWt56HCq7ojuzUZBjDMA9A9C4zLZnYCYq9G8HtKcvVNWU1
-         HpelFYniLokE5zGnN9AC0ye/+jOfHyrHoOXuNkiIMGlIaLV+10eaU/R5NhYsLWvuMhkT
-         cM+Mt5MAbL/LAzitybRh9N/81T7AVGwUPBtL5eb7+b9765e1waSMd5c8aXvOo0MMvDTs
-         SRt4Tk5ye6URu+wkRjToUv8k55+CYSfTq9ushuvr7mD2iaYpwTNNhaPK1IEIEPHML5sE
-         B/gcn5SN2PFgfHv0NUbIOM7hF7eCmcs2Cnl4aO9W8zuSkzKopPE6ZRwBN0QEPYlk6yJh
-         BcPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=zNrA8G7W8xImy1CA/f8Tn4I9dL7mTaFk+uvIb/eV3wY=;
-        b=eddpHFlYHFiTVWGvXUFy0uYtRbDWFcEl8KY3Ha018CacCO4AM3jlj0f5G8MVdKRkZI
-         0rT3GMDn5irWmVIgTUKQBXxcsrZ1DjR1vsHk72wnWEMN7o2ZuMry4M3WbPE8u4liS1bN
-         cjPD4j+51vwKx2mHZinwV5/9aJHiWmyQmysJbd9+DTdfQkDCV8AVt4N/flJNuvHRgMti
-         OfzdpkC9njdVecjKrg3OhU7B3WFU8I2wVmNVzYlSXRbH8O6Jkrccu+a5y0I5CVaqZcQw
-         6jUkZbuv1Jy8In3i+6L24NjPAoavBtCx2lluKASsBXjXF7KVb7krjs+0BovWgaD+mssa
-         Lwzw==
-X-Gm-Message-State: AOAM531qDwcltbyU3GkGFVLXDlUGgqV0whJ0BSv+eV11vxNJW+MFykUz
-        AC4Qqb7zFa6ToudxoU7IOgs6VJJPqb6ICKOKK2w=
-X-Google-Smtp-Source: ABdhPJy7IZUGyv7zqBT+CrvFboZMNbh3rYZ6gsvuEd2TcV8iBZSTLtKckUJsJz1OFrlMnIfHyYtdH1A+1A3ceRfZddw=
-X-Received: by 2002:a67:ef5b:0:b0:335:e3a3:9b33 with SMTP id
- k27-20020a67ef5b000000b00335e3a39b33mr14948741vsr.57.1653552804397; Thu, 26
- May 2022 01:13:24 -0700 (PDT)
-MIME-Version: 1.0
-References: <1653534995-30794-1-git-send-email-u0084500@gmail.com>
- <1653534995-30794-2-git-send-email-u0084500@gmail.com> <1c7ab94c-a736-c629-bd8c-8a974803e2b9@linaro.org>
-In-Reply-To: <1c7ab94c-a736-c629-bd8c-8a974803e2b9@linaro.org>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Thu, 26 May 2022 16:13:13 +0800
-Message-ID: <CADiBU39jZ6TdYZoH80m4R-X2_fUXZOvDA4yUd_TQdPzBJLE+JA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: backlight: rt4831: Add the new property
- for ocp level selection
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        jingoohan1@gmail.com, Pavel Machek <pavel@ucw.cz>, deller@gmx.de,
-        cy_huang <cy_huang@richtek.com>, lucas_tsai@richtek.com,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, dri-devel@lists.freedesktop.org,
-        linux-fbdev@vger.kernel.org,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
+        with ESMTP id S234483AbiEZISo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 04:18:44 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4C87522F3;
+        Thu, 26 May 2022 01:18:37 -0700 (PDT)
+X-UUID: 6242339718e84bdbbf3a98f8c8442b08-20220526
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:a387b16c-7344-41a6-a128-3ec16ba99505,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:22,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:22
+X-CID-INFO: VERSION:1.1.5,REQID:a387b16c-7344-41a6-a128-3ec16ba99505,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:22,FILE:0,RULE:Release_Ham,ACTIO
+        N:release,TS:22
+X-CID-META: VersionHash:2a19b09,CLOUDID:d26253b8-3c45-407b-8f66-25095432a27a,C
+        OID:IGNORED,Recheck:0,SF:28|100|17|19|48|101,TC:nil,Content:0,EDM:-3,IP:ni
+        l,URL:0,File:nil,QS:0,BEC:nil
+X-UUID: 6242339718e84bdbbf3a98f8c8442b08-20220526
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1243913882; Thu, 26 May 2022 16:18:28 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Thu, 26 May 2022 16:18:28 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Thu, 26 May 2022 16:18:27 +0800
+Message-ID: <521e50539363c50181fa1c0008598a2c1242df1b.camel@mediatek.com>
+Subject: Re: [PATCH v2 2/2] iommu: mtk_iommu: Add support for MT6795 Helio
+ X10 M4Us
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+CC:     <joro@8bytes.org>, <will@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>,
+        <iommu@lists.linux-foundation.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <konrad.dybcio@somainline.org>, <marijn.suijten@somainline.org>,
+        <martin.botka@somainline.org>,
+        <~postmarketos/upstreaming@lists.sr.ht>,
+        <phone-devel@vger.kernel.org>, <paul.bouchara@somainline.org>
+Date:   Thu, 26 May 2022 16:18:26 +0800
+In-Reply-To: <20220518101849.46804-3-angelogioacchino.delregno@collabora.com>
+References: <20220518101849.46804-1-angelogioacchino.delregno@collabora.com>
+         <20220518101849.46804-3-angelogioacchino.delregno@collabora.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E6=96=BC 2022=E5=B9=
-=B45=E6=9C=8826=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=884:06=E5=AF=AB=
-=E9=81=93=EF=BC=9A
->
-> On 26/05/2022 05:16, cy_huang wrote:
-> > From: ChiYuan Huang <cy_huang@richtek.com>
-> >
-> > Add the new property for ocp level selection.
-> >
-> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> > ---
-> >  .../bindings/leds/backlight/richtek,rt4831-backlight.yaml         | 8 =
-++++++++
-> >  include/dt-bindings/leds/rt4831-backlight.h                       | 5 =
-+++++
-> >  2 files changed, 13 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/leds/backlight/richtek,r=
-t4831-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/ric=
-htek,rt4831-backlight.yaml
-> > index e0ac686..c1c59de 100644
-> > --- a/Documentation/devicetree/bindings/leds/backlight/richtek,rt4831-b=
-acklight.yaml
-> > +++ b/Documentation/devicetree/bindings/leds/backlight/richtek,rt4831-b=
-acklight.yaml
-> > @@ -47,6 +47,14 @@ properties:
-> >      minimum: 0
-> >      maximum: 3
-> >
-> > +  richtek,bled-ocp-sel:
->
-> Skip "sel" as it is a shortcut of selection. Name instead:
-> "richtek,backlight-ocp"
->
-OK, if so, do I need to rename all properties from 'bled' to 'backlight' ?
-If  only this property is naming as 'backlight'. it may conflict with
-the others like as "richtek,bled-ovp-sel".
->
-> > +    description: |
-> > +      Backlight OCP level selection, currently support 0.9A/1.2A/1.5A/=
-1.8A
->
-> Could you explain here what is OCP (unfold the acronym)?
-Yes. And the full name is 'over current protection'.
->
->
-> Best regards,
-> Krzysztof
+On Wed, 2022-05-18 at 12:18 +0200, AngeloGioacchino Del Regno wrote:
+> Add support for the M4Us found in the MT6795 Helio X10 SoC.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <
+> angelogioacchino.delregno@collabora.com>
+> ---
+>  drivers/iommu/mtk_iommu.c | 17 ++++++++++++++++-
+>  1 file changed, 16 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
+> index 090cf6e15f85..97ff30ed2d0f 100644
+> --- a/drivers/iommu/mtk_iommu.c
+> +++ b/drivers/iommu/mtk_iommu.c
+> @@ -159,6 +159,7 @@
+>  enum mtk_iommu_plat {
+>  	M4U_MT2712,
+>  	M4U_MT6779,
+> +	M4U_MT6795,
+>  	M4U_MT8167,
+>  	M4U_MT8173,
+>  	M4U_MT8183,
+> @@ -954,7 +955,8 @@ static int mtk_iommu_hw_init(const struct
+> mtk_iommu_data *data, unsigned int ban
+>  	 * Global control settings are in bank0. May re-init these
+> global registers
+>  	 * since no sure if there is bank0 consumers.
+>  	 */
+> -	if (data->plat_data->m4u_plat == M4U_MT8173) {
+> +	if (data->plat_data->m4u_plat == M4U_MT6795 ||
+> +	    data->plat_data->m4u_plat == M4U_MT8173) {
+
+Add a new flag for this. This setting difference is that the offset for
+TF_PROT_TO_PROGRAM_ADDR is 5 in mt8173 while the others' offset is 4.
+thus, we could rename the flag like TF_PORT_TO_ADDR_MT8173 or
+TF_PORT_TO_ADDR_OFFSET_IS_5.
+
+>  		regval = F_MMU_PREFETCH_RT_REPLACE_MOD |
+>  			 F_MMU_TF_PROT_TO_PROGRAM_ADDR_MT8173;
+>  	} else {
+> @@ -1422,6 +1424,18 @@ static const struct mtk_iommu_plat_data
+> mt6779_data = {
+>  	.larbid_remap  = {{0}, {1}, {2}, {3}, {5}, {7, 8}, {10}, {9}},
+>  };
+>  
+> +static const struct mtk_iommu_plat_data mt6795_data = {
+> +	.m4u_plat     = M4U_MT6795,
+> +	.flags	      = HAS_4GB_MODE | HAS_BCLK | RESET_AXI |
+> +			HAS_LEGACY_IVRP_PADDR | MTK_IOMMU_TYPE_MM,
+> +	.inv_sel_reg  = REG_MMU_INV_SEL_GEN1,
+> +	.banks_num    = 1,
+> +	.banks_enable = {true},
+> +	.iova_region  = single_domain,
+> +	.iova_region_nr = ARRAY_SIZE(single_domain),
+> +	.larbid_remap = {{0}, {1}, {2}, {3}, {4}}, /* Linear mapping.
+> */
+> +};
+> +
+>  static const struct mtk_iommu_plat_data mt8167_data = {
+>  	.m4u_plat     = M4U_MT8167,
+>  	.flags        = RESET_AXI | HAS_LEGACY_IVRP_PADDR |
+> MTK_IOMMU_TYPE_MM,
+> @@ -1533,6 +1547,7 @@ static const struct mtk_iommu_plat_data
+> mt8195_data_vpp = {
+>  static const struct of_device_id mtk_iommu_of_ids[] = {
+>  	{ .compatible = "mediatek,mt2712-m4u", .data = &mt2712_data},
+>  	{ .compatible = "mediatek,mt6779-m4u", .data = &mt6779_data},
+> +	{ .compatible = "mediatek,mt6795-m4u", .data = &mt6795_data},
+>  	{ .compatible = "mediatek,mt8167-m4u", .data = &mt8167_data},
+>  	{ .compatible = "mediatek,mt8173-m4u", .data = &mt8173_data},
+>  	{ .compatible = "mediatek,mt8183-m4u", .data = &mt8183_data},
+
