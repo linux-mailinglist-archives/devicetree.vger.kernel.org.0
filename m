@@ -2,64 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 172375350A8
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 16:31:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85FDB5350AB
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 16:31:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231290AbiEZObU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 10:31:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33092 "EHLO
+        id S229640AbiEZObw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 10:31:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234078AbiEZObP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 10:31:15 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1333F1145F;
-        Thu, 26 May 2022 07:31:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1653575472; x=1685111472;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=Ed2yd8aNhL4cQz8uqrkE0QxcuOYwBtlwGyXKgcop6bw=;
-  b=fUYN29T4XEFoWu5aGIoY6iAyDfpD3cMpHsIB7cdkAG+fDAbEvBy4PaFb
-   2flCTbSxyINpPX7WbWrRYFAT9Oqg0U0BAJCHqKkif+XQtzMBg3Tim7Yww
-   sQXxPrgZuvlHAWadQk2kRntAQ3vKTdW+kahrpFLGOTXOqC5VW9naZEraX
-   3TaDQ21cj50RBIRpQ/Oahsfr6PWOEbWc68Fim44X2vEPjWEEKHjhzdiCw
-   31hhbCYn8lHKzMTGXi0MAJL0QzHXYgfd7ilTBuMxO72GYDLfgS/gTwKFr
-   cuelbZg5AzZKnqa+V1+8PwVOfxelRJIIorwmtYgkJe74ljyfpLrUnIMno
-   A==;
-X-IronPort-AV: E=Sophos;i="5.91,252,1647327600"; 
-   d="scan'208";a="160739016"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 May 2022 07:31:12 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Thu, 26 May 2022 07:31:12 -0700
-Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Thu, 26 May 2022 07:31:09 -0700
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>
-CC:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@rivosinc.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Cyril Jean <Cyril.Jean@microchip.com>,
-        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, "Rob Herring" <robh@kernel.org>
-Subject: [PATCH] riscv: dts: microchip: remove spi-max-frequency property
-Date:   Thu, 26 May 2022 15:29:07 +0100
-Message-ID: <20220526142906.2285607-1-conor.dooley@microchip.com>
-X-Mailer: git-send-email 2.36.1
+        with ESMTP id S234078AbiEZObr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 10:31:47 -0400
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEA4BC6E52
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 07:31:46 -0700 (PDT)
+Received: by mail-yb1-xb30.google.com with SMTP id l32so3134486ybe.12
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 07:31:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=sbL61ctw82P2A4WPRzF6tE5aFrqygXMPVbMeO/7loWs=;
+        b=Aa/xpxJfUJEtkPC2P6B5K+jNu93PEtR9INvuitdtSZej0KWZYz+uYRLw6bXJIK6fmD
+         dckEtHXGA7gHkWbOwQ1Z31cNEpuzO05Y734nIpY5OSylET/vEq1BrytLYuj64kFsaXvz
+         HMGVnvd5T75eRKOVebEF/b+xD4nT8bSLGkHPUsSPUOFX4NFqBZvX2IV5qx+HY3lBZ33o
+         0PbGM0m+dfyZJvug00qOwo2FJQ3NObMXBckreZoWqjTO4S282+CKv7JjRrh3eXqvuedC
+         l8L1AOBcKNnPZXcn5nft92sOXO1oa7dpzsaa84ckFLIfNKCUI0a9SZONaPw0lRzyzuJ4
+         g/yQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=sbL61ctw82P2A4WPRzF6tE5aFrqygXMPVbMeO/7loWs=;
+        b=0I3iHIoINFU65EeHrtp+JJsCzsn9g2AdlUwz6y06pITjviO0EvmMh3IjoC6j24XKJ4
+         7H+FXpUvop1pEJA5wknTPXyf9Kc3Dvyc+qpGnu8nfFuR+wdH+p8nV+NfYpGtjAW+CkvP
+         dvegR8ZjgabouhdtfgCpteEPxjG2DQhXh+ftJrjTvqGAfquARBYBgmA4Yp6OfYneAwa1
+         tG8LwYuqyaM1Bl2cmVLuidHqodjyNDDy1Q494GuzcANaP+zFnPSl6QiOp1YWuVSFZn3t
+         QkXtYYHMdESlVjyFmKSDPAgnkPJanwfnZDoNW8B7XIiWDQZOUcS7r0nBFGf+ebbcwb0a
+         c2+g==
+X-Gm-Message-State: AOAM531VPtb53tm53Ltk6/ooj1lb+eVr6s+jOsaUrpyqGOatN8bjhkMa
+        ynUnzO7nTWGSlGNHB35QYNuljgubcsdQZWharrFieXFm/8E=
+X-Google-Smtp-Source: ABdhPJx7gOUCjc2MLJ/GIFd4QOjf/SsPC/dpO5bDtA9KcdYYTVdFSAhYeKnVTXLHvvywMv4Ke/VQvCmCy8e/0FB09YU=
+X-Received: by 2002:a5b:691:0:b0:64d:ab44:f12e with SMTP id
+ j17-20020a5b0691000000b0064dab44f12emr35458511ybq.533.1653575506073; Thu, 26
+ May 2022 07:31:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20220525205752.2484423-1-robh@kernel.org>
+In-Reply-To: <20220525205752.2484423-1-robh@kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 26 May 2022 16:31:34 +0200
+Message-ID: <CACRpkdYyq4rKFFmrx23qabT=XtRZJMhdsN1XOnqLcnczT5ZTMw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: net/dsa: Add spi-peripheral-props.yaml references
+To:     Rob Herring <robh@kernel.org>
+Cc:     Woojung Huh <woojung.huh@microchip.com>,
+        UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        Marek Vasut <marex@denx.de>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,36 +76,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-spi-max-frequency property is supposed to be a per SPI peripheral device
-property, not a SPI controller property, so drop it.
+On Wed, May 25, 2022 at 10:58 PM Rob Herring <robh@kernel.org> wrote:
 
-Reported-by: Rob Herring <robh@kernel.org>
-Link: https://lore.kernel.org/lkml/20220526014141.2872567-1-robh@kernel.org/
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi | 2 --
- 1 file changed, 2 deletions(-)
+> SPI peripheral device bindings need to reference spi-peripheral-props.yaml
+> in order to use various SPI controller specific properties. Otherwise,
+> the unevaluatedProperties check will reject any controller specific
+> properties.
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-index c5c9d1360de0..40b11b530bca 100644
---- a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-+++ b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-@@ -274,7 +274,6 @@ spi0: spi@20108000 {
- 			interrupt-parent = <&plic>;
- 			interrupts = <54>;
- 			clocks = <&clkcfg CLK_SPI0>;
--			spi-max-frequency = <25000000>;
- 			status = "disabled";
- 		};
- 
-@@ -286,7 +285,6 @@ spi1: spi@20109000 {
- 			interrupt-parent = <&plic>;
- 			interrupts = <55>;
- 			clocks = <&clkcfg CLK_SPI1>;
--			spi-max-frequency = <25000000>;
- 			status = "disabled";
- 		};
- 
--- 
-2.36.1
+Very nice!
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
+Yours,
+Linus Walleij
