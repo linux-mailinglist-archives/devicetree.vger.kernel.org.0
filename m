@@ -2,70 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15FBA534DEC
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 13:17:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48F76534EA8
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 13:54:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242300AbiEZLRJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 07:17:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43492 "EHLO
+        id S235135AbiEZLys (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 07:54:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233141AbiEZLRI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 07:17:08 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66CD395DD2;
-        Thu, 26 May 2022 04:17:06 -0700 (PDT)
+        with ESMTP id S234318AbiEZLyr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 07:54:47 -0400
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D28F9D028A
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 04:54:45 -0700 (PDT)
+Received: by mail-pj1-x1032.google.com with SMTP id l7-20020a17090aaa8700b001dd1a5b9965so1533595pjq.2
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 04:54:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1653563827; x=1685099827;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=jl+F2eJ4nE5XySB40dAzATocGz6c62UCpxl8Gn1FUcA=;
-  b=mRFznUDzBIsyBtiz+JLuf77x100bQDEVvZSw7Oxi6LvFTVY2aabyAYwT
-   04uFG2dFZx42nISgDHSfr8qm23XVBCMMvYsNNu9nFmvpRGFsCn6OkemBJ
-   uF0TQFal/t6KUyW2nMAsFg9ESbtC1LDasTdV18n2VzWYZBZBGoJcfUpRU
-   Y=;
-Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 26 May 2022 04:17:06 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 May 2022 04:17:06 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Thu, 26 May 2022 04:17:06 -0700
-Received: from [10.79.43.230] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 26 May
- 2022 04:17:02 -0700
-Subject: Re: [PATCH v4 1/3] arm64: dts: qcom: sc7280: Add proxy interconnect
- requirements for modem
-To:     Stephen Boyd <swboyd@chromium.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <ohad@wizery.com>, <agross@kernel.org>,
-        <mathieu.poirier@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <mka@chromium.org>
-References: <1652978825-5304-1-git-send-email-quic_sibis@quicinc.com>
- <1652978825-5304-2-git-send-email-quic_sibis@quicinc.com>
- <YoaqDcB6wkd4zOWR@ripper> <031ebead-4b0d-8493-d8f8-96f2ff9d938a@quicinc.com>
- <CAE-0n53hDDoetQW0Bz7noq4peuNCyrGsXaJdjFj=4sMkGeZFgw@mail.gmail.com>
-From:   Sibi Sankar <quic_sibis@quicinc.com>
-Message-ID: <3e7e8263-fdc1-ffa8-7b7f-188bb027fadf@quicinc.com>
-Date:   Thu, 26 May 2022 16:46:51 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=zOlRt/PLq35j8SMajNj0FDTDNh91sVVa3M4KgwiWbqQ=;
+        b=zd0au4Lgdoz2aRLN2jvLLKLH9zvMXKC7gGXmcI9icnPAhk34CDEwXC8fLcybWuHboJ
+         7rxHeACAiCPZERtaxnmLpdCNfTBxHfRZMzj9To+gvTpMb6NSjOLAmOQV5q6LFzMi01Sl
+         IpdLjTrN7CsSEH+4AD+iKLFYyQu/qcJTgFtm6ePYxPAtGWN+sXU+ML1m6voHOI2hhltd
+         botwytBAtuuMlPyQoK142BG3F7FnhdtcqUXkXD2MGAIWtrV2nunx+b3TrzoqDse6q40T
+         gy03PePXDweEsulO9ouGVDtRizGwyp7uEUKeBpU2dx0PinI4+kvHfjYyjoZL/NSYXykw
+         owrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zOlRt/PLq35j8SMajNj0FDTDNh91sVVa3M4KgwiWbqQ=;
+        b=pO9fEvuClz5ufMz6tOn2ZeeTE/NRWujbAOzw+9jk9ycwOgq9SuLAPSkabIWkv7M4wA
+         dqdf+/729FdZ5PRxY6lohNfj4VrqAlqvVMJIHLLGvJbBPTFVM501YAKQlMDJpwZpj819
+         tf5ZYIZwXYrQQzhRyEPHvHITZTDLYi9BmsWcJB0ykRRsVzCCVh6o0zMxLOYTQckdTZ2f
+         XU+pOSCyHwaB3fRIoRAsLKFDu2+3I+Wdw7Kt28u45xDhiGwvoMV+1PeWA4fsEKCUeJ1G
+         m9rLT7ZBZXlC+pQtAanIS65+rZtcQzrAKbzUHeDizWFJ4ta61XtxfMyVJGMw+en9Rj43
+         VV2g==
+X-Gm-Message-State: AOAM532z2+hwwGJRK8KpAmQ3cEeWPnxLHHoRgE8rFrAqMocAA4DuUVoP
+        7CVc+oZD3pxosm5uLfHp3m3FAvkDL7Yd5fovFx4q3Q==
+X-Google-Smtp-Source: ABdhPJxS0YxvZlwlwDFVDpQC1dH6jaFKCDD2PL5VdUmx6nXiGO6oYQ37GLmA/TgYfkq07HVyNLKHBrlzHP18ryVswg4=
+X-Received: by 2002:a17:902:8f81:b0:161:f4a7:f2fc with SMTP id
+ z1-20020a1709028f8100b00161f4a7f2fcmr30616697plo.117.1653566085361; Thu, 26
+ May 2022 04:54:45 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAE-0n53hDDoetQW0Bz7noq4peuNCyrGsXaJdjFj=4sMkGeZFgw@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20220525205626.2482584-1-robh@kernel.org> <Yo6u6jcVSsTQvRiU@pendragon.ideasonboard.com>
+In-Reply-To: <Yo6u6jcVSsTQvRiU@pendragon.ideasonboard.com>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Thu, 26 May 2022 13:54:34 +0200
+Message-ID: <CAG3jFyvynnMfkHFcfLUE=g9pswy1OYiAYi4KVy+aZjGd=NmtGg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: display: ingenic,jz4780-hdmi: Drop
+ undocumented 'ddc-i2c-bus'
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "H. Nikolaus Schaller" <hns@goldelico.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,38 +75,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 26 May 2022 at 00:34, Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> Hi Rob,
+>
+> Thank you for the patch.
+>
+> On Wed, May 25, 2022 at 03:56:26PM -0500, Rob Herring wrote:
+> > While 'ddc-i2c-bus' is a common property, it should be in a connector
+> > node rather than the HDMI bridge node as the I2C bus goes to a
+> > connector and not the HDMI block. Drop it from the example.
+> >
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>
+> > ---
+> >  .../devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml  | 1 -
+> >  1 file changed, 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml b/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
+> > index b8219eab4475..89490fdffeb0 100644
+> > --- a/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
+> > +++ b/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
+> > @@ -55,7 +55,6 @@ examples:
+> >          compatible = "ingenic,jz4780-dw-hdmi";
+> >          reg = <0x10180000 0x8000>;
+> >          reg-io-width = <4>;
+> > -        ddc-i2c-bus = <&i2c4>;
+> >          interrupt-parent = <&intc>;
+> >          interrupts = <3>;
+> >          clocks = <&cgu JZ4780_CLK_AHB0>, <&cgu JZ4780_CLK_HDMI>;
+>
+> --
+> Regards,
+>
+> Laurent Pinchart
 
-On 5/21/22 12:37 AM, Stephen Boyd wrote:
-> Quoting Sibi Sankar (2022-05-20 11:08:52)
->> Hey Bjorn,
->> Thanks for taking time to review the series.
->>
->> On 5/20/22 2:05 AM, Bjorn Andersson wrote:
->>> On Thu 19 May 09:47 PDT 2022, Sibi Sankar wrote:
->>>
->>>> Add interconnects that are required to be proxy voted upon during modem
->>>> bootup on SC7280 SoCs.
->>>
->>> This looks reasonable, but how come the vote is only for DDR frequency?
->>> What about the buses between modem and ddr?
->>
->> The proxy votes that are put in aren't for perf related reasons, the
->> modem was getting llcc timeouts while trying to read contents from
->> memory. The hw team recommended the proxy votes as the fix.
-> 
-> Presumably the bootloader sets up some initial modem and ddr bus
-> bandwidth requests? Or the modem bootloader stage (MSA?) handles that
-> part?
-
-Stephen/Bjorn,
-Sorry for the delay, took a while to dig this up. The modem interconnect
-is connected directly to gemnoc ddr. The path info from modem --> ddr is
-split up into modem --> llcc and llcc --> ddr (Similar to CPUs) i.e. in
-the end scaling of the path involves scaling of the two clocks, gemnoc
-and ddr. There isn't any default vote for modem --> llcc as such but it
-gets implicitly scaled when we vote max for llcc --> ddr path due to
-dependency maintained between the two clocks by rpmh.
-
--Sibi
-
-> 
+Applied to drm-misc-next
