@@ -2,90 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 442EB535323
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 20:10:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20658535366
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 20:36:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238328AbiEZSKB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 14:10:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59552 "EHLO
+        id S1348143AbiEZSgx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 14:36:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230133AbiEZSKA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 14:10:00 -0400
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A0ADAF1C2;
-        Thu, 26 May 2022 11:09:58 -0700 (PDT)
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-f2cbceefb8so3077595fac.11;
-        Thu, 26 May 2022 11:09:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=4YB+kQiJXBKUP7agdWevfRvbh3ysPyiKc3h+uOJrr30=;
-        b=m6FlulSVMbJIokdyY7BkIjIWSjoulzLMI12fL+s87otTdtbVXgo6ZG7Fa9bst8pkxU
-         3ugXVwh9J9PwxXRWVlJiHoZImHCjcrqYfxsOn6BK1SKDaz82VGruZrnqPdofGafRo6G4
-         R/311Vdf/W5s/Y/jKERV7Tlxsy5ZBff0FEjpJjgfEu3gv8UERkY7zR/rLBAqRZCMl7ti
-         PQLmfIC8DkuYyNOQBa7faB59ieFK0utkpJL5DwJKWCp5VnslV/vScWJquDkROAANDW6P
-         tiqYfNx0/SPwZ3Bp7R4QsRhrXmzMVV5+Lcac+OSinyhaL1VzEQswXZK0AEzS/I2pFi1Q
-         0iag==
-X-Gm-Message-State: AOAM531tcuFg97vAAqbsvF3yEjERArUJ1iDHjsSSJspz/6LXmFLJrZpm
-        8ZfXi6rEj5Y8Akexde0E3A==
-X-Google-Smtp-Source: ABdhPJy+aqv9dLlqDpwsWWTrsp3aQXkLGZiF+XvO7PDRnouiQjrgiJu9nn4EHNdgdKR5BzDL81LOwQ==
-X-Received: by 2002:a05:6870:c5aa:b0:e5:8e03:d40f with SMTP id ba42-20020a056870c5aa00b000e58e03d40fmr2013869oab.264.1653588597896;
-        Thu, 26 May 2022 11:09:57 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a5-20020a9d5c85000000b0060603221274sm846684oti.68.2022.05.26.11.09.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 May 2022 11:09:57 -0700 (PDT)
-Received: (nullmailer pid 78956 invoked by uid 1000);
-        Thu, 26 May 2022 18:09:55 -0000
-Date:   Thu, 26 May 2022 13:09:55 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v12 4/8] PCI: dwc: split MSI IRQ parsing/allocation to a
- separate function
-Message-ID: <20220526180955.GC54904-robh@kernel.org>
-References: <20220523181836.2019180-1-dmitry.baryshkov@linaro.org>
- <20220523181836.2019180-5-dmitry.baryshkov@linaro.org>
+        with ESMTP id S1344476AbiEZSgo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 14:36:44 -0400
+Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AE6A18E19;
+        Thu, 26 May 2022 11:36:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+        d=metrotek.ru; s=mail;
+        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding;
+        bh=IkK3NzS1hE22RMP5L50ms4I3ob/gyfjbQFcGjzH7xkg=;
+        b=P3dWYu1PYOhk9mk9iZ7ETuRujcfz48FkqWZl84k6Khs1PVEfOc+1Uz7Lh++ZcAr5/g7E/UwJofVVG
+         Bwpg2lu4lJBYQT9zWBYc31q0Tsf02proVtbXgl08ud6iFaQvut36EPIgqgMdDD9Lnw3da8W0JyK1Ur
+         o+3L4tE3XLxHUe8RoUYtfQKyOx1LmeAcFqIqKnKHYtaRSPR2gbitR9UhbqXpQmR0aQK4zaQQohDNmP
+         6XrtRrWlk8y5S7lMuvXABCoz7nDrGKLy0sD+ONvvLhQw1cMTK9lPChUYI5PjgHE4X+m3fd2mJY5SDE
+         Rhfh4vC7xv68YFPqyRiEMfbhAPKvVVQ==
+X-Kerio-Anti-Spam:  Build: [Engines: 2.16.3.1424, Stamp: 3], Multi: [Enabled, t: (0.000014,0.014531)], BW: [Enabled, t: (0.000014,0.000001)], RTDA: [Enabled, t: (0.188538), Hit: No, Details: v2.39.0; Id: 15.52ka9n.1g40qf6ik.1ho6f; mclb], total: 0(700)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Level: 
+X-Footer: bWV0cm90ZWsucnU=
+Received: from localhost.localdomain ([178.70.36.174])
+        (authenticated user i.bornyakov@metrotek.ru)
+        by mail.pr-group.ru with ESMTPSA
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
+        Thu, 26 May 2022 21:36:07 +0300
+From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
+To:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
+        trix@redhat.com, Conor.Dooley@microchip.com
+Cc:     Ivan Bornyakov <i.bornyakov@metrotek.ru>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        system@metrotek.ru
+Subject: [PATCH v13 0/3] Microchip Polarfire FPGA manager
+Date:   Thu, 26 May 2022 21:13:41 +0300
+Message-Id: <20220526181344.2088-1-i.bornyakov@metrotek.ru>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220523181836.2019180-5-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 23, 2022 at 09:18:32PM +0300, Dmitry Baryshkov wrote:
-> Split handling of MSI host IRQs to a separate dw_pcie_msi_host_init()
-> function. The code is complex enough to warrant a separate function.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../pci/controller/dwc/pcie-designware-host.c | 98 +++++++++++--------
->  1 file changed, 56 insertions(+), 42 deletions(-)
+Add support to the FPGA manager for programming Microchip Polarfire
+FPGAs over slave SPI interface with .dat formatted bitsream image.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Changelog:
+  v1 -> v2: fix printk formating
+  v2 -> v3:
+   * replace "microsemi" with "microchip"
+   * replace prefix "microsemi_fpga_" with "mpf_"
+   * more sensible .compatible and .name strings
+   * remove unused defines STATUS_SPI_VIOLATION and STATUS_SPI_ERROR
+  v3 -> v4: fix unused variable warning
+    Put 'mpf_of_ids' definition under conditional compilation, so it
+    would not hang unused if CONFIG_OF is not enabled.
+  v4 -> v5:
+   * prefix defines with MPF_
+   * mdelay() -> usleep_range()
+   * formatting fixes
+   * add DT bindings doc
+   * rework fpga_manager_ops.write() to fpga_manager_ops.write_sg()
+     We can't parse image header in write_init() because image header
+     size is not known beforehand. Thus parsing need to be done in
+     fpga_manager_ops.write() callback, but fpga_manager_ops.write()
+     also need to be reenterable. On the other hand,
+     fpga_manager_ops.write_sg() is called once. Thus, rework usage of
+     write() callback to write_sg().
+  v5 -> v6: fix patch applying
+     I forgot to clean up unrelated local changes which lead to error on
+     patch 0001-fpga-microchip-spi-add-Microchip-MPF-FPGA-manager.patch
+     applying on vanilla kernel.
+  v6 -> v7: fix binding doc to pass dt_binding_check
+  v7 -> v8: another fix for dt_binding_check warning
+  v8 -> v9:
+   * add another patch to support bitstream offset in FPGA image buffer
+   * rework fpga_manager_ops.write_sg() back to fpga_manager_ops.write()
+   * move image header parsing from write() to write_init()
+  v9 -> v10:
+   * add parse_header() callback to fpga_manager_ops
+   * adjust fpga_mgr_write_init[_buf|_sg]() for parse_header() usage
+   * implement parse_header() in microchip-spi driver
+  v10 -> v11: include missing unaligned.h to microchip-spi
+     fix error: implicit declaration of function 'get_unaligned_le[16|32]'
+  v11 -> v12:
+   * microchip-spi: double read hw status, ignore first read, because it
+     can be unreliable.
+   * microchip-spi: remove sleep between status readings in
+     poll_status_not_busy() to save a few seconds. Status is polled on
+     every 16 byte writes - that is quite often, therefore
+     usleep_range() accumulate to a considerable number of seconds.
+  v12 -> v13:
+   * fpga-mgr: separate fpga_mgr_parse_header_buf() from
+     fpga_mgr_write_init_buf()
+   * fpga-mgr: introduce FPGA_MGR_STATE_PARSE_HEADER and
+     FPGA_MGR_STATE_PARSE_HEADER_ERR fpga_mgr_states
+   * fpga-mgr: rename fpga_mgr_write_init_sg() to fpga_mgr_prepare_sg()
+     and rework with respect to a new fpga_mgr_parse_header_buf()
+   * fpga-mgr: rework write accounting in fpga_mgr_buf_load_sg() for
+     better clarity
+   * microchip-spi: rename MPF_STATUS_POLL_TIMEOUT to
+     MPF_STATUS_POLL_RETRIES
+   * microchip-spi: add comment about status reading quirk to
+     mpf_read_status()
+   * microchip-spi: rename poll_status_not_busy() to mpf_poll_status()
+     and add comment.
+   * microchip-spi: make if statement in mpf_poll_status() easier to
+     read.
 
-Note that we should probably apply this[1] or whatever fix we end up 
-with first.
+Ivan Bornyakov (3):
+  fpga: fpga-mgr: support bitstream offset in image buffer
+  fpga: microchip-spi: add Microchip MPF FPGA manager
+  dt-bindings: fpga: add binding doc for microchip-spi fpga mgr
 
-Rob
+ .../fpga/microchip,mpf-spi-fpga-mgr.yaml      |  44 ++
+ drivers/fpga/Kconfig                          |   9 +
+ drivers/fpga/Makefile                         |   1 +
+ drivers/fpga/fpga-mgr.c                       | 174 ++++++--
+ drivers/fpga/microchip-spi.c                  | 386 ++++++++++++++++++
+ include/linux/fpga/fpga-mgr.h                 |  17 +-
+ 6 files changed, 599 insertions(+), 32 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
+ create mode 100644 drivers/fpga/microchip-spi.c
 
-[1] https://lore.kernel.org/all/20220525223316.388490-1-willmcvicker@google.com/
+-- 
+2.35.1
+
+
