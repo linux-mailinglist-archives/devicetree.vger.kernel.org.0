@@ -2,71 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF1DF5354C1
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 22:43:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C8925354C5
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 22:43:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346200AbiEZUmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 16:42:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49848 "EHLO
+        id S234036AbiEZUmo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 16:42:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348986AbiEZUmf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 16:42:35 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 259DC2724
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:42:28 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id j28so3137703eda.13
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:42:27 -0700 (PDT)
+        with ESMTP id S1348773AbiEZUmi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 16:42:38 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A844BB7E4
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:42:35 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id f21so5041848ejh.11
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:42:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ADqKJdbqKJgJ+Kg0DAm3wQJ6kaap7SQu0KoHV5lMi6o=;
-        b=UW/PIlwYn0ZoAUDaWjJIFIjFaJDJDpE22GNHHXfyeFrpw8sAg9hGAqJUuXHhlcOI0S
-         Uuk1MqkSrW2j/eY1+x65UOWevsmO1H24hHTlmrLIzAaBy8fWfIHuESxie3PDbhitU4XI
-         UuiZwqwRGIa6jap7jzXiEx8bskStr/mKiHi0Qf1BDp7P8sWEWT6P/x/7aVbaY/A0PXFF
-         Q3/h3CdAONbLeV2+sinmhsRtSab2nY8417dlg1stPZtYAp6u1/ymJ/0nCgSeAUkAawHB
-         k/ZlXCMweXeHyK3Ym0mGTg8kauAy0Lb4/btc23UYeB4F7ae+HVKBmETprFUIljfL5hM6
-         JZpw==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zBSottq5B2GJ9FFPovyG/bRnnI/fVKoW6GgzyoAPPks=;
+        b=mqm2TyTwLe9J3JzIvwLX0t7OOCi6SC7Ci5LT4ey3rSWSr8XLS4LfCEMPkzVFr2g1gn
+         WFOBsQO10LJuTz0PS5+KKEd6B4piYrbVXwbQFbPk16xZzidpogTh/2p8GawS9uDlK2EJ
+         75ijNM9oNz2CrSCWfYq9OeQEKcMbdccezQIUnlECkj+1Ga47rpvvfNnmRoEUXS/wX/Bu
+         nkpptkYm+hQ2SdifCTJRPuhVGA+ZlcolTCOXKto5mcNNxXpk3MLqekCzj6lywkPtYamB
+         J8TOImHlRF9NHnRL5G0QAbZtmRebyd4kErEdpW61miRlVEmQfh/SkdF0KsXxs8jzxrJ6
+         jcqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ADqKJdbqKJgJ+Kg0DAm3wQJ6kaap7SQu0KoHV5lMi6o=;
-        b=Lewfgdi4Ou8nwhhb7ZK3cZdFFvC4pOvvq7BGoS72NHz85T1ebU28GRjsaMOstJi/Qw
-         ZGnhoA70g4Fv9p0Vm3+aYHRa2HZ5rsBX02jWL5J/DapDKxDLRjpiPqTelGYWJwiya4xm
-         oXiOfDAidOJXoglJaZR9JbN3k6XJAYYETwidKJo3SmeS2wrk4eLI9GEc8x/iSg8HK06Q
-         mX5+5KP3lqZKGhMZVpvwOdsRNNVK/p59/Bs1JR0tMKj0wjUkwR0glPQAIHNxnIrLuKPB
-         LXYcicTBDq4Zu8E9US6jL5P6uYy9uQcpdVeW7Xs+JFO++00sWx7LuGTF2SkHq6OfminD
-         3ckg==
-X-Gm-Message-State: AOAM5316potXzeCAfKNZ+4vipV2NGJgiuoGBRSknr+jHPp0HmjOOUM84
-        UXHBUzr8jjGFR4aEk6Ne0SNZvA==
-X-Google-Smtp-Source: ABdhPJy3RfkUoqMH5w0G5VrkKRX7O3+5DdIFoLZRfjDU7Ds5U1HKL4bPRFugK9rvtFvsNaJPlNg6zw==
-X-Received: by 2002:a05:6402:1113:b0:428:679e:f73f with SMTP id u19-20020a056402111300b00428679ef73fmr42108111edv.378.1653597746602;
-        Thu, 26 May 2022 13:42:26 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zBSottq5B2GJ9FFPovyG/bRnnI/fVKoW6GgzyoAPPks=;
+        b=mq3EOOoomUpTvUW9EEIZccm+s3VghVqK8F9I4STlgPd1h0wAdMCBf4dQbqC5qtILRg
+         lbNyl9FePpwCiiH9yGAOaBn37N0UFX7W8fzkB/0UFyKZuSRjOAI9HoDzy08l+ljCP7L7
+         De2N6YIiFj1WY8xQIB5AiOaWId02lyGJQuedlBwWX6NpgQBBhUyUwmHt5IsR1tG3kysU
+         Py4dS19HCfzmVwPNIlbvUxzfuj9iky3XacdAEPYYI+b+16RsbFG9SEQeNLFZql3Wz/RF
+         uFT1uH7R9Iqr1c8FuC0h4IDvYEF9Ld1ONn/JnABX+VtKe8bsdQKZgbGBb2OadHSrJQRV
+         wI8A==
+X-Gm-Message-State: AOAM530/+KlGqV0heRaZdsYLhdBBXTtcNgDd2x82ydyqdBdtVplEYnRx
+        WRgTTPqdE/YYxpPSPLakScfljA==
+X-Google-Smtp-Source: ABdhPJz7O6I5XI5FpXBZSFKsMcuwni2DNPsFAGM+js5EZkfB37k56jQ/r1s0n1NCr6XaDCKTFlOHaQ==
+X-Received: by 2002:a17:906:49c6:b0:6fe:95bb:93cc with SMTP id w6-20020a17090649c600b006fe95bb93ccmr34838737ejv.30.1653597754194;
+        Thu, 26 May 2022 13:42:34 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id r17-20020a50d691000000b0042617ba6389sm1239732edi.19.2022.05.26.13.42.25
+        by smtp.gmail.com with ESMTPSA id ay21-20020a170906d29500b006feba4ef020sm798012ejb.180.2022.05.26.13.42.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 May 2022 13:42:26 -0700 (PDT)
+        Thu, 26 May 2022 13:42:33 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        arm@kernel.org, soc@kernel.org, Heiko Stuebner <heiko@sntech.de>,
+        arm@kernel.org, soc@kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/3] ARM: dts: rv1108: adjust whitespace around '='
-Date:   Thu, 26 May 2022 22:42:18 +0200
-Message-Id: <20220526204218.832029-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: renesas: adjust whitespace around '='
+Date:   Thu, 26 May 2022 22:42:31 +0200
+Message-Id: <20220526204231.832090-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220526204218.832029-1-krzysztof.kozlowski@linaro.org>
-References: <20220526204218.832029-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,158 +83,97 @@ Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Output compared with dtx_diff and fdtdump.
 ---
- arch/arm/boot/dts/rv1108-elgin-r1.dts | 14 +++++++-------
- arch/arm/boot/dts/rv1108-evb.dts      | 14 +++++++-------
- arch/arm/boot/dts/rv1108.dtsi         |  2 +-
- 3 files changed, 15 insertions(+), 15 deletions(-)
+ arch/arm64/boot/dts/renesas/draak.dtsi           |  2 +-
+ arch/arm64/boot/dts/renesas/ebisu.dtsi           |  2 +-
+ arch/arm64/boot/dts/renesas/salvator-common.dtsi |  2 +-
+ arch/arm64/boot/dts/renesas/ulcb-kf.dtsi         | 14 +++++++-------
+ arch/arm64/boot/dts/renesas/ulcb.dtsi            |  2 +-
+ 5 files changed, 11 insertions(+), 11 deletions(-)
 
-diff --git a/arch/arm/boot/dts/rv1108-elgin-r1.dts b/arch/arm/boot/dts/rv1108-elgin-r1.dts
-index 0c99a5934ebf..2d9994379eb2 100644
---- a/arch/arm/boot/dts/rv1108-elgin-r1.dts
-+++ b/arch/arm/boot/dts/rv1108-elgin-r1.dts
-@@ -83,7 +83,7 @@ rk805: pmic@18 {
- 
- 		regulators {
- 			vdd_core: DCDC_REG1 {
--				regulator-name= "vdd_core";
-+				regulator-name = "vdd_core";
- 				regulator-min-microvolt = <700000>;
- 				regulator-max-microvolt = <1500000>;
- 				regulator-always-on;
-@@ -95,7 +95,7 @@ regulator-state-mem {
+diff --git a/arch/arm64/boot/dts/renesas/draak.dtsi b/arch/arm64/boot/dts/renesas/draak.dtsi
+index 7231f820d601..ef3bb835d5c0 100644
+--- a/arch/arm64/boot/dts/renesas/draak.dtsi
++++ b/arch/arm64/boot/dts/renesas/draak.dtsi
+@@ -630,7 +630,7 @@ rsnd_for_ak4613: endpoint {
+ 				bitclock-master = <&rsnd_for_ak4613>;
+ 				frame-master = <&rsnd_for_ak4613>;
+ 				playback = <&ssi3>, <&src5>, <&dvc0>;
+-				capture  = <&ssi4>, <&src6>, <&dvc1>;
++				capture = <&ssi4>, <&src6>, <&dvc1>;
  			};
+ 		};
+ 	};
+diff --git a/arch/arm64/boot/dts/renesas/ebisu.dtsi b/arch/arm64/boot/dts/renesas/ebisu.dtsi
+index 72f359efa23e..aef0896b2f5f 100644
+--- a/arch/arm64/boot/dts/renesas/ebisu.dtsi
++++ b/arch/arm64/boot/dts/renesas/ebisu.dtsi
+@@ -711,7 +711,7 @@ &rcar_sound {
+ 	rcar_sound,dai {
+ 		dai0 {
+ 			playback = <&ssi0>, <&src0>, <&dvc0>;
+-			capture  = <&ssi1>, <&src1>, <&dvc1>;
++			capture = <&ssi1>, <&src1>, <&dvc1>;
+ 		};
+ 	};
  
- 			vdd_buck2: DCDC_REG2 {
--				regulator-name= "vdd_buck2";
-+				regulator-name = "vdd_buck2";
- 				regulator-min-microvolt = <2200000>;
- 				regulator-max-microvolt = <2200000>;
- 				regulator-always-on;
-@@ -106,7 +106,7 @@ regulator-state-mem {
+diff --git a/arch/arm64/boot/dts/renesas/salvator-common.dtsi b/arch/arm64/boot/dts/renesas/salvator-common.dtsi
+index 31837fcd7bf0..09ff1708cfa6 100644
+--- a/arch/arm64/boot/dts/renesas/salvator-common.dtsi
++++ b/arch/arm64/boot/dts/renesas/salvator-common.dtsi
+@@ -832,7 +832,7 @@ rsnd_endpoint0: endpoint {
+ 				frame-master = <&rsnd_endpoint0>;
+ 
+ 				playback = <&ssi0>, <&src0>, <&dvc0>;
+-				capture  = <&ssi1>, <&src1>, <&dvc1>;
++				capture = <&ssi1>, <&src1>, <&dvc1>;
  			};
+ 		};
  
- 			vcc_ddr: DCDC_REG3 {
--				regulator-name= "vcc_ddr";
-+				regulator-name = "vcc_ddr";
- 				regulator-always-on;
- 				regulator-boot-on;
- 				regulator-state-mem {
-@@ -115,7 +115,7 @@ regulator-state-mem {
+diff --git a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
+index 5bcb84403ef6..408871c2859d 100644
+--- a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
++++ b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
+@@ -206,12 +206,12 @@ pcm3168a: audio-codec@44 {
+ 				clocks = <&clksndsel>;
+ 				clock-names = "scki";
+ 
+-				VDD1-supply	= <&snd_3p3v>;
+-				VDD2-supply	= <&snd_3p3v>;
+-				VCCAD1-supply	= <&snd_vcc5v>;
+-				VCCAD2-supply	= <&snd_vcc5v>;
+-				VCCDA1-supply	= <&snd_vcc5v>;
+-				VCCDA2-supply	= <&snd_vcc5v>;
++				VDD1-supply = <&snd_3p3v>;
++				VDD2-supply = <&snd_3p3v>;
++				VCCAD1-supply = <&snd_vcc5v>;
++				VCCAD2-supply = <&snd_vcc5v>;
++				VCCDA1-supply = <&snd_vcc5v>;
++				VCCDA2-supply = <&snd_vcc5v>;
+ 
+ 				ports {
+ 					#address-cells = <1>;
+@@ -438,7 +438,7 @@ rsnd_for_pcm3168a_capture: endpoint {
+ 				bitclock-master;
+ 				frame-master;
+ 				dai-tdm-slot-num = <6>;
+-				capture  = <&ssi4>;
++				capture = <&ssi4>;
  			};
- 
- 			vcc_io: DCDC_REG4 {
--				regulator-name= "vcc_io";
-+				regulator-name = "vcc_io";
- 				regulator-min-microvolt = <3300000>;
- 				regulator-max-microvolt = <3300000>;
- 				regulator-always-on;
-@@ -127,7 +127,7 @@ regulator-state-mem {
+ 		};
+ 	};
+diff --git a/arch/arm64/boot/dts/renesas/ulcb.dtsi b/arch/arm64/boot/dts/renesas/ulcb.dtsi
+index 90a4c0629d24..5f390865a4cd 100644
+--- a/arch/arm64/boot/dts/renesas/ulcb.dtsi
++++ b/arch/arm64/boot/dts/renesas/ulcb.dtsi
+@@ -411,7 +411,7 @@ rsnd_for_ak4613: endpoint {
+ 				bitclock-master;
+ 				frame-master;
+ 				playback = <&ssi0>, <&src0>, <&dvc0>;
+-				capture  = <&ssi1>, <&src1>, <&dvc1>;
++				capture = <&ssi1>, <&src1>, <&dvc1>;
  			};
- 
- 			vdd_10: LDO_REG1 {
--				regulator-name= "vdd_10";
-+				regulator-name = "vdd_10";
- 				regulator-min-microvolt = <1000000>;
- 				regulator-max-microvolt = <1000000>;
- 				regulator-always-on;
-@@ -138,7 +138,7 @@ regulator-state-mem {
- 			};
- 
- 			vcc_18: LDO_REG2 {
--				regulator-name= "vcc_18";
-+				regulator-name = "vcc_18";
- 				regulator-min-microvolt = <1800000>;
- 				regulator-max-microvolt = <1800000>;
- 				regulator-always-on;
-@@ -149,7 +149,7 @@ regulator-state-mem {
- 			};
- 
- 			vdd10_pmu: LDO_REG3 {
--				regulator-name= "vdd10_pmu";
-+				regulator-name = "vdd10_pmu";
- 				regulator-min-microvolt = <1000000>;
- 				regulator-max-microvolt = <1000000>;
- 				regulator-always-on;
-diff --git a/arch/arm/boot/dts/rv1108-evb.dts b/arch/arm/boot/dts/rv1108-evb.dts
-index 46cad7cb94bf..ef150f4ee99d 100644
---- a/arch/arm/boot/dts/rv1108-evb.dts
-+++ b/arch/arm/boot/dts/rv1108-evb.dts
-@@ -96,7 +96,7 @@ rk805: pmic@18 {
- 
- 		regulators {
- 			vdd_core: DCDC_REG1 {
--				regulator-name= "vdd_core";
-+				regulator-name = "vdd_core";
- 				regulator-min-microvolt = <700000>;
- 				regulator-max-microvolt = <1500000>;
- 				regulator-always-on;
-@@ -108,7 +108,7 @@ regulator-state-mem {
- 			};
- 
- 			vdd_cam: DCDC_REG2 {
--				regulator-name= "vdd_cam";
-+				regulator-name = "vdd_cam";
- 				regulator-min-microvolt = <700000>;
- 				regulator-max-microvolt = <2000000>;
- 				regulator-state-mem {
-@@ -117,7 +117,7 @@ regulator-state-mem {
- 			};
- 
- 			vcc_ddr: DCDC_REG3 {
--				regulator-name= "vcc_ddr";
-+				regulator-name = "vcc_ddr";
- 				regulator-always-on;
- 				regulator-boot-on;
- 				regulator-state-mem {
-@@ -126,7 +126,7 @@ regulator-state-mem {
- 			};
- 
- 			vcc_io: DCDC_REG4 {
--				regulator-name= "vcc_io";
-+				regulator-name = "vcc_io";
- 				regulator-min-microvolt = <3300000>;
- 				regulator-max-microvolt = <3300000>;
- 				regulator-always-on;
-@@ -138,7 +138,7 @@ regulator-state-mem {
- 			};
- 
- 			vdd_10: LDO_REG1 {
--				regulator-name= "vdd_10";
-+				regulator-name = "vdd_10";
- 				regulator-min-microvolt = <1000000>;
- 				regulator-max-microvolt = <1000000>;
- 				regulator-always-on;
-@@ -149,7 +149,7 @@ regulator-state-mem {
- 			};
- 
- 			vcc_18: LDO_REG2 {
--				regulator-name= "vcc_18";
-+				regulator-name = "vcc_18";
- 				regulator-min-microvolt = <1800000>;
- 				regulator-max-microvolt = <1800000>;
- 				regulator-always-on;
-@@ -160,7 +160,7 @@ regulator-state-mem {
- 			};
- 
- 			vdd10_pmu: LDO_REG3 {
--				regulator-name= "vdd10_pmu";
-+				regulator-name = "vdd10_pmu";
- 				regulator-min-microvolt = <1000000>;
- 				regulator-max-microvolt = <1000000>;
- 				regulator-always-on;
-diff --git a/arch/arm/boot/dts/rv1108.dtsi b/arch/arm/boot/dts/rv1108.dtsi
-index c158a7ea86ec..abf3006f0a84 100644
---- a/arch/arm/boot/dts/rv1108.dtsi
-+++ b/arch/arm/boot/dts/rv1108.dtsi
-@@ -748,7 +748,7 @@ sfc_clk: sfc-clk {
- 
- 		gmac {
- 			rmii_pins: rmii-pins {
--				rockchip,pins =	<1 RK_PC5 2 &pcfg_pull_none>,
-+				rockchip,pins = <1 RK_PC5 2 &pcfg_pull_none>,
- 						<1 RK_PC3 2 &pcfg_pull_none>,
- 						<1 RK_PC4 2 &pcfg_pull_none>,
- 						<1 RK_PB2 3 &pcfg_pull_none_drv_12ma>,
+ 		};
+ 		rsnd_port1: port@1 {
 -- 
 2.34.1
 
