@@ -2,72 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1287C53548B
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 22:37:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFE08535491
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 22:38:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234504AbiEZUhg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 16:37:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42326 "EHLO
+        id S245696AbiEZUiE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 16:38:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348360AbiEZUha (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 16:37:30 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B800E2753
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:37:28 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id n10so5136878ejk.5
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:37:28 -0700 (PDT)
+        with ESMTP id S1347712AbiEZUiD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 16:38:03 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3306687A26
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:38:02 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id w14so3940415lfl.13
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:38:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=UVzmyNRf2D+RLhRZdxjNSUvC/8pZXz4Xqz+PvOm0eOo=;
-        b=zyqJ4gt1i2C5KklLMQsq4Bq+13DMP9BBrJRy9jgODN/Cswpx6TGfS74lQa+CTsRhJD
-         gsghHvzW0YC++Ff1zBQp0HOCBfQhJCsaSx2XdmrFyF0PAuAOv6ygc6dEBgtwfS00J8LM
-         CGLlK5oDtzqMHghiQ2E8mzIRt+4S0maBIl85Vkqtd4nWt3F/kamhENV0n+LMnWMLDXoq
-         j1t6gPc78WenjYPHwa1RVmZCRXU7y9w6N0tPFRwYV7O/ebbKOhmFvTluxdRi9hnkx8T3
-         2oQQ1p8LqdMfVl6fVUwi8tTBxus2rcg7VofhuLz4RLPvkPU4yMXJ9KtbjNlwYr6RlACw
-         6bTw==
+        bh=mLPsbWREqiu9c9Q8xXDcxQo3AM+M+g2L9Rz25OBbk1E=;
+        b=a2i3kYQuvq9txatBY+v45Yeze5v7Hq996N5nVa6obBVrO87VxOHQdh0JdPKuhPRIBI
+         W0ClBOW2PaWQboHbQeqk5R78Gvq5Nf0t5Jdsl8bJAeV7y33B8Ev9Pk5rq8R83yHQ8rk+
+         vZ3HvXkJdVMuxcCyG+aVg9utN783y+K2Q0MsMMSDlAw5m3Or38k6+/4vnwIJJoDjj3IK
+         iVn1zS5x0h5tVzahnTCzThq4Ia4Wtgj9RLkpCSif4VJKBdh9u9iwPtng3wpBt3q0LqgZ
+         ZBW3WlIo04jcp2+0HTlBrdds6M6brsu0LejiTqZszD/yvcQj05rkV7TFQveNuSVhXtwf
+         K0UQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=UVzmyNRf2D+RLhRZdxjNSUvC/8pZXz4Xqz+PvOm0eOo=;
-        b=LRIkQgUbO6jkWCQgc8hf90UfnfUhb9RkVbC27dymkkVyg0iIgO4uOINQrFMVnkvkiz
-         hUOaaspT7K6RVdyr11mnsN5H0lJtaEMMYm1PyDJyuzHaeBFwB6e8j3ramZx4vEHsv7A3
-         4UIuWo+ylpjDOPkoKU1fGCSpABWtENMDhteco66byp1m5SKjCF+FkTfqgP/40aQoBQhp
-         +FyA9EMxWesz2g+p+XyIsJCJrwWDAAX2his7H968St8PzxikTHOLh0Aa1e00c04FynXa
-         mGREqjG62+Iqw6TWJIVey7L5KV/AOC9IUdEfxefjceIVe2SKqIiJTxSLiytkXXg6ymoG
-         dMvg==
-X-Gm-Message-State: AOAM533A6BD27dAreLv1dFr6Ds7R09b88FejPugKjZRiLPK6PeCvUoiw
-        fHk5wmHVwRlxlCLj1Z+t4Ys1rg==
-X-Google-Smtp-Source: ABdhPJwCvACxI9eOs65N8EGyEe/eeh9Ti/MA66rp2IEPk0gPG+2+VhYH0HkinFXoqBynVYODga/SyA==
-X-Received: by 2002:a17:906:478b:b0:6f8:5850:4da9 with SMTP id cw11-20020a170906478b00b006f858504da9mr34867413ejc.619.1653597447822;
-        Thu, 26 May 2022 13:37:27 -0700 (PDT)
+        bh=mLPsbWREqiu9c9Q8xXDcxQo3AM+M+g2L9Rz25OBbk1E=;
+        b=2wL5FFyRuQ97XSuCM/sx7SORQ+4sFpo5cGdPeZt/iJY2uHKGPsmNBp4wHrJ4yHnO1D
+         osZ0Fj5BFC3daey6ASB1+zc9WkSAZ7eEbzZXKv3dVezLrJWUw40rAGk2R0FNUYuM9sbo
+         mAKWkV2FyMjSrRYh1C2p+ReJMd8VHjxQwb7BWBmO9uRKOdMXovBbKcnUyihFsfCTiFGO
+         GFu6D2ePLBJ4PlgnR3Anz9sFcC4U9Bmc6f3s9ULazxHt7J3KQ50er12M6xUf1zGfvnN2
+         EDGtbutK87FshdrqLFHfvuirp9r8+Lw709veH88gT1XXw/JEMga964a+c/HpYoMThmWX
+         L8vw==
+X-Gm-Message-State: AOAM5331S7+GsHgRbwexEOIKI4sp/6cv9MFUpnWGnJPHC+/uyXUMIV0r
+        lpKJZ9BzZKmwhuf56qqL37g3tXim2nnTlnFJ
+X-Google-Smtp-Source: ABdhPJw0tDoaETg12zQp2KEugD1GUg2LX9Kigs3f5ywz2KvO7wfhzgkyokLUUMqlacf885PgPeDXIg==
+X-Received: by 2002:a17:906:d97b:b0:6fe:af2e:2966 with SMTP id rp27-20020a170906d97b00b006feaf2e2966mr28607481ejb.705.1653597457578;
+        Thu, 26 May 2022 13:37:37 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id gc21-20020a1709072b1500b006ff16f48e2asm807671ejc.76.2022.05.26.13.37.26
+        by smtp.gmail.com with ESMTPSA id h5-20020a170906828500b006fec8e5b8a9sm797143ejx.152.2022.05.26.13.37.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 May 2022 13:37:27 -0700 (PDT)
+        Thu, 26 May 2022 13:37:35 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        openbmc@lists.ozlabs.org
+        Vladimir Zapolskiy <vz@mleia.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] ARM: dts: nuvoton: adjust whitespace around '='
-Date:   Thu, 26 May 2022 22:37:24 +0200
-Message-Id: <20220526203724.831215-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] ARM: dts: lpc: adjust whitespace around '='
+Date:   Thu, 26 May 2022 22:37:32 +0200
+Message-Id: <20220526203732.831250-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,36 +79,22 @@ Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Output compared with dtx_diff and fdtdump.
 ---
- arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi | 2 +-
- arch/arm/boot/dts/nuvoton-npcm750.dtsi        | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/lpc18xx.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi b/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
-index 3696980a3da1..9633b50a9c6d 100644
---- a/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
-+++ b/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
-@@ -128,7 +128,7 @@ gmac0: eth@f0802000 {
- 			interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "macirq";
- 			ethernet = <0>;
--			clocks	= <&clk_rg1refck>, <&clk NPCM7XX_CLK_AHB>;
-+			clocks = <&clk_rg1refck>, <&clk NPCM7XX_CLK_AHB>;
- 			clock-names = "stmmaceth", "clk_gmac";
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&rg1_pins
-diff --git a/arch/arm/boot/dts/nuvoton-npcm750.dtsi b/arch/arm/boot/dts/nuvoton-npcm750.dtsi
-index 13eee0fe5642..30eed40b89b5 100644
---- a/arch/arm/boot/dts/nuvoton-npcm750.dtsi
-+++ b/arch/arm/boot/dts/nuvoton-npcm750.dtsi
-@@ -51,7 +51,7 @@ gmac1: eth@f0804000 {
- 			interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "macirq";
- 			ethernet = <1>;
--			clocks	= <&clk_rg2refck>, <&clk NPCM7XX_CLK_AHB>;
-+			clocks = <&clk_rg2refck>, <&clk NPCM7XX_CLK_AHB>;
- 			clock-names = "stmmaceth", "clk_gmac";
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&rg2_pins
+diff --git a/arch/arm/boot/dts/lpc18xx.dtsi b/arch/arm/boot/dts/lpc18xx.dtsi
+index 10b8249b8ab6..c6f8942f8d3d 100644
+--- a/arch/arm/boot/dts/lpc18xx.dtsi
++++ b/arch/arm/boot/dts/lpc18xx.dtsi
+@@ -183,7 +183,7 @@ mac: ethernet@40010000 {
+ 			compatible = "nxp,lpc1850-dwmac", "snps,dwmac-3.611", "snps,dwmac";
+ 			reg = <0x40010000 0x2000>;
+ 			interrupts = <5>;
+-			interrupt-names	= "macirq";
++			interrupt-names = "macirq";
+ 			clocks = <&ccu1 CLK_CPU_ETHERNET>;
+ 			clock-names = "stmmaceth";
+ 			resets = <&rgu 22>;
 -- 
 2.34.1
 
