@@ -2,77 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AD695355EE
-	for <lists+devicetree@lfdr.de>; Fri, 27 May 2022 00:04:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E024E5355F5
+	for <lists+devicetree@lfdr.de>; Fri, 27 May 2022 00:05:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349780AbiEZWDz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 18:03:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42084 "EHLO
+        id S1349403AbiEZWFB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 18:05:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349318AbiEZWDy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 18:03:54 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8323662A13
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 15:03:53 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id l13so4194109lfp.11
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 15:03:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=qJs/grwr2pvDEsLIUfHDR0aBRbSDu/q3H641iXHa5hA=;
-        b=tlN1v8qBCAVlEin1MRqNmJ5XwrkS6y01KGkIJhirqgfMWxZzHeZ2OzJwZB97THKsN4
-         XuLeQXtDZJHI/ngBaBWkuwYbgf8cMHfxqZpnGkkXm34SolSdCwGbw5HbZbh4vP3Mf392
-         ytkW3ieorODoG0tNQjAwV7ojlJru1cOaF2/8sDtQQEdk5i9AfggsENU8oyLq0wM31HK6
-         FoIgImuOOm4I6x3GgsPLvjIrjvzuQvoqMLW/obqW8j3u54PJX08Ezo7yZFdn5lQHcerB
-         Oes7z8l4xy86Yj8ga+j3oL+KOfReaGjhLrIWoebJgjTore2Mck9Ee4b7DZHFuOmLRoeB
-         ILzA==
+        with ESMTP id S1349991AbiEZWEz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 18:04:55 -0400
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC246E64FD;
+        Thu, 26 May 2022 15:04:53 -0700 (PDT)
+Received: by mail-oi1-f169.google.com with SMTP id m125so3712394oia.6;
+        Thu, 26 May 2022 15:04:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=qJs/grwr2pvDEsLIUfHDR0aBRbSDu/q3H641iXHa5hA=;
-        b=VS2YW8ME51lmqBp9tGxdqoK7C7n+57tV/EHr5JRc1fz6f8SfJ2pXvGpd7KxH9ArnoW
-         jK27W299U5CJr7SNYWhRCqwFAqqPO5TveF6XsXloayR03nstuITjmf9GQ6ZypdXjAtay
-         VbLz28kECc4Y/KBp3rj8jsDndkjSnjVaaZXFxhltHvKOnD7CfExEXqq5WgM5at80r0+J
-         flS4I+Qj4UKXkWJhXGkpHDBlVCXfhR94n+KZ7JDUA0vzHIDNK4qPwJwBcd/MG8gLfA8G
-         0cyZPTxnkEcNSmMx/MbkF7ruHhimuTMAbDGYKywkWk8QJU8o/bf8tWfNOXjwe2EVi9pz
-         kAkQ==
-X-Gm-Message-State: AOAM530DClLcJZmJnUfuTTSlxr4IE2QUEpTPjfDJbJFDNst6//i/u/AK
-        gs99g2wWDcj1TH1ylMOQCz2+XQ==
-X-Google-Smtp-Source: ABdhPJy56yCKhdD3asKqWkOmtI0zEJvEAhWrPSGzs3OERYaX6QCLk71VovWV5iXtoQkRUPw125yWpg==
-X-Received: by 2002:a05:6512:3189:b0:478:5d83:5eda with SMTP id i9-20020a056512318900b004785d835edamr20847151lfe.519.1653602631826;
-        Thu, 26 May 2022 15:03:51 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id x23-20020ac25dd7000000b00478628920e1sm553702lfq.103.2022.05.26.15.03.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 May 2022 15:03:51 -0700 (PDT)
-Message-ID: <ad7106bb-ed7d-8d6f-0b3a-3e2dfeee0168@linaro.org>
-Date:   Fri, 27 May 2022 01:03:50 +0300
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=vLdbpKGNLu5yk557HufBJXrdPTT5qvK3rlnfRWVqz+M=;
+        b=S/yZXd38JtSpnZqP9mMghbuKx+Xp0XKkUFVHoFX9gi7foW7o/wVxCgeepq73BGG5hB
+         bi9UbRT55/PlgbLBpZDhk1S3UHgvFJZfkMo15atZjGybYt+FC9qzdzA1584lsW625t3Y
+         HSmAT1p8T+PCENRf5hjrznLKR8+jXs8dcA+7s3Yl2OT5+ATNmyeCS8yIaeMJBVqxIZQi
+         S0Ccc6rRy92bN0rAAaSvBQVvXX7VJ6zwTOQKmtQYG3yj1RKBlpqCJIKzuRVoRaH/9Qae
+         1zGBK5H63mSqdVu4t099AhnhjJfbSLLJNhiis8uuqFnWq36pdCuW73EpvRQRikhpdy4S
+         6C0Q==
+X-Gm-Message-State: AOAM533/XNQma477JKspuPHmvrTcDPaGu63UdKeqWJOu3EMr4pwBBDVd
+        aHrO9VUF/aqJaOpT9u43Pg==
+X-Google-Smtp-Source: ABdhPJz8cg4On41gsBd8ruxHfQJAb2nP9yPlOL55wyn6mRRBKLYXIjiccQunOdeUs8migoK46Yb0Hg==
+X-Received: by 2002:a05:6808:144d:b0:32b:7fbc:9440 with SMTP id x13-20020a056808144d00b0032b7fbc9440mr2303610oiv.226.1653602693051;
+        Thu, 26 May 2022 15:04:53 -0700 (PDT)
+Received: from robh.at.kernel.org (rrcs-192-154-179-37.sw.biz.rr.com. [192.154.179.37])
+        by smtp.gmail.com with ESMTPSA id r7-20020a056808210700b0032b7c4ead49sm1105154oiw.18.2022.05.26.15.04.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 May 2022 15:04:52 -0700 (PDT)
+Received: (nullmailer pid 343192 invoked by uid 1000);
+        Thu, 26 May 2022 22:04:50 -0000
+Date:   Thu, 26 May 2022 17:04:50 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Woojung Huh <woojung.huh@microchip.com>,
+        UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        Marek Vasut <marex@denx.de>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: net/dsa: Add spi-peripheral-props.yaml
+ references
+Message-ID: <20220526220450.GB315754-robh@kernel.org>
+References: <20220525205752.2484423-1-robh@kernel.org>
+ <20220526003216.7jxopjckccugh3ft@skbuf>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v1 4/4] arm64: dts: Add msm8939 Sony Xperia M4 Aqua
-Content-Language: en-GB
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, shawn.guo@linaro.org,
-        jun.nie@linaro.org, benl@squareup.com, jwillcox@squareup.com,
-        jgates@squareup.com, mchen@squareup.com, zac@squareup.com
-References: <20220419010903.3109514-1-bryan.odonoghue@linaro.org>
- <20220419010903.3109514-5-bryan.odonoghue@linaro.org>
- <Yl8NLldCWaecisH5@gerhold.net>
- <552547c1-36c3-8d7e-0fd5-1b22fd184b4b@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <552547c1-36c3-8d7e-0fd5-1b22fd184b4b@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220526003216.7jxopjckccugh3ft@skbuf>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,24 +74,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/04/2022 01:03, Bryan O'Donoghue wrote:
-> On 19/04/2022 20:27, Stephan Gerhold wrote:
->> tulip seems to have qcom,usbid-gpio = <&msm_gpio 110 0>; downstream.
->> Have you tried setting it up using linux,extcon-usb-gpio?
->> See e.g. msm8916-longcheer-l8910, it has a similar setup (it also uses
->> smb1360 for charging actually).
->>
->> The advantage is that you don't need the manual role switching using
->> "usb-role-switch", USB OTG adapters should be detected automatically.
+On Thu, May 26, 2022 at 03:32:16AM +0300, Vladimir Oltean wrote:
+> On Wed, May 25, 2022 at 03:57:50PM -0500, Rob Herring wrote:
+> > SPI peripheral device bindings need to reference spi-peripheral-props.yaml
+> > in order to use various SPI controller specific properties. Otherwise,
+> > the unevaluatedProperties check will reject any controller specific
+> > properties.
+> > 
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> >  Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml | 1 +
+> >  Documentation/devicetree/bindings/net/dsa/realtek.yaml       | 1 +
+> >  2 files changed, 2 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> > index 184152087b60..6bbd8145b6c1 100644
+> > --- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> > +++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> > @@ -12,6 +12,7 @@ maintainers:
+> >  
+> >  allOf:
+> >    - $ref: dsa.yaml#
+> > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> >  
+> >  properties:
+> >    # See Documentation/devicetree/bindings/net/dsa/dsa.yaml for a list of additional
+> > diff --git a/Documentation/devicetree/bindings/net/dsa/realtek.yaml b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
+> > index 99ee4b5b9346..4f99aff029dc 100644
+> > --- a/Documentation/devicetree/bindings/net/dsa/realtek.yaml
+> > +++ b/Documentation/devicetree/bindings/net/dsa/realtek.yaml
+> > @@ -108,6 +108,7 @@ if:
+> >      - reg
+> >  
+> >  then:
+> > +  $ref: /schemas/spi/spi-peripheral-props.yaml#
+> >    not:
+> >      required:
+> >        - mdc-gpios
+> > -- 
+> > 2.34.1
+> > 
 > 
-> My understanding is "no new extcon" - certainly as driver 
-> implementations I assume that also extends to dts..
+> Also needed by nxp,sja1105.yaml and the following from brcm,b53.yaml:
+> 	brcm,bcm5325
+> 	brcm,bcm5365
+> 	brcm,bcm5395
+> 	brcm,bcm5397
+> 	brcm,bcm5398
+> 	brcm,bcm53115
+> 	brcm,bcm53125
+> 	brcm,bcm53128
 
-I think, if the driver supports only extcon interface, you have to use 
-it (leaving aside a good nice option of rewriting qcom,ci-hdrc/ulpi to 
-also support USB role switching mechanisms).
+Okay. Looks like you missed bcm5389?
 
-
--- 
-With best wishes
-Dmitry
+Rob
