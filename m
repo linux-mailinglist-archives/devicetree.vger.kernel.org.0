@@ -2,62 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 899CA53485F
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 03:52:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CC63534863
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 03:53:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239112AbiEZBwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 21:52:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35982 "EHLO
+        id S245400AbiEZBxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 21:53:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235094AbiEZBwn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 21:52:43 -0400
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5A10A76E7;
-        Wed, 25 May 2022 18:52:42 -0700 (PDT)
-Received: by mail-ot1-f52.google.com with SMTP id h9-20020a056830400900b0060b03bfe792so127918ots.12;
-        Wed, 25 May 2022 18:52:42 -0700 (PDT)
+        with ESMTP id S235094AbiEZBxv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 21:53:51 -0400
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EA9EA76E9;
+        Wed, 25 May 2022 18:53:50 -0700 (PDT)
+Received: by mail-ot1-f53.google.com with SMTP id g13-20020a9d6b0d000000b0060b13026e0dso139225otp.8;
+        Wed, 25 May 2022 18:53:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=nIzC1T+B7FDF0YpbJTKwhnFmPynXYVhFmPj3hCsebHQ=;
-        b=GD+bJuXSxL7TFNzl4e67maAAGj0HA9HwFjAvln4BF7HKQLb2Lufbye3Oge8TxSJ2R/
-         tjBclEA1FR0Lxc6758C0kDx4F+p2QQbbTVBuFCF6Wxk2qasaSW2VS1VLjicuL+h0NF+I
-         4wdXLmNccDyAm6U9AGXPJjeKQbzdkEX5CeS5gmosq3xbr7WyA3/jraI/6mkuLPcIGK6B
-         UIowYjrCi3SZvwJ2mhjsfMeM6SrfDCB78POJnveC6Zm7Z/tQhpR3g6ARqy49genEOPIT
-         3qQpBz19DvjMPc1Pt1ToZmwWPcuWhHFlCtAYG9TxfH1y8yiOm+4dnPp/tyOwVjmHgWm9
-         e1KA==
-X-Gm-Message-State: AOAM531lbVeZ7cuS+yHdl0oaOELwukB0NCZaF8IXYwN0N+fIqnSPrDPa
-        qfx75buK96rTVd/SFyUvPg==
-X-Google-Smtp-Source: ABdhPJyGLVz2XIk37MGgjfeDK1wCmyQfKDhVcWU1Z8taSkD/ZTIqKmAE+ecAPywpSuZCqzBNd8ypNA==
-X-Received: by 2002:a05:6830:164d:b0:60b:3d2a:42de with SMTP id h13-20020a056830164d00b0060b3d2a42demr830293otr.373.1653529962148;
-        Wed, 25 May 2022 18:52:42 -0700 (PDT)
+        bh=m55NAQ/+DalgNWR3OXGbO7JhI+ga4RyvXmQjO8mq5mQ=;
+        b=rYL3y8yJdI9B6tpDipfQG8JtKDQDKmei/ngo2XHFXevlrqi64uSi6p4MVTmzV25kB4
+         370bkidqoAk+aM2Oj8p03+830TJNGWANQ1akF56ozlspNScemdlvO2s7pv5SV0kEevbj
+         uXBzmRhKwD60dL+XPwKwOdUAR+rpT/+J+s5EWn57nbvu8S1z3QCtgQtHdpa4WD44/oOz
+         Jm/bPpnxJI2BiZXuBnNRl5841vcvWKh0Yolo/EbGS7geSPEpLj/+lI57CMBfg1wUm7ge
+         Am9rX976PYnft4C7gSEpJyK4SOH//Ehifr4hBsDUt8YrHB52OtkNq2iRD7VmECVuRXP9
+         2x0w==
+X-Gm-Message-State: AOAM53077bXn4pyEWeZeutwSVBYvQ1HrgHLoFGNUlioBuGw8F1gfAcof
+        3SfYHoAANyNzclWMWmFrCw==
+X-Google-Smtp-Source: ABdhPJxUECrPKk1zVsVzwxw4o4izk5MQHkys50u0beDZYTdqa/G5za3LI8m4qnzvCPli/b7OAfXPcw==
+X-Received: by 2002:a9d:5506:0:b0:60b:1f4c:85b5 with SMTP id l6-20020a9d5506000000b0060b1f4c85b5mr5483048oth.174.1653530029455;
+        Wed, 25 May 2022 18:53:49 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id s3-20020a056808208300b0032ba39d8be6sm202565oiw.14.2022.05.25.18.52.40
+        by smtp.gmail.com with ESMTPSA id f18-20020a9d7b52000000b0060603221262sm117879oto.50.2022.05.25.18.53.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 May 2022 18:52:41 -0700 (PDT)
-Received: (nullmailer pid 2888797 invoked by uid 1000);
-        Thu, 26 May 2022 01:52:40 -0000
-Date:   Wed, 25 May 2022 20:52:40 -0500
+        Wed, 25 May 2022 18:53:48 -0700 (PDT)
+Received: (nullmailer pid 2890783 invoked by uid 1000);
+        Thu, 26 May 2022 01:53:47 -0000
+Date:   Wed, 25 May 2022 20:53:47 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Vaibhav Jain <vaibhav@linux.ibm.com>
-Cc:     linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        "Aneesh Kumar K . V" <aneesh.kumar@linux.ibm.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Prakhar Srivastava <prsriva@linux.microsoft.com>,
-        Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
-        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
-        Robin Murphy <robin.murphy@arm.com>
-Subject: Re: [PATCH v2] of: check previous kernel's ima-kexec-buffer against
- memory bounds
-Message-ID: <20220526015240.GA2884362-robh@kernel.org>
-References: <20220524055042.1527968-1-vaibhav@linux.ibm.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Jakub Kicinski <kuba@kernel.org>,
+        Michael Hennerich <michael.hennerich@analog.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Josua Mayer <josua@solid-run.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>,
+        Paolo Abeni <pabeni@redhat.com>, linux-kernel@vger.kernel.org,
+        "David S . Miller" <davem@davemloft.net>
+Subject: Re: [PATCH] dt-bindings: net: adin: Fix adi,phy-output-clock
+ description syntax
+Message-ID: <20220526015347.GA2890726-robh@kernel.org>
+References: <6fcef2665a6cd86a021509a84c5956ec2efd93ed.1653401420.git.geert+renesas@glider.be>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220524055042.1527968-1-vaibhav@linux.ibm.com>
+In-Reply-To: <6fcef2665a6cd86a021509a84c5956ec2efd93ed.1653401420.git.geert+renesas@glider.be>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -69,93 +70,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 24, 2022 at 11:20:42AM +0530, Vaibhav Jain wrote:
-> Presently ima_get_kexec_buffer() doesn't check if the previous kernel's
-> ima-kexec-buffer lies outside the addressable memory range. This can result
-> in a kernel panic if the new kernel is booted with 'mem=X' arg and the
-> ima-kexec-buffer was allocated beyond that range by the previous kernel.
-> The panic is usually of the form below:
+On Tue, 24 May 2022 16:11:53 +0200, Geert Uytterhoeven wrote:
+> "make dt_binding_check":
 > 
-> $ sudo kexec --initrd initrd vmlinux --append='mem=16G'
+>     Documentation/devicetree/bindings/net/adi,adin.yaml:40:77: [error] syntax error: mapping values are not allowed here (syntax)
 > 
-> <snip>
->  BUG: Unable to handle kernel data access on read at 0xc000c01fff7f0000
->  Faulting instruction address: 0xc000000000837974
->  Oops: Kernel access of bad area, sig: 11 [#1]
-> <snip>
->  NIP [c000000000837974] ima_restore_measurement_list+0x94/0x6c0
->  LR [c00000000083b55c] ima_load_kexec_buffer+0xac/0x160
->  Call Trace:
->  [c00000000371fa80] [c00000000083b55c] ima_load_kexec_buffer+0xac/0x160
->  [c00000000371fb00] [c0000000020512c4] ima_init+0x80/0x108
->  [c00000000371fb70] [c0000000020514dc] init_ima+0x4c/0x120
->  [c00000000371fbf0] [c000000000012240] do_one_initcall+0x60/0x2c0
->  [c00000000371fcc0] [c000000002004ad0] kernel_init_freeable+0x344/0x3ec
->  [c00000000371fda0] [c0000000000128a4] kernel_init+0x34/0x1b0
->  [c00000000371fe10] [c00000000000ce64] ret_from_kernel_thread+0x5c/0x64
->  Instruction dump:
->  f92100b8 f92100c0 90e10090 910100a0 4182050c 282a0017 3bc00000 40810330
->  7c0802a6 fb610198 7c9b2378 f80101d0 <a1240000> 2c090001 40820614 e9240010
->  ---[ end trace 0000000000000000 ]---
+> The first line of the description ends with a colon, hence the block
+> needs to be marked with a "|".
 > 
-> Fix this issue by checking returned PFN range of previous kernel's
-> ima-kexec-buffer with pfn_valid to ensure correct memory bounds.
-> 
-> Fixes: 467d27824920 ("powerpc: ima: get the kexec buffer passed by the previous kernel")
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Cc: Prakhar Srivastava <prsriva@linux.microsoft.com>
-> Cc: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-> Cc: Thiago Jung Bauermann <bauerman@linux.ibm.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Signed-off-by: Vaibhav Jain <vaibhav@linux.ibm.com>
-> 
+> Fixes: 1f77204e11f8b9e5 ("dt-bindings: net: adin: document phy clock output properties")
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
-> Changelog
-> ==========
+>  Documentation/devicetree/bindings/net/adi,adin.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> v2:
-> * Instead of using memblock to determine the valid bounds use pfn_valid() to do
-> so since memblock may not be available late after the kernel init. [ Mpe ]
-> * Changed the patch prefix from 'powerpc' to 'of' [ Mpe ]
-> * Updated the 'Fixes' tag to point to correct commit that introduced this
-> function. [ Rob ]
-> * Fixed some whitespace/tab issues in the patch description [ Rob ]
-> * Added another check for checking ig 'tmp_size' for ima-kexec-buffer is > 0
-> ---
->  drivers/of/kexec.c | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
-> 
-> diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
-> index 8d374cc552be..879e984fe901 100644
-> --- a/drivers/of/kexec.c
-> +++ b/drivers/of/kexec.c
-> @@ -126,6 +126,7 @@ int ima_get_kexec_buffer(void **addr, size_t *size)
->  {
->  	int ret, len;
->  	unsigned long tmp_addr;
-> +	unsigned int start_pfn, end_pfn;
->  	size_t tmp_size;
->  	const void *prop;
->  
-> @@ -140,6 +141,22 @@ int ima_get_kexec_buffer(void **addr, size_t *size)
->  	if (ret)
->  		return ret;
->  
-> +	/* Do some sanity on the returned size for the ima-kexec buffer */
-> +	if (!tmp_size)
-> +		return -ENOENT;
-> +
-> +	/*
-> +	 * Calculate the PFNs for the buffer and ensure
-> +	 * they are with in addressable memory.
-> +	 */
-> +	start_pfn = PHYS_PFN(tmp_addr);
-> +	end_pfn = PHYS_PFN(tmp_addr + tmp_size - 1);
-> +	if (!pfn_valid(start_pfn) || !pfn_valid(end_pfn)) {
 
-pfn_valid() isn't necessarily RAM, only that you have a struct page 
-AIUI. Maybe page_is_ram() instead?
-
-Thanks to Robin for this.
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
