@@ -2,55 +2,411 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCA5B534DDA
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 13:09:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7954534DE9
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 13:15:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343888AbiEZLJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 07:09:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39798 "EHLO
+        id S239441AbiEZLPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 07:15:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344568AbiEZLI7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 07:08:59 -0400
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74BE9C966F;
-        Thu, 26 May 2022 04:08:58 -0700 (PDT)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 339611C0B8F; Thu, 26 May 2022 13:08:57 +0200 (CEST)
-Date:   Thu, 26 May 2022 13:08:56 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] ARM: dts: qcom: msm8974: Add missing license headers
-Message-ID: <20220526110856.GF5138@localhost>
-References: <20220421211936.345168-1-luca@z3ntu.xyz>
- <20220421211936.345168-3-luca@z3ntu.xyz>
+        with ESMTP id S233141AbiEZLPj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 07:15:39 -0400
+X-Greylist: delayed 186 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 26 May 2022 04:15:37 PDT
+Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de [81.169.146.221])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66F0ACFE13
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 04:15:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1653563549;
+    s=strato-dkim-0002; d=innoroute.de;
+    h=Subject:From:To:Date:Message-ID:Cc:Date:From:Subject:Sender;
+    bh=kunrLiHENDfr3Fp0Naz/gY+w/hCab35cNDoMI7Pd4Os=;
+    b=Jv/uXvnEgRL7Y2wy/E57fuE4PIyVHHpS/ggDvI6ouyf1Q8l9uVTNx9QRbF+5b3lwfx
+    /2ypjLlHcGXQ4latz5gmNl/s8/182C2tTEJS34an2H9R0OySenr5c5cjtGrcYlx4V5oE
+    WgmRLAhmaq6/CQh8NhTRpOPcGDhxmKgC++qy8WvXs97aTd56YFkUtoXTolXPQKmfoDot
+    1uD3vqu4teYxryBTTD4hFqx9z035YKKzNdDb/qIZmdOgvaM7ph0kh7IhoS8O2gE/XJ74
+    AQLqTlN5+4/7HfaKp2bBzbONb60t/VY/ZIb4Lnx3qXaQJ1xkP0vrLbt5CBZeCc6nL1gx
+    08sA==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":OWAGZ0mrc+tzeBOzIxBr1G7s8b1PjEKOzk3CqnAapHd+NkODJb4neJkaR8hVrvzXeIpZlNY69pc="
+X-RZG-CLASS-ID: mo00
+Received: from [192.168.1.240]
+    by smtp.strato.de (RZmta 47.45.0 DYNA|AUTH)
+    with ESMTPSA id y05afby4QBCSPHz
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate)
+    for <devicetree@vger.kernel.org>;
+    Thu, 26 May 2022 13:12:28 +0200 (CEST)
+Message-ID: <dcff1f1f-dfe8-a873-e07d-ff100c50822f@innoroute.de>
+Date:   Thu, 26 May 2022 13:12:28 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220421211936.345168-3-luca@z3ntu.xyz>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Content-Language: de-DE
+To:     devicetree@vger.kernel.org
+From:   Marian Ulbricht <ulbricht@innoroute.de>
+Subject: [PATCH v1 1/1] add support for mws4 board
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+From: "Ulbricht, Marian" <ulbricht@innoroute.de>
+Date: Thu, 26 May 2022 12:42:21 +0200
+Subject: [PATCH v1 1/1] add support for mws4 board
 
-> All other msm8974 dts files are licensed as GPL-2.0 so add the same
-> header to the files where it's missing.
-> 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+mws4 is an arm based nuclear probe hardware used from
+german government to monitor nuclear activity
 
-Normally, dts files are dual-licensed. Can that be arranged here?
+Signed-off-by: Ulbricht, Marian <ulbricht@innoroute.de>
+---
 
-	      	    		       	   	   	    Pavel
+Changes in v1:
+* add dts
+
+  arch/arm/boot/dts/omap3-mws4.dts | 297 +++++++++++++++++++++++++++++++
+  1 file changed, 297 insertions(+)
+  create mode 100644 arch/arm/boot/dts/omap3-mws4.dts
+
+diff --git a/arch/arm/boot/dts/omap3-mws4.dts 
+b/arch/arm/boot/dts/omap3-mws4.dts
+new file mode 100644
+index 000000000000..a3489d4af2cc
+--- /dev/null
++++ b/arch/arm/boot/dts/omap3-mws4.dts
+@@ -0,0 +1,297 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Copyright (C) 2011 Texas Instruments Incorporated - http://www.ti.com/
++ *
++ * Modified 2015 by Bernhard Gätzschmann, Ultratronik from Beagleboard xM
++ *
++ * Modified 2022 Marian Ulbricht ulbricht@innoroute.de
++ *
++ * This program is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License version 2 as
++ * published by the Free Software Foundation.
++ */
++/dts-v1/;
++#include "omap36xx.dtsi"
++/ {
++    model = "Ultratronik BFS MWS4";
++    compatible = "ti,omap3-mmi4", "ti,omap36xx", "ti,omap3";
++    cpus {
++            cpu@0 {
++                cpu0-supply = <&vcc>;
++            };
++        };
++    memory {
++        device_type = "memory";
++        reg = <0x80000000 0x10000000>; // 256 MB
++    };
++    aliases {
++        i2c0 = &i2c1;
++        i2c1 = &i2c2;
++        i2c2 = &i2c3;
++        serial0 = &uart1;
++        serial1 = &uart2;
++        serial2 = &uart3;
++        mmc1 = &mmc1;
++    };
++    netcard: AX88796BLI@ffdf0000 {
++        compatible = "ax88796_dt";
++        reg = <0xffdf0000 0x1000> ;
++
++};
++
++    watchdog_max: watchdog {
++        compatible = "linux,wdt-gpio";
++        gpios = <&gpio4 21 1>; //117
++        hw_algo = "toggle";
++        always-running;
++        hw_margin_ms = <900>;
++    };
++    hsusb1_phy: hsusb1_phy {
++        status = "disabled";
++    };
++
++    /* HS USB Host PHY on PORT 2 */
++    hsusb2_phy: hsusb2_phy {
++        status = "disabled";
++    };
++    /* fixed 19.2MHz oscillator */
++    hfclk_19m2: oscillator {
++        #clock-cells = <0>;
++        compatible = "fixed-clock";
++        clock-frequency = <19200000>;
++    };
++leds {
++        compatible = "gpio-leds";
++        pinctrl-names = "default";
++        pinctrl-0 = <&led_pins>;
++        led_sm {
++            label = "led_sm";
++            gpios = <&gpio4 5 GPIO_ACTIVE_HIGH>; /* 101 */
++            default-state = "on";
++        };
++        led1 {
++            label = "led1";
++            gpios = <&gpio4 6 GPIO_ACTIVE_HIGH>; /* 102 */
++            linux,default-trigger = "cpu";
++        };
++        led2 {
++            label = "led2";
++            gpios = <&gpio4 7 GPIO_ACTIVE_HIGH>; /* 103 */
++            linux,default-trigger = "mmc0";
++        };
++        led3 {
++            label = "led3";
++            gpios = <&gpio4 8 GPIO_ACTIVE_HIGH>; /* 104 */
++            linux,default-trigger = "usb-host";
++        };
++        led_usb {
++            label = "led_usb";
++            gpios = <&gpio4 14 GPIO_ACTIVE_HIGH>; /* 110 */
++            default-state = "on";
++        };
++    };
++};
++&gpmc {
++    ranges = <0 0 0x30000000 0x1000000    /* CS0 space, 16MB */
++          255 0 0x6e000000 0x02d4>;    /* register space */
++
++    /* Chip select 0 */
++    nand@0,0 {
++        compatible = "ti,omap2-nand";
++        reg = <0 0 4        /* NAND I/O window, 4 bytes */
++               255 0 0x02d4>;    /* GPMC register space */
++        interrupts = <20>;
++        ti,nand-ecc-opt = "bch4";
++        nand-bus-width = <16>;
++        #address-cells = <1>;
++        #size-cells = <1>;
++
++        gpmc,cs-on-ns = <0>;
++        gpmc,cs-rd-off-ns = <36>;
++        gpmc,cs-wr-off-ns = <36>;
++        gpmc,adv-on-ns = <6>;
++        gpmc,adv-rd-off-ns = <24>;
++        gpmc,adv-wr-off-ns = <36>;
++        gpmc,oe-on-ns = <6>;
++        gpmc,oe-off-ns = <48>;
++        gpmc,we-on-ns = <6>;
++        gpmc,we-off-ns = <30>;
++        gpmc,rd-cycle-ns = <72>;
++        gpmc,wr-cycle-ns = <72>;
++        gpmc,access-ns = <54>;
++        gpmc,wr-access-ns = <30>;
++
++        partition@0 {
++            label = "X-Loader";
++            reg = <0 0x40000>;
++        };
++        partition@40000 {
++            label = "U-Boot";
++            reg = <0x40000 0x100000>;
++        };
++        partition@100000 {
++            label = "U-Boot Env";
++            reg = <0x100000 0x120000>;
++        };
++        partition@120000 {
++            label = "dt";
++            reg = <0x120000 0x140000>;
++        };
++        partition@140000 {
++            label = "Kernel";
++            reg = <0x140000 0xB40000>;
++        };
++        partition@B40000 {
++            label = "Filesystem";
++            reg = <0xB40000 0xf4c0000>;
++        };
++    };
++};
++&usbhshost {
++    status = "disabled";
++};
++&omap3_pmx_core {
++        mmc1_pins: pinmux_mmc1_pins {
++        pinctrl-single,pins = <
++            OMAP3_CORE1_IOPAD(0x2144, PIN_INPUT_PULLUP | MUX_MODE0)    
+/* sdmmc1_clk.sdmmc1_clk */
++            OMAP3_CORE1_IOPAD(0x2146, PIN_INPUT_PULLUP | MUX_MODE0)    
+/* sdmmc1_cmd.sdmmc1_cmd */
++            OMAP3_CORE1_IOPAD(0x2148, PIN_INPUT_PULLUP | MUX_MODE0)    
+/* sdmmc1_dat0.sdmmc1_dat0 */
++            OMAP3_CORE1_IOPAD(0x214a, PIN_INPUT_PULLUP | MUX_MODE0)    
+/* sdmmc1_dat1.sdmmc1_dat1 */
++            OMAP3_CORE1_IOPAD(0x214c, PIN_INPUT_PULLUP | MUX_MODE0)    
+/* sdmmc1_dat2.sdmmc1_dat2 */
++            OMAP3_CORE1_IOPAD(0x214e, PIN_INPUT_PULLUP | MUX_MODE0)    
+/* sdmmc1_dat3.sdmmc1_dat3 */
++        >;
++    };
++    wd_pins: pinmux_wd_pins {
++        pinctrl-single,pins = <
++            OMAP3_CORE1_IOPAD(0x213e, PIN_OUTPUT | MUX_MODE4)    // 
+CONTROL_PADCONF_MCBSP2_CLKX    0x013E
++        >;
++    };
++    i2c1_pins: pinmux_i2c1_pins {
++        pinctrl-single,pins = <
++            OMAP3_CORE1_IOPAD(0x21ba, PIN_INPUT_PULLUP | MUX_MODE0)    
+/* i2c1_scl */
++            OMAP3_CORE1_IOPAD(0x21bc, PIN_INPUT_PULLUP | MUX_MODE0)    
+/* i2c1_sda */
++        >;
++    };
++    hsusb0_pins: pinmux_hsusb0_pins {
++        pinctrl-single,pins = <
++            OMAP3_CORE1_IOPAD(0x21a2, PIN_INPUT_PULLDOWN | 
+MUX_MODE0)        /* hsusb0_clk.hsusb0_clk */
++            OMAP3_CORE1_IOPAD(0x21a4, PIN_OUTPUT | MUX_MODE0)     /* 
+hsusb0_stp.hsusb0_stp */
++            OMAP3_CORE1_IOPAD(0x21a6, PIN_INPUT_PULLDOWN | 
+MUX_MODE0)    /* hsusb0_dir.hsusb0_dir */
++            OMAP3_CORE1_IOPAD(0x21a8, PIN_INPUT_PULLDOWN | 
+MUX_MODE0)    /* hsusb0_nxt.hsusb0_nxt */
++            OMAP3_CORE1_IOPAD(0x21aa, PIN_INPUT_PULLDOWN | 
+MUX_MODE0)    /* hsusb0_data0.hsusb2_data0 */
++            OMAP3_CORE1_IOPAD(0x21ac, PIN_INPUT_PULLDOWN | 
+MUX_MODE0)    /* hsusb0_data1.hsusb0_data1 */
++            OMAP3_CORE1_IOPAD(0x21ae, PIN_INPUT_PULLDOWN | 
+MUX_MODE0)    /* hsusb0_data2.hsusb0_data2 */
++            OMAP3_CORE1_IOPAD(0x21b0, PIN_INPUT_PULLDOWN | 
+MUX_MODE0)    /* hsusb0_data7.hsusb0_data3 */
++            OMAP3_CORE1_IOPAD(0x21b2, PIN_INPUT_PULLDOWN | 
+MUX_MODE0)    /* hsusb0_data7.hsusb0_data4 */
++            OMAP3_CORE1_IOPAD(0x21b4, PIN_INPUT_PULLDOWN | 
+MUX_MODE0)    /* hsusb0_data7.hsusb0_data5 */
++            OMAP3_CORE1_IOPAD(0x21b6, PIN_INPUT_PULLDOWN | 
+MUX_MODE0)    /* hsusb0_data7.hsusb0_data6 */
++            OMAP3_CORE1_IOPAD(0x21b8, PIN_INPUT_PULLDOWN | 
+MUX_MODE0)    /* hsusb0_data7.hsusb0_data7 */
++        >;
++    };
++    led_pins: pinmux_led_pins {
++        pinctrl-single,pins = <
++            OMAP3_CORE1_IOPAD(0x211a, PIN_OUTPUT | MUX_MODE4)    /* 
+gpio101*/
++            OMAP3_CORE1_IOPAD(0x211c, PIN_OUTPUT | MUX_MODE4)    /* 
+gpio102*/
++            OMAP3_CORE1_IOPAD(0x211e, PIN_OUTPUT | MUX_MODE4)    /* 
+gpio103 */
++            OMAP3_CORE1_IOPAD(0x2120, PIN_OUTPUT | MUX_MODE4)    /* 
+gpio103 */
++        >;
++    };
++        gpio_pins: pinmux_gpio_pins {
++        pinctrl-single,pins = <
++            OMAP3_CORE1_IOPAD(0x2122, PIN_INPUT | MUX_MODE4)    /* 
+gpio105 spontanmeldung*/
++            OMAP3_CORE1_IOPAD(0x212c, PIN_OUTPUT | MUX_MODE4)    /* 
+gpio110 usb2_en*/
++            OMAP3_CORE1_IOPAD(0x218C, PIN_OUTPUT | MUX_MODE4)    /* GPO0*/
++            OMAP3_CORE1_IOPAD(0x218E, PIN_OUTPUT | MUX_MODE4)    /* GPO1*/
++            OMAP3_CORE1_IOPAD(0x2190, PIN_OUTPUT | MUX_MODE4)    /* GPO2*/
++            OMAP3_CORE1_IOPAD(0x2192, PIN_OUTPUT | MUX_MODE4)    /* GPO3*/
++            OMAP3_CORE1_IOPAD(0x2194, PIN_OUTPUT | MUX_MODE4)    /* GPO4*/
++            OMAP3_CORE1_IOPAD(0x2196, PIN_OUTPUT | MUX_MODE4)    /* GPO5*/
++            OMAP3_CORE1_IOPAD(0x2198, PIN_OUTPUT | MUX_MODE4)    /* GPO6*/
++            OMAP3_CORE1_IOPAD(0x2116, PIN_INPUT | MUX_MODE4) //IN1
++            OMAP3_CORE1_IOPAD(0x2118, PIN_INPUT | MUX_MODE4) //IN2
++            OMAP3_CORE1_IOPAD(0x2124, PIN_INPUT | MUX_MODE4) //IN3
++            OMAP3_CORE1_IOPAD(0x2126, PIN_INPUT | MUX_MODE4) //IN4
++            OMAP3_CORE1_IOPAD(0x2128, PIN_INPUT | MUX_MODE4) //IN5
++            OMAP3_CORE1_IOPAD(0x25F4, PIN_OUTPUT | MUX_MODE4)    /* 
+RES_RS232*/
++            OMAP3_CORE1_IOPAD(0x25F6, PIN_OUTPUT | MUX_MODE4)    /* 
+HUB_RESET*/
++
++        >;
++    };
++};
++&i2c1 {
++    pinctrl-names = "default";
++    pinctrl-0 = <&i2c1_pins>;
++
++    clock-frequency = <100000>;
++    twl: twl@48 {
++        reg = <0x48>;
++        interrupts = <7>; /* SYS_NIRQ cascaded to intc */
++        interrupt-parent = <&intc>;
++        clocks = <&hfclk_19m2>;
++        clock-names = "fck";
++        twl_power: power {
++            compatible = "ti,twl4030-power";
++            ti,system-power-controller;
++        };
++    };
++};
++&i2c2 {
++    clock-frequency = <100000>;
++    rtc8564: rtc8564@51 {
++        compatible = "epson,rtc8564";
++        reg = <0x51>;
++        #clock-cells = <0>;
++    };
++};
++&i2c3 {
++    clock-frequency = <100000>;
++};
++#include "twl4030.dtsi"
++#include "twl4030_omap3.dtsi"
++&mmc1 {
++    vmmc-supply = <&vmmc1>;
++    vqmmc-supply = <&vsim>;
++    bus-width = <4>;
++};
++&mmc2 {
++    status = "disabled";
++};
++
++&mmc3 {
++    status = "disabled";
++};
++&uart1 {
++    pinctrl-names = "default";
++};
++&uart2 {
++    pinctrl-names = "default";
++};
++&uart3 {
++    pinctrl-names = "default";
++};
++&usb_otg_hs {
++    pinctrl-names = "default";
++    pinctrl-0 = <&hsusb0_pins>;
++    num-eps = <16>;
++    ram-bits = <12>;
++    interface-type = <0>;
++    usb-phy = <&usb2_phy>;
++    phys = <&usb2_phy>;
++    phy-names = "usb2-phy";
++    mode = <1>;
++    power = <500>;
++};
++
++&iva {
++    status = "disabled";
++};
++
++&sgx_module {
++    status = "disabled";
++};
++&vaux2 {
++    regulator-name = "usb_1v8";
++    regulator-min-microvolt = <1800000>;
++    regulator-max-microvolt = <1800000>;
++    regulator-always-on;
++};
+-- 
+2.25.1
+
