@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB9155354D6
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 22:45:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B68945354D3
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 22:45:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349065AbiEZUoH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 16:44:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56750 "EHLO
+        id S1348669AbiEZUoP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 16:44:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348990AbiEZUnt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 16:43:49 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28C1BE7306
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:43:28 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id jx22so5049159ejb.12
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:43:28 -0700 (PDT)
+        with ESMTP id S1348995AbiEZUnu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 16:43:50 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28C71E7307
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:43:33 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id gi33so5174504ejc.3
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:43:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=61SDdlI/WkCqCxMIXxDin340q/9pKul5ClTEVboRWS4=;
-        b=ENxKB7k1c/ZGV4wSMizWGUYlXla7EY+KcuTEWIdR4K3LqZXQNQYCdPdonJkglV3hni
-         9Y9kgwkJSPSwkTAwvdtAYawWKgGEZnPBOW3Lu5j4/bG2vLZYFrhxFVJJARdMJMA8kcs8
-         cKt/5reimCGAyjs8yUHgL5EWYvrGMfoDXtxR7KlpfvL1yUB6/byAGfAPRex8yGb+W4RY
-         6m0Yv5E+5x/z7E8Cwyn98M57knnt24VrXeFDtN9UguY32VPeWSSgBCqDlHx1nBTqnpZG
-         UBZOo//HLzdznGWHwe0MRS9o3yOTZHX8A66UM8RsafOue75TDum//Ia5dWPOmyLs8Gdf
-         Q1Mw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=2HbAAEhEhYPigEy5cs4rYAx85JfdiA+8XIt4PraJMOg=;
+        b=P8tHOTyqEAgQlFw7egTJOe550Ta1tvdTEeiO1gEXgm9y8ZrqrdORGg3oswlcUyeTxI
+         y0X7KCXz8A+r1De3ccJvte6lWbPYsnPT2De6GGVA6BdU6J0NpcYI7EvZ1uAErnA9yAYv
+         6PYxVjPcoEHdTEqyTlXdD24RfKWavrpPF5HGfI25elFrNM3eMJRYgzeAY3+62dVcOoMv
+         Rxns0jt1hPUxLIhlkU+SvCQFx+hqLvWuKwpBI9A+bVCk9MKMDkHejJ+uJCW0uL6tMhDB
+         QmlySI77keo7egiGDOxnPa+cjID7uS7PZ3aafB6Z4yUmnCGFWbIE1POak6dMl3Yj+9Ak
+         lyEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=61SDdlI/WkCqCxMIXxDin340q/9pKul5ClTEVboRWS4=;
-        b=DsIRkudfobrjfS65qCL6hpwNMuty/v+rbCJvP6iGrOSq2GSLxfiYdqNxB9Jwtr1+uA
-         vGijSGwy6yqnipszIx8mjjSse8BE8YFriOBq+3C90I/JgdfGQJofONndO0tYKc8eOpLq
-         Gtvv5LWEcQYqRs8pT2km6UdlwoyNDN3exVCkxs+btAuagj6k4IPcj2Mh08Fhpqsg8nZ0
-         IL5rPhJS/cRSUjM+dclV8BL8dZlu4sxoG8YPtWTctGcl9ktvBv3SModt7k1E+1BKSvBJ
-         zNavote5NpKiw0qNgOeKGa4vnd1u2BzbCmBwW8gQWYzOw4ukY6o2usJ85xsRS0VLqprT
-         iU+g==
-X-Gm-Message-State: AOAM532CESUo7bvz98o9+2tsMv4B0mDomq22dkIiTRHqoOdX1pR/vfDh
-        fi9GusxvwQvMGND3WBM0hisT2Q==
-X-Google-Smtp-Source: ABdhPJxBYTEfl97pyUDWNEiYeiRo028m5NzT74n56sjtRyphUKYAKiajTWdqTYhQWx0qOFaqYwwvEQ==
-X-Received: by 2002:a17:906:cb97:b0:6fe:ec71:a49 with SMTP id mf23-20020a170906cb9700b006feec710a49mr19773575ejb.540.1653597807380;
-        Thu, 26 May 2022 13:43:27 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=2HbAAEhEhYPigEy5cs4rYAx85JfdiA+8XIt4PraJMOg=;
+        b=VILYhlCAbYxgtXnCScfy/0R/ec563APig+/PQR+btNkPGV1GqcXXFBFPeC+8n8p1rJ
+         vVRFjr/z9be2uUPncUdVkpTFbO5eFuuHRGTMPrpmrOdd5MOU0z5JhKI03WuJU+30fCK6
+         d71DPHiIgWszKBxyYifY5mU9z1LdQdYLvAVTIJbz6E6K445A898hj2djQK/ulP5+vU1/
+         YxgdiigDxou49ApTvHt1Yy0AZCWMiO99q/gz1KgDBkxQYY/2TwY4+vpDN8c2OSvzGk8H
+         ltpYuyxfmrfDvnr6Gnu83VaN0fqEJadYuG0EzIPbdZQMt6vhZEuinA1smY9c634EQ2X5
+         /NSQ==
+X-Gm-Message-State: AOAM5321ytXtq3/9IKrhWYPPbbzZ7Lc2MHiBpVE7fbflieLSGqjNdpcD
+        KTAjCc9Sa/TdhmFxDmAs6lq2Kg==
+X-Google-Smtp-Source: ABdhPJxHCgn2QBJAFPGldWA5KZJv7wyYzN6zUcA8bMbI7GXutPNmSdMxYiVHIutNpQV32tf5lqpFFA==
+X-Received: by 2002:a17:906:a383:b0:6f5:132c:1a14 with SMTP id k3-20020a170906a38300b006f5132c1a14mr35985269ejz.21.1653597812346;
+        Thu, 26 May 2022 13:43:32 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id y11-20020a170906070b00b006fec28bd09fsm816846ejb.22.2022.05.26.13.43.26
+        by smtp.gmail.com with ESMTPSA id y11-20020a170906070b00b006fec28bd09fsm816846ejb.22.2022.05.26.13.43.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 May 2022 13:43:26 -0700 (PDT)
+        Thu, 26 May 2022 13:43:31 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -54,10 +54,12 @@ To:     Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 1/2] arm64: dts: exynos: adjust whitespace around '='
-Date:   Thu, 26 May 2022 22:43:22 +0200
-Message-Id: <20220526204323.832243-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/2] ARM: dts: exynos: adjust whitespace around '='
+Date:   Thu, 26 May 2022 22:43:23 +0200
+Message-Id: <20220526204323.832243-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220526204323.832243-1-krzysztof.kozlowski@linaro.org>
+References: <20220526204323.832243-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,22 +82,64 @@ Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Output compared with dtx_diff and fdtdump.
 ---
- arch/arm64/boot/dts/exynos/exynosautov9.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/exynos3250-artik5.dtsi    | 2 +-
+ arch/arm/boot/dts/exynos4210-trats.dts      | 2 +-
+ arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi | 2 +-
+ arch/arm/boot/dts/exynos5.dtsi              | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-index 0ce46ec5cdc3..5827e1228fa9 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-@@ -364,7 +364,7 @@ ufs_0_phy: ufs0-phy@17e04000 {
- 		};
+diff --git a/arch/arm/boot/dts/exynos3250-artik5.dtsi b/arch/arm/boot/dts/exynos3250-artik5.dtsi
+index 7b429622a288..0ac3f284fbb8 100644
+--- a/arch/arm/boot/dts/exynos3250-artik5.dtsi
++++ b/arch/arm/boot/dts/exynos3250-artik5.dtsi
+@@ -357,7 +357,7 @@ &mshc_1 {
  
- 		ufs_0: ufs0@17e00000 {
--			compatible ="samsung,exynosautov9-ufs";
-+			compatible = "samsung,exynosautov9-ufs";
- 
- 			reg = <0x17e00000 0x100>,  /* 0: HCI standard */
- 				<0x17e01100 0x410>,  /* 1: Vendor-specific */
+ &pinctrl_1 {
+ 	bten: bten-pins {
+-		samsung,pins ="gpx1-7";
++		samsung,pins = "gpx1-7";
+ 		samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;
+ 		samsung,pin-pud = <EXYNOS_PIN_PULL_DOWN>;
+ 		samsung,pin-con-pdn = <EXYNOS_PIN_PDN_PREV>;
+diff --git a/arch/arm/boot/dts/exynos4210-trats.dts b/arch/arm/boot/dts/exynos4210-trats.dts
+index 01f44d95f671..b8e9dd23fc51 100644
+--- a/arch/arm/boot/dts/exynos4210-trats.dts
++++ b/arch/arm/boot/dts/exynos4210-trats.dts
+@@ -180,7 +180,7 @@ panel@0 {
+ 		vdd3-supply = <&vcclcd_reg>;
+ 		vci-supply = <&vlcd_reg>;
+ 		reset-gpios = <&gpy4 5 GPIO_ACTIVE_HIGH>;
+-		power-on-delay= <50>;
++		power-on-delay = <50>;
+ 		reset-delay = <100>;
+ 		init-delay = <100>;
+ 		flip-horizontal;
+diff --git a/arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi b/arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi
+index 03dffc690b79..aa7de6de8e19 100644
+--- a/arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi
++++ b/arch/arm/boot/dts/exynos4412-galaxy-s3.dtsi
+@@ -107,7 +107,7 @@ panel@0 {
+ 		vdd3-supply = <&lcd_vdd3_reg>;
+ 		vci-supply = <&ldo25_reg>;
+ 		reset-gpios = <&gpf2 1 GPIO_ACTIVE_HIGH>;
+-		power-on-delay= <50>;
++		power-on-delay = <50>;
+ 		reset-delay = <100>;
+ 		init-delay = <100>;
+ 		flip-horizontal;
+diff --git a/arch/arm/boot/dts/exynos5.dtsi b/arch/arm/boot/dts/exynos5.dtsi
+index 9ce9fb3fc190..c8da0d4b1b33 100644
+--- a/arch/arm/boot/dts/exynos5.dtsi
++++ b/arch/arm/boot/dts/exynos5.dtsi
+@@ -89,7 +89,7 @@ gic: interrupt-controller@10481000 {
+ 			compatible = "arm,gic-400", "arm,cortex-a15-gic";
+ 			#interrupt-cells = <3>;
+ 			interrupt-controller;
+-			reg =	<0x10481000 0x1000>,
++			reg = <0x10481000 0x1000>,
+ 				<0x10482000 0x2000>,
+ 				<0x10484000 0x2000>,
+ 				<0x10486000 0x2000>;
 -- 
 2.34.1
 
