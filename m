@@ -2,79 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89928535558
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 23:10:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57B6253555B
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 23:12:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345109AbiEZVKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 17:10:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44004 "EHLO
+        id S1347163AbiEZVMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 17:12:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236259AbiEZVKr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 17:10:47 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA80BA8892
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 14:10:44 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id m20so5167231ejj.10
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 14:10:44 -0700 (PDT)
+        with ESMTP id S238132AbiEZVMx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 17:12:53 -0400
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0A27580E3
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 14:12:50 -0700 (PDT)
+Received: by mail-lj1-x241.google.com with SMTP id u7so3012045ljd.11
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 14:12:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=n5ISJ9yLZ548Mz4jCd/68AcqRvOzgjUn9wXGD+ASjI4=;
-        b=lZVmHfF6LYBzFMaqjGMVB2ZPV+hPOKUic6CjH+XhRrRzKSyO43nCBJPvX05Nyk6k4Z
-         OdiUk/r7NaOsPqwT9VJG3jgoNjCBThtKaCQuyOkBv8Vi7eqN0eoTgN9ncK6bkGZcKeyC
-         bsoL/H3dLQIWCQfPyEHsnzG4UGGThjGdhCyn9djsqxIL8GWoLBr5U+0C9TU5YJvtn2XJ
-         niDhVthqOEERTZoQjUTgCkyEYs2WmQ8uU8pSswjn9UeW6Xd7qvg567LHcltuktw5tImZ
-         798/3PEQm5cQFgmBuj4ndBuBAp8jRAjdcvNVCUmzJiRqnvefQy1rm3HsUyR8/7BdpDhv
-         oKmw==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=e5hOXIzlhiwwCk7tfvy3AEbwir/duD3JObyJ/KABOIY=;
+        b=QB1NbkhDt0yY9zu9xv6UVgLlzNiSG7BzcLzX9ngtmkYPWvCH8CO7baHkIFWY0KSpO0
+         33+TbWWFVFVc8DzK186AuIv6M0BERPewdA2mJAIrzCdj4hE8TQiG+ot0RslaA0k0bs/d
+         FvXZmI6ADo2rL66SMZazIKHcIOktfEIjlQW5WH8prYR7aHqhFuZFRwB0lO3D58dqjwxJ
+         4GOXAs/cuNHj9ae9h+Ff/QT5mgofHDXCeNum8DOU6VNYPiim3/TfH5pwaBpxNsrGtmnZ
+         M8yN0+v6faUgsDkSlEVHnhsX/E4h+pvb8XWgt/HIfvNUU72Md0RDl9wfSw6Wvhooc2dq
+         BNeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=n5ISJ9yLZ548Mz4jCd/68AcqRvOzgjUn9wXGD+ASjI4=;
-        b=VR4ExCG74e1rxwW/ji6Wwu8W4ByKUOBf6b8N/r8zT4aqQfY8eztS4EnhXzYW2OqoDo
-         0MDB5JSPUzLGf8c51St1LVACP06i0b6aNx8mWERhG+Rw58+S7X6TgdjkAQSOfPREZ3oS
-         40DsKYbFsKhCUY//iFrP2cgSJOSoEKS3eVF2Z6blZ2jkwLlSQl0YJ+XLIY+ytUiAMDdo
-         tM1DKvHhuPAg4gly2ut1Hy9vQutVFn33Fy8Off1M4lWnwMMoUns9Wzxd2Wbc1uR0VFNR
-         lRvdI4fzTolhW5oqKP557ej5Lv+BjclJK3PZGyJy41E0dirEYpgtgqWcjX75RGnB5fkC
-         Eeyw==
-X-Gm-Message-State: AOAM533SfAAljAr5YRMe2cQ3fbBwfNndJAUEHcPQknMnuRYHU8JaN+4J
-        OAmYKTBJTsOkfPknuzWnOYTiFw==
-X-Google-Smtp-Source: ABdhPJzH2AYsc87sKJTEJvKhEp90igqSe7vZ4SuRlgUhjJrY2/j5+u/fAOVedF+0min99G5EjJX2IA==
-X-Received: by 2002:a17:906:6985:b0:6fe:988b:d248 with SMTP id i5-20020a170906698500b006fe988bd248mr34031598ejr.226.1653599443354;
-        Thu, 26 May 2022 14:10:43 -0700 (PDT)
-Received: from [192.168.0.177] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id s23-20020a1709064d9700b006fe8b3d8cb6sm851155eju.62.2022.05.26.14.10.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 May 2022 14:10:42 -0700 (PDT)
-Message-ID: <9ad3b26e-5d71-72f4-1a16-9ab3164141de@linaro.org>
-Date:   Thu, 26 May 2022 23:10:41 +0200
+        bh=e5hOXIzlhiwwCk7tfvy3AEbwir/duD3JObyJ/KABOIY=;
+        b=QHKG7AhAuOwezGOyfbW9sMFOGZKSy36brrXSRpbbVNweEgaoAMET5ULbAd1zBtGN2/
+         czHef1Vx6Fa4BG7jwVXUbsb95J0oscsxaG7iPfG8qbaqUK3holWkl+2qTg6bqhhJaJxf
+         OSw1iW3GYSYfDVc+bYJf381PFsp8WNzSu15qZsupYf2S095RCXgBJHiaICLxngz5EVCc
+         taZB2vmoMTvQGODZCa2byaUj6F1INmGA06xqVYJDJ/RcJIsSs4dZJTWTHBfCd5pEphMf
+         0OO59TTeq57W/8sg25jleQ2K/RMgu79qLLVLggpPeIfV2hs/ftOGZRjtLTAB72s23m31
+         FDEQ==
+X-Gm-Message-State: AOAM530MbkTpRofxhX53G4jUCPL+wc+Wch5PbeXH1TkfV3IdmhLKMf/4
+        RAHdv+JXQ4C5x6xHqrfelcUvhw==
+X-Google-Smtp-Source: ABdhPJzI8Mvtsy5umM58n/IUF+Er9MY5uO6i5lCnHr2Yk2lvQGYJFKQ6WHyNm+31xTIADA6Oxxw6fA==
+X-Received: by 2002:a2e:82c5:0:b0:247:e81f:8b02 with SMTP id n5-20020a2e82c5000000b00247e81f8b02mr23197207ljh.90.1653599568929;
+        Thu, 26 May 2022 14:12:48 -0700 (PDT)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id t2-20020a2e8e62000000b0024f3d1dae7esm651286ljk.6.2022.05.26.14.12.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 May 2022 14:12:48 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Wolfram Sang <wsa@kernel.org>, linux-i2c@vger.kernel.org
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: i2c: Rewrite Nomadik I2C bindings in YAML
+Date:   Thu, 26 May 2022 23:10:46 +0200
+Message-Id: <20220526211046.367938-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] arm64: dts: renesas: adjust whitespace around '='
-Content-Language: en-US
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        arm-soc <arm@kernel.org>, arm-soc <soc@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20220526204231.832090-1-krzysztof.kozlowski@linaro.org>
- <CAMuHMdWvfbbB3578aFAx6twdKNCkB1T-Uihf3OzGLHmcZG047g@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAMuHMdWvfbbB3578aFAx6twdKNCkB1T-Uihf3OzGLHmcZG047g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,85 +67,183 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/05/2022 23:05, Geert Uytterhoeven wrote:
-> Hi Krzysztof,
-> 
-> On Thu, May 26, 2022 at 10:42 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->> Fix whitespace coding style: use single space instead of tabs or
->> multiple spaces around '=' sign in property assignment.  No functional
->> changes (same DTB).
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Thanks for your patch!
-> 
->> --- a/arch/arm64/boot/dts/renesas/draak.dtsi
->> +++ b/arch/arm64/boot/dts/renesas/draak.dtsi
->> @@ -630,7 +630,7 @@ rsnd_for_ak4613: endpoint {
->>                                 bitclock-master = <&rsnd_for_ak4613>;
->>                                 frame-master = <&rsnd_for_ak4613>;
->>                                 playback = <&ssi3>, <&src5>, <&dvc0>;
->> -                               capture  = <&ssi4>, <&src6>, <&dvc1>;
->> +                               capture = <&ssi4>, <&src6>, <&dvc1>;
-> 
-> I think the idea was to align the playback and capture properties,
-> for easier comparison.
-> Hence I'm a bit undecided if this needs to be fixed or not...
+This rewrites the Nomadik I2C bindings in YAML, some extra
+tweaks were needed because of the way the original nomadik
+names the compatible with two compatibles and the DB8500
+with three, and the two main variants use a different clock
+name.
 
-yeah, but then one should align "frame-master" to "bitclock-master" and
-several other properties.
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ .../devicetree/bindings/i2c/i2c-nomadik.txt   |  23 ----
+ .../bindings/i2c/st,nomadik-i2c.yaml          | 113 ++++++++++++++++++
+ MAINTAINERS                                   |   2 +-
+ 3 files changed, 114 insertions(+), 24 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-nomadik.txt
+ create mode 100644 Documentation/devicetree/bindings/i2c/st,nomadik-i2c.yaml
 
-> 
->>                         };
->>                 };
->>         };
-> 
->> --- a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
->> +++ b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
->> @@ -206,12 +206,12 @@ pcm3168a: audio-codec@44 {
->>                                 clocks = <&clksndsel>;
->>                                 clock-names = "scki";
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-nomadik.txt b/Documentation/devicetree/bindings/i2c/i2c-nomadik.txt
+deleted file mode 100644
+index 72065b0ff680..000000000000
+--- a/Documentation/devicetree/bindings/i2c/i2c-nomadik.txt
++++ /dev/null
+@@ -1,23 +0,0 @@
+-I2C for Nomadik based systems
+-
+-Required (non-standard) properties:
+- - Nil
+-
+-Recommended (non-standard) properties:
+- - clock-frequency : Maximum bus clock frequency for the device
+-
+-Optional (non-standard) properties:
+- - Nil
+-
+-Example :
+-
+-i2c@80004000 {
+-        compatible = "stericsson,db8500-i2c", "st,nomadik-i2c";
+-        reg = <0x80004000 0x1000>;
+-        interrupts = <0 21 0x4>;
+-        #address-cells = <1>;
+-        #size-cells = <0>;
+-        v-i2c-supply = <&db8500_vape_reg>;
+-
+-        clock-frequency = <400000>;
+-};
+diff --git a/Documentation/devicetree/bindings/i2c/st,nomadik-i2c.yaml b/Documentation/devicetree/bindings/i2c/st,nomadik-i2c.yaml
+new file mode 100644
+index 000000000000..eec502c57047
+--- /dev/null
++++ b/Documentation/devicetree/bindings/i2c/st,nomadik-i2c.yaml
+@@ -0,0 +1,113 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/i2c/st,nomadik-i2c.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ST Microelectronics Nomadik I2C Bindings
++
++description: The Nomadik I2C host controller began its life in the ST
++  Microelectronics STn8800 SoC, and was then inherited into STn8810 and
++  STn8815. It was part of the prototype STn8500 which then became ST-Ericsson
++  DB8500 after the merge of these two companies wireless divisions.
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++allOf:
++  - $ref: /schemas/i2c/i2c-controller.yaml#
++
++# Need a custom select here or 'arm,primecell' will match on lots of nodes
++select:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - st,nomadik-i2c
++  required:
++    - compatible
++
++properties:
++  compatible:
++    oneOf:
++      # The variant found in STn8815
++      - items:
++          - const: st,nomadik-i2c
++          - const: arm,primecell
++      # The variant found in DB8500
++      - items:
++          - const: stericsson,db8500-i2c
++          - const: st,nomadik-i2c
++          - const: arm,primecell
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 2
++
++  clock-names:
++    oneOf:
++      # Clock name in STn8815
++      - items:
++          - const: mclk
++          - const: apb_pclk
++      # Clock name in DB8500
++      - items:
++          - const: i2cclk
++          - const: apb_pclk
++
++  resets:
++    maxItems: 1
++
++  clock-frequency:
++    minimum: 1
++    maximum: 400000
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/reset/stericsson,db8500-prcc-reset.h>
++    #include <dt-bindings/arm/ux500_pm_domains.h>
++    i2c@80004000 {
++      compatible = "stericsson,db8500-i2c", "st,nomadik-i2c", "arm,primecell";
++      reg = <0x80004000 0x1000>;
++      interrupts = <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>;
++
++      #address-cells = <1>;
++      #size-cells = <0>;
++      v-i2c-supply = <&db8500_vape_reg>;
++
++      clock-frequency = <400000>;
++      clocks = <&prcc_kclk 3 3>, <&prcc_pclk 3 3>;
++      clock-names = "i2cclk", "apb_pclk";
++      power-domains = <&pm_domains DOMAIN_VAPE>;
++      resets = <&prcc_reset DB8500_PRCC_3 DB8500_PRCC_3_RESET_I2C0>;
++    };
++
++    i2c@101f8000 {
++      compatible = "st,nomadik-i2c", "arm,primecell";
++      reg = <0x101f8000 0x1000>;
++      interrupt-parent = <&vica>;
++      interrupts = <20>;
++      clock-frequency = <100000>;
++      #address-cells = <1>;
++      #size-cells = <0>;
++      clocks = <&i2c0clk>, <&pclki2c0>;
++      clock-names = "mclk", "apb_pclk";
++    };
++
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index fd768d43e048..0d1816f26ccc 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2398,7 +2398,7 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-nomadik.git
+ F:	Documentation/devicetree/bindings/arm/ste-*
+ F:	Documentation/devicetree/bindings/arm/ux500.yaml
+ F:	Documentation/devicetree/bindings/arm/ux500/
+-F:	Documentation/devicetree/bindings/i2c/i2c-nomadik.txt
++F:	Documentation/devicetree/bindings/i2c/st,nomadik-i2c.yaml
+ F:	arch/arm/boot/dts/ste-*
+ F:	arch/arm/mach-nomadik/
+ F:	arch/arm/mach-ux500/
+-- 
+2.35.3
 
-like here ^^^ - clocks with clock-names...
-
->>
->> -                               VDD1-supply     = <&snd_3p3v>;
->> -                               VDD2-supply     = <&snd_3p3v>;
->> -                               VCCAD1-supply   = <&snd_vcc5v>;
->> -                               VCCAD2-supply   = <&snd_vcc5v>;
->> -                               VCCDA1-supply   = <&snd_vcc5v>;
->> -                               VCCDA2-supply   = <&snd_vcc5v>;
->> +                               VDD1-supply = <&snd_3p3v>;
->> +                               VDD2-supply = <&snd_3p3v>;
->> +                               VCCAD1-supply = <&snd_vcc5v>;
->> +                               VCCAD2-supply = <&snd_vcc5v>;
->> +                               VCCDA1-supply = <&snd_vcc5v>;
->> +                               VCCDA2-supply = <&snd_vcc5v>;
-> 
-> Same for the various supplies.
-
-I don't think there is benefit to order few single entries, while entire
-file does not follow that convention. It would be different for some
-multiple-line entries, but that's not the case here.
-
-Anyway that's only my opinion, so I am happy to trim the patch to the
-last part (although then it is a bit churn :) ).
-
-> 
->>
->>                                 ports {
->>                                         #address-cells = <1>;
->> @@ -438,7 +438,7 @@ rsnd_for_pcm3168a_capture: endpoint {
->>                                 bitclock-master;
->>                                 frame-master;
->>                                 dai-tdm-slot-num = <6>;
->> -                               capture  = <&ssi4>;
->> +                               capture = <&ssi4>;
-> 
-> Right, there's nothing to align here.
-
-
-
-Best regards,
-Krzysztof
