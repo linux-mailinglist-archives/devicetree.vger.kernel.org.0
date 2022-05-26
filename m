@@ -2,70 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCC9E53533B
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 20:19:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98930535362
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 20:36:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348975AbiEZSTP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 14:19:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38908 "EHLO
+        id S232031AbiEZSgI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 14:36:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348488AbiEZSTN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 14:19:13 -0400
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 133BE579BB;
-        Thu, 26 May 2022 11:19:12 -0700 (PDT)
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-edeb6c3642so3155112fac.3;
-        Thu, 26 May 2022 11:19:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=kFD7k/6/Yi0uJtYta5YfK2y2lJGD9433Ffp8uwrqHc0=;
-        b=AtCWjeZgvboiqa/TpNzdV8tUDMjnNoXtdlbwHVd73J/41qWYTUFOhKFcSLiH72xsDV
-         4RyK/1Yyw7XtZ1tIHMTyE/jmPzkNqrbiO6K1/P+8WSz9GylAeLZuj+Y8mLXzm162pnG2
-         Qf1futYxVD+dFTYqJHbMZUlmduOMqTQHdNero8cCaWBUSggYCcY8gVi4/bCrMdvpMl0h
-         ac1jf2+d2dLvO+U2/nQvJfyznvemoRPuFducd7VDa6zZldy3cy2VaCJmDA+OX/ZZCcJS
-         8gxbdjxW+s6xnUc7jr24V0gbHCpcDh+KTlLhtiH2GDIyTVO8UUy/KjsvZSL4/wzDi3ze
-         6DqA==
-X-Gm-Message-State: AOAM530oNIuMFNFt7VFChqRbPuLIaYWMtOwHbb8pKvxIJfRshOZ86vt8
-        jHmhAEUUUEUL+1+a9RU62Q==
-X-Google-Smtp-Source: ABdhPJys8XnYAlw/I/F5WSYE/Waihvj/CEzaNGOWkZuSxhvF/Al8vYzot/X7QaqOchUE+xkYuy/QTg==
-X-Received: by 2002:a05:6870:e616:b0:f2:6a4e:2d7b with SMTP id q22-20020a056870e61600b000f26a4e2d7bmr1958068oag.67.1653589151260;
-        Thu, 26 May 2022 11:19:11 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id k3-20020a4ad103000000b0040e68c9dce6sm892227oor.31.2022.05.26.11.19.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 May 2022 11:19:10 -0700 (PDT)
-Received: (nullmailer pid 91777 invoked by uid 1000);
-        Thu, 26 May 2022 18:19:09 -0000
-Date:   Thu, 26 May 2022 13:19:09 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S1348505AbiEZSfB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 14:35:01 -0400
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71CA42CE3F;
+        Thu, 26 May 2022 11:34:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1653590089;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=M7rHhEC+oPKEf9TWKS8ix13sY2D6weu957Rrs1ZvcVY=;
+    b=dd3qHsQZHhyXewQU9xvYf6QJ6YwRrNtknNoojN8/ZZ9dF3Ti/UQf26HyAwUlwxsNPx
+    1OgjlXgsoLDvS63Jv/5s75S/xMDHYpv8vu4QywsHj3HQ9QwY7RAVDzI90R32m4vHEHIg
+    6mxGUqCKrY3Q1JZfnpe72GxWRo0cD4WBTM3eUsXQpzTY3YYbXfzI0tTqBMd/C1knfOQD
+    R6KgWUv3VGE2vb6TJscUIJB5fZqQjl8EA8NH82jL6XKtxWD9IuEg1NmqgpiL5/SSqQFs
+    UdnyQ+bRdcX5MdrMMDhjAlNV4drWn37NNOcKYubwGy+bmToIL4oRsmTVEganTzCqC5rm
+    ZRmw==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLUrKsxlg=="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.45.0 AUTH)
+    with ESMTPSA id 9056edy4QIYmZFe
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Thu, 26 May 2022 20:34:48 +0200 (CEST)
+Date:   Thu, 26 May 2022 20:34:41 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Sireesh Kodali <sireeshkodali1@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, bjorn.andersson@linaro.org,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v12 7/8] dt-bindings: PCI: qcom: Support additional MSI
- interrupts
-Message-ID: <20220526181909.GE54904-robh@kernel.org>
-References: <20220523181836.2019180-1-dmitry.baryshkov@linaro.org>
- <20220523181836.2019180-8-dmitry.baryshkov@linaro.org>
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: msm8916: Fix typo in pronto
+ remoteproc node
+Message-ID: <Yo/IQU4r6siW3u2Z@gerhold.net>
+References: <20220526141740.15834-1-sireeshkodali1@gmail.com>
+ <20220526141740.15834-3-sireeshkodali1@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220523181836.2019180-8-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+In-Reply-To: <20220526141740.15834-3-sireeshkodali1@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,14 +63,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 23, 2022 at 09:18:35PM +0300, Dmitry Baryshkov wrote:
-> On Qualcomm platforms each group of 32 MSI vectors is routed to the
-> separate GIC interrupt. Document mapping of additional interrupts.
+On Thu, May 26, 2022 at 07:47:40PM +0530, Sireesh Kodali wrote:
+> The smem-state properties for the pronto node were incorrectly labelled,
+> reading `qcom,state*` rather than `qcom,smem-state*`. Fix that, allowing
+> the stop state to be used.
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../devicetree/bindings/pci/qcom,pcie.yaml    | 53 +++++++++++++++++--
->  1 file changed, 50 insertions(+), 3 deletions(-)
+> Fixes: 88106096cbf8 ("ARM: dts: msm8916: Add and enable wcnss node")
+> Signed-off-by: Sireesh Kodali <sireeshkodali1@gmail.com>
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+My review didn't change just because of an unneeded blank line between
+the tags. Thanks again for finding this. :)
+
+Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
+
+> ---
+>  arch/arm64/boot/dts/qcom/msm8916.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+> index e34963505e07..7ecd747dc624 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+> @@ -1758,8 +1758,8 @@ pronto: remoteproc@a21b000 {
+>  					<&rpmpd MSM8916_VDDMX>;
+>  			power-domain-names = "cx", "mx";
+>  
+> -			qcom,state = <&wcnss_smp2p_out 0>;
+> -			qcom,state-names = "stop";
+> +			qcom,smem-states = <&wcnss_smp2p_out 0>;
+> +			qcom,smem-state-names = "stop";
+>  
+>  			pinctrl-names = "default";
+>  			pinctrl-0 = <&wcnss_pin_a>;
+> -- 
+> 2.36.1
+> 
