@@ -2,65 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19756535141
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 17:13:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15691535312
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 20:02:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232994AbiEZPNO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 11:13:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58352 "EHLO
+        id S1344224AbiEZSBv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 14:01:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232481AbiEZPNO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 11:13:14 -0400
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14C8F37BE8;
-        Thu, 26 May 2022 08:13:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1653577993; x=1685113993;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=eo04dMoSFmSo3nxdW9QEasimDjpp0m2IU8Sbp5hd+fc=;
-  b=OKCIwOnNzNaGknvkQK2TSV8c46XH63VCASlSPGXJFgooHjLXjPOtY7Xn
-   4TYSh78XYABMxBmteifRgw4bjnAwB+nMHQTnYhvTXlBdMJ3oaB4JA4xWd
-   R6xTJJJUqqme608rQLLJrViGtHmbll8Bimfv+SA5cgU+Bx8lz0hY+RY6z
-   tOnqUjccxBvEJ0kwhlN+8a6SCEJmNorrMnXoQhuasxVFCL/r4DmKXY9jR
-   W2Sjcou0Seswjq0ZlqvWKE1Q4DiJ8Grv7fSmD8TnNFjJpjJ+B+jYfR7ox
-   xJE4nP1h1BJ62E5bAKl4maBz+a49kHZc7OijowiUETP6CW+t8+4Vs01/G
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10359"; a="337232798"
-X-IronPort-AV: E=Sophos;i="5.91,252,1647327600"; 
-   d="scan'208";a="337232798"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 May 2022 08:13:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,252,1647327600"; 
-   d="scan'208";a="560241410"
-Received: from lkp-server01.sh.intel.com (HELO db63a1be7222) ([10.239.97.150])
-  by orsmga002.jf.intel.com with ESMTP; 26 May 2022 08:13:09 -0700
-Received: from kbuild by db63a1be7222 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nuFAj-0003wy-9J;
-        Thu, 26 May 2022 15:13:09 +0000
-Date:   Thu, 26 May 2022 23:12:28 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, lgirdwood@gmail.com
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org, broonie@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v3 4/4] regulator: Add driver for MT6332 PMIC regulators
-Message-ID: <202205262341.pY4PkDL7-lkp@intel.com>
-References: <20220523154709.118663-5-angelogioacchino.delregno@collabora.com>
+        with ESMTP id S243344AbiEZSBu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 14:01:50 -0400
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A11FBA76DC;
+        Thu, 26 May 2022 11:01:49 -0700 (PDT)
+Received: by mail-oi1-f180.google.com with SMTP id u140so579233oie.3;
+        Thu, 26 May 2022 11:01:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Q0JqQalKaWiG8XHYe0XLumPJRaO/INlcWZjb1nLCW2s=;
+        b=ZRE6UTFXd9xntktF1oVeXj//soBHiBsYcmgNR9tKkeY5x5llysCy0/0t8qCJL0T6Nx
+         A2YU1NsMyAWVp7QoxT8iFMRE7z6IQEaXiiz21jjk1iD35U2GkqDenkdyDNRupPMiVtwq
+         L91/xuR71HERQZK7pvL8Vo9VZuunN2ycEXMdDltNia7txUBXa3u71BvVHsQW+bzgPxWx
+         KsIyOjN+yHeDD+4VVJr82bAmVAZtMvp5B0RKinT5EIxL7jCzgY6yNS9z2qWDDhHgcBsO
+         rDKJnh+SEyoR1w4sbUVCUCH7/SQ3rOnwzBX06xexSr4AluvX5SlxS1dvD1jdLA0s0gFx
+         Xa9w==
+X-Gm-Message-State: AOAM533gB2uVHEbXbvNYA8uYq1sJbItoJ4MCyhI000UloFDZWsw4UIQE
+        UviTWNFK/Pt5fH6dv6hU2A==
+X-Google-Smtp-Source: ABdhPJy3x+eYjWH16bJov5lyVoqYTbS9OyPH7C/p51KQNNVQR9X+y1THAxgvsY2mWgKvcafvLZGIdw==
+X-Received: by 2002:a05:6808:138d:b0:32b:cbd6:129f with SMTP id c13-20020a056808138d00b0032bcbd6129fmr442122oiw.258.1653588108821;
+        Thu, 26 May 2022 11:01:48 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id m14-20020a056820050e00b0040eb1d3f43dsm935248ooj.2.2022.05.26.11.01.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 May 2022 11:01:48 -0700 (PDT)
+Received: (nullmailer pid 67657 invoked by uid 1000);
+        Thu, 26 May 2022 18:01:40 -0000
+Date:   Thu, 26 May 2022 13:01:40 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Johan Hovold <johan@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v10 02/10] PCI: dwc: Propagate error from
+ dma_mapping_error()
+Message-ID: <20220526180140.GA54904-robh@kernel.org>
+References: <20220513172622.2968887-1-dmitry.baryshkov@linaro.org>
+ <20220513172622.2968887-3-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220523154709.118663-5-angelogioacchino.delregno@collabora.com>
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20220513172622.2968887-3-dmitry.baryshkov@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,57 +73,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi AngeloGioacchino,
+On Fri, May 13, 2022 at 08:26:14PM +0300, Dmitry Baryshkov wrote:
+> If dma mapping fails, dma_mapping_error() will return an error.
+> Propagate it to the dw_pcie_host_init() return value rather than
+> incorrectly returning 0 in this case.
+> 
+> Fixes: 07940c369a6b ("PCI: dwc: Fix MSI page leakage in suspend/resume")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  drivers/pci/controller/dwc/pcie-designware-host.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
 
-Thank you for the patch! Yet something to improve:
+There's already a similar fix applied.
 
-[auto build test ERROR on broonie-regulator/for-next]
-[also build test ERROR on v5.18 next-20220526]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/AngeloGioacchino-Del-Regno/MediaTek-Helio-X10-MT6795-MT6331-6332-Regulators/20220523-235049
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
-config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20220526/202205262341.pY4PkDL7-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 3d546191ad9d7d2ad2c7928204b9de51deafa675)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/062027827142f02db7e65b052d458f424811e30e
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review AngeloGioacchino-Del-Regno/MediaTek-Helio-X10-MT6795-MT6331-6332-Regulators/20220523-235049
-        git checkout 062027827142f02db7e65b052d458f424811e30e
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/regulator/
-
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
->> drivers/regulator/mt6332-regulator.c:15:10: fatal error: 'linux/mfd/mt6332/registers.h' file not found
-   #include <linux/mfd/mt6332/registers.h>
-            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   1 error generated.
-
-
-vim +15 drivers/regulator/mt6332-regulator.c
-
-     9	
-    10	#include <linux/module.h>
-    11	#include <linux/of.h>
-    12	#include <linux/platform_device.h>
-    13	#include <linux/regmap.h>
-    14	#include <linux/mfd/mt6397/core.h>
-  > 15	#include <linux/mfd/mt6332/registers.h>
-    16	#include <linux/regulator/driver.h>
-    17	#include <linux/regulator/machine.h>
-    18	#include <linux/regulator/mt6332-regulator.h>
-    19	#include <linux/regulator/of_regulator.h>
-    20	
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> index 2fa86f32d964..a9a31e9e7b6e 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> @@ -396,8 +396,9 @@ int dw_pcie_host_init(struct pcie_port *pp)
+>  						      sizeof(pp->msi_msg),
+>  						      DMA_FROM_DEVICE,
+>  						      DMA_ATTR_SKIP_CPU_SYNC);
+> -			if (dma_mapping_error(pci->dev, pp->msi_data)) {
+> -				dev_err(pci->dev, "Failed to map MSI data\n");
+> +			ret = dma_mapping_error(pci->dev, pp->msi_data);
+> +			if (ret) {
+> +				dev_err(pci->dev, "Failed to map MSI data: %d\n", ret);
+>  				pp->msi_data = 0;
+>  				goto err_free_msi;
+>  			}
+> -- 
+> 2.35.1
+> 
