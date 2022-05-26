@@ -2,70 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29D68535468
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 22:29:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FF7A535479
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 22:35:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231663AbiEZU32 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 16:29:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36484 "EHLO
+        id S238417AbiEZUf0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 16:35:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229822AbiEZU30 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 16:29:26 -0400
-Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9033CAEE25
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:29:25 -0700 (PDT)
-Received: by mail-qv1-xf31.google.com with SMTP id j14so1930422qvo.3
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:29:25 -0700 (PDT)
+        with ESMTP id S230111AbiEZUfZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 16:35:25 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6110DDFF5B
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:35:23 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id t5so3152043edc.2
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:35:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=w7U8ZxQJcCt/aMdBrHfCcBBglr9/HQ3epyWgRB+XBNQ=;
-        b=C1pwrXuf/a3Rus/0i1yLLGIWkl+ZKCRp1bMczp3YWWS5G0T10MNpbweX0RL4iJoFv1
-         fkvxJ/fUR/6MVoP2R7jpkm/XVkTOjRCwbMNe15mzo4Pr7wCFrRYnz6ShhMq516/aFqjF
-         YRZPXkVU8XE3II8CtsKYgiJ7H1gE203ju79VVaA+RIh4D6V2am+2apFH4QBorL72H9KY
-         6VEdOH15xkaG5Jps0xyfm8i0+rvlVVeLIbtI+YjooI9LaoNXVDYN/1SizRKytW5tQbX/
-         yB0hG7NFnqxiAyDr1+stokkDWBnsn4JHP7Vnh3AIoU345gwtJtKZ3FpD0eD8ihpkDYY7
-         nkAA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7aFyhUYktZMytnPH54CE9qvOB2J8zazlj78TSnY6dHI=;
+        b=xE31XGRXQTXWWsH/PD6XVwFgzymMNSrvAE992lEQ6rNFl5Y0uZgb8GBVWYMOzzGIvX
+         8l+Sgo9Pe3iMp8tp5UWHyTV4HZu0se2Bi1bRrgDB1ydmWTXRiVp7t5lTK+B3x2ZrBk02
+         SiAvBTLOgBScViiBv035J19O1x6Cdyq8vF9DX8hHgTojrlLvu9hqMuaiNlGbV549Aurv
+         qytDtHHVD+ikoRbdEESr0B96/Ge7lQJLNwOCxfn29Cyc4EiIg4JQoTsydQXgFJ8RNzqZ
+         z3ogirY1LxOuPXqHMbN0ojulyEgjTWlvH2r8jyLqLdR853qbH0hoOTKNgjsE59q+QQ+J
+         de6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=w7U8ZxQJcCt/aMdBrHfCcBBglr9/HQ3epyWgRB+XBNQ=;
-        b=3Rnh1oXN7QG/pdIug5NNnQj1bm/YKXtx2+z39qCbOziTOwPkzD6ZbFCsupJuisZaNf
-         QQya4GUsQ1s/5z8N8Q0xCITEOCAE+Y3Qk4ZGl8J69J+oeOrg5uITR51SR29EYD6CdtUZ
-         XiZRV8lNgiivVt6CppWKpEWSICeAt+3gxUZxMn73DnQtrd3MBBgcXxCq2hkDGRF00jdB
-         L3YUqMDSOM3fOHDM2UnL4Sk2lLbE3O9HSh11KgpZgWf5acxseBwMoMpu/WKBLEav9O/q
-         3MWCiEVM12XHSGJCLVYr59jV9jfWDv9AZq/uFie7zWJq8HL+ivWqdHGqKbGJVdO8SAsp
-         tQ1Q==
-X-Gm-Message-State: AOAM531RIstGUgoy+4OEc1Gm6kHeTMRD5yPEczsOTN7VmlXcHs1yWKEo
-        SYNgZg7+FuKIBHRrEHqrKK+kqdMizpFvabIeQqKaGw==
-X-Google-Smtp-Source: ABdhPJzWE6+/aFfASD6rZIFfbyF9nJaVk/sa/ZUHMyOQjnKRJ3h7r8yBH5vrbLsawyP3ZThVvAXaqR5lwwPSQ7yJ3X4=
-X-Received: by 2002:a05:6214:931:b0:461:d289:b7f6 with SMTP id
- dk17-20020a056214093100b00461d289b7f6mr32636342qvb.55.1653596964734; Thu, 26
- May 2022 13:29:24 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220523181836.2019180-1-dmitry.baryshkov@linaro.org>
- <20220523181836.2019180-7-dmitry.baryshkov@linaro.org> <20220526184228.GF54904-robh@kernel.org>
-In-Reply-To: <20220526184228.GF54904-robh@kernel.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Thu, 26 May 2022 23:29:13 +0300
-Message-ID: <CAA8EJpqWb5=Zt0EL5WF3GuPLZL-u-G-1WPL8F6Qp2hKL1sj6Qg@mail.gmail.com>
-Subject: Re: [PATCH v12 6/8] PCI: dwc: Implement special ISR handler for split
- MSI IRQ setup
-To:     Rob Herring <robh@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7aFyhUYktZMytnPH54CE9qvOB2J8zazlj78TSnY6dHI=;
+        b=hcmii4CpRLElNJ5bRE/trv5yL1kmHM/GhBsZou5+Cm2R63kYYDtBePpUt0lBEn7bmB
+         riGnnNRiClJIXzua/gCaR70+HcQ0lWsgtdpGlwOOt/PpG7QkRauhMVtAXZ0gXTsnmIOR
+         OB0pHiJEsRPtqCC05LpvnZyQY19ShcyfVlOX9jeGLCLS+cWiZMMOU+8mCARke3oZWXtN
+         MPkjUJC1M5+lZs5vH/yFpo9epKxplA4vVkciRkITyqS6Uv5bphK2OWKCxu2a2mYV1dv6
+         WmzgpulbbugBjalgBuXHfvzgULpMmESaElKGU7AMd0Mb/1HBuOpN/1Ispx4KWQoNhMPY
+         NljA==
+X-Gm-Message-State: AOAM533OjmeQRLOxJd6+IVi2fag++NgFzOahQo0bpdV3omlv1CX6ZqB3
+        hCUB1cjybuIIJtBKHS6tNGFgXA==
+X-Google-Smtp-Source: ABdhPJzpqtfNQJwwnE7YXz29UgQ575vWJPJF1Q7jVbAt/Zd/NS8glMzhHKQhULg4GlweLYxNNlYKXg==
+X-Received: by 2002:aa7:d9cf:0:b0:42b:db5e:ec24 with SMTP id v15-20020aa7d9cf000000b0042bdb5eec24mr4938090eds.388.1653597321976;
+        Thu, 26 May 2022 13:35:21 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id o14-20020a170906774e00b006fec6e1d856sm816826ejn.82.2022.05.26.13.35.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 May 2022 13:35:21 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] ARM: dts: tegra: adjust whitespace around '='
+Date:   Thu, 26 May 2022 22:35:16 +0200
+Message-Id: <20220526203518.830765-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -76,102 +71,124 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 26 May 2022 at 21:42, Rob Herring <robh@kernel.org> wrote:
->
-> On Mon, May 23, 2022 at 09:18:34PM +0300, Dmitry Baryshkov wrote:
-> > If the PCIe DWC controller uses split MSI IRQs for reporting MSI
-> > vectors, it is possible to detect, which group triggered the interrupt.
-> > Provide an optimized version of MSI ISR handler that will handle just a
-> > single MSI group instead of handling all of them.
->
-> A lot more complexity to save 7 register reads...
+Fix whitespace coding style: use single space instead of tabs or
+multiple spaces around '=' sign in property assignment.  No functional
+changes (same DTB).
 
-Thus it is a separate patch. It can be dropped w/o any issues.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
->
-> >
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  .../pci/controller/dwc/pcie-designware-host.c | 86 ++++++++++++++-----
-> >  1 file changed, 65 insertions(+), 21 deletions(-)
-> >
-> > diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> > index 98a57249ecaf..2b2de517301a 100644
-> > --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> > +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> > @@ -52,34 +52,42 @@ static struct msi_domain_info dw_pcie_msi_domain_info = {
-> >       .chip   = &dw_pcie_msi_irq_chip,
-> >  };
-> >
-> > +static inline irqreturn_t dw_handle_single_msi_group(struct pcie_port *pp, int i)
-> > +{
-> > +     int pos;
-> > +     unsigned long val;
-> > +     u32 status;
-> > +     struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> > +
-> > +     status = dw_pcie_readl_dbi(pci, PCIE_MSI_INTR0_STATUS +
-> > +                                (i * MSI_REG_CTRL_BLOCK_SIZE));
-> > +     if (!status)
-> > +             return IRQ_NONE;
-> > +
-> > +     val = status;
-> > +     pos = 0;
-> > +     while ((pos = find_next_bit(&val, MAX_MSI_IRQS_PER_CTRL,
-> > +                                 pos)) != MAX_MSI_IRQS_PER_CTRL) {
->
-> for_each_set_bit() doesn't work here?
+---
 
-Good question, I just moved the existing DWC code.
+Output compared with dtx_diff and fdtdump.
+---
+ arch/arm/boot/dts/tegra20-acer-a500-picasso.dts           | 2 +-
+ arch/arm/boot/dts/tegra20-asus-tf101.dts                  | 2 +-
+ arch/arm/boot/dts/tegra30-asus-nexus7-grouper-common.dtsi | 6 +++---
+ arch/arm/boot/dts/tegra30-asus-nexus7-tilapia.dtsi        | 2 +-
+ arch/arm/boot/dts/tegra30-colibri.dtsi                    | 6 +++---
+ 5 files changed, 9 insertions(+), 9 deletions(-)
 
->
-> > +             generic_handle_domain_irq(pp->irq_domain,
-> > +                                       (i * MAX_MSI_IRQS_PER_CTRL) +
-> > +                                       pos);
-> > +             pos++;
-> > +     }
-> > +
-> > +     return IRQ_HANDLED;
-> > +}
-> > +
-> >  /* MSI int handler */
-> >  irqreturn_t dw_handle_msi_irq(struct pcie_port *pp)
-> >  {
-> > -     int i, pos;
-> > -     unsigned long val;
-> > -     u32 status, num_ctrls;
-> > +     int i;
-> > +     u32 num_ctrls;
-> >       irqreturn_t ret = IRQ_NONE;
-> > -     struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> >
-> >       num_ctrls = pp->num_vectors / MAX_MSI_IRQS_PER_CTRL;
-> >
-> > -     for (i = 0; i < num_ctrls; i++) {
-> > -             status = dw_pcie_readl_dbi(pci, PCIE_MSI_INTR0_STATUS +
-> > -                                        (i * MSI_REG_CTRL_BLOCK_SIZE));
-> > -             if (!status)
-> > -                     continue;
-> > -
-> > -             ret = IRQ_HANDLED;
-> > -             val = status;
-> > -             pos = 0;
-> > -             while ((pos = find_next_bit(&val, MAX_MSI_IRQS_PER_CTRL,
-> > -                                         pos)) != MAX_MSI_IRQS_PER_CTRL) {
-> > -                     generic_handle_domain_irq(pp->irq_domain,
-> > -                                               (i * MAX_MSI_IRQS_PER_CTRL) +
-> > -                                               pos);
-> > -                     pos++;
-> > -             }
-> > -     }
-> > +     for (i = 0; i < num_ctrls; i++)
-> > +             ret |= dw_handle_single_msi_group(pp, i);
-> >
-> >       return ret;
-> >  }
-
-
-
+diff --git a/arch/arm/boot/dts/tegra20-acer-a500-picasso.dts b/arch/arm/boot/dts/tegra20-acer-a500-picasso.dts
+index a170a4ba36c1..bf1126d26aff 100644
+--- a/arch/arm/boot/dts/tegra20-acer-a500-picasso.dts
++++ b/arch/arm/boot/dts/tegra20-acer-a500-picasso.dts
+@@ -417,7 +417,7 @@ bluetooth {
+ 			vddio-supply = <&vdd_1v8_sys>;
+ 
+ 			device-wakeup-gpios = <&gpio TEGRA_GPIO(U, 1) GPIO_ACTIVE_HIGH>;
+-			shutdown-gpios =      <&gpio TEGRA_GPIO(U, 0) GPIO_ACTIVE_HIGH>;
++			shutdown-gpios = <&gpio TEGRA_GPIO(U, 0) GPIO_ACTIVE_HIGH>;
+ 		};
+ 	};
+ 
+diff --git a/arch/arm/boot/dts/tegra20-asus-tf101.dts b/arch/arm/boot/dts/tegra20-asus-tf101.dts
+index a054d39db466..f3b0166f7a9c 100644
+--- a/arch/arm/boot/dts/tegra20-asus-tf101.dts
++++ b/arch/arm/boot/dts/tegra20-asus-tf101.dts
+@@ -477,7 +477,7 @@ bluetooth {
+ 			vddio-supply = <&vdd_1v8_sys>;
+ 
+ 			device-wakeup-gpios = <&gpio TEGRA_GPIO(U, 1) GPIO_ACTIVE_HIGH>;
+-			shutdown-gpios =      <&gpio TEGRA_GPIO(U, 0) GPIO_ACTIVE_HIGH>;
++			shutdown-gpios = <&gpio TEGRA_GPIO(U, 0) GPIO_ACTIVE_HIGH>;
+ 		};
+ 	};
+ 
+diff --git a/arch/arm/boot/dts/tegra30-asus-nexus7-grouper-common.dtsi b/arch/arm/boot/dts/tegra30-asus-nexus7-grouper-common.dtsi
+index 2c2ad2a38f04..55e6171a411d 100644
+--- a/arch/arm/boot/dts/tegra30-asus-nexus7-grouper-common.dtsi
++++ b/arch/arm/boot/dts/tegra30-asus-nexus7-grouper-common.dtsi
+@@ -63,7 +63,7 @@ trustzone@bfe00000 {
+ 	gpio@6000d000 {
+ 		init-mode-hog {
+ 			gpio-hog;
+-			gpios =	<TEGRA_GPIO(DD, 7) GPIO_ACTIVE_HIGH>,
++			gpios = <TEGRA_GPIO(DD, 7) GPIO_ACTIVE_HIGH>,
+ 				<TEGRA_GPIO(CC, 6) GPIO_ACTIVE_HIGH>,
+ 				<TEGRA_GPIO(R, 0) GPIO_ACTIVE_HIGH>;
+ 			output-low;
+@@ -820,7 +820,7 @@ bluetooth {
+ 			vddio-supply = <&vdd_1v8>;
+ 
+ 			device-wakeup-gpios = <&gpio TEGRA_GPIO(U, 1) GPIO_ACTIVE_HIGH>;
+-			shutdown-gpios =      <&gpio TEGRA_GPIO(U, 0) GPIO_ACTIVE_HIGH>;
++			shutdown-gpios = <&gpio TEGRA_GPIO(U, 0) GPIO_ACTIVE_HIGH>;
+ 		};
+ 	};
+ 
+@@ -833,7 +833,7 @@ i2c@7000c400 {
+ 		status = "okay";
+ 
+ 		touchscreen@10 {
+-			compatible ="elan,ektf3624";
++			compatible = "elan,ektf3624";
+ 			reg = <0x10>;
+ 
+ 			interrupt-parent = <&gpio>;
+diff --git a/arch/arm/boot/dts/tegra30-asus-nexus7-tilapia.dtsi b/arch/arm/boot/dts/tegra30-asus-nexus7-tilapia.dtsi
+index cd63e0ef7445..1b241f0542b8 100644
+--- a/arch/arm/boot/dts/tegra30-asus-nexus7-tilapia.dtsi
++++ b/arch/arm/boot/dts/tegra30-asus-nexus7-tilapia.dtsi
+@@ -25,7 +25,7 @@ panel-timing {
+ 	gpio@6000d000 {
+ 		init-mode-3g-hog {
+ 			gpio-hog;
+-			gpios =	<TEGRA_GPIO(D, 2) GPIO_ACTIVE_HIGH>,
++			gpios = <TEGRA_GPIO(D, 2) GPIO_ACTIVE_HIGH>,
+ 				<TEGRA_GPIO(C, 6) GPIO_ACTIVE_HIGH>,
+ 				<TEGRA_GPIO(W, 3) GPIO_ACTIVE_HIGH>,
+ 				<TEGRA_GPIO(P, 1) GPIO_ACTIVE_HIGH>,
+diff --git a/arch/arm/boot/dts/tegra30-colibri.dtsi b/arch/arm/boot/dts/tegra30-colibri.dtsi
+index 22231d450b1b..310dff05910d 100644
+--- a/arch/arm/boot/dts/tegra30-colibri.dtsi
++++ b/arch/arm/boot/dts/tegra30-colibri.dtsi
+@@ -239,7 +239,7 @@ gen2-i2c-scl-pt5 {
+ 				nvidia,enable-input = <TEGRA_PIN_ENABLE>;
+ 			};
+ 			spdif-in-pk6 {
+-				nvidia,pins =	"spdif_in_pk6";
++				nvidia,pins = "spdif_in_pk6";
+ 				nvidia,function = "hda";
+ 				nvidia,pull = <TEGRA_PIN_PULL_NONE>;
+ 				nvidia,tristate = <TEGRA_PIN_DISABLE>;
+@@ -364,7 +364,7 @@ gmi-wp-n-pc7 {
+ 			};
+ 			/* Multiplexed and therefore disabled */
+ 			cam-mclk-pcc0 {
+-				nvidia,pins =	"cam_mclk_pcc0";
++				nvidia,pins = "cam_mclk_pcc0";
+ 				nvidia,function = "vi_alt3";
+ 				nvidia,pull = <TEGRA_PIN_PULL_DOWN>;
+ 				nvidia,tristate = <TEGRA_PIN_ENABLE>;
+@@ -511,7 +511,7 @@ uart2-rxd {
+ 
+ 			/* Colibri USBC_DET */
+ 			spdif-out-pk5 {
+-				nvidia,pins =	"spdif_out_pk5";
++				nvidia,pins = "spdif_out_pk5";
+ 				nvidia,function = "rsvd2";
+ 				nvidia,pull = <TEGRA_PIN_PULL_NONE>;
+ 				nvidia,tristate = <TEGRA_PIN_DISABLE>;
 -- 
-With best wishes
-Dmitry
+2.34.1
+
