@@ -2,63 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26A2C534A51
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 08:13:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5299E534A77
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 08:49:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237838AbiEZGNo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 02:13:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41452 "EHLO
+        id S1346206AbiEZGtp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 02:49:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234775AbiEZGNo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 02:13:44 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B5453584D;
-        Wed, 25 May 2022 23:13:43 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24Q6DMbS032317;
-        Thu, 26 May 2022 01:13:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1653545602;
-        bh=MN/htM5T+gmECt9fDhuSB3zTeFFZUvNmtmJLn6D3S2Y=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=czZ/NkoxgSAnsWvYhNyRIXQsgm2BGtNDcXrluHdMSibkTPYIZJ2aiFm3CpD4gZlrr
-         KWe7VVjq0vLUStvWwn9PnDn4HLqihl7wXegnUv7Xrj4eY4q81UEumep+6DF9V3vNF7
-         0X4ccIm6MFu2rqa605uQvy/uaC2ZDp9cio9whwEU=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24Q6DLXC013163
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 26 May 2022 01:13:21 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 26
- May 2022 01:13:21 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 26 May 2022 01:13:21 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24Q6DKRO002817;
-        Thu, 26 May 2022 01:13:21 -0500
-Date:   Thu, 26 May 2022 11:43:20 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: mtd: spi-nand: Add
- spi-peripheral-props.yaml reference
-Message-ID: <20220526061320.dufsbbt5crrqwgdt@ti.com>
-References: <20220525205909.2486153-1-robh@kernel.org>
+        with ESMTP id S242922AbiEZGto (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 02:49:44 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 567EB34BA3
+        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 23:49:43 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id i40so675766eda.7
+        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 23:49:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=7Bp9SA/1hFvtEI6hsrX+GVTXLacAaxb75saSLRSbPUs=;
+        b=lZ0UFWMJZR/ScahCDhnrsdiqEMBsXhaUmxwPQYz8kGSkmNB/cfqAcxnwTVkp9xj0aE
+         lsCoXp+eBgAG94q60rWQbm2Ev46NKSs7L0YuVDnsOuzPOSZw4gGFoRmjwrwitLfc/Q1u
+         th3CE0lwu0KKph3kbzIli9VSAOxfe3FBTYhkQfWCArBTLj/bSslh3I5HWo53/4LUlp2Y
+         EFr6Ux9jj1yIdsZLQ2Z0OF4eeKYkdllzrL3pr3b5ZFiR05utU1Q22S/gN01NaCibu8uA
+         QiX4cooIXHCpWZc2KVRtRA0YzG91KtsCjTK6OcNFkVXfJD9Gs0VagoIP14zE/x1qcvgX
+         f50Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=7Bp9SA/1hFvtEI6hsrX+GVTXLacAaxb75saSLRSbPUs=;
+        b=Tnu2L1ya0MqXo6IG7FMdyVbfQWywVw9wDkbsqmArKKCb3iwhwliY4KKO9GPzdzTqNj
+         pzuauKJdel6jResFlKn+zCKFvNM3Gg424fO6GRtPUwC0fyFuJoJoRH2RSwWceCgKhUEo
+         IIuhJZ18B5/DYzFvWaZp/bCJ0CReNvWTfYDvpZdwu4LIm+yxLQBYgxUM+UUhhLRoH7eA
+         h9S/E0bXV699rk0zf7HqZHuYqRCFRAT6PwWpZUFUv74wZdOxq/5cZCjv83US0qJbWqkg
+         KwmzItAydyYGR0Peg+WyFY2ZP68tffYgP0qMrakXxWv4tOCD8l7MsdiaYKpDvlKCONbc
+         Pk5w==
+X-Gm-Message-State: AOAM532Qpmrfzzutl+WXhZWp1cEubo3vCuZxs7rxCw6AVMYt8lFsrL3x
+        QPoU3XHapS3w3dMAkHzLunx3Bg==
+X-Google-Smtp-Source: ABdhPJwr6AzAilZdcZEXaEVY/WvgakJfBGOFvOc7ZLnxseNZb9svTt9d2Rn3vt0YkLTvjnYO5aqOqg==
+X-Received: by 2002:aa7:c4d0:0:b0:42a:ce47:e9c5 with SMTP id p16-20020aa7c4d0000000b0042ace47e9c5mr37950139edr.224.1653547781831;
+        Wed, 25 May 2022 23:49:41 -0700 (PDT)
+Received: from [192.168.0.177] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id kq21-20020a170906abd500b006f3ef214e0csm225570ejb.114.2022.05.25.23.49.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 May 2022 23:49:41 -0700 (PDT)
+Message-ID: <e8d854c0-e2a5-2382-4b54-c5e879170324@linaro.org>
+Date:   Thu, 26 May 2022 08:49:39 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20220525205909.2486153-1-robh@kernel.org>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v2] ASoC: dt-bindings: mediatek: mt8192: Add i2s-share
+ properties
+Content-Language: en-US
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Mark Brown <broonie@kernel.org>
+Cc:     kernel@collabora.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shane Chien <shane.chien@mediatek.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+References: <20220509205847.607076-1-nfraprado@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220509205847.607076-1-nfraprado@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -67,17 +85,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/05/22 03:59PM, Rob Herring wrote:
-> SPI peripheral device bindings need to reference spi-peripheral-props.yaml
-> in order to use various SPI controller specific properties. Otherwise,
-> the unevaluatedProperties check will reject any controller specific
-> properties.
+On 09/05/2022 22:58, Nícolas F. R. A. Prado wrote:
+> The Mediatek AFE PCM controller for MT8192 allows two I2S interfaces to
+> share the same clock and act as a single interface with both input and
+> output. Add patterns for these properties in the dt-binding. The
+> property is split into two patterns in order to allow all valid
+> interface pairings.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> 
+> ---
+> The series from v1 of this patch was merged although some changes were
+> still needed in this patch, so the v1 of this patch was reverted [1] and
+> this standalone commit addresses the feedback from v1 and readds the
+> property.
+> 
+> [1] https://lore.kernel.org/all/20220509185625.580811-1-nfraprado@collabora.com
+> 
+> v1: https://lore.kernel.org/all/20220429203039.2207848-2-nfraprado@collabora.com/
+> 
+> Changes in v2:
+> - Added "mediatek," prefix to property
+> - Rewrote and added more information to property description
+> - Split into two patterns to validate that output-input pairings are
+>   done
+> 
+>  .../bindings/sound/mt8192-afe-pcm.yaml           | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
+> index 7a25bc9b8060..2abf43c6c2c3 100644
+> --- a/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
+> +++ b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
+> @@ -54,6 +54,22 @@ properties:
+>        - const: aud_infra_clk
+>        - const: aud_infra_26m_clk
+>  
+> +patternProperties:
+> +  "^mediatek,i2s[13579]-share$":
+> +    description:
+> +      Each I2S interface has a single data line, input if its index is even or
+> +      output if the index is odd. An input and an output I2S interface can be
+> +      used together as if they were a single I2S interface with both input and
+> +      output data lines by sharing the same clock. This property represents this
+> +      pairing. The value should be the name of the interface whose clock is
+> +      used, and the property name the other interface that depends on this
+> +      clock.
+> +    pattern: "^I2S[0268]$"
+> +
+> +  "^mediatek,i2s[0268]-share$":
+> +    description: Same as above.
+> +    pattern: "^I2S[13579]$"
 
-Reviewed-by: Pratyush Yadav <p.yadav@ti.com>
+Rob's question is still valid - why these are not phandles?
 
--- 
-Regards,
-Pratyush Yadav
-Texas Instruments Inc.
+In any case you miss $ref.
+
+
+Best regards,
+Krzysztof
