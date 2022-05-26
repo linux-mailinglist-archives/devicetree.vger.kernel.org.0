@@ -2,72 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20B67535426
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 21:54:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29D68535468
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 22:29:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230127AbiEZTyr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 15:54:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38492 "EHLO
+        id S231663AbiEZU32 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 16:29:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348858AbiEZTyq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 15:54:46 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B8DC8D691
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 12:54:44 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id q21so4991320ejm.1
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 12:54:43 -0700 (PDT)
+        with ESMTP id S229822AbiEZU30 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 16:29:26 -0400
+Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9033CAEE25
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:29:25 -0700 (PDT)
+Received: by mail-qv1-xf31.google.com with SMTP id j14so1930422qvo.3
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:29:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=tmwNbvKqL71IPMURm6rrBHmYSOm0rciMZ7lSLg0QGx0=;
-        b=VtfhGdnn56bL4F8Lu0E+D37tHxCiMQM7ul1bbl7zzmmumXFHnckqfCO+oAmXgcEh0d
-         yqZutoO8b8VmHmjz9IM5Vkbi48pRUgFKTrEVzdsMxwxViKowfr+DpNO3pMoUL3Hwluwa
-         2NOTqP/ErEIEsMu/Lwr4GaOXK0dmXA/Q4gR4eOiCyleEBt8OYs5f1iBa41Z5dcxb69Je
-         BIoJfToNOzOt2GtBiS0Y3p1nkqAXW+yqJib+zu1XjqJDjnhIoH/g/djC+ExT+sk51jIq
-         IWj2zIT+uBFBBY+InfjwIPFUMIkbKMEv1cIcsqi16FOHIavdApp1bxwb9Kh1jbMDGKA3
-         mucA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=w7U8ZxQJcCt/aMdBrHfCcBBglr9/HQ3epyWgRB+XBNQ=;
+        b=C1pwrXuf/a3Rus/0i1yLLGIWkl+ZKCRp1bMczp3YWWS5G0T10MNpbweX0RL4iJoFv1
+         fkvxJ/fUR/6MVoP2R7jpkm/XVkTOjRCwbMNe15mzo4Pr7wCFrRYnz6ShhMq516/aFqjF
+         YRZPXkVU8XE3II8CtsKYgiJ7H1gE203ju79VVaA+RIh4D6V2am+2apFH4QBorL72H9KY
+         6VEdOH15xkaG5Jps0xyfm8i0+rvlVVeLIbtI+YjooI9LaoNXVDYN/1SizRKytW5tQbX/
+         yB0hG7NFnqxiAyDr1+stokkDWBnsn4JHP7Vnh3AIoU345gwtJtKZ3FpD0eD8ihpkDYY7
+         nkAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=tmwNbvKqL71IPMURm6rrBHmYSOm0rciMZ7lSLg0QGx0=;
-        b=wiE7ZhRtZi0Gvq/HconuOXFaXdadARAuqdekr755UCb4+rsZ6qGEyOcG29zZ49NbUF
-         UE2d6gjXrYsHAsQP/YvqmAjHMtr8GmxshuSnZniRhA158qlrd7434nE2Rv38tYvyga8Q
-         /Ea8HbPq7twxHNvRhwPzqOnBIlYYgOMSIlgl/TQGTRn8iE3OQq8HGgrzjbMQ8kW3DYiW
-         XCS/4lK/ZwCYFCzrbMkot0rJg3ruDmoBJnrJmyUL5vTYQS6KcA/Kd1yVH56045D6TJD4
-         ijJeGBaNIGHTnkU0JoZJg+U85YnYvIk7MDwS0XHIEAruCv/wZ8Q+I+dW9dk4nadYwYzj
-         BRfw==
-X-Gm-Message-State: AOAM531Ol6ajabN6BC4dGGX8HCCy3OY35ixNeZn4Gd1fmUd09bZRzsmt
-        o+yaGfLimeXmikR9TWjT+K4zCQ==
-X-Google-Smtp-Source: ABdhPJxZdL87x0iMf+OgVyYXKEEQZFVzJS43DDXvqbnUnK/Zthe9bi1Sna9ZaeSIT6mtPmF5L4mEmA==
-X-Received: by 2002:a17:907:9495:b0:6ff:14df:d2a with SMTP id dm21-20020a170907949500b006ff14df0d2amr8065757ejc.338.1653594882571;
-        Thu, 26 May 2022 12:54:42 -0700 (PDT)
-Received: from [192.168.0.177] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id k10-20020a17090646ca00b006fed93bf71dsm802130ejs.42.2022.05.26.12.54.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 May 2022 12:54:42 -0700 (PDT)
-Message-ID: <597de13b-28c8-3341-be11-da51e22304c3@linaro.org>
-Date:   Thu, 26 May 2022 21:54:41 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=w7U8ZxQJcCt/aMdBrHfCcBBglr9/HQ3epyWgRB+XBNQ=;
+        b=3Rnh1oXN7QG/pdIug5NNnQj1bm/YKXtx2+z39qCbOziTOwPkzD6ZbFCsupJuisZaNf
+         QQya4GUsQ1s/5z8N8Q0xCITEOCAE+Y3Qk4ZGl8J69J+oeOrg5uITR51SR29EYD6CdtUZ
+         XiZRV8lNgiivVt6CppWKpEWSICeAt+3gxUZxMn73DnQtrd3MBBgcXxCq2hkDGRF00jdB
+         L3YUqMDSOM3fOHDM2UnL4Sk2lLbE3O9HSh11KgpZgWf5acxseBwMoMpu/WKBLEav9O/q
+         3MWCiEVM12XHSGJCLVYr59jV9jfWDv9AZq/uFie7zWJq8HL+ivWqdHGqKbGJVdO8SAsp
+         tQ1Q==
+X-Gm-Message-State: AOAM531RIstGUgoy+4OEc1Gm6kHeTMRD5yPEczsOTN7VmlXcHs1yWKEo
+        SYNgZg7+FuKIBHRrEHqrKK+kqdMizpFvabIeQqKaGw==
+X-Google-Smtp-Source: ABdhPJzWE6+/aFfASD6rZIFfbyF9nJaVk/sa/ZUHMyOQjnKRJ3h7r8yBH5vrbLsawyP3ZThVvAXaqR5lwwPSQ7yJ3X4=
+X-Received: by 2002:a05:6214:931:b0:461:d289:b7f6 with SMTP id
+ dk17-20020a056214093100b00461d289b7f6mr32636342qvb.55.1653596964734; Thu, 26
+ May 2022 13:29:24 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 2/2] reset: tps380x: Add TPS380x device driver supprt
-Content-Language: en-US
-To:     Marco Felsch <m.felsch@pengutronix.de>, p.zabel@pengutronix.de,
-        robh+dt@kernel.org, krzk+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@pengutronix.de
-References: <20220525142019.3615253-1-m.felsch@pengutronix.de>
- <20220525142019.3615253-2-m.felsch@pengutronix.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220525142019.3615253-2-m.felsch@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+References: <20220523181836.2019180-1-dmitry.baryshkov@linaro.org>
+ <20220523181836.2019180-7-dmitry.baryshkov@linaro.org> <20220526184228.GF54904-robh@kernel.org>
+In-Reply-To: <20220526184228.GF54904-robh@kernel.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 26 May 2022 23:29:13 +0300
+Message-ID: <CAA8EJpqWb5=Zt0EL5WF3GuPLZL-u-G-1WPL8F6Qp2hKL1sj6Qg@mail.gmail.com>
+Subject: Re: [PATCH v12 6/8] PCI: dwc: Implement special ISR handler for split
+ MSI IRQ setup
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,121 +76,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/05/2022 16:20, Marco Felsch wrote:
-> The TI TPS380x family [1] is a volatage supervisor with a dedicated
-> manual reset (mr) line input and a reset output. The chip(s) have a
-> build in reset delay, depending on the chip partnumber. This simple
-> driver addresses this so the cosumer don't need to care about it.
-> 
-> [1] https://www.ti.com/product/TPS3801
-> 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> ---
->  drivers/reset/Kconfig         |   8 +++
->  drivers/reset/Makefile        |   1 +
->  drivers/reset/reset-tps380x.c | 130 ++++++++++++++++++++++++++++++++++
->  3 files changed, 139 insertions(+)
->  create mode 100644 drivers/reset/reset-tps380x.c
-> 
-> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> index e0fc80e041ea..e2eb616af812 100644
-> --- a/drivers/reset/Kconfig
-> +++ b/drivers/reset/Kconfig
-> @@ -256,6 +256,14 @@ config RESET_TI_SYSCON
->  	  you wish to use the reset framework for such memory-mapped devices,
->  	  say Y here. Otherwise, say N.
->  
-> +config RESET_TI_TPS380X
-> +	tristate "TI TPS380x Reset Driver"
-> +	select GPIOLIB
-> +	help
-> +	  This enables the reset driver support for TI TPS380x devices. If
-> +	  you wish to use the reset framework for such devices, say Y here.
-> +	  Otherwise, say N.
-> +
->  config RESET_TN48M_CPLD
->  	tristate "Delta Networks TN48M switch CPLD reset controller"
->  	depends on MFD_TN48M_CPLD || COMPILE_TEST
-> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-> index a80a9c4008a7..66399b92b1bb 100644
-> --- a/drivers/reset/Makefile
-> +++ b/drivers/reset/Makefile
-> @@ -33,6 +33,7 @@ obj-$(CONFIG_RESET_STARFIVE_JH7100) += reset-starfive-jh7100.o
->  obj-$(CONFIG_RESET_SUNXI) += reset-sunxi.o
->  obj-$(CONFIG_RESET_TI_SCI) += reset-ti-sci.o
->  obj-$(CONFIG_RESET_TI_SYSCON) += reset-ti-syscon.o
-> +obj-$(CONFIG_RESET_TI_TPS380X) += reset-tps380x.o
->  obj-$(CONFIG_RESET_TN48M_CPLD) += reset-tn48m.o
->  obj-$(CONFIG_RESET_UNIPHIER) += reset-uniphier.o
->  obj-$(CONFIG_RESET_UNIPHIER_GLUE) += reset-uniphier-glue.o
-> diff --git a/drivers/reset/reset-tps380x.c b/drivers/reset/reset-tps380x.c
-> new file mode 100644
-> index 000000000000..fd2c0929ae2d
-> --- /dev/null
-> +++ b/drivers/reset/reset-tps380x.c
-> @@ -0,0 +1,130 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * TI TPS380x Supply Voltage Supervisor and Reset Controller Driver
-> + *
-> + * Copyright (C) 2022 Pengutronix, Marco Felsch <kernel@pengutronix.de>
-> + *
-> + * Based on Simple Reset Controller Driver
-> + *
-> + * Copyright (C) 2017 Pengutronix, Philipp Zabel <kernel@pengutronix.de>
-> + */
-> +
-> +#include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/property.h>
-> +#include <linux/reset-controller.h>
-> +
-> +struct tps380x_reset {
-> +	struct reset_controller_dev	rcdev;
-> +	struct gpio_desc		*reset_gpio;
-> +	unsigned int			reset_ms;
-> +};
-> +
-> +struct tps380x_reset_devdata {
-> +	unsigned int min_reset_ms;
-> +	unsigned int typ_reset_ms;
-> +	unsigned int max_reset_ms;
-> +};
-> +
-> +static inline
-> +struct tps380x_reset *to_tps380x_reset(struct reset_controller_dev *rcdev)
-> +{
-> +	return container_of(rcdev, struct tps380x_reset, rcdev);
-> +}
-> +
-> +static int
-> +tps380x_reset_assert(struct reset_controller_dev *rcdev, unsigned long id)
-> +{
-> +	struct tps380x_reset *tps380x = to_tps380x_reset(rcdev);
-> +
-> +	gpiod_set_value_cansleep(tps380x->reset_gpio, 1);
-> +
-> +	return 0;
-> +}
-> +
-> +static int
-> +tps380x_reset_deassert(struct reset_controller_dev *rcdev, unsigned long id)
-> +{
-> +	struct tps380x_reset *tps380x = to_tps380x_reset(rcdev);
-> +
-> +	gpiod_set_value_cansleep(tps380x->reset_gpio, 0);
-> +	msleep(tps380x->reset_ms);
-> +
-> +	return 0;
-> +}
-> +
-> +const struct reset_control_ops reset_tps380x_ops = {
+On Thu, 26 May 2022 at 21:42, Rob Herring <robh@kernel.org> wrote:
+>
+> On Mon, May 23, 2022 at 09:18:34PM +0300, Dmitry Baryshkov wrote:
+> > If the PCIe DWC controller uses split MSI IRQs for reporting MSI
+> > vectors, it is possible to detect, which group triggered the interrupt.
+> > Provide an optimized version of MSI ISR handler that will handle just a
+> > single MSI group instead of handling all of them.
+>
+> A lot more complexity to save 7 register reads...
 
-This looks static.
+Thus it is a separate patch. It can be dropped w/o any issues.
+
+>
+> >
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> >  .../pci/controller/dwc/pcie-designware-host.c | 86 ++++++++++++++-----
+> >  1 file changed, 65 insertions(+), 21 deletions(-)
+> >
+> > diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> > index 98a57249ecaf..2b2de517301a 100644
+> > --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> > +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> > @@ -52,34 +52,42 @@ static struct msi_domain_info dw_pcie_msi_domain_info = {
+> >       .chip   = &dw_pcie_msi_irq_chip,
+> >  };
+> >
+> > +static inline irqreturn_t dw_handle_single_msi_group(struct pcie_port *pp, int i)
+> > +{
+> > +     int pos;
+> > +     unsigned long val;
+> > +     u32 status;
+> > +     struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> > +
+> > +     status = dw_pcie_readl_dbi(pci, PCIE_MSI_INTR0_STATUS +
+> > +                                (i * MSI_REG_CTRL_BLOCK_SIZE));
+> > +     if (!status)
+> > +             return IRQ_NONE;
+> > +
+> > +     val = status;
+> > +     pos = 0;
+> > +     while ((pos = find_next_bit(&val, MAX_MSI_IRQS_PER_CTRL,
+> > +                                 pos)) != MAX_MSI_IRQS_PER_CTRL) {
+>
+> for_each_set_bit() doesn't work here?
+
+Good question, I just moved the existing DWC code.
+
+>
+> > +             generic_handle_domain_irq(pp->irq_domain,
+> > +                                       (i * MAX_MSI_IRQS_PER_CTRL) +
+> > +                                       pos);
+> > +             pos++;
+> > +     }
+> > +
+> > +     return IRQ_HANDLED;
+> > +}
+> > +
+> >  /* MSI int handler */
+> >  irqreturn_t dw_handle_msi_irq(struct pcie_port *pp)
+> >  {
+> > -     int i, pos;
+> > -     unsigned long val;
+> > -     u32 status, num_ctrls;
+> > +     int i;
+> > +     u32 num_ctrls;
+> >       irqreturn_t ret = IRQ_NONE;
+> > -     struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> >
+> >       num_ctrls = pp->num_vectors / MAX_MSI_IRQS_PER_CTRL;
+> >
+> > -     for (i = 0; i < num_ctrls; i++) {
+> > -             status = dw_pcie_readl_dbi(pci, PCIE_MSI_INTR0_STATUS +
+> > -                                        (i * MSI_REG_CTRL_BLOCK_SIZE));
+> > -             if (!status)
+> > -                     continue;
+> > -
+> > -             ret = IRQ_HANDLED;
+> > -             val = status;
+> > -             pos = 0;
+> > -             while ((pos = find_next_bit(&val, MAX_MSI_IRQS_PER_CTRL,
+> > -                                         pos)) != MAX_MSI_IRQS_PER_CTRL) {
+> > -                     generic_handle_domain_irq(pp->irq_domain,
+> > -                                               (i * MAX_MSI_IRQS_PER_CTRL) +
+> > -                                               pos);
+> > -                     pos++;
+> > -             }
+> > -     }
+> > +     for (i = 0; i < num_ctrls; i++)
+> > +             ret |= dw_handle_single_msi_group(pp, i);
+> >
+> >       return ret;
+> >  }
 
 
-Best regards,
-Krzysztof
+
+-- 
+With best wishes
+Dmitry
