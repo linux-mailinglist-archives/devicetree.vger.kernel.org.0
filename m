@@ -2,79 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3219E534EDF
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 14:11:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D3CC534EF4
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 14:16:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242494AbiEZMLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 08:11:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46274 "EHLO
+        id S1346495AbiEZMQQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 08:16:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230487AbiEZMLp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 08:11:45 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 536CAB2240
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 05:11:44 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id er5so1543926edb.12
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 05:11:44 -0700 (PDT)
+        with ESMTP id S1345663AbiEZMQP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 08:16:15 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 820CA1EED9
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 05:16:12 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id gk22so1607355pjb.1
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 05:16:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=sXHp14NNalgqPaKL7fFgyP/4BdJ+vF73UOPZDrXfEbU=;
-        b=FGwLjy7oS+OIxxTDnvLctd0ph6xYVfo9FHwpZa0nZL9tKTfGKLDaBLD2pgvAlHvsSO
-         6+YLNbhFsfrMUNXNQxqtzm3DgEK4LOOTzzATAJrKJsO8czXDovltiJKZddYVbl5z5sVu
-         Cgr7SW5TSLSVGrIpy7bAoLTAn0aaQXJRTfJbJ6D0xGbzEhYxN0vAXpP0PduCOthjh7Qx
-         1Lp5YIborDM4hz1c22ERtTfDyt8uAJgCEfX7qBL5icCGLa4M7HZxCshuadE5teTSPbzv
-         fuRYIQg7n/5kW8y1p8Vct+9Z2GLEaQDIIdJa1zZSDJyK9jhwtjFdxn369U1N2ewN68hc
-         zZUg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=pSsFxHfEMcrHOSBoFMEeUFcZhoPO+KxNjOCmccE7VEc=;
+        b=j1LakW1276mdhdZUQsSFgcp6av448PqaRz7jViMY+GiGwh5iEij2Cm5mimSgVPEdiL
+         Ozj3HVl3aUCQNnL22XjmDerl2WGv3ej+oU5YMVtYH9VIgXAWsX2inzVAfnyQqa2b5xnX
+         W2Y4WrZkxJ+HRox9oe5wjmagh65jqeEWGjW8fstEyuAjiqnZGpAs/+pspSCQIhlehDyP
+         xDU30Ahlo1lxgsqq/URVcKV4vlRa+Ug1dhRi/5993PYb81ygDBtRkwhfgFcpx+IwipjA
+         ioZ7k1tvfTIqVetbCWXoO8xV/OhK2fIufIzWIIGxVrM90tgy7w3bSaH4Mpz4weYTocdg
+         ER1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=sXHp14NNalgqPaKL7fFgyP/4BdJ+vF73UOPZDrXfEbU=;
-        b=ST2tclAMNQgT7ufX7anoRZGCeFZOsP/9OUQf1AsjxixUulcEuFflznd9H7cgeelYKQ
-         UyAhhDRLMesX1ueyzpfQ79xhWGV6sVvz3bIUd2sqSORe+eIbxBncTBaUWxyVJeeTFX1M
-         Y5DUE08T5Df1/hUxyr+L0TWxNlxWyOjQCk7qqC2AL1K7gRxWoYxZHR4F1iKU+Hl0H42h
-         BqZtnhvq0Asq3FeQJzoLH/zcC4/qViJi3acjxJY6m5uQq0u2zss8REA77tA5Jo31xI6x
-         MxNXv2CnENRo9NbIU/gx1oLA7btjuzaF5P8+gxggML06qL8FD5LgNbuFYDohzoKgPSu2
-         rgwg==
-X-Gm-Message-State: AOAM532fy5s/JKLUV5PtSjd8+uUiGxdjXjEZzqBMmkZ4ezVlD/LmjADj
-        l+XFTfwOV+EMKlIQwKYrnHfEzg==
-X-Google-Smtp-Source: ABdhPJxKtLDaqitsHZgj8YIb7tPwvHNZlr+rERVc0m5szUCbZxJUM9dMruOloFZQvWNGezIeQY6/EA==
-X-Received: by 2002:aa7:c79a:0:b0:42a:762e:769c with SMTP id n26-20020aa7c79a000000b0042a762e769cmr39520806eds.155.1653567102762;
-        Thu, 26 May 2022 05:11:42 -0700 (PDT)
-Received: from [192.168.0.177] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id cw13-20020a170906c78d00b006fee11af404sm458355ejb.147.2022.05.26.05.11.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 May 2022 05:11:42 -0700 (PDT)
-Message-ID: <32077a17-6a95-d583-9d7f-2276cf586b38@linaro.org>
-Date:   Thu, 26 May 2022 14:11:41 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pSsFxHfEMcrHOSBoFMEeUFcZhoPO+KxNjOCmccE7VEc=;
+        b=O5XofjwTCF75Dh3LT7YRJxIB4wJRFJi6Q8LvAZReMKO7jwZHrYF6LsA0ekmWyvYLrh
+         UMpVvtuWsxkxqb8p5cdpw0yDH1084mySjrW5mAAgL5WdeZAI/DRW3MjqlvH6agNjRO6M
+         UCouz8JqwracIl3XICvSUPS8A+E5Af17Kvg9sUOGcfqJWztZED0l82x6yF3IuEtLOW/1
+         Pxs4dYqyf0oQcrukgqTjKiQjIJEIr82liq9x7HjGWp2N6jEQprjTtAaGanhNnpZtjRHz
+         U8472MF/S8JxNuGLWoskLDlFIUKIs2YVO747qjqWWthuJKzi7L5W1yV+u1jzIoJpcpJh
+         eyKQ==
+X-Gm-Message-State: AOAM530bkYIQ27p8QaYqSqTr5niQqP3t72RkQIvNCdrOrkh8vLeUzwdA
+        lhuY5+vNJCiZpsrW9KuK5oO8h40++0za7vh8kmdGTQ==
+X-Google-Smtp-Source: ABdhPJyPE1Wcb5k1NYZNag1s+hH2MlPohRmJCsdM2BsWrYm5w9w9F6ArFLEhJ5Lmyc8aI7BQaEykL1CgVfGR0Wh+Ecc=
+X-Received: by 2002:a17:902:8f81:b0:161:f4a7:f2fc with SMTP id
+ z1-20020a1709028f8100b00161f4a7f2fcmr30701452plo.117.1653567371993; Thu, 26
+ May 2022 05:16:11 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH -next] ARM: dts: aspeed: nuvia: rename vendor nuvia to
- qcom
-Content-Language: en-US
-To:     Jae Hyun Yoo <quic_jaehyoo@quicinc.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+References: <20220522162802.208275-1-luca@z3ntu.xyz> <20220522162802.208275-12-luca@z3ntu.xyz>
+In-Reply-To: <20220522162802.208275-12-luca@z3ntu.xyz>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Thu, 26 May 2022 14:16:01 +0200
+Message-ID: <CAG3jFys4o6vsqhDJXMkL2fFdjDGstdzaB59j=Md6KDinMDNVRg@mail.gmail.com>
+Subject: Re: [RFC PATCH 11/14] ARM: dts: qcom: msm8974: add CCI bus
+To:     Luca Weiss <luca@z3ntu.xyz>
+Cc:     linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Loic Poulain <loic.poulain@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
-Cc:     Jamie Iles <quic_jiles@quicinc.com>,
-        Graeme Gregory <quic_ggregory@quicinc.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org
-References: <20220523175640.60155-1-quic_jaehyoo@quicinc.com>
- <dd67a453-b75b-d092-f999-3faf05ef8160@linaro.org>
- <71613fa5-c468-e3ab-935a-7aa675e822fc@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <71613fa5-c468-e3ab-935a-7aa675e822fc@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Todor Tomov <todor.too@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        matti.lehtimaki@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,84 +75,99 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/05/2022 13:57, Jae Hyun Yoo wrote:
-> Hi Krzysztof,
-> 
-> On 5/24/2022 2:53 AM, Krzysztof Kozlowski wrote:
->> On 23/05/2022 19:56, Jae Hyun Yoo wrote:
->>> Nuvia has been acquired by Qualcomm and the vendor name 'nuvia' will
->>> not be used anymore so rename aspeed-bmc-nuvia-dc-scm.dts to
->>> aspeed-bmc-qcom-dc-scm-v1.dts and change 'nuvia' to 'qcom' as its vendor
->>> name in the file.
->>
->> And all users of this DTB now have to update their bootloaders, scripts,
->> installation methods. We did not rename FSL or Marvell boards, so
->> neither should be renamed this one.
-> 
-> Yeah, I know that we don't rename dts but the previous version of this
-> change was picked recently in the middle of code review
-> https://lore.kernel.org/all/979a5c87-a7ea-a1f0-e42e-29043df6b348@quicinc.com/
-> and the v3 was pulled recently so it's still in the -next queue so
-> I believe it has a chance to be renamed since no one is using the DTB
-> yet.
+This patch does not apply on upstream-media/master or
+upstream-next/master. Is there another branch this series should be
+applied to?
 
-Ah, so it is still in next (or was before this merge window). OK, thanks
-for explanation.
-
-> 
->>>
->>> Signed-off-by: Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
->>> ---
->>>   arch/arm/boot/dts/Makefile                                    | 2 +-
->>>   ...eed-bmc-nuvia-dc-scm.dts => aspeed-bmc-qcom-dc-scm-v1.dts} | 4 ++--
->>>   2 files changed, 3 insertions(+), 3 deletions(-)
->>>   rename arch/arm/boot/dts/{aspeed-bmc-nuvia-dc-scm.dts => aspeed-bmc-qcom-dc-scm-v1.dts} (97%)
->>>
->>> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
->>> index 03f5b3a15415..2a3c95387613 100644
->>> --- a/arch/arm/boot/dts/Makefile
->>> +++ b/arch/arm/boot/dts/Makefile
->>> @@ -1584,7 +1584,6 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
->>>   	aspeed-bmc-lenovo-hr630.dtb \
->>>   	aspeed-bmc-lenovo-hr855xg2.dtb \
->>>   	aspeed-bmc-microsoft-olympus.dtb \
->>> -	aspeed-bmc-nuvia-dc-scm.dtb \
->>>   	aspeed-bmc-opp-lanyang.dtb \
->>>   	aspeed-bmc-opp-mihawk.dtb \
->>>   	aspeed-bmc-opp-mowgli.dtb \
->>> @@ -1597,6 +1596,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
->>>   	aspeed-bmc-opp-witherspoon.dtb \
->>>   	aspeed-bmc-opp-zaius.dtb \
->>>   	aspeed-bmc-portwell-neptune.dtb \
->>> +	aspeed-bmc-qcom-dc-scm-v1.dtb \
->>>   	aspeed-bmc-quanta-q71l.dtb \
->>>   	aspeed-bmc-quanta-s6q.dtb \
->>>   	aspeed-bmc-supermicro-x11spi.dtb \
->>> diff --git a/arch/arm/boot/dts/aspeed-bmc-nuvia-dc-scm.dts b/arch/arm/boot/dts/aspeed-bmc-qcom-dc-scm-v1.dts
->>> similarity index 97%
->>> rename from arch/arm/boot/dts/aspeed-bmc-nuvia-dc-scm.dts
->>> rename to arch/arm/boot/dts/aspeed-bmc-qcom-dc-scm-v1.dts
->>> index f4a97cfb0f23..259ef3f54c5c 100644
->>> --- a/arch/arm/boot/dts/aspeed-bmc-nuvia-dc-scm.dts
->>> +++ b/arch/arm/boot/dts/aspeed-bmc-qcom-dc-scm-v1.dts
->>> @@ -6,8 +6,8 @@
->>>   #include "aspeed-g6.dtsi"
->>>   
->>>   / {
->>> -	model = "Nuvia DC-SCM BMC";
->>> -	compatible = "nuvia,dc-scm-bmc", "aspeed,ast2600";
->>> +	model = "Qualcomm DC-SCM V1 BMC";
->>> +	compatible = "qcom,dc-scm-v1-bmc", "aspeed,ast2600";
->>
->>
->> You need also change bindings.
-> 
-> I didn't see any case of changing bindings for adding a new Aspped BMC
-> dts.
-
-Hmmm... Where do you document these bindings? Or does it mean Aspeed
-does not document it at all, every time the checkpatch complains but no
-one thought about it why? :)
-
-Best regards,
-Krzysztof
+On Sun, 22 May 2022 at 18:28, Luca Weiss <luca@z3ntu.xyz> wrote:
+>
+> Add a node for the camera-specific i2c bus found on msm8974.
+>
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> ---
+>  arch/arm/boot/dts/qcom-msm8974.dtsi | 62 +++++++++++++++++++++++++++++
+>  1 file changed, 62 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
+> index ffa6f874917a..a80b4ae71745 100644
+> --- a/arch/arm/boot/dts/qcom-msm8974.dtsi
+> +++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
+> @@ -1434,6 +1434,34 @@ blsp2_i2c5_sleep: blsp2-i2c5-sleep {
+>
+>                         /* BLSP2_I2C6 info is missing - nobody uses it though? */
+>
+> +                       cci0_default: cci0-default {
+> +                               pins = "gpio19", "gpio20";
+> +                               function = "cci_i2c0";
+> +                               drive-strength = <2>;
+> +                               bias-disable;
+> +                       };
+> +
+> +                       cci0_sleep: cci0-sleep {
+> +                               pins = "gpio19", "gpio20";
+> +                               function = "gpio";
+> +                               drive-strength = <2>;
+> +                               bias-disable;
+> +                       };
+> +
+> +                       cci1_default: cci1-default {
+> +                               pins = "gpio21", "gpio22";
+> +                               function = "cci_i2c1";
+> +                               drive-strength = <2>;
+> +                               bias-disable;
+> +                       };
+> +
+> +                       cci1_sleep: cci1-sleep {
+> +                               pins = "gpio21", "gpio22";
+> +                               function = "gpio";
+> +                               drive-strength = <2>;
+> +                               bias-disable;
+> +                       };
+> +
+>                         spi8_default: spi8_default {
+>                                 mosi {
+>                                         pins = "gpio45";
+> @@ -1587,6 +1615,40 @@ dsi0_phy: dsi-phy@fd922a00 {
+>                         };
+>                 };
+>
+> +               cci: cci@fda0c000 {
+> +                       compatible = "qcom,msm8974-cci";
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +                       reg = <0xfda0c000 0x1000>;
+> +                       interrupts = <GIC_SPI 50 IRQ_TYPE_EDGE_RISING>;
+> +                       clocks = <&mmcc CAMSS_TOP_AHB_CLK>,
+> +                                <&mmcc CAMSS_CCI_CCI_AHB_CLK>,
+> +                                <&mmcc CAMSS_CCI_CCI_CLK>;
+> +                       clock-names = "camss_top_ahb",
+> +                                     "cci_ahb",
+> +                                     "cci";
+> +
+> +                       pinctrl-names = "default", "sleep";
+> +                       pinctrl-0 = <&cci0_default &cci1_default>;
+> +                       pinctrl-1 = <&cci0_sleep &cci1_sleep>;
+> +
+> +                       status = "disabled";
+> +
+> +                       cci_i2c0: i2c-bus@0 {
+> +                               reg = <0>;
+> +                               clock-frequency = <400000>;
+> +                               #address-cells = <1>;
+> +                               #size-cells = <0>;
+> +                       };
+> +
+> +                       cci_i2c1: i2c-bus@1 {
+> +                               reg = <1>;
+> +                               clock-frequency = <400000>;
+> +                               #address-cells = <1>;
+> +                               #size-cells = <0>;
+> +                       };
+> +               };
+> +
+>                 gpu: adreno@fdb00000 {
+>                         compatible = "qcom,adreno-330.1", "qcom,adreno";
+>                         reg = <0xfdb00000 0x10000>;
+> --
+> 2.36.0
+>
