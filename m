@@ -2,82 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C63F3534A86
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 08:54:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1844D534AB1
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 09:16:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346282AbiEZGyA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 02:54:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55138 "EHLO
+        id S230202AbiEZHQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 03:16:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346267AbiEZGx7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 02:53:59 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ACFD719C0
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 23:53:57 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id i27so1178194ejd.9
-        for <devicetree@vger.kernel.org>; Wed, 25 May 2022 23:53:57 -0700 (PDT)
+        with ESMTP id S237024AbiEZHQK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 03:16:10 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7C3237A95
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 00:16:05 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id u20so745289edd.6
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 00:16:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=+OlWFNuXubaG+wIbcU6S2PD/trjlRQ/H0QdDAVlC7L8=;
-        b=HTSbKdqa3Nz+rgnORHSDlCCrWGmPxq/uTvVIJ1mdxP93fxi23p4/iaudQGQ0yvJ9qD
-         sVCbrRfo4bBZ9mQRMOESsrCFhgNGIGplr+gRzybCAWSTUbTrkEc8qWTZ4+OL34B9gBo5
-         dOF8MFYMdEGZrlkLcq9wisY90Wjy5NOu5xRch0PKTnXgXXXoQiEdUGSOr8epjCyfTbVS
-         Dr28G81aHk81OulVCikCIbagbO+Y4eDk0jAdcfnyEEMK2ynz5Uduj5WXS6eh/HElm7AY
-         yhKdPVZCKYG7q/YHZlKZoSErjnkxy2vKC9OXBJfkrBc3mnIe3F9Jp3DD8FlhwnTPS8Hy
-         kCZA==
+        bh=vemDBZDCnhpAK2uXIq2WrkheYMWxwrmu5Ee771X7p5k=;
+        b=us3L1pxoQlXucRLuOrHLCMJADLuv6kfsD5XMhrvhSTVYYm4xfsAm+5+cY9YTR39vy5
+         nhby1fQuzH8KdqPSCn2aWeOzCMoTk0a3QzZIuMDZ7pXKVeNSRQ6d6A9QUZ9ZHJK6c0CW
+         K84q1Fq3qVOZlmL4LtpNB66UCbeCe/kG68h0RN1+uUhi47q5zIYlWS7S0V8A0OBfGiW5
+         6Z8AOavjOarpZPPzMrm/coG11ipPMz8fxT8L/Y5Vrbr0M4pE3KsuejP+MTwQES0VdMM+
+         dRTYsXbqb2ffqg6g5kRaozLF+tAsxS36mQeqVkmMP5T7uz9dFWgpJSeujstPyDvHoSjG
+         5t4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=+OlWFNuXubaG+wIbcU6S2PD/trjlRQ/H0QdDAVlC7L8=;
-        b=BpJvgbG2SIzgZEVYYxpa/dh7u7olCloyDm/OCXNq9equb5hcccr9Bosr2INDYFE/sd
-         KOEojEFyg4NBX/ye5uIKVpxbELAUSvR7ok3JXMYsriSpOHOg8NXgenqaO1UH8zgBt2eP
-         piSiReGhEFTFTLWJCMQtitd+pqw3GuNgOSwFkuo0yqf48NY0oJNmiiVU8A4RYlDz+/Vg
-         fA2K796jymBws/WKJua2vjHpGaHmR+95UpqiY2502C1w2nITNcGlLWLeH4NOJbOw94IL
-         LNbOZW/M2EYwQyhyKYZ76eF521Vmaxchu5VOoBsD7mEvoFYsNRtM6b47dZzbudD4CA0T
-         enTw==
-X-Gm-Message-State: AOAM5305QWp4SkaEVFRrwroZ/r1ALNazOa0OlMD2bZpEnm57vRxyFJ53
-        rMakczZE4VLVqkWVBvPpliB3Yg==
-X-Google-Smtp-Source: ABdhPJxK0GdBqnqhHeFKnB17hFODfbqtX8jNbVhbmw+n/G8WMqDopEGaBisjwS7Dq3PBf+ZqYanNVA==
-X-Received: by 2002:a17:906:9b90:b0:6ff:a02:1f9 with SMTP id dd16-20020a1709069b9000b006ff0a0201f9mr9350097ejc.672.1653548036203;
-        Wed, 25 May 2022 23:53:56 -0700 (PDT)
+        bh=vemDBZDCnhpAK2uXIq2WrkheYMWxwrmu5Ee771X7p5k=;
+        b=MWIdAhG2PvpQITrlzvMCMDearz2O1xnf35Snki/sNMgXroK0zR2Zo+8DYAYV78sWZV
+         T46XoIEq/1b0jchsMULETGYZMlm1NWyMeYyXZco73uz7OTJPPPcYM85AHtSQlLhJCg2z
+         gDtNDvXQSN+JXLzmayLpAxBge0Hb0SDZJGLnE9dpPhALIBXWXuDrspuYNhlyh+iN35O7
+         UwyWSY96Y5WFuhLMgADU/Ww27wwtCxhzIPifxcZDESxZM5SIze46yIprI4teSaLHiPfw
+         xwfKQsGfmCO+pqX9Vsna0rzVHOmErJ91difVgs0tXLmMYNIg919OO7BcnpmsSAAtSHH8
+         4sbQ==
+X-Gm-Message-State: AOAM530RT4C4s6k3u3diHorPDGtVsXOFW7BLlnYuMPzLIwyxlOYLc70j
+        dFXVnzAiSXOi/r7ar14wU8AQiw==
+X-Google-Smtp-Source: ABdhPJyKhk21/nQY9A/VVQJDajElTIqAvYmnxdQHegM5RNLrV2nLJPVTJA7zb0PcEHPcMbBE3j4ejQ==
+X-Received: by 2002:a05:6402:1cc1:b0:428:a06e:a30f with SMTP id ds1-20020a0564021cc100b00428a06ea30fmr37677711edb.377.1653549364396;
+        Thu, 26 May 2022 00:16:04 -0700 (PDT)
 Received: from [192.168.0.177] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id x65-20020a50bac7000000b0042617ba63absm389060ede.53.2022.05.25.23.53.55
+        by smtp.gmail.com with ESMTPSA id b12-20020a50cccc000000b0042ab87ea713sm415510edj.22.2022.05.26.00.16.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 25 May 2022 23:53:55 -0700 (PDT)
-Message-ID: <8d2c9375-63d7-6d36-8a0b-6c5d117cc213@linaro.org>
-Date:   Thu, 26 May 2022 08:53:54 +0200
+        Thu, 26 May 2022 00:16:03 -0700 (PDT)
+Message-ID: <7e019e53-c449-6520-009e-11a45e30df10@linaro.org>
+Date:   Thu, 26 May 2022 09:16:02 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH 11/11] arm64: dts: Add Pensando Elba SoC support
+Subject: Re: Removal of qcom,board-id and qcom,msm-id
 Content-Language: en-US
-To:     Brad Larson <brad@pensando.io>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mark Brown <broonie@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Olof Johansson <olof@lixom.net>,
-        David Clear <dac2@pensando.io>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20220406233648.21644-1-brad@pensando.io>
- <20220406233648.21644-12-brad@pensando.io>
- <eed2f337-3d5a-3440-d19e-c5ff032409ab@linaro.org>
- <CAK9rFnzPEq1_zOnHYzTDyOOU9xRsuP-KBEFnc84cRoyfAve+Jg@mail.gmail.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>, agross@kernel.org,
+        arnd@arndb.de, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        olof@lixom.net, robh@kernel.org, sboyd@kernel.org,
+        Rob Clark <robdclark@gmail.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+References: <a3c932d1-a102-ce18-deea-18cbbd05ecab@linaro.org>
+ <20220522195138.35943-1-konrad.dybcio@somainline.org>
+ <53d5999b-88ee-24db-fd08-ff9406e2b7b7@linaro.org>
+ <YowBtNkZ678ns4Ob@builder.lan>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAK9rFnzPEq1_zOnHYzTDyOOU9xRsuP-KBEFnc84cRoyfAve+Jg@mail.gmail.com>
+In-Reply-To: <YowBtNkZ678ns4Ob@builder.lan>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -90,39 +82,117 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/05/2022 02:19, Brad Larson wrote:
-> Hi Krzysztof,
+Thank you all (not only Bjorn here) for comments. These are nice
+arguments to prepare a proper patch.
+
+If I got correctly all your feedback, the preference is to document
+board-id/msm-id boards. I can prepare a patch for this, unless someone
+wants to revive old effort (from few years ago).
+
+On 23/05/2022 23:50, Bjorn Andersson wrote:
+> On Mon 23 May 02:21 CDT 2022, Krzysztof Kozlowski wrote:
 > 
-> On Thu, Apr 7, 2022 at 12:06 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 07/04/2022 01:36, Brad Larson wrote:
->>> Add Pensando common and Elba SoC specific device nodes
+>> On 22/05/2022 21:51, Konrad Dybcio wrote:
+>>> Hi,
 >>>
->>> +&spi0 {
->>> +     num-cs = <4>;
->>> +     cs-gpios = <0>, <0>, <&porta 1 GPIO_ACTIVE_LOW>,
->>> +                <&porta 7 GPIO_ACTIVE_LOW>;
->>> +     status = "okay";
->>> +     spi0_cs0@0 {
+>>> removing these properties will not bring almost any benefit (other than making
+>>> some checks happy any saving some <200 LoC) and will make the lives of almost
+>>> all people doing independent development for linux-on-msm harder. There are
+>>> almost unironically like 3 people outside Linaro and QUIC who have
+>>> non-vendor-fused development boards AND the sources to rebuild the
+>>> bootloader on their own. Making it harder to boot is only going to
+>>> discourage people from developing on these devices, which is already not
+>>> that pleasant, especially with newer platforms where you have to fight with
+>>> the oh-so-bright ideas of Android boot chain..
+>>>
+>>> This only concerns devices released before sm8350, as the new ones will not
+>>> even boot with these properties present (or at least SONY Sagami, but I
+>>> doubt it's an isolated case), so other than completing support for older
+>>> devices, it won't be an issue going forward, anyway. But there are give
+>>> or take 50 locked down devices in mainline right now, and many more waiting
+>>> to be upstreamed in various downstream close-to-mainline trees that should
+>>> not be disregarded just because Qualcomm is far from the best at making
+>>> their BSP software stack clean.
 >>
->> Generic node name needed matching the class of a devicxe.
-> 
-> The device on this spi bus is a FPGA with 4 functions and looking at
-> other projects I've changed it to a resource-controller node name.  On
-> cs0 there is a sub-device reset-controller added in the upcoming
-> patchset to enable hardware reset of the eMMC device.
-> 
->>> +             compatible = "semtech,sx1301";  /* Enable spidev */
+>> I actually wonder why do you need these properties for community work on
+>> such boards? You ship kernel with one concatenated DTB and the
+>> bootloader does not need the board-id/msm-id fields, doesn't it?
 >>
->> This comment is a bit odd... did you just use random compatible from
->> spidev instead of defining proper compatible?
 > 
-> Yes, because adding a compatible was nacked.  We have a driver added
-> (two actually, mfd and reset driver) for the next patch update.
+> During the last years all reference devices that I know of has allowed
+> us to boot Image.gz+dtb concatenated kernels without
+> qcom,{board-msm}-id.
+> 
+> There's however been several end-user devices that for some reason
+> refuse to accept the concatenated dtb unless these values matches.
 
-Yeah, but using some other one is also not correct.
+I think several recently upstreamed boards have board-id/msm-id
+properties, so I wonder how can we judge whether these are needed or not.
 
+> 
+>> Not mentioning that in the past bootloader was actually not using these
+>> properties at all, because it was the dtbTool who was parsing them. So
+>> in any case either your device works fine without these properties or
+>> you have to use dtbTool, right?
+>>
+> 
+> Unfortunately not. There are the devices which accepts a single appended
+> dtb without these properties, but beyond that it's been a large mix.
+> 
+> I've seen cases where dtbTool packs up a number of dtbs, but the loaded
+> one still need to have these properties, and there are devices out there
+> that supports multiple appended dtbs etc.
+> 
+> 
+> Last but not least, forcing everyone to use dtbTool adds a
+> non-standardized tool to everyone's workflow, a tool that has to be kept
+> up to date with the compatible to msm/board-id mapping.
+
+OK
+
+> 
+>>>
+>>> One solution is to chainload another, (n+1)-stage bootloader, but this is
+>>> not ideal, as:
+>>>
+>>> 1) the stock bootloader can boot Linux just fine on most devices (except
+>>> for single exceptions, where beloved OEMs didn't implement arm64 booting or
+>>> something)
+>>>
+>>> 2) the boot chain on MSM is already 3- or 4- stage and adding to that will
+>>> only create an unnecessary mess
+>>>
+>>> 3) the job of kernel people is not to break userspace. If the
+>>> device can not even exit bootloader after a kernel upgrade, it's a big
+>>> failure.
+>>
+>> The job of kernel people is to follow bindings and since they were
+>> introduced 7 years ago, I would say there was plenty of time for that.
+>>
+> 
+> We're following the bindings and don't pick board-id or msm-id unless
+> there's a particular reason for it - which typically is that the
+> downstream bootloader requires it - we don't use the properties on the
+> kernel side.
+
+I meant to follow existing bindings for compatible:
+"qcom,<SoC>[-<soc_version>][-<foundry_id>]-<board>[/<subtype>][-<board_version>]"
+
+I think none of handsets (google, fairphone, lenovo, microsoft, sony,
+xiaomi) follow it.
+
+It seems only Qcom boards (with 'qcom' as vendor prefix) use such
+pattern, but the bindings say "Each board must specify", not "Board for
+such bootloader must specify"...
+
+> 
+>> If the dtbTool support for the bindings is there, then there is no
+>> breakage, because you had to use dtbTool before so you have to use now.
+>>
+> 
+> Among all the platforms I maintain, MSM8916 (db410c) is the only one
+> where I use dtbTool - because it refuses to accept the concatenated
+> dtb.
 
 
 Best regards,
