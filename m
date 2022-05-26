@@ -2,160 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9621E534CF2
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 12:05:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6647F534D21
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 12:14:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346453AbiEZKFR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 06:05:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37110 "EHLO
+        id S244348AbiEZKOR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 06:14:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231350AbiEZKFQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 06:05:16 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A19E3C9660
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 03:05:14 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id y24so720394wmq.5
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 03:05:14 -0700 (PDT)
+        with ESMTP id S236103AbiEZKOI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 06:14:08 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D035113F54;
+        Thu, 26 May 2022 03:14:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Q2/Vrqz5X77pgoaL4sWT9uNh8P+G0LpsaCXqtANxzbY=;
-        b=alvENUPR1RoIdzdhbyYZL4jZz6a2WTuZVvGMUXOyRzTtSUlFMVkMmroCvum7nmvad0
-         AdI49WUD5g7yY8JcuP+gxSpebiD38sEWgO1fPim74uQNUhuGba7CWd6ST2TMULVxDhh3
-         0cQqbnj6iSKJhPtsNeauBq+EENMJRyWQBxeutx7HagHWHeaJpQxY+HfqNYS9+arSjtlN
-         r3u55+VbMwFVNraRdE26MsV29D3rfy0o3mzDRcCrD6o4KggqSSyMLFZkqeqmgMfMdO9Y
-         5XKl1+e1RicYK3Prq5Dn+WtQ0HGA2x8pbBIXS8E8nVUGeEoksec8o8uDeAXemuuc5oaq
-         AUUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Q2/Vrqz5X77pgoaL4sWT9uNh8P+G0LpsaCXqtANxzbY=;
-        b=pUh5rxVbcH0q1MK3fmpOg53TgBjE5bZlqSpdLYIw1wQW9H7RscdyipoWXXuO4wmeFT
-         whIBJo6z01MhSDWZ1z4OgQT97FFfrkLBTcCB//yzSwFDgE9Mo+j7CDsi/Wg9TkvtXGto
-         Cj8PjYX2PRkiE6jSWu3uUycdhPFt8dSk651VHbwTf4Y6aoPjNUMPJUJteU3ygLzIty9C
-         yHhqryVurCUNQjM1hJq2CR8SBPnYhgm0RHSOGlS5gu+T5UI7AlfxytB3ghLh3HwBh4qY
-         M5T+Wr2SCKWxNdjXpiW8rIFsPgw/Tk4J/TIxxLD0e/Gn0KByjW21Dw7RXZKFklRNRouW
-         uU9A==
-X-Gm-Message-State: AOAM531WCkJ9mcYqwPziPbG2KyGWl/vF8ws3o0vx4pYeeGY3hRLdlvbF
-        Nx31wVmJl4ZW45vYjd7wFAtoIQ==
-X-Google-Smtp-Source: ABdhPJyAMsU2F/RK1cL0bLCBgOBJUZUtMEQOXHjfblUN5C5omG3gZLUaGDIiyuTCzCSNRcdx1vkiyw==
-X-Received: by 2002:a05:600c:1f0a:b0:397:7161:d3bf with SMTP id bd10-20020a05600c1f0a00b003977161d3bfmr1609365wmb.27.1653559513012;
-        Thu, 26 May 2022 03:05:13 -0700 (PDT)
-Received: from maple.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
-        by smtp.gmail.com with ESMTPSA id n4-20020a7bc5c4000000b003974d0d981dsm4227187wmk.35.2022.05.26.03.05.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 May 2022 03:05:12 -0700 (PDT)
-Date:   Thu, 26 May 2022 11:05:10 +0100
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     cy_huang <u0084500@gmail.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee.jones@linaro.org, jingoohan1@gmail.com, pavel@ucw.cz,
-        deller@gmx.de, cy_huang@richtek.com, lucas_tsai@richtek.com,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-fbdev@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] backlight: rt4831: Add the property parsing for ocp
- level selection
-Message-ID: <20220526100510.3utwh5bov4ax2jmg@maple.lan>
-References: <1653534995-30794-1-git-send-email-u0084500@gmail.com>
- <1653534995-30794-3-git-send-email-u0084500@gmail.com>
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1653560047; x=1685096047;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=p1t4R8MjMOVp8DsmVzp6Synql5mdHrF2FZ9/ECrFKy0=;
+  b=KmJgtXagNE3rL11YAARWtRDT0mly4eHLtgIHmLftY0Eo3xI3iGMGuufu
+   eo3YfYZ1a3i1qKrkpXu7ESApfJqvnS0NZ5XoUvo7ZHNNfBon/9liUSXx3
+   aPjK9C/fr87k4uVU2GPRW1fYnFGinaO+wV7QG8OeC35a9E7mNOADdCuYN
+   g=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 26 May 2022 03:14:06 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 May 2022 03:14:06 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 26 May 2022 03:14:05 -0700
+Received: from hu-harshq-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 26 May 2022 03:14:01 -0700
+From:   Harsh Agarwal <quic_harshq@quicinc.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
+        <quic_ppratap@quicinc.com>, Harsh Agarwal <quic_harshq@quicinc.com>
+Subject: [RFC v2 0/2] Add support for multiport controller 
+Date:   Thu, 26 May 2022 15:43:47 +0530
+Message-ID: <1653560029-6937-1-git-send-email-quic_harshq@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1653534995-30794-3-git-send-email-u0084500@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 26, 2022 at 11:16:35AM +0800, cy_huang wrote:
-> From: ChiYuan Huang <cy_huang@richtek.com>
-> 
-> Add the property parsing for ocp level selection.
+Currently the DWC3 driver supports only single port controller which 
+requires at most two PHYs ie HS and SS PHYs. There are SoCs that has
+DWC3 controller with multiple ports that can operate in host mode. Some of
+the port supports both SS+HS and other port supports only HS mode.
 
-Isn't this just restating the Subject: line?
+This change refactors the PHY logic to support multiport controller. The 
+patches have gone through basic sanity only.
 
-It would be better to provide information useful to the reviewer here.
-Something like:
+For any multiport controller we would define a new node "multiport" inside
+dwc3 and then add subsequent "mport" nodes inside it for individual ports
+that it supports. Now each individual "mport" defines the PHYs that it 
+supports.
 
-"Currently this driver simply inherits whatever over-current protection
-level is programmed into the hardware when it is handed over. Typically
-this will be the reset value, <whatever>A, although the bootloader could
-have established a different value.
+Looking for comments/feedback on the device tree bindings. Once the 
+bindings are locked, we can further factor the code.
 
-Allow the correct OCP value to be provided by the DT."
+e.g.
+Consider a Dual port controller where each port supports HS+SS 
 
-BTW please don't uncritically copy the above into the patch header. It is
-just made something up as an example and I did no fact checking...
+multiport {
+	mp_1: mport@1 {
+		usb-phy = <usb2_phy0>, <usb3_phy0>;
+        /* Can define Generic PHYs also */  
+	};	
+	mp_2: mport@2 {
+		usb-phy = <usb2_phy1>, <usb3_phy1>;
+	};	
 
-
-> 
-> Reported-by: Lucas Tsai <lucas_tsai@richtek.com>
-> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> ---
->  drivers/video/backlight/rt4831-backlight.c | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
-> diff --git a/drivers/video/backlight/rt4831-backlight.c b/drivers/video/backlight/rt4831-backlight.c
-> index 42155c7..c81f7d9 100644
-> --- a/drivers/video/backlight/rt4831-backlight.c
-> +++ b/drivers/video/backlight/rt4831-backlight.c
-> @@ -12,6 +12,7 @@
->  #define RT4831_REG_BLCFG	0x02
->  #define RT4831_REG_BLDIML	0x04
->  #define RT4831_REG_ENABLE	0x08
-> +#define RT4831_REG_BLOPT2	0x11
->  
->  #define RT4831_BLMAX_BRIGHTNESS	2048
->  
-> @@ -23,6 +24,8 @@
->  #define RT4831_BLDIML_MASK	GENMASK(2, 0)
->  #define RT4831_BLDIMH_MASK	GENMASK(10, 3)
->  #define RT4831_BLDIMH_SHIFT	3
-> +#define RT4831_BLOCP_MASK	GENMASK(1, 0)
-> +#define RT4831_BLOCP_SHIFT	0
->  
->  struct rt4831_priv {
->  	struct device *dev;
-> @@ -120,6 +123,16 @@ static int rt4831_parse_backlight_properties(struct rt4831_priv *priv,
->  	if (ret)
->  		return ret;
->  
-> +	ret = device_property_read_u8(dev, "richtek,bled-ocp-sel", &propval);
-> +	if (ret)
-> +		propval = RT4831_BLOCPLVL_1P2A;
-
-Is 1.2A the reset value for the register?
-
-Additionally, it looks like adding a hard-coded default would cause
-problems for existing platforms where the bootloader doesn't use
-richtek,bled-ocp-sel and pre-configures a different value itself.
-
-Would it be safer (in terms of working nicely with older bootloaders)
-to only write to the RT4831_BLOCP_MASK if the new property is set?
+Changes in v2:
+Added support for Generic PHYs by making use of devm_of_phy_get. It works
+for both normal controller and multiport controller.
+Cleaned up dwc3_core_get_phy and created new API dwc3_core_get_phy_by_node
+which works for both normal and multiport node case.
+Addded new APIs to count PHYs defined in the multiport controller.
+Changed Generic PHY to double pointer to work for multiport controller.
+Added support for GUSB2PHYCFG and GUSB3PIPECTL registers
+for multiport controller.
 
 
-Daniel.
+Harsh Agarwal (2):
+  dt-bindings: usb: dwc3: Add support for multiport related properties
+  usb: dwc3: Refactor PHY logic to support Multiport Controller
 
+ .../devicetree/bindings/usb/snps,dwc3.yaml         |  55 +++
+ drivers/usb/dwc3/core.c                            | 420 +++++++++++++++------
+ drivers/usb/dwc3/core.h                            |  12 +-
+ drivers/usb/dwc3/drd.c                             |  16 +-
+ drivers/usb/dwc3/gadget.c                          |   4 +-
+ 5 files changed, 381 insertions(+), 126 deletions(-)
 
+-- 
+2.7.4
 
-> +
-> +	propval = min_t(u8, propval, RT4831_BLOCPLVL_1P8A);
-> +	ret = regmap_update_bits(priv->regmap, RT4831_REG_BLOPT2, RT4831_BLOCP_MASK,
-> +				 propval << RT4831_BLOCP_SHIFT);
-> +	if (ret)
-> +		return ret;
-> +
->  	ret = device_property_read_u8(dev, "richtek,channel-use", &propval);
->  	if (ret) {
->  		dev_err(dev, "richtek,channel-use DT property missing\n");
-> -- 
-> 2.7.4
-> 
