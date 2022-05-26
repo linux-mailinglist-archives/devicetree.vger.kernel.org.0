@@ -2,99 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E2C7535044
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 15:57:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBA73535071
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 16:17:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237784AbiEZN5m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 09:57:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55056 "EHLO
+        id S245174AbiEZORy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 10:17:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229922AbiEZN5l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 09:57:41 -0400
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56FED6BFC0;
-        Thu, 26 May 2022 06:57:39 -0700 (PDT)
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 24QCCgsh007655;
-        Thu, 26 May 2022 09:57:30 -0400
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3g93vde2ge-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 26 May 2022 09:57:29 -0400
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 24QDvSSj043747
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 26 May 2022 09:57:28 -0400
-Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
- ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Thu, 26 May 2022 09:57:27 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Thu, 26 May 2022 09:57:27 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Thu, 26 May 2022 09:57:27 -0400
-Received: from localhost.localdomain ([10.48.65.12])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 24QDvEOv028301;
-        Thu, 26 May 2022 09:57:16 -0400
-From:   <alexandru.tachici@analog.com>
-To:     <netdev@vger.kernel.org>
-CC:     <kuba@kernel.org>, <devicetree@vger.kernel.org>,
-        <edumazet@google.com>, <geert+renesas@glider.be>,
-        <geert@linux-m68k.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-kernel@vger.kernel.org>, <michael.hennerich@analog.com>,
-        Alexandru Tachici <alexandru.tachici@analog.com>
-Subject: [net] dt-bindings: net: Update ADIN PHY maintainers
-Date:   Thu, 26 May 2022 17:13:18 +0300
-Message-ID: <20220526141318.77146-1-alexandru.tachici@analog.com>
-X-Mailer: git-send-email 2.17.1
+        with ESMTP id S231984AbiEZORy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 10:17:54 -0400
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 373C4C3D2E;
+        Thu, 26 May 2022 07:17:53 -0700 (PDT)
+Received: by mail-pj1-x1034.google.com with SMTP id q92-20020a17090a17e500b001e0817e77f6so4530997pja.5;
+        Thu, 26 May 2022 07:17:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VDs777OliTH4kWriVQk+OBHRXS4ymPCuDEzuvlu40ZU=;
+        b=YC3kEAQFMBHiNjPQdj3NjA4HUuJiJ6L4dxWojGiaecKWTwO9suHKyZfLmTN+/kECwB
+         8Iboa3vdlYVWwBziFw9dlVfr5aPprzsop7KE7JBTsTAnT8hO8/eFVINhSb8N93jrr9L0
+         nuQuDmAPAd2GhXffuKbooPObrmqUHvySebMb6yInYRRqjj1d74J75r51b65ojywDEZ79
+         HKMoFcl777otrIimtLFbby0g74MXT0GAg67Hl9K+C6TFWBAflnrfQPtSqhKAgFXQYwQh
+         QUWfaqJ9YEo1hqW6y/vt7E8f4AA8c5icF2msWxatmVPalwDBQ9tX82XYloSkC2ZhMzKy
+         AvNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VDs777OliTH4kWriVQk+OBHRXS4ymPCuDEzuvlu40ZU=;
+        b=iyTeqgxhrbQ2rkkBtzm97hDCIJFThOA4yVD9lAJ4h3ObhN7x3FxRlSG1fTphzo0ZdD
+         dOx7L65Agx4AS4GWoDmAB0Hx9b0LMxqljO8+GhAeRHCzYTG8Spk6+X/Wxzdhd8+e7/+F
+         OwSDprx83ZgZzXKV9NtvHLFySStRw3PWsrSVIFETVoJOOl8ma+C24DgEIloET3bDK77K
+         /Vdk9LBYvPbHaFlP03OPm8TdRW5nqtIfevyGt9jrnrUDiRMv1FSpzmWRgCkZexZAKvKj
+         aSreErThdQw6w+b7Whs/OdjinQSOMy4Q1DpLqqDlJ31Yn44H3E6BvM5qbiNfVjQRSYrP
+         3lBQ==
+X-Gm-Message-State: AOAM531ouFGKe35xxaXU7tTvUdULVfZOKK8fOQSEo/u8U05UltDNc7yB
+        8+UWtdcuprvX34HaTOIM1vdCQmDd7PBD+A==
+X-Google-Smtp-Source: ABdhPJwTSu3yboXfs2/6TvYY6h7B+6PTcIsCpCu2SLbaFmgyySXgNae9IQ+3DM7xmpsd9B+xm1Bsvw==
+X-Received: by 2002:a17:90b:164a:b0:1e0:5da9:ca48 with SMTP id il10-20020a17090b164a00b001e05da9ca48mr2918131pjb.220.1653574672011;
+        Thu, 26 May 2022 07:17:52 -0700 (PDT)
+Received: from skynet-linux.local ([122.173.191.164])
+        by smtp.googlemail.com with ESMTPSA id ei3-20020a17090ae54300b001dedb8bbe66sm1546622pjb.33.2022.05.26.07.17.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 May 2022 07:17:51 -0700 (PDT)
+From:   Sireesh Kodali <sireeshkodali1@gmail.com>
+To:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org
+Cc:     bjorn.andersson@linaro.org,
+        Sireesh Kodali <sireeshkodali1@gmail.com>
+Subject: [PATCH v2 0/2] remoteproc: qcom: Fix handling of WCNSS IRQs
+Date:   Thu, 26 May 2022 19:47:38 +0530
+Message-Id: <20220526141740.15834-1-sireeshkodali1@gmail.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: 51kpTgNab8Q8bXEZmlI-dvjOtf1jYYP-
-X-Proofpoint-ORIG-GUID: 51kpTgNab8Q8bXEZmlI-dvjOtf1jYYP-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.874,Hydra:6.0.486,FMLib:17.11.64.514
- definitions=2022-05-26_08,2022-05-25_02,2022-02-23_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
- impostorscore=0 malwarescore=0 mlxlogscore=722 phishscore=0 suspectscore=0
- spamscore=0 adultscore=0 bulkscore=0 priorityscore=1501 clxscore=1015
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2204290000
- definitions=main-2205260069
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alexandru Tachici <alexandru.tachici@analog.com>
+Hi,
 
-Update the dt-bindings maintainers section.
+Due to a bug in the code that fetches the IRQs from the device tree, the
+optional "stop-ack" IRQ was never used, even if it was defined in the
+device tree. This also allowed a typo in the MSM8916 SoC device tree,
+where the "stop-ack" irq was instead labeled "stop".
 
-Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
----
- Documentation/devicetree/bindings/net/adi,adin.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+The attached patches fix the handling of IRQs in the code, and fix the
+typo in the MSM8916 device tree.
 
-diff --git a/Documentation/devicetree/bindings/net/adi,adin.yaml b/Documentation/devicetree/bindings/net/adi,adin.yaml
-index 77750df0c2c4..dac2a25e218e 100644
---- a/Documentation/devicetree/bindings/net/adi,adin.yaml
-+++ b/Documentation/devicetree/bindings/net/adi,adin.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Analog Devices ADIN1200/ADIN1300 PHY
- 
- maintainers:
--  - Alexandru Ardelean <alexandru.ardelean@analog.com>
-+  - Alexandru Tachici <alexandru.tachici@analog.com>
- 
- description: |
-   Bindings for Analog Devices Industrial Ethernet PHYs
+Changes since v1:
+* Dropped blank lines between tags in commit message
+
+Sireesh Kodali (2):
+  remoteproc: qcom: wcnss: Fix handling of IRQs
+  arm64: dts: qcom: msm8916: Fix typo in pronto remoteproc node
+
+ arch/arm64/boot/dts/qcom/msm8916.dtsi |  4 ++--
+ drivers/remoteproc/qcom_wcnss.c       | 10 ++++++++--
+ 2 files changed, 10 insertions(+), 4 deletions(-)
+
 -- 
-2.25.1
+2.36.1
 
