@@ -2,206 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 237A85346EB
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 01:10:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05C0F534751
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 02:09:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237173AbiEYXKl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 May 2022 19:10:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44536 "EHLO
+        id S1345935AbiEZAJe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 May 2022 20:09:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239952AbiEYXKk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 19:10:40 -0400
-Received: from aposti.net (aposti.net [89.234.176.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C9D466ADA;
-        Wed, 25 May 2022 16:10:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1653520235; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=G94xiIYp4JaD6Z24NCSIZA2hrRe2VgRo6jmt+CqtRoA=;
-        b=EvXdrcy6vMz4imZ/1j/gjWx4E9yc2khxmyi8Vah6S991CnSswjFfQZleYS9Cr0AYwbvlJ+
-        6pXEwleMXHiZ5Wu2dKWzSpxzszkdh54BJ9NMN9Ir9rRZCLsZgopJo4iWEruq1ZVGr+Xy9e
-        pGaNkYUA0kIthfhnzrRJuDqpyBhnLu0=
-Date:   Thu, 26 May 2022 00:10:25 +0100
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH] dt-bindings: memory-controllers: ingenic: Split out child
- node properties
+        with ESMTP id S1348029AbiEZAJR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 May 2022 20:09:17 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7C7D62CC3;
+        Wed, 25 May 2022 17:09:14 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 706B961265;
+        Thu, 26 May 2022 00:09:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id D8F5AC3411D;
+        Thu, 26 May 2022 00:09:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1653523753;
+        bh=529V3ZtFytlwcGl2dJT4JDAdZbCo4Wzy4dZEg097m5c=;
+        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
+        b=DDbBOTo9+QeAWtKHElom8+/kTnO4dUK7Mqw8guZWtXbjphc2Gn3Qq2FQS4C6G/iju
+         1gArRCFr3bD3kxSgDhkzY+CuWfjTAJ/gEx53RlIaK3bfqr+qxL0Zc8Eb4F4i54Ov/s
+         RuvMgOAEblBDETKTP3gNkRF0urN5iea8XeIgtcRPUCl2srHQ6nUCNTiNRB6SoGHfVC
+         rEKHW23EjsRzflx6wkOQPG94N2fonb1QVhdBRSTn6miqFjUdcgoVCOQT6EV4IUKVRH
+         zKuZ0aEs4CdUj3PvFRGh4toGX4l371CNL6CHSo9glE45FvI035Vn+aXue+A9jDsZrr
+         VDOjDuLWZeIJQ==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id C83F4F03942;
+        Thu, 26 May 2022 00:09:13 +0000 (UTC)
+Subject: Re: [GIT PULL] Devicetree updates for v5.19
+From:   pr-tracker-bot@kernel.org
+In-Reply-To: <20220524224404.GA373873-robh@kernel.org>
+References: <20220524224404.GA373873-robh@kernel.org>
+X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
+X-PR-Tracked-Message-Id: <20220524224404.GA373873-robh@kernel.org>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-5.19
+X-PR-Tracked-Commit-Id: d036d915b61f23b9e80d93f8a606eebf3bfab73f
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: 86c87bea6b42100c67418af690919c44de6ede6e
+Message-Id: <165352375381.5177.9424932820877351997.pr-tracker-bot@kernel.org>
+Date:   Thu, 26 May 2022 00:09:13 +0000
 To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mtd@lists.infradead.org
-Message-Id: <DDOGCR.THWZ3JUKPSSB@crapouillou.net>
-In-Reply-To: <20220525210140.2489866-1-robh@kernel.org>
-References: <20220525210140.2489866-1-robh@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+The pull request you sent on Tue, 24 May 2022 17:44:04 -0500:
 
-Le mer., mai 25 2022 at 16:01:40 -0500, Rob Herring <robh@kernel.org> a=20
-=E9crit :
-> Binding schemas which define child node properties such as memory
-> controllers with timing properties need a separate schema which can be
-> referenced from child device schemas. This is necessary for
-> unevaluatedProperties checks to work properly.
->=20
-> Move the ingenic,nemc child properties to its own file and reference
-> from ingenic,nand.yaml which describes a child NAND controller.
->=20
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-5.19
 
-Acked-by: Paul Cercueil <paul@crapouillou.net>
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/86c87bea6b42100c67418af690919c44de6ede6e
 
-Cheers,
--Paul
+Thank you!
 
-> ---
->  .../ingenic,nemc-peripherals.yaml             | 46=20
-> +++++++++++++++++++
->  .../memory-controllers/ingenic,nemc.yaml      | 32 -------------
->  .../devicetree/bindings/mtd/ingenic,nand.yaml |  1 +
->  3 files changed, 47 insertions(+), 32 deletions(-)
->  create mode 100644=20
-> Documentation/devicetree/bindings/memory-controllers/ingenic,nemc-periphe=
-rals.yaml
->=20
-> diff --git=20
-> a/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc-perip=
-herals.yaml=20
-> b/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc-perip=
-herals.yaml
-> new file mode 100644
-> index 000000000000..b8ed52a44d57
-> --- /dev/null
-> +++=20
-> b/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc-perip=
-herals.yaml
-> @@ -0,0 +1,46 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id:=20
-> http://devicetree.org/schemas/memory-controllers/ingenic,nemc-peripherals=
-.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Ingenic SoCs NAND / External Memory Controller (NEMC)=20
-> devicetree bindings
-> +
-> +maintainers:
-> +  - Paul Cercueil <paul@crapouillou.net>
-> +
-> +properties:
-> +  reg:
-> +    minItems: 1
-> +    maxItems: 255
-> +
-> +  ingenic,nemc-bus-width:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [8, 16]
-> +    description: Specifies the bus width in bits.
-> +
-> +  ingenic,nemc-tAS:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Address setup time in nanoseconds.
-> +
-> +  ingenic,nemc-tAH:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Address hold time in nanoseconds.
-> +
-> +  ingenic,nemc-tBP:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Burst pitch time in nanoseconds.
-> +
-> +  ingenic,nemc-tAW:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Address wait time in nanoseconds.
-> +
-> +  ingenic,nemc-tSTRV:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Static memory recovery time in nanoseconds.
-> +
-> +required:
-> +  - reg
-> +
-> +additionalProperties: true
-> +...
-> diff --git=20
-> a/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc.yaml=20
-> b/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc.yaml
-> index 24f9e1982028..dd13a5106d6c 100644
-> ---=20
-> a/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc.yaml
-> +++=20
-> b/Documentation/devicetree/bindings/memory-controllers/ingenic,nemc.yaml
-> @@ -39,38 +39,6 @@ properties:
->  patternProperties:
->    ".*@[0-9]+$":
->      type: object
-> -    properties:
-> -      reg:
-> -        minItems: 1
-> -        maxItems: 255
-> -
-> -      ingenic,nemc-bus-width:
-> -        $ref: /schemas/types.yaml#/definitions/uint32
-> -        enum: [8, 16]
-> -        description: Specifies the bus width in bits.
-> -
-> -      ingenic,nemc-tAS:
-> -        $ref: /schemas/types.yaml#/definitions/uint32
-> -        description: Address setup time in nanoseconds.
-> -
-> -      ingenic,nemc-tAH:
-> -        $ref: /schemas/types.yaml#/definitions/uint32
-> -        description: Address hold time in nanoseconds.
-> -
-> -      ingenic,nemc-tBP:
-> -        $ref: /schemas/types.yaml#/definitions/uint32
-> -        description: Burst pitch time in nanoseconds.
-> -
-> -      ingenic,nemc-tAW:
-> -        $ref: /schemas/types.yaml#/definitions/uint32
-> -        description: Address wait time in nanoseconds.
-> -
-> -      ingenic,nemc-tSTRV:
-> -        $ref: /schemas/types.yaml#/definitions/uint32
-> -        description: Static memory recovery time in nanoseconds.
-> -
-> -    required:
-> -      - reg
->=20
->  required:
->    - compatible
-> diff --git a/Documentation/devicetree/bindings/mtd/ingenic,nand.yaml=20
-> b/Documentation/devicetree/bindings/mtd/ingenic,nand.yaml
-> index 9de8ef6e59ca..8c272c842bfd 100644
-> --- a/Documentation/devicetree/bindings/mtd/ingenic,nand.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/ingenic,nand.yaml
-> @@ -11,6 +11,7 @@ maintainers:
->=20
->  allOf:
->    - $ref: nand-controller.yaml#
-> +  - $ref: /schemas/memory-controllers/ingenic,nemc-peripherals.yaml#
->=20
->  properties:
->    compatible:
-> --
-> 2.34.1
->=20
-
-
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html
