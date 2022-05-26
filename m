@@ -2,62 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDD195354F3
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 22:46:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72FD55354F8
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 22:46:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235942AbiEZUqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1345439AbiEZUqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 26 May 2022 16:46:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34072 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349173AbiEZUqX (ORCPT
+        with ESMTP id S1349167AbiEZUqX (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 16:46:23 -0400
 Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49971B1DC
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:46:14 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id t5so3179937edc.2
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:46:14 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEC17B4B8
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:46:15 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id d22so3169152edj.4
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:46:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=KQPHjD3c8QXyN7jVG+t3oRTkD3S6BZATZ+byBZXQpIc=;
-        b=ykyjo9fiDDRysWdg8Ubk1v8ubnriDbcCKYYaZ5teRE5SYlk0m0juZYfS8CoVEYoeeA
-         Lmq7nhoN0LkR5OynCoiMDl2rI+cT4+/YqDcZp9mfTQjOrulbGjBRN2xerJRBBe+b2qvP
-         EfvVdivEheVDOZrLOYU+ImL9bRDXzAGblk7t/74uBd5RGYJ3IbpDZf3tE9x77kN5lsyN
-         Qey8HqivbUNv6M60jnT24rSojwxzzSXhSzJGKn5EV8ZTha1jQjlx+N1/mmwvelss3dXw
-         U+ajeDUvh5+LTiEUPI7ggPdNQUOnaDTKGKynVL92JpOT4+U9e4yxYjllUrOHdwZZbmCj
-         T3+g==
+        bh=sodNhrbprDBlR5tvNArSoegdmoIGZLxKNxm4MqZi0Kw=;
+        b=j0AS2xKTqbpmPr4US1TqDWaZrfuq2l/Jb8NMfruGp9sLuESLr/c3PrbE+WC4zZPf1w
+         lHduoW3fvKnibVG1Y06bt2PCClRcaopTBDE+3+5H4ZmWpmXQeNoUPPtdxItwayVN1Cdi
+         9jvoJGdEqytx5fahTlVN5T160OmOQ8n91d8P4dVFlZI9slhtnMLNl7o3bTrefjTLR2g8
+         pzYbNBLNLY0019d7BJKZAz1rB4c60F2OJsfnhuTWJMuFHN8UNWs4re9/VqF2kf7RF/5D
+         yixJdp+oq1FF3px58CVYOTuaHwDMLZE7hgR98Z3H2aj9r52HidfnH/lf2pVJKrvnzCoY
+         ZRBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=KQPHjD3c8QXyN7jVG+t3oRTkD3S6BZATZ+byBZXQpIc=;
-        b=2uk/oBblmzpWqwoFv2iwPahpKoiPpgUzvrlbyj51ivmOhCZvGFboXr4X9KxpSbhXC/
-         9L0WhDHdTgRVvA4yspfOhmgLC0oQ1ajVamSVCEzf2dVKxZXfQJp/rXaqip80hWXRECSB
-         rmLJbpiuFujISQUHxLSTVpvC3XfZSOLQ8ae+jDhGSy3i8Fj3ih1YvQgi0lj0Ucr5JikN
-         /yN/i4+X4GRZ8nob7EAXDd6Bfe1bERFpfdMybeW67Dcyo9zF6eqJzYj6NMSX1ovAKcc5
-         +vKKopNUcEp/9FqROtMcO+QwefEPWhC12fowSotLo5PjfckqbcUiPKWzjpeOcVXYiaGI
-         NJYw==
-X-Gm-Message-State: AOAM532miZogu21og+9bJDQecuk/yh04oU+iseogbbQJCHIdaV8JDR57
-        Q4f0VIKwPPxr9wt4Ks+BqLHSNQ==
-X-Google-Smtp-Source: ABdhPJxnobfUufGwlnrmVi/R9ZAFVVpvRRBrBrdDup3R2hU57m9At3PhU7hsw2wv0Qjs3Ee8TFbnvA==
-X-Received: by 2002:a05:6402:1610:b0:42c:6bf6:3d4b with SMTP id f16-20020a056402161000b0042c6bf63d4bmr60230edv.54.1653597973326;
-        Thu, 26 May 2022 13:46:13 -0700 (PDT)
+        bh=sodNhrbprDBlR5tvNArSoegdmoIGZLxKNxm4MqZi0Kw=;
+        b=W99uFd/b5HReWUZb90WmdqI3KzU0gbdq3HnBKteiXofn2/tthUMtKDwLqmVko55Whz
+         DIFUNBUhlR3nie/i3cQxNgREOBOk+Tm+itefKoNjzw2zTmLIVUtnF0uPU1ZVhUJsFIev
+         Hwx8oPzyX0xgJL4pYZ4KJ/Z36WdosdhMJyhY951p5kzbMfV8nrBImz6fPzYXRILqF3jg
+         Vw3K7wryru6Srn8ZOW7xr/piyuDsF/FKm/rUJ8m7ENIHU3kMVXy2kqj9Z1F8zEqKK4C6
+         Lq7ZtWEoDNfnDxXsXm9vkR8ts9fjVnrfooBORoxR3RVMY4MMNJzGkOpONLd1EFSj0IuS
+         Iz3A==
+X-Gm-Message-State: AOAM5315FvkWxQIk4s2OUtg2xiyyCO8dkgIr295RTDC5pfaNduXinvE0
+        4AZoomoslfm/8CWo6/HuuUV2/g==
+X-Google-Smtp-Source: ABdhPJyMqZdNPyppsO99qpgItW+lofA2V7FRCZtisCXRtSW3Kc31/FlvuFJ0N8MgBXeebaPx4c/fJA==
+X-Received: by 2002:a05:6402:1247:b0:42b:e2e6:4aa9 with SMTP id l7-20020a056402124700b0042be2e64aa9mr2634806edw.94.1653597974350;
+        Thu, 26 May 2022 13:46:14 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id gc21-20020a1709072b1500b006ff16f48e2asm813254ejc.76.2022.05.26.13.46.12
+        by smtp.gmail.com with ESMTPSA id gc21-20020a1709072b1500b006ff16f48e2asm813254ejc.76.2022.05.26.13.46.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 May 2022 13:46:12 -0700 (PDT)
+        Thu, 26 May 2022 13:46:13 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
         arm@kernel.org, soc@kernel.org,
-        Khuong Dinh <khuong@os.amperecomputing.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/5] arm64: dts: apm: adjust whitespace around '='
-Date:   Thu, 26 May 2022 22:46:04 +0200
-Message-Id: <20220526204606.833054-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 4/5] arm64: dts: toshiba: adjust whitespace around '='
+Date:   Thu, 26 May 2022 22:46:05 +0200
+Message-Id: <20220526204606.833054-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220526204606.833054-1-krzysztof.kozlowski@linaro.org>
 References: <20220526204606.833054-1-krzysztof.kozlowski@linaro.org>
@@ -83,45 +84,22 @@ Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Output compared with dtx_diff and fdtdump.
 ---
- arch/arm64/boot/dts/apm/apm-shadowcat.dtsi | 2 +-
- arch/arm64/boot/dts/apm/apm-storm.dtsi     | 4 ++--
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/toshiba/tmpv7708.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/apm/apm-shadowcat.dtsi b/arch/arm64/boot/dts/apm/apm-shadowcat.dtsi
-index a83c82c50e29..251f2ca0a649 100644
---- a/arch/arm64/boot/dts/apm/apm-shadowcat.dtsi
-+++ b/arch/arm64/boot/dts/apm/apm-shadowcat.dtsi
-@@ -601,7 +601,7 @@ serial0: serial@10600000 {
- 		usb0: dwusb@19000000 {
- 			status = "disabled";
- 			compatible = "snps,dwc3";
--			reg =  <0x0 0x19000000 0x0 0x100000>;
-+			reg = <0x0 0x19000000 0x0 0x100000>;
- 			interrupts = <0x0 0x5d 0x4>;
- 			dma-coherent;
- 			dr_mode = "host";
-diff --git a/arch/arm64/boot/dts/apm/apm-storm.dtsi b/arch/arm64/boot/dts/apm/apm-storm.dtsi
-index 0f37e77f5459..d49ea382154d 100644
---- a/arch/arm64/boot/dts/apm/apm-storm.dtsi
-+++ b/arch/arm64/boot/dts/apm/apm-storm.dtsi
-@@ -927,7 +927,7 @@ sata3: sata@1a800000 {
- 		usb0: dwusb@19000000 {
- 			status = "disabled";
- 			compatible = "snps,dwc3";
--			reg =  <0x0 0x19000000 0x0 0x100000>;
-+			reg = <0x0 0x19000000 0x0 0x100000>;
- 			interrupts = <0x0 0x89 0x4>;
- 			dma-coherent;
- 			dr_mode = "host";
-@@ -936,7 +936,7 @@ usb0: dwusb@19000000 {
- 		usb1: dwusb@19800000 {
- 			status = "disabled";
- 			compatible = "snps,dwc3";
--			reg =  <0x0 0x19800000 0x0 0x100000>;
-+			reg = <0x0 0x19800000 0x0 0x100000>;
- 			interrupts = <0x0 0x8a 0x4>;
- 			dma-coherent;
- 			dr_mode = "host";
+diff --git a/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi b/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
+index 0fc32c036f30..b04829b3175d 100644
+--- a/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
++++ b/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
+@@ -485,7 +485,7 @@ pcie: pcie@28400000 {
+ 			      <0x0 0x28050000 0x0 0x00010000>,
+ 			      <0x0 0x24200000 0x0 0x00002000>,
+ 			      <0x0 0x24162000 0x0 0x00001000>;
+-			reg-names  = "dbi", "config", "ulreg", "smu", "mpu";
++			reg-names = "dbi", "config", "ulreg", "smu", "mpu";
+ 			device_type = "pci";
+ 			bus-range = <0x00 0xff>;
+ 			num-lanes = <2>;
 -- 
 2.34.1
 
