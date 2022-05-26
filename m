@@ -2,73 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5F6D534F62
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 14:39:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ADAA534F67
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 14:40:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238496AbiEZMju (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 08:39:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53252 "EHLO
+        id S241216AbiEZMki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 08:40:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242856AbiEZMjt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 08:39:49 -0400
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B9332F020
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 05:39:48 -0700 (PDT)
-Received: by mail-pl1-x62c.google.com with SMTP id f18so1374334plg.0
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 05:39:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=PAgySFjjrXbq5SnypDUn3gSGjEm9mJyq4TSnOevWuVs=;
-        b=fFzvaHs3iNbKVchOm1fWwluu42QmnaWq/VjYTWgFzfrpcfb0nP0cm/saZVO5L/LgAk
-         B7FJZC0cQqpwGNchJJXUIs+azCRYi9004eAqc+jBVP5B7aizJp6M3l8UhN7lJMfCBe65
-         e87zhwBB9X5Y7ri1ivrGtqLcNDuqglT0WXNNxw+T7WzWc68o6BmGGDraLsTha6AwHsst
-         rOnzFb2MbZx2Y3AopP4t/fTEr9mO4LOreM/HqfpcXFPnvfBi+MePqKhxxrtvFwsrRnO5
-         Cn4H+GLGTwbLkrOW18bXUygIyTjHHy7p6uUXPg8dIwIQU8ZH72c7rx1fXM2GO9X7C1pE
-         qGSQ==
+        with ESMTP id S240043AbiEZMkh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 08:40:37 -0400
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26C1D2F020;
+        Thu, 26 May 2022 05:40:36 -0700 (PDT)
+Received: by mail-oi1-f180.google.com with SMTP id y66so1979716oia.1;
+        Thu, 26 May 2022 05:40:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=PAgySFjjrXbq5SnypDUn3gSGjEm9mJyq4TSnOevWuVs=;
-        b=gdapQ/kpkPQRZNc+kbkZKaBEXkJD6ChqYLj2xdGju2ZimCHIm4YnEHNz2OeLGiUfhR
-         xFWcuQ8CjyjZ6Klyen9l7LVmQ2TUJNu4IhmmGwIzVQ/n9aeucMqK7ey7MiENA//otNbp
-         KuK5BhOqoFbySAFsvC9NggeohK+IUEtfA+z0jC/x2XLyDkH1WJs82je18bsI5rjOmRlg
-         pQFOPw8ONMrTYumMZYRtonqvx9JolLOmc0ZTcXqw64kKyqD9K7avYia7uEKUQICfRh07
-         yv0cbWW/GZqfUVGXob3w9+pyy8kwMVu5l9KZlsboYKRaR4YSn15XFNCtkf43B4NHx/6+
-         AKPg==
-X-Gm-Message-State: AOAM532S6bUA+XiUkOP9h/OaIVLLYk3J+/5NXArWbvGCPhaCmoPKfUNC
-        pTvX49M0D3ak8wiDqQYO2djvtiUzM5pnSiBA+0PJfA==
-X-Google-Smtp-Source: ABdhPJxbK0FI2sjZIRhUfteouuZoQvBGEr0IT00KISTBOhLm01vxyInDHScBacjG7bM4mg1i6kHtwevuRMjWmd8+xG8=
-X-Received: by 2002:a17:902:8f81:b0:161:f4a7:f2fc with SMTP id
- z1-20020a1709028f8100b00161f4a7f2fcmr30791402plo.117.1653568787664; Thu, 26
- May 2022 05:39:47 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220522162802.208275-1-luca@z3ntu.xyz> <20220522162802.208275-7-luca@z3ntu.xyz>
-In-Reply-To: <20220522162802.208275-7-luca@z3ntu.xyz>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Thu, 26 May 2022 14:39:36 +0200
-Message-ID: <CAG3jFyuZzvvf+Y-EAbaq4ucwv94PJh1oSFC2UU9-bHdYmPna0A@mail.gmail.com>
-Subject: Re: [RFC PATCH 06/14] media: camss: ispif: Add support for 8x74
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Andy Gross <agross@kernel.org>,
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=8QQi9UAdNLHLfBvhZVbeEVs5brcL+rQG9Px5mSwS5Fc=;
+        b=STvQ6hlCLk+S2RsJy789msnRZ+D6U1Q2AoQbneMprIdFT6d7DyRqLdY3DZIKWi2ZyJ
+         rYqdHKBpxT36FYpm1ltGd6A+V9NAYE2AX+3dYWI+LT984aXUbKy6dL873MdP1zaStK3N
+         qpqEo1kQO43Ttey2/1RI/0uHFgMf2Rz7xD2m9mapFXZWuHMgZU4QH8QBykK+wxvnkYA4
+         Ki9l6hz//0hVb0jaQlARQuIYgRW5PGGEzUJ5IGlYF8ldZgSvrEveUNbqi8QP0dF+Zc7A
+         Jr1y8wzqvKdGddlnwCI/27OW4jJGxKGv1KuG3lQTEJAojAbceX8Yz7g7wc3avphm3zEE
+         D3oQ==
+X-Gm-Message-State: AOAM532jlPAdNLzOOBGlNbkbr/uP9Q0lfcJH6VLwXYU4HEO3xX3wZCLZ
+        A/RFbEiQgAZBBPMCk4N0ZA==
+X-Google-Smtp-Source: ABdhPJzSEnsODeFXU35jwjUC1neJG1165yxNM0C9AuIQwkdwRBKk9KKxp3vy0jylqao/4eNol/as0g==
+X-Received: by 2002:aca:6c5:0:b0:325:5bce:bbc1 with SMTP id 188-20020aca06c5000000b003255bcebbc1mr1002134oig.221.1653568835402;
+        Thu, 26 May 2022 05:40:35 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id p8-20020a056870a54800b000f169cbbb32sm565161oal.43.2022.05.26.05.40.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 May 2022 05:40:34 -0700 (PDT)
+Received: (nullmailer pid 3797151 invoked by uid 1000);
+        Thu, 26 May 2022 12:40:33 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Harsh Agarwal <quic_harshq@quicinc.com>
+Cc:     quic_pkondeti@quicinc.com, Philipp Zabel <p.zabel@pengutronix.de>,
+        quic_ppratap@quicinc.com,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-kernel@vger.kernel.org,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        matti.lehtimaki@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+        Felipe Balbi <balbi@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+In-Reply-To: <1653560029-6937-2-git-send-email-quic_harshq@quicinc.com>
+References: <1653560029-6937-1-git-send-email-quic_harshq@quicinc.com> <1653560029-6937-2-git-send-email-quic_harshq@quicinc.com>
+Subject: Re: [RFC v2 1/2] dt-bindings: usb: dwc3: Add support for multiport related properties
+Date:   Thu, 26 May 2022 07:40:33 -0500
+Message-Id: <1653568833.732260.3797150.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,63 +65,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 22 May 2022 at 18:28, Luca Weiss <luca@z3ntu.xyz> wrote:
->
-> From: Matti Lehtim=C3=A4ki <matti.lehtimaki@gmail.com>
->
-> ISPIF hardware modules on 8x74, 8x16 and 8x96 are similar. However on
-> 8x74 the ISPIF routes data to two VFE hardware modules like 8x96 but
-> formats are similar to 8x16.
->
-> Signed-off-by: Matti Lehtim=C3=A4ki <matti.lehtimaki@gmail.com>
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+On Thu, 26 May 2022 15:43:48 +0530, Harsh Agarwal wrote:
+> Added support for multiport, mport, num-ssphy and num-hsphy
+> properties. These properties are used to support devices having
+> a multiport controller.
+> 
+> Signed-off-by: Harsh Agarwal <quic_harshq@quicinc.com>
 > ---
->  drivers/media/platform/qcom/camss/camss-ispif.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/media/platform/qcom/camss/camss-ispif.c b/drivers/me=
-dia/platform/qcom/camss/camss-ispif.c
-> index 4ee11bb979cd..693807bf3c6b 100644
-> --- a/drivers/media/platform/qcom/camss/camss-ispif.c
-> +++ b/drivers/media/platform/qcom/camss/camss-ispif.c
-> @@ -1112,6 +1112,7 @@ int msm_ispif_subdev_init(struct camss *camss,
->         if (camss->version =3D=3D CAMSS_8x16)
->                 ispif->line_num =3D 2;
->         else if (camss->version =3D=3D CAMSS_8x96 ||
-> +                camss->version =3D=3D CAMSS_8x74 ||
->                  camss->version =3D=3D CAMSS_660)
->                 ispif->line_num =3D 4;
->         else
-> @@ -1126,7 +1127,8 @@ int msm_ispif_subdev_init(struct camss *camss,
->                 ispif->line[i].ispif =3D ispif;
->                 ispif->line[i].id =3D i;
->
-> -               if (camss->version =3D=3D CAMSS_8x16) {
-> +               if (camss->version =3D=3D CAMSS_8x16 ||
-> +                          camss->version =3D=3D CAMSS_8x74) {
+>  .../devicetree/bindings/usb/snps,dwc3.yaml         | 55 ++++++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+> 
 
-CHECK: Alignment should match open parenthesis
-#37: FILE: drivers/media/platform/qcom/camss/camss-ispif.c:1131:
-+        if (camss->version =3D=3D CAMSS_8x16 ||
-+               camss->version =3D=3D CAMSS_8x74) {
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/usb/snps,dwc3.yaml:366:8: [warning] wrong indentation: expected 6 but found 7 (indentation)
+./Documentation/devicetree/bindings/usb/snps,dwc3.yaml:367:10: [warning] wrong indentation: expected 11 but found 9 (indentation)
+./Documentation/devicetree/bindings/usb/snps,dwc3.yaml:369:11: [warning] wrong indentation: expected 11 but found 10 (indentation)
 
->                         ispif->line[i].formats =3D ispif_formats_8x16;
->                         ispif->line[i].nformats =3D
->                                         ARRAY_SIZE(ispif_formats_8x16);
-> @@ -1163,6 +1165,7 @@ int msm_ispif_subdev_init(struct camss *camss,
->                 ret =3D devm_request_irq(dev, ispif->irq, ispif_isr_8x16,
->                                IRQF_TRIGGER_RISING, ispif->irq_name, ispi=
-f);
->         else if (camss->version =3D=3D CAMSS_8x96 ||
-> +                camss->version =3D=3D CAMSS_8x74 ||
->                  camss->version =3D=3D CAMSS_660)
->                 ret =3D devm_request_irq(dev, ispif->irq, ispif_isr_8x96,
->                                IRQF_TRIGGER_RISING, ispif->irq_name, ispi=
-f);
-> --
-> 2.36.0
->
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/usb/snps,dwc3.example.dts:86.27-89.15: Warning (unit_address_vs_reg): /example-2/usb@4a000000/multiport/mport@1: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/usb/snps,dwc3.example.dts:91.27-93.15: Warning (unit_address_vs_reg): /example-2/usb@4a000000/multiport/mport@2: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/usb/snps,dwc3.example.dts:95.27-97.15: Warning (unit_address_vs_reg): /example-2/usb@4a000000/multiport/mport@3: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/usb/snps,dwc3.example.dts:99.27-101.15: Warning (unit_address_vs_reg): /example-2/usb@4a000000/multiport/mport@4: node has a unit name, but no reg or ranges property
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/snps,dwc3.example.dtb: usb@4a000000: multiport: 'mport' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
 
-With that fixed:
-Reviewed-by: Robert Foss <robert.foss@linaro.org>
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
