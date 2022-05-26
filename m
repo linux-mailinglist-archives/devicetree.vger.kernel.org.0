@@ -2,74 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DB1D5354DA
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 22:45:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB9155354D6
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 22:45:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345607AbiEZUnt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 16:43:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54852 "EHLO
+        id S1349065AbiEZUoH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 16:44:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348998AbiEZUnW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 16:43:22 -0400
+        with ESMTP id S1348990AbiEZUnt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 16:43:49 -0400
 Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F040211C0D
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:43:12 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id f9so5225505ejc.0
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:43:12 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28C1BE7306
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:43:28 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id jx22so5049159ejb.12
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:43:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=85iVb4+A/+w2UaA25Ya+ceGSvLvHcnWP7QxOqtzvMO0=;
-        b=S5HgNEyB98uoUKhbcA2ZtqjGF6gwgVKBN0MkFURRoXbMBq8iIu7iJxYRcd9FD38Jpa
-         tWe8zYVtCZbYmS+NbDi+Nm5CLrB+km2bbjR7ukl21Nv8kKqF8JonP4nB4qLK6GrYTcjP
-         d/pocrwxXinp08//rTrYuJEUXqKZswR8glcQXFQe04RUelOkjdYYETO+MEhBgzmDGTLc
-         Xn9orwyFir1FvDlERpEmi+Nxj2a9vuSqB9eWXo2lpq4v2XiTFlH90LGqcMFOgkzqJIO5
-         qy0ksXfU7RphN+JF3V56zpW3zSiHII+U+rtiiQku3N2KWZJ8Umw9ki+e9aKrhmaRFfpN
-         1MQA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=61SDdlI/WkCqCxMIXxDin340q/9pKul5ClTEVboRWS4=;
+        b=ENxKB7k1c/ZGV4wSMizWGUYlXla7EY+KcuTEWIdR4K3LqZXQNQYCdPdonJkglV3hni
+         9Y9kgwkJSPSwkTAwvdtAYawWKgGEZnPBOW3Lu5j4/bG2vLZYFrhxFVJJARdMJMA8kcs8
+         cKt/5reimCGAyjs8yUHgL5EWYvrGMfoDXtxR7KlpfvL1yUB6/byAGfAPRex8yGb+W4RY
+         6m0Yv5E+5x/z7E8Cwyn98M57knnt24VrXeFDtN9UguY32VPeWSSgBCqDlHx1nBTqnpZG
+         UBZOo//HLzdznGWHwe0MRS9o3yOTZHX8A66UM8RsafOue75TDum//Ia5dWPOmyLs8Gdf
+         Q1Mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=85iVb4+A/+w2UaA25Ya+ceGSvLvHcnWP7QxOqtzvMO0=;
-        b=FRP4Y2cBYR9o0sd4EkauZ24lm0sGiTAJqY75/h3bWTrxKzblYdTnpk1lrzUqVeO6Fx
-         55RnuKJRUIhuF8Cyy3d/WnappEHExAi6OY+gD9twBCUeP/YrnwbY2iWLKJYBYufaDsTr
-         BjRuDtmS+TSy7NQyPf1dFMlc8HaVzjhz2vBHgLepUYAl/gHK8RWUSWBU2CJuRrWVbxrK
-         xovPcyZoP7uYFARJ5td8Akq61GI6DaGENxR/4/JB36V1eNzJFLKdyV9nqIxeM7Cneo4T
-         OrsgsUfBoQO53vo7yixdVUiW10mpvOkBvkRiYxi+d0tooVZeUWyvtHtVJGUYg9ZqpVpE
-         XLXw==
-X-Gm-Message-State: AOAM532t49TQ1ZHI/5nOavbkEnolFCETWd5ItwI+OJTWMF68/BCGPIRY
-        +PGhysaZ7uJO7zOPWh2iNUO+vg==
-X-Google-Smtp-Source: ABdhPJzhHZYNpvkWufjke/+3QahMJ3HSt67FFrEGa28DRx3ILij6+UCPSuL1/9rMJLjuWFYYjmF8sQ==
-X-Received: by 2002:a17:907:a406:b0:6ff:29ea:5e3 with SMTP id sg6-20020a170907a40600b006ff29ea05e3mr3421402ejc.161.1653597790628;
-        Thu, 26 May 2022 13:43:10 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=61SDdlI/WkCqCxMIXxDin340q/9pKul5ClTEVboRWS4=;
+        b=DsIRkudfobrjfS65qCL6hpwNMuty/v+rbCJvP6iGrOSq2GSLxfiYdqNxB9Jwtr1+uA
+         vGijSGwy6yqnipszIx8mjjSse8BE8YFriOBq+3C90I/JgdfGQJofONndO0tYKc8eOpLq
+         Gtvv5LWEcQYqRs8pT2km6UdlwoyNDN3exVCkxs+btAuagj6k4IPcj2Mh08Fhpqsg8nZ0
+         IL5rPhJS/cRSUjM+dclV8BL8dZlu4sxoG8YPtWTctGcl9ktvBv3SModt7k1E+1BKSvBJ
+         zNavote5NpKiw0qNgOeKGa4vnd1u2BzbCmBwW8gQWYzOw4ukY6o2usJ85xsRS0VLqprT
+         iU+g==
+X-Gm-Message-State: AOAM532CESUo7bvz98o9+2tsMv4B0mDomq22dkIiTRHqoOdX1pR/vfDh
+        fi9GusxvwQvMGND3WBM0hisT2Q==
+X-Google-Smtp-Source: ABdhPJxBYTEfl97pyUDWNEiYeiRo028m5NzT74n56sjtRyphUKYAKiajTWdqTYhQWx0qOFaqYwwvEQ==
+X-Received: by 2002:a17:906:cb97:b0:6fe:ec71:a49 with SMTP id mf23-20020a170906cb9700b006feec710a49mr19773575ejb.540.1653597807380;
+        Thu, 26 May 2022 13:43:27 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id s25-20020a170906bc5900b006fed40e5564sm802097ejv.83.2022.05.26.13.43.09
+        by smtp.gmail.com with ESMTPSA id y11-20020a170906070b00b006fec28bd09fsm816846ejb.22.2022.05.26.13.43.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 May 2022 13:43:10 -0700 (PDT)
+        Thu, 26 May 2022 13:43:26 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        arm@kernel.org, soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] ARM: dts: fsl: adjust whitespace around '='
-Date:   Thu, 26 May 2022 22:42:57 +0200
-Message-Id: <20220526204258.832179-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] arm64: dts: exynos: adjust whitespace around '='
+Date:   Thu, 26 May 2022 22:43:22 +0200
+Message-Id: <20220526204323.832243-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220526204258.832179-1-krzysztof.kozlowski@linaro.org>
-References: <20220526204258.832179-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,192 +80,22 @@ Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Output compared with dtx_diff and fdtdump.
 ---
- arch/arm/boot/dts/imx51-ts4800.dts           | 2 +-
- arch/arm/boot/dts/imx6dl-plym2m.dts          | 2 +-
- arch/arm/boot/dts/imx6dl-prtvt7.dts          | 2 +-
- arch/arm/boot/dts/imx6dl-victgo.dts          | 2 +-
- arch/arm/boot/dts/imx6q-bosch-acc.dts        | 2 +-
- arch/arm/boot/dts/imx6qdl-skov-cpu-revc.dtsi | 4 ++--
- arch/arm/boot/dts/imx6ul-tqma6ul2l.dtsi      | 2 +-
- arch/arm/boot/dts/imx6ull-tqma6ull2.dtsi     | 2 +-
- arch/arm/boot/dts/imx6ull-tqma6ull2l.dtsi    | 2 +-
- arch/arm/boot/dts/imx7d-sdb.dts              | 2 +-
- arch/arm/boot/dts/imxrt1050.dtsi             | 4 ++--
- arch/arm/boot/dts/ls1021a-iot.dts            | 2 +-
- 12 files changed, 14 insertions(+), 14 deletions(-)
+ arch/arm64/boot/dts/exynos/exynosautov9.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/imx51-ts4800.dts b/arch/arm/boot/dts/imx51-ts4800.dts
-index 85654d6baf28..f7408722d68a 100644
---- a/arch/arm/boot/dts/imx51-ts4800.dts
-+++ b/arch/arm/boot/dts/imx51-ts4800.dts
-@@ -174,7 +174,7 @@ fpga_irqc: fpga-irqc@15000 {
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pinctrl_interrupt_fpga>;
- 			interrupt-parent = <&gpio2>;
--			interrupts= <9 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupts = <9 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-controller;
- 			#interrupt-cells = <1>;
- 		};
-diff --git a/arch/arm/boot/dts/imx6dl-plym2m.dts b/arch/arm/boot/dts/imx6dl-plym2m.dts
-index c4ce23d8ac9f..522660c912a0 100644
---- a/arch/arm/boot/dts/imx6dl-plym2m.dts
-+++ b/arch/arm/boot/dts/imx6dl-plym2m.dts
-@@ -196,7 +196,7 @@ adc_ts: adc@0 {
- 		compatible = "ti,tsc2046e-adc";
- 		reg = <0>;
- 		pinctrl-0 = <&pinctrl_tsc2046>;
--		pinctrl-names ="default";
-+		pinctrl-names = "default";
- 		spi-max-frequency = <1000000>;
- 		interrupts-extended = <&gpio3 20 IRQ_TYPE_LEVEL_LOW>;
- 		#io-channel-cells = <1>;
-diff --git a/arch/arm/boot/dts/imx6dl-prtvt7.dts b/arch/arm/boot/dts/imx6dl-prtvt7.dts
-index b86deebef7b7..0a0b7acddfb2 100644
---- a/arch/arm/boot/dts/imx6dl-prtvt7.dts
-+++ b/arch/arm/boot/dts/imx6dl-prtvt7.dts
-@@ -344,7 +344,7 @@ adc_ts: adc@0 {
- 		compatible = "ti,tsc2046e-adc";
- 		reg = <0>;
- 		pinctrl-0 = <&pinctrl_tsc>;
--		pinctrl-names ="default";
-+		pinctrl-names = "default";
- 		spi-max-frequency = <1000000>;
- 		interrupts-extended = <&gpio3 20 IRQ_TYPE_LEVEL_LOW>;
- 		#io-channel-cells = <1>;
-diff --git a/arch/arm/boot/dts/imx6dl-victgo.dts b/arch/arm/boot/dts/imx6dl-victgo.dts
-index 516ec915a911..779b52858a25 100644
---- a/arch/arm/boot/dts/imx6dl-victgo.dts
-+++ b/arch/arm/boot/dts/imx6dl-victgo.dts
-@@ -144,7 +144,7 @@ adc_ts: adc@0 {
- 		compatible = "ti,tsc2046e-adc";
- 		reg = <0>;
- 		pinctrl-0 = <&pinctrl_touchscreen>;
--		pinctrl-names ="default";
-+		pinctrl-names = "default";
- 		spi-max-frequency = <1000000>;
- 		interrupts-extended = <&gpio5 8 IRQ_TYPE_LEVEL_LOW>;
- 		#io-channel-cells = <1>;
-diff --git a/arch/arm/boot/dts/imx6q-bosch-acc.dts b/arch/arm/boot/dts/imx6q-bosch-acc.dts
-index 8768222e183e..731fbc7b317c 100644
---- a/arch/arm/boot/dts/imx6q-bosch-acc.dts
-+++ b/arch/arm/boot/dts/imx6q-bosch-acc.dts
-@@ -594,7 +594,7 @@ &wdog1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_wdog1>;
- 	fsl,ext-reset-output;
--	timeout-sec=<10>;
-+	timeout-sec = <10>;
- 	status = "okay";
- };
- 
-diff --git a/arch/arm/boot/dts/imx6qdl-skov-cpu-revc.dtsi b/arch/arm/boot/dts/imx6qdl-skov-cpu-revc.dtsi
-index 69ae430a53bd..8254bce1b8a2 100644
---- a/arch/arm/boot/dts/imx6qdl-skov-cpu-revc.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-skov-cpu-revc.dtsi
-@@ -15,13 +15,13 @@ touchscreen@0 {
- 		reg = <0>;
- 		spi-max-frequency = <1000000>;
- 		interrupts-extended = <&gpio3 19 IRQ_TYPE_LEVEL_LOW>;
--		vcc-supply  = <&reg_3v3>;
-+		vcc-supply = <&reg_3v3>;
- 		pendown-gpio = <&gpio3 19 GPIO_ACTIVE_LOW>;
- 		ti,x-plate-ohms = /bits/ 16 <850>;
- 		ti,y-plate-ohms = /bits/ 16 <295>;
- 		ti,pressure-min = /bits/ 16 <2>;
- 		ti,pressure-max = /bits/ 16 <1500>;
--		ti,vref-mv	= /bits/ 16 <3300>;
-+		ti,vref-mv = /bits/ 16 <3300>;
- 		ti,settle-delay-usec = /bits/ 16 <15>;
- 		ti,vref-delay-usecs = /bits/ 16 <0>;
- 		ti,penirq-recheck-delay-usecs = /bits/ 16 <100>;
-diff --git a/arch/arm/boot/dts/imx6ul-tqma6ul2l.dtsi b/arch/arm/boot/dts/imx6ul-tqma6ul2l.dtsi
-index caf2c5d03f7e..4b87e2dc70dc 100644
---- a/arch/arm/boot/dts/imx6ul-tqma6ul2l.dtsi
-+++ b/arch/arm/boot/dts/imx6ul-tqma6ul2l.dtsi
-@@ -14,7 +14,7 @@ / {
- };
- 
- &usdhc2 {
--	fsl,tuning-step= <6>;
-+	fsl,tuning-step = <6>;
- };
- 
- &iomuxc {
-diff --git a/arch/arm/boot/dts/imx6ull-tqma6ull2.dtsi b/arch/arm/boot/dts/imx6ull-tqma6ull2.dtsi
-index 326e6da91ed4..8541cb3f3b3e 100644
---- a/arch/arm/boot/dts/imx6ull-tqma6ull2.dtsi
-+++ b/arch/arm/boot/dts/imx6ull-tqma6ull2.dtsi
-@@ -14,7 +14,7 @@ / {
- };
- 
- &usdhc2 {
--	fsl,tuning-step= <6>;
-+	fsl,tuning-step = <6>;
- 	/* Errata ERR010450 Workaround */
- 	max-frequency = <99000000>;
- 	assigned-clocks = <&clks IMX6UL_CLK_USDHC2_SEL>, <&clks IMX6UL_CLK_USDHC2>;
-diff --git a/arch/arm/boot/dts/imx6ull-tqma6ull2l.dtsi b/arch/arm/boot/dts/imx6ull-tqma6ull2l.dtsi
-index 8e4d5cd18614..be593d47e3b1 100644
---- a/arch/arm/boot/dts/imx6ull-tqma6ull2l.dtsi
-+++ b/arch/arm/boot/dts/imx6ull-tqma6ull2l.dtsi
-@@ -14,7 +14,7 @@ / {
- };
- 
- &usdhc2 {
--	fsl,tuning-step= <6>;
-+	fsl,tuning-step = <6>;
- 	/* Errata ERR010450 Workaround */
- 	max-frequency = <99000000>;
- 	assigned-clocks = <&clks IMX6UL_CLK_USDHC2_SEL>, <&clks IMX6UL_CLK_USDHC2>;
-diff --git a/arch/arm/boot/dts/imx7d-sdb.dts b/arch/arm/boot/dts/imx7d-sdb.dts
-index f053f5122741..78f4224a9bf4 100644
---- a/arch/arm/boot/dts/imx7d-sdb.dts
-+++ b/arch/arm/boot/dts/imx7d-sdb.dts
-@@ -201,7 +201,7 @@ tsc2046@0 {
- 		compatible = "ti,tsc2046";
- 		reg = <0>;
- 		spi-max-frequency = <1000000>;
--		pinctrl-names ="default";
-+		pinctrl-names = "default";
- 		pinctrl-0 = <&pinctrl_tsc2046_pendown>;
- 		interrupt-parent = <&gpio2>;
- 		interrupts = <29 0>;
-diff --git a/arch/arm/boot/dts/imxrt1050.dtsi b/arch/arm/boot/dts/imxrt1050.dtsi
-index 77b911b06041..03e6a858a7be 100644
---- a/arch/arm/boot/dts/imxrt1050.dtsi
-+++ b/arch/arm/boot/dts/imxrt1050.dtsi
-@@ -83,7 +83,7 @@ edma1: dma-controller@400e8000 {
+diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
+index 0ce46ec5cdc3..5827e1228fa9 100644
+--- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
+@@ -364,7 +364,7 @@ ufs_0_phy: ufs0-phy@17e04000 {
  		};
  
- 		usdhc1: mmc@402c0000 {
--			compatible ="fsl,imxrt1050-usdhc", "fsl,imx6sl-usdhc";
-+			compatible = "fsl,imxrt1050-usdhc", "fsl,imx6sl-usdhc";
- 			reg = <0x402c0000 0x4000>;
- 			interrupts = <110>;
- 			clocks = <&clks IMXRT1050_CLK_IPG_PDOF>,
-@@ -95,7 +95,7 @@ usdhc1: mmc@402c0000 {
- 			no-1-8-v;
- 			max-frequency = <4000000>;
- 			fsl,tuning-start-tap = <20>;
--			fsl,tuning-step= <2>;
-+			fsl,tuning-step = <2>;
- 			status = "disabled";
- 		};
+ 		ufs_0: ufs0@17e00000 {
+-			compatible ="samsung,exynosautov9-ufs";
++			compatible = "samsung,exynosautov9-ufs";
  
-diff --git a/arch/arm/boot/dts/ls1021a-iot.dts b/arch/arm/boot/dts/ls1021a-iot.dts
-index 66bcdaf4b6f9..ce8e26d7791f 100644
---- a/arch/arm/boot/dts/ls1021a-iot.dts
-+++ b/arch/arm/boot/dts/ls1021a-iot.dts
-@@ -142,7 +142,7 @@ pca9555: gpio@23 {
- 	};
- 
- 	sgtl5000: audio-codec@2a {
--		#sound-dai-cells=<0x0>;
-+		#sound-dai-cells = <0x0>;
- 		compatible = "fsl,sgtl5000";
- 		reg = <0x2a>;
- 		VDDA-supply = <&reg_3p3v>;
+ 			reg = <0x17e00000 0x100>,  /* 0: HCI standard */
+ 				<0x17e01100 0x410>,  /* 1: Vendor-specific */
 -- 
 2.34.1
 
