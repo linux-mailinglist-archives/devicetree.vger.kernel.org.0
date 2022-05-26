@@ -2,59 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09E41534AD1
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 09:33:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28380534B14
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 10:02:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236979AbiEZHdO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 03:33:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42632 "EHLO
+        id S241161AbiEZIBr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 04:01:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234616AbiEZHdN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 03:33:13 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6307692D34;
-        Thu, 26 May 2022 00:33:12 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: shreeya)
-        with ESMTPSA id 2F73A1F451F8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1653550390;
-        bh=XBjRr4zV7iqDwsqd8+WLNul7+0XXrRR/5iyVy4RBtnQ=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=VtmF5DhwKEE20g/IthAnqzs2a7+lBZ5pXA4i2d+al5SLa2MWVjx0sTNVDrRnJGBV1
-         rCpUwGJCngiKgle9iQ9+T3jt6aUn1lulMYNBHMv3QdSOpWV0coo+ITDLmlg4/IMpCP
-         fSSXC2uagn8+KwvnJV4j/0bI2DsNONy48Akxnwai/xpTc+Ixzd7Muhkgz7XnjZ+a1/
-         FNKjmpTZPdkJu7sgjdeYXby57hC0HOWJVX4TaMSCSiCEbv+Pa387PBaxi/HMUWQB/3
-         FwgL315QLVU1uAgjz+fecawbHrpNavf+p2OUaKtOZyABrIX8Qaid7dabpP56kflXAq
-         PxbdPorVN8Osg==
-Message-ID: <507d7711-3755-1a2e-473d-3c1c9e23563d@collabora.com>
-Date:   Thu, 26 May 2022 13:03:04 +0530
+        with ESMTP id S237948AbiEZIBq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 04:01:46 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17B6829822
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 01:01:45 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id q15so836910edb.11
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 01:01:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Nd0aS4XTdk1Zg4grTiu5ttSxSBDZV5Q51FAnuUtF0kE=;
+        b=UJ32M+hVRboBmqNhcx1ypbpuPw/R/WvcZBI8hf6IGOtG7cfavIJ1D8Kj4Zr4E/aid+
+         g1zSoCKxaiVeeZXmfy+bzcOQI+EFJ384yQpc8qn2/V3a9l7rmrGMMEssjlVJqSJb0ESZ
+         J7ba5GFQ9gIpw9RkQZGPqa3PMQPkjwJVmoCmScjNjIW/4DtjWpZWtFkI6wc//wKu5brO
+         AVE6pDX7pw9KkSsznTLoLKFlnzqsKjfpxZaLs65/f3+dbmKhauEwjojvE+WtQKOfy8+8
+         S9Qaw0oElSaICzcVPgWZItaYQAa6Gu7f/6arwHUy7vZa7MHmkClUcSjtVlJ23wVmZ7Vi
+         w5YA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Nd0aS4XTdk1Zg4grTiu5ttSxSBDZV5Q51FAnuUtF0kE=;
+        b=DWaru2pvnrk7zB8GtnrC0UIPedMXW5Cm0+6edNAMHSTGiq6lu+px2RbYvY15Y+N6rL
+         jhSgKlTFzWC7Tg2anXhbhZ7sKmfkza2UX3E3ewdSk1da7i4n1hgo0/djsbQR3IzttclD
+         ohsyRE46K5b1cTNEmVJswk73viJer98ZFnlAThxFnskgzR1Fd5oxChz64P9p8yQwDGnQ
+         5vFeTNEAljXGu3jYpQBKF+1nflG71Py6pEAceH2NFKhCPchfiSIbDvtcuRU/5B+caPob
+         8e0gZ+xZXQcMflpYygdeX/hVM3nDj0z6Godp5zNP46semKXtMQfxNF/mbEy7RjOv3eBd
+         ZJJA==
+X-Gm-Message-State: AOAM531/89ZGNAgmNl5432xLj7jbqY5+sS+TopRgwUYewePLhxy+/H6q
+        oQ0CP0jX/uxSJ7J1UMZYapLPpQ==
+X-Google-Smtp-Source: ABdhPJwYpTZwwXvyTIw2oAbj4OEtV+DLj5T9UYsIzWBazg34v5yPvyzB5xo4pW+oXB5N45wIa3IWsg==
+X-Received: by 2002:a05:6402:2995:b0:42a:843f:ac82 with SMTP id eq21-20020a056402299500b0042a843fac82mr38368670edb.370.1653552103549;
+        Thu, 26 May 2022 01:01:43 -0700 (PDT)
+Received: from [192.168.0.177] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id n4-20020a1709065e0400b006feb7b1379dsm270061eju.181.2022.05.26.01.01.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 May 2022 01:01:43 -0700 (PDT)
+Message-ID: <bf9915ca-29cb-01f3-1124-eb17ba60245e@linaro.org>
+Date:   Thu, 26 May 2022 10:01:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v4 1/3] dt-bindings: vendor-prefixes: Add 'ltr' as
- deprecated vendor prefix
+ Thunderbird/91.9.1
+Subject: Re: [PATCH] dt-bindings: dma: fsl-edma: Convert to DT schema
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     jic23@kernel.org, lars@metafoo.de, Zhigang.Shi@liteon.com,
-        krisman@collabora.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com, alvaro.soliverez@collabora.com,
-        Krzysztof Kozlowski <krzk@kernel.org>
-References: <20220511094024.175994-1-shreeya.patel@collabora.com>
- <20220511094024.175994-2-shreeya.patel@collabora.com>
- <20220516170058.GA2825626-robh@kernel.org>
- <83907dd2-2a53-2448-576b-ae26462d432a@collabora.com>
- <20220518163255.GE3302100-robh@kernel.org>
- <f37bccaf-233c-a244-3d81-849a988b1a92@collabora.com>
- <20220524154703.GD3730540-robh@kernel.org>
-From:   Shreeya Patel <shreeya.patel@collabora.com>
-In-Reply-To: <20220524154703.GD3730540-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, vkoul@kernel.org,
+        dmaengine@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, joy.zou@nxp.com,
+        Peng Fan <peng.fan@nxp.com>
+References: <20220526035611.4063102-1-peng.fan@oss.nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220526035611.4063102-1-peng.fan@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,90 +76,300 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 26/05/2022 05:56, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> Convert the eDMA controller binding to DT schema.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  .../devicetree/bindings/dma/fsl,edma.yaml     | 136 ++++++++++++++++++
+>  .../devicetree/bindings/dma/fsl-edma.txt      | 111 --------------
+>  2 files changed, 136 insertions(+), 111 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/dma/fsl,edma.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/dma/fsl-edma.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/fsl,edma.yaml b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
+> new file mode 100644
+> index 000000000000..dbb69aca7d67
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
+> @@ -0,0 +1,136 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/dma/fsl,edma.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale enhanced Direct Memory Access(eDMA) Controller
+> +
+> +description: |
+> +  The eDMA channels have multiplex capability by programmble
 
-On 24/05/22 21:17, Rob Herring wrote:
-> On Mon, May 23, 2022 at 08:27:56PM +0530, Shreeya Patel wrote:
->> On 18/05/22 22:02, Rob Herring wrote:
->>> On Tue, May 17, 2022 at 04:07:33PM +0530, Shreeya Patel wrote:
->>>> On 16/05/22 22:30, Rob Herring wrote:
->>>>> On Wed, May 11, 2022 at 03:10:22PM +0530, Shreeya Patel wrote:
->>>>>> 'liteon' is the correct vendor prefix for devices released by
->>>>>> LITE-ON Technology Corp. But one of the released device which uses
->>>>>> ltr216a light sensor exposes the vendor prefix name as 'ltr' through
->>>>>> ACPI.
->>>>> ACPI? NAK.
->>>>>
->>>>> There are no cases of 'ltr' for DT, so fix ACPI.
->>>> Hi Rob,
->>>>
->>>> Yes, we understand there are no cases of 'ltr', but we have released devices
->>>> which uses this string for probing the ltrf216a light sensor driver ( x86
->>>> with DT )
->>> That's not what your commit message says.
->>>
->>> Even if this is DT based, given an undocumented vendor string is used,
->>> it seems doubtful the rest of the binding would match upstream. What
->>> about the rest of the DTB? Got a pointer to it or want to publish it?
->>>
->>>> If we don't document this in vendor-prefixes.yaml, then the following
->>>> warning
->>>> is generated.
->>>>
->>>> WARNING: DT compatible string vendor "ltr" appears un-documented -- check
->>>> ./Documentation/devicetree/bindings/vendor-prefixes.yaml 364: FILE:
->>>> drivers/iio/light/ltrf216a.c:313: + { .compatible = "ltr,ltrf216a" },
->>>>
->>>>
->>>> Can you suggest us what would be the right way to fix this warning if not
->>>> documenting
->>>> in vendor-prefixes.yaml?
->>> Fix the DT. We don't accept bindings simply because they are already
->>> used in the field. If this was the only issue, it would be fine, but I
->>> suspect it's the tip of the iceberg.
->>
->> Hi Rob,
->>
->> To make things more clear, following is the modalias info of the device.
->>
->> (B+)(root@linux iio:device0)# cat
->> /sys/bus/i2c/devices/i2c-PRP0001\:01/modalias
->> of:NltrfTCltr,ltrf216a
->>
->> It's a dt namespace on an ACPI based device. We used an of_device_id table
->> to be able to probe the driver
->> using the vendor prefix and compatible string.
-> Again, it's ACPI so I don't care. If someone cares about using DT
-> bindings in ACPI they can step up and help maintain them. It's not a DT
-> vs. ACPI thing, but just that I can only maintain so much and have to
-> draw the line somewhere.
->
->> But when we compile the driver, we get the following warning and hence we
->> documented it in vendor-prefixes.yaml
->> and also added a complete device tree file [Patch 3/3] just to get rid of
->> the warning. In real life we are not using
->> the device tree file at all.
->>
->> WARNING: DT compatible string vendor "ltr" appears un-documented -- check
->> ./Documentation/devicetree/bindings/vendor-prefixes.yaml 364: FILE:
->> drivers/iio/light/ltrf216a.c:313: + { .compatible = "ltr,ltrf216a" },
-> So, is someone telling you to fix this?
+programmable
+
+> +  memory-mapped registers. channels are split into two groups, called
+> +  DMAMUX0 and DMAMUX1, specific DMA request source can only be multiplexed
+> +  by any channel of certain group, DMAMUX0 or DMAMUX1, but not both.
+> +
+> +maintainers:
+> +  - Peng Fan <peng.fan@nxp.com>
+> +
+> +allOf:
+> +  - $ref: "dma-controller.yaml#"
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: fsl,vf610-edma
+> +      - const: fsl,imx7ulp-edma
+
+These should be one enum.
+
+> +      - items:
+> +          - const: fsl,ls1028a-edma
+> +          - const: fsl,vf610-edma
+> +
+> +  "#dma-cells":
+> +    const: 2
+> +
+> +  dma-channels:
+> +    minItems: 32
+> +    maxItems: 64
+> +
+> +  reg:
+> +    minItems: 2
+> +    maxItems: 65
+
+Old binding mentions only three regions. Why 65?
+
+> +
+> +  interrupts:
+> +    minItems: 2
+> +    maxItems: 65
+
+The maxItems look weird here. Shouldn't this be 17? This needs its own
+constraints in allOf:if:then per variant.
+
+> +
+> +  clocks:
+> +    maxItems: 2
+> +
+> +  big-endian:
+> +    description: |
+> +      If present registers and hardware scatter/gather descriptors of the
+> +      eDMA are implemented in big endian mode, otherwise in little mode.
+> +    type: boolean
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: edma-tx
+> +      - const: edma-err
+
+Put it next to interrupts.
 
 
-So will it be right to just keep the warning and remove this patch?
-Is there a way you know to silent this warning?
+> +
+> +required:
+> +  - "#dma-cells"
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - dma-channels
+> +
+> +if:
+
+This should be under allOf and that entire allOf block (with $ref)
+should be located here.
+
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: fsl,imx7ulp-edma
+> +then:
+> +  properties:
+> +    clock-names:
+> +      items:
+> +        - const: dma
+> +        - const: dmamux0
+> +else:
+> +  properties:
+> +    clock-names:
+> +      items:
+> +        - const: dmamux0
+> +        - const: dmamux1
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/vf610-clock.h>
+> +
+> +    edma0: dma-controller@40018000 {
+> +      #dma-cells = <2>;
+> +      compatible = "fsl,vf610-edma";
+> +      reg = <0x40018000 0x2000>,
+> +            <0x40024000 0x1000>,
+> +            <0x40025000 0x1000>;
+> +      interrupts = <0 8 IRQ_TYPE_LEVEL_HIGH>,
+> +                   <0 9 IRQ_TYPE_LEVEL_HIGH>;
+> +      interrupt-names = "edma-tx", "edma-err";
+> +      dma-channels = <32>;
+> +      clock-names = "dmamux0", "dmamux1";
+> +      clocks = <&clks VF610_CLK_DMAMUX0>, <&clks VF610_CLK_DMAMUX1>;
+> +    };
+> +
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/imx7ulp-clock.h>
+> +
+> +    edma1: dma-controller@40080000 {
+> +      #dma-cells = <2>;
+> +      compatible = "fsl,imx7ulp-edma";
+> +      reg = <0x40080000 0x2000>,
+> +            <0x40210000 0x1000>;
+> +      dma-channels = <32>;
+> +      interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+> +                   <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
+> +                   <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
+> +                   <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+> +                   <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+> +                   <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+> +                   <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+> +                   <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+> +                   <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> +                   <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+> +                   <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+> +                   <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
+> +                   <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
+> +                   <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
+> +                   <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
+> +                   <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>,
+> +                   /* last is eDMA2-ERR interrupt */
+> +                   <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
+> +       clock-names = "dma", "dmamux0";
+> +       clocks = <&pcc2 IMX7ULP_CLK_DMA1>, <&pcc2 IMX7ULP_CLK_DMA_MUX1>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/dma/fsl-edma.txt b/Documentation/devicetree/bindings/dma/fsl-edma.txt
+> deleted file mode 100644
+> index ee1754739b4b..000000000000
+> --- a/Documentation/devicetree/bindings/dma/fsl-edma.txt
+> +++ /dev/null
+> @@ -1,111 +0,0 @@
+> -* Freescale enhanced Direct Memory Access(eDMA) Controller
+> -
+> -  The eDMA channels have multiplex capability by programmble memory-mapped
+> -registers. channels are split into two groups, called DMAMUX0 and DMAMUX1,
+> -specific DMA request source can only be multiplexed by any channel of certain
+> -group, DMAMUX0 or DMAMUX1, but not both.
+> -
+> -* eDMA Controller
+> -Required properties:
+> -- compatible :
+> -	- "fsl,vf610-edma" for eDMA used similar to that on Vybrid vf610 SoC
+> -	- "fsl,imx7ulp-edma" for eDMA2 used similar to that on i.mx7ulp
+> -	- "fsl,ls1028a-edma" followed by "fsl,vf610-edma" for eDMA used on the
+> -	  LS1028A SoC.
+> -- reg : Specifies base physical address(s) and size of the eDMA registers.
+> -	The 1st region is eDMA control register's address and size.
+> -	The 2nd and the 3rd regions are programmable channel multiplexing
+> -	control register's address and size.
+> -- interrupts : A list of interrupt-specifiers, one for each entry in
+> -	interrupt-names on vf610 similar SoC. But for i.mx7ulp per channel
+> -	per transmission interrupt, total 16 channel interrupt and 1
+> -	error interrupt(located in the last), no interrupt-names list on
+> -	i.mx7ulp for clean on dts.
+> -- #dma-cells : Must be <2>.
+> -	The 1st cell specifies the DMAMUX(0 for DMAMUX0 and 1 for DMAMUX1).
+> -	Specific request source can only be multiplexed by specific channels
+> -	group called DMAMUX.
+> -	The 2nd cell specifies the request source(slot) ID.
+> -	See the SoC's reference manual for all the supported request sources.
+> -- dma-channels : Number of channels supported by the controller
+> -- clock-names : A list of channel group clock names. Should contain:
+> -	"dmamux0" - clock name of mux0 group
+> -	"dmamux1" - clock name of mux1 group
+> -	Note: No dmamux0 on i.mx7ulp, but another 'dma' clk added on i.mx7ulp.
+> -- clocks : A list of phandle and clock-specifier pairs, one for each entry in
+> -	clock-names.
+> -
+> -Optional properties:
+> -- big-endian: If present registers and hardware scatter/gather descriptors
+> -	of the eDMA are implemented in big endian mode, otherwise in little
+> -	mode.
+> -- interrupt-names : Should contain the below on vf610 similar SoC but not used
+> -	on i.mx7ulp similar SoC:
+> -	"edma-tx" - the transmission interrupt
+> -	"edma-err" - the error interrupt
+> -
+> -
+> -Examples:
+> -
+> -edma0: dma-controller@40018000 {
+> -	#dma-cells = <2>;
+> -	compatible = "fsl,vf610-edma";
+> -	reg = <0x40018000 0x2000>,
+> -		<0x40024000 0x1000>,
+> -		<0x40025000 0x1000>;
+> -	interrupts = <0 8 IRQ_TYPE_LEVEL_HIGH>,
+> -		<0 9 IRQ_TYPE_LEVEL_HIGH>;
+> -	interrupt-names = "edma-tx", "edma-err";
+> -	dma-channels = <32>;
+> -	clock-names = "dmamux0", "dmamux1";
+> -	clocks = <&clks VF610_CLK_DMAMUX0>,
+> -		<&clks VF610_CLK_DMAMUX1>;
+> -}; /* vf610 */
+> -
+> -edma1: dma-controller@40080000 {
+> -	#dma-cells = <2>;
+> -	compatible = "fsl,imx7ulp-edma";
+> -	reg = <0x40080000 0x2000>,
+> -		<0x40210000 0x1000>;
+> -	dma-channels = <32>;
+> -	interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+> -		     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
+> -		     <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
+> -		     <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+> -		     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+> -		     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+> -		     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+> -		     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+> -		     <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> -		     <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+> -		     <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+> -		     <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
+> -		     <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
+> -		     <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
+> -		     <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
+> -		     <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>,
+> -		     /* last is eDMA2-ERR interrupt */
+> -		     <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
+> -	clock-names = "dma", "dmamux0";
+> -	clocks = <&pcc2 IMX7ULP_CLK_DMA1>,
+> -		 <&pcc2 IMX7ULP_CLK_DMA_MUX1>;
+> -}; /* i.mx7ulp */
+> -
+> -* DMA clients
+> -DMA client drivers that uses the DMA function must use the format described
+> -in the dma.txt file, using a two-cell specifier for each channel: the 1st
+> -specifies the channel group(DMAMUX) in which this request can be multiplexed,
+> -and the 2nd specifies the request source.
+> -
+> -Examples:
+> -
+> -sai2: sai@40031000 {
+> -	compatible = "fsl,vf610-sai";
+> -	reg = <0x40031000 0x1000>;
+> -	interrupts = <0 86 IRQ_TYPE_LEVEL_HIGH>;
+> -	clock-names = "sai";
+> -	clocks = <&clks VF610_CLK_SAI2>;
+> -	dma-names = "tx", "rx";
+> -	dmas = <&edma0 0 21>,
+> -		<&edma0 0 20>;
+> -};
 
 
-Thanks,
-Shreeya Patel
-
->
->
->> There are many existing devices used by people which has the vendor prefix
->> name as 'ltr'
->> and it won't be possible to change that hence we are trying to upstream it.
-> There are millions if not billions of DT based devices using
-> undocumented bindings. If those used "ltr,ltrf216a", I wouldn't accept
-> it either.
->
-> Rob
->
+Best regards,
+Krzysztof
