@@ -2,62 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CDE3534F96
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 14:46:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F55D534FA2
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 14:54:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239795AbiEZMqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 08:46:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45634 "EHLO
+        id S232045AbiEZMyH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 08:54:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239939AbiEZMqa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 08:46:30 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8E481C136;
-        Thu, 26 May 2022 05:46:28 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 52F7761A7C;
-        Thu, 26 May 2022 12:46:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B123BC34116;
-        Thu, 26 May 2022 12:46:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1653569187;
-        bh=aX3XkTNFlbddfM2Uz7FkBiXfKfSrDGVietK6gQgDZCM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=B0ofxPknLB25PRikCSM7JL2+HYZFxCccCBk/ytV+jnoPy8FCWWj45nqSnDmL/CXlf
-         WnE797DjnXyaKAVoGBV7QnDpKkvdOjhqn19BVljcYXPfmPhcn1RXT39rcf29R7coEC
-         06pdXoQkd+SjQuhBGgade787urI7WT7wy2x2mjhothB8J3FYKC0n5WYc7nLzu7FiTN
-         ZMhuHwhTKW6uuMDh71F/tCGSCm7sTbkg3mCi6GHHsApuCI3tV80A3ng/zEU3i/1MAp
-         sTCOqyK/HkaodGygf0qC1580ELm5uQ6k5YgMjuhJD4uXs0wccTn3VZ5UNLZA71qwQ1
-         J4DHqAxtFfEWw==
-Received: by mail-ej1-f50.google.com with SMTP id y13so2845532eje.2;
-        Thu, 26 May 2022 05:46:27 -0700 (PDT)
-X-Gm-Message-State: AOAM5330szRZVbqr7qg5kksG2thX9MP6a/s1Oq/g9gBpKQOUss0GBXfk
-        4/Wax34Snq4venM6+dBl7m4d2MRXUs9NigyzGg==
-X-Google-Smtp-Source: ABdhPJxdAvZ5Z3oR1GucLvBj6d6cfGXYzMzHQadqJjpxVYxGkdqtexgfAKaP9HSSbaBey8Xgwc/lhfdaEAWDD/9EmGI=
-X-Received: by 2002:a17:906:ae43:b0:6fe:a207:5cc3 with SMTP id
- lf3-20020a170906ae4300b006fea2075cc3mr29379554ejb.19.1653569185897; Thu, 26
- May 2022 05:46:25 -0700 (PDT)
+        with ESMTP id S245102AbiEZMyG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 08:54:06 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54BB2C0394
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 05:54:05 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id jx22so2744846ejb.12
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 05:54:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=jEnJvB+XBclLjbaDlwzX4FK9+HMU9DqoCc5eaysM7ns=;
+        b=xgAZK4q4/M/LFSxErbc+IB4AwVljcgSb+Dnm5HujosWBdM0afMeiebe/uzAh5EzIKB
+         WMIoPx2mMZe15h7gVTQhYflFgfplC8sid+bgzttXwSOk3kPRbuv813wSkgt76qA6ZkRR
+         NNKxXlVcE8E+lbyxKbpxwIpb2/wcFQkrIuBpyX7brrXPTGehz5GYDDGNtVuHvjHgZESx
+         UwdrmfRG8fZJbCbqMM1RuH6VUe6/6ZfSVA0pFxwOubYUeJ9JLvIOMG97ZEtkV9o4aSJp
+         0L+nqK8AyvbmuBtD837aAOvK0F1LTSOXZZa1uhlQSYWyZGPN7z9T/ruRBqSNSfPmESLt
+         dnLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=jEnJvB+XBclLjbaDlwzX4FK9+HMU9DqoCc5eaysM7ns=;
+        b=AyNg9x4GeFfy+7nHa08VUs+ewuuRTJXr1x1MpzGLmIvptXxTwU+jdKcSE814yM9e96
+         QvBD6r3G2LtgjmVI8HbDRn2IcccnXvGZJ19MO/96mTeXIOZbdsV6P+jM3OmVj/ia/O9P
+         G99yUGq6TwWZOwL9f5HNqaRlYGxknE/EawISDfKgCdAyqhDEamzxC4SUGtDMePC3/PDf
+         XU+S7YrZfezcgQGGYNmBRnqg7nSOlNnu7n/Q46CJpjLmOL8Xb7V/XhdIex5L1/ZYd1JG
+         WyYX5R1QpIErTFdPXDVsdC3hj46TFY7SOUjzbwTq+9x6qORhSler58J+9XlrB505h3Pc
+         G4og==
+X-Gm-Message-State: AOAM530C9D3Yulnbe3xWLCg5Er0SFLUHxfvGZ3jOFJ8y4m2KCNcWTRId
+        3gHaHoq/cx3To6b5DyNNz6XE8Q==
+X-Google-Smtp-Source: ABdhPJy+7kaeGlQ2oSWlPHTQXrJGC/gmps6S8B6/CnegdLxtDvX2TuIvU0+rBlV1aa32+NPxZvtuOw==
+X-Received: by 2002:a17:907:7f14:b0:6ff:2013:3e98 with SMTP id qf20-20020a1709077f1400b006ff20133e98mr3546761ejc.73.1653569643971;
+        Thu, 26 May 2022 05:54:03 -0700 (PDT)
+Received: from [192.168.0.177] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id s4-20020a170906354400b006fe98c7c7a9sm497527eja.85.2022.05.26.05.54.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 May 2022 05:54:03 -0700 (PDT)
+Message-ID: <66591c84-ee8d-7152-f0c5-5e4a07f632fb@linaro.org>
+Date:   Thu, 26 May 2022 14:54:02 +0200
 MIME-Version: 1.0
-References: <20220525210117.2489333-1-robh@kernel.org> <35c700f6-ce67-89d5-0f29-426acd33efa9@socionext.com>
-In-Reply-To: <35c700f6-ce67-89d5-0f29-426acd33efa9@socionext.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 26 May 2022 07:46:12 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJqdLrhjCiQ3a1PZvfnW715HhXNMQZea2H78T4U2BqDzA@mail.gmail.com>
-Message-ID: <CAL_JsqJqdLrhjCiQ3a1PZvfnW715HhXNMQZea2H78T4U2BqDzA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: PCI: socionext,uniphier-pcie: Add missing
- child interrupt controller
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        PCI <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v2 1/2] dt-bindings: mailbox: mtk-gce: Convert txt to
+ json-schema
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, jassisinghbrar@gmail.com
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, houlong.wei@mediatek.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20220524151512.247435-1-angelogioacchino.delregno@collabora.com>
+ <20220524151512.247435-2-angelogioacchino.delregno@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220524151512.247435-2-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -66,31 +79,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 26, 2022 at 4:02 AM Kunihiko Hayashi
-<hayashi.kunihiko@socionext.com> wrote:
->
-> Hi Rob,
->
-> On 2022/05/26 6:01, Rob Herring wrote:
-> > The Socionext interrupt controller internal to the the PCI block isn't
-> > documented which causes warnings when unevaluatedProperties check is
-> > also fixed. Add the 'interrupt-controller' child node and properties and
-> > fixup the example so that interrupt properties can be parsed.
->
-> Surely internal interrupt controller isn't described, and should be documented.
-> And the child node name "legacy-interrupt-controller" also should be fixed.
->
-> Reviewed-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+On 24/05/2022 17:15, AngeloGioacchino Del Regno wrote:
+> Convert the mtk-gce documentation from freeform text format to a
+> json-schema.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  .../bindings/mailbox/mediatek,gce-mbox.yaml   | 124 ++++++++++++++++++
+>  .../devicetree/bindings/mailbox/mtk-gce.txt   |  82 ------------
+>  2 files changed, 124 insertions(+), 82 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/mediatek,gce-mbox.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mailbox/mtk-gce.txt
+> 
 
-Thanks.
 
->
-> BTW I can't reproduce such warnings with my environment.
-> Can you show the command line to reproduce the warnings?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-"causes warnings when unevaluatedProperties check is also fixed"
 
-You won't. I have a fix in dtschema pending, but first all the
-warnings that appear need to be fixed.
-
-Rob
+Best regards,
+Krzysztof
