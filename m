@@ -2,63 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72FD55354F8
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 22:46:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DEC15354FA
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 22:46:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345439AbiEZUqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 16:46:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33582 "EHLO
+        id S1349101AbiEZUqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 16:46:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349167AbiEZUqX (ORCPT
+        with ESMTP id S1349174AbiEZUqX (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 16:46:23 -0400
 Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEC17B4B8
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:46:15 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id d22so3169152edj.4
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:46:15 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 310E51055B
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:46:17 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id h11so3157337eda.8
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 13:46:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=sodNhrbprDBlR5tvNArSoegdmoIGZLxKNxm4MqZi0Kw=;
-        b=j0AS2xKTqbpmPr4US1TqDWaZrfuq2l/Jb8NMfruGp9sLuESLr/c3PrbE+WC4zZPf1w
-         lHduoW3fvKnibVG1Y06bt2PCClRcaopTBDE+3+5H4ZmWpmXQeNoUPPtdxItwayVN1Cdi
-         9jvoJGdEqytx5fahTlVN5T160OmOQ8n91d8P4dVFlZI9slhtnMLNl7o3bTrefjTLR2g8
-         pzYbNBLNLY0019d7BJKZAz1rB4c60F2OJsfnhuTWJMuFHN8UNWs4re9/VqF2kf7RF/5D
-         yixJdp+oq1FF3px58CVYOTuaHwDMLZE7hgR98Z3H2aj9r52HidfnH/lf2pVJKrvnzCoY
-         ZRBA==
+        bh=lBaqWUZdGRxVXZa/3xFn5e0ng0GgoHiZioilUw5+2nw=;
+        b=Cv0JakkXE60pGLI7Iyhf67f1yhGMoKIqoT+mBKLUK6Ga875dfGpC9/btNCcIg99qBA
+         UzrB7bs7Wh7HvZk6CwGBEv7Tv0e/WgtEX2C22p4pdGQsYLT6ufYXQT/MOJv8FHqGwXxj
+         /TB9LO7I459hEYE+b9x7XYbDD54uLPepZvzKWl0E1RBCL0q1LvNOmuxD1rFvC9GzMW8/
+         D75bhWgOULe3Ra0NRkagjYu+U3+XdeAo+US/j8hTQMgv7U2ZGA3U6oeL6uRw1a7OFglI
+         +U1gFGAS0nnMCxHD4VpKI8MRIGRrHrAelcjB8cNDQMGmrL/9ilYx0+NhqtHL084FhPJ/
+         eueA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=sodNhrbprDBlR5tvNArSoegdmoIGZLxKNxm4MqZi0Kw=;
-        b=W99uFd/b5HReWUZb90WmdqI3KzU0gbdq3HnBKteiXofn2/tthUMtKDwLqmVko55Whz
-         DIFUNBUhlR3nie/i3cQxNgREOBOk+Tm+itefKoNjzw2zTmLIVUtnF0uPU1ZVhUJsFIev
-         Hwx8oPzyX0xgJL4pYZ4KJ/Z36WdosdhMJyhY951p5kzbMfV8nrBImz6fPzYXRILqF3jg
-         Vw3K7wryru6Srn8ZOW7xr/piyuDsF/FKm/rUJ8m7ENIHU3kMVXy2kqj9Z1F8zEqKK4C6
-         Lq7ZtWEoDNfnDxXsXm9vkR8ts9fjVnrfooBORoxR3RVMY4MMNJzGkOpONLd1EFSj0IuS
-         Iz3A==
-X-Gm-Message-State: AOAM5315FvkWxQIk4s2OUtg2xiyyCO8dkgIr295RTDC5pfaNduXinvE0
-        4AZoomoslfm/8CWo6/HuuUV2/g==
-X-Google-Smtp-Source: ABdhPJyMqZdNPyppsO99qpgItW+lofA2V7FRCZtisCXRtSW3Kc31/FlvuFJ0N8MgBXeebaPx4c/fJA==
-X-Received: by 2002:a05:6402:1247:b0:42b:e2e6:4aa9 with SMTP id l7-20020a056402124700b0042be2e64aa9mr2634806edw.94.1653597974350;
-        Thu, 26 May 2022 13:46:14 -0700 (PDT)
+        bh=lBaqWUZdGRxVXZa/3xFn5e0ng0GgoHiZioilUw5+2nw=;
+        b=vsyPZCwQu7E9SLDkcZFZ2ufyrEZ2hVidPKGJ7nT4ClgH0TnGc+ysFfTq4FzUpYitZw
+         RJ5ba8F0nuoe+By7Suq6YuGhwdz+SVkMrndoT0LQuLneJWp+gd1Rn6T54UQRVV2c9T9o
+         5P3tsZ98/kS5zR7i12g2DxF8aOp3AZrafhIEwKYPZkoV8A3N2ap3VMYvHRwjmXaMF3pZ
+         PoVk9AljK5cvLgpFtFvMPHWMmUnMPlCMYPxzs7r1b1fm1sW4ehDAm/zYma/LrNN4/TPF
+         ZDtOMwxvaqogSmH/JglsUpTQOBNUnB3W8BhpDFo08rKsP4vfWRN07CCafir40Dk0s0Ou
+         9bmQ==
+X-Gm-Message-State: AOAM531kbg59M3hs1aCmOyyZKnKjfEEjAg+5GyUL7oaCfXV95O+TAWNC
+        QDdxDmzs2lOe2BOtCzDt47nc/Q==
+X-Google-Smtp-Source: ABdhPJyHWBYYGWWKKVa+ctitylRhZbBsaUfysB9c86pss61rRr5dSIfVUtjmrT45kwD7kqrjoXIc6w==
+X-Received: by 2002:a05:6402:221a:b0:42b:c764:9c9f with SMTP id cq26-20020a056402221a00b0042bc7649c9fmr10690849edb.75.1653597975466;
+        Thu, 26 May 2022 13:46:15 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id gc21-20020a1709072b1500b006ff16f48e2asm813254ejc.76.2022.05.26.13.46.13
+        by smtp.gmail.com with ESMTPSA id gc21-20020a1709072b1500b006ff16f48e2asm813254ejc.76.2022.05.26.13.46.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 May 2022 13:46:13 -0700 (PDT)
+        Thu, 26 May 2022 13:46:15 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        arm@kernel.org, soc@kernel.org,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        arm@kernel.org, soc@kernel.org, Chanho Min <chanho.min@lge.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 4/5] arm64: dts: toshiba: adjust whitespace around '='
-Date:   Thu, 26 May 2022 22:46:05 +0200
-Message-Id: <20220526204606.833054-4-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 5/5] arm64: dts: lg: adjust whitespace around '='
+Date:   Thu, 26 May 2022 22:46:06 +0200
+Message-Id: <20220526204606.833054-5-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220526204606.833054-1-krzysztof.kozlowski@linaro.org>
 References: <20220526204606.833054-1-krzysztof.kozlowski@linaro.org>
@@ -84,22 +83,360 @@ Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Output compared with dtx_diff and fdtdump.
 ---
- arch/arm64/boot/dts/toshiba/tmpv7708.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/lg/lg1312.dtsi | 38 +++++++++++++++---------------
+ arch/arm64/boot/dts/lg/lg1313.dtsi | 38 +++++++++++++++---------------
+ 2 files changed, 38 insertions(+), 38 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi b/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
-index 0fc32c036f30..b04829b3175d 100644
---- a/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
-+++ b/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
-@@ -485,7 +485,7 @@ pcie: pcie@28400000 {
- 			      <0x0 0x28050000 0x0 0x00010000>,
- 			      <0x0 0x24200000 0x0 0x00002000>,
- 			      <0x0 0x24162000 0x0 0x00001000>;
--			reg-names  = "dbi", "config", "ulreg", "smu", "mpu";
-+			reg-names = "dbi", "config", "ulreg", "smu", "mpu";
- 			device_type = "pci";
- 			bus-range = <0x00 0xff>;
- 			num-lanes = <2>;
+diff --git a/arch/arm64/boot/dts/lg/lg1312.dtsi b/arch/arm64/boot/dts/lg/lg1312.dtsi
+index bec97480a960..78ae73d0cf36 100644
+--- a/arch/arm64/boot/dts/lg/lg1312.dtsi
++++ b/arch/arm64/boot/dts/lg/lg1312.dtsi
+@@ -52,7 +52,7 @@ L2_0: l2-cache0 {
+ 	};
+ 
+ 	psci {
+-		compatible  = "arm,psci-0.2", "arm,psci";
++		compatible = "arm,psci-0.2", "arm,psci";
+ 		method = "smc";
+ 		cpu_suspend = <0x84000001>;
+ 		cpu_off = <0x84000002>;
+@@ -150,7 +150,7 @@ uart0: serial@fe000000 {
+ 			interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		uart1: serial@fe100000 {
+ 			compatible = "arm,pl011", "arm,primecell";
+@@ -158,7 +158,7 @@ uart1: serial@fe100000 {
+ 			interrupts = <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		uart2: serial@fe200000 {
+ 			compatible = "arm,pl011", "arm,primecell";
+@@ -166,7 +166,7 @@ uart2: serial@fe200000 {
+ 			interrupts = <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		spi0: spi@fe800000 {
+ 			compatible = "arm,pl022", "arm,primecell";
+@@ -197,7 +197,7 @@ gpio0: gpio@fd400000 {
+ 			reg = <0x0 0xfd400000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio1: gpio@fd410000 {
+ 			#gpio-cells = <2>;
+@@ -206,7 +206,7 @@ gpio1: gpio@fd410000 {
+ 			reg = <0x0 0xfd410000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio2: gpio@fd420000 {
+ 			#gpio-cells = <2>;
+@@ -215,7 +215,7 @@ gpio2: gpio@fd420000 {
+ 			reg = <0x0 0xfd420000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio3: gpio@fd430000 {
+ 			#gpio-cells = <2>;
+@@ -232,7 +232,7 @@ gpio4: gpio@fd440000 {
+ 			reg = <0x0 0xfd440000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio5: gpio@fd450000 {
+ 			#gpio-cells = <2>;
+@@ -241,7 +241,7 @@ gpio5: gpio@fd450000 {
+ 			reg = <0x0 0xfd450000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio6: gpio@fd460000 {
+ 			#gpio-cells = <2>;
+@@ -250,7 +250,7 @@ gpio6: gpio@fd460000 {
+ 			reg = <0x0 0xfd460000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio7: gpio@fd470000 {
+ 			#gpio-cells = <2>;
+@@ -259,7 +259,7 @@ gpio7: gpio@fd470000 {
+ 			reg = <0x0 0xfd470000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio8: gpio@fd480000 {
+ 			#gpio-cells = <2>;
+@@ -268,7 +268,7 @@ gpio8: gpio@fd480000 {
+ 			reg = <0x0 0xfd480000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio9: gpio@fd490000 {
+ 			#gpio-cells = <2>;
+@@ -277,7 +277,7 @@ gpio9: gpio@fd490000 {
+ 			reg = <0x0 0xfd490000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio10: gpio@fd4a0000 {
+ 			#gpio-cells = <2>;
+@@ -286,7 +286,7 @@ gpio10: gpio@fd4a0000 {
+ 			reg = <0x0 0xfd4a0000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio11: gpio@fd4b0000 {
+ 			#gpio-cells = <2>;
+@@ -303,7 +303,7 @@ gpio12: gpio@fd4c0000 {
+ 			reg = <0x0 0xfd4c0000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio13: gpio@fd4d0000 {
+ 			#gpio-cells = <2>;
+@@ -312,7 +312,7 @@ gpio13: gpio@fd4d0000 {
+ 			reg = <0x0 0xfd4d0000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio14: gpio@fd4e0000 {
+ 			#gpio-cells = <2>;
+@@ -321,7 +321,7 @@ gpio14: gpio@fd4e0000 {
+ 			reg = <0x0 0xfd4e0000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio15: gpio@fd4f0000 {
+ 			#gpio-cells = <2>;
+@@ -330,7 +330,7 @@ gpio15: gpio@fd4f0000 {
+ 			reg = <0x0 0xfd4f0000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio16: gpio@fd500000 {
+ 			#gpio-cells = <2>;
+@@ -339,7 +339,7 @@ gpio16: gpio@fd500000 {
+ 			reg = <0x0 0xfd500000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio17: gpio@fd510000 {
+ 			#gpio-cells = <2>;
+diff --git a/arch/arm64/boot/dts/lg/lg1313.dtsi b/arch/arm64/boot/dts/lg/lg1313.dtsi
+index ada3d4dc6305..2173316573be 100644
+--- a/arch/arm64/boot/dts/lg/lg1313.dtsi
++++ b/arch/arm64/boot/dts/lg/lg1313.dtsi
+@@ -52,7 +52,7 @@ L2_0: l2-cache0 {
+ 	};
+ 
+ 	psci {
+-		compatible  = "arm,psci-0.2", "arm,psci";
++		compatible = "arm,psci-0.2", "arm,psci";
+ 		method = "smc";
+ 		cpu_suspend = <0x84000001>;
+ 		cpu_off = <0x84000002>;
+@@ -150,7 +150,7 @@ uart0: serial@fe000000 {
+ 			interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		uart1: serial@fe100000 {
+ 			compatible = "arm,pl011", "arm,primecell";
+@@ -158,7 +158,7 @@ uart1: serial@fe100000 {
+ 			interrupts = <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		uart2: serial@fe200000 {
+ 			compatible = "arm,pl011", "arm,primecell";
+@@ -166,7 +166,7 @@ uart2: serial@fe200000 {
+ 			interrupts = <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		spi0: spi@fe800000 {
+ 			compatible = "arm,pl022", "arm,primecell";
+@@ -197,7 +197,7 @@ gpio0: gpio@fd400000 {
+ 			reg = <0x0 0xfd400000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio1: gpio@fd410000 {
+ 			#gpio-cells = <2>;
+@@ -206,7 +206,7 @@ gpio1: gpio@fd410000 {
+ 			reg = <0x0 0xfd410000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio2: gpio@fd420000 {
+ 			#gpio-cells = <2>;
+@@ -215,7 +215,7 @@ gpio2: gpio@fd420000 {
+ 			reg = <0x0 0xfd420000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio3: gpio@fd430000 {
+ 			#gpio-cells = <2>;
+@@ -232,7 +232,7 @@ gpio4: gpio@fd440000 {
+ 			reg = <0x0 0xfd440000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio5: gpio@fd450000 {
+ 			#gpio-cells = <2>;
+@@ -241,7 +241,7 @@ gpio5: gpio@fd450000 {
+ 			reg = <0x0 0xfd450000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio6: gpio@fd460000 {
+ 			#gpio-cells = <2>;
+@@ -250,7 +250,7 @@ gpio6: gpio@fd460000 {
+ 			reg = <0x0 0xfd460000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio7: gpio@fd470000 {
+ 			#gpio-cells = <2>;
+@@ -259,7 +259,7 @@ gpio7: gpio@fd470000 {
+ 			reg = <0x0 0xfd470000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio8: gpio@fd480000 {
+ 			#gpio-cells = <2>;
+@@ -268,7 +268,7 @@ gpio8: gpio@fd480000 {
+ 			reg = <0x0 0xfd480000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio9: gpio@fd490000 {
+ 			#gpio-cells = <2>;
+@@ -277,7 +277,7 @@ gpio9: gpio@fd490000 {
+ 			reg = <0x0 0xfd490000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio10: gpio@fd4a0000 {
+ 			#gpio-cells = <2>;
+@@ -286,7 +286,7 @@ gpio10: gpio@fd4a0000 {
+ 			reg = <0x0 0xfd4a0000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio11: gpio@fd4b0000 {
+ 			#gpio-cells = <2>;
+@@ -303,7 +303,7 @@ gpio12: gpio@fd4c0000 {
+ 			reg = <0x0 0xfd4c0000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio13: gpio@fd4d0000 {
+ 			#gpio-cells = <2>;
+@@ -312,7 +312,7 @@ gpio13: gpio@fd4d0000 {
+ 			reg = <0x0 0xfd4d0000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio14: gpio@fd4e0000 {
+ 			#gpio-cells = <2>;
+@@ -321,7 +321,7 @@ gpio14: gpio@fd4e0000 {
+ 			reg = <0x0 0xfd4e0000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio15: gpio@fd4f0000 {
+ 			#gpio-cells = <2>;
+@@ -330,7 +330,7 @@ gpio15: gpio@fd4f0000 {
+ 			reg = <0x0 0xfd4f0000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio16: gpio@fd500000 {
+ 			#gpio-cells = <2>;
+@@ -339,7 +339,7 @@ gpio16: gpio@fd500000 {
+ 			reg = <0x0 0xfd500000 0x1000>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+-			status="disabled";
++			status = "disabled";
+ 		};
+ 		gpio17: gpio@fd510000 {
+ 			#gpio-cells = <2>;
 -- 
 2.34.1
 
