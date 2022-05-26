@@ -2,72 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48F76534EA8
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 13:54:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A824A534EC6
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 14:03:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235135AbiEZLys (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 07:54:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36464 "EHLO
+        id S230010AbiEZMDl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 08:03:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234318AbiEZLyr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 07:54:47 -0400
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D28F9D028A
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 04:54:45 -0700 (PDT)
-Received: by mail-pj1-x1032.google.com with SMTP id l7-20020a17090aaa8700b001dd1a5b9965so1533595pjq.2
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 04:54:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=zOlRt/PLq35j8SMajNj0FDTDNh91sVVa3M4KgwiWbqQ=;
-        b=zd0au4Lgdoz2aRLN2jvLLKLH9zvMXKC7gGXmcI9icnPAhk34CDEwXC8fLcybWuHboJ
-         7rxHeACAiCPZERtaxnmLpdCNfTBxHfRZMzj9To+gvTpMb6NSjOLAmOQV5q6LFzMi01Sl
-         IpdLjTrN7CsSEH+4AD+iKLFYyQu/qcJTgFtm6ePYxPAtGWN+sXU+ML1m6voHOI2hhltd
-         botwytBAtuuMlPyQoK142BG3F7FnhdtcqUXkXD2MGAIWtrV2nunx+b3TrzoqDse6q40T
-         gy03PePXDweEsulO9ouGVDtRizGwyp7uEUKeBpU2dx0PinI4+kvHfjYyjoZL/NSYXykw
-         owrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zOlRt/PLq35j8SMajNj0FDTDNh91sVVa3M4KgwiWbqQ=;
-        b=pO9fEvuClz5ufMz6tOn2ZeeTE/NRWujbAOzw+9jk9ycwOgq9SuLAPSkabIWkv7M4wA
-         dqdf+/729FdZ5PRxY6lohNfj4VrqAlqvVMJIHLLGvJbBPTFVM501YAKQlMDJpwZpj819
-         tf5ZYIZwXYrQQzhRyEPHvHITZTDLYi9BmsWcJB0ykRRsVzCCVh6o0zMxLOYTQckdTZ2f
-         XU+pOSCyHwaB3fRIoRAsLKFDu2+3I+Wdw7Kt28u45xDhiGwvoMV+1PeWA4fsEKCUeJ1G
-         m9rLT7ZBZXlC+pQtAanIS65+rZtcQzrAKbzUHeDizWFJ4ta61XtxfMyVJGMw+en9Rj43
-         VV2g==
-X-Gm-Message-State: AOAM532z2+hwwGJRK8KpAmQ3cEeWPnxLHHoRgE8rFrAqMocAA4DuUVoP
-        7CVc+oZD3pxosm5uLfHp3m3FAvkDL7Yd5fovFx4q3Q==
-X-Google-Smtp-Source: ABdhPJxS0YxvZlwlwDFVDpQC1dH6jaFKCDD2PL5VdUmx6nXiGO6oYQ37GLmA/TgYfkq07HVyNLKHBrlzHP18ryVswg4=
-X-Received: by 2002:a17:902:8f81:b0:161:f4a7:f2fc with SMTP id
- z1-20020a1709028f8100b00161f4a7f2fcmr30616697plo.117.1653566085361; Thu, 26
- May 2022 04:54:45 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220525205626.2482584-1-robh@kernel.org> <Yo6u6jcVSsTQvRiU@pendragon.ideasonboard.com>
-In-Reply-To: <Yo6u6jcVSsTQvRiU@pendragon.ideasonboard.com>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Thu, 26 May 2022 13:54:34 +0200
-Message-ID: <CAG3jFyvynnMfkHFcfLUE=g9pswy1OYiAYi4KVy+aZjGd=NmtGg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: display: ingenic,jz4780-hdmi: Drop
- undocumented 'ddc-i2c-bus'
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S229889AbiEZMDi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 08:03:38 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29EBED02A2;
+        Thu, 26 May 2022 05:03:37 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D6CAFB81D21;
+        Thu, 26 May 2022 12:03:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DC14C385A9;
+        Thu, 26 May 2022 12:03:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1653566614;
+        bh=SHqqNURW0tOPuSJZlgicE58CRfglRqKvrHRf4aGn/KQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nFhOM90Uf3ORx2YP3k0ca345cTnr8wjLC/1P+VIqBbxasy12k7Y+25tNh1w1Hb26S
+         mUThSla4M+oq3Aw1xnSwORP9KVIPYVwEpowS0QRmFWFbTciiy2/iJIrIfwd3N0rG7o
+         dUV51RKtzbjF86DS6+rWCsiOkTNMH/BVj4gn5yHjJQPvuFeJf7vIP8+EFtIki+FdbZ
+         iQo5l4ohVe9E7LKdZ2So8Lf3AtverLb2a2wXHDKH4C3B4nkAZnmFhy0Em0wXgC9dSh
+         k4Q2P+cKpsrYvqXEvPJeHvwVRSqdvw4cdSJU7Hjvvtri3ykQNZ+D1y3uUJbL8g0cOS
+         qFUbTlr4DKpIw==
+Date:   Thu, 26 May 2022 13:03:21 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado 
+        <nfraprado@collabora.com>
+Cc:     kernel@collabora.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "H. Nikolaus Schaller" <hns@goldelico.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shane Chien <shane.chien@mediatek.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v2] ASoC: dt-bindings: mediatek: mt8192: Add i2s-share
+ properties
+Message-ID: <Yo9siXkJ5FUD0+w6@sirena.org.uk>
+References: <20220509205847.607076-1-nfraprado@collabora.com>
+ <20220525205346.6ik67nduv3zexl4p@notapiano>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="9qit21t6XD5yksAs"
+Content-Disposition: inline
+In-Reply-To: <20220525205346.6ik67nduv3zexl4p@notapiano>
+X-Cookie: Money is the root of all wealth.
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,42 +68,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 26 May 2022 at 00:34, Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hi Rob,
->
-> Thank you for the patch.
->
-> On Wed, May 25, 2022 at 03:56:26PM -0500, Rob Herring wrote:
-> > While 'ddc-i2c-bus' is a common property, it should be in a connector
-> > node rather than the HDMI bridge node as the I2C bus goes to a
-> > connector and not the HDMI block. Drop it from the example.
-> >
-> > Signed-off-by: Rob Herring <robh@kernel.org>
->
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->
-> > ---
-> >  .../devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml  | 1 -
-> >  1 file changed, 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml b/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
-> > index b8219eab4475..89490fdffeb0 100644
-> > --- a/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
-> > +++ b/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
-> > @@ -55,7 +55,6 @@ examples:
-> >          compatible = "ingenic,jz4780-dw-hdmi";
-> >          reg = <0x10180000 0x8000>;
-> >          reg-io-width = <4>;
-> > -        ddc-i2c-bus = <&i2c4>;
-> >          interrupt-parent = <&intc>;
-> >          interrupts = <3>;
-> >          clocks = <&cgu JZ4780_CLK_AHB0>, <&cgu JZ4780_CLK_HDMI>;
->
-> --
-> Regards,
->
-> Laurent Pinchart
 
-Applied to drm-misc-next
+--9qit21t6XD5yksAs
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, May 25, 2022 at 04:53:46PM -0400, N=EDcolas F. R. A. Prado wrote:
+> On Mon, May 09, 2022 at 04:58:47PM -0400, N=EDcolas F. R. A. Prado wrote:
+> > The Mediatek AFE PCM controller for MT8192 allows two I2S interfaces to
+> > share the same clock and act as a single interface with both input and
+> > output. Add patterns for these properties in the dt-binding. The
+
+> Gentle ping on this one. Any feedback for v2?
+
+Please don't send content free pings and please allow a reasonable time
+for review.  People get busy, go on holiday, attend conferences and so=20
+on so unless there is some reason for urgency (like critical bug fixes)
+please allow at least a couple of weeks for review.  If there have been
+review comments then people may be waiting for those to be addressed.
+
+Sending content free pings adds to the mail volume (if they are seen at
+all) which is often the problem and since they can't be reviewed
+directly if something has gone wrong you'll have to resend the patches
+anyway, so sending again is generally a better approach though there are
+some other maintainers who like them - if in doubt look at how patches
+for the subsystem are normally handled.
+
+--9qit21t6XD5yksAs
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmKPbIgACgkQJNaLcl1U
+h9BEugf7BubpYYtmW6MsYqo17GyOLuEtujTpIaBpCHr3zKHc/G1ALk3Jic2PFQm6
+SB/+DOLHkLjRB/u+jrX8LqA6LIxIJru5qi8RLa0dtuae75+uLoTe8qBs8HrxOQBK
+QTPYr1vlII6EKUM8gw3LcucEszhcahCvPfuyQ1w6mmfPXqV+SpyZ3skJ+YwcvK5e
+XefO3Ju7mxtkSNStuKQ02By2CxSUD2gRj2lkqVk8BUN/KPFWe0la6tn5xfvt9hig
+e/hDuIqgm/EsPhoQSzJo93geTQpN8ATDiKPrRod0d8xMXFu687sbquNQBQYGhVzR
+6Y9ziy+V1HLDz+UWE8WzWYuGQknX5g==
+=d5lb
+-----END PGP SIGNATURE-----
+
+--9qit21t6XD5yksAs--
