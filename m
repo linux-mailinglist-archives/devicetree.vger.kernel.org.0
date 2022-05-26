@@ -2,78 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF1AA534F4B
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 14:36:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29DA3534F51
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 14:37:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343958AbiEZMgj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 08:36:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42682 "EHLO
+        id S239824AbiEZMh0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 08:37:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231453AbiEZMgi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 08:36:38 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C829BF5D
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 05:36:36 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id gi33so2793747ejc.3
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 05:36:36 -0700 (PDT)
+        with ESMTP id S231453AbiEZMhZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 08:37:25 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00378BF5D
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 05:37:23 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id n10so1626369pjh.5
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 05:37:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Wl4uFPiTLXhXf4v+vyfxdpd3/HqIgIQQpbstfSoefxg=;
-        b=pA4RAyWqdryjNuZQYiOcRsfy1kaLLlydsrhVJxwzL6AzsC/RVJORQyWIRFU/vdFV+t
-         AMfd/xFG8qpiRoNQl3hVSjI+6O+gXZNRfkmSTsDt8/A56ff1Gwam6XfCMnwEzkY1fVQY
-         nPNksRCVpcN37uQiErPjL6rXTW6ea1zmmzVcPR+jSxfLEKFlp9D+PEFcV52b43ycsqeh
-         RBCPUrag1hpeH3SXEDIKIkjKbZOa1UrFdFXho6eRAj7Zx4Xjt/EdUkR8Hvf7jlv1nHoV
-         0UFwMXA3NTbp1UZK1o/cXr8tJsKL0DWJxefWhNTYAfB2gnl6oqeBt+FLwQdU6/SssgRs
-         3GAg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=JAxAACxBj2q0ltIXtWhvJ9IfIUtpHHM/k3TqNqpi9jI=;
+        b=bErNgXmLKViICLrEnIeno5fYz2WooLua67X61GN+2o2APHOtjZDSXIXAJv/CEQJ73J
+         dQTbrulXYfbF+Xex6TH20mOoCYQLl2QEEc3S1CgTeYyeuqMpO+8Y252ATbOOLgFg1Otd
+         2rv1K9uvBvXvn4cbNO9FuK1lMLkbIgSyCmf2CrDQ9aMIIunTB/GfDrF0ui7+UyKm/A26
+         yOknmC6wJKcOmFMbDGhJgug4S2w8TsO8Nh2MP9i982Ddidy6JPr1CdvwLoX0sD6CAoZ0
+         vZyens1PIEoFH/hshr6sseFHphZ9EIaoNEpShlz21dfAI/OyMgcGakHo2hoXhmJD5+R/
+         BfEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Wl4uFPiTLXhXf4v+vyfxdpd3/HqIgIQQpbstfSoefxg=;
-        b=s3UHCGpRevZR80cozen2dCZKxdyTwh0R8ej+xW9D8b88PFsxILJT7Cu7aSyRc1pIDa
-         SpGKb26Y9fEWENn/gceA99M5eSP8NN2bKc24GtrfDsLl6WhX8i3WSndya1BvTANQ2D1G
-         Px6HEBkWonKGOH/2oOgXcYVoP/PRAOsGPMTtqJfmO6ZIueVlXMj5I6e+1SedqiiVIyBr
-         Rebxt7alSeG10w0asiUyW8ZSuD56cSNzH7S5HYUne5DBsiLNWv6KP/mXdsdjId5XmCWK
-         6xQDt8HJx/Cafw2HIkkO933+uJ8xJSDDISo+8PrUFq9jH3xv+bbitddmriN/hso42POn
-         lWqw==
-X-Gm-Message-State: AOAM531yOISjmtL2xgRn1guIXwscbBMytM+A5WieiqVKdmJePd4PkXj1
-        lOua6CSEBHDXHDWMPmGZekNy4A==
-X-Google-Smtp-Source: ABdhPJxSrsIaPyiY3MVFSltc/EMSJtv7+z9qdSSHzK+jCc+pJmp0QJ82aeWqObHLhjuMrioWUvFvHA==
-X-Received: by 2002:a17:907:7d91:b0:6fe:efb8:8f97 with SMTP id oz17-20020a1709077d9100b006feefb88f97mr17115923ejc.717.1653568594660;
-        Thu, 26 May 2022 05:36:34 -0700 (PDT)
-Received: from [192.168.0.177] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id p16-20020a170907911000b006febc1ef61csm471643ejq.106.2022.05.26.05.36.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 May 2022 05:36:34 -0700 (PDT)
-Message-ID: <2bef3fda-58ba-98c7-e9bf-d2d3a9dec6e3@linaro.org>
-Date:   Thu, 26 May 2022 14:36:33 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=JAxAACxBj2q0ltIXtWhvJ9IfIUtpHHM/k3TqNqpi9jI=;
+        b=2ctiz3KT42BHFax+lzMejRJZSjTuPG08tmHLPkhaGY9kJmfL+3eFNOAz4rOXlZJrkT
+         9ejirAdCQvv0V9J5/TlZFMR7XoKl3NzxTsBV80oNGedMpqbIEW7mOhIBNlfsYu3hNBpa
+         FUfYigkdPWMOtDh4uJ+3yMXS3P07Un43Yk7eVbbOJj4aJGkxFhH3Q4YizjLJuc9NT6GI
+         bIknEjZQLRyHg9HNszXDpjz480lGEz+TolTTyB23a0fGhX3BHvBSpjYtIy1c/yCTGci3
+         hZf6CYGCAPpQsfZoyJmn/BOi0MATp+pB1SkKWzESzZ9W+EEPO6i8mdwcai/EFjKmrwMy
+         w5dQ==
+X-Gm-Message-State: AOAM533AN9wC/KUBVBiOeIJvA3ixA1O7NoA051p/7z0gYkIqSZPBllUe
+        g90Yv4IFbsHeRiUVP4rjZu4xjOos3A+CgI4im1g+6g==
+X-Google-Smtp-Source: ABdhPJwKF+1aH/9eGrn4tZxuy+lgadweE9lupgree9wFgTOe2AKXT+u75FlJ9iqSVzbPiyU/JpDcxoxA47JCbo7rz5k=
+X-Received: by 2002:a17:90b:4d91:b0:1df:f18f:7836 with SMTP id
+ oj17-20020a17090b4d9100b001dff18f7836mr2481285pjb.152.1653568643465; Thu, 26
+ May 2022 05:37:23 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v3 3/5] dt-bindings: interconnect: Add Qualcomm SM6350 NoC
- support
-Content-Language: en-US
-To:     Luca Weiss <luca.weiss@fairphone.com>,
-        linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>,
+References: <20220522162802.208275-1-luca@z3ntu.xyz> <20220522162802.208275-5-luca@z3ntu.xyz>
+In-Reply-To: <20220522162802.208275-5-luca@z3ntu.xyz>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Thu, 26 May 2022 14:37:12 +0200
+Message-ID: <CAG3jFyv5OL6hJZeCSrLVUKJPiGXEs_gmP6COMQv98HhmxZrDQg@mail.gmail.com>
+Subject: Re: [RFC PATCH 04/14] media: camss: video: Add support for 8x74
+To:     Luca Weiss <luca@z3ntu.xyz>
+Cc:     linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Loic Poulain <loic.poulain@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220525144404.200390-1-luca.weiss@fairphone.com>
- <20220525144404.200390-4-luca.weiss@fairphone.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220525144404.200390-4-luca.weiss@fairphone.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Todor Tomov <todor.too@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        matti.lehtimaki@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,53 +76,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/05/2022 16:43, Luca Weiss wrote:
-> Add bindings for Qualcomm SM6350 Network-On-Chip interconnect devices.
-> 
-> As SM6350 has two pairs of NoCs sharing the same reg, allow this in the
-> binding documentation, as was done for qcm2290.
-> 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+On Sun, 22 May 2022 at 18:28, Luca Weiss <luca@z3ntu.xyz> wrote:
+>
+> From: Matti Lehtim=C3=A4ki <matti.lehtimaki@gmail.com>
+>
+> Video formats in 8x16 and 8x74 are similar.
+>
+> Signed-off-by: Matti Lehtim=C3=A4ki <matti.lehtimaki@gmail.com>
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 > ---
-> Changes since v2:
-> * Put requires and unevaluatedProperties further down
-> 
->  .../interconnect/qcom,sm6350-rpmh.yaml        |  82 ++++++++++
->  .../dt-bindings/interconnect/qcom,sm6350.h    | 148 ++++++++++++++++++
->  2 files changed, 230 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sm6350-rpmh.yaml
->  create mode 100644 include/dt-bindings/interconnect/qcom,sm6350.h
-> 
-> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,sm6350-rpmh.yaml b/Documentation/devicetree/bindings/interconnect/qcom,sm6350-rpmh.yaml
-> new file mode 100644
-> index 000000000000..3e3ea85b4792
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interconnect/qcom,sm6350-rpmh.yaml
-> @@ -0,0 +1,82 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interconnect/qcom,sm6350-rpmh.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm SM6350 RPMh Network-On-Chip Interconnect
-> +
-> +maintainers:
-> +  - Luca Weiss <luca.weiss@fairphone.com>
-> +
-> +description: |
+>  drivers/media/platform/qcom/camss/camss-video.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/media/platform/qcom/camss/camss-video.c b/drivers/me=
+dia/platform/qcom/camss/camss-video.c
+> index 307bb1dc4589..ca955808fd6d 100644
+> --- a/drivers/media/platform/qcom/camss/camss-video.c
+> +++ b/drivers/media/platform/qcom/camss/camss-video.c
+> @@ -990,7 +990,8 @@ int msm_video_register(struct camss_video *video, str=
+uct v4l2_device *v4l2_dev,
+>
+>         mutex_init(&video->lock);
+>
+> -       if (video->camss->version =3D=3D CAMSS_8x16) {
+> +       if (video->camss->version =3D=3D CAMSS_8x16 ||
+> +               video->camss->version =3D=3D CAMSS_8x74) {
 
-No need for |.
-
-> +  Qualcomm RPMh-based interconnect provider on SM6350.
-> +
-> +allOf:
-> +  - $ref: qcom,rpmh-common.yaml#
-> +
+#27: FILE: drivers/media/platform/qcom/camss/camss-video.c:994:
++    if (video->camss->version =3D=3D CAMSS_8x16 ||
++        video->camss->version =3D=3D CAMSS_8x74) {
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>                 if (is_pix) {
+>                         video->formats =3D formats_pix_8x16;
+>                         video->nformats =3D ARRAY_SIZE(formats_pix_8x16);
+> --
+> 2.36.0
+>
 
+With that fixed:
 
-Best regards,
-Krzysztof
+Reviewed-by: Robert Foss <robert.foss@linaro.org>
