@@ -2,94 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27D925355C9
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 23:45:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AD695355EE
+	for <lists+devicetree@lfdr.de>; Fri, 27 May 2022 00:04:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348578AbiEZVpz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 17:45:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59470 "EHLO
+        id S1349780AbiEZWDz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 18:03:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244735AbiEZVpy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 17:45:54 -0400
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8E04C1EC0;
-        Thu, 26 May 2022 14:45:52 -0700 (PDT)
-Received: by mail-ot1-f48.google.com with SMTP id l10-20020a9d7a8a000000b0060b151de434so1851953otn.2;
-        Thu, 26 May 2022 14:45:52 -0700 (PDT)
+        with ESMTP id S1349318AbiEZWDy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 18:03:54 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8323662A13
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 15:03:53 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id l13so4194109lfp.11
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 15:03:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=qJs/grwr2pvDEsLIUfHDR0aBRbSDu/q3H641iXHa5hA=;
+        b=tlN1v8qBCAVlEin1MRqNmJ5XwrkS6y01KGkIJhirqgfMWxZzHeZ2OzJwZB97THKsN4
+         XuLeQXtDZJHI/ngBaBWkuwYbgf8cMHfxqZpnGkkXm34SolSdCwGbw5HbZbh4vP3Mf392
+         ytkW3ieorODoG0tNQjAwV7ojlJru1cOaF2/8sDtQQEdk5i9AfggsENU8oyLq0wM31HK6
+         FoIgImuOOm4I6x3GgsPLvjIrjvzuQvoqMLW/obqW8j3u54PJX08Ezo7yZFdn5lQHcerB
+         Oes7z8l4xy86Yj8ga+j3oL+KOfReaGjhLrIWoebJgjTore2Mck9Ee4b7DZHFuOmLRoeB
+         ILzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=PCG4r4X+asFA0jZTA+Ife3/8wPAarl7+c0uuxFcUqiE=;
-        b=JDFIzcLAmfYbfGDx7kE82SI7WwZMoBTNmqVhWXDsztkst/94OV4pW5aixB/V/SRlN9
-         SreK5VJ7D5aWmOXRD4om/8hVYF7gz6xtzotz7mVB+uFv59/xCfomUzuFqzFgV1Rkzyi8
-         WDgg4xjHvqLSEqRzq64nLh2gtEAbQD1PwHMXQuUcccwlFcvbt6THpgoU2s94MXhEK0cj
-         h6+UcWarSGU0GcVZTgN+KMVIN3qJR7b5Y3wwbFLSdiP0IS37T1wj404J3f7B8pC5O9/1
-         KS9q7vpeMKJEyBajbArMYMEJHs1Wbmk1T9g+2h6nXKs5F/cYmcIkS7uilzRkV07yaEBU
-         Bfww==
-X-Gm-Message-State: AOAM531JxC8dznnmQ8bD6+AkcQacAnbYZ16K+w/iwwHB2XsXOTK+UqTq
-        S0cT3VTS+5GNUjRktyw8+w==
-X-Google-Smtp-Source: ABdhPJy9ZcPJjkdrjLie5XqS/prFVhv90S8NFQPbVS8lSLRs2N3IH+W94qTPJpzkcMVN5bqyoYrIDg==
-X-Received: by 2002:a9d:1b42:0:b0:60b:20f9:7849 with SMTP id l60-20020a9d1b42000000b0060b20f97849mr6345709otl.383.1653601552019;
-        Thu, 26 May 2022 14:45:52 -0700 (PDT)
-Received: from robh.at.kernel.org (rrcs-192-154-179-37.sw.biz.rr.com. [192.154.179.37])
-        by smtp.gmail.com with ESMTPSA id h19-20020a9d3e53000000b00606b1f72fcbsm1060327otg.31.2022.05.26.14.45.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 May 2022 14:45:51 -0700 (PDT)
-Received: (nullmailer pid 317160 invoked by uid 1000);
-        Thu, 26 May 2022 21:45:49 -0000
-Date:   Thu, 26 May 2022 16:45:49 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Sven Peter <sven@svenpeter.dev>
-Cc:     Hector Martin <marcan@marcan.st>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: PCI: apple: Add missing 'power-domains'
- property
-Message-ID: <20220526214549.GA315754-robh@kernel.org>
-References: <20220526014107.2871787-1-robh@kernel.org>
- <a3636e0e-a804-4701-9240-225a3131b16a@www.fastmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=qJs/grwr2pvDEsLIUfHDR0aBRbSDu/q3H641iXHa5hA=;
+        b=VS2YW8ME51lmqBp9tGxdqoK7C7n+57tV/EHr5JRc1fz6f8SfJ2pXvGpd7KxH9ArnoW
+         jK27W299U5CJr7SNYWhRCqwFAqqPO5TveF6XsXloayR03nstuITjmf9GQ6ZypdXjAtay
+         VbLz28kECc4Y/KBp3rj8jsDndkjSnjVaaZXFxhltHvKOnD7CfExEXqq5WgM5at80r0+J
+         flS4I+Qj4UKXkWJhXGkpHDBlVCXfhR94n+KZ7JDUA0vzHIDNK4qPwJwBcd/MG8gLfA8G
+         0cyZPTxnkEcNSmMx/MbkF7ruHhimuTMAbDGYKywkWk8QJU8o/bf8tWfNOXjwe2EVi9pz
+         kAkQ==
+X-Gm-Message-State: AOAM530DClLcJZmJnUfuTTSlxr4IE2QUEpTPjfDJbJFDNst6//i/u/AK
+        gs99g2wWDcj1TH1ylMOQCz2+XQ==
+X-Google-Smtp-Source: ABdhPJy56yCKhdD3asKqWkOmtI0zEJvEAhWrPSGzs3OERYaX6QCLk71VovWV5iXtoQkRUPw125yWpg==
+X-Received: by 2002:a05:6512:3189:b0:478:5d83:5eda with SMTP id i9-20020a056512318900b004785d835edamr20847151lfe.519.1653602631826;
+        Thu, 26 May 2022 15:03:51 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id x23-20020ac25dd7000000b00478628920e1sm553702lfq.103.2022.05.26.15.03.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 May 2022 15:03:51 -0700 (PDT)
+Message-ID: <ad7106bb-ed7d-8d6f-0b3a-3e2dfeee0168@linaro.org>
+Date:   Fri, 27 May 2022 01:03:50 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a3636e0e-a804-4701-9240-225a3131b16a@www.fastmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH v1 4/4] arm64: dts: Add msm8939 Sony Xperia M4 Aqua
+Content-Language: en-GB
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, shawn.guo@linaro.org,
+        jun.nie@linaro.org, benl@squareup.com, jwillcox@squareup.com,
+        jgates@squareup.com, mchen@squareup.com, zac@squareup.com
+References: <20220419010903.3109514-1-bryan.odonoghue@linaro.org>
+ <20220419010903.3109514-5-bryan.odonoghue@linaro.org>
+ <Yl8NLldCWaecisH5@gerhold.net>
+ <552547c1-36c3-8d7e-0fd5-1b22fd184b4b@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <552547c1-36c3-8d7e-0fd5-1b22fd184b4b@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 26, 2022 at 03:48:15PM +0200, Sven Peter wrote:
-> Hi,
+On 20/04/2022 01:03, Bryan O'Donoghue wrote:
+> On 19/04/2022 20:27, Stephan Gerhold wrote:
+>> tulip seems to have qcom,usbid-gpio = <&msm_gpio 110 0>; downstream.
+>> Have you tried setting it up using linux,extcon-usb-gpio?
+>> See e.g. msm8916-longcheer-l8910, it has a similar setup (it also uses
+>> smb1360 for charging actually).
+>>
+>> The advantage is that you don't need the manual role switching using
+>> "usb-role-switch", USB OTG adapters should be detected automatically.
 > 
-> 
-> On Thu, May 26, 2022, at 03:41, Rob Herring wrote:
-> > The 'unevaluatedProperties' schema checks is not fully working and doesn't
-> > catch some cases where there's a $ref to another schema. A fix is pending,
-> > but results in new warnings in examples.
-> >
-> > The Apple PCIe host has 3 power domains at least according to the example.
-> > Add the 'power-domains' property to the schema.
-> >
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> > Ideally, we'd define what each power domain is, but I don't know what
-> > they are.
-> > ---
-> 
-> I think the example is just wrong (or outdated) and we only need a single
-> power-domain for pcie.
-> 
-> The hierarchy is ps_pcie_ref -> ps_apcie -> ps_apcie_gp and the pcie
-> node then only depends on ps_apcie_gp.
+> My understanding is "no new extcon" - certainly as driver 
+> implementations I assume that also extends to dts..
 
-Okay, I'll update the example and schema.
+I think, if the driver supports only extcon interface, you have to use 
+it (leaving aside a good nice option of rewriting qcom,ci-hdrc/ulpi to 
+also support USB role switching mechanisms).
+
+
+-- 
+With best wishes
+Dmitry
