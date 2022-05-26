@@ -2,54 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7954534DE9
-	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 13:15:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15FBA534DEC
+	for <lists+devicetree@lfdr.de>; Thu, 26 May 2022 13:17:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239441AbiEZLPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 07:15:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42838 "EHLO
+        id S242300AbiEZLRJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 07:17:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233141AbiEZLPj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 07:15:39 -0400
-X-Greylist: delayed 186 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 26 May 2022 04:15:37 PDT
-Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de [81.169.146.221])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66F0ACFE13
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 04:15:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1653563549;
-    s=strato-dkim-0002; d=innoroute.de;
-    h=Subject:From:To:Date:Message-ID:Cc:Date:From:Subject:Sender;
-    bh=kunrLiHENDfr3Fp0Naz/gY+w/hCab35cNDoMI7Pd4Os=;
-    b=Jv/uXvnEgRL7Y2wy/E57fuE4PIyVHHpS/ggDvI6ouyf1Q8l9uVTNx9QRbF+5b3lwfx
-    /2ypjLlHcGXQ4latz5gmNl/s8/182C2tTEJS34an2H9R0OySenr5c5cjtGrcYlx4V5oE
-    WgmRLAhmaq6/CQh8NhTRpOPcGDhxmKgC++qy8WvXs97aTd56YFkUtoXTolXPQKmfoDot
-    1uD3vqu4teYxryBTTD4hFqx9z035YKKzNdDb/qIZmdOgvaM7ph0kh7IhoS8O2gE/XJ74
-    AQLqTlN5+4/7HfaKp2bBzbONb60t/VY/ZIb4Lnx3qXaQJ1xkP0vrLbt5CBZeCc6nL1gx
-    08sA==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":OWAGZ0mrc+tzeBOzIxBr1G7s8b1PjEKOzk3CqnAapHd+NkODJb4neJkaR8hVrvzXeIpZlNY69pc="
-X-RZG-CLASS-ID: mo00
-Received: from [192.168.1.240]
-    by smtp.strato.de (RZmta 47.45.0 DYNA|AUTH)
-    with ESMTPSA id y05afby4QBCSPHz
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate)
-    for <devicetree@vger.kernel.org>;
-    Thu, 26 May 2022 13:12:28 +0200 (CEST)
-Message-ID: <dcff1f1f-dfe8-a873-e07d-ff100c50822f@innoroute.de>
-Date:   Thu, 26 May 2022 13:12:28 +0200
+        with ESMTP id S233141AbiEZLRI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 07:17:08 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66CD395DD2;
+        Thu, 26 May 2022 04:17:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1653563827; x=1685099827;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=jl+F2eJ4nE5XySB40dAzATocGz6c62UCpxl8Gn1FUcA=;
+  b=mRFznUDzBIsyBtiz+JLuf77x100bQDEVvZSw7Oxi6LvFTVY2aabyAYwT
+   04uFG2dFZx42nISgDHSfr8qm23XVBCMMvYsNNu9nFmvpRGFsCn6OkemBJ
+   uF0TQFal/t6KUyW2nMAsFg9ESbtC1LDasTdV18n2VzWYZBZBGoJcfUpRU
+   Y=;
+Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 26 May 2022 04:17:06 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 May 2022 04:17:06 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 26 May 2022 04:17:06 -0700
+Received: from [10.79.43.230] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 26 May
+ 2022 04:17:02 -0700
+Subject: Re: [PATCH v4 1/3] arm64: dts: qcom: sc7280: Add proxy interconnect
+ requirements for modem
+To:     Stephen Boyd <swboyd@chromium.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <ohad@wizery.com>, <agross@kernel.org>,
+        <mathieu.poirier@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <mka@chromium.org>
+References: <1652978825-5304-1-git-send-email-quic_sibis@quicinc.com>
+ <1652978825-5304-2-git-send-email-quic_sibis@quicinc.com>
+ <YoaqDcB6wkd4zOWR@ripper> <031ebead-4b0d-8493-d8f8-96f2ff9d938a@quicinc.com>
+ <CAE-0n53hDDoetQW0Bz7noq4peuNCyrGsXaJdjFj=4sMkGeZFgw@mail.gmail.com>
+From:   Sibi Sankar <quic_sibis@quicinc.com>
+Message-ID: <3e7e8263-fdc1-ffa8-7b7f-188bb027fadf@quicinc.com>
+Date:   Thu, 26 May 2022 16:46:51 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Content-Language: de-DE
-To:     devicetree@vger.kernel.org
-From:   Marian Ulbricht <ulbricht@innoroute.de>
-Subject: [PATCH v1 1/1] add support for mws4 board
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <CAE-0n53hDDoetQW0Bz7noq4peuNCyrGsXaJdjFj=4sMkGeZFgw@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,356 +73,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "Ulbricht, Marian" <ulbricht@innoroute.de>
-Date: Thu, 26 May 2022 12:42:21 +0200
-Subject: [PATCH v1 1/1] add support for mws4 board
 
-mws4 is an arm based nuclear probe hardware used from
-german government to monitor nuclear activity
+On 5/21/22 12:37 AM, Stephen Boyd wrote:
+> Quoting Sibi Sankar (2022-05-20 11:08:52)
+>> Hey Bjorn,
+>> Thanks for taking time to review the series.
+>>
+>> On 5/20/22 2:05 AM, Bjorn Andersson wrote:
+>>> On Thu 19 May 09:47 PDT 2022, Sibi Sankar wrote:
+>>>
+>>>> Add interconnects that are required to be proxy voted upon during modem
+>>>> bootup on SC7280 SoCs.
+>>>
+>>> This looks reasonable, but how come the vote is only for DDR frequency?
+>>> What about the buses between modem and ddr?
+>>
+>> The proxy votes that are put in aren't for perf related reasons, the
+>> modem was getting llcc timeouts while trying to read contents from
+>> memory. The hw team recommended the proxy votes as the fix.
+> 
+> Presumably the bootloader sets up some initial modem and ddr bus
+> bandwidth requests? Or the modem bootloader stage (MSA?) handles that
+> part?
 
-Signed-off-by: Ulbricht, Marian <ulbricht@innoroute.de>
----
+Stephen/Bjorn,
+Sorry for the delay, took a while to dig this up. The modem interconnect
+is connected directly to gemnoc ddr. The path info from modem --> ddr is
+split up into modem --> llcc and llcc --> ddr (Similar to CPUs) i.e. in
+the end scaling of the path involves scaling of the two clocks, gemnoc
+and ddr. There isn't any default vote for modem --> llcc as such but it
+gets implicitly scaled when we vote max for llcc --> ddr path due to
+dependency maintained between the two clocks by rpmh.
 
-Changes in v1:
-* add dts
+-Sibi
 
-  arch/arm/boot/dts/omap3-mws4.dts | 297 +++++++++++++++++++++++++++++++
-  1 file changed, 297 insertions(+)
-  create mode 100644 arch/arm/boot/dts/omap3-mws4.dts
-
-diff --git a/arch/arm/boot/dts/omap3-mws4.dts 
-b/arch/arm/boot/dts/omap3-mws4.dts
-new file mode 100644
-index 000000000000..a3489d4af2cc
---- /dev/null
-+++ b/arch/arm/boot/dts/omap3-mws4.dts
-@@ -0,0 +1,297 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Copyright (C) 2011 Texas Instruments Incorporated - http://www.ti.com/
-+ *
-+ * Modified 2015 by Bernhard Gätzschmann, Ultratronik from Beagleboard xM
-+ *
-+ * Modified 2022 Marian Ulbricht ulbricht@innoroute.de
-+ *
-+ * This program is free software; you can redistribute it and/or modify
-+ * it under the terms of the GNU General Public License version 2 as
-+ * published by the Free Software Foundation.
-+ */
-+/dts-v1/;
-+#include "omap36xx.dtsi"
-+/ {
-+    model = "Ultratronik BFS MWS4";
-+    compatible = "ti,omap3-mmi4", "ti,omap36xx", "ti,omap3";
-+    cpus {
-+            cpu@0 {
-+                cpu0-supply = <&vcc>;
-+            };
-+        };
-+    memory {
-+        device_type = "memory";
-+        reg = <0x80000000 0x10000000>; // 256 MB
-+    };
-+    aliases {
-+        i2c0 = &i2c1;
-+        i2c1 = &i2c2;
-+        i2c2 = &i2c3;
-+        serial0 = &uart1;
-+        serial1 = &uart2;
-+        serial2 = &uart3;
-+        mmc1 = &mmc1;
-+    };
-+    netcard: AX88796BLI@ffdf0000 {
-+        compatible = "ax88796_dt";
-+        reg = <0xffdf0000 0x1000> ;
-+
-+};
-+
-+    watchdog_max: watchdog {
-+        compatible = "linux,wdt-gpio";
-+        gpios = <&gpio4 21 1>; //117
-+        hw_algo = "toggle";
-+        always-running;
-+        hw_margin_ms = <900>;
-+    };
-+    hsusb1_phy: hsusb1_phy {
-+        status = "disabled";
-+    };
-+
-+    /* HS USB Host PHY on PORT 2 */
-+    hsusb2_phy: hsusb2_phy {
-+        status = "disabled";
-+    };
-+    /* fixed 19.2MHz oscillator */
-+    hfclk_19m2: oscillator {
-+        #clock-cells = <0>;
-+        compatible = "fixed-clock";
-+        clock-frequency = <19200000>;
-+    };
-+leds {
-+        compatible = "gpio-leds";
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&led_pins>;
-+        led_sm {
-+            label = "led_sm";
-+            gpios = <&gpio4 5 GPIO_ACTIVE_HIGH>; /* 101 */
-+            default-state = "on";
-+        };
-+        led1 {
-+            label = "led1";
-+            gpios = <&gpio4 6 GPIO_ACTIVE_HIGH>; /* 102 */
-+            linux,default-trigger = "cpu";
-+        };
-+        led2 {
-+            label = "led2";
-+            gpios = <&gpio4 7 GPIO_ACTIVE_HIGH>; /* 103 */
-+            linux,default-trigger = "mmc0";
-+        };
-+        led3 {
-+            label = "led3";
-+            gpios = <&gpio4 8 GPIO_ACTIVE_HIGH>; /* 104 */
-+            linux,default-trigger = "usb-host";
-+        };
-+        led_usb {
-+            label = "led_usb";
-+            gpios = <&gpio4 14 GPIO_ACTIVE_HIGH>; /* 110 */
-+            default-state = "on";
-+        };
-+    };
-+};
-+&gpmc {
-+    ranges = <0 0 0x30000000 0x1000000    /* CS0 space, 16MB */
-+          255 0 0x6e000000 0x02d4>;    /* register space */
-+
-+    /* Chip select 0 */
-+    nand@0,0 {
-+        compatible = "ti,omap2-nand";
-+        reg = <0 0 4        /* NAND I/O window, 4 bytes */
-+               255 0 0x02d4>;    /* GPMC register space */
-+        interrupts = <20>;
-+        ti,nand-ecc-opt = "bch4";
-+        nand-bus-width = <16>;
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        gpmc,cs-on-ns = <0>;
-+        gpmc,cs-rd-off-ns = <36>;
-+        gpmc,cs-wr-off-ns = <36>;
-+        gpmc,adv-on-ns = <6>;
-+        gpmc,adv-rd-off-ns = <24>;
-+        gpmc,adv-wr-off-ns = <36>;
-+        gpmc,oe-on-ns = <6>;
-+        gpmc,oe-off-ns = <48>;
-+        gpmc,we-on-ns = <6>;
-+        gpmc,we-off-ns = <30>;
-+        gpmc,rd-cycle-ns = <72>;
-+        gpmc,wr-cycle-ns = <72>;
-+        gpmc,access-ns = <54>;
-+        gpmc,wr-access-ns = <30>;
-+
-+        partition@0 {
-+            label = "X-Loader";
-+            reg = <0 0x40000>;
-+        };
-+        partition@40000 {
-+            label = "U-Boot";
-+            reg = <0x40000 0x100000>;
-+        };
-+        partition@100000 {
-+            label = "U-Boot Env";
-+            reg = <0x100000 0x120000>;
-+        };
-+        partition@120000 {
-+            label = "dt";
-+            reg = <0x120000 0x140000>;
-+        };
-+        partition@140000 {
-+            label = "Kernel";
-+            reg = <0x140000 0xB40000>;
-+        };
-+        partition@B40000 {
-+            label = "Filesystem";
-+            reg = <0xB40000 0xf4c0000>;
-+        };
-+    };
-+};
-+&usbhshost {
-+    status = "disabled";
-+};
-+&omap3_pmx_core {
-+        mmc1_pins: pinmux_mmc1_pins {
-+        pinctrl-single,pins = <
-+            OMAP3_CORE1_IOPAD(0x2144, PIN_INPUT_PULLUP | MUX_MODE0)    
-/* sdmmc1_clk.sdmmc1_clk */
-+            OMAP3_CORE1_IOPAD(0x2146, PIN_INPUT_PULLUP | MUX_MODE0)    
-/* sdmmc1_cmd.sdmmc1_cmd */
-+            OMAP3_CORE1_IOPAD(0x2148, PIN_INPUT_PULLUP | MUX_MODE0)    
-/* sdmmc1_dat0.sdmmc1_dat0 */
-+            OMAP3_CORE1_IOPAD(0x214a, PIN_INPUT_PULLUP | MUX_MODE0)    
-/* sdmmc1_dat1.sdmmc1_dat1 */
-+            OMAP3_CORE1_IOPAD(0x214c, PIN_INPUT_PULLUP | MUX_MODE0)    
-/* sdmmc1_dat2.sdmmc1_dat2 */
-+            OMAP3_CORE1_IOPAD(0x214e, PIN_INPUT_PULLUP | MUX_MODE0)    
-/* sdmmc1_dat3.sdmmc1_dat3 */
-+        >;
-+    };
-+    wd_pins: pinmux_wd_pins {
-+        pinctrl-single,pins = <
-+            OMAP3_CORE1_IOPAD(0x213e, PIN_OUTPUT | MUX_MODE4)    // 
-CONTROL_PADCONF_MCBSP2_CLKX    0x013E
-+        >;
-+    };
-+    i2c1_pins: pinmux_i2c1_pins {
-+        pinctrl-single,pins = <
-+            OMAP3_CORE1_IOPAD(0x21ba, PIN_INPUT_PULLUP | MUX_MODE0)    
-/* i2c1_scl */
-+            OMAP3_CORE1_IOPAD(0x21bc, PIN_INPUT_PULLUP | MUX_MODE0)    
-/* i2c1_sda */
-+        >;
-+    };
-+    hsusb0_pins: pinmux_hsusb0_pins {
-+        pinctrl-single,pins = <
-+            OMAP3_CORE1_IOPAD(0x21a2, PIN_INPUT_PULLDOWN | 
-MUX_MODE0)        /* hsusb0_clk.hsusb0_clk */
-+            OMAP3_CORE1_IOPAD(0x21a4, PIN_OUTPUT | MUX_MODE0)     /* 
-hsusb0_stp.hsusb0_stp */
-+            OMAP3_CORE1_IOPAD(0x21a6, PIN_INPUT_PULLDOWN | 
-MUX_MODE0)    /* hsusb0_dir.hsusb0_dir */
-+            OMAP3_CORE1_IOPAD(0x21a8, PIN_INPUT_PULLDOWN | 
-MUX_MODE0)    /* hsusb0_nxt.hsusb0_nxt */
-+            OMAP3_CORE1_IOPAD(0x21aa, PIN_INPUT_PULLDOWN | 
-MUX_MODE0)    /* hsusb0_data0.hsusb2_data0 */
-+            OMAP3_CORE1_IOPAD(0x21ac, PIN_INPUT_PULLDOWN | 
-MUX_MODE0)    /* hsusb0_data1.hsusb0_data1 */
-+            OMAP3_CORE1_IOPAD(0x21ae, PIN_INPUT_PULLDOWN | 
-MUX_MODE0)    /* hsusb0_data2.hsusb0_data2 */
-+            OMAP3_CORE1_IOPAD(0x21b0, PIN_INPUT_PULLDOWN | 
-MUX_MODE0)    /* hsusb0_data7.hsusb0_data3 */
-+            OMAP3_CORE1_IOPAD(0x21b2, PIN_INPUT_PULLDOWN | 
-MUX_MODE0)    /* hsusb0_data7.hsusb0_data4 */
-+            OMAP3_CORE1_IOPAD(0x21b4, PIN_INPUT_PULLDOWN | 
-MUX_MODE0)    /* hsusb0_data7.hsusb0_data5 */
-+            OMAP3_CORE1_IOPAD(0x21b6, PIN_INPUT_PULLDOWN | 
-MUX_MODE0)    /* hsusb0_data7.hsusb0_data6 */
-+            OMAP3_CORE1_IOPAD(0x21b8, PIN_INPUT_PULLDOWN | 
-MUX_MODE0)    /* hsusb0_data7.hsusb0_data7 */
-+        >;
-+    };
-+    led_pins: pinmux_led_pins {
-+        pinctrl-single,pins = <
-+            OMAP3_CORE1_IOPAD(0x211a, PIN_OUTPUT | MUX_MODE4)    /* 
-gpio101*/
-+            OMAP3_CORE1_IOPAD(0x211c, PIN_OUTPUT | MUX_MODE4)    /* 
-gpio102*/
-+            OMAP3_CORE1_IOPAD(0x211e, PIN_OUTPUT | MUX_MODE4)    /* 
-gpio103 */
-+            OMAP3_CORE1_IOPAD(0x2120, PIN_OUTPUT | MUX_MODE4)    /* 
-gpio103 */
-+        >;
-+    };
-+        gpio_pins: pinmux_gpio_pins {
-+        pinctrl-single,pins = <
-+            OMAP3_CORE1_IOPAD(0x2122, PIN_INPUT | MUX_MODE4)    /* 
-gpio105 spontanmeldung*/
-+            OMAP3_CORE1_IOPAD(0x212c, PIN_OUTPUT | MUX_MODE4)    /* 
-gpio110 usb2_en*/
-+            OMAP3_CORE1_IOPAD(0x218C, PIN_OUTPUT | MUX_MODE4)    /* GPO0*/
-+            OMAP3_CORE1_IOPAD(0x218E, PIN_OUTPUT | MUX_MODE4)    /* GPO1*/
-+            OMAP3_CORE1_IOPAD(0x2190, PIN_OUTPUT | MUX_MODE4)    /* GPO2*/
-+            OMAP3_CORE1_IOPAD(0x2192, PIN_OUTPUT | MUX_MODE4)    /* GPO3*/
-+            OMAP3_CORE1_IOPAD(0x2194, PIN_OUTPUT | MUX_MODE4)    /* GPO4*/
-+            OMAP3_CORE1_IOPAD(0x2196, PIN_OUTPUT | MUX_MODE4)    /* GPO5*/
-+            OMAP3_CORE1_IOPAD(0x2198, PIN_OUTPUT | MUX_MODE4)    /* GPO6*/
-+            OMAP3_CORE1_IOPAD(0x2116, PIN_INPUT | MUX_MODE4) //IN1
-+            OMAP3_CORE1_IOPAD(0x2118, PIN_INPUT | MUX_MODE4) //IN2
-+            OMAP3_CORE1_IOPAD(0x2124, PIN_INPUT | MUX_MODE4) //IN3
-+            OMAP3_CORE1_IOPAD(0x2126, PIN_INPUT | MUX_MODE4) //IN4
-+            OMAP3_CORE1_IOPAD(0x2128, PIN_INPUT | MUX_MODE4) //IN5
-+            OMAP3_CORE1_IOPAD(0x25F4, PIN_OUTPUT | MUX_MODE4)    /* 
-RES_RS232*/
-+            OMAP3_CORE1_IOPAD(0x25F6, PIN_OUTPUT | MUX_MODE4)    /* 
-HUB_RESET*/
-+
-+        >;
-+    };
-+};
-+&i2c1 {
-+    pinctrl-names = "default";
-+    pinctrl-0 = <&i2c1_pins>;
-+
-+    clock-frequency = <100000>;
-+    twl: twl@48 {
-+        reg = <0x48>;
-+        interrupts = <7>; /* SYS_NIRQ cascaded to intc */
-+        interrupt-parent = <&intc>;
-+        clocks = <&hfclk_19m2>;
-+        clock-names = "fck";
-+        twl_power: power {
-+            compatible = "ti,twl4030-power";
-+            ti,system-power-controller;
-+        };
-+    };
-+};
-+&i2c2 {
-+    clock-frequency = <100000>;
-+    rtc8564: rtc8564@51 {
-+        compatible = "epson,rtc8564";
-+        reg = <0x51>;
-+        #clock-cells = <0>;
-+    };
-+};
-+&i2c3 {
-+    clock-frequency = <100000>;
-+};
-+#include "twl4030.dtsi"
-+#include "twl4030_omap3.dtsi"
-+&mmc1 {
-+    vmmc-supply = <&vmmc1>;
-+    vqmmc-supply = <&vsim>;
-+    bus-width = <4>;
-+};
-+&mmc2 {
-+    status = "disabled";
-+};
-+
-+&mmc3 {
-+    status = "disabled";
-+};
-+&uart1 {
-+    pinctrl-names = "default";
-+};
-+&uart2 {
-+    pinctrl-names = "default";
-+};
-+&uart3 {
-+    pinctrl-names = "default";
-+};
-+&usb_otg_hs {
-+    pinctrl-names = "default";
-+    pinctrl-0 = <&hsusb0_pins>;
-+    num-eps = <16>;
-+    ram-bits = <12>;
-+    interface-type = <0>;
-+    usb-phy = <&usb2_phy>;
-+    phys = <&usb2_phy>;
-+    phy-names = "usb2-phy";
-+    mode = <1>;
-+    power = <500>;
-+};
-+
-+&iva {
-+    status = "disabled";
-+};
-+
-+&sgx_module {
-+    status = "disabled";
-+};
-+&vaux2 {
-+    regulator-name = "usb_1v8";
-+    regulator-min-microvolt = <1800000>;
-+    regulator-max-microvolt = <1800000>;
-+    regulator-always-on;
-+};
--- 
-2.25.1
-
+> 
