@@ -2,148 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97EFC535DAF
-	for <lists+devicetree@lfdr.de>; Fri, 27 May 2022 11:57:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81EB2535DCA
+	for <lists+devicetree@lfdr.de>; Fri, 27 May 2022 12:04:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350707AbiE0J5X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 May 2022 05:57:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57328 "EHLO
+        id S1344468AbiE0KEj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 May 2022 06:04:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237129AbiE0J5U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 May 2022 05:57:20 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3AB7338B0
-        for <devicetree@vger.kernel.org>; Fri, 27 May 2022 02:57:19 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nuWiX-00035H-D2; Fri, 27 May 2022 11:57:13 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nuWiX-004qKc-Oe; Fri, 27 May 2022 11:57:12 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nuWiV-00CRDZ-B9; Fri, 27 May 2022 11:57:11 +0200
-Date:   Fri, 27 May 2022 11:57:11 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mtd: mxc-nand: Drop undocumented properties
- from example
-Message-ID: <20220527095711.j42sxprwddrieczz@pengutronix.de>
-References: <20220525205947.2487165-1-robh@kernel.org>
+        with ESMTP id S1350762AbiE0KEi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 May 2022 06:04:38 -0400
+Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C265106A69;
+        Fri, 27 May 2022 03:04:37 -0700 (PDT)
+Received: by mail-yb1-xb34.google.com with SMTP id x137so7097402ybg.5;
+        Fri, 27 May 2022 03:04:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5JIYIoPQbAr8+N/6Btv1Jhwnhm7d6XglBceN1Qe6Sgg=;
+        b=RyObOFEt9mrpw1GFgsf97COA3nU0+H88/3PXIdOj5Fnkf4HBbF7C68+ZciXfCILMYf
+         b6hexwK6RaYMbIHqqjO0c2FbFFbMOB1/PhMDDu3kNUkWxnu/lFbJ+6VjEvCmENqwmwQP
+         /9KEPyvyrWQW86Uto87PtYyVxtKsXIdSufp/YJMGGS0FihaaBkb1VSqLi3/K7INqaE61
+         jPr4SprPehyy7tyc3El0xf+3pKgv9S1ZKQrs90IpPDE3QGq5finBWG0Z3uW3ds++wrSM
+         ZaTO2rb2+Cftee2Z9rgG9aGsMThyRMADCLbHlgdD9VAiyboBOyaMdFNVvwM6flGW5H2s
+         6Fag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5JIYIoPQbAr8+N/6Btv1Jhwnhm7d6XglBceN1Qe6Sgg=;
+        b=VI85LRBcUnR/4nd4Y8lArP16KybcdAmfaxFY3nZS3calFbHwmCl+GEXS0k+ga1cjAk
+         hnVrosaRNI7QByPtLjkoHybxfSUgXUOOS4cHW7Eih4b1PuqnDQcs/R3YmIlw4vmqjONR
+         6dykMJrQNWrtMkBntu/I1PLWMia7U9yiVAjHK2p/P0bSu4/RB/Zc2Jhrjwxgs5eB5K0D
+         fHmYGTr/pW8O9l4RNwl23xy+x34aNk+IwWjR/7LAyl7hYOk801gfRyTY1il9S/57fUFl
+         tMqTHZ3RWP5q5Cw0zj1fNWRHcGuq3jY/w5P3FWL5Sr+aQPy3ku3iIpaG1uqqQjuZn8tI
+         fsrA==
+X-Gm-Message-State: AOAM530mwyRK56vpfV/U4TCMFptx2wS/HvyKDF96x/g5Q0vuVxpgmKoN
+        VZxarzh8VzkzLUVuUFqHKEK8V9ahn5sSX2eyhPeVrmlEP1A=
+X-Google-Smtp-Source: ABdhPJxFjKSnq7Y/HKDtruNHyzaSMSuJHcQI86uptqpuKtH7XmDC5NFFJhzVoMiNXmnwoNMYzowzX9ss0zn0OqY420M=
+X-Received: by 2002:a25:40b:0:b0:65b:5f11:2b5b with SMTP id
+ 11-20020a25040b000000b0065b5f112b5bmr1049941ybe.520.1653645876784; Fri, 27
+ May 2022 03:04:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="omrohr6kiqycho6o"
-Content-Disposition: inline
-In-Reply-To: <20220525205947.2487165-1-robh@kernel.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <CAOuPNLjGWp4+Ub_Ccaw+tx1NQrNcqyjUG5K30uPH3uYTF_wxfw@mail.gmail.com>
+ <CAOuPNLgzBA2Sbn6vS4856LwYyBo67OYKQp49+xpwX=Bi+KpLZg@mail.gmail.com> <65f1b675-84ac-b5da-6075-2a9f0353ab37@quicinc.com>
+In-Reply-To: <65f1b675-84ac-b5da-6075-2a9f0353ab37@quicinc.com>
+From:   Pintu Agarwal <pintu.ping@gmail.com>
+Date:   Fri, 27 May 2022 15:34:25 +0530
+Message-ID: <CAOuPNLh-NJ=GK63+iHFE-th9J8yfWZg_S3xmLgHGM_-nCFexvg@mail.gmail.com>
+Subject: Re: Queries: Using ifdef CONFIG condition in dts files
+To:     "T.Michael Turney" <quic_mturney@quicinc.com>
+Cc:     open list <linux-kernel@vger.kernel.org>, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, frowand.list@gmail.com,
+        linux-mm <linux-mm@kvack.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---omrohr6kiqycho6o
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, 26 May 2022 at 19:53, T.Michael Turney <quic_mturney@quicinc.com> wrote:
+>
+> Kernel developers correct me where I go astray, but this seems like the
+> CONFIG_XYZ value is not available in this file.  This would explain why
+> the disable case works.
+>
+> At top of dtsi file are you #include <config.h> or whatever the correct
+> syntax is to see the CONFIG values?
 
-On Wed, May 25, 2022 at 03:59:46PM -0500, Rob Herring wrote:
-> With unevaluatedProperties issues fixed, 'nand-bus-width' and
-> 'nand-ecc-mode' are flagged as undocumented. Removing them from the examp=
-le
-> is the easiest solution to silence the warnings.
+Thanks for your comments.
+No, I could not find any specific config,h to be included to make the
+CONFIG values visible to dts.
 
-It's not clear to me, what has to be done to see this warning. Can you
-tell me how to reproduce?
+Thanks,
+Pintu
 
-My current WIP patch is:
-
-diff --git a/Documentation/devicetree/bindings/mtd/mxc-nand.yaml b/Document=
-ation/devicetree/bindings/mtd/mxc-nand.yaml
-index 73b86f2226c7..6e3e346e4448 100644
---- a/Documentation/devicetree/bindings/mtd/mxc-nand.yaml
-+++ b/Documentation/devicetree/bindings/mtd/mxc-nand.yaml
-@@ -14,7 +14,18 @@ allOf:
-=20
- properties:
-   compatible:
--    const: fsl,imx27-nand
-+    oneOf:
-+      - const: fsl,imx21-nand
-+      - const: fsl,imx25-nand
-+      - const: fsl,imx27-nand
-+      - items:
-+          - const: fsl,imx31-nand
-+          - const: fsl,imx27-nand
-+      - items:
-+          - const: fsl,imx35-nand
-+          - const: fsl,imx27-nand
-+      - const: fsl,imx51-nand
-+      - const: fsl,imx53-nand
-=20
-   reg:
-     maxItems: 1
-
-which I think is right, but obviously doesn't fix the problem you
-pointed out :-)
-
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> These properties may be deprecated, but they are still widely used in
-> bindings. They either need to be documented (and marked deprecated) or
-> removed from current users (i.e. dts files).
-
-Or documented and not marked deprecated?
-
-Best regards
-Uwe
-
-> diff --git a/Documentation/devicetree/bindings/mtd/mxc-nand.yaml b/Docume=
-ntation/devicetree/bindings/mtd/mxc-nand.yaml
-> index 73b86f2226c7..66da1b476ab7 100644
-> --- a/Documentation/devicetree/bindings/mtd/mxc-nand.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/mxc-nand.yaml
-> @@ -37,6 +37,4 @@ examples:
->          compatible =3D "fsl,imx27-nand";
->          reg =3D <0xd8000000 0x1000>;
->          interrupts =3D <29>;
-> -        nand-bus-width =3D <8>;
-> -        nand-ecc-mode =3D "hw";
->      };
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---omrohr6kiqycho6o
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmKQoHQACgkQwfwUeK3K
-7AkfaAf/d1/EwccFh9yzkjPgHa2JzORRKDOHp9H8fuN2pO27GoFz8n3VowuV44pV
-puzHKJyJxB9ZSPHLZpF7x306KGtBflg+Ttr7pgeRqrbE0LjwkCR5k+XzsrnDtboB
-R8FxWnbaVYZToIkrNNWkTw1bvgjJ3uwwE3YDFEOXEZQZniZDh2KYDNJNNBs0fwrq
-ZR751ZEXpTadOVlaKnjsUqAtiB2Ln0R4SnzBBOm7QkablUP6NpcumYWcOpahKQH2
-Zox77WJaKqQSo226qvYEIxETljtPiqTA+KT83jxslUFnMAtHsEycbN7ZsZfuFdJn
-VsMPz94QDd/Hy7UQxnV/y5xOzH1Aow==
-=ndui
------END PGP SIGNATURE-----
-
---omrohr6kiqycho6o--
+>
+> On 5/26/2022 1:46 AM, Pintu Agarwal wrote:
+> > Hi,
+> >
+> > I have a generic question regarding conditional compilation options in
+> > dts/dtsi files.
+> > Our Kernel version is: 4.14
+> > Let's say I have a Kernel config such as CONFIG_XYZ.
+> > This driver uses a CMA reserved memory and its node is defined in a
+> > mysoc.dtsi file.
+> > Like:
+> > #if defined(CONFIG_XYZ)
+> > &reserved_mem {
+> >          xyz_region: xyz_region {
+> >                  compatible = "shared-dma-pool";
+> >                  reusable;
+> >                  size = <0x600000>;
+> >          };
+> > };
+> > #endif
+> >
+> > The problem is as follows:
+> > a) The same kernel/dts source is shared across 2 product versions.
+> > b) In one product we need to enable this CONFIG_XYZ but in another
+> > product we need to disable it.
+> > c) When we disable the CONFIG we wanted this dts node also to be
+> > disabled together.
+> > d) When we add "#if defined(CONFIG_XYZ)" check in the dtsi file, it
+> > works if the CONFIG is disabled, but it does not work if CONFIG is
+> > enabled (node is not getting created).
+> > e) This mysoc.dtsi file is getting included in many other dts files,
+> > so we cannot add a compilation check in Makefile. We will end up
+> > renaming many files just to protect this one change.
+> >
+> > Is there any other better way to handle this situation ?
+> >
+> > I see that in latest kernel we have a conditional compilation added like this:
+> > #ifdef SOC_HAS_USB2_CH2
+> > https://elixir.bootlin.com/linux/latest/source/arch/arm64/boot/dts/renesas/salvator-common.dtsi#L1028
+> >
+> > But the same is not recognized by the device tree compiler when using
+> > kernel CONFIG_ check.
+> >
+> > Is it the device-tree compiler issue which got fixed in the latest version ?
+> > Or, is it because Kernel config cannot be shared with device-tree ?
+> >
+> > Please let us know if there is any other opinion.
+> >
+> >
+> > Thank you.
+> >
+> > Regards,
+> > Pintu
