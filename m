@@ -2,204 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D664D5357D1
-	for <lists+devicetree@lfdr.de>; Fri, 27 May 2022 04:39:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BE3F53580E
+	for <lists+devicetree@lfdr.de>; Fri, 27 May 2022 05:35:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229725AbiE0CjC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 May 2022 22:39:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45676 "EHLO
+        id S238746AbiE0DfG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 May 2022 23:35:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236408AbiE0CjA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 22:39:00 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73E0BE7314
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 19:38:59 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id gk22so3420448pjb.1
-        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 19:38:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ufJmyL4u6TL5xtH3DzBKqlIHbWXkaJJ+ESTImboH7N4=;
-        b=PQVrB6z7gTUvlsnP3KfEk10k5SGJgsGe2ZrtFpSQtQbzN3uDQYq7N5cdefLWrO73ur
-         baYf3ZUc3RE8VQaHyiQFM9GtvTHitFNm7VemEHL99rcxLf7gtOFxsVjuFVb+G1FrfI13
-         l3CGOTIZ7P4D8/5r3EfDniCeVhG/f5ycoZ/nFmvW1C1nt1lAREKXdC++bG/8AYiIcC1g
-         /xDJkgBqOjlPC+XRzBR7BuMZJO1xPml8cMIp7KFfVf3i+Yd7UX/70n6LLme+wcp+JJqg
-         DlD3+BWhS27OQMYLs1qzg+4RA4iTLnqoHm+32oIDC/wKYg5WW1ZNIuF7sJuR7NoiMo8k
-         mYhQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ufJmyL4u6TL5xtH3DzBKqlIHbWXkaJJ+ESTImboH7N4=;
-        b=E/7TOdaNUirQyvNo2YrUcGoagOvRGlfwx3pc7V/4Wk4yhhaRnfup70dNHNUKw66oL8
-         vj0ab+/6wR33FBNVFz5lY/TWPzBavqxFjOoknuP/X8zX4bu1D8zsspgeR7aCEUv2Kb6h
-         MFF1xjQsnYTyIjRahVJaShsAz7GpxPCPYBK5u0lahjInB4qv1We/Y0fvIMNidvvHOK1/
-         g7fzadNvtVJUg1uTo/s/sHj5zjR9FKdL8VjAxfeuS9AHnvw5XI6vEirhrQIUT8f/6G5i
-         OD049iDlaCztw40qJfl/2nzGuIPvDmRoimRdYrWxUKleVlbY42ki2a067C7zWSJaEe6V
-         xRRg==
-X-Gm-Message-State: AOAM530P4IX84RhE7qSbS3hLtxekxb1+MHKOpwGzifgLMjwCSk87Oc+Z
-        4Zw+enuVwHJ4e4WqUO7bJkvAog==
-X-Google-Smtp-Source: ABdhPJy4+4N4D3o+CwVPEnODYC+5nuXVxD+eTp3J99nDw6yfw878mrTd+QiTXtjQrvObyydy3KCBFQ==
-X-Received: by 2002:a17:90b:1b07:b0:1e0:41c2:9e15 with SMTP id nu7-20020a17090b1b0700b001e041c29e15mr5795071pjb.20.1653619138985;
-        Thu, 26 May 2022 19:38:58 -0700 (PDT)
-Received: from localhost ([122.162.234.2])
-        by smtp.gmail.com with ESMTPSA id h10-20020a63574a000000b003c25dfd7372sm2192904pgm.26.2022.05.26.19.38.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 May 2022 19:38:58 -0700 (PDT)
-Date:   Fri, 27 May 2022 08:08:56 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: spear: adjust whitespace around '='
-Message-ID: <20220527023856.zl2varrzuuf7huef@vireshk-i7>
-References: <20220526203815.831383-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S238643AbiE0DfE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 May 2022 23:35:04 -0400
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACFE4EBE90
+        for <devicetree@vger.kernel.org>; Thu, 26 May 2022 20:35:01 -0700 (PDT)
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20220527033458epoutp019feec7ce7a67f361c7d1be6dea860082~y2OaV1Rcx1353713537epoutp01E
+        for <devicetree@vger.kernel.org>; Fri, 27 May 2022 03:34:58 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20220527033458epoutp019feec7ce7a67f361c7d1be6dea860082~y2OaV1Rcx1353713537epoutp01E
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1653622498;
+        bh=C56Kmrrcot59L72Jh6NNgirPvZtuEzfeiL7AUW9Vf3k=;
+        h=From:To:In-Reply-To:Subject:Date:References:From;
+        b=qSXLkrKOI//98tOonMwsg2I3AEXouNkEYf0agnxhwt6o5rRNATwBVDEyR93RITgJW
+         xlH2EgmGMg8MWRgHaO5MKNrEpqf9qS6JRDryLpTYGp3jH5arMBGS4dDJYPqqqxgr8c
+         IB8Zhn4uC78Y2G5ubfw8wUuKZ1AqyEYM40RIpMo4=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas2p3.samsung.com (KnoxPortal) with ESMTP id
+        20220527033457epcas2p370bdfcd2843830dd13147ef6a03f1d81~y2OZhoLWB2053320533epcas2p3o;
+        Fri, 27 May 2022 03:34:57 +0000 (GMT)
+Received: from epsmges2p1.samsung.com (unknown [182.195.36.68]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 4L8Vmb65Vbz4x9Py; Fri, 27 May
+        2022 03:34:55 +0000 (GMT)
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+        epsmges2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+        1D.9E.10069.FD640926; Fri, 27 May 2022 12:34:55 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
+        20220527033454epcas2p144713ba96c36ad13d423c5520005f4a1~y2OXbnJaK2828928289epcas2p12;
+        Fri, 27 May 2022 03:34:54 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20220527033454epsmtrp17092120e83fe7d4a21f8e7374908d909~y2OXav2X90251702517epsmtrp1d;
+        Fri, 27 May 2022 03:34:54 +0000 (GMT)
+X-AuditID: b6c32a45-a8fff70000002755-5a-629046dfd6a8
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        B0.AA.11276.ED640926; Fri, 27 May 2022 12:34:54 +0900 (KST)
+Received: from KORCO082417 (unknown [10.229.8.121]) by epsmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20220527033454epsmtip2f29dd3c0e9d438a74d90db98b89bb132~y2OXNY_3-1735817358epsmtip2K;
+        Fri, 27 May 2022 03:34:54 +0000 (GMT)
+From:   "Chanho Park" <chanho61.park@samsung.com>
+To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
+        "'Rob Herring'" <robh+dt@kernel.org>,
+        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>,
+        "'Alim Akhtar'" <alim.akhtar@samsung.com>,
+        "'Tomasz Figa'" <tomasz.figa@gmail.com>,
+        "'Sylwester Nawrocki'" <s.nawrocki@samsung.com>,
+        "'Linus Walleij'" <linus.walleij@linaro.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-samsung-soc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>
+In-Reply-To: <20220526143707.767490-6-krzysztof.kozlowski@linaro.org>
+Subject: RE: [PATCH 5/7] arm64: dts: exynos: use local header for pinctrl
+ register values
+Date:   Fri, 27 May 2022 12:34:54 +0900
+Message-ID: <011c01d8717a$bb2f2ed0$318d8c70$@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220526203815.831383-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: ko
+Thread-Index: AQJyxhdZ1KlViaDZ4SOc3qllW0JPVwGGcubRAfWMyjWr4YgFYA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrEJsWRmVeSWpSXmKPExsWy7bCmqe59twlJBnefaVs8mLeNzWL+kXOs
+        Fn0vHjJb7H29ld1iyp/lTBabHl9jtdg8/w+jxeVdc9gsZpzfx2TRuvcIu8XhN+2sFqt2/WF0
+        4PHYOesuu8emVZ1sHneu7WHz2Lyk3qNvyypGj8+b5ALYorJtMlITU1KLFFLzkvNTMvPSbZW8
+        g+Od403NDAx1DS0tzJUU8hJzU22VXHwCdN0yc4BuVFIoS8wpBQoFJBYXK+nb2RTll5akKmTk
+        F5fYKqUWpOQUmBfoFSfmFpfmpevlpZZYGRoYGJkCFSZkZ8zff4OlYD1bxd1ZZQ2MPaxdjJwc
+        EgImEs8vrgayuTiEBHYwSqxb8pQZwvnEKLH90nEo5xujxM+1IA4HWEvHiRyI+F5GiRPv17BA
+        OC8YJR48v8kEMpdNQF/iZcc2sB0iAp0sEr/6XUBsTgFXiX+XDzOD2MIC0RITtzQxgtgsAqoS
+        z85sB7N5BSwlHvUsgrIFJU7OfMICYjMLyEtsfzuHGeJuBYmfT5exQsRFJGZ3tjFD7HKSONLw
+        mg3kIAmBLRwSGx52M0E0uEhsm/QJ6mlhiVfHt7BD2FISL/vboOxiiaWzPjFBNDcwSlze9osN
+        ImEsMetZOyPI+8wCmhLrd+lDQkJZ4sgtqNv4JDoO/2WHCPNKdLQJQTSqSxzYPp0FwpaV6J7z
+        mRWixENi+Ru5CYyKs5A8OQvJk7OQPDYLYe0CRpZVjGKpBcW56anFRgWG8KhOzs/dxAhOvFqu
+        Oxgnv/2gd4iRiYPxEKMEB7OSCO+Fp71JQrwpiZVVqUX58UWlOanFhxhNgcE+kVlKNDkfmPrz
+        SuINTSwNTMzMDM2NTA3MlcR5vVI2JAoJpCeWpGanphakFsH0MXFwSjUw+YioX3u7SqZxdci8
+        ivkWLB/fTTy4Ma/k7jrlhZPXBScbV0RZOu+a9vLs2Wln7s18Jl7Cc+n2w7m1TRG1EkKzTVUm
+        z9/uKivHwVDtp3pLIbuqaNWibWUHju5eq/f7QF6GgeQDt1amO+3alyYZ+O4R/LeMy2xS7tpp
+        kWeKLJhd4x8XGiy6UPFsz+7AczVaVw+uX3V6FZfS+x15ZQnVKw9r2xS/8q0Vm5n0t45P9vrL
+        rcuydhluqOi/P9FaN9tg6uSddlZVe78Gtq54VMOjEnfq/t3E+hRxB9ejrseXO4XvTLyrMrXl
+        o+Ur85AHHgcUz9rECDdFHCyNCpleeN1Zf7r6XjcBzhPG+YejTDcf5klNV2Ipzkg01GIuKk4E
+        AFAymQJFBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprEIsWRmVeSWpSXmKPExsWy7bCSvO49twlJBt/3G1k8mLeNzWL+kXOs
+        Fn0vHjJb7H29ld1iyp/lTBabHl9jtdg8/w+jxeVdc9gsZpzfx2TRuvcIu8XhN+2sFqt2/WF0
+        4PHYOesuu8emVZ1sHneu7WHz2Lyk3qNvyypGj8+b5ALYorhsUlJzMstSi/TtErgy5u+/wVKw
+        nq3i7qyyBsYe1i5GDg4JAROJjhM5XYycHEICuxklWl5qgdgSArISz97tYIewhSXutxwBKucC
+        qnnGKHFt2x0mkASbgL7Ey45trCC2iMBEFomrKxIhis4zSvxZ9xusm1PAVeLf5cPMILawQKTE
+        h+Nb2EBsFgFViWdntjOC2LwClhKPehZB2YISJ2c+YQGxmQX0JNavn8MIYctLbH87hxniIgWJ
+        n0+XsULERSRmd7YxQxzhJHGk4TXbBEahWUhGzUIyahaSUbOQtC9gZFnFKJlaUJybnltsWGCY
+        l1quV5yYW1yal66XnJ+7iREcbVqaOxi3r/qgd4iRiYPxEKMEB7OSCO+Fp71JQrwpiZVVqUX5
+        8UWlOanFhxilOViUxHkvdJ2MFxJITyxJzU5NLUgtgskycXBKNTCt4LnmzHO5LOTIVFauMqPV
+        Ef4nXmTzvtflF5mrVdFw4rCFiW9ZsooQY0PMhfdTiuQbn/6ZN0HT8fnXskebTMMck8pWbg+v
+        rY1amPzc3fXsIS3jr5HnyjaV9m3/EHxz4em/fLtTtn9uXxr8TZlX7+K5l9yHmfbIvTOPj/v1
+        656bW3vIvRVHliRc7D4gKm9YcPmdj3bW1QMeDMuDP3mu3bL2gdeF3Yu8vFWP/ckTbv/g7Ce7
+        Y3faNt26hpfTD7bZhsht19ZezjDrkL2ulQCnek3v2V3qhcz8kf4qjwpqHAO1uTprF4n2qn2e
+        bV9i0fr5HYtb6GT3rjP/qkQSG1O7+4QPfRDOnjLnQqVw5HHeI0osxRmJhlrMRcWJAKDJXkMl
+        AwAA
+X-CMS-MailID: 20220527033454epcas2p144713ba96c36ad13d423c5520005f4a1
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220526143747epcas2p207eb53176b26848e39065cf5c56a9798
+References: <20220526143707.767490-1-krzysztof.kozlowski@linaro.org>
+        <CGME20220526143747epcas2p207eb53176b26848e39065cf5c56a9798@epcas2p2.samsung.com>
+        <20220526143707.767490-6-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26-05-22, 22:38, Krzysztof Kozlowski wrote:
-> Fix whitespace coding style: use single space instead of tabs or
-> multiple spaces around '=' sign in property assignment.  No functional
-> changes (same DTB).
+> Subject: [PATCH 5/7] arm64: dts: exynos: use local header for pinctrl
+> register values
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> The DTS uses hardware register values directly in pin controller pin
+> configuration.  These are not some IDs or other abstraction layer but raw
+> numbers used in the registers.
 > 
-> ---
+> These numbers were previously put in the bindings header to avoid code
+> duplication and to provide some context meaning (name), but they do not
+> fit the purpose of bindings.
 > 
-> Output compared with dtx_diff and fdtdump.
-> ---
->  arch/arm/boot/dts/spear1310-evb.dts | 2 +-
->  arch/arm/boot/dts/spear1340-evb.dts | 2 +-
->  arch/arm/boot/dts/spear1340.dtsi    | 2 +-
->  arch/arm/boot/dts/spear300-evb.dts  | 2 +-
->  arch/arm/boot/dts/spear310-evb.dts  | 2 +-
->  arch/arm/boot/dts/spear320-evb.dts  | 2 +-
->  arch/arm/boot/dts/spear320-hmi.dts  | 2 +-
->  arch/arm/boot/dts/spear320.dtsi     | 2 +-
->  8 files changed, 8 insertions(+), 8 deletions(-)
+> Store the constants in a header next to DTS and use them instead of
+> bindings.
 > 
-> diff --git a/arch/arm/boot/dts/spear1310-evb.dts b/arch/arm/boot/dts/spear1310-evb.dts
-> index ddd1cf4d0554..05408df38203 100644
-> --- a/arch/arm/boot/dts/spear1310-evb.dts
-> +++ b/arch/arm/boot/dts/spear1310-evb.dts
-> @@ -170,7 +170,7 @@ sdhci@b3000000 {
->  
->  		smi: flash@ea000000 {
->  			status = "okay";
-> -			clock-rate=<50000000>;
-> +			clock-rate = <50000000>;
->  
->  			flash@e6000000 {
->  				#address-cells = <1>;
-> diff --git a/arch/arm/boot/dts/spear1340-evb.dts b/arch/arm/boot/dts/spear1340-evb.dts
-> index 3a51a41eb5e4..7700f2afc128 100644
-> --- a/arch/arm/boot/dts/spear1340-evb.dts
-> +++ b/arch/arm/boot/dts/spear1340-evb.dts
-> @@ -168,7 +168,7 @@ sdhci@b3000000 {
->  
->  		smi: flash@ea000000 {
->  			status = "okay";
-> -			clock-rate=<50000000>;
-> +			clock-rate = <50000000>;
->  
->  			flash@e6000000 {
->  				#address-cells = <1>;
-> diff --git a/arch/arm/boot/dts/spear1340.dtsi b/arch/arm/boot/dts/spear1340.dtsi
-> index 13e1bdb3ddbf..818886e11713 100644
-> --- a/arch/arm/boot/dts/spear1340.dtsi
-> +++ b/arch/arm/boot/dts/spear1340.dtsi
-> @@ -88,7 +88,7 @@ pinmux: pinmux@e0700000 {
->  		};
->  
->  		pwm: pwm@e0180000 {
-> -			compatible ="st,spear13xx-pwm";
-> +			compatible = "st,spear13xx-pwm";
->  			reg = <0xe0180000 0x1000>;
->  			#pwm-cells = <2>;
->  			status = "disabled";
-> diff --git a/arch/arm/boot/dts/spear300-evb.dts b/arch/arm/boot/dts/spear300-evb.dts
-> index 2beb30ca2cba..303ef29fb805 100644
-> --- a/arch/arm/boot/dts/spear300-evb.dts
-> +++ b/arch/arm/boot/dts/spear300-evb.dts
-> @@ -80,7 +80,7 @@ sdhci@70000000 {
->  
->  		smi: flash@fc000000 {
->  			status = "okay";
-> -			clock-rate=<50000000>;
-> +			clock-rate = <50000000>;
->  
->  			flash@f8000000 {
->  				#address-cells = <1>;
-> diff --git a/arch/arm/boot/dts/spear310-evb.dts b/arch/arm/boot/dts/spear310-evb.dts
-> index 1c41e4a40334..ea0b53036f7b 100644
-> --- a/arch/arm/boot/dts/spear310-evb.dts
-> +++ b/arch/arm/boot/dts/spear310-evb.dts
-> @@ -94,7 +94,7 @@ gmac: eth@e0800000 {
->  
->  		smi: flash@fc000000 {
->  			status = "okay";
-> -			clock-rate=<50000000>;
-> +			clock-rate = <50000000>;
->  
->  			flash@f8000000 {
->  				#address-cells = <1>;
-> diff --git a/arch/arm/boot/dts/spear320-evb.dts b/arch/arm/boot/dts/spear320-evb.dts
-> index c322407a0ade..3c026d021c92 100644
-> --- a/arch/arm/boot/dts/spear320-evb.dts
-> +++ b/arch/arm/boot/dts/spear320-evb.dts
-> @@ -95,7 +95,7 @@ sdhci@70000000 {
->  
->  		smi: flash@fc000000 {
->  			status = "okay";
-> -			clock-rate=<50000000>;
-> +			clock-rate = <50000000>;
->  
->  			flash@f8000000 {
->  				#address-cells = <1>;
-> diff --git a/arch/arm/boot/dts/spear320-hmi.dts b/arch/arm/boot/dts/spear320-hmi.dts
-> index b587e4ec11e5..34503ac9c51c 100644
-> --- a/arch/arm/boot/dts/spear320-hmi.dts
-> +++ b/arch/arm/boot/dts/spear320-hmi.dts
-> @@ -167,7 +167,7 @@ sdhci@70000000 {
->  
->  		smi: flash@fc000000 {
->  			status = "okay";
-> -			clock-rate=<50000000>;
-> +			clock-rate = <50000000>;
->  
->  			flash@f8000000 {
->  				#address-cells = <1>;
-> diff --git a/arch/arm/boot/dts/spear320.dtsi b/arch/arm/boot/dts/spear320.dtsi
-> index 47ac4474ed96..b12474446a48 100644
-> --- a/arch/arm/boot/dts/spear320.dtsi
-> +++ b/arch/arm/boot/dts/spear320.dtsi
-> @@ -78,7 +78,7 @@ spi2: spi@a6000000 {
->  		};
->  
->  		pwm: pwm@a8000000 {
-> -			compatible ="st,spear-pwm";
-> +			compatible = "st,spear-pwm";
->  			reg = <0xa8000000 0x1000>;
->  			#pwm-cells = <2>;
->  			status = "disabled";
 
-Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+I also verified before & after using dtx_diff tool and booting & pinctrl
+value dump on my exynosautov9-sadk board.
 
--- 
-viresh
+Reviewed-by: Chanho Park <chanho61.park@samsung.com>
+Tested-by: Chanho Park <chanho61.park@samsung.com>
+
+Best Regards,
+Chanho Park
+
