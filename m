@@ -2,58 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46AC1535FAC
-	for <lists+devicetree@lfdr.de>; Fri, 27 May 2022 13:41:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF456535EFB
+	for <lists+devicetree@lfdr.de>; Fri, 27 May 2022 13:10:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351591AbiE0Lkv convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 27 May 2022 07:40:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44330 "EHLO
+        id S1350785AbiE0LKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 May 2022 07:10:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351777AbiE0LkF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 May 2022 07:40:05 -0400
-X-Greylist: delayed 1717 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 27 May 2022 04:39:18 PDT
-Received: from mail.composit.net (mail.composit.net [195.49.185.119])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1473F108A8C
-        for <devicetree@vger.kernel.org>; Fri, 27 May 2022 04:39:17 -0700 (PDT)
-Received: from mail.composit.net (localhost.localdomain [127.0.0.1])
-        by mail.composit.net (Proxmox) with ESMTP id 14442381F73;
-        Fri, 27 May 2022 14:07:04 +0300 (MSK)
-Received: from mail.composit.net (unknown [192.168.101.14])
-        by mail.composit.net (Proxmox) with SMTP id D82C139835D;
-        Fri, 27 May 2022 14:07:03 +0300 (MSK)
-Received: from [192.168.1.105] (Unknown [197.234.219.23])
-        by mail.composit.net with ESMTPSA
-        (version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256)
-        ; Fri, 27 May 2022 14:07:04 +0300
-Message-ID: <84408E92-6760-4E57-A9F8-785671A2992F@mail.composit.net>
-Content-Type: text/plain; charset="iso-8859-1"
+        with ESMTP id S1351230AbiE0LKF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 May 2022 07:10:05 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF7C812E334;
+        Fri, 27 May 2022 04:10:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1653649803; x=1685185803;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=dMqJBDYB8+RuHUmp3QwgkB4N3NKdQo8UUZF3w5eGsYg=;
+  b=d3bkPtvS+o5NEyvoT6z396Dl4M6O9A909FHXUAVp213ZMPVaskOXa6ZP
+   NImv+wo4jDoT0w1AtRrKcXalZNJ10j0hyd2s1bGvlzGi75pI5WzZLDXg3
+   GeUrS5Vse+N1CBKd4yLGCgcJJQ3wf0EcSlf4/MAuEjW2IqmANIxX/K1oL
+   k=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 27 May 2022 04:10:03 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 May 2022 04:10:03 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 27 May 2022 04:10:02 -0700
+Received: from [10.216.14.71] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Fri, 27 May
+ 2022 04:09:59 -0700
+Message-ID: <00b7850b-ed6e-c67c-b3f1-fc89a992cca6@quicinc.com>
+Date:   Fri, 27 May 2022 16:39:56 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Description: Mail message body
-Subject: Greetings From Ukraine.  
-To:     Recipients <heiss@dnet.it>
-From:   "Kostiantyn Chichkov" <heiss@dnet.it>
-Date:   Fri, 27 May 2022 12:06:35 +0100
-Reply-To: kostiantync@online.ee
-X-Spam-Status: No, score=3.7 required=5.0 tests=BAYES_50,RCVD_IN_SBL,
-        RCVD_IN_SORBS_WEB,RCVD_IN_VALIDITY_RPBL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: ***
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [RFC 1/2] dt-bindings: usb: dwc3: Add support for multiport
+ related properties
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_pkondeti@quicinc.com>, <quic_ppratap@quicinc.com>
+References: <1652963695-10109-1-git-send-email-quic_harshq@quicinc.com>
+ <1652963695-10109-2-git-send-email-quic_harshq@quicinc.com>
+ <20220523122554.GA416176-robh@kernel.org>
+From:   Harsh Agarwal <quic_harshq@quicinc.com>
+In-Reply-To: <20220523122554.GA416176-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Good Morning,
 
-We are Kostiantyn Chychkov and Maryna Chudnovska from Ukraine, we need your service, we have gone through your profile and we will like to work with you on an important service that needs urgent attention due to the ongoing war in our country. Kindly acknowledge this inquiry as soon as possible for a detailed discussion about the service.
+On 5/23/2022 5:55 PM, Rob Herring wrote:
+> On Thu, May 19, 2022 at 06:04:54PM +0530, Harsh Agarwal wrote:
+>> Added support for multiport, mport, num-ssphy and num-hsphy
+>> properties. These properties are used to support devices having
+>> a multiport controller.
+>>
+>> Signed-off-by: Harsh Agarwal <quic_harshq@quicinc.com>
+>> ---
+>>   .../devicetree/bindings/usb/snps,dwc3.yaml         | 55 ++++++++++++++++++++++
+>>   1 file changed, 55 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>> index f4471f8..39c61483 100644
+>> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>> @@ -341,6 +341,35 @@ properties:
+>>         This port is used with the 'usb-role-switch' property  to connect the
+>>         dwc3 to type C connector.
+>>   
+>> +  multiport:
+>> +    description:
+>> +      If a single USB controller supports multiple ports, then it's referred to as
+>> +      a multiport controller. Each port of the multiport controller can support
+>> +      either High Speed or Super Speed or both and have their own PHY phandles. Each
+>> +      port is represented by "mport" node and all the "mport" nodes are grouped
+>> +      together inside the "multiport" node where individual "mport" node defines the
+>> +      PHYs supported by that port.
+>> +    required:
+>> +      - mport
+>> +
+>> +  num-hsphy:
+>> +    description: Total number of HS-PHYs defined by the multiport controller.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +
+>> +  num-ssphy:
+>> +    description: Total number of SS-PHYs defined by the multiport controller.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+> These seem redundant. Can't you count ports/phys?
 
-Thank you.
+Counting ports will not suffice as there could be devices which has 
+different numbers of HS
+and SS PHYs. Consider a case like a Quadport multiport controller where 
+we have the 1st & 2nd
+port supporting SS and 3rd & 4th port supporting HS only. So we would 
+need the proper number
+of HS and SS PHYs.
+Currently in the RFC v2 we are calculating the exact number of PHYS 
+supported by each port
+by counting the phandles we have defined.
 
-Yours expectantly,
-
-Kostiantyn Chichkov & Ms. Maryna Chudnovska,
-From Ukraine.
-
-
+>
+>> +
+>> +  mport:
+>> +    description: Each mport node represents one port of the multiport controller.
+>> +    patternProperties: "^mport@[0-9a-f]+$"
+> Think about how the USB device binding fits into this. A hub vs.
+> multiple root ports doesn't seem much different.
+A hub will have multiple ports but only one HS and SS PHYs at the root 
+port supporting it.
+With Multiport Controller, each port will have its own PHY [whether HS 
+only or both HS & SS]
+>
+> Rob
