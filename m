@@ -2,138 +2,283 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACF83535E43
-	for <lists+devicetree@lfdr.de>; Fri, 27 May 2022 12:28:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16FCE535EB4
+	for <lists+devicetree@lfdr.de>; Fri, 27 May 2022 12:56:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351001AbiE0K2o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 May 2022 06:28:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59766 "EHLO
+        id S1350625AbiE0K4A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 May 2022 06:56:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234298AbiE0K22 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 May 2022 06:28:28 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E42D6129EE7
-        for <devicetree@vger.kernel.org>; Fri, 27 May 2022 03:28:24 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id m20so7813561ejj.10
-        for <devicetree@vger.kernel.org>; Fri, 27 May 2022 03:28:24 -0700 (PDT)
+        with ESMTP id S236319AbiE0Kz5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 May 2022 06:55:57 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13CB412E304;
+        Fri, 27 May 2022 03:55:56 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id g12so4470829lja.3;
+        Fri, 27 May 2022 03:55:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
+        d=gmail.com; s=20210112;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=ndP/m+5H1JvMzkVwLM22/7dPF6mVDOz8cWityZisy7w=;
-        b=N4qtUMw9eCH3aQwUwzVpgULVDpbYOtyXKlxVKlm+9SyP3Zn/8tudautlVEzJ8elE8n
-         O6t6Wyau10+u5zSdHFf9W+3I4lygLpWfU2oKbPUS8J4jnZAGSxCmGSRSS0tPYKwSpr/b
-         nhmSDr5Hn4Dm25mV9gX2muV/sLwh1FH/5bug8=
+        bh=fdkXpnkboxk4nm32J7B3CHhLnCRMyMEytr9AQ7eMpu0=;
+        b=MAuIfXqrGoRoD5I5KBeQSvXNVjMvALgBKSkmCGirJuPloh9GBOC/mJ9ShaajV+JXUF
+         IDFS5ZAXsUjX6ZC47wt/FuDaNigR/NtdH1Ry3blLdNVcanuzuGsGgLJ+esO2EhpLwYvT
+         GMdbIOeTXO82ucvkClp+BmgxE34h/7pz87A12ABoGwUKw/uXvt2JgQL8so21RrLV7vnj
+         NKyrb6RFi2cdXOeHhBifIBP2xXSbIMYoCFlWEmCjYgj/aG3oQgHDv0k1+BT+f7h4fgmV
+         DnCu5W6zn46qMP3yOnh5mRNcAd8arlAoyh8l3bViyUaY7ulWy3v1lEc941FO3fMw+o54
+         N5ZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ndP/m+5H1JvMzkVwLM22/7dPF6mVDOz8cWityZisy7w=;
-        b=PxuBMBlCtXnCGfcynOk5AHcmb9zmAVYIiOIgUqvfLM7tcZQotA3g5Y2Y5GlipWaejl
-         01HIEILr71V+10qW7DX6rcR9m5l8ow/hIx/c0H9WUnYclt9HuHg6nxVQL33UsMh7+4lp
-         pI/qSwzB+DyDMenNI3F8l1sZIpPW47IXKsRZbDEvRWbG135i+d0haNdRGKUOLKz9Xbws
-         xscA2OfTA/g3WtrfBnbvWS1SKu7kHjCW1A4bZs7CIqe6e/IRYVextxdVIvCFWELM2pjg
-         6/a6jis6JjwqJiB4y0Bymgm58QfzT7+n4jn36knadvj+meFoxuTDZBezm86/5fu0pRgr
-         akmA==
-X-Gm-Message-State: AOAM532s/FrqmaaiJ4JQzW4CXvLlL0dqpCG+M80tEkIsvjUslXYkG1om
-        vwmKcU/1HJ7IUNSzkJtc4CAJfw==
-X-Google-Smtp-Source: ABdhPJwXDgDGE4kurypuQtW9+QL63Zj67ft6S/4YUjUrlUoeNcCHVQAQ3fujXqJ35JUeLd3io/WDlg==
-X-Received: by 2002:a17:907:971a:b0:6fe:bdf6:b67e with SMTP id jg26-20020a170907971a00b006febdf6b67emr26024672ejc.312.1653647303477;
-        Fri, 27 May 2022 03:28:23 -0700 (PDT)
-Received: from tom-ThinkPad-T14s-Gen-2i (net-188-217-53-154.cust.vodafonedsl.it. [188.217.53.154])
-        by smtp.gmail.com with ESMTPSA id cf8-20020a170907158800b006fe9e717143sm1312225ejc.94.2022.05.27.03.28.22
+        bh=fdkXpnkboxk4nm32J7B3CHhLnCRMyMEytr9AQ7eMpu0=;
+        b=3gcdW5p+wq8p5tFLH9g9RMW1kVfi5OaFtIGzNM7wtANa1N6iYRicfDkNDp9mnA4eD2
+         dD63v+SyM74wyDzPcrqVQ5QInoqMMnXzS37m6vPu44Ru4bxh3hx6MsYeGS4gvtckU+YC
+         zT5eVuUuTB5yK7PkhvTNqk8ST4lsd+mZChLgrA6QRYCmx9lRxgWJ2U6xrgCNzBlfdNut
+         j5FXsnMNnQyhH66zpvPLrtQdUePq8HpX1/tHCsgGoag8v19asyH2vCT/fGS2qu+TZalk
+         DMB++FbXFVnuv+GiSE78GMGspDpGvbSDwcRthTW1QbM3VfsWh35HRUKua+Scipg/o58Y
+         yv1g==
+X-Gm-Message-State: AOAM5316syYmU75pZrxJuDReb4RU9W75DI5/rw7jEwHs4yFCxrUhHLtC
+        bGCZNsniPS1KbwOdAvotWgw=
+X-Google-Smtp-Source: ABdhPJxun0ojAyYfMyLqTrhvE1OmE6AmpSS3BVOqA+iC0QxIbnP7rQNv0kAnjNI3PPRuevJULqMm0Q==
+X-Received: by 2002:a2e:a589:0:b0:253:e412:57e4 with SMTP id m9-20020a2ea589000000b00253e41257e4mr17546730ljp.237.1653648954151;
+        Fri, 27 May 2022 03:55:54 -0700 (PDT)
+Received: from mobilestation ([95.79.189.214])
+        by smtp.gmail.com with ESMTPSA id a20-20020ac25054000000b0047862c69e83sm825234lfm.40.2022.05.27.03.55.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 May 2022 03:28:23 -0700 (PDT)
-Date:   Fri, 27 May 2022 12:28:20 +0200
-From:   Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-To:     Ming Qian <ming.qian@nxp.com>
-Cc:     mchehab@kernel.org, mirela.rabulea@oss.nxp.com,
-        hverkuil-cisco@xs4all.nl, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2] media: imx-jpeg: Leave a blank space before the
- configuration data
-Message-ID: <20220527102820.GB24226@tom-ThinkPad-T14s-Gen-2i>
-References: <20220527102444.19683-1-ming.qian@nxp.com>
+        Fri, 27 May 2022 03:55:53 -0700 (PDT)
+Date:   Fri, 27 May 2022 13:55:51 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        linux-ide@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 20/23] dt-bindings: ata: ahci: Add Baikal-T1 AHCI SATA
+ controller DT schema
+Message-ID: <20220527105551.7glbytyurbk5rxnb@mobilestation>
+References: <20220511231810.4928-1-Sergey.Semin@baikalelectronics.ru>
+ <20220511231810.4928-21-Sergey.Semin@baikalelectronics.ru>
+ <20220517201332.GB1462130-robh@kernel.org>
+ <20220522204931.rcgqyyctxivyfmv7@mobilestation>
+ <20220524153345.GC3730540-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220527102444.19683-1-ming.qian@nxp.com>
+In-Reply-To: <20220524153345.GC3730540-robh@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 27, 2022 at 06:24:44PM +0800, Ming Qian wrote:
-> There is a hardware bug that it will load
-> the first 128 bytes of configuration data twice,
-> it will led to some configure error.
-> so shift the configuration data 128 bytes,
-> and make the first 128 bytes all zero,
-> then hardware will load the 128 zero twice,
-> and ignore them as garbage.
-> then the configuration data can be loaded correctly
+On Tue, May 24, 2022 at 10:33:45AM -0500, Rob Herring wrote:
+> On Sun, May 22, 2022 at 11:49:31PM +0300, Serge Semin wrote:
+> > On Tue, May 17, 2022 at 03:13:32PM -0500, Rob Herring wrote:
+> > > On Thu, May 12, 2022 at 02:18:07AM +0300, Serge Semin wrote:
+> > > > Baikal-T1 AHCI controller is based on the DWC AHCI SATA IP-core v4.10a
+> > > > with the next specific settings: two SATA ports, cascaded CSR access based
+> > > > on two clock domains (APB and AXI), selectable source of the reference
+> > > > clock (though stable work is currently available from the external source
+> > > > only), two reset lanes for the application and SATA ports domains. Other
+> > > > than that the device is fully compatible with the generic DWC AHCI SATA
+> > > > bindings.
+> > > > 
+> > > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > > > 
+> > > > ---
+> > > > 
+> > > > Changelog v2:
+> > > > - Rename 'syscon' property to 'baikal,bt1-syscon'.
+> > > > - Drop macro usage from the example node.
+> > > > ---
+> > > >  .../bindings/ata/baikal,bt1-ahci.yaml         | 127 ++++++++++++++++++
+> > > >  1 file changed, 127 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/ata/baikal,bt1-ahci.yaml
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/ata/baikal,bt1-ahci.yaml b/Documentation/devicetree/bindings/ata/baikal,bt1-ahci.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..7c2eae75434f
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/ata/baikal,bt1-ahci.yaml
+> > > > @@ -0,0 +1,127 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/ata/baikal,bt1-ahci.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Baikal-T1 SoC AHCI SATA controller
+> > > > +
+> > > > +maintainers:
+> > > > +  - Serge Semin <fancer.lancer@gmail.com>
+> > > > +
+> > > > +description: |
+> > > > +  AHCI SATA controller embedded into the Baikal-T1 SoC is based on the
+> > > > +  DWC AHCI SATA v4.10a IP-core.
+> > > > +
+> > > > +allOf:
+> > > > +  - $ref: snps,dwc-ahci.yaml#
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    contains:
+> > > > +      const: baikal,bt1-ahci
+> > > > +
+> > > > +  clocks:
+> > > > +    items:
+> > > > +      - description: Peripheral APB bus clock source
+> > > > +      - description: Application AXI BIU clock
+> > > > +      - description: Internal SATA Ports reference clock
+> > > > +      - description: External SATA Ports reference clock
+> > > > +
+> > > > +  clock-names:
+> > > > +    items:
+> > > > +      - const: pclk
+> > > > +      - const: aclk
+> > > > +      - const: ref_int
+> > > > +      - const: ref_ext
+> > > > +
+> > > > +  resets:
+> > > > +    items:
+> > > > +      - description: Application AXI BIU domain reset
+> > > > +      - description: SATA Ports clock domain reset
+> > > > +
+> > > > +  reset-names:
+> > > > +    items:
+> > > > +      - const: arst
+> > > > +      - const: ref
+> > > > +
+> > > > +  baikal,bt1-syscon:
+> > > > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > > > +    description:
+> > > > +      Phandle reference to the CCU system controller. It is required to
+> > > > +      switch between internal and external SATA reference clock sources.
+> > > 
+> > 
+> > > Seems like the CCU system ctrlr should be a clock provider that provides 
+> > > 'ref' clock and then assigned-clocks can be used to pick internal vs. 
+> > > external ref.
+> > 
+
+> > By assigned-clocks do you mean using the "assigned-clock-parents"
+> > property? 
 > 
-> Signed-off-by: Ming Qian <ming.qian@nxp.com>
-> Reviewed-by: Mirela Rabulea <mirela.rabulea@nxp.com>
-> Reviewed-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-> ---
-> v2
-> - add some comments about why the 0x80 offset is needed
->  drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
+> Yes, I meant any of those properties.
 > 
-> diff --git a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
-> index 734e1b65fbc7..c0fd030d0f19 100644
-> --- a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
-> +++ b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg.c
-> @@ -519,6 +519,7 @@ static bool mxc_jpeg_alloc_slot_data(struct mxc_jpeg_dev *jpeg,
->  				     GFP_ATOMIC);
->  	if (!cfg_stm)
->  		goto err;
-> +	memset(cfg_stm, 0, MXC_JPEG_MAX_CFG_STREAM);
->  	jpeg->slot_data[slot].cfg_stream_vaddr = cfg_stm;
->  
->  skip_alloc:
-> @@ -755,7 +756,13 @@ static unsigned int mxc_jpeg_setup_cfg_stream(void *cfg_stream_vaddr,
->  					      u32 fourcc,
->  					      u16 w, u16 h)
->  {
-> -	unsigned int offset = 0;
-> +	/*
-> +	 * There is a hardware issue that first 128 bytes of configuration data
-> +	 * can't be loaded correctly.
-> +	 * To avoid this issue, we need to write the configuration from
-> +	 * an offset which should be no less than 0x80 (128 bytes).
-> +	 */
-> +	unsigned int offset = 0x80;
->  	u8 *cfg = (u8 *)cfg_stream_vaddr;
->  	struct mxc_jpeg_sof *sof;
->  	struct mxc_jpeg_sos *sos;
-> -- 
-> 2.36.1
+> > Does it mean creating additional clocks exported from the
+> > CCU controller, which could have got one of the two parental clocks?
+> 
+> Yes, I believe so.
+
+Ok. I hoped to avoid this since it isn't that easy... but seems like I
+have not choice now.(
+
+> 
+> 
+> > > > +
+> > > > +  ports-implemented:
+> > > > +    maximum: 0x3
+> > > > +
+> > > > +patternProperties:
+> > > > +  "^sata-port@[0-9a-e]$":
+> > > > +    type: object
+> > > 
+> > >        unevaluatedProperties: false
+> > > 
+> > 
+> > > and then a $ref to a sata-port schema.
+> > 
+
+> > Can I set additional sata-port properties constraints afterwards? Like
+> > I've done for the reg, snps,tx-ts-max and snps,rx-ts-max properties
+> > here?
+> 
+> Yes. All the constraints are effectively ANDed together.
+
+Ok.
+
+> 
+> > > > +
+> > > > +    properties:
+> > > > +      reg:
+> > > > +        minimum: 0
+> > > > +        maximum: 1
+> > > > +
+> > > > +      snps,tx-ts-max:
+> > > > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > > > +        description:
+> > > > +          Due to having AXI3 bus interface utilized the maximum Tx DMA
+> > > > +          transaction size can't exceed 16 beats (AxLEN[3:0]).
+> > > > +        minimum: 1
+> > > > +        maximum: 16
+> > > > +
+> > > > +      snps,rx-ts-max:
+> > > > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > > > +        description:
+> > > > +          Due to having AXI3 bus interface utilized the maximum Rx DMA
+> > > > +          transaction size can't exceed 16 beats (AxLEN[3:0]).
+> > > 
+> > 
+> > > That's not a per port limitation (even though it's a per port register)? 
+> > > I think this should be implied by the compatible string.
+> > 
+> > The snps,{rx,tx}-ts-max property is a per-port property. I'd better
+> > explicitly set the property limitation here rather than having the
+> > value implicitly clamped by hardware especially seeing the limitation
+> > is set by the formulae
+> > (CC_MSTR_BURST_LEN * M_HDATA_WIDTH/32)) / (M_HDATA_WIDTH/32),
+> > which consists of the IP-core synthesized parameters.
+> 
+> I did not say use the h/w default.
 > 
 
-Looks good to me!
+> What I asking is do you have any need for this to be different per port? 
+> Seems unlikely given it's just 1 bus interface for all ports IIRC. I 
+> can't see why you would want to tune the performance per port to 
+> anything but the max burst length. If you have no need, use the 
+> compatible string to determine what to set the register value to.
 
-Thanks,
-Tommaso
+Well it's not what I need, it's about the way the system and AHCI
+interfaces are used for on the particular platform. The Tx/Rx DMA max
+burst length affects the system interconnect bus response latency (bus
+to which all the system devices are attached to: CPU cores, DDR
+controller, Ethernet, PCIe, SATA, etc). The higher the max-burst
+length the higher the latency for the other devices to start executing
+their IO ops. At the same time maximizing the burst length increases
+the corresponding device performance. Should there be a high priority
+storage (like system/swap SSD) and a low priority device (data hard drive)
+attached to the AHCI ports, I would rise the max burst length of the
+hi-prio device and decrease it for the other one. As such the
+high-priority traffic would flow with max speed, while the
+low-priority device would work slower than the other(s) giving a
+chance for the other devices to start their system bus transfers more
+frequently. All of that is the platform-specific settings.
 
--- 
-Tommaso Merciai
-Embedded Linux Engineer
-tommaso.merciai@amarulasolutions.com
-__________________________________
+> 
+> > > Really, firmware should configure this IMO.
+> > 
+> > We don't have comprehensive firmware setting these and generic HBA parameters.
+> > In our case dtb is the main platform firmware.
+> 
 
-Amarula Solutions SRL
-Via Le Canevare 30, 31100 Treviso, Veneto, IT
-T. +39 042 243 5310
-info@amarulasolutions.com
-www.amarulasolutions.com
+> No u-boot?
+
+Aside with the default u-boot bootloader there are customers using their
+own boot-up software. In addition to that the controller can be
+hard-reset before being used in the kernel, which defaults all the
+registers state including the state of the PnDMACR one.
+
+-Sergey 
+
+> 
+> Rob
