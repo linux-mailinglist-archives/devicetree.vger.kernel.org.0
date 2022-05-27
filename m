@@ -2,70 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AFF1536856
-	for <lists+devicetree@lfdr.de>; Fri, 27 May 2022 23:02:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CE62536882
+	for <lists+devicetree@lfdr.de>; Fri, 27 May 2022 23:30:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354689AbiE0VCl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 May 2022 17:02:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56090 "EHLO
+        id S1352945AbiE0V3l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 May 2022 17:29:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346060AbiE0VCk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 May 2022 17:02:40 -0400
-Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com [IPv6:2001:4860:4864:20::2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA128762A5
-        for <devicetree@vger.kernel.org>; Fri, 27 May 2022 14:02:39 -0700 (PDT)
-Received: by mail-oa1-x2c.google.com with SMTP id 586e51a60fabf-f2a4c51c45so7154101fac.9
-        for <devicetree@vger.kernel.org>; Fri, 27 May 2022 14:02:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=nxF6He7HpWZ4GwGGzPoFQzOw/acvMLoNb90aVoiUal0=;
-        b=X85jRBi4B1PcfrEmg5Y7ld9nwXNcZnmKbF37XCeKGUpRvf/UQ6Gaz1zscDH+ytBW9r
-         le9wkLTLhcOe9wROcOiiDXIX20kOWPFSOHEhAJJbBLXl8SDC1PoYldNdewWJ+ttbmUqc
-         0k/3n06/Kuo4jPUyjyE5vv7EaHsDbrPNsnowc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=nxF6He7HpWZ4GwGGzPoFQzOw/acvMLoNb90aVoiUal0=;
-        b=bbP7382B+MkwFjNC1VvAbUvqCzx3dHVCJZpYgaHWy4X2NtmpT34f9hu/0kBDRLVvfO
-         vRm5Zt/Uoh4pyJV+QTA1JQzC12P+tSmo6tQAcdaVRCdXI6sx9FGhJe+mL3RpdPBFJwye
-         EPuw1IDPSY/eQZS2zlzO8cIieEmfKObtBN1Ll3se/sNbEGYFBKx8Wau/6bpNIsm3OcFL
-         9VtwVBoR41y5d0mwUW8ilqQ11j2anDeIxu57Hpq9lcCoOby3M/cCxRMPbumeeKFf3X8R
-         YwiwR+o2duhyy0ZeL0P+2YwAMxA0jmA98ydfj5A/wO0dJOqwDr4poa5IHY0cKPqgasJ/
-         RrNQ==
-X-Gm-Message-State: AOAM531GznXELvQya7sVqJABbaypvfttUWaWJeRjOp+3V0MmK7nAnD9B
-        9B/lu2p3JAiTA6o2QvXlmVw6cEsNbUQV8BJIfZgbCQ==
-X-Google-Smtp-Source: ABdhPJzlCImLhNtTcoiaIh7Pm2IzQ1VjLAL6O8LiIDHqy2sdZqfC1a4S7cVjHJafBiqfUudwpAWHMvGsG5VhwRkAh00=
-X-Received: by 2002:a05:6870:240d:b0:f1:b878:e97c with SMTP id
- n13-20020a056870240d00b000f1b878e97cmr4843766oap.193.1653685358485; Fri, 27
- May 2022 14:02:38 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 27 May 2022 17:02:37 -0400
-MIME-Version: 1.0
-In-Reply-To: <e70aceba-02d5-15b5-46d0-d5ed5706e81a@quicinc.com>
-References: <1653043777-24003-1-git-send-email-quic_c_skakit@quicinc.com>
- <1653043777-24003-8-git-send-email-quic_c_skakit@quicinc.com>
- <CAE-0n53WLYR1pjnr6wASVmXXQ7xTq5n2Q7GdeKOCkWf4H4n=0A@mail.gmail.com> <e70aceba-02d5-15b5-46d0-d5ed5706e81a@quicinc.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Fri, 27 May 2022 17:02:37 -0400
-Message-ID: <CAE-0n539gePyXhw7r+XcaHtooN98KfYsx_qwgDaFkJtMSg+80g@mail.gmail.com>
-Subject: Re: [PATCH V13 7/9] regulator: Add a regulator driver for the PM8008 PMIC
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S237662AbiE0V3k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 May 2022 17:29:40 -0400
+Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [IPv6:2001:4b7a:2000:18::163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 383A26C563;
+        Fri, 27 May 2022 14:29:39 -0700 (PDT)
+Received: from localhost.localdomain (abxh119.neoplus.adsl.tpnet.pl [83.9.1.119])
+        by m-r1.th.seeweb.it (Postfix) with ESMTPA id B24AB20543;
+        Fri, 27 May 2022 23:29:36 +0200 (CEST)
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+To:     ~postmarketos/upstreaming@lists.sr.ht,
+        linux-arm-msm@vger.kernel.org, bjorn.andersson@linaro.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Satya Priya Kakitapalli <quic_c_skakit@quicinc.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_collinsd@quicinc.com, quic_subbaram@quicinc.com,
-        quic_jprakash@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/6] iommu/qcom: Use the asid read from device-tree if specified
+Date:   Fri, 27 May 2022 23:28:56 +0200
+Message-Id: <20220527212901.29268-2-konrad.dybcio@somainline.org>
+X-Mailer: git-send-email 2.36.1
+In-Reply-To: <20220527212901.29268-1-konrad.dybcio@somainline.org>
+References: <20220527212901.29268-1-konrad.dybcio@somainline.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,84 +50,80 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-HTML mail? Please send plaintext next time.
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
 
-Quoting Satya Priya Kakitapalli (Temp) (2022-05-27 01:24:19)
->
-> On 5/21/2022 8:26 AM, Stephen Boyd wrote:
->
->     Quoting Satya Priya (2022-05-20 03:49:35)
->
->         diff --git a/drivers/regulator/qcom-pm8008-regulator.c b/drivers/regulator/qcom-pm8008-regulator.c
->         new file mode 100644
->         index 0000000..6e815c6
->         --- /dev/null
->         +++ b/drivers/regulator/qcom-pm8008-regulator.c
->         @@ -0,0 +1,225 @@
->         +// SPDX-License-Identifier: GPL-2.0-only
->         +/* Copyright (c) 2022, The Linux Foundation. All rights reserved. */
->         +
->         +#include <linux/device.h>
->         +#include <linux/kernel.h>
->         +#include <linux/mfd/qcom_pm8008.h>
->         +#include <linux/module.h>
->         +#include <linux/of.h>
->         +#include <linux/of_device.h>
->
->     What in of_device.h is used?
->
->
-> struct of_device_id
+As specified in this driver, the context banks are 0x1000 apart.
+Problem is that sometimes the context number (our asid) does not
+match this logic and we end up using the wrong one: this starts
+being a problem in the case that we need to send TZ commands
+to do anything on a specific context.
 
-That struct is defined in mod_devicetable.h, not of_device.h
+For this reason, read the ASID from the DT if the property
+"qcom,ctx-num" is present on the IOMMU context node.
 
->
->
->
->         +#include <linux/platform_device.h>
->         +#include <linux/regmap.h>
->         +#include <linux/regulator/driver.h>
->         +
-[...]
->
->
->         +};
->         +
->         +static int pm8008_regulator_get_voltage(struct regulator_dev *rdev)
->         +{
->         +       struct pm8008_regulator *pm8008_reg = rdev_get_drvdata(rdev);
->         +
->         +       return pm8008_reg->voltage_selector;
->
->     Can this read the hardware instead of caching the value from
->     pm8008_regulator_set_voltage()?
->
->
-> I can use the regmap_bulk_read like below (which was present in the earlier
-> versions)
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+---
+ .../devicetree/bindings/iommu/qcom,iommu.txt   |  1 +
+ drivers/iommu/arm/arm-smmu/qcom_iommu.c        | 18 +++++++++++++++---
+ 2 files changed, 16 insertions(+), 3 deletions(-)
 
-Please do
+diff --git a/Documentation/devicetree/bindings/iommu/qcom,iommu.txt b/Documentation/devicetree/bindings/iommu/qcom,iommu.txt
+index 059139abce35..ba0b77889f02 100644
+--- a/Documentation/devicetree/bindings/iommu/qcom,iommu.txt
++++ b/Documentation/devicetree/bindings/iommu/qcom,iommu.txt
+@@ -46,6 +46,7 @@ to non-secure vs secure interrupt line.
+                      for routing of context bank irq's to secure vs non-
+                      secure lines.  (Ie. if the iommu contains secure
+                      context banks)
++- qcom,ctx-num     : The number associated to the context bank
+ 
+ 
+ ** Examples:
+diff --git a/drivers/iommu/arm/arm-smmu/qcom_iommu.c b/drivers/iommu/arm/arm-smmu/qcom_iommu.c
+index 4c077c38fbd6..1728d4d7fe25 100644
+--- a/drivers/iommu/arm/arm-smmu/qcom_iommu.c
++++ b/drivers/iommu/arm/arm-smmu/qcom_iommu.c
+@@ -566,7 +566,8 @@ static int qcom_iommu_of_xlate(struct device *dev, struct of_phandle_args *args)
+ 	 * index into qcom_iommu->ctxs:
+ 	 */
+ 	if (WARN_ON(asid < 1) ||
+-	    WARN_ON(asid > qcom_iommu->num_ctxs)) {
++	    WARN_ON(asid > qcom_iommu->num_ctxs) ||
++	    WARN_ON(qcom_iommu->ctxs[asid - 1] == NULL)) {
+ 		put_device(&iommu_pdev->dev);
+ 		return -EINVAL;
+ 	}
+@@ -654,7 +655,8 @@ static int qcom_iommu_sec_ptbl_init(struct device *dev)
+ 
+ static int get_asid(const struct device_node *np)
+ {
+-	u32 reg;
++	u32 reg, val;
++	int asid;
+ 
+ 	/* read the "reg" property directly to get the relative address
+ 	 * of the context bank, and calculate the asid from that:
+@@ -662,7 +664,17 @@ static int get_asid(const struct device_node *np)
+ 	if (of_property_read_u32_index(np, "reg", 0, &reg))
+ 		return -ENODEV;
+ 
+-	return reg / 0x1000;      /* context banks are 0x1000 apart */
++	/*
++	 * Context banks are 0x1000 apart but, in some cases, the ASID
++	 * number doesn't match to this logic and needs to be passed
++	 * from the DT configuration explicitly.
++	 */
++	if (of_property_read_u32(np, "qcom,ctx-num", &val))
++		asid = reg / 0x1000;
++	else
++		asid = val;
++
++	return asid;
+ }
+ 
+ static int qcom_iommu_ctx_probe(struct platform_device *pdev)
+-- 
+2.36.1
 
->         +       }
->         +
->         +       pm8008_reg->dev = dev;
->         +
->         +       rc = of_property_read_string(dev->of_node, "regulator-name", &name);
->         +       if (rc)
->         +               return rc;
->         +
->         +       /* get the required regulator data */
->         +       for (i = 0; i < ARRAY_SIZE(reg_data); i++)
->         +               if (strstr(name, reg_data[i].name))
->
->     Why not find this via reg/address instead? It would save storing the
->     regulator name in the reg_data table.
->
->
-> You mean match this using base address? then we should add base address in the
-> reg_data table. We will need the name to be stored in reg_data table anyway for
-> the pm8008_reg->rdesc.of_match
-
-Why? Now that this driver binds to each node individually the usage of
-of_match doesn't make any sense to me. Can you set 'struct
-regulator_config::dev' instead and not set of_match?
