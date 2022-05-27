@@ -2,146 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03F69535B46
-	for <lists+devicetree@lfdr.de>; Fri, 27 May 2022 10:18:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56AE7535BB3
+	for <lists+devicetree@lfdr.de>; Fri, 27 May 2022 10:39:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348981AbiE0ISi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 May 2022 04:18:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38602 "EHLO
+        id S1349816AbiE0Ihn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 May 2022 04:37:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348936AbiE0ISg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 May 2022 04:18:36 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13C1DF1345
-        for <devicetree@vger.kernel.org>; Fri, 27 May 2022 01:18:36 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id k16so549482wrg.7
-        for <devicetree@vger.kernel.org>; Fri, 27 May 2022 01:18:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:organization:in-reply-to:content-transfer-encoding;
-        bh=ZkFo19yN9FE8l6w1oc0IJiQl2EoWP33mdxcOBd2mVFc=;
-        b=Fq9c32hxcx2ufnuS5yUUdwgf84fJ2V+HR5zXjKcBgRRQOBn4Oo+Y8PIBAAJ0eAGKis
-         BFq8Tk+WkMh/OpMKqPxu/qDH20z/0g2Bu6S8gNtK+qUGjyVeDQ+QCHdDUEIhiM69KTww
-         kB3Put3kNcCckMhB+JJdnh7Xq3M0LVZC8tIFMlpEgP3SxokQvFGjVw/RAL3kY8sTL1Kh
-         pqEWSwQcYGhjLE01TMhH1jN7uXz6ebJsZ4yeKtRSOIOJpljU58WV9IlzyfOLS+A16ABz
-         9GQnTG5cJGDEJHaTbumnaHlKut9Gc/NSmWOT5otOpcjqqnNXttpKcqTJXWtIV6XqOQYg
-         iHyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:organization:in-reply-to
-         :content-transfer-encoding;
-        bh=ZkFo19yN9FE8l6w1oc0IJiQl2EoWP33mdxcOBd2mVFc=;
-        b=On8mU7uF0W0JbHg3ZT4dpHBRttKYvJkQpGJ4stJnUadV6HM0XU62fa3FpCi3XnWFYq
-         CBBytMu6ZJG4COyqL4IBSqJdJbJjP0J4IYz68LSU9r/ju3v+wdBJnwfWUu9tDtGNdt9D
-         uGUknp7O6bO/7qq2t0DRlS6kZ95Uiz/tOgPvKx4oef1I1ogyFh6ZygmjEt59BoOuzF8W
-         m/H7rsuw7dPsbbqs1OLQE35awGO35eZdaxIIqpOR3Ha3EqhBy9OAZISBaBFxt3bK5PMN
-         XC8HBU0zPzFtG+zCmkNl0f4nnvInn4QaR6sRd6rMYCCy5o+isRcN8bLRMG8lwN/TeVyP
-         rSvA==
-X-Gm-Message-State: AOAM530iuiUFcO7ZD72XmX2vT9wQqNYJFJVqkuzho8SfUW6ov2MRd13H
-        KEkxE5w8ii4hZd8BrtRcQAq9mQ==
-X-Google-Smtp-Source: ABdhPJz+oqbBEG4R4LguW/AlVaAt1T7SUCg4RxJCopLYPsk+CUpf7UJyCqHBCjs0nVw/onX+8/KQFA==
-X-Received: by 2002:adf:e28a:0:b0:210:b31:722 with SMTP id v10-20020adfe28a000000b002100b310722mr5408462wri.65.1653639515570;
-        Fri, 27 May 2022 01:18:35 -0700 (PDT)
-Received: from ?IPV6:2001:861:44c0:66c0:f081:5ded:fc86:365d? ([2001:861:44c0:66c0:f081:5ded:fc86:365d])
-        by smtp.gmail.com with ESMTPSA id v18-20020adfebd2000000b0020c5253d8besm1130050wrn.10.2022.05.27.01.18.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 May 2022 01:18:35 -0700 (PDT)
-Message-ID: <19a9260c-322b-10e1-e361-cc2d5fdd8ff9@baylibre.com>
-Date:   Fri, 27 May 2022 10:18:34 +0200
+        with ESMTP id S1349831AbiE0IhP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 May 2022 04:37:15 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDB6664BEC;
+        Fri, 27 May 2022 01:36:30 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24R8aEDj046324;
+        Fri, 27 May 2022 03:36:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1653640574;
+        bh=mOjyc69RQmsty71vyEDq/gFIx8VXd/jFX/msZkJ46Iw=;
+        h=From:To:CC:Subject:Date;
+        b=mSwMGFD7ei+PaTirj5kL+FDoNAprFj4PMeRE5X5p1moVg5uy6Ml9N4t6BDyoCgkVT
+         /6hTffaecEpWHNI6gf8EqmWhzgGBIgOQ6JB9GXYNk+22H33PVSk/TnGnu5s+S0uM6G
+         qzzWdtFgDASsBaKoQYD6LnMD/VwFsu89ZOvYmr1s=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24R8aEnh015743
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 27 May 2022 03:36:14 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 27
+ May 2022 03:36:14 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Fri, 27 May 2022 03:36:13 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24R8aCIo105296;
+        Fri, 27 May 2022 03:36:13 -0500
+From:   Rahul T R <r-ravikumar@ti.com>
+To:     <robh+dt@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kishon@ti.com>, <krzysztof.kozlowski+dt@linaro.org>
+CC:     <lee.jones@linaro.org>, <rogerq@kernel.org>,
+        <devicetree@vger.kernel.org>, <kristo@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <s-anna@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>
+Subject: [PATCH 0/3] Enable RPi header on j721e sk
+Date:   Fri, 27 May 2022 14:05:53 +0530
+Message-ID: <20220527083556.18864-1-r-ravikumar@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH 2/2] ARM: dts: meson: adjust whitespace around '='
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        arm@kernel.org, soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220526204552.832961-1-krzysztof.kozlowski@linaro.org>
- <20220526204552.832961-2-krzysztof.kozlowski@linaro.org>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-In-Reply-To: <20220526204552.832961-2-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/05/2022 22:45, Krzysztof Kozlowski wrote:
-> Fix whitespace coding style: use single space instead of tabs or
-> multiple spaces around '=' sign in property assignment.  No functional
-> changes (same DTB).
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Output compared with dtx_diff and fdtdump.
-> ---
->   arch/arm/boot/dts/meson.dtsi   | 4 ++--
->   arch/arm/boot/dts/meson8.dtsi  | 2 +-
->   arch/arm/boot/dts/meson8b.dtsi | 2 +-
->   3 files changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/meson.dtsi b/arch/arm/boot/dts/meson.dtsi
-> index 26eaba3fa96f..8e3860d5d916 100644
-> --- a/arch/arm/boot/dts/meson.dtsi
-> +++ b/arch/arm/boot/dts/meson.dtsi
-> @@ -214,14 +214,14 @@ aobus: aobus@c8100000 {
->   			ranges = <0x0 0xc8100000 0x100000>;
->   
->   			ao_arc_rproc: remoteproc@1c {
-> -				compatible= "amlogic,meson-mx-ao-arc";
-> +				compatible = "amlogic,meson-mx-ao-arc";
->   				reg = <0x1c 0x8>, <0x38 0x8>;
->   				reg-names = "remap", "cpu";
->   				status = "disabled";
->   			};
->   
->   			ir_receiver: ir-receiver@480 {
-> -				compatible= "amlogic,meson6-ir";
-> +				compatible = "amlogic,meson6-ir";
->   				reg = <0x480 0x20>;
->   				interrupts = <GIC_SPI 15 IRQ_TYPE_EDGE_RISING>;
->   				status = "disabled";
-> diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-> index 9997a5d0333a..0f8bac8bac8b 100644
-> --- a/arch/arm/boot/dts/meson8.dtsi
-> +++ b/arch/arm/boot/dts/meson8.dtsi
-> @@ -430,7 +430,7 @@ mux {
->   };
->   
->   &ao_arc_rproc {
-> -	compatible= "amlogic,meson8-ao-arc", "amlogic,meson-mx-ao-arc";
-> +	compatible = "amlogic,meson8-ao-arc", "amlogic,meson-mx-ao-arc";
->   	amlogic,secbus2 = <&secbus2>;
->   	sram = <&ao_arc_sram>;
->   	resets = <&reset RESET_MEDIA_CPU>;
-> diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-> index 94f1c03decce..cf9c04a61ba3 100644
-> --- a/arch/arm/boot/dts/meson8b.dtsi
-> +++ b/arch/arm/boot/dts/meson8b.dtsi
-> @@ -384,7 +384,7 @@ mux {
->   };
->   
->   &ao_arc_rproc {
-> -	compatible= "amlogic,meson8b-ao-arc", "amlogic,meson-mx-ao-arc";
-> +	compatible = "amlogic,meson8b-ao-arc", "amlogic,meson-mx-ao-arc";
->   	amlogic,secbus2 = <&secbus2>;
->   	sram = <&ao_arc_sram>;
->   	resets = <&reset RESET_MEDIA_CPU>;
+The following series of patches enables RPi header
+on j721e sk. It is a 40 pin io expasion header which
+brings out i2c5, ehrpwm 2,3 and some pins of gpio 0,1
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Rahul T R (1):
+  dt-bindings: mfd: ti,j721e-system-controller: Add clock property
+
+Sinthu Raja (1):
+  arm64: dts: ti: k3-j721e-sk: Add pinmux for RPi Header
+
+Vijay Pothukuchi (1):
+  arm64: dts: ti: k3-j721e-*: Add dts nodes for EHRPWMs
+
+ .../mfd/ti,j721e-system-controller.yaml       |  12 +++
+ .../dts/ti/k3-j721e-common-proc-board.dts     |  24 +++++
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     |  62 ++++++++++-
+ arch/arm64/boot/dts/ti/k3-j721e-sk.dts        | 101 +++++++++++++++++-
+ 4 files changed, 193 insertions(+), 6 deletions(-)
+
+-- 
+2.17.1
+
