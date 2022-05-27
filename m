@@ -2,143 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16C45536752
-	for <lists+devicetree@lfdr.de>; Fri, 27 May 2022 21:05:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F27C6536776
+	for <lists+devicetree@lfdr.de>; Fri, 27 May 2022 21:26:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352798AbiE0TFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 May 2022 15:05:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43906 "EHLO
+        id S1354341AbiE0T0S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 May 2022 15:26:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240401AbiE0TFu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 May 2022 15:05:50 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDACB5C76E;
-        Fri, 27 May 2022 12:05:49 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id 6F81D1F464B2
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1653678348;
-        bh=xy2v0UW9OxkQlEpRbg1MC88ziJi3bs138+XfVpOrkC8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=mmjaRwBZTXfnPJGc8bg4toaoo7Nyy0vzqi4EoQOeXyw9L35qvzztiaTKc8D+3NEUo
-         kayJ4EY33oK3oAtrBrOS3xa++5ygl8StkJe0nOsqV/dlMCv6kE7PzCWHRFLNnJzgso
-         8GoqNYPkUfFT7ERTn3CO/vwimAsB3k6g/JBpKfALGev0HUY3dP3wUid8ss7xdZvham
-         py+/vV1fyzp7V/dx21pD7ADBHmbgZdS05Ve6cgbkDn8SLaeo+rWBgX7DaMKlyNsj4q
-         Vii7d9CB0XHlSckHEZBCSUBzrJfH82zot9PVCF+ZLll5iy2uzMFYbHnI0hxOQ4YXXX
-         nsKgtruVhfFNg==
-Date:   Fri, 27 May 2022 15:05:42 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Mark Brown <broonie@kernel.org>, kernel@collabora.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shane Chien <shane.chien@mediatek.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2] ASoC: dt-bindings: mediatek: mt8192: Add i2s-share
- properties
-Message-ID: <20220527190542.4jckyflvtkq4n7ie@notapiano>
-References: <20220509205847.607076-1-nfraprado@collabora.com>
- <e8d854c0-e2a5-2382-4b54-c5e879170324@linaro.org>
+        with ESMTP id S1354179AbiE0T0S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 May 2022 15:26:18 -0400
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AD34263C
+        for <devicetree@vger.kernel.org>; Fri, 27 May 2022 12:26:16 -0700 (PDT)
+Received: by mail-qk1-x733.google.com with SMTP id p63so5779572qkf.0
+        for <devicetree@vger.kernel.org>; Fri, 27 May 2022 12:26:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :content-transfer-encoding:user-agent:mime-version;
+        bh=G6b4VHTAM4bhr1qeJfjgThR4MDcHb/Fb1ERdo5Xb9Ik=;
+        b=W/HrPyjahMm4XKGZc9+7n1p03LftQMndyai4tDNxJxUutyLiTpXLxyMSO6hx3+MYx8
+         Z9v73UVhkR8hBRDiepUIqsS7dIEwk2GTJhGeA29+MBoSTLQ20wtDZbUANS5mfe1juPfW
+         3zBG1z++lCTMMTND6Hv0I0dg8fD+nUSH0C7OS3T3CAst542iDFd6Ahx47MngBwRQlHC4
+         20HynURDTifrwmB3aTLx5xG6oeOJL9tGq8EjWUNO4XfO/Z1TmS6AHh06Lj0xcRR+FeRe
+         7Uo8PQ3Tg9xsES9SZpyiL4HLNiZscxh+x7Mfrae8BAWoux9oI3408osPV6YryvKQAnEr
+         U0CA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:content-transfer-encoding:user-agent:mime-version;
+        bh=G6b4VHTAM4bhr1qeJfjgThR4MDcHb/Fb1ERdo5Xb9Ik=;
+        b=RC9ZKtdwoqyMZ5pIXZFCdqoX6uMpQlFYi0soIXkpsD0AU/rDmo5u49frOs+d5uVpsh
+         gS1Ve40iwWv8HF/ZqZsS/SBNycCvWyLA6HSqfVnx/SoEWRZry2+JgjxkTu2GBb4xkpnb
+         aJvRwYpqw8ea3EX9lZM3EbRkYUVq6I6fzAoQ8b7LQIHqnPHkCkQwMJQa/XJV7hf7RZpl
+         GLeVIGbiTYJdnl4syVx+gp+OtKEBopci/Fv9ayCEMFa96EThev8DbDb0Ruqgt3wf6sgx
+         VhJnsgBUybJte42qwCJHYoal5ySTA3CJtCsGGveJPEzLi6XcQR4bwtek6rmtKWdQbY69
+         N0hA==
+X-Gm-Message-State: AOAM533H62uw7W5XGJN15MGsAdk+v3Jl+fW5e8NAxM0mI+lazjmzkBMy
+        M/IMsStCHFxnPgipqXwf4FdEvg==
+X-Google-Smtp-Source: ABdhPJyAI5R9wYvBWLNcvQNrBosxG7C54X4ReS6SL/cc8NYsDgCPP/4vLmzo8r/gjN3XtNdTk/a1UQ==
+X-Received: by 2002:a37:8a43:0:b0:699:fac5:224d with SMTP id m64-20020a378a43000000b00699fac5224dmr29317291qkd.599.1653679575602;
+        Fri, 27 May 2022 12:26:15 -0700 (PDT)
+Received: from nicolas-tpx395.localdomain (192-222-136-102.qc.cable.ebox.net. [192.222.136.102])
+        by smtp.gmail.com with ESMTPSA id bq44-20020a05620a46ac00b006a33bee9a47sm3479852qkb.63.2022.05.27.12.26.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 May 2022 12:26:15 -0700 (PDT)
+Message-ID: <02cbaf49474cbba446b6bdae77d5da950cce3e00.camel@ndufresne.ca>
+Subject: Re: [EXT] Re: [PATCH v2] media: imx-jpeg: Leave a blank space
+ before the configuration data
+From:   Nicolas Dufresne <nicolas@ndufresne.ca>
+To:     Ming Qian <ming.qian@nxp.com>, Fabio Estevam <festevam@gmail.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        "Mirela Rabulea (OSS)" <mirela.rabulea@oss.nxp.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        linux-media <linux-media@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Fri, 27 May 2022 15:26:13 -0400
+In-Reply-To: <AM6PR04MB6341CB4019E4F7077D3DCD54E7D89@AM6PR04MB6341.eurprd04.prod.outlook.com>
+References: <20220527102444.19683-1-ming.qian@nxp.com>
+         <CAOMZO5D-gUdoTx3hLmZE2EeYfun-g2xLx6J4tNTSZd-yKCLgXA@mail.gmail.com>
+         <AM6PR04MB6341CB4019E4F7077D3DCD54E7D89@AM6PR04MB6341.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.1 (3.44.1-1.fc36) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e8d854c0-e2a5-2382-4b54-c5e879170324@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 26, 2022 at 08:49:39AM +0200, Krzysztof Kozlowski wrote:
-> On 09/05/2022 22:58, Nícolas F. R. A. Prado wrote:
-> > The Mediatek AFE PCM controller for MT8192 allows two I2S interfaces to
-> > share the same clock and act as a single interface with both input and
-> > output. Add patterns for these properties in the dt-binding. The
-> > property is split into two patterns in order to allow all valid
-> > interface pairings.
-> > 
-> > Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> > 
-> > ---
-> > The series from v1 of this patch was merged although some changes were
-> > still needed in this patch, so the v1 of this patch was reverted [1] and
-> > this standalone commit addresses the feedback from v1 and readds the
-> > property.
-> > 
-> > [1] https://lore.kernel.org/all/20220509185625.580811-1-nfraprado@collabora.com
-> > 
-> > v1: https://lore.kernel.org/all/20220429203039.2207848-2-nfraprado@collabora.com/
-> > 
-> > Changes in v2:
-> > - Added "mediatek," prefix to property
-> > - Rewrote and added more information to property description
-> > - Split into two patterns to validate that output-input pairings are
-> >   done
-> > 
-> >  .../bindings/sound/mt8192-afe-pcm.yaml           | 16 ++++++++++++++++
-> >  1 file changed, 16 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
-> > index 7a25bc9b8060..2abf43c6c2c3 100644
-> > --- a/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
-> > +++ b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
-> > @@ -54,6 +54,22 @@ properties:
-> >        - const: aud_infra_clk
-> >        - const: aud_infra_26m_clk
-> >  
-> > +patternProperties:
-> > +  "^mediatek,i2s[13579]-share$":
-> > +    description:
-> > +      Each I2S interface has a single data line, input if its index is even or
-> > +      output if the index is odd. An input and an output I2S interface can be
-> > +      used together as if they were a single I2S interface with both input and
-> > +      output data lines by sharing the same clock. This property represents this
-> > +      pairing. The value should be the name of the interface whose clock is
-> > +      used, and the property name the other interface that depends on this
-> > +      clock.
-> > +    pattern: "^I2S[0268]$"
-> > +
-> > +  "^mediatek,i2s[0268]-share$":
-> > +    description: Same as above.
-> > +    pattern: "^I2S[13579]$"
-> 
-> Rob's question is still valid - why these are not phandles?
+Le vendredi 27 mai 2022 =C3=A0 11:33 +0000, Ming Qian a =C3=A9crit=C2=A0:
+> > From: Fabio Estevam <festevam@gmail.com>
+> > Sent: 2022=E5=B9=B45=E6=9C=8827=E6=97=A5 19:12
+> > To: Ming Qian <ming.qian@nxp.com>
+> > Cc: Mauro Carvalho Chehab <mchehab@kernel.org>; Mirela Rabulea (OSS)
+> > <mirela.rabulea@oss.nxp.com>; Hans Verkuil <hverkuil-cisco@xs4all.nl>;
+> > Shawn Guo <shawnguo@kernel.org>; Sascha Hauer <s.hauer@pengutronix.de>;
+> > Sascha Hauer <kernel@pengutronix.de>; dl-linux-imx <linux-imx@nxp.com>;
+> > linux-media <linux-media@vger.kernel.org>; linux-kernel
+> > <linux-kernel@vger.kernel.org>; open list:OPEN FIRMWARE AND FLATTENED
+> > DEVICE TREE BINDINGS <devicetree@vger.kernel.org>; moderated
+> > list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE
+> > <linux-arm-kernel@lists.infradead.org>
+> > Subject: [EXT] Re: [PATCH v2] media: imx-jpeg: Leave a blank space befo=
+re
+> > the
+> > configuration data
+> >=20
+> > Caution: EXT Email
+> >=20
+> > Hi Ming,
+> >=20
+> > On Fri, May 27, 2022 at 7:25 AM Ming Qian <ming.qian@nxp.com> wrote:
+> > >=20
+> > > There is a hardware bug that it will load the first 128 bytes of
+> > > configuration data twice, it will led to some configure error.
+> > > so shift the configuration data 128 bytes, and make the first 128
+> > > bytes all zero, then hardware will load the 128 zero twice, and ignor=
+e
+> > > them as garbage.
+> > > then the configuration data can be loaded correctly
+> > >=20
+> > > Signed-off-by: Ming Qian <ming.qian@nxp.com>
+> > > Reviewed-by: Mirela Rabulea <mirela.rabulea@nxp.com>
+> > > Reviewed-by: Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
+> >=20
+> > Fixes tag?
+>=20
+> Hi Fabio,
+> =C2=A0=C2=A0=C2=A0=C2=A0It's a hardware issue, so I'm not sure is it a dr=
+iver issue that I fix it.
+> =C2=A0=C2=A0=C2=A0=C2=A0Or I just check which patch includes the code I c=
+hanged, and add the fix
+> tag?
 
-So, instead of having
+You can use Fixes tag even though there was no software bug. The point of t=
+he
+tag is to help locate how far we can backport this patch in order to let st=
+able
+kernel users benefit.
 
-	i2s9-share = "I2S8";
+regards,
+Nicolas
 
-on the DT, you want us to have something like this:
+>=20
+> Ming
 
-        afe_i2s8: mediatek,i2s8 { };
-
-        mediatek,i2s9 {
-          mediatek,share-clock = <&afe_i2s8>;
-        };
-
-Or do you mean something else?
-
-It seems like a lot more syntax to express the same thing (and the empty node
-seems awkward), but if that's the DT way, I can change it no problem.
-
-> 
-> In any case you miss $ref.
-
-Indeed, sorry, I'll add it in next version.
-
-Thanks,
-Nícolas
