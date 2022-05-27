@@ -2,392 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EF145368A7
-	for <lists+devicetree@lfdr.de>; Fri, 27 May 2022 23:57:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EBBB5368FD
+	for <lists+devicetree@lfdr.de>; Sat, 28 May 2022 00:50:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229558AbiE0V5P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 May 2022 17:57:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42018 "EHLO
+        id S1354879AbiE0Woe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 May 2022 18:44:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231129AbiE0V5O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 May 2022 17:57:14 -0400
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1804D63534
-        for <devicetree@vger.kernel.org>; Fri, 27 May 2022 14:57:13 -0700 (PDT)
-Received: by mail-lj1-x242.google.com with SMTP id 27so6270537ljw.0
-        for <devicetree@vger.kernel.org>; Fri, 27 May 2022 14:57:13 -0700 (PDT)
+        with ESMTP id S235014AbiE0Wod (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 May 2022 18:44:33 -0400
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2084.outbound.protection.outlook.com [40.107.236.84])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 363EF6F48D;
+        Fri, 27 May 2022 15:44:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DXNiVnk0cAksxw+A6X77Ygxrf1xPZCqlC6s5j8yYBLCQaaGSWysW1O1qnBNsROhib6abO9e0kSrukIjlMCTRwr6Gt3VDYndNEAoWwmfSP7WdfUFXTVbTY8n0Dv3VY0oF24EmkJf6AVs61NpY24imhjd6zUBzcRv8kh8F/5DLQUMxhBK7oP32cSyafavgjSvuH3fx9opXxOX99x77Bxj6sHFE8ycWmE97jgJPK0cxNj/uoixC1VbXwrYkxeO1vo+99MtqNXZZBVvJJYi13aLn2bfID412hgs8bTMeY9FRdYlKKqZHm1GU65gBG59auSI+Zai8uRZtJnDDjVxhZgVLiw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DiW6GRWsyCmzpqichW1KqMmj2bJWuOOGumddGVp+sUE=;
+ b=kSPTIdjmGOtTrFR0WS7jXHDi73IBy3tIjf107KyABap5QSCDYopX0Cjb/lRGCI+xwN3vAOiIm7kBlKNkjyGLEajxWKtoeQGhYPOksiT7/n5deC/Y7fj6oR0zOmPByC8USrkn60RZ8EZnl42YWnQFyp4fNzIEyHfQ819Aex9Y+sle+akZ/ivBKEBLS14xudSZmUNvLvuKMAqX+KjITjKQlQ0MORSMTaaP1kr9UmL191uCahzjj9oO/+vEdwjZ/4GLLlEcakEDyS9Q2Y8fMmgLavLYeLkHutCkWyBdyb1MiTXw68qbvQyc1eAuhRfjX5ugcv5f51R1uZRyFoQLhdv1tQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
+ dkim=pass header.d=labundy.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=TTkFFJWiGQsszaptj0zwEzjUmbbtBVgiZScQuKDSU+A=;
-        b=JTu9/4vP8K290bnailpAakp45NIhtHVTymPXI203da08EDsUGlB77lT2Zwn7CmHK1b
-         K3Jk78sReFb0N6ZsnbOL0Nnq7DpAX71BvCErtguWVRI5WwZxjrhYimnyly/+ptl9CNVX
-         CPWSVSL9f5yGiP6VWxTNnM5Y1X2qIx1KKQJYONzoe52U9Q9EM3L473nQ2qn/tHdtdycJ
-         9K6lcq5YrgVmNxymqVeWlEV+3huSATwj56QKrbzshpn9pUKRpPudltE4VmFz7QyRPZfK
-         cv2adr4sMdZUQS2HPbpLz9ozT2A+mofbcwYwdUalYpN6DnrKann5dnh+HiOGRmhNvYuU
-         jpfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=TTkFFJWiGQsszaptj0zwEzjUmbbtBVgiZScQuKDSU+A=;
-        b=rU1KuFEd5u84SXR1+PHUnbwnthwWYTqdyqaE8zNtQnPwM+xI/v/7SP9h1/NIq5G6Gu
-         FOu/zViKiDgkJ8g/0F3NiT3izQDw09JE65sSFdW9AnD3aK7jud8YNeV56L+O9+7AkXzC
-         OplR7Gfy0Qg2bAKAI2c9xVMoa91tn1N2T2cI9d+m6ne4wi6DBznWXNsUuvUIpiXJIP3o
-         eEKKnIg9BeDuDim8cPWIjOHbRF6t82RmpZGuiGyEQWYg0q8OYHaewpx21oGyqAfLWZ/0
-         NAYLn0MUCafuG6f/9H3U46FGtJFb0LWGmWS3+LoqBcckozrwwkBiMrXPEHFkkHpmtW0Y
-         IBLQ==
-X-Gm-Message-State: AOAM533UAC2yr3DwPIAWnw8QX9fE305FE16MSg2K8/Zlz62Cohd+H4wn
-        ccfk63r1eJk+SCBKMmm536MAhw==
-X-Google-Smtp-Source: ABdhPJxmyUBtcpLNRPm9IGYlwLl/0kWqngy9V3wAdhmQcZ6lsarjSkFMP724DvtIRIk8ulm08GbuWQ==
-X-Received: by 2002:a2e:9d96:0:b0:253:e0cf:4be4 with SMTP id c22-20020a2e9d96000000b00253e0cf4be4mr21417642ljj.185.1653688631269;
-        Fri, 27 May 2022 14:57:11 -0700 (PDT)
-Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
-        by smtp.gmail.com with ESMTPSA id 29-20020a2e145d000000b0024f555d863csm1218100lju.135.2022.05.27.14.57.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 May 2022 14:57:10 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: dma: Rewrite ST-Ericsson DMA40 to YAML
-Date:   Fri, 27 May 2022 23:55:08 +0200
-Message-Id: <20220527215508.622374-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.35.3
+ d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DiW6GRWsyCmzpqichW1KqMmj2bJWuOOGumddGVp+sUE=;
+ b=vxNZQJ/NALiGuWC1pSRjdmWf6IUHHR1noXE5xUWfgQobxrADxnYk3u5h6WQE5mTxV55hFWsdoHexcmPVS3eoEa8GYrzmLw918krobqYJpGN4yHyeSwS/t7xxT9xEyRN1AyYbc7gAyQKfLoq5KdGAtgXbxwonuj3pl90Ffz/dgq0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=labundy.com;
+Received: from DM5PR0801MB3767.namprd08.prod.outlook.com (2603:10b6:4:7c::37)
+ by BN7PR08MB4260.namprd08.prod.outlook.com (2603:10b6:408::22) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5273.19; Fri, 27 May 2022 22:44:30 +0000
+Received: from DM5PR0801MB3767.namprd08.prod.outlook.com
+ ([fe80::2cfb:31ad:b481:561]) by DM5PR0801MB3767.namprd08.prod.outlook.com
+ ([fe80::2cfb:31ad:b481:561%5]) with mapi id 15.20.5293.013; Fri, 27 May 2022
+ 22:44:30 +0000
+Date:   Fri, 27 May 2022 17:44:21 -0500
+From:   Jeff LaBundy <jeff@labundy.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Andreas Kemnade <andreas@kemnade.info>
+Subject: Re: [PATCH] dt-bindings: input: use generic node names
+Message-ID: <20220527224401.GA395557@nixie71>
+References: <20220524093136.7980-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220524093136.7980-1-krzysztof.kozlowski@linaro.org>
+X-ClientProxiedBy: SN7PR04CA0076.namprd04.prod.outlook.com
+ (2603:10b6:806:121::21) To DM5PR0801MB3767.namprd08.prod.outlook.com
+ (2603:10b6:4:7c::37)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 55a2d211-c335-4b7e-9e0a-08da40327621
+X-MS-TrafficTypeDiagnostic: BN7PR08MB4260:EE_
+X-Microsoft-Antispam-PRVS: <BN7PR08MB42602AA49599629F5CEA142ED3D89@BN7PR08MB4260.namprd08.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: xnbcqYuc63BlEVAwS+vFtrB+7RzPScKO3qBmFsad8IiJhJpUpkyoDmTWM1E6DRgfVWAUL4l0g1QWHFtOduWYXP4o+aW9Vv1ba+tClMp55DoAEmhDph50P3pY3vNpSF5mXe7DJqPQ5TUli2683BRlKTiizRn6nxfMi1zlM8yeKjwLHOlsrEH4mDAT8e/1BjhMPX0gZ8ZesJAeHQ1qytEBL1BlBrlCvDy4pke9mFHDOe2GSOpPB2N+iU1AN6Ii3LtErtjm7FPkEYSkbrccxZ/XVg7pxWxenyM7UkLYbDhKd0IBZI3UheSh4YmdIwe6bZE+v3PkGtrsr+zUNioBG/ths5KC0XS+s/SdxVJA+rF6C3+11OmJCTD1xsYDvt7Bfs0Yr5UtI+EGMppHLMBzT+qRiQib4PMR5FMZ3a5J/XIlHgq0t9J71i38flne8tQr/wshyUg+czwdA3bVo0hhWowLYM+DuzDtW/4HBNVUzRcobWOP+4r6IRNJwahM9TOq6xMY+bAceOd01sGLPdfmiuay8htOU8bgvCk3DUYwRW1NjSzZnfX6PVj2WnnYlLTXo7dgmMTQrQR8t7YCU1ku/3l7fl9a8l/z9sDTkqzjAT1/h0wHs4BTWfCJcsVos/79H9QjzR+hkHkAOfIcSLMqHOQkl7J45mZZjlBokj3Rf44a6JPR4fgp4iuHiQspmsQkG5cdfGIFzRHmRyFPMX6VSlvB/I5Vbbot8zgbxvHij17UYWPyNpobuiDpB0u5Lf1suEFF
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR0801MB3767.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(7916004)(376002)(396003)(366004)(39830400003)(346002)(136003)(33656002)(33716001)(83380400001)(2906002)(6666004)(54906003)(6486002)(5660300002)(508600001)(86362001)(26005)(8936002)(316002)(38100700002)(38350700002)(9686003)(52116002)(1076003)(4326008)(8676002)(6512007)(186003)(6506007)(66476007)(66556008)(41300700001)(66946007)(6916009)(41533002)(21314003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+QGTKKhFTljV6qxjRSUWtPhTA5QPzlVLFV5k38uPA3hvVwURGZw7Ug7imyBL?=
+ =?us-ascii?Q?jz8eRs21EoxdhPLRl1sqwXevmdEdYg2+NZUrdPwgmKHj6fLdnaIRSXuDQCQi?=
+ =?us-ascii?Q?A97lgC47rQsqrzBou3A3tR8JIih3W2/QAWe1FEROAk/x2GNMmxmYt6wWExym?=
+ =?us-ascii?Q?tiTjom0id00NXsRmC37igXazetMxeBaOmuCh7LiqFOlJqJz4luMQjpFrFPMw?=
+ =?us-ascii?Q?83bAY9LO8uN8AO3pXfgkOzFQs14/uzclWbjskwvaYJjz0fym2vHX2ZJh2tNZ?=
+ =?us-ascii?Q?B5H91+m58xBfW3QEzL/kaq7wkqOQyzG5mCs0sh3CQHWxlvlgMvzCARH+t+Fv?=
+ =?us-ascii?Q?a7x6S9pFlj1rNA+Xq285fNrlbdMqMblIE9kpw8cf/7DKvio1hFGbWJ3Cbz76?=
+ =?us-ascii?Q?xXSBNF/gVwszS7S9u76r0EOjTbiw2PC7VzYsMEzeUmxDJ1lABhfVBrCK0qQe?=
+ =?us-ascii?Q?00xyG53zYk+R424Q4WuGZH9NRziIPuRzUWRsuy0PHIlRZrN5eqsS1qKimJMW?=
+ =?us-ascii?Q?dmMvCWLJ8NYWvqC4/Q+o6XGM7Qdo0rP4/GVzf0yfPKIc7EsH/4/EeK/lai5e?=
+ =?us-ascii?Q?4lx92yrzVooLEEcTBBiRNoeUke3kcW7LJPWXtttBmCDP9rHb6xQsFQ7pjvqA?=
+ =?us-ascii?Q?G9oNp9/8S1ML6z9qWzrwiOR5GMVPRPu7bpoeSkS6mSnfLoKxa74aLTvqXygI?=
+ =?us-ascii?Q?dHPvGSCVCv+GJ56ZKItmOzXDKlUNbXF0TPg/Ig6p09ylghRBu9enItUoUoZ7?=
+ =?us-ascii?Q?0fQvqRo3Kc9hq6dzYNOs7+UU6qF2ASRRD+7TayKIUJJb7eiRhc0s0nQnO6CJ?=
+ =?us-ascii?Q?DbBR0674RQ+eam9jNPcC58n1+DQNh5Rc8etsOUSEogWkVfZ3QgvnIfYkBDoe?=
+ =?us-ascii?Q?5HFxGE0ds/q4eg39zT7dQTTgoYaywReh89zJOSfwFyXOw9KfB1DHRbZPLNqT?=
+ =?us-ascii?Q?MsKiBrj7LdjHf0DYAFdVWK4vX/iUwsVaZMdl2oFU78C69M/c7ff982A7mPZQ?=
+ =?us-ascii?Q?pG3JSEuIjeVeZovbkwc9lIbMJ3YzGHIf6ifUlZZ73MD0LLUkbOF2AcHXEGZ3?=
+ =?us-ascii?Q?en6gMdI7VF9gyECi+wkMjBF0Ns5iQiJ5Qsshh4eJIGBoe8QtScsx8ygRLo8k?=
+ =?us-ascii?Q?0VMZlu1aZ5jMuA39mxiJPX0POWk61Rru7S5kR/2eEreBr3lnziXo9MliSx+F?=
+ =?us-ascii?Q?SB9O4d0BA0+VxAMmC65FwrSoTEtZ3NobCZyJNhPdKHSjubaIWVteAf4i+zvB?=
+ =?us-ascii?Q?y/SoTDSaE+TQU/bMub1ILwBgTh2TMHy6uL2LKcag82T8RyGpjug7ZX1X44Hc?=
+ =?us-ascii?Q?gMcv2DHatl7LNH3F9/255Kglx9V/yBUwmKgYKJVMn8n0tlOatu+0HSpQktI8?=
+ =?us-ascii?Q?tVuCQLWOO70/CpcrxB4Jrlrm4y2M1binG1aW77N3xbkGWB1k37NZuhPs9uhn?=
+ =?us-ascii?Q?CjGnzjAJ5FQEVaGAe4KAmLfqwDRQhQurpfMBs+6zSEV3P7+W1sQcT8YH0kzE?=
+ =?us-ascii?Q?MbHtFJk2XsOLcKifbLSb9+XM22wVcG/eEAcygvjr4HDgaoaO/AElIRPxjGAT?=
+ =?us-ascii?Q?BrwU0HG7yJ/sV5wjum/aAK8/+nIGWGtXAIQePGnOBO2u5TCClgtcfxDbcYxO?=
+ =?us-ascii?Q?3MjmjWeBUAue2XoSP5pEBM+KYUQ/kL/ShgBbjKE2jc/pU0H39mfNUr4mRk/i?=
+ =?us-ascii?Q?4LbDztmwcKaHdlL4NySCw3CtrBBcexsoWXuc81NlGsa9rCsqkBfWlKz6R54M?=
+ =?us-ascii?Q?75glZfSyGQ=3D=3D?=
+X-OriginatorOrg: labundy.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 55a2d211-c335-4b7e-9e0a-08da40327621
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR0801MB3767.namprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 May 2022 22:44:30.2522
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: gQaDiEWjYtyRXOu9L44D4hOBT4MEpXdoTZA6SY+C5feDsyA5sfoFgMTX0so2gs5Nh+GD+aPy/oF2jCsj8hdhgA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR08MB4260
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This rewrites the ST-Ericsson DMA40 bindings in YAML.
+Hi Krzysztof,
 
-Cc: Lee Jones <lee.jones@linaro.org>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- .../devicetree/bindings/dma/ste-dma40.txt     | 138 ---------------
- .../bindings/dma/stericsson,dma40.yaml        | 159 ++++++++++++++++++
- 2 files changed, 159 insertions(+), 138 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/dma/ste-dma40.txt
- create mode 100644 Documentation/devicetree/bindings/dma/stericsson,dma40.yaml
+On Tue, May 24, 2022 at 11:31:36AM +0200, Krzysztof Kozlowski wrote:
+> Devicetree specification expects nodes to have generic names, if
+> possible, so replace custom ones with something generic.  For gpio-keys,
+> the more popular format is "key-xxx" instead of "xxx-key", so choose the
+> first one.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Cc: Andreas Kemnade <andreas@kemnade.info>
+> ---
+>  .../devicetree/bindings/input/fsl,mpr121-touchkey.yaml        | 4 ++--
+>  Documentation/devicetree/bindings/input/gpio-keys.yaml        | 4 ++--
+>  Documentation/devicetree/bindings/input/iqs269a.yaml          | 2 +-
+>  Documentation/devicetree/bindings/input/iqs626a.yaml          | 2 +-
 
-diff --git a/Documentation/devicetree/bindings/dma/ste-dma40.txt b/Documentation/devicetree/bindings/dma/ste-dma40.txt
-deleted file mode 100644
-index 99ab5c4d331e..000000000000
---- a/Documentation/devicetree/bindings/dma/ste-dma40.txt
-+++ /dev/null
-@@ -1,138 +0,0 @@
--* DMA40 DMA Controller
--
--Required properties:
--- compatible: "stericsson,dma40"
--- reg: Address range of the DMAC registers
--- reg-names: Names of the above areas to use during resource look-up
--- interrupt: Should contain the DMAC interrupt number
--- #dma-cells: must be <3>
--- memcpy-channels: Channels to be used for memcpy
--
--Optional properties:
--- dma-channels: Number of channels supported by hardware - if not present
--		the driver will attempt to obtain the information from H/W
--- disabled-channels: Channels which can not be used
--
--Example:
--
--	dma: dma-controller@801c0000 {
--		compatible = "stericsson,db8500-dma40", "stericsson,dma40";
--		reg = <0x801C0000 0x1000  0x40010000 0x800>;
--		reg-names = "base", "lcpa";
--		interrupt-parent = <&intc>;
--		interrupts = <0 25 0x4>;
--
--		#dma-cells = <2>;
--		memcpy-channels  = <56 57 58 59 60>;
--		disabled-channels  = <12>;
--		dma-channels = <8>;
--	};
--
--Clients
--Required properties:
--- dmas: Comma separated list of dma channel requests
--- dma-names: Names of the aforementioned requested channels
--
--Each dmas request consists of 4 cells:
--  1. A phandle pointing to the DMA controller
--  2. Device signal number, the signal line for single and burst requests
--     connected from the device to the DMA40 engine
--  3. The DMA request line number (only when 'use fixed channel' is set)
--  4. A 32bit mask specifying; mode, direction and endianness
--     [NB: This list will grow]
--        0x00000001: Mode:
--                Logical channel when unset
--                Physical channel when set
--        0x00000002: Direction:
--                Memory to Device when unset
--                Device to Memory when set
--        0x00000004: Endianness:
--                Little endian when unset
--                Big endian when set
--        0x00000008: Use fixed channel:
--                Use automatic channel selection when unset
--                Use DMA request line number when set
--        0x00000010: Set channel as high priority:
--                Normal priority when unset
--                High priority when set
--
--Existing signal numbers for the DB8500 ASIC. Unless specified, the signals are
--bidirectional, i.e. the same for RX and TX operations:
--
--0:  SPI controller 0
--1:  SD/MMC controller 0 (unused)
--2:  SD/MMC controller 1 (unused)
--3:  SD/MMC controller 2 (unused)
--4:  I2C port 1
--5:  I2C port 3
--6:  I2C port 2
--7:  I2C port 4
--8:  Synchronous Serial Port SSP0
--9:  Synchronous Serial Port SSP1
--10: Multi-Channel Display Engine MCDE RX
--11: UART port 2
--12: UART port 1
--13: UART port 0
--14: Multirate Serial Port MSP2
--15: I2C port 0
--16: USB OTG in/out endpoints 7 & 15
--17: USB OTG in/out endpoints 6 & 14
--18: USB OTG in/out endpoints 5 & 13
--19: USB OTG in/out endpoints 4 & 12
--20: SLIMbus or HSI channel 0
--21: SLIMbus or HSI channel 1
--22: SLIMbus or HSI channel 2
--23: SLIMbus or HSI channel 3
--24: Multimedia DSP SXA0
--25: Multimedia DSP SXA1
--26: Multimedia DSP SXA2
--27: Multimedia DSP SXA3
--28: SD/MM controller 2
--29: SD/MM controller 0
--30: MSP port 1 on DB8500 v1, MSP port 3 on DB8500 v2
--31: MSP port 0 or SLIMbus channel 0
--32: SD/MM controller 1
--33: SPI controller 2
--34: i2c3 RX2 TX2
--35: SPI controller 1
--36: USB OTG in/out endpoints 3 & 11
--37: USB OTG in/out endpoints 2 & 10
--38: USB OTG in/out endpoints 1 & 9
--39: USB OTG in/out endpoints 8
--40: SPI controller 3
--41: SD/MM controller 3
--42: SD/MM controller 4
--43: SD/MM controller 5
--44: Multimedia DSP SXA4
--45: Multimedia DSP SXA5
--46: SLIMbus channel 8 or Multimedia DSP SXA6
--47: SLIMbus channel 9 or Multimedia DSP SXA7
--48: Crypto Accelerator 1
--49: Crypto Accelerator 1 TX or Hash Accelerator 1 TX
--50: Hash Accelerator 1 TX
--51: memcpy TX (to be used by the DMA driver for memcpy operations)
--52: SLIMbus or HSI channel 4
--53: SLIMbus or HSI channel 5
--54: SLIMbus or HSI channel 6
--55: SLIMbus or HSI channel 7
--56: memcpy (to be used by the DMA driver for memcpy operations)
--57: memcpy (to be used by the DMA driver for memcpy operations)
--58: memcpy (to be used by the DMA driver for memcpy operations)
--59: memcpy (to be used by the DMA driver for memcpy operations)
--60: memcpy (to be used by the DMA driver for memcpy operations)
--61: Crypto Accelerator 0
--62: Crypto Accelerator 0 TX or Hash Accelerator 0 TX
--63: Hash Accelerator 0 TX
--
--Example:
--
--	uart@80120000 {
--		compatible = "arm,pl011", "arm,primecell";
--		reg = <0x80120000 0x1000>;
--		interrupts = <0 11 0x4>;
--
--		dmas = <&dma 13 0 0x2>, /* Logical - DevToMem */
--		       <&dma 13 0 0x0>; /* Logical - MemToDev */
--		dma-names = "rx", "rx";
--
--	};
-diff --git a/Documentation/devicetree/bindings/dma/stericsson,dma40.yaml b/Documentation/devicetree/bindings/dma/stericsson,dma40.yaml
-new file mode 100644
-index 000000000000..8bddfb3b6fa0
---- /dev/null
-+++ b/Documentation/devicetree/bindings/dma/stericsson,dma40.yaml
-@@ -0,0 +1,159 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/dma/stericsson,dma40.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ST-Ericsson DMA40 DMA Engine
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+allOf:
-+  - $ref: "dma-controller.yaml#"
-+
-+properties:
-+  "#dma-cells":
-+    const: 3
-+    description: |
-+      The first cell is the unique device channel number as indicated by this
-+      table for DB8500 which is the only ASIC known to use DMA40:
-+
-+      0:  SPI controller 0
-+      1:  SD/MMC controller 0 (unused)
-+      2:  SD/MMC controller 1 (unused)
-+      3:  SD/MMC controller 2 (unused)
-+      4:  I2C port 1
-+      5:  I2C port 3
-+      6:  I2C port 2
-+      7:  I2C port 4
-+      8:  Synchronous Serial Port SSP0
-+      9:  Synchronous Serial Port SSP1
-+      10: Multi-Channel Display Engine MCDE RX
-+      11: UART port 2
-+      12: UART port 1
-+      13: UART port 0
-+      14: Multirate Serial Port MSP2
-+      15: I2C port 0
-+      16: USB OTG in/out endpoints 7 & 15
-+      17: USB OTG in/out endpoints 6 & 14
-+      18: USB OTG in/out endpoints 5 & 13
-+      19: USB OTG in/out endpoints 4 & 12
-+      20: SLIMbus or HSI channel 0
-+      21: SLIMbus or HSI channel 1
-+      22: SLIMbus or HSI channel 2
-+      23: SLIMbus or HSI channel 3
-+      24: Multimedia DSP SXA0
-+      25: Multimedia DSP SXA1
-+      26: Multimedia DSP SXA2
-+      27: Multimedia DSP SXA3
-+      28: SD/MMC controller 2
-+      29: SD/MMC controller 0
-+      30: MSP port 1 on DB8500 v1, MSP port 3 on DB8500 v2
-+      31: MSP port 0 or SLIMbus channel 0
-+      32: SD/MMC controller 1
-+      33: SPI controller 2
-+      34: i2c3 RX2 TX2
-+      35: SPI controller 1
-+      36: USB OTG in/out endpoints 3 & 11
-+      37: USB OTG in/out endpoints 2 & 10
-+      38: USB OTG in/out endpoints 1 & 9
-+      39: USB OTG in/out endpoints 8
-+      40: SPI controller 3
-+      41: SD/MMC controller 3
-+      42: SD/MMC controller 4
-+      43: SD/MMC controller 5
-+      44: Multimedia DSP SXA4
-+      45: Multimedia DSP SXA5
-+      46: SLIMbus channel 8 or Multimedia DSP SXA6
-+      47: SLIMbus channel 9 or Multimedia DSP SXA7
-+      48: Crypto Accelerator 1
-+      49: Crypto Accelerator 1 TX or Hash Accelerator 1 TX
-+      50: Hash Accelerator 1 TX
-+      51: memcpy TX (to be used by the DMA driver for memcpy operations)
-+      52: SLIMbus or HSI channel 4
-+      53: SLIMbus or HSI channel 5
-+      54: SLIMbus or HSI channel 6
-+      55: SLIMbus or HSI channel 7
-+      56: memcpy (to be used by the DMA driver for memcpy operations)
-+      57: memcpy (to be used by the DMA driver for memcpy operations)
-+      58: memcpy (to be used by the DMA driver for memcpy operations)
-+      59: memcpy (to be used by the DMA driver for memcpy operations)
-+      60: memcpy (to be used by the DMA driver for memcpy operations)
-+      61: Crypto Accelerator 0
-+      62: Crypto Accelerator 0 TX or Hash Accelerator 0 TX
-+      63: Hash Accelerator 0 TX
-+
-+      The second cell is the DMA request line number. This is only used when
-+      a fixed channel is allocated, and indicated by setting bit 3 in the
-+      flags field (see below).
-+
-+      The third cell is a 32bit flags bitfield with the following possible
-+      bits set:
-+      0x00000001 (bit 0) - mode:
-+        Logical channel when unset
-+        Physical channel when set
-+      0x00000002 (bit 1) - direction:
-+        Memory to Device when unset
-+        Device to Memory when set
-+      0x00000004 (bit 2) - endianness:
-+        Little endian when unset
-+        Big endian when set
-+      0x00000008 (bit 3) - use fixed channel:
-+        Use automatic channel selection when unset
-+        Use DMA request line number when set
-+      0x00000010 (bit 4) - set channel as high priority:
-+        Normal priority when unset
-+        High priority when set
-+
-+  compatible:
-+    items:
-+      - const: stericsson,db8500-dma40
-+      - const: stericsson,dma40
-+
-+  reg:
-+    items:
-+      - description: DMA40 memory base
-+      - description: LCPA memory base
-+
-+  reg-names:
-+    items:
-+      - const: base
-+      - const: lcpa
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  memcpy-channels:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description: Array of u32 elements indicating which channels on the DMA
-+      engine are elegible for memcpy transfers
-+
-+required:
-+  - "#dma-cells"
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - memcpy-channels
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/mfd/dbx500-prcmu.h>
-+    dma-controller@801C0000 {
-+      compatible = "stericsson,db8500-dma40", "stericsson,dma40";
-+      reg = <0x801C0000 0x1000>, <0x40010000 0x800>;
-+      reg-names = "base", "lcpa";
-+      interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-+      #dma-cells = <3>;
-+      memcpy-channels = <56 57 58 59 60>;
-+      clocks = <&prcmu_clk PRCMU_DMACLK>;
-+    };
-+...
--- 
-2.35.3
+For iqs*a.yaml:
 
+Acked-by: Jeff LaBundy <jeff@labundy.com>
+
+Does there happen to be a list of preferred names based on device
+function, or is it simply a matter of what seems to be most common?
+
+>  .../devicetree/bindings/input/microchip,cap11xx.yaml          | 2 +-
+>  5 files changed, 7 insertions(+), 7 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml b/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
+> index 878464f128dc..5139af287d3e 100644
+> --- a/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
+> +++ b/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
+> @@ -57,7 +57,7 @@ examples:
+>          #address-cells = <1>;
+>          #size-cells = <0>;
+>  
+> -        mpr121@5a {
+> +        touchkey@5a {
+>              compatible = "fsl,mpr121-touchkey";
+>              reg = <0x5a>;
+>              interrupt-parent = <&gpio1>;
+> @@ -77,7 +77,7 @@ examples:
+>          #address-cells = <1>;
+>          #size-cells = <0>;
+>  
+> -        mpr121@5a {
+> +        touchkey@5a {
+>              compatible = "fsl,mpr121-touchkey";
+>              reg = <0x5a>;
+>              poll-interval = <20>;
+> diff --git a/Documentation/devicetree/bindings/input/gpio-keys.yaml b/Documentation/devicetree/bindings/input/gpio-keys.yaml
+> index 7fe1966ea28a..93f601c58984 100644
+> --- a/Documentation/devicetree/bindings/input/gpio-keys.yaml
+> +++ b/Documentation/devicetree/bindings/input/gpio-keys.yaml
+> @@ -127,13 +127,13 @@ examples:
+>          compatible = "gpio-keys";
+>          autorepeat;
+>  
+> -        up {
+> +        key-up {
+>              label = "GPIO Key UP";
+>              linux,code = <103>;
+>              gpios = <&gpio1 0 1>;
+>          };
+>  
+> -        down {
+> +        key-down {
+>              label = "GPIO Key DOWN";
+>              linux,code = <108>;
+>              interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
+> diff --git a/Documentation/devicetree/bindings/input/iqs269a.yaml b/Documentation/devicetree/bindings/input/iqs269a.yaml
+> index 9c154e5e1a91..d84d69f5455d 100644
+> --- a/Documentation/devicetree/bindings/input/iqs269a.yaml
+> +++ b/Documentation/devicetree/bindings/input/iqs269a.yaml
+> @@ -475,7 +475,7 @@ examples:
+>              #address-cells = <1>;
+>              #size-cells = <0>;
+>  
+> -            iqs269a@44 {
+> +            touch@44 {
+>                      #address-cells = <1>;
+>                      #size-cells = <0>;
+>  
+> diff --git a/Documentation/devicetree/bindings/input/iqs626a.yaml b/Documentation/devicetree/bindings/input/iqs626a.yaml
+> index 0cb736c541c9..dd727befe564 100644
+> --- a/Documentation/devicetree/bindings/input/iqs626a.yaml
+> +++ b/Documentation/devicetree/bindings/input/iqs626a.yaml
+> @@ -751,7 +751,7 @@ examples:
+>              #address-cells = <1>;
+>              #size-cells = <0>;
+>  
+> -            iqs626a@44 {
+> +            touch@44 {
+>                      #address-cells = <1>;
+>                      #size-cells = <0>;
+>  
+> diff --git a/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+> index d5d6bced3148..96358b12f9b2 100644
+> --- a/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+> +++ b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+> @@ -112,7 +112,7 @@ examples:
+>        #address-cells = <1>;
+>        #size-cells = <0>;
+>  
+> -      cap1188@28 {
+> +      touch@28 {
+>          compatible = "microchip,cap1188";
+>          interrupt-parent = <&gpio1>;
+>          interrupts = <0 0>;
+> -- 
+> 2.34.1
+> 
+
+Kind regards,
+Jeff LaBundy
