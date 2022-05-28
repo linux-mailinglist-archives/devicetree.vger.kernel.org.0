@@ -2,63 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D224536A78
-	for <lists+devicetree@lfdr.de>; Sat, 28 May 2022 05:51:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63D5E536AC7
+	for <lists+devicetree@lfdr.de>; Sat, 28 May 2022 06:48:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242187AbiE1DvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 May 2022 23:51:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55776 "EHLO
+        id S229734AbiE1Er6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 May 2022 00:47:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229683AbiE1DvQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 May 2022 23:51:16 -0400
-Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C542384;
-        Fri, 27 May 2022 20:51:15 -0700 (PDT)
-Received: by mail-yb1-xb36.google.com with SMTP id o80so10897821ybg.1;
-        Fri, 27 May 2022 20:51:15 -0700 (PDT)
+        with ESMTP id S229692AbiE1Er5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 May 2022 00:47:57 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2584B119078;
+        Fri, 27 May 2022 21:47:55 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id a13so5792441plh.6;
+        Fri, 27 May 2022 21:47:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=orLkwKBDXLhrzD4BMFuH9kb4hQtpnaRtRA74RMpv3ig=;
-        b=ThcmND6RFj2HLB5DknQBN270ZC7q5ZBSbUhnpvjSSxPkpgWeN8xWuH7kxfUlGvDX4U
-         RLbW71kg8ym/EFwAXdAVnbEK2sShyDaVJEw/XQXd7oTnGyIO4zbqhx+C6w/UnhiqyK+r
-         gWgK9LgL9tEM0fDqCJxUaOW8uk2meXg0Ih7leP537y4W0wTOnRSUNy2/nLq2ToQ7w2ew
-         xQOCfHwwIkzPbZddQlJUC3Y92S+W6XtrKusrrHiZkTX/puTeHq/skzPAHerq0aSYI9XN
-         FEyld4ttK60iVF0N/LStp5gDIbc+PG/spteC7pGozY3QlmlEu0CxD9rk1TlZyEknnBnI
-         sBgA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=8S3M37uPbGO5rXRdk2trr9gknVg0n8BCoIibwzx5alQ=;
+        b=l5wZoD2d2hMIkaaH2aX0czFxQDug4LQqhRdts1iA0j2JpU8T75lawgGdRB+QPJTWJe
+         QW+o6D7sT4SWofy9VCH5JwSCHVvDRGoGYaymkXNKM3+ZJTAVZoae+0hGpD+iGDjwXv9V
+         vhzlYQgAN49ym3CjMQtqSs9raVJg8pe5onLTFZbLtMr/IYyAZHj/D7dKwwmOV5wpwIP2
+         Sq6OY8R0ysdQqucHUS9K/k+j659kGgJFt/Tf9DPxi8HuoNLQTFubu3tL50dTa7XQ6fq0
+         006R3h3lZgz0WGBtxS6NegOSIlpCIINfYyEz2q4zDcrNrfG5ikCgNvT7nzvkkkV8kJEq
+         k9hQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=orLkwKBDXLhrzD4BMFuH9kb4hQtpnaRtRA74RMpv3ig=;
-        b=wFBRb2OC16Z7H+dJiqN8vUxUTQi0VayXtRKeaTamGHMC0coULp9+Rwox9D2fx6GQ4y
-         ZPE60zj0aWwRE8RvGPeubk4I44CG7nH1ddxZ/vKQONrlfnkYlepQIhvAbaj87DR8y1W9
-         EKYBVGYRZMQ5DfbgaSPF2rcBmJwzQrdLnWFeeWQHW2+9GIPyhKr2WvY9KE8sV6CCPwPB
-         u53lZjuuepfGSylP/m6BjiL8IJjspLTsKwqgVO6n2ZjHcK1zs5BKGZN/YKW6mfuKvTjY
-         Wf8OP9psr5fKkqKohgL3WrvTwwX0xJIX7s1RQaDXuoXJ2AGDyHTYzgpy4YD9PVy+fg74
-         XcxA==
-X-Gm-Message-State: AOAM531ZNmfdgs4mJ7OdEWILV7OR7ktHAFa/A9tJ0XLNrE46sc1zj7Il
-        HZeuSfT+NrpC2FzRwLnWDuwADRDHDLbpQaeAUqXLfB6L/dk=
-X-Google-Smtp-Source: ABdhPJxxrYOkGAyX4e1QCYM6a1+xjZEfex+Ht0UhrC0tGLmf7QERIkMp3OjP4TmXl+gdHOj7c3+u9HT6TM4EjppppOI=
-X-Received: by 2002:a05:6902:14e:b0:64f:d2eb:2df0 with SMTP id
- p14-20020a056902014e00b0064fd2eb2df0mr27601593ybh.557.1653709874725; Fri, 27
- May 2022 20:51:14 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=8S3M37uPbGO5rXRdk2trr9gknVg0n8BCoIibwzx5alQ=;
+        b=dk2sB4OZxDXXrSXOlb2UhjdQlhP+3+irDgbctoR3elzB/pRhktd7CxNvJ3a3yagaas
+         DHWKS0dfalhjE+NCM1Au2RNnT2K937rkcuATzjukxjZG3KczxTsnXEVlRw1tJfDocb6i
+         6KXL3QBrqoGkMIzBj+j/n0WFVmTnoc50qF7H3MQWHDe4ERVDRjVNv45J5rP2k0b4RDhR
+         QjuVUtsOG3gJAW92Oq4Qk+lGbDonN0MfpY2r+5j2F/kHx5NRc2DG6vLEB3QfQ0YxD7CI
+         lp+sFyu6QfnmGKeySQNA/Z9Vv4UaydtIq57i19FIWoXsoIoMTBriCv1eXqjQMZA3Jdl8
+         rrPA==
+X-Gm-Message-State: AOAM532H7YufOi9Kq3b/FaQNrALVA/n/I7Xv69yCwznEtzK2eM3IAsdN
+        ScvOBN5dfX6eI6r7AEN4wOU=
+X-Google-Smtp-Source: ABdhPJwBJ74idShOOJxPq4uhVfdIOw1V+5HqA2+AAGDkBN6lNZf4/kaDirB/Y2JyC97hk4wdLjZBIw==
+X-Received: by 2002:a17:902:76c4:b0:163:70e2:5a65 with SMTP id j4-20020a17090276c400b0016370e25a65mr13020891plt.119.1653713274391;
+        Fri, 27 May 2022 21:47:54 -0700 (PDT)
+Received: from google.com ([2620:15c:202:201:331d:9bef:6841:67a4])
+        by smtp.gmail.com with ESMTPSA id n8-20020a638f08000000b003f27f91135asm4341442pgd.76.2022.05.27.21.47.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 May 2022 21:47:52 -0700 (PDT)
+Date:   Fri, 27 May 2022 21:47:50 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Mike Looijmans <mike.looijmans@topic.nl>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, martink@posteo.de,
+        geert+renesas@glider.be, john@metanate.com, hechtb@gmail.com
+Subject: Re: [PATCH] Input: st1232 - Support power supply regulators
+Message-ID: <YpGpdsAJicTqHbeY@google.com>
+References: <20220524081216.8550-1-mike.looijmans@topic.nl>
 MIME-Version: 1.0
-References: <CAOuPNLjGWp4+Ub_Ccaw+tx1NQrNcqyjUG5K30uPH3uYTF_wxfw@mail.gmail.com>
- <CAOuPNLgzBA2Sbn6vS4856LwYyBo67OYKQp49+xpwX=Bi+KpLZg@mail.gmail.com>
- <65f1b675-84ac-b5da-6075-2a9f0353ab37@quicinc.com> <CAOuPNLh-NJ=GK63+iHFE-th9J8yfWZg_S3xmLgHGM_-nCFexvg@mail.gmail.com>
- <CAOuPNLgk8zRHwq7PP56NYpFagjnf_+1j1c_TYvdo6kmWQBwwuQ@mail.gmail.com>
-In-Reply-To: <CAOuPNLgk8zRHwq7PP56NYpFagjnf_+1j1c_TYvdo6kmWQBwwuQ@mail.gmail.com>
-From:   Pintu Agarwal <pintu.ping@gmail.com>
-Date:   Sat, 28 May 2022 09:21:03 +0530
-Message-ID: <CAOuPNLhN0rFVRx_ur7isKHO2GcZxefs-A=9wqJxBtMHgy3M0GQ@mail.gmail.com>
-Subject: Re: Queries: Using ifdef CONFIG condition in dts files
-To:     "T.Michael Turney" <quic_mturney@quicinc.com>
-Cc:     open list <linux-kernel@vger.kernel.org>, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, frowand.list@gmail.com,
-        linux-mm <linux-mm@kvack.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220524081216.8550-1-mike.looijmans@topic.nl>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -69,58 +71,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sorry, a small correction.
+Hi Mike,
 
-On Fri, 27 May 2022 at 17:06, Pintu Agarwal <pintu.ping@gmail.com> wrote:
->
-> On Fri, 27 May 2022 at 15:34, Pintu Agarwal <pintu.ping@gmail.com> wrote:
-> >
-> > Hi,
-> >
-> > On Thu, 26 May 2022 at 19:53, T.Michael Turney <quic_mturney@quicinc.com> wrote:
-> > >
-> > > Kernel developers correct me where I go astray, but this seems like the
-> > > CONFIG_XYZ value is not available in this file.  This would explain why
-> > > the disable case works.
-> > >
-> > > At top of dtsi file are you #include <config.h> or whatever the correct
-> > > syntax is to see the CONFIG values?
-> >
-> > Thanks for your comments.
-> > No, I could not find any specific config,h to be included to make the
-> > CONFIG values visible to dts.
-> >
->
-> BTW, I tried another approach but this also doesn't work when CONFIG is enabled.
-> a) I have created a new header file such as myxyz.h and defined a new
-> macro with config check.
-> => myxyz.h
-> +#ifdef CONFIG_XYZ
-> +#define XYZ_CMA
-> +#endif
->
-> b) Then I included the header file in my dtsi file and used ifdef with
-> the new macro.
->
-> #include "myxyz.h"
->
-> #ifdef CONFIG_XYZ
+On Tue, May 24, 2022 at 10:12:16AM +0200, Mike Looijmans wrote:
+> Add support for the VDD and IOVDD power supply inputs. This allows the
+> chip to share its supplies with other components (e.g. panel) and manage
+> them.
+> 
+> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
+> ---
+>  .../input/touchscreen/sitronix,st1232.yaml    |  6 +++
+>  drivers/input/touchscreen/st1232.c            | 54 ++++++++++++++++---
+>  2 files changed, 52 insertions(+), 8 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/sitronix,st1232.yaml b/Documentation/devicetree/bindings/input/touchscreen/sitronix,st1232.yaml
+> index 1d8ca19fd37a..240be8d49232 100644
+> --- a/Documentation/devicetree/bindings/input/touchscreen/sitronix,st1232.yaml
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/sitronix,st1232.yaml
+> @@ -28,6 +28,12 @@ properties:
+>      description: A phandle to the reset GPIO
+>      maxItems: 1
+>  
+> +  vdd-supply:
+> +    description: Power supply regulator for the chip
+> +
+> +  vddio-supply:
+> +    description: Power supply regulator for the I2C bus
+> +
+>  required:
+>    - compatible
+>    - reg
+> diff --git a/drivers/input/touchscreen/st1232.c b/drivers/input/touchscreen/st1232.c
+> index e38ba3e4f183..d9c9f6f1f11a 100644
+> --- a/drivers/input/touchscreen/st1232.c
+> +++ b/drivers/input/touchscreen/st1232.c
+> @@ -44,6 +44,11 @@
+>  #define REG_XY_COORDINATES	0x12
+>  #define ST_TS_MAX_FINGERS	10
+>  
+> +enum st1232_regulators {
+> +	ST1232_REGULATOR_VDD,
+> +	ST1232_REGULATOR_IOVDD,
+> +};
+> +
+>  struct st_chip_info {
+>  	bool	have_z;
+>  	u16	max_area;
+> @@ -56,6 +61,7 @@ struct st1232_ts_data {
+>  	struct touchscreen_properties prop;
+>  	struct dev_pm_qos_request low_latency_req;
+>  	struct gpio_desc *reset_gpio;
+> +	struct regulator_bulk_data regulators[2];
+>  	const struct st_chip_info *chip_info;
+>  	int read_buf_len;
+>  	u8 *read_buf;
+> @@ -197,17 +203,36 @@ static irqreturn_t st1232_ts_irq_handler(int irq, void *dev_id)
+>  	return IRQ_HANDLED;
+>  }
+>  
+> -static void st1232_ts_power(struct st1232_ts_data *ts, bool poweron)
+> +static int st1232_ts_power_on(struct st1232_ts_data *ts)
+> +{
+> +	int err;
+> +
+> +	err = regulator_bulk_enable(ARRAY_SIZE(ts->regulators), ts->regulators);
+> +	if (err)
+> +		return err;
 
-#ifdef XYZ_CMA
+Does it really make sense to try and handle regulators when reset gpio
+is not defined? Would it not be better to tie them to the presence of
+reset gpio to make sure we implement proper power on sequence?
 
-> &reserved_mem {
->         xyz_region: xyz_region {
->                 compatible = "shared-dma-pool";
->                 reusable;
->                 size = <0x600000>;
->         };
-> };
-> #endif
->
-> But unfortunately this approach also did not work when CONFIG is
-> enabled. So, when config enable/disable its same behavior.
-> However, if I put the #define in the dtsi file itself then it works as expected.
->
->
-> Thanks,
-> Pintu
+> +
+> +	usleep_range(5000, 6000);
+> +
+> +	if (ts->reset_gpio)
+> +		gpiod_set_value_cansleep(ts->reset_gpio, 0);
+> +
+> +	return 0;
+> +}
+
+Thanks.
+
+-- 
+Dmitry
