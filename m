@@ -2,151 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 028A2536DF8
-	for <lists+devicetree@lfdr.de>; Sat, 28 May 2022 19:34:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8C1C536E09
+	for <lists+devicetree@lfdr.de>; Sat, 28 May 2022 20:20:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239188AbiE1Res (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 May 2022 13:34:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36214 "EHLO
+        id S230144AbiE1SUv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 May 2022 14:20:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231777AbiE1Rer (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 May 2022 13:34:47 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02DC7312;
-        Sat, 28 May 2022 10:34:46 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8E4E160F68;
-        Sat, 28 May 2022 17:34:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5889EC34100;
-        Sat, 28 May 2022 17:34:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1653759286;
-        bh=yeRDBl3fGRJ9paZDzF8sBkWNRLREA17JNf2uoZPoAxQ=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=tGY92kiHIY5uu81GQg6aYbmwqKmgip2QGDziFjy9V3v9/0XQ8GAzn+d4B9pCXL2fP
-         FE68JZqPJB0r6USanjHvDqmKaAICBmCUmUOEWqSh9YmCIqdSeDXavmGgN/6Mq8PNkw
-         QmipkaFFyLUqBT4EE3qHQI1/sne+y1IgaSUT/6bmjugB/rE5/XUnSiCuZlZzM+dqb8
-         snNWSqPzVIcQo/dQHR51GfMQWpC0uqdKYhKo13BlXxTOtFhzPiXFqaN6PTK2PwJ3Mj
-         +qP7HYMFUt+ldBzbqQFMkQ+NiF92Ys3zRD1BPWuowHO9B6SjGhzpPT0vE5HyfJm8OS
-         5y0a7T4Us611g==
-Date:   Sat, 28 May 2022 18:43:37 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Dmitry Rokosov <DDRokosov@sberdevices.ru>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel <kernel@sberdevices.ru>,
-        "stano.jakubek@gmail.com" <stano.jakubek@gmail.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
-        "stephan@gerhold.net" <stephan@gerhold.net>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/3] dt-bindings: iio: accel: add dt-binding schema
- for msa311 accel driver
-Message-ID: <20220528184337.0855c8cc@jic23-huawei>
-In-Reply-To: <20220525183255.lc7hmmcfj47yrxc3@CAB-WSD-L081021.sigma.sbrf.ru>
-References: <20220525181532.6805-1-ddrokosov@sberdevices.ru>
-        <20220525181532.6805-4-ddrokosov@sberdevices.ru>
-        <20220525183255.lc7hmmcfj47yrxc3@CAB-WSD-L081021.sigma.sbrf.ru>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
+        with ESMTP id S230304AbiE1SUq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 May 2022 14:20:46 -0400
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F1AF14D32;
+        Sat, 28 May 2022 11:20:45 -0700 (PDT)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.nyi.internal (Postfix) with ESMTP id B53455C00EE;
+        Sat, 28 May 2022 14:20:41 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Sat, 28 May 2022 14:20:41 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm2; t=1653762041; x=
+        1653848441; bh=luRhvMmkAZ3heLTKp44XjFRoRWvALbzVkpsaVWW0WBc=; b=E
+        5iDtypbKtVDe5r3eWckch83M57aK+Y0XRWBzdLcsP2ZiCxy/X9w3Ps2rZndODFDN
+        KUbTYbHU1L0ZRy3D3hwXwxwz10eNuG8gc7u7qKI7EgWef71YwtZePgihLfzcUvWK
+        9kkTqsM9sopM5uMY/YSQdcF40i/esBc/OEyW72PoQKpyEqvJQe7QWboUV/2L6mcp
+        8ILa8wrQIdHX0jIz4HTN35GsFGfHBxEebCyizCjPRiB2vQbvY+wBugRgwzwmlVrJ
+        fiBVPSAKRvG3C+1dFbc5eNDxw9WYXokDfdCBgS7vPYNpg+p72ZX0/YmPciLbQKHH
+        Na5mVZUPHmZIiPocLC06A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1653762041; x=
+        1653848441; bh=luRhvMmkAZ3heLTKp44XjFRoRWvALbzVkpsaVWW0WBc=; b=m
+        0gce0H/6QsFcIrVi+wcXSbQJaZlN25jZmnfConeEKvrOYMpHv182lvI0UVjJLiyr
+        IV6oO5cqB208z8e2VW8rmCf5XZkQGrgSqnHTY72HtyvLdch6iKlAM6z47l9pzLzv
+        wteSRmD7E5N5dapoEzIrrtVnO0rqSnsdgfAqzvBxg5DYNQmLT/xCRKxopCswKFW1
+        i3mycFDTmhDc23v0PfduPJkjM/ol2vIOm9EO5S+IbqorfFgUlxTprQ2cSaPYYPYa
+        In2q4G/FsQ8fPk3kmozxPVT/HjRG1chtYPjPDXxT6CCZV4GeWP/TEV5rG0y4sZve
+        SsMv+fRCi/TYy/TmPTkOA==
+X-ME-Sender: <xms:-WeSYudHxMpB-OWYfo4m7pzjTjSGkzm7ZYqHQCHJWOFJXf5TmYrN-w>
+    <xme:-WeSYoNDFpGeETBn-EMrYeOKPF6bd90ZiNfzTrA-981wajDBx0oDpexkI_j8LSJ6x
+    J0YNpYMFqPsjBzAUA>
+X-ME-Received: <xmr:-WeSYvjIRpX6wzNDD9gyPpuHwaGSFAQxsjJvUewbRXI9ghCklPVNHc5DuNYfbzjFlThkMDJx8A7hk2V88CS3e2CZeCdn-kF1NF1CD9NkufVIK1A3NSe7mRcZNg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrkedugdduvdegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepuffvvehfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghm
+    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
+    ggtffrrghtthgvrhhnpeelteejffdvgeehkedtkeevueeuteffteffhedufeeujedvudef
+    udetieeijeevleenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrh
+    fuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhl
+    rghnugdrohhrgh
+X-ME-Proxy: <xmx:-WeSYr_NNcF-Ouyk19IQgaGr-4r_7ZhRPLnldMbxSQig8LKtHGFNyQ>
+    <xmx:-WeSYqv4GSXQs4zMODgTX12YYAH4JPPRW3ffmt22DPWgoHZEJLi2gQ>
+    <xmx:-WeSYiEfAyo4abKr3Jwa3hw1Vl3efBLZ_wj0TNFLM2VU9ucgDs5QeQ>
+    <xmx:-WeSYllbt7-Ty2lckJi7VgEHsQlre8vxsEC20_KEUjITkR2t9LesUA>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 28 May 2022 14:20:40 -0400 (EDT)
+Subject: Re: [PATCH v21 4/4] ARM: dts: imx7d-remarkable2: Enable lcdif
+To:     Alistair Francis <alistair@alistair23.me>, lgirdwood@gmail.com,
+        lee.jones@linaro.org, broonie@kernel.org, robh+dt@kernel.org,
+        kernel@pengutronix.de
+Cc:     s.hauer@pengutronix.de, alistair23@gmail.com,
+        linux-arm-kernel@lists.infradead.org, andreas@kemnade.info,
+        amitk@kernel.org, shawnguo@kernel.org,
+        linux-kernel@vger.kernel.org, geert@linux-m68k.org,
+        linux-hwmon@vger.kernel.org, linux-imx@nxp.com, linux@roeck-us.net,
+        rui.zhang@intel.com, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org
+References: <20220525115554.430971-1-alistair@alistair23.me>
+ <20220525115554.430971-5-alistair@alistair23.me>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <ea5e1659-5842-6685-52eb-f77ac4247a2d@sholland.org>
+Date:   Sat, 28 May 2022 13:20:39 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <20220525115554.430971-5-alistair@alistair23.me>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 25 May 2022 18:32:45 +0000
-Dmitry Rokosov <DDRokosov@sberdevices.ru> wrote:
+Hi Alistair,
 
-> Hello Jonathan and Rob,
+On 5/25/22 6:55 AM, Alistair Francis wrote:
+> Connect the dispaly on the reMarkable2.
 > 
-> I didn't change two places which you mentioned in the v1 review, please
-> find my comments below.
+> Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> ---
+>  arch/arm/boot/dts/imx7d-remarkable2.dts | 74 +++++++++++++++++++++++++
+>  1 file changed, 74 insertions(+)
 > 
-> On Wed, May 25, 2022 at 06:15:33PM +0000, Dmitry Rokosov wrote:
-> 
-> > +  interrupt-names:
-> > +    const: irq  
-> I stay interrupt-names node here, because otherwise dt_binding_check
-> command shows such a warning:
-> 
-> ====
->   CHECK   Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.yaml
-> Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.yaml: accelerometer@62: 'interrupt-names' does not match any of the regexes: 'pinctrl-[0-9]+'
-> ====
-> 
-> I can't delete this node from the example as well, because it's required for
-> msa311 dts i2c irq declaration.
+> diff --git a/arch/arm/boot/dts/imx7d-remarkable2.dts b/arch/arm/boot/dts/imx7d-remarkable2.dts
+> index 99ac0d242936..03a4029e1e57 100644
+> --- a/arch/arm/boot/dts/imx7d-remarkable2.dts
+> +++ b/arch/arm/boot/dts/imx7d-remarkable2.dts
+> @@ -68,6 +68,16 @@ reg_digitizer: regulator-digitizer {
+>  		startup-delay-us = <100000>; /* 100 ms */
+>  	};
+>  
+> +	reg_sdoe: regulator-sdoe {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "SDOE";
+> +		pinctrl-names = "default", "sleep";
+> +		pinctrl-0 = <&pinctrl_sdoe_reg>;
+> +		pinctrl-1 = <&pinctrl_sdoe_reg>;
+> +		gpio = <&gpio3 27 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +	};
+> +
+>  	wifi_pwrseq: wifi_pwrseq {
+>  		compatible = "mmc-pwrseq-simple";
+>  		pinctrl-names = "default";
+> @@ -76,6 +86,16 @@ wifi_pwrseq: wifi_pwrseq {
+>  		clocks = <&clks IMX7D_CLKO2_ROOT_DIV>;
+>  		clock-names = "ext_clock";
+>  	};
+> +
+> +	panel {
+> +		compatible = "eink,vb3300-kca";
+> +
+> +		port {
+> +			panel_in: endpoint {
+> +				remote-endpoint = <&display_out>;
+> +			};
+> +		};
+> +	};
 
-Sorry, you've lost me - what breaks if you drop it from the example?
-I'd expect to see no interrupt-names being documented or in the example.
+From the discussion at [1], this is not safe to merge. It exposes an
+electrophoretic display to fbcon/userspace as if it was an LCD, which it very
+much is not. Trying to write RGB pixel data to the panel could damage it.
 
-> 
-> Please help me to resolve this problem properly if possible. If we can
-> ignore such warning I'll delete interrupt-names in the next patchset's
-> version.
+So at the very least before hooking this up, the LCD controller has to know that
+the EPD needs special handling and that it cannot accept RGB.
 
-We can't ignore the warning, so this comes down to what am I missing with
-the need for it in the example...
+That doesn't necessarily mean there is a problem with the content of this patch
+-- the special handling may all be taken care of based on the compatible string
+-- but I think it's a really bad idea to merge this with how "eink,vb3300-kca"
+is currently represented in panel-simple.
 
-> 
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    i2c {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +  
-> Properties #address-cells and #size-cells are still located in the
-> schema example, because otherwise dt_binding_check raises the below 
-> warnings if we delete these properties:
+Regards,
+Samuel
 
-They should be there for the i2c node, (as they are required for an i2c bus master
-node) but you had them documented as being in the msa311 node.  If it's
-not in the
-accelerometer@62 {
+[1]: https://lore.kernel.org/lkml/Yo5kz%2F9cSd6ewC5f@phenom.ffwll.local/
 
-}
-
-section of the example documetnation doesn't belong on this file (it will be
-elsewhere). 
-
-The request is to drop the documentation of them (as we are documenting
-the msa311 part of the binding only).  They should indeed still be there
-in the example.
-
-Jonathan
-
-
-
-> 
-> =====
->   DTC     Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.yaml
-> Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dts:27.17-30: Warning (reg_format): /example-0/i2c/accelerometer@62:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-> Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dts:24.13-32.11: Warning (i2c_bus_bridge): /example-0/i2c: incorrect #address-cells for I2C bus
-> Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dts:24.13-32.11: Warning (i2c_bus_bridge): /example-0/i2c: incorrect #size-cells for I2C bus
-> Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'i2c_bus_bridge'
-> Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dts:25.30-31.15: Warning (avoid_default_addr_size): /example-0/i2c/accelerometer@62: Relying on default #address-cells value
-> Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dts:25.30-31.15: Warning (avoid_default_addr_size): /example-0/i2c/accelerometer@62: Relying on default #size-cells value
-> Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.yaml: Warning (unique_unit_address_if_enabled): Failed prerequisite 'avoid_default_addr_size'
-> =====
-> 
-> What is best way to resolve such issues without providing #address-cells
-> and #size-cells values?
+>  };
+>  
+>  &clks {
+> @@ -132,6 +152,20 @@ reg_epdpmic: vcom {
+>  	};
+>  };
+>  
+> +&lcdif {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_lcdif>;
+> +	lcd-supply = <&reg_epdpmic>;
+> +	lcd2-supply = <&reg_sdoe>;
+> +	status = "okay";
+> +
+> +	port {
+> +		display_out: endpoint {
+> +			remote-endpoint = <&panel_in>;
+> +		};
+> +	};
+> +};
+> +
+>  &snvs_pwrkey {
+>  	status = "okay";
+>  };
+> @@ -246,6 +280,46 @@ MX7D_PAD_I2C4_SCL__I2C4_SCL		0x4000007f
+>  		>;
+>  	};
+>  
+> +	pinctrl_lcdif: lcdifgrp {
+> +		fsl,pins = <
+> +			MX7D_PAD_LCD_DATA00__LCD_DATA0		0x79
+> +			MX7D_PAD_LCD_DATA01__LCD_DATA1		0x79
+> +			MX7D_PAD_LCD_DATA02__LCD_DATA2		0x79
+> +			MX7D_PAD_LCD_DATA03__LCD_DATA3		0x79
+> +			MX7D_PAD_LCD_DATA04__LCD_DATA4		0x79
+> +			MX7D_PAD_LCD_DATA05__LCD_DATA5		0x79
+> +			MX7D_PAD_LCD_DATA06__LCD_DATA6		0x79
+> +			MX7D_PAD_LCD_DATA07__LCD_DATA7		0x79
+> +			MX7D_PAD_LCD_DATA08__LCD_DATA8		0x79
+> +			MX7D_PAD_LCD_DATA09__LCD_DATA9		0x79
+> +			MX7D_PAD_LCD_DATA10__LCD_DATA10		0x79
+> +			MX7D_PAD_LCD_DATA11__LCD_DATA11		0x79
+> +			MX7D_PAD_LCD_DATA12__LCD_DATA12		0x79
+> +			MX7D_PAD_LCD_DATA13__LCD_DATA13		0x79
+> +			MX7D_PAD_LCD_DATA14__LCD_DATA14		0x79
+> +			MX7D_PAD_LCD_DATA15__LCD_DATA15		0x79
+> +
+> +			MX7D_PAD_LCD_DATA17__LCD_DATA17		0x79
+> +			MX7D_PAD_LCD_DATA18__LCD_DATA18		0x79
+> +			MX7D_PAD_LCD_DATA19__LCD_DATA19		0x79
+> +			MX7D_PAD_LCD_DATA20__LCD_DATA20		0x79
+> +			MX7D_PAD_LCD_DATA21__LCD_DATA21		0x79
+> +
+> +			MX7D_PAD_LCD_DATA23__LCD_DATA23		0x79
+> +			MX7D_PAD_LCD_CLK__LCD_CLK		0x79
+> +			MX7D_PAD_LCD_ENABLE__LCD_ENABLE		0x79
+> +			MX7D_PAD_LCD_VSYNC__LCD_VSYNC		0x79
+> +			MX7D_PAD_LCD_HSYNC__LCD_HSYNC		0x79
+> +			MX7D_PAD_LCD_RESET__LCD_RESET		0x79
+> +		>;
+> +	};
+> +
+> +	pinctrl_sdoe_reg: sdoereggrp {
+> +		fsl,pins = <
+> +			MX7D_PAD_LCD_DATA22__GPIO3_IO27		0x74
+> +		>;
+> +	};
+> +
+>  	pinctrl_uart1: uart1grp {
+>  		fsl,pins = <
+>  			MX7D_PAD_UART1_TX_DATA__UART1_DCE_TX	0x79
 > 
 
