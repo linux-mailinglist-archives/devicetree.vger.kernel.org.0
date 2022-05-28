@@ -2,70 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AEFE536C52
-	for <lists+devicetree@lfdr.de>; Sat, 28 May 2022 12:37:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C129536DDD
+	for <lists+devicetree@lfdr.de>; Sat, 28 May 2022 19:14:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233953AbiE1KhJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 May 2022 06:37:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49472 "EHLO
+        id S238623AbiE1RO0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 May 2022 13:14:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233853AbiE1KhJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 May 2022 06:37:09 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B10522182C;
-        Sat, 28 May 2022 03:37:04 -0700 (PDT)
+        with ESMTP id S238561AbiE1ROZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 May 2022 13:14:25 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67CE712D2D;
+        Sat, 28 May 2022 10:14:24 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0CCC460C7E;
-        Sat, 28 May 2022 10:37:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A9CDC34100;
-        Sat, 28 May 2022 10:37:03 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 05A75B801BF;
+        Sat, 28 May 2022 17:14:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60478C34100;
+        Sat, 28 May 2022 17:14:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1653734223;
-        bh=SuKmmY28pKiTzovsqJhz5fPRfTzVYcOhutqCxn2HdxM=;
+        s=k20201202; t=1653758061;
+        bh=i1tX6uyAyQmWx3WtUEkfTOp6hj48zz27F+SBAk/tkrk=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=BHMvYrexpNW29pfbkhTvPixlvgZptkB5VK+gG+uxxMl0gmUAWMCPwc4Hqh5ciGyf/
-         +OSZpCR21DxBKvvk3OqsPy9mWrUURtQDLCas7WU0isrLJVgHxFrS1M29L1AGjlNe+Q
-         1E0lrXuQWOxVeBMnhofq3ttGtcrI4vLqecvuuPILw73uHAfXhxMYgufUQXpyPTX/K1
-         sLWBeIKMt9edn75Hf0aWU+KhP4ECNLg/uZyM6OHhla917uPl4E24Pi1ap5GUIf92uX
-         OY/sW8mCKoe6KJaWiQ6hNvdo+bcVSpkySZWWHN6Hqc+MhOjoP5uUmr6P3CN0QUMyEA
-         k3hx9edB9rwjA==
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1nutoa-00EDuu-MA; Sat, 28 May 2022 11:37:00 +0100
+        b=OjzABn4vqPt8RdqtjbC+KUzFsJGO6g434tzB4B2wOg5sMUHnr4fBsvB5uOUWdkLDx
+         ksr5JIAVYe48EJGArGha8HdLNefJc39YPFeY8BcJGqkHhjSqILN1p+G77m7k+CKTlw
+         8xkH3DnFT2ntB4BFVa4RsXorOsvcLEDVi+KDDqtmZtCjrTLjEM2yrHidk8Rb/Ldtkk
+         jW+vX7QnxAEpBYrXtFJgQB0UYajjehEEjVr0j6hVBhm1eAbBgbniuPIONs1lGF3rWX
+         4Fp4c47x0RjYSEXI+9eWgG7Mr6X7ef8+yUGN/Y6U/96svbHfye+P9t82wUKt+GMkjm
+         DHTx6y7R1XMVA==
+Date:   Sat, 28 May 2022 18:23:14 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
+Cc:     lars@metafoo.de, robh+dt@kernel.org, tomas.melin@vaisala.com,
+        andy.shevchenko@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        thomas.haemmerle@leica-geosystems.com, linux-iio@vger.kernel.org
+Subject: Re: [PATCH V8 5/5] iio: accel: sca3300: Add inclination channels
+Message-ID: <20220528182314.0785a92b@jic23-huawei>
+In-Reply-To: <20220523062312.1401944-6-Qing-wu.Li@leica-geosystems.com.cn>
+References: <20220523062312.1401944-1-Qing-wu.Li@leica-geosystems.com.cn>
+        <20220523062312.1401944-6-Qing-wu.Li@leica-geosystems.com.cn>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Date:   Sat, 28 May 2022 11:37:00 +0100
-From:   Marc Zyngier <maz@kernel.org>
-To:     Anand Gore <anand.gore@broadcom.com>
-Cc:     Linux ARM List <linux-arm-kernel@lists.infradead.org>,
-        dan.beygelman@broadcom.com, samyon.furman@broadcom.com,
-        florian.fainelli@broadcom.com,
-        William Zhang <william.zhang@broadcom.com>,
-        tomer.yacoby@broadcom.com, kursad.oney@broadcom.com,
-        joel.peshkin@broadcom.com,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] ARM64: dts: add dts files for bcmbca SoC bcm6858
-In-Reply-To: <20220527101336.1.I66ae43da75911b704f02a759f70d66bc7e542885@changeid>
-References: <20220527171356.2461297-1-anand.gore@broadcom.com>
- <20220527101336.1.I66ae43da75911b704f02a759f70d66bc7e542885@changeid>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <be2a935ca7f7d14c35dc772cda338e5d@misterjones.org>
-X-Sender: maz@kernel.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: anand.gore@broadcom.com, linux-arm-kernel@lists.infradead.org, dan.beygelman@broadcom.com, samyon.furman@broadcom.com, florian.fainelli@broadcom.com, william.zhang@broadcom.com, tomer.yacoby@broadcom.com, kursad.oney@broadcom.com, joel.peshkin@broadcom.com, bcm-kernel-feedback-list@broadcom.com, f.fainelli@gmail.com, krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-Spam-Status: No, score=-7.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -76,152 +57,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-05-27 18:13, Anand Gore wrote:
-> Add dts for ARMv8 based broadband SoC BCM6858.
-> bcm6858.dtsi is the SoC description dts header
-> and bcm96858.dts is a simple dts file for Broadcom
-> BCM96858 Reference board that only enables the UART port.
+On Mon, 23 May 2022 06:23:12 +0000
+LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn> wrote:
+
+> Different from SCA3300, SCL3300 can output inclination angles.
+> Angles are formed from acceleration with following equations:
+> ANG_X = atan2(accx , sqrt(pow(accy , 2) + pow(accz , 2)))
+> ANG_Y = atan2(accy , sqrt(pow(accx , 2) + pow(accz , 2)))
+> ANG_Z = atan2(accz , sqrt(pow(accx , 2) + pow(accy , 2)))
 > 
-> Signed-off-by: Anand Gore <anand.gore@broadcom.com>
+> The commit adds the output of the raw value, scale
+> and scale_available of angles.
 > 
+> New interfaces:
+>   in_incli_scale
+>   in_incli_scale_available
+>   in_incli_x_raw
+>   in_incli_y_raw
+>   in_incli_z_raw
+> Data converted by application of scale to degrees.
+> 
+> Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
 > ---
-> 
->  arch/arm64/boot/dts/broadcom/bcmbca/Makefile  |   3 +-
->  .../boot/dts/broadcom/bcmbca/bcm6858.dtsi     | 120 ++++++++++++++++++
->  .../boot/dts/broadcom/bcmbca/bcm96858.dts     |  30 +++++
->  3 files changed, 152 insertions(+), 1 deletion(-)
->  create mode 100644 arch/arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi
->  create mode 100644 arch/arm64/boot/dts/broadcom/bcmbca/bcm96858.dts
-> 
-> diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/Makefile
-> b/arch/arm64/boot/dts/broadcom/bcmbca/Makefile
-> index d5f89245336c..7d98b0787b8c 100644
-> --- a/arch/arm64/boot/dts/broadcom/bcmbca/Makefile
-> +++ b/arch/arm64/boot/dts/broadcom/bcmbca/Makefile
-> @@ -1,2 +1,3 @@
->  # SPDX-License-Identifier: GPL-2.0
-> -dtb-$(CONFIG_ARCH_BCMBCA) += bcm963158.dtb
-> +dtb-$(CONFIG_ARCH_BCMBCA) += bcm963158.dtb \
-> +				bcm96858.dtb
-> diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi
-> b/arch/arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi
-> new file mode 100644
-> index 000000000000..664b8f399d69
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm6858.dtsi
-> @@ -0,0 +1,120 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright 2022 Broadcom Ltd.
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +/ {
-> +	compatible = "brcm,bcm6858", "brcm,bcmbca";
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	interrupt-parent = <&gic>;
-> +
-> +	cpus {
-> +		#address-cells = <2>;
-> +		#size-cells = <0>;
-> +
-> +		B53_0: cpu@0 {
-> +			compatible = "brcm,brahma-b53";
-> +			device_type = "cpu";
-> +			reg = <0x0 0x0>;
-> +			next-level-cache = <&L2_0>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		B53_1: cpu@1 {
-> +			compatible = "brcm,brahma-b53";
-> +			device_type = "cpu";
-> +			reg = <0x0 0x1>;
-> +			next-level-cache = <&L2_0>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		B53_2: cpu@2 {
-> +			compatible = "brcm,brahma-b53";
-> +			device_type = "cpu";
-> +			reg = <0x0 0x2>;
-> +			next-level-cache = <&L2_0>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		B53_3: cpu@3 {
-> +			compatible = "brcm,brahma-b53";
-> +			device_type = "cpu";
-> +			reg = <0x0 0x3>;
-> +			next-level-cache = <&L2_0>;
-> +			enable-method = "psci";
-> +		};
-> +		L2_0: l2-cache0 {
-> +			compatible = "cache";
-> +		};
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | 
-> IRQ_TYPE_LEVEL_LOW)>,
-> +			<GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> +			<GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> +			<GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-> +	};
-> +
-> +	pmu: pmu {
-> +		compatible = "arm,armv8-pmuv3";
-> +		interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
-> +			<GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-affinity = <&B53_0>, <&B53_1>,
-> +			<&B53_2>, <&B53_3>;
-> +	};
-> +
-> +	clocks: clocks {
-> +		periph_clk:periph-clk {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <200000000>;
-> +		};
-> +	};
-> +
-> +	psci {
-> +		compatible = "arm,psci-0.2";
-> +		method = "smc";
-> +		cpu_off = <1>;
-> +		cpu_on = <2>;
 
-No. Either this is PSCI 0.2 (and inventing your own function numbers
-is pointless), or this isn't. Either way, this is wrong.
+Hi,
 
-> +	};
-> +
-> +	axi@81000000 {
-> +		compatible = "simple-bus";
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges = <0x0 0x0 0x0 0x81000000 0x0 0x4000>;
-> +
-> +		gic: interrupt-controller@1000 {
-> +			compatible = "arm,gic-400";
-> +			#interrupt-cells = <3>;
-> +			#address-cells = <0>;
-> +			interrupt-controller;
-> +			reg = <0x0 0x1000 0x0 0x1000>,
-> +				<0x0 0x2000 0x0 0x2000>;
+One comment inline.
 
-GIC400 has another two regions for GICH and GICV, and a maintenance
-interrupt. Please add both.
+>  struct sca3300_chip_info {
+>  	const char *name;
+>  	const unsigned long *scan_masks;
+> @@ -123,12 +167,16 @@ struct sca3300_chip_info {
+>  	u8 num_accel_scales;
+>  	const int (*accel_scale)[2];
+>  	const int *accel_scale_map;
+> +	const int (*incli_scale)[2];
+> +	const int *incli_scale_map;
+> +	u8 num_incli_scales;
+>  	u8 num_freqs;
+>  	const int *freq_table;
+>  	const int *freq_map;
+>  	const int *avail_modes_table;
+>  	u8 num_avail_modes;
+>  	u8 chip_id;
+> +	bool angle;
+
+"angle" is a bit vague.  Perhaps "angle_supported"?
+
+Otherwise this looks good to me.
 
 Thanks,
 
-         M.
--- 
-Jazz is not dead. It just smells funny...
+Jonathan
+
