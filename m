@@ -2,148 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86934536A10
-	for <lists+devicetree@lfdr.de>; Sat, 28 May 2022 04:04:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D224536A78
+	for <lists+devicetree@lfdr.de>; Sat, 28 May 2022 05:51:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240856AbiE1CEj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 May 2022 22:04:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48498 "EHLO
+        id S242187AbiE1DvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 May 2022 23:51:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240292AbiE1CEi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 May 2022 22:04:38 -0400
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D37B62A07;
-        Fri, 27 May 2022 19:04:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1653703477; x=1685239477;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=zKpOzm/saM2/CRUSIPJrmqPjQqBfbs2x0FE088yI5cU=;
-  b=QfU8mcs/G6H5Di02tzgCE65rMmRtU2VCSpFa5UozRDY2P5CX0tP5DmB/
-   aD9z68SWRal7I42Av1pVZsdguM2Q6dzQSGQ6YGE681urbJS41zJvoa/Ol
-   o+zfx4XoDR3G8WWVMp5JcbFMXfOZaiRTj39X//ejmjhNAv+yuy6rEJ57G
-   DtqAT093TlVkSTEbT7Z5kGUIYq3ktIIukf9RCXiL/Qpb7ajjcaoVwMyA8
-   OIUtOzx3YDw5skrAwn+L2vgAs5aocvDqIZaCy1xzsi2Ap6tTFoyVvVSd/
-   YAF1aKHOfxLR4aY766wmDMsITkLiUTKU46nMcd5vvIF/pN+Z9wkafIZ9F
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10360"; a="299961782"
-X-IronPort-AV: E=Sophos;i="5.91,257,1647327600"; 
-   d="scan'208";a="299961782"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 May 2022 19:04:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,257,1647327600"; 
-   d="scan'208";a="719134865"
-Received: from lkp-server01.sh.intel.com (HELO db63a1be7222) ([10.239.97.150])
-  by fmsmga001.fm.intel.com with ESMTP; 27 May 2022 19:04:33 -0700
-Received: from kbuild by db63a1be7222 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nuloe-0005MT-Bh;
-        Sat, 28 May 2022 02:04:32 +0000
-Date:   Sat, 28 May 2022 10:03:51 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        linux-arm-msm@vger.kernel.org, bjorn.andersson@linaro.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org
-Cc:     kbuild-all@lists.01.org, martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/6] iommu/qcom: Add support for AArch64 IOMMU pagetables
-Message-ID: <202205280904.vsNCfpph-lkp@intel.com>
-References: <20220527212901.29268-5-konrad.dybcio@somainline.org>
+        with ESMTP id S229683AbiE1DvQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 May 2022 23:51:16 -0400
+Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C542384;
+        Fri, 27 May 2022 20:51:15 -0700 (PDT)
+Received: by mail-yb1-xb36.google.com with SMTP id o80so10897821ybg.1;
+        Fri, 27 May 2022 20:51:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=orLkwKBDXLhrzD4BMFuH9kb4hQtpnaRtRA74RMpv3ig=;
+        b=ThcmND6RFj2HLB5DknQBN270ZC7q5ZBSbUhnpvjSSxPkpgWeN8xWuH7kxfUlGvDX4U
+         RLbW71kg8ym/EFwAXdAVnbEK2sShyDaVJEw/XQXd7oTnGyIO4zbqhx+C6w/UnhiqyK+r
+         gWgK9LgL9tEM0fDqCJxUaOW8uk2meXg0Ih7leP537y4W0wTOnRSUNy2/nLq2ToQ7w2ew
+         xQOCfHwwIkzPbZddQlJUC3Y92S+W6XtrKusrrHiZkTX/puTeHq/skzPAHerq0aSYI9XN
+         FEyld4ttK60iVF0N/LStp5gDIbc+PG/spteC7pGozY3QlmlEu0CxD9rk1TlZyEknnBnI
+         sBgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=orLkwKBDXLhrzD4BMFuH9kb4hQtpnaRtRA74RMpv3ig=;
+        b=wFBRb2OC16Z7H+dJiqN8vUxUTQi0VayXtRKeaTamGHMC0coULp9+Rwox9D2fx6GQ4y
+         ZPE60zj0aWwRE8RvGPeubk4I44CG7nH1ddxZ/vKQONrlfnkYlepQIhvAbaj87DR8y1W9
+         EKYBVGYRZMQ5DfbgaSPF2rcBmJwzQrdLnWFeeWQHW2+9GIPyhKr2WvY9KE8sV6CCPwPB
+         u53lZjuuepfGSylP/m6BjiL8IJjspLTsKwqgVO6n2ZjHcK1zs5BKGZN/YKW6mfuKvTjY
+         Wf8OP9psr5fKkqKohgL3WrvTwwX0xJIX7s1RQaDXuoXJ2AGDyHTYzgpy4YD9PVy+fg74
+         XcxA==
+X-Gm-Message-State: AOAM531ZNmfdgs4mJ7OdEWILV7OR7ktHAFa/A9tJ0XLNrE46sc1zj7Il
+        HZeuSfT+NrpC2FzRwLnWDuwADRDHDLbpQaeAUqXLfB6L/dk=
+X-Google-Smtp-Source: ABdhPJxxrYOkGAyX4e1QCYM6a1+xjZEfex+Ht0UhrC0tGLmf7QERIkMp3OjP4TmXl+gdHOj7c3+u9HT6TM4EjppppOI=
+X-Received: by 2002:a05:6902:14e:b0:64f:d2eb:2df0 with SMTP id
+ p14-20020a056902014e00b0064fd2eb2df0mr27601593ybh.557.1653709874725; Fri, 27
+ May 2022 20:51:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220527212901.29268-5-konrad.dybcio@somainline.org>
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <CAOuPNLjGWp4+Ub_Ccaw+tx1NQrNcqyjUG5K30uPH3uYTF_wxfw@mail.gmail.com>
+ <CAOuPNLgzBA2Sbn6vS4856LwYyBo67OYKQp49+xpwX=Bi+KpLZg@mail.gmail.com>
+ <65f1b675-84ac-b5da-6075-2a9f0353ab37@quicinc.com> <CAOuPNLh-NJ=GK63+iHFE-th9J8yfWZg_S3xmLgHGM_-nCFexvg@mail.gmail.com>
+ <CAOuPNLgk8zRHwq7PP56NYpFagjnf_+1j1c_TYvdo6kmWQBwwuQ@mail.gmail.com>
+In-Reply-To: <CAOuPNLgk8zRHwq7PP56NYpFagjnf_+1j1c_TYvdo6kmWQBwwuQ@mail.gmail.com>
+From:   Pintu Agarwal <pintu.ping@gmail.com>
+Date:   Sat, 28 May 2022 09:21:03 +0530
+Message-ID: <CAOuPNLhN0rFVRx_ur7isKHO2GcZxefs-A=9wqJxBtMHgy3M0GQ@mail.gmail.com>
+Subject: Re: Queries: Using ifdef CONFIG condition in dts files
+To:     "T.Michael Turney" <quic_mturney@quicinc.com>
+Cc:     open list <linux-kernel@vger.kernel.org>, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, frowand.list@gmail.com,
+        linux-mm <linux-mm@kvack.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Konrad,
+Sorry, a small correction.
 
-Thank you for the patch! Perhaps something to improve:
+On Fri, 27 May 2022 at 17:06, Pintu Agarwal <pintu.ping@gmail.com> wrote:
+>
+> On Fri, 27 May 2022 at 15:34, Pintu Agarwal <pintu.ping@gmail.com> wrote:
+> >
+> > Hi,
+> >
+> > On Thu, 26 May 2022 at 19:53, T.Michael Turney <quic_mturney@quicinc.com> wrote:
+> > >
+> > > Kernel developers correct me where I go astray, but this seems like the
+> > > CONFIG_XYZ value is not available in this file.  This would explain why
+> > > the disable case works.
+> > >
+> > > At top of dtsi file are you #include <config.h> or whatever the correct
+> > > syntax is to see the CONFIG values?
+> >
+> > Thanks for your comments.
+> > No, I could not find any specific config,h to be included to make the
+> > CONFIG values visible to dts.
+> >
+>
+> BTW, I tried another approach but this also doesn't work when CONFIG is enabled.
+> a) I have created a new header file such as myxyz.h and defined a new
+> macro with config check.
+> => myxyz.h
+> +#ifdef CONFIG_XYZ
+> +#define XYZ_CMA
+> +#endif
+>
+> b) Then I included the header file in my dtsi file and used ifdef with
+> the new macro.
+>
+> #include "myxyz.h"
+>
+> #ifdef CONFIG_XYZ
 
-[auto build test WARNING on joro-iommu/next]
-[also build test WARNING on v5.18 next-20220527]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+#ifdef XYZ_CMA
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Konrad-Dybcio/iommu-qcom-Use-the-asid-read-from-device-tree-if-specified/20220528-062952
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/joro/iommu.git next
-config: arc-allyesconfig (https://download.01.org/0day-ci/archive/20220528/202205280904.vsNCfpph-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 11.3.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/0744f7d6ebfff8d6854a24d0f95f8e58885b5212
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Konrad-Dybcio/iommu-qcom-Use-the-asid-read-from-device-tree-if-specified/20220528-062952
-        git checkout 0744f7d6ebfff8d6854a24d0f95f8e58885b5212
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=arc SHELL=/bin/bash drivers/iommu/arm/arm-smmu/
-
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
-   drivers/iommu/arm/arm-smmu/qcom_iommu.c: In function 'qcom_iommu_tlb_inv_range_nosync':
->> drivers/iommu/arm/arm-smmu/qcom_iommu.c:174:58: warning: left shift count >= width of type [-Wshift-count-overflow]
-     174 |                         iova |= (unsigned long)ctx->asid << 48;
-         |                                                          ^~
-
-
-vim +174 drivers/iommu/arm/arm-smmu/qcom_iommu.c
-
-   157	
-   158	static void qcom_iommu_tlb_inv_range_nosync(unsigned long iova, size_t size,
-   159						    size_t granule, bool leaf, void *cookie)
-   160	{
-   161		struct qcom_iommu_domain *qcom_domain = cookie;
-   162		struct iommu_fwspec *fwspec = qcom_domain->fwspec;
-   163		unsigned i, reg;
-   164	
-   165		reg = leaf ? ARM_SMMU_CB_S1_TLBIVAL : ARM_SMMU_CB_S1_TLBIVA;
-   166	
-   167		for (i = 0; i < fwspec->num_ids; i++) {
-   168			struct qcom_iommu_dev *qcom_iommu = qcom_domain->iommu;
-   169			struct qcom_iommu_ctx *ctx = to_ctx(qcom_domain, fwspec->ids[i]);
-   170			size_t s = size;
-   171	
-   172			if (qcom_iommu->use_aarch64_pt) {
-   173				iova >>= 12;
- > 174				iova |= (unsigned long)ctx->asid << 48;
-   175			} else {
-   176				iova &= (1UL << 12) - 1UL;
-   177				iova |= ctx->asid;
-   178			}
-   179			do {
-   180				iommu_writel(ctx, reg, iova);
-   181				iova += granule;
-   182			} while (s -= granule);
-   183		}
-   184	}
-   185	
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+> &reserved_mem {
+>         xyz_region: xyz_region {
+>                 compatible = "shared-dma-pool";
+>                 reusable;
+>                 size = <0x600000>;
+>         };
+> };
+> #endif
+>
+> But unfortunately this approach also did not work when CONFIG is
+> enabled. So, when config enable/disable its same behavior.
+> However, if I put the #define in the dtsi file itself then it works as expected.
+>
+>
+> Thanks,
+> Pintu
