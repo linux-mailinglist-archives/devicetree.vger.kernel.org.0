@@ -2,47 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C129536DDD
-	for <lists+devicetree@lfdr.de>; Sat, 28 May 2022 19:14:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 028A2536DF8
+	for <lists+devicetree@lfdr.de>; Sat, 28 May 2022 19:34:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238623AbiE1RO0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 May 2022 13:14:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43454 "EHLO
+        id S239188AbiE1Res (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 May 2022 13:34:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238561AbiE1ROZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 May 2022 13:14:25 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67CE712D2D;
-        Sat, 28 May 2022 10:14:24 -0700 (PDT)
+        with ESMTP id S231777AbiE1Rer (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 May 2022 13:34:47 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02DC7312;
+        Sat, 28 May 2022 10:34:46 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 05A75B801BF;
-        Sat, 28 May 2022 17:14:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60478C34100;
-        Sat, 28 May 2022 17:14:19 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8E4E160F68;
+        Sat, 28 May 2022 17:34:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5889EC34100;
+        Sat, 28 May 2022 17:34:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1653758061;
-        bh=i1tX6uyAyQmWx3WtUEkfTOp6hj48zz27F+SBAk/tkrk=;
+        s=k20201202; t=1653759286;
+        bh=yeRDBl3fGRJ9paZDzF8sBkWNRLREA17JNf2uoZPoAxQ=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=OjzABn4vqPt8RdqtjbC+KUzFsJGO6g434tzB4B2wOg5sMUHnr4fBsvB5uOUWdkLDx
-         ksr5JIAVYe48EJGArGha8HdLNefJc39YPFeY8BcJGqkHhjSqILN1p+G77m7k+CKTlw
-         8xkH3DnFT2ntB4BFVa4RsXorOsvcLEDVi+KDDqtmZtCjrTLjEM2yrHidk8Rb/Ldtkk
-         jW+vX7QnxAEpBYrXtFJgQB0UYajjehEEjVr0j6hVBhm1eAbBgbniuPIONs1lGF3rWX
-         4Fp4c47x0RjYSEXI+9eWgG7Mr6X7ef8+yUGN/Y6U/96svbHfye+P9t82wUKt+GMkjm
-         DHTx6y7R1XMVA==
-Date:   Sat, 28 May 2022 18:23:14 +0100
+        b=tGY92kiHIY5uu81GQg6aYbmwqKmgip2QGDziFjy9V3v9/0XQ8GAzn+d4B9pCXL2fP
+         FE68JZqPJB0r6USanjHvDqmKaAICBmCUmUOEWqSh9YmCIqdSeDXavmGgN/6Mq8PNkw
+         QmipkaFFyLUqBT4EE3qHQI1/sne+y1IgaSUT/6bmjugB/rE5/XUnSiCuZlZzM+dqb8
+         snNWSqPzVIcQo/dQHR51GfMQWpC0uqdKYhKo13BlXxTOtFhzPiXFqaN6PTK2PwJ3Mj
+         +qP7HYMFUt+ldBzbqQFMkQ+NiF92Ys3zRD1BPWuowHO9B6SjGhzpPT0vE5HyfJm8OS
+         5y0a7T4Us611g==
+Date:   Sat, 28 May 2022 18:43:37 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
-Cc:     lars@metafoo.de, robh+dt@kernel.org, tomas.melin@vaisala.com,
-        andy.shevchenko@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        thomas.haemmerle@leica-geosystems.com, linux-iio@vger.kernel.org
-Subject: Re: [PATCH V8 5/5] iio: accel: sca3300: Add inclination channels
-Message-ID: <20220528182314.0785a92b@jic23-huawei>
-In-Reply-To: <20220523062312.1401944-6-Qing-wu.Li@leica-geosystems.com.cn>
-References: <20220523062312.1401944-1-Qing-wu.Li@leica-geosystems.com.cn>
-        <20220523062312.1401944-6-Qing-wu.Li@leica-geosystems.com.cn>
+To:     Dmitry Rokosov <DDRokosov@sberdevices.ru>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel <kernel@sberdevices.ru>,
+        "stano.jakubek@gmail.com" <stano.jakubek@gmail.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "lars@metafoo.de" <lars@metafoo.de>,
+        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
+        "stephan@gerhold.net" <stephan@gerhold.net>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 3/3] dt-bindings: iio: accel: add dt-binding schema
+ for msa311 accel driver
+Message-ID: <20220528184337.0855c8cc@jic23-huawei>
+In-Reply-To: <20220525183255.lc7hmmcfj47yrxc3@CAB-WSD-L081021.sigma.sbrf.ru>
+References: <20220525181532.6805-1-ddrokosov@sberdevices.ru>
+        <20220525181532.6805-4-ddrokosov@sberdevices.ru>
+        <20220525183255.lc7hmmcfj47yrxc3@CAB-WSD-L081021.sigma.sbrf.ru>
 X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -57,56 +65,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 23 May 2022 06:23:12 +0000
-LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn> wrote:
+On Wed, 25 May 2022 18:32:45 +0000
+Dmitry Rokosov <DDRokosov@sberdevices.ru> wrote:
 
-> Different from SCA3300, SCL3300 can output inclination angles.
-> Angles are formed from acceleration with following equations:
-> ANG_X = atan2(accx , sqrt(pow(accy , 2) + pow(accz , 2)))
-> ANG_Y = atan2(accy , sqrt(pow(accx , 2) + pow(accz , 2)))
-> ANG_Z = atan2(accz , sqrt(pow(accx , 2) + pow(accy , 2)))
+> Hello Jonathan and Rob,
 > 
-> The commit adds the output of the raw value, scale
-> and scale_available of angles.
+> I didn't change two places which you mentioned in the v1 review, please
+> find my comments below.
 > 
-> New interfaces:
->   in_incli_scale
->   in_incli_scale_available
->   in_incli_x_raw
->   in_incli_y_raw
->   in_incli_z_raw
-> Data converted by application of scale to degrees.
+> On Wed, May 25, 2022 at 06:15:33PM +0000, Dmitry Rokosov wrote:
 > 
-> Signed-off-by: LI Qingwu <Qing-wu.Li@leica-geosystems.com.cn>
-> ---
+> > +  interrupt-names:
+> > +    const: irq  
+> I stay interrupt-names node here, because otherwise dt_binding_check
+> command shows such a warning:
+> 
+> ====
+>   CHECK   Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.yaml
+> Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.yaml: accelerometer@62: 'interrupt-names' does not match any of the regexes: 'pinctrl-[0-9]+'
+> ====
+> 
+> I can't delete this node from the example as well, because it's required for
+> msa311 dts i2c irq declaration.
 
-Hi,
+Sorry, you've lost me - what breaks if you drop it from the example?
+I'd expect to see no interrupt-names being documented or in the example.
 
-One comment inline.
+> 
+> Please help me to resolve this problem properly if possible. If we can
+> ignore such warning I'll delete interrupt-names in the next patchset's
+> version.
 
->  struct sca3300_chip_info {
->  	const char *name;
->  	const unsigned long *scan_masks;
-> @@ -123,12 +167,16 @@ struct sca3300_chip_info {
->  	u8 num_accel_scales;
->  	const int (*accel_scale)[2];
->  	const int *accel_scale_map;
-> +	const int (*incli_scale)[2];
-> +	const int *incli_scale_map;
-> +	u8 num_incli_scales;
->  	u8 num_freqs;
->  	const int *freq_table;
->  	const int *freq_map;
->  	const int *avail_modes_table;
->  	u8 num_avail_modes;
->  	u8 chip_id;
-> +	bool angle;
+We can't ignore the warning, so this comes down to what am I missing with
+the need for it in the example...
 
-"angle" is a bit vague.  Perhaps "angle_supported"?
+> 
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +    i2c {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +  
+> Properties #address-cells and #size-cells are still located in the
+> schema example, because otherwise dt_binding_check raises the below 
+> warnings if we delete these properties:
 
-Otherwise this looks good to me.
+They should be there for the i2c node, (as they are required for an i2c bus master
+node) but you had them documented as being in the msa311 node.  If it's
+not in the
+accelerometer@62 {
 
-Thanks,
+}
+
+section of the example documetnation doesn't belong on this file (it will be
+elsewhere). 
+
+The request is to drop the documentation of them (as we are documenting
+the msa311 part of the binding only).  They should indeed still be there
+in the example.
 
 Jonathan
+
+
+
+> 
+> =====
+>   DTC     Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.yaml
+> Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dts:27.17-30: Warning (reg_format): /example-0/i2c/accelerometer@62:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+> Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+> Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+> Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
+> Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dts:24.13-32.11: Warning (i2c_bus_bridge): /example-0/i2c: incorrect #address-cells for I2C bus
+> Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dts:24.13-32.11: Warning (i2c_bus_bridge): /example-0/i2c: incorrect #size-cells for I2C bus
+> Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+> Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'i2c_bus_bridge'
+> Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+> Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dts:25.30-31.15: Warning (avoid_default_addr_size): /example-0/i2c/accelerometer@62: Relying on default #address-cells value
+> Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dts:25.30-31.15: Warning (avoid_default_addr_size): /example-0/i2c/accelerometer@62: Relying on default #size-cells value
+> Documentation/devicetree/bindings/iio/accel/memsensing,msa311.example.dt.yaml: Warning (unique_unit_address_if_enabled): Failed prerequisite 'avoid_default_addr_size'
+> =====
+> 
+> What is best way to resolve such issues without providing #address-cells
+> and #size-cells values?
+> 
 
