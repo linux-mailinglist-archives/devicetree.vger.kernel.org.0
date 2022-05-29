@@ -2,84 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1373253703F
-	for <lists+devicetree@lfdr.de>; Sun, 29 May 2022 10:02:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6099B537047
+	for <lists+devicetree@lfdr.de>; Sun, 29 May 2022 10:08:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229687AbiE2ICN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 May 2022 04:02:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43548 "EHLO
+        id S229533AbiE2IIC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 May 2022 04:08:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229531AbiE2ICM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 May 2022 04:02:12 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B335AB0F1
-        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 01:02:10 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id z43so5521044ede.1
-        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 01:02:10 -0700 (PDT)
+        with ESMTP id S229696AbiE2IIB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 May 2022 04:08:01 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2345159945
+        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 01:07:59 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id wh22so15722603ejb.7
+        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 01:07:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=UDbcZey2Qic72q7wZpZ3xzumGPDOPPDFso1OJL9a9QE=;
-        b=gZn7NUJQBDiX30l4ps8Ty1Jgo+c9DBxt8rxmCX47qGVZlsNvF3/ziY8kLhwnEQmke1
-         FuGjDvyAuI1I7ZLtiPhaNNolc16dzWLu2fMYwX63sYWWIGIHfBCRbVivSyQxnkefo/Bq
-         SlP+PfB6EVS/SC4ABworMcY7cisT8Gfmb/7EGRN+GtJIhxMDW4aTvxPsvCHGjXv8W395
-         UXVjwXk+hstu3nL6UPtGCNox5pUw9l9HaboW5JUpVxA2E5JyJTX/4O7ua02U6vA5XHcl
-         qjQrRrXiDWeQJvuNLlVOn1w2R0SsJCD/Hrt8Gb2LeU9DtgXJbpjSm3xmWFM4sZBD5nib
-         BLRA==
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=/9oKQoiIHCtLJ1GiPNcOALfaJrc/XLY9k2oODVX8Eww=;
+        b=pv4gsODv8js7J2ZgEckaxk4Syo6mbxwoGURgIzB+/fBFy+2coOTX+1ZawHUZbKHqWF
+         jYr4bXyX9PE1K0ObIz2S4tMh3pBNME174vnZcut/24uDizDJsbkQaraekMapUH3iVT5i
+         M6CVhqeAkNr7lakjLEy1+VZjClM7ZqfeMNb8VcqMcKoKUmDfWYf9UW1+78E8kxDCIO75
+         4hNhp0J8epVs2xbnPm4SK4J49MUskVtz8qJY7USgjszj2kdrT7Cb5VMSZ7r8JsbsU/zp
+         VSzjOY6zCUlZgDWJYbu2/Poe5ohrBPNSiVtymmmOwdQcZ+yIYGHx6En9A4wVEeLj5Sji
+         YFrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+         :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=UDbcZey2Qic72q7wZpZ3xzumGPDOPPDFso1OJL9a9QE=;
-        b=sMvnjdY6Lpr2yRFXxAyxn7B+O9+An0SdMza76r5prYD5JIOkwfJeD2zoKD91P7eMa7
-         F80vWGGHkAqDVvWERB0La6VJT2onBJy1iRY0/MXUIyeuHJZB9Dh/0aPBZ25zDGqehyPo
-         /l2EaSWeAfiuy6TN2xyNPOE3IywszDlXIk3M66PVeqIARC1P9WRZFv4sK4pZk32Pv7uj
-         MdE/eaZY+CEleoxeoG27mrJi4CwYBKiAzMCBknL6/Kcxvhfnaq+z6x5rMt86oD56rh24
-         dPcfac4BeZloyE3qdhROYMneP/tc8/qSn4x/PCpbq/ZRkUG9uAbcrp2Mm7SxIPpNPNpH
-         nEjQ==
-X-Gm-Message-State: AOAM533F3mQRkIXcmvNtE9tda4xvCeFF7jwwo4gkQet+5OTZ7/eVK1PC
-        S3HvYoLhKxpXPNczbVYEM7ufAQ==
-X-Google-Smtp-Source: ABdhPJyehAc2r10hf/j2xJPy6edB19h6IE3t7+EDA/JJ+7Ogyn8k+xE2wE4zBRqodu+Al+nqDgwOSg==
-X-Received: by 2002:a05:6402:6cc:b0:42d:bd2d:9f82 with SMTP id n12-20020a05640206cc00b0042dbd2d9f82mr5188023edy.59.1653811328959;
-        Sun, 29 May 2022 01:02:08 -0700 (PDT)
+        bh=/9oKQoiIHCtLJ1GiPNcOALfaJrc/XLY9k2oODVX8Eww=;
+        b=XQx7MvsKmSPmlsE7tvqBQdF1KucwiLPI8i0ODZWHdxHj4YCC69ETjC+Hpr0/xBGliu
+         Gi1Ifffc1+5P/w3SibxY95+Sb+Yn1sr+rEXw1XBei8b1hcwslHgYLm8cn7mQmA1eQ5/f
+         +RrLCFhv+dCwPKZdvHVgZJQiUqLneaseFLIsGnMiHRupe94uqfJQQGjl8m/jLLk3Df0L
+         LMn/CCF1wreYYIGDY/EHzmqITUYHHmSXtZyXS8rH7pb9cQGerDFCA7qmBB8EYsnsDNSZ
+         wlJ9pJ5s3ejacvE4UuIQgGzksrGKDIBu5hifpP8XbKkpPnnuO8X7T1473FP8qXFbDoKs
+         4+lw==
+X-Gm-Message-State: AOAM532FiWLvJmw//meqj0C844RwNXUnP2x0G9TN0EB4Hv8RPJ6vdswX
+        U8DtaSv5z8ZTqsbbBR+io8nquw==
+X-Google-Smtp-Source: ABdhPJy2rTrwJjkzwEbnjBlix/SQVyAjaLRROArqJUFGXbwwsBqpTnCdUXq1Bry4EYrEXx/2LauiKA==
+X-Received: by 2002:a17:906:3958:b0:6fe:90ef:c4b with SMTP id g24-20020a170906395800b006fe90ef0c4bmr44916053eje.36.1653811677641;
+        Sun, 29 May 2022 01:07:57 -0700 (PDT)
 Received: from [192.168.0.177] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id pg7-20020a170907204700b006f3ef214dfdsm2950671ejb.99.2022.05.29.01.02.07
+        by smtp.gmail.com with ESMTPSA id v2-20020a509542000000b0042dcd6f9994sm595545eda.9.2022.05.29.01.07.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 29 May 2022 01:02:08 -0700 (PDT)
-Message-ID: <21351474-56d5-6e11-314b-1599b34e3f42@linaro.org>
-Date:   Sun, 29 May 2022 10:02:07 +0200
+        Sun, 29 May 2022 01:07:57 -0700 (PDT)
+Message-ID: <89cc9ef4-7a6c-4dd0-3aac-8ad22d8ada2e@linaro.org>
+Date:   Sun, 29 May 2022 10:07:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH v2] ASoC: dt-bindings: mediatek: mt8192: Add i2s-share
- properties
+Subject: Re: [PATCH 1/7] ARM: dts: s3c2410: use local header for pinctrl
+ register values
 Content-Language: en-US
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>
-Cc:     Mark Brown <broonie@kernel.org>, kernel@collabora.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shane Chien <shane.chien@mediatek.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-References: <20220509205847.607076-1-nfraprado@collabora.com>
- <e8d854c0-e2a5-2382-4b54-c5e879170324@linaro.org>
- <20220527190542.4jckyflvtkq4n7ie@notapiano>
+To:     Chanho Park <chanho61.park@samsung.com>,
+        'Rob Herring' <robh+dt@kernel.org>,
+        'Krzysztof Kozlowski' <krzysztof.kozlowski+dt@linaro.org>,
+        'Alim Akhtar' <alim.akhtar@samsung.com>,
+        'Tomasz Figa' <tomasz.figa@gmail.com>,
+        'Sylwester Nawrocki' <s.nawrocki@samsung.com>,
+        'Linus Walleij' <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org
+References: <20220526143707.767490-1-krzysztof.kozlowski@linaro.org>
+ <CGME20220526143736epcas2p27f8a54ddcb91aa4a66adc287af0491c3@epcas2p2.samsung.com>
+ <20220526143707.767490-2-krzysztof.kozlowski@linaro.org>
+ <012d01d87181$5b9e23c0$12da6b40$@samsung.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220527190542.4jckyflvtkq4n7ie@notapiano>
+In-Reply-To: <012d01d87181$5b9e23c0$12da6b40$@samsung.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,86 +84,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/05/2022 21:05, Nícolas F. R. A. Prado wrote:
-> On Thu, May 26, 2022 at 08:49:39AM +0200, Krzysztof Kozlowski wrote:
->> On 09/05/2022 22:58, Nícolas F. R. A. Prado wrote:
->>> The Mediatek AFE PCM controller for MT8192 allows two I2S interfaces to
->>> share the same clock and act as a single interface with both input and
->>> output. Add patterns for these properties in the dt-binding. The
->>> property is split into two patterns in order to allow all valid
->>> interface pairings.
->>>
->>> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
->>>
->>> ---
->>> The series from v1 of this patch was merged although some changes were
->>> still needed in this patch, so the v1 of this patch was reverted [1] and
->>> this standalone commit addresses the feedback from v1 and readds the
->>> property.
->>>
->>> [1] https://lore.kernel.org/all/20220509185625.580811-1-nfraprado@collabora.com
->>>
->>> v1: https://lore.kernel.org/all/20220429203039.2207848-2-nfraprado@collabora.com/
->>>
->>> Changes in v2:
->>> - Added "mediatek," prefix to property
->>> - Rewrote and added more information to property description
->>> - Split into two patterns to validate that output-input pairings are
->>>   done
->>>
->>>  .../bindings/sound/mt8192-afe-pcm.yaml           | 16 ++++++++++++++++
->>>  1 file changed, 16 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
->>> index 7a25bc9b8060..2abf43c6c2c3 100644
->>> --- a/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
->>> +++ b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
->>> @@ -54,6 +54,22 @@ properties:
->>>        - const: aud_infra_clk
->>>        - const: aud_infra_26m_clk
->>>  
->>> +patternProperties:
->>> +  "^mediatek,i2s[13579]-share$":
->>> +    description:
->>> +      Each I2S interface has a single data line, input if its index is even or
->>> +      output if the index is odd. An input and an output I2S interface can be
->>> +      used together as if they were a single I2S interface with both input and
->>> +      output data lines by sharing the same clock. This property represents this
->>> +      pairing. The value should be the name of the interface whose clock is
->>> +      used, and the property name the other interface that depends on this
->>> +      clock.
->>> +    pattern: "^I2S[0268]$"
->>> +
->>> +  "^mediatek,i2s[0268]-share$":
->>> +    description: Same as above.
->>> +    pattern: "^I2S[13579]$"
+On 27/05/2022 06:22, Chanho Park wrote:
+>> Subject: [PATCH 1/7] ARM: dts: s3c2410: use local header for pinctrl
+>> register values
 >>
->> Rob's question is still valid - why these are not phandles?
+>> The DTS uses hardware register values directly in pin controller pin
+>> configuration.  These are not some IDs or other abstraction layer but raw
+>> numbers used in the registers.
+>>
+>> These numbers were previously put in the bindings header to avoid code
+>> duplication and to provide some context meaning (name), but they do not
+>> fit the purpose of bindings.  It is also quite confusing to use constants
+>> prefixed with Exynos for other SoC, because there is actually nothing here
+>> in common, except the actual value.
+>>
+>> Store the constants in a header next to DTS and use them instead of
+>> bindings.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>  arch/arm/boot/dts/s3c2410-pinctrl.h    | 19 +++++++++++++
+>>  arch/arm/boot/dts/s3c2416-pinctrl.dtsi | 38 +++++++++++++-------------
+>>  2 files changed, 38 insertions(+), 19 deletions(-)  create mode 100644
+>> arch/arm/boot/dts/s3c2410-pinctrl.h
+>>
+>> diff --git a/arch/arm/boot/dts/s3c2410-pinctrl.h
+>> b/arch/arm/boot/dts/s3c2410-pinctrl.h
+>> new file mode 100644
+>> index 000000000000..71cb0ac815b3
+>> --- /dev/null
+>> +++ b/arch/arm/boot/dts/s3c2410-pinctrl.h
+>> @@ -0,0 +1,19 @@
+>> +/* SPDX-License-Identifier: GPL-2.0 */
+>> +/*
+>> + * Samsung's Exynos pinctrl bindings
 > 
-> So, instead of having
+> "Exynos" -> "s3c2410"
 > 
-> 	i2s9-share = "I2S8";
-> 
-> on the DT, you want us to have something like this:
-> 
->         afe_i2s8: mediatek,i2s8 { };
-> 
->         mediatek,i2s9 {
->           mediatek,share-clock = <&afe_i2s8>;
->         };
-> 
-> Or do you mean something else?
 
-Not entirely. This is a binding for mediatek,mt8192-audio, not for I2S9,
-so the property should be in this binding referencing your existing I2S
-devices.
-
-> 
-> It seems like a lot more syntax to express the same thing (and the empty node
-> seems awkward), but if that's the DT way, I can change it no problem.
-
-Hm, then the follow up question: why you do not have i2s8 defined in DTS?
-
+Thanks, I need to fix it also in other files.
 
 Best regards,
 Krzysztof
