@@ -2,75 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C80E4537131
-	for <lists+devicetree@lfdr.de>; Sun, 29 May 2022 15:58:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FE2C53713B
+	for <lists+devicetree@lfdr.de>; Sun, 29 May 2022 16:00:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230296AbiE2N55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 May 2022 09:57:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58780 "EHLO
+        id S230321AbiE2OAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 May 2022 10:00:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230290AbiE2N54 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 May 2022 09:57:56 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D893532C3
-        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 06:57:54 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id m20so16389955ejj.10
-        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 06:57:54 -0700 (PDT)
+        with ESMTP id S230320AbiE2OAF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 May 2022 10:00:05 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D0AD532C1
+        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 07:00:04 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id fd25so10547307edb.3
+        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 07:00:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=eZS9UwARNMHi8CDwz38QW9WqI4Zqjp8cd1vGJxSzRYM=;
-        b=TSejUXmwsS07coKwxeAqckTl6pKplkYub35Kq6sVIs7M8sUt3Pi9D0DBY6LeUr7ORw
-         7eyuQNEtrhYCn9mO/Ur4mCcxA33SUWUrsqm6C959/lC6AWYIYZHkyfcTbXHgxXMNaEIa
-         fZJoVMZb3tc0IjSGBOj8NHGM8sPJfxcEC5Ml1orbu+TfQikHquGdErKFPNVofCSrnqJ7
-         83eifGfLD8I4oX2xZD7OaGp+NiGIWAhZhtRX6wyFP92Y6BIkYvWs2aQz6KuJ1yyc/B9n
-         4bstwzcB5Q4BmLIhvFOpCYzWG5DOueNHtKetWbQgEeijSGJjn2eofhJQt+pSWrijXxzV
-         AihA==
+        bh=4KZuh4f2icwoh3O4gMo5vXFPOQm8jy2EVytkcseFrzc=;
+        b=a136ywBxJ3Wx3YNdc2QWYXSRhtR4xyT7t1EMPBM1gQRjcEvLwk6mHbEMuexfh/5lrp
+         fxbier61dxLxLcf5JCgDbXbQzn5yxubJ4YuzqLx2k4To/tnev+fRQd5dpIjIh4bdQ2WL
+         jbZ/452Y0Q5oaNEmVDmb+bfXExsFwG/oXjYVxJh2dE4BwzeIy4dOEINx4JiGnHoLJ4PI
+         /JHnsxy1Dsb2VyN1b/OOT+d7ptoTy+ydfzoThYlKOVLG/AQDPwfo/WIK+L2/7jvIQOuT
+         +TVPng0k9+a0HdyhZ12hyJMi6cAsgkacFlaYdJrOWHWQ9pVIAt/sMCEuNe3rhl8UkLy5
+         iOpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=eZS9UwARNMHi8CDwz38QW9WqI4Zqjp8cd1vGJxSzRYM=;
-        b=7gz5972N5FkqEXI73Qr5D095xfWMgp/SIpOgPsldnQhsL/y9G/dcvPS4MqSTiO+2Sq
-         4akuvDAHUPSxUFDPkgEzx/zPyGbc2g5KICjRHwtHEGP05AeyeQ9q8XcS9yILMO5p+paY
-         cme9xhrc8YZoB7mD23vi4eYtggbiK0VIS1BHHY82bLccSBHuK12YQK9iLKKWH2lP506v
-         B8efFg+5RDWvFKJ4/3fwFLkYJE2OnzoUdyuvoQYt6eehbL46DvQcUxlgSPCRDDXicRXR
-         Q4qRtM2In1URlYn14T3V12ElD9gIvwSmkwkMqHOtdd1xpMzYhn0W+ZCClO3KcxpxSJrT
-         Godw==
-X-Gm-Message-State: AOAM533g7JcJxofOi530yL2CU4hzszWoGPpMi3s2fPIVpXop3kjowWt6
-        X1GfHqJ9zrnXsQrDfqlq9jNfBkdz8YTbNy0Y
-X-Google-Smtp-Source: ABdhPJwwfO5EE8QvoiUxj1D+HPEfPx52kDXQhWDzkLPTgGoNb3TK9jxmEWk2jTr/oOqqgImuh6y7/A==
-X-Received: by 2002:a17:907:2cf4:b0:6fe:9f6e:5a46 with SMTP id hz20-20020a1709072cf400b006fe9f6e5a46mr42546098ejc.321.1653832673215;
-        Sun, 29 May 2022 06:57:53 -0700 (PDT)
+        bh=4KZuh4f2icwoh3O4gMo5vXFPOQm8jy2EVytkcseFrzc=;
+        b=z/nLdLo88eVtrk99fL5jHGdQJGLhQRvc2rI75l5F//NmoWGef77ByoqWX+6ImkB2oF
+         0eweBmxM4jJnobL+yYDIqxIpHRNq0Ugw6R5Jd/J/ppC8LTkDk0mUVTN0yenam/qNMbiO
+         hdl+ayfvDpm/6KLNAHrvclXJcchykX/Z2gsra/IL8Q5VZnj8M3Nd7IPZ7+cUHlyjBasg
+         NxinCdvEszoDgYczJuaAXGKdRepulPc2ScutnSVANlFVXrW6tZtdU0PfySb9BpFGBT7Z
+         rzO4fQTYKnXuT304sedT4TNfDeb3j58PWgXEWk14a4Th2IyhNssTKrqfpuLXBxp7Xblh
+         DYxA==
+X-Gm-Message-State: AOAM530R/p5QtLjrEY93U0ZGbUuqSbHjV8a1LRaivDkbPSHfsfNI1UIP
+        0mbB3jmDizYMd2Oi+RzBuE0OXt0aLwFwY+PU
+X-Google-Smtp-Source: ABdhPJw+VyfksYhlU7nHKUPXpGM6GmiN6VLL+vPIpGLjG0261QBoqDJlf2cW3+TcYO9NlGIXkYiyqA==
+X-Received: by 2002:a05:6402:11d2:b0:42b:700e:a37 with SMTP id j18-20020a05640211d200b0042b700e0a37mr34461242edw.336.1653832802936;
+        Sun, 29 May 2022 07:00:02 -0700 (PDT)
 Received: from [192.168.0.177] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id o25-20020a509b19000000b0042617ba63a7sm5005081edi.49.2022.05.29.06.57.52
+        by smtp.gmail.com with ESMTPSA id a9-20020a170906368900b006febca5a604sm3137685ejc.58.2022.05.29.07.00.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 29 May 2022 06:57:52 -0700 (PDT)
-Message-ID: <ca2ff3fa-fefd-76f1-acef-bfdda8f8edbc@linaro.org>
-Date:   Sun, 29 May 2022 15:57:51 +0200
+        Sun, 29 May 2022 07:00:02 -0700 (PDT)
+Message-ID: <169e0f68-d352-6be3-516b-82c22d6fd743@linaro.org>
+Date:   Sun, 29 May 2022 16:00:01 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH 1/3] dt-bindings: arm64: add bcm4912 SoC to binding
+Subject: Re: [PATCH 2/3] [PATCH] dt-bindings: arm: add BCM6878 soc to binding
  document
 Content-Language: en-US
-To:     William Zhang <william.zhang@broadcom.com>,
+To:     Anand Gore <anand.gore@broadcom.com>,
         Linux ARM List <linux-arm-kernel@lists.infradead.org>
-Cc:     florian.fainelli@broadcom.com, dan.beygelman@broadcom.com,
-        joel.peshkin@broadcom.com, philippe.reynes@softathome.com,
-        kursad.oney@broadcom.com, tomer.yacoby@broadcom.com,
-        samyon.furman@broadcom.com, anand.gore@broadcom.com,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
+Cc:     joel.peshkin@broadcom.com, kursad.oney@broadcom.com,
+        samyon.furman@broadcom.com,
+        William Zhang <william.zhang@broadcom.com>,
+        dan.beygelman@broadcom.com, tomer.yacoby@broadcom.com,
+        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
+        florian.fainelli@broadcom.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20220528005654.13809-1-william.zhang@broadcom.com>
- <20220528005654.13809-2-william.zhang@broadcom.com>
+References: <20220527170910.2461134-1-anand.gore@broadcom.com>
+ <20220527100904.2.I383a14e417ffde9d8180ee578abbafdf09141c29@changeid>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220528005654.13809-2-william.zhang@broadcom.com>
+In-Reply-To: <20220527100904.2.I383a14e417ffde9d8180ee578abbafdf09141c29@changeid>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,15 +83,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/05/2022 02:56, William Zhang wrote:
-> Add BCM4912 SoC device tree description to bcmbca binding document.
+On 27/05/2022 19:09, Anand Gore wrote:
+> Add BCM6878 SOC device tree description to bcmbca binding document.
 > 
-> Signed-off-by: William Zhang <william.zhang@broadcom.com>
+> Signed-off-by: Anand Gore <anand.gore@broadcom.com>
+
+Your subject is corrupted. Anyway you made it a bit over-complicated. No
+need to say "to binding document" as the prefix explains it. So this
+should be (don't forget the actual subarch prefix):
+
+	dt-bindings: arm: brcm: add BCM6878 soc
+
+Same applies to your other patches.
+
 > ---
 > 
+>  .../devicetree/bindings/arm/bcm/brcm,bcmbca.yaml          | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml b/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
+> index a63e355ba8f9..4b4af2b1f277 100644
+> --- a/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
+> +++ b/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
+> @@ -43,6 +43,14 @@ properties:
+>            - const: brcm,bcmbca
+>  
+>  
+> +      - description: BCM6878 based boards
+> +        items:
+> +          - enum:
+> +              - brcm,bcm96878
+> +          - const: brcm,bcm6878
+> +          - const: brcm,bcmbca
+> +
+> +
 
+Same as before - no need for two blank lines.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>  additionalProperties: true
+>  
+>  ...
 
 
 Best regards,
