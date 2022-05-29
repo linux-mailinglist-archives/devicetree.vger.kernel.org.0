@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E476537153
-	for <lists+devicetree@lfdr.de>; Sun, 29 May 2022 16:23:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74E71537158
+	for <lists+devicetree@lfdr.de>; Sun, 29 May 2022 16:26:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230296AbiE2OXR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 May 2022 10:23:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33072 "EHLO
+        id S230420AbiE2O0N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 May 2022 10:26:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230268AbiE2OXQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 May 2022 10:23:16 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B8C45A0B8
-        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 07:23:15 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id f9so16618631ejc.0
-        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 07:23:15 -0700 (PDT)
+        with ESMTP id S230418AbiE2O0N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 May 2022 10:26:13 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40F675E151
+        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 07:26:11 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id rs12so16446189ejb.13
+        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 07:26:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=UJb4UDxzCMKxbf1CmD5HDQoIHrHBHy8/Ie4zmOsAWXA=;
-        b=FT84ta8Yc+hWvvT79Z/EotgnhlCoMR/OVwCUPIcEFFM9M4v1BVvGqveMxavRNr5CmD
-         /6Zt4vFAjSX9EqtxuLO9e3G1siSkcdvv0zot9hpX1hZA6Dzia+4OTFEP73ZZb0gR3xcg
-         2dzF/atPOO9BE18dUZ2nhoQfJ555/XxBWRQhdjYf44S60Cn94N67QQ2d4MPTFeL8hta1
-         gGJlEqXS525lItHW2cEshkDPK59W624fuOQi/w95SBBtEfxmg/bFtL72TDdF7Bzs9ac4
-         +bA2xtkFxrw4UPjRvWnPJ9No/zNPHLyhcbO8Q1R5jOgzK/CPFyc1vrZeOYVuFZT4j95b
-         NuRw==
+        bh=3JaAWKa1bZRwQXdiutq3KI0xLzzTpwZUulcAkJ3MYjM=;
+        b=KRMv70BYNXO5K4g2IQQvfaI/pcabvXgzAfht622ys8tKYzwvf3ofKMlRf6PdjuwS/9
+         X5abjnqdqyAcufM080Z4QbIOUIoWwMYVWdWsNwIRmj+tL5LFL+ntX9DgRCQrOs109ovN
+         E35I9HBfy6NOdqQFKyX8T7zNFQMUqWGueuOQkQtZE3pEsyVxwFA2ahAmDZReu0fcIqms
+         fiu0eK/aDeoFamLT1/pdTcYrp07T+7/9Vv3JtgDsVqMgoMlU9REYuKcL4lsteUnfbh61
+         cPqJcPG81LCrK7PoY1jke+x7BjpcoVgO7f9PxmNYBdMewrjn8eBEPidomKsHpNEVoEmn
+         bU/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=UJb4UDxzCMKxbf1CmD5HDQoIHrHBHy8/Ie4zmOsAWXA=;
-        b=1rS91WvP+hdyHLxdWWin5UjQ+z2ONeXTg/gpe7fmNA2+IKGdIlKrT1Ga14f3+oA5bx
-         BwuHjrq2jLRKyudcYtUVjIJ4DbvCotSzSRHmYnQ99D2KpQVAwAgKruqPIvEx8lhdjmvO
-         3Mw5Hg1shrTqLcQsAqXWzgq+asRrnKCzuS6/Ob5Z4Rgui8iAGb2Fk5Dty3i2mfXbJPyz
-         Pi4We6pBbjQk3uN4Ug44+QKHL10D0z7/hxUY3C/szxzOnv0Usx3oxqF5AxjMquCpHxw/
-         Wkiux+wfYmOS3xX8bhHOs637St3F7tFpkNBM3aQEV9rNpQJQrmQL/6oeXUfnGKsDWYbj
-         JsQQ==
-X-Gm-Message-State: AOAM530bnKcd5xj9MFotDT7KTusN6kY+7P1tWP7Y0vMkFSX1XBrQ2jnD
-        rSgPNENTL62qKkiKgrx8QCnd2g==
-X-Google-Smtp-Source: ABdhPJw+XHJUIyCFpb2k4yaW9AsZyRMrdw/FOfP9vthEhZF1TwTLqKEs+OUv+NI5FuJxjhuKSVnhnQ==
-X-Received: by 2002:a17:907:6e11:b0:6fe:feaa:bb04 with SMTP id sd17-20020a1709076e1100b006fefeaabb04mr26911341ejc.187.1653834194008;
-        Sun, 29 May 2022 07:23:14 -0700 (PDT)
+        bh=3JaAWKa1bZRwQXdiutq3KI0xLzzTpwZUulcAkJ3MYjM=;
+        b=fs2uY6y6TPbvfuoF8JuMWJqYRg0/DhcHNiDV74OhhLt65Ncy33z1qyaTrmhc66BrVx
+         G0yZVNXvUkstKT4oj1lZpftOhOPPOgIE+kagtAk53E0ZjFGt+Mxs2zvkBkQD5UDwkLCU
+         kcvEXFJj4cspwmXfaE/TXPYYg52naLw4rs7vLMYldQ3UyPg+P/T6E/6GxJMQcRHmVs9i
+         9c0z9ca2tL3XjBYZolEybjCYT0u8n8tkjJwlcFIVz16CjqPjtkEowlTrlHhWfCzzulPQ
+         fIPJscHuSOH0zXhEPwYciL6k+Qce2uY5ULvoRNnQ+DxL3vHBuun908pThXn0yueTncVr
+         2qIQ==
+X-Gm-Message-State: AOAM531rF1wQ99P2JXONLOtyE+SdE+OuXk0CGOWQRxCFK6/rLsl7dDeV
+        YyfhIBTu8cY0UP297F29FxTgiQ==
+X-Google-Smtp-Source: ABdhPJySVlVvENmtWvnwL1k/sepyDlzyv6YTdAOFbHANvVoWjCkbv8v/KqvZg0t+m68ewWBbun5GaQ==
+X-Received: by 2002:a17:907:7256:b0:6ff:2ed0:95d with SMTP id ds22-20020a170907725600b006ff2ed0095dmr12654168ejc.452.1653834369795;
+        Sun, 29 May 2022 07:26:09 -0700 (PDT)
 Received: from [192.168.0.177] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id u10-20020a17090657ca00b006f52dbc192bsm3201856ejr.37.2022.05.29.07.23.13
+        by smtp.gmail.com with ESMTPSA id a92-20020a509ee5000000b0042dbc55f6e4sm2231061edf.7.2022.05.29.07.26.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 29 May 2022 07:23:13 -0700 (PDT)
-Message-ID: <66d655bc-f08c-c6ea-8fc6-260f215a8b4c@linaro.org>
-Date:   Sun, 29 May 2022 16:23:12 +0200
+        Sun, 29 May 2022 07:26:09 -0700 (PDT)
+Message-ID: <8123f029-8d0b-be52-ba8d-8458f424ee32@linaro.org>
+Date:   Sun, 29 May 2022 16:26:08 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH 1/2] dt-bindings: arm: rockchip: Add PinePhone Pro
- bindings
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add initial support for Pine64
+ PinePhone Pro
 Content-Language: en-US
 To:     Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
         Rob Herring <robh+dt@kernel.org>,
@@ -63,13 +63,14 @@ To:     Tom Fitzhenry <tom@tom-fitzhenry.me.uk>,
         linux-rockchip@lists.infradead.org
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org, Samuel Holland <samuel@sholland.org>,
-        Ondrej Jirman <x@xff.cz>, Martijn Braam <martijn@brixit.nl>
+        Ondrej Jirman <x@xff.cz>, Martijn Braam <martijn@brixit.nl>,
+        Ondrej Jirman <megous@megous.com>
 References: <20220529031705.278631-1-tom@tom-fitzhenry.me.uk>
- <20220529031705.278631-2-tom@tom-fitzhenry.me.uk>
+ <20220529031705.278631-3-tom@tom-fitzhenry.me.uk>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220529031705.278631-2-tom@tom-fitzhenry.me.uk>
+In-Reply-To: <20220529031705.278631-3-tom@tom-fitzhenry.me.uk>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -81,15 +82,70 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 29/05/2022 05:17, Tom Fitzhenry wrote:
-> Document board compatible names for Pine64 PinePhonePro.
+> This is a basic DT that includes only features that are already
+> supported by mainline drivers.
+> 
+> Tested to work: booting from eMMC, WiFi, charging.
+> 
+> Future patches will flesh out the DT. Some components, e.g. the panel,
+> are awaiting driver mainlining.
+> 
+> This is derived from a combination of https://gitlab.com/pine64-org/linux
+> and https://megous.com/git/linux.
 > 
 > https://wiki.pine64.org/wiki/PinePhone_Pro
 > 
+> Co-developed-by: Ondrej Jirman <megous@megous.com>
+> Co-developed-by: Martijn Braam <martijn@brixit.nl>
 > Signed-off-by: Tom Fitzhenry <tom@tom-fitzhenry.me.uk>
+> ---
+>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>  .../dts/rockchip/rk3399-pinephone-pro.dts     | 939 ++++++++++++++++++
+>  2 files changed, 940 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+> index 4ae9f35434b8..c00e7922d974 100644
+> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> @@ -41,6 +41,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopi-neo4.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopi-r4s.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-orangepi.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-pinebook-pro.dtb
+> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-pinephone-pro.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-puma-haikou.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc-mezzanine.dtb
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+> new file mode 100644
+> index 000000000000..b1a486db1dfe
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+> @@ -0,0 +1,939 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2020 Martijn Braam <martijn@brixit.nl>
+> + * Copyright (c) 2021 Kamil Trzciński <ayufan@ayufan.eu>
+> + */
+> +
+> +// PinePhone Pro datasheet: https://files.pine64.org/doc/PinePhonePro/PinephonePro-Schematic-V1.0-20211127.pdf
+> +
+> +/dts-v1/;
+> +#include <dt-bindings/input/gpio-keys.h>
+> +#include <dt-bindings/input/linux-event-codes.h>
+> +#include <dt-bindings/usb/pd.h>
+> +#include <dt-bindings/leds/common.h>
+> +#include "rk3399.dtsi"
+> +#include "rk3399-opp.dtsi"
+> +
+> +/ {
+> +	model = "Pine64 PinePhonePro";
+> +	compatible = "pine64,pinephone-pro", "rockchip,rk3399";
+> +
+> +	chosen {
+> +		bootargs = "earlycon=uart8250,mmio32,0xff1a0000";
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+earlycon is debugging piece so it should not be in generic DTS.
 
 Best regards,
 Krzysztof
