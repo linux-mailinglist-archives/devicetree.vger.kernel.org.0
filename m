@@ -2,68 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 237805370B2
-	for <lists+devicetree@lfdr.de>; Sun, 29 May 2022 13:14:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B39C05370B9
+	for <lists+devicetree@lfdr.de>; Sun, 29 May 2022 13:15:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229952AbiE2LOt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 May 2022 07:14:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49864 "EHLO
+        id S229994AbiE2LP1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 May 2022 07:15:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229951AbiE2LOs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 May 2022 07:14:48 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 463549809C
-        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 04:14:47 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id y13so16148041eje.2
-        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 04:14:47 -0700 (PDT)
+        with ESMTP id S230010AbiE2LPZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 May 2022 07:15:25 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D56D986C5
+        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 04:15:23 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id f9so16184542ejc.0
+        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 04:15:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=rGhstKLsyi2KJ+CtRUGYDx9gAOcoBt1ORpXxBhyJ8eY=;
-        b=rhxV0Z1V3zfgBPgVVe7tv/AAiK+DBDDaEkHv94ZUbrB648F2ZB3DSr5iKqOPw2ro1H
-         MQx7LFkJXU6LnLfrt9CyoIo74GtkJgmQuYUheoxin73O52csTjjQEjal86Qe5UCVPnN6
-         qh/eA6sZZ7gIGVFKb/WWM4zFkdpZIXtCXIlM9D0VeQRmwaC1bVm2MiPXzVajeuFn6g0I
-         jjKCWfaElOuqCfu3RxCbdXPToPZrfEg3LfGHgbRhmaWhoWwTJhjsrHWWcQ/15jNbPmIj
-         rsOWAupXYfk2YQErqdnu90NRds7ejSw55TZKFkpDPggXqxxWuShcoqa1Cxculjw89YYc
-         u54A==
+        bh=4T5vhUM1NViXGJsshqdrzfvWLGGvkPzScftKsb22jA8=;
+        b=o4eSsznPrj3zLmr0uxcuKLBvgR5kIYT8PSVa4RjgjLmTJ8z+q0PRN7R8gBuDU0L40l
+         z0fCqy4ouKnOxJvagNegLwIJOotTliDu4qiD6rIV1j7Raz4Rzr5Gqo8ULr/gPNcPbe5L
+         YAFXTdTrnLg+lpf4b04sqp5rCofE6s4m8KlxKUEfNtyfdDFPbDkCmfqAX+qX2f+ckyWL
+         dzk04xZZg52arW9ePdUPnLO5Fhdu7mPv+6/W9/NBhWzz8NK/+Ge+fmjwclPbyahDlmxR
+         8oG+N4mml02CMDs4/029fPzHRmAOlLued3TV1QBmx6yCjhFVzGTbN8mHLnevhcp8Mcco
+         xlCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=rGhstKLsyi2KJ+CtRUGYDx9gAOcoBt1ORpXxBhyJ8eY=;
-        b=irA9wCqkddqGIE/o6TTJbfwOaTHbhsnzYg+zz/ITNnvA5MSPWImbe0BU73P9LIlNA1
-         FQ0o4Q9cVDYeXr5yatyVGDzC2E1ehVYTDwXS00BmN5aNadHq0vBl7WifwO9ldVRTJCa+
-         PenHOpGiGqVCON6U1hrnWoFh0O0L1fqNE3qT/Aoe3WOffXI5xgDuzSpndrvBYA31AIgZ
-         qOpP36XvqWY0RbtWhHmyn2YzS62m3JAzL54P6ESvI3ldFogex39yENv5fYAXJhkHqbez
-         NZrHrFlAFtWMcKhmQtDjdIV1g1185DXMlr/JcgwBrC//r3x4kbYqtCCwyBMpIRVPNLei
-         kaGQ==
-X-Gm-Message-State: AOAM531Fvm78VDy8wBB8tXqhU5GqU6omhDJhJjkYzJfMKWk2/HSGCqiO
-        7RyZCmP316CWUFvrtYoCPZtYRA==
-X-Google-Smtp-Source: ABdhPJwqfJO8L/+sv/ODyACstbNznQsCsqUfk45ZMaUmJejvzc8E1H5Mro8SHweV6EA3FC1iq9ujKg==
-X-Received: by 2002:a17:907:9805:b0:6fe:c719:f45d with SMTP id ji5-20020a170907980500b006fec719f45dmr31475165ejc.43.1653822885846;
-        Sun, 29 May 2022 04:14:45 -0700 (PDT)
+        bh=4T5vhUM1NViXGJsshqdrzfvWLGGvkPzScftKsb22jA8=;
+        b=kJwyGGNk19hxg7UzMeBWyiaA6zih5R9zzKckXO7QOWoc8pjyVD+bQAivEBVDPrcHlD
+         dSQbbmE9VHIqRtzNvJ0OZyDB3FBFtVcAPOp05G3Eej0y56RZPoEgPAddLc9cs+SLfa5a
+         n2rlWZ3MPk0zXxW/Q1VnO0+zVuPAwL74GKe3ctWIcPzyM4ad0dkkD+yS/vlKnjxovKi1
+         +vOQ7SeQC0I2d1nLWVhave5nr43QPBu1gEFXGAoNUxTtCte2MpZ/RuWIbpNGA+oaw3Re
+         MafcCSkDTED5/l5ULp2uECLiK7EwYMqs6jSySxuKQ4nz8Vtm8uzIhCH1DwDXV+fsnCzA
+         9ASw==
+X-Gm-Message-State: AOAM5309h7qRi47ed62EcLG3qWe0n7twm3Iw1xZVPgEelsiKKihtq0Bk
+        d8e2Y6KUt/EupovWqjBMOw9dwg==
+X-Google-Smtp-Source: ABdhPJzPwStx3ud/wM0wjW8ONC5Eg96YZVdJXNzlrLLfz7rL8uFBwK2nwKShMM5gVTY6pPPGRyAJ2Q==
+X-Received: by 2002:a17:907:3d01:b0:6e0:c63b:1992 with SMTP id gm1-20020a1709073d0100b006e0c63b1992mr46296729ejc.422.1653822922321;
+        Sun, 29 May 2022 04:15:22 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id hp17-20020a1709073e1100b006fecb577060sm3086313ejc.119.2022.05.29.04.14.44
+        by smtp.gmail.com with ESMTPSA id o14-20020a170906774e00b006fec6e1d856sm3084848ejn.82.2022.05.29.04.15.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 29 May 2022 04:14:45 -0700 (PDT)
+        Sun, 29 May 2022 04:15:21 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] ARM: dts: aspeed: vegman: drop unused fttmr010,pwm-outputs property
-Date:   Sun, 29 May 2022 13:14:42 +0200
-Message-Id: <20220529111442.182722-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: vendor-prefixes: document deprecated Atheros
+Date:   Sun, 29 May 2022 13:15:15 +0200
+Message-Id: <20220529111515.182810-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,28 +68,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The "fttmr010,pwm-outputs" property is neither documented, nor used in
-Linux kernel driver, so remove it.  This also fixes warning like:
+Two old boards use "atheros" prefix instead of already documented "qca".
+Document it as deprecated to fix warnings like:
 
-  aspeed-bmc-vegman-n110.dtb: timer@1e782000: 'fttmr010,pwm-outputs' does not match any of the regexes:
+  at91-gatwick.dtb: atheros@0: 'atheros,board-id' does not match any of the regexes
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/aspeed-bmc-vegman.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-vegman.dtsi b/arch/arm/boot/dts/aspeed-bmc-vegman.dtsi
-index 1a5b25b2ea29..43af63910571 100644
---- a/arch/arm/boot/dts/aspeed-bmc-vegman.dtsi
-+++ b/arch/arm/boot/dts/aspeed-bmc-vegman.dtsi
-@@ -166,7 +166,6 @@ &sdhci1 {
- };
- 
- &timer {
--	fttmr010,pwm-outputs = <5>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_timer5_default>;
- 	#pwm-cells = <3>;
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 169f11ce4cc5..61a2cdc83058 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -145,6 +145,9 @@ patternProperties:
+     description: ASRock Inc.
+   "^asus,.*":
+     description: AsusTek Computer Inc.
++  "^atheros,.*":
++    description: Qualcomm Atheros, Inc. (deprecated, use qca)
++    deprecated: true
+   "^atlas,.*":
+     description: Atlas Scientific LLC
+   "^atmel,.*":
 -- 
 2.34.1
 
