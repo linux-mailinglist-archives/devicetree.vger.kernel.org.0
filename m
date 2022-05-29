@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C8065370CF
-	for <lists+devicetree@lfdr.de>; Sun, 29 May 2022 13:38:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 509D65370D3
+	for <lists+devicetree@lfdr.de>; Sun, 29 May 2022 13:42:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230085AbiE2Lia (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 May 2022 07:38:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33154 "EHLO
+        id S230109AbiE2Lm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 May 2022 07:42:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229687AbiE2Li2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 May 2022 07:38:28 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0C37532F8
-        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 04:38:27 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id j28so10282279eda.13
-        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 04:38:27 -0700 (PDT)
+        with ESMTP id S229702AbiE2Lm2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 May 2022 07:42:28 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 265F410FCF
+        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 04:42:27 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id rs12so16063670ejb.13
+        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 04:42:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=eJTObeltLTBke/yOsO+fw5Eu7yLqlG9N158kbA/XPFA=;
-        b=KI/Xu+UnDUGqeIW4t0YA4dSjfimVBTmDX80fvWX7X7adLUUmejqIjqTUZw8AqCTTCv
-         1IJpODOkOLy0yeQLRnC7EV3nUL4oVei+prlE3NjY5KYdz3rh2nCB4x7n8Rs6VHGebt/V
-         vbcvt8s4P678Tc0BAb/LTbi8C2+46hyK1UE6KZCwSrV2uFdICDtnZ26CAO+Y10Yi2AZH
-         ceWAYcM6CbtTi+ZLvI3ZCM1ALkty1i4vhPVgtScii8w4YEo0xuZ/ps/6X9Igi0WvctsE
-         HERnRxXz2/gJ3s2EUGTuyXuaMXhTFNbK2E6zkAKcMdZ0KS5qwxFum2FHpLrythUGotWh
-         qv7Q==
+        bh=dSEhkI5/HjahBy6UP5TFGxBpf96/So5wb+ZELnO38Tk=;
+        b=B0+dB13nGah3aoB5h0BX1vGTeSIuLpvUZVLGLtOU0Ige3ZT7Mv86eaKeDjVSl5aEvR
+         5AJrO7tccJQCV7hFqelBIMJhSmPhSYXg/y78H5x0QMuIsN06pXbGaQhGGAfEsq2FDSq4
+         PVZRnrNmS5gOcJntVz3solI4hbyb5WHQhXBN6XVYnA7ke33TNXQbKWRDe36YULhJLY5b
+         oghCZfhfFdPHSrbVzZIqWcLAR3ZUSH9wmqvPpN+VrWPeivL/NVOmCc8bP/Cia/pFSmP9
+         TnrWTCP7m210d1AaRvZaNi9wIhJtO1MEu+R2sxKBzlXSU+R0IrUGfqVNw5DADZMWPYd7
+         sClw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=eJTObeltLTBke/yOsO+fw5Eu7yLqlG9N158kbA/XPFA=;
-        b=IfVg6J2FOYa7ASWCW0IhqAmWSNbhb5Bav7gwWRe4h4liBY9a8M8oHfcCGf/t+pTi5z
-         aw4jF77HXF66mXZplE+hKi/OqWKNeUyY5XoK1DsWWWL7Ag6tV04JJp8iWMu9lFCw0R/z
-         U0shnhA8rnKT/tq2kJGYIFIUAMT1m56GdSwya0EVawucrdmhScqG2DwXaZ8L1iBaHAUD
-         4lWv1Qdmb81XdUeR8Alt/Zu4l7+gYwEk+Mz/f7RP9KRy9PdpDRyg/PWDm9THYNLjeMGR
-         eR6o1Dgf3shwZmn1nHedBiwgRltS5JgzfV6FcwXde/tP88gcfY7RCPOPoFJie6vofjzs
-         urHw==
-X-Gm-Message-State: AOAM531mKqVGtStWLqNr7J88fdekMk1ls2QN3YCSRE8TwbcPFV6UvF/B
-        gP7RNKZae2pUmBM3EhAeozh7EQ==
-X-Google-Smtp-Source: ABdhPJyfA/N9yfHVdBjobc7O3sdD7DxjsnQ+Q3rOVxI1CdL5M4flYPNCOvqcxHcqjp6diWXcgR7JKQ==
-X-Received: by 2002:a05:6402:378b:b0:42a:ad8c:628f with SMTP id et11-20020a056402378b00b0042aad8c628fmr52702053edb.90.1653824306455;
-        Sun, 29 May 2022 04:38:26 -0700 (PDT)
+        bh=dSEhkI5/HjahBy6UP5TFGxBpf96/So5wb+ZELnO38Tk=;
+        b=DssYJh6s71jioVb/19ZSX4h2bYTDLOkDdVzPcalVIGfAApRjrBIGo3XPCMZAB9dkAw
+         qJzH3TXDy6eaHJvrOj8+Fjzk6na4w68dKHxwfsb7Js8IQj+j6LqLK5veG2uW7juGq1Tk
+         PJtOC7u/lbdYFU/Zs4xyVL9PbQvjJFjXNF9fX4ss79rdojFrr6aQImtcxoo1STw/GcYd
+         JjANS2P41cnrGNIO0LPClvCRdsJPsvtXDv0TSIogI+A7+12nveqaLlVktUiEZh3rZgbO
+         K46btFjWyVJZFzxOeP/yZ01R+xguuGCAAuuJW3eUwpxFEWAU9UXIWTkLp9WbepHCGqGz
+         PZmQ==
+X-Gm-Message-State: AOAM532zd2NPqH7soCQ4o08uYuHCcw/DKaP8b8ZGfyi8HiBvqsJ3xDBd
+        Lm6KXDVuvEkcAgZrT7FxlO7Lpg==
+X-Google-Smtp-Source: ABdhPJxiDFkuQV1fhHwlypWV/rr5uUGU6p0s8cO3IcKiJRhA1hAEp0D8+jLm8ghYfFiA/G/QDwr6NQ==
+X-Received: by 2002:a17:907:7f0b:b0:6ff:4502:9c2f with SMTP id qf11-20020a1709077f0b00b006ff45029c2fmr8130716ejc.532.1653824545674;
+        Sun, 29 May 2022 04:42:25 -0700 (PDT)
 Received: from [192.168.0.177] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id a9-20020a170906368900b006febca5a604sm3054184ejc.58.2022.05.29.04.38.25
+        by smtp.gmail.com with ESMTPSA id k16-20020a1709063e1000b006f4c557b7d2sm3088181eji.203.2022.05.29.04.42.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 29 May 2022 04:38:26 -0700 (PDT)
-Message-ID: <9bb791f8-a9d6-bc5d-d2e3-6776566ed5a7@linaro.org>
-Date:   Sun, 29 May 2022 13:38:24 +0200
+        Sun, 29 May 2022 04:42:25 -0700 (PDT)
+Message-ID: <8c14368b-3d28-f6de-c7fa-1e00dd1ca2ba@linaro.org>
+Date:   Sun, 29 May 2022 13:42:24 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH v4 2/3] misc: uwb: Maintainers list for Nxp Uwb SR1XX SOCs
- family drivers
+Subject: Re: [PATCH v4 3/3] misc: uwb: nxp: sr1xx: UWB driver support for
+ sr1xx series chip
 Content-Language: en-US
 To:     Manjunatha Venkatesh <manjunatha.venkatesh@nxp.com>,
         linux-kernel@vger.kernel.org, gregkh@linuxfoundation.org,
@@ -66,9 +66,9 @@ Cc:     mb@lightnvm.io, ckeepax@opensource.cirrus.com, arnd@arndb.d,
         devicetree@vger.kernel.org, ashish.deshpande@nxp.com,
         rvmanjumce@gmail.com
 References: <20220527184351.3829543-1-manjunatha.venkatesh@nxp.com>
- <20220527184351.3829543-3-manjunatha.venkatesh@nxp.com>
+ <20220527184351.3829543-4-manjunatha.venkatesh@nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220527184351.3829543-3-manjunatha.venkatesh@nxp.com>
+In-Reply-To: <20220527184351.3829543-4-manjunatha.venkatesh@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -93,31 +93,182 @@ On 27/05/2022 20:43, Manjunatha Venkatesh wrote:
 > Interface (UCI).  The corresponding details are available in the FiRa
 > Consortium Website (https://www.firaconsortium.org/).
 > 
+> Internally driver will handle two modes of operation.
+> 1.HBCI mode (sr1xx BootROM Code Interface)
+> Firmware download uses HBCI ptotocol packet structure which is
+> Nxp proprietary,Firmware File(.bin) stored in user space context
+> and during device init sequence pick the firmware packet in chunk
+> and send it to the driver with write() api call.
+> 
+> After the firmware download sequence at the end UWBS will
+> send device status notification and its indication of device entered
+> UCI mode.
+> Here after any command/response/notification will follow
+> UCI packet structure.
+> 
+> 2.UCI mode (UWB Command interface)
+> Once Firmware download finishes sr1xx will switch to UCI mode.
+> Then driver exchange command/response/notification as per the FIRA UCI
+> standard format between user space and sr1xx device.
+> Any response or notification received from sr1xx through SPI line
+> will convey to user space.
+> 
+> Its Interrupt based driver and IO Handshake needed with SR1XX Family of
+> SOCs.
+> This driver needs dts config update as per the sr1xx data sheet.
+> Corresponding document available in Documentation/devicetree/bindings/uwb
+> 
 > Message-ID: <20220504171337.3416983-1-manjunatha.venkatesh@nxp.com>
 
 Same comment.
 
+
 > Signed-off-by: Manjunatha Venkatesh <manjunatha.venkatesh@nxp.com>
 > ---
->  MAINTAINERS | 6 ++++++
->  1 file changed, 6 insertions(+)
+> Changes since v3:
+>   - Commit Message Description updated
+>   - Renamed file from sr1xx.c to nxp-sr1xx.c
+>   - Removed unwanted header files
+>   - Removed sr1xx.h file since its not required for single source file
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 41c9c8f2b96d..3d64aa8bac0e 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -14306,6 +14306,12 @@ S:	Supported
->  F:	Documentation/devicetree/bindings/net/nfc/nxp,nci.yaml
->  F:	drivers/nfc/nxp-nci
+
+Thank you for your patch. There is something to discuss/improve.
+
+>  drivers/misc/Kconfig     |  12 +
+>  drivers/misc/Makefile    |   1 +
+>  drivers/misc/nxp-sr1xx.c | 834 +++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 847 insertions(+)
+>  create mode 100644 drivers/misc/nxp-sr1xx.c
+> 
+> diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+> index 41d2bb0ae23a..4f81d5758940 100644
+> --- a/drivers/misc/Kconfig
+> +++ b/drivers/misc/Kconfig
+> @@ -483,6 +483,18 @@ config OPEN_DICE
 >  
-> +NXP-SR1XX UWB DRIVER
-> +M:	Manjunatha Venkatesh <manjunatha.venkatesh@nxp.com>
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/uwb/nxp,uwb-sr1xx.yaml
-> +F:	drivers/misc/nxp-sr1xx.c
+>  	  If unsure, say N.
+>  
+> +config NXP_UWB
+
+It is not a misc driver. It is communication driver, so closer to
+network. Please find appropriate subsystem.
+
+> +        tristate "Nxp UCI(Uwb Command Interface) protocol driver support"
+
+Isn't the name of company NXP?
+
+> +        depends on SPI
+> +        help
+> +        This option enables the UWB driver for Nxp sr1xx
+
+The same...
+
+> +        device. Such device supports UCI packet structure,
+> +        FiRa compliant.
+> +
+> +        Say Y here to compile support for sr1xx into the kernel or
+> +        say M to compile it as a module. The module will be called
+> +        sr1xx.ko
+> +
+>  source "drivers/misc/c2port/Kconfig"
+>  source "drivers/misc/eeprom/Kconfig"
+>  source "drivers/misc/cb710/Kconfig"
+> diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
+> index 70e800e9127f..d4e6e4f1ec29 100644
+> --- a/drivers/misc/Makefile
+> +++ b/drivers/misc/Makefile
+> @@ -60,3 +60,4 @@ obj-$(CONFIG_XILINX_SDFEC)	+= xilinx_sdfec.o
+>  obj-$(CONFIG_HISI_HIKEY_USB)	+= hisi_hikey_usb.o
+>  obj-$(CONFIG_HI6421V600_IRQ)	+= hi6421v600-irq.o
+>  obj-$(CONFIG_OPEN_DICE)		+= open-dice.o
+> +obj-$(CONFIG_NXP_UWB) 		+= nxp-sr1xx.o
+
+Looks like wrong order.
+
+> diff --git a/drivers/misc/nxp-sr1xx.c b/drivers/misc/nxp-sr1xx.c
+> new file mode 100644
+> index 000000000000..25648712a61b
+> --- /dev/null
+> +++ b/drivers/misc/nxp-sr1xx.c
+> @@ -0,0 +1,834 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * SPI driver for UWB SR1xx
+> + * Copyright (C) 2018-2022 NXP.
+> + *
+> + * Author: Manjunatha Venkatesh <manjunatha.venkatesh@nxp.com>
+> + */
+> +#include <linux/miscdevice.h>
+> +#include <linux/delay.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/of_gpio.h>
+> +#include <linux/spi/spi.h>
+> +
+> +#define SR1XX_MAGIC 0xEA
+> +#define SR1XX_SET_PWR _IOW(SR1XX_MAGIC, 0x01, long)
+> +#define SR1XX_SET_FWD _IOW(SR1XX_MAGIC, 0x02, long)
+> +
+> +#define UCI_HEADER_LEN 4
+> +#define HBCI_HEADER_LEN 4
+> +#define UCI_PAYLOAD_LEN_OFFSET 3
+> +
+> +#define UCI_EXT_PAYLOAD_LEN_IND_OFFSET 1
+> +#define UCI_EXT_PAYLOAD_LEN_IND_OFFSET_MASK 0x80
+> +#define UCI_EXT_PAYLOAD_LEN_OFFSET 2
+> +
+> +#define SR1XX_TXBUF_SIZE 4200
+> +#define SR1XX_RXBUF_SIZE 4200
+> +#define SR1XX_MAX_TX_BUF_SIZE 4200
+> +
+> +#define MAX_RETRY_COUNT_FOR_IRQ_CHECK 100
+> +#define MAX_RETRY_COUNT_FOR_HANDSHAKE 1000
 > +
 
-Squash it with driver change. No need for separate commit.
+(...)
+
+> +
+> +static const struct dev_pm_ops sr1xx_dev_pm_ops = { SET_SYSTEM_SLEEP_PM_OPS(
+> +	sr1xx_dev_suspend, sr1xx_dev_resume) };
+> +
+> +static struct spi_driver sr1xx_driver = {
+> +	.driver = {
+> +		   .name = "sr1xx",
+> +		   .pm = &sr1xx_dev_pm_ops,
+> +		   .bus = &spi_bus_type,
+> +		   .owner = THIS_MODULE,
+
+No, this was removed some years ago... Please run all regular static
+tools on your code sparse, smatch and coccinelle.
+
+There is no need for us to do the review of things pointed out by tools.
+
+
+> +		   .of_match_table = sr1xx_dt_match,
+> +		    },
+> +	.probe = sr1xx_probe,
+> +	.remove = sr1xx_remove,
+> +};
+> +
+> +static int __init sr1xx_dev_init(void)
+> +{
+> +	return spi_register_driver(&sr1xx_driver);
+> +}
+> +
+> +module_init(sr1xx_dev_init);
+> +
+> +static void __exit sr1xx_dev_exit(void)
+> +{
+> +	spi_unregister_driver(&sr1xx_driver);
+> +}
+
+Why this isn't a module_spi_driver?
+
+> +
+> +module_exit(sr1xx_dev_exit);
+> +
+> +MODULE_AUTHOR("Manjunatha Venkatesh <manjunatha.venkatesh@nxp.com>");
+> +MODULE_DESCRIPTION("NXP SR1XX SPI driver");
+> +MODULE_LICENSE("GPL");
 
 
 Best regards,
