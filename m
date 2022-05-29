@@ -2,70 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB09B5371AB
-	for <lists+devicetree@lfdr.de>; Sun, 29 May 2022 17:45:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 532DA5371AE
+	for <lists+devicetree@lfdr.de>; Sun, 29 May 2022 17:47:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229978AbiE2Pph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 May 2022 11:45:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51532 "EHLO
+        id S231128AbiE2Pra (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 May 2022 11:47:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229937AbiE2Ppg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 May 2022 11:45:36 -0400
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA65169293
-        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 08:45:35 -0700 (PDT)
-Received: by mail-ot1-x333.google.com with SMTP id c15-20020a9d684f000000b0060b097c71ecso6231912oto.10
-        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 08:45:35 -0700 (PDT)
+        with ESMTP id S229835AbiE2Pra (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 May 2022 11:47:30 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53FD2694B9
+        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 08:47:28 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id t13so11726382wrg.9
+        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 08:47:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=33H7bzlF73boyoKARvolMJlGymprQ+hHPrvlaQBxLsY=;
-        b=oh4rr95iQh6Mc7BvJW/B5Gu/VJaKNiuu/UnrbEw077vRcURHt7BZTHmB1qHJVuMU96
-         gaNrxdhKiJJAnxq3iAYwSTDrlmkgGVkCFjplUP9nlyI5kyMH+/mkUZ0n5KlNeYOE6Te0
-         quind0SOn4OrCTrllVVckIXnN7xWRlv67F0eX1tgMwS7NvB7OZ4416OnK38iBQ1s6+26
-         ZRM9AMNuqkQK2+wSn9ersPyxHjnp0/eQCADUn0FY12+s7simRtw1VQxruUiNesWNK0Jz
-         tiS0ZT2VxCyhFOkXEgL9s2AhzxCfbCvYk/GE0IO9KXRkp9ys70wlMIGrXnbOMBHysMof
-         cBXg==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qnKqeTPuz31MP8DkEz9vuj/dviTwiPnr2/Rmul7p7v0=;
+        b=8XjeiF9dLX/F73sAN7jeHWEZLMLKRNbLyw6jpLljeZcZg+OoGSjNTRc6ZoajO/5wvg
+         cad2nHEOy1MaqJdoPrdrV0nwtCyOIxLIJMCc8SB04mfmGu7B14Pn0+0HGHHV7dFaWm+H
+         ztfLfrmEp1V4sXew+sJJV1gaxM6VxIY50hh9+S70ElnUYq9zH1RQIPgF7/Otd0WiPBut
+         kCrGD4oOBJ6PdziomJL62cr31LuB/ObkkskAwpS9Nw28dYXEFgFwzaG0pAgjw6y+eRGv
+         i5nWKASomuOe+J7WB4t266/wylOzHuzdGPcRCe5CrGYIApp1x96Vc1gJaPVvkmg2NqNU
+         rgkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=33H7bzlF73boyoKARvolMJlGymprQ+hHPrvlaQBxLsY=;
-        b=KCCDiVDl9UIbGqhZNVeX9Nx44+iObFo/T8ViOMsdw4yl9QNT/mEJyVtBfTZ3woZPb+
-         4YSi8cpgs9b+epkfS82kEasjsAVKJ2PNAvNu6BtIBRMguQ9rlz663l0nvqsb0KzVpKVq
-         qx3Hzu8dubukGi59NLBHHNMDuR9IdaTNL9pcL0ksEP6lw2zXkpUntFd/JiGex1B36l6E
-         2FkovY6GU6scopJXRMz42VVwwofoU8dW4SDGWffXrQ8DtAmL3ZA8RqRvbImzsioC+S4Y
-         ON1qDuybx/x2V/xsmIA08ZPMHucgI3YLsB8LIswOghbI8rpPzOV2cSPxGw/thuCjTCkx
-         iDeQ==
-X-Gm-Message-State: AOAM5304FyhfLo3XASti5oTrqvHTtmx5Nx6d6NIfFJMrzkEj36M2SHN0
-        3FTQ2yl5Bq93hr7S4f6jpo9Nm40T4Y2nENLn9O0=
-X-Google-Smtp-Source: ABdhPJx6tyAyu0y7TsG3UgLqUk/HGZax1wGC55H62sSKLJZUxoEj3IW/wf640WU7RQDWbbYB65lbTVFRufwND9yrlR8=
-X-Received: by 2002:a9d:6e97:0:b0:60b:3a60:142b with SMTP id
- a23-20020a9d6e97000000b0060b3a60142bmr7421215otr.217.1653839135217; Sun, 29
- May 2022 08:45:35 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qnKqeTPuz31MP8DkEz9vuj/dviTwiPnr2/Rmul7p7v0=;
+        b=NcYU1do3zDTdtGweO5ASG0AA2QFh/N8y0pZ8WlSQzW9x1SfgFoUSXzxDbIVjtYc17R
+         Gfz6doYo7TKANTTgw7tNsZkBVbM/81Qr+VQ1bHmsmtrgeMirJm9kgG6KKDCBdAaAkuvq
+         kb5S7ceM+XfLtd6rNCTx/1MX8KVF4D7zKLnSJ3QelQtix14ytbjTls+I4qnHenOCUGFU
+         EARUB1yzjSjgu4IeanE7rcMjrx7a7YO1VN5rekykNtnzXU4G4LFIY6h7nb5nnKTcw4iG
+         sxaemEZuxgC+jgAv3qh9uvfto0zVK5TDbVNfm00IbGA8jj8zX/fWrbluxnZ8T+s/1gIh
+         b9Sg==
+X-Gm-Message-State: AOAM533+8Hcv0HzQHtj9VXh90HWK3ZwU6ktqLItXa7CQd8QbNuO9/Y/7
+        y4XrxFYfRPATHYPn0vMJLTxLnA==
+X-Google-Smtp-Source: ABdhPJyJU60U7IvzKvUdTZ/qiORiBeb9Mht2Jqd7Q6qxgDKpWe+tfKckKrUT+DlJwG1A/b6NnHsI3Q==
+X-Received: by 2002:a05:6000:2cc:b0:20d:e6c:e4f8 with SMTP id o12-20020a05600002cc00b0020d0e6ce4f8mr41592097wry.374.1653839245826;
+        Sun, 29 May 2022 08:47:25 -0700 (PDT)
+Received: from helium.lan ([88.160.162.107])
+        by smtp.gmail.com with ESMTPSA id i2-20020a1c5402000000b003972dcfb614sm7549942wmb.14.2022.05.29.08.47.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 29 May 2022 08:47:25 -0700 (PDT)
+From:   Fabien Parent <fparent@baylibre.com>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+Cc:     Fabien Parent <fparent@baylibre.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH] dt-bindings: regulator: mt6315-regulator: fix invalid allowed mode
+Date:   Sun, 29 May 2022 17:46:13 +0200
+Message-Id: <20220529154613.337559-1-fparent@baylibre.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Received: by 2002:a05:6358:560a:b0:a3:6e92:e156 with HTTP; Sun, 29 May 2022
- 08:45:34 -0700 (PDT)
-Reply-To: BAkermarrtin@gmail.com
-From:   Martin Baker <m.evelinemartins@gmail.com>
-Date:   Sun, 29 May 2022 15:45:34 +0000
-Message-ID: <CAEvQOXT08SQ9UqnD5jrD1SU5-mtxOiKSp8X7nN=Q1a2O9NX4fA@mail.gmail.com>
-Subject: 
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=4.5 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: ****
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+In the binding example, the regulator mode 4 is shown as a valid mode,
+but the driver actually only support mode 0 to 2:
 
+This generates an error in dmesg when copy/pasting the binding example:
+[    0.306080] vbuck1: invalid regulator-allowed-modes element 4
+[    0.307290] vbuck2: invalid regulator-allowed-modes element 4
 
-I wrote to you this morning because I have something to tell you, please
-let me know if you read my previous post today.
+This commit fixes this error by removing the invalid mode from the
+examples.
+
+Fixes: 977fb5b58469 ("regulator: document binding for MT6315 regulator")
+Signed-off-by: Fabien Parent <fparent@baylibre.com>
+---
+ .../devicetree/bindings/regulator/mt6315-regulator.yaml       | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/regulator/mt6315-regulator.yaml b/Documentation/devicetree/bindings/regulator/mt6315-regulator.yaml
+index 5d2d989de893..37402c370fbb 100644
+--- a/Documentation/devicetree/bindings/regulator/mt6315-regulator.yaml
++++ b/Documentation/devicetree/bindings/regulator/mt6315-regulator.yaml
+@@ -55,7 +55,7 @@ examples:
+           regulator-min-microvolt = <300000>;
+           regulator-max-microvolt = <1193750>;
+           regulator-enable-ramp-delay = <256>;
+-          regulator-allowed-modes = <0 1 2 4>;
++          regulator-allowed-modes = <0 1 2>;
+         };
+ 
+         vbuck3 {
+@@ -63,7 +63,7 @@ examples:
+           regulator-min-microvolt = <300000>;
+           regulator-max-microvolt = <1193750>;
+           regulator-enable-ramp-delay = <256>;
+-          regulator-allowed-modes = <0 1 2 4>;
++          regulator-allowed-modes = <0 1 2>;
+         };
+       };
+     };
+-- 
+2.36.1
+
