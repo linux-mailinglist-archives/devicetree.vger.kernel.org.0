@@ -2,69 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 532DA5371AE
-	for <lists+devicetree@lfdr.de>; Sun, 29 May 2022 17:47:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 892775371D7
+	for <lists+devicetree@lfdr.de>; Sun, 29 May 2022 19:05:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231128AbiE2Pra (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 May 2022 11:47:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56688 "EHLO
+        id S229811AbiE2RFs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 May 2022 13:05:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229835AbiE2Pra (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 May 2022 11:47:30 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53FD2694B9
-        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 08:47:28 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id t13so11726382wrg.9
-        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 08:47:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=qnKqeTPuz31MP8DkEz9vuj/dviTwiPnr2/Rmul7p7v0=;
-        b=8XjeiF9dLX/F73sAN7jeHWEZLMLKRNbLyw6jpLljeZcZg+OoGSjNTRc6ZoajO/5wvg
-         cad2nHEOy1MaqJdoPrdrV0nwtCyOIxLIJMCc8SB04mfmGu7B14Pn0+0HGHHV7dFaWm+H
-         ztfLfrmEp1V4sXew+sJJV1gaxM6VxIY50hh9+S70ElnUYq9zH1RQIPgF7/Otd0WiPBut
-         kCrGD4oOBJ6PdziomJL62cr31LuB/ObkkskAwpS9Nw28dYXEFgFwzaG0pAgjw6y+eRGv
-         i5nWKASomuOe+J7WB4t266/wylOzHuzdGPcRCe5CrGYIApp1x96Vc1gJaPVvkmg2NqNU
-         rgkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=qnKqeTPuz31MP8DkEz9vuj/dviTwiPnr2/Rmul7p7v0=;
-        b=NcYU1do3zDTdtGweO5ASG0AA2QFh/N8y0pZ8WlSQzW9x1SfgFoUSXzxDbIVjtYc17R
-         Gfz6doYo7TKANTTgw7tNsZkBVbM/81Qr+VQ1bHmsmtrgeMirJm9kgG6KKDCBdAaAkuvq
-         kb5S7ceM+XfLtd6rNCTx/1MX8KVF4D7zKLnSJ3QelQtix14ytbjTls+I4qnHenOCUGFU
-         EARUB1yzjSjgu4IeanE7rcMjrx7a7YO1VN5rekykNtnzXU4G4LFIY6h7nb5nnKTcw4iG
-         sxaemEZuxgC+jgAv3qh9uvfto0zVK5TDbVNfm00IbGA8jj8zX/fWrbluxnZ8T+s/1gIh
-         b9Sg==
-X-Gm-Message-State: AOAM533+8Hcv0HzQHtj9VXh90HWK3ZwU6ktqLItXa7CQd8QbNuO9/Y/7
-        y4XrxFYfRPATHYPn0vMJLTxLnA==
-X-Google-Smtp-Source: ABdhPJyJU60U7IvzKvUdTZ/qiORiBeb9Mht2Jqd7Q6qxgDKpWe+tfKckKrUT+DlJwG1A/b6NnHsI3Q==
-X-Received: by 2002:a05:6000:2cc:b0:20d:e6c:e4f8 with SMTP id o12-20020a05600002cc00b0020d0e6ce4f8mr41592097wry.374.1653839245826;
-        Sun, 29 May 2022 08:47:25 -0700 (PDT)
-Received: from helium.lan ([88.160.162.107])
-        by smtp.gmail.com with ESMTPSA id i2-20020a1c5402000000b003972dcfb614sm7549942wmb.14.2022.05.29.08.47.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 29 May 2022 08:47:25 -0700 (PDT)
-From:   Fabien Parent <fparent@baylibre.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-Cc:     Fabien Parent <fparent@baylibre.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH] dt-bindings: regulator: mt6315-regulator: fix invalid allowed mode
-Date:   Sun, 29 May 2022 17:46:13 +0200
-Message-Id: <20220529154613.337559-1-fparent@baylibre.com>
-X-Mailer: git-send-email 2.36.1
+        with ESMTP id S229533AbiE2RFr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 May 2022 13:05:47 -0400
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2086.outbound.protection.outlook.com [40.107.92.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A444587A1D;
+        Sun, 29 May 2022 10:05:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jrcXrrFrzhMQDzWv4e564har8sl47RZbWPWqbiYYjgSTVgmTmTV1mnIR92gjTUVa6fwtXOS5GeHeJbEO5SyJTnyJESEgEqEekIuCAUmWk7Ld8uDmAxEaRow7pmD3LabjKOyWkyGsPagaA4Y/j8I0WrQSZDTcSx7QPAp/M/a1edapFyCQ5PWbIutdFw1mZ6Wh+FvYtiNOJuqFUE44B1y8rpWdr/RLfm6KrC2Lja6rjyfNYHmbV46I1fmqby+CQUmpT0yrRy9xh8hfWfmsPpph1sZ7Q2CXVzjZqenxs9tMA0LrVpO0TyZQmAi9tEejv+lL42QRAb9HbLSAoEVNYorvJQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=oSjKMO0SiV81XSRaX5sqA9oWJBZwnvM5GwFmiKlFFV0=;
+ b=j/r4LP3hAx6Pxf+XsRL8p94wCGDLCt3L3IRmL2ZT6T162NzsjdAIlT8ySv7nDl+WVYj48IL9uLU2jhVGEWnzPFCdM2lzhVI7SmO2+r4CDyb9mznh0KqG3Z4djd43NzRJzI2OW65kdE+9epbJsaan7zUcgUAfczdZvJYmxo3OpadPj+XhTWeuma4fJNs9V3DG21KcjzBfNOlxKURgRaXK+ysbJljSbBbGJxAYDupivj1yBuiiQ9UEcb9CQE31xud8y2drTckBfG9tiwZ06ih6zIyXbaPbTSwf3Ln4sznnO+nV0UkS2IvYmycggav3RSqqWC/W+4K2lpM2oyY1/gNHBQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 12.22.5.235) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oSjKMO0SiV81XSRaX5sqA9oWJBZwnvM5GwFmiKlFFV0=;
+ b=a1nyFAZAl7Xx5mzmCw4Bf7EfSERI3o4sLQsRD/4MiSXsZgEA0I9bm0wUoNYbtFcE1W8EGJ2o4Wi3qVrx30u8d4mD5LfHBTKCXKUVGUxf9Q3GmNUWp2kjl1eg2sBpBkwvjeFm2bX+e+4Yo4ZfX1cc024vMPec0wcdmq7z356fnmMjoiSPm9aHjauDI5yxuCDPS9zMcFc9rRHTNnuc+CuQ+T3HiTw0dp59ToMhFG4VsOxtQ88NbMmVQRi4ONXdMQRq5a4g2lh7ML3FBDPLxIdWUCRawzp3B/JbUR2YBAVkYlkAMmiEITmoDS/bouJq7CvZ0vstijE0FLtI05IqSQhKrw==
+Received: from DM5PR10CA0013.namprd10.prod.outlook.com (2603:10b6:4:2::23) by
+ DM5PR12MB1835.namprd12.prod.outlook.com (2603:10b6:3:10c::9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5293.13; Sun, 29 May 2022 17:05:43 +0000
+Received: from DM6NAM11FT011.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:4:2:cafe::7d) by DM5PR10CA0013.outlook.office365.com
+ (2603:10b6:4:2::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.13 via Frontend
+ Transport; Sun, 29 May 2022 17:05:43 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.235)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 12.22.5.235 as permitted sender) receiver=protection.outlook.com;
+ client-ip=12.22.5.235; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (12.22.5.235) by
+ DM6NAM11FT011.mail.protection.outlook.com (10.13.172.108) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.5293.13 via Frontend Transport; Sun, 29 May 2022 17:05:42 +0000
+Received: from rnnvmail205.nvidia.com (10.129.68.10) by DRHQMAIL107.nvidia.com
+ (10.27.9.16) with Microsoft SMTP Server (TLS) id 15.0.1497.32; Sun, 29 May
+ 2022 17:05:42 +0000
+Received: from rnnvmail204.nvidia.com (10.129.68.6) by rnnvmail205.nvidia.com
+ (10.129.68.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Sun, 29 May
+ 2022 10:05:41 -0700
+Received: from r-build-bsp-02.mtr.labs.mlnx (10.127.8.9) by mail.nvidia.com
+ (10.129.68.6) with Microsoft SMTP Server id 15.2.986.22 via Frontend
+ Transport; Sun, 29 May 2022 10:05:40 -0700
+From:   <michaelsh@nvidia.com>
+To:     <linux@roeck-us.net>, <robh+dt@kernel.org>
+CC:     <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <vadimp@nvidia.com>, Michael Shych <michaelsh@nvidia.com>
+Subject: [PATCH hwmon-next v3 0/3] Add support for EMC2305 Fan Speed Controller.
+Date:   Sun, 29 May 2022 20:05:33 +0300
+Message-ID: <20220529170536.10043-1-michaelsh@nvidia.com>
+X-Mailer: git-send-email 2.14.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: d8ec97ed-18ee-4710-acdf-08da41957711
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1835:EE_
+X-Microsoft-Antispam-PRVS: <DM5PR12MB183559A6F08F9A69DBE708D7D4DA9@DM5PR12MB1835.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: QBC885A+DMWxbR4Smz9v70mmK09bbArT+/UYOebp5vgOrOc9QhlblqXB6+ZrlVSCRJ1MO5nK6rGh8YZMdflhmxhU5Gkeywl1CwQGjXQMejcc0KRM9hTxUQ8L9sq4YZbjw/E/uZojrpMP10RUxVbXDB64LGD/oMvCGeZazT1IE16PtRnppX6REXerk7H5pH8e+d0iT6AF/BsN/QLQ/72rOrChRPlgySeyg3SqT+rSqGw55xgg6xEhEu7J3jCf48Mz2+quDKTb2LkEr0qTLRqdS+toaq7Nak4btWUUFcaRYt9SylEJcewhEXgk2k9skMT2uz6t7KwR67dLTLKfnurJGZQY7Xq6L5JzE8WLB5kLGM8qEUiQwWUVgTLgSOlLltGwockznaFukQcyx7Ki+yNstsqPoHo+Bu/OEdPXLkO1rg87kvsD7Bid8cGqIq1R62XH6P/U0YcwGrOXeTCxLmRz3u80QWRDuR5ZLhVrfH7LmtYL+IUYW0MhFd0zvaUUJMXgkQh/Lfppfd/magOZ4A6t24WAw0OwHXpNKpkT7P26sTyEuIwoX5vFxFzFW7PMBVdkHRhv6KX08Bbq9NXo+g+L+wyO0V8nbEXh4AKf3cke6QK2DHuvOhkV0QyYMGdDHyXXkRF4ikJTSlS7PUHjJZ1QXu607awzJu/piGgXpTpdz39eWaSX7K7YFDAHaC2m4wQIgmAXmp+E+/cDHGWKHZahcg==
+X-Forefront-Antispam-Report: CIP:12.22.5.235;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:InfoNoRecords;CAT:NONE;SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(36860700001)(83380400001)(2906002)(2876002)(6666004)(508600001)(81166007)(82310400005)(26005)(47076005)(356005)(40460700003)(86362001)(316002)(110136005)(54906003)(70586007)(70206006)(36756003)(5660300002)(107886003)(2616005)(8936002)(1076003)(336012)(186003)(426003)(4326008)(8676002)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 May 2022 17:05:42.8832
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d8ec97ed-18ee-4710-acdf-08da41957711
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[12.22.5.235];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT011.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1835
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,44 +99,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In the binding example, the regulator mode 4 is shown as a valid mode,
-but the driver actually only support mode 0 to 2:
+From: Michael Shych <michaelsh@nvidia.com>
 
-This generates an error in dmesg when copy/pasting the binding example:
-[    0.306080] vbuck1: invalid regulator-allowed-modes element 4
-[    0.307290] vbuck2: invalid regulator-allowed-modes element 4
+Introduce EMC2305 RPM-based PWM Fan Speed Controller
+The EMC2305 is an SMBus compliant fan controller with up to five
+controlled PWM fan drivers. All fan drivers are
+controlled by a programmable frequency PWM driver and Fan Speed
+Control algorithm that operates as a directly PWM-controlled device.
 
-This commit fixes this error by removing the invalid mode from the
-examples.
+The closed-loop Fan Speed Control algorithm (FSC) has the capability to
+detect aging fans and alert the system. It will likewise detect stalled
+or locked fans and trigger an interrupt.
 
-Fixes: 977fb5b58469 ("regulator: document binding for MT6315 regulator")
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
----
- .../devicetree/bindings/regulator/mt6315-regulator.yaml       | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+EMC2305 offers a clock output so that multiple devices may be chained
+and slaved to the same clock source for optimal performance in large
+distributed systems.
 
-diff --git a/Documentation/devicetree/bindings/regulator/mt6315-regulator.yaml b/Documentation/devicetree/bindings/regulator/mt6315-regulator.yaml
-index 5d2d989de893..37402c370fbb 100644
---- a/Documentation/devicetree/bindings/regulator/mt6315-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/mt6315-regulator.yaml
-@@ -55,7 +55,7 @@ examples:
-           regulator-min-microvolt = <300000>;
-           regulator-max-microvolt = <1193750>;
-           regulator-enable-ramp-delay = <256>;
--          regulator-allowed-modes = <0 1 2 4>;
-+          regulator-allowed-modes = <0 1 2>;
-         };
- 
-         vbuck3 {
-@@ -63,7 +63,7 @@ examples:
-           regulator-min-microvolt = <300000>;
-           regulator-max-microvolt = <1193750>;
-           regulator-enable-ramp-delay = <256>;
--          regulator-allowed-modes = <0 1 2 4>;
-+          regulator-allowed-modes = <0 1 2>;
-         };
-       };
-     };
+Patch set includes:
+Patch#1 - add support for EMC2301/2/3/5 RPM-based PWM Fan Speed Controller.
+Patch#2 - add microchip,emc2306.yaml
+Patch#3 - add emc2305.rst into docs.
+
+Michael Shych (3):
+  hwmon: (emc2305) add support for EMC2301/2/3/5 RPM-based PWM Fan Speed
+    Controller.
+  dt-bindings: hwmon: add Microchip EMC2305 fan controller.
+  docs: hwmon: add emc2305.rst to docs
+
+ .../bindings/hwmon/microchip,emc2305.yaml          | 106 ++++
+ Documentation/hwmon/emc2305.rst                    |  40 ++
+ Documentation/hwmon/index.rst                      |   1 +
+ drivers/hwmon/Kconfig                              |  13 +
+ drivers/hwmon/Makefile                             |   1 +
+ drivers/hwmon/emc2305.c                            | 654 +++++++++++++++++++++
+ 6 files changed, 815 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
+ create mode 100644 Documentation/hwmon/emc2305.rst
+ create mode 100644 drivers/hwmon/emc2305.c
+
 -- 
-2.36.1
+2.14.1
 
