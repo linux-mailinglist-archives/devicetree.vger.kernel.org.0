@@ -2,78 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 509D65370D3
-	for <lists+devicetree@lfdr.de>; Sun, 29 May 2022 13:42:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C84755370E0
+	for <lists+devicetree@lfdr.de>; Sun, 29 May 2022 13:56:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230109AbiE2Lm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 29 May 2022 07:42:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37202 "EHLO
+        id S229811AbiE2L4P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 29 May 2022 07:56:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229702AbiE2Lm2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 29 May 2022 07:42:28 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 265F410FCF
-        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 04:42:27 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id rs12so16063670ejb.13
-        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 04:42:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=dSEhkI5/HjahBy6UP5TFGxBpf96/So5wb+ZELnO38Tk=;
-        b=B0+dB13nGah3aoB5h0BX1vGTeSIuLpvUZVLGLtOU0Ige3ZT7Mv86eaKeDjVSl5aEvR
-         5AJrO7tccJQCV7hFqelBIMJhSmPhSYXg/y78H5x0QMuIsN06pXbGaQhGGAfEsq2FDSq4
-         PVZRnrNmS5gOcJntVz3solI4hbyb5WHQhXBN6XVYnA7ke33TNXQbKWRDe36YULhJLY5b
-         oghCZfhfFdPHSrbVzZIqWcLAR3ZUSH9wmqvPpN+VrWPeivL/NVOmCc8bP/Cia/pFSmP9
-         TnrWTCP7m210d1AaRvZaNi9wIhJtO1MEu+R2sxKBzlXSU+R0IrUGfqVNw5DADZMWPYd7
-         sClw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=dSEhkI5/HjahBy6UP5TFGxBpf96/So5wb+ZELnO38Tk=;
-        b=DssYJh6s71jioVb/19ZSX4h2bYTDLOkDdVzPcalVIGfAApRjrBIGo3XPCMZAB9dkAw
-         qJzH3TXDy6eaHJvrOj8+Fjzk6na4w68dKHxwfsb7Js8IQj+j6LqLK5veG2uW7juGq1Tk
-         PJtOC7u/lbdYFU/Zs4xyVL9PbQvjJFjXNF9fX4ss79rdojFrr6aQImtcxoo1STw/GcYd
-         JjANS2P41cnrGNIO0LPClvCRdsJPsvtXDv0TSIogI+A7+12nveqaLlVktUiEZh3rZgbO
-         K46btFjWyVJZFzxOeP/yZ01R+xguuGCAAuuJW3eUwpxFEWAU9UXIWTkLp9WbepHCGqGz
-         PZmQ==
-X-Gm-Message-State: AOAM532zd2NPqH7soCQ4o08uYuHCcw/DKaP8b8ZGfyi8HiBvqsJ3xDBd
-        Lm6KXDVuvEkcAgZrT7FxlO7Lpg==
-X-Google-Smtp-Source: ABdhPJxiDFkuQV1fhHwlypWV/rr5uUGU6p0s8cO3IcKiJRhA1hAEp0D8+jLm8ghYfFiA/G/QDwr6NQ==
-X-Received: by 2002:a17:907:7f0b:b0:6ff:4502:9c2f with SMTP id qf11-20020a1709077f0b00b006ff45029c2fmr8130716ejc.532.1653824545674;
-        Sun, 29 May 2022 04:42:25 -0700 (PDT)
-Received: from [192.168.0.177] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id k16-20020a1709063e1000b006f4c557b7d2sm3088181eji.203.2022.05.29.04.42.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 29 May 2022 04:42:25 -0700 (PDT)
-Message-ID: <8c14368b-3d28-f6de-c7fa-1e00dd1ca2ba@linaro.org>
-Date:   Sun, 29 May 2022 13:42:24 +0200
+        with ESMTP id S229732AbiE2L4O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 29 May 2022 07:56:14 -0400
+X-Greylist: delayed 167 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 29 May 2022 04:56:12 PDT
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 108EF4B847;
+        Sun, 29 May 2022 04:56:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1653825188;
+    s=strato-dkim-0002; d=innoroute.de;
+    h=In-Reply-To:Cc:References:To:From:Subject:Date:Message-ID:Cc:Date:
+    From:Subject:Sender;
+    bh=rGLI8EHEa4TLZETKl33bUuVZ8APssu2QrbjFazSIb9c=;
+    b=o6J0vUFgPQ+PkigFa19dziu1HzgA1HfYlm2eOykougiBuHjYK7lTAzBTMX7CUgLBbO
+    mBYSM8rba89mnPbQ2obX8TRrqlMw40REr1vcAXdmQT1WfsOEV1a1hPmAhcoXFcjaXBZF
+    OrDkluOGq5e9GF3pXgRUhq4k4MheyQci3l1hJrqUZrvbK47QBpC1aI+YViPhqEZbKtfe
+    2Dy8rNBGFLuHSV1oVcG2eUh2yXXKZ7/kfUrqkJXrnF9riDkU7KZnV6LubqGq0Y4BZELL
+    e4o+8LzyzDg7hDmPCjJ5pz9WVU51tEiSi70krGnQ9ubklJ2MC/EKEuQ4Qli2RHRamGr+
+    qSkQ==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":OWAGZ0mrc+tzeBOzIxBr1G7s8b1PjEKOzk3CqnAapHd+NkODJb4neJkaR8hVrvzXeIpZlNY69pc="
+X-RZG-CLASS-ID: mo00
+Received: from [192.168.1.240]
+    by smtp.strato.de (RZmta 47.45.0 DYNA|AUTH)
+    with ESMTPSA id y05afby4TBr6W5R
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Sun, 29 May 2022 13:53:06 +0200 (CEST)
+Message-ID: <25af9e3c-fea3-8128-f057-6d4b25c11ce0@innoroute.de>
+Date:   Sun, 29 May 2022 13:53:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH v4 3/3] misc: uwb: nxp: sr1xx: UWB driver support for
- sr1xx series chip
-Content-Language: en-US
-To:     Manjunatha Venkatesh <manjunatha.venkatesh@nxp.com>,
-        linux-kernel@vger.kernel.org, gregkh@linuxfoundation.org,
-        will@kernel.org, axboe@kernel.dk, robh+dt@kernel.org
-Cc:     mb@lightnvm.io, ckeepax@opensource.cirrus.com, arnd@arndb.d,
-        mst@redhat.com, javier@javigon.com, mikelley@microsoft.com,
-        jasowang@redhat.com, sunilmut@microsoft.com,
-        bjorn.andersson@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, ashish.deshpande@nxp.com,
-        rvmanjumce@gmail.com
-References: <20220527184351.3829543-1-manjunatha.venkatesh@nxp.com>
- <20220527184351.3829543-4-manjunatha.venkatesh@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220527184351.3829543-4-manjunatha.venkatesh@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Subject: [PATCH v1 1/1] add support for mws4 board
+Content-Language: de-DE
+From:   Marian Ulbricht <ulbricht@innoroute.de>
+To:     devicetree@vger.kernel.org
+References: <dcff1f1f-dfe8-a873-e07d-ff100c50822f@innoroute.de>
+Cc:     =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tony Lindgren <tony@atomide.com>, linux-omap@vger.kernel.org
+In-Reply-To: <dcff1f1f-dfe8-a873-e07d-ff100c50822f@innoroute.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,195 +63,345 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/05/2022 20:43, Manjunatha Venkatesh wrote:
-> Ultra-wideband (UWB) is a short-range wireless communication protocol.
-> 
-> NXP has SR1XX family of UWB Subsystems (UWBS) devices. SR1XX SOCs
-> are FiRa Compliant. SR1XX SOCs are flash less devices and they need
-> Firmware Download on every device boot. More details on the SR1XX Family
-> can be found at https://www.nxp.com/products/:UWB-TRIMENSION
-> 
-> The sr1xx driver work the SR1XX Family of UWBS, and uses UWB Controller
-> Interface (UCI).  The corresponding details are available in the FiRa
-> Consortium Website (https://www.firaconsortium.org/).
-> 
-> Internally driver will handle two modes of operation.
-> 1.HBCI mode (sr1xx BootROM Code Interface)
-> Firmware download uses HBCI ptotocol packet structure which is
-> Nxp proprietary,Firmware File(.bin) stored in user space context
-> and during device init sequence pick the firmware packet in chunk
-> and send it to the driver with write() api call.
-> 
-> After the firmware download sequence at the end UWBS will
-> send device status notification and its indication of device entered
-> UCI mode.
-> Here after any command/response/notification will follow
-> UCI packet structure.
-> 
-> 2.UCI mode (UWB Command interface)
-> Once Firmware download finishes sr1xx will switch to UCI mode.
-> Then driver exchange command/response/notification as per the FIRA UCI
-> standard format between user space and sr1xx device.
-> Any response or notification received from sr1xx through SPI line
-> will convey to user space.
-> 
-> Its Interrupt based driver and IO Handshake needed with SR1XX Family of
-> SOCs.
-> This driver needs dts config update as per the sr1xx data sheet.
-> Corresponding document available in Documentation/devicetree/bindings/uwb
-> 
-> Message-ID: <20220504171337.3416983-1-manjunatha.venkatesh@nxp.com>
+Subject: [PATCH v1 1/1] add support for mws4 board
 
-Same comment.
+mws4 is an arm based nuclear probe hardware used from
+german government to monitor nuclear activity
 
+Signed-off-by: Ulbricht, Marian <ulbricht@innoroute.de>
+---
 
-> Signed-off-by: Manjunatha Venkatesh <manjunatha.venkatesh@nxp.com>
-> ---
-> Changes since v3:
->   - Commit Message Description updated
->   - Renamed file from sr1xx.c to nxp-sr1xx.c
->   - Removed unwanted header files
->   - Removed sr1xx.h file since its not required for single source file
-> 
+Changes in v1:
+* add dts
 
-Thank you for your patch. There is something to discuss/improve.
+  arch/arm/boot/dts/omap3-mws4.dts | 297 +++++++++++++++++++++++++++++++
+  1 file changed, 297 insertions(+)
+  create mode 100644 arch/arm/boot/dts/omap3-mws4.dts
 
->  drivers/misc/Kconfig     |  12 +
->  drivers/misc/Makefile    |   1 +
->  drivers/misc/nxp-sr1xx.c | 834 +++++++++++++++++++++++++++++++++++++++
->  3 files changed, 847 insertions(+)
->  create mode 100644 drivers/misc/nxp-sr1xx.c
-> 
-> diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-> index 41d2bb0ae23a..4f81d5758940 100644
-> --- a/drivers/misc/Kconfig
-> +++ b/drivers/misc/Kconfig
-> @@ -483,6 +483,18 @@ config OPEN_DICE
->  
->  	  If unsure, say N.
->  
-> +config NXP_UWB
+diff --git a/arch/arm/boot/dts/omap3-mws4.dts 
+b/arch/arm/boot/dts/omap3-mws4.dts
+new file mode 100644
+index 000000000000..a3489d4af2cc
+--- /dev/null
++++ b/arch/arm/boot/dts/omap3-mws4.dts
+@@ -0,0 +1,297 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Copyright (C) 2011 Texas Instruments Incorporated - http://www.ti.com/
++ *
++ * Modified 2015 by Bernhard Gätzschmann, Ultratronik from Beagleboard xM
++ *
++ * Modified 2022 Marian Ulbricht ulbricht@innoroute.de
++ *
++ * This program is free software; you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License version 2 as
++ * published by the Free Software Foundation.
++ */
++/dts-v1/;
++#include "omap36xx.dtsi"
++/ {
++	model = "Ultratronik BFS MWS4";
++	compatible = "ti,omap3-mmi4", "ti,omap36xx", "ti,omap3";
++	cpus {
++			cpu@0 {
++				cpu0-supply = <&vcc>;
++			};
++		};
++	memory {
++		device_type = "memory";
++		reg = <0x80000000 0x10000000>; // 256 MB
++	};
++	aliases {
++		i2c0 = &i2c1;
++		i2c1 = &i2c2;
++		i2c2 = &i2c3;
++		serial0 = &uart1;
++		serial1 = &uart2;
++		serial2 = &uart3;
++		mmc1 = &mmc1;
++	};
++	netcard: AX88796BLI@ffdf0000 {
++		compatible = "ax88796_dt";
++		reg = <0xffdf0000 0x1000> ;
++
++};
++
++	watchdog_max: watchdog {
++		compatible = "linux,wdt-gpio";
++		gpios = <&gpio4 21 1>; //117
++		hw_algo = "toggle";
++		always-running;
++		hw_margin_ms = <900>;
++	};
++	hsusb1_phy: hsusb1_phy {
++		status = "disabled";
++	};
++
++	/* HS USB Host PHY on PORT 2 */
++	hsusb2_phy: hsusb2_phy {
++		status = "disabled";
++	};
++	/* fixed 19.2MHz oscillator */
++	hfclk_19m2: oscillator {
++		#clock-cells = <0>;
++		compatible = "fixed-clock";
++		clock-frequency = <19200000>;
++	};
++leds {
++		compatible = "gpio-leds";
++		pinctrl-names = "default";
++		pinctrl-0 = <&led_pins>;
++		led_sm {
++			label = "led_sm";
++			gpios = <&gpio4 5 GPIO_ACTIVE_HIGH>; /* 101 */
++			default-state = "on";
++		};
++		led1 {
++			label = "led1";
++			gpios = <&gpio4 6 GPIO_ACTIVE_HIGH>; /* 102 */
++			linux,default-trigger = "cpu";
++		};
++		led2 {
++			label = "led2";
++			gpios = <&gpio4 7 GPIO_ACTIVE_HIGH>; /* 103 */
++			linux,default-trigger = "mmc0";
++		};
++		led3 {
++			label = "led3";
++			gpios = <&gpio4 8 GPIO_ACTIVE_HIGH>; /* 104 */
++			linux,default-trigger = "usb-host";
++		};
++		led_usb {
++			label = "led_usb";
++			gpios = <&gpio4 14 GPIO_ACTIVE_HIGH>; /* 110 */
++			default-state = "on";
++		};
++	};
++};
++&gpmc {
++	ranges = <0 0 0x30000000 0x1000000	/* CS0 space, 16MB */
++		  255 0 0x6e000000 0x02d4>;	/* register space */
++
++	/* Chip select 0 */
++	nand@0,0 {
++		compatible = "ti,omap2-nand";
++		reg = <0 0 4		/* NAND I/O window, 4 bytes */
++		       255 0 0x02d4>;	/* GPMC register space */
++		interrupts = <20>;
++		ti,nand-ecc-opt = "bch4";
++		nand-bus-width = <16>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++
++		gpmc,cs-on-ns = <0>;
++		gpmc,cs-rd-off-ns = <36>;
++		gpmc,cs-wr-off-ns = <36>;
++		gpmc,adv-on-ns = <6>;
++		gpmc,adv-rd-off-ns = <24>;
++		gpmc,adv-wr-off-ns = <36>;
++		gpmc,oe-on-ns = <6>;
++		gpmc,oe-off-ns = <48>;
++		gpmc,we-on-ns = <6>;
++		gpmc,we-off-ns = <30>;
++		gpmc,rd-cycle-ns = <72>;
++		gpmc,wr-cycle-ns = <72>;
++		gpmc,access-ns = <54>;
++		gpmc,wr-access-ns = <30>;
++
++		partition@0 {
++			label = "X-Loader";
++			reg = <0 0x40000>;
++		};
++		partition@40000 {
++			label = "U-Boot";
++			reg = <0x40000 0x100000>;
++		};
++		partition@100000 {
++			label = "U-Boot Env";
++			reg = <0x100000 0x120000>;
++		};
++		partition@120000 {
++			label = "dt";
++			reg = <0x120000 0x140000>;
++		};
++		partition@140000 {
++			label = "Kernel";
++			reg = <0x140000 0xB40000>;
++		};
++		partition@B40000 {
++			label = "Filesystem";
++			reg = <0xB40000 0xf4c0000>;
++		};
++	};
++};
++&usbhshost {
++	status = "disabled";
++};
++&omap3_pmx_core {
++		mmc1_pins: pinmux_mmc1_pins {
++		pinctrl-single,pins = <
++			OMAP3_CORE1_IOPAD(0x2144, PIN_INPUT_PULLUP | MUX_MODE0)	/* 
+sdmmc1_clk.sdmmc1_clk */
++			OMAP3_CORE1_IOPAD(0x2146, PIN_INPUT_PULLUP | MUX_MODE0)	/* 
+sdmmc1_cmd.sdmmc1_cmd */
++			OMAP3_CORE1_IOPAD(0x2148, PIN_INPUT_PULLUP | MUX_MODE0)	/* 
+sdmmc1_dat0.sdmmc1_dat0 */
++			OMAP3_CORE1_IOPAD(0x214a, PIN_INPUT_PULLUP | MUX_MODE0)	/* 
+sdmmc1_dat1.sdmmc1_dat1 */
++			OMAP3_CORE1_IOPAD(0x214c, PIN_INPUT_PULLUP | MUX_MODE0)	/* 
+sdmmc1_dat2.sdmmc1_dat2 */
++			OMAP3_CORE1_IOPAD(0x214e, PIN_INPUT_PULLUP | MUX_MODE0)	/* 
+sdmmc1_dat3.sdmmc1_dat3 */
++		>;
++	};
++	wd_pins: pinmux_wd_pins {
++		pinctrl-single,pins = <
++			OMAP3_CORE1_IOPAD(0x213e, PIN_OUTPUT | MUX_MODE4)	// 
+CONTROL_PADCONF_MCBSP2_CLKX	0x013E
++		>;
++	};
++	i2c1_pins: pinmux_i2c1_pins {
++		pinctrl-single,pins = <
++			OMAP3_CORE1_IOPAD(0x21ba, PIN_INPUT_PULLUP | MUX_MODE0)	/* i2c1_scl */
++			OMAP3_CORE1_IOPAD(0x21bc, PIN_INPUT_PULLUP | MUX_MODE0)	/* i2c1_sda */
++		>;
++	};
++	hsusb0_pins: pinmux_hsusb0_pins {
++		pinctrl-single,pins = <
++			OMAP3_CORE1_IOPAD(0x21a2, PIN_INPUT_PULLDOWN | MUX_MODE0)		/* 
+hsusb0_clk.hsusb0_clk */
++			OMAP3_CORE1_IOPAD(0x21a4, PIN_OUTPUT | MUX_MODE0)		/* 
+hsusb0_stp.hsusb0_stp */
++			OMAP3_CORE1_IOPAD(0x21a6, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* 
+hsusb0_dir.hsusb0_dir */
++			OMAP3_CORE1_IOPAD(0x21a8, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* 
+hsusb0_nxt.hsusb0_nxt */
++			OMAP3_CORE1_IOPAD(0x21aa, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* 
+hsusb0_data0.hsusb2_data0 */
++			OMAP3_CORE1_IOPAD(0x21ac, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* 
+hsusb0_data1.hsusb0_data1 */
++			OMAP3_CORE1_IOPAD(0x21ae, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* 
+hsusb0_data2.hsusb0_data2 */
++			OMAP3_CORE1_IOPAD(0x21b0, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* 
+hsusb0_data7.hsusb0_data3 */
++			OMAP3_CORE1_IOPAD(0x21b2, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* 
+hsusb0_data7.hsusb0_data4 */
++			OMAP3_CORE1_IOPAD(0x21b4, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* 
+hsusb0_data7.hsusb0_data5 */
++			OMAP3_CORE1_IOPAD(0x21b6, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* 
+hsusb0_data7.hsusb0_data6 */
++			OMAP3_CORE1_IOPAD(0x21b8, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* 
+hsusb0_data7.hsusb0_data7 */
++		>;
++	};
++	led_pins: pinmux_led_pins {
++		pinctrl-single,pins = <
++			OMAP3_CORE1_IOPAD(0x211a, PIN_OUTPUT | MUX_MODE4)	/* gpio101*/
++			OMAP3_CORE1_IOPAD(0x211c, PIN_OUTPUT | MUX_MODE4)	/* gpio102*/
++			OMAP3_CORE1_IOPAD(0x211e, PIN_OUTPUT | MUX_MODE4)	/* gpio103 */
++			OMAP3_CORE1_IOPAD(0x2120, PIN_OUTPUT | MUX_MODE4)	/* gpio103 */
++		>;
++	};
++		gpio_pins: pinmux_gpio_pins {
++		pinctrl-single,pins = <
++			OMAP3_CORE1_IOPAD(0x2122, PIN_INPUT | MUX_MODE4)	/* gpio105 
+spontanmeldung*/
++			OMAP3_CORE1_IOPAD(0x212c, PIN_OUTPUT | MUX_MODE4)	/* gpio110 usb2_en*/
++			OMAP3_CORE1_IOPAD(0x218C, PIN_OUTPUT | MUX_MODE4)	/* GPO0*/
++			OMAP3_CORE1_IOPAD(0x218E, PIN_OUTPUT | MUX_MODE4)	/* GPO1*/
++			OMAP3_CORE1_IOPAD(0x2190, PIN_OUTPUT | MUX_MODE4)	/* GPO2*/
++			OMAP3_CORE1_IOPAD(0x2192, PIN_OUTPUT | MUX_MODE4)	/* GPO3*/
++			OMAP3_CORE1_IOPAD(0x2194, PIN_OUTPUT | MUX_MODE4)	/* GPO4*/
++			OMAP3_CORE1_IOPAD(0x2196, PIN_OUTPUT | MUX_MODE4)	/* GPO5*/
++			OMAP3_CORE1_IOPAD(0x2198, PIN_OUTPUT | MUX_MODE4)	/* GPO6*/
++			OMAP3_CORE1_IOPAD(0x2116, PIN_INPUT | MUX_MODE4) //IN1
++			OMAP3_CORE1_IOPAD(0x2118, PIN_INPUT | MUX_MODE4) //IN2
++			OMAP3_CORE1_IOPAD(0x2124, PIN_INPUT | MUX_MODE4) //IN3
++			OMAP3_CORE1_IOPAD(0x2126, PIN_INPUT | MUX_MODE4) //IN4
++			OMAP3_CORE1_IOPAD(0x2128, PIN_INPUT | MUX_MODE4) //IN5
++			OMAP3_CORE1_IOPAD(0x25F4, PIN_OUTPUT | MUX_MODE4)	/* RES_RS232*/
++			OMAP3_CORE1_IOPAD(0x25F6, PIN_OUTPUT | MUX_MODE4)	/* HUB_RESET*/
++
++		>;
++	};
++};
++&i2c1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c1_pins>;
++
++	clock-frequency = <100000>;
++	twl: twl@48 {
++		reg = <0x48>;
++		interrupts = <7>; /* SYS_NIRQ cascaded to intc */
++		interrupt-parent = <&intc>;
++		clocks = <&hfclk_19m2>;
++		clock-names = "fck";
++		twl_power: power {
++			compatible = "ti,twl4030-power";
++			ti,system-power-controller;
++		};
++	};
++};
++&i2c2 {
++	clock-frequency = <100000>;
++	rtc8564: rtc8564@51 {
++		compatible = "epson,rtc8564";
++		reg = <0x51>;
++		#clock-cells = <0>;
++	};
++};
++&i2c3 {
++	clock-frequency = <100000>;
++};
++#include "twl4030.dtsi"
++#include "twl4030_omap3.dtsi"
++&mmc1 {
++	vmmc-supply = <&vmmc1>;
++	vqmmc-supply = <&vsim>;
++	bus-width = <4>;
++};
++&mmc2 {
++	status = "disabled";
++};
++
++&mmc3 {
++	status = "disabled";
++};
++&uart1 {
++	pinctrl-names = "default";
++};
++&uart2 {
++	pinctrl-names = "default";
++};
++&uart3 {
++	pinctrl-names = "default";
++};
++&usb_otg_hs {
++	pinctrl-names = "default";
++	pinctrl-0 = <&hsusb0_pins>;
++	num-eps = <16>;
++	ram-bits = <12>;
++	interface-type = <0>;
++	usb-phy = <&usb2_phy>;
++	phys = <&usb2_phy>;
++	phy-names = "usb2-phy";
++	mode = <1>;
++	power = <500>;
++};
++
++&iva {
++	status = "disabled";
++};
++
++&sgx_module {
++	status = "disabled";
++};
++&vaux2 {
++	regulator-name = "usb_1v8";
++	regulator-min-microvolt = <1800000>;
++	regulator-max-microvolt = <1800000>;
++	regulator-always-on;
++};
+-- 
+2.25.1
 
-It is not a misc driver. It is communication driver, so closer to
-network. Please find appropriate subsystem.
-
-> +        tristate "Nxp UCI(Uwb Command Interface) protocol driver support"
-
-Isn't the name of company NXP?
-
-> +        depends on SPI
-> +        help
-> +        This option enables the UWB driver for Nxp sr1xx
-
-The same...
-
-> +        device. Such device supports UCI packet structure,
-> +        FiRa compliant.
-> +
-> +        Say Y here to compile support for sr1xx into the kernel or
-> +        say M to compile it as a module. The module will be called
-> +        sr1xx.ko
-> +
->  source "drivers/misc/c2port/Kconfig"
->  source "drivers/misc/eeprom/Kconfig"
->  source "drivers/misc/cb710/Kconfig"
-> diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
-> index 70e800e9127f..d4e6e4f1ec29 100644
-> --- a/drivers/misc/Makefile
-> +++ b/drivers/misc/Makefile
-> @@ -60,3 +60,4 @@ obj-$(CONFIG_XILINX_SDFEC)	+= xilinx_sdfec.o
->  obj-$(CONFIG_HISI_HIKEY_USB)	+= hisi_hikey_usb.o
->  obj-$(CONFIG_HI6421V600_IRQ)	+= hi6421v600-irq.o
->  obj-$(CONFIG_OPEN_DICE)		+= open-dice.o
-> +obj-$(CONFIG_NXP_UWB) 		+= nxp-sr1xx.o
-
-Looks like wrong order.
-
-> diff --git a/drivers/misc/nxp-sr1xx.c b/drivers/misc/nxp-sr1xx.c
-> new file mode 100644
-> index 000000000000..25648712a61b
-> --- /dev/null
-> +++ b/drivers/misc/nxp-sr1xx.c
-> @@ -0,0 +1,834 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * SPI driver for UWB SR1xx
-> + * Copyright (C) 2018-2022 NXP.
-> + *
-> + * Author: Manjunatha Venkatesh <manjunatha.venkatesh@nxp.com>
-> + */
-> +#include <linux/miscdevice.h>
-> +#include <linux/delay.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/of_gpio.h>
-> +#include <linux/spi/spi.h>
-> +
-> +#define SR1XX_MAGIC 0xEA
-> +#define SR1XX_SET_PWR _IOW(SR1XX_MAGIC, 0x01, long)
-> +#define SR1XX_SET_FWD _IOW(SR1XX_MAGIC, 0x02, long)
-> +
-> +#define UCI_HEADER_LEN 4
-> +#define HBCI_HEADER_LEN 4
-> +#define UCI_PAYLOAD_LEN_OFFSET 3
-> +
-> +#define UCI_EXT_PAYLOAD_LEN_IND_OFFSET 1
-> +#define UCI_EXT_PAYLOAD_LEN_IND_OFFSET_MASK 0x80
-> +#define UCI_EXT_PAYLOAD_LEN_OFFSET 2
-> +
-> +#define SR1XX_TXBUF_SIZE 4200
-> +#define SR1XX_RXBUF_SIZE 4200
-> +#define SR1XX_MAX_TX_BUF_SIZE 4200
-> +
-> +#define MAX_RETRY_COUNT_FOR_IRQ_CHECK 100
-> +#define MAX_RETRY_COUNT_FOR_HANDSHAKE 1000
-> +
-
-(...)
-
-> +
-> +static const struct dev_pm_ops sr1xx_dev_pm_ops = { SET_SYSTEM_SLEEP_PM_OPS(
-> +	sr1xx_dev_suspend, sr1xx_dev_resume) };
-> +
-> +static struct spi_driver sr1xx_driver = {
-> +	.driver = {
-> +		   .name = "sr1xx",
-> +		   .pm = &sr1xx_dev_pm_ops,
-> +		   .bus = &spi_bus_type,
-> +		   .owner = THIS_MODULE,
-
-No, this was removed some years ago... Please run all regular static
-tools on your code sparse, smatch and coccinelle.
-
-There is no need for us to do the review of things pointed out by tools.
-
-
-> +		   .of_match_table = sr1xx_dt_match,
-> +		    },
-> +	.probe = sr1xx_probe,
-> +	.remove = sr1xx_remove,
-> +};
-> +
-> +static int __init sr1xx_dev_init(void)
-> +{
-> +	return spi_register_driver(&sr1xx_driver);
-> +}
-> +
-> +module_init(sr1xx_dev_init);
-> +
-> +static void __exit sr1xx_dev_exit(void)
-> +{
-> +	spi_unregister_driver(&sr1xx_driver);
-> +}
-
-Why this isn't a module_spi_driver?
-
-> +
-> +module_exit(sr1xx_dev_exit);
-> +
-> +MODULE_AUTHOR("Manjunatha Venkatesh <manjunatha.venkatesh@nxp.com>");
-> +MODULE_DESCRIPTION("NXP SR1XX SPI driver");
-> +MODULE_LICENSE("GPL");
-
-
-Best regards,
-Krzysztof
