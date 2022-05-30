@@ -2,38 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CCF2537554
-	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 09:24:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 904855374BC
+	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 09:23:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231748AbiE3HGW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 May 2022 03:06:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33078 "EHLO
+        id S231428AbiE3HGr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 May 2022 03:06:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230274AbiE3HGW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 03:06:22 -0400
+        with ESMTP id S231735AbiE3HGp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 03:06:45 -0400
 Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24C0B71A1C;
-        Mon, 30 May 2022 00:06:21 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC46E1007;
+        Mon, 30 May 2022 00:06:43 -0700 (PDT)
 Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id E67821C0B8A; Mon, 30 May 2022 09:06:19 +0200 (CEST)
-Date:   Mon, 30 May 2022 09:06:19 +0200
+        id 7161E1C0B8F; Mon, 30 May 2022 09:06:42 +0200 (CEST)
+Date:   Mon, 30 May 2022 09:06:41 +0200
 From:   Pavel Machek <pavel@ucw.cz>
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andr?? Almeida <andrealmeid@collabora.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: qcom: msm8974-hammerhead: Add notification LED
-Message-ID: <20220530070618.GC1363@bug>
-References: <20220505164336.13210-1-luca@z3ntu.xyz>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@linux.ie,
+        matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
+        jason-jh.lin@mediatek.com, nancy.lin@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v2 1/3] dt-bindings: mediatek: add vdosys1 RDMA
+ definition for mt8195
+Message-ID: <20220530070641.GE1363@bug>
+References: <20220509044302.27878-1-rex-bc.chen@mediatek.com>
+ <20220509044302.27878-2-rex-bc.chen@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220505164336.13210-1-luca@z3ntu.xyz>
+In-Reply-To: <20220509044302.27878-2-rex-bc.chen@mediatek.com>
 User-Agent: Mutt/1.5.23 (2014-03-12)
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
         SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
@@ -44,22 +47,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
-
-> From: Andr?? Almeida <andrealmeid@collabora.com>
+On Mon 2022-05-09 12:43:00, Rex-BC Chen wrote:
+> From: "Nancy.Lin" <nancy.lin@mediatek.com>
 > 
-> Nexus 5 has a RGB LED connected to the TRILED and hence channels 7, 6 and
-> 5 of the LPG. Add a node describing this.
+> Add vdosys1 RDMA definition.
 > 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> Signed-off-by: Andr?? Almeida <andrealmeid@collabora.com>
+> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-> --- This patch depends on the PM8941 LPG patch: 
-> https://lore.kernel.org/linux-arm-msm/20220504205411.1510667-1-bjorn.andersson@linaro.org/
-
-How does this LED end up looking in userland? We want to make sure all the phone RGB status LEDs 
-end up using same path in /sys/..
+Your signoff will be needed, too.
 
 Best regards,
-
-									Pavel
+								Pavel
+-- 
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blog.html
