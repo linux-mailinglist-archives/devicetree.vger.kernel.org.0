@@ -2,76 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0210A5377F4
-	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 12:05:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA347537875
+	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 12:06:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231162AbiE3JfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 May 2022 05:35:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39470 "EHLO
+        id S231750AbiE3Jms (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 May 2022 05:42:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231530AbiE3Jey (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 05:34:54 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A31097036E;
-        Mon, 30 May 2022 02:34:52 -0700 (PDT)
-X-UUID: 12292876a63e4114832784e67ff5dc24-20220530
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:c1a25a89-c40b-4e19-b549-b12d22ec7966,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:45
-X-CID-INFO: VERSION:1.1.5,REQID:c1a25a89-c40b-4e19-b549-b12d22ec7966,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
-        N:release,TS:45
-X-CID-META: VersionHash:2a19b09,CLOUDID:c6600148-4fb1-496b-8f1d-39e733fed1ea,C
-        OID:c54cc7f13249,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:0,BEC:nil
-X-UUID: 12292876a63e4114832784e67ff5dc24-20220530
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 468274590; Mon, 30 May 2022 17:34:47 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Mon, 30 May 2022 17:34:46 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 30 May 2022 17:34:46 +0800
-Message-ID: <719320a455d4dc5d142cea48577c3a1b0317bb9a.camel@mediatek.com>
-Subject: Re: [PATCH v10 18/21] drm/mediatek: Add mt8195 Embedded DisplayPort
- driver
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Guillaume Ranquet <granquet@baylibre.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        "Kishon Vijay Abraham I" <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, "Helge Deller" <deller@gmx.de>,
-        Jitao shi <jitao.shi@mediatek.com>
-CC:     Markus Schneider-Pargmann <msp@baylibre.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
+        with ESMTP id S233705AbiE3Jmr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 05:42:47 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10E461FCF7;
+        Mon, 30 May 2022 02:42:46 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24U9gZq1063648;
+        Mon, 30 May 2022 04:42:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1653903755;
+        bh=tub6E1x9VIeaGFOE8wGig1I5oV6HOmoS8vCQxHRYvbw=;
+        h=From:To:CC:Subject:Date;
+        b=PYmzEPlLNyTrSOUQDTJUjbAwJjrMZYNFFzmGgZCghhEYs5VKebDVfIMYTugQjTUOJ
+         3lGEgxr/r22rTU8lxFa7bT32OkuOcYpXswpzC+ocszGyNIj1UxUEsZoBrI3xj3o/Ku
+         qKhkq23Dr2kxHnOdS+fJ+WR7G2KIUT1WiyMOu4x8=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24U9gYOD001370
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 30 May 2022 04:42:35 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 30
+ May 2022 04:42:34 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Mon, 30 May 2022 04:42:34 -0500
+Received: from a0498981.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24U9gT8J103958;
+        Mon, 30 May 2022 04:42:30 -0500
+From:   Bhavya Kapoor <b-kapoor@ti.com>
+To:     <nm@ti.com>, <vigneshr@ti.com>
+CC:     <kristo@kernel.org>, <p.yadav@ti.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>, <linux-fbdev@vger.kernel.org>
-Date:   Mon, 30 May 2022 17:34:46 +0800
-In-Reply-To: <20220523104758.29531-19-granquet@baylibre.com>
-References: <20220523104758.29531-1-granquet@baylibre.com>
-         <20220523104758.29531-19-granquet@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Bhavya Kapoor <b-kapoor@ti.com>
+Subject: [uL PATCH] arm64: dts: ti: k3-j721e-mcu-wakeup: Modified fss compatible to syscon and simple-mfd
+Date:   Mon, 30 May 2022 15:12:30 +0530
+Message-ID: <20220530094230.53823-1-b-kapoor@ti.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,187 +64,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Guillaume:
+The FSS node also contains the Hyperflash controller. Support
+will be added in future. Change the compatible to syscon to
+accommodate that.
 
-On Mon, 2022-05-23 at 12:47 +0200, Guillaume Ranquet wrote:
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
-> 
-> This patch adds a DisplayPort driver for the Mediatek mt8195 SoC.
-> 
-> It supports the mt8195, the embedded DisplayPort units. It offers
-> DisplayPort 1.4 with up to 4 lanes.
-> 
-> The driver creates a child device for the phy. The child device will
-> never exist without the parent being active. As they are sharing a
-> register range, the parent passes a regmap pointer to the child so
-> that
-> both can work with the same register range. The phy driver sets
-> device
-> data that is read by the parent to get the phy device that can be
-> used
-> to control the phy properties.
-> 
-> This driver is based on an initial version by
-> Jason-JH.Lin <jason-jh.lin@mediatek.com>.
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> 
+Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-[snip]
-
-> +
-> +static void mtk_dp_read_link_status(struct mtk_dp *mtk_dp,
-> +				    u8
-> link_status[DP_LINK_STATUS_SIZE])
-> +{
-> +	drm_dp_dpcd_read(&mtk_dp->aux, DP_LANE0_1_STATUS, link_status,
-> +			 DP_LINK_STATUS_SIZE);
-> +}
-> +
-> +static int mtk_dp_train_tps_1(struct mtk_dp *mtk_dp,
-> +			      u8 target_lane_count, int
-> *iteration_count, u8 *lane_adjust,  int *status_control, u8
-> *prev_lane_adjust)
-> +{
-> +	int ret;
-> +	u8 val;
-> +	u8 link_status[DP_LINK_STATUS_SIZE] = {};
-> +
-> +	ret = mtk_dp_training_set_scramble(mtk_dp, false);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (*status_control == 0) {
-> +		ret = mtk_dp_train_set_pattern(mtk_dp, 1);
-> +		if (ret)
-> +			return ret;
-> +
-> +		val = DP_LINK_SCRAMBLING_DISABLE |
-> +			DP_TRAINING_PATTERN_1;
-> +		drm_dp_dpcd_writeb(&mtk_dp->aux,
-> +				   DP_TRAINING_PATTERN_SET,
-> +				DP_LINK_SCRAMBLING_DISABLE |
-> +				DP_TRAINING_PATTERN_1);
-> +		drm_dp_dpcd_read(&mtk_dp->aux,
-> +				 DP_ADJUST_REQUEST_LANE0_1,
-> +				lane_adjust,
-> +				sizeof(*lane_adjust) * 2);
-> +
-> +		mtk_dp_train_update_swing_pre(mtk_dp,
-> +					      target_lane_count,
-> lane_adjust);
-> +		*status_control = 1;
-> +		(*iteration_count)++;
-> +	}
-> +
-> +	drm_dp_link_train_clock_recovery_delay(&mtk_dp->aux,
-> +					       mtk_dp->rx_cap);
-> +	mtk_dp_read_link_status(mtk_dp, link_status);
-
-drm_dp_dpcd_read_link_status(&mtk_dp->aux, link_status);
-
-> +
-> +	if (drm_dp_clock_recovery_ok(link_status,
-> +				     target_lane_count)) {
-> +		mtk_dp->train_info.cr_done = true;
-> +		*iteration_count = 1;
-> +		dev_dbg(mtk_dp->dev, "Link train CR pass\n");
-> +		return 0;
-> +	} else if (*prev_lane_adjust == link_status[4]) {
-> +		(*iteration_count)++;
-> +		if (*prev_lane_adjust &
-> DP_ADJUST_VOLTAGE_SWING_LANE0_MASK) {
-> +			dev_dbg(mtk_dp->dev, "Link train CQ fail\n");
-> +			return -EINVAL;
-> +		}
-> +	} else {
-> +		*prev_lane_adjust = link_status[4];
-> +	}
-> +	return -EAGAIN;
-> +}
-> +
-> +static int mtk_dp_train_tps_2_3(struct mtk_dp *mtk_dp, u8
-> target_linkrate,
-> +				u8 target_lane_count, int
-> *iteration_count, u8 *lane_adjust,  int *status_control, u8
-> *prev_lane_adjust)
-> +{
-> +	int ret;
-> +	u8 val;
-> +	u8 link_status[DP_LINK_STATUS_SIZE] = {};
-> +
-> +	if (*status_control == 1) {
-> +		if (mtk_dp->train_info.tps4) {
-> +			ret = mtk_dp_train_set_pattern(mtk_dp, 4);
-> +			if (ret)
-> +				return -EINVAL;
-> +
-> +			val = DP_TRAINING_PATTERN_4;
-> +		} else if (mtk_dp->train_info.tps3) {
-> +			ret = mtk_dp_train_set_pattern(mtk_dp, 3);
-> +			if (ret)
-> +				return -EINVAL;
-> +
-> +			val = DP_LINK_SCRAMBLING_DISABLE |
-> +				DP_TRAINING_PATTERN_3;
-> +		} else {
-> +			ret = mtk_dp_train_set_pattern(mtk_dp, 2);
-> +			if (ret)
-> +				return -EINVAL;
-> +
-> +			val = DP_LINK_SCRAMBLING_DISABLE |
-> +				DP_TRAINING_PATTERN_2;
-> +		}
-> +		drm_dp_dpcd_writeb(&mtk_dp->aux,
-> +				   DP_TRAINING_PATTERN_SET,
-> +				val);
-> +
-> +		drm_dp_dpcd_read(&mtk_dp->aux,
-> +				 DP_ADJUST_REQUEST_LANE0_1,
-> +				lane_adjust,
-> +				sizeof(*lane_adjust) * 2);
-> +
-> +		mtk_dp_train_update_swing_pre(mtk_dp,
-> +					      target_lane_count,
-> lane_adjust);
-> +		*status_control = 2;
-> +		(*iteration_count)++;
-> +	}
-> +
-> +	drm_dp_link_train_channel_eq_delay(&mtk_dp->aux,
-> +					   mtk_dp->rx_cap);
-> +
-> +	mtk_dp_read_link_status(mtk_dp, link_status);
-
-drm_dp_dpcd_read_link_status(&mtk_dp->aux, link_status);
-
-Regards,
-CK
-
-> +
-> +	if (!drm_dp_clock_recovery_ok(link_status,
-> +				      target_lane_count)) {
-> +		mtk_dp->train_info.cr_done = false;
-> +		mtk_dp->train_info.eq_done = false;
-> +		dev_dbg(mtk_dp->dev, "Link train EQ fail\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (drm_dp_channel_eq_ok(link_status,
-> +				 target_lane_count)) {
-> +		mtk_dp->train_info.eq_done = true;
-> +		dev_dbg(mtk_dp->dev, "Link train EQ pass\n");
-> +		return 0;
-> +	}
-> +
-> +	if (*prev_lane_adjust == link_status[4])
-> +		(*iteration_count)++;
-> +	else
-> +		*prev_lane_adjust = link_status[4];
-> +
-> +	return -EAGAIN;
-> +}
-> +
-> 
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+index b4972dfb7da8..3c68094d835f 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+@@ -169,8 +169,8 @@
+ 		power-domains = <&k3_pds 197 TI_SCI_PD_SHARED>;
+ 	};
+ 
+-	fss: fss@47000000 {
+-		compatible = "simple-bus";
++	fss: syscon@47000000 {
++		compatible = "syscon","simple-mfd";
+ 		reg = <0x0 0x47000000 0x0 0x100>;
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+-- 
+2.20.1
 
