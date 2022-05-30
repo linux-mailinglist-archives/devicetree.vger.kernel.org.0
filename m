@@ -2,118 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9219753883C
-	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 22:31:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1114538846
+	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 22:42:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241614AbiE3UbM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 May 2022 16:31:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36296 "EHLO
+        id S241659AbiE3Umc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 May 2022 16:42:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240731AbiE3UbM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 16:31:12 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE03572E03
-        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 13:31:11 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nvm2b-0001eR-CN; Mon, 30 May 2022 22:31:05 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nvm2a-005W7e-AZ; Mon, 30 May 2022 22:31:02 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nvm2X-00DAOs-V5; Mon, 30 May 2022 22:31:01 +0200
-Date:   Mon, 30 May 2022 22:31:01 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Fabien Parent <fparent@baylibre.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S238708AbiE3Uma (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 16:42:30 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBC1625290
+        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 13:42:28 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id q21so4885966wra.2
+        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 13:42:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TBMGHe/9NOqZ3Kh+JOrF68tVZuQ1XNvw/gFRCoIpoLM=;
+        b=P6EJUlIkaQX/GAxBBZworgItiQjIuaWiqEBkZRvFN4ucg3iAj0Ml0k3grIAjx3OFjp
+         w0lfN8SApSeQqK7P5hjZgGNmUbXDq7blnl9L2Y0Sb0qiEwoZ34cWoMTKgdHLmyb+40lS
+         2MCr9PjlXd4z3eJjh42Qqawvch3nzt0TNlSwjOngUQ5aQUSvkjtF6JedOdKxn1kRaznk
+         4ulkTbMtYqwZ99h0SkMY+94ea0xdzNyMWgq66vKOsoeYlgy0o8MRoGClQJ9cBUDzOoQj
+         GEDrc2psEt7zDqLpKLZ0iMkR55oAFlF4CJd0ZDcGDPNaiYRzjjyqXNQZ4K3HoWxIOyaz
+         nF/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TBMGHe/9NOqZ3Kh+JOrF68tVZuQ1XNvw/gFRCoIpoLM=;
+        b=8OOGogmY1opmZz5ZpHo32+f6iIGLzEPjUnJvcM4oQ3BRjSVd1PHFIeJ6cAsfTFEz5r
+         PusLTLTUrRTvAIDfFnynmMbDG3PIeXw1fjUpOlGlcE+nWCvhAK/usD7vDIXd0uPiGe7k
+         Qj/jlikZNBOfSAVQAfb8xlN7KGzEiBhZMh3hwAMECHflyX5mPemS6UV18u0ZVLMYyy8H
+         bRsc7uX91wO5EIEknOzNnCWqz3GqN9rPWl19TkNmmL+mRLHU5EgyebLVFA6IvIpTSO6a
+         lXziGMwJb5rVAmyjBxk+71qVRhJBP9KUke6WqtQkrrsh62ceB9kkYoJGvJxAST+n7HA1
+         Y21g==
+X-Gm-Message-State: AOAM533X4FbCbkQECh1tjvAMuMQw94Z2CFGRCq7WQzjHswvscwY3DnNx
+        ei2U8g4zIiCjuOJj4JtYSCrALA==
+X-Google-Smtp-Source: ABdhPJzMnN8B6FO9tAuqRbT/IvWGcIChRi6Gj+uHJVi4s2P8VaVhe+EpgYkhfQ7KfQ7fMyV1+QxVwA==
+X-Received: by 2002:a5d:59af:0:b0:20f:d3fc:c5ba with SMTP id p15-20020a5d59af000000b0020fd3fcc5bamr34780364wrr.436.1653943347514;
+        Mon, 30 May 2022 13:42:27 -0700 (PDT)
+Received: from localhost.localdomain ([88.160.162.107])
+        by smtp.gmail.com with ESMTPSA id w13-20020a7bc74d000000b0039b17714eb2sm262253wmk.34.2022.05.30.13.42.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 May 2022 13:42:26 -0700 (PDT)
+From:   Fabien Parent <fparent@baylibre.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Weiyi Lu <weiyi.lu@mediatek.com>
+Cc:     Fabien Parent <fparent@baylibre.com>,
+        Matthias Brugger <mbrugger@suse.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 1/2] dt-bindings: pwm: add MT8365 SoC binding
-Message-ID: <20220530203101.5wq52q5pq523ewuu@pengutronix.de>
-References: <20220530202136.906407-1-fparent@baylibre.com>
+Subject: [PATCH 1/4] dt-bindings: power: Add MT8365 power domains
+Date:   Mon, 30 May 2022 22:42:11 +0200
+Message-Id: <20220530204214.913251-1-fparent@baylibre.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ydudqqbygmakmkzx"
-Content-Disposition: inline
-In-Reply-To: <20220530202136.906407-1-fparent@baylibre.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add power domains dt-bindings for MT8365.
 
---ydudqqbygmakmkzx
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Fabien Parent <fparent@baylibre.com>
+---
+ .../power/mediatek,power-controller.yaml      |  2 ++
+ include/dt-bindings/power/mt8365-power.h      | 19 +++++++++++++++++++
+ 2 files changed, 21 insertions(+)
+ create mode 100644 include/dt-bindings/power/mt8365-power.h
 
-On Mon, May 30, 2022 at 10:21:34PM +0200, Fabien Parent wrote:
-> Add binding documentation for the MT8365 SoC.
->=20
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/pwm/pwm-mediatek.txt | 2 ++
->  1 file changed, 2 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt b/Doc=
-umentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> index 25ed214473d7..ac5c58bbb22d 100644
-> --- a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> +++ b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> @@ -8,6 +8,7 @@ Required properties:
->     - "mediatek,mt7628-pwm": found on mt7628 SoC.
->     - "mediatek,mt7629-pwm": found on mt7629 SoC.
->     - "mediatek,mt8183-pwm": found on mt8183 SoC.
-> +   - "mediatek,mt8365-pwm": found on mt8365 SoC.
->     - "mediatek,mt8516-pwm": found on mt8516 SoC.
->   - reg: physical base address and length of the controller's registers.
->   - #pwm-cells: must be 2. See pwm.yaml in this directory for a descripti=
-on of
-> @@ -17,6 +18,7 @@ Required properties:
->                  has no clocks
->     - "top": the top clock generator
->     - "main": clock used by the PWM core
-> +   - "pwm1-3": the five per PWM clocks for mt8365
+diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+index 135c6f722091..2c6d3e4246b2 100644
+--- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
++++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+@@ -29,6 +29,7 @@ properties:
+       - mediatek,mt8186-power-controller
+       - mediatek,mt8192-power-controller
+       - mediatek,mt8195-power-controller
++      - mediatek,mt8365-power-controller
+ 
+   '#power-domain-cells':
+     const: 1
+@@ -67,6 +68,7 @@ patternProperties:
+               "include/dt-bindings/power/mt8183-power.h" - for MT8183 type power domain.
+               "include/dt-bindings/power/mt8192-power.h" - for MT8192 type power domain.
+               "include/dt-bindings/power/mt8195-power.h" - for MT8195 type power domain.
++              "include/dt-bindings/power/mt8365-power.h" - for MT8365 type power domain.
+         maxItems: 1
+ 
+       clocks:
+diff --git a/include/dt-bindings/power/mt8365-power.h b/include/dt-bindings/power/mt8365-power.h
+new file mode 100644
+index 000000000000..4f50997a13b4
+--- /dev/null
++++ b/include/dt-bindings/power/mt8365-power.h
+@@ -0,0 +1,19 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Copyright (c) 2022 MediaTek Inc.
++ */
++
++#ifndef _DT_BINDINGS_POWER_MT8365_POWER_H
++#define _DT_BINDINGS_POWER_MT8365_POWER_H
++
++#define MT8365_POWER_DOMAIN_MM		0
++#define MT8365_POWER_DOMAIN_CONN	1
++#define MT8365_POWER_DOMAIN_MFG		2
++#define MT8365_POWER_DOMAIN_AUDIO	3
++#define MT8365_POWER_DOMAIN_CAM		4
++#define MT8365_POWER_DOMAIN_DSP		5
++#define MT8365_POWER_DOMAIN_VDEC	6
++#define MT8365_POWER_DOMAIN_VENC	7
++#define MT8365_POWER_DOMAIN_APU		8
++
++#endif /* _DT_BINDINGS_POWER_MT8365_POWER_H */
+-- 
+2.36.1
 
-I think you either want s/3/5/ or s/five/three/ here?!
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---ydudqqbygmakmkzx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmKVKYMACgkQwfwUeK3K
-7AlmTAf+IC1ZakoG/AbDBiw+ISsvysZi3oDGLTm43optth/vSyX8NRewez5UcedF
-lhD+yb619mm33nUfifszc601C2x4L47zLAVRSyVoMn2XiaDporeX17CbcCyq1tDO
-yb7dTFuQEdfYr+TbvvVp/5UkCq6cCNS0yojfqxcP+WmXVDD1GsRnzH5BR2dT4Ofy
-ynvcYyx8d7wroDefw9IMs01DdPDrXdA7qa6NcSBAzwrAKPRAOVSNvn8ULuE8Op8Y
-DyG+WasQYyCDO/k3grKxatZ/ht7OJKObTC+VSbhBucC6yTxYPtZp7tTyLfNR4ReJ
-q09ZfRsmPbRLgEVf+5phxmbaevk7uw==
-=Gzed
------END PGP SIGNATURE-----
-
---ydudqqbygmakmkzx--
