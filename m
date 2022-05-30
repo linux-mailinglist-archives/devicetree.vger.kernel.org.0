@@ -2,73 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4CBF537577
-	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 09:35:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D256537589
+	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 09:37:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233495AbiE3HfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 May 2022 03:35:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40280 "EHLO
+        id S233529AbiE3Hha (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 May 2022 03:37:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233501AbiE3HfX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 03:35:23 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2A5F719C4
-        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 00:35:21 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id r129so531748wmr.3
-        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 00:35:21 -0700 (PDT)
+        with ESMTP id S233574AbiE3HhS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 03:37:18 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2427012767
+        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 00:37:17 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id d26so7802853wrb.13
+        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 00:37:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=j9oWpoYF6cP0rasfQg0lgU3K+paVeBGM3B58Xnx0N70=;
-        b=J+Nmc5vIraLihuVuNTQS3pr8e/7nM1ph14p0AXnhWFqAnwjoMKWbxFIZD2zkjxIEBl
-         gHZUqLzIRqPoLrXbukGzWJM3zfc1ofhuP/ULOzLkZzSgl1hDRyPf7dOo8MfGwy7deYM5
-         vNT2ilEX48SKQX11OPqHQSV3vrRdsQv9LoNVOc81tFGoYO0GGwe4ZueCj+WejHDYxf+h
-         F51DzT9qt/THYLBug11JDqhkQ73pJe2yCCVbI9As873b/Ck83LmW2qKspryFs1iDtJuh
-         HkPYN7VWXoNFGrodnuLTH8uH1Mqx7cse7GHr328H7YXe4Oeq4e5l0q/uv3n8tCezSnvb
-         Ur7Q==
+        bh=nUCeNrlCxSw9uMUiAzjXL467HYJr9B+OzTQ7H3Yk3Cg=;
+        b=Who/+JNYbudXenChiXobKR5VodLsrJQ1DRvcOD3IeXxKAOJ7rgTSDLqTMs12k4DcXx
+         Tdeu55CeVrOrxX7mLNBZgSqsm2CIVje3nEgDa3mVEWDz9Mspd29lMgjlHTAD3iF8hWgw
+         06b4I9Zp8q2OEmfytjQpxaY3NktMoq/TP6n5Sw0nihwnoUE3XTdPWb9XcEAuz+Rr3jnK
+         bytsnn/JbGaRkKOJrd3+b9E/Y6cd3R02kv700XJVseZQpw0WPW1XCANFZL1Qyww1J5/m
+         WmfEKdKZGMyVEnbmefHVpY3hJnOKjQZnK1Ux+WjYOi4zLDAJNhXBBBfzd/KJkaz/PInC
+         9UYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=j9oWpoYF6cP0rasfQg0lgU3K+paVeBGM3B58Xnx0N70=;
-        b=ePODi6X1n/KAHgiMYgCLvjJ/K+qN9OTHcyoVK90AMytgFJ8sVc9ssNzdOry2EYRXsP
-         33enYYHsVcMZLJaNMHg3jim4dNGg4kxL0gmYMOrKEQ8wG0cGR1mnF4NFAtBHE0sme4Vg
-         cGl/zd2It1RegH19iQ4R8eHhVYNsZr6afgaB7QaZ77ik92Rwtw6198HR6ad8qLin+awu
-         diwnmeVZl4/TzEcsdQfST225aU2geBAqGf26JLr8eYIQJ25Qrw/j5Iwt3t/SequUyTTu
-         y+C+UxJBycNOsf70jlZDURRmxWm/hGp5Ew9eBoXGXLWbxp/Vi9AziVF58t/ajPA2WpwH
-         UGKA==
-X-Gm-Message-State: AOAM533NwtjEYsbDAxsm90o4HNDMPKu2bOueqLxjp0DEv6VOreRWNcWn
-        YBfzQM5HP5tz6zaRxAZmQBEjDw==
-X-Google-Smtp-Source: ABdhPJxJ7o9DPjs3Sap3nZ8dMyV7GNUSisQEhRGh8ngGsb8rZCZsFbu3TWaWmTIrENCsWJ30MyyU4w==
-X-Received: by 2002:a05:600c:acb:b0:397:bdb:ffea with SMTP id c11-20020a05600c0acb00b003970bdbffeamr17906469wmr.56.1653896120344;
-        Mon, 30 May 2022 00:35:20 -0700 (PDT)
+        bh=nUCeNrlCxSw9uMUiAzjXL467HYJr9B+OzTQ7H3Yk3Cg=;
+        b=kFG7TSArWiEjgz0x7gsynjUDwdE3Ch6tmNtgeTbbeuApjcAXEA0HvMrRWMDzuN40GO
+         vs1pTSr6TxI1+tM1kpm9t9M9ixTEDazH+IRtVUxsW5G3kbckJx6eT4eiL3Gya4on1btq
+         QhnRpQ84tH13lNwB6oBBvmlnL8JtZta9JBI70sLLkBf0wBoCEI38Uh9HWcgcGvuM6Lvj
+         +arw3nqp55kxy1VxlP5aCwsvsYyfuexT9/WkrXPKLwoJn0pSfXU2ZnAfJh7xmuaRjLLq
+         GNVKplgL5EhXw5EvqEu8GDGnPxvEtaBt7KCKAnSTfiE2OLxPg3wdcDfWBlPZgzPcajKQ
+         J8Wg==
+X-Gm-Message-State: AOAM533HKfSxnuQ1yx5sFC8GAbXBqe7Et5qCxNEhHaJwnhR9Xkz1mQIw
+        +Jc/FQjttjIglsP0x9yrXhe3RfpGBX7PSNq8
+X-Google-Smtp-Source: ABdhPJxILpNe/ZRRBVDJ8C8RJouI8WbtUTtW//ambOyntu5ZBKk9QCkDy73ATfXhntOCidY6JNdB6A==
+X-Received: by 2002:a05:6000:1569:b0:20f:e429:d6d8 with SMTP id 9-20020a056000156900b0020fe429d6d8mr28684610wrz.663.1653896235732;
+        Mon, 30 May 2022 00:37:15 -0700 (PDT)
 Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id i8-20020adfefc8000000b002102af52a2csm5860109wrp.9.2022.05.30.00.35.19
+        by smtp.gmail.com with ESMTPSA id o2-20020a5d62c2000000b00210335f7aaesm2358423wrv.35.2022.05.30.00.37.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 May 2022 00:35:19 -0700 (PDT)
-Message-ID: <11b5c026-26ef-6b79-fbd9-f994a21e6755@linaro.org>
-Date:   Mon, 30 May 2022 09:35:18 +0200
+        Mon, 30 May 2022 00:37:15 -0700 (PDT)
+Message-ID: <6c14aa95-00c4-960b-d71a-3967096f19cb@linaro.org>
+Date:   Mon, 30 May 2022 09:37:14 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH v3 0/2] Add support for Xiaomi Mi 5s Plus
+Subject: Re: [PATCH v2 1/3] dt-bindings: mfd: ti,j721e-system-controller: Add
+ clock property
 Content-Language: en-US
-To:     Pavel Machek <pavel@ucw.cz>, Alec Su <ae40515@yahoo.com.tw>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, sboyd@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, y.oudjana@protonmail.com
-References: <20220520120449.12996-1-ae40515.ref@yahoo.com.tw>
- <20220520120449.12996-1-ae40515@yahoo.com.tw> <20220530070738.GI1363@bug>
+To:     Rahul T R <r-ravikumar@ti.com>, robh+dt@kernel.org, nm@ti.com,
+        vigneshr@ti.com, kishon@ti.com, krzysztof.kozlowski+dt@linaro.org
+Cc:     lee.jones@linaro.org, rogerq@kernel.org,
+        devicetree@vger.kernel.org, kristo@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        s-anna@ti.com
+References: <20220530073429.17514-1-r-ravikumar@ti.com>
+ <20220530073429.17514-2-r-ravikumar@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220530070738.GI1363@bug>
+In-Reply-To: <20220530073429.17514-2-r-ravikumar@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,23 +78,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/05/2022 09:07, Pavel Machek wrote:
-> Hi!
+On 30/05/2022 09:34, Rahul T R wrote:
+> Add a pattern property for clock, also update the example with
+> a clock node
 > 
->> This series adds the device tree for Xiaomi Mi 5s Plus (xiaomi-natrium)
->> smartphone which is based on Snapdragon 821 SoC.
+> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+> ---
+>  .../bindings/mfd/ti,j721e-system-controller.yaml       | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
 > 
-> Please cc phone-devel@ mailing list with phone-related patches.
+> diff --git a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+> index fa86691ebf16..290b22cab52f 100644
+> --- a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+> @@ -48,6 +48,10 @@ patternProperties:
+>      description:
+>        This is the SERDES lane control mux.
+>  
+> +  "^clock@[0-9a-f]+$":
+> +    type: object
+> +    $ref: /schemas/clock/ti,am654-ehrpwm-tbclk.yaml#
+> +
 
-I think you need to come up with some smart content-pattern for
-get_maintainers, because there is little chance I will remember to
-manually Cc some different mailing lists depending on type of some
-device or some other factor. I remember just to cc soc folks on certain
-patches and that's it. Nothing else fits my memory. :) To avoid the
-problem of poor human memory, we have a tool - scripts/get_maintainer.pl
-- and contributors are encouraged to use that one. If you want to be
-cc-ed, please either work on proper maintainers entry or set up some
-custom lei filters.
+Thanks for the changes, but the question what is this remains. Clock
+consumers use "clocks" property. Is this a clock controller (provider)
+instead?
 
 Best regards,
 Krzysztof
