@@ -2,76 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEB415378F9
-	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 12:29:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC1735378F6
+	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 12:29:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232002AbiE3KIn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 May 2022 06:08:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60944 "EHLO
+        id S235107AbiE3KKo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 May 2022 06:10:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234605AbiE3KIk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 06:08:40 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E44F7B9CD;
-        Mon, 30 May 2022 03:08:38 -0700 (PDT)
-X-UUID: 34d71082f2294258b1b74adaad5ab8f4-20220530
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:4c9ce4b4-4be1-413f-83e7-68bcbae0e369,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:2a19b09,CLOUDID:626cc6b8-3c45-407b-8f66-25095432a27a,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:0,BEC:nil
-X-UUID: 34d71082f2294258b1b74adaad5ab8f4-20220530
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1333704574; Mon, 30 May 2022 18:08:34 +0800
-Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Mon, 30 May 2022 18:08:33 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 30 May 2022 18:08:33 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 30 May 2022 18:08:33 +0800
-Message-ID: <828da579f872747943dbb7684b35f58bc592c6ca.camel@mediatek.com>
-Subject: Re: [PATCH v10 18/21] drm/mediatek: Add mt8195 Embedded DisplayPort
- driver
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Guillaume Ranquet <granquet@baylibre.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        "Kishon Vijay Abraham I" <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, "Helge Deller" <deller@gmx.de>,
-        Jitao shi <jitao.shi@mediatek.com>
-CC:     Markus Schneider-Pargmann <msp@baylibre.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
+        with ESMTP id S230097AbiE3KKm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 06:10:42 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC1177B9D6;
+        Mon, 30 May 2022 03:10:41 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24UAAace128818;
+        Mon, 30 May 2022 05:10:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1653905436;
+        bh=gz3fxtQ6S616Sg8YqQYSGp5F9mXup9910Q09FuteyMQ=;
+        h=From:To:CC:Subject:Date;
+        b=bgGtCL+x7sAHHrarXs7O0vP4ikeSJhEB/Noft+O8IqlINAgdAkLr6ag3XxbWMubxu
+         DpOqlTvDqKi2gvFBvjdO3PdLoUc3yuO6PWVJ6qkPHb8/nA9emRM/hEflg1Uj9RWS/U
+         jOVLFG9A9E2Up+r9NG6KzHFaD8GmxHvEv6mEWITA=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24UAAarS056916
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 30 May 2022 05:10:36 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 30
+ May 2022 05:10:35 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Mon, 30 May 2022 05:10:35 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24UAAYYV027667;
+        Mon, 30 May 2022 05:10:35 -0500
+From:   Rahul T R <r-ravikumar@ti.com>
+To:     <robh+dt@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kishon@ti.com>, <krzysztof.kozlowski+dt@linaro.org>
+CC:     <lee.jones@linaro.org>, <rogerq@kernel.org>,
+        <devicetree@vger.kernel.org>, <kristo@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>, <linux-fbdev@vger.kernel.org>
-Date:   Mon, 30 May 2022 18:08:33 +0800
-In-Reply-To: <20220523104758.29531-19-granquet@baylibre.com>
-References: <20220523104758.29531-1-granquet@baylibre.com>
-         <20220523104758.29531-19-granquet@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        <linux-kernel@vger.kernel.org>, <s-anna@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>
+Subject: [PATCH v4 0/3] Enable RPi header on j721e sk
+Date:   Mon, 30 May 2022 15:40:28 +0530
+Message-ID: <20220530101031.11357-1-r-ravikumar@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,75 +64,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Guillaume:
+The following series of patches enables RPi header
+on j721e sk. It is a 40 pin io expasion header which
+brings out i2c5, ehrpwm 2,3 and some pins of gpio 0,1
 
-On Mon, 2022-05-23 at 12:47 +0200, Guillaume Ranquet wrote:
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
-> 
-> This patch adds a DisplayPort driver for the Mediatek mt8195 SoC.
-> 
-> It supports the mt8195, the embedded DisplayPort units. It offers
-> DisplayPort 1.4 with up to 4 lanes.
-> 
-> The driver creates a child device for the phy. The child device will
-> never exist without the parent being active. As they are sharing a
-> register range, the parent passes a regmap pointer to the child so
-> that
-> both can work with the same register range. The phy driver sets
-> device
-> data that is read by the parent to get the phy device that can be
-> used
-> to control the phy properties.
-> 
-> This driver is based on an initial version by
-> Jason-JH.Lin <jason-jh.lin@mediatek.com>.
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> ---
->  
+v4:
+   - Correct the node name in dt binding example
 
-[snip]
+v3:
+   - Change node name from clock to clock-controller
+   - Add correct description for clock-controller node
 
-> +
-> +static irqreturn_t mtk_dp_hpd_isr_handler(struct mtk_dp *mtk_dp)
-> +{
-> +	bool connected;
-> +	u16 swirq_status = mtk_dp_swirq_get_clear(mtk_dp);
-> +	u8 hwirq_status = mtk_dp_hwirq_get_clear(mtk_dp);
-> +	struct mtk_dp_train_info *train_info = &mtk_dp->train_info;
-> +
-> +	train_info->irq_status |= hwirq_status | swirq_status;
+v2:
+   - Add full path for clock property $ref
+   - Remove the discription for clock pattern property,
+     since $ref is added
+   - Remove the label in the example
+   - Fix the indentation in the example
 
-You mix software control variable and irq status here. Break each flag
-in irq_status to variables in train_info to decouple software control
-variable and irq status.
+Rahul T R (1):
+  dt-bindings: mfd: ti,j721e-system-controller: Add clock property
 
-> +
-> +	if (!train_info->irq_status)
-> +		return IRQ_HANDLED;
-> +
-> +	connected = mtk_dp_plug_state(mtk_dp);
-> +	if (connected || !train_info->cable_plugged_in)
-> +		train_info->irq_status &= ~MTK_DP_HPD_DISCONNECT;
-> +	else if (!connected || train_info->cable_plugged_in)
-> +		train_info->irq_status &= ~MTK_DP_HPD_CONNECT;
-> +
-> +	if (!(train_info->irq_status &
-> +	      (MTK_DP_HPD_CONNECT | MTK_DP_HPD_DISCONNECT)))
-> +		return IRQ_HANDLED;
-> +
-> +	if (train_info->irq_status & MTK_DP_HPD_CONNECT) {
-> +		train_info->irq_status &= ~MTK_DP_HPD_CONNECT;
-> +		train_info->cable_plugged_in = true;
-> +	} else {
-> +		train_info->irq_status &= ~MTK_DP_HPD_DISCONNECT;
-> +		train_info->cable_plugged_in = false;
-> +		mtk_dp->train_state = MTK_DP_TRAIN_STATE_STARTUP;
-> +	}
-> +	train_info->cable_state_change = true;
-> +
-> +	return IRQ_WAKE_THREAD;
-> +}
-> +
+Sinthu Raja (1):
+  arm64: dts: ti: k3-j721e-sk: Add pinmux for RPi Header
+
+Vijay Pothukuchi (1):
+  arm64: dts: ti: k3-j721e-*: Add dts nodes for EHRPWMs
+
+ .../mfd/ti,j721e-system-controller.yaml       |  12 +++
+ .../dts/ti/k3-j721e-common-proc-board.dts     |  24 +++++
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     |  62 ++++++++++-
+ arch/arm64/boot/dts/ti/k3-j721e-sk.dts        | 101 +++++++++++++++++-
+ 4 files changed, 193 insertions(+), 6 deletions(-)
+
+-- 
+2.17.1
 
