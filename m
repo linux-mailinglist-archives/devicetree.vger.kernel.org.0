@@ -2,104 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6605537ECC
-	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 16:14:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41DA6538469
+	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 17:15:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238908AbiE3OMe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 May 2022 10:12:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56020 "EHLO
+        id S241600AbiE3Oov (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 May 2022 10:44:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239893AbiE3OGY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 10:06:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 274532FFFD;
-        Mon, 30 May 2022 06:41:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1853D60FA3;
-        Mon, 30 May 2022 13:41:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C76EC3411E;
-        Mon, 30 May 2022 13:41:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1653918102;
-        bh=K2Ct8v612oBd7AGh9aMx4iuQ2nz0lA2eVt8p+V/mDAU=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=lDdjHn6PcRun6xfMWZudlq8w8WhkRT+7UF1cKGZ2Hdo1n+csDznfJ0SYSeahXWKqC
-         Ndb8xe4AwODrsDCVcr6KBd9OhUrgE8oV0uEZIAiR4Q0HjEBF0XvoepMxt9Y+XpL35Q
-         5Xd7Umbpl9hwIdTnvkGE5/3WuNffrKh91QTlbBSeuY9dYlD387/8YGlH0K0WICOFWR
-         /RGw7azO2HNBt1o7A4TtWVL3ehmEtrk0dqxjPcaWOhgvMjWVkA7J64cDnR94NQCgxN
-         sSOP800u+6SGjdZbREcBi/+mmN5sb68ASm+PVDTsAsgHZzo0KQ53bYW+NLnTsdLTa0
-         z4FlDI0RgDoxg==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Zhen Lei <thunder.leizhen@huawei.com>,
-        Rob Herring <robh@kernel.org>, Baoquan He <bhe@redhat.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        frowand.list@gmail.com, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.15 061/109] of: Support more than one crash kernel regions for kexec -s
-Date:   Mon, 30 May 2022 09:37:37 -0400
-Message-Id: <20220530133825.1933431-61-sashal@kernel.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220530133825.1933431-1-sashal@kernel.org>
-References: <20220530133825.1933431-1-sashal@kernel.org>
+        with ESMTP id S240810AbiE3Onp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 10:43:45 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E36F538DAD
+        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 06:55:42 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id k19so6567646wrd.8
+        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 06:55:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZM5eYcuIY3/VuL1Woj6kSDisyNbm6FYEhsWCF5AlxTQ=;
+        b=S37b2Djh5PZwJVNwauCbaYraC21CjX03rx/iQFhFOYUtKB971JORGxK89ePlyNFzxr
+         pO2ZzDwk40Axo8A1xqsSkPEWbpKM1O1zPG9J5mBvsOk2cN/ePewdLaM7ZysPdcGdS22v
+         tNQb3HK3nGxIbiLILgjd2odLwh+n0iqmHgK9k2I/5NJfwiXeF7QSUQz3ihn/yEblVkHP
+         HNh9yaSnDFjdPneQIb9CdS4j+bOX4DvniIRn7PyROFWhHxCMiRKpImBIRKhO45tR4Y/S
+         bAeeDkZNvO+QEiZlUeqtnYje9tEQyfHnp+pqZlWf36axIJw8HVuOWMOqZdGn1lQdHJj8
+         2CJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZM5eYcuIY3/VuL1Woj6kSDisyNbm6FYEhsWCF5AlxTQ=;
+        b=rDAO8ZqUy2rOYyUP32BI5bace+7SREKQb0mCSG/KiDub2T/QGqMVav7bevVEAjDxnk
+         Tf3UtbRg9IU+JalNZeNuxFA19ryKOXmD4jT4UFZK8C5s7MsnMC7KH7LEk8U2xHyE7nW8
+         aBR8EeEqddzgrqagx/ACgdJNFrzVevZULmXJzAr1dhpWAgSfdhlQrYEQpxJxy6QOQHRz
+         cM5NvePMphp2jUifLiAivQvlw1X9C5SiYKuDt88sBcspdWESm2yqhhWkvyXqVgaAPP0w
+         JDzEZU/XBfnb2Etz+m8tsNNXXsbkIEnJq+J9EzvZC0fTzWT8KXeDKdRJ+8Zt/2AvlKUc
+         Df/w==
+X-Gm-Message-State: AOAM532PkcpO57P59yLLwPCZKm2GSRsi08eBG1mbCNyRH1Dv3LeChNFY
+        6Lzwyr4wzJViKBt+fcknSsH2oA==
+X-Google-Smtp-Source: ABdhPJz4bx/yd7NERuUgiDWlU20pbMHsaQibRRol4g1P3jXWGbuvbaDgPUGuEW7ONxcStVl57WBYOQ==
+X-Received: by 2002:a5d:4601:0:b0:20d:53a:2f39 with SMTP id t1-20020a5d4601000000b0020d053a2f39mr45981113wrq.347.1653918941461;
+        Mon, 30 May 2022 06:55:41 -0700 (PDT)
+Received: from localhost.localdomain ([88.160.162.107])
+        by smtp.gmail.com with ESMTPSA id w9-20020adfee49000000b0020cfed0bb7fsm9214856wro.53.2022.05.30.06.55.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 May 2022 06:55:40 -0700 (PDT)
+From:   Fabien Parent <fparent@baylibre.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Fabien Parent <fparent@baylibre.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH 1/3] dt-bindings: soc: mediatek: pwrap: add MT8365 SoC bindings
+Date:   Mon, 30 May 2022 15:55:20 +0200
+Message-Id: <20220530135522.762560-1-fparent@baylibre.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Zhen Lei <thunder.leizhen@huawei.com>
+Add pwrap binding documentation for
 
-[ Upstream commit 8af6b91f58341325bf74ecb0389ddc0039091d84 ]
-
-When "crashkernel=X,high" is used, there may be two crash regions:
-high=crashk_res and low=crashk_low_res. But now the syscall
-kexec_file_load() only add crashk_res into "linux,usable-memory-range",
-this may cause the second kernel to have no available dma memory.
-
-Fix it like kexec-tools does for option -c, add both 'high' and 'low'
-regions into the dtb.
-
-Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-Acked-by: Rob Herring <robh@kernel.org>
-Acked-by: Baoquan He <bhe@redhat.com>
-Link: https://lore.kernel.org/r/20220506114402.365-6-thunder.leizhen@huawei.com
-Signed-off-by: Catalin Marinas <catalin.marinas@arm.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Signed-off-by: Fabien Parent <fparent@baylibre.com>
 ---
- drivers/of/kexec.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ Documentation/devicetree/bindings/soc/mediatek/pwrap.txt | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
-index 761fd870d1db..72c790a3c910 100644
---- a/drivers/of/kexec.c
-+++ b/drivers/of/kexec.c
-@@ -386,6 +386,15 @@ void *of_kexec_alloc_and_setup_fdt(const struct kimage *image,
- 				crashk_res.end - crashk_res.start + 1);
- 		if (ret)
- 			goto out;
-+
-+		if (crashk_low_res.end) {
-+			ret = fdt_appendprop_addrrange(fdt, 0, chosen_node,
-+					"linux,usable-memory-range",
-+					crashk_low_res.start,
-+					crashk_low_res.end - crashk_low_res.start + 1);
-+			if (ret)
-+				goto out;
-+		}
- 	}
+diff --git a/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt b/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt
+index 0581dbda4828..00b94601071e 100644
+--- a/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt
++++ b/Documentation/devicetree/bindings/soc/mediatek/pwrap.txt
+@@ -29,6 +29,7 @@ Required properties in pwrap device node.
+ 	"mediatek,mt8183-pwrap" for MT8183 SoCs
+ 	"mediatek,mt8186-pwrap" for MT8186 SoCs
+ 	"mediatek,mt8195-pwrap" for MT8195 SoCs
++	"mediatek,mt8365-pwrap" for MT8365 SoCs
+ 	"mediatek,mt8516-pwrap" for MT8516 SoCs
+ - interrupts: IRQ for pwrap in SOC
+ - reg-names: "pwrap" is required; "pwrap-bridge" is optional.
+@@ -38,6 +39,8 @@ Required properties in pwrap device node.
+ - clock-names: Must include the following entries:
+   "spi": SPI bus clock
+   "wrap": Main module clock
++  "sys": System module clock (for MT8365 SoC)
++  "tmr": Timer module clock (for MT8365 SoC)
+ - clocks: Must contain an entry for each entry in clock-names.
  
- 	/* add bootargs */
+ Optional properities:
 -- 
-2.35.1
+2.36.1
 
