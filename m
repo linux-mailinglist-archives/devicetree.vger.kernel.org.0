@@ -2,67 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFC9D53760B
-	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 09:53:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94D1453761A
+	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 09:56:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234207AbiE3HxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 May 2022 03:53:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34748 "EHLO
+        id S231636AbiE3H4J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 May 2022 03:56:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234280AbiE3Hws (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 03:52:48 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A22639B9E;
-        Mon, 30 May 2022 00:52:05 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24U7q00J053169;
-        Mon, 30 May 2022 02:52:00 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1653897120;
-        bh=GOkPamMIZ3jld+xujzsh/azHiUlDUfOHBpiekpCg6Dw=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=vn8s/5WsQEQcXZulxrJBn4tgSQLi4jjCXGJaTY4lyA49xfx4bqh6Jiw+lKECDBe7F
-         wFshlawKO+bSQ/NGuVBCMaTw6nYEKeM4NyEs2uqw4g8PdrAbC5qo0R+xiVoKFdD0cr
-         zq7CaDWdjRM3CtsoZWDGNGtiSvcoOn4nKnPXYRHE=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24U7q06q074500
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 30 May 2022 02:52:00 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 30
- May 2022 02:52:00 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 30 May 2022 02:52:00 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24U7pxvU054752;
-        Mon, 30 May 2022 02:51:59 -0500
-Date:   Mon, 30 May 2022 13:21:58 +0530
-From:   Rahul T R <r-ravikumar@ti.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     <robh+dt@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kishon@ti.com>, <krzysztof.kozlowski+dt@linaro.org>,
-        <lee.jones@linaro.org>, <rogerq@kernel.org>,
-        <devicetree@vger.kernel.org>, <kristo@kernel.org>,
+        with ESMTP id S231672AbiE3H4H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 03:56:07 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F88DE03;
+        Mon, 30 May 2022 00:56:05 -0700 (PDT)
+X-UUID: 4443469c0e72419db8968d689a6ebc64-20220530
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:c14f2dcc-52e3-445c-9c85-1af21d71d8cd,OB:0,LO
+        B:0,IP:0,URL:5,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:0
+X-CID-META: VersionHash:2a19b09,CLOUDID:8499fc47-4fb1-496b-8f1d-39e733fed1ea,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
+        ,QS:0,BEC:nil
+X-UUID: 4443469c0e72419db8968d689a6ebc64-20220530
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1272861189; Mon, 30 May 2022 15:56:00 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Mon, 30 May 2022 15:55:59 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 30 May 2022 15:55:58 +0800
+Message-ID: <201747a8679474a1088aa12e5175b9e8ac21306e.camel@mediatek.com>
+Subject: Re: [PATCH v10 09/21] drm/mediatek: dpi: move dimension mask to SoC
+ config
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Guillaume Ranquet <granquet@baylibre.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        "Kishon Vijay Abraham I" <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, "Helge Deller" <deller@gmx.de>,
+        Jitao shi <jitao.shi@mediatek.com>
+CC:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Rex-BC Chen <rex-bc.chen@mediatek.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <s-anna@ti.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: mfd: ti,j721e-system-controller: Add
- clock property
-Message-ID: <20220530075157.43rbptnpgqqtbdho@uda0490373>
-References: <20220530073429.17514-1-r-ravikumar@ti.com>
- <20220530073429.17514-2-r-ravikumar@ti.com>
- <6c14aa95-00c4-960b-d71a-3967096f19cb@linaro.org>
+        <linux-phy@lists.infradead.org>, <linux-fbdev@vger.kernel.org>
+Date:   Mon, 30 May 2022 15:55:58 +0800
+In-Reply-To: <20220523104758.29531-10-granquet@baylibre.com>
+References: <20220523104758.29531-1-granquet@baylibre.com>
+         <20220523104758.29531-10-granquet@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <6c14aa95-00c4-960b-d71a-3967096f19cb@linaro.org>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,44 +78,111 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09:37-20220530, Krzysztof Kozlowski wrote:
-> On 30/05/2022 09:34, Rahul T R wrote:
-> > Add a pattern property for clock, also update the example with
-> > a clock node
-> > 
-> > Signed-off-by: Rahul T R <r-ravikumar@ti.com>
-> > ---
-> >  .../bindings/mfd/ti,j721e-system-controller.yaml       | 10 ++++++++++
-> >  1 file changed, 10 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
-> > index fa86691ebf16..290b22cab52f 100644
-> > --- a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
-> > +++ b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
-> > @@ -48,6 +48,10 @@ patternProperties:
-> >      description:
-> >        This is the SERDES lane control mux.
-> >  
-> > +  "^clock@[0-9a-f]+$":
-> > +    type: object
-> > +    $ref: /schemas/clock/ti,am654-ehrpwm-tbclk.yaml#
-> > +
+Hi, Guillaume:
+
+On Mon, 2022-05-23 at 12:47 +0200, Guillaume Ranquet wrote:
+> Add flexibility by moving the dimension mask to the SoC config
+
+Reviewed-by: CK Hu <ck.hu@mediatek.com>
+
 > 
-> Thanks for the changes, but the question what is this remains. Clock
-> consumers use "clocks" property. Is this a clock controller (provider)
-> instead?
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> Reviewed-by: AngeloGioacchino Del Regno <
+> angelogioacchino.delregno@collabora.com>
+> Reviewed-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_dpi.c | 26 ++++++++++++++++----------
+>  1 file changed, 16 insertions(+), 10 deletions(-)
 > 
-> Best regards,
-> Krzysztof
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> index 454f8563efae..bf098f36a466 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> @@ -127,6 +127,8 @@ struct mtk_dpi_conf {
+>  	u32 num_output_fmts;
+>  	bool is_ck_de_pol;
+>  	bool swap_input_support;
+> +	/* Mask used for HWIDTH, HPORCH, VSYNC_WIDTH and VSYNC_PORCH
+> (no shift) */
+> +	u32 dimension_mask;
+>  	const struct mtk_dpi_yc_limit *limit;
+>  };
+>  
+> @@ -156,30 +158,30 @@ static void mtk_dpi_disable(struct mtk_dpi
+> *dpi)
+>  static void mtk_dpi_config_hsync(struct mtk_dpi *dpi,
+>  				 struct mtk_dpi_sync_param *sync)
+>  {
+> -	mtk_dpi_mask(dpi, DPI_TGEN_HWIDTH,
+> -		     sync->sync_width << HPW, HPW_MASK);
+> -	mtk_dpi_mask(dpi, DPI_TGEN_HPORCH,
+> -		     sync->back_porch << HBP, HBP_MASK);
+> +	mtk_dpi_mask(dpi, DPI_TGEN_HWIDTH, sync->sync_width << HPW,
+> +		     dpi->conf->dimension_mask << HPW);
+> +	mtk_dpi_mask(dpi, DPI_TGEN_HPORCH, sync->back_porch << HBP,
+> +		     dpi->conf->dimension_mask << HBP);
+>  	mtk_dpi_mask(dpi, DPI_TGEN_HPORCH, sync->front_porch << HFP,
+> -		     HFP_MASK);
+> +		     dpi->conf->dimension_mask << HFP);
+>  }
+>  
+>  static void mtk_dpi_config_vsync(struct mtk_dpi *dpi,
+>  				 struct mtk_dpi_sync_param *sync,
+>  				 u32 width_addr, u32 porch_addr)
+>  {
+> -	mtk_dpi_mask(dpi, width_addr,
+> -		     sync->sync_width << VSYNC_WIDTH_SHIFT,
+> -		     VSYNC_WIDTH_MASK);
+>  	mtk_dpi_mask(dpi, width_addr,
+>  		     sync->shift_half_line << VSYNC_HALF_LINE_SHIFT,
+>  		     VSYNC_HALF_LINE_MASK);
+> +	mtk_dpi_mask(dpi, width_addr,
+> +		     sync->sync_width << VSYNC_WIDTH_SHIFT,
+> +		     dpi->conf->dimension_mask << VSYNC_WIDTH_SHIFT);
+>  	mtk_dpi_mask(dpi, porch_addr,
+>  		     sync->back_porch << VSYNC_BACK_PORCH_SHIFT,
+> -		     VSYNC_BACK_PORCH_MASK);
+> +		     dpi->conf->dimension_mask <<
+> VSYNC_BACK_PORCH_SHIFT);
+>  	mtk_dpi_mask(dpi, porch_addr,
+>  		     sync->front_porch << VSYNC_FRONT_PORCH_SHIFT,
+> -		     VSYNC_FRONT_PORCH_MASK);
+> +		     dpi->conf->dimension_mask <<
+> VSYNC_FRONT_PORCH_SHIFT);
+>  }
+>  
+>  static void mtk_dpi_config_vsync_lodd(struct mtk_dpi *dpi,
+> @@ -813,6 +815,7 @@ static const struct mtk_dpi_conf mt8173_conf = {
+>  	.num_output_fmts = ARRAY_SIZE(mt8173_output_fmts),
+>  	.is_ck_de_pol = true,
+>  	.swap_input_support = true,
+> +	.dimension_mask = HPW_MASK,
+>  	.limit = &mtk_dpi_limit,
+>  };
+>  
+> @@ -825,6 +828,7 @@ static const struct mtk_dpi_conf mt2701_conf = {
+>  	.num_output_fmts = ARRAY_SIZE(mt8173_output_fmts),
+>  	.is_ck_de_pol = true,
+>  	.swap_input_support = true,
+> +	.dimension_mask = HPW_MASK,
+>  	.limit = &mtk_dpi_limit,
+>  };
+>  
+> @@ -836,6 +840,7 @@ static const struct mtk_dpi_conf mt8183_conf = {
+>  	.num_output_fmts = ARRAY_SIZE(mt8183_output_fmts),
+>  	.is_ck_de_pol = true,
+>  	.swap_input_support = true,
+> +	.dimension_mask = HPW_MASK,
+>  	.limit = &mtk_dpi_limit,
+>  };
+>  
+> @@ -847,6 +852,7 @@ static const struct mtk_dpi_conf mt8192_conf = {
+>  	.num_output_fmts = ARRAY_SIZE(mt8173_output_fmts),
+>  	.is_ck_de_pol = true,
+>  	.swap_input_support = true,
+> +	.dimension_mask = HPW_MASK,
+>  	.limit = &mtk_dpi_limit,
+>  };
+>  
 
-Hi Krzysztof,
-
-Yes, this is a clock provider node, I will add the
-correct description and will also update the
-example with a clock consumer node that is using
-a clock from this
-
-That should be enough right?
-
-Regards
-Rahul T R
