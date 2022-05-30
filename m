@@ -2,111 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5D5D537A97
-	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 14:24:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5680537ADC
+	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 14:57:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236097AbiE3MYY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 May 2022 08:24:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38080 "EHLO
+        id S236190AbiE3M5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 May 2022 08:57:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230425AbiE3MYW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 08:24:22 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08B17793B8
-        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 05:24:22 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1nveRV-0002Mj-9Q; Mon, 30 May 2022 14:24:17 +0200
-Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1nveRV-005RpE-TR; Mon, 30 May 2022 14:24:16 +0200
-Received: from mfe by dude02.red.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1nveRT-003r3e-VE; Mon, 30 May 2022 14:24:15 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de
-Subject: [PATCH 2/2] drm/panel: simple: add ETML0700Y5DHA panel
-Date:   Mon, 30 May 2022 14:24:07 +0200
-Message-Id: <20220530122407.918874-2-m.felsch@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220530122407.918874-1-m.felsch@pengutronix.de>
-References: <20220530122407.918874-1-m.felsch@pengutronix.de>
+        with ESMTP id S234641AbiE3M5N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 08:57:13 -0400
+Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 622F5D127;
+        Mon, 30 May 2022 05:57:12 -0700 (PDT)
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+        by mx0b-0016f401.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 24UBlFCt015426;
+        Mon, 30 May 2022 05:56:50 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=pfpt0220; bh=4x2Kj3Z37xHSZ+jDDGeFI/X64XLEfx8wXlDouARLtRk=;
+ b=Jzo+lZ9sWj303TkqsO0urTdP8N+I7SC3YJMGG/UuBnr4uNCrkpOsv3d2OIjg3bz9q0Jc
+ 3KnJ28sjMsB/WLDdr/9W+jck/clfJTfEFLm0JfqpiozH+kynx6yGuyjBwg3ES0q0uL0O
+ jE3SwcYTEWybIrf1mI47dKQKUv5ezgcToQuiBn2vwCJ8m2XRpk3lTR8sTA1ljmnEBhg5
+ Oh48GHg+e3IZXr/oqCtSwBsB9yEIZcN7gsYLEtcHOFd2DJhCKQSiQRO8baP2NaSsJOXH
+ 7qJcFTjji73rPQJ5kheZIWEANoOsbddLIYIltsnIgMp/pY57MX7JlUgp5J4TIaIkP3GS +A== 
+Received: from dc5-exch02.marvell.com ([199.233.59.182])
+        by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 3gbk8n5fbf-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Mon, 30 May 2022 05:56:50 -0700
+Received: from DC5-EXCH02.marvell.com (10.69.176.39) by DC5-EXCH02.marvell.com
+ (10.69.176.39) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Mon, 30 May
+ 2022 05:56:48 -0700
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH02.marvell.com
+ (10.69.176.39) with Microsoft SMTP Server id 15.0.1497.18 via Frontend
+ Transport; Mon, 30 May 2022 05:56:48 -0700
+Received: from localhost.localdomain (unknown [10.110.150.250])
+        by maili.marvell.com (Postfix) with ESMTP id 25E1F3F7081;
+        Mon, 30 May 2022 05:56:48 -0700 (PDT)
+From:   Piyush Malgujar <pmalgujar@marvell.com>
+To:     <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
+        <cchavva@marvell.com>, <deppel@marvell.com>,
+        Piyush Malgujar <pmalgujar@marvell.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        "Jakub Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>
+Subject: [PATCH v2 0/3] net: mdio: mdio-thunder: MDIO clock related changes for Marvell Octeon Family.
+Date:   Mon, 30 May 2022 05:53:25 -0700
+Message-ID: <20220530125329.30717-1-pmalgujar@marvell.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Proofpoint-ORIG-GUID: 4sPBX4jc2_wi0qHvKbix-7Vi7MMFxA00
+X-Proofpoint-GUID: 4sPBX4jc2_wi0qHvKbix-7Vi7MMFxA00
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.874,Hydra:6.0.486,FMLib:17.11.64.514
+ definitions=2022-05-30_04,2022-05-30_01,2022-02-23_01
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the 1024x600 LVDS panel.
+This patch series mdio changes are pertaining to Marvell Octeon family.
 
-Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
----
- drivers/gpu/drm/panel/panel-simple.c | 29 ++++++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
+1) clock gating:
+	The purpose of this change is to apply clock gating for MDIO clock
+	when there is no transaction happening. This will stop the MDC
+	clock toggling in idle scenario.
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 4a2e580a2f7b..a5ccdf160dc7 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -1685,6 +1685,32 @@ static const struct panel_desc edt_etm0700g0bdh6 = {
- 	.connector_type = DRM_MODE_CONNECTOR_DPI,
- };
- 
-+static const struct display_timing edt_etml0700y5dha_timing = {
-+	.pixelclock = { 40800000, 51200000, 67200000 },
-+	.hactive = { 1024, 1024, 1024 },
-+	.hfront_porch = { 30, 106, 125 },
-+	.hback_porch = { 30, 106, 125 },
-+	.hsync_len = { 30, 108, 126 },
-+	.vactive = { 600, 600, 600 },
-+	.vfront_porch = { 3, 12, 67},
-+	.vback_porch = { 3, 12, 67 },
-+	.vsync_len = { 4, 11, 66 },
-+	.flags = DISPLAY_FLAGS_HSYNC_LOW | DISPLAY_FLAGS_VSYNC_LOW |
-+		 DISPLAY_FLAGS_DE_HIGH,
-+};
-+
-+static const struct panel_desc edt_etml0700y5dha = {
-+	.timings = &edt_etml0700y5dha_timing,
-+	.num_timings = 1,
-+	.bpc = 8,
-+	.size = {
-+		.width = 155,
-+		.height = 86,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,
-+	.connector_type = DRM_MODE_CONNECTOR_LVDS,
-+};
-+
- static const struct drm_display_mode edt_etmv570g2dhu_mode = {
- 	.clock = 25175,
- 	.hdisplay = 640,
-@@ -3868,6 +3894,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "edt,etm0700g0edh6",
- 		.data = &edt_etm0700g0bdh6,
-+	}, {
-+		.compatible = "edt,etml0700y5dha",
-+		.data = &edt_etml0700y5dha,
- 	}, {
- 		.compatible = "edt,etmv570g2dhu",
- 		.data = &edt_etmv570g2dhu,
+2) Marvell MDIO clock frequency attribute change:
+	This MDIO change provides an option for user to have the bus speed
+	set to their needs. The clock-freq for Marvell Octeon defaults to
+	3.125 MHz and not 2.5 MHz as standard. In case someone needs to use
+	this attribute, they have to add an extra attribute
+	"clock-frequency" in the mdio entry in their DTS and this driver
+	will do the rest.
+        The changes are made in a way that the clock will set to the
+	nearest possible value based on the clock calculation and required
+	frequency from DTS.
+        
+These changes has been verified internally with Marvell Octeon series.
+
+Changes since V1:
+* Separated the logical changes in separate patches
+* Replaced macros with functions
+* Used proper property name for DTS
+* Updated DTS binding
+
+Piyush Malgujar (3):
+  net: mdio: mdio-thunder: stop toggling SMI clock on idle
+  dt-bindings: net: cavium-mdio.txt: add clock-frequency attribute
+  net: mdio: mdio-thunder: support for clock-freq attribute
+
+ .../devicetree/bindings/net/cavium-mdio.txt   |  5 ++
+ drivers/net/mdio/mdio-cavium.h                |  1 +
+ drivers/net/mdio/mdio-thunder.c               | 68 +++++++++++++++++++
+ 3 files changed, 74 insertions(+)
+
 -- 
-2.30.2
+2.17.1
 
