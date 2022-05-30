@@ -2,88 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4925C537597
-	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 09:40:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEFDC5375A2
+	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 09:42:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233664AbiE3Hkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 May 2022 03:40:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48018 "EHLO
+        id S233759AbiE3Hmt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 May 2022 03:42:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233661AbiE3Hko (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 03:40:44 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E856212AD8
-        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 00:40:41 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id r123-20020a1c2b81000000b0039c1439c33cso370440wmr.5
-        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 00:40:41 -0700 (PDT)
+        with ESMTP id S233734AbiE3Hmd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 03:42:33 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C57D53B6F
+        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 00:42:30 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id n124-20020a1c2782000000b003972dfca96cso5905298wmn.4
+        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 00:42:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=yJvJHo6WigzGU+Bo8i27kFyA2o+86owNrCMmWJXdlE8=;
-        b=W4BYSpqDTbHV+hbVi3/CpOCs7LKmmS1CEMqy5HUoFQCOguVArLULseXhFL/JULV4Vd
-         Eo4VFd7b4x+y2HN+FG9NkKGbKnnzYv9OIxXTL73azJ7lf89e94vesObKZKJ6SiG28DiK
-         yX+4TIXLGGNm4CbOsTeKyIh47cM0N9CAap+ck58AvLb4fOle8nYEtBohBK/A1//lcRCg
-         j95vXrzs4gziXs4px9y4DJmEmCUvdTKEtn5YAjT5DF0RGNJdwZdXKibwfo3O9KTu/GT5
-         F4vQzdeZy57g3bAEEENQ6e+tuf51A/HCUSKII8ir1NYFCbgLQPvxpmiXfZQFoTkLpec7
-         8hMA==
+        bh=tDRiL7T1D2xh8IqjQ4J9GQ/82u6rcAgsmar4+giEo/c=;
+        b=DyT3t+1nyG9y4HN64kgP299uQMuwvYQw3UXLpbawcwaWR/Jqerrg29FeN0CWFMCYbo
+         wYFK+RTScfJC11jD7p12SBCHM6cnrVn02ZhrexSayH9QhoKjl2Fki9rOWgd4xZEPrdKW
+         FAsewudhQ2ax1Og0wls9gcytEW/VAX4IZe534jNFQORswYITHyoUjmlqAURly9zdzHRC
+         swS5xuL9QRfIpzLsOkyIdTkIgzHaIrsc2BdcHDRVSj7MXk3v4dQKr/VuBNGhpnRtifDJ
+         dicKc83acHjeI51wuiYAKK2AwU7sn0qjvC8PnR1L+d9/YmVy0Nj7Pvpd+13OkuHk7uw2
+         pA8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=yJvJHo6WigzGU+Bo8i27kFyA2o+86owNrCMmWJXdlE8=;
-        b=jhxLxiRkxTAuMaToZMwBu7CSG3jgh1XnCuZmfYeROisSI68nSqLJnB3cWDqo2uA+vt
-         EUPTTQFZfcqcqgeRuKL4Qcw0d2hXrhdfeB7VALoucoa/cqOVD3k97Mfj88H3k54lmxcT
-         bsWXEmenc2yCe54hEhXz/day8zSEZ5zhYQKdNjVvIv4lAEU0oKUJ38NqThVMj7pjhed2
-         vjtYL0cT5UTMcQZJcKYGxURpnIBZplFY/wyI4PgFtCpzYbKJ7WT+/mHE7K9+Fac+kvFY
-         iQwFH2G4LVPgXtVPpZ28r19T1Up5JR2lXqiQbVs6xqmezRlRTDRAhWKDP8Fx4a4YKx84
-         NMFg==
-X-Gm-Message-State: AOAM5303uOVNRLFAfIS33OpZDLZPOqHIgt/vPafCzUsYLZgLHQgE/gMB
-        uiPplOUEJTiec2K3We/9vIB/5A==
-X-Google-Smtp-Source: ABdhPJzWZl/XXPcljunVWHqjNPh9NxSE5LyrBrelvogQHAI/oaz8TISreCp2+FfVSpBlEvS/xcf15Q==
-X-Received: by 2002:a05:600c:6015:b0:397:54e1:8279 with SMTP id az21-20020a05600c601500b0039754e18279mr17451068wmb.100.1653896440461;
-        Mon, 30 May 2022 00:40:40 -0700 (PDT)
+        bh=tDRiL7T1D2xh8IqjQ4J9GQ/82u6rcAgsmar4+giEo/c=;
+        b=FsEyfTpUpTO91Bem/sYFTDgP0OgBVVTmJqdgOrw5ahQB8kMpabmJUBpYLuNuYpF0eB
+         gVAgHqkw8yDODYtJC14iFe6UiUKTUnh3ezJSF7t//OyZffDDooE9aEwsba3a/qlP8+hK
+         EjafGJlmPIDHFESo0G6/u4qOyINUHN4Z2A9tlIIIub/wrsZt4Pva9zdmqdSI8r7sGJ33
+         hF5T34ISSlWJdA+LYBRn4vXo2UuaviSt/gNx+EQD2eHOjhtliIW4jQC6oVdhtYI1OSFH
+         DA9Dg0e/BfWiq2eo0mGWULZwBRJ9O+nxT/eBdaQJCHHILWzyHUIbUskfdx/Qgj1RpetF
+         mG6w==
+X-Gm-Message-State: AOAM531bQg0EjVL+waF8kb2i7l8yay3KtdOHE7yFT+jE+T9OdZv6lLBh
+        RyIjnhTo1snJgEe9Q6Hlby/K1A==
+X-Google-Smtp-Source: ABdhPJwoeX8AFnrofXaPRVEbqd1WcQ2GzDw7JV+PLebAOLW2qA5bkbyquUytImzShJhd5/S7esV1wA==
+X-Received: by 2002:a05:600c:2305:b0:397:44a4:d3cb with SMTP id 5-20020a05600c230500b0039744a4d3cbmr17393978wmo.115.1653896549076;
+        Mon, 30 May 2022 00:42:29 -0700 (PDT)
 Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id g13-20020a5d64ed000000b002100e86319asm8647487wri.78.2022.05.30.00.40.39
+        by smtp.gmail.com with ESMTPSA id h19-20020a05600c351300b0039456fb80b3sm9966481wmq.43.2022.05.30.00.42.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 May 2022 00:40:39 -0700 (PDT)
-Message-ID: <9f40d587-bfaa-a3cd-d261-a10d1740610d@linaro.org>
-Date:   Mon, 30 May 2022 09:40:38 +0200
+        Mon, 30 May 2022 00:42:28 -0700 (PDT)
+Message-ID: <fb007f9f-b2bc-9221-64d1-48de8fdb25f0@linaro.org>
+Date:   Mon, 30 May 2022 09:42:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH V2 1/7] dt-bindings: soc: add i.MX93 SRC
+Subject: Re: [PATCH v3 4/7] arm64: dts: qcom: sdm845: control RPMHPD
+ performance states with UFS
 Content-Language: en-US
-To:     Peng Fan <peng.fan@nxp.com>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-Cc:     Aisheng Dong <aisheng.dong@nxp.com>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20220526123411.270083-1-peng.fan@oss.nxp.com>
- <20220526123411.270083-2-peng.fan@oss.nxp.com>
- <2e6c2995-9204-61fa-0aee-f4ea4cce084c@linaro.org>
- <DU0PR04MB9417353FE7BA649887E7C5B188DD9@DU0PR04MB9417.eurprd04.prod.outlook.com>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-scsi@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+References: <20220513061347.46480-1-krzysztof.kozlowski@linaro.org>
+ <20220513061347.46480-5-krzysztof.kozlowski@linaro.org>
+ <20220525071630.irrz24rs73l3ke4o@vireshk-i7>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <DU0PR04MB9417353FE7BA649887E7C5B188DD9@DU0PR04MB9417.eurprd04.prod.outlook.com>
+In-Reply-To: <20220525071630.irrz24rs73l3ke4o@vireshk-i7>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -91,32 +91,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/05/2022 08:57, Peng Fan wrote:
->> Subject: Re: [PATCH V2 1/7] dt-bindings: soc: add i.MX93 SRC
->>
->> On 26/05/2022 14:34, Peng Fan (OSS) wrote:
->>> From: Peng Fan <peng.fan@nxp.com>
->>>
->>> Add bindings for i.MX93 System Reset Controller(SRC). SRC supports
->>> resets and power gating for mixes.
->>>
->>> Signed-off-by: Peng Fan <peng.fan@nxp.com>
->>> ---
->>>  .../bindings/soc/imx/fsl,imx93-src.yaml       | 96
->> +++++++++++++++++++
->>
->> Still wrong location of bindings.
+On 25/05/2022 09:16, Viresh Kumar wrote:
+> On 13-05-22, 08:13, Krzysztof Kozlowski wrote:
+>> +			ufs_opp_table: opp-table {
+>> +				compatible = "operating-points-v2";
+>> +
+>> +				opp-50000000 {
+>> +					opp-hz = /bits/ 64 <50000000
+>> +						 0
+>> +						 0
+>> +						 37500000
+>> +						 0
+>> +						 0
+>> +						 0
+>> +						 0
+>> +						 // FIXME: value 0 copied from freq-table-hz
+>> +						 0>;
 > 
-> Although it is called SRC(system reset controller), but actually
-> it not functions only as reset controller, it also supports power
-> gating of each slice including slice's memory low power control.
-> It also includes some system general configuration.
+> One general comment, I think this should follow how we specify
+> multiple voltages or other fields and so each frequency should be part
+> of a different < > braces. Like: opp-hz = /bits/ 64 <5000000>, <0>, ....
 > 
-> So follow your suggestion in V1, I rename it as system-controller,
-> but I not find a directory for system-controller.
+> Whatever is there between < > seems to be connected, like
+> min/max/target for voltage.
+> 
+> The code will process both in a similar way though eventually.
 
-Therefore I propose "power". 2 out of 3 functions (reset controller,
-power domain controller) are related to power.
+OK, I can change to such format.
 
 Best regards,
 Krzysztof
