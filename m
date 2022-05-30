@@ -2,74 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85A8853756D
-	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 09:31:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23DDB537571
+	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 09:33:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231432AbiE3Hbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 May 2022 03:31:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34166 "EHLO
+        id S233462AbiE3Hd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 May 2022 03:33:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232493AbiE3Hbn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 03:31:43 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F14ED90
-        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 00:31:42 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id 129-20020a1c0287000000b003974edd7c56so4463787wmc.2
-        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 00:31:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=oiw/uRJbMSCvuydWISxUK72kvSJUpMpNlhQoZ7zkqPk=;
-        b=kfzDYj8rXu5eIBwsxs4l0fQ0AUFx3draZpw/WHJKafG8lXmah0qeFBbKftsOdSHLid
-         fcLi1KEXnejapJDZ+/S/Aq+c35QjbHQYclwAgtUGZbUz7OJLjKO/zwrEeYaHSpwYiM+j
-         9c7JogBg8Tr6ZFB0/97EOI1hjldFpKuIxLfn4eNeeLdWZIwrFSCuDmrMUQNlAApMWG2Z
-         NoPLw8z11UxmzFBcxWJ0VaDNci4uW7XK0FKQIo5NEW24lne9rnpqg7e1vIW+nrutvdbi
-         4GRHuAvchsyMXoVNAwfbnhmd7sXjQNIeRdJQpbKdy+YjmnwqWZMJTUpAJ2VL5noFGcnU
-         IMNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=oiw/uRJbMSCvuydWISxUK72kvSJUpMpNlhQoZ7zkqPk=;
-        b=IyoLt89almhk0Dvsvs2u4bcE9uvDckxD3a7qf510Q7QNifoPQx7GQwhb1kaH9KoB0U
-         X2LIxHnTBqeEX/FnzYj7lvjpPZDrrlRI+gim7WCQCe3n95pMjU1CLn9kwTOhwygsrfwE
-         txuDcAsRMpGDsyiGXluMH3Z1FqBvh31cMhQXy34wDzoqU0xc5I3NrYjd5TxeSEgVfSWw
-         6jGxWtugAnzjCcyfThLKC22S4ovcp4AxjnEv118giJLdTX00jai+jFmjtIcP4a7/z2z0
-         TfmiK3tJkFftWeL9p8nO4dsTRAmYACfqJnO1anPzgLq1yQADiYIZIiEQb8daWbpvpwCs
-         lzmw==
-X-Gm-Message-State: AOAM533zMw68FNJ1lrbjwKYKkaV2J8zVGkowTbOhL0f/U9YLkOnhHoV2
-        yHK6poTSSTeJFNKlOstPkqXWTA==
-X-Google-Smtp-Source: ABdhPJzQJ26kiCNRK22TsWhIU/bHfbQahg9lFmsXUYwj+Kj4OVS70jf6inpFF7GIRN3VTzZLRVHwlA==
-X-Received: by 2002:a05:600c:1492:b0:397:4afc:cc76 with SMTP id c18-20020a05600c149200b003974afccc76mr17762579wmh.124.1653895900645;
-        Mon, 30 May 2022 00:31:40 -0700 (PDT)
-Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id l6-20020adff486000000b0020c5253d907sm8212583wro.83.2022.05.30.00.31.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 May 2022 00:31:40 -0700 (PDT)
-Message-ID: <0b5bb492-dfe6-0388-491c-b2afc531f35b@linaro.org>
-Date:   Mon, 30 May 2022 09:31:39 +0200
+        with ESMTP id S231839AbiE3HdZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 03:33:25 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 712496396;
+        Mon, 30 May 2022 00:33:22 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24U7X78F084352;
+        Mon, 30 May 2022 02:33:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1653895987;
+        bh=ExBnzLiYFVziL0l+DfDaFgwz3sYIoqI8Aw25L0RFvvA=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=AnTbvWQX7WUXCiDp/9JEGkTBI3hvIJo+70oDNeNLwMbnneXuzQCKyh5omrnL/C0pw
+         uFz0zB7vvLsUkZIXgvtmmRI0SO+hbPwAqtwl6JYXMgdI8fuAT9kI23qQ04Mz6m9BB8
+         ncZgBNGZfV0FLkBFHkPvNwJoMdGkdfYdoxXudlho=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24U7X7lC064595
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 30 May 2022 02:33:07 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 30
+ May 2022 02:33:07 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Mon, 30 May 2022 02:33:07 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24U7X5SF097044;
+        Mon, 30 May 2022 02:33:06 -0500
+Date:   Mon, 30 May 2022 13:03:05 +0530
+From:   Rahul T R <r-ravikumar@ti.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     <robh+dt@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kishon@ti.com>, <krzysztof.kozlowski+dt@linaro.org>,
+        <lee.jones@linaro.org>, <rogerq@kernel.org>,
+        <devicetree@vger.kernel.org>, <kristo@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <s-anna@ti.com>
+Subject: Re: [PATCH 1/3] dt-bindings: mfd: ti,j721e-system-controller: Add
+ clock property
+Message-ID: <20220530073304.strqmcwbbixqjrdu@uda0490373>
+References: <20220527083556.18864-1-r-ravikumar@ti.com>
+ <20220527083556.18864-2-r-ravikumar@ti.com>
+ <0b561964-5718-ab1e-34c3-07eadae5b04e@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v2] arm64: dts: intel: socfpga_agilex: use defined GIC
- interrupt type for ECC
-Content-Language: en-US
-To:     niravkumar.l.rabara@intel.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Dinh Nguyen <dinguyen@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220530061212.1682439-1-niravkumar.l.rabara@intel.com>
- <20220530072530.1685970-1-niravkumar.l.rabara@intel.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220530072530.1685970-1-niravkumar.l.rabara@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <0b561964-5718-ab1e-34c3-07eadae5b04e@linaro.org>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,18 +70,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/05/2022 09:25, niravkumar.l.rabara@intel.com wrote:
-> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+On 16:14-20220529, Krzysztof Kozlowski wrote:
+> On 27/05/2022 10:35, Rahul T R wrote:
+> > Add a pattern property for clock, also update the example with
+> > a clock node
+> > 
+> > Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+> > ---
+> >  .../bindings/mfd/ti,j721e-system-controller.yaml     | 12 ++++++++++++
+> >  1 file changed, 12 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+> > index fa86691ebf16..e774a7f0bb08 100644
+> > --- a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+> > +++ b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+> > @@ -48,6 +48,12 @@ patternProperties:
+> >      description:
+> >        This is the SERDES lane control mux.
+> >  
+> > +  "^clock@[0-9a-f]+$":
+> > +    type: object
+> > +    $ref: ../clock/ti,am654-ehrpwm-tbclk.yaml#
+
+Thanks Krzysztof,
+
+Will address the review comments and send a v2
+of this
+
+Regards
+Rahul T R
+
 > 
-> Use defined GIC interrupt type instead of hard-coded numbers for ECC
-> (Error Correction Code) memory, which creates edac sysfs interface.
-
-Ah, ECC was about device node... sounds fine.
-
-Anyway, please always include tags you received.
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
+> Full path please, so /schemas/clock/.......
+> 
+> > +    description:
+> > +      This is TI syscon gate clk.
+> 
+> Don't use "This is". Just describe it without need of full sentence.
+> "syscon gate clock" is a bit unspecific and actually looks like you
+> describe "clocks" property...
+> 
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
+> > @@ -79,5 +85,11 @@ examples:
+> >                  <0x40c0 0x3>, <0x40c4 0x3>, <0x40c8 0x3>, <0x40cc 0x3>;
+> >                  /* SERDES4 lane0/1/2/3 select */
+> >          };
+> > +
+> > +        ehrpwm_tbclk: clock@4140 {
+> 
+> No need for label.
+> 
+> > +                compatible = "ti,am654-ehrpwm-tbclk", "syscon";
+> 
+> Messed up indentation.
+> 
+> > +                reg = <0x4140 0x18>;
+> > +                #clock-cells = <1>;
+> > +        };
+> >      };
+> >  ...
+> 
+> 
+> Best regards,
+> Krzysztof
