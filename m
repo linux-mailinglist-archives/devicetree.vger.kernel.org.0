@@ -2,208 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9300D5386FB
-	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 20:04:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F60053870F
+	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 20:09:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239707AbiE3SEB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 May 2022 14:04:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35006 "EHLO
+        id S242430AbiE3SJ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 May 2022 14:09:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234253AbiE3SEA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 14:04:00 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39139A2065
-        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 11:03:58 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id k19so7490617wrd.8
-        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 11:03:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=eEF/THqP4/KMnhR3Jx46Pp2/fGel1OrMSQe1WykeaFE=;
-        b=YjA/47czGUZcB3jHTGA93lpns9MvpQGWDsDLKqd8CFUEsg1VNHhCm2d7nwCGBfQvja
-         E7bGvlwNaBeG/I0zVOqu77Y2ZNhxxc3/1DkrFu6rxz08JUgpYX1cMjrVpm+M9HET6FRa
-         yS5VYOlJEUvUzgwXXhnfX7VhNKQvOninG0lZEJqPss8cwi0GrsZtu0pdyN6SIsiy55+m
-         oW4sbMy84PoQgMFQ1rI0dknEbE8i08PEYhC+NU3e4mv5JCYQYqyOedDXKp5i4CsYMfDB
-         wtXofgV58zwq8U8hgNi42vXMkUF6nmV31OKlRYNzQpZ+7K70ot1UtCVuanhwp9pxzAlz
-         NGqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=eEF/THqP4/KMnhR3Jx46Pp2/fGel1OrMSQe1WykeaFE=;
-        b=uotR9LZsryEksW9su+1VN5HhyWMSlqpDKmztTssTnLPBOcizyWhOC0OhCDs7avYY2V
-         FT/swJxN3d/VoaOAlg09vStYlb+3ZXO4nL8qabcuVqht8PdOZZOMSUrYQxNpUGdXqx3D
-         OyayGqtnWIX5O5RwcCub0PvXowVOm6BWBHkI6So7K13bE3oTWbivQEFcbGIZ35tkKBDd
-         advLoXNmOzaiuB6z/tnpAi1ImBkBfyWKLaMYmYUwYqzNb/3SWaQVtX6Xv/mXo3vbZbam
-         swU50zUYsL/V80SOgNqyHh4m/g55tGs3kCjvhpd90oB+4W//D/FyxhHg8Wl4FX/ri87Z
-         dH0w==
-X-Gm-Message-State: AOAM531Wj3DxMH9ZdkhEkhTzNqN+BGdjKqsNpYu+J375TpVzpMhZi15B
-        ZFr6oDTSFyhPL3gZ8FovturcNg==
-X-Google-Smtp-Source: ABdhPJwy5EGuO92uUYbYm+RoosB6dUYzPz/zHdWaBA9pWwIWvfY+x51eD4gAdsAxVp9Fy19bMTkIcg==
-X-Received: by 2002:a5d:6a92:0:b0:210:3387:23ec with SMTP id s18-20020a5d6a92000000b00210338723ecmr5422504wru.102.1653933836689;
-        Mon, 30 May 2022 11:03:56 -0700 (PDT)
-Received: from helium.lan ([88.160.162.107])
-        by smtp.gmail.com with ESMTPSA id 9-20020a1c0209000000b00397550b387bsm1647wmc.23.2022.05.30.11.03.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 May 2022 11:03:55 -0700 (PDT)
-From:   Fabien Parent <fparent@baylibre.com>
-To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Fabien Parent <fparent@baylibre.com>,
-        iommu@lists.linux-foundation.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/3] dt-bindings: iommu: mediatek: add binding documentation for MT8365 SoC
-Date:   Mon, 30 May 2022 20:03:26 +0200
-Message-Id: <20220530180328.845692-1-fparent@baylibre.com>
-X-Mailer: git-send-email 2.36.1
-MIME-Version: 1.0
+        with ESMTP id S241124AbiE3SJx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 14:09:53 -0400
+Received: from EUR02-VE1-obe.outbound.protection.outlook.com (mail-eopbgr20053.outbound.protection.outlook.com [40.107.2.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5845B8A054;
+        Mon, 30 May 2022 11:09:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fE1JDGoyA+R81ZqSrYz6TXGukYWviSjwUI80g7cPh4VXRJOyny1MxEED6ON5dY+yyDCDQRCsL4DdVK9N/oVyxlQREQnJVRQ4yHH3nw/aABOQtkafUdgCxiQ+v8q4mfB0dCteIPxdTr8BcGZm8qnJaXkn1wD9cFJiHr7yUxPvKJwFpaJgSq0Exde1dzX3i3DYXaLPmItEE9UFwtxqyuEv7O9UmP8OroXHiMu3k5mzbNAxNqTImNU4HmHnRB58YFoodJDRNO0exCvAuff/ay8z/GPVMdIEYGW/ZqKer6Lc908ATgSI0eXdHq0squ1JgVdLteJC6zCAJd/uke8md1BFzQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uRrljajkmCpyW1/NHWx4lNkd+GqOd7VoemtMfuUIMUk=;
+ b=WReDSNgJP5L1UCcBYFmL2b3wE8dKMMY2gMoY/RJJMXE1XVQOk9fBin9fhmtZMD90OK9udmYqinshQMf4Fjegbfh0kEJP4chXNqaNN0yZfxsXptJysNhYIr+HGIq/gTLUG7BB1QW6tUj4U5E6Lecy7GwcufkbVPnqfJi4nip8mtaU/WGBVKB/rbt72rV2RZEDe2RpBk7D0/RkaQCNbsi2qLh2z2nH6seC2BJbzFvRvJwJ2Lw3MTRC2XYzAVbgwmHYstA3RfKOk5rJCjGsu8LCCQHJliiD6twMIdIZoPcGVluEw2L6MK2stuwkOzFVXRdKQhe/B+/Cd3neUsTEEJbaXg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uRrljajkmCpyW1/NHWx4lNkd+GqOd7VoemtMfuUIMUk=;
+ b=Wpd4ug1LR4zzzwnog8dcdH/eiFbUIoEGVfKvAM7n9i4aqVzPO8RBwT2t1Vk4ybUBJsc28AViBpByoreSsyBE69v6EYVv+SiWlP7lhdVnkVvK0tO6BbUoJ6eM2A/RP3QLnCJ9097HVXIiymDZ0I+iI2U2cK5GB0WiFZpGoXXdfK4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS1PR04MB9358.eurprd04.prod.outlook.com (2603:10a6:20b:4dc::19)
+ by VI1PR04MB4462.eurprd04.prod.outlook.com (2603:10a6:803:65::30) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.19; Mon, 30 May
+ 2022 18:09:49 +0000
+Received: from AS1PR04MB9358.eurprd04.prod.outlook.com
+ ([fe80::1076:5516:ef4:7c6d]) by AS1PR04MB9358.eurprd04.prod.outlook.com
+ ([fe80::1076:5516:ef4:7c6d%9]) with mapi id 15.20.5293.019; Mon, 30 May 2022
+ 18:09:48 +0000
+From:   Vabhav Sharma <vabhav.sharma@nxp.com>
+To:     horia.geanta@nxp.com, gaurav.jain@nxp.com, pankaj.gupta@nxp.com,
+        herbert@gondor.apana.org.au, davem@davemloft.net,
+        shawnguo@kernel.org, robh+dt@kernel.org
+Cc:     linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        silvano.dininno@nxp.com, V.Sethi@nxp.com
+Subject: [PATCH 0/3] add entropy delay device tree property                       
+Date:   Mon, 30 May 2022 23:39:21 +0530
+Message-Id: <20220530180924.1792399-1-vabhav.sharma@nxp.com>
+X-Mailer: git-send-email 2.25.1
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR01CA0051.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::6) To AS1PR04MB9358.eurprd04.prod.outlook.com
+ (2603:10a6:20b:4dc::19)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 67d532b9-ae5d-4bc5-d6d0-08da4267952e
+X-MS-TrafficTypeDiagnostic: VI1PR04MB4462:EE_
+X-Microsoft-Antispam-PRVS: <VI1PR04MB44627D1AA4FBC9FA1F474806F3DD9@VI1PR04MB4462.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: q7AzUVTkGj3YVe2Tuman87b5NLOiNZ2Prfvjve9Nv55A977RKSIURF9W6O5s8duB0pKhUK9Bb9YkyiEIJzITQYYBR+XDij4Kbgkdzx9ENYTj/K6LRpljm0rDW/gEsNnvvVlQoAeY+cWfy87DmtWB5WMf+vekNPBz96qZ7LekfUk5nw2s9jmHxrQWTAowdTJ1La8vh+sVuiI1QTrmHex+ZmVB/yLyKL0mdkCNhDWF6ImlEHLMDqjIMvYtIOMKKLE6evWFOflTTIjPczEcb2z7R+UNoV1DQbbiqe/iJvzujhYoBAPf9OGia0yMJCez25syKMDYIc/vSuLIbxqaJ9fyONYDNxaV0rPheCdqJUohsauN/nx2aK3osMOaVqXvisDGeDzKB4M6EtoXqWydDCojRq9dmDAJk3FilC8sdG6rsKHUwt9xveUE6C3p3o0GutsRkqdVJl0/+SDIw3L/ZFNkRAY0LrJbuzVz4mRPcYiBPM0pMWVgF9QS7wCpxt7Rm9KV1LlsbZs+cvNzxQqHaFpN1oq5CA9GDOj0BVvF/RwOVJyHzJlcJ0grCF7QRLuLplo/8DJrlVcYefFlK5qFwJ4Baj0f3ON5ydsnRJsyzQIriibtqTmyVHD/Q1EMGQg+YhCEQdoMQiLW2m7ZqQNTVpg48AdEYgGF2AwMwLHiPn25AYAX0qNIe/KPFJgBAf/gjfB+Mfzp4rvrh1U5eeVF4jzKJA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS1PR04MB9358.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(316002)(38350700002)(8936002)(36756003)(6486002)(508600001)(44832011)(86362001)(4744005)(5660300002)(38100700002)(4326008)(66946007)(66556008)(66476007)(8676002)(6512007)(26005)(6506007)(6666004)(52116002)(2906002)(55236004)(186003)(2616005)(1076003)(83380400001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?LsSroSnJA51P1IhpmchJVStukHkF1RR5fzzTi/Kfurv4+A/sJy6KvSDaepIX?=
+ =?us-ascii?Q?rnHgAUibgLaC5Nue4YrqyigryX2p5+f8oBioQdOnZAZ/6IEQXpmDcLd5wi/k?=
+ =?us-ascii?Q?4tLoJPE1gM/AEFMouVRh0tcQj9TPur9hWzeChJiqOchRxLBuWhN3XPbLb0MB?=
+ =?us-ascii?Q?k3LC7OjX8DpHpOOzByinE2Qa2qGQrAIvN/atwsERl2ef3qszZFpSWyJvg2Xx?=
+ =?us-ascii?Q?nW9AaZvW+b7EOWetfDXjO8NH3a1LlL9AK7vZnaNYNiqFL2CA/unMY5FFcqsh?=
+ =?us-ascii?Q?2pGBEThwSDv6WSaM5XSURqLj+cV5vmZxytmAOZ6oqsDl03yb8O+6Cc7SnR6P?=
+ =?us-ascii?Q?BoWehguJ4PN03rnYIxhS/1ZoEdCYmwbt29OU4zZ4URLc2HoSxDr1bTHpOqC2?=
+ =?us-ascii?Q?XebM6SIHFItPDqz2U03pXts1OfHHYju0nYPb5Q2s8Xg7/ebAcCTYl0KYWgPV?=
+ =?us-ascii?Q?ogFSvvfTC696j0Cg2kzjX56tI9CSzvFvYhr50OOFJ3qrDFuMF0GRuc9NJwye?=
+ =?us-ascii?Q?aF+Qf8EtFEfnyMLzJSqibD/wodpON5+ditBA/ZNopHxoNz10WYdI3IpGOyJ9?=
+ =?us-ascii?Q?27LVuUgweFb7CuMkWH0kNIPz0/kOb0i7iT4KF5z2niUDKkt+3zRQcOAD+l4r?=
+ =?us-ascii?Q?vmwnH8IfOkr8mKR9CnjPddZLXEkV+i5oRJEAhVb4CeTvMNiGlQNiiOb0rJfW?=
+ =?us-ascii?Q?rqnHhlTjIMWwU1BZ7TuXFAPoSZM3U1QA6AXV9XKdeUDAT+dyHTFbDI57Ynof?=
+ =?us-ascii?Q?MYna5KvenhD8n/27E7V1cCwL8d62fx7b17Ki63Iu5JotL54X2Bd0wyfw04Kp?=
+ =?us-ascii?Q?jjlS+goRdAGuvDGJWDzI+Ykm6bo+U6h5ljQvXemNXnA1uszQsDGyoK5IrNEU?=
+ =?us-ascii?Q?oqq9jQKCSoCxAsBpxmQfPOD8EiJNfkpu6x86hqnvP7BqiRdLEY9WAqCNTO1U?=
+ =?us-ascii?Q?3L+9Pg0ZN7erFE/BU0y8+ZlQTvUoSyYDE7p4v0Dn67Yybwli2A73TXKqK/p1?=
+ =?us-ascii?Q?aoK8wVGsyjQzwDzU89pQ0YUafDh1425qeQm04+o7Tjk4RAnzcvor6v58x8mW?=
+ =?us-ascii?Q?OcGPQVYH3eeBBKe2nkLbOwK7TTH+MhRB45W453eGHZf+eLSIiWhMpj90RA5w?=
+ =?us-ascii?Q?qqVctpqjf3PR5Oujz4o101rjg3W2U7cX7yPtjtRuRU8ijMs571AyXCsBxv4P?=
+ =?us-ascii?Q?UV9Kwh0KhvHbKju0I1+LerixoU1su0W33P9btCKyenTWs7kL0xWsVHkRyQ3Q?=
+ =?us-ascii?Q?pL2gWXK3MK03ARzsyl/ZdFKp1tV5LU0PQI1b4Avqq+j+UirT8Y5lewJQnLQ+?=
+ =?us-ascii?Q?CjNXJIC9ysl7cdQbHRpLnuiSQjWgHmpxAFojFv+fZtwVvXEIt0A/ghoEXadY?=
+ =?us-ascii?Q?mmSghoViBmB14sh7fQw6UPP8ITl8XuJY7i1WZoTdTvr3TdfpPrc9p4nxuP27?=
+ =?us-ascii?Q?Crn3Ywxj2DoReeZiQ/uGZN+4G+6uzmkX/iLw5ktR841xCwtEDSGIJhGFOsO7?=
+ =?us-ascii?Q?PMzvcRu4OWuOt7LYHoj6FWFGI/kmdrOQ8ESVYPhl5MnPPTBPt2269TrXiFiA?=
+ =?us-ascii?Q?ThhCSQSF5S59vCil0pRJQo4Ot2gq3CA5qnPacc7ktLDs4S7Jhk6v51WAoQ1N?=
+ =?us-ascii?Q?TEBNeWzznpbrvox2KOZWZy1MZjRHLSSr+aWtajYYTeaZadqfmA48PVYoTAqC?=
+ =?us-ascii?Q?fDuZvYjdNU5EQ014N2yjNWdddZKwbEcZhgVQZqbBRzaoJ/IO6jlMmpoB27hv?=
+ =?us-ascii?Q?7F1c9gqp/w=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 67d532b9-ae5d-4bc5-d6d0-08da4267952e
+X-MS-Exchange-CrossTenant-AuthSource: AS1PR04MB9358.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2022 18:09:48.6252
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: oZt2CBqkJ23zY6riq87IwDbVjLjsqkpwyVq5+wkNIzbGe2igEDZAhZDms7LNRrnw/TsnejyaJWTsVz4la46g7A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4462
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add IOMMU binding documentation for the MT8365 SoC.
+Add entropy delay device tree property,TRNG self test are run to determine         
+the correct entropy delay.                                                         
+Firmware test is executed with different voltage and temperature to                
+identify the worst case value for entropy delay on imx6sx platform, after          
+adding a margin value(1000),entropy delay should be at least 12000.                
+- Add dt-bindings                                                                  
+- updated imx6sx device tree                                                       
+- modify caam driver to read the property
 
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
----
- .../bindings/iommu/mediatek,iommu.yaml        |  2 +
- include/dt-bindings/memory/mt8365-larb-port.h | 96 +++++++++++++++++++
- 2 files changed, 98 insertions(+)
- create mode 100644 include/dt-bindings/memory/mt8365-larb-port.h
+Vabhav Sharma (3):
+  dt-bindings: crypto: fsl: add entropy delay property
+  arm: dts: imx6sx: Add entropy delay property
+  crypto: caam: read entropy delay from device tree
 
-diff --git a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-index 97e8c471a5e8..5ba688365da5 100644
---- a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-+++ b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-@@ -77,6 +77,7 @@ properties:
-           - mediatek,mt8173-m4u  # generation two
-           - mediatek,mt8183-m4u  # generation two
-           - mediatek,mt8192-m4u  # generation two
-+          - mediatek,mt8365-m4u  # generation two
- 
-       - description: mt7623 generation one
-         items:
-@@ -120,6 +121,7 @@ properties:
-       dt-binding/memory/mt8173-larb-port.h for mt8173,
-       dt-binding/memory/mt8183-larb-port.h for mt8183,
-       dt-binding/memory/mt8192-larb-port.h for mt8192.
-+      dt-binding/memory/mt8365-larb-port.h for mt8365.
- 
-   power-domains:
-     maxItems: 1
-diff --git a/include/dt-bindings/memory/mt8365-larb-port.h b/include/dt-bindings/memory/mt8365-larb-port.h
-new file mode 100644
-index 000000000000..e7d5637aa38e
---- /dev/null
-+++ b/include/dt-bindings/memory/mt8365-larb-port.h
-@@ -0,0 +1,96 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (c) 2022 MediaTek Inc.
-+ * Author: Yong Wu <yong.wu@mediatek.com>
-+ */
-+#ifndef _DT_BINDINGS_MEMORY_MT8365_LARB_PORT_H_
-+#define _DT_BINDINGS_MEMORY_MT8365_LARB_PORT_H_
-+
-+#include <dt-bindings/memory/mtk-memory-port.h>
-+
-+#define M4U_LARB0_ID			0
-+#define M4U_LARB1_ID			1
-+#define M4U_LARB2_ID			2
-+#define M4U_LARB3_ID			3
-+#define M4U_LARB4_ID			4
-+#define M4U_LARB5_ID			5
-+#define M4U_LARB6_ID			6
-+#define M4U_LARB7_ID			7
-+
-+/* larb0 */
-+#define M4U_PORT_DISP_OVL0		MTK_M4U_ID(0, 0)
-+#define M4U_PORT_DISP_OVL0_2L		MTK_M4U_ID(0, 1)
-+#define M4U_PORT_DISP_RDMA0		MTK_M4U_ID(0, 2)
-+#define M4U_PORT_DISP_WDMA0		MTK_M4U_ID(0, 3)
-+#define M4U_PORT_DISP_RDMA1		MTK_M4U_ID(0, 4)
-+#define M4U_PORT_MDP_RDMA0		MTK_M4U_ID(0, 5)
-+#define M4U_PORT_MDP_WROT1		MTK_M4U_ID(0, 6)
-+#define M4U_PORT_MDP_WROT0		MTK_M4U_ID(0, 7)
-+#define M4U_PORT_MDP_RDMA1		MTK_M4U_ID(0, 8)
-+#define M4U_PORT_DISP_FAKE0		MTK_M4U_ID(0, 9)
-+
-+/* larb1 */
-+#define M4U_PORT_VENC_RCPU		MTK_M4U_ID(1, 0)
-+#define M4U_PORT_VENC_REC		MTK_M4U_ID(1, 1)
-+#define M4U_PORT_VENC_BSDMA		MTK_M4U_ID(1, 2)
-+#define M4U_PORT_VENC_SV_COMV		MTK_M4U_ID(1, 3)
-+#define M4U_PORT_VENC_RD_COMV		MTK_M4U_ID(1, 4)
-+#define M4U_PORT_VENC_NBM_RDMA		MTK_M4U_ID(1, 5)
-+#define M4U_PORT_VENC_NBM_RDMA_LITE	MTK_M4U_ID(1, 6)
-+#define M4U_PORT_JPGENC_Y_RDMA		MTK_M4U_ID(1, 7)
-+#define M4U_PORT_JPGENC_C_RDMA		MTK_M4U_ID(1, 8)
-+#define M4U_PORT_JPGENC_Q_TABLE		MTK_M4U_ID(1, 9)
-+#define M4U_PORT_JPGENC_BSDMA		MTK_M4U_ID(1, 10)
-+#define M4U_PORT_JPGDEC_WDMA		MTK_M4U_ID(1, 11)
-+#define M4U_PORT_JPGDEC_BSDMA		MTK_M4U_ID(1, 12)
-+#define M4U_PORT_VENC_NBM_WDMA		MTK_M4U_ID(1, 13)
-+#define M4U_PORT_VENC_NBM_WDMA_LITE	MTK_M4U_ID(1, 14)
-+#define M4U_PORT_VENC_CUR_LUMA		MTK_M4U_ID(1, 15)
-+#define M4U_PORT_VENC_CUR_CHROMA	MTK_M4U_ID(1, 16)
-+#define M4U_PORT_VENC_REF_LUMA		MTK_M4U_ID(1, 17)
-+#define M4U_PORT_VENC_REF_CHROMA	MTK_M4U_ID(1, 18)
-+
-+/* larb2 */
-+#define M4U_PORT_CAM_IMGO		MTK_M4U_ID(2, 0)
-+#define M4U_PORT_CAM_RRZO		MTK_M4U_ID(2, 1)
-+#define M4U_PORT_CAM_AAO		MTK_M4U_ID(2, 2)
-+#define M4U_PORT_CAM_LCS		MTK_M4U_ID(2, 3)
-+#define M4U_PORT_CAM_ESFKO		MTK_M4U_ID(2, 4)
-+#define M4U_PORT_CAM_CAM_SV0		MTK_M4U_ID(2, 5)
-+#define M4U_PORT_CAM_CAM_SV1		MTK_M4U_ID(2, 6)
-+#define M4U_PORT_CAM_LSCI		MTK_M4U_ID(2, 7)
-+#define M4U_PORT_CAM_LSCI_D		MTK_M4U_ID(2, 8)
-+#define M4U_PORT_CAM_AFO		MTK_M4U_ID(2, 9)
-+#define M4U_PORT_CAM_SPARE		MTK_M4U_ID(2, 10)
-+#define M4U_PORT_CAM_BPCI		MTK_M4U_ID(2, 11)
-+#define M4U_PORT_CAM_BPCI_D		MTK_M4U_ID(2, 12)
-+#define M4U_PORT_CAM_UFDI		MTK_M4U_ID(2, 13)
-+#define M4U_PORT_CAM_IMGI		MTK_M4U_ID(2, 14)
-+#define M4U_PORT_CAM_IMG2O		MTK_M4U_ID(2, 15)
-+#define M4U_PORT_CAM_IMG3O		MTK_M4U_ID(2, 16)
-+#define M4U_PORT_CAM_WPE0_I		MTK_M4U_ID(2, 17)
-+#define M4U_PORT_CAM_WPE1_I		MTK_M4U_ID(2, 18)
-+#define M4U_PORT_CAM_WPE_O		MTK_M4U_ID(2, 19)
-+#define M4U_PORT_CAM_FD0_I		MTK_M4U_ID(2, 20)
-+#define M4U_PORT_CAM_FD1_I		MTK_M4U_ID(2, 21)
-+#define M4U_PORT_CAM_FD0_O		MTK_M4U_ID(2, 22)
-+#define M4U_PORT_CAM_FD1_O		MTK_M4U_ID(2, 23)
-+
-+/* larb3 */
-+#define M4U_PORT_HW_VDEC_MC_EXT		MTK_M4U_ID(3, 0)
-+#define M4U_PORT_HW_VDEC_UFO_EXT	MTK_M4U_ID(3, 1)
-+#define M4U_PORT_HW_VDEC_PP_EXT		MTK_M4U_ID(3, 2)
-+#define M4U_PORT_HW_VDEC_PRED_RD_EXT	MTK_M4U_ID(3, 3)
-+#define M4U_PORT_HW_VDEC_PRED_WR_EXT	MTK_M4U_ID(3, 4)
-+#define M4U_PORT_HW_VDEC_PPWRAP_EXT	MTK_M4U_ID(3, 5)
-+#define M4U_PORT_HW_VDEC_TILE_EXT	MTK_M4U_ID(3, 6)
-+#define M4U_PORT_HW_VDEC_VLD_EXT	MTK_M4U_ID(3, 7)
-+#define M4U_PORT_HW_VDEC_VLD2_EXT	MTK_M4U_ID(3, 8)
-+#define M4U_PORT_HW_VDEC_AVC_MV_EXT	MTK_M4U_ID(3, 9)
-+#define M4U_PORT_HW_VDEC_RG_CTRL_DMA_EXT MTK_M4U_ID(3, 10)
-+
-+/* larb4 */
-+#define M4U_PORT_APU_READ		MTK_M4U_ID(0, 0)
-+#define M4U_PORT_APU_WRITE		MTK_M4U_ID(0, 1)
-+
-+#endif
+ .../devicetree/bindings/crypto/fsl-sec4.txt      |  6 ++++++
+ arch/arm/boot/dts/imx6sx.dtsi                    |  1 +
+ drivers/crypto/caam/ctrl.c                       | 16 ++++++++++++----
+ 3 files changed, 19 insertions(+), 4 deletions(-)
+
 -- 
-2.36.1
+2.25.1
 
