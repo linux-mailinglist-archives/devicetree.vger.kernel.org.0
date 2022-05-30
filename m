@@ -2,63 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C71CA53790E
-	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 12:29:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F716537923
+	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 12:34:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235116AbiE3KKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 May 2022 06:10:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34376 "EHLO
+        id S231432AbiE3Kd7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 May 2022 06:33:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235119AbiE3KKq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 06:10:46 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 956C37B9E2;
-        Mon, 30 May 2022 03:10:45 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24UAAgX5035369;
-        Mon, 30 May 2022 05:10:42 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1653905442;
-        bh=D3w8nI02oB8EoNoAqaEWvOutV6JaRMHHmHyziuHi/rQ=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=kM4RKEpRssr5vKH1t9rYWekgqAN3WyPHvC4zj4khaQbY3eOFmg9M93CdF+fsQ9wql
-         cX/mkSdaSrKeD+kbxyGAuXqvyThTJ3rTj/CEBsAsxUH7aJhyQWRSpUI6sOA6WVOjZW
-         /71sWVCDnxBeKLfYc+TgyQ2iS+e69tasnurj18c4=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24UAAgcn017216
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 30 May 2022 05:10:42 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 30
- May 2022 05:10:41 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 30 May 2022 05:10:41 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24UAAebm071877;
-        Mon, 30 May 2022 05:10:41 -0500
-From:   Rahul T R <r-ravikumar@ti.com>
-To:     <robh+dt@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kishon@ti.com>, <krzysztof.kozlowski+dt@linaro.org>
-CC:     <lee.jones@linaro.org>, <rogerq@kernel.org>,
-        <devicetree@vger.kernel.org>, <kristo@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <s-anna@ti.com>,
-        Sinthu Raja <sinthu.raja@ti.com>,
-        Rahul T R <r-ravikumar@ti.com>
-Subject: [PATCH v4 3/3] arm64: dts: ti: k3-j721e-sk: Add pinmux for RPi Header
-Date:   Mon, 30 May 2022 15:40:31 +0530
-Message-ID: <20220530101031.11357-4-r-ravikumar@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220530101031.11357-1-r-ravikumar@ti.com>
-References: <20220530101031.11357-1-r-ravikumar@ti.com>
+        with ESMTP id S229457AbiE3Kd6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 06:33:58 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 860D763535;
+        Mon, 30 May 2022 03:33:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1653906836; x=1685442836;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=uaWrA9Ka6myw33tDlOhmilsHeblqSEZ4ITcAA+dKBEk=;
+  b=WbugykDdHpdWno0rxwICS/cC7Nfj3BRTHG3TZ9QOXIxt0wguQ1/ccuC/
+   zKgXJjI1XIbh6NjtbQ1OCUQDDdOKxTocagAVNCcIznbEMxVSOqlZY/J0u
+   iNvnDYiPC0vezSBzAYJ3QrTtY/QK/RNhsJ3CEYTlLEdlYThC/MsHKQOBt
+   Y=;
+Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 30 May 2022 03:33:56 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 May 2022 03:33:55 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 30 May 2022 03:33:54 -0700
+Received: from [10.50.10.34] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 30 May
+ 2022 03:33:50 -0700
+Message-ID: <4b9a2abe-c462-81d9-2098-d430da24f030@quicinc.com>
+Date:   Mon, 30 May 2022 16:03:47 +0530
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH V13 7/9] regulator: Add a regulator driver for the PM8008
+ PMIC
+Content-Language: en-US
+To:     Stephen Boyd <swboyd@chromium.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_collinsd@quicinc.com>,
+        <quic_subbaram@quicinc.com>, <quic_jprakash@quicinc.com>
+References: <1653043777-24003-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1653043777-24003-8-git-send-email-quic_c_skakit@quicinc.com>
+ <CAE-0n53WLYR1pjnr6wASVmXXQ7xTq5n2Q7GdeKOCkWf4H4n=0A@mail.gmail.com>
+ <e70aceba-02d5-15b5-46d0-d5ed5706e81a@quicinc.com>
+ <CAE-0n539gePyXhw7r+XcaHtooN98KfYsx_qwgDaFkJtMSg+80g@mail.gmail.com>
+From:   "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
+In-Reply-To: <CAE-0n539gePyXhw7r+XcaHtooN98KfYsx_qwgDaFkJtMSg+80g@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -67,138 +76,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sinthu Raja <sinthu.raja@ti.com>
 
-Add pinmux required to bring out
-i2c5, ehrpwm 2 and 3 and gpios on
-40 pin RPi header on sk board
+On 5/28/2022 2:32 AM, Stephen Boyd wrote:
+> HTML mail? Please send plaintext next time.
+>
+> Quoting Satya Priya Kakitapalli (Temp) (2022-05-27 01:24:19)
+>> On 5/21/2022 8:26 AM, Stephen Boyd wrote:
+>>
+>>      Quoting Satya Priya (2022-05-20 03:49:35)
+>>
+>>          diff --git a/drivers/regulator/qcom-pm8008-regulator.c b/drivers/regulator/qcom-pm8008-regulator.c
+>>          new file mode 100644
+>>          index 0000000..6e815c6
+>>          --- /dev/null
+>>          +++ b/drivers/regulator/qcom-pm8008-regulator.c
+>>          @@ -0,0 +1,225 @@
+>>          +// SPDX-License-Identifier: GPL-2.0-only
+>>          +/* Copyright (c) 2022, The Linux Foundation. All rights reserved. */
+>>          +
+>>          +#include <linux/device.h>
+>>          +#include <linux/kernel.h>
+>>          +#include <linux/mfd/qcom_pm8008.h>
+>>          +#include <linux/module.h>
+>>          +#include <linux/of.h>
+>>          +#include <linux/of_device.h>
+>>
+>>      What in of_device.h is used?
+>>
+>>
+>> struct of_device_id
+> That struct is defined in mod_devicetable.h, not of_device.h
+>
+>>
+>>
+>>          +#include <linux/platform_device.h>
+>>          +#include <linux/regmap.h>
+>>          +#include <linux/regulator/driver.h>
+>>          +
+> [...]
+>>
+>>          +};
+>>          +
+>>          +static int pm8008_regulator_get_voltage(struct regulator_dev *rdev)
+>>          +{
+>>          +       struct pm8008_regulator *pm8008_reg = rdev_get_drvdata(rdev);
+>>          +
+>>          +       return pm8008_reg->voltage_selector;
+>>
+>>      Can this read the hardware instead of caching the value from
+>>      pm8008_regulator_set_voltage()?
+>>
+>>
+>> I can use the regmap_bulk_read like below (which was present in the earlier
+>> versions)
+> Please do
+>
+>>          +       }
+>>          +
+>>          +       pm8008_reg->dev = dev;
+>>          +
+>>          +       rc = of_property_read_string(dev->of_node, "regulator-name", &name);
+>>          +       if (rc)
+>>          +               return rc;
+>>          +
+>>          +       /* get the required regulator data */
+>>          +       for (i = 0; i < ARRAY_SIZE(reg_data); i++)
+>>          +               if (strstr(name, reg_data[i].name))
+>>
+>>      Why not find this via reg/address instead? It would save storing the
+>>      regulator name in the reg_data table.
+>>
+>>
+>> You mean match this using base address? then we should add base address in the
+>> reg_data table. We will need the name to be stored in reg_data table anyway for
+>> the pm8008_reg->rdesc.of_match
+> Why? Now that this driver binds to each node individually the usage of
+> of_match doesn't make any sense to me. Can you set 'struct
+> regulator_config::dev' instead and not set of_match?
 
-Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
-Signed-off-by: Rahul T R <r-ravikumar@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721e-sk.dts | 89 ++++++++++++++++++++++----
- 1 file changed, 78 insertions(+), 11 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-index 98a55778f3fe..b913b18ae133 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-@@ -400,6 +400,57 @@
- 			J721E_IOPAD(0x124, PIN_INPUT, 7) /* (Y24) PRG0_PRU1_GPO9.GPIO0_72 */
- 		>;
- 	};
-+
-+	main_i2c5_pins_default: main-i2c5-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x150, PIN_INPUT_PULLUP, 2) /* (Y26) PRG0_MDIO0_MDIO.I2C5_SCL */
-+			J721E_IOPAD(0x154, PIN_INPUT_PULLUP, 2) /* (AA27) PRG0_MDIO0_MDC.I2C5_SDA */
-+		>;
-+	};
-+
-+	rpi_header_gpio0_pins_default: rpi-header-gpio0-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x01c, PIN_INPUT, 7) /* (AD22) PRG1_PRU0_GPO6.GPIO0_7 */
-+			J721E_IOPAD(0x120, PIN_INPUT, 7) /* (AA28) PRG0_PRU1_GPO8.GPIO0_71 */
-+			J721E_IOPAD(0x14c, PIN_INPUT, 7) /* (AA29) PRG0_PRU1_GPO19.GPIO0_82 */
-+			J721E_IOPAD(0x02c, PIN_INPUT, 7) /* (AD21) PRG1_PRU0_GPO10.GPIO0_11 */
-+			J721E_IOPAD(0x198, PIN_INPUT, 7) /* (V25) RGMII6_TD1.GPIO0_101 */
-+			J721E_IOPAD(0x1b0, PIN_INPUT, 7) /* (W24) RGMII6_RD1.GPIO0_107 */
-+			J721E_IOPAD(0x1a0, PIN_INPUT, 7) /* (W29) RGMII6_TXC.GPIO0_103 */
-+			J721E_IOPAD(0x008, PIN_INPUT, 7) /* (AG22) PRG1_PRU0_GPO1.GPIO0_2 */
-+			J721E_IOPAD(0x1d0, PIN_INPUT, 7) /* (AA3) SPI0_D1.GPIO0_115 */
-+			J721E_IOPAD(0x11c, PIN_INPUT, 7) /* (AA24) PRG0_PRU1_GPO7.GPIO0_70 */
-+			J721E_IOPAD(0x148, PIN_INPUT, 7) /* (AA26) PRG0_PRU1_GPO18.GPIO0_81 */
-+			J721E_IOPAD(0x004, PIN_INPUT, 7) /* (AC23) PRG1_PRU0_GPO0.GPIO0_1 */
-+			J721E_IOPAD(0x014, PIN_INPUT, 7) /* (AH23) PRG1_PRU0_GPO4.GPIO0_5 */
-+			J721E_IOPAD(0x020, PIN_INPUT, 7) /* (AE20) PRG1_PRU0_GPO7.GPIO0_8 */
-+			J721E_IOPAD(0x19c, PIN_INPUT, 7) /* (W27) RGMII6_TD0.GPIO0_102 */
-+			J721E_IOPAD(0x1b4, PIN_INPUT, 7) /* (W25) RGMII6_RD0.GPIO0_108 */
-+			J721E_IOPAD(0x188, PIN_INPUT, 7) /* (Y28) RGMII6_TX_CTL.GPIO0_97 */
-+			J721E_IOPAD(0x00c, PIN_INPUT, 7) /* (AF22) PRG1_PRU0_GPO2.GPIO0_3 */
-+			J721E_IOPAD(0x010, PIN_INPUT, 7) /* (AJ23) PRG1_PRU0_GPO3.GPIO0_4 */
-+		>;
-+	};
-+
-+	rpi_header_gpio1_pins_default: rpi-header-gpio1-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x234, PIN_INPUT, 7) /* (U3) EXT_REFCLK1.GPIO1_12 */
-+		>;
-+	};
-+
-+	rpi_header_ehrpwm2_pins_default: rpi-header-ehrpwm2-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x178, PIN_INPUT, 6) /* (U27) RGMII5_RD3.EHRPWM2_A */
-+			J721E_IOPAD(0x17c, PIN_INPUT, 6) /* (U24) RGMII5_RD2.EHRPWM2_B */
-+		>;
-+	};
-+
-+	rpi_header_ehrpwm3_pins_default: rpi-header-ehrpwm3-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x18c, PIN_INPUT, 6) /* (V23) RGMII6_RX_CTL.EHRPWM3_A */
-+			J721E_IOPAD(0x190, PIN_INPUT, 6) /* (W23) RGMII6_TD3.EHRPWM3_B */
-+		>;
-+	};
- };
- 
- &wkup_pmx0 {
-@@ -631,11 +682,6 @@
- 	status = "disabled";
- };
- 
--&main_i2c5 {
--	/* Brought out on RPi Header */
--	status = "disabled";
--};
--
- &main_i2c6 {
- 	/* Unused */
- 	status = "disabled";
-@@ -1138,18 +1184,39 @@
- 	status = "disabled";
- };
- 
--&main_ehrpwm2 {
-+&main_ehrpwm4 {
- 	status = "disabled";
- };
- 
--&main_ehrpwm3 {
-+&main_ehrpwm5 {
- 	status = "disabled";
- };
- 
--&main_ehrpwm4 {
--	status = "disabled";
-+&main_gpio0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&rpi_header_gpio0_pins_default>;
- };
- 
--&main_ehrpwm5 {
--	status = "disabled";
-+&main_gpio1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&rpi_header_gpio1_pins_default>;
-+};
-+
-+&main_i2c5 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c5_pins_default>;
-+	clock-frequency = <400000>;
-+	status = "okay";
-+};
-+
-+&main_ehrpwm2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&rpi_header_ehrpwm2_pins_default>;
-+	status = "okay";
-+};
-+
-+&main_ehrpwm3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&rpi_header_ehrpwm3_pins_default>;
-+	status = "okay";
- };
--- 
-2.17.1
+Currently we are setting regulator_config::dev as dev->parent i.e., 
+pm8008@8, because the parent supplies are present under pm8008@8, to get 
+the regulators mapped correctly to the parent supplies we are using 
+dev->parent.
+
+If we do not set of_match in regulator descriptor, 
+regulator_of_get_init_node() would return NULL, causing init_data to be 
+NULL during regulator_register and regulators are not getting probed. 
+This can be resolved, if we get the init_data during pm8008_probe 
+itself. I'll do that in the next version.
+
 
