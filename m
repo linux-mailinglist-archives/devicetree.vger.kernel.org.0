@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 811175374AE
-	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 09:23:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 515EF537492
+	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 09:23:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233048AbiE3Gnh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 May 2022 02:43:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56612 "EHLO
+        id S233072AbiE3Gpn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 May 2022 02:45:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231516AbiE3Gng (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 02:43:36 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D871F3BBD5
-        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 23:43:33 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id n124-20020a1c2782000000b003972dfca96cso5835090wmn.4
-        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 23:43:33 -0700 (PDT)
+        with ESMTP id S233071AbiE3Gpk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 02:45:40 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF95F63521
+        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 23:45:38 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id n28so3390021edb.9
+        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 23:45:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=gtO8Z2a0J80ts6vwBdzuUpB5ZM5wqbWf0RW3kLdDnho=;
-        b=ywrfVQTd2uOPjB2of3zjWFQnXMt6cpaM0MPEuOKSwyyawy8tIH4E2zzXyZur9x/Rbu
-         NMXD0p8ccYbVF2iL43/unXa1A720NPOEwXYMIRDA7rKMv9qZ5Mz3nJpg/0pkW4GhUxY+
-         A3NGIgr3Oge2KilwviW5Bdz2wNXDkQSQvTfHoa/AGuQw8MZhhkKB3sOWGH+W0PzuDO5f
-         h9ZEXqx9Pw7dkZOQhkdshnVArkY4WvRAeWcVttnpdST87Jh2Dxg7mDc3m7p40TLLkfnm
-         z0Lfw+qclb5vZjrLaSHizHSDgWUlcAdVeBse3UPNe8PBUeWjSrac1aOnRm+MT4XPcn1r
-         /zog==
+        bh=FLJL2D8Dx7Tyt86DdBtAMqIZq8SNfuE+dWPYeFGkTfs=;
+        b=f1xR2DvOZhRt7C5tSQmUhawYZYcYaBmxwZwEgGstqKcCpcBjVG2BjewIjwiFeiQC+L
+         5eDA/J1lHJYLz90usmQE3wvsx+pwUiPGzLttz+RXVqRsAg9dJbikL1Tk+SZkqBJ/naDV
+         C5cUXGMAiDIyOu48QMVkPfJeWmIUig5DFcKZeRw9hwheXz6P/oWQdut4SrtuZ2qZwZZk
+         RlV3g/EcTD882muYX7YQTnKtmjMi6wkvH7i5A1C7YRk85xzeCZcATCC/mbXPlecmCsUw
+         5fOvVO+IC/ymcbb22mr22uTi+UYiisplED62u9eGsFbIsN2jr/sKHgiFNq7NhL+wz7L6
+         NzXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=gtO8Z2a0J80ts6vwBdzuUpB5ZM5wqbWf0RW3kLdDnho=;
-        b=Ri5Y9g43E+URzoOs7aUYCO+cNqTtJanGy07dpftkQDUjBHRZ9hGWsN+5qAlXpzu5AL
-         YaR07vo8WyHbknvtaP3aSW6ixySgjn+meAZQZkBGZHYtzmdltt1prjl8yKkfwSkLgBW4
-         FnaYzzhWysfNqNclVQT/WpJ08xrcwuRpBTHIy4/Vv6O4FJfid255WAKmkyARLzFtnsv3
-         C1d7S7ypBvRGnIidSq8OEcTjDtY6k7Zq3xSnsZSeeNpbiDXoi2qmz+vnU57CWuwoP75e
-         oqSHmSOtWicopEhBFcbU7S4YqErpEwYaVasJsYAQCPSo5WoJbgIFINYkxHfa6jsy3jcB
-         5JHA==
-X-Gm-Message-State: AOAM531qvrMdUFK6PIf46zv+lrU0u0shgc5sLqq1leVjuCgayQVpKHLm
-        VQ2TQ7l4KOKOW1zkdZaEY2RjSQ==
-X-Google-Smtp-Source: ABdhPJxSkzwdIOlEJLw3UsLKBXLQIbv3EDsgYcsEHMfrbKU+WtVOIYrdlIECCXjinw3wR9hbG3pAnA==
-X-Received: by 2002:a7b:c08a:0:b0:397:5859:deb5 with SMTP id r10-20020a7bc08a000000b003975859deb5mr17413447wmh.121.1653893012451;
-        Sun, 29 May 2022 23:43:32 -0700 (PDT)
+        bh=FLJL2D8Dx7Tyt86DdBtAMqIZq8SNfuE+dWPYeFGkTfs=;
+        b=MteUxCZxKbLGmC28rdAcxE44mlXzTulUoyA5m7Ff7m0oYO5AnaaCAKnRSXmeplSKXd
+         yXJXaFXnxTnhGQXyRfY/RACx8afDROkbJJDt/jRlDawDFN0oLSa4IHUeGIO9EC1pnZ1G
+         cLpF1kE1A9T1Qn4lcW/PqFlVOfxldfWqoaXRQ2PclAhlDaitFlkgmb6MZ8pPsd7Kv38v
+         w/8it0sp9h5Mp9aq8SxvXMtIhQNxE+eKWPMzZnq4RYK553ubi42zZhFlatNzYoXj3Bjj
+         AZ1E529JG+1pQ2G3CMQoiYv17rZfNAWjIy4Ip7C0bw7ziA/+Fxo5SDql6njJ3PeJsCep
+         0+sQ==
+X-Gm-Message-State: AOAM530lrao9e8r3XQ2OOC9gVZBGmFqpaBJVc0pZDDba0AIHJnDK7ma9
+        HNd72pZo0adSc4vWRA7nGg+MJA==
+X-Google-Smtp-Source: ABdhPJyVEtMm+uckMguWGF9dAMS/FwmQv03qwQc6wZP9jNE7jgTHj58YImOhNt11R9DrYvAJ50iqwQ==
+X-Received: by 2002:a05:6402:542:b0:42d:c7d6:4121 with SMTP id i2-20020a056402054200b0042dc7d64121mr7808041edx.302.1653893137505;
+        Sun, 29 May 2022 23:45:37 -0700 (PDT)
 Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id z8-20020a05600c0a0800b0039c15ff3200sm308823wmp.41.2022.05.29.23.43.31
+        by smtp.gmail.com with ESMTPSA id gt2-20020a170906f20200b006ff01fbb7ccsm3712756ejb.40.2022.05.29.23.45.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 29 May 2022 23:43:31 -0700 (PDT)
-Message-ID: <2e6c2995-9204-61fa-0aee-f4ea4cce084c@linaro.org>
-Date:   Mon, 30 May 2022 08:43:30 +0200
+        Sun, 29 May 2022 23:45:37 -0700 (PDT)
+Message-ID: <d96f0a19-7421-d731-082c-388f980c61bc@linaro.org>
+Date:   Mon, 30 May 2022 08:45:35 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH V2 1/7] dt-bindings: soc: add i.MX93 SRC
+Subject: Re: [PATCH V2 2/7] dt-bindings: soc: add i.MX93 mediamix blk ctrl
 Content-Language: en-US
 To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, sboyd@kernel.org,
@@ -64,14 +64,14 @@ Cc:     aisheng.dong@nxp.com, l.stach@pengutronix.de,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
 References: <20220526123411.270083-1-peng.fan@oss.nxp.com>
- <20220526123411.270083-2-peng.fan@oss.nxp.com>
+ <20220526123411.270083-3-peng.fan@oss.nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220526123411.270083-2-peng.fan@oss.nxp.com>
+In-Reply-To: <20220526123411.270083-3-peng.fan@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,63 +82,12 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 26/05/2022 14:34, Peng Fan (OSS) wrote:
 > From: Peng Fan <peng.fan@nxp.com>
 > 
-> Add bindings for i.MX93 System Reset Controller(SRC). SRC supports
-> resets and power gating for mixes.
+> Add DT bindings for i.MX93 MEDIAMIX BLK CTRL.
 > 
 > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../bindings/soc/imx/fsl,imx93-src.yaml       | 96 +++++++++++++++++++
 
-Still wrong location of bindings.
 
->  include/dt-bindings/power/fsl,imx93-power.h   | 11 +++
->  2 files changed, 107 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx93-src.yaml
->  create mode 100644 include/dt-bindings/power/fsl,imx93-power.h
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-src.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-src.yaml
-> new file mode 100644
-> index 000000000000..c20f0bb692fe
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-src.yaml
-> @@ -0,0 +1,96 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/imx/fsl,imx93-src.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP i.MX9 System Reset Controller
-> +
-> +maintainers:
-> +  - Peng Fan <peng.fan@nxp.com>
-> +
-> +description: |
-> +  The System Reset Controller (SRC) is responsible for the generation of
-> +  all the system reset signals and boot argument latching.
-> +
-> +  Its main functions are as follows,
-> +  - Deals with all global system reset sources from other modules,
-> +    and generates global system reset.
-> +  - Responsible for power gating of MIXs (Slices) and their memory
-> +    low power control.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: fsl,imx93-src
-> +      - const: syscon
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  slice:
-> +    type: object
-> +    description: list of power domains provided by this controller.
-
-Continuing our discussion, I think I see the point of having the node
-grouping subnodes, just the name confused me. Please make it plural, so
-"slices".
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
