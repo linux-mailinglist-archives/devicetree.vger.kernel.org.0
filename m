@@ -2,78 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CC675376FE
-	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 10:51:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 651D95376C8
+	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 10:50:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232713AbiE3Ird (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 May 2022 04:47:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35076 "EHLO
+        id S234095AbiE3ItF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 May 2022 04:49:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230287AbiE3Ir2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 04:47:28 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 332B029827;
-        Mon, 30 May 2022 01:47:27 -0700 (PDT)
-X-UUID: 8411f63de33c4a2e8149dc7f93c31407-20220530
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:19cfd18b-16d3-4fbd-baba-fdc4bfa74526,OB:0,LO
-        B:0,IP:0,URL:5,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:0
-X-CID-META: VersionHash:2a19b09,CLOUDID:9802ff47-4fb1-496b-8f1d-39e733fed1ea,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:0,BEC:nil
-X-UUID: 8411f63de33c4a2e8149dc7f93c31407-20220530
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1985271771; Mon, 30 May 2022 16:47:23 +0800
-Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Mon, 30 May 2022 16:47:21 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 30 May 2022 16:47:21 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 30 May 2022 16:47:21 +0800
-Message-ID: <a09b45d2526f2f387b1be5c0f18c5f1c05ba2f3d.camel@mediatek.com>
-Subject: Re: [PATCH v10 12/21] drm/mediatek: dpi: move the yuv422_en_bit to
- SoC config
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Guillaume Ranquet <granquet@baylibre.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        "Kishon Vijay Abraham I" <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, "Helge Deller" <deller@gmx.de>,
-        Jitao shi <jitao.shi@mediatek.com>
-CC:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>, <linux-fbdev@vger.kernel.org>
-Date:   Mon, 30 May 2022 16:47:21 +0800
-In-Reply-To: <20220523104758.29531-13-granquet@baylibre.com>
-References: <20220523104758.29531-1-granquet@baylibre.com>
-         <20220523104758.29531-13-granquet@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S234094AbiE3ItE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 04:49:04 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E23F71DA3
+        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 01:49:03 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id n28so3771010edb.9
+        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 01:49:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=KdmTZKV5bAWWibsKGoDyDVnawfDT1ekKG/l9wkg6Dbo=;
+        b=O+tMK7fKkNS3cdG00a7FIZz8rDmwpiQ4s28vmwkRJ4H+PxsdNK2NP/kzmoyI32uKvn
+         ceLHtiBCigj8mIKJSpIuJW2SCh3qDetUFXBtiFO2K8AkKdlUVjoULSwy+w0+2dj3iHd5
+         P6msn19xSYiMEMXSxiI1LrXQQMSQzIACSBdmY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=KdmTZKV5bAWWibsKGoDyDVnawfDT1ekKG/l9wkg6Dbo=;
+        b=U/dGjbEfhISdHGX6yvHOUpS/+ARPAt22VjTnhloe/lR7ijbOD9iGIN+XyObwy3GgyW
+         gD42jNUYsbfUMAkWPEsdI0/ADTuXs+HcLsGwZvLppA5Frr7taA5WPQY3T/+uHQkIwJWA
+         ss6Cy8GviAhiSp7/D52J5zIeWAjvV7WJzanq3oPcSx03tfS/TT8J1Voe51MnGaEvFki2
+         KCJw2rl3/8RL0knDu8rnT2omopaRc1AG8lmnTW5fd2cKaJDxXw2WpPwFJ3hUYwO2Xvyj
+         +aRYUaIyHurJKz6cChGCHwrGywSifJhlgxhvAfILEDQA8WjTJH23BKCDyO5cdugxlKXG
+         m7lQ==
+X-Gm-Message-State: AOAM533YmM/Wl0OMCjKNiEQZuR73YA8XzCddJ5BSuq9YqQUIgyn+uOB+
+        UNMdHttkXvd4IgCnIL119PjVxpp8bVDSjXgVJo8G0w==
+X-Google-Smtp-Source: ABdhPJwchKnnxjbAHZc6RltykgOiT9kT+2Oq/vjwVsee32HXXttxbpNK8n6+tJXaL8hgRk8PqRd69W2OF9hgdc/ruxc=
+X-Received: by 2002:a05:6402:2381:b0:42d:c8fe:d7fe with SMTP id
+ j1-20020a056402238100b0042dc8fed7femr7872055eda.248.1653900542017; Mon, 30
+ May 2022 01:49:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+References: <20220525155714.1837360-1-nfraprado@collabora.com> <20220525155714.1837360-2-nfraprado@collabora.com>
+In-Reply-To: <20220525155714.1837360-2-nfraprado@collabora.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Mon, 30 May 2022 16:48:51 +0800
+Message-ID: <CAGXv+5FRAvJpn-Nz08NLzqj+X+-yXLx6w-Bz7qa9g8Ct5xTNYg@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: pinctrl: mt8192: Add drive-strength-microamp
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>, kernel@collabora.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,79 +71,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Guillaume:
+On Wed, May 25, 2022 at 11:58 PM N=C3=ADcolas F. R. A. Prado
+<nfraprado@collabora.com> wrote:
+>
+> Commit e5fabbe43f3f ("pinctrl: mediatek: paris: Support generic
+> PIN_CONFIG_DRIVE_STRENGTH_UA") added support for using
+> drive-strength-microamp instead of mediatek,drive-strength-adv.
+>
+> Since there aren't any users of mediatek,drive-strength-adv on mt8192
+> yet, remove this property and add drive-strength-microamp in its place,
+> which has a clearer meaning.
 
-On Mon, 2022-05-23 at 12:47 +0200, Guillaume Ranquet wrote:
-> Add flexibility by moving the yuv422 en bit to SoC specific config
+Cool! Thanks for taking care of this~ I was looking at this and tried
+to make drive-strength and drive-strength-microamp mutually exclusive,
+but since they are optional, it didn't really work, and I put it on the
+back burner.
 
-Reviewed-by: CK Hu <ck.hu@mediatek.com>
 
-> 
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> Reviewed-by: AngeloGioacchino Del Regno <
-> angelogioacchino.delregno@collabora.com>
-> Reviewed-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_dpi.c | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> index 6d4d8c6ec47d..40254cd9d168 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> @@ -132,6 +132,7 @@ struct mtk_dpi_conf {
->  	/* HSIZE and VSIZE mask (no shift) */
->  	u32 hvsize_mask;
->  	u32 channel_swap_shift;
-> +	u32 yuv422_en_bit;
->  	const struct mtk_dpi_yc_limit *limit;
->  };
->  
-> @@ -356,7 +357,8 @@ static void mtk_dpi_config_channel_swap(struct
-> mtk_dpi *dpi,
->  
->  static void mtk_dpi_config_yuv422_enable(struct mtk_dpi *dpi, bool
-> enable)
->  {
-> -	mtk_dpi_mask(dpi, DPI_CON, enable ? YUV422_EN : 0, YUV422_EN);
-> +	mtk_dpi_mask(dpi, DPI_CON, enable ? dpi->conf->yuv422_en_bit :
-> 0,
-> +		     dpi->conf->yuv422_en_bit);
->  }
->  
->  static void mtk_dpi_config_csc_enable(struct mtk_dpi *dpi, bool
-> enable)
-> @@ -824,6 +826,7 @@ static const struct mtk_dpi_conf mt8173_conf = {
->  	.dimension_mask = HPW_MASK,
->  	.hvsize_mask = HSIZE_MASK,
->  	.channel_swap_shift = CH_SWAP,
-> +	.yuv422_en_bit = YUV422_EN,
->  	.limit = &mtk_dpi_limit,
->  };
->  
-> @@ -839,6 +842,7 @@ static const struct mtk_dpi_conf mt2701_conf = {
->  	.dimension_mask = HPW_MASK,
->  	.hvsize_mask = HSIZE_MASK,
->  	.channel_swap_shift = CH_SWAP,
-> +	.yuv422_en_bit = YUV422_EN,
->  	.limit = &mtk_dpi_limit,
->  };
->  
-> @@ -853,6 +857,7 @@ static const struct mtk_dpi_conf mt8183_conf = {
->  	.dimension_mask = HPW_MASK,
->  	.hvsize_mask = HSIZE_MASK,
->  	.channel_swap_shift = CH_SWAP,
-> +	.yuv422_en_bit = YUV422_EN,
->  	.limit = &mtk_dpi_limit,
->  };
->  
-> @@ -867,6 +872,7 @@ static const struct mtk_dpi_conf mt8192_conf = {
->  	.dimension_mask = HPW_MASK,
->  	.hvsize_mask = HSIZE_MASK,
->  	.channel_swap_shift = CH_SWAP,
-> +	.yuv422_en_bit = YUV422_EN,
->  	.limit = &mtk_dpi_limit,
->  };
->  
-
+ChenYu
