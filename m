@@ -2,110 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7D415384FA
-	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 17:33:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DACC5384C4
+	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 17:24:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239698AbiE3PdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 May 2022 11:33:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39454 "EHLO
+        id S236843AbiE3PXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 May 2022 11:23:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239492AbiE3PdQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 11:33:16 -0400
-X-Greylist: delayed 601 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 30 May 2022 07:36:19 PDT
-Received: from ns.iliad.fr (ns.iliad.fr [212.27.33.1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81DF7139AD4;
-        Mon, 30 May 2022 07:36:18 -0700 (PDT)
-Received: from ns.iliad.fr (localhost [127.0.0.1])
-        by ns.iliad.fr (Postfix) with ESMTP id 440C42008F;
-        Mon, 30 May 2022 16:19:06 +0200 (CEST)
-Received: from sakura (freebox.vlq16.iliad.fr [213.36.7.13])
-        by ns.iliad.fr (Postfix) with ESMTP id 3B13620054;
-        Mon, 30 May 2022 16:19:06 +0200 (CEST)
-Message-ID: <c1c3472427080716c69ad99ebe5d1954db44f03f.camel@freebox.fr>
-Subject: Re: [PATCH v7 4/9] ath11k: Add register access logic for WCN6750
-From:   Maxime Bizon <mbizon@freebox.fr>
-Reply-To: mbizon@freebox.fr
-To:     Manikanta Pubbisetty <quic_mpubbise@quicinc.com>,
-        ath11k@lists.infradead.org
-Cc:     linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
-        robh@kernel.org, mka@chromium.org
-Date:   Mon, 30 May 2022 16:19:06 +0200
-In-Reply-To: <c57e8791-b6ce-0752-52ca-a1cb938187d7@quicinc.com>
-References: <20220429170502.20080-1-quic_mpubbise@quicinc.com>
-         <20220429170502.20080-5-quic_mpubbise@quicinc.com>
-         <bd6d97a4cc6665d0ee632444f75e3480160387ec.camel@freebox.fr>
-         <c57e8791-b6ce-0752-52ca-a1cb938187d7@quicinc.com>
-Organization: Freebox
+        with ESMTP id S239698AbiE3PXh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 11:23:37 -0400
+Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com [IPv6:2607:f8b0:4864:20::d41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0670E1406CD
+        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 07:24:26 -0700 (PDT)
+Received: by mail-io1-xd41.google.com with SMTP id b4so11438788iog.11
+        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 07:24:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=XJqXgw0Qi4Ge6Q57wB4GlvotoYnhUuSq68y9152a6AE=;
+        b=LVGtkaW0HGDkcFAbs1GdFvAiqvfLTx1bYwe9OYqpie0hnkrRG3ANYxPumKuZYk7JMA
+         AfITdn4F5UEIeokR125RIY7Q1ckTrFsya4ogv4jGBKCCAup79jetDFmsmII3tXW0NH9U
+         HmEtro8tuihDrKQfSM37+WAX2S6ccLGt/leKPBqVvVnXXzZUwGgCNWgxjRzx+ta8kb/N
+         kjp3vJtP4Wr0Z99l39qc43HumPvgMdcTmaO69S36D8nN5QUsfNvdQh/YlqsB5wr2kDuQ
+         A0nhfxSHPFeuwsEWpzg0d/VjIUjssp5aWeegsjCH7CSUHmX4+cmniMZIKUoaDKh7uonN
+         KAYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to:content-transfer-encoding;
+        bh=XJqXgw0Qi4Ge6Q57wB4GlvotoYnhUuSq68y9152a6AE=;
+        b=VN40J3/7GCqcWdiCGSI2UJJ0C7t0m3+/p8NB012K8v7J1C0Qh2RFn0n/g/d8YLjSej
+         6WHUlIoy5SJ2rTK8XDZtkKPqdV7+TSTuQ19nXpP1lH8wrQZL14+NBGiGoLMugYq2t1kK
+         BrYI4+vS3Z0LeGQ8zxPZ37kkX0PfZafgEyFnlGOn8yxJfr+mWsf0hyz1cH7rrmDMXZZa
+         /wEJs3CEab0E+K5a2muzsz8eYx5gSHAo0sKCNBEm4YX2rFmP5gkyar5C9rvY7IEFQ5OK
+         Zz9wee7xtlVNmpDfelkEhniWCj/V79vLJZn8F04BqrUs11RcNJPcvVErXPyoKeNh5iLG
+         qprg==
+X-Gm-Message-State: AOAM531Xqf0qaJRzTpUkJ2zdkhxMglZoPQK1z/VFa790naApc9RIi5mW
+        /iMIqYeIfXMb5qEKvXQrSOg+15A10PrsTGtQsZM=
+X-Google-Smtp-Source: ABdhPJzISoeKuHvleT2qC8m0US7O2OdfkIZVgxD6GvVL7FgBjA1K4iWV+Cy+Hb9xQJJxwRGXQNwhpr3idZ5yq0RJcI4=
+X-Received: by 2002:a05:6638:13cd:b0:330:bc2b:d8f0 with SMTP id
+ i13-20020a05663813cd00b00330bc2bd8f0mr11889080jaj.41.1653920665532; Mon, 30
+ May 2022 07:24:25 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 2002:a05:6622:f06:0:0:0:0 with HTTP; Mon, 30 May 2022 07:24:24
+ -0700 (PDT)
+Reply-To: barristerbenjamin221@gmail.com
+From:   Attorney Amadou <koadaidrissa1@gmail.com>
+Date:   Mon, 30 May 2022 07:24:24 -0700
+Message-ID: <CAOh7+P9ggdh-bYDbwixYyVB38v5qx=PFTHiUOv+TH9fUGcn3NA@mail.gmail.com>
+Subject: 
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: ClamAV using ClamSMTP ; ns.iliad.fr ; Mon May 30 16:19:06 2022 +0200 (CEST)
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: base64
+X-Spam-Status: Yes, score=7.7 required=5.0 tests=BAYES_99,BAYES_999,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FREEMAIL_REPLYTO,
+        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2607:f8b0:4864:20:0:0:0:d41 listed in]
+        [list.dnswl.org]
+        *  0.2 BAYES_999 BODY: Bayes spam probability is 99.9 to 100%
+        *      [score: 1.0000]
+        *  3.5 BAYES_99 BODY: Bayes spam probability is 99 to 100%
+        *      [score: 1.0000]
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [koadaidrissa1[at]gmail.com]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+        *      digit
+        *      [barristerbenjamin221[at]gmail.com]
+        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+        *       in digit
+        *      [koadaidrissa1[at]gmail.com]
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
+        *  2.7 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+X-Spam-Level: *******
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Thu, 2022-05-26 at 09:12 +0530, Manikanta Pubbisetty wrote:
-
-> 
-> Thanks for letting me know about this, IIRC I don't remember 
-> encountering this problem in my testing. Just for my understanding,
-> have you reverted this change and confirmed that these errors go away
-> ?
-
-I first confirmed the register location was indeed incorrect, then I
-fixed it like this:
-
---- a/drivers/net/wireless/ath/ath11k/pcic.c
-+++ b/drivers/net/wireless/ath/ath11k/pcic.c
-@@ -143,7 +143,7 @@ EXPORT_SYMBOL(ath11k_pcic_init_msi_config);
- static inline u32 ath11k_pcic_get_window_start(struct ath11k_base *ab,
- 					       u32 offset)
- {
--	u32 window_start = 0;
-+	u32 window_start = ATH11K_PCI_WINDOW_START;
- 
- 	if ((offset ^ HAL_SEQ_WCSS_UMAC_OFFSET) < ATH11K_PCI_WINDOW_RANGE_MASK)
- 		window_start = ab->hw_params.dp_window_idx * ATH11K_PCI_WINDOW_START;
-@@ -170,8 +170,12 @@ void ath11k_pcic_write32(struct ath11k_base *ab, u32 offset, u32 value)
- 		iowrite32(value, ab->mem  + offset);
- 	} else if (ab->hw_params.static_window_map) {
- 		window_start = ath11k_pcic_get_window_start(ab, offset);
--		iowrite32(value, ab->mem + window_start +
--			  (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
-+		if (window_start == ATH11K_PCI_WINDOW_START &&
-+                    ab->pci.ops->window_write32)
-+			ab->pci.ops->window_write32(ab, offset, value);
-+		else
-+			iowrite32(value, ab->mem + window_start +
-+				  (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
- 	} else if (ab->pci.ops->window_write32) {
- 		ab->pci.ops->window_write32(ab, offset, value);
- 	}
-@@ -200,8 +204,12 @@ u32 ath11k_pcic_read32(struct ath11k_base *ab, u32 offset)
- 		val = ioread32(ab->mem + offset);
- 	} else if (ab->hw_params.static_window_map) {
- 		window_start = ath11k_pcic_get_window_start(ab, offset);
--		val = ioread32(ab->mem + window_start +
--			       (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
-+		if (window_start == ATH11K_PCI_WINDOW_START &&
-+		    ab->pci.ops->window_read32)
-+			val = ab->pci.ops->window_read32(ab, offset);
-+		else
-+			val = ioread32(ab->mem + window_start +
-+				       (offset & ATH11K_PCI_WINDOW_RANGE_MASK));
- 	} else if (ab->pci.ops->window_read32) {
- 		val = ab->pci.ops->window_read32(ab, offset);
- 	}
-
--- 
-Maxime
-
-
-
+SGVsbG8gZGVhciBmcmllbmQuDQoNClBsZWFzZSBJIHdpbGwgbG92ZSB0byBkaXNjdXNzIHNvbWV0
+aGluZyB2ZXJ5IGltcG9ydGFudCB3aXRoIHlvdSwgSQ0Kd2lsbCBhcHByZWNpYXRlIGl0IGlmIHlv
+dSBncmFudCBtZSBhdWRpZW5jZS4NCg0KU2luY2VyZWx5Lg0KQmFycmlzdGVyIEFtYWRvdSBCZW5q
+YW1pbiBFc3EuDQouLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4u
+Li4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4NCuimquaEm+OB
+quOCi+WPi+S6uuOAgeOBk+OCk+OBq+OBoeOBr+OAgg0KDQrnp4Hjga/jgYLjgarjgZ/jgajpnZ7l
+uLjjgavph43opoHjgarjgZPjgajjgavjgaTjgYTjgaboqbHjgZflkIjjgYbjga7jgYzlpKflpb3j
+gY3jgafjgZnjgIHjgYLjgarjgZ/jgYznp4HjgavogbTooYbjgpLkuI7jgYjjgabjgY/jgozjgozj
+gbDnp4Hjga/jgZ3jgozjgpLmhJ/orJ3jgZfjgb7jgZnjgIINCg0K5b+D44GL44KJ44CCDQrjg5Dj
+g6rjgrnjgr/jg7zjgqLjg57jg4njgqXjg5njg7Pjgrjjg6Pjg5/jg7NFc3HjgIINCg==
