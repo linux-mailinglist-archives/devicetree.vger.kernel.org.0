@@ -2,63 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23DDB537571
-	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 09:33:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D38E537580
+	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 09:36:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233462AbiE3Hd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 May 2022 03:33:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38862 "EHLO
+        id S233507AbiE3Hgz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 May 2022 03:36:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231839AbiE3HdZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 03:33:25 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 712496396;
-        Mon, 30 May 2022 00:33:22 -0700 (PDT)
+        with ESMTP id S233527AbiE3HfC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 03:35:02 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10DA071DB4;
+        Mon, 30 May 2022 00:34:51 -0700 (PDT)
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24U7X78F084352;
-        Mon, 30 May 2022 02:33:07 -0500
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24U7YcSr048593;
+        Mon, 30 May 2022 02:34:38 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1653895987;
-        bh=ExBnzLiYFVziL0l+DfDaFgwz3sYIoqI8Aw25L0RFvvA=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=AnTbvWQX7WUXCiDp/9JEGkTBI3hvIJo+70oDNeNLwMbnneXuzQCKyh5omrnL/C0pw
-         uFz0zB7vvLsUkZIXgvtmmRI0SO+hbPwAqtwl6JYXMgdI8fuAT9kI23qQ04Mz6m9BB8
-         ncZgBNGZfV0FLkBFHkPvNwJoMdGkdfYdoxXudlho=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24U7X7lC064595
+        s=ti-com-17Q1; t=1653896078;
+        bh=BprBHjVUcdUW3lmNzNyACgB5XEmut9FldM0VsyPmi9g=;
+        h=From:To:CC:Subject:Date;
+        b=Dhpnlp8konpTFMpgVjqmHksp6P4lU+LeboXcmx/PlUKOGZb6/33B/XHlCOLMQfkXM
+         fP4TcljIqgOXVbyUKv5PYUWqBcK+obW2do7KOoNVWLh8IlHTlIfXieD+puzsHnfimi
+         0TDi9hxrlerEfEHb1Kb3E0qpqePbD50Vp/0LUk/k=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24U7YcrQ065163
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 30 May 2022 02:33:07 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+        Mon, 30 May 2022 02:34:38 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 30
- May 2022 02:33:07 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ May 2022 02:34:37 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 30 May 2022 02:33:07 -0500
+ Frontend Transport; Mon, 30 May 2022 02:34:37 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24U7X5SF097044;
-        Mon, 30 May 2022 02:33:06 -0500
-Date:   Mon, 30 May 2022 13:03:05 +0530
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24U7Ya3C037245;
+        Mon, 30 May 2022 02:34:37 -0500
 From:   Rahul T R <r-ravikumar@ti.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     <robh+dt@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kishon@ti.com>, <krzysztof.kozlowski+dt@linaro.org>,
-        <lee.jones@linaro.org>, <rogerq@kernel.org>,
+To:     <robh+dt@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kishon@ti.com>, <krzysztof.kozlowski+dt@linaro.org>
+CC:     <lee.jones@linaro.org>, <rogerq@kernel.org>,
         <devicetree@vger.kernel.org>, <kristo@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <s-anna@ti.com>
-Subject: Re: [PATCH 1/3] dt-bindings: mfd: ti,j721e-system-controller: Add
- clock property
-Message-ID: <20220530073304.strqmcwbbixqjrdu@uda0490373>
-References: <20220527083556.18864-1-r-ravikumar@ti.com>
- <20220527083556.18864-2-r-ravikumar@ti.com>
- <0b561964-5718-ab1e-34c3-07eadae5b04e@linaro.org>
+        <linux-kernel@vger.kernel.org>, <s-anna@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>
+Subject: [PATCH v2 0/3] Enable RPi header on j721e sk
+Date:   Mon, 30 May 2022 13:04:26 +0530
+Message-ID: <20220530073429.17514-1-r-ravikumar@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <0b561964-5718-ab1e-34c3-07eadae5b04e@linaro.org>
-User-Agent: NeoMutt/20171215
+Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
@@ -70,69 +64,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16:14-20220529, Krzysztof Kozlowski wrote:
-> On 27/05/2022 10:35, Rahul T R wrote:
-> > Add a pattern property for clock, also update the example with
-> > a clock node
-> > 
-> > Signed-off-by: Rahul T R <r-ravikumar@ti.com>
-> > ---
-> >  .../bindings/mfd/ti,j721e-system-controller.yaml     | 12 ++++++++++++
-> >  1 file changed, 12 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
-> > index fa86691ebf16..e774a7f0bb08 100644
-> > --- a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
-> > +++ b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
-> > @@ -48,6 +48,12 @@ patternProperties:
-> >      description:
-> >        This is the SERDES lane control mux.
-> >  
-> > +  "^clock@[0-9a-f]+$":
-> > +    type: object
-> > +    $ref: ../clock/ti,am654-ehrpwm-tbclk.yaml#
+The following series of patches enables RPi header
+on j721e sk. It is a 40 pin io expasion header which
+brings out i2c5, ehrpwm 2,3 and some pins of gpio 0,1
 
-Thanks Krzysztof,
+v2:
+   - Add full path for clock property $ref
+   - Remove the discription for clock pattern property,
+     since $ref is added
+   - Remove the label in the example
+   - Fix the indentation in the example
 
-Will address the review comments and send a v2
-of this
+Rahul T R (1):
+  dt-bindings: mfd: ti,j721e-system-controller: Add clock property
 
-Regards
-Rahul T R
+Sinthu Raja (1):
+  arm64: dts: ti: k3-j721e-sk: Add pinmux for RPi Header
 
-> 
-> Full path please, so /schemas/clock/.......
-> 
-> > +    description:
-> > +      This is TI syscon gate clk.
-> 
-> Don't use "This is". Just describe it without need of full sentence.
-> "syscon gate clock" is a bit unspecific and actually looks like you
-> describe "clocks" property...
-> 
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > @@ -79,5 +85,11 @@ examples:
-> >                  <0x40c0 0x3>, <0x40c4 0x3>, <0x40c8 0x3>, <0x40cc 0x3>;
-> >                  /* SERDES4 lane0/1/2/3 select */
-> >          };
-> > +
-> > +        ehrpwm_tbclk: clock@4140 {
-> 
-> No need for label.
-> 
-> > +                compatible = "ti,am654-ehrpwm-tbclk", "syscon";
-> 
-> Messed up indentation.
-> 
-> > +                reg = <0x4140 0x18>;
-> > +                #clock-cells = <1>;
-> > +        };
-> >      };
-> >  ...
-> 
-> 
-> Best regards,
-> Krzysztof
+Vijay Pothukuchi (1):
+  arm64: dts: ti: k3-j721e-*: Add dts nodes for EHRPWMs
+
+ .../mfd/ti,j721e-system-controller.yaml       |  10 ++
+ .../dts/ti/k3-j721e-common-proc-board.dts     |  24 +++++
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     |  62 ++++++++++-
+ arch/arm64/boot/dts/ti/k3-j721e-sk.dts        | 101 +++++++++++++++++-
+ 4 files changed, 191 insertions(+), 6 deletions(-)
+
+-- 
+2.17.1
+
