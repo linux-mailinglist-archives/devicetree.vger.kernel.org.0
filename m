@@ -2,98 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDF8353885A
-	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 22:58:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CD92538874
+	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 23:01:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236338AbiE3U6U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 May 2022 16:58:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34568 "EHLO
+        id S243265AbiE3VBD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 May 2022 17:01:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231630AbiE3U6T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 16:58:19 -0400
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB5F7644DA;
-        Mon, 30 May 2022 13:58:17 -0700 (PDT)
-Received: from g550jk.localnet (31-151-115-246.dynamic.upc.nl [31.151.115.246])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 3B79ECAB3A;
-        Mon, 30 May 2022 20:57:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1653944264; bh=wRrTILtAk1T0hSn3pjrXFhh9i/czq48W4ByfPx0RpNE=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=ppV8WJmRqczGs4V/2Vgsq8lSolM9hcLiWo/YzVVlVbLTbgNZBY1i/jry7fdHePKLe
-         As/L3piw+zHzYmGEAunIUocSlDIRHtnGLj1e1t10FvTQd5H5Dlcdv6E49bvfaec6E0
-         msei1QJv2n69S1kUKgV+hRIRJCRxmNEPMy1plh40=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andr?? Almeida <andrealmeid@collabora.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S243223AbiE3VAf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 17:00:35 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 027339156C;
+        Mon, 30 May 2022 14:00:32 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id s13so981058ljd.4;
+        Mon, 30 May 2022 14:00:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=+FJSf1vwMYB6K1+IygWHYLgdHKsQ/Ri86qwFQ7er7r4=;
+        b=qQaEnEqIn8+KVCu3pPRo+BDQrdzTpsLMqbypvWjSdP/zBsAUHoF+Gerr5XT7DNRZW1
+         0bpkwfkPu1hMKNckTJkbfqyHKTvvxPuLi2IZmXv8DMFMNKXEOakkweh7lNNBTtPOBInP
+         RK0XWq87slLWTrLyJGGcQJqd8OW+B3LmN9XSCB6PL+8FmxkWI4gWNWUhuz5hn/0OLywc
+         FmS2FjqsGyViA9Q3hUbKnJx84AOsuqZKFmqJuUPb+jKs+WQqtD/joiFjLBoJ8UGFL5xq
+         t9Y57ac2D/yaMy2ErqyyoxRbxwDkBaU13uHKzvKFZmAcaFPptLb+oQOVf2CD+OnQqqDE
+         qNHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=+FJSf1vwMYB6K1+IygWHYLgdHKsQ/Ri86qwFQ7er7r4=;
+        b=BIRChedqMtG6xMp0pZRoqcp1BP1PbBucY7g6yndesc88p1xSmPYh4eOjEe4m5MkLO3
+         oOLRxIjCTM7vJUQA6pJymIOkLNIKwhr6sIhxj7xQjAq3+jwazG+D2RHL0D1lliN1MBNM
+         +PayFrAQVSsoh3zL2xTGIF8enfOL0z9YAgWTpvuQkwLlApCrRnhkbtlICNcGRLYz2z+L
+         8YmMnok5bhtxwGDNBIrBkY5COeiHdKN5Qod+7kC8co8uSFIXBSbrzjG0IBZQIH6gU+h/
+         tp6mmBDjJjU9ERVTv4u0AslfNTau897eDJGvam4dZQJTJoFpkfbSwDkhWV0kL6QpjtMP
+         O7KA==
+X-Gm-Message-State: AOAM533MwhsoxRrIyy/rTL7yGxt8vhtECfXuFbDCDghb5nZ6yQtmsaiF
+        O67p8mnkVA0SPxc1uS7vAh4=
+X-Google-Smtp-Source: ABdhPJy1j0CZ8u38C6o5Ly2O9aBU8Z/J0PR4IPWipSyv2hmVKkIJPggqQZ4sM6kw/XDqJU3SD8VYcQ==
+X-Received: by 2002:a2e:a36f:0:b0:253:d948:731c with SMTP id i15-20020a2ea36f000000b00253d948731cmr32005387ljn.159.1653944431239;
+        Mon, 30 May 2022 14:00:31 -0700 (PDT)
+Received: from otyshchenko.router ([212.22.223.21])
+        by smtp.gmail.com with ESMTPSA id k21-20020a2ea275000000b0025550e2693asm581541ljm.38.2022.05.30.14.00.30
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 30 May 2022 14:00:30 -0700 (PDT)
+From:   Oleksandr Tyshchenko <olekstysh@gmail.com>
+To:     xen-devel@lists.xenproject.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org
+Cc:     Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
         Rob Herring <robh+dt@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: qcom: msm8974-hammerhead: Add notification LED
-Date:   Mon, 30 May 2022 22:57:43 +0200
-Message-ID: <2844866.mvXUDI8C0e@g550jk>
-In-Reply-To: <20220530070618.GC1363@bug>
-References: <20220505164336.13210-1-luca@z3ntu.xyz> <20220530070618.GC1363@bug>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
-        PDS_OTHER_BAD_TLD,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        Julien Grall <julien@xen.org>, Juergen Gross <jgross@suse.com>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        Arnd Bergmann <arnd@arndb.de>
+Subject: [PATCH V3 5/8] dt-bindings: Add xen,grant-dma IOMMU description for xen-grant DMA ops
+Date:   Tue, 31 May 2022 00:00:14 +0300
+Message-Id: <1653944417-17168-6-git-send-email-olekstysh@gmail.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1653944417-17168-1-git-send-email-olekstysh@gmail.com>
+References: <1653944417-17168-1-git-send-email-olekstysh@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pavel,
+From: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
 
-On Montag, 30. Mai 2022 09:06:19 CEST Pavel Machek wrote:
-> Hi!
-> 
-> > From: Andr?? Almeida <andrealmeid@collabora.com>
-> > 
-> > Nexus 5 has a RGB LED connected to the TRILED and hence channels 7, 6 and
-> > 5 of the LPG. Add a node describing this.
-> > 
-> > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> > Signed-off-by: Andr?? Almeida <andrealmeid@collabora.com>
-> > 
-> > --- This patch depends on the PM8941 LPG patch:
-> > https://lore.kernel.org/linux-arm-msm/20220504205411.1510667-1-bjorn.ander
-> > sson@linaro.org/
-> How does this LED end up looking in userland? We want to make sure all the
-> phone RGB status LEDs end up using same path in /sys/..
+The main purpose of this binding is to communicate Xen specific
+information using generic IOMMU device tree bindings (which is
+a good fit here) rather than introducing a custom property.
 
-Like this, on both hammerhead and FP2 (in a separate patch):
+Introduce Xen specific IOMMU for the virtualized device (e.g. virtio)
+to be used by Xen grant DMA-mapping layer in the subsequent commit.
 
-$ ls -al /sys/class/leds/rgb:status/
-total 0
-drwxr-xr-x 3 root root         0 Jan  5  1970 .
-drwxr-xr-x 3 root root         0 Jan  5  1970 ..
--rw-rw-r-- 1 root feedbackd 4096 Jan  5  1970 brightness
-lrwxrwxrwx 1 root root         0 May 30 13:59 device -> ../../../fc4cf000.spmi:pm8941@1:lpg
--r--r--r-- 1 root root      4096 Jan  5  1970 max_brightness
--r--r--r-- 1 root root      4096 Jan  5  1970 multi_index
--rw-rw-r-- 1 root feedbackd 4096 Jan  5  1970 multi_intensity
-drwxr-xr-x 2 root root         0 May 30 13:59 power
-lrwxrwxrwx 1 root root         0 Jan  5  1970 subsystem -> ../../../../../../../../../class/leds
--rw-r--r-- 1 root root         0 Jan  5  1970 trigger
--rw-r--r-- 1 root root      4096 Jan  5  1970 uevent
+The reference to Xen specific IOMMU node using "iommus" property
+indicates that Xen grant mappings need to be enabled for the device,
+and it specifies the ID of the domain where the corresponding backend
+resides. The domid (domain ID) is used as an argument to the Xen grant
+mapping APIs.
 
-Regards
-Luca
+This is needed for the option to restrict memory access using Xen grant
+mappings to work which primary goal is to enable using virtio devices
+in Xen guests.
 
-> 
-> Best regards,
-> 
-> 									Pavel
+Signed-off-by: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
+---
+Changes RFC -> V1:
+   - update commit subject/description and text in description
+   - move to devicetree/bindings/arm/
 
+Changes V1 -> V2:
+   - update text in description
+   - change the maintainer of the binding
+   - fix validation issue
+   - reference xen,dev-domid.yaml schema from virtio/mmio.yaml
 
+Change V2 -> V3:
+   - Stefano already gave his Reviewed-by, I dropped it due to the changes (significant)
+   - use generic IOMMU device tree bindings instead of custom property
+     "xen,dev-domid"
+   - change commit subject and description, was
+     "dt-bindings: Add xen,dev-domid property description for xen-grant DMA ops"
+---
+ .../devicetree/bindings/iommu/xen,grant-dma.yaml   | 49 ++++++++++++++++++++++
+ 1 file changed, 49 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml
 
+diff --git a/Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml b/Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml
+new file mode 100644
+index 00000000..ab5765c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml
+@@ -0,0 +1,49 @@
++# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iommu/xen,grant-dma.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Xen specific IOMMU for virtualized devices (e.g. virtio)
++
++maintainers:
++  - Stefano Stabellini <sstabellini@kernel.org>
++
++description:
++  The reference to Xen specific IOMMU node using "iommus" property indicates
++  that Xen grant mappings need to be enabled for the device, and it specifies
++  the ID of the domain where the corresponding backend resides.
++  The binding is required to restrict memory access using Xen grant mappings.
++
++properties:
++  compatible:
++    const: xen,grant-dma
++
++  '#iommu-cells':
++    const: 1
++    description:
++      Xen specific IOMMU is multiple-master IOMMU device.
++      The single cell describes the domid (domain ID) of the domain where
++      the backend is running.
++
++required:
++  - compatible
++  - "#iommu-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    xen_iommu {
++        compatible = "xen,grant-dma";
++        #iommu-cells = <1>;
++    };
++
++    virtio@3000 {
++        compatible = "virtio,mmio";
++        reg = <0x3000 0x100>;
++        interrupts = <41>;
++
++        /* The backend is located in Xen domain with ID 1 */
++        iommus = <&xen_iommu 1>;
++    };
+-- 
+2.7.4
 
