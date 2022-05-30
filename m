@@ -2,61 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 714D053781B
-	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 12:06:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 465B55378A0
+	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 12:06:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232422AbiE3JKH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 May 2022 05:10:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55450 "EHLO
+        id S231134AbiE3JWm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 May 2022 05:22:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234746AbiE3JKC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 05:10:02 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60C9278EFF;
-        Mon, 30 May 2022 02:10:01 -0700 (PDT)
-X-UUID: 0fbd74dc37fe493694fda1c5eb33a9cf-20220530
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:451ddfd5-8631-4f57-8aed-d4c1d2ea9557,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,RULE:Release_Ham,AC
-        TION:release,TS:100
-X-CID-INFO: VERSION:1.1.5,REQID:451ddfd5-8631-4f57-8aed-d4c1d2ea9557,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,RULE:Spam_GS981B3D,AC
-        TION:quarantine,TS:100
-X-CID-META: VersionHash:2a19b09,CLOUDID:badec3b8-3c45-407b-8f66-25095432a27a,C
-        OID:cdbde5112185,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:0,BEC:nil
-X-UUID: 0fbd74dc37fe493694fda1c5eb33a9cf-20220530
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <chui-hao.chiu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 210577012; Mon, 30 May 2022 17:09:55 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Mon, 30 May 2022 17:09:54 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 30 May 2022 17:09:54 +0800
-From:   Peter Chiu <chui-hao.chiu@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <devicetree@vger.kernel.org>, Ryder Lee <ryder.Lee@mediatek.com>,
-        "Evelyn Tsai" <evelyn.tsai@mediatek.com>,
-        Sam Shih <sam.shih@mediatek.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Peter Chiu <chui-hao.chiu@mediatek.com>
-Subject: [PATCH v3] arm64: dts: mt7986: add built-in Wi-Fi device nodes
-Date:   Mon, 30 May 2022 17:09:44 +0800
-Message-ID: <20220530090944.4558-1-chui-hao.chiu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+        with ESMTP id S229781AbiE3JWm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 05:22:42 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E17574DD4
+        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 02:22:40 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1nvbbe-0003jF-JB; Mon, 30 May 2022 11:22:34 +0200
+Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1nvbbf-005QNi-6l; Mon, 30 May 2022 11:22:33 +0200
+Received: from mfe by dude02.red.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1nvbbd-0038uF-67; Mon, 30 May 2022 11:22:33 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     p.zabel@pengutronix.de, robh+dt@kernel.org, krzk+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@pengutronix.de, Marco Felsch <m.felsch@pengutronix.de>
+Subject: [PATCH v2 1/2] dt-bindings: reset: Add TPS380x documentation
+Date:   Mon, 30 May 2022 11:22:25 +0200
+Message-Id: <20220530092226.748644-1-m.felsch@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,177 +49,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This enables built-in 802.11ax Wi-Fi support.
+Add device-tree binding documentation for the tps380x reset driver. The
+binding uses enum to make it easy to add more devices from that family.
 
-Reviewed-by: Sam Shih <sam.shih@mediatek.com>
-Reviewed-by: Ryder Lee <ryder.lee@mediatek.com>
-Signed-off-by: Peter Chiu <chui-hao.chiu@mediatek.com>
+Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
-v2: add clocks and clock-names.
-v3: rename wmac to wifi and change underscores to dash in node names.
----
- arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts | 41 +++++++++++++++++++
- arch/arm64/boot/dts/mediatek/mt7986a.dtsi    | 22 ++++++++++
- arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts | 43 ++++++++++++++++++++
- 3 files changed, 106 insertions(+)
+Changelog:
+v2:
+- added Krzysztof rb
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-index 24c155c71f0d..42b4f42754f3 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-@@ -57,6 +57,13 @@
- 	status = "okay";
- };
+ .../bindings/reset/ti,tps380x-reset.yaml      | 49 +++++++++++++++++++
+ 1 file changed, 49 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reset/ti,tps380x-reset.yaml
 
-+&wifi {
-+	status = "okay";
-+	pinctrl-names = "default", "dbdc";
-+	pinctrl-0 = <&wf_2g_5g_pins>;
-+	pinctrl-1 = <&wf_dbdc_pins>;
-+};
+diff --git a/Documentation/devicetree/bindings/reset/ti,tps380x-reset.yaml b/Documentation/devicetree/bindings/reset/ti,tps380x-reset.yaml
+new file mode 100644
+index 000000000000..afc835eda0ef
+--- /dev/null
++++ b/Documentation/devicetree/bindings/reset/ti,tps380x-reset.yaml
+@@ -0,0 +1,49 @@
++# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/reset/ti,tps380x-reset.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- &pio {
- 	pcie_pins: pcie-pins {
- 		mux {
-@@ -99,6 +106,40 @@
- 			groups = "jtag";
- 		};
- 	};
++title: TI TPS380x reset controller node bindings
 +
-+	wf_2g_5g_pins: wf-2g-5g-pins {
-+		mux {
-+			function = "wifi";
-+			groups = "wf_2g", "wf_5g";
-+		};
-+		conf {
-+			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
-+			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
-+			       "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
-+			       "WF0_TOP_CLK", "WF0_TOP_DATA", "WF1_HB1",
-+			       "WF1_HB2", "WF1_HB3", "WF1_HB4", "WF1_HB0",
-+			       "WF1_HB5", "WF1_HB6", "WF1_HB7", "WF1_HB8",
-+			       "WF1_TOP_CLK", "WF1_TOP_DATA";
-+			drive-strength = <4>;
-+		};
-+	};
++maintainers:
++  - Marco Felsch <kernel@pengutronix.de>
 +
-+	wf_dbdc_pins: wf-dbdc-pins {
-+		mux {
-+			function = "wifi";
-+			groups = "wf_dbdc";
-+		};
-+		conf {
-+			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
-+			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
-+			       "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
-+			       "WF0_TOP_CLK", "WF0_TOP_DATA", "WF1_HB1",
-+			       "WF1_HB2", "WF1_HB3", "WF1_HB4", "WF1_HB0",
-+			       "WF1_HB5", "WF1_HB6", "WF1_HB7", "WF1_HB8",
-+			       "WF1_TOP_CLK", "WF1_TOP_DATA";
-+			drive-strength = <4>;
-+		};
-+	};
- };
-
- &spi0 {
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-index 9663a0779416..0f7d555996fc 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-@@ -8,6 +8,7 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/mt7986-clk.h>
- #include <dt-bindings/phy/phy.h>
-+#include <dt-bindings/reset/mt7986-resets.h>
-
- / {
- 	interrupt-parent = <&gic>;
-@@ -80,6 +81,11 @@
- 			reg = <0 0x43000000 0 0x30000>;
- 			no-map;
- 		};
++description: |
++  The TPS380x family [1] of supervisory circuits monitor supply voltages to
++  provide circuit initialization and timing supervision. The devices assert a
++  RESET signal if the voltage drops below a preset threshold or upon a manual
++  reset input (MR). The RESET output remains asserted for the factory
++  programmed delay after the voltage return above its threshold or after the
++  manual reset input is released.
 +
-+		wmcpu_emi: wmcpu-reserved@4fc00000 {
-+			no-map;
-+			reg = <0 0x4fc00000 0 0x00100000>;
-+		};
- 	};
-
- 	timer {
-@@ -381,6 +387,22 @@
- 			 #reset-cells = <1>;
- 		};
-
-+		wifi: wifi@18000000 {
-+			compatible = "mediatek,mt7986-wmac";
-+			resets = <&watchdog MT7986_TOPRGU_CONSYS_SW_RST>;
-+			reset-names = "consys";
-+			clocks = <&topckgen CLK_TOP_CONN_MCUSYS_SEL>,
-+				 <&topckgen CLK_TOP_AP2CNN_HOST_SEL>;
-+			clock-names = "mcu", "ap2conn";
-+			reg = <0 0x18000000 0 0x1000000>,
-+			      <0 0x10003000 0 0x1000>,
-+			      <0 0x11d10000 0 0x1000>;
-+			interrupts = <GIC_SPI 213 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 214 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 216 IRQ_TYPE_LEVEL_HIGH>;
-+			memory-region = <&wmcpu_emi>;
-+		};
- 	};
-
- };
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-index d4078feb4aad..088722c1e14c 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
-@@ -97,3 +97,46 @@
- &usb_phy {
- 	status = "okay";
- };
++  [1] https://www.ti.com/product/TPS3801
 +
-+&wifi {
-+	status = "okay";
-+	pinctrl-names = "default", "dbdc";
-+	pinctrl-0 = <&wf_2g_5g_pins>;
-+	pinctrl-1 = <&wf_dbdc_pins>;
-+};
++properties:
++  compatible:
++    enum:
++      - ti,tps3801
 +
-+&pio {
-+	wf_2g_5g_pins: wf-2g-5g-pins {
-+		mux {
-+			function = "wifi";
-+			groups = "wf_2g", "wf_5g";
-+		};
-+		conf {
-+			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
-+			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
-+			       "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
-+			       "WF0_TOP_CLK", "WF0_TOP_DATA", "WF1_HB1",
-+			       "WF1_HB2", "WF1_HB3", "WF1_HB4", "WF1_HB0",
-+			       "WF1_HB5", "WF1_HB6", "WF1_HB7", "WF1_HB8",
-+			       "WF1_TOP_CLK", "WF1_TOP_DATA";
-+			drive-strength = <4>;
-+		};
-+	};
++  reset-gpios:
++    maxItems: 1
++    description: Reference to the GPIO connected to the MR pin.
 +
-+	wf_dbdc_pins: wf-dbdc-pins {
-+		mux {
-+			function = "wifi";
-+			groups = "wf_dbdc";
-+		};
-+		conf {
-+			pins = "WF0_HB1", "WF0_HB2", "WF0_HB3", "WF0_HB4",
-+			       "WF0_HB0", "WF0_HB0_B", "WF0_HB5", "WF0_HB6",
-+			       "WF0_HB7", "WF0_HB8", "WF0_HB9", "WF0_HB10",
-+			       "WF0_TOP_CLK", "WF0_TOP_DATA", "WF1_HB1",
-+			       "WF1_HB2", "WF1_HB3", "WF1_HB4", "WF1_HB0",
-+			       "WF1_HB5", "WF1_HB6", "WF1_HB7", "WF1_HB8",
-+			       "WF1_TOP_CLK", "WF1_TOP_DATA";
-+			drive-strength = <4>;
-+		};
-+	};
-+};
---
-2.18.0
++  "#reset-cells":
++    const: 0
++
++required:
++  - compatible
++  - reset-gpios
++  - "#reset-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    reset: reset-controller {
++        compatible = "ti,tps3801";
++        #reset-cells = <0>;
++        reset-gpios = <&gpio3 2 GPIO_ACTIVE_LOW>;
++    };
++...
+-- 
+2.30.2
 
