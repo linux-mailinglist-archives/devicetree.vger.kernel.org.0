@@ -2,73 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F716537923
-	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 12:34:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81A8E537998
+	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 13:14:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231432AbiE3Kd7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 May 2022 06:33:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43150 "EHLO
+        id S235374AbiE3LOj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 May 2022 07:14:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbiE3Kd6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 06:33:58 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 860D763535;
-        Mon, 30 May 2022 03:33:56 -0700 (PDT)
+        with ESMTP id S235231AbiE3LOi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 07:14:38 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07C6279819
+        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 04:14:37 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id k16so9848318wrg.7
+        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 04:14:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1653906836; x=1685442836;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=uaWrA9Ka6myw33tDlOhmilsHeblqSEZ4ITcAA+dKBEk=;
-  b=WbugykDdHpdWno0rxwICS/cC7Nfj3BRTHG3TZ9QOXIxt0wguQ1/ccuC/
-   zKgXJjI1XIbh6NjtbQ1OCUQDDdOKxTocagAVNCcIznbEMxVSOqlZY/J0u
-   iNvnDYiPC0vezSBzAYJ3QrTtY/QK/RNhsJ3CEYTlLEdlYThC/MsHKQOBt
-   Y=;
-Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 30 May 2022 03:33:56 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 May 2022 03:33:55 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 30 May 2022 03:33:54 -0700
-Received: from [10.50.10.34] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 30 May
- 2022 03:33:50 -0700
-Message-ID: <4b9a2abe-c462-81d9-2098-d430da24f030@quicinc.com>
-Date:   Mon, 30 May 2022 16:03:47 +0530
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=5ns4sAybh4TgCu4Ru7gHJXiJGbL+lQMw1WNCULwfHYI=;
+        b=Ap3LBwi1HjnkK+tjMaaSNaB5d9qYFwgjx5KsilFsV9uINomb7nRY0wcpr24XS9Fxjm
+         kNOm1J+eZKOr3F9yURfbn3a38xFMr9ycGRAh3rnmgH+yePvWM9XhZDpg8gE9+mH1KViZ
+         EHs0U13k/TdUCXp/OImt6PbmU1MoK49G0engcL2o9i3RfgQfkR51gAw2YDTC7hj4Frry
+         PRVJS1igb1+sEgltSU0JuG4HfWcKpl136odwoo2lH4brRDbFD7CdMVPUyaWyJHgutbi8
+         cmovSGmwAdAgqkTPgXonIWhcDYrscq3Ex5Sf4eDCsmRjekYj5tW42LDUlnn2QbN7KZsX
+         CckA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=5ns4sAybh4TgCu4Ru7gHJXiJGbL+lQMw1WNCULwfHYI=;
+        b=N5MzIZc0v8Ji7HKYvz7SiN4dd/rpltvBPQKnzisS/AMsilXks94BW1FIIbYIktEDOs
+         P5KUpiJfN6JL5B2xUvHNGEkexy2dso5I84bqjxrokmLXu2dZgpKL9lFipbDvuayf7Ge0
+         G5HgiVBk3cpEAXwstxWQYDtKQzrxDBVF2R5NJiFQ1lsjEH35t8Q0YcIcC8jSOzf+kAjn
+         oZsTriB7e63OLi+4E2ayF7wP7V2C4aC1MXoctCwTL50nF+BLqsUxDyRRhgEtZ86Dy6gS
+         0AZ3KViiQ0B5VDuv4bTmLQq3znFzxVk/CnwBC9mUbnmXMwr0b8zH/pd6hsaa4wHJzJRJ
+         Ho5g==
+X-Gm-Message-State: AOAM530CIGRr8XAAQGYmXC50bA5ulROINy1VdumQYPQ7RJQQvRV393+j
+        AQNXWZdckei5qpw7KIZ1cvSacw==
+X-Google-Smtp-Source: ABdhPJxzlR6IVaPeURGn8HAw8VijyYBbOsX14dwuXhBLVh10oADT7aa8ETrSD4gvV3UsizicqC9zJA==
+X-Received: by 2002:a05:6000:786:b0:20d:6048:71bd with SMTP id bu6-20020a056000078600b0020d604871bdmr44814724wrb.358.1653909275559;
+        Mon, 30 May 2022 04:14:35 -0700 (PDT)
+Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id a12-20020a056000188c00b0021018642ff8sm9269844wri.76.2022.05.30.04.14.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 May 2022 04:14:35 -0700 (PDT)
+Message-ID: <390f1bf0-5f8f-840c-ea77-9d24d93f8c22@linaro.org>
+Date:   Mon, 30 May 2022 13:14:34 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH V13 7/9] regulator: Add a regulator driver for the PM8008
- PMIC
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [uL PATCH] arm64: dts: ti: k3-j721e-mcu-wakeup: Modified fss
+ compatible to syscon and simple-mfd
 Content-Language: en-US
-To:     Stephen Boyd <swboyd@chromium.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_collinsd@quicinc.com>,
-        <quic_subbaram@quicinc.com>, <quic_jprakash@quicinc.com>
-References: <1653043777-24003-1-git-send-email-quic_c_skakit@quicinc.com>
- <1653043777-24003-8-git-send-email-quic_c_skakit@quicinc.com>
- <CAE-0n53WLYR1pjnr6wASVmXXQ7xTq5n2Q7GdeKOCkWf4H4n=0A@mail.gmail.com>
- <e70aceba-02d5-15b5-46d0-d5ed5706e81a@quicinc.com>
- <CAE-0n539gePyXhw7r+XcaHtooN98KfYsx_qwgDaFkJtMSg+80g@mail.gmail.com>
-From:   "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
-In-Reply-To: <CAE-0n539gePyXhw7r+XcaHtooN98KfYsx_qwgDaFkJtMSg+80g@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Bhavya Kapoor <b-kapoor@ti.com>, nm@ti.com, vigneshr@ti.com
+Cc:     kristo@kernel.org, p.yadav@ti.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220530094230.53823-1-b-kapoor@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220530094230.53823-1-b-kapoor@ti.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,94 +76,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 30/05/2022 11:42, Bhavya Kapoor wrote:
+> The FSS node also contains the Hyperflash controller. Support
+> will be added in future. Change the compatible to syscon to
+> accommodate that.
+> 
+> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> index b4972dfb7da8..3c68094d835f 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
+> @@ -169,8 +169,8 @@
+>  		power-domains = <&k3_pds 197 TI_SCI_PD_SHARED>;
+>  	};
+>  
+> -	fss: fss@47000000 {
+> -		compatible = "simple-bus";
+> +	fss: syscon@47000000 {
+> +		compatible = "syscon","simple-mfd";
 
-On 5/28/2022 2:32 AM, Stephen Boyd wrote:
-> HTML mail? Please send plaintext next time.
->
-> Quoting Satya Priya Kakitapalli (Temp) (2022-05-27 01:24:19)
->> On 5/21/2022 8:26 AM, Stephen Boyd wrote:
->>
->>      Quoting Satya Priya (2022-05-20 03:49:35)
->>
->>          diff --git a/drivers/regulator/qcom-pm8008-regulator.c b/drivers/regulator/qcom-pm8008-regulator.c
->>          new file mode 100644
->>          index 0000000..6e815c6
->>          --- /dev/null
->>          +++ b/drivers/regulator/qcom-pm8008-regulator.c
->>          @@ -0,0 +1,225 @@
->>          +// SPDX-License-Identifier: GPL-2.0-only
->>          +/* Copyright (c) 2022, The Linux Foundation. All rights reserved. */
->>          +
->>          +#include <linux/device.h>
->>          +#include <linux/kernel.h>
->>          +#include <linux/mfd/qcom_pm8008.h>
->>          +#include <linux/module.h>
->>          +#include <linux/of.h>
->>          +#include <linux/of_device.h>
->>
->>      What in of_device.h is used?
->>
->>
->> struct of_device_id
-> That struct is defined in mod_devicetable.h, not of_device.h
->
->>
->>
->>          +#include <linux/platform_device.h>
->>          +#include <linux/regmap.h>
->>          +#include <linux/regulator/driver.h>
->>          +
-> [...]
->>
->>          +};
->>          +
->>          +static int pm8008_regulator_get_voltage(struct regulator_dev *rdev)
->>          +{
->>          +       struct pm8008_regulator *pm8008_reg = rdev_get_drvdata(rdev);
->>          +
->>          +       return pm8008_reg->voltage_selector;
->>
->>      Can this read the hardware instead of caching the value from
->>      pm8008_regulator_set_voltage()?
->>
->>
->> I can use the regmap_bulk_read like below (which was present in the earlier
->> versions)
-> Please do
->
->>          +       }
->>          +
->>          +       pm8008_reg->dev = dev;
->>          +
->>          +       rc = of_property_read_string(dev->of_node, "regulator-name", &name);
->>          +       if (rc)
->>          +               return rc;
->>          +
->>          +       /* get the required regulator data */
->>          +       for (i = 0; i < ARRAY_SIZE(reg_data); i++)
->>          +               if (strstr(name, reg_data[i].name))
->>
->>      Why not find this via reg/address instead? It would save storing the
->>      regulator name in the reg_data table.
->>
->>
->> You mean match this using base address? then we should add base address in the
->> reg_data table. We will need the name to be stored in reg_data table anyway for
->> the pm8008_reg->rdesc.of_match
-> Why? Now that this driver binds to each node individually the usage of
-> of_match doesn't make any sense to me. Can you set 'struct
-> regulator_config::dev' instead and not set of_match?
+1. Missing space after ,.
+2.  How does it work now? You expose syscon on this device node with
+0x47000000 and the same time have a child device on same address range.
+This looks racy and inconsistent.
 
+3. This stops looking like simple-bus or simple-mfd:
+https://lore.kernel.org/linux-devicetree/Ynq52E93mcTXcw9H@robh.at.kernel.org/
 
-Currently we are setting regulator_config::dev as dev->parent i.e., 
-pm8008@8, because the parent supplies are present under pm8008@8, to get 
-the regulators mapped correctly to the parent supplies we are using 
-dev->parent.
+4. syscon and simple-mfd are not allowed on their own
+https://lore.kernel.org/all/Ymf+OmNBaZ+7OrxD@robh.at.kernel.org/
 
-If we do not set of_match in regulator descriptor, 
-regulator_of_get_init_node() would return NULL, causing init_data to be 
-NULL during regulator_register and regulators are not getting probed. 
-This can be resolved, if we get the init_data during pm8008_probe 
-itself. I'll do that in the next version.
-
-
+Best regards,
+Krzysztof
