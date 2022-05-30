@@ -2,64 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D94D053757E
-	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 09:36:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4CBF537577
+	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 09:35:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233054AbiE3Hgy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 May 2022 03:36:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40042 "EHLO
+        id S233495AbiE3HfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 May 2022 03:35:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233510AbiE3HfB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 03:35:01 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3097C71DA1;
-        Mon, 30 May 2022 00:34:47 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24U7Yhfk084868;
-        Mon, 30 May 2022 02:34:43 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1653896083;
-        bh=D3w8nI02oB8EoNoAqaEWvOutV6JaRMHHmHyziuHi/rQ=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=ww1shQVWRaLgun/B5eWiCAfnkkNp9Bfx8IbuEKoazaIOlMmP6jISaU6yEyn8QLj3F
-         ps/ZHwxhwq1nZOGqO/1igE1OaYqo+FoeEl/z+FIr3kVX0WFEbFr6n+I9ALJ1vPv2eS
-         fyI58NxVgSdrr5bWaSiuK5qiPbafu86rcOyeRZC8=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24U7YhbD098446
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 30 May 2022 02:34:43 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 30
- May 2022 02:34:43 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 30 May 2022 02:34:43 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24U7Ygi7098610;
-        Mon, 30 May 2022 02:34:42 -0500
-From:   Rahul T R <r-ravikumar@ti.com>
-To:     <robh+dt@kernel.org>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kishon@ti.com>, <krzysztof.kozlowski+dt@linaro.org>
-CC:     <lee.jones@linaro.org>, <rogerq@kernel.org>,
-        <devicetree@vger.kernel.org>, <kristo@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <s-anna@ti.com>,
-        Sinthu Raja <sinthu.raja@ti.com>,
-        Rahul T R <r-ravikumar@ti.com>
-Subject: [PATCH v2 3/3] arm64: dts: ti: k3-j721e-sk: Add pinmux for RPi Header
-Date:   Mon, 30 May 2022 13:04:29 +0530
-Message-ID: <20220530073429.17514-4-r-ravikumar@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220530073429.17514-1-r-ravikumar@ti.com>
-References: <20220530073429.17514-1-r-ravikumar@ti.com>
+        with ESMTP id S233501AbiE3HfX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 03:35:23 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2A5F719C4
+        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 00:35:21 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id r129so531748wmr.3
+        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 00:35:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=j9oWpoYF6cP0rasfQg0lgU3K+paVeBGM3B58Xnx0N70=;
+        b=J+Nmc5vIraLihuVuNTQS3pr8e/7nM1ph14p0AXnhWFqAnwjoMKWbxFIZD2zkjxIEBl
+         gHZUqLzIRqPoLrXbukGzWJM3zfc1ofhuP/ULOzLkZzSgl1hDRyPf7dOo8MfGwy7deYM5
+         vNT2ilEX48SKQX11OPqHQSV3vrRdsQv9LoNVOc81tFGoYO0GGwe4ZueCj+WejHDYxf+h
+         F51DzT9qt/THYLBug11JDqhkQ73pJe2yCCVbI9As873b/Ck83LmW2qKspryFs1iDtJuh
+         HkPYN7VWXoNFGrodnuLTH8uH1Mqx7cse7GHr328H7YXe4Oeq4e5l0q/uv3n8tCezSnvb
+         Ur7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=j9oWpoYF6cP0rasfQg0lgU3K+paVeBGM3B58Xnx0N70=;
+        b=ePODi6X1n/KAHgiMYgCLvjJ/K+qN9OTHcyoVK90AMytgFJ8sVc9ssNzdOry2EYRXsP
+         33enYYHsVcMZLJaNMHg3jim4dNGg4kxL0gmYMOrKEQ8wG0cGR1mnF4NFAtBHE0sme4Vg
+         cGl/zd2It1RegH19iQ4R8eHhVYNsZr6afgaB7QaZ77ik92Rwtw6198HR6ad8qLin+awu
+         diwnmeVZl4/TzEcsdQfST225aU2geBAqGf26JLr8eYIQJ25Qrw/j5Iwt3t/SequUyTTu
+         y+C+UxJBycNOsf70jlZDURRmxWm/hGp5Ew9eBoXGXLWbxp/Vi9AziVF58t/ajPA2WpwH
+         UGKA==
+X-Gm-Message-State: AOAM533NwtjEYsbDAxsm90o4HNDMPKu2bOueqLxjp0DEv6VOreRWNcWn
+        YBfzQM5HP5tz6zaRxAZmQBEjDw==
+X-Google-Smtp-Source: ABdhPJxJ7o9DPjs3Sap3nZ8dMyV7GNUSisQEhRGh8ngGsb8rZCZsFbu3TWaWmTIrENCsWJ30MyyU4w==
+X-Received: by 2002:a05:600c:acb:b0:397:bdb:ffea with SMTP id c11-20020a05600c0acb00b003970bdbffeamr17906469wmr.56.1653896120344;
+        Mon, 30 May 2022 00:35:20 -0700 (PDT)
+Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id i8-20020adfefc8000000b002102af52a2csm5860109wrp.9.2022.05.30.00.35.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 May 2022 00:35:19 -0700 (PDT)
+Message-ID: <11b5c026-26ef-6b79-fbd9-f994a21e6755@linaro.org>
+Date:   Mon, 30 May 2022 09:35:18 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v3 0/2] Add support for Xiaomi Mi 5s Plus
+Content-Language: en-US
+To:     Pavel Machek <pavel@ucw.cz>, Alec Su <ae40515@yahoo.com.tw>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, sboyd@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, y.oudjana@protonmail.com
+References: <20220520120449.12996-1-ae40515.ref@yahoo.com.tw>
+ <20220520120449.12996-1-ae40515@yahoo.com.tw> <20220530070738.GI1363@bug>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220530070738.GI1363@bug>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,138 +76,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sinthu Raja <sinthu.raja@ti.com>
+On 30/05/2022 09:07, Pavel Machek wrote:
+> Hi!
+> 
+>> This series adds the device tree for Xiaomi Mi 5s Plus (xiaomi-natrium)
+>> smartphone which is based on Snapdragon 821 SoC.
+> 
+> Please cc phone-devel@ mailing list with phone-related patches.
 
-Add pinmux required to bring out
-i2c5, ehrpwm 2 and 3 and gpios on
-40 pin RPi header on sk board
+I think you need to come up with some smart content-pattern for
+get_maintainers, because there is little chance I will remember to
+manually Cc some different mailing lists depending on type of some
+device or some other factor. I remember just to cc soc folks on certain
+patches and that's it. Nothing else fits my memory. :) To avoid the
+problem of poor human memory, we have a tool - scripts/get_maintainer.pl
+- and contributors are encouraged to use that one. If you want to be
+cc-ed, please either work on proper maintainers entry or set up some
+custom lei filters.
 
-Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
-Signed-off-by: Rahul T R <r-ravikumar@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721e-sk.dts | 89 ++++++++++++++++++++++----
- 1 file changed, 78 insertions(+), 11 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-index 98a55778f3fe..b913b18ae133 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-@@ -400,6 +400,57 @@
- 			J721E_IOPAD(0x124, PIN_INPUT, 7) /* (Y24) PRG0_PRU1_GPO9.GPIO0_72 */
- 		>;
- 	};
-+
-+	main_i2c5_pins_default: main-i2c5-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x150, PIN_INPUT_PULLUP, 2) /* (Y26) PRG0_MDIO0_MDIO.I2C5_SCL */
-+			J721E_IOPAD(0x154, PIN_INPUT_PULLUP, 2) /* (AA27) PRG0_MDIO0_MDC.I2C5_SDA */
-+		>;
-+	};
-+
-+	rpi_header_gpio0_pins_default: rpi-header-gpio0-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x01c, PIN_INPUT, 7) /* (AD22) PRG1_PRU0_GPO6.GPIO0_7 */
-+			J721E_IOPAD(0x120, PIN_INPUT, 7) /* (AA28) PRG0_PRU1_GPO8.GPIO0_71 */
-+			J721E_IOPAD(0x14c, PIN_INPUT, 7) /* (AA29) PRG0_PRU1_GPO19.GPIO0_82 */
-+			J721E_IOPAD(0x02c, PIN_INPUT, 7) /* (AD21) PRG1_PRU0_GPO10.GPIO0_11 */
-+			J721E_IOPAD(0x198, PIN_INPUT, 7) /* (V25) RGMII6_TD1.GPIO0_101 */
-+			J721E_IOPAD(0x1b0, PIN_INPUT, 7) /* (W24) RGMII6_RD1.GPIO0_107 */
-+			J721E_IOPAD(0x1a0, PIN_INPUT, 7) /* (W29) RGMII6_TXC.GPIO0_103 */
-+			J721E_IOPAD(0x008, PIN_INPUT, 7) /* (AG22) PRG1_PRU0_GPO1.GPIO0_2 */
-+			J721E_IOPAD(0x1d0, PIN_INPUT, 7) /* (AA3) SPI0_D1.GPIO0_115 */
-+			J721E_IOPAD(0x11c, PIN_INPUT, 7) /* (AA24) PRG0_PRU1_GPO7.GPIO0_70 */
-+			J721E_IOPAD(0x148, PIN_INPUT, 7) /* (AA26) PRG0_PRU1_GPO18.GPIO0_81 */
-+			J721E_IOPAD(0x004, PIN_INPUT, 7) /* (AC23) PRG1_PRU0_GPO0.GPIO0_1 */
-+			J721E_IOPAD(0x014, PIN_INPUT, 7) /* (AH23) PRG1_PRU0_GPO4.GPIO0_5 */
-+			J721E_IOPAD(0x020, PIN_INPUT, 7) /* (AE20) PRG1_PRU0_GPO7.GPIO0_8 */
-+			J721E_IOPAD(0x19c, PIN_INPUT, 7) /* (W27) RGMII6_TD0.GPIO0_102 */
-+			J721E_IOPAD(0x1b4, PIN_INPUT, 7) /* (W25) RGMII6_RD0.GPIO0_108 */
-+			J721E_IOPAD(0x188, PIN_INPUT, 7) /* (Y28) RGMII6_TX_CTL.GPIO0_97 */
-+			J721E_IOPAD(0x00c, PIN_INPUT, 7) /* (AF22) PRG1_PRU0_GPO2.GPIO0_3 */
-+			J721E_IOPAD(0x010, PIN_INPUT, 7) /* (AJ23) PRG1_PRU0_GPO3.GPIO0_4 */
-+		>;
-+	};
-+
-+	rpi_header_gpio1_pins_default: rpi-header-gpio1-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x234, PIN_INPUT, 7) /* (U3) EXT_REFCLK1.GPIO1_12 */
-+		>;
-+	};
-+
-+	rpi_header_ehrpwm2_pins_default: rpi-header-ehrpwm2-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x178, PIN_INPUT, 6) /* (U27) RGMII5_RD3.EHRPWM2_A */
-+			J721E_IOPAD(0x17c, PIN_INPUT, 6) /* (U24) RGMII5_RD2.EHRPWM2_B */
-+		>;
-+	};
-+
-+	rpi_header_ehrpwm3_pins_default: rpi-header-ehrpwm3-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x18c, PIN_INPUT, 6) /* (V23) RGMII6_RX_CTL.EHRPWM3_A */
-+			J721E_IOPAD(0x190, PIN_INPUT, 6) /* (W23) RGMII6_TD3.EHRPWM3_B */
-+		>;
-+	};
- };
- 
- &wkup_pmx0 {
-@@ -631,11 +682,6 @@
- 	status = "disabled";
- };
- 
--&main_i2c5 {
--	/* Brought out on RPi Header */
--	status = "disabled";
--};
--
- &main_i2c6 {
- 	/* Unused */
- 	status = "disabled";
-@@ -1138,18 +1184,39 @@
- 	status = "disabled";
- };
- 
--&main_ehrpwm2 {
-+&main_ehrpwm4 {
- 	status = "disabled";
- };
- 
--&main_ehrpwm3 {
-+&main_ehrpwm5 {
- 	status = "disabled";
- };
- 
--&main_ehrpwm4 {
--	status = "disabled";
-+&main_gpio0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&rpi_header_gpio0_pins_default>;
- };
- 
--&main_ehrpwm5 {
--	status = "disabled";
-+&main_gpio1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&rpi_header_gpio1_pins_default>;
-+};
-+
-+&main_i2c5 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c5_pins_default>;
-+	clock-frequency = <400000>;
-+	status = "okay";
-+};
-+
-+&main_ehrpwm2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&rpi_header_ehrpwm2_pins_default>;
-+	status = "okay";
-+};
-+
-+&main_ehrpwm3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&rpi_header_ehrpwm3_pins_default>;
-+	status = "okay";
- };
--- 
-2.17.1
-
+Best regards,
+Krzysztof
