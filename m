@@ -2,109 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DACC5384C4
-	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 17:24:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98B5B5384CD
+	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 17:25:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236843AbiE3PXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 May 2022 11:23:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39990 "EHLO
+        id S239301AbiE3PZN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 May 2022 11:25:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239698AbiE3PXh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 11:23:37 -0400
-Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com [IPv6:2607:f8b0:4864:20::d41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0670E1406CD
-        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 07:24:26 -0700 (PDT)
-Received: by mail-io1-xd41.google.com with SMTP id b4so11438788iog.11
-        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 07:24:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=XJqXgw0Qi4Ge6Q57wB4GlvotoYnhUuSq68y9152a6AE=;
-        b=LVGtkaW0HGDkcFAbs1GdFvAiqvfLTx1bYwe9OYqpie0hnkrRG3ANYxPumKuZYk7JMA
-         AfITdn4F5UEIeokR125RIY7Q1ckTrFsya4ogv4jGBKCCAup79jetDFmsmII3tXW0NH9U
-         HmEtro8tuihDrKQfSM37+WAX2S6ccLGt/leKPBqVvVnXXzZUwGgCNWgxjRzx+ta8kb/N
-         kjp3vJtP4Wr0Z99l39qc43HumPvgMdcTmaO69S36D8nN5QUsfNvdQh/YlqsB5wr2kDuQ
-         A0nhfxSHPFeuwsEWpzg0d/VjIUjssp5aWeegsjCH7CSUHmX4+cmniMZIKUoaDKh7uonN
-         KAYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to:content-transfer-encoding;
-        bh=XJqXgw0Qi4Ge6Q57wB4GlvotoYnhUuSq68y9152a6AE=;
-        b=VN40J3/7GCqcWdiCGSI2UJJ0C7t0m3+/p8NB012K8v7J1C0Qh2RFn0n/g/d8YLjSej
-         6WHUlIoy5SJ2rTK8XDZtkKPqdV7+TSTuQ19nXpP1lH8wrQZL14+NBGiGoLMugYq2t1kK
-         BrYI4+vS3Z0LeGQ8zxPZ37kkX0PfZafgEyFnlGOn8yxJfr+mWsf0hyz1cH7rrmDMXZZa
-         /wEJs3CEab0E+K5a2muzsz8eYx5gSHAo0sKCNBEm4YX2rFmP5gkyar5C9rvY7IEFQ5OK
-         Zz9wee7xtlVNmpDfelkEhniWCj/V79vLJZn8F04BqrUs11RcNJPcvVErXPyoKeNh5iLG
-         qprg==
-X-Gm-Message-State: AOAM531Xqf0qaJRzTpUkJ2zdkhxMglZoPQK1z/VFa790naApc9RIi5mW
-        /iMIqYeIfXMb5qEKvXQrSOg+15A10PrsTGtQsZM=
-X-Google-Smtp-Source: ABdhPJzISoeKuHvleT2qC8m0US7O2OdfkIZVgxD6GvVL7FgBjA1K4iWV+Cy+Hb9xQJJxwRGXQNwhpr3idZ5yq0RJcI4=
-X-Received: by 2002:a05:6638:13cd:b0:330:bc2b:d8f0 with SMTP id
- i13-20020a05663813cd00b00330bc2bd8f0mr11889080jaj.41.1653920665532; Mon, 30
- May 2022 07:24:25 -0700 (PDT)
+        with ESMTP id S240904AbiE3PY4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 11:24:56 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D18251CC63C;
+        Mon, 30 May 2022 07:25:54 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0ED6060DF6;
+        Mon, 30 May 2022 14:25:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0ABBAC3411C;
+        Mon, 30 May 2022 14:25:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1653920753;
+        bh=saYkzz6/Bxx+TCHOWJ3kqLX/CFp8+t6kRB+V5Vc0gWk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TajnoueX0WPBLvP2NyXtPjnH7Lbf17+aIc8WM5OMeAbXKnTN0fGlgenaNQyB44Hv1
+         OFIbLofzQEbCr0j0IcGE6uJsfMJ8ANOxkaO66bFnHWQlzrqSBX5PlaG5pYJ7Yw/g3w
+         uu7DcTrRgHPeUJZYP1dOzV3lVBzK4qhpkPtKhxSo3LnuUmNFgKmAsx/67UrBmRNmme
+         NYKDJ/TrBAmeJDFbmeN9jZbEuIZq1IN1zr5iXa8loEY/gmUxlAZig6R8wzHR6gAPdc
+         v7PSI3ez232iK4R4yDORQRQVV8ewieBfUlo4fE21UC5uCkc4E+a0R0mLmQAu6mdxW9
+         21ikbrKkdfpEA==
+Date:   Mon, 30 May 2022 16:25:50 +0200
+From:   Mark Brown <broonie@kernel.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     kernel test robot <lkp@intel.com>, lgirdwood@gmail.com,
+        llvm@lists.linux.dev, kbuild-all@lists.01.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v3 4/4] regulator: Add driver for MT6332 PMIC regulators
+Message-ID: <YpTT7l0oAJ51Df5A@sirena.org.uk>
+References: <20220523154709.118663-5-angelogioacchino.delregno@collabora.com>
+ <202205262341.pY4PkDL7-lkp@intel.com>
+ <540be3e8-6a97-5e80-3767-892025ded07b@collabora.com>
 MIME-Version: 1.0
-Received: by 2002:a05:6622:f06:0:0:0:0 with HTTP; Mon, 30 May 2022 07:24:24
- -0700 (PDT)
-Reply-To: barristerbenjamin221@gmail.com
-From:   Attorney Amadou <koadaidrissa1@gmail.com>
-Date:   Mon, 30 May 2022 07:24:24 -0700
-Message-ID: <CAOh7+P9ggdh-bYDbwixYyVB38v5qx=PFTHiUOv+TH9fUGcn3NA@mail.gmail.com>
-Subject: 
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-X-Spam-Status: Yes, score=7.7 required=5.0 tests=BAYES_99,BAYES_999,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FREEMAIL_REPLYTO,
-        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no autolearn_force=no
-        version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2607:f8b0:4864:20:0:0:0:d41 listed in]
-        [list.dnswl.org]
-        *  0.2 BAYES_999 BODY: Bayes spam probability is 99.9 to 100%
-        *      [score: 1.0000]
-        *  3.5 BAYES_99 BODY: Bayes spam probability is 99 to 100%
-        *      [score: 1.0000]
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [koadaidrissa1[at]gmail.com]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
-        *      digit
-        *      [barristerbenjamin221[at]gmail.com]
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [koadaidrissa1[at]gmail.com]
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  2.7 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-X-Spam-Level: *******
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="M/QnrxKiHPTf+/lZ"
+Content-Disposition: inline
+In-Reply-To: <540be3e8-6a97-5e80-3767-892025ded07b@collabora.com>
+X-Cookie: May your camel be as swift as the wind.
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGVsbG8gZGVhciBmcmllbmQuDQoNClBsZWFzZSBJIHdpbGwgbG92ZSB0byBkaXNjdXNzIHNvbWV0
-aGluZyB2ZXJ5IGltcG9ydGFudCB3aXRoIHlvdSwgSQ0Kd2lsbCBhcHByZWNpYXRlIGl0IGlmIHlv
-dSBncmFudCBtZSBhdWRpZW5jZS4NCg0KU2luY2VyZWx5Lg0KQmFycmlzdGVyIEFtYWRvdSBCZW5q
-YW1pbiBFc3EuDQouLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4u
-Li4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4NCuimquaEm+OB
-quOCi+WPi+S6uuOAgeOBk+OCk+OBq+OBoeOBr+OAgg0KDQrnp4Hjga/jgYLjgarjgZ/jgajpnZ7l
-uLjjgavph43opoHjgarjgZPjgajjgavjgaTjgYTjgaboqbHjgZflkIjjgYbjga7jgYzlpKflpb3j
-gY3jgafjgZnjgIHjgYLjgarjgZ/jgYznp4HjgavogbTooYbjgpLkuI7jgYjjgabjgY/jgozjgozj
-gbDnp4Hjga/jgZ3jgozjgpLmhJ/orJ3jgZfjgb7jgZnjgIINCg0K5b+D44GL44KJ44CCDQrjg5Dj
-g6rjgrnjgr/jg7zjgqLjg57jg4njgqXjg5njg7Pjgrjjg6Pjg5/jg7NFc3HjgIINCg==
+
+--M/QnrxKiHPTf+/lZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Mon, May 30, 2022 at 11:33:28AM +0200, AngeloGioacchino Del Regno wrote:
+> Il 26/05/22 17:12, kernel test robot ha scritto:
+
+> > > > drivers/regulator/mt6332-regulator.c:15:10: fatal error: 'linux/mfd/mt6332/registers.h' file not found
+> >     #include <linux/mfd/mt6332/registers.h>
+
+> Note for maintainers: this failure is expected, as this series depends on the
+> series that introduces the MT6331 and MT6332 MFD device (with its headers, used
+> by the regulator driver of this series)
+
+> https://patchwork.kernel.org/project/linux-mediatek/list/?series=643602
+
+That's
+
+   mfd: mt6397: Add basic support for MT6331+MT6332 PMIC
+
+It looks like that's not yet been applied - please resubmit when
+that series has been applied.  I'll need a pull request for the
+MFD bits I guess, please make sure Lee knows that's going to be
+needed.
+
+Please include human readable descriptions of things like commits and
+issues being discussed in e-mail in your mails, this makes them much
+easier for humans to read especially when they have no internet access.
+I do frequently catch up on my mail on flights or while otherwise
+travelling so this is even more pressing for me than just being about
+making things a bit easier to read.
+
+--M/QnrxKiHPTf+/lZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmKU0+0ACgkQJNaLcl1U
+h9AsZggAgZpjGrzxtd8KkXrv69DF/0hxAr/jx7H3w2zmf8aLSB4qEedlb5dWzKZk
+vI88CBNqC2odiuuNYqCF1IiiMQZD1ADsbtBZTzbti27HJ++Gplo6S6SuNzn8IrVJ
+93g8sr8sZ44zNixlJttjrQRlQ2DvzBOMZgd/3HboinR8fv8rwqM/EfHEjJaFE7uI
+tZcB0sjaEAFbR72N9wV24okXAFQMCOpEgRz/DG6ivdIbQPpeg6LDD3hNnm7oEgRB
+rXcN5A/8t1djYba7C1WBmEtwE0rIuMbmI/i+CR6mpTeN0D/U0EBe7PE2LYJzazfn
+BFMlFIahn5vPuC9lY4Yv1rc9i21W7w==
+=FtuI
+-----END PGP SIGNATURE-----
+
+--M/QnrxKiHPTf+/lZ--
