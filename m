@@ -2,165 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C27815374B7
-	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 09:23:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 811175374AE
+	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 09:23:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232923AbiE3Ghf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 May 2022 02:37:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46628 "EHLO
+        id S233048AbiE3Gnh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 May 2022 02:43:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231993AbiE3Ghd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 02:37:33 -0400
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2109.outbound.protection.outlook.com [40.107.215.109])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7AEE18E10;
-        Sun, 29 May 2022 23:37:28 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=d+eqaS+4e9I7rElH3rR0QXxg29ZS0unYGx1QjCxU4jKYk0ejREfLNr8B5XfQY5DvANop+Ic3gEi0Bd2ulb6c0Gg1UNTbXgXSgeqd4xW86fNHm9UTqVThHqZPsya4krGtckfYi8DwZLI6XcspNVVTZuE9YryQBSc5lrXiedwsQ853psJp+F9FGathze848AJrvYjDgGnrvTG5WzjNhu8V2BD1J1yzhuIpIJuPsaiatYa380PpYWo4XkbuWxy8+pEZhxfkYNx3iIuES5qUsa/gDacCzDZUcpYgDjAp/Snv01sEvtyQ+YHSMt5QXTP8xTkXi3TNSDnePXclqOFjiT4Oxw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nWaZbUnoVB5WZ9DL18fZPAx20Foj6PEYTR0iAKNqUzg=;
- b=TlR1EqvlVRbkwxRMr8qjXK65dNxPur1MxQrqKKpI4fTErvuLK7GmEKEG8yf6zSkFN5gEjTVx87VIYRTdNE4fKrlN+W6dfiMd3QeVWQo5f/8TqpGiRIeR7Zu1ERAPVbmoBqjPN1YcpMTIng36+dzDk2ir5zkZTDRuhSmeuiOxs1bd2FlrIldJUHt8+YzMFqObBzcFH82pIDH5MlxQOE0atWhpZLa4bx8OJ7ho8jzJby5xzpvh3A+b+3H97nkBPjktwGv24Q1y8Nnkkz/H75nFtMg721+ybju6hX45yzOAAoQFe3gi5nN3+Up7KGIMjltgwj2ANzdNyXXHUI72Qb1zpQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nWaZbUnoVB5WZ9DL18fZPAx20Foj6PEYTR0iAKNqUzg=;
- b=L3JDWjc5zXfHCymo/ZSLBBT9VSQALaP9d2tAdmn4H95vH6MoNdCukpgJaVxlk/1LiHITUCj8VArAvwQv+OY9xXZ7n5Eox+l8E4BF6aVO20qPzQlbY1xtx/20/4FnCK3dbEs2+oYdooGos3j7CqMiYhY1FrQrozUT9ugxhuU2TYnF8LEispP7IjIhJWVQbJrJ4Av49cEmaQrH7kDyvvWfbf5L6i0aRb/Dqs8FyP4CR9eLnKxgNnUBcR61sQ56eVuK0O6GGfYMjQoR4+vrdDJTSwFruQr9p/vYGniqZuwGhhICHh3G40C+NLmI8n1DjC3qV3mGro/mC69i204ePV0+6A==
-Received: from TY2PR06MB3213.apcprd06.prod.outlook.com (2603:1096:404:97::16)
- by KL1PR0601MB4796.apcprd06.prod.outlook.com (2603:1096:820:a3::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.13; Mon, 30 May
- 2022 06:37:25 +0000
-Received: from TY2PR06MB3213.apcprd06.prod.outlook.com
- ([fe80::7847:b601:7d4a:1625]) by TY2PR06MB3213.apcprd06.prod.outlook.com
- ([fe80::7847:b601:7d4a:1625%7]) with mapi id 15.20.5293.018; Mon, 30 May 2022
- 06:37:25 +0000
-From:   Neal Liu <neal_liu@aspeedtech.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Felipe Balbi <balbi@kernel.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        =?utf-8?B?Q2hyaXN0aWFuIEvDtm5pZw==?= <christian.koenig@amd.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Li Yang <leoyang.li@nxp.com>
-CC:     "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linaro-mm-sig@lists.linaro.org" <linaro-mm-sig@lists.linaro.org>
-Subject: RE: [PATCH v5 2/3] ARM: dts: aspeed: Add USB2.0 device controller
- node
-Thread-Topic: [PATCH v5 2/3] ARM: dts: aspeed: Add USB2.0 device controller
- node
-Thread-Index: AQHYblFwkNTSfgr8wUWHa8m4woyq0602rC7QgABVqYCAAACM4A==
-Date:   Mon, 30 May 2022 06:37:25 +0000
-Message-ID: <TY2PR06MB3213095E11D468425A30C37E80DD9@TY2PR06MB3213.apcprd06.prod.outlook.com>
-References: <20220523030134.2977116-1-neal_liu@aspeedtech.com>
- <20220523030134.2977116-3-neal_liu@aspeedtech.com>
- <TY2PR06MB32135A0DAA9F152E2498CD1C80DD9@TY2PR06MB3213.apcprd06.prod.outlook.com>
- <0c08eb44-285d-975d-ac6a-f55ccfb34420@linaro.org>
-In-Reply-To: <0c08eb44-285d-975d-ac6a-f55ccfb34420@linaro.org>
-Accept-Language: en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: fa1f3b17-fed5-463c-eefa-08da4206dc2f
-x-ms-traffictypediagnostic: KL1PR0601MB4796:EE_
-x-microsoft-antispam-prvs: <KL1PR0601MB4796D97DD76F9A02127D5EBB80DD9@KL1PR0601MB4796.apcprd06.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 2rQQXvsP1B23TTOd5vtwG+WVEEVhCPUjf7Ls3Ulz75Owu1mJ6BDu6GUlYHMHWZE6A/O8lCEe1whnFwv+YO6i4sHT2laLpdFBr/OqZODtvO3CsrnBsnolfZR4isNqqa2Iqwf8oYX+0ytLiVM937TI4h8geQ4z/T9a7gknOCcyrXyyLF5zXeBJkAEoMMlR/lvKXN39rfb5dDRyQnx9a8QqVH1tmbjd4a3ds85ZHUCaSwguJyx+4MMyr8q1Qnn81YJxh8wuG7UCxfN/bzRBsDYvyME0IplFu5w5XfvtohJYLJ/3Z+DR57iahLl17WbERstDq+lVDUfEPQ+yaTQ50hAsoGqmH//9x3y9C43XpMd+49FNOhJBRHRvzPIQ2t3Ji5Zv9ExmBTqeSB4Yo+wLu+48i6kSgLMuTkpJsQYaOx2xWUc3fq035i6vqm4+LLF2mfb6kZG1PzjpYcD0Uk1UBLe5agaOahTNMCVbkDOTlJvltbJtZJw2RYMYQGVa7AajTGK9XxaRTb2Ohux81/ZHLOTJWPOzDwwVm4WBsfeX6V/WqtIBKDtkJ4CuIN+/NP8m7cKWvl7onnbDj3wfFLagWhKfBdO6feuEoDgRiY2YGVxvfl0BqNLjZrDsokIgkQDu5XPuFvtlXXcH/hOvFJ0YS0bnB179n+crPFYRcBYpQI6lbybIHrqmuGm3Y6dvY9yWjhOCZH+FNOjxpOqf1ZGwx0ud4xDnKDlusGse5d3mUIQWxYg=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PR06MB3213.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(508600001)(4744005)(5660300002)(33656002)(52536014)(66946007)(64756008)(53546011)(66556008)(8936002)(7416002)(6506007)(7696005)(86362001)(9686003)(26005)(2906002)(71200400001)(921005)(122000001)(38100700002)(55016003)(186003)(83380400001)(38070700005)(110136005)(316002)(54906003)(4326008)(8676002)(66446008)(76116006)(66476007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?amxiMkFqdkQ1U01KVUNEOFhZU2Z0eEtTVThuZEN4NmNadlJnZVdvVmpVbWNQ?=
- =?utf-8?B?OGlZbmgwVEF3YlNyVlB1TzVxRExNZTVxQkc3UnhBOHZHRDFOblg5K2pRcy9Z?=
- =?utf-8?B?QXI5MzhuVjBKY0dyR2lNQzFTaHZJa2kzOUhtUXdFQlJ1Zjh5NitkVjBMYW1U?=
- =?utf-8?B?YUtOSkcza1lQWTVuSHhmVFBTWWlMU05HR0p1RjArZTJucGhFcUNkRXdSbktI?=
- =?utf-8?B?ckk4VmNIUDFobnhhM2NkSGUrc3hRVFN0N1FtMS9IVGRPeFNKdzhMb05tUGxp?=
- =?utf-8?B?bmY3bnZoK203VlZIMWhuRVJEY1JuSkkrQ29ObVU1eWYzV3ZFZlBaUjdPeU9L?=
- =?utf-8?B?eVJpVjQvVndYSlU2eDRzVnIzN3VpdFJYMzZMbHFNZEdkZVVtRGhLUlVHa2xR?=
- =?utf-8?B?aUZ2eVRLMXhzZnJ3Tk9IRlY0WmlsT0orY3ZENFVQUE5kVDN3WUJWdGRyMFho?=
- =?utf-8?B?cFJEVTdnelFuRFZ0N1FpeU5QeVprbTBJQmhNQndhakFFTm5xS2QrN2w4Q2VY?=
- =?utf-8?B?UGJ6MFN0L0NXUm1wWUFEYXZ5MHdOQS9SdUlUU1BoMUhQYllqUlkxcUJnbEN2?=
- =?utf-8?B?eHpLd05QZWw4cklHd3FyTHdrZ0IzQXpyZ002K0RhUGJxeE9tMUpQclJtRFQ2?=
- =?utf-8?B?NGVJNkdvSFl1QUpzZmZiVFFCZ3RZWHpTSFg0VnJ6VkcxUnRmeXhiVVRNS0g5?=
- =?utf-8?B?SGlLM0ZmSVFiRE5SSVpnTWUzVHlkWjdqTmdsV2FtSENTTVk4VmVYUE5Temt3?=
- =?utf-8?B?OW00YTJzRVFFNkk2U0gyTFlDMTZsdGhMdDlvTkdDZFc0TG0xcWNucDZNRCsz?=
- =?utf-8?B?WmVLL0RodElqZzBVWXRVMmttRVI0Mm5VWFh0RUZQcnl3UktKNHdYUVdySGJJ?=
- =?utf-8?B?KzliY0pMK1U0YnBSU29BQmNYM2tqVmQ3TVVmeXRUc29kU0laMkMxa3RJL1dy?=
- =?utf-8?B?UlprdE04TnhLSlQrMDdYYzU5aDBoVlR6bmZEd0NnWWtuN3Z5UzZlaFFVbmRw?=
- =?utf-8?B?ZmFQNWV3RE1Sdlk1MVRVMS91cENXcWZUSiszREFGb0gzSXo3VGs4blVyTGgv?=
- =?utf-8?B?Y2xqMUFhM0p5dmpoZGR5RE96WTVYS1BYVlRhZDVpSUFMa3pOclJrRnNvWmxR?=
- =?utf-8?B?OWV3di9mdE15bFo3emlKY0lTV0gra1ZyeTJJOUR3UDFuK1RDUFczaTBFZUFO?=
- =?utf-8?B?R0xKcWN1TlNlWXhPY1FXWWtKUGg1eE0yV3RRYS9JdlZBeW5paWpyM3JneHFh?=
- =?utf-8?B?S20zeHM1THMrcU9kSGs2aDdJVVorNlZYcjB0NW05NG5xalAzdm1hTnI4SkFP?=
- =?utf-8?B?OFVVZmFpQk8reHJzVTAyK3hwU2tYUEtyYjMvUU1KWGsrSTdqT0wyRHZjdmdN?=
- =?utf-8?B?NU1Xa3ZMc1ZEempYUlBFM1ZxTzgyZjQ5Z3NqRHBUeTdmSURkdVdYODNXVjU3?=
- =?utf-8?B?OFdWVEdlY0RjMDhDdTZyeUFYLzdXcmMrL211WFRjWXcwQUZnMko0RFJnQzZ5?=
- =?utf-8?B?aUYxZ2hqTHd2anZyZ2Q5R0FBTmJ1RjlTL1IwdU95S3haR0NsS0p3cnhQa0NJ?=
- =?utf-8?B?Ull1QmtrMFM0dm5MMUpDYUdvTWR3eENzVUNqdjN4dUc0YjFLdmllNmpWN3Mx?=
- =?utf-8?B?WHBZNmM4Z3VpQnBGYVFacXZ2UjcyR08xNjljUnlmZE5DVVcwdFNIaDJSOGc2?=
- =?utf-8?B?R084WVNRVXIydDB4QlNZL0RxZk1uL1JoT05relR3eGV6VnVMbzJyTmczcVQx?=
- =?utf-8?B?RWluaVpsZUJQSFFrelVJNnkrbGE2dzNyNWZ1WTVWQ0ZaakMyMG9ySFhCS0hy?=
- =?utf-8?B?Q1lwQnRBcGRkdWRoMk1lU1JJeDhod0hiMzJGMUYxSnN5c0N1MlVkTnBaSGVE?=
- =?utf-8?B?MHhVU2VOS2pFTG44V1BjcFp2TjZvV2UwZ0lFZzNvWExKMVM1VkdsTUUyV2JF?=
- =?utf-8?B?QkRlSXdjWDdaVnlpOTNMVC9vZzNzT0xzRkE5S09GTEVhUU9PZHlPQ0VKOHo1?=
- =?utf-8?B?RTY4QnRTL3dpZmR6NWM0U0Y0STdoWlhldWFkUXhkaktVcEZpdUx1bzEvRDA1?=
- =?utf-8?B?THlZcUJtb05OazhUM3BNbWprZnpoV2EzcTB5WmdrNkRvVGw4MEhDQ0FPQzA4?=
- =?utf-8?B?bnE5dnRFRnBLeEk4UytsU0RVTjhuaWdLRU0reTViYjhENk96WjlEVlRkTXdj?=
- =?utf-8?B?UTBLOTMrSXIxN1dYa1I1b0lzMjRBUDBPM1ltWExDOFVMa0daM2FyS1FnY2s0?=
- =?utf-8?B?eWtJNUw2aWpjMGsxRWMzUnprMlozWG5zY3IvOWh4OXpFbCs2WGdCbW1ob25H?=
- =?utf-8?B?a0VaTlFybXNueWpDRU92UjY2bzZnZlVrc3NSMnZFMk5CcHZBamY5dz09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S231516AbiE3Gng (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 02:43:36 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D871F3BBD5
+        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 23:43:33 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id n124-20020a1c2782000000b003972dfca96cso5835090wmn.4
+        for <devicetree@vger.kernel.org>; Sun, 29 May 2022 23:43:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=gtO8Z2a0J80ts6vwBdzuUpB5ZM5wqbWf0RW3kLdDnho=;
+        b=ywrfVQTd2uOPjB2of3zjWFQnXMt6cpaM0MPEuOKSwyyawy8tIH4E2zzXyZur9x/Rbu
+         NMXD0p8ccYbVF2iL43/unXa1A720NPOEwXYMIRDA7rKMv9qZ5Mz3nJpg/0pkW4GhUxY+
+         A3NGIgr3Oge2KilwviW5Bdz2wNXDkQSQvTfHoa/AGuQw8MZhhkKB3sOWGH+W0PzuDO5f
+         h9ZEXqx9Pw7dkZOQhkdshnVArkY4WvRAeWcVttnpdST87Jh2Dxg7mDc3m7p40TLLkfnm
+         z0Lfw+qclb5vZjrLaSHizHSDgWUlcAdVeBse3UPNe8PBUeWjSrac1aOnRm+MT4XPcn1r
+         /zog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=gtO8Z2a0J80ts6vwBdzuUpB5ZM5wqbWf0RW3kLdDnho=;
+        b=Ri5Y9g43E+URzoOs7aUYCO+cNqTtJanGy07dpftkQDUjBHRZ9hGWsN+5qAlXpzu5AL
+         YaR07vo8WyHbknvtaP3aSW6ixySgjn+meAZQZkBGZHYtzmdltt1prjl8yKkfwSkLgBW4
+         FnaYzzhWysfNqNclVQT/WpJ08xrcwuRpBTHIy4/Vv6O4FJfid255WAKmkyARLzFtnsv3
+         C1d7S7ypBvRGnIidSq8OEcTjDtY6k7Zq3xSnsZSeeNpbiDXoi2qmz+vnU57CWuwoP75e
+         oqSHmSOtWicopEhBFcbU7S4YqErpEwYaVasJsYAQCPSo5WoJbgIFINYkxHfa6jsy3jcB
+         5JHA==
+X-Gm-Message-State: AOAM531qvrMdUFK6PIf46zv+lrU0u0shgc5sLqq1leVjuCgayQVpKHLm
+        VQ2TQ7l4KOKOW1zkdZaEY2RjSQ==
+X-Google-Smtp-Source: ABdhPJxSkzwdIOlEJLw3UsLKBXLQIbv3EDsgYcsEHMfrbKU+WtVOIYrdlIECCXjinw3wR9hbG3pAnA==
+X-Received: by 2002:a7b:c08a:0:b0:397:5859:deb5 with SMTP id r10-20020a7bc08a000000b003975859deb5mr17413447wmh.121.1653893012451;
+        Sun, 29 May 2022 23:43:32 -0700 (PDT)
+Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id z8-20020a05600c0a0800b0039c15ff3200sm308823wmp.41.2022.05.29.23.43.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 29 May 2022 23:43:31 -0700 (PDT)
+Message-ID: <2e6c2995-9204-61fa-0aee-f4ea4cce084c@linaro.org>
+Date:   Mon, 30 May 2022 08:43:30 +0200
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY2PR06MB3213.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fa1f3b17-fed5-463c-eefa-08da4206dc2f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 May 2022 06:37:25.7243
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 9oXOsr/lw0feV4teHSQakQ6Vw2w9xqqJlkkn822yEmt7X9iAW1F6f22/zQcT7UZwfBexKLbyqEFTu0dEhJK41g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR0601MB4796
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH V2 1/7] dt-bindings: soc: add i.MX93 SRC
+Content-Language: en-US
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, sboyd@kernel.org,
+        mturquette@baylibre.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de
+Cc:     aisheng.dong@nxp.com, l.stach@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
+References: <20220526123411.270083-1-peng.fan@oss.nxp.com>
+ <20220526123411.270083-2-peng.fan@oss.nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220526123411.270083-2-peng.fan@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiBPbiAzMC8wNS8yMDIyIDAzOjI3LCBOZWFsIExpdSB3cm90ZToNCj4gPiBHZW50bGUgcGluZyBv
-biB0aGlzIHBhdGgsIHRoYW5rcy4NCj4gDQo+IEl0J3MgYSBtZXJnZSB3aW5kb3csIHNvIG5vdyBu
-b3QgbXVjaCBtaWdodCBoYXBwZW4uIFBsZWFzZSByZXNlbmQgaW4gYSB3ZWVrLg0KDQpHb3QgaXQs
-IEBHcmVnIGp1c3QgdG9sZCBtZS4gVGhhbmtzIGZvciB0aGUgbm90aWNlLg0KDQo+IA0KPiA+DQo+
-ID4+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+ID4+IEZyb206IE5lYWwgTGl1IDxuZWFs
-X2xpdUBhc3BlZWR0ZWNoLmNvbT4NCj4gPj4gU2VudDogTW9uZGF5LCBNYXkgMjMsIDIwMjIgMTE6
-MDIgQU0NCj4gPj4gVG86IEdyZWcgS3JvYWgtSGFydG1hbiA8Z3JlZ2toQGxpbnV4Zm91bmRhdGlv
-bi5vcmc+OyBSb2IgSGVycmluZw0KPiANCj4gKC4uLikNCj4gDQo+ID4+DQo+ID4+IEFkZCBVU0Iy
-LjAgZGV2aWNlIGNvbnRyb2xsZXIodWRjKSBub2RlIHRvIGRldmljZSB0cmVlIGZvciBBU1QyNjAw
-Lg0KPiA+Pg0KPiA+PiBTaWduZWQtb2ZmLWJ5OiBOZWFsIExpdSA8bmVhbF9saXVAYXNwZWVkdGVj
-aC5jb20+DQo+IA0KPiBZb3UgZG9uJ3QgbmVlZCBteSBhY2sgaGVyZSwgYnV0IGFueXdheSBGV0lX
-Og0KPiANCj4gQWNrZWQtYnk6IEtyenlzenRvZiBLb3psb3dza2kgPGtyenlzenRvZi5rb3psb3dz
-a2lAbGluYXJvLm9yZz4NCg0KVGhhbmtzIGZvciB5b3VyIHJldmlldyAhDQoNCj4gDQo+IA0KPiBC
-ZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0K
+On 26/05/2022 14:34, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> Add bindings for i.MX93 System Reset Controller(SRC). SRC supports
+> resets and power gating for mixes.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  .../bindings/soc/imx/fsl,imx93-src.yaml       | 96 +++++++++++++++++++
+
+Still wrong location of bindings.
+
+>  include/dt-bindings/power/fsl,imx93-power.h   | 11 +++
+>  2 files changed, 107 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx93-src.yaml
+>  create mode 100644 include/dt-bindings/power/fsl,imx93-power.h
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-src.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-src.yaml
+> new file mode 100644
+> index 000000000000..c20f0bb692fe
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-src.yaml
+> @@ -0,0 +1,96 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/imx/fsl,imx93-src.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP i.MX9 System Reset Controller
+> +
+> +maintainers:
+> +  - Peng Fan <peng.fan@nxp.com>
+> +
+> +description: |
+> +  The System Reset Controller (SRC) is responsible for the generation of
+> +  all the system reset signals and boot argument latching.
+> +
+> +  Its main functions are as follows,
+> +  - Deals with all global system reset sources from other modules,
+> +    and generates global system reset.
+> +  - Responsible for power gating of MIXs (Slices) and their memory
+> +    low power control.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: fsl,imx93-src
+> +      - const: syscon
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  slice:
+> +    type: object
+> +    description: list of power domains provided by this controller.
+
+Continuing our discussion, I think I see the point of having the node
+grouping subnodes, just the name confused me. Please make it plural, so
+"slices".
+
+
+Best regards,
+Krzysztof
