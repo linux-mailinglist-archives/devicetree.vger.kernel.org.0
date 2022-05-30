@@ -2,192 +2,255 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 093DA5373DD
-	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 06:21:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EECE537555
+	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 09:24:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232387AbiE3EVl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 May 2022 00:21:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42316 "EHLO
+        id S231709AbiE3Fur (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 May 2022 01:50:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbiE3EVi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 00:21:38 -0400
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam08on2049.outbound.protection.outlook.com [40.107.101.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97634D6A;
-        Sun, 29 May 2022 21:21:35 -0700 (PDT)
+        with ESMTP id S229584AbiE3Fuq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 01:50:46 -0400
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2073.outbound.protection.outlook.com [40.107.22.73])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6640F64709;
+        Sun, 29 May 2022 22:50:44 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=fail;
+ b=HldmfFVPd4l5AfRP+32a2B2weT6pXhnieMSwUlkUTqrzfepcluu5p0rBkXs5/Re4WWp28k6QzQod6i4LbrEv8FJMhpbq5OoCzsguUtGICTWZHxpXspGFxFgjHKnXeI6TbeXe6up7w+gF4xtjpBBN2VuxfbTVpFxDyvEugxJAs9lO6vJz460+YDeaanFhJlOngRWqAawcWpynlii9k74Dzt6ZvjHjbD78NAnYp/NCJRfgFtsW0XuZcvIE8CRpQx46w0Jg8tRDYssie8oxiMIwzndSG/PCn2c44/ldxnw1ksx1fg81dEo/jeStKZROK+EFBWp8iOSEuVld8Sc/00f8Cw==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2f6Znw2AK9nKVYhZXx1I1B2giG8eJgq5xesyE0rHSgA=;
+ b=mlw3alPTwyXcv5pV54BWG129Yym0vQvYldNZmuy8AuRz5JS9TKq0fVA7esdI9XdWqq9d0ObYOLfp65gptpfUBAhI+59gF0SxKzJBiemz4uuskRaCNgfh4o0JOod+VzVUwlSNi7pmVUFgdFKN1B/xD17noEMMU46a2DbTSk3Ofo8aang0mzPzLb3IDFdJLPS8FhIzveeh0HPpL9qaDmmsGf4n6aeJTptSq8jInN3A7+EEdZRrzY6+du78FABS4tboDmqCkIsl9x4XumvWjYqvqQah28KE22Mn17koIE3xyoxkRUzmzpZzN+blrg84j8MwXc4XYp18LxBslFqL1qDI3g==
+ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
+ 13.93.42.39) smtp.rcpttodomain=gmail.com smtp.mailfrom=topicproducts.com;
+ dmarc=none action=none header.from=topic.nl; dkim=none (message not signed);
+ arc=fail (47)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=topic.nl; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2f6Znw2AK9nKVYhZXx1I1B2giG8eJgq5xesyE0rHSgA=;
+ b=Zgsgt2FoDRRiuVPux9HVEqcdREYmHRUa8bnaWC8A+Ua+2qxUgJjC0p9s3zHmoUFmnn0qa8ubo4iqFTu1OyX0RJtqXt3hgyti0+ehWXH3P2/RzM6hqkS1s0w7y+WUUlxcjX7daqGfhTYm4TpS4LKDc/voH4R4bwnWmlK6gMcLLtmkFpq/8D0esXA6Dql6cPiaS4862c9PehWkmajqK9aMQvIMDzm9xM0Zfhg4YFd6FVXdBtkAAUqOe4b+YP/mlMx+ZNzOoLqflGnQKYiYxS3PVnZR7g7dKgojVGkAkz0RRthM7YyZO3US/xtUWlQm3kdwpRBmrqyo71YuoEa6xz+FLg==
+Received: from AS9PR0301CA0019.eurprd03.prod.outlook.com
+ (2603:10a6:20b:468::29) by AM9PR04MB8634.eurprd04.prod.outlook.com
+ (2603:10a6:20b:43d::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.19; Mon, 30 May
+ 2022 05:50:41 +0000
+Received: from VE1EUR01FT018.eop-EUR01.prod.protection.outlook.com
+ (2603:10a6:20b:468:cafe::cc) by AS9PR0301CA0019.outlook.office365.com
+ (2603:10a6:20b:468::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.19 via Frontend
+ Transport; Mon, 30 May 2022 05:50:41 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 13.93.42.39)
+ smtp.mailfrom=topicproducts.com; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=topic.nl;
+Received-SPF: Pass (protection.outlook.com: domain of topicproducts.com
+ designates 13.93.42.39 as permitted sender) receiver=protection.outlook.com;
+ client-ip=13.93.42.39; helo=westeu12-emailsignatures-cloud.codetwo.com; pr=C
+Received: from westeu12-emailsignatures-cloud.codetwo.com (13.93.42.39) by
+ VE1EUR01FT018.mail.protection.outlook.com (10.152.2.221) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5293.13 via Frontend Transport; Mon, 30 May 2022 05:50:39 +0000
+Received: from EUR03-VE1-obe.outbound.protection.outlook.com (104.47.9.54) by westeu12-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12) via SMTP; Mon, 30 May 2022 05:50:37 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HiCKHTUKFnnwAIVYOQw+He+UbdZAUBdIQLl2sO/R+lv/j2teKCxGZ1iZ8Dlx0hOOFy0yB1l/BX4dPIJ5IG2hhjPLiqv3qaUmx5+XDF05OW8fstLEEsQRT1cf1qY3JnbSBhOJA7BKHAQ7Z5Iwpw7Od+s9c8CflgVHxgxeP2HgUC2xh+UdRRQOkwEjsniJo1myemdjAco/TGPiOvE4f8hdbBmlCpt7HmNgk7/kQ3JlzhLUwKa5ANNGiKrfK95G9hQcS8yCQE8OQnFuI8PAk1quT6khxuCISOsHGdHd0gmXNYRVw4dZVpEnXpLqNIER0xjRPLIVoYu5EnEEgm8ny44BJg==
+ b=g7y8J6CGKsMoUTlxGc1cA3yzymz5wssggXXPirRTyC/mAJ2uusNqvWW5Qo438//KFChmjepL6qiwvTQt5qDxaq5+K2Czg9GKyMotbaEDc8AXPEYDLey79bz1Ahm03Mq1KuTpyVC4dllk5jhYUHmajP/RfU1g5GONOD6crTQthvV0eSfqtH5R3bjsesuMCL9aqTZTGhRltLfbxFLKFfwUU9i6Mz0+1fbdfoZCq436rkoxFJgY4MM+MXIVoSG5k+nFQZOXTZt/9SqpJxhOZO4RSQcVOYGqkZR7IblAHSzld9xzmHrDtNFJzFRy8zWDhvsJaLgNQ52Ior8glfg0/hXG9g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8wkrd07pPWiZzZSgysgoHk846bqc97tOaL64bpOzQBI=;
- b=HNdFRAzrXeq6Q/kX2x5cVMtmbu7l3U2C53lhfcbeU++rwvKDki15ApfBwlQQanSC6mKIGUZKfngCeEk2QdWLNk/ybmteQ6j2SNtPX4t8r/DYvvr01VTZzAQwulhJi07oC9q7pY+xiFPoInKx6X3jEoKhUjhEBt0i9fenCzilbWcuZsmeenIYq9KZnJ/MYp+PWN+xhseQ3gmHjVZPnYrwWj+zMUXe6LHBOvrpPsSAQiv7y417Fe7tyEXHe3pua3yux9NU+Ur1eifTbElVYjDvMhuVyMPGA4X3Z0ZNyDwTODZomMogsrQwQ1i/flLUupnqRYQaXQdvQ4VmlGXQKMRi9w==
+ bh=ze6/JmkznN+DudS8VM8b6BGSfUt+HMVvQrZQTodGyHQ=;
+ b=I1d+dx8epEnuD5E0Ndd1bum2tlz8WN5ZNnVJgTC+loPptSofNtg7LeLBd+feyeMMJ+cwKr1P5SN2Aa8tdXjd8LCwHD9cRsWJ2yAqsEuh+Uwm+sjSCcuiG1ngK5hBh/8Z1sr4+3ctgS3/NjA25ZmBWsTJydGfcglP9yCz//pPSdPOWy7OV6b3QjWUCuypvp/1Cp0EjuJqhGFx1dai6/RKZzz4C3GW2Qq09XiuChtASy5NC5k18TGgwchnEVKQuQMc1PwqkwSASkMPcuay5RCHqDdvgw0MNFqcH4dyY1Caq83Y2JRVmgrS+L2IY9gDtByR+R9OxfZoFYwirOyAnM0eWw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8wkrd07pPWiZzZSgysgoHk846bqc97tOaL64bpOzQBI=;
- b=gZTmxyMZ420MDMgmTK9sdX1AYhWiyPSZxT+8imb7GwHTZQBQxDqKLhGDrfwc/UIOzvqohOLw77jXcKXu17EilrJy9S1NG+zeaH6d2H4wprt6efHudpASUUM9+DI4vl/Eo8tXcPRiuHRua+d93zw6eCCVsnbx07EdD0v+WqARtgd/9wZQj3va4a+0/QwaJH/YCU7bL4E9Sgt9grRdE31ZMnuUeKtFGvZTv3E1g+5uhm1cEaxYdNfhw/b5q1nWMwRtAH0me/6rETfymdlANI43zwuiUuS1v/sMns1UpgYA0rQ9xz+SNg748lXpmx0HiNB2rUE0L38CrHHI/VMPP0YQuA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CY4PR12MB1576.namprd12.prod.outlook.com (2603:10b6:910:10::9)
- by DM5PR1201MB0121.namprd12.prod.outlook.com (2603:10b6:4:56::9) with
+ smtp.mailfrom=topicproducts.com; dmarc=pass action=none header.from=topic.nl;
+ dkim=pass header.d=topic.nl; arc=none
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=topic.nl;
+Received: from DB8PR04MB6523.eurprd04.prod.outlook.com (2603:10a6:10:10f::26)
+ by VI1PR0401MB2607.eurprd04.prod.outlook.com (2603:10a6:800:58::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.15; Mon, 30 May
- 2022 04:21:34 +0000
-Received: from CY4PR12MB1576.namprd12.prod.outlook.com
- ([fe80::16b:eff7:847b:19e7]) by CY4PR12MB1576.namprd12.prod.outlook.com
- ([fe80::16b:eff7:847b:19e7%10]) with mapi id 15.20.5293.019; Mon, 30 May 2022
- 04:21:33 +0000
-Message-ID: <df57de4e-770d-7331-89e5-a2404fb42f96@nvidia.com>
-Date:   Mon, 30 May 2022 09:51:23 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.19; Mon, 30 May
+ 2022 05:50:33 +0000
+Received: from DB8PR04MB6523.eurprd04.prod.outlook.com
+ ([fe80::7075:13eb:3b6e:4e14]) by DB8PR04MB6523.eurprd04.prod.outlook.com
+ ([fe80::7075:13eb:3b6e:4e14%6]) with mapi id 15.20.5293.019; Mon, 30 May 2022
+ 05:50:33 +0000
+Message-ID: <faa70977-311f-08fb-bb3d-5dfabdab2b15@topic.nl>
+Date:   Mon, 30 May 2022 07:50:32 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH v2 1/6] ASoC: tegra: Add binding doc for OPE module
+Subject: Re: [PATCH] Input: st1232 - Support power supply regulators
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, thierry.reding@gmail.com,
-        catalin.marinas@arm.com, will@kernel.org, perex@perex.cz,
-        tiwai@suse.com
-Cc:     jonathanh@nvidia.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <1653647172-2569-1-git-send-email-spujar@nvidia.com>
- <1653647172-2569-2-git-send-email-spujar@nvidia.com>
- <149fbcfe-b62c-63a9-6c38-100d493788c3@linaro.org>
-From:   Sameer Pujar <spujar@nvidia.com>
-In-Reply-To: <149fbcfe-b62c-63a9-6c38-100d493788c3@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA0PR01CA0076.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:ad::17) To CY4PR12MB1576.namprd12.prod.outlook.com
- (2603:10b6:910:10::9)
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+CC:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, martink@posteo.de,
+        geert+renesas@glider.be, john@metanate.com, hechtb@gmail.com
+References: <20220524081216.8550-1-mike.looijmans@topic.nl>
+ <YpGpdsAJicTqHbeY@google.com>
+ <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.448f4393-43fc-4ee3-8849-d41a20e1be99@emailsignatures365.codetwo.com>
+ <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.0d2bd5fa-15cc-4b27-b94e-83614f9e5b38.95a3a45c-fed7-48c4-9f4f-59d66a927377@emailsignatures365.codetwo.com>
+From:   Mike Looijmans <mike.looijmans@topic.nl>
+Organization: Topic
+In-Reply-To: <YpGpdsAJicTqHbeY@google.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: AM4PR05CA0005.eurprd05.prod.outlook.com (2603:10a6:205::18)
+ To DB8PR04MB6523.eurprd04.prod.outlook.com (2603:10a6:10:10f::26)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f42b4293-e55b-4c6f-1d28-08da41f3e10e
-X-MS-TrafficTypeDiagnostic: DM5PR1201MB0121:EE_
-X-Microsoft-Antispam-PRVS: <DM5PR1201MB0121C04C36F6ED672C313E6BA7DD9@DM5PR1201MB0121.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: dc871101-94c5-4954-ada1-08da4200540e
+X-MS-TrafficTypeDiagnostic: VI1PR0401MB2607:EE_|VE1EUR01FT018:EE_|AM9PR04MB8634:EE_
+X-Microsoft-Antispam-PRVS: <AM9PR04MB8634A09D733087EB083511DF96DD9@AM9PR04MB8634.eurprd04.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: vWrz5fP2Soc5Fi5M06eAzQ5bazYUVIL6AeJh7rIVxcV8oLtP+Gx0prraM+jo8d3HDdX9RQTfJTgCL5x0IFKvHBCkOK/3cXArQjXQ5p7+l9HWGY3ihxHCweny5kDAXqS9x4aEvpol1JwZGjkBtOW6fmvPc2Ww6vmzx2VqtOydVVpsiPHAXiMvLSv3JOtuOJMd1SZWfhhCjDKnEidpFJTksMOJ0fWeyoPrHVMgAQRxwZOBo4ut5LpwK1achmFi0nOZEu9ArwpaM82NOfMABtzk0jvQrtU+Z8xYn9LjFoU7pR4Okmva8ykeE5+WajSE9uwvLNnTY1XqtCuYsFVyjAy+aaJm5bIHnhBwG4ovzZOEzC7CltM1OUggojX/fn7yirUFyFO4KXMqEo+01/UxkwRDyFaS6/EXbyDvIxyLn8mtREz2qslahJnsJHFALw8nHouz34QrjzMvV7v88Rs83emNoA5Na6uFNveV4zARXsJSpBSCtRikJP6xz3EEPNxZoWGOcd/5cuddzQat+R0inBK1KEyMvq6jnparUVilvKCfHy7TZovEyKeYtsnTp6umNnC9jEi8BZBKtkwa6EJIrMd1K59Dm39jekAfdyU2lllxLeFVFCugG/btoKKt4pGwO1FzLkS5s1rlVtgb6kUP6sWnl1rgDzRl2wOYs/r3XH42C+l9YyEiQvABDr5h34CiF4p/S0TMlqi6lpp6X0B8Pg3fSadZNGiAinRqHTjIaWkzDLLOzSP7n6vOGckbzeaQ/LwrvXJEDsbGSewk4rpixzhrBQ==
+X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6523.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(136003)(39830400003)(376002)(346002)(396003)(366004)(4326008)(8676002)(66556008)(66946007)(66476007)(38350700002)(36916002)(83380400001)(31686004)(6916009)(38100700002)(316002)(36756003)(83170400001)(8936002)(26005)(5660300002)(6506007)(52116002)(31696002)(6512007)(186003)(508600001)(6486002)(7416002)(44832011)(2906002)(41300700001)(2616005)(53546011)(42882007)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0401MB2607
+X-CodeTwo-MessageID: 72f18deb-4906-46a5-b286-dade5da3e61a.20220530055037@westeu12-emailsignatures-cloud.codetwo.com
+X-CodeTwoProcessed: true
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: VE1EUR01FT018.eop-EUR01.prod.protection.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 97ca3db4-7fce-4261-3a5f-08da42004fe5
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: AGYMhSA9a4cYJxX+DCz43MX3jvN6n+rsmO6ms3R0rjjWBtlRQzCaUdVUGBuQ+3/qmewrOLt3Q0yM28laFTWp+hA5cZsZ1P3XGmR5lHJAEeSSC+BZbGAaefAGDPteU0fgROCIXKjXVdX5Unxpj+9LgKzYlE20mCaf4WhCNejy99oMF/zSaXPY1ISyO4YgGtqDtGdrEN8rz0Rx37PCPi5aLkCOFWk18zd4RaUT01EsQBC6cT0jfzOtPbt2B933hpJo6e2BjBjwJQsuXgaojPgJ61HYsr2M5eOwBgf1NCUVCOOAD7iTnjUp820DRFwIwImbfhSRAnk4KNNP7tfAuydxXkp/IAlzKDiSHfsGXtXKzKHYGrXGluWKIqUOE35yuGfHRNIdk4DfL67IwaBfOOMEPYSg8zOlSl1SNrscJIoiHV+x07yD08WsSDIJoX2d6jxD/fchYulyOysg5LgWYQrwJmz0uzCNWulKqXFU5Sd2GEHZb0L7/NpL9vIkeisupQEl/CQNOAhbXiFJ5LHyWBfSEp5CY4IZ2E6/B8UaB1QwNiogdNtQ0AAKFGbqaEg9dP9RuRqxPv/1OIglx8WdRBNQ2v1YtCPsyTk+JrMHaQ1SopSUcVxdRBBYaQoOkWnOd7pUp7qRoaFQj7vrQ2aKB9uQ34WWU7/+kqz9jCHmRkx4m/DY1iyGsVT7WteDjO63S5E8n3VNFFE3zXdMlqyUgknCrR7bUSye7dWwGVYw6YBnAKenWd82AnGn7wI7ffXDSbFhFoBTiKiZb+KWXzUzt6LQ9jnaj+BhCVbosCiJHYrptG/Gd5rQUnzI24mgvjkhZxL9+gFU+pbCYqYz1IhIaS7ODPlYOe5FPTSg7Aq4sUdKM7M=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY4PR12MB1576.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(36756003)(83380400001)(66476007)(31686004)(66946007)(66556008)(31696002)(2906002)(186003)(8936002)(38100700002)(2616005)(4326008)(8676002)(26005)(6506007)(86362001)(55236004)(53546011)(6666004)(6512007)(508600001)(966005)(7416002)(316002)(5660300002)(6486002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VTF5aDJlL2NWbllPdTBuOXpCNitnM2lUbTZKSXo2YmEvaUhvSnN1VzNxWXVw?=
- =?utf-8?B?R0hUWEdlR2c3aU1oSkhJTmxrTk1YNVd1dTNZYnI3cFU4TEo5MTRzK0VjZUcx?=
- =?utf-8?B?Yzh5anpvRjcxQnZ2ZlBQMjNZeFc3L2h6UHVnbTJtTEFNZ1VQajdSRjBNdTFN?=
- =?utf-8?B?bko2SHRNeTdaSWVUQ3FXWW41TXRDVlZxeUZqN2QwSUs1TGZENThaSjhoL3hV?=
- =?utf-8?B?QjNJYTlYY3hBbW5JVWhOeFNoZi9ETFloUk1HR3lGdE85dk5iOHZKalhmK2tS?=
- =?utf-8?B?akxEaFJ2d2FJanI2bTQ1L2Z3SjlCbmV3MzY3OU9tYW90OFQ4WmFZNzJDT003?=
- =?utf-8?B?OVRpSjhIQjY5MGZSNGJjMFNUajRWV0V2Q1Q5WCtpRlFTQ29OS2k5NkF3NExG?=
- =?utf-8?B?aStpZ1hmK0YyQWh6UFMwaHBvazNHWGVTTVUzeitmdUsvQmp4WVRmL1ZEZVAy?=
- =?utf-8?B?UzJXV3FwVDIyYUF6ajVLdy81M1MyVCtqVzI5SXBnRlIzQldablNaSGhZZlVm?=
- =?utf-8?B?SXd0UXdrc3BXM0VBMjB2Ykp3YXZ3UFdtejdDQlREOW1BdkpLNU0zWi9QVisw?=
- =?utf-8?B?ZFdpckFqOHovWktWRW0xWTFZVDBQZ29kS0wvY0lDZWhXVzhiVFNJZUVZdkN6?=
- =?utf-8?B?TTVGdEd3RjZUd05oWVRRTVk0K05hNDd4K0pMTE5ZK3NYZGdiS3Y4RWtHc2ZR?=
- =?utf-8?B?VjRxQzc4UGJoY1RKUUs4VDF5eENLT3JPOHFKRDN0UnpPcnErNzNtdGFqOTV4?=
- =?utf-8?B?NlBVeTVFWG1EY0drK0tURVlobGNhdnhzN0MxZCtoK1ZxZHc2RkZsY1F0Z0FF?=
- =?utf-8?B?blhIWERTa3QyZ2N3bE1xcHlSaUwxMkdjdThWTTlnZkVsVVRKY1ZLa05tY0Q3?=
- =?utf-8?B?MGRRNUFWeTh2aUZvWFcycWp5N25CS0NOTG43YTBnbW1qdGxwa1JENDZtWWdK?=
- =?utf-8?B?dWI0b2NmNXVZcS9HcVl6a3hYZWFNbHNmbXpiN1hYL1VlVHphWEhhZEdwdkls?=
- =?utf-8?B?eGpFN0ZnMU00KzBzQWFvQlZETTVHcEpHTmczelA2MmJrWG9jOHhHeTJtc0tU?=
- =?utf-8?B?Z3ZDeVJCMHRxQnBxb1FOUURNNUZyemVIaTFMbTJDMWEwUVVLSlY1RXFPMnlF?=
- =?utf-8?B?d0xaY2VVRUtDcUVvdGd3ajN2ZC9CRDFhK2J2cmY1dUtiZURYZ3hhdjJxMC9P?=
- =?utf-8?B?MUpBemFmRnJYWXRMbjhDZDZ0VmNGelZLZ2huYWwrSlNoaWlJbjlxdm5CNTl6?=
- =?utf-8?B?eEtqUUxxN3U5YzZRbEp3VkY0OHdvd0ZxcjdtRTRmTzQyZmh3dlU2UE1NU3Np?=
- =?utf-8?B?QzJoTGxPOGtQNnVGbWhCRi9xTDFaaFo4N2MrTWF5b3dzdXRaclFvU2ZvMWxi?=
- =?utf-8?B?cXRTUVRob3NDa2dQOUI4bGpPdFd0NHNvcGJUaHErRmFWdGd2V2MwUUdCVEFz?=
- =?utf-8?B?czhPVWlCU3U3Q2JNaDRCUE15VzEwL3ovMklCenhOQ0UzR005ZjROb3V5eiti?=
- =?utf-8?B?emtzVHZReTdYZTNNUXZhTzltSDZ1SHN0K09aMFFzZXVlczEyMVU4UFJsMFUw?=
- =?utf-8?B?aTlUdWFxQWx3LzIvcVNtMmNTb1g0YU9Hd2pkN2dMWHhwd3ZRYytYdWtseExt?=
- =?utf-8?B?UE1nM2NhK1dXYm41QmVyS0RQd1YxakRuMCs0aUV5aGdyUFFJNER0VmZ2R2tx?=
- =?utf-8?B?K011UEtFcGcyNjJQeTV5encwUk5VQ1pja3lZcUdiQ1NmQTV6RC9PWHdiaHlB?=
- =?utf-8?B?NGgxR1lDc1RuYW83TXhtUlQycVJYNTVtRmJwREVpUWtBOEMrTE9pVGpYVXh5?=
- =?utf-8?B?SS9CdkhYMkJxV3IyVzI2OVR0TzVIKzJiTFhnNHB2R0UxQ1ZFRGxkT2d4Tzhm?=
- =?utf-8?B?cG83M0dTbVM1TEVSYU9HbUV0azNMMDZBVzYyTHhvN3IvVis2TjJXeFlTY21u?=
- =?utf-8?B?T1h6WEtnb1FIalV1QVdOZmtxaUJUalV0cVF5K2VpaVI0N0t2WEhqSWc5a2Uz?=
- =?utf-8?B?QTdFMHYwR0FiQmFzNWNCM3hNWDFmQngxdExBQ2UwMUlzV0dFdnBpQkJJL0ZS?=
- =?utf-8?B?M05mc1dwK25xaFp6MFIzTUo3SCt6WUlxOFk2bzhKcXBHUS9XVjBSbW5QU0hy?=
- =?utf-8?B?VVZDbW1YSEZXeTZmSks5bnhBM2ZuVFVmZ0kyVTl1a0JxY1QySyswZVBsR3NF?=
- =?utf-8?B?RlhJMG1WN2s4NW1PTzRDQUJkQjUwWHkrTi9Dd1ZyMUR5SXM1cU1pcytoMGg0?=
- =?utf-8?B?VzRqcTNWbW9jVGs1ckZ3V3BMSmNMeVZYYUtxOUh1TkVldXpMVkJQc2FsalRT?=
- =?utf-8?B?YW42c0tHT0Y1a0VQTzJwOGl5eVlNVFV4V1N0R3ZkMEs3UUdOZVE2QT09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f42b4293-e55b-4c6f-1d28-08da41f3e10e
-X-MS-Exchange-CrossTenant-AuthSource: CY4PR12MB1576.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2022 04:21:33.8753
+X-Microsoft-Antispam-Message-Info: dul/0c8cctYMIrMtQ3/qZe2iGHqMsVUxu+NTuJuM2snYWbbna3dQG+4FBDcGSeNpJscV6MCPq5F2rzPfTe0x/HocpcfPe4/XV7T7B9mfBL7Z9hI9QfNRtQRResY/aHJiGsUK/hck/PhL/6IxMPa00lHl7zVywsktXPPL9+62ISF0fcwW7PgnKNeNQ7fqUR/DfcKuUezVA9FbMqPo8VcL1cUDFH3aZIALoak07KzEiWEgYVD0u60T1xDqbZoYhl7ncZl6NUj948V12p2qNwwtCwQ6YknpmsS7rtSSrEf/1M+uTy7oAWEHwxzRPBmAJY9MqKw8T+mN5+08/dRK3i8CC8pS/3+TIguZBiLUZF04U1fL9F806BPXK+YgfUUJBZxOA0KAUz4P7jh8VAAgg+HD4Yo5vvjcTeLP3+adgUgKjzftP7z/TNi7mpkuGUDDoGFbrc5b121ZT2w00lfw5e10bz1u4AnUntYcdSWKJmdtL6VxvGvRP2dR4x8RjOSBHJPHhf9Ro8dKCN4CNdVmgdk7xXG6upR2RuQ9BC/zQxsZJaYkHhyLstYJsdquz8PvczQxVSRa8Y7rZNVfva6KBOi80FjUWzSFqVbKTonGWJ95aNynG0k2Z4uhZ47gKyrJ94sQxHITRQagb0osavqqpAwEnotjTkEijRQ7MOoeJoFt/9wkABI06WKwTg9sHCi3FX7Ort3Pi9n2/1CdSTXSuso8gaGR0zkCXSvac6QndUy5luhx1UqdqrMYKyUDBTQGc81g+TKCPMqS7lo2GAqm2DMLsX9vtyJwT06bowbaIzVOWRw=
+X-Forefront-Antispam-Report: CIP:13.93.42.39;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:westeu12-emailsignatures-cloud.codetwo.com;PTR:westeu12-emailsignatures-cloud.codetwo.com;CAT:NONE;SFS:(13230001)(4636009)(376002)(136003)(396003)(39830400003)(346002)(46966006)(36840700001)(83380400001)(36916002)(6486002)(316002)(36860700001)(8676002)(4326008)(15974865002)(53546011)(508600001)(2906002)(31686004)(6916009)(8936002)(26005)(40480700001)(5660300002)(7416002)(44832011)(6512007)(7596003)(41300700001)(83170400001)(70586007)(31696002)(36756003)(7636003)(82310400005)(42882007)(47076005)(2616005)(336012)(186003)(70206006)(6506007)(356005)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: topic.nl
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2022 05:50:39.5903
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vzGyBEmeeafNDlOaawmm4NrWTU7v1e+1ts/4nIjdcI6MiYrTEWLkKAlov98ZnPNODMzyA9kKQTAVf8urjF2eXw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1201MB0121
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-MS-Exchange-CrossTenant-Network-Message-Id: dc871101-94c5-4954-ada1-08da4200540e
+X-MS-Exchange-CrossTenant-Id: 449607a5-3517-482d-8d16-41dd868cbda3
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=449607a5-3517-482d-8d16-41dd868cbda3;Ip=[13.93.42.39];Helo=[westeu12-emailsignatures-cloud.codetwo.com]
+X-MS-Exchange-CrossTenant-AuthSource: VE1EUR01FT018.eop-EUR01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8634
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Comment inlined below (mailserver injects signature halfway through the=20
+mail usually).
 
-On 29-05-2022 19:39, Krzysztof Kozlowski wrote:
-> On 27/05/2022 12:26, Sameer Pujar wrote:
->> This patch adds YAML schema for DT bindings of Output Processing
->> Engine (OPE) module. It consists of Parametric Equalizer (PEQ)
->> and Multi Band Dynamic Range Compressor (MBDRC) sub blocks and
->> binding doc for these blocks are added as well. The OPE will be
->> registered as an ASoC component and can be plugged into an audio
->> path as per need via ALSA mixer controls. The DT bindings are
->> applicable on Tegra210 and later SoCs where OPE module is present.
+
+Met vriendelijke groet / kind regards,=0A=
+=0A=
+Mike Looijmans=0A=
+System Expert=0A=
+=0A=
+=0A=
+TOPIC Embedded Products B.V.=0A=
+Materiaalweg 4, 5681 RJ Best=0A=
+The Netherlands=0A=
+=0A=
+T: +31 (0) 499 33 69 69=0A=
+E: mike.looijmans@topicproducts.com=0A=
+W: www.topic.nl=0A=
+=0A=
+Please consider the environment before printing this e-mail=0A=
+On 28-05-2022 06:47, Dmitry Torokhov wrote:
+> Hi Mike,
+>
+> On Tue, May 24, 2022 at 10:12:16AM +0200, Mike Looijmans wrote:
+>> Add support for the VDD and IOVDD power supply inputs. This allows the
+>> chip to share its supplies with other components (e.g. panel) and manage
+>> them.
 >>
->> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+>> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
 >> ---
->>   .../bindings/sound/nvidia,tegra210-ahub.yaml       |  4 +
->>   .../bindings/sound/nvidia,tegra210-mbdrc.yaml      | 47 ++++++++++++
->>   .../bindings/sound/nvidia,tegra210-ope.yaml        | 87 ++++++++++++++++++++++
->>   .../bindings/sound/nvidia,tegra210-peq.yaml        | 48 ++++++++++++
->>   4 files changed, 186 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra210-mbdrc.yaml
->>   create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra210-ope.yaml
->>   create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra210-peq.yaml
+>>   .../input/touchscreen/sitronix,st1232.yaml    |  6 +++
+>>   drivers/input/touchscreen/st1232.c            | 54 ++++++++++++++++---
+>>   2 files changed, 52 insertions(+), 8 deletions(-)
 >>
->> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra210-ahub.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra210-ahub.yaml
->> index 6df6f85..47b6e71 100644
->> --- a/Documentation/devicetree/bindings/sound/nvidia,tegra210-ahub.yaml
->> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra210-ahub.yaml
->> @@ -110,6 +110,10 @@ patternProperties:
->>       type: object
->>       $ref: nvidia,tegra186-asrc.yaml#
->>
->> +  '^processing-engine@[0-9a-f]+$':
->> +    type: object
->> +    $ref: nvidia,tegra210-ope.yaml#
+>> diff --git a/Documentation/devicetree/bindings/input/touchscreen/sitroni=
+x,st1232.yaml b/Documentation/devicetree/bindings/input/touchscreen/sitroni=
+x,st1232.yaml
+>> index 1d8ca19fd37a..240be8d49232 100644
+>> --- a/Documentation/devicetree/bindings/input/touchscreen/sitronix,st123=
+2.yaml
+>> +++ b/Documentation/devicetree/bindings/input/touchscreen/sitronix,st123=
+2.yaml
+>> @@ -28,6 +28,12 @@ properties:
+>>       description: A phandle to the reset GPIO
+>>       maxItems: 1
+>>  =20
+>> +  vdd-supply:
+>> +    description: Power supply regulator for the chip
+>> +
+>> +  vddio-supply:
+>> +    description: Power supply regulator for the I2C bus
 >> +
 >>   required:
 >>     - compatible
 >>     - reg
->> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra210-mbdrc.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra210-mbdrc.yaml
->> new file mode 100644
->> index 0000000..0d55328
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra210-mbdrc.yaml
->> @@ -0,0 +1,47 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/sound/nvidia,tegra210-mbdrc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> diff --git a/drivers/input/touchscreen/st1232.c b/drivers/input/touchscr=
+een/st1232.c
+>> index e38ba3e4f183..d9c9f6f1f11a 100644
+>> --- a/drivers/input/touchscreen/st1232.c
+>> +++ b/drivers/input/touchscreen/st1232.c
+>> @@ -44,6 +44,11 @@
+>>   #define REG_XY_COORDINATES	0x12
+>>   #define ST_TS_MAX_FINGERS	10
+>>  =20
+>> +enum st1232_regulators {
+>> +	ST1232_REGULATOR_VDD,
+>> +	ST1232_REGULATOR_IOVDD,
+>> +};
 >> +
->> +title: Tegra210 MBDRC Device Tree Bindings
-> Previous comments - s/Device Tree Bindings//
->   -  still applies. Please do not ignore it.
+>>   struct st_chip_info {
+>>   	bool	have_z;
+>>   	u16	max_area;
+>> @@ -56,6 +61,7 @@ struct st1232_ts_data {
+>>   	struct touchscreen_properties prop;
+>>   	struct dev_pm_qos_request low_latency_req;
+>>   	struct gpio_desc *reset_gpio;
+>> +	struct regulator_bulk_data regulators[2];
+>>   	const struct st_chip_info *chip_info;
+>>   	int read_buf_len;
+>>   	u8 *read_buf;
+>> @@ -197,17 +203,36 @@ static irqreturn_t st1232_ts_irq_handler(int irq, =
+void *dev_id)
+>>   	return IRQ_HANDLED;
+>>   }
+>>  =20
+>> -static void st1232_ts_power(struct st1232_ts_data *ts, bool poweron)
+>> +static int st1232_ts_power_on(struct st1232_ts_data *ts)
+>> +{
+>> +	int err;
+>> +
+>> +	err =3D regulator_bulk_enable(ARRAY_SIZE(ts->regulators), ts->regulato=
+rs);
+>> +	if (err)
+>> +		return err;
+> Does it really make sense to try and handle regulators when reset gpio
+> is not defined? Would it not be better to tie them to the presence of
+> reset gpio to make sure we implement proper power on sequence?
 
-I did not ignore this. There was a comment from Mark on this earlier (v1) and I did not see further reply from you. I thought you were OK with the way it is. So if you are saying acronym part is OK and just to remove "Device Tree Bindings" I can send a v3 for this.
+I thought that's what we're doing here. The datasheet says 5ms between=20
+power-good and reset de-assert. Whether or not the hardware guys=20
+bothered to actually connect the reset is out of our hands. The=20
+regulator is not mandatory either, we'll get a dummy supply from the=20
+framework when not defined.
+
+The main use case here is that if for example the panel and touchscreen=20
+share a power supply, they can now turn off the power supply when not in=20
+use.
+
+>
+>> +
+>> +	usleep_range(5000, 6000);
+>> +
+>> +	if (ts->reset_gpio)
+>> +		gpiod_set_value_cansleep(ts->reset_gpio, 0);
+>> +
+>> +	return 0;
+>> +}
+> Thanks.
+>
+
+--=20
+Mike Looijmans
 
