@@ -2,108 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FD5D5387A9
-	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 21:09:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 116A8538816
+	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 22:15:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242523AbiE3TJj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 May 2022 15:09:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57016 "EHLO
+        id S238424AbiE3UPJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 May 2022 16:15:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237369AbiE3TJi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 15:09:38 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 584D566239
-        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 12:09:37 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id rs12so22440260ejb.13
-        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 12:09:37 -0700 (PDT)
+        with ESMTP id S243138AbiE3UPC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 16:15:02 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F138268F8A
+        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 13:15:00 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id s24so8690730wrb.10
+        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 13:15:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=hqDBmN4Fwx5+r7RqzfiXafCYERQq5UsMFBKRBWVA7kE=;
-        b=td1mA7IvN12TkStkEUB8qAbAokYSgtDV1rAnlS7kG/NLBOIs8FXMyXhk5iIBV4+RIG
-         JE7LXlKSlPQShufbfuo1/N3Jc56M+qjwzPv9Qliu9xph4/1DSgt76vGKVTSPWSMN3ISy
-         lWUP93BoaXla6zZzGjTwE/bwoDZIFDegEP9/W5LhV5eiv7+CC6Rt3hs1SFQDPjrfjHyu
-         T8HV4dLRrBLUm56Uqf3JVqdg3EJdb3nSfQXhswOCgrXqdfrCeM3+zUdzMIbPasC91Wo3
-         vNpilxXjlbH5CPXXRQkbEWkmfXo6IQ3M7pAkasxXzwJB5nW16LivuVhznJWNut7/8WPC
-         8V6w==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=v1KekYBsM60PWOUWQkx+YAzcNsdLIbx5495ax2Uk44I=;
+        b=CqyGXFlBzgROVHYp7ecYqfw78XKSS+1L6CsO2OmUQm1gW9QrLMVzAign7WkMfXoBme
+         A8lr2oORL6b6NHYKjjkGlHMWy7WFnjRrmqtAWvs/Q9zTHfZTXuiqF3FDL3d9wiX/in6V
+         1y+cx25AaHHtQ/O9bqYMNx4kDPTzWFDu+rFFWtZ+VbALHzs8N3WQ9XJKKYwr7qvthQfp
+         skZkKYkVdVHMoEGPFjwk/62HwsA0GrOQw6QBBXa3+BnVTT+YrZOyX75AW/4ZXbrAZ+Px
+         05flweFs9wJmVhJcMbp4jwVZB++k4TYn8pbr+gMqfBnuWNl1Ka8iCQB8UiZ18JHZw7Q2
+         r9eQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=hqDBmN4Fwx5+r7RqzfiXafCYERQq5UsMFBKRBWVA7kE=;
-        b=SEWzbtMRCq3Nj860cZ7MYgb+vvisC6xbm9utbIS/Vv7nyp0NTr/E7SF0YVcTJQ9uPW
-         g96FDw4pgoZoY+WucUL22UQKcxr/Js4a/BR+VyXYyV2aQCyzZzKTsVVMhlDDFooa0BfT
-         njgJ/KoQ/lUtiifgmXKC88LelHP1dV9H6KxiFSdTQ6YT0pFCEDrug5yp48BvZVDc2iXL
-         gncW+1quvebrPhPATJViTwAuMXKUgF19YQXKFmEEXx3R3bIvBOG6jy3WBKNtLEXVU1v0
-         2/CFS3HimypruaA801mYFjY1sB+g1O7EJUzTYN8ppE9zEvtQkeBYZn1GNJQBeOAf/aht
-         j27w==
-X-Gm-Message-State: AOAM5324/gP9Ce6moR2KKbYzRFZve7P8SCLEq088e2OJTQ4sIi8s2AYR
-        q8vI4lz41Y4T/zTDVurwrGv5hQ==
-X-Google-Smtp-Source: ABdhPJzlooXqbu7R0ahRzMkj3PgZr7xpPjbwUGBEwx+kpiC34uqOX9lpEBa9CbkX1HGa7uCXSQDQZg==
-X-Received: by 2002:a17:907:94c4:b0:6f9:f69f:2fd5 with SMTP id dn4-20020a17090794c400b006f9f69f2fd5mr51136723ejc.347.1653937775835;
-        Mon, 30 May 2022 12:09:35 -0700 (PDT)
-Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id q3-20020a50aa83000000b0042dc513ced8sm3953987edc.30.2022.05.30.12.09.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 May 2022 12:09:35 -0700 (PDT)
-Message-ID: <6f3d43ca-c980-851d-e7b2-869371a1f4ec@linaro.org>
-Date:   Mon, 30 May 2022 21:09:34 +0200
+        bh=v1KekYBsM60PWOUWQkx+YAzcNsdLIbx5495ax2Uk44I=;
+        b=ex/fPIWDoMJbXZhZYzeLmxLXjA6h9mV1/dPTjYARQxD/lvrthmkgZOLjTUDEegiuWv
+         6ZLkItcTicXvZvKQFXVpg9A43ZfxKXEg7lzbVQVYnptX3CHJWVXNEATsK9juTPon9OIk
+         RoWRkkCKqBCzSKKR7wlRAxlqeF8cqHpb2g9gM8DnHqua715Gwom/MLtypVWBOBG5qc9m
+         h9P3z7DvDHilI7rsQ5GIUTyLjTV2QRQZCVkry2gY3ljPdK67eFtTtxhwYF57fJgYcxp6
+         T7eJfAQ70Qw4H4CuWfm71FNs9GsuwP/hEg4MKiQ3smHxooWl89XRzY/HP+iuWgFtu781
+         w8hg==
+X-Gm-Message-State: AOAM531OqYDejwtMu1LgcoBqVW4DKaoWZO0ZPWL5ldyWi9oJdy8byUwN
+        ibF+A5ztmofafpSyD7LwZjjx1w==
+X-Google-Smtp-Source: ABdhPJywyGKnqq1V2paxWnR8T4gDyaRPZAbgv7ZM88KcD65BYAgOubg2wGcIuvlSdR++OtUlPvntWw==
+X-Received: by 2002:a5d:5281:0:b0:20c:d5be:331c with SMTP id c1-20020a5d5281000000b0020cd5be331cmr46490408wrv.9.1653941699537;
+        Mon, 30 May 2022 13:14:59 -0700 (PDT)
+Received: from localhost.localdomain ([88.160.162.107])
+        by smtp.gmail.com with ESMTPSA id t1-20020adfe101000000b0020d110bc39esm9770401wrz.64.2022.05.30.13.14.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 May 2022 13:14:58 -0700 (PDT)
+From:   Fabien Parent <fparent@baylibre.com>
+To:     matthias.bgg@gmail.com, ck.hu@mediatek.com, jitao.shi@mediatek.com,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Cc:     chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@linux.ie,
+        daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Fabien Parent <fparent@baylibre.com>
+Subject: [PATCH 1/7] dt-bindings: display: mediatek: dpi: add power-domains property
+Date:   Mon, 30 May 2022 22:14:30 +0200
+Message-Id: <20220530201436.902505-1-fparent@baylibre.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH net-next] dt-bindings: net: xilinx: document xilinx
- emaclite driver binding
-Content-Language: en-US
-To:     Radhey Shyam Pandey <radheys@xilinx.com>,
-        Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "harini.katakam@amd.com" <harini.katakam@amd.com>,
-        "michal.simek@amd.com" <michal.simek@amd.com>
-Cc:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "git@amd.com" <git@amd.com>
-References: <1653031473-21032-1-git-send-email-radhey.shyam.pandey@amd.com>
- <5c426fdc-6250-60fe-6c10-109a0ceb3e0c@linaro.org>
- <SA1PR02MB85602AA1C1A0157A2F0DA28BC7DD9@SA1PR02MB8560.namprd02.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <SA1PR02MB85602AA1C1A0157A2F0DA28BC7DD9@SA1PR02MB8560.namprd02.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/05/2022 15:21, Radhey Shyam Pandey wrote:
->>
->>> +        local-mac-address = [00 0a 35 00 00 00];
->>
->> Each device should get it's own MAC address, right? I understand you
->> leave it for bootloader, then just fill it with 0.
-> 
-> The emaclite driver uses of_get_ethdev_address() to get mac from DT.
-> i.e  'local-mac-address' if present in DT it will be read and this MAC 
-> address is programmed in the MAC core. So I think it's ok to have a 
-> user defined mac-address (instead of 0s) here in DT example?
+DPI is part of the display / multimedia block in MediaTek SoCs, and
+always have a power-domain (at least in the upstream device-trees).
+Add the power-domains property to the binding documentation.
 
-And you want to program the same MAC address in every device in the
-world? How would that work?
+Signed-off-by: Fabien Parent <fparent@baylibre.com>
+---
+ .../devicetree/bindings/display/mediatek/mediatek,dpi.yaml  | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+index 77ee1b923991..caf4c88708f4 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+@@ -57,6 +57,9 @@ properties:
+       Output port node. This port should be connected to the input port of an
+       attached HDMI or LVDS encoder chip.
+ 
++  power-domains:
++    maxItems: 1
++
+ required:
+   - compatible
+   - reg
+@@ -64,6 +67,7 @@ required:
+   - clocks
+   - clock-names
+   - port
++  - power-domains
+ 
+ additionalProperties: false
+ 
+@@ -71,11 +75,13 @@ examples:
+   - |
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
+     #include <dt-bindings/clock/mt8173-clk.h>
++    #include <dt-bindings/power/mt8183-power.h>
+ 
+     dpi0: dpi@1401d000 {
+         compatible = "mediatek,mt8173-dpi";
+         reg = <0x1401d000 0x1000>;
+         interrupts = <GIC_SPI 194 IRQ_TYPE_LEVEL_LOW>;
++        power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
+         clocks = <&mmsys CLK_MM_DPI_PIXEL>,
+              <&mmsys CLK_MM_DPI_ENGINE>,
+              <&apmixedsys CLK_APMIXED_TVDPLL>;
+-- 
+2.36.1
 
-
-Best regards,
-Krzysztof
