@@ -2,155 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF3765379F6
-	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 13:35:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7156E537AA9
+	for <lists+devicetree@lfdr.de>; Mon, 30 May 2022 14:29:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235864AbiE3Lez (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 May 2022 07:34:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53720 "EHLO
+        id S236127AbiE3M3j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 May 2022 08:29:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235815AbiE3Lez (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 07:34:55 -0400
-Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com [IPv6:2607:f8b0:4864:20::e35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E76658021C
-        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 04:34:53 -0700 (PDT)
-Received: by mail-vs1-xe35.google.com with SMTP id 68so10543941vse.11
-        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 04:34:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=qavSBhjyJguHpZQtpsLoQunCmJj0UaxeZNUkFbvKHQI=;
-        b=nylRUfykXAR4BPxN2kUQcQBx4UFaWucm9OU50Q26J8eVjUxEfey2e3vXkpeXlJPdBw
-         yk04wEP2nFeCYhiVSzO2zQEQN7BleasMfad4K+q10YYI80QpMv9sXRHHxhDiw+J4mjqe
-         y47MsyfOZhDnFZ0lbA46oIfYX2KDrn8RZ59ME=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=qavSBhjyJguHpZQtpsLoQunCmJj0UaxeZNUkFbvKHQI=;
-        b=po+lqHGivfnqc1XQAiR08bHb4crYuOd/cQiLMGTBI/Zcanbo+bw5oSBud8mjZs8R/t
-         dTqqTwtBAnTBujzk8jjS2uHPO+J9NZ6Kn+80fQGsxNGKC2xiSpsgPUhM5qZdrCyxYG4k
-         k29xIKNRO1l89THjLwa7An2VKoRpjblDF6UAN9polYukOcka2Qq5dJWP08gxymNf8GKP
-         HLoiPgPydqOhKg0dxSw/DZSGzs5/Qy7EvMRaqm9/efoWSp+iTAvy9/6sVMuZNtM9KvDm
-         +U6gpJuYtiiOJY9pv3cXOxICmaF9QdpgtaMvfMnXEGb5QhZ78iSSXGGa5XU/QcPk7swG
-         UBSA==
-X-Gm-Message-State: AOAM531xGQPykpmy+2d3npOeWZtg1J1OE3a8H6Lg7aBcDXgIHSoca6Wh
-        N9Vg6ZZIHWK8V2ixm+N9f+tzSRkgyu6YDT5aEhGTHw==
-X-Google-Smtp-Source: ABdhPJz7U/gg2bILW7eDQUEq+WiZSAg270VcwmISAU4Df/YG59TiLQ7aY2VN1tkTv7lkJuqBw4E/tvdvjiwMPfduP50=
-X-Received: by 2002:a05:6102:1008:b0:335:e260:9ff1 with SMTP id
- q8-20020a056102100800b00335e2609ff1mr21708870vsp.32.1653910493009; Mon, 30
- May 2022 04:34:53 -0700 (PDT)
+        with ESMTP id S231952AbiE3M3i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 08:29:38 -0400
+Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D974F7CB6D;
+        Mon, 30 May 2022 05:29:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+        d=metrotek.ru; s=mail;
+        h=from:subject:date:message-id:to:cc:mime-version:content-type:in-reply-to:
+         references;
+        bh=JDKi/xJT1Mjieigmk3yCi+36SvkfibHsJeRVOyaZZwY=;
+        b=LCXDiTp34x63byV6GKPAe4R7U39FSVzFfEQYjYcXE6X6yNJx2kydBZJJpwvyxl5WoLSd8e4M/4cHs
+         xL7YAsIufpn/6wdHtK/olpvf6zxD+/CNpJ5E6v7gihDyBSZlP/GYaUvNmnUoJz4ViJvv4fKO929+vm
+         lcWvrj5MF/Ah+SX4vh2fZKJ2F/GmW8CAwC5innPeLWOVp6EmfO0sl1K468JKtsgH9wQil5qD0OG3+u
+         8mC/M8TZ/xQYdF/9phBK9eWM4K3oH1qdntcIT4JYZLMfyMwC+XJODu+rRXHkg+7IFp4MfBxggsKY7j
+         u1/3wFztAHKRWlJc/A5dxBl3VHrfA1g==
+X-Kerio-Anti-Spam:  Build: [Engines: 2.16.3.1424, Stamp: 3], Multi: [Enabled, t: (0.000010,0.009374)], BW: [Enabled, t: (0.000021,0.000001)], RTDA: [Enabled, t: (0.140348), Hit: No, Details: v2.39.0; Id: 15.52k38i.1g4af248r.a270; mclb], total: 0(700)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Level: 
+X-Footer: bWV0cm90ZWsucnU=
+Received: from x260 ([178.70.36.174])
+        (authenticated user i.bornyakov@metrotek.ru)
+        by mail.pr-group.ru with ESMTPSA
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
+        Mon, 30 May 2022 15:29:09 +0300
+Date:   Mon, 30 May 2022 15:07:01 +0300
+From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
+To:     Conor.Dooley@microchip.com
+Cc:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
+        trix@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        system@metrotek.ru
+Subject: Re: [PATCH v13 2/3] fpga: microchip-spi: add Microchip MPF FPGA
+ manager
+Message-ID: <20220530120701.sedwn3qeohlnj52e@x260>
+References: <20220526181344.2088-1-i.bornyakov@metrotek.ru>
+ <20220526181344.2088-3-i.bornyakov@metrotek.ru>
+ <f655cf2f-555c-6480-a461-bcddb9e510f3@microchip.com>
 MIME-Version: 1.0
-References: <20220530081910.3947168-1-hsinyi@chromium.org> <a8d1fe13-e747-016a-2d45-bfb50f23f2d9@redhat.com>
-In-Reply-To: <a8d1fe13-e747-016a-2d45-bfb50f23f2d9@redhat.com>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Mon, 30 May 2022 19:34:27 +0800
-Message-ID: <CAJMQK-iM-ip7edA2mBOhp-8maWKG5+kTceZUM5U6BOLLBq1H4Q@mail.gmail.com>
-Subject: Re: [PATCH v10 0/4] Separate panel orientation property creating and
- value setting
-To:     Hans de Goede <hdegoede@redhat.com>
-Cc:     dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
-        intel-gfx@lists.freedesktop.org,
-        Rob Clark <robdclark@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Sean Paul <sean@poorly.run>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Simon Ser <contact@emersion.fr>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Alex Deucher <alexander.deucher@amd.com>,
-        Jani Nikula <jani.nikula@linux.intel.com>,
-        Emil Velikov <emil.l.velikov@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f655cf2f-555c-6480-a461-bcddb9e510f3@microchip.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 30, 2022 at 4:53 PM Hans de Goede <hdegoede@redhat.com> wrote:
->
-> Hi,
->
-> On 5/30/22 10:19, Hsin-Yi Wang wrote:
-> > Some drivers, eg. mtk_drm and msm_drm, rely on the panel to set the
-> > orientation. Panel calls drm_connector_set_panel_orientation() to create
-> > orientation property and sets the value. However, connector properties
-> > can't be created after drm_dev_register() is called. The goal is to
-> > separate the orientation property creation, so drm drivers can create it
-> > earlier before drm_dev_register().
->
-> Sorry for jumping in pretty late in the discussion (based on the v10
-> I seem to have missed this before).
->
-> This sounds to me like the real issue here is that drm_dev_register()
-> is getting called too early?
->
-Right.
+On Mon, May 30, 2022 at 11:22:26AM +0000, Conor.Dooley@microchip.com wrote:
+> On 26/05/2022 19:13, Ivan Bornyakov wrote:
+> > +static int mpf_read_status(struct spi_device *spi)
+> > +{
+> > +       u8 status = 0, status_command = MPF_SPI_READ_STATUS;
+> > +       /*
+> > +        * Two identical SPI transfers are used for status reading.
+> > +        * The reason is that the first one can be inadequate.
+> > +        * We ignore it completely and use the second one.
+> > +        */
+> > +       struct spi_transfer xfers[] = {
+> > +               [0 ... 1] = {
+> > +                       .tx_buf = &status_command,
+> > +                       .rx_buf = &status,
+> > +                       .len = 1,
+> > +                       .cs_change = 1,
+> > +               }
+> > +       };
+> 
+> Hmm, I don't think that this is correct, or at least it is not
+> correct from the polarfire /soc/ perspective. I was told that
+> there was nothing different other than the envm between the
+> programming for both devices - but this is another situation
+> where I start to question that.
+> 
+> When I run this code, ISC enable /never/ passes - failing due
+> to timing out. I see something like this picture here:
+> https://i.imgur.com/EKhd1S3.png
+> You can see the 0x0B ISC enable coming through & then a status
+> check after it.
+> 
+> With the current code, the value of the "status" variable will
+> be 0x0, given you are overwriting the first MISO value with the
+> second. According to the hw guys, the spi hw status *should*
+> only be returned on MISO in the first byte after SS goes low.
+> 
+> If this is not the case for a non -soc part, which, as I said
+> before, I don't have a board with the SPI programmer exposed
+> for & I have been told is not the case then my comments can
+> just be ignored entirely & I'll have some head scratching to
+> do...
+> 
+> Thanks,
+> Conor.
+> 
 
-> To me it seems sensible to delay calling drm_dev_register() and
-> thus allowing userspace to start detecting available displays +
-> features until after the panel has been probed.
->
+If I understood correctly, SS doesn't alter between two status reading
+transactions despite .cs_change = 1. May be adding some .cs_change_delay
+to spi_transfer struct can help with that?
 
-Most panels set this value very late, in .get_modes callback (since it
-is when the connector is known), though the value was known during
-panel probe.
+> > +       int ret = spi_sync_transfer(spi, xfers, 2);
+> > +
+> > +       if ((status & MPF_STATUS_SPI_VIOLATION) ||
+> > +           (status & MPF_STATUS_SPI_ERROR))
+> > +               ret = -EIO;
+> > +
+> > +       return ret ? : status;
+> > +}
 
-I think we can also let drm check if they have remote panel nodes: If
-there is a panel and the panel sets the orientation, let the drm read
-this value and set the property. Does this workflow sound reasonable?
-
-The corresponding patch to implement this:
-https://patchwork.kernel.org/project/linux-mediatek/patch/20220530113033.124072-1-hsinyi@chromium.org/
-
-Thanks
-
-> I see a devicetree patch in this series, so I guess that the panel
-> is described in devicetree. Especially in the case of devicetree
-> I would expect the kernel to have enough info to do the right
-> thing and make sure the panel is probed before calling
-> drm_dev_register() ?
->
-> Regards,
->
-> Hans
->
->
->
->
-> >
-> > After this series, drm_connector_set_panel_orientation() works like
-> > before. It won't affect existing callers of
-> > drm_connector_set_panel_orientation(). The only difference is that
-> > some drm drivers can call drm_connector_init_panel_orientation_property()
-> > earlier.
-> >
-> > Hsin-Yi Wang (4):
-> >   gpu: drm: separate panel orientation property creating and value
-> >     setting
-> >   drm/mediatek: init panel orientation property
-> >   drm/msm: init panel orientation property
-> >   arm64: dts: mt8183: Add panel rotation
-> >
-> >  .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |  1 +
-> >  drivers/gpu/drm/drm_connector.c               | 58 ++++++++++++++-----
-> >  drivers/gpu/drm/mediatek/mtk_dsi.c            |  7 +++
-> >  drivers/gpu/drm/msm/dsi/dsi_manager.c         |  4 ++
-> >  include/drm/drm_connector.h                   |  2 +
-> >  5 files changed, 59 insertions(+), 13 deletions(-)
-> >
->
