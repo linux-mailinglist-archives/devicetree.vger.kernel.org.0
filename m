@@ -2,55 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1727853943D
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 17:47:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C39953949E
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 18:00:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344883AbiEaPrr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 11:47:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37586 "EHLO
+        id S235314AbiEaQAc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 12:00:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241048AbiEaPrr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 11:47:47 -0400
-Received: from mail-vs1-xe2a.google.com (mail-vs1-xe2a.google.com [IPv6:2607:f8b0:4864:20::e2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4483530557
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 08:47:46 -0700 (PDT)
-Received: by mail-vs1-xe2a.google.com with SMTP id b7so14001314vsq.1
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 08:47:46 -0700 (PDT)
+        with ESMTP id S1345596AbiEaQAa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 12:00:30 -0400
+Received: from mail-ua1-x92a.google.com (mail-ua1-x92a.google.com [IPv6:2607:f8b0:4864:20::92a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16EEE13DC8
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 09:00:29 -0700 (PDT)
+Received: by mail-ua1-x92a.google.com with SMTP id x11so4950620uao.2
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 09:00:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=o5/Zd5Wv5o5XRjOz/x9xV6QOnYGobwAyJ/OjASoXSTc=;
-        b=Nvvkf8PgfbcLTTDsxx9FpOqixNVaIEnJya9QbWW+6gI9Tyvx0FU1YS2aWoKyfMWVjk
-         2ttltuex+v+4+83fVbEKQZDr0zTqsZHKZXWSZco3kBOgobWevwrqs+kDoBmp/80I6Bef
-         SvDaJdDol/UYjBsrplIIfvYXUudf0i6kFKqtlb3KinGLNFqX3uiAlb+S2KWKqJ3BpXqq
-         8TF4uhL4iRhzRMzr3KbGEiB6VpOdUkeEnzA5GDeXXBAVd5pmnPvItBH7dbzJH7CoogND
-         tzHM3JOyRGK62J2kIUO+11SzUb63v5dUiNzJHQS6n0uJtFwFnWOuy37HRW/dySjE0wOF
-         6cXA==
+        bh=hf9Ha+gcQ7bZvS3pjOtVI85DUJu2GIB8vjXa5oKdyVk=;
+        b=Ur+LrFXhU3uNpbGVI/nxiArh9NIgFzhvhpBHM7+67O1LbKS0dhXwfeD1PYuIJEnXO+
+         Nb4gzFV7EumE/ZWqhtwr7zq8EDI31kCPTLkdfJmSP/fgvJIV+g5KvzavS+YAutRqPpQ/
+         NcYHJGhDq8AwYx7sWIIfWEpMrlpUMtdPPhOQgaBm4nOoPTUH8hyZgvXsw545FC70XINO
+         Td9tfLRxq5tJA8oPY8bV88fn4RPl+hFBOZCzK4z9GkbJd5dZ1kk0Sa+oKBzllkgOxjTv
+         lPMGx1WZDpCoAZWjQX0/D2fXb3lX4brgFJRuJTz02NkjAYYWd2nF1X0E0xWMPcXVZCFO
+         z99g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=o5/Zd5Wv5o5XRjOz/x9xV6QOnYGobwAyJ/OjASoXSTc=;
-        b=iYoA2W7OWbvZoLdEj0Y+oMsArirK3k5+SAfOdTTjhiIER8+4u5jYHI7szWvm+vYH+r
-         v7OzgN8jv8SzI69HaGLVZfG/heWjy92mP9P0X7L5I6VRx2QEXpWztiMbL7TguBlW7H0G
-         gxvVDlPyLAXWKlxkO1AFgSdXtV6SCEsapNlbEMcK7CB/4u28m5mLxqssCqXqoJNoT8zB
-         0Vwn2cBKa9M11pw0ZNfMjSvskPqderPEPH9uRGeM8U+8MxJVXp3BP2tManSgjcJkf+rT
-         27Zld9VCRi2YUMA9bJuc0lTmDfZZe6/94NyWJduEYPVQv2P1kJXJbNp3dDsXYg1F0ywK
-         KUTg==
-X-Gm-Message-State: AOAM532IAwXQ40uYsb9P+jO9h99gQt3tJohtcQTQbgxm+Xo2i29HITAr
-        zRj09dEXe+csb88vCR7ntMW4uuji8C9HVs/d1YM=
-X-Google-Smtp-Source: ABdhPJzy6tF0SXhGyTFjs1bosbJKRjgVDUTT5kXVvDuo5sHuMl3rfnsBFQ5mSTclCReWsbao2w9Cj1tPuTWcEsZqcrU=
-X-Received: by 2002:a05:6102:3f0a:b0:337:cc82:83cf with SMTP id
- k10-20020a0561023f0a00b00337cc8283cfmr17290760vsv.86.1654012065367; Tue, 31
- May 2022 08:47:45 -0700 (PDT)
+        bh=hf9Ha+gcQ7bZvS3pjOtVI85DUJu2GIB8vjXa5oKdyVk=;
+        b=dd0NR93/X88CRzxDC9qV0pMIp30YL16FcFxBdED0GOZRLvAyNWDFa+UjV39NSeYB9Y
+         ec7WBGq2LtS59McpT0aMyeW2xBCpyTrrhZNsKj8Rah1JRibpNk1l+mQIwcDgfMU1NfWT
+         l/temQQp0D8RLDGHFrhlystdDYeDjhA18P0NXntyCBriR1okr19JtLTyyKlVREI19CKy
+         FadX/11jwhEQehD8bkExRfrJiJ/+68qkl10feBFdB2rurE2NZcss6UQ3P27DpekviPxe
+         5xV6tIJH9PA8UFHFY+QGSfJLAybfEGadJRsTzWGqDf5dCFy3piL4nV9ZdzSNBfJVysXv
+         ScVg==
+X-Gm-Message-State: AOAM530bFC30UzefNOgwWT/MYLBE6BmBNRsQbM8QrBTw4B2XDGLrLGkw
+        fPgz+4A2drMECSN/RQIOTgPYKYObj4U1wTa4q+M=
+X-Google-Smtp-Source: ABdhPJz5NdGF0GnUEAwiG0JN8et0DgY+dm0ENUUPPfj9who3sp6/9UvsRmFt+dQZlCZLKtWk0M+EqoXi5CVExN03j+E=
+X-Received: by 2002:ab0:4ac1:0:b0:351:ed7d:e65c with SMTP id
+ t1-20020ab04ac1000000b00351ed7de65cmr22876289uae.36.1654012826733; Tue, 31
+ May 2022 09:00:26 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220515202032.3046-1-stefan.wahren@i2se.com> <20220515202032.3046-10-stefan.wahren@i2se.com>
-In-Reply-To: <20220515202032.3046-10-stefan.wahren@i2se.com>
+References: <20220515202032.3046-1-stefan.wahren@i2se.com> <20220515202032.3046-11-stefan.wahren@i2se.com>
+In-Reply-To: <20220515202032.3046-11-stefan.wahren@i2se.com>
 From:   Peter Robinson <pbrobinson@gmail.com>
-Date:   Tue, 31 May 2022 16:47:33 +0100
-Message-ID: <CALeDE9N5+47WqqS_wSSiLuz0Xbh7FDHaEoL8rD3WpNsNhhrPfQ@mail.gmail.com>
-Subject: Re: [PATCH 09/11] soc: bcm: bcm2835-power: Resolve ASB register macros
+Date:   Tue, 31 May 2022 16:58:42 +0100
+Message-ID: <CALeDE9Mu65P-+kq+tsEjSN=7dwfgD85bNEa85iq6mCGZ32xdsQ@mail.gmail.com>
+Subject: Re: [PATCH 10/11] soc: bcm: bcm2835-power: Add support for BCM2711's
+ RPiVid ASB
 To:     Stefan Wahren <stefan.wahren@i2se.com>
 Cc:     Florian Fainelli <f.fainelli@gmail.com>,
         Ray Jui <rjui@broadcom.com>,
@@ -76,72 +77,85 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Sun, May 15, 2022 at 9:21 PM Stefan Wahren <stefan.wahren@i2se.com> wrote:
 >
-> The macros in order to access the ASB registers have a hard coded base
-> address. So extending them for other platforms would make them harder
-> to read. As a solution resolve these macros.
+> In BCM2711 the new RPiVid ASB took over V3D. The old ASB is still present
+> with the ISP and H264 bits, and V3D is in the same place in the new ASB
+> as the old one.
+>
+> Use the fact that 'pm->rpivid_asb' is populated as a hint that we're on
+> BCM2711.
 >
 > Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-A minor query below:
 Reviewed-by: Peter Robinson <pbrobinson@gmail.com>
+
 > ---
->  drivers/soc/bcm/bcm2835-power.c | 15 ++++++++-------
->  1 file changed, 8 insertions(+), 7 deletions(-)
+>  drivers/soc/bcm/bcm2835-power.c | 26 +++++++++++++++++++++++---
+>  1 file changed, 23 insertions(+), 3 deletions(-)
 >
 > diff --git a/drivers/soc/bcm/bcm2835-power.c b/drivers/soc/bcm/bcm2835-power.c
-> index 77dc9e62b207..fa0a13035794 100644
+> index fa0a13035794..1e06d91c0739 100644
 > --- a/drivers/soc/bcm/bcm2835-power.c
 > +++ b/drivers/soc/bcm/bcm2835-power.c
-> @@ -126,9 +126,6 @@
+> @@ -126,6 +126,8 @@
 >
 >  #define ASB_AXI_BRDG_ID                        0x20
 >
-> -#define ASB_READ(reg) readl(power->asb + (reg))
-> -#define ASB_WRITE(reg, val) writel(PM_PASSWORD | (val), power->asb + (reg))
-> -
+> +#define BCM2835_BRDG_ID                        0x62726467
+> +
 >  struct bcm2835_power_domain {
 >         struct generic_pm_domain base;
 >         struct bcm2835_power *power;
-> @@ -150,7 +147,10 @@ struct bcm2835_power {
+> @@ -139,6 +141,8 @@ struct bcm2835_power {
+>         void __iomem            *base;
+>         /* AXI Async bridge registers. */
+>         void __iomem            *asb;
+> +       /* RPiVid bridge registers. */
+> +       void __iomem            *rpivid_asb;
 >
->  static int bcm2835_asb_control(struct bcm2835_power *power, u32 reg, bool enable)
->  {
-> +       void __iomem *base = power->asb;
-
-I wonder the perf of defining base here vs the readability of
-power->asb; throughout.
-
+>         struct genpd_onecell_data pd_xlate;
+>         struct bcm2835_power_domain domains[BCM2835_POWER_DOMAIN_COUNT];
+> @@ -151,9 +155,15 @@ static int bcm2835_asb_control(struct bcm2835_power *power, u32 reg, bool enable
 >         u64 start;
-> +       u32 val;
-> +
+>         u32 val;
 >
->         if (!reg)
+> -
+> -       if (!reg)
+> +       switch (reg) {
+> +       case 0:
 >                 return 0;
-> @@ -159,12 +159,13 @@ static int bcm2835_asb_control(struct bcm2835_power *power, u32 reg, bool enable
+> +       case ASB_V3D_S_CTRL:
+> +       case ASB_V3D_M_CTRL:
+> +               if (power->rpivid_asb)
+> +                       base = power->rpivid_asb;
+> +               break;
+> +       }
 >
->         /* Enable the module's async AXI bridges. */
->         if (enable) {
-> -               ASB_WRITE(reg, ASB_READ(reg) & ~ASB_REQ_STOP);
-> +               val = readl(base + reg) & ~ASB_REQ_STOP;
->         } else {
-> -               ASB_WRITE(reg, ASB_READ(reg) | ASB_REQ_STOP);
-> +               val = readl(base + reg) | ASB_REQ_STOP;
->         }
-> +       writel(PM_PASSWORD | val, base + reg);
+>         start = ktime_get_ns();
 >
-> -       while (ASB_READ(reg) & ASB_ACK) {
-> +       while (readl(base + reg) & ASB_ACK) {
->                 cpu_relax();
->                 if (ktime_get_ns() - start >= 1000)
->                         return -ETIMEDOUT;
-> @@ -622,7 +623,7 @@ static int bcm2835_power_probe(struct platform_device *pdev)
+> @@ -622,13 +632,23 @@ static int bcm2835_power_probe(struct platform_device *pdev)
+>         power->dev = dev;
 >         power->base = pm->base;
 >         power->asb = pm->asb;
+> +       power->rpivid_asb = pm->rpivid_asb;
 >
-> -       id = ASB_READ(ASB_AXI_BRDG_ID);
-> +       id = readl(power->asb + ASB_AXI_BRDG_ID);
->         if (id != 0x62726467 /* "BRDG" */) {
+>         id = readl(power->asb + ASB_AXI_BRDG_ID);
+> -       if (id != 0x62726467 /* "BRDG" */) {
+> +       if (id != BCM2835_BRDG_ID /* "BRDG" */) {
 >                 dev_err(dev, "ASB register ID returned 0x%08x\n", id);
 >                 return -ENODEV;
+>         }
+>
+> +       if (power->rpivid_asb) {
+> +               id = readl(power->rpivid_asb + ASB_AXI_BRDG_ID);
+> +               if (id != BCM2835_BRDG_ID /* "BRDG" */) {
+> +                       dev_err(dev, "RPiVid ASB register ID returned 0x%08x\n",
+> +                                    id);
+> +                       return -ENODEV;
+> +               }
+> +       }
+> +
+>         power->pd_xlate.domains = devm_kcalloc(dev,
+>                                                ARRAY_SIZE(power_domain_names),
+>                                                sizeof(*power->pd_xlate.domains),
 > --
 > 2.25.1
 >
