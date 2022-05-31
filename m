@@ -2,40 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 806A55390FE
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 14:45:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06A38539108
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 14:47:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344341AbiEaMpz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 08:45:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45640 "EHLO
+        id S245522AbiEaMrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 08:47:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239853AbiEaMpy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 08:45:54 -0400
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 000ED6EB22;
-        Tue, 31 May 2022 05:45:52 -0700 (PDT)
-Received: (Authenticated sender: jacopo@jmondi.org)
-        by mail.gandi.net (Postfix) with ESMTPSA id 4EEC720005;
-        Tue, 31 May 2022 12:45:49 +0000 (UTC)
-Date:   Tue, 31 May 2022 14:45:47 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Quentin Schulz <quentin.schulz@theobroma-systems.com>
-Cc:     Quentin Schulz <foss+kernel@0leil.net>, shawnx.tu@intel.com,
-        mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 4/4] media: i2c: ov5675: add .get_selection support
-Message-ID: <20220531124547.vqfrqbs5d37l3z6h@uno.localdomain>
-References: <20220525145833.1165437-1-foss+kernel@0leil.net>
- <20220525145833.1165437-4-foss+kernel@0leil.net>
- <20220531105011.yxrosmwtw3mpaomb@uno.localdomain>
- <842dbd3c-856b-e5a8-e942-545ceb6741ca@theobroma-systems.com>
+        with ESMTP id S232814AbiEaMrk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 08:47:40 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07A9E5D5D9
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 05:47:38 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id p4so21285486lfg.4
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 05:47:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=r3/jevdsJSGVl1zPrKNV30Bc3ZiH/kytNoUeRC1cAXA=;
+        b=bWeYY9xDhw4LSY+wJKq6IW22lA25aembLAAZ1jfzd9z/S5T6WXwzIOSGArZpy+vOJA
+         BRIr443Mz8RxaoZtbq9WR8mMgD47whTt3RqSqVyiSYINH8a4EONkpokC1800PjnANbIE
+         tSOfH3v56CyZ+1WHYucF8EsJxRMD4NZxEtLnqER082bcPH0BFd7Nusz55Y+VyoDQsjFe
+         c3Tjs5s4Yx3YPUPwfTHj/ADT1ffYS/Pvvb7KCIOfCqXJ8K6nVezv8vnqkLTircFvwM+Q
+         4DAR6rb3wvM419QwHEnHSN6tfsDy+89R/QxeuWjI3ko34zt4Ri12AsCT1F85MYL+OF61
+         tBEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=r3/jevdsJSGVl1zPrKNV30Bc3ZiH/kytNoUeRC1cAXA=;
+        b=aCoBIPij7jSVUCcdQNOsr0VrvvbKRMHCgOCJ9KoWhJ4SXi1YlmLGi/HZNTL2xzp5hl
+         rG9csMBofsjOjcEworhZ6VBd5qYxIIBvSARFfMJvh9Q+s+OMonRRUv7uTTL74kdr2f48
+         nZ/yws2opk6RLZUe3DQkfJKVTiPDjpt1n+NYUBMrj56xyWdtsYlbfOCrfsB+2Pd7L06E
+         yjlooILFB6/DEm+s5kIZyF6LoJLEF7PsFGOvhb0/m/gh7DLtXuausFqVELfdUTQxW7/H
+         0Jbh1IHfjuT1sLBAQ1DTQF8cJ3eLxD7seQUUrlTkVG5gNbP9931DD35/m9K07b0zBE/w
+         vrqA==
+X-Gm-Message-State: AOAM533cKDyVlh3YlFgZUq/OlEmSYK6NgszVjw0liPUpcHxfLN3QtTuw
+        21U7h2+yoLQqMgLHjDUS8A88WALxAp++VQ==
+X-Google-Smtp-Source: ABdhPJyy9JFGnf2TlnHouAv/1tGCvkY9vnz8IoifhlpyHrM50TMAGs6Fl69JLE4RQyoO+NCNGY54Zg==
+X-Received: by 2002:ac2:5444:0:b0:477:a839:b4d with SMTP id d4-20020ac25444000000b00477a8390b4dmr42573771lfn.333.1654001256310;
+        Tue, 31 May 2022 05:47:36 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id s16-20020a056512215000b00478f3fe716asm365082lfr.200.2022.05.31.05.47.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 31 May 2022 05:47:35 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        freedreno@lists.freedesktop.org
+Subject: [PATCH] arm64: dts: qcom: sdm845: use dispcc AHB clock for mdss node
+Date:   Tue, 31 May 2022 15:47:35 +0300
+Message-Id: <20220531124735.1165582-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <842dbd3c-856b-e5a8-e942-545ceb6741ca@theobroma-systems.com>
-X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_00,PDS_OTHER_BAD_TLD,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -43,186 +72,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Quentin
+It was noticed that on sdm845 after an MDSS suspend/resume cycle the
+driver can not read HW_REV registers properly (they will return 0
+instead). Chaning the "iface" clock from <&gcc GCC_DISP_AHB_CLK> to
+<&dispcc DISP_CC_MDSS_AHB_CLK> fixes the issue.
 
-On Tue, May 31, 2022 at 02:19:21PM +0200, Quentin Schulz wrote:
-> Hi Jacopo,
->
-> On 5/31/22 12:50, Jacopo Mondi wrote:
-> > Hi Quentin
-> >
-> > On Wed, May 25, 2022 at 04:58:33PM +0200, Quentin Schulz wrote:
-> > > From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
-> > >
-> > > The sensor has 2592*1944 active pixels, surrounded by 16 active dummy
-> > > pixels and there are an additional 24 black rows "at the bottom".
-> > >
-> > >                       [2624]
-> > >          +-----+------------------+-----+
-> > >          |     |     16 dummy     |     |
-> > >          +-----+------------------+-----+
-> > >          |     |                  |     |
-> > >          |     |     [2592]       |     |
-> > >          |     |                  |     |
-> > >          |16   |      valid       | 16  |[2000]
-> > >          |dummy|                  |dummy|
-> > >          |     |            [1944]|     |
-> > >          |     |                  |     |
-> > >          +-----+------------------+-----+
-> > >          |     |     16 dummy     |     |
-> > >          +-----+------------------+-----+
-> > >          |     |  24 black lines  |     |
-> > >          +-----+------------------+-----+
-> > >
-> > > The top-left coordinate is gotten from the registers specified in the
-> > > modes which are identical for both currently supported modes.
-> > >
-> > > Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
-> > > ---
-> > >
-> > > v4:
-> > >   - explicit a bit more the commit log,
-> > >   - added drawing in the commit log,
-> > >   - fixed reporting for V4L2_SEL_TGT_CROP_* thanks to Jacopo's help,
-> > >
-> > > added in v3
-> > >
-> > >   drivers/media/i2c/ov5675.c | 33 +++++++++++++++++++++++++++++++++
-> > >   1 file changed, 33 insertions(+)
-> > >
-> > > diff --git a/drivers/media/i2c/ov5675.c b/drivers/media/i2c/ov5675.c
-> > > index c1f3c387afde0..384a9ea2372c3 100644
-> > > --- a/drivers/media/i2c/ov5675.c
-> > > +++ b/drivers/media/i2c/ov5675.c
-> > > @@ -1121,6 +1121,38 @@ static int ov5675_get_format(struct v4l2_subdev *sd,
-> > >   	return 0;
-> > >   }
-> > >
-> > > +static int ov5675_get_selection(struct v4l2_subdev *sd,
-> > > +				struct v4l2_subdev_state *state,
-> > > +				struct v4l2_subdev_selection *sel)
-> > > +{
-> > > +	struct ov5675 *ov5675 = to_ov5675(sd);
-> > > +
-> > > +	if (sel->which != V4L2_SUBDEV_FORMAT_ACTIVE)
-> > > +		return -EINVAL;
-> > > +
-> > > +	switch (sel->target) {
-> > > +	case V4L2_SEL_TGT_CROP_BOUNDS:
-> > > +		sel->r.top = 0;
-> > > +		sel->r.left = 0;
-> > > +		sel->r.width = 2624;
-> > > +		sel->r.height = 2000;
-> > > +		return 0;
-> > > +	case V4L2_SEL_TGT_CROP:
-> > > +		sel->r.top = 16;
-> > > +		sel->r.left = 16;
-> > > +		sel->r.width = ov5675->cur_mode->width;
-> > > +		sel->r.height = ov5675->cur_mode->height;
-> > > +		return 0;
-> >
-> > I'm afraid this doesn't match exactly my understanding of the
-> > discussion we had.
-> >
-> > The driver defines the following modes
-> >
-> > /*
-> >   * OV5670 sensor supports following resolutions with full FOV:
-> >   * 4:3  ==> {2592x1944, 1296x972, 648x486}
-> >   * 16:9 ==> {2560x1440, 1280x720, 640x360}
-> >   */
-> > static const struct ov5670_mode supported_modes[] = {
-> > 	{
-> > 		.width = 2592,
-> > 		.height = 1944,
-> > 	},
-> > 	{
-> > 		.width = 1296,
-> > 		.height = 972,
-> > 	},
-> > 	{
-> > 		.width = 648,
-> > 		.height = 486,
-> > 	},
-> > 	{
-> > 		.width = 2560,
-> > 		.height = 1440,
-> > 	},
-> > 	{
-> > 		.width = 1280,
-> > 		.height = 720,
-> > 	},
-> > 	{
-> > 		.width = 640,
-> > 		.height = 360,
-> > 	}
-> > };
-> >
-> > The comment says all modes retain the "full FOV", which I assume it
-> > implies they are obtained by sub-sampling and not cropping.
-> >
-> > The first three modes (4:3) are indeed obtained by subsampling the
-> > full active pixel array:
-> >
-> >          (2592,1944) / 2 = (1296,972) / 2 = (648,486)
-> >
-> > The last three are obtained by subsampling a slightly cropped portion
-> > of the pixel array
-> >
-> >          (2560,1440) / 2 = (1280,720) / 2 = (640,360)
-> >
-> > If you set CROP = cur_mode->[width/height] you will instead report the
-> > visible width/height, which as said it's obtained by subsampling (of a
-> > slightly cropped portion of the pixel array for the last three ones)
-> >
-> > The CROP rectangle is then (2592, 1944) for the first three and (2560,
-> > 1440) for the last three.
-> >
-> > I would add a v4l2_rect to struct ov5670_mode where to record that and
-> > report it here.
-> >
->
-> That makes a lot of sense to me, thanks for your patience and explanations.
->
-> FYI, you're looking at the wrong driver (ov5670 vs ov5675; a mistake I make
+Fixes: 08c2a076d18f ("arm64: dts: qcom: sdm845: Add dpu to sdm845 dts file")
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sdm845.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-You know what's depressing ? -I- have a series out for ov5670 :(
-I'm so sorry, my brain got short-circuited by that probably...
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index b31bf62e8680..ad21cf465c98 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -4238,7 +4238,7 @@ mdss: mdss@ae00000 {
+ 
+ 			power-domains = <&dispcc MDSS_GDSC>;
+ 
+-			clocks = <&gcc GCC_DISP_AHB_CLK>,
++			clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+ 				 <&dispcc DISP_CC_MDSS_MDP_CLK>;
+ 			clock-names = "iface", "core";
+ 
+-- 
+2.35.1
 
-> every now and then too :) ). However, the datasheet does say that "The
-> OV5675 supports a binning mode to provide a lower resolution output while
-> maintaining the field of view.[...] The OV5675 supports 2x2 binning." so I
-> assume we're in the same scenario as you just explained.
->
-> Since the OV5675 modes currently supported by the drivers are 4/3 only and
-> the smaller size mode a result of subsampling, they both have the same CROP
-> rectangle.
->
-
-Thankfully the comment still applies to ov5675 then, and both modes
-have the same (2592, 1944) crop rectangle :)
-
-> > > +	case V4L2_SEL_TGT_CROP_DEFAULT:
-> > > +		sel->r.top = 16;
-> > > +		sel->r.left = 16;
-> > > +		sel->r.width = supported_modes[0].width;
-> > > +		sel->r.height = supported_modes[0].height;
-> > > +		return 0;
-> >
-> > You could also define these values instead of fishing in the
-> > supported_modes array, to protect against future changes to the array
-> > itself. Up to you.
-> >
->
-> Since there's no cropping involved in the current modes, I assume we could
-> just hardcode the width and height and tackle this limitation later, once we
-> add more modes or support for configuring cropping (this patch only adds the
-> getter and not the setter).
-
-Fine with me!
-
-Sorry again for the slip!
-
->
-> Cheers,
-> Quentin
