@@ -2,194 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67E94538A5A
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 06:15:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E3A5538AB8
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 06:50:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243786AbiEaEP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 00:15:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41916 "EHLO
+        id S234936AbiEaEuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 00:50:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238733AbiEaEP1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 00:15:27 -0400
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AB1A90CDC;
-        Mon, 30 May 2022 21:15:25 -0700 (PDT)
-Received: from pps.filterd (m0187473.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 24V3CNBR018710;
-        Tue, 31 May 2022 04:15:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
- : date : message-id : mime-version : content-transfer-encoding; s=pp1;
- bh=/9LInnWuKKhNhyYnDHrxS8Xb/Pzojn+6vFD2s6bYgQQ=;
- b=fEShOBfL5Aqx5bUH+j1RTdpFgzM0NMNeFllN+MoSZtbMer6Dj3tW9UxPWMs6+C/+dV9U
- wOsXddb74hm2jEFr9xMx5gKjeZiF9SQXKre+h2vcxsMVLR4n/84aMp9FmB9vAvIytiNC
- 9vDQYk4AiDPMIroo/2sqMNQt73SUivP8yt/jslr9BJca6v7N5Fv37FNhHHVC6Wu4lXf7
- RiOUsQo8tX2/pPm8I/tHZ4JN76grDD5sKy1xGK19FP4f7m9eqFryHsnqkbvqULih+7Yx
- OwL2xxCaFJjpj6HqN2hbiIGnr5K4sm77xxLCfo+2uVm8DcOd5hnkWsuQVDgldd7FcZ9d Wg== 
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3gdawb8rnc-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 31 May 2022 04:15:01 +0000
-Received: from m0187473.ppops.net (m0187473.ppops.net [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 24V4CEdn002321;
-        Tue, 31 May 2022 04:15:01 GMT
-Received: from ppma04ams.nl.ibm.com (63.31.33a9.ip4.static.sl-reverse.com [169.51.49.99])
-        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3gdawb8rmx-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 31 May 2022 04:15:00 +0000
-Received: from pps.filterd (ppma04ams.nl.ibm.com [127.0.0.1])
-        by ppma04ams.nl.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 24V45RVE029354;
-        Tue, 31 May 2022 04:14:58 GMT
-Received: from b06cxnps4076.portsmouth.uk.ibm.com (d06relay13.portsmouth.uk.ibm.com [9.149.109.198])
-        by ppma04ams.nl.ibm.com with ESMTP id 3gbcae3fqc-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 31 May 2022 04:14:58 +0000
-Received: from d06av21.portsmouth.uk.ibm.com (d06av21.portsmouth.uk.ibm.com [9.149.105.232])
-        by b06cxnps4076.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 24V4EtKP22675792
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Tue, 31 May 2022 04:14:55 GMT
-Received: from d06av21.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 4088052051;
-        Tue, 31 May 2022 04:14:55 +0000 (GMT)
-Received: from vajain21.in.ibm.com (unknown [9.43.34.53])
-        by d06av21.portsmouth.uk.ibm.com (Postfix) with SMTP id 7D1D65204E;
-        Tue, 31 May 2022 04:14:48 +0000 (GMT)
-Received: by vajain21.in.ibm.com (sSMTP sendmail emulation); Tue, 31 May 2022 09:44:47 +0530
-From:   Vaibhav Jain <vaibhav@linux.ibm.com>
-To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org
-Cc:     Vaibhav Jain <vaibhav@linux.ibm.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Mimi Zohar <zohar@linux.vnet.ibm.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Thiago Jung Bauermann <bauerman@linux.vnet.ibm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Prakhar Srivastava <prsriva@linux.microsoft.com>,
-        Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
-        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
-        Rob Herring <robh@kernel.org>,
-        Ritesh Harjani <ritesh.list@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>
-Subject: [PATCH v3] of: check previous kernel's ima-kexec-buffer against memory bounds
-Date:   Tue, 31 May 2022 09:44:46 +0530
-Message-Id: <20220531041446.3334259-1-vaibhav@linux.ibm.com>
+        with ESMTP id S229468AbiEaEup (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 00:50:45 -0400
+Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 437CD941A2;
+        Mon, 30 May 2022 21:50:44 -0700 (PDT)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id 1915C3200063;
+        Tue, 31 May 2022 00:50:42 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Tue, 31 May 2022 00:50:43 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
+        :message-id:mime-version:reply-to:sender:subject:subject:to:to;
+         s=fm2; t=1653972641; x=1654059041; bh=0eU2OH/PMLLPNDGUWzR53cTyf
+        MsGV3WQ2yKPJrBQB4U=; b=gUUOKk85li+LqgICYf+hYHEAiVWAh5pkJE4n2v7FE
+        KZhn7f3WPg7jKqgrVokXU0R87AbW3QXfCZg1Rt9Fageg80KpEA8KzKXv2ssjO6VZ
+        qJsUdb3+UE95XiNU69by3WxO42RvQxZL87nwqJHopnxSL1FAeTGH050TUqHMJfaZ
+        0a7rwB8d8FonDc+Cs/ixP41QuFWjjaSWX5jzM9gxXI/At2JEoYtl53WzJhft0guE
+        By4pvZrpdoFDQm0qq8kh4RtIYaD4PigPoxO+KFgJXNWU23KIqPe1P8oJbrDByr7A
+        k3LpMi7peOEop86aWNq0OL6uu87cWodaJEnBL4seEUThg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:message-id
+        :mime-version:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
+        1653972641; x=1654059041; bh=0eU2OH/PMLLPNDGUWzR53cTyfMsGV3WQ2yK
+        PJrBQB4U=; b=KOoXXd99d2A0G+AHWkkNESkPODakLOBVyqD7FCBF2UMVIdXfL45
+        0ugEBJON//8UBpTEsbx7GjWt+JnoWR3w62xTjmrECrGu/8YSQro5XCzEpTS5pNdA
+        1hvs8au1zW6/ZSE6ltt+MMSZdrOHl75J85ZzJYcX1krI7V2wQHYOHdSy2HKQOzQU
+        3bpxsI4I9P9Ev80p9iqY68TN+CJgDe4jYRLMyVYPiI5sVmv4Sf7wrvj3GEHbvql1
+        +kQjiIHAMX8Bmn7Ow93sT/qkw9ZeeSk6FnFjGIjD4me0GjA3G4bWAWNE+mvZF1KJ
+        1Kx107FPg/dos1QZuaj+q6jYPNGYJLRI1Mw==
+X-ME-Sender: <xms:oJ6VYrUXNESM5lbu_QJfh6vNJhDK9ygWgKnbVgUZJZyGncc8R6Q-6g>
+    <xme:oJ6VYjnSTPBIPg1zYDfbcYHlS3IiEITVUskmME-KK9nX7d_TC_bwcJbvLZrl-fKXn
+    3ZgrzuGEbexkLgE_g>
+X-ME-Received: <xmr:oJ6VYnYQgYe9f25SG3sJl6EpkPmsE2PL5q-ZNykspvFTAVJ9WWne51KNUhrn6w6lSS64ln70UmZhLEqIgqxxijVYHf7JUU34WpbruZ7DF8UHSXqdL38-ClutjKaxO2cjy47ATg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrkeejgdeklecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvfevufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgvlhcu
+    jfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtffrrg
+    htthgvrhhnpeekveelhfejueelleetvdejvdeffeetgeelheeujeffhefgffefkeehhffh
+    keekgeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
+X-ME-Proxy: <xmx:oJ6VYmVyaWylZd2qlvmw68EqTRSACPtQoiZo6TrcAtIWgycRajcy3w>
+    <xmx:oJ6VYlk3DC18Vo6oDuAUUQSnnbQw6I13-Xo6GOUL2IoXbjH7EJnWKQ>
+    <xmx:oJ6VYjcj4NwfhWa735jdl-hm75m2vrFZikFTHOswTB175A5PlNB4eA>
+    <xmx:oZ6VYgq3JwQqO9WXy1nEXAP-gBhPSi4CI1wTbjTPRdZBNzFOtsvbww>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 31 May 2022 00:50:39 -0400 (EDT)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc:     Russell King <linux@armlinux.org.uk>,
+        Samuel Holland <samuel@sholland.org>,
+        Bartosz Dudziak <bartosz.dudziak@snejp.pl>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Luca Weiss <luca@z3ntu.xyz>, Maxime Ripard <maxime@cerno.tech>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Thierry Reding <treding@nvidia.com>,
+        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev
+Subject: [PATCH 0/3] ARM: sunxi: Remove A31 and A23/A33 platform SMP code
+Date:   Mon, 30 May 2022 23:50:35 -0500
+Message-Id: <20220531045038.42230-1-samuel@sholland.org>
 X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: Qcq5m2-7pM6dQbx6vztd7xC-CvMTqTT9
-X-Proofpoint-ORIG-GUID: YPdZ-wyC1Vd67mhOjDzMZxRH8o2s6wYX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.874,Hydra:6.0.517,FMLib:17.11.64.514
- definitions=2022-05-31_01,2022-05-30_03,2022-02-23_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- lowpriorityscore=0 clxscore=1011 mlxlogscore=999 suspectscore=0
- phishscore=0 malwarescore=0 adultscore=0 bulkscore=0 impostorscore=0
- priorityscore=1501 mlxscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2204290000 definitions=main-2205310019
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Presently ima_get_kexec_buffer() doesn't check if the previous kernel's
-ima-kexec-buffer lies outside the addressable memory range. This can result
-in a kernel panic if the new kernel is booted with 'mem=X' arg and the
-ima-kexec-buffer was allocated beyond that range by the previous kernel.
-The panic is usually of the form below:
+This series is preparation for converting the PRCM MFD and legacy clock
+drivers to a CCU clock driver. The platform SMP code references the PRCM
+node to map its MMIO space, which will break when the PRCM node is
+removed/replaced.
 
-$ sudo kexec --initrd initrd vmlinux --append='mem=16G'
+Since PSCI has been available for 7+ years, instead of trying to deal
+with the migration, I think it's safe to just delete this code.
 
-<snip>
- BUG: Unable to handle kernel data access on read at 0xc000c01fff7f0000
- Faulting instruction address: 0xc000000000837974
- Oops: Kernel access of bad area, sig: 11 [#1]
-<snip>
- NIP [c000000000837974] ima_restore_measurement_list+0x94/0x6c0
- LR [c00000000083b55c] ima_load_kexec_buffer+0xac/0x160
- Call Trace:
- [c00000000371fa80] [c00000000083b55c] ima_load_kexec_buffer+0xac/0x160
- [c00000000371fb00] [c0000000020512c4] ima_init+0x80/0x108
- [c00000000371fb70] [c0000000020514dc] init_ima+0x4c/0x120
- [c00000000371fbf0] [c000000000012240] do_one_initcall+0x60/0x2c0
- [c00000000371fcc0] [c000000002004ad0] kernel_init_freeable+0x344/0x3ec
- [c00000000371fda0] [c0000000000128a4] kernel_init+0x34/0x1b0
- [c00000000371fe10] [c00000000000ce64] ret_from_kernel_thread+0x5c/0x64
- Instruction dump:
- f92100b8 f92100c0 90e10090 910100a0 4182050c 282a0017 3bc00000 40810330
- 7c0802a6 fb610198 7c9b2378 f80101d0 <a1240000> 2c090001 40820614 e9240010
- ---[ end trace 0000000000000000 ]---
 
-Fix this issue by checking returned PFN range of previous kernel's
-ima-kexec-buffer with page_is_ram() to ensure correct memory bounds.
+Samuel Holland (3):
+  ARM: sunxi: Remove A31 and A23/A33 platform SMP code
+  ARM: dts: sunxi: Remove obsolete CPU enable methods
+  dt-bindings: arm: Remove obsolete CPU enable methods
 
-Fixes: 467d27824920 ("powerpc: ima: get the kexec buffer passed by the previous kernel")
-Cc: Frank Rowand <frowand.list@gmail.com>
-Cc: Prakhar Srivastava <prsriva@linux.microsoft.com>
-Cc: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Cc: Thiago Jung Bauermann <bauerman@linux.ibm.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Ritesh Harjani <ritesh.list@gmail.com>
-Cc: Robin Murphy <robin.murphy@arm.com>
-Signed-off-by: Vaibhav Jain <vaibhav@linux.ibm.com>
----
-Changelog
-==========
-v3:
-* change the type for {start,end}_pfn to unsigned long [ Ritesh ]
-* Switched to page_is_ram() from pfn_vaild() [ Rob ]
+ .../devicetree/bindings/arm/cpus.yaml         |   2 -
+ arch/arm/boot/dts/sun6i-a31.dtsi              |   1 -
+ arch/arm/boot/dts/sun8i-a23-a33.dtsi          |   1 -
+ arch/arm/mach-sunxi/Makefile                  |   1 -
+ arch/arm/mach-sunxi/platsmp.c                 | 194 ------------------
+ 5 files changed, 199 deletions(-)
+ delete mode 100644 arch/arm/mach-sunxi/platsmp.c
 
-v2:
-* Instead of using memblock to determine the valid bounds use pfn_valid() to do
-so since memblock may not be available late after the kernel init. [ Mpe ]
-* Changed the patch prefix from 'powerpc' to 'of' [ Mpe ]
-* Updated the 'Fixes' tag to point to correct commit that introduced this
-function. [ Rob ]
-* Fixed some whitespace/tab issues in the patch description [ Rob ]
-* Added another check for checking ig 'tmp_size' for ima-kexec-buffer is > 0
----
- drivers/of/kexec.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
-
-diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
-index 8d374cc552be..91b04b04eec4 100644
---- a/drivers/of/kexec.c
-+++ b/drivers/of/kexec.c
-@@ -126,6 +126,7 @@ int ima_get_kexec_buffer(void **addr, size_t *size)
- {
- 	int ret, len;
- 	unsigned long tmp_addr;
-+	unsigned long start_pfn, end_pfn;
- 	size_t tmp_size;
- 	const void *prop;
- 
-@@ -140,6 +141,22 @@ int ima_get_kexec_buffer(void **addr, size_t *size)
- 	if (ret)
- 		return ret;
- 
-+	/* Do some sanity on the returned size for the ima-kexec buffer */
-+	if (!tmp_size)
-+		return -ENOENT;
-+
-+	/*
-+	 * Calculate the PFNs for the buffer and ensure
-+	 * they are with in addressable memory.
-+	 */
-+	start_pfn = PHYS_PFN(tmp_addr);
-+	end_pfn = PHYS_PFN(tmp_addr + tmp_size - 1);
-+	if (!page_is_ram(start_pfn) || !page_is_ram(end_pfn)) {
-+		pr_warn("IMA buffer at 0x%lx, size = 0x%zx beyond memory\n",
-+			tmp_addr, tmp_size);
-+		return -EINVAL;
-+	}
-+
- 	*addr = __va(tmp_addr);
- 	*size = tmp_size;
- 
 -- 
 2.35.1
 
