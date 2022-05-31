@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5D05539129
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 14:56:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F0FC53912A
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 14:56:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245395AbiEaM4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 08:56:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56580 "EHLO
+        id S245694AbiEaM44 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 08:56:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234793AbiEaM4G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 08:56:06 -0400
-Received: from mail-vs1-xe2a.google.com (mail-vs1-xe2a.google.com [IPv6:2607:f8b0:4864:20::e2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A193927B09
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 05:56:04 -0700 (PDT)
-Received: by mail-vs1-xe2a.google.com with SMTP id x187so1937108vsb.0
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 05:56:04 -0700 (PDT)
+        with ESMTP id S234793AbiEaM44 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 08:56:56 -0400
+Received: from mail-vs1-xe29.google.com (mail-vs1-xe29.google.com [IPv6:2607:f8b0:4864:20::e29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71E2455AE
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 05:56:55 -0700 (PDT)
+Received: by mail-vs1-xe29.google.com with SMTP id x187so1939007vsb.0
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 05:56:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=by+rH6Jh8DwQ12fHpL2zcQmA9Ehcl6RTfaLmpd75cgE=;
-        b=TGw2qkT+mkM6BeoJtnGSUr3b3zzCwCSbKv/BARMhgeGWRHqOKTpevtvWWVjF37XWcL
-         KChW8aa9zKL2e8yqpW+pkQ8UIRozGo7GMdSvaATMmD+cpiUSW/qGYwkEGRe19Zkii/BP
-         nSyuOdInK2Ae/R4mFkSrWF9E07uoWHd7CjrHN3ZhGnqUk2NFp6UGVGKX9b/RPxLMJihK
-         aaztzL271C15oEN4kIYrb3G5th2RnQLk/pRlogk8Pl1k2VC3uCBhZakmmFaALPOmBFpL
-         YoVJF9CV9wzP7kwzYp2ooVKUTzO2nM5QPOvbFsKjmHMNsXEkOyck5lklNZ9gxHYSi68Q
-         EXkQ==
+        bh=/NghuaR1lJCkVq3OsuNl2yOlR0SqsLYCBgF0yg7hfoQ=;
+        b=N0iv119/qb3ifGLl4tsNLMnpIhN6nV1XilTkVYF5K+gR1Yu749OXDduvLeYs8R1PIh
+         kFJXC+0n4sbAxEDzllFrZ43SW0u2hoP6T6Sn8aTJ5rtMYxvhDWQQ6oehDkkeML98XQ2C
+         aKDRmovvRyCj5ed1td6tWDl7Z8nIiIu8bpzjXfKHrzgpjnKjBps9mHDYdvW3BkhUwNQ/
+         Z8+R9Mqv2kyMTtyVm2kecuGZV2RZz4YfgLQfzSum/cASeO+6OczHiX9r3LVqw4Dz1r0t
+         gC7mMUPdhi6Mw+F2QXQy0EXbjr3qJS2jPLKz65VNhgcakBjejh9J9hmh6KmJXkU+/cVk
+         EJnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=by+rH6Jh8DwQ12fHpL2zcQmA9Ehcl6RTfaLmpd75cgE=;
-        b=PSu1Ftz7DeB6bLl6QFolCgxdQ+MzvsFyNeF8ARRFID/4rj9/GT3cqFzaWkH/2K7y+O
-         3ssph2b1Z8+XXFOX9p1KmIfwppuGfRLAl/X6Tym8ktnB4foIhtLa+YsmOqehooIDMEdc
-         y85aZbQpZ210tkuhNzaa89l8RxFEgpb2Ms7kV2dUzB7e7gNmv+Bx/lyFNL9NFFrjDvz2
-         FkqyejoX3ZCIuS0zXJQ1P79Ef0XWQhjCgzI6msDGs/59vi9t4LENC9yiA3V6fFgQeURK
-         brLGg9Hl+XWzR58FeAOCa1FyQn5Jh6H0nh1APbjJsduiZJ0ioVxH29+QwOTvn+l4y+kz
-         6WWg==
-X-Gm-Message-State: AOAM533vmYSAyP+vmx1BLLok6and5p84Np6VX47DFBc/LNvHeJS7ZEG9
-        wltCRoEJsWeNxx4OquPArRB709LZT3Vvjdp8z48=
-X-Google-Smtp-Source: ABdhPJyQxX6hiuY2g8/7bwiZGDMTeYAt9tDfvpk2LLEp6Qr+xnRpK2ptXVsY/7h0euq+tkave891UfNnx2fmYuUd1DE=
-X-Received: by 2002:a05:6102:3753:b0:337:8f39:f642 with SMTP id
- u19-20020a056102375300b003378f39f642mr20065851vst.52.1654001763803; Tue, 31
- May 2022 05:56:03 -0700 (PDT)
+        bh=/NghuaR1lJCkVq3OsuNl2yOlR0SqsLYCBgF0yg7hfoQ=;
+        b=hJGDXhVN8xB/tJzCK3KLxS3XD0im6PhMI0q0C2MUfFcRmArYfSdqpsXjPqo/fcxUcu
+         RI/s8oSGBG+/lgiu1xAdDjrL5zXc6wRiv/5cO88Uh/2aqtkFWLuvTBgUsAY5VXcKe7ma
+         Gh0IXmMY5/MRNqwX1FQiu5RzloG2fS37x69UlVWI28LY81HwKU/UI1Cf5OfQ9XOn6DyQ
+         bR8rJgOSyBKKvbONOH1tMj7QjxIyHFh2s3Hv/KcQFvnwuske88CC4cDXh5bY+ghMKJPj
+         pshg2DgvRFPKtI0otYN5aEWxFBpHtVBeGwDF+F+HvtXrxudojEJZxQF14u8aiaKkOGEt
+         Ce9g==
+X-Gm-Message-State: AOAM5336ibqMTaxlbVDKX6tZ+HU2rBoN8sDpDhdcVINNsWjbvC4qc5dt
+        LJHzEgbb/I0r4Tldq93J79MdHE3aZ8A7ss/d+/U=
+X-Google-Smtp-Source: ABdhPJxZmkuNU1afDRfUKW/3Uh36Ee5onR0hIwmM8oP5+0BXYbmfNqn2eJqDkfi9L00JZ8TLB+0RZkEmaeOoS1derZk=
+X-Received: by 2002:a05:6102:3f0a:b0:337:cc82:83cf with SMTP id
+ k10-20020a0561023f0a00b00337cc8283cfmr16616529vsv.86.1654001814619; Tue, 31
+ May 2022 05:56:54 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220515202032.3046-1-stefan.wahren@i2se.com> <20220515202032.3046-5-stefan.wahren@i2se.com>
-In-Reply-To: <20220515202032.3046-5-stefan.wahren@i2se.com>
+References: <20220515202032.3046-1-stefan.wahren@i2se.com> <20220515202032.3046-6-stefan.wahren@i2se.com>
+In-Reply-To: <20220515202032.3046-6-stefan.wahren@i2se.com>
 From:   Peter Robinson <pbrobinson@gmail.com>
-Date:   Tue, 31 May 2022 13:55:51 +0100
-Message-ID: <CALeDE9NULp1t0GzBEXOwguh5Yt96t1QaR9CT7L6VVWV-jiHthw@mail.gmail.com>
-Subject: Re: [PATCH 04/11] ARM: dts: bcm2835/bcm2711: Introduce reg-names in
- watchdog node
+Date:   Tue, 31 May 2022 13:56:41 +0100
+Message-ID: <CALeDE9OtTJHGLTzZhOmdPLxY_gDf16H=+nmTpvLp2B7_L2F34w@mail.gmail.com>
+Subject: Re: [PATCH 05/11] ARM: dts: bcm2711: Use proper compatible in
+ PM/Watchdog node
 To:     Stefan Wahren <stefan.wahren@i2se.com>
 Cc:     Florian Fainelli <f.fainelli@gmail.com>,
         Ray Jui <rjui@broadcom.com>,
@@ -80,41 +80,29 @@ On Sun, May 15, 2022 at 9:21 PM Stefan Wahren <stefan.wahren@i2se.com> wrote:
 >
 > From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 >
-> bcm2835-pm's bindings now support explicitly setting 'reg-names,' so use
-> them.
+> A new compatible string was introduced specifically for BCM2711, so make
+> use of it.
 >
 > Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 > Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
 Reviewed-by: Peter Robinson <pbrobinson@gmail.com>
 > ---
->  arch/arm/boot/dts/bcm2711.dtsi        | 1 +
->  arch/arm/boot/dts/bcm2835-common.dtsi | 1 +
->  2 files changed, 2 insertions(+)
+>  arch/arm/boot/dts/bcm2711.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
 > diff --git a/arch/arm/boot/dts/bcm2711.dtsi b/arch/arm/boot/dts/bcm2711.dtsi
-> index 89af57482bc8..cbb47e2c9434 100644
+> index cbb47e2c9434..5eca5207c212 100644
 > --- a/arch/arm/boot/dts/bcm2711.dtsi
 > +++ b/arch/arm/boot/dts/bcm2711.dtsi
-> @@ -113,6 +113,7 @@ pm: watchdog@7e100000 {
->                         reg = <0x7e100000 0x114>,
->                               <0x7e00a000 0x24>,
->                               <0x7ec11000 0x20>;
-> +                       reg-names = "pm", "asb", "rpivid_asb";
->                         clocks = <&clocks BCM2835_CLOCK_V3D>,
->                                  <&clocks BCM2835_CLOCK_PERI_IMAGE>,
->                                  <&clocks BCM2835_CLOCK_H264>,
-> diff --git a/arch/arm/boot/dts/bcm2835-common.dtsi b/arch/arm/boot/dts/bcm2835-common.dtsi
-> index c25e797b9060..a037d2bc5b11 100644
-> --- a/arch/arm/boot/dts/bcm2835-common.dtsi
-> +++ b/arch/arm/boot/dts/bcm2835-common.dtsi
-> @@ -62,6 +62,7 @@ pm: watchdog@7e100000 {
+> @@ -107,7 +107,7 @@ dma: dma@7e007000 {
+>                 };
+>
+>                 pm: watchdog@7e100000 {
+> -                       compatible = "brcm,bcm2835-pm", "brcm,bcm2835-pm-wdt";
+> +                       compatible = "brcm,bcm2711-pm", "brcm,bcm2835-pm-wdt";
+>                         #power-domain-cells = <1>;
 >                         #reset-cells = <1>;
 >                         reg = <0x7e100000 0x114>,
->                               <0x7e00a000 0x24>;
-> +                       reg-names = "pm", "asb";
->                         clocks = <&clocks BCM2835_CLOCK_V3D>,
->                                  <&clocks BCM2835_CLOCK_PERI_IMAGE>,
->                                  <&clocks BCM2835_CLOCK_H264>,
 > --
 > 2.25.1
 >
