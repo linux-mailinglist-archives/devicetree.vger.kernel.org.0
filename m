@@ -2,254 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85A455399D8
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 00:53:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F8B9539A1B
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 01:43:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347985AbiEaWxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 18:53:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43760 "EHLO
+        id S241462AbiEaXnx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 19:43:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347194AbiEaWxe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 18:53:34 -0400
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam08on2067.outbound.protection.outlook.com [40.107.100.67])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A5BC986EB;
-        Tue, 31 May 2022 15:53:32 -0700 (PDT)
+        with ESMTP id S234456AbiEaXns (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 19:43:48 -0400
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2086.outbound.protection.outlook.com [40.107.237.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C32F6D976;
+        Tue, 31 May 2022 16:43:47 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=R1nWtFnHW9KIMDKO8o9wLpcgowTKaRr9l5LXNMdjEGXQdJ9V8DSnsXizb7W9QNheZH9W/6vqovee2MIZeA9FSA7FeF1kB+NMzGqzlMEcJUyv/hyC8zYO2QghRZpWqF1iFD70j3L//KPyS7/Dp0RQkJJ5rf20r2jDSmUBLDuYNoZbSE75QJvQDWPYn8EdCm+N0cDy+oHZvUkfFlQSp6IU/h5x9tYL6CR1CFTIyinH1wDyS1R2suQpEvj8JoT1/JN6SSSPNGZfw8tQyAxjuMgem1WMb4OIgIcZdDhs3mEk0AEu8gRhb4eEeeSrJolrNiNqbxFP99iMo1FS03SGxETgCA==
+ b=LZ3DUAgjhLOjhjKRdAJCv5u5pEHuADdgwuiA23KU9mHvUl3zziOp8z1lJzzcDCYHwjhJ//W/teEeH0SOzgjcqQQkZ1dLIBtphiaSebemfIlOMNn8UYc+3YU3AgEK+fVcg2IENsUtvWAavMg2bJC661ynGwfnV/k2si9GVJPO6RdcivShvgfjX+tLEGGsIJ8R3f8pVg7UVDHnGFysUmTtSIdauU3rYqQtcaiePLE4Gx5eQs/+u8dzEJD/9QlzlTVxFcWHfFWaQZy+o5VgOgHuasOb4C6U267udmfLoKdQI474AFgkMyvWrz1V+Xhtn0kT0cuOZVbuFa1u26BtCGQ+qg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bnF6BQezhMXlRtsC9XF8WXr4RWi4a9mRLTORWgnbjh4=;
- b=TTQXdf0jNszeCUAsyLLN36Q4nz2B6n5H58WYqLLllrUIEGYfCle7woF1llK2yZ094kjYXasYPqbv4SELZUDT5gZYVlkk6PumG8YowGpycIRoWJSsfUM9l+iAJ3dCsC0pW/bHwqeGhWUL5WpSe4SSn+SqtiyKqD4Frp+wvdrt9QiI/tyBM/CGhefemxykbUBd2HF4ORrgcpiHYy56YX+9IIswTvNm1CqZ/y3c+fcRNBGw9ozLX6XuxROlI/iEn7eZANnHHbR4t0yePRYoTBCfslFtXJbcGV162m/K3BwXpTOW7HoCcfZybkNR2cJZ4qlAIAW0mHVtZF/KQFPdpFpeBA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ bh=9yiWMsQfn5YskgktoEFC6118HhVQF4TxV5MaSat+mXU=;
+ b=oXQEimIzAaeGPAUzZvhN2bdYFeytwFqWLxDRIoXbRGA4X0F14x/7tdrbjIJIzfqRJdlhQ0oANU4Dp5iOAWkPoqXDK+Q2Zu4NrXlsMxgGJBegGioEG/Ns28xFWfVz5m0eKJswqFlmCHCACpk/ztS2k3Jc0f25NJa8EyXDtNtRwvA5uQHjov3rsHGfYXrGnCRT4C4PzWCXLRvw28vCAOIqM4Xwj+5qwDHPr8rwdqyfoWttSXBVJ50YHSDUBOjOFaWWalZ294e76AmSxe6b+FT8BjmvcyH03q56PYmHVygbijb1wYpYDdE4MBV8DtyBvjz9luvS7lyHE+8LlyUzTdFStw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=lists.openampproject.org
+ smtp.mailfrom=xilinx.com; dmarc=pass (p=none sp=none pct=100) action=none
+ header.from=xilinx.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bnF6BQezhMXlRtsC9XF8WXr4RWi4a9mRLTORWgnbjh4=;
- b=sKNBId0iQ7o+npSg7CXjpwkraLwvBXCAxJIRJLFF39rTY4TIS/X5NwPKg6eOfSn/x5Id5oR4ZMUr0dGlPtIjzy1qaUugOgjeSSjcp3zqKOfM749Y0K3pARXy/se04OI7qF+H1NC7fmaps/DySlieNSLDE1cIQ1AkaStmaaakmfCCagv0KMcuKj5/11QRIenPSMtw8ikGsBO6JAxUmk4VeNjOPgel1RWhQdjiOvSgNVMpgYwILjmEKnBy3It5LRcPlpbJqJd0+y6d+E1kJic6zMvrI4Uzt65Bx4intD4MNsJDmvWTPHX7512/JpQ4ax1p3rGbCHSL5L0Fro3AtP5tHQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from BY5PR12MB4116.namprd12.prod.outlook.com (2603:10b6:a03:210::13)
- by CY5PR12MB6647.namprd12.prod.outlook.com (2603:10b6:930:40::11) with
+ bh=9yiWMsQfn5YskgktoEFC6118HhVQF4TxV5MaSat+mXU=;
+ b=DBlnJWoldiJyPbUv8ewesLLlqoLE2dtv4L+Q3QCKWUqySH8KFcOrggdDZdp6mIuDArlFkiEj4TacL+yl9Cq5/ZFHKPQ4NpFarzdgpI/bhCHsnkeTAvzX4r+6Roy06u6eYjlbkhB1aCG6P70OvH2/+xspA2sMG/dSvV+GsrOys4U=
+Received: from BN6PR22CA0067.namprd22.prod.outlook.com (2603:10b6:404:ca::29)
+ by BL0PR02MB6497.namprd02.prod.outlook.com (2603:10b6:208:1c2::9) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.19; Tue, 31 May
- 2022 22:53:30 +0000
-Received: from BY5PR12MB4116.namprd12.prod.outlook.com
- ([fe80::6c51:327:2e1f:a04c]) by BY5PR12MB4116.namprd12.prod.outlook.com
- ([fe80::6c51:327:2e1f:a04c%9]) with mapi id 15.20.5314.012; Tue, 31 May 2022
- 22:53:30 +0000
-Message-ID: <b7c688b5-9b27-23de-43c6-c151dfb1a1c8@nvidia.com>
-Date:   Tue, 31 May 2022 15:53:25 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] dt-bindings: timestamp: Correct id path
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, sfr@canb.auug.org.au
-References: <20220523172515.5941-1-dipenp@nvidia.com>
- <CAL_JsqJSF=7FOW4oNydRtDYY8L9Y43E4FsBkUzM+U5ZRjYdt7A@mail.gmail.com>
- <86b11457-2f1a-6b17-fab0-a13d932af993@nvidia.com>
- <20220531214209.GA2350029-robh@kernel.org>
-X-Nvconfidentiality: public
-From:   Dipen Patel <dipenp@nvidia.com>
-In-Reply-To: <20220531214209.GA2350029-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ0PR05CA0149.namprd05.prod.outlook.com
- (2603:10b6:a03:33d::34) To BY5PR12MB4116.namprd12.prod.outlook.com
- (2603:10b6:a03:210::13)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.12; Tue, 31 May
+ 2022 23:43:45 +0000
+Received: from BN1NAM02FT012.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:404:ca:cafe::64) by BN6PR22CA0067.outlook.office365.com
+ (2603:10b6:404:ca::29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.15 via Frontend
+ Transport; Tue, 31 May 2022 23:43:45 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com; pr=C
+Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
+ BN1NAM02FT012.mail.protection.outlook.com (10.13.2.130) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5314.12 via Frontend Transport; Tue, 31 May 2022 23:43:45 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Tue, 31 May 2022 16:43:44 -0700
+Received: from smtp.xilinx.com (172.19.127.95) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Tue, 31 May 2022 16:43:44 -0700
+Envelope-to: openamp-system-reference@lists.openampproject.org,
+ bjorn.andersson@linaro.org,
+ mathieu.poirier@linaro.org,
+ robh+dt@kernel.org,
+ krzk+dt@kernel.org,
+ linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Received: from [172.19.3.14] (port=48904 helo=xsjtanmays50.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <tanmay.shah@xilinx.com>)
+        id 1nwBWa-0006jm-1P; Tue, 31 May 2022 16:43:44 -0700
+From:   Tanmay Shah <tanmay.shah@xilinx.com>
+To:     <openamp-system-reference@lists.openampproject.org>,
+        <bjorn.andersson@linaro.org>, <mathieu.poirier@linaro.org>,
+        <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
+        <michal.simek@xilinx.com>, <ben.levinsky@xilinx.com>,
+        <tanmay.shah@xilinx.com>
+CC:     <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v6 0/6] Add Xilinx RPU subsystem support
+Date:   Tue, 31 May 2022 16:43:03 -0700
+Message-ID: <20220531234308.3317795-1-tanmay.shah@xilinx.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3c8f5ef2-d47c-4915-ddc8-08da4358614b
-X-MS-TrafficTypeDiagnostic: CY5PR12MB6647:EE_
-X-Microsoft-Antispam-PRVS: <CY5PR12MB6647721E294917C2B11EB3F2AEDC9@CY5PR12MB6647.namprd12.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 0b529542-20a9-4f5e-ba90-08da435f66db
+X-MS-TrafficTypeDiagnostic: BL0PR02MB6497:EE_
+X-Microsoft-Antispam-PRVS: <BL0PR02MB6497F968B9839A34CFEBE2D5CADC9@BL0PR02MB6497.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Fg0zX7Z4sAVdEtAxpTGCYxhYUFHJdH5Ui1awvDHswlHC/yuDhyFyirXRfvghgv/chd56WjDUlrAH4L6Ug9G6qouASEeykD0yEM5d5a3s4WKq3+CJ5Jnx5cPJNbqRlkddJZMntK7+vSxc2r3T2KU2FZjYvdmoU8w/qX450ppldd5/vk4pPh51Ya+XC7U01yXx2PP5vNVMrW5tBYvJHbKKXImuDgvQgfSG2hPvqbMya92yOTfsK1oe+TMVC3nT5/rB1+oMQ7V2lpOQSYgs/x0XPQoAsE5B/+3tPfDWKtj4iTRz+YQJkbmibDKU35ibwO3U6mmWfCpqX5yKoaSzK8mi7dKbPmKAbYf0hiADBYlv+zi+At4qiikHQnUmfaAb1lFVDJX8g7hwnmZQgjiXHJTAsGJzteQPEchxKAJaylzEvo5AliXLB7XXIaNFmzZiRJq3Tc8emfifh+lo74k/aBt/BX9wBEQIqeXiqNHI5zs0xAyGKgpiWjNlh5NRXl+eSCYqkqiJ0vBpGLMtGN7sLxoIikbFs3GrgJZzunnvMfjYDb9Pk2jAsElXAIiDtIuTnpW8OcPgnsFgN+6qoJb/M/VGz8ea6ev9g2La6O4xCDw/Le78zVrSvfB17SNeT1sRP34IUh4HZxiXbiG8HMbzpComSrHBOMNsecRxsZkjUJqzHZXywaP6XqcBNrRsZIwwVC3VxGFZD+RPYmanIw64OO219UZJxKKmlbyrFcTiBbTWCV7yDdWektvOsG2yLShnfmfNAWEDuzyeVqt5QgfGv2/m8Rha1QLzQlpcGZlsr/6ZnlpuZgVa5eNxSLa775Nln4fZ8g9fIpYMxqNefBXREyebjKb5qmkArZN+v3FLz4Qda3E=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR12MB4116.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(6916009)(86362001)(31696002)(6512007)(186003)(2616005)(54906003)(6486002)(508600001)(53546011)(26005)(6506007)(966005)(6666004)(316002)(2906002)(36756003)(66946007)(5660300002)(8676002)(66556008)(31686004)(66476007)(4326008)(38100700002)(83380400001)(8936002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q0pHL0RsUGZMRVNjVWFGK1Z5SXBOWVBJQitQYTdHNE5YQk10bVJjdTczN0lW?=
- =?utf-8?B?Q2lYVTMxNVJHM25OU0dxekptTkd5Sm5La2QrcmowWlpuRFVrcmUvbWJuM2dZ?=
- =?utf-8?B?UTFTSGhiRWVJM2kxM1V5SmtPUFZKVnhWMGJHVDQyalZrTjBJdUFjNUNWellE?=
- =?utf-8?B?a2dwNGg3eHJYM09FM2lvdFZOdTlyYm04R1F4dndKUHZOVUQ0bTZPTkxzQm1F?=
- =?utf-8?B?c1B1QlhpT1pUd1RMWVVNNXNMemFTRTRhNkk0UXNDUnFHa3ZydUJKbjZZZU9t?=
- =?utf-8?B?V210YSsyaVE5UEpGa2lSbllPY29zcjVkSk9sTmlNb2dlUnphSnRqS1JVV0Fj?=
- =?utf-8?B?a0xLTG5URnBRKzhqQmpRczZtOUQ3NjR2OVBSTEVGeG5Eak9pWmo3MEdBcnA0?=
- =?utf-8?B?YlB4ajdIbTVtVXZXZXllcXAwQkViVmJrSjRnZlBtZ25xZFFLY0JDbFN6OU5E?=
- =?utf-8?B?djNocm9pS0dsRnkyN3ZTaWc2ZTlZQ2pRcHZwSVVkR2V6bm8vUWdhbjR3elNx?=
- =?utf-8?B?Ri8vT05UNWhobjRxUkdLVGU3OWJ4czNqZ1ZlbjQ1UXorSDNIY2lEMmVsZTdZ?=
- =?utf-8?B?dGJoOUh5SU9iU1ViWXlCWElkZWxjWWpzK1ZvSnFzQURpbHhPYnFONWxaa01G?=
- =?utf-8?B?UVNFbDFDelpVbllrTjlIa1g3MEw1T2NlaDFYbnVHZm94YUx6QlFoUzV6WTNH?=
- =?utf-8?B?SDFtQjBKY1kwQjMzRE5YM0E1aTJPc3VCd2w5dm9kVUFXQkw3cURIbUVvb3Ny?=
- =?utf-8?B?dERRbHR6Mk8rSE0wazJmbzZGM1JTalZkMDhKdkRqeXAwcm1KcVozMmNnVUpj?=
- =?utf-8?B?NFRsRGRuK1RPbVVJNUlNV2dqdDZtZUE0aUlUdDhDKzZYaXh2RlliWXA5VWk5?=
- =?utf-8?B?aUdEazd4dFdvaGxFQjI3NEFiRHJuTmU4aGh2NzZIcnB4VUY4QVhNZ05mWU9z?=
- =?utf-8?B?TmxBR0Y1NVZsS0FSMUZtekdNc1RzUTkyS2QwWm5BMXZoMmdiN2xXeWY4SDdD?=
- =?utf-8?B?UGRQQ285Q3lVSVhhNWc0bVhnaVpSTnNjUVBWd240bmlKd3lEQkNhYWV5elVo?=
- =?utf-8?B?b0FLLzhRU00ycDdERlhid0dEWFExSnMxT2J5ZWxhVnZhR0YwTlFLMmZBUFJJ?=
- =?utf-8?B?ZFg0ckgrVlErdUMxb1lMbVNNTjBES2ZxREFrRy9oeHpFTGY2R0phVHlaUEd6?=
- =?utf-8?B?aUlUUVl1Z3p4MzFBdVRseTFvT2NWTGhMZFFzRFVreSs2aHhUNmlZMFA0N2hU?=
- =?utf-8?B?Z0x3Z2t3bzNrMHI2M0pZbXpkai9ISzJ5aE5Ec1JLa2JvSHZLKzRhaGh1ZkZC?=
- =?utf-8?B?ZHEvOXNyZiswTlBOV1l3aTJpV2ZJVzVMdFlRQ3Y0a3RFaHFRYzJHZmJHenI4?=
- =?utf-8?B?TGEvL1ZTUldKRDJSYU0vYjYwbjN3akQ1Z08yWXJpcjZiSXM0bm1RejNxbDJl?=
- =?utf-8?B?QXFnS2psSU5CcXViNjZxdTZyb2V4OUp1ZDEyZ1EvNU5FcFRYL1M4b0haQkVG?=
- =?utf-8?B?YWlKZitVc3E4cWs0elNMZ25GMjJEN05zT0hSUE5sRkVxdTc2eXJ4a2NNN1pj?=
- =?utf-8?B?TVNmeFNFUFVyakFxNUkzWCtCYm1rODF0VEhCYVllS3FXL2R1bTZqWFVvN0NH?=
- =?utf-8?B?VVRkTHBMcFlmTE8ybTRkdEdhb3dYdGRiTUJHL25tcC92aTZNS29lSDZza0NJ?=
- =?utf-8?B?aE95SThaOVBzcXZSY3NIaDdYUytoTFNES2VERUhFak41dWNVYjVPSmd1M3RV?=
- =?utf-8?B?SGl3Tyt6YjVoZ1VuZmhGYTRUUnMzZFN5d2N4MGlhdGZHMlU1bHVPTWVTbERY?=
- =?utf-8?B?UlNUNW83MGQ2VGtHdytDUkVxaHI0MmwvT1F0TFo1NXZISCs1Q3lJUWFiOVFJ?=
- =?utf-8?B?aU5LZHNGV0tYaWFHVGJNOGxFVis1M0tDZWI3TEg5d3BtQTg2bmZ3cDB2ZnZy?=
- =?utf-8?B?SkxSZUllUm1kdmlxK1NMeVFOeWFzc1JqcDU4aG1aTG1aZGplSmEwK0d2cHRX?=
- =?utf-8?B?clRoWGIxMzZpTHdyWVFCekdDVitvTjhWNU5QMkR3TDZqKzhDRUR5OHVMRWQ4?=
- =?utf-8?B?SnNvQUtUREwyWVJZSm1yZjFUZlZPV3FjYnJHLzNnbnVBRGFEbEV1VklQSHVo?=
- =?utf-8?B?UEVPYXM1dTF1VUtucHNYanhrb1pTRnpOcUFJdlVlYm5KMm9Rd200ajJlZGtI?=
- =?utf-8?B?aHhIYldmZDNnNm1BdkRiMmZVVmQyZC9XdGNVUDlxSU1NcHpvSWZpY0hYeEZY?=
- =?utf-8?B?NENPSWIrOEFXMXZROW5QOEhvbGlGR291MFhFQm5UQzZoVXliU0QwcUdKdkRI?=
- =?utf-8?B?YW1WREJhODJjRGRnRkpZWElEdEVJZ2RPNGZGVHA1dC8yUEw3UWl2QT09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3c8f5ef2-d47c-4915-ddc8-08da4358614b
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR12MB4116.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2022 22:53:29.9435
+X-Microsoft-Antispam-Message-Info: mJutpr66u7dAsdv4uCqZSjv+4P3uUtBM878KdoFPYizOCxzmdxL8NrQXtED0IaBGxJmcBgHaEQ8HH7yljKjT7d3lbDg1+WVvj+Tde18+10JLtW6lbzXNxYAJzAaIqoWv4iELa9AKy7pRd3ltBy7m0GT64rNgQEUNfF731mpMTarDiwY5XYKE4EBP3nBX+ockxpj/F+NAHCHqIHHlwmAuAGZ7fkKgdPobCP/ok6bhC7RYG2tjc6/iJj5wqX8OkUTppoQ2fStJDHeFUxZIhCPNlmlMi7rygxDN4QB1t6QXl1wa2iJctByFx87TtR3dp9zOCrU4p4DJ5Csfmq84XeQRd2YSU3xuw9scmmEEZEuQPqh/3J5zRpARNkCA5Q6Uds/KEtGonxUOi+v0Dhn5cmFc612cg+5LebVCB9JShM/mMR5PsFwxs7+iYHNAWu8SlyuWrQU/JpplpG9OUAgiUCjf0D4WgTsL6sagjdsJsb1SMMmDU/yZg/ZLL9B+rRi4tcxro2++SelLtkWlh/ysG0Ttd+8m6AtPpTdNl1s0M4lIZY8yhL+ViPelysQkJxFK8ywunLFy3BGXMsJdtJd5ADFZ4ZWO1JsdXtkI1M0egRR3B02yGzuvs/HWtMb9T3Pxg63S5N78W4kmsSMg9i8+1HUGOikP4yr+xVdVCcHnFaJB7deU63YPz9qr1AockwIWP/sZ144bqFgd2pk1lF2wgG6FmQ==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(8676002)(4326008)(6666004)(83380400001)(70586007)(70206006)(1076003)(508600001)(7696005)(8936002)(7049001)(5660300002)(9786002)(40460700003)(44832011)(36860700001)(2616005)(7636003)(110136005)(54906003)(36756003)(26005)(47076005)(82310400005)(426003)(336012)(186003)(316002)(356005)(2906002)(102446001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2022 23:43:45.1570
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +iE0nZSIG+fDV+ir+Zo7HTMlev6wIvvZSCgl8+GsbqvYU8nmDF1LpiVWEZlg2W2dFF5LM/EcSG4av4kGPIZGRw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6647
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0b529542-20a9-4f5e-ba90-08da435f66db
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN1NAM02FT012.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR02MB6497
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+This patch series adds bindings document for RPU subsystem found on Xilinx
+ZynqMP platforms. It also adds device nodes and driver to enable RPU
+subsystem in split mode and lockstep mode.
 
-The fix is not yet merged in linux-next, I assumed you applied fix on top of linux-next and still it failed.
+Xilinx ZynqMP platform contains Remote Processing Unit(RPU). RPU subsystem
+contains two arm cortex r5f cores. RPU subsystem can be configured in
+split mode, lockstep mode and single-cpu mode.
 
-In below snippets, I synced linux-next and applied the fix before running dt_binding_check and it did
+RPU subsystem also contains 4 Tightly Coupled Memory(TCM) banks.
+In lockstep mode, all 4 banks are combined and total of 256KB memory is
+made available to r5 core0. In split mode, both cores can access two
+TCM banks i.e. 128 KB.
 
-not report any errors.
+RPU can also fetch data and execute instructions from DDR memory along with
+TCM memory.
+---
+
+Changes in v6:
+  - Add maxItems to sram and memory-region property
+
+Changes in v5:
+  - Add constraints of the possible values of xlnx,cluster-mode property
+  - fix description of power-domains property for r5 core
+  - Remove reg, address-cells and size-cells properties as it is not required
+  - Fix description of mboxes property
+  - Add description of each memory-region and remove old .txt binding link
+    reference in the description
+  - Remove optional reg property from r5fss node
+  - Move r5fss node out of axi node
+
+Changes in v4:
+  - Add memory-region, mboxes and mbox-names properties in dt-bindings example
+  - Add reserved memory region node and use it in Xilinx dt RPU subsystem node
+  - Remove redundant header files
+  - use dev_err_probe() to report errors during probe
+  - Fix missing check on error code returned by zynqmp_r5_add_rproc_core()
+  - Fix memory leaks all over the driver when resource allocation fails for any core
+  - make cluster mode check only at one place
+  - remove redundant initialization of variable
+  - remove redundant use of of_node_put() 
+  - Fix Comment format problem
+  - Assign offset of zynqmp_tcm_banks instead of duplicating it
+  - Add tcm and memory regions rproc carveouts during prepare instead of parse_fw
+  - Remove rproc_mem_entry object from r5_core
+  - Use put_device() and rproc_del() APIs to fix memory leaks
+  - Replace pr_* with dev_*. This was missed in v3, fix now.
+  - Use "GPL" instead of "GPL v2" in MODULE_LICENSE macro. This was reported by checkpatch script.
+
+Changes in v3:
+  - Fix checkpatch script indentation warning
+  - Remove unused variable from xilinx remoteproc driver
+  - use C style comments, i.e /*...*/
+  - Remove redundant debug information which can be derived using /proc/device-tree
+  - Fix multiline comment format
+  - s/"final fot TCM"/"final for TCM"
+  - Function devm_kzalloc() does not return an code on error, just NULL.
+    Remove redundant error check for this function throughout the driver.
+  - Fix RPU mode configuration and add documentation accordingly
+  - Get rid of the indentations to match function documentation style with rest of the driver
+  - Fix memory leak by only using r5_rproc->priv and not replace it with new instance
+  - Use 'i' for the outer loop and 'j' for the inner one as per convention
+  - Remove redundant error and NULL checks throughout the driver
+  - Use devm_kcalloc() when more than one element is required
+  - Add memory-regions carveouts during driver probe instead of parse_fw call
+    This removes redundant copy of reserved_mem object in r5_core structure.
+  - Fix memory leak by using of_node_put()
+  - Fix indentation of tcm_mem_map function args
+  - Remove redundant init of variables
+  - Initialize tcm bank size variable for lockstep mode
+  - Replace u32 with phys_addr_t for variable stroing memory bank address
+  - Add documentation of TCM behavior in lockstep mode
+  - Use dev_get_drvdata instead of platform driver API
+  - Remove info level messages
+  - Fix checkpatch.pl warnings
+  - Add documentation for the Xilinx r5f platform to understand driver design
+
+Changes in v2:
+  - Remove proprietary copyright footer from cover letter
+
+Ben Levinsky (3):
+  firmware: xilinx: Add ZynqMP firmware ioctl enums for RPU
+    configuration.
+  firmware: xilinx: Add shutdown/wakeup APIs
+  firmware: xilinx: Add RPU configuration APIs
+
+Tanmay Shah (3):
+  dt-bindings: remoteproc: Add Xilinx RPU subsystem bindings
+  arm64: dts: xilinx: zynqmp: Add RPU subsystem device node
+  drivers: remoteproc: Add Xilinx r5 remoteproc driver
+
+ .../bindings/remoteproc/xlnx,r5f-rproc.yaml   |  129 ++
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |   33 +
+ drivers/firmware/xilinx/zynqmp.c              |   97 ++
+ drivers/remoteproc/Kconfig                    |   12 +
+ drivers/remoteproc/Makefile                   |    1 +
+ drivers/remoteproc/xlnx_r5_remoteproc.c       | 1045 +++++++++++++++++
+ include/dt-bindings/power/xlnx-zynqmp-power.h |    6 +
+ include/linux/firmware/xlnx-zynqmp.h          |   60 +
+ 8 files changed, 1383 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
+ create mode 100644 drivers/remoteproc/xlnx_r5_remoteproc.c
 
 
-Best Regards,
+base-commit: 01a1a0c8d456b11f2f6b9b822414481beaa44d6f
+-- 
+2.25.1
 
-Dipen Patel
-
-On 5/31/22 2:42 PM, Rob Herring wrote:
-> On Tue, May 31, 2022 at 10:35:55AM -0700, Dipen Patel wrote:
->> Hi Rob,
->>
->> What is the failing signature and command? I tried below commands on 31st May
-> Well, you fixed it in your patch. I'd hope you'd know.
->
->> linux-next and I can not see any failure.
-> You confirm your fix is there?
->
->> make O=./output/ DT_CHECKER_FLAGS=-m dt_binding_check
->>   DTC     Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.example.dtb
->>   DTC     Documentation/devicetree/bindings/timestamp/hte-consumer.example.dtb
->>   DTC     Documentation/devicetree/bindings/timestamp/hardware-timestamps-common.example.dtb
->>   CHECK   Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.example.dtb
->>   CHECK   Documentation/devicetree/bindings/timestamp/hardware-timestamps-common.example.dtb
->>   CHECK   Documentation/devicetree/bindings/timestamp/hte-consumer.example.dtb
-> Had you already run dt_binding_check?
->
->> make O=./output/ dt_binding_check
->>   LINT    Documentation/devicetree/bindings
->>   DTEX    Documentation/devicetree/bindings/timestamp/hardware-timestamps-common.example.dts
->>   DTEX    Documentation/devicetree/bindings/timestamp/hte-consumer.example.dts
->>   DTEX    Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.example.dts
->>   CHKDT   Documentation/devicetree/bindings/processed-schema.json
->>   DTC     Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.example.dtb
->>   DTC     Documentation/devicetree/bindings/timestamp/hte-consumer.example.dtb
->>   CHECK   Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.example.dtb
->>   CHECK   Documentation/devicetree/bindings/timestamp/hte-consumer.example.dtb
->>   DTC     Documentation/devicetree/bindings/timestamp/hardware-timestamps-common.example.dtb
-> I don't see 'SCHEMA' target here. It should have run since LINT and 
-> CHKDT did.
->
-> Do a 'rm output/Documentation/devicetree/bindings/processed-schema.json' 
-> first.
->
-> Rob
->
->>
->> make O=./output dtbs_check
->>
->>
->> Best Regards,
->>
->> Dipen Patel
->>
->> On 5/31/22 6:33 AM, Rob Herring wrote:
->>> On Mon, May 23, 2022 at 12:25 PM Dipen Patel <dipenp@nvidia.com> wrote:
->>>> During the repository renaming from hte to timestamp, $id path was not
->>>> updated accordingly. This patch corrects $id path.
->>>>
->>>> Fixes: af583852d2ef ("dt-bindings: Renamed hte directory to timestamp")
->>>> Signed-off-by: Dipen Patel <dipenp@nvidia.com>
->>>> ---
->>>>  .../bindings/timestamp/hardware-timestamps-common.yaml          | 2 +-
->>>>  Documentation/devicetree/bindings/timestamp/hte-consumer.yaml   | 2 +-
->>>>  .../devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml      | 2 +-
->>>>  3 files changed, 3 insertions(+), 3 deletions(-)
->>> Ping. Still failing in linux-next.
->>>
->>>> diff --git a/Documentation/devicetree/bindings/timestamp/hardware-timestamps-common.yaml b/Documentation/devicetree/bindings/timestamp/hardware-timestamps-common.yaml
->>>> index 4c25ba248a72..fd6a7b51f571 100644
->>>> --- a/Documentation/devicetree/bindings/timestamp/hardware-timestamps-common.yaml
->>>> +++ b/Documentation/devicetree/bindings/timestamp/hardware-timestamps-common.yaml
->>>> @@ -1,7 +1,7 @@
->>>>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>  %YAML 1.2
->>>>  ---
->>>> -$id: http://devicetree.org/schemas/hte/hardware-timestamps-common.yaml#
->>>> +$id: http://devicetree.org/schemas/timestamp/hardware-timestamps-common.yaml#
->>>>  $schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>
->>>>  title: Hardware timestamp providers
->>>> diff --git a/Documentation/devicetree/bindings/timestamp/hte-consumer.yaml b/Documentation/devicetree/bindings/timestamp/hte-consumer.yaml
->>>> index 68d764ac040a..6456515c3d26 100644
->>>> --- a/Documentation/devicetree/bindings/timestamp/hte-consumer.yaml
->>>> +++ b/Documentation/devicetree/bindings/timestamp/hte-consumer.yaml
->>>> @@ -1,7 +1,7 @@
->>>>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>  %YAML 1.2
->>>>  ---
->>>> -$id: http://devicetree.org/schemas/hte/hte-consumer.yaml#
->>>> +$id: http://devicetree.org/schemas/timestamp/hte-consumer.yaml#
->>>>  $schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>
->>>>  title: HTE Consumer Device Tree Bindings
->>>> diff --git a/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml b/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
->>>> index 69e8402d95e5..c31e207d1652 100644
->>>> --- a/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
->>>> +++ b/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
->>>> @@ -1,7 +1,7 @@
->>>>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>  %YAML 1.2
->>>>  ---
->>>> -$id: http://devicetree.org/schemas/hte/nvidia,tegra194-hte.yaml#
->>>> +$id: http://devicetree.org/schemas/timestamp/nvidia,tegra194-hte.yaml#
->>>>  $schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>
->>>>  title: Tegra194 on chip generic hardware timestamping engine (HTE)
->>>>
->>>> base-commit: cc63e8e92cb872081f249ea16e6c460642f3e4fb
->>>> --
->>>> 2.17.1
->>>>
