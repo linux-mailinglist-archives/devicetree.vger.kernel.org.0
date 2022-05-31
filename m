@@ -2,218 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB08A53934B
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 16:47:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C128A53936B
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 16:54:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343867AbiEaOrc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 10:47:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53932 "EHLO
+        id S240984AbiEaOyY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 10:54:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345308AbiEaOr2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 10:47:28 -0400
-Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC4181EAFF
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 07:47:25 -0700 (PDT)
-Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-2ff90e0937aso142248047b3.4
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 07:47:25 -0700 (PDT)
+        with ESMTP id S240450AbiEaOyY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 10:54:24 -0400
+Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com [IPv6:2607:f8b0:4864:20::e35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50A838FFAF
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 07:54:23 -0700 (PDT)
+Received: by mail-vs1-xe35.google.com with SMTP id c62so13803346vsc.10
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 07:54:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=semihalf-com.20210112.gappssmtp.com; s=20210112;
+        d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=0/w36mR8lkluvb8r4zMg9iFSFRhtHLpPbTXMI17TU+0=;
-        b=LSLyPRCEhXwgNFtzrXoohD9b0LordUSKogzPD70Sspkp+qbF4XrKc4emGZDOqFhtZq
-         V9GMbd4oqskJ5yX/Onrv4xCdE2Hb19sjiQLd5lXz3isCADO36PQwBR+CqvHyIbovAct9
-         2Goq8LE+bgXwOcTIUbdiMiZ2/O7Hi0EY7NhlWgT4KL5DdcHjD+VfD4cw9dbk7afIZAlR
-         ajkQOPs+PJeB46bfEqAgEH6FVCR9dcpq36yDQx5eqH/udxd20DndGF/cTN1/b1XwmS1t
-         23sMUF4kMLrWJYOsmDZGqCXs7TLhu2OnlFf3HEPhJMHSsLvyuN9AswgDHGEJUjJUV0Ay
-         v9xw==
+         :cc;
+        bh=tQxdl0uYa8OhSPAiD8UDXyjhRIKPrGS8E/wJlLbnVaQ=;
+        b=SA2mdwS7u1Lbbdguu9Lh/LPaqa0kM6B92uAOaPIaQ55EI+kpJtBOQAdPE6wtXNHjlR
+         UWSVot5AcqDwxuwjLe6eNXECdjEY8DWKfxKPjfrTjle080w6EIUj4BI1YJggSuA9Ep+V
+         derKnrB6WP5GmwlKRLrwXGnIhCIIDo/Aa3nb3T4dhitHYU6mQwCtZfsppnPA5KqohyX7
+         7K8bR2fXj3rFMzkD1myDnasYB8yHaLzYsK6maqpkwWeBJBPXEsx65jIe18rJk1uq1wY+
+         FeOcD19ptbBpQgWFvEnLthmXdfagGyNCMRUekxcHymFFKc/BO2MOyk0do3WH7gu8Zp27
+         6wjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=0/w36mR8lkluvb8r4zMg9iFSFRhtHLpPbTXMI17TU+0=;
-        b=XLKeAz1Jj54iIHR10o4yuyEE6CSK5cKGH9XBubLUF2twEYhnZZNMnvv2mk319NiqaZ
-         OVXtCPB994bAlDailfcSgg3VXaE2NSdvzAdUEgIlkDaDAyel/onZwgW3b9gtFkssRJUP
-         Rz313ZK88YZf9uHexVIUOJm0O0a3F+OE/Z15epnMFehS+uyUo58BsZeZuGmDcKkDPuNp
-         iabMTvOJ8Wn+fnf8S4CZpLdoK+9/MvSk+cDOlqukXPc0ZYDSi41bZFNMhCxy+LzCwbLu
-         J6NMP8raWDkuYiWoesxItt/KW6AZ4ZubNggg4kg1Fp5oJKtzxzHQOgH4rOiZapK43Vts
-         dNoA==
-X-Gm-Message-State: AOAM530p0PGz2/VBtnRIAqP0Mpjhl7ZQIBSpoWOxDbSthi3AASTiSCVR
-        y0n+ARKD1a0s6EGEYCoLBAEEXbft98RHZQCZSwBMHA==
-X-Google-Smtp-Source: ABdhPJxalwaZgY7TBxR+rRUyZGByUKq8vkvMzwrupGRbsbPzVyQkfLLhgbl3SHj69aTFZUjOQDLsewD3X2l5ox/iwNk=
-X-Received: by 2002:a81:92cd:0:b0:30c:33ad:377e with SMTP id
- j196-20020a8192cd000000b0030c33ad377emr14554771ywg.286.1654008444987; Tue, 31
- May 2022 07:47:24 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=tQxdl0uYa8OhSPAiD8UDXyjhRIKPrGS8E/wJlLbnVaQ=;
+        b=yADsfwYp6ZazaltgAeyvvIygH4F6EcKDWG07BRYLb1l5qRkfFX9W5lsqmiBEjer/jW
+         tZY7GYv0O01D7BRq07wQSVByu2L5umN+8DRHEc5wY5l9UqkKouzZTMiEcPDVoeGw0Wel
+         9Cnc3L918JFHGxJwWd5/QwEyZitwtwjsjpksv/FdXahfrVwldAcgQ4nfjVlfuVJeqoNU
+         VDI9g7QoZrU/bWImAx5gXQZpMpUq4qQSA3E4+NDWyaM+rhPiZAFBA7tXNAOdcTejdG5b
+         /ev3f3Kq/qRLNUq3nw43ghcZe3VJBqvY6I1Noj2aObDuid/VmYtb3bkr18Z+VeZbe6Av
+         12pQ==
+X-Gm-Message-State: AOAM531o8UALWdWaFfOkPtaUaEwwt9MrQj4PRV+2xVOtcw6JmYkLzYtb
+        +xj2PawlJqEQEKQK6l9ZohZSmh3wG5KFEbQ8Aw0=
+X-Google-Smtp-Source: ABdhPJxu45XN1f/QP/9LN0O/KL6GImwrdfSeXn4oZyoQn8qTX4YcOePYgoy7fUjlNERLKtljkpcB7mX9CkHjO4NaxXg=
+X-Received: by 2002:a67:cb95:0:b0:337:e29b:c824 with SMTP id
+ h21-20020a67cb95000000b00337e29bc824mr13012181vsl.19.1654008862388; Tue, 31
+ May 2022 07:54:22 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220530130839.120710-1-pan@semihalf.com> <20220530130839.120710-3-pan@semihalf.com>
- <f789afb2-33c5-2b28-5ade-0c76ebb7206f@linaro.org> <CAHNYxRw00QraVW0085xO-qzgGJdZ2joukuSYzBQo+yjLnkD=Tw@mail.gmail.com>
- <e4ef2056-c990-b308-a9d5-98f11ac0ba51@linaro.org>
-In-Reply-To: <e4ef2056-c990-b308-a9d5-98f11ac0ba51@linaro.org>
-From:   =?UTF-8?Q?Pawe=C5=82_Anikiel?= <pan@semihalf.com>
-Date:   Tue, 31 May 2022 16:47:13 +0200
-Message-ID: <CAF9_jYR=sjP9wYW9wyfbrVYO4PDYTfMhjvyyh53U3a3+2Zyw=g@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dts: socfpga: Add Google Chameleon v3 devicetree
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Alexandru M Stan <amstan@chromium.org>, SoC Team <soc@kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Dinh Nguyen <dinguyen@kernel.org>
+References: <20220515202032.3046-1-stefan.wahren@i2se.com> <20220515202032.3046-7-stefan.wahren@i2se.com>
+In-Reply-To: <20220515202032.3046-7-stefan.wahren@i2se.com>
+From:   Peter Robinson <pbrobinson@gmail.com>
+Date:   Tue, 31 May 2022 15:54:10 +0100
+Message-ID: <CALeDE9MNi0Tb0Lw=jJykNpF8R+We48y2pvPHxQTsCykFFPbhTQ@mail.gmail.com>
+Subject: Re: [PATCH 06/11] mfd: bcm2835-pm: Use 'reg-names' to get resources
+To:     Stefan Wahren <stefan.wahren@i2se.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Melissa Wen <melissa.srw@gmail.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 31, 2022 at 11:11 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Sun, May 15, 2022 at 9:21 PM Stefan Wahren <stefan.wahren@i2se.com> wrote:
 >
-> On 31/05/2022 03:20, Alexandru M Stan wrote:
-> > Hello Krzysztof
-> >
-> > On Mon, May 30, 2022 at 11:56 AM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 30/05/2022 15:08, Pawe=C5=82 Anikiel wrote:
-> >>> Add devicetree for the Google Chameleon v3 board.
-> >>>
-> >>> Signed-off-by: Pawe=C5=82 Anikiel <pan@semihalf.com>
-> >>> Signed-off-by: Alexandru M Stan <amstan@chromium.org>
-> >>
-> >> Your SoB chain looks odd. Who did what here?
-> >
-> > Sorry about this.
-> >
-> > It was mainly Pawel but I did some small changes at some point before
-> > it landed in our tree (particularly the GPIOs).
+> From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 >
-> Then usually Pawe=C5=82 should be the owner of the patch, not you.
-> Alternatively it could be also co-developed.
->
-> >
-> >>
-> >>> ---
-> >>>  arch/arm/boot/dts/Makefile                    |  1 +
-> >>>  .../boot/dts/socfpga_arria10_chameleonv3.dts  | 90 +++++++++++++++++=
-++
-> >>>  2 files changed, 91 insertions(+)
-> >>>  create mode 100644 arch/arm/boot/dts/socfpga_arria10_chameleonv3.dts
-> >>>
-> >>> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> >>> index 023c8b4ba45c..9417106d3289 100644
-> >>> --- a/arch/arm/boot/dts/Makefile
-> >>> +++ b/arch/arm/boot/dts/Makefile
-> >>> @@ -1146,6 +1146,7 @@ dtb-$(CONFIG_ARCH_S5PV210) +=3D \
-> >>>       s5pv210-torbreck.dtb
-> >>>  dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) +=3D \
-> >>>       socfpga_arria5_socdk.dtb \
-> >>> +     socfpga_arria10_chameleonv3.dtb \
-> >>>       socfpga_arria10_socdk_nand.dtb \
-> >>>       socfpga_arria10_socdk_qspi.dtb \
-> >>>       socfpga_arria10_socdk_sdmmc.dtb \
-> >>> diff --git a/arch/arm/boot/dts/socfpga_arria10_chameleonv3.dts b/arch=
-/arm/boot/dts/socfpga_arria10_chameleonv3.dts
-> >>> new file mode 100644
-> >>> index 000000000000..988cc445438e
-> >>> --- /dev/null
-> >>> +++ b/arch/arm/boot/dts/socfpga_arria10_chameleonv3.dts
-> >>> @@ -0,0 +1,90 @@
-> >>> +// SPDX-License-Identifier: GPL-2.0
-> >>> +/*
-> >>> + * Copyright 2022 Google LLC
-> >>> + */
-> >>> +/dts-v1/;
-> >>> +#include "socfpga_arria10_mercury_aa1.dtsi"
-> >>> +
-> >>> +/ {
-> >>> +     model =3D "Google Chameleon V3";
-> >>> +     compatible =3D "google,chameleon-v3",
-> >>
-> >> You miss here enclustra compatible.
-> >
-> > Does this make sense? I don't expect this device tree to boot/work on
-> > an enclustra motherboard. It's only really compatible with a
-> > "chameleon-v3".
->
-> You also do not expect it to boot on altr,socfpga, do you?
->
-> If I understood correctly, this board has physically Mercury AA1 SoM, so
-> that compatible should be there.
+> If available in firmware, find resources by their 'reg-names' position
+> instead of relying on hardcoded offsets. Care is taken to support old
+> firmware nonetheless.
 
-Yes, you understood correctly.
-I looked at a similar device - the Cyclone V MCV (SoM) and the MCVEVK
-(base board):
-arch/arm/boot/dts/socfpga_cyclone5_mcv.dtsi
-arch/arm/boot/dts/socfpga_cyclone5_mcvevk.dts
-And there is no denx,mcv compatible anywhere, only denx,mcvevk.
-Also, devicetree bindings documentation lists denx,mcvevk under
-"Cyclone 5 boards", and, unless you consider the MCV to be a board,
-there isn't a good place to put denx,mcv (same story with mercury+
-aa1/chameleon).
+So this patch has changed a little over Nicolas's last one, which was
+what I based my patch on [1] but there's no changelog
 
->
-> It's the same for every other SoM. Neither Google nor Enclustra are
-> special...
->
-> >
-> >>
-> >>> +                  "altr,socfpga-arria10", "altr,socfpga";
-> >>> +
-> >>> +     aliases {
-> >>> +             serial0 =3D &uart0;
-> >>> +             i2c0 =3D &i2c0;
-> >>> +             i2c1 =3D &i2c1;
-> >>> +     };
-> >>> +};
-> >>> +
-> >>> +&gmac0 {
-> >>> +     status =3D "okay";
-> >>> +};
-> >>> +
-> >>> +&gpio0 {
-> >>> +     status =3D "okay";
-> >>> +};
-> >>> +
-> >>> +&gpio1 {
-> >>> +     status =3D "okay";
-> >>> +};
-> >>> +
-> >>> +&gpio2 {
-> >>> +     status =3D "okay";
-> >>> +};
-> >>> +
-> >>> +&i2c0 {
-> >>> +     status =3D "okay";
-> >>> +
-> >>> +     ssm2603: ssm2603@1a {
-> >>
-> >> Generic node names.
-> >
-> > Dumb question: what does this mean?
-> >
-> > Are you saying the name is too generic? As someone reading the
-> > schematics this would be immediately clear what chip it's talking
-> > about.
->
-> Let me clarify - please use generic node names, as asked by Devicetree
-> specification (2.2.1. Node Name Requirements). There is also list of
-> some examples in the spec, but you can use some other generic node name.
->
-> Several bindings also require it.
+[1] https://patchwork.kernel.org/project/linux-arm-kernel/patch/20220213225646.67761-7-pbrobinson@gmail.com/
 
-Do you mean something like this?
-ssm2603: audio-codec@1a {
-u80: gpio@21 {
+> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+Minor comment inline, else:
+Reviewed-by: Peter Robinson <pbrobinson@gmail.com>
+> ---
+>  drivers/mfd/bcm2835-pm.c | 59 +++++++++++++++++++++++++++-------------
+>  1 file changed, 40 insertions(+), 19 deletions(-)
+>
+> diff --git a/drivers/mfd/bcm2835-pm.c b/drivers/mfd/bcm2835-pm.c
+> index 42fe67f1538e..1656d786993a 100644
+> --- a/drivers/mfd/bcm2835-pm.c
+> +++ b/drivers/mfd/bcm2835-pm.c
+> @@ -25,9 +25,41 @@ static const struct mfd_cell bcm2835_power_devs[] = {
+>         { .name = "bcm2835-power" },
+>  };
+>
+> +static int bcm2835_pm_get_pdata(struct platform_device *pdev,
+> +                               struct bcm2835_pm *pm)
+> +{
+> +       /* If no 'reg-names' property is found we can assume we're using old
+> +        * firmware.
+> +        */
+> +       if (!of_find_property(pm->dev->of_node, "reg-names", NULL)) {
+> +               dev_warn(pm->dev, "Old devicetree detected, please update your firmware.\n");
 
-Regards,
-Pawe=C5=82
+If they're using an upstream kernel DT and an old firmware this may be
+confusing, maybe tweak the wording a little?
+
+> +
+> +               pm->base = devm_platform_ioremap_resource(pdev, 0);
+> +               if (IS_ERR(pm->base))
+> +                       return PTR_ERR(pm->base);
+> +
+> +               pm->asb = devm_platform_ioremap_resource(pdev, 1);
+> +       } else {
+> +               struct resource *res;
+> +
+> +               pm->base = devm_platform_ioremap_resource_byname(pdev, "pm");
+> +               if (IS_ERR(pm->base))
+> +                       return PTR_ERR(pm->base);
+> +
+> +               res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
+> +                                                   "asb");
+> +               if (res)
+> +                       pm->asb = devm_ioremap_resource(&pdev->dev, res);
+> +       }
+> +
+> +       if (IS_ERR(pm->asb))
+> +               pm->asb = NULL;
+> +
+> +       return 0;
+> +}
+> +
+>  static int bcm2835_pm_probe(struct platform_device *pdev)
+>  {
+> -       struct resource *res;
+>         struct device *dev = &pdev->dev;
+>         struct bcm2835_pm *pm;
+>         int ret;
+> @@ -39,10 +71,9 @@ static int bcm2835_pm_probe(struct platform_device *pdev)
+>
+>         pm->dev = dev;
+>
+> -       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> -       pm->base = devm_ioremap_resource(dev, res);
+> -       if (IS_ERR(pm->base))
+> -               return PTR_ERR(pm->base);
+> +       ret = bcm2835_pm_get_pdata(pdev, pm);
+> +       if (ret)
+> +               return ret;
+>
+>         ret = devm_mfd_add_devices(dev, -1,
+>                                    bcm2835_pm_devs, ARRAY_SIZE(bcm2835_pm_devs),
+> @@ -54,20 +85,10 @@ static int bcm2835_pm_probe(struct platform_device *pdev)
+>          * bcm2835-pm binding as the key for whether we can reference
+>          * the full PM register range and support power domains.
+>          */
+> -       res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+> -       if (res) {
+> -               pm->asb = devm_ioremap_resource(dev, res);
+> -               if (IS_ERR(pm->asb))
+> -                       return PTR_ERR(pm->asb);
+> -
+> -               ret = devm_mfd_add_devices(dev, -1,
+> -                                          bcm2835_power_devs,
+> -                                          ARRAY_SIZE(bcm2835_power_devs),
+> -                                          NULL, 0, NULL);
+> -               if (ret)
+> -                       return ret;
+> -       }
+> -
+> +       if (pm->asb)
+> +               return devm_mfd_add_devices(dev, -1, bcm2835_power_devs,
+> +                                           ARRAY_SIZE(bcm2835_power_devs),
+> +                                           NULL, 0, NULL);
+>         return 0;
+>  }
+>
+> --
+> 2.25.1
+>
