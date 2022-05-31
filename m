@@ -2,79 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 289A6538D66
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 11:06:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B191538D82
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 11:12:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245056AbiEaJGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 05:06:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42426 "EHLO
+        id S245087AbiEaJME (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 05:12:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240819AbiEaJGR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 05:06:17 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AB675D5EA
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 02:06:15 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id n28so7800344edb.9
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 02:06:15 -0700 (PDT)
+        with ESMTP id S244958AbiEaJMD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 05:12:03 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E23BE10541
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 02:12:00 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id rq11so25357080ejc.4
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 02:12:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=B2NZyh+cIzrC0yFlwkj26EY9e6xfk3X9ZOP0bB7w4RU=;
-        b=evfYu89qrruMy5yGwmxBJhM8KXCVIu/OZBaUQPkSOXRQHIJSgPxnAPck4/CEMxA2xS
-         9A7fxfcNylHRm04f+y4UMLYh/5/ugmpXz/dtkGEleESJNaRVi5nItdPU3zCXw6R/FyTk
-         pEAm6gxRh8AHpjMqWy7kfyHE+70PbcPRhs25Ua0PkuS/i6eLr4f2Yr8nPe5tFyqo7g8k
-         RFDYapRfPijF2lpkcIgRSma8knwy6R00DZgglmSmZVwx0/EoggbEtqt+ZvIHxilNQgjW
-         jMhwJHDaFGIg960qPHjNUv7zjTAy5mCruh52XrxatfsES+i/H1XvXEfg8VsinY91pwT/
-         FOlA==
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=tCT50Fh+5piWSzBKb7EMdRddbudd57xtmdgm3CE6V14=;
+        b=PGB/B7/Yzc2AzW6eApiu2Hn5uZicnKoLYS9im7otzR9PXX5JVzOTLEJELyx+CxnPXO
+         +kH94qrP+Fl1d+WMT6EiSTc331sBIbuOTUPMvQwqTdp96XlohJi0+bXIk85NvMpqcHWv
+         PMlCoYEKHzrRYolXGe6CxaIiSo0zu+GL7/Dddi2Ct3tghdM9ybWi3ZNw7TBTzEDJkFtw
+         cihKAuay8eov8BIzWAq7KZRlpmNFYRlPBX/QyxeHOhR/CYTDhgqURHViPZmrT2Mink6l
+         PAvfNK3B03KiznBxeXA4yCAhQ3oPrJLGl/EwlKLVqBkbF7e5sr6nOCIUcqTHeVzg38uv
+         xw1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=B2NZyh+cIzrC0yFlwkj26EY9e6xfk3X9ZOP0bB7w4RU=;
-        b=mOthzlFgQbZKmyEe0u48SZ5SJdBfQtAxygaGB8XZOOFaC2daAbX2x64A3KV4P9U3FE
-         ECjMCg9KMm33xWQB4JsulHGMV+AtcfOLdKL95WGfGxkFY9kiw/uI+V6XiHzgKAOvrfuZ
-         Kmv8GYMFSG0UF2EjJS48feTgj8jLpt/s2Np0/D1e17Iz0TuMgyml2T7vKGNcze0PurD6
-         dDRMv/SYtyb5xHnfwTDI5T3dYyuQjO8KmA3g8qYM5uEHTM1q7ZwLB6zIqwUoF9qnt7H4
-         q87Zn73W128XqYMIHfcEtv0wBcG15lY1kEJkUywv4/Lkf4PIYARoZ2F/bn4g9HZEQkjd
-         OKWQ==
-X-Gm-Message-State: AOAM531JOCoJWTVpvi2tajjFP/bhdhzxH1C97BJnxUqH4dhCsMebtj0Y
-        rcx+zRg8VjFx+xw7ajhVpZ5mhQ==
-X-Google-Smtp-Source: ABdhPJzfU8m5rdIdp7q9S5qXsHiz9hvCjAboBg4T85QPihizQhore6X/2gC1ZgEh7FJCE7skEc8wyA==
-X-Received: by 2002:a05:6402:d0e:b0:413:3d99:f2d6 with SMTP id eb14-20020a0564020d0e00b004133d99f2d6mr63612187edb.189.1653987974122;
-        Tue, 31 May 2022 02:06:14 -0700 (PDT)
+        bh=tCT50Fh+5piWSzBKb7EMdRddbudd57xtmdgm3CE6V14=;
+        b=Fw9A3cjTctLziAECCWiEYEjQgNA3ymYwk+5LNTcecJTzl1CikQ8BQg9TcsbOeo4UDY
+         49mpaW9suTZSfJeFcqJNfBX2x/DGk0hNSXbQ3s3WqtWxRuyoHPZbPELSo9bEsZ1YIukl
+         Di6ZwNUgUQOKxHqgcTujaWTIqS3pQHRfbM/uQxKy9ZsXccax1k8OPdii8JV5590k1Bqm
+         xuJi1KtpQP8ya6eYF5y8IzeRWGK8RYlAVA2XHR/maJVnn3SxPAWEhPIjXBqY6cNh9ZRa
+         6Lhvn6bEQoRaUq8UoxXG4hw5aMjh8lUDqQIVOEX4k68Fn3y4E9SJTAxdHiEPqAOVt1v8
+         DTyw==
+X-Gm-Message-State: AOAM530Q4yTelh0yZre3VURbetubqbH3pzV/JtAKtkIX6lIFS4ZHpQJT
+        dMp4KLn04ONvlhWRgt9QbSmjHg==
+X-Google-Smtp-Source: ABdhPJwO4McNyf+LCq8d8GlFSdkiQA/rXG1KcssvcKs4gyMH/JmH0M8NOi6N7hux818VUWZb9IUbxw==
+X-Received: by 2002:a17:907:d16:b0:6f8:c054:29ac with SMTP id gn22-20020a1709070d1600b006f8c05429acmr53469868ejc.96.1653988319462;
+        Tue, 31 May 2022 02:11:59 -0700 (PDT)
 Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id fi5-20020a1709073ac500b006fed93bf71fsm4808930ejc.18.2022.05.31.02.06.13
+        by smtp.gmail.com with ESMTPSA id mc22-20020a170906eb5600b006feb002a620sm4737178ejb.1.2022.05.31.02.11.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 May 2022 02:06:13 -0700 (PDT)
-Message-ID: <ae36420f-847b-c53b-24ad-22e3181bff51@linaro.org>
-Date:   Tue, 31 May 2022 11:06:12 +0200
+        Tue, 31 May 2022 02:11:58 -0700 (PDT)
+Message-ID: <e4ef2056-c990-b308-a9d5-98f11ac0ba51@linaro.org>
+Date:   Tue, 31 May 2022 11:11:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH 1/2] net/ncsi: use proper "mellanox" DT vendor prefix
+Subject: Re: [PATCH 2/3] dts: socfpga: Add Google Chameleon v3 devicetree
 Content-Language: en-US
-To:     Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Samuel Mendoza-Jonas <sam@mendozajonas.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org
-References: <20220529111017.181766-1-krzysztof.kozlowski@linaro.org>
- <48cb78ebd38dfe4ac05e337d5fb38623b7ee0e8f.camel@redhat.com>
+To:     Alexandru M Stan <amstan@chromium.org>
+Cc:     =?UTF-8?Q?Pawe=c5=82_Anikiel?= <pan@semihalf.com>, soc@kernel.org,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>, arnd@arndb.de,
+        Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, dinguyen@kernel.org
+References: <20220530130839.120710-1-pan@semihalf.com>
+ <20220530130839.120710-3-pan@semihalf.com>
+ <f789afb2-33c5-2b28-5ade-0c76ebb7206f@linaro.org>
+ <CAHNYxRw00QraVW0085xO-qzgGJdZ2joukuSYzBQo+yjLnkD=Tw@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <48cb78ebd38dfe4ac05e337d5fb38623b7ee0e8f.camel@redhat.com>
+In-Reply-To: <CAHNYxRw00QraVW0085xO-qzgGJdZ2joukuSYzBQo+yjLnkD=Tw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,38 +83,143 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/05/2022 10:21, Paolo Abeni wrote:
-> Hello,
+On 31/05/2022 03:20, Alexandru M Stan wrote:
+> Hello Krzysztof
 > 
-> On Sun, 2022-05-29 at 13:10 +0200, Krzysztof Kozlowski wrote:
->> "mlx" Devicetree vendor prefix is not documented and instead "mellanox"
->> should be used.
+> On Mon, May 30, 2022 at 11:56 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
 >>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  net/ncsi/ncsi-manage.c | 3 ++-
->>  1 file changed, 2 insertions(+), 1 deletion(-)
+>> On 30/05/2022 15:08, Paweł Anikiel wrote:
+>>> Add devicetree for the Google Chameleon v3 board.
+>>>
+>>> Signed-off-by: Paweł Anikiel <pan@semihalf.com>
+>>> Signed-off-by: Alexandru M Stan <amstan@chromium.org>
 >>
->> diff --git a/net/ncsi/ncsi-manage.c b/net/ncsi/ncsi-manage.c
->> index 78814417d753..80713febfac6 100644
->> --- a/net/ncsi/ncsi-manage.c
->> +++ b/net/ncsi/ncsi-manage.c
->> @@ -1803,7 +1803,8 @@ struct ncsi_dev *ncsi_register_dev(struct net_device *dev,
->>  	pdev = to_platform_device(dev->dev.parent);
->>  	if (pdev) {
->>  		np = pdev->dev.of_node;
->> -		if (np && of_get_property(np, "mlx,multi-host", NULL))
->> +		if (np && (of_get_property(np, "mellanox,multi-host", NULL) ||
->> +			   of_get_property(np, "mlx,multi-host", NULL)))
->>  			ndp->mlx_multi_host = true;
->>  	}
->>
+>> Your SoB chain looks odd. Who did what here?
 > 
-> I can't guess which tree are you targeting, devicetree? net-next? could
-> you please specify?
+> Sorry about this.
+> 
+> It was mainly Pawel but I did some small changes at some point before
+> it landed in our tree (particularly the GPIOs).
 
-Both independently. The patch here for net-next (although it is closed
-now). The DTS patch can come later via ARM SoC maintainer tree.
+Then usually Paweł should be the owner of the patch, not you.
+Alternatively it could be also co-developed.
+
+> 
+>>
+>>> ---
+>>>  arch/arm/boot/dts/Makefile                    |  1 +
+>>>  .../boot/dts/socfpga_arria10_chameleonv3.dts  | 90 +++++++++++++++++++
+>>>  2 files changed, 91 insertions(+)
+>>>  create mode 100644 arch/arm/boot/dts/socfpga_arria10_chameleonv3.dts
+>>>
+>>> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+>>> index 023c8b4ba45c..9417106d3289 100644
+>>> --- a/arch/arm/boot/dts/Makefile
+>>> +++ b/arch/arm/boot/dts/Makefile
+>>> @@ -1146,6 +1146,7 @@ dtb-$(CONFIG_ARCH_S5PV210) += \
+>>>       s5pv210-torbreck.dtb
+>>>  dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += \
+>>>       socfpga_arria5_socdk.dtb \
+>>> +     socfpga_arria10_chameleonv3.dtb \
+>>>       socfpga_arria10_socdk_nand.dtb \
+>>>       socfpga_arria10_socdk_qspi.dtb \
+>>>       socfpga_arria10_socdk_sdmmc.dtb \
+>>> diff --git a/arch/arm/boot/dts/socfpga_arria10_chameleonv3.dts b/arch/arm/boot/dts/socfpga_arria10_chameleonv3.dts
+>>> new file mode 100644
+>>> index 000000000000..988cc445438e
+>>> --- /dev/null
+>>> +++ b/arch/arm/boot/dts/socfpga_arria10_chameleonv3.dts
+>>> @@ -0,0 +1,90 @@
+>>> +// SPDX-License-Identifier: GPL-2.0
+>>> +/*
+>>> + * Copyright 2022 Google LLC
+>>> + */
+>>> +/dts-v1/;
+>>> +#include "socfpga_arria10_mercury_aa1.dtsi"
+>>> +
+>>> +/ {
+>>> +     model = "Google Chameleon V3";
+>>> +     compatible = "google,chameleon-v3",
+>>
+>> You miss here enclustra compatible.
+> 
+> Does this make sense? I don't expect this device tree to boot/work on
+> an enclustra motherboard. It's only really compatible with a
+> "chameleon-v3".
+
+You also do not expect it to boot on altr,socfpga, do you?
+
+If I understood correctly, this board has physically Mercury AA1 SoM, so
+that compatible should be there.
+
+It's the same for every other SoM. Neither Google nor Enclustra are
+special...
+
+> 
+>>
+>>> +                  "altr,socfpga-arria10", "altr,socfpga";
+>>> +
+>>> +     aliases {
+>>> +             serial0 = &uart0;
+>>> +             i2c0 = &i2c0;
+>>> +             i2c1 = &i2c1;
+>>> +     };
+>>> +};
+>>> +
+>>> +&gmac0 {
+>>> +     status = "okay";
+>>> +};
+>>> +
+>>> +&gpio0 {
+>>> +     status = "okay";
+>>> +};
+>>> +
+>>> +&gpio1 {
+>>> +     status = "okay";
+>>> +};
+>>> +
+>>> +&gpio2 {
+>>> +     status = "okay";
+>>> +};
+>>> +
+>>> +&i2c0 {
+>>> +     status = "okay";
+>>> +
+>>> +     ssm2603: ssm2603@1a {
+>>
+>> Generic node names.
+> 
+> Dumb question: what does this mean?
+> 
+> Are you saying the name is too generic? As someone reading the
+> schematics this would be immediately clear what chip it's talking
+> about.
+
+Let me clarify - please use generic node names, as asked by Devicetree
+specification (2.2.1. Node Name Requirements). There is also list of
+some examples in the spec, but you can use some other generic node name.
+
+Several bindings also require it.
+
+> 
+>>
+>>> +             compatible = "adi,ssm2603";
+>>> +             reg = <0x1a>;
+>>> +     };
+>>> +};
+>>> +
+>>> +&i2c1 {
+>>> +     status = "okay";
+>>> +
+>>> +     u80: u80@21 {
+>>> +             compatible = "nxp,pca9535";
+>>
+>> Generic node names.
+> 
+> FWIW: Schematic is full of these pca9535 io expanders, only one (U80)
+> is visible to linux on an I2C bus.
+
 
 
 Best regards,
