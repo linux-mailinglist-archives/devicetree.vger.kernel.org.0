@@ -2,125 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78F5E538970
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 03:12:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D31FA538982
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 03:21:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243225AbiEaBLW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 May 2022 21:11:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45906 "EHLO
+        id S238443AbiEaBVY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 May 2022 21:21:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243067AbiEaBLU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 21:11:20 -0400
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2137.outbound.protection.outlook.com [40.107.93.137])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 275E093996;
-        Mon, 30 May 2022 18:11:16 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GD+eRIytNOtyuUJjQFO0IdTmmyaz6P1C+EldQLVHO/D9hU/6BOBRmKevftt5UkoaQC7QGPhdw/hkjMozlFQSmuWk84pElcQmpqV0WF90D4wOZCQodrnuY5ggB5L1kaIGHUqEJpe1SaUpkA8ZZJTvwPokQu2J1mrJkpggv/cd50yx1nQjvx28heyCzaGCKDUcenLBlCEq/MmRx66WpKohcgVlVv5MbdR2AqgpIZlH9u9EOsaw9PKw7ruKRWjt5PnDJbJRu/viE1k7f17vb8uRrNlT4xm3mUd9A5V1CUi2kNJWHeS+KHxExrBEuMb1efMqXwulTIL0wyK65rZmX8+7zg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Gjqpm39znF19RIwUEXykENaEek6zWNOvFFvtZH3gxtU=;
- b=kB1RdPlsdH/Yfe/1fdItSA+R5zvrDF459DjhlNTvdjV0L3VkC0ESDKlPs/ovvB0Xl5tmPn5wEfkOIOSGgCu/j2Wp5U5TeTeUou50mkYk9ZvARDpZpRliS5mFR6mJKsip/c/1C5PyzbwlsFcGoha32YrRPXtlzKA7L5C0E9IyAHwD20Y1ThDhyUt0V8mQbbTYVisrXSz/1U0GiNDV4vNmDH7d41rq0b0Nc1ri3NBm0SfrHKsd6v/xf+n5gNFFJteayG7gTL9EnY6ag6sMs7xVwEwReDR6yXNbnAxNoLaN53NRAxi1Du/Xy0kdfd5g/GC5C0XH+0H6Q6JMM+IzIS1L/g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 8.14.198.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=jabil.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=jabil.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jabil.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Gjqpm39znF19RIwUEXykENaEek6zWNOvFFvtZH3gxtU=;
- b=BiW8K+S3JOEY4Q4HdCDknDvadw2wecyYdw5RuoPf1lC4UmbLqEwo6r8v9j4JAv2eIfO45w9/mFoUrpEVepUlGWpoFYnfbJ4CRkdmEjcoIhZx54hWbnTjRdaEw601wUOUYfce8wzJsWrKwlmKf/QFBSmfIprp/80QoePREK6PnrI3Bf+gr92u+P/Z3/7eRHtIFCNY2r/pM4ruITIzyktmuWUjKraxVYLeGfQdtXztWgI13glOrO2syFLnR4Ofp27drMHwABuKIolW1oFIJFcCPdnUSF7Q53uPQLHLKfBeirW9IYAbBCoA8M1DOLmmXadTtCHhK6lmaypXDUhi00S5rQ==
-Received: from MWHPR17CA0083.namprd17.prod.outlook.com (2603:10b6:300:c2::21)
- by SN6PR02MB4158.namprd02.prod.outlook.com (2603:10b6:805:2c::32) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.18; Tue, 31 May
- 2022 01:11:14 +0000
-Received: from CO1NAM11FT011.eop-nam11.prod.protection.outlook.com
- (2603:10b6:300:c2:cafe::21) by MWHPR17CA0083.outlook.office365.com
- (2603:10b6:300:c2::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.19 via Frontend
- Transport; Tue, 31 May 2022 01:11:14 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 8.14.198.160)
- smtp.mailfrom=jabil.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=jabil.com;
-Received-SPF: Pass (protection.outlook.com: domain of jabil.com designates
- 8.14.198.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=8.14.198.160; helo=jabil.com; pr=C
-Received: from jabil.com (8.14.198.160) by
- CO1NAM11FT011.mail.protection.outlook.com (10.13.175.186) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5293.13 via Frontend Transport; Tue, 31 May 2022 01:11:14 +0000
-Received: from usplnd0hub02.corp.jabil.org (10.10.47.157) by
- USPLND0HUB01.corp.JABIL.ORG (10.10.32.73) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Mon, 30 May 2022 20:11:13 -0500
-Received: from JDSBuild.corp.JABIL.ORG (10.10.7.5) by
- usplnd0hub02.corp.jabil.org (10.10.47.157) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Mon, 30 May 2022 20:11:12 -0500
-From:   David Wang <David_Wang6097@jabil.com>
-To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <edward_chen@jabil.com>, <ben_pai@jabil.com>,
-        David Wang <David_Wang6097@jabil.com>
-Subject: [PATCH v5 2/3] dt-bindings: vendor-prefixes: document jabil vendors for Aspeed BMC boards
-Date:   Tue, 31 May 2022 09:11:00 +0800
-Message-ID: <20220531011100.882643-3-David_Wang6097@jabil.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220531011100.882643-1-David_Wang6097@jabil.com>
-References: <20220531011100.882643-1-David_Wang6097@jabil.com>
+        with ESMTP id S229495AbiEaBVX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 May 2022 21:21:23 -0400
+Received: from mail-vs1-xe34.google.com (mail-vs1-xe34.google.com [IPv6:2607:f8b0:4864:20::e34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A872193989
+        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 18:21:22 -0700 (PDT)
+Received: by mail-vs1-xe34.google.com with SMTP id w10so12227690vsa.4
+        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 18:21:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=BWNRT5udm1cgBdQ1Fxg5zG/+3/maHcJ/jTCZwv9kK0Y=;
+        b=YQYAAlLeMUHgntePBFcBgxcUsquOmjLnhtgUC/3Q3o/zgoZkgVeK36XpsBCi6pns+R
+         kLef9uDuC+Io3XodrSVzibaBXvsOd5uSUfLuES2zkWFDV89HFpb3G0w+Zj0tTY1/E+IC
+         3LuKDTbAuqiVOqwu7QJvcN0qtjWnECEHDZoQc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=BWNRT5udm1cgBdQ1Fxg5zG/+3/maHcJ/jTCZwv9kK0Y=;
+        b=KjT1UbaSKPmVokA6AKpbBkqLurTlb/V7LkofqmFZ23AM0IehwfnlWSgAmnf46ryY/Z
+         D/fNZr6PcAkR+lc2F7L31zbZt95f9vIBYW3nFKki8CXh1O7F07MGDxM2CrUgqsJZUEAv
+         NocVE+3HeoLIVjr4StO6w+tgQQJY6S78GKcP09OzBJsZo8zE8MZZvR1yeFfzBROP3P6t
+         SSgivBkcADRaUswC2rMTnH2uBCdDGueq8cMbQBfrhNK/cMpJHDDAokHiCsp7nkyaiNwY
+         HWJHdjqTYkuDCn3uKSZNV/TFrS01xG+ZM49yqL1ZaDDWmOo/zgJPaOZ51EJMP4E6jT0/
+         5ShQ==
+X-Gm-Message-State: AOAM532YDXXLYTljpa19AHR3L8C12PR2yYtkMPfaPSiJ4C0+zlTRNy7e
+        M4Zr6BoKwDzrqF6aIKEiQUA9/qWvB4TC7Q==
+X-Google-Smtp-Source: ABdhPJyKeLxPFPM+H13YRJF65NX0BCqvMeCgLgWjFHhlSf9stRtKekph5te82pWfiWxexrn+ouD21g==
+X-Received: by 2002:a67:c904:0:b0:337:a2fe:87dd with SMTP id w4-20020a67c904000000b00337a2fe87ddmr17819509vsk.55.1653960081605;
+        Mon, 30 May 2022 18:21:21 -0700 (PDT)
+Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com. [209.85.221.169])
+        by smtp.gmail.com with ESMTPSA id t15-20020a1f2d0f000000b0034e6f1fd046sm1557026vkt.16.2022.05.30.18.21.20
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 May 2022 18:21:20 -0700 (PDT)
+Received: by mail-vk1-f169.google.com with SMTP id bs5so5580477vkb.4
+        for <devicetree@vger.kernel.org>; Mon, 30 May 2022 18:21:20 -0700 (PDT)
+X-Received: by 2002:a05:6122:818:b0:357:26f8:5e73 with SMTP id
+ 24-20020a056122081800b0035726f85e73mr20773778vkj.5.1653960079694; Mon, 30 May
+ 2022 18:21:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 794adf28-2625-40c0-df5d-08da42a27502
-X-MS-TrafficTypeDiagnostic: SN6PR02MB4158:EE_
-X-Microsoft-Antispam-PRVS: <SN6PR02MB4158ECB14A1B71B2502B31EBEFDC9@SN6PR02MB4158.namprd02.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 8DMh+uXaNLNk4zOJulsNehDBj463gCxyIT3e5Z7SCtQm0xpe0G4zoUdLdTBg3KByS54Lkr+IlI+VqTFImS5S5FZezjMu6CUl8ltLbFrq55LoNiCiYgb2k7/RQNzm16uI0VHCyyELJoXhTmuOGG5PV7DU35mMUdmjWUqJtdLZ1Mc+YHtU68cS5A0EYubwOXsTyCxawXdl/lvsLg2W4mJGFUSxxz6GI5SUSSQoRilh9zWjKif9td+xTt6nsAcRruAyPP0gNS7Yz1mBpLiUjE7tU35b53/Xk7gpKyTPzkY+GNa/bG1OqnaAFR3qsfnnrsnclCsgj0pLaech2nZzxHPA/Ib36svq2vho0mY2u1a5GNHteBDQPwLpYh84i2p7vzN7LWulWINRUvxoe9YYT81rrDmw9BdCVmVP/E5DL7hDdg4zR3a23H2asCsc71p9t9Qn0D1NxqhOVbyccAu1IlDYIWlK/vxGIReDS9XGobdOJW3O38872PD0RbgkX/IuElqp5zk/Vc+n5jSHBMrvw3ZzueyUWQk1V3Gv6bmmjRGbnVw3APKAlrbvQUFw+hZ3cx51teZJ6Vz8ySW2C3Pvs1iHO4onT9CygcObJwZMyhyp4fiqscN7KEj12h1rJPYcR6ajrHmpM4QJg9CiXLmYUGppdSPsn+91hxeb5yVX1Ha0y3Bpc6/p+4VC61kkoZcHUBpBXE8tfKlx/9A12yX9f69S8Q==
-X-Forefront-Antispam-Report: CIP:8.14.198.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:jabil.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(26005)(336012)(2616005)(47076005)(36860700001)(86362001)(2906002)(6666004)(82310400005)(110136005)(4326008)(36756003)(54906003)(316002)(8676002)(70206006)(70586007)(107886003)(81166007)(4744005)(40460700003)(1076003)(186003)(356005)(508600001)(8936002)(82960400001)(5660300002)(36900700001);DIR:OUT;SFP:1102;
-X-OriginatorOrg: jabil.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2022 01:11:14.0510
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 794adf28-2625-40c0-df5d-08da42a27502
-X-MS-Exchange-CrossTenant-Id: bc876b21-f134-4c12-a265-8ed26b7f0f3b
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bc876b21-f134-4c12-a265-8ed26b7f0f3b;Ip=[8.14.198.160];Helo=[jabil.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT011.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR02MB4158
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+References: <20220530130839.120710-1-pan@semihalf.com> <20220530130839.120710-3-pan@semihalf.com>
+ <f789afb2-33c5-2b28-5ade-0c76ebb7206f@linaro.org>
+In-Reply-To: <f789afb2-33c5-2b28-5ade-0c76ebb7206f@linaro.org>
+From:   Alexandru M Stan <amstan@chromium.org>
+Date:   Mon, 30 May 2022 18:20:43 -0700
+X-Gmail-Original-Message-ID: <CAHNYxRw00QraVW0085xO-qzgGJdZ2joukuSYzBQo+yjLnkD=Tw@mail.gmail.com>
+Message-ID: <CAHNYxRw00QraVW0085xO-qzgGJdZ2joukuSYzBQo+yjLnkD=Tw@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dts: socfpga: Add Google Chameleon v3 devicetree
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     =?UTF-8?Q?Pawe=C5=82_Anikiel?= <pan@semihalf.com>, soc@kernel.org,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>, arnd@arndb.de,
+        Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, dinguyen@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Added Jabil vendor prefix for Aspeed SoC based BMC board manufacturers
+Hello Krzysztof
 
-Signed-off-by: David Wang <David_Wang6097@jabil.com>
----
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+On Mon, May 30, 2022 at 11:56 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 30/05/2022 15:08, Pawe=C5=82 Anikiel wrote:
+> > Add devicetree for the Google Chameleon v3 board.
+> >
+> > Signed-off-by: Pawe=C5=82 Anikiel <pan@semihalf.com>
+> > Signed-off-by: Alexandru M Stan <amstan@chromium.org>
+>
+> Your SoB chain looks odd. Who did what here?
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 169f11ce4cc5..013ea02fb39a 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -638,6 +638,8 @@ patternProperties:
-     description: Jiandangjing Technology Co., Ltd.
-   "^joz,.*":
-     description: JOZ BV
-+  "^jabil,.*":
-+    description: Jabil Design Service Branch (Sanchong)
-   "^kam,.*":
-     description: Kamstrup A/S
-   "^karo,.*":
--- 
-2.30.2
+Sorry about this.
 
+It was mainly Pawel but I did some small changes at some point before
+it landed in our tree (particularly the GPIOs).
+
+>
+> > ---
+> >  arch/arm/boot/dts/Makefile                    |  1 +
+> >  .../boot/dts/socfpga_arria10_chameleonv3.dts  | 90 +++++++++++++++++++
+> >  2 files changed, 91 insertions(+)
+> >  create mode 100644 arch/arm/boot/dts/socfpga_arria10_chameleonv3.dts
+> >
+> > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> > index 023c8b4ba45c..9417106d3289 100644
+> > --- a/arch/arm/boot/dts/Makefile
+> > +++ b/arch/arm/boot/dts/Makefile
+> > @@ -1146,6 +1146,7 @@ dtb-$(CONFIG_ARCH_S5PV210) +=3D \
+> >       s5pv210-torbreck.dtb
+> >  dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) +=3D \
+> >       socfpga_arria5_socdk.dtb \
+> > +     socfpga_arria10_chameleonv3.dtb \
+> >       socfpga_arria10_socdk_nand.dtb \
+> >       socfpga_arria10_socdk_qspi.dtb \
+> >       socfpga_arria10_socdk_sdmmc.dtb \
+> > diff --git a/arch/arm/boot/dts/socfpga_arria10_chameleonv3.dts b/arch/a=
+rm/boot/dts/socfpga_arria10_chameleonv3.dts
+> > new file mode 100644
+> > index 000000000000..988cc445438e
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/socfpga_arria10_chameleonv3.dts
+> > @@ -0,0 +1,90 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Copyright 2022 Google LLC
+> > + */
+> > +/dts-v1/;
+> > +#include "socfpga_arria10_mercury_aa1.dtsi"
+> > +
+> > +/ {
+> > +     model =3D "Google Chameleon V3";
+> > +     compatible =3D "google,chameleon-v3",
+>
+> You miss here enclustra compatible.
+
+Does this make sense? I don't expect this device tree to boot/work on
+an enclustra motherboard. It's only really compatible with a
+"chameleon-v3".
+
+>
+> > +                  "altr,socfpga-arria10", "altr,socfpga";
+> > +
+> > +     aliases {
+> > +             serial0 =3D &uart0;
+> > +             i2c0 =3D &i2c0;
+> > +             i2c1 =3D &i2c1;
+> > +     };
+> > +};
+> > +
+> > +&gmac0 {
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&gpio0 {
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&gpio1 {
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&gpio2 {
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&i2c0 {
+> > +     status =3D "okay";
+> > +
+> > +     ssm2603: ssm2603@1a {
+>
+> Generic node names.
+
+Dumb question: what does this mean?
+
+Are you saying the name is too generic? As someone reading the
+schematics this would be immediately clear what chip it's talking
+about.
+
+>
+> > +             compatible =3D "adi,ssm2603";
+> > +             reg =3D <0x1a>;
+> > +     };
+> > +};
+> > +
+> > +&i2c1 {
+> > +     status =3D "okay";
+> > +
+> > +     u80: u80@21 {
+> > +             compatible =3D "nxp,pca9535";
+>
+> Generic node names.
+
+FWIW: Schematic is full of these pca9535 io expanders, only one (U80)
+is visible to linux on an I2C bus.
+
+>
+>
+>
+> Best regards,
+> Krzysztof
+
+Thanks,
+Alexandru Stan (amstan)
