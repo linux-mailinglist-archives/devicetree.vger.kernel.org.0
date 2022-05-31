@@ -2,280 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4800A5390F4
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 14:44:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 806A55390FE
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 14:45:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343902AbiEaMoC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 08:44:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44662 "EHLO
+        id S1344341AbiEaMpz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 08:45:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231193AbiEaMoB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 08:44:01 -0400
-Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84A466EC4D
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 05:44:00 -0700 (PDT)
-Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-2ff7b90e635so137960507b3.5
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 05:44:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=semihalf-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=Wv+lZyCaE5kbkLZpqQvi2xp+OoDSqLcG7HNruSmDfC8=;
-        b=XNWi1d1oeE0HDSgunP6m9EOL2loWM0Nn14vYZ7RDHJApDMHysMiN9E9GxGPeft5nSa
-         BTgo7Ek7+TpqeLvM+63oxN+U81RPwTIV96z04d7ugi/hj1bv9WfjpfefwvGxP+4Rt1DV
-         4almvcFW6ZKDRTJWC/ranIrKv9t3ENmkKE/Z2a/Vl3yPIxFDZXTT+O8JJHNedz9ZGxCI
-         K/xeYzvmmRJcY0+z5wO+eZPJ/cpNZXAXr70FT0SdPea0rDxWWoxMo3DZ3ks6lHCc7+Ty
-         dhl1y8aMn2pppa3+ZjvqABteKAeQ/1DDZZkj0VSPfqXa3uTZO6uPE0+QSLJxhdfIy5ja
-         Zf2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Wv+lZyCaE5kbkLZpqQvi2xp+OoDSqLcG7HNruSmDfC8=;
-        b=rYLu7qLf9NWswvsaD1n+JwtPOIuSIKGAQBD+EePb4dtluU6Tj4cvFgMR2+8eYIdZ22
-         U6IxZDsMEgZzBIWbXsEHqfNWjXVphfCC6kp0G1I4t0BV6g2lDyreTquLIOkSkLuYIjP9
-         GuZA3dULxCz+FnWU5q/TjAMlqL5ElibfqAfFj8TjIV2f8cHQBOIIUxEaoHOu6TzEoLrf
-         RZCXfPRZk46I5zU3cY0rWXCMp+fMQbzyFL059HGumU8L/WGNY7hW0Z3XwJI9lyrncOdm
-         DZz7szjJubjOv/RH/Q0+2/l8x795AI+S1R4LDB0cHKqh/W3Ebi9CzPIQJCibnG0wE8WA
-         Q79A==
-X-Gm-Message-State: AOAM5330Su+SJStg9KdcQlq2k/zthTWjWS9V1MZTLsMcNnjvRWGmlzP/
-        h+wV1Rga8nSkp1iKourZerCMdX3qFA+wUPCKeft7uQ==
-X-Google-Smtp-Source: ABdhPJzeGNxtL8TPdvCOrBOXNjOCKP8RSjF0qzXwrWGx09HwYJPlam/R5UHa322kEdYOs0PWmQPr2S/j6AIlnevJFPY=
-X-Received: by 2002:a81:ccd:0:b0:30c:2ad6:925b with SMTP id
- 196-20020a810ccd000000b0030c2ad6925bmr15444888ywm.498.1654001039770; Tue, 31
- May 2022 05:43:59 -0700 (PDT)
+        with ESMTP id S239853AbiEaMpy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 08:45:54 -0400
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 000ED6EB22;
+        Tue, 31 May 2022 05:45:52 -0700 (PDT)
+Received: (Authenticated sender: jacopo@jmondi.org)
+        by mail.gandi.net (Postfix) with ESMTPSA id 4EEC720005;
+        Tue, 31 May 2022 12:45:49 +0000 (UTC)
+Date:   Tue, 31 May 2022 14:45:47 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Quentin Schulz <quentin.schulz@theobroma-systems.com>
+Cc:     Quentin Schulz <foss+kernel@0leil.net>, shawnx.tu@intel.com,
+        mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 4/4] media: i2c: ov5675: add .get_selection support
+Message-ID: <20220531124547.vqfrqbs5d37l3z6h@uno.localdomain>
+References: <20220525145833.1165437-1-foss+kernel@0leil.net>
+ <20220525145833.1165437-4-foss+kernel@0leil.net>
+ <20220531105011.yxrosmwtw3mpaomb@uno.localdomain>
+ <842dbd3c-856b-e5a8-e942-545ceb6741ca@theobroma-systems.com>
 MIME-Version: 1.0
-References: <20220530130839.120710-1-pan@semihalf.com> <20220530130839.120710-2-pan@semihalf.com>
- <73f01056-e674-d910-1c0d-98c4001f909d@linaro.org>
-In-Reply-To: <73f01056-e674-d910-1c0d-98c4001f909d@linaro.org>
-From:   =?UTF-8?Q?Pawe=C5=82_Anikiel?= <pan@semihalf.com>
-Date:   Tue, 31 May 2022 14:43:49 +0200
-Message-ID: <CAF9_jYQTTtK-MmEc11NnW8Aez6OtmZeJB7aPhYLoEvQ9vFiuLQ@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dts: socfpga: Change Mercury+ AA1 devicetree to header
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     SoC Team <soc@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Dinh Nguyen <dinguyen@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <842dbd3c-856b-e5a8-e942-545ceb6741ca@theobroma-systems.com>
+X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_00,PDS_OTHER_BAD_TLD,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thank you for the review, I'm thinking of splitting this commit into
-several smaller ones:
-- remove all status =3D "okay" things and i2c aliases
-- remove sdmmc-ecc node (it's a part of the Arria 10 SoC, not the mercury)
-- add atsha204a node
-- add copyright header
-- style fixes (phy reg, memory)
-What do you think?
+Hi Quentin
 
-Please see my other comments below.
-
-On Mon, May 30, 2022 at 8:55 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Tue, May 31, 2022 at 02:19:21PM +0200, Quentin Schulz wrote:
+> Hi Jacopo,
 >
-> On 30/05/2022 15:08, Pawe=C5=82 Anikiel wrote:
-> > The Mercury+ AA1 is not a standalone board, rather it's a module
-> > with an Arria 10 SoC and some peripherals on it. Remove everything that
-> > is not strictly related to the module.
->
-> Subject has several issues:
-> 1. Use prefix matching subsystem (git log --oneline)
-
-Just to make sure, are you referring to the ARM: prefix?
-
-> 2. You are not changing here anything to header. Header files have
-> different format and end with .h. This is a DTSI file.
-
-Yes, I meant dtsi.
-
->
+> On 5/31/22 12:50, Jacopo Mondi wrote:
+> > Hi Quentin
 > >
-> > Signed-off-by: Pawe=C5=82 Anikiel <pan@semihalf.com>
->
-> Thank you for your patch. There is something to discuss/improve.
->
-> > ---
-> >  arch/arm/boot/dts/Makefile                    |  1 -
-> >  ...1.dts =3D> socfpga_arria10_mercury_aa1.dtsi} | 68 ++++-------------=
---
-> >  2 files changed, 14 insertions(+), 55 deletions(-)
-> >  rename arch/arm/boot/dts/{socfpga_arria10_mercury_aa1.dts =3D> socfpga=
-_arria10_mercury_aa1.dtsi} (58%)
+> > On Wed, May 25, 2022 at 04:58:33PM +0200, Quentin Schulz wrote:
+> > > From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+> > >
+> > > The sensor has 2592*1944 active pixels, surrounded by 16 active dummy
+> > > pixels and there are an additional 24 black rows "at the bottom".
+> > >
+> > >                       [2624]
+> > >          +-----+------------------+-----+
+> > >          |     |     16 dummy     |     |
+> > >          +-----+------------------+-----+
+> > >          |     |                  |     |
+> > >          |     |     [2592]       |     |
+> > >          |     |                  |     |
+> > >          |16   |      valid       | 16  |[2000]
+> > >          |dummy|                  |dummy|
+> > >          |     |            [1944]|     |
+> > >          |     |                  |     |
+> > >          +-----+------------------+-----+
+> > >          |     |     16 dummy     |     |
+> > >          +-----+------------------+-----+
+> > >          |     |  24 black lines  |     |
+> > >          +-----+------------------+-----+
+> > >
+> > > The top-left coordinate is gotten from the registers specified in the
+> > > modes which are identical for both currently supported modes.
+> > >
+> > > Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+> > > ---
+> > >
+> > > v4:
+> > >   - explicit a bit more the commit log,
+> > >   - added drawing in the commit log,
+> > >   - fixed reporting for V4L2_SEL_TGT_CROP_* thanks to Jacopo's help,
+> > >
+> > > added in v3
+> > >
+> > >   drivers/media/i2c/ov5675.c | 33 +++++++++++++++++++++++++++++++++
+> > >   1 file changed, 33 insertions(+)
+> > >
+> > > diff --git a/drivers/media/i2c/ov5675.c b/drivers/media/i2c/ov5675.c
+> > > index c1f3c387afde0..384a9ea2372c3 100644
+> > > --- a/drivers/media/i2c/ov5675.c
+> > > +++ b/drivers/media/i2c/ov5675.c
+> > > @@ -1121,6 +1121,38 @@ static int ov5675_get_format(struct v4l2_subdev *sd,
+> > >   	return 0;
+> > >   }
+> > >
+> > > +static int ov5675_get_selection(struct v4l2_subdev *sd,
+> > > +				struct v4l2_subdev_state *state,
+> > > +				struct v4l2_subdev_selection *sel)
+> > > +{
+> > > +	struct ov5675 *ov5675 = to_ov5675(sd);
+> > > +
+> > > +	if (sel->which != V4L2_SUBDEV_FORMAT_ACTIVE)
+> > > +		return -EINVAL;
+> > > +
+> > > +	switch (sel->target) {
+> > > +	case V4L2_SEL_TGT_CROP_BOUNDS:
+> > > +		sel->r.top = 0;
+> > > +		sel->r.left = 0;
+> > > +		sel->r.width = 2624;
+> > > +		sel->r.height = 2000;
+> > > +		return 0;
+> > > +	case V4L2_SEL_TGT_CROP:
+> > > +		sel->r.top = 16;
+> > > +		sel->r.left = 16;
+> > > +		sel->r.width = ov5675->cur_mode->width;
+> > > +		sel->r.height = ov5675->cur_mode->height;
+> > > +		return 0;
 > >
-> > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> > index edfbedaa6168..023c8b4ba45c 100644
-> > --- a/arch/arm/boot/dts/Makefile
-> > +++ b/arch/arm/boot/dts/Makefile
-> > @@ -1146,7 +1146,6 @@ dtb-$(CONFIG_ARCH_S5PV210) +=3D \
-> >       s5pv210-torbreck.dtb
-> >  dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) +=3D \
-> >       socfpga_arria5_socdk.dtb \
-> > -     socfpga_arria10_mercury_aa1.dtb \
-> >       socfpga_arria10_socdk_nand.dtb \
-> >       socfpga_arria10_socdk_qspi.dtb \
-> >       socfpga_arria10_socdk_sdmmc.dtb \
-> > diff --git a/arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dts b/arch/a=
-rm/boot/dts/socfpga_arria10_mercury_aa1.dtsi
-> > similarity index 58%
-> > rename from arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dts
-> > rename to arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dtsi
-> > index a75c059b6727..fee1fc39bb2b 100644
-> > --- a/arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dts
-> > +++ b/arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dtsi
-> > @@ -1,57 +1,38 @@
-> >  // SPDX-License-Identifier: GPL-2.0
-> > -/dts-v1/;
-> > -
-> > +/*
-> > + * Copyright 2022 Google LLC
-> > + */
->
-> How is this related to the patch?
-
-I'll move this change to a seperate commit.
-
->
-> >  #include "socfpga_arria10.dtsi"
+> > I'm afraid this doesn't match exactly my understanding of the
+> > discussion we had.
 > >
-> >  / {
-> > -
-> > -     model =3D "Enclustra Mercury AA1";
-> > -     compatible =3D "enclustra,mercury-aa1", "altr,socfpga-arria10", "=
-altr,socfpga";
-> > -
-> >       aliases {
-> >               ethernet0 =3D &gmac0;
-> >               serial1 =3D &uart1;
-> > -             i2c0 =3D &i2c0;
-> > -             i2c1 =3D &i2c1;
-> > -     };
-> > -
-> > -     memory@0 {
-> > -             name =3D "memory";
-> > -             device_type =3D "memory";
-> > -             reg =3D <0x0 0x80000000>; /* 2GB */
-> >       };
+> > The driver defines the following modes
 > >
-> >       chosen {
-> >               stdout-path =3D "serial1:115200n8";
-> >       };
-> > -};
+> > /*
+> >   * OV5670 sensor supports following resolutions with full FOV:
+> >   * 4:3  ==> {2592x1944, 1296x972, 648x486}
+> >   * 16:9 ==> {2560x1440, 1280x720, 640x360}
+> >   */
+> > static const struct ov5670_mode supported_modes[] = {
+> > 	{
+> > 		.width = 2592,
+> > 		.height = 1944,
+> > 	},
+> > 	{
+> > 		.width = 1296,
+> > 		.height = 972,
+> > 	},
+> > 	{
+> > 		.width = 648,
+> > 		.height = 486,
+> > 	},
+> > 	{
+> > 		.width = 2560,
+> > 		.height = 1440,
+> > 	},
+> > 	{
+> > 		.width = 1280,
+> > 		.height = 720,
+> > 	},
+> > 	{
+> > 		.width = 640,
+> > 		.height = 360,
+> > 	}
+> > };
 > >
-> > -&eccmgr {
-> > -     sdmmca-ecc@ff8c2c00 {
-> > -             compatible =3D "altr,socfpga-sdmmc-ecc";
-> > -             reg =3D <0xff8c2c00 0x400>;
-> > -             altr,ecc-parent =3D <&mmc>;
-> > -             interrupts =3D <15 IRQ_TYPE_LEVEL_HIGH>,
-> > -                          <47 IRQ_TYPE_LEVEL_HIGH>,
-> > -                          <16 IRQ_TYPE_LEVEL_HIGH>,
-> > -                          <48 IRQ_TYPE_LEVEL_HIGH>;
-> > +     memory@0 {
-> > +             name =3D "memory";
-> > +             device_type =3D "memory";
-> > +             reg =3D <0x0 0x80000000>; /* 2GB */
-> >       };
-> >  };
+> > The comment says all modes retain the "full FOV", which I assume it
+> > implies they are obtained by sub-sampling and not cropping.
 > >
-> >  &gmac0 {
-> >       phy-mode =3D "rgmii";
-> > -     phy-addr =3D <0xffffffff>; /* probe for phy addr */
-> > +     phy-handle =3D <&phy3>;
+> > The first three modes (4:3) are indeed obtained by subsampling the
+> > full active pixel array:
 > >
-> >       max-frame-size =3D <3800>;
-> > -     status =3D "okay";
-> > -
-> > -     phy-handle =3D <&phy3>;
+> >          (2592,1944) / 2 = (1296,972) / 2 = (648,486)
 > >
-> >       mdio {
-> >               #address-cells =3D <1>;
-> >               #size-cells =3D <0>;
-> >               compatible =3D "snps,dwmac-mdio";
-> >               phy3: ethernet-phy@3 {
-> > +                     reg =3D <3>;
-> >                       txd0-skew-ps =3D <0>; /* -420ps */
-> >                       txd1-skew-ps =3D <0>; /* -420ps */
-> >                       txd2-skew-ps =3D <0>; /* -420ps */
-> > @@ -64,35 +45,23 @@ phy3: ethernet-phy@3 {
-> >                       txc-skew-ps =3D <1860>; /* 960ps */
-> >                       rxdv-skew-ps =3D <420>; /* 0ps */
-> >                       rxc-skew-ps =3D <1680>; /* 780ps */
-> > -                     reg =3D <3>;
->
-> This and few other changes (like memory) are not related to the commit.
-> Do not mix different cleanups together.
-
-l'll put the cleanup changes into a seperate commit.
-
->
-> >               };
-> >       };
-> >  };
+> > The last three are obtained by subsampling a slightly cropped portion
+> > of the pixel array
 > >
-> > -&gpio0 {
-> > -     status =3D "okay";
-> > -};
-> > -
-> > -&gpio1 {
-> > -     status =3D "okay";
-> > -};
-> > -
-> > -&gpio2 {
-> > -     status =3D "okay";
-> > -};
->
-> Why removing all these? Aren't they available on the SoM? The same
-> question applies to several other pieces, for example UART and USB -
-> aren't these part of SoM?
-
-I'm removing them from here, but adding them to socfpga_arria10_chameleonv3=
-.dts.
-I think that enabling them should be done in the base board's dts, as
-the connections
-go to the base board. The Chameleon v3 has a USB port, but a different
-base board might
-not have one.
-
->
-> > -
-> >  &i2c1 {
-> > -     status =3D "okay";
-> > +     atsha204a: atsha204a@64 {
->
-> How is this change related at all to what you described in commit? There
-> was no atsha204a before.
-
-As previously mentioned, I'll move this change to a seperate commit.
-
->
-> > +             compatible =3D "atmel,atsha204a";
-> > +             reg =3D <0x64>;
-> > +     };
-> > +
-> >       isl12022: isl12022@6f {
-> > -             status =3D "okay";
-> >               compatible =3D "isil,isl12022";
-> >               reg =3D <0x6f>;
-> >       };
-> >  };
+> >          (2560,1440) / 2 = (1280,720) / 2 = (640,360)
+> >
+> > If you set CROP = cur_mode->[width/height] you will instead report the
+> > visible width/height, which as said it's obtained by subsampling (of a
+> > slightly cropped portion of the pixel array for the last three ones)
+> >
+> > The CROP rectangle is then (2592, 1944) for the first three and (2560,
+> > 1440) for the last three.
+> >
+> > I would add a v4l2_rect to struct ov5670_mode where to record that and
+> > report it here.
 > >
 >
-> Best regards,
-> Krzysztof
+> That makes a lot of sense to me, thanks for your patience and explanations.
+>
+> FYI, you're looking at the wrong driver (ov5670 vs ov5675; a mistake I make
 
+You know what's depressing ? -I- have a series out for ov5670 :(
+I'm so sorry, my brain got short-circuited by that probably...
 
-Regards,
-Pawe=C5=82
+> every now and then too :) ). However, the datasheet does say that "The
+> OV5675 supports a binning mode to provide a lower resolution output while
+> maintaining the field of view.[...] The OV5675 supports 2x2 binning." so I
+> assume we're in the same scenario as you just explained.
+>
+> Since the OV5675 modes currently supported by the drivers are 4/3 only and
+> the smaller size mode a result of subsampling, they both have the same CROP
+> rectangle.
+>
+
+Thankfully the comment still applies to ov5675 then, and both modes
+have the same (2592, 1944) crop rectangle :)
+
+> > > +	case V4L2_SEL_TGT_CROP_DEFAULT:
+> > > +		sel->r.top = 16;
+> > > +		sel->r.left = 16;
+> > > +		sel->r.width = supported_modes[0].width;
+> > > +		sel->r.height = supported_modes[0].height;
+> > > +		return 0;
+> >
+> > You could also define these values instead of fishing in the
+> > supported_modes array, to protect against future changes to the array
+> > itself. Up to you.
+> >
+>
+> Since there's no cropping involved in the current modes, I assume we could
+> just hardcode the width and height and tackle this limitation later, once we
+> add more modes or support for configuring cropping (this patch only adds the
+> getter and not the setter).
+
+Fine with me!
+
+Sorry again for the slip!
+
+>
+> Cheers,
+> Quentin
