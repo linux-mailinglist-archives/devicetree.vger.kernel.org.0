@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B31C538F40
+	by mail.lfdr.de (Postfix) with ESMTP id 1F8D4538F3F
 	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 12:52:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343566AbiEaKwA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 06:52:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55134 "EHLO
+        id S1343578AbiEaKwC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 06:52:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244823AbiEaKv7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 06:51:59 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FF63483A5
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 03:51:58 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id o10so578902edi.1
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 03:51:58 -0700 (PDT)
+        with ESMTP id S1343575AbiEaKwB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 06:52:01 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67FC452B04
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 03:51:59 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id c2so7426066edf.5
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 03:51:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=f+aAYlhBaoqcFmdU6C9Gx84E9qMJBIbqGLgTA0/mSl4=;
-        b=pwIV2cacZ4ygg//TwNYbRKiQjUBGzgJXtzcat0O1FUmk1LRXTQlUJc6YLXXq5TAeVn
-         XTCERPOuIAUvyA1fsx/lioJV542cqtv6JlHCeTPnTmWtkvMqpvUNnDfn0Nn7mnVzj2kN
-         2V7sQohQUnjdNW6Y0rM64nPDNwRlpqtkcahLIXo/vWcujgCoxDuG7MYyY1LbTXnUCT/g
-         RwhPdpNiD3G44Ta4qb/1IKHQ5Ve1UePVPf/Fq3m871Uf1efZ3z/zrq7rBnrfJ2e3ETSO
-         qfWsPGcPhc31ZKBeBSaPCp6wfmp3PQDAY3ob04CrCAty60UOsIVAlXrhkiHVyKRxzsHK
-         uWTA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=p7mIRFKlf7mUQrcHty6Iw1fiOYErDnQJ/9BxNwewsYs=;
+        b=TiHu58MJlYhDvueuzEoHjnSpR3Ya+RJjug8dDTTt9WjVthO56N67D8UITUHAQInfyf
+         x5nP4VMVucwgsYbu7uoh9+CTyGV3uuTHUUuFKKE/dmrf9iWu1qBG2r3hliuSuqRSdQmG
+         YD2OXZ0pvFK3DODLBfIVTW1xBKHdOuOrcsrHBZWdi0gK4eGOHTzQnlWxwGFdOzTrbQ0g
+         Sj80Bl4LQgiiIr/TGn5oBSQK+ak7bcQnGqqJMWWFUWHdAvtPUs2yG2KZTcUzw893ouol
+         C5UVNlrPYxSoqPmaJ75K0VzyIJ8KwnG/D8kEj8hPrdB3G2HWdCqbDt0iYVBm0tO+ElRA
+         +31g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=f+aAYlhBaoqcFmdU6C9Gx84E9qMJBIbqGLgTA0/mSl4=;
-        b=RNvlJwQFUEqu1VAJZ/vqfG1QyOdAkYEcd8G/gCyoaJ3uiyzjVhK3Nd/ijhsYZkNyHH
-         /pltMgJ+RLlXwKotXPWllipjpGnOFleJymjikBhYuoUCSIoIiUnqcQxiCyyiKnBvz6Ib
-         HwvnQVG6mKeun1fk7IqeqgMxA1rD5hDm4H0nsOWFgJHgfLFp7r3CFYSaxamj3igw5IKF
-         ftwyN48ZiCdfUywht45X/LC1A7dCudig7p2rUWEhdR4+2qxA/BPFp/gitt0Z3FCP0dmY
-         FdMiXAt1Sij8sXdD5HeWAlvc+V8wWbOoJwouxZEfOvFrQbWHNcLZvA/kXAspSNviBGHJ
-         aTXA==
-X-Gm-Message-State: AOAM530+bT3/8SXHWLKQaxjLf6osGSlcaaQAM0Sxg1HHwB8PaZ0P7O6A
-        6hu8/V3Ag3zWW8v6saJdMCwzuw==
-X-Google-Smtp-Source: ABdhPJw6rnERzo76jayiAAFVyPq+buvlnElOKXK3el57Jti5fQow9ZL3T4gzpxQSRGCHCDm5L/IYNg==
-X-Received: by 2002:a05:6402:2741:b0:41f:69dc:9bcd with SMTP id z1-20020a056402274100b0041f69dc9bcdmr63412100edd.239.1653994316871;
-        Tue, 31 May 2022 03:51:56 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=p7mIRFKlf7mUQrcHty6Iw1fiOYErDnQJ/9BxNwewsYs=;
+        b=1x+ZMfPor3UkwvHvYI5Ts+rxg3riHTW6kjJPunU8M1Yjf6mq2kXzx3buk33UPm/Pt8
+         ofDFbL8CGpCfrCUyfLTyQ59Wmc0ue3OrLFdk9E7mYjhoQYPC11E0tJg1qarTBW4ad0dU
+         RFvD6BFUwtUVtjVhuH+mhHmnfELlnotBxRyRD7zkdL7X5/rMJwIM4nqrBEP7DEuP+aih
+         Du9bMqxjNB+GfSLliKuXN7YtvIDZl25qGj4/ZZdqcknZ6p2uwvFZG2VJmiaN3Grkziji
+         0RG7wtFEMiSQVzE2eXaYaoVEPtB7TIJCAt6GYNDjzkjKR4i9jLMdlz8fwmnIVAwr5jxa
+         yVnQ==
+X-Gm-Message-State: AOAM532cF1pY14dqWeqNwXacH6QAluRPf2pfi+ItjBdhU//qWfjowU9w
+        P86L6n3s/KT7q62nIvZd0e6UNw==
+X-Google-Smtp-Source: ABdhPJwbV5+sW0Qx8vGQ9DlloXkTdOIz0AFgs5SvDYPE7n9AHH/lMowZnogwo+2y/mLUoHVo2QoiZQ==
+X-Received: by 2002:a05:6402:4c1:b0:42b:e03f:d940 with SMTP id n1-20020a05640204c100b0042be03fd940mr25357406edw.235.1653994318019;
+        Tue, 31 May 2022 03:51:58 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id q3-20020a50aa83000000b0042dc513ced8sm5117441edc.30.2022.05.31.03.51.55
+        by smtp.gmail.com with ESMTPSA id q3-20020a50aa83000000b0042dc513ced8sm5117441edc.30.2022.05.31.03.51.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 May 2022 03:51:56 -0700 (PDT)
+        Tue, 31 May 2022 03:51:57 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -57,15 +57,18 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
         linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3 0/4] soc/arm64: qcom: Add initial version of bwmon
-Date:   Tue, 31 May 2022 12:51:33 +0200
-Message-Id: <20220531105137.110050-1-krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>
+Subject: [PATCH v3 1/4] dt-bindings: interconnect: qcom,sdm845-cpu-bwmon: add BWMON device
+Date:   Tue, 31 May 2022 12:51:34 +0200
+Message-Id: <20220531105137.110050-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220531105137.110050-1-krzysztof.kozlowski@linaro.org>
+References: <20220531105137.110050-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,57 +76,122 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Add bindings for the Qualcomm Bandwidth Monitor device providing
+performance data on interconnects.  The bindings describe only BWMON
+version 4, e.g. the instance on SDM845 between CPU and Last Level Cache
+Controller.
 
-Changes since v2
-================
-1. Spent a lot of time on benchmarking and learning the BWMON behavior.
-2. Drop PM/OPP patch - applied.
-3. Patch #1: drop opp-avg-kBps.
-4. Patch #2: Add several comments explaining pieces of code and BWMON, extend
-   commit msg with measurements, extend help message, add new #defines to document
-   some magic values, reorder bwmon clear/disable/enable operations to match
-   downstream source and document this with comments, fix unit count from 1 MB
-   to 65 kB.
-5. Patch #4: drop opp-avg-kBps.
-6. Add accumulated Rb tags.
-
-Changes since v1
-================
-1. Add defconfig change.
-2. Fix missing semicolon in MODULE_AUTHOR.
-3. Add original downstream (msm-4.9 tree) copyrights to the driver.
-
-Description
-===========
-BWMON is a data bandwidth monitor providing throughput/bandwidth over certain
-interconnect links in a SoC.  It might be used to gather current bus usage and
-vote for interconnect bandwidth, thus adjusting the bus speed based on actual
-usage.
-
-The work is built on top of Thara Gopinath's patches with several cleanups,
-changes and simplifications.
-
-Best regards,
-Krzysztof
-
-Krzysztof Kozlowski (4):
-  dt-bindings: interconnect: qcom,sdm845-cpu-bwmon: add BWMON device
-  soc: qcom: icc-bwmon: Add bandwidth monitoring driver
-  arm64: defconfig: enable Qualcomm Bandwidth Monitor
-  arm64: dts: qcom: sdm845: Add CPU BWMON
-
- .../interconnect/qcom,sdm845-cpu-bwmon.yaml   |  97 ++++
- MAINTAINERS                                   |   7 +
- arch/arm64/boot/dts/qcom/sdm845.dtsi          |  54 +++
- arch/arm64/configs/defconfig                  |   1 +
- drivers/soc/qcom/Kconfig                      |  15 +
- drivers/soc/qcom/Makefile                     |   1 +
- drivers/soc/qcom/icc-bwmon.c                  | 418 ++++++++++++++++++
- 7 files changed, 593 insertions(+)
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Georgi Djakov <djakov@kernel.org>
+---
+ .../interconnect/qcom,sdm845-cpu-bwmon.yaml   | 97 +++++++++++++++++++
+ 1 file changed, 97 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sdm845-cpu-bwmon.yaml
- create mode 100644 drivers/soc/qcom/icc-bwmon.c
 
+diff --git a/Documentation/devicetree/bindings/interconnect/qcom,sdm845-cpu-bwmon.yaml b/Documentation/devicetree/bindings/interconnect/qcom,sdm845-cpu-bwmon.yaml
+new file mode 100644
+index 000000000000..8c82e06ee432
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interconnect/qcom,sdm845-cpu-bwmon.yaml
+@@ -0,0 +1,97 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interconnect/qcom,sdm845-cpu-bwmon.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Interconnect Bandwidth Monitor
++
++maintainers:
++  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
++
++description:
++  Bandwidth Monitor measures current throughput on buses between various NoC
++  fabrics and provides information when it crosses configured thresholds.
++
++properties:
++  compatible:
++    enum:
++      - qcom,sdm845-cpu-bwmon       # BWMON v4
++
++  interconnects:
++    maxItems: 2
++
++  interconnect-names:
++    items:
++      - const: ddr
++      - const: l3c
++
++  interrupts:
++    maxItems: 1
++
++  operating-points-v2: true
++  opp-table: true
++
++  reg:
++    # Currently described BWMON v4 and v5 use one register address space.
++    # BWMON v2 uses two register spaces - not yet described.
++    maxItems: 1
++
++required:
++  - compatible
++  - interconnects
++  - interconnect-names
++  - interrupts
++  - operating-points-v2
++  - opp-table
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interconnect/qcom,osm-l3.h>
++    #include <dt-bindings/interconnect/qcom,sdm845.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    pmu@1436400 {
++        compatible = "qcom,sdm845-cpu-bwmon";
++        reg = <0x01436400 0x600>;
++
++        interrupts = <GIC_SPI 581 IRQ_TYPE_LEVEL_HIGH>;
++
++        interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
++                        <&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
++        interconnect-names = "ddr", "l3c";
++
++        operating-points-v2 = <&cpu_bwmon_opp_table>;
++
++        cpu_bwmon_opp_table: opp-table {
++            compatible = "operating-points-v2";
++
++            opp-0 {
++                opp-peak-kBps = <800000 4800000>;
++            };
++            opp-1 {
++                opp-peak-kBps = <1804000 9216000>;
++            };
++            opp-2 {
++                opp-peak-kBps = <2188000 11980800>;
++            };
++            opp-3 {
++                opp-peak-kBps = <3072000 15052800>;
++            };
++            opp-4 {
++                opp-peak-kBps = <4068000 19353600>;
++            };
++            opp-5 {
++                opp-peak-kBps = <5412000 20889600>;
++            };
++            opp-6 {
++                opp-peak-kBps = <6220000 22425600>;
++            };
++            opp-7 {
++                opp-peak-kBps = <7216000 25497600>;
++            };
++        };
++    };
 -- 
 2.34.1
 
