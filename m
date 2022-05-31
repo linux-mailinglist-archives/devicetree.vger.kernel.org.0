@@ -2,56 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB7FA5399B4
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 00:47:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D1065399AC
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 00:47:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348522AbiEaWrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 18:47:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49334 "EHLO
+        id S1348520AbiEaWrB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 18:47:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348516AbiEaWrB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 18:47:01 -0400
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9866EB1D8
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 15:46:59 -0700 (PDT)
-Received: by mail-oi1-f178.google.com with SMTP id y131so354348oia.6
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 15:46:59 -0700 (PDT)
+        with ESMTP id S1348515AbiEaWq6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 18:46:58 -0400
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0163360C6;
+        Tue, 31 May 2022 15:46:57 -0700 (PDT)
+Received: by mail-oi1-f180.google.com with SMTP id k11so318948oia.12;
+        Tue, 31 May 2022 15:46:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=DZZtk3mmH2Uftva4nnZWRRASwAL7J0/4OgI8K1pv32U=;
-        b=o5p5AEAeNPJWuUnYSTHIIiKNnNPLWgiGtJ7bHblOgi8MKIOhYDirTiHo+emG/QfUje
-         apdmEOfYqh2woDnsDoz2PNQXCoFNoqiw1QNbXzAt/cnKovoRUXy3cL39MiKchYrsX/ew
-         138fSGUs2LGOA2ktPtafdDmoCeyD9ZTD7FkfNAbrw+tWs3LU6nACJv6eBVR+SqZuEGnr
-         n+zvb19vclkrNtODDWOYglLmKcZ9ocL/iqoWdIvLQw//g9ZSruXpSJ9f0bCy2LTo4K48
-         Jt54Ri/MohiCuY06oWrr01XGRAHQV4S8ugkGUapBuL/7Rt5zKTFxKBWUZjOKCChAkWzX
-         Zvcw==
-X-Gm-Message-State: AOAM5324Gxs3Lv4lB5BLEIRAeEke8bP1eJAAwI9gjmoJ8NnNfwsCTcwm
-        /fQLDoTgHIaHY58i1KSuAQ==
-X-Google-Smtp-Source: ABdhPJyahNtzfgfQNEpLagL+4xN0bn8ym/sU1ceRtzVz3hVUAqExMfrao8LUp3cIoB/yoY5Qot63nA==
-X-Received: by 2002:aca:1e04:0:b0:325:473:4038 with SMTP id m4-20020aca1e04000000b0032504734038mr13707953oic.159.1654037218851;
-        Tue, 31 May 2022 15:46:58 -0700 (PDT)
+        bh=2Z7nZCZCrp6yDZohpwqv7FuEhmrYv7mpBJYl13nUGZE=;
+        b=h8pyHggECMQnN4+tn4AA32NaL0V4jwHXPi71wtPsA82kGKaeXmBIdXHXGDYpSjNNOp
+         gJGApLqj8turIq2loAj3eYlglK39G5aJLAX8E8tkmPtaY+dvYG27pGedkSiB8JFf2esI
+         aDRbAoU3wkAAX8yoh4p1aJ1UdUz6HRTptidqElTGfrgZOlMtQc1dU/Rq53hYsmPkF88C
+         IRUrzJu1Se2v2LWIBjlndv4W1h1RFiOLRDsvp0TVgEAspE4zKIF5KQcOgIt8DtiEnbnm
+         pvQqdDZKMa9eT4ZFtKw1KXYixHcC4f1jFeO3wn9qRNlDetAahOD/SdCm4PUMj8c3cPGY
+         T9PQ==
+X-Gm-Message-State: AOAM532+Z27LPAhaZYyBLOyLqsTeKlRVTTCwUec5qS8bv6RAwLhNiTHb
+        TJEFPaIy6bYFy/e92KD9KA==
+X-Google-Smtp-Source: ABdhPJyCt/w64P3Qhbl9BTehgfuVFmuXiRTTi5iJf9VTUqZA4lc6Tq78gjAB18eUT2wVhb7SnkTfDA==
+X-Received: by 2002:a05:6808:1454:b0:328:82a9:cb08 with SMTP id x20-20020a056808145400b0032882a9cb08mr13482779oiv.106.1654037216107;
+        Tue, 31 May 2022 15:46:56 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id b30-20020a9d60de000000b006060322125dsm7005222otk.45.2022.05.31.15.46.58
+        by smtp.gmail.com with ESMTPSA id m19-20020a056820051300b0035eb4e5a6b0sm128663ooj.6.2022.05.31.15.46.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 May 2022 15:46:58 -0700 (PDT)
-Received: (nullmailer pid 2476571 invoked by uid 1000);
+        Tue, 31 May 2022 15:46:55 -0700 (PDT)
+Received: (nullmailer pid 2476551 invoked by uid 1000);
         Tue, 31 May 2022 22:46:54 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Chanho Park <chanho61.park@samsung.com>
-Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, Vinod Koul <vkoul@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220531121913.48722-2-chanho61.park@samsung.com>
-References: <20220531121913.48722-1-chanho61.park@samsung.com>        <CGME20220531121922epcas2p15861df56f7253265c591a88244520446@epcas2p1.samsung.com> <20220531121913.48722-2-chanho61.park@samsung.com>
-Subject: Re: [PATCH 1/4] dt-bindings: phy: samsung,ufs-phy: make pmu-syscon as phandle-array
+To:     ChiaEn Wu <peterwu.pub@gmail.com>
+Cc:     lee.jones@linaro.org, linux-fbdev@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, sre@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-leds@vger.kernel.org,
+        gregkh@linuxfoundation.org, lgirdwood@gmail.com,
+        chiaen_wu@richtek.com, dri-devel@lists.freedesktop.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        heikki.krogerus@linux.intel.com, alice_chen@richtek.com,
+        broonie@kernel.org, linux-usb@vger.kernel.org, pavel@ucw.cz,
+        robh+dt@kernel.org, linux@roeck-us.net, matthias.bgg@gmail.com,
+        deller@gmx.de, linux-arm-kernel@lists.infradead.org,
+        chunfeng.yun@mediatek.com, jingoohan1@gmail.com,
+        daniel.thompson@linaro.org, jic23@kernel.org, cy_huang@richtek.com,
+        lars@metafoo.de
+In-Reply-To: <20220531111900.19422-4-peterwu.pub@gmail.com>
+References: <20220531111900.19422-1-peterwu.pub@gmail.com> <20220531111900.19422-4-peterwu.pub@gmail.com>
+Subject: Re: [RESEND 03/14] dt-bindings: leds: mt6370: Add Mediatek mt6370 indicator
 Date:   Tue, 31 May 2022 17:46:54 -0500
-Message-Id: <1654037214.485315.2476567.nullmailer@robh.at.kernel.org>
+Message-Id: <1654037214.458913.2476550.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -63,25 +70,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 31 May 2022 21:19:10 +0900, Chanho Park wrote:
-> To support secondary ufs phy devices, we need to get an offset value
-> from pmu-syscon.
+On Tue, 31 May 2022 19:18:49 +0800, ChiaEn Wu wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
 > 
-> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+> Add Mediatek mt6370 indicator documentation.
+> 
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
 > ---
->  .../devicetree/bindings/phy/samsung,ufs-phy.yaml    | 13 +++++++++----
->  1 file changed, 9 insertions(+), 4 deletions(-)
+>  .../leds/mediatek,mt6370-indicator.yaml       | 57 +++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/mediatek,mt6370-indicator.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml:46:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
 
 dtschema/dtc warnings/errors:
 
+
 doc reference errors (make refcheckdocs):
+Warning: Documentation/devicetree/bindings/leds/mediatek,mt6370-indicator.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
+Documentation/devicetree/bindings/leds/mediatek,mt6370-indicator.yaml: Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
 
 See https://patchwork.ozlabs.org/patch/
 
