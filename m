@@ -2,122 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7588538C09
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 09:37:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03991538C8D
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 10:12:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244522AbiEaHh3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 03:37:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58356 "EHLO
+        id S244604AbiEaIM4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 04:12:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242852AbiEaHh1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 03:37:27 -0400
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5C3623BDE
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 00:37:22 -0700 (PDT)
-Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
-        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20220531073720epoutp0124e1df345456133560a803e29d9299e7~0IHLGoged0600606006epoutp01D
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 07:37:20 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20220531073720epoutp0124e1df345456133560a803e29d9299e7~0IHLGoged0600606006epoutp01D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1653982640;
-        bh=mSG4SRps0dzzOXpIJuEmtx59pBt9ay4W1NpocBn3UAI=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=DxcFzAFAG0FqUY3/jjCK4ZnP2Q7n7C/WiUWnBKSgYAQqCN5NR7qygTBgMueY6Ei9G
-         3bKZgoxfd/eI88MWyWSdtPCiHocSYUcG5IKKTBDkXE6ojjSzbJdp2dOUFlDKvo0goD
-         wDpXVWUa2S7vtQYJiRj4vBMn1zjZZ9h/iCyroLQY=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-        epcas2p2.samsung.com (KnoxPortal) with ESMTP id
-        20220531073719epcas2p218a08a6703c9f22ee285214f6470ac57~0IHKbYwzG2219922199epcas2p2c;
-        Tue, 31 May 2022 07:37:19 +0000 (GMT)
-Received: from epsmges2p1.samsung.com (unknown [182.195.36.101]) by
-        epsnrtp1.localdomain (Postfix) with ESMTP id 4LC3yP1rkdz4x9QG; Tue, 31 May
-        2022 07:37:17 +0000 (GMT)
-Received: from epcas2p4.samsung.com ( [182.195.41.56]) by
-        epsmges2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-        E6.09.10069.8A5C5926; Tue, 31 May 2022 16:37:12 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
-        20220531073711epcas2p31d3d49dd8db03e7ff9f48e16ccf112f8~0IHDGrJvw2250122501epcas2p3R;
-        Tue, 31 May 2022 07:37:11 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20220531073711epsmtrp25bdbbb1fef8971f793459d6525472ed2~0IHDFnO9w1812818128epsmtrp2U;
-        Tue, 31 May 2022 07:37:11 +0000 (GMT)
-X-AuditID: b6c32a45-2a50fa8000002755-2b-6295c5a81bec
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        62.D9.11276.7A5C5926; Tue, 31 May 2022 16:37:11 +0900 (KST)
-Received: from KORCO082417 (unknown [10.229.8.121]) by epsmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20220531073711epsmtip12e5ef4f762ee298b5bf3ec1110b9b11d~0IHC1bgEj1610816108epsmtip1h;
-        Tue, 31 May 2022 07:37:11 +0000 (GMT)
-From:   "Chanho Park" <chanho61.park@samsung.com>
-To:     "'Alim Akhtar'" <alim.akhtar@samsung.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>
-Cc:     <devicetree@vger.kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <vkoul@kernel.org>,
-        <avri.altman@wdc.com>, <bvanassche@acm.org>,
-        <martin.petersen@oracle.com>, <pankaj.dubey@samsung.com>,
-        <linux-fsd@tesla.com>, "'Bharat Uppal'" <bharat.uppal@samsung.com>
-In-Reply-To: <20220531012220.80563-6-alim.akhtar@samsung.com>
-Subject: RE: [PATCH 5/6] ufs: host: ufs-exynos: add support for fsd ufs hci
-Date:   Tue, 31 May 2022 16:37:11 +0900
-Message-ID: <001101d874c1$3d850eb0$b88f2c10$@samsung.com>
-MIME-Version: 1.0
+        with ESMTP id S242430AbiEaIMz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 04:12:55 -0400
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2087.outbound.protection.outlook.com [40.107.220.87])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69884880DC;
+        Tue, 31 May 2022 01:12:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nTDpU6ZqdPvpoJwTv/l9jEVB0FtV41FAf4wqzz9iN0ZG7pXgZDwp+rGt9zRrka6MhaGXeKWWuc5WTt1+53hDavoPreIvsJG7AuVp2naaUX9FGauqKIpP/f94PweYKcVg2/1FZsgv1sGvz0sta29N53IzH8oIP140ykNxSIQrfwIHIUnVVhs9IUHA4xsxsPN2ATg345W6qGbekMz4TkkcZOvYY7uWJrHfO1mJWumEpoUXmWoRryq5PWmoFknvjkBXqZahH6wBenhpjaeTPzn2zV1tKs3D+q8TYLLlqno6CJbjsIjN7HHYCqav1ScnFhSIJoOEPjvDGm08e++zSCiPYw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lCpwI53FdLaP8LZmMJ8VA+lmBJf1lVkuh0Wx6T9qYjI=;
+ b=BteDxRV/+5BYQOA3Wk+2dMssy8rE91tfsu3/Nq3448tBVUMPCa2XpqmfKhWuSs5wyu7Bw+DjKUXZtQlup0EhLD3MZq67E3S1W5jkFnA5+dP6APUTqQ5MD48ZXEQPjeeRhZKh68j580dq09XPT0gBI4edTRWBxUbrWmrhUYRGmbNn9NrHIGkEdqBJYmi9Z2EvsdgtnDt4nkewN0QiPwZ0ZmiJGGtqO53olkXq4wzugbCptXdelTT0FQwMnjb8jdmqT5uYqd7CFz3d6BIFMlfM/+9nSj/18ml0sJ1rWKJqIotSOZa49Dq+qLmf1AXBlxua3N0m/nKV5qHZHuKl/C+xKg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
+ dkim=pass header.d=xilinx.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lCpwI53FdLaP8LZmMJ8VA+lmBJf1lVkuh0Wx6T9qYjI=;
+ b=Ogf3qJHJE8jMYxLpF6uzCLSkI9j64AAcJNdlpHhcsPtr9tFXnb1ZYz+LKAVhqbiON63DHiv83hC269gpWtTLPCSpVay8kBpfLs2a4Zj2id4rXrz42ACODjOOt5JIniIVW4Fu1ewXH5o+dVLtlml/01oHuDNJv9V1D07keyIinXY=
+Received: from PH0PR02MB7189.namprd02.prod.outlook.com (2603:10b6:510:1f::8)
+ by SN6PR02MB5696.namprd02.prod.outlook.com (2603:10b6:805:e9::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.13; Tue, 31 May
+ 2022 08:12:52 +0000
+Received: from PH0PR02MB7189.namprd02.prod.outlook.com
+ ([fe80::816b:40ab:480e:624f]) by PH0PR02MB7189.namprd02.prod.outlook.com
+ ([fe80::816b:40ab:480e:624f%6]) with mapi id 15.20.5293.019; Tue, 31 May 2022
+ 08:12:52 +0000
+From:   Sai Krishna Potthuri <lakshmis@xilinx.com>
+To:     Pratyush Yadav <p.yadav@ti.com>
+CC:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "saikrishna12468@gmail.com" <saikrishna12468@gmail.com>,
+        Srinivas Goud <sgoud@xilinx.com>,
+        Michal Simek <michals@xilinx.com>,
+        Radhey Shyam Pandey <radheys@xilinx.com>
+Subject: RE: [PATCH 2/2] spi: cadence-quadspi: Add support for OSPI device
+ reset
+Thread-Topic: [PATCH 2/2] spi: cadence-quadspi: Add support for OSPI device
+ reset
+Thread-Index: AQHYSNyT5AQVGFEfc0CeWm5NB0lZxazhsf2AgFc3IxA=
+Date:   Tue, 31 May 2022 08:12:52 +0000
+Message-ID: <PH0PR02MB7189C07E60A93426764C688EBDDC9@PH0PR02MB7189.namprd02.prod.outlook.com>
+References: <1649156437-15609-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+ <1649156437-15609-3-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
+ <20220405191757.3rzc6q477reusywp@ti.com>
+In-Reply-To: <20220405191757.3rzc6q477reusywp@ti.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=xilinx.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 95d32d50-c6e8-47ce-8b23-08da42dd5be7
+x-ms-traffictypediagnostic: SN6PR02MB5696:EE_
+x-microsoft-antispam-prvs: <SN6PR02MB5696283F484A93AD5B2E9AA7BDDC9@SN6PR02MB5696.namprd02.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Gk/KQTHrWHs783WrtuhkzB3SK40/PVUF5cuwn9z72zGVbqyHg0eeIGXgu8k3/xblxT6/ra4imAyDvmjfh6XFDJZDhfp6yeNNMPXLrdgWtW+EEmhMyxD8/5Tzhg8tpJb628y2qkP1XES0R8KZ5b6TUt+LuC5rcr3MICUb9c14W6puQoVCylUrptAhNjHwR41M/X/VyRHsISjDufaGfqqDqPTaeAzCxrJCJXrDc4kf4pWyUaWXsbm771ekBni4v5SeO4xgo42xoxN9oEzfK4z/EGVR1kdA2cBbGJf7TAILtMOCSTOhNYmmFF7W+EARMdG16RViBnKeRnT5PsdnYhYS6IddVthxW83Y+gC0emvqSgeTh6Nx7+r+xJIrFOtFohrZBuWRQ9wUzW041gXSvQEuO0P1KRKjhZqdn6/jaSgyHC9QrtWmsObijF2tGz2rGhyzT85IG0KUnA/kqwHOkD0JlLXjmfRnLlDyQOwO+4wSnB3jrmmOmzOhgZdDD6GlBC0PhsEYKD1LxR4bzCZvXwfTARuhx9dYOJKpQU/T+T8pEp+XooMDKXMixXCubJ4kLFjXrEA7PdM3ksXK6gKcSDMGd5c9pLiKrdVxK7sl8PPRVK7aaEZbTioqLBnbEgMmzSx2FJz16ZUISg8ShM79XbD5V18IcV1LmrxD4hU4hJABa45Sq6qhxksP1XFmFXT9UMnfknMXuWDkrKByDNyUmkMxmA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR02MB7189.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(186003)(38100700002)(86362001)(71200400001)(122000001)(107886003)(64756008)(76116006)(55016003)(5660300002)(66556008)(66946007)(66476007)(66446008)(4326008)(52536014)(83380400001)(8936002)(7696005)(8676002)(33656002)(2906002)(54906003)(38070700005)(6916009)(316002)(9686003)(6506007)(26005)(53546011)(508600001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?5Xc9rRAh8tt9mvKbz5bMQOQeYtaZfXZOH0inL2Zb5qfYCG/SYQGcjBDYniF7?=
+ =?us-ascii?Q?Y5I8m0Xa1gRtE758W2fp2Il9tZ8AyMb1Yd6NBH8ybx38mbeiFx4ECVtLUiqY?=
+ =?us-ascii?Q?agSTPnEzPkUS29hLMdP5JU6gn0tMRWgkpeoU93zmG0LR6aMoPvgn88cW9bHO?=
+ =?us-ascii?Q?TvwTOmUVGZgAyFDADr7IisjDqNUoCpf42FwaEdp3aZphXna2FuDAS8z0PDIF?=
+ =?us-ascii?Q?JkNjt5yoOSiWRYk9UY5l48I2LDzmzwVeA4qbUjkNk2tE7UFkekzRZqbMyGwF?=
+ =?us-ascii?Q?SxZUZ7Q7h1k8qtMO6Wa4sXckk2acHFazKMzmmLeFCu0blCLV+i8FIHItvMkL?=
+ =?us-ascii?Q?7CcgZ8gkWfOGGwpFznKu6vc6stlSdJOkFCmKBfvuNWhJ1ys1D6PXvYtrIMZz?=
+ =?us-ascii?Q?G52DpZ37uQ4h91/cOFvmJe3DeAHrx7JyseNWVVtvHOrn36Lbf/rd/DS3vwJh?=
+ =?us-ascii?Q?hTWk7qfW54vdPZM23u3gAqG/Wss7sE4rqQl1/gh73nyf6/p4f/3WGbKbjnai?=
+ =?us-ascii?Q?CMSEt5RCoGBgVsIm8qqwjIA4puNqGPK46CMDsS2iECYZQgqLeNGpe4V4P8eI?=
+ =?us-ascii?Q?czmyZEScK1I7cfhAoiaGvxCpY+BADKhC9l8C+CrCaW661yXnIQkXShqA/ty+?=
+ =?us-ascii?Q?gkPog4QPPKoSaqhG27Ujc4wKGSHQz/MZ/xkmE9PlmVfcb22HjnlDX1n1elFf?=
+ =?us-ascii?Q?d/hZ/Y7m6woMg3RqFN4QXFmFtudOhSFHrp7rpEve8u56xcB2tdNUctt73K6Z?=
+ =?us-ascii?Q?gKWvYBxX93gkbwM7t1axM2kYaTsluoHrhtyoIsZxeHxSUwtxFD0pVC+5s0zg?=
+ =?us-ascii?Q?Vx1UMZcHaEIiZtF5xAbZxE++BCwms68Z8FeKZ+HFdbWjLI2+BMaTDdkQNNqc?=
+ =?us-ascii?Q?y0eompQRw0jUgSgtnxfaJ1xbIEPTEHKjSPU94ApdfF4jBG8MyyZtRuC+g5qZ?=
+ =?us-ascii?Q?d9RsbcagsMy+Z+negEMUt0AGdKxRIAhtNsnNJzwb7kepcCc4/eHrCtApSzp4?=
+ =?us-ascii?Q?WviF5F0W8k5drqfOnQHkp5ZlhrjOx14ZZkGMwwz+ZYaCi96hHvcuEm4fKIwY?=
+ =?us-ascii?Q?1g25MZARoADMIj6GOnWo2buBsTX/c5n3UqexqC9HN+nO1EEqgTIEeY0hudZ7?=
+ =?us-ascii?Q?MGVKwMDlZ3oVUM/15HEK/3auI+M12WKol66dhwECzm8T9YAHCzru/oGox3TB?=
+ =?us-ascii?Q?Jlltq+AW9XZkNotJFC1avtN5ky5dqZTGlwIudH0U9E7k4EW59ZMRO5+iIXGB?=
+ =?us-ascii?Q?Y/DWuDCD3I9YuQJAL3YzvlQXzJWPNneKITx5PvxSJ2+gS6W1Yi2YFtnmensR?=
+ =?us-ascii?Q?uuBxTrpRIWcxh3wWbcros1tyK6Ne9k3FSRkSIZdYISelh7QinQMfnLZMGpHi?=
+ =?us-ascii?Q?NIfX8zSpXmW43TU9MUHRY5hU5LHeSrB5qMOPj8/kaNnmxN6aQphNJShguTDK?=
+ =?us-ascii?Q?Owuu1EuKA2xjYLNDygkX3TaR4LsjB+oDInIZk+6s/qJLul2O5JS2tAEiQ+rv?=
+ =?us-ascii?Q?nBT8DXMQErpmKYavbE9LQkefvm91kyN8pydTfK+LTJQn6/g9RTVE4dP7rblY?=
+ =?us-ascii?Q?tHjl7hhF/v6VrFglrEmj7AvbvsSMGODmjL4/bcv3BrnWDM9/7hMsDfwvjLD+?=
+ =?us-ascii?Q?d4MTmXIz/le/1it0KjpIjvWPBBvj5fQVbxpfaghI+4pbBfvug94TeEdcaNOk?=
+ =?us-ascii?Q?2+9a5naRZuzHueSCTzGAAzSTvx11VgCI/8ReQf9X+XhUAScNjHSKLu3pbU31?=
+ =?us-ascii?Q?jOY2oXobSA=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQEGJiXAXdobboEKZTBkhZkj5AOCHwHAGN/eAYoUDxmuwuGnsA==
-Content-Language: ko
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrMJsWRmVeSWpSXmKPExsWy7bCmhe6Ko1OTDP5PkrZ4MG8bm8XLn1fZ
-        LK69vMBuMe3DT2aL+UfOsVr0vXjIbLHp8TVWi4evwi0u75rDZjFh1TcWi+7rO9gslh//x2Sx
-        aOsXdovWvUfYLXbeOcHswO9x+Yq3x6ZVnWwed67tYfPYvKTe4+PTWywefVtWMXr8a5rL7vF5
-        k5xH+4FupgDOqGybjNTElNQihdS85PyUzLx0WyXv4HjneFMzA0NdQ0sLcyWFvMTcVFslF58A
-        XbfMHKD7lRTKEnNKgUIBicXFSvp2NkX5pSWpChn5xSW2SqkFKTkF5gV6xYm5xaV56Xp5qSVW
-        hgYGRqZAhQnZGUe+/mUq2OFS0dSykrWBcbZFFyMnh4SAicSna1dZuhi5OIQEdjBKnNi9kQnC
-        +cQosXLjDGYI5xujRG/vARaYlrWvfrBDJPYySrT/ngHlvGCUWHGojw2kik1AX+JlxzZWkIQI
-        yODPKz6BbWEWWMQk0XTpG1gVp4CtxNP7S1hBbGEBb4nuGV+ZQWwWAVWJ09P2gtm8ApYSF2aA
-        rACxBSVOznwCdgezgLbEsoWvmSFuUpD4+XQZ2BwRASeJvqm7WSFqRCRmd7aBPSEh8IJD4szW
-        p1BPuEg82jiBHcIWlnh1fAuULSXx+d1eNgi7WGLprE9MEM0NjBKXt/2CShhLzHrWztjFyAG0
-        QVNi/S59EFNCQFniyC2o2/gkOg7/ZYcI80p0tAlBNKpLHNg+HeoCWYnuOZ9ZJzAqzULy2Swk
-        n81C8sEshF0LGFlWMYqlFhTnpqcWGxUYwuM7OT93EyM4dWu57mCc/PaD3iFGJg7GQ4wSHMxK
-        Irwlu6YmCfGmJFZWpRblxxeV5qQWH2I0BYb1RGYp0eR8YPbIK4k3NLE0MDEzMzQ3MjUwVxLn
-        9UrZkCgkkJ5YkpqdmlqQWgTTx8TBKdXAtCL26Kl/6WYV1wwNalNvZ2+IEml0ldVmqJz8LGDW
-        C/aIAO0ftSJdup2vxU3veBRGqPvtncWvc/eo0Lcg49Rd6ivctrzVsHq86UhI5sKsDXK2pytP
-        S5qzPr288/S8DZMPXpDYWL9oQ/CxqDOasdfaC8v3HVrjb6gicfWouVKqvW6OhPx/Vjsj3mdS
-        HqoVa015qq6d7+Tv4XqkkLw4X1l37pE5C+oVa+adlnjuwbG+3/ON7PwrHxoL+Qo47Et4l602
-        rLQ6rycW5zv9+9LIpCk7VvuU7em5m8M7S3G58OUbP30Sd6W+zDtsxfD/2tkpp5otTGqDU2cy
-        Xbv99X7ypCvSV6sbPV41B73U/CZ4i9lDiaU4I9FQi7moOBEAyYPxZGYEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrPIsWRmVeSWpSXmKPExsWy7bCSnO7yo1OTDA606Fo8mLeNzeLlz6ts
-        FtdeXmC3mPbhJ7PF/CPnWC36Xjxkttj0+BqrxcNX4RaXd81hs5iw6huLRff1HWwWy4//Y7JY
-        tPULu0Xr3iPsFjvvnGB24Pe4fMXbY9OqTjaPO9f2sHlsXlLv8fHpLRaPvi2rGD3+Nc1l9/i8
-        Sc6j/UA3UwBnFJdNSmpOZllqkb5dAlfGqYMXmQteO1WsP3yPrYHxjFkXIyeHhICJxNpXP9i7
-        GLk4hAR2M0qsmv+SGSIhK/Hs3Q52CFtY4n7LEVaIomeMEudfv2EFSbAJ6Eu87NgGlhAR2MMo
-        0TbvFNgoZoE1TBI3J19lhmjZzyhxrb8BbBangK3E0/tLwNqFBbwlumd8BdvHIqAqcXraXjCb
-        V8BS4sKMGewQtqDEyZlPWEBsZgFtid6HrYww9rKFr6FuVZD4+XQZ2EwRASeJvqm7WSFqRCRm
-        d7YxT2AUnoVk1Cwko2YhGTULScsCRpZVjJKpBcW56bnFhgWGeanlesWJucWleel6yfm5mxjB
-        cayluYNx+6oPeocYmTgYDzFKcDArifCW7JqaJMSbklhZlVqUH19UmpNafIhRmoNFSZz3QtfJ
-        eCGB9MSS1OzU1ILUIpgsEwenVAPTcv0OXVe3zidVb7k2T6tWq8y5mfv7OEeeTi3ne4UErVp3
-        13V8e/ymPIl1LFlwp0xk9896raJJC51mtsy8zmkw1WZ2Z0mn6tm7E7/OSmiqqtuZphy6dFHi
-        KRvfvJ3nN0/6Zr1A4NW8377BMZKBTcd8Hpo/FeuYZCC1wexSsV/HnSdmd/v3sxSKWVbNj5/u
-        GnNP4KTgpNe9PaFLTGX/L5l9snD7K7+mj2vl1l1aEF6e0tpmZvP/MIuOmtmzF6Yi66N0NBun
-        /LjaPNv6zuTa1onvTgX3rL+mIHPqWZF9e4le1cPbXs/Ppi9fU1p0ttPiis4Zuzurz2k/mfh/
-        hr2l8mOtM7ua1frOz0+72aeePe+IEktxRqKhFnNRcSIAa2+VF1IDAAA=
-X-CMS-MailID: 20220531073711epcas2p31d3d49dd8db03e7ff9f48e16ccf112f8
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220531012356epcas5p3cd6638d4d3eccb28a28d064c9f585a4f
-References: <20220531012220.80563-1-alim.akhtar@samsung.com>
-        <CGME20220531012356epcas5p3cd6638d4d3eccb28a28d064c9f585a4f@epcas5p3.samsung.com>
-        <20220531012220.80563-6-alim.akhtar@samsung.com>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+MIME-Version: 1.0
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR02MB7189.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 95d32d50-c6e8-47ce-8b23-08da42dd5be7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 May 2022 08:12:52.2984
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: n5BM2vH6jaERCV8CPY/3jHrIx/cP+/qAFYfcBAB5N/h5fOtrx5QTstnD3a4iRMnTrRmzZTqUnFJMG+S1V8d9Lg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR02MB5696
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -125,235 +129,135 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Pratyush,
 
 > -----Original Message-----
-> From: Alim Akhtar <alim.akhtar=40samsung.com>
-> Sent: Tuesday, May 31, 2022 10:22 AM
-> To: linux-arm-kernel=40lists.infradead.org; linux-kernel=40vger.kernel.or=
-g;
-> linux-scsi=40vger.kernel.org; linux-phy=40lists.infradead.org
-> Cc: devicetree=40vger.kernel.org; robh+dt=40kernel.org;
-> krzysztof.kozlowski+dt=40linaro.org; vkoul=40kernel.org; avri.altman=40wd=
-c.com;
-> bvanassche=40acm.org; martin.petersen=40oracle.com; chanho61.park=40samsu=
-ng.com;
-> pankaj.dubey=40samsung.com; Alim Akhtar <alim.akhtar=40samsung.com>; linu=
-x-
-> fsd=40tesla.com; Bharat Uppal <bharat.uppal=40samsung.com>
-> Subject: =5BPATCH 5/6=5D ufs: host: ufs-exynos: add support for fsd ufs h=
-ci
+> From: Pratyush Yadav <p.yadav@ti.com>
+> Sent: Wednesday, April 6, 2022 12:48 AM
+> To: Sai Krishna Potthuri <lakshmis@xilinx.com>
+> Cc: Mark Brown <broonie@kernel.org>; Rob Herring <robh+dt@kernel.org>;
+> linux-kernel@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> spi@vger.kernel.org; Michal Simek <michals@xilinx.com>; git
+> <git@xilinx.com>; saikrishna12468@gmail.com; Srinivas Goud
+> <sgoud@xilinx.com>
+> Subject: Re: [PATCH 2/2] spi: cadence-quadspi: Add support for OSPI devic=
+e
+> reset
 >=20
-> Adds support of UFS HCI which is found in Tesla FSD SoC. FSD also have an
-> addition bit for MPHY APB clock which was not there (was reserved) for
-> previous exynos SoC.
+> On 05/04/22 04:30PM, Sai Krishna Potthuri wrote:
+> > Cadence OSPI controller always start in SDR mode and it doesn't know
+> > the current mode of the flash device (SDR or DDR). This creates issue
+> > during Cadence OSPI driver probe if OSPI flash device is in DDR mode.
+> > This patch add OSPI flash device reset using HW reset pin for Xilinx
+> > Versal platform, this will make sure both Controller and Flash device
+> > are in same mode (SDR).
 >=20
-> Cc: linux-fsd=40tesla.com
-> Signed-off-by: Bharat Uppal <bharat.uppal=40samsung.com>
-> Signed-off-by: Alim Akhtar <alim.akhtar=40samsung.com>
-> ---
->  drivers/ufs/host/ufs-exynos.c =7C 143 +++++++++++++++++++++++++++++++++-
->  1 file changed, 142 insertions(+), 1 deletion(-)
+> Is this supposed to reset the OSPI flash or the controller? If you are re=
+setting
+> it in the flash then you should handle this from the flash driver, not fr=
+om
+> here.
+I am handling OSPI flash reset here. Agree, controlling or issuing the flas=
+h reset=20
+should be from the flash driver and not from the controller driver but hand=
+ling
+the reset might depends on the platform and should be in the controller dri=
+ver.=20
+One platform might be handling the reset through GPIO and others might hand=
+le=20
+it differently via some system level control registers or even controller r=
+egisters.
+To support this platform specific implementation i am thinking to provide a
+"hw_reset" hook in the spi_controller_mem_ops structure and this will be
+accessed or called from spi-nor if  "broken-flash-reset" property is not se=
+t.
+Whichever controller driver registers for hw_reset hook, they can have thei=
+r own
+implementation to reset the flash device based on the platform.
+Do you think this approach works? Please suggest.
+
+Code snippet like below.
+
+diff --git a/include/linux/spi/spi-mem.h b/include/linux/spi/spi-mem.h
+index 2ba044d0d5e5..b8240dfb246d 100644
+--- a/include/linux/spi/spi-mem.h
++++ b/include/linux/spi/spi-mem.h
+@@ -285,6 +285,7 @@ struct spi_controller_mem_ops {
+                           unsigned long initial_delay_us,
+                           unsigned long polling_rate_us,
+                           unsigned long timeout_ms);
++       int (*hw_reset)(struct spi_mem *mem);
+
+diff --git a/drivers/spi/spi-mem.c b/drivers/spi/spi-mem.c
+index e8de4f5017cd..9ac2c2c30443 100644
+--- a/drivers/spi/spi-mem.c
++++ b/drivers/spi/spi-mem.c
+@@ -598,6 +598,27 @@ static void devm_spi_mem_dirmap_release(struct device =
+*dev, void *res)
+        spi_mem_dirmap_destroy(desc);
+ }
++int spi_mem_hw_reset(struct spi_mem *mem)
++{
++       struct spi_controller *ctlr =3D mem->spi->controller;
++
++       if (ctlr->mem_ops && ctlr->mem_ops->hw_reset)
++               return ctlr->mem_ops->hw_reset(mem);
++
++       return 0;
++}
++EXPORT_SYMBOL_GPL(spi_mem_hw_reset);
+
+diff --git a/drivers/mtd/spi-nor/core.c b/drivers/mtd/spi-nor/core.c
+index b4f141ad9c9c..2c09c733bb8b 100644
+--- a/drivers/mtd/spi-nor/core.c
++++ b/drivers/mtd/spi-nor/core.c
+@@ -2966,6 +2962,7 @@ static void spi_nor_set_mtd_info(struct spi_nor *nor)
+ int spi_nor_scan(struct spi_nor *nor, const char *name,
+                 const struct spi_nor_hwcaps *hwcaps)
+ {
++       struct device_node *np =3D spi_nor_get_flash_node(nor);
+        const struct flash_info *info;
+        struct device *dev =3D nor->dev;
+        struct mtd_info *mtd =3D &nor->mtd;
+@@ -2995,6 +2992,14 @@ int spi_nor_scan(struct spi_nor *nor, const char *na=
+me,
+        if (!nor->bouncebuf)
+                return -ENOMEM;
+=20
++       if (of_property_read_bool(np, "broken-flash-reset")) {
++               nor->flags |=3D SNOR_F_BROKEN_RESET;
++       } else {
++               ret =3D spi_mem_hw_reset(nor->spimem);
++               if (ret)
++                       return ret;
++       }
+
+Regards
+Sai Krishna
 >=20
-> diff --git a/drivers/ufs/host/ufs-exynos.c b/drivers/ufs/host/ufs-exynos.=
-c
-> index a81d8cbd542f..b3efdc4caca2 100644
-> --- a/drivers/ufs/host/ufs-exynos.c
-> +++ b/drivers/ufs/host/ufs-exynos.c
-> =40=40 -52,11 +52,12 =40=40
->  =23define HCI_ERR_EN_DME_LAYER	0x88
->  =23define HCI_CLKSTOP_CTRL	0xB0
->  =23define REFCLKOUT_STOP		BIT(4)
-> +=23define MPHY_APBCLK_STOP        BIT(3)
->  =23define REFCLK_STOP		BIT(2)
->  =23define UNIPRO_MCLK_STOP	BIT(1)
->  =23define UNIPRO_PCLK_STOP	BIT(0)
->  =23define CLK_STOP_MASK		(REFCLKOUT_STOP =7C REFCLK_STOP =7C=5C
-> -				 UNIPRO_MCLK_STOP =7C=5C
-> +				 UNIPRO_MCLK_STOP =7C MPHY_APBCLK_STOP=7C=5C
-
-Please make this change into a separate patch of this series.
-
->  				 UNIPRO_PCLK_STOP)
->  =23define HCI_MISC		0xB4
->  =23define REFCLK_CTRL_EN		BIT(7)
-> =40=40 -386,6 +387,104 =40=40 static int exynos7_ufs_post_pwr_change(stru=
-ct
-> exynos_ufs *ufs,
->  	return 0;
->  =7D
+> Also, as of now at least, SPI NOR only works when the flash is in SDR mod=
+e.
+> For TI platforms, we reset the flash in the bootloader (U-Boot), before
+> handing control off to the kernel. If you do want to properly handle flas=
+hes
+> that are handed to the kernel in DDR mode, I would suggest you update SPI
+> NOR instead to detect the flash mode and work from there. This would also
+> allow us to support flashes that boot in DDR mode, so would still be in D=
+DR
+> mode even after a reset.
 >=20
-> +static inline int fsd_ufs_pre_link(struct exynos_ufs *ufs) =7B
-> +	int i;
-> +	struct ufs_hba *hba =3D ufs->hba;
-> +
-> +	ufshcd_dme_set(hba, UIC_ARG_MIB(0x9514), 1000000000L / ufs-
-> >mclk_rate);
-> +	ufshcd_dme_set(hba, UIC_ARG_MIB(0x201), 0x12);
-> +	ufshcd_dme_set(hba, UIC_ARG_MIB(0x200), 0x40);
-> +
-> +	for_each_ufs_tx_lane(ufs, i) =7B
-> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0xAA, i), 1000000000L /
-> ufs->mclk_rate);
-> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x8F, i), 0x3F);
-> +	=7D
-> +
-> +	for_each_ufs_rx_lane(ufs, i) =7B
-> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x12, i), 1000000000L /
-> ufs->mclk_rate);
-> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x5C, i), 0x38);
-> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x0F, i), 0x0);
-> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x65, i), 0x1);
-> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x69, i), 0x1);
-> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x21, i), 0x0);
-> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x22, i), 0x0);
-> +	=7D
-> +
-> +	ufshcd_dme_set(hba, UIC_ARG_MIB(0x200), 0x0);
-> +	ufshcd_dme_set(hba, UIC_ARG_MIB(0x9536), 0x4E20);
-> +	ufshcd_dme_set(hba, UIC_ARG_MIB(0x9564), 0x2e820183);
-> +	ufshcd_dme_set(hba, UIC_ARG_MIB(0x155E), 0x0);
-
-Use PA_LOCAL_TX_LCC_ENABLE instead of 0x155E. I think you can find more val=
-ues from unipro.h.
-Please try to use as much as possible :)
-
-> +	ufshcd_dme_set(hba, UIC_ARG_MIB(0x3000), 0x0);
-> +	ufshcd_dme_set(hba, UIC_ARG_MIB(0x3001), 0x1);
-> +	ufshcd_dme_set(hba, UIC_ARG_MIB(0x4021), 0x1);
-> +	ufshcd_dme_set(hba, UIC_ARG_MIB(0x4020), 0x1);
-
-They can be set from exynos_ufs_establish_connt.
-
-> +
-> +	return 0;
-> +=7D
-> +
-> +static inline int fsd_ufs_post_link(struct exynos_ufs *ufs) =7B
-> +	int i;
-> +	struct ufs_hba *hba =3D ufs->hba;
-> +	u32 hw_cap_min_tactivate;
-> +	u32 peer_rx_min_actv_time_cap;
-> +	u32 max_rx_hibern8_time_cap;
-> +
-> +	ufshcd_dme_get(hba, UIC_ARG_MIB_SEL(0x8F, 4),
-> +			&hw_cap_min_tactivate); /* HW Capability of
-> MIN_TACTIVATE */
-> +	ufshcd_dme_get(hba, UIC_ARG_MIB(0x15A8),
-> +			&peer_rx_min_actv_time_cap);    /* PA_TActivate */
-> +	ufshcd_dme_get(hba, UIC_ARG_MIB(0x15A7),
-> +			&max_rx_hibern8_time_cap);      /* PA_Hibern8Time */
-> +
-> +	if (peer_rx_min_actv_time_cap >=3D hw_cap_min_tactivate)
-> +		ufshcd_dme_peer_set(hba, UIC_ARG_MIB(0x15A8),
-> +					peer_rx_min_actv_time_cap + 1);
-> +	ufshcd_dme_set(hba, UIC_ARG_MIB(0x15A7), max_rx_hibern8_time_cap +
-> 1);
-> +
-> +	ufshcd_dme_set(hba, UIC_ARG_MIB(0x9529), 0x01);
-> +	ufshcd_dme_set(hba, UIC_ARG_MIB(0x15A4), 0xFA);
-> +	ufshcd_dme_set(hba, UIC_ARG_MIB(0x9529), 0x00);
-> +
-> +	ufshcd_dme_set(hba, UIC_ARG_MIB(0x200), 0x40);
-> +
-> +	for_each_ufs_rx_lane(ufs, i) =7B
-> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x35, i), 0x05);
-> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x73, i), 0x01);
-> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x41, i), 0x02);
-> +		ufshcd_dme_set(hba, UIC_ARG_MIB_SEL(0x42, i), 0xAC);
-> +	=7D
-> +
-> +	ufshcd_dme_set(hba, UIC_ARG_MIB(0x200), 0x0);
-> +
-> +	return 0;
-> +=7D
-> +
-> +static inline int fsd_ufs_pre_pwr_change(struct exynos_ufs *ufs,
-> +					struct ufs_pa_layer_attr *pwr)
-> +=7B
-> +	struct ufs_hba *hba =3D ufs->hba;
-> +
-> +	ufshcd_dme_set(hba, UIC_ARG_MIB(0x1569), 0x1);
-> +	ufshcd_dme_set(hba, UIC_ARG_MIB(0x1584), 0x1);
-> +	ufshcd_dme_set(hba, UIC_ARG_MIB(0x2041), 8064);
-> +	ufshcd_dme_set(hba, UIC_ARG_MIB(0x2042), 28224);
-> +	ufshcd_dme_set(hba, UIC_ARG_MIB(0x2043), 20160);
-> +	ufshcd_dme_set(hba, UIC_ARG_MIB(0x15B0), 12000);
-> +	ufshcd_dme_set(hba, UIC_ARG_MIB(0x15B1), 32000);
-> +	ufshcd_dme_set(hba, UIC_ARG_MIB(0x15B2), 16000);
-> +
-> +	unipro_writel(ufs, 8064, 0x7888);
-> +	unipro_writel(ufs, 28224, 0x788C);
-> +	unipro_writel(ufs, 20160, 0x7890);
-> +	unipro_writel(ufs, 12000, 0x78B8);
-> +	unipro_writel(ufs, 32000, 0x78BC);
-> +	unipro_writel(ufs, 16000, 0x78C0);
-> +
-> +	return 0;
-> +=7D
-> +
->  /*
->   * exynos_ufs_auto_ctrl_hcc - HCI core clock control by h/w
->   * Control should be disabled in the below cases =40=40 -1595,6 +1694,46=
- =40=40
-> static struct exynos_ufs_drv_data exynos_ufs_drvs =3D =7B
->  	.post_pwr_change	=3D exynos7_ufs_post_pwr_change,
->  =7D;
->=20
-> +static struct exynos_ufs_uic_attr fsd_uic_attr =3D =7B
-> +	.tx_trailingclks		=3D 0x10,
-> +	.tx_dif_p_nsec			=3D 3000000,	/* unit: ns */
-> +	.tx_dif_n_nsec			=3D 1000000,	/* unit: ns */
-> +	.tx_high_z_cnt_nsec		=3D 20000,	/* unit: ns */
-> +	.tx_base_unit_nsec		=3D 100000,	/* unit: ns */
-> +	.tx_gran_unit_nsec		=3D 4000,		/* unit: ns */
-> +	.tx_sleep_cnt			=3D 1000,		/* unit: ns */
-> +	.tx_min_activatetime		=3D 0xa,
-> +	.rx_filler_enable		=3D 0x2,
-> +	.rx_dif_p_nsec			=3D 1000000,	/* unit: ns */
-> +	.rx_hibern8_wait_nsec		=3D 4000000,	/* unit: ns */
-> +	.rx_base_unit_nsec		=3D 100000,	/* unit: ns */
-> +	.rx_gran_unit_nsec		=3D 4000,		/* unit: ns */
-> +	.rx_sleep_cnt			=3D 1280,		/* unit: ns */
-> +	.rx_stall_cnt			=3D 320,		/* unit: ns */
-> +	.rx_hs_g1_sync_len_cap		=3D SYNC_LEN_COARSE(0xf),
-> +	.rx_hs_g2_sync_len_cap		=3D SYNC_LEN_COARSE(0xf),
-> +	.rx_hs_g3_sync_len_cap		=3D SYNC_LEN_COARSE(0xf),
-> +	.rx_hs_g1_prep_sync_len_cap	=3D PREP_LEN(0xf),
-> +	.rx_hs_g2_prep_sync_len_cap	=3D PREP_LEN(0xf),
-> +	.rx_hs_g3_prep_sync_len_cap	=3D PREP_LEN(0xf),
-> +	.pa_dbg_option_suite		=3D 0x2E820183,
-> +=7D;
-> +
-> +struct exynos_ufs_drv_data fsd_ufs_drvs =3D =7B
-> +	.uic_attr               =3D &fsd_uic_attr,
-> +	.quirks                 =3D UFSHCD_QUIRK_PRDT_BYTE_GRAN =7C
-> +				  UFSHCI_QUIRK_BROKEN_REQ_LIST_CLR =7C
-> +				  UFSHCD_QUIRK_BROKEN_OCS_FATAL_ERROR =7C
-> +				  UFSHCI_QUIRK_SKIP_RESET_INTR_AGGR,
-> +	.opts                   =3D EXYNOS_UFS_OPT_HAS_APB_CLK_CTRL =7C
-> +				  EXYNOS_UFS_OPT_BROKEN_AUTO_CLK_CTRL =7C
-> +				  EXYNOS_UFS_OPT_SKIP_CONFIG_PHY_ATTR =7C
-> +				  EXYNOS_UFS_OPT_BROKEN_RX_SEL_IDX,
-> +	.pre_link               =3D fsd_ufs_pre_link,
-> +	.post_link              =3D fsd_ufs_post_link,
-> +	.pre_pwr_change         =3D fsd_ufs_pre_pwr_change,
-> +=7D;
-> +
->  static const struct of_device_id exynos_ufs_of_match=5B=5D =3D =7B
->  	=7B .compatible =3D =22samsung,exynos7-ufs=22,
->  	  .data	      =3D &exynos_ufs_drvs =7D,
-> =40=40 -1602,6 +1741,8 =40=40 static const struct of_device_id
-> exynos_ufs_of_match=5B=5D =3D =7B
->  	  .data	      =3D &exynosauto_ufs_drvs =7D,
->  	=7B .compatible =3D =22samsung,exynosautov9-ufs-vh=22,
->  	  .data	      =3D &exynosauto_ufs_vh_drvs =7D,
-> +	=7B .compatible =3D =22tesla,fsd-ufs=22,
-> +	  .data       =3D &fsd_ufs_drvs =7D,
->  	=7B=7D,
->  =7D;
+> > Xilinx Versal platform has a dedicated pin used for OSPI device reset.
+> > As part of the reset sequence, configure the pin to enable hysteresis
+> > and set the direction of the pin to output before toggling the pin.
+> > Provided the required delay ranges while toggling the pin to meet the
+> > most of the OSPI flash devices reset pulse width, reset recovery and
+> > CS high to reset high timings.
+> >
+> > Signed-off-by: Sai Krishna Potthuri
+> > <lakshmi.sai.krishna.potthuri@xilinx.com>
+> [...]
 >=20
 > --
-> 2.25.1
-
-
+> Regards,
+> Pratyush Yadav
+> Texas Instruments Inc.
