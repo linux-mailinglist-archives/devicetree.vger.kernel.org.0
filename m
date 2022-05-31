@@ -2,229 +2,296 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFBE0538FC9
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 13:23:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 919CA538FD5
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 13:27:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243073AbiEaLXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 07:23:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52460 "EHLO
+        id S1343704AbiEaL1w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 07:27:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233134AbiEaLXt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 07:23:49 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 985A95C765
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 04:23:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1653996227;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=cb0uCHMo8aU2h1eNWnUmV0rqWGFcvOyZ9KFWz5IpS3o=;
-        b=h22ZTXxxwt9hyc7KbHSr62yigwFCCTio7owsb2WAm5cp6e8Kiuk3fJGffx8nfPDdVJJkFN
-        OREBfOrrzVHd+ASgkpchKc0gLVuQ6fqS/T0+zTlFfQfviUXAQsUZyFBgXUB7+hYmxkX5n8
-        F/2G78qChsTPJo2XWwVmmZHI/gYbzbw=
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
- [209.85.160.197]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-467-4HPL6md2M5Oy9gBrxrI-NA-1; Tue, 31 May 2022 07:23:46 -0400
-X-MC-Unique: 4HPL6md2M5Oy9gBrxrI-NA-1
-Received: by mail-qt1-f197.google.com with SMTP id u2-20020ac80502000000b002f94701339eso11957515qtg.13
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 04:23:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=cb0uCHMo8aU2h1eNWnUmV0rqWGFcvOyZ9KFWz5IpS3o=;
-        b=5Zf/5QtYXqboP4uLH7IPlBFH/ehpUvQ9uOf9IxPRh9uRzuhWZxXDmgpD9YlVpyvfec
-         9bLdsyNjhtIhIxrezPKPizD4KAPCTfxItw8I0V1bb5x/6yiYPek10PCRMzQowXVJ9TmR
-         HPR7chuRFRdM081+S2G4Qyi5R9SREYgGdj53m/9IO12GDDyy5A0RWuCbhL1eaLE4xz8D
-         ITZEXu5tVqsXpBGkxV7IJPYPCmKvm9A5alwHpjbakW5W30yAXCaD1P8TMwroLkqkCw77
-         zeD/agLcYpmh4WVTRtbvoC782S7z8zTV8H/LdAT64m6DOQGyk5aJVdemUeJj2KgGk4mW
-         0tdQ==
-X-Gm-Message-State: AOAM533OcVZz6kICVB3QHs3Y12IjufFwbTFsZmQSpVeK8c7IyBFFxxkt
-        QmJ1y3F8eTrVAURABg5BRruTRj0+8idlHAFpvJjJRHQVesz+rkgfubm5rUwDYSO5aQbV6E0lu49
-        pb4mNcJnACz5rd6JOLjV2YA==
-X-Received: by 2002:a05:620a:12fb:b0:6a5:816e:43d6 with SMTP id f27-20020a05620a12fb00b006a5816e43d6mr23692512qkl.692.1653996226023;
-        Tue, 31 May 2022 04:23:46 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzcKltOlg/kYOsBwY4ck89LyJGn1h8RwebGLbLyGZQf6VOtbjGuWUhQQKGVPYXnPktvmybIag==
-X-Received: by 2002:a05:620a:12fb:b0:6a5:816e:43d6 with SMTP id f27-20020a05620a12fb00b006a5816e43d6mr23692486qkl.692.1653996225758;
-        Tue, 31 May 2022 04:23:45 -0700 (PDT)
-Received: from gerbillo.redhat.com (146-241-112-184.dyn.eolo.it. [146.241.112.184])
-        by smtp.gmail.com with ESMTPSA id b26-20020a05620a271a00b0069fe1fc72e7sm9204894qkp.90.2022.05.31.04.23.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 May 2022 04:23:45 -0700 (PDT)
-Message-ID: <fee7c767e1a57822bddc88fb6096673838e93ee4.camel@redhat.com>
-Subject: Re: [PATCH v2 2/2] net: ti: icssg-prueth: Add ICSSG ethernet driver
-From:   Paolo Abeni <pabeni@redhat.com>
-To:     Puranjay Mohan <p-mohan@ti.com>, linux-kernel@vger.kernel.org
-Cc:     davem@davemloft.net, edumazet@google.com,
-        krzysztof.kozlowski+dt@linaro.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, nm@ti.com, ssantosh@kernel.org,
-        s-anna@ti.com, linux-arm-kernel@lists.infradead.org,
-        rogerq@kernel.org, grygorii.strashko@ti.com, vigneshr@ti.com,
-        kishon@ti.com, robh+dt@kernel.org, afd@ti.com, andrew@lunn.ch
-Date:   Tue, 31 May 2022 13:23:40 +0200
-In-Reply-To: <20220531095108.21757-3-p-mohan@ti.com>
-References: <20220531095108.21757-1-p-mohan@ti.com>
-         <20220531095108.21757-3-p-mohan@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.4 (3.42.4-2.fc35) 
+        with ESMTP id S235213AbiEaL1w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 07:27:52 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 236DA5640F;
+        Tue, 31 May 2022 04:27:51 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24VBRb64008005;
+        Tue, 31 May 2022 06:27:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1653996457;
+        bh=qJ0RI2D54rKAOY4QFUK9uMZFWGnHAFI7WYW4XE7wRGM=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=mzSCa0LUoZcXg8mXCsxilQxTtla1SylCI8AnRA6eAYZUldoj9ywO0d4TsDWyn+DY1
+         wNB1D2oo1X7ksVXAHkmk4Xf791PGZ/seQ1lUYRKH4bG9tKhyN/i7pkMAhc+Mu6o6VW
+         mrXlBoznJ5Xd8b31b3MvUx+nGeTSxoyK8185jkIY=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24VBRbCa043686
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 31 May 2022 06:27:37 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 31
+ May 2022 06:27:36 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 31 May 2022 06:27:36 -0500
+Received: from [172.24.220.119] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24VBRSXt018027;
+        Tue, 31 May 2022 06:27:29 -0500
+Message-ID: <faff79c9-7e1e-a69b-f314-6c00dedf1722@ti.com>
+Date:   Tue, 31 May 2022 16:57:27 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: net: Add ICSSG Ethernet Driver
+ bindings
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <davem@davemloft.net>, <edumazet@google.com>,
+        <krzysztof.kozlowski+dt@linaro.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <nm@ti.com>, <ssantosh@kernel.org>,
+        <s-anna@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <rogerq@kernel.org>, <grygorii.strashko@ti.com>, <vigneshr@ti.com>,
+        <kishon@ti.com>, <robh+dt@kernel.org>, <afd@ti.com>,
+        <andrew@lunn.ch>
+References: <20220531095108.21757-1-p-mohan@ti.com>
+ <20220531095108.21757-2-p-mohan@ti.com>
+ <4ccba38a-ccde-83cd-195b-77db7a64477c@linaro.org>
+From:   Puranjay Mohan <p-mohan@ti.com>
+In-Reply-To: <4ccba38a-ccde-83cd-195b-77db7a64477c@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-05-31 at 15:21 +0530, Puranjay Mohan wrote:
-[...]
-> +static int emac_tx_complete_packets(struct prueth_emac *emac, int chn,
-> +				    int budget)
-> +{
-> +	struct net_device *ndev = emac->ndev;
-> +	struct cppi5_host_desc_t *desc_tx;
-> +	struct netdev_queue *netif_txq;
-> +	struct prueth_tx_chn *tx_chn;
-> +	unsigned int total_bytes = 0;
-> +	struct sk_buff *skb;
-> +	dma_addr_t desc_dma;
-> +	int res, num_tx = 0;
-> +	void **swdata;
-> +
-> +	tx_chn = &emac->tx_chns[chn];
-> +
-> +	while (budget--) {
-> +		res = k3_udma_glue_pop_tx_chn(tx_chn->tx_chn, &desc_dma);
-> +		if (res == -ENODATA)
-> +			break;
-> +
-> +		/* teardown completion */
-> +		if (cppi5_desc_is_tdcm(desc_dma)) {
-> +			if (atomic_dec_and_test(&emac->tdown_cnt))
-> +				complete(&emac->tdown_complete);
-> +			break;
-> +		}
-> +
-> +		desc_tx = k3_cppi_desc_pool_dma2virt(tx_chn->desc_pool,
-> +						     desc_dma);
-> +		swdata = cppi5_hdesc_get_swdata(desc_tx);
-> +
-> +		skb = *(swdata);
-> +		prueth_xmit_free(tx_chn, desc_tx);
-> +
-> +		ndev = skb->dev;
-> +		ndev->stats.tx_packets++;
-> +		ndev->stats.tx_bytes += skb->len;
-> +		total_bytes += skb->len;
-> +		napi_consume_skb(skb, budget);
+Hi Krzysztof,
 
-The above is uncorrect. In this loop's last iteration 'budget' will  be
-0 and napi_consume_skb will wrongly assume the caller is not in NAPI
-context. 
+On 31/05/22 15:38, Krzysztof Kozlowski wrote:
+> On 31/05/2022 11:51, Puranjay Mohan wrote:
+>> Add a YAML binding document for the ICSSG Programmable real time unit
+>> based Ethernet driver. This driver uses the PRU and PRUSS consumer APIs
+>> to interface the PRUs and load/run the firmware for supporting ethernet
+>> functionality.
+>>
+>> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
+>> ---
+>> v1: https://lore.kernel.org/all/20220506052433.28087-2-p-mohan@ti.com/ 
+>> v1 -> v2:
+>> * Addressed Rob's Comments
+> 
+> Nope, they were not addressed.
 
-> +static int prueth_dma_rx_push(struct prueth_emac *emac,
-> +			      struct sk_buff *skb,
-> +			      struct prueth_rx_chn *rx_chn)
-> +{
-> +	struct cppi5_host_desc_t *desc_rx;
-> +	struct net_device *ndev = emac->ndev;
-> +	dma_addr_t desc_dma;
-> +	dma_addr_t buf_dma;
-> +	u32 pkt_len = skb_tailroom(skb);
-> +	void **swdata;
-> +
-> +	desc_rx = k3_cppi_desc_pool_alloc(rx_chn->desc_pool);
-> +	if (!desc_rx) {
-> +		netdev_err(ndev, "rx push: failed to allocate descriptor\n");
-> +		return -ENOMEM;
-> +	}
-> +	desc_dma = k3_cppi_desc_pool_virt2dma(rx_chn->desc_pool, desc_rx);
-> +
-> +	buf_dma = dma_map_single(rx_chn->dma_dev, skb->data, pkt_len, DMA_FROM_DEVICE);
-> +	if (unlikely(dma_mapping_error(rx_chn->dma_dev, buf_dma))) {
-> +		k3_cppi_desc_pool_free(rx_chn->desc_pool, desc_rx);
-> +		netdev_err(ndev, "rx push: failed to map rx pkt buffer\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	cppi5_hdesc_init(desc_rx, CPPI5_INFO0_HDESC_EPIB_PRESENT,
-> +			 PRUETH_NAV_PS_DATA_SIZE);
-> +	k3_udma_glue_rx_dma_to_cppi5_addr(rx_chn->rx_chn, &buf_dma);
-> +	cppi5_hdesc_attach_buf(desc_rx, buf_dma, skb_tailroom(skb), buf_dma, skb_tailroom(skb));
-> +
-> +	swdata = cppi5_hdesc_get_swdata(desc_rx);
-> +	*swdata = skb;
-> +
-> +	return k3_udma_glue_push_rx_chn(rx_chn->rx_chn, 0,
-> +					desc_rx, desc_dma);
-> +}
-> +
-> +static int emac_rx_packet(struct prueth_emac *emac, u32 flow_id)
-> +{
-> +	struct prueth_rx_chn *rx_chn = &emac->rx_chns;
-> +	struct net_device *ndev = emac->ndev;
-> +	struct cppi5_host_desc_t *desc_rx;
-> +	dma_addr_t desc_dma, buf_dma;
-> +	u32 buf_dma_len, pkt_len, port_id = 0;
-> +	int ret;
-> +	void **swdata;
-> +	struct sk_buff *skb, *new_skb;
-> +
-> +	ret = k3_udma_glue_pop_rx_chn(rx_chn->rx_chn, flow_id, &desc_dma);
-> +	if (ret) {
-> +		if (ret != -ENODATA)
-> +			netdev_err(ndev, "rx pop: failed: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	if (cppi5_desc_is_tdcm(desc_dma)) /* Teardown ? */
-> +		return 0;
-> +
-> +	desc_rx = k3_cppi_desc_pool_dma2virt(rx_chn->desc_pool, desc_dma);
-> +
-> +	swdata = cppi5_hdesc_get_swdata(desc_rx);
-> +	skb = *swdata;
-> +
-> +	cppi5_hdesc_get_obuf(desc_rx, &buf_dma, &buf_dma_len);
-> +	k3_udma_glue_rx_cppi5_to_dma_addr(rx_chn->rx_chn, &buf_dma);
-> +	pkt_len = cppi5_hdesc_get_pktlen(desc_rx);
-> +	/* firmware adds 4 CRC bytes, strip them */
-> +	pkt_len -= 4;
-> +	cppi5_desc_get_tags_ids(&desc_rx->hdr, &port_id, NULL);
-> +
-> +	dma_unmap_single(rx_chn->dma_dev, buf_dma, buf_dma_len, DMA_FROM_DEVICE);
-> +	k3_cppi_desc_pool_free(rx_chn->desc_pool, desc_rx);
-> +
-> +	skb->dev = ndev;
-> +	if (!netif_running(skb->dev)) {
-> +		dev_kfree_skb_any(skb);
-> +		return 0;
-> +	}
-> +
-> +	new_skb = netdev_alloc_skb_ip_align(ndev, PRUETH_MAX_PKT_SIZE);
-> +	/* if allocation fails we drop the packet but push the
-> +	 * descriptor back to the ring with old skb to prevent a stall
-> +	 */
-> +	if (!new_skb) {
-> +		ndev->stats.rx_dropped++;
-> +		new_skb = skb;
-> +	} else {
-> +		/* send the filled skb up the n/w stack */
-> +		skb_put(skb, pkt_len);
-> +		skb->protocol = eth_type_trans(skb, ndev);
-> +		netif_receive_skb(skb);
+I am trying my best to address them but I am new to DT Schemas, so, I
+misunderstood a few comments.
 
-This is (apparently) in napi context. You should use napi_gro_receive()
-or napi_gro_frags()
+> 
+>> * It includes indentation, formatting, and other minor changes.
+>> ---
+>>  .../bindings/net/ti,icssg-prueth.yaml         | 181 ++++++++++++++++++
+>>  1 file changed, 181 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+>> new file mode 100644
+>> index 000000000000..40af968e9178
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+>> @@ -0,0 +1,181 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/net/ti,icssg-prueth.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: |+
+> 
+> Missed Rob's comment.
+
+Sorry, Will remove this in next version.
+
+> 
+>> +  Texas Instruments ICSSG PRUSS Ethernet
+>> +
+>> +maintainers:
+>> +  - Puranjay Mohan <p-mohan@ti.com>
+>> +
+>> +description:
+>> +  Ethernet based on the Programmable Real-Time
+>> +  Unit and Industrial Communication Subsystem.
+>> +
+>> +allOf:
+>> +  - $ref: /schemas/remoteproc/ti,pru-consumer.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - ti,am654-icssg-prueth  # for AM65x SoC family
+>> +
+>> +  pinctrl-0:
+>> +    maxItems: 1
+>> +
+>> +  pinctrl-names:
+>> +    items:
+>> +      - const: default
+> 
+> You do not need these usually, they are coming from schema.
+
+Will remove in next version.
+
+> 
+>> +
+>> +  sram:
+>> +    description:
+>> +      phandle to MSMC SRAM node
+>> +
+>> +  dmas:
+>> +    maxItems: 10
+>> +    description:
+>> +      list of phandles and specifiers to UDMA.
+> 
+> Please follow Rob's comment - drop description.
+
+I misunderstood his comment, I thought he is asking to remove the
+reference to the .txt file (Which I removed). I will remove it in next
+version.
+
+> 
+>> +
+>> +  dma-names:
+>> +    items:
+>> +      - const: tx0-0
+>> +      - const: tx0-1
+>> +      - const: tx0-2
+>> +      - const: tx0-3
+>> +      - const: tx1-0
+>> +      - const: tx1-1
+>> +      - const: tx1-2
+>> +      - const: tx1-3
+>> +      - const: rx0
+>> +      - const: rx1
+>> +
+>> +  ethernet-ports:
+>> +    type: object
+>> +    properties:
+>> +      '#address-cells':
+>> +        const: 1
+>> +      '#size-cells':
+>> +        const: 0
+>> +
+>> +    patternProperties:
+>> +      ^port@[0-1]$:
+> 
+> How did you implement Rob's comments here?
+
+He said ethernet-port is preferred but all other drivers were using
+"port" so I though it is not compulsory. Will change it if it compulsory
+to use ethernet-port
+
+> 
+>> +        type: object
+>> +        description: ICSSG PRUETH external ports
+>> +
+>> +        $ref: ethernet-controller.yaml#
+>> +
+>> +        unevaluatedProperties: false
+>> +        additionalProperties: true
+> 
+> No one proposed to add additionalProperties:true... Does it even work?
+
+This is my mistake, will remove it in next version.
+
+> 
+>> +        properties:
+>> +          reg:
+>> +            items:
+>> +              - enum: [0, 1]
+>> +            description: ICSSG PRUETH port number
+>> +
+>> +          ti,syscon-rgmii-delay:
+>> +            $ref: /schemas/types.yaml#/definitions/phandle-array
+>> +            description:
+>> +              phandle to system controller node and register offset
+>> +              to ICSSG control register for RGMII transmit delay
+>> +
+>> +        required:
+>> +          - reg
+>> +
+>> +  ti,mii-g-rt:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description: |
+>> +      phandle to MII_G_RT module's syscon regmap.
+>> +
+>> +  ti,mii-rt:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description: |
+>> +      phandle to MII_RT module's syscon regmap
+>> +
+>> +  interrupts:
+>> +    minItems: 2
+>> +    maxItems: 2
+>> +    description: |
+>> +      Interrupt specifiers to TX timestamp IRQ.
+>> +
+>> +  interrupt-names:
+>> +    items:
+>> +      - const: tx_ts0
+>> +      - const: tx_ts1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - sram
+>> +  - ti,mii-g-rt
+>> +  - dmas
+>> +  - dma-names
+>> +  - ethernet-ports
+>> +  - interrupts
+>> +  - interrupt-names
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +
+>> +    /* Example k3-am654 base board SR2.0, dual-emac */
+>> +    pruss2_eth: pruss2_eth {
+>> +            compatible = "ti,am654-icssg-prueth";
+> 
+> Again missed Rob's comment.
+
+One of Rob's comment was to make the indentation as 4 which I have done.
+
+The second comment was about 'ti,prus'.
+
+So, ti,prus , firmware-name, and ti,pruss-gp-mux-sel are a part of
+remoteproc/ti,pru-consumer.yaml which I have included with
+
+allOf:
+  - $ref: /schemas/remoteproc/ti,pru-consumer.yaml#
+
+So, I thought it is not required to add them again.
+
+I will add it in next version, if that is how it should be done.
+
+> 
+> Really, you ignored four of his comments. Please respect reviewers time
+> but not forcing them to repeat same review comments.
+
+I am really sorry for this.
+
+Thanks,
+Puranjay Mohan
 
 
-Cheers!
-
-Paolo
-
+> 
+> Best regards,
+> Krzysztof
