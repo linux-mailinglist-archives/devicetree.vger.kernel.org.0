@@ -2,107 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AD225393A8
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 17:10:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE7EA5393C7
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 17:18:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345482AbiEaPKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 11:10:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35638 "EHLO
+        id S1345582AbiEaPSI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 11:18:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230307AbiEaPKe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 11:10:34 -0400
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0837A554AB;
-        Tue, 31 May 2022 08:10:32 -0700 (PDT)
-Received: by mail-oi1-f181.google.com with SMTP id r65so12693860oia.9;
-        Tue, 31 May 2022 08:10:32 -0700 (PDT)
+        with ESMTP id S1344803AbiEaPSI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 11:18:08 -0400
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4463D633B2;
+        Tue, 31 May 2022 08:18:07 -0700 (PDT)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-e5e433d66dso18768924fac.5;
+        Tue, 31 May 2022 08:18:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=RBXm9/Esfsyjt1r/aC8kkjNZpxuz6CMibBZbCrct5sU=;
-        b=fg8/p6zXxw6/SKsaovjlb0ENruHxX7IGCJ0/xRjlU+lDf4afG4PYZF9O2WgeRKRUnB
-         5Kch9S/8UGK4SEBmR4kEYCDKh3j0StvY/xmf+LTPx/voyeDkIkgw3NskKB9i0hc+5B9p
-         HkVsuSjEHJY9nZNQt24bZG05MADitnYdsPDhqsWQ7hhQBsDOBzgJNO0edBLUe2sB93Ha
-         I4SvaeTAvCEF/DzV0/0IML5dR8bOVlETpt90LDaJOFCtupAQzl2+ZlhcwZzEqorntyk3
-         LvJCgAgkh74NV4Olg2JyCjgf+cR4jcHD2UYCBvk3b5do/F1HEfW6Lce2UZhR2CiX41pe
-         GZTw==
-X-Gm-Message-State: AOAM531MHpnIkoiLg3mORBK/tsAOMSFCougQd5Gj8tOYJyVUMQAgA2Sz
-        5jYkolM6akkrGhrCduwkVQ==
-X-Google-Smtp-Source: ABdhPJzoAp+Z3IQUZKoxH1jPa/vqFRWyugKv6Lj1GOazPZZ8U2duOMOyCfWEUTN10HNxmAg8d9kt7A==
-X-Received: by 2002:a05:6808:2005:b0:32b:23a1:e6fd with SMTP id q5-20020a056808200500b0032b23a1e6fdmr12605499oiw.59.1654009831912;
-        Tue, 31 May 2022 08:10:31 -0700 (PDT)
+        bh=hw6HT0YhpU0Nzy8vat+zVfd+GtraoN/T8IMTFBgNYMw=;
+        b=tfpoIRS1tMPtFNgOICSK7AYhNogSMAX3agLq5ALRg2t6691S2BkybUiLpqGv9CoCBQ
+         NQ63ZUSj+Q8GkI5hAqca1Tgsl1463g78wDsGiOkvw7CZAM523LAM6X06DLztlUmBHXcz
+         Q7jE9MfI/Tk/B/HZkXQJk6dwOXlg/H2iSXYfVm07iE9XqiD94jaqcTfjYt28eZWllvDE
+         q6C9d4wW5AjkxkPZInEktBPw+QNCrV6b/aRldihBn4+NvCrRU/Kh8xuFMhBR4kvvGUzP
+         2MVsI/A2icmInI1ZCVUtmD5mxwP7D/A23wmmqGqmH+1l752WQ2mL5cEx74pKRPDzh/lh
+         4KKg==
+X-Gm-Message-State: AOAM532YFK3Va58YsfA07XqwG7UQIAbaBPE7LRJDTLEdru8onxaP+qaD
+        +5pQsXnzG9x7L0C2EBM16fY8q4X85Q==
+X-Google-Smtp-Source: ABdhPJw6/muc28+MxomD6dKLajsUp3//40HWkOp4KAueSb0Cb/n2QUlgd7og+IQhsYKbhLoeM4vkrQ==
+X-Received: by 2002:a05:6870:c583:b0:f2:e92f:e1c4 with SMTP id ba3-20020a056870c58300b000f2e92fe1c4mr11835783oab.48.1654010286550;
+        Tue, 31 May 2022 08:18:06 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id r13-20020a056830080d00b0060603221245sm6410657ots.21.2022.05.31.08.10.31
+        by smtp.gmail.com with ESMTPSA id la13-20020a056871410d00b000f33f8b7603sm2518321oab.17.2022.05.31.08.18.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 May 2022 08:10:31 -0700 (PDT)
-Received: (nullmailer pid 1770063 invoked by uid 1000);
-        Tue, 31 May 2022 15:10:30 -0000
-Date:   Tue, 31 May 2022 10:10:30 -0500
+        Tue, 31 May 2022 08:18:06 -0700 (PDT)
+Received: (nullmailer pid 1781709 invoked by uid 1000);
+        Tue, 31 May 2022 15:18:05 -0000
+Date:   Tue, 31 May 2022 10:18:05 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Mark Brown <broonie@kernel.org>,
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        Felipe Balbi <balbi@kernel.org>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] spi: dt-bindings: Move 'rx-sample-delay-ns' to
- spi-peripheral-props.yaml
-Message-ID: <20220531151030.GC1742958-robh@kernel.org>
-References: <20220525210053.2488756-1-robh@kernel.org>
- <20220526054642.zw44mgw2bd2u5v76@ti.com>
- <20220526135404.GA3831942-robh@kernel.org>
- <20220527113226.x62neigmrnljxtph@mobilestation>
+Subject: Re: [PATCH] dt-bindings: usb: snps,dwc3: Add missing 'dma-coherent'
+ property
+Message-ID: <20220531151805.GD1742958-robh@kernel.org>
+References: <20220526014118.2872057-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220527113226.x62neigmrnljxtph@mobilestation>
+In-Reply-To: <20220526014118.2872057-1-robh@kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 27, 2022 at 02:32:26PM +0300, Serge Semin wrote:
-> On Thu, May 26, 2022 at 08:54:04AM -0500, Rob Herring wrote:
-> > On Thu, May 26, 2022 at 11:16:42AM +0530, Pratyush Yadav wrote:
-> > > Hi Rob,
-> > > 
-> > > On 25/05/22 04:00PM, Rob Herring wrote:
-> > > > SPI bus per device properties must be defined in spi-peripheral-props.yaml
-> > > > for unevaluatedProperties checks to work correctly on device nodes.
-> > > > 
-> > > > This has the side effect of promoting 'rx-sample-delay-ns' to be a
-> > > > common property, but functionally it's no different if it was defined in
-> > > > a Synopsys specific schema file.
-> > > 
-> > > Functionally it is no different, but does this property make sense for 
-> > > other controllers? If not then I don't see why we should pollute the 
-> > > common list with controller-specific ones. For one, this now no longer 
-> > > makes it obvious that this property should only be used with the 
-> > > Synopsys controller. And if you keep making small exceptions for other 
-> > > controllers too, soon the common list will be full of controller 
-> > > properties and it will be a mess finding out what belongs to who.
-> > 
+On Wed, May 25, 2022 at 08:41:18PM -0500, Rob Herring wrote:
+> The 'unevaluatedProperties' schema checks is not fully working and doesn't
+> catch some cases where there's a $ref to another schema. A fix is pending,
+> but results in new warnings in examples.
 > 
-> > There's at least one other case already:
-> > 
-> >   cdns,read-delay:
-> >     $ref: /schemas/types.yaml#/definitions/uint32
-> >     description:
-> >       Delay for read capture logic, in clock cycles.
+> Some DWC3 implementations such as Xilinx are hooked up coherently and need
+> to set the 'dma-coherent' property.
 > 
-> What about creating the schemas hierarchy for the device-specific
-> properties as I already suggested in the other thread? Like this:
-> 
-> https://lore.kernel.org/linux-ide/20220527101057.b5z7ase6y4naoxvk@mobilestation
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-Because that doesn't work. I'll explain in that thread.
-
-Rob
+Applied, thanks.
