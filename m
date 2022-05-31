@@ -2,191 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1FFD538F7B
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 13:13:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E12A538F90
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 13:19:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343691AbiEaLN1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 07:13:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58430 "EHLO
+        id S242267AbiEaLTM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 07:19:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343693AbiEaLNZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 07:13:25 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A26E58D6B4;
-        Tue, 31 May 2022 04:13:22 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24VBDEkj082186;
-        Tue, 31 May 2022 06:13:14 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1653995594;
-        bh=nOVEDIQrMHBAYQxk4E+Qzrw1IjfySejMOABM1vIc9Xo=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=pKSEfvU4Z0Bctop2Ls0dgZJ630UaG5v8+SnXuZX3tLNeLT2oMwXHvU7Rv2LNyZ/1K
-         LTzXYwANU8m8JZ0nYJAOZ4kgjkGJE2aQufp8/0PShmDBdZ9YqK03nLmaUqQDyajaGm
-         vMzj0wPRj2QkebesZ/EsK6Rsb25LEa7SlUfsDV5k=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24VBDEFK019768
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 31 May 2022 06:13:14 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 31
- May 2022 06:13:13 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 31 May 2022 06:13:13 -0500
-Received: from ula0492258.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24VBCka9045977;
-        Tue, 31 May 2022 06:13:09 -0500
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-To:     <robh+dt@kernel.org>, <lee.jones@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <kishon@ti.com>,
-        <vkoul@kernel.org>, <dan.carpenter@oracle.com>,
-        <grygorii.strashko@ti.com>, <rogerq@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>,
-        Siddharth Vadapalli <s-vadapalli@ti.com>
-Subject: [PATCH 2/2] phy: ti: gmii-sel: Add support for CPSW5G GMII SEL in J7200
-Date:   Tue, 31 May 2022 16:42:21 +0530
-Message-ID: <20220531111221.22963-3-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220531111221.22963-1-s-vadapalli@ti.com>
-References: <20220531111221.22963-1-s-vadapalli@ti.com>
+        with ESMTP id S229464AbiEaLTK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 07:19:10 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AECE64BFB;
+        Tue, 31 May 2022 04:19:09 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id s14so12545676plk.8;
+        Tue, 31 May 2022 04:19:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PAfP1TfQKp57sKoK4miFwW50pUBbnmoGxnEIvXcM/g4=;
+        b=VxbJrcEqXZrBzeefY+0uD9QcWn0EWa3c8fagyKu8A7g1YljQHCkjN/wLxIY7lK0PTF
+         hnXZLA5SvlwBMMejDWuakWyTh2MusBV6ReGoBEPolhpc8+AhraqAiYfufwIQ+VmSFHuZ
+         X7j5qcSxfxPpvm3xeCcvB8KArI8FMvvXtzTKhxbPh8gairyuBP1mbBCW9+Yh74HVZINo
+         WlS8In9e6fmwq4+8ZRiV21yFvg6E7863L35z1vnLs6iqOsa/Li6g5VYsOzIv8gchvOqf
+         Zy5YErt5vCJBYwqAaZG6pMyfDnqK3J65GVweAY6/PZBszLlWKBkwofxJYqtBTkIVNASd
+         xnPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PAfP1TfQKp57sKoK4miFwW50pUBbnmoGxnEIvXcM/g4=;
+        b=TqOJuSl3j5d7elhN0igd9i76YNI5PQ0vnC1kd4ZraP8xvP/s4VhbwCJZ14c6xYtB1/
+         zMgGuq/vSINHHrJSUIBaZBC+RGQBnFkjC3KYGada0wL5e8GJoelL2VhpjS04nfCsh6vM
+         /fLShaBHA/5uiKASfXklCMpnEnMM2MJCsqDCMDpyVV/DB0PDRtbZR9RJ2xg29ypl5TPd
+         vSawq7HzMdlRQwSFqCOH3b8U5EzYhkA/tCwIu32TrcQxMm2+Hj6bkUy2f31z5CL531X8
+         Qrsysa2h3HNHeccKiuxvIFj/OOJVRJOKS43CnwYl2x6MQfsNWIIh8BJz27bekgMFbAYp
+         5bBg==
+X-Gm-Message-State: AOAM530tit1ED4Rfb9GhkSoiSrNuURvG7+RHdGD2RukiJUHVafkbRtzh
+        GAj+BZ9PvEijdHVbSmgiz9M=
+X-Google-Smtp-Source: ABdhPJxhWTb/Mk+ejJKNKtSGdRVZoSfW873ok5RFT4PoJkUb/S/OY5WkMvOd9idL4wo2nH2gDZDMAw==
+X-Received: by 2002:a17:90a:4209:b0:1df:b907:ed3d with SMTP id o9-20020a17090a420900b001dfb907ed3dmr28446184pjg.40.1653995949025;
+        Tue, 31 May 2022 04:19:09 -0700 (PDT)
+Received: from RD-3580-24288.rt.l (42-72-220-172.emome-ip.hinet.net. [42.72.220.172])
+        by smtp.gmail.com with ESMTPSA id cm24-20020a056a00339800b00518142f8c37sm10751608pfb.171.2022.05.31.04.19.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 31 May 2022 04:19:08 -0700 (PDT)
+From:   ChiaEn Wu <peterwu.pub@gmail.com>
+To:     lee.jones@linaro.org, daniel.thompson@linaro.org,
+        jingoohan1@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        sre@kernel.org, chunfeng.yun@mediatek.com,
+        gregkh@linuxfoundation.org, jic23@kernel.org, lars@metafoo.de,
+        lgirdwood@gmail.com, broonie@kernel.org, linux@roeck-us.net,
+        heikki.krogerus@linux.intel.com, deller@gmx.de
+Cc:     cy_huang@richtek.com, alice_chen@richtek.com,
+        chiaen_wu@richtek.com, peterwu.pub@gmail.com,
+        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-fbdev@vger.kernel.org
+Subject: [RESEND 00/14] Add Mediatek MT6370 PMIC support
+Date:   Tue, 31 May 2022 19:18:46 +0800
+Message-Id: <20220531111900.19422-1-peterwu.pub@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Each of the CPSW5G ports in J7200 support additional modes like QSGMII.
-Add a new compatible for J7200 to support the additional modes.
+From: ChiaEn Wu <chiaen_wu@richtek.com>
 
-In TI's J7200, each of the CPSW5G ethernet interfaces can act as a
-QSGMII or QSGMII-SUB port. The QSGMII interface is responsible for
-performing auto-negotiation between the MAC and the PHY while the rest of
-the interfaces are designated as QSGMII-SUB interfaces, indicating that
-they will not be taking part in the auto-negotiation process.
+Sorry, for the patch dependency, we resend this patch series and we're
+sorry for any inconvenience that we may have caused. This patch series add
+Mediatek MT6370 PMIC support. The MT6370 is a highly-integrated smart
+power management IC, which includes a single cell Li-Ion/Li-Polymer
+switching battery charger, a USB Type-C & Power Delivery (PD)
+controller, dual Flash LED current sources, a RGB LED driver, a
+backlight WLED driver, a display bias driver and a general LDO for
+portable devices.
 
-To indicate the interface which will serve as the main QSGMII interface,
-add a property "ti,enet-ctrl-qsgmii", whose value indicates the
-port number of the interface which shall serve as the main QSGMII
-interface. The rest of the interfaces are then assigned QSGMII-SUB mode by
-default.
+Alice Chen (3):
+  dt-bindings: leds: Add Mediatek MT6370 flashlight binding
+  leds: mt6370: Add Mediatek MT6370 Indicator support
+  leds: flashlight: mt6370: Add Mediatek MT6370 flashlight support
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
- drivers/phy/ti/phy-gmii-sel.c | 39 ++++++++++++++++++++++++++++++++---
- 1 file changed, 36 insertions(+), 3 deletions(-)
+ChiYuan Huang (7):
+  dt-bindings: usb: Add Mediatek MT6370 TCPC binding
+  dt-bindings: leds: mt6370: Add Mediatek mt6370 indicator
+  dt-bindings: backlight: Add Mediatek MT6370 backlight binding
+  dt-bindings: mfd: Add Mediatek MT6370 binding
+  mfd: mt6370: Add Mediatek MT6370 support
+  usb: typec: tcpci_mt6370: Add Mediatek MT6370 tcpci driver
+  regulator: mt6370: Add mt6370 DisplayBias and VibLDO support
 
-diff --git a/drivers/phy/ti/phy-gmii-sel.c b/drivers/phy/ti/phy-gmii-sel.c
-index d0ab69750c6b..3def0909ba69 100644
---- a/drivers/phy/ti/phy-gmii-sel.c
-+++ b/drivers/phy/ti/phy-gmii-sel.c
-@@ -22,6 +22,12 @@
- #define AM33XX_GMII_SEL_MODE_RMII	1
- #define AM33XX_GMII_SEL_MODE_RGMII	2
- 
-+/* J72xx SoC specific definitions for the CONTROL port */
-+#define J72XX_GMII_SEL_MODE_QSGMII	4
-+#define J72XX_GMII_SEL_MODE_QSGMII_SUB	6
-+
-+#define PHY_GMII_PORT(n)	BIT((n) - 1)
-+
- enum {
- 	PHY_GMII_SEL_PORT_MODE = 0,
- 	PHY_GMII_SEL_RGMII_ID_MODE,
-@@ -43,6 +49,7 @@ struct phy_gmii_sel_soc_data {
- 	u32 features;
- 	const struct reg_field (*regfields)[PHY_GMII_SEL_LAST];
- 	bool use_of_data;
-+	u64 extra_modes;
- };
- 
- struct phy_gmii_sel_priv {
-@@ -53,6 +60,7 @@ struct phy_gmii_sel_priv {
- 	struct phy_gmii_sel_phy_priv *if_phys;
- 	u32 num_ports;
- 	u32 reg_offset;
-+	u32 qsgmii_main_port;
- };
- 
- static int phy_gmii_sel_mode(struct phy *phy, enum phy_mode mode, int submode)
-@@ -88,10 +96,17 @@ static int phy_gmii_sel_mode(struct phy *phy, enum phy_mode mode, int submode)
- 		gmii_sel_mode = AM33XX_GMII_SEL_MODE_MII;
- 		break;
- 
-+	case PHY_INTERFACE_MODE_QSGMII:
-+		if (!(soc_data->extra_modes & BIT(PHY_INTERFACE_MODE_QSGMII)))
-+			goto unsupported;
-+		if (if_phy->priv->qsgmii_main_port & BIT(if_phy->id - 1))
-+			gmii_sel_mode = J72XX_GMII_SEL_MODE_QSGMII;
-+		else
-+			gmii_sel_mode = J72XX_GMII_SEL_MODE_QSGMII_SUB;
-+		break;
-+
- 	default:
--		dev_warn(dev, "port%u: unsupported mode: \"%s\"\n",
--			 if_phy->id, phy_modes(submode));
--		return -EINVAL;
-+		goto unsupported;
- 	}
- 
- 	if_phy->phy_if_mode = submode;
-@@ -123,6 +138,11 @@ static int phy_gmii_sel_mode(struct phy *phy, enum phy_mode mode, int submode)
- 	}
- 
- 	return 0;
-+
-+unsupported:
-+	dev_warn(dev, "port%u: unsupported mode: \"%s\"\n",
-+		 if_phy->id, phy_modes(submode));
-+	return -EINVAL;
- }
- 
- static const
-@@ -188,6 +208,13 @@ struct phy_gmii_sel_soc_data phy_gmii_sel_soc_am654 = {
- 	.regfields = phy_gmii_sel_fields_am654,
- };
- 
-+static const
-+struct phy_gmii_sel_soc_data phy_gmii_sel_cpsw5g_soc_j7200 = {
-+	.use_of_data = true,
-+	.regfields = phy_gmii_sel_fields_am654,
-+	.extra_modes = BIT(PHY_INTERFACE_MODE_QSGMII),
-+};
-+
- static const struct of_device_id phy_gmii_sel_id_table[] = {
- 	{
- 		.compatible	= "ti,am3352-phy-gmii-sel",
-@@ -209,6 +236,10 @@ static const struct of_device_id phy_gmii_sel_id_table[] = {
- 		.compatible	= "ti,am654-phy-gmii-sel",
- 		.data		= &phy_gmii_sel_soc_am654,
- 	},
-+	{
-+		.compatible	= "ti,j7200-cpsw5g-phy-gmii-sel",
-+		.data		= &phy_gmii_sel_cpsw5g_soc_j7200,
-+	},
- 	{}
- };
- MODULE_DEVICE_TABLE(of, phy_gmii_sel_id_table);
-@@ -363,6 +394,8 @@ static int phy_gmii_sel_probe(struct platform_device *pdev)
- 	priv->dev = &pdev->dev;
- 	priv->soc_data = of_id->data;
- 	priv->num_ports = priv->soc_data->num_ports;
-+	priv->qsgmii_main_port = PHY_GMII_PORT(1);
-+	of_property_read_u32(node, "ti,enet-ctrl-qsgmii", &priv->qsgmii_main_port);
- 
- 	priv->regmap = syscon_node_to_regmap(node->parent);
- 	if (IS_ERR(priv->regmap)) {
+ChiaEn Wu (4):
+  dt-bindings: power: supply: Add Mediatek MT6370 Charger binding
+  iio: adc: mt6370: Add Mediatek MT6370 support
+  power: supply: mt6370: Add Mediatek MT6370 charger driver
+  video: backlight: mt6370: Add Mediatek MT6370 support
+
+ .../backlight/mediatek,mt6370-backlight.yaml  |  110 ++
+ .../leds/mediatek,mt6370-flashlight.yaml      |   48 +
+ .../leds/mediatek,mt6370-indicator.yaml       |   57 +
+ .../bindings/mfd/mediatek,mt6370.yaml         |  282 ++++
+ .../power/supply/mediatek,mt6370-charger.yaml |   60 +
+ .../bindings/usb/mediatek,mt6370-tcpc.yaml    |   35 +
+ drivers/iio/adc/Kconfig                       |    9 +
+ drivers/iio/adc/Makefile                      |    1 +
+ drivers/iio/adc/mt6370-adc.c                  |  257 ++++
+ drivers/leds/Kconfig                          |   11 +
+ drivers/leds/Makefile                         |    1 +
+ drivers/leds/flash/Kconfig                    |    9 +
+ drivers/leds/flash/Makefile                   |    1 +
+ drivers/leds/flash/leds-mt6370-flash.c        |  665 ++++++++++
+ drivers/leds/leds-mt6370.c                    |  994 +++++++++++++++
+ drivers/mfd/Kconfig                           |   13 +
+ drivers/mfd/Makefile                          |    1 +
+ drivers/mfd/mt6370.c                          |  273 ++++
+ drivers/power/supply/Kconfig                  |   11 +
+ drivers/power/supply/Makefile                 |    1 +
+ drivers/power/supply/mt6370-charger.c         | 1132 +++++++++++++++++
+ drivers/regulator/Kconfig                     |    8 +
+ drivers/regulator/Makefile                    |    1 +
+ drivers/regulator/mt6370-regulator.c          |  389 ++++++
+ drivers/usb/typec/tcpm/Kconfig                |    8 +
+ drivers/usb/typec/tcpm/Makefile               |    1 +
+ drivers/usb/typec/tcpm/tcpci_mt6370.c         |  212 +++
+ drivers/video/backlight/Kconfig               |    8 +
+ drivers/video/backlight/Makefile              |    1 +
+ drivers/video/backlight/mt6370-backlight.c    |  338 +++++
+ .../dt-bindings/iio/adc/mediatek,mt6370_adc.h |   18 +
+ include/dt-bindings/mfd/mediatek,mt6370.h     |   83 ++
+ 32 files changed, 5038 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/backlight/mediatek,mt6370-backlight.yaml
+ create mode 100644 Documentation/devicetree/bindings/leds/mediatek,mt6370-flashlight.yaml
+ create mode 100644 Documentation/devicetree/bindings/leds/mediatek,mt6370-indicator.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,mt6370.yaml
+ create mode 100644 Documentation/devicetree/bindings/power/supply/mediatek,mt6370-charger.yaml
+ create mode 100644 Documentation/devicetree/bindings/usb/mediatek,mt6370-tcpc.yaml
+ create mode 100644 drivers/iio/adc/mt6370-adc.c
+ create mode 100644 drivers/leds/flash/leds-mt6370-flash.c
+ create mode 100644 drivers/leds/leds-mt6370.c
+ create mode 100644 drivers/mfd/mt6370.c
+ create mode 100644 drivers/power/supply/mt6370-charger.c
+ create mode 100644 drivers/regulator/mt6370-regulator.c
+ create mode 100644 drivers/usb/typec/tcpm/tcpci_mt6370.c
+ create mode 100644 drivers/video/backlight/mt6370-backlight.c
+ create mode 100644 include/dt-bindings/iio/adc/mediatek,mt6370_adc.h
+ create mode 100644 include/dt-bindings/mfd/mediatek,mt6370.h
+
 -- 
-2.36.1
+2.25.1
 
