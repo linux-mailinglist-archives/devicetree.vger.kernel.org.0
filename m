@@ -2,77 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65FFE5391B5
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 15:21:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EDD75391B6
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 15:21:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344707AbiEaNV1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 09:21:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34480 "EHLO
+        id S1344689AbiEaNVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 09:21:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344713AbiEaNV0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 09:21:26 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEFFB98086
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 06:21:23 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id jx22so26512803ejb.12
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 06:21:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=zYX6/jvx2pbywY/slcBL5U+3fmGGoOywbgeBC8Ifd/I=;
-        b=wMqg8bGVHe9NXDwDJ7uLWBrELFWky9hIMwFig+bFGTRfrZj2Zm6Q4UaNNudpBVbYoa
-         hrvQd8xAgR8a8C5tA6U0LjHgJADuvXhyDmsaIK/2Lr+v8315787Sti8rsJP0ZWyxM7jc
-         dbag/XVKvYcrZ6MQtl9+BrhOyJeH5HwiIJm46j5GkRC/CIT5eErh2ACiKBn5gT2zrA8/
-         RrKdS50ASrzMKRvbcgIokTuYBX4mXCGysyBmbGJ9OWFo5d7FsyA5zKp0BjCbiYGydZ/j
-         dlAuG5QznlzlVuLa9ZSWZNFsJnTKNlcM0AfdH7bHSqd7vIwf3XR8zEwY+m1EcwwbJ4kY
-         MRUA==
+        with ESMTP id S1344699AbiEaNV3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 09:21:29 -0400
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B355B97295;
+        Tue, 31 May 2022 06:21:27 -0700 (PDT)
+Received: by mail-oi1-f178.google.com with SMTP id r206so10177809oib.8;
+        Tue, 31 May 2022 06:21:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=zYX6/jvx2pbywY/slcBL5U+3fmGGoOywbgeBC8Ifd/I=;
-        b=At5D5R52D+DtsPgCzyJ7ZISdmGe5vOOxxhiTqHaJHKCtNbhv7x1znbMAf6BP3x+Y7/
-         3sVKOiQp+3zUzykNeUhg0wy8V6xQqFthLnbosl3g1X/LvyEBYaQLwvsy8lZaiwF4k8bZ
-         CT68pthIN7mXwrK3DlKIZzkdGSu9u05E4/ulffLtxH9ai9zgMNJ0EHTrNUryjVOsM8jQ
-         EP4+vw3+QDmipWlUk2bpurzhW/NwOF14ohzYzwqX8v0vPWh57YHRrn5lIJInJm6yHJMm
-         PpkcO3B/RzIlybuuAQvDY9jB7/uvU+gVHtl0cPLAO0rMivFN+GXwJdUiZnkB+UIgfCx6
-         A7dg==
-X-Gm-Message-State: AOAM531jlZ9oU56rpMFyc8Vi4YpwOrcfqhjvCTieoZbWOB0RxL4EgJDm
-        +viKcnvek63BDu/HLuUlg35VJQ==
-X-Google-Smtp-Source: ABdhPJxcswzON8g7Xj34rartxp6BsJC91ug76tqqMOFi30pmoud7LoGOS6GOOAgudOP0/jxWf+FqCw==
-X-Received: by 2002:a17:906:a397:b0:6fe:a1e5:de70 with SMTP id k23-20020a170906a39700b006fea1e5de70mr49326619ejz.2.1654003282094;
-        Tue, 31 May 2022 06:21:22 -0700 (PDT)
-Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id bm3-20020a170906c04300b006fe8bf56f53sm5074245ejb.43.2022.05.31.06.21.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 May 2022 06:21:21 -0700 (PDT)
-Message-ID: <5fc17d02-d28c-2ad2-8a8f-dfeaf6712d6f@linaro.org>
-Date:   Tue, 31 May 2022 15:21:20 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 3/4] arm64: dts: exynosautov9: add secondary ufs devices
-Content-Language: en-US
-To:     Chanho Park <chanho61.park@samsung.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220531121913.48722-1-chanho61.park@samsung.com>
- <CGME20220531121922epcas2p428c51f13e61e06477d96ab4aa6d1377c@epcas2p4.samsung.com>
- <20220531121913.48722-4-chanho61.park@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220531121913.48722-4-chanho61.park@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=sjiY+V80OL2DiZ6A4EsGgW9fJIH8AO134dDg8U/4y24=;
+        b=GQqS4YzL0CcrjWio8g1620mtdtIoIFhVjGmYTjOmnL7S20z6Uh/9AnEqD4WKXuDZZc
+         HSgpZhl70zIDubCokzfPjFmP+nEpjo7msu1sKYn58nH/7U+9ZmVRWOEJ7ughOagON/Vc
+         JW9G7oQK490sIscHOtp//QtsaxCIUwdZWLeY45E717pQqV75WcmW89SoMZYdRglPgDvH
+         mdqL6t8yyk0zrfaHnERuuFEBndWjiLbvWR+EeQu9E3pXLP1c+OhkgAzI4nIfGRR5JNhE
+         VIakFRjzfDoeM+hZxOIOxlIdW9qjWiH01RdR4bsU9RGumc+FnPhKcKyPlUP6JxyCRXGt
+         pCeg==
+X-Gm-Message-State: AOAM533Jl+2o86Ast5GkZ/xUWzKrJRIafJtRcokypeg6vANmWFIBRiAv
+        aX4F+jcIj6+bMQk+nrIZDQ==
+X-Google-Smtp-Source: ABdhPJyl1Zml7tK5z8UzPYsy0IRPoHHsY9ZbD0LO+NEm3SnMP5YpNvNvBFYMbygVSD+kwDaZAn8DAw==
+X-Received: by 2002:a05:6808:1510:b0:32a:ef6a:99b with SMTP id u16-20020a056808151000b0032aef6a099bmr12444054oiw.120.1654003286440;
+        Tue, 31 May 2022 06:21:26 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id t6-20020a056870f20600b000e90544b79fsm5563380oao.41.2022.05.31.06.21.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 31 May 2022 06:21:26 -0700 (PDT)
+Received: (nullmailer pid 1610155 invoked by uid 1000);
+        Tue, 31 May 2022 13:21:25 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Fabien Parent <fparent@baylibre.com>
+Cc:     airlied@linux.ie, dri-devel@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org, matthias.bgg@gmail.com,
+        chunkuang.hu@kernel.org, devicetree@vger.kernel.org,
+        jitao.shi@mediatek.com, ck.hu@mediatek.com, p.zabel@pengutronix.de,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, daniel@ffwll.ch,
+        robh+dt@kernel.org
+In-Reply-To: <20220530201436.902505-1-fparent@baylibre.com>
+References: <20220530201436.902505-1-fparent@baylibre.com>
+Subject: Re: [PATCH 1/7] dt-bindings: display: mediatek: dpi: add power-domains property
+Date:   Tue, 31 May 2022 08:21:25 -0500
+Message-Id: <1654003285.268526.1610147.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,72 +64,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/05/2022 14:19, Chanho Park wrote:
-> Add ufs_1_phy and ufs_1 for secondary ufs hci controller and phy
-> device.
+On Mon, 30 May 2022 22:14:30 +0200, Fabien Parent wrote:
+> DPI is part of the display / multimedia block in MediaTek SoCs, and
+> always have a power-domain (at least in the upstream device-trees).
+> Add the power-domains property to the binding documentation.
 > 
-> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
 > ---
->  arch/arm64/boot/dts/exynos/exynosautov9.dtsi | 32 ++++++++++++++++++++
->  1 file changed, 32 insertions(+)
+>  .../devicetree/bindings/display/mediatek/mediatek,dpi.yaml  | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> index 3e23db8f09d9..c146271af477 100644
-> --- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> @@ -380,6 +380,17 @@ ufs_0_phy: ufs0-phy@17e04000 {
->  			status = "disabled";
->  		};
->  
-> +		ufs_1_phy: ufs0-phy@17f04000 {
 
-Node name: "phy" (or ufs-phy). The previous node also could be corrected.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> +			compatible = "samsung,exynosautov9-ufs-phy";
-> +			reg = <0x17f04000 0xc00>;
-> +			reg-names = "phy-pma";
-> +			samsung,pmu-syscon = <&pmu_system_controller 0x72c>;
-> +			#phy-cells = <0>;
-> +			clocks = <&xtcxo>;
-> +			clock-names = "ref_clk";
-> +			status = "disabled";
-> +		};
-> +
->  		ufs_0: ufs0@17e00000 {
->  			compatible ="samsung,exynosautov9-ufs";
->  
-> @@ -400,6 +411,27 @@ ufs_0: ufs0@17e00000 {
->  			samsung,sysreg = <&syscon_fsys2 0x710>;
->  			status = "disabled";
->  		};
-> +
-> +		ufs_1: ufs0@17f00000 {
-> +			compatible ="samsung,exynosautov9-ufs";
-> +
-> +			reg = <0x17f00000 0x100>,  /* 0: HCI standard */
-> +				<0x17f01100 0x410>,  /* 1: Vendor-specific */
-> +				<0x17f80000 0x8000>,  /* 2: UNIPRO */
-> +				<0x17de0000 0x2200>;  /* 3: UFS protector */
+yamllint warnings/errors:
 
-Align these please with first <> entry.
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.example.dts:29.35-36 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:364: Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1401: dt_binding_check] Error 2
 
-> +			reg-names = "hci", "vs_hci", "unipro", "ufsp";
-> +			interrupts = <GIC_SPI 235 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&cmu_fsys2 CLK_GOUT_FSYS2_UFS_EMBD1_ACLK>,
-> +				 <&cmu_fsys2 CLK_GOUT_FSYS2_UFS_EMBD1_UNIPRO>;
-> +			clock-names = "core_clk", "sclk_unipro_main";
-> +			freq-table-hz = <0 0>, <0 0>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&ufs_rst_n_1 &ufs_refclk_out_1>;
-> +			phys = <&ufs_1_phy>;
-> +			phy-names = "ufs-phy";
-> +			samsung,sysreg = <&syscon_fsys2 0x714>;
-> +			status = "disabled";
-> +		};
->  	};
->  };
->  
+doc reference errors (make refcheckdocs):
 
+See https://patchwork.ozlabs.org/patch/
 
-Best regards,
-Krzysztof
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
