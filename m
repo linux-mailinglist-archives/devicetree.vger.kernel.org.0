@@ -2,77 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C90E539014
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 13:52:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA070539019
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 13:53:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343511AbiEaLwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 07:52:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33488 "EHLO
+        id S237150AbiEaLxq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 07:53:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343497AbiEaLwT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 07:52:19 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 162A7222AE
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 04:52:18 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id x62so5323980ede.10
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 04:52:18 -0700 (PDT)
+        with ESMTP id S1343857AbiEaLxp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 07:53:45 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F02635250
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 04:53:44 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id rq11so26134898ejc.4
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 04:53:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=pgwp2VdYx+Vpnhun4TNi+eC2topHBL0Uwk1ptGJfZcE=;
-        b=iS5jhowOcF/lfXAMYJ1n2lLpF7hUtwsQikH8pir763iCnTkaHoMbpuD2JWonqpofGu
-         qjyArBVFBAgZQ9fQpr/S/sNnTQgp1XR5p/rqsj3MhdJ+R24/EaY9Jbv7/STxX0BhfOae
-         vvpJfMMcFbUtqlhICqYrW8DyeWTZfTB31dRM0WNqVaDsLbFsSSYIr3kJMkl8EIu8eyG0
-         IjQQuD7laFKec1PktUnxtrsiM3a+rYcN+wihWCwjJw7hyQww5pG4m0uXI4PcjIotDFcu
-         f+NP9XC8R9LGUd3NPhygDtKFvwynWln1GjMt/3m1CHmsTLxPB1Nv/M1Gb8i3wsWht7ok
-         zmHw==
+        bh=aZv3mvyH3YwBv75DPbWyCn0ZYruAzdYgAgL6PD0leyM=;
+        b=sEekkrr6ZDYJGypMUv4kxJnQIqV1gbcVTncftHFHezDhnkayrx1pwsyyCBA2tRbn0G
+         luiuIlu72eZpdya+jg76kOE6AKlZG6/Lp21I5f0mB37j8D8kCv0KxXK5e6dIO8CcVmW8
+         5DWYe0a/H5TsRqYT0IkCMYboOQm45AxJWEEzg2JI4t5WpuBu1EQA4G0nFkSfWY3QgIxn
+         ttzMqDrP+OnyWebrjqooAUNkydJi1CMpvuI/cqKrnLMx4DwR/3A6O3waKyv8OXCUVSA9
+         AWExUukGBEWn3pbRssql9oNEc8iA876VKtN7zmtQ2W2SWb2aOckkwKo5DZX0/kT3p2n2
+         AMQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=pgwp2VdYx+Vpnhun4TNi+eC2topHBL0Uwk1ptGJfZcE=;
-        b=3yb4wqmjVnzVExwhs+d/fcjPeQPIM9/C43Vjy8fpQTDos0Z+sZacC32eFm9ZD9xFit
-         EQb9I0XPLC8M9Ywndn9nNv7MCwAYu4XcF1CXH3NZX/t9e0GSJIUTcQMyeTSmUpbCam3s
-         LYgToTMrVhaYcpswiqGWl/NyrdMBnQ8rqD0/cenV5pNLOHJYCb8w87tf2PCuGYnbFGrr
-         e1Yre5w7YubqIFTPcc6Y/RHlrDW38BIUSTzA/JPDKILMeKr2bhc37+OQut6W5xung6Rc
-         eT3kztKYS/Z5dvfhMXBDAqz0+BNkBxbxKD+y4HWUzol+V0X+zWHtW8wiDfYg4gatUhN1
-         HgYA==
-X-Gm-Message-State: AOAM531FltOFpxDzrFjgutXdvUXCba0zERsBaCujs8dCS346Z3lU7Yif
-        l1RmFrK8t1ivWxFghaJM6qAEWg==
-X-Google-Smtp-Source: ABdhPJzLoz1xLJgBhIhIcXu/CVKt7lUZqurHOJkAtVo1mU8l+2AAQXVVLJ65/yyrjl+Cx6OqWRo0rg==
-X-Received: by 2002:aa7:c852:0:b0:42d:70d8:2864 with SMTP id g18-20020aa7c852000000b0042d70d82864mr19815609edt.379.1653997936660;
-        Tue, 31 May 2022 04:52:16 -0700 (PDT)
+        bh=aZv3mvyH3YwBv75DPbWyCn0ZYruAzdYgAgL6PD0leyM=;
+        b=oTKlxpdsnp1g2+rhQXZOWF3aLtTgFtpInISIq3EQgq1b/cnIrNseMvVDW6t93xJMHX
+         cF192SkJlsKsXHD+DqrMRKBUmJIpC+W/CqZJ2N68DbvSiUGhZcOg0hS5u999tRiBIrnV
+         6tApd/ZeIvicDngkUZxzezLueO1clLYz8dU2j2+r/RRGYjaWfERMiMwVE3UFHB/Jsd0f
+         tqyt8Zwq+UM/yyvOy1dRBgekqvcQDuQ5OwFgPQCVIJj+/hLSFbVYBLVvuIfd3kY9B8Lv
+         R/CiPwzSbLRO66hlAjmxiHcVNXll9OiXQJmeuudJI0pBvVm2iThnupKDPgSkunHygqeA
+         l0gw==
+X-Gm-Message-State: AOAM532HO2Y7wefpi8WqJMoT3An08wqCiNHwZcIYYFwAYgAbqkPkAX69
+        qcYXcAHqfR4ySVZZVN4I6NrzGA==
+X-Google-Smtp-Source: ABdhPJymW8FmeTjxdKGYmtGd9rjreWcOisc6PcJr915f/Hv4wEXVceV9u1qf7rs6m1f5pLD06Pogkw==
+X-Received: by 2002:a17:907:2cc4:b0:6fe:2100:de21 with SMTP id hg4-20020a1709072cc400b006fe2100de21mr52520891ejc.462.1653998022758;
+        Tue, 31 May 2022 04:53:42 -0700 (PDT)
 Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id c13-20020a50d64d000000b0042617ba63cfsm8278497edj.89.2022.05.31.04.52.15
+        by smtp.gmail.com with ESMTPSA id l27-20020a50d6db000000b0042dc25fdf5bsm5320894edj.29.2022.05.31.04.53.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 May 2022 04:52:16 -0700 (PDT)
-Message-ID: <15eef004-74c7-0eb5-3f87-86e164ef70ff@linaro.org>
-Date:   Tue, 31 May 2022 13:52:14 +0200
+        Tue, 31 May 2022 04:53:42 -0700 (PDT)
+Message-ID: <ce04b6b1-1082-0da6-1852-9819459ccfb7@linaro.org>
+Date:   Tue, 31 May 2022 13:53:41 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH V3 5/8] dt-bindings: Add xen,grant-dma IOMMU description
- for xen-grant DMA ops
+Subject: Re: [PATCH 2/7] dt-bindings: display: mediatek: dpi: add binding for
+ MT8365
 Content-Language: en-US
-To:     Oleksandr Tyshchenko <olekstysh@gmail.com>,
-        xen-devel@lists.xenproject.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org
-Cc:     Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Julien Grall <julien@xen.org>, Juergen Gross <jgross@suse.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        "Michael S. Tsirkin" <mst@redhat.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        Arnd Bergmann <arnd@arndb.de>
-References: <1653944417-17168-1-git-send-email-olekstysh@gmail.com>
- <1653944417-17168-6-git-send-email-olekstysh@gmail.com>
+To:     Fabien Parent <fparent@baylibre.com>, matthias.bgg@gmail.com,
+        ck.hu@mediatek.com, jitao.shi@mediatek.com,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Cc:     chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@linux.ie,
+        daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220530201436.902505-1-fparent@baylibre.com>
+ <20220530201436.902505-2-fparent@baylibre.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1653944417-17168-6-git-send-email-olekstysh@gmail.com>
+In-Reply-To: <20220530201436.902505-2-fparent@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,75 +79,97 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/05/2022 23:00, Oleksandr Tyshchenko wrote:
-> From: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
+On 30/05/2022 22:14, Fabien Parent wrote:
+> DPI for MT8365 is compatible with MT8192 but requires an additional
+> clock. Modify the documentation to requires this clock only on MT8365 SoCs.
+> 
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> ---
+>  .../display/mediatek/mediatek,dpi.yaml        | 44 ++++++++++++++++---
+>  1 file changed, 37 insertions(+), 7 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+> index caf4c88708f4..c9c9f4d5ebe7 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
+> @@ -17,13 +17,18 @@ description: |
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - mediatek,mt2701-dpi
+> -      - mediatek,mt7623-dpi
+> -      - mediatek,mt8173-dpi
+> -      - mediatek,mt8183-dpi
+> -      - mediatek,mt8186-dpi
+> -      - mediatek,mt8192-dpi
+> +    oneOf:
+> +      - enum:
+> +          - mediatek,mt2701-dpi
+> +          - mediatek,mt7623-dpi
+> +          - mediatek,mt8173-dpi
+> +          - mediatek,mt8183-dpi
+> +          - mediatek,mt8186-dpi
+> +          - mediatek,mt8192-dpi
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt8365-dpi
+> +          - const: mediatek,mt8192-dpi
+>  
+>    reg:
+>      maxItems: 1
+> @@ -32,16 +37,20 @@ properties:
+>      maxItems: 1
+>  
+>    clocks:
+> +    minItems: 3
+>      items:
+>        - description: Pixel Clock
+>        - description: Engine Clock
+>        - description: DPI PLL
+> +      - description: DPI Clock
+>  
+>    clock-names:
+> +    minItems: 3
+>      items:
+>        - const: pixel
+>        - const: engine
+>        - const: pll
+> +      - const: dpi
+>  
+>    pinctrl-0: true
+>    pinctrl-1: true
+> @@ -71,6 +80,27 @@ required:
+>  
+>  additionalProperties: false
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: mediatek,mt8365-dpi
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 4
+> +        clock-names:
+> +          maxItems: 4
 
-Thank you for your patch. There is something to discuss/improve.
+These should be minItems instead.
 
-> diff --git a/Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml b/Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml
-> new file mode 100644
-> index 00000000..ab5765c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iommu/xen,grant-dma.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Xen specific IOMMU for virtualized devices (e.g. virtio)
+> +    else:
+> +      properties:
+> +        clocks:
+> +          maxItems: 3
+> +        clock-names:
+> +          maxItems: 3
 > +
-> +maintainers:
-> +  - Stefano Stabellini <sstabellini@kernel.org>
-> +
-> +description:
-> +  The reference to Xen specific IOMMU node using "iommus" property indicates
-> +  that Xen grant mappings need to be enabled for the device, and it specifies
-> +  the ID of the domain where the corresponding backend resides.
-> +  The binding is required to restrict memory access using Xen grant mappings.
-> +
-> +properties:
-> +  compatible:
-> +    const: xen,grant-dma
-> +
-> +  '#iommu-cells':
-> +    const: 1
-> +    description:
-> +      Xen specific IOMMU is multiple-master IOMMU device.
-> +      The single cell describes the domid (domain ID) of the domain where
-> +      the backend is running.
-> +
-> +required:
-> +  - compatible
-> +  - "#iommu-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    xen_iommu {
-
-No underscores in node names, generic node names, so this looks like
-"iommu".
-
-> +        compatible = "xen,grant-dma";
-> +        #iommu-cells = <1>;
-> +    };
-> +
-> +    virtio@3000 {
-> +        compatible = "virtio,mmio";
-> +        reg = <0x3000 0x100>;
-> +        interrupts = <41>;
-> +
-> +        /* The backend is located in Xen domain with ID 1 */
-> +        iommus = <&xen_iommu 1>;
-
-There is no need usually to give consumer examples in provider binding.
-If there is nothing specific here (looks exactly like every IOMMU
-consumer in Linux kernel), drop the consumer.
-
-> +    };
+>  examples:
+>    - |
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
 
 
 Best regards,
