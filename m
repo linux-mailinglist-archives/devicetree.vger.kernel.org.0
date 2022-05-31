@@ -2,81 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6CFC53900F
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 13:50:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C90E539014
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 13:52:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235436AbiEaLur (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 07:50:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57598 "EHLO
+        id S1343511AbiEaLwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 07:52:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230080AbiEaLuq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 07:50:46 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C16359809E;
-        Tue, 31 May 2022 04:50:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=EaX3DGUPmHHCP5bGL2k/AhkjGQklNLSjDKLEp7C+0Go=; b=anR5n6PAL/h5Aqw7nUNlUXMZ24
-        SejeHE5cl1VljKLimUmyGRznnSgZZ8D0hU3397nRGumAc4jWiziLvrS8W4wJcIWP510glOYTqlBuO
-        As5QW8KPgoti56A7eZ5g5ki+Elg2HuQUeq+cV5GViFbEBCnNpwC6CNTiIwU+nBsjtWGUqgE37BY+5
-        7r+L0vZwrlD2PQsaaYirCaZ+LHG1E2A4ZWWQer10P/58q9OMlYSCWDoenEpcyGLlcY64T5Uip10Zg
-        DyD0636qWCYbQWJUlXMrBLRYK9tGzCxN2bWoITzCTKZFq1VynB5EXGpelOMtIhBUo5MlBrGUjPLIf
-        lmeGADeg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:60900)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1nw0OQ-0004te-MQ; Tue, 31 May 2022 12:50:34 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1nw0OM-0002Ma-Pg; Tue, 31 May 2022 12:50:30 +0100
-Date:   Tue, 31 May 2022 12:50:30 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Siddharth Vadapalli <s-vadapalli@ti.com>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, vladimir.oltean@nxp.com,
-        grygorii.strashko@ti.com, vigneshr@ti.com, nsekhar@ti.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kishon@ti.com
-Subject: Re: [PATCH 2/3] net: ethernet: ti: am65-cpsw: Add support for QSGMII
- mode
-Message-ID: <YpYBBp8Io116bBwM@shell.armlinux.org.uk>
-References: <20220531113058.23708-1-s-vadapalli@ti.com>
- <20220531113058.23708-3-s-vadapalli@ti.com>
+        with ESMTP id S1343497AbiEaLwT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 07:52:19 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 162A7222AE
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 04:52:18 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id x62so5323980ede.10
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 04:52:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=pgwp2VdYx+Vpnhun4TNi+eC2topHBL0Uwk1ptGJfZcE=;
+        b=iS5jhowOcF/lfXAMYJ1n2lLpF7hUtwsQikH8pir763iCnTkaHoMbpuD2JWonqpofGu
+         qjyArBVFBAgZQ9fQpr/S/sNnTQgp1XR5p/rqsj3MhdJ+R24/EaY9Jbv7/STxX0BhfOae
+         vvpJfMMcFbUtqlhICqYrW8DyeWTZfTB31dRM0WNqVaDsLbFsSSYIr3kJMkl8EIu8eyG0
+         IjQQuD7laFKec1PktUnxtrsiM3a+rYcN+wihWCwjJw7hyQww5pG4m0uXI4PcjIotDFcu
+         f+NP9XC8R9LGUd3NPhygDtKFvwynWln1GjMt/3m1CHmsTLxPB1Nv/M1Gb8i3wsWht7ok
+         zmHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=pgwp2VdYx+Vpnhun4TNi+eC2topHBL0Uwk1ptGJfZcE=;
+        b=3yb4wqmjVnzVExwhs+d/fcjPeQPIM9/C43Vjy8fpQTDos0Z+sZacC32eFm9ZD9xFit
+         EQb9I0XPLC8M9Ywndn9nNv7MCwAYu4XcF1CXH3NZX/t9e0GSJIUTcQMyeTSmUpbCam3s
+         LYgToTMrVhaYcpswiqGWl/NyrdMBnQ8rqD0/cenV5pNLOHJYCb8w87tf2PCuGYnbFGrr
+         e1Yre5w7YubqIFTPcc6Y/RHlrDW38BIUSTzA/JPDKILMeKr2bhc37+OQut6W5xung6Rc
+         eT3kztKYS/Z5dvfhMXBDAqz0+BNkBxbxKD+y4HWUzol+V0X+zWHtW8wiDfYg4gatUhN1
+         HgYA==
+X-Gm-Message-State: AOAM531FltOFpxDzrFjgutXdvUXCba0zERsBaCujs8dCS346Z3lU7Yif
+        l1RmFrK8t1ivWxFghaJM6qAEWg==
+X-Google-Smtp-Source: ABdhPJzLoz1xLJgBhIhIcXu/CVKt7lUZqurHOJkAtVo1mU8l+2AAQXVVLJ65/yyrjl+Cx6OqWRo0rg==
+X-Received: by 2002:aa7:c852:0:b0:42d:70d8:2864 with SMTP id g18-20020aa7c852000000b0042d70d82864mr19815609edt.379.1653997936660;
+        Tue, 31 May 2022 04:52:16 -0700 (PDT)
+Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id c13-20020a50d64d000000b0042617ba63cfsm8278497edj.89.2022.05.31.04.52.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 May 2022 04:52:16 -0700 (PDT)
+Message-ID: <15eef004-74c7-0eb5-3f87-86e164ef70ff@linaro.org>
+Date:   Tue, 31 May 2022 13:52:14 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220531113058.23708-3-s-vadapalli@ti.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH V3 5/8] dt-bindings: Add xen,grant-dma IOMMU description
+ for xen-grant DMA ops
+Content-Language: en-US
+To:     Oleksandr Tyshchenko <olekstysh@gmail.com>,
+        xen-devel@lists.xenproject.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org
+Cc:     Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Julien Grall <julien@xen.org>, Juergen Gross <jgross@suse.com>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        "Michael S. Tsirkin" <mst@redhat.com>,
+        Christoph Hellwig <hch@infradead.org>,
+        Arnd Bergmann <arnd@arndb.de>
+References: <1653944417-17168-1-git-send-email-olekstysh@gmail.com>
+ <1653944417-17168-6-git-send-email-olekstysh@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1653944417-17168-6-git-send-email-olekstysh@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 31, 2022 at 05:00:57PM +0530, Siddharth Vadapalli wrote:
->  static void am65_cpsw_nuss_mac_config(struct phylink_config *config, unsigned int mode,
->  				      const struct phylink_link_state *state)
->  {
-> -	/* Currently not used */
-> +	struct am65_cpsw_slave_data *slave = container_of(config, struct am65_cpsw_slave_data,
-> +							  phylink_config);
-> +	struct am65_cpsw_port *port = container_of(slave, struct am65_cpsw_port, slave);
+On 30/05/2022 23:00, Oleksandr Tyshchenko wrote:
+> From: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
+
+Thank you for your patch. There is something to discuss/improve.
+
+> diff --git a/Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml b/Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml
+> new file mode 100644
+> index 00000000..ab5765c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iommu/xen,grant-dma.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	if (state->interface == PHY_INTERFACE_MODE_QSGMII)
-> +		writel(AM65_CPSW_SGMII_CONTROL_MR_AN_ENABLE,
-> +		       port->sgmii_base + AM65_CPSW_SGMII_CONTROL_REG);
+> +title: Xen specific IOMMU for virtualized devices (e.g. virtio)
+> +
+> +maintainers:
+> +  - Stefano Stabellini <sstabellini@kernel.org>
+> +
+> +description:
+> +  The reference to Xen specific IOMMU node using "iommus" property indicates
+> +  that Xen grant mappings need to be enabled for the device, and it specifies
+> +  the ID of the domain where the corresponding backend resides.
+> +  The binding is required to restrict memory access using Xen grant mappings.
+> +
+> +properties:
+> +  compatible:
+> +    const: xen,grant-dma
+> +
+> +  '#iommu-cells':
+> +    const: 1
+> +    description:
+> +      Xen specific IOMMU is multiple-master IOMMU device.
+> +      The single cell describes the domid (domain ID) of the domain where
+> +      the backend is running.
+> +
+> +required:
+> +  - compatible
+> +  - "#iommu-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    xen_iommu {
 
-What about writing this register when the interface mode isn't QSGMII?
+No underscores in node names, generic node names, so this looks like
+"iommu".
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+> +        compatible = "xen,grant-dma";
+> +        #iommu-cells = <1>;
+> +    };
+> +
+> +    virtio@3000 {
+> +        compatible = "virtio,mmio";
+> +        reg = <0x3000 0x100>;
+> +        interrupts = <41>;
+> +
+> +        /* The backend is located in Xen domain with ID 1 */
+> +        iommus = <&xen_iommu 1>;
+
+There is no need usually to give consumer examples in provider binding.
+If there is nothing specific here (looks exactly like every IOMMU
+consumer in Linux kernel), drop the consumer.
+
+> +    };
+
+
+Best regards,
+Krzysztof
