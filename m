@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C371538DC6
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 11:34:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D186E538DE9
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 11:40:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245266AbiEaJeN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 05:34:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58628 "EHLO
+        id S245372AbiEaJka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 05:40:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245261AbiEaJeJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 05:34:09 -0400
-Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E16B43B005
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 02:34:07 -0700 (PDT)
-Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-3043b3f7d8fso122823257b3.8
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 02:34:07 -0700 (PDT)
+        with ESMTP id S245349AbiEaJjz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 05:39:55 -0400
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FDC7954B7
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 02:39:50 -0700 (PDT)
+Received: by mail-yb1-xb2a.google.com with SMTP id e184so13448766ybf.8
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 02:39:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=0w2fXNQOc3DHaB4s+oXCyoZJeWAMalBiF5eAVeXufrU=;
-        b=C4QZ6FMJ5aJLAtnQWNLvLEEDUXO25F0COEmJPF87NnQKZhExYvB92mpAWJf0lPVPBJ
-         kdQWE6xMBXjrvcyyAKQfM+XTMO/lH6jlZEDbL+Dxws2W4zPIN+3iU2OspGRfkEIW/a5n
-         h/afEYh/M76OJ8kCjZxWQmN9b4LfbKJ2OCpfcwvz7IQpmIpz+6OXqKvEiwLxbC/l15Lo
-         7JjFtVLeg7L7vlHGka6YWCxIyM0sgJZiQPKzaDm6gysxAzjNX01+/WYYYfAvHsAYSLRX
-         mjK6sRg4Xk4SNfc8B88YvU1SqAgFxaKvuHageZtrKwTYR4orYwo7OIa1ybFJ5IUL2nrj
-         95lg==
+        bh=owik/ERIKQ/Xn0y08fcg1q8jOY8cbMmZRyuaUyU18sA=;
+        b=lQQ96cMxOA4G9iVLjQ4z6e2m7ZJQpJFgBxCrdGn/ioTtmBrwPLWuH5n8fDoP8/GAlq
+         WrFsT2wBmih+5WcNUVwYVfUuC3xdE/uwnVd7D9zQybSFIJu8Yn+KkYCM9mOfy5e2WHit
+         7YyYNk6XvJpPs7ZcV/IJHCWxPpXQ+vP7mBOAe8jIu6TneEQW0ha6Z4LKRQ0dSXpWZPno
+         Sx42g/lk+HqSaAAeF9geGAOlGAA/i8HoBxIUZH9O37RvveMM9nozLDC4p8bMfbS1+8Is
+         ILFHFv1n18ekK70DyNN4VL8spINVIQ/A4NZWL+0C49tdaEDoVVkpOznurGQzq4Wzgr93
+         11bA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=0w2fXNQOc3DHaB4s+oXCyoZJeWAMalBiF5eAVeXufrU=;
-        b=t4Ur8rOhDoL2gU/AUs5tQeDJKTXgthI4f8UTzLcUPbDfyCEyaJx62H7P7nhJNjKKQT
-         /KPGDlJYWIBalwcpiuawHBirpMH95m4/zFdb6oMSKATskj45cV9htAoKTqyl6WNZEtj2
-         AG2Qs1IzqEnoSDiyxmijhW2N1MGpWOYpAdJrOnuiFKhbzA0GAF4gGYiu/MSNdi6i4f+4
-         UCkYOyxDw3APwkC3JI81L5l/qXU+V9u1Ha/yV8k1bfIifnGnw9Yabxn4rrra7qXWgi0o
-         fimqUY6H4GNpRD24uNp+jm+cCnvQGhHBcxCJsYQA70Ch0xG5Jb3WMVV8W7fFRHgOFUL4
-         r12w==
-X-Gm-Message-State: AOAM531BXOAMXr9G4qFBY2dsD+BEUSjBs2Eul/gi+bbf06TS90zjuqRd
-        1vTKyjvfUrJAcmaSLmXiowK1NL7C2VHsdCpQO0kUmQ==
-X-Google-Smtp-Source: ABdhPJzVOfXBYTQoebXOcYGJ+lnLw7+x/Gvfz81biEV7PK3vYDQcPKJgisfe5ZodDgBmCw5OrHus2mbPSAh2SSEqRbY=
-X-Received: by 2002:a81:fe0b:0:b0:30c:7e9c:701 with SMTP id
- j11-20020a81fe0b000000b0030c7e9c0701mr6503392ywn.118.1653989647207; Tue, 31
- May 2022 02:34:07 -0700 (PDT)
+        bh=owik/ERIKQ/Xn0y08fcg1q8jOY8cbMmZRyuaUyU18sA=;
+        b=oUQvjJV9XDb4KoXVgcWzFRCJuan6lW8hdIb12xZPFtYfmn3vwL6qYUgYqdtlxpYWJ7
+         2NsQG09sGy9iefKyGpuN+4/EmYn/+33NsL8XmqRcspjcnmg6mxQMtCp2TBEH4DxKjDhw
+         5wpMGqWzyDgMh0GX8kZInIg+daIRrMnU9yACIsifCNHdSjYrayJdAc+T9nqWZoh2P1Kv
+         TNZugRqmN3lT6yYGeOi4V8wkslK02NQAvEXm8Gou9ET2qHkzsMAI7gFSu7x0a8tfImiz
+         1mMhNqpDaC8mQCa9GewXaCtnxEi9TkfxzhnqGBLfOC5sRN29yXROgiMRTmaJ1s1S4nYO
+         B73g==
+X-Gm-Message-State: AOAM5312gGedEwmJXUEhblBtXA+sMjU4Lt4+iy17zz8+jjci80aX0ec1
+        Uh9qlRYyiu3WBBV2A7r5eH6ozY/IlI9iTEKp3Q1/dw==
+X-Google-Smtp-Source: ABdhPJzJ5ytNhC9HvdgLcAnnUu0XWT4XYNnYlfIbRfnZZFTub5PI7q+eBt5ywXskTbAQnXYM+BDjueQa7AkpkbKiHvQ=
+X-Received: by 2002:a25:df50:0:b0:65c:e053:3449 with SMTP id
+ w77-20020a25df50000000b0065ce0533449mr9534101ybg.291.1653989989529; Tue, 31
+ May 2022 02:39:49 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220530160753.100892-1-jo@jsfamily.in> <BY5PR02MB70092E9495F2A52F473DD31AD9DD9@BY5PR02MB7009.namprd02.prod.outlook.com>
-In-Reply-To: <BY5PR02MB70092E9495F2A52F473DD31AD9DD9@BY5PR02MB7009.namprd02.prod.outlook.com>
+References: <20220530160753.100892-1-jo@jsfamily.in> <BY5PR02MB7009301398881E89033F1DF0D9DD9@BY5PR02MB7009.namprd02.prod.outlook.com>
+In-Reply-To: <BY5PR02MB7009301398881E89033F1DF0D9DD9@BY5PR02MB7009.namprd02.prod.outlook.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 31 May 2022 11:33:55 +0200
-Message-ID: <CACRpkdZyVTWu=j5rVMmi1PuHBDYfEXhAiH1f0hskBnkS4a+FZw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: vendor-prefixes: Add prefix for EBBG
+Date:   Tue, 31 May 2022 11:39:38 +0200
+Message-ID: <CACRpkdZO6yB4SZzMgORv=1LCxbiaabfv=UyOQksn6F_WxgGa=w@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] drm/panel: introduce ebbg,ft8719 panel
 To:     Joel Selvaraj <jo@jsfamily.in>
 Cc:     Thierry Reding <thierry.reding@gmail.com>,
         Sam Ravnborg <sam@ravnborg.org>,
@@ -76,15 +76,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Joel,
+
 On Mon, May 30, 2022 at 6:08 PM Joel Selvaraj <jo@jsfamily.in> wrote:
 
-> Add a prefix for EBBG. They manufacture displays which are used in some
-> Xiaomi phones, but I could not find much details about the company.
->
-> Signed-off-by: Joel Selvaraj <jo@jsfamily.in>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +#define dsi_dcs_write_seq(dsi, cmd, seq...) do {                               \
 
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+Please name it mipi_dsi_dcs_write_seq() and...
+
+> +               static const u8 d[] = { cmd, seq };                             \
+> +               struct device *dev = &dsi->dev; \
+> +               int ret;                                                \
+> +               ret = mipi_dsi_dcs_write_buffer(dsi, d, ARRAY_SIZE(d)); \
+> +               if (ret < 0) {                                          \
+> +                       dev_err_ratelimited(dev, "sending command %#02x failed: %d\n", cmd, ret); \
+> +                       return ret;                                             \
+> +               }                                               \
+> +       } while (0)
+
+My suggestion was to add this macro to include/drm/drm_mipi_dsi.h, just patch it
+in there under the other mipi_dsi_dcs_* functions.
+
+I think a few other drivers could make good use of this macro.
 
 Yours,
 Linus Walleij
