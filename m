@@ -2,121 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A958538AEF
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 07:36:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D943B538B07
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 07:52:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244006AbiEaFgl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 01:36:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47672 "EHLO
+        id S244105AbiEaFwg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 01:52:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244009AbiEaFgh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 01:36:37 -0400
-Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93F292C8;
-        Mon, 30 May 2022 22:36:36 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.west.internal (Postfix) with ESMTP id B9E743200939;
-        Tue, 31 May 2022 01:36:34 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Tue, 31 May 2022 01:36:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm2; t=1653975394; x=1654061794; bh=lM
-        0S6haiMeSAJIWm3addevlytdvDfSDjGYz4PQB/xHY=; b=P8BGvgiqIVgKsWJs3I
-        s6o/hn+H4a1ioH8m0Qcc1YQYphxGET4bl0YDcVZ3qLbPQZqPFvXkHvm5UaRoyJ4Q
-        gm5dbKhEAfIxbDInVJ8M3gIrkJnd3aQ0me3O7bJhP/o6xmJq47mZMKInPtbT8vN2
-        CRFrxgUZ7DySC8obCtYmlqorn5i80PJ3UjHXVG+WaT3/kHZgX9SpbkUfIyY/sJtf
-        l6zzD+fs0MCl7+s81KLjTBFXKefl6+p2DXnhnodomR5KHMx++aZSPcgK86RLLBCw
-        oK1fIfriHfFooDx2O4DJo/JEkhUi306ENACmWtIWLUkWhHQM1VlnLzBBL09nqc0T
-        xLlQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; t=1653975394; x=1654061794; bh=lM0S6haiMeSAJ
-        IWm3addevlytdvDfSDjGYz4PQB/xHY=; b=qNSqGItOQAOhIRwk3nMTfXomBQNSb
-        kmZIIsqKMZGGvzCUc6fJlD/bqywCw4k6EUb3XBHvI5F2pWiqsqMTsSQ9as34qYv/
-        c7ILMnalRyUNhhIej3FPHzKZNVaO/W5G4HgGYW0LvEt5T6R2PMAq4uzW8jjHZInT
-        mLyeWRdG1VcUxvvKJvgHKNOUKQkaqoA6iZYNCh5BWHSikz6Klf3MRsiqpXhrcpSq
-        WCAn+HZzEICBL7hVP9BnmqKt/xOgTxYLX8hVEhO0OafKCMz9jC7r7vqym7g2LonH
-        3AmcQl3zuN7xM1ZkN/zXKAZuddt/ogiRnvcxrdimSTJA0gDyYpPVdPikA==
-X-ME-Sender: <xms:YqmVYgXnfY4X9fiL9FzRVRzj3BbRJWx0rJgfWATt4hRowqOnQfRKyQ>
-    <xme:YqmVYkn3u1-1_usfpzJN_hBxrUom5LtcxcMRvlomonf4S3NVtrJJs7jMAl1pb0FBC
-    YReDsTx6mZ_3cnYww>
-X-ME-Received: <xmr:YqmVYkY44N-xVfsSgPL4NaW1etI1q_zBLjXlDgGSA1TpzHiMJRbeJxofSBzOZ7P1nnYLlEN8wzz8yZ2bElWgu70gmVjFitxZDiDWIGskGuJPXgH_esNipdWn9rwVRtkX1C_I5Q>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrkeejgdeljecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvfevufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
-    frrghtthgvrhhnpedukeetueduhedtleetvefguddvvdejhfefudelgfduveeggeehgfdu
-    feeitdevteenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
-    hmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:YqmVYvVFcp5gN57wAcv75UXSjCTgO72aXLME-UNcwqaclgt__Cv_7A>
-    <xmx:YqmVYqmroVEtWQo2XRLBpwOuJuWW4qxHBD86wkkLRr2xY33f6FCc6g>
-    <xmx:YqmVYkeJwlAJDPjjBJtJCe63LgM_bdceiVbxcv7PkB0gvEcDdAMb8Q>
-    <xmx:YqmVYl8B7fgY0lf7vwMMbS7ILIkT85cL9CURcoT-abX5LhMFKumngA>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 31 May 2022 01:36:33 -0400 (EDT)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     Andre Przywara <andre.przywara@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev
-Subject: [PATCH 3/3] dt-bindings: pinctrl: sunxi: Disallow the resets property
-Date:   Tue, 31 May 2022 00:36:23 -0500
-Message-Id: <20220531053623.43851-4-samuel@sholland.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220531053623.43851-1-samuel@sholland.org>
-References: <20220531053623.43851-1-samuel@sholland.org>
+        with ESMTP id S244090AbiEaFwe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 01:52:34 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EAA51CFFE;
+        Mon, 30 May 2022 22:52:32 -0700 (PDT)
+X-UUID: a4fe502c9df049b7b5ab10d5c2dcdf39-20220531
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:6d60efb2-9d11-427f-a828-bb6eb8f608c4,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:-5
+X-CID-META: VersionHash:2a19b09,CLOUDID:1ac55714-f88c-475e-badf-d9ee54230b8f,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
+        ,QS:0,BEC:nil
+X-UUID: a4fe502c9df049b7b5ab10d5c2dcdf39-20220531
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <moudy.ho@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 509384947; Tue, 31 May 2022 13:52:27 +0800
+Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Tue, 31 May 2022 13:52:26 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 31 May 2022 13:52:25 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.3 via Frontend Transport; Tue, 31 May 2022 13:52:25 +0800
+From:   Moudy Ho <moudy.ho@mediatek.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>
+CC:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        <tfiga@chromium.org>, <drinkcat@chromium.org>,
+        <pihsun@chromium.org>, <hsinyi@google.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        <allen-kh.cheng@mediatek.com>, <xiandong.wang@mediatek.com>,
+        <randy.wu@mediatek.com>, <moudy.ho@mediatek.com>,
+        <jason-jh.lin@mediatek.com>, <roy-cw.yeh@mediatek.com>,
+        <river.cheng@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <cellopoint.kai@gmail.com>
+Subject: [PATCH v19 0/6] Add mutex support for MDP
+Date:   Tue, 31 May 2022 13:52:18 +0800
+Message-ID: <20220531055224.19280-1-moudy.ho@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-None of the sunxi pin controllers have a module reset line. This is
-confirmed by documentation (A80) as well as experimentation (A33).
+Change since V18:
+- Rebase on v5.19-rc1
+- Remove unnecessary functions:
+  "mtk_mutex_set_mod", "mtk_mutex_clear_mod",
+  "mtk_mutex_set_sof" and "mtk_mutex_clear_sof", and export
+  "mtk_mutex_write_mod" and "mtk_mutex_write_sof" to
+  set MOD/SOF directly.
+- Remove unnecessary SOF tables and add new enumerations of SOF instead.
+- Adjust the error checking for CMDQ operations.
 
-Since the property is not applicable to any variant of the hardware,
-let's remove it from the binding.
+Change since V17:
+- Rebase on v5.18-rc6
+- Fix undeclared identifier causing compilation to fail.
 
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
+Change since V16:
+- Rebase on v5.18-rc4
+- Fix misplacement of definition "CONFIG_MTK_CMDQ" which
+  caused compilation error when CMD is not supported.
 
- .../bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml          | 3 ---
- 1 file changed, 3 deletions(-)
+Change since V15:
+- Rebase on linux-next.
+- As suggested by Angelo, split common parts into independent functions to
+  make functions more concise.
+- Based on safety considerations, increase the returned error number and
+  message to facilitate error handling.
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
-index bfce850c2035..fa0c2df04675 100644
---- a/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
-@@ -80,9 +80,6 @@ properties:
-       - const: hosc
-       - const: losc
- 
--  resets:
--    maxItems: 1
--
-   gpio-controller: true
-   interrupt-controller: true
-   gpio-line-names: true
+Change since V14:
+- Rebase on linux-next.
+- Add new SOF and MOD table for general interface to integrate the requirement
+  of different modules.
+- Remove unnecessary MOD structure.
+- By Rob Herring's suggestion, revise the description of
+  "mediatek,gce-client-reg" in MUTEX dt-bindings.
+- Delete the redundant definition of MTK_MUTEX_ENABLE and modify corresponding
+  function.
+
+Change since V13:
+- Rebase on linux-next tag:next-20220316
+- Adjust the MUTEX MOD table structure and corresponding functions.
+- Adjust the definition style about 8183 MDP MOD.
+- Remove redundant definitions and enumerations.
+- Adjust the CMDQ operation in MUTEX to be backward compatible
+
+Change since V12:
+- Rebase on linux-next
+- Remove ISP related settings in MMSYS
+- Removed CMDQ operations previously used by MDP in MMSYS
+- Move mediatek MUTEX dt-binding path
+- Add additional property in MUTEX for CMDQ operations
+
+Change since V11:
+- Rebase on v5.17-rc6.
+
+[1]: https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/commit/?h=v5.17-next/soc&id=5f9b5b757e44de47ebdc116c14b90e3cc8bc7acb
+[2]: https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/commit/?h=v5.17-next/soc&id=831785f0e5b919c29e1bc5f9a74e9ebd38289e24
+[3]: https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/commit/?h=v5.17-next/soc&id=15f1768365aed810826a61fef4a744437aa5b426
+
+Change since v10:
+- For some ISP application scenarios, such as preview and recording
+  at the same time.
+  The routing table needs to be discarded, and the calculation result
+  on the SCP side is used to write a suitable mux setting for
+  1 input and 2 output.
+- Adjust the GCE client register parsing method to avoid redundant warning logs.
+
+Change since v9:
+- Add API for MDP getting mutex mod.
+
+Hi,
+
+This patch splits mmsys and mutex settings from Media Data Path 3 (MDP3),
+and original mailling list list below:
+https://patchwork.kernel.org/project/linux-mediatek/cover/20211201095031.31606-1-moudy.ho@mediatek.com/
+Corresponding settings and interfaces are added for MDP operation in the
+mmsys and mutex drivers, which increases the independence of the modules
+
+Moudy Ho (6):
+  soc: mediatek: mutex: add common interface for modules setting
+  soc: mediatek: mutex: add 8183 MUTEX MOD settings for MDP
+  dt-bindings: soc: mediatek: move out common module from display folder
+  dt-bindings: soc: mediatek: add gce-client-reg for MUTEX
+  dts: arm64: mt8183: add GCE client property for Mediatek MUTEX
+  soc: mediatek: mutex: add functions that operate registers by CMDQ
+
+ .../mediatek/mediatek,mutex.yaml              |  14 +-
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      |   1 +
+ drivers/soc/mediatek/mtk-mutex.c              | 125 +++++++++++++++++-
+ include/linux/soc/mediatek/mtk-mutex.h        |  28 ++++
+ 4 files changed, 166 insertions(+), 2 deletions(-)
+ rename Documentation/devicetree/bindings/{display => soc}/mediatek/mediatek,mutex.yaml (81%)
+
 -- 
-2.35.1
+2.18.0
 
