@@ -2,180 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D66535398EB
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 23:42:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53B935398F1
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 23:44:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347192AbiEaVmO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 17:42:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37816 "EHLO
+        id S1346077AbiEaVo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 17:44:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236826AbiEaVmN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 17:42:13 -0400
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ED7321B;
-        Tue, 31 May 2022 14:42:11 -0700 (PDT)
-Received: by mail-oi1-f181.google.com with SMTP id r65so146844oia.9;
-        Tue, 31 May 2022 14:42:11 -0700 (PDT)
+        with ESMTP id S235317AbiEaVo0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 17:44:26 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1998E8D689;
+        Tue, 31 May 2022 14:44:24 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id jx22so29093795ejb.12;
+        Tue, 31 May 2022 14:44:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0m6WEw+bFPACv7T57ooopwUSIR8iANFIi5UgtU6c/Xo=;
+        b=XqbVPl5EyJ6FYukO7Ijtp3ZpXeWxM4xnvPjaOGMuMbYj1GYxCOB016bnvYPo6dTdw7
+         po0HnEkfAiccyeGwIElxM+8wounSFq6/dA1PkvrOQQZgMkIrJAqzXoreIQ611PwZixKu
+         ByzRaETX/MIgz7Z6WxokiMEo/KOBEtfEeb3k9gt9hiumW85cVBncov2it0nBinlA3AFQ
+         putcVIaK2ipuvs6pA8FhNfp7b8pP3OnEQZUmZ5LGBEUN4zWRfyY2NUSUuLAMJVxMJMRY
+         UiMCzriCiGERI4rAKsHNNaM4aqwwpxlIMmOAMEFL83x214uxH24ityXn9j1DHcfxTnsh
+         AkIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=gIiu7V/rqZjztwT4OL+Dpls+E/6GMUhDy54RLlpLRXw=;
-        b=n933F+pKKpCoH4Yim+P8CGDGGMuN77qF3aynbgrEPQyS0YylGY5X7ICdRHZ1GvRS9o
-         ch7/dwu7LGPLYMpkWUFZkFhGKNmj/ENu2PSM1mzl14tNduKAHKCG4kyxDeL4NzFzGpkG
-         dnuSYwexzL8mgD6hcsIeBIc41Ov6n8kUNiNU6inX/iaYrRu5p2GHE9zvgvmAQNwOZ8lB
-         72dJfDU+63ZtXNl3p9r8YUv+tMG8hOEdIzYaro+mXJUXj26URosX4lIAGat33ifxzeBK
-         oSNWKIeG6Et+XRmobNPT9FlT7Uh+N5CWAfMzYdNq/Aa8wle14R6IVDH7RQs3y7ooGdtb
-         6nrw==
-X-Gm-Message-State: AOAM532M1mFLiHw+b/m+jkt7ocD9rRTkXzSc9AwOKVKmsQ44mTTywmhN
-        LIztbbFH+cI7xtSqL0RrGa/XNUZf2Q==
-X-Google-Smtp-Source: ABdhPJwgzILUoCZf2uNlhPDheGiyHAk0mxDs8Dn5NTyCeNx0G/Qn4/OaCZRbbk6wucaexjpCSDkyxQ==
-X-Received: by 2002:a05:6808:211c:b0:32b:6ebc:4f5a with SMTP id r28-20020a056808211c00b0032b6ebc4f5amr13006766oiw.230.1654033330586;
-        Tue, 31 May 2022 14:42:10 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id f14-20020a056871070e00b000f342d078fasm3078658oap.52.2022.05.31.14.42.09
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0m6WEw+bFPACv7T57ooopwUSIR8iANFIi5UgtU6c/Xo=;
+        b=JHGYBnW/OReBLW4RNChXPKP6ZDqRDksYEx9ev3n9g8Xh/IvhikUUmKpHxHw8DEB3zb
+         sc2ULu+D9zo0w8rv1ABRdZpWsT6TI8wkEh/3hauBDffkuKKnsSYFZ0rWFId0Cc1syVu1
+         a6YcdmFD3L1dgNLlCO5vTLyZOS0K82Ztjjr7wPiurKFHcMI87hrBxBeoC+553kto7zSz
+         RChJV6HF+Is/JRSu066iOeuWxweHBpwPjg4nHcCMRiVW7pjJY3he/NtlVm0UhRG0E6mm
+         LxY0TxaOw1jjGM85RyqFduOtWfoaCg4GEOjz2cwJDgpOJF7QRupP7BrqSOHfNCvv1Gv9
+         iPZg==
+X-Gm-Message-State: AOAM531sH1oUef0pWS7rvAfpX8rnGEEKqLRUIbw+fXF/+KnGZzkdcbn1
+        Yag29+dTs9tUc6py8OzhdKQ=
+X-Google-Smtp-Source: ABdhPJxGBZ0Lk87bORJ5oVR/ehNQ3uIWy8lkK7cwBBvT1D2tE9X1BpLJRI2kYZ6kSXl1VgK+CU0jwg==
+X-Received: by 2002:a17:907:9688:b0:6fe:a0e9:ca6f with SMTP id hd8-20020a170907968800b006fea0e9ca6fmr54117127ejc.553.1654033463254;
+        Tue, 31 May 2022 14:44:23 -0700 (PDT)
+Received: from fedora.robimarko.hr (cpezg-94-253-144-149-cbl.xnet.hr. [94.253.144.149])
+        by smtp.googlemail.com with ESMTPSA id u28-20020a50c05c000000b0042dc882c823sm4256319edd.70.2022.05.31.14.44.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 May 2022 14:42:10 -0700 (PDT)
-Received: (nullmailer pid 2383926 invoked by uid 1000);
-        Tue, 31 May 2022 21:42:09 -0000
-Date:   Tue, 31 May 2022 16:42:09 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Dipen Patel <dipenp@nvidia.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, sfr@canb.auug.org.au
-Subject: Re: [PATCH] dt-bindings: timestamp: Correct id path
-Message-ID: <20220531214209.GA2350029-robh@kernel.org>
-References: <20220523172515.5941-1-dipenp@nvidia.com>
- <CAL_JsqJSF=7FOW4oNydRtDYY8L9Y43E4FsBkUzM+U5ZRjYdt7A@mail.gmail.com>
- <86b11457-2f1a-6b17-fab0-a13d932af993@nvidia.com>
+        Tue, 31 May 2022 14:44:22 -0700 (PDT)
+From:   Robert Marko <robimarko@gmail.com>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, kishon@ti.com,
+        vkoul@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Robert Marko <robimarko@gmail.com>
+Subject: [PATCH 1/2] dt-bindings: phy: qcom,qmp: add IPQ8074 PCIe Gen3 PHY binding
+Date:   Tue, 31 May 2022 23:44:19 +0200
+Message-Id: <20220531214420.916278-1-robimarko@gmail.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <86b11457-2f1a-6b17-fab0-a13d932af993@nvidia.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 31, 2022 at 10:35:55AM -0700, Dipen Patel wrote:
-> Hi Rob,
-> 
-> What is the failing signature and command? I tried below commands on 31st May
+IPQ8074 has 2 different single lane PCIe PHY-s, one Gen2 and one Gen3.
+Gen2 one is already supported, document the bindings for the Gen3 one.
 
-Well, you fixed it in your patch. I'd hope you'd know.
+Signed-off-by: Robert Marko <robimarko@gmail.com>
+---
+ Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> 
-> linux-next and I can not see any failure.
+diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+index e20d9b087bb8..2e33eb527019 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+@@ -19,6 +19,7 @@ properties:
+     enum:
+       - qcom,ipq6018-qmp-pcie-phy
+       - qcom,ipq6018-qmp-usb3-phy
++      - qcom,ipq8074-qmp-gen3-pcie-phy
+       - qcom,ipq8074-qmp-pcie-phy
+       - qcom,ipq8074-qmp-usb3-phy
+       - qcom,msm8996-qmp-pcie-phy
+@@ -308,6 +309,7 @@ allOf:
+           contains:
+             enum:
+               - qcom,ipq6018-qmp-pcie-phy
++              - qcom,ipq8074-qmp-gen3-pcie-phy
+               - qcom,ipq8074-qmp-pcie-phy
+     then:
+       properties:
+-- 
+2.36.1
 
-You confirm your fix is there?
-
-> 
-> make O=./output/ DT_CHECKER_FLAGS=-m dt_binding_check
->   DTC     Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.example.dtb
->   DTC     Documentation/devicetree/bindings/timestamp/hte-consumer.example.dtb
->   DTC     Documentation/devicetree/bindings/timestamp/hardware-timestamps-common.example.dtb
->   CHECK   Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.example.dtb
->   CHECK   Documentation/devicetree/bindings/timestamp/hardware-timestamps-common.example.dtb
->   CHECK   Documentation/devicetree/bindings/timestamp/hte-consumer.example.dtb
-
-Had you already run dt_binding_check?
-
-> 
-> make O=./output/ dt_binding_check
->   LINT    Documentation/devicetree/bindings
->   DTEX    Documentation/devicetree/bindings/timestamp/hardware-timestamps-common.example.dts
->   DTEX    Documentation/devicetree/bindings/timestamp/hte-consumer.example.dts
->   DTEX    Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.example.dts
->   CHKDT   Documentation/devicetree/bindings/processed-schema.json
->   DTC     Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.example.dtb
->   DTC     Documentation/devicetree/bindings/timestamp/hte-consumer.example.dtb
->   CHECK   Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.example.dtb
->   CHECK   Documentation/devicetree/bindings/timestamp/hte-consumer.example.dtb
->   DTC     Documentation/devicetree/bindings/timestamp/hardware-timestamps-common.example.dtb
-
-I don't see 'SCHEMA' target here. It should have run since LINT and 
-CHKDT did.
-
-Do a 'rm output/Documentation/devicetree/bindings/processed-schema.json' 
-first.
-
-Rob
-
-> 
-> 
-> make O=./output dtbs_check
-> 
-> 
-> Best Regards,
-> 
-> Dipen Patel
-> 
-> On 5/31/22 6:33 AM, Rob Herring wrote:
-> > On Mon, May 23, 2022 at 12:25 PM Dipen Patel <dipenp@nvidia.com> wrote:
-> >> During the repository renaming from hte to timestamp, $id path was not
-> >> updated accordingly. This patch corrects $id path.
-> >>
-> >> Fixes: af583852d2ef ("dt-bindings: Renamed hte directory to timestamp")
-> >> Signed-off-by: Dipen Patel <dipenp@nvidia.com>
-> >> ---
-> >>  .../bindings/timestamp/hardware-timestamps-common.yaml          | 2 +-
-> >>  Documentation/devicetree/bindings/timestamp/hte-consumer.yaml   | 2 +-
-> >>  .../devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml      | 2 +-
-> >>  3 files changed, 3 insertions(+), 3 deletions(-)
-> > Ping. Still failing in linux-next.
-> >
-> >> diff --git a/Documentation/devicetree/bindings/timestamp/hardware-timestamps-common.yaml b/Documentation/devicetree/bindings/timestamp/hardware-timestamps-common.yaml
-> >> index 4c25ba248a72..fd6a7b51f571 100644
-> >> --- a/Documentation/devicetree/bindings/timestamp/hardware-timestamps-common.yaml
-> >> +++ b/Documentation/devicetree/bindings/timestamp/hardware-timestamps-common.yaml
-> >> @@ -1,7 +1,7 @@
-> >>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>  %YAML 1.2
-> >>  ---
-> >> -$id: http://devicetree.org/schemas/hte/hardware-timestamps-common.yaml#
-> >> +$id: http://devicetree.org/schemas/timestamp/hardware-timestamps-common.yaml#
-> >>  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>
-> >>  title: Hardware timestamp providers
-> >> diff --git a/Documentation/devicetree/bindings/timestamp/hte-consumer.yaml b/Documentation/devicetree/bindings/timestamp/hte-consumer.yaml
-> >> index 68d764ac040a..6456515c3d26 100644
-> >> --- a/Documentation/devicetree/bindings/timestamp/hte-consumer.yaml
-> >> +++ b/Documentation/devicetree/bindings/timestamp/hte-consumer.yaml
-> >> @@ -1,7 +1,7 @@
-> >>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>  %YAML 1.2
-> >>  ---
-> >> -$id: http://devicetree.org/schemas/hte/hte-consumer.yaml#
-> >> +$id: http://devicetree.org/schemas/timestamp/hte-consumer.yaml#
-> >>  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>
-> >>  title: HTE Consumer Device Tree Bindings
-> >> diff --git a/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml b/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
-> >> index 69e8402d95e5..c31e207d1652 100644
-> >> --- a/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
-> >> +++ b/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
-> >> @@ -1,7 +1,7 @@
-> >>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>  %YAML 1.2
-> >>  ---
-> >> -$id: http://devicetree.org/schemas/hte/nvidia,tegra194-hte.yaml#
-> >> +$id: http://devicetree.org/schemas/timestamp/nvidia,tegra194-hte.yaml#
-> >>  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>
-> >>  title: Tegra194 on chip generic hardware timestamping engine (HTE)
-> >>
-> >> base-commit: cc63e8e92cb872081f249ea16e6c460642f3e4fb
-> >> --
-> >> 2.17.1
-> >>
