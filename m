@@ -2,90 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6A76539111
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 14:50:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5D05539129
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 14:56:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237749AbiEaMuU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 08:50:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51002 "EHLO
+        id S245395AbiEaM4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 08:56:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344368AbiEaMuJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 08:50:09 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6635D6EC70
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 05:50:08 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id w27so10685524edl.7
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 05:50:08 -0700 (PDT)
+        with ESMTP id S234793AbiEaM4G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 08:56:06 -0400
+Received: from mail-vs1-xe2a.google.com (mail-vs1-xe2a.google.com [IPv6:2607:f8b0:4864:20::e2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A193927B09
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 05:56:04 -0700 (PDT)
+Received: by mail-vs1-xe2a.google.com with SMTP id x187so1937108vsb.0
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 05:56:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=V5CGO4cq0wNVQEso3agzs3K90LQrjyze2T7SzIJwgE4=;
-        b=shdQFLasGg7QkNR3zsQg2WCCadFxiUNiJz6QD9RKd+F4no6k1ObrCE2cZZkIwh/AGo
-         YGv0RFsDnWpj0iNX0jD4GLcv8tXyh2nK2/nEQ5HH4TWU546KHwBAOP6odJ7GOgSgUF9A
-         VMcb/cW4PDdaw/X/Aoz0uqS+nNCelRK0wyB2sg3KrqNglQmR5PfpZlLI+tK1cAcSQ02y
-         S0L8hSy4M9PjAtoBg5SNZMNGtzyqNg4YdSkz4DIvmdkZDQBwnW94nd7kWqBAgkEBnmMn
-         HAkFwYu4KySqNRttlmUkfOuWTg6KAyvAZG6odAu8qTIfQrwnJK/QCB77RymnxkpMxO4G
-         9jTQ==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=by+rH6Jh8DwQ12fHpL2zcQmA9Ehcl6RTfaLmpd75cgE=;
+        b=TGw2qkT+mkM6BeoJtnGSUr3b3zzCwCSbKv/BARMhgeGWRHqOKTpevtvWWVjF37XWcL
+         KChW8aa9zKL2e8yqpW+pkQ8UIRozGo7GMdSvaATMmD+cpiUSW/qGYwkEGRe19Zkii/BP
+         nSyuOdInK2Ae/R4mFkSrWF9E07uoWHd7CjrHN3ZhGnqUk2NFp6UGVGKX9b/RPxLMJihK
+         aaztzL271C15oEN4kIYrb3G5th2RnQLk/pRlogk8Pl1k2VC3uCBhZakmmFaALPOmBFpL
+         YoVJF9CV9wzP7kwzYp2ooVKUTzO2nM5QPOvbFsKjmHMNsXEkOyck5lklNZ9gxHYSi68Q
+         EXkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=V5CGO4cq0wNVQEso3agzs3K90LQrjyze2T7SzIJwgE4=;
-        b=sIbs5gPSXHNMPBPm8kajNExQwATuvhwBRuvrc4kH9OovbhWcpJApsA02LxcGzGOM6q
-         +FUY9wM/Nmc8HR6p8RQ3U/rC2SDmlRQt7CBVT+x4jJuV05GD6nA4Ms9M2/5XMBJMPZ4f
-         PAtvdMdT/wZ2CMluqQfYvzy66oPxPNbUej0WHc7CHX1DsTZl2k7ph8HQWNj45+R7Hjq7
-         bpUdkDOLmXoVcg1UGqnAll2wP0dG96fPkJ4MtNLJsl6ysuSUPAu2P/XfKEb1bxFzxFq1
-         KXACY6c46PmBLAJUs7AyGetj0HzpP4WRo700/4u3lrSS76UFfP8UGk216DcpKo3jIqcv
-         6kPg==
-X-Gm-Message-State: AOAM530z2yCC7RNq+FnsC+rrzhGOYR/YkT2uu0Wwh/iIQCBkv2iokabL
-        dluRoeeZ+EFfBjH8aatlOnIYkA==
-X-Google-Smtp-Source: ABdhPJww8oC3nJS1Wwr8ssczeb7hPW65JaofU7XAMZcx5S8ZWid05o7v5skPDCjlsWy+3Iqq8riRsg==
-X-Received: by 2002:a05:6402:1f83:b0:42d:8d6f:a5d4 with SMTP id c3-20020a0564021f8300b0042d8d6fa5d4mr19036961edc.74.1654001406961;
-        Tue, 31 May 2022 05:50:06 -0700 (PDT)
-Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id i10-20020a170906090a00b007025015cf3asm600899ejd.153.2022.05.31.05.50.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 May 2022 05:50:06 -0700 (PDT)
-Message-ID: <b14c0d3a-8fe3-62b5-777d-883d95bc6fcc@linaro.org>
-Date:   Tue, 31 May 2022 14:50:04 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=by+rH6Jh8DwQ12fHpL2zcQmA9Ehcl6RTfaLmpd75cgE=;
+        b=PSu1Ftz7DeB6bLl6QFolCgxdQ+MzvsFyNeF8ARRFID/4rj9/GT3cqFzaWkH/2K7y+O
+         3ssph2b1Z8+XXFOX9p1KmIfwppuGfRLAl/X6Tym8ktnB4foIhtLa+YsmOqehooIDMEdc
+         y85aZbQpZ210tkuhNzaa89l8RxFEgpb2Ms7kV2dUzB7e7gNmv+Bx/lyFNL9NFFrjDvz2
+         FkqyejoX3ZCIuS0zXJQ1P79Ef0XWQhjCgzI6msDGs/59vi9t4LENC9yiA3V6fFgQeURK
+         brLGg9Hl+XWzR58FeAOCa1FyQn5Jh6H0nh1APbjJsduiZJ0ioVxH29+QwOTvn+l4y+kz
+         6WWg==
+X-Gm-Message-State: AOAM533vmYSAyP+vmx1BLLok6and5p84Np6VX47DFBc/LNvHeJS7ZEG9
+        wltCRoEJsWeNxx4OquPArRB709LZT3Vvjdp8z48=
+X-Google-Smtp-Source: ABdhPJyQxX6hiuY2g8/7bwiZGDMTeYAt9tDfvpk2LLEp6Qr+xnRpK2ptXVsY/7h0euq+tkave891UfNnx2fmYuUd1DE=
+X-Received: by 2002:a05:6102:3753:b0:337:8f39:f642 with SMTP id
+ u19-20020a056102375300b003378f39f642mr20065851vst.52.1654001763803; Tue, 31
+ May 2022 05:56:03 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v3 0/2] syscon reboot/reboot_mode support for exynosautov9
-Content-Language: en-US
-To:     Chanho Park <chanho61.park@samsung.com>,
-        'Rob Herring' <robh+dt@kernel.org>,
-        'Krzysztof Kozlowski' <krzysztof.kozlowski+dt@linaro.org>
-Cc:     'Alim Akhtar' <alim.akhtar@samsung.com>,
-        'Chanwoo Choi' <cw00.choi@samsung.com>,
-        'Sam Protsenko' <semen.protsenko@linaro.org>,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
-References: <CGME20220523121210epcas2p11d0b4f27edd5a403b2fd7d3833d577ff@epcas2p1.samsung.com>
- <20220523121244.67341-1-chanho61.park@samsung.com>
- <013401d874eb$05f55390$11dffab0$@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <013401d874eb$05f55390$11dffab0$@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20220515202032.3046-1-stefan.wahren@i2se.com> <20220515202032.3046-5-stefan.wahren@i2se.com>
+In-Reply-To: <20220515202032.3046-5-stefan.wahren@i2se.com>
+From:   Peter Robinson <pbrobinson@gmail.com>
+Date:   Tue, 31 May 2022 13:55:51 +0100
+Message-ID: <CALeDE9NULp1t0GzBEXOwguh5Yt96t1QaR9CT7L6VVWV-jiHthw@mail.gmail.com>
+Subject: Re: [PATCH 04/11] ARM: dts: bcm2835/bcm2711: Introduce reg-names in
+ watchdog node
+To:     Stefan Wahren <stefan.wahren@i2se.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Melissa Wen <melissa.srw@gmail.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/05/2022 14:36, Chanho Park wrote:
-> Hi Krzysztof,
-> 
-> Could you review below v3 patchset in your free time? :)
-
-I looked at it before and it is fine. It's a merge window so I am not
-taking any new patches before rc1.
-
-Best regards,
-Krzysztof
+On Sun, May 15, 2022 at 9:21 PM Stefan Wahren <stefan.wahren@i2se.com> wrote:
+>
+> From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+>
+> bcm2835-pm's bindings now support explicitly setting 'reg-names,' so use
+> them.
+>
+> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+Reviewed-by: Peter Robinson <pbrobinson@gmail.com>
+> ---
+>  arch/arm/boot/dts/bcm2711.dtsi        | 1 +
+>  arch/arm/boot/dts/bcm2835-common.dtsi | 1 +
+>  2 files changed, 2 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/bcm2711.dtsi b/arch/arm/boot/dts/bcm2711.dtsi
+> index 89af57482bc8..cbb47e2c9434 100644
+> --- a/arch/arm/boot/dts/bcm2711.dtsi
+> +++ b/arch/arm/boot/dts/bcm2711.dtsi
+> @@ -113,6 +113,7 @@ pm: watchdog@7e100000 {
+>                         reg = <0x7e100000 0x114>,
+>                               <0x7e00a000 0x24>,
+>                               <0x7ec11000 0x20>;
+> +                       reg-names = "pm", "asb", "rpivid_asb";
+>                         clocks = <&clocks BCM2835_CLOCK_V3D>,
+>                                  <&clocks BCM2835_CLOCK_PERI_IMAGE>,
+>                                  <&clocks BCM2835_CLOCK_H264>,
+> diff --git a/arch/arm/boot/dts/bcm2835-common.dtsi b/arch/arm/boot/dts/bcm2835-common.dtsi
+> index c25e797b9060..a037d2bc5b11 100644
+> --- a/arch/arm/boot/dts/bcm2835-common.dtsi
+> +++ b/arch/arm/boot/dts/bcm2835-common.dtsi
+> @@ -62,6 +62,7 @@ pm: watchdog@7e100000 {
+>                         #reset-cells = <1>;
+>                         reg = <0x7e100000 0x114>,
+>                               <0x7e00a000 0x24>;
+> +                       reg-names = "pm", "asb";
+>                         clocks = <&clocks BCM2835_CLOCK_V3D>,
+>                                  <&clocks BCM2835_CLOCK_PERI_IMAGE>,
+>                                  <&clocks BCM2835_CLOCK_H264>,
+> --
+> 2.25.1
+>
