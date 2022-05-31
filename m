@@ -2,62 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 176D15391BA
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 15:21:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58C615391D5
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 15:33:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344695AbiEaNVf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 09:21:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34712 "EHLO
+        id S1344738AbiEaNdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 09:33:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344691AbiEaNVb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 09:21:31 -0400
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A232395DCE;
-        Tue, 31 May 2022 06:21:29 -0700 (PDT)
-Received: by mail-oi1-f180.google.com with SMTP id k187so13199844oif.1;
-        Tue, 31 May 2022 06:21:29 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=n2YWFk0y3q/d7S62mzm/mupBj+kGA49hA3r4JP1ldJU=;
-        b=UqsmQS/PhlikB+EugfjiGGPxJwTfuBvKe2jER/nsjc57mx4xPj5HLoF1CHBopg693H
-         ac3hEBnR5zeGnGTgcjHjY/etY9fY8T2K/2rmycMu2YqC1a/QtWr1CrdrkOv/kkVrfwlT
-         Id9GMrwWI+bH5nNgbNpeuftaJKh1UjkJQmaRbe93RKpoyiwPrfVZedfCqhLO/K8mE9HY
-         PGtQLvOI0GrrG5Nb2Mc/AM1cAg9aUx8skQPhess86mtvkozKKcoKbDWmh7v11OSSsh/Q
-         uVi0vrSJzUxKzbDRO+gFzyIr2RdFSs8/i48Y4LMU1uUd2r1Q5oVFV5bwRJ+d4FMDFqkN
-         pJKw==
-X-Gm-Message-State: AOAM531R3t5D31yQh+W+kQa3tRLBHWXiMIzr6D5JeQK9/vNvxLfeiKN7
-        ab2PJ081+bzXdSfYZ9HqLw==
-X-Google-Smtp-Source: ABdhPJw/uns3WPs2X+MsfGF5nr1CcrWwKzdKVdZtYl2nRuFZii2epEbochmc6fHJTtwW1+OebjuDSA==
-X-Received: by 2002:a05:6808:10d1:b0:32b:a63b:fdda with SMTP id s17-20020a05680810d100b0032ba63bfddamr12450526ois.257.1654003288954;
-        Tue, 31 May 2022 06:21:28 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id w11-20020a0568080d4b00b0032b4ae1fc2csm5715934oik.21.2022.05.31.06.21.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 May 2022 06:21:28 -0700 (PDT)
-Received: (nullmailer pid 1610158 invoked by uid 1000);
-        Tue, 31 May 2022 13:21:25 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Harsh Agarwal <quic_harshq@quicinc.com>
-Cc:     linux-usb@vger.kernel.org, Felipe Balbi <balbi@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        quic_ppratap@quicinc.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        quic_jackp@quicinc.com
-In-Reply-To: <1653985217-20953-2-git-send-email-quic_harshq@quicinc.com>
-References: <1653985217-20953-1-git-send-email-quic_harshq@quicinc.com> <1653985217-20953-2-git-send-email-quic_harshq@quicinc.com>
-Subject: Re: [PATCH 1/3] dt-bindings: usb: dwc3: Add support for multiport related properties
-Date:   Tue, 31 May 2022 08:21:25 -0500
-Message-Id: <1654003285.276061.1610157.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        with ESMTP id S229939AbiEaNdn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 09:33:43 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE9608FD66;
+        Tue, 31 May 2022 06:33:42 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 787B961202;
+        Tue, 31 May 2022 13:33:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE73EC3411E;
+        Tue, 31 May 2022 13:33:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654004021;
+        bh=Z1whR2Seo++h8Uvy3NRM8CLdGeRMk3/5Fhy4XLisltk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=cPVxm69Jbg+3fiO8JqUkXLXOD3pdyUhd1MlQm0oMnsnf55jefml2siTeRt11DQHj6
+         j2XvEIwBhLIetl2w51tLK3B2a0OH2Z6D0nlXRYIg/OwhCh9PiTgvXzmtIqsaGVmCk/
+         NKbc9Y8PlTLEjGx6hE7AsqZPZ63XO8dLqIFkWoRvf5c1NjMqCoIcoSwXF5SVIY5lUk
+         8yy0Ek1jNVgbeKugcbrmeNa6X6xfwxRoEHv9D7y02QUzG4xMThGu6A77YkIcbXIDCO
+         zWyzDcprTUSJlyHWEJ6vSN13Fe2Y5DFL0DOsh5h6/dcJ5SSJVn1Q0Awe0RVh1hSBfx
+         aAMov2J80OI8w==
+Received: by mail-ua1-f53.google.com with SMTP id y2so4793056uan.4;
+        Tue, 31 May 2022 06:33:41 -0700 (PDT)
+X-Gm-Message-State: AOAM5324/hXJsqjrtMtCRbOakjadASmODKos4GyTpqOlmof57aZFGCif
+        vS608GbBZKgVhquTEXhTU7PfvLVes8cgunM4mg==
+X-Google-Smtp-Source: ABdhPJzfl2q8a4/jnTVhQHUMa2kRAa20r2HuCUl7f2SfBzhtY8jiaU660L5f3oIf9EZfTKfxQZBl0thsed79l8nNzVE=
+X-Received: by 2002:ab0:4ac1:0:b0:351:ed7d:e65c with SMTP id
+ t1-20020ab04ac1000000b00351ed7de65cmr22397280uae.36.1654004020745; Tue, 31
+ May 2022 06:33:40 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220523172515.5941-1-dipenp@nvidia.com>
+In-Reply-To: <20220523172515.5941-1-dipenp@nvidia.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 31 May 2022 08:33:29 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJSF=7FOW4oNydRtDYY8L9Y43E4FsBkUzM+U5ZRjYdt7A@mail.gmail.com>
+Message-ID: <CAL_JsqJSF=7FOW4oNydRtDYY8L9Y43E4FsBkUzM+U5ZRjYdt7A@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: timestamp: Correct id path
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, Dipen Patel <dipenp@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,45 +63,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 31 May 2022 13:50:15 +0530, Harsh Agarwal wrote:
-> Added support for multiport, mport, num-ssphy and num-hsphy
-> properties. These properties are used to support devices having
-> a multiport controller.
-> 
-> Signed-off-by: Harsh Agarwal <quic_harshq@quicinc.com>
+On Mon, May 23, 2022 at 12:25 PM Dipen Patel <dipenp@nvidia.com> wrote:
+>
+> During the repository renaming from hte to timestamp, $id path was not
+> updated accordingly. This patch corrects $id path.
+>
+> Fixes: af583852d2ef ("dt-bindings: Renamed hte directory to timestamp")
+> Signed-off-by: Dipen Patel <dipenp@nvidia.com>
 > ---
->  .../devicetree/bindings/usb/snps,dwc3.yaml         | 55 ++++++++++++++++++++++
->  1 file changed, 55 insertions(+)
-> 
+>  .../bindings/timestamp/hardware-timestamps-common.yaml          | 2 +-
+>  Documentation/devicetree/bindings/timestamp/hte-consumer.yaml   | 2 +-
+>  .../devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml      | 2 +-
+>  3 files changed, 3 insertions(+), 3 deletions(-)
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Ping. Still failing in linux-next.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/usb/snps,dwc3.yaml:366:8: [warning] wrong indentation: expected 6 but found 7 (indentation)
-./Documentation/devicetree/bindings/usb/snps,dwc3.yaml:367:10: [warning] wrong indentation: expected 11 but found 9 (indentation)
-./Documentation/devicetree/bindings/usb/snps,dwc3.yaml:369:11: [warning] wrong indentation: expected 11 but found 10 (indentation)
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/usb/snps,dwc3.example.dts:86.27-89.15: Warning (unit_address_vs_reg): /example-2/usb@4a000000/multiport/mport@1: node has a unit name, but no reg or ranges property
-Documentation/devicetree/bindings/usb/snps,dwc3.example.dts:91.27-93.15: Warning (unit_address_vs_reg): /example-2/usb@4a000000/multiport/mport@2: node has a unit name, but no reg or ranges property
-Documentation/devicetree/bindings/usb/snps,dwc3.example.dts:95.27-97.15: Warning (unit_address_vs_reg): /example-2/usb@4a000000/multiport/mport@3: node has a unit name, but no reg or ranges property
-Documentation/devicetree/bindings/usb/snps,dwc3.example.dts:99.27-101.15: Warning (unit_address_vs_reg): /example-2/usb@4a000000/multiport/mport@4: node has a unit name, but no reg or ranges property
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/snps,dwc3.example.dtb: usb@4a000000: multiport: 'mport' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+>
+> diff --git a/Documentation/devicetree/bindings/timestamp/hardware-timestamps-common.yaml b/Documentation/devicetree/bindings/timestamp/hardware-timestamps-common.yaml
+> index 4c25ba248a72..fd6a7b51f571 100644
+> --- a/Documentation/devicetree/bindings/timestamp/hardware-timestamps-common.yaml
+> +++ b/Documentation/devicetree/bindings/timestamp/hardware-timestamps-common.yaml
+> @@ -1,7 +1,7 @@
+>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>  %YAML 1.2
+>  ---
+> -$id: http://devicetree.org/schemas/hte/hardware-timestamps-common.yaml#
+> +$id: http://devicetree.org/schemas/timestamp/hardware-timestamps-common.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>
+>  title: Hardware timestamp providers
+> diff --git a/Documentation/devicetree/bindings/timestamp/hte-consumer.yaml b/Documentation/devicetree/bindings/timestamp/hte-consumer.yaml
+> index 68d764ac040a..6456515c3d26 100644
+> --- a/Documentation/devicetree/bindings/timestamp/hte-consumer.yaml
+> +++ b/Documentation/devicetree/bindings/timestamp/hte-consumer.yaml
+> @@ -1,7 +1,7 @@
+>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>  %YAML 1.2
+>  ---
+> -$id: http://devicetree.org/schemas/hte/hte-consumer.yaml#
+> +$id: http://devicetree.org/schemas/timestamp/hte-consumer.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>
+>  title: HTE Consumer Device Tree Bindings
+> diff --git a/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml b/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
+> index 69e8402d95e5..c31e207d1652 100644
+> --- a/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
+> +++ b/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
+> @@ -1,7 +1,7 @@
+>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>  %YAML 1.2
+>  ---
+> -$id: http://devicetree.org/schemas/hte/nvidia,tegra194-hte.yaml#
+> +$id: http://devicetree.org/schemas/timestamp/nvidia,tegra194-hte.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>
+>  title: Tegra194 on chip generic hardware timestamping engine (HTE)
+>
+> base-commit: cc63e8e92cb872081f249ea16e6c460642f3e4fb
+> --
+> 2.17.1
+>
