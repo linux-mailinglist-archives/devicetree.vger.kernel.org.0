@@ -2,116 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1359A538AD2
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 07:17:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F9CE538ADD
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 07:27:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232815AbiEaFRu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 01:17:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39276 "EHLO
+        id S238754AbiEaF1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 01:27:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243946AbiEaFRt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 01:17:49 -0400
-Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04F1E33E9D;
-        Mon, 30 May 2022 22:17:48 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.west.internal (Postfix) with ESMTP id 8D3593200972;
-        Tue, 31 May 2022 01:17:46 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Tue, 31 May 2022 01:17:47 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm2; t=1653974266; x=1654060666; bh=F8
-        1xGIS8G0ZOmU4a6natt6mMHiJ7p/1Yr5bda54vx6o=; b=dsydNz1c/NPBbEDv1i
-        NOjssi2PZgYkfBBevF2sF53gV4MU2WED4+iUqD29YHpbnnWFVyEw5hz/ajGSsPuu
-        AmKMqhcBRXO8DqAIK+XMNMsqTmEAIt4qHQtYbl/WyGPLMdT6cShX/zooBoBDcEAe
-        QA/wT9jQDF+bKQGu8OLJk0qewgNhP29mxzAMULtbqGsyLtVTCsderMLZoWRD7+Sg
-        fg5hk5n4LiQhNf2RKQiv9asUWmeL1e7qsYjBzLCc9HiuKcI+zqNLgryWUfis3w7L
-        N0f785Eqzv4KeJ9/+tjMKKXXIJAfNUN6kQdZwtrPtpoinClzdwDyxsMuhGh+UY5p
-        BxvA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; t=1653974266; x=1654060666; bh=F81xGIS8G0ZOm
-        U4a6natt6mMHiJ7p/1Yr5bda54vx6o=; b=vBzQWTO/xZlpP2VsUQ3Gzk6j3L0Bd
-        pNRynyAZVzDxturF1GkLURCbfHBunQj26SumVm2Prk6rec0ZIxYZG5v29ishJ469
-        Yxy1HRC6Na7hdEs6JdMOvj+y5zuimaW1jS2vYkhA6zpWyXgmJIiJeAixZ1XpgnGc
-        vgkzT1q9Uida0h99jpjUdopDkyR5wHSPbggu1JdJQbVux2QfpR/mAaErPfnSaWF0
-        BrsceqAMIJENzscuKlIrl4TuWlGE4jx1trlOA4EWVx6HSX3tdcRpkXoowEgMDaqb
-        i/fOBx9rHNn5Zl3XsGm5NsFtIpYAbW0ybXCCnULpEmTq5/zIddW9dmZ0A==
-X-ME-Sender: <xms:-aSVYjYy2vX2qlyU5SQjzWQKTvkuAkfLpqfGotAp4tq6wvS8bDKitg>
-    <xme:-aSVYiYBwhwtIjlp56q5OYmvHIiX0gnNszhzy4uIWO8KT47nf43_SX2YtGN8C5J6y
-    7d0aFE0jeTL8hEOIg>
-X-ME-Received: <xmr:-aSVYl_5Cobis8TlOCT766UqIVrpV2wP-kJsNDqMjeTyNeQWVhMf5IvL48TmHHQ_cSJiFt41bwuLHh15yW6AYj0mmOUSQxx-nsFYWFZqzr1IAgxurKuBqeusZ6zKLn2mRJEYGw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrkeejgdelgecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvfevufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
-    frrghtthgvrhhnpedukeetueduhedtleetvefguddvvdejhfefudelgfduveeggeehgfdu
-    feeitdevteenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
-    hmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:-aSVYprzLnndULNkMmh3jvqM6xU7hVXBgKHJi7d5godojMGM_R6k0w>
-    <xmx:-aSVYurYFSK7ENJjW1y51syY9DdUxydOBVYPtX80IfGrQ4YENaf34Q>
-    <xmx:-aSVYvQzzog2WPDRLKqoIcEEGQMGLenu79sRFPmwQ8CBiNk0UJM8bw>
-    <xmx:-qSVYt0usGGPBP7ewCX3XzLMm1M0IvVmkceNnYaxIiyTdvqqmUz-Wg>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 31 May 2022 01:17:45 -0400 (EDT)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: clock: fixed-factor: Drop Allwinner A10 compatible
-Date:   Tue, 31 May 2022 00:17:42 -0500
-Message-Id: <20220531051742.43273-2-samuel@sholland.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220531051742.43273-1-samuel@sholland.org>
-References: <20220531051742.43273-1-samuel@sholland.org>
+        with ESMTP id S236819AbiEaF1l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 01:27:41 -0400
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AACB562EB;
+        Mon, 30 May 2022 22:27:40 -0700 (PDT)
+Received: from pps.filterd (m0127361.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 24V2K0RK024723;
+        Tue, 31 May 2022 05:27:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : in-reply-to : references : date : message-id : content-type :
+ mime-version; s=pp1; bh=PT5JtTPRZQDI4w0OM0wq5EeAWJPlSipYKeQ/cQVBe84=;
+ b=Y8hsD7BmBM418ki+GIUIpbJ+9kIJ8ByUyQr93TN43l3rXIxX0GjoTGEK5UyS0UZHQv5H
+ Kn6vsm6ydAFasl9FlE1xZU5MNdeFv19jZyzKkwSkTY1vpGcH31RzDLZtLOf6HIodNMz5
+ KTKrz4qDYkLjBFyVO5jTdkO5JOqALbxnmJSVVpSnTMP+R1vIoUtkYFOTB2FftViN2o7k
+ +JSh+iNBXYQKWxyrhooocbc6+ULkJbH+GQgPCudZanlKi0YI3FWJekS/0HOAmwQQzzfq
+ 9ctXcF7SCEIA6BTXc0p6/GxHelKhipZz5EXS3Ppq1MUCNY1Vgau9+pI+PqgQDq0eO2DE Bg== 
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3gda53ac6r-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 31 May 2022 05:27:20 +0000
+Received: from m0127361.ppops.net (m0127361.ppops.net [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 24V5FVfc019175;
+        Tue, 31 May 2022 05:27:19 GMT
+Received: from ppma04ams.nl.ibm.com (63.31.33a9.ip4.static.sl-reverse.com [169.51.49.99])
+        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3gda53ac6c-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 31 May 2022 05:27:19 +0000
+Received: from pps.filterd (ppma04ams.nl.ibm.com [127.0.0.1])
+        by ppma04ams.nl.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 24V57DJX015405;
+        Tue, 31 May 2022 05:27:17 GMT
+Received: from b06cxnps3075.portsmouth.uk.ibm.com (d06relay10.portsmouth.uk.ibm.com [9.149.109.195])
+        by ppma04ams.nl.ibm.com with ESMTP id 3gbcae3j1x-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 31 May 2022 05:27:17 +0000
+Received: from d06av25.portsmouth.uk.ibm.com (d06av25.portsmouth.uk.ibm.com [9.149.105.61])
+        by b06cxnps3075.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 24V5REi916843150
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 31 May 2022 05:27:14 GMT
+Received: from d06av25.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id A88D211C04C;
+        Tue, 31 May 2022 05:27:14 +0000 (GMT)
+Received: from d06av25.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 54D0A11C04A;
+        Tue, 31 May 2022 05:27:10 +0000 (GMT)
+Received: from vajain21.in.ibm.com (unknown [9.43.34.53])
+        by d06av25.portsmouth.uk.ibm.com (Postfix) with SMTP;
+        Tue, 31 May 2022 05:27:10 +0000 (GMT)
+Received: by vajain21.in.ibm.com (sSMTP sendmail emulation); Tue, 31 May 2022 10:57:09 +0530
+From:   Vaibhav Jain <vaibhav@linux.ibm.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        "Aneesh Kumar K . V" <aneesh.kumar@linux.ibm.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Prakhar Srivastava <prsriva@linux.microsoft.com>,
+        Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
+        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
+        Robin Murphy <robin.murphy@arm.com>
+Subject: Re: [PATCH v2] of: check previous kernel's ima-kexec-buffer against
+ memory bounds
+In-Reply-To: <20220526015240.GA2884362-robh@kernel.org>
+References: <20220524055042.1527968-1-vaibhav@linux.ibm.com>
+ <20220526015240.GA2884362-robh@kernel.org>
+Date:   Tue, 31 May 2022 10:57:09 +0530
+Message-ID: <87h756ff0y.fsf@vajain21.in.ibm.com>
+Content-Type: text/plain
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: R2s4D36h56biMphvC_rMY7PtyfsreFsy
+X-Proofpoint-ORIG-GUID: 4m1hsAWBxReN2px9sIiPiHsphA8vz2zn
+X-Proofpoint-UnRewURL: 0 URL was un-rewritten
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.874,Hydra:6.0.517,FMLib:17.11.64.514
+ definitions=2022-05-31_01,2022-05-30_03,2022-02-23_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 clxscore=1015
+ impostorscore=0 spamscore=0 mlxscore=0 suspectscore=0 adultscore=0
+ priorityscore=1501 mlxlogscore=682 phishscore=0 malwarescore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2204290000 definitions=main-2205310025
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This compatible is part of the legacy sunxi clock support, and has not
-been used since commit 6b48644b1d29 ("ARM: gr8: Convert to CCU") in
-October 2016. Now that the code for this compatible has been removed,
-let's drop the compatible.
+Thanks for looking into this patch Rob,
 
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
+I have addressed your review comment in v3 of the patch posted at
+https://lore.kernel.org/all/20220531041446.3334259-1-vaibhav@linux.ibm.com/
 
- Documentation/devicetree/bindings/clock/fixed-factor-clock.yaml | 1 -
- 1 file changed, 1 deletion(-)
+<snip>
 
-diff --git a/Documentation/devicetree/bindings/clock/fixed-factor-clock.yaml b/Documentation/devicetree/bindings/clock/fixed-factor-clock.yaml
-index f415845b38dd..0b02378a3a0c 100644
---- a/Documentation/devicetree/bindings/clock/fixed-factor-clock.yaml
-+++ b/Documentation/devicetree/bindings/clock/fixed-factor-clock.yaml
-@@ -13,7 +13,6 @@ maintainers:
- properties:
-   compatible:
-     enum:
--      - allwinner,sun4i-a10-pll3-2x-clk
-       - fixed-factor-clock
- 
-   "#clock-cells":
 -- 
-2.35.1
-
+Cheers
+~ Vaibhav
