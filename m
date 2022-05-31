@@ -2,230 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CDCA538F52
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 12:53:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18A0C538F5D
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 12:57:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244781AbiEaKxS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 06:53:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33358 "EHLO
+        id S1343641AbiEaK4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 06:56:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234818AbiEaKxQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 06:53:16 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B12E142EF4;
-        Tue, 31 May 2022 03:53:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1653994394; x=1685530394;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=aL5n+PJDsvFjtt6CimdLAGH5JosHAESVituoZpa/mHk=;
-  b=kXpnUnLTA5UvgPlcSbTsjncjwMyB+S0fep2FgD5Tv45ngL+5iU61UYeX
-   03vXRkJCCkAeHzDaYoLUyUNwwgm+krsIahKj510cfY49P5iOWoCqK6Seb
-   nHC2fWSE+4h/b/SjXd5Bi84+2IFFJ3+3sg4pfdSUkXXLfHmktbr4atCX6
-   q7OQEEDuc93xUP4TZwtOVlsCtDKOCccpCEbSwa/5uD9rMTatApTpT/49E
-   fBqqu042/Da+RjKsEnjdEI0WpegZ/4wkPtPdi+kuqy25rB8puCIj1mRaa
-   N5J4fOLN1EcbBBRwwesfg8OSRihuN1SBQzo+be7JI0oagB4it6BVkumWv
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.91,265,1647327600"; 
-   d="scan'208";a="175826228"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 31 May 2022 03:53:13 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Tue, 31 May 2022 03:53:12 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17 via Frontend Transport; Tue, 31 May 2022 03:53:12 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DTT5LE/OP4tA1CNuFGdpCRw6F09/JGs/+8OucdaZr2uJyVFYCgldQcAOJBYali23fQdo0ctLRKDxLPHpQZGfdhJCwCsD0MRFb8Puc0dEtlwFe3STR+E4XEvrfbSk2JGrIx3FqZOATw8L7K2yWVkqsGflNgh8XZqkBPS9R+to5RXxTtcyiWv74cg7ctUSzfuldLT/RidIZRwVqDeltTrQ/MvkZhpQFHTq5+W7pLu1OcGqA9z6/FGXL1BvCYCQTT3QUGT0ozdW+eowBjB3p3NlyoArOlmKEtkBYjwQUp8T5J3TY+skHkM2HwZYl5enLo8GKFvF4zy/jiSEwMWbyNCZiw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aL5n+PJDsvFjtt6CimdLAGH5JosHAESVituoZpa/mHk=;
- b=niCb9FB1h8fit0uvK1ZtrwvIXA36MY5/GDMkHxKXWtPxXqvqfB1HWvUfaNHdTE5Z+XDutIf3Iv41ztiS4aqkKCDN4kjvvN1fxApH8t1jZY8fZ0KDoXCazZ3Nm/UKFQXPg+uMS66ge5KSMsQOIKAMIeZpcVK4Xn5ul9p4AV8D5KfHRchNdNkPwmGPPg9GYH/GlowPta46MW8SXlYR/7nHrnl3+yUWcO8010BoxuOLOEUwhWM/i13eWRdiTCrJnl4Lq0xdolJSEK/d2KRqRfM65B+mJPrFo2AoXWwn1+VI3zZfzipe9uH3jlp9jP7yyHJ+cLCkhBoY3tt1iqLInFg2dA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aL5n+PJDsvFjtt6CimdLAGH5JosHAESVituoZpa/mHk=;
- b=kAUpVL2za3P67ZtYp8ZZrE5cGmzTCar8PBr2Q3ob67SEWASlWuR184gOQDoYv48bHQKwEgDFFy0Vcjqxg8hCYG8kGPhkEnVmswkJY1pAj2AgeicyEVhIEgXNiCXTPmD9trK8IkQN4hpb866Nv1MVjdrE3AzVCNn0D2AEmsyfqp8=
-Received: from CO1PR11MB5154.namprd11.prod.outlook.com (2603:10b6:303:99::15)
- by DM6PR11MB2604.namprd11.prod.outlook.com (2603:10b6:5:c8::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.13; Tue, 31 May
- 2022 10:53:07 +0000
-Received: from CO1PR11MB5154.namprd11.prod.outlook.com
- ([fe80::699b:5c23:de4f:2bfa]) by CO1PR11MB5154.namprd11.prod.outlook.com
- ([fe80::699b:5c23:de4f:2bfa%6]) with mapi id 15.20.5293.019; Tue, 31 May 2022
- 10:53:07 +0000
-From:   <Conor.Dooley@microchip.com>
-To:     <i.bornyakov@metrotek.ru>
-CC:     <mdf@kernel.org>, <hao.wu@intel.com>, <yilun.xu@intel.com>,
-        <trix@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <linux-fpga@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <system@metrotek.ru>
-Subject: Re: [PATCH v13 2/3] fpga: microchip-spi: add Microchip MPF FPGA
- manager
-Thread-Topic: [PATCH v13 2/3] fpga: microchip-spi: add Microchip MPF FPGA
- manager
-Thread-Index: AQHYcS+MqDCo1uYFDUerOTfzxMPcoq03TEoAgAAM4ICAACZ+gIABVsQA
-Date:   Tue, 31 May 2022 10:53:07 +0000
-Message-ID: <3b6867a8-d4ce-c5f3-71d4-bd9c3c88c389@microchip.com>
-References: <20220526181344.2088-1-i.bornyakov@metrotek.ru>
- <20220526181344.2088-3-i.bornyakov@metrotek.ru>
- <f655cf2f-555c-6480-a461-bcddb9e510f3@microchip.com>
- <20220530120701.sedwn3qeohlnj52e@x260>
- <95c44458-aeff-e356-1e32-c8f735570c3a@microchip.com>
-In-Reply-To: <95c44458-aeff-e356-1e32-c8f735570c3a@microchip.com>
-Accept-Language: en-IE, en-US
-Content-Language: en-IE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 003823d2-5582-483d-f9ea-08da42f3beea
-x-ms-traffictypediagnostic: DM6PR11MB2604:EE_
-x-microsoft-antispam-prvs: <DM6PR11MB26040EA3F79651DF8D07226198DC9@DM6PR11MB2604.namprd11.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 6dQ1XijpP+V6sd/m2FoC9xzkwVnzPFWbgrWLQU4aYd48cKokjZX88KbsWygwMthyNuVMQ/QCDxVLHOEw21KS6RdI9cxm7XNmyXsn39VL6rLJPEh609v1qJWNNB/XdMsZRi71HwRM6ZVSrCNt+cAEHIAqDNNi49P6A5lASIiCMuJZtBdY8KS6S2ZINDmdzrHVso3r1fPwXtuLIgWG5ibBJhW95c7HQmJOv7AGHZPoZ2s5UPGoM7LYiFguWZhdruOxp2LkbaKlt24Z7QJWGykfC66eHOiAP4S+J+kGj7UJrIpv4uVWahNehDoWgtQQmR0HGf3Xa6d5QSZhbuKU89lyGWhflPTRH8SiFE3MibHn6NDFCkhkgHy5WsU5lhaz8xMMuBSv9u1EmTpFIKJ/xtkeoZ8Jw8F2hYqzrvRbK6fJvdUctmzmr88rBoTb3Qy+ECLuYwcu51aQ4qR7icRriw9ISTG3edliQYyIzsKNnafsOY8RMI4DCiRs+1cH2F7bRV3dHwP4jCUUU7vl7oSTBlKnmzYrIPoU7yZoLmScvkoWEDVxaK8OlH+iqLUjjcWChoCURa2hdtftS9nk6swi8pWKx6mgJ4U0lsHhtcKHyMXH4yz/Kkt8XjwTFnuDVBo9cVvmhdHBgobjWt4B8/WiqtMStYLED1/AKeU4neeEeaAHZtJgHf3685rwZ5k6btPpQXwuk3imkfpGSqo+qtOEZvmyBEswayfFIdCqgUbR3Q/lIR5y2VjJ+N2RisRQuBMOB8wskDQGmT8qjjfEwNxiWZmpPxZG6taSkjNvTQnB3LSXh0wpbT64SIEhC0Uww+9APGn82moPznl18cmW4rb6zajiZ1Vx8B3k72/LIGIdlVtIT1MtnwP1B1dLcb6lmoZqYlwN
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5154.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(54906003)(53546011)(6512007)(2906002)(31686004)(316002)(26005)(6506007)(6916009)(122000001)(36756003)(8936002)(38070700005)(31696002)(83380400001)(4326008)(7416002)(2616005)(86362001)(66946007)(38100700002)(5660300002)(76116006)(66476007)(66446008)(8676002)(91956017)(64756008)(66556008)(508600001)(966005)(6486002)(71200400001)(186003)(43740500002)(45980500001)(15519875007);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MVJzYXUxdzN5MlY3UFJjWDltS0NwN2xVbUVvY09xdlJoQ08rQ04rdExIa1hC?=
- =?utf-8?B?S3c0Zi9ZT2VxWTJqUzhuOFBja2s1a2NCN25MazQzRm9xak5TSmtSVE9SNng0?=
- =?utf-8?B?TFpCT3pxRWphbmFxL2hLNXdjOEdIcVNqYjVsZXNUdGhSNHNBaDlObGRreTNW?=
- =?utf-8?B?R041aTZ6bHNsdGxnNFllY3pwMWdTM2lBV2FOdGFibmxlTkN3cGphb2l4OVh6?=
- =?utf-8?B?ZllndVJYb2ZuajkvZy8waEpvV3pML0ZLWm5iR2J5ekpSa1RFcnFrMTRiQ0ty?=
- =?utf-8?B?UEhGS29LYmRXSitMTEZrWCt5RmJ3Y1dFYytwTTcxZU5ENXZuOU5XMHRyQmds?=
- =?utf-8?B?Ky9aOUhWaTZwWVdma1JFZHRVekNYUE9MZy94b2NjOTV5bkpNVDNUbHArRmw2?=
- =?utf-8?B?YjI0MHBEbDlXMmszeGVVeURBTTlLMGVnTk9yT2lOeXNTTVVKSC9reXFiWlF3?=
- =?utf-8?B?WTRjMit2MTNtQXpPR3l6VjV4QVFMbkxNaWZ6NWtLcEtObVl2VHQwTkE2NWt0?=
- =?utf-8?B?Z1NKaGhlM2ZOcy9QZUE3bnBRbmhjUUNhZi9oR01jTFFzMXd6ZCtWV2tFeEp5?=
- =?utf-8?B?bjl1QjNxT2p5Ym1JRkt2V1hjRGdSKzVIalEzOTVaYURQT3FPRS9rTXV0Y1FR?=
- =?utf-8?B?bWg1NUVGVUI4NWdWVE5INWdTMzN3U1dhQ05MbG9nQzRRVFRCYkVheFJ3MG50?=
- =?utf-8?B?NWs3YVNFTm9oT08vd0hQUHgxUUR4YXdjaTRCbUptbmRadElzSFFwMHc1S2Q1?=
- =?utf-8?B?cWVkU2pUM3U1MW1hSkxJN0NKYnFLNTFDYmU1anE5VHljM09UcUUzN2ZMTWZ1?=
- =?utf-8?B?dEdoRXhCaitxQ0lGM2xqWnVvTG81a2l0ZEZXUHNaUFMxRTRyMVBWd1hwOEV3?=
- =?utf-8?B?Y2FBeEFrczVtNU5uSkc2RHFUNlMyMVE2RDdzVk51VDN4YUpIaFY5VVhpWm1V?=
- =?utf-8?B?cUtlMmR1YmMvZlpKSnJ4S3A3MmN5RVBONE1rdERNb0xMTGZ2WGVkdDFQVmZF?=
- =?utf-8?B?MDFZcXNyTHdRcUhUV0grV3haalNEWjZTL1V0bmJEaitIUXk2QlBKcUdsNHhJ?=
- =?utf-8?B?SFJjcUxrY3YrYnI3QUhvZjl2dEc2MUxmdjVjdHpyWUZaMVB5aGczY1VEUjJI?=
- =?utf-8?B?bm0xOWVDVHVCQzZ5Zk8yYlc1UU41SVppUGFGVVNxSEpEbDl1dXBKamh5VVV1?=
- =?utf-8?B?ejNhYklubEs2ZkgvdURsVlM3Vm9yWllJV1hmQ0h3TjErSFgxTWR2L0xpSzhV?=
- =?utf-8?B?S284cXhOZUk2S3pxbG9QaUVzY0xKdkNJWDJsYjVoQ0FyYWxNLytOWWZlRXdk?=
- =?utf-8?B?MzdZc1g5L2RIdmtZQUtrSUtZNStiWDBseGk0WlFKTTFuS3hBaWxuUDlRdDFz?=
- =?utf-8?B?SE1UZzE5K0sxZ05EeFpVYjNBc2VXcEF5b1JRdmJMRnQ2UnowVVJCVjk1WkU5?=
- =?utf-8?B?QkxzUW51T0poYmVvNW45TDVuVnZZVEhXeU5lNTE1RTV1YzhCQTNBREM1bXhZ?=
- =?utf-8?B?RnNvcWZDR29IbExpS2lsaTFYVE1mOEo1ZlZEREtQUnFyeUNhRUdhcjU1endl?=
- =?utf-8?B?Y1hwOFpEM1FJa1NQK2d2bnF5bHhvNStQT2E0b1Y1THFmSEt5MWozUHNWM2Rz?=
- =?utf-8?B?Uk1BS3ZWeFBBa0VPYUl0ZzdxUXdZajFwVFlvZk9OckJEUTI2TWNlakZ5Tmx1?=
- =?utf-8?B?YnBmZlBFSzZtMUNiNHJkL0JyRW1DZU9LbmJNSXdXdjFKOWk5aHJkRkNqZ2RQ?=
- =?utf-8?B?d3Mxc3RFWFowT3VpOUF2NDVuTFN5YldFVUVzc1lNeTZ6M0dDWmZJbTVZR0lN?=
- =?utf-8?B?QVN2c1BUdHkzNkdDSjJNUkJZYzNhR2xaR3c3Q0VkZGRGR1k2bjliQUJGOXZ0?=
- =?utf-8?B?RjFKZDVlMmxHL0MvbzVBNmZ5WG1oRFdFTmkrMnF3ckM2WG1jMlVHQmV3clRp?=
- =?utf-8?B?QXVnKzBndExEMXA1Y3ZGdHFoL1NkN1FPMktzVFpPdURZanpmTVViR2FpWHRv?=
- =?utf-8?B?dGJaYWUwbnNvWUNGMnVVVmhxM0lYMURpVFNTT2FZSkVFeEJXREJYbzR5aGN1?=
- =?utf-8?B?U3F4Y1JSUGIxTW1naE5vRWx2dngyU1B0ZkRiOXp1cE9mNThrRzJrYWRzZ21n?=
- =?utf-8?B?YmRsOUdFNVpaWDFFZjNwRUREQ2VTdm1zL2tjb21iTnNGaWsxcWxCcG5nRlBn?=
- =?utf-8?B?Vnh2dDlJZ1FaNGovWW5Zc0FQNElsSjNBd3BPSThNaXhxM0tVN05sVWNuVGhS?=
- =?utf-8?B?M2E5Y2xSTjlCck1IeGM5KzFoUlR3ZkVIUmVrWFpQTTVMOEhXdG1lQXhzbDB0?=
- =?utf-8?B?a1RnczhDOXdXN084Q1NLWE5uV3dJZlJpd2RsOUk1bFgwb1gxTktvdz09?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <F91017557816B74F95F3ECCEBADB3B3D@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        with ESMTP id S237611AbiEaK4t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 06:56:49 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A48CA2ED69
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 03:56:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1653994606;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=5AMEdZHq6r8jK1K5fClop/kDp2DOnuh5RSKQmQhnlmo=;
+        b=C2eES+l/dXwru1vP0ZJTC8D2kkFc1fpGn4czJDV4moEQxNt5S/il66fhtQ1PjPoPSBxsXd
+        fsBuW35Hhr9GdLwzY5aq+txXqEw8HrtGXe5PuIUK6UHagdEqsRPWCkE0GFqpwWwnNyIC2T
+        o2Z+joTNtERN3YuoArSEH4QKsFQoMrA=
+Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com
+ [209.85.167.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-222-h2z90JrYPYiTzfdEjfsWDA-1; Tue, 31 May 2022 06:56:45 -0400
+X-MC-Unique: h2z90JrYPYiTzfdEjfsWDA-1
+Received: by mail-lf1-f71.google.com with SMTP id bt27-20020a056512261b00b004779fd292b1so6585636lfb.4
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 03:56:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=5AMEdZHq6r8jK1K5fClop/kDp2DOnuh5RSKQmQhnlmo=;
+        b=Hzk9px7u6poIc7tUSfQq/x4CxcYlUg/XNgfNipepXy2G4UciXMEK0z+0qpsjix4NAC
+         TQR8s2BLzyUXGf+v+ANMncVd8AzVP9+WOYdlFcj30QQtNSknt74I1ozaR9CI/KLmmAcR
+         8Ot5SWA3pUxsMo9XHN0GZydQwNYrUVA3xcIIZVMOOSt/N/R9SQ1tqL07JR1DlD71rzxT
+         esyoa7blnAIVS2RYmc0DvFlaydo0g5ECI7RZziuKLxedmM85fbRAsZupUl/CwBHB/Jxd
+         hS96BaKZznhLgbbEcOjRTUTkiT2PwwfMpAKNyNSRppkLq9omsWCmNq1GH3yeP/gC6dW0
+         ZBLQ==
+X-Gm-Message-State: AOAM5331H7IXrLkShYu9mMjFdvV55+pjxziYP570UMtEdpRd6nw2Uo7d
+        3+FxT0iNA/csqjxKBnQXVJ3lPQHUw6QKYDSDD0KVLOoSjedQ4c4F2xcEEROUUl6Zx+4YsJE1fGw
+        6VO6V1+YBf6RhN6qwFOO8tw==
+X-Received: by 2002:a2e:8958:0:b0:255:48a6:b34f with SMTP id b24-20020a2e8958000000b0025548a6b34fmr9086923ljk.32.1653994603707;
+        Tue, 31 May 2022 03:56:43 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzT/kJtZFCGg6vVnaOEu+TAnTzoEpR9/PyP/37VarQ8+j7ln571wRc5ni+laLwliCYrgww7xA==
+X-Received: by 2002:a2e:8958:0:b0:255:48a6:b34f with SMTP id b24-20020a2e8958000000b0025548a6b34fmr9086904ljk.32.1653994603496;
+        Tue, 31 May 2022 03:56:43 -0700 (PDT)
+Received: from [10.101.1.23] (ip-185-104-137-32.ptr.icomera.net. [185.104.137.32])
+        by smtp.gmail.com with ESMTPSA id s22-20020a2e9c16000000b0025567cf8633sm16866lji.85.2022.05.31.03.56.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 May 2022 03:56:42 -0700 (PDT)
+Message-ID: <5ba0b86a-fa9c-ed97-3b43-7814599deab5@redhat.com>
+Date:   Tue, 31 May 2022 12:56:18 +0200
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5154.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 003823d2-5582-483d-f9ea-08da42f3beea
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 May 2022 10:53:07.3590
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: TFq7iwmjIvfFHrwTpg5CT7QF9SLV+MAfGJrbD1zibP6zyNO/HQhUnv7h+0BxZmDllNYWKKkoxC7uJyD1DCGqd10LC/XPnijnLDMBuX4Wbg4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB2604
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH v10 0/4] Separate panel orientation property creating and
+ value setting
+Content-Language: en-US
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, amd-gfx@lists.freedesktop.org,
+        intel-gfx@lists.freedesktop.org,
+        Rob Clark <robdclark@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Sean Paul <sean@poorly.run>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Simon Ser <contact@emersion.fr>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Alex Deucher <alexander.deucher@amd.com>,
+        Jani Nikula <jani.nikula@linux.intel.com>,
+        Emil Velikov <emil.l.velikov@gmail.com>
+References: <20220530081910.3947168-1-hsinyi@chromium.org>
+ <a8d1fe13-e747-016a-2d45-bfb50f23f2d9@redhat.com>
+ <CAJMQK-iM-ip7edA2mBOhp-8maWKG5+kTceZUM5U6BOLLBq1H4Q@mail.gmail.com>
+From:   Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <CAJMQK-iM-ip7edA2mBOhp-8maWKG5+kTceZUM5U6BOLLBq1H4Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T25lIGxhc3QgaXRlbSwgc29ycnkhDQoNCk9uIDMwLzA1LzIwMjIgMTU6MjQsIENvbm9yIERvb2xl
-eSB3cm90ZToNCj4gT24gMzAvMDUvMjAyMiAxMzowNywgSXZhbiBCb3JueWFrb3Ygd3JvdGU6DQo+
-PiBFWFRFUk5BTCBFTUFJTDogRG8gbm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0YWNobWVudHMg
-dW5sZXNzIHlvdSBrbm93IHRoZSBjb250ZW50IGlzIHNhZmUNCj4+DQo+PiBPbiBNb24sIE1heSAz
-MCwgMjAyMiBhdCAxMToyMjoyNkFNICswMDAwLCBDb25vci5Eb29sZXlAbWljcm9jaGlwLmNvbSB3
-cm90ZToNCj4+PiBPbiAyNi8wNS8yMDIyIDE5OjEzLCBJdmFuIEJvcm55YWtvdiB3cm90ZToNCj4+
-Pj4gK3N0YXRpYyBpbnQgbXBmX3JlYWRfc3RhdHVzKHN0cnVjdCBzcGlfZGV2aWNlICpzcGkpDQo+
-Pj4+ICt7DQo+Pj4+ICvCoMKgwqDCoMKgwqAgdTggc3RhdHVzID0gMCwgc3RhdHVzX2NvbW1hbmQg
-PSBNUEZfU1BJX1JFQURfU1RBVFVTOw0KPj4+PiArwqDCoMKgwqDCoMKgIC8qDQo+Pj4+ICvCoMKg
-wqDCoMKgwqDCoCAqIFR3byBpZGVudGljYWwgU1BJIHRyYW5zZmVycyBhcmUgdXNlZCBmb3Igc3Rh
-dHVzIHJlYWRpbmcuDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoCAqIFRoZSByZWFzb24gaXMgdGhhdCB0
-aGUgZmlyc3Qgb25lIGNhbiBiZSBpbmFkZXF1YXRlLg0KPj4+PiArwqDCoMKgwqDCoMKgwqAgKiBX
-ZSBpZ25vcmUgaXQgY29tcGxldGVseSBhbmQgdXNlIHRoZSBzZWNvbmQgb25lLg0KPj4+PiArwqDC
-oMKgwqDCoMKgwqAgKi8NCj4+Pj4gK8KgwqDCoMKgwqDCoCBzdHJ1Y3Qgc3BpX3RyYW5zZmVyIHhm
-ZXJzW10gPSB7DQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFswIC4uLiAxXSA9
-IHsNCj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC50
-eF9idWYgPSAmc3RhdHVzX2NvbW1hbmQsDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCAucnhfYnVmID0gJnN0YXR1cywNCj4+Pj4gK8KgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC5sZW4gPSAxLA0KPj4+PiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgLmNzX2NoYW5nZSA9IDEsDQoN
-ClNob3VsZCBjc19jaGFuZ2UgYmUgc2V0IGZvciBib3RoIG1lc3NhZ2VzIG9yIGp1c3QgdGhlIGZp
-cnN0Pw0KIEZyb20gcmVhZGluZyB0aGUgZG9jdW1lbnRhdGlvbiwgaXQgbG9va3MgbGlrZSB3ZSBv
-bmx5IHdhbnQgaXQNCmZvciB0aGUgZmlyc3Qgb25lLg0KDQpodHRwczovL2VsaXhpci5ib290bGlu
-LmNvbS9saW51eC9sYXRlc3Qvc291cmNlL2luY2x1ZGUvbGludXgvc3BpL3NwaS5oI0w4OTUNCg0K
-VGhhbmtzLA0KQ29ub3IuDQoNCj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfQ0K
-Pj4+PiArwqDCoMKgwqDCoMKgIH07DQo+Pj4NCj4+PiBIbW0sIEkgZG9uJ3QgdGhpbmsgdGhhdCB0
-aGlzIGlzIGNvcnJlY3QsIG9yIGF0IGxlYXN0IGl0IGlzIG5vdA0KPj4+IGNvcnJlY3QgZnJvbSB0
-aGUgcG9sYXJmaXJlIC9zb2MvIHBlcnNwZWN0aXZlLiBJIHdhcyB0b2xkIHRoYXQNCj4+PiB0aGVy
-ZSB3YXMgbm90aGluZyBkaWZmZXJlbnQgb3RoZXIgdGhhbiB0aGUgZW52bSBiZXR3ZWVuIHRoZQ0K
-Pj4+IHByb2dyYW1taW5nIGZvciBib3RoIGRldmljZXMgLSBidXQgdGhpcyBpcyBhbm90aGVyIHNp
-dHVhdGlvbg0KPj4+IHdoZXJlIEkgc3RhcnQgdG8gcXVlc3Rpb24gdGhhdC4NCj4+Pg0KPj4+IFdo
-ZW4gSSBydW4gdGhpcyBjb2RlLCBJU0MgZW5hYmxlIC9uZXZlci8gcGFzc2VzIC0gZmFpbGluZyBk
-dWUNCj4+PiB0byB0aW1pbmcgb3V0LiBJIHNlZSBzb21ldGhpbmcgbGlrZSB0aGlzIHBpY3R1cmUg
-aGVyZToNCj4+PiBodHRwczovL2kuaW1ndXIuY29tL0VLaGQxUzMucG5nDQo+Pj4gWW91IGNhbiBz
-ZWUgdGhlIDB4MEIgSVNDIGVuYWJsZSBjb21pbmcgdGhyb3VnaCAmIHRoZW4gYSBzdGF0dXMNCj4+
-PiBjaGVjayBhZnRlciBpdC4NCj4+Pg0KPj4+IFdpdGggdGhlIGN1cnJlbnQgY29kZSwgdGhlIHZh
-bHVlIG9mIHRoZSAic3RhdHVzIiB2YXJpYWJsZSB3aWxsDQo+Pj4gYmUgMHgwLCBnaXZlbiB5b3Ug
-YXJlIG92ZXJ3cml0aW5nIHRoZSBmaXJzdCBNSVNPIHZhbHVlIHdpdGggdGhlDQo+Pj4gc2Vjb25k
-LiBBY2NvcmRpbmcgdG8gdGhlIGh3IGd1eXMsIHRoZSBzcGkgaHcgc3RhdHVzICpzaG91bGQqDQo+
-Pj4gb25seSBiZSByZXR1cm5lZCBvbiBNSVNPIGluIHRoZSBmaXJzdCBieXRlIGFmdGVyIFNTIGdv
-ZXMgbG93Lg0KPj4+DQo+Pj4gSWYgdGhpcyBpcyBub3QgdGhlIGNhc2UgZm9yIGEgbm9uIC1zb2Mg
-cGFydCwgd2hpY2gsIGFzIEkgc2FpZA0KPj4+IGJlZm9yZSwgSSBkb24ndCBoYXZlIGEgYm9hcmQg
-d2l0aCB0aGUgU1BJIHByb2dyYW1tZXIgZXhwb3NlZA0KPj4+IGZvciAmIEkgaGF2ZSBiZWVuIHRv
-bGQgaXMgbm90IHRoZSBjYXNlIHRoZW4gbXkgY29tbWVudHMgY2FuDQo+Pj4ganVzdCBiZSBpZ25v
-cmVkIGVudGlyZWx5ICYgSSdsbCBoYXZlIHNvbWUgaGVhZCBzY3JhdGNoaW5nIHRvDQo+Pj4gZG8u
-Li4NCj4+Pg0KPj4+IFRoYW5rcywNCj4+PiBDb25vci4NCj4+Pg0KPj4NCj4+IElmIEkgdW5kZXJz
-dG9vZCBjb3JyZWN0bHksIFNTIGRvZXNuJ3QgYWx0ZXIgYmV0d2VlbiB0d28gc3RhdHVzIHJlYWRp
-bmcNCj4+IHRyYW5zYWN0aW9ucyBkZXNwaXRlIC5jc19jaGFuZ2UgPSAxLiBNYXkgYmUgYWRkaW5n
-IHNvbWUgLmNzX2NoYW5nZV9kZWxheQ0KPj4gdG8gc3BpX3RyYW5zZmVyIHN0cnVjdCBjYW4gaGVs
-cCB3aXRoIHRoYXQ/DQo+IA0KPiBELW9oIC0gYnVnIGluIHRoZSBzcGkgY29udHJvbGxlciBkcml2
-ZXIgOikNCj4gTEdUTSBub3csIHN1Y2Nlc3NmdWxseSBwcm9ncmFtbWVkIG15IFBvbGFyRmlyZSBT
-b0Mgd2l0aCB2MTIuDQo+IEknZCBhbG1vc3Qgc3VnZ2VzdCBhZGRpbmcgYSBjb21wYXRpYmxlIGZv
-ciBpdCB0b28gLSBidXQgc2luY2UNCj4gdGhlIGVudm0gcHJvZ3JhbW1pbmcgZG9lc24ndCB3b3Jr
-IEkgZG9uJ3QgdGhpbmsgdGhhdCB3b3VsZCBiZQ0KPiBjb3JyZWN0Lg0KPiANCj4gVGVzdGVkLWJ5
-OiBDb25vciBEb29sZXkgPGNvbm9yLmRvb2xleUBtaWNyb2NoaXAuY29tPg0KPiANCj4gV2l0aCBh
-IHNtYWxsIGNvbW1lbnQgYWJvdXQgd2h5IGl0J3MgdXNpbmcgc3BpX3N5bmNfdHJhbnNmZXIoKToN
-Cj4gUmV2aWV3ZWQtYnk6IENvbm9yIERvb2xleSA8Y29ub3IuZG9vbGV5QG1pY3JvY2hpcC5jb20+
-DQo+IA0KPj4NCj4+Pj4gK8KgwqDCoMKgwqDCoCBpbnQgcmV0ID0gc3BpX3N5bmNfdHJhbnNmZXIo
-c3BpLCB4ZmVycywgMik7DQo+Pj4+ICsNCj4+Pj4gK8KgwqDCoMKgwqDCoCBpZiAoKHN0YXR1cyAm
-IE1QRl9TVEFUVVNfU1BJX1ZJT0xBVElPTikgfHwNCj4+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
-IChzdGF0dXMgJiBNUEZfU1RBVFVTX1NQSV9FUlJPUikpDQo+Pj4+ICvCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIHJldCA9IC1FSU87DQo+Pj4+ICsNCj4+Pj4gK8KgwqDCoMKgwqDCoCByZXR1
-cm4gcmV0ID8gOiBzdGF0dXM7DQo+Pj4+ICt9DQo+Pg0KPiANCg0K
+Hi,
+
+On 5/30/22 13:34, Hsin-Yi Wang wrote:
+> On Mon, May 30, 2022 at 4:53 PM Hans de Goede <hdegoede@redhat.com> wrote:
+>>
+>> Hi,
+>>
+>> On 5/30/22 10:19, Hsin-Yi Wang wrote:
+>>> Some drivers, eg. mtk_drm and msm_drm, rely on the panel to set the
+>>> orientation. Panel calls drm_connector_set_panel_orientation() to create
+>>> orientation property and sets the value. However, connector properties
+>>> can't be created after drm_dev_register() is called. The goal is to
+>>> separate the orientation property creation, so drm drivers can create it
+>>> earlier before drm_dev_register().
+>>
+>> Sorry for jumping in pretty late in the discussion (based on the v10
+>> I seem to have missed this before).
+>>
+>> This sounds to me like the real issue here is that drm_dev_register()
+>> is getting called too early?
+>>
+> Right.
+> 
+>> To me it seems sensible to delay calling drm_dev_register() and
+>> thus allowing userspace to start detecting available displays +
+>> features until after the panel has been probed.
+>>
+> 
+> Most panels set this value very late, in .get_modes callback (since it
+> is when the connector is known), though the value was known during
+> panel probe.
+
+Hmm I would expect the main drm/kms driver to register the drm_connector
+object after probing the panel, right ?
+
+So maybe this is a problem with the panel API? How about adding 
+separate callback to the panel API to get the orientation, which the
+main drm/kms driver can then call before registering the connector ?
+
+And then have the main drm/kms driver call
+drm_connector_set_panel_orientation() with the returned orientation
+on the connecter before registering it.
+
+The new get_orientation callback for the panel should of course
+be optional (IOW amy be NULL), so we probably want a small
+helper for drivers using panel (sub)drivers to take care of
+the process of getting the panel orientation from the panel
+(if supported) and then setting it on the connector.
+
+
+> I think we can also let drm check if they have remote panel nodes: If
+> there is a panel and the panel sets the orientation, let the drm read
+> this value and set the property. Does this workflow sound reasonable?
+> 
+> The corresponding patch to implement this:
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20220530113033.124072-1-hsinyi@chromium.org/
+
+That is a suprisingly small patch (which is good). I guess that
+my suggestion to add a new panel driver callback to get
+the orientation would be a bit bigget then this. Still I think
+that that would be a bit cleaner, as it would also solve this
+for cases where the orientation comes from the panel itself
+(through say some EDID extenstion) rather then from devicetree.
+
+Still I think either way should be acceptable upstream.
+
+Opinions from other drm devs on the above are very much welcome!
+
+Your small patch nicely avoids the probe ordering problem,
+so it is much better then this patch series.
+
+Regards,
+
+Hans
+
+
+
+> 
+> Thanks
+> 
+>> I see a devicetree patch in this series, so I guess that the panel
+>> is described in devicetree. Especially in the case of devicetree
+>> I would expect the kernel to have enough info to do the right
+>> thing and make sure the panel is probed before calling
+>> drm_dev_register() ?
+>>
+>> Regards,
+>>
+>> Hans
+>>
+>>
+>>
+>>
+>>>
+>>> After this series, drm_connector_set_panel_orientation() works like
+>>> before. It won't affect existing callers of
+>>> drm_connector_set_panel_orientation(). The only difference is that
+>>> some drm drivers can call drm_connector_init_panel_orientation_property()
+>>> earlier.
+>>>
+>>> Hsin-Yi Wang (4):
+>>>   gpu: drm: separate panel orientation property creating and value
+>>>     setting
+>>>   drm/mediatek: init panel orientation property
+>>>   drm/msm: init panel orientation property
+>>>   arm64: dts: mt8183: Add panel rotation
+>>>
+>>>  .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |  1 +
+>>>  drivers/gpu/drm/drm_connector.c               | 58 ++++++++++++++-----
+>>>  drivers/gpu/drm/mediatek/mtk_dsi.c            |  7 +++
+>>>  drivers/gpu/drm/msm/dsi/dsi_manager.c         |  4 ++
+>>>  include/drm/drm_connector.h                   |  2 +
+>>>  5 files changed, 59 insertions(+), 13 deletions(-)
+>>>
+>>
+> 
+
