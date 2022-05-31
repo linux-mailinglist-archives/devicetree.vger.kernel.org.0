@@ -2,190 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C128A53936B
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 16:54:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7776653937A
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 17:01:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240984AbiEaOyY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 10:54:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39432 "EHLO
+        id S1345424AbiEaPBG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 11:01:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240450AbiEaOyY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 10:54:24 -0400
-Received: from mail-vs1-xe35.google.com (mail-vs1-xe35.google.com [IPv6:2607:f8b0:4864:20::e35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50A838FFAF
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 07:54:23 -0700 (PDT)
-Received: by mail-vs1-xe35.google.com with SMTP id c62so13803346vsc.10
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 07:54:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tQxdl0uYa8OhSPAiD8UDXyjhRIKPrGS8E/wJlLbnVaQ=;
-        b=SA2mdwS7u1Lbbdguu9Lh/LPaqa0kM6B92uAOaPIaQ55EI+kpJtBOQAdPE6wtXNHjlR
-         UWSVot5AcqDwxuwjLe6eNXECdjEY8DWKfxKPjfrTjle080w6EIUj4BI1YJggSuA9Ep+V
-         derKnrB6WP5GmwlKRLrwXGnIhCIIDo/Aa3nb3T4dhitHYU6mQwCtZfsppnPA5KqohyX7
-         7K8bR2fXj3rFMzkD1myDnasYB8yHaLzYsK6maqpkwWeBJBPXEsx65jIe18rJk1uq1wY+
-         FeOcD19ptbBpQgWFvEnLthmXdfagGyNCMRUekxcHymFFKc/BO2MOyk0do3WH7gu8Zp27
-         6wjw==
+        with ESMTP id S1345415AbiEaPBF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 11:01:05 -0400
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 013355BD38;
+        Tue, 31 May 2022 08:01:02 -0700 (PDT)
+Received: by mail-oi1-f179.google.com with SMTP id k187so13570195oif.1;
+        Tue, 31 May 2022 08:01:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tQxdl0uYa8OhSPAiD8UDXyjhRIKPrGS8E/wJlLbnVaQ=;
-        b=yADsfwYp6ZazaltgAeyvvIygH4F6EcKDWG07BRYLb1l5qRkfFX9W5lsqmiBEjer/jW
-         tZY7GYv0O01D7BRq07wQSVByu2L5umN+8DRHEc5wY5l9UqkKouzZTMiEcPDVoeGw0Wel
-         9Cnc3L918JFHGxJwWd5/QwEyZitwtwjsjpksv/FdXahfrVwldAcgQ4nfjVlfuVJeqoNU
-         VDI9g7QoZrU/bWImAx5gXQZpMpUq4qQSA3E4+NDWyaM+rhPiZAFBA7tXNAOdcTejdG5b
-         /ev3f3Kq/qRLNUq3nw43ghcZe3VJBqvY6I1Noj2aObDuid/VmYtb3bkr18Z+VeZbe6Av
-         12pQ==
-X-Gm-Message-State: AOAM531o8UALWdWaFfOkPtaUaEwwt9MrQj4PRV+2xVOtcw6JmYkLzYtb
-        +xj2PawlJqEQEKQK6l9ZohZSmh3wG5KFEbQ8Aw0=
-X-Google-Smtp-Source: ABdhPJxu45XN1f/QP/9LN0O/KL6GImwrdfSeXn4oZyoQn8qTX4YcOePYgoy7fUjlNERLKtljkpcB7mX9CkHjO4NaxXg=
-X-Received: by 2002:a67:cb95:0:b0:337:e29b:c824 with SMTP id
- h21-20020a67cb95000000b00337e29bc824mr13012181vsl.19.1654008862388; Tue, 31
- May 2022 07:54:22 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=xut3EUzOWaallyGiLaq5YwI8FEiuwGHhPLk1PFTsGCw=;
+        b=s/KqAg5WRr5rOrf9t46WxfeSjnsMPX3bOEKKlkk5GUqKWBVFfVzzMjLd0QPkCqS74y
+         EvbhsMVht3LZ4wSU+TnwEkiliWCRGmhFxlU7uPo9/NKnuEF0cLbXJb4DS9LwF7XtzNQL
+         sSq+slbxxKwQidboEQfE2FixtzMRA8rwEk34teV286l2wOGv7smsEMRK1FhLn+ul3WqI
+         03WJcsyRckpOUn3a7WUNB3YQ6CW/AuMKpkhV3lDfpvVJ5dyRMWHheCBlgnBRECZbuv7G
+         qkUu6hteG+gbZCO8Tm9vy0Es3vyaJ29UKs11vAn8PER6CoDlV6NzyEFg6nZtsNuEirDR
+         zLEg==
+X-Gm-Message-State: AOAM5316/wA9FCQXL4Jql9LPNWsOhilOtm/O7sNySNhjEHmiRiPRjcx6
+        s5SuT1fVxun9iExLKLF4EQ==
+X-Google-Smtp-Source: ABdhPJwSjgbLtDvlMIgEbd/14EO8tIgNGbqSDQWqqsx3KFH9ampHeHe4nDRvpCz7PczMPaXOpvITjQ==
+X-Received: by 2002:a05:6808:ecc:b0:2fa:7d95:8dec with SMTP id q12-20020a0568080ecc00b002fa7d958decmr12183479oiv.34.1654009262254;
+        Tue, 31 May 2022 08:01:02 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r7-20020a544887000000b00325cda1ff99sm5754199oic.24.2022.05.31.08.01.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 31 May 2022 08:01:01 -0700 (PDT)
+Received: (nullmailer pid 1755878 invoked by uid 1000);
+        Tue, 31 May 2022 15:01:01 -0000
+Date:   Tue, 31 May 2022 10:01:01 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Woojung Huh <woojung.huh@microchip.com>,
+        UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        Marek Vasut <marex@denx.de>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: net/dsa: Add spi-peripheral-props.yaml
+ references
+Message-ID: <20220531150101.GA1742958-robh@kernel.org>
+References: <20220525205752.2484423-1-robh@kernel.org>
+ <20220526003216.7jxopjckccugh3ft@skbuf>
+ <20220526220450.GB315754-robh@kernel.org>
+ <20220526231859.qstxkxqdetiawozv@skbuf>
 MIME-Version: 1.0
-References: <20220515202032.3046-1-stefan.wahren@i2se.com> <20220515202032.3046-7-stefan.wahren@i2se.com>
-In-Reply-To: <20220515202032.3046-7-stefan.wahren@i2se.com>
-From:   Peter Robinson <pbrobinson@gmail.com>
-Date:   Tue, 31 May 2022 15:54:10 +0100
-Message-ID: <CALeDE9MNi0Tb0Lw=jJykNpF8R+We48y2pvPHxQTsCykFFPbhTQ@mail.gmail.com>
-Subject: Re: [PATCH 06/11] mfd: bcm2835-pm: Use 'reg-names' to get resources
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Melissa Wen <melissa.srw@gmail.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220526231859.qstxkxqdetiawozv@skbuf>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 15, 2022 at 9:21 PM Stefan Wahren <stefan.wahren@i2se.com> wrote:
->
-> From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
->
-> If available in firmware, find resources by their 'reg-names' position
-> instead of relying on hardcoded offsets. Care is taken to support old
-> firmware nonetheless.
+On Fri, May 27, 2022 at 02:18:59AM +0300, Vladimir Oltean wrote:
+> On Thu, May 26, 2022 at 05:04:50PM -0500, Rob Herring wrote:
+> > On Thu, May 26, 2022 at 03:32:16AM +0300, Vladimir Oltean wrote:
+> > > Also needed by nxp,sja1105.yaml and the following from brcm,b53.yaml:
+> > > 	brcm,bcm5325
+> > > 	brcm,bcm5365
+> > > 	brcm,bcm5395
+> > > 	brcm,bcm5397
+> > > 	brcm,bcm5398
+> > > 	brcm,bcm53115
+> > > 	brcm,bcm53125
+> > > 	brcm,bcm53128
+> > 
+> > Okay. Looks like you missed bcm5389?
+> 
+> I went to the end of drivers/net/dsa/b53/b53_spi.c and copied the
+> compatible strings. "brcm,bcm5389" is marked in b53_mdio.c, so I would
+> guess not.
 
-So this patch has changed a little over Nicolas's last one, which was
-what I based my patch on [1] but there's no changelog
+The datasheet I found says it is SPI interface, but I guess someone that 
+cares about this h/w can sort that out if needed.
 
-[1] https://patchwork.kernel.org/project/linux-arm-kernel/patch/20220213225646.67761-7-pbrobinson@gmail.com/
+Rob
 
-> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-Minor comment inline, else:
-Reviewed-by: Peter Robinson <pbrobinson@gmail.com>
-> ---
->  drivers/mfd/bcm2835-pm.c | 59 +++++++++++++++++++++++++++-------------
->  1 file changed, 40 insertions(+), 19 deletions(-)
->
-> diff --git a/drivers/mfd/bcm2835-pm.c b/drivers/mfd/bcm2835-pm.c
-> index 42fe67f1538e..1656d786993a 100644
-> --- a/drivers/mfd/bcm2835-pm.c
-> +++ b/drivers/mfd/bcm2835-pm.c
-> @@ -25,9 +25,41 @@ static const struct mfd_cell bcm2835_power_devs[] = {
->         { .name = "bcm2835-power" },
->  };
->
-> +static int bcm2835_pm_get_pdata(struct platform_device *pdev,
-> +                               struct bcm2835_pm *pm)
-> +{
-> +       /* If no 'reg-names' property is found we can assume we're using old
-> +        * firmware.
-> +        */
-> +       if (!of_find_property(pm->dev->of_node, "reg-names", NULL)) {
-> +               dev_warn(pm->dev, "Old devicetree detected, please update your firmware.\n");
-
-If they're using an upstream kernel DT and an old firmware this may be
-confusing, maybe tweak the wording a little?
-
-> +
-> +               pm->base = devm_platform_ioremap_resource(pdev, 0);
-> +               if (IS_ERR(pm->base))
-> +                       return PTR_ERR(pm->base);
-> +
-> +               pm->asb = devm_platform_ioremap_resource(pdev, 1);
-> +       } else {
-> +               struct resource *res;
-> +
-> +               pm->base = devm_platform_ioremap_resource_byname(pdev, "pm");
-> +               if (IS_ERR(pm->base))
-> +                       return PTR_ERR(pm->base);
-> +
-> +               res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
-> +                                                   "asb");
-> +               if (res)
-> +                       pm->asb = devm_ioremap_resource(&pdev->dev, res);
-> +       }
-> +
-> +       if (IS_ERR(pm->asb))
-> +               pm->asb = NULL;
-> +
-> +       return 0;
-> +}
-> +
->  static int bcm2835_pm_probe(struct platform_device *pdev)
->  {
-> -       struct resource *res;
->         struct device *dev = &pdev->dev;
->         struct bcm2835_pm *pm;
->         int ret;
-> @@ -39,10 +71,9 @@ static int bcm2835_pm_probe(struct platform_device *pdev)
->
->         pm->dev = dev;
->
-> -       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> -       pm->base = devm_ioremap_resource(dev, res);
-> -       if (IS_ERR(pm->base))
-> -               return PTR_ERR(pm->base);
-> +       ret = bcm2835_pm_get_pdata(pdev, pm);
-> +       if (ret)
-> +               return ret;
->
->         ret = devm_mfd_add_devices(dev, -1,
->                                    bcm2835_pm_devs, ARRAY_SIZE(bcm2835_pm_devs),
-> @@ -54,20 +85,10 @@ static int bcm2835_pm_probe(struct platform_device *pdev)
->          * bcm2835-pm binding as the key for whether we can reference
->          * the full PM register range and support power domains.
->          */
-> -       res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-> -       if (res) {
-> -               pm->asb = devm_ioremap_resource(dev, res);
-> -               if (IS_ERR(pm->asb))
-> -                       return PTR_ERR(pm->asb);
-> -
-> -               ret = devm_mfd_add_devices(dev, -1,
-> -                                          bcm2835_power_devs,
-> -                                          ARRAY_SIZE(bcm2835_power_devs),
-> -                                          NULL, 0, NULL);
-> -               if (ret)
-> -                       return ret;
-> -       }
-> -
-> +       if (pm->asb)
-> +               return devm_mfd_add_devices(dev, -1, bcm2835_power_devs,
-> +                                           ARRAY_SIZE(bcm2835_power_devs),
-> +                                           NULL, 0, NULL);
->         return 0;
->  }
->
-> --
-> 2.25.1
->
