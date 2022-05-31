@@ -2,168 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E17C53981B
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 22:41:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E47E539830
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 22:44:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344170AbiEaUkf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 16:40:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33838 "EHLO
+        id S238913AbiEaUnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 16:43:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347827AbiEaUk2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 16:40:28 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0754CB92
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 13:40:16 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id v19so11771701edd.4
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 13:40:15 -0700 (PDT)
+        with ESMTP id S237511AbiEaUnV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 16:43:21 -0400
+Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 238DA6F4B6;
+        Tue, 31 May 2022 13:43:20 -0700 (PDT)
+Received: by mail-io1-xd2d.google.com with SMTP id y8so15362505iof.10;
+        Tue, 31 May 2022 13:43:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Alpwe54um/pAMi391V2OXK5ebcRXESWz/C1BKY6Vx2U=;
-        b=bpXiaXVheIuoXS4qYPJJkBRiRLc0xdm8fJsiezzNxaSbqbM0HnHijdjFweVTNkO5Bt
-         OZqNy/x48s3aknETcJSY51qRmtTvaefEriEEJgQKisgFjaP183xCgKHWGQMMuAEHM6iq
-         Tc3YKXQYkPZ94qbC96FiM34BqIpNNbIw3S8bJFm37gUnEIpXhZlKzpuEHXf1T8hzTbUW
-         Du1P41pKola5rfLIqjTtayOOX87K1DlGcQtFT+ikof7IHHBi0DGNf1t+EUD7xcGMBNpZ
-         EvT5U5w/Mdqm9rktSC9cQ0mZie8pKoeXyPlTqMEFXnEeubuvBemuKrU2SexCdF1YgbDO
-         BdSA==
+        bh=TI/uINot2gV0lsjsvp3p4xP/LTEZ58Gik5+AdIHYdjg=;
+        b=WjUDqvXL2OO2piHgXTpKnWg7kXo9tMrfgtr27wgnYh5T8GyiOc6uw6wKAyJO394Zql
+         fh+tPnrmnm+ECm22gO3dHdskQ1xsBGOXDIPcZlMK28PdlJ5llhwCCHdC6n+n60CQaTVW
+         iw96wJJ4F85cmoal2mWrAfo0V6q8OksPYWhXPMZYzdq/EIu4xG54DN4qDRTeiYT4j4K3
+         Lt8pC/MAKLTQ8RKQAG2tBmU6yObfyVkXMBCkWffZ2O6Zp6HD1JSjhfIcwdVvRMI+ijS3
+         mSyz4iwbpDpK6M5kQ9YpoF9irzRtLVTpUpukpuDglcjijqmhUvcHgfLPTUmcnlaKJBBw
+         GHBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=Alpwe54um/pAMi391V2OXK5ebcRXESWz/C1BKY6Vx2U=;
-        b=upHnxuiI5zbbfWOYopuzq2/UiZKHuxWkrOdYQAGLbd6mj+G6rsyVJ3f78OpYRG1713
-         NqOQAWr8enVfv6hwxvnSzVB3BtijQmrTG+7nk0JqbYq33aYvDUHxR/8gPQIyl5kkVvRD
-         Uwe7ivthtiy4XU7pyBww6DvKfcctZXk7TErQQhXRfVbmKZ5G8mjBV3LbWcMEx8oNjaWU
-         bjO9UITyDO6MWXopBQsJBCjyde995MuABfJq6NAgZeFMA4fs5GE8z+OMEpgnWnf9Vj++
-         Hq6IX3IhAapExQFsH882FamgT/m+S+0EVIOahUi/8pZlRqWw1g7G8DLxfOjfRlVqvrDX
-         LL6w==
-X-Gm-Message-State: AOAM530IoKGZNGKWTJgfAuzWCK/Fvxp+oPOdJFWmMkbmS3yIaxz1L90i
-        HLoQgy8uFB6EyAz6UZf9neGD0w==
-X-Google-Smtp-Source: ABdhPJzdZx04tPobjk6aL2VQPYwY9rAKwfMAkoP+ACgtkB/OwGTdsTuE3oT/JNLygYdZnn9MWjUmsw==
-X-Received: by 2002:a05:6402:c1:b0:42a:b8a5:8d5e with SMTP id i1-20020a05640200c100b0042ab8a58d5emr67401586edu.266.1654029614622;
-        Tue, 31 May 2022 13:40:14 -0700 (PDT)
-Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id gt2-20020a170906f20200b006ff01fbb7ccsm5299610ejb.40.2022.05.31.13.40.12
+        bh=TI/uINot2gV0lsjsvp3p4xP/LTEZ58Gik5+AdIHYdjg=;
+        b=Jqj/TuePmGqAjrETXJFb1p50NdGSp8v/2QW29jKfgNjibglVHMgVIbyKjLNeutAHPN
+         DX8tjXAsLQrzl9TLvTHudRPVo8gmaFHIhlbcDHbQZe5rfZHl93OvV3fHQj2nJ3iOcmXY
+         ptSPasACXQZE2AJYXJ7K0yzqzEk58I69TlIc8Q7OfC1hLW+RRA1HSvDk1TYURLRAnqiW
+         cJpHRVyCPffg3XXhqsdw1m4avCJKqf7oXI8bj80woaeqShIYqBS4tuf0m6PCJDwTrfk+
+         FPs9JOP6lVGMotb89seEof2SykFMlm2BmuICvCDd22sXGo2bnj1qqmqYOaPahpVRj24I
+         tOdw==
+X-Gm-Message-State: AOAM530DKkEUsiasQCtK8Xh+dkEi6qBP+qXql/n5VEn3G20wHp3ZHo3h
+        JyY1wTtjbaJoSQVDx8LvMpA=
+X-Google-Smtp-Source: ABdhPJx8SX0NE5W2CPxvdPdhXAbiWnUhFsofQHgdXznAXgWnYRcojbA8I3LXi1OxTQffPNYS3M4g7A==
+X-Received: by 2002:a05:6602:3299:b0:668:6cd3:60e6 with SMTP id d25-20020a056602329900b006686cd360e6mr7510796ioz.183.1654029799400;
+        Tue, 31 May 2022 13:43:19 -0700 (PDT)
+Received: from ?IPV6:2600:1700:2442:6db0:bd78:a862:1b9c:aef9? ([2600:1700:2442:6db0:bd78:a862:1b9c:aef9])
+        by smtp.gmail.com with ESMTPSA id q11-20020a92050b000000b002d3bb071d5bsm1010934ile.0.2022.05.31.13.43.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 May 2022 13:40:14 -0700 (PDT)
-Message-ID: <3ab7892e-cee0-f5d6-7b58-1a9bfc803ea9@linaro.org>
-Date:   Tue, 31 May 2022 22:40:12 +0200
+        Tue, 31 May 2022 13:43:19 -0700 (PDT)
+Message-ID: <8d4b8cc3-8433-24f9-1fc5-12d71e640952@gmail.com>
+Date:   Tue, 31 May 2022 16:43:18 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH 12/14] dt-bindings: leds: Add Mediatek MT6370 flashlight
- binding documentation
+Subject: Re: [PATCH] scripts: dtc: fix a false alarm for
+ node_name_chars_strict
 Content-Language: en-US
-To:     ChiaEn Wu <peterwu.pub@gmail.com>, lee.jones@linaro.org,
-        daniel.thompson@linaro.org, jingoohan1@gmail.com, pavel@ucw.cz,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, sre@kernel.org, chunfeng.yun@mediatek.com,
-        gregkh@linuxfoundation.org, jic23@kernel.org, lars@metafoo.de,
-        lgirdwood@gmail.com, broonie@kernel.org, linux@roeck-us.net,
-        heikki.krogerus@linux.intel.com, deller@gmx.de
-Cc:     cy_huang@richtek.com, alice_chen@richtek.com,
-        chiaen_wu@richtek.com, dri-devel@lists.freedesktop.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+To:     Qun-Wei Lin <qun-wei.lin@mediatek.com>, robh+dt@kernel.org,
+        matthias.bgg@gmail.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-fbdev@vger.kernel.org
-References: <20220531104211.17106-1-peterwu.pub@gmail.com>
- <20220531104211.17106-4-peterwu.pub@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220531104211.17106-4-peterwu.pub@gmail.com>
+        linux-mediatek@lists.infradead.org, casper.li@mediatek.com,
+        chinwen.chang@mediatek.com, kuan-ying.lee@mediatek.com
+References: <20220531053358.19003-1-qun-wei.lin@mediatek.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+In-Reply-To: <20220531053358.19003-1-qun-wei.lin@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/05/2022 12:42, ChiaEn Wu wrote:
-> From: Alice Chen <alice_chen@richtek.com>
+On 5/31/22 01:33, Qun-Wei Lin wrote:
+> The function check_node_name_chars_strict issues a false alarm when
+> compiling an overlay dts.
 > 
-
-Subject - same comment as previous #10 patch.
-
-> Add Mediatek MT6370 flashlight binding documentation
+> /fragment@0/__overlay__: Character '_' not recommended in node name
 > 
-> Signed-off-by: Alice Chen <alice_chen@richtek.com>
+> This workaround will fix it by skip checking for node named __overlay__.
+
+This is not a false alarm.
+
+Do not special case node name "__overlay__".  This node name should never
+occur in a modern overlay source file.
+
+For details, see "Overlay Source Format" in the "Overlays" section of:
+https://elinux.org/Device_Tree_Reference#Overlays
+
+That paragraph also has a pointer to the correct format for overlay
+source files, which is slides 29-34 of:
+https://elinux.org/Device_Tree_Reference#Overlays
+
+-Frank
+
+> 
+> Signed-off-by: Qun-Wei Lin <qun-wei.lin@mediatek.com>
 > ---
->  .../leds/mediatek,mt6370-flashlight.yaml      | 48 +++++++++++++++++++
->  1 file changed, 48 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/mediatek,mt6370-flashlight.yaml
+>  scripts/dtc/checks.c | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/leds/mediatek,mt6370-flashlight.yaml b/Documentation/devicetree/bindings/leds/mediatek,mt6370-flashlight.yaml
-> new file mode 100644
-> index 000000000000..b1b11bd3d410
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/mediatek,mt6370-flashlight.yaml
-> @@ -0,0 +1,48 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/leds-mt6370-flashlight.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/scripts/dtc/checks.c b/scripts/dtc/checks.c
+> index 781ba1129a8e..6ef4f2cd67b9 100644
+> --- a/scripts/dtc/checks.c
+> +++ b/scripts/dtc/checks.c
+> @@ -325,6 +325,11 @@ static void check_node_name_chars_strict(struct check *c, struct dt_info *dti,
+>  {
+>  	int n = strspn(node->name, c->data);
+>  
+> +	if (streq(node->name, "__overlay__")) {
+> +		/* HACK: Overlay fragments are a special case */
+> +		return;
+> +	}
 > +
-> +title: Flash LED driver for MT6370 PMIC from MediaTek Integrated.
-> +
-> +maintainers:
-> +  - Alice Chen <alice_chen@richtek.com>
-> +
-> +description: |
-> +  This module is part of the MT6370 MFD device.
-> +  see Documentation/devicetree/bindings/mfd/mt6370.yaml
-> +  Add MT6370 flash LED driver include 2-channel flash LED support Torch/Strobe Mode.
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt6370-flashlight
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^led@[0-1]$":
-> +    type: object
-> +    $ref: common.yaml#
-> +    description:
-> +      Properties for a single flash LED.
+>  	if (n < node->basenamelen)
+>  		FAIL(c, dti, node, "Character '%c' not recommended in node name",
+>  		     node->name[n]);
 
-Same as patch #11.
-
-> +
-> +    properties:
-> +      reg:
-> +        description: Index of the flash LED.
-
-As well.
-
-> +        enum:
-> +          - 0 #Address of LED1
-> +          - 1 #Address of LED2
-
-'#' starts a comment, so there is always a space after '#'
-
-> +
-> +    unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +additionalProperties: false
-
-
-Best regards,
-Krzysztof
