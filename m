@@ -2,73 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DB4B539991
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 00:32:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79D805399A2
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 00:45:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242651AbiEaWcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 18:32:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40502 "EHLO
+        id S1348502AbiEaWpY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 18:45:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240376AbiEaWcK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 18:32:10 -0400
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF07A5A098
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 15:32:09 -0700 (PDT)
-Received: by mail-pf1-x42f.google.com with SMTP id c196so242614pfb.1
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 15:32:09 -0700 (PDT)
+        with ESMTP id S1346416AbiEaWpX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 18:45:23 -0400
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C95D25298
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 15:45:22 -0700 (PDT)
+Received: by mail-pj1-x102a.google.com with SMTP id o6-20020a17090a0a0600b001e2c6566046so4339579pjo.0
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 15:45:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=P9LyQVuvmVsNZW+3nPRkSL6POGxEfk0Mn3guF1+YKuI=;
-        b=KN2tTYofItlyGe49xSbgyxQWQ327Y7iR6YoFSM9lhh+wiM1RX/01VGMPQk3muL0ImN
-         ZabsYj5dpUeZY8QZi0bzCA53EjL5//Ogzm6HcmIBFQLYHH6Gdnqx/Mm0QCfURZwwN/6+
-         Bfh5dacPirFGkAjSKezJgUXm/9DqjlcIXhLQE=
+        bh=soARJzRFwOfhwTqrBSydFb3eTupZIjHh8aanzENDqGo=;
+        b=DaKQfesYBWgMZS7l6hauTnBkeXrAsQpWA/SrcfUqCE0Jk4qdRiF75ZMTR83iBzuuYb
+         fZRaI6d6CGmjdZvTf1XfnpxRg6+9uxbyuYj8W212jJKJwO0H5Q8JCZsEUXaTgbnncO8e
+         68/DQDnpbAPHgVI4YRXeZEkkotc9NHonbRnCU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=P9LyQVuvmVsNZW+3nPRkSL6POGxEfk0Mn3guF1+YKuI=;
-        b=jhRLBt9lQAkrWni7EJ4CMjgRuhZKvo3rP2RbNagyfZ+JdwWlYPjgiF9/ycg6cUCmVn
-         XFMhC7P9wFpFGD4TDe9zeaBBhJMpjiuG4/4k44KlpJHb8CNsKh78kS7rzOFOXc3S2buk
-         RS1ME4/R85mYfYVr2oqov141vUKYjB9uBesv4PpdM8Bc+U1DW12/DbNTrGW7I8ccLX4m
-         koDpdV1/8Qg2KrFq4jfLOZEWRLCrXTSySfPHPG1HXphYx7F2qqTZQC+OHZYLOShE/Yme
-         iS7iWorDg/FpTVLQc+xskEQ91xH8LVhUNxIZUNCMj6eBKto1ksmB97oVofzIJGmv4uBI
-         KwhA==
-X-Gm-Message-State: AOAM5337+nq9yPEBjDEnVxCMyYATUGnGsiWLJlefeq5ajrsDwox9aO7v
-        6JbeeY5DXHc+N/N1iyhTDZwERA==
-X-Google-Smtp-Source: ABdhPJwjBCrqDfLak45rq28qmCzF8Bpop3q8Bs7jqR40KSaDpro/v7PxK29LFIjoEyuzeSdZ/p9aGA==
-X-Received: by 2002:a63:5843:0:b0:3fc:34b5:8278 with SMTP id i3-20020a635843000000b003fc34b58278mr7454016pgm.249.1654036329384;
-        Tue, 31 May 2022 15:32:09 -0700 (PDT)
+        bh=soARJzRFwOfhwTqrBSydFb3eTupZIjHh8aanzENDqGo=;
+        b=RUnIL/6pr3JwqX2LS3wSfrsOthHy0/e44Djh93gZy45XAEB5Dl3JZ1+s2AVv5mXv60
+         t/NNCJmSlbOfHlY/HtpiMpEV30QnCRGmWemGTIWKDBNAOeJEhlu5g94DOQzuzesNU+G4
+         0TM/9IPQyWvLaA/7ovQjoohNDfzK1aJ1T7seAAUHl6gzahBxaJMwX1c21+wHt7t2LsXO
+         UPLYPWswJRRcwd3U30TRjTHeQD6gmUqQP1SIbsYA6GCXEmZLGo0d8iLP+pK8GLieL3PK
+         doXKEzdHutJVjx75x1pLqGSpqmR+eA44S4qIfSyOjDd6ellg3RrHFo5EvjDhr544RAWt
+         +E6A==
+X-Gm-Message-State: AOAM530Pu1hm+T4ZaTO2RCz5sUsrU9BmOSkgvvK+kqj/xd53sImBzBzs
+        ZlUgAK6xJjUa/xK1DBPGbkgbmg==
+X-Google-Smtp-Source: ABdhPJyTCi9SCIMWA8MxQeCs0arVYqIWniU4YSwlTCDLay/lcWhIyE3cl9uw5pVBbFSzBMIbvLLvjg==
+X-Received: by 2002:a17:902:f70a:b0:153:88c7:774 with SMTP id h10-20020a170902f70a00b0015388c70774mr62719133plo.166.1654037121967;
+        Tue, 31 May 2022 15:45:21 -0700 (PDT)
 Received: from localhost ([2620:15c:11a:202:e69e:f483:e751:7c7c])
-        by smtp.gmail.com with UTF8SMTPSA id b3-20020a170902d40300b001620a2737b6sm59801ple.74.2022.05.31.15.32.08
+        by smtp.gmail.com with UTF8SMTPSA id 19-20020a170902e9d300b0015e8d4eb1b6sm87043plk.0.2022.05.31.15.45.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 May 2022 15:32:09 -0700 (PDT)
-Date:   Tue, 31 May 2022 15:32:07 -0700
+        Tue, 31 May 2022 15:45:21 -0700 (PDT)
+Date:   Tue, 31 May 2022 15:45:20 -0700
 From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     Stephen Boyd <swboyd@chromium.org>, agross@kernel.org,
-        alsa-devel@alsa-project.org, bgoswami@quicinc.com,
-        bjorn.andersson@linaro.org, broonie@kernel.org,
-        devicetree@vger.kernel.org, judyhsiao@chromium.org,
-        lgirdwood@gmail.com, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, perex@perex.cz,
-        quic_plai@quicinc.com, quic_rohkumar@quicinc.com,
-        robh+dt@kernel.org, srinivas.kandagatla@linaro.org, tiwai@suse.com,
-        vkoul@kernel.org
-Subject: Re: [PATCH v2] ASoC: qcom: soundwire: Add support for controlling
- audio CGCR from HLOS
-Message-ID: <YpaXZ6KfApGebkBy@google.com>
-References: <1652877755-25120-1-git-send-email-quic_srivasam@quicinc.com>
- <CAE-0n53g9rWks+euk5KHBzmJNEB3xLbJzMgCxN52DO5x+9-Wgg@mail.gmail.com>
- <51b8aca1-e038-4907-e973-ebdbebaf9b28@quicinc.com>
+To:     Taniya Das <quic_tdas@quicinc.com>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette =?utf-8?B?wqA=?= <mturquette@baylibre.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: clock: Add resets for LPASS audio
+ clock controller for SC7280
+Message-ID: <YpaagHNk38FLWLVO@google.com>
+References: <20220526042601.32064-1-quic_tdas@quicinc.com>
+ <20220526042601.32064-2-quic_tdas@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <51b8aca1-e038-4907-e973-ebdbebaf9b28@quicinc.com>
+In-Reply-To: <20220526042601.32064-2-quic_tdas@quicinc.com>
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,26 +72,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 24, 2022 at 04:19:47PM +0530, Srinivasa Rao Mandadapu wrote:
+On Thu, May 26, 2022 at 09:55:59AM +0530, Taniya Das wrote:
+> Add support for LPASS audio clock gating for RX/TX/SWA core bus clocks
+> for SC7280. Update reg property min/max items in YAML schema.
 > 
-> On 5/21/2022 8:43 AM, Stephen Boyd wrote:
-> Thanks for your time Stephen!!!
-> > Quoting Srinivasa Rao Mandadapu (2022-05-18 05:42:35)
-> > > diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-> > > index da1ad7e..445e481 100644
-> > > --- a/drivers/soundwire/qcom.c
-> > > +++ b/drivers/soundwire/qcom.c
-> > > @@ -1333,6 +1337,10 @@ static int qcom_swrm_probe(struct platform_device *pdev)
-> > >          ctrl->bus.compute_params = &qcom_swrm_compute_params;
-> > >          ctrl->bus.clk_stop_timeout = 300;
-> > > 
-> > > +       ctrl->audio_cgcr = devm_reset_control_get_exclusive(dev, "swr_audio_cgcr");
-> > > +       if (IS_ERR(ctrl->audio_cgcr))
-> > > +               dev_err(dev, "Failed to get audio_cgcr reset required for soundwire-v1.6.0\n");
-> > Why is there no return on error here? Is the reset optional?
-> Yes it's optional. For older platforms this is not required.
+> Fixes: 57405b795504 ("dt-bindings: clock: Add YAML schemas for LPASS clocks on SC7280").
 
-If it's optional then either there should be no error message, or the
-error message should only be logged when the version is >= 1.6.0. There
-are few things worse than a kernel log riddled with misleading error
-messages.
+git show 57405b795504
+fatal: ambiguous argument '57405b795504': unknown revision or path not in the working tree.
+
+I suppose you mean:
+
+4185b27b3bef dt-bindings: clock: Add YAML schemas for LPASS clocks on SC7280
