@@ -2,60 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58C615391D5
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 15:33:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0B625391DC
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 15:39:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344738AbiEaNdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 09:33:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42760 "EHLO
+        id S1344771AbiEaNjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 09:39:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229939AbiEaNdn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 09:33:43 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE9608FD66;
-        Tue, 31 May 2022 06:33:42 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 787B961202;
-        Tue, 31 May 2022 13:33:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE73EC3411E;
-        Tue, 31 May 2022 13:33:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654004021;
-        bh=Z1whR2Seo++h8Uvy3NRM8CLdGeRMk3/5Fhy4XLisltk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=cPVxm69Jbg+3fiO8JqUkXLXOD3pdyUhd1MlQm0oMnsnf55jefml2siTeRt11DQHj6
-         j2XvEIwBhLIetl2w51tLK3B2a0OH2Z6D0nlXRYIg/OwhCh9PiTgvXzmtIqsaGVmCk/
-         NKbc9Y8PlTLEjGx6hE7AsqZPZ63XO8dLqIFkWoRvf5c1NjMqCoIcoSwXF5SVIY5lUk
-         8yy0Ek1jNVgbeKugcbrmeNa6X6xfwxRoEHv9D7y02QUzG4xMThGu6A77YkIcbXIDCO
-         zWyzDcprTUSJlyHWEJ6vSN13Fe2Y5DFL0DOsh5h6/dcJ5SSJVn1Q0Awe0RVh1hSBfx
-         aAMov2J80OI8w==
-Received: by mail-ua1-f53.google.com with SMTP id y2so4793056uan.4;
-        Tue, 31 May 2022 06:33:41 -0700 (PDT)
-X-Gm-Message-State: AOAM5324/hXJsqjrtMtCRbOakjadASmODKos4GyTpqOlmof57aZFGCif
-        vS608GbBZKgVhquTEXhTU7PfvLVes8cgunM4mg==
-X-Google-Smtp-Source: ABdhPJzfl2q8a4/jnTVhQHUMa2kRAa20r2HuCUl7f2SfBzhtY8jiaU660L5f3oIf9EZfTKfxQZBl0thsed79l8nNzVE=
-X-Received: by 2002:ab0:4ac1:0:b0:351:ed7d:e65c with SMTP id
- t1-20020ab04ac1000000b00351ed7de65cmr22397280uae.36.1654004020745; Tue, 31
- May 2022 06:33:40 -0700 (PDT)
+        with ESMTP id S1344749AbiEaNjH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 09:39:07 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 187354348B
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 06:39:03 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id g12so14625646lja.3
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 06:39:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rV+IwUnjJeMeaLuOoAuodxAXJv2e1zA8eKGCdKHN510=;
+        b=aK6SduPUBnymJsbjYP8iiifXthYMYLwOHK6Ld3DlMMKNkWarDDunHmUfEq5sqmy8GV
+         nRX7yuMXnhH6fyDaiQlcWx++J08xJYRPCWgVH9NQJyKN68AwWt9S14BKBk+vDtcVnAUA
+         ifwgXmWp5PajZLOGS4wIIe1C6saBSt6MonJ5T+AqjBzLximu8th6TDF+hVjKTOaiQCnv
+         pdGXti2Y5aLfwIYoByqBs4dVZYL+AkwdQnxB2vF0akc+16h5AViT2N4idnJJn61tvF3I
+         bz9AMs6+bqVfPmC/CyBlHRKzW4/vUaM2sboP8m1ymnAuOUurizkzERbk/YAOUMz4rf3b
+         xvLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rV+IwUnjJeMeaLuOoAuodxAXJv2e1zA8eKGCdKHN510=;
+        b=YmcxxKAkHQbFnapUYG9jcNDzU0P3bKWN134zInmf7WGqbtWnJ+BAbFkYDLHe1nu4/P
+         6ZfdrIlBtrDEGZbuFPYohpx+ta6jzFuQ/gsgER9TkgjfmnMjz2DLnL8Qq0UCNyVYaP08
+         UnN8TwdKZ9X//P92nTWGFaCj1AzMGCjlgtHwuACGLCpHa/0ulDewx3hui/Ma8bVN1bXi
+         Se3ECKFyEsPU3nGMGX7+4zZcNGkjMtLNCj9sOR0hfpKCkBZQILRAuYSMmqRIkvSA5+A4
+         W6EW2zUiJESMJOT/TodyqiCrJ40TfRJyhcabfFdqxIlR7fl+sIA7WNpCZXLClYLXSf3R
+         qvhA==
+X-Gm-Message-State: AOAM532PFq3CJqTbYs3Hqr8yuadkL0cuuUde0a77DJFbo6VBhYF4T7it
+        kDCbaTOXTIZr10xcS07WaoXnX7mEgqR068v8M1/bYA==
+X-Google-Smtp-Source: ABdhPJxxSN08j36y9Nsvv/qbdQgjo0d1IK1+kmolxk6AXhFtn4SjzokuR/8mLpb+7H1Msqpw1zPPrGlDxcrRZV9GXWw=
+X-Received: by 2002:a2e:954c:0:b0:253:d9bf:9f55 with SMTP id
+ t12-20020a2e954c000000b00253d9bf9f55mr33323645ljh.300.1654004341321; Tue, 31
+ May 2022 06:39:01 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220523172515.5941-1-dipenp@nvidia.com>
-In-Reply-To: <20220523172515.5941-1-dipenp@nvidia.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 31 May 2022 08:33:29 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJSF=7FOW4oNydRtDYY8L9Y43E4FsBkUzM+U5ZRjYdt7A@mail.gmail.com>
-Message-ID: <CAL_JsqJSF=7FOW4oNydRtDYY8L9Y43E4FsBkUzM+U5ZRjYdt7A@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: timestamp: Correct id path
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
+References: <20220504213251.264819-1-sebastian.reichel@collabora.com> <20220504213251.264819-10-sebastian.reichel@collabora.com>
+In-Reply-To: <20220504213251.264819-10-sebastian.reichel@collabora.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 31 May 2022 15:38:24 +0200
+Message-ID: <CAPDyKFoRmpX5Pwmu370=tzg6ZAEPNm3LLAooXVLs35z94JsycQ@mail.gmail.com>
+Subject: Re: [PATCHv2 09/21] mmc: sdhci-of-dwcmshc: add reset call back for
+ rockchip Socs
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, Dipen Patel <dipenp@nvidia.com>
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@lists.collabora.co.uk,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>, kernel@collabora.com
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,63 +77,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 23, 2022 at 12:25 PM Dipen Patel <dipenp@nvidia.com> wrote:
+On Wed, 4 May 2022 at 23:33, Sebastian Reichel
+<sebastian.reichel@collabora.com> wrote:
 >
-> During the repository renaming from hte to timestamp, $id path was not
-> updated accordingly. This patch corrects $id path.
+> From: Yifeng Zhao <yifeng.zhao@rock-chips.com>
 >
-> Fixes: af583852d2ef ("dt-bindings: Renamed hte directory to timestamp")
-> Signed-off-by: Dipen Patel <dipenp@nvidia.com>
+> The reset function build in the SDHCI will not reset the logic
+> circuit related to the tuning function, which may cause data
+> reading errors. Resetting the complete SDHCI controller through
+> the reset controller fixes the issue.
+>
+> Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
+> [rebase, use optional variant of reset getter]
+> Acked-by: Adrian Hunter <adrian.hunter@intel.com>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+
+Queued for v5.20 on the devel branch, thanks!
+
+Kind regards
+Uffe
+
+
 > ---
->  .../bindings/timestamp/hardware-timestamps-common.yaml          | 2 +-
->  Documentation/devicetree/bindings/timestamp/hte-consumer.yaml   | 2 +-
->  .../devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml      | 2 +-
->  3 files changed, 3 insertions(+), 3 deletions(-)
-
-Ping. Still failing in linux-next.
-
+>  drivers/mmc/host/sdhci-of-dwcmshc.c | 26 +++++++++++++++++++++++++-
+>  1 file changed, 25 insertions(+), 1 deletion(-)
 >
-> diff --git a/Documentation/devicetree/bindings/timestamp/hardware-timestamps-common.yaml b/Documentation/devicetree/bindings/timestamp/hardware-timestamps-common.yaml
-> index 4c25ba248a72..fd6a7b51f571 100644
-> --- a/Documentation/devicetree/bindings/timestamp/hardware-timestamps-common.yaml
-> +++ b/Documentation/devicetree/bindings/timestamp/hardware-timestamps-common.yaml
-> @@ -1,7 +1,7 @@
->  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->  %YAML 1.2
->  ---
-> -$id: http://devicetree.org/schemas/hte/hardware-timestamps-common.yaml#
-> +$id: http://devicetree.org/schemas/timestamp/hardware-timestamps-common.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/drivers/mmc/host/sdhci-of-dwcmshc.c b/drivers/mmc/host/sdhci-of-dwcmshc.c
+> index bac874ab0b33..3a1b5ba36405 100644
+> --- a/drivers/mmc/host/sdhci-of-dwcmshc.c
+> +++ b/drivers/mmc/host/sdhci-of-dwcmshc.c
+> @@ -15,6 +15,7 @@
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/of_device.h>
+> +#include <linux/reset.h>
+>  #include <linux/sizes.h>
 >
->  title: Hardware timestamp providers
-> diff --git a/Documentation/devicetree/bindings/timestamp/hte-consumer.yaml b/Documentation/devicetree/bindings/timestamp/hte-consumer.yaml
-> index 68d764ac040a..6456515c3d26 100644
-> --- a/Documentation/devicetree/bindings/timestamp/hte-consumer.yaml
-> +++ b/Documentation/devicetree/bindings/timestamp/hte-consumer.yaml
-> @@ -1,7 +1,7 @@
->  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->  %YAML 1.2
->  ---
-> -$id: http://devicetree.org/schemas/hte/hte-consumer.yaml#
-> +$id: http://devicetree.org/schemas/timestamp/hte-consumer.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  #include "sdhci-pltfm.h"
+> @@ -63,6 +64,7 @@
+>  struct rk3568_priv {
+>         /* Rockchip specified optional clocks */
+>         struct clk_bulk_data rockchip_clks[RK3568_MAX_CLKS];
+> +       struct reset_control *reset;
+>         u8 txclk_tapnum;
+>  };
 >
->  title: HTE Consumer Device Tree Bindings
-> diff --git a/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml b/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
-> index 69e8402d95e5..c31e207d1652 100644
-> --- a/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
-> +++ b/Documentation/devicetree/bindings/timestamp/nvidia,tegra194-hte.yaml
-> @@ -1,7 +1,7 @@
->  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->  %YAML 1.2
->  ---
-> -$id: http://devicetree.org/schemas/hte/nvidia,tegra194-hte.yaml#
-> +$id: http://devicetree.org/schemas/timestamp/nvidia,tegra194-hte.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> @@ -255,6 +257,21 @@ static void dwcmshc_rk3568_set_clock(struct sdhci_host *host, unsigned int clock
+>         sdhci_writel(host, extra, DWCMSHC_EMMC_DLL_STRBIN);
+>  }
 >
->  title: Tegra194 on chip generic hardware timestamping engine (HTE)
+> +static void rk35xx_sdhci_reset(struct sdhci_host *host, u8 mask)
+> +{
+> +       struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
+> +       struct dwcmshc_priv *dwc_priv = sdhci_pltfm_priv(pltfm_host);
+> +       struct rk35xx_priv *priv = dwc_priv->priv;
+> +
+> +       if (mask & SDHCI_RESET_ALL && priv->reset) {
+> +               reset_control_assert(priv->reset);
+> +               udelay(1);
+> +               reset_control_deassert(priv->reset);
+> +       }
+> +
+> +       sdhci_reset(host, mask);
+> +}
+> +
+>  static const struct sdhci_ops sdhci_dwcmshc_ops = {
+>         .set_clock              = sdhci_set_clock,
+>         .set_bus_width          = sdhci_set_bus_width,
+> @@ -269,7 +286,7 @@ static const struct sdhci_ops sdhci_dwcmshc_rk3568_ops = {
+>         .set_bus_width          = sdhci_set_bus_width,
+>         .set_uhs_signaling      = dwcmshc_set_uhs_signaling,
+>         .get_max_clock          = sdhci_pltfm_clk_get_max_clock,
+> -       .reset                  = sdhci_reset,
+> +       .reset                  = rk35xx_sdhci_reset,
+>         .adma_write_desc        = dwcmshc_adma_write_desc,
+>  };
 >
-> base-commit: cc63e8e92cb872081f249ea16e6c460642f3e4fb
+> @@ -292,6 +309,13 @@ static int dwcmshc_rk3568_init(struct sdhci_host *host, struct dwcmshc_priv *dwc
+>         int err;
+>         struct rk3568_priv *priv = dwc_priv->priv;
+>
+> +       priv->reset = devm_reset_control_array_get_optional_exclusive(mmc_dev(host->mmc));
+> +       if (IS_ERR(priv->reset)) {
+> +               err = PTR_ERR(priv->reset);
+> +               dev_err(mmc_dev(host->mmc), "failed to get reset control %d\n", err);
+> +               return err;
+> +       }
+> +
+>         priv->rockchip_clks[0].id = "axi";
+>         priv->rockchip_clks[1].id = "block";
+>         priv->rockchip_clks[2].id = "timer";
 > --
-> 2.17.1
+> 2.35.1
 >
