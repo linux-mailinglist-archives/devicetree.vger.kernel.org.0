@@ -2,241 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5630538CE9
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 10:31:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C762538D33
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 10:51:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244879AbiEaIb6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 04:31:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44442 "EHLO
+        id S244977AbiEaIum (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 04:50:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244867AbiEaIb5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 04:31:57 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD0A24D274
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 01:31:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1653985916; x=1685521916;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=n0MlSyv4m4NqUi7kCGI4FwLhvb140adLuDksFUetojk=;
-  b=X3jl9UeEC4wqWxlkU7LccsvJYebhFvcHHsRgj+QGFN7tIUKXOslu5V0p
-   lXjeJ7cQhOhaL4H5LMft0tzmjT0vjD35lE/Z9g3e/svP52kgVnhqv7Dle
-   X05nayHjrl7RyCfoUNI3fmdU7vHZOwWefxab27I8SnVVgjTV26MCcR9vD
-   DIdaDv0ZxuV708S+ydXNkgPir/Oup4JCUmrel6Cab8EN7RlUu1vPMFEGi
-   9Vgbvhj2aH5k12TEGncf+5lrdAR2SkFv3XhJUJtuMbHZqwfMWQChzdlzp
-   DmAlaU62ZjvNoCA5SnMqhkHBlkKqhzh+9O+TxYUHQMTFop3FWbD9mIq1e
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.91,264,1647298800"; 
-   d="scan'208";a="24167931"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 31 May 2022 10:31:52 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Tue, 31 May 2022 10:31:54 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Tue, 31 May 2022 10:31:54 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1653985914; x=1685521914;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=n0MlSyv4m4NqUi7kCGI4FwLhvb140adLuDksFUetojk=;
-  b=RNT8yAIgsGLbU6F6nUKqGTon7paoihwhkYZhEmbkIO/+YmPDguraMzzs
-   klHluJLGnLPoiE+2Lp9eECxfCxgQ59kwhbRj5qrKG8Ig3E5TEwo0Oj8Pz
-   b0VbT+sN3kiUNV+kl0RZ53DeN1OTqqxKCMdaHbu107FDUfeBLIUcr8ToJ
-   YaSwhIf0To2yQXMGN0zAxAEeFkie4OzRYFu2hMVr7PlfE4hR9E1Mj6cFU
-   pPsHSuPXxpQIODM3N5c3Uc6gmxXChLNAlASEX69cnyeoboNnOblH82Q9s
-   mvKn7rN4CpbMfZGf5uxy6xDaT+8S802LsbNM3OU7FRV/kTpmKVzL6FJgi
-   A==;
-X-IronPort-AV: E=Sophos;i="5.91,264,1647298800"; 
-   d="scan'208";a="24167929"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 31 May 2022 10:31:51 +0200
-Received: from steina-w.localnet (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 7AD06280004;
-        Tue, 31 May 2022 10:31:51 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Robert Foss <robert.foss@linaro.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, patchwork-lst@pengutronix.de,
-        Lucas Stach <l.stach@pengutronix.de>
-Subject: Re: (EXT) [PATCH v0 09/10] arm64: dts: imx8mp: add HDMI display pipeline
-Date:   Tue, 31 May 2022 10:31:49 +0200
-Message-ID: <8174014.NyiUUSuA9g@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20220406160123.1272911-10-l.stach@pengutronix.de>
-References: <20220406160123.1272911-1-l.stach@pengutronix.de> <20220406160123.1272911-10-l.stach@pengutronix.de>
+        with ESMTP id S244978AbiEaIuf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 04:50:35 -0400
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4337A8CCC8
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 01:50:34 -0700 (PDT)
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20220531085032epoutp044251b758a87f3e4ae20fdee4dd348330~0JHFYdcv20362903629epoutp04P
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 08:50:32 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20220531085032epoutp044251b758a87f3e4ae20fdee4dd348330~0JHFYdcv20362903629epoutp04P
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1653987032;
+        bh=dENUkwJ77dOA6ob44lujk89EMrbDv9HEHz2yXDGcu0c=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=sb36yii/w3Wz0HBc0gBvbi19qtZsYHhfoxExh8noOJdmsfBOwnH620cvuIZach6CO
+         +EZz/RJsu6KfahEUZAv+TJ1E7u2Dy+WuHYBbp1lUoHXTsCnR4VeVIwoRoQJDvchHcn
+         Hx6ClAQKg38SB/2qftDbYakAq3TLTsBfJvdv36hs=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+        epcas5p2.samsung.com (KnoxPortal) with ESMTP id
+        20220531085031epcas5p26a9a5127313a599b684f492103ac1af9~0JHEveFbG0834008340epcas5p2i;
+        Tue, 31 May 2022 08:50:31 +0000 (GMT)
+Received: from epsmges5p3new.samsung.com (unknown [182.195.38.179]) by
+        epsnrtp3.localdomain (Postfix) with ESMTP id 4LC5Zp66rZz4x9QH; Tue, 31 May
+        2022 08:50:26 +0000 (GMT)
+Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
+        epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        D9.2B.09762.FC6D5926; Tue, 31 May 2022 17:50:23 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+        20220531083221epcas5p2d9b86199751abcd01b7a5a3ddca72f22~0I3NXKf5u1512515125epcas5p2a;
+        Tue, 31 May 2022 08:32:21 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20220531083221epsmtrp2a15074ee4a65891c7a5135680dbe6f44~0I3NVTDNn1834018340epsmtrp2f;
+        Tue, 31 May 2022 08:32:21 +0000 (GMT)
+X-AuditID: b6c32a4b-213ff70000002622-80-6295d6cf72f7
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        C9.78.08924.592D5926; Tue, 31 May 2022 17:32:21 +0900 (KST)
+Received: from mshams02 (unknown [107.122.12.94]) by epsmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20220531083219epsmtip20a5a1b23b18708aae5ab4a3b1a184bc3~0I3LXCtH81041910419epsmtip2O;
+        Tue, 31 May 2022 08:32:19 +0000 (GMT)
+From:   "m.shams" <m.shams@samsung.com>
+To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
+        <jic23@kernel.org>, <lars@metafoo.de>, <robh+dt@kernel.org>,
+        <krzk+dt@kernel.org>
+Cc:     <geert@linux-m68k.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-samsung-soc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <alim.akhtar@samsung.com>, <paul@crapouillou.net>,
+        <linux-fsd@tesla.com>
+In-Reply-To: <d04b6d8c-0117-b5a6-dcb5-aa328ad5d1f5@linaro.org>
+Subject: RE: [PATCH v2 3/3] arm64: dts: fsd: Add ADC device tree node
+Date:   Tue, 31 May 2022 14:02:16 +0530
+Message-ID: <015a01d874c8$f22cc090$d68641b0$@samsung.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_CSS_A autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: en-in
+Thread-Index: AQIGNN21wa2G9ryxTCo9HfAX0Xxs4AK9h8+rAhaCLPACmk9UrKyhtLKw
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrIJsWRmVeSWpSXmKPExsWy7bCmpu75a1OTDKa38ls8mLeNzWL+kXOs
+        Fs9u7WWyeNC0isni5ax7bBZ7X29lt1gyeT6rxabH11gtHr4Kt5h35B2LxeVdc9gsZpzfx2TR
+        v/gSi0Xr3iPsDnweqy+1s3lsWtXJ5nHn2h42j0OHOxg9Ni+p91jy5hCrR9+WVYwe/5rmsnt8
+        3iQXwBmVbZORmpiSWqSQmpecn5KZl26r5B0c7xxvamZgqGtoaWGupJCXmJtqq+TiE6DrlpkD
+        dLuSQlliTilQKCCxuFhJ386mKL+0JFUhI7+4xFYptSAlp8CkQK84Mbe4NC9dLy+1xMrQwMDI
+        FKgwITtjTdt/9oIHnBUHzjazNDC2c3QxcnJICJhI3JrWy9jFyMUhJLCbUWJtxxtWCOcTo0TD
+        i51sEM5nRon/H2czwbQcnnGfCSKxi1Gi/8dMqP5nQFXTdrJ3MXJwsAmoSuy4KQISFxGYzCix
+        89t1FhCHWWASk8T6YxvAijgF7CR6T3iCTBUWcJVYfe8sI4jNAtT7avUPZhCbV8BSoqt9LRuE
+        LShxcuYTFhCbWUBbYtnC18wQFylI/Hy6jBUiLi5x9GcPWFxEwE1i/tZz7CB7JQSecEjsnfGM
+        DaLBReLs7GtQtrDEq+Nb2CFsKYnP7/ZCxdMl5j7shXq5QGLZru9QNfYSB67MYQG5n1lAU2L9
+        Ln2IsKzE1FPrmCBu4JPo/f0EqpVXYsc8GFtR4v/ufqgx4hLvVkxhncCoNAvJa7OQvDYLyTuz
+        ELYtYGRZxSiZWlCcm55abFpgnJdaDo/x5PzcTYzgtK3lvYPx0YMPeocYmTgYDzFKcDArifCW
+        7JqaJMSbklhZlVqUH19UmpNafIjRFBjeE5mlRJPzgZkjryTe0MTSwMTMzMzE0tjMUEmcV+B/
+        Y5KQQHpiSWp2ampBahFMHxMHp1QDk2Tg3TuR27OLv9uvM98y86f2BEXZTTHmrPfOeYQEt7VW
+        6R541x8Z4re/mbOnTGt1fcyKpGcrTm3XCq9iYD8z+fzCUyuTpBMq55v/Dd/0ZeJpHiZHoZKE
+        2BX34h/FOOlbt62xijN2dLq/da9Zq/O+IwFCD/dzx+ZsWC5Sd5tlTdfGxwL/P1i9zauadmfX
+        6b0X9247ePuxVfbUM8+uvlbaJbunOOWHYfMj6QMSEpdvPrppcejCWot9C83dGlgU4l82H/bf
+        9PT/iQe1SRlJGvEfpj7ydMyti//qFhyjx3ggfPOcPUyZvn/2VwYXHn0pcMHsg2+z8e0Pjn85
+        rRfnCjWLs3dosWl8+iDXNvn2F/lth5VYijMSDbWYi4oTAShfbKRkBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrJIsWRmVeSWpSXmKPExsWy7bCSvO7US1OTDD5uFbF4MG8bm8X8I+dY
+        LZ7d2stk8aBpFZPFy1n32Cz2vt7KbrFk8nxWi02Pr7FaPHwVbjHvyDsWi8u75rBZzDi/j8mi
+        f/ElFovWvUfYHfg8Vl9qZ/PYtKqTzePOtT1sHocOdzB6bF5S77HkzSFWj74tqxg9/jXNZff4
+        vEkugDOKyyYlNSezLLVI3y6BK2P1jCuMBfs4K542v2RuYHzK3sXIySEhYCJxeMZ9pi5GLg4h
+        gR2MEnefrmGFSIhLTPu1nxHCFpZY+e85O0TRE0aJcxd/AnVwcLAJqErsuCkCEhcRmM4o8Wv7
+        IRYQh1lgDpPE6ZuPmCE6XjJKvH+2ihWkg1PATqL3hCfIVGEBV4nV986CbWABGvRq9Q9mEJtX
+        wFKiq30tG4QtKHFy5hMWEJtZQFui92ErI4y9bOFrZojrFCR+Pl3GChEXlzj6swcsLiLgJjF/
+        6zn2CYzCs5CMmoVk1Cwko2YhaV/AyLKKUTK1oDg3PbfYsMAoL7Vcrzgxt7g0L10vOT93EyM4
+        drW0djDuWfVB7xAjEwfjIUYJDmYlEd6SXVOThHhTEiurUovy44tKc1KLDzFKc7AoifNe6DoZ
+        LySQnliSmp2aWpBaBJNl4uCUamDqnOVYduZo9Xu5BVzVVvWab530vm/zO7DMvkX33qlKNeet
+        56s/G9hP2XE4linvMMuXUuYA8VwNN+7qbZ2v395hl+mUcNDmWGPeytzF+23Hpfjw7dNqzeyK
+        mQsKu8Ru9S9ete2F62mvp2LNT53ZQ6Z2yVz82r9r9h25PX7PdK5crNvS/tre6X4yE89/9sJk
+        zSyHjOqQv1GKZya8rjmkeaVqTqPugp7Ch9pTo2RuNLVZVv5Jcb/waLOcdLjWKheWF/rh5TWP
+        tJpFBXsUq7Q2aoevmLH/z51rn4Itqtzn+AdvzdCI95W5KH36+p9s3zaFt4np7+bPaf66VtVu
+        T4jFY467aZENFyqXCLmH27l5KbEUZyQaajEXFScCAJOU+CZMAwAA
+X-CMS-MailID: 20220531083221epcas5p2d9b86199751abcd01b7a5a3ddca72f22
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: REQ_APPROVE
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220520145804epcas5p2925e66d30b18378fc62c92999ec269f7
+References: <20220520145820.67667-1-m.shams@samsung.com>
+        <CGME20220520145804epcas5p2925e66d30b18378fc62c92999ec269f7@epcas5p2.samsung.com>
+        <20220520145820.67667-4-m.shams@samsung.com>
+        <d04b6d8c-0117-b5a6-dcb5-aa328ad5d1f5@linaro.org>
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lucas,
+Hi Krzysztof,
 
-Am Mittwoch, 6. April 2022, 18:01:22 CEST schrieb Lucas Stach:
-> This adds the DT nodes for all the peripherals that make up the
-> HDMI display pipeline.
-> 
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 80 +++++++++++++++++++++++
->  1 file changed, 80 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> b/arch/arm64/boot/dts/freescale/imx8mp.dtsi index
-> 6b7b5ba32b48..a41da99e9537 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -1087,6 +1087,86 @@ irqsteer_hdmi: interrupt-controller@32fc2000 {
->  				clock-names = "ipg";
->  				power-domains = <&hdmi_blk_ctrl 
-IMX8MP_HDMIBLK_PD_IRQSTEER>;
->  			};
-> +
-> +			hdmi_pvi: display-bridge@32fc4000 {
-> +				compatible = "fsl,imx8mp-hdmi-
-pvi";
-> +				reg = <0x32fc4000 0x40>;
-> +				power-domains = <&hdmi_blk_ctrl 
-IMX8MP_HDMIBLK_PD_PVI>;
+On 20/05/2022 16:58, Tamseel Shams wrote:
+>> From: Alim Akhtar <alim.akhtar=40samsung.com>
+>>=20
+>> This patch adds ADC device tree node and enables the same on fsd=20
+>> platform.
+>>=20
+>> Signed-off-by: Alim Akhtar <alim.akhtar=40samsung.com>
+>> Signed-off-by: Tamseel Shams <m.shams=40samsung.com>
+>> ---
+>> - Changes since v1
+>> * Addressed Krzysztof's comment for corrections in dt files
+>>=20
+>>  arch/arm64/boot/dts/tesla/fsd-evb.dts =7C  4 ++++
+>>  arch/arm64/boot/dts/tesla/fsd.dtsi    =7C 11 +++++++++++
+>>  2 files changed, 15 insertions(+)
+>>=20
+>> diff --git a/arch/arm64/boot/dts/tesla/fsd-evb.dts=20
+>> b/arch/arm64/boot/dts/tesla/fsd-evb.dts
+>> index 5af560c1b5e6..63f26a85053a 100644
+>> --- a/arch/arm64/boot/dts/tesla/fsd-evb.dts
+>> +++ b/arch/arm64/boot/dts/tesla/fsd-evb.dts
+>> =40=40 -34,6 +34,10 =40=40
+>>  	clock-frequency =3D <24000000>;
+>>  =7D;
+>> =20
+>> +&adc =7B
+>> +	status =3D =22okay=22;
+>
+> Please test your bindings (=60make dtbs_check=60). There is no way it pas=
+ses since you miss at least supply (maybe more?).
 
-This should be disabled by default as well. Unless 'hdmi_tx: hdmi@32fd8000' is 
-enabled, this results in the warning:
-imx-hdmi-pvi: probe of 32fc4000.display-bridge failed with error -22
-
-Best regards
-Alexander
-
-> +
-> +				ports {
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-> +					port@0 {
-> +						reg = <0>;
-> +						
-pvi_from_lcdif3: endpoint {
-> +							
-remote-endpoint = <&lcdif3_to_pvi>;
-> +						};
-> +					};
-> +
-> +					port@1 {
-> +						reg = <1>;
-> +						
-pvi_to_hdmi_tx: endpoint {
-> +							
-remote-endpoint = <&hdmi_tx_from_pvi>;
-> +						};
-> +					};
-> +				};
-> +			};
-> +
-> +			lcdif3: display-controller@32fc6000 {
-> +				compatible = "fsl,imx8mp-lcdif";
-> +				reg = <0x32fc6000 0x238>;
-> +				interrupts = <8 
-IRQ_TYPE_LEVEL_HIGH>;
-> +				interrupt-parent = 
-<&irqsteer_hdmi>;
-> +				clocks = <&hdmi_tx_phy>,
-> +					 <&clk 
-IMX8MP_CLK_HDMI_APB>,
-> +					 <&clk 
-IMX8MP_CLK_HDMI_ROOT>;
-> +				clock-names = "pix", "axi", 
-"disp_axi";
-> +				power-domains = <&hdmi_blk_ctrl 
-IMX8MP_HDMIBLK_PD_LCDIF>;
-> +
-> +				port {
-> +					lcdif3_to_pvi: endpoint 
-{
-> +						remote-
-endpoint = <&pvi_from_lcdif3>;
-> +					};
-> +				};
-> +			};
-> +
-> +			hdmi_tx: hdmi@32fd8000 {
-> +				compatible = "fsl,imx8mp-hdmi";
-> +				reg = <0x32fd8000 0x7eff>;
-> +				interrupts = <0 
-IRQ_TYPE_LEVEL_HIGH>;
-> +				interrupt-parent = 
-<&irqsteer_hdmi>;
-> +				clocks = <&clk 
-IMX8MP_CLK_HDMI_APB>,
-> +					 <&clk 
-IMX8MP_CLK_HDMI_REF_266M>,
-> +					 <&clk IMX8MP_CLK_32K>,
-> +					 <&hdmi_tx_phy>;
-> +				clock-names = "iahb", "isfr", 
-"cec", "pix";
-> +				assigned-clocks = <&clk 
-IMX8MP_CLK_HDMI_REF_266M>;
-> +				assigned-clock-parents = <&clk 
-IMX8MP_SYS_PLL1_266M>;
-> +				power-domains = <&hdmi_blk_ctrl 
-IMX8MP_HDMIBLK_PD_HDMI_TX>;
-> +				reg-io-width = <1>;
-> +				status = "disabled";
-> +
-> +				port {
-> +					hdmi_tx_from_pvi: 
-endpoint {
-> +						remote-
-endpoint = <&pvi_to_hdmi_tx>;
-> +					};
-> +				};
-> +			};
-> +
-> +			hdmi_tx_phy: phy@32fdff00 {
-> +				compatible = "fsl,imx8mp-hdmi-
-phy";
-> +				reg = <0x32fdff00 0x100>;
-> +				clocks = <&clk 
-IMX8MP_CLK_HDMI_APB>,
-> +					 <&clk 
-IMX8MP_CLK_HDMI_24M>;
-> +				clock-names = "apb", "ref";
-> +				assigned-clocks = <&clk 
-IMX8MP_CLK_HDMI_24M>;
-> +				assigned-clock-parents = <&clk 
-IMX8MP_CLK_24M>;
-> +				power-domains = <&hdmi_blk_ctrl 
-IMX8MP_HDMIBLK_PD_HDMI_TX_PHY>;
-> +				#clock-cells = <0>;
-> +				#phy-cells = <0>;
-> +				status = "disabled";
-> +			};
->  		};
-> 
->  		gpu3d: gpu@38000000 {
+Will add the =22supply=22 field in dtsi file. Also will run dtbs check to s=
+ee for any other missing field.
 
 
-
+Thanks & Regards,
+Tamseel Shams
 
