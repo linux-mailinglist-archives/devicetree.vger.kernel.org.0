@@ -2,69 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79D805399A2
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 00:45:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB7FA5399B4
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 00:47:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348502AbiEaWpY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 18:45:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47540 "EHLO
+        id S1348522AbiEaWrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 18:47:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346416AbiEaWpX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 18:45:23 -0400
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C95D25298
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 15:45:22 -0700 (PDT)
-Received: by mail-pj1-x102a.google.com with SMTP id o6-20020a17090a0a0600b001e2c6566046so4339579pjo.0
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 15:45:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=soARJzRFwOfhwTqrBSydFb3eTupZIjHh8aanzENDqGo=;
-        b=DaKQfesYBWgMZS7l6hauTnBkeXrAsQpWA/SrcfUqCE0Jk4qdRiF75ZMTR83iBzuuYb
-         fZRaI6d6CGmjdZvTf1XfnpxRg6+9uxbyuYj8W212jJKJwO0H5Q8JCZsEUXaTgbnncO8e
-         68/DQDnpbAPHgVI4YRXeZEkkotc9NHonbRnCU=
+        with ESMTP id S1348516AbiEaWrB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 18:47:01 -0400
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9866EB1D8
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 15:46:59 -0700 (PDT)
+Received: by mail-oi1-f178.google.com with SMTP id y131so354348oia.6
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 15:46:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=soARJzRFwOfhwTqrBSydFb3eTupZIjHh8aanzENDqGo=;
-        b=RUnIL/6pr3JwqX2LS3wSfrsOthHy0/e44Djh93gZy45XAEB5Dl3JZ1+s2AVv5mXv60
-         t/NNCJmSlbOfHlY/HtpiMpEV30QnCRGmWemGTIWKDBNAOeJEhlu5g94DOQzuzesNU+G4
-         0TM/9IPQyWvLaA/7ovQjoohNDfzK1aJ1T7seAAUHl6gzahBxaJMwX1c21+wHt7t2LsXO
-         UPLYPWswJRRcwd3U30TRjTHeQD6gmUqQP1SIbsYA6GCXEmZLGo0d8iLP+pK8GLieL3PK
-         doXKEzdHutJVjx75x1pLqGSpqmR+eA44S4qIfSyOjDd6ellg3RrHFo5EvjDhr544RAWt
-         +E6A==
-X-Gm-Message-State: AOAM530Pu1hm+T4ZaTO2RCz5sUsrU9BmOSkgvvK+kqj/xd53sImBzBzs
-        ZlUgAK6xJjUa/xK1DBPGbkgbmg==
-X-Google-Smtp-Source: ABdhPJyTCi9SCIMWA8MxQeCs0arVYqIWniU4YSwlTCDLay/lcWhIyE3cl9uw5pVBbFSzBMIbvLLvjg==
-X-Received: by 2002:a17:902:f70a:b0:153:88c7:774 with SMTP id h10-20020a170902f70a00b0015388c70774mr62719133plo.166.1654037121967;
-        Tue, 31 May 2022 15:45:21 -0700 (PDT)
-Received: from localhost ([2620:15c:11a:202:e69e:f483:e751:7c7c])
-        by smtp.gmail.com with UTF8SMTPSA id 19-20020a170902e9d300b0015e8d4eb1b6sm87043plk.0.2022.05.31.15.45.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 May 2022 15:45:21 -0700 (PDT)
-Date:   Tue, 31 May 2022 15:45:20 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Taniya Das <quic_tdas@quicinc.com>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette =?utf-8?B?wqA=?= <mturquette@baylibre.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh@kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: clock: Add resets for LPASS audio
- clock controller for SC7280
-Message-ID: <YpaagHNk38FLWLVO@google.com>
-References: <20220526042601.32064-1-quic_tdas@quicinc.com>
- <20220526042601.32064-2-quic_tdas@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220526042601.32064-2-quic_tdas@quicinc.com>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=DZZtk3mmH2Uftva4nnZWRRASwAL7J0/4OgI8K1pv32U=;
+        b=o5p5AEAeNPJWuUnYSTHIIiKNnNPLWgiGtJ7bHblOgi8MKIOhYDirTiHo+emG/QfUje
+         apdmEOfYqh2woDnsDoz2PNQXCoFNoqiw1QNbXzAt/cnKovoRUXy3cL39MiKchYrsX/ew
+         138fSGUs2LGOA2ktPtafdDmoCeyD9ZTD7FkfNAbrw+tWs3LU6nACJv6eBVR+SqZuEGnr
+         n+zvb19vclkrNtODDWOYglLmKcZ9ocL/iqoWdIvLQw//g9ZSruXpSJ9f0bCy2LTo4K48
+         Jt54Ri/MohiCuY06oWrr01XGRAHQV4S8ugkGUapBuL/7Rt5zKTFxKBWUZjOKCChAkWzX
+         Zvcw==
+X-Gm-Message-State: AOAM5324Gxs3Lv4lB5BLEIRAeEke8bP1eJAAwI9gjmoJ8NnNfwsCTcwm
+        /fQLDoTgHIaHY58i1KSuAQ==
+X-Google-Smtp-Source: ABdhPJyahNtzfgfQNEpLagL+4xN0bn8ym/sU1ceRtzVz3hVUAqExMfrao8LUp3cIoB/yoY5Qot63nA==
+X-Received: by 2002:aca:1e04:0:b0:325:473:4038 with SMTP id m4-20020aca1e04000000b0032504734038mr13707953oic.159.1654037218851;
+        Tue, 31 May 2022 15:46:58 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id b30-20020a9d60de000000b006060322125dsm7005222otk.45.2022.05.31.15.46.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 31 May 2022 15:46:58 -0700 (PDT)
+Received: (nullmailer pid 2476571 invoked by uid 1000);
+        Tue, 31 May 2022 22:46:54 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Chanho Park <chanho61.park@samsung.com>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, Vinod Koul <vkoul@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220531121913.48722-2-chanho61.park@samsung.com>
+References: <20220531121913.48722-1-chanho61.park@samsung.com>        <CGME20220531121922epcas2p15861df56f7253265c591a88244520446@epcas2p1.samsung.com> <20220531121913.48722-2-chanho61.park@samsung.com>
+Subject: Re: [PATCH 1/4] dt-bindings: phy: samsung,ufs-phy: make pmu-syscon as phandle-array
+Date:   Tue, 31 May 2022 17:46:54 -0500
+Message-Id: <1654037214.485315.2476567.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,15 +63,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 26, 2022 at 09:55:59AM +0530, Taniya Das wrote:
-> Add support for LPASS audio clock gating for RX/TX/SWA core bus clocks
-> for SC7280. Update reg property min/max items in YAML schema.
+On Tue, 31 May 2022 21:19:10 +0900, Chanho Park wrote:
+> To support secondary ufs phy devices, we need to get an offset value
+> from pmu-syscon.
 > 
-> Fixes: 57405b795504 ("dt-bindings: clock: Add YAML schemas for LPASS clocks on SC7280").
+> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+> ---
+>  .../devicetree/bindings/phy/samsung,ufs-phy.yaml    | 13 +++++++++----
+>  1 file changed, 9 insertions(+), 4 deletions(-)
+> 
 
-git show 57405b795504
-fatal: ambiguous argument '57405b795504': unknown revision or path not in the working tree.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-I suppose you mean:
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml:46:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
 
-4185b27b3bef dt-bindings: clock: Add YAML schemas for LPASS clocks on SC7280
+dtschema/dtc warnings/errors:
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
