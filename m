@@ -2,93 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 996AC5392D7
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 15:56:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC02A53931D
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 16:24:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343798AbiEaN4n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 09:56:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56610 "EHLO
+        id S1345208AbiEaOYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 10:24:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345086AbiEaN4m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 09:56:42 -0400
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84A92D76
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 06:56:41 -0700 (PDT)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-f2bb84f9edso18396035fac.10
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 06:56:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=RgtoDz79MqxCMpo5unEswVuciYwf9SoneSMZ6fKufS0=;
-        b=e+VlnPbNanw9gBgyYrjBDzYW9kJa5aJIvmcvZm6oWfeC9rnEjXDxl1byDDi6542it/
-         nChGhgV83n0K88HUgEUbXnu5BAePXjtklHFr2XdomCokjNI6MSwjUAij4Kpo7yhdv6Z4
-         L2vff7ZlGoRA5klehTg7nEWnY1fXtMr39ipdLfvAqYfSefLrHFnhjAbckh44kCZxnp37
-         sjTmM1s1OhokWvwGwoeFdOrvOSsyZXAF50uXKzFlxhI+gKvMCXMgSHoeYu1gXcXQScMy
-         RdSl1zSV/q700iJzYrZf/vgMix9lSVHpzk/XBYxIX8MfLli8LlyEBe63J+7pGday7zfb
-         lhQQ==
-X-Gm-Message-State: AOAM533i4gq+yte/hdALzWAbd2hppfkJ67+mvyrOCH03XkOR3q90Ma9y
-        Ct/3ja8cZIVyA7O1PlUS0Q==
-X-Google-Smtp-Source: ABdhPJyhKYDYPx9LfyX8+JmdpwkVz+kWCc8EPx5cjacmDBckm0XSfeQDzclyrBzb639MibxiC0aMwQ==
-X-Received: by 2002:a05:6870:709c:b0:f1:b173:2ca2 with SMTP id v28-20020a056870709c00b000f1b1732ca2mr12907083oae.70.1654005400768;
-        Tue, 31 May 2022 06:56:40 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id e21-20020aca2315000000b0032bbcbd59b4sm5442223oie.17.2022.05.31.06.56.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 May 2022 06:56:40 -0700 (PDT)
-Received: (nullmailer pid 1661150 invoked by uid 1000);
-        Tue, 31 May 2022 13:56:39 -0000
-Date:   Tue, 31 May 2022 08:56:39 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Lucas Stach <l.stach@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Paul Elder <paul.elder@ideasonboard.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: soc: imx8mp-media-blk-ctrl: Fix DT example
-Message-ID: <20220531135639.GA1659604-robh@kernel.org>
-References: <20220510200543.13482-1-laurent.pinchart@ideasonboard.com>
+        with ESMTP id S1345218AbiEaOYM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 10:24:12 -0400
+Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 157978020A;
+        Tue, 31 May 2022 07:24:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+        d=metrotek.ru; s=mail;
+        h=from:subject:date:message-id:to:cc:mime-version:content-type:
+         content-transfer-encoding:in-reply-to:references;
+        bh=J8M8YGaMefHW0AkjWLNXVgXcmOvL6c5NpOJNy13U8SQ=;
+        b=TwsKZAcMfsw0dFg/O/U99HLXqXQq9VkRXI37vXdvrKA98ORvu9PInhGuyZk+cIZVygLWjLAHM3N3l
+         MnJer1wvhJUhvi4fBv6KsDsJFHNXsDr98h8tqnWNwraMkSJcNRkJhY0L8WzoZN/2QRuhpzTp3S+0iU
+         IRV+WBugKbquFlXtDcTzvtTraxtlbk1m7psgFDrfXzOI4GfzlMwfJB2Vnv6k7icIpZuakhZ3LVudhd
+         M8UmHn6KvD200jKTHWNFRhKAFeg258ZEXRsD/YzfJf2liWdGI2G4XB+lRgMJup+N/VqrA0DLWR230m
+         JPBRN2a2+VW1JQZ03G6k3mS2MS3p0dA==
+X-Kerio-Anti-Spam:  Build: [Engines: 2.16.3.1424, Stamp: 3], Multi: [Enabled, t: (0.000009,0.030747)], BW: [Enabled, t: (0.000013,0.000001)], RTDA: [Enabled, t: (0.077851), Hit: No, Details: v2.39.0; Id: 15.52kerb.1g4d80gac.6c0f; mclb], total: 0(700)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Level: 
+X-Footer: bWV0cm90ZWsucnU=
+Received: from x260 ([178.70.36.174])
+        (authenticated user i.bornyakov@metrotek.ru)
+        by mail.pr-group.ru with ESMTPSA
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
+        Tue, 31 May 2022 17:23:38 +0300
+Date:   Tue, 31 May 2022 17:01:22 +0300
+From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
+To:     Conor.Dooley@microchip.com
+Cc:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
+        trix@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        system@metrotek.ru
+Subject: Re: [PATCH v13 2/3] fpga: microchip-spi: add Microchip MPF FPGA
+ manager
+Message-ID: <20220531140122.teiuoqwo2zmly6kh@x260>
+References: <20220526181344.2088-1-i.bornyakov@metrotek.ru>
+ <20220526181344.2088-3-i.bornyakov@metrotek.ru>
+ <f655cf2f-555c-6480-a461-bcddb9e510f3@microchip.com>
+ <20220530120701.sedwn3qeohlnj52e@x260>
+ <95c44458-aeff-e356-1e32-c8f735570c3a@microchip.com>
+ <3b6867a8-d4ce-c5f3-71d4-bd9c3c88c389@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20220510200543.13482-1-laurent.pinchart@ideasonboard.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3b6867a8-d4ce-c5f3-71d4-bd9c3c88c389@microchip.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 10 May 2022 23:05:43 +0300, Laurent Pinchart wrote:
-> The DT example incorrectly names the ISP power domain "isp1" instead of
-> "isp". This causes a validation failure:
+On Tue, May 31, 2022 at 10:53:07AM +0000, Conor.Dooley@microchip.com wrote:
+> One last item, sorry!
 > 
-> Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.example.dtb: blk-ctl@32ec0000: power-domain-names:7: 'isp' was expected
->         From schema: Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
+> On 30/05/2022 15:24, Conor Dooley wrote:
+> > On 30/05/2022 13:07, Ivan Bornyakov wrote:
+> >> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> >>
+> >> On Mon, May 30, 2022 at 11:22:26AM +0000, Conor.Dooley@microchip.com wrote:
+> >>> On 26/05/2022 19:13, Ivan Bornyakov wrote:
+> >>>> +static int mpf_read_status(struct spi_device *spi)
+> >>>> +{
+> >>>> +       u8 status = 0, status_command = MPF_SPI_READ_STATUS;
+> >>>> +       /*
+> >>>> +        * Two identical SPI transfers are used for status reading.
+> >>>> +        * The reason is that the first one can be inadequate.
+> >>>> +        * We ignore it completely and use the second one.
+> >>>> +        */
+> >>>> +       struct spi_transfer xfers[] = {
+> >>>> +               [0 ... 1] = {
+> >>>> +                       .tx_buf = &status_command,
+> >>>> +                       .rx_buf = &status,
+> >>>> +                       .len = 1,
+> >>>> +                       .cs_change = 1,
 > 
-> Fix it.
+> Should cs_change be set for both messages or just the first?
+>  From reading the documentation, it looks like we only want it
+> for the first one.
 > 
-> Fixes: 584d6dd668e2 ("dt-bindings: soc: Add i.MX8MP media block control DT bindings")
-> Reported-by: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
-> Shawn, this fixes an issue in linux-next, could you please apply the
-> patch to your imx/bindings branch for v5.19 ?
-> ---
->  .../devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml  | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> https://elixir.bootlin.com/linux/latest/source/include/linux/spi/spi.h#L895
+> 
+> Thanks,
+> Conor.
 > 
 
-Now failing in Linus' tree and linux-next and no response, so I've 
-applied.
+You're right, I've overlooked that moment.
 
-Rob
+> >>>> +               }
+> >>>> +       };
+> >>>
+> >>> Hmm, I don't think that this is correct, or at least it is not
+> >>> correct from the polarfire /soc/ perspective. I was told that
+> >>> there was nothing different other than the envm between the
+> >>> programming for both devices - but this is another situation
+> >>> where I start to question that.
+> >>>
+> >>> When I run this code, ISC enable /never/ passes - failing due
+> >>> to timing out. I see something like this picture here:
+> >>> https://i.imgur.com/EKhd1S3.png
+> >>> You can see the 0x0B ISC enable coming through & then a status
+> >>> check after it.
+> >>>
+> >>> With the current code, the value of the "status" variable will
+> >>> be 0x0, given you are overwriting the first MISO value with the
+> >>> second. According to the hw guys, the spi hw status *should*
+> >>> only be returned on MISO in the first byte after SS goes low.
+> >>>
+> >>> If this is not the case for a non -soc part, which, as I said
+> >>> before, I don't have a board with the SPI programmer exposed
+> >>> for & I have been told is not the case then my comments can
+> >>> just be ignored entirely & I'll have some head scratching to
+> >>> do...
+> >>>
+> >>> Thanks,
+> >>> Conor.
+> >>>
+> >>
+> >> If I understood correctly, SS doesn't alter between two status reading
+> >> transactions despite .cs_change = 1. May be adding some .cs_change_delay
+> >> to spi_transfer struct can help with that?
+> > 
+> > D-oh - bug in the spi controller driver :)
+> > LGTM now, successfully programmed my PolarFire SoC with v12.
+> > I'd almost suggest adding a compatible for it too - but since
+> > the envm programming doesn't work I don't think that would be
+> > correct.
+> > 
+> > Tested-by: Conor Dooley <conor.dooley@microchip.com>
+> > 
+> > With a small comment about why it's using spi_sync_transfer():
+> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > 
+> >>
+> >>>> +       int ret = spi_sync_transfer(spi, xfers, 2);
+> >>>> +
+> >>>> +       if ((status & MPF_STATUS_SPI_VIOLATION) ||
+> >>>> +           (status & MPF_STATUS_SPI_ERROR))
+> >>>> +               ret = -EIO;
+> >>>> +
+> >>>> +       return ret ? : status;
+> >>>> +}
+> >>
+> > 
+> 
+
