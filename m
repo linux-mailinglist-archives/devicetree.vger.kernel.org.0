@@ -2,129 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C5155397CD
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 22:10:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BCFB5397D2
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 22:11:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347641AbiEaUKx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 16:10:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38244 "EHLO
+        id S1347708AbiEaULR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 16:11:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244956AbiEaUKx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 16:10:53 -0400
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B1AD972B8;
-        Tue, 31 May 2022 13:10:52 -0700 (PDT)
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-e656032735so19899168fac.0;
-        Tue, 31 May 2022 13:10:52 -0700 (PDT)
+        with ESMTP id S1347696AbiEaULP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 16:11:15 -0400
+Received: from mail-vs1-xe2b.google.com (mail-vs1-xe2b.google.com [IPv6:2607:f8b0:4864:20::e2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4AFD9CF2D
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 13:11:13 -0700 (PDT)
+Received: by mail-vs1-xe2b.google.com with SMTP id x187so3182143vsb.0
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 13:11:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Z4obN2PrlRBi/vvUEyV2UQsecnDWlqJ38oVljJMTvP0=;
+        b=MRh1CfamC45E//L3a85Y0mbiAzUfXHG3gCMVCoPNHcm8q/zZPkJY26jKqNH7WNcs4V
+         /Ky4vGqXVofVGIFp3R6iEWVT1b5LLBi8a95rr3nGsV/YskNEJwVbZ5mZjKzC9CQLsp0F
+         KMdjzEWa5iOYDW7bVg5MjGZMwpcD3eLIcPJCfW/Fr1KLfjbUbMIWRhYu+L/hKhVn6Mi9
+         y9+Nltc7nHqji7IL7php0K8NqPLXPspnB3NLnip7rezuYwhvtYtZ+qUnV3uSFwYUNWjV
+         qFetHGK370jpNS493GefxqVLd+vO0hM5vY58X72TkRusRB8yxROj2WzXVgp6B892WLlA
+         loOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=syZte8VMFYIrvqwLV7B4xdi4mb5JASYHy9v3uwzX/Uk=;
-        b=U0n4phY9WYv/Ni/EFKG0Ln0XCOsYFnsrJOHXOHEtpVKYwQD9OywNiY6rHKGW4K/Flb
-         CxucKzGvJ7u8XttPgsw1kR2hgg/Ixq5pI0O4r1p9dJWUpdautE0wq2RvEWocUD4GLzb9
-         zAW7DMn/mhPSXsR+PQYXP4ty/Lwil9sRBoPf6H5C5pxS/UUgPF2Gavdjzs+4C3HACbia
-         fIuzQoZZlOFJqQ+J1iLPaQjQ+t0OoVZw6IcKAlcB4ZD2sJtNXeZvTeh6zK25sRtg7TTJ
-         3Dr/IL61XdbbEx+vqRuEzJSteP4MVojjXwFuzo3iiNv1W97pt0Ph+QfGoorA7Nh714tP
-         zsOQ==
-X-Gm-Message-State: AOAM531zHfUBLVO3hZXVxaniEUbhJGnKOhYmKilAQrjroOExtad8YlgG
-        BzG9Ooz5vUAl3tAq+XQQvQ==
-X-Google-Smtp-Source: ABdhPJwuGMM5LGvvT0reg6w0YES9zGykPNIMnjPS+0QJgmckJRbrz66grBPVW056W4xldPyHkoNpmw==
-X-Received: by 2002:a05:6870:c22c:b0:f5:701f:16d9 with SMTP id z44-20020a056870c22c00b000f5701f16d9mr3094306oae.35.1654027851564;
-        Tue, 31 May 2022 13:10:51 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bg41-20020a05680817a900b0032617532120sm6521539oib.48.2022.05.31.13.10.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 May 2022 13:10:51 -0700 (PDT)
-Received: (nullmailer pid 2201482 invoked by uid 1000);
-        Tue, 31 May 2022 20:10:50 -0000
-Date:   Tue, 31 May 2022 15:10:50 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Harsh Agarwal <quic_harshq@quicinc.com>
-Cc:     quic_pkondeti@quicinc.com, Philipp Zabel <p.zabel@pengutronix.de>,
-        quic_ppratap@quicinc.com,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-kernel@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        Felipe Balbi <balbi@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [RFC v2 1/2] dt-bindings: usb: dwc3: Add support for multiport
- related properties
-Message-ID: <20220531201050.GD1808817-robh@kernel.org>
-References: <1653560029-6937-1-git-send-email-quic_harshq@quicinc.com>
- <1653560029-6937-2-git-send-email-quic_harshq@quicinc.com>
- <1653568833.732260.3797150.nullmailer@robh.at.kernel.org>
- <33ce11bd-abc4-0e59-4637-e8133818e0f6@quicinc.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Z4obN2PrlRBi/vvUEyV2UQsecnDWlqJ38oVljJMTvP0=;
+        b=yDXFpPTkfdCwpighEMxdu7yznBTdOC/fPlv4ZqQ8BJGfqvFlmfsDPA68C3IwwvoZ2j
+         de8s3Orvvrrix20W1L0LmEIjcsuMDcZSLNQVe+RtoMFWHUlHK+RXenjU3w8iXGZTdQXl
+         Stb/yteHj4vGmWlbbIVuHMZobEcbaIMgT5yDk/DuZ4NAUluSPCEun2mMlQiqYJi6A4+T
+         AC9lpKWQiOnylnoOVRyx00Jrgite2wvuSX2o1lUlMCkoiKuYWKIDQhh6XgECXv0zDWfz
+         F46UuJlRgZU9ajNwvZDADqwkdjWLHUyEYTzohJfkeY13VsyVpCoxETsOzsqvrAQU6HcR
+         Yyxg==
+X-Gm-Message-State: AOAM533c/OP+PKqcwXJcx1WC1T67SJutUAW+007evZMoDzJvQ+1I+JOX
+        nGKQWaisBCqYyClkcIPTCAGoRJbXAM7uRJdRzXs=
+X-Google-Smtp-Source: ABdhPJwpqp0PNjWqG6eHNSmMkYh1/ESXC1HCBt46qMnqyXHLMu0gXsuccoFz7YZhVaV2BIl6en0hhmYjg3nL3o/Z03Y=
+X-Received: by 2002:a05:6102:3753:b0:337:8f39:f642 with SMTP id
+ u19-20020a056102375300b003378f39f642mr21378616vst.52.1654027872782; Tue, 31
+ May 2022 13:11:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <33ce11bd-abc4-0e59-4637-e8133818e0f6@quicinc.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20220515202032.3046-1-stefan.wahren@i2se.com> <20220515202032.3046-8-stefan.wahren@i2se.com>
+ <CALeDE9PeKvXu2AKp=RXt5yU6y5=vQw35PSGiFPpPmxVT+TYSYg@mail.gmail.com> <97a51373-91df-17de-8525-cd99a9166889@i2se.com>
+In-Reply-To: <97a51373-91df-17de-8525-cd99a9166889@i2se.com>
+From:   Peter Robinson <pbrobinson@gmail.com>
+Date:   Tue, 31 May 2022 21:11:01 +0100
+Message-ID: <CALeDE9Mgd3TYJo81P6++uzKHMBeYO68EFPjEhwZqri5BcHrK8w@mail.gmail.com>
+Subject: Re: [PATCH 07/11] mfd: bcm2835-pm: Add support for BCM2711
+To:     Stefan Wahren <stefan.wahren@i2se.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Melissa Wen <melissa.srw@gmail.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 27, 2022 at 04:30:34PM +0530, Harsh Agarwal wrote:
-> 
-> On 5/26/2022 6:10 PM, Rob Herring wrote:
-> > On Thu, 26 May 2022 15:43:48 +0530, Harsh Agarwal wrote:
-> > > Added support for multiport, mport, num-ssphy and num-hsphy
-> > > properties. These properties are used to support devices having
-> > > a multiport controller.
-> > > 
-> > > Signed-off-by: Harsh Agarwal <quic_harshq@quicinc.com>
-> > > ---
-> > >   .../devicetree/bindings/usb/snps,dwc3.yaml         | 55 ++++++++++++++++++++++
-> > >   1 file changed, 55 insertions(+)
-> > > 
-> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> > 
-> > yamllint warnings/errors:
-> > ./Documentation/devicetree/bindings/usb/snps,dwc3.yaml:366:8: [warning] wrong indentation: expected 6 but found 7 (indentation)
-> > ./Documentation/devicetree/bindings/usb/snps,dwc3.yaml:367:10: [warning] wrong indentation: expected 11 but found 9 (indentation)
-> > ./Documentation/devicetree/bindings/usb/snps,dwc3.yaml:369:11: [warning] wrong indentation: expected 11 but found 10 (indentation)
-> > 
-> > dtschema/dtc warnings/errors:
-> > Documentation/devicetree/bindings/usb/snps,dwc3.example.dts:86.27-89.15: Warning (unit_address_vs_reg): /example-2/usb@4a000000/multiport/mport@1: node has a unit name, but no reg or ranges property
-> > Documentation/devicetree/bindings/usb/snps,dwc3.example.dts:91.27-93.15: Warning (unit_address_vs_reg): /example-2/usb@4a000000/multiport/mport@2: node has a unit name, but no reg or ranges property
-> > Documentation/devicetree/bindings/usb/snps,dwc3.example.dts:95.27-97.15: Warning (unit_address_vs_reg): /example-2/usb@4a000000/multiport/mport@3: node has a unit name, but no reg or ranges property
-> > Documentation/devicetree/bindings/usb/snps,dwc3.example.dts:99.27-101.15: Warning (unit_address_vs_reg): /example-2/usb@4a000000/multiport/mport@4: node has a unit name, but no reg or ranges property
-> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/snps,dwc3.example.dtb: usb@4a000000: multiport: 'mport' is a required property
-> > 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> > 
-> > doc reference errors (make refcheckdocs):
-> > 
-> > See https://patchwork.ozlabs.org/patch/
-> > 
-> > This check can fail if there are any dependencies. The base for a patch
-> > series is generally the most recent rc1.
-> > 
-> > If you already ran 'make dt_binding_check' and didn't see the above
-> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> > date:
-> > 
-> > pip3 install dtschema --upgrade
-> > 
-> > Please check and re-submit.
-> Indentation error I have rectified in my RFC v2.
-> Regarding below warnings
-> 
-> "Documentation/devicetree/bindings/usb/snps,dwc3.example.dts:86.27-89.15: Warning (unit_address_vs_reg): /example-2/usb@4a000000/multiport/mport@1: node has a unit name, but no reg or ranges property"
-> Here the mport expects no "reg" or ranges" property as of now. Only thing that is mandated is either the USB-PHY phandles using "usb-phy" or the Generic PHY declaration using "phy" and "phy-names"
-> Can you please suggest to mask these warnings or do I need to add something else ?
+Hi Stefan,
 
-A unit-address requires 'reg' or 'ranges' and vice-versa. So you need 
-'reg'.
+On Tue, May 31, 2022 at 6:27 PM Stefan Wahren <stefan.wahren@i2se.com> wrote:
+>
+> Hi Peter,
+>
+> Am 31.05.22 um 17:08 schrieb Peter Robinson:
+> > On Sun, May 15, 2022 at 9:21 PM Stefan Wahren <stefan.wahren@i2se.com> wrote:
+> >> In BCM2711 the new RPiVid ASB took over V3D. The old ASB is still present
+> >> with the ISP and H264 bits, and V3D is in the same place in the new ASB
+> >> as the old one.
+> >>
+> >> As per the devicetree bindings, BCM2711 will provide both the old and
+> >> new ASB resources, so get both of them and pass them into
+> >> 'bcm2835-power,' which will take care of selecting which one to use
+> >> accordingly.
+> >>
+> >> Since the RPiVid ASB's resources were being provided prior to formalizing
+> >> the bindings[1], also support the old firmwares that didn't use
+> > I'm guessing this [1] is referring to "[1] See: 7dbe8c62ceeb ("ARM:
+> > dts: Add minimal Raspberry Pi 4 support")" referred to in the original
+> > patch [1] that Nicolas did, was there a reason to drop the
+> > details/changelog here?
+> Oops, the link accidently get lost.
+> > The decision not to use bits makes sense I
+> > believe.
+> Yes, i think the new version is more elegant.
+> >
+> > [1] https://patchwork.kernel.org/project/linux-arm-kernel/patch/20220213225646.67761-8-pbrobinson@gmail.com/
+> >
+> >> 'reg-names.'
+> >>
+> >> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+> >> ---
+> >>   drivers/mfd/bcm2835-pm.c       | 18 ++++++++++++++++++
+> >>   include/linux/mfd/bcm2835-pm.h |  1 +
+> >>   2 files changed, 19 insertions(+)
+> >>
+> >> diff --git a/drivers/mfd/bcm2835-pm.c b/drivers/mfd/bcm2835-pm.c
+> >> index 1656d786993a..da110767c6a4 100644
+> >> --- a/drivers/mfd/bcm2835-pm.c
+> >> +++ b/drivers/mfd/bcm2835-pm.c
+> >> @@ -28,6 +28,8 @@ static const struct mfd_cell bcm2835_power_devs[] = {
+> >>   static int bcm2835_pm_get_pdata(struct platform_device *pdev,
+> >>                                  struct bcm2835_pm *pm)
+> >>   {
+> >> +       bool is_bcm2711 = of_device_is_compatible(pm->dev->of_node, "brcm,bcm2711-pm");
+> >> +
+> >>          /* If no 'reg-names' property is found we can assume we're using old
+> >>           * firmware.
+> >>           */
+> >> @@ -39,6 +41,7 @@ static int bcm2835_pm_get_pdata(struct platform_device *pdev,
+> >>                          return PTR_ERR(pm->base);
+> >>
+> >>                  pm->asb = devm_platform_ioremap_resource(pdev, 1);
+> >> +               pm->rpivid_asb = devm_platform_ioremap_resource(pdev, 2);
+> > Shouldn't we check if is_bcm2711 before we assign rpivid_asb above?
+> Yes, make sense.
+> >
+> >>          } else {
+> >>                  struct resource *res;
+> >>
+> >> @@ -50,11 +53,25 @@ static int bcm2835_pm_get_pdata(struct platform_device *pdev,
+> >>                                                      "asb");
+> >>                  if (res)
+> >>                          pm->asb = devm_ioremap_resource(&pdev->dev, res);
+> >> +
+> >> +               res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
+> >> +                                                   "rpivid_asb");
+> >> +               if (res)
+> >> +                       pm->rpivid_asb = devm_ioremap_resource(&pdev->dev,
+> >> +                                                               res);
+> >>          }
+> >>
+> >>          if (IS_ERR(pm->asb))
+> >>                  pm->asb = NULL;
+> >>
+> >> +       if (IS_ERR(pm->rpivid_asb))
+> >> +               pm->rpivid_asb = NULL;
+> >> +
+> >> +       if (pm->rpivid_asb && !is_bcm2711) {
+> >> +               dev_err(pm->dev, "RPiVid ASB support only present in BCM2711\n");
+> > Should we ever get into this situation? If it's an older get RPi I'm
+> > guessing pm->rpivid_asb should have been set to NULL from the error
+> > above.
+> I think this was a warning for older BCM2711 downstream DT files which
+> had rpivid_asb register but no BCM2711 compatible.
 
-However, usb-hcd.yaml already defines what child nodes are for USB 
-hosts. Whatever you do here needs to be compatible with that.
+Based on the history I remember that makes sense, but the warning is a
+bit misleading in the context given it would actually be a 2711. Is it
+purely a DT check or is does the version of VC firmware come into play
+here too, I seem to remember firmware was used to make some things
+work on older OSes in the early days of RPi4 (although it's hard to
+tell exactly what was done, and I've tried to forget).
 
-Rob
+> >> +               return -EINVAL;
+> >> +       }
+> >> +
+> >>          return 0;
+> >>   }
+> >>
+> >> @@ -95,6 +112,7 @@ static int bcm2835_pm_probe(struct platform_device *pdev)
+> >>   static const struct of_device_id bcm2835_pm_of_match[] = {
+> >>          { .compatible = "brcm,bcm2835-pm-wdt", },
+> >>          { .compatible = "brcm,bcm2835-pm", },
+> >> +       { .compatible = "brcm,bcm2711-pm", },
+> >>          {},
+> >>   };
+> >>   MODULE_DEVICE_TABLE(of, bcm2835_pm_of_match);
+> >> diff --git a/include/linux/mfd/bcm2835-pm.h b/include/linux/mfd/bcm2835-pm.h
+> >> index ed37dc40e82a..f70a810c55f7 100644
+> >> --- a/include/linux/mfd/bcm2835-pm.h
+> >> +++ b/include/linux/mfd/bcm2835-pm.h
+> >> @@ -9,6 +9,7 @@ struct bcm2835_pm {
+> >>          struct device *dev;
+> >>          void __iomem *base;
+> >>          void __iomem *asb;
+> >> +       void __iomem *rpivid_asb;
+> >>   };
+> >>
+> >>   #endif /* BCM2835_MFD_PM_H */
+> >> --
+> >> 2.25.1
+> >>
+> > _______________________________________________
+> > linux-arm-kernel mailing list
+> > linux-arm-kernel@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
