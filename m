@@ -2,91 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A6385398CC
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 23:31:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FE6953990E
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 23:52:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347894AbiEaVaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 17:30:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37404 "EHLO
+        id S1348159AbiEaVwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 17:52:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346692AbiEaVap (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 17:30:45 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06FD39D4D5;
-        Tue, 31 May 2022 14:30:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9A47B61309;
-        Tue, 31 May 2022 21:30:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06CABC3411C;
-        Tue, 31 May 2022 21:30:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654032644;
-        bh=dgKMOmPer7iKgCojd4nmuoUy3ULtSG1a8CWjkVRT/cU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=WbRj7VYpyKzOjUQhYUviEB++FiWhTF5EDaAV86pQjN84wbUrnCUWGi5pbw+O8hG6G
-         dT9Zp3V6WViklchFXMiuZehiAw52rFGB90NixQ93WpDBUPjNjRzAEza/8ZAk05u3ds
-         gVDI17kNkuwAXOrlqmohzaFE1qjfXuJWzXx5wxLxmWY5MYoWnnq4PyWDeFkyoNGbmO
-         gm9HYXDmQCKqy+/WVFzdzPRyr+D4v4LCiSNZFgxoMepcTx/IOJb/4MRTiAF/Vjl1DC
-         B/BxHm15J0ySVGEVbs+4cfsl5xVW0cZEWVaSgEH4vrb6Rrjn7LwZ/uhEGA3/Qkjp/3
-         Wa4t3rbgNVOiA==
-Received: by mail-vs1-f54.google.com with SMTP id w10so14906983vsa.4;
-        Tue, 31 May 2022 14:30:43 -0700 (PDT)
-X-Gm-Message-State: AOAM532V6h3hfhzhyUUX6Bh/GdSDGv7b/NRK/TfoJ9n+y1GaaCfLpLen
-        7v746VC5xN/wAMmI2Ye3JmL5Yyd8aopzyBrwZQ==
-X-Google-Smtp-Source: ABdhPJwrsIDv4UJc5u6xTXBY/96ny0Alz0jVz/mRjD3IguJf2tCd0IZV0fcDQUb1XVM49IQ34zyFkt+/6Dy0JwDc6ic=
-X-Received: by 2002:a67:c118:0:b0:337:96d2:d624 with SMTP id
- d24-20020a67c118000000b0033796d2d624mr19823826vsj.26.1654032643023; Tue, 31
- May 2022 14:30:43 -0700 (PDT)
+        with ESMTP id S240002AbiEaVwc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 17:52:32 -0400
+X-Greylist: delayed 487 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 31 May 2022 14:52:29 PDT
+Received: from hutie.ust.cz (unknown [IPv6:2a03:3b40:fe:f0::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57515B85;
+        Tue, 31 May 2022 14:52:29 -0700 (PDT)
+From:   =?UTF-8?q?Martin=20Povi=C5=A1er?= <povik+lin@cutebit.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
+        t=1654033457; bh=ziyRGQZ5j9pXKOOFBr0A16Lvtbsz+JTt1HHydCrON/8=;
+        h=From:To:Cc:Subject:Date;
+        b=YNvEFc9197nSTsQy4b7S5TbkOG0RjCFC4tboeu/FYPbO2EP52aj3sZ9szSme5DDS9
+         3Kt+SRtqxTihCCQC2DjxNoPa6HYbK9Zj5FUwS9nooM7A7xfheYDKgFxAXk82csdfp6
+         7DnUveiuPgt9QkhO07LVQBxbaE+RxU+Ed/vOktK4=
+To:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, asahi@lists.linux.dev,
+        Mark Kettenis <kettenis@openbsd.org>,
+        =?UTF-8?q?Martin=20Povi=C5=A1er?= <povik+lin@cutebit.org>
+Subject: [PATCH v4 0/3] Apple ADMAC driver
+Date:   Tue, 31 May 2022 23:36:12 +0200
+Message-Id: <20220531213615.7822-1-povik+lin@cutebit.org>
 MIME-Version: 1.0
-References: <20220531211018.2287964-1-robh@kernel.org>
-In-Reply-To: <20220531211018.2287964-1-robh@kernel.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 31 May 2022 16:30:31 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKnBHfvi9iec2sgoEs6sLUgxnPY0gzxaO+bevzO3DjcmQ@mail.gmail.com>
-Message-ID: <CAL_JsqKnBHfvi9iec2sgoEs6sLUgxnPY0gzxaO+bevzO3DjcmQ@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: net/dsa: Add spi-peripheral-props.yaml references
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        UNGLinuxDriver@microchip.com,
-        Linus Walleij <linus.walleij@linaro.org>,
-        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        Marek Vasut <marex@denx.de>
-Cc:     Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_FAIL,SPF_HELO_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 31, 2022 at 4:10 PM Rob Herring <robh@kernel.org> wrote:
->
-> SPI peripheral device bindings need to reference spi-peripheral-props.yaml
-> in order to use various SPI controller specific properties. Otherwise,
-> the unevaluatedProperties check will reject any controller specific
-> properties.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> v2:
->  - Also add references in nxp,sja1105.yaml and brcm,b53.yaml as
->    pointed out by Vladimir Oltean
+Hi,
 
-Sigh, a bit too quick on this one. v3 coming.
+I am doing another push of this neglected series which adds support for
+Audio DMA Controller on recent Apple SoCs.
 
-Rob
+All best,
+Martin
+
+
+Changes since v3:
+ - collected Rob's r-b tag on binding
+ - split off MAINTAINERS commit for easier merging (allegedly)
+
+Changes since v2:
+(link: https://lore.kernel.org/dmaengine/20220411222204.96860-1-povik+lin@cutebit.org/ )
+ - in binding, make 'interrupts' fixed length and add a comment
+ - do not use devm allocation on descriptors
+ - use platform_get_irq_optional to not log errors in the course of looking for
+   an usable interrupt
+ - make channel no. unsigned
+
+Changes since v1:
+(link: https://lore.kernel.org/dmaengine/20220330164458.93055-1-povik+lin@cutebit.org/ )
+ - in binding, drop 'apple,internal-irq-destination' in favor of
+   prepending entries to 'interrupts'
+ - drop admac_peek/poke helpers
+ - use special versions of dev_err/WARN_ON where desirable, fix %pad
+   formatter invocation
+ - bring implementation of terminate_all up to dmaengine spec, add
+   device_synchronize
+ - minor fixes (comments, formatting)
+
+
+Martin Povišer (3):
+  dt-bindings: dma: Add Apple ADMAC
+  dmaengine: apple-admac: Add Apple ADMAC driver
+  MAINTAINERS: Add ADMAC driver under ARM/APPLE MACHINE
+
+ .../devicetree/bindings/dma/apple,admac.yaml  |  75 ++
+ MAINTAINERS                                   |   2 +
+ drivers/dma/Kconfig                           |   8 +
+ drivers/dma/Makefile                          |   1 +
+ drivers/dma/apple-admac.c                     | 818 ++++++++++++++++++
+ 5 files changed, 904 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/apple,admac.yaml
+ create mode 100644 drivers/dma/apple-admac.c
+
+-- 
+2.33.0
+
