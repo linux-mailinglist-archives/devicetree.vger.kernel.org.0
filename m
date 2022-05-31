@@ -2,71 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 316C1538EBF
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 12:23:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5846538EC1
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 12:23:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239502AbiEaKXd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 06:23:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37174 "EHLO
+        id S240628AbiEaKX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 06:23:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245237AbiEaKXZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 06:23:25 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF6118720B
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 03:23:24 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id n28so8048559edb.9
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 03:23:24 -0700 (PDT)
+        with ESMTP id S245642AbiEaKX5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 06:23:57 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D962880D8
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 03:23:56 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id fd25so16874860edb.3
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 03:23:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=okkjH+OvjfXBZJCEvPqx1oMMabLTIRR9I538z3D2Z2E=;
-        b=qD3IcmAVnmp2zDDZTlQkysZvufGqKTQyC8kp2mgB+0jbKXVLdOd5OCQrgjLoMIadXh
-         dRxiQUq38i5PT8O6a2v43oFufrmxADf5tV+FgLSEHFqcTXd/Ug+50qtFbCvqN87gtPa3
-         +8cW/wM8K2DmZmSQa+92E2q/qbQww0kt4H9GdKKKs0/+90GiH6sOMa8DrG/E7eXURAl3
-         GNk7IoiXCOyKz/if0ujDnQPm7DiFyMrM1l3lRPriFUGTUlSGoHO4oFzkyNhETfS9Nt31
-         aUgD2uIjsm+XvD5xp8WgVDDMgUmpVvOLOujj/1cgRjeECD60P7sNf4bDliYDEz9OYNF2
-         98rw==
+        bh=+n2Ea3CNe0GRwcA3oeCqsmQAwdtV3q8V7/DuYtbQNiE=;
+        b=Oos7ieqFgJKfv7Js//H3YYd3aIqIsFMpJ+MK76phUcljulzqcssRWbaML5b5Vf9X3G
+         3rt9q41/Z/i7oyfb186BRWmmlVLcY3n9XqTZ4tL0tQ2PQHTqJnwSP7ajPlhIvvisO5AB
+         Q9h50U3SpuO+UF9tPLzJyYsFLncVWvdveZdiiZiQXNaN6NejJuqTB7e61KYlMLl9nqOe
+         Jq6udZ/Umzv965qXuRSYo2+IHM4zVGWfxQ2gofrDx18fPxNVHvsddIj2bqbvG3w31KgJ
+         Xe3OeKUsnATJ3VEx7RBh5C/5hNrA0iMpMAT24uMUDmer5r6j1stZnmOiPi0NYLyvGJRD
+         WJxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=okkjH+OvjfXBZJCEvPqx1oMMabLTIRR9I538z3D2Z2E=;
-        b=4aYN1wGYxAx+O1SKH8rQqLojHVfauM+iizoIv7Q2zUvUpCcLyNoe3PWCNcXmUept78
-         YzFLgSrgF4fOXSYgtqrWl4Iv5c5yszUwbc71hLrcMOOuyJrE+KZyoM/cc9XjRPrTdhrK
-         i1LwzbzHLLltTcDVWm4hNWbQYDGp4Rs21xAZmV3zmPAK/sB9I/D0Tj+J7/JnV9pfF2WJ
-         BJs+yfArJIEBDQoBgyK5UPKWoOPpHcBwahBuHX8LhZCyM6GqvZuVTz7WtoDPBPbDDxfE
-         PvYoh7uc7ik5hm5z5la/Qq94p5xDLjWCbG7PytZzsPWM8nAsa9na403wrwbT1e16jlMR
-         bJ/A==
-X-Gm-Message-State: AOAM533AXuF3jpjf2c1+NkU94y3QVjUW9EnlJ4a4xyn8+EVbDOPAhhfO
-        6uEG2arCXUll5wbMucAFpHujgg==
-X-Google-Smtp-Source: ABdhPJzlM64G6AqKheHVTraVewtNN6C01iaEbZeoyV1aFovsz6k7lQ5XFNKRXSeMOCiVV8Tyikw1Sg==
-X-Received: by 2002:a05:6402:e99:b0:41d:11f2:85e0 with SMTP id h25-20020a0564020e9900b0041d11f285e0mr62935867eda.339.1653992603489;
-        Tue, 31 May 2022 03:23:23 -0700 (PDT)
+        bh=+n2Ea3CNe0GRwcA3oeCqsmQAwdtV3q8V7/DuYtbQNiE=;
+        b=RYlRGggq4fKKAtgperHObkquuoqnxW2jJt9GYOuw39mZdev+gcNlpspdfKDZnJjBji
+         T71nWLnbHug/8th4E8gOyLIllDTWts9rFiR0b3bO5FA+u8jhV2/k9OualGMOV64MkJI+
+         XtrAnx1pihvbpY/tE9YPKS/BL3yUYzyVUTZGQOXO3uJV1m0DL7JzyBW/XhxLo8ybA+da
+         jJpnr8fH6f5tmgL1ne1ThSl+nayUMUM214eOYHeZwQBNTCvU59MDcRtu5jmQ59HrkMeG
+         HByeRCDM1etwJ6f2mVJe53ZF5nbu1S6fxzfs1pNvIfoOjPuyiElxv4uuI23Nj0TMgSVP
+         dl/g==
+X-Gm-Message-State: AOAM533uAmjojnp/qX1bYYQ192fG8ZHFJ77dl/dnCJbuXBxGYOHio/eV
+        tVhSW+H0pB5ndUuYLYjCcIucJBSBqTdYnAH1
+X-Google-Smtp-Source: ABdhPJygcunafiNc9FQCcU4I+V+zNxcqbiUIoIgNCIdchys9kDJNzbDpzQlGawXotJaah8yfW9riSQ==
+X-Received: by 2002:a05:6402:2892:b0:42d:c871:78f4 with SMTP id eg18-20020a056402289200b0042dc87178f4mr14403307edb.192.1653992634887;
+        Tue, 31 May 2022 03:23:54 -0700 (PDT)
 Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id t9-20020a50c249000000b0042bd2012196sm8149688edf.85.2022.05.31.03.23.22
+        by smtp.gmail.com with ESMTPSA id v12-20020a1709061dcc00b006f3ef214e3bsm4815796ejh.161.2022.05.31.03.23.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 May 2022 03:23:23 -0700 (PDT)
-Message-ID: <b1f0e92a-7150-fd40-7253-91bb58e9d3c8@linaro.org>
-Date:   Tue, 31 May 2022 12:23:22 +0200
+        Tue, 31 May 2022 03:23:54 -0700 (PDT)
+Message-ID: <f13be998-52ff-5742-2a0a-728a292261e2@linaro.org>
+Date:   Tue, 31 May 2022 12:23:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH 1/3] ARM: dts: aspeed: Adding Jabil Rubypass BMC
+Subject: Re: [PATCH v5 3/3] dt-bindings: arm: aspeed: document board
+ compatibles
 Content-Language: en-US
 To:     David Wang <David_Wang6097@jabil.com>, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     edward_chen@jabil.com, ben_pai@jabil.com
 References: <20220531011100.882643-1-David_Wang6097@jabil.com>
+ <20220531011100.882643-2-David_Wang6097@jabil.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220531011100.882643-1-David_Wang6097@jabil.com>
+In-Reply-To: <20220531011100.882643-2-David_Wang6097@jabil.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,47 +77,14 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 31/05/2022 03:10, David Wang wrote:
-> The initial introduction of the jabil server with AST2600 BMC SoC.
+> Document jabil board compatible.
 > 
+> Signed-off-by: David Wang <David_Wang6097@jabil.com>
 > ---
-> 
-> v5
-> - Compatible value chamged to "jabil,rbp-bmc".
-> 
-> v4
-> - Add document the new compatible.
-> - Delete redundant blank lines.
-> - Add a new line at end of file.
-> 
-> v3
-> - Adjustment entries are ordered by name.
-> - Remove the bootargs property and modify the stdout-path property.
-> - Group multiple LED devices into a group.
-> - Modify the "gpio3_71" node name format.
-> - Delete unneeded blank line at the end.
-> 
-> v2
-> - Disable empty i2c bus.
-> - Remove gfx node because aspeed-g6.dtsi isn't supported.
-> - Modify the led format and add some properties.
-> - Fix wrong indentation.
-> - Add stdout property in chosen node.
-> - Rename temp to temperature-sensor in i2c bus 0.
 
-Thanks for the changes.
+Thanks, this looks good. You however need cover letter explaining the
+dependencies (on top of my patchset).
 
-> +&lpc_snoop {
-> +	snoop-ports = <0x80>;
-> +	status = "okay";
-> +};
-> +
-
-You still have here additional blank line about which I already
-commented. Then you removed both blank lines - this one and the usual
-trailing one.
-
-I mean... really... Just remove the unneeded one, leaving the proper
-patch like every other file in Linux kernel.
 
 Best regards,
 Krzysztof
