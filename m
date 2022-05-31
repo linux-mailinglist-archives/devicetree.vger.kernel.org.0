@@ -2,148 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F067538D30
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 10:50:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5630538CE9
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 10:31:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244983AbiEaIub (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 04:50:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39996 "EHLO
+        id S244879AbiEaIb6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 04:31:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244978AbiEaIu2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 04:50:28 -0400
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 771E78BD3F
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 01:50:26 -0700 (PDT)
-Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20220531085021epoutp048b52e2196987d8ee19bc33339ff95728~0JG65opfP0128801288epoutp04H
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 08:50:21 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20220531085021epoutp048b52e2196987d8ee19bc33339ff95728~0JG65opfP0128801288epoutp04H
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1653987021;
-        bh=pipem+2mIb0W3Q/lWThM+lcOngvhQ0rBFMsAtxsUOZI=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=cD79ejkstpu3SXnc/nHbo3kgflWy4uamxBk33jmou0ozoT/ZvZmicyw8P1QVrPEzB
-         ErFSjCRxMreuqPqFudzu5rUSBa92Dd1RKO7VvoVnPjnhuHU3q21LVqghOFBw7E+zeg
-         TMy65V0wewQwoU6AcaE0ywjTpPqQHJyni5eM0tVI=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-        epcas5p4.samsung.com (KnoxPortal) with ESMTP id
-        20220531085019epcas5p49d8271e62861164d52b6c88cbfeca9c5~0JG5oLu1U1319513195epcas5p4o;
-        Tue, 31 May 2022 08:50:19 +0000 (GMT)
-Received: from epsmges5p1new.samsung.com (unknown [182.195.38.178]) by
-        epsnrtp1.localdomain (Postfix) with ESMTP id 4LC5ZZ6LZLz4x9Q2; Tue, 31 May
-        2022 08:50:14 +0000 (GMT)
-Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
-        epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        B1.FE.10063.3C6D5926; Tue, 31 May 2022 17:50:11 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-        20220531082948epcas5p2000ccae08ac275a18bcaef74e190345b~0I0-Wh7581624816248epcas5p2w;
-        Tue, 31 May 2022 08:29:48 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20220531082948epsmtrp17281978a14b332c21f73637aeda23a90~0I0-VqBbK0673006730epsmtrp12;
-        Tue, 31 May 2022 08:29:48 +0000 (GMT)
-X-AuditID: b6c32a49-4b5ff7000000274f-3b-6295d6c3332d
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        35.38.08924.CF1D5926; Tue, 31 May 2022 17:29:48 +0900 (KST)
-Received: from mshams02 (unknown [107.122.12.94]) by epsmtip2.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20220531082946epsmtip2545cf79bf6f90a93748c6af86c3c34e8~0I09Bemwq0749507495epsmtip2g;
-        Tue, 31 May 2022 08:29:46 +0000 (GMT)
-From:   "m.shams" <m.shams@samsung.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-        <jic23@kernel.org>, <lars@metafoo.de>, <robh+dt@kernel.org>,
-        <krzk+dt@kernel.org>
-Cc:     <geert@linux-m68k.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-samsung-soc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <alim.akhtar@samsung.com>, <paul@crapouillou.net>,
-        <linux-fsd@tesla.com>
-In-Reply-To: <b5994aac-f471-52bd-e6a1-6f8cbba62d60@linaro.org>
-Subject: RE: [PATCH v2 2/3] iio: adc: exynos-adc: Add support for ADC FSD-HW
- controller
-Date:   Tue, 31 May 2022 13:59:43 +0530
-Message-ID: <015901d874c8$97454490$c5cfcdb0$@samsung.com>
+        with ESMTP id S244867AbiEaIb5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 04:31:57 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD0A24D274
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 01:31:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1653985916; x=1685521916;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=n0MlSyv4m4NqUi7kCGI4FwLhvb140adLuDksFUetojk=;
+  b=X3jl9UeEC4wqWxlkU7LccsvJYebhFvcHHsRgj+QGFN7tIUKXOslu5V0p
+   lXjeJ7cQhOhaL4H5LMft0tzmjT0vjD35lE/Z9g3e/svP52kgVnhqv7Dle
+   X05nayHjrl7RyCfoUNI3fmdU7vHZOwWefxab27I8SnVVgjTV26MCcR9vD
+   DIdaDv0ZxuV708S+ydXNkgPir/Oup4JCUmrel6Cab8EN7RlUu1vPMFEGi
+   9Vgbvhj2aH5k12TEGncf+5lrdAR2SkFv3XhJUJtuMbHZqwfMWQChzdlzp
+   DmAlaU62ZjvNoCA5SnMqhkHBlkKqhzh+9O+TxYUHQMTFop3FWbD9mIq1e
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.91,264,1647298800"; 
+   d="scan'208";a="24167931"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 31 May 2022 10:31:52 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Tue, 31 May 2022 10:31:54 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Tue, 31 May 2022 10:31:54 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1653985914; x=1685521914;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=n0MlSyv4m4NqUi7kCGI4FwLhvb140adLuDksFUetojk=;
+  b=RNT8yAIgsGLbU6F6nUKqGTon7paoihwhkYZhEmbkIO/+YmPDguraMzzs
+   klHluJLGnLPoiE+2Lp9eECxfCxgQ59kwhbRj5qrKG8Ig3E5TEwo0Oj8Pz
+   b0VbT+sN3kiUNV+kl0RZ53DeN1OTqqxKCMdaHbu107FDUfeBLIUcr8ToJ
+   YaSwhIf0To2yQXMGN0zAxAEeFkie4OzRYFu2hMVr7PlfE4hR9E1Mj6cFU
+   pPsHSuPXxpQIODM3N5c3Uc6gmxXChLNAlASEX69cnyeoboNnOblH82Q9s
+   mvKn7rN4CpbMfZGf5uxy6xDaT+8S802LsbNM3OU7FRV/kTpmKVzL6FJgi
+   A==;
+X-IronPort-AV: E=Sophos;i="5.91,264,1647298800"; 
+   d="scan'208";a="24167929"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 31 May 2022 10:31:51 +0200
+Received: from steina-w.localnet (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 7AD06280004;
+        Tue, 31 May 2022 10:31:51 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Robert Foss <robert.foss@linaro.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, patchwork-lst@pengutronix.de,
+        Lucas Stach <l.stach@pengutronix.de>
+Subject: Re: (EXT) [PATCH v0 09/10] arm64: dts: imx8mp: add HDMI display pipeline
+Date:   Tue, 31 May 2022 10:31:49 +0200
+Message-ID: <8174014.NyiUUSuA9g@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20220406160123.1272911-10-l.stach@pengutronix.de>
+References: <20220406160123.1272911-1-l.stach@pengutronix.de> <20220406160123.1272911-10-l.stach@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: en-in
-Thread-Index: AQIGNN21wa2G9ryxTCo9HfAX0Xxs4AIEb8M6AoyC4FAB9O8sRayo+Awg
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrPJsWRmVeSWpSXmKPExsWy7bCmpu7ha1OTDBZ0mVk8mLeNzWL+kXOs
-        Fs9u7WWyeNC0isni5ax7bBZ7X29lt1gyeT6rxabH11gtHr4Kt5h35B2LxeVdc9gsZpzfx2TR
-        v/gSi0Xr3iPsDnweqy+1s3lsWtXJ5nHn2h42j0OHOxg9Ni+p91jy5hCrR9+WVYwe/5rmsnt8
-        3iQXwBmVbZORmpiSWqSQmpecn5KZl26r5B0c7xxvamZgqGtoaWGupJCXmJtqq+TiE6DrlpkD
-        dLuSQlliTilQKCCxuFhJ386mKL+0JFUhI7+4xFYptSAlp8CkQK84Mbe4NC9dLy+1xMrQwMDI
-        FKgwITvj4sr17AXLWSqOnz3K2sB4iLmLkZNDQsBE4sC9aUA2F4eQwG5GiQvdlxghnE+MEpMf
-        LWKFcD4zSuxe8g3I4QBrOXmFAyK+i1Fiy/7TUB3PGCUmvjnHDFLEJqAqseOmCEhcRGAyo8TO
-        b9dZQBxmgUlMEuuPbWAHWc4pYCex8P0dJhBbWCBS4tv2SawgNgtQ8/rNZ5hABvEKWEqcaVQF
-        CfMKCEqcnPmEBcRmFpCX2P52DtQPChI/ny5jhYiLSxz92QN2g4iAm8SNJfogayUE3nBINB5u
-        YoGod5E4/HQOE4QtLPHq+BZ2CFtK4mV/G5SdLjH3YS9UTYHEsl3foeL2EgeuzGEBmc8soCmx
-        fpc+RFhWYuqpdUwQJ/BJ9P5+AtXKK7FjHoytKPF/dz/UGHGJdyumsE5gVJqF5LNZSD6bheSb
-        WQjbFjCyrGKUTC0ozk1PLTYtMMxLLYfHd3J+7iZGcMrW8tzBePfBB71DjEwcjIcYJTiYlUR4
-        S3ZNTRLiTUmsrEotyo8vKs1JLT7EaAoM7YnMUqLJ+cCskVcSb2hiaWBiZmZmYmlsZqgkzivw
-        vzFJSCA9sSQ1OzW1ILUIpo+Jg1OqgWnJndkFFY9y/UNsLz3bsUvxwNwHR+4ef6jxnKF/dTbH
-        hj8rcydlGD5LUBf77lbcY39gXsAfr0UNhgt8G9y0M/QmbF+19JKqNw/TtW5ZdUVD3vRLm20T
-        9N04Jy4OLtpwt3fbaxZJieoQfeP0fJ+NWkmnLyWYcl8sYGE/ohn+8VhVaW/PvTlLW6S67Pbc
-        c120re7w8emlLb83d8ycUnq1WXvSQ9Ozv7KfPvvJ/UlQKsH/8ouTl5Y2zI3zcghcYcoi35LJ
-        OFfbj9Vd5PrMEq0PvmZPX3x0PsmcprfiZ7BppFqke53LOw+WNac3vumKLfcyteDL+fe0+G/T
-        nYyVnv+viqatnzpP+tb/eXpBZj9UipRYijMSDbWYi4oTAZAyp7ViBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrGIsWRmVeSWpSXmKPExsWy7bCSvO6fi1OTDCZ/NbR4MG8bm8X8I+dY
-        LZ7d2stk8aBpFZPFy1n32Cz2vt7KbrFk8nxWi02Pr7FaPHwVbjHvyDsWi8u75rBZzDi/j8mi
-        f/ElFovWvUfYHfg8Vl9qZ/PYtKqTzePOtT1sHocOdzB6bF5S77HkzSFWj74tqxg9/jXNZff4
-        vEkugDOKyyYlNSezLLVI3y6BK+PiyvXsBctZKo6fPcrawHiIuYuRg0NCwETi5BWOLkYuDiGB
-        HYwS074sY+xi5ASKi0tM+7UfyhaWWPnvOTuILSTwhFHixIwYkF42AVWJHTdFQHpFBKYzSvza
-        fogFxGEWmMMkcfrmI2aIqS8ZJS49+s0E0s0pYCex8P0dMFtYIFzi14dlYDYL0KT1m88wgUzl
-        FbCUONOoChLmFRCUODnzCQuIzSygLdH7sJURwpaX2P52DjPEcQoSP58uY4WIi0sc/dkD9piI
-        gJvEjSX6ExiFZyGZNAvJpFlIJs1C0r2AkWUVo2RqQXFuem6xYYFRXmq5XnFibnFpXrpecn7u
-        JkZw1Gpp7WDcs+qD3iFGJg7GQ4wSHMxKIrwlu6YmCfGmJFZWpRblxxeV5qQWH2KU5mBREue9
-        0HUyXkggPbEkNTs1tSC1CCbLxMEp1cBkHZh86tOhBS5rddm1b1twxNczrT3pf/FTcsqpz5k+
-        bIzq9wr6/zLH1yTZHiv7/OW1Z4TlVUm/K/sWOq1Ze3FalkqEWglLbXHstJPczUo/Fn38sGd3
-        bs+7XRyVK3wv+UxQn964gGe73KqHf7M1Syt5L1nn9z7Ins21auqGi5W1dkkSvgvyXl++f9gu
-        dflNM+t2+Tnhc536i6T/nBMUs3Die1q+O0nX7ZW8ztzEHKv7O2M2mb6UjDNSWDf/5o/0S3cc
-        1R2qP4TlrWr8d3XyFw7bEL1lC80Na1yub6kL+BfvWWA44WP+ogS9vzbNyT9Tb87rX8b+5uPD
-        hKDVUzouHOcXyDvyb4rWS4fTi1QUwvqUWIozEg21mIuKEwEdbCzzSQMAAA==
-X-CMS-MailID: 20220531082948epcas5p2000ccae08ac275a18bcaef74e190345b
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220520145802epcas5p2153cb572493e3bccd702e0ecce1171fb
-References: <20220520145820.67667-1-m.shams@samsung.com>
-        <CGME20220520145802epcas5p2153cb572493e3bccd702e0ecce1171fb@epcas5p2.samsung.com>
-        <20220520145820.67667-3-m.shams@samsung.com>
-        <b5994aac-f471-52bd-e6a1-6f8cbba62d60@linaro.org>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_CSS_A autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Hi Lucas,
 
-On 20/05/2022 16:58, Tamseel Shams wrote:
->> From: Alim Akhtar <alim.akhtar@samsung.com>
->> 
->> Exynos's ADC-FSD-HW has some difference in registers set, number of 
->> programmable channels (16 channel) etc. This patch adds support for 
->> ADC-FSD-HW controller version.
->> 
->> Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
->> Signed-off-by: Tamseel Shams <m.shams@samsung.com>
+Am Mittwoch, 6. April 2022, 18:01:22 CEST schrieb Lucas Stach:
+> This adds the DT nodes for all the peripherals that make up the
+> HDMI display pipeline.
+> 
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 80 +++++++++++++++++++++++
+>  1 file changed, 80 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> b/arch/arm64/boot/dts/freescale/imx8mp.dtsi index
+> 6b7b5ba32b48..a41da99e9537 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> @@ -1087,6 +1087,86 @@ irqsteer_hdmi: interrupt-controller@32fc2000 {
+>  				clock-names = "ipg";
+>  				power-domains = <&hdmi_blk_ctrl 
+IMX8MP_HDMIBLK_PD_IRQSTEER>;
+>  			};
+> +
+> +			hdmi_pvi: display-bridge@32fc4000 {
+> +				compatible = "fsl,imx8mp-hdmi-
+pvi";
+> +				reg = <0x32fc4000 0x40>;
+> +				power-domains = <&hdmi_blk_ctrl 
+IMX8MP_HDMIBLK_PD_PVI>;
 
->The compatible needs changing (as commented in bindings).
+This should be disabled by default as well. Unless 'hdmi_tx: hdmi@32fd8000' is 
+enabled, this results in the warning:
+imx-hdmi-pvi: probe of 32fc4000.display-bridge failed with error -22
 
-Sure, will change in next version 
+Best regards
+Alexander
+
+> +
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					port@0 {
+> +						reg = <0>;
+> +						
+pvi_from_lcdif3: endpoint {
+> +							
+remote-endpoint = <&lcdif3_to_pvi>;
+> +						};
+> +					};
+> +
+> +					port@1 {
+> +						reg = <1>;
+> +						
+pvi_to_hdmi_tx: endpoint {
+> +							
+remote-endpoint = <&hdmi_tx_from_pvi>;
+> +						};
+> +					};
+> +				};
+> +			};
+> +
+> +			lcdif3: display-controller@32fc6000 {
+> +				compatible = "fsl,imx8mp-lcdif";
+> +				reg = <0x32fc6000 0x238>;
+> +				interrupts = <8 
+IRQ_TYPE_LEVEL_HIGH>;
+> +				interrupt-parent = 
+<&irqsteer_hdmi>;
+> +				clocks = <&hdmi_tx_phy>,
+> +					 <&clk 
+IMX8MP_CLK_HDMI_APB>,
+> +					 <&clk 
+IMX8MP_CLK_HDMI_ROOT>;
+> +				clock-names = "pix", "axi", 
+"disp_axi";
+> +				power-domains = <&hdmi_blk_ctrl 
+IMX8MP_HDMIBLK_PD_LCDIF>;
+> +
+> +				port {
+> +					lcdif3_to_pvi: endpoint 
+{
+> +						remote-
+endpoint = <&pvi_from_lcdif3>;
+> +					};
+> +				};
+> +			};
+> +
+> +			hdmi_tx: hdmi@32fd8000 {
+> +				compatible = "fsl,imx8mp-hdmi";
+> +				reg = <0x32fd8000 0x7eff>;
+> +				interrupts = <0 
+IRQ_TYPE_LEVEL_HIGH>;
+> +				interrupt-parent = 
+<&irqsteer_hdmi>;
+> +				clocks = <&clk 
+IMX8MP_CLK_HDMI_APB>,
+> +					 <&clk 
+IMX8MP_CLK_HDMI_REF_266M>,
+> +					 <&clk IMX8MP_CLK_32K>,
+> +					 <&hdmi_tx_phy>;
+> +				clock-names = "iahb", "isfr", 
+"cec", "pix";
+> +				assigned-clocks = <&clk 
+IMX8MP_CLK_HDMI_REF_266M>;
+> +				assigned-clock-parents = <&clk 
+IMX8MP_SYS_PLL1_266M>;
+> +				power-domains = <&hdmi_blk_ctrl 
+IMX8MP_HDMIBLK_PD_HDMI_TX>;
+> +				reg-io-width = <1>;
+> +				status = "disabled";
+> +
+> +				port {
+> +					hdmi_tx_from_pvi: 
+endpoint {
+> +						remote-
+endpoint = <&pvi_to_hdmi_tx>;
+> +					};
+> +				};
+> +			};
+> +
+> +			hdmi_tx_phy: phy@32fdff00 {
+> +				compatible = "fsl,imx8mp-hdmi-
+phy";
+> +				reg = <0x32fdff00 0x100>;
+> +				clocks = <&clk 
+IMX8MP_CLK_HDMI_APB>,
+> +					 <&clk 
+IMX8MP_CLK_HDMI_24M>;
+> +				clock-names = "apb", "ref";
+> +				assigned-clocks = <&clk 
+IMX8MP_CLK_HDMI_24M>;
+> +				assigned-clock-parents = <&clk 
+IMX8MP_CLK_24M>;
+> +				power-domains = <&hdmi_blk_ctrl 
+IMX8MP_HDMIBLK_PD_HDMI_TX_PHY>;
+> +				#clock-cells = <0>;
+> +				#phy-cells = <0>;
+> +				status = "disabled";
+> +			};
+>  		};
+> 
+>  		gpu3d: gpu@38000000 {
 
 
-Thanks & Regards,
-Tamseel Shams
+
 
