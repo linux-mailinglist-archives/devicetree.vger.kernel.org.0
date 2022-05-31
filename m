@@ -2,55 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0273A539893
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 23:20:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A6385398CC
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 23:31:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347921AbiEaVTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 17:19:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36502 "EHLO
+        id S1347894AbiEaVaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 17:30:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347946AbiEaVTc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 17:19:32 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 460359D4DD;
-        Tue, 31 May 2022 14:19:27 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id C06CA1F43F0B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1654031966;
-        bh=68k5y0jKYIIMSTFMtmsmSALMYTfSSep8zYGcyyvXciU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kB8pT4aFB5cbKdOyctjFzW6Hekmjw0u2cSQOLAshFZIQ0pRIK1muB9rFlcFy+4Yoc
-         vJvJMBOOwvWF5XZXf9M0ZFg8p+6rVT2ZynREraW+MyNrqlI7HxyG/38GYV8g5S0Qpt
-         wyMyBoiiYvZAzRMqvXaPnLiYgxEKFC6KahgxPsqaQVXffQ2t2OyZxtBma4piAMcRCJ
-         pa70jEWdaBl/3kLXdVRkPZIEWg6cro/JU1n6IBaTNbQOs3aiAHXML92nrTuDF4YPoi
-         WaCUyqnMxES1EOYtUjER5uKX655zDqtNhyxw8Kyq47+Eb0RRsEV/r9jZCPJ4WJjqjb
-         06xP+NOEp36zw==
-Date:   Tue, 31 May 2022 17:19:21 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>, kernel@collabora.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v1 0/2] MT8192 pinctrl properties adjustments
-Message-ID: <20220531211921.uhdd2exxv2uhic6x@notapiano>
-References: <20220525155714.1837360-1-nfraprado@collabora.com>
- <74a6159b-40d0-bbc3-5b4a-ebf6ed98bac7@collabora.com>
+        with ESMTP id S1346692AbiEaVap (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 17:30:45 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06FD39D4D5;
+        Tue, 31 May 2022 14:30:45 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9A47B61309;
+        Tue, 31 May 2022 21:30:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06CABC3411C;
+        Tue, 31 May 2022 21:30:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654032644;
+        bh=dgKMOmPer7iKgCojd4nmuoUy3ULtSG1a8CWjkVRT/cU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=WbRj7VYpyKzOjUQhYUviEB++FiWhTF5EDaAV86pQjN84wbUrnCUWGi5pbw+O8hG6G
+         dT9Zp3V6WViklchFXMiuZehiAw52rFGB90NixQ93WpDBUPjNjRzAEza/8ZAk05u3ds
+         gVDI17kNkuwAXOrlqmohzaFE1qjfXuJWzXx5wxLxmWY5MYoWnnq4PyWDeFkyoNGbmO
+         gm9HYXDmQCKqy+/WVFzdzPRyr+D4v4LCiSNZFgxoMepcTx/IOJb/4MRTiAF/Vjl1DC
+         B/BxHm15J0ySVGEVbs+4cfsl5xVW0cZEWVaSgEH4vrb6Rrjn7LwZ/uhEGA3/Qkjp/3
+         Wa4t3rbgNVOiA==
+Received: by mail-vs1-f54.google.com with SMTP id w10so14906983vsa.4;
+        Tue, 31 May 2022 14:30:43 -0700 (PDT)
+X-Gm-Message-State: AOAM532V6h3hfhzhyUUX6Bh/GdSDGv7b/NRK/TfoJ9n+y1GaaCfLpLen
+        7v746VC5xN/wAMmI2Ye3JmL5Yyd8aopzyBrwZQ==
+X-Google-Smtp-Source: ABdhPJwrsIDv4UJc5u6xTXBY/96ny0Alz0jVz/mRjD3IguJf2tCd0IZV0fcDQUb1XVM49IQ34zyFkt+/6Dy0JwDc6ic=
+X-Received: by 2002:a67:c118:0:b0:337:96d2:d624 with SMTP id
+ d24-20020a67c118000000b0033796d2d624mr19823826vsj.26.1654032643023; Tue, 31
+ May 2022 14:30:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <74a6159b-40d0-bbc3-5b4a-ebf6ed98bac7@collabora.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+References: <20220531211018.2287964-1-robh@kernel.org>
+In-Reply-To: <20220531211018.2287964-1-robh@kernel.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 31 May 2022 16:30:31 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKnBHfvi9iec2sgoEs6sLUgxnPY0gzxaO+bevzO3DjcmQ@mail.gmail.com>
+Message-ID: <CAL_JsqKnBHfvi9iec2sgoEs6sLUgxnPY0gzxaO+bevzO3DjcmQ@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: net/dsa: Add spi-peripheral-props.yaml references
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        UNGLinuxDriver@microchip.com,
+        Linus Walleij <linus.walleij@linaro.org>,
+        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        Marek Vasut <marex@denx.de>
+Cc:     Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,34 +74,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 30, 2022 at 10:34:19AM +0200, AngeloGioacchino Del Regno wrote:
-> Il 25/05/22 17:57, Nícolas F. R. A. Prado ha scritto:
-> > 
-> > The two patches in this series substitute properties in the mt8192
-> > pinctrl dt-binding for ones which have a clearer meaning and are more
-> > standardized. At this point there's no DT using the mt8192 pinctrl
-> > binding, so if such changes are to be made, they need to happen now.
-> > 
-> > 
-> > Nícolas F. R. A. Prado (2):
-> >    dt-bindings: pinctrl: mt8192: Add drive-strength-microamp
-> >    dt-bindings: pinctrl: mt8192: Use generic bias instead of pull-*-adv
-> > 
-> >   .../bindings/pinctrl/pinctrl-mt8192.yaml      | 58 ++++++-------------
-> >   1 file changed, 18 insertions(+), 40 deletions(-)
-> > 
-> 
-> Hey Nic,
-> 
-> As you know, I definitely agree with these changes, but they don't deserve
-> to get any Fixes tag: backporting should be useless in this case... and you
-> anyway aren't fixing a faulty binding.
+On Tue, May 31, 2022 at 4:10 PM Rob Herring <robh@kernel.org> wrote:
+>
+> SPI peripheral device bindings need to reference spi-peripheral-props.yaml
+> in order to use various SPI controller specific properties. Otherwise,
+> the unevaluatedProperties check will reject any controller specific
+> properties.
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> v2:
+>  - Also add references in nxp,sja1105.yaml and brcm,b53.yaml as
+>    pointed out by Vladimir Oltean
 
-Alright, I was on the fence on this one, but I can drop the tags for v2.
+Sigh, a bit too quick on this one. v3 coming.
 
-Thanks,
-Nícolas
-
-> 
-> Cheers!
-> Angelo
+Rob
