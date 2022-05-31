@@ -2,127 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73C035393DC
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 17:22:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0A22539415
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 17:36:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237532AbiEaPWw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 11:22:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52662 "EHLO
+        id S244283AbiEaPgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 11:36:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345139AbiEaPWu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 11:22:50 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A411125290;
-        Tue, 31 May 2022 08:22:49 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id h5so11084627wrb.0;
-        Tue, 31 May 2022 08:22:49 -0700 (PDT)
+        with ESMTP id S240739AbiEaPgW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 11:36:22 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 167CA6EC7B
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 08:36:21 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id gi33so27474158ejc.3
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 08:36:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=8dhNZzxcDqH8eUH1s8IHbudWKgs58nSE0muzeXBTjuY=;
-        b=E1GQjuZW9sZHmfYcFMJ1aCOAduFcwcvyblhlBvq/cAFNzFuTn0SKU0mRpFpAYYq4M4
-         RL7F92BzzyAnPM+7e4UY7ciMPz1wi0xQ5Niwo428c0HGjrqIg5PgayxupDIiTTJufuT/
-         yavaeCJzEc7NIym5JQLqM5AFLnckZMuEBgZ4JW7vgmEHVAZ5m6gAwzKykayGuJYLM/tN
-         s3qc8N1ZX3AwBYay53ph+wJtHECS7/3YjHhRx7xzCPST8JPg9AqSJIJql0Cw+8t2+9ec
-         Qf3f4nFLfrNlYYK/JGoZXuS8zAk3wFPqBj5EaAB9zJWye79Ru3uliTiU49n2NCFr6Ybo
-         rmxw==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Lmor8msbWC8RoDOpFJKIyrGyj+A7W9X1XdQfh9y670I=;
+        b=YLTH8SZkcOXaBCy5mZKkDcYse9C9OlcolxPNHPxcU56dSH2gNqjvQPin6uEwFyQ/QH
+         D80r8XFRbzLhcuFLfyFble0TcfXvRbEYzZ3WaSZB2jsyH30eNtzjkjipcjf/t8kJwEF9
+         lMhQH+q018QJzI9qbEbIVq2jZLF0r9Pbko8rOZzK7ikguiiwSOppzZy2eCxi3XXXOppc
+         nU3kfd9BW/vAf9jFOv/0wODmJtYZ7Z5s3heH/P59FnyazznR/mzKfAV4e8Hb2HPXAgd5
+         aM9ccgEN+RLhKvGGOIitO5atGTMfUM1CtlEZM8bZ+qmqVIVr1T8pVCWjz1wmsVOLvBYu
+         g0+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=8dhNZzxcDqH8eUH1s8IHbudWKgs58nSE0muzeXBTjuY=;
-        b=wTiWbV1F7498L+WKmV4qWw4ziUMJVkuQFJdnS7d9WH8XdOsUKpEgtghE2H6Tle9eQR
-         DQXR70QUvW5x1LJM/waBQ+2tZOeJBX2Tn3GEwjhUZf110Qo473JFzQdyO/0EgRS10EHM
-         adIu4vH0h2zut5SjsPXj32SguZ/+/suCSK8kv+o9zMRyX2JzhSJAkHpRsT1SF/JY6OJY
-         1MIHlxv6gsbEPKDwM8ZZ6gaVaI2PPNgA/ahH6RaJ83pi5RxN5l911vgsoYDRkVy5iSRd
-         6S8gku/y0VgTJ0FG7eDW+ga5IP0s2z3Vig7wUfS8N8FrdBkBnsyy8h/9ekR1qSFP+Xwm
-         KI4g==
-X-Gm-Message-State: AOAM532EWbed7L1GkNBvq+F2G6eNptuXPFMuwrHmt8g66AHC2ixRKamO
-        N0SwbctesSVYpbtcNxNd2rY=
-X-Google-Smtp-Source: ABdhPJzxQR5NMIK+rbklutVxfOhZ8bGcR/zgUdGkNetM8QcimtFO8AwzM70tocDrq5+3XsEckuxvww==
-X-Received: by 2002:a5d:54c3:0:b0:210:2a28:5666 with SMTP id x3-20020a5d54c3000000b002102a285666mr13156176wrv.345.1654010568205;
-        Tue, 31 May 2022 08:22:48 -0700 (PDT)
-Received: from kista.localnet (213-161-3-76.dynamic.telemach.net. [213.161.3.76])
-        by smtp.gmail.com with ESMTPSA id f6-20020a05600c4e8600b0039466988f6csm3062560wmq.31.2022.05.31.08.22.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 May 2022 08:22:47 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>
-Cc:     Andre Przywara <andre.przywara@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 0/3] pinctrl: sunxi: Remove non-existent reset line references
-Date:   Tue, 31 May 2022 17:22:46 +0200
-Message-ID: <4400164.LvFx2qVVIh@kista>
-In-Reply-To: <20220531053623.43851-1-samuel@sholland.org>
-References: <20220531053623.43851-1-samuel@sholland.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Lmor8msbWC8RoDOpFJKIyrGyj+A7W9X1XdQfh9y670I=;
+        b=l2KzMctpCCw/2iThRVb/tuvw+QOugs6iuzTDz4y1sXH7unsgkqAlOFLKqB1H1u/dWT
+         tWQGe8EMH/lDzcSAG+VQJ7q8JHhBs3m/kSc8joLE2A0VRftA5kdDpuw1eoHBRD4u62yx
+         C4lk/ISGXneET7lH4lhjyKACWCJ9WuQnhTTvRsTUrYWNG4Jpd3KEpnnsD3Y1BZz0CLQn
+         SZqG9RTQ2xzhPL/1yvcm1CFebXnFAcB3L4a7899BnGrHJfatctlQcLChTzNRJEvzfhyL
+         TZ39YcvbktPkA/hMaXsm4ZtNOrZpcjA+fZayqAVRUDzgtD9udU0QYQ9qYesnLwPCzZO1
+         uO6Q==
+X-Gm-Message-State: AOAM532Erx81/8EyazQE4ORSg8FweGzXJxvBSet8s4tkDwNNUVzTKw4L
+        TeS7/VPsJfvciIwT6odeJg8zag==
+X-Google-Smtp-Source: ABdhPJxm2wlP2EFxtOhD7af0DzEYMu8HyO3kL97zqettcs32QzdM63hOShjdYuP/84npq5pXBxRBUQ==
+X-Received: by 2002:a17:907:3d8a:b0:6ff:a9a:bea7 with SMTP id he10-20020a1709073d8a00b006ff0a9abea7mr29701709ejc.134.1654011379585;
+        Tue, 31 May 2022 08:36:19 -0700 (PDT)
+Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id z5-20020a50f145000000b0042dc460bda6sm5509231edl.18.2022.05.31.08.36.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 31 May 2022 08:36:19 -0700 (PDT)
+Message-ID: <b8a770fc-d72d-efd2-a7a0-8bfd44308576@linaro.org>
+Date:   Tue, 31 May 2022 17:36:18 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 2/3] dts: socfpga: Add Google Chameleon v3 devicetree
+Content-Language: en-US
+To:     =?UTF-8?Q?Pawe=c5=82_Anikiel?= <pan@semihalf.com>
+Cc:     Alexandru M Stan <amstan@chromium.org>, SoC Team <soc@kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        Dinh Nguyen <dinguyen@kernel.org>
+References: <20220530130839.120710-1-pan@semihalf.com>
+ <20220530130839.120710-3-pan@semihalf.com>
+ <f789afb2-33c5-2b28-5ade-0c76ebb7206f@linaro.org>
+ <CAHNYxRw00QraVW0085xO-qzgGJdZ2joukuSYzBQo+yjLnkD=Tw@mail.gmail.com>
+ <e4ef2056-c990-b308-a9d5-98f11ac0ba51@linaro.org>
+ <CAF9_jYR=sjP9wYW9wyfbrVYO4PDYTfMhjvyyh53U3a3+2Zyw=g@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAF9_jYR=sjP9wYW9wyfbrVYO4PDYTfMhjvyyh53U3a3+2Zyw=g@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne torek, 31. maj 2022 ob 07:36:20 CEST je Samuel Holland napisal(a):
-> I assume these properties came from a lack of documentation, and the
-> very reasonable assumption that where there's a clock gate bit in the
-> CCU, there's a reset bit. But the pin controllers are special and don't
-> have a module reset line. The only way to reset the pin controller is to
-> reset the whole VDD_SYS power domain.
+On 31/05/2022 16:47, Paweł Anikiel wrote:
+> On Tue, May 31, 2022 at 11:11 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 31/05/2022 03:20, Alexandru M Stan wrote:
+>>> Hello Krzysztof
+>>>
+>>> On Mon, May 30, 2022 at 11:56 AM Krzysztof Kozlowski
+>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>>
+>>>> On 30/05/2022 15:08, Paweł Anikiel wrote:
+>>>>> Add devicetree for the Google Chameleon v3 board.
+>>>>>
+>>>>> Signed-off-by: Paweł Anikiel <pan@semihalf.com>
+>>>>> Signed-off-by: Alexandru M Stan <amstan@chromium.org>
+>>>>
+>>>> Your SoB chain looks odd. Who did what here?
+>>>
+>>> Sorry about this.
+>>>
+>>> It was mainly Pawel but I did some small changes at some point before
+>>> it landed in our tree (particularly the GPIOs).
+>>
+>> Then usually Paweł should be the owner of the patch, not you.
+>> Alternatively it could be also co-developed.
+>>
+>>>
+>>>>
+>>>>> ---
+>>>>>  arch/arm/boot/dts/Makefile                    |  1 +
+>>>>>  .../boot/dts/socfpga_arria10_chameleonv3.dts  | 90 +++++++++++++++++++
+>>>>>  2 files changed, 91 insertions(+)
+>>>>>  create mode 100644 arch/arm/boot/dts/socfpga_arria10_chameleonv3.dts
+>>>>>
+>>>>> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+>>>>> index 023c8b4ba45c..9417106d3289 100644
+>>>>> --- a/arch/arm/boot/dts/Makefile
+>>>>> +++ b/arch/arm/boot/dts/Makefile
+>>>>> @@ -1146,6 +1146,7 @@ dtb-$(CONFIG_ARCH_S5PV210) += \
+>>>>>       s5pv210-torbreck.dtb
+>>>>>  dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += \
+>>>>>       socfpga_arria5_socdk.dtb \
+>>>>> +     socfpga_arria10_chameleonv3.dtb \
+>>>>>       socfpga_arria10_socdk_nand.dtb \
+>>>>>       socfpga_arria10_socdk_qspi.dtb \
+>>>>>       socfpga_arria10_socdk_sdmmc.dtb \
+>>>>> diff --git a/arch/arm/boot/dts/socfpga_arria10_chameleonv3.dts b/arch/arm/boot/dts/socfpga_arria10_chameleonv3.dts
+>>>>> new file mode 100644
+>>>>> index 000000000000..988cc445438e
+>>>>> --- /dev/null
+>>>>> +++ b/arch/arm/boot/dts/socfpga_arria10_chameleonv3.dts
+>>>>> @@ -0,0 +1,90 @@
+>>>>> +// SPDX-License-Identifier: GPL-2.0
+>>>>> +/*
+>>>>> + * Copyright 2022 Google LLC
+>>>>> + */
+>>>>> +/dts-v1/;
+>>>>> +#include "socfpga_arria10_mercury_aa1.dtsi"
+>>>>> +
+>>>>> +/ {
+>>>>> +     model = "Google Chameleon V3";
+>>>>> +     compatible = "google,chameleon-v3",
+>>>>
+>>>> You miss here enclustra compatible.
+>>>
+>>> Does this make sense? I don't expect this device tree to boot/work on
+>>> an enclustra motherboard. It's only really compatible with a
+>>> "chameleon-v3".
+>>
+>> You also do not expect it to boot on altr,socfpga, do you?
+>>
+>> If I understood correctly, this board has physically Mercury AA1 SoM, so
+>> that compatible should be there.
 > 
-> This series is preparation for converting the PRCM MFD and legacy clock
-> drivers to a CCU clock/reset driver like all of the other Allwinner
-> SoCs. I don't plan to add reset lines that don't actually exist to the
-> new CCU driver. So we might as well get rid of the references now.
-> Technically this breaks devicetree compatibility, since the old drivers
-> expect the reset. But the CCU conversion will be a compatibility break
-> anyway, so it's a bit of a moot point.
+> Yes, you understood correctly.
+> I looked at a similar device - the Cyclone V MCV (SoM) and the MCVEVK
+> (base board):
+> arch/arm/boot/dts/socfpga_cyclone5_mcv.dtsi
 
-If I understand correclty, this would cause only DT forward compatibility 
-issue, which happens now and then anyway. Kernel would still be compatible 
-with older DTs, it would just ignore that reset, right?
+This one is clearly incorrect, so using it as example is wrong.
+
+> arch/arm/boot/dts/socfpga_cyclone5_mcvevk.dts
+
+Since it is based on wrong MCV, then no wonder it's the same.
+
+> And there is no denx,mcv compatible anywhere, only denx,mcvevk.
+> Also, devicetree bindings documentation lists denx,mcvevk under
+> "Cyclone 5 boards", and, unless you consider the MCV to be a board,
+> there isn't a good place to put denx,mcv (same story with mercury+
+> aa1/chameleon).
+
+socfpga are not the best example... upstreaming looks incomplete or even
+incorrect, like this case of Enclustra SOM. Much better examples are
+FSL-based SoMs. Although some of them are also not in the best shape.
+
+Still someone might prefer to skip SoM compatible arguing that it cannot
+be a separate final product. Sure, but also SoC cannot be a separate
+product. Having SoM compatible allows to match against it and find
+common hardware parts.
+
+In any case you want to remove here parts of bindings (so affect ABI),
+to which I do not agree.
+
+>> Let me clarify - please use generic node names, as asked by Devicetree
+>> specification (2.2.1. Node Name Requirements). There is also list of
+>> some examples in the spec, but you can use some other generic node name.
+>>
+>> Several bindings also require it.
+> 
+> Do you mean something like this?
+> ssm2603: audio-codec@1a {
+> u80: gpio@21 {
+
+Yes.
+
 
 Best regards,
-Jernej
-
-> 
-> 
-> Samuel Holland (3):
->   pinctrl: sunxi: Remove reset controller consumers
->   ARM: dts: sunxi: Drop resets from r_pio nodes
->   dt-bindings: pinctrl: sunxi: Disallow the resets property
-> 
->  .../pinctrl/allwinner,sun4i-a10-pinctrl.yaml  |  3 ---
->  arch/arm/boot/dts/sun6i-a31.dtsi              |  1 -
->  arch/arm/boot/dts/sun8i-a23-a33.dtsi          |  1 -
->  arch/arm/boot/dts/sun9i-a80.dtsi              |  1 -
->  drivers/pinctrl/sunxi/Kconfig                 |  3 ---
->  drivers/pinctrl/sunxi/pinctrl-sun50i-a64-r.c  |  1 -
->  drivers/pinctrl/sunxi/pinctrl-sun50i-h6-r.c   |  1 -
->  drivers/pinctrl/sunxi/pinctrl-sun50i-h616-r.c |  1 -
->  drivers/pinctrl/sunxi/pinctrl-sun6i-a31-r.c   | 22 +---------------
->  drivers/pinctrl/sunxi/pinctrl-sun8i-a23-r.c   | 25 +------------------
->  drivers/pinctrl/sunxi/pinctrl-sun8i-a83t-r.c  |  1 -
->  drivers/pinctrl/sunxi/pinctrl-sun9i-a80-r.c   |  1 -
->  12 files changed, 2 insertions(+), 59 deletions(-)
-> 
-> -- 
-> 2.35.1
-> 
-> 
-
-
+Krzysztof
