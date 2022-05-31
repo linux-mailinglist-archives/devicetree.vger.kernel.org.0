@@ -2,78 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A3B7538D8D
-	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 11:17:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C371538DC6
+	for <lists+devicetree@lfdr.de>; Tue, 31 May 2022 11:34:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245085AbiEaJRa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 05:17:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33712 "EHLO
+        id S245266AbiEaJeN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 05:34:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242671AbiEaJRZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 05:17:25 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C737462239
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 02:17:22 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id jx22so25266431ejb.12
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 02:17:22 -0700 (PDT)
+        with ESMTP id S245261AbiEaJeJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 05:34:09 -0400
+Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E16B43B005
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 02:34:07 -0700 (PDT)
+Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-3043b3f7d8fso122823257b3.8
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 02:34:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=yiRJZcsK8/nOtrVqAQkM8gdI+HHI5A3xNn9CKo9QNn8=;
-        b=U8u8oZFJb5MjAL4CVHJ0XH6H6VHERv5AKXW0csQS4cF0dlmO+NcS1uqX80UATzR1fF
-         CmC0GuYup9bescyRqQiynV5JGC3xop8YrJ3e5H7bXagVFBRLoJ0QVCrYp0sn8ahFBbyR
-         f+ZcwKl2ZZ+0Uq6GiLllGwaHomd/1gKSWYQq6KEIDILBMarV/IBil4FF6ypQRaaU+wzd
-         uK6vX20fNLwl2P5QhF/7cmX7BCJZWGgpVM65ClnHVvS+y+u7kAdMqhvzD42XEFUJ5srG
-         6l/y0MuLslXEVuXwlY0DiJQpNQyU+BWlljeb4EjQiErz3xI4BxBWHMQ3/GKmZ4LIwsOr
-         JO0w==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0w2fXNQOc3DHaB4s+oXCyoZJeWAMalBiF5eAVeXufrU=;
+        b=C4QZ6FMJ5aJLAtnQWNLvLEEDUXO25F0COEmJPF87NnQKZhExYvB92mpAWJf0lPVPBJ
+         kdQWE6xMBXjrvcyyAKQfM+XTMO/lH6jlZEDbL+Dxws2W4zPIN+3iU2OspGRfkEIW/a5n
+         h/afEYh/M76OJ8kCjZxWQmN9b4LfbKJ2OCpfcwvz7IQpmIpz+6OXqKvEiwLxbC/l15Lo
+         7JjFtVLeg7L7vlHGka6YWCxIyM0sgJZiQPKzaDm6gysxAzjNX01+/WYYYfAvHsAYSLRX
+         mjK6sRg4Xk4SNfc8B88YvU1SqAgFxaKvuHageZtrKwTYR4orYwo7OIa1ybFJ5IUL2nrj
+         95lg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=yiRJZcsK8/nOtrVqAQkM8gdI+HHI5A3xNn9CKo9QNn8=;
-        b=5Uj862CpIFd60X9CRatNblO3uZN41gT+ObPwAvdFYc9T6FE9J4pgRkF+fXgx8LrIKO
-         Sq0mmHTgzpSBRd7qEzq+w6XtocKPsKYVkHZm3rhaolF6mOPL27quaIFKORY1QS8bmMFD
-         BjRKnTls3fMeV650bsHtyAfe1TQ+56Mw5LVUBRikLxzgc2Scm0gQTDVZPOpSmA0paDHZ
-         Argy8kTtGL0QCPAK0qLsfLLoQE+FhJKD+Vf7thL/si0sV3RJl70xePaaFJw7H/FbBqq0
-         kECjslvseJf8tJC/Cq/iNjZbeL9PtYgdj8OQQeLopHBpeISfatlTTVjBimRBm4v/bP0i
-         nzGQ==
-X-Gm-Message-State: AOAM530xYDwYz6yegcOiKK0OczG0E/L5vvzxP+s5LEqoSi/hZtLJeQay
-        qmC1jrFhusB8/eOlQUT6cIrWIQ==
-X-Google-Smtp-Source: ABdhPJzc1RUFRZ168BDePJCPLhMCHxR29p9KkUfaSl5CoTOvkdDU2r/8S/FdI4KzfVyR1qimbNJVjg==
-X-Received: by 2002:a17:907:7247:b0:6ff:f00:c4c with SMTP id ds7-20020a170907724700b006ff0f000c4cmr26918873ejc.261.1653988641426;
-        Tue, 31 May 2022 02:17:21 -0700 (PDT)
-Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id s4-20020a170906354400b006fe98c7c7a9sm4764288eja.85.2022.05.31.02.17.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 May 2022 02:17:21 -0700 (PDT)
-Message-ID: <cd71f427-8db5-e908-bf25-0154e3006568@linaro.org>
-Date:   Tue, 31 May 2022 11:17:19 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0w2fXNQOc3DHaB4s+oXCyoZJeWAMalBiF5eAVeXufrU=;
+        b=t4Ur8rOhDoL2gU/AUs5tQeDJKTXgthI4f8UTzLcUPbDfyCEyaJx62H7P7nhJNjKKQT
+         /KPGDlJYWIBalwcpiuawHBirpMH95m4/zFdb6oMSKATskj45cV9htAoKTqyl6WNZEtj2
+         AG2Qs1IzqEnoSDiyxmijhW2N1MGpWOYpAdJrOnuiFKhbzA0GAF4gGYiu/MSNdi6i4f+4
+         UCkYOyxDw3APwkC3JI81L5l/qXU+V9u1Ha/yV8k1bfIifnGnw9Yabxn4rrra7qXWgi0o
+         fimqUY6H4GNpRD24uNp+jm+cCnvQGhHBcxCJsYQA70Ch0xG5Jb3WMVV8W7fFRHgOFUL4
+         r12w==
+X-Gm-Message-State: AOAM531BXOAMXr9G4qFBY2dsD+BEUSjBs2Eul/gi+bbf06TS90zjuqRd
+        1vTKyjvfUrJAcmaSLmXiowK1NL7C2VHsdCpQO0kUmQ==
+X-Google-Smtp-Source: ABdhPJzVOfXBYTQoebXOcYGJ+lnLw7+x/Gvfz81biEV7PK3vYDQcPKJgisfe5ZodDgBmCw5OrHus2mbPSAh2SSEqRbY=
+X-Received: by 2002:a81:fe0b:0:b0:30c:7e9c:701 with SMTP id
+ j11-20020a81fe0b000000b0030c7e9c0701mr6503392ywn.118.1653989647207; Tue, 31
+ May 2022 02:34:07 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 1/6] dt-bindings: phy: Add FSD UFS PHY bindings
-Content-Language: en-US
-To:     Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-scsi@vger.kernel.org, linux-phy@lists.infradead.org
-Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
-        avri.altman@wdc.com, bvanassche@acm.org,
-        martin.petersen@oracle.com, chanho61.park@samsung.com,
-        pankaj.dubey@samsung.com, linux-fsd@tesla.com,
-        Bharat Uppal <bharat.uppal@samsung.com>
-References: <20220531012220.80563-1-alim.akhtar@samsung.com>
- <CGME20220531012336epcas5p2fcafe14c90ad3e3a0901fccd62d15437@epcas5p2.samsung.com>
- <20220531012220.80563-2-alim.akhtar@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220531012220.80563-2-alim.akhtar@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20220530160753.100892-1-jo@jsfamily.in> <BY5PR02MB70092E9495F2A52F473DD31AD9DD9@BY5PR02MB7009.namprd02.prod.outlook.com>
+In-Reply-To: <BY5PR02MB70092E9495F2A52F473DD31AD9DD9@BY5PR02MB7009.namprd02.prod.outlook.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 31 May 2022 11:33:55 +0200
+Message-ID: <CACRpkdZyVTWu=j5rVMmi1PuHBDYfEXhAiH1f0hskBnkS4a+FZw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: vendor-prefixes: Add prefix for EBBG
+To:     Joel Selvaraj <jo@jsfamily.in>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Corentin Labbe <clabbe@baylibre.com>,
+        Hao Fang <fanghao11@huawei.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,13 +76,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/05/2022 03:22, Alim Akhtar wrote:
-> Adds tesla,fsd-ufs-phy compatible for Tesla FSD SoC
+On Mon, May 30, 2022 at 6:08 PM Joel Selvaraj <jo@jsfamily.in> wrote:
 
-s/Adds/Add/
-and a full stop at the end, please.
+> Add a prefix for EBBG. They manufacture displays which are used in some
+> Xiaomi phones, but I could not find much details about the company.
+>
+> Signed-off-by: Joel Selvaraj <jo@jsfamily.in>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Linus Walleij <linus.walleij@linaro.org>
 
-Best regards,
-Krzysztof
+Yours,
+Linus Walleij
