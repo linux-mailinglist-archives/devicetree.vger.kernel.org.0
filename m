@@ -2,116 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 521AA53A9E5
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 17:24:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8879053A9F6
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 17:27:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352248AbiFAPYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 11:24:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39276 "EHLO
+        id S1355449AbiFAP1z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 11:27:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355341AbiFAPYY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 11:24:24 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38B2D95A04;
-        Wed,  1 Jun 2022 08:24:22 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id z7so2642461edm.13;
-        Wed, 01 Jun 2022 08:24:22 -0700 (PDT)
+        with ESMTP id S1355444AbiFAP1y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 11:27:54 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EF362F007
+        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 08:27:52 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id z7so2657044edm.13
+        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 08:27:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=S2s/uj8WC49ahrReqiF2/cgFexx1dmbjwYjSSVDIU/o=;
-        b=DjueV5cqkCLDw2hnrUIX33XWBicHukWnlU8JpsVLUQV/zDlLzVQKBgbMNSS3+8xeOM
-         T+iTK4xdP+7tuFtcpK6DOA67QPRsliVi5mURa/cM1Hzm4EdzPGQ/bFWGRfqJyE5NBLNW
-         cnIHg9s1YehEYz2oiwdr3U9LAsy0aA+QM3y+opUMH3mwWpDIsDnPDNPv63yg4/zJx5qz
-         T7TfUJ4OWBvAyJqWw0nG36keZ+u12AGDfSpAFYmozpdEDdlFSO93QFOvIe68iBNibIe3
-         YexlIZ5Z3gBC8iLu1+RwCX+/0c2G4GLXnpsTy6ipBevt7rGKrvvGoeL1dPo5uZWBEmzj
-         PvRQ==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mRkw78n+vPe/QkH93LY7p8b4pHpE7xRfMRQ/TS3KqYM=;
+        b=D804LFKJe1vsnt7iMrMg924lcF0GXpaONQJ3idfrkC/EM9p8Jkxh6y1mz5YkyWBNdO
+         KmhZbbGOzSiyjPEL/BvdckTCtL2YwHKl3JLXcsqe6miYQmaIU4V+J1vL+jgOv+ihE/DV
+         z4vBnYK7wztbLqk8YMSj4kIRsweIMpScultaUCI+zr3Pa0awxDO5btH82uzQ4Y8IAjIp
+         AjpuAhuXH+f68pEC0BT+9QQnxlBZtt+/p7LZw7tZEZvs9rtT8ZuOCXdwIIP86XqknGVA
+         YhUr94DTtmZGfQmU2KwSP6L2nrsBJ8Y8xsBy4pMNIV+kzlphF1k9iYNd33+qL5kQuKCC
+         yUiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=S2s/uj8WC49ahrReqiF2/cgFexx1dmbjwYjSSVDIU/o=;
-        b=Wf5R+prjFvp/lFbc0RgeiI+XvXS3Jn9GmPtMIy9ffc86nDVV2CE48Jwboe5Pmfdw4K
-         Dyj/Mfxlop4OnPbJ14xFv9aqo8tu6B2/928J9ECemFPayeoBaP9H7rRY1r5p2MpDr3bH
-         MYuOH8eXd9JL21GwhXKCZgh9Ivaw1GJ3EG2q/YgI4mbdV9npbutMCNMiwNxzEgObWW0q
-         1E4sfwCm8C7/Dvd+CwXZ/dlByEcKGTarnGSP/1WVUnItBwXrhfMr+rLGYgqNrMv1xPw8
-         ns7dWrGMVF4AATRRj84cX7XvPwD2+S/ASlks2p0rNwxmxhN2MPoITkBaZuBqY6u/ENYE
-         I4ew==
-X-Gm-Message-State: AOAM533WPOuNGCyLpQ6zbQBO6T+zCzD73VfjqsMK5lzwQN154wQ//7Re
-        CMrx7P3s0jxASVL7g7WJvfk=
-X-Google-Smtp-Source: ABdhPJwDn4fYWychN9HWMd5ASr5v4eS7KmbuP60hlN+FSZkXniYTiTP0CoX3vAPP5IkPA4FBXuQgrg==
-X-Received: by 2002:a05:6402:2548:b0:42d:dd95:5bfe with SMTP id l8-20020a056402254800b0042ddd955bfemr205534edb.285.1654097060744;
-        Wed, 01 Jun 2022 08:24:20 -0700 (PDT)
-Received: from kista.localnet (213-161-3-76.dynamic.telemach.net. [213.161.3.76])
-        by smtp.gmail.com with ESMTPSA id bv15-20020a170906b1cf00b006f4c4330c49sm846072ejb.57.2022.06.01.08.24.19
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mRkw78n+vPe/QkH93LY7p8b4pHpE7xRfMRQ/TS3KqYM=;
+        b=RVylacXVAFUNvutqCC8y6x6ipS6InvsjsI+ZSjp3dXoSY7/TTtQ3bsQ4fn6hDp46e3
+         MkXBjZzvCnztWBFsb2ExyFVu6IfKkZYFBLp0tD4u7LO9FNaYGtY+zwc9TXFEXn6k0/Tn
+         e0tLOrBL1h5nR7UKM5nQEeksbuHWFc/Qox4Sx6TmeiXvsEGTKF4Lrg9cAkQZ7s0Tc5QY
+         ZCslO5wCBwlA1+FqrPeyjwwaFmne+1WBdI9EKFu+wO5lVHzI9NoBbmFX2BiBwSOTT1i0
+         vB6n1KVlt29XUBxcf8c+bFecspdmaAYJ9g32DsLea8xdT79xhmaKMloveRYM61OwyY2T
+         N/nw==
+X-Gm-Message-State: AOAM530I4yGbJ0I7xMNUGsfzjxpDQr0+xK4WyhGsOITE4EBzIj3NgYSk
+        MFKIbIjTIEQ9+ViC6r87WpLK5Q==
+X-Google-Smtp-Source: ABdhPJxPVNrgNzYkz4oUG/f1BtdJT4yEwADwf+eg8dXLG19SxefnC+5Idz7ShnBvRxo12Rz23jgr3w==
+X-Received: by 2002:a05:6402:17d0:b0:42d:ccc1:f4e4 with SMTP id s16-20020a05640217d000b0042dccc1f4e4mr284821edy.150.1654097270945;
+        Wed, 01 Jun 2022 08:27:50 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id e13-20020a170906248d00b006fee7b5dff2sm845870ejb.143.2022.06.01.08.27.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Jun 2022 08:24:20 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>
-Cc:     Andre Przywara <andre.przywara@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
+        Wed, 01 Jun 2022 08:27:50 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev
-Subject: Re: Re: [PATCH 0/3] pinctrl: sunxi: Remove non-existent reset line references
-Date:   Wed, 01 Jun 2022 17:24:08 +0200
-Message-ID: <2828716.e9J7NaK4W3@kista>
-In-Reply-To: <48570ec3-8159-11ae-8069-7f001081fd56@sholland.org>
-References: <20220531053623.43851-1-samuel@sholland.org> <4400164.LvFx2qVVIh@kista> <48570ec3-8159-11ae-8069-7f001081fd56@sholland.org>
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 0/7] pinctrl/arm: dt-bindings: deprecate header with register constants
+Date:   Wed,  1 Jun 2022 17:27:13 +0200
+Message-Id: <20220601152720.232383-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne sreda, 01. junij 2022 ob 06:42:34 CEST je Samuel Holland napisal(a):
-> Hi Jernej,
->=20
-> On 5/31/22 10:22 AM, Jernej =C5=A0krabec wrote:
-> > Dne torek, 31. maj 2022 ob 07:36:20 CEST je Samuel Holland napisal(a):
-> >> I assume these properties came from a lack of documentation, and the
-> >> very reasonable assumption that where there's a clock gate bit in the
-> >> CCU, there's a reset bit. But the pin controllers are special and don't
-> >> have a module reset line. The only way to reset the pin controller is =
-to
-> >> reset the whole VDD_SYS power domain.
-> >>
-> >> This series is preparation for converting the PRCM MFD and legacy clock
-> >> drivers to a CCU clock/reset driver like all of the other Allwinner
-> >> SoCs. I don't plan to add reset lines that don't actually exist to the
-> >> new CCU driver. So we might as well get rid of the references now.
-> >> Technically this breaks devicetree compatibility, since the old drivers
-> >> expect the reset. But the CCU conversion will be a compatibility break
-> >> anyway, so it's a bit of a moot point.
-> >=20
-> > If I understand correclty, this would cause only DT forward compatibili=
-ty=20
-> > issue, which happens now and then anyway. Kernel would still be compati=
-ble=20
-> > with older DTs, it would just ignore that reset, right?
->=20
-> Right, this only prevents older kernels from working with newer devicetre=
-es.=20
-I
-> brought it up because I'm generally trying to minimize how much we do tha=
-t.
+Hi,
 
-All good then, this series is:
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Changes since v1
+================
+1. Correct title (in the comment) of each header (Chanho).
+2. Patch #7: Adjust warning message.
+3. Add tags.
+
+Description
+===========
+The Samsung pin controller drivers were always expecting DTS to use raw
+register values for pin configuration (e.g. pull up/down, drive strength).  DTS
+had these values hard-coded all over, so at some point we decided for
+convenience to move them to dt-bindings header.  Less code duplication, some
+meaning added to raw number, etc.
+
+However these constants do not fit the purpose of bindings.  They do not
+provide any abstraction, any hardware and driver independent ID.  With minor
+exceptions, the Linux drivers actually do not use the bindings header at
+all.  Because of this "dt-bindings ID" approach, these constants were re-used
+between chips, e.g. Exynos ones in S5PV210.  These does not make much sense
+because the values between Exynos and S5PV210 (or S3C24xx) are not related.  If
+it was an abstraction ID, this would be fine. But it's not.
+
+Clean this up by:
+1. Moving the constants to DTS-local headers.
+2. Deprecating the bindings header.
+
+Tested by comparing DTBs (dtx_diff, fdtdump).
 
 Best regards,
-Jernej
+Krzysztof
 
+Krzysztof Kozlowski (7):
+  ARM: dts: s3c2410: use local header for pinctrl register values
+  ARM: dts: s3c64xx: use local header for pinctrl register values
+  ARM: dts: s5pv210: use local header for pinctrl register values
+  ARM: dts: exynos: use local header for pinctrl register values
+  arm64: dts: exynos: use local header for pinctrl register values
+  arm64: dts: fsd: use local header for pinctrl register values
+  dt-bindings: pinctrl: deprecate header with register constants
+
+ arch/arm/boot/dts/exynos-pinctrl.h            |  55 ++
+ arch/arm/boot/dts/exynos3250-pinctrl.dtsi     |   2 +-
+ arch/arm/boot/dts/exynos4210-pinctrl.dtsi     |   2 +-
+ arch/arm/boot/dts/exynos4412-midas.dtsi       |   3 +-
+ arch/arm/boot/dts/exynos4412-p4note.dtsi      |   2 +-
+ arch/arm/boot/dts/exynos4412-pinctrl.dtsi     |   2 +-
+ arch/arm/boot/dts/exynos5250-pinctrl.dtsi     |   2 +-
+ arch/arm/boot/dts/exynos5260-pinctrl.dtsi     |   2 +-
+ arch/arm/boot/dts/exynos5410-pinctrl.dtsi     |   2 +-
+ arch/arm/boot/dts/exynos5420-pinctrl.dtsi     |   2 +-
+ arch/arm/boot/dts/s3c2410-pinctrl.h           |  19 +
+ arch/arm/boot/dts/s3c2416-pinctrl.dtsi        |  38 +-
+ arch/arm/boot/dts/s3c64xx-pinctrl.dtsi        | 178 +++----
+ arch/arm/boot/dts/s3c64xx-pinctrl.h           |  27 +
+ arch/arm/boot/dts/s5pv210-aquila.dts          |   4 +-
+ arch/arm/boot/dts/s5pv210-aries.dtsi          | 134 ++---
+ arch/arm/boot/dts/s5pv210-fascinate4g.dts     |  22 +-
+ arch/arm/boot/dts/s5pv210-galaxys.dts         |  34 +-
+ arch/arm/boot/dts/s5pv210-pinctrl.dtsi        | 480 +++++++++---------
+ arch/arm/boot/dts/s5pv210-pinctrl.h           |  39 ++
+ arch/arm64/boot/dts/exynos/exynos-pinctrl.h   |  79 +++
+ .../boot/dts/exynos/exynos5433-pinctrl.dtsi   |   2 +-
+ .../boot/dts/exynos/exynos7-espresso.dts      |   6 +-
+ .../boot/dts/exynos/exynos7-pinctrl.dtsi      |  72 +--
+ .../boot/dts/exynos/exynos7885-pinctrl.dtsi   |   2 +-
+ .../boot/dts/exynos/exynos850-pinctrl.dtsi    |   2 +-
+ .../boot/dts/exynos/exynosautov9-pinctrl.dtsi |   2 +-
+ arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi    |  92 ++--
+ arch/arm64/boot/dts/tesla/fsd-pinctrl.h       |  33 ++
+ drivers/pinctrl/samsung/pinctrl-exynos.c      |   6 +-
+ drivers/pinctrl/samsung/pinctrl-exynos.h      |   3 +
+ drivers/pinctrl/samsung/pinctrl-samsung.c     |   4 +-
+ drivers/pinctrl/samsung/pinctrl-samsung.h     |   8 +
+ include/dt-bindings/pinctrl/samsung.h         |   7 +
+ 34 files changed, 817 insertions(+), 550 deletions(-)
+ create mode 100644 arch/arm/boot/dts/exynos-pinctrl.h
+ create mode 100644 arch/arm/boot/dts/s3c2410-pinctrl.h
+ create mode 100644 arch/arm/boot/dts/s3c64xx-pinctrl.h
+ create mode 100644 arch/arm/boot/dts/s5pv210-pinctrl.h
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos-pinctrl.h
+ create mode 100644 arch/arm64/boot/dts/tesla/fsd-pinctrl.h
+
+-- 
+2.34.1
 
