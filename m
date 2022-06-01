@@ -2,64 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88F8353B024
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 00:51:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 654BB53B018
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 00:51:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231329AbiFAVLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 17:11:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34002 "EHLO
+        id S231243AbiFAVSG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 17:18:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231383AbiFAVLk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 17:11:40 -0400
-Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C7145B89D
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 14:11:16 -0700 (PDT)
-Received: by mail-oo1-f52.google.com with SMTP id 1-20020a4a1701000000b0040e90b56d03so569362ooe.12
-        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 14:11:16 -0700 (PDT)
+        with ESMTP id S231192AbiFAVSF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 17:18:05 -0400
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D6F16AA65;
+        Wed,  1 Jun 2022 14:18:04 -0700 (PDT)
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-f2a4c51c45so4373356fac.9;
+        Wed, 01 Jun 2022 14:18:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=MZLHOX4bmimahp0SDeHpXF9tGrFqsKasgM8yt8qeVgo=;
-        b=e3NDy9ghtnfZUv6987azBv+dnP2LfIStrKrsmaU/6sB+MItsh8s1/86A4eokgP3U/6
-         egKrcbHUCWY1y/Ux/PHf6KaPy3Qq+BJ5klqB6rNW1zYS9NeIZSMoV8pklMBTLpnAOLsA
-         Y2bfy/IxiPmhWPWOjyjqcbqmNn3fhkgdSdtauDBVwF1b8ryPSfXO7D8VRDYZ0gtOvYFd
-         gJpQDhsFLt8+5lW98jcmda/gbYHK6Qz4pCToVrw48pWYDAGGjCaDuaXggZXzP/Mn0eJI
-         xl0EkKEs/gQ355B7hWkVe8Bz23VTniGUlRcTCPShkCbfiRSSQC+L7DFEDL1i0gzx7t7v
-         NUOg==
-X-Gm-Message-State: AOAM530shRr1dVYyxF75Y27hki8XFcUDC9KsYqEXihd61RYsgnqSFP1L
-        Q2M6gH/hldhDvavkDCb+Gg==
-X-Google-Smtp-Source: ABdhPJz2LPu4gMLK693bAspnXDF9c38YPHEwnsvvFTNQY5+HaBoFcmfSXGmb12imELa+bBPNr6nhlw==
-X-Received: by 2002:a4a:b307:0:b0:324:c7f2:386 with SMTP id m7-20020a4ab307000000b00324c7f20386mr772216ooo.18.1654117875593;
-        Wed, 01 Jun 2022 14:11:15 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=wB6dT/XCvf3C+B5FfUFc5pk+O7AJqhAY3bJMVvBLmO0=;
+        b=aivA3m5Yvlpyl+pUHy+dBjTYLnfd7E+Dt70VezxgPXuUF9IxWRpNZVLhAQfQa0/Fjq
+         27m/F6gcRt7nU+7qfLiWK5AEkAS9VxFSBCCSwz8dg0iRJeUbwoEGGS5lgGHl+eCT0yAO
+         V5yvFUYAcIkPm0pJMPBx8Sa/IyIlEoDQXHb4VkkiowtaKQB/UQ/47KopEmQ41HhgU8x+
+         aW/rDHzmOnTNn9bgAkEYPnFHgr1sWHLUFi7Xwbccu/eYrTio86CDK92UJ+e7i1r7rIKx
+         OeKBqKcalUdcBfk6ZPcZ+xwM6DnsF5d0kQ6kMODvekRi1BKapTqt3eOh4ZZRZlV6PgUK
+         IiyA==
+X-Gm-Message-State: AOAM532KZedaMs9LsgoPuf54wfOhRv5D1CEYPvD/xwo5qftGasxQ3ij0
+        HrNIVpsXFmlLzwHbPpv9FQ==
+X-Google-Smtp-Source: ABdhPJyK7+g+68SDuh+gdaVuR1iTT6Wt141GPzQP3A1z+JoOYLQVSfSPqgb5fY0eBo6C+3xfL+BLrQ==
+X-Received: by 2002:a05:6870:8888:b0:e9:a3eb:a52d with SMTP id m8-20020a056870888800b000e9a3eba52dmr904142oam.181.1654118283911;
+        Wed, 01 Jun 2022 14:18:03 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id ec29-20020a0568708c1d00b000f1c2847f8csm1163384oab.32.2022.06.01.14.11.14
+        by smtp.gmail.com with ESMTPSA id o27-20020a9d411b000000b0060b469fa02dsm1344521ote.20.2022.06.01.14.18.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Jun 2022 14:11:15 -0700 (PDT)
-Received: (nullmailer pid 460531 invoked by uid 1000);
-        Wed, 01 Jun 2022 21:11:14 -0000
-Date:   Wed, 1 Jun 2022 16:11:14 -0500
+        Wed, 01 Jun 2022 14:18:03 -0700 (PDT)
+Received: (nullmailer pid 472063 invoked by uid 1000);
+        Wed, 01 Jun 2022 21:18:02 -0000
+Date:   Wed, 1 Jun 2022 16:18:02 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com, kernel@pengutronix.de
-Subject: Re: [PATCH v4 1/2] dt-bindings: mfd: stm32-timers: Document how to
- specify interrupts
-Message-ID: <20220601211114.GA460497-robh@kernel.org>
-References: <20220519162838.695404-1-u.kleine-koenig@pengutronix.de>
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        linux-mtd@lists.infradead.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        Andy Gross <agross@kernel.org>
+Subject: Re: [PATCH v4 2/2] dt-bindings: mtd: qcom_nandc: document
+ qcom,boot-pages binding
+Message-ID: <20220601211802.GA472030-robh@kernel.org>
+References: <20220519190112.6344-1-ansuelsmth@gmail.com>
+ <20220519190112.6344-3-ansuelsmth@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220519162838.695404-1-u.kleine-koenig@pengutronix.de>
+In-Reply-To: <20220519190112.6344-3-ansuelsmth@gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -71,19 +72,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 19 May 2022 18:28:37 +0200, Uwe Kleine-König wrote:
-> The timer units in the stm32mp1 CPUs have interrupts, depending on the
-> timer flavour either one "global" or four dedicated ones. Document how
-> to formalize these in a device tree.
+On Thu, 19 May 2022 21:01:12 +0200, Ansuel Smith wrote:
+> Document new qcom,boot-pages binding used to apply special
+> read/write configuration to boot pages.
 > 
-> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> QCOM apply a special configuration where spare data is not protected
+> by ECC for some special pages (used for boot partition). Add
+> Documentation on how to declare these special pages.
+> 
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
 > ---
-> Changes since v3:
->   - Do the things Rob suggested in reqly to v1 which I didn't notice
->     until Fabrice told me in reply to v3.
-> 
->  .../devicetree/bindings/mfd/st,stm32-timers.yaml  | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
+>  .../devicetree/bindings/mtd/qcom,nandc.yaml   | 26 +++++++++++++++++++
+>  1 file changed, 26 insertions(+)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
