@@ -2,49 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FD30539FCA
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 10:47:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEEAF53A02B
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 11:19:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245427AbiFAIrm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 04:47:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46124 "EHLO
+        id S1350100AbiFAJTN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 05:19:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243559AbiFAIrj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 04:47:39 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 179E5E000;
-        Wed,  1 Jun 2022 01:47:37 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D6709ED1;
-        Wed,  1 Jun 2022 01:47:36 -0700 (PDT)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0F6DC3F73D;
-        Wed,  1 Jun 2022 01:47:34 -0700 (PDT)
-Date:   Wed, 1 Jun 2022 09:47:30 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        James Wang <james.qian.wang@arm.com>,
-        Mihail Atanassov <mihail.atanassov@arm.com>,
-        Brian Starkey <brian.starkey@arm.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, malidp@foss.arm.com,
-        kernel-janitors@vger.kernel.org
-Subject: Re: [PATCH] MAINTAINERS: rectify entries for ARM DRM DRIVERS after
- dt conversion
-Message-ID: <20220601094730.1fca69c1@donnerap.cambridge.arm.com>
-In-Reply-To: <20220601041746.22986-1-lukas.bulwahn@gmail.com>
-References: <20220601041746.22986-1-lukas.bulwahn@gmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        with ESMTP id S1344771AbiFAJTM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 05:19:12 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F118917AB6
+        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 02:19:10 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id gi33so2467355ejc.3
+        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 02:19:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=w0q7w7agqeVzeJoFI0aW/0pLwg+C1kvsWYmBalugg8Q=;
+        b=VixWWPTJ2XezaiMDn6QH/mc8juwDFuC9uioDoU9V+mrWz6fabTxHi48gVF79fLkNZI
+         CAEjE4jKF00zgp2R4UuRtTGQ/V2DI9Wa6gfA8F0TkWEPQA58c1oHeIwhZFYibE4CuRTN
+         50joB2Zrq8ilMbr0GLmGfkchBBwuKjG/57DOTnBEr0zMiRcYrofNk933/tjhE6RX1A7x
+         bLhyouUfCQCxLBhzjHo7kDDau9QgFwxecgC1mSCpMa12H5P+EdtH9vNDg2PcVGvxwDeu
+         y3dptNbRzcQ1FMT4qajLIVJTLchACkZhMaHHabSNjF/6TCbkzeoi4pCduF/NGL07I2nF
+         x/DQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=w0q7w7agqeVzeJoFI0aW/0pLwg+C1kvsWYmBalugg8Q=;
+        b=i5i3EKbz32ZYuFnbZ2RN513LMXUj5vlVDNGdfBqbqbeYiFgpG32KPeJOXc/EJKm1r7
+         yXfnInUh5FEWmsnNzcKAUKnU3MisK59x1bG6q8vk3CLel+ofMBwM7evLliTv4xFHXT3w
+         bMd/5BC49UiJ0kdKhn3CAl9ga3enr1xFxhWGnzwIv8W+NqPIXcbl0C8yM+nw5UFmsrI+
+         e8cFk1XZRFJBSz2bUBZaf3yOdugx3BIEIxK+xJmLp7p7UtgC1HPzlZHqr79mpnzjRVz3
+         AxE+vkvuYlIzC/Pm1M067XQuWU/NlTxrQr3Z6TTflp4fpAma4UzdmnGdGwarLFaaOUJn
+         FAcg==
+X-Gm-Message-State: AOAM533uKw7VCF32bW0IM/S2wZE+ExF6BTJ1MqJsZoCiqqFI/8mlRy24
+        KwBgMuabwDfnzjOeM1uKg357jg==
+X-Google-Smtp-Source: ABdhPJxIz5yKljtZ01n/8e8Iqvz6i01vdsc3Tj+8YIjD1XxI182o5dWwgzHRLoMv1YfZoH7CLyT2yA==
+X-Received: by 2002:a17:907:7f20:b0:6fe:f0c8:8e6f with SMTP id qf32-20020a1709077f2000b006fef0c88e6fmr40303647ejc.453.1654075149570;
+        Wed, 01 Jun 2022 02:19:09 -0700 (PDT)
+Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id u9-20020aa7d889000000b0042b5cf75d6esm630769edq.97.2022.06.01.02.19.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Jun 2022 02:19:09 -0700 (PDT)
+Message-ID: <d1ffbc04-0c80-369e-a1dc-e47e50f52340@linaro.org>
+Date:   Wed, 1 Jun 2022 11:19:07 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 4/5] dt-bindings: crypto: add documentation for aspeed
+ hace
+Content-Language: en-US
+To:     Neal Liu <neal_liu@aspeedtech.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Johnny Huang <johnny_huang@aspeedtech.com>
+Cc:     "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20220601054204.1522976-1-neal_liu@aspeedtech.com>
+ <20220601054204.1522976-5-neal_liu@aspeedtech.com>
+ <dca283db-0b2e-1fc1-bc76-811c4c918fb5@linaro.org>
+ <HK0PR06MB3202D6A6C66480BF60ED829080DF9@HK0PR06MB3202.apcprd06.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <HK0PR06MB3202D6A6C66480BF60ED829080DF9@HK0PR06MB3202.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -53,72 +88,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed,  1 Jun 2022 06:17:46 +0200
-Lukas Bulwahn <lukas.bulwahn@gmail.com> wrote:
+On 01/06/2022 10:01, Neal Liu wrote:
+>>> +  clocks:
+>>> +    maxItems: 1
+>>> +
+>>> +  clock-names:
+>>> +    maxItems: 1
+>>
+>> You need to list clock names, however usually it does not make sense to have
+>> names for just one main device clock.
+>>
+> I think list clock-names is optional, I'll remove it from required list.
 
-Hi Lukas,
+I actually suggest to remove the clock-names property entirely, if is
+has one generic entry called "clk" (or "vclk" - the same). Do you
+already expect adding here more clocks?
 
-> The three commits:
-> 
->   36fd2a65bcaf ("dt-bindings: display: convert Arm HDLCD to DT schema")
->   0f6983509ea1 ("dt-bindings: display: convert Arm Komeda to DT schema")
->   2c8b082a3ab1 ("dt-bindings: display: convert Arm Mali-DP to DT schema")
-> 
-> convert the arm display dt-bindings, arm,*.txt to arm,*.yaml, but miss to
-> adjust its reference in MAINTAINERS.
-> 
-> Hence, ./scripts/get_maintainer.pl --self-test=patterns complains about
-> broken references.
-> 
-> Repair these file references in ARM HDLCD DRM DRIVER, ARM KOMEDA DRM-KMS
-> DRIVER and ARM MALI-DP DRM DRIVER.
-> 
-> Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
 
-Thanks for taking care!
-
-Acked-by: Andre Przywara <andre.przywara@arm.com>
-
-Cheers,
-Andre
-
-> ---
-> Andre, please ack.
-> Rob, Krzysztof, please pick this minor non-urgent clean-up patch in
-> your -next dt tree.
-> 
->  MAINTAINERS | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index ae685aaf8850..58e751b9346e 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1510,7 +1510,7 @@ F:	drivers/clocksource/arm_arch_timer.c
->  ARM HDLCD DRM DRIVER
->  M:	Liviu Dudau <liviu.dudau@arm.com>
->  S:	Supported
-> -F:	Documentation/devicetree/bindings/display/arm,hdlcd.txt
-> +F:	Documentation/devicetree/bindings/display/arm,hdlcd.yaml
->  F:	drivers/gpu/drm/arm/hdlcd_*
->  
->  ARM INTEGRATOR, VERSATILE AND REALVIEW SUPPORT
-> @@ -1545,7 +1545,7 @@ M:	Mihail Atanassov <mihail.atanassov@arm.com>
->  L:	Mali DP Maintainers <malidp@foss.arm.com>
->  S:	Supported
->  T:	git git://anongit.freedesktop.org/drm/drm-misc
-> -F:	Documentation/devicetree/bindings/display/arm,komeda.txt
-> +F:	Documentation/devicetree/bindings/display/arm,komeda.yaml
->  F:	Documentation/gpu/komeda-kms.rst
->  F:	drivers/gpu/drm/arm/display/include/
->  F:	drivers/gpu/drm/arm/display/komeda/
-> @@ -1567,7 +1567,7 @@ M:	Brian Starkey <brian.starkey@arm.com>
->  L:	Mali DP Maintainers <malidp@foss.arm.com>
->  S:	Supported
->  T:	git git://anongit.freedesktop.org/drm/drm-misc
-> -F:	Documentation/devicetree/bindings/display/arm,malidp.txt
-> +F:	Documentation/devicetree/bindings/display/arm,malidp.yaml
->  F:	Documentation/gpu/afbc.rst
->  F:	drivers/gpu/drm/arm/
->  
-
+Best regards,
+Krzysztof
