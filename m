@@ -2,99 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5909C53ADC9
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 22:49:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FA8353AE31
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 22:50:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229669AbiFAUoP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 16:44:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43084 "EHLO
+        id S229942AbiFAUnp convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 1 Jun 2022 16:43:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229920AbiFAUno (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 16:43:44 -0400
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B22A525A814;
-        Wed,  1 Jun 2022 13:27:21 -0700 (PDT)
-Received: by mail-oi1-x22f.google.com with SMTP id s188so4134887oie.4;
-        Wed, 01 Jun 2022 13:27:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=xwzXnf3azVD6WfYhoQELh3wDWF/dpdqfOluzUPHPtRE=;
-        b=qTZh3z5RwRy6KWlvAvHHj2W1Wlofy+evOE4qf/2EdqZHO9cOnqnJrB+Xk7G0QrUYsH
-         XnzpuFEqv+wOVyflchOI04/wnM6Dq4zvBnHtnFudT8xyFwRsNDb+1iE9l1He/23RKXaM
-         ogdgiY9IQWgxA8Kp4Y13OUg80tAwEhOgMuZ+uOBT3kdV9DjTLrrfKuuvqf1YXnHnBr9P
-         6HUm5lBkO9Lkx4FZd+W4VCLGvi+JIfv6IRXDMS0u7w8fEw0YV0xmfE9EUHuccYz97prj
-         9hhSU6kbAZCG7bn0hoi9KoWNSYkNEyR6VnvMbxxrzJuVEJsRFfEQGc8qViiNbbFE5ufG
-         0Gqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=xwzXnf3azVD6WfYhoQELh3wDWF/dpdqfOluzUPHPtRE=;
-        b=mjQgqilRhghReQY8WrcYYI7J2H69y3Iw4aBywC7JEEf4d9UY387K4HJHvHQVmHnPvP
-         iMq0mnAZ7HCrArGynA6diq6zgQT6gWCRjRq32Q4HwAHEsD/Cuk10ju7d7Y72LqSnr4kB
-         dyIo0qvnSPCye4+iRtXCNi72EAa6ByktCWtujSqeQQVtVCqASu97pSbg/ZzVaS85jLMh
-         k3NgZocJjq/wx5imh8EMS2RldnmB/KAC5nZ84/OZ/Z21rCcdzahRRPCotzQifODOuJ+J
-         5fLqOGBQN3FtO7NGOA8NCQ5W6e9qgfUjxEFX/g6D30wGz7+7FgjWhFisiYK07MDOk/PB
-         GsdQ==
-X-Gm-Message-State: AOAM532kcGsyxQ3L7/Rj4MlCmA9AUFBLTIN8Ikq9yp9eX5pXlMz0pSi0
-        6tgaLuP80UZ8wzaulm4SbgJmKoHpLBvLoQ==
-X-Google-Smtp-Source: ABdhPJyA57ak5ngD+SHlcaG7WTty94zQ0U4li7XCwx8r2A46BzhNpYPZKbss9DU/hsgej4pJ1Vkanw==
-X-Received: by 2002:a05:6808:1523:b0:32b:1a45:4bf6 with SMTP id u35-20020a056808152300b0032b1a454bf6mr606308oiw.282.1654111065150;
-        Wed, 01 Jun 2022 12:17:45 -0700 (PDT)
-Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
-        by smtp.gmail.com with ESMTPSA id w41-20020a056830412900b005b22a0d826csm1194512ott.1.2022.06.01.12.17.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Jun 2022 12:17:44 -0700 (PDT)
-From:   Chris Morgan <macroalpha82@gmail.com>
-To:     linux-input@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, contact@artur-rojek.eu,
-        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, dmitry.torokhov@gmail.com,
-        maccraft123mc@gmail.com, Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH 3/3] arm64: dts: rockchip: Update joystick to polled for Odroid-Go2
-Date:   Wed,  1 Jun 2022 14:17:30 -0500
-Message-Id: <20220601191730.29721-4-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220601191730.29721-1-macroalpha82@gmail.com>
-References: <20220601191730.29721-1-macroalpha82@gmail.com>
+        with ESMTP id S229567AbiFAUnZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 16:43:25 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8401C1DB1F9;
+        Wed,  1 Jun 2022 13:25:36 -0700 (PDT)
+Received: from mail-yw1-f173.google.com ([209.85.128.173]) by
+ mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1Ml3ym-1nX03Z0AV2-00lX9C; Wed, 01 Jun 2022 21:26:33 +0200
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-300628e76f3so29516767b3.12;
+        Wed, 01 Jun 2022 12:26:32 -0700 (PDT)
+X-Gm-Message-State: AOAM5323KY4YjOzYaTS7yWk0mvibF1G8urcieeLacxWOujJ0WNcBFaU4
+        mBTtL13CaIYwEUDAJWFTCmK0UHhzZuJoWBwseYE=
+X-Google-Smtp-Source: ABdhPJz0JApbo0Qv67wndhuM17KjFiRygdVF6IoIIcQ65oBNOgfkV7dKkoHQPvHnC/sJqYfjVswl/2RhIyt72lCR3vQ=
+X-Received: by 2002:a81:ad7:0:b0:2e6:84de:3223 with SMTP id
+ 206-20020a810ad7000000b002e684de3223mr1208726ywk.209.1654111591816; Wed, 01
+ Jun 2022 12:26:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220601154647.80071-1-pan@semihalf.com>
+In-Reply-To: <20220601154647.80071-1-pan@semihalf.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Wed, 1 Jun 2022 21:26:14 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a2TXUd6JjSiXSZix1xL+bO-fVAbLWht-zNQV8r_Kn05Zg@mail.gmail.com>
+Message-ID: <CAK8P3a2TXUd6JjSiXSZix1xL+bO-fVAbLWht-zNQV8r_Kn05Zg@mail.gmail.com>
+Subject: Re: [PATCH v2 0/5] Add Chameleon v3 devicetree
+To:     =?UTF-8?Q?Pawe=C5=82_Anikiel?= <pan@semihalf.com>
+Cc:     soc@kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        arnd@arndb.de, olof@lixom.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, amstan@chromium.org,
+        upstream@semihalf.com, Dinh Nguyen <dinguyen@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Provags-ID: V03:K1:zhaHhEGjIFru1VL46j0+tZGVaWHAQkcciH1GX2cZnvcAcHfn5M+
+ Y+DCGLK6/9KjL7JM/R+qEU6PNETBlCWCFMRUwRdIsHzE4YI4OVCMBhDbKyeK60Ah5S9+Kyj
+ 3mgfAYbHE1dh6t94PWR6y7oPLEI4hxroOxyj5xz/nhLy0XN+wg21ltzB2Rr/mRVnOLtt2OH
+ SztwIPBUDKVyb4odgF42g==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:Qwpp7sOFPDg=:lS18uBZzeJ2sFdNI9fhC/y
+ +w1OWV/C6BGT1peIMYlENFqXTnSZmLsi7khdAxeoQ2xHv1ySNVeDTicW6pglKhk+53jGjqHpM
+ DoRHc3WfwrigUK9PmvaxfTU8m8mcPCivvDilzlqSuUMMXfiqR0nkbtreFjvAjr3+3pwNE3BNx
+ aypmegiG69pabkgUTtxO+Ks/zRUgQHwXxSTTzSPUq9bwubR87C+0LSbMVfD/ISG5qqTj5E6yY
+ rIMC7+FmKiy4A+y8bvMOtqFINPakAg5XtV1UZEL2E5tSjFi2rCEAdhJVIWc4Q+Ah7UIvRsBJ9
+ 47FbibD8A/0FGTQ/bL8Ac6iAtqsf9l0ozMCaoZtAdrJJPnvy6Eu4scBvsrGqqKOhyIQExRugZ
+ iMsDZSiT097uVGMPbTLJM8mbSz/F3mucO2MJK2WAFn/+UaFV/XD4tXEHPCVXZFvWC/Muuugvr
+ +JjQ4BmvQ998TGwNI4YoDGhxnSAA5S5hq4NPfThgmJnGrXJigTllD6nQDoVJdnS9n6O+rlzdv
+ uFdiwXnOBMtFv+lgMqRxVtQreYbDVlLR4GUu+9AtznAwT58vrUVhq98BxFEVlZL7oihybDQja
+ k0OsJ88BxZM4QlhPPH1qVpCXy71TCU9mOCCiMzjYmUflyFmaDbmry7cL1hhArb8Gv9ko45dpV
+ iGYI2d7rLeq8pQxomYTuq5kpVYkdQ7zPoh0hv1ciZOmdFuSfKFmSujoINxSAcDcvnvSKdUf9G
+ NPaRf4b0h55SDnofwwWGiAxdUihID5fKZluTHw==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chris Morgan <macromorgan@hotmail.com>
+On Wed, Jun 1, 2022 at 5:46 PM Paweł Anikiel <pan@semihalf.com> wrote:
+>
+> The Google Chameleon v3 is a board made for testing both video and audio
+> interfaces of external devices. It acts as a base board for the
+> Mercury+ AA1 module.
+>
+> socfpga_arria10_mercury_aa1.dtsi and socfpga_arria10_chameleonv3.dts
+> have also been sent to u-boot:
+> https://lists.denx.de/pipermail/u-boot/2022-May/485107.html
+> https://lists.denx.de/pipermail/u-boot/2022-May/485111.html
 
-Update the Odroid Go Advance to use the polled method from the
-adc-joystick driver.
+Hi Paweł,
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+The patches look ok to me, but I think you should be sending them to
+Dinh Nguyen for merging through the socfpga tree instead of directly
+going to soc@kernel.org.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-index ea0695b51ecd..9766f80166f8 100644
---- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-@@ -23,7 +23,7 @@ chosen {
- 	};
- 
- 	adc-joystick {
--		compatible = "adc-joystick";
-+		compatible = "adc-joystick-polled";
- 		io-channels = <&saradc 1>,
- 			      <&saradc 2>;
- 		#address-cells = <1>;
--- 
-2.25.1
-
+      Arnd
