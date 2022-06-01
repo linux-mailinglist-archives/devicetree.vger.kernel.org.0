@@ -2,138 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7828053A5A1
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 15:06:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9170D53A5B0
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 15:13:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352087AbiFANGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 09:06:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48556 "EHLO
+        id S244534AbiFANM7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 09:12:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229627AbiFANGt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 09:06:49 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B7C72DEE
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 06:06:48 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 129-20020a1c0287000000b003974edd7c56so3005813wmc.2
-        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 06:06:47 -0700 (PDT)
+        with ESMTP id S236589AbiFANM7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 09:12:59 -0400
+Received: from mail-vs1-xe30.google.com (mail-vs1-xe30.google.com [IPv6:2607:f8b0:4864:20::e30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E56D13C718
+        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 06:12:56 -0700 (PDT)
+Received: by mail-vs1-xe30.google.com with SMTP id 67so1642717vsh.2
+        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 06:12:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=y7AFvgnHqwWsOFhTmk4i/DwYzcjtYaWfhp+4Z6qHobU=;
-        b=E637gfrRTkd2Xn1qbN2xOc9CfyQozzgeVso68I9JFpeOLf+kFLouA3I8IQET/AsKlb
-         Y1dDEG86g6pP4Wv54CJhzD2hSV7CirPJGhTV90LJS7FEzMjER6rlpwuWMrNPK05oY9ti
-         g4uXFNvyQlg2NlSWpDajepojAfWFSDMaIvfd3Q/O87hLvFgbOUCzO2VMOX0U4N2i/7OW
-         pu/JMTO8zx81A1CQp8ZfTD2kAMXiw3fId03fFm0Y4aOKue7WTXjAtPw/QR6+qrB7PS41
-         wfmtWUQa7MimFRBVziVFU7sBmsYRlrglvK4rE5jYWEvme7mUhgZr+yoyAMGn3TwxXPju
-         5OJQ==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=DRpTw9lz1S9Cy/78ZuzDLS3h2kMwDjueGV7Qm96SuiM=;
+        b=SdUmbZT4XJWTaXfK4FVsTTAaH/zOcJEsgXhu1DoG0Y6cIofVWtoqMkXfRRilP++OrM
+         QtQhPWJgxKPbZHkAkwFrhrnBUSF42Yqm0d/Vlon0ALYGA9jXsDJpJQ8jxxkPjPnAl9ml
+         bnWiVGR8pPySULPcCXAkgOpLOk0U2aRYZ0v4UwUuX/5I4uhEHA6uEl0Bp7WLOqrOtbvg
+         923pmPYIKX4DOMSVzxRNPZdbYmTYQkL/eF8WU/fIo7xbWUkZu16FfZjvwdTYzrWNWSL8
+         s6kxnLYt5ISXGYkBgpxNM1kfJdgI1yGgozHv49MuC9UJTXmAuyx5jgYjb+X8r+2xDizr
+         fIIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=y7AFvgnHqwWsOFhTmk4i/DwYzcjtYaWfhp+4Z6qHobU=;
-        b=vrTd+T2fWibcomUjHUBf+ZX8AKxNJBjAFoSxPclBDRM+3tqFGu8X6nCcjEm9TeDNC3
-         VcFoPsnQMDK8dlG5d7nLdW0P1ZaU/nGfcDlDur6ididNCdBHK+iXvgIqiGUY0aiPqYSd
-         dkcbEEq56ct8AVjsDANgKlcfmf56P36lHDNKqvETYC10XDJiKBHCwNhxrW6flN6rOJAS
-         8ztrsXqfCjtpkCOC3WVWOvqpwVoTox2TnCvuuOSZ+L2psTarn+VA4vPALCLFGbwvW/UM
-         8gJirHIprwdiDq/nXh/UqebsWtH6pioG4H27FM6b6z30upBfqaWaZjpNmHgs8qyC4+m+
-         rTpg==
-X-Gm-Message-State: AOAM532ZR5EsN+2mW3H4ZwL2f02/PlABP6sBlmxbsaW3z9vPA7CtloJo
-        b4khmezNzJxXUrqxZBb20jRakg==
-X-Google-Smtp-Source: ABdhPJz5o9FuHCcYjcaH5dprQ7ehfD3MI+SA5JumBHiFDerZaHO2MPeu/niUrkcqkUu4GjHxBsRY7A==
-X-Received: by 2002:a05:600c:1f0e:b0:397:707f:5a60 with SMTP id bd14-20020a05600c1f0e00b00397707f5a60mr27623101wmb.3.1654088806145;
-        Wed, 01 Jun 2022 06:06:46 -0700 (PDT)
-Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id m11-20020a5d624b000000b0020ff3a2a925sm1892597wrv.63.2022.06.01.06.06.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Jun 2022 06:06:45 -0700 (PDT)
-Message-ID: <1ec64a99-cfcf-c903-935b-d1bb0617c284@linaro.org>
-Date:   Wed, 1 Jun 2022 14:06:43 +0100
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=DRpTw9lz1S9Cy/78ZuzDLS3h2kMwDjueGV7Qm96SuiM=;
+        b=wyBiDe7VY4M8XMStcSb4C93gBV9XOFxpbZpXBJiLOMZKfAZD9Jc5WBy0Q6su1JwQo9
+         7COXNIlX5ctZJXfAgz/5zyt5yJ841wE8fHMf8eKLM++enxU7mXAqvNpIDTq+T4pB0Vpv
+         9b/UplDW9R6nKTKR8fqwaN/Mp8krnG75tJK1kAkv3v0aEYmyjH/CqXIAOnjhJVhnJ9pA
+         lCVNHFckleas7PqzozBF6eWFAHm5ZjkLbuxsM/eSRCWLcGOFVRBsfDyfuIKMLqDI9g0D
+         8Uaueb3WdsmMeT8hiG5nUQtwqDQJpCoM/ue/4d0NvbLxr8AVjUu8TmgFL7OpTklB+cnh
+         gbNA==
+X-Gm-Message-State: AOAM5328wWlR/Ur2wm/tmSkP+ZeBA4Ih7dBnw7ztj8dORcuQ998Pd6k5
+        vxr4qCm79ukSoHUTYu22mtx/zOT4Uk0LfHMlawA=
+X-Google-Smtp-Source: ABdhPJxDR1qqE73F2Dd2/7gM+wPzBFo+C3IE6ImDZUPjGfXe3r8PPNHJ8YwA1B/Zp/2zAfanZAgtSECEA021tZ37JGU=
+X-Received: by 2002:a67:cb95:0:b0:337:e29b:c824 with SMTP id
+ h21-20020a67cb95000000b00337e29bc824mr15185750vsl.19.1654089171376; Wed, 01
+ Jun 2022 06:12:51 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v2] ASoC: qcom: soundwire: Add support for controlling
- audio CGCR from HLOS
-Content-Language: en-US
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        Matthias Kaehlcke <mka@chromium.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>, agross@kernel.org,
-        alsa-devel@alsa-project.org, bgoswami@quicinc.com,
-        bjorn.andersson@linaro.org, broonie@kernel.org,
-        devicetree@vger.kernel.org, judyhsiao@chromium.org,
-        lgirdwood@gmail.com, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, perex@perex.cz,
-        quic_plai@quicinc.com, quic_rohkumar@quicinc.com,
-        robh+dt@kernel.org, tiwai@suse.com, vkoul@kernel.org
-References: <1652877755-25120-1-git-send-email-quic_srivasam@quicinc.com>
- <CAE-0n53g9rWks+euk5KHBzmJNEB3xLbJzMgCxN52DO5x+9-Wgg@mail.gmail.com>
- <51b8aca1-e038-4907-e973-ebdbebaf9b28@quicinc.com>
- <YpaXZ6KfApGebkBy@google.com>
- <7c74868d-624b-c18e-b377-026e70813fcc@quicinc.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <7c74868d-624b-c18e-b377-026e70813fcc@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220601125344.60602-1-stefan.wahren@i2se.com> <20220601125344.60602-4-stefan.wahren@i2se.com>
+In-Reply-To: <20220601125344.60602-4-stefan.wahren@i2se.com>
+From:   Peter Robinson <pbrobinson@gmail.com>
+Date:   Wed, 1 Jun 2022 14:12:38 +0100
+Message-ID: <CALeDE9PxwWGp5ghzx1+ekYOR_w49hBn9vZvwVjp7yGHW_DQzwQ@mail.gmail.com>
+Subject: Re: [PATCH V2 03/11] dt-bindings: soc: bcm: bcm2835-pm: Add support
+ for bcm2711
+To:     Stefan Wahren <stefan.wahren@i2se.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Melissa Wen <melissa.srw@gmail.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 01/06/2022 13:57, Srinivasa Rao Mandadapu wrote:
-> 
-> On 6/1/2022 4:02 AM, Matthias Kaehlcke wrote:
-> Thanks for Your Time Matthias!!!
->> On Tue, May 24, 2022 at 04:19:47PM +0530, Srinivasa Rao Mandadapu wrote:
->>> On 5/21/2022 8:43 AM, Stephen Boyd wrote:
->>> Thanks for your time Stephen!!!
->>>> Quoting Srinivasa Rao Mandadapu (2022-05-18 05:42:35)
->>>>> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
->>>>> index da1ad7e..445e481 100644
->>>>> --- a/drivers/soundwire/qcom.c
->>>>> +++ b/drivers/soundwire/qcom.c
->>>>> @@ -1333,6 +1337,10 @@ static int qcom_swrm_probe(struct 
->>>>> platform_device *pdev)
->>>>>           ctrl->bus.compute_params = &qcom_swrm_compute_params;
->>>>>           ctrl->bus.clk_stop_timeout = 300;
->>>>>
->>>>> +       ctrl->audio_cgcr = devm_reset_control_get_exclusive(dev, 
->>>>> "swr_audio_cgcr");
->>>>> +       if (IS_ERR(ctrl->audio_cgcr))
->>>>> +               dev_err(dev, "Failed to get audio_cgcr reset 
->>>>> required for soundwire-v1.6.0\n");
->>>> Why is there no return on error here? Is the reset optional?
->>> Yes it's optional. For older platforms this is not required.
->> If it's optional then either there should be no error message, or the
->> error message should only be logged when the version is >= 1.6.0. There
->> are few things worse than a kernel log riddled with misleading error
->> messages.
-> 
-> In that case, it can be done like below. Kindly let me know your opinion 
-> on this.
-> 
-> if (ctrl->version >= 0x01060000) {
-
-This is not true 1.7+ variants do not require anything as such.
-
-Why not add a flag in struct qcom_swrm_data and pass it as part of 
-of_match data specific to this version?
-
---srini
->      ctrl->audio_cgcr = devm_reset_control_get_exclusive(dev, 
-> "swr_audio_cgcr");
->          if (IS_ERR(ctrl->audio_cgcr)) {
->              dev_err(dev, "Failed to get audio_cgcr reset required for 
-> soundwire-v1.6.0\n");
->              ret = PTR_ERR(ctrl->audio_cgcr);
->              goto err_clk;
->          }
->      }
-> 
+On Wed, Jun 1, 2022 at 1:54 PM Stefan Wahren <stefan.wahren@i2se.com> wrote:
+>
+> Add a new compatible string for BCM2711 and the option to provide a
+> third reg property for the board's new RPiVid ASB.
+>
+> In BCM2711 the new RPiVid ASB took over V3D, which is our only consumer
+> of this driver so far. The old ASB is still be present with ISP and H264
+> bits but no V3D.
+>
+> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+Reviewed-by: Peter Robinson <pbrobinson@gmail.com>
+> ---
+>  .../devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml   | 10 +++++++---
+>  1 file changed, 7 insertions(+), 3 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
+> index 883ab7cb96e9..f448f034a33a 100644
+> --- a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
+> +++ b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
+> @@ -19,17 +19,21 @@ allOf:
+>  properties:
+>    compatible:
+>      items:
+> -      - const: brcm,bcm2835-pm
+> +      - enum:
+> +          - brcm,bcm2835-pm
+> +          - brcm,bcm2711-pm
+>        - const: brcm,bcm2835-pm-wdt
+>
+>    reg:
+> -    minItems: 2
+> -    maxItems: 2
+> +    minItems: 1
+> +    maxItems: 3
+>
+>    reg-names:
+> +    minItems: 2
+>      items:
+>        - const: pm
+>        - const: asb
+> +      - const: rpivid_asb
+>
+>    "#power-domain-cells":
+>      const: 1
+> --
+> 2.25.1
+>
