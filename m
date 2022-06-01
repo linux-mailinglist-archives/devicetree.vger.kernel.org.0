@@ -2,76 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3491853A4CC
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 14:23:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A42EF53A4F4
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 14:29:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243350AbiFAMWr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 08:22:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47262 "EHLO
+        id S1352537AbiFAM26 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 08:28:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352840AbiFAMWo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 08:22:44 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4217C393D3
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 05:22:40 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id rs12so3341260ejb.13
-        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 05:22:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ZDgi6QT1T7EpVIAwPl8YawRZEJZufjvXhtek/OEXbdU=;
-        b=IGH9KuLMT3HYQF2PpAJxEcijlE9gMLD3M570Hqtdk9x/5aqV4hW0tiLeZpxEfnOGKr
-         9Shmi8k54+r6RaWu9Y0sPyM2ih3Q0AzczEqglxN5Hp0niQ5o5DAulAjuUjY3ehCwR8Ff
-         jYZKYkjAJ4nkfeNbVwdNoh2xA4lOB6QEBXJrIQymVjr+viKC7z5M+lQ53kZFnRBkVgl4
-         +IXuPqiQrAmLg52aD2xT5T3ypEPqCFUyc4vjiTk/GUocyo6a0AU8KMj2hOMV19gb29Gi
-         srFj0P4uB0/cHWcpRL6uS70TGZnWX0nujTZ1suoxqMUiSqqsio6yptx+tZ8yM5hwMB9X
-         VB6A==
+        with ESMTP id S231806AbiFAM25 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 08:28:57 -0400
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 155C67CDF3;
+        Wed,  1 Jun 2022 05:28:56 -0700 (PDT)
+Received: by mail-oi1-f169.google.com with SMTP id i66so2395584oia.11;
+        Wed, 01 Jun 2022 05:28:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ZDgi6QT1T7EpVIAwPl8YawRZEJZufjvXhtek/OEXbdU=;
-        b=elHh7sCimE9Ks3I9WP8GeeZjiy3WRK0uqVMUVhj0K1agsAN/kwOWjI/fLOgJppRpZT
-         L1s+Y80wd+t+6UElm/OsSetetOJtJrvTpqU3QYDC47B+aqh8LviIe1H8Y3Fk3WPqXkDS
-         FQbiZ/bDM2zojgBbYN6+194H9lMQB5onnpJDWOzqrYFooIpV6r9zxffO4JAEK8h28GfI
-         UzoJ83gkdzfksqFaCciGdWz1TzgEX1PrE3C92UY19K6Q+TxpWoq6C6tJBVubROtrDe7h
-         kQdmj9mbe5S4YVfZLJbHvNR6nyDvR4S2JcojJK0CfQqDNK0RsGGQhk9OVgq0zBqaXYla
-         dGxQ==
-X-Gm-Message-State: AOAM533vYCb7suf2Iwn8DEbDglVN3stNf4AMPh1pN/pSKpBPzsiGm+Df
-        ba7/CDmkyk7dMxWdWQGBMRyAIBD/+T7U0szQ
-X-Google-Smtp-Source: ABdhPJyvJbwGPjXVa+X3djqfGIJHVCyeFGfVCL8frzhyOFUP05z/hnZlK01sRTcQV+QNd9iwdn52IQ==
-X-Received: by 2002:a17:907:2cc4:b0:6fe:1c72:7888 with SMTP id hg4-20020a1709072cc400b006fe1c727888mr58492508ejc.373.1654086158619;
-        Wed, 01 Jun 2022 05:22:38 -0700 (PDT)
-Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id o17-20020a1709061b1100b006febc1ef61csm637801ejg.106.2022.06.01.05.22.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Jun 2022 05:22:38 -0700 (PDT)
-Message-ID: <44053e7d-71fd-2012-dc7f-5641536c1f2c@linaro.org>
-Date:   Wed, 1 Jun 2022 14:22:36 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v6 1/6] dt-bindings: remoteproc: Add Xilinx RPU subsystem
- bindings
-Content-Language: en-US
-To:     Tanmay Shah <tanmay.shah@xilinx.com>,
-        openamp-system-reference@lists.openampproject.org,
-        bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
-        robh+dt@kernel.org, krzk+dt@kernel.org, michal.simek@xilinx.com,
-        ben.levinsky@xilinx.com
-Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20220531234308.3317795-1-tanmay.shah@xilinx.com>
- <20220531234308.3317795-2-tanmay.shah@xilinx.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220531234308.3317795-2-tanmay.shah@xilinx.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=LHSRYKuTnwOMke2x9XwbTQBLinxgu/62OUN1oQHV6q0=;
+        b=25Apz8DYaRrh8d7cVB/NjiQrnCexGStESpqNh4XHQ0Xi72w0Eu8JAJq5e/XZsA9hs/
+         5kf38Ys2CIH1fHVIuFu1JkfhikRqPt8zYdBkMoV2cDwTEK5pCyKCKNwWtv8yiPC/Ax5/
+         hPpuIGYMTR2Q3tocJCn6e9xYWHIQ9NiWfspxMIB6uhI7hYnZ0qYBgF1Kz5P2ghx6WPE4
+         KCtHGmnQtKEMZ+ra3LKAjFiopMT8e86berY2e/ol53t1CNc4LOwg6fRH3Ce+mHDqBlOV
+         wRA/p5cdH54ZXepn89FPTbCF9X9BRYvUl3zAt1v8DCfJUaA21KzOOXZX4E5a1sPNlcFf
+         M7ng==
+X-Gm-Message-State: AOAM532s01zmTfqiHHDOnXy1Oez4GhnNq+tHXmWOzwGEf51bv/NlKH00
+        1CEJ6FVgQuJ47Gagmr83kw==
+X-Google-Smtp-Source: ABdhPJwuoXbP8R22WIyBV8c1qr54ohrFgkptunPLBMQVK65aIjekLqgYmvfG41EJIeD2H271W9MKUA==
+X-Received: by 2002:a05:6808:1387:b0:32b:1e76:e60 with SMTP id c7-20020a056808138700b0032b1e760e60mr14932861oiw.172.1654086535221;
+        Wed, 01 Jun 2022 05:28:55 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id f12-20020a05680814cc00b0032b99637366sm880056oiw.25.2022.06.01.05.28.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Jun 2022 05:28:54 -0700 (PDT)
+Received: (nullmailer pid 3753218 invoked by uid 1000);
+        Wed, 01 Jun 2022 12:28:53 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        linux-phy@lists.infradead.org,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sandeep Maheswaram <quic_c_sanm@quicinc.com>,
+        quic_ppratap@quicinc.com, Rob Herring <robh+dt@kernel.org>,
+        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        quic_vpulyala@quicinc.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
+        Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <1654066564-20518-2-git-send-email-quic_kriskura@quicinc.com>
+References: <1654066564-20518-1-git-send-email-quic_kriskura@quicinc.com> <1654066564-20518-2-git-send-email-quic_kriskura@quicinc.com>
+Subject: Re: [PATCH v8 1/3] dt-bindings: phy: qcom,usb-snps-femto-v2: Add phy override params bindings
+Date:   Wed, 01 Jun 2022 07:28:53 -0500
+Message-Id: <1654086533.981346.3753217.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,121 +70,159 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/06/2022 01:43, Tanmay Shah wrote:
-> Xilinx ZynqMP platform has dual-core ARM Cortex R5 Realtime Processing
-> Unit(RPU) subsystem. This patch adds dt-bindings for RPU subsystem
-> (cluster).
+On Wed, 01 Jun 2022 12:26:02 +0530, Krishna Kurapati wrote:
+> From: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
 > 
-> Signed-off-by: Tanmay Shah <tanmay.shah@xilinx.com>
+> Add device tree bindings for SNPS phy tuning parameters.
+> 
+> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
+>  .../bindings/phy/qcom,usb-snps-femto-v2.yaml       | 96 ++++++++++++++++++++++
+>  1 file changed, 96 insertions(+)
 > 
-> Changes in v6:
->   - Add maxItems to sram and memory-region property
-> 
-> Changes in v5:
-> - Add constraints of the possible values of xlnx,cluster-mode property
-> - fix description of power-domains property for r5 core
-> - Remove reg, address-cells and size-cells properties as it is not required
-> - Fix description of mboxes property
-> - Add description of each memory-region and remove old .txt binding link
->   reference in the description
-> 
-> Changes in v4:
->   - Add memory-region, mboxes and mbox-names properties in example
-> 
-> Changes in v3:
->   - None
-> 
-> 
->  .../bindings/remoteproc/xlnx,r5f-rproc.yaml   | 129 ++++++++++++++++++
->  include/dt-bindings/power/xlnx-zynqmp-power.h |   6 +
->  2 files changed, 135 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
-> new file mode 100644
-> index 000000000000..cbff1c201a89
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
-> @@ -0,0 +1,129 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/remoteproc/xlnx,r5f-rproc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Xilinx R5F processor subsystem
-> +
-> +maintainers:
-> +  - Ben Levinsky <ben.levinsky@xilinx.com>
-> +  - Tanmay Shah <tanmay.shah@xilinx.com>
-> +
-> +description: |
-> +  The Xilinx platforms include a pair of Cortex-R5F processors (RPU) for
-> +  real-time processing based on the Cortex-R5F processor core from ARM.
-> +  The Cortex-R5F processor implements the Arm v7-R architecture and includes a
-> +  floating-point unit that implements the Arm VFPv3 instruction set.
-> +
-> +properties:
-> +  compatible:
-> +    const: xlnx,zynqmp-r5fss
-> +
-> +  xlnx,cluster-mode:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1, 2]
-> +    description: |
-> +      The RPU MPCore can operate in split mode(Dual-processor performance), Safety
-> +      lock-step mode(Both RPU cores execute the same code in lock-step,
-> +      clock-for-clock) or Single CPU mode (RPU core 0 can be held in reset while
-> +      core 1 runs normally). The processor does not support dynamic configuration.
-> +      Switching between modes is only permitted immediately after a processor reset.
-> +      If set to  1 then lockstep mode and if 0 then split mode.
-> +      If set to  2 then single CPU mode. When not defined, default will be lockstep mode.
-> +
-> +patternProperties:
-> +  "^r5f-[a-f0-9]+$":
-> +    type: object
-> +    description: |
-> +      The RPU is located in the Low Power Domain of the Processor Subsystem.
-> +      Each processor includes separate L1 instruction and data caches and
-> +      tightly coupled memories (TCM). System memory is cacheable, but the TCM
-> +      memory space is non-cacheable.
-> +
-> +      Each RPU contains one 64KB memory and two 32KB memories that
-> +      are accessed via the TCM A and B port interfaces, for a total of 128KB
-> +      per processor. In lock-step mode, the processor has access to 256KB of
-> +      TCM memory.
-> +
-> +    properties:
-> +      compatible:
-> +        const: xlnx,zynqmp-r5f
-> +
-> +      power-domains:
-> +        description: RPU core PM domain specifier
-> +        maxItems: 1
-> +
-> +      mboxes:
-> +        minItems: 1
-> +        items:
-> +          - description: mailbox channel to send data to RPU
-> +          - description: mailbox channel to receive data from RPU
-> +
-> +      mbox-names:
-> +        minItems: 1
-> +        items:
-> +          - const: tx
-> +          - const: rx
-> +
-> +      sram:
-> +        $ref: /schemas/types.yaml#/definitions/phandle-array
-> +        maxItems: 8
 
-Without minItems, this means maxItems=minItems and previously you had
-here "minItems:1", so is it really what you want?
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Anyway rest looks good to me.
+yamllint warnings/errors:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml: properties:qcom,hs-rise-fall-time-bp: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('maximum', 'minimum' were unexpected)
+		hint: A vendor boolean property can use "type: boolean"
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml: properties:qcom,hs-rise-fall-time-bp: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+		hint: A vendor string property with exact values has an implicit type
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml: properties:qcom,hs-rise-fall-time-bp: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml: properties:qcom,ls-fs-output-impedance-bp: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('maximum', 'minimum' were unexpected)
+		hint: A vendor boolean property can use "type: boolean"
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml: properties:qcom,ls-fs-output-impedance-bp: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+		hint: A vendor string property with exact values has an implicit type
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml: properties:qcom,ls-fs-output-impedance-bp: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml: properties:qcom,pre-emphasis-amplitude-bp: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('maximum', 'minimum' were unexpected)
+		hint: A vendor boolean property can use "type: boolean"
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml: properties:qcom,pre-emphasis-amplitude-bp: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+		hint: A vendor string property with exact values has an implicit type
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml: properties:qcom,pre-emphasis-amplitude-bp: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml: properties:qcom,squelch-detector-bp: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('maximum', 'minimum' were unexpected)
+		hint: A vendor boolean property can use "type: boolean"
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml: properties:qcom,squelch-detector-bp: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+		hint: A vendor string property with exact values has an implicit type
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml: properties:qcom,squelch-detector-bp: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml: properties:qcom,hs-disconnect-bp: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('maximum', 'minimum' were unexpected)
+		hint: A vendor boolean property can use "type: boolean"
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml: properties:qcom,hs-disconnect-bp: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+		hint: A vendor string property with exact values has an implicit type
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml: properties:qcom,hs-disconnect-bp: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml: properties:qcom,hs-amplitude-bp: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('maximum', 'minimum' were unexpected)
+		hint: A vendor boolean property can use "type: boolean"
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml: properties:qcom,hs-amplitude-bp: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+		hint: A vendor string property with exact values has an implicit type
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml: properties:qcom,hs-amplitude-bp: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml: properties:qcom,pre-emphasis-duration-bp: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('maximum', 'minimum' were unexpected)
+		hint: A vendor boolean property can use "type: boolean"
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml: properties:qcom,pre-emphasis-duration-bp: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+		hint: A vendor string property with exact values has an implicit type
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml: properties:qcom,pre-emphasis-duration-bp: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml: ignoring, error in schema: properties: qcom,hs-rise-fall-time-bp
+Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.example.dtb:0:0: /example-0/phy@88e2000: failed to match any schema with compatible: ['qcom,sm8150-usb-hs-phy']
 
-Best regards,
-Krzysztof
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
