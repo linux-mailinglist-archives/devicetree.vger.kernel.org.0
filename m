@@ -2,74 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7325D539B36
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 04:24:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D81A0539B43
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 04:25:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349143AbiFACXQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 22:23:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45068 "EHLO
+        id S1349178AbiFACZR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 22:25:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349156AbiFACXJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 22:23:09 -0400
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D41096E8F3
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 19:23:07 -0700 (PDT)
-Received: by mail-pj1-x1032.google.com with SMTP id gd1so660303pjb.2
-        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 19:23:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version;
-        bh=qxdYlRBFCS+XmDdUDZznQX/GBDeZjzGieUGbG3Go5sY=;
-        b=XpbuLOuMHfsJr5i9iGI2oK68sHJzoNvdlVOQSfP3LQTqRIr/pdYrX0WPorGvz0mZNt
-         l38r1sSGp/Py+ECY+pKRtbIYUzM5Jw2SIm4ObQWcu78QN054Br4xsQvHShg3vJY6zE2s
-         XlAGCMw8QPkpUr7fYsJhkf2w4qY0jHsraef30=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version;
-        bh=qxdYlRBFCS+XmDdUDZznQX/GBDeZjzGieUGbG3Go5sY=;
-        b=YqV3tEpiY5lMXbaHfJJRBsXFbSZ1vY23Rq30zx/fjvvCnydE897Y087QJ7sS6pZz9X
-         GsAMBHBYqE5SthuXMtwrulxdom8TEtQmch4lcw9w8a0ErhO3fgs4kecQrk4fPH+OU/kX
-         I5qxI4xixvCngzb6JqECHyZ6AWn9f+DU1QZHNPx/cxndkyax4FGQiSe9KrfSM1EVpFWr
-         SWzLvExb/wUr4bXX+dlF57xC/cMDTn4Js9pOEF7eo0zgQ8lmJcRdoOwJY20DcGgzwRI1
-         hZTRJTXnwKns2/qPExk29LnajW+oA8cHS9ewERPQwWdWNCVi1ly/1IKvHinYbby9gi6h
-         zGbw==
-X-Gm-Message-State: AOAM532o7xssfwXrwfMIV+Mn0kTp0ZwTg9Tjf8V3UShxtkqhRL39KfTl
-        RICSA9KtaV929L0mVUA+/bvgGw==
-X-Google-Smtp-Source: ABdhPJyVQ6BqRjO2+eKFo69VmqoB1DX6OTBsxsQd9r7b+eZsy8UYi5iI7eTY0iz6DFs/x08U3RGPZg==
-X-Received: by 2002:a17:90a:fe8f:b0:1e3:1dcd:7f94 with SMTP id co15-20020a17090afe8f00b001e31dcd7f94mr10568867pjb.23.1654050187319;
-        Tue, 31 May 2022 19:23:07 -0700 (PDT)
-Received: from T3500-3.dhcp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id v24-20020a634658000000b003fad46ceb85sm157824pgk.7.2022.05.31.19.23.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 May 2022 19:23:06 -0700 (PDT)
-From:   William Zhang <william.zhang@broadcom.com>
-To:     Linux ARM List <linux-arm-kernel@lists.infradead.org>
-Cc:     anand.gore@broadcom.com, dan.beygelman@broadcom.com,
-        florian.fainelli@broadcom.com, joel.peshkin@broadcom.com,
-        tomer.yacoby@broadcom.com, kursad.oney@broadcom.com,
-        samyon.furman@broadcom.com, philippe.reynes@softathome.com,
-        William Zhang <william.zhang@broadcom.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
+        with ESMTP id S240621AbiFACZQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 22:25:16 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CF96813EE;
+        Tue, 31 May 2022 19:25:15 -0700 (PDT)
+X-UUID: 1a39456bb36b478eaeb882ffe721512c-20220601
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:42db6c5f-de4f-4397-bcfa-97d13f873f17,OB:0,LO
+        B:0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:50
+X-CID-INFO: VERSION:1.1.5,REQID:42db6c5f-de4f-4397-bcfa-97d13f873f17,OB:0,LOB:
+        0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
+        N:release,TS:50
+X-CID-META: VersionHash:2a19b09,CLOUDID:267b7814-f88c-475e-badf-d9ee54230b8f,C
+        OID:de123c9a6729,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,QS:0,BEC:nil
+X-UUID: 1a39456bb36b478eaeb882ffe721512c-20220601
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 720505080; Wed, 01 Jun 2022 10:25:08 +0800
+Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Wed, 1 Jun 2022 10:25:07 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 1 Jun 2022 10:25:06 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Wed, 1 Jun 2022 10:25:06 +0800
+Message-ID: <0209f3123079f65027bff96d8214129d7bf8393c.camel@mediatek.com>
+Subject: Re: [PATCH v17 4/4] media: platform: mtk-mdp3: add Mediatek MDP3
+ driver
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Moudy Ho <moudy.ho@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, soc@kernel.org
-Subject: [PATCH v3 2/3] ARM: dts: add dts files for bcmbca SoC bcm6846
-Date:   Tue, 31 May 2022 19:22:12 -0700
-Message-Id: <20220601022215.32494-3-william.zhang@broadcom.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220601022215.32494-1-william.zhang@broadcom.com>
-References: <20220601022215.32494-1-william.zhang@broadcom.com>
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>
+CC:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        <tfiga@chromium.org>, <drinkcat@chromium.org>,
+        <pihsun@chromium.org>, <hsinyi@google.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        <allen-kh.cheng@mediatek.com>, <xiandong.wang@mediatek.com>,
+        <randy.wu@mediatek.com>, <jason-jh.lin@mediatek.com>,
+        <roy-cw.yeh@mediatek.com>, <river.cheng@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <cellopoint.kai@gmail.com>
+Date:   Wed, 1 Jun 2022 10:25:06 +0800
+In-Reply-To: <20220531061338.19555-5-moudy.ho@mediatek.com>
+References: <20220531061338.19555-1-moudy.ho@mediatek.com>
+         <20220531061338.19555-5-moudy.ho@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000dfbe0405e0599114"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,270 +88,167 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000dfbe0405e0599114
-Content-Transfer-Encoding: 8bit
+Hi, Moudy:
 
-Add dts for ARMv7 based broadband SoC BCM6846. bcm6846.dtsi is the
-SoC description dts header and bcm96846.dts is a simple dts file for
-Broadcom BCM96846 Reference board that only enable the UART port.
+On Tue, 2022-05-31 at 14:13 +0800, Moudy Ho wrote:
+> This patch adds driver for Mediatek's Media Data Path ver.3 (MDP3).
+> It provides the following functions:
+>   color transform, format conversion, resize, crop, rotate, flip
+>   and additional image quality enhancement.
+> 
+> The MDP3 driver is mainly used for Google Chromebook products to
+> import the new architecture to set the HW settings as shown below:
+>   User -> V4L2 framework
+>     -> MDP3 driver -> SCP (setting calculations)
+>       -> MDP3 driver -> CMDQ (GCE driver) -> HW
+> 
+> Each modules' related operation control is sited in mtk-mdp3-comp.c
+> Each modules' register table is defined in file with "mdp_reg_"
+> prefix
+> GCE related API, operation control  sited in mtk-mdp3-cmdq.c
+> V4L2 m2m device functions are implemented in mtk-mdp3-m2m.c
+> Probe, power, suspend/resume, system level functions are defined in
+> mtk-mdp3-core.c
+> 
 
-Signed-off-by: William Zhang <william.zhang@broadcom.com>
+[snip]
 
----
+> 
+> +int mdp_cmdq_send(struct mdp_dev *mdp, struct mdp_cmdq_param *param)
+> +{
+> +	struct mdp_cmdq_cmd cmd;
+> +	struct mdp_path *path = NULL;
+> +	struct mdp_cmdq_cb_param *cb_param = NULL;
+> +	struct mdp_comp *comps = NULL;
+> +	struct device *dev = &mdp->pdev->dev;
+> +	int i, ret;
+> +
+> +	atomic_inc(&mdp->job_count);
+> +	if (atomic_read(&mdp->suspended)) {
+> +		atomic_dec(&mdp->job_count);
+> +		return -ECANCELED;
+> +	}
+> +
+> +	cb_param = kzalloc(sizeof(*cb_param), GFP_KERNEL);
+> +	if (!cb_param) {
+> +		ret = -ENOMEM;
+> +		goto err_cmdq_data;
+> +	}
+> +
+> +	cmd.pkt = cmdq_pkt_create(mdp->cmdq_clt, SZ_16K);
+> +	if (IS_ERR(cmd.pkt)) {
+> +		ret = PTR_ERR(cmd.pkt);
+> +		goto err_cmdq_data;
+> +	}
+> +
+> +	comps = kcalloc(param->config->num_components, sizeof(*comps),
+> +			GFP_KERNEL);
+> +	if (!comps) {
+> +		ret = -ENOMEM;
+> +		goto err_cmdq_data;
+> +	}
+> +
+> +	path = kzalloc(sizeof(*path), GFP_KERNEL);
+> +	if (!path) {
+> +		ret = -ENOMEM;
+> +		goto err_cmdq_data;
+> +	}
+> +
+> +	path->mdp_dev = mdp;
+> +	path->config = param->config;
+> +	path->param = param->param;
+> +	for (i = 0; i < param->param->num_outputs; i++) {
+> +		path->bounds[i].left = 0;
+> +		path->bounds[i].top = 0;
+> +		path->bounds[i].width =
+> +			param->param->outputs[i].buffer.format.width;
+> +		path->bounds[i].height =
+> +			param->param->outputs[i].buffer.format.height;
+> +		path->composes[i] = param->composes[i] ?
+> +			param->composes[i] : &path->bounds[i];
+> +	}
+> +
+> +	ret = mdp_path_ctx_init(mdp, path);
+> +	if (ret) {
+> +		dev_err(dev, "mdp_path_ctx_init error\n");
+> +		goto err_cmdq_data;
+> +	}
+> +
+> +	cmd.event = &mdp->event[0];
+> +	ret = mdp_path_config(mdp, &cmd, path);
+> +	if (ret) {
+> +		dev_err(dev, "mdp_path_config error\n");
+> +		goto err_cmdq_data;
+> +	}
+> +	cmdq_pkt_finalize(cmd.pkt);
+> +
+> +	for (i = 0; i < param->config->num_components; i++)
+> +		memcpy(&comps[i], path->comps[i].comp,
+> +		       sizeof(struct mdp_comp));
+> +
+> +	cb_param->mdp = mdp;
+> +	cb_param->user_cmdq_cb = param->cmdq_cb;
+> +	cb_param->user_cb_data = param->cb_data;
+> +	cb_param->pkt = cmd.pkt;
+> +	cb_param->comps = comps;
+> +	cb_param->num_comps = param->config->num_components;
+> +	cb_param->mdp_ctx = param->mdp_ctx;
+> +
+> +	cmd.pkt->async_cb.data = (void *)cb_param;
 
-Changes in v3:
-- Fix timer PPI interrupt cpu mask for dual core cpu
-- Remove unnecessary cpu_on and cpu_off properties from psci node
-- Add the missing gic registers and interrupts property to gic node
+async_cb is part of proprietary callback mechanism and I'm replacing
+the proprietary one with standard one. My final patch is [1] (not
+upstreamed yet) and 'data' would be removed. The way to get data
+related to pkt:
 
- arch/arm/boot/dts/Makefile     |   3 +-
- arch/arm/boot/dts/bcm6846.dtsi | 103 +++++++++++++++++++++++++++++++++
- arch/arm/boot/dts/bcm96846.dts |  30 ++++++++++
- 3 files changed, 135 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm/boot/dts/bcm6846.dtsi
- create mode 100644 arch/arm/boot/dts/bcm96846.dts
+strutc mdp_data {
+    struct cmdq_pkt pkt;
+    /* Other data such as mdp, user_cmdq_cb, ... */
+}
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 03f5b3a15415..2f20dcf74858 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -182,7 +182,8 @@ dtb-$(CONFIG_ARCH_BERLIN) += \
- dtb-$(CONFIG_ARCH_BRCMSTB) += \
- 	bcm7445-bcm97445svmb.dtb
- dtb-$(CONFIG_ARCH_BCMBCA) += \
--	bcm947622.dtb
-+	bcm947622.dtb \
-+	bcm96846.dtb
- dtb-$(CONFIG_ARCH_CLPS711X) += \
- 	ep7211-edb7211.dtb
- dtb-$(CONFIG_ARCH_DAVINCI) += \
-diff --git a/arch/arm/boot/dts/bcm6846.dtsi b/arch/arm/boot/dts/bcm6846.dtsi
-new file mode 100644
-index 000000000000..8aa47a2583b2
---- /dev/null
-+++ b/arch/arm/boot/dts/bcm6846.dtsi
-@@ -0,0 +1,103 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2022 Broadcom Ltd.
-+ */
-+
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+/ {
-+	compatible = "brcm,bcm6846", "brcm,bcmbca";
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	interrupt-parent = <&gic>;
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		CA7_0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a7";
-+			reg = <0x0>;
-+			next-level-cache = <&L2_0>;
-+			enable-method = "psci";
-+		};
-+
-+		CA7_1: cpu@1 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a7";
-+			reg = <0x1>;
-+			next-level-cache = <&L2_0>;
-+			enable-method = "psci";
-+		};
-+
-+		L2_0: l2-cache0 {
-+			compatible = "cache";
-+		};
-+	};
-+
-+	timer {
-+		compatible = "arm,armv7-timer";
-+		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
-+			<GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
-+			<GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
-+			<GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>;
-+		arm,cpu-registers-not-fw-configured;
-+	};
-+
-+	pmu: pmu {
-+		compatible = "arm,cortex-a7-pmu";
-+		interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
-+			<GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-affinity = <&CA7_0>, <&CA7_1>;
-+	};
-+
-+	clocks: clocks {
-+		periph_clk: periph-clk {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <200000000>;
-+		};
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-0.2";
-+		method = "smc";
-+	};
-+
-+	axi@81000000 {
-+		compatible = "simple-bus";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0 0x81000000 0x8000>;
-+
-+		gic: interrupt-controller@1000 {
-+			compatible = "arm,cortex-a7-gic";
-+			#interrupt-cells = <3>;
-+			interrupt-controller;
-+			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_HIGH)>;
-+			reg = <0x1000 0x1000>,
-+				<0x2000 0x2000>,
-+				<0x4000 0x2000>,
-+				<0x6000 0x2000>;
-+		};
-+	};
-+
-+	bus@ff800000 {
-+		compatible = "simple-bus";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0 0xff800000 0x800000>;
-+
-+		uart0: serial@640 {
-+			compatible = "brcm,bcm6345-uart";
-+			reg = <0x640 0x1b>;
-+			interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&periph_clk>;
-+			clock-names = "refclk";
-+			status = "disabled";
-+		};
-+	};
-+};
-diff --git a/arch/arm/boot/dts/bcm96846.dts b/arch/arm/boot/dts/bcm96846.dts
-new file mode 100644
-index 000000000000..c70ebccabc19
---- /dev/null
-+++ b/arch/arm/boot/dts/bcm96846.dts
-@@ -0,0 +1,30 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2022 Broadcom Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include "bcm6846.dtsi"
-+
-+/ {
-+	model = "Broadcom BCM96846 Reference Board";
-+	compatible = "brcm,bcm96846", "brcm,bcm6846", "brcm,bcmbca";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x08000000>;
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
--- 
-2.36.1
+The callback function would callback with pkt and you could use pkt to
+find struct mdp_data{}.
+
+[1] 
+https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/commit/?h=mediatek-cmdq6&id=a35f642aa89f02b7307725cdaa3bfb348b26d093
+
+Regards,
+CK
 
 
---000000000000dfbe0405e0599114
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+> +	mdp->cmdq_clt->client.rx_callback = mdp_handle_cmdq_callback;
+> +
+> +	mtk_mutex_prepare(mdp->mdp_mutex[MDP_PIPE_RDMA0]);
+> +	for (i = 0; i < param->config->num_components; i++)
+> +		mdp_comp_clock_on(&mdp->pdev->dev, path-
+> >comps[i].comp);
+> +
+> +	dma_sync_single_for_device(mdp->cmdq_clt->chan->mbox->dev,
+> +				   cmd.pkt->pa_base, cmd.pkt-
+> >cmd_buf_size,
+> +				   DMA_TO_DEVICE);
+> +	ret = mbox_send_message(mdp->cmdq_clt->chan, cmd.pkt);
+> +	if (ret < 0) {
+> +		dev_err(dev, "mbox send message fail %d!\n", ret);
+> +		goto err_clock_off;
+> +	}
+> +	mbox_client_txdone(mdp->cmdq_clt->chan, 0);
+> +
+> +	kfree(path);
+> +	return 0;
+> +
+> +err_clock_off:
+> +	mtk_mutex_unprepare(mdp->mdp_mutex[MDP_PIPE_RDMA0]);
+> +	mdp_comp_clocks_off(&mdp->pdev->dev, cb_param->comps,
+> +			    cb_param->num_comps);
+> +err_cmdq_data:
+> +	kfree(path);
+> +	atomic_dec(&mdp->job_count);
+> +	wake_up(&mdp->callback_wq);
+> +	if (cmd.pkt)
+> +		cmdq_pkt_destroy(cmd.pkt);
+> +	kfree(comps);
+> +	kfree(cb_param);
+> +	return ret;
+> +}
 
-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
-TltlrAeBKRJ1M9O/DY5v7L1Yrs//7XIRg/d2ZPAOSGBQzFYjYTFWwNBiR1s1zP0m2y56DPbS5gwj
-fqAN/I4PJHIvTh3zUgHXNKadYoYRiPHXfaTWO9UhzysOpQIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
-BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
-YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
-BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
-MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
-YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
-Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
-HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
-BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUohM5GmNlGWe5wpzDxzIy
-+EgzbRswDQYJKoZIhvcNAQELBQADggEBACKu9JSQAYTlmC+JTniO/C/UcXGonATI/muBjWTxtkHc
-abZtz0uwzzrRrpV+mbHLGVFFeRbXSLvcEzqHp8VomXifEZlfsE9LajSehzaqhd+np+tmUPz1RlI/
-ibZ7vW+1VF18lfoL+wHs2H0fsG6JfoqZldEWYXASXnUrs0iTLgXxvwaQj69cSMuzfFm1X5kWqWCP
-W0KkR8025J0L5L4yXfkSO6psD/k4VcTsMJHLN4RfMuaXIT6EM0cNO6h3GypyTuPf1N1X+F6WQPKb
-1u+rvdML63P9fX7e7mwwGt5klRnf8aK2VU7mIdYCcrFHaKDTW3fkG6kIgrE1wWSgiZYL400xggJt
-MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
-VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw28eX6TfvsbNfu
-SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIACA8MMtfmdk89DA/GdFfMg4yGGC
-StpOt01qDMTpoB9VMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
-MDYwMTAyMjMwN1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
-CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
-AwQCATANBgkqhkiG9w0BAQEFAASCAQCYyrwKcpdWzlm9nB4lxufQ0opN938RhjxD/keMb2pIoqIk
-FIu+ok5eyc+vy6aTJQm10R8QNVHdia4IvfeCdhH+QLXtTSBnd+4MBHnVNzDhSOcp70KleLHeUNVY
-YhJddXlD68CgDDVOnNELEWg3wrEAXe4Yrikk6SYtwXLV0rKJUkC5SmvbQljZwJgfcmyk2vFc372c
-PM/PCzLHfrRb3mXQj7gubmVgwSYSYgfB2eXNR5SkIXCYZZIu9b5/eEoZcXg/kdV3mGj0GbilbqqZ
-RniGCH7rz8Tk4o7auDIEVRXva15chGDp+Dyi/3QJYRD2Dqu2EXk/Ru/MSCquCGYsoIjP
---000000000000dfbe0405e0599114--
