@@ -2,55 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AEB653A8AD
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 16:11:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3395D53A903
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 16:18:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355131AbiFAOLo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 10:11:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46186 "EHLO
+        id S1354591AbiFAORs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 10:17:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354527AbiFAOJq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 10:09:46 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA309EE3D;
-        Wed,  1 Jun 2022 07:01:13 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8447D615B9;
-        Wed,  1 Jun 2022 14:01:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C83E8C34119;
-        Wed,  1 Jun 2022 14:01:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654092072;
-        bh=q7D1XW9aWhBwvhJGCOL3qoKPqRJ93+derL17oDq8N5U=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=BVCLxS5cF6pEykKgUhRCZ9R/QUAkP1P/g54llfDva7FmeYuRNWoXBWhVwKgHtivbx
-         OOA1kps7by5nhb6yxIVUP3szXHZ4bherT90sAN4dVE1Y7OOQnJVpMGR7COkaMcwgi9
-         Tl01v2lcyIB5lKkC9K07XcyVpofU2janlFhn23molNoBbLj2Mi1hbVx3ywwjVZQ2Ja
-         LLlZKhcN6pONSPkmHDlUEL8RT2YhSFjispkszIpkGbHZAzBNXFicdJxD8oD1fIJqRM
-         j9KjVPHp/NH66D/womvNahL+WkogSwiiCGlOb4OJVaA4MOjrZy/k6xGGiSbAt4fD1w
-         ZXdl7G8ekDM+g==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>, Sasha Levin <sashal@kernel.org>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.9 06/11] ARM: dts: exynos: add atmel,24c128 fallback to Samsung EEPROM
-Date:   Wed,  1 Jun 2022 10:00:55 -0400
-Message-Id: <20220601140100.2005469-6-sashal@kernel.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220601140100.2005469-1-sashal@kernel.org>
-References: <20220601140100.2005469-1-sashal@kernel.org>
+        with ESMTP id S1356216AbiFAOQL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 10:16:11 -0400
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20E2FC3D08;
+        Wed,  1 Jun 2022 07:04:31 -0700 (PDT)
+Received: by mail-oi1-f174.google.com with SMTP id s188so2782635oie.4;
+        Wed, 01 Jun 2022 07:04:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=W+gSZQW06c2J9Vc4RXJEh/UwV2q2eY7fbWj2w4Xp+OA=;
+        b=3pkvJD9bhrEI9E+M3kLHM7NbiPH2JDV0fgSDIkZ/38XeQJA/KTjYU1SZmZTK7CX3NS
+         vOT4fEwFgVNBPOoAQP62V8HGZPErp26zL2l79/QbHgrpWGT86hGBflL1qk1rxkWU8D+D
+         S7tWPo+pcEYJ8AZFGhOsUnZspVqpe6Rpvj09XTpm0nj7qUt8UrsS2qL6LDURouu440Kh
+         aNEyvmEKbj1oFXiD37e9ODGp+WmV9x497QAh3AbX9UgNyptaUc1Awp/bjM9n1+/Dw5A4
+         lE7EHRRDSXUxM14rUjylLbr43dC4jmtqEMMD3S3pY85BnifI1+WnzrxkPhxorBijRbXe
+         Wp/w==
+X-Gm-Message-State: AOAM530wgMX15kUxw6TIhcafKItyfPRrKYyqJ617qiQ5fKfrr8nMchdX
+        N80ldmplE6iMdz+8o3ptOA==
+X-Google-Smtp-Source: ABdhPJzeZmIg6Eaxk/FFSJ7MRleaTDeX9X05UQX/nUSrA/9ETpZVpo1P14wSbRMgFSBe8n1csBuYlQ==
+X-Received: by 2002:a05:6808:b04:b0:32b:8fc2:46e4 with SMTP id s4-20020a0568080b0400b0032b8fc246e4mr3165oij.54.1654092270390;
+        Wed, 01 Jun 2022 07:04:30 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id g9-20020a4a7549000000b0035eb4e5a6d3sm938894oof.41.2022.06.01.07.04.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Jun 2022 07:04:30 -0700 (PDT)
+Received: (nullmailer pid 3915391 invoked by uid 1000);
+        Wed, 01 Jun 2022 14:04:29 -0000
+Date:   Wed, 1 Jun 2022 09:04:29 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Hu Ziji <huziji@marvell.com>, Al Cooper <alcooperx@gmail.com>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mmc: Fix unevaluatedProperties warnings in
+ examples
+Message-ID: <20220601140429.GA3909718-robh@kernel.org>
+References: <20220526014204.2873107-1-robh@kernel.org>
+ <CAPDyKFoh5FyRDxr22XnkOd76MG4YjkvqL039=+qHGZKwfdFquw@mail.gmail.com>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFoh5FyRDxr22XnkOd76MG4YjkvqL039=+qHGZKwfdFquw@mail.gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,43 +68,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Wed, Jun 01, 2022 at 02:46:21PM +0200, Ulf Hansson wrote:
+> On Thu, 26 May 2022 at 03:42, Rob Herring <robh@kernel.org> wrote:
+> >
+> > The 'unevaluatedProperties' schema checks is not fully working and doesn't
+> > catch some cases where there's a $ref to another schema. A fix is pending,
+> > but results in new warnings in examples. Fix the warnings by removing
+> > spurious properties or adding a missing property to the schema.
+> >
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> 
+> Queued for v5.20 on the devel branch, thanks!
 
-[ Upstream commit f038e8186fbc5723d7d38c6fa1d342945107347e ]
+Can you take for 5.19 instead so I can enable this in dtschema sooner 
+rather than later?
 
-The Samsung s524ad0xd1 EEPROM should use atmel,24c128 fallback,
-according to the AT24 EEPROM bindings.
-
-Reported-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Link: https://lore.kernel.org/r/20220426183443.243113-1-krzysztof.kozlowski@linaro.org
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm/boot/dts/exynos5250-smdk5250.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm/boot/dts/exynos5250-smdk5250.dts b/arch/arm/boot/dts/exynos5250-smdk5250.dts
-index 54e79f6887ff..3dda0569f86a 100644
---- a/arch/arm/boot/dts/exynos5250-smdk5250.dts
-+++ b/arch/arm/boot/dts/exynos5250-smdk5250.dts
-@@ -129,7 +129,7 @@ &i2c_0 {
- 	samsung,i2c-max-bus-freq = <20000>;
- 
- 	eeprom@50 {
--		compatible = "samsung,s524ad0xd1";
-+		compatible = "samsung,s524ad0xd1", "atmel,24c128";
- 		reg = <0x50>;
- 	};
- 
-@@ -288,7 +288,7 @@ &i2c_1 {
- 	samsung,i2c-max-bus-freq = <20000>;
- 
- 	eeprom@51 {
--		compatible = "samsung,s524ad0xd1";
-+		compatible = "samsung,s524ad0xd1", "atmel,24c128";
- 		reg = <0x51>;
- 	};
- 
--- 
-2.35.1
-
+Rob
