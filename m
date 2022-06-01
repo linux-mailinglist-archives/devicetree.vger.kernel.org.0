@@ -2,68 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15F3753A064
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 11:31:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AF4153A06C
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 11:32:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351055AbiFAJa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 05:30:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44916 "EHLO
+        id S1351096AbiFAJcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 05:32:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351093AbiFAJay (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 05:30:54 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60EF78FD40
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 02:30:45 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id m20so2466302ejj.10
-        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 02:30:45 -0700 (PDT)
+        with ESMTP id S1351076AbiFAJcL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 05:32:11 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97C4087A26
+        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 02:32:09 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id h19so1391156edj.0
+        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 02:32:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=5IgpHecT0v2thcEdNy9dmhAzLNM0n7jwFfkompLh8aE=;
-        b=QZmZ3udwMF+1BVssFRYeb/IuNUXSyd8Qp/RCO0xI7zOGUGWzR9re06s8o9pQJWFxWN
-         OHpiyPeo+udBjSXBLTK8WBf+THibRabP/G/E+PAmOfZoVQv5pi3k2lhUjMO689oHTrag
-         OSzcCPbc1iqMXY0mc3J5IJfp4l1kJGJ1wwH4SOSAwoBsZwLeZPl8Q+EjOvnldOmJUZGE
-         xqO724vayRnZU6BHuLKN/cK40A6tUGuInyZ4DMElDuOLPAOts3BDS9mYbTV6VrcYsMfe
-         ygiaooUiRb8cqbn6RKwTvWIUzbJksUsKXxoPkPKj2wDugiaT26nWwiU6kpEYFKUz8ClM
-         rH9A==
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=9rLHj//9k/15fypiFbMELs3ChxXWRGpeQMJrEmUMxUs=;
+        b=QIpbmzzYJ0HAltV9KIinq7hcn1/hnXtpRXtMmZG9J7qu9J+yvPLSDMoa7T1mF07mXK
+         H0apr2OZxGQd0U1WCKeMv8lb+Fm0H/mDYSMtRdWizypZAKluo8iAZmIxB1zzo1cgkxVD
+         8FqROBoannHWns4ltnEoaFMetuFzZVnMg34x8TBZHDiL1S+h+agEWmJXOJBPr45zEleE
+         wIN4pLzhGLnCkSJ6swE6lcLnjUX895KzSJg8xs9oTGRBgvcXRQgxWZs0dfq2tVdBw1lA
+         e+iovxTxiCiSptWs6zjF6xpsc90sU1LjwN9TwlBSRUrniu3cN+/+/2A8nwrc4UNO1Pv1
+         qyIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=5IgpHecT0v2thcEdNy9dmhAzLNM0n7jwFfkompLh8aE=;
-        b=CoaxyQKuM0oJvBXvuKGyuTyN+5GCpl1r/ymfWZ89NtrzktT3AZeeHb9ZOLpzuTSEwP
-         h5jr0A+j/CaA+q44JkVWxXozLBQTDA/Mz++j+R63s8Jzi2vsdOBF2+Ww7z0Gh8bjh5Wt
-         htiXuA6MF1sJxFgCIXPHnop6iYoav5q2eMdxART7hUJhi4jFxWpKPcwh9yubE7iMfNsq
-         PsSwgf9xdXX8rHua1O1Rf0I8M/trhs0ad16ma4x2FHoOlXBfXtWDAhAAOFsNqt08VnKw
-         3D7ew96JmqCfha7EGs9EnZxTaiQQ/zxYZ9poJp+ev+jUjZ89HWjxowa/VHwTtRHowlAS
-         mANQ==
-X-Gm-Message-State: AOAM531RamnKgnEKh1XR8fA6d9HeBS38AqlhUJ6oIcKD93Nl9SyijxoJ
-        SOfIHpkNomWjbvH05rxspWK4vA==
-X-Google-Smtp-Source: ABdhPJxctyus0aVviZqlPHl9SGmJhm2M3lqLjAAgTBXgGpOe7SRt5ZSSOcgH7AEIlTWhEWVlKY0pkg==
-X-Received: by 2002:a17:906:9c82:b0:6e1:2c94:1616 with SMTP id fj2-20020a1709069c8200b006e12c941616mr56989534ejc.64.1654075843937;
-        Wed, 01 Jun 2022 02:30:43 -0700 (PDT)
+        bh=9rLHj//9k/15fypiFbMELs3ChxXWRGpeQMJrEmUMxUs=;
+        b=yrlkzzORy2VRqlzAFB8KD7DJm3VRSDXEvCg4A7WHupu0LI/s2UV7dAWt/5oBp628lR
+         yt3gPjAWCZXMek3JFyFZAxsePGvMO+Igp27TUO2QSv38lTz8brpa5lgEu03pG99DKkJG
+         ZscdoBisuUHNVrxLeEN5moINrzIXQHzZYPHf5mJGV+L11Sh+LcgQ5lEMMngj448I5VPq
+         Yws8YvsPHIKC5H3VTbB7keapSOWSi8Pmjbwo7sEhZ2xnSQuiJA+b1RUR3RUITPuNATde
+         S4NqhpeiVk1D2rFD/XbB4aBo632FRuUCJ8e5oLofko55EENQJty66DijzsXof3PQaorI
+         +d9g==
+X-Gm-Message-State: AOAM530wXOoKEguzDBZwa7bcTkibvAQcP/4CdTrTQo8tcKFwJ3Do7LGi
+        /ussG2VbP86DqNEiqAvNL/yq2Q==
+X-Google-Smtp-Source: ABdhPJxIaNQdmdCizYbGGHKjK+me0jgNnS5X6cMWDDf2h3DFwSO74zQhHh65gXy+skv8i/8hh9yGoQ==
+X-Received: by 2002:a05:6402:e9f:b0:41c:df21:b113 with SMTP id h31-20020a0564020e9f00b0041cdf21b113mr69039921eda.217.1654075928172;
+        Wed, 01 Jun 2022 02:32:08 -0700 (PDT)
 Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id h4-20020a1709067cc400b006f3ef214ddbsm494870ejp.65.2022.06.01.02.30.42
+        by smtp.gmail.com with ESMTPSA id i23-20020a1709061e5700b00708a2ae7620sm102525ejj.67.2022.06.01.02.32.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Jun 2022 02:30:43 -0700 (PDT)
-Message-ID: <e57de710-1997-d36c-72a7-a9d6db000079@linaro.org>
-Date:   Wed, 1 Jun 2022 11:30:42 +0200
+        Wed, 01 Jun 2022 02:32:07 -0700 (PDT)
+Message-ID: <efdbb151-8213-d1e7-a935-0e857947d450@linaro.org>
+Date:   Wed, 1 Jun 2022 11:32:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom,qmp: add IPQ8074 PCIe Gen3 PHY
- binding
+Subject: Re: [PATCH 00/17] Add support for MT8365 EVK board
 Content-Language: en-US
-To:     Robert Marko <robimarko@gmail.com>, agross@kernel.org,
-        bjorn.andersson@linaro.org, kishon@ti.com, vkoul@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org
-References: <20220531214420.916278-1-robimarko@gmail.com>
+To:     Fabien Parent <fparent@baylibre.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
+        qii.wang@mediatek.com, matthias.bgg@gmail.com, jic23@kernel.org,
+        chaotian.jing@mediatek.com, ulf.hansson@linaro.org,
+        srinivas.kandagatla@linaro.org, chunfeng.yun@mediatek.com,
+        broonie@kernel.org, wim@linux-watchdog.org, linux@roeck-us.net
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dmaengine@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-iio@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-serial@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-watchdog@vger.kernel.org
+References: <20220531135026.238475-1-fparent@baylibre.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220531214420.916278-1-robimarko@gmail.com>
+In-Reply-To: <20220531135026.238475-1-fparent@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -76,17 +83,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/05/2022 23:44, Robert Marko wrote:
-> IPQ8074 has 2 different single lane PCIe PHY-s, one Gen2 and one Gen3.
-> Gen2 one is already supported, document the bindings for the Gen3 one.
+On 31/05/2022 15:50, Fabien Parent wrote:
+> This patch series adds support for the MT8365 EVK board.
 > 
-> Signed-off-by: Robert Marko <robimarko@gmail.com>
-> ---
->  Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> This series has dependencies on the following series:
+> https://patchwork.kernel.org/project/linux-mediatek/list/?series=646256
+> https://patchwork.kernel.org/project/linux-mediatek/list/?series=646091
+> https://patchwork.kernel.org/project/linux-mediatek/list/?series=646083
+> https://patchwork.kernel.org/project/linux-mediatek/list/?series=646081
+> https://patchwork.kernel.org/project/linux-mediatek/list/?series=646076
+> https://patchwork.kernel.org/project/linux-mediatek/list/?series=646068
+> https://patchwork.kernel.org/project/linux-mediatek/list/?series=646020
+> https://patchwork.kernel.org/project/linux-mediatek/list/?series=646052
+> https://lore.kernel.org/r/20220504091923.2219-2-rex-bc.chen@mediatek.com 
+> https://lore.kernel.org/r/20220512062622.31484-2-chunfeng.yun@mediatek.com 
+> https://lore.kernel.org/r/20220512062622.31484-1-chunfeng.yun@mediatek.com
+> https://lore.kernel.org/r/20220524115019.97246-1-angelogioacchino.delregno@collabora.com
+> https://lore.kernel.org/all/20220127015857.9868-1-biao.huang@mediatek.com/
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Eh... and how we are supposed to test or apply this? Such dependencies
+could mean none of automated tools will pick it up, so your patchset has
+to wait till dependencies got merged.
 
 
 Best regards,
