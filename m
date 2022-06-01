@@ -2,110 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C341B539BD7
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 05:57:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C981539C04
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 06:18:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232740AbiFAD4g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 23:56:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52666 "EHLO
+        id S232467AbiFAERp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 00:17:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349534AbiFAD41 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 23:56:27 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8453091570;
-        Tue, 31 May 2022 20:56:26 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 2574FB816D8;
-        Wed,  1 Jun 2022 03:56:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DEC4C385B8;
-        Wed,  1 Jun 2022 03:56:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654055783;
-        bh=taaX67TqpbjlALhz00Fz0B4fcS5avMYVJlLFkD5iriU=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=URfkb99ysqil4Iu7Ixb6vF+ILdN7TeatdQ1LNZs2vLMIMjUruJvKGEDdaVD63lPad
-         /HHcoD0CYIWc4D9Q66XrEqwv/Yp0Mv8u+WiPo1GcpLdnjo/6xn8nfO6h8RLix8//e/
-         I0ED8+t6oiFVj1JyOLG6ky2SbppwS+raEVpaGiEgj8zxdl0iuSqu65HwWTAWWsT+U0
-         unEZD+PL8/mxMZP5VD3mIvd5Aic1YcdhIJoXqxyCmkNylQtcSB/Um+hEHQDQVyIsBT
-         rLFskxn7xfBMCzNkiEjbhhrVRpQ+EIXrR3yk1rFJ8TqKmHKpzmyzfNiLbfvnVcuKko
-         sFTApKwks6M1A==
-Date:   Tue, 31 May 2022 20:56:22 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Piyush Malgujar <pmalgujar@marvell.com>
-Cc:     <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
-        <cchavva@marvell.com>, <deppel@marvell.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>
-Subject: Re: [PATCH v2 3/3] net: mdio: mdio-thunder: support for clock-freq
- attribute
-Message-ID: <20220531205622.71475964@kernel.org>
-In-Reply-To: <20220530125329.30717-4-pmalgujar@marvell.com>
-References: <20220530125329.30717-1-pmalgujar@marvell.com>
-        <20220530125329.30717-4-pmalgujar@marvell.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S232248AbiFAERo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 00:17:44 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FA1550010;
+        Tue, 31 May 2022 21:17:43 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id u12-20020a17090a1d4c00b001df78c7c209so4962793pju.1;
+        Tue, 31 May 2022 21:17:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=o/u+GQMNh/HAcOKl3CZKj/1opnd127HV5unYt41+gbI=;
+        b=gnORif3Tpzt3B3qkKnNDkan4+1Zfo4v4jceA3/xRP7EuZGLzL6fIgFLxSezG+RjFix
+         PXLDQIxh56zWN2y4QzD1Q4LpD39iErA3AvKF874hsa/RnPyrEwCBH5VkHuE/jAaQM9bt
+         gR5TzF9COueiSqhm2MGTkIz2TyxozaukKm6tbXpKA5zqB+s1aIH2bBvJPQKgbgpQqJ2i
+         4RjyVWEHXtIF62jSHUdLkbHHbNPEqXiUOeJ2AgNGB5o0tuMa7KgYpyma+QF+S/KPD8ZU
+         CSyFXYku6245mQeQQMnbxjfli3vMAYnE6dN9UopmI3h8EiobA+m+UhTDcLvOQe0GUrBc
+         taYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=o/u+GQMNh/HAcOKl3CZKj/1opnd127HV5unYt41+gbI=;
+        b=GYg5SwN6iAxpgrB4LsVntgR0mdFXVNlJJp4Rw5gG1nICo6r1+pT3CxLslPkGa0yWQn
+         Mx1Wjs7mdUG5INurSlq88d4ricl/ObKrLRBjazmXaUv4frxazbqxZJDePGOv3wtwTiTd
+         HEQZsdkpJx2iwPB7IQ2OQYlKr1EDqKrQYfOGzv+o35HXbVRxyhCr3SOvc8GZcIpkQzTx
+         Px66d5BCB5m17rAQKyIUVA6rAG18igO2zZZ1isV2Cyz6SEOFoGupVItlFsyPkK2nY8dV
+         jGmiouMfiDI34wQTcKDda16UafL5KvGIxFBZwS0jzHVbiIHmASgs+VExYMV9bZgVzk/Q
+         bnOg==
+X-Gm-Message-State: AOAM530FsYKUx48cFotICd4gMONFtChJMFqH8O0nHi6FvRlFDCjwFTuH
+        ke7ynb9ahHEuLaa5Gx7ejI0=
+X-Google-Smtp-Source: ABdhPJyMfMNtPn/D13pgx8ooxUQkCNfMvFyZXZjYayYzm8HCzqrk4SeQsJCDASAy3EEwakR32Lzm2A==
+X-Received: by 2002:a17:90a:b797:b0:1e0:ad13:ef39 with SMTP id m23-20020a17090ab79700b001e0ad13ef39mr32233871pjr.8.1654057062682;
+        Tue, 31 May 2022 21:17:42 -0700 (PDT)
+Received: from potin-quanta.dhcpserver.local (125-228-123-29.hinet-ip.hinet.net. [125.228.123.29])
+        by smtp.gmail.com with ESMTPSA id u11-20020a63d34b000000b003c14af505f6sm290749pgi.14.2022.05.31.21.17.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 31 May 2022 21:17:42 -0700 (PDT)
+From:   Potin Lai <potin.lai.pt@gmail.com>
+To:     Brendan Higgins <brendanhiggins@google.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Rayn Chen <rayn_chen@aspeedtech.com>
+Cc:     Patrick Williams <patrick@stwcx.xyz>,
+        Potin Lai <potin.lai@quantatw.com>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        Potin Lai <potin.lai.pt@gmail.com>
+Subject: [PATCH v2 0/2] Add i2c clock manual tuning feature for aspeed-i2c driver
+Date:   Wed,  1 Jun 2022 12:15:10 +0800
+Message-Id: <20220601041512.21484-1-potin.lai.pt@gmail.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 30 May 2022 05:53:28 -0700 Piyush Malgujar wrote:
-> +static inline u32 clk_freq(u32 phase)
-> +{
-> +	return (100000000U / (2 * (phase)));
-> +}
-> +
-> +static inline u32 calc_sample(u32 phase)
+Current aspeed-i2c driver could calculate a suited clock divisor and
+high/low cycles automatically, and it try to assign high/low periods with
+close number of cycles.
 
-Please drop the inline keyword, the compiler will inline this anyway
-and static inline prevents unused code warnings.
+Because of board schematic design, sometimes we need to manual tune i2c
+clock timing register to get longer high clock cycle to match hardware 
+requirement, which is not supportted in current driver.
 
-> +{
-> +	return (2 * (phase) - 3);
+In this patch series, we add new properties for manually assigning clock
+divisor, high clock cycles and low clock cycles.
 
-No need to wrap arguments to a static inline in brackets.
+LINK: [v1] https://lore.kernel.org/all/20220530114056.8722-1-potin.lai.pt@gmail.com/
 
-> +}
-> +
-> +static u32 _config_clk(u32 req_freq, u32 *phase, u32 *sample)
-> +{
-> +	unsigned int p;
-> +	u32 freq = 0, freq_prev;
+changes v1 --> v2:
+* update bt-bindings documentation
+* use meaningful values for properties instead of acture value in register
 
-It's customary in networking to order variable decl lines longest
-to shortest.
+Potin Lai (1):
+  aspeed: i2c: add manual clock setting feature
 
-> +	for (p = PHASE_MIN; p < PHASE_DFLT; p++) {
-> +		freq_prev = freq;
-> +		freq = clk_freq(p);
-> +
-> +		if (req_freq >= freq)
-> +			break;
-> +	}
-> +
-> +	if (p == PHASE_DFLT)
-> +		freq = clk_freq(PHASE_DFLT);
-> +
-> +	if (p == PHASE_MIN || p == PHASE_DFLT)
-> +		goto out;
-> +
-> +	/* Check which clock value from the identified range
-> +	 * is closer to the requested value
-> +	 */
-> +	if ((freq_prev - req_freq) < (req_freq - freq)) {
+Potin Lai (1):
+  dt-bindings: aspeed-i2c: add properties for manual clock setting
 
-No need for brackets around the arithmetic, assume basic operator
-precedence is not broken in the compiler...
+ .../devicetree/bindings/i2c/aspeed,i2c.yaml   | 44 ++++++++++++++
+ drivers/i2c/busses/i2c-aspeed.c               | 57 ++++++++++++++++++-
+ 2 files changed, 100 insertions(+), 1 deletion(-)
+
+-- 
+2.17.1
+
