@@ -2,95 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A92F53A4A0
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 14:13:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3491853A4CC
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 14:23:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351149AbiFAMN5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 08:13:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35244 "EHLO
+        id S243350AbiFAMWr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 08:22:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350464AbiFAMN4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 08:13:56 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 411625B8B1
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 05:13:54 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id fu3so1860361ejc.7
-        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 05:13:54 -0700 (PDT)
+        with ESMTP id S1352840AbiFAMWo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 08:22:44 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4217C393D3
+        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 05:22:40 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id rs12so3341260ejb.13
+        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 05:22:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=iEYtWp/LKb36SgGQwS/VUb0SqQ4BTyw6Z9DZqPloy2w=;
-        b=KI1YSwJ5NVgkhhxRyYF1WU1VmQ/YirVw2zh8eWHIDNr4jEA+8iWjWpYQ6N/rdawohU
-         VNyFR84uUb7KIVgXjKbgTDF1hGx2y6B3gqmKz6gaM8X47kuE1za98vnBcQtMHz5sh8RJ
-         9nWotHcO2Vkg9t+RUrTR5eTcvVuou63xhAxiTHmewnHXNmgXKx4gWmAIX5R8iCh2ptBv
-         zgkNLX711IO+OXKh9bnkkJ39wclq2wOIfZ7fJm7i1y0F/1BOUhM3tlqW13uQ6tFi+XOA
-         FUOCuoY4MvTUz7CXF8zqmihOheV39ZQ6cuXV98lDC1blKVV3zT/5FrvwSfw+hHQ7umZ8
-         9zng==
+        bh=ZDgi6QT1T7EpVIAwPl8YawRZEJZufjvXhtek/OEXbdU=;
+        b=IGH9KuLMT3HYQF2PpAJxEcijlE9gMLD3M570Hqtdk9x/5aqV4hW0tiLeZpxEfnOGKr
+         9Shmi8k54+r6RaWu9Y0sPyM2ih3Q0AzczEqglxN5Hp0niQ5o5DAulAjuUjY3ehCwR8Ff
+         jYZKYkjAJ4nkfeNbVwdNoh2xA4lOB6QEBXJrIQymVjr+viKC7z5M+lQ53kZFnRBkVgl4
+         +IXuPqiQrAmLg52aD2xT5T3ypEPqCFUyc4vjiTk/GUocyo6a0AU8KMj2hOMV19gb29Gi
+         srFj0P4uB0/cHWcpRL6uS70TGZnWX0nujTZ1suoxqMUiSqqsio6yptx+tZ8yM5hwMB9X
+         VB6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=iEYtWp/LKb36SgGQwS/VUb0SqQ4BTyw6Z9DZqPloy2w=;
-        b=YJ+uWX27aJ6GZczq1N0Bud425k6P8KWHbY364rFgyr3KrlILv/Q+pAn9bzmwZKBNTb
-         OaQOpdjjUeq+Vp76hq6VYy+c5i0RanxCzsnik1jLFKN3R23ZpwTwD1YUS5m7kWllUt5u
-         AVXBlvZC3MOMH5aEWwaI+OxOW9uHJ5YKRN3c+oS1u/Q2tK/yvKf8SfNwd8MdEV0OgGCn
-         OLSOhhBXhCnLCb73xqmXpBY079/mrT2mE3NXENKYKwieefWw8v5nGg4NEmXXpoWlTNwz
-         N7WnWq8AXOkUyNzl2Zu0dLsL0SeXOJqAwmIk3fzQTBwWPCYAI3PNjry3iNCnWZuaEzxT
-         2+CA==
-X-Gm-Message-State: AOAM5329J6xxaQrh7adMSosxpYjm52J3xMPwErg36PTPfrA6RYzZXgXs
-        4p6RqTi4dIJBjsRMwa3Lm4vLsg==
-X-Google-Smtp-Source: ABdhPJzOeICvQJzeUzWrX839CyQrkzHvsjKHXi5k+dcTQUUPsq9TjITyptkGvqhUagJTJ56hQ2ZOhA==
-X-Received: by 2002:a17:907:7ea9:b0:6fe:d412:ec2c with SMTP id qb41-20020a1709077ea900b006fed412ec2cmr43626906ejc.613.1654085632761;
-        Wed, 01 Jun 2022 05:13:52 -0700 (PDT)
+        bh=ZDgi6QT1T7EpVIAwPl8YawRZEJZufjvXhtek/OEXbdU=;
+        b=elHh7sCimE9Ks3I9WP8GeeZjiy3WRK0uqVMUVhj0K1agsAN/kwOWjI/fLOgJppRpZT
+         L1s+Y80wd+t+6UElm/OsSetetOJtJrvTpqU3QYDC47B+aqh8LviIe1H8Y3Fk3WPqXkDS
+         FQbiZ/bDM2zojgBbYN6+194H9lMQB5onnpJDWOzqrYFooIpV6r9zxffO4JAEK8h28GfI
+         UzoJ83gkdzfksqFaCciGdWz1TzgEX1PrE3C92UY19K6Q+TxpWoq6C6tJBVubROtrDe7h
+         kQdmj9mbe5S4YVfZLJbHvNR6nyDvR4S2JcojJK0CfQqDNK0RsGGQhk9OVgq0zBqaXYla
+         dGxQ==
+X-Gm-Message-State: AOAM533vYCb7suf2Iwn8DEbDglVN3stNf4AMPh1pN/pSKpBPzsiGm+Df
+        ba7/CDmkyk7dMxWdWQGBMRyAIBD/+T7U0szQ
+X-Google-Smtp-Source: ABdhPJyvJbwGPjXVa+X3djqfGIJHVCyeFGfVCL8frzhyOFUP05z/hnZlK01sRTcQV+QNd9iwdn52IQ==
+X-Received: by 2002:a17:907:2cc4:b0:6fe:1c72:7888 with SMTP id hg4-20020a1709072cc400b006fe1c727888mr58492508ejc.373.1654086158619;
+        Wed, 01 Jun 2022 05:22:38 -0700 (PDT)
 Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id iy5-20020a170907818500b006fecb577060sm631323ejc.119.2022.06.01.05.13.51
+        by smtp.gmail.com with ESMTPSA id o17-20020a1709061b1100b006febc1ef61csm637801ejg.106.2022.06.01.05.22.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Jun 2022 05:13:52 -0700 (PDT)
-Message-ID: <805ba97f-9e7f-d492-653b-1488f3d0dc0d@linaro.org>
-Date:   Wed, 1 Jun 2022 14:13:51 +0200
+        Wed, 01 Jun 2022 05:22:38 -0700 (PDT)
+Message-ID: <44053e7d-71fd-2012-dc7f-5641536c1f2c@linaro.org>
+Date:   Wed, 1 Jun 2022 14:22:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH 1/8] dt-bindings: interconnect: imx8m: Add bindings for
- imx8mp noc
+Subject: Re: [PATCH v6 1/6] dt-bindings: remoteproc: Add Xilinx RPU subsystem
+ bindings
 Content-Language: en-US
-To:     Peng Fan <peng.fan@nxp.com>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        "djakov@kernel.org" <djakov@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>, Abel Vesa <abel.vesa@nxp.com>,
-        "abailon@baylibre.com" <abailon@baylibre.com>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        "laurent.pinchart@ideasonboard.com" 
-        <laurent.pinchart@ideasonboard.com>,
-        "marex@denx.de" <marex@denx.de>,
-        "paul.elder@ideasonboard.com" <paul.elder@ideasonboard.com>,
-        "Markus.Niebel@ew.tq-group.com" <Markus.Niebel@ew.tq-group.com>,
-        "aford173@gmail.com" <aford173@gmail.com>
-Cc:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-References: <20220601094156.3388454-1-peng.fan@oss.nxp.com>
- <20220601094156.3388454-2-peng.fan@oss.nxp.com>
- <cf90d9aa-1ba9-9619-35b7-8c2de436fc12@linaro.org>
- <DU0PR04MB9417380EC27688B3DFB9326388DF9@DU0PR04MB9417.eurprd04.prod.outlook.com>
+To:     Tanmay Shah <tanmay.shah@xilinx.com>,
+        openamp-system-reference@lists.openampproject.org,
+        bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org, michal.simek@xilinx.com,
+        ben.levinsky@xilinx.com
+Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220531234308.3317795-1-tanmay.shah@xilinx.com>
+ <20220531234308.3317795-2-tanmay.shah@xilinx.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <DU0PR04MB9417380EC27688B3DFB9326388DF9@DU0PR04MB9417.eurprd04.prod.outlook.com>
+In-Reply-To: <20220531234308.3317795-2-tanmay.shah@xilinx.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -98,65 +79,121 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/06/2022 14:06, Peng Fan wrote:
->> Subject: Re: [PATCH 1/8] dt-bindings: interconnect: imx8m: Add bindings for
->> imx8mp noc
->>
->> On 01/06/2022 11:41, Peng Fan (OSS) wrote:
->>> From: Peng Fan <peng.fan@nxp.com>
->>>
->>> i.MX8MP features same NoC/NIC as i.MX8MM/N/Q, and use two compatible
->>> strings.
->>>
->>> Signed-off-by: Peng Fan <peng.fan@nxp.com>
->>> ---
->>>  .../devicetree/bindings/interconnect/fsl,imx8m-noc.yaml     | 6 ++++++
->>>  1 file changed, 6 insertions(+)
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/interconnect/fsl,imx8m-noc.yaml
->>> b/Documentation/devicetree/bindings/interconnect/fsl,imx8m-noc.yaml
->>> index b8204ed22dd5..0923cd28d6c6 100644
->>> ---
->>> a/Documentation/devicetree/bindings/interconnect/fsl,imx8m-noc.yaml
->>> +++ b/Documentation/devicetree/bindings/interconnect/fsl,imx8m-noc.yam
->>> +++ l
->>> @@ -26,16 +26,22 @@ properties:
->>>      oneOf:
->>>        - items:
->>>            - enum:
->>> +              - fsl,imx8mp-nic
->>
->> Please order the entries alphabetically, so 8mp goes after 8mm.
->>
->>>                - fsl,imx8mn-nic
->>>                - fsl,imx8mm-nic
->>>                - fsl,imx8mq-nic
->>>            - const: fsl,imx8m-nic
->>>        - items:
->>>            - enum:
->>> +              - fsl,imx8mp-noc
->>
->> ditto
->>
->>>                - fsl,imx8mn-noc
->>>                - fsl,imx8mm-noc
->>>                - fsl,imx8mq-noc
->>>            - const: fsl,imx8m-noc
->>> +      - items:
->>> +          - const: fsl,imx8mp-noc
->>> +          - const: fsl,imx8m-noc
->>> +          - const: syscon
->>
->> This is a bit confusing - why this is also fallbacked as syscon?
+On 01/06/2022 01:43, Tanmay Shah wrote:
+> Xilinx ZynqMP platform has dual-core ARM Cortex R5 Realtime Processing
+> Unit(RPU) subsystem. This patch adds dt-bindings for RPU subsystem
+> (cluster).
 > 
-> I thought to give some flexibility for drivers to access the
-> address through syscon. But it could be removed, I could
-> fix in V2.
+> Signed-off-by: Tanmay Shah <tanmay.shah@xilinx.com>
+> ---
+> 
+> Changes in v6:
+>   - Add maxItems to sram and memory-region property
+> 
+> Changes in v5:
+> - Add constraints of the possible values of xlnx,cluster-mode property
+> - fix description of power-domains property for r5 core
+> - Remove reg, address-cells and size-cells properties as it is not required
+> - Fix description of mboxes property
+> - Add description of each memory-region and remove old .txt binding link
+>   reference in the description
+> 
+> Changes in v4:
+>   - Add memory-region, mboxes and mbox-names properties in example
+> 
+> Changes in v3:
+>   - None
+> 
+> 
+>  .../bindings/remoteproc/xlnx,r5f-rproc.yaml   | 129 ++++++++++++++++++
+>  include/dt-bindings/power/xlnx-zynqmp-power.h |   6 +
+>  2 files changed, 135 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
+> new file mode 100644
+> index 000000000000..cbff1c201a89
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
+> @@ -0,0 +1,129 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/remoteproc/xlnx,r5f-rproc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Xilinx R5F processor subsystem
+> +
+> +maintainers:
+> +  - Ben Levinsky <ben.levinsky@xilinx.com>
+> +  - Tanmay Shah <tanmay.shah@xilinx.com>
+> +
+> +description: |
+> +  The Xilinx platforms include a pair of Cortex-R5F processors (RPU) for
+> +  real-time processing based on the Cortex-R5F processor core from ARM.
+> +  The Cortex-R5F processor implements the Arm v7-R architecture and includes a
+> +  floating-point unit that implements the Arm VFPv3 instruction set.
+> +
+> +properties:
+> +  compatible:
+> +    const: xlnx,zynqmp-r5fss
+> +
+> +  xlnx,cluster-mode:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1, 2]
+> +    description: |
+> +      The RPU MPCore can operate in split mode(Dual-processor performance), Safety
+> +      lock-step mode(Both RPU cores execute the same code in lock-step,
+> +      clock-for-clock) or Single CPU mode (RPU core 0 can be held in reset while
+> +      core 1 runs normally). The processor does not support dynamic configuration.
+> +      Switching between modes is only permitted immediately after a processor reset.
+> +      If set to  1 then lockstep mode and if 0 then split mode.
+> +      If set to  2 then single CPU mode. When not defined, default will be lockstep mode.
+> +
+> +patternProperties:
+> +  "^r5f-[a-f0-9]+$":
+> +    type: object
+> +    description: |
+> +      The RPU is located in the Low Power Domain of the Processor Subsystem.
+> +      Each processor includes separate L1 instruction and data caches and
+> +      tightly coupled memories (TCM). System memory is cacheable, but the TCM
+> +      memory space is non-cacheable.
+> +
+> +      Each RPU contains one 64KB memory and two 32KB memories that
+> +      are accessed via the TCM A and B port interfaces, for a total of 128KB
+> +      per processor. In lock-step mode, the processor has access to 256KB of
+> +      TCM memory.
+> +
+> +    properties:
+> +      compatible:
+> +        const: xlnx,zynqmp-r5f
+> +
+> +      power-domains:
+> +        description: RPU core PM domain specifier
+> +        maxItems: 1
+> +
+> +      mboxes:
+> +        minItems: 1
+> +        items:
+> +          - description: mailbox channel to send data to RPU
+> +          - description: mailbox channel to receive data from RPU
+> +
+> +      mbox-names:
+> +        minItems: 1
+> +        items:
+> +          - const: tx
+> +          - const: rx
+> +
+> +      sram:
+> +        $ref: /schemas/types.yaml#/definitions/phandle-array
+> +        maxItems: 8
 
-Please remove, unless you really need it. No one should poke someone's
-else registers in general :)
+Without minItems, this means maxItems=minItems and previously you had
+here "minItems:1", so is it really what you want?
 
+Anyway rest looks good to me.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
