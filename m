@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62FB353A243
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 12:13:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9465353A24A
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 12:15:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350294AbiFAKNv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 06:13:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51242 "EHLO
+        id S1351964AbiFAKOT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 06:14:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348758AbiFAKNu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 06:13:50 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C6CE4B428
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 03:13:47 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id er5so1458488edb.12
-        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 03:13:47 -0700 (PDT)
+        with ESMTP id S1351936AbiFAKOR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 06:14:17 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7D2363BFE
+        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 03:14:14 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id gi33so2745158ejc.3
+        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 03:14:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=AlvALx0zMnGDVnEapBQ7KHJlm9HnZCeBAZQY2Z7YIfQ=;
-        b=MyCjNSjG2AHbNB2hBMdKLs7JyeIE2MU21L7NxYzqYkgJshTjTAEE3mD+wxlpLMSZa1
-         6kCgUApP3XMk/l0RKFbqTKkRmn+B8M5eZoQ9wj6leLnRPShsmt0NiHxg5OAui/Wjj4iJ
-         i4vfSEUecvq6/DBHNM7UiaodK0JQQ7g3UoEYaWKtumlj0/PvIpngsENEmCTNfzM89Tb9
-         QkF+JF2c2z/S4FXGch+hlLzAcJGTiwGowPWEiaeRIqEt7wYuCN7+DXZTH5/EvCioiExI
-         p4j/Ly9/9+f7IV1cf8EFCHLLNIAVtSW+2Z8+zxv26svn+bQyu09y+iFILQTj/RvG+YQl
-         /OJw==
+        bh=SCHPOUMOkaORGlqy58IkS3kpUvVCYFXurWLIORn2AWE=;
+        b=oX8r6cnrONYzWQLu1cF62jtFMmRaDtC+21kXez97YRlUf2Jyl95FPKczr8mU/ReGly
+         z7P5u8WAp44O21UUQdIFPB3x02sIUSU455RtDaEN2mTOmsPbDwD47tE5o9T63Gu4+baq
+         pivfLM87zuWSFgT4oifuhfEBZBVaKCFKlxjKPatZ8TIGdefR5KTbYFY+1xMFzDY4xIkJ
+         JviF+hXQ4JzcCjIg3Fe/gVxaPTzp+c0zlUhym1l/XZZNOGGsDM0u/Wo7J2JhMx1/cPOT
+         nhJDMR4Hv9hM0PzxtGVLbYH4UzwjPC5nsi6rp3lU7SfipwtBuZAKGErF2HN6FyFoYUj6
+         pduw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=AlvALx0zMnGDVnEapBQ7KHJlm9HnZCeBAZQY2Z7YIfQ=;
-        b=3pZTV95+oOU2V1Q7wxrApoGsxVnunqOTYETcGFYMZxC3MQ9LyyamNRBlfCkflok3mk
-         cVAPB3Uos9PSGjPsmLbfcGkz18AGVO3edMJDF4ryuZKiygnr6mz+UVYK71AmfCihoJjr
-         Es6v+eVssouQYCx05jRbPISAEjI4O02G3ZZwYIx45ojJ8fyOcbGSQPIs1d/gjQCrIHiN
-         lfFypxsWdd/pshuRQqYQ3JnGvrRjd8y0B/NKiNrZ/fDI/PIQwuR/v2mhp0MNZTEXAcF/
-         shQWk08MUEZIBNNGR9Jx/S77tkgWvocgDtkPCTBDPmX3N6MwVpuOyJy9Xd87rLtTB4fW
-         HUmA==
-X-Gm-Message-State: AOAM533zNTUM27psUoJ5rR39WiNZKpcxqFOt/FOaX/eBpEXkeEM8rkUs
-        vK1lgAbY6YNEbrQs/WWVFgKG7w==
-X-Google-Smtp-Source: ABdhPJx/6T0uvLJqvrWkeIA6nNBw+V6b78iDiCeD1eckOus4w0IQXWKCNYVm2nBgb3y+6PpRaLcMOw==
-X-Received: by 2002:a05:6402:51c9:b0:42b:63c2:6657 with SMTP id r9-20020a05640251c900b0042b63c26657mr51960414edd.255.1654078425689;
-        Wed, 01 Jun 2022 03:13:45 -0700 (PDT)
+        bh=SCHPOUMOkaORGlqy58IkS3kpUvVCYFXurWLIORn2AWE=;
+        b=myUNc4jNVy+2Nrx9wsc3dJOmys3mWMfB5ktf8YW0LTzyQzyg2cd8kY0VTOK+h8OVQQ
+         j8Pu5FkhgCE8KS5/0mFOoO6WQl6/rSTm+dyy3fPpomUtZ7OJwAkH+oJKhtlstXml39Vk
+         eXCe2qmKfxAUfN+Ffg6K4IH3B+tb8RTyVqFhKADoypvS1icH6KzDJt3eLRrN9LHVGTab
+         lgEULeJ1AB9x9xHq3s0rCXBR9YqiiAKmiUmjvVT5kMVImROwawlUuKU+HjIg+ATby9VP
+         myhZRHWXmi38LljTzGh/f0zZrkCWeCI6XgURcg1AsWyvE3sYWTK9MA+3jU1y2V0oHC3s
+         Sc0Q==
+X-Gm-Message-State: AOAM532UTF/PplcSQ2eh1AOJ41zOylKrG/CWVoKko1IN/Qqz0FjwnZKD
+        WzBf84LGOPzdx2Gg2bgU3R9FFQ==
+X-Google-Smtp-Source: ABdhPJzMkbxIhAeW21y7ln5GeDvi3qB8U4YRq1CXipmYvF+91NCu8s1GPlnzeIwRmBixBHGimPBd6Q==
+X-Received: by 2002:a17:906:600c:b0:6fe:9204:959b with SMTP id o12-20020a170906600c00b006fe9204959bmr56268746ejj.417.1654078452767;
+        Wed, 01 Jun 2022 03:14:12 -0700 (PDT)
 Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id p5-20020aa7cc85000000b0042bb1e2e2f7sm716587edt.8.2022.06.01.03.13.43
+        by smtp.gmail.com with ESMTPSA id j12-20020a170906254c00b0070759e37183sm485130ejb.59.2022.06.01.03.14.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Jun 2022 03:13:44 -0700 (PDT)
-Message-ID: <44798b51-1410-d1db-3c53-0a90beb714ea@linaro.org>
-Date:   Wed, 1 Jun 2022 12:13:43 +0200
+        Wed, 01 Jun 2022 03:14:12 -0700 (PDT)
+Message-ID: <6f41d28b-640b-f335-dade-f4fa4a88cb65@linaro.org>
+Date:   Wed, 1 Jun 2022 12:14:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH 12/17] dt-bindings: phy: mediatek,tphy: add MT8365 SoC
+Subject: Re: [PATCH 13/17] dt-bindings: usb: mediatek,mtu3: add MT8365 SoC
  bindings
 Content-Language: en-US
 To:     Fabien Parent <fparent@baylibre.com>, robh+dt@kernel.org,
@@ -62,7 +62,7 @@ To:     Fabien Parent <fparent@baylibre.com>, robh+dt@kernel.org,
         chaotian.jing@mediatek.com, ulf.hansson@linaro.org,
         srinivas.kandagatla@linaro.org, chunfeng.yun@mediatek.com,
         broonie@kernel.org, wim@linux-watchdog.org, linux@roeck-us.net,
-        Kishon Vijay Abraham I <kishon@ti.com>
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         dmaengine@vger.kernel.org, linux-i2c@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
@@ -71,9 +71,9 @@ Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-serial@vger.kernel.org, linux-spi@vger.kernel.org,
         linux-usb@vger.kernel.org, linux-watchdog@vger.kernel.org
 References: <20220531135026.238475-1-fparent@baylibre.com>
- <20220531135026.238475-13-fparent@baylibre.com>
+ <20220531135026.238475-14-fparent@baylibre.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220531135026.238475-13-fparent@baylibre.com>
+In-Reply-To: <20220531135026.238475-14-fparent@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -90,7 +90,6 @@ On 31/05/2022 15:50, Fabien Parent wrote:
 > Add binding documentation for the MT8365 SoC.
 > 
 > Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> ---
 
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
