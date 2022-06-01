@@ -2,209 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61BD6539E9A
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 09:42:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0099539E96
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 09:42:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349207AbiFAHlI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 03:41:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34330 "EHLO
+        id S1345782AbiFAHlT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 03:41:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350080AbiFAHlH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 03:41:07 -0400
-Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 669F195A0F
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 00:41:05 -0700 (PDT)
-Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-30c1b401711so9391887b3.2
-        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 00:41:05 -0700 (PDT)
+        with ESMTP id S239283AbiFAHlR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 03:41:17 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5D1E95A0F
+        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 00:41:16 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id v19so995657edd.4
+        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 00:41:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=semihalf-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=9rheSKGCTBtpKVSuVWbfcC85G3s1vKpAYLbNOEGXq2w=;
-        b=E9sAJi+xs2Mm03yGA6s/AoSrSPevJMqIGT2BQTUevPEAEGTCsIxg0a/Iuc+b0bBBwY
-         2vlAWzqS5LyF/jTeTR1Uq2qqIhOt/UX8kSVWTx7ZwHWH+f4CClYERQzkOilRpQWjco8S
-         /sPjedyjBxMLf79M6ixkpwryNB/ul+E7heP3Mgrqe0t3QcOQNywRp644FUBDU0stO3no
-         ex63/anNFl6HSZkzeOQXZPPjvBhXCupe/xz/vZOrKFEE8ZSjwb/+odbCYE0LJu73dJVm
-         dzP1Pd9gSGm9sf8HqAyyoaoNrhxN6NuexXeYCYx376Z1oNH2LQhLOGNAK9HXVs5FTOlt
-         9siw==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=XCHjkR162OGclvyE8q2D5N6gNu/Lh1uzx3p/QFm8BQk=;
+        b=AtF6guPyJWyd6SG6xS9QKeOyXDffCxhwicCbaelkeBvm/S3GCnGSmM05xNPoFrRu3L
+         ReTi6NH0VZeNEMZ4ada9XXjai6EoPPLHiE2MJAbroWrVdNeTd89qTTqk0Pqh6GSNv0yz
+         Q6yDQVqKYhB0JZ3ndw0FcOLnQkMAAecOMVbCS+F+Zek0U/F63h0nz4zb+QuffYSILmVN
+         jW2ve/asRVDpAJS2YdtJiMEfw/kcwkTk9FJsc+LgW+XQA0jiKFee0KGXLtp95CCxkK4e
+         B5+lissO4wnFESPgZwDmxe4sXrt/ev3lcs26fZks5TV2u6HYIMKaEdI8p8IbOaZe2vtx
+         xbgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=9rheSKGCTBtpKVSuVWbfcC85G3s1vKpAYLbNOEGXq2w=;
-        b=cfQZBRtr9n30HUV9wD1tfxgmxAEXfLwteyotVOfrc0OlAuOZxwRrY6IqeS8xT1/H8Y
-         ymqm9NA7VGKPM6elQwcwCG1GvvfoQDBKSjIsnStKMMvq83M6+GFmKNoXldxOTdAEAsx6
-         VU5Kd8ja6V1SGP7K2H5pG9Y/t3wRB/RKOeIzejJUdoROqh7y+ugnimVXdis7kHPcmJQH
-         I7WXjOaCDl+cfLsTN7xvMWMYoy65yUrkIV1ij2HaOLxctaFreyySUjVHFoPbvkSbVJTt
-         QNAwgaT6GDylGwbrQr23p6ZmCjDYu6YaQsuI3PN7GC9b8nDoUzvJ3R3vSNi3YvK3wAuI
-         gSXg==
-X-Gm-Message-State: AOAM530rR2pYULF/AdCZJS62BMIZaCenHHBweD+GWsz/5jzx1ZLW/vtT
-        1yGtMMrmgPJ0JsDCyTGT/j7s9u62JrK0elxbvgou7w==
-X-Google-Smtp-Source: ABdhPJywjnPzsFmV/WK0FsafZUCcTQrgNC9tqpaPDxQlkXD7h5p3xgdDtJADfFFI/ozFpTRFKWaAlbcq4ep/jBhN7yg=
-X-Received: by 2002:a0d:cd04:0:b0:300:4784:caa3 with SMTP id
- p4-20020a0dcd04000000b003004784caa3mr39945959ywd.231.1654069264520; Wed, 01
- Jun 2022 00:41:04 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=XCHjkR162OGclvyE8q2D5N6gNu/Lh1uzx3p/QFm8BQk=;
+        b=t0W8IbXEHF7AMmIvXMrV3sEVgetDg9H9r3zBARU81Lex59J1qbkLL5KzoIMPCJMjrO
+         ereE6Lq5ikMDVCgXJ3SHwpI4bi2+qpGFs7x/zLfnhnSe8L0Q0M4utwqqpYlMylmFQjAy
+         KOwTNy7L6vq+8RiHr95p86Rf5DXYFfBnoheiOfxyCso6YNIZQV07vFXlu7ZXjX+IQUUS
+         T89thgu4xXrij7mE8om2/zweIEeksVTtBpDrdiWUpkvoI3GisLdY1meNzqZQaqO1pyIz
+         YwfUy45Dc1bfz7USmSTQduCxC2Vju7WpqbOy313kVwm0Qvd2AsHX0yIULaCcvpQkXToI
+         CmcA==
+X-Gm-Message-State: AOAM530cQsfJSMvbju96fIDzU6hohLPHW7+CvzETjKx37OGfjVEdvF0r
+        NpTUEv49MjDy6m2wes/EY/R/dg==
+X-Google-Smtp-Source: ABdhPJw8lmBFSnKs4AJ8uLJicEzY0+9ftI56dBz+ES5444j2D8o4bn2ufx6ey9/KjgIrBpxndW4IAA==
+X-Received: by 2002:a05:6402:17d0:b0:42d:ccc1:f4e4 with SMTP id s16-20020a05640217d000b0042dccc1f4e4mr17759792edy.150.1654069275357;
+        Wed, 01 Jun 2022 00:41:15 -0700 (PDT)
+Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id bv15-20020a170906b1cf00b006f4c4330c49sm377636ejb.57.2022.06.01.00.41.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Jun 2022 00:41:14 -0700 (PDT)
+Message-ID: <ecd2031d-faef-8a3e-e99c-8ee4fdd524e8@linaro.org>
+Date:   Wed, 1 Jun 2022 09:41:13 +0200
 MIME-Version: 1.0
-References: <20220530130839.120710-1-pan@semihalf.com> <20220530130839.120710-3-pan@semihalf.com>
- <f789afb2-33c5-2b28-5ade-0c76ebb7206f@linaro.org> <CAHNYxRw00QraVW0085xO-qzgGJdZ2joukuSYzBQo+yjLnkD=Tw@mail.gmail.com>
- <e4ef2056-c990-b308-a9d5-98f11ac0ba51@linaro.org> <CAF9_jYR=sjP9wYW9wyfbrVYO4PDYTfMhjvyyh53U3a3+2Zyw=g@mail.gmail.com>
- <b8a770fc-d72d-efd2-a7a0-8bfd44308576@linaro.org>
-In-Reply-To: <b8a770fc-d72d-efd2-a7a0-8bfd44308576@linaro.org>
-From:   =?UTF-8?Q?Pawe=C5=82_Anikiel?= <pan@semihalf.com>
-Date:   Wed, 1 Jun 2022 09:40:53 +0200
-Message-ID: <CAF9_jYTdDuaCFcD33wL5m7AXU+xOgwP14himAqiJoxemd1ESyA@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dts: socfpga: Add Google Chameleon v3 devicetree
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Alexandru M Stan <amstan@chromium.org>, SoC Team <soc@kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Dinh Nguyen <dinguyen@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v2 2/3] dt-bindings: arm64: add BCM6858 soc
+Content-Language: en-US
+To:     Anand Gore <anand.gore@broadcom.com>,
+        Linux ARM List <linux-arm-kernel@lists.infradead.org>
+Cc:     kursad.oney@broadcom.com, joel.peshkin@broadcom.com,
+        samyon.furman@broadcom.com, tomer.yacoby@broadcom.com,
+        dan.beygelman@broadcom.com, florian.fainelli@broadcom.com,
+        William Zhang <william.zhang@broadcom.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220531184615.2836433-1-anand.gore@broadcom.com>
+ <20220531114551.v2.2.I2bc1418dd24a902e941c7073bbadab00568b4f5d@changeid>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220531114551.v2.2.I2bc1418dd24a902e941c7073bbadab00568b4f5d@changeid>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 31, 2022 at 5:36 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 31/05/2022 16:47, Pawe=C5=82 Anikiel wrote:
-> > On Tue, May 31, 2022 at 11:11 AM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 31/05/2022 03:20, Alexandru M Stan wrote:
-> >>> Hello Krzysztof
-> >>>
-> >>> On Mon, May 30, 2022 at 11:56 AM Krzysztof Kozlowski
-> >>> <krzysztof.kozlowski@linaro.org> wrote:
-> >>>>
-> >>>> On 30/05/2022 15:08, Pawe=C5=82 Anikiel wrote:
-> >>>>> Add devicetree for the Google Chameleon v3 board.
-> >>>>>
-> >>>>> Signed-off-by: Pawe=C5=82 Anikiel <pan@semihalf.com>
-> >>>>> Signed-off-by: Alexandru M Stan <amstan@chromium.org>
-> >>>>
-> >>>> Your SoB chain looks odd. Who did what here?
-> >>>
-> >>> Sorry about this.
-> >>>
-> >>> It was mainly Pawel but I did some small changes at some point before
-> >>> it landed in our tree (particularly the GPIOs).
-> >>
-> >> Then usually Pawe=C5=82 should be the owner of the patch, not you.
-> >> Alternatively it could be also co-developed.
-> >>
-> >>>
-> >>>>
-> >>>>> ---
-> >>>>>  arch/arm/boot/dts/Makefile                    |  1 +
-> >>>>>  .../boot/dts/socfpga_arria10_chameleonv3.dts  | 90 +++++++++++++++=
-++++
-> >>>>>  2 files changed, 91 insertions(+)
-> >>>>>  create mode 100644 arch/arm/boot/dts/socfpga_arria10_chameleonv3.d=
-ts
-> >>>>>
-> >>>>> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefil=
-e
-> >>>>> index 023c8b4ba45c..9417106d3289 100644
-> >>>>> --- a/arch/arm/boot/dts/Makefile
-> >>>>> +++ b/arch/arm/boot/dts/Makefile
-> >>>>> @@ -1146,6 +1146,7 @@ dtb-$(CONFIG_ARCH_S5PV210) +=3D \
-> >>>>>       s5pv210-torbreck.dtb
-> >>>>>  dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) +=3D \
-> >>>>>       socfpga_arria5_socdk.dtb \
-> >>>>> +     socfpga_arria10_chameleonv3.dtb \
-> >>>>>       socfpga_arria10_socdk_nand.dtb \
-> >>>>>       socfpga_arria10_socdk_qspi.dtb \
-> >>>>>       socfpga_arria10_socdk_sdmmc.dtb \
-> >>>>> diff --git a/arch/arm/boot/dts/socfpga_arria10_chameleonv3.dts b/ar=
-ch/arm/boot/dts/socfpga_arria10_chameleonv3.dts
-> >>>>> new file mode 100644
-> >>>>> index 000000000000..988cc445438e
-> >>>>> --- /dev/null
-> >>>>> +++ b/arch/arm/boot/dts/socfpga_arria10_chameleonv3.dts
-> >>>>> @@ -0,0 +1,90 @@
-> >>>>> +// SPDX-License-Identifier: GPL-2.0
-> >>>>> +/*
-> >>>>> + * Copyright 2022 Google LLC
-> >>>>> + */
-> >>>>> +/dts-v1/;
-> >>>>> +#include "socfpga_arria10_mercury_aa1.dtsi"
-> >>>>> +
-> >>>>> +/ {
-> >>>>> +     model =3D "Google Chameleon V3";
-> >>>>> +     compatible =3D "google,chameleon-v3",
-> >>>>
-> >>>> You miss here enclustra compatible.
-> >>>
-> >>> Does this make sense? I don't expect this device tree to boot/work on
-> >>> an enclustra motherboard. It's only really compatible with a
-> >>> "chameleon-v3".
-> >>
-> >> You also do not expect it to boot on altr,socfpga, do you?
-> >>
-> >> If I understood correctly, this board has physically Mercury AA1 SoM, =
-so
-> >> that compatible should be there.
-> >
-> > Yes, you understood correctly.
-> > I looked at a similar device - the Cyclone V MCV (SoM) and the MCVEVK
-> > (base board):
-> > arch/arm/boot/dts/socfpga_cyclone5_mcv.dtsi
->
-> This one is clearly incorrect, so using it as example is wrong.
->
-> > arch/arm/boot/dts/socfpga_cyclone5_mcvevk.dts
->
-> Since it is based on wrong MCV, then no wonder it's the same.
->
-> > And there is no denx,mcv compatible anywhere, only denx,mcvevk.
-> > Also, devicetree bindings documentation lists denx,mcvevk under
-> > "Cyclone 5 boards", and, unless you consider the MCV to be a board,
-> > there isn't a good place to put denx,mcv (same story with mercury+
-> > aa1/chameleon).
->
-> socfpga are not the best example... upstreaming looks incomplete or even
-> incorrect, like this case of Enclustra SOM. Much better examples are
-> FSL-based SoMs. Although some of them are also not in the best shape.
->
-> Still someone might prefer to skip SoM compatible arguing that it cannot
-> be a separate final product. Sure, but also SoC cannot be a separate
-> product. Having SoM compatible allows to match against it and find
-> common hardware parts.
+On 31/05/2022 20:46, Anand Gore wrote:
+> Add BCM6858 SOC device tree description to bcmbca binding document.
+> 
+> Signed-off-by: Anand Gore <anand.gore@broadcom.com>
 
-Ok, I understand. Thanks for the explanation, I will add the SoM compatible=
-.
 
->
-> In any case you want to remove here parts of bindings (so affect ABI),
-> to which I do not agree.
->
-> >> Let me clarify - please use generic node names, as asked by Devicetree
-> >> specification (2.2.1. Node Name Requirements). There is also list of
-> >> some examples in the spec, but you can use some other generic node nam=
-e.
-> >>
-> >> Several bindings also require it.
-> >
-> > Do you mean something like this?
-> > ssm2603: audio-codec@1a {
-> > u80: gpio@21 {
->
-> Yes.
->
->
-> Best regards,
-> Krzysztof
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+Best regards,
+Krzysztof
