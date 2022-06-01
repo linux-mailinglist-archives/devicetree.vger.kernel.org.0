@@ -2,79 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76A0653B022
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 00:51:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F6A353AFD0
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 00:51:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231439AbiFAVVk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 17:21:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33658 "EHLO
+        id S231522AbiFAV3I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 17:29:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231450AbiFAVVj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 17:21:39 -0400
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63AA6B8BD5;
-        Wed,  1 Jun 2022 14:21:38 -0700 (PDT)
-Received: by mail-ot1-f53.google.com with SMTP id l10-20020a9d7a8a000000b0060b151de434so2143364otn.2;
-        Wed, 01 Jun 2022 14:21:38 -0700 (PDT)
+        with ESMTP id S231494AbiFAV3H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 17:29:07 -0400
+Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5054117D381;
+        Wed,  1 Jun 2022 14:29:06 -0700 (PDT)
+Received: by mail-pg1-x52a.google.com with SMTP id 7so2221966pga.12;
+        Wed, 01 Jun 2022 14:29:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=nAVwQodkjWfLxV3GaHIx/ifN9ZldZyPTtngAs8rNMts=;
+        b=jYuTllxZgZe0PsX4trAM0f1L4PyvIgYBZL5Aan6F0a71HAPpjz/MwDZZ82+ZlczdzN
+         zNEZpczeYXTtVSFKZHjnkTQ+kHpjfGdSw5Y6TN8Lhfjp/4h7brVxJWC8KOtSnaNQ90sn
+         sAtqIKHf7ZmJuvcldRCp1nrz6y6Rr7btUF9uIQ0cwRFXw7QXaAGCiobVsCOYDFimBwp2
+         oveC0osN1TVL+fWq8LIoNLayKqowm/L25gFD7sPHtHGiRn4hjJqrktIA0pdJHk2k3r7e
+         1TmhXylJwTs1uiXkhCO5oDXn58fkutHdy62J2dYhTkb5N/wvIz+HiODx0EbCrMLW0G+u
+         +KSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=mD6A518pLN0OGYxwYdiHrx5ULjL15DVCTZFPIr11wP4=;
-        b=6cuXSp36MJq8YYHbnET6+vOwS4PUZK+IIfbEDMLg08EhifeMxONHt56e52+hhPvM2p
-         JWtAeYxWk7asN4w5HQn5ZJk8X93c5Kibj1ZN00gK+kbFmYLK3UsSa9+MkS9tEsPHii1J
-         QEOl9PsLul4a0AkYkMkD0kxprMsdpiXq1D8SQV1S6hQMv2fJszwyFb74KrybnYdGo2VO
-         0+VaKZhQvIYUm3Sli63rblZHELFHOjH+cqRg8/ZNbEmebu3Gq+lhsiPPUBCNHC9883IM
-         Hx1K0HWTNCAATdyKp8ON/ux9Tuhxt4iuJHU6nJEEktjbOV61WdGAw6rjTzBjsWFbXaBc
-         1tlg==
-X-Gm-Message-State: AOAM532vhT0oZXePBxX5sRg7w29FwHNqq+YeY2h22OUGx+BwUdKHlu4g
-        C2RM3MDZzr8V9YexpHA16A==
-X-Google-Smtp-Source: ABdhPJzPxKIFoS6v7zdVdtYI6RyvPqTBWA/y3iFw05esM5zHDiEwwCh3hh1x0yu+5RBF39jjcsqxzg==
-X-Received: by 2002:a9d:69d7:0:b0:60b:cee:4cd0 with SMTP id v23-20020a9d69d7000000b0060b0cee4cd0mr751041oto.145.1654118497642;
-        Wed, 01 Jun 2022 14:21:37 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id c10-20020a056830314a00b0060b0b638583sm1354298ots.13.2022.06.01.14.21.36
+        bh=nAVwQodkjWfLxV3GaHIx/ifN9ZldZyPTtngAs8rNMts=;
+        b=KVvx7qCYZbUtjStUB8fr85PIyElAT/wMr6lmEmRVHZIz0085mCfAx5jv8tDIBPrFye
+         WuTvd2SVqnxEn3yMuWE6NX/yrWnuaZsHlEMwvk8NdhL/MwUV9tUcc+8ncxCQx1A6rnJB
+         aNfBjsGbV3h5evXfRyfInsjUAzXYfsx7qowzRCwRpht+fFOrMhyXuYphgGcQB/OBNEZW
+         VzcxK9Yv3uwE2tYgmU/722G4DqriHaedbETNEVc13OzEJa0T3/f4HJZMelINSEkSgnyQ
+         BiOPxeE5u0Ye2RcbBvMAehF/Jt5F2eqCM7F2nqOiqV+pcUx9jk8pOOlZLkZ9gBJLEpuS
+         Hrvg==
+X-Gm-Message-State: AOAM532xCvH6yz0KVcI4dIKdtjuaNiWHL4RieOKrcbN4n/qe+6dJZPhA
+        PRAKx02xiymDOdKZCPfjjis=
+X-Google-Smtp-Source: ABdhPJx7ZrwpWDs/5kq8F63b1+81kR7xZ4sxRrn80wffc7f55ZDfrB+v5KBze2fxFoTwLxGkok60aw==
+X-Received: by 2002:a05:6a00:996:b0:50b:76b8:3bb1 with SMTP id u22-20020a056a00099600b0050b76b83bb1mr1586359pfg.9.1654118945688;
+        Wed, 01 Jun 2022 14:29:05 -0700 (PDT)
+Received: from google.com ([2620:15c:202:201:7a22:99c9:242d:6235])
+        by smtp.gmail.com with ESMTPSA id d9-20020a170902e14900b00163f183ab76sm1948452pla.152.2022.06.01.14.29.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Jun 2022 14:21:37 -0700 (PDT)
-Received: (nullmailer pid 478620 invoked by uid 1000);
-        Wed, 01 Jun 2022 21:21:36 -0000
-Date:   Wed, 1 Jun 2022 16:21:36 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     johnson.wang@mediatek.com, linux-kernel@vger.kernel.org,
-        matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, zhiyong.tao@mediatek.com,
-        linux-mediatek@lists.infradead.org, henryc.chen@mediatek.com,
-        devicetree@vger.kernel.org, lee.jones@linaro.org
-Subject: Re: [PATCH 6/7] dt-bindings: mediatek: pwrap: Add a compatible for
- MT6795 Helio X10
-Message-ID: <20220601212136.GA478570-robh@kernel.org>
-References: <20220520124039.228314-1-angelogioacchino.delregno@collabora.com>
- <20220520124039.228314-7-angelogioacchino.delregno@collabora.com>
+        Wed, 01 Jun 2022 14:29:04 -0700 (PDT)
+Date:   Wed, 1 Jun 2022 14:29:02 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, devicetree-spec@vger.kernel.org,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Eugen Hristev <eugen.hristev@microchip.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Alain Volmat <alain.volmat@foss.st.com>,
+        Matt Johnston <matt@codeconstruct.com.au>
+Subject: Re: [dtschema PATCH] schemas: i2c: Add missing properties and
+ descriptions
+Message-ID: <YpfaHrIozOQzv65O@google.com>
+References: <20220427175956.362987-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220520124039.228314-7-angelogioacchino.delregno@collabora.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220427175956.362987-1-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 May 2022 14:40:38 +0200, AngeloGioacchino Del Regno wrote:
-> Add a compatible for the MT6765 Helio X10 SoC's PMIC Wrapper.
+On Wed, Apr 27, 2022 at 12:59:56PM -0500, Rob Herring wrote:
+> Add remaining properties and descriptions from i2c.txt binding in Linux
+> kernel tree. The Cc list are the authors of i2c.txt.
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Cc: Eugen Hristev <eugen.hristev@microchip.com>
+> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> Cc: Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
+> Cc: Jon Hunter <jonathanh@nvidia.com>
+> Cc: Alain Volmat <alain.volmat@foss.st.com>
+> Cc: Matt Johnston <matt@codeconstruct.com.au>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
->  Documentation/devicetree/bindings/soc/mediatek/pwrap.txt | 1 +
->  1 file changed, 1 insertion(+)
+> Cc list, 
 > 
+> I need your or your company's permission to relicense i2c.txt contents 
+> (used in 'description') to BSD-2-Clause. Please ack and provide a 
+> copyright if desired.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+
+Thanks.
+
+-- 
+Dmitry
