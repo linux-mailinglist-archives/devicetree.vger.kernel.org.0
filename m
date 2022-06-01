@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A63A6539E0B
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 09:21:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E41F539E0E
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 09:21:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350279AbiFAHTg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 03:19:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36830 "EHLO
+        id S1350261AbiFAHTf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 03:19:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350284AbiFAHTb (ORCPT
+        with ESMTP id S1350288AbiFAHTb (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 03:19:31 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22FF94ECC5
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19FA44ECC3
         for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 00:19:28 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id rq11so1872442ejc.4
+Received: by mail-ej1-x633.google.com with SMTP id f21so1814605ejh.11
         for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 00:19:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=poif9YuK+d5jqJ3ySyG93lIB8NIzwhm4FYQAt1koed4=;
-        b=b9qq5o5nRW3OI88iNMKLGFljdgUrPOk0NwMpkcgWBw+qoLBbebiwFuMB+m6vL/LrE3
-         qrlC+G53prvOydFQS1zFeTosWss3OQFs/jgbJd9sHmdC/OZKDpg98QIcj9DNEQdFXg61
-         I0NI+50atr3oSifyETRENXASf5+W3hFhAsAxsMpYEEJrXGV32iprRh5kfFioutoOI5xb
-         RUcXID/Tu7MV7V7QPNHXBdjhRN9baTOu3Iwc0F936ixlIOdlAJIsvf0U4w7cTRDh72pk
-         HDX7lnWYWHOEQq385UhGz1Zg8+dOK2p9ZTYJaqPZnmQdtDfbYsmzmFvw5guktjS/8wyl
-         ESAg==
+        bh=nAMM4lRuazejy0EDJVvU8shLpINg8wAqjAlfsJ24pMs=;
+        b=MFhEN9UtsamUd6w8K2RVOWB94T0PodLHRCO2sIU63o/34w555v55HCkvO11Lh/RM0a
+         3+VPXnzbdjMQd00RL4JJvKoFgTTFha+byS9O5dECxgzSALna9VVe9xpuKCMkIqroIlOc
+         BRmibRDM9bpKF7umvnxkOKrL2GzITJwd7DvpKna1ZXHlcyGng4lOaFv0pnJ/5Yeh2+Do
+         JNX9kE13mnSKtoZBhPyVniz45n1dqdAr9l1hloDscFsHII4s5xC3OkOSdLsrBJoRGTmU
+         3JEquJhaX13Nh7BWl6+zOWV3qoOvXplE1Ezgbi22YtzGmge2p+dcVWRRUKNOIF24MWT4
+         dh7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=poif9YuK+d5jqJ3ySyG93lIB8NIzwhm4FYQAt1koed4=;
-        b=EZUIvNyvfPkUc74COvqupAJE4DV1n9Ml9EPSTrXIzmVSNTZ87eaHrFI1lxO+yJHuTC
-         cw5WjOrlvF+mAakYSfXPyR/Vi+ciwIfFVYPzjDuRWmZhNIVkGsVHnYq/EhbDyq3h0w33
-         2yFIQAEfHp2TTDsJUYT+bqMGDsNBP96T7e9mRbAFRdo9pkViFULdnrTk6eojYPQ8awXv
-         m/xnmHK5/IcIZ/CQrEBP0M6nwIlPtJ6nndVfCxnZ1s0YiHsptdZ+OZDu7G1xLW/z7PaF
-         JRnFMpopGFCyNsHdTx25IkckDHTXIQArdwETPDWR8DsecwzNxAm9ho/OkQV8OqVGEzsI
-         /Nlg==
-X-Gm-Message-State: AOAM530yF57PdkFYHgf/xV7KIF9Nbh4e87amUiGJ8q7bLZ0v6VY9IB16
-        aQM1D/luDg0vd1P2+mx0IbMvow==
-X-Google-Smtp-Source: ABdhPJx0T8VoGYVKS/HHv7vq4UdMBY+MFcX5GKqOMw93Ky6jxsKb8l4liEmXrEcAa6QuaF7NfBNv3Q==
-X-Received: by 2002:a17:907:3d01:b0:6e0:c63b:1992 with SMTP id gm1-20020a1709073d0100b006e0c63b1992mr58394228ejc.422.1654067966664;
-        Wed, 01 Jun 2022 00:19:26 -0700 (PDT)
+        bh=nAMM4lRuazejy0EDJVvU8shLpINg8wAqjAlfsJ24pMs=;
+        b=r16h96lLfq1wK9DMX8+NoPgvXSilesGai4DL4dluuXMyH6m/73IeEJqQ9DypiPZMmH
+         3iAe1K5AWiPVSD82JF38m6JtIn3FxOMfBT7CVL2CR7RRkBDh1B1/2g9gBKH6q89MA7XR
+         odFLYjrh6gVLHsdD6p7snq+RfT63VZWU3T4ypmC5AGZ4qAbn678fWGN8e3YTeLcZz/ew
+         oH1Hyb2iI+UIVhojSXk12jFIyPdjJYf352SpsFJb9fTYR8wSHieMrzEDXWSy/vxvQaWK
+         p8R8gXweSH12bRvPc0BCeDAdmqhjqfAdPEGUQ+1ERl0nRYzIA+9kM8GzFmClxwsZwxob
+         fvLg==
+X-Gm-Message-State: AOAM533UfdZMwB/PHYdXE4onNWVURK/kEMNJmAcTOTLHIwTa9fpH1isS
+        dP5goTH++e7GatTbodlBwgFBzg==
+X-Google-Smtp-Source: ABdhPJx3HWipshhxFlcuIAl26zCYvNK1o9wkgX//LLgCC/LPRIUoXZ26kEjL6jpWBYjstExVcgbU1A==
+X-Received: by 2002:a17:907:6d0e:b0:708:3ada:184c with SMTP id sa14-20020a1709076d0e00b007083ada184cmr318627ejc.192.1654067967665;
+        Wed, 01 Jun 2022 00:19:27 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id f27-20020a17090624db00b006f3ef214dcdsm358486ejb.51.2022.06.01.00.19.25
+        by smtp.gmail.com with ESMTPSA id f27-20020a17090624db00b006f3ef214dcdsm358486ejb.51.2022.06.01.00.19.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Jun 2022 00:19:26 -0700 (PDT)
+        Wed, 01 Jun 2022 00:19:27 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Sebastian Reichel <sre@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -55,9 +55,9 @@ To:     Sebastian Reichel <sre@kernel.org>,
         Dmitry Osipenko <digetx@gmail.com>, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/4] dt-bindings: power: supply: qcom,pm8941: document usb-charge-current-limit
-Date:   Wed,  1 Jun 2022 09:19:10 +0200
-Message-Id: <20220601071911.6435-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 4/4] dt-bindings: power: supply: summit,smb347: use absolute path to schema
+Date:   Wed,  1 Jun 2022 09:19:11 +0200
+Message-Id: <20220601071911.6435-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220601071911.6435-1-krzysztof.kozlowski@linaro.org>
 References: <20220601071911.6435-1-krzysztof.kozlowski@linaro.org>
@@ -65,7 +65,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,35 +73,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document already used (in DTS and by driver) 'usb-charge-current-limit'
-property:
-
-  arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dtb:
-    charger@1000: 'usb-charge-current-limit' does not match any of the regexes: 'pinctrl-[0-9]+'
+Reference regulator schema by absolute path, as expected by DT schema
+coding style.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../bindings/power/supply/qcom,pm8941-charger.yaml         | 7 +++++++
- 1 file changed, 7 insertions(+)
+ .../devicetree/bindings/power/supply/summit,smb347-charger.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/power/supply/qcom,pm8941-charger.yaml b/Documentation/devicetree/bindings/power/supply/qcom,pm8941-charger.yaml
-index cd6364d65751..cbac55d3cb92 100644
---- a/Documentation/devicetree/bindings/power/supply/qcom,pm8941-charger.yaml
-+++ b/Documentation/devicetree/bindings/power/supply/qcom,pm8941-charger.yaml
-@@ -117,6 +117,13 @@ properties:
-       be done externally to fully comply with the JEITA safety guidelines if this flag
-       is set.
+diff --git a/Documentation/devicetree/bindings/power/supply/summit,smb347-charger.yaml b/Documentation/devicetree/bindings/power/supply/summit,smb347-charger.yaml
+index 20862cdfc116..ce0bca4689f6 100644
+--- a/Documentation/devicetree/bindings/power/supply/summit,smb347-charger.yaml
++++ b/Documentation/devicetree/bindings/power/supply/summit,smb347-charger.yaml
+@@ -82,7 +82,7 @@ properties:
+       - 1 # SMB3XX_SYSOK_INOK_ACTIVE_HIGH
  
-+  usb-charge-current-limit:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 100000
-+    maximum: 2500000
-+    description: |
-+      Default USB charge current limit in uA.
-+
-   usb-otg-in-supply:
-     description: Reference to the regulator supplying power to the USB_OTG_IN pin.
+   usb-vbus:
+-    $ref: "../../regulator/regulator.yaml#"
++    $ref: /schemas/regulator/regulator.yaml#
+     type: object
  
+     properties:
 -- 
 2.34.1
 
