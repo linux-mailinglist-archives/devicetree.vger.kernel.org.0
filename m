@@ -2,108 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D415539AE4
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 03:45:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96580539B14
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 04:06:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345487AbiFABpd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 21:45:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39424 "EHLO
+        id S1345940AbiFACGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 22:06:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231584AbiFABpd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 21:45:33 -0400
-Received: from mail-io1-xd35.google.com (mail-io1-xd35.google.com [IPv6:2607:f8b0:4864:20::d35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C5A484A20;
-        Tue, 31 May 2022 18:45:32 -0700 (PDT)
-Received: by mail-io1-xd35.google.com with SMTP id i9so285355ioa.6;
-        Tue, 31 May 2022 18:45:32 -0700 (PDT)
+        with ESMTP id S233689AbiFACGN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 22:06:13 -0400
+Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02FC390CE8
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 19:06:12 -0700 (PDT)
+Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-f2e0a41009so867531fac.6
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 19:06:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=pyuU9OeurkYsRLJ+IwC7kgyYcpKMo7tA+yLD820Bc3k=;
-        b=UtH5dIWP/r0OJOmktGdxZzRIyaGG/xFKUaRYt8IExtMk+oBufMbkxkn136F7SkF3iq
-         7zFiieWeZDgwOFDsZ9jGJTeH8Ji2R6v0k8UduPqS+rb4A0W0EASaeavQopb9S1MB8OFf
-         cAvLBgBB3UYL97Y0lxVasUaKmnHfH8uYqxXM7uHEJ1K6msSFweAzlzxOxyCyYZXcAGSJ
-         6pc58iiupxfG0jGUEin91MaByNcsr/AOnsx2T9aP3tP10L90xqTcpfq6V4ty7+5674lo
-         rWOpF+D7I3AutlLVIkPWHBIdHhOCbQ5h6lodxb5nFpyQNJr0ohIFZ+bvv1IIjozyqwH0
-         ZBNA==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=AOE+maVk5InZYmJxq3fFhzfqd22A3DYPkKeLdVjuAXk=;
+        b=f418KBsuUtPiY0sjTEprLPFRqYykXYxhDm3pCbzhRk0tBeu2jD9ibbibHZNVHnhd8i
+         uC8Rjv7AS1geBjT2NNE1+sUcZYazcFXFchxAUW8ydsGAZC8v2OMmSAg393T8YOzZGBwD
+         oxueJieo+f0E9wLol0w8P9QBTTCx2n1SUhbZ4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=pyuU9OeurkYsRLJ+IwC7kgyYcpKMo7tA+yLD820Bc3k=;
-        b=z1hVhU90fwF5F/zEeC+0HCfUwiT34uRadl2lBM2wxdGI/Ih3tTMUObTYBeP+MTbD4R
-         yxdY7WnVs88kqWS8DeNC7TYJxrTo8aME/PDJr9R9u49IVpuCnOj6mLtqGJh4epXnTgBC
-         nXzZqs4r6bkMPIgifF5NEbE/x3qpT7T5ITYaU5NtiufEG44WAnzcYci3WR0r7WW3doBY
-         BUNZgM+En1ISZ2+TMDZbvsybQhvbnj9VFRS3WQ+hPrrzvXCz/R10i2YPbFO5C7XWO5TB
-         6D0RS31yBK7vjGYD0QuHdm7z0LYfjQcyGtnf81/gs3QRlcskiMONbbo7j0wEV7vfOs9S
-         tsTQ==
-X-Gm-Message-State: AOAM530sV6A0r82dLlDz6374awNgLEX7c81zRwpYzM/+VyaUh6TFgou9
-        as+YboK0sSlDW8OgRpcrDFCLRy+gJp8=
-X-Google-Smtp-Source: ABdhPJwkl5MzkDc8hG0AeONzlpN6CLFnewxxBB96sU2/QjzEAYjO25L+e41HcpoWIfVSr7+/yCxIzQ==
-X-Received: by 2002:a5e:c30b:0:b0:668:825c:8556 with SMTP id a11-20020a5ec30b000000b00668825c8556mr7400697iok.68.1654047931596;
-        Tue, 31 May 2022 18:45:31 -0700 (PDT)
-Received: from ?IPV6:2600:1700:2442:6db0:bd78:a862:1b9c:aef9? ([2600:1700:2442:6db0:bd78:a862:1b9c:aef9])
-        by smtp.gmail.com with ESMTPSA id i41-20020a026029000000b0033155f242f0sm154414jac.23.2022.05.31.18.45.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 31 May 2022 18:45:31 -0700 (PDT)
-Message-ID: <7c6f0015-cf50-4c8b-060d-f6641d0aeb16@gmail.com>
-Date:   Tue, 31 May 2022 20:45:30 -0500
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=AOE+maVk5InZYmJxq3fFhzfqd22A3DYPkKeLdVjuAXk=;
+        b=7r/pfhyfaOlfgo0GG0SG9URoclRtprQOz6rhHeiW8a7h/967xUNlIbh1lNzVlMqaMS
+         alwFyl1/J/AufNg733Y1VfAxJ6SLT7WxgRtALrvQ0RaODVUqk7mG+R3pnHsQLvGn1+TQ
+         WUO6/ji8Tzt4WNm1NDlwC2yQaHRzGE7SRXo7lDpqc/mujg5k1M9o1WaRqIOETs8nvd2i
+         nI78Fvn/xF70KNlmO8PyHcRWLSuBG+FNheebQGLSfDGAHpsej6G/UGXAwdw1uTQSNylX
+         VhoiQ2NLFNHm30PaHEyPRYfVlPm6ZUL4QvNgOOxLMciaOFk2FCbxlvd3yKZvpiJaBRMo
+         E5VA==
+X-Gm-Message-State: AOAM532EqenrwpWRlcK6ZvCXDkjGk4ntoL9XkabTgF2wRR+9dEU8/JK9
+        RGICyyA/bt8nyMcae3GksKcj0IHH7NM2kCbgY0+s6Q==
+X-Google-Smtp-Source: ABdhPJzu+uxIbiEpXSSvXqOR1ScFSqXQ+1eOAxLwujTyveBbGBmycq4fzS+xsM0gn91chDVuTC4ooQ4KFJJEREQ22+Y=
+X-Received: by 2002:a05:6870:558e:b0:e1:db7c:26aa with SMTP id
+ n14-20020a056870558e00b000e1db7c26aamr15376480oao.63.1654049171244; Tue, 31
+ May 2022 19:06:11 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 31 May 2022 19:06:10 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] scripts: dtc: fix a false alarm for
- node_name_chars_strict
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Qun-Wei Lin <qun-wei.lin@mediatek.com>, matthias.bgg@gmail.com,
+In-Reply-To: <4b9a2abe-c462-81d9-2098-d430da24f030@quicinc.com>
+References: <1653043777-24003-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1653043777-24003-8-git-send-email-quic_c_skakit@quicinc.com>
+ <CAE-0n53WLYR1pjnr6wASVmXXQ7xTq5n2Q7GdeKOCkWf4H4n=0A@mail.gmail.com>
+ <e70aceba-02d5-15b5-46d0-d5ed5706e81a@quicinc.com> <CAE-0n539gePyXhw7r+XcaHtooN98KfYsx_qwgDaFkJtMSg+80g@mail.gmail.com>
+ <4b9a2abe-c462-81d9-2098-d430da24f030@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Tue, 31 May 2022 19:06:10 -0700
+Message-ID: <CAE-0n529AD8OKrxbTpDNqR7Gw9SdCnJyWtiWvZAsADQKgj4kxQ@mail.gmail.com>
+Subject: Re: [PATCH V13 7/9] regulator: Add a regulator driver for the PM8008 PMIC
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Satya Priya Kakitapalli <quic_c_skakit@quicinc.com>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, casper.li@mediatek.com,
-        chinwen.chang@mediatek.com, kuan-ying.lee@mediatek.com
-References: <20220531053358.19003-1-qun-wei.lin@mediatek.com>
- <8d4b8cc3-8433-24f9-1fc5-12d71e640952@gmail.com>
- <20220531214914.GA2388344-robh@kernel.org>
-From:   Frank Rowand <frowand.list@gmail.com>
-In-Reply-To: <20220531214914.GA2388344-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        quic_collinsd@quicinc.com, quic_subbaram@quicinc.com,
+        quic_jprakash@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/31/22 17:49, Rob Herring wrote:
-> On Tue, May 31, 2022 at 04:43:18PM -0400, Frank Rowand wrote:
->> On 5/31/22 01:33, Qun-Wei Lin wrote:
->>> The function check_node_name_chars_strict issues a false alarm when
->>> compiling an overlay dts.
->>>
->>> /fragment@0/__overlay__: Character '_' not recommended in node name
->>>
->>> This workaround will fix it by skip checking for node named __overlay__.
->>
->> This is not a false alarm.
->>
->> Do not special case node name "__overlay__".  This node name should never
->> occur in a modern overlay source file.
-> 
-> A dtbo -> dts pass will give warnings, so handling these nodes is 
-> worthwhile. Though thinking a bit more about it, I think this one is off 
-> by default, but W=2 turns it on.
+Quoting Satya Priya Kakitapalli (Temp) (2022-05-30 03:33:47)
+>
+> On 5/28/2022 2:32 AM, Stephen Boyd wrote:
+> > Quoting Satya Priya Kakitapalli (Temp) (2022-05-27 01:24:19)
+> >> On 5/21/2022 8:26 AM, Stephen Boyd wrote:
+> >>          +       }
+> >>          +
+> >>          +       pm8008_reg->dev = dev;
+> >>          +
+> >>          +       rc = of_property_read_string(dev->of_node, "regulator-name", &name);
+> >>          +       if (rc)
+> >>          +               return rc;
+> >>          +
+> >>          +       /* get the required regulator data */
+> >>          +       for (i = 0; i < ARRAY_SIZE(reg_data); i++)
+> >>          +               if (strstr(name, reg_data[i].name))
+> >>
+> >>      Why not find this via reg/address instead? It would save storing the
+> >>      regulator name in the reg_data table.
+> >>
+> >>
+> >> You mean match this using base address? then we should add base address in the
+> >> reg_data table. We will need the name to be stored in reg_data table anyway for
+> >> the pm8008_reg->rdesc.of_match
+> > Why? Now that this driver binds to each node individually the usage of
+> > of_match doesn't make any sense to me. Can you set 'struct
+> > regulator_config::dev' instead and not set of_match?
+>
+>
+> Currently we are setting regulator_config::dev as dev->parent i.e.,
+> pm8008@8, because the parent supplies are present under pm8008@8, to get
+> the regulators mapped correctly to the parent supplies we are using
+> dev->parent.
+>
+> If we do not set of_match in regulator descriptor,
+> regulator_of_get_init_node() would return NULL, causing init_data to be
+> NULL during regulator_register and regulators are not getting probed.
+> This can be resolved, if we get the init_data during pm8008_probe
+> itself. I'll do that in the next version.
+>
 
-Yes, at least as of 5.18-rc1 the warning is only if
-'-W node_name_chars_strict', so a dtbo -> dts pass will not give the
-warning for node __overlay__ by default.
-
--Frank
-
-> 
-> Rob
-
+Ok then it seems ok to leave it as is. I suspect getting init data
+during probe is more code vs. having the node name and the address in
+the table.
