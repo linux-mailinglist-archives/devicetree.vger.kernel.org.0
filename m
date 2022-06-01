@@ -2,108 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEEAF53A02B
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 11:19:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9A3253A05C
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 11:30:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350100AbiFAJTN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 05:19:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41540 "EHLO
+        id S1350468AbiFAJaQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 05:30:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344771AbiFAJTM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 05:19:12 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F118917AB6
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 02:19:10 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id gi33so2467355ejc.3
-        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 02:19:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=w0q7w7agqeVzeJoFI0aW/0pLwg+C1kvsWYmBalugg8Q=;
-        b=VixWWPTJ2XezaiMDn6QH/mc8juwDFuC9uioDoU9V+mrWz6fabTxHi48gVF79fLkNZI
-         CAEjE4jKF00zgp2R4UuRtTGQ/V2DI9Wa6gfA8F0TkWEPQA58c1oHeIwhZFYibE4CuRTN
-         50joB2Zrq8ilMbr0GLmGfkchBBwuKjG/57DOTnBEr0zMiRcYrofNk933/tjhE6RX1A7x
-         bLhyouUfCQCxLBhzjHo7kDDau9QgFwxecgC1mSCpMa12H5P+EdtH9vNDg2PcVGvxwDeu
-         y3dptNbRzcQ1FMT4qajLIVJTLchACkZhMaHHabSNjF/6TCbkzeoi4pCduF/NGL07I2nF
-         x/DQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=w0q7w7agqeVzeJoFI0aW/0pLwg+C1kvsWYmBalugg8Q=;
-        b=i5i3EKbz32ZYuFnbZ2RN513LMXUj5vlVDNGdfBqbqbeYiFgpG32KPeJOXc/EJKm1r7
-         yXfnInUh5FEWmsnNzcKAUKnU3MisK59x1bG6q8vk3CLel+ofMBwM7evLliTv4xFHXT3w
-         bMd/5BC49UiJ0kdKhn3CAl9ga3enr1xFxhWGnzwIv8W+NqPIXcbl0C8yM+nw5UFmsrI+
-         e8cFk1XZRFJBSz2bUBZaf3yOdugx3BIEIxK+xJmLp7p7UtgC1HPzlZHqr79mpnzjRVz3
-         AxE+vkvuYlIzC/Pm1M067XQuWU/NlTxrQr3Z6TTflp4fpAma4UzdmnGdGwarLFaaOUJn
-         FAcg==
-X-Gm-Message-State: AOAM533uKw7VCF32bW0IM/S2wZE+ExF6BTJ1MqJsZoCiqqFI/8mlRy24
-        KwBgMuabwDfnzjOeM1uKg357jg==
-X-Google-Smtp-Source: ABdhPJxIz5yKljtZ01n/8e8Iqvz6i01vdsc3Tj+8YIjD1XxI182o5dWwgzHRLoMv1YfZoH7CLyT2yA==
-X-Received: by 2002:a17:907:7f20:b0:6fe:f0c8:8e6f with SMTP id qf32-20020a1709077f2000b006fef0c88e6fmr40303647ejc.453.1654075149570;
-        Wed, 01 Jun 2022 02:19:09 -0700 (PDT)
-Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id u9-20020aa7d889000000b0042b5cf75d6esm630769edq.97.2022.06.01.02.19.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Jun 2022 02:19:09 -0700 (PDT)
-Message-ID: <d1ffbc04-0c80-369e-a1dc-e47e50f52340@linaro.org>
-Date:   Wed, 1 Jun 2022 11:19:07 +0200
+        with ESMTP id S1350618AbiFAJaM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 05:30:12 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A972606D0;
+        Wed,  1 Jun 2022 02:30:11 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2519Ts7j041056;
+        Wed, 1 Jun 2022 04:29:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1654075794;
+        bh=tNWTiL26yip0+8RRcm3Q4HITepb/6ZBenFxH0bJw1ro=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=Trot8imIKW2KUEAF31573pI1l80b/EVxxLUVds5Zu4mWnWEM7XtSOGnsln4U0Z5xU
+         Fzp4hCjTXOy4Pv1XL1ba72iZ8Xj8rgsnTRNzoZ+l2k2ghyb8ZoVBYqnHEbKeoxe6Sc
+         Hf4ee01r9VHpMqmJoPNBxUTEmz7j2qRWScgMOBnU=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2519TsZL014057
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 1 Jun 2022 04:29:54 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 1
+ Jun 2022 04:29:53 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 1 Jun 2022 04:29:53 -0500
+Received: from [172.24.222.108] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2519TliG022357;
+        Wed, 1 Jun 2022 04:29:48 -0500
+Message-ID: <41277985-28c9-9bf0-8b24-6acc40391ef2@ti.com>
+Date:   Wed, 1 Jun 2022 14:59:47 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH 4/5] dt-bindings: crypto: add documentation for aspeed
- hace
+Subject: Re: [PATCH 3/3] net: ethernet: ti: am65-cpsw: Move phy_set_mode_ext()
+ to correct location
 Content-Language: en-US
-To:     Neal Liu <neal_liu@aspeedtech.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Johnny Huang <johnny_huang@aspeedtech.com>
-Cc:     "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20220601054204.1522976-1-neal_liu@aspeedtech.com>
- <20220601054204.1522976-5-neal_liu@aspeedtech.com>
- <dca283db-0b2e-1fc1-bc76-811c4c918fb5@linaro.org>
- <HK0PR06MB3202D6A6C66480BF60ED829080DF9@HK0PR06MB3202.apcprd06.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <HK0PR06MB3202D6A6C66480BF60ED829080DF9@HK0PR06MB3202.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
+CC:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <vladimir.oltean@nxp.com>,
+        <grygorii.strashko@ti.com>, <vigneshr@ti.com>, <nsekhar@ti.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kishon@ti.com>
+References: <20220531113058.23708-1-s-vadapalli@ti.com>
+ <20220531113058.23708-4-s-vadapalli@ti.com>
+ <YpYCJv2SIExL+VHs@shell.armlinux.org.uk>
+ <9f531f8d-9ff2-2ec9-504f-eed324ba86c6@ti.com>
+ <YpcjaOdXHC+uYJ2J@shell.armlinux.org.uk>
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+In-Reply-To: <YpcjaOdXHC+uYJ2J@shell.armlinux.org.uk>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/06/2022 10:01, Neal Liu wrote:
->>> +  clocks:
->>> +    maxItems: 1
->>> +
->>> +  clock-names:
->>> +    maxItems: 1
+Hello Russell,
+
+On 01/06/22 13:59, Russell King (Oracle) wrote:
+> On Wed, Jun 01, 2022 at 11:39:57AM +0530, Siddharth Vadapalli wrote:
+>> Hello Russell,
 >>
->> You need to list clock names, however usually it does not make sense to have
->> names for just one main device clock.
+>> On 31/05/22 17:25, Russell King (Oracle) wrote:
+>>> On Tue, May 31, 2022 at 05:00:58PM +0530, Siddharth Vadapalli wrote:
+>>>> In TI's J7200 SoC CPSW5G ports, each of the 4 ports can be configured
+>>>> as a QSGMII main or QSGMII-SUB port. This configuration is performed
+>>>> by phy-gmii-sel driver on invoking the phy_set_mode_ext() function.
+>>>>
+>>>> It is necessary for the QSGMII main port to be configured before any of
+>>>> the QSGMII-SUB interfaces are brought up. Currently, the QSGMII-SUB
+>>>> interfaces come up before the QSGMII main port is configured.
+>>>>
+>>>> Fix this by moving the call to phy_set_mode_ext() from
+>>>> am65_cpsw_nuss_ndo_slave_open() to am65_cpsw_nuss_init_slave_ports(),
+>>>> thereby ensuring that the QSGMII main port is configured before any of
+>>>> the QSGMII-SUB ports are brought up.
+>>>
+>>> This sounds like "if we're configured via port->slave.phy_if to be in
+>>> QSGMII mode, then the serdes PHY needs to be configured before any of
+>>> the QSGMII ports are used". Doesn't that mean that if
+>>> port->slave.phy_if is QSGMII, then the port _only_ supports QSGMII
+>>> mode, and conversely, the port doesn't support QSGMII unless firmware
+>>> said it could be.
+>>>
+>>> So, doesn't that mean am65_cpsw_nuss_init_port_ndev() should indicate
+>>> only QSGMII, or only the RGMII modes, but never both together?
 >>
-> I think list clock-names is optional, I'll remove it from required list.
+>> The phy-gmii-sel driver called by phy_set_mode_ext() configures the CPSW5G MAC
+>> rather than the SerDes Phy. In the CPSW5G MAC, the QSGMII mode is further split
+>> up as two modes that are TI SoC specific, namely QSGMII main and QSGMII-SUB. Of
+>> the 4 ports present in CPSW5G (4 external ports), only one can be the main port
+>> while the rest are the QSGMII-SUB ports. Only the QSGMII main interface is
+>> responsible for auto-negotiation between the MAC and PHY. For this reason, the
+>> writes to the CPSW5G MAC, mentioning which of the interfaces is the QSGMII main
+>> interface and which ones are the QSGMII-SUB interfaces has to be done before any
+>> of the interfaces are brought up. Otherwise, it would result in a QSGMII-SUB
+>> interface being brought up before the QSGMII main interface is determined,
+>> resulting in the failure of auto-negotiation process, thereby making the
+>> QSGMII-SUB interfaces non-functional.
+> 
+> That confirms my suspicion - if an interface is in QSGMII mode, then
+> RGMII should not be marked as a supported interface to phylink. If the
 
-I actually suggest to remove the clock-names property entirely, if is
-has one generic entry called "clk" (or "vclk" - the same). Do you
-already expect adding here more clocks?
+CPSW5G MAC supports both RGMII and QSGMII modes, so wouldn't it be correct to
+mark both RGMII and QSGMII modes as supported? The mode is specified in the
+device-tree and configured in CPSW5G MAC accordingly.
 
+> "QSGMII main interface" were to be switched to RGMII mode, then this
+> would break the other ports. So RGMII isn't supported if in QSGMII
+> mode.
 
-Best regards,
-Krzysztof
+Yes, if the QSGMII main interface were to be switched to RGMII mode, then it
+would break the other ports. However, the am65-cpsw driver currently has no
+provision to dynamically change the port modes once the driver is initialized.
+
+Thanks,
+Siddharth.
