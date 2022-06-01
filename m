@@ -2,117 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECE5953A73C
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 15:59:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C338253A77C
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 16:02:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353865AbiFAN7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 09:59:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33000 "EHLO
+        id S1354093AbiFAOB7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 10:01:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354033AbiFAN6X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 09:58:23 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DBF0880F5;
-        Wed,  1 Jun 2022 06:55:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S1354160AbiFAOAA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 10:00:00 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8761E8B0B5;
+        Wed,  1 Jun 2022 06:56:16 -0700 (PDT)
+Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 432C4615F3;
-        Wed,  1 Jun 2022 13:55:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89CF2C3411E;
-        Wed,  1 Jun 2022 13:55:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654091718;
-        bh=+7YLbsPjf0ff3HxBonzNas5xwXxkNQMQ7rDT4NH7mHI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=FlTavO1YRo+vtZlQJrf2h+5sU8IPwYJLVRZOVEMz1gVv4wiUOyRY1ROnzEswQRrgY
-         G0YwF0F3BuBeDE1QdyEvkbP9ExZ6Uhl5dvWwDfvpHQZljtCdDCtd3nW/4b74s5eR4T
-         BXhNbqEXDZVA+0sdh9taJe2o1Izj+/qcqO05mbOkie7+AxVFfPnuUW6M7CTrMVtRun
-         rIRFUkR5dDBKEnbj2lt2krFcYiOcrhCdrdutPhcFbdhfAgJA+7NsP3OQJdQ2m6dC9C
-         w58RSbW0d9c3dZmCgGBWFw4oArZuYnDn5qGiiVotGCl6uES95JTi9KBHJq1KdnxXzF
-         WFyekSd3gMxiA==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sasha Levin <sashal@kernel.org>, agross@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.17 25/48] arm64: dts: qcom: sc7280-idp: Configure CTS pin to bias-bus-hold for bluetooth
-Date:   Wed,  1 Jun 2022 09:53:58 -0400
-Message-Id: <20220601135421.2003328-25-sashal@kernel.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220601135421.2003328-1-sashal@kernel.org>
-References: <20220601135421.2003328-1-sashal@kernel.org>
+        by ssl.serverraum.org (Postfix) with ESMTPSA id C02EE22175;
+        Wed,  1 Jun 2022 15:55:37 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1654091738;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=qveomebm5Cm9gpRTlOxUQGp85QoLnRj3uf6m3R58Nzc=;
+        b=Ef/T/TwwXV0heKml7fRseyMbGK7LE2+swTLvvn7d8LSmdzqE8e6cbdZzZxk9HZJ2JlZIBM
+        Nr1uZ2TAQwTaU9/W0rZWuOpoSO5SD3Xzxzqvwe7zasvq5a7hJD2KKgv+LFN3WAWZNz5Ak4
+        4GXk6tTMylkqmrh3sTisRmzrsYwL4Mo=
+From:   Michael Walle <michael@walle.cc>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-serial@vger.kernel.org, Michael Walle <michael@walle.cc>
+Subject: [PATCH] earlycon: prevent multiple register_console()
+Date:   Wed,  1 Jun 2022 15:55:28 +0200
+Message-Id: <20220601135528.3176471-1-michael@walle.cc>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
+If the earlycon parameter is given twice, the kernel will spit out a
+WARN() in register_console() because it was already registered. The
+non-dt variant setup_earlycon() already handles that gracefully. The dt
+variant of_setup_earlycon() doesn't. Add the check there and propagate
+it through early_init_dt_scan_chosen_stdout().
 
-[ Upstream commit 497b272759986af1aa5a25b5e903d082c67bd8f6 ]
+FWIW, this doesn't happen if CONFIG_ACPI_SPCR_TABLE is set. In that case
+the registration is delayed until after earlycon parameter(s) are
+parsed.
 
-WLAN rail was leaking power during RBSC/sleep even after turning BT off.
-Change active and sleep pinctrl configurations to handle same.
-
-Signed-off-by: Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Link: https://lore.kernel.org/r/1650556567-4995-2-git-send-email-quic_vnivarth@quicinc.com
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Signed-off-by: Michael Walle <michael@walle.cc>
 ---
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 18 ++++++++++++------
- 1 file changed, 12 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index d623d71d8bd4..dd6dac0e1784 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -462,10 +462,13 @@ &qup_uart5_rx {
+I'm not sure if this should have a Fixes tag or not. If so I guess it
+should be the very first commit which introduced the support (commit
+fb11ffe74c79 ("of/fdt: add FDT serial scanning for earlycon")).
+
+For the curious, here is the backtrace:
+
+[    0.000000] ------------[ cut here ]------------
+[    0.000000] WARNING: CPU: 0 PID: 0 at kernel/printk/printk.c:3328 register_console+0x2b4/0x364
+[    0.000000] console 'atmel_serial0' already registered
+[    0.000000] Modules linked in:
+[    0.000000] CPU: 0 PID: 0 Comm: swapper Not tainted 5.18.0-next-20220601+ #652
+[    0.000000] Hardware name: Generic DT based system
+[    0.000000] Backtrace: 
+[    0.000000]  dump_backtrace from show_stack+0x18/0x1c
+[    0.000000]  show_stack from dump_stack_lvl+0x48/0x54
+[    0.000000]  dump_stack_lvl from dump_stack+0x18/0x1c
+[    0.000000]  dump_stack from __warn+0xd0/0x148
+[    0.000000]  __warn from warn_slowpath_fmt+0x9c/0xc4
+[    0.000000]  warn_slowpath_fmt from register_console+0x2b4/0x364
+[    0.000000]  register_console from of_setup_earlycon+0x29c/0x2ac
+[    0.000000]  of_setup_earlycon from early_init_dt_scan_chosen_stdout+0x154/0x18c
+[    0.000000]  early_init_dt_scan_chosen_stdout from param_setup_earlycon+0x40/0x48
+[    0.000000]  param_setup_earlycon from do_early_param+0x88/0xc4
+[    0.000000]  do_early_param from parse_args+0x1a4/0x404
+[    0.000000]  parse_args from parse_early_options+0x40/0x48
+[    0.000000]  parse_early_options from parse_early_param+0x38/0x48
+[    0.000000]  parse_early_param from setup_arch+0x114/0x7a4
+[    0.000000]  setup_arch from start_kernel+0x74/0x6dc
+[    0.000000]  start_kernel from 0x0
+[    0.000000] ---[ end trace 0000000000000000 ]---
+
+ drivers/of/fdt.c              | 6 ++++--
+ drivers/tty/serial/earlycon.c | 5 ++++-
+ 2 files changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index a8f5b6532165..7f3524213b43 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -1025,6 +1025,7 @@ int __init early_init_dt_scan_chosen_stdout(void)
+ 	int l;
+ 	const struct earlycon_id *match;
+ 	const void *fdt = initial_boot_params;
++	int ret;
  
- &qup_uart7_cts {
- 	/*
--	 * Configure a pull-down on CTS to match the pull of
--	 * the Bluetooth module.
-+	 * Configure a bias-bus-hold on CTS to lower power
-+	 * usage when Bluetooth is turned off. Bus hold will
-+	 * maintain a low power state regardless of whether
-+	 * the Bluetooth module drives the pin in either
-+	 * direction or leaves the pin fully unpowered.
- 	 */
--	bias-pull-down;
-+	bias-bus-hold;
- };
+ 	offset = fdt_path_offset(fdt, "/chosen");
+ 	if (offset < 0)
+@@ -1057,8 +1058,9 @@ int __init early_init_dt_scan_chosen_stdout(void)
+ 		if (fdt_node_check_compatible(fdt, offset, match->compatible))
+ 			continue;
  
- &qup_uart7_rts {
-@@ -516,10 +519,13 @@ qup_uart7_sleep_cts: qup-uart7-sleep-cts {
- 		pins = "gpio28";
- 		function = "gpio";
- 		/*
--		 * Configure a pull-down on CTS to match the pull of
--		 * the Bluetooth module.
-+		 * Configure a bias-bus-hold on CTS to lower power
-+		 * usage when Bluetooth is turned off. Bus hold will
-+		 * maintain a low power state regardless of whether
-+		 * the Bluetooth module drives the pin in either
-+		 * direction or leaves the pin fully unpowered.
- 		 */
--		bias-pull-down;
-+		bias-bus-hold;
- 	};
+-		if (of_setup_earlycon(match, offset, options) == 0)
+-			return 0;
++		ret = of_setup_earlycon(match, offset, options);
++		if (!ret || ret == -EALREADY)
++			return ret;
+ 	}
+ 	return -ENODEV;
+ }
+diff --git a/drivers/tty/serial/earlycon.c b/drivers/tty/serial/earlycon.c
+index 57c70851f22a..59fedf7be572 100644
+--- a/drivers/tty/serial/earlycon.c
++++ b/drivers/tty/serial/earlycon.c
+@@ -230,7 +230,10 @@ static int __init param_setup_earlycon(char *buf)
+ 			earlycon_acpi_spcr_enable = true;
+ 			return 0;
+ 		} else if (!buf) {
+-			return early_init_dt_scan_chosen_stdout();
++			err = early_init_dt_scan_chosen_stdout();
++			if (err == -EALREADY)
++				return 0;
++			return err;
+ 		}
+ 	}
  
- 	qup_uart7_sleep_rts: qup-uart7-sleep-rts {
 -- 
-2.35.1
+2.30.2
 
