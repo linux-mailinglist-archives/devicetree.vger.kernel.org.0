@@ -2,90 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E082C53A36A
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 13:02:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2862753A37A
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 13:03:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352382AbiFALCv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 07:02:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51964 "EHLO
+        id S1352473AbiFALDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 07:03:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352373AbiFALCu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 07:02:50 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EF1D5FF3E
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 04:02:47 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id h19so1688274edj.0
-        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 04:02:47 -0700 (PDT)
+        with ESMTP id S1352418AbiFALDK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 07:03:10 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ABA9880C7
+        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 04:03:09 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id t13so1814131wrg.9
+        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 04:03:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=kuuAPeBvMXlT4Qr0rIDPPzJHYIF2J7uJ4dEFJVwS+Og=;
-        b=rAKE7c//X9VsmcrCrzt+3SQVda0R+zL8SvZR364FeIewxrwimw1sg39tE/ObobVrNc
-         rumQ7rLrHhpst92XhEZnhMhC4TnGx25oMcCqH5g9EIE/qBCiYgq2uAM5wpFKf3A7mhE0
-         3USbLttY8DnbqwEQRVOLageRTzwVMHQHauzQ1rgf2QsigDySC0M7s/bOMV3bteel7SG7
-         hmr61RnWvHJdzCN4ebTSdaghWXPhS4x4XrXnY1tzL74Gwp5VknzjBadeT8aiONHMQgSR
-         6hgqFEEOKIBm1cFWJRHPa5YOA1aWhUM9jDqHspc5Ytf7l6/Cfm+8P/5G/gjsF2GDjCD1
-         A/Fw==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=OnvXF5s5GrKznhV9RiSELRMKmTLaCDRSK8iW7WfFUKs=;
+        b=OSFoRwjoVdXIYu1i8ASpaOgYErZK4abslLMXIg14B84wAwFiqo3ENN+jRsPEoJ1Qf/
+         GLH1IRKGegXk5UyjI56HuSfaL8fRcHqT/tLQR1yQhZuowLnSOkMz+m8eE0ZA5sqDWtb5
+         72JIkmAjAkMQi6RXRQ4ydVKsHV/drR+t1z08uKcTGSNK9e+Q3LHL7nfR3YS+YX7MnYoU
+         1XSUr8cX+KOUatphzmZqQXYnoG59hGlt6Sw9mJXR1sCrOBxlJgPHlhiZp47XB0HZw7B2
+         QW5VwJ5kA4c3fRYWaG4nPYTbuRxCppGSGBluTJcKleeWxLsfIZk4dYvaJDnj43LQsCfA
+         L84Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=kuuAPeBvMXlT4Qr0rIDPPzJHYIF2J7uJ4dEFJVwS+Og=;
-        b=uNzakwiKDkq+SeX5lXjziE4spy53uw2zm9zZ4n1JiVTX6Uwd6AqHKYclERlUunBhGW
-         rnYacRZ6nH0ajgiUuh5lze/3Jz6ntl42ez/VXRH+wKbRl7ZF07tU67Qwhxj2EQPjfCXP
-         e9WjrMUlVVg4afMmOQXbLMja75V+GMYIvf2kl/ptYdQislglwyH3e78irZRNk2eI10yb
-         aohBroai4TdI2xze28+IlHZYaISn/6V1NnZ5lq4xbPpSZFk9O9FRjpoSnd8VsUIEnvDN
-         QD6xdLd6ignp+i1t0HaHvOHw+oYlqKUfiTrxAnRWCWma2Q0CFLZmRErQTrJUJJ+hXjj5
-         P5vg==
-X-Gm-Message-State: AOAM531jGfJALpKiRVFj6ifo3mCCBWsiNz8HfUixL4BcV7AY1K0oHt/I
-        xuPDrHWXxflZTGJxlsfKRslyXg==
-X-Google-Smtp-Source: ABdhPJwuP9ToPsswAN7zlS2t+50aXR+R2g9mygUn7Sy65W3wXMMxiMFudHonBXq+lmVpifEuUMxjiA==
-X-Received: by 2002:a50:fc10:0:b0:42d:cbd2:4477 with SMTP id i16-20020a50fc10000000b0042dcbd24477mr18945136edr.363.1654081366009;
-        Wed, 01 Jun 2022 04:02:46 -0700 (PDT)
-Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id t4-20020a056402020400b0042ab1735552sm766512edv.66.2022.06.01.04.02.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Jun 2022 04:02:45 -0700 (PDT)
-Message-ID: <59c140cb-5cab-b006-ec6e-eaf0ed0d414b@linaro.org>
-Date:   Wed, 1 Jun 2022 13:02:44 +0200
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=OnvXF5s5GrKznhV9RiSELRMKmTLaCDRSK8iW7WfFUKs=;
+        b=IYSfWGO4ioFfSyat/Wv9F/qpJ9B1mhkD5O1e9h29e4a1FNlm/zqOFYDM43TX6sLOpU
+         HFNv0nHd9W95Dw5C05asFOu1tGXGJmd8A6R3m8jGYEQSEdP/01KS5dkjQmeFqCcTcN7X
+         eRVMwU7ggHx+9kJLYLjoK22//6iWZpgSAcP1ijlrGlCtGk4ioW85/NyaT7z3O03BnUYh
+         8moPsa7xv6L+r4/42cxd4x3xaLntaDsCE0n/dX40T5MPHsR6JkrnWkgAPwR0oMIm+nS0
+         n+xQxBHUyhxcMq5T7YpQgpqp+silJIJkqigglESN7u77kfeC1C6B8yQWUBVU5R6a+WJ6
+         lTZg==
+X-Gm-Message-State: AOAM531I7a7ocTPcYoMV987tOxQGazvFgf5PUa9vxSXN+V4blS+UmFFF
+        f+fHm8bRSOAqgoAFvBSdy58=
+X-Google-Smtp-Source: ABdhPJymYOkcWRKsxtIvvy63ziXLPzoCyHa9UOjlimZGWPD9nRjpBYX2OWLNLJkY8aFJfPMxiZ4dzQ==
+X-Received: by 2002:a5d:68c1:0:b0:210:2e3c:5b0d with SMTP id p1-20020a5d68c1000000b002102e3c5b0dmr15031597wrw.694.1654081387634;
+        Wed, 01 Jun 2022 04:03:07 -0700 (PDT)
+Received: from morpheus.home.roving-it.com (82-132-215-116.dab.02.net. [82.132.215.116])
+        by smtp.googlemail.com with ESMTPSA id j14-20020a05600c190e00b00397381a7ae8sm6074559wmq.30.2022.06.01.04.03.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Jun 2022 04:03:07 -0700 (PDT)
+From:   Peter Robinson <pbrobinson@gmail.com>
+To:     Arnd Bergmann <arnd@arndb.de>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Emma Anholt <emma@anholt.net>,
+        Florian Fainelli <f.fainelli@gmail.com>, javierm@redhat.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org, maxime@cerno.tech,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     Peter Robinson <pbrobinson@gmail.com>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Subject: [PATCH v5 1/6] dt-bindings: gpu: v3d: Add BCM2711's compatible
+Date:   Wed,  1 Jun 2022 12:02:44 +0100
+Message-Id: <20220601110249.569540-2-pbrobinson@gmail.com>
+X-Mailer: git-send-email 2.36.1
+In-Reply-To: <20220601110249.569540-1-pbrobinson@gmail.com>
+References: <20220601110249.569540-1-pbrobinson@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 09/11] dt-bindings: watchdog: Add binding for Qcom SDX65
-Content-Language: en-US
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, wim@linux-watchdog.org,
-        linux@roeck-us.net
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        manivannan.sadhasivam@linaro.org
-References: <1654080312-5408-1-git-send-email-quic_rohiagar@quicinc.com>
- <1654080312-5408-10-git-send-email-quic_rohiagar@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1654080312-5408-10-git-send-email-quic_rohiagar@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/06/2022 12:45, Rohit Agarwal wrote:
-> Add devicetree binding for watchdog present in Qcom SDX65 platform.
-> 
-> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+BCM2711, Raspberry Pi 4's SoC, contains a V3D core. So add its specific
+compatible to the bindings.
 
+Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
+---
+Changes since v5:
+- Change compatible to align downstream and othee HW, reorder to suit
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
+diff --git a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+index e6485f7b046f..217c42874f41 100644
+--- a/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
++++ b/Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml
+@@ -16,6 +16,7 @@ properties:
+ 
+   compatible:
+     enum:
++      - brcm,2711-v3d
+       - brcm,7268-v3d
+       - brcm,7278-v3d
+ 
+-- 
+2.36.1
 
-Best regards,
-Krzysztof
