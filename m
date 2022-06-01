@@ -2,138 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F336539F09
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 10:09:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E603F539F3A
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 10:21:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350528AbiFAIJY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 04:09:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56934 "EHLO
+        id S1350645AbiFAITr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 04:19:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350524AbiFAIJW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 04:09:22 -0400
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2100.outbound.protection.outlook.com [40.107.223.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE6FA1A828;
-        Wed,  1 Jun 2022 01:09:20 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=d6KyOQsu7ASvtsUHlS/WWNP08FF1f4XPhKV2KHCocy0f7JxoGD3CELl8hGkTfTjKUQnTfF29xFkgr3MGShoo/+aLknWJJINU/OgDrayyqIdTNTnSyrsxJVHgVEquma730SjrSBNzWa68ctNrf1CxGkwB0c+DUVkQAsvTKaHZExUbt8TZxq3ayWKDSgAuABfvdF9W9T5+lncOawER++7J2lXWlQKLbEbClw2YOtJVN3cTkomnC5OqCMO+S548jqMK55zsEfuf+GIXYosJ6VwW+RfkLP5kXvz36N8X79VnuBVeETiG2L4QgBgbGGoX0idSgNx1wB/SKLPggCA8HDsqQQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LuyUBKlGGr01trKlDRQez4fapcaoL3nMCIW36ABGkig=;
- b=Dn9JWaBkyPhv/IuAFDd8CRNmnE8a7lZWzC2xCrT+pffleYTKT1xP+Q2iGMCVSmplpP4eaOOfZQAIVd6/ITBjw0uRtYX0rruPEiQvzoU9QfMyMSGQOnMaflEphS+bUe1x608neRvsJ7RrHmWqhsYY26T11xG3XGkI+TeKU5N9NMBs44tu6Mm15b7aRNWsPU66nayA0lq2ZZ9VVYhfqIZBXL2ak+ur6XJFX6Wizs9g5FK7qRq0eC1oAzY/IEjMTDqHywdrR0WW7DkFNLj4KcoQcyIYOH1iSaKNi3FFxz7Z79TeKVrNz9SEoa2iqrMW0qy3eJ/7RLxg3qn4hSkv/an8pw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 8.14.198.161) smtp.rcpttodomain=kernel.org smtp.mailfrom=jabil.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=jabil.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jabil.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LuyUBKlGGr01trKlDRQez4fapcaoL3nMCIW36ABGkig=;
- b=a6sSkMfNK3eFxgHm2po3e3FUBhAACw3fGW7aI1HLWDjqugwfeCdroswQ6mVSRJviJio/rf+JjpLkSvJYAJOwFHbWrAMl+QBXH2+BWCmltYRwquz6aMDmlWPp3Ib9l2lYaf6VXIm+MnCzjDlWRSuF+fYzGPsCqvVWHzUIeU7lsusJjHTU4e37TUA7SBC2Lbec/gDevwRWL7mlkAy49eGnpUK5viDfhQYJos9S2Yy8IgSBEwyLmsHCrarfpnxmuayQndgvMoI3iWZ8n0pT724lOczYqY+pD3yNebg5A5tLn5x9hF25M7YZFI38stJ/N0uRfNc39W/d+xV6JMvZ7LOXyg==
-Received: from DM5PR20CA0013.namprd20.prod.outlook.com (2603:10b6:3:93::23) by
- BYAPR02MB5077.namprd02.prod.outlook.com (2603:10b6:a03:70::10) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5293.17; Wed, 1 Jun 2022 08:09:18 +0000
-Received: from DM6NAM11FT015.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:93:cafe::9c) by DM5PR20CA0013.outlook.office365.com
- (2603:10b6:3:93::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.13 via Frontend
- Transport; Wed, 1 Jun 2022 08:09:18 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 8.14.198.161)
- smtp.mailfrom=jabil.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=jabil.com;
-Received-SPF: Pass (protection.outlook.com: domain of jabil.com designates
- 8.14.198.161 as permitted sender) receiver=protection.outlook.com;
- client-ip=8.14.198.161; helo=jabil.com; pr=C
-Received: from jabil.com (8.14.198.161) by
- DM6NAM11FT015.mail.protection.outlook.com (10.13.172.133) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5314.12 via Frontend Transport; Wed, 1 Jun 2022 08:09:18 +0000
-Received: from USPLND0HUB81.staging.JABIL.ORG (10.10.80.133) by
- USPLND0HUB02.corp.JABIL.ORG (10.10.47.157) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Wed, 1 Jun 2022 03:09:08 -0500
-Received: from usplnd0hub02.corp.jabil.org (10.10.47.157) by
- USPLND0HUB81.staging.JABIL.ORG (10.10.80.133) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Wed, 1 Jun 2022 03:09:08 -0500
-Received: from JDSBuild.corp.JABIL.ORG (10.10.7.5) by
- usplnd0hub02.corp.jabil.org (10.10.47.157) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Wed, 1 Jun 2022 03:09:06 -0500
-From:   David Wang <David_Wang6097@jabil.com>
-To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <edward_chen@jabil.com>, <ben_pai@jabil.com>,
-        David Wang <David_Wang6097@jabil.com>
-Subject: [PATCH 3/3] dt-bindings: vendor-prefixes: document jabil vendors for Aspeed BMC boards
-Date:   Wed, 1 Jun 2022 16:08:56 +0800
-Message-ID: <20220601080856.1548851-3-David_Wang6097@jabil.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220601080856.1548851-1-David_Wang6097@jabil.com>
-References: <20220601080856.1548851-1-David_Wang6097@jabil.com>
+        with ESMTP id S1350640AbiFAITg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 04:19:36 -0400
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8AE68BD15;
+        Wed,  1 Jun 2022 01:19:32 -0700 (PDT)
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 2A0F424000B;
+        Wed,  1 Jun 2022 08:19:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1654071569;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=fsD9Gd/LrdMMpUsb1FdogmpNtsHzQmr4i3zjYQ36MUs=;
+        b=fUPj3TY7zmMxazQ2HzFkAnlCRyUde259vYVb6JU37Fvsu4E5DYlpDl8wKxTRhnb8a1hNwo
+        9UwJvRaW1oW+P+apXriPdlbK+WbJPSTo9/jxIjtui7GktC547wOFGtUnUhVh1iuQ68taOD
+        QzYYQdZzE4dhe4gOWi87le1gJ6EN4UQWMZJMoDLY0LU2ozlMryGBmdRWxLK4pNdnRUwXIt
+        90hvP4iR2tZbp7aoeGWfioKs6PmLaSFTyrdWWbQXWo0kKIc+jHukKcYuVJddUE0pEcE91c
+        n4RQH/TAt46scQhwqLYt6utkQc/xVwqMN6q4f4WybMTiQUHdP+RqI1nep1LjYg==
+From:   =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>
+To:     Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Nathan Lynch <nathanl@linux.ibm.com>,
+        Laurent Dufour <ldufour@linux.ibm.com>,
+        Daniel Henrique Barboza <danielhb413@gmail.com>,
+        David Gibson <david@gibson.dropbear.id.au>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        David Hildenbrand <david@redhat.com>,
+        Ohhoon Kwon <ohoono.kwon@samsung.com>,
+        "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
+        YueHaibing <yuehaibing@huawei.com>
+Cc:     =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Bjorn Helgaas <helgaas@kernel.org>,
+        Lizhi Hou <lizhi.hou@xilinx.com>
+Subject: [PATCH v2 0/4] of: add of_property_alloc/free() and of_node_alloc()
+Date:   Wed,  1 Jun 2022 10:17:57 +0200
+Message-Id: <20220601081801.348571-1-clement.leger@bootlin.com>
+X-Mailer: git-send-email 2.36.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 076d8396-50d2-4a24-cdc7-08da43a606e8
-X-MS-TrafficTypeDiagnostic: BYAPR02MB5077:EE_
-X-Microsoft-Antispam-PRVS: <BYAPR02MB50772A8D886ABE9072B1BF1EEFDF9@BYAPR02MB5077.namprd02.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cLc8tGLitodetmS3+1EyUay68YzQVSeFyzif4rc2WxZiD08lyjKUx5NmycUdKIbzNynVFcDrGn+AUef9jcSg5rnYZRExC8V5XA4AJzeDhGOHB0HeennPEKBg3OzKSEOgOGaXXuodv2XMvCX7uFF62rly0f2RqbXMT0qGa7dj1ojNWXkfG/rMOujwNh39oIP3XyYJyei4ApMmoxx0nIm01pIhnsOa/20VVREc9sTi0enEm63AKoNtgTz8cFZ07Hb4hDBpbW8t+vDun4lKrm6MSTED98tEZzPMKUE8etc167xjPAsLSFDc1sp365mgoJ5XawR+V2pd5+pY7bVWnSewGt0Ql1lotP+3CqVTfWcGLzNGTM7Gii5GYuZicEQpz92mDL/Gdod/UHUGR2Or9gdJnzRoJK9j19Q46Z0YjuVh7EyZoyOIOBSpvAP7xqSZq/FO75/q2nlomqgXYpzWvyFRRUXiG8rT8XCi1+EH1Olp+swub3N7aCS3Ijcn4ywNpwp5aGu9taOXtr3XbYAYY1VWzPQTlU8WbB27nwoCh3yqSYpg3kszW7tf2qxDnA0+g9XZ02+ZZLBkNlD3TbbQ+Z4eMr5f2KiH/DoM/9Sb78VERDZsrPE1a8GOVPhAyCl6aT8vajkDc+ub5GKJ+Dh0zp8rPCgT9tRgP4yRKgaoKyIGnDZgf8FKaAf+c4QjUMiGjWPOzFYfMUCA3wLRH6Win2Vwsg==
-X-Forefront-Antispam-Report: CIP:8.14.198.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:jabil.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(2906002)(2616005)(316002)(54906003)(36756003)(1076003)(82310400005)(40460700003)(26005)(110136005)(36860700001)(107886003)(81166007)(186003)(5660300002)(70206006)(86362001)(70586007)(8676002)(82960400001)(4326008)(356005)(47076005)(336012)(83380400001)(6666004)(8936002)(4744005)(508600001)(36900700001);DIR:OUT;SFP:1102;
-X-OriginatorOrg: jabil.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jun 2022 08:09:18.5429
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 076d8396-50d2-4a24-cdc7-08da43a606e8
-X-MS-Exchange-CrossTenant-Id: bc876b21-f134-4c12-a265-8ed26b7f0f3b
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bc876b21-f134-4c12-a265-8ed26b7f0f3b;Ip=[8.14.198.161];Helo=[jabil.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT015.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB5077
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Depends on Krzysztof Kozlowski's vendor prefix patch
+In order to be able to create new nodes and properties dynamically from
+drivers, add of_property_alloc/free() and of_node_alloc(). These
+functions can be used to create new nodes and properties flagged with
+OF_DYNAMIC and to free them.
 
-Added Jabil vendor prefix for Aspeed SoC based BMC board manufacturers.
+Some powerpc code was already doing such operations and thus, these
+functions have been used to replace the manual creation of nodes and
+properties.
 
 ---
 
-v2
+Changes in V2:
+- Remove of_node_free()
+- Rework property allocation to allocate both property and value with
+  1 allocation
+- Rework node allocation to allocate name at the same time the node is
+  allocated
+- Remove extern from definitions
+- Remove of_property_alloc() value_len parameter and add more
+  explanation for the arguments
+- Add a check in of_property_free to check OF_DYNAMIC flag
+- Add a commit which constify the property argument of
+  of_property_check_flags()
 
-- Change the order of items
+Clément Léger (4):
+  of: constify of_property_check_flags() prop argument
+  of: dynamic: add of_property_alloc() and of_property_free()
+  of: dynamic: add of_node_alloc()
+  powerpc/pseries: use of_property_alloc/free() and of_node_alloc()
 
----
+ arch/powerpc/platforms/pseries/dlpar.c        |  51 +------
+ .../platforms/pseries/hotplug-memory.c        |  21 +--
+ arch/powerpc/platforms/pseries/reconfig.c     |  45 ++----
+ drivers/of/dynamic.c                          | 134 ++++++++++++------
+ drivers/of/of_private.h                       |  21 ++-
+ include/linux/of.h                            |  25 +++-
+ 6 files changed, 153 insertions(+), 144 deletions(-)
 
-Signed-off-by: David Wang <David_Wang6097@jabil.com>
----
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 169f11ce4cc5..1bd23060dcf9 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -626,6 +626,8 @@ patternProperties:
-     description: ITian Corporation
-   "^iwave,.*":
-     description: iWave Systems Technologies Pvt. Ltd.
-+  "^jabil,.*":
-+    description: Jabil Design Service Branch (Sanchong)
-   "^jdi,.*":
-     description: Japan Display Inc.
-   "^jedec,.*":
 -- 
-2.30.2
+2.36.0
 
