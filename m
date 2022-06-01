@@ -2,68 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27960539C06
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 06:18:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8965539C0C
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 06:21:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232808AbiFAERy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 00:17:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54674 "EHLO
+        id S233290AbiFAESb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 00:18:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232968AbiFAERv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 00:17:51 -0400
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B460B57175;
-        Tue, 31 May 2022 21:17:48 -0700 (PDT)
-Received: by mail-pf1-x42b.google.com with SMTP id 187so821886pfu.9;
-        Tue, 31 May 2022 21:17:48 -0700 (PDT)
+        with ESMTP id S235163AbiFAESa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 00:18:30 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00DBB5931F;
+        Tue, 31 May 2022 21:18:28 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id gi33so1238007ejc.3;
+        Tue, 31 May 2022 21:18:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=DQ+FCy1HGI3Ies4LEu7xbJ8vvBaBXxmKzVnykcfWgYc=;
-        b=cz3+YUGhugwCO8sy3yMoeG9UKTe6cXoNB5HsquXRcM1x8kO4l2SB2p5lA3nEn7WHWa
-         vR2BzibqnYCojzjoHn+4fh4xjPWlRVY+rwgWhDLd7ZnQmBsP69280m3iSRgGt+9jutJv
-         G9Llp2q7NwZL/JNUf2bMttPSk+928J91kB9mWKKvkUK57YIozSOy84Laj8iLBbTzixp1
-         ydZx6tkcdIeO49cwUT6epL0z5+oxO0+UFwZtffi9aras6j6qIvE9QEPVOm8OvxW2DxTY
-         ErKdgi+a1t90qzQlL5P5BwJ4oYrjaFEMectidaqmmDN1fWzDcCcbm3RViAZr7/yUncms
-         XUrQ==
+        h=from:to:cc:subject:date:message-id;
+        bh=RSw8k1d0PMD6wj66n+1hU8B9FRDPkW1CFpjiF9rIWpo=;
+        b=TrjwgnTl3ploNX8zp6ORq5aPD3FqDvLo44Q/ZISeWjgM9LzKROEkGRYve2Aw1eG9i0
+         bSsVkwTt3Q/6UxVCLBY3LvzMdzxs7gGQBwE8zZx4/g5BcYgS1tZNun5uhrmI+J/rGAsY
+         Hpgcezyg6qs7qwlyvuf5l8c0UaJdiN9e+YItj1Z7MvD1UOVjQY1ZQbTqk5YlFvMulQai
+         cQRtbuvXCwZZTYBpJ8cpL24BqRqj2flVyj6FgcEjJdpoyam20SSW0WqWT4RXOxsOGqsi
+         gfYoTo45CiLzohoTeFnVcEzE9/YlcnSjis36EqgKLPvQmgDzXKtYGPDGg2w48IlD9OGq
+         CvRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=DQ+FCy1HGI3Ies4LEu7xbJ8vvBaBXxmKzVnykcfWgYc=;
-        b=x2KOuCfqjJVcnVwhKAC3LD+plhAwWKThQWIhKduwoXFqRpUlbikUGOH7hZ8CD4TxId
-         jAnJSP7x1drFNanLWlQ6mW8SkBSQ2iSH4pKCPqF/P0PTSpgHO89Df40ML40RX3yCRRDT
-         rTqSxM7rFwmtdOPKIuB1h49Q17E5H48Ugo5NkxtWS1aSWx81/qjy0mpRfv73LAZZZjlQ
-         OWJImP6JCmVBe8GE7tHn/eV0oori401+Y8S9av+kJWYWQlUfq7kasfbZHyDrNpHwqRSG
-         gUWmg4ceX7kKWGPYVwN0Ad5BKHJbC1sJOR37DKDqZFLMr4Kl5bxv1owbNvXxPhx2lgy3
-         kJ2Q==
-X-Gm-Message-State: AOAM530VJjNouHolB9zWfHj7OJ5h8p5ye1zMLLkhr1ep9sUKo0J4v8VH
-        nUT7Eq1lN+8QrdPziByZs6w=
-X-Google-Smtp-Source: ABdhPJxuABQQ5nnDs9x6ucPra80+mc4j7aUfsFQDxn8DBnNB6maVVyCDmZ2Lamz55ogHhWOIjy1jkw==
-X-Received: by 2002:a63:a0f:0:b0:3fa:95b9:8c70 with SMTP id 15-20020a630a0f000000b003fa95b98c70mr36216628pgk.385.1654057068274;
-        Tue, 31 May 2022 21:17:48 -0700 (PDT)
-Received: from potin-quanta.dhcpserver.local (125-228-123-29.hinet-ip.hinet.net. [125.228.123.29])
-        by smtp.gmail.com with ESMTPSA id u11-20020a63d34b000000b003c14af505f6sm290749pgi.14.2022.05.31.21.17.45
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=RSw8k1d0PMD6wj66n+1hU8B9FRDPkW1CFpjiF9rIWpo=;
+        b=1iJitOcItwMo7LD9WBwymqbAGz5/xMx/HlNnmWewgx4okfrXzXJ2p7XZrHaQ2t549h
+         /ASS/bjmB+Xvs4n+wFpw1TSA95DEm37o/FiwjZT0qBQtXARgRBUCVF4T5osABi9xPERW
+         JftddGlUx6XAca8uk5yU2vElAzSHdOMAjDMpaIgqooHxaC4OPO1q4NOiDmnyOvW6l9Tu
+         lREKYHbBNhSoWV8bG6EmQMagFlKIA04MQS3ujDFuFE355arubzZhx7QYYkQ01YnevGQd
+         WSqk5kxJjNX0LqtfjzIL24ceRdWyPTRH8uzHjErx4RBYqHw6zUUlxuSrF1crmijYTr3e
+         fGWw==
+X-Gm-Message-State: AOAM531rMUlpbNcuci1626HA4tZ+NuATUuuRXHmuudFnzXuSKab7nikT
+        H3YV2yvlWaoZTc0VcykgqiY=
+X-Google-Smtp-Source: ABdhPJwgyhU+ZXDOZckYUwEphewTltQH7fIGAK729jV57SMSjG84XZZdUm4VashgG42xtDimZYYf/A==
+X-Received: by 2002:a17:906:9749:b0:6f5:38d:d4d8 with SMTP id o9-20020a170906974900b006f5038dd4d8mr57000119ejy.405.1654057106397;
+        Tue, 31 May 2022 21:18:26 -0700 (PDT)
+Received: from felia.fritz.box (200116b82620c00028af88788fa7d286.dip.versatel-1u1.de. [2001:16b8:2620:c000:28af:8878:8fa7:d286])
+        by smtp.gmail.com with ESMTPSA id t4-20020a056402020400b0042ab1735552sm279952edv.66.2022.05.31.21.18.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 31 May 2022 21:17:47 -0700 (PDT)
-From:   Potin Lai <potin.lai.pt@gmail.com>
-To:     Brendan Higgins <brendanhiggins@google.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
+        Tue, 31 May 2022 21:18:25 -0700 (PDT)
+From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
+To:     Andre Przywara <andre.przywara@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Rayn Chen <rayn_chen@aspeedtech.com>
-Cc:     Patrick Williams <patrick@stwcx.xyz>,
-        Potin Lai <potin.lai@quantatw.com>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        Potin Lai <potin.lai.pt@gmail.com>
-Subject: [PATCH v2 2/2] dt-bindings: aspeed-i2c: add properties for manual clock setting
-Date:   Wed,  1 Jun 2022 12:15:12 +0800
-Message-Id: <20220601041512.21484-3-potin.lai.pt@gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Liviu Dudau <liviu.dudau@arm.com>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        James Wang <james.qian.wang@arm.com>,
+        Mihail Atanassov <mihail.atanassov@arm.com>,
+        Brian Starkey <brian.starkey@arm.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, malidp@foss.arm.com,
+        kernel-janitors@vger.kernel.org,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Subject: [PATCH] MAINTAINERS: rectify entries for ARM DRM DRIVERS after dt conversion
+Date:   Wed,  1 Jun 2022 06:17:46 +0200
+Message-Id: <20220601041746.22986-1-lukas.bulwahn@gmail.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220601041512.21484-1-potin.lai.pt@gmail.com>
-References: <20220601041512.21484-1-potin.lai.pt@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -74,81 +72,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add following properties for manual tuning clock divisor and cycle of
-hign/low pulse witdh.
+The three commits:
 
-* aspeed,i2c-manual-clk: Enable aspeed i2c clock manual setting
-* aspeed,i2c-base-clk-div: Base Clock divisor (tBaseClk)
-* aspeed,i2c-clk-high-cycle: Cycles of clock-high pulse (tClkHigh)
-* aspeed,i2c-clk-low-cycle: Cycles of clock-low pulse (tClkLow)
+  36fd2a65bcaf ("dt-bindings: display: convert Arm HDLCD to DT schema")
+  0f6983509ea1 ("dt-bindings: display: convert Arm Komeda to DT schema")
+  2c8b082a3ab1 ("dt-bindings: display: convert Arm Mali-DP to DT schema")
 
-Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
+convert the arm display dt-bindings, arm,*.txt to arm,*.yaml, but miss to
+adjust its reference in MAINTAINERS.
+
+Hence, ./scripts/get_maintainer.pl --self-test=patterns complains about
+broken references.
+
+Repair these file references in ARM HDLCD DRM DRIVER, ARM KOMEDA DRM-KMS
+DRIVER and ARM MALI-DP DRM DRIVER.
+
+Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
 ---
- .../devicetree/bindings/i2c/aspeed,i2c.yaml   | 44 +++++++++++++++++++
- 1 file changed, 44 insertions(+)
+Andre, please ack.
+Rob, Krzysztof, please pick this minor non-urgent clean-up patch in
+your -next dt tree.
 
-diff --git a/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml b/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
-index ea643e6c3ef5..e2f67fe2aa0c 100644
---- a/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
-+++ b/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
-@@ -12,6 +12,28 @@ maintainers:
- allOf:
-   - $ref: /schemas/i2c/i2c-controller.yaml#
+ MAINTAINERS | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index ae685aaf8850..58e751b9346e 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1510,7 +1510,7 @@ F:	drivers/clocksource/arm_arch_timer.c
+ ARM HDLCD DRM DRIVER
+ M:	Liviu Dudau <liviu.dudau@arm.com>
+ S:	Supported
+-F:	Documentation/devicetree/bindings/display/arm,hdlcd.txt
++F:	Documentation/devicetree/bindings/display/arm,hdlcd.yaml
+ F:	drivers/gpu/drm/arm/hdlcd_*
  
-+  - if:
-+      properties:
-+        compatible:
-+          const: st,stm32-uart
-+
-+    then:
-+      properties:
-+        aspeed,i2c-clk-high-cycle:
-+          maximum: 8
-+        aspeed,i2c-clk-low-cycle:
-+          maximum: 8
-+
-+  - if:
-+      required:
-+        - aspeed,i2c-manual-clk
-+
-+    then:
-+      required:
-+        - aspeed,i2c-base-clk-div
-+        - aspeed,i2c-clk-high-cycle
-+        - aspeed,i2c-clk-low-cycle
-+
- properties:
-   compatible:
-     enum:
-@@ -49,6 +71,28 @@ properties:
-     description:
-       states that there is another master active on this bus
+ ARM INTEGRATOR, VERSATILE AND REALVIEW SUPPORT
+@@ -1545,7 +1545,7 @@ M:	Mihail Atanassov <mihail.atanassov@arm.com>
+ L:	Mali DP Maintainers <malidp@foss.arm.com>
+ S:	Supported
+ T:	git git://anongit.freedesktop.org/drm/drm-misc
+-F:	Documentation/devicetree/bindings/display/arm,komeda.txt
++F:	Documentation/devicetree/bindings/display/arm,komeda.yaml
+ F:	Documentation/gpu/komeda-kms.rst
+ F:	drivers/gpu/drm/arm/display/include/
+ F:	drivers/gpu/drm/arm/display/komeda/
+@@ -1567,7 +1567,7 @@ M:	Brian Starkey <brian.starkey@arm.com>
+ L:	Mali DP Maintainers <malidp@foss.arm.com>
+ S:	Supported
+ T:	git git://anongit.freedesktop.org/drm/drm-misc
+-F:	Documentation/devicetree/bindings/display/arm,malidp.txt
++F:	Documentation/devicetree/bindings/display/arm,malidp.yaml
+ F:	Documentation/gpu/afbc.rst
+ F:	drivers/gpu/drm/arm/
  
-+  aspeed,i2c-manual-clk:
-+    type: boolean
-+    description: enable manual clock setting
-+
-+  aspeed,i2c-base-clk-div:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192,
-+           16384, 32768]
-+    description: base clock divisor
-+
-+  aspeed,i2c-clk-high-cycle:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 1
-+    maximum: 16
-+    description: cycles of master clock-high pulse width
-+
-+  aspeed,i2c-clk-low-cycle:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 1
-+    maximum: 16
-+    description: cycles of master clock-low pulse width
-+
- required:
-   - reg
-   - compatible
 -- 
 2.17.1
 
