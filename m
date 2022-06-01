@@ -2,136 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 562E3539B1E
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 04:10:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B898539B2D
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 04:21:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349104AbiFACJJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 22:09:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38210 "EHLO
+        id S1349123AbiFACVP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 22:21:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231168AbiFACJI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 22:09:08 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA9D28BD03;
-        Tue, 31 May 2022 19:09:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1654049347; x=1685585347;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=3EQ1f05IzxUDg+A5ZX7MGnnHFtboIohy1TiDF2TvXP4=;
-  b=YCKinBalqmithB7Jvzgzzq1U9qiIYpSYeTWlbkGfbkl6ERbr3/2Kv9+m
-   L7PxRx+2TMw98mAl+Tet6Nwu7XfHwgekvyIbskRKzXeZRhz4cIm7+mAw2
-   vD/LRWLC4H3iRYNQNMW/asS7N6QfQrurvUQqxJLO7OmLp836unr/8eYj1
-   0=;
-Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 31 May 2022 19:09:06 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 May 2022 19:09:06 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 31 May 2022 19:09:06 -0700
-Received: from hu-pkondeti-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 31 May 2022 19:09:00 -0700
-Date:   Wed, 1 Jun 2022 07:38:56 +0530
-From:   Pavan Kondeti <quic_pkondeti@quicinc.com>
-To:     Krishna Kurapati <quic_kriskura@quicinc.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S240621AbiFACVP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 22:21:15 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5079A6FD06;
+        Tue, 31 May 2022 19:21:07 -0700 (PDT)
+X-UUID: 07695d2cffd245c0b685fd353bb5eaf9-20220601
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:96087467-c812-44e1-a06e-32648c4d7fe0,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:51,FILE:0,RULE:Release_Ham,AC
+        TION:release,TS:46
+X-CID-INFO: VERSION:1.1.5,REQID:96087467-c812-44e1-a06e-32648c4d7fe0,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:51,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:46
+X-CID-META: VersionHash:2a19b09,CLOUDID:443d865e-0edb-42bb-b033-2ddb138eef19,C
+        OID:6e042c94bdec,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:0,BEC:nil
+X-UUID: 07695d2cffd245c0b685fd353bb5eaf9-20220601
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1162320749; Wed, 01 Jun 2022 10:21:03 +0800
+Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Wed, 1 Jun 2022 10:21:02 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 1 Jun 2022 10:21:01 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Wed, 1 Jun 2022 10:21:00 +0800
+Message-ID: <96f7cc90171bb6e088ce0ed88e10ad14f06a98bb.camel@mediatek.com>
+Subject: Re: [PATCH v9 0/2] phy: mediatek: Add PCIe PHY driver
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        "Doug Anderson" <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <quic_pkondeti@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <quic_vpulyala@quicinc.com>
-Subject: Re: [PATCH v7 2/3] phy: qcom-snps: Add support for overriding phy
- tuning parameters
-Message-ID: <20220601020856.GA20979@hu-pkondeti-hyd.qualcomm.com>
-References: <1654013693-21484-1-git-send-email-quic_kriskura@quicinc.com>
- <1654013693-21484-3-git-send-email-quic_kriskura@quicinc.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Chen-Yu Tsai" <wenst@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+CC:     Wei-Shun Chang <weishunc@google.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <rex-bc.chen@mediatek.com>,
+        <randy.wu@mediatek.com>, <jieyy.yang@mediatek.com>,
+        <chuanjia.liu@mediatek.com>, <qizhong.cheng@mediatek.com>,
+        <jian.yang@mediatek.com>
+Date:   Wed, 1 Jun 2022 10:21:00 +0800
+In-Reply-To: <20220520064920.27313-1-jianjun.wang@mediatek.com>
+References: <20220520064920.27313-1-jianjun.wang@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <1654013693-21484-3-git-send-email-quic_kriskura@quicinc.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 31, 2022 at 09:44:52PM +0530, Krishna Kurapati wrote:
-> Add support for overriding electrical signal tuning parameters for
-> SNPS HS Phy.
+Hello Maintainers,
+
+Gentle ping for this patch series, if there is anything I can do to get
+these patches merged, please let me know.
+
+Thanks.
+
+On Fri, 2022-05-20 at 14:49 +0800, Jianjun Wang wrote:
+> These series patches add support for PCIe PHY driver on MediaTek
+> chipsets.
 > 
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> ---
->  drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c | 268 +++++++++++++++++++++++++-
->  1 file changed, 266 insertions(+), 2 deletions(-)
+> Changes in v9:
+> 1. Check if the return value is -ENOMEM when reading efuse data
+> fails.
 > 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c b/drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c
-> index 5d20378..3a17216 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c
-> @@ -52,6 +52,12 @@
->  #define USB2_SUSPEND_N				BIT(2)
->  #define USB2_SUSPEND_N_SEL			BIT(3)
->  
+> Changes in v8:
+> 1. Use "device_property_present()" to increase human readability;
+> 2. Use "GPL" as recommended in commit bf7fbeeae6db ("module: Cure
+>    the MODULE_LICENSE "GPL" vs. "GPL v2" bogosity").
+> 
+> Changes in v7:
+> 1. Add bitfield.h header to fix the build error on non-arm64
+> platforms.
+> 
+> Changes in v6:
+> 1. Remove unnecessary header files;
+> 2. Use FILELD_PREP in bitfield.h to set value.
+> 
+> Changes in v5:
+> 1. Fix typo in kerneldoc: "eFues" => "eFuse".
+> 
+> Changes in v4:
+> 1. Fix no return when calling dev_err_probe.
+> 
+> Changes in v3:
+> 1. Add introductions for structure members;
+> 2. Add SoC dependent data;
+> 3. Dynamically allocate efuse data;
+> 4. Check return value if it's an -EPROBE_DEFER.
+> 
+> Changes in v2:
+> 1. Add specific compatible name;
+> 2. Read NVMEM data at probe time;
+> 3. Fix typos.
+> 
+> Jianjun Wang (2):
+>   dt-bindings: phy: mediatek: Add YAML schema for PCIe PHY
+>   phy: mediatek: Add PCIe PHY driver
+> 
+>  .../bindings/phy/mediatek,pcie-phy.yaml       |  75 +++++
+>  drivers/phy/mediatek/Kconfig                  |  11 +
+>  drivers/phy/mediatek/Makefile                 |   1 +
+>  drivers/phy/mediatek/phy-mtk-pcie.c           | 267
+> ++++++++++++++++++
+>  4 files changed, 354 insertions(+)
+>  create mode 100644
+> Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
+>  create mode 100644 drivers/phy/mediatek/phy-mtk-pcie.c
+> 
 
-<snip>
-
-> +static void qcom_snps_hsphy_override_param_update_val(
-> +			const struct override_param_map map,
-> +			s32 dt_val, struct phy_override_seq *seq_entry)
-> +{
-> +	int i;
-> +
-> +	/*
-> +	 * Param table for each param is in increasing order
-> +	 * of dt values. We need to iterate over the list to
-> +	 * select the entry that has equal or the next highest value.
-> +	 */
-> +	for (i = 0; i < map.table_size - 1; i++) {
-> +		if (map.param_table[i].value >= dt_val)
-> +			break;
-> +	}
-> +
-> +	seq_entry->need_update = true;
-> +	seq_entry->offset = map.reg_offset;
-> +	seq_entry->mask = map.param_mask;
-> +	seq_entry->value =  map.param_table[i].reg << __ffs(map.param_mask);
-> +}
-> +
-> +static void qcom_snps_hsphy_read_override_param_seq(struct device *dev)
-> +{
-> +	struct device_node *node = dev->of_node;
-> +	s32 val;
-> +	int ret, i;
-> +	struct qcom_snps_hsphy *hsphy;
-> +	const struct override_param_map *cfg =
-> +		(struct override_param_map *) of_device_get_match_data(dev);
-
-As mentioned in the previous patch-set, the explicit typecast is not needed.
-
-overall, looks good to me. After fixing the above, feel free to use
-
-Reviewed-by: Pavankumar Kondeti <quic_pkondeti@quicinc.com>
-
-Thanks,
-Pavan
