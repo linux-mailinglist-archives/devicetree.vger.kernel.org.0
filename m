@@ -2,79 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12C4A53A058
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 11:29:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15F3753A064
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 11:31:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242664AbiFAJ3z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 05:29:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43640 "EHLO
+        id S1351055AbiFAJa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 05:30:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350221AbiFAJ3z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 05:29:55 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB93C57B25
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 02:29:53 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id w27so1338804edl.7
-        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 02:29:53 -0700 (PDT)
+        with ESMTP id S1351093AbiFAJay (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 05:30:54 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60EF78FD40
+        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 02:30:45 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id m20so2466302ejj.10
+        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 02:30:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=C6BBE0/8aWD0U6b34P/0bYoc+/0EAewosydXU12SlBw=;
-        b=A4U5N3vO4yBtKSISkLQ4bRH8e1ajjWjGxbpeQnZNwNZ8lKyum7Ou725eeAcYb4/y+o
-         IsUFQTwPVYOUP47HhtOFS+1ZXvukuvH7pDu42OsGFgE2RHH9zg27ZV/VwlV52GOp6Th3
-         Mkr1X4RW5tVdWk8Fwia6I58J9Z7HvfevxhhU1933dSxQxLB3eAT/qZuza6/BmXaV1Bj6
-         dmGb+WSQQKJMD7rJNYuUzJ1vUTGMfulcv+S6pAVqtLEWVYjllVaiJUl+owJAmEUW2Lfz
-         AyTKaNdsXMr6OzTbQTx03d1kKT/YWLqQSGvAPLYee4pKpzMyFbDXmVWuC9NOAdSqdMED
-         TZpA==
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=5IgpHecT0v2thcEdNy9dmhAzLNM0n7jwFfkompLh8aE=;
+        b=QZmZ3udwMF+1BVssFRYeb/IuNUXSyd8Qp/RCO0xI7zOGUGWzR9re06s8o9pQJWFxWN
+         OHpiyPeo+udBjSXBLTK8WBf+THibRabP/G/E+PAmOfZoVQv5pi3k2lhUjMO689oHTrag
+         OSzcCPbc1iqMXY0mc3J5IJfp4l1kJGJ1wwH4SOSAwoBsZwLeZPl8Q+EjOvnldOmJUZGE
+         xqO724vayRnZU6BHuLKN/cK40A6tUGuInyZ4DMElDuOLPAOts3BDS9mYbTV6VrcYsMfe
+         ygiaooUiRb8cqbn6RKwTvWIUzbJksUsKXxoPkPKj2wDugiaT26nWwiU6kpEYFKUz8ClM
+         rH9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+         :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=C6BBE0/8aWD0U6b34P/0bYoc+/0EAewosydXU12SlBw=;
-        b=PyNOu6Ldw6qys6bGRtVuFM3xfvMLY/t678SQ+TPVHpXdTD2hWZEddqE7RBwcep9GM5
-         qLVmEh3qS/rhWvaieylIlCnljgYf5g+Sav1sK7a8d4L7vikQZDRKDmscTCNY2wB7qlzl
-         VXsyyMsFoeODqKN2G9BF89oPWP/aqHw824992Q+bhh4UPxOzHNr3kmWKF+rUgP2aO+Sh
-         K9TMZK1DEX93NtDyM+7+GP8ytk9eE6pQqTsIES1eRNt44ybrj+OgwrzTb0Qs+fN4VqI1
-         T3DV/vtl3fr41SvRTOOFdOlZ9gaZpF5YynAoi6c0K7BPW0TEcqWJ4viAYaguKCNqcdNe
-         Bnlw==
-X-Gm-Message-State: AOAM532M6YTu0X5XkarLJYAHerYaJBaGNP6LcF8nmxjuVhUTrUyebzLy
-        tMZMzaK6JCzX6gVU6cETrh3U2Q==
-X-Google-Smtp-Source: ABdhPJxJXnm77G6F2BEDcWDZCfBLs6Gdv1EZTsUqsy7QG5zX39KqyHImogN9gI6gDrcUVMJ7RL4Mng==
-X-Received: by 2002:a05:6402:5191:b0:42d:d6cb:d18c with SMTP id q17-20020a056402519100b0042dd6cbd18cmr13058705edd.11.1654075792399;
-        Wed, 01 Jun 2022 02:29:52 -0700 (PDT)
+        bh=5IgpHecT0v2thcEdNy9dmhAzLNM0n7jwFfkompLh8aE=;
+        b=CoaxyQKuM0oJvBXvuKGyuTyN+5GCpl1r/ymfWZ89NtrzktT3AZeeHb9ZOLpzuTSEwP
+         h5jr0A+j/CaA+q44JkVWxXozLBQTDA/Mz++j+R63s8Jzi2vsdOBF2+Ww7z0Gh8bjh5Wt
+         htiXuA6MF1sJxFgCIXPHnop6iYoav5q2eMdxART7hUJhi4jFxWpKPcwh9yubE7iMfNsq
+         PsSwgf9xdXX8rHua1O1Rf0I8M/trhs0ad16ma4x2FHoOlXBfXtWDAhAAOFsNqt08VnKw
+         3D7ew96JmqCfha7EGs9EnZxTaiQQ/zxYZ9poJp+ev+jUjZ89HWjxowa/VHwTtRHowlAS
+         mANQ==
+X-Gm-Message-State: AOAM531RamnKgnEKh1XR8fA6d9HeBS38AqlhUJ6oIcKD93Nl9SyijxoJ
+        SOfIHpkNomWjbvH05rxspWK4vA==
+X-Google-Smtp-Source: ABdhPJxctyus0aVviZqlPHl9SGmJhm2M3lqLjAAgTBXgGpOe7SRt5ZSSOcgH7AEIlTWhEWVlKY0pkg==
+X-Received: by 2002:a17:906:9c82:b0:6e1:2c94:1616 with SMTP id fj2-20020a1709069c8200b006e12c941616mr56989534ejc.64.1654075843937;
+        Wed, 01 Jun 2022 02:30:43 -0700 (PDT)
 Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id p11-20020a1709060dcb00b006fe9f9d0938sm479103eji.175.2022.06.01.02.29.51
+        by smtp.gmail.com with ESMTPSA id h4-20020a1709067cc400b006f3ef214ddbsm494870ejp.65.2022.06.01.02.30.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Jun 2022 02:29:52 -0700 (PDT)
-Message-ID: <7f9c106f-bc5d-7441-5ed5-7e899ff56611@linaro.org>
-Date:   Wed, 1 Jun 2022 11:29:50 +0200
+        Wed, 01 Jun 2022 02:30:43 -0700 (PDT)
+Message-ID: <e57de710-1997-d36c-72a7-a9d6db000079@linaro.org>
+Date:   Wed, 1 Jun 2022 11:30:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH v2 1/3] dt-bindings: arm64: add bcm4912 SoC
+Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom,qmp: add IPQ8074 PCIe Gen3 PHY
+ binding
 Content-Language: en-US
-To:     William Zhang <william.zhang@broadcom.com>,
-        Linux ARM List <linux-arm-kernel@lists.infradead.org>
-Cc:     dan.beygelman@broadcom.com, philippe.reynes@softathome.com,
-        anand.gore@broadcom.com, florian.fainelli@broadcom.com,
-        tomer.yacoby@broadcom.com, samyon.furman@broadcom.com,
-        kursad.oney@broadcom.com, joel.peshkin@broadcom.com,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220601004244.27394-1-william.zhang@broadcom.com>
- <20220601004244.27394-2-william.zhang@broadcom.com>
+To:     Robert Marko <robimarko@gmail.com>, agross@kernel.org,
+        bjorn.andersson@linaro.org, kishon@ti.com, vkoul@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org
+References: <20220531214420.916278-1-robimarko@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220601004244.27394-2-william.zhang@broadcom.com>
+In-Reply-To: <20220531214420.916278-1-robimarko@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,10 +76,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/06/2022 02:42, William Zhang wrote:
-> Add BCM4912 SoC device tree description to bcmbca binding document.
+On 31/05/2022 23:44, Robert Marko wrote:
+> IPQ8074 has 2 different single lane PCIe PHY-s, one Gen2 and one Gen3.
+> Gen2 one is already supported, document the bindings for the Gen3 one.
 > 
-> Signed-off-by: William Zhang <william.zhang@broadcom.com>
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
