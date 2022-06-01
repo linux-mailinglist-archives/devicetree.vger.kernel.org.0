@@ -2,328 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E143353AFDB
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 00:51:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 225CF53B0BC
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 02:34:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232342AbiFAWiW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 18:38:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57102 "EHLO
+        id S232376AbiFAW5M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 18:57:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232334AbiFAWiV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 18:38:21 -0400
-Received: from mx0a-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A5903C495;
-        Wed,  1 Jun 2022 15:38:20 -0700 (PDT)
-Received: from pps.filterd (m0098420.ppops.net [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 251MJbsO028661;
-        Wed, 1 Jun 2022 22:37:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=TYrs4KwLj3iyXDTxkTg7YpQitDN7Z+0E50+OFC5Exdc=;
- b=EqvxgOumIV/ytX03pg9ACclOn1Sy9X5xSQqJEz/y3MA5xGAYq0OdHFDWog/OZqkhXDTS
- OgA9B+ubLf01LUtzcalOeD0E79N48EzhioZn2TWeM3fN9lDsvkdS8cm4EJpKk0Lw5MhU
- aA9jmfPQ+s2YC7dILgfpa55wJwT2n4wbUmAbOs0fo2X/9g+I/SF9vRrDruLYmBdZ5icl
- 9z669N3B6FmEtYAiUEzOv3xnwY9drg4sp4vUcf0hUCDramXSxGAEOhj0uR6WoeZLTfQW
- s89tDMbI/WgCP8wDPRWZCeD9LS6RAg6Um+0KdfWigFnXV2670oazk3YObNwLwojAU6TF Dg== 
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3gegtd87rf-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 01 Jun 2022 22:37:39 +0000
-Received: from m0098420.ppops.net (m0098420.ppops.net [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 251MKA2i031014;
-        Wed, 1 Jun 2022 22:37:38 GMT
-Received: from ppma01wdc.us.ibm.com (fd.55.37a9.ip4.static.sl-reverse.com [169.55.85.253])
-        by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3gegtd87r8-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 01 Jun 2022 22:37:38 +0000
-Received: from pps.filterd (ppma01wdc.us.ibm.com [127.0.0.1])
-        by ppma01wdc.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 251MMEOS000524;
-        Wed, 1 Jun 2022 22:32:37 GMT
-Received: from b03cxnp07027.gho.boulder.ibm.com (b03cxnp07027.gho.boulder.ibm.com [9.17.130.14])
-        by ppma01wdc.us.ibm.com with ESMTP id 3gbcbj6hkp-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 01 Jun 2022 22:32:37 +0000
-Received: from b03ledav001.gho.boulder.ibm.com (b03ledav001.gho.boulder.ibm.com [9.17.130.232])
-        by b03cxnp07027.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 251MWaxL25624986
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 1 Jun 2022 22:32:36 GMT
-Received: from b03ledav001.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 45D426E052;
-        Wed,  1 Jun 2022 22:32:36 +0000 (GMT)
-Received: from b03ledav001.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 8D8A06E04E;
-        Wed,  1 Jun 2022 22:32:30 +0000 (GMT)
-Received: from [9.160.56.145] (unknown [9.160.56.145])
-        by b03ledav001.gho.boulder.ibm.com (Postfix) with ESMTP;
-        Wed,  1 Jun 2022 22:32:30 +0000 (GMT)
-Message-ID: <4b92277e-5133-2362-8d3a-fa82b0c7a045@linux.ibm.com>
-Date:   Wed, 1 Jun 2022 15:32:29 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v2 2/4] of: dynamic: add of_property_alloc() and
- of_property_free()
-Content-Language: en-US
-To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
+        with ESMTP id S231368AbiFAW5J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 18:57:09 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6E6D11159
+        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 15:57:07 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id c2so3052841plh.2
+        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 15:57:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version;
+        bh=NnPTXUg7cc6evss96DkPQkzHGfp8o4RCei+eRY+2NLM=;
+        b=H3FuEPQKJnomLeDDu3mqQYTO8qbef21RfusX6w0sda84tvhGoGrW+q+mQej/CKJoy8
+         dUt92QzjTYerHpQdjS5q3FWgMC09SxR+sKrSYWWrdWe0IMLaCIiVXc7OySB13UDSwrKo
+         rSgdGwfugVTpAil+ykN9DucCF/PnMAWA/K170=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version;
+        bh=NnPTXUg7cc6evss96DkPQkzHGfp8o4RCei+eRY+2NLM=;
+        b=dic1jv9tYAiL7Y7yNB+NRTL7syGGMBHqLVF+n1Ht4Cv9N6BXnnOFB1Zz0SW7ohGkA4
+         r20sTkZesNSnQnOzanByxaYCmTtEgg1LXxwWFYqI+AWeRpCvIhXMu+DZ52MeNFVm7hJq
+         fNARGStMWsgKJLmimQq0a/a+NKzAgXdHbz4vuzZvu8NOr6I4NUnYFncskAIbllhEgRnX
+         VIY1iULUd5ekMXvaCmkaFcv3e48l8jxQUHxR22/f/RHYwmnVpeeyQxseu/R0QxmRUR9R
+         sSiT9tsfgtxFHy8mmi+8UPQ1XjxfVocxwdhNqt8hwO4s6Me6iWpliF7NkCalCFLMVzxe
+         UAhg==
+X-Gm-Message-State: AOAM530oXN65PuTYZ3Wkqq0I5Rq/vFcrm+2csei2bZ/udRaFU42selor
+        yf/RaZVZFTkV6g6NaVCkeXZIvw==
+X-Google-Smtp-Source: ABdhPJzKJz/06gx4w7QdEK1GgBzd+T2FgGL6VzSffN420A1w62IiSV5hrdLyKqZkmBs8NsBlf1so/g==
+X-Received: by 2002:a17:90b:4f41:b0:1e4:9081:6aa with SMTP id pj1-20020a17090b4f4100b001e4908106aamr1728651pjb.183.1654124226675;
+        Wed, 01 Jun 2022 15:57:06 -0700 (PDT)
+Received: from T3500-3.dhcp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id k8-20020a170902d58800b001641244d051sm1999738plh.257.2022.06.01.15.57.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Jun 2022 15:57:05 -0700 (PDT)
+From:   William Zhang <william.zhang@broadcom.com>
+To:     Linux ARM List <linux-arm-kernel@lists.infradead.org>,
+        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>
+Cc:     joel.peshkin@broadcom.com, tomer.yacoby@broadcom.com,
+        kursad.oney@broadcom.com, philippe.reynes@softathome.com,
+        dan.beygelman@broadcom.com, samyon.furman@broadcom.com,
+        anand.gore@broadcom.com, florian.fainelli@broadcom.com,
+        William Zhang <william.zhang@broadcom.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Nathan Lynch <nathanl@linux.ibm.com>,
-        Laurent Dufour <ldufour@linux.ibm.com>,
-        Daniel Henrique Barboza <danielhb413@gmail.com>,
-        David Gibson <david@gibson.dropbear.id.au>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        David Hildenbrand <david@redhat.com>,
-        Ohhoon Kwon <ohoono.kwon@samsung.com>,
-        "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
-        YueHaibing <yuehaibing@huawei.com>
-Cc:     devicetree@vger.kernel.org,
-        Steen Hegelund <steen.hegelund@microchip.com>,
-        linux-kernel@vger.kernel.org, Lizhi Hou <lizhi.hou@xilinx.com>,
-        Allan Nielsen <allan.nielsen@microchip.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Bjorn Helgaas <helgaas@kernel.org>,
-        linuxppc-dev@lists.ozlabs.org,
-        Horatiu Vultur <horatiu.vultur@microchip.com>
-References: <20220601081801.348571-1-clement.leger@bootlin.com>
- <20220601081801.348571-3-clement.leger@bootlin.com>
-From:   Tyrel Datwyler <tyreld@linux.ibm.com>
-In-Reply-To: <20220601081801.348571-3-clement.leger@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: lp1lz0Ycy_VhvZvngQ-kC3mx69So2XOK
-X-Proofpoint-ORIG-GUID: tDkVIUJVMxoHgLwaUNNq7pUNKqT5ZcMY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.874,Hydra:6.0.517,FMLib:17.11.64.514
- definitions=2022-06-01_08,2022-06-01_01,2022-02-23_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 spamscore=0
- phishscore=0 mlxlogscore=999 priorityscore=1501 impostorscore=0
- lowpriorityscore=0 mlxscore=0 clxscore=1011 adultscore=0 suspectscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2204290000 definitions=main-2206010090
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        Vinod Koul <vkoul@kernel.org>, Will Deacon <will@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/5] arm64: bcmbca: add bcm63158 soc support under bcmbca arch
+Date:   Wed,  1 Jun 2022 15:56:48 -0700
+Message-Id: <20220601225654.18519-1-william.zhang@broadcom.com>
+X-Mailer: git-send-email 2.36.1
+MIME-Version: 1.0
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="000000000000f69b2f05e06ace11"
+X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,MIME_NO_TEXT,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/1/22 01:17, Clément Léger wrote:
-> Add function which allows to dynamically allocate and free properties.
-> Use this function internally for all code that used the same logic
-> (mainly __of_prop_dup()).
-> 
-> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
-> ---
->  drivers/of/dynamic.c    | 82 ++++++++++++++++++++++++-----------------
->  drivers/of/of_private.h | 21 ++++++++++-
->  include/linux/of.h      | 14 +++++++
->  3 files changed, 82 insertions(+), 35 deletions(-)
-> 
-> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-> index cd3821a6444f..c0dcbea31d28 100644
-> --- a/drivers/of/dynamic.c
-> +++ b/drivers/of/dynamic.c
-> @@ -313,9 +313,7 @@ static void property_list_free(struct property *prop_list)
-> 
->  	for (prop = prop_list; prop != NULL; prop = next) {
->  		next = prop->next;
-> -		kfree(prop->name);
-> -		kfree(prop->value);
-> -		kfree(prop);
-> +		of_property_free(prop);
->  	}
->  }
-> 
-> @@ -367,48 +365,66 @@ void of_node_release(struct kobject *kobj)
->  }
-> 
->  /**
-> - * __of_prop_dup - Copy a property dynamically.
-> - * @prop:	Property to copy
-> + * of_property_free - Free a property allocated dynamically.
-> + * @prop:	Property to be freed
-> + */
-> +void of_property_free(const struct property *prop)
-> +{
-> +	if (!of_property_check_flag(prop, OF_DYNAMIC))
-> +		return;
-> +
+--000000000000f69b2f05e06ace11
+Content-Transfer-Encoding: 8bit
 
-This looks wrong to me. From what I understand the value data is allocated as
-trailing memory that is part of the property allocation itself. (ie. prop =
-kzalloc(sizeof(*prop) + len, allocflags)). So, kfree(prop) should also take care
-of the trailing value data. Calling kfree(prop->value) is bogus since
-prop->value wasn't dynamically allocated on its own.
+This change adds the basic support for Broadcom's ARM64 based
+Broadband SoC BCM63158. The initial support includes a bare-bone dts
+for quad core ARM A53 with a ARM PL011 uart. Linux kernel image can be
+built with the ARM64 defconfig.
 
-Also, this condition will always fail. You explicitly set prop->value = prop + 1
-in alloc.
+Changes in v2:
+- Simplify dt-bindings patch subject line
+- Change internal bus address and size cells from 2 to 1
+- Fix pmu compatible string
+- Remove unnecessary cpu_on and cpu_off properties from psci node
+- Add the missing gic registers and interrupts property to gic node
 
-Maybe I need to go back and look at v1 again.
+William Zhang (5):
+  dt-bindings: arm64: add bcm63158 SoC
+  arm64: bcmbca: add arch bcmbca machine entry
+  arm64: dts: add dts files for bcmbca soc 63158
+  MAINTAINERS: add bcm63158 to bcmbca arch entry
+  arm64: defconfig: enable bcmbca soc support
 
--Tyrel
+ .../bindings/arm/bcm/brcm,bcmbca.yaml         |   7 +
+ MAINTAINERS                                   |   2 +
+ arch/arm64/Kconfig.platforms                  |   9 ++
+ arch/arm64/boot/dts/broadcom/Makefile         |   1 +
+ arch/arm64/boot/dts/broadcom/bcmbca/Makefile  |   2 +
+ .../boot/dts/broadcom/bcmbca/bcm63158.dtsi    | 128 ++++++++++++++++++
+ .../boot/dts/broadcom/bcmbca/bcm963158.dts    |  30 ++++
+ arch/arm64/configs/defconfig                  |   1 +
+ 8 files changed, 180 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/broadcom/bcmbca/Makefile
+ create mode 100644 arch/arm64/boot/dts/broadcom/bcmbca/bcm63158.dtsi
+ create mode 100644 arch/arm64/boot/dts/broadcom/bcmbca/bcm963158.dts
 
-> +	if (prop->value != prop + 1)
-> +		kfree(prop->value);
-> +
-> +	kfree(prop->name);
-> +	kfree(prop);
-> +}
-> +EXPORT_SYMBOL(of_property_free);
-> +
-> +/**
-> + * of_property_alloc - Allocate a property dynamically.
-> + * @name:	Name of the new property
-> + * @value:	Value that will be copied into the new property value or NULL
-> + *		if only @len allocation is needed.
-> + * @len:	Length of new property value and if @value is provided, the
-> + * 		length of the value to be copied
->   * @allocflags:	Allocation flags (typically pass GFP_KERNEL)
->   *
-> - * Copy a property by dynamically allocating the memory of both the
-> + * Create a property by dynamically allocating the memory of both the
->   * property structure and the property name & contents. The property's
->   * flags have the OF_DYNAMIC bit set so that we can differentiate between
->   * dynamically allocated properties and not.
->   *
->   * Return: The newly allocated property or NULL on out of memory error.
->   */
-> -struct property *__of_prop_dup(const struct property *prop, gfp_t allocflags)
-> +struct property *of_property_alloc(const char *name, const void *value,
-> +				   size_t len, gfp_t allocflags)
->  {
-> -	struct property *new;
-> +	struct property *prop;
-> 
-> -	new = kzalloc(sizeof(*new), allocflags);
-> -	if (!new)
-> +	prop = kzalloc(sizeof(*prop) + len, allocflags);
-> +	if (!prop)
->  		return NULL;
-> 
-> -	/*
-> -	 * NOTE: There is no check for zero length value.
-> -	 * In case of a boolean property, this will allocate a value
-> -	 * of zero bytes. We do this to work around the use
-> -	 * of of_get_property() calls on boolean values.
-> -	 */
-> -	new->name = kstrdup(prop->name, allocflags);
-> -	new->value = kmemdup(prop->value, prop->length, allocflags);
-> -	new->length = prop->length;
-> -	if (!new->name || !new->value)
-> -		goto err_free;
-> -
-> -	/* mark the property as dynamic */
-> -	of_property_set_flag(new, OF_DYNAMIC);
-> -
-> -	return new;
-> -
-> - err_free:
-> -	kfree(new->name);
-> -	kfree(new->value);
-> -	kfree(new);
-> +	prop->name = kstrdup(name, allocflags);
-> +	if (!prop->name)
-> +		goto out_err;
-> +
-> +	prop->value = prop + 1;
-> +	if (value)
-> +		memcpy(prop->value, value, len);
-> +
-> +	prop->length = len;
-> +	of_property_set_flag(prop, OF_DYNAMIC);
-> +
-> +	return prop;
-> +
-> +out_err:
-> +	of_property_free(prop);
-> +
->  	return NULL;
->  }
-> +EXPORT_SYMBOL(of_property_alloc);
-> 
->  /**
->   * __of_node_dup() - Duplicate or create an empty device node dynamically.
-> @@ -447,9 +463,7 @@ struct device_node *__of_node_dup(const struct device_node *np,
->  			if (!new_pp)
->  				goto err_prop;
->  			if (__of_add_property(node, new_pp)) {
-> -				kfree(new_pp->name);
-> -				kfree(new_pp->value);
-> -				kfree(new_pp);
-> +				of_property_free(new_pp);
->  				goto err_prop;
->  			}
->  		}
-> diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
-> index 9324483397f6..1d6459bf705d 100644
-> --- a/drivers/of/of_private.h
-> +++ b/drivers/of/of_private.h
-> @@ -115,7 +115,26 @@ extern void *__unflatten_device_tree(const void *blob,
->   * without taking node references, so you either have to
->   * own the devtree lock or work on detached trees only.
->   */
-> -struct property *__of_prop_dup(const struct property *prop, gfp_t allocflags);
-> +
-> +/**
-> + * __of_prop_dup - Copy a property dynamically.
-> + * @prop:	Property to copy
-> + * @allocflags:	Allocation flags (typically pass GFP_KERNEL)
-> + *
-> + * Copy a property by dynamically allocating the memory of both the
-> + * property structure and the property name & contents. The property's
-> + * flags have the OF_DYNAMIC bit set so that we can differentiate between
-> + * dynamically allocated properties and not.
-> + *
-> + * Return: The newly allocated property or NULL on out of memory error.
-> + */
-> +static inline
-> +struct property *__of_prop_dup(const struct property *prop, gfp_t allocflags)
-> +{
-> +	return of_property_alloc(prop->name, prop->value, prop->length,
-> +				 allocflags);
-> +}
-> +
->  struct device_node *__of_node_dup(const struct device_node *np,
->  				  const char *full_name);
-> 
-> diff --git a/include/linux/of.h b/include/linux/of.h
-> index d74fd82a6963..f1966f3c3847 100644
-> --- a/include/linux/of.h
-> +++ b/include/linux/of.h
-> @@ -1464,6 +1464,10 @@ enum of_reconfig_change {
->  };
-> 
->  #ifdef CONFIG_OF_DYNAMIC
-> +struct property *of_property_alloc(const char *name, const void *value,
-> +				   size_t len, gfp_t allocflags);
-> +void of_property_free(const struct property *prop);
-> +
->  extern int of_reconfig_notifier_register(struct notifier_block *);
->  extern int of_reconfig_notifier_unregister(struct notifier_block *);
->  extern int of_reconfig_notify(unsigned long, struct of_reconfig_data *rd);
-> @@ -1508,6 +1512,16 @@ static inline int of_changeset_update_property(struct of_changeset *ocs,
->  	return of_changeset_action(ocs, OF_RECONFIG_UPDATE_PROPERTY, np, prop);
->  }
->  #else /* CONFIG_OF_DYNAMIC */
-> +
-> +static inline
-> +struct property *of_property_alloc(const char *name, const void *value,
-> +				   size_t len, gfp_t allocflags)
-> +{
-> +	return NULL;
-> +}
-> +
-> +static inline  void of_property_free(const struct property *prop) {}
-> +
->  static inline int of_reconfig_notifier_register(struct notifier_block *nb)
->  {
->  	return -EINVAL;
+-- 
+2.36.1
 
+
+--000000000000f69b2f05e06ace11
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+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
+TltlrAeBKRJ1M9O/DY5v7L1Yrs//7XIRg/d2ZPAOSGBQzFYjYTFWwNBiR1s1zP0m2y56DPbS5gwj
+fqAN/I4PJHIvTh3zUgHXNKadYoYRiPHXfaTWO9UhzysOpQIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
+BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
+YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
+BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
+MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
+YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
+Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
+HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
+BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUohM5GmNlGWe5wpzDxzIy
++EgzbRswDQYJKoZIhvcNAQELBQADggEBACKu9JSQAYTlmC+JTniO/C/UcXGonATI/muBjWTxtkHc
+abZtz0uwzzrRrpV+mbHLGVFFeRbXSLvcEzqHp8VomXifEZlfsE9LajSehzaqhd+np+tmUPz1RlI/
+ibZ7vW+1VF18lfoL+wHs2H0fsG6JfoqZldEWYXASXnUrs0iTLgXxvwaQj69cSMuzfFm1X5kWqWCP
+W0KkR8025J0L5L4yXfkSO6psD/k4VcTsMJHLN4RfMuaXIT6EM0cNO6h3GypyTuPf1N1X+F6WQPKb
+1u+rvdML63P9fX7e7mwwGt5klRnf8aK2VU7mIdYCcrFHaKDTW3fkG6kIgrE1wWSgiZYL400xggJt
+MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
+VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw28eX6TfvsbNfu
+SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIJSZnGZhoBuN5MPUya5UCZclj9Bo
+P/3g7BrRqFIB8VTgMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
+MDYwMTIyNTcwNlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
+AwQCATANBgkqhkiG9w0BAQEFAASCAQCcFRZ22I01+tYMZTBJky6QXP+CfBGWJmQqilyeqi1wOWKx
+eSXyhiF1Oo6UuAQS11MzDYfb3crYLeyU2kdUmcucjkYWHcRdKkXRB6ZlCqZxnqU9WopLmBm9Ja2l
+6CfihIdUWkT2+1jGOr5GmYkUcHJrI4ZZKWqm/3OmlNxtBe23RfurOhiSaprlW0RArPdV0EFCwaBS
+dfAl6qJgWb4jLft1jOMuA7Q4TMLeeTc4fZlQinAkRyMXS1CI63Wej6Dt2VchtU8JSKY75y8/IaVN
+edYC5yREXYVjengZvOb5HPuUsoJst0C5tRKeL2cAh9uRDreBfUG2Ox7QGcPuO3OpgGqR
+--000000000000f69b2f05e06ace11--
