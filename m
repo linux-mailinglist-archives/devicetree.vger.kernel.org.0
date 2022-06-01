@@ -2,67 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 251C453A567
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 14:47:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 839A853A581
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 14:55:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353038AbiFAMrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 08:47:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59514 "EHLO
+        id S1344755AbiFAMyW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 08:54:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353091AbiFAMrA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 08:47:00 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1390E64ED
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 05:46:59 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id y29so1860675ljd.7
-        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 05:46:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=wyyhorHqYhRzxEyqIbi/Zswxz0+oi9F21Ok1yg1RhLA=;
-        b=ZH9WrW/SwuFpI0VP8M8Zc+awMiZ94uKV8XXHRXo02sxphluQkud6/bWPTPeHxT6DYH
-         +KlddEaCrGu4aFj3bipnxYbruluqtcgSmkck5dIl/2tbrvcMOp+vJS5CcD6a+yVITzb+
-         nJr3OLE8xMQ6hncurf80YJ3Dx49D28uu1nkToksJG86y1qVvCeDrzqER9okktApqd0zI
-         tW8Kqmzw4lp4BQnL8S2vFpE9wTC3adLGT+SB0eccRmww4tz3FSSk2sbg6kbRPTKPHE2A
-         gSNctdP9b5staF+2bTWH4s8IZh1KdT2zZsSDh1LFzgNSBc1KcT203rI9fNR1HqsEOlc5
-         LpiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=wyyhorHqYhRzxEyqIbi/Zswxz0+oi9F21Ok1yg1RhLA=;
-        b=3czd8Hg7RYQu6VhYWILyUE0LAIS+kc6VYj3FYUEVpCy91ox9l9C+6W+eGw4xZ5NgOZ
-         85c0h4qyvCnwhoFvFuMdM+SEuBVU/pfnvdJQosG4zKuq7HaL/YY4WU5JoxxJO2Fa2w+3
-         E1aKxaj2nFYwCnM3r5mWpTIx292L9LrzGYn6yecbU8T9k3Iu820bbz169K49pjI1ZdMv
-         xzyT8D4vvtGnWgWffdbSN9HlL2BsfQgLu1Pif/tTbl3GvoV0pX6Wqi+5B7g0k0xFx8Q8
-         VjwW38JHw+8+Pa3GD6OEAUgVgUlc3xafEw6G/BUBAPAd2oMr2mHL90s8Vtmo+Xrd7Bx7
-         z0/g==
-X-Gm-Message-State: AOAM530+SL2WHxrOvc9z8/CufiFPFP6eBg4Hz71IMZEzmWct+ktOaXkR
-        P1GmvybgF/LulvX/Y4Kiaq1NVwDB6TfM+mpe66Egtg==
-X-Google-Smtp-Source: ABdhPJwt9gvrgwBFEfOMg53Brjr6mPeHznMhGr3I+MHKcTP0xi6t5Xs94b+k8tX0FX5KWt8rkYMl56bGgfyVkbUqQnI=
-X-Received: by 2002:a2e:9e54:0:b0:250:d6c8:c2a6 with SMTP id
- g20-20020a2e9e54000000b00250d6c8c2a6mr40059816ljk.16.1654087617409; Wed, 01
- Jun 2022 05:46:57 -0700 (PDT)
+        with ESMTP id S245704AbiFAMyV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 08:54:21 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2BC36FD0D
+        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 05:54:19 -0700 (PDT)
+Received: from localhost.localdomain ([37.4.249.170]) by
+ mrelayeu.kundenserver.de (mreue108 [212.227.15.183]) with ESMTPSA (Nemesis)
+ id 1MD9Ox-1o4sAb2HWj-0096Qn; Wed, 01 Jun 2022 14:54:00 +0200
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>
+Cc:     Peter Robinson <pbrobinson@gmail.com>,
+        Melissa Wen <melissa.srw@gmail.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Stefan Wahren <stefan.wahren@i2se.com>
+Subject: [PATCH V2 00/11] soc: bcm2835-power: Prepare BCM2711 V3D support
+Date:   Wed,  1 Jun 2022 14:53:33 +0200
+Message-Id: <20220601125344.60602-1-stefan.wahren@i2se.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20220526014204.2873107-1-robh@kernel.org>
-In-Reply-To: <20220526014204.2873107-1-robh@kernel.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 1 Jun 2022 14:46:21 +0200
-Message-ID: <CAPDyKFoh5FyRDxr22XnkOd76MG4YjkvqL039=+qHGZKwfdFquw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mmc: Fix unevaluatedProperties warnings in examples
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Hu Ziji <huziji@marvell.com>, Al Cooper <alcooperx@gmail.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:hqybCJVcsXi2dvi1AbBNUNejJJSaAtq0IFedpVTQ3a8kpBdCtSx
+ JP3DLIK7o3hRZ/mAaM/VD85WhHu3dv1gmZtPJOPWtPHQU+c0jPSLVuwLGFHOtGbX4EChw1d
+ wUCS7GqDV0gg8sMFxJJrex+1pDW9X4S0sK+LLl20QptyxYN6z9K/Ap42vNTsuctZNNZNJbd
+ vZ0CRicuwxnb2YJ3SrY4A==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:EYpVZdENoDo=:+csRQDWBsjK0tkHFJDGoY3
+ i5yLW1eDlrSS6nYB+UmiP+bTSAZoF8qMG3SqE6K923qtT2d96fxbsUeXl0g86WAeoo7iBhulV
+ yPWJWRRA5H4QhjJKXZD7pYRk2gRbcRyL0irRLJCY4CAXngOOsgMhxEryIf609LjtKW2HsRTAk
+ 4vLetpHoTeycJvKNxrPmw2MYBxEFRvGs5XqvdO3wJIx6AcMF3cyquAcCQj+702MorHEhBmTuH
+ csloli+vVQaKr17ptL0ivtqqpBaLFZAZH2otYzkioyO1oOVeS1m3AYcHdZStgOFD/cikV1Tgg
+ 1e0Rrxre+ur5OQwRpvuH11m8J5MXGoEr+IagtoxQM4Ce4o3DNkcw5t9mYhgSVeLBAyIpQlLS1
+ imGqtXXW1L7AHEsWCjy74FH60vx9DuWwxzWGXEEhrOsetN6F2eSfwb5rQLEH4GmuFEFZzP7pd
+ FduculE0dj0BX3z1ATITMyoZH52vE6ppbtPxmQm6oH6Aqw1XqX1xczGhxeVPI94Ovmau56tSV
+ WORy0TSEAhgD4o703mmUuSbPhQ30Ba0R8L9xRaB00qxj1SnHiehZuie0sEgSsNDmXk4DK/6S0
+ kipM3tV3Nc7it6Kabed+z+s0riDfKILMi7mkPAXqAHoaPbd0P7YYnco5KaXDw8th/INc56S4v
+ mbN6g+0Cl/VMU6E0u6HcEXpaOt2bdxJcI9JN9lngAh/n3u3mjIU0IinhhJPsvKaD26hK0Xb+7
+ Ow+xNc781hExzK7Fr00fAzy5/1ML/VPysbW2Y/DUzjFVjE8C2jOBY0ZpmdM=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,60 +62,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 26 May 2022 at 03:42, Rob Herring <robh@kernel.org> wrote:
->
-> The 'unevaluatedProperties' schema checks is not fully working and doesn't
-> catch some cases where there's a $ref to another schema. A fix is pending,
-> but results in new warnings in examples. Fix the warnings by removing
-> spurious properties or adding a missing property to the schema.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
+This series is a split out of version 4 - Raspberry PI 4 V3D enablement send
+by Peter Robinson [1]. It attemps to enable BCM2711 V3D support for the
+power management driver. It's a rework of the less controversial changes
+(excluding V3D GPU driver changes) so this can be reviewed and applied faster.
 
-Queued for v5.20 on the devel branch, thanks!
+Changes in V2:
+- add Peter's Reviewed-by
+- simplify schema for rpivid_asb as suggested by Rob
+- fix reference and clarify fallback & error handling in patch #7
+- drop unnecessary newline in patch #9
+- improve log messages as noticed by Peter
 
-Kind regards
-Uffe
+Changes since the mention series:
+- fix DT schema errors
+- make rpivid_asb register optional in DT schema
+- avoid code duplication in BCM2835 ASB enable/disable
+- rework ASB V3D handling so we don't need the V3D flag
+- avoid log errors for optional register
+- use a define for expected ASB_AXI_BRDG_ID result
+- fix copy & paste issues in bcm2835-pm changes
 
+[1] - https://patchwork.kernel.org/project/linux-arm-kernel/cover/20220213225646.67761-1-pbrobinson@gmail.com/
 
-> ---
->  Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml  | 2 --
->  Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml | 3 +++
->  2 files changed, 3 insertions(+), 2 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml b/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
-> index b672202fff4e..5ecdac9de484 100644
-> --- a/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
-> @@ -75,7 +75,6 @@ examples:
->        sd-uhs-sdr104;
->        sdhci,auto-cmd12;
->        interrupts = <0x0 0x26 0x4>;
-> -      interrupt-names = "sdio0_0";
->        clocks = <&scmi_clk 245>;
->        clock-names = "sw_sdio";
->      };
-> @@ -94,7 +93,6 @@ examples:
->        non-removable;
->        bus-width = <0x8>;
->        interrupts = <0x0 0x27 0x4>;
-> -      interrupt-names = "sdio1_0";
->        clocks = <&scmi_clk 245>;
->        clock-names = "sw_sdio";
->      };
-> diff --git a/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml b/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
-> index c79639e9027e..aca1a4a8daea 100644
-> --- a/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
-> @@ -56,6 +56,9 @@ properties:
->        - const: core
->        - const: axi
->
-> +  interrupts:
-> +    maxItems: 1
-> +
->    marvell,xenon-sdhc-id:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      minimum: 0
-> --
-> 2.34.1
->
+Nicolas Saenz Julienne (6):
+  dt-bindings: soc: bcm: bcm2835-pm: Convert bindings to DT schema
+  dt-bindings: soc: bcm: bcm2835-pm: Introduce reg-names
+  ARM: dts: bcm2835/bcm2711: Introduce reg-names in watchdog node
+  ARM: dts: bcm2711: Use proper compatible in PM/Watchdog node
+  mfd: bcm2835-pm: Use 'reg-names' to get resources
+  soc: bcm: bcm2835-power: Bypass power_on/off() calls
+
+Stefan Wahren (5):
+  dt-bindings: soc: bcm: bcm2835-pm: Add support for bcm2711
+  mfd: bcm2835-pm: Add support for BCM2711
+  soc: bcm: bcm2835-power: Refactor ASB control
+  soc: bcm: bcm2835-power: Resolve ASB register macros
+  soc: bcm: bcm2835-power: Add support for BCM2711's RPiVid ASB
+
+ .../bindings/soc/bcm/brcm,bcm2835-pm.txt      | 46 ----------
+ .../bindings/soc/bcm/brcm,bcm2835-pm.yaml     | 86 +++++++++++++++++++
+ arch/arm/boot/dts/bcm2711.dtsi                |  3 +-
+ arch/arm/boot/dts/bcm2835-common.dtsi         |  1 +
+ drivers/mfd/bcm2835-pm.c                      | 80 +++++++++++++----
+ drivers/soc/bcm/bcm2835-power.c               | 72 ++++++++++------
+ include/linux/mfd/bcm2835-pm.h                |  1 +
+ 7 files changed, 199 insertions(+), 90 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.txt
+ create mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
+
+-- 
+2.25.1
+
