@@ -2,186 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B91A53A147
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 11:52:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42D7C53A153
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 11:55:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351506AbiFAJwI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 05:52:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56774 "EHLO
+        id S1351037AbiFAJz5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 05:55:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349979AbiFAJwI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 05:52:08 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01DD55DE53;
-        Wed,  1 Jun 2022 02:52:07 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id fu3so1129415ejc.7;
-        Wed, 01 Jun 2022 02:52:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=y1mJGH5c1Uozsg7k4TIS92U6v6LjyV9oFoYVM0NRha8=;
-        b=pDzLCrKYfqkJbuKWjOE7YKh1BjW8iuiBm1bkNBWCdyl6ZXoEh4vEn7DK+SXSpbB90U
-         0mMySw+1KW+jWuSlprGFz1/ZihwNlBGfQoJ952/S65Zmwv3yE5hNf/jPQiWvymLTm2fF
-         5PkFkXZAasgyv3D7SLAriP98k8PabcZr76rGv9IlXeRbm0xbiyv3vYnBL++vOmRc3YHf
-         XDY8aMNfCeHWTJKIS7vTg70L9GewCHcK41H93Qqlgs6oPaArJ8adNouaJAAsPAr7X8F4
-         inDdCJvjhmWW8uwlHRhS2KKJQUa9JGtgmNjDKfkuu2t5FghP5ZU/AhZiljZlz8vr07eB
-         Bzbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=y1mJGH5c1Uozsg7k4TIS92U6v6LjyV9oFoYVM0NRha8=;
-        b=oUCrpTF45P2VHH050RTHHZ2ulrytmNIPVKrS+SdWkiwLP+KTtUxKX3CngaZEdZspq7
-         ughpY0FpjN4UgbpkmQ+eLE76y5NDRTzV8x2fHVzhPG/NqnsaGpLvvA7epbkBvZ287FFm
-         0f4P/pkY3IFXChroItUS6JPtYEUjsglh0R1mNL26jgGQClPGsS6z9N+rYbdjILlQ6dUI
-         xGufeQSt5tLGAfAps8xuBC8TuW/3UEJFPrwbpj6fim74aan8excuvpVUDIhaRDNB0CnH
-         ujIvZKqvv5tLLNmiI/dOKGs6Iepn+N3EK9qQD9TPNgnYFa0L3kRDlBHvLPzpACx+20/W
-         TGRQ==
-X-Gm-Message-State: AOAM533p4t6FsyTpeu5Tppqvach0oRCNFN07lzyWjiHAc128peo+r2Ii
-        vvTJq67yuPM9Sx5NGwJlsWpY5WoZelX8UjfnhcA=
-X-Google-Smtp-Source: ABdhPJyqf9ZHomloEdcRczicdqSM2R1J6YhdToJV6ojkEOXFybYoQ0iogidyjBJ4Et6n0VcyKxc+QBr3vsPZaac7yDU=
-X-Received: by 2002:a17:906:2416:b0:6fe:a0be:91d5 with SMTP id
- z22-20020a170906241600b006fea0be91d5mr54057142eja.132.1654077125409; Wed, 01
- Jun 2022 02:52:05 -0700 (PDT)
+        with ESMTP id S1350652AbiFAJz4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 05:55:56 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19AB664D17;
+        Wed,  1 Jun 2022 02:55:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=MElt6uUY8fDpn46CK1g0cE05pn5ubvWvKHM1ibri8JQ=; b=xKjfljdNGnVBf8Cy54DrduNiiP
+        MxfMNiicIsSy60WjTGPYe2iSbmZNoqVdfolQWovW6KFY9JdiyrvGk6qqV5c8VuYk65a2BL1yAXNpy
+        2fgTvXJjsrvC1V4OugHaaHoSKvcAszbJW3HlTnDlvUqKffYwJ+lJUNKbS+QNwAR1ojfjfFD6va2ko
+        hI4Rtl3sTVVHHJD+He7H/1Fh7Yji1/4wnu6zQSbwMpPUdudyxrgxODl1o7WNxcen9DIfLGA/N1KNC
+        zC3+/GWwf/YrMX0Am5xNxuFCR7zuXUCWXEiPbsjOd5+wvtolmoAfYLa26L1aLJcbztXuYYXTqsI+l
+        /DRmaVAQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:60918)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1nwL4n-0005r7-Rm; Wed, 01 Jun 2022 10:55:41 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1nwL4l-0003Mm-Fd; Wed, 01 Jun 2022 10:55:39 +0100
+Date:   Wed, 1 Jun 2022 10:55:39 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, vladimir.oltean@nxp.com,
+        grygorii.strashko@ti.com, vigneshr@ti.com, nsekhar@ti.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kishon@ti.com
+Subject: Re: [PATCH 3/3] net: ethernet: ti: am65-cpsw: Move
+ phy_set_mode_ext() to correct location
+Message-ID: <Ypc3myH2SgGwUmMF@shell.armlinux.org.uk>
+References: <20220531113058.23708-1-s-vadapalli@ti.com>
+ <20220531113058.23708-4-s-vadapalli@ti.com>
+ <YpYCJv2SIExL+VHs@shell.armlinux.org.uk>
+ <9f531f8d-9ff2-2ec9-504f-eed324ba86c6@ti.com>
+ <YpcjaOdXHC+uYJ2J@shell.armlinux.org.uk>
+ <41277985-28c9-9bf0-8b24-6acc40391ef2@ti.com>
 MIME-Version: 1.0
-References: <20220531102809.11976-1-peterwu.pub@gmail.com> <20220531102809.11976-7-peterwu.pub@gmail.com>
- <CAHp75Vd8taco19vsDmBcCv8euV1SvwSiY5=P9oMkA6zWsjwXxg@mail.gmail.com>
-In-Reply-To: <CAHp75Vd8taco19vsDmBcCv8euV1SvwSiY5=P9oMkA6zWsjwXxg@mail.gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 1 Jun 2022 11:51:30 +0200
-Message-ID: <CAHp75Vf245Oo3wmx5rh_EkXZ4FL_nnehpfuaDAiEdG6BenXxhw@mail.gmail.com>
-Subject: Re: [PATCH 06/14] leds: mt6370: Add Mediatek MT6370 Indicator support
-To:     ChiaEn Wu <peterwu.pub@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        "Krogerus, Heikki" <heikki.krogerus@linux.intel.com>,
-        Helge Deller <deller@gmx.de>, cy_huang@richtek.com,
-        alice_chen@richtek.com, chiaen_wu@richtek.com,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        USB <linux-usb@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <41277985-28c9-9bf0-8b24-6acc40391ef2@ti.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 1, 2022 at 11:48 AM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
-> On Tue, May 31, 2022 at 1:16 PM ChiaEn Wu <peterwu.pub@gmail.com> wrote:
-> >
-> > From: Alice Chen <alice_chen@richtek.com>
->
-> All below comments are applicable to the rest of the series as well
-> (one way or another), so please fix all your patches where it's
-> appropriate.
+On Wed, Jun 01, 2022 at 02:59:47PM +0530, Siddharth Vadapalli wrote:
+> Hello Russell,
+> 
+> On 01/06/22 13:59, Russell King (Oracle) wrote:
+> > On Wed, Jun 01, 2022 at 11:39:57AM +0530, Siddharth Vadapalli wrote:
+> >> Hello Russell,
+> >>
+> >> On 31/05/22 17:25, Russell King (Oracle) wrote:
+> >>> On Tue, May 31, 2022 at 05:00:58PM +0530, Siddharth Vadapalli wrote:
+> >>>> In TI's J7200 SoC CPSW5G ports, each of the 4 ports can be configured
+> >>>> as a QSGMII main or QSGMII-SUB port. This configuration is performed
+> >>>> by phy-gmii-sel driver on invoking the phy_set_mode_ext() function.
+> >>>>
+> >>>> It is necessary for the QSGMII main port to be configured before any of
+> >>>> the QSGMII-SUB interfaces are brought up. Currently, the QSGMII-SUB
+> >>>> interfaces come up before the QSGMII main port is configured.
+> >>>>
+> >>>> Fix this by moving the call to phy_set_mode_ext() from
+> >>>> am65_cpsw_nuss_ndo_slave_open() to am65_cpsw_nuss_init_slave_ports(),
+> >>>> thereby ensuring that the QSGMII main port is configured before any of
+> >>>> the QSGMII-SUB ports are brought up.
+> >>>
+> >>> This sounds like "if we're configured via port->slave.phy_if to be in
+> >>> QSGMII mode, then the serdes PHY needs to be configured before any of
+> >>> the QSGMII ports are used". Doesn't that mean that if
+> >>> port->slave.phy_if is QSGMII, then the port _only_ supports QSGMII
+> >>> mode, and conversely, the port doesn't support QSGMII unless firmware
+> >>> said it could be.
+> >>>
+> >>> So, doesn't that mean am65_cpsw_nuss_init_port_ndev() should indicate
+> >>> only QSGMII, or only the RGMII modes, but never both together?
+> >>
+> >> The phy-gmii-sel driver called by phy_set_mode_ext() configures the CPSW5G MAC
+> >> rather than the SerDes Phy. In the CPSW5G MAC, the QSGMII mode is further split
+> >> up as two modes that are TI SoC specific, namely QSGMII main and QSGMII-SUB. Of
+> >> the 4 ports present in CPSW5G (4 external ports), only one can be the main port
+> >> while the rest are the QSGMII-SUB ports. Only the QSGMII main interface is
+> >> responsible for auto-negotiation between the MAC and PHY. For this reason, the
+> >> writes to the CPSW5G MAC, mentioning which of the interfaces is the QSGMII main
+> >> interface and which ones are the QSGMII-SUB interfaces has to be done before any
+> >> of the interfaces are brought up. Otherwise, it would result in a QSGMII-SUB
+> >> interface being brought up before the QSGMII main interface is determined,
+> >> resulting in the failure of auto-negotiation process, thereby making the
+> >> QSGMII-SUB interfaces non-functional.
+> > 
+> > That confirms my suspicion - if an interface is in QSGMII mode, then
+> > RGMII should not be marked as a supported interface to phylink. If the
+> 
+> CPSW5G MAC supports both RGMII and QSGMII modes, so wouldn't it be correct to
+> mark both RGMII and QSGMII modes as supported? The mode is specified in the
+> device-tree and configured in CPSW5G MAC accordingly.
+> 
+> > "QSGMII main interface" were to be switched to RGMII mode, then this
+> > would break the other ports. So RGMII isn't supported if in QSGMII
+> > mode.
+> 
+> Yes, if the QSGMII main interface were to be switched to RGMII mode, then it
+> would break the other ports. However, the am65-cpsw driver currently has no
+> provision to dynamically change the port modes once the driver is initialized.
 
-Forgot to mention, please consider using
+If there is no provision to change the port mode, then as far as
+phylink is concerned, you should not advertise that it supports
+anything but the current mode - because if phylink were to request
+the driver change the mode, the driver can't do it.
 
-  return dev_err_probe();
+So, you want there, at the very least:
 
-pattern in the ->probe() and related funcitons. It will save a lot of LOCs.
+	if (phy_interface_mode_is_rgmii(port->slave.phy_if))
+		phy_interface_set_rgmii(port->slave.phylink_config.supported_interfaces);
+	else
+		__set_bit(PHY_INTERFACE_MODE_QSGMII, port->slave.phylink_config.supported_interfaces);
 
-> > Add Mediatek MT6370 Indicator support
->
-> What indicator?
-> Please also keep attention on English punctuation (missed period).
->
-> ...
->
-> > +       help
-> > +         Support 4 channels and reg/pwm/breath mode.
-> > +         Isink4 can also use as a CHG_VIN power good Indicator.
->
-> be used
->
-> > +         Say Y here to enable support for
-> > +         MT6370_RGB_LED device.
->
-> ...
->
-> > +#include <linux/module.h>
-> > +#include <linux/mutex.h>
-> > +#include <linux/platform_device.h>
->
-> > +#include <linux/of.h>
->
-> Are you sure this is the correct header? Seems you need
-> mod_devicetable.h instead.
->
-> > +#include <linux/property.h>
-> > +#include <linux/regmap.h>
->
-> ...
->
-> > +struct mt6370_priv {
-> > +       struct mutex lock;
->
-> Do you use regmap locking?
->
-> > +       struct device *dev;
->
-> > +       struct regmap *regmap;
->
-> > +       struct regmap_field *fields[F_MAX_FIELDS];
-> > +       const struct reg_field *reg_fields;
-> > +       const struct linear_range *ranges;
-> > +       struct reg_cfg *reg_cfgs;
-> > +       unsigned int leds_count;
-> > +       unsigned int leds_active;
-> > +       bool is_mt6372;
-> > +       struct mt6370_led leds[];
-> > +};
->
-> ...
->
-> > +static const unsigned int common_tfreqs[] = {
-> > +       10000, 5000, 2000, 1000, 500, 200, 5, 1
->
-> Leave a comma at the end.
->
-> > +};
-> > +
-> > +static const unsigned int mt6372_tfreqs[] = {
-> > +       8000, 4000, 2000, 1000, 500, 250, 8, 4
->
-> Ditto.
->
-> > +};
->
->
-> --
-> With Best Regards,
-> Andy Shevchenko
-
-
+which will still ensure that port->slave.phy_if is either a RGMII
+mode or QSGMII.
 
 -- 
-With Best Regards,
-Andy Shevchenko
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
