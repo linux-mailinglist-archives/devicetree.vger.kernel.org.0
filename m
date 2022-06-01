@@ -2,253 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B269E53AAB1
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 18:06:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A908D53AADF
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 18:20:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355975AbiFAQGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 12:06:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35738 "EHLO
+        id S1355291AbiFAQUY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 12:20:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242784AbiFAQGr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 12:06:47 -0400
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2057.outbound.protection.outlook.com [40.107.244.57])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9C1CCD2;
-        Wed,  1 Jun 2022 09:06:45 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YbP+Njxa9SE8qRD4lhKqMiL582cupzI+m+ZurcTvWhirTyPrAopayW6O7FVH+DuHdYrAZH4Yfdtn+8NJWKVF3I+4oug3O2sempfWPSaL1lfzP7mL7x8h7AZ5CjYi8FmjdEVDvotuYnpcRiLc5EUiLQzO1bm4xqfKneqDOybb7TclO3cuZAXl6wBQO3F+U2y7piy3p1T6V5lSgdJ/SpQqD8YWgetpu1vP5WzjYksm83M9USmQqXbQ7w6UzdwlLM57YQbVlJOUYRH7CboBO2lzIVsCh2/NT6/I8hAlulCESAPKpV3vPsTXZLN65teAPJgt9c35OMUNPwT33W9JeYnl+w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PUE+3PZrMyvJ+xsE62IBw781u7lN/oyCTXEL7JOthgg=;
- b=C1Q10oW9EK3pOzXNNqkrlVHObQQ3uCbwvGdbUd0ky+A6cMTBuD9GmzJe0bcqOmHZhNL4LnxRDT/zDjhyyYaLWtKW4FfHfzO/bEW05Ie1W9S1drNiP9EjGkwJ8oTqAuLQOoFzAAj86MQAoc77FQ8H6DVf/6NaGXyy21xzN+gipcmJe3aU36s9rl3U5t+qQTS0lQ3avglwGUWK8/YJum5lblXXKDijzOvW2+Y/ew7IK3kWVjdicAhOPpShrCTC1QcAaWw114Pjln2tYILpeXHeVMsYSJ1fKK0Uc43wX6R8Xl7y05j9kv9p+1xM14YAn1l/8XMPBuC1jXQG6YWtHzTJpg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=linaro.org smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
+        with ESMTP id S1355279AbiFAQUX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 12:20:23 -0400
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE7D77938A
+        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 09:20:21 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id z17so2425892pff.7
+        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 09:20:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PUE+3PZrMyvJ+xsE62IBw781u7lN/oyCTXEL7JOthgg=;
- b=BnmK/qclYnZ7MsfmnwseYuXBc++2W4F7/5uMBaRP6f9ZsuJhHMPUykOj8kJe4ygV6fF+kkX/1Wht+S75YW5lpCrC78pHQ2FTcFCYAbWn67qbNixnpOtn9zEqehzbQj8qCIZA5S5xlwhtZ/PqKwvGP1/Rn/NrO9JGOd7Zt79m0aw=
-Received: from SN7PR04CA0078.namprd04.prod.outlook.com (2603:10b6:806:121::23)
- by SN6PR02MB4093.namprd02.prod.outlook.com (2603:10b6:805:31::31) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5293.18; Wed, 1 Jun
- 2022 16:06:43 +0000
-Received: from SN1NAM02FT0016.eop-nam02.prod.protection.outlook.com
- (2603:10b6:806:121:cafe::26) by SN7PR04CA0078.outlook.office365.com
- (2603:10b6:806:121::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.12 via Frontend
- Transport; Wed, 1 Jun 2022 16:06:43 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com; pr=C
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- SN1NAM02FT0016.mail.protection.outlook.com (10.97.4.82) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5314.12 via Frontend Transport; Wed, 1 Jun 2022 16:06:43 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Wed, 1 Jun 2022 09:06:40 -0700
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Wed, 1 Jun 2022 09:06:40 -0700
-Envelope-to: krzysztof.kozlowski@linaro.org,
- openamp-system-reference@lists.openampproject.org,
- bjorn.andersson@linaro.org,
- mathieu.poirier@linaro.org,
- robh+dt@kernel.org,
- krzk+dt@kernel.org,
- linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Received: from [10.23.123.25] (port=53259)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <tanmay.shah@xilinx.com>)
-        id 1nwQro-0005JZ-K4; Wed, 01 Jun 2022 09:06:40 -0700
-Message-ID: <c3a77a93-681b-e88c-6b0c-00f64d2181e7@xilinx.com>
-Date:   Wed, 1 Jun 2022 09:06:40 -0700
+        d=broadcom.com; s=google;
+        h=message-id:date:mime-version:user-agent:subject:to:cc:references
+         :from:in-reply-to;
+        bh=dVAVFQEbsUqd/gwKKX4392lbVPOvGo7VWTGb8+izggU=;
+        b=dGOB9tyqsLD3QyBcwxH/CWroxiLETEJl+Q5dIOoME8V3bWyW86RGAmFfH8pntlwDOn
+         /F8oDGE14nG2VRIdR/2/GaFN/veUu4AcGQXn/F0ufapg1wKq+gHFce9SEZrjOE7osV1P
+         WTGmKh8fQQ2V6Mcwcr0kmzF6DG40m2dRR0KVA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :to:cc:references:from:in-reply-to;
+        bh=dVAVFQEbsUqd/gwKKX4392lbVPOvGo7VWTGb8+izggU=;
+        b=XlkJ/qPcZRXFhYk+AMtSszRX4lsvX06PdArJRUxtIk+FsTk4ZX1ugleKltXlvFIdWT
+         yRq52IV/fo0zgX0hrg8cLbYrhU8CXWqww9Mmdu9362oqeR3EDCMFZ7LqLkfgzI8wmaiy
+         hDmaIZ7lZ9oNuxhOZ6+aUuMeXrvW3dx2bNcRXf/t18Gh10kl3U6MFv6mUTW28bHY9Rat
+         StS5lWPd/KCS6WLiKWheEyTd/3i8s8oSni0G7Zz6qtfLSYzQ3MRAiPwnu8iBFyAY8Yj+
+         TOV2I2sTndt3ps4boaP8ddWBHjszAjeZa9WacM/g8x9TY21wVRMhjxgkg9m/RlI0RTVx
+         +qdg==
+X-Gm-Message-State: AOAM531iGoAyZS5HazZv0xEbNs/tbZaDfQOIZJJQIJBzamORaIFnAmeC
+        yvJhZcekGmQpTm5I4KpsClbJfw==
+X-Google-Smtp-Source: ABdhPJzbmQCXVR+bl5y97gY4EEvUQGzrAzCL2ePNSA1f0s/iJYCNhKMqmgigXiyBqjxHyCX5vCjiig==
+X-Received: by 2002:a05:6a00:1503:b0:518:c689:518d with SMTP id q3-20020a056a00150300b00518c689518dmr412470pfu.37.1654100421072;
+        Wed, 01 Jun 2022 09:20:21 -0700 (PDT)
+Received: from [10.67.99.21] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id dw15-20020a17090b094f00b001e0b971196csm4064003pjb.57.2022.06.01.09.20.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Jun 2022 09:20:19 -0700 (PDT)
+Message-ID: <4a78703b-7c58-913c-3c36-1fec4455b946@broadcom.com>
+Date:   Wed, 1 Jun 2022 09:20:14 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.9.1
-From:   <tanmay.shah@xilinx.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <openamp-system-reference@lists.openampproject.org>,
-        <bjorn.andersson@linaro.org>, <mathieu.poirier@linaro.org>,
-        <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
-        <michal.simek@xilinx.com>, <ben.levinsky@xilinx.com>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v6 1/6] dt-bindings: remoteproc: Add Xilinx RPU subsystem
- bindings
-References: <20220531234308.3317795-1-tanmay.shah@xilinx.com>
- <20220531234308.3317795-2-tanmay.shah@xilinx.com>
- <44053e7d-71fd-2012-dc7f-5641536c1f2c@linaro.org>
-In-Reply-To: <44053e7d-71fd-2012-dc7f-5641536c1f2c@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8a1717bc-220b-45a2-7623-08da43e8b88d
-X-MS-TrafficTypeDiagnostic: SN6PR02MB4093:EE_
-X-Microsoft-Antispam-PRVS: <SN6PR02MB409340536721B1AD4A79C4A8CADF9@SN6PR02MB4093.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: lkM4fpW8473sERjGAt6gkRv1me6AAhWOHQBb/vfqZ9hQAnted9LRWpZWkKCARTZDiIVf6ESqlXg8ElTzuT3Dtidw13BnM+GqZIab1ghUJFMbkg49GJsmpxXbGNmxz0N/G/UnD7NANRRYXNTmhO/W+cQj2I9tWqQge0wQ/Q2o8rEf9tyKepczNdsvcMCa/wFXUm8z+RSRDna1EfdCcwkBzJUC0SGeKrbXDsa/kEwrqRZIKkkPZI2r2QhCl5y2kWtdzfPTRXwAqLLu4+lDOHdXrD7VbSzExGUFFSU08S4GBNx4Gh/bs1+xBAFFP+ZJW6OAN9KFFDgeVhjsOjM286JAEMLoVvJDQK0yMhp01woR4i4BSLvwsllWdYE/Vs4Zne97aSF78Xl/bZVg7cjf0eBi0olJS1mgaLapz05DkrTy428fyS9mx6Rf+P70pwjn3HzAkL/yoomKzB4tZKmlXFWOQWB9ROMdgAYYiW5pNqXxf7h0ZOL62oUU7hr3KqKck5fIGjbE5GEyXgiOWalbZMF3ocaoBsKKfmKdTVZGv6Qk/iHhCBtmktxqHueSvIl0qtLyEui9I0Cmy7zHNNq7F5ZXfWIB4XKWsWxL+0JxuJIHd0Qw2OAZVJu53Wfed67wruvYB3nPhgcGnNJamKA9P66YQtPChMXErJ7Ulqkyh2YqdaYXn97xAvcFFBkEKcWdGsOJe8SUdaD8JeGo3zDU/UQJn8BZBKEjQiODVsj8ZYhQ/lsog0qN5BuDPGMVyUy7qRG3zVSbytXNLTtNmGmeUGr0JewTxnbaWRQQVASiEqFjgF5UI2MtfQXIQe3HeN1+5kRR0IBupGDnL4c0CxHVJrx0jlV8IE0ve63oDFPqkwmTGd8DagptPvGiDkSBgO0TRFzJl50aqfNonVLiSECetxSsqvpB3T1dBA7nRtlzNAhi8x0=
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(2616005)(70586007)(508600001)(2906002)(8676002)(2876002)(186003)(336012)(426003)(47076005)(5660300002)(70206006)(8936002)(7416002)(31696002)(53546011)(9786002)(36756003)(83380400001)(40460700003)(26005)(31686004)(82310400005)(36860700001)(110136005)(966005)(316002)(7636003)(921005)(356005)(50156003)(2101003)(83996005)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jun 2022 16:06:43.3317
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8a1717bc-220b-45a2-7623-08da43e8b88d
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT0016.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR02MB4093
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v2 2/3] arm64: dts: add dts files for bcmbca SoC bcm4912
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Linux ARM List <linux-arm-kernel@lists.infradead.org>
+Cc:     dan.beygelman@broadcom.com, philippe.reynes@softathome.com,
+        anand.gore@broadcom.com, tomer.yacoby@broadcom.com,
+        samyon.furman@broadcom.com, kursad.oney@broadcom.com,
+        joel.peshkin@broadcom.com,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220601004244.27394-1-william.zhang@broadcom.com>
+ <20220601004244.27394-3-william.zhang@broadcom.com>
+ <0b4abf17-f44d-dec4-56f4-0ae12e49b05b@gmail.com>
+From:   William Zhang <william.zhang@broadcom.com>
+In-Reply-To: <0b4abf17-f44d-dec4-56f4-0ae12e49b05b@gmail.com>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="0000000000000af67e05e0654486"
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+--0000000000000af67e05e0654486
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
 
-On 6/1/22 5:22 AM, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> On 01/06/2022 01:43, Tanmay Shah wrote:
-> > Xilinx ZynqMP platform has dual-core ARM Cortex R5 Realtime Processing
-> > Unit(RPU) subsystem. This patch adds dt-bindings for RPU subsystem
-> > (cluster).
-> >
-> > Signed-off-by: Tanmay Shah <tanmay.shah@xilinx.com>
-> > ---
-> >
-> > Changes in v6:
-> >    - Add maxItems to sram and memory-region property
-> >
-> > Changes in v5:
-> > - Add constraints of the possible values of xlnx,cluster-mode property
-> > - fix description of power-domains property for r5 core
-> > - Remove reg, address-cells and size-cells properties as it is not required
-> > - Fix description of mboxes property
-> > - Add description of each memory-region and remove old .txt binding link
-> >    reference in the description
-> >
-> > Changes in v4:
-> >    - Add memory-region, mboxes and mbox-names properties in example
-> >
-> > Changes in v3:
-> >    - None
-> >
-> >
-> >   .../bindings/remoteproc/xlnx,r5f-rproc.yaml   | 129 ++++++++++++++++++
-> >   include/dt-bindings/power/xlnx-zynqmp-power.h |   6 +
-> >   2 files changed, 135 insertions(+)
-> >   create mode 100644 Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
-> > new file mode 100644
-> > index 000000000000..cbff1c201a89
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
-> > @@ -0,0 +1,129 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/remoteproc/xlnx,r5f-rproc.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Xilinx R5F processor subsystem
-> > +
-> > +maintainers:
-> > +  - Ben Levinsky <ben.levinsky@xilinx.com>
-> > +  - Tanmay Shah <tanmay.shah@xilinx.com>
-> > +
-> > +description: |
-> > +  The Xilinx platforms include a pair of Cortex-R5F processors (RPU) for
-> > +  real-time processing based on the Cortex-R5F processor core from ARM.
-> > +  The Cortex-R5F processor implements the Arm v7-R architecture and includes a
-> > +  floating-point unit that implements the Arm VFPv3 instruction set.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: xlnx,zynqmp-r5fss
-> > +
-> > +  xlnx,cluster-mode:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    enum: [0, 1, 2]
-> > +    description: |
-> > +      The RPU MPCore can operate in split mode(Dual-processor performance), Safety
-> > +      lock-step mode(Both RPU cores execute the same code in lock-step,
-> > +      clock-for-clock) or Single CPU mode (RPU core 0 can be held in reset while
-> > +      core 1 runs normally). The processor does not support dynamic configuration.
-> > +      Switching between modes is only permitted immediately after a processor reset.
-> > +      If set to  1 then lockstep mode and if 0 then split mode.
-> > +      If set to  2 then single CPU mode. When not defined, default will be lockstep mode.
-> > +
-> > +patternProperties:
-> > +  "^r5f-[a-f0-9]+$":
-> > +    type: object
-> > +    description: |
-> > +      The RPU is located in the Low Power Domain of the Processor Subsystem.
-> > +      Each processor includes separate L1 instruction and data caches and
-> > +      tightly coupled memories (TCM). System memory is cacheable, but the TCM
-> > +      memory space is non-cacheable.
-> > +
-> > +      Each RPU contains one 64KB memory and two 32KB memories that
-> > +      are accessed via the TCM A and B port interfaces, for a total of 128KB
-> > +      per processor. In lock-step mode, the processor has access to 256KB of
-> > +      TCM memory.
-> > +
-> > +    properties:
-> > +      compatible:
-> > +        const: xlnx,zynqmp-r5f
-> > +
-> > +      power-domains:
-> > +        description: RPU core PM domain specifier
-> > +        maxItems: 1
-> > +
-> > +      mboxes:
-> > +        minItems: 1
-> > +        items:
-> > +          - description: mailbox channel to send data to RPU
-> > +          - description: mailbox channel to receive data from RPU
-> > +
-> > +      mbox-names:
-> > +        minItems: 1
-> > +        items:
-> > +          - const: tx
-> > +          - const: rx
-> > +
-> > +      sram:
-> > +        $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +        maxItems: 8
-> 
-> Without minItems, this means maxItems=minItems and previously you had
-> here "minItems:1", so is it really what you want?
-> 
 
-Ok. I misunderstood previous comment here in that case. I thought minIterms will be
-1 by default. But, it is not that way. I will fix this in next revision.        
+On 6/1/22 02:47, Florian Fainelli wrote:
+> 
+> 
+> On 5/31/2022 5:42 PM, William Zhang wrote:
+>> Add dts for ARMv8 based broadband SoC BCM4912. bcm4912.dtsi is the
+>> SoC description dts header and bcm94912.dts is a simple dts file for
+>> Broadcom BCM94912 Reference board that only enable the UART port.
+>>
+>> Signed-off-by: William Zhang <william.zhang@broadcom.com>
+>>
+>> ---
+> 
+> [snip]
+> 
+>> +
+>> +    axi@81000000 {
+>> +        compatible = "simple-bus";
+>> +        #address-cells = <2>;
+>> +        #size-cells = <2>;
+> 
+> See comment below for the ubus node.
+> 
+>> +        ranges = <0x0 0x0 0x0 0x81000000 0x0 0x8000>;
+>> +
+>> +        gic: interrupt-controller@1000 {
+>> +            compatible = "arm,gic-400";
+>> +            #interrupt-cells = <3>;
+>> +            interrupt-controller;
+>> +            interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | 
+>> IRQ_TYPE_LEVEL_HIGH)>;
+>> +            reg = <0x0 0x1000 0x0 0x1000>,
+>> +                <0x0 0x2000 0x0 0x2000>,
+>> +                <0x0 0x4000 0x0 0x2000>,
+>> +                <0x0 0x6000 0x0 0x2000>;
+>> +        };
+>> +    };
+>> +
+>> +    bus@ff800000 {
+>> +        compatible = "simple-bus";
+>> +        #address-cells = <2>;
+>> +        #size-cells = <2>;
+> 
+> This does not quite make sense, as I doubt that this part of the bus is 
+> 64-bit capable, rather, I would expect to find both #address-cells and 
+> #size-cells to be set to 1 and ... (see below)
+> 
+Agree.  It can be simplified to use 32 bit address and size.
 
-Thanks.
+>> +        ranges = <0x0 0x0 0x0 0xff800000 0x0 0x800000>;
+>> +
+>> +        uart0: serial@12000 {
+>> +            compatible = "arm,pl011", "arm,primecell";
+>> +            reg = <0x0 0x12000 0x0 0x1000>;
+> 
+> ... have this become simply:
+> 
+>              reg = <0x12000 0x1000>:
+> 
+> which also looks awfully big for an UART block, an entire 4KB worth of 
+> register space?
+That is the correct based on the rdb.
 
-> Anyway rest looks good to me.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Best regards,
-> Krzysztof
-> 
+--0000000000000af67e05e0654486
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+MIIQcAYJKoZIhvcNAQcCoIIQYTCCEF0CAQExDzANBglghkgBZQMEAgEFADALBgkqhkiG9w0BBwGg
+gg3HMIIFDTCCA/WgAwIBAgIQeEqpED+lv77edQixNJMdADANBgkqhkiG9w0BAQsFADBMMSAwHgYD
+VQQLExdHbG9iYWxTaWduIFJvb3QgQ0EgLSBSMzETMBEGA1UEChMKR2xvYmFsU2lnbjETMBEGA1UE
+AxMKR2xvYmFsU2lnbjAeFw0yMDA5MTYwMDAwMDBaFw0yODA5MTYwMDAwMDBaMFsxCzAJBgNVBAYT
+AkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBS
+MyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
+vbCmXCcsbZ/a0fRIQMBxp4gJnnyeneFYpEtNydrZZ+GeKSMdHiDgXD1UnRSIudKo+moQ6YlCOu4t
+rVWO/EiXfYnK7zeop26ry1RpKtogB7/O115zultAz64ydQYLe+a1e/czkALg3sgTcOOcFZTXk38e
+aqsXsipoX1vsNurqPtnC27TWsA7pk4uKXscFjkeUE8JZu9BDKaswZygxBOPBQBwrA5+20Wxlk6k1
+e6EKaaNaNZUy30q3ArEf30ZDpXyfCtiXnupjSK8WU2cK4qsEtj09JS4+mhi0CTCrCnXAzum3tgcH
+cHRg0prcSzzEUDQWoFxyuqwiwhHu3sPQNmFOMwIDAQABo4IB2jCCAdYwDgYDVR0PAQH/BAQDAgGG
+MGAGA1UdJQRZMFcGCCsGAQUFBwMCBggrBgEFBQcDBAYKKwYBBAGCNxQCAgYKKwYBBAGCNwoDBAYJ
+KwYBBAGCNxUGBgorBgEEAYI3CgMMBggrBgEFBQcDBwYIKwYBBQUHAxEwEgYDVR0TAQH/BAgwBgEB
+/wIBADAdBgNVHQ4EFgQUljPR5lgXWzR1ioFWZNW+SN6hj88wHwYDVR0jBBgwFoAUj/BLf6guRSSu
+TVD6Y5qL3uLdG7wwegYIKwYBBQUHAQEEbjBsMC0GCCsGAQUFBzABhiFodHRwOi8vb2NzcC5nbG9i
+YWxzaWduLmNvbS9yb290cjMwOwYIKwYBBQUHMAKGL2h0dHA6Ly9zZWN1cmUuZ2xvYmFsc2lnbi5j
+b20vY2FjZXJ0L3Jvb3QtcjMuY3J0MDYGA1UdHwQvMC0wK6ApoCeGJWh0dHA6Ly9jcmwuZ2xvYmFs
+c2lnbi5jb20vcm9vdC1yMy5jcmwwWgYDVR0gBFMwUTALBgkrBgEEAaAyASgwQgYKKwYBBAGgMgEo
+CjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3dy5nbG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzAN
+BgkqhkiG9w0BAQsFAAOCAQEAdAXk/XCnDeAOd9nNEUvWPxblOQ/5o/q6OIeTYvoEvUUi2qHUOtbf
+jBGdTptFsXXe4RgjVF9b6DuizgYfy+cILmvi5hfk3Iq8MAZsgtW+A/otQsJvK2wRatLE61RbzkX8
+9/OXEZ1zT7t/q2RiJqzpvV8NChxIj+P7WTtepPm9AIj0Keue+gS2qvzAZAY34ZZeRHgA7g5O4TPJ
+/oTd+4rgiU++wLDlcZYd/slFkaT3xg4qWDepEMjT4T1qFOQIL+ijUArYS4owpPg9NISTKa1qqKWJ
+jFoyms0d0GwOniIIbBvhI2MJ7BSY9MYtWVT5jJO3tsVHwj4cp92CSFuGwunFMzCCA18wggJHoAMC
+AQICCwQAAAAAASFYUwiiMA0GCSqGSIb3DQEBCwUAMEwxIDAeBgNVBAsTF0dsb2JhbFNpZ24gUm9v
+dCBDQSAtIFIzMRMwEQYDVQQKEwpHbG9iYWxTaWduMRMwEQYDVQQDEwpHbG9iYWxTaWduMB4XDTA5
+MDMxODEwMDAwMFoXDTI5MDMxODEwMDAwMFowTDEgMB4GA1UECxMXR2xvYmFsU2lnbiBSb290IENB
+IC0gUjMxEzARBgNVBAoTCkdsb2JhbFNpZ24xEzARBgNVBAMTCkdsb2JhbFNpZ24wggEiMA0GCSqG
+SIb3DQEBAQUAA4IBDwAwggEKAoIBAQDMJXaQeQZ4Ihb1wIO2hMoonv0FdhHFrYhy/EYCQ8eyip0E
+XyTLLkvhYIJG4VKrDIFHcGzdZNHr9SyjD4I9DCuul9e2FIYQebs7E4B3jAjhSdJqYi8fXvqWaN+J
+J5U4nwbXPsnLJlkNc96wyOkmDoMVxu9bi9IEYMpJpij2aTv2y8gokeWdimFXN6x0FNx04Druci8u
+nPvQu7/1PQDhBjPogiuuU6Y6FnOM3UEOIDrAtKeh6bJPkC4yYOlXy7kEkmho5TgmYHWyn3f/kRTv
+riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
+QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
+UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
+M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
+Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
+14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
+a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
+XzCCBU8wggQ3oAMCAQICDDbx5fpN++xs1+5IgzANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
+RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
+UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMTAyMjIwODA1MjJaFw0yMjA5MDUwODEwMTZaMIGQ
+MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
+BgNVBAoTDUJyb2FkY29tIEluYy4xFjAUBgNVBAMTDVdpbGxpYW0gWmhhbmcxKTAnBgkqhkiG9w0B
+CQEWGndpbGxpYW0uemhhbmdAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB
+CgKCAQEA4fxIZbzNLvB+7yJE8mbojRaOoaK1uZy1/etc55NzisSJJfY36BAlb7LlMDsza2/BcjXh
+lSACuzeOyI8sy2pKHGt5SZCMHeHaxP8q4ZNR6EGz7+5Lopw6ies8fkDoZ/XFIHpfU2eKcIYrxI25
+bTaYAPDA50BHTPDFzPNkWEIIQaSBBkk55bndnMmB/pPR/IhKjLefDIhIsiWLrvQstTiSf7iUCwMf
+TltlrAeBKRJ1M9O/DY5v7L1Yrs//7XIRg/d2ZPAOSGBQzFYjYTFWwNBiR1s1zP0m2y56DPbS5gwj
+fqAN/I4PJHIvTh3zUgHXNKadYoYRiPHXfaTWO9UhzysOpQIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
+BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
+YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
+BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
+MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
+YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
+Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
+HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
+BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUohM5GmNlGWe5wpzDxzIy
++EgzbRswDQYJKoZIhvcNAQELBQADggEBACKu9JSQAYTlmC+JTniO/C/UcXGonATI/muBjWTxtkHc
+abZtz0uwzzrRrpV+mbHLGVFFeRbXSLvcEzqHp8VomXifEZlfsE9LajSehzaqhd+np+tmUPz1RlI/
+ibZ7vW+1VF18lfoL+wHs2H0fsG6JfoqZldEWYXASXnUrs0iTLgXxvwaQj69cSMuzfFm1X5kWqWCP
+W0KkR8025J0L5L4yXfkSO6psD/k4VcTsMJHLN4RfMuaXIT6EM0cNO6h3GypyTuPf1N1X+F6WQPKb
+1u+rvdML63P9fX7e7mwwGt5klRnf8aK2VU7mIdYCcrFHaKDTW3fkG6kIgrE1wWSgiZYL400xggJt
+MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
+VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw28eX6TfvsbNfu
+SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIKcs12Q4kxd6ebatGcxwxvzQSed/
+fOUwyRihn949dpUWMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
+MDYwMTE2MjAyMVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
+AwQCATANBgkqhkiG9w0BAQEFAASCAQBR7BZUApgJEILqS8Ba/cr+vzbWldwkx2Rd6RbXy4QV7AZ1
+yM/C54zlpRptMEhFrPd0scTL98tmITB1PplroBtz7O2l6awlKSNtTCxj2CGI/33pjlZzpw1uyHBL
+GC/5RQWZfsRBb3OW2lV9X6nwjncnrZntkphlhw0jvrTkVOnGlbTZK9PGQkjMKVUcyB+DB82IsbFb
++Fr0cXUvAt0PtvPFCKVOrFZumja0v2ln908JRNRQ5fyzA7LppQm9/t1gImI7Nr1ibjaXlObUfqPb
+i1R7sIHkZBTKnqIvcasuKK3rp2yjkuX2Ox2JLlRyIsYBFBE3SDQ2JL+INU+NASssUfAp
+--0000000000000af67e05e0654486--
