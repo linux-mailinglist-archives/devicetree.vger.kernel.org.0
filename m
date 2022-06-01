@@ -2,80 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AF4153A06C
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 11:32:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DB7753A080
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 11:34:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351096AbiFAJcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 05:32:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47360 "EHLO
+        id S1351116AbiFAJdy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 05:33:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351076AbiFAJcL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 05:32:11 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97C4087A26
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 02:32:09 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id h19so1391156edj.0
-        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 02:32:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=9rLHj//9k/15fypiFbMELs3ChxXWRGpeQMJrEmUMxUs=;
-        b=QIpbmzzYJ0HAltV9KIinq7hcn1/hnXtpRXtMmZG9J7qu9J+yvPLSDMoa7T1mF07mXK
-         H0apr2OZxGQd0U1WCKeMv8lb+Fm0H/mDYSMtRdWizypZAKluo8iAZmIxB1zzo1cgkxVD
-         8FqROBoannHWns4ltnEoaFMetuFzZVnMg34x8TBZHDiL1S+h+agEWmJXOJBPr45zEleE
-         wIN4pLzhGLnCkSJ6swE6lcLnjUX895KzSJg8xs9oTGRBgvcXRQgxWZs0dfq2tVdBw1lA
-         e+iovxTxiCiSptWs6zjF6xpsc90sU1LjwN9TwlBSRUrniu3cN+/+/2A8nwrc4UNO1Pv1
-         qyIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=9rLHj//9k/15fypiFbMELs3ChxXWRGpeQMJrEmUMxUs=;
-        b=yrlkzzORy2VRqlzAFB8KD7DJm3VRSDXEvCg4A7WHupu0LI/s2UV7dAWt/5oBp628lR
-         yt3gPjAWCZXMek3JFyFZAxsePGvMO+Igp27TUO2QSv38lTz8brpa5lgEu03pG99DKkJG
-         ZscdoBisuUHNVrxLeEN5moINrzIXQHzZYPHf5mJGV+L11Sh+LcgQ5lEMMngj448I5VPq
-         Yws8YvsPHIKC5H3VTbB7keapSOWSi8Pmjbwo7sEhZ2xnSQuiJA+b1RUR3RUITPuNATde
-         S4NqhpeiVk1D2rFD/XbB4aBo632FRuUCJ8e5oLofko55EENQJty66DijzsXof3PQaorI
-         +d9g==
-X-Gm-Message-State: AOAM530wXOoKEguzDBZwa7bcTkibvAQcP/4CdTrTQo8tcKFwJ3Do7LGi
-        /ussG2VbP86DqNEiqAvNL/yq2Q==
-X-Google-Smtp-Source: ABdhPJxIaNQdmdCizYbGGHKjK+me0jgNnS5X6cMWDDf2h3DFwSO74zQhHh65gXy+skv8i/8hh9yGoQ==
-X-Received: by 2002:a05:6402:e9f:b0:41c:df21:b113 with SMTP id h31-20020a0564020e9f00b0041cdf21b113mr69039921eda.217.1654075928172;
-        Wed, 01 Jun 2022 02:32:08 -0700 (PDT)
-Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id i23-20020a1709061e5700b00708a2ae7620sm102525ejj.67.2022.06.01.02.32.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Jun 2022 02:32:07 -0700 (PDT)
-Message-ID: <efdbb151-8213-d1e7-a935-0e857947d450@linaro.org>
-Date:   Wed, 1 Jun 2022 11:32:06 +0200
+        with ESMTP id S1351127AbiFAJdx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 05:33:53 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 786258B09E;
+        Wed,  1 Jun 2022 02:33:52 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 0E3FBB8185E;
+        Wed,  1 Jun 2022 09:33:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F7B4C385A5;
+        Wed,  1 Jun 2022 09:33:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1654076029;
+        bh=5T6DOvFw902lROs1sSAyrJ/DZ8vBhIwjqturHxstVd8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=bGGzdgsl0yWRtC4tWhYShHmsSXAkbeeoS1eRaWgAuHlUB8ydG6LiQgI9ENIJpxdvi
+         lI2Zh0dsTLjglJKNtjG3AJsMHdauUUCWmZMnJDlDaUW6FNuR9a/bnbZ2OsY9rYdlzs
+         1s/mzxOUsVKKevlFm5kdHfOHd2SOWfgorHG4Rtuw=
+Date:   Wed, 1 Jun 2022 11:33:29 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Quan Nguyen <quan@os.amperecomputing.com>
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Thu Nguyen <thu@os.amperecomputing.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
+Subject: Re: [PATCH v8 3/9] misc: smpro-errmon: Add Ampere's SMpro error
+ monitor driver
+Message-ID: <YpcyaTqqsfDJx7HG@kroah.com>
+References: <20220422024653.2199489-1-quan@os.amperecomputing.com>
+ <20220422024653.2199489-4-quan@os.amperecomputing.com>
+ <YmJJIb1DAIq5arCw@kroah.com>
+ <4f5d7746-3747-4a4d-525a-4fb69e706cd0@os.amperecomputing.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 00/17] Add support for MT8365 EVK board
-Content-Language: en-US
-To:     Fabien Parent <fparent@baylibre.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
-        qii.wang@mediatek.com, matthias.bgg@gmail.com, jic23@kernel.org,
-        chaotian.jing@mediatek.com, ulf.hansson@linaro.org,
-        srinivas.kandagatla@linaro.org, chunfeng.yun@mediatek.com,
-        broonie@kernel.org, wim@linux-watchdog.org, linux@roeck-us.net
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dmaengine@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-iio@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-serial@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-watchdog@vger.kernel.org
-References: <20220531135026.238475-1-fparent@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220531135026.238475-1-fparent@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4f5d7746-3747-4a4d-525a-4fb69e706cd0@os.amperecomputing.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,28 +67,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/05/2022 15:50, Fabien Parent wrote:
-> This patch series adds support for the MT8365 EVK board.
+On Wed, Jun 01, 2022 at 03:21:47PM +0700, Quan Nguyen wrote:
+> > > +	if (err_type & BIT(2)) {
+> > > +		/* Error with data type */
+> > > +		ret = regmap_read(errmon->regmap, err_info->err_data_low, &data_lo);
+> > > +		if (ret)
+> > > +			goto done;
+> > > +
+> > > +		ret = regmap_read(errmon->regmap, err_info->err_data_high, &data_hi);
+> > > +		if (ret)
+> > > +			goto done;
+> > > +
+> > > +		count = sysfs_emit(buf, "%01x%02x%01x%02x%04x%04x%04x\n",
+> > > +				   4, (ret_hi & 0xf000) >> 12, (ret_hi & 0x0800) >> 11,
+> > > +				   ret_hi & 0xff, ret_lo, data_hi, data_lo);
+> > > +		/* clear the read errors */
+> > > +		ret = regmap_write(errmon->regmap, err_info->err_type, BIT(2));
+> > > +
+> > > +	} else if (err_type & BIT(1)) {
+> > > +		/* Error type */
+> > > +		count = sysfs_emit(buf, "%01x%02x%01x%02x%04x%04x%04x\n",
+> > > +				   2, (ret_hi & 0xf000) >> 12, (ret_hi & 0x0800) >> 11,
+> > > +				   ret_hi & 0xff, ret_lo, data_hi, data_lo);
+> > > +		/* clear the read errors */
+> > > +		ret = regmap_write(errmon->regmap, err_info->err_type, BIT(1));
+> > > +
+> > > +	} else if (err_type & BIT(0)) {
+> > > +		/* Warning type */
+> > > +		count = sysfs_emit(buf, "%01x%02x%01x%02x%04x%04x%04x\n",
+> > > +				   1, (ret_hi & 0xf000) >> 12, (ret_hi & 0x0800) >> 11,
+> > > +				   ret_hi & 0xff, ret_lo, data_hi, data_lo);
 > 
-> This series has dependencies on the following series:
-> https://patchwork.kernel.org/project/linux-mediatek/list/?series=646256
-> https://patchwork.kernel.org/project/linux-mediatek/list/?series=646091
-> https://patchwork.kernel.org/project/linux-mediatek/list/?series=646083
-> https://patchwork.kernel.org/project/linux-mediatek/list/?series=646081
-> https://patchwork.kernel.org/project/linux-mediatek/list/?series=646076
-> https://patchwork.kernel.org/project/linux-mediatek/list/?series=646068
-> https://patchwork.kernel.org/project/linux-mediatek/list/?series=646020
-> https://patchwork.kernel.org/project/linux-mediatek/list/?series=646052
-> https://lore.kernel.org/r/20220504091923.2219-2-rex-bc.chen@mediatek.com 
-> https://lore.kernel.org/r/20220512062622.31484-2-chunfeng.yun@mediatek.com 
-> https://lore.kernel.org/r/20220512062622.31484-1-chunfeng.yun@mediatek.com
-> https://lore.kernel.org/r/20220524115019.97246-1-angelogioacchino.delregno@collabora.com
-> https://lore.kernel.org/all/20220127015857.9868-1-biao.huang@mediatek.com/
+> Hi Greg,
+> 
+> Since the internal representation of the internal error is split into high
+> low chunks of the info and data values which need to be communicated
+> atomicly, I'm treating them as "one value" here.
 
-Eh... and how we are supposed to test or apply this? Such dependencies
-could mean none of automated tools will pick it up, so your patchset has
-to wait till dependencies got merged.
+That is a huge "one value", that's not what this really is, it needs to
+be parsed by userspace, right?
 
+And why does this have to be atomic?  What happens if the values change
+right after you read them?  What is userspace going to do with them?
 
-Best regards,
-Krzysztof
+> I could dump them in a
+> temporary array and print that, but it seems like additional complexity for
+> the same result. Can we consider this concatenated encoding as "an array of
+> the same type" for the purposes of this driver?"
+
+That's really not a good idea as sysfs files should never need to be
+"parsed" like this.
+
+Again, what are you trying to do here, and why does it have to be
+atomic?
+
+thanks,
+
+greg k-h
