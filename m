@@ -2,133 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 452DD53A3EE
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 13:24:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D5B053A40A
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 13:28:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352761AbiFALYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 07:24:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34048 "EHLO
+        id S1352622AbiFAL1g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 07:27:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352817AbiFALX7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 07:23:59 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3D175EBC0
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 04:23:11 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id v19so1725221edd.4
-        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 04:23:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=EmX78kZDbpi7zDJcl5NRBNnxEqWkEcLfuWB3zLytvQ4=;
-        b=r55wWxDb8gLLLDShPuOiJjmUz1D5Xgin/ldr6b/Tnulo5/FyaoiTrGCFmJK10iRxpl
-         /b5twD1DES3+6TJftiXJLlEH5MTxw6tzyqTXWS49/e4fUXACwFeWmyPUdl79bB1ZMm28
-         1EQZtIGbcpDoxuCn3othqQWKg+D6efafEyLZYTIBuSeyngpnqUPZSWp0zb/eRJWQMD+4
-         W6q5xcRyZJBNbHcwT564fW1iOCfBexrbxseQQNfQI9zG+QVQGtdYMM8Iugx4ALnbLNtu
-         EfIQzbvmIUrpisGyxuU8pS95ihIaVEMR2VjCfh69jDHQWuXdYfHfC7+QL1vDtMre9YvW
-         WOjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=EmX78kZDbpi7zDJcl5NRBNnxEqWkEcLfuWB3zLytvQ4=;
-        b=ko0ZdmkQNYWPyyor4RSh6n7eQi+7tW07I81EcYJyhjQZIUxRWVPOAAklFlhxzMQwNQ
-         9FinAPIYJRDKm57EOQ5tYKhbsph9LJbs5U2NbYmNu93+XMVn857r3FgKQbzp55/7Ybaz
-         s7eZdeczUuLif3xFYyiQy9KQs+KXtxVGqhNKd93lHFN7Yyacly7gog7v5/oKlQhBUcLq
-         usoU5AjUWQFa0IXqMWb0DU6TYNsuL+zT/lvm853YPViYK35msIbqicXXamDzlEqdfr8t
-         hRjDeZocRhpxtzJpVvBFi0BOweOBVFLuP4pMMkmgt/JPzGESAn5pz73ULdit/JTFko3z
-         v+SQ==
-X-Gm-Message-State: AOAM531q93tHJtcPUgCjr6KrDFT5C0tKn1Q1EuLKsqDB20mm5jufV2Ap
-        Nb/3KvyQC2nHeC9ejrm3HcVCbA==
-X-Google-Smtp-Source: ABdhPJzOJxGalCbiJf1Q2Q8zI2vrTUHr2z0fwXYzl5tTyez6dQrB/mI0xzVPeI2IOWLC/p/Lwqsvsw==
-X-Received: by 2002:a05:6402:1907:b0:42d:e90e:337 with SMTP id e7-20020a056402190700b0042de90e0337mr7327648edz.405.1654082589971;
-        Wed, 01 Jun 2022 04:23:09 -0700 (PDT)
-Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id p19-20020a056402155300b0042617ba638esm823008edx.24.2022.06.01.04.23.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Jun 2022 04:23:09 -0700 (PDT)
-Message-ID: <7a66f2e2-1a2a-a262-138c-f535499984ae@linaro.org>
-Date:   Wed, 1 Jun 2022 13:23:08 +0200
+        with ESMTP id S1352634AbiFAL1f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 07:27:35 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 643573BBC7;
+        Wed,  1 Jun 2022 04:27:31 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 251BRIUD011398;
+        Wed, 1 Jun 2022 06:27:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1654082838;
+        bh=o9D86qzvXd10JMqGORrMWHfGaInhUb1BMDlgZjbpg74=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=wpyMCZ5WBYKKSjFz/6FgAXAbEy1dXQvdVlVTrABbJEoRs3f/5a6oO2JwjvU7+1rSv
+         z1wQaLM70OT4CuGdjgl9TUBu1wz3yCEWVq847v0sI565QoxI6dxAj8jsimHyfkON5o
+         rVakqRBaHVzUzRdBIC1feXD4E3PGcQZ5Rp8r3YqY=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 251BRIwZ098987
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 1 Jun 2022 06:27:18 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 1
+ Jun 2022 06:27:18 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 1 Jun 2022 06:27:18 -0500
+Received: from [172.24.222.108] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 251BRCU0093180;
+        Wed, 1 Jun 2022 06:27:13 -0500
+Message-ID: <985ab302-17aa-c0de-ccac-63525589918a@ti.com>
+Date:   Wed, 1 Jun 2022 16:57:12 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [RFC PATCH v2 4/6] PM: opp: allow control of multiple clocks
+Subject: Re: [PATCH 1/2] dt-bindings: phy: ti: phy-gmii-sel: Add bindings for
+ J7200
 Content-Language: en-US
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-References: <20220411154347.491396-1-krzysztof.kozlowski@linaro.org>
- <20220411154347.491396-5-krzysztof.kozlowski@linaro.org>
- <20220425072710.v6gwo4gu3aouezg4@vireshk-i7>
- <dea39b1f-0091-2690-7f07-108d07ef9f3c@linaro.org>
- <20220510044053.ykn6ygnbeokhzrsa@vireshk-i7>
- <1e533194-7047-8342-b426-f607fddbfaa3@linaro.org>
- <20220511050643.hd5tcrojb3wkbg7t@vireshk-i7>
- <20220518235708.1A04CC385A9@smtp.kernel.org>
- <65a4c28d-6702-3a9f-f837-1ea69a428777@linaro.org>
- <20220531103029.ntoypaafnd6447ag@vireshk-i7>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220531103029.ntoypaafnd6447ag@vireshk-i7>
-Content-Type: text/plain; charset=UTF-8
+To:     Roger Quadros <rogerq@kernel.org>, <robh+dt@kernel.org>,
+        <lee.jones@linaro.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <kishon@ti.com>, <vkoul@kernel.org>, <dan.carpenter@oracle.com>,
+        <grygorii.strashko@ti.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <s-vadapalli@ti.com>
+References: <20220531111221.22963-1-s-vadapalli@ti.com>
+ <20220531111221.22963-2-s-vadapalli@ti.com>
+ <26603540-8887-ef8d-8f4d-26f2f33d2a6f@kernel.org>
+ <b5353c06-c8b4-c065-3843-28b2a34e1867@ti.com>
+ <a7754c31-bfc6-6451-8340-5d3aa671e3c4@kernel.org>
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+In-Reply-To: <a7754c31-bfc6-6451-8340-5d3aa671e3c4@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-6.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/05/2022 12:30, Viresh Kumar wrote:
-> On 19-05-22, 10:03, Krzysztof Kozlowski wrote:
->> Yes, true. The clock frequencies are still changed with each gear, but
->> in general the UFS indeed operates on gear concept.
-> 
-> Hi Krzysztof,
-> 
-> I have redesigned the OPP core a bit (two patchsets until now) to make
-> it easier to add multiple clock support going forward. I need some
-> inputs from you before moving forward with it now. Will this work for
-> your use case:
-> 
-> - Add support for multiple clocks, where none of them is primary.
-> 
-> - Which means you won't be able to use dev_pm_opp_set_rate() but will
->   need something like dev_pm_opp_set_level(), will add it.
-> 
-> - That is, your OPP table will need to implement levels (I think of
->   them as UFS gears) and then call dev_pm_opp_set_level() instead.
-> 
-> - This new API will work just like dev_pm_opp_set_rate(), except that
->   it will find the target OPP based on level instead of freq and
->   support configuration of multiple clock frequencies.
-> 
-> - Of course both these APIs will share most of the code.
+Hello Roger,
 
-Hi Viresh,
+On 01/06/22 15:08, Roger Quadros wrote:
+> Siddharth,
+> 
+> On 01/06/2022 09:01, Siddharth Vadapalli wrote:
+>> Hello Roger,
+>>
+>> On 31/05/22 17:15, Roger Quadros wrote:
+>>> Hi Siddharth,
+>>>
+>>> On 31/05/2022 14:12, Siddharth Vadapalli wrote:
+>>>> TI's J7200 SoC supports additional PHY modes like QSGMII and SGMII
+>>>> that are not supported on earlier SoCs. Add a compatible for it.
+>>>>
+>>>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>>>> ---
+>>>>  .../mfd/ti,j721e-system-controller.yaml       |  5 ++++
+>>>>  .../bindings/phy/ti,phy-gmii-sel.yaml         | 24 ++++++++++++++++++-
+>>>>  2 files changed, 28 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+>>>> index fa86691ebf16..e381ba62a513 100644
+>>>> --- a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+>>>> +++ b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+>>>> @@ -48,6 +48,11 @@ patternProperties:
+>>>>      description:
+>>>>        This is the SERDES lane control mux.
+>>>>  
+>>>> +  "phy@[0-9a-f]+$":
+>>>> +    type: object
+>>>> +    description:
+>>>> +      This is the register to set phy mode through phy-gmii-sel driver.
+>>>> +
+>>>
+>>> Is this really required? The system controller has 100s of different such registers and it is not practical to mention about all.
+>>
+>> The property has to be mentioned in order to pass: make dtbs_check.
+>>
+>>>
+>>>>  required:
+>>>>    - compatible
+>>>>    - reg
+>>>> diff --git a/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml b/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
+>>>> index ff8a6d9eb153..7427758451e7 100644
+>>>> --- a/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
+>>>> +++ b/Documentation/devicetree/bindings/phy/ti,phy-gmii-sel.yaml
+>>>> @@ -53,12 +53,21 @@ properties:
+>>>>        - ti,am43xx-phy-gmii-sel
+>>>>        - ti,dm814-phy-gmii-sel
+>>>>        - ti,am654-phy-gmii-sel
+>>>> +      - ti,j7200-cpsw5g-phy-gmii-sel
+>>>
+>>> Why not just "ti,j7200-phy-gmii-sel" so it is consistent naming.
+>>
+>> In TI's J7200 device, there are two CPSW MACs, namely CPSW2G and CPSW5G. While
+>> CPSW5G supports QSGMII mode, CPSW2G does not. Hence, the compatible being added
+>> with the extra mode (QSGMII) enabled is applicable only for CPSW5G and not for
+>> CPSW2G. Thus, to highlight this, the word "CPSW5G" has been included in the name
+>> of the compatible.
+> 
+> Here we are talking about the PHY driver (phy-gmii-sel) and not the MAC (CPSW2G / CPSW5G)
+> Does this PHY on J7200 always support QSGMII mode? if yes then embedding "cpsw5g" in compatible is wrong.
 
-In general this looks reasonable and matches how the UFS gears should be
-modeled. It does not match how UFS drivers implemented the clock
-scaling, but that's the internal problem of UFS drivers. They scale the
-clocks only max or min, even though there are multiple gears in between.
-The new approach looks therefore appropriate.
+The PHY on J7200 is part of the Add-On Ethernet card. It is possible to connect
+RGMII, QSGMII and SGMII PHY. The CPSW5G MAC supports all these modes. With the
+current patch, I am adding just QSGMII mode as an extra mode, but in a future
+patch, I will be adding SGMII also as an extra mode. For this reason, CPSW5G is
+being mentioned in the compatible name, to differentiate supported modes for
+CPSW2G and CPSW5G. Also, the phy-gmii-sel driver actually configures CPSW MAC
+registers and not the PHY.
 
-Best regards,
-Krzysztof
+> 
+> You need to use a different compatible in CPSW driver and make sure CPSW2G doesn't initiate QSGMII mode.
+
+Yes, I will add a check there too by using a different compatible in the CPSW
+driver, but shouldn't the phy-gmii-sel driver also have a check to ensure that
+it doesn't try configuring QSGMII mode for CPSW2G?
+
+> 
+>>
+>>>
+>>>>  
+>>>>    reg:
+>>>>      maxItems: 1
+>>>>  
+>>>>    '#phy-cells': true
+>>>>  
+>>>> +  ti,enet-ctrl-qsgmii:
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>> +    description: |
+>>>> +      Required only for QSGMII mode. Bitmask to select the port for
+>>>> +      QSGMII main mode. Rest of the ports are selected as QSGMII_SUB
+>>>> +      ports automatically. Any of the 4 CPSW5G ports can act as the
+>>>> +      main port with the rest of them being the QSGMII_SUB ports.
+>>>> +
+>>>
+>>> This is weird way of doing things.
+>>>
+>>> The Ethernet controller driver already knows which mode the port is
+>>> supposed to operate.
+>>
+>> From the ethernet driver perspective, there is no difference between the QSGMII
+>> or QSGMII-SUB modes and both are treated the same. However, the phy-gmii-sel
+>> driver configures CPSW MAC registers differently depending on the mode being
+>> QSGMII or QSGMII-SUB. Hence, the ti,enet-ctrl-qsgmii property is used to
+>> identify the QSGMII main port and the rest are configured in CPSW MAC as
+>> QSGMII-SUB ports.
+>>
+>>>
+>>> e.g.
+>>> +&cpsw0_port1 {
+>>> +	phy-handle = <&cpsw5g_phy0>;
+>>> +	phy-mode = "qsgmii";
+>>> +	mac-address = [00 00 00 00 00 00];
+>>> +	phys = <&cpsw0_phy_gmii_sel 1>;
+>>> +};
+>>> +
+>>> +&cpsw0_port2 {
+>>> +	phy-handle = <&cpsw5g_phy1>;
+>>> +	phy-mode = "qsgmii-sub";
+>>> +	mac-address = [00 00 00 00 00 00];
+>>> +	phys = <&cpsw0_phy_gmii_sel 2>;
+>>>
+>>> And it can convey the mode to the PHY driver via phy_ops->set_mode.
+>>> So you should be depending on that instead of adding this new property.
+>>
+>> QSGMII-SUB is not a standard mode in the Linux kernel. In order to proceed with
+>> the suggested implementation, a new phy mode named PHY_INTERFACE_MODE_QSGMII_SUB
+>> has to be introduced to the kernel. Additionally, all existing phy drivers will
+>> have to be updated to recognize the new phy mode.
+>>
+>> Since the QSGMII-SUB mode is TI specific, it was decided that it would be better
+>> to add a new property in TI specific files for identifying the QSGMII main port
+>> and treating the rest as QSGMII-SUB ports.
+> 
+> Who decides which port should be MAIN and which should be SUB? Can all ports be MAIN?
+> Can all ports be SUB or there has to be at least one MAIN?
+
+All 4 ports in CPSW5G have the capability to be the MAIN port, with the only
+restriction being that only one of them should be the MAIN port at a time. The
+role of the CPSW5G ports is decided based on what PHY port each of the CPSW5G
+ports connects to.
+
+MAIN port of CPSW5G MAC is responsible for auto-negotiation with the PHY port on
+the PHY which supports auto-negotiation. Thus, there can and should be only one
+MAIN port.
+
+Thanks,
+Siddharth.
