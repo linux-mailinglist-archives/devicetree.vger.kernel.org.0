@@ -2,171 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D996E53A5BA
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 15:15:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3133653A5BB
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 15:15:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353218AbiFANPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S244893AbiFANPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 1 Jun 2022 09:15:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34300 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353160AbiFANO6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 09:14:58 -0400
-Received: from mail-ua1-x935.google.com (mail-ua1-x935.google.com [IPv6:2607:f8b0:4864:20::935])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 477C33CA5A
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 06:14:55 -0700 (PDT)
-Received: by mail-ua1-x935.google.com with SMTP id k13so563761uad.0
-        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 06:14:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5oFlaqtX6Yq+R/EhuIa6+mVBAE5xqUeJ8MpuQJuCFYc=;
-        b=QFc9awc69slVDpPs+RhYanvhdJvd0vPvqc9HWnpXc3H92mF8uFR/Mm9bEW8+rT3fWQ
-         zOHvlZNQ57HTaOoMzuw5a/V22qGxPTZMuRtzQekFUO8o2peSu0TX9r6P7atJ4CN/cx7D
-         Y2a8dRrO23OHLDKQ1xgk6IuDzyFBnMg1xRn4OcNa7Wal7rils+um4ElbBOVLIPdKTkV9
-         bX9pqyDM61JixNfClPM+Zx1Z9WlcnYppiys47bWkdA9lQ3Eyncrblfg86ovcZN5i/+Cd
-         jK+H+brMp3AS6ilpTWdDTmBsNptqKa/zxmIdbQxKyh1HHnH0fuDUrgbQnhlWXzl/OEAb
-         3OoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5oFlaqtX6Yq+R/EhuIa6+mVBAE5xqUeJ8MpuQJuCFYc=;
-        b=oaOHxffXuYBY+ilL8GTRi7QuUDwgeqAGPUyk9lfHLGrPOT6z/s6nqrn7PT1vFKy3Os
-         Ya+bw9gRVhI5z7BLZhsHTdrPoKGlGMjK6dFMaEQbtAY8WcONkt5tuapnoFtHoXif6ptt
-         8bHt/tkqoNdsd87FT06oGzmN846+1r9sV6YEjG+e57qm2A1m5e4qShg6TMZY3OqPbC8j
-         rBX5rsjO3FOGorTFwKj+s0O+YG545Ia+Jy7PkmQaotyvXS5wdKBeRUvg5lX2aqS5cYX/
-         DkXIUaNLOXyHlGNkoxPCNnxvcoi+mCSnfTgiN9ehUxmthvJJRaqaQ9Ye83lKaLBOKGJk
-         wXYQ==
-X-Gm-Message-State: AOAM531SuQuKAM41LYkG1T9DCltj2RfyaZE5LNse034eL/0STOEiOVbB
-        k6M7xynHim73tPzD8qP4gTaKRm/A+iJsYT/BvdA=
-X-Google-Smtp-Source: ABdhPJwZYaQfUV/9ofAmTmN7as5XMTrTJXLgJilsHY1Q3QqwvfC7EUhkXYjsM6NyVgP2wOfuMDqta9uGK+hoAiG8Aus=
-X-Received: by 2002:ab0:15ae:0:b0:359:6107:43b8 with SMTP id
- i43-20020ab015ae000000b00359610743b8mr23221350uae.23.1654089294317; Wed, 01
- Jun 2022 06:14:54 -0700 (PDT)
+        with ESMTP id S1353201AbiFANPK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 09:15:10 -0400
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A71F23D491;
+        Wed,  1 Jun 2022 06:15:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1654089307; x=1685625307;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=u7ZLlN9ab0mHsIRqx2mjBaMaUlNGl85e+RLEouUCsbM=;
+  b=DXOBvjMofAJgjYBTectnfjtdPPCoXsdS7yGTXd5pB8VFI36O5DXyZ+aF
+   N5cU8v3E90nd+sFkDV4PtROfcdSjsu0ONoxrwFSSzMnIcEFf9sA0Z6fpe
+   091WKidcAF6/oetMfNSZRWmtAQnE8obi8tIwdGWr+Wyf4VRBDwHplQcBS
+   xNwcjzz32lmNo3nHQt0zAgUoZIlK9vkSBf4I790KXwyIZ9mBnKnXJZLB+
+   QIBqsOlMLN7Rvx9R9lgmgnyN8Q0EhQJeMDMgV1n/n7IZcVcBSeYNu0954
+   JUXvzO7Wa3BPBE6RpYjSBPuDN5ID7CcHaNemNn55pvh+AUmTg++YcRN/e
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10365"; a="273151672"
+X-IronPort-AV: E=Sophos;i="5.91,268,1647327600"; 
+   d="scan'208";a="273151672"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jun 2022 06:15:07 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,268,1647327600"; 
+   d="scan'208";a="581576162"
+Received: from lkp-server01.sh.intel.com (HELO 60dabacc1df6) ([10.239.97.150])
+  by fmsmga007.fm.intel.com with ESMTP; 01 Jun 2022 06:15:02 -0700
+Received: from kbuild by 60dabacc1df6 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1nwOBi-00040M-5B;
+        Wed, 01 Jun 2022 13:15:02 +0000
+Date:   Wed, 1 Jun 2022 21:15:00 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, djakov@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        abel.vesa@nxp.com, abailon@baylibre.com, l.stach@pengutronix.de,
+        laurent.pinchart@ideasonboard.com, marex@denx.de,
+        paul.elder@ideasonboard.com, Markus.Niebel@ew.tq-group.com,
+        aford173@gmail.com
+Cc:     kbuild-all@lists.01.org, kernel@pengutronix.de,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-imx@nxp.com, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 2/8] interconnect: add device managed bulk API
+Message-ID: <202206012137.3VySlLwf-lkp@intel.com>
+References: <20220601094156.3388454-3-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-References: <20220601125344.60602-1-stefan.wahren@i2se.com> <20220601125344.60602-8-stefan.wahren@i2se.com>
-In-Reply-To: <20220601125344.60602-8-stefan.wahren@i2se.com>
-From:   Peter Robinson <pbrobinson@gmail.com>
-Date:   Wed, 1 Jun 2022 14:14:09 +0100
-Message-ID: <CALeDE9Nam-w3d6CHTgFeOBcxqvmT+b-jrdCj+xVNWxoR6Ojtsw@mail.gmail.com>
-Subject: Re: [PATCH V2 07/11] mfd: bcm2835-pm: Add support for BCM2711
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Melissa Wen <melissa.srw@gmail.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220601094156.3388454-3-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 1, 2022 at 1:54 PM Stefan Wahren <stefan.wahren@i2se.com> wrote:
->
-> In BCM2711 the new RPiVid ASB took over V3D. The old ASB is still present
-> with the ISP and H264 bits, and V3D is in the same place in the new ASB
-> as the old one.
->
-> As per the devicetree bindings, BCM2711 will provide both the old and
-> new ASB resources, so get both of them and pass them into
-> 'bcm2835-power,' which will take care of selecting which one to use
-> accordingly.
->
-> Since the RPiVid ASB's resources were being provided prior to formalizing
-> the bindings[1], also support the old DT files that didn't use
-> 'reg-names.'
->
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-Reviewed-by: Peter Robinson <pbrobinson@gmail.com>
-> [1] See: 7dbe8c62ceeb ("ARM: dts: Add minimal Raspberry Pi 4 support")
-> ---
->  drivers/mfd/bcm2835-pm.c       | 21 +++++++++++++++++++++
->  include/linux/mfd/bcm2835-pm.h |  1 +
->  2 files changed, 22 insertions(+)
->
-> diff --git a/drivers/mfd/bcm2835-pm.c b/drivers/mfd/bcm2835-pm.c
-> index c1e81a4541d7..e65aee6f9b84 100644
-> --- a/drivers/mfd/bcm2835-pm.c
-> +++ b/drivers/mfd/bcm2835-pm.c
-> @@ -28,6 +28,8 @@ static const struct mfd_cell bcm2835_power_devs[] = {
->  static int bcm2835_pm_get_pdata(struct platform_device *pdev,
->                                 struct bcm2835_pm *pm)
->  {
-> +       bool is_bcm2711 = of_device_is_compatible(pm->dev->of_node, "brcm,bcm2711-pm");
-> +
->         /* If no 'reg-names' property is found we can assume we're using old
->          * firmware.
->          */
-> @@ -39,6 +41,7 @@ static int bcm2835_pm_get_pdata(struct platform_device *pdev,
->                         return PTR_ERR(pm->base);
->
->                 pm->asb = devm_platform_ioremap_resource(pdev, 1);
-> +               pm->rpivid_asb = devm_platform_ioremap_resource(pdev, 2);
->         } else {
->                 struct resource *res;
->
-> @@ -50,11 +53,28 @@ static int bcm2835_pm_get_pdata(struct platform_device *pdev,
->                                                     "asb");
->                 if (res)
->                         pm->asb = devm_ioremap_resource(&pdev->dev, res);
-> +
-> +               res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
-> +                                                   "rpivid_asb");
-> +               if (res)
-> +                       pm->rpivid_asb = devm_ioremap_resource(&pdev->dev,
-> +                                                               res);
->         }
->
->         if (IS_ERR(pm->asb))
->                 pm->asb = NULL;
->
-> +       if (IS_ERR(pm->rpivid_asb))
-> +               pm->rpivid_asb = NULL;
-> +
-> +       /* Ensure that rpivid_asb is set only for BCM2711, so subsequent
-> +        * driver can rely on this and don't get confused by broken DTB.
-> +        */
-> +       if (pm->rpivid_asb && !is_bcm2711) {
-> +               dev_err(pm->dev, "Unexpected rpivid_asb register, please fix your DTB.\n");
-> +               return -EINVAL;
-> +       }
-> +
->         return 0;
->  }
->
-> @@ -95,6 +115,7 @@ static int bcm2835_pm_probe(struct platform_device *pdev)
->  static const struct of_device_id bcm2835_pm_of_match[] = {
->         { .compatible = "brcm,bcm2835-pm-wdt", },
->         { .compatible = "brcm,bcm2835-pm", },
-> +       { .compatible = "brcm,bcm2711-pm", },
->         {},
->  };
->  MODULE_DEVICE_TABLE(of, bcm2835_pm_of_match);
-> diff --git a/include/linux/mfd/bcm2835-pm.h b/include/linux/mfd/bcm2835-pm.h
-> index ed37dc40e82a..f70a810c55f7 100644
-> --- a/include/linux/mfd/bcm2835-pm.h
-> +++ b/include/linux/mfd/bcm2835-pm.h
-> @@ -9,6 +9,7 @@ struct bcm2835_pm {
->         struct device *dev;
->         void __iomem *base;
->         void __iomem *asb;
-> +       void __iomem *rpivid_asb;
->  };
->
->  #endif /* BCM2835_MFD_PM_H */
-> --
-> 2.25.1
->
+Hi "Peng,
+
+Thank you for the patch! Yet something to improve:
+
+[auto build test ERROR on shawnguo/for-next]
+[also build test ERROR on robh/for-next linus/master v5.18 next-20220601]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Peng-Fan-OSS/interconnect-support-i-MX8MP/20220601-174431
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git for-next
+config: x86_64-kexec (https://download.01.org/0day-ci/archive/20220601/202206012137.3VySlLwf-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.3.0-1) 11.3.0
+reproduce (this is a W=1 build):
+        # https://github.com/intel-lab-lkp/linux/commit/23ecbba75b21962f25975cb014cf981a0420dae1
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Peng-Fan-OSS/interconnect-support-i-MX8MP/20220601-174431
+        git checkout 23ecbba75b21962f25975cb014cf981a0420dae1
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+   ld: drivers/opp/cpu.o: in function `devm_of_icc_bulk_get':
+>> cpu.c:(.text+0x2ad): multiple definition of `devm_of_icc_bulk_get'; drivers/opp/core.o:core.c:(.text+0xa4a): first defined here
+   ld: drivers/opp/debugfs.o: in function `devm_of_icc_bulk_get':
+   debugfs.c:(.text+0x13c): multiple definition of `devm_of_icc_bulk_get'; drivers/opp/core.o:core.c:(.text+0xa4a): first defined here
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
