@@ -2,117 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BE3553A265
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 12:16:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F5FF53A28B
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 12:30:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351717AbiFAKQE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 06:16:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59214 "EHLO
+        id S1351959AbiFAKai (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 06:30:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351992AbiFAKQC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 06:16:02 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 363CF6A422
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 03:16:00 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id t5so1508959edc.2
-        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 03:16:00 -0700 (PDT)
+        with ESMTP id S1346090AbiFAKah (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 06:30:37 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BCD056758;
+        Wed,  1 Jun 2022 03:30:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=l19XAZ4RQlB6J7TkjVOMmvipD7uiUl1NY4xv6/LugyI=;
-        b=BtCIyFjN7SFARpIH1mnWAScPZAo/XJHoBZSi2HQQ7H83f88XfXLI/MeYvWG5YjOGez
-         q8hrM8fnZplltFJ8MOqPvahGQWiFqMo+jgX0/eKYCSAlzbXiEOBkZ/Xs+9UJj3+dCAlR
-         4+PnY1MSlS9esAdaRcE9nCR9J9JUnQ3jSYf97NA2Dw3NJ3I0WyGHJGJIEMdyqnOJ0H9E
-         bXa4sJB7S/LusFzZBuAnmy8Z1k72D609NjRBnvVsityJqE+4PtcST5BiKZkMwEju4QCJ
-         bLCtp5CXpJOQUQuceR7/5ipgBauLhhIZeuYEY6a/zfX/LzafUYE8w1vk3etCxbkkZhZn
-         Rypg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=l19XAZ4RQlB6J7TkjVOMmvipD7uiUl1NY4xv6/LugyI=;
-        b=hiqANjPIUSS2B6TdeQIgOZXAd3HJiVsEe71jIni+8eLp3ubewJV0zyRKhV3Djj724p
-         rqnz0jxrN4FClym6hH0MD2Ej4oTHf9pbIcf6kzO0a0bYlFh+yehECAq72hsNgdP+h5aF
-         y7ohxk1r2uNVu3GAFhKxEcnoY+qKRcumsaavHzWOYcnDG8FR0KNYa58kxbEl39uUaKuh
-         sb6xzy6KQAlS0mMgQU2CN9ZHWf6HXoiTZbWIgnYVy7bt4EG45P0OfNRYY8EaKqcud5oT
-         9t3J1h6IgwZWHcc8+xhUO4wK8HJHdlcMlc4R6Dk3CwWjrb9e+fJfXjULlczIaji+pSiK
-         /t2A==
-X-Gm-Message-State: AOAM530rL5/09GBIk6cYrmjJmOQf6/TycRlL7uJ2kQTzbVSDHR1WnnZJ
-        JDNXPtRT5wNYTtPCxiRx3QZB4Q==
-X-Google-Smtp-Source: ABdhPJwqLQ4Ui6MtgBlrktb1cmqeGlIiI3nvKGpc3MDfpcX9j7W/cB4tKjt/uwhPk3xrWT+HZr/CNw==
-X-Received: by 2002:a05:6402:4410:b0:427:ab6f:a39a with SMTP id y16-20020a056402441000b00427ab6fa39amr69619893eda.120.1654078558779;
-        Wed, 01 Jun 2022 03:15:58 -0700 (PDT)
-Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id l15-20020a17090615cf00b006f3ef214dd9sm534351ejd.63.2022.06.01.03.15.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Jun 2022 03:15:58 -0700 (PDT)
-Message-ID: <7f4c0956-7663-60fc-a603-fd40f0317a1b@linaro.org>
-Date:   Wed, 1 Jun 2022 12:15:56 +0200
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1654079436; x=1685615436;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=S1VF/FCtI7XDUXKyOk2BQK3PJA0NMPOsdE1EzNqZpnE=;
+  b=j4l5RZFdh1AiZW6NME2wqwOZXRziHRm9xrPsnk4o/KFW+6Qyvx/kcDBW
+   gyXjePRVIMMxuzG4qWQQ59qfpTqmeVB6GPsdniNEaZMLqvfSjnH9Pc8K8
+   mtEJKSApUV/Dhg6jYBBBArX0tz7ptFr/3YdZcRebCVNRMW9gkKsllSf1D
+   8=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 01 Jun 2022 03:30:35 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jun 2022 03:30:35 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 1 Jun 2022 03:30:35 -0700
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 1 Jun 2022 03:30:29 -0700
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
+        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>, Linus Walleij <linus.walleij@linaro.org>,
+        <linux-gpio@vger.kernel.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH v2 0/2] Add pinctrl support adsp based platforms
+Date:   Wed, 1 Jun 2022 16:00:13 +0530
+Message-ID: <1654079415-26217-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 15/17] arm64: dts: mediatek: add mt6357 device-tree
-Content-Language: en-US
-To:     Fabien Parent <fparent@baylibre.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
-        qii.wang@mediatek.com, matthias.bgg@gmail.com, jic23@kernel.org,
-        chaotian.jing@mediatek.com, ulf.hansson@linaro.org,
-        srinivas.kandagatla@linaro.org, chunfeng.yun@mediatek.com,
-        broonie@kernel.org, wim@linux-watchdog.org, linux@roeck-us.net
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dmaengine@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-iio@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-serial@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-watchdog@vger.kernel.org
-References: <20220531135026.238475-1-fparent@baylibre.com>
- <20220531135026.238475-16-fparent@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220531135026.238475-16-fparent@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/05/2022 15:50, Fabien Parent wrote:
-> Add device-tree for the MT6357 PMIC.
-> 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> ---
->  arch/arm64/boot/dts/mediatek/mt6357.dtsi | 272 +++++++++++++++++++++++
->  1 file changed, 272 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt6357.dtsi
-> 
-(...)
+This patch set is to add pinctrl support adsp enabled sc7280 platforms.
 
-> +
-> +		mt6357rtc: mt6357rtc {
+Changes Since V1:
+    -- Update commit message.
+ 
+Srinivasa Rao Mandadapu (2):
+  dt-bindings: pinctrl: qcom: sc7280: Add compatible string for adsp
+    based platforms
+  pinctrl: qcom: sc7280: Add lpi pinctrl variant data for adsp based
+    targets
 
-Generic node names, so "rtc".
+ .../bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml    |  4 +++-
+ drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c            | 14 ++++++++++++++
+ 2 files changed, 17 insertions(+), 1 deletion(-)
 
-> +			compatible = "mediatek,mt6357-rtc",
-> +				     "mediatek,mt6358-rtc";
-> +		};
-> +
-> +		mt6357keys: mt6357keys {
+-- 
+2.7.4
 
-Generic node names.
-
-> +			compatible = "mediatek,mt6357-keys";
-> +		};
-> +	};
-> +};
-
-
-Best regards,
-Krzysztof
