@@ -2,68 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5ED7053A97D
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 16:59:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 774CF53A97E
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 17:00:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244284AbiFAO7N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 10:59:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36120 "EHLO
+        id S1350763AbiFAPAk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 11:00:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230072AbiFAO7M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 10:59:12 -0400
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 636FD6C56D;
-        Wed,  1 Jun 2022 07:59:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1654095551; x=1685631551;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=t02FFnqc6Y8S/GCyagVu8pZZE5QyASWhUXTr1q1i5K0=;
-  b=dZFHALMHQZWIULn2c5ezCZoB+LG8nRa+KA7LMkqzBQ1xC7XWMQObp909
-   RQZ2lViECiYmMdpFEUJz7gaYXGJIu892Oolk3IYwsugz3F05TzR3ioSid
-   sC31lxxkm9oTJo5EN/DaThlPUKAGS5jP+jxyjwgXnhnBAXpkulu44juK+
-   H8WPo8RQATXv+mc3lQ48KHpxJ3fTE8fqqG2ibuwK1B31HA0JoPjws6wov
-   OkAvJZ0CAVT3HKtyLKX8l6FDe1hqykgYCuTGtDdcUpjFkHx/UaeXWRHMr
-   235Tp9GXMwxhOxsd/6aGydM6e3lMC2427ZnZAA13oqNxkTF6v4H4DQAdy
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10365"; a="275625370"
-X-IronPort-AV: E=Sophos;i="5.91,268,1647327600"; 
-   d="scan'208";a="275625370"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jun 2022 07:59:11 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,268,1647327600"; 
-   d="scan'208";a="606308020"
-Received: from lkp-server01.sh.intel.com (HELO 60dabacc1df6) ([10.239.97.150])
-  by orsmga008.jf.intel.com with ESMTP; 01 Jun 2022 07:59:05 -0700
-Received: from kbuild by 60dabacc1df6 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nwPoP-00045W-6Q;
-        Wed, 01 Jun 2022 14:59:05 +0000
-Date:   Wed, 1 Jun 2022 22:58:56 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, djakov@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        abel.vesa@nxp.com, abailon@baylibre.com, l.stach@pengutronix.de,
-        laurent.pinchart@ideasonboard.com, marex@denx.de,
-        paul.elder@ideasonboard.com, Markus.Niebel@ew.tq-group.com,
-        aford173@gmail.com
-Cc:     kbuild-all@lists.01.org, kernel@pengutronix.de,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-imx@nxp.com, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH 2/8] interconnect: add device managed bulk API
-Message-ID: <202206012228.VPwcFQ5b-lkp@intel.com>
-References: <20220601094156.3388454-3-peng.fan@oss.nxp.com>
+        with ESMTP id S231872AbiFAPAk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 11:00:40 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17CA46C56D;
+        Wed,  1 Jun 2022 08:00:38 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 25E65B81B9D;
+        Wed,  1 Jun 2022 15:00:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C485DC3411F;
+        Wed,  1 Jun 2022 15:00:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654095635;
+        bh=YGBTTwSez2bvfmHZWHX0qISMoJt6yn6ld2BIY8Pf8UM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=cG//5M4O1K4VQHiu7hcVQVh/4Zxh9AvFFesY8jMGKFRY1mVp/Yny3u+qVZ/1/1g3W
+         aGO4g0cl7gtxfSqd+VtIYgrSqZW4LGMhR1dKfh0ye5gc0Z32vSPvIB6GDxtpKKwmC4
+         N/5+tFZ+kAADzxzkIN8NT8EmuuuJy1R7TuEImkMbGsNznkKzQbjZhNRgnSR1UFyX9n
+         TomfBZlAkUWQJjPidL49cnfqsedJDtVQ7VpBokgCo5XZdPUl7Qssih6/6F7fkG3IUs
+         oOXMrj2QvpbjVnwfxF5d2hScJkMnyov8ihXrPZ6JIcQknb1M+AEvL0msMJIshWMns3
+         jaF3mTpkSUccQ==
+Received: by mail-vk1-f175.google.com with SMTP id bs5so988404vkb.4;
+        Wed, 01 Jun 2022 08:00:35 -0700 (PDT)
+X-Gm-Message-State: AOAM532dZbRQwAfT6p9S+x9kQVc04fndpDrFDgitGYFaFP8cWQ01mVWV
+        bGWcUNGWFgt5a6Oa5h3hFd7VgHfOlvkgXaJ/Rw==
+X-Google-Smtp-Source: ABdhPJymiVPo7vGcy5JwOlMETu5yUO9NIUiNBVFO5/rVGJpoIUAebOk9xJMF8Q2JeIIvSPmHqCU4L2PbSauC0d309Pg=
+X-Received: by 2002:a1f:73c1:0:b0:35c:cb95:832 with SMTP id
+ o184-20020a1f73c1000000b0035ccb950832mr34656vkc.15.1654095634725; Wed, 01 Jun
+ 2022 08:00:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220601094156.3388454-3-peng.fan@oss.nxp.com>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20220427175956.362987-1-robh@kernel.org>
+In-Reply-To: <20220427175956.362987-1-robh@kernel.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 1 Jun 2022 10:00:23 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKxyeWosex+WAPS-e_OTp19-zJHEWnzcCK6wt4jcbb5=A@mail.gmail.com>
+Message-ID: <CAL_JsqKxyeWosex+WAPS-e_OTp19-zJHEWnzcCK6wt4jcbb5=A@mail.gmail.com>
+Subject: Re: [dtschema PATCH] schemas: i2c: Add missing properties and descriptions
+To:     devicetree@vger.kernel.org,
+        Mailing List <devicetree-spec@vger.kernel.org>
+Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Eugen Hristev <eugen.hristev@microchip.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Alain Volmat <alain.volmat@foss.st.com>,
+        Matt Johnston <matt@codeconstruct.com.au>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,52 +67,200 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi "Peng,
+On Wed, Apr 27, 2022 at 12:59 PM Rob Herring <robh@kernel.org> wrote:
+>
+> Add remaining properties and descriptions from i2c.txt binding in Linux
+> kernel tree. The Cc list are the authors of i2c.txt.
+>
+> Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Cc: Eugen Hristev <eugen.hristev@microchip.com>
+> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> Cc: Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
+> Cc: Jon Hunter <jonathanh@nvidia.com>
+> Cc: Alain Volmat <alain.volmat@foss.st.com>
 
-Thank you for the patch! Perhaps something to improve:
+Ping!
 
-[auto build test WARNING on shawnguo/for-next]
-[also build test WARNING on robh/for-next linus/master v5.18 next-20220601]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Peng-Fan-OSS/interconnect-support-i-MX8MP/20220601-174431
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git for-next
-config: parisc-randconfig-r014-20220531 (https://download.01.org/0day-ci/archive/20220601/202206012228.VPwcFQ5b-lkp@intel.com/config)
-compiler: hppa-linux-gcc (GCC) 11.3.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/23ecbba75b21962f25975cb014cf981a0420dae1
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Peng-Fan-OSS/interconnect-support-i-MX8MP/20220601-174431
-        git checkout 23ecbba75b21962f25975cb014cf981a0420dae1
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=parisc SHELL=/bin/bash drivers/opp/
-
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
-   In file included from drivers/opp/opp.h:15,
-                    from drivers/opp/core.c:22:
->> include/linux/interconnect.h:120:5: warning: no previous prototype for 'devm_of_icc_bulk_get' [-Wmissing-prototypes]
-     120 | int devm_of_icc_bulk_get(struct device *dev, int num_paths, struct icc_bulk_data *paths)
-         |     ^~~~~~~~~~~~~~~~~~~~
+If you are waiting on company approvals, please let me know.
 
 
-vim +/devm_of_icc_bulk_get +120 include/linux/interconnect.h
-
-   119	
- > 120	int devm_of_icc_bulk_get(struct device *dev, int num_paths, struct icc_bulk_data *paths)
-   121	{
-   122		return 0;
-   123	}
-   124	
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+> Cc: Matt Johnston <matt@codeconstruct.com.au>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> Cc list,
+>
+> I need your or your company's permission to relicense i2c.txt contents
+> (used in 'description') to BSD-2-Clause. Please ack and provide a
+> copyright if desired.
+>
+>  dtschema/schemas/i2c/i2c-controller.yaml | 143 +++++++++++++++++++++++
+>  1 file changed, 143 insertions(+)
+>
+> diff --git a/dtschema/schemas/i2c/i2c-controller.yaml b/dtschema/schemas/i2c/i2c-controller.yaml
+> index 91eac62a6bc8..c2e803ebcc3f 100644
+> --- a/dtschema/schemas/i2c/i2c-controller.yaml
+> +++ b/dtschema/schemas/i2c/i2c-controller.yaml
+> @@ -1,5 +1,6 @@
+>  # SPDX-License-Identifier: BSD-2-Clause
+>  # Copyright 2018 Linaro Ltd.
+> +# Copyright 2022 Arm Ltd.
+>  %YAML 1.2
+>  ---
+>  $id: http://devicetree.org/schemas/i2c/i2c-controller.yaml#
+> @@ -28,6 +29,91 @@ properties:
+>      minimum: 1000
+>      maximum: 3000000
+>
+> +  i2c-scl-falling-time-ns:
+> +    description:
+> +      Number of nanoseconds the SCL signal takes to fall; t(f) in the I2C
+> +      specification.
+> +
+> +  i2c-scl-internal-delay-ns:
+> +    description:
+> +      Number of nanoseconds the IP core additionally needs to setup SCL.
+> +
+> +  i2c-scl-rising-time-ns:
+> +    description:
+> +      Number of nanoseconds the SCL signal takes to rise; t(r) in the I2C
+> +      specification.
+> +
+> +  i2c-sda-falling-time-ns:
+> +    description:
+> +      Number of nanoseconds the SDA signal takes to fall; t(f) in the I2C
+> +      specification.
+> +
+> +  i2c-analog-filter:
+> +    type: boolean
+> +    description:
+> +      Enable analog filter for i2c lines.
+> +
+> +  i2c-digital-filter:
+> +    type: boolean
+> +    description:
+> +      Enable digital filter for i2c lines.
+> +
+> +  i2c-digital-filter-width-ns:
+> +    description:
+> +      Width of spikes which can be filtered by digital filter
+> +      (i2c-digital-filter). This width is specified in nanoseconds.
+> +
+> +  i2c-analog-filter-cutoff-frequency:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Frequency that the analog filter (i2c-analog-filter) uses to distinguish
+> +      which signal to filter. Signal with higher frequency than specified will
+> +      be filtered out. Only lower frequency will pass (this is applicable to a
+> +      low-pass analog filter). Typical value should be above the normal i2c bus
+> +      clock frequency (clock-frequency). Specified in Hz.
+> +
+> +  mctp-controller:
+> +    type: boolean
+> +    description:
+> +      Indicates that the system is accessible via this bus as an endpoint for
+> +      MCTP over I2C transport.
+> +
+> +  multi-master:
+> +    type: boolean
+> +    description:
+> +      States that there is another master active on this bus. The OS can use
+> +      this information to adapt power management to keep the arbitration awake
+> +      all the time, for example. Can not be combined with 'single-master'.
+> +
+> +  scl-gpios:
+> +    maxItems: 1
+> +    description:
+> +      Specifies the GPIO related to SCL pin. Used for GPIO bus recovery.
+> +
+> +  sda-gpios:
+> +    maxItems: 1
+> +    description:
+> +      Specifies the GPIO related to SDA pin. Optional for GPIO bus recovery.
+> +
+> +  single-master:
+> +    type: boolean
+> +    description:
+> +      States that there is no other master active on this bus. The OS can use
+> +      this information to detect a stalled bus more reliably, for example. Can
+> +      not be combined with 'multi-master'.
+> +
+> +  smbus:
+> +    type: boolean
+> +    description:
+> +      States that additional SMBus restrictions and features apply to this bus.
+> +      An example of feature is SMBusHostNotify. Examples of restrictions are
+> +      more reserved addresses and timeout definitions.
+> +
+> +  smbus-alert:
+> +    type: boolean
+> +    description:
+> +      states that the optional SMBus-Alert feature apply to this bus.
+> +
+>    no-detect:
+>      type: boolean
+>      description:
+> @@ -38,4 +124,61 @@ patternProperties:
+>    '@[0-9a-f]+$':
+>      type: object
+>
+> +    properties:
+> +      reg:
+> +        items:
+> +          items:
+> +            - oneOf:
+> +                - maximum: 0x7f
+> +                - minimum: 0x40000000
+> +                  maximum: 0x4000007f
+> +                - minimum: 0x80000000
+> +                  maximum: 0x800003ff
+> +                - minimum: 0xc0000000
+> +                  maximum: 0xc00003ff
+> +        description: |
+> +          One or many I2C slave addresses. These are usually a 7 bit addresses.
+> +          However, flags can be attached to an address. I2C_TEN_BIT_ADDRESS is
+> +          used to mark a 10 bit address. It is needed to avoid the ambiguity
+> +          between e.g. a 7 bit address of 0x50 and a 10 bit address of 0x050
+> +          which, in theory, can be on the same bus.
+> +          Another flag is I2C_OWN_SLAVE_ADDRESS to mark addresses on which we
+> +          listen to be devices ourselves.
+> +
+> +      host-notify:
+> +        description:
+> +          Device uses SMBus host notify protocol instead of interrupt line.
+> +          Requires being connected to an adapter that supports this feature.
+> +
+> +      interrupts:
+> +        description:
+> +          I2C core will treat "irq" interrupt (or the very first interrupt if
+> +          not using interrupt names) as primary interrupt for the slave.
+> +
+> +      interrupt-names:
+> +        anyOf:
+> +          - {} # Any name is allowed.
+> +          - items:
+> +              enum:
+> +                - irq
+> +                - wakeup
+> +                - smbus_alert
+> +            description:
+> +              Names which are recognized by I2C core,  other names are left to
+> +              individual bindings.
+> +
+> +      wakeup-source:
+> +        description:
+> +          Device can be used as a wakeup source. The device should also have
+> +          "wakeup" interrupt for the device. If "wakeup" interrupt name is not
+> +          present in the binding, then primary interrupt will be used as wakeup
+> +          interrupt.
+> +
+> +    required:
+> +      - reg
+> +
+> +dependentRequired:
+> +  i2c-analog-filter-cutoff-frequency: [ i2c-analog-filter ]
+> +  i2c-digital-filter-width-ns: [ i2c-digital-filter ]
+> +
+>  additionalProperties: true
+> --
+> 2.34.1
+>
