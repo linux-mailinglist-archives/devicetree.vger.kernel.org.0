@@ -2,197 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED809539A63
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 02:35:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFC2B539A75
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 02:43:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348665AbiFAAfH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 31 May 2022 20:35:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46058 "EHLO
+        id S1348823AbiFAAnZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 31 May 2022 20:43:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343793AbiFAAfB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 20:35:01 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9798768304;
-        Tue, 31 May 2022 17:34:57 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3DED06149E;
-        Wed,  1 Jun 2022 00:34:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D44A2C385A9;
-        Wed,  1 Jun 2022 00:34:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654043696;
-        bh=AGLxz/xreC1/Xeaa2Sjt8QqZXIylnuwZjPxvPygrygg=;
-        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
-        b=DfuMHCjbgseVb9ElRvU6+fEgDpIv3ulhOxsoIPOQDdh5GUh8KjIJ28oGLRaKeGvWL
-         0OGOBkYVHKvSBhLuz9k1LfSVAr5J41JWFoFQ4TABVCeTglNoTjSMmz8FJQ49sdckLg
-         qsGKa+Yr+MoyMmAdmNIWUZGeNcE1QpV9WDLAqZFgKgw12wg03tSKY2yAzfzVh+OlIr
-         IhSeKnYLMf2s3ZC0XoXksZyr4Mb/ha+g8gPhA0eQAKOPF5QkoCt5VR2mG2iYj77PY2
-         +OIvjXfirEI3JrU/2GAu0wBIXEs9XmzEmlNrwfNOn0Ao2FA84oEYKiBszft0wz/igv
-         pc1IcOOf15l3Q==
-Date:   Tue, 31 May 2022 17:34:54 -0700 (PDT)
-From:   Stefano Stabellini <sstabellini@kernel.org>
-X-X-Sender: sstabellini@ubuntu-linux-20-04-desktop
-To:     Oleksandr Tyshchenko <olekstysh@gmail.com>
-cc:     xen-devel@lists.xenproject.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org,
-        Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        with ESMTP id S232296AbiFAAnW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 31 May 2022 20:43:22 -0400
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DBAD2F01D
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 17:43:20 -0700 (PDT)
+Received: by mail-pf1-x435.google.com with SMTP id y189so447375pfy.10
+        for <devicetree@vger.kernel.org>; Tue, 31 May 2022 17:43:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version;
+        bh=HGDjIoTk+7BvVREeVToGIHbN06wUxuqE/4VdBkq/l0E=;
+        b=ekRUSqMh5V1nvmBXthPgKOn/nFFvhKtJ+2NTeWuGsdJcSMdwr5UbQogU9osCK85BxY
+         kz+RGapjTWMHs9Jj//0Pk4XKgOXkp6Y5sOqNb198XauLvgujRVCvXOctT9G1GT/f1zo0
+         ZK5or1wncs+potFJFoA3wIDHe2xYy6YCNxh+c=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version;
+        bh=HGDjIoTk+7BvVREeVToGIHbN06wUxuqE/4VdBkq/l0E=;
+        b=2RC4dYlA3Ljrzfu8u7jYy6ZadzhJv5csW98Jh7+gfLAe1rVS5DAYqpdboof5FRyV+G
+         dEqf8jH70kLAec5t2OC4nkinAG5zYbY0eGPNJ9+p/h0eKDPzxRcUxrZLpMG1DkWYv6U2
+         RkWivFwpQiJzyCL9irWviszs6SzjBOlBxGcLIQj5ec3Jb2FCk6xIFV2JPUhtIdOnX5/2
+         7mIEoCeGoxyCWue6LTi9Gjqj8192O9q3k1SmGfmuBwoJHjOUYKG9MBOaDdZJy7jL7qI6
+         zEDzEFQbD7cbPKRKphQbxfcrlpMnA9Q9nV6KAPfaNYvv6DGB5AxFDlSbOb8kajqvr84A
+         kzZw==
+X-Gm-Message-State: AOAM532EkGWp+ev7akM625ZpTd013f2kFfEOAftCOCycT12fH8H8AItR
+        WH84e6YU1eUX6689ikPeuHt1QA==
+X-Google-Smtp-Source: ABdhPJzbLs0YuJClWMovw/MCnscfh9R/ldkQKhEFFsOlgkjMQzbZiDOesbdclXNoX4uKhLAiuJMbjA==
+X-Received: by 2002:a05:6a00:140f:b0:4e0:6995:9c48 with SMTP id l15-20020a056a00140f00b004e069959c48mr63567174pfu.59.1654044200067;
+        Tue, 31 May 2022 17:43:20 -0700 (PDT)
+Received: from T3500-3.dhcp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id cb5-20020a056a00430500b005190ce21500sm54237pfb.110.2022.05.31.17.43.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 31 May 2022 17:43:18 -0700 (PDT)
+From:   William Zhang <william.zhang@broadcom.com>
+To:     Linux ARM List <linux-arm-kernel@lists.infradead.org>
+Cc:     dan.beygelman@broadcom.com, philippe.reynes@softathome.com,
+        anand.gore@broadcom.com, florian.fainelli@broadcom.com,
+        tomer.yacoby@broadcom.com, samyon.furman@broadcom.com,
+        kursad.oney@broadcom.com, joel.peshkin@broadcom.com,
+        William Zhang <william.zhang@broadcom.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Julien Grall <julien@xen.org>, Juergen Gross <jgross@suse.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        "Michael S. Tsirkin" <mst@redhat.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        Arnd Bergmann <arnd@arndb.de>
-Subject: Re: [PATCH V3 5/8] dt-bindings: Add xen,grant-dma IOMMU description
- for xen-grant DMA ops
-In-Reply-To: <1653944417-17168-6-git-send-email-olekstysh@gmail.com>
-Message-ID: <alpine.DEB.2.22.394.2205311726000.1905099@ubuntu-linux-20-04-desktop>
-References: <1653944417-17168-1-git-send-email-olekstysh@gmail.com> <1653944417-17168-6-git-send-email-olekstysh@gmail.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] arm64: bcmbca: add bcm4912 SoC support
+Date:   Tue, 31 May 2022 17:42:41 -0700
+Message-Id: <20220601004244.27394-1-william.zhang@broadcom.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="00000000000001bffb05e0582de1"
+X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,MIME_NO_TEXT,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 31 May 2022, Oleksandr Tyshchenko wrote:
-> From: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
-> 
-> The main purpose of this binding is to communicate Xen specific
-> information using generic IOMMU device tree bindings (which is
-> a good fit here) rather than introducing a custom property.
-> 
-> Introduce Xen specific IOMMU for the virtualized device (e.g. virtio)
-> to be used by Xen grant DMA-mapping layer in the subsequent commit.
-> 
-> The reference to Xen specific IOMMU node using "iommus" property
-> indicates that Xen grant mappings need to be enabled for the device,
-> and it specifies the ID of the domain where the corresponding backend
-> resides. The domid (domain ID) is used as an argument to the Xen grant
-> mapping APIs.
-> 
-> This is needed for the option to restrict memory access using Xen grant
-> mappings to work which primary goal is to enable using virtio devices
-> in Xen guests.
-> 
-> Signed-off-by: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
-> ---
-> Changes RFC -> V1:
->    - update commit subject/description and text in description
->    - move to devicetree/bindings/arm/
-> 
-> Changes V1 -> V2:
->    - update text in description
->    - change the maintainer of the binding
->    - fix validation issue
->    - reference xen,dev-domid.yaml schema from virtio/mmio.yaml
-> 
-> Change V2 -> V3:
->    - Stefano already gave his Reviewed-by, I dropped it due to the changes (significant)
->    - use generic IOMMU device tree bindings instead of custom property
->      "xen,dev-domid"
->    - change commit subject and description, was
->      "dt-bindings: Add xen,dev-domid property description for xen-grant DMA ops"
-> ---
->  .../devicetree/bindings/iommu/xen,grant-dma.yaml   | 49 ++++++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml b/Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml
-> new file mode 100644
-> index 00000000..ab5765c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iommu/xen,grant-dma.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Xen specific IOMMU for virtualized devices (e.g. virtio)
-> +
-> +maintainers:
-> +  - Stefano Stabellini <sstabellini@kernel.org>
-> +
-> +description:
-> +  The reference to Xen specific IOMMU node using "iommus" property indicates
-> +  that Xen grant mappings need to be enabled for the device, and it specifies
-> +  the ID of the domain where the corresponding backend resides.
-> +  The binding is required to restrict memory access using Xen grant mappings.
+--00000000000001bffb05e0582de1
+Content-Transfer-Encoding: 8bit
 
-I think this is OK and in line with the discussion we had on the list. I
-propose the following wording instead:
+This change adds the basic support for Broadcom's ARMv8 based
+Broadband SoC BCM4912. The initial support includes a bare-bone dts
+for quad core Broadcom B53 with a Broadcom uart.
 
-"""
-The Xen IOMMU represents the Xen grant table interface. Grant mappings
-are to be used with devices connected to the Xen IOMMU using the
-"iommus" property, which also specifies the ID of the backend domain.
-The binding is required to restrict memory access using Xen grant
-mappings.
-"""
+Changes in v2:
+- Simplify dt-bindings patch subject line
+- Fix pmu compatible string
+- Remove unnecessary cpu_on and cpu_off properties from psci node
+- Add the missing gic registers and interrupts property to gic node
+
+William Zhang (3):
+  dt-bindings: arm64: add bcm4912 SoC
+  arm64: dts: add dts files for bcmbca SoC bcm4912
+  MAINTAINERS: add bcm4912 to bcmbca arch entry
+
+ .../bindings/arm/bcm/brcm,bcmbca.yaml         |   7 +
+ MAINTAINERS                                   |   1 +
+ arch/arm64/boot/dts/broadcom/bcmbca/Makefile  |   3 +-
+ .../boot/dts/broadcom/bcmbca/bcm4912.dtsi     | 128 ++++++++++++++++++
+ .../boot/dts/broadcom/bcmbca/bcm94912.dts     |  30 ++++
+ 5 files changed, 168 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/broadcom/bcmbca/bcm4912.dtsi
+ create mode 100644 arch/arm64/boot/dts/broadcom/bcmbca/bcm94912.dts
+
+-- 
+2.36.1
 
 
-> +properties:
-> +  compatible:
-> +    const: xen,grant-dma
-> +
-> +  '#iommu-cells':
-> +    const: 1
-> +    description:
-> +      Xen specific IOMMU is multiple-master IOMMU device.
-> +      The single cell describes the domid (domain ID) of the domain where
-> +      the backend is running.
+--00000000000001bffb05e0582de1
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
-Here I would say:
-
-"""
-The single cell is the domid (domain ID) of the domain where the backend
-is running.
-"""
-
-With the two wording improvements:
-
-Reviewed-by: Stefano Stabellini <sstabellini@kernel.org>
-
-
-> +required:
-> +  - compatible
-> +  - "#iommu-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    xen_iommu {
-> +        compatible = "xen,grant-dma";
-> +        #iommu-cells = <1>;
-> +    };
-> +
-> +    virtio@3000 {
-> +        compatible = "virtio,mmio";
-> +        reg = <0x3000 0x100>;
-> +        interrupts = <41>;
-> +
-> +        /* The backend is located in Xen domain with ID 1 */
-> +        iommus = <&xen_iommu 1>;
-> +    };
-> -- 
-> 2.7.4
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-> 
+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
+TltlrAeBKRJ1M9O/DY5v7L1Yrs//7XIRg/d2ZPAOSGBQzFYjYTFWwNBiR1s1zP0m2y56DPbS5gwj
+fqAN/I4PJHIvTh3zUgHXNKadYoYRiPHXfaTWO9UhzysOpQIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
+BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
+YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
+BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
+MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
+YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
+Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
+HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
+BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUohM5GmNlGWe5wpzDxzIy
++EgzbRswDQYJKoZIhvcNAQELBQADggEBACKu9JSQAYTlmC+JTniO/C/UcXGonATI/muBjWTxtkHc
+abZtz0uwzzrRrpV+mbHLGVFFeRbXSLvcEzqHp8VomXifEZlfsE9LajSehzaqhd+np+tmUPz1RlI/
+ibZ7vW+1VF18lfoL+wHs2H0fsG6JfoqZldEWYXASXnUrs0iTLgXxvwaQj69cSMuzfFm1X5kWqWCP
+W0KkR8025J0L5L4yXfkSO6psD/k4VcTsMJHLN4RfMuaXIT6EM0cNO6h3GypyTuPf1N1X+F6WQPKb
+1u+rvdML63P9fX7e7mwwGt5klRnf8aK2VU7mIdYCcrFHaKDTW3fkG6kIgrE1wWSgiZYL400xggJt
+MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
+VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw28eX6TfvsbNfu
+SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIIljLk3CudrPrEV0nBKdPiXVnHyx
+RqYQo0yLTokYq9UVMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
+MDYwMTAwNDMyMFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
+AwQCATANBgkqhkiG9w0BAQEFAASCAQCzXgd8EoppZ6SRj019bHovv37YQtyD/gOVECHTCOnHdFNl
+JGIeZ9sYRuzb3VF0tUWaebPbvc8X69qiblo0trDx3MqMuOa7iGqgeDFkYH2LxI1sgmpG2FbULE7n
+O7zKFvf/Q7YysmztlIkMQsfWYMeLcc8Wu9n+WOcEmUfQ8k86j3u/+1V19kCQ9MXe3KvK8gpOsVaD
+MqAbluW0NloujS1shILDFj6GElVkqAlU2g1V6GhRQdnG8esacTK1EmkSoahCrdlPGP8FHuT2ewUM
+A+oVMjjiLYhh/nlrLUvIWjCmb7agI5K5oPi4+8fVWqodGxVU24OLFHs5xvorTzqq/1aB
+--00000000000001bffb05e0582de1--
