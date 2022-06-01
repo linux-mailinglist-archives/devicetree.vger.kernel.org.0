@@ -2,136 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC2D1539CAC
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 07:43:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4A28539CB4
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 07:44:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349636AbiFAFdB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 01:33:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33922 "EHLO
+        id S1349665AbiFAFoF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 01:44:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349634AbiFAFdB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 01:33:01 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C936259313;
-        Tue, 31 May 2022 22:32:57 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 48569CE19F7;
-        Wed,  1 Jun 2022 05:32:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8DB0C385A5;
-        Wed,  1 Jun 2022 05:32:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654061574;
-        bh=iQER32CU/sUTRxMxTf/FVOO/vpKLn4BYxmNWOMU1Q5A=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=py1GvzmMMyjfRNmngOj/y8UvpccVWhIIU9HkNDRPc+VIpmfUT5xzceY16Ml6a7YF8
-         JZpnQQC9kuU7m1I0xBjJK4+y2sjajb4kmqbZnZWACbXOvqMG2+ClNL6hOYaY/IgsQr
-         ZHnVKFYVypiskCsbyu8HcWz7G5bKq4uz1XcLLD4a4gHvRWsGOfDyA8BBRd7T+fips4
-         k2/fMrgoYK02fldXgqKnRL45L6ESGmYzNZNy+aQOj8V/LlviXvkKL8fkk8ICsnENsO
-         +PjLJ5Cc0sbGWQq1xnuVlCJPYgmKiyf3RHwHKcKEnifcbRKy0FlAMHIx3mCiO+8RBY
-         9EtQrISZve5rQ==
-Date:   Wed, 1 Jun 2022 11:02:49 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Jianjun Wang <jianjun.wang@mediatek.com>
-Cc:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
+        with ESMTP id S243479AbiFAFoC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 01:44:02 -0400
+Received: from twspam01.aspeedtech.com (twspam01.aspeedtech.com [211.20.114.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFB3F5EBE7;
+        Tue, 31 May 2022 22:44:00 -0700 (PDT)
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 2515RncG027922;
+        Wed, 1 Jun 2022 13:27:49 +0800 (GMT-8)
+        (envelope-from neal_liu@aspeedtech.com)
+Received: from localhost.localdomain (192.168.10.10) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 1 Jun
+ 2022 13:42:17 +0800
+From:   Neal Liu <neal_liu@aspeedtech.com>
+To:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Wei-Shun Chang <weishunc@google.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        rex-bc.chen@mediatek.com, randy.wu@mediatek.com,
-        jieyy.yang@mediatek.com, chuanjia.liu@mediatek.com,
-        qizhong.cheng@mediatek.com, jian.yang@mediatek.com
-Subject: Re: [PATCH v9 0/2] phy: mediatek: Add PCIe PHY driver
-Message-ID: <Ypb6AS6oj2en/Roi@matsya>
-References: <20220520064920.27313-1-jianjun.wang@mediatek.com>
- <96f7cc90171bb6e088ce0ed88e10ad14f06a98bb.camel@mediatek.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        "Andrew Jeffery" <andrew@aj.id.au>,
+        Johnny Huang <johnny_huang@aspeedtech.com>
+CC:     <linux-aspeed@lists.ozlabs.org>, <linux-crypto@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/5] Add Aspeed crypto driver for hardware acceleration
+Date:   Wed, 1 Jun 2022 13:41:59 +0800
+Message-ID: <20220601054204.1522976-1-neal_liu@aspeedtech.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <96f7cc90171bb6e088ce0ed88e10ad14f06a98bb.camel@mediatek.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [192.168.10.10]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 2515RncG027922
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01-06-22, 10:21, Jianjun Wang wrote:
-> Hello Maintainers,
-> 
-> Gentle ping for this patch series, if there is anything I can do to get
-> these patches merged, please let me know.
+Aspeed Hash and Crypto Engine (HACE) is designed to accelerate the
+throughput of hash data digest, encryption and decryption.
 
-Patience my friend patience. This was received very late in cycle and I
-will review after merge window closes..
+These patches aim to add Aspeed hash & crypto driver support.
+The hash & crypto driver also pass the run-time self tests that
+take place at algorithm registration.
 
+Neal Liu (5):
+  crypto: aspeed: Add HACE hash driver
+  dt-bindings: clock: Add AST2600 HACE reset definition
+  ARM: dts: aspeed: Add HACE device controller node
+  dt-bindings: crypto: add documentation for aspeed hace
+  crypto: aspeed: add HACE crypto driver
 
-> 
-> Thanks.
-> 
-> On Fri, 2022-05-20 at 14:49 +0800, Jianjun Wang wrote:
-> > These series patches add support for PCIe PHY driver on MediaTek
-> > chipsets.
-> > 
-> > Changes in v9:
-> > 1. Check if the return value is -ENOMEM when reading efuse data
-> > fails.
-> > 
-> > Changes in v8:
-> > 1. Use "device_property_present()" to increase human readability;
-> > 2. Use "GPL" as recommended in commit bf7fbeeae6db ("module: Cure
-> >    the MODULE_LICENSE "GPL" vs. "GPL v2" bogosity").
-> > 
-> > Changes in v7:
-> > 1. Add bitfield.h header to fix the build error on non-arm64
-> > platforms.
-> > 
-> > Changes in v6:
-> > 1. Remove unnecessary header files;
-> > 2. Use FILELD_PREP in bitfield.h to set value.
-> > 
-> > Changes in v5:
-> > 1. Fix typo in kerneldoc: "eFues" => "eFuse".
-> > 
-> > Changes in v4:
-> > 1. Fix no return when calling dev_err_probe.
-> > 
-> > Changes in v3:
-> > 1. Add introductions for structure members;
-> > 2. Add SoC dependent data;
-> > 3. Dynamically allocate efuse data;
-> > 4. Check return value if it's an -EPROBE_DEFER.
-> > 
-> > Changes in v2:
-> > 1. Add specific compatible name;
-> > 2. Read NVMEM data at probe time;
-> > 3. Fix typos.
-> > 
-> > Jianjun Wang (2):
-> >   dt-bindings: phy: mediatek: Add YAML schema for PCIe PHY
-> >   phy: mediatek: Add PCIe PHY driver
-> > 
-> >  .../bindings/phy/mediatek,pcie-phy.yaml       |  75 +++++
-> >  drivers/phy/mediatek/Kconfig                  |  11 +
-> >  drivers/phy/mediatek/Makefile                 |   1 +
-> >  drivers/phy/mediatek/phy-mtk-pcie.c           | 267
-> > ++++++++++++++++++
-> >  4 files changed, 354 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
-> >  create mode 100644 drivers/phy/mediatek/phy-mtk-pcie.c
-> > 
+ .../bindings/crypto/aspeed,hace.yaml          |   58 +
+ MAINTAINERS                                   |    7 +
+ arch/arm/boot/dts/aspeed-g6.dtsi              |    9 +
+ drivers/crypto/Kconfig                        |    1 +
+ drivers/crypto/Makefile                       |    1 +
+ drivers/crypto/aspeed/Kconfig                 |   38 +
+ drivers/crypto/aspeed/Makefile                |    8 +
+ drivers/crypto/aspeed/aspeed-hace-crypto.c    | 1019 +++++++++++++
+ drivers/crypto/aspeed/aspeed-hace-hash.c      | 1335 +++++++++++++++++
+ drivers/crypto/aspeed/aspeed-hace.c           |  305 ++++
+ drivers/crypto/aspeed/aspeed-hace.h           |  286 ++++
+ include/dt-bindings/clock/ast2600-clock.h     |    1 +
+ 12 files changed, 3068 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/crypto/aspeed,hace.yaml
+ create mode 100644 drivers/crypto/aspeed/Kconfig
+ create mode 100644 drivers/crypto/aspeed/Makefile
+ create mode 100644 drivers/crypto/aspeed/aspeed-hace-crypto.c
+ create mode 100644 drivers/crypto/aspeed/aspeed-hace-hash.c
+ create mode 100644 drivers/crypto/aspeed/aspeed-hace.c
+ create mode 100644 drivers/crypto/aspeed/aspeed-hace.h
 
 -- 
-~Vinod
+2.25.1
+
