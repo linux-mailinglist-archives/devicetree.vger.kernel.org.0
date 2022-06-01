@@ -2,93 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B074F53B019
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 00:51:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7418153AF85
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 00:50:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231357AbiFAVUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 17:20:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58206 "EHLO
+        id S231358AbiFAVVa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 17:21:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231355AbiFAVUg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 17:20:36 -0400
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEE82A7E0F;
-        Wed,  1 Jun 2022 14:20:33 -0700 (PDT)
-Received: by mail-oi1-f172.google.com with SMTP id s188so4294221oie.4;
-        Wed, 01 Jun 2022 14:20:33 -0700 (PDT)
+        with ESMTP id S231206AbiFAVV3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 17:21:29 -0400
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91E7DB2262;
+        Wed,  1 Jun 2022 14:21:28 -0700 (PDT)
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-f16a3e0529so4429304fac.2;
+        Wed, 01 Jun 2022 14:21:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ELpqiUTUS9/MflkdXo00nljVnHKNvu4z7mxeaxEY9EY=;
-        b=pgxmfF/s0IEn7umyYVMYgPJGA27MYfuEkOrMolpeGFaOxkptVbpqVe56MCae8zsn+j
-         kuOaqVf7Tx5PDBId0ussL1UPjVSVPcln7qiWbzKy/Lw6JmDDqWCdzQctzJRcGO/orNLD
-         a/UDDr7hJp+FS5W471jbgKChkCGDDTOP0dfJQaXvckyVzhUuZG+vHDya+vbA91ZhAr1g
-         CGgBuus9xkdO4w1HQAD+NrbzQLXKyBLkhqPvCSVXeETJATynSbw+PTTTrHyQadRHIBSU
-         mrqfc/+q0nzPhYILbteIuLXOd8sxOlX4MckA4HH2KRUKwMFymX9cZHvhAcYq/jEtMz/y
-         LSIw==
-X-Gm-Message-State: AOAM532Vc03x6z9vY50YkyRu2arV6JZzDe2L1sLmYpUuawNsDS4B/Vmn
-        o4SzpozswrpHz0ys1Ussbg==
-X-Google-Smtp-Source: ABdhPJzXDEUMMEXjcJlhrMRFbLzgWr3OPihQXysk4ZN96spRUhvecHfdDhmKbFwb7uSg9kt5rREemg==
-X-Received: by 2002:aca:3945:0:b0:32b:3a61:35d6 with SMTP id g66-20020aca3945000000b0032b3a6135d6mr852287oia.293.1654118433226;
-        Wed, 01 Jun 2022 14:20:33 -0700 (PDT)
+        bh=/6oW80QhCXjbAr5bxlOoJ7/dv7sc0dGdxBSJIeKExWo=;
+        b=mhWzM3fuJuJYIUA5og2IP7mpus699bwmkjfSONYtcjVsFX6P/sRqpW89VugoIx++SF
+         Dgty67OzqAMjxLvIRMTSrxcOofswB4whNalLlbnTh/ZXJIrSCoNB+R8lgKWwaTiuiv1Z
+         a/w8KJQ/oGx6XmcFkpQYMdapJ2PBBhFFVHgUaseOlWsd+alU3vefdjw5r8t2veIWUbx3
+         CujlcZyy2Sqd0+pEwxvBSo6sahHMkuzhlh/oOShl6mVUJ5bhmWvK9bTEF0tE4bdLFodB
+         uwV3Vf+NetZhivOzMju1L2ZGkTuegW+4768MENtayJOBjQuFET314g+tXkpIUr5m0e2n
+         BQBQ==
+X-Gm-Message-State: AOAM531Bk/PSLQU7tbzvQsjorYApR4OMpbAIat6+K9SZH2G+W8fV+HTw
+        UusT3RslHW3qJeEGChbZOQ==
+X-Google-Smtp-Source: ABdhPJyc4qId+hrK3KeE4gabGhq0ngAeE/HQ4HLixDztb207ktrOgTlTDf0YaoiGHWQFDZ9/OXgLSA==
+X-Received: by 2002:a05:6870:2483:b0:ed:f721:2734 with SMTP id s3-20020a056870248300b000edf7212734mr932553oaq.242.1654118487846;
+        Wed, 01 Jun 2022 14:21:27 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id p21-20020a4ae155000000b0035eb4e5a6cbsm1435366oot.33.2022.06.01.14.20.32
+        by smtp.gmail.com with ESMTPSA id j25-20020a4ad6d9000000b0035eb4e5a6bcsm1465578oot.18.2022.06.01.14.21.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Jun 2022 14:20:32 -0700 (PDT)
-Received: (nullmailer pid 476464 invoked by uid 1000);
-        Wed, 01 Jun 2022 21:20:32 -0000
-Date:   Wed, 1 Jun 2022 16:20:32 -0500
+        Wed, 01 Jun 2022 14:21:27 -0700 (PDT)
+Received: (nullmailer pid 478219 invoked by uid 1000);
+        Wed, 01 Jun 2022 21:21:26 -0000
+Date:   Wed, 1 Jun 2022 16:21:26 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Irui Wang <irui.wang@mediatek.com>
-Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        maoguang.meng@mediatek.com, linux-mediatek@lists.infradead.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        kyrie wu <kyrie.wu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>, xia.jiang@mediatek.com,
-        linux-media@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-kernel@vger.kernel.org, srv_heupstream@mediatek.com
-Subject: Re: [RESEND V1,1/2] media: media: jpegenc: add
- mediatek,mt8186-jpgenc compatible
-Message-ID: <20220601212032.GA476431-robh@kernel.org>
-References: <20220520085910.28839-1-irui.wang@mediatek.com>
- <20220520085910.28839-2-irui.wang@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     linux-mediatek@lists.infradead.org, robh+dt@kernel.org,
+        henryc.chen@mediatek.com, johnson.wang@mediatek.com,
+        devicetree@vger.kernel.org, matthias.bgg@gmail.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        lee.jones@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        zhiyong.tao@mediatek.com
+Subject: Re: [PATCH 4/7] dt-bindings: mfd: Add compatible for MT6331 PMIC
+Message-ID: <20220601212126.GA478182-robh@kernel.org>
+References: <20220520124039.228314-1-angelogioacchino.delregno@collabora.com>
+ <20220520124039.228314-5-angelogioacchino.delregno@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220520085910.28839-2-irui.wang@mediatek.com>
+In-Reply-To: <20220520124039.228314-5-angelogioacchino.delregno@collabora.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 May 2022 16:59:09 +0800, Irui Wang wrote:
-> From: kyrie wu <kyrie.wu@mediatek.com>
+On Fri, 20 May 2022 14:40:36 +0200, AngeloGioacchino Del Regno wrote:
+> Add a compatible for the MT6331 PMIC MFD device.
 > 
-> Add mediatek,mt8186-jpgenc compatible to binding document.
-> 
-> MT8186 iommu support 0~16GB iova. We separate it to four banks:
-> 0~4G; 4G~8G; 8G~12G; 12G~16G.
-> 
-> The "dma-ranges" could be used to adjust the bank we locate.
-> If we don't set this property. The default range always is 0~4G.
-> 
-> Signed-off-by: kyrie wu <kyrie.wu@mediatek.com>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
->  .../devicetree/bindings/media/mediatek-jpeg-encoder.yaml    | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  Documentation/devicetree/bindings/mfd/mt6397.txt | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
