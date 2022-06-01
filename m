@@ -2,59 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DB0453A46E
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 13:56:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3BE253A474
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 13:56:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350742AbiFALz2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 07:55:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37400 "EHLO
+        id S233840AbiFAL4m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 07:56:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243564AbiFALzX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 07:55:23 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6366D6D965
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 04:55:21 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id jx22so3188915ejb.12
-        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 04:55:21 -0700 (PDT)
+        with ESMTP id S243958AbiFAL4l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 07:56:41 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19C507223F
+        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 04:56:38 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id b8so1813752edf.11
+        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 04:56:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=4OpO3uKfRtKodys5+/EnMixlHpVSJs70BVrbM2XAtfI=;
-        b=XLNphxDHaRzoOejyaPEbUl7phZ+HXq507aC+nEXNk7/SBkgJdljf+/nio0hIa05Ewz
-         HlhdlQTrN66hw0qiQ79JNN37F72one4RmyfdykzPzFeA4bO8il8W88lB+RHmYwinEXl2
-         6GfA6Mmvo3aZMeMmhATm/jKwGiZNTE/kx7MMu2j7yA+6nD4Rw4DC9CjSQhUbqlRVL/CL
-         K1KtuC4RppDslOJl9J9CynIBTW2qogpgK9cEvGI946Ncg6XrCb5ZAKDjPcyLNdVkmBO9
-         XVyvetr7WhsV4HBjZCO3OZsDuzmd3S3abCO6paJ/2I0o7lKRC/DhjLdDJVrw/0sJjSy8
-         R8Og==
+        bh=YaYk+jNlpnsP2SdoC1Ms7kfQnoUGnJ939oNIovBFnWI=;
+        b=RVF5EM+oQMk9RmJlDSvOC3qin7I+XdS5Tm22VxdQppgNyi0Lze67Yob4Pb8r2qnqRA
+         9yhk7UbxTMz0dqzyAw1RCsLK/e8XIeznMgXZy/mUZovy8KVDjJGttFxPm/jjrGeuWhJC
+         6rqdDNQZ2LH311CUfm8rfn3acT+ujGaLQqX+u8Q9sQjMpG7xX7H9ru+Nf7Lhtj+GcKFe
+         qOPgO9O3fSsGnzsYb+nec63t1hA+RN4CDctwv0E47Gq5G5SFuUmfvnfeYcZrJf2Oc8XO
+         CTRcTHiMGJ5YQuvVekHLD15xViFK4iQDclWFoJsqAT0TCVVb+/IB4V38iVGl0kSZy5Ei
+         ar9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=4OpO3uKfRtKodys5+/EnMixlHpVSJs70BVrbM2XAtfI=;
-        b=kjb9izeQjO8zNSWCYlvc9hU13yYqPzUgKoI5hnFlx+JJtZDh3MZ69v1ZvrZgHFM3cT
-         8CuWyyaEpwfCgCoBqnckOHLI25p314qMhIDEMxFlsksjA58rxnp1cG650MZAH/nsTPPS
-         vggamcJEY1DJ6EPYVFn8/+g8/c+1dUk9bcwMdl3Uc4x8KahWo2naGkj7reVy7u+/5CW+
-         NYh/PKmOROISC8YF4dR/1rEKqHcxORNOKeA/nhQ9QNt1s4cv6JcdYKaEvi3RnJ89va7v
-         hShUGuDBBic6+xSw5gZ7smlLE/vYZwu9klhT5W413TIl/dtaaqnQrl8gLTFk4Zf4OVDw
-         amaA==
-X-Gm-Message-State: AOAM530jxbqdfc+uV2C3K4CUwVHQhDkOTflHGxHVmHImPMXgZPWRFKai
-        +S79bMjAcQxEwVlIp0QKpUmZZQ==
-X-Google-Smtp-Source: ABdhPJzQpW3tl8/Gt3VogC+OWYGOrWx5aQpwt6DckwkqC0AbGuziXMIS9ExL1uGEI1ZQQd6JRPuIlw==
-X-Received: by 2002:a17:906:e87:b0:6df:8602:5801 with SMTP id p7-20020a1709060e8700b006df86025801mr57845149ejf.140.1654084519977;
-        Wed, 01 Jun 2022 04:55:19 -0700 (PDT)
+        bh=YaYk+jNlpnsP2SdoC1Ms7kfQnoUGnJ939oNIovBFnWI=;
+        b=rGMwRC+VqOqF6npKJYHEx1vovEgADxIm/6+V1DwT/BCYaWboGMtnusHUDCq3EZlQ+s
+         5XDemEClsBX1dcLP/78/2H3EP35S9Jl8+iI90SeGeKnUXBYgrScSFHkyzExQQDk6NGuK
+         xS21MGJwbgELnfm0c8jtKcqdGu7oQD4WIe19nlgE1IgBc0XJw1+YCyLrwngNNPyi/bEr
+         1rxKGiJh6c/tO4bujfUFTOUcEsnvufrag+2cZ0yTHBdxy0vXi+TwtbPzSwGtktEplvpy
+         UAwUISwSfWIBFiFqUwDUHStFOxRGVOyMgjkqakQdpvkPrIVDJgYnm6NksnoLKgPWQl50
+         mK2g==
+X-Gm-Message-State: AOAM531D9nU3JZOuN4v6T8a0/UpclhQklpFW1y1MGM5Xkfy9hRtLIKLz
+        DH7Wl4X8N+lWL6GqWIU6FvptEA==
+X-Google-Smtp-Source: ABdhPJzAm/t5Eh+gxuP3n4cFhN4V0yA1zRNlg4rHowMMAV7QI5pRFmtiF9eVNiUYHPMqCyNZtN3bpA==
+X-Received: by 2002:a05:6402:42d4:b0:416:5cac:a9a0 with SMTP id i20-20020a05640242d400b004165caca9a0mr69853210edc.86.1654084596665;
+        Wed, 01 Jun 2022 04:56:36 -0700 (PDT)
 Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id o13-20020a17090608cd00b006fedcb78854sm624896eje.164.2022.06.01.04.55.18
+        by smtp.gmail.com with ESMTPSA id x9-20020a1709064a8900b006f3ef214e2csm653472eju.146.2022.06.01.04.56.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Jun 2022 04:55:19 -0700 (PDT)
-Message-ID: <cf90d9aa-1ba9-9619-35b7-8c2de436fc12@linaro.org>
-Date:   Wed, 1 Jun 2022 13:55:18 +0200
+        Wed, 01 Jun 2022 04:56:36 -0700 (PDT)
+Message-ID: <06f13727-adf6-6a33-1648-f85a7941e1e4@linaro.org>
+Date:   Wed, 1 Jun 2022 13:56:35 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH 1/8] dt-bindings: interconnect: imx8m: Add bindings for
- imx8mp noc
+Subject: Re: [PATCH 8/8] interconnect: imx: Add platform driver for imx8mp
 Content-Language: en-US
 To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, djakov@kernel.org,
         shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
@@ -68,9 +67,9 @@ Cc:     kernel@pengutronix.de, linux-pm@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-imx@nxp.com,
         Peng Fan <peng.fan@nxp.com>
 References: <20220601094156.3388454-1-peng.fan@oss.nxp.com>
- <20220601094156.3388454-2-peng.fan@oss.nxp.com>
+ <20220601094156.3388454-9-peng.fan@oss.nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220601094156.3388454-2-peng.fan@oss.nxp.com>
+In-Reply-To: <20220601094156.3388454-9-peng.fan@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,50 +85,48 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 01/06/2022 11:41, Peng Fan (OSS) wrote:
 > From: Peng Fan <peng.fan@nxp.com>
 > 
-> i.MX8MP features same NoC/NIC as i.MX8MM/N/Q, and use two compatible
-> strings.
+> Add a platform driver for the i.MX8MP SoC describing bus topology, based
+> on internal documentation.
 > 
 > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../devicetree/bindings/interconnect/fsl,imx8m-noc.yaml     | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/interconnect/fsl,imx8m-noc.yaml b/Documentation/devicetree/bindings/interconnect/fsl,imx8m-noc.yaml
-> index b8204ed22dd5..0923cd28d6c6 100644
-> --- a/Documentation/devicetree/bindings/interconnect/fsl,imx8m-noc.yaml
-> +++ b/Documentation/devicetree/bindings/interconnect/fsl,imx8m-noc.yaml
-> @@ -26,16 +26,22 @@ properties:
->      oneOf:
->        - items:
->            - enum:
-> +              - fsl,imx8mp-nic
 
-Please order the entries alphabetically, so 8mp goes after 8mm.
+> +
+> +static struct platform_driver imx8mp_icc_driver = {
+> +	.probe = imx8mp_icc_probe,
+> +	.remove = imx8mp_icc_remove,
+> +	.driver = {
+> +		.name = "imx8mp-interconnect",
 
->                - fsl,imx8mn-nic
->                - fsl,imx8mm-nic
->                - fsl,imx8mq-nic
->            - const: fsl,imx8m-nic
->        - items:
->            - enum:
-> +              - fsl,imx8mp-noc
+How do you match/bind the driver?
 
-ditto
+> +	},
+> +};
+> +
+> +module_platform_driver(imx8mp_icc_driver);
+> +MODULE_AUTHOR("Peng Fan <peng.fan@nxp.com>");
+> +MODULE_LICENSE("GPL v2");
+> +MODULE_ALIAS("platform:imx8mp-interconnect");
+> diff --git a/include/dt-bindings/interconnect/fsl,imx8mp.h b/include/dt-bindings/interconnect/fsl,imx8mp.h
+> new file mode 100644
 
->                - fsl,imx8mn-noc
->                - fsl,imx8mm-noc
->                - fsl,imx8mq-noc
->            - const: fsl,imx8m-noc
-> +      - items:
-> +          - const: fsl,imx8mp-noc
-> +          - const: fsl,imx8m-noc
-> +          - const: syscon
+Bindings are separate patch.
 
-This is a bit confusing - why this is also fallbacked as syscon?
+> index 000000000000..732547577c76
+> --- /dev/null
+> +++ b/include/dt-bindings/interconnect/fsl,imx8mp.h
+> @@ -0,0 +1,59 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
 
->        - const: fsl,imx8m-nic
->  
->    reg:
+Dual license.
+
+> +/*
+> + * Interconnect framework driver for i.MX SoC
+> + *
+> + * Copyright 2022 NXP
+> + * Peng Fan <peng.fan@nxp.com>
+> + */
+> +
+
 
 
 Best regards,
