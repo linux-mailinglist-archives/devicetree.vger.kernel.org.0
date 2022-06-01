@@ -2,65 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F47553A564
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 14:46:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 251C453A567
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 14:47:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352942AbiFAMqt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 08:46:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59286 "EHLO
+        id S1353038AbiFAMrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 08:47:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353022AbiFAMqr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 08:46:47 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9ACF5FEF
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 05:46:45 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id h23so2556848lfe.4
-        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 05:46:45 -0700 (PDT)
+        with ESMTP id S1353091AbiFAMrA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 08:47:00 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1390E64ED
+        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 05:46:59 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id y29so1860675ljd.7
+        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 05:46:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=dt3pR+EuZpEYioOZuqVOF4YuDMykJMYYhRifRhjvIjY=;
-        b=jHYYyLrfXLmrab7gcaYcnAO0G1V1S5zrZq0OomPtG9+JrTQ/6mTinFQVc6soV+Yj1e
-         08LjbTqSlGw4DKQ3601XfC3KIw5PhF53HtfFg6YX2LhWTT1t+oUv8FOyRPhe8IYS0Cwj
-         h2UZdiQTzIWjbR8RuhRHAlkOwGqyROUWTN/ZNb1S8UTplkBxX2RBqemn5X7ymVcnRkhX
-         0jTUgdungncKCR/h9+0dDdAaybh7SfVRGMlXSPY29VHOP1zQ01SboF8ix+HmcrOCKA6I
-         t5+ioTNjME97jrXtV6HxGoveVcsL1vPktbV9y94IX4WdFT8VBtPl8IkdMLLbvEgh5pHY
-         A5+w==
+        bh=wyyhorHqYhRzxEyqIbi/Zswxz0+oi9F21Ok1yg1RhLA=;
+        b=ZH9WrW/SwuFpI0VP8M8Zc+awMiZ94uKV8XXHRXo02sxphluQkud6/bWPTPeHxT6DYH
+         +KlddEaCrGu4aFj3bipnxYbruluqtcgSmkck5dIl/2tbrvcMOp+vJS5CcD6a+yVITzb+
+         nJr3OLE8xMQ6hncurf80YJ3Dx49D28uu1nkToksJG86y1qVvCeDrzqER9okktApqd0zI
+         tW8Kqmzw4lp4BQnL8S2vFpE9wTC3adLGT+SB0eccRmww4tz3FSSk2sbg6kbRPTKPHE2A
+         gSNctdP9b5staF+2bTWH4s8IZh1KdT2zZsSDh1LFzgNSBc1KcT203rI9fNR1HqsEOlc5
+         LpiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=dt3pR+EuZpEYioOZuqVOF4YuDMykJMYYhRifRhjvIjY=;
-        b=VpTIzvWhpjk7THM4xtV21g5/IZuga7NFhJE5DUJLom92LfcKIOoQQnm/tbyajlR+ri
-         lR4KphQZz6nahFi3ZoYrFVDnfDtonuEecOSuNOOGXiTDyTKC+AHU5j2d9rBPgpXklzdk
-         pOgXrOO4quSRSzEkhAc1gh6bM00PznShVEzk7milmWieHK6y/O1YykGkBZjmtjNxBZGe
-         nowXQ+ip0mBVJbTJ8FjXhpuzd0CYiUQJBrJLhroYWDzeD7Bbssf6JmSyH7uiNqacWMLO
-         BMIur860W04KVUNwukUjHuLNPyH+fyd2NiO0l8lRN5il3dbM0vg73qdZOtWGH8An37Lt
-         QjbQ==
-X-Gm-Message-State: AOAM532vA57oWw93Rh/v3gkOELamUtOXUvVdaWR9mbdNwzq5C9+q1/7o
-        WdP+W3Ftg2AhuykjOhQN49rUe6XYS6pC+Bw/QZk5EQ==
-X-Google-Smtp-Source: ABdhPJwWID4gw3LiSMK7IbU++l/6doq6lZF+9ZfhbHlGNFmjxMEcwDnhR/Hgu0Zbry9/34wZlP+UppzC1nTuZHVIEjk=
-X-Received: by 2002:a05:6512:70b:b0:477:a832:7d07 with SMTP id
- b11-20020a056512070b00b00477a8327d07mr46909371lfs.71.1654087604181; Wed, 01
- Jun 2022 05:46:44 -0700 (PDT)
+        bh=wyyhorHqYhRzxEyqIbi/Zswxz0+oi9F21Ok1yg1RhLA=;
+        b=3czd8Hg7RYQu6VhYWILyUE0LAIS+kc6VYj3FYUEVpCy91ox9l9C+6W+eGw4xZ5NgOZ
+         85c0h4qyvCnwhoFvFuMdM+SEuBVU/pfnvdJQosG4zKuq7HaL/YY4WU5JoxxJO2Fa2w+3
+         E1aKxaj2nFYwCnM3r5mWpTIx292L9LrzGYn6yecbU8T9k3Iu820bbz169K49pjI1ZdMv
+         xzyT8D4vvtGnWgWffdbSN9HlL2BsfQgLu1Pif/tTbl3GvoV0pX6Wqi+5B7g0k0xFx8Q8
+         VjwW38JHw+8+Pa3GD6OEAUgVgUlc3xafEw6G/BUBAPAd2oMr2mHL90s8Vtmo+Xrd7Bx7
+         z0/g==
+X-Gm-Message-State: AOAM530+SL2WHxrOvc9z8/CufiFPFP6eBg4Hz71IMZEzmWct+ktOaXkR
+        P1GmvybgF/LulvX/Y4Kiaq1NVwDB6TfM+mpe66Egtg==
+X-Google-Smtp-Source: ABdhPJwt9gvrgwBFEfOMg53Brjr6mPeHznMhGr3I+MHKcTP0xi6t5Xs94b+k8tX0FX5KWt8rkYMl56bGgfyVkbUqQnI=
+X-Received: by 2002:a2e:9e54:0:b0:250:d6c8:c2a6 with SMTP id
+ g20-20020a2e9e54000000b00250d6c8c2a6mr40059816ljk.16.1654087617409; Wed, 01
+ Jun 2022 05:46:57 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220520183108.47358-1-kdasu.kdev@gmail.com>
-In-Reply-To: <20220520183108.47358-1-kdasu.kdev@gmail.com>
+References: <20220526014204.2873107-1-robh@kernel.org>
+In-Reply-To: <20220526014204.2873107-1-robh@kernel.org>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 1 Jun 2022 14:46:07 +0200
-Message-ID: <CAPDyKFqzEbijYDGd7vWrWu66m2L-yVnqsDRny7N0c=49R44mLg@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] mmc: sdhci-brcmstb: Add support for optional
- sdio_freq clock
-To:     Kamal Dasu <kdasu.kdev@gmail.com>
-Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, alcooperx@gmail.com,
-        f.fainelli@gmail.com, bcm-kernel-feedback-list@broadcom.com,
-        adrian.hunter@intel.com, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Date:   Wed, 1 Jun 2022 14:46:21 +0200
+Message-ID: <CAPDyKFoh5FyRDxr22XnkOd76MG4YjkvqL039=+qHGZKwfdFquw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mmc: Fix unevaluatedProperties warnings in examples
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Hu Ziji <huziji@marvell.com>, Al Cooper <alcooperx@gmail.com>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,44 +70,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 May 2022 at 20:31, Kamal Dasu <kdasu.kdev@gmail.com> wrote:
+On Thu, 26 May 2022 at 03:42, Rob Herring <robh@kernel.org> wrote:
 >
-> v3 changes:
-> - PATCH 1/2 v3
->  - Based on review comments reverted to using the 'clock-frequency' field
->    in sdhci-brcmstb controller node for the sdio_freq clock
-> - PATCH 2/2 v3
->   - use devm_clk_get_optional() to get sdio_freq clock
->   - look for clock-frequency value if set in the sdhci-brcmstb dt node
->   - Added pmops to unprepare, prepare sdio_freq clock on suspend/resume
->     in addition to the sdhci_pltfm_suspend/resume()
+> The 'unevaluatedProperties' schema checks is not fully working and doesn't
+> catch some cases where there's a $ref to another schema. A fix is pending,
+> but results in new warnings in examples. Fix the warnings by removing
+> spurious properties or adding a missing property to the schema.
 >
-> v2 changes :
-> - Added Reviewed-by tag to PATCH v2 1/2
-> - In PATCH v2 2/2 Used host->mmc->f_max instead of parsing the device
->   tree again, /s/clock-frequency/max-frequency in commit message
->
-> v1 Changes :
-> Sending the remaining 2 patches separately after implementing review comments
-> for the patches 3/4 and 4/4 as part of the following:
-> "mmc: sdhci-brcmstb: host controller clock enhancements"
-> https://lore.kernel.org/linux-arm-kernel/96fd3054-17b1-db42-9a44-a60485243807@linaro.org/t/
-> changes are rebased over
-> git://git.kernel.org/pub/scm/linux/kernel/git/ulfh/mmc.git refs/heads/next
->
-> tested brcm,sdhci-brcmstb.yaml and driver with and without sdio_freq clock.
->
->
-> Kamal Dasu (2):
->   dt-bindings: mmc: Add Broadcom optional sdio_freq clock
->   mmc: sdhci-brcmstb: Add ability to increase max clock rate for 72116b0
->
->  .../bindings/mmc/brcm,sdhci-brcmstb.yaml      | 32 +++++++--
->  drivers/mmc/host/sdhci-brcmstb.c              | 69 ++++++++++++++++++-
->  2 files changed, 94 insertions(+), 7 deletions(-)
->
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
 Queued for v5.20 on the devel branch, thanks!
 
 Kind regards
 Uffe
+
+
+> ---
+>  Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml  | 2 --
+>  Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml | 3 +++
+>  2 files changed, 3 insertions(+), 2 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml b/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
+> index b672202fff4e..5ecdac9de484 100644
+> --- a/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/brcm,sdhci-brcmstb.yaml
+> @@ -75,7 +75,6 @@ examples:
+>        sd-uhs-sdr104;
+>        sdhci,auto-cmd12;
+>        interrupts = <0x0 0x26 0x4>;
+> -      interrupt-names = "sdio0_0";
+>        clocks = <&scmi_clk 245>;
+>        clock-names = "sw_sdio";
+>      };
+> @@ -94,7 +93,6 @@ examples:
+>        non-removable;
+>        bus-width = <0x8>;
+>        interrupts = <0x0 0x27 0x4>;
+> -      interrupt-names = "sdio1_0";
+>        clocks = <&scmi_clk 245>;
+>        clock-names = "sw_sdio";
+>      };
+> diff --git a/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml b/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
+> index c79639e9027e..aca1a4a8daea 100644
+> --- a/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
+> @@ -56,6 +56,9 @@ properties:
+>        - const: core
+>        - const: axi
+>
+> +  interrupts:
+> +    maxItems: 1
+> +
+>    marvell,xenon-sdhc-id:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      minimum: 0
+> --
+> 2.34.1
+>
