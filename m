@@ -2,73 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C006953AE0D
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 22:50:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD82553AE0A
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 22:50:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229841AbiFAUq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 16:46:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43214 "EHLO
+        id S229757AbiFAUn1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 16:43:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229997AbiFAUo3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 16:44:29 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A72AA259F48
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 13:29:43 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id r65so4102830oia.9
-        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 13:29:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version;
-        bh=Iq9Kk2rIN4f47YH2z2Nt6OByxlzakg4GcnWxP9WDFUI=;
-        b=RzJGfkLbiWPtCwj0J6ybKlGy/xPcsyuGE1uSx4TtBiZDKkZcazMwKdI09tLkf+fcJg
-         ZuP46hOe5Bzd2tJGUxdYY7RU/pDDZmlxVbuXH8JI1ke/F//Xk5nZgtt7AmxqGAvkPnMv
-         43l9H8z8oGhCCZMuQgQKrFxf+QpaSEPlpLIAw=
+        with ESMTP id S229781AbiFAUmw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 16:42:52 -0400
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F9DF25BC18;
+        Wed,  1 Jun 2022 13:24:54 -0700 (PDT)
+Received: by mail-oi1-f180.google.com with SMTP id m82so4069314oif.13;
+        Wed, 01 Jun 2022 13:24:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version;
-        bh=Iq9Kk2rIN4f47YH2z2Nt6OByxlzakg4GcnWxP9WDFUI=;
-        b=rbL+4hBEs8XDNY4elyXvxPeasDXXndyITwB1WZih9rrrhZ6TRLal/yOPp5anf+vxXF
-         ipDhIVoR5Y4qYX3EiEcMd8Wr4oThhbSc75nf1itUoYFuZDt1aZ4JFlQ79wEd9PM6UNIN
-         hPmPT3tgopl4iGE5OJaKugUaKx0FIqROoI83uokVOKuf57UfTWYMIVIhXniqicsMRxie
-         aizE2KTMVlQxgIhLUW7ZGznW8G4iEIWOAMNAKbCw4PmctG4ZO0HFpMgc5RGLs03GmcFt
-         Me1JBFzRv0BNomeGuUjf3H5v3dUehtCJjRPNs9BcIwHuLLVP/cveVmWVlnRMYLr5kaH4
-         WZJw==
-X-Gm-Message-State: AOAM531GR4Y1d76rZ6BDyXi45W8VR2HZPYPjyMdi12CzV6H63ZNYSLZ8
-        Imd33mdTzRVKsPqztNoDTLjS8l1iOC6bfg==
-X-Google-Smtp-Source: ABdhPJwnR0St4e5dDnG+SpXdBVRA0fTjNx2euuFkEyiMajxuqvqP2cwXsOyHqK4c6AVvSMiKKKtXww==
-X-Received: by 2002:a17:90b:3c6:b0:1e2:e9fc:4e79 with SMTP id go6-20020a17090b03c600b001e2e9fc4e79mr20734332pjb.192.1654114804963;
-        Wed, 01 Jun 2022 13:20:04 -0700 (PDT)
-Received: from linuxpc-ThinkServer-TS140.dhcp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id i184-20020a6254c1000000b0051b6091c452sm1861376pfb.70.2022.06.01.13.20.03
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=+oEvt8sf4TNEOQwuXvkayzQRhlop784huNwQTGf8szM=;
+        b=PMBuMe3ajIor114thw4GqKl747NchE07mBktaQRZbtLw8pU+G8lioE1grdAdZeqsYA
+         pKyuHf+ZMLFt27dezLxXKnHStDtSHL8XqdH44XZfwtHsuVSwJdIlqZr8nBLolvp6J664
+         6Iq1YAc5S8+4GxZG4X8EWnPGnpTJ5rAHaF4Mmub7e/ZFOUJDgpRWmXTyz0Zxi2PaZS2z
+         D28rb6p3eaf4tGayD+X7vZk/cCc9pWU5ROzBj9W35el4Ax6q6XbfiZb2iu8Bptf7AFPA
+         K/RijwG6ll9T+Ep3/7wcr3vWOPVAKFh36d4AEiCRQxfHssTYY3zRSNGiSxHzZMYDZFiy
+         xVEQ==
+X-Gm-Message-State: AOAM530CKSkG0Pm/vtYrK2yTMgYYguT+sxmoLyxxD1FZyafWpuJiJg8C
+        p2TG7+9UVw7suuGVeOAfxxEbS24loA==
+X-Google-Smtp-Source: ABdhPJxJmw2Wr1rxxehnbS1Z0gkP+WPIZRGPR7vHDTR5nLzOcg+2R1n/P5o97mMeAALFB5Vi2lWL1Q==
+X-Received: by 2002:a05:6808:e83:b0:32e:28e2:199d with SMTP id k3-20020a0568080e8300b0032e28e2199dmr770181oil.222.1654115093579;
+        Wed, 01 Jun 2022 13:24:53 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id e28-20020a544f1c000000b0032c18f04800sm1468136oiy.1.2022.06.01.13.24.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Jun 2022 13:20:04 -0700 (PDT)
-From:   Anand Gore <anand.gore@broadcom.com>
-To:     Linux ARM List <linux-arm-kernel@lists.infradead.org>
-Cc:     kursad.oney@broadcom.com, tomer.yacoby@broadcom.com,
-        William Zhang <william.zhang@broadcom.com>,
-        florian.fainelli@broadcom.com, joel.peshkin@broadcom.com,
-        samyon.furman@broadcom.com, dan.beygelman@broadcom.com,
-        Anand Gore <anand.gore@broadcom.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/3] dt-bindings: arm64: add BCM6858 soc
-Date:   Wed,  1 Jun 2022 13:19:57 -0700
-Message-Id: <20220601131944.v3.2.I2bc1418dd24a902e941c7073bbadab00568b4f5d@changeid>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220601201958.3072173-1-anand.gore@broadcom.com>
-References: <20220601201958.3072173-1-anand.gore@broadcom.com>
+        Wed, 01 Jun 2022 13:24:53 -0700 (PDT)
+Received: (nullmailer pid 379428 invoked by uid 1000);
+        Wed, 01 Jun 2022 20:24:52 -0000
+Date:   Wed, 1 Jun 2022 15:24:52 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc:     Robert Foss <robert.foss@linaro.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/2] media: dt-bindings: media: sm8250-camss: Add
+ power-domain-names property
+Message-ID: <20220601202452.GA365963-robh@kernel.org>
+References: <20220518121104.951621-1-vladimir.zapolskiy@linaro.org>
+ <06baf3b7-6b2d-4cc6-64d7-7bd1b3a18335@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000d60e9405e068bfbe"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <06baf3b7-6b2d-4cc6-64d7-7bd1b3a18335@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,125 +69,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000d60e9405e068bfbe
-Content-Transfer-Encoding: 8bit
+On Fri, May 20, 2022 at 12:53:02AM +0300, Vladimir Zapolskiy wrote:
+> On 5/18/22 15:11, Vladimir Zapolskiy wrote:
+> > QCOM SM8250 camera subsystem depends on three power domains, at the moment
+> > all of them are not differentiated one from another, however the power
+> > domains compose a hierarchical structure with vfe0 and vfe1 as subdomains
+> > of titan_top, also managing vfe0 and vfe1 separately allows to get more
+> > fine-grained power control in runtime.
+> > 
+> > The change relates to my review comment for v2 of CAMSS on SM8250 submission:
+> > 
+> >     https://lore.kernel.org/all/13ad033e-cd5d-3a8c-b036-50a3ac4245c0@linaro.org/
+> > 
+> > Apparently it becomes important to manage CAMSS power domains much better for
+> > newer platforms, this referes to platforms with Titan GDSC, for instance CAMSS
+> > on SM8450 has 6 power domains, and dealing with them in bulk is not an option.
+> > 
+> > There was a note in commit 2f6f8af67203 ("media: camss: Refactor VFE power
+> > domain toggling") about problems with power VFE domains on/off, but perhaps
+> > it's related to the fact that Titan GDSC is a special power domain and VFE
+> > are subdomains, the latter shall not be enabled earlier than the Titan, but
+> > the driver did not construct a proper hierarchy and leaves a room for races.
+> > 
+> > The change should have no implications on any SM8250 CAMSS users, since
+> > none of the supported in upstream boards enables the camss device tree node.
+> > The correspondent changes in the driver will follow this dt specific series.
+> > 
+> > Most likely a similar change is required for SDM845 platform, but it would
+> > need additional investigation and testing.
+> > 
+> > Vladimir Zapolskiy (2):
+> >    media: dt-bindings: media: sm8250-camss: Add power-domain-names property
+> >    arm64: dts: qcom: sm8250: camss: Add power-domain-names property
+> > 
+> >   .../devicetree/bindings/media/qcom,sm8250-camss.yaml       | 7 +++++++
+> >   arch/arm64/boot/dts/qcom/sm8250.dtsi                       | 1 +
+> >   2 files changed, 8 insertions(+)
+> > 
+> 
+> These changes will be unneeded, if it is reliable to state that the order
+> of 'power-domains' array values is fixed.
+> 
+> From Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
+> 
+>   power-domains:
+>     items:
+>       - description: IFE0 GDSC - Image Front End, Global Distributed Switch Controller.
+>       - description: IFE1 GDSC - Image Front End, Global Distributed Switch Controller.
+>       - description: Titan GDSC - Titan ISP Block, Global Distributed Switch Controller.
+> 
+> Apparently it's insufficient to ensure the fixed order of the power domains
+> by running a check against the schema, and likely it can not be improved,
+> but please correct me here, if I'm wrong.
 
-Add BCM6858 SOC device tree description to bcmbca binding document.
+Right, the schemas can't check that the order is correct.
 
-Signed-off-by: Anand Gore <anand.gore@broadcom.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> That's said, what is the preferred way here? Leave everything as is and rely
+> on the order of item descriptions, or add a new power-domain-names property?
 
----
+Well, you can't start requiring power-domain-names without breaking the 
+ABI and it has to be required to allow any order. Even then, defined 
+order is preferred unless there's too many variations and we're stuck 
+with no defined order.
 
-(no changes since v2)
-
-Changes in v2:
-- Remove extra empty lines
-- Simplify subject line
-
- Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml b/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
-index 24357cf09888..97e5b1c4619e 100644
---- a/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
-+++ b/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
-@@ -35,6 +35,13 @@ properties:
-           - const: brcm,bcm63178
-           - const: brcm,bcmbca
- 
-+      - description: BCM6858 based boards
-+        items:
-+          - enum:
-+              - brcm,bcm96858
-+          - const: brcm,bcm6858
-+          - const: brcm,bcmbca
-+
- additionalProperties: true
- 
- ...
--- 
-2.25.1
-
-
---000000000000d60e9405e068bfbe
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-dD3eNkKBkknQBWvFfBHcITIVdVccQg5YcIwowkVZhhA3NG0BXGI4l/3o+wjrl2BGO/t969dabQ5x
-/SxGBTK8Vyn6NG7U0Lrjb0VtnrFXgEdxFvJuEQIDAQABo4IB2DCCAdQwDgYDVR0PAQH/BAQDAgWg
-MIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9iYWxzaWdu
-LmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUFBzABhjVo
-dHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMDBNBgNV
-HSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xvYmFsc2ln
-bi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRwOi8vY3Js
-Lmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAiBgNVHREEGzAZ
-gRdhbmFuZC5nb3JlQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAfBgNVHSMEGDAW
-gBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUH4HXhI4xxNPqnv0yfNL6is0cLFYwDQYJ
-KoZIhvcNAQELBQADggEBAAU15tMIqa2yrLdoPoNXMk6scL+6XJK/EVe0Lq0Uyq0SV8wpFV09ujno
-nLmSFYTz1RjmiKr1eu/pwyTImqMUj1JAXZ2zgE0rFS5SvchJsSlB8Nv3WeTaf5Lha5ZmRTaB0U/E
-eo7SFjA240UWLCGqXM69XCc5PHk6mWLNTsyDTgK2kLUKP1RVFswACNsI284fxiwA0qSCu2WnOEKE
-LiytE/NBFgzVtBcryeBtcMnhZgMo0PQYRl4O+58O1O703CD1jiO4/ikP+hUTdxWQiiWAzpE89YCH
-S0Pc2d2yC8RWARAiArr1jXHWA4+snG+TS3A1YVSPRZpboS5AXMutIIQ5YZQxggJtMIICaQIBATBr
-MFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhHbG9i
-YWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgxzcZR0ocq9f8sVOu8wDQYJYIZI
-AWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIPUhuTNaZCnGbOhWzIDy0DjHd3gqdBk+c+pdcKZv
-XxUoMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIyMDYwMTIwMjk0
-M1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFlAwQB
-AjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFlAwQCATANBgkq
-hkiG9w0BAQEFAASCAQCZALArhO5udn8x/Tpw0VR4Qwgz12Ki1m2HCVVsZmcnvUVsInQmk279HkCv
-XEgk5DKJZdTtRfkzP0aZ2ZMZ/0lXGrOn2r1Txxobe8R8FdJOOHYqCkJR7yQhyjDhqCH4RqO6FF1z
-WkrMMBQT+RL9jWzOwxgApDce7jzypRlCioLBi9gov4z+7xLPscDHO6B85DH/8MxCaGzzqJ7ktOkl
-FvArGDd1RAlQMavvnG8Zxu4+Zz3PqvSqdR5KMOxNg7chQGIaSsM5mWv9p9/Rn7skxdc//rB5tLEk
-x+gGxAvAcXlBwFgf0cO1kLgfJWAPUyp8k8+ayZn/PV9xTx71vP3giMWz
---000000000000d60e9405e068bfbe--
+Rob
