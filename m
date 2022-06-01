@@ -2,378 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCA5B53B08F
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 02:34:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4464B53B0C9
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 02:35:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232441AbiFAW5i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 18:57:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50732 "EHLO
+        id S232548AbiFAX0S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 19:26:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232443AbiFAW53 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 18:57:29 -0400
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65838369F0
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 15:57:26 -0700 (PDT)
-Received: by mail-pl1-x631.google.com with SMTP id n8so3056147plh.1
-        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 15:57:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version;
-        bh=xRQ+zT9V8ePJFZsKLVObUzfHWmtC7ZZ1YxZ0ZcbqLd8=;
-        b=R0Q7nUtqzUOb5ubM0RAb08+FKTcSmnsV6y3rkPhOFpitJknScO/OBlka+opQ01egho
-         6Hpxbq9bWl7Gk5YsF019koFodFGCwiHMTJuB5M3niC0f56cmM6oqj+MbKbyA8r9xdnLq
-         iC/oljiLBYtxe3jkEZK4kgpVhDPuY7TsvXPDc=
+        with ESMTP id S232546AbiFAX0S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 19:26:18 -0400
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70D326571;
+        Wed,  1 Jun 2022 16:26:17 -0700 (PDT)
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-f16a3e0529so4757106fac.2;
+        Wed, 01 Jun 2022 16:26:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version;
-        bh=xRQ+zT9V8ePJFZsKLVObUzfHWmtC7ZZ1YxZ0ZcbqLd8=;
-        b=lW5rOCnws/UEBvFxjRYu0TjBmPAaqg0I8jE+/f7K3+crPZcg5+CIxhekpGe67R4WMB
-         TZSfwBYtaLyhHK6MxsPeAT7XN6zu7gwQLm1IiMPOM1QsxY/pqGittCA4DEG+gz4FDgKx
-         igFhhyHXhHZtyAjmKr3DxxvZf7yfe8FAPqp3sGcZq2XqZZkHldOLvv/TmIesJQL0MiHH
-         KngUgTKpVJ3yqeV5ems1/JDuFQLNGRgT0/PdgJRGXFW/VRM3szBbKAYkdejFxmi7+yrQ
-         KH7sHH3xjpRroYRJqTtjMm20TVcQw//H5ApI/BpbFv30m+WWjt1kjK6EUSn5c/YlCwu0
-         Adjg==
-X-Gm-Message-State: AOAM531q2K1dWvbJhB7JCrQVV5OVI4JRVO5bM9580+5hPKWYQpEAp1Ma
-        AGOmnNM+jn9nEhpTc1CaSwRaAA==
-X-Google-Smtp-Source: ABdhPJwQ1oT032BqWY4fza0GCBhAg4hL4V2dRGQwjWIB3EX2lKXMEyjBTIK2Vw3PICgHJBSVGdX2uw==
-X-Received: by 2002:a17:902:da90:b0:163:f654:ee7b with SMTP id j16-20020a170902da9000b00163f654ee7bmr1689357plx.27.1654124245457;
-        Wed, 01 Jun 2022 15:57:25 -0700 (PDT)
-Received: from T3500-3.dhcp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id k8-20020a170902d58800b001641244d051sm1999738plh.257.2022.06.01.15.57.23
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=iJNKOO8QXxNlzBsifQjmX9tXu38uHaRGSzPFyqrc1yQ=;
+        b=F6pKhFBzgTwAVv4Eh+hHxVbf6gC/rdCw2/9Vq+cp4UPttHoP9e60ojNhlgIjPRAeE/
+         XNmXNVYhdyFcU25HO8dk+XrjWxBJTLKm4+H4UCLVtXg9Va2EePfy+KCi2sTBGrqzD/wY
+         jQgOU2PmJl0V+oF5JOXP07/zfY3nk6wH1BJjBg8/8+oHObtmz1Qkp8m+2xXYAyNT8UY8
+         vxXJQh1TEwB5YHLdguovjSQAJ0/eiMY6Yi7GyBtwLOcWi/LhqpSd1ZICjXHKyH+nGUuh
+         Pv2ZeHkO0g9W+l3SVLndxaZe9o6/hkG2N72cmMaMbFqMMUBz0C13Rk2iju+Yb8+jvyzX
+         jhcA==
+X-Gm-Message-State: AOAM530lJp+g2cDXtltVBDkypLZAka1RRiQB4KJbmG0CSdBA5vBsfP3k
+        B/TWB9fNR6Ekatojp+dRcQ==
+X-Google-Smtp-Source: ABdhPJw3v7nw/3t83l1+7RJSfsRWFO4E+ExNjYFS+gxyafxmeK1J23WekAZMJNOwY6C3Vq+Zc76yrw==
+X-Received: by 2002:a05:6870:548f:b0:f5:dc08:f12c with SMTP id f15-20020a056870548f00b000f5dc08f12cmr1252754oan.12.1654125976450;
+        Wed, 01 Jun 2022 16:26:16 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id t9-20020a056870600900b000f5f4ad194bsm719784oaa.25.2022.06.01.16.26.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Jun 2022 15:57:24 -0700 (PDT)
-From:   William Zhang <william.zhang@broadcom.com>
-To:     Linux ARM List <linux-arm-kernel@lists.infradead.org>,
-        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>
-Cc:     joel.peshkin@broadcom.com, tomer.yacoby@broadcom.com,
-        kursad.oney@broadcom.com, philippe.reynes@softathome.com,
-        dan.beygelman@broadcom.com, samyon.furman@broadcom.com,
-        anand.gore@broadcom.com, florian.fainelli@broadcom.com,
-        William Zhang <william.zhang@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/5] arm64: dts: add dts files for bcmbca soc 63158
-Date:   Wed,  1 Jun 2022 15:56:51 -0700
-Message-Id: <20220601225654.18519-4-william.zhang@broadcom.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220601225654.18519-1-william.zhang@broadcom.com>
-References: <20220601225654.18519-1-william.zhang@broadcom.com>
+        Wed, 01 Jun 2022 16:26:15 -0700 (PDT)
+Received: (nullmailer pid 696078 invoked by uid 1000);
+        Wed, 01 Jun 2022 23:26:14 -0000
+Date:   Wed, 1 Jun 2022 18:26:14 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Alexandru M Stan <amstan@chromium.org>,
+        patches@lists.linux.dev,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Julius Werner <jwerner@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>,
+        "Joseph S . Barrera III" <joebar@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Stephen Boyd <sboyd@codeaurora.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 5/5] dt-bindings: arm: qcom: Add more sc7180
+ Chromebook board bindings
+Message-ID: <20220601232614.GA504337-robh@kernel.org>
+References: <20220520143502.v4.1.I71e42c6174f1cec17da3024c9f73ba373263b9b6@changeid>
+ <20220520143502.v4.5.Ie8713bc0377672ed8dd71189e66fc0b77226fb85@changeid>
+ <a2bcac04-23ad-d1ae-84f1-924c4dbad42b@linaro.org>
+ <CAD=FV=WgYbD9GN_wiR29ikZMzEjKUSZGH588+nnyd3O-dNgChQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="00000000000016bedb05e06ad0a2"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAD=FV=WgYbD9GN_wiR29ikZMzEjKUSZGH588+nnyd3O-dNgChQ@mail.gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---00000000000016bedb05e06ad0a2
-Content-Transfer-Encoding: 8bit
+On Mon, May 23, 2022 at 09:19:03AM -0700, Doug Anderson wrote:
+> Hi,
+> 
+> On Sun, May 22, 2022 at 1:01 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> >
+> > On 20/05/2022 23:38, Douglas Anderson wrote:
+> > > This adds board bindings for boards that are downstream but not quite
+> > > upstream yet.
+> > >
+> > > Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> > > Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+> > > ---
+> > > Normally this bindings doc would go together in the same series that
+> > > adds the device trees. In this case, Joe has been sending patches
+> > > supporting these Chromebooks. His most recent posting is:
+> > >
+> > > https://lore.kernel.org/r/20220510154406.v5.1.Id769ddc5dbf570ccb511db96da59f97d08f75a9c@changeid/
+> > >
+> > > If he were to add this patch to the end of his v6, however, it would
+> > > make things a bit more complicated simply becuase it would cause
+> > > conflicts with all the other patches in this series. ...so steady
+> > > state it would be correct to keep it in the series with the device
+> > > tree files, but for this one time I think it makes sense to keep all
+> > > the Chromebook board bindings patches together.
+> > >
+> > > (no changes since v2)
+> > >
+> > > Changes in v2:
+> > > - Use a "description" instead of a comment for each item.
+> > > - Use the marketing name instead of the code name where possible.
+> > >
+> > >  .../devicetree/bindings/arm/qcom.yaml         | 92 +++++++++++++++++++
+> > >  1 file changed, 92 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> > > index 3d150d1a93cd..277faf59db57 100644
+> > > --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> > > +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> > > @@ -263,6 +263,16 @@ properties:
+> > >            - const: google,homestar
+> > >            - const: qcom,sc7180
+> > >
+> > > +      - description: Google Kingoftown (rev0)
+> > > +        items:
+> > > +          - const: google,kingoftown-rev0
+> > > +          - const: qcom,sc7180
+> > > +
+> > > +      - description: Google Kingoftown (newest rev)
+> > > +        items:
+> > > +          - const: google,kingoftown
+> > > +          - const: qcom,sc7180
+> > > +
+> > >        - description: Acer Chromebook Spin 513 (rev0)
+> > >          items:
+> > >            - const: google,lazor-rev0
+> > > @@ -364,6 +374,48 @@ properties:
+> > >            - const: google,lazor-sku6
+> > >            - const: qcom,sc7180
+> > >
+> > > +      - description: Google Mrbland with AUO panel (rev0)
+> > > +        items:
+> > > +          - const: google,mrbland-rev0-sku0
+> > > +          - const: qcom,sc7180
+> > > +
+> > > +      - description: Google Mrbland with AUO panel (newest rev)
+> > > +        items:
+> > > +          - const: google,mrbland-sku1536
+> > > +          - const: qcom,sc7180
+> > > +
+> > > +      - description: Google Mrbland with BOE panel (rev0)
+> > > +        items:
+> > > +          - const: google,mrbland-rev0-sku16
+> >
+> > Similar question to patch #3, this could be:
+> >
+> >
+> > +      - description: Google Mrbland
+> > +        items:
+> > +          - enum:
+> > +              - google,mrbland-rev0-sku0     # AUO panel (rev0)
+> > +              - google,mrbland-rev0-sku16    # BOE panel (rev0)
+> > +          - const: qcom,sc7180
+> >
+> > and the file gets smaller and easier to read.
+> 
+> Ah, I guess this answers the question of the description that I asked
+> in the previous patch. Of course, this goes opposite of the feedback I
+> got from Stephen in previous versions of the patch where he requested
+> that I use "description" instead of comments for things. ;-)
+> 
+> In any case, for now I'll hold off waiting for other opinions here
+> since I still feel that the "one entry per dts" is easier to read /
+> reason about.
 
-Add dts for ARMv8 based broadband SoC BCM63158. bcm63158.dtsi is the
-SoC description dts header and bcm963158.dts is a simple dts file for
-Broadcom BCM963158 Reference board that only enable the UART port.
+I leave it to the sub-arch maintainers to decide. I somewhat prefer as 
+Krzysztof suggested. Some platforms (and most of the ones I converted) 
+all the boards for an SoC are one entry (except for the 3 string cases). 
+So the above looks like a good middle ground grouping revs or variations 
+of boards.
 
-Signed-off-by: William Zhang <william.zhang@broadcom.com>
-
----
-
-Changes in v2:
-- Change internal bus address and size cells from 2 to 1
-- Fix pmu compatible string
-- Remove unnecessary cpu_on and cpu_off properties from psci node
-- Add the missing gic registers and interrupts property to gic node
-
- arch/arm64/boot/dts/broadcom/Makefile         |   1 +
- arch/arm64/boot/dts/broadcom/bcmbca/Makefile  |   2 +
- .../boot/dts/broadcom/bcmbca/bcm63158.dtsi    | 128 ++++++++++++++++++
- .../boot/dts/broadcom/bcmbca/bcm963158.dts    |  30 ++++
- 4 files changed, 161 insertions(+)
- create mode 100644 arch/arm64/boot/dts/broadcom/bcmbca/Makefile
- create mode 100644 arch/arm64/boot/dts/broadcom/bcmbca/bcm63158.dtsi
- create mode 100644 arch/arm64/boot/dts/broadcom/bcmbca/bcm963158.dts
-
-diff --git a/arch/arm64/boot/dts/broadcom/Makefile b/arch/arm64/boot/dts/broadcom/Makefile
-index 5082fcd1fea5..e8584d3b698f 100644
---- a/arch/arm64/boot/dts/broadcom/Makefile
-+++ b/arch/arm64/boot/dts/broadcom/Makefile
-@@ -9,5 +9,6 @@ dtb-$(CONFIG_ARCH_BCM2835) += bcm2711-rpi-400.dtb \
- 			      bcm2837-rpi-zero-2-w.dtb
- 
- subdir-y	+= bcm4908
-+subdir-y	+= bcmbca
- subdir-y	+= northstar2
- subdir-y	+= stingray
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/Makefile b/arch/arm64/boot/dts/broadcom/bcmbca/Makefile
-new file mode 100644
-index 000000000000..d5f89245336c
---- /dev/null
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/Makefile
-@@ -0,0 +1,2 @@
-+# SPDX-License-Identifier: GPL-2.0
-+dtb-$(CONFIG_ARCH_BCMBCA) += bcm963158.dtb
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm63158.dtsi b/arch/arm64/boot/dts/broadcom/bcmbca/bcm63158.dtsi
-new file mode 100644
-index 000000000000..13629702f70b
---- /dev/null
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm63158.dtsi
-@@ -0,0 +1,128 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2022 Broadcom Ltd.
-+ */
-+
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+/ {
-+	compatible = "brcm,bcm63158", "brcm,bcmbca";
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	interrupt-parent = <&gic>;
-+
-+	cpus {
-+		#address-cells = <2>;
-+		#size-cells = <0>;
-+
-+		B53_0: cpu@0 {
-+			compatible = "brcm,brahma-b53";
-+			device_type = "cpu";
-+			reg = <0x0 0x0>;
-+			next-level-cache = <&L2_0>;
-+			enable-method = "psci";
-+		};
-+
-+		B53_1: cpu@1 {
-+			compatible = "brcm,brahma-b53";
-+			device_type = "cpu";
-+			reg = <0x0 0x1>;
-+			next-level-cache = <&L2_0>;
-+			enable-method = "psci";
-+		};
-+
-+		B53_2: cpu@2 {
-+			compatible = "brcm,brahma-b53";
-+			device_type = "cpu";
-+			reg = <0x0 0x2>;
-+			next-level-cache = <&L2_0>;
-+			enable-method = "psci";
-+		};
-+
-+		B53_3: cpu@3 {
-+			compatible = "brcm,brahma-b53";
-+			device_type = "cpu";
-+			reg = <0x0 0x3>;
-+			next-level-cache = <&L2_0>;
-+			enable-method = "psci";
-+		};
-+
-+		L2_0: l2-cache0 {
-+			compatible = "cache";
-+		};
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			<GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			<GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			<GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-+	};
-+
-+	pmu: pmu {
-+		compatible = "arm,cortex-a53-pmu";
-+		interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
-+			<GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
-+			<GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
-+			<GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-affinity = <&B53_0>, <&B53_1>,
-+			<&B53_2>, <&B53_3>;
-+	};
-+
-+	clocks: clocks {
-+		periph_clk: periph-clk {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <200000000>;
-+		};
-+		uart_clk: uart-clk {
-+			compatible = "fixed-factor-clock";
-+			#clock-cells = <0>;
-+			clocks = <&periph_clk>;
-+			clock-div = <4>;
-+			clock-mult = <1>;
-+		};
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-0.2";
-+		method = "smc";
-+	};
-+
-+	axi@81000000 {
-+		compatible = "simple-bus";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0x0 0x0 0x81000000 0x8000>;
-+
-+		gic: interrupt-controller@1000 {
-+			compatible = "arm,gic-400";
-+			#interrupt-cells = <3>;
-+			interrupt-controller;
-+			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
-+			reg = <0x1000 0x1000>,
-+				<0x2000 0x2000>,
-+				<0x4000 0x2000>,
-+				<0x6000 0x2000>;
-+		};
-+	};
-+
-+	bus@ff800000 {
-+		compatible = "simple-bus";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0x0 0x0 0xff800000 0x800000>;
-+
-+		uart0: serial@12000 {
-+			compatible = "arm,pl011", "arm,primecell";
-+			reg = <0x12000 0x1000>;
-+			interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&uart_clk>, <&uart_clk>;
-+			clock-names = "uartclk", "apb_pclk";
-+			status = "disabled";
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm963158.dts b/arch/arm64/boot/dts/broadcom/bcmbca/bcm963158.dts
-new file mode 100644
-index 000000000000..eba07e0b1ca6
---- /dev/null
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm963158.dts
-@@ -0,0 +1,30 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2022 Broadcom Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include "bcm63158.dtsi"
-+
-+/ {
-+	model = "Broadcom BCM963158 Reference Board";
-+	compatible = "brcm,bcm963158", "brcm,bcm63158", "brcm,bcmbca";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x08000000>;
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
--- 
-2.36.1
-
-
---00000000000016bedb05e06ad0a2
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-TltlrAeBKRJ1M9O/DY5v7L1Yrs//7XIRg/d2ZPAOSGBQzFYjYTFWwNBiR1s1zP0m2y56DPbS5gwj
-fqAN/I4PJHIvTh3zUgHXNKadYoYRiPHXfaTWO9UhzysOpQIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
-BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
-YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
-BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
-MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
-YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
-Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
-HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
-BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUohM5GmNlGWe5wpzDxzIy
-+EgzbRswDQYJKoZIhvcNAQELBQADggEBACKu9JSQAYTlmC+JTniO/C/UcXGonATI/muBjWTxtkHc
-abZtz0uwzzrRrpV+mbHLGVFFeRbXSLvcEzqHp8VomXifEZlfsE9LajSehzaqhd+np+tmUPz1RlI/
-ibZ7vW+1VF18lfoL+wHs2H0fsG6JfoqZldEWYXASXnUrs0iTLgXxvwaQj69cSMuzfFm1X5kWqWCP
-W0KkR8025J0L5L4yXfkSO6psD/k4VcTsMJHLN4RfMuaXIT6EM0cNO6h3GypyTuPf1N1X+F6WQPKb
-1u+rvdML63P9fX7e7mwwGt5klRnf8aK2VU7mIdYCcrFHaKDTW3fkG6kIgrE1wWSgiZYL400xggJt
-MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
-VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw28eX6TfvsbNfu
-SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIMr7iMJ4O0IgHrpmd0NJZiG4Lyzg
-jh4rPQDJRHSw5TGkMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
-MDYwMTIyNTcyNVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
-CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
-AwQCATANBgkqhkiG9w0BAQEFAASCAQDFJF3YmVwvwSqtPuhfQdSQYVrY0WTDkk3FqHlO/6od+Wgi
-t898gXRNcd5Likhdd/3L4w2WRj4biB8ecRuWN+q0tJI+aQLGkr4frATDskY7BtL0n2rr1bXxr8lg
-jhJfmHSFTKtTgpCeUAxvJfq2meb04zHvQMMxolqdfdtF9l5RR6hEWp+CV46tZJDDODZPJFwu7SFN
-d5y+cjHT+aPU/6wj8sbFiLQsO+x35sYMbut31UohiTNahhUOlD2mUvDYayQ00yh1fcifmAvutfBO
-EFFsnGZCx0d8eXwoC3oDW3I0XN6F/u43WO5SEBY0eQWcgYNiefceANfIojm8cQBCQHJ2
---00000000000016bedb05e06ad0a2--
+Rob
