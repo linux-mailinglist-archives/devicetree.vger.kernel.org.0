@@ -2,83 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BF5253AE4F
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 22:51:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C0C753AE37
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 22:50:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230188AbiFAUpp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 16:45:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43894 "EHLO
+        id S229747AbiFAUmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 16:42:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229513AbiFAUpW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 16:45:22 -0400
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5025426271D;
-        Wed,  1 Jun 2022 13:32:21 -0700 (PDT)
-Received: by mail-yb1-f177.google.com with SMTP id v22so4924389ybd.5;
-        Wed, 01 Jun 2022 13:32:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Mi2KakMLN5Oolk1j9IuMk3Qtihd6Doqcyb4Wzf1iGb8=;
-        b=61Z+F7FfX1RTSXCWowX8VUIC3KzVuBfD3m75Cjl5bQltO0Fil4mRfmnTo0Ma5V4qfX
-         EUGQtT7wY/alYb72p/8asn23T25AzM+Lc5dCWeZ+HU2oE8+hgoSatWujwq5F5etLwTDN
-         IcDL76auIF23Fx53sZOwmeArmsy2b24aeSLN/Yti43TA6KtQDTLMk0z0fIX3ci/oSyxQ
-         tsTBiNa4riZNh93yb+fHzGoebmOXYG/0md/TUfxKra/28X95f3qQw1886NOtqUgKiW3g
-         2Tdx2XxU6kqpDitpkmLVVgfis5FF7lkfjJhHQSL8FDYiIkw+e5k5gUk5q6BLJYhdWpYH
-         zEHQ==
-X-Gm-Message-State: AOAM532w1UEJk5CU4x2IJvlfGkNlJ0P/BwZewF1Rdn6zkJEkD3OHDLMS
-        Qxm941MIh+PVqUknpcL0LOzq0MLVHQ==
-X-Google-Smtp-Source: ABdhPJwqckOQJ3oMBSt13P0tpXRYlnNBp7YUsO7ydUCg7j9OhqxwYVxJIbSGKXig+2EFQEhRTAc4tw==
-X-Received: by 2002:a05:6830:45:b0:60b:196a:c0d7 with SMTP id d5-20020a056830004500b0060b196ac0d7mr637703otp.314.1654113324745;
-        Wed, 01 Jun 2022 12:55:24 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v1-20020a056830090100b00605fd407259sm1228404ott.3.2022.06.01.12.55.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Jun 2022 12:55:24 -0700 (PDT)
-Received: (nullmailer pid 328210 invoked by uid 1000);
-        Wed, 01 Jun 2022 19:55:23 -0000
-Date:   Wed, 1 Jun 2022 14:55:23 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>
-Cc:     linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        michals@xilinx.com, lorenzo.pieralisi@arm.com, bhelgaas@google.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: PCI: xilinx-cpm: Fix reg property order
-Message-ID: <20220601195523.GA328031-robh@kernel.org>
-References: <20220516102217.25960-1-bharat.kumar.gogada@xilinx.com>
+        with ESMTP id S229459AbiFAUmn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 16:42:43 -0400
+Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B5E228E2A;
+        Wed,  1 Jun 2022 13:24:39 -0700 (PDT)
+Received: from relay2-d.mail.gandi.net (unknown [IPv6:2001:4b98:dc4:8::222])
+        by mslow1.mail.gandi.net (Postfix) with ESMTP id 817EDCE62D;
+        Wed,  1 Jun 2022 19:58:01 +0000 (UTC)
+Received: (Authenticated sender: contact@artur-rojek.eu)
+        by mail.gandi.net (Postfix) with ESMTPA id CCC6C40008;
+        Wed,  1 Jun 2022 19:57:20 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220516102217.25960-1-bharat.kumar.gogada@xilinx.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Date:   Wed, 01 Jun 2022 21:57:20 +0200
+From:   Artur Rojek <contact@artur-rojek.eu>
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, dmitry.torokhov@gmail.com,
+        maccraft123mc@gmail.com, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH 2/3] Input: adc-joystick - Add polled input device support
+In-Reply-To: <20220601191730.29721-3-macroalpha82@gmail.com>
+References: <20220601191730.29721-1-macroalpha82@gmail.com>
+ <20220601191730.29721-3-macroalpha82@gmail.com>
+Message-ID: <6c0e39d1bb62592d1ea21e381ccdd055@artur-rojek.eu>
+X-Sender: contact@artur-rojek.eu
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 16 May 2022 15:52:17 +0530, Bharat Kumar Gogada wrote:
-> All existing vendor DTSes are using "cpm_slcr" reg followed by "cfg" reg.
-> 
-> This order is also suggested by node name which is pcie@fca10000 which
-> suggests that cpm_slcr register should be the first.
-> 
-> Driver itself is using devm_platform_ioremap_resource_byname() for both
-> names that's why there is no functional change even on description which
-> are using current order.
-> 
-> But still prefer to change order to cover currently used description.
-> Fixes: e22fadb1d014 ("PCI: xilinx-cpm: Add YAML schemas for Versal CPM Root Port")
-> 
-> Signed-off-by: Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>
-> ---
->  .../devicetree/bindings/pci/xilinx-versal-cpm.yaml     | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
-> 
+On 2022-06-01 21:17, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 
-Applied, thanks!
+Hi Chris,
+
+Thanks for your patch. Here's some things I spotted on a quick glance. 
+I'll test this patch against the existing (non-poll) devices over, or 
+after the weekend.
+
+> 
+> Add polled input device support to the adc-joystick driver. This is
+> useful for devices which do not have hardware capable triggers on
+> their SARADC. Code modified from adc-joystick.c changes made by Maya
+> Matuszczyk.
+> 
+> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> ---
+>  drivers/input/joystick/adc-joystick.c | 53 +++++++++++++++++++++------
+>  1 file changed, 42 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/input/joystick/adc-joystick.c
+> b/drivers/input/joystick/adc-joystick.c
+> index 78ebca7d400a..83a5a420141e 100644
+> --- a/drivers/input/joystick/adc-joystick.c
+> +++ b/drivers/input/joystick/adc-joystick.c
+> @@ -13,6 +13,10 @@
+> 
+>  #include <asm/unaligned.h>
+> 
+> +#define ADC_JSK_POLL_INTERVAL	16
+> +#define ADC_JSK_POLL_MIN	8
+> +#define ADC_JSK_POLL_MAX	32
+> +
+>  struct adc_joystick_axis {
+>  	u32 code;
+>  	s32 range[2];
+> @@ -26,8 +30,21 @@ struct adc_joystick {
+>  	struct adc_joystick_axis *axes;
+>  	struct iio_channel *chans;
+>  	int num_chans;
+> +	bool polled;
+>  };
+> 
+> +static void adc_joystick_poll(struct input_dev *input)
+> +{
+> +	struct adc_joystick *joy = input_get_drvdata(input);
+> +	int i, val;
+> +
+> +	for (i = 0; i < joy->num_chans; i++) {
+> +		iio_read_channel_raw(&joy->chans[i], &val);
+> +		input_report_abs(input, joy->axes[i].code, val);
+> +	}
+> +	input_sync(input);
+> +}
+> +
+>  static int adc_joystick_handle(const void *data, void *private)
+>  {
+>  	struct adc_joystick *joy = private;
+> @@ -215,8 +232,19 @@ static int adc_joystick_probe(struct 
+> platform_device *pdev)
+>  	joy->input = input;
+>  	input->name = pdev->name;
+>  	input->id.bustype = BUS_HOST;
+> -	input->open = adc_joystick_open;
+> -	input->close = adc_joystick_close;
+> +
+> +	if (of_device_is_compatible(dev->of_node, "adc-joystick-polled"))
+> +		joy->polled = 1;
+Don't use a new compatible for that (see my comment for patch 1/3). Keep 
+it as a property and then you can access it through 
+`fwnode_property_read_bool`.
+
+> +
+> +	if (joy->polled == 1) {
+It's a bool, so just do `if (joy->polled)`.
+
+> +		input_setup_polling(input, adc_joystick_poll);
+> +		input_set_poll_interval(input, ADC_JSK_POLL_INTERVAL);
+> +		input_set_min_poll_interval(input, ADC_JSK_POLL_MIN);
+> +		input_set_max_poll_interval(input, ADC_JSK_POLL_MAX);
+> +	} else {
+> +		input->open = adc_joystick_open;
+> +		input->close = adc_joystick_close;
+> +	}
+> 
+>  	error = adc_joystick_set_axes(dev, joy);
+>  	if (error)
+> @@ -229,16 +257,18 @@ static int adc_joystick_probe(struct
+> platform_device *pdev)
+>  		return error;
+>  	}
+> 
+> -	joy->buffer = iio_channel_get_all_cb(dev, adc_joystick_handle, joy);
+> -	if (IS_ERR(joy->buffer)) {
+> -		dev_err(dev, "Unable to allocate callback buffer\n");
+> -		return PTR_ERR(joy->buffer);
+> -	}
+> +	if (joy->polled == 0) {
+Same here. Just do `if (!joy->polled)`.
+
+Cheers,
+Artur
+
+> +		joy->buffer = iio_channel_get_all_cb(dev, adc_joystick_handle, joy);
+> +		if (IS_ERR(joy->buffer)) {
+> +			dev_err(dev, "Unable to allocate callback buffer\n");
+> +			return PTR_ERR(joy->buffer);
+> +		}
+> 
+> -	error = devm_add_action_or_reset(dev, adc_joystick_cleanup, 
+> joy->buffer);
+> -	if (error)  {
+> -		dev_err(dev, "Unable to add action\n");
+> -		return error;
+> +		error = devm_add_action_or_reset(dev, adc_joystick_cleanup, 
+> joy->buffer);
+> +		if (error)  {
+> +			dev_err(dev, "Unable to add action\n");
+> +			return error;
+> +		}
+>  	}
+> 
+>  	return 0;
+> @@ -246,6 +276,7 @@ static int adc_joystick_probe(struct 
+> platform_device *pdev)
+> 
+>  static const struct of_device_id adc_joystick_of_match[] = {
+>  	{ .compatible = "adc-joystick", },
+> +	{ .compatible = "adc-joystick-polled", },
+>  	{ }
+>  };
+>  MODULE_DEVICE_TABLE(of, adc_joystick_of_match);
