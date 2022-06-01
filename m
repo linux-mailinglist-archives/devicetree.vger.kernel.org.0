@@ -2,75 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4464B53B0C9
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 02:35:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3012A53B096
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 02:34:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232548AbiFAX0S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 19:26:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49362 "EHLO
+        id S232526AbiFAXgV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 19:36:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232546AbiFAX0S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 19:26:18 -0400
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70D326571;
-        Wed,  1 Jun 2022 16:26:17 -0700 (PDT)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-f16a3e0529so4757106fac.2;
-        Wed, 01 Jun 2022 16:26:17 -0700 (PDT)
+        with ESMTP id S232504AbiFAXgV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 19:36:21 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62C092342AB
+        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 16:36:19 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id j7so3391202pjn.4
+        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 16:36:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version;
+        bh=VaSBGOUNy0mlPi1K4uby5PsDtNwS/FYp6UY7j8NfV0Q=;
+        b=Kebx8GQpq0Tl2T6VrxR18i0hfwOulxHldWMX/2Zl4dmZ1lzLim6YKFuGwTgABO1t1M
+         hBbAK4nUcUH2p4B9qcNtFmdY5YzkW/Zzo1nZHkJc55QvVjj3vyk+8TE7AoEFklxFPOUt
+         OiSaTMZHZszVBJd2A16CrVyn1xY/k3UDeGXts=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=iJNKOO8QXxNlzBsifQjmX9tXu38uHaRGSzPFyqrc1yQ=;
-        b=F6pKhFBzgTwAVv4Eh+hHxVbf6gC/rdCw2/9Vq+cp4UPttHoP9e60ojNhlgIjPRAeE/
-         XNmXNVYhdyFcU25HO8dk+XrjWxBJTLKm4+H4UCLVtXg9Va2EePfy+KCi2sTBGrqzD/wY
-         jQgOU2PmJl0V+oF5JOXP07/zfY3nk6wH1BJjBg8/8+oHObtmz1Qkp8m+2xXYAyNT8UY8
-         vxXJQh1TEwB5YHLdguovjSQAJ0/eiMY6Yi7GyBtwLOcWi/LhqpSd1ZICjXHKyH+nGUuh
-         Pv2ZeHkO0g9W+l3SVLndxaZe9o6/hkG2N72cmMaMbFqMMUBz0C13Rk2iju+Yb8+jvyzX
-         jhcA==
-X-Gm-Message-State: AOAM530lJp+g2cDXtltVBDkypLZAka1RRiQB4KJbmG0CSdBA5vBsfP3k
-        B/TWB9fNR6Ekatojp+dRcQ==
-X-Google-Smtp-Source: ABdhPJw3v7nw/3t83l1+7RJSfsRWFO4E+ExNjYFS+gxyafxmeK1J23WekAZMJNOwY6C3Vq+Zc76yrw==
-X-Received: by 2002:a05:6870:548f:b0:f5:dc08:f12c with SMTP id f15-20020a056870548f00b000f5dc08f12cmr1252754oan.12.1654125976450;
-        Wed, 01 Jun 2022 16:26:16 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id t9-20020a056870600900b000f5f4ad194bsm719784oaa.25.2022.06.01.16.26.15
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version;
+        bh=VaSBGOUNy0mlPi1K4uby5PsDtNwS/FYp6UY7j8NfV0Q=;
+        b=D8ZviNZEZNHsLrd9arHkY3endtnBsY9JNJauJWAOwOepOfg1Rt7L81Tnj23cy3hatw
+         ZVmj6IJb/yZKJP+iCWOVzzrBceEvM1i4GbYNa4cRmh0tPm7PK4b1AKemA25jT2RFUOwk
+         7Qbj8neJliqgwLyJKyja38cp64DhTGdYwDZykrafEIGebNCzdNLuiHaCXp3SXgzNRnzK
+         FKiAhD6vDnlQP4aYkUyu0R7vE8Z14TbOM5eoyewBuDNB9IoMKIAR70hLirFq7XQnyp/H
+         M6jmurg2mQvQfqvnHq24HXakmm+onOwiqX+Y/pOa8MZtrLIBiqPcO3YlQ59ADuEaDq7f
+         NTAg==
+X-Gm-Message-State: AOAM531wSQJ/NS1E14WlPAslJ93SsqCINr8XjMBMFyO0IR6+7CjOX5um
+        yOL4rrEvyoCM3HqLg1f7nbPO7w==
+X-Google-Smtp-Source: ABdhPJzvzqKb9GVJg82kSPxSACcMOX65lh2MUVyPpyI+Vw6JvppE4xARYoF0NaNp+PtE1NJiwbTwbg==
+X-Received: by 2002:a17:90b:1bd1:b0:1df:b6eb:2b20 with SMTP id oa17-20020a17090b1bd100b001dfb6eb2b20mr1920319pjb.221.1654126578797;
+        Wed, 01 Jun 2022 16:36:18 -0700 (PDT)
+Received: from T3500-3.dhcp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id bx10-20020a056a00428a00b005182e39038csm1978639pfb.38.2022.06.01.16.36.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Jun 2022 16:26:15 -0700 (PDT)
-Received: (nullmailer pid 696078 invoked by uid 1000);
-        Wed, 01 Jun 2022 23:26:14 -0000
-Date:   Wed, 1 Jun 2022 18:26:14 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        patches@lists.linux.dev,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Julius Werner <jwerner@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>,
-        "Joseph S . Barrera III" <joebar@chromium.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Stephen Boyd <sboyd@codeaurora.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 5/5] dt-bindings: arm: qcom: Add more sc7180
- Chromebook board bindings
-Message-ID: <20220601232614.GA504337-robh@kernel.org>
-References: <20220520143502.v4.1.I71e42c6174f1cec17da3024c9f73ba373263b9b6@changeid>
- <20220520143502.v4.5.Ie8713bc0377672ed8dd71189e66fc0b77226fb85@changeid>
- <a2bcac04-23ad-d1ae-84f1-924c4dbad42b@linaro.org>
- <CAD=FV=WgYbD9GN_wiR29ikZMzEjKUSZGH588+nnyd3O-dNgChQ@mail.gmail.com>
+        Wed, 01 Jun 2022 16:36:18 -0700 (PDT)
+From:   William Zhang <william.zhang@broadcom.com>
+To:     Linux ARM List <linux-arm-kernel@lists.infradead.org>
+Cc:     joel.peshkin@broadcom.com, anand.gore@broadcom.com,
+        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
+        kursad.oney@broadcom.com, florian.fainelli@broadcom.com,
+        William Zhang <william.zhang@broadcom.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: update bcm47622 dts file
+Date:   Wed,  1 Jun 2022 16:36:06 -0700
+Message-Id: <20220601233606.23281-1-william.zhang@broadcom.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAD=FV=WgYbD9GN_wiR29ikZMzEjKUSZGH588+nnyd3O-dNgChQ@mail.gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="00000000000029f32605e06b5bbb"
+X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,MIME_NO_TEXT,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
         autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,105 +68,168 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 23, 2022 at 09:19:03AM -0700, Doug Anderson wrote:
-> Hi,
-> 
-> On Sun, May 22, 2022 at 1:01 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
-> >
-> > On 20/05/2022 23:38, Douglas Anderson wrote:
-> > > This adds board bindings for boards that are downstream but not quite
-> > > upstream yet.
-> > >
-> > > Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> > > Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
-> > > ---
-> > > Normally this bindings doc would go together in the same series that
-> > > adds the device trees. In this case, Joe has been sending patches
-> > > supporting these Chromebooks. His most recent posting is:
-> > >
-> > > https://lore.kernel.org/r/20220510154406.v5.1.Id769ddc5dbf570ccb511db96da59f97d08f75a9c@changeid/
-> > >
-> > > If he were to add this patch to the end of his v6, however, it would
-> > > make things a bit more complicated simply becuase it would cause
-> > > conflicts with all the other patches in this series. ...so steady
-> > > state it would be correct to keep it in the series with the device
-> > > tree files, but for this one time I think it makes sense to keep all
-> > > the Chromebook board bindings patches together.
-> > >
-> > > (no changes since v2)
-> > >
-> > > Changes in v2:
-> > > - Use a "description" instead of a comment for each item.
-> > > - Use the marketing name instead of the code name where possible.
-> > >
-> > >  .../devicetree/bindings/arm/qcom.yaml         | 92 +++++++++++++++++++
-> > >  1 file changed, 92 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> > > index 3d150d1a93cd..277faf59db57 100644
-> > > --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> > > +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> > > @@ -263,6 +263,16 @@ properties:
-> > >            - const: google,homestar
-> > >            - const: qcom,sc7180
-> > >
-> > > +      - description: Google Kingoftown (rev0)
-> > > +        items:
-> > > +          - const: google,kingoftown-rev0
-> > > +          - const: qcom,sc7180
-> > > +
-> > > +      - description: Google Kingoftown (newest rev)
-> > > +        items:
-> > > +          - const: google,kingoftown
-> > > +          - const: qcom,sc7180
-> > > +
-> > >        - description: Acer Chromebook Spin 513 (rev0)
-> > >          items:
-> > >            - const: google,lazor-rev0
-> > > @@ -364,6 +374,48 @@ properties:
-> > >            - const: google,lazor-sku6
-> > >            - const: qcom,sc7180
-> > >
-> > > +      - description: Google Mrbland with AUO panel (rev0)
-> > > +        items:
-> > > +          - const: google,mrbland-rev0-sku0
-> > > +          - const: qcom,sc7180
-> > > +
-> > > +      - description: Google Mrbland with AUO panel (newest rev)
-> > > +        items:
-> > > +          - const: google,mrbland-sku1536
-> > > +          - const: qcom,sc7180
-> > > +
-> > > +      - description: Google Mrbland with BOE panel (rev0)
-> > > +        items:
-> > > +          - const: google,mrbland-rev0-sku16
-> >
-> > Similar question to patch #3, this could be:
-> >
-> >
-> > +      - description: Google Mrbland
-> > +        items:
-> > +          - enum:
-> > +              - google,mrbland-rev0-sku0     # AUO panel (rev0)
-> > +              - google,mrbland-rev0-sku16    # BOE panel (rev0)
-> > +          - const: qcom,sc7180
-> >
-> > and the file gets smaller and easier to read.
-> 
-> Ah, I guess this answers the question of the description that I asked
-> in the previous patch. Of course, this goes opposite of the feedback I
-> got from Stephen in previous versions of the patch where he requested
-> that I use "description" instead of comments for things. ;-)
-> 
-> In any case, for now I'll hold off waiting for other opinions here
-> since I still feel that the "one entry per dts" is easier to read /
-> reason about.
+--00000000000029f32605e06b5bbb
+Content-Transfer-Encoding: 8bit
 
-I leave it to the sub-arch maintainers to decide. I somewhat prefer as 
-Krzysztof suggested. Some platforms (and most of the ones I converted) 
-all the boards for an SoC are one entry (except for the 3 string cases). 
-So the above looks like a good middle ground grouping revs or variations 
-of boards.
+Fix a few issue in bcm47622.dtsi file:
+- Remove unnecessary cpu_on and cpu_off properties from psci node
+- Add the missing gic registers and interrupts property to gic node
+- Cosmetic changes
 
-Rob
+Signed-off-by: William Zhang <william.zhang@broadcom.com>
+
+---
+
+ arch/arm/boot/dts/bcm47622.dtsi | 14 +++++++++-----
+ 1 file changed, 9 insertions(+), 5 deletions(-)
+
+diff --git a/arch/arm/boot/dts/bcm47622.dtsi b/arch/arm/boot/dts/bcm47622.dtsi
+index c016e12b7372..2df04528af82 100644
+--- a/arch/arm/boot/dts/bcm47622.dtsi
++++ b/arch/arm/boot/dts/bcm47622.dtsi
+@@ -32,6 +32,7 @@ CA7_1: cpu@1 {
+ 			next-level-cache = <&L2_0>;
+ 			enable-method = "psci";
+ 		};
++
+ 		CA7_2: cpu@2 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a7";
+@@ -39,6 +40,7 @@ CA7_2: cpu@2 {
+ 			next-level-cache = <&L2_0>;
+ 			enable-method = "psci";
+ 		};
++
+ 		CA7_3: cpu@3 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a7";
+@@ -46,6 +48,7 @@ CA7_3: cpu@3 {
+ 			next-level-cache = <&L2_0>;
+ 			enable-method = "psci";
+ 		};
++
+ 		L2_0: l2-cache0 {
+ 			compatible = "cache";
+ 		};
+@@ -76,6 +79,7 @@ periph_clk: periph-clk {
+ 			#clock-cells = <0>;
+ 			clock-frequency = <200000000>;
+ 		};
++
+ 		uart_clk: uart-clk {
+ 			compatible = "fixed-factor-clock";
+ 			#clock-cells = <0>;
+@@ -88,23 +92,23 @@ uart_clk: uart-clk {
+ 	psci {
+ 		compatible = "arm,psci-0.2";
+ 		method = "smc";
+-		cpu_off = <1>;
+-		cpu_on = <2>;
+ 	};
+ 
+ 	axi@81000000 {
+ 		compatible = "simple-bus";
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+-		ranges = <0 0x81000000 0x818000>;
++		ranges = <0 0x81000000 0x8000>;
+ 
+ 		gic: interrupt-controller@1000 {
+ 			compatible = "arm,cortex-a7-gic";
+ 			#interrupt-cells = <3>;
+-			#address-cells = <0>;
+ 			interrupt-controller;
++			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+ 			reg = <0x1000 0x1000>,
+-				<0x2000 0x2000>;
++				<0x2000 0x2000>,
++				<0x4000 0x2000>,
++				<0x6000 0x2000>;
+ 		};
+ 	};
+ 
+-- 
+2.36.1
+
+
+--00000000000029f32605e06b5bbb
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+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
+TltlrAeBKRJ1M9O/DY5v7L1Yrs//7XIRg/d2ZPAOSGBQzFYjYTFWwNBiR1s1zP0m2y56DPbS5gwj
+fqAN/I4PJHIvTh3zUgHXNKadYoYRiPHXfaTWO9UhzysOpQIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
+BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
+YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
+BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
+MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
+YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
+Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
+HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
+BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUohM5GmNlGWe5wpzDxzIy
++EgzbRswDQYJKoZIhvcNAQELBQADggEBACKu9JSQAYTlmC+JTniO/C/UcXGonATI/muBjWTxtkHc
+abZtz0uwzzrRrpV+mbHLGVFFeRbXSLvcEzqHp8VomXifEZlfsE9LajSehzaqhd+np+tmUPz1RlI/
+ibZ7vW+1VF18lfoL+wHs2H0fsG6JfoqZldEWYXASXnUrs0iTLgXxvwaQj69cSMuzfFm1X5kWqWCP
+W0KkR8025J0L5L4yXfkSO6psD/k4VcTsMJHLN4RfMuaXIT6EM0cNO6h3GypyTuPf1N1X+F6WQPKb
+1u+rvdML63P9fX7e7mwwGt5klRnf8aK2VU7mIdYCcrFHaKDTW3fkG6kIgrE1wWSgiZYL400xggJt
+MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
+VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw28eX6TfvsbNfu
+SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIDDovFgNgcHh5TpCOAoKdIMAyCvw
+BVCYjMHgsFq+P5+HMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
+MDYwMTIzMzYxOVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
+AwQCATANBgkqhkiG9w0BAQEFAASCAQCzP4jO6VeY3o1cgCCKh5Ox5sCqjQZ80p1Sy+tUzf7E+j+Q
+hxciH5nAMBzAqopdWMo1MGBLvT4Nt78oNk1Lt0JK34V7rkz2o7K+0Tpsk0Y4Fr6we1DIA3vKZ/Bz
+zH+jUc0ZqThuS0pGaOsbErHwI3WVv2RQ+cMUQb7l9w1Kc1Y/5W9dJUAHBO+msKck0OCvXfVccylp
+IyvOKbfl4vcW9NoddQ1ioOrDUqO0P0IFsiFPTYV1h2y9a5cekmV+cS9IY2BpVQ+EC+nNwRynqfEP
+L+Mh7QEyflDT8H/brOaKxDlZ/WEE85NI1NKg5MklgIM1GT1G2mbzKg3v5plpOFBTiaKr
+--00000000000029f32605e06b5bbb--
