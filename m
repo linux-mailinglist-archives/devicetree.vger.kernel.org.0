@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FF34539E51
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 09:36:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97FD9539E58
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 09:36:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241969AbiFAHgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 03:36:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55026 "EHLO
+        id S234770AbiFAHgX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 03:36:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345567AbiFAHgC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 03:36:02 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 373C590CE8
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 00:35:58 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id x62so959464ede.10
-        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 00:35:58 -0700 (PDT)
+        with ESMTP id S241561AbiFAHgV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 03:36:21 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2571A8CCE7
+        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 00:36:18 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id q21so1971335ejm.1
+        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 00:36:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=TYSMvua2Chy4ew3jbVU8f9W6/MITfKjqjvefw+FJfeM=;
-        b=nc1h4qmu96bEFYDvTfzmKUX9pDAjB3hcWg/OC4S+sCk7LHLLhu9JHXMOEZHqJ0Uvuo
-         +lBFi7hz1SBU8PWQOONP+WohujLkZBTaddDHVw9kFzhwL5HfjrFN+sluVEMXCDWjiQGM
-         NuSMxDdYldUID5yJOA/6vnJ5t/OVGkUV7Sb8Q7kIQlVe41QhYuvhLxwuYDmn/Sm7mAZ/
-         ByCE+Y1whybcr+F040ZbAUw11x/50k2pVfZigCcisT7jxCY5o3YSUbYztGx7kivO3E9f
-         vzh77uFu2YldfbdKeZ6KspEudt4QnDeNnXEStOwr30yElL4eJIX9azl+lEDFd7eAKmj0
-         xZFQ==
+        bh=0q3wt29aNZiv6jXypasXo5xqD+y2Dp/M8UIl5yGQ+OU=;
+        b=EqmxQDYflsUcRFsBVf/C3LdLhNCWjjkgpV6d3FyTWbkOsrcS2A39iklfOv0rM7Dcsr
+         ZRdPNxhAVzy9A0PBcWP+r849b7PsmV7Lfnj0rig+AgIFCXYaGYBX0R5lcfCIDptvbdBE
+         Tp0zFqG7kZqXGeKPL8/WPYye5vZacc2NLr+yGZw8m+H/DUXabvU81+dQFiAyaa0k2K15
+         b665tJpSN/mwuqMv6l+GAfNzMOytdKbvDfmKDBhef3zm7x4zrQdfzY1AqYEUFZFD82Vq
+         zQrKkqgdLe7tfAeCmaW6ERzoNTgcj74viKMPs0J34io1jsptMuGJT2yN9/wTDSrilBkB
+         WhOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=TYSMvua2Chy4ew3jbVU8f9W6/MITfKjqjvefw+FJfeM=;
-        b=hUIkz9zZmnwXPzDO20UP/gv0usyDov78rjebV1M2seShysIcGFpOnG5Pjdqqj21TNX
-         b2ZtSlrfJV7Nk4gKA0clb86lrNkq337vsRJPgUwDTzZTyq9IR33vsohChlZD5dbpe5Ob
-         MzRjusfUr9sIlZ3LowAK2MCIT9DZNCiTLAppFkQi8WZqSripI4vTniFtfZj0b6mUzJET
-         GQSU1jjX2z2kbWFp8hM6KhS3WmJWXZ+UQzUUMLCPTus2C5SPIyKXTvTayCQzU3EVKt/U
-         lT2qaTigB0PJJu/F2Q20UJ9CUYsoKzQdIgdJtn3D8XdW9OaNAIYVzk4vOI91Z1xjept5
-         faYw==
-X-Gm-Message-State: AOAM5325U2LoiM5SUmcx1HKnGJ/4RnfUA1AzFhq89p9f/6tx8ixTcsL/
-        1O0KQCJW4i6rPLy1qmJ3rLHMhQ==
-X-Google-Smtp-Source: ABdhPJwNhLbz14jAv7K27z89V2NzlDT0rykgRpsBI1i5lKTIDRrGGa174iGN2HxuUfd9lKCcF1gBpQ==
-X-Received: by 2002:a05:6402:2211:b0:42d:cb9e:cbf with SMTP id cq17-20020a056402221100b0042dcb9e0cbfmr18371093edb.76.1654068956833;
-        Wed, 01 Jun 2022 00:35:56 -0700 (PDT)
+        bh=0q3wt29aNZiv6jXypasXo5xqD+y2Dp/M8UIl5yGQ+OU=;
+        b=0LFOJ7Pb6/LYJ7yLjWVjuFo2wVA8cL+pSXFcsCnJlYx+eC4Ruc9RCKiSPo5eFsJCU5
+         r2YlNBpY4xkvJ/CrlCLn2y6ocQEjVbA9Q0jRfzb8zEVsUET/fScA8+8BzCy2oUlC6bPx
+         rL1B1YQv08dDaVGoEw4+uyZcv9t870e8dG33/K8aFUTCnvf5TKZpVQHyb4II/mxYcoOQ
+         3fAWlNIwuPmy+cGJ0QxtTlqlvEA0rM+SOfkJXhqPOq6iaVsgkTxrg136s54kbh1E5O4K
+         Wbx97X71JZU3EB0E1sY0krtvsgNA9AJojzBbr5Pf5gzIwR+Q3gKlClCZAs3aIeG+weNP
+         H0Cg==
+X-Gm-Message-State: AOAM532tL8ktmfiCVsDKzqdQ4U5S3XpVP1bQQDwQ8bOmTr8qPlHlXrfz
+        6C2ua3kbLsV38F+8AAvEiPWxKg==
+X-Google-Smtp-Source: ABdhPJygn1kSoBskFVxX1NTOvT9WDOZ5vbePTEPzYPwUrOV6DSTk5mMP3EMwBrRPRSlIzj9AM+6EXQ==
+X-Received: by 2002:a17:907:7e84:b0:6fe:cded:7d1f with SMTP id qb4-20020a1709077e8400b006fecded7d1fmr42958260ejc.35.1654068976668;
+        Wed, 01 Jun 2022 00:36:16 -0700 (PDT)
 Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id c12-20020aa7d60c000000b0042be14040c1sm502925edr.86.2022.06.01.00.35.54
+        by smtp.gmail.com with ESMTPSA id o22-20020a170906601600b006fe8b456672sm382548ejj.3.2022.06.01.00.36.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Jun 2022 00:35:56 -0700 (PDT)
-Message-ID: <a02dbc8a-7d7d-5939-1c30-bfe8c7480f1c@linaro.org>
-Date:   Wed, 1 Jun 2022 09:35:54 +0200
+        Wed, 01 Jun 2022 00:36:16 -0700 (PDT)
+Message-ID: <2926e4f5-1322-f1c6-f43a-c4a09f5751de@linaro.org>
+Date:   Wed, 1 Jun 2022 09:36:14 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [RESEND 00/14] Add Mediatek MT6370 PMIC support
+Subject: Re: [RESEND 01/14] dt-bindings: usb: Add Mediatek MT6370 TCPC binding
 Content-Language: en-US
 To:     ChiaEn Wu <peterwu.pub@gmail.com>, lee.jones@linaro.org,
         daniel.thompson@linaro.org, jingoohan1@gmail.com, pavel@ucw.cz,
@@ -70,8 +70,9 @@ Cc:     cy_huang@richtek.com, alice_chen@richtek.com,
         linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
         linux-iio@vger.kernel.org, linux-fbdev@vger.kernel.org
 References: <20220531111900.19422-1-peterwu.pub@gmail.com>
+ <20220531111900.19422-2-peterwu.pub@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220531111900.19422-1-peterwu.pub@gmail.com>
+In-Reply-To: <20220531111900.19422-2-peterwu.pub@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,13 +86,13 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 31/05/2022 13:18, ChiaEn Wu wrote:
-> From: ChiaEn Wu <chiaen_wu@richtek.com>
+> From: ChiYuan Huang <cy_huang@richtek.com>
 > 
-> Sorry, for the patch dependency, we resend this patch series and we're
-> sorry for any inconvenience that we may have caused. 
+> Add Mediatek MT6370 TCPC binding documentation.
+> 
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
 
-What is the reason of resend? I just finished reviewing v1, so shall it
-is confusing to see a new one...
+Please apply my previous comments.
 
 
 Best regards,
