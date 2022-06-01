@@ -2,108 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE06853A37C
+	by mail.lfdr.de (Postfix) with ESMTP id 7347753A37B
 	for <lists+devicetree@lfdr.de>; Wed,  1 Jun 2022 13:03:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343770AbiFALDY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 07:03:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52706 "EHLO
+        id S1352410AbiFALDH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 07:03:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352467AbiFALDU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 07:03:20 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12ACC880E3
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 04:03:18 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id m32-20020a05600c3b2000b0039756bb41f2so853459wms.3
-        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 04:03:18 -0700 (PDT)
+        with ESMTP id S1352392AbiFALDG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 07:03:06 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CC8E87A3A
+        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 04:03:05 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id n10so2971311ejk.5
+        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 04:03:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Fjf9xNl/MqQB/RPimZ4g9EOKQN/z4oldIhLZb2IukiM=;
-        b=GmRxTPwPYrNCwNSsPIu1VTrOgW9rsJIJqoYWE4IOkuZ4c1KU1fjaWO3S7JlcvALdT3
-         PQ6v+2FD4F2rTJIRpXHez2tm6Ok/46+QfPEIbKpicsHk9ds9NpEtvsTA1IzIRInKxVu3
-         3Puq9O3ByF7gOdBoQFayvf7L4zYBfYCnNIMZll7JQIyNtlaUDif8ncgulQNGN5ad6jak
-         TB/7zdZODU5L4c+FnZ5bvMdsdKQg4vbEAdD7tbhufVZiU2EHLqvT5rsA2FQfPZYWmDe3
-         KBycG0rnMSLAuP4HJe66kQBVfxZvY89v9R8qFdv9DqupseZIFKbvOvqp143sRxHI1ba1
-         sgbA==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Fx8hR1Ri3SI+El5o0pYbgj5MaJ9J6XG9nU7Eot+VsE4=;
+        b=MeOcRsNNDpR2TdsfCNoPv1bhmFR50EDF+h4eSzXkdEAaZevad9M87SRiKUk8pV0g9j
+         2gJf2C6qPmnZDs++7hMvdVMIgbHzeWBAa39aQ05mS8E+RlB7YOLulnEXkn0yeTr7UZlG
+         dHUu4pZow6Dz2xI4feNTxmEao/FC/H8+cO4mC5qR25dlHLbtj7GhJyErgBZ4JS/yeH8P
+         vJFwIfH/AppSSEdAA9UWyQmZ5G3/pe69XkYnzbunbVFgPeacefwwYNTXVC1tfcMWaU37
+         zC/uS0BiUKdSugKSLLzTvpn3GhjA02WFmVWIBoTtl2G/sO54Xa4MDc/he9aXNcCNV3J/
+         bE0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Fjf9xNl/MqQB/RPimZ4g9EOKQN/z4oldIhLZb2IukiM=;
-        b=8FsOOXrgmg5EJ4QKOfBXPRq3huwtDWKnQEOdxhT+HjEKrOCGM4gQMqxVim/NW9YwGT
-         EZJv5+viGkhWIYbUdkjmvI5U6f5xo0bGD+Nj+V/fSL3T64i5AFL4r/mhvMbjfazhoqkg
-         kjp7Qm/316cBYgZjIbKniEYJSKOmhBwG/Sb8fKwiI7jESPHUQs7Z9NK6bJYs5xnsqREk
-         JHLDRF4VAQQp+kAFqndJhi52yRMtThq2R5JzFTLSban5f4exndvxPz1oy6SvkGgfCbYt
-         ostgJ0kvhczzIg+BajIdGiLqGV6QUzh3LEsIqaR+FdF0Cmx/NbJH2d0jCmb85CUdEpQS
-         yxOA==
-X-Gm-Message-State: AOAM530TVgtGu8XnE4frUNMoePzZOUj1+ikoIMinSS2bWCsy+2hQjOTt
-        bFlefIwiakQRwk8kOwEha2o=
-X-Google-Smtp-Source: ABdhPJx5kYUlDNbTHYglJRLhh4T2fvS8bPm1arsI4PnjL43uMY6XoeM9y5jmJxz/v4fy8dIbqmmqSg==
-X-Received: by 2002:a7b:cc12:0:b0:37c:1ae:100a with SMTP id f18-20020a7bcc12000000b0037c01ae100amr27692085wmh.54.1654081396592;
-        Wed, 01 Jun 2022 04:03:16 -0700 (PDT)
-Received: from morpheus.home.roving-it.com (82-132-215-116.dab.02.net. [82.132.215.116])
-        by smtp.googlemail.com with ESMTPSA id j14-20020a05600c190e00b00397381a7ae8sm6074559wmq.30.2022.06.01.04.03.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Jun 2022 04:03:16 -0700 (PDT)
-From:   Peter Robinson <pbrobinson@gmail.com>
-To:     Arnd Bergmann <arnd@arndb.de>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, Emma Anholt <emma@anholt.net>,
-        Florian Fainelli <f.fainelli@gmail.com>, javierm@redhat.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org, maxime@cerno.tech,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Peter Robinson <pbrobinson@gmail.com>
-Subject: [PATCH v5 6/6] arm64: config: Enable DRM_V3D
-Date:   Wed,  1 Jun 2022 12:02:49 +0100
-Message-Id: <20220601110249.569540-7-pbrobinson@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220601110249.569540-1-pbrobinson@gmail.com>
-References: <20220601110249.569540-1-pbrobinson@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Fx8hR1Ri3SI+El5o0pYbgj5MaJ9J6XG9nU7Eot+VsE4=;
+        b=irvLN0ICOEp9+w5PPOgTCp5hP0Kc8baOCxWSAGLXRLhCuxA87spTr1hIRW/CrapVjA
+         M/CuoGKPvF5qE9ZypyEXtR2H2+kO2Yw5RHAoxDHPGgDWdnQ6YyOedqZgZC96KQYCxk9B
+         zYLJQY5+f/Q/Yxp0ETaRcQr4xvqTVuuxa9b9nqKqtY/b6WHm/NREhBjyElendLO80tAp
+         1/z5nKEJFrQdiwaF07Y9nu7axYIPgpUBHIx2tQijQYBep0QL/sDGPSe7eZCFyXhBUCII
+         B8wDKGWfiuBaRQCRjrU6mb3Z55ycZogvdcH1iv5MnDSmGKszs4e5un7Q9Efb/jf2nLh/
+         UXJQ==
+X-Gm-Message-State: AOAM532Bu0bD7uVn5edoKVB1J/pdp8ZCxkYTS80l7jITstVqfjesNDpE
+        Vz/3qlcttP8yiGdGVZK25R0diA==
+X-Google-Smtp-Source: ABdhPJx8JasyPtz+hxWfWP8/TEBgs8JT4t4mRChQwxbKC9/9UHQ2XCCi/aoLnTme0X9PguEAh3VY7Q==
+X-Received: by 2002:a17:907:7f0b:b0:6ff:4502:9c2f with SMTP id qf11-20020a1709077f0b00b006ff45029c2fmr20854513ejc.532.1654081383714;
+        Wed, 01 Jun 2022 04:03:03 -0700 (PDT)
+Received: from [192.168.0.179] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id mj4-20020a170906af8400b006ff0fe78cb7sm589619ejb.133.2022.06.01.04.03.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Jun 2022 04:03:03 -0700 (PDT)
+Message-ID: <55af0870-ff8b-3577-8520-95c1063ecc86@linaro.org>
+Date:   Wed, 1 Jun 2022 13:03:01 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 10/11] ARM: dts: qcom: sdx65: Add Watchdog support
+Content-Language: en-US
+To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, wim@linux-watchdog.org,
+        linux@roeck-us.net
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        manivannan.sadhasivam@linaro.org
+References: <1654080312-5408-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1654080312-5408-11-git-send-email-quic_rohiagar@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1654080312-5408-11-git-send-email-quic_rohiagar@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+On 01/06/2022 12:45, Rohit Agarwal wrote:
+> Enable Watchdog support for Application Processor Subsystem (APSS) block
+> on SDX65 platform.
+> 
+> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+> ---
+>  arch/arm/boot/dts/qcom-sdx65.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom-sdx65.dtsi
+> index 5e4687d..c76f330 100644
+> --- a/arch/arm/boot/dts/qcom-sdx65.dtsi
+> +++ b/arch/arm/boot/dts/qcom-sdx65.dtsi
+> @@ -513,6 +513,13 @@
+>  			#clock-cells = <0>;
+>  		};
+>  
+> +		watchdog@17817000 {
+> +			compatible = "qcom,apss-wdt-sdx65", "qcom,kpss-wdt";
+> +			reg = <0x17817000 0x1000>;
+> +			clocks = <&sleep_clk>;
+> +		};
+> +
 
-BCM2711, the SoC used on the Raspberry Pi 4 has a different GPU than its
-predecessors. Enable it.
+Just one line break, please.
 
-Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 50aa3d75ab4f..446bac1ef774 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -738,6 +738,7 @@ CONFIG_DRM_I2C_ADV7511_AUDIO=y
- CONFIG_DRM_DW_HDMI_AHB_AUDIO=m
- CONFIG_DRM_DW_HDMI_CEC=m
- CONFIG_DRM_IMX_DCSS=m
-+CONFIG_DRM_V3D=m
- CONFIG_DRM_VC4=m
- CONFIG_DRM_ETNAVIV=m
- CONFIG_DRM_HISI_HIBMC=m
--- 
-2.36.1
 
+Best regards,
+Krzysztof
