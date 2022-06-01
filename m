@@ -2,96 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 692ED53AF47
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 00:50:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78DE753AF00
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 00:50:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231187AbiFAVH2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 17:07:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47514 "EHLO
+        id S231131AbiFAVJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 17:09:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231267AbiFAVHY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 17:07:24 -0400
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AE736BFFF
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 14:07:23 -0700 (PDT)
-Received: by mail-oi1-f177.google.com with SMTP id r65so4219521oia.9
-        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 14:07:23 -0700 (PDT)
+        with ESMTP id S231126AbiFAVJn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 17:09:43 -0400
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E228439689;
+        Wed,  1 Jun 2022 14:09:40 -0700 (PDT)
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-f33f0f5b1dso4350502fac.8;
+        Wed, 01 Jun 2022 14:09:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=EgAWTkUmqGAnkiE2aLxnJMzWI8jM/VYbLhJYY+UzZ80=;
-        b=fjIsdwcCEAPfqrG7o0DCnGxm0G2cBneM97yU6lnNAxjD8emR68JmpCM5cy7OrhYRYi
-         xopfNz3oisH3D4ue1CC/pqq1BJB4GNAYEOJeCFbEWVEU8rbEqS6Tr88+cY+8iKC/xmBb
-         VS2OQuMA8wYtmMIgur9jt/5iijQOULLRBd90DsmbqUTfGX9x0T4XMw6FKIX5CeAByV32
-         PF8hGaiBUdIBYp1/0SNZiYTs3/oEWblqLvonZl62a8nhz3kljAXnLCJftVofPbnAzV8O
-         knISv3Y3sdko0srmaPYrCrxqeJfMXyNxXAZNzY7mpcdTYOPbqBUWaelIti0E0igU7BW3
-         61bA==
-X-Gm-Message-State: AOAM531lqzyjkNs+ksIiuTk2pATPgTsT+MgHyJhryvX2eUGxqTX7sB4n
-        KM+48FSYS/Y/Q9W8tn++eA==
-X-Google-Smtp-Source: ABdhPJy9a/TpoRFRLjro4OOH95o5CU7UkJeH8c+s7epUnV5gpT30Wh3CCrHSPrZmipZHjFqJazrHrg==
-X-Received: by 2002:a05:6808:2129:b0:32b:f7fa:be51 with SMTP id r41-20020a056808212900b0032bf7fabe51mr830004oiw.42.1654117640238;
-        Wed, 01 Jun 2022 14:07:20 -0700 (PDT)
+        bh=lz9YkXmluzI1p168QLYr9xM1kRCaRjaM0/FGvCuSWY8=;
+        b=ApHmYzwBrnWG6LVxH/M/lR0INi2hZThiS4EvtczgX+lEEvZ2h88L1oL99Y3mBoBnb+
+         1FQpBm2QeIGkoHYOJaEoaDYClhliS1TYWspYFyHehq97WWleJ7b3yCP4QOSTL3s8NlVU
+         IGoQsal5GuMZpG3jRasGXYUEEVEtDdPGE38J1toLAm4Gk7zzjS+z1tzTFE+67LeokNEZ
+         5ry7lN5ZFg/W8zeX2CM4oR+fRspuPebxSHNSlseaIGDMgif9rw0lYqWqcH6FoPxHsGvc
+         x9u0F9XAEwhWPU2cXHhVD80sImN/u8a8l6bUOQmk/F/vPJNZuddt00QXRDfZ5f+rZvRf
+         /g1Q==
+X-Gm-Message-State: AOAM5329QLotnAEfov6yzxloEoa0+SiJonQQhrEHVsqoFTNyLn0PTZHi
+        eVUf1LvXwJSRNprM1NqIgw==
+X-Google-Smtp-Source: ABdhPJzrWF2c69+FrFYHc/YQUqCI9lL1oAgA5F5TgXFwkCpLR8CEM1a7l1cxJ8pd4y096o7Y6Bbn3w==
+X-Received: by 2002:a05:6870:f587:b0:f5:eee4:d01c with SMTP id eh7-20020a056870f58700b000f5eee4d01cmr2201713oab.117.1654117780078;
+        Wed, 01 Jun 2022 14:09:40 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id kw38-20020a056870ac2600b000f32c6b6871sm1224550oab.10.2022.06.01.14.07.19
+        by smtp.gmail.com with ESMTPSA id q8-20020a056830440800b0060aeccf6b44sm1367078otv.41.2022.06.01.14.09.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Jun 2022 14:07:19 -0700 (PDT)
-Received: (nullmailer pid 453614 invoked by uid 1000);
-        Wed, 01 Jun 2022 21:07:19 -0000
-Date:   Wed, 1 Jun 2022 16:07:19 -0500
+        Wed, 01 Jun 2022 14:09:39 -0700 (PDT)
+Received: (nullmailer pid 457426 invoked by uid 1000);
+        Wed, 01 Jun 2022 21:09:38 -0000
+Date:   Wed, 1 Jun 2022 16:09:38 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     Sam Ravnborg <sam@ravnborg.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        robert.foss@linaro.org, Robby Cai <robby.cai@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-        Stefan Agner <stefan@agner.ch>, martyn.welch@collabora.com,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>
-Subject: Re: [PATCH v4 1/2] dt-bindings: lcdif: Add compatible for i.MX8MP
-Message-ID: <20220601210719.GA453556-robh@kernel.org>
-References: <20220519114849.69918-1-marex@denx.de>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Rob Herring <robh+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        David Airlie <airlied@linux.ie>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        Boris Brezillon <bbrezillon@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Subject: Re: [PATCH v3] dt-bindings: display: bridge: sil,sii9022: Convert to
+ json-schema
+Message-ID: <20220601210938.GA457343-robh@kernel.org>
+References: <2f8e12b4980a82788c1dd413ceedf8d144fdca91.1652967387.git.geert+renesas@glider.be>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220519114849.69918-1-marex@denx.de>
+In-Reply-To: <2f8e12b4980a82788c1dd413ceedf8d144fdca91.1652967387.git.geert+renesas@glider.be>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 19 May 2022 13:48:48 +0200, Marek Vasut wrote:
-> Add compatible string for i.MX8MP LCDIF variant. This is called LCDIFv3
-> and is completely different from the LCDIFv3 found in i.MX23 in that it
-> has a completely scrambled register layout compared to all previous LCDIF
-> variants. The new LCDIFv3 also supports 36bit address space. However,
-> except for the complete bit reshuffling, this is still LCDIF and it still
-> works like one.
+On Thu, 19 May 2022 15:41:06 +0200, Geert Uytterhoeven wrote:
+> Convert the Silicon Image sii902x HDMI bridge Device Tree binding
+> documentation to json-schema.
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Robby Cai <robby.cai@nxp.com>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Stefan Agner <stefan@agner.ch>
-> Cc: devicetree@vger.kernel.org
+> Add missing sil,sii9022-cpi and sil,sii9022-tpi compatible values.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
-> V2: No change
-> V3: No change
-> V4: No change
+> v3:
+>   - Add comments clarifying CPI/TPI,
+>   - Improve wording,
+>   - Drop port@2,
+>   - Add port descriptions,
+>   - Add schema references to individual ports.
+> 
+> v2:
+>   - Rework sil,i2s-data-lanes,
+>   - Add schema reference to ports.
 > ---
->  Documentation/devicetree/bindings/display/fsl,lcdif.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../bindings/display/bridge/sii902x.txt       |  78 -----------
+>  .../bindings/display/bridge/sil,sii9022.yaml  | 131 ++++++++++++++++++
+>  2 files changed, 131 insertions(+), 78 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/display/bridge/sii902x.txt
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/sil,sii9022.yaml
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
