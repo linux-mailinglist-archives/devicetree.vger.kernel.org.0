@@ -2,99 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C50753B9FD
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 15:42:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F117B53BA00
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 15:43:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235496AbiFBNmb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 09:42:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48248 "EHLO
+        id S235392AbiFBNn6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 09:43:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233407AbiFBNm1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 09:42:27 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1AE620E15D;
-        Thu,  2 Jun 2022 06:42:25 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 67386617B5;
-        Thu,  2 Jun 2022 13:42:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBD61C385A5;
-        Thu,  2 Jun 2022 13:42:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654177344;
-        bh=/ss0pOz0sSGPpXYi8/QCoSWhJ9XGlhQ1lSXpqvNoLI8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=neR1ogYBf9o06NbPsYbT+rBopWy/WkhJ6eiWdPzuwSxjgarReX5GzWv9khYLa/3tB
-         wPs3xQchlpf5g/DcwgWBeG6xe21D47PqHrdrWr/x0Iz0onVpsgZ/Ncdr+M34Aarxu5
-         LoQ9SGynHjMGfoys7WQW8a8HTQtTRUqL2ClufFCHT/gnEZ7LI6Xt3cuma/5hKUK8mH
-         orEGRSwZaJ1fGT98hRVnw6OkYaW4ijFIvxY7xgTK/IUJ+E+dcjEvnUHe+nQfKzJkVr
-         m9uiKfovom/Vw436eG7NMgYQA1DE4qv+vVoRLTJkS8jAxeZRbz94Qdkln/XLjZtqcu
-         iVE2xjvPilfig==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1nwl5b-0005eP-OS; Thu, 02 Jun 2022 15:42:15 +0200
-Date:   Thu, 2 Jun 2022 15:42:15 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v12 2/8] PCI: dwc: Correct msi_irq condition in
- dw_pcie_free_msi()
-Message-ID: <Ypi+N8uUNGxsWrQN@hovoldconsulting.com>
-References: <20220523181836.2019180-1-dmitry.baryshkov@linaro.org>
- <20220523181836.2019180-3-dmitry.baryshkov@linaro.org>
+        with ESMTP id S233407AbiFBNn5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 09:43:57 -0400
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D8BB22DFA9;
+        Thu,  2 Jun 2022 06:43:56 -0700 (PDT)
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-f2bb84f9edso6752595fac.10;
+        Thu, 02 Jun 2022 06:43:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=hQGK49GF9DeJULgey4jAcL7Oa6D8j/sPMETA1NkIOJc=;
+        b=Cu7LV+csCy+r8W+x49zmlFAorzLEeBJnp4ckf64UcOVT9xd8+9/V3mCUqkXMdCHUIq
+         OhGxxHBn8bq2XMxeRL84Gp5D14TLkepVBIXvh9/M8KS3lwxX3bJveVIVGFt1qDJDwClG
+         1tt+L7jZ9VmAIhUiw77ZvRNyzYlatfpa8hfCzHuS7rvM650juCp9z+Jc8V1T5/Wpu5gy
+         NwuyQNnejLk9V6lrdZ1vE5JymcWHb251sQFohWtU5x2gO8DJ3pKKasyERFHOJTAxcBZg
+         o/90Sl0+khp82U/5/M31QbPZGyOqPQdnFX+ujbJ1xs3i0vObBaXNdAURApDn806OHRfP
+         1Zbw==
+X-Gm-Message-State: AOAM532xQs5+MWK4jpcrSO55GFTuqJr0wPXeLkSPRZ1yw+YiXIkDKHbT
+        npMj65/NkYOj/7/CPScvi090wP380g==
+X-Google-Smtp-Source: ABdhPJzL70GYPEawMMZyFEupbpoldLQk6350MsIEKUwqginMohKYrSm6Ju3LfMU8fTraG27RUbk8xA==
+X-Received: by 2002:a05:6871:b0f:b0:f3:3687:524b with SMTP id fq15-20020a0568710b0f00b000f33687524bmr2642992oab.131.1654177435454;
+        Thu, 02 Jun 2022 06:43:55 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id t18-20020a4adbd2000000b0040eb1d3f43dsm2330707oou.2.2022.06.02.06.43.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Jun 2022 06:43:55 -0700 (PDT)
+Received: (nullmailer pid 2175981 invoked by uid 1000);
+        Thu, 02 Jun 2022 13:43:54 -0000
+Date:   Thu, 2 Jun 2022 08:43:54 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        yuji2.ishikawa@toshiba.co.jp, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] iommu: bindings: Add binding documentation for
+ Toshiba Visconti5 IOMMU device
+Message-ID: <20220602134354.GA2170842-robh@kernel.org>
+References: <20220525013147.2215355-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20220525013147.2215355-3-nobuhiro1.iwamatsu@toshiba.co.jp>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220523181836.2019180-3-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220525013147.2215355-3-nobuhiro1.iwamatsu@toshiba.co.jp>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 23, 2022 at 09:18:30PM +0300, Dmitry Baryshkov wrote:
-> The subdrivers pass -ESOMETHING if they do not want the core to touch
-> MSI IRQ. dw_pcie_host_init() also checks if (msi_irq > 0) rather than
-> just if (msi_irq). So let's make dw_pcie_free_msi() also check that
-> msi_irq is greater than zero.
+On Wed, May 25, 2022 at 10:31:46AM +0900, Nobuhiro Iwamatsu wrote:
+> Add documentation for the binding of Toshiba Visconti5 SoC's IOMMU.
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
 > ---
->  drivers/pci/controller/dwc/pcie-designware-host.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../bindings/iommu/toshiba,visconti-atu.yaml  | 62 +++++++++++++++++++
+>  1 file changed, 62 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iommu/toshiba,visconti-atu.yaml
 > 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> index 9979302532b7..af91fe69f542 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> @@ -257,7 +257,7 @@ int dw_pcie_allocate_domains(struct pcie_port *pp)
->  
->  static void dw_pcie_free_msi(struct pcie_port *pp)
->  {
-> -	if (pp->msi_irq)
-> +	if (pp->msi_irq > 0)
->  		irq_set_chained_handler_and_data(pp->msi_irq, NULL, NULL);
->  
->  	irq_domain_remove(pp->msi_domain);
+> diff --git a/Documentation/devicetree/bindings/iommu/toshiba,visconti-atu.yaml b/Documentation/devicetree/bindings/iommu/toshiba,visconti-atu.yaml
+> new file mode 100644
+> index 000000000000..af8d6688fa70
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iommu/toshiba,visconti-atu.yaml
+> @@ -0,0 +1,62 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
 
-Looks good.
+Dual license: GPL-2.0-only OR BSD-2-Clause
 
-Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iommu/toshiba,visconti-atu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Toshiba ARM SoC Visconti5 IOMMU (ATU)
+> +
+> +maintainers:
+> +  - Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> +
+> +description: |+
+> +  IOMMU (ATU) driver can bse used for Visconti5's multimedia IPs, such as
+
+Bindings are for hardware, not drivers.
+
+> +  DCNN (Deep Convolutional Neural Network), VIIF(Video Input), VOIF(Video
+> +  output), and others.
+> +
+> +properties:
+> +  compatible:
+> +    const: toshiba,visconti-atu
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#iommu-cells":
+> +    const: 0
+> +
+> +  toshiba,max-entry:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: The size of entry for address
+> +    enum:
+> +      - 16
+> +      - 32
+> +
+> +  toshiba,reserved-entry:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: The reserve number of entry address.
+> +    default: 0
+> +    minimum: 0
+> +    maximum: 32
+
+These 2 need a better description of what they are for.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#iommu-cells"
+> +  - toshiba,max-entry
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        atu_affine0: iommu@1400f000 {
+
+Drop unused labels.
+
+> +            compatible = "toshiba,visconti-atu";
+> +            reg = <0 0x1400F000 0 0x1000>;
+> +            toshiba,max-entry = <16>;
+> +            toshiba,reserved-entry = <1>;
+> +            #iommu-cells = <0>;
+> +        };
+> +    };
+> -- 
+> 2.36.0
+> 
+> 
+> 
