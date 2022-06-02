@@ -2,112 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 629DD53B87E
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 14:01:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD4D553B889
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 14:01:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233369AbiFBMBJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 08:01:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39020 "EHLO
+        id S234715AbiFBMBb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 08:01:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234688AbiFBMBI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 08:01:08 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 794942432C7
-        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 05:01:07 -0700 (PDT)
-Received: from [192.168.41.62] ([46.114.149.130]) by mrelayeu.kundenserver.de
- (mreue010 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1MOAJt-1o86QH1lVZ-00ObLP; Thu, 02 Jun 2022 14:00:44 +0200
-Message-ID: <aa1394b5-18af-4184-236d-45f44ad44e2e@i2se.com>
-Date:   Thu, 2 Jun 2022 14:00:42 +0200
+        with ESMTP id S234699AbiFBMBa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 08:01:30 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA0476C0D6
+        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 05:01:28 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id me5so9001598ejb.2
+        for <devicetree@vger.kernel.org>; Thu, 02 Jun 2022 05:01:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=pwtV0vYkvqvfBqWdmXfwwejWIfpVfeuunmf98xXbmyU=;
+        b=gWXO/XK595YoZXsr8bhzhM47kJo060ua3lX/frEPFWv7ADuTiUeRp24QXOHNct8H+J
+         OdKLwDprmlrvJjesW80hT1lru8X9WO2Hq7n3miOU83y4wznelD5whP8m8KOyV+tJHS/f
+         YcAM2ve6eE+rpRl7wkptoh8BdJJbJTyHWo0F82n2t/hK1hn6ueQr2YjRe2cI6NBX4KZK
+         bxrEb+O9YeXYIXD95QX6g61EP7k2umyoGvnuywuwHtBgCl54TsitbEIGmUL2KDo2NFhk
+         /0w3EsXre5cNGLJlVu5NblXJbDU7POFAWtATF1mhe8/mNVLXA31f6Z/Xv98zV0uOxtuu
+         WnxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=pwtV0vYkvqvfBqWdmXfwwejWIfpVfeuunmf98xXbmyU=;
+        b=WnXpse70HEvJGlX6+hVt0enLzo4RryP4+TUWDuBKGQpE6M4R2HNhG8g0EDNw3l4AWs
+         2I4dCmlx/uX26UvuDH6Fx96BXLrE9rRLGjprmGWlDKUkXKbFLZ50hbXHGHi6RiFg/1NF
+         5wJzoxDtmr1uFd7jR6w9xBCwLDZ0o2Lc6c+3vbhJzgR8hH1ja1aHcROeBXoF+NNEjOAw
+         3EhTmxDpLXmwOioZ24FG4lcrAFw2aoFkTlaHiqMWNJfof84tPukRps5FjSKZpAKrvFIB
+         Reg0dSxv483l5HsbbC/kIg1jpH09Op3lHR4ShfbwZb0wHjLu0CJZi/YKQqOfKBT9Fw28
+         5FQg==
+X-Gm-Message-State: AOAM530g9a9PhhsxWL7zf4OZn4O2S6IfqPsmIcJuifJyNfjo2t8y1WX1
+        14xIgTUh0GE9CI3rWy8QcOGlNg==
+X-Google-Smtp-Source: ABdhPJzt9uGRB+v5ckn9uT7jUQ+esGDunDDnGdKSW7Gh2BXXH7tqbIa0yj4NJgrOEZFNMd8A20lmwg==
+X-Received: by 2002:a17:907:778a:b0:70c:d67:578e with SMTP id ky10-20020a170907778a00b0070c0d67578emr1174845ejc.696.1654171287097;
+        Thu, 02 Jun 2022 05:01:27 -0700 (PDT)
+Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id m25-20020a509999000000b0042bd25ca29asm2367308edb.59.2022.06.02.05.01.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Jun 2022 05:01:26 -0700 (PDT)
+Message-ID: <b3681990-e358-8e1d-93fe-b72c099902e3@linaro.org>
+Date:   Thu, 2 Jun 2022 14:01:25 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v5 3/6] drm/v3d: Add support for bcm2711
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 5/5] arm64: dts: exynos: Add internal eMMC support to
+ jackpotlte
 Content-Language: en-US
-To:     Peter Robinson <pbrobinson@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, Emma Anholt <emma@anholt.net>,
-        Florian Fainelli <f.fainelli@gmail.com>, javierm@redhat.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org, maxime@cerno.tech,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+To:     David Virag <virag.david003@gmail.com>
+Cc:     phone-devel@vger.kernel.org,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Melissa Wen <melissa.srw@gmail.com>
-Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-References: <20220601110249.569540-1-pbrobinson@gmail.com>
- <20220601110249.569540-4-pbrobinson@gmail.com>
-From:   Stefan Wahren <stefan.wahren@i2se.com>
-In-Reply-To: <20220601110249.569540-4-pbrobinson@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220601233743.56317-1-virag.david003@gmail.com>
+ <20220601233743.56317-6-virag.david003@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220601233743.56317-6-virag.david003@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Provags-ID: V03:K1:gVbcJazyhpBT2gwYUqXBcasMDMtpBOxRBVKJ4H/vqm8XDB9Luk1
- WVGb9ZqoH+8nUwL3BbzLkNLejFgPysduaM+CmSGTD+kLf+EsAGIzHNuj30fuUFoauDQ1+x0
- kWwq3ZrhhjA2fORNZDRHB2nzGFlgGWpVohxN02aatE4sdis9nDvXtQ3P0NSZ4pjnoZBL5zN
- +3k0COO/63GWOBhvBF8hQ==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:guZ2XnrCvDs=:X+jf3Hhp9u0X0/wnFPiBcs
- 7e8isVSVr7FNQgjRT9OZvAubD7tZ0ZZkU+dTfLQzICczoVGayi+79Od+Pffa8MXuDoqjgl9WC
- ZUESuAltpomBCmRe8QZmJmBwqKRLqErZc8G8N5YaC69n89QUir/2VzhQcTpsbCXDZSV4FsGeS
- lwFJPcoKT0MUzs0jiJ97KerVyksmGUho281yqj5NrhU2lpOMXNWpIPeIdJA3TDO+r9Bm188kW
- p1bNu43+RfeSJjchLuuZPfUBq6O+JLZNDfyMqKMdcWc0Oi1Z7CsLOQ9ZJ+JKO2aOrsKPjz91n
- /vgGQYnGJilYmdYSPsOrCzgRVQ3IF3nzYYlvc0THFbDXkD/YuzI5yJp/WGl9CauNwB0pD5ckP
- P3jSEiPs8xCrpvizEuhbMggrgByZftQpNfJYC/Ul5AD9mTQX/kHvqai4EDn17wKlzSfFalY4T
- gish1b7sIZYkjJks4djF5yjLQojjPgsoPxB2KXLSylhWlSnprS+cuYzMpqVLUlj0edrJlsoc8
- u+jdyoVbrcolIogztM3iObx7U7icQENRbwpsBJ1L/fLUr484dbY3VahxRjOaSJ9b/KYfEvPmL
- 6sg9etLiU3mXA+XrSpgAj1L0LMq3neR/zDwOlLLYyAzIzK+jMMjBMiUZY+pY3+WE2r1tUCsk4
- OaOPrmyGrwBh05DnL21F+UD7TX0AOXAAPB7I+fuCMkHbHHS/8//+3PdUegOdqkD1m16khRrwN
- dFKFwCkBCwBfgHeBNpQlF6ivaWcS8pnVUsNwfB3en2rWVa8U2nXF7vNV5MA=
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[add Melissa]
-
-Am 01.06.22 um 13:02 schrieb Peter Robinson:
-> Add compatible string and Kconfig options for bcm2711.
->
-> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
-Reviewed-by: Stefan Wahren <stefan.wahren@i2se.com>
+On 02/06/2022 01:37, David Virag wrote:
+> Add the nodes relevant to provide clocks for Exynos7885 eMMC and to
+> support eMMC. eMMC is the internal storage used in the Samsung Galaxy A8
+> (2018) (jackpotlte), and all other known devices using the Exynos7885
+> SoC.
+> 
+> Signed-off-by: David Virag <virag.david003@gmail.com>
 > ---
-> Changes since v5:
-> - Change compatible to align downstream and othee HW, reorder to suit
->
->   drivers/gpu/drm/v3d/Kconfig   | 2 +-
->   drivers/gpu/drm/v3d/v3d_drv.c | 1 +
->   2 files changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/v3d/Kconfig b/drivers/gpu/drm/v3d/Kconfig
-> index e973ec487484..01d91c829107 100644
-> --- a/drivers/gpu/drm/v3d/Kconfig
-> +++ b/drivers/gpu/drm/v3d/Kconfig
-> @@ -1,7 +1,7 @@
->   # SPDX-License-Identifier: GPL-2.0-only
->   config DRM_V3D
->   	tristate "Broadcom V3D 3.x and newer"
-> -	depends on ARCH_BCM || ARCH_BRCMSTB || COMPILE_TEST
-> +	depends on ARCH_BCM || ARCH_BRCMSTB || ARCH_BCM2835 || COMPILE_TEST
->   	depends on DRM
->   	depends on COMMON_CLK
->   	depends on MMU
-> diff --git a/drivers/gpu/drm/v3d/v3d_drv.c b/drivers/gpu/drm/v3d/v3d_drv.c
-> index 56d5f831e48b..8c7f910daa28 100644
-> --- a/drivers/gpu/drm/v3d/v3d_drv.c
-> +++ b/drivers/gpu/drm/v3d/v3d_drv.c
-> @@ -191,6 +191,7 @@ static const struct drm_driver v3d_drm_driver = {
->   };
->   
->   static const struct of_device_id v3d_of_match[] = {
-> +	{ .compatible = "brcm,2711-v3d" },
->   	{ .compatible = "brcm,7268-v3d" },
->   	{ .compatible = "brcm,7278-v3d" },
->   	{},
+>  .../boot/dts/exynos/exynos7885-jackpotlte.dts | 20 ++++++++++++
+>  arch/arm64/boot/dts/exynos/exynos7885.dtsi    | 32 +++++++++++++++++++
+>  2 files changed, 52 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts b/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
+> index 4cf9aa25f618..5db9a81ac7bb 100644
+> --- a/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
+> +++ b/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
+> @@ -60,6 +60,26 @@ power-key {
+>  	};
+>  };
+>  
+> +&mmc_0 {
+> +	status = "okay";
+> +	mmc-hs200-1_8v;
+> +	mmc-hs400-1_8v;
+> +	cap-mmc-highspeed;
+> +	non-removable;
+> +	mmc-hs400-enhanced-strobe;
+> +	card-detect-delay = <200>;
+> +	clock-frequency = <800000000>;
+
+Is this real property for MMC? Neither mmc nor DW MSHC bindings mention it.
+
+Best regards,
+Krzysztof
