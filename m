@@ -2,173 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8F4653BEBC
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 21:25:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBADF53BEE4
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 21:35:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238494AbiFBTY0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 15:24:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58910 "EHLO
+        id S238662AbiFBTfr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 15:35:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238551AbiFBTYZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 15:24:25 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3E3FF6C;
-        Thu,  2 Jun 2022 12:24:23 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id m20so11797396ejj.10;
-        Thu, 02 Jun 2022 12:24:23 -0700 (PDT)
+        with ESMTP id S238650AbiFBTfq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 15:35:46 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B0F427CD8
+        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 12:35:44 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id nn3-20020a17090b38c300b001e0e091cf03so6477891pjb.1
+        for <devicetree@vger.kernel.org>; Thu, 02 Jun 2022 12:35:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=JATYvLe48LS2H6IM0secvITvXQRFYJatDO7tIGdxKew=;
-        b=VTT0OBaJLQkU0DXmYjkEMy4pAELAV+jBlguhxMn7A/UqRxOPNmS5CHgPtJ8qEHZ37t
-         dJchUBQgCQYu0sVoQ3XZJeZMu/D3NfZmgNzNcTSM6d3mQgW/gfiuwtDFZ3C/zopEft70
-         53psImCdfXqfPzsfnsJ0x1WX2TilCTwWqqoFx42M3g540JOK5MIBPNJ4HDu3rtPd0NvR
-         Q9zPUyeZA5Hv2CYInUh8MlFvL4nmj/eO1LHolt3AXfJI734JjCLw7bSnIYS5ZeZ4TIuR
-         W3MaS7EEAi42acDU5NxK7pTxBgmMuOOT0q63i2Wpbh1F/ySWKn407asxBaQC4EJYFYUB
-         ZPxw==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=cx/w23z3LclUVeD0RGwvqrmhkO0x9NOq8RLmyjTtPOM=;
+        b=lYVfR+YOq3qnx85Svvnsb2n7uiC27e2K2siHC/xyiklXI2m0N0FdTE4teMxk2RBxmm
+         8ifjjL4B7GGGUjzg261ufFGrAeYN06AC7Np+7rv8QsII/6wMLAcdEcIEGvhQIdMewr4M
+         kojvmoOEF9+Nen9ZvBM5a4t7oP6Ly0/7s5G6E=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=JATYvLe48LS2H6IM0secvITvXQRFYJatDO7tIGdxKew=;
-        b=xXYAu4d1YqYKyQNj1DR+5kHfdM+R2usSSCRTiV57WcliV2nBNmb1akTaAPh2XGn/+v
-         698ssMmqI+VumDh9hzOOFvTP6Aa8iMOUWqLNEyNcLuzgVbIZCZ7v2IrMpxhWrVc4JM/F
-         47DS1L8jVsvSZO3ImpIBrc/9cd3Ka9FnT8ILpwyp2zWORy6j3/zl1driMj9CioBd3Zuj
-         To4GYv8QWTlEo8jv1wjYPCxXdW0edO6MRdm4LwKQLUKfW24gkoYgRQFfGDh9MdZR09hD
-         7SDwsvf4AdowQHZbVNNDczvXCr2OP0FR4lz+XeNC0hmOr5IfrPK4YpylCN12R916sof4
-         ztiw==
-X-Gm-Message-State: AOAM531Iz5+SfdL15Z8VU6dOK/SJMW/MpwlxLZNMQHsd434P+bLL/oit
-        69tGdbbwr5dwEVR9ZkeWFqQ=
-X-Google-Smtp-Source: ABdhPJwiCOLciOxN6TBYEcpArcIF1bwM/jhBDOJnBMmkSZAOupAwiR+Hr2XzW8lOBJHN2sRoLEmt4Q==
-X-Received: by 2002:a17:906:8146:b0:6ff:119c:881f with SMTP id z6-20020a170906814600b006ff119c881fmr5659395ejw.38.1654197862292;
-        Thu, 02 Jun 2022 12:24:22 -0700 (PDT)
-Received: from otyshchenko.router ([212.22.223.21])
-        by smtp.gmail.com with ESMTPSA id eg13-20020a056402288d00b0042dce73168csm2938301edb.13.2022.06.02.12.24.20
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 02 Jun 2022 12:24:21 -0700 (PDT)
-From:   Oleksandr Tyshchenko <olekstysh@gmail.com>
-To:     xen-devel@lists.xenproject.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org
-Cc:     Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=cx/w23z3LclUVeD0RGwvqrmhkO0x9NOq8RLmyjTtPOM=;
+        b=NgyqjysSBEbzk95CiMjVab888/XZ4lBxRvnEi/qOrjMFOqmeHLNIyh/5pM6xK2aPs9
+         PLDxJIVjKU/jowyJGFDmgQENIq8+GPTN//xLYjtn1z1n62z47DYIbA6Hzy4Fi19bf6YX
+         XJHHUmu/PNbIDboXIQWyPwgpN5YZ6np1VVIvApWSDQdWOd6CsfNvDjDdqKqh2CQKujg7
+         sl6F8QKGoQQHxSrczcGPhJ/wVjyH1ALbv1rZRXz+j2C0Aj0XY97CgWu5aEwYRbSEyGWe
+         f+j3H0v9joYKMRh4/VXgGXy9ibXeVsuiua4ENEbLmmi8pa4gvHm0yhE+eAF2Zk2GUZY9
+         MzFw==
+X-Gm-Message-State: AOAM5334xHN4ZDQdGX1J7WMgVAx2sj/xiYauVFGb4od+u22VPt+aJNfp
+        pk2Yv68/EyFC9saQ1tfAnqVD9A==
+X-Google-Smtp-Source: ABdhPJxE722AkWZmxdhlAA/lfEu+HZH5UVTLDBfMV3ZCHmXDg3l6lmRd50aXEJM5XF73P7Xl/H8gLA==
+X-Received: by 2002:a17:902:ed53:b0:166:3e43:7522 with SMTP id y19-20020a170902ed5300b001663e437522mr5530822plb.170.1654198543994;
+        Thu, 02 Jun 2022 12:35:43 -0700 (PDT)
+Received: from localhost ([2620:15c:11a:202:51d0:66d6:2fb5:b395])
+        by smtp.gmail.com with UTF8SMTPSA id m12-20020a170902d18c00b001616e19537esm3809964plb.213.2022.06.02.12.35.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Jun 2022 12:35:43 -0700 (PDT)
+Date:   Thu, 2 Jun 2022 12:35:42 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Julien Grall <julien@xen.org>, Juergen Gross <jgross@suse.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        "Michael S. Tsirkin" <mst@redhat.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        Arnd Bergmann <arnd@arndb.de>
-Subject: [PATCH V4 5/8] dt-bindings: Add xen,grant-dma IOMMU description for xen-grant DMA ops
-Date:   Thu,  2 Jun 2022 22:23:50 +0300
-Message-Id: <1654197833-25362-6-git-send-email-olekstysh@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1654197833-25362-1-git-send-email-olekstysh@gmail.com>
-References: <1654197833-25362-1-git-send-email-olekstysh@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, quic_pkondeti@quicinc.com,
+        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
+        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+Subject: Re: [PATCH v20 2/5] usb: dwc3: core: Host wake up support from
+ system suspend
+Message-ID: <YpkRDi2m7cLaKYEf@google.com>
+References: <1654158277-12921-1-git-send-email-quic_kriskura@quicinc.com>
+ <1654158277-12921-3-git-send-email-quic_kriskura@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1654158277-12921-3-git-send-email-quic_kriskura@quicinc.com>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
+Hi Krishna,
 
-The main purpose of this binding is to communicate Xen specific
-information using generic IOMMU device tree bindings (which is
-a good fit here) rather than introducing a custom property.
+with this version I see xHCI errors on my SC7180 based system, like
+these:
 
-Introduce Xen specific IOMMU for the virtualized device (e.g. virtio)
-to be used by Xen grant DMA-mapping layer in the subsequent commit.
+[   65.352605] xhci-hcd xhci-hcd.13.auto: xHC error in resume, USBSTS 0x401, Reinit
 
-The reference to Xen specific IOMMU node using "iommus" property
-indicates that Xen grant mappings need to be enabled for the device,
-and it specifies the ID of the domain where the corresponding backend
-resides. The domid (domain ID) is used as an argument to the Xen grant
-mapping APIs.
+[  101.307155] xhci-hcd xhci-hcd.13.auto: WARN: xHC CMD_RUN timeout
 
-This is needed for the option to restrict memory access using Xen grant
-mappings to work which primary goal is to enable using virtio devices
-in Xen guests.
+After resume a downstream hub isn't enumerated again.
 
-Signed-off-by: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
-Reviewed-by: Stefano Stabellini <sstabellini@kernel.org>
----
-Changes RFC -> V1:
-   - update commit subject/description and text in description
-   - move to devicetree/bindings/arm/
+So far I didn't see those with v13, but I aso saw the first error with
+v16.
 
-Changes V1 -> V2:
-   - update text in description
-   - change the maintainer of the binding
-   - fix validation issue
-   - reference xen,dev-domid.yaml schema from virtio/mmio.yaml
+I can do some more digging next week.
 
-Change V2 -> V3:
-   - Stefano already gave his Reviewed-by, I dropped it due to the changes (significant)
-   - use generic IOMMU device tree bindings instead of custom property
-     "xen,dev-domid"
-   - change commit subject and description, was
-     "dt-bindings: Add xen,dev-domid property description for xen-grant DMA ops"
-
-Changes V3 -> V4:
-   - add Stefano's R-b
-   - remove underscore in iommu node name
-   - remove consumer example virtio@3000
-   - update text for two descriptions
----
- .../devicetree/bindings/iommu/xen,grant-dma.yaml   | 39 ++++++++++++++++++++++
- 1 file changed, 39 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml
-
-diff --git a/Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml b/Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml
-new file mode 100644
-index 00000000..be1539d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml
-@@ -0,0 +1,39 @@
-+# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iommu/xen,grant-dma.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Xen specific IOMMU for virtualized devices (e.g. virtio)
-+
-+maintainers:
-+  - Stefano Stabellini <sstabellini@kernel.org>
-+
-+description:
-+  The Xen IOMMU represents the Xen grant table interface. Grant mappings
-+  are to be used with devices connected to the Xen IOMMU using the "iommus"
-+  property, which also specifies the ID of the backend domain.
-+  The binding is required to restrict memory access using Xen grant mappings.
-+
-+properties:
-+  compatible:
-+    const: xen,grant-dma
-+
-+  '#iommu-cells':
-+    const: 1
-+    description:
-+      The single cell is the domid (domain ID) of the domain where the backend
-+      is running.
-+
-+required:
-+  - compatible
-+  - "#iommu-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    iommu {
-+        compatible = "xen,grant-dma";
-+        #iommu-cells = <1>;
-+    };
--- 
-2.7.4
-
+On Thu, Jun 02, 2022 at 01:54:34PM +0530, Krishna Kurapati wrote:
+> From: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+> 
+> Check wakeup-source property for dwc3 core node to set the
+> wakeup capability. Drop the device_init_wakeup call from
+> runtime suspend and resume.
+> 
+> If the dwc3 is wakeup capable, don't power down the USB PHY(s).
+> The glue drivers are expected to take care of configuring the
+> additional wakeup settings if needed based on the dwc3 wakeup
+> capability status. In some SOC designs, powering off the PHY is
+> resulting in higher leakage, so this patch save power on such boards.
+> 
+> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> Reviewed-by: Pavankumar Kondeti <quic_pkondeti@quicinc.com>
+> ---
+>  drivers/usb/dwc3/core.c | 9 +++------
+>  1 file changed, 3 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+> index e027c04..b99d3c2 100644
+> --- a/drivers/usb/dwc3/core.c
+> +++ b/drivers/usb/dwc3/core.c
+> @@ -1787,6 +1787,7 @@ static int dwc3_probe(struct platform_device *pdev)
+>  
+>  	platform_set_drvdata(pdev, dwc);
+>  	dwc3_cache_hwparams(dwc);
+> +	device_init_wakeup(&pdev->dev, of_property_read_bool(dev->of_node, "wakeup-source"));
+>  
+>  	spin_lock_init(&dwc->lock);
+>  	mutex_init(&dwc->mutex);
+> @@ -1948,7 +1949,7 @@ static int dwc3_suspend_common(struct dwc3 *dwc, pm_message_t msg)
+>  		dwc3_core_exit(dwc);
+>  		break;
+>  	case DWC3_GCTL_PRTCAP_HOST:
+> -		if (!PMSG_IS_AUTO(msg)) {
+> +		if (!PMSG_IS_AUTO(msg) && !device_can_wakeup(dwc->dev)) {
+>  			dwc3_core_exit(dwc);
+>  			break;
+>  		}
+> @@ -2009,7 +2010,7 @@ static int dwc3_resume_common(struct dwc3 *dwc, pm_message_t msg)
+>  		spin_unlock_irqrestore(&dwc->lock, flags);
+>  		break;
+>  	case DWC3_GCTL_PRTCAP_HOST:
+> -		if (!PMSG_IS_AUTO(msg)) {
+> +		if (!PMSG_IS_AUTO(msg) && !device_can_wakeup(dwc->dev)) {
+>  			ret = dwc3_core_init_for_resume(dwc);
+>  			if (ret)
+>  				return ret;
+> @@ -2086,8 +2087,6 @@ static int dwc3_runtime_suspend(struct device *dev)
+>  	if (ret)
+>  		return ret;
+>  
+> -	device_init_wakeup(dev, true);
+> -
+>  	return 0;
+>  }
+>  
+> @@ -2096,8 +2095,6 @@ static int dwc3_runtime_resume(struct device *dev)
+>  	struct dwc3     *dwc = dev_get_drvdata(dev);
+>  	int		ret;
+>  
+> -	device_init_wakeup(dev, false);
+> -
+>  	ret = dwc3_resume_common(dwc, PMSG_AUTO_RESUME);
+>  	if (ret)
+>  		return ret;
+> -- 
+> 2.7.4
+> 
