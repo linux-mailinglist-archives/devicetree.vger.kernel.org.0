@@ -2,65 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D429453BA29
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 15:55:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C87953BA31
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 15:56:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232234AbiFBNzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 09:55:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46630 "EHLO
+        id S235607AbiFBN4I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 09:56:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231286AbiFBNzY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 09:55:24 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0742E29C;
-        Thu,  2 Jun 2022 06:55:24 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id BE16DB81ED6;
-        Thu,  2 Jun 2022 13:55:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7931BC385A5;
-        Thu,  2 Jun 2022 13:55:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654178121;
-        bh=/RDmOcN35BWi7GR4EvLaIKmq0NmJ0DnyM3Q1jTsh+IE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=d4v/S/mA/vOcvEjSZgk4NLp6cb9Gs9xzJu+6eyKbmoLKGhAAbUIM//EzosgFGx7pr
-         pwbt1RjLh1eu+o0EbMgWrXgYQQ6oILLEvQyGFZlBCZg3uOSzbFvwkYNno6p1rwC0Mm
-         5HP2XKMAF8czYzmkNWCVoLZa1fQAkMAI5jvetUFDrEvv+M3BDruCx2J87qFVf5Xu4n
-         oG/7Wox8Zp/eSkU1ZSJFHE3391ecggiNUvd+dYC2wadhETAK88gM7kk/HCVdPW7/Xh
-         uwmTBpc3eD2K5DXbBJgEWeOkQpFpePzZ3rodRnpFzUymbCXADzCdIcj2D48YPeeVbQ
-         G3KNSlaT/HJFA==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1nwlIE-0005kq-9l; Thu, 02 Jun 2022 15:55:18 +0200
-Date:   Thu, 2 Jun 2022 15:55:18 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231286AbiFBN4H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 09:56:07 -0400
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13E65176D46;
+        Thu,  2 Jun 2022 06:56:06 -0700 (PDT)
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-f16a3e0529so6842616fac.2;
+        Thu, 02 Jun 2022 06:56:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=ItU4+oZlqrhVsTFDZffq1bHsfD8LPaRiGahfhp8yC6g=;
+        b=N2ctTcfyN5uG8FdwmwhEY0l1YnhGlGLA+yYeChQIhiJoRHmngGgJR7e2ROsusehLMP
+         S5DeeQf9RiNWMy0T67hlcnQVRvPrSJ40DtwCYKK8057sPlBgLI6/VFAaeRU5zWhKC9AL
+         KlmNdKE/s9d/j9koTDbNOMjriM9+hTtThZM0YM44Fx88QMM2V4oZsRagQl97eBpDde1d
+         WnwEkZTkQ00xoMvmfz3BOmHN5h3wAYiHj0nmkFjy4jwYDhwwI+c2cfrIrd00UNgPAkUV
+         OYnL3V/YaCnE0sQ12C3WbBc+JhNUmWM58E47bYmPvtDE1gGPe1AaKr0yRkObKbVQlANa
+         fuFg==
+X-Gm-Message-State: AOAM533J+eN9SUXPrvsfrw6pZWAmRyJnveOStlVuRShpUfa1gbPOWByx
+        FfIDMKb3e7NUWCG6ZTqkAg==
+X-Google-Smtp-Source: ABdhPJxg9znekohzZ8yCO9gbFG1TwRG0wCp2dzp7Q9YlFVk8Z/w1M4q2XVJue+i1UtPEKiJWdkNyqA==
+X-Received: by 2002:a05:6870:4799:b0:f1:46f8:6ea4 with SMTP id c25-20020a056870479900b000f146f86ea4mr2783044oaq.223.1654178165323;
+        Thu, 02 Jun 2022 06:56:05 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id f3-20020a05680807c300b00325cda1ffa8sm2212823oij.39.2022.06.02.06.56.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Jun 2022 06:56:04 -0700 (PDT)
+Received: (nullmailer pid 2197386 invoked by uid 1000);
+        Thu, 02 Jun 2022 13:56:04 -0000
+Date:   Thu, 2 Jun 2022 08:56:04 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     ChiYuan Huang <u0084500@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v12 4/8] PCI: dwc: split MSI IRQ parsing/allocation to a
- separate function
-Message-ID: <YpjBRjSafpvNcpe0@hovoldconsulting.com>
-References: <20220523181836.2019180-1-dmitry.baryshkov@linaro.org>
- <20220523181836.2019180-5-dmitry.baryshkov@linaro.org>
+        Lee Jones <lee.jones@linaro.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        jingoohan1@gmail.com, Pavel Machek <pavel@ucw.cz>, deller@gmx.de,
+        cy_huang <cy_huang@richtek.com>, lucas_tsai@richtek.com,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, dri-devel@lists.freedesktop.org,
+        linux-fbdev@vger.kernel.org,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: backlight: rt4831: Add the new property
+ for ocp level selection
+Message-ID: <20220602135604.GA2194286-robh@kernel.org>
+References: <1653534995-30794-1-git-send-email-u0084500@gmail.com>
+ <1653534995-30794-2-git-send-email-u0084500@gmail.com>
+ <1c7ab94c-a736-c629-bd8c-8a974803e2b9@linaro.org>
+ <CADiBU39jZ6TdYZoH80m4R-X2_fUXZOvDA4yUd_TQdPzBJLE+JA@mail.gmail.com>
+ <076d53d3-6062-686f-8e45-14c5f936bbf6@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220523181836.2019180-5-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <076d53d3-6062-686f-8e45-14c5f936bbf6@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,58 +77,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 23, 2022 at 09:18:32PM +0300, Dmitry Baryshkov wrote:
-> Split handling of MSI host IRQs to a separate dw_pcie_msi_host_init()
-> function. The code is complex enough to warrant a separate function.
+On Thu, May 26, 2022 at 12:32:12PM +0200, Krzysztof Kozlowski wrote:
+> On 26/05/2022 10:13, ChiYuan Huang wrote:
+> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> 於 2022年5月26日 週四 下午4:06寫道：
+> >>
+> >> On 26/05/2022 05:16, cy_huang wrote:
+> >>> From: ChiYuan Huang <cy_huang@richtek.com>
+> >>>
+> >>> Add the new property for ocp level selection.
+> >>>
+> >>> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> >>> ---
+> >>>  .../bindings/leds/backlight/richtek,rt4831-backlight.yaml         | 8 ++++++++
+> >>>  include/dt-bindings/leds/rt4831-backlight.h                       | 5 +++++
+> >>>  2 files changed, 13 insertions(+)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/leds/backlight/richtek,rt4831-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/richtek,rt4831-backlight.yaml
+> >>> index e0ac686..c1c59de 100644
+> >>> --- a/Documentation/devicetree/bindings/leds/backlight/richtek,rt4831-backlight.yaml
+> >>> +++ b/Documentation/devicetree/bindings/leds/backlight/richtek,rt4831-backlight.yaml
+> >>> @@ -47,6 +47,14 @@ properties:
+> >>>      minimum: 0
+> >>>      maximum: 3
+> >>>
+> >>> +  richtek,bled-ocp-sel:
+> >>
+> >> Skip "sel" as it is a shortcut of selection. Name instead:
+> >> "richtek,backlight-ocp"
+> >>
+> > OK, if so, do I need to rename all properties from 'bled' to 'backlight' ?
+> > If  only this property is naming as 'backlight'. it may conflict with
+> > the others like as "richtek,bled-ovp-sel".
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../pci/controller/dwc/pcie-designware-host.c | 98 +++++++++++--------
->  1 file changed, 56 insertions(+), 42 deletions(-)
+> Ah, no, no need.
 > 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> index 8dd913f69de7..a076abe6611c 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> @@ -288,6 +288,60 @@ static void dw_pcie_msi_init(struct pcie_port *pp)
->  	dw_pcie_writel_dbi(pci, PCIE_MSI_ADDR_HI, upper_32_bits(msi_target));
->  }
->  
-> +static int dw_pcie_msi_host_init(struct pcie_port *pp)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	struct device *dev = pci->dev;
-> +	struct platform_device *pdev = to_platform_device(dev);
-> +	int ret;
-> +	u32 ctrl, num_ctrls;
-> +
-> +	num_ctrls = pp->num_vectors / MAX_MSI_IRQS_PER_CTRL;
-> +	for (ctrl = 0; ctrl < num_ctrls; ctrl++)
-> +		pp->irq_mask[ctrl] = ~0;
-> +
-> +	if (!pp->msi_irq[0]) {
-> +		int irq = platform_get_irq_byname_optional(pdev, "msi");
-> +
-> +		if (irq < 0) {
-> +			irq = platform_get_irq(pdev, 0);
-> +			if (irq < 0)
-> +				return irq;
-> +		}
-> +		pp->msi_irq[0] = irq;
-> +	}
-> +
-> +	pp->msi_irq_chip = &dw_pci_msi_bottom_irq_chip;
-> +
-> +	ret = dw_pcie_allocate_domains(pp);
-> +	if (ret)
-> +		return ret;
-> +
-> +	for (ctrl = 0; ctrl < num_ctrls; ctrl++)
-> +		if (pp->msi_irq[ctrl] > 0)
-> +			irq_set_chained_handler_and_data(pp->msi_irq[ctrl],
-> +							 dw_chained_msi_isr,
-> +							 pp);
+> >>
+> >>> +    description: |
+> >>> +      Backlight OCP level selection, currently support 0.9A/1.2A/1.5A/1.8A
+> >>
+> >> Could you explain here what is OCP (unfold the acronym)?
+> > Yes. And the full name is 'over current protection'.
+> 
+> Thanks and this leads to second thing - you encode register value
+> instead of logical value. This must be a logical value in mA, so
+> "richtek,bled-ocp-microamp".
 
-Reminder: brackets.
+We already have common properties for setting current of LEDs. We should 
+use that here I think.
 
-Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+Rob
