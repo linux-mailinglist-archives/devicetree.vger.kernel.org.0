@@ -2,183 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBD7A53B5E8
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 11:22:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68E5353B605
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 11:26:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230295AbiFBJW2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 05:22:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45218 "EHLO
+        id S233013AbiFBJ03 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 05:26:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232901AbiFBJW1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 05:22:27 -0400
-Received: from aposti.net (aposti.net [89.234.176.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31418C43;
-        Thu,  2 Jun 2022 02:22:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1654161741; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=bdFdEInj0nV0Q6jdOHpTmlRNrwcWRkoYe3jBS5EW5VU=;
-        b=Yeg8VI4kw+QOdag7dk9i9fFU/KFOqx4N7r33VJDxXek4OT4hh7rVZiaV+EEmD/cc2oWou6
-        sHQkvCRvUQ+ejor8SkcvdtBA/oUCmWPs0a8qHwzCo2dGIEpsZq/Az2Hun5etIrk0/C9a5L
-        1lekTokJY3w4jBVH7eOxF0cs75e0jcg=
-Date:   Thu, 02 Jun 2022 10:22:11 +0100
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v2 2/3] Input: adc-joystick - Add polled input device
- support
-To:     Chris Morgan <macroalpha82@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        dmitry.torokhov@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
-        maccraft123mc@gmail.com, contact@artur-rojek.eu,
-        Chris Morgan <macromorgan@hotmail.com>
-Message-Id: <ZCFUCR.XGIL3R7SFVS32@crapouillou.net>
-In-Reply-To: <20220601204927.10256-3-macroalpha82@gmail.com>
-References: <20220601204927.10256-1-macroalpha82@gmail.com>
-        <20220601204927.10256-3-macroalpha82@gmail.com>
+        with ESMTP id S233009AbiFBJ02 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 05:26:28 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6787E29FE77;
+        Thu,  2 Jun 2022 02:26:27 -0700 (PDT)
+X-UUID: a6acc6b7c4cb4109a56c71315cd17c46-20220602
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:1e05d194-4848-463e-84bc-860c4bf27875,OB:10,L
+        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,AC
+        TION:release,TS:45
+X-CID-INFO: VERSION:1.1.5,REQID:1e05d194-4848-463e-84bc-860c4bf27875,OB:10,LOB
+        :0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:45
+X-CID-META: VersionHash:2a19b09,CLOUDID:b4b3e337-9855-4915-a138-f5705f1f3d02,C
+        OID:e2b011970263,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:0,BEC:nil
+X-UUID: a6acc6b7c4cb4109a56c71315cd17c46-20220602
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 661290087; Thu, 02 Jun 2022 17:26:23 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Thu, 2 Jun 2022 17:26:21 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 2 Jun 2022 17:26:20 +0800
+Message-ID: <cf1fa83c5b6e76fe11768d9efc2374a9c45d4ba5.camel@mediatek.com>
+Subject: Re: [PATCH 1/3] dt-bindings: iommu: mediatek: add binding
+ documentation for MT8365 SoC
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Macpaul Lin <macpaul.lin@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>
+CC:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <iommu@lists.linux-foundation.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        "Bear Wang" <bear.wang@mediatek.com>,
+        Macross Chen <macross.chen@mediatek.com>,
+        Kidd-KW Chen <Kidd-KW.Chen@mediatek.com>,
+        Andy Hsieh <Andy.Hsieh@mediatek.com>,
+        Pablo Sun <pablo.sun@mediatek.com>
+Date:   Thu, 2 Jun 2022 17:26:19 +0800
+In-Reply-To: <6b6c4cfc-6f20-0eda-4a0d-31d993341ae8@mediatek.com>
+References: <20220530180328.845692-1-fparent@baylibre.com>
+         <8ac7a6766c635412b408cb5295ddb3da37541140.camel@mediatek.com>
+         <59cedd50-4141-e589-11ae-b8d1a017eb46@mediatek.com>
+         <6b6c4cfc-6f20-0eda-4a0d-31d993341ae8@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chris,
+On Thu, 2022-06-02 at 16:42 +0800, Macpaul Lin wrote:
+> On 6/2/22 4:27 PM, Macpaul Lin wrote:
+> > On 6/2/22 2:18 PM, Yong Wu wrote:
+> > > On Mon, 2022-05-30 at 20:03 +0200, Fabien Parent wrote:
+> > > > Add IOMMU binding documentation for the MT8365 SoC.
+> > > > 
+> > > > Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> > > > ---
+> > > >   .../bindings/iommu/mediatek,iommu.yaml        |  2 +
+> > > >   include/dt-bindings/memory/mt8365-larb-port.h | 96
+> > > > +++++++++++++++++++
+> > > >   2 files changed, 98 insertions(+)
+> > > >   create mode 100644 include/dt-bindings/memory/mt8365-larb-
+> > > > port.h
+> > > 
+> > > [snip...]
+> > > 
+> > > > +#ifndef _DT_BINDINGS_MEMORY_MT8365_LARB_PORT_H_
+> > > > +#define _DT_BINDINGS_MEMORY_MT8365_LARB_PORT_H_
+> > > > +
+> > > > +#include <dt-bindings/memory/mtk-memory-port.h>
+> > > > +
+> > > > +#define M4U_LARB0_ID            0
+> > > > +#define M4U_LARB1_ID            1
+> > > > +#define M4U_LARB2_ID            2
+> > > > +#define M4U_LARB3_ID            3
+> > > > +#define M4U_LARB4_ID            4
+> > > > +#define M4U_LARB5_ID            5
+> > > > +#define M4U_LARB6_ID            6
+> > > > +#define M4U_LARB7_ID            7
+> > > 
+> > > Remove these. they are no used, right?
+> > 
+> > AIOT and customers are using the modules and their related IOMMU
+> > modules.
+> > DISP0, VENC, VDEC, ISP (CAMSYS), and APU (as far as I know, which
+> > should 
+> > be VP6?) were all supported.
+> 
+> Dear Yong,
+> How about to replace the following definitions?
+> 
+> For example, replace
+> #define M4U_PORT_DISP_OVL0		MTK_M4U_ID(0, 0)
+> to
+> #define M4U_PORT_DISP_OVL0              MTK_M4U_ID(M4U_LARB0_ID , 0)
 
-Le mer., juin 1 2022 at 15:49:26 -0500, Chris Morgan=20
-<macroalpha82@gmail.com> a =E9crit :
-> From: Chris Morgan <macromorgan@hotmail.com>
->=20
-> Add polled input device support to the adc-joystick driver. This is
-> useful for devices which do not have hardware capable triggers on
-> their SARADC. Code modified from adc-joystick.c changes made by Maya
-> Matuszczyk.
+Yes. It is ok.
 
-I understand what you're trying to do, but maybe there's a better way.
-
-It would be better if pollable IIO devices would also be able to be=20
-used with a buffer, with the client driver manually triggering the IIO=20
-device through a function call.
-
-Jonathan (Cc'd) might have his reasons why this isn't done this way,=20
-and in this case your patch makes sense, but I'd like to hear=20
-Jonathan's thoughts first.
-
-As for "adc-joystick,polled"... it doesn't describe the hardware but=20
-rather a specific configuration, so it shouldn't appear in the device=20
-tree.
-
-Cheers,
--Paul
-
->=20
-> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> ---
->  drivers/input/joystick/adc-joystick.c | 52=20
-> +++++++++++++++++++++------
->  1 file changed, 41 insertions(+), 11 deletions(-)
->=20
-> diff --git a/drivers/input/joystick/adc-joystick.c=20
-> b/drivers/input/joystick/adc-joystick.c
-> index 78ebca7d400a..5a28fe7b8ebc 100644
-> --- a/drivers/input/joystick/adc-joystick.c
-> +++ b/drivers/input/joystick/adc-joystick.c
-> @@ -13,6 +13,10 @@
->=20
->  #include <asm/unaligned.h>
->=20
-> +#define ADC_JSK_POLL_INTERVAL	16
-> +#define ADC_JSK_POLL_MIN	8
-> +#define ADC_JSK_POLL_MAX	32
-> +
->  struct adc_joystick_axis {
->  	u32 code;
->  	s32 range[2];
-> @@ -26,8 +30,21 @@ struct adc_joystick {
->  	struct adc_joystick_axis *axes;
->  	struct iio_channel *chans;
->  	int num_chans;
-> +	bool polled;
->  };
->=20
-> +static void adc_joystick_poll(struct input_dev *input)
-> +{
-> +	struct adc_joystick *joy =3D input_get_drvdata(input);
-> +	int i, val;
-> +
-> +	for (i =3D 0; i < joy->num_chans; i++) {
-> +		iio_read_channel_raw(&joy->chans[i], &val);
-> +		input_report_abs(input, joy->axes[i].code, val);
-> +	}
-> +	input_sync(input);
-> +}
-> +
->  static int adc_joystick_handle(const void *data, void *private)
->  {
->  	struct adc_joystick *joy =3D private;
-> @@ -215,8 +232,19 @@ static int adc_joystick_probe(struct=20
-> platform_device *pdev)
->  	joy->input =3D input;
->  	input->name =3D pdev->name;
->  	input->id.bustype =3D BUS_HOST;
-> -	input->open =3D adc_joystick_open;
-> -	input->close =3D adc_joystick_close;
-> +
-> +	if (device_property_read_bool(dev, "adc-joystick,polled"))
-> +		joy->polled =3D 1;
-> +
-> +	if (joy->polled) {
-> +		input_setup_polling(input, adc_joystick_poll);
-> +		input_set_poll_interval(input, ADC_JSK_POLL_INTERVAL);
-> +		input_set_min_poll_interval(input, ADC_JSK_POLL_MIN);
-> +		input_set_max_poll_interval(input, ADC_JSK_POLL_MAX);
-> +	} else {
-> +		input->open =3D adc_joystick_open;
-> +		input->close =3D adc_joystick_close;
-> +	}
->=20
->  	error =3D adc_joystick_set_axes(dev, joy);
->  	if (error)
-> @@ -229,16 +257,18 @@ static int adc_joystick_probe(struct=20
-> platform_device *pdev)
->  		return error;
->  	}
->=20
-> -	joy->buffer =3D iio_channel_get_all_cb(dev, adc_joystick_handle, joy);
-> -	if (IS_ERR(joy->buffer)) {
-> -		dev_err(dev, "Unable to allocate callback buffer\n");
-> -		return PTR_ERR(joy->buffer);
-> -	}
-> +	if (!joy->polled) {
-> +		joy->buffer =3D iio_channel_get_all_cb(dev, adc_joystick_handle,=20
-> joy);
-> +		if (IS_ERR(joy->buffer)) {
-> +			dev_err(dev, "Unable to allocate callback buffer\n");
-> +			return PTR_ERR(joy->buffer);
-> +		}
->=20
-> -	error =3D devm_add_action_or_reset(dev, adc_joystick_cleanup,=20
-> joy->buffer);
-> -	if (error)  {
-> -		dev_err(dev, "Unable to add action\n");
-> -		return error;
-> +		error =3D devm_add_action_or_reset(dev, adc_joystick_cleanup,=20
-> joy->buffer);
-> +		if (error)  {
-> +			dev_err(dev, "Unable to add action\n");
-> +			return error;
-> +		}
->  	}
->=20
->  	return 0;
-
+> 
+> > > 
+> > > > +
+> > > > +/* larb0 */
+> > > > +#define M4U_PORT_DISP_OVL0        MTK_M4U_ID(0, 0)
+> > > > +#define M4U_PORT_DISP_OVL0_2L    MTK_M4U_ID(0, 1)
+> > > 
+> > > [...]
+> > > 
+> > > > 
+> > > > +/* larb4 */
+> > > > +#define M4U_PORT_APU_READ        MTK_M4U_ID(0, 0)
+> > > > +#define M4U_PORT_APU_WRITE        MTK_M4U_ID(0, 1)
+> > > 
+> > > Please remove these two APU definitions. currently these are not
+> > > supported.
+> > 
+> > Kidd, please help to check if APU use these definitions with Yong.
+> > However, I think these are all available to the customers.
+> > 
+> > Thanks
+> > Macpaul Lin
+> 
+> Thanks
+> Macpaul Lin
 
