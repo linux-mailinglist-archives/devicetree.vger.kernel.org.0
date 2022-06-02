@@ -2,120 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F69153B30B
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 07:34:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF2FF53B322
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 07:49:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230095AbiFBFdt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 01:33:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54122 "EHLO
+        id S230162AbiFBFtF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 01:49:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230109AbiFBFdo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 01:33:44 -0400
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83F861E302B
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 22:33:37 -0700 (PDT)
-Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
-        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220602053332epoutp030f526bc8b01183e310ee6697db1b2bbe~0ttqQxmKm1194611946epoutp03h
-        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 05:33:32 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220602053332epoutp030f526bc8b01183e310ee6697db1b2bbe~0ttqQxmKm1194611946epoutp03h
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1654148013;
-        bh=NBWjWlY2TaMrSi0e6sb5p2UTiyWC5KJi9atCINvmi4Q=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=feurMHa8HIomfQHkgaNL8nbdtR0CBsmB/KInusiUUZZLyu4kbCxIQjq8Z+6JOsPnD
-         vBvPVJYOVjXWGpxePEQ29+t/Wf6OxhExYnvYRqcf6+xI+1Yphb8RxJOp4+H4ze5uym
-         sBMw+2VjGup9pogl+JtQPEb9avpI5n6QzqFUjzRU=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas2p2.samsung.com (KnoxPortal) with ESMTP id
-        20220602053332epcas2p2bbf486c6d8a18e60912c73062d8f0c6b~0ttpqwDIA2933229332epcas2p2A;
-        Thu,  2 Jun 2022 05:33:32 +0000 (GMT)
-Received: from epsmges2p4.samsung.com (unknown [182.195.36.99]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4LDF6f6pDpz4x9Q7; Thu,  2 Jun
-        2022 05:33:30 +0000 (GMT)
-Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
-        epsmges2p4.samsung.com (Symantec Messaging Gateway) with SMTP id
-        5B.1E.09694.AAB48926; Thu,  2 Jun 2022 14:33:30 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
-        20220602053329epcas2p263a77beaaa17d20655bbf55874760054~0ttnLwHC10634006340epcas2p2i;
-        Thu,  2 Jun 2022 05:33:29 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20220602053329epsmtrp138e23b09f86bfc6019ef69ca7834cf06~0ttnKwZkU1619216192epsmtrp1F;
-        Thu,  2 Jun 2022 05:33:29 +0000 (GMT)
-X-AuditID: b6c32a48-47fff700000025de-ed-62984baab1f5
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        36.1E.11276.9AB48926; Thu,  2 Jun 2022 14:33:29 +0900 (KST)
-Received: from localhost.localdomain (unknown [10.229.9.51]) by
-        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20220602053329epsmtip2cc946e13eac19c236f59e98c88d2b61e~0ttm62US80794307943epsmtip2l;
-        Thu,  2 Jun 2022 05:33:29 +0000 (GMT)
-From:   Chanho Park <chanho61.park@samsung.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Chanho Park <chanho61.park@samsung.com>
-Subject: [PATCH v2 6/6] arm64: dts: exynosautov9-sadk: enable secondary ufs
- devices
-Date:   Thu,  2 Jun 2022 14:32:50 +0900
-Message-Id: <20220602053250.62593-7-chanho61.park@samsung.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220602053250.62593-1-chanho61.park@samsung.com>
+        with ESMTP id S230153AbiFBFtE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 01:49:04 -0400
+Received: from smtp.smtpout.orange.fr (smtp04.smtpout.orange.fr [80.12.242.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D0F3262AFE
+        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 22:48:59 -0700 (PDT)
+Received: from [192.168.1.18] ([90.11.190.129])
+        by smtp.orange.fr with ESMTPA
+        id wdhSn51g6QKuawdhSnS6n8; Thu, 02 Jun 2022 07:48:57 +0200
+X-ME-Helo: [192.168.1.18]
+X-ME-Auth: YWZlNiIxYWMyZDliZWIzOTcwYTEyYzlhMmU3ZiQ1M2U2MzfzZDfyZTMxZTBkMTYyNDBjNDJlZmQ3ZQ==
+X-ME-Date: Thu, 02 Jun 2022 07:48:57 +0200
+X-ME-IP: 90.11.190.129
+Message-ID: <60d33448-1cc9-c662-167b-10c1f9660545@wanadoo.fr>
+Date:   Thu, 2 Jun 2022 07:48:50 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v10 14/21] drm/mediatek: dpi: Add dpintf support
+Content-Language: fr
+To:     granquet@baylibre.com
+Cc:     airlied@linux.ie, chunfeng.yun@mediatek.com,
+        chunkuang.hu@kernel.org, ck.hu@mediatek.com, daniel@ffwll.ch,
+        deller@gmx.de, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, jitao.shi@mediatek.com,
+        kishon@ti.com, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-phy@lists.infradead.org, maarten.lankhorst@linux.intel.com,
+        matthias.bgg@gmail.com, mripard@kernel.org, msp@baylibre.com,
+        p.zabel@pengutronix.de, robh+dt@kernel.org, tzimmermann@suse.de,
+        vkoul@kernel.org
+References: <20220523104758.29531-1-granquet@baylibre.com>
+ <20220523104758.29531-15-granquet@baylibre.com>
+From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20220523104758.29531-15-granquet@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrCJsWRmVeSWpSXmKPExsWy7bCmme4q7xlJBj+v81s8mLeNzeLyfm2L
-        +UfOsVpceNrDZtH34iGzxd7XW9ktNj2+xmoxYdU3FosZ5/cxWbTuPcJusfPOCWYHbo9NqzrZ
-        PO5c28PmsXlJvUffllWMHsdvbGfy+LxJLoAtKtsmIzUxJbVIITUvOT8lMy/dVsk7ON453tTM
-        wFDX0NLCXEkhLzE31VbJxSdA1y0zB+g6JYWyxJxSoFBAYnGxkr6dTVF+aUmqQkZ+cYmtUmpB
-        Sk6BeYFecWJucWleul5eaomVoYGBkSlQYUJ2xv7ZzxkLtnJWXG76w97AeJO9i5GTQ0LAROLN
-        i5dANheHkMAORon7v84wQzifGCX+/tzABuF8Y5Q4+vk8K0xL2/tnYLaQwF5GiYv7ayGKPjJK
-        zHnzBizBJqArseX5K0aQhIhAO5PEiXtzwZYwC2xmlDg5YQMzSJWwQKhE46cLYDaLgKrE5AW7
-        2EBsXgE7ibuvj0Ktk5fYML8XqIaDg1PAXmLLGQ+IEkGJkzOfsIDYzEAlzVtng90tIdDLIbHo
-        9g2oXheJKdfOMELYwhKvjm+B+lpK4mV/G5RdLLF01icmiOYGRonL236xQSSMJWY9a2cEWcws
-        oCmxfpc+iCkhoCxx5BbUXj6JjsN/2SHCvBIdbUIQjeoSB7ZPZ4GwZSW653yGusZDonP5M2jw
-        TmKU2DLrPtsERoVZSN6ZheSdWQiLFzAyr2IUSy0ozk1PLTYqMIFHcXJ+7iZGcHLV8tjBOPvt
-        B71DjEwcjIcYJTiYlUR4S3ZNTRLiTUmsrEotyo8vKs1JLT7EaAoM64nMUqLJ+cD0nlcSb2hi
-        aWBiZmZobmRqYK4kzuuVsiFRSCA9sSQ1OzW1ILUIpo+Jg1OqgUmxhP9eSaftKw7vk3cXVHWo
-        NnLeU7sjcf/IApaXRo9mMt2tW6qxhLlSJGbRK51lPvsOFj7+NyHrvQVn+d3LK369DHt6ZuFN
-        810eO0oCpLdZ/+v02aVfLlW8f+MdTe7CuRwfTOXFXd5d59dvWM68M8Z++pPDacdf5T69Fh/O
-        PDl8wvRrZ7jnMlUk57ZEiHM3nT/6eI/LvValiv7pGrfrSnyMNG+c5ovoe/NhSnrDZqXInAnb
-        tvnmzTJ/NGPnvGypuo1VrHG3Vnib6ZV+es1VMeGwyrLsVaaBMxKa+6uD7j2zN5rQOvHOGh9T
-        mRhvU/EN8ueN/2Rt85l/cPMlR857L1wuJhy8IfPrmZxFmGa0oLoSS3FGoqEWc1FxIgCOuorY
-        NwQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrLLMWRmVeSWpSXmKPExsWy7bCSvO5K7xlJBjPfKVk8mLeNzeLyfm2L
-        +UfOsVpceNrDZtH34iGzxd7XW9ktNj2+xmoxYdU3FosZ5/cxWbTuPcJusfPOCWYHbo9NqzrZ
-        PO5c28PmsXlJvUffllWMHsdvbGfy+LxJLoAtissmJTUnsyy1SN8ugStj/+znjAVbOSsuN/1h
-        b2C8yd7FyMkhIWAi0fb+GSuILSSwm1Fi11o2iLisxLN3O6BqhCXutxwBquECqnnPKHFv339G
-        kASbgK7EluevGEESIgLdTBJzNvUzgTjMAtsZJT4sXcfSxcjBISwQLPHhugNIA4uAqsTkBbvA
-        NvAK2EncfX2UFWKDvMSG+b3MIOWcAvYSW854QBxkJ7H58gZWiHJBiZMzn7CA2MxA5c1bZzNP
-        YBSYhSQ1C0lqASPTKkbJ1ILi3PTcYsMCw7zUcr3ixNzi0rx0veT83E2M4BjQ0tzBuH3VB71D
-        jEwcjIcYJTiYlUR4S3ZNTRLiTUmsrEotyo8vKs1JLT7EKM3BoiTOe6HrZLyQQHpiSWp2ampB
-        ahFMlomDU6qBKc1TJDp208RMmQccr253X3u2YG9oQHWpErfWovT+Jyd/9ifVlTHI3MmLdldm
-        PRPO5Vias6zme8KefxME2UWmrlizJWNti1r9zbsXN3fx3+IVvm3sp2H8waBE//F3r47b/E1s
-        37cL11Ur6D8/X3Ciq/ds/BK99w9u39l5aMaeMg11rqLa+Ef6S36W+JZstpBk+xtmfHXvxMn2
-        Ld6fm7eVBO6fXHjgjcO7VhPHHXI7zG0qGzlVeUUSDHSn/dxb/Fd8/+zXcj80m5QyrE2L3mop
-        zjc/xWj+bPHidkMegcUvdvDbbT7kn3C29Mbm99af5Bl4d95erjX749mr3AftCtJeuL/qLXW9
-        /z5D/tXaWxZWSizFGYmGWsxFxYkAAd4Ag/ACAAA=
-X-CMS-MailID: 20220602053329epcas2p263a77beaaa17d20655bbf55874760054
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220602053329epcas2p263a77beaaa17d20655bbf55874760054
-References: <20220602053250.62593-1-chanho61.park@samsung.com>
-        <CGME20220602053329epcas2p263a77beaaa17d20655bbf55874760054@epcas2p2.samsung.com>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -123,55 +55,109 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable ufs_1_phy and ufs_1 devices with ufs_1_fixed_vcc_reg regulator.
+Le 23/05/2022 à 12:47, Guillaume Ranquet a écrit :
+> dpintf is the displayport interface hardware unit. This unit is similar
+> to dpi and can reuse most of the code.
+> 
+> This patch adds support for mt8195-dpintf to this dpi driver. Main
+> differences are:
+>   - Some features/functional components are not available for dpintf
+>     which are now excluded from code execution once is_dpintf is set
+>   - dpintf can and needs to choose between different clockdividers based
+>     on the clockspeed. This is done by choosing a different clock parent.
+>   - There are two additional clocks that need to be managed. These are
+>     only set for dpintf and will be set to NULL if not supplied. The
+>     clk_* calls handle these as normal clocks then.
+>   - Some register contents differ slightly between the two components. To
+>     work around this I added register bits/masks with a DPINTF_ prefix
+>     and use them where different.
+> 
+> Based on a separate driver for dpintf created by
+> Jason-JH.Lin <jason-jh.lin-NuS5LvNUpcJWk0Htik3J/w@public.gmane.org>.
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp-rdvid1DuHRBWk0Htik3J/w@public.gmane.org>
+> Signed-off-by: Guillaume Ranquet <granquet-rdvid1DuHRBWk0Htik3J/w@public.gmane.org>
+> ---
+>   drivers/gpu/drm/mediatek/mtk_dpi.c          | 126 +++++++++++++++++---
+>   drivers/gpu/drm/mediatek/mtk_dpi_regs.h     |  35 ++++++
+>   drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c |   8 ++
+>   drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h |   1 +
+>   drivers/gpu/drm/mediatek/mtk_drm_drv.c      |   5 +-
+>   include/linux/soc/mediatek/mtk-mmsys.h      |   4 +-
+>   6 files changed, 159 insertions(+), 20 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> index eb969c5c5c2e..763bfb700135 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> @@ -71,6 +71,7 @@ struct mtk_dpi {
+>   	void __iomem *regs;
+>   	struct device *dev;
+>   	struct clk *engine_clk;
+> +	struct clk *dpi_ck_cg;
+>   	struct clk *pixel_clk;
+>   	struct clk *tvd_clk;
+>   	int irq;
+> @@ -126,6 +127,7 @@ struct mtk_dpi_conf {
+>   	const u32 *output_fmts;
+>   	u32 num_output_fmts;
+>   	bool is_ck_de_pol;
+> +	bool is_dpintf;
+>   	bool swap_input_support;
+>   	/* Mask used for HWIDTH, HPORCH, VSYNC_WIDTH and VSYNC_PORCH (no shift) */
+>   	u32 dimension_mask;
+> @@ -438,6 +440,8 @@ static void mtk_dpi_power_off(struct mtk_dpi *dpi)
+>   	mtk_dpi_disable(dpi);
+>   	clk_disable_unprepare(dpi->pixel_clk);
+>   	clk_disable_unprepare(dpi->engine_clk);
+> +	clk_disable_unprepare(dpi->dpi_ck_cg);
+> +	clk_disable_unprepare(dpi->tvd_clk);
+>   }
+>   
+>   static int mtk_dpi_power_on(struct mtk_dpi *dpi)
+> @@ -447,12 +451,24 @@ static int mtk_dpi_power_on(struct mtk_dpi *dpi)
+>   	if (++dpi->refcount != 1)
+>   		return 0;
+>   
 
-Signed-off-by: Chanho Park <chanho61.park@samsung.com>
----
- .../boot/dts/exynos/exynosautov9-sadk.dts      | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+Hi,
 
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-index 17e568853eb6..2b30a7458297 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-+++ b/arch/arm64/boot/dts/exynos/exynosautov9-sadk.dts
-@@ -39,6 +39,14 @@ ufs_0_fixed_vcc_reg: regulator-0 {
- 		regulator-boot-on;
- 		enable-active-high;
- 	};
-+
-+	ufs_1_fixed_vcc_reg: regulator-1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "ufs-vcc";
-+		gpio = <&gpg2 2 GPIO_ACTIVE_HIGH>;
-+		regulator-boot-on;
-+		enable-active-high;
-+	};
- };
- 
- &serial_0 {
-@@ -49,12 +57,22 @@ &ufs_0_phy {
- 	status = "okay";
- };
- 
-+&ufs_1_phy {
-+	status = "okay";
-+};
-+
- &ufs_0 {
- 	status = "okay";
- 	vcc-supply = <&ufs_0_fixed_vcc_reg>;
- 	vcc-fixed-regulator;
- };
- 
-+&ufs_1 {
-+	status = "okay";
-+	vcc-supply = <&ufs_1_fixed_vcc_reg>;
-+	vcc-fixed-regulator;
-+};
-+
- &usi_0 {
- 	status = "okay";
- };
--- 
-2.36.1
+belwo the error handling path looks odd. (both where we goto, and the 
+order of the clk_disable_unprepare() in the error handling path.
 
+just my 2c,
+
+CJ
+
+> +	ret = clk_prepare_enable(dpi->tvd_clk);
+> +	if (ret) {
+> +		dev_err(dpi->dev, "Failed to enable tvd pll: %d\n", ret);
+> +		goto err_pixel;
+> +	}
+> +
+>   	ret = clk_prepare_enable(dpi->engine_clk);
+>   	if (ret) {
+>   		dev_err(dpi->dev, "Failed to enable engine clock: %d\n", ret);
+>   		goto err_refcount;
+>   	}
+>   
+> +	ret = clk_prepare_enable(dpi->dpi_ck_cg);
+> +	if (ret) {
+> +		dev_err(dpi->dev, "Failed to enable dpi_ck_cg clock: %d\n", ret);
+> +		goto err_ck_cg;
+> +	}
+> +
+>   	ret = clk_prepare_enable(dpi->pixel_clk);
+>   	if (ret) {
+>   		dev_err(dpi->dev, "Failed to enable pixel clock: %d\n", ret);
+> @@ -466,6 +482,8 @@ static int mtk_dpi_power_on(struct mtk_dpi *dpi)
+>   	return 0;
+>   
+>   err_pixel:
+> +	clk_disable_unprepare(dpi->dpi_ck_cg);
+> +err_ck_cg:
+>   	clk_disable_unprepare(dpi->engine_clk);
+>   err_refcount:
+>   	dpi->refcount--;
+
+[...]
