@@ -2,202 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13FB953C0B5
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 00:19:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C5BB53C0C3
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 00:23:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239587AbiFBWRB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 18:17:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38862 "EHLO
+        id S239625AbiFBWTV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 18:19:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239577AbiFBWQ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 18:16:58 -0400
-Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED0B7140B9
-        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 15:16:56 -0700 (PDT)
-Received: by mail-pg1-x529.google.com with SMTP id u4so2873004pgk.11
-        for <devicetree@vger.kernel.org>; Thu, 02 Jun 2022 15:16:56 -0700 (PDT)
+        with ESMTP id S234670AbiFBWTV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 18:19:21 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F2D734679;
+        Thu,  2 Jun 2022 15:19:20 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id c2so7978570edf.5;
+        Thu, 02 Jun 2022 15:19:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version;
-        bh=Yh1soSq7A1CNEhu3TIgpNxO4prkNdGmwPVeW6xmVskA=;
-        b=dtY0rF9VsTDNw4vHMw419koKnus4nddF3G3E8CDyIiUtllordrPYsYkU4V+nMykpCM
-         mfMrwOkyrkQBAFjKWgQAX/s6bmBYvlyg2WdhNLk337+CGJN1qj7h4oCbIlqHXil26aTg
-         UpctEb0JNkRjFDnWPOw1BByX5HjoDOKV8qSlU=
+        d=gmail.com; s=20210112;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :content-transfer-encoding:user-agent:mime-version;
+        bh=tbowqamXYYuuGAdFBr0ycte2n7isELmCXUpS72DXPYA=;
+        b=Cfn9ZrjJiuyTgQEDoNcqfvdJSLpGNZk3ZIvxheCNDuJKdAZ7/R0LfKUCb6JqSD3l9V
+         5r25+e3QoN3avlvliguJWFaximEHBbqMDW1vNP+yD4lCQPNmTqNiIxrvS0QZcMjXPXlX
+         7XZlixPHgxssR2wJVbkZSSEYV5nwEsamgxA2dnD9UfYWMS4aAlDpm7rxRStHQoHUKE3c
+         3XFgBIVrydZcp9sMwUro+iFBQqvdn8exH66hJiL0Is3zfcqToU58YLVPDLSYpiGr2YDw
+         SxJDGBsf67UaIc46xeZo0fuUSHobZ8y0Ti46WMplznIqvpUkVHnHFAAaCQjodhoAq7Di
+         hX0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version;
-        bh=Yh1soSq7A1CNEhu3TIgpNxO4prkNdGmwPVeW6xmVskA=;
-        b=fVX94g56KOB51nzaLYew/I5iXINzyUoKVzJidxMYbTUKWxknL3BWqdMgmFDXTkdlQy
-         Ew+aY2GJYthy3nZS9NeyMpkoE9DJ1OxQkKkEzBed2YW65ssLavKfpwVXx9cK0j2sTy4G
-         OXwJCLC5T//pRM9r6OuYsKa50b/MXUNmagrfCdLWOb4qj34JvJtgjPWcSjwceeDGZ7Ru
-         4UfN4pPBkn6j2A0Ha2R9VudCnNZAZPD+xXprEI67+4eLjzi3FqNdijuL1CMHdMLEFf6o
-         8/vMjtieWzV1FuN05/ZdDWT5Gvn2K2X7Z7Du7DXUCtGtInl0Ohlu5Ub/dJNd9uKM6TsK
-         wdEw==
-X-Gm-Message-State: AOAM532juEMYdYhj/kQGuKj1VLJGmuCrDhweG32Kv+Xd2yPvWemGvWrO
-        vNIZrUY6e0X0nZsHETW7gfOHNA==
-X-Google-Smtp-Source: ABdhPJyPOWjQqC+U7vJ7g6t6Bf+ErXxd35UgcNyPNfhdPyIw3Z+GpjuQwB807mRcRPwOEuu6VmEHMA==
-X-Received: by 2002:a63:89c1:0:b0:3fc:5f5f:ef4c with SMTP id v184-20020a6389c1000000b003fc5f5fef4cmr6004028pgd.41.1654208216337;
-        Thu, 02 Jun 2022 15:16:56 -0700 (PDT)
-Received: from linuxpc-ThinkServer-TS140.dhcp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id z10-20020a056a001d8a00b00518d0707b52sm3903369pfw.208.2022.06.02.15.16.54
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:content-transfer-encoding:user-agent:mime-version;
+        bh=tbowqamXYYuuGAdFBr0ycte2n7isELmCXUpS72DXPYA=;
+        b=uexjQL9NqnPtZWq4DzAtOL6S15ZnCNapSfHDMjEDH0DDh3O7VeVXyBjo83wBmx99Ni
+         CD07pqLGkLk8UIIlKSHLT9QXzlYrWvcysxcPl4p1K1WAt3xZoGGkbH63ACATsIBCd26i
+         m0Q0lVndwMcFOD9TdvahpfWu+lHA63PxCDqGW9gsSwfjvG1cCqr4SzJ0ze4w4SL7TYAI
+         GU1vPqg+aDsQibt+z5PQxq0qxFJ8EyGuA2p0KsEsNEgRCCQbaryVtTPeXU3fnL/Vp2nd
+         n9HDC5dnqU1k9BmehJnu7BCKncS7b4/Z7uy6uxssuJcA/OhtalyF/+HUhshW4D5zYGlD
+         D70A==
+X-Gm-Message-State: AOAM532LXJBT342r88mydN+V3lg/1vPak2PgN9zMPfHa9k6CAGjy4CG1
+        vtzWh7zTZMssbhHfLYlVFDrcgavZ64dcMCl8q+g=
+X-Google-Smtp-Source: ABdhPJz1a65SOU6C73Ybt3zJBBGpUK5rx1jMp6pFTiIUucWL/ne9gp0OsWFNXQFD/Zwp0ttUaDtOpA==
+X-Received: by 2002:a05:6402:1f0e:b0:42d:e38a:51f7 with SMTP id b14-20020a0564021f0e00b0042de38a51f7mr7825293edb.68.1654208358484;
+        Thu, 02 Jun 2022 15:19:18 -0700 (PDT)
+Received: from ?IPv6:2a02:ab88:368f:2080:eab:126a:947d:3008? ([2a02:ab88:368f:2080:eab:126a:947d:3008])
+        by smtp.gmail.com with ESMTPSA id fg16-20020a1709069c5000b006fe8d8c54a7sm2150850ejc.87.2022.06.02.15.19.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Jun 2022 15:16:55 -0700 (PDT)
-From:   Anand Gore <anand.gore@broadcom.com>
-To:     Linux ARM List <linux-arm-kernel@lists.infradead.org>
-Cc:     kursad.oney@broadcom.com, florian.fainelli@broadcom.com,
-        tomer.yacoby@broadcom.com, samyon.furman@broadcom.com,
-        dan.beygelman@broadcom.com,
-        William Zhang <william.zhang@broadcom.com>,
-        joel.peshkin@broadcom.com, Anand Gore <anand.gore@broadcom.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
+        Thu, 02 Jun 2022 15:19:17 -0700 (PDT)
+Message-ID: <f40aca00a4418c889395d2dab65f85d24e8662c6.camel@gmail.com>
+Subject: Re: [PATCH 5/5] arm64: dts: exynos: Add internal eMMC support to
+ jackpotlte
+From:   David Virag <virag.david003@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     phone-devel@vger.kernel.org,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v4 2/3] dt-bindings: arm: add BCM6878 soc
-Date:   Thu,  2 Jun 2022 15:16:45 -0700
-Message-Id: <20220602151639.v4.2.I383a14e417ffde9d8180ee578abbafdf09141c29@changeid>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220602221646.3127512-1-anand.gore@broadcom.com>
-References: <20220602221646.3127512-1-anand.gore@broadcom.com>
+Date:   Fri, 03 Jun 2022 00:18:51 +0200
+In-Reply-To: <b3681990-e358-8e1d-93fe-b72c099902e3@linaro.org>
+References: <20220601233743.56317-1-virag.david003@gmail.com>
+         <20220601233743.56317-6-virag.david003@gmail.com>
+         <b3681990-e358-8e1d-93fe-b72c099902e3@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.1 
 MIME-Version: 1.0
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="00000000000024454805e07e5d25"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---00000000000024454805e07e5d25
-Content-Transfer-Encoding: 8bit
+On Thu, 2022-06-02 at 14:01 +0200, Krzysztof Kozlowski wrote:
+> On 02/06/2022 01:37, David Virag wrote:
+> > Add the nodes relevant to provide clocks for Exynos7885 eMMC and to
+> > support eMMC. eMMC is the internal storage used in the Samsung
+> > Galaxy A8
+> > (2018) (jackpotlte), and all other known devices using the
+> > Exynos7885
+> > SoC.
+> >=20
+> > Signed-off-by: David Virag <virag.david003@gmail.com>
+> > ---
+> > =C2=A0.../boot/dts/exynos/exynos7885-jackpotlte.dts | 20 ++++++++++++
+> > =C2=A0arch/arm64/boot/dts/exynos/exynos7885.dtsi=C2=A0=C2=A0=C2=A0 | 32
+> > +++++++++++++++++++
+> > =C2=A02 files changed, 52 insertions(+)
+> >=20
+> > diff --git a/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
+> > b/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
+> > index 4cf9aa25f618..5db9a81ac7bb 100644
+> > --- a/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
+> > +++ b/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
+> > @@ -60,6 +60,26 @@ power-key {
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
+> > =C2=A0};
+> > =C2=A0
+> > +&mmc_0 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0mmc-hs200-1_8v;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0mmc-hs400-1_8v;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0cap-mmc-highspeed;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0non-removable;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0mmc-hs400-enhanced-strobe;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0card-detect-delay =3D <200>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0clock-frequency =3D <8000000=
+00>;
+>=20
+> Is this real property for MMC? Neither mmc nor DW MSHC bindings
+> mention it.
 
-Add BCM6878 SOC device tree description to bcmbca binding document.
+It is, but I don't remember trying without it. Seems like it is not
+documented then. It is used in dw_mmc.c in the following places:
 
-Signed-off-by: Anand Gore <anand.gore@broadcom.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+https://github.com/torvalds/linux/blob/master/drivers/mmc/host/dw_mmc.c#L32=
+42-L3243
 
----
+https://github.com/torvalds/linux/blob/master/drivers/mmc/host/dw_mmc.c#L33=
+06-L3325
 
-Changes in v4:
-- Fixed subject line
+The Exynos850 device tree has the same property in it's mmc node.=20
 
-Changes in v3:
-- Simplify subject line
+>=20
+> Best regards,
+> Krzysztof
 
-Changes in v2:
-- Remove extra empty lines
-
- Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml b/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
-index a63e355ba8f9..8b8fc65e8b1b 100644
---- a/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
-+++ b/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
-@@ -43,6 +43,13 @@ properties:
-           - const: brcm,bcmbca
- 
- 
-+      - description: BCM6878 based boards
-+        items:
-+          - enum:
-+              - brcm,bcm96878
-+          - const: brcm,bcm6878
-+          - const: brcm,bcmbca
-+
- additionalProperties: true
- 
- ...
--- 
-2.25.1
-
-
---00000000000024454805e07e5d25
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-MIIQZwYJKoZIhvcNAQcCoIIQWDCCEFQCAQExDzANBglghkgBZQMEAgEFADALBgkqhkiG9w0BBwGg
-gg2+MIIFDTCCA/WgAwIBAgIQeEqpED+lv77edQixNJMdADANBgkqhkiG9w0BAQsFADBMMSAwHgYD
-VQQLExdHbG9iYWxTaWduIFJvb3QgQ0EgLSBSMzETMBEGA1UEChMKR2xvYmFsU2lnbjETMBEGA1UE
-AxMKR2xvYmFsU2lnbjAeFw0yMDA5MTYwMDAwMDBaFw0yODA5MTYwMDAwMDBaMFsxCzAJBgNVBAYT
-AkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBS
-MyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
-vbCmXCcsbZ/a0fRIQMBxp4gJnnyeneFYpEtNydrZZ+GeKSMdHiDgXD1UnRSIudKo+moQ6YlCOu4t
-rVWO/EiXfYnK7zeop26ry1RpKtogB7/O115zultAz64ydQYLe+a1e/czkALg3sgTcOOcFZTXk38e
-aqsXsipoX1vsNurqPtnC27TWsA7pk4uKXscFjkeUE8JZu9BDKaswZygxBOPBQBwrA5+20Wxlk6k1
-e6EKaaNaNZUy30q3ArEf30ZDpXyfCtiXnupjSK8WU2cK4qsEtj09JS4+mhi0CTCrCnXAzum3tgcH
-cHRg0prcSzzEUDQWoFxyuqwiwhHu3sPQNmFOMwIDAQABo4IB2jCCAdYwDgYDVR0PAQH/BAQDAgGG
-MGAGA1UdJQRZMFcGCCsGAQUFBwMCBggrBgEFBQcDBAYKKwYBBAGCNxQCAgYKKwYBBAGCNwoDBAYJ
-KwYBBAGCNxUGBgorBgEEAYI3CgMMBggrBgEFBQcDBwYIKwYBBQUHAxEwEgYDVR0TAQH/BAgwBgEB
-/wIBADAdBgNVHQ4EFgQUljPR5lgXWzR1ioFWZNW+SN6hj88wHwYDVR0jBBgwFoAUj/BLf6guRSSu
-TVD6Y5qL3uLdG7wwegYIKwYBBQUHAQEEbjBsMC0GCCsGAQUFBzABhiFodHRwOi8vb2NzcC5nbG9i
-YWxzaWduLmNvbS9yb290cjMwOwYIKwYBBQUHMAKGL2h0dHA6Ly9zZWN1cmUuZ2xvYmFsc2lnbi5j
-b20vY2FjZXJ0L3Jvb3QtcjMuY3J0MDYGA1UdHwQvMC0wK6ApoCeGJWh0dHA6Ly9jcmwuZ2xvYmFs
-c2lnbi5jb20vcm9vdC1yMy5jcmwwWgYDVR0gBFMwUTALBgkrBgEEAaAyASgwQgYKKwYBBAGgMgEo
-CjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3dy5nbG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzAN
-BgkqhkiG9w0BAQsFAAOCAQEAdAXk/XCnDeAOd9nNEUvWPxblOQ/5o/q6OIeTYvoEvUUi2qHUOtbf
-jBGdTptFsXXe4RgjVF9b6DuizgYfy+cILmvi5hfk3Iq8MAZsgtW+A/otQsJvK2wRatLE61RbzkX8
-9/OXEZ1zT7t/q2RiJqzpvV8NChxIj+P7WTtepPm9AIj0Keue+gS2qvzAZAY34ZZeRHgA7g5O4TPJ
-/oTd+4rgiU++wLDlcZYd/slFkaT3xg4qWDepEMjT4T1qFOQIL+ijUArYS4owpPg9NISTKa1qqKWJ
-jFoyms0d0GwOniIIbBvhI2MJ7BSY9MYtWVT5jJO3tsVHwj4cp92CSFuGwunFMzCCA18wggJHoAMC
-AQICCwQAAAAAASFYUwiiMA0GCSqGSIb3DQEBCwUAMEwxIDAeBgNVBAsTF0dsb2JhbFNpZ24gUm9v
-dCBDQSAtIFIzMRMwEQYDVQQKEwpHbG9iYWxTaWduMRMwEQYDVQQDEwpHbG9iYWxTaWduMB4XDTA5
-MDMxODEwMDAwMFoXDTI5MDMxODEwMDAwMFowTDEgMB4GA1UECxMXR2xvYmFsU2lnbiBSb290IENB
-IC0gUjMxEzARBgNVBAoTCkdsb2JhbFNpZ24xEzARBgNVBAMTCkdsb2JhbFNpZ24wggEiMA0GCSqG
-SIb3DQEBAQUAA4IBDwAwggEKAoIBAQDMJXaQeQZ4Ihb1wIO2hMoonv0FdhHFrYhy/EYCQ8eyip0E
-XyTLLkvhYIJG4VKrDIFHcGzdZNHr9SyjD4I9DCuul9e2FIYQebs7E4B3jAjhSdJqYi8fXvqWaN+J
-J5U4nwbXPsnLJlkNc96wyOkmDoMVxu9bi9IEYMpJpij2aTv2y8gokeWdimFXN6x0FNx04Druci8u
-nPvQu7/1PQDhBjPogiuuU6Y6FnOM3UEOIDrAtKeh6bJPkC4yYOlXy7kEkmho5TgmYHWyn3f/kRTv
-riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
-QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
-UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
-M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
-Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
-14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
-a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
-XzCCBUYwggQuoAMCAQICDHNxlHShyr1/yxU67zANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
-RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
-UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMTAyMjIwODA1MjdaFw0yMjA5MDUwODEwMjNaMIGK
-MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
-BgNVBAoTDUJyb2FkY29tIEluYy4xEzARBgNVBAMTCkFuYW5kIEdvcmUxJjAkBgkqhkiG9w0BCQEW
-F2FuYW5kLmdvcmVAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
-ndzykUhgQxkZsXfE3NMuhXrc96M9A6Bs4efEix3G/zVx1fQCMK7N9aAY7EbLe0JFInC/jSCRn5hs
-KgoQKSF9Cyuf0HGgYR9mSPvPnQr6NxsssWH3vUEtZ3tI6ebaviiWzuzDtEQ93NbSpK+u2ly8Lifn
-R9NgV4osV4obyP+gwwiEAnVjUQUEAHrn62ABQpHV8P0eMbpFKeNC53UFC5d06tcQHhCggGCkaSoi
-dD3eNkKBkknQBWvFfBHcITIVdVccQg5YcIwowkVZhhA3NG0BXGI4l/3o+wjrl2BGO/t969dabQ5x
-/SxGBTK8Vyn6NG7U0Lrjb0VtnrFXgEdxFvJuEQIDAQABo4IB2DCCAdQwDgYDVR0PAQH/BAQDAgWg
-MIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9iYWxzaWdu
-LmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUFBzABhjVo
-dHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMDBNBgNV
-HSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xvYmFsc2ln
-bi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRwOi8vY3Js
-Lmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAiBgNVHREEGzAZ
-gRdhbmFuZC5nb3JlQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAfBgNVHSMEGDAW
-gBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUH4HXhI4xxNPqnv0yfNL6is0cLFYwDQYJ
-KoZIhvcNAQELBQADggEBAAU15tMIqa2yrLdoPoNXMk6scL+6XJK/EVe0Lq0Uyq0SV8wpFV09ujno
-nLmSFYTz1RjmiKr1eu/pwyTImqMUj1JAXZ2zgE0rFS5SvchJsSlB8Nv3WeTaf5Lha5ZmRTaB0U/E
-eo7SFjA240UWLCGqXM69XCc5PHk6mWLNTsyDTgK2kLUKP1RVFswACNsI284fxiwA0qSCu2WnOEKE
-LiytE/NBFgzVtBcryeBtcMnhZgMo0PQYRl4O+58O1O703CD1jiO4/ikP+hUTdxWQiiWAzpE89YCH
-S0Pc2d2yC8RWARAiArr1jXHWA4+snG+TS3A1YVSPRZpboS5AXMutIIQ5YZQxggJtMIICaQIBATBr
-MFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhHbG9i
-YWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgxzcZR0ocq9f8sVOu8wDQYJYIZI
-AWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIMYY30OMZu93eKeokWJFMKzmsWeTP6McCH1+GRlq
-naLTMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIyMDYwMjIyMTY1
-NlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFlAwQB
-AjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFlAwQCATANBgkq
-hkiG9w0BAQEFAASCAQB0VwUKS/1+EvzlXDp/ueV0x+spx1rd8STM93piO56QSJ5sY5w6VjxLk6cj
-ohGwySvY1i97Mh3YnNopyZY1xnITeW3vQkabkRQ1pr+T8sptnxCQTMGtSXZpBpG90TCId0TmqVIl
-LoD0IsTIClPRKOttoCs98ojKIIJUMnd2o17nytM7asjjwP+hvHrQrYKDR7LCdDp2FeoHYs9ycVO2
-Mws+gKEr1uyYN9Vu6Ew2wVq6ZKVdaHkKhBrQTACteJ8R4VNif+rLAiqGJBYkYJt75x+ptz99Wr/A
-2cCWPuDpnQyGHUQR/quYTT2x8M5bGPvDmxevpwgzYyTrGxP4bBvY7D3A
---00000000000024454805e07e5d25--
+Best regards,
+David
