@@ -2,151 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4036153B5DD
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 11:18:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBD7A53B5E8
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 11:22:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232906AbiFBJSV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 05:18:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54768 "EHLO
+        id S230295AbiFBJW2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 05:22:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231402AbiFBJSU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 05:18:20 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBDE053701;
-        Thu,  2 Jun 2022 02:18:18 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id me5so8233104ejb.2;
-        Thu, 02 Jun 2022 02:18:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0d9LPcPl2z82dxOAeBz8oaTNCeFfF1mrJ8xfIO9HyHE=;
-        b=lfLh9e2Zec+kRfUbieDqxaSJGfE2gK5tVDQL4/AlpgVcAAIBNipxqiaQ9KaF31NRoL
-         p4XLfqqfzJDaVnItedh+uY7WOZo9GWfO9EDs7Kwtb9g1ep7F/2s8jmC8C+5HKoB8mmqm
-         5+MnNkvj0n3QFu1KLRgu4qmE4FZpPqT/FxCabwWRio16T/tBO5n8YQs39umvhQZU1izc
-         kmND1i4pFf63FZslDTQd5TX2paKc+iavMXEEIfxzCgFARk5C9xBN1i2j5XO5tazLpbL3
-         wIlyYfmxX1H8YiEs73O3/gKRJfzGSjM99weIY/3wRiXAWXYqSVXb5yR9RaF0dJyLJck3
-         HKTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0d9LPcPl2z82dxOAeBz8oaTNCeFfF1mrJ8xfIO9HyHE=;
-        b=cyeok4LVFsdO0DNXsuUE0UImQfxvFOwMGCPhdctFrhGtkhqzr9JLqijDHPEW7Z+lFv
-         t7pXhQjnasw3UTDqdmp/tfCKcFkYupsS4eIMdctFOHIPZ2LcRR6bZBgImHeOjMyljmM/
-         pYN/JbtDRmIi7uTBBgMuLBR8JoIcT5LjO+T/KWZf2RY9+ep7Q/jiER7+KFEzqCWhDbQP
-         I+xFeMDq+N3ZDDCcxJLoGVZl4kPg4UW9BZc4FNEx+yk+Ma1lMvJwUMG6aN4mHn5CJez6
-         ai4rULChngwaunakkHLAGlv6YjOcbk6JONzdtOrKRH7WFmgkByrO7/nKTEylVc6Uo3WH
-         6wrA==
-X-Gm-Message-State: AOAM5301P6DGapNiS7JRDlVh4DtJhOJsWnwmkv1/pXkv8nDEA5CuyIF0
-        biwhgRFBbzFoTFKBJ319hdqCC5dDpmSiYJopJFg=
-X-Google-Smtp-Source: ABdhPJxRg1MZXl/SkbIUuNBrRuGNQldHFdLPZxE+GhC/BiCEKh8oflGlAj5dFnKQFyQ9Ns7hxKjhAhvcKy/fq3rTsjo=
-X-Received: by 2002:a17:907:6e04:b0:6f4:d6f3:c72a with SMTP id
- sd4-20020a1709076e0400b006f4d6f3c72amr3415411ejc.636.1654161497069; Thu, 02
- Jun 2022 02:18:17 -0700 (PDT)
+        with ESMTP id S232901AbiFBJW1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 05:22:27 -0400
+Received: from aposti.net (aposti.net [89.234.176.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31418C43;
+        Thu,  2 Jun 2022 02:22:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1654161741; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=bdFdEInj0nV0Q6jdOHpTmlRNrwcWRkoYe3jBS5EW5VU=;
+        b=Yeg8VI4kw+QOdag7dk9i9fFU/KFOqx4N7r33VJDxXek4OT4hh7rVZiaV+EEmD/cc2oWou6
+        sHQkvCRvUQ+ejor8SkcvdtBA/oUCmWPs0a8qHwzCo2dGIEpsZq/Az2Hun5etIrk0/C9a5L
+        1lekTokJY3w4jBVH7eOxF0cs75e0jcg=
+Date:   Thu, 02 Jun 2022 10:22:11 +0100
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v2 2/3] Input: adc-joystick - Add polled input device
+ support
+To:     Chris Morgan <macroalpha82@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        dmitry.torokhov@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
+        maccraft123mc@gmail.com, contact@artur-rojek.eu,
+        Chris Morgan <macromorgan@hotmail.com>
+Message-Id: <ZCFUCR.XGIL3R7SFVS32@crapouillou.net>
+In-Reply-To: <20220601204927.10256-3-macroalpha82@gmail.com>
+References: <20220601204927.10256-1-macroalpha82@gmail.com>
+        <20220601204927.10256-3-macroalpha82@gmail.com>
 MIME-Version: 1.0
-References: <20220531102809.11976-1-peterwu.pub@gmail.com> <20220531102809.11976-7-peterwu.pub@gmail.com>
- <CAHp75Vd8taco19vsDmBcCv8euV1SvwSiY5=P9oMkA6zWsjwXxg@mail.gmail.com> <20220602062643.GA13824@cyhuang-hp-elitebook-840-g3.rt>
-In-Reply-To: <20220602062643.GA13824@cyhuang-hp-elitebook-840-g3.rt>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 2 Jun 2022 11:17:40 +0200
-Message-ID: <CAHp75Vd-n=oLnhRCK=pR5ybOZbC6BKXrE2jRdwDbH90E4KYFGA@mail.gmail.com>
-Subject: Re: [PATCH 06/14] leds: mt6370: Add Mediatek MT6370 Indicator support
-To:     ChiYuan Huang <u0084500@gmail.com>
-Cc:     ChiaEn Wu <peterwu.pub@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        "Krogerus, Heikki" <heikki.krogerus@linux.intel.com>,
-        Helge Deller <deller@gmx.de>, cy_huang@richtek.com,
-        alice_chen@richtek.com, chiaen_wu@richtek.com,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        USB <linux-usb@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 2, 2022 at 8:27 AM ChiYuan Huang <u0084500@gmail.com> wrote:
-> On Wed, Jun 01, 2022 at 11:48:58AM +0200, Andy Shevchenko wrote:
-> > On Tue, May 31, 2022 at 1:16 PM ChiaEn Wu <peterwu.pub@gmail.com> wrote:
+Hi Chris,
 
-...
+Le mer., juin 1 2022 at 15:49:26 -0500, Chris Morgan=20
+<macroalpha82@gmail.com> a =E9crit :
+> From: Chris Morgan <macromorgan@hotmail.com>
+>=20
+> Add polled input device support to the adc-joystick driver. This is
+> useful for devices which do not have hardware capable triggers on
+> their SARADC. Code modified from adc-joystick.c changes made by Maya
+> Matuszczyk.
 
-> > What indicator?
-> It's RGB curent sink type LED driver (maximum supported current is only 24mA).
+I understand what you're trying to do, but maybe there's a better way.
 
-Make your commit messages a slightly more verbose.
+It would be better if pollable IIO devices would also be able to be=20
+used with a buffer, with the client driver manually triggering the IIO=20
+device through a function call.
 
-...
+Jonathan (Cc'd) might have his reasons why this isn't done this way,=20
+and in this case your patch makes sense, but I'd like to hear=20
+Jonathan's thoughts first.
 
-> > > +#include <linux/of.h>
-> >
-> > Are you sure this is the correct header? Seems you need
-> > mod_devicetable.h instead.
-> >
-> It's the correct header and be used for the struct 'of_device_id'.
+As for "adc-joystick,polled"... it doesn't describe the hardware but=20
+rather a specific configuration, so it shouldn't appear in the device=20
+tree.
 
-Nope. Run the following command
-$ git grep -n 'struct of_device_id {' -- include/linux/
+Cheers,
+-Paul
 
-...
+>=20
+> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> ---
+>  drivers/input/joystick/adc-joystick.c | 52=20
+> +++++++++++++++++++++------
+>  1 file changed, 41 insertions(+), 11 deletions(-)
+>=20
+> diff --git a/drivers/input/joystick/adc-joystick.c=20
+> b/drivers/input/joystick/adc-joystick.c
+> index 78ebca7d400a..5a28fe7b8ebc 100644
+> --- a/drivers/input/joystick/adc-joystick.c
+> +++ b/drivers/input/joystick/adc-joystick.c
+> @@ -13,6 +13,10 @@
+>=20
+>  #include <asm/unaligned.h>
+>=20
+> +#define ADC_JSK_POLL_INTERVAL	16
+> +#define ADC_JSK_POLL_MIN	8
+> +#define ADC_JSK_POLL_MAX	32
+> +
+>  struct adc_joystick_axis {
+>  	u32 code;
+>  	s32 range[2];
+> @@ -26,8 +30,21 @@ struct adc_joystick {
+>  	struct adc_joystick_axis *axes;
+>  	struct iio_channel *chans;
+>  	int num_chans;
+> +	bool polled;
+>  };
+>=20
+> +static void adc_joystick_poll(struct input_dev *input)
+> +{
+> +	struct adc_joystick *joy =3D input_get_drvdata(input);
+> +	int i, val;
+> +
+> +	for (i =3D 0; i < joy->num_chans; i++) {
+> +		iio_read_channel_raw(&joy->chans[i], &val);
+> +		input_report_abs(input, joy->axes[i].code, val);
+> +	}
+> +	input_sync(input);
+> +}
+> +
+>  static int adc_joystick_handle(const void *data, void *private)
+>  {
+>  	struct adc_joystick *joy =3D private;
+> @@ -215,8 +232,19 @@ static int adc_joystick_probe(struct=20
+> platform_device *pdev)
+>  	joy->input =3D input;
+>  	input->name =3D pdev->name;
+>  	input->id.bustype =3D BUS_HOST;
+> -	input->open =3D adc_joystick_open;
+> -	input->close =3D adc_joystick_close;
+> +
+> +	if (device_property_read_bool(dev, "adc-joystick,polled"))
+> +		joy->polled =3D 1;
+> +
+> +	if (joy->polled) {
+> +		input_setup_polling(input, adc_joystick_poll);
+> +		input_set_poll_interval(input, ADC_JSK_POLL_INTERVAL);
+> +		input_set_min_poll_interval(input, ADC_JSK_POLL_MIN);
+> +		input_set_max_poll_interval(input, ADC_JSK_POLL_MAX);
+> +	} else {
+> +		input->open =3D adc_joystick_open;
+> +		input->close =3D adc_joystick_close;
+> +	}
+>=20
+>  	error =3D adc_joystick_set_axes(dev, joy);
+>  	if (error)
+> @@ -229,16 +257,18 @@ static int adc_joystick_probe(struct=20
+> platform_device *pdev)
+>  		return error;
+>  	}
+>=20
+> -	joy->buffer =3D iio_channel_get_all_cb(dev, adc_joystick_handle, joy);
+> -	if (IS_ERR(joy->buffer)) {
+> -		dev_err(dev, "Unable to allocate callback buffer\n");
+> -		return PTR_ERR(joy->buffer);
+> -	}
+> +	if (!joy->polled) {
+> +		joy->buffer =3D iio_channel_get_all_cb(dev, adc_joystick_handle,=20
+> joy);
+> +		if (IS_ERR(joy->buffer)) {
+> +			dev_err(dev, "Unable to allocate callback buffer\n");
+> +			return PTR_ERR(joy->buffer);
+> +		}
+>=20
+> -	error =3D devm_add_action_or_reset(dev, adc_joystick_cleanup,=20
+> joy->buffer);
+> -	if (error)  {
+> -		dev_err(dev, "Unable to add action\n");
+> -		return error;
+> +		error =3D devm_add_action_or_reset(dev, adc_joystick_cleanup,=20
+> joy->buffer);
+> +		if (error)  {
+> +			dev_err(dev, "Unable to add action\n");
+> +			return error;
+> +		}
+>  	}
+>=20
+>  	return 0;
 
-> > > +struct mt6370_priv {
-> > > +       struct mutex lock;
-> >
-> > Do you use regmap locking?
-> >
-> MFD regmap register already the access lock.
->
-> This lock is just to guarantee only one user can access the RGB register
-> part.
->
-> Sorry, from the comment, do you want us to rename or remove this lock?
 
-My point is, since you have two locks, explain why you need each of them.
-
-> > > +       struct device *dev;
-> >
-> > > +       struct regmap *regmap;
-> >
-> > > +       struct regmap_field *fields[F_MAX_FIELDS];
-> > > +       const struct reg_field *reg_fields;
-> > > +       const struct linear_range *ranges;
-> > > +       struct reg_cfg *reg_cfgs;
-> > > +       unsigned int leds_count;
-> > > +       unsigned int leds_active;
-> > > +       bool is_mt6372;
-> > > +       struct mt6370_led leds[];
-> > > +};
-
-
--- 
-With Best Regards,
-Andy Shevchenko
