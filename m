@@ -2,118 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49AF653B89D
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 14:05:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FB2953B89A
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 14:05:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234757AbiFBMCu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 08:02:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45386 "EHLO
+        id S233768AbiFBMFK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 08:05:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234738AbiFBMCs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 08:02:48 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CF8D62DC
-        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 05:02:43 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id c2so5963049edf.5
-        for <devicetree@vger.kernel.org>; Thu, 02 Jun 2022 05:02:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=U+8T6fn4T3vaS0Pi2aB2h1k72+HYKHqTINehwyE+Qxw=;
-        b=WgJo3UOrlWF/xukiH2Ku/H4mdceQ13UjCa+NEb9eL5GFxciQb2m/H0biH39C8/iyoC
-         UiorpjyI/JVwc5x53o5eiy8NCi3h6nJmU8Rk9KIT8GaOKNKLmN3LegL1M9r+RA9cnJLX
-         0DJtMJfNukuJqKElDBGjAkXwePDty6ctIvt+5JhABmGuOTBy23VV8UeP7SEl2/bHl96G
-         qy4eTw7224jmjab9pUBps6c0AQd+dXl3i0VGUN8h/6JgRErzSyA58TmBAsJuVvOzjlZd
-         Hxl6dDWlth12mYKgJ/B9bJYwO0pSLB4e1NXvXKd4av+jDkIZf18lh0UHkcX+TqvmV6PI
-         dTMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=U+8T6fn4T3vaS0Pi2aB2h1k72+HYKHqTINehwyE+Qxw=;
-        b=PdhuMlfdWP2M8LUj6ptkA+1SZDcqzWbv/iZ8Wi76huq/Hr/7wGxHKPmFEIXHVk8qBz
-         SsWaYdRQ5nPthOg+ZJBoDngONcyDkoV6t5DFHNV7XMJJFAQJUuIc8/OGknbY76VAGX3Q
-         Sm9oJ5XmlGvnFTLRg9ejFE4JORZvgVey6tO4j2A/7VBRGuDuwKo11kCtWoe5yDsKYFce
-         s92evdVic4YQ5s4WKlWxpCn13DEot8Hriu1kawGVogUfbSYZJAaeTAqq+z5EpI36MDTR
-         f07t7csqQ9Vj7b9we8R53sZdeXnxRJKA7r17jdZiGD+xLatmwz3w1PvDbm81mQPLG2Kg
-         vMHA==
-X-Gm-Message-State: AOAM5311FrPRw+XDl1z1LjB+wEcMr9ts3hox/isu+jthHhs+irLcm4dm
-        ubZdT2h7tEQ81xVkV3nubcyU/w==
-X-Google-Smtp-Source: ABdhPJx4oO7YkUav5hDFlqrl3kvMLXszr+upvgPvjdffSEadzOq3Ofn3+ntG6LnID8A7MNz5hB5ENQ==
-X-Received: by 2002:a05:6402:1f0e:b0:42d:e38a:51f7 with SMTP id b14-20020a0564021f0e00b0042de38a51f7mr5117059edb.68.1654171361576;
-        Thu, 02 Jun 2022 05:02:41 -0700 (PDT)
-Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id b8-20020aa7c6c8000000b0042617ba637bsm2480855eds.5.2022.06.02.05.02.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Jun 2022 05:02:41 -0700 (PDT)
-Message-ID: <e084e508-d886-3e6c-53ab-1f0b22706964@linaro.org>
-Date:   Thu, 2 Jun 2022 14:02:39 +0200
+        with ESMTP id S234792AbiFBME4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 08:04:56 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 546ECD9E9F
+        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 05:04:49 -0700 (PDT)
+Received: from [192.168.41.62] ([46.114.149.130]) by mrelayeu.kundenserver.de
+ (mreue011 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1M433w-1nwjYx2sDI-0005D1; Thu, 02 Jun 2022 14:04:27 +0200
+Message-ID: <9e096f63-2c8e-b4b7-6d27-79282ecc4e1b@i2se.com>
+Date:   Thu, 2 Jun 2022 14:04:25 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v1 01/15] dt-binding: remoteproc: mediatek: Support
- dual-core SCP
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v5 4/6] ARM: dts: bcm2711: Enable V3D
 Content-Language: en-US
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Daisuke Nojiri <dnojiri@chromium.org>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        "Dustin L. Howett" <dustin@howett.net>,
-        Tzung-Bi Shih <tzungbi@kernel.org>,
-        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Brian Norris <briannorris@chromium.org>
-Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+To:     Peter Robinson <pbrobinson@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Emma Anholt <emma@anholt.net>,
+        Florian Fainelli <f.fainelli@gmail.com>, javierm@redhat.com,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        chrome-platform@lists.linux.dev,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        weishunc@google.com
-References: <20220601112201.15510-1-tinghan.shen@mediatek.com>
- <20220601112201.15510-2-tinghan.shen@mediatek.com>
- <dd3ea397-fa21-abe5-85ad-b8a4818dc011@linaro.org>
- <3c837acfbefa5b7e23e1121678b5b878f08e4ef2.camel@mediatek.com>
- <476baef8-0255-45ed-85f4-2b9d877c4af1@linaro.org>
- <287d88a62fd13cd762b20faa3e9df826632fe1eb.camel@mediatek.com>
- <45c8050e-16d3-80d6-0799-8b067a38d956@linaro.org>
- <5c614dc0947aba6ce2eb0cdc3055a390da723d08.camel@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <5c614dc0947aba6ce2eb0cdc3055a390da723d08.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
+        linux-rpi-kernel@lists.infradead.org, maxime@cerno.tech,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+References: <20220601110249.569540-1-pbrobinson@gmail.com>
+ <20220601110249.569540-5-pbrobinson@gmail.com>
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+In-Reply-To: <20220601110249.569540-5-pbrobinson@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Provags-ID: V03:K1:XYdKR/s2FqlhNRZlT+9ExzCrBB9w+yB58UdOxZwUzzpOa1Go3ju
+ 0nBM8Gxx1C4AprNqc3h3hcZq0lagwN4q+cZxleaX++TZvn0LuJXXtVHaxD9lq0092KifrVO
+ BNWeVzJzSLs7tNfenTrpH9DQFcMsFtgGU1/re+9AufRCSafITmuaIhDO+Ycj3dOr2RdDO/0
+ L4U/Vbya/67+MRh4fxz4w==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:7zzE7CSNUG0=:FUD8QO420dB1GQCjvEM6vD
+ bVK1zcR6+rmkiwjUAAe55F+7DmLZczI619z+WuHNRR8UOEC49tT4tAV41SJvfxTKe8Ze0JXcP
+ kYLL2uG9sln0zUGuQ12ZSCpu9/eH1Eu8HJDvWSzN45mzdux4ZwdYdVgiLqdPgIw/uzVN1q0sN
+ JkRVaLH6XMJPoDzDub4dXKfgoNoFzNrLx7UUJl5oN/ZvotQh3drt4ShZ7eynYxaqMMaE8VVHG
+ f9FM1Fp67IjKduaubvjcMa1GXko4Nctv7KBt1pbhDX0X/yyqWCt4s4ZBqmozDizOlPwuELNVQ
+ qrzb/ClT/MGp+UDNlwntjZ1L2SRgH7e2jG8CCZiEOpSWh1O9FOB5OWoACLurgQLaW89a0tjcU
+ /PNx3I3YNZ56bn4q/RPr//Z5iZoUmC0kkY7pcL9TljZVL+rwLRmhRHtmdsO4WWuDtLUx7xK4g
+ Cuh+tM28Bub5hsW6rQf3ad8d8zttAku5ygfYJ66x+pG+46ehIS6eXoz00GN27OUmBCHJTvG0F
+ Y6l9Tc+kYjK5v6ScHhbKfeZhsXjB5EkPxQnxYfg+1Y5Q+LcKs8rw1aQfy/+185ogG/keuS4uj
+ 54Xsb5wVSSx9JMuqUCKzkUC0SwSgPJHT6ij7I17nE9dnmfREB+726DKNrOpoVCquO/Z5lewE3
+ 7kKqqS8NYowdoNu7aHF1V5/iHxxzOvJcAXeVZGnBn2Yy+ZDjHjkngBWB8LMFjb9ePXBrar3fq
+ htvluwWlGnDmBY6TojSzjC16kPd+MpEujyeeYcn+kNYRby8clZgZ1Vt/+Zg=
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/06/2022 13:29, Tinghan Shen wrote:
->> Maybe the hardware property is that one core has its sibling and you
->> provide here that sibling?
-> 
-> Yes, exactly. I'm sorry for misreading your argument.
-> 
-> How about this one,
->    
->   Reference to the sibling SCP core. This is required when 
->   dual-core SCP support is enabled.
+Hi Peter,
 
-Yes, sounds good. Thank you.
+Am 01.06.22 um 13:02 schrieb Peter Robinson:
+> This adds the entry for V3D for bcm2711 (used in the Raspberry Pi 4)
+> and the associated firmware clock entry.
+>
+> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
+> ---
+> Changes since v5:
+> - Move the firmware clock to bcm2711-rpi.dtsi
+>
+>   arch/arm/boot/dts/bcm2711-rpi.dtsi |  4 ++++
+>   arch/arm/boot/dts/bcm2711.dtsi     | 11 +++++++++++
+>   2 files changed, 15 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/bcm2711-rpi.dtsi b/arch/arm/boot/dts/bcm2711-rpi.dtsi
+> index ca266c5d9f9b..98817a6675b9 100644
+> --- a/arch/arm/boot/dts/bcm2711-rpi.dtsi
+> +++ b/arch/arm/boot/dts/bcm2711-rpi.dtsi
+> @@ -69,6 +69,10 @@ blconfig: nvram@0 {
+>   	};
+>   };
+>   
+> +&v3d {
+> +	clocks = <&firmware_clocks 5>;
+> +};
+> +
+>   &vchiq {
+>   	interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+>   };
+> diff --git a/arch/arm/boot/dts/bcm2711.dtsi b/arch/arm/boot/dts/bcm2711.dtsi
+> index 89af57482bc8..177662257b16 100644
+> --- a/arch/arm/boot/dts/bcm2711.dtsi
+> +++ b/arch/arm/boot/dts/bcm2711.dtsi
+> @@ -601,6 +601,17 @@ genet_mdio: mdio@e14 {
+>   				#size-cells = <0x0>;
+>   			};
+>   		};
+> +
+> +		v3d: gpu@7ec00000 {
+> +			compatible = "brcm,bcm2711-v3d";
 
+unfortunately this doesn't match with patch #3 anymore. Except of this 
+everything looks good here.
 
-Best regards,
-Krzysztof
+Stefan
+
+> +			reg = <0x0 0x7ec00000 0x4000>,
+> +			      <0x0 0x7ec04000 0x4000>;
+> +			reg-names = "hub", "core0";
+> +
+> +			power-domains = <&pm BCM2835_POWER_DOMAIN_GRAFX_V3D>;
+> +			resets = <&pm BCM2835_RESET_V3D>;
+> +			interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
+> +		};
+>   	};
+>   };
+>   
