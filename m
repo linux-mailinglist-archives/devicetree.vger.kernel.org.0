@@ -2,94 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C92853B7C5
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 13:28:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0233B53B7D0
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 13:29:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234189AbiFBL1X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 07:27:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39170 "EHLO
+        id S233662AbiFBL3Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 07:29:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234195AbiFBL1W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 07:27:22 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 721652AB236;
-        Thu,  2 Jun 2022 04:27:18 -0700 (PDT)
+        with ESMTP id S230153AbiFBL3Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 07:29:24 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5887E297507
+        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 04:29:23 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id f9so9462601ejc.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Jun 2022 04:29:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1654169238; x=1685705238;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=H9dBjTw0cbAQOjaubAyGRHRBW53k1gZfcUzCESN/OuQ=;
-  b=Prpi0Mu47Si89azPaV0jIhi/rV1VJY72VYQCALfjmbtNJnjMlmcUAVA+
-   ZnBLMDP3ptrQ0p8jB2ucNxxBwQU7Q8u5c8adGY/H/gyzZIjzJQl/9cmVr
-   CiHXj3tH1A+KkDrY7Ab9lakKTEXs3jn4Q1z9ewgvs8IIQMgyJoS/Efqcj
-   I=;
-Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 02 Jun 2022 04:27:17 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2022 04:27:16 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Thu, 2 Jun 2022 04:27:16 -0700
-Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Thu, 2 Jun 2022 04:27:10 -0700
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
-        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
-        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
-        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
-        <devicetree@vger.kernel.org>
-CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Subject: [PATCH 2/2] ASoC: qcom: lpass-sc7280: Update external mclk0 name
-Date:   Thu, 2 Jun 2022 16:56:46 +0530
-Message-ID: <1654169206-12255-3-git-send-email-quic_srivasam@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1654169206-12255-1-git-send-email-quic_srivasam@quicinc.com>
-References: <1654169206-12255-1-git-send-email-quic_srivasam@quicinc.com>
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=BR4CJA+/4AAtUQYZXsslsKLQ/9UqeN150vqbG7TsZAE=;
+        b=wJJEWs450yRmmlWyMiCPywLvuCW8+IXzJhM+LA2I8ScJu5TR/fbMUDJTXi8kuDW9aZ
+         BVRtyOcV5ZuNTHgncbX9+80r5nIi8AfnfmPHhIvRNIf5CeUIk2NU0e77XvhqNZ7fqeCR
+         Of3DQuXS1iJRQNWcEu+YUFU0lAPDLNzaWOkHyWXrkYAH3+VEVPZbLBWreWtVfP5Q8xrI
+         d7Mz70OD7Evc6QVRci1QWyFydaVERv1l5o9cBHY8rHKEvNEGLYaDlqvYWEm04jhEMfa8
+         mKEMtGKMF9+9AUj20KwG6M9qH9HHILKlD+K9zRTOHCynoSov7AinUMIRFec3ZoveBVzl
+         Je8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=BR4CJA+/4AAtUQYZXsslsKLQ/9UqeN150vqbG7TsZAE=;
+        b=5eau+2WL8Ds5g65XkRSq295uUroqjCVaWu2CkJCpf4+jXuMNsk8VD/IOyxGy7BSuE8
+         Mqqh+tNr/JBkgCUKSlC+ehXAtBSwFsMwHTaVdbHzfR97uW8DI+lXHLbP6/DUp7O7zymd
+         aI63ufo4uH/zvGJ6O6zCpEeidwFlpmGTYKqFTvWNk0gjx6reE1nxxwYYyME3Ag+gY12O
+         0JTW4HcSNd+rdk+7EbN0XjOosjJiFC+sHrBcsyiw55tsXL5VH68rsY6QFEUub3vOJUVy
+         zqdcN2t2BiBt8boHhSGUh/BphoIabAbzyKSrvjSHiJAcpeHgKbFap41YckCdb9RC2x27
+         Lqtg==
+X-Gm-Message-State: AOAM531DgOCRk+gQ6Ym1x55lHTr27szaVSof7rCr8eM5qCcVsqT2LpGF
+        88YFKMtjKtCxZhq9v9xq/QhoVA==
+X-Google-Smtp-Source: ABdhPJy8Q3jBJVRW3cwgdUL2t2k+yqIhReFZqw6ckj0Lni3KQ5dhNrhjlvYwc7oD+tp6BK2EMfu0ig==
+X-Received: by 2002:a17:907:720f:b0:6f8:5e72:d8d8 with SMTP id dr15-20020a170907720f00b006f85e72d8d8mr3524715ejc.541.1654169361804;
+        Thu, 02 Jun 2022 04:29:21 -0700 (PDT)
+Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id kx18-20020a170907775200b006feec47dadfsm1612789ejc.156.2022.06.02.04.29.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Jun 2022 04:29:21 -0700 (PDT)
+Message-ID: <2f495a30-04ad-5507-8d08-1f6afa732f89@linaro.org>
+Date:   Thu, 2 Jun 2022 13:29:20 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v2 1/3] dt-bindings: remoteproc: pru: Re-arrange
+ "compatible" in alphabetic order
+Content-Language: en-US
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Suman Anna <s-anna@ti.com>, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220602101920.12504-1-kishon@ti.com>
+ <20220602101920.12504-2-kishon@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220602101920.12504-2-kishon@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update "audio_cc_ext_mclk0" name to "core_cc_ext_mclk0",
-as MI2S mclk is being used is from lpass core cc.
+On 02/06/2022 12:19, Kishon Vijay Abraham I wrote:
+> Re-arrange "compatible" string in alphabetic order to decrease the
+> chance of conflicts.
+> 
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
 
-Fixes: b62c4e5fba2f ("ASoC: qcom: lpass-sc7280: Add platform driver for lpass audio")
-Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
----
- sound/soc/qcom/lpass-sc7280.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/sound/soc/qcom/lpass-sc7280.c b/sound/soc/qcom/lpass-sc7280.c
-index 70c4df8..e65bf7e 100644
---- a/sound/soc/qcom/lpass-sc7280.c
-+++ b/sound/soc/qcom/lpass-sc7280.c
-@@ -403,7 +403,7 @@ static struct lpass_variant sc7280_data = {
- 	.dai_driver			= sc7280_lpass_cpu_dai_driver,
- 	.num_dai			= ARRAY_SIZE(sc7280_lpass_cpu_dai_driver),
- 	.dai_osr_clk_names		= (const char *[]) {
--							"audio_cc_ext_mclk0",
-+							"core_cc_ext_mclk0",
- 							"null"
- 							},
- 	.dai_bit_clk_names		= (const char *[]) {
--- 
-2.7.4
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+
+Best regards,
+Krzysztof
