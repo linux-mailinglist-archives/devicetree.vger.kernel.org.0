@@ -2,104 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1848A53B863
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 13:57:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF9C353B874
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 13:59:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234670AbiFBL4s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 07:56:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49148 "EHLO
+        id S232957AbiFBL6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 07:58:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234649AbiFBL4r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 07:56:47 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5EE026F
-        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 04:56:44 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id s12so2275789ejx.3
-        for <devicetree@vger.kernel.org>; Thu, 02 Jun 2022 04:56:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=76Z8GE3DXJmJTcdOCuvjsGl067PCyvdg621Kp6ZPmOs=;
-        b=nUnvwpnm2CqgoJOzy34iiNsE1itMvFN21EvwIuCSxDwNGw0jyxQ1rzM+4WrXS2Ag8I
-         y6aBaxCFy3E77H9l4yz46Zb1fWqbZUTDDr0/u1UX4Bnbitm0VOyS5wgkAqc93PtC4hre
-         mcAiKyRFx8lRdzXpzTyElp/0BtVPnKslt1enerbapdAz7UGcLTabTuvVLldT+/rSIGSH
-         jmwhhd8qX5IrZ4JZT7/8xFwkh872hVAVjaD2KkSdr3QOKLpIiK3fqornp3oHmC/wXh4P
-         9W/cf8o0+pBH7r1U6ki8OZAWEeDvt0XZYFt4FR/SVjXviKzAB6HMwM3vCA7+3ULweaSK
-         kVLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=76Z8GE3DXJmJTcdOCuvjsGl067PCyvdg621Kp6ZPmOs=;
-        b=sUTn5hGcYYeHDP23/mWXFysaztoTyu4Hby/q3QDU6fIbnPygcPP1oMZH02B2j4LjQQ
-         dcduGS6QOK9SLJ8Ew6MTugd4sdzZooJ9x4+Qh2CPUjLCJRPXtOxaaohdXe2fwBpMCOJ9
-         KLxMBgyCRCr/cx11hn13e6aamM1WPaz9oLR7uY13X1Iy/IcnpvAxyb34rTApse5geY1B
-         gnWkKEtiuhUquxF/fYujNwnLOJCaSIe9UZjyp67WPaK1z2Y3ERT094veaiq4ZpKoEEE7
-         1oLHj8Qu6FlIM8NJzNN3gX/fVCdySQmLVfJEkk0nFhxLxd1iixclzDe/uJRSojgkqU4a
-         g0Cg==
-X-Gm-Message-State: AOAM533kEv45eVAo0zOOCdy4VsPCYDU/D/jrlB9b+nRVceP8GjOKCow9
-        W5Ew9PximQiRDZa4LfKPTJvH3g==
-X-Google-Smtp-Source: ABdhPJwkIrW4IiXzbJNiiaa1czY5sxTCu1ZzTseRaTcDWYufg5PWlgXL3tXanVdD7LyyCYQ4rFY84Q==
-X-Received: by 2002:a17:907:3da5:b0:6ff:31c2:22d5 with SMTP id he37-20020a1709073da500b006ff31c222d5mr3740125ejc.509.1654171003292;
-        Thu, 02 Jun 2022 04:56:43 -0700 (PDT)
-Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id c22-20020a17090654d600b0070587f81bcfsm1686576ejp.19.2022.06.02.04.56.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Jun 2022 04:56:42 -0700 (PDT)
-Message-ID: <a0d848eb-c312-ea66-c62f-b4bdb982a66a@linaro.org>
-Date:   Thu, 2 Jun 2022 13:56:41 +0200
+        with ESMTP id S234641AbiFBL6y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 07:58:54 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD7686CF5E
+        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 04:58:48 -0700 (PDT)
+Received: from [192.168.41.62] ([46.114.149.130]) by mrelayeu.kundenserver.de
+ (mreue010 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1MgeXk-1nHuzu1fOm-00h6E5; Thu, 02 Jun 2022 13:58:18 +0200
+Message-ID: <cb7f28a1-dbc5-d842-ef2f-bcd81c148d63@i2se.com>
+Date:   Thu, 2 Jun 2022 13:58:16 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 4/5] clk: samsung: exynos7885: Add TREX clocks
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v5 1/6] dt-bindings: gpu: v3d: Add BCM2711's compatible
 Content-Language: en-US
-To:     David Virag <virag.david003@gmail.com>
-Cc:     phone-devel@vger.kernel.org,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+To:     Peter Robinson <pbrobinson@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Emma Anholt <emma@anholt.net>,
+        Florian Fainelli <f.fainelli@gmail.com>, javierm@redhat.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org, maxime@cerno.tech,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20220601233743.56317-1-virag.david003@gmail.com>
- <20220601233743.56317-5-virag.david003@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220601233743.56317-5-virag.david003@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+References: <20220601110249.569540-1-pbrobinson@gmail.com>
+ <20220601110249.569540-2-pbrobinson@gmail.com>
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+In-Reply-To: <20220601110249.569540-2-pbrobinson@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Provags-ID: V03:K1:PUFlOqVp2MoLFiuH3AVbwZWWY9O0B78Csq8/frpUPCHXbXkjnea
+ EKmrsJiTbf/VbK0gSkE8VOtdJ7RqogsCXAvZoDKIeQRbitkoi8oXhaYJpCa4QQUac4BBpjR
+ FXGM4yq+nrAsFwxEx5YFOn29SlL88nuWJF615cFoYLWDuSqaMkqUqRUy3Ih2Ux7EOFQ+89H
+ SOiE3oZby6Q15ENQVhK9g==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:hkwfopk3TdQ=:Ep0J7bbrFJZ0h7+ggA4kEu
+ Ksr3QyxbR5wZSJprqxSWnR4xMJfHz5EfmYxhAYOgzj1IMRZpT2Q+KXSUArK/ztG21vBfGpQgn
+ g6yWL8+wkQOtoct3i7HiY/YrtiNBEtEiqa1m13s3ZGta27IaTNnP5qTR72yJyuifTvQsoZSOe
+ bmVLKCsG5+CeBeLzgzYAxptbnXeZO7TJs/kniA23L/WbCtKpJqb5fplWJhEnVFr+MSy3eIE8C
+ WoDFNqmxuh4TYc90bN2riyafdDyRV296v3dh8Pwr5RKeTeopgJqyp4Y9WZnQexz+UFRClojc4
+ RrSamvIn3FPlNeNMmBMIvYeYet6yxKJ5akZMfdoWfkY+K3r2FCBUpLq+M4ZlTLsFQnsK9dMgt
+ CBHd8wMsPAFvDTl2/IOc9aFBSrmWp4jnXM155R/6Ikqnt51AwfBlkUUKj1wv/rupJto5eIiix
+ hogkdB0N5EWBRUM667upFs3FIwjckOvCjo1EUxEaN0+iu+jQ5wA6SimoOy9L1FwIhKpQkLRaX
+ IYXoIc/F41l3W5Gbxw9Il200WRcevhzGP3WiXMAH1HIMle1jYPRV1IXhFmUB5wEdH+WG1gEv3
+ 72HtLnNU7lB48HBpaaOITWyclKJ1yrI8ACJgp9jLw0zgHjdZVrcs0LOmMInaMsKg8DoO1EDZT
+ I3UL2jKUHlbJ7mSYaNjJpUonNFKf5AsM8kFAlm73b85aEJLzX0C+Re5gIIrfjq0LDrVQAB8sM
+ zUO252Gw2WgQQj43dIsj/JU306R4TuaeBaQfuDLJbH4TiiRsj9G6V4IyvPY=
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/06/2022 01:37, David Virag wrote:
-> TREX D Core and P core clocks seem to be related to the BTS (Bus Traffic
-> Shaper) inside the Exynos7885 SoC, and are needed for the SoC to
-> function correctly.
-> 
-> When clocks are cut from TREX D Core, the eMMC and the framebuffer stops
-> working properly. Other unknown things may stop working as well.
-> 
-> When clocks are cut from TREX P Core, the system locks up needing a hard
-> reset.
-> 
-> Add these clocks and mark them critical so that they are always on.
-
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
+Am 01.06.22 um 13:02 schrieb Peter Robinson:
+> BCM2711, Raspberry Pi 4's SoC, contains a V3D core. So add its specific
+> compatible to the bindings.
+>
+> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
+Reviewed-by: Stefan Wahren <stefan.wahren@i2se.com>
