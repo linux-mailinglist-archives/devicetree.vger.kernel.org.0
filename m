@@ -2,82 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C12D553BD73
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 19:42:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 529AF53BDBE
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 20:08:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232767AbiFBRmm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 13:42:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39940 "EHLO
+        id S237621AbiFBSIU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 14:08:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235980AbiFBRmj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 13:42:39 -0400
-Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D81C324444F;
-        Thu,  2 Jun 2022 10:42:38 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.west.internal (Postfix) with ESMTP id 9921432007D7;
-        Thu,  2 Jun 2022 13:42:37 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Thu, 02 Jun 2022 13:42:38 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=cc:cc:content-transfer-encoding:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm1; t=1654191757; x=
-        1654278157; bh=sdCSDnTwZq4cKIMvJzFEUcWYJ3lEuGnemhaFysCn4Yw=; b=h
-        m5aaRDeaBuxkLWm2i4Nl+cUCfkn1NntvvL0E5qNsGUiDuFUx8q1oKwV3OIB6YSaa
-        tZ/ln6iH3Osjx1KLtWr7G+r/A3E1gupNMi9xRmMOmWAXotXWYjO/PAjhhUYKX2AD
-        IvAzEXMByfBx2OEVLxFmFplqRPKNDaMGHP6ze4B5eBE6EGuDYxiWHazWvq2Nf1Ji
-        m/yPT9zqLrg5ZjZ5NfjsmoASDBFoMNLy+W06HK/EMWTNIV957DvBXqHV2PcTcs84
-        2PZWSRgc6DTNfZmgb70uOok2eBtD4ykkTZAY5NXcJ6Mbhx79KqMB6SztG8J4oFrQ
-        9uhICn0oOVnbwaWM2mkgw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; t=1654191757; x=1654278157; bh=sdCSDnTwZq4cK
-        IMvJzFEUcWYJ3lEuGnemhaFysCn4Yw=; b=qkhRJqAy0YW0NayKJJvWEw0OXxR32
-        sOCEPBATJVW04XZ/8sZ6DNMJR671ZQNI7mpZk277LcknyW9STZwmVjlpM0gefjW+
-        ysZFwN5GBR5somBKd2lkK/5Yj3aTNYP+H2Nsxl/11tzJeEP/gluY9pefF4xJUmPk
-        X388jSjI4spjKNzBThWJUSfRhlqoEAmjT5YYqweu3fB+xeqhgi06rZmV6ynZZOzG
-        QDFm77/urOPYPjuXtM0dq+O+fi3wMmxRzMBdeJkhQAeIUs0yLqq4cIKX2jV48ROo
-        y6MgMw+/qKMpwsaVoIVv/TCuZi/XVRvdLyKGbditW+uP4Ull0bS4b0nbQ==
-X-ME-Sender: <xms:jPaYYm-yY35ccxlHbv2evNYSGFeAqvrEZL_CwdliXUvpt0Oz7Uf6aA>
-    <xme:jPaYYmvPDGtPZn-JiZmWn0nWQhhUuvbj2ggR3C7rk6HQ5A4kDzQcc8P3u1J__6gzy
-    -tPM3yzY0O5kcBMhbk>
-X-ME-Received: <xmr:jPaYYsDK0g7tKE3RRIhK1Gog6yvnALLATSpAfNENUq54c2wmIeRANfSZlvwhcIB1as8RTWSx1EhijulA5raI5X4F1vG7AMU5cDB9zjLDCDBKp9Yp5I-KlCyZ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrleefgddvgecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvfevufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefuvhgvnhcu
-    rfgvthgvrhcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrfgrthhtvg
-    hrnhepjeeiheehkeegvdejhfevkeejgfdutdefhfethedtieffleekieeuudefleekjeeg
-    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshhvvg
-    hnsehsvhgvnhhpvghtvghrrdguvghv
-X-ME-Proxy: <xmx:jPaYYuc_zF-ez0TwkLSbX5mrzQcRPUCcQ4DFc2yrpKOqyNN8fQNSTg>
-    <xmx:jPaYYrODmMJGoEPohgztmauhSBrhVfM2uQywWmg8mwZqt4GS7EbNMw>
-    <xmx:jPaYYomBLQU5njWG9QnJi9PE0pZxzlCA_pCuEeuc59g9r1Fq7UTUhw>
-    <xmx:jfaYYmcKxVa0J_O5DEATjON7tyDE6JYNkntzpeIiheIvN-zqluIM6A>
-Feedback-ID: i51094778:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 2 Jun 2022 13:42:35 -0400 (EDT)
-From:   Sven Peter <sven@svenpeter.dev>
-To:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: apple: t8103: Add ANS2 NVMe nodes
-Date:   Thu,  2 Jun 2022 19:42:13 +0200
-Message-Id: <20220602174213.2737-2-sven@svenpeter.dev>
-X-Mailer: git-send-email 2.30.1 (Apple Git-130)
-In-Reply-To: <20220602174213.2737-1-sven@svenpeter.dev>
-References: <20220602174213.2737-1-sven@svenpeter.dev>
+        with ESMTP id S237103AbiFBSIT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 14:08:19 -0400
+Received: from mx0a-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB7FF26ADD;
+        Thu,  2 Jun 2022 11:08:18 -0700 (PDT)
+Received: from pps.filterd (m0098420.ppops.net [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 252H59Lf000971;
+        Thu, 2 Jun 2022 18:07:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=pp1;
+ bh=07IS+Ue1DZu8UUgpAQL1++aymIiMdieShQwu8QDu6l0=;
+ b=aBKDyTmMvOkD6ecwQRiesNIhLLxlyRiydyWOYBYmOE/RptBN+b8CuuAXTPYZUPUatTI0
+ xO/AiXAx/FMZzOoQFRWJ8JCQ59A1k6nKNxvpPIcK6lAgrfT1arL6PXMNhQZl7ebaiJzQ
+ 8oxrL3egyDwhd9RvmT9EY1QfMZxFm5TcRxU80JrL9LGJH8/amqliO7nNs1SujTxp364M
+ 2x/i4Wu1qoYHaKJz+5pdAy0dbk9NogBveq/W0nCQa8I1AiCVQOb93qHadntdZpApTrFh
+ RvgetF7kCNoa/6aHS+QeO+f4pULvZua1lg0MvztS2PkG9/3xGF3TEP88B+VyehbAwvVF sw== 
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3geusrra0t-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 02 Jun 2022 18:07:45 +0000
+Received: from m0098420.ppops.net (m0098420.ppops.net [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 252Hwaui015157;
+        Thu, 2 Jun 2022 18:07:45 GMT
+Received: from ppma02dal.us.ibm.com (a.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.10])
+        by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3geusrra0b-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 02 Jun 2022 18:07:44 +0000
+Received: from pps.filterd (ppma02dal.us.ibm.com [127.0.0.1])
+        by ppma02dal.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 252I4tU3001456;
+        Thu, 2 Jun 2022 18:07:44 GMT
+Received: from b03cxnp08026.gho.boulder.ibm.com (b03cxnp08026.gho.boulder.ibm.com [9.17.130.18])
+        by ppma02dal.us.ibm.com with ESMTP id 3gd1adb22h-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 02 Jun 2022 18:07:43 +0000
+Received: from b03ledav001.gho.boulder.ibm.com (b03ledav001.gho.boulder.ibm.com [9.17.130.232])
+        by b03cxnp08026.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 252I7f9723265626
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Thu, 2 Jun 2022 18:07:41 GMT
+Received: from b03ledav001.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id B78946E054;
+        Thu,  2 Jun 2022 18:07:41 +0000 (GMT)
+Received: from b03ledav001.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 4636E6E052;
+        Thu,  2 Jun 2022 18:07:37 +0000 (GMT)
+Received: from [9.160.56.145] (unknown [9.160.56.145])
+        by b03ledav001.gho.boulder.ibm.com (Postfix) with ESMTP;
+        Thu,  2 Jun 2022 18:07:36 +0000 (GMT)
+Message-ID: <eaa1ba60-2e2c-bcc0-5207-41392eada9c7@linux.ibm.com>
+Date:   Thu, 2 Jun 2022 11:07:36 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH 1/3] of: dynamic: add of_property_alloc() and
+ of_property_free()
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        Nathan Lynch <nathanl@linux.ibm.com>,
+        devicetree@vger.kernel.org, Ohhoon Kwon <ohoono.kwon@samsung.com>,
+        David Hildenbrand <david@redhat.com>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        Daniel Henrique Barboza <danielhb413@gmail.com>,
+        YueHaibing <yuehaibing@huawei.com>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Paul Mackerras <paulus@samba.org>,
+        "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Laurent Dufour <ldufour@linux.ibm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        David Gibson <david@gibson.dropbear.id.au>
+References: <20220504154033.750511-1-clement.leger@bootlin.com>
+ <20220504154033.750511-2-clement.leger@bootlin.com>
+ <YnQnayouXw9/jp/E@robh.at.kernel.org>
+ <42d9e1af-5576-ed8a-be3a-9dfea6ce1041@linux.ibm.com>
+ <CAL_JsqJ5MN9VGMFiDQx-1dod_=n=6HP4pvizpZ6qbcz89+hyXQ@mail.gmail.com>
+From:   Tyrel Datwyler <tyreld@linux.ibm.com>
+In-Reply-To: <CAL_JsqJ5MN9VGMFiDQx-1dod_=n=6HP4pvizpZ6qbcz89+hyXQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: PET37afaEK9l44XPbLVjYo5IR_r_Q2Fo
+X-Proofpoint-GUID: b1VYbZAWTfivozu5KPIqRBRPnCUsSsr1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.874,Hydra:6.0.517,FMLib:17.11.64.514
+ definitions=2022-06-02_05,2022-06-02_01,2022-02-23_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxscore=0
+ mlxlogscore=999 priorityscore=1501 suspectscore=0 malwarescore=0
+ phishscore=0 impostorscore=0 clxscore=1015 adultscore=0 spamscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2204290000 definitions=main-2206020076
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,58 +114,122 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This allows to use the internal disks attatched via NVMe.
+On 6/2/22 07:06, Rob Herring wrote:
+> On Wed, Jun 1, 2022 at 5:31 PM Tyrel Datwyler <tyreld@linux.ibm.com> wrote:
+>>
+>> On 5/5/22 12:37, Rob Herring wrote:
+>>> On Wed, May 04, 2022 at 05:40:31PM +0200, Clément Léger wrote:
+>>>> Add function which allows to dynamically allocate and free properties.
+>>>> Use this function internally for all code that used the same logic
+>>>> (mainly __of_prop_dup()).
+>>>>
+>>>> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+>>>> ---
+>>>>  drivers/of/dynamic.c | 101 ++++++++++++++++++++++++++++++-------------
+>>>>  include/linux/of.h   |  16 +++++++
+>>>>  2 files changed, 88 insertions(+), 29 deletions(-)
+>>>>
+>>>> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+>>>> index cd3821a6444f..e8700e509d2e 100644
+>>>> --- a/drivers/of/dynamic.c
+>>>> +++ b/drivers/of/dynamic.c
+>>>> @@ -313,9 +313,7 @@ static void property_list_free(struct property *prop_list)
+>>>>
+>>>>      for (prop = prop_list; prop != NULL; prop = next) {
+>>>>              next = prop->next;
+>>>> -            kfree(prop->name);
+>>>> -            kfree(prop->value);
+>>>> -            kfree(prop);
+>>>> +            of_property_free(prop);
+>>>>      }
+>>>>  }
+>>>>
+>>>> @@ -367,48 +365,95 @@ void of_node_release(struct kobject *kobj)
+>>>>  }
+>>>>
+>>>>  /**
+>>>> - * __of_prop_dup - Copy a property dynamically.
+>>>> - * @prop:   Property to copy
+>>>> + * of_property_free - Free a property allocated dynamically.
+>>>> + * @prop:   Property to be freed
+>>>> + */
+>>>> +void of_property_free(const struct property *prop)
+>>>> +{
+>>>> +    kfree(prop->value);
+>>>> +    kfree(prop->name);
+>>>> +    kfree(prop);
+>>>> +}
+>>>> +EXPORT_SYMBOL(of_property_free);
+>>>> +
+>>>> +/**
+>>>> + * of_property_alloc - Allocate a property dynamically.
+>>>> + * @name:   Name of the new property
+>>>> + * @value:  Value that will be copied into the new property value
+>>>> + * @value_len:      length of @value to be copied into the new property value
+>>>> + * @len:    Length of new property value, must be greater than @value_len
+>>>
+>>> What's the usecase for the lengths being different? That doesn't seem
+>>> like a common case, so perhaps handle it with a NULL value and
+>>> non-zero length. Then the caller has to deal with populating
+>>> prop->value.
+>>>
+>>>>   * @allocflags:     Allocation flags (typically pass GFP_KERNEL)
+>>>>   *
+>>>> - * Copy a property by dynamically allocating the memory of both the
+>>>> + * Create a property by dynamically allocating the memory of both the
+>>>>   * property structure and the property name & contents. The property's
+>>>>   * flags have the OF_DYNAMIC bit set so that we can differentiate between
+>>>>   * dynamically allocated properties and not.
+>>>>   *
+>>>>   * Return: The newly allocated property or NULL on out of memory error.
+>>>>   */
+>>>> -struct property *__of_prop_dup(const struct property *prop, gfp_t allocflags)
+>>>> +struct property *of_property_alloc(const char *name, const void *value,
+>>>> +                               int value_len, int len, gfp_t allocflags)
+>>>>  {
+>>>> -    struct property *new;
+>>>> +    int alloc_len = len;
+>>>> +    struct property *prop;
+>>>> +
+>>>> +    if (len < value_len)
+>>>> +            return NULL;
+>>>>
+>>>> -    new = kzalloc(sizeof(*new), allocflags);
+>>>> -    if (!new)
+>>>> +    prop = kzalloc(sizeof(*prop), allocflags);
+>>>> +    if (!prop)
+>>>>              return NULL;
+>>>>
+>>>> +    prop->name = kstrdup(name, allocflags);
+>>>> +    if (!prop->name)
+>>>> +            goto out_err;
+>>>> +
+>>>>      /*
+>>>> -     * NOTE: There is no check for zero length value.
+>>>> -     * In case of a boolean property, this will allocate a value
+>>>> -     * of zero bytes. We do this to work around the use
+>>>> -     * of of_get_property() calls on boolean values.
+>>>> +     * Even if the property has no value, it must be set to a
+>>>> +     * non-null value since of_get_property() is used to check
+>>>> +     * some values that might or not have a values (ranges for
+>>>> +     * instance). Moreover, when the node is released, prop->value
+>>>> +     * is kfreed so the memory must come from kmalloc.
+>>>
+>>> Allowing for NULL value didn't turn out well...
+>>>
+>>> We know that we can do the kfree because OF_DYNAMIC is set IIRC...
+>>>
+>>> If we do 1 allocation for prop and value, then we can test
+>>> for "prop->value == prop + 1" to determine if we need to free or not.
+>>
+>> If its a single allocation do we even need a test? Doesn't kfree(prop) take care
+>> of the property and the trailing memory allocated for the value?
+> 
+> Yes, it does when it's a single alloc, but it's testing for when
+> prop->value is not a single allocation because we could have either.
+> 
 
-Signed-off-by: Sven Peter <sven@svenpeter.dev>
----
- arch/arm64/boot/dts/apple/t8103.dtsi | 34 ++++++++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
+Ok, that is the part I was missing. Thanks for the clarification.
 
-diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
-index 9f8f4145db88..51a63b29d404 100644
---- a/arch/arm64/boot/dts/apple/t8103.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8103.dtsi
-@@ -378,6 +378,40 @@ pinctrl_aop: pinctrl@24a820000 {
- 				     <AIC_IRQ 274 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		ans_mbox: mbox@277408000 {
-+			compatible = "apple,t8103-asc-mailbox", "apple,asc-mailbox-v4";
-+			reg = <0x2 0x77408000 0x0 0x4000>;
-+			interrupt-parent = <&aic>;
-+			interrupts = <AIC_IRQ 583 IRQ_TYPE_LEVEL_HIGH>,
-+				<AIC_IRQ 584 IRQ_TYPE_LEVEL_HIGH>,
-+				<AIC_IRQ 585 IRQ_TYPE_LEVEL_HIGH>,
-+				<AIC_IRQ 586 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "send-empty", "send-not-empty",
-+				"recv-empty", "recv-not-empty";
-+			#mbox-cells = <0>;
-+			power-domains = <&ps_ans2>;
-+		};
-+
-+		sart: iommu@27bc50000 {
-+			compatible = "apple,t8103-sart";
-+			reg = <0x2 0x7bc50000 0x0 0x10000>;
-+			power-domains = <&ps_ans2>;
-+		};
-+
-+		nvme@27bcc0000 {
-+			compatible = "apple,t8103-nvme-ans2", "apple,nvme-ans2";
-+			reg = <0x2 0x7bcc0000 0x0 0x40000>,
-+				<0x2 0x77400000 0x0 0x4000>;
-+			reg-names = "nvme", "ans";
-+			interrupt-parent = <&aic>;
-+			interrupts = <AIC_IRQ 590 IRQ_TYPE_LEVEL_HIGH>;
-+			mboxes = <&ans_mbox>;
-+			apple,sart = <&sart>;
-+			power-domains = <&ps_ans2>, <&ps_apcie_st>;
-+			power-domain-names = "ans", "apcie0";
-+			resets = <&ps_ans2>;
-+		};
-+
- 		pcie0_dart_0: dart@681008000 {
- 			compatible = "apple,t8103-dart";
- 			reg = <0x6 0x81008000 0x0 0x4000>;
--- 
-2.25.1
+-Tyrel
 
