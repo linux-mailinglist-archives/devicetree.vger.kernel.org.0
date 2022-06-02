@@ -2,73 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 047C153B81D
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 13:51:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 392CE53B81B
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 13:51:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233869AbiFBLuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 07:50:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47910 "EHLO
+        id S234395AbiFBLum (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 07:50:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234400AbiFBLuP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 07:50:15 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98774179087
-        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 04:50:14 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 25so5660333edw.8
-        for <devicetree@vger.kernel.org>; Thu, 02 Jun 2022 04:50:14 -0700 (PDT)
+        with ESMTP id S234424AbiFBLul (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 07:50:41 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 062D72B1963
+        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 04:50:40 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id q1so9451135ejz.9
+        for <devicetree@vger.kernel.org>; Thu, 02 Jun 2022 04:50:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=wpBUobv+zTk3pdLoR7N20MDqJUuOfaEKEA6qjnXONEc=;
-        b=A7IFp7EFWP2gtSqA3FcMsNaOvTPmwO3asdjDpQV5JmLEAsLVX8l1GYiUanOqRLFXjV
-         hznkk8Q4o1272G28YDzUY3wxIMxZ9508w6REp7wSieI/b5zWcjdxi+BX+gRpZN//7Mi0
-         8DFJrOySxI98ETvKO2A2XL2vgAyI8xyfuxdefusfWpeBnPJkAOQsZ9be5fIHHy5DXCYI
-         mMG237vpicVQ2zIZY8zhCVSZbvglqobTKka9eVSlHjY4XJTLaHnVGwm9JYWqzQA6GXoe
-         rTD70/hUQKYWKMuQAP8tMKJJ1RmN7CvjjXVRxKWhwaBo8HJcQn5i89z7a5kmHyPtCMPc
-         KfPw==
+        bh=gCvBltJfXbRRVoy51T4SCE98uCf7r0noGcg5kkBqPqI=;
+        b=uerIyCIuu1S/pbzidh/Xpx3iyz5o5f5ZQqCth4Fq6RhpIDm1SzbJqFtWwHqnvPHpBu
+         hE/XRMgXWJsst9z5LM216UCBIPW0rKjXrnurbnJZqhh1CSoqp4xIxCX/hVnfzj2exztX
+         G47tJe9xuCOROeU03RB8IPODU9jziY6yrJDB2ti7d9KCFRrk2CBLjnzqH8T2ubqv9qKD
+         GPoQRtFXEvKPYBB+g19Y8jv62xBRFTDJbn4wpCWLBzAXOgHNmQ9X4j9ijv0Ng+egIJjr
+         C7VbKZ+UpO+86kNg3cm8ehtM2lKW7K3+/8k60BWtoodoG1KOJpl9sBvkcWnDDGfj0+co
+         IItA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=wpBUobv+zTk3pdLoR7N20MDqJUuOfaEKEA6qjnXONEc=;
-        b=FGofT/KIVKAxH7OSHaJH568Ui4cOXx3bp+ROqX0hiKBPoGsVrPtrRIzvE1Pl04VIHO
-         SiBT3KCX7xtrBLf6qQlzsdikitRmEs2+m2Zj640M4DhYKfl+AEn7Z1SkDGOxT7kM54NW
-         tFQeDGCeuoXg/ZeUp/SSP22AZFuv1rd04qf/nflcPudxAMnbdVUMsyFIFXI7uXgjoPyb
-         bMnMR1fH7COiC/7GQqyibEmPZ0UEVjKLdquFjml5HBtaiGGoHDxMvQ7TKXC57wkEFb3E
-         4r9oSaQflQEoEwHvmt3KaxBCRzynVjVfBMuAQ4c7jYcMdNq/n+hq9Wu6HqSH6nNV6e9j
-         WmPQ==
-X-Gm-Message-State: AOAM5311ZNwlyNpyWzzQthpvueydRtBZ99zF7vD41HKDz++jdtFyz6nc
-        +oOZ1th6y8ZR+9oE+lr1PkrquIclYgK7Rndn
-X-Google-Smtp-Source: ABdhPJwwtvpAPWA82iz7xzVdST8RGddMP38QsXTMAQs+1dgZ/kQQUB7oPABE038NM+DHNu6+286n6Q==
-X-Received: by 2002:a05:6402:5205:b0:42b:2678:998a with SMTP id s5-20020a056402520500b0042b2678998amr5084554edd.250.1654170613244;
-        Thu, 02 Jun 2022 04:50:13 -0700 (PDT)
+        bh=gCvBltJfXbRRVoy51T4SCE98uCf7r0noGcg5kkBqPqI=;
+        b=1Yoq2uZPme4vn2/ZU5+FQFJFs5xC2PUtPcykGF566QwvATyZhAiU6Ch4jY3drhSvEY
+         vI4LBighoGQ/Rq1CHDbczGRO2DOIZMYmMYcgXf6HZcNwEf40Pnjn26MwV9rfgEUxEkRU
+         Qwq302YkwPlzb120ETzoB2MQebrYxWhlhcIel1sp2+jjrnBRZXTeB8ZIykgjSwSBpXHg
+         +tikLxL3z5o+Q7tV6l/5kitwh/yMEyOTggzrCYl6gnxkvFAhkpbQW0X/P4P90nZApaVo
+         wY/F+ThS1VGcKWGZmWXjFIxrKzkmAMWc7/+Cc6k+5PAUTFOAA7PA5xJZ1xM5DCTAsOh9
+         xdvQ==
+X-Gm-Message-State: AOAM530lEY8Rmn3eSjgdUbBKXye5bjLlFe/VrMAy0F0VY5V/82LZxllc
+        LDdsNYiWp15kvD6lOW+ar9MpLA==
+X-Google-Smtp-Source: ABdhPJzAoeIBFOdaKcZDbDTXfrUs0HOvrIkxezbud3v2G3E8egD2aFaD1KnllZrPayWGmKwqATuL2w==
+X-Received: by 2002:a17:906:478c:b0:6f4:e6c6:526f with SMTP id cw12-20020a170906478c00b006f4e6c6526fmr3875045ejc.41.1654170638556;
+        Thu, 02 Jun 2022 04:50:38 -0700 (PDT)
 Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id jo13-20020a170906f6cd00b006febc86b8besm1619601ejb.117.2022.06.02.04.50.12
+        by smtp.gmail.com with ESMTPSA id o22-20020a170906601600b006fe8b456672sm1707918ejj.3.2022.06.02.04.50.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Jun 2022 04:50:12 -0700 (PDT)
-Message-ID: <f2f031dc-0b1e-4ed9-d16f-a543a12f6f14@linaro.org>
-Date:   Thu, 2 Jun 2022 13:50:11 +0200
+        Thu, 02 Jun 2022 04:50:38 -0700 (PDT)
+Message-ID: <d7af6420-212d-ae33-ded3-4498e7f32a03@linaro.org>
+Date:   Thu, 2 Jun 2022 13:50:37 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v2 1/5] dt-bindings: arm64: add bcm63158 SoC
+Subject: Re: [PATCH] dt-bindings: clock: Update my email address
 Content-Language: en-US
-To:     William Zhang <william.zhang@broadcom.com>,
-        Linux ARM List <linux-arm-kernel@lists.infradead.org>,
-        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>
-Cc:     joel.peshkin@broadcom.com, tomer.yacoby@broadcom.com,
-        kursad.oney@broadcom.com, philippe.reynes@softathome.com,
-        dan.beygelman@broadcom.com, samyon.furman@broadcom.com,
-        anand.gore@broadcom.com, florian.fainelli@broadcom.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220601225654.18519-1-william.zhang@broadcom.com>
- <20220601225654.18519-2-william.zhang@broadcom.com>
+To:     Jeffrey Hugo <quic_jhugo@quicinc.com>, bjorn.andersson@linaro.org,
+        agross@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <1654118992-4026-1-git-send-email-quic_jhugo@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220601225654.18519-2-william.zhang@broadcom.com>
+In-Reply-To: <1654118992-4026-1-git-send-email-quic_jhugo@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,15 +75,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/06/2022 00:56, William Zhang wrote:
-> Add BCM63158 SoC device tree description to bcmbca binding document.
+On 01/06/2022 23:29, Jeffrey Hugo wrote:
+> Update my email address from the defunct codeaurora.org domain to the
+> current quicinc.com domain.
 > 
-> Signed-off-by: William Zhang <william.zhang@broadcom.com>
-> 
+> Signed-off-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
 
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
 
 Best regards,
 Krzysztof
