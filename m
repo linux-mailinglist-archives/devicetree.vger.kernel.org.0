@@ -2,82 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E3C353BA07
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 15:45:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16E5E53BA0D
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 15:46:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235049AbiFBNpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 09:45:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60134 "EHLO
+        id S235527AbiFBNqF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 09:46:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233407AbiFBNpL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 09:45:11 -0400
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6075E2997BA;
-        Thu,  2 Jun 2022 06:45:10 -0700 (PDT)
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-f2e0a41009so6777631fac.6;
-        Thu, 02 Jun 2022 06:45:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=QsEpPPAD6QGNrjKZg/Z6uX8TAObYx6G5aPX9DKMETYc=;
-        b=cBQF03rsvw+BNxAa8N2ZMb/dilxrn+DG7R1K0TbRhQjNOF8zwSL6NFPmPDpH+HUWhr
-         ZN3DlPJP+tynLPfoJLB/hGEWLMAIV/NtOhc/75uxXbjl/nsHsVzN0iOchXN2hDhI5E+5
-         gmtFaAOHxnyK6RDoJS/5P8L4Ym0bbz7CidiWB2faq8CRow38kIve1K+Ku5O7iIiYVZts
-         PULBVzWykySjJC74IbBr4ux3hk2pp6SBulfiejayf/hhfRIfWO3mpdwXnmBytVlphPgs
-         Q0UWQ8liY9yxRFmKhb22bgE2E52r5bVnG8AgaUcbI4w+9ctSPETi9R5Qq2zZzpQsm9Gz
-         lyxg==
-X-Gm-Message-State: AOAM533o8NlwAmngBae8uVqKQ+PIBqYi0NstiEfLFK4pPp62Cpn0gRlH
-        EMlqg9Yz0w3lUxoF871upw==
-X-Google-Smtp-Source: ABdhPJymXyLv9Wr0NBlN0joQq5pJOGQRGVFvY4wxPiFicadD7AnLM8zBnL30SrtGXTSANgRBpFBYVQ==
-X-Received: by 2002:a05:6870:4201:b0:f2:a980:2bb2 with SMTP id u1-20020a056870420100b000f2a9802bb2mr19135087oac.230.1654177509685;
-        Thu, 02 Jun 2022 06:45:09 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a17-20020a056870469100b000e686d13883sm2048577oap.29.2022.06.02.06.45.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Jun 2022 06:45:09 -0700 (PDT)
-Received: (nullmailer pid 2178259 invoked by uid 1000);
-        Thu, 02 Jun 2022 13:45:08 -0000
-Date:   Thu, 2 Jun 2022 08:45:08 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        linux-pm@vger.kernel.org,
-        Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund@ragnatech.se>, linux-renesas-soc@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
+        with ESMTP id S235290AbiFBNqE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 09:46:04 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A61FC2997BB;
+        Thu,  2 Jun 2022 06:46:03 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 42FFD617C0;
+        Thu,  2 Jun 2022 13:46:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F982C385A5;
+        Thu,  2 Jun 2022 13:46:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654177562;
+        bh=LF9ujRGQwC/PzoKQQnyQ8iS6J6qDgX/J6tvc8EW5/uc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=A4H62RqOHwiVB8g7V+AQ46e1d2Gpj3CiA8OOZgzcSrZtqCHGhXyftpXVN0FB3CQLP
+         1/hWSTFuNJW7mBXL6nltD4ktdRxMMfxAYz/NHVVc6elbX9BFzUaQ4r8alh3oH7zllz
+         lCR9Z/ZE7EtJj+3+YGjquxrYLXqt7fRr3QgCp/P2rVmImlhBxvFHTh7hrn3HWaa7Uf
+         1AIctWIVvQ9zMpD9TG74FQf6ioJwAVkfDIGyn3exjm6udEmguE9wrDEdTo2dFw4eFq
+         LFi1QUiOzE2MgDzSH81wrPZhK4gXl4MqwgGOp5eXfnP11IsN31Gb5zyXmJz6dcD+pI
+         C3AcLqS1Pbq5g==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1nwl9D-0005gM-8S; Thu, 02 Jun 2022 15:45:59 +0200
+Date:   Thu, 2 Jun 2022 15:45:59 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Amit Kucheria <amitk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: thermal: rcar-gen3-thermal: Add r8a779f0
- support
-Message-ID: <20220602134508.GA2178226-robh@kernel.org>
-References: <20220525151040.24024-1-wsa+renesas@sang-engineering.com>
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v12 3/8] PCI: dwc: Convert msi_irq to the array
+Message-ID: <Ypi/F/3XdpDo4cfY@hovoldconsulting.com>
+References: <20220523181836.2019180-1-dmitry.baryshkov@linaro.org>
+ <20220523181836.2019180-4-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220525151040.24024-1-wsa+renesas@sang-engineering.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220523181836.2019180-4-dmitry.baryshkov@linaro.org>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 25 May 2022 17:10:40 +0200, Wolfram Sang wrote:
-> Add support for R-Car S4. The S4 IP differs a bit from its siblings in
-> such way that it has 3 out of 4 TSC nodes for Linux and the interrupts
-> are not routed to the INTC-AP but to the ECM.
+On Mon, May 23, 2022 at 09:18:31PM +0300, Dmitry Baryshkov wrote:
+> Qualcomm version of DWC PCIe controller supports more than 32 MSI
+> interrupts, but they are routed to separate interrupts in groups of 32
+> vectors. To support such configuration, change the msi_irq field into an
+> array. Let the DWC core handle all interrupts that were set in this
+> array.
 > 
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  .../devicetree/bindings/thermal/rcar-gen3-thermal.yaml    | 8 +++++---
->  1 file changed, 5 insertions(+), 3 deletions(-)
-> 
+>  drivers/pci/controller/dwc/pci-dra7xx.c       |  2 +-
+>  drivers/pci/controller/dwc/pci-exynos.c       |  2 +-
+>  .../pci/controller/dwc/pcie-designware-host.c | 30 +++++++++++--------
+>  drivers/pci/controller/dwc/pcie-designware.h  |  2 +-
+>  drivers/pci/controller/dwc/pcie-keembay.c     |  2 +-
+>  drivers/pci/controller/dwc/pcie-spear13xx.c   |  2 +-
+>  drivers/pci/controller/dwc/pcie-tegra194.c    |  2 +-
+>  7 files changed, 24 insertions(+), 18 deletions(-)
 
-Acked-by: Rob Herring <robh@kernel.org>
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> index af91fe69f542..8dd913f69de7 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> @@ -257,8 +257,11 @@ int dw_pcie_allocate_domains(struct pcie_port *pp)
+>  
+>  static void dw_pcie_free_msi(struct pcie_port *pp)
+>  {
+> -	if (pp->msi_irq > 0)
+> -		irq_set_chained_handler_and_data(pp->msi_irq, NULL, NULL);
+> +	u32 ctrl;
+> +
+> +	for (ctrl = 0; ctrl < MAX_MSI_CTRLS; ctrl++)
+> +		if (pp->msi_irq[ctrl] > 0)
+> +			irq_set_chained_handler_and_data(pp->msi_irq[ctrl], NULL, NULL);
+
+I'd use brackets around multline statements for readability.
+
+>  	irq_domain_remove(pp->msi_domain);
+>  	irq_domain_remove(pp->irq_domain);
+
+> @@ -383,10 +388,11 @@ int dw_pcie_host_init(struct pcie_port *pp)
+>  			if (ret)
+>  				return ret;
+>  
+> -			if (pp->msi_irq > 0)
+> -				irq_set_chained_handler_and_data(pp->msi_irq,
+> -							    dw_chained_msi_isr,
+> -							    pp);
+> +			for (ctrl = 0; ctrl < num_ctrls; ctrl++)
+> +				if (pp->msi_irq[ctrl] > 0)
+> +					irq_set_chained_handler_and_data(pp->msi_irq[ctrl],
+> +									 dw_chained_msi_isr,
+> +									 pp);
+
+Same here (even if the old code didn't use it).
+
+>  			ret = dma_set_mask(pci->dev, DMA_BIT_MASK(32));
+>  			if (ret)
+
+Looks good otherwise.
+
+Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+
+Johan
