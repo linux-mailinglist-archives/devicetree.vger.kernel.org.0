@@ -2,115 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4898D53B61D
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 11:35:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EB1353B621
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 11:35:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233163AbiFBJfR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 05:35:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44058 "EHLO
+        id S232622AbiFBJfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 05:35:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233069AbiFBJe7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 05:34:59 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0017E2AA9AA
-        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 02:34:56 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id n28so5487079edb.9
-        for <devicetree@vger.kernel.org>; Thu, 02 Jun 2022 02:34:56 -0700 (PDT)
+        with ESMTP id S231890AbiFBJff (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 05:35:35 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 735CF2AA9AA;
+        Thu,  2 Jun 2022 02:35:34 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id a2so790190lfg.5;
+        Thu, 02 Jun 2022 02:35:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=wyoF638EbARH0sNnissy0uoI8l86SU1ciSSOUZ5ajbc=;
-        b=vC/lPXYlQKQCRWvnO+dwsPxV0IBdwfu+FGat/4eaqwyjYZlkNA8Q7kWCy35O3jRLSY
-         vgVJRmLYxSJ/UsAxDFfKqxzROuhrA08m5zRLq7GgVthpVELzdfsLrZUGqR5uEFCzl57E
-         hOuI2APRMWnU4TUOz/GbnCBSHDgDfamULrI+DqrsTItaRiutFEYLuDb5qSQwABVrWcYU
-         UcOwm/MHtug7bxMemRNw3PWMnHAf5bv/e2TXGX3kJCU5L/g2ydH3tGXzaAXfpj/jdZHM
-         1xmY1VDu2La1avwgq527Cxr20pKT4AquHUfpakqV7a3CFpd66NYwHNhtOGeyMhM3FFuD
-         w03g==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=rBGjBOMnZl6to9efJaumbeOWSvKP8/DOct/QBdXnYoE=;
+        b=jvY/M4TcfKUtycVJEjl3vv3zcqK0vVXzP6oHwxbhveiR6Eve6NDt0Von5+VteqUBV0
+         0L333UPalxOSb+vAx5ej9FW4zDL3jiSJBKKI5g/bfbegljG05danKDxYAC1Mawnygsr8
+         NfvqH2NN74NnI5rLy+2zi6GU0sJ4y2QMkIhCQuT0rdAnmGP6i+nYifRZZ1QarEQWaWqU
+         1sFUjgMVvdhRWoctqpRRBSRSxoYCb/XYfFaItHlctIxH4eSOMldKOv1TbUyAo4DKKvuT
+         uI9O7Tb6ZGTcE2JxUT1KvCqoqebUvm2IiT9ek+R0V9Lk4hCNqrOX4e+Amz04wcKyd1yK
+         Jadg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=wyoF638EbARH0sNnissy0uoI8l86SU1ciSSOUZ5ajbc=;
-        b=s0C5SnjlKoAww94UlzYRq4pl9lRcoWTma4J5dBWtd6qP4Rpb+ZgJf1/aKSHzbY8bXS
-         PvcXJkE9pR0BmC2QMTCYEIKwk0X6OFspVjyIx1RGn5NedOTYiFZIRw5W4kauaxO8jhWi
-         zbQLxqQPSwZuaPHki0vmHs7DwFpUvp5FB/9ZHYmZ9qmVUC+USrj40HUs+T5/U4MzY/lb
-         JEs98OyDhYGyYfUyC5Zk4K0Ff64jL+hp+ZPQqeM9RGdGK4GODzzfPFd7FcTzqVpImMq3
-         LUMID+end3Vrg/NfxJuCteBB3LTMsDzAmhjyxPhGcMCeb80qyGwy4OuB8kSspVuPrOsu
-         PC9g==
-X-Gm-Message-State: AOAM532/wImAD2ZYUidhbh+bJHVA6WvroC5ZAoQezNXkEg2Wg6wjehQx
-        bDnQMBXRDrm3i6bxSvUpGWyQGA==
-X-Google-Smtp-Source: ABdhPJzjN7cmR9MX0Q1VRsFNcfISVEPshK1uHFtZjtnqfk81TisLcbq3RvXrPTHivGPhu/w9r5XYmQ==
-X-Received: by 2002:a05:6402:1857:b0:42d:bcd6:3a88 with SMTP id v23-20020a056402185700b0042dbcd63a88mr4399524edy.6.1654162495560;
-        Thu, 02 Jun 2022 02:34:55 -0700 (PDT)
-Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id h10-20020aa7de0a000000b0042dd1584e74sm2157302edv.90.2022.06.02.02.34.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Jun 2022 02:34:55 -0700 (PDT)
-Message-ID: <44fceb66-fd33-4b2d-fe8e-9a1a5837a51a@linaro.org>
-Date:   Thu, 2 Jun 2022 11:34:54 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=rBGjBOMnZl6to9efJaumbeOWSvKP8/DOct/QBdXnYoE=;
+        b=7GGdRn5q889TtfbhfSX/2lkVjt+toLLjsBzfXA3SoA7EDJY1295dD/4IQGlyzyT10u
+         ASm5bOoUdzJLO4UbyTpT4GlmvTFJNz6cGqppX9xw1HtNGxQyKgFkgcH7cHWBoiwG6qr4
+         CvNAd4+syu4N3ezpmJtAG6xJNzs98AJfLPNiBPe2FKJCeZVGOIuMR65DkekuAPrJbOXt
+         MLdYCzffOKtxAq5TXYS5yaJexiTOssd4SnWVMvUCwt6ZLQ5OnsP2fORI6vBGQehevDMF
+         EoBnYyu/cFxXWEbb1H83Wxh47i4j4YK/9sIw/DEfSXFEywuef75EIwpMsg2Ao3luMagR
+         Kulg==
+X-Gm-Message-State: AOAM530Yy8JAUoW7NBXInmtDnlEZwxcGtiBEIfWN5+4/RfWX2tYfKczl
+        pueBwvIiHZapcBmyi1Jjzg3gByEqrQYYr/lWohM=
+X-Google-Smtp-Source: ABdhPJwGnEM9jHCmHkWGx92/jl3eJw4zP0SFatjlcRCflAAlB9cVfAhhX5EONP3FSiW4lO0wQLnMioV43pqGQELiTHo=
+X-Received: by 2002:a05:6512:2251:b0:478:fc67:b09f with SMTP id
+ i17-20020a056512225100b00478fc67b09fmr2833144lfu.196.1654162532575; Thu, 02
+ Jun 2022 02:35:32 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v2 1/6] dt-bindings: phy: samsung,ufs-phy: make pmu-syscon
- as phandle-array
-Content-Language: en-US
-To:     Chanho Park <chanho61.park@samsung.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
+References: <20220531102809.11976-1-peterwu.pub@gmail.com> <20220531102809.11976-7-peterwu.pub@gmail.com>
+ <CAHp75Vd8taco19vsDmBcCv8euV1SvwSiY5=P9oMkA6zWsjwXxg@mail.gmail.com>
+ <20220602062643.GA13824@cyhuang-hp-elitebook-840-g3.rt> <CAHp75Vd-n=oLnhRCK=pR5ybOZbC6BKXrE2jRdwDbH90E4KYFGA@mail.gmail.com>
+In-Reply-To: <CAHp75Vd-n=oLnhRCK=pR5ybOZbC6BKXrE2jRdwDbH90E4KYFGA@mail.gmail.com>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Thu, 2 Jun 2022 17:35:15 +0800
+Message-ID: <CADiBU3-73ktYfwZD=Dgd+5kWHraOuBkz1=bU_-+NNcxP12gcrQ@mail.gmail.com>
+Subject: Re: [PATCH 06/14] leds: mt6370: Add Mediatek MT6370 Indicator support
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     ChiaEn Wu <peterwu.pub@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220602053250.62593-1-chanho61.park@samsung.com>
- <CGME20220602053329epcas2p4c2baca2d161814f5d51dc48722f904b1@epcas2p4.samsung.com>
- <20220602053250.62593-2-chanho61.park@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220602053250.62593-2-chanho61.park@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        "Krogerus, Heikki" <heikki.krogerus@linux.intel.com>,
+        Helge Deller <deller@gmx.de>, cy_huang <cy_huang@richtek.com>,
+        alice_chen@richtek.com, chiaen_wu@richtek.com,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        USB <linux-usb@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/06/2022 07:32, Chanho Park wrote:
-> To support secondary ufs phy devices, we need to get an offset value
-> from pmu-syscon.
-> 
-> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
-> ---
->  .../devicetree/bindings/phy/samsung,ufs-phy.yaml    | 13 ++++++++++---
->  1 file changed, 10 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml b/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
-> index f6ed1a005e7a..d0ba92aa578d 100644
-> --- a/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
-> @@ -40,9 +40,16 @@ properties:
->        - const: tx0_symbol_clk
->  
->    samsung,pmu-syscon:
-> -    $ref: '/schemas/types.yaml#/definitions/phandle'
-> -    description: phandle for PMU system controller interface, used to
-> -                 control pmu registers bits for ufs m-phy
-> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-> +    items:
-> +      minItems: 1
-> +      items:
-> +        - description: phandle for PMU system controller interface, used to
-> +                       control pmu registers bits for ufs m-phy
-> +        - description: offset of the pmu control register
-
-This does not work... Please test your bindings with different cases.
-
-Best regards,
-Krzysztof
+Andy Shevchenko <andy.shevchenko@gmail.com> =E6=96=BC 2022=E5=B9=B46=E6=9C=
+=882=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=885:18=E5=AF=AB=E9=81=93=
+=EF=BC=9A
+>
+> On Thu, Jun 2, 2022 at 8:27 AM ChiYuan Huang <u0084500@gmail.com> wrote:
+> > On Wed, Jun 01, 2022 at 11:48:58AM +0200, Andy Shevchenko wrote:
+> > > On Tue, May 31, 2022 at 1:16 PM ChiaEn Wu <peterwu.pub@gmail.com> wro=
+te:
+>
+> ...
+>
+> > > What indicator?
+> > It's RGB curent sink type LED driver (maximum supported current is only=
+ 24mA).
+>
+> Make your commit messages a slightly more verbose.
+>
+OK, will refine the commit message in next.
+> ...
+>
+> > > > +#include <linux/of.h>
+> > >
+> > > Are you sure this is the correct header? Seems you need
+> > > mod_devicetable.h instead.
+> > >
+> > It's the correct header and be used for the struct 'of_device_id'.
+>
+> Nope. Run the following command
+> $ git grep -n 'struct of_device_id {' -- include/linux/
+>
+Got it, thanks.
+> ...
+>
+> > > > +struct mt6370_priv {
+> > > > +       struct mutex lock;
+> > >
+> > > Do you use regmap locking?
+> > >
+> > MFD regmap register already the access lock.
+> >
+> > This lock is just to guarantee only one user can access the RGB registe=
+r
+> > part.
+> >
+> > Sorry, from the comment, do you want us to rename or remove this lock?
+>
+> My point is, since you have two locks, explain why you need each of them.
+>
+OK, will leave a comment line to explain the usage of this lock.
+> > > > +       struct device *dev;
+> > >
+> > > > +       struct regmap *regmap;
+> > >
+> > > > +       struct regmap_field *fields[F_MAX_FIELDS];
+> > > > +       const struct reg_field *reg_fields;
+> > > > +       const struct linear_range *ranges;
+> > > > +       struct reg_cfg *reg_cfgs;
+> > > > +       unsigned int leds_count;
+> > > > +       unsigned int leds_active;
+> > > > +       bool is_mt6372;
+> > > > +       struct mt6370_led leds[];
+> > > > +};
+>
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
