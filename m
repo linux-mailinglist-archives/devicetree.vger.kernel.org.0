@@ -2,62 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E016F53B6DC
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 12:19:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E1C753B987
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 15:17:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233588AbiFBKTj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 06:19:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50380 "EHLO
+        id S232790AbiFBNRB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 09:17:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233517AbiFBKTg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 06:19:36 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAB4A297508;
-        Thu,  2 Jun 2022 03:19:34 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 252AJWqb046218;
-        Thu, 2 Jun 2022 05:19:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1654165172;
-        bh=TcQDl1uLZdWGzW+QJb1P8sNXIjyeW2FbcvT3/624XIc=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=mHLvqJR4ibQhNzkAHBXIyfQs/QK3js6geuKBjizOn1AYZ/6r/JQE3Pgd7OdO17r6e
-         n7YsV35yZU6DmPRznwyBcCnHr3TYRuqr5O/HWKBclgGK3rXNx2AZg3h00Nxh4a/MET
-         58mbFEiSI8wqP220q+WgBHQGvMrHx5pKLZjq2mr0=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 252AJWJM009737
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 2 Jun 2022 05:19:32 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 2
- Jun 2022 05:19:32 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 2 Jun 2022 05:19:32 -0500
-Received: from a0393678ub.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 252AJKGF063560;
-        Thu, 2 Jun 2022 05:19:29 -0500
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        with ESMTP id S235285AbiFBNQz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 09:16:55 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD1AE12815F;
+        Thu,  2 Jun 2022 06:16:53 -0700 (PDT)
+X-UUID: c1d556eec5f54276bba7f00231caee76-20220602
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:381915d8-e31d-48ff-9dff-80a415fd6e33,OB:10,L
+        OB:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,AC
+        TION:release,TS:45
+X-CID-INFO: VERSION:1.1.5,REQID:381915d8-e31d-48ff-9dff-80a415fd6e33,OB:10,LOB
+        :0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:45
+X-CID-META: VersionHash:2a19b09,CLOUDID:5174ea37-9855-4915-a138-f5705f1f3d02,C
+        OID:782c3a5bafc4,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,QS:0,BEC:nil
+X-UUID: c1d556eec5f54276bba7f00231caee76-20220602
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <tinghan.shen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1570426419; Thu, 02 Jun 2022 21:16:47 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with ShadowRedundancy id 15.2.792.3;
+ Thu, 2 Jun 2022 13:16:44 +0000
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Thu, 2 Jun 2022 18:19:36 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Thu, 2 Jun 2022 18:19:36 +0800
+Message-ID: <774c075ca4ad815c88be755cfb51889a171e835d.camel@mediatek.com>
+Subject: Re: [PATCH v1] dt-bindings: dsp: mediatek: add mt8186 dsp document
+From:   Tinghan Shen <tinghan.shen@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Suman Anna <s-anna@ti.com>, <linux-remoteproc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 3/3] remoteproc: pru: Add support for various PRU cores on K3 AM62x SoCs
-Date:   Thu, 2 Jun 2022 15:49:20 +0530
-Message-ID: <20220602101920.12504-4-kishon@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220602101920.12504-1-kishon@ti.com>
-References: <20220602101920.12504-1-kishon@ti.com>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Thu, 2 Jun 2022 18:19:36 +0800
+In-Reply-To: <591767ee-e349-7a17-a9e9-b95d0500c7c1@linaro.org>
+References: <20220422071534.15653-1-tinghan.shen@mediatek.com>
+         <c0a188e5-8a8c-d4a3-5a3d-9b9dd85d8f44@linaro.org>
+         <eb4deff1a01c09783518bbaff8fe4e4c4ca6fa5b.camel@mediatek.com>
+         <591767ee-e349-7a17-a9e9-b95d0500c7c1@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,32 +72,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The K3 AM62x family of SoC has one PRUSS-M instance and it has two
-Programmable Real-Time Units (PRU0 and PRU1). This does not support
-Industrial Communications Subsystem features like Ethernet.
+Hi Krzysztof,
 
-Enhance the existing PRU remoteproc driver to support the PRU cores
-by using specific compatibles. The initial names for the firmware
-images for each PRU core are retrieved from DT nodes, and can be adjusted
-through sysfs if required.
+On Thu, 2022-06-02 at 09:40 +0200, Krzysztof Kozlowski wrote:
+> On 02/06/2022 08:44, Tinghan Shen wrote:
+> > > > +  mbox-names:
+> > > > +    items:
+> > > > +      - const: mbox0
+> > > > +      - const: mbox1
+> > > 
+> > > These should be rather some meaningful names, e.g. "rx" and "tx".
+> > 
+> > The mbox name has to align with the adsp ipc driver.
+> > The adsp ipc driver is using 'mbox%d' for mailbox channels.
+> > 
+> > 
+> > 
+https://urldefense.com/v3/__https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git/commit/?id=9db69df4bdd37eb1f65b6931ee067fb15b9a4d5c__;!!CTRNKA9wMg0ARbw!1TmempNkQhC5QuLBhyfWo_AC97MoLuWipsGV-LPaW9RKNPheU7Bgc-eboNi1JA1nC5I$
+> >  
+> > 
+> > 	chan_name = kasprintf(GFP_KERNEL, "mbox%d", i);
+> > 
+> > 	/* ...snip... */
+> > 
+> > 	adsp_chan->ch = mbox_request_channel_byname(cl, chan_name);
+> > 
+> > Is it ok to continue using these names?
+> 
+> It is a bit confusing... how did that driver got merged recently without
+> bindings? Why bindings are separate?
+> 
+> The bindings always come together in one patchset with the driver
+> implementing them. Bindings are though a separate patch, yet still
+> followed by the driver which uses them.
+> 
+> I do not see any compatibles in that driver, which suggests there is no
+> other binding using it. If that's correct, then you need to change the
+> driver.
+> 
 
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
----
- drivers/remoteproc/pru_rproc.c | 1 +
- 1 file changed, 1 insertion(+)
+The mtk-adsp-ipc driver's sole function is to encapsulate the operations 
+of mailbox framework from adsp ipc users. The mtk-adsp-ipc is not defined 
+in the dts file and we don't need it to be defined. The creation of mtk-adsp-ipc 
+device is requested by adsp ipc users via the use of 'platform_device_register_data'[1].
 
-diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
-index 1777a01fa84e..128bf9912f2c 100644
---- a/drivers/remoteproc/pru_rproc.c
-+++ b/drivers/remoteproc/pru_rproc.c
-@@ -897,6 +897,7 @@ static const struct of_device_id pru_rproc_match[] = {
- 	{ .compatible = "ti,j721e-pru",		.data = &k3_pru_data },
- 	{ .compatible = "ti,j721e-rtu",		.data = &k3_rtu_data },
- 	{ .compatible = "ti,j721e-tx-pru",	.data = &k3_tx_pru_data },
-+	{ .compatible = "ti,am625-pru",		.data = &k3_pru_data },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, pru_rproc_match);
--- 
-2.17.1
+the driver implemented the mailbox framework is 'mtk-adsp-mailbox'[2]. it has 
+corresponding hardwares and a yaml file[3] to describe it.
+
+I'll send a patch to change the mbox name at next version.
+It's better to have some meaningful names as you said.
+
+[1] 
+https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git/commit/?id=e0100bfd383c7d994d2e957e85ca56a5fe5a3f43
+[2] 
+https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git/commit/?id=af2dfa96c52d042df5deb29fb6e32d3ff4d76a61
+[3] 
+https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git/commit/?id=afa092e1e8824363d3174fef329c034445c111d5
+
+Thanks,
+TingHan
+
 
