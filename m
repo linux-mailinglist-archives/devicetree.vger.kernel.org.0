@@ -2,97 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8B2153BA9A
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 16:21:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BC7B53BAAC
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 16:27:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235792AbiFBOVX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 10:21:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32882 "EHLO
+        id S234511AbiFBO1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 10:27:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232088AbiFBOVW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 10:21:22 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E9C725D5D9;
-        Thu,  2 Jun 2022 07:21:22 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C3795B81F5D;
-        Thu,  2 Jun 2022 14:21:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 812E9C385A5;
-        Thu,  2 Jun 2022 14:21:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654179679;
-        bh=IiJxTBcEwl7M5vIZS8teso/henc5AJqsVFL+AueJTAE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MhSDMXnA9TMiAPAoEYzQgCs+A92HzGKHckeOllnT5D7A72ZFaHbYE/kVcX7pV30fx
-         Bg/v8Z/O/W0ih95pa3+A5Zd8xxvkcWk8pWdW4nfoROrSbc0rFRk9rOTgGmefA/Q9Rs
-         F+C5ZbojAqRP0njyUfkLGlGpzMIDW+VxwsQEdPQ7HD94g9oexZqMW0HOzYUZGUcJpU
-         9qcp/gitEp/uYUeoX+M8imMX7zV0N4n6sAkayQBa31AuieDgn7PW+BX+9xqX2E27Ad
-         sI6Q6qdlTR6Pwm6qo6fV8bdaMEsAXu6oG8K5zxQYe+PrG4hAlmE6lusTFchtiTX7Gf
-         XiUyIKrz9La5Q==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1nwlhM-0007nD-Fh; Thu, 02 Jun 2022 16:21:16 +0200
-Date:   Thu, 2 Jun 2022 16:21:16 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v12 0/8] PCI: qcom: Fix higher MSI vectors handling
-Message-ID: <YpjHXIbCoLC394dJ@hovoldconsulting.com>
-References: <20220523181836.2019180-1-dmitry.baryshkov@linaro.org>
+        with ESMTP id S233749AbiFBO1p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 10:27:45 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4D0012C97A;
+        Thu,  2 Jun 2022 07:27:43 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id k16so6699003wrg.7;
+        Thu, 02 Jun 2022 07:27:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=PU8lc3rqUKJ9fwYFMxTWZiWtxbKl/aHmbF7KgXVxdw8=;
+        b=nTCCpeSYwfMZY+4KPdvMlazL72pUA9cf31ff5VpnywSiVU9k5w5t458nw6elFguljg
+         OyVTJ6tj4p5kxFAUAVicDk6q903TOeCzEEX7UqisGtUPG8ui4J274meFJKWGwWzRorv5
+         h5Y/xMsiRDKaMFfBWbUE9FlqYBqmZC0lnC6o170UwiLmvD1F4cIwmf7q6WKP+ypzmGfO
+         fpHzIbIvQPob9eBzeY3t0iu0sV9vuWV98dAV+9s35Y3YBfLr2FiMHs3dQHaWnTqKjxYZ
+         HtUvhV7aVJm+ZxGEJfifkYjdHnZJFL+muk90bFTjaLFdQ1KGsobxK1HtczYZDzorbLox
+         rnCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=PU8lc3rqUKJ9fwYFMxTWZiWtxbKl/aHmbF7KgXVxdw8=;
+        b=H+O+oW4rJdWcycYvIPSzOPvFbKm1WD7kLeHu/uTp5no0wDNTrWDeHmiRDlCkUIrPL0
+         eCXnFxFkFjbUELMJ+rGKoYjbWTLRGVaL5OaQJOzULZZIfEpIkj8b8FsxJtOsM6oXaRAu
+         OVDXky2cufMAmctA+4ZqFPWsjhyJvjXZu4rZdR0EGUjwXC7ixmK0muOLpM09ELpPo9t/
+         yme/2Bcb1trgEcwqmbplt16QipdX0GBYikS//HN1ivf1iYEcKu1Zz/ftADYRM79babZ0
+         hygVH4UHFKDQb28GOZ/Du/bwtcgmgcQCcbWmA4vIO9+ZFLl6daATloUIfOugiJHyYpBO
+         QS1w==
+X-Gm-Message-State: AOAM532DjcPVuSpKWpRUKBPoubouq0lyeEVxuSmL0nv7geI8zahfa62p
+        pXyqbWFNc+cvYh4ql2fLvmo6h9bM+Z6SPA==
+X-Google-Smtp-Source: ABdhPJwjC4sOY/AU32uEMgLGNEAI19FhBPDUP9arLJ7oiFGKBMRXEJZ7V09GeOEGnuHwTIckNIWbKQ==
+X-Received: by 2002:a5d:5885:0:b0:20f:f390:c47e with SMTP id n5-20020a5d5885000000b0020ff390c47emr3997562wrf.133.1654180061203;
+        Thu, 02 Jun 2022 07:27:41 -0700 (PDT)
+Received: from [10.40.36.42] ([193.52.24.5])
+        by smtp.gmail.com with ESMTPSA id ay1-20020a5d6f01000000b0020fee88d0f2sm5954781wrb.0.2022.06.02.07.27.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Jun 2022 07:27:38 -0700 (PDT)
+Message-ID: <c5022150-a2b4-07b9-d8ec-789147134d85@gmail.com>
+Date:   Thu, 2 Jun 2022 16:27:37 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220523181836.2019180-1-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v2 0/3] Support MediaTek devapc for MT8186
+Content-Language: en-US
+To:     Chen-Yu Tsai <wenst@chromium.org>,
+        Rex-BC Chen <rex-bc.chen@mediatek.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        runyang.chen@mediatek.com, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220504115501.3490-1-rex-bc.chen@mediatek.com>
+ <CAGXv+5E9s3c0j501fHZxhwsHSeK0vG+GEqLMhtZMvtvC=+etjQ@mail.gmail.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <CAGXv+5E9s3c0j501fHZxhwsHSeK0vG+GEqLMhtZMvtvC=+etjQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 23, 2022 at 09:18:28PM +0300, Dmitry Baryshkov wrote:
-> I have replied with my Tested-by to the patch at [2], which has landed
-> in the linux-next as the commit 20f1bfb8dd62 ("PCI: qcom:
-> Add support for handling MSIs from 8 endpoints"). However lately I
-> noticed that during the tests I still had 'pcie_pme=nomsi', so the
-> device was not forced to use higher MSI vectors.
-> 
-> After removing this option I noticed that hight MSI vectors are not
-> delivered on tested platforms. After additional research I stumbled upon
-> a patch in msm-4.14 ([1]), which describes that each group of MSI
-> vectors is mapped to the separate interrupt. Implement corresponding
-> mapping.
-> 
-> The first patch in the series is a revert of  [2] (landed in pci-next).
-> Either both patches should be applied or both should be dropped.
-> 
-> Patchseries dependecies: [3] (for the schema change).
-> 
-> Changes since v11 (suggested by Johan):
->  - Added back reporting errors for the "msi0" interrupt,
->  - Stopped overriding num_vectors field if it is less than the amount of
->    MSI vectors deduced from interrupt list,
->  - Added a warning (and an override) if the host specifies more MSI
->    vectors than available,
->  - Moved has_split_msi_irq variable to the patch where it is used.
 
-You forgot to CC me this version. Please remember to keep reviewers on
-CC.
 
-Johan
+On 02/06/2022 09:48, Chen-Yu Tsai wrote:
+> On Wed, May 4, 2022 at 7:55 PM Rex-BC Chen <rex-bc.chen@mediatek.com> wrote:
+>>
+>> This series is for supporting devapc implementation in MT8186.
+>>
+>> V2:
+>> - Add a patch to separate register offsets from mtk_devapc_data.
+>>
+>> V1:
+>> - Add dt-binding and add devapc data for MT8186.
+>>
+>> Rex-BC Chen (3):
+>>    dt-bindings: soc: mediatek: devapc: Add bindings for MT8186
+>>    soc: mediatek: devapc: Separate register offsets from mtk_devapc_data
+>>    soc: mediatek: devapc: Add support for MT8186
+> 
+> Applied this on next-20220602 (with a few fixes for other section mismatch
+> errors), booted and got:
+> 
+> [    1.948483] mtk-devapc 10207000.devapc: Read Violation
+> [    1.948488] mtk-devapc 10207000.devapc: Bus ID:0x100, Dom ID:0x0,
+> Vio Addr:0x13000000
+> [    1.948520] mtk-devapc 10207000.devapc: Read Violation
+> [    1.948523] mtk-devapc 10207000.devapc: Bus ID:0x200, Dom ID:0x0,
+> Vio Addr:0x140001a0
+> [    1.948537] mtk-devapc 10207000.devapc: Read Violation
+> [    1.948540] mtk-devapc 10207000.devapc: Bus ID:0x200, Dom ID:0x0,
+> Vio Addr:0x140001a0
+> [    1.948555] mtk-devapc 10207000.devapc: Read Violation
+> [    1.948558] mtk-devapc 10207000.devapc: Bus ID:0x200, Dom ID:0x0,
+> Vio Addr:0x14000100
+> [    1.948573] mtk-devapc 10207000.devapc: Read Violation
+> [    1.948576] mtk-devapc 10207000.devapc: Bus ID:0x200, Dom ID:0x0,
+> Vio Addr:0x14000100
+> [    1.948590] mtk-devapc 10207000.devapc: Read Violation
+> [    1.948593] mtk-devapc 10207000.devapc: Bus ID:0x200, Dom ID:0x0,
+> Vio Addr:0x14000100
+> [    1.948607] mtk-devapc 10207000.devapc: Read Violation
+> [    1.948610] mtk-devapc 10207000.devapc: Bus ID:0x200, Dom ID:0x0,
+> Vio Addr:0x14000100
+> [    1.948624] mtk-devapc 10207000.devapc: Read Violation
+> [    1.948627] mtk-devapc 10207000.devapc: Bus ID:0x200, Dom ID:0x0,
+> Vio Addr:0x14000100
+> 
+> during the boot process. So I think this works well. Manually reading a
+> known secure address also triggers it:
+> 
+> root@hayato:~# busybox devmem 0x1000e000
+> 0x00000000
+> [  135.069121] mtk-devapc 10207000.devapc: Read Violation
+> [  135.069132] mtk-devapc 10207000.devapc: Bus ID:0x482, Dom ID:0x0,
+> Vio Addr:0x1000e000
+> 
+> So,
+> 
+> Tested-by: Chen-Yu Tsai <wenst@chromium.org>
+> 
+
+Whole series applied to v5.19-next/soc
+
+> BTW, looks like MT8186 support in mainline is shaping up real good.
+> SCP firmware is still missing, so video codec stuff won't work.
