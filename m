@@ -2,124 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9845953B66F
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 11:56:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76E0C53B687
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 12:03:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232138AbiFBJ4P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 05:56:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43920 "EHLO
+        id S232770AbiFBKD4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 06:03:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbiFBJ4O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 05:56:14 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C94F2A789C
-        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 02:56:13 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id n28so5552518edb.9
-        for <devicetree@vger.kernel.org>; Thu, 02 Jun 2022 02:56:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Tvm8Ct4OSbCTOjbG3mrDSmmOZgQzkhb+beLpD2QfNSc=;
-        b=JdKoydIZWs4azTUW2CEKLFR6r18U4Ba+cCp9JUD3atTesXpya50HtNzF+xBLwMT1Ik
-         SV9xbwsZFcPgVMMv675D0NMrXSPwBQn95HFuddypEBTE4MpwBtPh+oDL1Sv58/8j1x8M
-         DyVVDbezLYpxVgYgwWLVmwqofjo4kmdjQ1Gh6WHv88Wr4OY3uPZIgsg/ypos/MYP16/X
-         vKuCDM+sAzSSGlgJVK6lybxGdRWh+/THGETMSxZksLlpagOw5KalAqnqhkK6FaLg8tyj
-         QV/ccRpnSp3ML5kt7NL3Cl+aDHj2/py+EQLJ7kwXSCqXE8oH/+j48IV8oaTWWG+jDZFC
-         PULg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Tvm8Ct4OSbCTOjbG3mrDSmmOZgQzkhb+beLpD2QfNSc=;
-        b=K6Aa+zc9gnRas1GSOmAta/CRfIE9+NO6cuQO7gxK4CIfiqTEpfaqkMoGXq1bSF2KIN
-         Qdx7DhcQWrMc6eYOsyEZ2Km4YOzOxYU+FKYSp68CT9q0eHxLZSX1eR32TLNvBbaN/Zfe
-         anhzQzbPasH3JLQ/8KPO77yf7Vasi4nf2nvw6ETSQAu1On5MXgK64hgMor4LRmJipgXx
-         fX5FFBppykHg31h5PIpVmcFCmmPbwnlhpW4m2CPvNaCFOaZMV+6Ko42urG5KE6dI6EZ6
-         AVuSYNwUNRANdgiNzYGEnTKHxkchKAcSHr+tVEzrKcIOdEdWBP+cPq8JJhFdmpYyCM1X
-         HPyA==
-X-Gm-Message-State: AOAM531sBbD5DEgu+XW7vxZxgKA+cAd7mCT3H9kUcyBFZpb+/FE2jyhs
-        hDaHwYQhwgtsLig1GvniKVbNOSOcdi7mxU0L
-X-Google-Smtp-Source: ABdhPJzJfOf/jNpE4O6fklBhW5BdQjUH/UGFbYDiVQ1fh+Iu4cgSNlYWJDkc6lXVsZQ8AH/QkA0SNg==
-X-Received: by 2002:aa7:cdd5:0:b0:42d:b87a:6d7 with SMTP id h21-20020aa7cdd5000000b0042db87a06d7mr4411887edw.91.1654163771733;
-        Thu, 02 Jun 2022 02:56:11 -0700 (PDT)
-Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id a4-20020a1709065f8400b006f3ef214dfesm1562656eju.100.2022.06.02.02.56.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Jun 2022 02:56:11 -0700 (PDT)
-Message-ID: <12a65f1d-4f3a-417f-3c90-5461870abe2a@linaro.org>
-Date:   Thu, 2 Jun 2022 11:56:10 +0200
+        with ESMTP id S231933AbiFBKDz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 06:03:55 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6625BFD347;
+        Thu,  2 Jun 2022 03:03:52 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 252A3ftt075162;
+        Thu, 2 Jun 2022 05:03:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1654164221;
+        bh=Mhu4wLDnsE/ZNGCAq11U03NXmXeOClrY6ZpD/8qzWTk=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=Q1ahS700ccV8cGuhGp+kTVm5CpPKz53cWiyRJygEmTG8F6hMsp+4VmJ47I3lB/N3p
+         VDSK0zTTk7r3AFdvZKAYGLWJZjRpV+swQOxBUZmN9CJsElaOpTASj31tvbQ4+x4vio
+         5pE5RMo5iH4A9I3LFLMR+qk3elmFooh1SjgHlVjI=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 252A3f3X033139
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 2 Jun 2022 05:03:41 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 2
+ Jun 2022 05:03:41 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 2 Jun 2022 05:03:41 -0500
+Received: from [10.24.69.159] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 252A3bLW061739;
+        Thu, 2 Jun 2022 05:03:38 -0500
+Message-ID: <68381314-136b-776d-070a-e825506f2132@ti.com>
+Date:   Thu, 2 Jun 2022 15:33:37 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v2 1/3] dt-bindings: adc-joystick: add adc-joystick,polled
- option
+ Thunderbird/91.9.0
+Subject: Re: [PATCH 1/2] dt-bindings: soc: ti: pruss: Update bindings for K3
+ AM62x SoCs
 Content-Language: en-US
-To:     Chris Morgan <macroalpha82@gmail.com>, linux-input@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, dmitry.torokhov@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        heiko@sntech.de, maccraft123mc@gmail.com, contact@artur-rojek.eu,
-        Chris Morgan <macromorgan@hotmail.com>
-References: <20220601204927.10256-1-macroalpha82@gmail.com>
- <20220601204927.10256-2-macroalpha82@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220601204927.10256-2-macroalpha82@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nishanth Menon <nm@ti.com>
+CC:     Santosh Shilimkar <ssantosh@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+References: <20220427072703.4898-1-kishon@ti.com>
+ <20220427072703.4898-2-kishon@ti.com>
+ <53212a3b-d02c-ab5e-6b5c-e19d359c7c2b@linaro.org>
+ <dcce6737-5881-a703-67f0-59c5f55f1cd1@ti.com>
+ <81d94ea8-9d0f-785b-07aa-fe9c9093ad73@linaro.org>
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+In-Reply-To: <81d94ea8-9d0f-785b-07aa-fe9c9093ad73@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/06/2022 22:49, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
-> 
-> Add documentation for adc-joystick,polled. New device-tree properties
-> have been added.
-> 
-> - adc-joystick,polled: A boolean value noting the joystick device
-> 		       should be polled rather than use a triggered
-> 		       buffer.
-> 
-> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> ---
->  .../devicetree/bindings/input/adc-joystick.yaml          | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/input/adc-joystick.yaml b/Documentation/devicetree/bindings/input/adc-joystick.yaml
-> index 2ee04e03bc22..4f49a1a5772e 100644
-> --- a/Documentation/devicetree/bindings/input/adc-joystick.yaml
-> +++ b/Documentation/devicetree/bindings/input/adc-joystick.yaml
-> @@ -12,12 +12,19 @@ maintainers:
->  
->  description: >
->    Bindings for joystick devices connected to ADC controllers supporting
-> -  the Industrial I/O subsystem.
-> +  the Industrial I/O subsystem. Supports both polled devices where no
-> +  iio trigger is available and non-polled devices which are triggered
-> +  by iio.
->  
->  properties:
->    compatible:
->      const: adc-joystick
->  
-> +  adc-joystick,polled:
-> +    type: boolean
-> +    description:
-> +      If the device does not support triggered buffers and needs to be polled.
+Hi Krzysztof,
 
-You described desired Linux feature or behavior, not the actual
-hardware. The bindings are about the latter, so instead you need to
-rephrase the property and it's description to match actual hardware
-capabilities/features/configuration etc.
+On 16/05/22 20:48, Krzysztof Kozlowski wrote:
+> On 16/05/2022 14:33, Kishon Vijay Abraham I wrote:
+>> Hi Krzysztof,
+>>
+>> On 28/04/22 11:48, Krzysztof Kozlowski wrote:
+>>> On 27/04/2022 09:27, Kishon Vijay Abraham I wrote:
+>>>> Update the PRUSS bindings for the PRUSSM instance present in
+>>>> AM625 SoC.
+>>>>
+>>>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+>>>> ---
+>>>>  Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml | 1 +
+>>>>  1 file changed, 1 insertion(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+>>>> index 64461d432004..cf13e5179657 100644
+>>>> --- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+>>>> +++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+>>>> @@ -69,6 +69,7 @@ properties:
+>>>>        - ti,am654-icssg   # for K3 AM65x SoC family
+>>>>        - ti,j721e-icssg   # for K3 J721E SoC family
+>>>>        - ti,am642-icssg   # for K3 AM64x SoC family
+>>>> +      - ti,am625-pruss   # for K3 AM62x SoC family
+>>>>  
+>>>
+>>> Looks like out of order (although for some reason before it was also
+>>> misordered...).
+>>
+>> These are really in the chronological order of the introduction of SoCs.
+>> Isn't that okay to have?
+> 
+> You mean order of release on the market of order of adding files here?
+> The first is ok, the latter would mean there is no order at all.
 
+I meant order of release to market. Anyways, I'll send a patch to change
+the order to alphabetic order.
 
-Best regards,
-Krzysztof
+Thanks,
+Kishon
