@@ -2,149 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7ACEA53B93C
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 15:00:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D55A53B940
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 15:02:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231722AbiFBNAE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 09:00:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49684 "EHLO
+        id S233521AbiFBNB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 09:01:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230333AbiFBNAD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 09:00:03 -0400
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C838D2A80D3
-        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 05:59:59 -0700 (PDT)
-Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
-        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20220602125954epoutp01c248f5e99ed8f6d2a9b8cf54da10b28b~0zzYyl7jx1299012990epoutp01E
-        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 12:59:54 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20220602125954epoutp01c248f5e99ed8f6d2a9b8cf54da10b28b~0zzYyl7jx1299012990epoutp01E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1654174794;
-        bh=S20/HwX9GYZeobEXd5xhvGD8lYXj/+otH2CE8CuoLc0=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=i3u7s6j9PKt2FMDm+SkwD20Ehdtv/CQCMBmOPRe+lr9SpEPYynmqWW/q5b1udFJLf
-         R4C3HBAG0rg91F3o+DsMTAdkO2xFCDJFxLRhEwqNXG7hX3L2XiLfcu6qZfSFiTHPgx
-         MqdngWD6rCzwbitdC7Qvz3j8+ctmEeT5oRKPZOz8=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-        epcas2p2.samsung.com (KnoxPortal) with ESMTP id
-        20220602125953epcas2p20fceca1c060d530134d2925404fa6f1e~0zzXdlF3C1682116821epcas2p2O;
-        Thu,  2 Jun 2022 12:59:53 +0000 (GMT)
-Received: from epsmges2p2.samsung.com (unknown [182.195.36.90]) by
-        epsnrtp1.localdomain (Postfix) with ESMTP id 4LDR1h3v3Yz4x9Ps; Thu,  2 Jun
-        2022 12:59:52 +0000 (GMT)
-Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
-        epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        3D.23.09764.844B8926; Thu,  2 Jun 2022 21:59:52 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
-        20220602125951epcas2p16f49a30d4fdfbdcd03a433fa1c8f1610~0zzWGMFTK0086600866epcas2p1g;
-        Thu,  2 Jun 2022 12:59:51 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20220602125951epsmtrp29823529eb79b86f2ec2a769324feacbd~0zzWFXrEn2833528335epsmtrp2e;
-        Thu,  2 Jun 2022 12:59:51 +0000 (GMT)
-X-AuditID: b6c32a46-f75ff70000002624-d7-6298b448fd67
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        A4.EE.08924.744B8926; Thu,  2 Jun 2022 21:59:51 +0900 (KST)
-Received: from KORCO082417 (unknown [10.229.8.121]) by epsmtip2.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20220602125951epsmtip2c7ae99be55f55d7e1d00ce6f9852d238~0zzV3sNne0775007750epsmtip2i;
-        Thu,  2 Jun 2022 12:59:51 +0000 (GMT)
-From:   "Chanho Park" <chanho61.park@samsung.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-        "'Kishon Vijay Abraham I'" <kishon@ti.com>,
-        "'Vinod Koul'" <vkoul@kernel.org>,
-        "'Alim Akhtar'" <alim.akhtar@samsung.com>,
-        "'Rob Herring'" <robh+dt@kernel.org>,
-        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>
-Cc:     <devicetree@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <linux-samsung-soc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-In-Reply-To: <42b8c793-caa7-e14d-0a6c-dec7aa914dff@linaro.org>
-Subject: RE: [PATCH v2 3/6] phy: samsung: ufs: support secondary ufs phy
-Date:   Thu, 2 Jun 2022 21:59:51 +0900
-Message-ID: <050301d87680$a5dac8e0$f1905aa0$@samsung.com>
+        with ESMTP id S230169AbiFBNBz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 09:01:55 -0400
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 081059FDD;
+        Thu,  2 Jun 2022 06:01:53 -0700 (PDT)
+Received: by mail-oi1-f175.google.com with SMTP id i66so6392643oia.11;
+        Thu, 02 Jun 2022 06:01:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=zH0vAIDZXcoFpFqiWQ5v3Gj8I+dG4f2c74XYlrF44os=;
+        b=BVsqTs5DhCAGULvB7/KJYST1VsWJ3Hq/xSvVQ6cMGtcB07mqdETgqieieSQExud7Il
+         XshOtBWK4DYHrUgaUf/vIhWrwxTnaibiGAqhLylodxP47j6+4ZoHvSwVTQsi3tH7bDMV
+         JBZAa0E8vylDOABJlSPUNJh0YE//azj0JXe9S9At+gp4l22rjTW5hOzi0CtLGv1bLC33
+         5eZuHrRT/he++FnBb3c/OVFObJ08OYUgPFLeyLMmWNXgPIQcFsbRkAt+139UBN6tbLKk
+         y2XNVALfBRSAjDv1P6uEFKN54vTOwuCy5x2bvUxxDfzU1ixJF2LG7B8AdMpqk56izs6s
+         O75w==
+X-Gm-Message-State: AOAM530jwyCtUUlCgYH3GfiG+kN5CH3I+A+Yh1ScE6wbhj+yiguZcdnl
+        UQbA6harl5XfyvmdwHeTiA==
+X-Google-Smtp-Source: ABdhPJz1YCMnZKdEqJ9Nc4Y7GX22TlUyGIgRVd47MrHyXORgKllboWODdHg/Pjcr4JPyEHqstG5PWQ==
+X-Received: by 2002:a05:6808:170a:b0:2fa:7168:392b with SMTP id bc10-20020a056808170a00b002fa7168392bmr18341645oib.84.1654174912162;
+        Thu, 02 Jun 2022 06:01:52 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id i7-20020a056870890700b000f32e094abbsm2156532oao.23.2022.06.02.06.01.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Jun 2022 06:01:51 -0700 (PDT)
+Received: (nullmailer pid 2100950 invoked by uid 1000);
+        Thu, 02 Jun 2022 13:01:50 -0000
+Date:   Thu, 2 Jun 2022 08:01:50 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        matti.lehtimaki@gmail.com
+Subject: Re: [RFC PATCH 01/14] media: dt-bindings: media: camss: Add
+ qcom,msm8974-camss binding
+Message-ID: <20220602130150.GA2095683-robh@kernel.org>
+References: <20220522162802.208275-1-luca@z3ntu.xyz>
+ <20220522162802.208275-2-luca@z3ntu.xyz>
+ <170dd20b-ab0b-0f61-bfe9-cb9167a2e133@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQLWkTnA63V9WykH3rm22/0hqLdk6gJT4k6aAmvBrIgA/M7PUqsR+cUg
-Content-Language: ko
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrJJsWRmVeSWpSXmKPExsWy7bCmma7HlhlJBk8Pylg8mLeNzWL+kXOs
-        Fhee9rBZ9L14yGyx9/VWdotNj6+xWkxY9Y3FYsb5fUwWrXuPsFvsvHOC2YHLY9OqTjaPO9f2
-        sHlsXlLv0bdlFaPH8RvbmTw+b5ILYIvKtslITUxJLVJIzUvOT8nMS7dV8g6Od443NTMw1DW0
-        tDBXUshLzE21VXLxCdB1y8wBukxJoSwxpxQoFJBYXKykb2dTlF9akqqQkV9cYquUWpCSU2Be
-        oFecmFtcmpeul5daYmVoYGBkClSYkJ2xfONR1oJ1bBWn9nUzNTDOZu1i5OSQEDCR2LNlFXsX
-        IxeHkMAORonJx7dAOZ8YJTa/fsYM4XxmlDj17RkjTMubPytYIBK7GCXeLtkOVfWCUWLKnS0s
-        IFVsAvoSLzu2sYIkRATmM0k87bzKBJJgFpjAKLHyk3cXIwcHp4CdxPsHriCmsICHxN5ViiAV
-        LAIqEp+e32MGCfMKWEr82B8GEuYVEJQ4OfMJC8QQbYllC18zQ9yjIPHz6TKwd0QE3CSm7DrN
-        DlEjIjG7sw3sNAmBHRwS7z8dgPrZReJuTwc7hC0s8QrsZRBbSuLzu71sEHaxxNJZn5ggmhsY
-        JS5v+wWVMJaY9aydEeQ4ZgFNifW79EFMCQFliSO3oG7jk+g4/JcdIswr0dEmBNGoLnFg+3QW
-        CFtWonvOZ9YJjEqzkHw2C8lns5B8MAth1wJGllWMYqkFxbnpqcVGBUbwuE7Oz93ECE6zWm47
-        GKe8/aB3iJGJg/EQowQHs5IIb8muqUlCvCmJlVWpRfnxRaU5qcWHGE2BQT2RWUo0OR+Y6PNK
-        4g1NLA1MzMwMzY1MDcyVxHm9UjYkCgmkJ5akZqemFqQWwfQxcXBKNTDJh7gwyPz0qiz5Lmhj
-        YeFzeH6ghRCHgb58lti5BSbnju9iVd68KIgtYGKnYmCkfYmf0WxZ9ZsO5Vw++putg3qMJf5z
-        J3Wa/3xutbN2vvTOENP3y35VRZh3rA/qrpM4oN0mHu038XUp39PfzhXn78648+Sh3VP5s/d2
-        Su/v3/P2R9wFjqOmPh5du1Lm/bdIm7LdR5prwom5Pb8uSrzY+sGBd89/Vv2Tr5WX8MR+ylnN
-        JzSXUTM+43/apBWMUxIuTIhbePCiyVQDh6m5wktW21icWGCrduGA+clTNXHRetIhblX77/7e
-        c2mb85XwvwqTLIMYNlyvqbzJM817ry+fh3BA8d+E9Wsc+FdkrFwaO0GJpTgj0VCLuag4EQDA
-        j3WXPAQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprGIsWRmVeSWpSXmKPExsWy7bCSvK77lhlJBvPXGVo8mLeNzWL+kXOs
-        Fhee9rBZ9L14yGyx9/VWdotNj6+xWkxY9Y3FYsb5fUwWrXuPsFvsvHOC2YHLY9OqTjaPO9f2
-        sHlsXlLv0bdlFaPH8RvbmTw+b5ILYIvisklJzcksSy3St0vgynjdsYixYDNbxY9NV5kaGGex
-        djFyckgImEi8+bOCpYuRi0NIYAejxNtZc5khErISz97tYIewhSXutxxhhSh6xiixY91rFpAE
-        m4C+xMuObWAJEYHFTBL9J86ygTjMAlMYJS5ffQk19yujxPw/M4BmcXBwCthJvH/gCmIKC3hI
-        7F2lCDKIRUBF4tPze8wgYV4BS4kf+8NAwrwCghInZz4B28UsoC3x9OZTOHvZwtdQhypI/Hy6
-        DOwbEQE3iSm7TrND1IhIzO5sY57AKDwLyahZSEbNQjJqFpKWBYwsqxglUwuKc9Nziw0LjPJS
-        y/WKE3OLS/PS9ZLzczcxgqNOS2sH455VH/QOMTJxMB5ilOBgVhLhLdk1NUmINyWxsiq1KD++
-        qDQntfgQozQHi5I474Wuk/FCAumJJanZqakFqUUwWSYOTqkGppJ8zSnbg/ofyuyaMPHeFrVS
-        uy9fuafkTv9fvOrrLafnE34eMVpgPSVI/uluxlv5H+2EVu2yEjzy6U5iSsUFVf6Z8kLy+zpc
-        Dq5a6Jb6ReTgmZnd01ZPKRSQiLk0PeT9yTnnb7zJunqm9mMA3741s9Ql95V8tY9tZzRbd9Hr
-        tcQXnxz2S5f2iPjVa7f8l5oT8vN3QmzlupLzJuqHE4wMTnrymfxidXG0iDcJyHE7LrOy962T
-        e+Ekvo3tS+tbrSK++h2vVtBaM8s7g9Pr2f2LR1ir9p7snPTxxtu9Fb61W/67+B65/26jXJ6/
-        7xudC0KrxUWazkx7uGH50QlXlzA1t53+yrJ2+uWMPatmxYcd9jJTYinOSDTUYi4qTgQAPUfF
-        /SkDAAA=
-X-CMS-MailID: 20220602125951epcas2p16f49a30d4fdfbdcd03a433fa1c8f1610
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220602053329epcas2p19785735bcbf08ad274ff887797485b8c
-References: <20220602053250.62593-1-chanho61.park@samsung.com>
-        <CGME20220602053329epcas2p19785735bcbf08ad274ff887797485b8c@epcas2p1.samsung.com>
-        <20220602053250.62593-4-chanho61.park@samsung.com>
-        <42b8c793-caa7-e14d-0a6c-dec7aa914dff@linaro.org>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <170dd20b-ab0b-0f61-bfe9-cb9167a2e133@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > +	phy->isol =3D devm_kzalloc(dev, sizeof(struct pmu_isol), GFP_KERNEL);
->=20
-> 1. Looks like devm_kmemdup
-> 2. sizeof(*variable), not sizeof(struct)
->=20
-> 3. and actually you can simplify all that by storing struct pmu_isol
-> directly in struct samsung_ufs_phy, not as pointer.
->=20
-> After all that storing drvdata in samsung_ufs_phy does not make any sense
-> - only one field is left still used (has_symbol_clk), so this should be
-> simplified here as well.
+On Mon, May 23, 2022 at 12:07:10PM +0200, Krzysztof Kozlowski wrote:
+> On 22/05/2022 18:27, Luca Weiss wrote:
+> > From: Matti Lehtimäki <matti.lehtimaki@gmail.com>
+> 
+> Thank you for your patch. There is something to discuss/improve.
+> 
+> > 
+> > Add bindings for qcom,msm8974-camss in order to support the camera
+> > subsystem on MSM8974.
+> > 
+> > Signed-off-by: Matti Lehtimäki <matti.lehtimaki@gmail.com>
+> > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> > ---
+> >  .../bindings/media/qcom,msm8974-camss.yaml    | 321 ++++++++++++++++++
+> >  1 file changed, 321 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/qcom,msm8974-camss.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/qcom,msm8974-camss.yaml b/Documentation/devicetree/bindings/media/qcom,msm8974-camss.yaml
+> > new file mode 100644
+> > index 000000000000..f8f71e477535
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/qcom,msm8974-camss.yaml
+> > @@ -0,0 +1,321 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +
+> > +%YAML 1.2
+> > +---
+> > +$id: "http://devicetree.org/schemas/media/qcom,msm8974-camss.yaml#"
+> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > +
+> > +title: Qualcomm CAMSS ISP
+> > +
+> > +maintainers:
+> > +  - Robert Foss <robert.foss@linaro.org>
+> > +
+> > +description: |
+> > +  The CAMSS IP is a CSI decoder and ISP present on Qualcomm platforms
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: qcom,msm8974-camss
+> > +
+> > +  clocks:
+> > +    minItems: 31
+> 
+> No need for minItems, they are equal to max by default.
+> 
+> > +    maxItems: 31
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: top_ahb
+> > +      - const: ispif_ahb
+> > +      - const: csiphy0_timer
+> > +      - const: csiphy1_timer
+> > +      - const: csiphy2_timer
+> > +      - const: csi0_ahb
+> > +      - const: csi0
+> > +      - const: csi0_phy
+> > +      - const: csi0_pix
+> > +      - const: csi0_rdi
+> > +      - const: csi1_ahb
+> > +      - const: csi1
+> > +      - const: csi1_phy
+> > +      - const: csi1_pix
+> > +      - const: csi1_rdi
+> > +      - const: csi2_ahb
+> > +      - const: csi2
+> > +      - const: csi2_phy
+> > +      - const: csi2_pix
+> > +      - const: csi2_rdi
+> > +      - const: csi3_ahb
+> > +      - const: csi3
+> > +      - const: csi3_phy
+> > +      - const: csi3_pix
+> > +      - const: csi3_rdi
+> > +      - const: vfe0
+> > +      - const: vfe1
+> > +      - const: csi_vfe0
+> > +      - const: csi_vfe1
+> > +      - const: iface
+> > +      - const: bus
+> > +
+> > +  interrupts:
+> > +    minItems: 10
+> 
+> Same.
+> 
+> > +    maxItems: 10
+> > +
+> > +  interrupt-names:
+> > +    items:
+> > +      - const: csiphy0
+> > +      - const: csiphy1
+> > +      - const: csiphy2
+> > +      - const: csid0
+> > +      - const: csid1
+> > +      - const: csid2
+> > +      - const: csid3
+> > +      - const: ispif
+> > +      - const: vfe0
+> > +      - const: vfe1
+> > +
+> > +  power-domains:
+> > +    items:
+> > +      - description: VFE GDSC - Video Front End, Global Distributed Switch Controller.
+> > +
+> > +  ports:
+> > +    $ref: /schemas/graph.yaml#/properties/ports
+> > +
+> > +    description:
+> > +      CSI input ports.
+> > +
+> > +    properties:
+> > +      port@0:
+> > +        $ref: /schemas/graph.yaml#/$defs/port-base
+> > +        unevaluatedProperties: false
+> > +        description:
+> > +          Input port for receiving CSI data.
+> > +
+> > +        properties:
+> > +          endpoint:
+> > +            $ref: video-interfaces.yaml#
+> > +            unevaluatedProperties: false
+> > +
+> > +            properties:
+> > +              clock-lanes:
+> > +                items:
+> > +                  - const: 1
+> > +
+> > +              data-lanes:
+> > +                minItems: 1
+> > +                maxItems: 4
+> > +
+> > +            required:
+> > +              - clock-lanes
+> > +              - data-lanes
+> > +
+> > +      port@1:
+> 
+> These look all the same, so just use patternPropreties (in "ports") with
+> proper pattern.
 
-It would be better storing struct pmu_isol directly and remove drvdata from=
- samsung_ufs_phy as you suggested.
-Furthermore, definition of struct pmu_isol looks odd in the definition of s=
-amsung_ufs_phy_drvdata.
-So, I'll pop it out and change the naming to =22struct samsung_ufs_phy_pmu_=
-isol=22
+That's fine, but whatever difference there is in ports 0, 1, and 2 needs 
+to be described.
 
-Best Regards,
-Chanho Park
-
+> > +        $ref: /schemas/graph.yaml#/$defs/port-base
+> > +        unevaluatedProperties: false
+> > +        description:
+> > +          Input port for receiving CSI data.
