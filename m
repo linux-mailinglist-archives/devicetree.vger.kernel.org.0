@@ -2,209 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEE5B53BB6F
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 17:14:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5CD453BB95
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 17:31:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231787AbiFBPOO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 11:14:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54296 "EHLO
+        id S236364AbiFBPbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 11:31:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230114AbiFBPON (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 11:14:13 -0400
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D3DD9D4CC;
-        Thu,  2 Jun 2022 08:14:11 -0700 (PDT)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-f2cbceefb8so7074172fac.11;
-        Thu, 02 Jun 2022 08:14:11 -0700 (PDT)
+        with ESMTP id S234580AbiFBPbq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 11:31:46 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A67AC13C1F6;
+        Thu,  2 Jun 2022 08:31:42 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id j10so8340737lfe.12;
+        Thu, 02 Jun 2022 08:31:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=esMKub0cfzvqnfMV7lmbB0oZRypBhw/uecaEXqoF+WU=;
+        b=oTu0P2daaKsA1l22EDygSdCtDLs65QG9Z696gkcTXpMo2tPkRWcIDU2SMt0nxxwHQV
+         csoZh3kuDwqEf57wSVlZictjMfan6VYdNqioDeQrZBxICj/Wj03NDcp8oSK1+klzeBcx
+         XcYkpq4lntn5O9wd5dX8J9zJOtEUn1gmdu9TJrmh3E2MtzmmvM5IfgMdo9Ve7xiXelvj
+         N7b0cjXXMinL39F1ZZ+NPFL2o7Z4V4Xpl+l3ZuVhZ7ULijC4XHWkWjKa8NPclYWMZsg5
+         pvaMNdZN8qOCh5oTGXJGE6gyXJktrIDLP+dhxJ65pVF/x3LinZGRwkfCxH6t089Io3Pq
+         EGvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=8ZadL1zw6i8KMO5fh9Q5arKi4oyBgssFPCtUsRXeJWQ=;
-        b=74Xls42noV6dGVcgYIu8X9xYwxmbYLGOqzzFjW9r0irpBqOHNa/4RElXKXQAy5wYbf
-         Zfe/fBOzyIoY937OyWBClGQ8YhWC/p7HrTMbb+/Qe4AP/QynfSLCFCnxoKtfHycaTYHu
-         TM77sT0teh7gxtm0OGhUtT+kBVytCf1Q5SXvkP/XAhDvNu0W8Er345aNCY1FRyNmtEu4
-         k97498Jprrg+nRZ0uirCv1TP+SIYmSJtogB1APlmksqLujK+M60inKWf/XwfLgOmdMcV
-         1zp61AQRKEVTM7L2mwXTHQBtj86av5sdaM8v9MYyd/ENsHaTjv2pzNntQeex7ULKxu7s
-         vSVw==
-X-Gm-Message-State: AOAM532eVkIK+oLoT8wjheFl8+ZPWTJVScRXjhnwYHd6ltdChk1IP3wt
-        pm64ZIfGUJsnAyHDvVkP0HsI0d71tNB6
-X-Google-Smtp-Source: ABdhPJzAwCQkxG7V7ktiZLgQzY3iiWykAD/DDTVfLswQC6nHYlfO/vO82ui1Cc1rqBIYY5AbTW/+Kw==
-X-Received: by 2002:a05:6870:348c:b0:e2:6df1:b1db with SMTP id n12-20020a056870348c00b000e26df1b1dbmr20482904oah.33.1654182850598;
-        Thu, 02 Jun 2022 08:14:10 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id b36-20020a056870392400b000f349108868sm2179826oap.44.2022.06.02.08.14.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Jun 2022 08:14:10 -0700 (PDT)
-Received: (nullmailer pid 2339298 invoked by uid 1000);
-        Thu, 02 Jun 2022 15:14:09 -0000
-Date:   Thu, 2 Jun 2022 10:14:09 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Tanmay Shah <tanmay.shah@xilinx.com>
-Cc:     openamp-system-reference@lists.openampproject.org,
-        bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
-        krzk+dt@kernel.org, michal.simek@xilinx.com,
-        ben.levinsky@xilinx.com, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 1/6] dt-bindings: remoteproc: Add Xilinx RPU subsystem
- bindings
-Message-ID: <20220602151409.GA2333778-robh@kernel.org>
-References: <20220531234308.3317795-1-tanmay.shah@xilinx.com>
- <20220531234308.3317795-2-tanmay.shah@xilinx.com>
- <20220601184240.GA188558-robh@kernel.org>
- <d7854ce0-3553-3286-809c-651780fb91e5@xilinx.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=esMKub0cfzvqnfMV7lmbB0oZRypBhw/uecaEXqoF+WU=;
+        b=d2x4JaHlzZBuG19hgxHk5Up+d/KzA++DJ/hW5HAen8uqHHKgSo7FFa46suOWME2fY5
+         oS2sG4ukzxA56wzeYFWr42k2rB0UP91b1xtnghFs2A3ILADRRmBr54o89CwHj684saG4
+         wPM3Pk35D4rjVZfLKNknFvDqH43waT5606QWZgGclqNVi31POoyuZs8PgleaiKtKjudj
+         vOqpkvn3Kk/pHD9VHsKGg7GimNgDU2lJAfzOprFKeoidktVZte//U/GZaMzUz9qSH+DY
+         j9+FsPTHVwW0d0YJ0VoZEYCQaPTL+jr+hcAiTGyLIVq4WqQoshTchbRxzdMEjSULLGId
+         LHZg==
+X-Gm-Message-State: AOAM533C5FAuDAt/bykFYmScPq5kuI3B/U+2+g7L0aZW+OY4hp0UM4Ky
+        3bBdr1bzMuBfSCUS/XX9c171+8qJhiFbEu5et4V17V7qHbfeYA==
+X-Google-Smtp-Source: ABdhPJwUWTC1dJi2VZe48WvDxa+lO5SkWNx609HcHDHFfZMmdimibD/T9ChrnJh/j6CAvW90E37p6PiD4Z97tjQIh84=
+X-Received: by 2002:a05:6512:3a95:b0:478:da91:ebc8 with SMTP id
+ q21-20020a0565123a9500b00478da91ebc8mr4080306lfu.120.1654183900754; Thu, 02
+ Jun 2022 08:31:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d7854ce0-3553-3286-809c-651780fb91e5@xilinx.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <1653534995-30794-1-git-send-email-u0084500@gmail.com>
+ <1653534995-30794-2-git-send-email-u0084500@gmail.com> <1c7ab94c-a736-c629-bd8c-8a974803e2b9@linaro.org>
+ <CADiBU39jZ6TdYZoH80m4R-X2_fUXZOvDA4yUd_TQdPzBJLE+JA@mail.gmail.com>
+ <076d53d3-6062-686f-8e45-14c5f936bbf6@linaro.org> <20220602135604.GA2194286-robh@kernel.org>
+ <e3aa9c7e-bf2d-dd55-8b3f-ca51f569771d@linaro.org>
+In-Reply-To: <e3aa9c7e-bf2d-dd55-8b3f-ca51f569771d@linaro.org>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Thu, 2 Jun 2022 23:31:29 +0800
+Message-ID: <CADiBU3-dN0vtQBEqvVLFCUp4-MkhLbQRkOiCet+fO8WfkEW4MQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: backlight: rt4831: Add the new property
+ for ocp level selection
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        Helge Deller <deller@gmx.de>, cy_huang <cy_huang@richtek.com>,
+        lucas_tsai@richtek.com,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 01, 2022 at 12:05:09PM -0700, Tanmay Shah wrote:
-> Hi Rob,
-> 
-> Thanks for reviews. Please find my comments below:
-> 
-> On 6/1/22 11:42 AM, Rob Herring wrote:
-> > On Tue, May 31, 2022 at 04:43:05PM -0700, Tanmay Shah wrote:
-> > > Xilinx ZynqMP platform has dual-core ARM Cortex R5 Realtime Processing
-> > > Unit(RPU) subsystem. This patch adds dt-bindings for RPU subsystem
-> > > (cluster).
-> > > 
-> > > Signed-off-by: Tanmay Shah <tanmay.shah@xilinx.com>
-> > > ---
-> > > 
-> > > Changes in v6:
-> > >    - Add maxItems to sram and memory-region property
-> > > 
-> > > Changes in v5:
-> > > - Add constraints of the possible values of xlnx,cluster-mode property
-> > > - fix description of power-domains property for r5 core
-> > > - Remove reg, address-cells and size-cells properties as it is not required
-> > > - Fix description of mboxes property
-> > > - Add description of each memory-region and remove old .txt binding link
-> > >    reference in the description
-> > > 
-> > > Changes in v4:
-> > >    - Add memory-region, mboxes and mbox-names properties in example
-> > > 
-> > > Changes in v3:
-> > >    - None
-> > > 
-> > > 
-> > >   .../bindings/remoteproc/xlnx,r5f-rproc.yaml   | 129 ++++++++++++++++++
-> > >   include/dt-bindings/power/xlnx-zynqmp-power.h |   6 +
-> > >   2 files changed, 135 insertions(+)
-> > >   create mode 100644 Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
-> > > new file mode 100644
-> > > index 000000000000..cbff1c201a89
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
-> > > @@ -0,0 +1,129 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/remoteproc/xlnx,r5f-rproc.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Xilinx R5F processor subsystem
-> > > +
-> > > +maintainers:
-> > > +  - Ben Levinsky <ben.levinsky@xilinx.com>
-> > > +  - Tanmay Shah <tanmay.shah@xilinx.com>
-> > > +
-> > > +description: |
-> > > +  The Xilinx platforms include a pair of Cortex-R5F processors (RPU) for
-> > > +  real-time processing based on the Cortex-R5F processor core from ARM.
-> > > +  The Cortex-R5F processor implements the Arm v7-R architecture and includes a
-> > > +  floating-point unit that implements the Arm VFPv3 instruction set.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: xlnx,zynqmp-r5fss
-> > > +
-> > > +  xlnx,cluster-mode:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    enum: [0, 1, 2]
-> > > +    description: |
-> > > +      The RPU MPCore can operate in split mode(Dual-processor performance), Safety
-> > > +      lock-step mode(Both RPU cores execute the same code in lock-step,
-> > > +      clock-for-clock) or Single CPU mode (RPU core 0 can be held in reset while
-> > > +      core 1 runs normally). The processor does not support dynamic configuration.
-> > > +      Switching between modes is only permitted immediately after a processor reset.
-> > > +      If set to  1 then lockstep mode and if 0 then split mode.
-> > > +      If set to  2 then single CPU mode. When not defined, default will be lockstep mode.
-> > > +
-> > > +patternProperties:
-> > > +  "^r5f-[a-f0-9]+$":
-> > > +    type: object
-> > > +    description: |
-> > > +      The RPU is located in the Low Power Domain of the Processor Subsystem.
-> > > +      Each processor includes separate L1 instruction and data caches and
-> > > +      tightly coupled memories (TCM). System memory is cacheable, but the TCM
-> > > +      memory space is non-cacheable.
-> > > +
-> > > +      Each RPU contains one 64KB memory and two 32KB memories that
-> > > +      are accessed via the TCM A and B port interfaces, for a total of 128KB
-> > > +      per processor. In lock-step mode, the processor has access to 256KB of
-> > > +      TCM memory.
-> > > +
-> > > +    properties:
-> > > +      compatible:
-> > > +        const: xlnx,zynqmp-r5f
-> > > +
-> > > +      power-domains:
-> > > +        description: RPU core PM domain specifier
-> > > +        maxItems: 1
-> > > +
-> > > +      mboxes:
-> > > +        minItems: 1
-> > > +        items:
-> > > +          - description: mailbox channel to send data to RPU
-> > > +          - description: mailbox channel to receive data from RPU
-> > > +
-> > > +      mbox-names:
-> > > +        minItems: 1
-> > > +        items:
-> > > +          - const: tx
-> > > +          - const: rx
-> > > +
-> > > +      sram:
-> > > +        $ref: /schemas/types.yaml#/definitions/phandle-array
-> > > +        maxItems: 8
-> > minItems: 1
-> > maxItems: 8
-> > items:
-> >    maxItems: 1
-> 
-> I have posted v7 which adds "minItems: 1".
-> 
-> However, I didn't get items: part. Is it required to have items: now?
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E6=96=BC 2022=E5=B9=
+=B46=E6=9C=882=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=889:58=E5=AF=AB=
+=E9=81=93=EF=BC=9A
+>
+> On 02/06/2022 15:56, Rob Herring wrote:
+> > On Thu, May 26, 2022 at 12:32:12PM +0200, Krzysztof Kozlowski wrote:
+> >> On 26/05/2022 10:13, ChiYuan Huang wrote:
+> >>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E6=96=BC 2022=
+=E5=B9=B45=E6=9C=8826=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=884:06=E5=
+=AF=AB=E9=81=93=EF=BC=9A
+> >>>>
+> >>>> On 26/05/2022 05:16, cy_huang wrote:
+> >>>>> From: ChiYuan Huang <cy_huang@richtek.com>
+> >>>>>
+> >>>>> Add the new property for ocp level selection.
+> >>>>>
+> >>>>> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> >>>>> ---
+> >>>>>  .../bindings/leds/backlight/richtek,rt4831-backlight.yaml         =
+| 8 ++++++++
+> >>>>>  include/dt-bindings/leds/rt4831-backlight.h                       =
+| 5 +++++
+> >>>>>  2 files changed, 13 insertions(+)
+> >>>>>
+> >>>>> diff --git a/Documentation/devicetree/bindings/leds/backlight/richt=
+ek,rt4831-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight=
+/richtek,rt4831-backlight.yaml
+> >>>>> index e0ac686..c1c59de 100644
+> >>>>> --- a/Documentation/devicetree/bindings/leds/backlight/richtek,rt48=
+31-backlight.yaml
+> >>>>> +++ b/Documentation/devicetree/bindings/leds/backlight/richtek,rt48=
+31-backlight.yaml
+> >>>>> @@ -47,6 +47,14 @@ properties:
+> >>>>>      minimum: 0
+> >>>>>      maximum: 3
+> >>>>>
+> >>>>> +  richtek,bled-ocp-sel:
+> >>>>
+> >>>> Skip "sel" as it is a shortcut of selection. Name instead:
+> >>>> "richtek,backlight-ocp"
+> >>>>
+> >>> OK, if so, do I need to rename all properties from 'bled' to 'backlig=
+ht' ?
+> >>> If  only this property is naming as 'backlight'. it may conflict with
+> >>> the others like as "richtek,bled-ovp-sel".
+> >>
+> >> Ah, no, no need.
+> >>
+> >>>>
+> >>>>> +    description: |
+> >>>>> +      Backlight OCP level selection, currently support 0.9A/1.2A/1=
+.5A/1.8A
+> >>>>
+> >>>> Could you explain here what is OCP (unfold the acronym)?
+> >>> Yes. And the full name is 'over current protection'.
+> >>
+> >> Thanks and this leads to second thing - you encode register value
+> >> instead of logical value. This must be a logical value in mA, so
+> >> "richtek,bled-ocp-microamp".
+> >
+> > We already have common properties for setting current of LEDs. We shoul=
+d
+> > use that here I think.
+>
+> It might not be exactly the same. We have "led-max-microamp" which is
+> the maximum allowed current. I guess over-current protection level  is
+> slightly higher (e.g. led-max-microamp + 1). IOW, led-max-microamp is
+> something which still can be set and used by system/hardware. OCP should
+> not.
+>
+Yap, you're right.
+From the modern backlight IC design, it uses the boost converter architectu=
+re.
+This OCP level is to limit the inductor current when the internal MOS
+switch turn on.
+Details can refer to the below wiki link
+https://en.wikipedia.org/wiki/Boost_converter
 
-Yes.
-> 
-> Can I add items: part once TCM bindings are posted?
+And based on it, OVP is used to limit the inductor output voltage.
+Each channel maximum current is based on the IC affordable limit.
+It is more like as what you said 'led-max-microamp'.
 
-No.
+So boost voltage level may depend on the LED VF.
+The different series of LED may cause different boost voltage.
 
-> I understand that minItems and maxItems under sram property decides how many
-> phandles sram can have.
-> 
-> However, maxItems: 1 under items: field what it describes?
-
-'phandle-array' is really a matrix type because we can have phandles 
-plus argument cells. So you have to define each of the 1-8 entries is a 
-single phandle cell (and no arg cells).
-
-Rob
+RT4831's OVP/OCP is not just the protection, more like as the limit.
+>
+> Best regards,
+> Krzysztof
