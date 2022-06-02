@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C177253B855
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 13:57:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1848A53B863
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 13:57:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233961AbiFBL4S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 07:56:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47454 "EHLO
+        id S234670AbiFBL4s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 07:56:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234628AbiFBL4R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 07:56:17 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75562235104
-        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 04:56:14 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id w27so5931307edl.7
-        for <devicetree@vger.kernel.org>; Thu, 02 Jun 2022 04:56:14 -0700 (PDT)
+        with ESMTP id S234649AbiFBL4r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 07:56:47 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5EE026F
+        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 04:56:44 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id s12so2275789ejx.3
+        for <devicetree@vger.kernel.org>; Thu, 02 Jun 2022 04:56:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=VYkRhKv59af1KeqL/rucgV/mHExUmIzFqqIMFo3QP2w=;
-        b=f/4iOzj2fjFbh9BHIpxiLcPJ8fw5lzBWiHDgOhfcATZHx4C+uUd8r/eNFmvIavnVl4
-         dpOUk0BfUc1xjQartU7r+q7vseF3UETtFtDHF+37Alc5vnJlQ6ssNY7pEVeUy/XMRs85
-         B6VWi3KiGu3vH8tpW57Mv4BJ1luzryGnrPIXZ2Rmth9r5r939N0ogdopXNkRGpOfN4pa
-         S/NaQfmC86D2kewTZWZCOFKUUTXUVjexVByb6Cd/NSjKrk26DCSkq7CPSvW7nSFSfG18
-         lonUXcIU+x6/EMY2m0ERnPFlxjbsU9Qbf+Mow1hULDq8FToYZPabEMSAPkmyc/PdaOw/
-         BRZw==
+        bh=76Z8GE3DXJmJTcdOCuvjsGl067PCyvdg621Kp6ZPmOs=;
+        b=nUnvwpnm2CqgoJOzy34iiNsE1itMvFN21EvwIuCSxDwNGw0jyxQ1rzM+4WrXS2Ag8I
+         y6aBaxCFy3E77H9l4yz46Zb1fWqbZUTDDr0/u1UX4Bnbitm0VOyS5wgkAqc93PtC4hre
+         mcAiKyRFx8lRdzXpzTyElp/0BtVPnKslt1enerbapdAz7UGcLTabTuvVLldT+/rSIGSH
+         jmwhhd8qX5IrZ4JZT7/8xFwkh872hVAVjaD2KkSdr3QOKLpIiK3fqornp3oHmC/wXh4P
+         9W/cf8o0+pBH7r1U6ki8OZAWEeDvt0XZYFt4FR/SVjXviKzAB6HMwM3vCA7+3ULweaSK
+         kVLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=VYkRhKv59af1KeqL/rucgV/mHExUmIzFqqIMFo3QP2w=;
-        b=L1tJY3+Fx0PYcaPmO+vSx9m5WI4mj3gqfAk+v5iuKlVN6fb/WiS3Ck/5YvuOh2JRMe
-         zitghjfGptkPCKJf0o2wSQ3421iN7QQoXDvUVRF9LfzPVrnRl69hcDb6WjxoQ5ZRndwD
-         xuqiqEmKtijQ8/4yRKWEmW2QeALKsOmGm4tY6bIt583qqrZyj52nBBeTh6HdsFtimP2n
-         1nSSuPmVD55zDCyIsyalB3yIRcaPkc3oaN1j40n0kGUuzqJd0TKTX8GGRLED+k97XkHq
-         QO6SCTqNHt5P4KFDsfFxgrioEwwQ/LeeHlv78Fw3bfjohpWyAGodsWlGvwC0w+5xb5+b
-         Qz4A==
-X-Gm-Message-State: AOAM533MQBkT1lB5s8LmX4jhr4+/9iTiUyjFHnpc3XRYQT4d0NiiCg/k
-        aSoo9xpv3JEiXEVW7yWnbbq8WQ==
-X-Google-Smtp-Source: ABdhPJyelEPbsqEleXXPro/QCHXWTp8zcnnilj3IxbJgwVsMW+YQkef2813NyyLt+qVfpqaDOunYWQ==
-X-Received: by 2002:a05:6402:1941:b0:413:2b80:b245 with SMTP id f1-20020a056402194100b004132b80b245mr4961471edz.252.1654170973072;
-        Thu, 02 Jun 2022 04:56:13 -0700 (PDT)
+        bh=76Z8GE3DXJmJTcdOCuvjsGl067PCyvdg621Kp6ZPmOs=;
+        b=sUTn5hGcYYeHDP23/mWXFysaztoTyu4Hby/q3QDU6fIbnPygcPP1oMZH02B2j4LjQQ
+         dcduGS6QOK9SLJ8Ew6MTugd4sdzZooJ9x4+Qh2CPUjLCJRPXtOxaaohdXe2fwBpMCOJ9
+         KLxMBgyCRCr/cx11hn13e6aamM1WPaz9oLR7uY13X1Iy/IcnpvAxyb34rTApse5geY1B
+         gnWkKEtiuhUquxF/fYujNwnLOJCaSIe9UZjyp67WPaK1z2Y3ERT094veaiq4ZpKoEEE7
+         1oLHj8Qu6FlIM8NJzNN3gX/fVCdySQmLVfJEkk0nFhxLxd1iixclzDe/uJRSojgkqU4a
+         g0Cg==
+X-Gm-Message-State: AOAM533kEv45eVAo0zOOCdy4VsPCYDU/D/jrlB9b+nRVceP8GjOKCow9
+        W5Ew9PximQiRDZa4LfKPTJvH3g==
+X-Google-Smtp-Source: ABdhPJwkIrW4IiXzbJNiiaa1czY5sxTCu1ZzTseRaTcDWYufg5PWlgXL3tXanVdD7LyyCYQ4rFY84Q==
+X-Received: by 2002:a17:907:3da5:b0:6ff:31c2:22d5 with SMTP id he37-20020a1709073da500b006ff31c222d5mr3740125ejc.509.1654171003292;
+        Thu, 02 Jun 2022 04:56:43 -0700 (PDT)
 Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id e2-20020a1709062d4200b006fec2097d53sm1664095eji.118.2022.06.02.04.56.11
+        by smtp.gmail.com with ESMTPSA id c22-20020a17090654d600b0070587f81bcfsm1686576ejp.19.2022.06.02.04.56.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Jun 2022 04:56:12 -0700 (PDT)
-Message-ID: <a66ad5e4-0be1-bb3b-5e7b-c2a5b936a898@linaro.org>
-Date:   Thu, 2 Jun 2022 13:56:11 +0200
+        Thu, 02 Jun 2022 04:56:42 -0700 (PDT)
+Message-ID: <a0d848eb-c312-ea66-c62f-b4bdb982a66a@linaro.org>
+Date:   Thu, 2 Jun 2022 13:56:41 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH 3/5] clk: samsung: exynos7885: Implement CMU_FSYS domain
+Subject: Re: [PATCH 4/5] clk: samsung: exynos7885: Add TREX clocks
 Content-Language: en-US
 To:     David Virag <virag.david003@gmail.com>
 Cc:     phone-devel@vger.kernel.org,
@@ -69,14 +69,14 @@ Cc:     phone-devel@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
 References: <20220601233743.56317-1-virag.david003@gmail.com>
- <20220601233743.56317-4-virag.david003@gmail.com>
+ <20220601233743.56317-5-virag.david003@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220601233743.56317-4-virag.david003@gmail.com>
+In-Reply-To: <20220601233743.56317-5-virag.david003@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,20 +85,17 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 02/06/2022 01:37, David Virag wrote:
-> CMU_FSYS clock domain provides clocks for FSYS IP-core providing clocks
-> for all MMC devices on Exynos7885, and USB30DRD.
+> TREX D Core and P core clocks seem to be related to the BTS (Bus Traffic
+> Shaper) inside the Exynos7885 SoC, and are needed for the SoC to
+> function correctly.
 > 
-> This patch includes:
-
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-
-s/This patch includes:/Add:/
-
->   - Bus clocks in CMU_TOP needed for CMU_FSYS
->   - All clocks in CMU_FSYS needed for MMC devices
+> When clocks are cut from TREX D Core, the eMMC and the framebuffer stops
+> working properly. Other unknown things may stop working as well.
 > 
-> Signed-off-by: David Virag <virag.david003@gmail.com>
-> ---
+> When clocks are cut from TREX P Core, the system locks up needing a hard
+> reset.
+> 
+> Add these clocks and mark them critical so that they are always on.
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
