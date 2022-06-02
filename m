@@ -2,98 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A023353B98D
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 15:20:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C55653B991
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 15:21:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233820AbiFBNUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 09:20:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43712 "EHLO
+        id S235213AbiFBNVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 09:21:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231612AbiFBNU3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 09:20:29 -0400
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECB86270F3A;
-        Thu,  2 Jun 2022 06:20:27 -0700 (PDT)
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-e656032735so6764028fac.0;
-        Thu, 02 Jun 2022 06:20:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bTbwu+Mz+i2T1fupPqwAFML/HPc02MWUuXZGeQCvXZ8=;
-        b=nHzqP6S6BImCZAfGUibqjr40CAQ+sXQyeKEnE4ZSVo6tfjEF8V+JCzMFo9LX50Gk4a
-         bK4r68EqxvNjHQxrnLodXRIb7Y0InLBMeR9EWSeVJEZETBpzvgshRzzWOzzykmVn96tQ
-         8lj97nXr+GOiG00Hv7nbxw8wENFOWXkGSQ6iomIopzy476Txv8aKW8t7A7cGqRW1X6if
-         MkVWDjJULW/QNpE24aW1xIf3RhXPvP0tekTQLZmmz3N2rIoiKxlCKmpZ3iqa1phMrkri
-         b18ruXDN8N74bvHTjka97QfBEE6dcuHEv4R7XgYk0Uds472CHyERrgY1SQDIBsg1Yz+0
-         qALw==
-X-Gm-Message-State: AOAM531tXe5tfBG+FbSpszKguTz8xUuGliFVwhBoIqdbF6zr520TEbBd
-        mz/IMKz9+5Ms6bRUpVMeSQ==
-X-Google-Smtp-Source: ABdhPJx8+7c641wEUgu8STii4oQje/7ttveo4f3P9XPnuvNlZ3Xg+IQx39aBP3kiPfMlhnetHIGGwg==
-X-Received: by 2002:a05:6870:3456:b0:e9:23d3:e701 with SMTP id i22-20020a056870345600b000e923d3e701mr2756689oah.11.1654176027237;
-        Thu, 02 Jun 2022 06:20:27 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id w2-20020a9d5a82000000b0060603221240sm2220019oth.16.2022.06.02.06.20.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Jun 2022 06:20:26 -0700 (PDT)
-Received: (nullmailer pid 2133915 invoked by uid 1000);
-        Thu, 02 Jun 2022 13:20:25 -0000
-Date:   Thu, 2 Jun 2022 08:20:25 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Guillaume Ranquet <granquet@baylibre.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S231612AbiFBNV3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 09:21:29 -0400
+Received: from mickerik.phytec.de (mickerik.phytec.de [195.145.39.210])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06517270F3F
+        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 06:21:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+        q=dns/txt; i=@phytec.de; t=1654176087; x=1656768087;
+        h=From:Sender:Reply-To:Subject:Date:Message-Id:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=VwVcrYdLNiHI46Ai61lEjBR5b2e5WdM4T9CdsmvIA4o=;
+        b=sfimtrVmXz4jiaKKlY3V3HlwTsJR31gZCEPTwdj0KSG3O0KJ88dxj84NJyWwKPEn
+        ph8yzsCkazGP7qlfDeCELWSxnU24veeSCvVoiXs0JBwirRPqBPQkhCjwHvTf4RSn
+        SDUKsfWTMP5rp9PP4Qzygn7dWfm1fsCyrCNr28Y+vsA=;
+X-AuditID: c39127d2-b5e2e70000001dbe-76-6298b957c978
+Received: from idefix.phytec.de (Unknown_Domain [172.25.0.20])
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id C9.04.07614.759B8926; Thu,  2 Jun 2022 15:21:27 +0200 (CEST)
+Received: from augenblix2.phytec.de ([172.25.0.51])
+          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
+          with ESMTP id 2022060215212699-87582 ;
+          Thu, 2 Jun 2022 15:21:26 +0200 
+From:   Teresa Remmet <t.remmet@phytec.de>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, Helge Deller <deller@gmx.de>,
-        CK Hu <ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>,
-        Markus Schneider-Pargmann <msp@baylibre.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v10 02/21] dt-bindings: mediatek,dp: Add Display Port
- binding
-Message-ID: <20220602132025.GA2110588-robh@kernel.org>
-References: <20220523104758.29531-1-granquet@baylibre.com>
- <20220523104758.29531-3-granquet@baylibre.com>
+        Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>, upstream@phytec.de
+Subject: [PATCH v2 1/3] bindings: arm: fsl: Add PHYTEC i.MX8MM devicetree bindings
+Date:   Thu, 2 Jun 2022 15:21:25 +0200
+Message-Id: <20220602132127.95333-1-t.remmet@phytec.de>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220523104758.29531-3-granquet@baylibre.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 02.06.2022 15:21:27,
+        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 02.06.2022 15:21:27
+X-TNEFEvaluated: 1
+Content-Transfer-Encoding: quoted-printable
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrELMWRmVeSWpSXmKPExsWyRpJBRDd854wkg0vnJCzmHznHavHwqr9F
+        34uHzBabHl9jtej6tZLZonXvEXaLv9s3sVi82CLuwOGxc9Zddo9NqzrZPO5c28PmsXlJvcfG
+        dzuYPPr/Gnh83iQXwB7FZZOSmpNZllqkb5fAldHSuYWpoJ+zYs71LcwNjNPYuxg5OSQETCSm
+        TrnK3MXIxSEksI1RYv33v+wQzllGiVcHHrGCVLEJaEg8XXGaCcQWEXCR6HywjgWkiFmgkUli
+        x7ELzCAJYYEgiXO7zoHZLAIqElO3vGXrYuTg4BUwl5h7tRhim7zEzEvfwTbzCghKnJz5hAUi
+        foVR4tKXJAhbSOL04rNgY5gFtCWWLXzNPIGRbxaSlllIUgsYmVYxCuVmJmenFmVm6xVkVJak
+        JuulpG5iBIbr4Ynql3Yw9s3xOMTIxMF4iFGCg1lJhLdk19QkId6UxMqq1KL8+KLSnNTiQ4zS
+        HCxK4rz3e5gShQTSE0tSs1NTC1KLYLJMHJxSDYztyRmNa0T6H6p7JT2W+s/Wv/X1FturFYWn
+        irI7c2fmbf0e8ux/U1hEa+qdRQzP9jFsPrD9V1rQAqayY9rBN3fMDpb+dbn1XFT4n6qrS5mM
+        FtlorTLsDllruviO1b+UpmrN9RU13MV9ep45/JsdvUOliw9wWG8zvMTkP1U54ZL8yZV+h9rj
+        nJRYijMSDbWYi4oTAQRL1BtFAgAA
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 23, 2022 at 12:47:35PM +0200, Guillaume Ranquet wrote:
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
-> 
-> This controller is present on several mediatek hardware. Currently
-> mt8195 and mt8395 have this controller without a functional difference,
-> so only one compatible field is added.
-> 
-> The controller can have two forms, as a normal display port and as an
-> embedded display port.
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> ---
->  .../display/mediatek/mediatek,dp.yaml         | 99 +++++++++++++++++++
->  1 file changed, 99 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
+Add devicetree bindings for i.MX8MM based phyCORE-i.MX8MM
+and phyBOARD-Polis RDK.
 
-The example has warnings. Run 'make dt_binding_check' before submitting.
+Signed-off-by: Teresa Remmet <t.remmet@phytec.de>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Changes in v2:
+- Added Acked-by
+
+ Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation=
+/devicetree/bindings/arm/fsl.yaml
+index ef524378d449..84134fdcf4f1 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -865,6 +865,12 @@ properties:
+           - const: toradex,verdin-imx8mm          # Verdin iMX8M Mini Modu=
+le
+           - const: fsl,imx8mm
+=20
++      - description: PHYTEC phyCORE-i.MX8MM SoM based boards
++        items:
++          - const: phytec,imx8mm-phyboard-polis-rdk # phyBOARD-Polis RDK
++          - const: phytec,imx8mm-phycore-som        # phyCORE-i.MX8MM SoM
++          - const: fsl,imx8mm
++
+       - description: Variscite VAR-SOM-MX8MM based boards
+         items:
+           - const: variscite,var-som-mx8mm-symphony
+--=20
+2.25.1
+
