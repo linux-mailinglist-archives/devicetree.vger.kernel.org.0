@@ -2,88 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 028EA53BB5D
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 17:09:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEE5B53BB6F
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 17:14:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236385AbiFBPIx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 11:08:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32944 "EHLO
+        id S231787AbiFBPOO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 11:14:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236386AbiFBPIw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 11:08:52 -0400
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B30706B7D6;
-        Thu,  2 Jun 2022 08:08:51 -0700 (PDT)
-Received: by mail-oi1-f172.google.com with SMTP id m82so6824384oif.13;
-        Thu, 02 Jun 2022 08:08:51 -0700 (PDT)
+        with ESMTP id S230114AbiFBPON (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 11:14:13 -0400
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D3DD9D4CC;
+        Thu,  2 Jun 2022 08:14:11 -0700 (PDT)
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-f2cbceefb8so7074172fac.11;
+        Thu, 02 Jun 2022 08:14:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=pHVMppeew5tvngB9V7RVRiVw3/EcQO9cXfk5fahNvLU=;
-        b=fBxcKX6i+esqGFur/dZk6XvOGTQNB4GYwtI9V+JmIS9Yw7q1pFS0UETlEPSepPLrpB
-         SRDu417ZJxiTn1YPUu/Na0cAuKnegfbp7wXvhLtOZ8DvLPDCa4GVt9vDZ5/HxwHHr/WP
-         AM6mMeI1RTgBdRBznhlieHvlX7tcAaJ4a0EINyx956F84s8nQOx4w8+MQKb3Aw6SxXse
-         znmmAxnJ/d3RH/52PFjKykvo0PaeoqTLy9nYozTYe7l6CQZzMNAkRM5xdtYzKB3EExAI
-         P3O3UMhUTYHvZflT3fBh8nENCKUfyFYh1/xGbGp0QrSAD8ieDFseBB0OVsMz1xtgV9fs
-         XwkQ==
-X-Gm-Message-State: AOAM530rPQRLldzk8qBa4AU27AfkyXbsDCdjMxa9TvZ/Y6XxYup1Oscm
-        Q6TKx93n+PUrtlAFZXaxfA==
-X-Google-Smtp-Source: ABdhPJwI6NXiIW3dX0C54wwELhLgM1CsiWXpZ2l+oWAZfXgMWDCL7fHj3aUVKFwUwLojjrteAyY0kA==
-X-Received: by 2002:a05:6808:13d4:b0:32e:3651:bbb1 with SMTP id d20-20020a05680813d400b0032e3651bbb1mr1707443oiw.86.1654182530993;
-        Thu, 02 Jun 2022 08:08:50 -0700 (PDT)
+        bh=8ZadL1zw6i8KMO5fh9Q5arKi4oyBgssFPCtUsRXeJWQ=;
+        b=74Xls42noV6dGVcgYIu8X9xYwxmbYLGOqzzFjW9r0irpBqOHNa/4RElXKXQAy5wYbf
+         Zfe/fBOzyIoY937OyWBClGQ8YhWC/p7HrTMbb+/Qe4AP/QynfSLCFCnxoKtfHycaTYHu
+         TM77sT0teh7gxtm0OGhUtT+kBVytCf1Q5SXvkP/XAhDvNu0W8Er345aNCY1FRyNmtEu4
+         k97498Jprrg+nRZ0uirCv1TP+SIYmSJtogB1APlmksqLujK+M60inKWf/XwfLgOmdMcV
+         1zp61AQRKEVTM7L2mwXTHQBtj86av5sdaM8v9MYyd/ENsHaTjv2pzNntQeex7ULKxu7s
+         vSVw==
+X-Gm-Message-State: AOAM532eVkIK+oLoT8wjheFl8+ZPWTJVScRXjhnwYHd6ltdChk1IP3wt
+        pm64ZIfGUJsnAyHDvVkP0HsI0d71tNB6
+X-Google-Smtp-Source: ABdhPJzAwCQkxG7V7ktiZLgQzY3iiWykAD/DDTVfLswQC6nHYlfO/vO82ui1Cc1rqBIYY5AbTW/+Kw==
+X-Received: by 2002:a05:6870:348c:b0:e2:6df1:b1db with SMTP id n12-20020a056870348c00b000e26df1b1dbmr20482904oah.33.1654182850598;
+        Thu, 02 Jun 2022 08:14:10 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id s11-20020a4adb8b000000b0035eb4e5a6d2sm2326257oou.40.2022.06.02.08.08.50
+        by smtp.gmail.com with ESMTPSA id b36-20020a056870392400b000f349108868sm2179826oap.44.2022.06.02.08.14.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Jun 2022 08:08:50 -0700 (PDT)
-Received: (nullmailer pid 2330349 invoked by uid 1000);
-        Thu, 02 Jun 2022 15:08:50 -0000
-Date:   Thu, 2 Jun 2022 10:08:50 -0500
+        Thu, 02 Jun 2022 08:14:10 -0700 (PDT)
+Received: (nullmailer pid 2339298 invoked by uid 1000);
+        Thu, 02 Jun 2022 15:14:09 -0000
+Date:   Thu, 2 Jun 2022 10:14:09 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, Sven Peter <sven@svenpeter.dev>,
-        Hector Martin <marcan@marcan.st>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        devicetree@vger.kernel.org, Mark Kettenis <kettenis@openbsd.org>,
-        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: PCI: apple: Add missing 'power-domains'
- property
-Message-ID: <20220602150850.GA2330255-robh@kernel.org>
-References: <20220531215815.2408477-1-robh@kernel.org>
+To:     Tanmay Shah <tanmay.shah@xilinx.com>
+Cc:     openamp-system-reference@lists.openampproject.org,
+        bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
+        krzk+dt@kernel.org, michal.simek@xilinx.com,
+        ben.levinsky@xilinx.com, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v6 1/6] dt-bindings: remoteproc: Add Xilinx RPU subsystem
+ bindings
+Message-ID: <20220602151409.GA2333778-robh@kernel.org>
+References: <20220531234308.3317795-1-tanmay.shah@xilinx.com>
+ <20220531234308.3317795-2-tanmay.shah@xilinx.com>
+ <20220601184240.GA188558-robh@kernel.org>
+ <d7854ce0-3553-3286-809c-651780fb91e5@xilinx.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220531215815.2408477-1-robh@kernel.org>
+In-Reply-To: <d7854ce0-3553-3286-809c-651780fb91e5@xilinx.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 31 May 2022 16:58:14 -0500, Rob Herring wrote:
-> The 'unevaluatedProperties' schema checks is not fully working and doesn't
-> catch some cases where there's a $ref to another schema. A fix is pending,
-> but results in new warnings in examples.
+On Wed, Jun 01, 2022 at 12:05:09PM -0700, Tanmay Shah wrote:
+> Hi Rob,
 > 
-> The Apple PCIe host schema is missing 'power-domains' in the schema.
-> The example has 3 power domains. However, this is wrong too as actual
-> dts files have a single power domain and Sven confirmed 1 is correct.
+> Thanks for reviews. Please find my comments below:
 > 
-> Cc: Sven Peter <sven@svenpeter.dev>
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> v2:
->  - Correct the power-domains to be 1 and update the example
-> ---
->  Documentation/devicetree/bindings/pci/apple,pcie.yaml | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+> On 6/1/22 11:42 AM, Rob Herring wrote:
+> > On Tue, May 31, 2022 at 04:43:05PM -0700, Tanmay Shah wrote:
+> > > Xilinx ZynqMP platform has dual-core ARM Cortex R5 Realtime Processing
+> > > Unit(RPU) subsystem. This patch adds dt-bindings for RPU subsystem
+> > > (cluster).
+> > > 
+> > > Signed-off-by: Tanmay Shah <tanmay.shah@xilinx.com>
+> > > ---
+> > > 
+> > > Changes in v6:
+> > >    - Add maxItems to sram and memory-region property
+> > > 
+> > > Changes in v5:
+> > > - Add constraints of the possible values of xlnx,cluster-mode property
+> > > - fix description of power-domains property for r5 core
+> > > - Remove reg, address-cells and size-cells properties as it is not required
+> > > - Fix description of mboxes property
+> > > - Add description of each memory-region and remove old .txt binding link
+> > >    reference in the description
+> > > 
+> > > Changes in v4:
+> > >    - Add memory-region, mboxes and mbox-names properties in example
+> > > 
+> > > Changes in v3:
+> > >    - None
+> > > 
+> > > 
+> > >   .../bindings/remoteproc/xlnx,r5f-rproc.yaml   | 129 ++++++++++++++++++
+> > >   include/dt-bindings/power/xlnx-zynqmp-power.h |   6 +
+> > >   2 files changed, 135 insertions(+)
+> > >   create mode 100644 Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
+> > > new file mode 100644
+> > > index 000000000000..cbff1c201a89
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/remoteproc/xlnx,r5f-rproc.yaml
+> > > @@ -0,0 +1,129 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/remoteproc/xlnx,r5f-rproc.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Xilinx R5F processor subsystem
+> > > +
+> > > +maintainers:
+> > > +  - Ben Levinsky <ben.levinsky@xilinx.com>
+> > > +  - Tanmay Shah <tanmay.shah@xilinx.com>
+> > > +
+> > > +description: |
+> > > +  The Xilinx platforms include a pair of Cortex-R5F processors (RPU) for
+> > > +  real-time processing based on the Cortex-R5F processor core from ARM.
+> > > +  The Cortex-R5F processor implements the Arm v7-R architecture and includes a
+> > > +  floating-point unit that implements the Arm VFPv3 instruction set.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: xlnx,zynqmp-r5fss
+> > > +
+> > > +  xlnx,cluster-mode:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    enum: [0, 1, 2]
+> > > +    description: |
+> > > +      The RPU MPCore can operate in split mode(Dual-processor performance), Safety
+> > > +      lock-step mode(Both RPU cores execute the same code in lock-step,
+> > > +      clock-for-clock) or Single CPU mode (RPU core 0 can be held in reset while
+> > > +      core 1 runs normally). The processor does not support dynamic configuration.
+> > > +      Switching between modes is only permitted immediately after a processor reset.
+> > > +      If set to  1 then lockstep mode and if 0 then split mode.
+> > > +      If set to  2 then single CPU mode. When not defined, default will be lockstep mode.
+> > > +
+> > > +patternProperties:
+> > > +  "^r5f-[a-f0-9]+$":
+> > > +    type: object
+> > > +    description: |
+> > > +      The RPU is located in the Low Power Domain of the Processor Subsystem.
+> > > +      Each processor includes separate L1 instruction and data caches and
+> > > +      tightly coupled memories (TCM). System memory is cacheable, but the TCM
+> > > +      memory space is non-cacheable.
+> > > +
+> > > +      Each RPU contains one 64KB memory and two 32KB memories that
+> > > +      are accessed via the TCM A and B port interfaces, for a total of 128KB
+> > > +      per processor. In lock-step mode, the processor has access to 256KB of
+> > > +      TCM memory.
+> > > +
+> > > +    properties:
+> > > +      compatible:
+> > > +        const: xlnx,zynqmp-r5f
+> > > +
+> > > +      power-domains:
+> > > +        description: RPU core PM domain specifier
+> > > +        maxItems: 1
+> > > +
+> > > +      mboxes:
+> > > +        minItems: 1
+> > > +        items:
+> > > +          - description: mailbox channel to send data to RPU
+> > > +          - description: mailbox channel to receive data from RPU
+> > > +
+> > > +      mbox-names:
+> > > +        minItems: 1
+> > > +        items:
+> > > +          - const: tx
+> > > +          - const: rx
+> > > +
+> > > +      sram:
+> > > +        $ref: /schemas/types.yaml#/definitions/phandle-array
+> > > +        maxItems: 8
+> > minItems: 1
+> > maxItems: 8
+> > items:
+> >    maxItems: 1
 > 
+> I have posted v7 which adds "minItems: 1".
+> 
+> However, I didn't get items: part. Is it required to have items: now?
 
-Applied, thanks!
+Yes.
+> 
+> Can I add items: part once TCM bindings are posted?
+
+No.
+
+> I understand that minItems and maxItems under sram property decides how many
+> phandles sram can have.
+> 
+> However, maxItems: 1 under items: field what it describes?
+
+'phandle-array' is really a matrix type because we can have phandles 
+plus argument cells. So you have to define each of the 1-8 entries is a 
+single phandle cell (and no arg cells).
+
+Rob
