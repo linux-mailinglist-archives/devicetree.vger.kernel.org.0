@@ -2,133 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3166553B79B
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 13:10:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8886353B7A2
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 13:11:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233534AbiFBLJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 07:09:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55522 "EHLO
+        id S234054AbiFBLK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 07:10:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232284AbiFBLJ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 07:09:58 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4D5033E98
-        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 04:09:56 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id z7so5770636edm.13
-        for <devicetree@vger.kernel.org>; Thu, 02 Jun 2022 04:09:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=/Uu7mpGh4jmD9NBJ1QMAG8IkLPN1ogSZKHJ+KYPHKm4=;
-        b=Ud8gp2mWmdkKxDbbtJCpKZvK4z74qA5sMWMxI6jbnWTmPAamDMAMdJ+WOiTrSQuViJ
-         9fTdm84o3zgeXCmvoNNVQH2o5i7j043Um5WxNH4i7aqXjSkdGB7xanfd26qVvtHz6qxT
-         1184Ws5+UybPD33JyJew+aU96LHAxxkhZgyXwtM/LcCo5spJkLiBuPWJwjdC1TJ/drhj
-         57PuGMQ1vfKlPvOdPiv1wNoVr9d6jPQYGnDpXI3zjjdgnoshBwPe6opRYOQlnG5GnLfv
-         VF1RzgrJ6HjW4MEjrt6nmTs1DoGznKFHq7SqDue5BpVI715Ih/FBx+7K1MRzrZbyBqfQ
-         fHdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=/Uu7mpGh4jmD9NBJ1QMAG8IkLPN1ogSZKHJ+KYPHKm4=;
-        b=pqP/JGQF5qfhpA5T9RTrSmr3wjevqsrE53XSE9OpXSZ65O2euYJP+7b65QIzuC97bU
-         as3tEV/feTraPA2ddZI5xEcFCz1pY8VvEJOT2be8WGShwty4eyxF2aurYJxiDB6b5r2Z
-         O9E258HZ0EHqQqsB/vUhXS2mX6yT0/pumJ5bhwGZKqTmKfn0cOyJUbhUzYBFEaWKsR0U
-         Lgy83ncBn237uKXjd8nVsIukXtGUNF9+hh4iFkYgKFQJPvSAaetH8A7rNEjwgJUWx/Ry
-         /jZUy6YJmSXOr8GDkEipkYPvNBLWhfAKXtwDrNiBxztOz3qQpHHTrh/MifB7hptei+nG
-         7yyQ==
-X-Gm-Message-State: AOAM532MRufEsHhtGi5ToNcQ1HWuEVshRueuQh7eWHk8pHhbllfkRn1D
-        SEevpVnTTD8RhBxFcCm02jpBHw==
-X-Google-Smtp-Source: ABdhPJx2WktBi2SCnVLcXrgLBL1qmAN57dUdvcuNXys1R/3FFR1DY00WNEq+2vytkGdYSm3RK08ykQ==
-X-Received: by 2002:a05:6402:14c1:b0:42d:d6f1:ac3d with SMTP id f1-20020a05640214c100b0042dd6f1ac3dmr4662958edx.223.1654168195507;
-        Thu, 02 Jun 2022 04:09:55 -0700 (PDT)
-Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id n24-20020a1709062bd800b006fee28d459csm1652894ejg.224.2022.06.02.04.09.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Jun 2022 04:09:55 -0700 (PDT)
-Message-ID: <f7d62376-49b7-8929-7027-9c81703a5f7b@linaro.org>
-Date:   Thu, 2 Jun 2022 13:09:54 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 1/2] dt-bindings: soc: ti: pruss: Update bindings for K3
- AM62x SoCs
-Content-Language: en-US
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        with ESMTP id S230176AbiFBLK4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 07:10:56 -0400
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1499C3BBE3;
+        Thu,  2 Jun 2022 04:10:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1654168255; x=1685704255;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=olQ0OA0H1c6Sts3x+w8aOXscdnJ5P5s3LhpfS4yRNpE=;
+  b=Jv7phIW5/ZND3ALAr9M9pf05AeKhWqO5UzRa3L2JaYRHYg12ew0yz85n
+   51dgNNjDjHiHR6b89wBGyJBaNSzZQtMf50BkKJU+fGIMqpOv7bEQe/kVT
+   D0/HTjL/WjhzMVr6/L0a/ViYo07nTIrsXm4VOEy5Uy+L4ZBhe877kK1HT
+   Qq58KuG/WhchDux0S6lSGZLzP2OrERcCVLxxRUhQiVXYi5JCmSAEz7S19
+   b9wPrR0Ys2Qy5j2IEX9ZxxNRe2DYXUKrKDBeTxoK/WN2DemKcK79nQNZT
+   JKGSzMRyilGCLMaaQKMRHAKDsXmhpKM+eDgiueF/sbVKqfF+L4M2O+9Yh
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10365"; a="336573571"
+X-IronPort-AV: E=Sophos;i="5.91,271,1647327600"; 
+   d="scan'208";a="336573571"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2022 04:10:54 -0700
+X-IronPort-AV: E=Sophos;i="5.91,271,1647327600"; 
+   d="scan'208";a="721260311"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2022 04:10:49 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1nwiiz-000RZf-AX;
+        Thu, 02 Jun 2022 14:10:45 +0300
+Date:   Thu, 2 Jun 2022 14:10:45 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Axe Yang <axe.yang@mediatek.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>
-Cc:     Santosh Shilimkar <ssantosh@kernel.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Satya Tangirala <satyat@google.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Lucas Stach <dev@lynxeye.de>,
+        Eric Biggers <ebiggers@google.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kiwoong Kim <kwmad.kim@samsung.com>,
+        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
+        angelogioacchino.delregno@collabora.com, linux-mmc@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        Vignesh Raghavendra <vigneshr@ti.com>
-References: <20220427072703.4898-1-kishon@ti.com>
- <20220427072703.4898-2-kishon@ti.com>
- <53212a3b-d02c-ab5e-6b5c-e19d359c7c2b@linaro.org>
- <dcce6737-5881-a703-67f0-59c5f55f1cd1@ti.com>
- <81d94ea8-9d0f-785b-07aa-fe9c9093ad73@linaro.org>
- <68381314-136b-776d-070a-e825506f2132@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <68381314-136b-776d-070a-e825506f2132@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [RESEND v12 0/3] mmc: mediatek: add support for SDIO async IRQ
+Message-ID: <YpiatZh+ZMpoAp/K@smile.fi.intel.com>
+References: <20220525015140.384-1-axe.yang@mediatek.com>
+ <1d07579c0a6b8853ab72e345a0bd0be73549de8c.camel@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1d07579c0a6b8853ab72e345a0bd0be73549de8c.camel@mediatek.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/06/2022 12:03, Kishon Vijay Abraham I wrote:
-> Hi Krzysztof,
+On Thu, Jun 02, 2022 at 02:07:04PM +0800, Axe Yang wrote:
+> Hi,
 > 
-> On 16/05/22 20:48, Krzysztof Kozlowski wrote:
->> On 16/05/2022 14:33, Kishon Vijay Abraham I wrote:
->>> Hi Krzysztof,
->>>
->>> On 28/04/22 11:48, Krzysztof Kozlowski wrote:
->>>> On 27/04/2022 09:27, Kishon Vijay Abraham I wrote:
->>>>> Update the PRUSS bindings for the PRUSSM instance present in
->>>>> AM625 SoC.
->>>>>
->>>>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
->>>>> ---
->>>>>  Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml | 1 +
->>>>>  1 file changed, 1 insertion(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
->>>>> index 64461d432004..cf13e5179657 100644
->>>>> --- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
->>>>> +++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
->>>>> @@ -69,6 +69,7 @@ properties:
->>>>>        - ti,am654-icssg   # for K3 AM65x SoC family
->>>>>        - ti,j721e-icssg   # for K3 J721E SoC family
->>>>>        - ti,am642-icssg   # for K3 AM64x SoC family
->>>>> +      - ti,am625-pruss   # for K3 AM62x SoC family
->>>>>  
->>>>
->>>> Looks like out of order (although for some reason before it was also
->>>> misordered...).
->>>
->>> These are really in the chronological order of the introduction of SoCs.
->>> Isn't that okay to have?
->>
->> You mean order of release on the market of order of adding files here?
->> The first is ok, the latter would mean there is no order at all.
-> 
-> I meant order of release to market. Anyways, I'll send a patch to change
-> the order to alphabetic order.
+> Gentle ping for this set.
 
-It's okay to keep it then in such release-market order. Up to you:
+It's a merge window, so your code perhaps will be considered next week,
+or later.
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
