@@ -2,64 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26AC653B80E
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 13:49:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14A8953B817
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 13:49:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234302AbiFBLrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 07:47:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36160 "EHLO
+        id S234375AbiFBLs2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 07:48:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231757AbiFBLrP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 07:47:15 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0856250683;
-        Thu,  2 Jun 2022 04:47:08 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 252BkwRX102346;
-        Thu, 2 Jun 2022 06:46:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1654170418;
-        bh=f0yqobML3CnwNdY+Qy6SB8ntB5oYAsWJPwB1gkDv2D8=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=mToPto9RxamrvzDuzmXvxaSDyBTtL+zsIk9fdiHVW8KO1XVLaxT7L5dFT9sfgE6JT
-         XhE5HyPlaOmKIeozwNRdYH6GtGfsMWpO+hyq15ql9vmPm1mcFOtDNh6I6YpgFl5Bo8
-         bLJ5s5G9buTdYYJwdZKn9dJPaa/R+cB5/AfPCT8w=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 252Bkwm8004417
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 2 Jun 2022 06:46:58 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 2
- Jun 2022 06:46:57 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 2 Jun 2022 06:46:57 -0500
-Received: from ula0492258.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 252BkDxi035959;
-        Thu, 2 Jun 2022 06:46:52 -0500
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-To:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <linux@armlinux.org.uk>,
-        <vladimir.oltean@nxp.com>, <grygorii.strashko@ti.com>,
-        <vigneshr@ti.com>, <nsekhar@ti.com>
-CC:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kishon@ti.com>,
-        Siddharth Vadapalli <s-vadapalli@ti.com>
-Subject: [PATCH v2 3/3] net: ethernet: ti: am65-cpsw: Move phy_set_mode_ext() to correct location
-Date:   Thu, 2 Jun 2022 17:15:58 +0530
-Message-ID: <20220602114558.6204-4-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220602114558.6204-1-s-vadapalli@ti.com>
-References: <20220602114558.6204-1-s-vadapalli@ti.com>
+        with ESMTP id S233872AbiFBLs1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 07:48:27 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52BE02997AE
+        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 04:48:24 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id y19so9450978ejq.6
+        for <devicetree@vger.kernel.org>; Thu, 02 Jun 2022 04:48:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=shtQh66+bKE1caS4jMSRSwf+vIlH6pzW/iS7K92y5Eg=;
+        b=dc99xUHQThcX6ryKAYXNpafER9Kk4IqWJ4hIN06w5R5rjWA84E5p4P72DZDYGBswsI
+         kl3C21BvdXefH2LnJlT8rU/+JezOsqjRAd7tVk97vXLFhMeDIOIeP+/Hp1s8R6ceOle7
+         uJyWHNIybbL9JlE7dlJkzTO14TjU88UJAYcAbnV1SoMbJUDCi4gpZvk1mcW9ONfryXbq
+         ORVmAj8kEwf7k8Tdd5l7Rqpt5iQBFZoY0eQzfumt+hDyJ4nLrjHN3GpDX20gJiG5a5se
+         RMEgmqvFaNz8hsnSvQNIVgD2JYnNez5HZ+pn120+o00MrgoJA0GpTygS1KP0PIywXThn
+         JVpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=shtQh66+bKE1caS4jMSRSwf+vIlH6pzW/iS7K92y5Eg=;
+        b=l60muF97r19sAICepfCbbBBlYHSwpj6m+mcvtz4yiqh4hk3pThQAWLXL27yBh7ZoyZ
+         m9M9EmYM2XEbFlzRUFsWikjBf0TAAM6lkb4MhzQhvp53yqXTWiLGX8RQyVKMzO8NFU7N
+         NV/QW+W0Ss6a7D+Utr8pH9k9Y2oVMMNJ2PYrWrwVfxwcG9lBTUZ5WCAC8WqOkjNOGeVF
+         G89U6AK/ly3uJSH1k2ZnTgxG7TDkks6bfx0kSV26zwfUpfbAmsQelIDfdjplD5arcB4i
+         W61zn8ziB1RBG9YRxGXsC0tLwC7USBPPoC3mCmr1y+wvbkD2Ih0YIf3aO4lT2pj+5kyF
+         UvpQ==
+X-Gm-Message-State: AOAM531/OiB+JXiqKz9A7Q7m8ecjbCYcFziUHHm8kRLHc28un73wbQa7
+        OuUd1avHvPQpy/GvQ7LyOj9Xvw==
+X-Google-Smtp-Source: ABdhPJxtzQcCHEhLjniV51EOj16IsDhDJgdLjg8JxuGS0HDjPnelZO6FqkSKvw60weMLoHwb6tlJqQ==
+X-Received: by 2002:a17:906:12d3:b0:6f5:18a2:176d with SMTP id l19-20020a17090612d300b006f518a2176dmr3728521ejb.474.1654170502863;
+        Thu, 02 Jun 2022 04:48:22 -0700 (PDT)
+Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id c18-20020a056402101200b0042dc6e250e3sm2329738edu.81.2022.06.02.04.48.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Jun 2022 04:48:22 -0700 (PDT)
+Message-ID: <cb8c7e28-dfef-78e2-c97c-11b9dee02fed@linaro.org>
+Date:   Thu, 2 Jun 2022 13:48:21 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 1/3] dt-bindings: interconnect: Update email address
+Content-Language: en-US
+To:     Sibi Sankar <quic_sibis@quicinc.com>, bjorn.andersson@linaro.org
+Cc:     agross@kernel.org, djakov@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, p.zabel@pengutronix.de,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
+References: <1654130923-18722-1-git-send-email-quic_sibis@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1654130923-18722-1-git-send-email-quic_sibis@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -68,51 +75,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In TI's J7200 SoC CPSW5G ports, each of the 4 ports can be configured
-as a QSGMII main or QSGMII-SUB port. This configuration is performed
-by phy-gmii-sel driver on invoking the phy_set_mode_ext() function.
+On 02/06/2022 02:48, Sibi Sankar wrote:
+> Update email address to the quicinc.com domain.
+> 
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml | 2 +-
 
-It is necessary for the QSGMII main port to be configured before any of
-the QSGMII-SUB interfaces are brought up. Currently, the QSGMII-SUB
-interfaces come up before the QSGMII main port is configured.
+Thanks for updating the email addresses. All three patches should be
+rather squashed to one (and taken by Rob for example), it's quite a
+churn. Anyway:
 
-Fix this by moving the call to phy_set_mode_ext() from
-am65_cpsw_nuss_ndo_slave_open() to am65_cpsw_nuss_init_slave_ports(),
-thereby ensuring that the QSGMII main port is configured before any of
-the QSGMII-SUB ports are brought up.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
- drivers/net/ethernet/ti/am65-cpsw-nuss.c | 9 ++++-----
- 1 file changed, 4 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/net/ethernet/ti/am65-cpsw-nuss.c b/drivers/net/ethernet/ti/am65-cpsw-nuss.c
-index 8a8dabf824f1..877880ec5f5b 100644
---- a/drivers/net/ethernet/ti/am65-cpsw-nuss.c
-+++ b/drivers/net/ethernet/ti/am65-cpsw-nuss.c
-@@ -593,11 +593,6 @@ static int am65_cpsw_nuss_ndo_slave_open(struct net_device *ndev)
- 	/* mac_sl should be configured via phy-link interface */
- 	am65_cpsw_sl_ctl_reset(port);
- 
--	ret = phy_set_mode_ext(port->slave.ifphy, PHY_MODE_ETHERNET,
--			       port->slave.phy_if);
--	if (ret)
--		goto error_cleanup;
--
- 	ret = phylink_of_phy_connect(port->slave.phylink, port->slave.phy_node, 0);
- 	if (ret)
- 		goto error_cleanup;
-@@ -1897,6 +1892,10 @@ static int am65_cpsw_nuss_init_slave_ports(struct am65_cpsw_common *common)
- 			goto of_node_put;
- 		}
- 
-+		ret = phy_set_mode_ext(port->slave.ifphy, PHY_MODE_ETHERNET, port->slave.phy_if);
-+		if (ret)
-+			goto of_node_put;
-+
- 		ret = of_get_mac_address(port_np, port->slave.mac_addr);
- 		if (ret) {
- 			am65_cpsw_am654_get_efuse_macid(port_np,
--- 
-2.36.1
-
+Best regards,
+Krzysztof
