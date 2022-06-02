@@ -2,149 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AA3853BA63
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 16:00:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4CF353BA73
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 16:07:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235658AbiFBOA2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 10:00:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39816 "EHLO
+        id S235643AbiFBOHP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 10:07:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235643AbiFBOA1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 10:00:27 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18AD5271781;
-        Thu,  2 Jun 2022 07:00:26 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id f9so10254962ejc.0;
-        Thu, 02 Jun 2022 07:00:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=AYxq+mMduPBX5NXqRBF2+5IJjnwegK5vDcEeTyInUPU=;
-        b=auP1KW3KeSmMw7VIZ62/gbLMAnB923JIROgeNcNM60iNfs70SRXGH9Oh+PqNAIdl95
-         sF3KgLrJAdhJvNL5E/yTCatacqFZTuJwNSgnwpd8r3nWCcjRXQOJQGh/LEv8L8WGwDHn
-         GRMckxbpngc/1zSMfnGGQOEbWW1vqQbIAf/Fr7XQHihGGmhAIL+CXKz/Sx20mLoDFvK2
-         Mrq/lvN37tLRQTJChv3fW11X7HfKADxJn3lW1n7mcgkdAUHAPKZhMEZRqOIIvJS+CQJo
-         E9+wli3/tU0/Qxnp7IRGppAp11D6KG1QpREaRpW+RGISetT3kVGuRq7qeRk42Hciw7Be
-         LYwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=AYxq+mMduPBX5NXqRBF2+5IJjnwegK5vDcEeTyInUPU=;
-        b=ND6vo9TSDcon/FmEUjE+075JxG/6ovzx/dplStXFQ+KTdj+yLHnr9f2bum1FkOT6QG
-         oTnhJbLJ654aRR8//t3d6Nuj9JOSjq+bQRbHyEkbgc3rcRkJcBvFbOJryiRxeWlqP6eC
-         9MV/dDkEe0ziWC+CMLSgisNfLOa4r45JVnOJi9NEwoZwVb+g2PFtwwj3OBG6jayL1TiL
-         I9QzTvn+RiGuc91kDYdwic2yoRFit0rkF/Apwp7X+eILLFxqvLTOOXekzIlbIqaZB3Wb
-         cnHYUnCa/OtF7wGfhSvt6N43PinmmuswWRcF404NnjEimncKk8OVkVm8nSUp9qu/hLjM
-         f6Kw==
-X-Gm-Message-State: AOAM532TKGBJY+Ss51GOm90GYOOs8uwe5JUvEN5lnjmuMC0lKo/F1SlR
-        Z4UofG7MOSLrh/iTM0EEoTIop/aumYUXFE6Gi/I=
-X-Google-Smtp-Source: ABdhPJxtpuBCKEOrj7yi3ocCsJZ0ETA3Lw0fV9RaebX5CwbyumoNpdxxmykaJXm5oH5aPRnpODJs/24H5iu7FWYfbjE=
-X-Received: by 2002:a17:907:8a27:b0:707:cc50:e790 with SMTP id
- sc39-20020a1709078a2700b00707cc50e790mr4462180ejc.77.1654178424506; Thu, 02
- Jun 2022 07:00:24 -0700 (PDT)
+        with ESMTP id S235089AbiFBOHO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 10:07:14 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF44023EFBD;
+        Thu,  2 Jun 2022 07:07:11 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 659D5617DC;
+        Thu,  2 Jun 2022 14:07:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF5CFC341C7;
+        Thu,  2 Jun 2022 14:07:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654178830;
+        bh=rB+YEXLdG8XR0jkFRsKEAAXdE/xxi88ksXM3E3VLNGI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=OOchDHWqDeJSwdEJ0OFUICz7EVpy8+a6PzEHNaVwzhhb7yXArDr3I1+saKcmY5FN+
+         7yBvyHoAHsFVJttYXdLzSYJCEqHb+xvBJHUmJ6awBoZg+/yH8qlO/WepKCj9qgRGwg
+         svEJ3DKROsXWNwfeQxnzyfTCtcnT/zBjsOdL/gaxw8s702hDJsT3ElBHSu8gCifCZW
+         esNJcYoQrwhRXbvj8QP6bi8e/CAS89eq65MoFUWxnjJOvHSSaWFro4r0qwz1Tb9EPW
+         5KlVq+1ozcn2lDHcRRcAd8Yzpcq+dQxbTl436RpXqDxHNdunxoRgAISz69yNSljxaf
+         rrCnEa0eOGjOw==
+Received: by mail-vk1-f171.google.com with SMTP id x11so2202740vkn.11;
+        Thu, 02 Jun 2022 07:07:10 -0700 (PDT)
+X-Gm-Message-State: AOAM533tpZykpOJd5vODO4vCT99JQ+kZ1tYoV9/zBoDG2heW6h0pJhGk
+        6SgYCQtpKR1k9s3zN9XmbgUAigK93rRoEUlQUw==
+X-Google-Smtp-Source: ABdhPJwRNoz2C7RL2wBdZjkbgLcfDaoy6nUrpLPMM2awPnoD3rVJht7Sxldc2+z8b/G9dI0W092u4lHsCiLWVbmni+o=
+X-Received: by 2002:a1f:2a4e:0:b0:357:a4af:25e1 with SMTP id
+ q75-20020a1f2a4e000000b00357a4af25e1mr20990221vkq.14.1654178829492; Thu, 02
+ Jun 2022 07:07:09 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220531102809.11976-1-peterwu.pub@gmail.com> <20220531102809.11976-8-peterwu.pub@gmail.com>
- <CAHp75VdUQqihr=AX-wEUD05jY1ReL63hMCL+eaqmjkN8CsS_Vg@mail.gmail.com>
- <CA+hk2fasiriGHepNjsnPCqTMJOgAEbVHACmWrDRZY7cHPcOQqA@mail.gmail.com> <CAHp75Vf=ATRfaaaGFuuPHuQj6wTjnRPBw4W5WYfgYuUP-A-L=g@mail.gmail.com>
-In-Reply-To: <CAHp75Vf=ATRfaaaGFuuPHuQj6wTjnRPBw4W5WYfgYuUP-A-L=g@mail.gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 2 Jun 2022 15:59:48 +0200
-Message-ID: <CAHp75VdDLnisODLCpTEHdGcxCFATdJHfJWf+=GdGtYV2U_o9+g@mail.gmail.com>
-Subject: Re: [PATCH 07/14] leds: flashlight: mt6370: Add Mediatek MT6370
- flashlight support
-To:     szuni chen <szunichen@gmail.com>
-Cc:     ChiaEn Wu <peterwu.pub@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        "Krogerus, Heikki" <heikki.krogerus@linux.intel.com>,
-        Helge Deller <deller@gmx.de>, cy_huang@richtek.com,
-        alice_chen@richtek.com, chiaen_wu@richtek.com,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        USB <linux-usb@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>
+References: <20220504154033.750511-1-clement.leger@bootlin.com>
+ <20220504154033.750511-2-clement.leger@bootlin.com> <YnQnayouXw9/jp/E@robh.at.kernel.org>
+ <42d9e1af-5576-ed8a-be3a-9dfea6ce1041@linux.ibm.com>
+In-Reply-To: <42d9e1af-5576-ed8a-be3a-9dfea6ce1041@linux.ibm.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 2 Jun 2022 09:06:58 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ5MN9VGMFiDQx-1dod_=n=6HP4pvizpZ6qbcz89+hyXQ@mail.gmail.com>
+Message-ID: <CAL_JsqJ5MN9VGMFiDQx-1dod_=n=6HP4pvizpZ6qbcz89+hyXQ@mail.gmail.com>
+Subject: Re: [PATCH 1/3] of: dynamic: add of_property_alloc() and of_property_free()
+To:     Tyrel Datwyler <tyreld@linux.ibm.com>
+Cc:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        Nathan Lynch <nathanl@linux.ibm.com>,
+        devicetree@vger.kernel.org, Ohhoon Kwon <ohoono.kwon@samsung.com>,
+        David Hildenbrand <david@redhat.com>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        Daniel Henrique Barboza <danielhb413@gmail.com>,
+        YueHaibing <yuehaibing@huawei.com>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Paul Mackerras <paulus@samba.org>,
+        "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Laurent Dufour <ldufour@linux.ibm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        David Gibson <david@gibson.dropbear.id.au>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 2, 2022 at 3:57 PM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
-> On Thu, Jun 2, 2022 at 2:07 PM szuni chen <szunichen@gmail.com> wrote:
-> > Andy Shevchenko <andy.shevchenko@gmail.com> =E6=96=BC 2022=E5=B9=B46=E6=
-=9C=881=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=885:57=E5=AF=AB=E9=81=
-=93=EF=BC=9A
-> > > On Tue, May 31, 2022 at 1:32 PM ChiaEn Wu <peterwu.pub@gmail.com> wro=
-te:
-...
-
-> > > > +       const char * const states[] =3D { "off", "keep", "on" };
-> > > > +       const char *str;
-> > > > +       int ret;
-> > > > +
-> > > > +       if (!fwnode_property_read_string(init_data->fwnode,
-> > > > +                                        "default-state", &str)) {
-> > > > +               ret =3D match_string(states, ARRAY_SIZE(states), st=
-r);
-> > > > +               if (ret < 0)
-> > > > +                       ret =3D STATE_OFF;
-> > > > +
-> > > > +               led->default_state =3D ret;
-> > > > +       }
-> > >
-> > > fwnode_property_match_string()?
-> > Sorry, but I think the use of this function is different from my target=
-.
-> > I want to read the string of the "default-state" property and figure
-> > out if the string is in the states array.
-> > But the fwnode_property_match_string aimed to figure out if the state
-> > in the property array.
-> > One is a property array and another one is a state array.
+On Wed, Jun 1, 2022 at 5:31 PM Tyrel Datwyler <tyreld@linux.ibm.com> wrote:
 >
-> Ah, indeed. Nevertheless you may reduce the code base by doing like
-> the following (I wonder what your code do if there is no default-state
-> property):
+> On 5/5/22 12:37, Rob Herring wrote:
+> > On Wed, May 04, 2022 at 05:40:31PM +0200, Cl=C3=A9ment L=C3=A9ger wrote=
+:
+> >> Add function which allows to dynamically allocate and free properties.
+> >> Use this function internally for all code that used the same logic
+> >> (mainly __of_prop_dup()).
+> >>
+> >> Signed-off-by: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
+> >> ---
+> >>  drivers/of/dynamic.c | 101 ++++++++++++++++++++++++++++++------------=
+-
+> >>  include/linux/of.h   |  16 +++++++
+> >>  2 files changed, 88 insertions(+), 29 deletions(-)
+> >>
+> >> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+> >> index cd3821a6444f..e8700e509d2e 100644
+> >> --- a/drivers/of/dynamic.c
+> >> +++ b/drivers/of/dynamic.c
+> >> @@ -313,9 +313,7 @@ static void property_list_free(struct property *pr=
+op_list)
+> >>
+> >>      for (prop =3D prop_list; prop !=3D NULL; prop =3D next) {
+> >>              next =3D prop->next;
+> >> -            kfree(prop->name);
+> >> -            kfree(prop->value);
+> >> -            kfree(prop);
+> >> +            of_property_free(prop);
+> >>      }
+> >>  }
+> >>
+> >> @@ -367,48 +365,95 @@ void of_node_release(struct kobject *kobj)
+> >>  }
+> >>
+> >>  /**
+> >> - * __of_prop_dup - Copy a property dynamically.
+> >> - * @prop:   Property to copy
+> >> + * of_property_free - Free a property allocated dynamically.
+> >> + * @prop:   Property to be freed
+> >> + */
+> >> +void of_property_free(const struct property *prop)
+> >> +{
+> >> +    kfree(prop->value);
+> >> +    kfree(prop->name);
+> >> +    kfree(prop);
+> >> +}
+> >> +EXPORT_SYMBOL(of_property_free);
+> >> +
+> >> +/**
+> >> + * of_property_alloc - Allocate a property dynamically.
+> >> + * @name:   Name of the new property
+> >> + * @value:  Value that will be copied into the new property value
+> >> + * @value_len:      length of @value to be copied into the new proper=
+ty value
+> >> + * @len:    Length of new property value, must be greater than @value=
+_len
+> >
+> > What's the usecase for the lengths being different? That doesn't seem
+> > like a common case, so perhaps handle it with a NULL value and
+> > non-zero length. Then the caller has to deal with populating
+> > prop->value.
+> >
+> >>   * @allocflags:     Allocation flags (typically pass GFP_KERNEL)
+> >>   *
+> >> - * Copy a property by dynamically allocating the memory of both the
+> >> + * Create a property by dynamically allocating the memory of both the
+> >>   * property structure and the property name & contents. The property'=
+s
+> >>   * flags have the OF_DYNAMIC bit set so that we can differentiate bet=
+ween
+> >>   * dynamically allocated properties and not.
+> >>   *
+> >>   * Return: The newly allocated property or NULL on out of memory erro=
+r.
+> >>   */
+> >> -struct property *__of_prop_dup(const struct property *prop, gfp_t all=
+ocflags)
+> >> +struct property *of_property_alloc(const char *name, const void *valu=
+e,
+> >> +                               int value_len, int len, gfp_t allocfla=
+gs)
+> >>  {
+> >> -    struct property *new;
+> >> +    int alloc_len =3D len;
+> >> +    struct property *prop;
+> >> +
+> >> +    if (len < value_len)
+> >> +            return NULL;
+> >>
+> >> -    new =3D kzalloc(sizeof(*new), allocflags);
+> >> -    if (!new)
+> >> +    prop =3D kzalloc(sizeof(*prop), allocflags);
+> >> +    if (!prop)
+> >>              return NULL;
+> >>
+> >> +    prop->name =3D kstrdup(name, allocflags);
+> >> +    if (!prop->name)
+> >> +            goto out_err;
+> >> +
+> >>      /*
+> >> -     * NOTE: There is no check for zero length value.
+> >> -     * In case of a boolean property, this will allocate a value
+> >> -     * of zero bytes. We do this to work around the use
+> >> -     * of of_get_property() calls on boolean values.
+> >> +     * Even if the property has no value, it must be set to a
+> >> +     * non-null value since of_get_property() is used to check
+> >> +     * some values that might or not have a values (ranges for
+> >> +     * instance). Moreover, when the node is released, prop->value
+> >> +     * is kfreed so the memory must come from kmalloc.
+> >
+> > Allowing for NULL value didn't turn out well...
+> >
+> > We know that we can do the kfree because OF_DYNAMIC is set IIRC...
+> >
+> > If we do 1 allocation for prop and value, then we can test
+> > for "prop->value =3D=3D prop + 1" to determine if we need to free or no=
+t.
 >
->   led->default_state =3D STATE_OFF; // it's by default off since
-> kzalloc(), so I don't see why we need this line at all.
->
->   fwnode_property_read_string(init_data->fwnode, "default-state", &str);
->   ret =3D match_string(states, ARRAY_SIZE(states), str);
->   if (ret >=3D 0)
->     led->default_state =3D ret;
+> If its a single allocation do we even need a test? Doesn't kfree(prop) ta=
+ke care
+> of the property and the trailing memory allocated for the value?
 
-Missed change
+Yes, it does when it's a single alloc, but it's testing for when
+prop->value is not a single allocation because we could have either.
 
-  const char *str =3D states[STATE_OFF];
-
---=20
-With Best Regards,
-Andy Shevchenko
+Rob
