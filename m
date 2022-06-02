@@ -2,148 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4123053B7F3
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 13:42:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 099A953B7FC
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 13:45:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233544AbiFBLm2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 07:42:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43970 "EHLO
+        id S233689AbiFBLpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 07:45:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232316AbiFBLm0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 07:42:26 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05EC85FF09
-        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 04:42:25 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id o10so5905004edi.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Jun 2022 04:42:24 -0700 (PDT)
+        with ESMTP id S232261AbiFBLpP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 07:45:15 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0429923E81B;
+        Thu,  2 Jun 2022 04:45:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ZpLQeQeQdZ8PTsl6QzkAMoq8cM5CGyVXLb6GbT76BN8=;
-        b=Lmlc5otPHPBiZqkehmSeYYqoo3/95heIBc/+gbh6YpzM/0f5eOv/657FiggDeOdJjA
-         4J43hf8bVwXMpb0QsHXqeDF3g/VVBtJyp67DlPLL3/uZZSBWsiWC+2WWkPTBZ/80Yx+f
-         TjbXUu4yFkpE02sn2O+JMok11f/baTwo6w/ywXd2N0cUMSWAbMCp/bU6Xn3Y5OxeqX91
-         dcJQTdK/9cYOgRM5aj2bC0QicxU6EXnhN3cGZozrGWhUiB136eXah1Mfwjtw8tirTvC3
-         yBAoOIhXkBDAYWdKobyKN9QnwhMgGzkgNhJIkZEPW+9dQtudnM4udrjBFbg0hy409Bki
-         Zuew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ZpLQeQeQdZ8PTsl6QzkAMoq8cM5CGyVXLb6GbT76BN8=;
-        b=71qN0Q2M9jfMuj0Pm1p0ONsuMuL3MBkeFDFzKZWsF35zjmqnv9Ljn2Huxw2xEENPGt
-         /Sylcd9ZaJHi9Q8rQkFGGAa5Pyvc0jlSpDQHj55qHb5Cj3lnOmvMgzG2zqyCahv1vlUi
-         NYr3MoW8BYngAhSPfDOU1QdDPoqFeo3ZB0wyiRtBt6MiD3xE9HiJgrX+wAwASAccOf3l
-         cFkdCE5GEFcGksSSlbRhHgor+irxtos59gm6Is4YQMy8+UtUiHPcd8icxpQ7nl1vsLiY
-         URzVV4tY5Kw+lk2WqXXiZlz/D2J6KR/M96RRz+8oAebBSMaepNLVxAoAPj2NubcQWWWb
-         5gXQ==
-X-Gm-Message-State: AOAM530eS2XlwzpG9Vg0cuwLfRF//3qO/pYd/ROsEgP69j9Ytl9NaxpW
-        R37PkwejIZ75GTJQYDyi+epsQA==
-X-Google-Smtp-Source: ABdhPJwMBE3w8FcUsIappA+XgJgb3UE5rqzszgUOgdP3LXRDNy7ES7plawOr1PMvjECiQYsVoZm8Zg==
-X-Received: by 2002:aa7:cb8d:0:b0:42b:e414:8019 with SMTP id r13-20020aa7cb8d000000b0042be4148019mr5000940edt.151.1654170143563;
-        Thu, 02 Jun 2022 04:42:23 -0700 (PDT)
-Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id cq16-20020a056402221000b0042dd022787esm2325479edb.6.2022.06.02.04.42.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Jun 2022 04:42:23 -0700 (PDT)
-Message-ID: <b5cf82bc-363a-81f8-e3ad-7671c7c0ca4f@linaro.org>
-Date:   Thu, 2 Jun 2022 13:42:22 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 1/6] dt-bindings: phy: samsung,ufs-phy: make pmu-syscon
- as phandle-array
-Content-Language: en-US
-To:     Chanho Park <chanho61.park@samsung.com>,
-        'Kishon Vijay Abraham I' <kishon@ti.com>,
-        'Vinod Koul' <vkoul@kernel.org>,
-        'Alim Akhtar' <alim.akhtar@samsung.com>,
-        'Rob Herring' <robh+dt@kernel.org>,
-        'Krzysztof Kozlowski' <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220602053250.62593-1-chanho61.park@samsung.com>
- <CGME20220602053329epcas2p4c2baca2d161814f5d51dc48722f904b1@epcas2p4.samsung.com>
- <20220602053250.62593-2-chanho61.park@samsung.com>
- <44fceb66-fd33-4b2d-fe8e-9a1a5837a51a@linaro.org>
- <b16915f7-a4b7-4512-77fb-b2cdd8e7cdb4@linaro.org>
- <035e01d87668$fb2bfcf0$f183f6d0$@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <035e01d87668$fb2bfcf0$f183f6d0$@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1654170313; x=1685706313;
+  h=from:to:cc:subject:date:message-id;
+  bh=jZs+r52Mv7mXvxyvHC1ypo2alqQAFg/mwfpNHeYvRlM=;
+  b=bF7F9OHeILnn0kwREym0LM6QTQ1uRM5o3WwZgnkWkYwQ3RN95z20HGod
+   m9QQ76LniJt1BqH5K0S5Syqt4FrOOtCqjKQ53R2/UMfGaG/azGwFcX1es
+   lsCl5X3l3hX8CxjuZ0lFrACKNcaTnuHk4SdPqUHs3URahBg6Cgar2cMy6
+   o=;
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+  by alexa-out.qualcomm.com with ESMTP; 02 Jun 2022 04:45:12 -0700
+X-QCInternal: smtphost
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 02 Jun 2022 04:45:11 -0700
+X-QCInternal: smtphost
+Received: from c-sbhanu-linux.qualcomm.com ([10.242.50.201])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 02 Jun 2022 17:14:53 +0530
+Received: by c-sbhanu-linux.qualcomm.com (Postfix, from userid 2344807)
+        id 1B8351733; Thu,  2 Jun 2022 17:14:52 +0530 (IST)
+From:   Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>
+To:     ulf.hansson@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, bhupesh.sharma@linaro.org
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_rampraka@quicinc.com,
+        quic_pragalla@quicinc.com, quic_sartgarg@quicinc.com,
+        quic_nitirawa@quicinc.com, quic_sayalil@quicinc.com,
+        Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>
+Subject: [PATCH V5] dt-bindings: mmc: sdhci-msm: Add gcc resets strings
+Date:   Thu,  2 Jun 2022 17:14:51 +0530
+Message-Id: <1654170291-29910-1-git-send-email-quic_c_sbhanu@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/06/2022 12:10, Chanho Park wrote:
->>>>    samsung,pmu-syscon:
->>>> -    $ref: '/schemas/types.yaml#/definitions/phandle'
->>>> -    description: phandle for PMU system controller interface, used to
->>>> -                 control pmu registers bits for ufs m-phy
->>>> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
->>>> +    items:
->>>> +      minItems: 1
->>>> +      items:
->>>> +        - description: phandle for PMU system controller interface, used
->> to
->>>> +                       control pmu registers bits for ufs m-phy
->>>> +        - description: offset of the pmu control register
->>>
->>> This does not work... Please test your bindings with different cases.
->>
->> Just to be clear - when I mentioned that minItems should be on second
->> items level, I meant it should affect the second items list, not the first.
->> Now you can have 1, 2 or 10 phandles.
-> 
-> I put the minItems to the second level as you mentioned but I got below error from dt_binding_check.
-> 
-> --- a/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
-> @@ -42,8 +42,8 @@ properties:
->    samsung,pmu-syscon:
->      $ref: '/schemas/types.yaml#/definitions/phandle-array'
->      items:
-> -      minItems: 1
->        items:
-> +        - minItems: 1
+Add gcc hardware reset supported strings for qcom-sdhci controller
 
-Ah, you are right. This above is not good, but your original code was
-almost good. I think it should be:
+Signed-off-by: Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Changes since V4:
+	- Updated Dt bindings changes YAML format as suggested by
+	  Ulf Hansson.
 
-43     $ref: '/schemas/types.yaml#/definitions/phandle-array'
+Changes since V3:
+	- Removed reset-names from DT bindings as suggested by
+	  Stephen Boyd.
+---
+ Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-44     maxItems: 1
+diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+index e423633..5548c35 100644
+--- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
++++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+@@ -121,6 +121,9 @@ properties:
+     description: A phandle to sdhci power domain node
+     maxItems: 1
+ 
++  resets:
++    description: Phandle and reset specifier for the device's reset.
++
+ patternProperties:
+   '^opp-table(-[a-z0-9]+)?$':
+     if:
+@@ -157,6 +160,8 @@ examples:
+                    <GIC_SPI 222 IRQ_TYPE_LEVEL_HIGH>;
+       interrupt-names = "hc_irq", "pwr_irq";
+ 
++      resets = <&gcc GCC_SDCC2_BCR>;
++
+       clocks = <&gcc GCC_SDCC2_AHB_CLK>,
+                <&gcc GCC_SDCC2_APPS_CLK>,
+                <&rpmhcc RPMH_CXO_CLK>;
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+of Code Aurora Forum, hosted by The Linux Foundation
 
-45     items:
-
-46       minItems: 1
-
-47       items:
-
-48         - description: phandle for PMU sysused to
-
-50         - description: offset of the pmu control register
-
-
-Apologies for the confusion.
-
->          - description: phandle for PMU system controller interface, used to
->                         control pmu registers bits for ufs m-phy
->          - description: offset of the pmu control register
-> 
-> $ make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
-> ufs-phy@15571800: samsung,pmu-syscon:0: [4294967295, 1828] is too short
-
-
-Best regards,
-Krzysztof
