@@ -2,77 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E30353BBA1
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 17:34:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9815153BBD0
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 17:48:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232539AbiFBPeN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 11:34:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44784 "EHLO
+        id S236568AbiFBPr5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 11:47:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236463AbiFBPeM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 11:34:12 -0400
-Received: from smtp11.infineon.com (smtp11.infineon.com [IPv6:2a00:18f0:1e00:4::5])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C10CB6336;
-        Thu,  2 Jun 2022 08:34:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=infineon.com; i=@infineon.com; q=dns/txt; s=IFXMAIL;
-  t=1654184052; x=1685720052;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=NaptGli6AOoeUXxpOL2sqin3JfkzCT2Gc/mijZZ4Gfw=;
-  b=fNvt1mJkvPC+GOTWDcr6ah+ZiwEsGNpTM+RlOGsUBUfIlzExUT+Rucvh
-   D4cYiGbs87+E+rf7eYHNRGoQHb+ohmUr6rekMXUgmAezNZzqhjjwfoyh7
-   eHsUpaong4I+nZmef8co0Ia+ZdwFXNggdgeITi7Fy4j8mPZetJG/UGpyG
-   A=;
-X-SBRS: None
-X-IronPort-AV: E=McAfee;i="6400,9594,10366"; a="299394977"
-X-IronPort-AV: E=Sophos;i="5.91,271,1647298800"; 
-   d="scan'208";a="299394977"
-Received: from unknown (HELO mucxv003.muc.infineon.com) ([172.23.11.20])
-  by smtp11.infineon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2022 17:34:09 +0200
-Received: from MUCSE819.infineon.com (MUCSE819.infineon.com [172.23.29.45])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S236561AbiFBPr4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 11:47:56 -0400
+Received: from ixit.cz (ip-94-112-206-30.net.upcbroadband.cz [94.112.206.30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC9E41A04E;
+        Thu,  2 Jun 2022 08:47:51 -0700 (PDT)
+Received: from [192.168.43.127] (unknown [89.24.43.208])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by mucxv003.muc.infineon.com (Postfix) with ESMTPS;
-        Thu,  2 Jun 2022 17:34:08 +0200 (CEST)
-Received: from MUCSE817.infineon.com (172.23.29.43) by MUCSE819.infineon.com
- (172.23.29.45) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.26; Thu, 2 Jun 2022
- 17:34:08 +0200
-Received: from [10.165.68.85] (10.165.68.85) by MUCSE817.infineon.com
- (172.23.29.43) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.26; Thu, 2 Jun 2022
- 17:34:07 +0200
-Message-ID: <aa5a8e73-b9b4-38e7-4f85-2bf309a346e0@infineon.com>
-Date:   Thu, 2 Jun 2022 17:34:07 +0200
+        by ixit.cz (Postfix) with ESMTPSA id 0C4AF2007F;
+        Thu,  2 Jun 2022 17:47:47 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1654184868;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=cFipLSaSNt6AVZj+ipJuiWLqxOfkAwoPaoKp6HET13A=;
+        b=Px/3AEjj0ms3qrktWNl/+/H/NLVeovGt6F4eeiEjwwtQcKAJTH+lymb0lVYTNIiH99/Cko
+        zTHPO5GcDkbMou8ZNea8hjm4k+lRoHY5jz/lNOPbF+HTMHTEenckKoJjG+81ah0hs1PHQO
+        sS+EjBpCDaEoaWjA+oqggXoDirxalwk=
+Message-ID: <9a7b3be5-f75d-d269-1113-f2865e9c4919@ixit.cz>
+Date:   Thu, 2 Jun 2022 17:47:43 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v4 1/3] dt-bindings: trivial-devices: Add two I2C TPM
- devices
+ Thunderbird/91.9.0
+Subject: Re: [PATCH 4/4] dt-bindings: power: supply: summit,smb347: use
+ absolute path to schema
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     <jarkko@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-integrity@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <peterhuewe@gmx.de>, <jgg@ziepe.ca>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        Johannes Holland <johannes.holland@infineon.com>,
-        Amir Mizinski <amirmizi6@gmail.com>
-References: <20220525165849.7789-1-Alexander.Steffen@infineon.com>
- <20220525165849.7789-2-Alexander.Steffen@infineon.com>
- <8c4941a1-e047-1352-32ba-8595cd0143f0@linaro.org>
- <20220602134848.GA2178372-robh@kernel.org>
-From:   Alexander Steffen <Alexander.Steffen@infineon.com>
-In-Reply-To: <20220602134848.GA2178372-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dmitry Osipenko <digetx@gmail.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220601071911.6435-1-krzysztof.kozlowski@linaro.org>
+ <20220601071911.6435-4-krzysztof.kozlowski@linaro.org>
+From:   David Heidelberg <david@ixit.cz>
+In-Reply-To: <20220601071911.6435-4-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.165.68.85]
-X-ClientProxiedBy: MUCSE807.infineon.com (172.23.29.33) To
- MUCSE817.infineon.com (172.23.29.43)
-X-Spam-Status: No, score=-9.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RDNS_DYNAMIC,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,51 +60,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02.06.22 15:48, Rob Herring wrote:
-> On Thu, May 26, 2022 at 02:29:56PM +0200, Krzysztof Kozlowski wrote:
->> On 25/05/2022 18:58, Alexander Steffen wrote:
->>> Both are supported by the upcoming tpm_tis_i2c driver.
->>>
->>> Signed-off-by: Alexander Steffen <Alexander.Steffen@infineon.com>
->>> ---
->>>   Documentation/devicetree/bindings/trivial-devices.yaml | 4 ++++
->>>   1 file changed, 4 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
->>> index 550a2e5c9e05..dc52822331dd 100644
->>> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
->>> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
->>> @@ -135,6 +135,8 @@ properties:
->>>             - infineon,slb9635tt
->>>               # Infineon SLB9645 I2C TPM (new protocol, max 400khz)
->>>             - infineon,slb9645tt
->>> +            # Infineon SLB9673 I2C TPM 2.0
->>> +          - infineon,slb9673
->>>               # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
->>>             - infineon,tlv493d-a1b6
->>>               # Infineon Multi-phase Digital VR Controller xdpe11280
->>> @@ -323,6 +325,8 @@ properties:
->>>             - st,24c256
->>>               # Ambient Light Sensor with SMBUS/Two Wire Serial Interface
->>>             - taos,tsl2550
->>> +            # TCG TIS-compliant TPM with I2C interface
->>> +          - tcg,tpm_tis-i2c
->>
->> One flavor uses tpm-tis, another tpm_tis... I guess it is too late to
->> make it consistent, but let's stick to the one more reasonable, so:
->> "tpm-tis-i2c".
-> 
-> Neither should be used except perhaps as a fallback.
+Reviewed-by: David Heidelberg <david@ixit.cz>
 
-That is the intention, yes.
+On 01/06/2022 09:19, Krzysztof Kozlowski wrote:
+> Reference regulator schema by absolute path, as expected by DT schema
+> coding style.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>   .../devicetree/bindings/power/supply/summit,smb347-charger.yaml | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/power/supply/summit,smb347-charger.yaml b/Documentation/devicetree/bindings/power/supply/summit,smb347-charger.yaml
+> index 20862cdfc116..ce0bca4689f6 100644
+> --- a/Documentation/devicetree/bindings/power/supply/summit,smb347-charger.yaml
+> +++ b/Documentation/devicetree/bindings/power/supply/summit,smb347-charger.yaml
+> @@ -82,7 +82,7 @@ properties:
+>         - 1 # SMB3XX_SYSOK_INOK_ACTIVE_HIGH
+>   
+>     usb-vbus:
+> -    $ref: "../../regulator/regulator.yaml#"
+> +    $ref: /schemas/regulator/regulator.yaml#
+>       type: object
+>   
+>       properties:
 
-> Does 'TCG TIS-compliant TPM' encompass every property of a device? Power
-> supplies, resets, interrupts, quirks, etc.?
+-- 
+David Heidelberg
+Consultant Software Engineer
 
-In an ideal world, yes. In practice, of course implementations do have 
-bugs that might require different workarounds. By selecting 
-tcg,tpm-tis-i2c instead of anything more specific, you promise that the 
-device is fully compliant to the TCG specification and does not require 
-any such workarounds.
+Matrix: @okias:matrix.org
 
-Alexander
