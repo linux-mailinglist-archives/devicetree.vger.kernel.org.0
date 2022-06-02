@@ -2,84 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A466A53B91F
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 14:49:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73E0653B938
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 14:58:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235052AbiFBMtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 08:49:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38858 "EHLO
+        id S235089AbiFBM6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 08:58:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233380AbiFBMtk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 08:49:40 -0400
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 044C88CB3D;
-        Thu,  2 Jun 2022 05:49:39 -0700 (PDT)
-Received: by mail-ot1-f46.google.com with SMTP id n2-20020a9d6f02000000b0060b22af84d4so3330316otq.1;
-        Thu, 02 Jun 2022 05:49:38 -0700 (PDT)
+        with ESMTP id S231722AbiFBM6v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 08:58:51 -0400
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF666267CD9;
+        Thu,  2 Jun 2022 05:58:48 -0700 (PDT)
+Received: by mail-oi1-f181.google.com with SMTP id k11so6369216oia.12;
+        Thu, 02 Jun 2022 05:58:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=8dHaiY0Rl5CB2hlVFjBwyD0ro7wqlVHrD/ueJdsNs5w=;
-        b=6sAo5I2S5fr2pTO8Z+JJjhpBHqH5hqDBbLKmJpQp7eZgOKoueDIc+XDxNh2vMNcp3L
-         OuxeP/AyycqK/fKjmG3d6DK+vQnXVS1FAbZjS6zJ2CYrlRDP0MBppA7mfEv7o+LEJheB
-         s6qgtHBy3pcFyLH4xXcFZ1HlLuAtG/DxL9tIBSXPz81BhHXKDdlk2T4hkxAI/6m8jP8Z
-         1A6Je9uGuGW7UxJgKq0a/dJs7QgIUqzLTR0/gLM+t86HhlDBkkhE7XZ2GUMTjWFNDMAy
-         MT/ydVGAHPujKqHeafjIYous9jDbcm0/yG5fuGWFb3LV9faa2L8w2xMeO7GrjediohjX
-         p1hg==
-X-Gm-Message-State: AOAM533VENV921LXQL0zkOtIsa25e41PdclvdAGoMEqIcje9yOKGGPGY
-        R8emjqt2kvoDQKS6X8pKKQ==
-X-Google-Smtp-Source: ABdhPJzGQ+0esaEVqZtsiqfxX6F+CFNBtiYt+ADsEwVkoNhGaffdmgNuiBU2eTXBKMCVnt0NNFUk/g==
-X-Received: by 2002:a05:6830:2641:b0:606:afb8:8aca with SMTP id f1-20020a056830264100b00606afb88acamr1944888otu.52.1654174178213;
-        Thu, 02 Jun 2022 05:49:38 -0700 (PDT)
+        bh=9Sl40eTqdPmzEKppcJA4FQwmfcLIIy0ie+JY3OH9t8Y=;
+        b=1Kgs5Vr4Qhz/YHIeBZiOW5mBeQ9cwjp8wd+G5DpNxr7cZJMM8JQvM47O2KqnpL/OHX
+         rl6oAp4RQYr73PQPBHs8PVcQDG5FAi9bqn8uuaeO8Cxky1DxrEgYEddRuvnualyHlpcw
+         yhyM/z9hskI2QkgA+O0fMfRO3ZyRQeTYcff+m47UR+iYmbp4oEPTh+fQHwzopqM7JIbh
+         dH00bfST1NCQTitMfNRrPX4ce2rd+rgJpc5SdaqIJilzao15Uluf+B8liJJst27QzJEg
+         MHY+YV911KNZn/vSAUwzBOwPBNUVll1WL8I6sgmVDRdWYpK+bzlVloxw0WG0SKnXRifm
+         Zp4Q==
+X-Gm-Message-State: AOAM532gc15+1k/IMn8TX9rpwNaZ3Dmxo1vnhgc0COzuK9ZNfcegYF+0
+        buAYYNirpuWP2UJVkOFgM00b9QD10w==
+X-Google-Smtp-Source: ABdhPJwH6fy65rUHt6Lx51K//7iArjhtsHzTFqg2VRAtu11CoBlEcwO2/HjeRWn2atnzqNt3dkCjhg==
+X-Received: by 2002:a05:6808:1584:b0:32b:314a:54ef with SMTP id t4-20020a056808158400b0032b314a54efmr17995256oiw.41.1654174727364;
+        Thu, 02 Jun 2022 05:58:47 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id i23-20020a056808055700b00325cda1ff9fsm2272530oig.30.2022.06.02.05.49.37
+        by smtp.gmail.com with ESMTPSA id 63-20020aca0542000000b00325643bce40sm2314868oif.0.2022.06.02.05.58.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Jun 2022 05:49:37 -0700 (PDT)
-Received: (nullmailer pid 2079249 invoked by uid 1000);
-        Thu, 02 Jun 2022 12:49:36 -0000
-Date:   Thu, 2 Jun 2022 07:49:36 -0500
+        Thu, 02 Jun 2022 05:58:46 -0700 (PDT)
+Received: (nullmailer pid 2095464 invoked by uid 1000);
+        Thu, 02 Jun 2022 12:58:45 -0000
+Date:   Thu, 2 Jun 2022 07:58:45 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Junhao Xie <bigfoot@classfun.cn>
-Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, keescook@chromium.org,
-        anton@enomsg.org, ccross@android.com, tony.luck@intel.com,
-        angelogioacchino.delregno@somainline.org,
-        konrad.dybcio@somainline.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] drm: panel: Add samsung fhd-ea8076 panel driver
-Message-ID: <20220602124936.GA2077271-robh@kernel.org>
-References: <20220521053156.1374185-1-bigfoot@classfun.cn>
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, gregkh@linuxfoundation.org,
+        sboyd@kernel.org, olof@lixom.net, venture@google.com,
+        vkoul@kernel.org, jirislaby@kernel.org,
+        nobuhiro1.iwamatsu@toshiba.co.jp, arnd@arndb.de,
+        daniel.lezcano@linaro.org, joel@jms.id.au, soc@kernel.org,
+        devicetree@vger.kernel.org, tali.perry1@gmail.com, will@kernel.org,
+        catalin.marinas@arm.com, linux@roeck-us.net,
+        linux-serial@vger.kernel.org, bjorn.andersson@linaro.org,
+        linux-watchdog@vger.kernel.org, shawnguo@kernel.org,
+        linux-arm-kernel@lists.infradead.org, j.neuschaefer@gmx.net,
+        wim@linux-watchdog.org, krzysztof.kozlowski+dt@linaro.org,
+        benjaminfair@google.com, mturquette@baylibre.com,
+        p.zabel@pengutronix.de, linux-clk@vger.kernel.org,
+        avifishman70@gmail.com, geert+renesas@glider.be, yuenn@google.com,
+        tglx@linutronix.de, robh+dt@kernel.org,
+        marcel.ziswiler@toradex.com, biju.das.jz@bp.renesas.com,
+        robert.hancock@calian.com, lkundrak@v3.sk
+Subject: Re: [PATCH v1 13/19] dt-bindings: arm: npcm: Add maintainer
+Message-ID: <20220602125845.GA2095431-robh@kernel.org>
+References: <20220522155046.260146-1-tmaimon77@gmail.com>
+ <20220522155046.260146-14-tmaimon77@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220521053156.1374185-1-bigfoot@classfun.cn>
+In-Reply-To: <20220522155046.260146-14-tmaimon77@gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, May 21, 2022 at 01:31:55PM +0800, Junhao Xie wrote:
-> Add Samsung Full HD EA8076 panel with a resolution of 2340x1080@60Hz
+On Sun, 22 May 2022 18:50:40 +0300, Tomer Maimon wrote:
+> Add Tomer Maimon to the maintainers list.
 > 
-> Xiaomi MIX 3 smartphone uses this panel
-> 
-> Signed-off-by: Junhao Xie <bigfoot@classfun.cn>
+> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
 > ---
->  .../display/panel/panel-simple-dsi.yaml       |   2 +
+>  Documentation/devicetree/bindings/arm/npcm/npcm.yaml        | 1 +
+>  Documentation/devicetree/bindings/arm/npcm/nuvoton,gcr.yaml | 1 +
+>  2 files changed, 2 insertions(+)
+> 
 
 Acked-by: Rob Herring <robh@kernel.org>
-
-In the future, bindings should be a separate patch.
-
->  drivers/gpu/drm/panel/Kconfig                 |  10 +
->  drivers/gpu/drm/panel/Makefile                |   1 +
->  .../gpu/drm/panel/panel-samsung-fhd-ea8076.c  | 339 ++++++++++++++++++
->  4 files changed, 352 insertions(+)
->  create mode 100644 drivers/gpu/drm/panel/panel-samsung-fhd-ea8076.c
