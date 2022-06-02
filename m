@@ -2,102 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDE9C53B3BC
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 08:42:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4273253B3CC
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 08:45:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231340AbiFBGmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 02:42:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39092 "EHLO
+        id S229895AbiFBGok (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 02:44:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230210AbiFBGmM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 02:42:12 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0815E33372
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 23:42:10 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id fu3so6574975ejc.7
-        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 23:42:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=YcVxfDa9LvCUOkqeRnWeJHFwW9LiD3rmlRjajceH05M=;
-        b=MJXE1rnhYI4EtbgnAGDkzJmgeAz5fHOoCVrAd7HfHDIK4UKQTyK3j+GfE6/mDGwnMe
-         IkOjUpb2DVq2VAD7M5BZYUsn/2jBIpzfKERlpGokDCM+jIJe+q/dZziGQMoBiny+HN9m
-         Bh0jT7xuHaPt/137bjd4VVJzkYpgITu/W2fi3sWXsk1IP1rJ8mwSF14HwiaHHNcopaD4
-         Ch+NyQTsIegQfpouRCcN5awRjiWR5RYaSZLPGsH8nub20euyI07Uiy1UPBiLxJlofmvH
-         utu7pZvoqMHMtamUPH8zH1QkO3WSBuat/f2k1EF/zMQfZ+DTIFjjXAS9goBT8mHa7klX
-         +d1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=YcVxfDa9LvCUOkqeRnWeJHFwW9LiD3rmlRjajceH05M=;
-        b=hvjTM3OmUbJRepNl2CmRuYfhST2WeP0b5ty7Ff15woUjd1GiNRxqxKK/6dI605IIsV
-         v2THQO/miLKWeUkHsfiQOml6ehWFO7pWGntGOmkVRFWt+M8SYx6VOlqpEGPTSXnVBZIl
-         zVStSHrfGNsOScrhp7mlmVuNdglXOdweoUM1bDZnxUNvYcrwV0qG7fxJOl5gmsfTzR5D
-         Hiw2f217sqQ8jbCcZWN9WwbFJvrphwuT2MVvvlbu0P4bLnTmTz8WBpwhsogT1NvjoM+u
-         zp7fZ6WRVic4CKpte8EDRLJ2EVRcfn/Pp5bxuzQ+csGQb0JNBFJNrUpLwiQBeQHPwBoH
-         Soug==
-X-Gm-Message-State: AOAM531GJJAmefTHMm6BHyfvXzUmOTdN6MUWhSzZt7lvSC1/IoeIdevE
-        iKk8CFbOjjrZ2sP0EIZW/FDxgw==
-X-Google-Smtp-Source: ABdhPJw8/Sb3u1AXrdJHsfhBh0XKfSg6ceuAhBGJDSd8b17kHdSaHMdFbuG171xpt21Hmqv9rRT5DA==
-X-Received: by 2002:a17:907:6d14:b0:6fe:d86e:7e1a with SMTP id sa20-20020a1709076d1400b006fed86e7e1amr2829800ejc.615.1654152128590;
-        Wed, 01 Jun 2022 23:42:08 -0700 (PDT)
-Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id j12-20020a170906254c00b0070759e37183sm1392910ejb.59.2022.06.01.23.42.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Jun 2022 23:42:08 -0700 (PDT)
-Message-ID: <4f82e7e6-5c36-928c-0b76-c342dbb1e5ba@linaro.org>
-Date:   Thu, 2 Jun 2022 08:42:07 +0200
+        with ESMTP id S231401AbiFBGog (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 02:44:36 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71FD89A988;
+        Wed,  1 Jun 2022 23:44:34 -0700 (PDT)
+X-UUID: f3e7fe5f7e3548a5b655106bafce5478-20220602
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:ace17e4b-e989-4f5b-ad01-201b48944afc,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:-5
+X-CID-META: VersionHash:2a19b09,CLOUDID:ec2adc37-9855-4915-a138-f5705f1f3d02,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
+        ,QS:0,BEC:nil
+X-UUID: f3e7fe5f7e3548a5b655106bafce5478-20220602
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <tinghan.shen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1851618249; Thu, 02 Jun 2022 14:44:32 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Thu, 2 Jun 2022 14:44:31 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Thu, 2 Jun 2022 14:44:31 +0800
+Message-ID: <eb4deff1a01c09783518bbaff8fe4e4c4ca6fa5b.camel@mediatek.com>
+Subject: Re: [PATCH v1] dt-bindings: dsp: mediatek: add mt8186 dsp document
+From:   Tinghan Shen <tinghan.shen@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Thu, 2 Jun 2022 14:44:31 +0800
+In-Reply-To: <c0a188e5-8a8c-d4a3-5a3d-9b9dd85d8f44@linaro.org>
+References: <20220422071534.15653-1-tinghan.shen@mediatek.com>
+         <c0a188e5-8a8c-d4a3-5a3d-9b9dd85d8f44@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v2 5/5] dt-bindings: altera: Add Chameleon v3 board
-Content-Language: en-US
-To:     =?UTF-8?Q?Pawe=c5=82_Anikiel?= <pan@semihalf.com>, soc@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     arnd@arndb.de, olof@lixom.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, dinguyen@kernel.org,
-        amstan@chromium.org, upstream@semihalf.com
-References: <20220601154647.80071-1-pan@semihalf.com>
- <20220601154647.80071-6-pan@semihalf.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220601154647.80071-6-pan@semihalf.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_BLACK
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/06/2022 17:46, Paweł Anikiel wrote:
-> Add Chameleon v3 to Arria 10 boards.
+Hi Krzysztof,
+
+Thanks for your review and sorry for late response.
+
+On Fri, 2022-04-22 at 17:49 +0200, Krzysztof Kozlowski wrote:
+> On 22/04/2022 09:15, Tinghan Shen wrote:
+> > This patch adds mt8186 dsp document. The dsp is used for Sound Open
+> > Firmware driver node. It includes registers, clocks, memory regions,
+> > and mailbox for dsp.
+> > 
+> > Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> > ---
+> > 
+> > This patch depends on MT8186 clock bindings.
+> > 
+https://urldefense.com/v3/__https://lore.kernel.org/all/20220409132251.31725-2-chun-jie.chen@mediatek.com/__;!!CTRNKA9wMg0ARbw!xNJkwM9Z-raJLjgIoriOnjolphzSHqpnATbd3XC7wU7iaUns8gqGB2omSOkliuoDf3g$
+> >  
+> > 
+> > ---
+> >  .../bindings/dsp/mediatek,mt8186-dsp.yaml     | 93 +++++++++++++++++++
+> >  1 file changed, 93 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/dsp/mediatek,mt8186-dsp.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/dsp/mediatek,mt8186-dsp.yaml
+> > b/Documentation/devicetree/bindings/dsp/mediatek,mt8186-dsp.yaml
+> > new file mode 100644
+> > index 000000000000..00a79e880895
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/dsp/mediatek,mt8186-dsp.yaml
+> > @@ -0,0 +1,93 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: 
+> > https://urldefense.com/v3/__http://devicetree.org/schemas/dsp/mediatek,mt8186-dsp.yaml*__;Iw!!CTRNKA9wMg0ARbw!xNJkwM9Z-raJLjgIoriOnjolphzSHqpnATbd3XC7wU7iaUns8gqGB2omSOklA_t3nMM$
+> >  
+> > +$schema: 
+> > https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!xNJkwM9Z-raJLjgIoriOnjolphzSHqpnATbd3XC7wU7iaUns8gqGB2omSOkl3OXmT2U$
+> >  
+> > +
+> > +title: Mediatek mt8186 DSP core
+> > +
+
+(...snip...)
+
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: audiodsp_sel
+> > +      - const: adsp_bus_sel
 > 
-> Signed-off-by: Paweł Anikiel <pan@semihalf.com>
-> ---
->  Documentation/devicetree/bindings/arm/altera.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> What does the "sel" stands for? Maybe just skip the "_sel" suffixes?
+
+No problem. I'll remove '_sel' in next version.
+
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/altera.yaml b/Documentation/devicetree/bindings/arm/altera.yaml
-> index 5e2017c0a051..400543fbe78d 100644
-> --- a/Documentation/devicetree/bindings/arm/altera.yaml
-> +++ b/Documentation/devicetree/bindings/arm/altera.yaml
-> @@ -26,6 +26,7 @@ properties:
->            - enum:
->                - altr,socfpga-arria10-socdk
->                - enclustra,mercury-aa1
-> +              - google,chameleon-v3
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> > +  mboxes:
+> > +    items:
+> > +      - description: ipc reply between host and audio DSP.
+> > +      - description: ipc request between host and audio DSP.
+> > +
+> > +  mbox-names:
+> > +    items:
+> > +      - const: mbox0
+> > +      - const: mbox1
+> 
+> These should be rather some meaningful names, e.g. "rx" and "tx".
 
-This won't work like that. You need separate group. Please install
-dtschema and run `make dtbs_check`.
+The mbox name has to align with the adsp ipc driver.
+The adsp ipc driver is using 'mbox%d' for mailbox channels.
 
 
-Best regards,
-Krzysztof
+https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git/commit/?id=9db69df4bdd37eb1f65b6931ee067fb15b9a4d5c
+
+	chan_name = kasprintf(GFP_KERNEL, "mbox%d", i);
+
+	/* ...snip... */
+
+	adsp_chan->ch = mbox_request_channel_byname(cl, chan_name);
+
+Is it ok to continue using these names?
+> 
+> > +
+> > +  memory-region:
+> > +    items:
+> > +      - description: dma buffer between host and DSP.
+> > +      - description: DSP system memory.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-names
+> > +  - clocks
+> > +  - clock-names
+> > +  - power-domains
+> > +  - mbox-names
+> > +  - mboxes
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> 
+> You do not use these headers.
+
+Ok. I'll remove them at next version.
+
+Thanks,
+TingHan
+
+> 
+> > +    #include <dt-bindings/clock/mt8186-clk.h>
+> > +    dsp@10680000 {
+> 
+> 
+> 
+> Best regards,
+> Krzysztof
+
