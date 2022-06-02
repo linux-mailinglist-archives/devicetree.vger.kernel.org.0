@@ -2,92 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14A8953B817
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 13:49:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C6A953B806
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 13:49:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234375AbiFBLs2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 07:48:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41172 "EHLO
+        id S233722AbiFBLt0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 07:49:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233872AbiFBLs1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 07:48:27 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52BE02997AE
-        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 04:48:24 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id y19so9450978ejq.6
-        for <devicetree@vger.kernel.org>; Thu, 02 Jun 2022 04:48:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=shtQh66+bKE1caS4jMSRSwf+vIlH6pzW/iS7K92y5Eg=;
-        b=dc99xUHQThcX6ryKAYXNpafER9Kk4IqWJ4hIN06w5R5rjWA84E5p4P72DZDYGBswsI
-         kl3C21BvdXefH2LnJlT8rU/+JezOsqjRAd7tVk97vXLFhMeDIOIeP+/Hp1s8R6ceOle7
-         uJyWHNIybbL9JlE7dlJkzTO14TjU88UJAYcAbnV1SoMbJUDCi4gpZvk1mcW9ONfryXbq
-         ORVmAj8kEwf7k8Tdd5l7Rqpt5iQBFZoY0eQzfumt+hDyJ4nLrjHN3GpDX20gJiG5a5se
-         RMEgmqvFaNz8hsnSvQNIVgD2JYnNez5HZ+pn120+o00MrgoJA0GpTygS1KP0PIywXThn
-         JVpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=shtQh66+bKE1caS4jMSRSwf+vIlH6pzW/iS7K92y5Eg=;
-        b=l60muF97r19sAICepfCbbBBlYHSwpj6m+mcvtz4yiqh4hk3pThQAWLXL27yBh7ZoyZ
-         m9M9EmYM2XEbFlzRUFsWikjBf0TAAM6lkb4MhzQhvp53yqXTWiLGX8RQyVKMzO8NFU7N
-         NV/QW+W0Ss6a7D+Utr8pH9k9Y2oVMMNJ2PYrWrwVfxwcG9lBTUZ5WCAC8WqOkjNOGeVF
-         G89U6AK/ly3uJSH1k2ZnTgxG7TDkks6bfx0kSV26zwfUpfbAmsQelIDfdjplD5arcB4i
-         W61zn8ziB1RBG9YRxGXsC0tLwC7USBPPoC3mCmr1y+wvbkD2Ih0YIf3aO4lT2pj+5kyF
-         UvpQ==
-X-Gm-Message-State: AOAM531/OiB+JXiqKz9A7Q7m8ecjbCYcFziUHHm8kRLHc28un73wbQa7
-        OuUd1avHvPQpy/GvQ7LyOj9Xvw==
-X-Google-Smtp-Source: ABdhPJxtzQcCHEhLjniV51EOj16IsDhDJgdLjg8JxuGS0HDjPnelZO6FqkSKvw60weMLoHwb6tlJqQ==
-X-Received: by 2002:a17:906:12d3:b0:6f5:18a2:176d with SMTP id l19-20020a17090612d300b006f518a2176dmr3728521ejb.474.1654170502863;
-        Thu, 02 Jun 2022 04:48:22 -0700 (PDT)
-Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id c18-20020a056402101200b0042dc6e250e3sm2329738edu.81.2022.06.02.04.48.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Jun 2022 04:48:22 -0700 (PDT)
-Message-ID: <cb8c7e28-dfef-78e2-c97c-11b9dee02fed@linaro.org>
-Date:   Thu, 2 Jun 2022 13:48:21 +0200
+        with ESMTP id S234395AbiFBLtU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 07:49:20 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60263267CD7
+        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 04:49:18 -0700 (PDT)
+Received: from [192.168.41.62] ([46.114.149.130]) by mrelayeu.kundenserver.de
+ (mreue009 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1MmDAW-1nW9vb09hI-00iGku; Thu, 02 Jun 2022 13:48:55 +0200
+Message-ID: <cae71804-ccbb-5d55-839c-9806539be8be@i2se.com>
+Date:   Thu, 2 Jun 2022 13:48:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 1/3] dt-bindings: interconnect: Update email address
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v5 5/6] ARM: configs: Enable DRM_V3D
 Content-Language: en-US
-To:     Sibi Sankar <quic_sibis@quicinc.com>, bjorn.andersson@linaro.org
-Cc:     agross@kernel.org, djakov@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, p.zabel@pengutronix.de,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
-References: <1654130923-18722-1-git-send-email-quic_sibis@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1654130923-18722-1-git-send-email-quic_sibis@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Peter Robinson <pbrobinson@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Emma Anholt <emma@anholt.net>,
+        Florian Fainelli <f.fainelli@gmail.com>, javierm@redhat.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org, maxime@cerno.tech,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+References: <20220601110249.569540-1-pbrobinson@gmail.com>
+ <20220601110249.569540-6-pbrobinson@gmail.com>
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+In-Reply-To: <20220601110249.569540-6-pbrobinson@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Provags-ID: V03:K1:JvQauzxAxzLvPrRCwKoPIKI/irxXISdpoEZy5ps6DWbfJHQNGrQ
+ hQiTE5zpMEIvHDl/OJWmYAFiS47l4N3JezDooUZ+laKmlethewAA2VteXGJDtB0ixQJUw0b
+ BwzwuJ58tGXQY2tCyCzWWalO297u2+WVNzbALLbdaa5GNXwpYsz2dePAr9sfQsk5KY1bMnI
+ tUQg25P7xa75LV76dRRTw==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:onA5qaVFlSY=:zHtNqDS4uhJdgu/n/bWTUJ
+ Y5R4FAsZ6ypBe+WVEF1b2dKeWD0s+8SEMWExQvQzrEl9W4R9Sg/c9/avGOLuVRkX/tcIJY/4q
+ 8Tq7vrTtVkhXiBynLHi63tBkX9NVFOxlpyHg9NQ1H5Ncavv0pZU224Lyh+H4EdiYpvNa8PkWV
+ aXlcgjKKpI3zhaCUvoPHnlMwspedvOmclakLYD7SCRoLmX8K+H+CfnZN5wuIt5ish21SW/66L
+ yzrF3AONb3AV45hZ3ez/BJEk2qj9oNtBNvlsrqQ0eXwVeLlFY0MuOQK6gdLFo7SAsrDBqFFkb
+ g7d3lUJMCPsC7bcAOHJ8D5lPeo/N0f2wVLMnVwzoYpSEZSagUiOYgst67bXgUDFcy//N4IiV3
+ iuQ+ijc2Pb4OqrgdQZqwlYUzMnD1CEXP8s+z0zWUl3Kh1qZZ1zEdeQ2c40vKK8ezMTr7Yskpf
+ 4z/OACcNjh44jGwsI2apRqJHJ6NEIzHbFBHJzBCiMxMO0TPoYdbR6Fg6amEW+I28Yq56EXR7q
+ TGtR60RCbSwhUbZYN8sXt9PBhv8CY2UetY4t103p8FgmB29B/bROBx5vu/CTwJMyXs+dzfeM6
+ Ha6vFaI61LakRywRCtLoofPSIvft9+D+OC2QwVluJaUSnUqhSz9ikHv0NTpF00RnveTboCZxk
+ G8OnUY3REbDTyx+KbuKm4sMxYXgMfL8nbVuW/xWJ+R+GeTVWmBJnDtjgiZOvoUWRVCDSHzhXe
+ iksXaqTfrMKz/xmHTUMZuy9wSuTtusG2Tpf4Y6ll1r0tFr3rfXLls2QrRqs=
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/06/2022 02:48, Sibi Sankar wrote:
-> Update email address to the quicinc.com domain.
-> 
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml | 2 +-
-
-Thanks for updating the email addresses. All three patches should be
-rather squashed to one (and taken by Rob for example), it's quite a
-churn. Anyway:
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
+Am 01.06.22 um 13:02 schrieb Peter Robinson:
+> BCM2711, the SoC used on the Raspberry Pi 4 has a different 3D
+> render GPU IP than its predecessors. Enable it it on multi v7
+> and bcm2835 configs.
+>
+> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
+Reviewed-by: Stefan Wahren <stefan.wahren@i2se.com>
