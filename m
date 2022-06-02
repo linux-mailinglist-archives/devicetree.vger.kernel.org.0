@@ -2,192 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40FF453B781
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 12:50:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AB5053B791
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 13:02:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233221AbiFBKuP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 06:50:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36048 "EHLO
+        id S234003AbiFBLB7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 07:01:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232178AbiFBKuO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 06:50:14 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B301414020;
-        Thu,  2 Jun 2022 03:50:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1654167014; x=1685703014;
-  h=from:to:cc:subject:date:message-id;
-  bh=ijYj7RlDEKtmAr/NFLRL0Xa0SCVOGON0rxxx2IQa9a0=;
-  b=AAbHiPn/KVC4Z3oNwjmAj5JcSoIZlQ9JnM+SIp+Dwer4kq4PmktI8Foi
-   1uMi4waN5IbhDGyQApyZExHj8V0bc8Vh456u+Bx0SKJ9qcrO3049L81sI
-   4jD8A906wsJ76WUeY2xUBjNO9RPKbBrkcIXmRxsBIIQv7nCO81lpULnUI
-   k=;
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
-  by alexa-out.qualcomm.com with ESMTP; 02 Jun 2022 03:50:13 -0700
-X-QCInternal: smtphost
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 02 Jun 2022 03:50:12 -0700
-X-QCInternal: smtphost
-Received: from mkrishn-linux.qualcomm.com ([10.204.66.35])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 02 Jun 2022 16:20:00 +0530
-Received: by mkrishn-linux.qualcomm.com (Postfix, from userid 438394)
-        id B94451FA84; Thu,  2 Jun 2022 16:19:59 +0530 (IST)
-From:   Krishna <quic_mkrishn@quicinc.com>
-To:     devicetree@vger.kernel.org
-Cc:     Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
-        quic_kalyant@quicinc.com, robh+dt@kernel.org
-Subject: [PATCH v1] dt-bindings: msm: update maintainers list with proper id
-Date:   Thu,  2 Jun 2022 16:19:58 +0530
-Message-Id: <1654166998-14907-1-git-send-email-quic_mkrishn@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S232354AbiFBLB6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 07:01:58 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B6AB62CC;
+        Thu,  2 Jun 2022 04:01:54 -0700 (PDT)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1nwiaO-0007Cg-HB; Thu, 02 Jun 2022 13:01:52 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     linux-input@vger.kernel.org, Chris Morgan <macroalpha82@gmail.com>
+Cc:     devicetree@vger.kernel.org, dmitry.torokhov@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        maccraft123mc@gmail.com, contact@artur-rojek.eu,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH v2 2/3] Input: adc-joystick - Add polled input device support
+Date:   Thu, 02 Jun 2022 13:01:51 +0200
+Message-ID: <2772745.yaVYbkx8dN@diego>
+In-Reply-To: <20220601204927.10256-3-macroalpha82@gmail.com>
+References: <20220601204927.10256-1-macroalpha82@gmail.com> <20220601204927.10256-3-macroalpha82@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Krishna Manikandan <quic_mkrishn@quicinc.com>
+Am Mittwoch, 1. Juni 2022, 22:49:26 CEST schrieb Chris Morgan:
+> From: Chris Morgan <macromorgan@hotmail.com>
+> 
+> Add polled input device support to the adc-joystick driver. This is
+> useful for devices which do not have hardware capable triggers on
+> their SARADC. Code modified from adc-joystick.c changes made by Maya
+> Matuszczyk.
 
-Use quic id instead of codeaurora id in maintainers list
-for display devicetree bindings.
+as the dts patch mentiones the odroid go2, this probably means the
+Rockchip-saradc?
 
-Signed-off-by: Krishna Manikandan <quic_mkrishn@quicinc.com>
----
- Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml          | 2 +-
- Documentation/devicetree/bindings/display/msm/dpu-sc7280.yaml          | 2 +-
- Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml          | 2 +-
- Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml | 2 +-
- Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml        | 2 +-
- Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml        | 2 +-
- Documentation/devicetree/bindings/display/msm/dsi-phy-20nm.yaml        | 2 +-
- Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml        | 2 +-
- Documentation/devicetree/bindings/display/msm/dsi-phy-common.yaml      | 2 +-
- 9 files changed, 9 insertions(+), 9 deletions(-)
+I very much remember that we converted the saradc to also support
+triggered buffers [0] two years ago, and as I remember that worked
+rather nicely on the Go-1 at least - similar hardware I think.
 
-diff --git a/Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml b/Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml
-index b41991e..d3c3e4b 100644
---- a/Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Qualcomm Display DPU dt properties for SC7180 target
- 
- maintainers:
--  - Krishna Manikandan <mkrishn@codeaurora.org>
-+  - Krishna Manikandan <quic_mkrishn@quicinc.com>
- 
- description: |
-   Device tree bindings for MSM Mobile Display Subsystem(MDSS) that encapsulates
-diff --git a/Documentation/devicetree/bindings/display/msm/dpu-sc7280.yaml b/Documentation/devicetree/bindings/display/msm/dpu-sc7280.yaml
-index 6e417d0..f427eec 100644
---- a/Documentation/devicetree/bindings/display/msm/dpu-sc7280.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dpu-sc7280.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Qualcomm Display DPU dt properties for SC7280
- 
- maintainers:
--  - Krishna Manikandan <mkrishn@codeaurora.org>
-+  - Krishna Manikandan <quic_mkrishn@quicinc.com>
- 
- description: |
-   Device tree bindings for MSM Mobile Display Subsystem (MDSS) that encapsulates
-diff --git a/Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml b/Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml
-index 1a42491..2bb8896 100644
---- a/Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Qualcomm Display DPU dt properties for SDM845 target
- 
- maintainers:
--  - Krishna Manikandan <mkrishn@codeaurora.org>
-+  - Krishna Manikandan <quic_mkrishn@quicinc.com>
- 
- description: |
-   Device tree bindings for MSM Mobile Display Subsystem(MDSS) that encapsulates
-diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-index 7095ec3c8..880bfe9 100644
---- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Qualcomm Display DSI controller
- 
- maintainers:
--  - Krishna Manikandan <mkrishn@codeaurora.org>
-+  - Krishna Manikandan <quic_mkrishn@quicinc.com>
- 
- allOf:
-   - $ref: "../dsi-controller.yaml#"
-diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
-index 2d5a766..716f921 100644
---- a/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Qualcomm Display DSI 10nm PHY
- 
- maintainers:
--  - Krishna Manikandan <mkrishn@codeaurora.org>
-+  - Krishna Manikandan <quic_mkrishn@quicinc.com>
- 
- allOf:
-   - $ref: dsi-phy-common.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
-index 81dbee4..1342d74 100644
---- a/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Qualcomm Display DSI 14nm PHY
- 
- maintainers:
--  - Krishna Manikandan <mkrishn@codeaurora.org>
-+  - Krishna Manikandan <quic_mkrishn@quicinc.com>
- 
- allOf:
-   - $ref: dsi-phy-common.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-20nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-20nm.yaml
-index b8de785..9c1f914 100644
---- a/Documentation/devicetree/bindings/display/msm/dsi-phy-20nm.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-20nm.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Qualcomm Display DSI 20nm PHY
- 
- maintainers:
--  - Krishna Manikandan <mkrishn@codeaurora.org>
-+  - Krishna Manikandan <quic_mkrishn@quicinc.com>
- 
- allOf:
-   - $ref: dsi-phy-common.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml
-index 69eecaa..3d8540a 100644
---- a/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Qualcomm Display DSI 28nm PHY
- 
- maintainers:
--  - Krishna Manikandan <mkrishn@codeaurora.org>
-+  - Krishna Manikandan <quic_mkrishn@quicinc.com>
- 
- allOf:
-   - $ref: dsi-phy-common.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-common.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-common.yaml
-index 502bdda..76d40f7 100644
---- a/Documentation/devicetree/bindings/display/msm/dsi-phy-common.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-common.yaml
-@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Description of Qualcomm Display DSI PHY common dt properties
- 
- maintainers:
--  - Krishna Manikandan <mkrishn@codeaurora.org>
-+  - Krishna Manikandan <quic_mkrishn@quicinc.com>
- 
- description: |
-   This defines the DSI PHY dt properties which are common for all
--- 
-2.7.4
+So it would be really helpful to provide some more explanation on
+why this isn't enough for your use-case.
+
+
+[0] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=4e130dc7b41348b13684f0758c26cc6cf72a3449
+
+
+> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> ---
+>  drivers/input/joystick/adc-joystick.c | 52 +++++++++++++++++++++------
+>  1 file changed, 41 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/input/joystick/adc-joystick.c b/drivers/input/joystick/adc-joystick.c
+> index 78ebca7d400a..5a28fe7b8ebc 100644
+> --- a/drivers/input/joystick/adc-joystick.c
+> +++ b/drivers/input/joystick/adc-joystick.c
+> @@ -13,6 +13,10 @@
+>  
+>  #include <asm/unaligned.h>
+>  
+> +#define ADC_JSK_POLL_INTERVAL	16
+> +#define ADC_JSK_POLL_MIN	8
+> +#define ADC_JSK_POLL_MAX	32
+> +
+>  struct adc_joystick_axis {
+>  	u32 code;
+>  	s32 range[2];
+> @@ -26,8 +30,21 @@ struct adc_joystick {
+>  	struct adc_joystick_axis *axes;
+>  	struct iio_channel *chans;
+>  	int num_chans;
+> +	bool polled;
+>  };
+>  
+> +static void adc_joystick_poll(struct input_dev *input)
+> +{
+> +	struct adc_joystick *joy = input_get_drvdata(input);
+> +	int i, val;
+> +
+> +	for (i = 0; i < joy->num_chans; i++) {
+> +		iio_read_channel_raw(&joy->chans[i], &val);
+> +		input_report_abs(input, joy->axes[i].code, val);
+> +	}
+> +	input_sync(input);
+> +}
+> +
+>  static int adc_joystick_handle(const void *data, void *private)
+>  {
+>  	struct adc_joystick *joy = private;
+> @@ -215,8 +232,19 @@ static int adc_joystick_probe(struct platform_device *pdev)
+>  	joy->input = input;
+>  	input->name = pdev->name;
+>  	input->id.bustype = BUS_HOST;
+> -	input->open = adc_joystick_open;
+> -	input->close = adc_joystick_close;
+> +
+> +	if (device_property_read_bool(dev, "adc-joystick,polled"))
+> +		joy->polled = 1;
+> +
+> +	if (joy->polled) {
+> +		input_setup_polling(input, adc_joystick_poll);
+> +		input_set_poll_interval(input, ADC_JSK_POLL_INTERVAL);
+> +		input_set_min_poll_interval(input, ADC_JSK_POLL_MIN);
+> +		input_set_max_poll_interval(input, ADC_JSK_POLL_MAX);
+> +	} else {
+> +		input->open = adc_joystick_open;
+> +		input->close = adc_joystick_close;
+> +	}
+>  
+>  	error = adc_joystick_set_axes(dev, joy);
+>  	if (error)
+> @@ -229,16 +257,18 @@ static int adc_joystick_probe(struct platform_device *pdev)
+>  		return error;
+>  	}
+>  
+> -	joy->buffer = iio_channel_get_all_cb(dev, adc_joystick_handle, joy);
+> -	if (IS_ERR(joy->buffer)) {
+> -		dev_err(dev, "Unable to allocate callback buffer\n");
+> -		return PTR_ERR(joy->buffer);
+> -	}
+> +	if (!joy->polled) {
+> +		joy->buffer = iio_channel_get_all_cb(dev, adc_joystick_handle, joy);
+> +		if (IS_ERR(joy->buffer)) {
+> +			dev_err(dev, "Unable to allocate callback buffer\n");
+> +			return PTR_ERR(joy->buffer);
+> +		}
+>  
+> -	error = devm_add_action_or_reset(dev, adc_joystick_cleanup, joy->buffer);
+> -	if (error)  {
+> -		dev_err(dev, "Unable to add action\n");
+> -		return error;
+> +		error = devm_add_action_or_reset(dev, adc_joystick_cleanup, joy->buffer);
+> +		if (error)  {
+> +			dev_err(dev, "Unable to add action\n");
+> +			return error;
+> +		}
+>  	}
+>  
+>  	return 0;
+> 
+
+
+
 
