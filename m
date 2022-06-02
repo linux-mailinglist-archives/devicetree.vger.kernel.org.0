@@ -2,267 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2261753B30D
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 07:34:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44A9653B307
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 07:33:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230056AbiFBFbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 01:31:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46526 "EHLO
+        id S229910AbiFBFdr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 01:33:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229899AbiFBFbu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 01:31:50 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE20A13CC9;
-        Wed,  1 Jun 2022 22:31:45 -0700 (PDT)
-X-UUID: 1a33ec1c412c4d6c88542977ecfa93ce-20220602
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:6a7536f1-e1b3-4f14-999b-7b2c5bf2504a,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:45
-X-CID-INFO: VERSION:1.1.5,REQID:6a7536f1-e1b3-4f14-999b-7b2c5bf2504a,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
-        N:release,TS:45
-X-CID-META: VersionHash:2a19b09,CLOUDID:2a53900d-3a0d-4bbe-9d72-0e5d26d57423,C
-        OID:953b5f299f8e,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:1,File:nil,QS:0,BEC:nil
-X-UUID: 1a33ec1c412c4d6c88542977ecfa93ce-20220602
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1182987510; Thu, 02 Jun 2022 13:31:39 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Thu, 2 Jun 2022 13:31:37 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Thu, 2 Jun 2022 13:31:37 +0800
-Message-ID: <a903bdb73b93c4e61bbe9e62231347632445c2af.camel@mediatek.com>
-Subject: Re: [PATCH v10 00/21] drm/mediatek: Add mt8195 DisplayPort driver
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     Guillaume Ranquet <granquet@baylibre.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S230099AbiFBFdo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 01:33:44 -0400
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50AE05A586
+        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 22:33:37 -0700 (PDT)
+Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
+        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20220602053332epoutp011043e8423699b14ab2074696d5c17696~0ttpVSb4m0888608886epoutp01X
+        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 05:33:32 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20220602053332epoutp011043e8423699b14ab2074696d5c17696~0ttpVSb4m0888608886epoutp01X
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1654148012;
+        bh=VFA8ToDGFJJ+rQ3o4nzu+uSsB+cXH7/i59mTnfMkBhE=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=suway6glYBZfE54AfZCaYHQck8tEJLXyVbrOsZzVCfP4Mcfjdvsf3OFeXBWa1xS5b
+         2xNMteuHxZRHytg0thOl3gb0chJpr0X1j+a+OSOb2v97uY49uuQ/cTfBq0QNlDhb1F
+         k0rP2WY0x6fV3k5KtUjk0lC6bGNJytE5tMaeSqts=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+        epcas2p4.samsung.com (KnoxPortal) with ESMTP id
+        20220602053331epcas2p467a4f7b63c418539adec037006dcab6c~0ttoiD1Dd2584825848epcas2p4S;
+        Thu,  2 Jun 2022 05:33:31 +0000 (GMT)
+Received: from epsmges2p2.samsung.com (unknown [182.195.36.99]) by
+        epsnrtp3.localdomain (Postfix) with ESMTP id 4LDF6d4cH9z4x9QG; Thu,  2 Jun
+        2022 05:33:29 +0000 (GMT)
+Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
+        epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        9D.23.09764.9AB48926; Thu,  2 Jun 2022 14:33:29 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
+        20220602053329epcas2p402901736895e6cb802a04cc3f95d172e~0ttmtY5de0310603106epcas2p4v;
+        Thu,  2 Jun 2022 05:33:29 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20220602053329epsmtrp118228ec3584b55ca28bf2a63a352f711~0ttmqlqUY1617116171epsmtrp1T;
+        Thu,  2 Jun 2022 05:33:29 +0000 (GMT)
+X-AuditID: b6c32a46-f75ff70000002624-ea-62984ba96e37
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        C2.1E.11276.8AB48926; Thu,  2 Jun 2022 14:33:29 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.51]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20220602053328epsmtip27649cc1e591b05eb5bec57e29a26cb33~0ttmeBY-H0794307943epsmtip2j;
+        Thu,  2 Jun 2022 05:33:28 +0000 (GMT)
+From:   Chanho Park <chanho61.park@samsung.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chunfeng Yun =?UTF-8?Q?=28=E4=BA=91=E6=98=A5=E5=B3=B0=29?= 
-        <Chunfeng.Yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, "Helge Deller" <deller@gmx.de>,
-        CK Hu =?UTF-8?Q?=28=E8=83=A1=E4=BF=8A=E5=85=89=29?= 
-        <ck.hu@mediatek.com>,
-        Jitao Shi =?UTF-8?Q?=28=E7=9F=B3=E8=AE=B0=E6=B6=9B=29?= 
-        <jitao.shi@mediatek.com>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "maxime@cerno.tech" <maxime@cerno.tech>
-CC:     "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>
-Date:   Thu, 2 Jun 2022 13:31:37 +0800
-In-Reply-To: <358b183faed73672e8fa4f6eb0d48fb067aec87d.camel@mediatek.com>
-References: <20220523104758.29531-1-granquet@baylibre.com>
-         <358b183faed73672e8fa4f6eb0d48fb067aec87d.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Chanho Park <chanho61.park@samsung.com>
+Subject: [PATCH v2 0/6] support secondary ufs for Exynos Auto v9 SoC
+Date:   Thu,  2 Jun 2022 14:32:44 +0900
+Message-Id: <20220602053250.62593-1-chanho61.park@samsung.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprGJsWRmVeSWpSXmKPExsWy7bCmme5K7xlJBhfWqlg8mLeNzeLyfm2L
+        +UfOsVpceNrDZtH34iGzxd7XW9ktNj2+xmoxYdU3FosZ5/cxWbTuPcJusfPOCWYHbo9NqzrZ
+        PO5c28PmsXlJvUffllWMHsdvbGfy+LxJLoAtKtsmIzUxJbVIITUvOT8lMy/dVsk7ON453tTM
+        wFDX0NLCXEkhLzE31VbJxSdA1y0zB+g6JYWyxJxSoFBAYnGxkr6dTVF+aUmqQkZ+cYmtUmpB
+        Sk6BeYFecWJucWleul5eaomVoYGBkSlQYUJ2xp+OSUwFf7gq2i7/Z2lgfMrRxcjJISFgIvH9
+        3jlGEFtIYAejxPRlil2MXED2J0aJO+tb2SES3xgldqzShml48+Y6VMNeRonTM+whGj4ySly5
+        OZUVJMEmoCux5fkrRpCEiEA7k8SJe3PZQRxmgc2MEicnbGAGqRIWcJF4vuQwG4jNIqAqsel8
+        MwuIzStgJ7Hw7nJGiHXyEhvm9zJDxAUlTs58AlbDDBRv3jqbGWSohMBXdolFszeyQzS4SFzq
+        XckEYQtLvDq+BSouJfGyvw3KLpZYOusTE0RzA6PE5W2/2CASxhKznrUDbeYA2qApsX6XPogp
+        IaAsceQW1F4+iY7Df9khwrwSHW1CEI3qEge2T2eBsGUluud8ZoWwPST+X5nABAmtWIm1C58w
+        T2CUn4Xkm1lIvpmFsHcBI/MqRrHUguLc9NRiowIjeKQm5+duYgQnUC23HYxT3n7QO8TIxMF4
+        iFGCg1lJhLdk19QkId6UxMqq1KL8+KLSnNTiQ4ymwPCdyCwlmpwPTOF5JfGGJpYGJmZmhuZG
+        pgbmSuK8XikbEoUE0hNLUrNTUwtSi2D6mDg4pRqYTi07kLsr5dDJySZ/hcWfpN/ckHKuSurJ
+        Vl2z6aXNE263WyxSePF76amioJ2O7L1s1w6KXDeM7muOctSy2BUmF9e/8cV9/ZQI1VW3O2ad
+        6pRfkcPL/bC/6elDlSmifRGfHRWv2Jy91yp10u6h/Mm4d98mLr/B5JOoJLzgrVG6qOCzL3t/
+        5XCUSTdITuJnXvL+bcUkG8mzu/xevq2vs372S22lz5+N0/+o9y19fZV/xUKOucaVb5Zw9FRN
+        //9kNcdM07LTx751yNr7RC/4dd08e+KrA/Mlfgi0eZ22ib5fKPWPy9f/bLXCa5Gszw9fHWpU
+        l81oXlR8xlRrAtu9zp25L/YKrWwU2yqbFfP7d4fVGyWW4oxEQy3mouJEADMnrggpBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrBLMWRmVeSWpSXmKPExsWy7bCSvO5K7xlJBhtmMVs8mLeNzeLyfm2L
+        +UfOsVpceNrDZtH34iGzxd7XW9ktNj2+xmoxYdU3FosZ5/cxWbTuPcJusfPOCWYHbo9NqzrZ
+        PO5c28PmsXlJvUffllWMHsdvbGfy+LxJLoAtissmJTUnsyy1SN8ugSvjT8ckpoI/XBVtl/+z
+        NDA+5ehi5OSQEDCRePPmOmMXIxeHkMBuRomfHxewQSRkJZ6928EOYQtL3G85wgpR9J5R4vzT
+        6YwgCTYBXYktz1+BdYsIdDNJzNnUzwTiMAtsZ5T4sHQdC0iVsICLxPMlh8HGsgioSmw63wwW
+        5xWwk1h4dzkjxAp5iQ3ze5kh4oISJ2c+AathBoo3b53NPIGRbxaS1CwkqQWMTKsYJVMLinPT
+        c4sNCwzzUsv1ihNzi0vz0vWS83M3MYIDW0tzB+P2VR/0DjEycTAeYpTgYFYS4S3ZNTVJiDcl
+        sbIqtSg/vqg0J7X4EKM0B4uSOO+FrpPxQgLpiSWp2ampBalFMFkmDk6pBiY3pwWJzx7InToh
+        r2XRVsVo/2TVm3X9ivvvy+QmeC8qt9h4ziptyuzVP++/bIidsvvbEdWD+yfumlJYPIthXW5S
+        q6TF067XpyfNU7fcf3+t7ClrlWjt6BspX48JW2V98OH8KK22zmhHx9x99SvenV1vXXPIMN5d
+        uOY8x9s5Pn88XnHHvF2ev3jXt3un5dvvXZ4rI7P65/OdfqbrPYI/TGJsmfX5QeS0l7N/iVz9
+        8/3d/rd/n7qWPhWODVd23rhDeXGb3UUXdcf/4vL88nP+cOqkXC9fzbpv3cT4q5Z9B0pfqh1h
+        nzBpQemJRrPn125aZnLzfPPnKkw69NpOQDPyg7Di+cm+mWHS8Wtd1z9K/uSrpsRSnJFoqMVc
+        VJwIALGRwiHbAgAA
+X-CMS-MailID: 20220602053329epcas2p402901736895e6cb802a04cc3f95d172e
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220602053329epcas2p402901736895e6cb802a04cc3f95d172e
+References: <CGME20220602053329epcas2p402901736895e6cb802a04cc3f95d172e@epcas2p4.samsung.com>
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-06-02 at 11:50 +0800, Rex-BC Chen wrote:
-> On Mon, 2022-05-23 at 12:47 +0200, Guillaume Ranquet wrote:
-> > this series is built around the DisplayPort driver. The dpi/dpintf
-> > driver and the added helper functions are required for the
-> > DisplayPort
-> > driver to work.
-> > 
-> > This v10 still has some un-answered comments and TODOs for v11.
-> > 
-> > This has been tested sucessfully on a 5.18-next based "vendor
-> > branch".
-> > 
-> > There's a missing dependency in the mediatek clock framework to
-> > allow
-> > a
-> > mux clock to change it's parent automatically on rate change.
-> > Without this change, the dpi driver won't properly set the clocks
-> > on
-> > mode change and thus nothing will be displayed on screen.
-> > 
-> > Changes from v9:
-> > - The DP-Phy is back to being a child device of the DP driver (as
-> > in
-> > v8)
-> > - hot plug detection has been added back to Embedded Display
-> > Port...
-> > as
-> >   after discussing with mediatek experts, this is needed eventhough
-> > the
-> >   Embedded Display port is not un-pluggable
-> > - rebased on linux-next
-> > - simplified/split train_handler function, as suggested by Rex
-> > - added comments on the sleep/delays present in the code
-> > - removed previous patch introducing retries when receiving
-> > AUX_DEFER
-> > as
-> >   this is already handled in the dp_aux framework
-> > - added max-lane and max-linkrate device tree u8 properties instead
-> > of
-> >   hardcoded #defines
-> > 
-> > Things that are in my todolist for v11:
-> > - retrieve CK/DE support from panel driver instead of hardcoding it
-> > into
-> >   the dpi driver
-> > - refcount the dp driver "enabled" status for "future proofing"
-> > - review the drm_dp_helpers for features/functions that have been
-> >   re-implemented in the mediatek dp drivers
-> > 
-> > Older revisions:
-> > RFC - 
-> > 
-https://lore.kernel.org/linux-mediatek/20210816192523.1739365-1-msp@baylibre.com/
-> > v1  - 
-> > 
-https://lore.kernel.org/linux-mediatek/20210906193529.718845-1-msp@baylibre.com/
-> > v2  - 
-> > 
-https://lore.kernel.org/linux-mediatek/20210920084424.231825-1-msp@baylibre.com/
-> > v3  - 
-> > 
-https://lore.kernel.org/linux-mediatek/20211001094443.2770169-1-msp@baylibre.com/
-> > v4  - 
-> > 
-https://lore.kernel.org/linux-mediatek/20211011094624.3416029-1-msp@baylibre.com/
-> > v5  - 
-> > 
-https://lore.kernel.org/all/20211021092707.3562523-1-msp@baylibre.com/
-> > v6  - 
-> > 
-https://lore.kernel.org/linux-mediatek/20211110130623.20553-1-granquet@baylibre.com/
-> > v7  - 
-> > 
-https://lore.kernel.org/linux-mediatek/20211217150854.2081-1-granquet@baylibre.com/
-> > v8  - 
-> > 
-https://lore.kernel.org/linux-mediatek/20220218145437.18563-1-granquet@baylibre.com/
-> > v9  - 
-> > 
-https://lore.kernel.org/all/20220327223927.20848-1-granquet@baylibre.com/
-> > 
-> > Functional dependencies are:
-> > - Add Mediatek Soc DRM (vdosys0) support for mt8195
-> >   
-> > 
-https://lore.kernel.org/linux-mediatek/20220419094143.9561-2-jason-jh.lin@mediatek.com/
-> > - Add MediaTek SoC DRM (vdosys1) support for mt8195
-> >   
-> > 
-https://lore.kernel.org/linux-mediatek/20220512053128.31415-1-nancy.lin@mediatek.com/
-> > 
-> > 
-> > Guillaume Ranquet (15):
-> >   drm/edid: Convert cea_sad helper struct to kernelDoc
-> >   drm/edid: Add cea_sad helpers for freq/length
-> >   drm/mediatek: dpi: move dpi limits to SoC config
-> >   drm/mediatek: dpi: implement a CK/DE pol toggle in SoC config
-> >   drm/mediatek: dpi: implement a swap_input toggle in SoC config
-> >   drm/mediatek: dpi: move dimension mask to SoC config
-> >   drm/mediatek: dpi: move hvsize_mask to SoC config
-> >   drm/mediatek: dpi: move swap_shift to SoC config
-> >   drm/mediatek: dpi: move the yuv422_en_bit to SoC config
-> >   drm/mediatek: dpi: move the csc_enable bit to SoC config
-> >   drm/mediatek: dpi: Add dpintf support
-> >   drm/mediatek: dpi: Only enable dpi after the bridge is enabled
-> >   drm/meditek: dpi: Add matrix_sel helper
-> >   drm/mediatek: Add mt8195 External DisplayPort support
-> >   drm/mediatek: DP audio support for mt8195
-> > 
-> > Jitao Shi (1):
-> >   drm/mediatek: add hpd debounce
-> > 
-> > Markus Schneider-Pargmann (5):
-> >   dt-bindings: mediatek,dpi: Add DPINTF compatible
-> >   dt-bindings: mediatek,dp: Add Display Port binding
-> >   video/hdmi: Add audio_infoframe packing for DP
-> >   phy: phy-mtk-dp: Add driver for DP phy
-> >   drm/mediatek: Add mt8195 Embedded DisplayPort driver
-> > 
-> >  .../display/mediatek/mediatek,dp.yaml         |   99 +
-> >  .../display/mediatek/mediatek,dpi.yaml        |   13 +-
-> >  MAINTAINERS                                   |    1 +
-> >  drivers/gpu/drm/drm_edid.c                    |   74 +
-> >  drivers/gpu/drm/mediatek/Kconfig              |    8 +
-> >  drivers/gpu/drm/mediatek/Makefile             |    2 +
-> >  drivers/gpu/drm/mediatek/mtk_dp.c             | 3419
-> > +++++++++++++++++
-> >  drivers/gpu/drm/mediatek/mtk_dp_reg.h         |  570 +++
-> >  drivers/gpu/drm/mediatek/mtk_dpi.c            |  272 +-
-> >  drivers/gpu/drm/mediatek/mtk_dpi_regs.h       |   38 +
-> >  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c   |    8 +
-> >  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h   |    1 +
-> >  drivers/gpu/drm/mediatek/mtk_drm_drv.c        |    8 +-
-> >  drivers/gpu/drm/mediatek/mtk_drm_drv.h        |    3 +
-> >  drivers/phy/mediatek/Kconfig                  |    8 +
-> >  drivers/phy/mediatek/Makefile                 |    1 +
-> >  drivers/phy/mediatek/phy-mtk-dp.c             |  200 +
-> >  drivers/video/hdmi.c                          |   82 +-
-> >  include/drm/dp/drm_dp_helper.h                |    2 +
-> >  include/drm/drm_edid.h                        |   26 +-
-> >  include/linux/hdmi.h                          |    7 +-
-> >  include/linux/soc/mediatek/mtk-mmsys.h        |    4 +-
-> >  22 files changed, 4765 insertions(+), 81 deletions(-)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
-> >  create mode 100644 drivers/gpu/drm/mediatek/mtk_dp.c
-> >  create mode 100644 drivers/gpu/drm/mediatek/mtk_dp_reg.h
-> >  create mode 100644 drivers/phy/mediatek/phy-mtk-dp.c
-> 
-> Hello all,
-> 
-> Due to the resource issue, I will keep upstreaming Guillaume's MT8195
-> dp/edp series.
-> 
-> I will check the comments for v8/v9/v10 and have some discussion with
-> you.
-> 
-> Thanks for your all comments.
-> 
-> BRs,
-> Bo-Chen
-> 
+To support ufs #1 for Exynos Auto v9 SoC, we need to control its own pmu
+register. So, we need to specify the offset of the register via an
+argument of syscon node.
+Regarding UFS HCI driver, we need to specify different sysreg
+configuration for UFS #1's io coherency setting.
 
-Hello all,
+Changes from v1:
+- dt-bindings: Correct tab align and add "minItems: 1" to make the second
+  cell as optional.
+- Add 0001- patch to constify phy_cfg.
+- Allocate phy->isol and copy data from drvdata to avoid const qualifier
+  error
+- Add 0004- patch to apply dt style for ufs0 as Krzysztof's suggestion
+- Align tab and apply ufs node naming for device tree nodes
 
-Because the patches of dp_intf seem to be almost completed, I want to
-split this series into two series:
-dp_intf and edp/dp.
+Chanho Park (6):
+  dt-bindings: phy: samsung,ufs-phy: make pmu-syscon as phandle-array
+  phy: samsung: ufs: constify samsung_ufs_phy_cfg
+  phy: samsung: ufs: support secondary ufs phy
+  arm64: dts: exynosautov9: adjust DT style of ufs nodes
+  arm64: dts: exynosautov9: add secondary ufs devices
+  arm64: dts: exynosautov9-sadk: enable secondary ufs devices
 
-It will be easier to review and maintain this series.
+ .../bindings/phy/samsung,ufs-phy.yaml         | 13 ++++--
+ .../boot/dts/exynos/exynosautov9-sadk.dts     | 18 ++++++++
+ arch/arm64/boot/dts/exynos/exynosautov9.dtsi  | 44 ++++++++++++++++---
+ drivers/phy/samsung/phy-samsung-ufs.c         | 18 ++++++--
+ drivers/phy/samsung/phy-samsung-ufs.h         |  4 +-
+ 5 files changed, 83 insertions(+), 14 deletions(-)
 
-Thanks!
-
-BRs,
-Bo-Chen
+-- 
+2.36.1
 
