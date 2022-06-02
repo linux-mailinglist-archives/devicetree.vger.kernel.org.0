@@ -2,120 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C496453B192
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 04:12:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE41E53B186
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 04:12:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233233AbiFBCH3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 22:07:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44678 "EHLO
+        id S233249AbiFBCH1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 22:07:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233265AbiFBCH2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 22:07:28 -0400
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0199A1D92F9
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 19:07:26 -0700 (PDT)
-Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20220602020723epoutp04b135084ddfc4af4de083e940d970eaf9~0q5p8de111068310683epoutp04V
-        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 02:07:23 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20220602020723epoutp04b135084ddfc4af4de083e940d970eaf9~0q5p8de111068310683epoutp04V
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1654135643;
-        bh=t8U7FyS8vihQ8FtwpxDAeaFoHAyKx1rhnPcMrL9DDwI=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=lwcwWNM77KHe72A2mkcKKDcmvN+kFHjURFMS+NPSlvd3srzrHxWuZabYB9Kj10JeJ
-         hWlOExfRpvODL6MEgc3VJpoU+SE8tXnXlGnT/6YB9Afzinu+S0qOw7/PnY1+TAk+YZ
-         UnmerjeCS0jcw4rCiPJaqWXEKdXAJ/85UhJwDI+c=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas2p4.samsung.com (KnoxPortal) with ESMTP id
-        20220602020722epcas2p4fa2afb35727457095c1e273973f2d1b9~0q5pso3vD2593325933epcas2p4L;
-        Thu,  2 Jun 2022 02:07:22 +0000 (GMT)
-Received: from epsmges2p3.samsung.com (unknown [182.195.36.98]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4LD8Xp0Tv9z4x9Q7; Thu,  2 Jun
-        2022 02:07:22 +0000 (GMT)
-Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
-        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
-        96.0D.10028.95B18926; Thu,  2 Jun 2022 11:07:22 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
-        20220602020721epcas2p492069c84655d964c7dcc19c9876b8778~0q5ofL3VC2079320793epcas2p4X;
-        Thu,  2 Jun 2022 02:07:21 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20220602020721epsmtrp2a3cef8c4cdc0e91ff0af167ee9076d4d~0q5od75Pg3270532705epsmtrp2h;
-        Thu,  2 Jun 2022 02:07:21 +0000 (GMT)
-X-AuditID: b6c32a47-d98a8a800000272c-9d-62981b593b99
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        DF.79.11276.95B18926; Thu,  2 Jun 2022 11:07:21 +0900 (KST)
-Received: from KORCO082417 (unknown [10.229.8.121]) by epsmtip2.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20220602020721epsmtip2f0111f531941768d7589d6a1f2da0322~0q5oQ7-gr1288312883epsmtip2g;
-        Thu,  2 Jun 2022 02:07:21 +0000 (GMT)
-From:   "Chanho Park" <chanho61.park@samsung.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-        "'Rob Herring'" <robh+dt@kernel.org>,
-        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "'Alim Akhtar'" <alim.akhtar@samsung.com>,
-        "'Chanwoo Choi'" <cw00.choi@samsung.com>,
-        "'Sam Protsenko'" <semen.protsenko@linaro.org>,
-        <linux-samsung-soc@vger.kernel.org>, <devicetree@vger.kernel.org>
-In-Reply-To: <b14c0d3a-8fe3-62b5-777d-883d95bc6fcc@linaro.org>
-Subject: RE: [PATCH v3 0/2] syscon reboot/reboot_mode support for
- exynosautov9
-Date:   Thu, 2 Jun 2022 11:07:21 +0900
-Message-ID: <000001d87625$7e664a10$7b32de30$@samsung.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQJI/1XL/Ftv3dSoSrqqSUbcnMeiJQLcHzXTAdQC+4kBRCF0xqwqqbwQ
-Content-Language: ko
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprOJsWRmVeSWpSXmKPExsWy7bCmmW6U9Iwkg9NVFg/mbWOzuP7lOavF
-        /CPnWC36Xjxkttj7eiu7xYzz+5gsWvceYbd43rePyYHDY9OqTjaPO9f2sHn0bVnF6PF5k1wA
-        S1S2TUZqYkpqkUJqXnJ+SmZeuq2Sd3C8c7ypmYGhrqGlhbmSQl5ibqqtkotPgK5bZg7QFUoK
-        ZYk5pUChgMTiYiV9O5ui/NKSVIWM/OISW6XUgpScAvMCveLE3OLSvHS9vNQSK0MDAyNToMKE
-        7Ixpk8wKPjJWnLx4hqmBcSNjFyMnh4SAicSM9Q/BbCGBHYwS1+5wdTFyAdmfGCXWz7zFBuF8
-        Y5RoXrKACabj2e2X7BCJvYwSRz9fZoRwXjBKHNm7nAWkik1AX+JlxzZWkISIwGJGieNd28Bm
-        MQucY5SY8G092CxOATuJS6+/MoPYwgIBEhOmzGEHsVkEVCQ+rTsFdhWvgKXEgcPrWCFsQYmT
-        M5+AbWAWkJfY/nYOM8RNChI/ny4DqxERcJM49m8TVI2IxOzONmaQxRICEzkkfj95BtXgIvHj
-        6Syoh4QlXh3fwg5hS0l8freXDcIullg66xMTRHMDo8Tlbb+gEsYSs561A13HAbRBU2L9Ln0Q
-        U0JAWeLILai9fBIdh/+yQ4R5JTrahCAa1SUObJ/OAmHLSnTP+cw6gVFpFpLPZiH5bBaSD2Yh
-        7FrAyLKKUSy1oDg3PbXYqMAYHtvJ+bmbGMEpVMt9B+OMtx/0DjEycTAeYpTgYFYS4S3ZNTVJ
-        iDclsbIqtSg/vqg0J7X4EKMpMKwnMkuJJucDk3heSbyhiaWBiZmZobmRqYG5kjivV8qGRCGB
-        9MSS1OzU1ILUIpg+Jg5OqQamjJTILRP4avYuVlooku1ZLSkz1ZND4P8VtdsZUTevWe8ot9FU
-        ZrF+UGQnu+nF4UN6hT83fnmlt/uKSYt1qaHI5nh3E+v8FobMoo9lS8+1yqecf1x+tZklpzt1
-        7oL9rKwZqrtnGhz0Uu/XiIqLMfu/YAIjy7ETp5t6g6ZteXp2TYyjU4uRMQ/rvkyeSi7mybee
-        dLS9fLTr9xKxZbqGGZXbj5S8LjjuwJ2gWugV9XLKhu3Ht+tkv7xqfPmubsF/c/0dqzTWru0w
-        55dQPlp/hCH+9fflXS9dnU9l+B3zeeD+p+WCUbWbEnNkzbm78U5vN0UG7ZOYtNpw1uWl9pMn
-        P7M939IUylvzYXldrv+hMFUlluKMREMt5qLiRAC4CPWhKgQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpmkeLIzCtJLcpLzFFi42LZdlhJXjdSekaSwYeN0hYP5m1js7j+5Tmr
-        xfwj51gt+l48ZLbY+3oru8WM8/uYLFr3HmG3eN63j8mBw2PTqk42jzvX9rB59G1ZxejxeZNc
-        AEsUl01Kak5mWWqRvl0CV8a0SWYFHxkrTl48w9TAuJGxi5GTQ0LAROLZ7ZfsXYxcHEICuxkl
-        DnSdY4ZIyEo8e7eDHcIWlrjfcoQVougZo0Tn9DlgRWwC+hIvO7aBJUQEFjNK7J90iRUkwSxw
-        iVHi5DVPiI4PjBILzk4GS3AK2Elcev0VqJuDQ1jAT6J/WilImEVAReLTulNgJ/EKWEocOLyO
-        FcIWlDg58wkLxExtiac3n0LZ8hLb386BulRB4ufTZWD1IgJuEsf+bYKqEZGY3dnGPIFReBaS
-        UbOQjJqFZNQsJC0LGFlWMUqmFhTnpucWGxYY5qWW6xUn5haX5qXrJefnbmIEx5OW5g7G7as+
-        6B1iZOJgPMQowcGsJMJbsmtqkhBvSmJlVWpRfnxRaU5q8SFGaQ4WJXHeC10n44UE0hNLUrNT
-        UwtSi2CyTBycUg1MiTslSyJOzpDWnJ96wSHulHTl7NUfDTVzU2Sf7lgrHvXFJsRTQjai/2HA
-        EbfIfT/yKrb7bYzi+rA675dW2onKrKILGknuaRKfozZvq6o+1PEnx/p0Cjdzz95PhscFfnDw
-        n2N3+cq1/N7encv8Q4uvez48dMw2KEG46rjB1jcTjXq/5bAUzf94t+TqniSRdG6v3lU9kyc3
-        ex1rN+ePLt0y/df73El9sxVWryyXP/VKYMm633KHuw6v/HLLVzN1/rLzNVu8cpzVmN+nmO1c
-        H1UZqxOye5+EV0BFypRDCdzdN5VcDNz+ZXDuDrws/15gk/LkRtNX7Dvvhcw+ZbVw98P3rWcD
-        8qZcWcVonbUh8c8EJZbijERDLeai4kQAZ1yWfhYDAAA=
-X-CMS-MailID: 20220602020721epcas2p492069c84655d964c7dcc19c9876b8778
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220523121210epcas2p11d0b4f27edd5a403b2fd7d3833d577ff
-References: <CGME20220523121210epcas2p11d0b4f27edd5a403b2fd7d3833d577ff@epcas2p1.samsung.com>
-        <20220523121244.67341-1-chanho61.park@samsung.com>
-        <013401d874eb$05f55390$11dffab0$@samsung.com>
-        <b14c0d3a-8fe3-62b5-777d-883d95bc6fcc@linaro.org>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        with ESMTP id S233241AbiFBCHZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 22:07:25 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F24D1D92F9
+        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 19:07:24 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id b135so3497062pfb.12
+        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 19:07:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9NElvwDqQjtltn5l/jL3hoAw2ukv8yqwztD6Fj5di1M=;
+        b=ts73Ty4+pWhTgyjAU4ZSp9qhVwJ7e7RAJ0vNvocMNUPqEU1M7sRJdl5stT4dLBwesy
+         eVj6pHpvALHme5uNN14rjG4DX9mroKj9lkFjrXckBPYEsnAN1wFIM9oIUkhVsrzbNQle
+         6rVkFZw7qsDla1y1knfjFr7MH+4Mc7m2ISTDaPMFl1cS+jhjzl1yZ6k/M3Dey0y6742t
+         EKaa7KJuTsu2xz3pv8tGlws1cYCff/+4qTnXp3/nLWYBEYCO9XHLJCckuGyZ0yb9yxDZ
+         eLBN56kRta4qZ8zzXfd9C3YMDhb0DaGOnwvvIppJ4Z1HSPvR1Y1s3B31Oc2BToZfrExA
+         iTug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=9NElvwDqQjtltn5l/jL3hoAw2ukv8yqwztD6Fj5di1M=;
+        b=FV21Nr1KX4Bs9+pavuHSvrS7Vhnl7IwDqmdeIHn3RvI7tZ2u0N9fMNO1X0YB4eg3aV
+         wC9dOeRkM2CIKN+ewoPXiUgfdI2TjJ3KEBetlUZqy0xOmIy7oKpPDs0ZIP08dQBaP/Xc
+         sFafM/wPHonBGk1NeDeHptFqKpmxl6K9L+0vNeeCq0asFxb/FYnSqCIC0/DoipSBeP+e
+         JTDp8+gc62/l4nC3umdpcsk3huMQ0XtsmE0gyblgDO773M1XwrqFgeYYXGiIsgSDPrLg
+         ei7IG+9qINQwNYsfTu9actJp1GSo1w5EMOwI5AjjLN+AvD7rtIhRu2QZybZJezlk4Agi
+         qAOw==
+X-Gm-Message-State: AOAM533wmT9hd6IaO/4XxnrkbH3l+wa6WCy15UXA7ivfLd/FIlzO1ubn
+        EZpe2DYSjwTVPnkQzV8YAUenuQ==
+X-Google-Smtp-Source: ABdhPJw8GekBVL89dMuO5NhjVjGxu96NDqLPBmLWMhMxDu5JU8tAny589qxOrma5vzcXx5Q+ly3sZA==
+X-Received: by 2002:a05:6a00:228c:b0:518:9533:4a1e with SMTP id f12-20020a056a00228c00b0051895334a1emr2528169pfe.79.1654135643698;
+        Wed, 01 Jun 2022 19:07:23 -0700 (PDT)
+Received: from localhost ([12.3.194.138])
+        by smtp.gmail.com with ESMTPSA id w8-20020a1709026f0800b0016632179ecfsm1437844plk.264.2022.06.01.19.07.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Jun 2022 19:07:23 -0700 (PDT)
+Date:   Wed, 01 Jun 2022 19:07:23 -0700 (PDT)
+X-Google-Original-Date: Wed, 01 Jun 2022 19:07:17 PDT (-0700)
+Subject:     Re: [PATCH v5 00/10] PolarFire SoC dt for 5.19
+In-Reply-To: <3cf58174-1ddd-219f-9f14-4d0015f697e7@microchip.com>
+CC:     robh+dt@kernel.org, krzk+dt@kernel.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, Daire.McNamara@microchip.com,
+        Cyril.Jean@microchip.com, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        heiko@sntech.de, Arnd Bergmann <arnd@arndb.de>
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     Conor.Dooley@microchip.com
+Message-ID: <mhng-2bb14a91-66b8-4e35-b58e-4b29bf2c5558@palmer-ri-x1c9>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -123,13 +72,89 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > Could you review below v3 patchset in your free time? :)
+On Mon, 23 May 2022 04:47:55 PDT (-0700), Conor.Dooley@microchip.com wrote:
+> On 09/05/2022 15:26, Conor Dooley wrote:
+>> Hey all,
+>> Got a few PolarFire SoC device tree related changes here for 5.19.
 > 
-> I looked at it before and it is fine. It's a merge window so I am not
-> taking any new patches before rc1.
+> Hey Palmer,
+> I know you're busy etc but I had been hoping you'd take this for
+> 5.19. I know it's late, so nw if it's too late.
 
-Got it. Sorry to rush you :)
+It wasn't too late for me, this is on for-next.  Thanks!
 
-Best Regards,
-Chanho Park
-
+> Thanks,
+> Conor.
+> 
+>> 
+>> Firstly, patches 1 & 2 of this series supersede [0] & are unchanged
+>> compared to that submission, figured it would just be easier to keep
+>> all the changes in one series.
+>> 
+>> As discussed on irc, patch 3 removes the duplicated "microchip" from
+>> the device tree files so that they follow a soc-board.dts & a
+>> soc{,-fabric}.dtsi format.
+>> 
+>> Patch 5 makes the fabric dtsi board specific by renaming the file to
+>> mpfs-icicle-kit-fabric.dtsi & including it in the dts rather than
+>> mpfs.dtsi. Additionally this will allow other boards to define their
+>> own reference fabric design. A revision specific compatible, added in
+>> patch 4, is added to the dt also.
+>> 
+>> The remainder of the series adds a bare minimum devicetree for the
+>> Sundance Polarberry.
+>> 
+>> Thanks,
+>> Conor.
+>> 
+>> Changes since v4:
+>> - Whitespace and status ordering changes in the polarberry dt pointed
+>>    out by Heiko
+>> - A new patch for same whitspace and status order changes, but applied
+>>    to the icicle dt
+>> - A reordering of the icicle dt alphabetically to match the formatting
+>>    of the polarberry dt
+>> 
+>> Changes since v3:
+>> - remove an extra line of wshitespace added to dt-binding
+>> - remove unneeded "okay" status & sort status to node end
+>> - sort polarberry dts entries in ~alphabetical order
+>> - add a comment explaining why the second mac (mac0) is disabled on
+>>    polarberry
+>> 
+>> Changes since v2:
+>> - make ,icicle-reference compatible with ,mpfs & put it inside the enum
+>> 
+>> Changes since v1:
+>> - fixed whitespace problems in the polarberry dts
+>> - disabled mac0 for the polarberry as its port is on the optional
+>>    carrier board
+>> 
+>> Conor Dooley (10):
+>>    riscv: dts: microchip: remove icicle memory clocks
+>>    riscv: dts: microchip: move sysctrlr out of soc bus
+>>    riscv: dts: microchip: remove soc vendor from filenames
+>>    dt-bindings: riscv: microchip: document icicle reference design
+>>    riscv: dts: microchip: make the fabric dtsi board specific
+>>    dt-bindings: vendor-prefixes: add Sundance DSP
+>>    dt-bindings: riscv: microchip: add polarberry compatible string
+>>    riscv: dts: microchip: add the sundance polarberry
+>>    riscv: microchip: icicle: readability fixes
+>>    riscv: dts: icicle: sort nodes alphabetically
+>> 
+>>   .../devicetree/bindings/riscv/microchip.yaml  |   2 +
+>>   .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>>   arch/riscv/boot/dts/microchip/Makefile        |   3 +-
+>>   ...abric.dtsi => mpfs-icicle-kit-fabric.dtsi} |   2 +
+>>   ...pfs-icicle-kit.dts => mpfs-icicle-kit.dts} | 105 +++++++++---------
+>>   .../dts/microchip/mpfs-polarberry-fabric.dtsi |  16 +++
+>>   .../boot/dts/microchip/mpfs-polarberry.dts    |  99 +++++++++++++++++
+>>   .../{microchip-mpfs.dtsi => mpfs.dtsi}        |  11 +-
+>>   8 files changed, 181 insertions(+), 59 deletions(-)
+>>   rename arch/riscv/boot/dts/microchip/{microchip-mpfs-fabric.dtsi => mpfs-icicle-kit-fabric.dtsi} (91%)
+>>   rename arch/riscv/boot/dts/microchip/{microchip-mpfs-icicle-kit.dts => mpfs-icicle-kit.dts} (95%)
+>>   create mode 100644 arch/riscv/boot/dts/microchip/mpfs-polarberry-fabric.dtsi
+>>   create mode 100644 arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
+>>   rename arch/riscv/boot/dts/microchip/{microchip-mpfs.dtsi => mpfs.dtsi} (98%)
+>> 
+> 
