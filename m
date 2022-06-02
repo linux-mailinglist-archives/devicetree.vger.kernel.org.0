@@ -2,95 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E35CC53BADC
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 16:40:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66A4253BB05
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 16:40:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236036AbiFBOiX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 10:38:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44876 "EHLO
+        id S235996AbiFBOj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 10:39:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236041AbiFBOiP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 10:38:15 -0400
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF4F82823D7
-        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 07:38:10 -0700 (PDT)
-Received: by mail-pl1-x62e.google.com with SMTP id n18so4687979plg.5
-        for <devicetree@vger.kernel.org>; Thu, 02 Jun 2022 07:38:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
-        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Z/YG4PipnTkB7kFCLB9Ko0aJKnsghVne2YT8UWY752k=;
-        b=bud6KC+IEJkA6UiWdb0XWgCPZFOyuGnbI0JcrvTAcs7MVHNMHwAeHO4gVI6VuyOJOA
-         jBeWE0tjfbvr1sWtTHrQ5Pc/lY32vpbdscy1jntHUk8iRt9GspfMxKUwjBVts+q6X7aR
-         v87q9vJUEsBtElB+uDT2VH6ujaeGT+QRyw29VwBL/yfKHcfAaZaG7WjA31P3HQTQA04U
-         uqcJ8VFRO4e2Axal/SPHOuqcsS6JCaxkY9jKoXVpqccy3piFY7XCtu8jcom17rxRANck
-         0Ul7hwSuXbslkUtrhF+CWWY7IXgcKjYGHlhLeLxKHYV/IUqSL47F4p/1egWE/ObhS+kG
-         pW9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
-         :mime-version:content-transfer-encoding;
-        bh=Z/YG4PipnTkB7kFCLB9Ko0aJKnsghVne2YT8UWY752k=;
-        b=FFzhKgrfOkLGzLR2bPxfcppDs6+K8nxD6QXMPSoxoCpfufYp2nWpwNkIqVB5alvDV6
-         gXyDDNodzE1nmkwKVD72NvI0z+6UR+1MvY4dJfXtebbyYDtAUugUPgsnpZOJsyxQqIdA
-         O+INexKOATCBB/XFWv0BbD3yq7s+gKQKcK7e8dI3DIASElX+SPmHRF+B+7Cfh2HIKFIP
-         4lddkYwBvM7oUf80p4vnhTn2u3R+ANyWXosC8caW57QE17CO/d3je9uSssB2DH0l9sgU
-         eS0Ul9erHOy908g5/+sf1ycXH8CDXm7GPEbqtdO1xfynEBks4k0nrcSjiwom/l1VUt9X
-         4g6w==
-X-Gm-Message-State: AOAM531X4/+5iggJ0AbpiOoplk0UNijgM4/kASxwAlF4pqJ2PC0v9vmf
-        ziunIDR4hXpigmqZva+hiPbi/w==
-X-Google-Smtp-Source: ABdhPJxcsCyYB+lxTTfZ4DtkTxkL02+rhEC1XISCYE5I4g2r9qLwMTwqvhSmR6VRmrWdwKMzixf47w==
-X-Received: by 2002:a17:902:9f96:b0:163:dc33:6b72 with SMTP id g22-20020a1709029f9600b00163dc336b72mr5360865plq.34.1654180690018;
-        Thu, 02 Jun 2022 07:38:10 -0700 (PDT)
-Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
-        by smtp.gmail.com with ESMTPSA id l12-20020a170903004c00b00161929fb1adsm3569827pla.54.2022.06.02.07.38.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Jun 2022 07:38:09 -0700 (PDT)
-Date:   Thu, 02 Jun 2022 07:38:09 -0700 (PDT)
-X-Google-Original-Date: Thu, 02 Jun 2022 07:38:02 PDT (-0700)
-Subject:     Re: [PATCH] dt-bindings: net: adin: Escape a trailing ":"
-In-Reply-To: <20220602142917.GA2254348-robh@kernel.org>
-CC:     kuba@kernel.org, michael.hennerich@analog.com, davem@davemloft.net,
-        edumazet@google.com, pabeni@redhat.com,
-        krzysztof.kozlowski+dt@linaro.org, alexandru.ardelean@analog.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux@rivosinc.com
-From:   Palmer Dabbelt <palmer@rivosinc.com>
-To:     Rob Herring <robh@kernel.org>
-Message-ID: <mhng-d5bd6ca0-1237-49bd-b55c-18fb483bfa98@palmer-mbp2014>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        with ESMTP id S236193AbiFBOjM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 10:39:12 -0400
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAABE26D356;
+        Thu,  2 Jun 2022 07:38:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1654180737; x=1685716737;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=6FLATGDBi3yu7IKVmGaVFcjGWShYzk2UB4TqoSCIdfA=;
+  b=jH4uWiY1yQANMAAM4GEdzqVipfNpKyKcTglPAoaWDb8TyCmFlLEXpgjE
+   gb0mg5bGVLII5mBibJZR9Ie5MkH0if0wOILC9L8nSDq1FQK4FjdzkHOg/
+   4crpLC1AVvaSywD3eZdgjt65jNGR2REQtc+nyWzVIKB8MGRIHu2P/8zIH
+   E8zkxc3ufVrEI2Hg/6uAWXwwiVA8rWm9ZohvBr6RaXIFFUXu0onwpo38o
+   335bEC2IUk0Y1Q8otY6tT2Mgci1NR0E5IIkEafqNMYP77WvtT32GEwg02
+   A65TzQIDAP7PwN4QJL3Ll9WMn5OGOqUYHy+ausCJ4NDnaa06vcfVwxgga
+   g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10365"; a="256445683"
+X-IronPort-AV: E=Sophos;i="5.91,271,1647327600"; 
+   d="scan'208";a="256445683"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2022 07:38:41 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,271,1647327600"; 
+   d="scan'208";a="552868014"
+Received: from unknown (HELO localhost.localdomain) ([10.226.216.116])
+  by orsmga006.jf.intel.com with ESMTP; 02 Jun 2022 07:38:38 -0700
+From:   wen.ping.teh@intel.com
+To:     robin.murphy@arm.com
+Cc:     catalin.marinas@arm.com, devicetree@vger.kernel.org,
+        dinguyen@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, wen.ping.teh@intel.com, will@kernel.org
+Subject: Re: [PATCH] arm64: dts: Add support for Stratix 10 Software Virtual Platform
+Date:   Thu,  2 Jun 2022 22:38:16 +0800
+Message-Id: <20220602143816.3432427-1-wen.ping.teh@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <7439ce39-a2c2-7310-27d3-08ba2ed75ac9@arm.com>
+References: <7439ce39-a2c2-7310-27d3-08ba2ed75ac9@arm.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 02 Jun 2022 07:29:17 PDT (-0700), Rob Herring wrote:
-> On Wed, Jun 01, 2022 at 06:28:09PM -0700, Palmer Dabbelt wrote:
->> From: Palmer Dabbelt <palmer@rivosinc.com>
->>
->> 1f77204e11f8 ("dt-bindings: net: adin: document phy clock output
->> properties") added a line with a ":" at the end, which is tripping up my
->> attempts to run the DT schema checks due to this being invalid YAML
->> syntax.  I get a schema check failure with the following error
->>
->>     ruamel.yaml.scanner.ScannerError: mapping values are not allowed in this context
->>
->> This just escapes the line in question, so it can parse.
->>
->> Fixes: 1f77204e11f8 ("dt-bindings: net: adin: document phy clock output properties")
->> Signed-off-by: Palmer Dabbelt <palmer@rivosinc.com>
->> ---
->>  Documentation/devicetree/bindings/net/adi,adin.yaml | 3 ++-
->>  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> Already have a fix queued in netdev.
+From: wen.ping.teh@intel.com=0D
 
-OK, thanks!
+Hello Robin,=0D
+=0D
+>> +/ {=0D
+>> +	model =3D "SOCFPGA Stratix 10 SWVP";=0D
+>> +	compatible =3D "arm,foundation-aarch64", "arm,vexpress";=0D
+>=0D
+>This is definitely not compatible with any Arm Versatile Express =0D
+>platform. It doesn't even have RAM in the same place, for starters.=0D
+=0D
+Will change to the correct platform i.e. "altr,socfpga-stratix10"=0D
+=0D
+>> +		l2-cache@fffff000 {=0D
+>> +			compatible =3D "arm,pl310-cache";=0D
+>=0D
+>Yikes, I hope not!=0D
+>=0D
+>I didn't think AArch64 even allows outer caches that don't honour CPU =0D
+>cache maintenance by VA? Either way I can't imagine we'd ever accept =0D
+>PL310 support in mainline, so even if your model does actually have this =
+=0D
+>for some inexplicable reason, I don't think there's any point exposing =0D
+>it in the DT.=0D
+=0D
+Will remove outer cache.=0D
+All fixes have been done in v2 patch.=0D
+https://lore.kernel.org/linux-arm-kernel/20220602141151.3431212-1-wen.ping.=
+teh@intel.com/T/#u=0D
+=0D
+Thanks,=0D
+Wen Ping=
