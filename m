@@ -2,100 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6B3453BB2C
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 16:49:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C03FA53BB32
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 16:49:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236201AbiFBOtb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 10:49:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39696 "EHLO
+        id S234347AbiFBOty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 10:49:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235013AbiFBOta (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 10:49:30 -0400
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83BBF178557;
-        Thu,  2 Jun 2022 07:49:28 -0700 (PDT)
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-f314077115so7043060fac.1;
-        Thu, 02 Jun 2022 07:49:28 -0700 (PDT)
+        with ESMTP id S236264AbiFBOtv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 10:49:51 -0400
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0237A1A4937
+        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 07:49:48 -0700 (PDT)
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-f2a4c51c45so6995463fac.9
+        for <devicetree@vger.kernel.org>; Thu, 02 Jun 2022 07:49:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=+SLUeshYYRHHBiExGyMNYhWtwhte/6gxD1JnckYeRpI=;
-        b=pZ5FXhjhKlDoP88MQ9kWlwxTTQxJG+Mgf5RsOD1pyOYl09PZGSI4473FW2zg/f7/bn
-         EqhaL9r27NZ06pvLhMFfYaMWQfIYsQc7KLHpn5h5pn7OxDU7VinzFMxpfu7Uw4L9Ae8U
-         nnWhMUiNlgpexR3L+b1mhwESYD6Nz48pNYft0Fi+o46TjfbyxxPiB+M8kmBOLt7FYpxL
-         GEI6M1X3WP8U/RpcaS/3RB+bsx/ZRmXMH3dWBs71AbgptQZ8lcNVG/Denaz4vMXmW6bx
-         e6C/v4BlpE7mQTsxS71ZAuFxfZIARVh9e62+3rl6FICIIgbLTTR4mIgyjOM/A6enfti9
-         FbjQ==
-X-Gm-Message-State: AOAM5300kN192WjruTdR38Sfu1Ybzd8BMSivwQuFLE89jb1JCrx6DvqK
-        rfohGwwZWRFZ/ESrFDHU+Q==
-X-Google-Smtp-Source: ABdhPJxIzt4j7P1KqTn80l1LO7apZYo2bBKUcKBQ6UzAcOedmsCpzdyfNCQxPCnSvCvrWKW3CoRHNg==
-X-Received: by 2002:a05:6870:3308:b0:f1:9e97:5a9d with SMTP id x8-20020a056870330800b000f19e975a9dmr18614142oae.127.1654181367787;
-        Thu, 02 Jun 2022 07:49:27 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=1Y8r93k8L3/uY9c/fAZTXjwzkJHBhkSmh0WbbdSy7HE=;
+        b=n18rlC7lSREHfYuOTnM1cYpLPEjwUNvl3Bivn8OvcsdkRWNse7X6U54HM+suIIb89p
+         gdvCdUs2dj24UWALNqXbe/49EsdCvMvFzaTSsY2QDbWs/UQhgeFVn6+a/iVp6y6KPzdz
+         QWOT/qIdyYp7bsqIh4ZgcUBT6oFJEzeBg46VJOERIwM3MvEmlBRfo3w5Kz6XhCtcA4WP
+         jm6TwU35nWVce0v7+/8d0PpesrjSPZHjAAKXa069QlZba/5vHjC/7LqdJJtq1yeRoGVu
+         2h4VWHsgsFr/NNHhgRDiOBT++WyB4YqGOzimYPzwISB5wQsaPZb3RxcRHgCuX5w0v6Kz
+         tD4w==
+X-Gm-Message-State: AOAM532EK7nXyPq0SpKSoacOl1JlqrkTBeB/Lr5e8H+zt+A20BTgqIMY
+        tXXYPUiBxLy3+thOrotCvw==
+X-Google-Smtp-Source: ABdhPJwAk1Ot3hZsXRUg3N5muY4Oa+Q/FYuCITtB9Vhdx0Uw8AdKNGFHqxBIC+sOqyZFiKi4tiTcxg==
+X-Received: by 2002:a05:6870:828c:b0:f5:f122:f440 with SMTP id q12-20020a056870828c00b000f5f122f440mr3866955oae.168.1654181387324;
+        Thu, 02 Jun 2022 07:49:47 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 12-20020aca120c000000b00325cda1ffa5sm2281218ois.36.2022.06.02.07.49.26
+        by smtp.gmail.com with ESMTPSA id s42-20020a05683043aa00b0060613c844adsm2208463otv.10.2022.06.02.07.49.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Jun 2022 07:49:27 -0700 (PDT)
-Received: (nullmailer pid 2296230 invoked by uid 1000);
-        Thu, 02 Jun 2022 14:49:26 -0000
-Date:   Thu, 2 Jun 2022 09:49:26 -0500
+        Thu, 02 Jun 2022 07:49:47 -0700 (PDT)
+Received: (nullmailer pid 2296853 invoked by uid 1000);
+        Thu, 02 Jun 2022 14:49:46 -0000
+Date:   Thu, 2 Jun 2022 09:49:46 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
-Cc:     Pascal Eberhard <pascal.eberhard@se.com>, netdev@vger.kernel.org,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
+To:     Peter Robinson <pbrobinson@gmail.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
         Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Jose Abreu <joabreu@synopsys.com>,
+        dri-devel@lists.freedesktop.org, javierm@redhat.com,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Stefan Wahren <stefan.wahren@i2se.com>,
         Florian Fainelli <f.fainelli@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
-        Eric Dumazet <edumazet@google.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Herve Codina <herve.codina@bootlin.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        linux-kernel@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>
-Subject: Re: [PATCH net-next v6 10/16] dt-bindings: net: snps,dwmac: add
- "power-domains" property
-Message-ID: <20220602144926.GA2296137-robh@kernel.org>
-References: <20220530084917.91130-1-clement.leger@bootlin.com>
- <20220530084917.91130-11-clement.leger@bootlin.com>
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Emma Anholt <emma@anholt.net>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Will Deacon <will@kernel.org>, maxime@cerno.tech,
+        Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH v5 1/6] dt-bindings: gpu: v3d: Add BCM2711's compatible
+Message-ID: <20220602144946.GA2296795-robh@kernel.org>
+References: <20220601110249.569540-1-pbrobinson@gmail.com>
+ <20220601110249.569540-2-pbrobinson@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220530084917.91130-11-clement.leger@bootlin.com>
+In-Reply-To: <20220601110249.569540-2-pbrobinson@gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 30 May 2022 10:49:11 +0200, Clément Léger wrote:
-> Since the stmmac driver already uses pm_runtime*() functions, describe
-> "power-domains" property in the binding.
+On Wed, 01 Jun 2022 12:02:44 +0100, Peter Robinson wrote:
+> BCM2711, Raspberry Pi 4's SoC, contains a V3D core. So add its specific
+> compatible to the bindings.
 > 
-> Reported-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
 > ---
->  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+> Changes since v5:
+> - Change compatible to align downstream and othee HW, reorder to suit
+> 
+>  Documentation/devicetree/bindings/gpu/brcm,bcm-v3d.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
