@@ -2,226 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63CD953B7DB
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 13:32:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8218D53B7D5
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 13:32:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233493AbiFBLaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 07:30:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52212 "EHLO
+        id S234257AbiFBLaV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 07:30:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232427AbiFBLaI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 07:30:08 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D99C42A90C4;
-        Thu,  2 Jun 2022 04:30:03 -0700 (PDT)
-X-UUID: 03141ef6998e406b9ee57b42c2864a68-20220602
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:833e7725-c1d2-4053-9e1b-9d8a6be6f89d,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:2a19b09,CLOUDID:beefe737-9855-4915-a138-f5705f1f3d02,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:0,BEC:nil
-X-UUID: 03141ef6998e406b9ee57b42c2864a68-20220602
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <tinghan.shen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2087878321; Thu, 02 Jun 2022 19:29:57 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Thu, 2 Jun 2022 19:29:57 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 2 Jun 2022 19:29:56 +0800
-Message-ID: <5c614dc0947aba6ce2eb0cdc3055a390da723d08.camel@mediatek.com>
-Subject: Re: [PATCH v1 01/15] dt-binding: remoteproc: mediatek: Support
- dual-core SCP
-From:   Tinghan Shen <tinghan.shen@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Daisuke Nojiri <dnojiri@chromium.org>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        "Dustin L. Howett" <dustin@howett.net>,
-        Tzung-Bi Shih <tzungbi@kernel.org>,
-        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        "Enric Balletbo i Serra" <enric.balletbo@collabora.com>,
-        Brian Norris <briannorris@chromium.org>
-CC:     <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <chrome-platform@lists.linux.dev>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <weishunc@google.com>
-Date:   Thu, 2 Jun 2022 19:29:56 +0800
-In-Reply-To: <45c8050e-16d3-80d6-0799-8b067a38d956@linaro.org>
-References: <20220601112201.15510-1-tinghan.shen@mediatek.com>
-         <20220601112201.15510-2-tinghan.shen@mediatek.com>
-         <dd3ea397-fa21-abe5-85ad-b8a4818dc011@linaro.org>
-         <3c837acfbefa5b7e23e1121678b5b878f08e4ef2.camel@mediatek.com>
-         <476baef8-0255-45ed-85f4-2b9d877c4af1@linaro.org>
-         <287d88a62fd13cd762b20faa3e9df826632fe1eb.camel@mediatek.com>
-         <45c8050e-16d3-80d6-0799-8b067a38d956@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S232427AbiFBLaU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 07:30:20 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20A0C2A8921
+        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 04:30:19 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id jx22so9318282ejb.12
+        for <devicetree@vger.kernel.org>; Thu, 02 Jun 2022 04:30:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=zXjGbjkwkB6NPpoi9Na1UWH1Az6vSGiEJqLm3ZdGMlI=;
+        b=BgZ93ZdsicZVF9rGWnnAycQoqmywcEvHXu4WsQra4sseNIYRVb/ph7Q2UGD67OiEl1
+         smac5eufFUR9DL2uutJr4yQGJVeUIr/BI4b/GdX4x7fLOVoJBcX4DBbQmLLtLr+0iFxo
+         9l6B5X9/dTXRnCyIoYI/9cW1atZvZcmDICkLSvX1u9PTePB5FaG6VjZWA9/sWQ5yrilz
+         M3B/LHI+GxMS2Kr/1NWTJsN4wzNCWBVB+uguEH2APCJXYBF0oVOY+NIaHmtw7L2Knhj0
+         gWu+zP4lDDwjjodHK9jH6SwyTdK8RAY0cof44xvaPZeX+LZrpEnJ9nEXcMwG25bGp++q
+         Z4JQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=zXjGbjkwkB6NPpoi9Na1UWH1Az6vSGiEJqLm3ZdGMlI=;
+        b=nPBfh9Jb8P/adwswXrk22pqqWijruK/+mDWwjLbUsB2ItG4B3TaZvhzGw2tf9k/jB2
+         Q6UHpbhgQcbIl9TSGPQlQep9s0Rdt/g9J+jvuMwKlAhZ1btdnWvxvKtjEguAX/ukhJCL
+         yRWMhi74DditRWG327SFiLl4LNCEUgnRnO0guU5S2BzUrSeJTOxlGFaJ0Nv6kt6VHvtZ
+         lGAtT1pmcYDkGS5CzvzRcOmYCuoF5GjSvdJjU9XnSYgNmiiS43OhJUmkQBguJBQKLTEJ
+         sKBkkkYs6uFBNdh0Slfl0qYcUQK5zk+0BdDOJCt1oTHHsXvqMe5B8hRA7gGRc2u8F48C
+         7mUA==
+X-Gm-Message-State: AOAM530fEBD8CJRdfdA6a6noVf6w2xVwpGPOcmY48/IyTT6XzLh497d6
+        SNRM/Y5c+5+ocHUlEn2GQh/mRuw3wMqgqjpD
+X-Google-Smtp-Source: ABdhPJxZ9msbPv1s2FqqCaN6S+2vLFGrGKVycFB0CCloip6P56TClKWd6G6RyJt8fcKGU1PqIXqLXw==
+X-Received: by 2002:a17:906:9b96:b0:6ff:5db5:dcc4 with SMTP id dd22-20020a1709069b9600b006ff5db5dcc4mr3808036ejc.567.1654169417734;
+        Thu, 02 Jun 2022 04:30:17 -0700 (PDT)
+Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id r9-20020a1709064d0900b006ff19354f9fsm1576009eju.215.2022.06.02.04.30.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Jun 2022 04:30:17 -0700 (PDT)
+Message-ID: <f6360f69-77ba-ed70-d949-fa53c34d84b1@linaro.org>
+Date:   Thu, 2 Jun 2022 13:30:15 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 1/3] bindings: arm: fsl: Add PHYTEC i.MX8MM devicetree
+ bindings
+Content-Language: en-US
+To:     Teresa Remmet <t.remmet@phytec.de>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>, upstream@phytec.de
+References: <20220602101138.2492028-1-t.remmet@phytec.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220602101138.2492028-1-t.remmet@phytec.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
-        SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-On Thu, 2022-06-02 at 12:37 +0200, Krzysztof Kozlowski wrote:
-> On 02/06/2022 10:58, Tinghan Shen wrote:
-> > Hi Krzysztof,
-> > 
-> > On Thu, 2022-06-02 at 08:55 +0200, Krzysztof Kozlowski wrote:
-> > > On 02/06/2022 07:21, Tinghan Shen wrote:
-> > > > Hi Krzysztof,
-> > > > 
-> > > > On Wed, 2022-06-01 at 13:50 +0200, Krzysztof Kozlowski wrote:
-> > > > > On 01/06/2022 13:21, Tinghan Shen wrote:
-> > > > > > The SCP co-processor is a dual-core RISC-V MCU on MT8195.
-> > > > > > 
-> > > > > > Add a new property to identify each core and helps to find drivers
-> > > > > > through device tree API to cooperate with each other, e.g. boot flow and
-> > > > > > watchdog timeout flow.
-> > > > > > 
-> > > > > > Add a new compatile for the driver of SCP 2nd core.
-> > > > > > 
-> > > > > > Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> > > > > > ---
-> > > > > >  .../devicetree/bindings/remoteproc/mtk,scp.yaml      | 12 ++++++++++++
-> > > > > >  1 file changed, 12 insertions(+)
-> > > > > > 
-> > > > > > diff --git a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> > > > > > b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> > > > > > index eec3b9c4c713..b181786d9575 100644
-> > > > > > --- a/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> > > > > > +++ b/Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml
-> > > > > > @@ -20,6 +20,7 @@ properties:
-> > > > > >        - mediatek,mt8186-scp
-> > > > > >        - mediatek,mt8192-scp
-> > > > > >        - mediatek,mt8195-scp
-> > > > > > +      - mediatek,mt8195-scp-dual
-> > > > > >  
-> > > > > >    reg:
-> > > > > >      description:
-> > > > > > @@ -57,6 +58,16 @@ properties:
-> > > > > >    memory-region:
-> > > > > >      maxItems: 1
-> > > > > >  
-> > > > > > +  mediatek,scp-core:
-> > > > > > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > > > > > +    description:
-> > > > > > +      The property value is a list with 2 items, a core id and a phandle
-> > > > > 
-> > > > > uint32, not phandle.
-> > > > > 
-> > > > > > +      to the sibling SCP node. 
-> > > > > 
-> > > > > Skip this. First part is obvious from the schema, second part should be
-> > > > > described via items.
-> > > > > 
-> > > > > The core id represents the id of the dts node contains
-> > > > > > +      this property. The valid values of core id are 0 and 1 for dual-core SCP.
-> > > > > > +      The phandle of sibling SCP node is used to find the register settings,
-> > > > > > +      trigger core dependent callback, and invoke rproc API.
-> > > > > 
-> > > > > Entire description did not help me to understand what's this. So far it
-> > > > > looks like it is not a hardware property but some programming help, so
-> > > > > it does not look like properly described in bindings.
-> > > > > 
-> > > > > > +    maxItems: 1
-> > > > > 
-> > > > > In description you said - two items.
-> > > > > 
-> > > > > You need allOf:if:then disallowing this property for other variants.
-> > > > > 
-> > > > > > +
-> > > > > >  required:
-> > > > > >    - compatible
-> > > > > >    - reg
-> > > > > > @@ -115,6 +126,7 @@ examples:
-> > > > > >          reg-names = "sram", "cfg", "l1tcm";
-> > > > > >          clocks = <&infracfg CLK_INFRA_SCPSYS>;
-> > > > > >          clock-names = "main";
-> > > > > > +        mediatek,scp-core = <0 &scp_dual>;
-> > > > > 
-> > > > > This looks like phandle, so wrong type.
-> > > > > >  
-> > > > > >          cros_ec {
-> > > > > >              mediatek,rpmsg-name = "cros-ec-rpmsg";
-> > > > 
-> > > > Thanks for your feedback.
-> > > > After looking for a comparable uses case, I find out a different approach.
-> > > > 
-> > > >   mediatek,scp-core:
-> > > >     $ref: "/schemas/types.yaml#/definitions/phandle-array"
-> > > >     description:
-> > > >       Enable the dual-core support in scp driver.
-> > > 
-> > > You describe desired functional behavior, not the hardware. What is the
-> > > property about? If you just want to indicate this is two-core processor,
-> > > then it could be:
-> > > 	mediatek,cores = <2>; /* number of cores */
-> > > 
-> > > 
-> > > However it seems you want to achieve here something different and as I
-> > > raised last time - it does not look like DT property.
-> > > 
-> > > Or maybe this is for first core and you want to indicate the sibling?
-> > > Something like that was mentioned in previous description.
-> > 
-> > This property is mainly added for scp 1st core driver 
-> > and scp 2nd core driver to find each other via DT API.
-> > 
-> > After reconsidering the use of core id in the scp driver, it 
-> > is not necessary in the control flow. I'll remove the core id 
-> > at next version.
-> > 
-> > How about change the description as following,
-> > 
-> >   This property enables the dual-core support in scp driver.
-> >   By providing the phandle of SCP 2nd core node, the 1st SCP node
-> >   can control the SCP 2nd core as the subdevice of remoteproc framework.
+On 02/06/2022 12:11, Teresa Remmet wrote:
+> Add devicetree bindings for i.MX8MM based phyCORE-i.MX8MM
+> and phyBOARD-Polis RDK.
 > 
-> Please, read it again:
-> 
-> > > You describe desired functional behavior, not the hardware.
-> 
-> Again, you describe Linux implementation (scp driver, remoteproc
-> framework). You need to describe the hardware, not Linux drivers.
-> 
-> Maybe the hardware property is that one core has its sibling and you
-> provide here that sibling?
-
-Yes, exactly. I'm sorry for misreading your argument.
-
-How about this one,
-   
-  Reference to the sibling SCP core. This is required when 
-  dual-core SCP support is enabled.
-
-Thanks,
-TingHan
+> Signed-off-by: Teresa Remmet <t.remmet@phytec.de>
 
 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
-
+Best regards,
+Krzysztof
