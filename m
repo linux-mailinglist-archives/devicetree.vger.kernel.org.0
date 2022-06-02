@@ -2,140 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C5BB53C0C3
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 00:23:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0421B53C12B
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 00:59:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239625AbiFBWTV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 18:19:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49666 "EHLO
+        id S239850AbiFBW5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 18:57:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234670AbiFBWTV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 18:19:21 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F2D734679;
-        Thu,  2 Jun 2022 15:19:20 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id c2so7978570edf.5;
-        Thu, 02 Jun 2022 15:19:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :content-transfer-encoding:user-agent:mime-version;
-        bh=tbowqamXYYuuGAdFBr0ycte2n7isELmCXUpS72DXPYA=;
-        b=Cfn9ZrjJiuyTgQEDoNcqfvdJSLpGNZk3ZIvxheCNDuJKdAZ7/R0LfKUCb6JqSD3l9V
-         5r25+e3QoN3avlvliguJWFaximEHBbqMDW1vNP+yD4lCQPNmTqNiIxrvS0QZcMjXPXlX
-         7XZlixPHgxssR2wJVbkZSSEYV5nwEsamgxA2dnD9UfYWMS4aAlDpm7rxRStHQoHUKE3c
-         3XFgBIVrydZcp9sMwUro+iFBQqvdn8exH66hJiL0Is3zfcqToU58YLVPDLSYpiGr2YDw
-         SxJDGBsf67UaIc46xeZo0fuUSHobZ8y0Ti46WMplznIqvpUkVHnHFAAaCQjodhoAq7Di
-         hX0Q==
+        with ESMTP id S239868AbiFBW5B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 18:57:01 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4DE8CA44E
+        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 15:56:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1654210613;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=AR9SMdcMDUd1n5J8KIgwt5SyKjRipu7kR5XFiqc2xKU=;
+        b=dKsZO3vbNmZDlHl6BpCms1zaiQhcmeI2luvmq0Rjx4btRf7BCEub+Vao9+QT48/iKHd4LO
+        LBjIDhqn5bBLwHGkN8zD9lYEwURrYNcnlo7mkN+UmVUuetp2cWItd6hOcng+JcU51a2nTt
+        Veav0kIKCf3Xzj8O3d/oVUFbXLaUD5s=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-587-t09QL6qLMoeAHOaaFEEriA-1; Thu, 02 Jun 2022 18:56:50 -0400
+X-MC-Unique: t09QL6qLMoeAHOaaFEEriA-1
+Received: by mail-wm1-f69.google.com with SMTP id u12-20020a05600c19cc00b0038ec265155fso5818812wmq.6
+        for <devicetree@vger.kernel.org>; Thu, 02 Jun 2022 15:56:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:content-transfer-encoding:user-agent:mime-version;
-        bh=tbowqamXYYuuGAdFBr0ycte2n7isELmCXUpS72DXPYA=;
-        b=uexjQL9NqnPtZWq4DzAtOL6S15ZnCNapSfHDMjEDH0DDh3O7VeVXyBjo83wBmx99Ni
-         CD07pqLGkLk8UIIlKSHLT9QXzlYrWvcysxcPl4p1K1WAt3xZoGGkbH63ACATsIBCd26i
-         m0Q0lVndwMcFOD9TdvahpfWu+lHA63PxCDqGW9gsSwfjvG1cCqr4SzJ0ze4w4SL7TYAI
-         GU1vPqg+aDsQibt+z5PQxq0qxFJ8EyGuA2p0KsEsNEgRCCQbaryVtTPeXU3fnL/Vp2nd
-         n9HDC5dnqU1k9BmehJnu7BCKncS7b4/Z7uy6uxssuJcA/OhtalyF/+HUhshW4D5zYGlD
-         D70A==
-X-Gm-Message-State: AOAM532LXJBT342r88mydN+V3lg/1vPak2PgN9zMPfHa9k6CAGjy4CG1
-        vtzWh7zTZMssbhHfLYlVFDrcgavZ64dcMCl8q+g=
-X-Google-Smtp-Source: ABdhPJz1a65SOU6C73Ybt3zJBBGpUK5rx1jMp6pFTiIUucWL/ne9gp0OsWFNXQFD/Zwp0ttUaDtOpA==
-X-Received: by 2002:a05:6402:1f0e:b0:42d:e38a:51f7 with SMTP id b14-20020a0564021f0e00b0042de38a51f7mr7825293edb.68.1654208358484;
-        Thu, 02 Jun 2022 15:19:18 -0700 (PDT)
-Received: from ?IPv6:2a02:ab88:368f:2080:eab:126a:947d:3008? ([2a02:ab88:368f:2080:eab:126a:947d:3008])
-        by smtp.gmail.com with ESMTPSA id fg16-20020a1709069c5000b006fe8d8c54a7sm2150850ejc.87.2022.06.02.15.19.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Jun 2022 15:19:17 -0700 (PDT)
-Message-ID: <f40aca00a4418c889395d2dab65f85d24e8662c6.camel@gmail.com>
-Subject: Re: [PATCH 5/5] arm64: dts: exynos: Add internal eMMC support to
- jackpotlte
-From:   David Virag <virag.david003@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     phone-devel@vger.kernel.org,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Date:   Fri, 03 Jun 2022 00:18:51 +0200
-In-Reply-To: <b3681990-e358-8e1d-93fe-b72c099902e3@linaro.org>
-References: <20220601233743.56317-1-virag.david003@gmail.com>
-         <20220601233743.56317-6-virag.david003@gmail.com>
-         <b3681990-e358-8e1d-93fe-b72c099902e3@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.1 
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=AR9SMdcMDUd1n5J8KIgwt5SyKjRipu7kR5XFiqc2xKU=;
+        b=qUbkfZpO3/DhcbsR+O3i6jMAYcL/PJnx0Iyz7/OocrnRnsirZHRsljVAM7NJPEAznN
+         CkdaG7fhvEUWWTFUUm+yfWfbpJ6moOIiY917ju4gteer132KVNbCa4myOSMA1wuC9V2T
+         Us8Q2sq0wMDF/e1FVUcvpwftuZNm+dpV9Lwu+bfOZdx1Dc21OJ7Yp1nCTHUy5rocBzYW
+         gNAYYQF4AdWQo6JvMrcQ3bBEDfjMFzJWcvz+oSU2A26t8RWamZxLoTFVda13+Xgnz/eT
+         RJ0w1fJkRR9Vqx6HFI3yQvR9sd8Tv1Jm6GcZeiIJaJ7KnkJZrBeMDPoKtikwWSve2Z/X
+         RRMA==
+X-Gm-Message-State: AOAM533ZWVjlMnuNXJu4oOen0veUVg+TlDgXIjV8q+tZM84RX8gsdX/H
+        7+F4BF6iGu98MDUjfewA+0/4A+6EZgGDlT9LKdyOLpazOVr5AvvH983wpumKPrgFBKEiFK22zVl
+        2MMIS+mju/ZdvofrZdsucng==
+X-Received: by 2002:adf:e19e:0:b0:211:7169:dfa6 with SMTP id az30-20020adfe19e000000b002117169dfa6mr5499542wrb.654.1654210609757;
+        Thu, 02 Jun 2022 15:56:49 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxZWV8zk+ILUpdg/oTcVIqrtQc9+EAsiqEAnLJaGY7v3qdGxO1+UG7rTBnoRuEDL10V/hcluw==
+X-Received: by 2002:adf:e19e:0:b0:211:7169:dfa6 with SMTP id az30-20020adfe19e000000b002117169dfa6mr5499530wrb.654.1654210609546;
+        Thu, 02 Jun 2022 15:56:49 -0700 (PDT)
+Received: from [192.168.1.129] (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
+        by smtp.gmail.com with ESMTPSA id c16-20020a056000105000b002100aa69469sm5600188wrx.2.2022.06.02.15.56.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Jun 2022 15:56:49 -0700 (PDT)
+Message-ID: <add515d2-77b0-546a-3fd1-242d9f2e8ac0@redhat.com>
+Date:   Fri, 3 Jun 2022 00:56:47 +0200
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH v5 1/6] dt-bindings: gpu: v3d: Add BCM2711's compatible
+Content-Language: en-US
+To:     Peter Robinson <pbrobinson@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Emma Anholt <emma@anholt.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org, maxime@cerno.tech,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+References: <20220601110249.569540-1-pbrobinson@gmail.com>
+ <20220601110249.569540-2-pbrobinson@gmail.com>
+From:   Javier Martinez Canillas <javierm@redhat.com>
+In-Reply-To: <20220601110249.569540-2-pbrobinson@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-06-02 at 14:01 +0200, Krzysztof Kozlowski wrote:
-> On 02/06/2022 01:37, David Virag wrote:
-> > Add the nodes relevant to provide clocks for Exynos7885 eMMC and to
-> > support eMMC. eMMC is the internal storage used in the Samsung
-> > Galaxy A8
-> > (2018) (jackpotlte), and all other known devices using the
-> > Exynos7885
-> > SoC.
-> >=20
-> > Signed-off-by: David Virag <virag.david003@gmail.com>
-> > ---
-> > =C2=A0.../boot/dts/exynos/exynos7885-jackpotlte.dts | 20 ++++++++++++
-> > =C2=A0arch/arm64/boot/dts/exynos/exynos7885.dtsi=C2=A0=C2=A0=C2=A0 | 32
-> > +++++++++++++++++++
-> > =C2=A02 files changed, 52 insertions(+)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
-> > b/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
-> > index 4cf9aa25f618..5db9a81ac7bb 100644
-> > --- a/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
-> > +++ b/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
-> > @@ -60,6 +60,26 @@ power-key {
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
-> > =C2=A0};
-> > =C2=A0
-> > +&mmc_0 {
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0mmc-hs200-1_8v;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0mmc-hs400-1_8v;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0cap-mmc-highspeed;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0non-removable;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0mmc-hs400-enhanced-strobe;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0card-detect-delay =3D <200>;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0clock-frequency =3D <8000000=
-00>;
->=20
-> Is this real property for MMC? Neither mmc nor DW MSHC bindings
-> mention it.
+Hello Peter,
 
-It is, but I don't remember trying without it. Seems like it is not
-documented then. It is used in dw_mmc.c in the following places:
+On 6/1/22 13:02, Peter Robinson wrote:
+> BCM2711, Raspberry Pi 4's SoC, contains a V3D core. So add its specific
+> compatible to the bindings.
+> 
+> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
+> ---
 
-https://github.com/torvalds/linux/blob/master/drivers/mmc/host/dw_mmc.c#L32=
-42-L3243
+Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
 
-https://github.com/torvalds/linux/blob/master/drivers/mmc/host/dw_mmc.c#L33=
-06-L3325
-
-The Exynos850 device tree has the same property in it's mmc node.=20
-
->=20
-> Best regards,
-> Krzysztof
-
+-- 
 Best regards,
-David
+
+Javier Martinez Canillas
+Linux Engineering
+Red Hat
+
