@@ -2,122 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6882953B5B6
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 11:08:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41ED953B55F
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 10:49:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232770AbiFBJIq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 05:08:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45198 "EHLO
+        id S231966AbiFBItU convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 2 Jun 2022 04:49:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231182AbiFBJIm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 05:08:42 -0400
-Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48BDA201FD8;
-        Thu,  2 Jun 2022 02:08:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-        d=metrotek.ru; s=mail;
-        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding:
-         in-reply-to:references;
-        bh=Y+q3Espln8Rodgx5Nn4tnLIErSJz4K4izMOM418Zr7I=;
-        b=SmtxLuOqFTW/gFPqDQg7WoouonEkbSNJh93b5HslNBS+/IkWJWA9L/fJ5gQhmg3XAQJu/TN7TVcRL
-         G0xKo9hL/trK/m8PKswxbGWvt6rKsFMzkNem2+AW255yhbnUyICrG7jTmAR+UOY7e5LIYzkVdvmewz
-         ecZOQvddbdTJxJ/oK7/BBzCMklvuf09GF6G51UtIUJfDYi7+7MypN92W3YvgTzB1Xx+wBNP8EB0mtU
-         0eZmSzJhWmif5saGDbzCbnMZsK70jMNIhabd5uufjoDxnEPrkRw2KpnARNfavnW75CCILlAjnbXQ0D
-         aYqY/bA20SSQRV+vErDHCV64HDyndhg==
-X-Kerio-Anti-Spam:  Build: [Engines: 2.16.3.1424, Stamp: 3], Multi: [Enabled, t: (0.000010,0.007911)], BW: [Enabled, t: (0.000021,0.000001)], RTDA: [Enabled, t: (0.093807), Hit: No, Details: v2.39.0; Id: 15.52kdj8.1g4hqojmo.513n; mclb], total: 0(700)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Level: 
-X-Footer: bWV0cm90ZWsucnU=
-Received: from localhost.localdomain ([178.70.36.174])
-        (authenticated user i.bornyakov@metrotek.ru)
-        by mail.pr-group.ru with ESMTPSA
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
-        Thu, 2 Jun 2022 12:08:20 +0300
-From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
-To:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
-        trix@redhat.com
-Cc:     Ivan Bornyakov <i.bornyakov@metrotek.ru>,
-        Conor.Dooley@microchip.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        system@metrotek.ru, Rob Herring <robh@kernel.org>
-Subject: [PATCH v15 3/3] dt-bindings: fpga: add binding doc for microchip-spi fpga mgr
-Date:   Thu,  2 Jun 2022 11:45:50 +0300
-Message-Id: <20220602084550.4380-4-i.bornyakov@metrotek.ru>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220602084550.4380-1-i.bornyakov@metrotek.ru>
-References: <20220602084550.4380-1-i.bornyakov@metrotek.ru>
+        with ESMTP id S231615AbiFBItT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 04:49:19 -0400
+X-Greylist: delayed 71 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 02 Jun 2022 01:49:18 PDT
+Received: from mgw1.mx.zaq.ne.jp (fbsnd01103-jc.im.kddi.ne.jp [222.227.81.243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CFA4E3B;
+        Thu,  2 Jun 2022 01:49:17 -0700 (PDT)
+Received: from mgw1.mx.zaq.ne.jp by osmta1008-jc.im.kddi.ne.jp with ESMTP
+          id <20220602084805674.QBHV.49653.mgw1.mx.zaq.ne.jp@omta1008.jcom.zaq.ne.jp>;
+          Thu, 2 Jun 2022 17:48:05 +0900
+Received: from [172.31.24.11] by dmta1008-jc.im.kddi.ne.jp with ESMTP
+          id <20220602084805095.RMDT.33093.[172.31.24.11]@dmta1008.jcom.zaq.ne.jp>;
+          Thu, 2 Jun 2022 17:48:05 +0900
+Content-Type: text/plain; charset="iso-8859-1"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 8BIT
+Content-Description: Mail message body
+Subject: Guten Tag
+To:     Recipients <bvamn7mkr4@jcom.zaq.ne.jp>
+From:   "Francis  Crespo" <bvamn7mkr4@jcom.zaq.ne.jp>
+Date:   Thu, 02 Jun 2022 08:46:03 +0000
+Reply-To: franciscoperezcre@gmail.com
+Message-Id: <20220602084805095.RMDT.33093.[172.31.24.11]@dmta1008.jcom.zaq.ne.jp>
+X-VC-DATE: Thu, 2 Jun 2022 17:48:05 +0900
+X-Spam-Status: No, score=2.9 required=5.0 tests=BAYES_50,
+        FREEMAIL_FORGED_REPLYTO,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: **
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Device Tree Binding doc for Microchip Polarfire FPGA Manager using
-slave SPI to load .dat formatted bitstream image.
+Guten Tag,
 
-Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../fpga/microchip,mpf-spi-fpga-mgr.yaml      | 44 +++++++++++++++++++
- 1 file changed, 44 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
+Ich möchte Sie persönlich kontaktieren; Ich weiß, Sie werden überrascht sein, meine E-Mail zu lesen. Bitte seien Sie nicht skeptisch, wenn Sie mir antworten. Mein Name ist Rechtsanwalt Francis Perez Crespo. 
 
-diff --git a/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml b/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
-new file mode 100644
-index 000000000000..aee45cb15592
---- /dev/null
-+++ b/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
-@@ -0,0 +1,44 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/fpga/microchip,mpf-spi-fpga-mgr.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip Polarfire FPGA manager.
-+
-+maintainers:
-+  - Ivan Bornyakov <i.bornyakov@metrotek.ru>
-+
-+description:
-+  Device Tree Bindings for Microchip Polarfire FPGA Manager using slave SPI to
-+  load the bitstream in .dat format.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - microchip,mpf-spi-fpga-mgr
-+
-+  reg:
-+    description: SPI chip select
-+    maxItems: 1
-+
-+  spi-max-frequency: true
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            fpga_mgr@0 {
-+                    compatible = "microchip,mpf-spi-fpga-mgr";
-+                    spi-max-frequency = <20000000>;
-+                    reg = <0>;
-+            };
-+    };
--- 
-2.35.1
+Es tut mir leid, Ihren Tag zu unterbrechen, mit gebührendem Respekt, Vertrauen und Demut. Ich schreibe Ihnen diese E-Mail, von der ich glaube, dass sie für Sie von großem Interesse wäre, und um zu sehen, ob Ihre E-Mail funktioniert.
+
+Ich habe etwas absolut Wichtiges mit Ihnen zu besprechen. Für weitere Einzelheiten senden Sie mir bitte eine E-Mail mit folgenden Angaben.
 
 
+Vollständiger Name:
+Heimatadresse:
+Telefonnummer:
+Handynummer:
+Geburtsdatum:
+Beruf:
+
+
+
+Mit freundlichen Grüßen.
+
+Francis Pérez Crespo
+RECHTSANWALT
