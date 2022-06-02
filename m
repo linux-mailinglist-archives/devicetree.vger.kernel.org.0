@@ -2,77 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E928E53B3AF
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 08:39:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 361B453B3B1
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 08:39:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230064AbiFBGis (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 02:38:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53150 "EHLO
+        id S231177AbiFBGjc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 02:39:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229753AbiFBGis (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 02:38:48 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C74FB29858A
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 23:38:45 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id o10so4996834edi.1
-        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 23:38:45 -0700 (PDT)
+        with ESMTP id S230437AbiFBGjc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 02:39:32 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 879A12A1415
+        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 23:39:30 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id b8so4968226edf.11
+        for <devicetree@vger.kernel.org>; Wed, 01 Jun 2022 23:39:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=1wxMCYEgqlVivRD4HY5DqQDhLenuj8U7P5PW5a3QHQk=;
-        b=el47hvHkdldD4DhYPsEdzJ9uWLUA75a24YrlfsTMs7Mmj03BaEdwNxXfkNAj/Nzm+J
-         RMaIxY5rmbKxo/4VguHcGYZ02hLU9jsr0U5Pox2+A5YCdJBhC54QV0WE5pxVDSqv6edI
-         iGXGUyOCvhNBWJlk9yaRRyyt6yGqcIGCAePMB9ds4ZwLqDtZoBQRkxZLuGrYSzkum88L
-         nsastr3sPAyYuBer0jzzKyRq3Vr3fIX3Y0d+ioInjCnwGeKMD2ZYu9MgKtpawPriZXxg
-         IWm+7cJ5r79DdkJSPYM5ls3b9nsj4lXmfBI3DWeW5/EUK5j/c/JmF2ZCtnomjZbCSHpS
-         LmUw==
+        bh=A5b239Gi6DT4HIXTPWRt0atlMQxsvSXmCt5JQ1rzGbQ=;
+        b=oyM0xcXGYLvoegSnGbvs1zBuuHOgZaqlQiGBY1/hE5CJwicefXY4kdaOirF+mnxia7
+         D2Z9p02CVmFY0r5hzJ8xnVNC+pBhMj5EhWuN8Q31DeeIMpzy9Tl3kcoc/0/v+tMq1JO+
+         RwVle/y5nZxHcSyQvtF9UpHhV4F/Xmdyw6XNSeaby86T/SClEz0M8U9BXZzqqeFsqvgq
+         xoM8Hmj3ICxlvqwhFrMFTgiZXunGs2f5IKU3OaEFee9mAdyeSJoGxZwFo/Wgv0Cm/aUt
+         6LDCEBNr8J9ATNTUf6o+R0TI69dTHButBNz3EAY2jOxX5P/eD8Tm0JEZX0SmpxmdGIvx
+         H8XQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=1wxMCYEgqlVivRD4HY5DqQDhLenuj8U7P5PW5a3QHQk=;
-        b=hkdPQA7nG+ml3Q75HKarMT0ttqVJ48G3BqTO9b7OAuJagCVPvE+Tyq5f1vJmtd+nLo
-         GvEnTvLzMyEaw9z5iNN3AppW/4VkxWROPc1VBGvqyRJ46mcuGlt/Xl2et29Zs0W30e6g
-         5YqItP1hAX8QwkeFAvDcLUXemeCqNdz6t36xeOeh3uNV3wI02GrGpSfmYnJoZ1kZhZT5
-         TRxiruF0/wBM6FD3HqkD5P/YWw3q6aWKdAFwiEnkhCfNCsy9DQS6mdfRSHDQMGz3P0DE
-         Qh4fNOwvvxXI5EoTe7LiTmCQbIs1vtbohU1IvCEKxUvBdggBEzumVR6faPnhfJgLrCJU
-         o4Wg==
-X-Gm-Message-State: AOAM530QQ0HcNW0fwc5cFCkgiQsgUPTACCaz66xN5PiY6HwWVDx3o2g8
-        T3zmQ+DL10cNWtjlSSYJJAAm0ASXrkGUyGQx
-X-Google-Smtp-Source: ABdhPJzAdDOnCA/9/xqyDlCJBA0X21aXMdmMJTa0YP/OB98Eizxj8yDUt6hi6kfNCmoVy251BrK4Aw==
-X-Received: by 2002:aa7:cb1a:0:b0:42b:7869:3c68 with SMTP id s26-20020aa7cb1a000000b0042b78693c68mr3629849edt.55.1654151924355;
-        Wed, 01 Jun 2022 23:38:44 -0700 (PDT)
+        bh=A5b239Gi6DT4HIXTPWRt0atlMQxsvSXmCt5JQ1rzGbQ=;
+        b=OBf89erf32hAZOIcIRxxTCdeFjAwfTkQYcl2Qpj/dL+7MYM3JAfcXV3TYi+j14AL+L
+         0kGhfDbapySYO9ZJqHZC5nodRdqUIQFtYDtlq6AEiayH7BRy0nGxdD/F0lpNoMWcZ4TM
+         OCDwj2nSppEi79Ca5M3fEsmtGbrvaAv9afrHoJ/gN4UWnmoDrSexGi507qJPJYStTBBN
+         pTc6HxFMmT+LKdk1w7P0H3OIPAhK+reRiYn0jmOX8MtsDK72Ihafn+CO6BUu1HriDhYh
+         /qmtGXhAzZW8ygKKgqXZgeLLmW9HT+wz0d5eS0uubR5Us/F2h47imKEUdTifdp9SWlDK
+         WDIw==
+X-Gm-Message-State: AOAM531ZPTN6nWVh0Plnnuqqo6TMjB5bL+XFrM05KOFt8eVHp66kemBF
+        nCXus0V6fnT/iHJNTLQFl9ezUA==
+X-Google-Smtp-Source: ABdhPJw0pyO7gVwGvfGW448UYMATqiAz+qiA5US5uX95lkEiOVx9xVH26FUfb7xJjUyXuNC8SsQB5g==
+X-Received: by 2002:a05:6402:1113:b0:428:679e:f73f with SMTP id u19-20020a056402111300b00428679ef73fmr3730916edv.378.1654151969179;
+        Wed, 01 Jun 2022 23:39:29 -0700 (PDT)
 Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id ck16-20020a170906c45000b006feb20b5235sm1444548ejb.84.2022.06.01.23.38.43
+        by smtp.gmail.com with ESMTPSA id y24-20020a170906071800b006feed200464sm1444495ejb.131.2022.06.01.23.39.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Jun 2022 23:38:43 -0700 (PDT)
-Message-ID: <7c8ee58e-1f60-b42f-e6e7-6365ff1209f3@linaro.org>
-Date:   Thu, 2 Jun 2022 08:38:42 +0200
+        Wed, 01 Jun 2022 23:39:28 -0700 (PDT)
+Message-ID: <a6be8605-e538-d74b-b1b1-66766cf6bec3@linaro.org>
+Date:   Thu, 2 Jun 2022 08:39:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH v3 2/3] [PATCH] dt-bindings: arm: add BCM6878 soc
+Subject: Re: [PATCH v2 1/5] ARM: dts: socfpga: Change Mercury+ AA1 dts to dtsi
 Content-Language: en-US
-To:     Anand Gore <anand.gore@broadcom.com>,
-        Linux ARM List <linux-arm-kernel@lists.infradead.org>
-Cc:     tomer.yacoby@broadcom.com, florian.fainelli@broadcom.com,
-        samyon.furman@broadcom.com,
-        William Zhang <william.zhang@broadcom.com>,
-        kursad.oney@broadcom.com, joel.peshkin@broadcom.com,
-        dan.beygelman@broadcom.com,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+To:     =?UTF-8?Q?Pawe=c5=82_Anikiel?= <pan@semihalf.com>, soc@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20220601182707.3037131-1-anand.gore@broadcom.com>
- <20220601112700.v3.2.I383a14e417ffde9d8180ee578abbafdf09141c29@changeid>
+Cc:     arnd@arndb.de, olof@lixom.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dinguyen@kernel.org,
+        amstan@chromium.org, upstream@semihalf.com
+References: <20220601154647.80071-1-pan@semihalf.com>
+ <20220601154647.80071-2-pan@semihalf.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220601112700.v3.2.I383a14e417ffde9d8180ee578abbafdf09141c29@changeid>
+In-Reply-To: <20220601154647.80071-2-pan@semihalf.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -83,20 +77,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/06/2022 20:27, Anand Gore wrote:
-> Add BCM6878 SOC device tree description to bcmbca binding document.
+On 01/06/2022 17:46, Paweł Anikiel wrote:
+> The Mercury+ AA1 is not a standalone board, rather it's a module
+> with an Arria 10 SoC. Remove status = "okay" and i2c aliases, as they
+> are routed to the base board and should be enabled from there.
 > 
-> Signed-off-by: Anand Gore <anand.gore@broadcom.com>
-> 
-> ---
-> 
-> Changes in v3:
-> - Simplify subject line
-
-Thanks, subject is simplified, but you still have two of [PATCH] prefixes...
+> Signed-off-by: Paweł Anikiel <pan@semihalf.com>
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
