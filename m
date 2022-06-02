@@ -2,125 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9B1953B6A4
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 12:10:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D44B53B711
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 12:27:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233413AbiFBKKh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 06:10:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42232 "EHLO
+        id S233582AbiFBK0u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 06:26:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232887AbiFBKKg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 06:10:36 -0400
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3F5F2AD5C5
-        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 03:10:34 -0700 (PDT)
-Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20220602101030epoutp04da0267e03e028731eec4589127868bb7~0xfeD0Z6D0902909029epoutp04G
-        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 10:10:30 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20220602101030epoutp04da0267e03e028731eec4589127868bb7~0xfeD0Z6D0902909029epoutp04G
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1654164630;
-        bh=7koIz/DVucBKimOwAVWE0zWB8XnPg8smoktAvfpidIs=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=SyUD3e+Uv/SsYcgNF/K8P5bOqj6SBv4rziub1PyPZzluhw6EUPghpUJjwWDgq4Gm/
-         PoApE7MOK9g+eY/16bSjgePYXRNn3GMaaBJgdhpyHSaA9V35iVmWSLPno9+HsoyNeE
-         61sZr40AJ7SZMjajtwTFU5qKPGY4Oakt+F9ZIBjE=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-        epcas2p1.samsung.com (KnoxPortal) with ESMTP id
-        20220602101029epcas2p1ed37f5efcef816e7b5631b2c5ed6d998~0xfdcNpuY1582215822epcas2p15;
-        Thu,  2 Jun 2022 10:10:29 +0000 (GMT)
-Received: from epsmges2p3.samsung.com (unknown [182.195.36.98]) by
-        epsnrtp3.localdomain (Postfix) with ESMTP id 4LDMGC6qpRz4x9Pp; Thu,  2 Jun
-        2022 10:10:27 +0000 (GMT)
-Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
-        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
-        33.0B.10028.39C88926; Thu,  2 Jun 2022 19:10:27 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
-        20220602101027epcas2p41c9f5360805c7aa8479560bae156286e~0xfbbOhHn2389023890epcas2p4T;
-        Thu,  2 Jun 2022 10:10:27 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20220602101027epsmtrp2fb1a4c04dfb28473f8df4503086c9b8a~0xfbWXZsj2707927079epsmtrp2O;
-        Thu,  2 Jun 2022 10:10:27 +0000 (GMT)
-X-AuditID: b6c32a47-573ff7000000272c-45-62988c93388a
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        14.BC.11276.29C88926; Thu,  2 Jun 2022 19:10:27 +0900 (KST)
-Received: from KORCO082417 (unknown [10.229.8.121]) by epsmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20220602101026epsmtip1e563cad0eb0f88870ebbd2945dffbc82~0xfbLn3tS2748227482epsmtip1d;
-        Thu,  2 Jun 2022 10:10:26 +0000 (GMT)
-From:   "Chanho Park" <chanho61.park@samsung.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-        "'Kishon Vijay Abraham I'" <kishon@ti.com>,
-        "'Vinod Koul'" <vkoul@kernel.org>,
-        "'Alim Akhtar'" <alim.akhtar@samsung.com>,
-        "'Rob Herring'" <robh+dt@kernel.org>,
-        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>
-Cc:     <devicetree@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <linux-samsung-soc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-In-Reply-To: <b16915f7-a4b7-4512-77fb-b2cdd8e7cdb4@linaro.org>
-Subject: RE: [PATCH v2 1/6] dt-bindings: phy: samsung,ufs-phy: make
- pmu-syscon as phandle-array
-Date:   Thu, 2 Jun 2022 19:10:26 +0900
-Message-ID: <035e01d87668$fb2bfcf0$f183f6d0$@samsung.com>
+        with ESMTP id S233767AbiFBK0t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 06:26:49 -0400
+X-Greylist: delayed 902 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 02 Jun 2022 03:26:44 PDT
+Received: from mickerik.phytec.de (mickerik.phytec.de [195.145.39.210])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 443CF56773
+        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 03:26:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+        q=dns/txt; i=@phytec.de; t=1654164699; x=1656756699;
+        h=From:Sender:Reply-To:Subject:Date:Message-Id:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=oKfG7AujEBtPECKlIzCn6nPytNMUT8OeJM2nV4VllBc=;
+        b=ZJvODy4BxF5fUF0KSmr004TpCJvU1010PaCXGZXnNGo2CIdCfZh+ZG4sqZePz3ED
+        9llROLH+ULCdoULdQUUNVfoxlC5dZikkPdR1jFlTVC0QT8XfHwkPoubI4SXgmHxS
+        BDtnxq0mJchccK+T0q3GMB8KuBEHVQlBXj32ART2SQI=;
+X-AuditID: c39127d2-40b8624000001dbe-27-62988cdb1216
+Received: from idefix.phytec.de (Unknown_Domain [172.25.0.20])
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 7E.E1.07614.BDC88926; Thu,  2 Jun 2022 12:11:39 +0200 (CEST)
+Received: from augenblix2.phytec.de ([172.25.0.51])
+          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
+          with ESMTP id 2022060212113881-85941 ;
+          Thu, 2 Jun 2022 12:11:38 +0200 
+From:   Teresa Remmet <t.remmet@phytec.de>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>, upstream@phytec.de
+Subject: [PATCH 1/3] bindings: arm: fsl: Add PHYTEC i.MX8MM devicetree bindings
+Date:   Thu, 2 Jun 2022 12:11:36 +0200
+Message-Id: <20220602101138.2492028-1-t.remmet@phytec.de>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 02.06.2022 12:11:39,
+        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 02.06.2022 12:11:39
+X-TNEFEvaluated: 1
 Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQLWkTnA63V9WykH3rm22/0hqLdk6gLMec0AAc0/rTIBlco14ALgFz+bqvcxoOA=
-Content-Language: ko
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrDJsWRmVeSWpSXmKPExsWy7bCmqe7knhlJBvOfG1s8mLeNzWL+kXOs
-        Fhee9rBZ9L14yGyx9/VWdotNj6+xWkxY9Y3FYsb5fUwWrXuPsFvsvHOC2YHLY9OqTjaPO9f2
-        sHlsXlLv0bdlFaPH8RvbmTw+b5ILYIvKtslITUxJLVJIzUvOT8nMS7dV8g6Od443NTMw1DW0
-        tDBXUshLzE21VXLxCdB1y8wBukxJoSwxpxQoFJBYXKykb2dTlF9akqqQkV9cYquUWpCSU2Be
-        oFecmFtcmpeul5daYmVoYGBkClSYkJ3R+3EyY8El3ormT9uYGxhXcHUxcnJICJhITDqxhqWL
-        kYtDSGAHo0TPp49MEM4nRonmS5OhnG+MEvu33WGFaZl48TA7RGIvo8TsVVtZIZwXjBIbfy1m
-        AqliE9CXeNmxDSwhIjCfSeJp51WwBLPABEaJlZ+8QWxOATuJdyu7WUBsYYFEietTXzGC2CwC
-        KhKH/kDYvAKWEhN/zmGHsAUlTs58wgIxR1ti2cLXzBAnKUj8fLoM7DwRAT+Jj/8XMkPUiEjM
-        7mxjBjlCQmALh8STmVOYIBpcJObv2s8OYQtLvDq+BcqWkvj8bi8bhF0ssXTWJyaI5gZGicvb
-        fkEljCVmPWsHuo4DaIOmxPpd+iCmhICyxJFbULfxSXQc/ssOEeaV6GgTgmhUlziwfToLhC0r
-        0T3nM+sERqVZSD6bheSzWUg+mIWwawEjyypGsdSC4tz01GKjAmN4dCfn525iBCdbLfcdjDPe
-        ftA7xMjEwXiIUYKDWUmEt2TX1CQh3pTEyqrUovz4otKc1OJDjKbAsJ7ILCWanA9M93kl8YYm
-        lgYmZmaG5kamBuZK4rxeKRsShQTSE0tSs1NTC1KLYPqYODilGphiWebtWNByLaMv+4cty978
-        k/qS0ss4mr/N2yvoEWD+7/vM8moJ1QBD1+osg6tTdj15vNjQ+/6X4yxGpbs890TMeJ3w/PSh
-        nCqZtviqJR+8Q5a8Kn0ss/aDs3TTx7a9mZ4Kf1MbhDu/J6338n3Gd6vuyYVNHxRFFTQ2sHwu
-        M92YeeS0rpmgNFtPYfpktvcp3lsLBRTLZ57t00vi00i9/ZpvzZkr0W+F3aMNjx99tdj/q2cm
-        u1t26rStnZPcF1tyr52l77xqYVS68M/dD4VX14WpPfb/xOYpV1nt4fbQ2S/t/5mKGbbaOY4c
-        IbvPFVxbKFiZfl3u9ZHfC6dH86pUzdS587NW8QuDYcGWvL1Wm5VYijMSDbWYi4oTAWfE65g/
-        BAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprJIsWRmVeSWpSXmKPExsWy7bCSnO7knhlJBrNuMFo8mLeNzWL+kXOs
-        Fhee9rBZ9L14yGyx9/VWdotNj6+xWkxY9Y3FYsb5fUwWrXuPsFvsvHOC2YHLY9OqTjaPO9f2
-        sHlsXlLv0bdlFaPH8RvbmTw+b5ILYIvisklJzcksSy3St0vgyljXdI+lYA9vxbezL1gbGPu4
-        uhg5OSQETCQmXjzM3sXIxSEksJtRYu2Ee8wQCVmJZ+92sEPYwhL3W46wQhQ9Y5T4/30/E0iC
-        TUBf4mXHNrCEiMBiJon+E2fZQBxmgSmMEpevvmSBaFnOJDH7/XGwWZwCdhLvVnazgNjCAvES
-        H+70s4HYLAIqEof+vGIEsXkFLCUm/pzDDmELSpyc+QSsnllAW+Lpzadw9rKFr6FuVZD4+XQZ
-        K4gtIuAn8fH/QmaIGhGJ2Z1tzBMYhWchGTULyahZSEbNQtKygJFlFaNkakFxbnpusWGBYV5q
-        uV5xYm5xaV66XnJ+7iZGcOxpae5g3L7qg94hRiYOxkOMEhzMSiK8JbumJgnxpiRWVqUW5ccX
-        leakFh9ilOZgURLnvdB1Ml5IID2xJDU7NbUgtQgmy8TBKdXAJGfqbSg3/ahtpdlx8wClQ3qy
-        bRckVvjXT3J/5NB4z0A1xTwg/F/ZPU3DYxekI5/0LL19UZV7trvtHYXJvrYi6+buPLTR4v+E
-        /iPTwmavbFv2dOlv/91Pt+f8OyH9dDLPX+P26JLSuCU737618mVera+bra5+47yE/QrFxjz7
-        +b4C/O9v/d+8y3PvN+Za/8UdIasusv3+8U51Uzpf943r178x/ZpfE9dbktalWBh4KFXaZHfu
-        TfaGRzr/hKVFn3N5fSrpaGxI+Oh+2NWz7r/GRWf7LPsVaoKPyk9dOiKgoPFoRxe77jH5N8vU
-        3DcFd/evWcoj9CVHcnnG9ccxjfubdiurv3xx/8r523suJwa9VmIpzkg01GIuKk4EAGe7vdMs
-        AwAA
-X-CMS-MailID: 20220602101027epcas2p41c9f5360805c7aa8479560bae156286e
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220602053329epcas2p4c2baca2d161814f5d51dc48722f904b1
-References: <20220602053250.62593-1-chanho61.park@samsung.com>
-        <CGME20220602053329epcas2p4c2baca2d161814f5d51dc48722f904b1@epcas2p4.samsung.com>
-        <20220602053250.62593-2-chanho61.park@samsung.com>
-        <44fceb66-fd33-4b2d-fe8e-9a1a5837a51a@linaro.org>
-        <b16915f7-a4b7-4512-77fb-b2cdd8e7cdb4@linaro.org>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrMLMWRmVeSWpSXmKPExsWyRpJBRPd2z4wkg5OreSzmHznHavHwqr9F
+        34uHzBabHl9jtej6tZLZonXvEXaLv9s3sVi82CLuwOGxc9Zddo9NqzrZPO5c28PmsXlJvcfG
+        dzuYPPr/Gnh83iQXwB7FZZOSmpNZllqkb5fAlTHltHfBao6Kx1+PMDYwHmTrYuTkkBAwkZj1
+        6DFTFyMXh5DANkaJyzdms0E4Zxklrj9fzgJSxSagIfF0xWkmEFtEwEWi88E6FpAiZoFGJokd
+        xy4wgySEBfwlXr1rBxvLIqAiMe3wBzCbV8BS4te6x4wQ6+QlZl76zg4RF5Q4OfMJ2CAJgSuM
+        Er29u5ggioQkTi8+CzaUWUBbYtnC18wTGPlmIemZhSS1gJFpFaNQbmZydmpRZrZeQUZlSWqy
+        XkrqJkZgwB6eqH5pB2PfHI9DjEwcjIcYJTiYlUR4S3ZNTRLiTUmsrEotyo8vKs1JLT7EKM3B
+        oiTOe7+HKVFIID2xJDU7NbUgtQgmy8TBKdXAWMCm/prZOWTHjeV5IU+Z06tFk6ot7VPORbtN
+        PHN6yz6Dlq23hS/wnzm02WnDQcfPbuU6T1elbu8OSbzV8uNInotVhEyyTeWNk1cMEp4wS1RV
+        L4z9NvOgb7uD1qdMtvdVfpKtcYurnBv7GkPY1psJFUQW6FQUtc3eta5i5zOD/yaHlTf9DhdR
+        YinOSDTUYi4qTgQAhy1FDEYCAAA=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -128,49 +71,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> >>    samsung,pmu-syscon:
-> >> -    =24ref: '/schemas/types.yaml=23/definitions/phandle'
-> >> -    description: phandle for PMU system controller interface, used to
-> >> -                 control pmu registers bits for ufs m-phy
-> >> +    =24ref: '/schemas/types.yaml=23/definitions/phandle-array'
-> >> +    items:
-> >> +      minItems: 1
-> >> +      items:
-> >> +        - description: phandle for PMU system controller interface, u=
-sed
-> to
-> >> +                       control pmu registers bits for ufs m-phy
-> >> +        - description: offset of the pmu control register
-> >
-> > This does not work... Please test your bindings with different cases.
->=20
-> Just to be clear - when I mentioned that minItems should be on second
-> items level, I meant it should affect the second items list, not the firs=
-t.
-> Now you can have 1, 2 or 10 phandles.
+Add devicetree bindings for i.MX8MM based phyCORE-i.MX8MM
+and phyBOARD-Polis RDK.
 
-I put the minItems to the second level as you mentioned but I got below err=
-or from dt_binding_check.
+Signed-off-by: Teresa Remmet <t.remmet@phytec.de>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
---- a/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
-=40=40 -42,8 +42,8 =40=40 properties:
-   samsung,pmu-syscon:
-     =24ref: '/schemas/types.yaml=23/definitions/phandle-array'
-     items:
--      minItems: 1
-       items:
-+        - minItems: 1
-         - description: phandle for PMU system controller interface, used t=
-o
-                        control pmu registers bits for ufs m-phy
-         - description: offset of the pmu control register
-
-=24 make dt_binding_check DT_SCHEMA_FILES=3DDocumentation/devicetree/bindin=
-gs/phy/samsung,ufs-phy.yaml
-ufs-phy=4015571800: samsung,pmu-syscon:0: =5B4294967295, 1828=5D is too sho=
-rt
-
-Best Regards,
-Chanho Park
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation=
+/devicetree/bindings/arm/fsl.yaml
+index ef524378d449..84134fdcf4f1 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -865,6 +865,12 @@ properties:
+           - const: toradex,verdin-imx8mm          # Verdin iMX8M Mini Modu=
+le
+           - const: fsl,imx8mm
+=20
++      - description: PHYTEC phyCORE-i.MX8MM SoM based boards
++        items:
++          - const: phytec,imx8mm-phyboard-polis-rdk # phyBOARD-Polis RDK
++          - const: phytec,imx8mm-phycore-som        # phyCORE-i.MX8MM SoM
++          - const: fsl,imx8mm
++
+       - description: Variscite VAR-SOM-MX8MM based boards
+         items:
+           - const: variscite,var-som-mx8mm-symphony
+--=20
+2.25.1
 
