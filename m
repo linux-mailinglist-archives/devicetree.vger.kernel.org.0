@@ -2,80 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEC7A53B8AE
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 14:07:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FF0253B8B0
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 14:07:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234791AbiFBMG0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 08:06:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34486 "EHLO
+        id S234796AbiFBMGa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 08:06:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234794AbiFBMGX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 08:06:23 -0400
-X-Greylist: delayed 81277 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 02 Jun 2022 05:06:17 PDT
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9138924F977
-        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 05:06:17 -0700 (PDT)
-Received: from [192.168.41.62] ([46.114.149.130]) by mrelayeu.kundenserver.de
- (mreue009 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1MBDva-1o4x343b2s-00Cli0; Thu, 02 Jun 2022 14:05:57 +0200
-Message-ID: <58f02593-7d7d-cc95-8641-c7dd2dceacdb@i2se.com>
-Date:   Thu, 2 Jun 2022 14:05:55 +0200
+        with ESMTP id S234788AbiFBMG3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 08:06:29 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E50A71CC5DB;
+        Thu,  2 Jun 2022 05:06:27 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 252C6HIl075010;
+        Thu, 2 Jun 2022 07:06:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1654171577;
+        bh=DuEXCXoL9IDcgvsAnIMRAW9BTFe3e1IHN5JFOrrh8Rk=;
+        h=From:To:CC:Subject:Date;
+        b=HqAWt98jOUlKKvxdBEbgAHz5PfVo2zmNFsKD1ZSSiI5ldII2YrsvQSgWTxh4vTzhw
+         YH/pVaywTR25luf+WXhPB0gjGz3bi59lOOAfl8Bcuz5p9fgdL+nWJmoTMDCLtbsvVC
+         geAmq4VhINW6G+wzaojYTTKxX7zgZG1RT5+EwLdY=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 252C6HUc079056
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 2 Jun 2022 07:06:17 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 2
+ Jun 2022 07:06:17 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 2 Jun 2022 07:06:17 -0500
+Received: from a0393678ub.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 252C6EEm054710;
+        Thu, 2 Jun 2022 07:06:15 -0500
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nishanth Menon <nm@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+Subject: [PATCH v2 0/3] soc: ti: Enable PRUSS-M on K3 AM62x SoCs
+Date:   Thu, 2 Jun 2022 17:36:10 +0530
+Message-ID: <20220602120613.2175-1-kishon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v5 6/6] arm64: config: Enable DRM_V3D
-Content-Language: en-US
-To:     Peter Robinson <pbrobinson@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, Emma Anholt <emma@anholt.net>,
-        Florian Fainelli <f.fainelli@gmail.com>, javierm@redhat.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org, maxime@cerno.tech,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-References: <20220601110249.569540-1-pbrobinson@gmail.com>
- <20220601110249.569540-7-pbrobinson@gmail.com>
-From:   Stefan Wahren <stefan.wahren@i2se.com>
-In-Reply-To: <20220601110249.569540-7-pbrobinson@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Provags-ID: V03:K1:ySVw215QqyzDwqTpADuF4NISRbRI0tgvO+MFFxmmX7Ad2QkZfuq
- CkebJYQzs94RgV6QBCfoKG4LSE/hlm08Mh3IgWU9L3XhWLzWDbO2d5O7c2y8h7lGRzehZlf
- H6pMf9P3J8gg/o5oBYFEYnis7wouWeRo5cOQkOzmf4TJd7O1HAsE/+n4pjEf8lGs/AvdkzH
- kv5NM9WpxU59cCI7p1g/Q==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:llqUEel59Cw=:yoJZMQwtBJKAuWWnwL1POQ
- vACN60q0mffARbSUkEclNtJHwb+ZVkeO+hbsC6nCh0MLDih9iNPzAUDoD114cOvZqLO32iFr5
- 2DxBXh97xeAF0cJ5mFm9bJHVtXibAMEfPkwGMDCzTNTsE+Lzyv8XSwqERiVvzzhLe8tJCVOwA
- kydPrOh0DjgXfQTg9O/9+/Tw5ZUnvhZUjXGusthFeshvFTIhZYXRBT4vQBZAuD/YqkEES0rkY
- OsO+iB8fHkg8EZiG8vSZChI52Z7MPiTqK92d1hpeQH2mE5fbxSJehZxYubPsuTxFT7ZrVbG4B
- y0BpctesaYA5c6WzIrtPvJpXyUyBScbMMIpOKl7Nasp95lUGk4AkkWm3qX8CI2okVeMBz+0oW
- NjkTvh0F5D/4xWvDtO1c7v8szb9VVLe1loiusa3a2W/ejpMnq3vZg2H0NsfcsKLjrBkvVHWG0
- fS+sb9V9WPn0AYjn2yAR1CUjnlAken4QDEBaa3Gys7rkIA+20W3fdjE537MdUM4IAkQM6N7Ou
- GioOACtmSP2Is3oEQm0NpByzJZOefz0dtbHUBwvk089oyzjKORTEcjrnonisBQfKgqJa73ORV
- JiE/N/O+yBjy3BRIRx0TcmTbfUNOWfFGLBnLh6Kv5wyMnNgL6xL4CDONFYCogg2mf5K38Mz1f
- oCrBLRFgJ54l1J0wntjJzAi2VyK7m3fhSXF6ZwT3gLhlU8oJM3U6THuT4cGMhNNsusw4I+5A+
- 2CmAnD1++KLUKURet836X3ZhJgyWOrk3S87nNvP1il+Asad3tPIyWJ/xQk0=
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 01.06.22 um 13:02 schrieb Peter Robinson:
-> From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
->
-> BCM2711, the SoC used on the Raspberry Pi 4 has a different GPU than its
-> predecessors. Enable it.
->
-> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
-Reviewed-by: Stefan Wahren <stefan.wahren@i2se.com>
+Series adds AM62x specific compatible string to enable PRUSS-M in
+AM62x SoCs.
+
+Changes from v1:
+1) Added a new patch to re-arrange "compatible" in alphabetic
+   order
+
+v1: https://lore.kernel.org/r/20220427072703.4898-1-kishon@ti.com
+
+Kishon Vijay Abraham I (3):
+  dt-bindings: soc: ti: pruss: Re-arrange "compatible" in alphabetic
+    order
+  dt-bindings: soc: ti: pruss: Update bindings for K3 AM62x SoCs
+  soc: ti: pruss: Enable support for PRUSS-M subsystem on K3 AM62x SoCs
+
+ Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml | 5 +++--
+ drivers/soc/ti/pruss.c                                 | 1 +
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+
+-- 
+2.17.1
+
