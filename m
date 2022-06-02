@@ -2,74 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59D5A53B65C
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 11:50:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C545853B65D
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 11:51:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231598AbiFBJuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 05:50:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48332 "EHLO
+        id S233050AbiFBJvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 05:51:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233224AbiFBJt5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 05:49:57 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC96C29421B
-        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 02:49:55 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id jx22so8849096ejb.12
-        for <devicetree@vger.kernel.org>; Thu, 02 Jun 2022 02:49:55 -0700 (PDT)
+        with ESMTP id S233010AbiFBJvY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 05:51:24 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 466542A553F
+        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 02:51:23 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 25so5286882edw.8
+        for <devicetree@vger.kernel.org>; Thu, 02 Jun 2022 02:51:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=p0yz5l9S1tSy2buhTZElzgLvRGRoFCpmLIWAz9pUW9k=;
-        b=C6MsfkKx33wlafzB5jS3x2gGWVyt6Cz/qpDQSNH3FFZ/GnK54Mh5raDSBusyir/hQT
-         ByWPUXeXBOV9q75B0sDuWf0P5y6/Uvendqkc3nR05fpC6dJNKhR6bCbZVj1kHwZ0tLAk
-         DOemjBB1nNzuf+UOO8BqnP+rt4v7Ez02PNHUdoASALPN8P3ou1X9zmL+xwJkctt58Uia
-         5dc++psB3H9PS/vOUOiNsnf+xuRjCzBrV5czbGnwZF41oInIiMx4bvUR0GbDmSx38Y+n
-         E7fMRWYBUxJpH8sTEvgeSZ3vruAFqo4DXayLODFIC4tIjJWD1KXv2Z12BK0v81HRU5cM
-         Ymaw==
+        bh=MjN3QAPXaLu5asd6/V8KFEW3wXF4UjKGCU1d2AqsWJY=;
+        b=tGk9DbU4Vc2+x4lxBEGT4A/vmPlacop3egLMcF/79UBOenFdesqSP1zeyAx3zhqH0q
+         y6cMMD2KP+FspuohWKtEyKbYtfVI5mzwy8cpVp59q31yCD/Vj3fvZxBg4vEhFPhIiQGH
+         4+qAvMDyiJT9xvyhEGzkSeZGfLgZVW6a+E2btw0aZoCchiJmH/MXlaMCUh1491PhiSMM
+         plVc6cnJCnaGm81FAmC14eFfu13jHFM3Aei/7Z9dzpgxQA8zyti/7wamhn8bC7Wyg0WM
+         TjCqvhDNH8/hUZlLOXo+y/xYKphNABNi3f8aLFV8VLIaRm9MrNZr9da2zZj0DsnPlsHb
+         37vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=p0yz5l9S1tSy2buhTZElzgLvRGRoFCpmLIWAz9pUW9k=;
-        b=GJL+OCupO+eckzjn2AugvE7UH8fhxSZi0xr296zLqF81JxmkPxUvCfpvLfYX95dlv2
-         /Jt+YqKVIwXV1C6UTNPVxSPovgvoQZIOvZb5h8gjGlWF1QCjx2c+IaK/8ooFJEARqHBj
-         JTyUSXeNZNesTT6KoaxWZLyESWghJyJ3Fupj+ryGqPdZalGGYb7WVk6L3jSrONekT6Rv
-         l8Ck9vP07WiUIjYCftBZ4xDqRidWuMt18IsmSfw00iI9/Kl6Db27FrjaSePxht50yLQq
-         xH7PmBzh8DeFU4yj4ZyTLK1ZN6HMjjAtMpU5zuitg9nHh18h68HuDNiLk5aE6bcdgzwX
-         9kpA==
-X-Gm-Message-State: AOAM533qxydRPuQNmagb775qd4uzcRcoZWUn71ZCiLkYT1tzZPwnkWhA
-        Y+xWtVkMkwS+TxB2533cLYBsGg==
-X-Google-Smtp-Source: ABdhPJwtA7IDRXjyprOMFtXFDEdlRst60x1P9bif0uKmU1TeReEoBqoWfIo1dS/Qd5LHhawMWbQOvA==
-X-Received: by 2002:a17:907:6286:b0:6da:6e24:5e43 with SMTP id nd6-20020a170907628600b006da6e245e43mr3368001ejc.449.1654163394255;
-        Thu, 02 Jun 2022 02:49:54 -0700 (PDT)
+        bh=MjN3QAPXaLu5asd6/V8KFEW3wXF4UjKGCU1d2AqsWJY=;
+        b=s6sRdDBSPriC97GBMRvnT8tv0quHu2Q3PTGwrXrzBf5xtfTdxChYFlDOD2nnTpDFHa
+         zp6gRRPyXZQQ1hxPBmdM/ZAd5Zq9KnPHQDZX07Qg3V/oU641Ko7im/mtw4lsHWO4YYeA
+         76Y2z+8Wvc4JAEP6ZfmrBSk3GI1D6zIsq0dwZb9bga/MwYMFxmG5l5LjZ5Aszno6CXrz
+         cC2nKw/aPbUlyfYnQ/u2rm1sRchZqRJh2ruxAiI/Qv5OVpHG++bMy05wUSVINEOUyHWn
+         Tem9xIf9MqZm8+Un+JJ15zF0E1NEllClz4yIsZXQkevK8Y0lZSPLGXD6roRsPHbVE0Nv
+         BdXg==
+X-Gm-Message-State: AOAM530vciTGIiq0ybWufcXdHHRaq5JZX6ZA1vr0A6y6blnIpz9mlqMS
+        189xYTKpj/BHAf00igWJUaTuyA==
+X-Google-Smtp-Source: ABdhPJyg0zDfRZBzZGhi4dzXWG591XdASf/OW4eBJ5t4TQxpfa4I1d+/cFejfsHd6Uglaf26Azcsjg==
+X-Received: by 2002:a05:6402:1c91:b0:42d:c9b6:506b with SMTP id cy17-20020a0564021c9100b0042dc9b6506bmr4354589edb.166.1654163481859;
+        Thu, 02 Jun 2022 02:51:21 -0700 (PDT)
 Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id c16-20020a170906171000b006fed85c1a72sm1565086eje.223.2022.06.02.02.49.53
+        by smtp.gmail.com with ESMTPSA id lo27-20020a170906fa1b00b006fe9209a9edsm1546466ejb.128.2022.06.02.02.51.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Jun 2022 02:49:53 -0700 (PDT)
-Message-ID: <7fa34789-c0da-17fe-a560-e61084d16fea@linaro.org>
-Date:   Thu, 2 Jun 2022 11:49:53 +0200
+        Thu, 02 Jun 2022 02:51:21 -0700 (PDT)
+Message-ID: <5e73e87d-4133-9a1b-27bd-1c4ca25e4b0d@linaro.org>
+Date:   Thu, 2 Jun 2022 11:51:20 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH v2 4/6] arm64: dts: exynosautov9: adjust DT style of ufs
- nodes
+Subject: Re: [PATCH] arm64: dts: Add support for Stratix 10 Software Virtual
+ Platform
 Content-Language: en-US
-To:     Chanho Park <chanho61.park@samsung.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220602053250.62593-1-chanho61.park@samsung.com>
- <CGME20220602053329epcas2p407039a6087b6c460d6687b1cc1f3872a@epcas2p4.samsung.com>
- <20220602053250.62593-5-chanho61.park@samsung.com>
+To:     wen.ping.teh@intel.com
+Cc:     catalin.marinas@arm.com, devicetree@vger.kernel.org,
+        dinguyen@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, will@kernel.org
+References: <2cf38dea-0754-e63b-4832-a0b2aa966c61@linaro.org>
+ <20220602034616.2840946-1-wen.ping.teh@intel.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220602053250.62593-5-chanho61.park@samsung.com>
+In-Reply-To: <20220602034616.2840946-1-wen.ping.teh@intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,16 +77,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/06/2022 07:32, Chanho Park wrote:
-> Drop "ufs0-" label name usage of ufs phy and hci nodes.
-> Regarding the comments of reg properties, we don't need to illustrate here
-> because we can find the description from the dt-binding doc.
+On 02/06/2022 05:46, wen.ping.teh@intel.com wrote:
+> From: wen.ping.teh@intel.com
 > 
-> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
-> ---
+> Hello Krzysztof,
+> 
+>>> +	chosen {
+>>> +		bootargs = "rdinit=/sbin/init ip=dhcp mem=2048M";
+>>
+>> Bo bootargs,
+> Could you clarify what does "Bo bootargs," mean?
 
-Thanks, DTS look ok, I'll take the last three patches after merge window.
+Ah, there was a typo. Should be: "No bootargs".
+
+Please remove such bootargs because this is not a property of a hardware
+and different user system could use different bootargs.
+
 
 Best regards,
 Krzysztof
