@@ -2,139 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3B5953B5A2
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 11:02:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4036153B5DD
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 11:18:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232717AbiFBJAs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 05:00:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42220 "EHLO
+        id S232906AbiFBJSV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 05:18:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229895AbiFBJAr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 05:00:47 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54F4420A0A7;
-        Thu,  2 Jun 2022 02:00:46 -0700 (PDT)
-Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id E45F52223E;
-        Thu,  2 Jun 2022 11:00:43 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1654160444;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=B5z9oWKQYYGAn6NKzZ7SMfavjtu2i1gf/5FZ3zbr/XI=;
-        b=dMvI8c7rdMfMVwVYZ7dXmJGi5WR0OCQVhScMP3skmxPCD7CY13Z7IuHlPi3HGskm/oZtGS
-        SZvJZGJArb8HuMuXE7IeDHLmwfmxYOKLslstZA6b7UJzt7Pj8jY+ysC23gBC5T2pY89Whd
-        eO3JDue2VLfxAF0/9ARXT8qZzR8D0u0=
-From:   Michael Walle <michael@walle.cc>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-serial@vger.kernel.org, Michael Walle <michael@walle.cc>
-Subject: [PATCH v2] earlycon: prevent multiple register_console()
-Date:   Thu,  2 Jun 2022 11:00:38 +0200
-Message-Id: <20220602090038.3201897-1-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
+        with ESMTP id S231402AbiFBJSU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 05:18:20 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBDE053701;
+        Thu,  2 Jun 2022 02:18:18 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id me5so8233104ejb.2;
+        Thu, 02 Jun 2022 02:18:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0d9LPcPl2z82dxOAeBz8oaTNCeFfF1mrJ8xfIO9HyHE=;
+        b=lfLh9e2Zec+kRfUbieDqxaSJGfE2gK5tVDQL4/AlpgVcAAIBNipxqiaQ9KaF31NRoL
+         p4XLfqqfzJDaVnItedh+uY7WOZo9GWfO9EDs7Kwtb9g1ep7F/2s8jmC8C+5HKoB8mmqm
+         5+MnNkvj0n3QFu1KLRgu4qmE4FZpPqT/FxCabwWRio16T/tBO5n8YQs39umvhQZU1izc
+         kmND1i4pFf63FZslDTQd5TX2paKc+iavMXEEIfxzCgFARk5C9xBN1i2j5XO5tazLpbL3
+         wIlyYfmxX1H8YiEs73O3/gKRJfzGSjM99weIY/3wRiXAWXYqSVXb5yR9RaF0dJyLJck3
+         HKTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0d9LPcPl2z82dxOAeBz8oaTNCeFfF1mrJ8xfIO9HyHE=;
+        b=cyeok4LVFsdO0DNXsuUE0UImQfxvFOwMGCPhdctFrhGtkhqzr9JLqijDHPEW7Z+lFv
+         t7pXhQjnasw3UTDqdmp/tfCKcFkYupsS4eIMdctFOHIPZ2LcRR6bZBgImHeOjMyljmM/
+         pYN/JbtDRmIi7uTBBgMuLBR8JoIcT5LjO+T/KWZf2RY9+ep7Q/jiER7+KFEzqCWhDbQP
+         I+xFeMDq+N3ZDDCcxJLoGVZl4kPg4UW9BZc4FNEx+yk+Ma1lMvJwUMG6aN4mHn5CJez6
+         ai4rULChngwaunakkHLAGlv6YjOcbk6JONzdtOrKRH7WFmgkByrO7/nKTEylVc6Uo3WH
+         6wrA==
+X-Gm-Message-State: AOAM5301P6DGapNiS7JRDlVh4DtJhOJsWnwmkv1/pXkv8nDEA5CuyIF0
+        biwhgRFBbzFoTFKBJ319hdqCC5dDpmSiYJopJFg=
+X-Google-Smtp-Source: ABdhPJxRg1MZXl/SkbIUuNBrRuGNQldHFdLPZxE+GhC/BiCEKh8oflGlAj5dFnKQFyQ9Ns7hxKjhAhvcKy/fq3rTsjo=
+X-Received: by 2002:a17:907:6e04:b0:6f4:d6f3:c72a with SMTP id
+ sd4-20020a1709076e0400b006f4d6f3c72amr3415411ejc.636.1654161497069; Thu, 02
+ Jun 2022 02:18:17 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20220531102809.11976-1-peterwu.pub@gmail.com> <20220531102809.11976-7-peterwu.pub@gmail.com>
+ <CAHp75Vd8taco19vsDmBcCv8euV1SvwSiY5=P9oMkA6zWsjwXxg@mail.gmail.com> <20220602062643.GA13824@cyhuang-hp-elitebook-840-g3.rt>
+In-Reply-To: <20220602062643.GA13824@cyhuang-hp-elitebook-840-g3.rt>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 2 Jun 2022 11:17:40 +0200
+Message-ID: <CAHp75Vd-n=oLnhRCK=pR5ybOZbC6BKXrE2jRdwDbH90E4KYFGA@mail.gmail.com>
+Subject: Re: [PATCH 06/14] leds: mt6370: Add Mediatek MT6370 Indicator support
+To:     ChiYuan Huang <u0084500@gmail.com>
+Cc:     ChiaEn Wu <peterwu.pub@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        "Krogerus, Heikki" <heikki.krogerus@linux.intel.com>,
+        Helge Deller <deller@gmx.de>, cy_huang@richtek.com,
+        alice_chen@richtek.com, chiaen_wu@richtek.com,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        USB <linux-usb@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If the earlycon parameter is given twice, the kernel will spit out a
-WARN() in register_console() because it was already registered. The
-non-dt variant setup_earlycon() already handles that gracefully. The dt
-variant of_setup_earlycon() doesn't. Add the check there and add the
--EALREADY handling in early_init_dt_scan_chosen_stdout().
+On Thu, Jun 2, 2022 at 8:27 AM ChiYuan Huang <u0084500@gmail.com> wrote:
+> On Wed, Jun 01, 2022 at 11:48:58AM +0200, Andy Shevchenko wrote:
+> > On Tue, May 31, 2022 at 1:16 PM ChiaEn Wu <peterwu.pub@gmail.com> wrote:
 
-FWIW, this doesn't happen if CONFIG_ACPI_SPCR_TABLE is set. In that case
-the registration is delayed until after earlycon parameter(s) are
-parsed.
+...
 
-Signed-off-by: Michael Walle <michael@walle.cc>
----
-changes since v1:
- - add missing EALREADY handling in of_setup_earlycon()
- - return 0 early as suggested by Rob
+> > What indicator?
+> It's RGB curent sink type LED driver (maximum supported current is only 24mA).
 
-For the curious, here is the backtrace:
+Make your commit messages a slightly more verbose.
 
-[    0.000000] ------------[ cut here ]------------
-[    0.000000] WARNING: CPU: 0 PID: 0 at kernel/printk/printk.c:3328 register_console+0x2b4/0x364
-[    0.000000] console 'atmel_serial0' already registered
-[    0.000000] Modules linked in:
-[    0.000000] CPU: 0 PID: 0 Comm: swapper Not tainted 5.18.0-next-20220601+ #652
-[    0.000000] Hardware name: Generic DT based system
-[    0.000000] Backtrace:
-[    0.000000]  dump_backtrace from show_stack+0x18/0x1c
-[    0.000000]  show_stack from dump_stack_lvl+0x48/0x54
-[    0.000000]  dump_stack_lvl from dump_stack+0x18/0x1c
-[    0.000000]  dump_stack from __warn+0xd0/0x148
-[    0.000000]  __warn from warn_slowpath_fmt+0x9c/0xc4
-[    0.000000]  warn_slowpath_fmt from register_console+0x2b4/0x364
-[    0.000000]  register_console from of_setup_earlycon+0x29c/0x2ac
-[    0.000000]  of_setup_earlycon from early_init_dt_scan_chosen_stdout+0x154/0x18c
-[    0.000000]  early_init_dt_scan_chosen_stdout from param_setup_earlycon+0x40/0x48
-[    0.000000]  param_setup_earlycon from do_early_param+0x88/0xc4
-[    0.000000]  do_early_param from parse_args+0x1a4/0x404
-[    0.000000]  parse_args from parse_early_options+0x40/0x48
-[    0.000000]  parse_early_options from parse_early_param+0x38/0x48
-[    0.000000]  parse_early_param from setup_arch+0x114/0x7a4
-[    0.000000]  setup_arch from start_kernel+0x74/0x6dc
-[    0.000000]  start_kernel from 0x0
-[    0.000000] ---[ end trace 0000000000000000 ]---
+...
 
- drivers/of/fdt.c              | 4 +++-
- drivers/tty/serial/earlycon.c | 3 +++
- 2 files changed, 6 insertions(+), 1 deletion(-)
+> > > +#include <linux/of.h>
+> >
+> > Are you sure this is the correct header? Seems you need
+> > mod_devicetable.h instead.
+> >
+> It's the correct header and be used for the struct 'of_device_id'.
 
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index a8f5b6532165..043b12be22d6 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -1025,6 +1025,7 @@ int __init early_init_dt_scan_chosen_stdout(void)
- 	int l;
- 	const struct earlycon_id *match;
- 	const void *fdt = initial_boot_params;
-+	int ret;
- 
- 	offset = fdt_path_offset(fdt, "/chosen");
- 	if (offset < 0)
-@@ -1057,7 +1058,8 @@ int __init early_init_dt_scan_chosen_stdout(void)
- 		if (fdt_node_check_compatible(fdt, offset, match->compatible))
- 			continue;
- 
--		if (of_setup_earlycon(match, offset, options) == 0)
-+		ret = of_setup_earlycon(match, offset, options);
-+		if (!ret || ret == -EALREADY)
- 			return 0;
- 	}
- 	return -ENODEV;
-diff --git a/drivers/tty/serial/earlycon.c b/drivers/tty/serial/earlycon.c
-index 57c70851f22a..88d08ba1ca83 100644
---- a/drivers/tty/serial/earlycon.c
-+++ b/drivers/tty/serial/earlycon.c
-@@ -253,6 +253,9 @@ int __init of_setup_earlycon(const struct earlycon_id *match,
- 	bool big_endian;
- 	u64 addr;
- 
-+	if (early_con.flags & CON_ENABLED)
-+		return -EALREADY;
-+
- 	spin_lock_init(&port->lock);
- 	port->iotype = UPIO_MEM;
- 	addr = of_flat_dt_translate_address(node);
+Nope. Run the following command
+$ git grep -n 'struct of_device_id {' -- include/linux/
+
+...
+
+> > > +struct mt6370_priv {
+> > > +       struct mutex lock;
+> >
+> > Do you use regmap locking?
+> >
+> MFD regmap register already the access lock.
+>
+> This lock is just to guarantee only one user can access the RGB register
+> part.
+>
+> Sorry, from the comment, do you want us to rename or remove this lock?
+
+My point is, since you have two locks, explain why you need each of them.
+
+> > > +       struct device *dev;
+> >
+> > > +       struct regmap *regmap;
+> >
+> > > +       struct regmap_field *fields[F_MAX_FIELDS];
+> > > +       const struct reg_field *reg_fields;
+> > > +       const struct linear_range *ranges;
+> > > +       struct reg_cfg *reg_cfgs;
+> > > +       unsigned int leds_count;
+> > > +       unsigned int leds_active;
+> > > +       bool is_mt6372;
+> > > +       struct mt6370_led leds[];
+> > > +};
+
+
 -- 
-2.30.2
-
+With Best Regards,
+Andy Shevchenko
