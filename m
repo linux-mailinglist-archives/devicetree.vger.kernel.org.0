@@ -2,77 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD4D553B889
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 14:01:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49AF653B89D
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 14:05:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234715AbiFBMBb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 08:01:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40858 "EHLO
+        id S234757AbiFBMCu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 08:02:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234699AbiFBMBa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 08:01:30 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA0476C0D6
-        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 05:01:28 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id me5so9001598ejb.2
-        for <devicetree@vger.kernel.org>; Thu, 02 Jun 2022 05:01:28 -0700 (PDT)
+        with ESMTP id S234738AbiFBMCs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 08:02:48 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CF8D62DC
+        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 05:02:43 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id c2so5963049edf.5
+        for <devicetree@vger.kernel.org>; Thu, 02 Jun 2022 05:02:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=pwtV0vYkvqvfBqWdmXfwwejWIfpVfeuunmf98xXbmyU=;
-        b=gWXO/XK595YoZXsr8bhzhM47kJo060ua3lX/frEPFWv7ADuTiUeRp24QXOHNct8H+J
-         OdKLwDprmlrvJjesW80hT1lru8X9WO2Hq7n3miOU83y4wznelD5whP8m8KOyV+tJHS/f
-         YcAM2ve6eE+rpRl7wkptoh8BdJJbJTyHWo0F82n2t/hK1hn6ueQr2YjRe2cI6NBX4KZK
-         bxrEb+O9YeXYIXD95QX6g61EP7k2umyoGvnuywuwHtBgCl54TsitbEIGmUL2KDo2NFhk
-         /0w3EsXre5cNGLJlVu5NblXJbDU7POFAWtATF1mhe8/mNVLXA31f6Z/Xv98zV0uOxtuu
-         WnxQ==
+        bh=U+8T6fn4T3vaS0Pi2aB2h1k72+HYKHqTINehwyE+Qxw=;
+        b=WgJo3UOrlWF/xukiH2Ku/H4mdceQ13UjCa+NEb9eL5GFxciQb2m/H0biH39C8/iyoC
+         UiorpjyI/JVwc5x53o5eiy8NCi3h6nJmU8Rk9KIT8GaOKNKLmN3LegL1M9r+RA9cnJLX
+         0DJtMJfNukuJqKElDBGjAkXwePDty6ctIvt+5JhABmGuOTBy23VV8UeP7SEl2/bHl96G
+         qy4eTw7224jmjab9pUBps6c0AQd+dXl3i0VGUN8h/6JgRErzSyA58TmBAsJuVvOzjlZd
+         Hxl6dDWlth12mYKgJ/B9bJYwO0pSLB4e1NXvXKd4av+jDkIZf18lh0UHkcX+TqvmV6PI
+         dTMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=pwtV0vYkvqvfBqWdmXfwwejWIfpVfeuunmf98xXbmyU=;
-        b=WnXpse70HEvJGlX6+hVt0enLzo4RryP4+TUWDuBKGQpE6M4R2HNhG8g0EDNw3l4AWs
-         2I4dCmlx/uX26UvuDH6Fx96BXLrE9rRLGjprmGWlDKUkXKbFLZ50hbXHGHi6RiFg/1NF
-         5wJzoxDtmr1uFd7jR6w9xBCwLDZ0o2Lc6c+3vbhJzgR8hH1ja1aHcROeBXoF+NNEjOAw
-         3EhTmxDpLXmwOioZ24FG4lcrAFw2aoFkTlaHiqMWNJfof84tPukRps5FjSKZpAKrvFIB
-         Reg0dSxv483l5HsbbC/kIg1jpH09Op3lHR4ShfbwZb0wHjLu0CJZi/YKQqOfKBT9Fw28
-         5FQg==
-X-Gm-Message-State: AOAM530g9a9PhhsxWL7zf4OZn4O2S6IfqPsmIcJuifJyNfjo2t8y1WX1
-        14xIgTUh0GE9CI3rWy8QcOGlNg==
-X-Google-Smtp-Source: ABdhPJzt9uGRB+v5ckn9uT7jUQ+esGDunDDnGdKSW7Gh2BXXH7tqbIa0yj4NJgrOEZFNMd8A20lmwg==
-X-Received: by 2002:a17:907:778a:b0:70c:d67:578e with SMTP id ky10-20020a170907778a00b0070c0d67578emr1174845ejc.696.1654171287097;
-        Thu, 02 Jun 2022 05:01:27 -0700 (PDT)
+        bh=U+8T6fn4T3vaS0Pi2aB2h1k72+HYKHqTINehwyE+Qxw=;
+        b=PdhuMlfdWP2M8LUj6ptkA+1SZDcqzWbv/iZ8Wi76huq/Hr/7wGxHKPmFEIXHVk8qBz
+         SsWaYdRQ5nPthOg+ZJBoDngONcyDkoV6t5DFHNV7XMJJFAQJUuIc8/OGknbY76VAGX3Q
+         Sm9oJ5XmlGvnFTLRg9ejFE4JORZvgVey6tO4j2A/7VBRGuDuwKo11kCtWoe5yDsKYFce
+         s92evdVic4YQ5s4WKlWxpCn13DEot8Hriu1kawGVogUfbSYZJAaeTAqq+z5EpI36MDTR
+         f07t7csqQ9Vj7b9we8R53sZdeXnxRJKA7r17jdZiGD+xLatmwz3w1PvDbm81mQPLG2Kg
+         vMHA==
+X-Gm-Message-State: AOAM5311FrPRw+XDl1z1LjB+wEcMr9ts3hox/isu+jthHhs+irLcm4dm
+        ubZdT2h7tEQ81xVkV3nubcyU/w==
+X-Google-Smtp-Source: ABdhPJx4oO7YkUav5hDFlqrl3kvMLXszr+upvgPvjdffSEadzOq3Ofn3+ntG6LnID8A7MNz5hB5ENQ==
+X-Received: by 2002:a05:6402:1f0e:b0:42d:e38a:51f7 with SMTP id b14-20020a0564021f0e00b0042de38a51f7mr5117059edb.68.1654171361576;
+        Thu, 02 Jun 2022 05:02:41 -0700 (PDT)
 Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id m25-20020a509999000000b0042bd25ca29asm2367308edb.59.2022.06.02.05.01.26
+        by smtp.gmail.com with ESMTPSA id b8-20020aa7c6c8000000b0042617ba637bsm2480855eds.5.2022.06.02.05.02.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Jun 2022 05:01:26 -0700 (PDT)
-Message-ID: <b3681990-e358-8e1d-93fe-b72c099902e3@linaro.org>
-Date:   Thu, 2 Jun 2022 14:01:25 +0200
+        Thu, 02 Jun 2022 05:02:41 -0700 (PDT)
+Message-ID: <e084e508-d886-3e6c-53ab-1f0b22706964@linaro.org>
+Date:   Thu, 2 Jun 2022 14:02:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH 5/5] arm64: dts: exynos: Add internal eMMC support to
- jackpotlte
+Subject: Re: [PATCH v1 01/15] dt-binding: remoteproc: mediatek: Support
+ dual-core SCP
 Content-Language: en-US
-To:     David Virag <virag.david003@gmail.com>
-Cc:     phone-devel@vger.kernel.org,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+To:     Tinghan Shen <tinghan.shen@mediatek.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20220601233743.56317-1-virag.david003@gmail.com>
- <20220601233743.56317-6-virag.david003@gmail.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Daisuke Nojiri <dnojiri@chromium.org>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        "Dustin L. Howett" <dustin@howett.net>,
+        Tzung-Bi Shih <tzungbi@kernel.org>,
+        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Brian Norris <briannorris@chromium.org>
+Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        chrome-platform@lists.linux.dev,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        weishunc@google.com
+References: <20220601112201.15510-1-tinghan.shen@mediatek.com>
+ <20220601112201.15510-2-tinghan.shen@mediatek.com>
+ <dd3ea397-fa21-abe5-85ad-b8a4818dc011@linaro.org>
+ <3c837acfbefa5b7e23e1121678b5b878f08e4ef2.camel@mediatek.com>
+ <476baef8-0255-45ed-85f4-2b9d877c4af1@linaro.org>
+ <287d88a62fd13cd762b20faa3e9df826632fe1eb.camel@mediatek.com>
+ <45c8050e-16d3-80d6-0799-8b067a38d956@linaro.org>
+ <5c614dc0947aba6ce2eb0cdc3055a390da723d08.camel@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220601233743.56317-6-virag.david003@gmail.com>
+In-Reply-To: <5c614dc0947aba6ce2eb0cdc3055a390da723d08.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,37 +101,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/06/2022 01:37, David Virag wrote:
-> Add the nodes relevant to provide clocks for Exynos7885 eMMC and to
-> support eMMC. eMMC is the internal storage used in the Samsung Galaxy A8
-> (2018) (jackpotlte), and all other known devices using the Exynos7885
-> SoC.
+On 02/06/2022 13:29, Tinghan Shen wrote:
+>> Maybe the hardware property is that one core has its sibling and you
+>> provide here that sibling?
 > 
-> Signed-off-by: David Virag <virag.david003@gmail.com>
-> ---
->  .../boot/dts/exynos/exynos7885-jackpotlte.dts | 20 ++++++++++++
->  arch/arm64/boot/dts/exynos/exynos7885.dtsi    | 32 +++++++++++++++++++
->  2 files changed, 52 insertions(+)
+> Yes, exactly. I'm sorry for misreading your argument.
 > 
-> diff --git a/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts b/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
-> index 4cf9aa25f618..5db9a81ac7bb 100644
-> --- a/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
-> +++ b/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
-> @@ -60,6 +60,26 @@ power-key {
->  	};
->  };
->  
-> +&mmc_0 {
-> +	status = "okay";
-> +	mmc-hs200-1_8v;
-> +	mmc-hs400-1_8v;
-> +	cap-mmc-highspeed;
-> +	non-removable;
-> +	mmc-hs400-enhanced-strobe;
-> +	card-detect-delay = <200>;
-> +	clock-frequency = <800000000>;
+> How about this one,
+>    
+>   Reference to the sibling SCP core. This is required when 
+>   dual-core SCP support is enabled.
 
-Is this real property for MMC? Neither mmc nor DW MSHC bindings mention it.
+Yes, sounds good. Thank you.
+
 
 Best regards,
 Krzysztof
