@@ -2,144 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D4F553B1D2
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 04:50:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B837A53B1F7
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jun 2022 05:22:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233271AbiFBC0o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jun 2022 22:26:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42446 "EHLO
+        id S233375AbiFBDHU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jun 2022 23:07:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232838AbiFBC0n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 22:26:43 -0400
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CB0982175
-        for <devicetree@vger.kernel.org>; Wed,  1 Jun 2022 19:26:41 -0700 (PDT)
-Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
-        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20220602022639epoutp0170f96812e20bb0bb8d1cc5da983c9c71~0rKeuwCGe2856828568epoutp01d
-        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 02:26:39 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20220602022639epoutp0170f96812e20bb0bb8d1cc5da983c9c71~0rKeuwCGe2856828568epoutp01d
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1654136799;
-        bh=JmNflMHvC0gjq9eUUOznOuoK8xZI/6ykjtQ3IjZvnrE=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=nPo25aeMZ6bLN+NJUn3XKibfOD6+FXIgSASFN9dm2PLEFePiY8xvutIfi09qNpc/u
-         mxgN7buhS5SIXrS6Ww0OGhp66/ulgWJsRxTOkp+DrsQvTpU8sH6YP10W1u64eu5hJQ
-         BLHYbKIuKiR8RhkLhGPjL4bEw3FR0sodaMIMpXs0=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas2p4.samsung.com (KnoxPortal) with ESMTP id
-        20220602022638epcas2p4329194d41573292952f082b58af8ed0a~0rKeHfIwx0360603606epcas2p4V;
-        Thu,  2 Jun 2022 02:26:38 +0000 (GMT)
-Received: from epsmges2p4.samsung.com (unknown [182.195.36.91]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4LD8z15l3mz4x9Q9; Thu,  2 Jun
-        2022 02:26:37 +0000 (GMT)
-Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
-        epsmges2p4.samsung.com (Symantec Messaging Gateway) with SMTP id
-        03.A5.09694.DDF18926; Thu,  2 Jun 2022 11:26:37 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
-        20220602022637epcas2p14b5e3f69156a217bea556ce44a78ae69~0rKdCmFpP1104911049epcas2p1J;
-        Thu,  2 Jun 2022 02:26:37 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20220602022637epsmtrp19edc6851557d51352f081b6201d52c5b~0rKdB0k0y0179701797epsmtrp1V;
-        Thu,  2 Jun 2022 02:26:37 +0000 (GMT)
-X-AuditID: b6c32a48-495ff700000025de-af-62981fdd793f
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        10.4B.11276.DDF18926; Thu,  2 Jun 2022 11:26:37 +0900 (KST)
-Received: from KORCO082417 (unknown [10.229.8.121]) by epsmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20220602022637epsmtip1e156e56ad5f1fd60d86c434b9a576e57~0rKc0OSmd0551205512epsmtip1L;
-        Thu,  2 Jun 2022 02:26:37 +0000 (GMT)
-From:   "Chanho Park" <chanho61.park@samsung.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-        "'Kishon Vijay Abraham I'" <kishon@ti.com>,
-        "'Vinod Koul'" <vkoul@kernel.org>,
-        "'Alim Akhtar'" <alim.akhtar@samsung.com>,
-        "'Rob Herring'" <robh+dt@kernel.org>,
-        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>
-Cc:     <devicetree@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>
-In-Reply-To: <45ef694a-472c-23d8-1514-f57efe5a35a1@linaro.org>
-Subject: RE: [PATCH 2/4] phy: samsung: ufs: support secondary ufs phy
-Date:   Thu, 2 Jun 2022 11:26:37 +0900
-Message-ID: <004501d87628$2f65a6b0$8e30f410$@samsung.com>
+        with ESMTP id S230042AbiFBDHT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jun 2022 23:07:19 -0400
+Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com [IPv6:2607:f8b0:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69F2829DC3B;
+        Wed,  1 Jun 2022 20:07:17 -0700 (PDT)
+Received: by mail-il1-x12c.google.com with SMTP id h18so2617494ilj.7;
+        Wed, 01 Jun 2022 20:07:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=UHKfOpo21i5MoDcQk+7qlf8n2C1uh2g5W/XKZOO7xm4=;
+        b=XqzZbjV/Hai6OuvPT51RZ5MBwaa4GjrqL4asM6ShURsMufo/2R1ExscNVQqvu5DBtw
+         9Y+i20d8C5dFfgnd1jzRReVbkwhp4RbWZS1l9JXgLofMR8G9V5AAS6gFWtLXtQtsPhGx
+         1OQBjTpmQ//8AyQzrwP3+JCGnVnNnIi/l06Baooqun/kLub8dkoTG8yNFBG6nUOqMDY+
+         trMWnOWVLdIC3jUyb1KMLhLwhyg+N5P3IAcHoHkf1i8mtgh40icijw2HLmWXO5Ugyg4A
+         OvQX6IgsCsoGI8YblKc99qRYEVpFsfpolaftzk9HqOjOt9PrxrpYJK59h1oGYo96Cve1
+         jYqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=UHKfOpo21i5MoDcQk+7qlf8n2C1uh2g5W/XKZOO7xm4=;
+        b=OJ8Ai4zyKx9sfeMfqsS99ENkngADmTgVbLfYAf9vs2yOCwtEux43ylQxBUCY49oZ7+
+         Hr4vl3G1DA5ALf4OAk3Aj3YEOdcUDbaEv+NCw+VXGLZ8iuR8vqJbkY8R3dXd5FEg92Hc
+         vP2P2m3dewBHZFSKVUO5VFI174CmNVUQz3sQleWkkHeBmj87w30lWuZlKlwfA7NX0M5d
+         0/MLUUuMkZ20tjUBkZ23dYNyirFXBIonfOtqIRh8URNoV/D5O8T256Tu765blGsSneY6
+         TK8Pl7hz4ib0S/qIg4+aXi+OsTSVxIUlu1XxEbuLsXXgaWsu0qwKJrIXta9nPnXdF22n
+         qFww==
+X-Gm-Message-State: AOAM530mvDnD/9CS+nGaknllcwEKQQ+BWWpqHD0SG/LLIk1sPuRsrkaT
+        Hj2Lqajrckw0FBa6coGdeyQ=
+X-Google-Smtp-Source: ABdhPJx+fqog1Uk+ibtsTSfCYj8/q1T78oJkFBEJpVW0wb27VYQ2ApRYJ31SJjEzEP9rUa3YWg/UOw==
+X-Received: by 2002:a05:6e02:170f:b0:2d3:dc72:7172 with SMTP id u15-20020a056e02170f00b002d3dc727172mr2083947ill.218.1654139236758;
+        Wed, 01 Jun 2022 20:07:16 -0700 (PDT)
+Received: from ?IPV6:2600:1700:2442:6db0:edec:ab49:ad93:c595? ([2600:1700:2442:6db0:edec:ab49:ad93:c595])
+        by smtp.gmail.com with ESMTPSA id d35-20020a026063000000b0032b3a78175fsm902283jaf.35.2022.06.01.20.07.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Jun 2022 20:07:16 -0700 (PDT)
+Message-ID: <e0055a5c-cca9-db63-80bd-a39ff1585389@gmail.com>
+Date:   Wed, 1 Jun 2022 22:07:15 -0500
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQFkEPmYnHf0xjkGXTTWfn5L9kzmHgKG74n8AmlcE0cBsL5TUq3vJLyA
-Content-Language: ko
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrGJsWRmVeSWpSXmKPExsWy7bCmme5d+RlJBgtm6Fk8mLeNzWL+kXOs
-        Fhee9rBZ9L14yGyx9/VWdotNj6+xWkxY9Y3FonXvEXaLnXdOMDtwemxa1cnmcefaHjaPzUvq
-        Pfq2rGL0OH5jO5PH501yAWxR2TYZqYkpqUUKqXnJ+SmZeem2St7B8c7xpmYGhrqGlhbmSgp5
-        ibmptkouPgG6bpk5QEcpKZQl5pQChQISi4uV9O1sivJLS1IVMvKLS2yVUgtScgrMC/SKE3OL
-        S/PS9fJSS6wMDQyMTIEKE7Iz7n39w16wj7Viz4VNjA2M61m6GDk5JARMJC4/XMPcxcjFISSw
-        g1Hi261zTBDOJ0aJqZ8fsUI43xglnnV/ZYNp2f3tHVTLXkaJXR86WSCcF4wSF7Z1MoJUsQno
-        S7zs2AbWLiIwn0niaedVJpAEs0C2xKvWRexdjBwcnAJ2Ek1r4kDCwgKuEk/vXQDrZRFQkZhz
-        djEziM0rYCnxcMJbVghbUOLkzCcsEGO0JZYtfM0McZGCxM+ny8BqRATcJJYencEIUSMiMbuz
-        DexSCYG1HBJPZ02DanCRWNd/mx3CFpZ4dXwLlC0l8bK/Dcoullg66xMTRHMDo8Tlbb+g/jeW
-        mPWsnRHkAWYBTYn1u/RBTAkBZYkjt6Bu45PoOPyXHSLMK9HRJgTRqC5xYPt0aLjLSnTP+cw6
-        gVFpFpLPZiH5bBaSD2Yh7FrAyLKKUSy1oDg3PbXYqMAEHtvJ+bmbGMEJVstjB+Pstx/0DjEy
-        cTAeYpTgYFYS4S3ZNTVJiDclsbIqtSg/vqg0J7X4EKMpMKwnMkuJJucDU3xeSbyhiaWBiZmZ
-        obmRqYG5kjivV8qGRCGB9MSS1OzU1ILUIpg+Jg5OqQamA4uMBc8w2UXM/5deYS4T2PPvQJ0v
-        6/3TL/vfX9d4w+q6O+y4YLfPibVKZgc51LbVP8/ZV9rcVHnurDmr2z3+PTl5jt/e6eRsrNq1
-        ZfvhS9Hvk41jBEMzuWXYN1dlpFiuOHBASFh/AqeDxyGFF//WLUnddtpb+h5nt/u2c2vNHdQc
-        tto3LluoeWnFLfUsO6sinQPSE75Z9tosE1DW2nHsTIrJQ59bT0SnFve/+f3a7TpzRhx78oUl
-        /u+UV098L+e1XH3dZKdq1y8vO1vmsU2JCjxz+GS5k9QSjglGobYFwpVXv187E73Wb5+I9adI
-        tyLllQlmdfWn2Jp2e9o8l81z2l01p6LTdpKFj/SnBbeUWIozEg21mIuKEwGoWHrkOQQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprAIsWRmVeSWpSXmKPExsWy7bCSnO5d+RlJBl8uSVg8mLeNzWL+kXOs
-        Fhee9rBZ9L14yGyx9/VWdotNj6+xWkxY9Y3FonXvEXaLnXdOMDtwemxa1cnmcefaHjaPzUvq
-        Pfq2rGL0OH5jO5PH501yAWxRXDYpqTmZZalF+nYJXBkfFq1iL9jJWjF95TX2BsYVLF2MnBwS
-        AiYSu7+9Y+5i5OIQEtjNKLHo9ytmiISsxLN3O9ghbGGJ+y1HWEFsIYFnjBKbD4qC2GwC+hIv
-        O7axgjSLCCxmkug/cZYNJMEskCvx4+0XdoiGr4wSR1badDFycHAK2Ek0rYkDCQsLuEo8vXeB
-        EcRmEVCRmHN2MdheXgFLiYcT3rJC2IISJ2c+YYEYqS3x9OZTOHvZwtdQdypI/Hy6DKxeRMBN
-        YunRGYwQNSISszvbmCcwCs9CMmoWklGzkIyahaRlASPLKkbJ1ILi3PTcYsMCw7zUcr3ixNzi
-        0rx0veT83E2M4EjT0tzBuH3VB71DjEwcjIcYJTiYlUR4S3ZNTRLiTUmsrEotyo8vKs1JLT7E
-        KM3BoiTOe6HrZLyQQHpiSWp2ampBahFMlomDU6qB6aTkUcm8ukt39vMU70juOTjXtnr2nymb
-        nK59tD7CoR5eKXPweGOg0o+Kjin/JaWFDup/kP2bfEK9asOqnSlqeZlrumbHywSG6d+boCAk
-        MvGJ11YR3YrEw1KmFtwWXzdPkCz19vGJjmvvfPs/6/XGyaF3cthbWvPu/H18nJ3l8rT68Msb
-        Qpcueu3twSZ57Enu3wUB+UxzmU8tM+c7NvfDis9qc6w5u2Y3SngZH9wsfe+okPXBlb+2ddxo
-        v6+9XXnlsf5vV5ad9N9w7rCB9C1Gxhm/5sp6Bs9xKudYvVA53YyXM7pFtPNYabL15IyTB/sD
-        /+yaM2+JWvSVx51qzw1THU6d0J6UWXLj2Mb+pfmrZimxFGckGmoxFxUnAgAl1zZHIwMAAA==
-X-CMS-MailID: 20220602022637epcas2p14b5e3f69156a217bea556ce44a78ae69
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220531121922epcas2p3c37a39cd28f56326c4f3980ac76f3b5c
-References: <20220531121913.48722-1-chanho61.park@samsung.com>
-        <CGME20220531121922epcas2p3c37a39cd28f56326c4f3980ac76f3b5c@epcas2p3.samsung.com>
-        <20220531121913.48722-3-chanho61.park@samsung.com>
-        <45ef694a-472c-23d8-1514-f57efe5a35a1@linaro.org>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH] scripts: dtc: fix a false alarm for
+ node_name_chars_strict
+Content-Language: en-US
+To:     "qun-wei.lin" <qun-wei.lin@mediatek.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     matthias.bgg@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, casper.li@mediatek.com,
+        chinwen.chang@mediatek.com, kuan-ying.lee@mediatek.com
+References: <20220531053358.19003-1-qun-wei.lin@mediatek.com>
+ <8d4b8cc3-8433-24f9-1fc5-12d71e640952@gmail.com>
+ <20220531214914.GA2388344-robh@kernel.org>
+ <7c6f0015-cf50-4c8b-060d-f6641d0aeb16@gmail.com>
+ <b054866a5c043d3b6d5553057b5f5bf7b06681f0.camel@mediatek.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+In-Reply-To: <b054866a5c043d3b6d5553057b5f5bf7b06681f0.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > +	u32 isol_offset;
-> >  	int err =3D 0;
-> >
-> >  	match =3D of_match_node(samsung_ufs_phy_match, dev->of_node); =40=40
-> > -328,7 +329,11 =40=40 static int samsung_ufs_phy_probe(struct
-> platform_device *pdev)
-> >  	phy->dev =3D dev;
-> >  	phy->drvdata =3D drvdata;
-> >  	phy->cfg =3D (struct samsung_ufs_phy_cfg **)drvdata->cfg;
-> > -	phy->isol =3D &drvdata->isol;
-> > +	phy->isol =3D (struct pmu_isol *)&drvdata->isol;
->=20
-> No casts are needed for proper code. If you need it - code is not proper.
+On 6/1/22 09:59, qun-wei.lin wrote:
+> On Tue, 2022-05-31 at 20:45 -0500, Frank Rowand wrote:
+>> On 5/31/22 17:49, Rob Herring wrote:
+>>> On Tue, May 31, 2022 at 04:43:18PM -0400, Frank Rowand wrote:
+>>>> On 5/31/22 01:33, Qun-Wei Lin wrote:
+>>>>> The function check_node_name_chars_strict issues a false alarm
+>>>>> when
+>>>>> compiling an overlay dts.
+>>>>>
+>>>>> /fragment@0/__overlay__: Character '_' not recommended in node
+>>>>> name
+>>>>>
+>>>>> This workaround will fix it by skip checking for node named
+>>>>> __overlay__.
+>>>>
+>>>> This is not a false alarm.
+>>>>
+>>>> Do not special case node name "__overlay__".  This node name
+>>>> should never
+>>>> occur in a modern overlay source file.
+>>>
+>>> A dtbo -> dts pass will give warnings, so handling these nodes is 
+>>> worthwhile. Though thinking a bit more about it, I think this one
+>>> is off 
+>>> by default, but W=2 turns it on.
+>>
+> 
+> When DTC detects an overlay target, it will generate a node name
+> "__overlay__" in function add_orphan_node [1]
+> 
+> Use the example on page 34 of the slide [2]. When the parser reads this
+> line in overlay source file:
+> 
+> &{/soc/base_fpga_region} {
+> 
+> It will build two nodes, one with no name and the other one is a
+> subnode __overlay__ [2].
+> 
+> So if we set W=2, the following warning will be issued:
+> 
+> Warning (node_name_chars_strict): /fragment@0/__overlay__: Character
+> '_' not recommended in node name
 
-To change a value of phy->isol, I need to allocate its own isol data and co=
-pying whole data from drvdata instead of using drvdata->isol pointer.
+Thanks for digging into the internals of dtc to determine how a properly
+formatted overlay source file is processed in a way that the check for
+a leading "_" in a node name is after dtc creating the __overlay__ node
+name.
 
-Best Regards,
-Chanho Park
+I have looked at dtc several times and have never educated myself enough
+to be anything other than dangerous.  It seems that you might be more
+educated about how it works.  If so, is there a reasonable way to tell
+check_node_name_chars_strict() when the node name is one of the special
+ones that dtc creates for overlays instead of a node name that appears
+in a source file?
+
+-Frank
+
+> 
+> I think this is a false alarm because this __overlay__ is automatically
+> generated by DTC.
+> 
+>> Yes, at least as of 5.18-rc1 the warning is only if
+>> '-W node_name_chars_strict', so a dtbo -> dts pass will not give the
+>> warning for node __overlay__ by default.
+>>
+>> -Frank
+>>
+>>>
+>>> Rob
+>>
+>>
+> 
+> We want to enable all warnings in DTC to ensure that all of our DTS are
+> compliant with the conventions.
+> 
+> [1] 
+> https://git.kernel.org/pub/scm/utils/dtc/dtc.git/tree/dtc-parser.y#n169
+> [2] https://elinux.org/images/0/03/Elce_2018_dt_bof.pdf
+> [3] 
+> https://git.kernel.org/pub/scm/utils/dtc/dtc.git/tree/livetree.c#n228
+> 
+> 
+> 
+> 
 
