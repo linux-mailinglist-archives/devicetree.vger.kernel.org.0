@@ -2,61 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E75FF53CD21
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 18:24:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98DC053CD23
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 18:25:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234520AbiFCQY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jun 2022 12:24:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56368 "EHLO
+        id S1343877AbiFCQZJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jun 2022 12:25:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237632AbiFCQY0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 12:24:26 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ACD75133E;
-        Fri,  3 Jun 2022 09:24:25 -0700 (PDT)
+        with ESMTP id S237632AbiFCQZI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 12:25:08 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26FBD5131C;
+        Fri,  3 Jun 2022 09:25:08 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 13B6D61987;
-        Fri,  3 Jun 2022 16:24:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72FC0C36AE2;
-        Fri,  3 Jun 2022 16:24:24 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AB0896195F;
+        Fri,  3 Jun 2022 16:25:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A239C385A9;
+        Fri,  3 Jun 2022 16:25:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654273464;
-        bh=EXbl5y5bKZ+Y91YTXpL+Xiq1fvINn7YwdKljvqjH4sc=;
-        h=References:In-Reply-To:From:Date:Subject:To:From;
-        b=nmBWymFCEvZr5YYJx0Xk5GTXIXqG/Ubv9UxH+08sfiSMGua8oFg6WGKoWF7y6VJz+
-         5w78aKpsfmWZmUrPDzVPHjjVNqkpZewJMwKK6sF2E5K9Ht3ZRiX8g5DpMUREGCccEE
-         NEf/aQyqQsZIATdJQAl4UI7qbY75UTDqiAN/s1cLDU/UhZsX7J/OrWFi/BkLXGyRYi
-         h++iPdVV2ZdGyG6bU/a0ZuRumjw1Y4LoJ2z/OQNdD5rZo4d9bVaTsUv9/31asA8qlg
-         /eEJthLu8zTBXii+/L2AxLNoSPivpC8P0e3f8DzI1rEjKF2T/DCPD1mBuJO1BzeuaR
-         L8d+E7HIsEzLw==
-Received: by mail-vk1-f177.google.com with SMTP id s135so3620300vks.10;
-        Fri, 03 Jun 2022 09:24:24 -0700 (PDT)
-X-Gm-Message-State: AOAM531Tmkw/TGLuiE4CtioP8XpOl5npACYZZ0/RFoJp2qwbJ80AHZwe
-        JWBuZOTy5EccYYoGjLRgDVJNNApETZpU6+j0Dg==
-X-Google-Smtp-Source: ABdhPJzzsFp8S0rp88mMXropl2qwDR8hbz3CO+L+cFuVUUvK62u3eA8FScNXdUJDfErtSXQguFebyVKPBhWLuEiN5Tg=
-X-Received: by 2002:a1f:2a4e:0:b0:357:a4af:25e1 with SMTP id
- q75-20020a1f2a4e000000b00357a4af25e1mr23342646vkq.14.1654273463335; Fri, 03
- Jun 2022 09:24:23 -0700 (PDT)
+        s=k20201202; t=1654273507;
+        bh=4rw9dnXElz7aaMM5oeE5jfIs71mLFoPFuBfRRckUmRk=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=jUrPgyXf8lp+ALxVFmsd5m8fqg6DzUeCDsk1uHrHqSxQ6Pfr951Vtu6O7upSVw845
+         eRckR2c2q9tIwqsCPGmzUtDZ7EiJN7KkabGeLhDeRKZI8a/N4oiMOcgoW+ui+lkrPR
+         wVyqnq3xUwMT3X9uVr3ST3n3jQfBa1/BiXw9pZ1iokMS2pLgJ5qH9vsTLdVyuP0Mmp
+         E2gpPUi73jEDopcSXLhOYPWj6uQaWMbCFQ+hyEjHmta/WtCMT72BxRpmGzMKvgK1/L
+         18ufwHNbk2pBaeJ9f7UCJRddmDreMuSJZOhppEeqL7DTbXTyZRJ88qbtMy0y97GWEh
+         sflnWPW9nqrqg==
+Date:   Fri, 3 Jun 2022 17:34:04 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+Cc:     linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, wens@csie.org,
+        lee.jones@linaro.org, sre@kernel.org, broonie@kernel.org,
+        gregkh@linuxfoundation.org, lgirdwood@gmail.com, lars@metafoo.de,
+        rafael@kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 03/10] dt-bindings: iio: adc: axp209: Add AXP192
+ compatible
+Message-ID: <20220603173404.4cb83647@jic23-huawei>
+In-Reply-To: <20220603135714.12007-4-aidanmacdonald.0x0@gmail.com>
+References: <20220603135714.12007-1-aidanmacdonald.0x0@gmail.com>
+        <20220603135714.12007-4-aidanmacdonald.0x0@gmail.com>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20220427175956.362987-1-robh@kernel.org> <YpouYnc6ctdHx3Vk@shikoro>
-In-Reply-To: <YpouYnc6ctdHx3Vk@shikoro>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 3 Jun 2022 11:24:11 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJEFs5EyzCGHaaC6S=9mfDf9jbo+4=NKh2DO49+RUjBjw@mail.gmail.com>
-Message-ID: <CAL_JsqJEFs5EyzCGHaaC6S=9mfDf9jbo+4=NKh2DO49+RUjBjw@mail.gmail.com>
-Subject: Re: [dtschema PATCH] schemas: i2c: Add missing properties and descriptions
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        Mailing List <devicetree-spec@vger.kernel.org>,
-        Eugen Hristev <eugen.hristev@microchip.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Alain Volmat <alain.volmat@foss.st.com>,
-        Matt Johnston <matt@codeconstruct.com.au>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -67,43 +61,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 3, 2022 at 10:53 AM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
->
-> On Wed, Apr 27, 2022 at 12:59:56PM -0500, Rob Herring wrote:
-> > Add remaining properties and descriptions from i2c.txt binding in Linux
-> > kernel tree. The Cc list are the authors of i2c.txt.
-> >
-> > Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> > Cc: Eugen Hristev <eugen.hristev@microchip.com>
-> > Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> > Cc: Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
-> > Cc: Jon Hunter <jonathanh@nvidia.com>
-> > Cc: Alain Volmat <alain.volmat@foss.st.com>
-> > Cc: Matt Johnston <matt@codeconstruct.com.au>
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> > Cc list,
-> >
-> > I need your or your company's permission to relicense i2c.txt contents
-> > (used in 'description') to BSD-2-Clause. Please ack and provide a
-> > copyright if desired.
->
-> In general:
->
-> Acked-by: Wolfram Sang <wsa@sang-engineering.com>
+On Fri,  3 Jun 2022 14:57:07 +0100
+Aidan MacDonald <aidanmacdonald.0x0@gmail.com> wrote:
 
-Thanks!
+> The AXP192 is identical to the AXP20x, except for two additional
+> GPIO ADC channels.
+> 
+> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
 
-> In what from should I add the copyright? Basically it needs "Acked-by:"
-> from above replaced with "(C)", or?
+There is an argument that could be made here to say this should
+have a fallback compatible to a suitable existing part as the driver
+would work, we'd just be missing a couple of channels.
 
-Whatever text your lawyer says. ;) I've heard copyright statements are
-meaningless too, but IANAL.
+I don't feel strongly either way, but thought I'd raise the possibility.
 
-I'll add this aligned with the existing statements if okay with you:
+I guess it's irrelevant if an updated kernel is needed anyway to have
+it functional because of support needed for some other part of the chip
+though.
 
-Copyright 2015,2020 Wolfram Sang <wsa@sang-engineering.com>
+Jonathan
 
+> ---
+>  .../bindings/iio/adc/x-powers,axp209-adc.yaml  | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/x-powers,axp209-adc.yaml b/Documentation/devicetree/bindings/iio/adc/x-powers,axp209-adc.yaml
+> index d6d3d8590171..1a68e650ac7d 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/x-powers,axp209-adc.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/x-powers,axp209-adc.yaml
+> @@ -14,6 +14,23 @@ description: |
+>    Device is a child of an axp209 multifunction device
+>    ADC channels and their indexes per variant:
+>  
+> +  AXP192
+> +  ------
+> +   0 | acin_v
+> +   1 | acin_i
+> +   2 | vbus_v
+> +   3 | vbus_i
+> +   4 | pmic_temp
+> +   5 | gpio0_v
+> +   6 | gpio1_v
+> +   7 | gpio2_v
+> +   8 | gpio3_v
+> +   9 | ipsout_v
+> +  10 | batt_v
+> +  11 | batt_chrg_i
+> +  12 | batt_dischrg_i
+> +  13 | ts_v
+> +
+>    AXP209
+>    ------
+>     0 | acin_v
+> @@ -50,6 +67,7 @@ description: |
+>  properties:
+>    compatible:
+>      oneOf:
+> +      - const: x-powers,axp192-adc
+>        - const: x-powers,axp209-adc
+>        - const: x-powers,axp221-adc
+>        - const: x-powers,axp813-adc
 
-Rob
