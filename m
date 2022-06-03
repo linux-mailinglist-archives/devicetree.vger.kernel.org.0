@@ -2,877 +2,351 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFC5553D2BA
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 22:14:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28C0C53D2BC
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 22:14:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346082AbiFCUN7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jun 2022 16:13:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37686 "EHLO
+        id S1346233AbiFCUOO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jun 2022 16:14:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231804AbiFCUN5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 16:13:57 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AE5B30F55;
-        Fri,  3 Jun 2022 13:13:54 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id t13so9558981ljd.6;
-        Fri, 03 Jun 2022 13:13:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=FAMwTJy9NPrk7blYAEUgPfm3HdkMhDczTScSfX+YlWw=;
-        b=AkDty7EMDWqSPpm1c7z+MRcYRWYKBZ5QqWDpf4gc//KnUf6t3LQnTHaRN/OT5wnOSE
-         SCMF+6djGT3h6SuOxtkFneaQ6NUUoM4BqfWlTQux4q6gwK2KVN9yzhAEwk00DxE0U8kd
-         UXegS4zizVoFKqC2WRrOE7L/KT6r7ueti8yFPO2PFtYUko3cYwCpMTtjuuOBmM9upqCB
-         HnTosfca4uYE+yCctEC1KfQbIGe9pshLvryvzl6TG7twh1+7cSqtDX2kC+j3+Heb9Taz
-         TpLHAcPskQSdUaF0nCczl4gvO03EnK2iq32LadU4gsPw55ZBxzMp3GwOHVpIqChggyqH
-         UYCg==
+        with ESMTP id S231804AbiFCUOL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 16:14:11 -0400
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C067D30F5D;
+        Fri,  3 Jun 2022 13:14:09 -0700 (PDT)
+Received: by mail-oi1-f171.google.com with SMTP id m82so11731493oif.13;
+        Fri, 03 Jun 2022 13:14:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=FAMwTJy9NPrk7blYAEUgPfm3HdkMhDczTScSfX+YlWw=;
-        b=3lvX4/HdHHdp3DtJ36v7FVAi14Ah1ASzoVvaKdf44O5QU6TvHGyz+nYSQH456uQoWD
-         uI7dVKD4A5Gcye6ykySMwJMQy1RLgS3hsMto+quG+MLudpgio4i+0mItJAW7iWG82pEd
-         RBTjxBPQ8aU2j7i9Uy/f6gDr72A8EYM7l13BuwvJ6ZnLJtI/SsCWOfZVwbiNZ+R7FLBJ
-         ehSCPHATHdEJHEXiz8VOSrTnxsnHa6VPGM1VAIRRbFeB2lulkjVTLRdS17Bhlh3TkXl/
-         DwFCjf6D8gI0QajQeSPQaFTKoW1qmLOe36xLGcOKwbOCZ6Bg+xHsGuPs0aSHqJ0JoT1M
-         OwoA==
-X-Gm-Message-State: AOAM531v0AjNoBm7d1DLoyrltD8qJNcfA5buFf6Qwv+QpV+Q28zlxP0H
-        dD8NvDJ/1hoFX/mh6ilUPCI=
-X-Google-Smtp-Source: ABdhPJyMtZad8rtXbq+f2gvQTTJSbJwsdD546qW+K8e9UeKiHgwHhTeq+e9KiGuC0Zp1UdF/8PUgEA==
-X-Received: by 2002:a05:651c:545:b0:254:af:4f75 with SMTP id q5-20020a05651c054500b0025400af4f75mr30622580ljp.122.1654287232665;
-        Fri, 03 Jun 2022 13:13:52 -0700 (PDT)
-Received: from shock.lan ([2001:2002:2f8:bfc5:11e3:17a5:f449:1926])
-        by smtp.gmail.com with ESMTPSA id w12-20020a19490c000000b0047255d210f5sm1733330lfa.36.2022.06.03.13.13.51
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=T4YFavzX3BoFSvwhmRErrhVpV7X9t8rssvd3ofVK/8M=;
+        b=8PhnZXQw+UvYrOhBh+zs9sbDdzLL/0GjKx/lW+4KaXvFAzHUXq/BzyztGU/AHpq0It
+         ItIUBC5r30di8BakCZCweJUA57v/ya3qzLN92HZPoRru7LuHocMmjNwb7/FT+9F5/CpG
+         QMOAdQRVP7EC/meXK5yobU3T+oXpklHbg0DYsKXNO7DHsjOEVArln3gUr3ZSZEpa9IIM
+         NCuUhFHtMaw3ogEK6+6hu94wVSjyKhh6k71oqZjhu+UKwK2fI0txKhgHFAAUcUcQbJTX
+         3sAhpqsYVezgYoVqeyE+bWYeTXRScl5WkBWOjo6O4oknTWLSzri4M1SghQqY0KN8AhQj
+         6kzw==
+X-Gm-Message-State: AOAM532lXC921TfuHpcKILAxROohAfkhfEMdHEQmdQTUPCB8HH9m5tYS
+        aa/OAnbW2ruvRtDtJX7Yww==
+X-Google-Smtp-Source: ABdhPJzTYQ2n3JIqt3FtJFHmA+kFN3elI7JW+A+tawjhc7R7gr5IUK1TjmFswR0AJXvbf3w/E1dWgA==
+X-Received: by 2002:a05:6808:10c8:b0:32c:14aa:76c5 with SMTP id s8-20020a05680810c800b0032c14aa76c5mr6609926ois.61.1654287248916;
+        Fri, 03 Jun 2022 13:14:08 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id e28-20020a544f1c000000b0032c18f04800sm4637488oiy.1.2022.06.03.13.14.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Jun 2022 13:13:52 -0700 (PDT)
-From:   Stefan Hansson <newbie13xd@gmail.com>
-To:     ~postmarketos/upstreaming@lists.sr.ht,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org
-Cc:     Anton Bambura <jenneron@protonmail.com>,
-        Stefan Hansson <newbie13xd@gmail.com>,
-        Gregari Ivanov <llamashere@posteo.de>
-Subject: [PATCH v2 2/2] arm64: dts: qcom: add device tree for LG G7 and LG V35
-Date:   Fri,  3 Jun 2022 22:13:41 +0200
-Message-Id: <20220603201341.94137-2-newbie13xd@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220603201341.94137-1-newbie13xd@gmail.com>
-References: <20220603201341.94137-1-newbie13xd@gmail.com>
+        Fri, 03 Jun 2022 13:14:08 -0700 (PDT)
+Received: (nullmailer pid 831729 invoked by uid 1000);
+        Fri, 03 Jun 2022 20:14:07 -0000
+Date:   Fri, 3 Jun 2022 15:14:07 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
+Cc:     Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Nathan Lynch <nathanl@linux.ibm.com>,
+        Laurent Dufour <ldufour@linux.ibm.com>,
+        Daniel Henrique Barboza <danielhb413@gmail.com>,
+        David Gibson <david@gibson.dropbear.id.au>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        David Hildenbrand <david@redhat.com>,
+        Ohhoon Kwon <ohoono.kwon@samsung.com>,
+        "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
+        YueHaibing <yuehaibing@huawei.com>,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Allan Nielsen <allan.nielsen@microchip.com>,
+        Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Steen Hegelund <steen.hegelund@microchip.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Bjorn Helgaas <helgaas@kernel.org>,
+        Lizhi Hou <lizhi.hou@xilinx.com>
+Subject: Re: [PATCH v2 4/4] powerpc/pseries: use of_property_alloc/free() and
+ of_node_alloc()
+Message-ID: <20220603201407.GA688883-robh@kernel.org>
+References: <20220601081801.348571-1-clement.leger@bootlin.com>
+ <20220601081801.348571-5-clement.leger@bootlin.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220601081801.348571-5-clement.leger@bootlin.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Anton Bambura <jenneron@protonmail.com>
+On Wed, Jun 01, 2022 at 10:18:01AM +0200, Clément Léger wrote:
+> Use of_property_alloc/free() and of_node_alloc() to create and free
+> device-tree nodes and properties.
+> 
+> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> ---
+>  arch/powerpc/platforms/pseries/dlpar.c        | 51 +++----------------
+>  .../platforms/pseries/hotplug-memory.c        | 21 +-------
+>  arch/powerpc/platforms/pseries/reconfig.c     | 45 +++++-----------
+>  3 files changed, 21 insertions(+), 96 deletions(-)
+> 
+> diff --git a/arch/powerpc/platforms/pseries/dlpar.c b/arch/powerpc/platforms/pseries/dlpar.c
+> index 498d6efcb5ae..5a04566e98a4 100644
+> --- a/arch/powerpc/platforms/pseries/dlpar.c
+> +++ b/arch/powerpc/platforms/pseries/dlpar.c
+> @@ -38,61 +38,25 @@ struct cc_workarea {
+>  	__be32	prop_offset;
+>  };
+>  
+> -void dlpar_free_cc_property(struct property *prop)
+> -{
+> -	kfree(prop->name);
+> -	kfree(prop->value);
+> -	kfree(prop);
+> -}
+> -
+>  static struct property *dlpar_parse_cc_property(struct cc_workarea *ccwa)
+>  {
+> -	struct property *prop;
+> -	char *name;
+> -	char *value;
+> -
+> -	prop = kzalloc(sizeof(*prop), GFP_KERNEL);
+> -	if (!prop)
+> -		return NULL;
+> +	int length;
+> +	char *name, *value;
+>  
+>  	name = (char *)ccwa + be32_to_cpu(ccwa->name_offset);
+> -	prop->name = kstrdup(name, GFP_KERNEL);
+> -	if (!prop->name) {
+> -		dlpar_free_cc_property(prop);
+> -		return NULL;
+> -	}
+> -
+> -	prop->length = be32_to_cpu(ccwa->prop_length);
+> +	length = be32_to_cpu(ccwa->prop_length);
+>  	value = (char *)ccwa + be32_to_cpu(ccwa->prop_offset);
+> -	prop->value = kmemdup(value, prop->length, GFP_KERNEL);
+> -	if (!prop->value) {
+> -		dlpar_free_cc_property(prop);
+> -		return NULL;
+> -	}
+>  
+> -	return prop;
+> +	return of_property_alloc(name, value, length, GFP_KERNEL);
+>  }
+>  
+>  static struct device_node *dlpar_parse_cc_node(struct cc_workarea *ccwa)
+>  {
+> -	struct device_node *dn;
+>  	const char *name;
+>  
+> -	dn = kzalloc(sizeof(*dn), GFP_KERNEL);
+> -	if (!dn)
+> -		return NULL;
+> -
+>  	name = (const char *)ccwa + be32_to_cpu(ccwa->name_offset);
+> -	dn->full_name = kstrdup(name, GFP_KERNEL);
+> -	if (!dn->full_name) {
+> -		kfree(dn);
+> -		return NULL;
+> -	}
+>  
+> -	of_node_set_flag(dn, OF_DYNAMIC);
+> -	of_node_init(dn);
+> -
+> -	return dn;
+> +	return of_node_alloc(name, GFP_KERNEL);
 
-Adds initial support for the LG G7 (judyln) and
-LG V35 (judyp) phones.
+Do you have any need for different flags? I can't really see a need for 
+atomic or dma allocs or ???, so drop it I think.
 
-Currently supported features:
+>  }
+>  
+>  static void dlpar_free_one_cc_node(struct device_node *dn)
+> @@ -102,11 +66,10 @@ static void dlpar_free_one_cc_node(struct device_node *dn)
+>  	while (dn->properties) {
+>  		prop = dn->properties;
+>  		dn->properties = prop->next;
+> -		dlpar_free_cc_property(prop);
+> +		of_property_free(prop);
 
- - Display via simplefb (panel driver is WIP)
- - Keys
- - Micro SD card
- - Modem (not tested much, but initialises)
- - UFS (crashes during intensive workloads, may need quirks)
- - USB in peripheral mode
+We should be able to just put the node and all the properties already 
+attached will be freed.
 
-Changes since v1:
+Looking at the history of this code, it originally did the kref_init 
+much later in dlpar_attach_node(). So there was a window of allocating 
+the node and adding properties where you'd need to manually free 
+everything. Now that the node is referenced from the start, a put should 
+free everything.
 
- - Enabled GPU
- - Changed some node names
- - Moved framebuffer node from common dtsi
+>  	}
+>  
+> -	kfree(dn->full_name);
+> -	kfree(dn);
+> +	of_node_put(dn);
+>  }
+>  
+>  void dlpar_free_cc_nodes(struct device_node *dn)
+> diff --git a/arch/powerpc/platforms/pseries/hotplug-memory.c b/arch/powerpc/platforms/pseries/hotplug-memory.c
+> index 2e3a317722a8..2ddf2a0ba048 100644
+> --- a/arch/powerpc/platforms/pseries/hotplug-memory.c
+> +++ b/arch/powerpc/platforms/pseries/hotplug-memory.c
+> @@ -69,33 +69,16 @@ unsigned long pseries_memory_block_size(void)
+>  	return memblock_size;
+>  }
+>  
+> -static void dlpar_free_property(struct property *prop)
+> -{
+> -	kfree(prop->name);
+> -	kfree(prop->value);
+> -	kfree(prop);
+> -}
+> -
+>  static struct property *dlpar_clone_property(struct property *prop,
+>  					     u32 prop_size)
+>  {
+> -	struct property *new_prop;
+> -
+> -	new_prop = kzalloc(sizeof(*new_prop), GFP_KERNEL);
+> +	struct property *new_prop = of_property_alloc(prop->name, NULL,
+> +						      prop_size, GFP_KERNEL);
+>  	if (!new_prop)
+>  		return NULL;
+>  
+> -	new_prop->name = kstrdup(prop->name, GFP_KERNEL);
+> -	new_prop->value = kzalloc(prop_size, GFP_KERNEL);
+> -	if (!new_prop->name || !new_prop->value) {
+> -		dlpar_free_property(new_prop);
+> -		return NULL;
+> -	}
+> -
+>  	memcpy(new_prop->value, prop->value, prop->length);
+> -	new_prop->length = prop_size;
+>  
+> -	of_property_set_flag(new_prop, OF_DYNAMIC);
+>  	return new_prop;
+>  }
+>  
+> diff --git a/arch/powerpc/platforms/pseries/reconfig.c b/arch/powerpc/platforms/pseries/reconfig.c
+> index cad7a0c93117..f1a364995e82 100644
+> --- a/arch/powerpc/platforms/pseries/reconfig.c
+> +++ b/arch/powerpc/platforms/pseries/reconfig.c
+> @@ -24,17 +24,9 @@ static int pSeries_reconfig_add_node(const char *path, struct property *proplist
+>  	struct device_node *np;
+>  	int err = -ENOMEM;
+>  
+> -	np = kzalloc(sizeof(*np), GFP_KERNEL);
+> +	np = of_node_alloc(kbasename(path), GFP_KERNEL);
+>  	if (!np)
+> -		goto out_err;
+> -
+> -	np->full_name = kstrdup(kbasename(path), GFP_KERNEL);
+> -	if (!np->full_name)
+> -		goto out_err;
+> -
+> -	np->properties = proplist;
+> -	of_node_set_flag(np, OF_DYNAMIC);
+> -	of_node_init(np);
+> +		return -ENOMEM;
+>  
+>  	np->parent = pseries_of_derive_parent(path);
+>  	if (IS_ERR(np->parent)) {
+> @@ -55,8 +47,7 @@ static int pSeries_reconfig_add_node(const char *path, struct property *proplist
+>  out_err:
+>  	if (np) {
+>  		of_node_put(np->parent);
+> -		kfree(np->full_name);
+> -		kfree(np);
+> +		of_node_put(np);
+>  	}
+>  	return err;
+>  }
+> @@ -91,9 +82,7 @@ static void release_prop_list(const struct property *prop)
+>  	struct property *next;
+>  	for (; prop; prop = next) {
+>  		next = prop->next;
+> -		kfree(prop->name);
+> -		kfree(prop->value);
+> -		kfree(prop);
+> +		of_property_free(prop);
 
-I did not change the regulator node names as adding -regulator
-everywhere broke USB networking, and as such I reverted it to what
-OnePlus 6's common dtsi is doing given that it's well-tested. I do not
-have time to debug this further at the moment since I won't have access
-to the phone for about 3 months, so I hope this is okay. If not, I'll
-have to look into it at a later point.
+Looks like you need this because code does: alloc properties, alloc 
+node, add properties, attach node. It would need to be refactored to 
+alloc the node first, but that's a bit more complex needing someone to 
+test on pSeries.
 
-Signed-off-by: Anton Bambura <jenneron@protonmail.com>
-Signed-off-by: Stefan Hansson <newbie13xd@gmail.com>
-Tested-by: Gregari Ivanov <llamashere@posteo.de>
----
- arch/arm64/boot/dts/qcom/Makefile             |   2 +
- .../arm64/boot/dts/qcom/sdm845-lg-common.dtsi | 614 ++++++++++++++++++
- arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts |  68 ++
- arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dts  |  44 ++
- 4 files changed, 728 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
- create mode 100644 arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dts
+>  	}
+>  
+>  }
+> @@ -167,27 +156,17 @@ static char * parse_next_property(char *buf, char *end, char **name, int *length
+>  static struct property *new_property(const char *name, const int length,
+>  				     const unsigned char *value, struct property *last)
+>  {
+> -	struct property *new = kzalloc(sizeof(*new), GFP_KERNEL);
+> +	struct property *prop;
+>  
+> -	if (!new)
+> +	prop = of_property_alloc(name, NULL, length + 1, GFP_KERNEL);
+> +	if (!prop)
+>  		return NULL;
+>  
+> -	if (!(new->name = kstrdup(name, GFP_KERNEL)))
+> -		goto cleanup;
+> -	if (!(new->value = kmalloc(length + 1, GFP_KERNEL)))
+> -		goto cleanup;
+> -
+> -	memcpy(new->value, value, length);
+> -	*(((char *)new->value) + length) = 0;
+> -	new->length = length;
+> -	new->next = last;
+> -	return new;
+> -
+> -cleanup:
+> -	kfree(new->name);
+> -	kfree(new->value);
+> -	kfree(new);
+> -	return NULL;
+> +	memcpy(prop->value, value, length);
+> +	*(((char *)prop->value) + length) = 0;
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index f9e6343acd03..2f31e62f550c 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -99,6 +99,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r3.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-lg-judyln.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-lg-judyp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-mtp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-oneplus-enchilada.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-oneplus-fajita.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-new file mode 100644
-index 000000000000..e882554b3da8
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-@@ -0,0 +1,614 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * SDM845 LG G7 / V35 (judyln / judyp) common device tree
-+ *
-+ * Copyright (c) 2022, The Linux Foundation. All rights reserved.
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-+#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-+
-+#include "sdm845.dtsi"
-+#include "pm8998.dtsi"
-+#include "pmi8998.dtsi"
-+
-+/delete-node/ &adsp_mem;
-+/delete-node/ &cdsp_mem;
-+/delete-node/ &gpu_mem;
-+/delete-node/ &ipa_fw_mem;
-+/delete-node/ &mba_region;
-+/delete-node/ &mpss_region;
-+/delete-node/ &qseecom_mem;
-+/delete-node/ &rmtfs_mem;
-+/delete-node/ &slpi_mem;
-+/delete-node/ &spss_mem;
-+/delete-node/ &venus_mem;
-+/delete-node/ &wlan_msa_mem;
-+
-+/ {
-+	chosen {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		qseecom_mem: memory@b2000000 {
-+			reg = <0 0xb2000000 0 0x1800000>;
-+			no-map;
-+		};
-+
-+		gpu_mem: memory@8c415000 {
-+			reg = <0 0x8c415000 0 0x2000>;
-+			no-map;
-+		};
-+
-+		ipa_fw_mem: memory@8c400000 {
-+			reg = <0 0x8c400000 0 0x10000>;
-+			no-map;
-+		};
-+
-+		adsp_mem: memory@8c500000 {
-+			reg = <0 0x8c500000 0 0x1e00000>;
-+			no-map;
-+		};
-+
-+		wlan_msa_mem: memory@8e300000 {
-+			reg = <0 0x8e300000 0 0x100000>;
-+			no-map;
-+		};
-+
-+		mpss_region: memory@8e400000 {
-+			reg = <0 0x8e400000 0 0x8900000>;
-+			no-map;
-+		};
-+
-+		venus_mem: memory@96d00000 {
-+			reg = <0 0x96d00000 0 0x500000>;
-+			no-map;
-+		};
-+
-+		cdsp_mem: memory@97200000 {
-+			reg = <0 0x97200000 0 0x800000>;
-+			no-map;
-+		};
-+
-+		mba_region: memory@97a00000 {
-+			reg = <0 0x97a00000 0 0x200000>;
-+			no-map;
-+		};
-+
-+		slpi_mem: memory@97c00000 {
-+			reg = <0 0x97c00000 0 0x1400000>;
-+			no-map;
-+		};
-+
-+		spss_mem: memory@99000000 {
-+			reg = <0 0x99000000 0 0x100000>;
-+			no-map;
-+		};
-+
-+		/* Framebuffer region */
-+		memory@9d400000 {
-+			reg = <0x0 0x9d400000 0x0 0x2400000>;
-+			no-map;
-+		};
-+
-+		/* rmtfs lower guard */
-+		memory@f0800000 {
-+			reg = <0 0xf0800000 0 0x1000>;
-+			no-map;
-+		};
-+
-+		rmtfs_mem: memory@f0801000 {
-+			compatible = "qcom,rmtfs-mem";
-+			reg = <0 0xf0801000 0 0x200000>;
-+			no-map;
-+
-+			qcom,client-id = <1>;
-+			qcom,vmid = <15>;
-+		};
-+
-+		/* rmtfs upper guard */
-+		memory@f0a01000 {
-+			reg = <0 0xf0a01000 0 0x1000>;
-+			no-map;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vol_up_pin_a>;
-+
-+		label = "GPIO Buttons";
-+
-+		key-vol-up {
-+			label = "Volume up";
-+			linux,code = <KEY_VOLUMEUP>;
-+			gpios = <&pm8998_gpio 6 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	vph_pwr: vph-pwr-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph_pwr";
-+		regulator-min-microvolt = <3700000>;
-+		regulator-max-microvolt = <3700000>;
-+	};
-+
-+	/*
-+	 * Apparently RPMh does not provide support for PM8998 S4 because it
-+	 * is always-on; model it as a fixed regulator.
-+	 */
-+	vreg_s4a_1p8: pm8998-smps4 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vreg_s4a_1p8";
-+
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+
-+		regulator-always-on;
-+		regulator-boot-on;
-+
-+		vin-supply = <&vph_pwr>;
-+	};
-+};
-+
-+&adsp_pas {
-+	status = "okay";
-+};
-+
-+&apps_rsc {
-+	pm8998-rpmh-regulators {
-+		compatible = "qcom,pm8998-rpmh-regulators";
-+		qcom,pmic-id = "a";
-+
-+		vdd-s1-supply = <&vph_pwr>;
-+		vdd-s2-supply = <&vph_pwr>;
-+		vdd-s3-supply = <&vph_pwr>;
-+		vdd-s4-supply = <&vph_pwr>;
-+		vdd-s5-supply = <&vph_pwr>;
-+		vdd-s6-supply = <&vph_pwr>;
-+		vdd-s7-supply = <&vph_pwr>;
-+		vdd-s8-supply = <&vph_pwr>;
-+		vdd-s9-supply = <&vph_pwr>;
-+		vdd-s10-supply = <&vph_pwr>;
-+		vdd-s11-supply = <&vph_pwr>;
-+		vdd-s12-supply = <&vph_pwr>;
-+		vdd-s13-supply = <&vph_pwr>;
-+		vdd-l1-l27-supply = <&vreg_s7a_1p025>;
-+		vdd-l2-l8-l17-supply = <&vreg_s3a_1p35>;
-+		vdd-l3-l11-supply = <&vreg_s7a_1p025>;
-+		vdd-l4-l5-supply = <&vreg_s7a_1p025>;
-+		vdd-l6-supply = <&vph_pwr>;
-+		vdd-l7-l12-l14-l15-supply = <&vreg_s5a_2p04>;
-+		vdd-l9-supply = <&vreg_bob>;
-+		vdd-l10-l23-l25-supply = <&vreg_bob>;
-+		vdd-l13-l19-l21-supply = <&vreg_bob>;
-+		vdd-l16-l28-supply = <&vreg_bob>;
-+		vdd-l18-l22-supply = <&vreg_bob>;
-+		vdd-l20-l24-supply = <&vreg_bob>;
-+		vdd-l26-supply = <&vreg_s3a_1p35>;
-+		vin-lvs-1-2-supply = <&vreg_s4a_1p8>;
-+
-+		vreg_s2a_1p125: smps2 {
-+			regulator-min-microvolt = <1100000>;
-+			regulator-max-microvolt = <1100000>;
-+		};
-+
-+		vreg_s3a_1p35: smps3 {
-+			regulator-min-microvolt = <1352000>;
-+			regulator-max-microvolt = <1352000>;
-+		};
-+
-+		vreg_s5a_2p04: smps5 {
-+			regulator-min-microvolt = <1904000>;
-+			regulator-max-microvolt = <2040000>;
-+		};
-+
-+		vreg_s7a_1p025: smps7 {
-+			regulator-min-microvolt = <900000>;
-+			regulator-max-microvolt = <1028000>;
-+		};
-+
-+		vdd_qusb_hs0:
-+		vdda_hp_pcie_core:
-+		vdda_mipi_csi0_0p9:
-+		vdda_mipi_csi1_0p9:
-+		vdda_mipi_csi2_0p9:
-+		vdda_mipi_dsi0_pll:
-+		vdda_mipi_dsi1_pll:
-+		vdda_qlink_lv:
-+		vdda_qlink_lv_ck:
-+		vdda_qrefs_0p875:
-+		vdda_pcie_core:
-+		vdda_pll_cc_ebi01:
-+		vdda_pll_cc_ebi23:
-+		vdda_sp_sensor:
-+		vdda_ufs1_core:
-+		vdda_ufs2_core:
-+		vdda_usb1_ss_core:
-+		vdda_usb2_ss_core:
-+		vreg_l1a_0p875: ldo1 {
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <880000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vddpx_10:
-+		vreg_l2a_1p2: ldo2 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-always-on;
-+		};
-+
-+		vreg_l3a_1p0: ldo3 {
-+			regulator-min-microvolt = <1000000>;
-+			regulator-max-microvolt = <1000000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vdd_wcss_cx:
-+		vdd_wcss_mx:
-+		vdda_wcss_pll:
-+		vreg_l5a_0p8: ldo5 {
-+			regulator-min-microvolt = <800000>;
-+			regulator-max-microvolt = <800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vddpx_13:
-+		vreg_l6a_1p8: ldo6 {
-+			regulator-min-microvolt = <1856000>;
-+			regulator-max-microvolt = <1856000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l7a_1p8: ldo7 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l8a_1p2: ldo8 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1248000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l9a_1p8: ldo9 {
-+			regulator-min-microvolt = <1704000>;
-+			regulator-max-microvolt = <2928000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l10a_1p8: ldo10 {
-+			regulator-min-microvolt = <1704000>;
-+			regulator-max-microvolt = <2928000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l11a_1p0: ldo11 {
-+			regulator-min-microvolt = <1000000>;
-+			regulator-max-microvolt = <1048000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vdd_qfprom:
-+		vdd_qfprom_sp:
-+		vdda_apc1_cs_1p8:
-+		vdda_gfx_cs_1p8:
-+		vdda_qrefs_1p8:
-+		vdda_qusb_hs0_1p8:
-+		vddpx_11:
-+		vreg_l12a_1p8: ldo12 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vddpx_2:
-+		vreg_l13a_2p95: ldo13 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l14a_1p88: ldo14 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1880000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l15a_1p8: ldo15 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l17a_1p3: ldo17 {
-+			regulator-min-microvolt = <1304000>;
-+			regulator-max-microvolt = <1304000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l18a_2p7: ldo18 {
-+			regulator-min-microvolt = <2704000>;
-+			regulator-max-microvolt = <2960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l20a_2p95: ldo20 {
-+			regulator-min-microvolt = <2704000>;
-+			regulator-max-microvolt = <2960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l21a_2p95: ldo21 {
-+			regulator-min-microvolt = <2704000>;
-+			regulator-max-microvolt = <2960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l22a_2p85: ldo22 {
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <2800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l23a_3p3: ldo23 {
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3312000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vdda_qusb_hs0_3p1:
-+		vreg_l24a_3p075: ldo24 {
-+			regulator-min-microvolt = <3088000>;
-+			regulator-max-microvolt = <3088000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l25a_3p3: ldo25 {
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3312000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vdda_hp_pcie_1p2:
-+		vdda_hv_ebi0:
-+		vdda_hv_ebi1:
-+		vdda_hv_ebi2:
-+		vdda_hv_ebi3:
-+		vdda_mipi_csi_1p25:
-+		vdda_mipi_dsi0_1p2:
-+		vdda_mipi_dsi1_1p2:
-+		vdda_pcie_1p2:
-+		vdda_ufs1_1p2:
-+		vdda_ufs2_1p2:
-+		vdda_usb1_ss_1p2:
-+		vdda_usb2_ss_1p2:
-+		vreg_l26a_1p2: ldo26 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l28a_3p0: ldo28 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_lvs1a_1p8: lvs1 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		vreg_lvs2a_1p8: lvs2 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+	};
-+
-+	pmi8998-rpmh-regulators {
-+		compatible = "qcom,pmi8998-rpmh-regulators";
-+		qcom,pmic-id = "b";
-+
-+		vdd-bob-supply = <&vph_pwr>;
-+
-+		vreg_bob: bob {
-+			regulator-min-microvolt = <3312000>;
-+			regulator-max-microvolt = <3600000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_AUTO>;
-+			regulator-allow-bypass;
-+		};
-+	};
-+
-+	pm8005-rpmh-regulators {
-+		compatible = "qcom,pm8005-rpmh-regulators";
-+		qcom,pmic-id = "c";
-+
-+		vdd-s1-supply = <&vph_pwr>;
-+		vdd-s2-supply = <&vph_pwr>;
-+		vdd-s3-supply = <&vph_pwr>;
-+		vdd-s4-supply = <&vph_pwr>;
-+
-+		vreg_s3c_0p6: smps3 {
-+			regulator-min-microvolt = <600000>;
-+			regulator-max-microvolt = <600000>;
-+		};
-+	};
-+};
-+
-+&cdsp_pas {
-+	status = "okay";
-+};
-+
-+&dispcc {
-+	status = "disabled";
-+};
-+
-+&gcc {
-+	protected-clocks = <GCC_QSPI_CORE_CLK>,
-+			   <GCC_QSPI_CORE_CLK_SRC>,
-+			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>,
-+			   <GCC_LPASS_Q6_AXI_CLK>,
-+			   <GCC_LPASS_SWAY_CLK>;
-+};
-+
-+&gpu {
-+	status = "okay";
-+
-+	zap-shader {
-+		memory-region = <&gpu_mem>;
-+	};
-+};
-+
-+&ipa {
-+	status = "okay";
-+	modem-init;
-+};
-+
-+&mss_pil {
-+	status = "okay";
-+};
-+
-+&pm8998_pon {
-+	resin {
-+		compatible = "qcom,pm8941-resin";
-+		interrupts = <0x0 0x8 1 IRQ_TYPE_EDGE_BOTH>;
-+		debounce = <15625>;
-+		bias-pull-up;
-+		linux,code = <KEY_VOLUMEDOWN>;
-+	};
-+};
-+
-+&sdhc_2 {
-+	status = "okay";
-+
-+	cd-gpios = <&tlmm 126 GPIO_ACTIVE_LOW>;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdc2_clk &sdc2_cmd &sdc2_data &sd_card_det_n>;
-+
-+	vmmc-supply = <&vreg_l21a_2p95>;
-+	vqmmc-supply = <&vddpx_2>;
-+};
-+
-+/*
-+ * UFS works partially and only with clk_ignore_unused.
-+ * Sometimes it crashes with I/O errors.
-+ */
-+&ufs_mem_hc {
-+	status = "okay";
-+
-+	reset-gpios = <&tlmm 150 GPIO_ACTIVE_LOW>;
-+
-+	vcc-supply = <&vreg_l20a_2p95>;
-+	vcc-max-microamp = <600000>;
-+};
-+
-+&ufs_mem_phy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vdda_ufs1_core>;
-+	vdda-pll-supply = <&vdda_ufs1_1p2>;
-+};
-+
-+&usb_1 {
-+	status = "okay";
-+};
-+
-+&usb_1_dwc3 {
-+	/* TODO: these devices have usb id pin */
-+	dr_mode = "peripheral";
-+};
-+
-+&usb_1_hsphy {
-+	status = "okay";
-+
-+	vdd-supply = <&vdda_usb1_ss_core>;
-+	vdda-pll-supply = <&vdda_qusb_hs0_1p8>;
-+	vdda-phy-dpdm-supply = <&vdda_qusb_hs0_3p1>;
-+
-+	qcom,imp-res-offset-value = <8>;
-+	qcom,hstx-trim-value = <QUSB2_V2_HSTX_TRIM_21_6_MA>;
-+	qcom,preemphasis-level = <QUSB2_V2_PREEMPHASIS_5_PERCENT>;
-+	qcom,preemphasis-width = <QUSB2_V2_PREEMPHASIS_WIDTH_HALF_BIT>;
-+};
-+
-+&usb_1_qmpphy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vdda_usb1_ss_1p2>;
-+	vdda-pll-supply = <&vdda_usb1_ss_core>;
-+};
-+
-+/* PINCTRL - additions to nodes defined in sdm845.dtsi */
-+
-+&tlmm {
-+	gpio-reserved-ranges = <28 4>, <81 4>;
-+
-+	sdc2_clk: sdc2-clk {
-+		pinconf {
-+			pins = "sdc2_clk";
-+			bias-disable;
-+
-+			/*
-+			 * It seems that mmc_test reports errors if drive
-+			 * strength is not 16 on clk, cmd, and data pins.
-+			 *
-+			 * TODO: copy-pasted from mtp, try other values
-+			 * on these devices.
-+			 */
-+			drive-strength = <16>;
-+		};
-+	};
-+
-+	sdc2_cmd: sdc2-cmd {
-+		pinconf {
-+			pins = "sdc2_cmd";
-+			bias-pull-up;
-+			drive-strength = <16>;
-+		};
-+	};
-+
-+	sdc2_data: sdc2-data {
-+		pinconf {
-+			pins = "sdc2_data";
-+			bias-pull-up;
-+			drive-strength = <16>;
-+		};
-+	};
-+
-+	sd_card_det_n: sd-card-det-n {
-+		pinmux {
-+			pins = "gpio126";
-+			function = "gpio";
-+		};
-+
-+		pinconf {
-+			pins = "gpio126";
-+			bias-pull-up;
-+		};
-+	};
-+};
-+
-+&pm8998_gpio {
-+	vol_up_pin_a: vol-up-active-pins {
-+		pins = "gpio6";
-+		function = "normal";
-+		input-enable;
-+		bias-pull-up;
-+		qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts b/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
-new file mode 100644
-index 000000000000..7d967a104b3e
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
-@@ -0,0 +1,68 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * SDM845 LG G7 (judyln) device tree.
-+ *
-+ * Copyright (c) 2022, The Linux Foundation. All rights reserved.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sdm845-lg-common.dtsi"
-+
-+/ {
-+	model = "LG G7 ThinQ";
-+	compatible = "lg,judyln", "qcom,sdm845";
-+
-+	chosen {
-+		framebuffer@9d400000 {
-+			compatible = "simple-framebuffer";
-+			reg = <0x0 0x9d400000 0x0 (1440 * 3120 * 4)>;
-+			width = <1440>;
-+			height = <3120>;
-+			stride = <(1440 * 4)>;
-+			format = "a8r8g8b8";
-+			lab-supply = <&lab>;
-+			ibb-supply = <&ibb>;
-+		};
-+	};
-+
-+	/* Additional ThinQ key */
-+	gpio-keys {
-+		pinctrl-0 = <&vol_up_pin_a &thinq_key_default>;
-+
-+		key-thinq {
-+			label = "ThinQ";
-+			linux,code = <KEY_ASSISTANT>;
-+			interrupt-parent = <&tlmm>;
-+			interrupts = <89 IRQ_TYPE_LEVEL_LOW>;
-+		};
-+	};
-+};
-+
-+&adsp_pas {
-+	firmware-name = "qcom/sdm845/judyln/adsp.mbn";
-+};
-+
-+&cdsp_pas {
-+	firmware-name = "qcom/sdm845/judyln/cdsp.mbn";
-+};
-+
-+&gpu {
-+	zap-shader {
-+		firmware-name = "qcom/sdm845/judyln/a630_zap.mbn";
-+	};
-+};
-+
-+&mss_pil {
-+	firmware-name = "qcom/sdm845/judyln/mba.mbn", "qcom/sdm845/judyln/modem.mbn";
-+};
-+
-+&tlmm {
-+	thinq_key_default: thinq-key-default {
-+		pins = "gpio89";
-+		function = "gpio";
-+
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dts b/arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dts
-new file mode 100644
-index 000000000000..d17d4d4d5609
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sdm845-lg-judyp.dts
-@@ -0,0 +1,44 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * SDM845 LG V35 (judyp) device tree.
-+ *
-+ * Copyright (c) 2022, The Linux Foundation. All rights reserved.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sdm845-lg-common.dtsi"
-+
-+/ {
-+	model = "LG V35 ThinQ";
-+	compatible = "lg,judyp", "qcom,sdm845";
-+
-+	chosen {
-+		framebuffer@9d400000 {
-+			compatible = "simple-framebuffer";
-+			reg = <0x0 0x9d400000 0x0 (1440 * 2880 * 4)>;
-+			width = <1440>;
-+			height = <2880>;
-+			stride = <(1440 * 4)>;
-+			format = "a8r8g8b8";
-+		};
-+	};
-+};
-+
-+&adsp_pas {
-+	firmware-name = "qcom/sdm845/judyp/adsp.mbn";
-+};
-+
-+&cdsp_pas {
-+	firmware-name = "qcom/sdm845/judyp/cdsp.mbn";
-+};
-+
-+&gpu {
-+	zap-shader {
-+		firmware-name = "qcom/sdm845/judyp/a630_zap.mbn";
-+	};
-+};
-+
-+&mss_pil {
-+	firmware-name = "qcom/sdm845/judyp/mba.mbn", "qcom/sdm845/judyp/modem.mbn";
-+};
--- 
-2.36.1
+Looks to me like this could be avoided with this change:
 
+diff --git a/arch/powerpc/platforms/pseries/reconfig.c b/arch/powerpc/platforms/pseries/reconfig.c
+index cad7a0c93117..614753fc5f27 100644
+--- a/arch/powerpc/platforms/pseries/reconfig.c
++++ b/arch/powerpc/platforms/pseries/reconfig.c
+@@ -148,7 +148,7 @@ static char * parse_next_property(char *buf, char *end, char **name, int *length
+        /* now we're on the value */
+        *value = tmp;
+        tmp += *length;
+-       if (tmp > end) {
++       if (tmp >= end) {
+                printk(KERN_ERR "property parse failed in %s at line %d\n",
+                       __func__, __LINE__);
+                return NULL;
+@@ -158,6 +158,7 @@ static char * parse_next_property(char *buf, char *end, char **name, int *length
+                       __func__, __LINE__);
+                return NULL;
+        }
++       *tmp = '\0';
+        tmp++;
+ 
+        /* and now we should be on the next name, or the end */
+
+
+Based on the comments, 'buf' should be nul terminated, so I would think 
+that tmp == end would be an error. But I really don't know.
+
+Really need some pSeries people to comment on all this.
+
+Another option is if value is NULL, then of_property_alloc() should 
+ensure the buffer is zeroed. Then you just need the memcpy.
+
+Rob
