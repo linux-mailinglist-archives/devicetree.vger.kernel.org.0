@@ -2,123 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D81853C756
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 11:20:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E653B53C766
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 11:23:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242980AbiFCJUF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jun 2022 05:20:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57502 "EHLO
+        id S232839AbiFCJXJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jun 2022 05:23:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234089AbiFCJUF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 05:20:05 -0400
-X-Greylist: delayed 126314 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 03 Jun 2022 02:20:02 PDT
-Received: from relay12.mail.gandi.net (relay12.mail.gandi.net [IPv6:2001:4b98:dc4:8::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EE1939BB6;
-        Fri,  3 Jun 2022 02:20:01 -0700 (PDT)
-Received: (Authenticated sender: contact@artur-rojek.eu)
-        by mail.gandi.net (Postfix) with ESMTPA id B7172200005;
-        Fri,  3 Jun 2022 09:19:58 +0000 (UTC)
-MIME-Version: 1.0
-Date:   Fri, 03 Jun 2022 11:19:58 +0200
-From:   Artur Rojek <contact@artur-rojek.eu>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Chris Morgan <macromorgan@hotmail.com>,
-        Chris Morgan <macroalpha82@gmail.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        dmitry.torokhov@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
-        maccraft123mc@gmail.com
-Subject: Re: [PATCH v2 1/3] dt-bindings: adc-joystick: add adc-joystick,polled
- option
-In-Reply-To: <67f56e57-185a-1e4b-e20b-4f7772a10580@linaro.org>
-References: <20220601204927.10256-1-macroalpha82@gmail.com>
- <20220601204927.10256-2-macroalpha82@gmail.com>
- <12a65f1d-4f3a-417f-3c90-5461870abe2a@linaro.org>
- <SN6PR06MB5342F372D3810B8EDA15BB99A5DE9@SN6PR06MB5342.namprd06.prod.outlook.com>
- <67f56e57-185a-1e4b-e20b-4f7772a10580@linaro.org>
-Message-ID: <60d467244a9dc1c7cc29d0035d536e2a@artur-rojek.eu>
-X-Sender: contact@artur-rojek.eu
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S243003AbiFCJXG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 05:23:06 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35FB42715B;
+        Fri,  3 Jun 2022 02:23:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1654248185; x=1685784185;
+  h=from:to:cc:subject:date:message-id;
+  bh=V2lKivc9M3T8itEYOlhL4nuspF06rOXNkuFJ8fsnkqw=;
+  b=dVINiMNdBylF+G5YX0Sc2ZU4c/oHSVgGVW04BXhsC8fgEPQfz76KvnWl
+   VWWft3xds0Mi1ru9U7XpzwkQFTq+D39afbaUzNUZFxlTCAC+8ulYuyin0
+   YKG8FUJXGeAQftAHoxk1uQWxZjiRvWIbkYinynh/0+jgGu8XaUzOfVawS
+   k=;
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+  by alexa-out.qualcomm.com with ESMTP; 03 Jun 2022 02:23:05 -0700
+X-QCInternal: smtphost
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 03 Jun 2022 02:23:03 -0700
+X-QCInternal: smtphost
+Received: from vpolimer-linux.qualcomm.com ([10.204.67.235])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 03 Jun 2022 14:52:50 +0530
+Received: by vpolimer-linux.qualcomm.com (Postfix, from userid 463814)
+        id 680753A0D; Fri,  3 Jun 2022 14:52:49 +0530 (IST)
+From:   Vinod Polimera <quic_vpolimer@quicinc.com>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Vinod Polimera <quic_vpolimer@quicinc.com>,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dianders@chromium.org, vpolimer@quicinc.com, swboyd@chromium.org,
+        kalyant@quicinc.com, dmitry.baryshkov@linaro.org
+Subject: [v1] drm/msm: add null checks for drm device to avoid crash during probe defer
+Date:   Fri,  3 Jun 2022 14:52:47 +0530
+Message-Id: <1654248167-10594-1-git-send-email-quic_vpolimer@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-06-03 07:33, Krzysztof Kozlowski wrote:
-> On 02/06/2022 21:44, Chris Morgan wrote:
->> On Thu, Jun 02, 2022 at 11:56:10AM +0200, Krzysztof Kozlowski wrote:
->>> On 01/06/2022 22:49, Chris Morgan wrote:
->>>> From: Chris Morgan <macromorgan@hotmail.com>
->>>> 
->>>> Add documentation for adc-joystick,polled. New device-tree 
->>>> properties
->>>> have been added.
->>>> 
->>>> - adc-joystick,polled: A boolean value noting the joystick device
->>>> 		       should be polled rather than use a triggered
->>>> 		       buffer.
->>>> 
->>>> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
->>>> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
->>>> ---
->>>>  .../devicetree/bindings/input/adc-joystick.yaml          | 9 
->>>> ++++++++-
->>>>  1 file changed, 8 insertions(+), 1 deletion(-)
->>>> 
->>>> diff --git 
->>>> a/Documentation/devicetree/bindings/input/adc-joystick.yaml 
->>>> b/Documentation/devicetree/bindings/input/adc-joystick.yaml
->>>> index 2ee04e03bc22..4f49a1a5772e 100644
->>>> --- a/Documentation/devicetree/bindings/input/adc-joystick.yaml
->>>> +++ b/Documentation/devicetree/bindings/input/adc-joystick.yaml
->>>> @@ -12,12 +12,19 @@ maintainers:
->>>> 
->>>>  description: >
->>>>    Bindings for joystick devices connected to ADC controllers 
->>>> supporting
->>>> -  the Industrial I/O subsystem.
->>>> +  the Industrial I/O subsystem. Supports both polled devices where 
->>>> no
->>>> +  iio trigger is available and non-polled devices which are 
->>>> triggered
->>>> +  by iio.
->>>> 
->>>>  properties:
->>>>    compatible:
->>>>      const: adc-joystick
->>>> 
->>>> +  adc-joystick,polled:
->>>> +    type: boolean
->>>> +    description:
->>>> +      If the device does not support triggered buffers and needs to 
->>>> be polled.
->>> 
->> 
->> What would your recommendation be? I'm basically proposing polling
->> instead of utilizing a triggered buffer, so instead of the driver
->> relying on a hardware trigger or a software trigger being set up to
->> fill the buffer that is read by the input subsystem we use the input
->> subsystem polling function directly (this is useful for my use-case
->> where the Rockchip SARADC doesn't have a hardware trigger).
-> 
-> Then it could be: "adc-joystik,no-hardware-trigger". The description is
-> I think accurate, so just the property name.
+During probe defer, drm device is not initialized and an external
+trigger to shutdown is trying to clean up drm device leading to crash.
+Add checks to avoid drm device cleanup in such cases.
 
-Hmm... I don't think DT involvement is necessary here, as this 
-information can be derived from iio at runtime:
-`if (iio_dev->modes & INDIO_BUFFER_SOFTWARE)` - a buffer can be used,
-`if (iio_dev->modes & INDIO_DIRECT_MODE)` - device can be polled.
+BUG: unable to handle kernel NULL pointer dereference at virtual
+address 00000000000000b8
 
-Cheers,
-Artur
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
+Call trace:
+
+drm_atomic_helper_shutdown+0x44/0x144
+msm_pdev_shutdown+0x2c/0x38
+platform_shutdown+0x2c/0x38
+device_shutdown+0x158/0x210
+kernel_restart_prepare+0x40/0x4c
+kernel_restart+0x20/0x6c
+__arm64_sys_reboot+0x194/0x23c
+invoke_syscall+0x50/0x13c
+el0_svc_common+0xa0/0x17c
+do_el0_svc_compat+0x28/0x34
+el0_svc_compat+0x20/0x70
+el0t_32_sync_handler+0xa8/0xcc
+el0t_32_sync+0x1a8/0x1ac
+
+Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
+---
+ drivers/gpu/drm/msm/msm_drv.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/msm/msm_drv.c b/drivers/gpu/drm/msm/msm_drv.c
+index 4448536..d62ac66 100644
+--- a/drivers/gpu/drm/msm/msm_drv.c
++++ b/drivers/gpu/drm/msm/msm_drv.c
+@@ -142,6 +142,9 @@ static void msm_irq_uninstall(struct drm_device *dev)
+ 	struct msm_drm_private *priv = dev->dev_private;
+ 	struct msm_kms *kms = priv->kms;
+ 
++	if (!irq_has_action(kms->irq))
++		return;
++
+ 	kms->funcs->irq_uninstall(kms);
+ 	if (kms->irq_requested)
+ 		free_irq(kms->irq, dev);
+@@ -259,6 +262,7 @@ static int msm_drm_uninit(struct device *dev)
+ 
+ 	ddev->dev_private = NULL;
+ 	drm_dev_put(ddev);
++	priv->dev = NULL;
+ 
+ 	destroy_workqueue(priv->wq);
+ 
+@@ -1167,7 +1171,7 @@ void msm_drv_shutdown(struct platform_device *pdev)
+ 	struct msm_drm_private *priv = platform_get_drvdata(pdev);
+ 	struct drm_device *drm = priv ? priv->dev : NULL;
+ 
+-	if (!priv || !priv->kms)
++	if (!priv || !priv->kms || !drm)
+ 		return;
+ 
+ 	drm_atomic_helper_shutdown(drm);
+-- 
+2.7.4
+
