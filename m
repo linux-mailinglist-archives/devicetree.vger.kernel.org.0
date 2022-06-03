@@ -2,100 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DF5A53D19E
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 20:36:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BF7753D226
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 21:06:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235044AbiFCSgi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jun 2022 14:36:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52748 "EHLO
+        id S243906AbiFCTGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jun 2022 15:06:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347800AbiFCSgQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 14:36:16 -0400
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09F7012AD9;
-        Fri,  3 Jun 2022 11:30:06 -0700 (PDT)
-Received: by mail-ot1-f42.google.com with SMTP id g13-20020a9d6b0d000000b0060b13026e0dso6094064otp.8;
-        Fri, 03 Jun 2022 11:30:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=asnSyF8/mpAZrPq7zWDU4GFbPGrqRhvj/yeUHzRFYZ8=;
-        b=JWiYpIvThoNpdAtwS4zINXtFuLI/A6hDDiqZ20AyOB1UkuX0LMP6R6bhj7RKlyv5Yn
-         9PiZ9FufdMu58w0bsA2mpTZcpn2TROdikFLUEHiQqllaq3VWXL2U9oR9MvruWOMlPTCe
-         DHa9kMyLzHvDbuHWqBt4agWYnsRdQdMY9Soj2HC8zQ3voyLTBpQPCL8C71RnaW8lChVJ
-         eQQfpB/dau9H+GyFAMqrZqNgV19bJm0xRpwD6SbIozAtAOjM4ZQkjqlk9IoSc3UMNCP+
-         Brs84uZKunxKw9A/zhKsn0bY28gKnBkk1oxehpL22BoFY5Gz7QfUNNG+V9UBI1tC/45O
-         2Q1A==
-X-Gm-Message-State: AOAM530S06/bKk59jUB0ENyekRVP7esssCQame+BMhpYCiJhbgkzedNZ
-        G04GL/cg45ekP1lNtXngDC6khtFGcQ==
-X-Google-Smtp-Source: ABdhPJwBCtWWCMBC2XiB+cXeV5iJmot0yDdbL/HPwg/J+Vl2LGxsRCbH09vUQX6uMUZZ+9aARYN5hg==
-X-Received: by 2002:a05:6830:1af0:b0:60b:2242:f266 with SMTP id c16-20020a0568301af000b0060b2242f266mr4822951otd.108.1654281005253;
-        Fri, 03 Jun 2022 11:30:05 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id ay31-20020a056808301f00b00328c9e63389sm4524068oib.11.2022.06.03.11.30.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Jun 2022 11:30:04 -0700 (PDT)
-Received: (nullmailer pid 680138 invoked by uid 1000);
-        Fri, 03 Jun 2022 18:30:04 -0000
-From:   Rob Herring <robh@kernel.org>
+        with ESMTP id S1348938AbiFCTFW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 15:05:22 -0400
+Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.83])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAE5030F78;
+        Fri,  3 Jun 2022 12:05:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1654282936;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=GN32FHxgQcHqH2ucXhtQRiGh0eXPPIP92mFkqoNojOw=;
+    b=NcenauWPTPMC//K3fNo54K+j79IWwc/2lRt9IAjn+ZA7EAehD9f3toPwur/SByZyy1
+    dN6bYMCufLOg74gkUBgzuT8y9dR6jGT3N+NkWVGq9bxLphd3F+rzEslD7OqhmdidPGYf
+    hmtgzlmxcU++3t9NYqydQx96VEKWKeIIde3J8k33yb2RByQySh69paiY4rMSHchvDPkT
+    jxGADZIjyJegCYGD8zslD3KDuTMkoosndUoq/2WTK6lYW+wBhYP3AP9XHv+xAMN7eXZ5
+    HR7n0BdbIKsTxa0OzB1uAnm5EcBUOc2VMRooHHyDdNA6QG9Fx4+5Hjse3qfRnzisRqAM
+    Z5TQ==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLVrKw7/aY="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.45.0 AUTH)
+    with ESMTPSA id 9056edy53J2Fwnt
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Fri, 3 Jun 2022 21:02:15 +0200 (CEST)
+Date:   Fri, 3 Jun 2022 21:02:14 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-mmc@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Alim Akhtar <alim.akhtar@samsung.com>,
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        linux-samsung-soc@vger.kernel.org
-In-Reply-To: <20220603094946.509919-4-krzysztof.kozlowski@linaro.org>
-References: <20220603094946.509919-1-krzysztof.kozlowski@linaro.org> <20220603094946.509919-4-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH 3/3] dt-bindings: mmc: samsung,exynos-dw-mshc: convert to dtschema
-Date:   Fri, 03 Jun 2022 13:30:04 -0500
-Message-Id: <1654281004.017781.680137.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Rob Clark <robdclark@gmail.com>,
+        Caleb Connolly <caleb@connolly.tech>
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: sdm845-oneplus: split
+ qcom,board-id into tuples
+Message-ID: <Yppatj7KuQLPdDW1@gerhold.net>
+References: <20220529202629.47588-1-krzysztof.kozlowski@linaro.org>
+ <20220529202629.47588-5-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220529202629.47588-5-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 03 Jun 2022 11:49:46 +0200, Krzysztof Kozlowski wrote:
-> Convert the Samsung Exynos SoC specific extensions to the Synopsys
-> Designware Mobile Storage Host Controller to DT schema.
++Cc Caleb Connolly <caleb@connolly.tech>
+
+On Sun, May 29, 2022 at 10:26:29PM +0200, Krzysztof Kozlowski wrote:
+> The qcom,board-id is an uint32 matrix, so a list of tuples.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  .../bindings/mmc/exynos-dw-mshc.txt           |  94 ----------
->  .../bindings/mmc/samsung,exynos-dw-mshc.yaml  | 162 ++++++++++++++++++
->  2 files changed, 162 insertions(+), 94 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mmc/exynos-dw-mshc.txt
->  create mode 100644 Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml
+>  arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts | 2 +-
+>  arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts    | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
 > 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
+> index bf2cf92e8976..8897a2f4cfe3 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
+> @@ -12,7 +12,7 @@ / {
+>  	compatible = "oneplus,enchilada", "qcom,sdm845";
+>  	chassis-type = "handset";
+>  	qcom,msm-id = <0x141 0x20001>;
+> -	qcom,board-id = <8 0 17819 22>;
+> +	qcom,board-id = <8 0>, <17819 22>;
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+FWIW: While it's just a cosmetic change this is a bit misleading in my
+opinion. Having two tuples suggests this should be interpreted as:
 
-yamllint warnings/errors:
+"This device tree is suitable for two different boards:
+ board-id = <8 0> (aka sdm845-mtp, a standard qcom reference board)
+ OR, alternatively: board-id = <17819 22>"
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.example.dtb:0:0: /example-0/mmc@12200000: failed to match any schema with compatible: ['samsung,exynos5420-dw-mshc-smu']
+Since this device tree is clearly not meant for sdm845-mtp one could now
+argue that the <8 0> could be removed, and only the second tuple covers
+the actual device. It might be worth a try (maybe Caleb can try?), but
+I suspect the bootloader will not accept that...
 
-doc reference errors (make refcheckdocs):
+I think the bootloader from OPPO/OnePlus is actually looking for
+quadruples instead of tuples on this board. I have seen similar hacks on
+several other OPPO devices as well. They usually add their project ID
+(here: 17819) somewhere and look for that in the bootloader.
 
-See https://patchwork.ozlabs.org/patch/
+In this case maybe adding a short comment would be sufficient, just to
+make it more obvious that this doesn't actually follow the binding
+documentation.
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+But this kind of brings up the question if it's worth making any
+constraints in the DT schema at all, if some of the device trees
+can not follow it.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+For example, older OPPO bootloaders actually look for triples instead,
+e.g.: (This is from a real device!)
+	qcom,board-id = <8 0 15009>;
 
-pip3 install dtschema --upgrade
+So maybe it's just a matter of time until someone tries to add a DT
+with a format that cannot be changed cosmetically to fit the DT schema...
 
-Please check and re-submit.
-
+Stephan
