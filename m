@@ -2,70 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECDFD53C8A5
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 12:29:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7312953C8C4
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 12:32:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234520AbiFCK3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jun 2022 06:29:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40518 "EHLO
+        id S243743AbiFCKb5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jun 2022 06:31:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243595AbiFCK26 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 06:28:58 -0400
-Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92C461B7A8
-        for <devicetree@vger.kernel.org>; Fri,  3 Jun 2022 03:28:57 -0700 (PDT)
-Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-30fa61b1a83so72153627b3.0
-        for <devicetree@vger.kernel.org>; Fri, 03 Jun 2022 03:28:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=dC0gx01b2aNajXfhT3RxUnH0OHK3FMPo/gpngxGlMwo=;
-        b=oG7zOFP1DbQh6Bo8e9Qpq/xhX0tcm0Z686SDBT7H504JhHxqE3dnOrHBJ6SB/2HSK4
-         twuSJO1lPcK5rLD3Hh+gKG0l3jtSoA8EYExYCLiyANJoCWRY1XSu31iiJqtN8JeP4jR5
-         KeCcRWNG8k0cKAwK+B8C+LiKyAUIyY35Rc2HDoJNL490sEJzAybFKJGosi2vB+5kM2fb
-         CkFMly+sSSmDyfTmzvsm3PvJr8kwCzkRW05trOUye05ZR8AscObGzjpJwvBL/YOzAVbN
-         0mw8bc8FHPkItci37uxaWwIcZPeZfUqrdb+ftP4a7ZovA0miQgbeVm9d2jAyuRTdKt0d
-         Do2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dC0gx01b2aNajXfhT3RxUnH0OHK3FMPo/gpngxGlMwo=;
-        b=mM4vmPfS/mvnyv5ZVNcrYCYlZA2zlwEUVQos2bx8PNKuRBKGxDBVhAHAbBbZS6XCAw
-         fb90OvNll1GETR/h7RKQb94iSDyMifYYraFznqKRaGbWoE+WyQ1809N8iyFDfS+RYWLi
-         S9erwmjMGyUf0PmNudjEksPohrR7nlJJHQiPwlDBg3VqNHzmEEwGzvzYQzUrx/4BWxCU
-         mbcDbCFBEyH8d2cfec4DA9ReXxEBrDXp7bfzRCVGgsgjT998lg6kGOxQncIPcoCbp7mj
-         H9s2oxO4gTFoo9dJwyWs2zMo1HmKCzBUWOnAb+a0hz2XvmSoPwiCfpKfdpQ6IMPyDCa3
-         rcqg==
-X-Gm-Message-State: AOAM5301nSp22Uu/HMMQG6sZQuotkpEhd6nk6Wlb97dY5ZCyBwaw7Xum
-        4Td2j1woRiEmcrTTJseNOsNIt3mFR330h6Vrg9kBhg==
-X-Google-Smtp-Source: ABdhPJxdb0406KtQA0ekY0TlTv81qQUxI5O/FyeeUoVHX8/Ot2ByU9RnuJwh7E4wA3eNsSCbGkhyW44rUkeitrBqRsM=
-X-Received: by 2002:a0d:e246:0:b0:30c:5e77:7104 with SMTP id
- l67-20020a0de246000000b0030c5e777104mr10997642ywe.448.1654252136425; Fri, 03
- Jun 2022 03:28:56 -0700 (PDT)
+        with ESMTP id S231309AbiFCKb4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 06:31:56 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F1C5AE4E;
+        Fri,  3 Jun 2022 03:31:54 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id B756CCE230F;
+        Fri,  3 Jun 2022 10:31:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42F38C385A9;
+        Fri,  3 Jun 2022 10:31:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654252310;
+        bh=uxKDQNP2ZIM59sJd/+dQG5xkTcM55eNMWdyr2X32D6g=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=o0hRM0IG/I22H9wIGay8MPt5gSxCJKew0MZ30/YttjF4KPdOUZAt9tWKlZOAztKOf
+         Bc2u2bb6ZRKIEhtWoCREM2Ss+6zn+bVDKMqX1lpJL3CkCuIKZa2/OABcKljV3flWJ7
+         GUzT053LmCTaQePuKcPLfMtEz/K1InO0HxGIjH1DV8sYcThBtdkWfwanoJDdAqQiLi
+         HKMQQrbTu/tltcWEHf6/1uRLp/T1RQmqfYtAANrjIzNe7jTxyWfCql6mEtSjmvWlgq
+         XLMF025l17iff2AShrujEzMyBxWFGaz6ngHGwcnVqUwPUYsYZJvvzJaNEqyTrM7Jyx
+         k4XpJmBUQrWMw==
+Message-ID: <5e57a1f3-1159-9277-5f8c-6ed0ad030a00@kernel.org>
+Date:   Fri, 3 Jun 2022 13:31:44 +0300
 MIME-Version: 1.0
-References: <1654079415-26217-1-git-send-email-quic_srivasam@quicinc.com> <1654079415-26217-3-git-send-email-quic_srivasam@quicinc.com>
-In-Reply-To: <1654079415-26217-3-git-send-email-quic_srivasam@quicinc.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 3 Jun 2022 12:28:45 +0200
-Message-ID: <CACRpkdYQW7WByaGoSFKT91OwRao_jJdCAbL0pUuj3vdS6TdkQg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] pinctrl: qcom: sc7280: Add lpi pinctrl variant
- data for adsp based targets
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, quic_plai@quicinc.com,
-        bgoswami@quicinc.com, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, quic_rohkumar@quicinc.com,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, judyhsiao@chromium.org,
-        linux-gpio@vger.kernel.org,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Subject: Re: [PATCH v6 1/2] dt-bindings: interconnect: Add MediaTek CCI
+ dt-bindings
+Content-Language: en-US
+To:     Chanwoo Choi <cw00.choi@samsung.com>,
+        Johnson Wang <johnson.wang@mediatek.com>, krzk+dt@kernel.org,
+        robh+dt@kernel.org, kyungmin.park@samsung.com
+Cc:     khilman@kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, jia-wei.chang@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220527110036.8810-1-johnson.wang@mediatek.com>
+ <CGME20220527110145epcas1p4c7f18d9c279de790634bffb8550ad552@epcas1p4.samsung.com>
+ <20220527110036.8810-2-johnson.wang@mediatek.com>
+ <a29667c5-9c84-b2c7-7027-926703cfe473@samsung.com>
+From:   Georgi Djakov <djakov@kernel.org>
+In-Reply-To: <a29667c5-9c84-b2c7-7027-926703cfe473@samsung.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,71 +63,194 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 1, 2022 at 12:30 PM Srinivasa Rao Mandadapu
-<quic_srivasam@quicinc.com> wrote:
+On 3.06.22 3:39, Chanwoo Choi wrote:
+> Hi Georgi,
+> 
+> If you agree this dt-bidning into .../bindings/interconnect,
+> I'll merge it. Could you please review it?
+> 
+> On 5/27/22 8:00 PM, Johnson Wang wrote:
+>> Add devicetree binding of MediaTek CCI on MT8183 and MT8186.
+>>
+>> Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
+>> Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
+>> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
 
-So one way to just use a propert and avoid more compatible strings:
+Acked-by: Georgi Djakov <djakov@kernel.org>
 
-> Add compatible string and lpi pinctrl variant data structure for adsp
-> enabled sc7280 platforms.
-> This variant data structure rnd compatible name required for
-> distingushing ADSP based platforms and ADSP bypass platforms.
-> In case of ADSP enabled platforms, where audio is routed through ADSP
-> macro and decodec GDSC Switches are triggered as clocks by pinctrl
-> driver and ADSP firmware controls them. So It's mandatory to enable
-> them in ADSP based solutions.
-> In case of ADSP bypass platforms clock voting is optional as these macro
-> and dcodec GDSC switches are maintained as power domains and operated from
-> lpass clock drivers.
->
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> ---
->  drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
->
-> diff --git a/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
-> index 2add9a4..c9e85d9 100644
-> --- a/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
-> +++ b/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
-> @@ -134,6 +134,16 @@ static const struct lpi_function sc7280_functions[] = {
->         LPI_FUNCTION(wsa_swr_data),
->  };
->
-> +static const struct lpi_pinctrl_variant_data sc7280_adsp_lpi_data = {
+Looks good to me. Thanks!
 
-Remove static and export this struct in drivers/pinctrl/qcom/pinctrl-lpass-lpi.h
+BR,
+Georgi
 
-> +       .pins = sc7280_lpi_pins,
-> +       .npins = ARRAY_SIZE(sc7280_lpi_pins),
-> +       .groups = sc7280_groups,
-> +       .ngroups = ARRAY_SIZE(sc7280_groups),
-> +       .functions = sc7280_functions,
-> +       .nfunctions = ARRAY_SIZE(sc7280_functions),
-> +       .is_clk_optional = false,
-> +};
+>> ---
+>>   .../bindings/interconnect/mediatek,cci.yaml   | 141 ++++++++++++++++++
+>>   MAINTAINERS                                   |   1 +
+>>   2 files changed, 142 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml b/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
+>> new file mode 100644
+>> index 000000000000..449c7c988229
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
+>> @@ -0,0 +1,141 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: https://protect2.fireeye.com/v1/url?k=ad4ad61b-cc317c8c-ad4b5d54-74fe4860001d-01f34b7b1b45f9dd&q=1&e=81fe0992-6204-4794-b412-8ba4ca747e10&u=http%3A%2F%2Fdevicetree.org%2Fschemas%2Finterconnect%2Fmediatek%2Ccci.yaml%23
+>> +$schema: https://protect2.fireeye.com/v1/url?k=a032f6c0-c1495c57-a0337d8f-74fe4860001d-83ce1b32f63b7f35&q=1&e=81fe0992-6204-4794-b412-8ba4ca747e10&u=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23
+>> +
+>> +title: MediaTek Cache Coherent Interconnect (CCI) frequency and voltage scaling
+>> +
+>> +maintainers:
+>> +  - Jia-Wei Chang <jia-wei.chang@mediatek.com>
+>> +  - Johnson Wang <johnson.wang@mediatek.com>
+>> +
+>> +description: |
+>> +  MediaTek Cache Coherent Interconnect (CCI) is a hardware engine used by
+>> +  MT8183 and MT8186 SoCs to scale the frequency and adjust the voltage in
+>> +  hardware. It can also optimize the voltage to reduce the power consumption.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - mediatek,mt8183-cci
+>> +      - mediatek,mt8186-cci
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description:
+>> +          The multiplexer for clock input of the bus.
+>> +      - description:
+>> +          A parent of "bus" clock which is used as an intermediate clock source
+>> +          when the original clock source (PLL) is under transition and not
+>> +          stable yet.
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: cci
+>> +      - const: intermediate
+>> +
+>> +  operating-points-v2: true
+>> +  opp-table: true
+>> +
+>> +  proc-supply:
+>> +    description:
+>> +      Phandle of the regulator for CCI that provides the supply voltage.
+>> +
+>> +  sram-supply:
+>> +    description:
+>> +      Phandle of the regulator for sram of CCI that provides the supply
+>> +      voltage. When it is present, the implementation needs to do
+>> +      "voltage tracking" to step by step scale up/down Vproc and Vsram to fit
+>> +      SoC specific needs. When absent, the voltage scaling flow is handled by
+>> +      hardware, hence no software "voltage tracking" is needed.
+>> +
+>> +required:
+>> +  - compatible
+>> +  - clocks
+>> +  - clock-names
+>> +  - operating-points-v2
+>> +  - proc-supply
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/mt8183-clk.h>
+>> +    cci: cci {
+>> +        compatible = "mediatek,mt8183-cci";
+>> +        clocks = <&mcucfg CLK_MCU_BUS_SEL>,
+>> +                 <&topckgen CLK_TOP_ARMPLL_DIV_PLL1>;
+>> +        clock-names = "cci", "intermediate";
+>> +        operating-points-v2 = <&cci_opp>;
+>> +        proc-supply = <&mt6358_vproc12_reg>;
+>> +    };
+>> +
+>> +    cci_opp: opp-table-cci {
+>> +        compatible = "operating-points-v2";
+>> +        opp-shared;
+>> +        opp2_00: opp-273000000 {
+>> +            opp-hz = /bits/ 64 <273000000>;
+>> +            opp-microvolt = <650000>;
+>> +        };
+>> +        opp2_01: opp-338000000 {
+>> +            opp-hz = /bits/ 64 <338000000>;
+>> +            opp-microvolt = <687500>;
+>> +        };
+>> +        opp2_02: opp-403000000 {
+>> +            opp-hz = /bits/ 64 <403000000>;
+>> +            opp-microvolt = <718750>;
+>> +        };
+>> +        opp2_03: opp-463000000 {
+>> +            opp-hz = /bits/ 64 <463000000>;
+>> +            opp-microvolt = <756250>;
+>> +        };
+>> +        opp2_04: opp-546000000 {
+>> +            opp-hz = /bits/ 64 <546000000>;
+>> +            opp-microvolt = <800000>;
+>> +        };
+>> +        opp2_05: opp-624000000 {
+>> +            opp-hz = /bits/ 64 <624000000>;
+>> +            opp-microvolt = <818750>;
+>> +        };
+>> +        opp2_06: opp-689000000 {
+>> +            opp-hz = /bits/ 64 <689000000>;
+>> +            opp-microvolt = <850000>;
+>> +        };
+>> +        opp2_07: opp-767000000 {
+>> +            opp-hz = /bits/ 64 <767000000>;
+>> +            opp-microvolt = <868750>;
+>> +        };
+>> +        opp2_08: opp-845000000 {
+>> +            opp-hz = /bits/ 64 <845000000>;
+>> +            opp-microvolt = <893750>;
+>> +        };
+>> +        opp2_09: opp-871000000 {
+>> +            opp-hz = /bits/ 64 <871000000>;
+>> +            opp-microvolt = <906250>;
+>> +        };
+>> +        opp2_10: opp-923000000 {
+>> +            opp-hz = /bits/ 64 <923000000>;
+>> +            opp-microvolt = <931250>;
+>> +        };
+>> +        opp2_11: opp-962000000 {
+>> +            opp-hz = /bits/ 64 <962000000>;
+>> +            opp-microvolt = <943750>;
+>> +        };
+>> +        opp2_12: opp-1027000000 {
+>> +            opp-hz = /bits/ 64 <1027000000>;
+>> +            opp-microvolt = <975000>;
+>> +        };
+>> +        opp2_13: opp-1092000000 {
+>> +            opp-hz = /bits/ 64 <1092000000>;
+>> +            opp-microvolt = <1000000>;
+>> +        };
+>> +        opp2_14: opp-1144000000 {
+>> +            opp-hz = /bits/ 64 <1144000000>;
+>> +            opp-microvolt = <1025000>;
+>> +        };
+>> +        opp2_15: opp-1196000000 {
+>> +            opp-hz = /bits/ 64 <1196000000>;
+>> +            opp-microvolt = <1050000>;
+>> +        };
+>> +    };
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 41c9c8f2b96d..7239f0e0c47b 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -5735,6 +5735,7 @@ L:	linux-pm@vger.kernel.org
+>>   S:	Maintained
+>>   T:	git git://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git
+>>   F:	Documentation/devicetree/bindings/devfreq/
+>> +F:	Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
+>>   F:	drivers/devfreq/
+>>   F:	include/linux/devfreq.h
+>>   F:	include/trace/events/devfreq.h
+>>
+> 
+> 
 
-
->  static const struct lpi_pinctrl_variant_data sc7280_lpi_data = {
->         .pins = sc7280_lpi_pins,
->         .npins = ARRAY_SIZE(sc7280_lpi_pins),
-> @@ -149,6 +159,10 @@ static const struct of_device_id lpi_pinctrl_of_match[] = {
->                .compatible = "qcom,sc7280-lpass-lpi-pinctrl",
->                .data = &sc7280_lpi_data,
->         },
-> +       {
-> +               .compatible = "qcom,sc7280-lpass-adsp-lpi-pinctrl",
-> +               .data = &sc7280_adsp_lpi_data,
-> +       },
-
-Drop this and instead add some code in the probe()
-in drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
-lines:
-
-if (of_device_is_compatible(np, "qcom,sc7280-lpass-lpi-pinctrl") &&
-of_property_read_bool(np, "qcom,adsp-mode))
-     data = &sc7280_adsp_lpi_data;
-
-Yours,
-Linus Walleij
