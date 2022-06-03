@@ -2,124 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BF7753D226
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 21:06:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A070453D2B9
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 22:13:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243906AbiFCTGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jun 2022 15:06:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33004 "EHLO
+        id S236272AbiFCUNx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jun 2022 16:13:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348938AbiFCTFW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 15:05:22 -0400
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.83])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAE5030F78;
-        Fri,  3 Jun 2022 12:05:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1654282936;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=GN32FHxgQcHqH2ucXhtQRiGh0eXPPIP92mFkqoNojOw=;
-    b=NcenauWPTPMC//K3fNo54K+j79IWwc/2lRt9IAjn+ZA7EAehD9f3toPwur/SByZyy1
-    dN6bYMCufLOg74gkUBgzuT8y9dR6jGT3N+NkWVGq9bxLphd3F+rzEslD7OqhmdidPGYf
-    hmtgzlmxcU++3t9NYqydQx96VEKWKeIIde3J8k33yb2RByQySh69paiY4rMSHchvDPkT
-    jxGADZIjyJegCYGD8zslD3KDuTMkoosndUoq/2WTK6lYW+wBhYP3AP9XHv+xAMN7eXZ5
-    HR7n0BdbIKsTxa0OzB1uAnm5EcBUOc2VMRooHHyDdNA6QG9Fx4+5Hjse3qfRnzisRqAM
-    Z5TQ==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLVrKw7/aY="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.45.0 AUTH)
-    with ESMTPSA id 9056edy53J2Fwnt
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Fri, 3 Jun 2022 21:02:15 +0200 (CEST)
-Date:   Fri, 3 Jun 2022 21:02:14 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
+        with ESMTP id S231804AbiFCUNw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 16:13:52 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD86C30546;
+        Fri,  3 Jun 2022 13:13:48 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id y29so9543991ljd.7;
+        Fri, 03 Jun 2022 13:13:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ea34sRZaSwJnjGLjrLEGsQgF3V+GU0G0Kj9D8AgUyZE=;
+        b=hLL6/Vi0BT7fbqJ6nj/EkTy6gXFeuMwqCXjU6PpmcOd2Mzbrta/daiLzF1D6j+bent
+         s3AcsbxbyBDucDvwECmK379T8mib1TooyB9yAkrjXsTRvdvyflvV7QnotYz7XUMqbBVd
+         wrEeSSoX9TxDxD4TriqsvhOWjbzs1+3NvWqKdHIL/wgqwHLDB59oOOZMKxaCV6r8c0HG
+         lguUpsR3rNJP9CoUjXVRK4bT+5NV6V+bNg7Ra7vQES+tjeFDLNZRZmAGoA4wz6P6Mjus
+         LVBRxU2cN/fxd299bPyICHV5ISZxEkJgmZEUX/WEtHor8O+DFRaVp294OOJrwHMeQ2vh
+         QQfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ea34sRZaSwJnjGLjrLEGsQgF3V+GU0G0Kj9D8AgUyZE=;
+        b=nKfCC1wIFYj+/4G21BYfMtRaHNJvlPSZuNJFjrMcC6GvH+r0QuHuAI8w8lAiam/pHe
+         bVl5CpigXx1dfwpkAr1mkihg6oTQHicLspAWn1Epdrz0AhRgl6c+GuQb14vFm+TCFk8p
+         B/NYR5q67upUVMiIsmSFy8sCpkGizs90GJoCJxkjg9s+AdWSD7jdkpsHTnv7rVPinWp1
+         fCe4/2BlranGRzhh6HbUeCnviFfxEuBHkIrEZ9e9enxHErrGleZ7TA0j7ylewu4qjt2u
+         x2rKP48DU7moasYwaPydiJMHGFTJTfMeM/WSazXNztyMZEAE1Od8tHAAGu3weiE5K6Lo
+         o/0w==
+X-Gm-Message-State: AOAM5312ueCAANMDYZeCzTFI8Pp9vnf2ZiVF3WEYsIopoPVXijQ7Z+eF
+        mpEyBLBiRYUA0Fer/HNEGdBwKUHIYnw4Qg==
+X-Google-Smtp-Source: ABdhPJwfj98mmJMTdgqEAvsEwNEZW+BxgOIbCIcQ/T0UzpXIZVRP3xK+/7CEzfmQQj/MF8GeT25d9g==
+X-Received: by 2002:a05:651c:1a29:b0:255:47f9:c975 with SMTP id by41-20020a05651c1a2900b0025547f9c975mr19575111ljb.285.1654287227054;
+        Fri, 03 Jun 2022 13:13:47 -0700 (PDT)
+Received: from shock.lan ([2001:2002:2f8:bfc5:11e3:17a5:f449:1926])
+        by smtp.gmail.com with ESMTPSA id w12-20020a19490c000000b0047255d210f5sm1733330lfa.36.2022.06.03.13.13.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Jun 2022 13:13:46 -0700 (PDT)
+From:   Stefan Hansson <newbie13xd@gmail.com>
+To:     ~postmarketos/upstreaming@lists.sr.ht,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Rob Clark <robdclark@gmail.com>,
-        Caleb Connolly <caleb@connolly.tech>
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: sdm845-oneplus: split
- qcom,board-id into tuples
-Message-ID: <Yppatj7KuQLPdDW1@gerhold.net>
-References: <20220529202629.47588-1-krzysztof.kozlowski@linaro.org>
- <20220529202629.47588-5-krzysztof.kozlowski@linaro.org>
+        phone-devel@vger.kernel.org
+Cc:     Stefan Hansson <newbie13xd@gmail.com>
+Subject: [PATCH v2 1/2] dt-bindings: arm: qcom: Add sdm845 compatibles
+Date:   Fri,  3 Jun 2022 22:13:40 +0200
+Message-Id: <20220603201341.94137-1-newbie13xd@gmail.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220529202629.47588-5-krzysztof.kozlowski@linaro.org>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+Cc Caleb Connolly <caleb@connolly.tech>
+Add compatible for SDM845 and all supported devices that use it.
+---
+ .../devicetree/bindings/arm/qcom.yaml          | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-On Sun, May 29, 2022 at 10:26:29PM +0200, Krzysztof Kozlowski wrote:
-> The qcom,board-id is an uint32 matrix, so a list of tuples.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts | 2 +-
->  arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts    | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
-> index bf2cf92e8976..8897a2f4cfe3 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
-> @@ -12,7 +12,7 @@ / {
->  	compatible = "oneplus,enchilada", "qcom,sdm845";
->  	chassis-type = "handset";
->  	qcom,msm-id = <0x141 0x20001>;
-> -	qcom,board-id = <8 0 17819 22>;
-> +	qcom,board-id = <8 0>, <17819 22>;
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 129cdd246223..6436b79dc60a 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -235,6 +235,24 @@ properties:
+               - xiaomi,lavender
+           - const: qcom,sdm660
+ 
++      - items:
++          - enum:
++              - google,cheza-rev1
++              - google,cheza-rev2
++              - google,cheza
++              - lg,judyln
++              - lg,judyp
++              - oneplus,enchilada
++              - oneplus,fajita
++              - qcom,sdm845-mtp
++              - shift,axolotl
++              - sony,akari-row
++              - sony,akatsuki-row
++              - sony,apollo-row
++              - thundercomm,db845c
++              - xiaomi,beryllium
++          - const: qcom,sdm845
++
+       - items:
+           - enum:
+               - qcom,sdx55-mtp
+-- 
+2.36.1
 
-FWIW: While it's just a cosmetic change this is a bit misleading in my
-opinion. Having two tuples suggests this should be interpreted as:
-
-"This device tree is suitable for two different boards:
- board-id = <8 0> (aka sdm845-mtp, a standard qcom reference board)
- OR, alternatively: board-id = <17819 22>"
-
-Since this device tree is clearly not meant for sdm845-mtp one could now
-argue that the <8 0> could be removed, and only the second tuple covers
-the actual device. It might be worth a try (maybe Caleb can try?), but
-I suspect the bootloader will not accept that...
-
-I think the bootloader from OPPO/OnePlus is actually looking for
-quadruples instead of tuples on this board. I have seen similar hacks on
-several other OPPO devices as well. They usually add their project ID
-(here: 17819) somewhere and look for that in the bootloader.
-
-In this case maybe adding a short comment would be sufficient, just to
-make it more obvious that this doesn't actually follow the binding
-documentation.
-
-But this kind of brings up the question if it's worth making any
-constraints in the DT schema at all, if some of the device trees
-can not follow it.
-
-For example, older OPPO bootloaders actually look for triples instead,
-e.g.: (This is from a real device!)
-	qcom,board-id = <8 0 15009>;
-
-So maybe it's just a matter of time until someone tries to add a DT
-with a format that cannot be changed cosmetically to fit the DT schema...
-
-Stephan
