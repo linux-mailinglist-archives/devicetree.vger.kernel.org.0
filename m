@@ -2,145 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 287CB53CF11
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 19:52:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7338553D11C
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 20:18:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345385AbiFCRw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jun 2022 13:52:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46536 "EHLO
+        id S237761AbiFCSQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jun 2022 14:16:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346187AbiFCRuw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 13:50:52 -0400
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8496E59B9A;
-        Fri,  3 Jun 2022 10:47:04 -0700 (PDT)
-Received: by mail-oi1-f179.google.com with SMTP id l84so11260453oif.10;
-        Fri, 03 Jun 2022 10:47:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
-         :content-disposition;
-        bh=2zNlEw4nB85sh8if2viVb9BSHeHyHaqpaxepxW9M49M=;
-        b=n/gYscpI0b0i2GFJW8a0murd+LopJSmF2fxDB/3r+h40mmHna8acD5BLAAkvLL204t
-         aDOc0HSkLu2YiCJyJkd1bcsUOEnRTjqi8vdEMke+tI3BHRnOrJu685d4zKT2meQ8lZFh
-         VQlghYgDd6OLlnvmFBJ7bCBpGXbALSNyjqhQk3elnglmHv1cq+f56uk23gg4RM81F4dX
-         G/DiwwYAT5pwb7t6ZYZ3BqU1Qk8mP/iYpInaM3Gan30kfkz1NM/9BAwLsmTAsP1FALJq
-         V047PEzWszc3PuyyJ1D7qwTMbSFeI9+hE9Hlpnne3U4A+B95BvdOnAGrQk8osE6n5XWE
-         o12g==
-X-Gm-Message-State: AOAM533Xs6K0xP+3XhYuCkXgIHgga7cunXjhdiTFSqykvNo+bX7d6+h8
-        ujkN8tRfPjUiZHk3MvXQ2Q==
-X-Google-Smtp-Source: ABdhPJxAYuZBWa+RaA5nnGfbWpx8vAvZW4aD7zx8iDtmxRLOh8cfZs6aYlLqiB+Qiwa1fO9LsX5GQw==
-X-Received: by 2002:a05:6808:120a:b0:322:3447:2d7a with SMTP id a10-20020a056808120a00b0032234472d7amr21382071oil.40.1654278423517;
-        Fri, 03 Jun 2022 10:47:03 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id u1-20020a056808000100b00325cda1ff9esm4254032oic.29.2022.06.03.10.47.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Jun 2022 10:47:03 -0700 (PDT)
-Received: (nullmailer pid 617346 invoked by uid 1000);
-        Fri, 03 Jun 2022 17:47:02 -0000
-Date:   Fri, 3 Jun 2022 12:47:02 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [GIT PULL] Devicetree fixes for v5.19, part 1
-Message-ID: <20220603174702.GA614240-robh@kernel.org>
+        with ESMTP id S1348180AbiFCSQ3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 14:16:29 -0400
+Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [5.144.164.162])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C7BD633BF;
+        Fri,  3 Jun 2022 11:03:50 -0700 (PDT)
+Received: from [192.168.1.101] (abxj27.neoplus.adsl.tpnet.pl [83.9.3.27])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 7880920521;
+        Fri,  3 Jun 2022 20:03:28 +0200 (CEST)
+Message-ID: <6efeafbc-d366-bddd-faa4-4359f3a56f4a@somainline.org>
+Date:   Fri, 3 Jun 2022 20:03:27 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 1/6] iommu/qcom: Use the asid read from device-tree if
+ specified
+Content-Language: en-US
+To:     Rob Clark <robdclark@gmail.com>, Will Deacon <will@kernel.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+        Joerg Roedel <joro@8bytes.org>,
+        iommu@lists.linux-foundation.org,
+        Martin Botka <martin.botka@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        jamipkettunen@somainline.org, Andy Gross <agross@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20220527212901.29268-1-konrad.dybcio@somainline.org>
+ <20220527212901.29268-2-konrad.dybcio@somainline.org>
+ <20220531154631.GA25502@willie-the-truck>
+ <CAF6AEGsWsHfQZnszG=NgP0BufxO-DP4LwvsAYkrz2wRhcJuOXw@mail.gmail.com>
+ <20220531161910.GE25502@willie-the-truck>
+ <CAF6AEGvF+5mf6jE9Xac1qR9P+-=ELLu_LzoJhUV-Dx2RYH20Ag@mail.gmail.com>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+In-Reply-To: <CAF6AEGvF+5mf6jE9Xac1qR9P+-=ELLu_LzoJhUV-Dx2RYH20Ag@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Linus,
-
-Please pull DT fixes for 5.19-rc.
-
-Rob
 
 
-The following changes since commit 8ab2afa23bd197df47819a87f0265c0ac95c5b6a:
+On 31.05.2022 22:57, Rob Clark wrote:
+> On Tue, May 31, 2022 at 9:19 AM Will Deacon <will@kernel.org> wrote:
+>>
+>> On Tue, May 31, 2022 at 09:15:22AM -0700, Rob Clark wrote:
+>>> On Tue, May 31, 2022 at 8:46 AM Will Deacon <will@kernel.org> wrote:
+>>>>
+>>>> On Fri, May 27, 2022 at 11:28:56PM +0200, Konrad Dybcio wrote:
+>>>>> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+>>>>>
+>>>>> As specified in this driver, the context banks are 0x1000 apart.
+>>>>> Problem is that sometimes the context number (our asid) does not
+>>>>> match this logic and we end up using the wrong one: this starts
+>>>>> being a problem in the case that we need to send TZ commands
+>>>>> to do anything on a specific context.
+>>>>
+>>>> I don't understand this. The ASID is a software construct, so it shouldn't
+>>>> matter what we use. If it does matter, then please can you explain why? The
+>>>> fact that the context banks are 0x1000 apart seems unrelated.
+>>>
+>>> I think the connection is that mapping from ctx bank to ASID is 1:1
+>>
+>> But in what sense? How is the ASID used beyond a tag in the TLB? The commit
+>> message hints at "TZ commands" being a problem.
+>>
+>> I'm not doubting that this is needed to make the thing work, I just don't
+>> understand why.
+> 
+> (disclaimer, it has been quite a while since I've looked at the smmu
+> setup with earlier tz, ie. things that use qcom_iommu, but from
+> memory...)
+> 
+> We cannot actually assign the context banks ourselves, so in the dt
+> bindings the "ASID" is actually the context bank index.
+I think so.
 
-  Merge tag 'for-5.19/fbdev-1' of git://git.kernel.org/pub/scm/linux/kernel/git/deller/linux-fbdev (2022-05-30 12:46:49 -0700)
+  I don't
+> remember exactly if this was a limitation of the tz interface, or
+> result of not being able to program the smmu's global registers
+> ourselves.
 
-are available in the Git repository at:
+As far as I understand, it's the latter, as changing the defaults is not allowed by the security policy on consumer devices.
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.19-1
+Qualcomm arbitrarily chose some numbers that may or may have not aligned with their usual index-is-offset-divided-by-0x1000 and hardcoded them in the BSP, and now the secure side (if required, and well, it is..) expects precisely that configuration.
 
-for you to fetch changes up to 987cf300e76d30b1bdad88d2a662b948ead6fb21:
 
-  dt-bindings: mtd: spi-nand: Add spi-peripheral-props.yaml reference (2022-06-03 11:56:27 -0500)
+Konrad
 
-----------------------------------------------------------------
-Devicetree fixes for v5.19-rc:
-
-- Fixes for unevaluatedProperties warnings. These were missed to due to
-  a bug in dtschema which is now fixed. The changes involve either
-  adding missing properties or removing spurious properties from
-  examples.
-
-- Update several Qualcomm binding maintainer email addresses
-
-- Fix typo in imx8mp-media-blk-ctrl example
-
-- Fix fixed string pattern in qcom,smd
-
-- Correct the order of 'reg' entries in Xilinx PCI binding
-
-----------------------------------------------------------------
-Bharat Kumar Gogada (1):
-      dt-bindings: PCI: xilinx-cpm: Fix reg property order
-
-Jeffrey Hugo (1):
-      dt-bindings: clock: Update my email address
-
-Krzysztof Kozlowski (1):
-      dt-bindings: soc: qcom,smd: do not use pattern for simple rpm-requests string
-
-Laurent Pinchart (1):
-      dt-bindings: soc: imx8mp-media-blk-ctrl: Fix DT example
-
-Rob Herring (7):
-      dt-bindings: usb: snps,dwc3: Add missing 'dma-coherent' property
-      dt-bindings: PCI: socionext,uniphier-pcie: Add missing child interrupt controller
-      dt-bindings: net: Fix unevaluatedProperties warnings in examples
-      dt-bindings: PCI: apple: Add missing 'power-domains' property
-      dt-bindings: net/dsa: Add spi-peripheral-props.yaml references
-      dt-bindings: memory-controllers: ingenic: Split out child node properties
-      dt-bindings: mtd: spi-nand: Add spi-peripheral-props.yaml reference
-
-Sibi Sankar (1):
-      dt-bindings: Update Sibi Sankar's email address
-
- .../devicetree/bindings/clock/qcom,mmcc.yaml       |   2 +-
- .../bindings/interconnect/qcom,osm-l3.yaml         |   2 +-
- .../ingenic,nemc-peripherals.yaml                  |  46 +++++++++
- .../bindings/memory-controllers/ingenic,nemc.yaml  |  32 ------
- .../devicetree/bindings/mtd/ingenic,nand.yaml      |   1 +
- .../devicetree/bindings/mtd/spi-nand.yaml          |   1 +
- .../devicetree/bindings/net/cdns,macb.yaml         |   1 -
- .../devicetree/bindings/net/dsa/brcm,b53.yaml      | 115 ++++++++++++---------
- .../devicetree/bindings/net/dsa/microchip,ksz.yaml |   1 +
- .../devicetree/bindings/net/dsa/nxp,sja1105.yaml   |   1 +
- .../devicetree/bindings/net/dsa/realtek.yaml       |   1 +
- .../devicetree/bindings/net/mediatek,net.yaml      |   3 +
- .../devicetree/bindings/net/mediatek-dwmac.yaml    |   3 +
- .../bindings/net/wireless/mediatek,mt76.yaml       |   2 +-
- .../devicetree/bindings/pci/apple,pcie.yaml        |   5 +-
- .../bindings/pci/socionext,uniphier-pcie.yaml      |  23 ++++-
- .../devicetree/bindings/pci/xilinx-versal-cpm.yaml |  10 +-
- .../devicetree/bindings/reset/qcom,aoss-reset.yaml |   2 +-
- .../devicetree/bindings/reset/qcom,pdc-global.yaml |   2 +-
- .../soc/imx/fsl,imx8mp-media-blk-ctrl.yaml         |   2 +-
- .../devicetree/bindings/soc/qcom/qcom,smd.yaml     |   4 +-
- .../devicetree/bindings/usb/snps,dwc3.yaml         |   2 +
- 22 files changed, 162 insertions(+), 99 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/memory-controllers/ingenic,nemc-peripherals.yaml
