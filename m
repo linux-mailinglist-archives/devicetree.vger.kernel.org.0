@@ -2,120 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 973C753C1F7
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 04:12:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 220CE53C336
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 04:34:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240087AbiFCCEg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 22:04:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56842 "EHLO
+        id S233024AbiFCCOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 22:14:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240144AbiFCCEd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 22:04:33 -0400
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59BA535DDE
-        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 19:04:30 -0700 (PDT)
-Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
-        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220603020428epoutp0345c48a56df80686b0568edf70374d366~0_gZsKPOC2300023000epoutp03I
-        for <devicetree@vger.kernel.org>; Fri,  3 Jun 2022 02:04:28 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220603020428epoutp0345c48a56df80686b0568edf70374d366~0_gZsKPOC2300023000epoutp03I
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1654221868;
-        bh=UTtOf85zXL4qy9IJi0G0xNbHM+kypzzRxzeINEGKtrU=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=RTucJ35vk/Kbv4E2eV+ZC+GgO/5EyrMG1hbW6V+kfj9Uxb2SrfC9JWlU/Guzclhqf
-         +3jtEy0y9i3VHQR6UK+ePd1pqmwyZDhssS05/4TwQUWxXyE+maKCQSsbZIpFCEQind
-         cWScLWCb2f0c60FLqAmxPAJUN8ZzQ9aGFCQ/thRY=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-        epcas2p2.samsung.com (KnoxPortal) with ESMTP id
-        20220603020428epcas2p26ebe72cd24a10e5e6c44254ef5ce7c03~0_gZMBl4C1635416354epcas2p2U;
-        Fri,  3 Jun 2022 02:04:28 +0000 (GMT)
-Received: from epsmges2p1.samsung.com (unknown [182.195.36.88]) by
-        epsnrtp1.localdomain (Postfix) with ESMTP id 4LDmQz1GsGz4x9Ps; Fri,  3 Jun
-        2022 02:04:27 +0000 (GMT)
-Received: from epcas2p4.samsung.com ( [182.195.41.56]) by
-        epsmges2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-        0C.A4.10069.B2C69926; Fri,  3 Jun 2022 11:04:27 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
-        20220603020426epcas2p3f50ebe570e01c7f10972a857659a5625~0_gXzuN7U1599315993epcas2p3e;
-        Fri,  3 Jun 2022 02:04:26 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20220603020426epsmtrp14bf070f6e42049c51fc9494964c3e569~0_gXxxIJv1338013380epsmtrp1i;
-        Fri,  3 Jun 2022 02:04:26 +0000 (GMT)
-X-AuditID: b6c32a45-a8fff70000002755-41-62996c2b71df
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        95.FF.08924.A2C69926; Fri,  3 Jun 2022 11:04:26 +0900 (KST)
-Received: from localhost.localdomain (unknown [10.229.9.51]) by
-        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20220603020426epsmtip1272e6b0f82b21b3862457bc92983f522~0_gXkGfEN2995029950epsmtip1X;
-        Fri,  3 Jun 2022 02:04:26 +0000 (GMT)
-From:   Chanho Park <chanho61.park@samsung.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Chanho Park <chanho61.park@samsung.com>
-Subject: [PATCH v3 5/5] phy: samsung: ufs: support secondary ufs phy
-Date:   Fri,  3 Jun 2022 11:04:10 +0900
-Message-Id: <20220603020410.2976-6-chanho61.park@samsung.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220603020410.2976-1-chanho61.park@samsung.com>
+        with ESMTP id S230193AbiFCCOs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 22:14:48 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA97D369C0;
+        Thu,  2 Jun 2022 19:14:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1654222486; x=1685758486;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=qSqyxUGSBvwO+iIfAgD4DbrPTpHhtxYDB+NXlueOkUk=;
+  b=FVkQ0V12NyiFVyHN9vd4v30bvUZN8xdEs+484mCSZkfRZURB4bnHNx+P
+   S7Tpp5Cd1XyfSzxiW13oRMDvUdmRmMLqcKjSJrGa4WpIZmwvOwPzHZWYd
+   8v6qm/+GEXdL2oucUam0YG0ygn1p9hnuU2ej2n2CG2AhNC1QFIrRWJACJ
+   Y=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 02 Jun 2022 19:14:45 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jun 2022 19:14:45 -0700
+Received: from nalasex01b.na.qualcomm.com (10.47.209.197) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 2 Jun 2022 19:14:44 -0700
+Received: from hu-wcheng-lv.qualcomm.com (10.49.16.6) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 2 Jun 2022 19:14:44 -0700
+From:   Wesley Cheng <quic_wcheng@quicinc.com>
+To:     <krzysztof.kozlowski+dt@linaro.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <gregkh@linuxfoundation.org>,
+        <bjorn.andersson@linaro.org>, <kishon@ti.com>,
+        <robh+dt@kernel.org>, <agross@kernel.org>, <vkoul@kernel.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_jackp@quicinc.com>,
+        Wesley Cheng <quic_wcheng@quicinc.com>
+Subject: [PATCH] dt-bindings: Update QCOM USB subsystem maintainer information
+Date:   Thu, 2 Jun 2022 19:14:32 -0700
+Message-ID: <20220603021432.13365-1-quic_wcheng@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrCJsWRmVeSWpSXmKPExsWy7bCmha52zswkgymrWC0ezNvGZnF5v7bF
-        /CPnWC0uPO1hs+h78ZDZYu/rrewWmx5fY7WYsOobi8WM8/uYLFr3HmG32HnnBLMDt8emVZ1s
-        Hneu7WHz2Lyk3qNvyypGj+M3tjN5fN4kF8AWlW2TkZqYklqkkJqXnJ+SmZduq+QdHO8cb2pm
-        YKhraGlhrqSQl5ibaqvk4hOg65aZA3SdkkJZYk4pUCggsbhYSd/Opii/tCRVISO/uMRWKbUg
-        JafAvECvODG3uDQvXS8vtcTK0MDAyBSoMCE7o+PtZqaCOVwVz7YeZ2pgvMLRxcjBISFgIvHk
-        s28XIxeHkMAORonWo+fYIZxPjBLTbu0FcjiBnM+MErt+RYDYIA1/+o+zQBTtYpR4+mQOE4Tz
-        kVFi//MeFpAqNgFdiS3PXzGCJEQE2pkkTtybCzaXWWAzo8TJCRuYQaqEBVwktvxaDNbBIqAq
-        MfnwMSYQm1fAVuLGpAfsEPvkJTbM7wWr5xSwk7g+7SszRI2gxMmZT8B6mYFqmrfOZgZZICHQ
-        ySGx/dkFJohmF4mnrx5DDRKWeHV8C5QtJfGyvw3KLpZYOusTE0RzA6PE5W2/2CASxhKznrUz
-        goKJWUBTYv0ufUiIKUscuQW1l0+i4/Bfdogwr0RHmxBEo7rEge3TWSBsWYnuOZ9ZIWwPibNP
-        nrFBQmsio8T/P0dYJzAqzELyziwk78xCWLyAkXkVo1hqQXFuemqxUYEhPIqT83M3MYKTq5br
-        DsbJbz/oHWJk4mA8xCjBwawkwluya2qSEG9KYmVValF+fFFpTmrxIUZTYGBPZJYSTc4Hpve8
-        knhDE0sDEzMzQ3MjUwNzJXFer5QNiUIC6YklqdmpqQWpRTB9TBycUg1MBw5Hlkh8aL6ZZ9/x
-        wHC9DHeJ8TLp3703Q/kXSJrL2K/Zeegd39XgN4ytU+Yvv7qadW3AtqeG006n3xL53q4q++ek
-        Ksf20/azk8vZQlekK+wxqJF9Pql5n/YttuQfm7c12X/ZJDe56nVs+bqJKjNb8rNj7q5i9+7p
-        XZyzYonNv7huXnlRjxvcyQ+5vc0Olh9/vKFo/mrxwKbzB10ufMz5axJ+6FjOXlmtM9tvz+Vs
-        Fz/2bfmhg0cufMpaKZm74tKW3mSJ2j/+AW9Puc//4SK5f4eFEW9L9dZv4mLKm6J3Gi96ybHn
-        bndJrcolz0yz2HSxI4t6Le8HhKx+m323j2uunP+yr8E171tEj7X9czSXUmIpzkg01GIuKk4E
-        AFdopi03BAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrALMWRmVeSWpSXmKPExsWy7bCSnK5Wzswkg7+N8hYP5m1js7i8X9ti
-        /pFzrBYXnvawWfS9eMhssff1VnaLTY+vsVpMWPWNxWLG+X1MFq17j7Bb7LxzgtmB22PTqk42
-        jzvX9rB5bF5S79G3ZRWjx/Eb25k8Pm+SC2CL4rJJSc3JLEst0rdL4MroeLuZqWAOV8WzrceZ
-        GhivcHQxcnJICJhI/Ok/ztLFyMUhJLCDUeJL81FGiISsxLN3O9ghbGGJ+y1HWCGK3jNKNC7e
-        xQSSYBPQldjy/BUjSEJEoJtJYs6mfiYQh1lgO6PEh6XrWECqhAVcJLb8WgxmswioSkw+fAys
-        m1fAVuLGpAdQK+QlNszvZQaxOQXsJK5P+wpmCwHVPO97xgJRLyhxcuYTMJsZqL5562zmCYwC
-        s5CkZiFJLWBkWsUomVpQnJueW2xYYJSXWq5XnJhbXJqXrpecn7uJERwJWlo7GPes+qB3iJGJ
-        g/EQowQHs5IIb8muqUlCvCmJlVWpRfnxRaU5qcWHGKU5WJTEeS90nYwXEkhPLEnNTk0tSC2C
-        yTJxcEo1MHG9D573f7WT0YrZz24c2njo26WmMJlVrcdajqfO+5KYdrsq31rur0G5/vsGXrFG
-        +yvzCoNVu5piPZyq/v42+xU44WpVumirV74Ch7jewds8msWfYxYdfnouYbXbXt2ezcoFMdm2
-        dU/Ed+Xe38gz/S3Tbd3YuXrPnt3kqJY0uCdwVOrdlAU1l5fKp/LO+X42cN32mnWeCsaLGLrE
-        a9vL3Dln3eKzbpXX9QtZos7wnnlKplmp7AN1dfavC0Ri2Xf9vbrigITjgplZfDUKDsnnHetl
-        NdqVUwy4b2uKTzuTX6EpVPDardtMw3Km5Tdl3WWii6Sv7y8InL4+P3nFarZL7asZ9lY+uN5k
-        O8W+YPsKJZbijERDLeai4kQADGa5IfMCAAA=
-X-CMS-MailID: 20220603020426epcas2p3f50ebe570e01c7f10972a857659a5625
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220603020426epcas2p3f50ebe570e01c7f10972a857659a5625
-References: <20220603020410.2976-1-chanho61.park@samsung.com>
-        <CGME20220603020426epcas2p3f50ebe570e01c7f10972a857659a5625@epcas2p3.samsung.com>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+Content-Type: text/plain
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -123,38 +64,80 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To support secondary ufs phy device, we need to get an offset for phy
-isolation from the syscon DT node. If the first index argument of the
-node is existing, we can read the offset value and set it as isol->offset.
+Update devicetree binding files with the proper maintainer, and updated
+contact email.
 
-Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
 ---
- drivers/phy/samsung/phy-samsung-ufs.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml | 2 +-
+ Documentation/devicetree/bindings/phy/qcom,qusb2-phy.yaml       | 2 +-
+ .../devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml         | 2 +-
+ .../devicetree/bindings/regulator/qcom,usb-vbus-regulator.yaml  | 2 +-
+ Documentation/devicetree/bindings/usb/qcom,dwc3.yaml            | 2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/phy/samsung/phy-samsung-ufs.c b/drivers/phy/samsung/phy-samsung-ufs.c
-index 0530513f2263..22b9e04ec39b 100644
---- a/drivers/phy/samsung/phy-samsung-ufs.c
-+++ b/drivers/phy/samsung/phy-samsung-ufs.c
-@@ -288,6 +288,7 @@ static int samsung_ufs_phy_probe(struct platform_device *pdev)
- 	struct phy *gen_phy;
- 	struct phy_provider *phy_provider;
- 	const struct samsung_ufs_phy_drvdata *drvdata;
-+	u32 isol_offset;
- 	int err = 0;
+diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
+index 60dc27834e1d..b078009ed509 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
+@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ title: Qualcomm QMP USB3 DP PHY controller
  
- 	match = of_match_node(samsung_ufs_phy_match, dev->of_node);
-@@ -330,6 +331,10 @@ static int samsung_ufs_phy_probe(struct platform_device *pdev)
- 	phy->has_symbol_clk = drvdata->has_symbol_clk;
- 	memcpy(&phy->isol, &drvdata->isol, sizeof(phy->isol));
+ maintainers:
+-  - Manu Gautam <mgautam@codeaurora.org>
++  - Wesley Cheng <quic_wcheng@quicinc.com>
  
-+	if (!of_property_read_u32_index(dev->of_node, "samsung,pmu-syscon", 1,
-+					&isol_offset))
-+		phy->isol.offset = isol_offset;
-+
- 	phy->lane_cnt = PHY_DEF_LANE_CNT;
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/phy/qcom,qusb2-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qusb2-phy.yaml
+index 0ab3dad3f121..d68ab49345b8 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,qusb2-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,qusb2-phy.yaml
+@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ title: Qualcomm QUSB2 phy controller
  
- 	phy_set_drvdata(gen_phy, phy);
--- 
-2.36.1
-
+ maintainers:
+-  - Manu Gautam <mgautam@codeaurora.org>
++  - Wesley Cheng <quic_wcheng@quicinc.com>
+ 
+ description:
+   QUSB2 controller supports LS/FS/HS usb connectivity on Qualcomm chipsets.
+diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+index 1ce251de0855..7a0e6a9854da 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+@@ -7,7 +7,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ title: Qualcomm Synopsys Femto High-Speed USB PHY V2
+ 
+ maintainers:
+-  - Wesley Cheng <wcheng@codeaurora.org>
++  - Wesley Cheng <quic_wcheng@quicinc.com>
+ 
+ description: |
+   Qualcomm High-Speed USB PHY
+diff --git a/Documentation/devicetree/bindings/regulator/qcom,usb-vbus-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,usb-vbus-regulator.yaml
+index 12ed98c28aaa..dbe78cd4adba 100644
+--- a/Documentation/devicetree/bindings/regulator/qcom,usb-vbus-regulator.yaml
++++ b/Documentation/devicetree/bindings/regulator/qcom,usb-vbus-regulator.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: The Qualcomm PMIC VBUS output regulator driver
+ 
+ maintainers:
+-  - Wesley Cheng <wcheng@codeaurora.org>
++  - Wesley Cheng <quic_wcheng@quicinc.com>
+ 
+ description: |
+   This regulator driver controls the VBUS output by the Qualcomm PMIC.  This
+diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+index e336fe2e03cc..749e1963ddbb 100644
+--- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
++++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Qualcomm SuperSpeed DWC3 USB SoC controller
+ 
+ maintainers:
+-  - Manu Gautam <mgautam@codeaurora.org>
++  - Wesley Cheng <quic_wcheng@quicinc.com>
+ 
+ properties:
+   compatible:
