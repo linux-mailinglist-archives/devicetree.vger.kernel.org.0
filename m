@@ -2,76 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F80E53C66D
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 09:42:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E0B653C6A2
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 10:00:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242646AbiFCHlu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jun 2022 03:41:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44150 "EHLO
+        id S242618AbiFCIAf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jun 2022 04:00:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242641AbiFCHlt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 03:41:49 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEEB223E
-        for <devicetree@vger.kernel.org>; Fri,  3 Jun 2022 00:41:46 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id u26so10619861lfd.8
-        for <devicetree@vger.kernel.org>; Fri, 03 Jun 2022 00:41:46 -0700 (PDT)
+        with ESMTP id S230306AbiFCIAe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 04:00:34 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0BB635DCE
+        for <devicetree@vger.kernel.org>; Fri,  3 Jun 2022 01:00:32 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id q1so7648915ljb.5
+        for <devicetree@vger.kernel.org>; Fri, 03 Jun 2022 01:00:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=lFsusYv3a39AFVrKGs8AUQpmcs9BSd1N8sKJb+8VaT8=;
-        b=ixw28mMy3cuE9uN5yiyr9tWLypliH3/PjkIL2a7cNXIOP3hkqtNf8DpOd5Nitj3zsH
-         svWgzJ2nDzKrA+wbjZzf/G2zWbiQCu8xw9426CBpzfb0HOr7rf1sAkZgr+lsNKG7oT0k
-         4xleggXyL7PvWnKzt/+yVI/cw/1LxKlOmaORj+II8bvXYSXLWFOgWvbMjHPzEMYKCYrU
-         zYNGrDrlbEag+fqe7+kY9AJkWC+1PhjS00SnhAFvCJpTKA+TWAlRNFaiG04QB7tntEoa
-         e/looCZa7FOLM40cDzmV5WFIv79m6VaEqGHnfL+FZXnpZMlc3F/z7sX0r2tjoDz5wGV5
-         PS3A==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jrvGGdTixNtHqZKbOYhe2mvn4ahNb6KY/VMia2Pab18=;
+        b=loatCcjfMy7QKanwzr7GedUfJt9jEKeeIOhv+ylp7vFZM6yhMnocRI8wi8e0al3jJ0
+         TheIEChZviLS/tO+zzjhKQ6yvO5XsWY8o/+oNrHGHIpVkHG1paoUbQILXEdTxdgFkCrk
+         xCpLKkHsMlT5JOjHgmOzmvwy0ek1h22+mNBaLqeW0Is/BXM5TJlgfF6ht+wv0I24W1Qy
+         emptBGYbQY/+PPY28O1iNkROYdVP9JTyi4QlVEYzvQE6QEfV07tGpjniHF4cKJupzbCy
+         wG8L3Sm3G+ayrij4zQxIa9ieqCRE0SdRUucWUWl13ckYlY0wbpvwKHYqNhd0969Ybdnv
+         YbSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=lFsusYv3a39AFVrKGs8AUQpmcs9BSd1N8sKJb+8VaT8=;
-        b=UAcvuMEJh1NtLuXC3rdZUl8guAEFzW0eybW8X9JF5inMJrXdJva9U0yj8b64sgMDlf
-         9AimXOmVIVLJB4GXkNmBYAfhY6/+7pgl3+6rZ+txwcQONlf85slvUX4LA7TWOx5FDklg
-         56AF/Zdo4ZlAkTzwGxi/xS1QBGMWeQJToHIv5NTMy8wBVVq78ICY2KrTNOI5eUTjyyFf
-         bF1kuQ8VZBSZb8CpxCnaSY/l17+mwwNFcPNTu4WtpEtO0V64MZELEA4eMdzOSYNOiyvx
-         IkOUMdLmX3WPy9RP199bgtAUTVj4THopc51wTDV0pKag0zjDONpxFzyIMcGd/iNgq3HS
-         lDfQ==
-X-Gm-Message-State: AOAM532+NY0klo/W4489xydjm0LDll+JlITIr5HyYUeyO8ntZUCWBKJo
-        MUPuQFIh5vjqKXM0tLaXXQ5QkQ==
-X-Google-Smtp-Source: ABdhPJxDXg09fNPT7NjiCzLfrFAat7DmabLDuWbgkBA/RQbgIf9Aknavt0hpzwzEn7vgd3NfamStPA==
-X-Received: by 2002:a05:6512:1041:b0:478:afc6:5846 with SMTP id c1-20020a056512104100b00478afc65846mr5888616lfb.132.1654242105122;
-        Fri, 03 Jun 2022 00:41:45 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id x6-20020ac24886000000b00477b11144e9sm1450023lfc.66.2022.06.03.00.41.44
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jrvGGdTixNtHqZKbOYhe2mvn4ahNb6KY/VMia2Pab18=;
+        b=TLsI+c+vKlXXEjEW7KVDOqVhE1wm8fed/UExcQN2Py+AaKfK65fJxQ21V5nBuRqIq/
+         ei2O/1hJhlOJitU0C1SvKWOCp9gxGFl8+M2cFPQ/Bbz9PpbBTv6ncAhdCgYlLJ+z4KB3
+         k8Bz9+9IhEokxbXxhLYyGMEMd9GMjtcTHUiKnWNul1tATG6tb72aZA1CvkZwBvU9h2eI
+         HyslclBNFEKT716xQ/sDbxFOWnVYqnTDn10p0h7eZsQoChKM3q4SdF/DfLDKfXhzVPce
+         hJYRYlGg5Y2lw3h+gt+7ZLQsHPi8G3t9ihKD67jD6ATIul74DIf0PesbOHKNrcU3yBZB
+         fdWg==
+X-Gm-Message-State: AOAM532S5J8sbC8hrLTNHL4x6NunsI8o0GQI1OGdcNknj99cwN1K3511
+        obeskdk/tAfrxUjiTPLXXNNffQ==
+X-Google-Smtp-Source: ABdhPJzCHzolNrS18FB+PHhzFrcPQ66j9Yf7aK5+y9+0Viwj/6TelSvj7QMtjERQmN9kRmO0Ic98Dg==
+X-Received: by 2002:a2e:81c1:0:b0:24b:f44:3970 with SMTP id s1-20020a2e81c1000000b0024b0f443970mr44204367ljg.97.1654243230728;
+        Fri, 03 Jun 2022 01:00:30 -0700 (PDT)
+Received: from localhost.localdomain (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id l13-20020a2e868d000000b0025582d66aebsm50356lji.70.2022.06.03.01.00.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Jun 2022 00:41:44 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Stanimir Varbanov <svarbanov@mm-sol.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        Johan Hovold <johan@kernel.org>, Rob Herring <robh@kernel.org>
-Subject: [PATCH v13 7/7] PCI: qcom: Revert "PCI: qcom: Add support for handling MSIs from 8 endpoints"
-Date:   Fri,  3 Jun 2022 10:41:37 +0300
-Message-Id: <20220603074137.1849892-8-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220603074137.1849892-1-dmitry.baryshkov@linaro.org>
-References: <20220603074137.1849892-1-dmitry.baryshkov@linaro.org>
+        Fri, 03 Jun 2022 01:00:30 -0700 (PDT)
+From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: [PATCH v6 0/7] clk: qcom: add camera clock controller driver for SM8450 SoC
+Date:   Fri,  3 Jun 2022 11:00:17 +0300
+Message-Id: <20220603080019.2251764-1-vladimir.zapolskiy@linaro.org>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,42 +70,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I have replied with my Tested-by to the patch at [2], which has landed
-in the linux-next as the commit 20f1bfb8dd62 ("PCI: qcom:
-Add support for handling MSIs from 8 endpoints"). However lately I
-noticed that during the tests I still had 'pcie_pme=nomsi', so the
-device was not forced to use higher MSI vectors.
+The patchset adds support of a camera clock controller found on
+QCOM SM8450 SoC, noticeably a camcc pll2 is a new "rivian evo"
+type of pll, its generic support is added in the series.
 
-After removing this option I noticed that high MSI vectors are not
-delivered on tested platforms. Additional research pointed to
-a patch in msm-4.14 ([1]), which describes that each group of MSI
-vectors is mapped to the separate interrupt.
+Note that SM8450 ES variant has a slightly different configurtion,
+the published version is intended to support SM8450 CS SoC.
 
-Without these changes specifying num_vectors can lead to missing MSI
-interrupts and thus to devices malfunction.
+Changes from v5 to v6:
+* rebased on top of linux-next,
+* added Rob's tag,
+* fixed a topology of power domains around titan_top.
 
-[1] https://git.codelinaro.org/clo/la/kernel/msm-4.14/-/commit/671a3d5f129f4bfe477152292ada2194c8440d22
-[2] https://lore.kernel.org/linux-arm-msm/20211214101319.25258-1-manivannan.sadhasivam@linaro.org/
+Changes from v4 to v5:
+* fixed the same typo in a usage example found in yaml file as in v3
+  change.
 
-Fixes: 20f1bfb8dd62 ("PCI: qcom: Add support for handling MSIs from 8 endpoints")
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- drivers/pci/controller/dwc/pcie-qcom.c | 1 -
- 1 file changed, 1 deletion(-)
+Changes from v3 to v4:
+* fixed a changed path in the yaml file.
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index f9a61ad6d1f0..2e5464edc36e 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -1587,7 +1587,6 @@ static int qcom_pcie_probe(struct platform_device *pdev)
- 	pci->dev = dev;
- 	pci->ops = &dw_pcie_ops;
- 	pp = &pci->pp;
--	pp->num_vectors = MAX_MSI_IRQS;
- 
- 	pcie->pci = pci;
- 
+Changes from v2 to v3:
+* fixed a typo in a usage example found in yaml file,
+* renamed dt related files to match the compatible "qcom,sm8450-camcc",
+* minor fixes in the driver per review requests from Bjorn,
+* added Bjorn's tag to a change of exported symbols namespace.
+
+Changes from v1 to v2:
+* updated qcom,camcc-sm8450.yaml according to review comments from Rob,
+* changed qcom,camcc-sm8450.h licence to dual one,
+* disabled camcc device tree node by default,
+* added Stephen's tag,
+* rebased the series on top of clk-for-5.18
+
+Vladimir Zapolskiy (7):
+  dt-bindings: clock: add QCOM SM8450 camera clock bindings
+  arm64: dts: qcom: sm8450: Add description of camera clock controller
+  clk: qcom: clk-alpha-pll: fix clk_trion_pll_configure description
+  clk: qcom: clk-alpha-pll: limit exported symbols to GPL licensed code
+  clk: qcom: clk-alpha-pll: add Lucid EVO PLL configuration interfaces
+  clk: qcom: clk-alpha-pll: add Rivian EVO PLL configuration interfaces
+  clk: qcom: add camera clock controller driver for SM8450 SoC
+
+ .../bindings/clock/qcom,sm8450-camcc.yaml     |   89 +
+ arch/arm64/boot/dts/qcom/sm8450.dtsi          |   20 +
+ drivers/clk/qcom/Kconfig                      |    7 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/camcc-sm8450.c               | 2866 +++++++++++++++++
+ drivers/clk/qcom/clk-alpha-pll.c              |  145 +-
+ drivers/clk/qcom/clk-alpha-pll.h              |   11 +-
+ include/dt-bindings/clock/qcom,sm8450-camcc.h |  159 +
+ 8 files changed, 3292 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+ create mode 100644 drivers/clk/qcom/camcc-sm8450.c
+ create mode 100644 include/dt-bindings/clock/qcom,sm8450-camcc.h
+
 -- 
-2.35.1
+2.33.0
 
