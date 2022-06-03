@@ -2,62 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8554F53C76B
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 11:24:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30FE353C775
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 11:25:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242972AbiFCJYU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jun 2022 05:24:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40736 "EHLO
+        id S243009AbiFCJYd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jun 2022 05:24:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242235AbiFCJYT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 05:24:19 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C98583A1A8
-        for <devicetree@vger.kernel.org>; Fri,  3 Jun 2022 02:24:18 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id r8so7267488ljp.1
-        for <devicetree@vger.kernel.org>; Fri, 03 Jun 2022 02:24:18 -0700 (PDT)
+        with ESMTP id S242971AbiFCJYc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 05:24:32 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 762233A1AD
+        for <devicetree@vger.kernel.org>; Fri,  3 Jun 2022 02:24:30 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id s13so7834822ljd.4
+        for <devicetree@vger.kernel.org>; Fri, 03 Jun 2022 02:24:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=semihalf.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=QFSYNioYj53ugT+XnFcagEPMgVZUKHIrYtdlR+BaPMw=;
-        b=Uj5pQCbaqw+S8llFY3KzjlJ4sNmRc936NPpaoIg49TAD67QdE5f14mzfxc/+GtlNAX
-         9Hz2gn637jjeiCaMI7G58XCcPMDK8MdK0Jx7KuZrwAYlPgbeBzB8uoYhhf1UZWwnwKT1
-         icXpr3ERi0uvVRy2s9oWnrbuGPmi3zwDHxiwN05MEGkFn5PuVPsR6PwhujwfEgRldiIj
-         Mx96zvTcyYuKiQSzCot2D+7dxYObFFWjGim3yPOSE2m9Z1170yOM298InzLyPViSwQEQ
-         CwcAKSalHq9OT1hY74Xc4and6+K5/BTi/t4YKJlEArKV/zM6B9/+BP3f4ISoAa2LQEih
-         rDWw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=tpu4e6Tsi3OmnWPgulA1jvkS03wWrtbDigf/xuLhW00=;
+        b=NpNnQezQYCyV6S3ekD1A4pX1wxEID/EwaDPAMUYveMjCaWoyUrO4SYsVtMj+zgjuoU
+         fR3zH+X03ZhtufIeO7nU8GD939xhLKn5KzX38w2B7TdeYBYviL6knS9+1th9VWdJwWrC
+         cM/avtVhwbXohNHww481KnICboEn4DhiuRIziedkw7PzHzNypdzFjqQPPWiun/enTHmv
+         wnjIOPg+MiW1kbVIzPQr8Wp6bflB5OtfrnGtZ294KCWoL4g2qBUt0wJ7Z1k2O8SdkWLp
+         JkO1e8mKHPg1WODr4Ec58J8bqpktgLWY0rx5dzNesctgALK8KGAr3fk1yISK8Olmfvja
+         7uqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=QFSYNioYj53ugT+XnFcagEPMgVZUKHIrYtdlR+BaPMw=;
-        b=vW4rHAd/BLmZO+m/42RL7029EQW3mWz1aoOaGEvt88HXiiSGL27tPoc2YUoFIVJaXF
-         UbqizROE4ruePUvsIBvab+DvD2mXVxTBcHJRtngbsuGkktWSarQuCx0EgXv5RfmMqNrO
-         t4mgvWvIiY6ZDJr6iFoI1fylOby0NOq/5K87Um3VLa2HQUCoum8yGCC+lN52AOEaWQGa
-         prrWnFtrTzThSAwvKFtjepCJPHJ8hYPFV70oZfRHJIc6UjtoEYahJODC0OsD7zFHKYlL
-         YrVKhORHe/8R+tf+wWHfNE8z5wsdRG8bmviD4n/a7bhfBoGuE0tHYvRp3pMdpaaBzgR8
-         uWXA==
-X-Gm-Message-State: AOAM532fxEBZO4aIxkRC1hz7A1VdI8grBKnO90QbwXVVGiKWmWfGU2Kt
-        G6w68gwJcGyViN1RNs6aRE2gtQ==
-X-Google-Smtp-Source: ABdhPJy2jZOSD0jnQeBMhKjievMP76bhDOnt99sJsKAlHh2RRwsvcuKxjpOnKX8gSCkJDKZWHNeZhA==
-X-Received: by 2002:a2e:81cc:0:b0:255:5d1c:196a with SMTP id s12-20020a2e81cc000000b002555d1c196amr9951136ljg.1.1654248257077;
-        Fri, 03 Jun 2022 02:24:17 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=tpu4e6Tsi3OmnWPgulA1jvkS03wWrtbDigf/xuLhW00=;
+        b=dB6XPc1Mi+fy3We5b8+tPk5eNs7RtEYSaQ+VXeYTFZZYVnEq6pZAm3VXdPpMLMBhHa
+         tHSKinYu/7EA4poOIeQOuoZyxwTSSPFGxh+ichUBCFlcgFLEG9FHY1NukulG0YyrN3nO
+         c0ZzbxopoO2zDat8gNoEMhrjw2m6nt4eppcuSk+mmaZhOanNLoaXbwN0veo6yjQU1y7G
+         rntnU/T7ATfVvHip+dWb+WTBMiPffReGXhUh/7ze3Pm9R489/DcaBDFsbtqBxZcdKwk5
+         vUNhY6wjs/ZtflNxC67+mxWJypE/9LeG6+5XeqtNfcJTHdOpnUQevY6XASdzdcXG0aJw
+         duhQ==
+X-Gm-Message-State: AOAM5308b3tASrQ2rFm783Ac+1k4lyZewtDSzVCB8m/w2QOaoFdpd1MD
+        wOqmHpr7xrT0xur87mW7rVTUbg==
+X-Google-Smtp-Source: ABdhPJxL5dx5oS8uVRLqjW6ypxjzwJ1bUtmGE5vf2et5FTGdGN6JZkqShOWlXOTxCmRP0ZzdtQ3dHA==
+X-Received: by 2002:a2e:b0d6:0:b0:255:7d62:d75c with SMTP id g22-20020a2eb0d6000000b002557d62d75cmr1957870ljl.118.1654248268846;
+        Fri, 03 Jun 2022 02:24:28 -0700 (PDT)
 Received: from panikiel.roam.corp.google.com (staticline-31-182-204-250.toya.net.pl. [31.182.204.250])
-        by smtp.gmail.com with ESMTPSA id e10-20020a2e9e0a000000b002555dd9c20fsm1224434ljk.20.2022.06.03.02.24.15
+        by smtp.gmail.com with ESMTPSA id e10-20020a2e9e0a000000b002555dd9c20fsm1224434ljk.20.2022.06.03.02.24.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Jun 2022 02:24:16 -0700 (PDT)
+        Fri, 03 Jun 2022 02:24:28 -0700 (PDT)
 From:   =?UTF-8?q?Pawe=C5=82=20Anikiel?= <pan@semihalf.com>
 To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         dinguyen@kernel.org
 Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, amstan@chromium.org,
         upstream@semihalf.com,
-        =?UTF-8?q?Pawe=C5=82=20Anikiel?= <pan@semihalf.com>
-Subject: [PATCH v4 0/5] Add Chameleon v3 devicetree
-Date:   Fri,  3 Jun 2022 11:23:49 +0200
-Message-Id: <20220603092354.141927-1-pan@semihalf.com>
+        =?UTF-8?q?Pawe=C5=82=20Anikiel?= <pan@semihalf.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4 1/5] ARM: dts: socfpga: Change Mercury+ AA1 dts to dtsi
+Date:   Fri,  3 Jun 2022 11:23:50 +0200
+Message-Id: <20220603092354.141927-2-pan@semihalf.com>
 X-Mailer: git-send-email 2.36.1.255.ge46751e96f-goog
+In-Reply-To: <20220603092354.141927-1-pan@semihalf.com>
+References: <20220603092354.141927-1-pan@semihalf.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -71,44 +74,104 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Google Chameleon v3 is a board made for testing both video and audio
-interfaces of external devices. It acts as a base board for the
-Mercury+ AA1 module.
+The Mercury+ AA1 is not a standalone board, rather it's a module
+with an Arria 10 SoC. Remove status = "okay" and i2c aliases, as they
+are routed to the base board and should be enabled from there.
 
-socfpga_arria10_mercury_aa1.dtsi and socfpga_arria10_chameleonv3.dts
-have also been sent to u-boot:
-https://lists.denx.de/pipermail/u-boot/2022-May/485107.html
-https://lists.denx.de/pipermail/u-boot/2022-May/485111.html
+Signed-off-by: Paweł Anikiel <pan@semihalf.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm/boot/dts/Makefile                    |  1 -
+ ...1.dts => socfpga_arria10_mercury_aa1.dtsi} | 28 -------------------
+ 2 files changed, 29 deletions(-)
+ rename arch/arm/boot/dts/{socfpga_arria10_mercury_aa1.dts => socfpga_arria10_mercury_aa1.dtsi} (84%)
 
-v4 changes:
- - remove enclustra,mercury-aa1 from Arria 10 boards in dt-bindings
-
-v3 changes:
- - make seperate group for Chameleon v3 in dt-bindings
- - add blank line after copyright header
-
-v2 changes:
- - split first patch into three
- - move sdmmc-ecc node to socfpga_arria10.dtsi (instead of removing it entirely)
- - use generic names for dts node names
- - keep the enclustra,mercury-aa1 compatible
-
-Paweł Anikiel (5):
-  ARM: dts: socfpga: Change Mercury+ AA1 dts to dtsi
-  ARM: dts: socfpga: Move sdmmc-ecc node to Arria 10 dts
-  ARM: dts: socfpga: Add atsha204a node to Mercury+ AA1 dts
-  ARM: dts: socfpga: Add Google Chameleon v3 devicetree
-  dt-bindings: altera: Add Chameleon v3 board
-
- .../devicetree/bindings/arm/altera.yaml       |  9 +-
- arch/arm/boot/dts/Makefile                    |  2 +-
- arch/arm/boot/dts/socfpga_arria10.dtsi        | 10 +++
- .../boot/dts/socfpga_arria10_chameleonv3.dts  | 90 +++++++++++++++++++
- ...1.dts => socfpga_arria10_mercury_aa1.dtsi} | 48 ++--------
- 5 files changed, 117 insertions(+), 42 deletions(-)
- create mode 100644 arch/arm/boot/dts/socfpga_arria10_chameleonv3.dts
- rename arch/arm/boot/dts/{socfpga_arria10_mercury_aa1.dts => socfpga_arria10_mercury_aa1.dtsi} (70%)
-
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index edfbedaa6168..023c8b4ba45c 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -1146,7 +1146,6 @@ dtb-$(CONFIG_ARCH_S5PV210) += \
+ 	s5pv210-torbreck.dtb
+ dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += \
+ 	socfpga_arria5_socdk.dtb \
+-	socfpga_arria10_mercury_aa1.dtb \
+ 	socfpga_arria10_socdk_nand.dtb \
+ 	socfpga_arria10_socdk_qspi.dtb \
+ 	socfpga_arria10_socdk_sdmmc.dtb \
+diff --git a/arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dts b/arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dtsi
+similarity index 84%
+rename from arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dts
+rename to arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dtsi
+index a75c059b6727..4b21351f2694 100644
+--- a/arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dts
++++ b/arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dtsi
+@@ -1,5 +1,4 @@
+ // SPDX-License-Identifier: GPL-2.0
+-/dts-v1/;
+ 
+ #include "socfpga_arria10.dtsi"
+ 
+@@ -11,8 +10,6 @@ / {
+ 	aliases {
+ 		ethernet0 = &gmac0;
+ 		serial1 = &uart1;
+-		i2c0 = &i2c0;
+-		i2c1 = &i2c1;
+ 	};
+ 
+ 	memory@0 {
+@@ -43,7 +40,6 @@ &gmac0 {
+ 	phy-addr = <0xffffffff>; /* probe for phy addr */
+ 
+ 	max-frame-size = <3800>;
+-	status = "okay";
+ 
+ 	phy-handle = <&phy3>;
+ 
+@@ -69,22 +65,8 @@ phy3: ethernet-phy@3 {
+ 	};
+ };
+ 
+-&gpio0 {
+-	status = "okay";
+-};
+-
+-&gpio1 {
+-	status = "okay";
+-};
+-
+-&gpio2 {
+-	status = "okay";
+-};
+-
+ &i2c1 {
+-	status = "okay";
+ 	isl12022: isl12022@6f {
+-		status = "okay";
+ 		compatible = "isil,isl12022";
+ 		reg = <0x6f>;
+ 	};
+@@ -92,7 +74,6 @@ isl12022: isl12022@6f {
+ 
+ /* Following mappings are taken from arria10 socdk dts */
+ &mmc {
+-	status = "okay";
+ 	cap-sd-highspeed;
+ 	broken-cd;
+ 	bus-width = <4>;
+@@ -101,12 +82,3 @@ &mmc {
+ &osc1 {
+ 	clock-frequency = <33330000>;
+ };
+-
+-&uart1 {
+-	status = "okay";
+-};
+-
+-&usb0 {
+-	status = "okay";
+-	dr_mode = "host";
+-};
 -- 
 2.36.1.255.ge46751e96f-goog
 
