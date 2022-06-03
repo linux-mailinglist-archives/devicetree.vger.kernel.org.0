@@ -2,67 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C32F853C88E
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 12:20:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECDFD53C8A5
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 12:29:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243616AbiFCKT0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jun 2022 06:19:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42576 "EHLO
+        id S234520AbiFCK3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jun 2022 06:29:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243601AbiFCKTZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 06:19:25 -0400
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E773D3B2BD
-        for <devicetree@vger.kernel.org>; Fri,  3 Jun 2022 03:19:23 -0700 (PDT)
-Received: by mail-yb1-xb32.google.com with SMTP id v22so12931798ybd.5
-        for <devicetree@vger.kernel.org>; Fri, 03 Jun 2022 03:19:23 -0700 (PDT)
+        with ESMTP id S243595AbiFCK26 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 06:28:58 -0400
+Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92C461B7A8
+        for <devicetree@vger.kernel.org>; Fri,  3 Jun 2022 03:28:57 -0700 (PDT)
+Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-30fa61b1a83so72153627b3.0
+        for <devicetree@vger.kernel.org>; Fri, 03 Jun 2022 03:28:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=eCANrYMxosIMh+Xvbir+KgFfAUJg6+S8lF+OrF54Av4=;
-        b=QQer3CrocRzXUbJga3lT0IkLvDhumQw3omrc4pXZ8kQmhdT77qsC+nSGbTrSlKuBUd
-         SCkFr8UUw1STX4eRYdkfUmIt2QCAht10BD+p+MPVoUeAInYnT6OFwC9hPSCsQsiiOxfT
-         kobkQkTdkZYzMYu0Awnp5OrBM6veOfZZrVpCwGxhWGxymggg+6AyY4kin49eqx/xn6PI
-         8w4DvpKGjeQwc8djJvJogfLdHppjC76lbOf3C6Ysqizv6hWc7KD7Cr3GhVrLiySsPIY8
-         YYlxJnCx1Sh8qkMdUMu6/DPS5FCzIsHZ4ez7fXf243TJN+i77BFjgUsJw2BWWNZiqf9H
-         BnOw==
+        bh=dC0gx01b2aNajXfhT3RxUnH0OHK3FMPo/gpngxGlMwo=;
+        b=oG7zOFP1DbQh6Bo8e9Qpq/xhX0tcm0Z686SDBT7H504JhHxqE3dnOrHBJ6SB/2HSK4
+         twuSJO1lPcK5rLD3Hh+gKG0l3jtSoA8EYExYCLiyANJoCWRY1XSu31iiJqtN8JeP4jR5
+         KeCcRWNG8k0cKAwK+B8C+LiKyAUIyY35Rc2HDoJNL490sEJzAybFKJGosi2vB+5kM2fb
+         CkFMly+sSSmDyfTmzvsm3PvJr8kwCzkRW05trOUye05ZR8AscObGzjpJwvBL/YOzAVbN
+         0mw8bc8FHPkItci37uxaWwIcZPeZfUqrdb+ftP4a7ZovA0miQgbeVm9d2jAyuRTdKt0d
+         Do2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=eCANrYMxosIMh+Xvbir+KgFfAUJg6+S8lF+OrF54Av4=;
-        b=peWV7UQef+4gDKghnguVhn+7EfQGqEBpU4F1kp+8ayX5DK2uPqzNPeD6NVPsEXtgEx
-         onThRun2aO3QFLFhlOtrUCQ4/8J+TM+wHTYUSIltxggusUoeQ3eHNsviJBWTndeelmHh
-         ck/0DstfOXUFbjbWvMDCC5UZNFDmfxpSEc/YvUW2+y2dJzjE7YICKNPjrnAXlmO+9bbc
-         olYI+DWxeH6Cglx+FNrsjat4z6tvJTw/yBX93PwhoWg1sCqgcl9KSdz/TbrLwqL4dWJp
-         +6Slp23uUiIHIzYgjV0GrzENYbH8PJgH++HYcxBgu1uUrsYkom15bvQTQKUgNGaBuxg2
-         x65w==
-X-Gm-Message-State: AOAM531El0sCeZJKPxphx5d4ff68FbYMmRn+xic1PzG8WDZXvaEXOdGr
-        GFS83DjpY1ZHIGIxCvwg88cWW6FHvsKz+2VNd7ue3A==
-X-Google-Smtp-Source: ABdhPJzCQPE37Bt5oIHGrr2jWp33WDnmx62d0Nt6DBKxkJKjMCw9IXg5fe2neGT3z1CVqiY5P3KeqFBug68RmO96NIY=
-X-Received: by 2002:a25:1256:0:b0:65d:6433:7993 with SMTP id
- 83-20020a251256000000b0065d64337993mr9806001ybs.626.1654251563183; Fri, 03
- Jun 2022 03:19:23 -0700 (PDT)
+        bh=dC0gx01b2aNajXfhT3RxUnH0OHK3FMPo/gpngxGlMwo=;
+        b=mM4vmPfS/mvnyv5ZVNcrYCYlZA2zlwEUVQos2bx8PNKuRBKGxDBVhAHAbBbZS6XCAw
+         fb90OvNll1GETR/h7RKQb94iSDyMifYYraFznqKRaGbWoE+WyQ1809N8iyFDfS+RYWLi
+         S9erwmjMGyUf0PmNudjEksPohrR7nlJJHQiPwlDBg3VqNHzmEEwGzvzYQzUrx/4BWxCU
+         mbcDbCFBEyH8d2cfec4DA9ReXxEBrDXp7bfzRCVGgsgjT998lg6kGOxQncIPcoCbp7mj
+         H9s2oxO4gTFoo9dJwyWs2zMo1HmKCzBUWOnAb+a0hz2XvmSoPwiCfpKfdpQ6IMPyDCa3
+         rcqg==
+X-Gm-Message-State: AOAM5301nSp22Uu/HMMQG6sZQuotkpEhd6nk6Wlb97dY5ZCyBwaw7Xum
+        4Td2j1woRiEmcrTTJseNOsNIt3mFR330h6Vrg9kBhg==
+X-Google-Smtp-Source: ABdhPJxdb0406KtQA0ekY0TlTv81qQUxI5O/FyeeUoVHX8/Ot2ByU9RnuJwh7E4wA3eNsSCbGkhyW44rUkeitrBqRsM=
+X-Received: by 2002:a0d:e246:0:b0:30c:5e77:7104 with SMTP id
+ l67-20020a0de246000000b0030c5e777104mr10997642ywe.448.1654252136425; Fri, 03
+ Jun 2022 03:28:56 -0700 (PDT)
 MIME-Version: 1.0
-References: <1654079415-26217-1-git-send-email-quic_srivasam@quicinc.com>
- <1654079415-26217-2-git-send-email-quic_srivasam@quicinc.com>
- <CAE-0n50nfwZPdSS7Vw9FiV+Shfn9-bX44hfLq5ey9DBsAy0y4g@mail.gmail.com> <6250a441-6bcd-4ca8-782b-b7a8d9239e46@quicinc.com>
-In-Reply-To: <6250a441-6bcd-4ca8-782b-b7a8d9239e46@quicinc.com>
+References: <1654079415-26217-1-git-send-email-quic_srivasam@quicinc.com> <1654079415-26217-3-git-send-email-quic_srivasam@quicinc.com>
+In-Reply-To: <1654079415-26217-3-git-send-email-quic_srivasam@quicinc.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 3 Jun 2022 12:19:11 +0200
-Message-ID: <CACRpkdbBRjgNzxYkFPzy3kx45_7vJENp5dTX0MdJw+LSQ=9rvA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: qcom: sc7280: Add compatible
- string for adsp based platforms
+Date:   Fri, 3 Jun 2022 12:28:45 +0200
+Message-ID: <CACRpkdYQW7WByaGoSFKT91OwRao_jJdCAbL0pUuj3vdS6TdkQg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] pinctrl: qcom: sc7280: Add lpi pinctrl variant
+ data for adsp based targets
 To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     Stephen Boyd <swboyd@chromium.org>, agross@kernel.org,
-        alsa-devel@alsa-project.org, bgoswami@quicinc.com,
-        bjorn.andersson@linaro.org, broonie@kernel.org,
-        devicetree@vger.kernel.org, judyhsiao@chromium.org,
-        lgirdwood@gmail.com, linux-arm-msm@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        perex@perex.cz, quic_plai@quicinc.com, quic_rohkumar@quicinc.com,
-        robh+dt@kernel.org, srinivas.kandagatla@linaro.org, tiwai@suse.com,
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, quic_plai@quicinc.com,
+        bgoswami@quicinc.com, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, quic_rohkumar@quicinc.com,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org, judyhsiao@chromium.org,
+        linux-gpio@vger.kernel.org,
         Venkata Prasad Potturu <quic_potturu@quicinc.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -75,46 +73,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 3, 2022 at 8:09 AM Srinivasa Rao Mandadapu
+On Wed, Jun 1, 2022 at 12:30 PM Srinivasa Rao Mandadapu
 <quic_srivasam@quicinc.com> wrote:
-> On 6/2/2022 6:43 AM, Stephen Boyd wrote:
 
-> >> +    enum:
-> >> +      - qcom,sc7280-lpass-lpi-pinctrl
-> >> +      - qcom,sc7280-lpass-adsp-lpi-pinctrl
-> > Can you confirm that this is the same hardware (i.e. same reg property)
-> > but just a different compatible string used to convey that the device is
-> > using "adsp" mode or not? If so, this looks to be a common pattern for
-> > the audio hardware here, where we have two "views" of the hardware, one
-> > for adsp mode and one for not adsp mode. I guess the not adsp mode is
-> > called "adsp bypass"?
+So one way to just use a propert and avoid more compatible strings:
+
+> Add compatible string and lpi pinctrl variant data structure for adsp
+> enabled sc7280 platforms.
+> This variant data structure rnd compatible name required for
+> distingushing ADSP based platforms and ADSP bypass platforms.
+> In case of ADSP enabled platforms, where audio is routed through ADSP
+> macro and decodec GDSC Switches are triggered as clocks by pinctrl
+> driver and ADSP firmware controls them. So It's mandatory to enable
+> them in ADSP based solutions.
+> In case of ADSP bypass platforms clock voting is optional as these macro
+> and dcodec GDSC switches are maintained as power domains and operated from
+> lpass clock drivers.
 >
-> Yes Your understanding is correct. The same hardware in scenario not using ADSP,
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> ---
+>  drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 >
-> and in another enabling DSP.
-> >
-> > Is that right? Why are we conveying this information via the compatible
-> > string?
+> diff --git a/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
+> index 2add9a4..c9e85d9 100644
+> --- a/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
+> +++ b/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
+> @@ -134,6 +134,16 @@ static const struct lpi_function sc7280_functions[] = {
+>         LPI_FUNCTION(wsa_swr_data),
+>  };
 >
-> Could you please suggest better way!.  As pin control driver is the
-> first one to probe, I am not getting better approach.
->
-> While up-streaming these drivers, concluded to use this approach.
+> +static const struct lpi_pinctrl_variant_data sc7280_adsp_lpi_data = {
 
-The device tree conveys hardware description and some configuration.
+Remove static and export this struct in drivers/pinctrl/qcom/pinctrl-lpass-lpi.h
 
-If this is configuration thing, either you could perhaps determine it from the
-hardware (if set up in hardware or boot loader) and if that is not possible
-it should just be a boolean property of the device
-node:
+> +       .pins = sc7280_lpi_pins,
+> +       .npins = ARRAY_SIZE(sc7280_lpi_pins),
+> +       .groups = sc7280_groups,
+> +       .ngroups = ARRAY_SIZE(sc7280_groups),
+> +       .functions = sc7280_functions,
+> +       .nfunctions = ARRAY_SIZE(sc7280_functions),
+> +       .is_clk_optional = false,
+> +};
 
-{
-    compatible = "...";
-    qcom.adsp-mode;
-}
 
-If you are probing two different drivers depending on the mode, then there is a
-problem of course, but it is a Linux problem not a device tree problem.
+>  static const struct lpi_pinctrl_variant_data sc7280_lpi_data = {
+>         .pins = sc7280_lpi_pins,
+>         .npins = ARRAY_SIZE(sc7280_lpi_pins),
+> @@ -149,6 +159,10 @@ static const struct of_device_id lpi_pinctrl_of_match[] = {
+>                .compatible = "qcom,sc7280-lpass-lpi-pinctrl",
+>                .data = &sc7280_lpi_data,
+>         },
+> +       {
+> +               .compatible = "qcom,sc7280-lpass-adsp-lpi-pinctrl",
+> +               .data = &sc7280_adsp_lpi_data,
+> +       },
+
+Drop this and instead add some code in the probe()
+in drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+lines:
+
+if (of_device_is_compatible(np, "qcom,sc7280-lpass-lpi-pinctrl") &&
+of_property_read_bool(np, "qcom,adsp-mode))
+     data = &sc7280_adsp_lpi_data;
 
 Yours,
 Linus Walleij
