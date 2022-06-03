@@ -2,213 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CBEE53C6C1
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 10:11:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3FC553C706
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 10:40:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242726AbiFCILJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jun 2022 04:11:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58696 "EHLO
+        id S229723AbiFCIkj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jun 2022 04:40:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229685AbiFCILI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 04:11:08 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1CEC39BAD;
-        Fri,  3 Jun 2022 01:11:07 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3C4A6618A6;
-        Fri,  3 Jun 2022 08:11:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72B6FC385A9;
-        Fri,  3 Jun 2022 08:11:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654243866;
-        bh=Zuuk2BFVHgqDOOa0QhgsL7oMb1UanVQf4pSgQrJ1+Yc=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=pC6sPxW10xp5d6NbjNTP9uVQMFtPrPxrSK5++FIMLhOiJW0K7crEjfOxs0pKtI3PX
-         x0ZvxvdiRswtoNXw1GTxO2aiNXTS1PHELoxFjgGwv+nSO1bURbYObrU9k14qMxlFvE
-         Kwix7caDE6ppeKL6tL9SGba7cRdavQRdBCX9too9nBDxgHLYIIjtAMsNXoeEDKzuO1
-         GGDlL9g01LeTQO7a+8qjEWejZX2jbP2V1M01zHhtAFiHZF9Ka23CwSHtHhVBf3bEQl
-         8vK/SLtGqwEYPkz+Lf6K8AyuLtyY19GAci2w1UXMXtjxxc18OXF+5bX0I8cXgm+BCB
-         v/YFvmZpayfvg==
-Message-ID: <5bf638ee-6cc8-d5cb-5795-a840d8d2bb87@kernel.org>
-Date:   Fri, 3 Jun 2022 11:11:00 +0300
+        with ESMTP id S242760AbiFCIki (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 04:40:38 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4081A36E0E
+        for <devicetree@vger.kernel.org>; Fri,  3 Jun 2022 01:40:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1654245635; x=1685781635;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=sO/+JqlL4xQIR0mRfbczInWsTC6NEFnc/DwOWJ7X2W8=;
+  b=SDZTCC0b2WKMYWgxmJY/hC1JbIlSN/Tqd0yo0OmqbxGTomJZYr/v/A8H
+   60f2X6WTftRUXkq3F/Z6jVNmy/3x/AWtoqAAUk1FRkCKsyj+gXc4gjQsa
+   0c8UeRXlyMslCPRBz6GccEs7dyB7CgL2iYm5HxJVlebZ9xURTYvpiym/N
+   xc1ks8biRqpHbA3257W5tKrToan4/AczMbmH389q9rb0BCsAgEAykXEjo
+   q2ZqcrybLDqJ7r/u1gnFpHLe0i4USj+/rlOLaBaW6GGXcDycyCtefXdk4
+   Nq6hK5svfFSwdx2n8c8YnjbDMKUmX5QD9GKk0aJ3Wb0Fjj/9CDlP4Y/dC
+   w==;
+X-IronPort-AV: E=Sophos;i="5.91,274,1647327600"; 
+   d="scan'208";a="98435059"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 03 Jun 2022 01:40:34 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Fri, 3 Jun 2022 01:40:34 -0700
+Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Fri, 3 Jun 2022 01:40:31 -0700
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>
+CC:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@rivosinc.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        <zong.li@sifive.com>, <devicetree@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>
+Subject: [PATCH] riscv: dts: microchip: re-add pdma to mpfs device tree
+Date:   Fri, 3 Jun 2022 09:38:26 +0100
+Message-ID: <20220603083825.1910300-1-conor.dooley@microchip.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v3 1/5] dt-bindings: remoteproc: Add PRU consumer bindings
-Content-Language: en-US
-To:     Puranjay Mohan <p-mohan@ti.com>, Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
-        mathieu.poirier@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        nm@ti.com, ssantosh@kernel.org, s-anna@ti.com,
-        linux-arm-kernel@lists.infradead.org, grygorii.strashko@ti.com,
-        vigneshr@ti.com, kishon@ti.com
-References: <20220418104118.12878-1-p-mohan@ti.com>
- <20220418104118.12878-2-p-mohan@ti.com> <YnA3dtaqptLgZBrV@robh.at.kernel.org>
- <6c054a1b-2842-a6f0-733a-92cfda76f828@ti.com>
-From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <6c054a1b-2842-a6f0-733a-92cfda76f828@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-9.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Puranjay,
+PolarFire SoC /does/ have a SiFive pdma, despite what I suggested as a
+conflict resolution to Zong. Somehow the entry fell through the cracks
+between versions of my dt patches, so re-add it with Zong's updated
+compatible & dma-channels property.
 
-On 02/06/2022 08:28, Puranjay Mohan wrote:
-> Hi Rob,
-> 
-> On 03/05/22 01:26, Rob Herring wrote:
->> On Mon, Apr 18, 2022 at 04:11:14PM +0530, Puranjay Mohan wrote:
->>> From: Suman Anna <s-anna@ti.com>
->>>
->>> Add a YAML binding document for PRU consumers. The binding includes
->>> all the common properties that can be used by different PRU consumer
->>> or application nodes and supported by the PRU remoteproc driver.
->>> These are used to configure the PRU hardware for specific user
->>> applications.
->>>
->>> The application nodes themselves should define their own bindings.
->>>
->>> Co-developed-by: Tero Kristo <t-kristo@ti.com>
->>> Signed-off-by: Tero Kristo <t-kristo@ti.com>
->>> Signed-off-by: Suman Anna <s-anna@ti.com>
->>> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
->>> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
->>> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
->>> ---
->>>  .../bindings/remoteproc/ti,pru-consumer.yaml  | 70 +++++++++++++++++++
->>>  1 file changed, 70 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml b/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
->>> new file mode 100644
->>> index 000000000000..5b1f1cb2f098
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
->>> @@ -0,0 +1,70 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/remoteproc/ti,pru-consumer.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Common TI PRU Consumer Binding
->>> +
->>> +maintainers:
->>> +  - Suman Anna <s-anna@ti.com>
->>> +
->>> +description: |
->>> +  A PRU application/consumer/user node typically uses one or more PRU device
->>> +  nodes to implement a PRU application/functionality. Each application/client
->>> +  node would need a reference to at least a PRU node, and optionally define
->>> +  some properties needed for hardware/firmware configuration. The below
->>> +  properties are a list of common properties supported by the PRU remoteproc
->>> +  infrastructure.
->>> +
->>> +  The application nodes shall define their own bindings like regular platform
->>> +  devices, so below are in addition to each node's bindings.
->>> +
->>> +properties:
->>> +  ti,prus:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->>> +    description: phandles to the PRU, RTU or Tx_PRU nodes used
->>> +    minItems: 1
->>> +    maxItems: 6
->>> +    items:
->>> +      maxItems: 1
->>> +
->>> +  firmware-name:
->>> +    $ref: /schemas/types.yaml#/definitions/string-array
->>> +    description: |
->>> +      firmwares for the PRU cores, the default firmware for the core from
->>> +      the PRU node will be used if not provided. The firmware names should
->>> +      correspond to the PRU cores listed in the 'ti,prus' property
->>
->> So should be the name number of entries?:
->>
->> minItems: 1
->> maxItems: 6
-> 
-> will add in v4
-> 
->>
->>> +
->>> +  ti,pruss-gp-mux-sel:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->>
->> minItems: 1
-> 
-> will add in v4
-> 
->>
->>> +    maxItems: 6
->>> +    items:
->>> +      enum: [0, 1, 2, 3, 4]
->>> +    description: |
->>> +      array of values for the GP_MUX_SEL under PRUSS_GPCFG register for a PRU.
->>> +      This selects the internal muxing scheme for the PRU instance. Values
->>> +      should correspond to the PRU cores listed in the 'ti,prus' property. The
->>> +      GP_MUX_SEL setting is a per-slice setting (one setting for PRU0, RTU0,
->>> +      and Tx_PRU0 on K3 SoCs). Use the same value for all cores within the
->>> +      same slice in the associative array. If the array size is smaller than
->>> +      the size of 'ti,prus' property, the default out-of-reset value (0) for the
->>> +      PRU core is used.
->>> +
->>> +required:
->>> +  - ti,prus
->>> +
->>> +dependencies:
->>> +  firmware-name: [ 'ti,prus' ]
->>> +  ti,pruss-gp-mux-sel: [ 'ti,prus' ]
->>
->> This doesn't make sense because 'ti,prus' is already required. Should 
->> all 3 properties always be required?
-> 
-> All three of these are always required, so, I will remove the
+Fixes: c5094f371008 ("riscv: dts: microchip: refactor icicle kit device tree")
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
+ arch/riscv/boot/dts/microchip/mpfs.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-Are you sure? It should not be required and remoteproc driver should use
-default name if not provided in DT.
-In patch 5 see what is being done in pru_rproc_get().
-It doesn't error out if firmware-name is not provided.
+diff --git a/arch/riscv/boot/dts/microchip/mpfs.dtsi b/arch/riscv/boot/dts/microchip/mpfs.dtsi
+index 8c3259134194..3095d08453a1 100644
+--- a/arch/riscv/boot/dts/microchip/mpfs.dtsi
++++ b/arch/riscv/boot/dts/microchip/mpfs.dtsi
+@@ -192,6 +192,15 @@ plic: interrupt-controller@c000000 {
+ 			riscv,ndev = <186>;
+ 		};
+ 
++		pdma: dma-controller@3000000 {
++			compatible = "sifive,fu540-c000-pdma", "sifive,pdma0";
++			reg = <0x0 0x3000000 0x0 0x8000>;
++			interrupt-parent = <&plic>;
++			interrupts = <5 6>, <7 8>, <9 10>, <11 12>;
++			dma-channels = <4>;
++			#dma-cells = <1>;
++		};
++
+ 		clkcfg: clkcfg@20002000 {
+ 			compatible = "microchip,mpfs-clkcfg";
+ 			reg = <0x0 0x20002000 0x0 0x1000>, <0x0 0x3E001000 0x0 0x1000>;
+-- 
+2.36.1
 
-Same for ti,pruss-gp-mux-sel. Did you miss the patch that adds support for this
-in this series?
-
-> "dependencies:" tag and add all three of them to "required:" in v4
-> Will it be the correct way to do it?
-> 
->>
->>> +
->>> +additionalProperties: true
->>> +
->>> +examples:
->>> +  - |
->>> +    /* PRU application node example */
->>> +    pru-app {
->>> +        ti,prus = <&pru0>, <&pru1>;
->>> +        firmware-name = "pruss-app-fw0", "pruss-app-fw1";
->>> +        ti,pruss-gp-mux-sel = <2>, <1>;
->>
->> This example never validates, but okay I guess.
->>
->>> +    };
->>> -- 
->>> 2.17.1
->>>
->>>
-> 
-> Thanks,
-> Puranjay Mohan
-
-cheers,
--roger
