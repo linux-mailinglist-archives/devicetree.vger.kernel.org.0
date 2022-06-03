@@ -2,78 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5D8B53C788
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 11:26:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64C2A53C79D
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 11:36:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243066AbiFCJ0Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jun 2022 05:26:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43640 "EHLO
+        id S241573AbiFCJgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jun 2022 05:36:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243031AbiFCJ0W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 05:26:22 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B8393A1AF
-        for <devicetree@vger.kernel.org>; Fri,  3 Jun 2022 02:26:21 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id s6so3228949eja.0
-        for <devicetree@vger.kernel.org>; Fri, 03 Jun 2022 02:26:21 -0700 (PDT)
+        with ESMTP id S238349AbiFCJgK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 05:36:10 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A9D32C66D;
+        Fri,  3 Jun 2022 02:36:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=1zf2KrerTAi6PDusMTCodCD/1wt7NqOtkOzcZDBwMCw=;
-        b=XE9UmS5uUXbk7dW1oDHNECJIhdydnEwr/sWPOzRw9ppFwzYiHS0APSXiubukvYTcYI
-         b522fiw0Gw7g6CtcBw8RNd27HJ8E0hm99kzeHumJ/MqnpBZR0GNBXWywp4SXWyB4Gr2O
-         qPe4LPG5u8V+1PFfVYcG9fiM5sLOgs9A5s9mqZwloKOue3TwMNBlYENIpiVCtmY/stRB
-         gonkzG2vv6NQDP1zv2AA191Fz2UuWQ4RbSGq4pJuV19N42oW/m1/s+JazlgrQxIudnuA
-         uyCiJ+88fvPAa4vW7s1t+RW/SfRTNH6xlFSjxtbeCFn+EeYMDEOSwYXwjb3L5wCs2kMm
-         rmAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=1zf2KrerTAi6PDusMTCodCD/1wt7NqOtkOzcZDBwMCw=;
-        b=IHS//kU1cHRScU23RvOiXoGEoGS9ZxoHx0juVhXzQ3FUtKRchtwtnK+almyj3HOKFK
-         rlSzSeEdCtDpNh1XY1U3hrM9Ukq/Vey1sj4HTYj1wJ9Q41aGE7jxdOKbjxI+Utvi7Sbf
-         JGeH/FErYTjvGkOB+VrVW4faab1dgwls/6zcuVgWbJR1Pc8kYJNXbut0AuHoMom376ag
-         3wPgp8v4NMh2ziWFjjbXQWF7xwB0zFmlnhMQHmUuJCvmOtALXzdlWV1B1n9kKBeMcOFI
-         4m7bnL0i7fBgQaVoWmuElCb2mV0XA+J3nenuFwjutbc3M7s5lQk961gulmNcaJvu3/8M
-         cByA==
-X-Gm-Message-State: AOAM532JkbCqi6/GxWSd1jDGzHQky65t39YgYUpn0vLnfY/mWGO0LL7c
-        VyWqq6XtOlB7Skn6nxL2tFY=
-X-Google-Smtp-Source: ABdhPJym7Lt4blXmNu6IRUD0ciqXO8Zaa052+4cPkXGXxp1oFtfUf2t6+BktugcotPe8SSwqsoKgOg==
-X-Received: by 2002:a17:906:6a28:b0:6ff:d8b:955e with SMTP id qw40-20020a1709066a2800b006ff0d8b955emr7970055ejc.505.1654248381223;
-        Fri, 03 Jun 2022 02:26:21 -0700 (PDT)
-Received: from morpheus.home.roving-it.com (3.e.2.0.0.0.0.0.0.0.0.0.0.0.0.0.1.8.6.2.1.1.b.f.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:fb11:2681::2e3])
-        by smtp.googlemail.com with ESMTPSA id b5-20020a17090691c500b006feaa22e367sm2617672ejx.165.2022.06.03.02.26.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Jun 2022 02:26:20 -0700 (PDT)
-From:   Peter Robinson <pbrobinson@gmail.com>
-To:     Arnd Bergmann <arnd@arndb.de>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, Emma Anholt <emma@anholt.net>,
-        Florian Fainelli <f.fainelli@gmail.com>, javierm@redhat.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org, maxime@cerno.tech,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Peter Robinson <pbrobinson@gmail.com>
-Subject: [PATCH v6 6/6] arm64: config: Enable DRM_V3D
-Date:   Fri,  3 Jun 2022 10:26:10 +0100
-Message-Id: <20220603092610.1909675-7-pbrobinson@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220603092610.1909675-1-pbrobinson@gmail.com>
-References: <20220603092610.1909675-1-pbrobinson@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1654248968; x=1685784968;
+  h=from:to:cc:subject:date:message-id;
+  bh=rNtSLC5bGnyIBYdwXfdRCRjwAbc7RD6DLKsmw6WkyWA=;
+  b=dG7AG51hvPN8D2mGW/MBFDtSUASFTOygT+PuJFFbVwfecDzJYEd2qURU
+   efgQkNbCmMD8ZamDQAXHmj1zTLdhcMii40uH3e19b0aUmZSO7HQtbwGPG
+   xzaHbOlXZvn+D/l9YncU1PmakJjvAPKtD3W9kP3P5gsrAwM7WLfJo+kV7
+   M=;
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+  by alexa-out.qualcomm.com with ESMTP; 03 Jun 2022 02:36:08 -0700
+X-QCInternal: smtphost
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 03 Jun 2022 02:36:06 -0700
+X-QCInternal: smtphost
+Received: from vpolimer-linux.qualcomm.com ([10.204.67.235])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 03 Jun 2022 15:05:53 +0530
+Received: by vpolimer-linux.qualcomm.com (Postfix, from userid 463814)
+        id 0DBC73A46; Fri,  3 Jun 2022 15:05:52 +0530 (IST)
+From:   Vinod Polimera <quic_vpolimer@quicinc.com>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Vinod Polimera <quic_vpolimer@quicinc.com>,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dianders@chromium.org, vpolimer@quicinc.com, swboyd@chromium.org,
+        kalyant@quicinc.com, dmitry.baryshkov@linaro.org
+Subject: [v3] drm/msm/disp/dpu1: avoid clearing hw interrupts if hw_intr is null during drm uninit
+Date:   Fri,  3 Jun 2022 15:05:50 +0530
+Message-Id: <1654248950-17946-1-git-send-email-quic_vpolimer@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,31 +54,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+If dp modeset init is failed due to panel being not ready and
+probe defers during drm bind, avoid clearing irqs and dereference
+hw_intr when hw_intr is null.
 
-BCM2711, the SoC used on the Raspberry Pi 4 has a different GPU than its
-predecessors. Enable it.
+BUG: Unable to handle kernel NULL pointer dereference at virtual address 0000000000000000
 
-Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
-Reviewed-by: Stefan Wahren <stefan.wahren@i2se.com>
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+Call trace:
+ dpu_core_irq_uninstall+0x50/0xb0
+ dpu_irq_uninstall+0x18/0x24
+ msm_drm_uninit+0xd8/0x16c
+ msm_drm_bind+0x580/0x5fc
+ try_to_bring_up_master+0x168/0x1c0
+ __component_add+0xb4/0x178
+ component_add+0x1c/0x28
+ dp_display_probe+0x38c/0x400
+ platform_probe+0xb0/0xd0
+ really_probe+0xcc/0x2c8
+ __driver_probe_device+0xbc/0xe8
+ driver_probe_device+0x48/0xf0
+ __device_attach_driver+0xa0/0xc8
+ bus_for_each_drv+0x8c/0xd8
+ __device_attach+0xc4/0x150
+ device_initial_probe+0x1c/0x28
+
+Changes in V2:
+- Update commit message and correct fixes tag.
+
+Changes in V3:
+- Misc changes in commit text.
+
+Fixes: f25f656608e3 ("drm/msm/dpu: merge struct dpu_irq into struct dpu_hw_intr")
+Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 50aa3d75ab4f..446bac1ef774 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -738,6 +738,7 @@ CONFIG_DRM_I2C_ADV7511_AUDIO=y
- CONFIG_DRM_DW_HDMI_AHB_AUDIO=m
- CONFIG_DRM_DW_HDMI_CEC=m
- CONFIG_DRM_IMX_DCSS=m
-+CONFIG_DRM_V3D=m
- CONFIG_DRM_VC4=m
- CONFIG_DRM_ETNAVIV=m
- CONFIG_DRM_HISI_HIBMC=m
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
+index c515b7c..ab28577 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c
+@@ -599,6 +599,9 @@ void dpu_core_irq_uninstall(struct dpu_kms *dpu_kms)
+ {
+ 	int i;
+ 
++	if (!dpu_kms->hw_intr)
++		return;
++
+ 	pm_runtime_get_sync(&dpu_kms->pdev->dev);
+ 	for (i = 0; i < dpu_kms->hw_intr->total_irqs; i++)
+ 		if (!list_empty(&dpu_kms->hw_intr->irq_cb_tbl[i]))
 -- 
-2.36.1
+2.7.4
 
