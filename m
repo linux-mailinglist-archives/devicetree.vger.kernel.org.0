@@ -2,63 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 342A153D16A
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 20:28:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05F6253D179
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 20:33:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347078AbiFCS14 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jun 2022 14:27:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57408 "EHLO
+        id S1347488AbiFCSdP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jun 2022 14:33:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347083AbiFCS1q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 14:27:46 -0400
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC51D5AA41;
-        Fri,  3 Jun 2022 11:10:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1654279610;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=W0zLWbkTHHDH0iI0Y3QB9pk4VW+9pPQV3k8LcemuFF4=;
-    b=pYJS6YCHpweybvsrVNZNXAsxkI5rzK4/zWclFd7weZ1Qnc/lPxo41Ty8ah4CMiEnOI
-    ZaPHFjKRNZ4oVB8CiYRc9XjC57ylnB2bYRrb6iKZsqu76UlB8bmEMFHEVs3+z34YHYl5
-    wvBtLcVMooMejLMjIGV1fW1TsinV6qGUatpYgYOaoYgvRD0rJTFI/btn0dV1AcpsCINp
-    nqhaBNya5zv3lbRF+0fAcEv5tqLowMkkC+y42Dze0EMuwnqZVT5staAMha6d8V3FxEdT
-    2AR6tBpKY5dZW5FbMgAj5aobTvtfhFCAQa48UcXu8NSx8U/HzhfAdky1u7F9FBrwwliO
-    3LiA==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLVrKw7/aY="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.45.0 AUTH)
-    with ESMTPSA id 9056edy53I6nwkU
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Fri, 3 Jun 2022 20:06:49 +0200 (CEST)
-Date:   Fri, 3 Jun 2022 20:06:39 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Alexander Martinz <amartinz@shiftphones.com>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Caleb Connolly <caleb@connolly.tech>,
-        Dylan Van Assche <me@dylanvanassche.be>
-Subject: Re: [PATCH 2/2] ASoC: dt-bindings: nxp,tfa989x: Add tfa9890 support
-Message-ID: <YppNaL5r5EN3SUsU@gerhold.net>
-References: <20220602164504.261361-1-amartinz@shiftphones.com>
- <20220602164504.261361-2-amartinz@shiftphones.com>
+        with ESMTP id S1347588AbiFCSdJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 14:33:09 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 784D38E1A1;
+        Fri,  3 Jun 2022 11:19:42 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id DB60EB82461;
+        Fri,  3 Jun 2022 18:19:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 901BBC3411D;
+        Fri,  3 Jun 2022 18:19:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654280369;
+        bh=AKP1J+1j86MsDU30/l9xw5gmZtjPSuVq9IYDsmcm1yk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=R1hI1HIE1hi6gYqrNl/2z7OJovjvqO5OUKQWPJ6pAh7AE68ktuEbPWDf8/zqsH2P2
+         Xl9rsxNzO8w4eNVUYUeq4TrLlsw++cM5Xjl01EY56WTmJ/uGsXkuK8ZLWdZKlzsR6B
+         ncHcpW3oAoz3eCLsetAkdaJ88ExbpayBQiWxTNjXqZEaxTifmlOY602BCjGOO5+67z
+         MDz0SizcYuR5isul7uAJfrd8wVREXJc3uE7avMaedOET7CJzbKDDqM7WaZgokgrkBi
+         9Z1pnKVpsvSbJEOEBzfUG6CSWJlWFPKU8zMNJG9BwltAK52MwGVHdmP1o6aeaMYv7+
+         wSnSsRzVZ021w==
+Received: by mail-vk1-f177.google.com with SMTP id bs5so3762974vkb.4;
+        Fri, 03 Jun 2022 11:19:29 -0700 (PDT)
+X-Gm-Message-State: AOAM533ivNX4y40U+qd1aqcg4yxVMQMIG1vPjUcFWfV+nH9eGG53Bc5A
+        /Hptkbl1Kh2QeNy3dW8B0kUYHwA/MkeJ448aYg==
+X-Google-Smtp-Source: ABdhPJwh1UGsiub0fkA5rgY7ZXQQ7STjVOpo/uLoefNfIXTYEkvJHTFpOG3dnE3b6MFeBTZvHTPs//qBfZY1d95df10=
+X-Received: by 2002:a1f:b253:0:b0:35d:1225:2dfb with SMTP id
+ b80-20020a1fb253000000b0035d12252dfbmr6330997vkf.19.1654280368525; Fri, 03
+ Jun 2022 11:19:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220602164504.261361-2-amartinz@shiftphones.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20220525165849.7789-1-Alexander.Steffen@infineon.com>
+ <20220525165849.7789-2-Alexander.Steffen@infineon.com> <8c4941a1-e047-1352-32ba-8595cd0143f0@linaro.org>
+ <20220602134848.GA2178372-robh@kernel.org> <aa5a8e73-b9b4-38e7-4f85-2bf309a346e0@infineon.com>
+In-Reply-To: <aa5a8e73-b9b4-38e7-4f85-2bf309a346e0@infineon.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 3 Jun 2022 13:19:17 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+0Tk9O4=UAvqxxCbt95+ATqXe6S=W54ArWDqx9b747xA@mail.gmail.com>
+Message-ID: <CAL_Jsq+0Tk9O4=UAvqxxCbt95+ATqXe6S=W54ArWDqx9b747xA@mail.gmail.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: trivial-devices: Add two I2C TPM devices
+To:     Alexander Steffen <Alexander.Steffen@infineon.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        jarkko@kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-integrity <linux-integrity@vger.kernel.org>,
+        devicetree@vger.kernel.org, Peter Huewe <peterhuewe@gmx.de>,
+        Jason Gunthorpe <jgg@ziepe.ca>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Johannes Holland <johannes.holland@infineon.com>,
+        Amir Mizinski <amirmizi6@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,32 +70,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 02, 2022 at 06:45:04PM +0200, Alexander Martinz wrote:
-> Document TFA9890 binding for tfa989x.
-> 
-> Signed-off-by: Alexander Martinz <amartinz@shiftphones.com>
+On Thu, Jun 2, 2022 at 10:34 AM Alexander Steffen
+<Alexander.Steffen@infineon.com> wrote:
+>
+> On 02.06.22 15:48, Rob Herring wrote:
+> > On Thu, May 26, 2022 at 02:29:56PM +0200, Krzysztof Kozlowski wrote:
+> >> On 25/05/2022 18:58, Alexander Steffen wrote:
+> >>> Both are supported by the upcoming tpm_tis_i2c driver.
+> >>>
+> >>> Signed-off-by: Alexander Steffen <Alexander.Steffen@infineon.com>
+> >>> ---
+> >>>   Documentation/devicetree/bindings/trivial-devices.yaml | 4 ++++
+> >>>   1 file changed, 4 insertions(+)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> >>> index 550a2e5c9e05..dc52822331dd 100644
+> >>> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> >>> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> >>> @@ -135,6 +135,8 @@ properties:
+> >>>             - infineon,slb9635tt
+> >>>               # Infineon SLB9645 I2C TPM (new protocol, max 400khz)
+> >>>             - infineon,slb9645tt
+> >>> +            # Infineon SLB9673 I2C TPM 2.0
+> >>> +          - infineon,slb9673
+> >>>               # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
+> >>>             - infineon,tlv493d-a1b6
+> >>>               # Infineon Multi-phase Digital VR Controller xdpe11280
+> >>> @@ -323,6 +325,8 @@ properties:
+> >>>             - st,24c256
+> >>>               # Ambient Light Sensor with SMBUS/Two Wire Serial Interface
+> >>>             - taos,tsl2550
+> >>> +            # TCG TIS-compliant TPM with I2C interface
+> >>> +          - tcg,tpm_tis-i2c
+> >>
+> >> One flavor uses tpm-tis, another tpm_tis... I guess it is too late to
+> >> make it consistent, but let's stick to the one more reasonable, so:
+> >> "tpm-tis-i2c".
+> >
+> > Neither should be used except perhaps as a fallback.
+>
+> That is the intention, yes.
 
-The dt-bindings patch should usually come first in the patch series.
-Anyway, no need to resend just for that IMO:
+Then it is not a trivial device as those don't have more than 1
+compatible string.
 
-Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
+> > Does 'TCG TIS-compliant TPM' encompass every property of a device? Power
+> > supplies, resets, interrupts, quirks, etc.?
+>
+> In an ideal world, yes. In practice, of course implementations do have
+> bugs that might require different workarounds. By selecting
+> tcg,tpm-tis-i2c instead of anything more specific, you promise that the
+> device is fully compliant to the TCG specification and does not require
+> any such workarounds.
 
-> ---
->  Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml b/Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml
-> index b9b1dba40856..7f2e68ff6d34 100644
-> --- a/Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml
-> +++ b/Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml
-> @@ -15,6 +15,7 @@ allOf:
->  properties:
->    compatible:
->      enum:
-> +      - nxp,tfa9890
->        - nxp,tfa9895
->        - nxp,tfa9897
->  
-> -- 
-> 2.36.1
-> 
+We don't want broken promises. The problem is you can't know up front
+whether you will need a work-around. Adding a compatible later is not
+ideal as that would require a DT update which may be in your firmware
+(separate from the OS).
+
+Rob
