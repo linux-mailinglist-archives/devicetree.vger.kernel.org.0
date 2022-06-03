@@ -2,83 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D01F53C665
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 09:38:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8568853C678
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 09:42:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242605AbiFCHiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jun 2022 03:38:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38628 "EHLO
+        id S242568AbiFCHlo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jun 2022 03:41:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242555AbiFCHiJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 03:38:09 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF67E22515
-        for <devicetree@vger.kernel.org>; Fri,  3 Jun 2022 00:38:07 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id kq6so1319297ejb.11
-        for <devicetree@vger.kernel.org>; Fri, 03 Jun 2022 00:38:07 -0700 (PDT)
+        with ESMTP id S242576AbiFCHlm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 03:41:42 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35A973703C
+        for <devicetree@vger.kernel.org>; Fri,  3 Jun 2022 00:41:41 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id s13so7614160ljd.4
+        for <devicetree@vger.kernel.org>; Fri, 03 Jun 2022 00:41:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=NozlW8gxt+DxbkdUBPQ7v+hGLg98dYyflLdq2vKGNNQ=;
-        b=MBwq8iQT08gOCa9rJ8qFqI4BdOqhD9gxgoHyItuiBDjc80GOV0n/0Hvh5h9ccoL8XF
-         xXfwjrnjyWzaZ+2Cij/QNwGFjC976k0n2j6+2Qi+WpzIcdXcxw5dO6QrYsKv0N04qOwf
-         FiNjb652e0Sz+XA1NbcH2bbuvdW+oNrJttxI4dj/jo5uK2smwDutaZFG1n+EZIjxCIei
-         Q9A0TfF42ZXLGFbThtMyAXR5mK7+7FriG/+bgpXU65UpD4vdqxNAk96DMonmFn9TjnVv
-         sOeKcfFcFl/gFahHFD+Q5SBYtq3cz0QoCDEoL8mXm1EoazbRvGnVPMnaCq930hlfTLAx
-         pyqw==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=xhB6+M5MjkM8gCB/QwINQgTjAx18TPp2MSLGhofg9g0=;
+        b=bf7bu4Ke5jMnAovMCeuj0tbOd7gDdZDDxt2iizpictaj6zOIFzMBq0wujLI/ImiB3B
+         fvzEnXPx8xZBuS22eCVYDrj8tVvCIDEcmtUVgLlpx17KjvhO4sDbecldRZzlr9uY3EDc
+         Abpk5cExhqJO3yfxTxW2/D9IkhN9ESvT4QzY/mgFRV54wv4+wR/pnqBo7oYgHZR7yl0m
+         he0HWEQMjKelBndVdPHmmXKTL/DsiOO71oRQqPnwB1J6d+oSIP4G2IX72zNcwfUUJYl/
+         C5r7SOYC+tCPr1v92dQYyUU5RX6vHlV8GjAezBhjPwHcqTy+P9Uke9XbhR8eSLm9shxF
+         E/hg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=NozlW8gxt+DxbkdUBPQ7v+hGLg98dYyflLdq2vKGNNQ=;
-        b=T1832OVYm18I3H3H529GRHG35wwRUEDEGslyNbX6chGTn7cjkNu7Yl6uZSYaKGKpcv
-         QRZOnoVHdAa83vi/zULTVOQkKAl9YFTGn4cyruZ/XwMyDQw9EwufmOmbBv8XwlpawGjT
-         zPGPph6F50fC0VWC3usqAt/8ikO9G6vWQF1OXGhfNn3dStFgzxOZi9+IuMrU0NV7CNHI
-         RisbD00aPL7IKYocfiQnQi/Vh8Vo8dG1FKYmV30gEOkbTzYDtmCw2KlzaFp53rHb5OCV
-         P8eJ1ldL+r8IWNibg/ooPaKkcXDKDCN8H9zHwdJ1+yCgYkqK2spErL1PXFTaxTz/c17q
-         w/7g==
-X-Gm-Message-State: AOAM5322FFJsxQKGDoFzbWP8kHmLoqL76J9V/tOITedLTSaMWMDAB9jZ
-        fd8kr/+zhCCDXrP59kysGOYfQQ==
-X-Google-Smtp-Source: ABdhPJwmUVILxx3fkvi4+hqA/dlgtcQ1M8rziX6YVtWAy/aURal3rjhnY6VgUCnsqW4bsZbXS+ErRw==
-X-Received: by 2002:a17:907:7b95:b0:6f4:ff03:981a with SMTP id ne21-20020a1709077b9500b006f4ff03981amr7455667ejc.653.1654241886274;
-        Fri, 03 Jun 2022 00:38:06 -0700 (PDT)
-Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id bs13-20020a056402304d00b0042bd6f745fasm3562059edb.92.2022.06.03.00.38.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Jun 2022 00:38:05 -0700 (PDT)
-Message-ID: <78714614-bb6a-761d-3a36-cbd758dcec4c@linaro.org>
-Date:   Fri, 3 Jun 2022 09:38:03 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 5/5] arm64: dts: exynos: Add internal eMMC support to
- jackpotlte
-Content-Language: en-US
-To:     David Virag <virag.david003@gmail.com>
-Cc:     phone-devel@vger.kernel.org,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        bh=xhB6+M5MjkM8gCB/QwINQgTjAx18TPp2MSLGhofg9g0=;
+        b=kidFDaNMjYjlhW9D+3FzPENidZGma3H+J7cGaoDhW0Xu12uNa3ffH7XvOkRDCpqq6M
+         Fa3CuPt3KpPNtzcHEUCC2FJvvIh9RkEWUtfJn2xieBA5anGkZkAYikZVJDX1mWe1201w
+         G1vWNWxlQxFAi289d2XbPLEGX2W7C2aC3ARn18NMRcKHZVuquMaiMSC2xr4N61u1BF0R
+         0kqTlHySdH74QVv70u60qPZ6VmtZZ0J4bNFwlIcVAlX2vrPIbId5F/qxGR9diRLomSBe
+         cigh/T5RWiUP8haRCG2NgDC7p9xG3a5UrdEtsan1MyWHaWDRJ7+UFLv3x0BziUrM3jG6
+         AzjA==
+X-Gm-Message-State: AOAM532V/FK/qAcVEYNhuINTCFDXnUAsZnaWmxJNQo0yYtPVg1ZCXfMp
+        c1Rr8eLM/pK9p0gLmqRzhCS2HA==
+X-Google-Smtp-Source: ABdhPJwhv9dZ5bay57GWa3QBIgZ1t6alTL8dunClLi7lzmuvDC+iTMKmitnh1+OzDc5FQWR9QNtJZA==
+X-Received: by 2002:a2e:8952:0:b0:255:804c:1d3f with SMTP id b18-20020a2e8952000000b00255804c1d3fmr958316ljk.485.1654242098955;
+        Fri, 03 Jun 2022 00:41:38 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id x6-20020ac24886000000b00477b11144e9sm1450023lfc.66.2022.06.03.00.41.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Jun 2022 00:41:38 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20220601233743.56317-1-virag.david003@gmail.com>
- <20220601233743.56317-6-virag.david003@gmail.com>
- <b3681990-e358-8e1d-93fe-b72c099902e3@linaro.org>
- <f40aca00a4418c889395d2dab65f85d24e8662c6.camel@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <f40aca00a4418c889395d2dab65f85d24e8662c6.camel@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        Johan Hovold <johan@kernel.org>
+Subject: [PATCH v13 0/7] PCI: dwc: Fix higher MSI vectors handling
+Date:   Fri,  3 Jun 2022 10:41:30 +0300
+Message-Id: <20220603074137.1849892-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -87,57 +77,145 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/06/2022 00:18, David Virag wrote:
-> On Thu, 2022-06-02 at 14:01 +0200, Krzysztof Kozlowski wrote:
->> On 02/06/2022 01:37, David Virag wrote:
->>> Add the nodes relevant to provide clocks for Exynos7885 eMMC and to
->>> support eMMC. eMMC is the internal storage used in the Samsung
->>> Galaxy A8
->>> (2018) (jackpotlte), and all other known devices using the
->>> Exynos7885
->>> SoC.
->>>
->>> Signed-off-by: David Virag <virag.david003@gmail.com>
->>> ---
->>>  .../boot/dts/exynos/exynos7885-jackpotlte.dts | 20 ++++++++++++
->>>  arch/arm64/boot/dts/exynos/exynos7885.dtsi    | 32
->>> +++++++++++++++++++
->>>  2 files changed, 52 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
->>> b/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
->>> index 4cf9aa25f618..5db9a81ac7bb 100644
->>> --- a/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
->>> +++ b/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
->>> @@ -60,6 +60,26 @@ power-key {
->>>         };
->>>  };
->>>  
->>> +&mmc_0 {
->>> +       status = "okay";
->>> +       mmc-hs200-1_8v;
->>> +       mmc-hs400-1_8v;
->>> +       cap-mmc-highspeed;
->>> +       non-removable;
->>> +       mmc-hs400-enhanced-strobe;
->>> +       card-detect-delay = <200>;
->>> +       clock-frequency = <800000000>;
->>
->> Is this real property for MMC? Neither mmc nor DW MSHC bindings
->> mention it.
-> 
-> It is, but I don't remember trying without it. Seems like it is not
-> documented then. It is used in dw_mmc.c in the following places:
-> 
-> https://github.com/torvalds/linux/blob/master/drivers/mmc/host/dw_mmc.c#L3242-L3243
-> 
-> https://github.com/torvalds/linux/blob/master/drivers/mmc/host/dw_mmc.c#L3306-L3325
-> 
-> The Exynos850 device tree has the same property in it's mmc node. 
+I have replied with my Tested-by to the patch at [2], which has landed
+in the linux-next as the commit 20f1bfb8dd62 ("PCI: qcom:
+Add support for handling MSIs from 8 endpoints"). However lately I
+noticed that during the tests I still had 'pcie_pme=nomsi', so the
+device was not forced to use higher MSI vectors.
 
-Indeed, it's fine then. I'll check the bindings and convert them to DT
-schema.
+After removing this option I noticed that hight MSI vectors are not
+delivered on tested platforms. After additional research I stumbled upon
+a patch in msm-4.14 ([1]), which describes that each group of MSI
+vectors is mapped to the separate interrupt. Implement corresponding
+mapping.
+
+The last patch in the series is a revert of  [2] (landed in pci-next).
+Bjorn Helgaas has removed the offending patch from his 5.19 pull
+request, but the revert is still a part of this patch series as a
+reminder to Lorenzo to drop the patch from his pci/qcom branch.
+
+Patchseries dependecies: [3] (for the schema change).
+
+Changes since v12:
+ - Dropped split_msi_names array in favour of generating the msi_name on
+   the fly (Rob),
+ - Dropped separate split MSI ISR as requested by Rob,
+ - Many small syntax & spelling changes as suggested by Johan and Rob,
+ - Moved a revert to be a last patch, as it is now a reminder to
+   Lorenzo,
+ - Renamed series to name dwc rather than qcom, as the are no more
+   actual changes to the qcom PCIe driver (Johan thanks for all
+   suggestions for making the code to work as is).
+
+Changes since v11 (suggested by Johan):
+ - Added back reporting errors for the "msi0" interrupt,
+ - Stopped overriding num_vectors field if it is less than the amount of
+   MSI vectors deduced from interrupt list,
+ - Added a warning (and an override) if the host specifies more MSI
+   vectors than available,
+ - Moved has_split_msi_irq variable to the patch where it is used.
+
+Changes since v10:
+ - Remove has_split_msi_irqs flag. Trust DT and use split MSI IRQs if
+   they are described in the DT. This removes the need for the
+   pcie-qcom.c changes (everything is handled by the core (suggested by
+   Johan).
+ - Rebased on top of Lorenzo's DWC branch
+
+Changes since v9:
+ - Relax requirements and stop validating the DT. If the has_split_msi
+   was specified, parse as many msiN irqs as specified in DT. If there
+   are none, fallback to the single "msi" IRQ.
+
+Changes since v8:
+ - Fix typos noted by Bjorn Helgaas
+ - Add missing links to the patch 1 (revert)
+ - Fix sm8250 interrupt-names (Johan)
+ - Specify num_vectors in qcom configuration data (Johan)
+ - Rework parsing of MSI IRQs (Johan)
+
+Changes since v7:
+ - Move code back to the dwc core driver (as required by Rob),
+ - Change dt schema to require either a single "msi" interrupt or an
+   array of "msi0", "msi1", ... "msi7" IRQs. Disallow specifying a
+   part of the array (the DT should specify the exact amount of MSI IRQs
+   allowing fallback to a single "msi" IRQ),
+ - Fix in the DWC init code for the dma_mapping_error() return value.
+
+Changes since v6:
+ - Fix indentation of the arguments as requested by Stanimir
+
+Changes since v5:
+ - Fixed commit subject and in-comment code according to Bjorn's
+   suggestion,
+ - Changed variable idx to i to follow dw_handle_msi_irq() style.
+
+Changes since v4:
+ - Fix the minItems/maxItems properties in the YAML schema.
+
+Changes since v3:
+ - Reimplement MSI handling scheme in the Qualcomm host controller
+   driver.
+
+Changes since v2:
+ - Fix and rephrase commit message for patch 2.
+
+Changes since v1:
+ - Split a huge patch into three patches as suggested by Bjorn Helgaas
+ - snps,dw-pcie removal is now part of [3]
+
+[1] https://git.codelinaro.org/clo/la/kernel/msm-4.14/-/commit/671a3d5f129f4bfe477152292ada2194c8440d22
+[2] https://lore.kernel.org/linux-arm-msm/20211214101319.25258-1-manivannan.sadhasivam@linaro.org/
+[3] https://lore.kernel.org/linux-arm-msm/20220422211002.2012070-1-dmitry.baryshkov@linaro.org/
+
+Dmitry Baryshkov (7):
+  PCI: qcom: Revert "PCI: qcom: Add support for handling MSIs from 8
+    endpoints"
+  PCI: dwc: Correct msi_irq condition in dw_pcie_free_msi()
+  PCI: dwc: Convert msi_irq to the array
+  PCI: dwc: split MSI IRQ parsing/allocation to a separate function
+  PCI: dwc: Handle MSIs routed to multiple GIC interrupts
+  dt-bindings: PCI: qcom: Support additional MSI interrupts
+  arm64: dts: qcom: sm8250: provide additional MSI interrupts
+
+ .../devicetree/bindings/pci/qcom,pcie.yaml    |  53 +++++-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |  12 +-
+ drivers/pci/controller/dwc/pci-dra7xx.c       |   2 +-
+ drivers/pci/controller/dwc/pci-exynos.c       |   2 +-
+ .../pci/controller/dwc/pcie-designware-host.c | 161 +++++++++++++-----
+ drivers/pci/controller/dwc/pcie-designware.h  |   2 +-
+ drivers/pci/controller/dwc/pcie-keembay.c     |   2 +-
+ drivers/pci/controller/dwc/pcie-qcom.c        |   1 -
+ drivers/pci/controller/dwc/pcie-spear13xx.c   |   2 +-
+ drivers/pci/controller/dwc/pcie-tegra194.c    |   2 +-
+ 10 files changed, 185 insertions(+), 54 deletions(-)
+
+-- 
+2.35.1
 
 
-Best regards,
-Krzysztof
+Dmitry Baryshkov (7):
+  PCI: dwc: Correct msi_irq condition in dw_pcie_free_msi()
+  PCI: dwc: Convert msi_irq to the array
+  PCI: dwc: split MSI IRQ parsing/allocation to a separate function
+  PCI: dwc: Handle MSIs routed to multiple GIC interrupts
+  dt-bindings: PCI: qcom: Support additional MSI interrupts
+  arm64: dts: qcom: sm8250: provide additional MSI interrupts
+  PCI: qcom: Revert "PCI: qcom: Add support for handling MSIs from 8
+    endpoints"
+
+ .../devicetree/bindings/pci/qcom,pcie.yaml    |  53 +++++-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |  12 +-
+ drivers/pci/controller/dwc/pci-dra7xx.c       |   2 +-
+ drivers/pci/controller/dwc/pci-exynos.c       |   2 +-
+ .../pci/controller/dwc/pcie-designware-host.c | 161 +++++++++++++-----
+ drivers/pci/controller/dwc/pcie-designware.h  |   2 +-
+ drivers/pci/controller/dwc/pcie-keembay.c     |   2 +-
+ drivers/pci/controller/dwc/pcie-qcom.c        |   1 -
+ drivers/pci/controller/dwc/pcie-spear13xx.c   |   2 +-
+ drivers/pci/controller/dwc/pcie-tegra194.c    |   2 +-
+ 10 files changed, 185 insertions(+), 54 deletions(-)
+
+-- 
+2.35.1
+
