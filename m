@@ -2,119 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC7CA53CDAF
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 19:03:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A82353CDB8
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 19:05:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344172AbiFCRD1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jun 2022 13:03:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40954 "EHLO
+        id S1344218AbiFCRFS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jun 2022 13:05:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344181AbiFCRD0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 13:03:26 -0400
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ABF1522DB
-        for <devicetree@vger.kernel.org>; Fri,  3 Jun 2022 10:03:25 -0700 (PDT)
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220603170320epoutp03921a28bd5ea8864e738462c221872950~1KxNP5JHY1891618916epoutp03E
-        for <devicetree@vger.kernel.org>; Fri,  3 Jun 2022 17:03:20 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220603170320epoutp03921a28bd5ea8864e738462c221872950~1KxNP5JHY1891618916epoutp03E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1654275800;
-        bh=KBmvvzMnh2/52C5pNCCda5UPKYKmJcSnfpNu3ArKFdg=;
-        h=From:To:In-Reply-To:Subject:Date:References:From;
-        b=ukHlhsXxVjZRsrcvznffT5JcJxd/SCR1lE+dcoARecPXuhkrejejEvir4reSVpAH9
-         qlZ8bqE+ewz8ojjhw07fV3MKGAKAYeMEBAuPuB2RhQXGu4CAND/qFkThGa5FVlykuU
-         QntzHVygExfEDJV+fCNSP6IofakfbkfE5SYz2kMk=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-        epcas5p4.samsung.com (KnoxPortal) with ESMTP id
-        20220603170319epcas5p4cd248f1dac3749386583bd44094cea31~1KxMrvFmM2130621306epcas5p4B;
-        Fri,  3 Jun 2022 17:03:19 +0000 (GMT)
-Received: from epsmges5p1new.samsung.com (unknown [182.195.38.174]) by
-        epsnrtp3.localdomain (Postfix) with ESMTP id 4LF8N40MD6z4x9Pp; Fri,  3 Jun
-        2022 17:03:16 +0000 (GMT)
-Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
-        epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        F5.4D.10063.3DE3A926; Sat,  4 Jun 2022 02:03:15 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-        20220603170315epcas5p2c1f844687b229c436b48253c53f36952~1KxI5z5RT2045720457epcas5p2x;
-        Fri,  3 Jun 2022 17:03:15 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20220603170315epsmtrp28f221bfe7ac81eb634f2f6ea5874edeb~1KxI5Ejan1742117421epsmtrp2D;
-        Fri,  3 Jun 2022 17:03:15 +0000 (GMT)
-X-AuditID: b6c32a49-4cbff7000000274f-8f-629a3ed3cddc
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        E4.9D.11276.3DE3A926; Sat,  4 Jun 2022 02:03:15 +0900 (KST)
-Received: from alimakhtar03 (unknown [107.122.12.5]) by epsmtip2.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20220603170313epsmtip2c645054fc04ceaa116d867ceb2b86c56~1KxHXyArB0497504975epsmtip2e;
-        Fri,  3 Jun 2022 17:03:13 +0000 (GMT)
-From:   "Alim Akhtar" <alim.akhtar@samsung.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-        "'Ulf Hansson'" <ulf.hansson@linaro.org>,
-        "'Rob Herring'" <robh+dt@kernel.org>,
-        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>,
-        "'Jaehoon Chung'" <jh80.chung@samsung.com>,
-        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        with ESMTP id S1344207AbiFCRFO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 13:05:14 -0400
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04on2069.outbound.protection.outlook.com [40.107.100.69])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D3C751E4D;
+        Fri,  3 Jun 2022 10:05:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DoaT4S2XxktNdg4avSqRF/8Z35Yw4NEUEsD1fMgQ2D67XqpSbtBlD7NliZia+Qo7/oduRFq7IWTuZoFpoFhrcIe+j+qf7MXImXLwLZfsCAKeaTZQo2eX1vsNPCrw7FysdxJQWSYtbvCAqbSnDxs2FDFGmpUNxWBny16kaEIWihH5+QITUIrkZv6ksxY19Kk2pwibZxlib1W3JM4g9m6RxkGywEnPyXR8Dga7nqdJnNmyR2v89ONkmoMpx2tQDLlnlhVv88cMzIZrKDVXKwgLVfa+E/ZVW5johMNPgnsz0s0fd9Yt9hS8N+XLW/ROADjk42I91RuGATOhfbTp+9zCbw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/Cx9kVe35ogRH9oo8yLpM9TcHba9nJQ/gkniXEujeRw=;
+ b=c/XdLbdKbEKdhoUhPD+gUfVG6dXE7z7nx33ZGcmzisTMpkVe93HXg1wgD4EgoXuzOXKp1zNApGhLUYoDFRbSh/ftYVfrrshd3fRWN9QXEAixZMgrH/MetuLWz1OHjj2q9a+c7t3iDb1FENQvijJ54zFjs50YRhqjIWYKKZ36NSfiIKCVnOn96dZV9NyXbWUhev+YbAooZBQGFWguaPrS7XnhbhAP3rQ5UShcIOODWjhi6nphaqDHaufbvDcYmBfAbbEwdTpd6GCO7BA640EYjpeP8ktfBjW8K/BhFu/MixW4AV4CwUt+Jf+eFkp55yCVHaQGNg+yIoc0KAM9Ac+svQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=towertech.it smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/Cx9kVe35ogRH9oo8yLpM9TcHba9nJQ/gkniXEujeRw=;
+ b=sMyMq0CbjTp164JxbEPirKLIsZhMUIIuNOT+yLSzRALr9fEycg7atPhViNKvaPECtICcZZ0eAb+X/1RAPsNRW3+PKMrgbUbEYgNoSUrpAG6WZCTcwAwpdPoyr9c4QilKhfyJIvE4J4Aakm0SGmKhQlFhDbF4Q68dkRjthK794rI=
+Received: from DM5PR13CA0029.namprd13.prod.outlook.com (2603:10b6:3:7b::15) by
+ SA1PR02MB8621.namprd02.prod.outlook.com (2603:10b6:806:1fc::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5314.13; Fri, 3 Jun 2022 17:05:09 +0000
+Received: from DM3NAM02FT036.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:3:7b:cafe::48) by DM5PR13CA0029.outlook.office365.com
+ (2603:10b6:3:7b::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5332.6 via Frontend
+ Transport; Fri, 3 Jun 2022 17:05:09 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com; pr=C
+Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
+ DM3NAM02FT036.mail.protection.outlook.com (10.13.5.20) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5314.12 via Frontend Transport; Fri, 3 Jun 2022 17:05:09 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Fri, 3 Jun 2022 10:05:06 -0700
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Fri, 3 Jun 2022 10:05:06 -0700
+Envelope-to: git@xilinx.com,
+ a.zummo@towertech.it,
+ alexandre.belloni@bootlin.com,
+ robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org,
+ linux-rtc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Received: from [172.23.66.193] (port=44716 helo=xhdsneeli40u.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <srinivas.neeli@xilinx.com>)
+        id 1nxAjQ-000GsV-Fm; Fri, 03 Jun 2022 10:05:05 -0700
+From:   Srinivas Neeli <srinivas.neeli@xilinx.com>
+To:     <a.zummo@towertech.it>, <alexandre.belloni@bootlin.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <michal.simek@xilinx.com>, <sgoud@xilinx.com>,
+        <shubhraj@xilinx.com>
+CC:     <linux-rtc@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-In-Reply-To: <20220603094946.509919-3-krzysztof.kozlowski@linaro.org>
-Subject: RE: [PATCH 2/3] arm64: dts: exynos: align MMC node name with
- dtschema
-Date:   Fri, 3 Jun 2022 22:33:12 +0530
-Message-ID: <012c01d8776b$d08961a0$719c24e0$@samsung.com>
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <git@xilinx.com>, Srinivas Neeli <srinivas.neeli@xilinx.com>
+Subject: [PATCH V5 1/2] dt-bindings: rtc: zynqmp: Add clock information
+Date:   Fri, 3 Jun 2022 22:34:31 +0530
+Message-ID: <20220603170432.26605-1-srinivas.neeli@xilinx.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQJnTgxmo1hiaDX0AoRFzAPFxadt/AIGIl0cAkAMriir/gn/QA==
-Content-Language: en-us
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrBJsWRmVeSWpSXmKPExsWy7bCmpu5lu1lJBqtmW1nMP3KO1eLGrzZW
-        i74XD5kt9r7eym6x6fE1VovLu+awWRz5389oMeP8PiaL1r1H2C2Orw134PLYtKqTzePOtT1s
-        HpuX1Hv0bVnF6PF5k1wAa1S2TUZqYkpqkUJqXnJ+SmZeuq2Sd3C8c7ypmYGhrqGlhbmSQl5i
-        bqqtkotPgK5bZg7QTUoKZYk5pUChgMTiYiV9O5ui/NKSVIWM/OISW6XUgpScApMCveLE3OLS
-        vHS9vNQSK0MDAyNToMKE7Iwn7T/YCyYLVJzZtpCpgfECbxcjJ4eEgInEl77ZLCC2kMBuRonV
-        jb5djFxA9idGicsHHzJBON8YJVrOLmGG6Wh8cI8dIrEXqOP6ZkYI5yWjxOItt9hBqtgEdCV2
-        LG5jA0mICCxnlrh+fy5YO6eAq8STroeMILawQIDEv33tYA0sAioSu3d1soLYvAKWErPu/oKy
-        BSVOznwCdiCzgLzE9rdzoM5QkPj5dBlYjYiAk8TnvxOgasQlXh49AnaehMBCDonJew6zQzS4
-        SCx+38oGYQtLvDq+BSouJfH53V6gOAeQ7SGx6I8URDhD4u3y9YwQtr3EgStzWEBKmAU0Jdbv
-        0odYxSfR+/sJE0Qnr0RHmxBEtapE87urLBC2tMTE7m5WCNtD4v+mK9CAu8wo8fXEGpYJjAqz
-        kHw5C8mXs5B8Mwth8wJGllWMkqkFxbnpqcWmBYZ5qeXwCE/Oz93ECE6yWp47GO8++KB3iJGJ
-        g/EQowQHs5IIb9m8mUlCvCmJlVWpRfnxRaU5qcWHGE2BQT+RWUo0OR+Y5vNK4g1NLA1MzMzM
-        TCyNzQyVxHkF/jcmCQmkJ5akZqemFqQWwfQxcXBKNTDtXClb7nXufu+Fb8sfBWWYcRWlPl8V
-        FpRWpxY8Sdv1x5cjax9Mib0g1bJdy1/js3H9IqfNx2d7bZROYEmVnV1tEZZruronWH5h2Mxe
-        3mW7j1/S3r48ZmHqowURRn78+SdT220OXX/2InOexnkZ5Yhr582jPqg1/JN3bfEs/1P/+ud2
-        3sczi1oV9wvvPpXzSbT6QtwFe43WHfvk0m/ulTiw/7ROX6vXrf0J20+tbas+ffDzFjn+bGPX
-        1/dcmLL1mQ38UyN+fJ/y+zWz4Meu6qavdzXtovmZ+ntY4go7T52ZNG/n9FrXQ0n9iRFT5S4d
-        YtiXZ97/1+2ynMABtYQvXy//65K9sc3q4AehsIOl5v+UWIozEg21mIuKEwH4h49LOwQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmphkeLIzCtJLcpLzFFi42LZdlhJXvey3awkgx1XBSzmHznHanHjVxur
-        Rd+Lh8wWe19vZbfY9Pgaq8XlXXPYLI7872e0mHF+H5NF694j7BbH14Y7cHlsWtXJ5nHn2h42
-        j81L6j36tqxi9Pi8SS6ANYrLJiU1J7MstUjfLoEr40n7D/aCyQIVZ7YtZGpgvMDbxcjJISFg
-        ItH44B57FyMXh5DAbkaJpW9amSAS0hLXN05gh7CFJVb+ew5V9JxR4vaSt6wgCTYBXYkdi9vY
-        QBIiAuuZJS4fvc8EUXWeUeJD52xmkCpOAVeJJ10PGUFsYQE/iRVP/4F1swioSOze1Qlm8wpY
-        Ssy6+wvKFpQ4OfMJSxcjBwezgJ5E20awVmYBeYntb+cwQ1ykIPHz6TKwchEBJ4nPfyewQNSI
-        S7w8eoR9AqPQLCSTZiFMmoVk0iwkHQsYWVYxSqYWFOem5xYbFhjmpZbrFSfmFpfmpesl5+du
-        YgRHlJbmDsbtqz7oHWJk4mA8xCjBwawkwls2b2aSEG9KYmVValF+fFFpTmrxIUZpDhYlcd4L
-        XSfjhQTSE0tSs1NTC1KLYLJMHJxSDUyc+xZW3lgquLGKaV2O655Dt322Ta+cdDzo2PFqrT9S
-        daaMiZV80/b6553i/9U553xxznaukLle2fvZP6RmmK3bzbohY/trkSVpOc2lB5JiwxPCebpk
-        LVgf3FxVudxNVWrWl/aLH8MuLhJcIPH14O5FU10VNk38l9m9r/HAkVg7qb+f1s6P+iOztr1g
-        bnOV3TzD2iuN/+/Jbd84Z49Kso5e6Yvvnkzd3SEnlnBwWuRrqbQ9YWTb9ebop+WqxU/4i56/
-        TV/2VsnwEY/tG68Fbxh7LD+ujHyVseMfz58v5z7st9dvinwheqIj/KdO0npdu0n794T/YlC+
-        4eu+bOXLC27nEjI1PGR8Qx8wtFeve6ujxFKckWioxVxUnAgASlspUxcDAAA=
-X-CMS-MailID: 20220603170315epcas5p2c1f844687b229c436b48253c53f36952
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220603094957epcas5p301cd5956d180ee9be3bf8f8207cb1a7d
-References: <20220603094946.509919-1-krzysztof.kozlowski@linaro.org>
-        <CGME20220603094957epcas5p301cd5956d180ee9be3bf8f8207cb1a7d@epcas5p3.samsung.com>
-        <20220603094946.509919-3-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: be4f516f-d42f-4099-c79e-08da458336f9
+X-MS-TrafficTypeDiagnostic: SA1PR02MB8621:EE_
+X-Microsoft-Antispam-PRVS: <SA1PR02MB862105C4DA2231FF212A97C5AFA19@SA1PR02MB8621.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 87IFXHTHQs31/UZHwITGbiE2PE0Kwn0U5me0UOraQGbEcbQEpwI1ITmGdTt41ydtavA5lorNdDfKmGDk4IRl7O/Kem/hxCD5cOQdEnITEAgYM79ROQ2ooYsBIFZzkyQkxtVhm20x7lqqrF9Qg7eY48cP3XBv0/BKP/YC7dbjaBaaT9Qt9j8RkAdnJJ8CqPc5kuDOvyTt36Nv+RICoZN6ZbAcCHlZr28IrVUO7ev+WYe+HPWhrWIQ3C0gPxiYzdQqyLtES96+QHCXTroXF7E+bgp3UU7niiJ101hkRV3aDClg4jJlhGDS70RfV+AgbDwRdvTTOSPMuEgCETiLAeM6VDIUcbZ03phZD/zln4cvphZM5X6CH8zZ6+wulyfR3hPyEGgskRnw5tLfeYuys6EC7upmWMogVjhuklQhI5p6zftRPtoPOp8LCpchtV6rGynIgTQPQuoI6rNi7qMDtb39b0myl6GHycodYgZooDLkSmSPYJi91Iad1tou+xiOWW7ZWnJYSUISRPCteUc1aAFWbZLEkOoccCIlIy1la3oxWAw11T0YmG67mRmiZZMkIO5CHV794t8vJmADj4q2XrNt3KzEkXNDF8guF5DCfGk2xwXpXl3yQ2aXZwazzr6lp+RXmRMcbjoeqHLuleAn75RticxkbYWNYBvGCTLJcsql/wqKW8x9OB0PdBAJuZ6oo5wwBBs4zxZFKrXjc7qOaTBGvnBMzC3zdVbhYiSVXWtBNnY=
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230001)(4636009)(40470700004)(46966006)(36840700001)(336012)(186003)(2906002)(44832011)(426003)(4326008)(40460700003)(1076003)(107886003)(9786002)(47076005)(8936002)(356005)(7636003)(6666004)(83380400001)(508600001)(7696005)(5660300002)(8676002)(316002)(36756003)(6636002)(36860700001)(26005)(54906003)(110136005)(70206006)(70586007)(2616005)(82310400005)(102446001)(2101003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jun 2022 17:05:09.0780
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: be4f516f-d42f-4099-c79e-08da458336f9
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM3NAM02FT036.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR02MB8621
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -122,67 +114,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Added clock information and deprecated calibration support.
 
+Signed-off-by: Srinivas Neeli <srinivas.neeli@xilinx.com>
+---
+Changes in V5:
+-Removed quotes and _clk suffix from clocknames.
+Changes in V4:
+- Deprecated calibrtion support
+Changes in V3:
+- New patch
+---
+ .../devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml      | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
->-----Original Message-----
->From: Krzysztof Kozlowski [mailto:krzysztof.kozlowski@linaro.org]
->Sent: Friday, June 3, 2022 3:20 PM
->To: Ulf Hansson <ulf.hansson@linaro.org>; Rob Herring
-><robh+dt@kernel.org>; Krzysztof Kozlowski
-><krzysztof.kozlowski+dt@linaro.org>; Alim Akhtar
-><alim.akhtar@samsung.com>; Jaehoon Chung <jh80.chung@samsung.com>;
->linux-mmc@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
->kernel@lists.infradead.org; linux-samsung-soc@vger.kernel.org; linux-
->kernel@vger.kernel.org
->Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->Subject: [PATCH 2/3] arm64: dts: exynos: align MMC node name with
->dtschema
->
->The node names should be generic and MMC controller dtschema expects
->"mmc".
->
->Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->---
-
-Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
-
-
-> arch/arm64/boot/dts/exynos/exynos5433.dtsi | 6 +++---
-> 1 file changed, 3 insertions(+), 3 deletions(-)
->
->diff --git a/arch/arm64/boot/dts/exynos/exynos5433.dtsi
->b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
->index 75b548e495a0..bd6a354b9cb5 100644
->--- a/arch/arm64/boot/dts/exynos/exynos5433.dtsi
->+++ b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
->@@ -1820,7 +1820,7 @@ usbhost_dwc3: usb@15a00000 {
-> 			};
-> 		};
->
->-		mshc_0: mshc@15540000 {
->+		mshc_0: mmc@15540000 {
-> 			compatible = "samsung,exynos7-dw-mshc-smu";
-> 			interrupts = <GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>;
-> 			#address-cells = <1>;
->@@ -1833,7 +1833,7 @@ mshc_0: mshc@15540000 {
-> 			status = "disabled";
-> 		};
->
->-		mshc_1: mshc@15550000 {
->+		mshc_1: mmc@15550000 {
-> 			compatible = "samsung,exynos7-dw-mshc-smu";
-> 			interrupts = <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>;
-> 			#address-cells = <1>;
->@@ -1846,7 +1846,7 @@ mshc_1: mshc@15550000 {
-> 			status = "disabled";
-> 		};
->
->-		mshc_2: mshc@15560000 {
->+		mshc_2: mmc@15560000 {
-> 			compatible = "samsung,exynos7-dw-mshc-smu";
-> 			interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
-> 			#address-cells = <1>;
->--
->2.34.1
-
+diff --git a/Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml b/Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml
+index bdb72d3ddf2a..bf2a0c3d5244 100644
+--- a/Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml
++++ b/Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml
+@@ -23,6 +23,14 @@ properties:
+   reg:
+     maxItems: 1
+ 
++  clocks:
++    items:
++      - description: rtc_clk is the operating frequency of crystal.
++
++  clock-names:
++    items:
++      - const: rtc
++
+   interrupts:
+     minItems: 2
+ 
+@@ -39,6 +47,7 @@ properties:
+     minimum: 0x1
+     maximum: 0x1FFFFF
+     default: 0x198233
++    deprecated: true
+ 
+ required:
+   - compatible
+@@ -61,5 +70,7 @@ examples:
+         interrupts = <0 26 4>, <0 27 4>;
+         interrupt-names = "alarm", "sec";
+         calibration = <0x198233>;
++        clock-names = "rtc_clk";
++        clocks = <&rtc_clk>;
+       };
+     };
+-- 
+2.17.1
 
