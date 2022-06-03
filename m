@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC13553C7CC
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 11:44:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8A2D53C7D3
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 11:48:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243141AbiFCJoq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jun 2022 05:44:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38782 "EHLO
+        id S243155AbiFCJqN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jun 2022 05:46:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243144AbiFCJop (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 05:44:45 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89B2B3A70D
-        for <devicetree@vger.kernel.org>; Fri,  3 Jun 2022 02:44:42 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id i10so11831958lfj.0
-        for <devicetree@vger.kernel.org>; Fri, 03 Jun 2022 02:44:42 -0700 (PDT)
+        with ESMTP id S243145AbiFCJqI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 05:46:08 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A9AF3A720
+        for <devicetree@vger.kernel.org>; Fri,  3 Jun 2022 02:46:07 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id a15so11759482lfb.9
+        for <devicetree@vger.kernel.org>; Fri, 03 Jun 2022 02:46:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=8jvPxXIiogQWZXupdX922CHoFednIGVLXVXf4QrHgiY=;
-        b=O+UOlhaU1GPM2ffiLXlaOOMPGwOgfFKeYFBHms9Z8euUAUJMN780YC1U5nRTDDWGQ3
-         4P1TMXkIg2nzQtv6Tp1TuxJ/QINIw9PazrWgt5IE0uzXCGT4o6iBDE+S1po2vLqoq3r4
-         7ApFEsva8AT52NIR0mH/mDjoj+t6A9cC9bVtOjeWL6jZQXMk0IhxlpxdKx5PaBA9AFAB
-         WHHcjMLbejA1cwApeH1b+djfmVvnhn54wv07zDj3HIt/13AEeHqWo9v3tIUpfATBwWhR
-         M0ZzrA69wATnpkeRmnXLyhcvM72dUyL3htH+LN21JM2qsIchR9JbZpJZa9JUBMgfsbD7
-         a/xw==
+        bh=PV8WqoUGxOFZRKshOw3NOc1zZVTzDgewpvw4AU5r3QI=;
+        b=BIVLMG0D76swp19/yzM/9m9y5tcb/zqi8QgQHU8OHU+N7zKnrWGzE/UPZ7F1osfRLb
+         ZcMjIjpm5ZUVaPoi6qZRqJXCO7uUehgc+tnpxeL7oHTqGz2ap2+FXBln0iiQ9M3Lxeur
+         JcoaKi5uTlaA2YptWUqLtQYnfDRww/UVr62SMpaFlfPePlYiFOAL6ozldiOvOyULvbWT
+         awYIp4833HuLklWK4EIyVTwr9pnoi5ZhaZx9hIQUdNwpLU0GOLjGRWpq5+KCJnsH59Bg
+         2MD/aH+ZV3yRdZv0KFJD8D/ZwXZOV805tYETCqiP0qivXU3rwg9/aos4kDMt+J/+i+k6
+         VQyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=8jvPxXIiogQWZXupdX922CHoFednIGVLXVXf4QrHgiY=;
-        b=yItV0Wo8ftUPrKvgwet9BBs4K9SdBpwKdwmwBdtBi1tjL1ERqqB6IP0Xo6PzcVCg14
-         0EKY0PWtQHwxXOMg4GXrugveUygjZ8ubEeDOxyDmpU4ajpebr6CgmN4k9I1pqYxlD9p4
-         VisK1bKwLrePpHmZ6T1NSLyOrcd/NY8UWirU0AcP0mhrD/BAlW/Gsl1pD7Tl80Iefoma
-         bc8dM9kEd+0dAsYkk65xq6Iw/Yza/gRUQ9xPZz12yspV8uRMYw+TWZ4iMcm8CYeWJdIh
-         MfXGz9khjLpaxEHjdY/qtALP05WmvbcBNtxz2zMJao0C41asH8YvzZlWkcvNHrmfFSKX
-         ubhQ==
-X-Gm-Message-State: AOAM53324EeMLTiGQj4RjSAj9H7OQmtYYd184c7rpskyg00RWaVhtg+f
-        NII4PG6DdM7CY8OulY3ij+PcyA==
-X-Google-Smtp-Source: ABdhPJyZegfaWSTXswsrJxcn+pcCQNNZ/clp5ept6GyUSg+T+X/U1x6nsEJb4dwGWdJLV5++QVgCPw==
-X-Received: by 2002:a05:6512:2115:b0:479:ba9:25c1 with SMTP id q21-20020a056512211500b004790ba925c1mr6124265lfr.591.1654249480917;
-        Fri, 03 Jun 2022 02:44:40 -0700 (PDT)
+        bh=PV8WqoUGxOFZRKshOw3NOc1zZVTzDgewpvw4AU5r3QI=;
+        b=iBOPhcvJmjvYWSSs3m+eM66r4rqk4HB9C0eK9KLh4kJS9TFcMPU+Or28otgzMweHl3
+         hlWJCFF4oj9Heg5zWgzGn8vafgFka+ofYPnCscGSDtqrYzeM9cCUFwO1IUDeOmqZaJ1J
+         JXMF55GAQ+mhaFxiCOFBp3G4Xwy6sSDVwdc6zRcBjfHDicAr4NRHK4URHtU7os5Yk9Pf
+         XIppCk4SS9h42YHdC6JPXkgyXG+D7mx5XRIwev6skePXyXyoAWCnPVyG1FVITY5pa12S
+         JdEnjorgaky/K6KslRs8xnFIkn5YCDGc3Wmm8qBFq1wKI1FXx3q9tp8WuDcyo12yCDoy
+         4VBw==
+X-Gm-Message-State: AOAM5327/ppMHBdiCvtfnr93WSWpUYmO7r5DrEOq4LwEseFUo9wTvkQd
+        sEbF45ix23cqv1bLcvy5UiFMVA==
+X-Google-Smtp-Source: ABdhPJyZSV21gNOrhCLTgOfOurM3xrgrxWRV/usdiINVAJc+n5B5QGzanddUNnKj+NV3L96tC+R3fA==
+X-Received: by 2002:a05:6512:3e11:b0:473:9f5f:feda with SMTP id i17-20020a0565123e1100b004739f5ffedamr6358550lfv.244.1654249565460;
+        Fri, 03 Jun 2022 02:46:05 -0700 (PDT)
 Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id e29-20020a19691d000000b0047255d21202sm1397159lfc.305.2022.06.03.02.44.40
+        by smtp.gmail.com with ESMTPSA id f9-20020a2e6a09000000b00254319f8e63sm1223352ljc.91.2022.06.03.02.46.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Jun 2022 02:44:40 -0700 (PDT)
-Message-ID: <9e398930-6918-e95e-e15d-f8901047b9b7@linaro.org>
-Date:   Fri, 3 Jun 2022 12:44:39 +0300
+        Fri, 03 Jun 2022 02:46:05 -0700 (PDT)
+Message-ID: <be1d59c3-049f-b9f0-3281-9875a0102aaf@linaro.org>
+Date:   Fri, 3 Jun 2022 12:46:04 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.0
@@ -60,8 +60,7 @@ To:     Vinod Polimera <quic_vpolimer@quicinc.com>,
         dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
         freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
 Cc:     linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, vpolimer@quicinc.com, swboyd@chromium.org,
-        kalyant@quicinc.com
+        dianders@chromium.org, swboyd@chromium.org
 References: <1654249343-24959-1-git-send-email-quic_vpolimer@quicinc.com>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 In-Reply-To: <1654249343-24959-1-git-send-email-quic_vpolimer@quicinc.com>
@@ -69,7 +68,7 @@ Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -103,12 +102,12 @@ On 03/06/2022 12:42, Vinod Polimera wrote:
 > 
 > Changes in v2:
 > - Add fixes tag.
-
-I'm still waiting for an answer to the questions raised in v1 review.
-
 > 
 > Fixes: 623f279c778 ("drm/msm: fix shutdown hook in case GPU components failed to bind")
 > Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
+
+Also please remove bouncing quicinc.com emails from cc list
+
 > ---
 >   drivers/gpu/drm/msm/msm_drv.c | 6 +++++-
 >   1 file changed, 5 insertions(+), 1 deletion(-)
