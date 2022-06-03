@@ -2,59 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BCAB53CB38
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 16:01:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0881353CB43
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 16:03:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245003AbiFCOBJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jun 2022 10:01:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33030 "EHLO
+        id S245036AbiFCODH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jun 2022 10:03:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241285AbiFCOBJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 10:01:09 -0400
+        with ESMTP id S244783AbiFCODG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 10:03:06 -0400
 Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1233B3A194;
-        Fri,  3 Jun 2022 07:01:07 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id l84so10478976oif.10;
-        Fri, 03 Jun 2022 07:01:07 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F3DB27CD7;
+        Fri,  3 Jun 2022 07:03:01 -0700 (PDT)
+Received: by mail-oi1-f170.google.com with SMTP id w130so10577747oig.0;
+        Fri, 03 Jun 2022 07:03:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=n5xCoOmxcQUfNePekICBtm8yRcNAbJSdXliXE0/s6bo=;
-        b=imGIdAMcY9YJjq7uUOuRN6k6+3/s4EhOaGAOoMwhhtqycDfNxz06BewkwuqnJFfYVf
-         F6bHRN1RYtiDOiJ8sAVUdI5SUWBSCyfxAhjJJhr5sWNSRdPzefHGzT31ouGACl8khc7n
-         utS30Vvhgh94GZ5GNwdLvZ/G4pDy36ARDmYweTZ3znSut+XIZ6kRwuElCL1u1jViYZhV
-         DJ/XW7hAEopMtzbe2e8SZm8IqDJUwcLGaXq/uxzds0PYc2PhApBv3NHMKuA8sNuReqpM
-         cfLmv7bd95fOL67FXyQzjyAN4hnrXlqwpRTdYM2K36F8vTE6Qpw9ctebvgsqaXKa1wrH
-         bATQ==
-X-Gm-Message-State: AOAM533fU57EpXF9SJv2IksarzZZat43BHr6sGM+yDTn+kxLvb0bLWbq
-        D05O28qkpHA05E9Vs+r9hImzezX80w==
-X-Google-Smtp-Source: ABdhPJzJpHGHVLwvIE2FcXcQhikQRlH/Ei4tPQaOBWYOAVeZb7ajwGmzBZFVqfh4pM1YYnKagIxgdg==
-X-Received: by 2002:a05:6808:f08:b0:32c:157:ef98 with SMTP id m8-20020a0568080f0800b0032c0157ef98mr5421440oiw.140.1654264866277;
-        Fri, 03 Jun 2022 07:01:06 -0700 (PDT)
+        bh=L4KrDpSYq99VolrzPQGxB5l5hpx3haeHuOlN9SEwbx0=;
+        b=dWRlUqdZW3EC6g9gtD8qyuwfwNaGfrMfUUrKv3vI57AolDjIgR6TtgzH3Pk4T6ehtM
+         8tWZYCwwOJFgmPRm4XQ8IzcMBpNlApbuAHXPhJujBbjle1yVtB/Kn8th+uWIko3rXnwI
+         Kq8YDgZCEkSBxYkCjFUiyvE3d/zluRtR8wr5ZG2TL8yyWIrhnCWfNA6dNRqoF1ZCUn3i
+         2P/nO93EWmOa440wBCwm9Kxap57dSs5PVf9CvDrgQGvThzYI8Q/JKveJAAEwL/NSls/R
+         e6GJldJAqUuPVdt7WXpXmCoyOVj3eGlYIXmJgUvKiejhxSY9+gPrium74sPCn9Af93uz
+         mbWQ==
+X-Gm-Message-State: AOAM531gKUeQjxZiBVNakdmZa39spYjYCsfAm+YbgFgszr/KueidkoVU
+        kub057oSDeK//95d4CvWhg==
+X-Google-Smtp-Source: ABdhPJzNWAcrfALGI9WFStd6O7bU+uyoCscDf+bymPZkJRN1miqnpseIhlLZQcf+wmB4Pok3H4FeGA==
+X-Received: by 2002:a05:6808:144d:b0:32b:7fbc:9440 with SMTP id x13-20020a056808144d00b0032b7fbc9440mr5607304oiv.226.1654264980296;
+        Fri, 03 Jun 2022 07:03:00 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id d12-20020a4ad34c000000b0040ebba81054sm3770887oos.46.2022.06.03.07.01.05
+        by smtp.gmail.com with ESMTPSA id p3-20020acad803000000b0032e5209af19sm891448oig.31.2022.06.03.07.02.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Jun 2022 07:01:05 -0700 (PDT)
-Received: (nullmailer pid 273368 invoked by uid 1000);
-        Fri, 03 Jun 2022 14:01:04 -0000
-Date:   Fri, 3 Jun 2022 09:01:04 -0500
+        Fri, 03 Jun 2022 07:02:59 -0700 (PDT)
+Received: (nullmailer pid 275907 invoked by uid 1000);
+        Fri, 03 Jun 2022 14:02:58 -0000
+Date:   Fri, 3 Jun 2022 09:02:58 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Stefano Stabellini <sstabellini@kernel.org>
-Cc:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 0/1] dt-bindings: Add device-perms property description
-Message-ID: <20220603140104.GA243231-robh@kernel.org>
-References: <cover.1651749565.git.oleksii_moisieiev@epam.com>
- <20220601193956.GA234900-robh@kernel.org>
- <alpine.DEB.2.22.394.2206021818080.2783803@ubuntu-linux-20-04-desktop>
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Axe Yang <axe.yang@mediatek.com>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Satya Tangirala <satyat@google.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Lucas Stach <dev@lynxeye.de>,
+        Eric Biggers <ebiggers@google.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kiwoong Kim <kwmad.kim@samsung.com>,
+        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
+        angelogioacchino.delregno@collabora.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [RESEND v12 1/3] dt-bindings: mmc: mtk-sd: extend interrupts and
+ pinctrls properties
+Message-ID: <20220603140258.GB243231-robh@kernel.org>
+References: <20220525015140.384-1-axe.yang@mediatek.com>
+ <20220525015140.384-2-axe.yang@mediatek.com>
+ <CAPDyKFr25qbAb9DdCpu6Cp9NyK35YAv745Duw_ht7BQc+pQF=A@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <alpine.DEB.2.22.394.2206021818080.2783803@ubuntu-linux-20-04-desktop>
+In-Reply-To: <CAPDyKFr25qbAb9DdCpu6Cp9NyK35YAv745Duw_ht7BQc+pQF=A@mail.gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -66,48 +81,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 02, 2022 at 06:19:00PM -0700, Stefano Stabellini wrote:
-> On Wed, 1 Jun 2022, Rob Herring wrote:
-> > On Thu, May 05, 2022 at 11:23:50AM +0000, Oleksii Moisieiev wrote:
-> > > Introduce device-perms property which is intended to set the device
-> > > permissions for the System Management interfaces.
-> > > An example of this interface is SCMI (System Control and Management
-> > > Interface) which controls clocks/power-domains/resets etc from the
-> > > Firmware. This property sets the device_id to set the device permissions
-> > > for the Fimware using BASE_SET_DEVICE_PERMISSIONS message (see 4.2.2.10 of [0]).
-> > 
-> > Is that an exhaustive list of controls? Seems like there would be a 
-> > GET_DEVICE_PERMISSIONS.
-> > 
-> > > Device permissions management described in DEN 0056, Section 4.2.2.10 [0].
-> > > Given parameter should set the device_id, needed to set device
-> > > permissions in the Firmware.
-> > > This property is used by trusted Agent to set permissions for the devices,
-> > > passed-through to the non-trusted Agents. Trusted Agent will use device-perms to
-> > > set the Device permissions for the Firmware (See Section 4.2.2.10 [0]
-> > > for details).
-> > > Agents concept is described in Section 4.2.1 [0].
-> > 
-> > As I said on the call discussing this, this looks very similar to other 
-> > proposals wanting to control or check permissions on devices handled by 
-> > some provider. While the consumer of the binding is different in various 
-> > proposals, that doesn't really matter from a DT perspective. DT is just 
-> > describing some type of connection between nodes. So I'm looking for 
-> > collaboration here with folks that have made prior proposals. To put it 
-> > another way, for a new common binding like this, I want to see more than 
-> > one user. 
+On Fri, Jun 03, 2022 at 09:28:37AM +0200, Ulf Hansson wrote:
+> On Wed, 25 May 2022 at 03:51, Axe Yang <axe.yang@mediatek.com> wrote:
+> >
+> > Extend interrupts and pinctrls for SDIO wakeup interrupt feature.
+> > This feature allow SDIO devices alarm asynchronous interrupt to host
+> > even when host stop providing clock to SDIO card. An extra wakeup
+> > interrupt and pinctrl states for SDIO DAT1 pin state switching are
+> > required in this scenario.
+> >
+> > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> > Signed-off-by: Axe Yang <axe.yang@mediatek.com>
+> > ---
+> >  .../devicetree/bindings/mmc/mtk-sd.yaml       | 50 ++++++++++++++++++-
+> >  1 file changed, 49 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> > index 2a2e9fa8c188..e83bf10281d6 100644
+> > --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> > +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> > @@ -72,12 +72,27 @@ properties:
+> >        - const: ahb_cg
+> >
+> >    interrupts:
+> > -    maxItems: 1
+> > +    description:
+> > +      Should at least contain MSDC GIC interrupt. To support SDIO in-band wakeup, an extended
+> > +      interrupt is required and be configured as wakeup source irq.
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +
+> > +  interrupt-names:
+> > +    items:
+> > +      - const: msdc
+> > +      - const: sdio_wakeup
+> >
+> >    pinctrl-names:
+> > +    description:
+> > +      Should at least contain default and state_uhs. To support SDIO in-band wakeup, dat1 pin
+> > +      will be switched between GPIO mode and SDIO DAT1 mode, state_eint and state_dat1 are
+> > +      mandatory in this scenarios.
+> > +    minItems: 2
+> >      items:
+> >        - const: default
+> >        - const: state_uhs
+> > +      - const: state_eint
 > 
-> Do you have a pointer to another similar proposal or the name of someone
-> that might be interested and might be having a second use-case for this?
+> Don't you need something along the lines of the below instead? I mean
+> the "state_eint" isn't always needed, right?
+> 
+> oneOf:
+>   - items:
+>       - const: default
+>       - const: state_uhs
+>     - items:
+>         - const: default
+>         - const: state_uhs
+>         - const: state_eint
 
-ST folks who were on the call... IIRC from earlier SystemDT calls, that 
-Xilinx had a similar need? Here's the various proposals I found:
-
-https://lore.kernel.org/all/20200701132523.32533-1-benjamin.gaignard@st.com/
-https://lore.kernel.org/all/20190318100605.29120-1-benjamin.gaignard@st.com/
-https://lore.kernel.org/all/20180227140926.22996-1-benjamin.gaignard@st.com/
-
-The h/w in question is the ETZPC or TZPC. I would guess the SCMI 
-interface was designed with this h/w in mind.
+This is equivalent to what was done. The 'minItems: 2' makes the 3rd 
+item optional.
 
 Rob
