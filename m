@@ -2,124 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58A3053C3CC
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 06:34:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A658F53C3D4
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 06:52:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237861AbiFCEeG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jun 2022 00:34:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44886 "EHLO
+        id S236568AbiFCEwY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jun 2022 00:52:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230475AbiFCEeF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 00:34:05 -0400
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 576AC616C
-        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 21:34:00 -0700 (PDT)
-Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
-        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20220603043356epoutp0190c2c37c60a5d9c33b611edcbcbfc887~1Ai5XKW951506615066epoutp01N
-        for <devicetree@vger.kernel.org>; Fri,  3 Jun 2022 04:33:56 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20220603043356epoutp0190c2c37c60a5d9c33b611edcbcbfc887~1Ai5XKW951506615066epoutp01N
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1654230836;
-        bh=Bjg9nXj462IMIr5qb5SJpdPuDBVXCpWmWsSmQSOdq70=;
-        h=From:To:In-Reply-To:Subject:Date:References:From;
-        b=ZlCwI8QR8LIsWncCtfqYu2hRK49pkxuMt5mjfEBNtDgATaRdn+qrEd2m8PDOZdv+b
-         kk8pJDhN/VVYMXcH3rl2HUvvvdfF/ceEXj5IMsLxBGLsNPhxmB60/XxygAhG+TTZ9i
-         G6iModzcfL+E8mhEnKMcSPWEl1cp9s793R8kbh2Y=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas2p4.samsung.com (KnoxPortal) with ESMTP id
-        20220603043355epcas2p43b7ddaf46104a6f70d3c5491e5165971~1Ai4qq_en0894908949epcas2p4T;
-        Fri,  3 Jun 2022 04:33:55 +0000 (GMT)
-Received: from epsmges2p3.samsung.com (unknown [182.195.36.90]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4LDqlQ3myNz4x9Pt; Fri,  3 Jun
-        2022 04:33:54 +0000 (GMT)
-Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
-        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
-        FE.CE.10028.23F89926; Fri,  3 Jun 2022 13:33:54 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
-        20220603043353epcas2p383b491b9e919f77376b029410a6413c8~1Ai2wa_9D2320823208epcas2p3l;
-        Fri,  3 Jun 2022 04:33:53 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20220603043353epsmtrp1e940120083defcd3461af79e2a692608~1Ai2vhMYV0429804298epsmtrp1B;
-        Fri,  3 Jun 2022 04:33:53 +0000 (GMT)
-X-AuditID: b6c32a47-589ff7000000272c-c9-62998f321968
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        D6.F1.11276.13F89926; Fri,  3 Jun 2022 13:33:53 +0900 (KST)
-Received: from KORCO082417 (unknown [10.229.8.121]) by epsmtip2.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20220603043353epsmtip2a7f902cfd44ff37a1147ccc4c107d60c~1Ai2fAyxR2191321913epsmtip2V;
-        Fri,  3 Jun 2022 04:33:53 +0000 (GMT)
-From:   "Chanho Park" <chanho61.park@samsung.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-        "'Rob Herring'" <robh+dt@kernel.org>,
-        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>,
-        "'Alim Akhtar'" <alim.akhtar@samsung.com>,
-        "'Tomasz Figa'" <tomasz.figa@gmail.com>,
-        "'Sylwester Nawrocki'" <s.nawrocki@samsung.com>,
-        "'Linus Walleij'" <linus.walleij@linaro.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-samsung-soc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>
-In-Reply-To: <20220601152720.232383-1-krzysztof.kozlowski@linaro.org>
-Subject: RE: [PATCH v2 0/7] pinctrl/arm: dt-bindings: deprecate header with
- register constants
-Date:   Fri, 3 Jun 2022 13:33:53 +0900
-Message-ID: <000501d87703$211ff7a0$635fe6e0$@samsung.com>
+        with ESMTP id S231318AbiFCEwX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 00:52:23 -0400
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2060.outbound.protection.outlook.com [40.107.237.60])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF0325FE6;
+        Thu,  2 Jun 2022 21:52:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fXE7acPOVuk5UASA7pAJUqM8fKuAXCxU5sV8AhIjz1kgRdL1EwT66FUIQ1GWnmOEbSV3Xu+JED00EfKF8Q0lsCkLS5aInF72sKL1g8IJWr/s8Rn3QpJtVzZuZV2Nr5hXxjCYf+4MpeX1VE6mHm25fxvqfp42OatydmkMASvnUR5q188axJ3Gk2QNRc3oUXVAXFkZcf7H8UB+EbUpjVnku81k084oT3Ak3f/1qiPvwAWJIC1XsMx8pPDrFSy7r9woVYcQWufcDhRbbx7OcCwrivFL04cZTmzddoe69hgi9atUg24ji3JTfk3PdRMNu0RK1jwJ4fI+5tcb3Um3Jpfmcw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lfUvMhtO0l/xKs8aLnolKCumRTYenWoEJhUY0YQCh0Y=;
+ b=lY3iH8u8K9xQE6k7OHQPUEx+3SU4UFNb8XPZl7J5cOoikKt7XqM0tajyaCVCrVcqKaa4qy0FrAGBbCOM4IpED32kIMEAmPcyD3GHLjLKZb4c6cUgGIrIi4DHvSZbuhVd77ppvqFI19+YRTZeTH84ZxMQ6oY4TFUuzmoNIwwfzci+Kx4naRGDIYGKv3PBYU8Z9DwcHgMnIOA7/8EVQ2511cYOpz8/jZ8gnYlBkHa4cEw54agT26jz95jmQ+F6xRKYW70BdQ/h0y10TfLd8j+8P7KYcNmhMsFWM9ODzu4GgeyW7ds7G+/c0c+tZO/7qnZ3Dv7FO0YOZ+9N0ZX9KrE4PA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
+ dkim=pass header.d=xilinx.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lfUvMhtO0l/xKs8aLnolKCumRTYenWoEJhUY0YQCh0Y=;
+ b=NCZcDJxML0+notMRb6+OOjCPWjK8G7hrCL4nFtEI1S4bC0X8UDyzJeXqTpFJtpUZD7g6M0QXab4jV8c21OMdokrh1Oq1Zw9PEyMvqrEAJzvI/MYk+AtONfpevDeFYfh6LXYqx98DRupFcduEhqXI4WEuruSHsAVlGqQJvUILAP4=
+Received: from BY5PR02MB6947.namprd02.prod.outlook.com (2603:10b6:a03:23e::12)
+ by BL3PR02MB8233.namprd02.prod.outlook.com (2603:10b6:208:340::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.12; Fri, 3 Jun
+ 2022 04:52:18 +0000
+Received: from BY5PR02MB6947.namprd02.prod.outlook.com
+ ([fe80::70fe:1953:96d4:dd88]) by BY5PR02MB6947.namprd02.prod.outlook.com
+ ([fe80::70fe:1953:96d4:dd88%9]) with mapi id 15.20.5314.015; Fri, 3 Jun 2022
+ 04:52:18 +0000
+From:   Bharat Kumar Gogada <bharatku@xilinx.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        Michal Simek <michals@xilinx.com>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH v2] dt-bindings: PCI: xilinx-cpm: Fix reg property order
+Thread-Topic: [PATCH v2] dt-bindings: PCI: xilinx-cpm: Fix reg property order
+Thread-Index: AQHYaQ7VIq93UpHHX0WumtBeKR0BEK07EPGAgAIoNNA=
+Date:   Fri, 3 Jun 2022 04:52:18 +0000
+Message-ID: <BY5PR02MB69471153D6BBAC2197A7AFD6A5A19@BY5PR02MB6947.namprd02.prod.outlook.com>
+References: <20220516102217.25960-1-bharat.kumar.gogada@xilinx.com>
+ <20220601195523.GA328031-robh@kernel.org>
+In-Reply-To: <20220601195523.GA328031-robh@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=xilinx.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 27bd5677-4281-43cd-39ab-08da451cd688
+x-ms-traffictypediagnostic: BL3PR02MB8233:EE_
+x-microsoft-antispam-prvs: <BL3PR02MB8233CB0A81E5B3B1BF81E68DA5A19@BL3PR02MB8233.namprd02.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: P0yMd6wqP9UyZWDuksVDwMC8KQVrRmygdrjqB9NjJSf7KuAWbcz35glWuFjClVZ+/pj6M8miJlETFhknDeBeLh9acpKdvPkdTUIMCr8HxiNhYUzW4d57duTmfgu8n19Sh6aCKZ+Js/322nWhREZOOIEvaENIvrxhMzSsz5d2wRQNC9gzNQB8tUTjIl7Ga/iOutSxu+fI3riiIfceRD3JDGsqEwC004/lnocbtbrH2r0s2jRxvSntvbNhAPhI77BXUART98QfTRnVrf2Pj0WrOU8zVlySnUuhAu8ZdGgcnid65jvJyMHEV6uPugFULvsZUWHHrVSr/iXrADpS0/QaBLKd8EiAE3uzG/oidHC2Ee/vz1BtiZ0W+63NWOJ74LGr1IehPZtqVL63dXpHTjNTAHyeaWOPYwq6yjGjnQgBvZvKWwSuBs+3RzM2jQvX87Q8CHa5Pz1BLudeVEsFN4J244bqNxhhMPrclFrVvuV2wntkfzk8YBSMXDXazkkMG+XFx3xaQiyZndDkmqmRvUzCZifrYNEtD2sOnUuNwRLWsHKeo2Z7bb/3ucBXnBu7DT3EquPoRPKh9jDPyzX++m6jHldSPrcciMFo0WtCZdHI8BYWyvxjuEn0sMf5QfKlUpTuryQd2u/1oP2jT/+GhdF6cYibm8D0P2/fVfMdImB4H/pBribXp94n57tsvCcRBDoHKrUPx6t2MavzZ7P+vRxwFg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR02MB6947.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(508600001)(186003)(66446008)(71200400001)(7696005)(316002)(55016003)(26005)(6506007)(6916009)(9686003)(54906003)(66946007)(76116006)(4326008)(8676002)(86362001)(64756008)(66556008)(66476007)(2906002)(38100700002)(5660300002)(8936002)(83380400001)(122000001)(33656002)(52536014)(38070700005)(4744005);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?fy1PaYKvEDHjUT8+PxisGZd1igFKPweaE8GPjgEoC5G7Tem6d+3m1SCT26EL?=
+ =?us-ascii?Q?4ApIarN5qBddOJB78veQ85INmScaM05RWWt8OM5NIY7AkUGhGZHYeqjwC1kN?=
+ =?us-ascii?Q?ufPn067BkyNxOLWuwYretUPpYJTBmSOLSyJXy+NNsWiGbOFw2NuArRIp8QdF?=
+ =?us-ascii?Q?2q8BAZOx2jwMh1+e0VM6sZGqPMdN/ocpXc8SaL8oRgI9zAIn7OI/H+9iQCW2?=
+ =?us-ascii?Q?qtbpHZLPSnC8BUCSbeziqY1DiwS0WYsR2+5GZvODRUtKX0mV3MfnXI1aoGJ5?=
+ =?us-ascii?Q?6Z5JGxQFGa8V6Oo3SHsNhgKKgLOX5G7pgV5jZTnQ9IRkXE49GV25CBh1vUh7?=
+ =?us-ascii?Q?2KKdx8F4kVyl2W5GSq4OYdO50/7iL0DVkFir5dL1mVVmVr9d9uf2lphLVWsD?=
+ =?us-ascii?Q?X8C8LcYmxNH/M9AoUeMqkv4tT4xCF9UmQq2NSX6gPR7BqyAUK2p/3fRooj7t?=
+ =?us-ascii?Q?f/3CuHtrpidKnKnSYobidVxY0JSo/jg4I37NV0TUfVgCWsMXnGamJpnIrd42?=
+ =?us-ascii?Q?bdKPtAiuPb4Vd0xapqdOeLmz9erTIbbrBtjKEGFy4GArUozh926TK0zvs2Un?=
+ =?us-ascii?Q?czsK2wvLFnZjrU2E1YzxO11m9aHN7u4wv5m4kGL39K7nRQbXbQJJ8BZKXbyl?=
+ =?us-ascii?Q?9E4syJ+G+EPdorD14EvNKU5bBIIQHJELKRwhYGpOw0o8+YBo/yPUyHOthnzh?=
+ =?us-ascii?Q?UfBE5/MUzyLkhAAEap42uy5glYWuP6cf/ry012LC7iq51KaK27E3sLgz9GoS?=
+ =?us-ascii?Q?VB1hwwYzXENVXwslez079RLqB1U6Jz3U9ggf+hBrzqOczGUA+axrk1LhofeM?=
+ =?us-ascii?Q?RhKV1rmMmKKGFUsl2E+HSa9vS1vLo3+ZZSLxNgu2733siDEhushzHAWMKgjJ?=
+ =?us-ascii?Q?wleYD+ZfJ+vmmzSml9SES602Sd8t/UN11c07anw6v+2VT1/aZGPeXbBsJ4Fg?=
+ =?us-ascii?Q?DEqOPm567w7jSuzxfeEFbdYbDHaLri1qZi5M0aiJA0kHnzZggljGCalGPsET?=
+ =?us-ascii?Q?8v2dvxV1RtcZqs74M0Yzt7Lx9CkVARARbNSmxUIE8FXpws9cCojC5SlkqTAM?=
+ =?us-ascii?Q?kukNxOgIQHO77Mauq250WCa0QHW5hU5zoY65jWbkRC9t27mx0+O0R5V8p9MS?=
+ =?us-ascii?Q?skV/IDVJVGhbeKIjZpTjjoWkHiBJVOp0tC1PO81c2VTrcJCoVKLnzVuHmak3?=
+ =?us-ascii?Q?T1Br1Gzpq0SjFYkxm4dUDXJTGtQ42m2lOoyegOBw3+9Hz7Je4XcmhOupe8Dn?=
+ =?us-ascii?Q?07vsiwbiO7zcrZc989re757qZBVB0uc6FKCd2UwlbKBJyF5AtpZW0WGNEdR7?=
+ =?us-ascii?Q?GlicyDQvF2/yNImYjuPfskmQ3T5EHV87gsLuDXHSTdbNPu2NA5gsnIkBfNfE?=
+ =?us-ascii?Q?ihlc/qkZuiGHOg0bvvXqWuOYLPCE7YrGzKNjsbLFylRXE+Jp1yGh5IfMNXOf?=
+ =?us-ascii?Q?5oIBTN/9+7mXliN7j7wtSA1O9KSILoLNBnhAMe0QES7A4XM9nz2wwHfpl1Ch?=
+ =?us-ascii?Q?Mir59HsuuoopzwOiF3IxAmo9t+zjrwjqF2gCHW+jeooU0OL9K5QKKEcxGMdo?=
+ =?us-ascii?Q?IhWGm+RkP+mg8K6uNFGcDw2VxA7vFCZg/HiwhJT9j+qkZ66cBjHEz3YcAR1Q?=
+ =?us-ascii?Q?4NpuXLvHv3Hr6HJtpihToflF14fIYVb95c5eOCtR9z853Udwz+vHh0CYLMUh?=
+ =?us-ascii?Q?rMDlMDj+APIRZD6Yc80+AcasJ/ppJE8T2cuZVUfYbQAEUon82NVyUFiknGxM?=
+ =?us-ascii?Q?+p5v46lKoA=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQIWHmU798Y7haEPVJB1jko1Mvp8lAHBvrEtrLO6ubA=
-Content-Language: ko
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrCJsWRmVeSWpSXmKPExsWy7bCmua5R/8wkgz3vZCwezNvGZjH/yDlW
-        i74XD5kt9r7eym4x5c9yJotNj6+xWmye/4fR4vKuOWwWM87vY7Jo3XuE3eLwm3ZWi1W7/jA6
-        8HjsnHWX3WPTqk42jzvX9rB5bF5S79G3ZRWjx+dNcgFsUdk2GamJKalFCql5yfkpmXnptkre
-        wfHO8aZmBoa6hpYW5koKeYm5qbZKLj4Bum6ZOUA3KimUJeaUAoUCEouLlfTtbIryS0tSFTLy
-        i0tslVILUnIKzAv0ihNzi0vz0vXyUkusDA0MjEyBChOyM/pmrGAvOM1a8XjqJ+YGxr0sXYyc
-        HBICJhLXdq5i62Lk4hAS2MEocejOBUYI5xOjxOS136Ay3xglep/dYoVpubBgJTNEYi9Q1bEX
-        LBDOC0aJn2uXMYFUsQnoS7zs2AbWISLQySLxq98FxOYUcJW4e3g3O4gtLJAgsfHiSrB6FgEV
-        iQNXNzOC2LwClhKTzxxhh7AFJU7OfAJ2LLOAvMT2t3OYIa5QkPj5dBnUfCuJ7gtbmSFqRCRm
-        d7aBXSchsIND4vL0s0BFHECOi8SWHbUQvcISr45vYYewpSRe9rdB2cUSS2d9YoLobWCUuLzt
-        FxtEwlhi1rN2RpA5zAKaEut36UOMVJY4cgvqND6JjsN/2SHCvBIdbUIQjeoSB7ZPhwa1rET3
-        nM/QMPSQeHHvPPMERsVZSJ6cheTJWUiemYWwdwEjyypGsdSC4tz01GKjAmN4ZCfn525iBCdf
-        LfcdjDPeftA7xMjEwXiIUYKDWUmEt2TX1CQh3pTEyqrUovz4otKc1OJDjKbAYJ/ILCWanA9M
-        /3kl8YYmlgYmZmaG5kamBuZK4rxeKRsShQTSE0tSs1NTC1KLYPqYODilGpjK/rK4n7xnf0e4
-        5fZz9XM6Hcc4G+7fFJNKTeExXXJjtez/Facbq8NPpTyZ8u3LiRMfPZuOa+qceXZVSpGNJ8zU
-        WLJzqv9Z+asTeW82zuY2cBS3nuZa3tJ4sOz9C+spTP8t55w+w+Aj2h4VFln8R/Hc17d/zOfF
-        XPqtVhc5L5xvqmHCCYnuVX+K9DYmXeBgXWB7cE3NLKfyqrwfvza1WNdEq6y6G9bLl2H//XFE
-        /EVphxsOj87I7xac+fJCnuumJTOzSvZPPRDFl/Buntwam5ylBhbZ80JqM7fdtT33v+ax4+N7
-        vv12VS3rHwjXJ1bejd78sEP0z4uaxfzMr08EVtfLL7gqUNhxsi1R9EWx3zwlluKMREMt5qLi
-        RAB4195pRwQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprEIsWRmVeSWpSXmKPExsWy7bCSvK5h/8wkg+kNfBYP5m1js5h/5Byr
-        Rd+Lh8wWe19vZbeY8mc5k8Wmx9dYLTbP/8NocXnXHDaLGef3MVm07j3CbnH4TTurxapdfxgd
-        eDx2zrrL7rFpVSebx51re9g8Ni+p9+jbsorR4/MmuQC2KC6blNSczLLUIn27BK6Mvhkr2AtO
-        s1Y8nvqJuYFxL0sXIyeHhICJxIUFK5lBbCGB3YwSLzZFQsRlJZ6928EOYQtL3G85wtrFyAVU
-        84xR4uTRmUwgCTYBfYmXHdtYQWwRgYksEldXJEIUTWOUWPDpFVgRp4CrxN3Du8EmCQvESZyY
-        dpQNxGYRUJE4cHUzI4jNK2ApMfnMEXYIW1Di5MwnQNdxcDAL6Em0bQQrYRaQl9j+dg4zxEEK
-        Ej+fLoPaayXRfWErM0SNiMTszjbmCYxCs5BMmoUwaRaSSbOQdCxgZFnFKJlaUJybnltsWGCY
-        l1quV5yYW1yal66XnJ+7iREcbVqaOxi3r/qgd4iRiYPxEKMEB7OSCG/JrqlJQrwpiZVVqUX5
-        8UWlOanFhxilOViUxHkvdJ2MFxJITyxJzU5NLUgtgskycXBKNTDNsy7ctSyU5ei60/Wm2scn
-        21bVWO79rnYtTmrTWh97LRkr5xhmMf7J3pc7/89ra3gn4XPU9uaOV2EBLNpTte0/8rLeEVXz
-        vHKQXcRYL/jUlPK7Gz4lX02b8k7629rwcybMHnwbjn2Mv3PhcuAUv1fp/GIsbs3pstmyXpvr
-        le5uXh8rPl3O8stpOSfDAmG1A1a6x2QDMiWeJlZyHdhzqvSu9b+X70/sUU7XFN4lWfS958gS
-        nVlhaTt2/Xi5STEtNvTq6+hPe9ZOzrv3/k2V5Vzp3Sq7FZTvzs9o01wsd89upcRLH5uTm/o3
-        rj0UU3Cr4ZZim3HGXqXVO1X++rNWMPa4tnUn7o5dzjWBwWDW5TolluKMREMt5qLiRAAA2Qa6
-        JQMAAA==
-X-CMS-MailID: 20220603043353epcas2p383b491b9e919f77376b029410a6413c8
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220601152757epcas2p30927b9924e9371cdfa79986c6efb6eaf
-References: <CGME20220601152757epcas2p30927b9924e9371cdfa79986c6efb6eaf@epcas2p3.samsung.com>
-        <20220601152720.232383-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR02MB6947.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 27bd5677-4281-43cd-39ab-08da451cd688
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Jun 2022 04:52:18.6374
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: EfGyxO8P3HKzacgWSmIXBa/46cWShd1Mucnokqs32RmROJeQyGKT0YOTIXNFIsD3ls7+ZFb8cTUU3dfEWSmBcw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR02MB8233
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -127,22 +124,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Krzysztof Kozlowski (7):
->   ARM: dts: s3c2410: use local header for pinctrl register values
->   ARM: dts: s3c64xx: use local header for pinctrl register values
->   ARM: dts: s5pv210: use local header for pinctrl register values
->   ARM: dts: exynos: use local header for pinctrl register values
->   arm64: dts: exynos: use local header for pinctrl register values
->   arm64: dts: fsd: use local header for pinctrl register values
->   dt-bindings: pinctrl: deprecate header with register constants
+> Subject: Re: [PATCH v2] dt-bindings: PCI: xilinx-cpm: Fix reg property or=
+der
+>=20
+> On Mon, 16 May 2022 15:52:17 +0530, Bharat Kumar Gogada wrote:
+> > All existing vendor DTSes are using "cpm_slcr" reg followed by "cfg" re=
+g.
+> >
+> > This order is also suggested by node name which is pcie@fca10000 which
+> > suggests that cpm_slcr register should be the first.
+> >
+> > Driver itself is using devm_platform_ioremap_resource_byname() for
+> > both names that's why there is no functional change even on
+> > description which are using current order.
+> >
+> > But still prefer to change order to cover currently used description.
+> > Fixes: e22fadb1d014 ("PCI: xilinx-cpm: Add YAML schemas for Versal CPM
+> > Root Port")
+> >
+> > Signed-off-by: Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>
+> > ---
+> >  .../devicetree/bindings/pci/xilinx-versal-cpm.yaml     | 10 +++++-----
+> >  1 file changed, 5 insertions(+), 5 deletions(-)
+> >
+>=20
+> Applied, thanks!
 
-nit: Put the comment closure to the next line.
-
-+ * Author: Krzysztof Kozlowski <krzk@kernel.org>  */
-
-Otherwise,
-Reviewed-by: Chanho Park <chanho61.park@samsung.com>
-
-Best Regards,
-Chanho Park
-
+Thanks Rob.
