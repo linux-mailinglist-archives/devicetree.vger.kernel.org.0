@@ -2,50 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB21553C966
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 13:36:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E26A653C9B8
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 14:13:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244064AbiFCLec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jun 2022 07:34:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33778 "EHLO
+        id S241716AbiFCMND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jun 2022 08:13:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232699AbiFCLeb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 07:34:31 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD14E1D302
-        for <devicetree@vger.kernel.org>; Fri,  3 Jun 2022 04:34:30 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1nx5ZS-00059D-8m; Fri, 03 Jun 2022 13:34:26 +0200
-Message-ID: <213e966d-ac69-b5be-52ad-4ab9f616565e@pengutronix.de>
-Date:   Fri, 3 Jun 2022 13:34:22 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-Subject: Re: [PATCH 2/2] ARM: dts: stm32: correct vcc-supply for eeprom on
- stm32mp15xx-osd32
-To:     =?UTF-8?Q?Leonard_G=c3=b6hrs?= <l.goehrs@pengutronix.de>,
+        with ESMTP id S240041AbiFCMNC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 08:13:02 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE731289A1;
+        Fri,  3 Jun 2022 05:13:01 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id u12so15546723eja.8;
+        Fri, 03 Jun 2022 05:13:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=oSn+qALKHYEwcZ0UGKZ6LRYOpOj2VTnTzs3AikaDunE=;
+        b=nc90WpIZeQWxyFlgnF0IWWIbCOc0FS3/BB0jofR8MQaqRMOwFBCdc3IgIXIiWwlHrc
+         zKp7KQV5Up0fo7Jmd+dxxVRMEKmSedM+va8lgto82BageliJC960ZpGLJD4JIJn20Sfg
+         7/LuHmbfiyW7uHv5B0dnBN7M/uzxdxUa5057JDlWT1iFu0mZ/XlYBHojhkdAA9GNdAST
+         msuLAHghaxNxGdT2lbzfw37fY0rzCnJbZ+DQ34KWnl8XUeH09ZUQTXOogFWitRYMZrDQ
+         xPKC4XbHfP9uNk88bJURrp+zwvpltqD/Sw9lgCnrL2tpJIYaF8mG1ZRhxNvE5K/qDNTT
+         zApQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=oSn+qALKHYEwcZ0UGKZ6LRYOpOj2VTnTzs3AikaDunE=;
+        b=6DjFAV9TBJWBlLrvIBjKMQldWO+ySzeaDIoTbDFsDBG+4XS9aZ2/9WeSzLYsFfrwXo
+         1OFdgGgrlcMMVRFGsxqs+ja1vm+40mVn9oN5ltlkVTyQs/iV1+LTVpovFeMFmXFmi+oO
+         jcbUD2dBIJa5yrtBWoFeSapquG6zDfVZ4GJQmiv8krVIgayyyuGGChxen6q15yTDx3Xl
+         TP3oNlFTIYkbCxxi0lMg1ZfRnVU74CSrLpm1M7gBpb6YGKD/lkQtmDdO2ZCd2BElMvnH
+         DzH7L0uOF+uZOnTRLcxQF/7+ZUswEKjT4mPazoqB4uK/xsUiiCwXDV8JtLkgqmsYdPds
+         rVGg==
+X-Gm-Message-State: AOAM533Ds6W83/NmGxmlr3W2CkPt8S3yCd1snwTIz12jaam/kY3Wn53/
+        kHzG/8l+42kAnjNgObOVcQA=
+X-Google-Smtp-Source: ABdhPJyeK1lbMDJvtp7U5Ikzsw9E39URbnoaLcUVfQD3XrffaHAgOPByB0YZG1+srSBvYaAwZ0KZKQ==
+X-Received: by 2002:a17:907:62a6:b0:6ef:8118:d3e2 with SMTP id nd38-20020a17090762a600b006ef8118d3e2mr8211127ejc.605.1654258380357;
+        Fri, 03 Jun 2022 05:13:00 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP ([188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id j3-20020a170906050300b006fed99e1143sm2742144eja.61.2022.06.03.05.12.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Jun 2022 05:13:00 -0700 (PDT)
+Date:   Fri, 3 Jun 2022 14:12:58 +0200
+From:   Stanislav Jakubek <stano.jakubek@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Manivannan Sadhasivam <mani@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@pengutronix.de, linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-References: <20220603094422.2112746-1-l.goehrs@pengutronix.de>
- <20220603094422.2112746-2-l.goehrs@pengutronix.de>
-Content-Language: en-US
-In-Reply-To: <20220603094422.2112746-2-l.goehrs@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        linux-arm-kernel@lists.infradead.org,
+        linux-unisoc@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: interrupt-controller: Convert
+ rda,8810pl-intc to YAML
+Message-ID: <20220603121258.GA4919@standask-GA-A55M-S2HP>
+References: <20220527125633.GA5145@standask-GA-A55M-S2HP>
+ <4bb8e18a-11d8-c617-7952-8887aa815301@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4bb8e18a-11d8-c617-7952-8887aa815301@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -53,55 +77,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03.06.22 11:44, Leonard Göhrs wrote:
-> According to the OSD32MP1 Power System overview[1] the EEPROM is connected to
-> the VDD line and not to some single-purpose fixed regulator.
-> Set the EEPROM supply according to the diagram to eliminate this parent-less
-> regulator.
+On Sun, May 29, 2022 at 04:05:12PM +0200, Krzysztof Kozlowski wrote:
+> On 27/05/2022 14:56, Stanislav Jakubek wrote:
+> > Convert RDA Micro interrupt controller bindings to DT schema format.
+> > 
+> > Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+> > ---
+> > 
+> > Didn't know what to do about the interrupt sources listed in the original txt file,
+> > so I've split them off into a separate file. Hope that's okay.
 > 
-> [1]: https://octavosystems.com/app_notes/osd32mp1-power-system-overview/#connections
-> 
-> Signed-off-by: Leonard Göhrs <l.goehrs@pengutronix.de>
+> Interrupt sources are not kept in header files.
 
-Acked-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Ok, should I move them somewhere else or is it fine to drop them?
+
+> Additionally are you
+> sure this is a property of the interrupt controller, not a property of
+> SoC itself? I would assume that one interrupt controller implementation
+> (e.g. GIC) can be used in different SoCs and the sources are every time
+> different because they depend on the actual wiring...
+> 
+
+I honestly have no idea, I just wanted to make some YAML conversions.
+Maybe Mani could answer this?
+
+> 
+> Best regards,
+> Krzysztof
+
 
 Thanks,
-Ahmad
-
-> ---
->  arch/arm/boot/dts/stm32mp15xx-osd32.dtsi | 8 +-------
->  1 file changed, 1 insertion(+), 7 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi b/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi
-> index e997c4953fd1..935b7084b5a2 100644
-> --- a/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi
-> @@ -50,12 +50,6 @@ retram: retram@38000000 {
->  			no-map;
->  		};
->  	};
-> -
-> -	reg_sip_eeprom: regulator_eeprom {
-> -		compatible = "regulator-fixed";
-> -		regulator-name = "sip_eeprom";
-> -		regulator-always-on;
-> -	};
->  };
->  
->  &i2c4 {
-> @@ -204,7 +198,7 @@ pmic_watchdog: watchdog {
->  
->  	sip_eeprom: eeprom@50 {
->  		compatible = "atmel,24c32";
-> -		vcc-supply = <&reg_sip_eeprom>;
-> +		vcc-supply = <&vdd>;
->  		reg = <0x50>;
->  	};
->  };
-
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Stanislav
