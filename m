@@ -2,84 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A314B53C65F
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 09:37:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D01F53C665
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 09:38:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242583AbiFCHhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jun 2022 03:37:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35060 "EHLO
+        id S242605AbiFCHiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jun 2022 03:38:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229684AbiFCHhV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 03:37:21 -0400
-Received: from gandalf.ozlabs.org (mail.ozlabs.org [IPv6:2404:9400:2221:ea00::3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94CEFDFCF;
-        Fri,  3 Jun 2022 00:37:18 -0700 (PDT)
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
-        by gandalf.ozlabs.org (Postfix) with ESMTP id 4LDvpy6wf4z4xZD;
-        Fri,  3 Jun 2022 17:37:14 +1000 (AEST)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.ozlabs.org (Postfix) with ESMTPSA id 4LDvpt5Mscz4xDK;
-        Fri,  3 Jun 2022 17:37:10 +1000 (AEST)
-From:   =?UTF-8?q?C=C3=A9dric=20Le=20Goater?= <clg@kaod.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-aspeed@lists.ozlabs.org, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?q?C=C3=A9dric=20Le=20Goater?= <clg@kaod.org>,
-        Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
-Subject: [PATCH] ARM: dts: aspeed: ast2600-evb: Enable Quad SPI RX tranfers
-Date:   Fri,  3 Jun 2022 09:37:05 +0200
-Message-Id: <20220603073705.1624351-1-clg@kaod.org>
-X-Mailer: git-send-email 2.35.3
+        with ESMTP id S242555AbiFCHiJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 03:38:09 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF67E22515
+        for <devicetree@vger.kernel.org>; Fri,  3 Jun 2022 00:38:07 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id kq6so1319297ejb.11
+        for <devicetree@vger.kernel.org>; Fri, 03 Jun 2022 00:38:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=NozlW8gxt+DxbkdUBPQ7v+hGLg98dYyflLdq2vKGNNQ=;
+        b=MBwq8iQT08gOCa9rJ8qFqI4BdOqhD9gxgoHyItuiBDjc80GOV0n/0Hvh5h9ccoL8XF
+         xXfwjrnjyWzaZ+2Cij/QNwGFjC976k0n2j6+2Qi+WpzIcdXcxw5dO6QrYsKv0N04qOwf
+         FiNjb652e0Sz+XA1NbcH2bbuvdW+oNrJttxI4dj/jo5uK2smwDutaZFG1n+EZIjxCIei
+         Q9A0TfF42ZXLGFbThtMyAXR5mK7+7FriG/+bgpXU65UpD4vdqxNAk96DMonmFn9TjnVv
+         sOeKcfFcFl/gFahHFD+Q5SBYtq3cz0QoCDEoL8mXm1EoazbRvGnVPMnaCq930hlfTLAx
+         pyqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=NozlW8gxt+DxbkdUBPQ7v+hGLg98dYyflLdq2vKGNNQ=;
+        b=T1832OVYm18I3H3H529GRHG35wwRUEDEGslyNbX6chGTn7cjkNu7Yl6uZSYaKGKpcv
+         QRZOnoVHdAa83vi/zULTVOQkKAl9YFTGn4cyruZ/XwMyDQw9EwufmOmbBv8XwlpawGjT
+         zPGPph6F50fC0VWC3usqAt/8ikO9G6vWQF1OXGhfNn3dStFgzxOZi9+IuMrU0NV7CNHI
+         RisbD00aPL7IKYocfiQnQi/Vh8Vo8dG1FKYmV30gEOkbTzYDtmCw2KlzaFp53rHb5OCV
+         P8eJ1ldL+r8IWNibg/ooPaKkcXDKDCN8H9zHwdJ1+yCgYkqK2spErL1PXFTaxTz/c17q
+         w/7g==
+X-Gm-Message-State: AOAM5322FFJsxQKGDoFzbWP8kHmLoqL76J9V/tOITedLTSaMWMDAB9jZ
+        fd8kr/+zhCCDXrP59kysGOYfQQ==
+X-Google-Smtp-Source: ABdhPJwmUVILxx3fkvi4+hqA/dlgtcQ1M8rziX6YVtWAy/aURal3rjhnY6VgUCnsqW4bsZbXS+ErRw==
+X-Received: by 2002:a17:907:7b95:b0:6f4:ff03:981a with SMTP id ne21-20020a1709077b9500b006f4ff03981amr7455667ejc.653.1654241886274;
+        Fri, 03 Jun 2022 00:38:06 -0700 (PDT)
+Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id bs13-20020a056402304d00b0042bd6f745fasm3562059edb.92.2022.06.03.00.38.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Jun 2022 00:38:05 -0700 (PDT)
+Message-ID: <78714614-bb6a-761d-3a36-cbd758dcec4c@linaro.org>
+Date:   Fri, 3 Jun 2022 09:38:03 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 5/5] arm64: dts: exynos: Add internal eMMC support to
+ jackpotlte
+Content-Language: en-US
+To:     David Virag <virag.david003@gmail.com>
+Cc:     phone-devel@vger.kernel.org,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220601233743.56317-1-virag.david003@gmail.com>
+ <20220601233743.56317-6-virag.david003@gmail.com>
+ <b3681990-e358-8e1d-93fe-b72c099902e3@linaro.org>
+ <f40aca00a4418c889395d2dab65f85d24e8662c6.camel@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <f40aca00a4418c889395d2dab65f85d24e8662c6.camel@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that the pinctrl definitions of the ast2600 SoC have been fixed,
-see commit 925fbe1f7eb6 ("dt-bindings: pinctrl: aspeed-g6: add FWQSPI
-function/group"), it is safe to activate QSPI on the ast2600 evb.
+On 03/06/2022 00:18, David Virag wrote:
+> On Thu, 2022-06-02 at 14:01 +0200, Krzysztof Kozlowski wrote:
+>> On 02/06/2022 01:37, David Virag wrote:
+>>> Add the nodes relevant to provide clocks for Exynos7885 eMMC and to
+>>> support eMMC. eMMC is the internal storage used in the Samsung
+>>> Galaxy A8
+>>> (2018) (jackpotlte), and all other known devices using the
+>>> Exynos7885
+>>> SoC.
+>>>
+>>> Signed-off-by: David Virag <virag.david003@gmail.com>
+>>> ---
+>>>  .../boot/dts/exynos/exynos7885-jackpotlte.dts | 20 ++++++++++++
+>>>  arch/arm64/boot/dts/exynos/exynos7885.dtsi    | 32
+>>> +++++++++++++++++++
+>>>  2 files changed, 52 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
+>>> b/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
+>>> index 4cf9aa25f618..5db9a81ac7bb 100644
+>>> --- a/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
+>>> +++ b/arch/arm64/boot/dts/exynos/exynos7885-jackpotlte.dts
+>>> @@ -60,6 +60,26 @@ power-key {
+>>>         };
+>>>  };
+>>>  
+>>> +&mmc_0 {
+>>> +       status = "okay";
+>>> +       mmc-hs200-1_8v;
+>>> +       mmc-hs400-1_8v;
+>>> +       cap-mmc-highspeed;
+>>> +       non-removable;
+>>> +       mmc-hs400-enhanced-strobe;
+>>> +       card-detect-delay = <200>;
+>>> +       clock-frequency = <800000000>;
+>>
+>> Is this real property for MMC? Neither mmc nor DW MSHC bindings
+>> mention it.
+> 
+> It is, but I don't remember trying without it. Seems like it is not
+> documented then. It is used in dw_mmc.c in the following places:
+> 
+> https://github.com/torvalds/linux/blob/master/drivers/mmc/host/dw_mmc.c#L3242-L3243
+> 
+> https://github.com/torvalds/linux/blob/master/drivers/mmc/host/dw_mmc.c#L3306-L3325
+> 
+> The Exynos850 device tree has the same property in it's mmc node. 
 
-Cc: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
-Tested-by: Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
-Signed-off-by: Cédric Le Goater <clg@kaod.org>
----
- arch/arm/boot/dts/aspeed-ast2600-evb.dts | 2 ++
- 1 file changed, 2 insertions(+)
+Indeed, it's fine then. I'll check the bindings and convert them to DT
+schema.
 
-diff --git a/arch/arm/boot/dts/aspeed-ast2600-evb.dts b/arch/arm/boot/dts/aspeed-ast2600-evb.dts
-index 5a6063bd4508..87a79922ff78 100644
---- a/arch/arm/boot/dts/aspeed-ast2600-evb.dts
-+++ b/arch/arm/boot/dts/aspeed-ast2600-evb.dts
-@@ -182,6 +182,7 @@ flash@0 {
- 		status = "okay";
- 		m25p,fast-read;
- 		label = "bmc";
-+		spi-rx-bus-width = <4>;
- 		spi-max-frequency = <50000000>;
- #include "openbmc-flash-layout-64.dtsi"
- 	};
-@@ -196,6 +197,7 @@ flash@0 {
- 		status = "okay";
- 		m25p,fast-read;
- 		label = "pnor";
-+		spi-rx-bus-width = <4>;
- 		spi-max-frequency = <100000000>;
- 	};
- };
--- 
-2.35.3
 
+Best regards,
+Krzysztof
