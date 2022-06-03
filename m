@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D33753D370
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jun 2022 00:01:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5228153D374
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jun 2022 00:03:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348035AbiFCWBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jun 2022 18:01:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48688 "EHLO
+        id S1349021AbiFCWDz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jun 2022 18:03:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231860AbiFCWBO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 18:01:14 -0400
-Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 642BA45529
-        for <devicetree@vger.kernel.org>; Fri,  3 Jun 2022 15:01:11 -0700 (PDT)
-Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-2f83983782fso95339647b3.6
-        for <devicetree@vger.kernel.org>; Fri, 03 Jun 2022 15:01:11 -0700 (PDT)
+        with ESMTP id S231868AbiFCWDz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 18:03:55 -0400
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6505E2FE42
+        for <devicetree@vger.kernel.org>; Fri,  3 Jun 2022 15:03:54 -0700 (PDT)
+Received: by mail-yb1-xb2c.google.com with SMTP id r82so15987938ybc.13
+        for <devicetree@vger.kernel.org>; Fri, 03 Jun 2022 15:03:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=eTD0MDLxzeNH/wZaowzR2+0RiK3EJbyXvBxqEdkLvtM=;
-        b=xhJzcH7d5QTXkQNOqXLSstuJfS4pLxYPzVq2duSk1AJq1r+TfbcyB/GAypgPpOtA7r
-         /ddKS4Qxdxi7jQbGQOE4x/Gn7UCLAaGsT6ec6lvEwBpY7WMGcsLjQp7T/vT/ELWlD44w
-         k93B+XASZcopMTvx14Q0F0mqGkCO2m/Wq0pgvaKjPDaJ0vGi++QMQqPx+gl1Aj15z0D2
-         5FUafMzPdam2A9cyN9zshFuvGqVZG7E4wKVxZqRZNBiqVe3a91N6F3lKYwxt3mOw+PbO
-         WHELqcOA7kZquMmnjYuil/8EhCFa6BURLXfjAPMx+AKqhYkMVxhM0p4btk8wO6qvyny/
-         b2vg==
+        bh=Jd93PkL+Qw1fhkDXP6mqsI96OC1Y6znysjyGQstvSpw=;
+        b=QcSjJ0fKpBx9wmlN43qTWPHjGeaWrwjTmVu3r29kEN5DlMFBCEgDs+d3j1WRqQ+wCG
+         4yePdAc5kwY/Wn8dDZj/UlGeaf8zpcUpv8YJswuTY55j+2EXmEQph3mw4MCI2jXw4Nnu
+         03kLw4i5PMFTn9ZJ/jkb2+ntFap2VGkzmNlP7DOkFpW1Wzfujf07FMIsSkp/dEn6BxEg
+         YPo5y0RXm/voY+Bpz3+SPcFD5gC0Sol43yDtFv2KwL8MH6AxnDzAKo83LmeRigtf8yda
+         mqoKls3FJ73AgBsBl3GY5ndk9kkwshcdXjsCDUoS4nC4rAW8w/usc3ht9k/b0Q/kMS0i
+         seDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=eTD0MDLxzeNH/wZaowzR2+0RiK3EJbyXvBxqEdkLvtM=;
-        b=RYfb5jQUSu7lIxzeUSXKNPY6/Heo07s/7fhMH9YLLAJoTIL1oB6CfJreud1XqkxyhM
-         ltsVEEGBH3Y1T0GfUwq1ARedPRVaj8rVqVcqdqsMgj6cBJIn5jW27/x+/t18kwrXLUBz
-         nLqQn9bJSlqjnQSfsIWkreD9ku50PluNWdY/U0wcvikVTIZm3kAzxaawD38DWSuL9Hud
-         6uvRCF58JeEIaoP0I9+9gYnu4eKV+5zPJOpFRknG8/MOnJEBCSfQooLHEZQouv4aGGBU
-         FdGj+YOPN+eVmyUlmPs95CdMGBad7WfBcmvcI9pOktH1UCScl96/Ht1fOrvJlGcgadri
-         2FYQ==
-X-Gm-Message-State: AOAM530tPHlau4Xsz2W5/7WbEJuuGDTaFrXlYH2TBcUJ6GVqMt8dROJd
-        mUsFWdc5ndfrrLO2ccM8hAn7I/id+rP/ugx7dIA89w==
-X-Google-Smtp-Source: ABdhPJygLfhw11c+DqIQfw/OzDPBUuIPK8OMfv1NYvSDNKAjndYL5Vk5Dxk796+DH0WSeJFvMkT3GUqpyQVumTKeTYo=
-X-Received: by 2002:a81:fe0b:0:b0:30c:7e9c:701 with SMTP id
- j11-20020a81fe0b000000b0030c7e9c0701mr13607442ywn.118.1654293670642; Fri, 03
- Jun 2022 15:01:10 -0700 (PDT)
+        bh=Jd93PkL+Qw1fhkDXP6mqsI96OC1Y6znysjyGQstvSpw=;
+        b=x4Nl04wZ7dQ/MG9q6+L5VtIVgDIzP0QaWbjNSqXRN9mPvf2lmYM9xfZE6rS2PJLiVS
+         8UKM7+ATnMtcnCShZ5/U2JTIlItTmFqX2jCf3JmzHW7+bQ4FDtbXrllZODLgrH4HX1He
+         +LIKve7MIrmPtHbP/FAR1bpx7fs6ZBvhJgP66RBezgX47jgZLDU5OVNLGAJADaFd67uf
+         fbIZcBGlvULjX67PHViF3xZrC6B1TIKQA0t8KQHUXKEDzu+pHsJnPO6TZS+ASfsMNhXr
+         5sYuPhIZBQIPJB0eTfdJokiw8Qi8ENemUv3zmDy3QzdtlJBgO15VkoAJl05VUqrhjxcT
+         zhmQ==
+X-Gm-Message-State: AOAM531cbC5Xi9yTc746Z43s9N+dNY8KCJzhpJkSw5uQaR27thDu+bRo
+        RS2Je4ELMqzjArSZsuQwgjt4szoJkKRw2t0qUhuT3A==
+X-Google-Smtp-Source: ABdhPJxXJ41+KeG6CWK+9/3U+HnNOWN/7rSJmXAhK3mSPBw+reVg9osrsnA5D1icZH5FxPdwOCtuJzhZ9tGvViA79wY=
+X-Received: by 2002:a25:1256:0:b0:65d:6433:7993 with SMTP id
+ 83-20020a251256000000b0065d64337993mr12835690ybs.626.1654293833687; Fri, 03
+ Jun 2022 15:03:53 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220601082410.55266-1-jo@jsfamily.in> <BY5PR02MB700952493EEB6F0E77DC8416D9DF9@BY5PR02MB7009.namprd02.prod.outlook.com>
-In-Reply-To: <BY5PR02MB700952493EEB6F0E77DC8416D9DF9@BY5PR02MB7009.namprd02.prod.outlook.com>
+References: <20220601082410.55266-1-jo@jsfamily.in> <BY5PR02MB7009B6FA7F17A3DA36DDA44CD9DF9@BY5PR02MB7009.namprd02.prod.outlook.com>
+In-Reply-To: <BY5PR02MB7009B6FA7F17A3DA36DDA44CD9DF9@BY5PR02MB7009.namprd02.prod.outlook.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sat, 4 Jun 2022 00:00:59 +0200
-Message-ID: <CACRpkdbZwYCT1joo+EdQm8OXkmKHdPPDZicsp_SmH7DYkFMVYw@mail.gmail.com>
-Subject: Re: [PATCH v4 3/4] drm/mipi-dsi: Introduce mipi_dsi_dcs_write_seq macro
+Date:   Sat, 4 Jun 2022 00:03:41 +0200
+Message-ID: <CACRpkdaZsnB3XgBen4Ws6jTrQztsdgiafEanjHakSj+T6DFpng@mail.gmail.com>
+Subject: Re: [PATCH v4 4/4] drm/panel: introduce ebbg,ft8719 panel
 To:     Joel Selvaraj <jo@jsfamily.in>
 Cc:     Thierry Reding <thierry.reding@gmail.com>,
         Sam Ravnborg <sam@ravnborg.org>,
@@ -71,7 +71,7 @@ Cc:     Thierry Reding <thierry.reding@gmail.com>,
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,13 +81,16 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Wed, Jun 1, 2022 at 10:24 AM Joel Selvaraj <jo@jsfamily.in> wrote:
 
-> A helper macro that can be used to simplify sending DCS commands.
-> It is useful in scenarios like panel initialization which can sometimes
-> involve sending lot of DCS commands.
+> Add DRM panel driver for EBBG FT8719 6.18" 2246x1080 DSI video mode
+> panel, which can be found on some Xiaomi Poco F1 phones. The panel's
+> backlight is managed through QCOM WLED driver.
 >
 > Signed-off-by: Joel Selvaraj <jo@jsfamily.in>
+> Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
 
 Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+
+Thanks for working out my suggestions!
 
 Yours,
 Linus Walleij
