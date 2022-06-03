@@ -2,118 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7338553D11C
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 20:18:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 342A153D16A
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 20:28:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237761AbiFCSQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jun 2022 14:16:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41578 "EHLO
+        id S1347078AbiFCS14 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jun 2022 14:27:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348180AbiFCSQ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 14:16:29 -0400
-Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [5.144.164.162])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C7BD633BF;
-        Fri,  3 Jun 2022 11:03:50 -0700 (PDT)
-Received: from [192.168.1.101] (abxj27.neoplus.adsl.tpnet.pl [83.9.3.27])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 7880920521;
-        Fri,  3 Jun 2022 20:03:28 +0200 (CEST)
-Message-ID: <6efeafbc-d366-bddd-faa4-4359f3a56f4a@somainline.org>
-Date:   Fri, 3 Jun 2022 20:03:27 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 1/6] iommu/qcom: Use the asid read from device-tree if
- specified
-Content-Language: en-US
-To:     Rob Clark <robdclark@gmail.com>, Will Deacon <will@kernel.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        Joerg Roedel <joro@8bytes.org>,
-        iommu@lists.linux-foundation.org,
-        Martin Botka <martin.botka@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        jamipkettunen@somainline.org, Andy Gross <agross@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>,
+        with ESMTP id S1347083AbiFCS1q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 14:27:46 -0400
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC51D5AA41;
+        Fri,  3 Jun 2022 11:10:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1654279610;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=W0zLWbkTHHDH0iI0Y3QB9pk4VW+9pPQV3k8LcemuFF4=;
+    b=pYJS6YCHpweybvsrVNZNXAsxkI5rzK4/zWclFd7weZ1Qnc/lPxo41Ty8ah4CMiEnOI
+    ZaPHFjKRNZ4oVB8CiYRc9XjC57ylnB2bYRrb6iKZsqu76UlB8bmEMFHEVs3+z34YHYl5
+    wvBtLcVMooMejLMjIGV1fW1TsinV6qGUatpYgYOaoYgvRD0rJTFI/btn0dV1AcpsCINp
+    nqhaBNya5zv3lbRF+0fAcEv5tqLowMkkC+y42Dze0EMuwnqZVT5staAMha6d8V3FxEdT
+    2AR6tBpKY5dZW5FbMgAj5aobTvtfhFCAQa48UcXu8NSx8U/HzhfAdky1u7F9FBrwwliO
+    3LiA==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLVrKw7/aY="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.45.0 AUTH)
+    with ESMTPSA id 9056edy53I6nwkU
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Fri, 3 Jun 2022 20:06:49 +0200 (CEST)
+Date:   Fri, 3 Jun 2022 20:06:39 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Alexander Martinz <amartinz@shiftphones.com>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20220527212901.29268-1-konrad.dybcio@somainline.org>
- <20220527212901.29268-2-konrad.dybcio@somainline.org>
- <20220531154631.GA25502@willie-the-truck>
- <CAF6AEGsWsHfQZnszG=NgP0BufxO-DP4LwvsAYkrz2wRhcJuOXw@mail.gmail.com>
- <20220531161910.GE25502@willie-the-truck>
- <CAF6AEGvF+5mf6jE9Xac1qR9P+-=ELLu_LzoJhUV-Dx2RYH20Ag@mail.gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <CAF6AEGvF+5mf6jE9Xac1qR9P+-=ELLu_LzoJhUV-Dx2RYH20Ag@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Caleb Connolly <caleb@connolly.tech>,
+        Dylan Van Assche <me@dylanvanassche.be>
+Subject: Re: [PATCH 2/2] ASoC: dt-bindings: nxp,tfa989x: Add tfa9890 support
+Message-ID: <YppNaL5r5EN3SUsU@gerhold.net>
+References: <20220602164504.261361-1-amartinz@shiftphones.com>
+ <20220602164504.261361-2-amartinz@shiftphones.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220602164504.261361-2-amartinz@shiftphones.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 31.05.2022 22:57, Rob Clark wrote:
-> On Tue, May 31, 2022 at 9:19 AM Will Deacon <will@kernel.org> wrote:
->>
->> On Tue, May 31, 2022 at 09:15:22AM -0700, Rob Clark wrote:
->>> On Tue, May 31, 2022 at 8:46 AM Will Deacon <will@kernel.org> wrote:
->>>>
->>>> On Fri, May 27, 2022 at 11:28:56PM +0200, Konrad Dybcio wrote:
->>>>> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
->>>>>
->>>>> As specified in this driver, the context banks are 0x1000 apart.
->>>>> Problem is that sometimes the context number (our asid) does not
->>>>> match this logic and we end up using the wrong one: this starts
->>>>> being a problem in the case that we need to send TZ commands
->>>>> to do anything on a specific context.
->>>>
->>>> I don't understand this. The ASID is a software construct, so it shouldn't
->>>> matter what we use. If it does matter, then please can you explain why? The
->>>> fact that the context banks are 0x1000 apart seems unrelated.
->>>
->>> I think the connection is that mapping from ctx bank to ASID is 1:1
->>
->> But in what sense? How is the ASID used beyond a tag in the TLB? The commit
->> message hints at "TZ commands" being a problem.
->>
->> I'm not doubting that this is needed to make the thing work, I just don't
->> understand why.
+On Thu, Jun 02, 2022 at 06:45:04PM +0200, Alexander Martinz wrote:
+> Document TFA9890 binding for tfa989x.
 > 
-> (disclaimer, it has been quite a while since I've looked at the smmu
-> setup with earlier tz, ie. things that use qcom_iommu, but from
-> memory...)
+> Signed-off-by: Alexander Martinz <amartinz@shiftphones.com>
+
+The dt-bindings patch should usually come first in the patch series.
+Anyway, no need to resend just for that IMO:
+
+Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
+
+> ---
+>  Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> We cannot actually assign the context banks ourselves, so in the dt
-> bindings the "ASID" is actually the context bank index.
-I think so.
-
-  I don't
-> remember exactly if this was a limitation of the tz interface, or
-> result of not being able to program the smmu's global registers
-> ourselves.
-
-As far as I understand, it's the latter, as changing the defaults is not allowed by the security policy on consumer devices.
-
-Qualcomm arbitrarily chose some numbers that may or may have not aligned with their usual index-is-offset-divided-by-0x1000 and hardcoded them in the BSP, and now the secure side (if required, and well, it is..) expects precisely that configuration.
-
-
-Konrad
-
+> diff --git a/Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml b/Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml
+> index b9b1dba40856..7f2e68ff6d34 100644
+> --- a/Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml
+> +++ b/Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml
+> @@ -15,6 +15,7 @@ allOf:
+>  properties:
+>    compatible:
+>      enum:
+> +      - nxp,tfa9890
+>        - nxp,tfa9895
+>        - nxp,tfa9897
+>  
+> -- 
+> 2.36.1
+> 
