@@ -2,138 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5688253CCED
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 18:09:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A600353CD13
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 18:22:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343618AbiFCQJT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jun 2022 12:09:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38894 "EHLO
+        id S234417AbiFCQWn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jun 2022 12:22:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231268AbiFCQJS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 12:09:18 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29D7E2C103;
-        Fri,  3 Jun 2022 09:09:17 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B94A2618D9;
-        Fri,  3 Jun 2022 16:09:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF3E3C385B8;
-        Fri,  3 Jun 2022 16:09:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654272556;
-        bh=9XDqZH7lKMypp0xEWeC0uCWAmpLurZw7YA9gs7/cFME=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=lOnBJhZMF960+5MB1wXCaFBswhFih5K6XyC3STZC/40lQ414CeoIq03ECPFdsOekJ
-         i3iKetKWPwMOUDMiGL4YJKYtveSRD1A7UzFol1Wvgbc+vTxpwn7hWY0pdmL9bXjMD+
-         MFl/5yCcM1ktib7s8fHzW6hGzRdYQHinjXASR7mFYSMdboKI6ZG9oPfvYEz2kXZgPL
-         IdwZobgynLNeeduuBwwAHv4gAkNTqetRbhItA5f5SXzPsg15ldXaVHFowth0MeoXSJ
-         xcwcb6G+pCNsmBj8DmDHjd5OlP8KeKtYSSGBC6Le4VT2lmu4MInto7ZwONEqIgp5Ad
-         lehsaVkAJ/e3A==
-Date:   Fri, 3 Jun 2022 11:09:13 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Wangseok Lee <wangseok.lee@samsung.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "jesper.nilsson@axis.com" <jesper.nilsson@axis.com>,
-        "lars.persson@axis.com" <lars.persson@axis.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "kw@linux.com" <kw@linux.com>,
-        "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
-        "kernel@axis.com" <kernel@axis.com>,
-        Moon-Ki Jun <moonki.jun@samsung.com>,
-        Sang Min Kim <hypmean.kim@samsung.com>,
-        Dongjin Yang <dj76.yang@samsung.com>
-Subject: Re: [PATCH v2 5/5] MAINTAINERS: Add maintainer for Axis ARTPEC-8
- PCIe PHY driver
-Message-ID: <20220603160913.GA80202@bhelgaas>
+        with ESMTP id S1343813AbiFCQWm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 12:22:42 -0400
+Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBF9122519;
+        Fri,  3 Jun 2022 09:22:41 -0700 (PDT)
+Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-e93bbb54f9so11162648fac.12;
+        Fri, 03 Jun 2022 09:22:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=MG4fB5L16PJOB6eygIdqZV5Ksttsv4vvkIROtuQ0QKg=;
+        b=joqdIXgCTJQK6rmOLq9hEzhW5hwG3cLQXUjb+cboAdPNERXpcXFUz62Yn33raBmc3o
+         blplY+PffT0s0Ma3Gjv1Dfji90dnBCQ0JR2M8adnSDl9hJoyKJqgg3aWFvyFxeB5RM+K
+         YoAkXQ88H8i9uUo9rKmbeuT/ZimhUj19/+ld6yWtzKNq1afkr3t3eiBm7Wso6leCedKO
+         cuYkfF5vxJ3xYJodra8xm2bhjpd+/hhXjeu6V0/G4NB9CrRPaFaXSDKbCX7KZsCwi2wh
+         jgjHN74aQl6bGwmJ2pDkbljmkUhKU6f8aC4TFk5T5u6RrZj1ScAJgyYyVZMHyM/ekVkJ
+         64vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
+         :subject:content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=MG4fB5L16PJOB6eygIdqZV5Ksttsv4vvkIROtuQ0QKg=;
+        b=q4VDddI+QV9bvDivCISA403lqF09R7dQMCssj1lIxbg0tfAg6ncGIVWR33DuCgEoj+
+         0Fa/gc+QI7TQO8SGg+vTZUOrbRA1fNWY3RgQ9WCLSUmJk6LZnN7JX7V46USJNxpJ5UIw
+         7Y/a5e8P+qqkMt6Kg2fPUCG2XYnubceSRHjPkWBkT+g6rasYjFv4zA7Z1HVo+RhMg1CI
+         Y2VlGY6XiktwGC9b2Vlj9H8K8vdbFyiK4XF7qZCT1JEZya9QZPlX99FyMlXllMZPOAjt
+         VkKkerHrydYk7UlogzRMqNnNv+Bf1fDLyMFxpZN+Fr0rpM9cwtaBr3/VcxjjvwvGs8A9
+         MsMg==
+X-Gm-Message-State: AOAM533nIMgvlWy9pSnN3rfYWOyG1ozmMcevcUKoueKdq974HJFzogZ1
+        lRpK1uBW3A/AWJvgNkrv5gBga8wVlcU=
+X-Google-Smtp-Source: ABdhPJx2XtRXI3hkPrfqrFyv7zA3+CCZ1oBRo6S2VY+rDVqlMJ2cFUadZ8sCGk08GLh4x3pQ99KDyw==
+X-Received: by 2002:a05:6870:891f:b0:e1:ec98:3c59 with SMTP id i31-20020a056870891f00b000e1ec983c59mr6325967oao.295.1654273361054;
+        Fri, 03 Jun 2022 09:22:41 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id j9-20020a056870530900b000f33b23a030sm3412594oan.57.2022.06.03.09.22.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Jun 2022 09:22:40 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <4ef87536-7a71-0d1b-3121-94e763041562@roeck-us.net>
+Date:   Fri, 3 Jun 2022 09:22:37 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220603024347epcms2p48d01596e10b251bec077581a6c609c48@epcms2p4>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 6/6] watchdog: max77620: update Luca Ceresoli's e-mail
+ address
+Content-Language: en-US
+To:     Luca Ceresoli <luca@lucaceresoli.net>, linux-kernel@vger.kernel.org
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Leon Luo <leonl@leopardimaging.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-watchdog@vger.kernel.org,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>
+References: <20220603155727.1232061-1-luca@lucaceresoli.net>
+ <20220603155727.1232061-6-luca@lucaceresoli.net>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <20220603155727.1232061-6-luca@lucaceresoli.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In subject:
-
-  MAINTAINERS: Add Axis ARTPEC-8 PCIe PHY maintainers
-
-to put the important things first so they don't get chopped off by
-"git log --oneline" and similar.
-
-On Fri, Jun 03, 2022 at 11:43:47AM +0900, Wangseok Lee wrote:
-> Add maintainer for Axis ARTPEC-8 PCIe PHY.
+On 6/3/22 08:57, Luca Ceresoli wrote:
+> My Bootlin address is preferred from now on.
 > 
-> Add Jesper Nilsson <jesper.nilsson@axis.com> and
-> Lars Persson <lars.persson@axis.com> as Maintainer for these files.
+> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
+> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
-s/Maintainer/maintainers/
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
-> ARTPEC-8 is the SoC platform of Axis Communications
-> and PCIe phy is designed based on Samsung PHY.
+An entry in .mailmap might be easier, though.
 
-s/phy/PHY/ to match other uses.
-
-Rewrap all of above to fill 75 columns.
-
-> Signed-off-by: Wangseok Lee <wangseok.lee@samsung.com>
-
-Obviously we'll look for acks from Jesper and Lars.
-
-Also would be good if Jesper explicitly acked the fact that his
-existing "PCIE DRIVER FOR AXIS ARTPEC" entry also matches the new
-pcie-artpec8.c driver:
-
-  PCIE DRIVER FOR AXIS ARTPEC
-  M:      Jesper Nilsson <jesper.nilsson@axis.com>
-  L:      linux-arm-kernel@axis.com
-  L:      linux-pci@vger.kernel.org
-  S:      Maintained
-  F:      Documentation/devicetree/bindings/pci/axis,artpec*
-  F:      drivers/pci/controller/dwc/*artpec*
+Guenter
 
 > ---
->  MAINTAINERS | 2 ++
->  1 file changed, 2 insertions(+)
+>   drivers/watchdog/max77620_wdt.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index d4d4aa2..cd6f75b 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1864,12 +1864,14 @@ M:	Jesper Nilsson <jesper.nilsson@axis.com>
->  M:	Lars Persson <lars.persson@axis.com>
->  L:	linux-arm-kernel@axis.com
->  S:	Maintained
-> +F:	Documentation/devicetree/bindings/phy/axis,artpec8-pcie-phy.yaml
->  F:	Documentation/devicetree/bindings/pinctrl/axis,artpec6-pinctrl.txt
->  F:	arch/arm/boot/dts/artpec6*
->  F:	arch/arm/mach-artpec
->  F:	drivers/clk/axis
->  F:	drivers/crypto/axis
->  F:	drivers/mmc/host/usdhi6rol0.c
-> +F:	drivers/phy/artpec/phy-artpec*
->  F:	drivers/pinctrl/pinctrl-artpec*
->  
->  ARM/ASPEED I2C DRIVER
-> -- 
-> 2.9.5
-> 
-> -- 
-> linux-phy mailing list
-> linux-phy@lists.infradead.org
-> https://lists.infradead.org/mailman/listinfo/linux-phy
+> diff --git a/drivers/watchdog/max77620_wdt.c b/drivers/watchdog/max77620_wdt.c
+> index b76ad6ba0915..33835c0b06de 100644
+> --- a/drivers/watchdog/max77620_wdt.c
+> +++ b/drivers/watchdog/max77620_wdt.c
+> @@ -6,7 +6,7 @@
+>    * Copyright (C) 2022 Luca Ceresoli
+>    *
+>    * Author: Laxman Dewangan <ldewangan@nvidia.com>
+> - * Author: Luca Ceresoli <luca@lucaceresoli.net>
+> + * Author: Luca Ceresoli <luca.ceresoli@bootlin.com>
+>    */
+>   
+>   #include <linux/err.h>
+> @@ -260,5 +260,5 @@ MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started "
+>   	"(default=" __MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
+>   
+>   MODULE_AUTHOR("Laxman Dewangan <ldewangan@nvidia.com>");
+> -MODULE_AUTHOR("Luca Ceresoli <luca@lucaceresoli.net>");
+> +MODULE_AUTHOR("Luca Ceresoli <luca.ceresoli@bootlin.com>");
+>   MODULE_LICENSE("GPL v2");
+
