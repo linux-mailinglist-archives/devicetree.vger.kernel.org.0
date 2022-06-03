@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E704A53C783
+	by mail.lfdr.de (Postfix) with ESMTP id D9B3D53C782
 	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 11:26:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242962AbiFCJ0U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jun 2022 05:26:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43584 "EHLO
+        id S243021AbiFCJ0V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jun 2022 05:26:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243021AbiFCJ0T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 05:26:19 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E1343A5C1
-        for <devicetree@vger.kernel.org>; Fri,  3 Jun 2022 02:26:18 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id x5so4301256edi.2
-        for <devicetree@vger.kernel.org>; Fri, 03 Jun 2022 02:26:18 -0700 (PDT)
+        with ESMTP id S237274AbiFCJ0U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 05:26:20 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44FF13A1BB
+        for <devicetree@vger.kernel.org>; Fri,  3 Jun 2022 02:26:19 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 25so9113223edw.8
+        for <devicetree@vger.kernel.org>; Fri, 03 Jun 2022 02:26:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=s9sCYAt/a4BS6Ai8110s+d7vp0IET2Yh4ADU9eLNXM4=;
-        b=I7uK6xIaQGAzmie23EWFc9R+LMmkTOmXOVVZNjOsccpEbpt3FFBkUgS70I4Fygvjex
-         bu1xTU9iSsGpMWZojykwGXvX9mnHnYPlggzBDDAd1X3nHDTY2TbEq7mvk21elChncYUW
-         tjWQJutHvwFGHo/FHWZntIwIkw+HsVlKgPfZBiiaejLk81Q9dkEXS7wU8SUgx5iwJ31q
-         8UN+M1izhvHkMmDYXEZN3Ga5L4NHQ6twcBhE9b9CxT77gmZ+JeYso2ZwAZh3+nWJJcTL
-         ADkud7GtsrSyjVuKxEcyeR42d1mLdryKFpWHyag+4DvUjQ+WZk6xGZ4OGaGv7pRLJv/1
-         g9/w==
+        bh=3QIoQb5QbRVNOs1RbxwOuYWdQ4RolJT8xZ/PEN472xw=;
+        b=lmCyckO1JfhORtymrMAw3PdU4nq7PrawiqPgxXxYW7btxcfTfx8+r2WRvAqKrEervY
+         tEPe2LGnx5LLR2IAGnYFAxsP2e7gMQlNFEVqh4GraTlnLdkgYM5QohEs7R6xDxGu/D/H
+         RRXGyzy+Y4QoVQXpz6a13yjRzkjOMz4UYzT8Zd5ewzOkDQB8ONr1rovYtJ4m9IDCqAwG
+         GLwZnEPuKTsxjGcDz/th8HLINjbe7nq4eoOcqMOqReZMHVVATirjLgocmKh2LZrbSP1E
+         MvKw0e9ciET/2v6CeS9Qz//5UkV9e4iPu+eQSkgLaltIP+qh+1QCKcQBf6oBQ/kWDaAu
+         R+eA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=s9sCYAt/a4BS6Ai8110s+d7vp0IET2Yh4ADU9eLNXM4=;
-        b=UTk/U0DAP6hNtLQawxX4a9C+ya1Iyj2RC17spnie7KWv1/YvOaX+bvlFFEhXwCLiUH
-         Vsjr0IJWSsYrqUzzPyDTDjXGCXqXhsmXOWp+P6heMDHiKGay9fwzdL+QfskmXDcliuju
-         y0GOZmZsBcC0VpTUAtnfxxxpuuWNPOwGhIY+TtCmmwZmJz0UNRGcQH9W3DQWCXzNY5/j
-         A5vrMG9FoNhiagzBtTalfyrZHaooK/CSYcnm6i+ko+OmWDCtWv/RWQ7Pr7y/aei+5Cnu
-         k9tycCydlhrEdXlKZEhYLE3nLm1nLM0BlH+bIxDEz9yKqSWtwxOFlb9pQITIDzoBv4PI
-         eCIA==
-X-Gm-Message-State: AOAM532uHgQZnqlqA9n/Z+PZEIvoWQU8VafMv9frHKU/a+x8HA+eKl47
-        9t4p38XqijryzCO//uWsfYQ=
-X-Google-Smtp-Source: ABdhPJz6hpcDnY/xAYhrLZeKlTfkhMN3sfir2otDWJSfHt9llVhA0AOpRlvfUPA5JvZfOFP/WZKVNg==
-X-Received: by 2002:a05:6402:430d:b0:42e:199a:4eb8 with SMTP id m13-20020a056402430d00b0042e199a4eb8mr6402367edc.411.1654248376814;
-        Fri, 03 Jun 2022 02:26:16 -0700 (PDT)
+        bh=3QIoQb5QbRVNOs1RbxwOuYWdQ4RolJT8xZ/PEN472xw=;
+        b=2TKh4K0s6q16qjvjg/kPV3xAz6WQY1ymjCYYOmkmkOVlM7KzPrEjT9OJWNdRKRvrpQ
+         OT5M5wL3VjMug6yQhuGKlimqwqUvB10khDne5WPSaI+K0ZfbiSo0FohW1mLtGGSb0xbq
+         Ohy/iBY4coQ5oGY3q2AOxq7deOwkcRW74K3sHsmXtOqlELPSdBpfmkZd2vNhRTjlkXHb
+         CxEInUmLkq7ZyQUPJ/TdMgKQLlc1wgegN6vir6z2H6LFsPBVrqI/atZpviikskMJIWvH
+         wDA8JJZWqzAIFCPqLkD921SwNN5NcMoOjIZ9cX0ehuOZmXzjIy/Dj1oeFa6yLO8N0Gje
+         GJaw==
+X-Gm-Message-State: AOAM532hPDvJp0eCqqG2yqODu9kJGn7Si9O9SkHl1c3CAYlnBbTxR0E5
+        R2t0hDbn71JVdxA0OcIfAys=
+X-Google-Smtp-Source: ABdhPJwWDSaSdYoQBx6iHBJAm8vaTsVDbYmRXyOGiD0pUsPbS9VGBLoLVtY7Ji3bYn69DPVycbuvKA==
+X-Received: by 2002:a05:6402:228d:b0:42d:e319:7297 with SMTP id cw13-20020a056402228d00b0042de3197297mr9641542edb.79.1654248377816;
+        Fri, 03 Jun 2022 02:26:17 -0700 (PDT)
 Received: from morpheus.home.roving-it.com (3.e.2.0.0.0.0.0.0.0.0.0.0.0.0.0.1.8.6.2.1.1.b.f.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:fb11:2681::2e3])
-        by smtp.googlemail.com with ESMTPSA id b5-20020a17090691c500b006feaa22e367sm2617672ejx.165.2022.06.03.02.26.15
+        by smtp.googlemail.com with ESMTPSA id b5-20020a17090691c500b006feaa22e367sm2617672ejx.165.2022.06.03.02.26.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Jun 2022 02:26:16 -0700 (PDT)
+        Fri, 03 Jun 2022 02:26:17 -0700 (PDT)
 From:   Peter Robinson <pbrobinson@gmail.com>
 To:     Arnd Bergmann <arnd@arndb.de>,
         bcm-kernel-feedback-list@broadcom.com,
@@ -63,9 +63,9 @@ To:     Arnd Bergmann <arnd@arndb.de>,
         Will Deacon <will@kernel.org>
 Cc:     Peter Robinson <pbrobinson@gmail.com>,
         Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Subject: [PATCH v6 2/6] drm/v3d: Get rid of pm code
-Date:   Fri,  3 Jun 2022 10:26:06 +0100
-Message-Id: <20220603092610.1909675-3-pbrobinson@gmail.com>
+Subject: [PATCH v6 3/6] drm/v3d: Add support for bcm2711
+Date:   Fri,  3 Jun 2022 10:26:07 +0100
+Message-Id: <20220603092610.1909675-4-pbrobinson@gmail.com>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <20220603092610.1909675-1-pbrobinson@gmail.com>
 References: <20220603092610.1909675-1-pbrobinson@gmail.com>
@@ -81,183 +81,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Runtime PM doesn't seem to work correctly on this driver. On top of
-that, commit 8b6864e3e138 ("drm/v3d/v3d_drv: Remove unused static
-variable 'v3d_v3d_pm_ops'") hints that it most likely never did as the
-driver's PM ops were not hooked-up.
-
-So, in order to support regular operation with V3D on BCM2711 (Raspberry
-Pi 4), get rid of the PM code. PM will be reinstated once we figure out
-the underlying issues.
+Add compatible string and Kconfig options and help for bcm2711.
 
 Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
+Reviewed-by: Stefan Wahren <stefan.wahren@i2se.com>
 Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
 ---
+Changes since v5:
+- Update help text to cover all supported SoCs
+
 Changes since v4:
-- Rebase
+- Change compatible to align downstream and other HW, reorder to suit
 
-Changes since v3:
-- Minor updates for rebase
+ drivers/gpu/drm/v3d/Kconfig   | 5 +++--
+ drivers/gpu/drm/v3d/v3d_drv.c | 1 +
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
- drivers/gpu/drm/v3d/v3d_debugfs.c | 18 +-----------------
- drivers/gpu/drm/v3d/v3d_drv.c     | 11 -----------
- drivers/gpu/drm/v3d/v3d_gem.c     | 12 +-----------
- 3 files changed, 2 insertions(+), 39 deletions(-)
-
-diff --git a/drivers/gpu/drm/v3d/v3d_debugfs.c b/drivers/gpu/drm/v3d/v3d_debugfs.c
-index 29fd13109e43..efbde124c296 100644
---- a/drivers/gpu/drm/v3d/v3d_debugfs.c
-+++ b/drivers/gpu/drm/v3d/v3d_debugfs.c
-@@ -4,7 +4,6 @@
- #include <linux/circ_buf.h>
- #include <linux/ctype.h>
- #include <linux/debugfs.h>
--#include <linux/pm_runtime.h>
- #include <linux/seq_file.h>
- #include <linux/string_helpers.h>
- 
-@@ -131,11 +130,7 @@ static int v3d_v3d_debugfs_ident(struct seq_file *m, void *unused)
- 	struct drm_device *dev = node->minor->dev;
- 	struct v3d_dev *v3d = to_v3d_dev(dev);
- 	u32 ident0, ident1, ident2, ident3, cores;
--	int ret, core;
--
--	ret = pm_runtime_get_sync(v3d->drm.dev);
--	if (ret < 0)
--		return ret;
-+	int core;
- 
- 	ident0 = V3D_READ(V3D_HUB_IDENT0);
- 	ident1 = V3D_READ(V3D_HUB_IDENT1);
-@@ -188,9 +183,6 @@ static int v3d_v3d_debugfs_ident(struct seq_file *m, void *unused)
- 			   (misccfg & V3D_MISCCFG_OVRTMUOUT) != 0);
- 	}
- 
--	pm_runtime_mark_last_busy(v3d->drm.dev);
--	pm_runtime_put_autosuspend(v3d->drm.dev);
--
- 	return 0;
- }
- 
-@@ -218,11 +210,6 @@ static int v3d_measure_clock(struct seq_file *m, void *unused)
- 	uint32_t cycles;
- 	int core = 0;
- 	int measure_ms = 1000;
--	int ret;
--
--	ret = pm_runtime_get_sync(v3d->drm.dev);
--	if (ret < 0)
--		return ret;
- 
- 	if (v3d->ver >= 40) {
- 		V3D_CORE_WRITE(core, V3D_V4_PCTR_0_SRC_0_3,
-@@ -246,9 +233,6 @@ static int v3d_measure_clock(struct seq_file *m, void *unused)
- 		   cycles / (measure_ms * 1000),
- 		   (cycles / (measure_ms * 100)) % 10);
- 
--	pm_runtime_mark_last_busy(v3d->drm.dev);
--	pm_runtime_put_autosuspend(v3d->drm.dev);
--
- 	return 0;
- }
- 
+diff --git a/drivers/gpu/drm/v3d/Kconfig b/drivers/gpu/drm/v3d/Kconfig
+index e973ec487484..ce62c5908e1d 100644
+--- a/drivers/gpu/drm/v3d/Kconfig
++++ b/drivers/gpu/drm/v3d/Kconfig
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ config DRM_V3D
+ 	tristate "Broadcom V3D 3.x and newer"
+-	depends on ARCH_BCM || ARCH_BRCMSTB || COMPILE_TEST
++	depends on ARCH_BCM || ARCH_BRCMSTB || ARCH_BCM2835 || COMPILE_TEST
+ 	depends on DRM
+ 	depends on COMMON_CLK
+ 	depends on MMU
+@@ -9,4 +9,5 @@ config DRM_V3D
+ 	select DRM_GEM_SHMEM_HELPER
+ 	help
+ 	  Choose this option if you have a system that has a Broadcom
+-	  V3D 3.x or newer GPU, such as BCM7268.
++	  V3D 3.x or newer GPUs. SoCs supported include the BCM2711,
++	  BCM7268 and BCM7278.
 diff --git a/drivers/gpu/drm/v3d/v3d_drv.c b/drivers/gpu/drm/v3d/v3d_drv.c
-index 1afcd54fbbd5..56d5f831e48b 100644
+index 56d5f831e48b..8c7f910daa28 100644
 --- a/drivers/gpu/drm/v3d/v3d_drv.c
 +++ b/drivers/gpu/drm/v3d/v3d_drv.c
-@@ -19,7 +19,6 @@
- #include <linux/module.h>
- #include <linux/of_platform.h>
- #include <linux/platform_device.h>
--#include <linux/pm_runtime.h>
- #include <linux/reset.h>
+@@ -191,6 +191,7 @@ static const struct drm_driver v3d_drm_driver = {
+ };
  
- #include <drm/drm_drv.h>
-@@ -43,7 +42,6 @@ static int v3d_get_param_ioctl(struct drm_device *dev, void *data,
- {
- 	struct v3d_dev *v3d = to_v3d_dev(dev);
- 	struct drm_v3d_get_param *args = data;
--	int ret;
- 	static const u32 reg_map[] = {
- 		[DRM_V3D_PARAM_V3D_UIFCFG] = V3D_HUB_UIFCFG,
- 		[DRM_V3D_PARAM_V3D_HUB_IDENT1] = V3D_HUB_IDENT1,
-@@ -69,17 +67,12 @@ static int v3d_get_param_ioctl(struct drm_device *dev, void *data,
- 		if (args->value != 0)
- 			return -EINVAL;
- 
--		ret = pm_runtime_get_sync(v3d->drm.dev);
--		if (ret < 0)
--			return ret;
- 		if (args->param >= DRM_V3D_PARAM_V3D_CORE0_IDENT0 &&
- 		    args->param <= DRM_V3D_PARAM_V3D_CORE0_IDENT2) {
- 			args->value = V3D_CORE_READ(0, offset);
- 		} else {
- 			args->value = V3D_READ(offset);
- 		}
--		pm_runtime_mark_last_busy(v3d->drm.dev);
--		pm_runtime_put_autosuspend(v3d->drm.dev);
- 		return 0;
- 	}
- 
-@@ -280,10 +273,6 @@ static int v3d_platform_drm_probe(struct platform_device *pdev)
- 		return -ENOMEM;
- 	}
- 
--	pm_runtime_use_autosuspend(dev);
--	pm_runtime_set_autosuspend_delay(dev, 50);
--	pm_runtime_enable(dev);
--
- 	ret = v3d_gem_init(drm);
- 	if (ret)
- 		goto dma_free;
-diff --git a/drivers/gpu/drm/v3d/v3d_gem.c b/drivers/gpu/drm/v3d/v3d_gem.c
-index 92bc0faee84f..7026214a09f0 100644
---- a/drivers/gpu/drm/v3d/v3d_gem.c
-+++ b/drivers/gpu/drm/v3d/v3d_gem.c
-@@ -6,7 +6,6 @@
- #include <linux/io.h>
- #include <linux/module.h>
- #include <linux/platform_device.h>
--#include <linux/pm_runtime.h>
- #include <linux/reset.h>
- #include <linux/sched/signal.h>
- #include <linux/uaccess.h>
-@@ -367,9 +366,6 @@ v3d_job_free(struct kref *ref)
- 	dma_fence_put(job->irq_fence);
- 	dma_fence_put(job->done_fence);
- 
--	pm_runtime_mark_last_busy(job->v3d->drm.dev);
--	pm_runtime_put_autosuspend(job->v3d->drm.dev);
--
- 	if (job->perfmon)
- 		v3d_perfmon_put(job->perfmon);
- 
-@@ -471,14 +467,10 @@ v3d_job_init(struct v3d_dev *v3d, struct drm_file *file_priv,
- 	job->v3d = v3d;
- 	job->free = free;
- 
--	ret = pm_runtime_get_sync(v3d->drm.dev);
--	if (ret < 0)
--		goto fail;
--
- 	ret = drm_sched_job_init(&job->base, &v3d_priv->sched_entity[queue],
- 				 v3d_priv);
- 	if (ret)
--		goto fail_job;
-+		goto fail;
- 
- 	if (has_multisync) {
- 		if (se->in_sync_count && se->wait_stage == queue) {
-@@ -509,8 +501,6 @@ v3d_job_init(struct v3d_dev *v3d, struct drm_file *file_priv,
- 
- fail_deps:
- 	drm_sched_job_cleanup(&job->base);
--fail_job:
--	pm_runtime_put_autosuspend(v3d->drm.dev);
- fail:
- 	kfree(*container);
- 	*container = NULL;
+ static const struct of_device_id v3d_of_match[] = {
++	{ .compatible = "brcm,2711-v3d" },
+ 	{ .compatible = "brcm,7268-v3d" },
+ 	{ .compatible = "brcm,7278-v3d" },
+ 	{},
 -- 
 2.36.1
 
