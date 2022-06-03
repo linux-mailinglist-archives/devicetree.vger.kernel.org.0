@@ -2,50 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCE8953CAC1
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 15:40:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A41853CAE1
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 15:49:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238431AbiFCNkf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jun 2022 09:40:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59516 "EHLO
+        id S240804AbiFCNtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jun 2022 09:49:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234405AbiFCNkd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 09:40:33 -0400
+        with ESMTP id S243775AbiFCNtj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 09:49:39 -0400
 Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 712DB2ED79;
-        Fri,  3 Jun 2022 06:40:31 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CC7A60D2;
+        Fri,  3 Jun 2022 06:49:38 -0700 (PDT)
 Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 0E7721BF207;
-        Fri,  3 Jun 2022 13:40:26 +0000 (UTC)
+        by mail.gandi.net (Postfix) with ESMTPSA id 667701BF208;
+        Fri,  3 Jun 2022 13:49:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1654263629;
+        t=1654264177;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=/PDivizaxZ+AZVI8p6z9vlgef9z49p8d3VW+VGNrFXQ=;
-        b=FyImQt/znIZ3l9LMdZ0YhyUCnm8jZNezAY+ZF2LrLu5+lFQyM6ady0UJG32AVkeNcXDR1b
-        eQqgT8r55nCwyn+w87wZtn52dhsFvmEQmOrr98AaC2wCDFSb5yeHuJasulwXo1ubBOgB52
-        2ZdD/b/c0tSyL6Xmesr/4co48HjYzx65CUOCkP7ByAC+iTcuV6FFG5+8VZ8ONelSLgc/MZ
-        /nIPfrKqOkV/Um8Mzbk7mzYbqSYkEY7k0247463pkejI/L7GnCiSO5hbWJGGgrKdDW5mCp
-        N+QKuEvj8NkAMLRjc09Leu0e4zzHtr/MUaNE8AptT3KletmN9jvAB2jQMtB4fA==
-Date:   Fri, 3 Jun 2022 15:40:24 +0200
+        bh=HiUwik3EhO3JFdFLVKOMNj1TCjCKUI8ClkdISKetXBM=;
+        b=ZitsYbiDmmu0QEQK0tHpWRWxB7TnWCpnSoq+I8d/Yfc1w3sKzRu52h9LAQSX3QtsiTl4yW
+        RfP1AIS5Ni/6TnYd7o6XZy49Wk9HcVTkBZok3zncudqlUJjpTvUK8vsRz5wd78QethutFq
+        dLa2BLrsBHb76V05calbgIZQ+t1d+Sm+1DnUiM7ciXsMY9MspfTQEWNbecXprMnwd58/0e
+        bFqsUzOchOw+jNW5/N7uS90b5+5eAS08VeFMLT1865QackX9G017RfeWTnGGNBruv/P2Em
+        rBcOeXkxqak6EQ1TyuwG9i+rdzOUtSDsbGRL7k7K330Sl8Hf27EEHsXQfIwv3A==
+Date:   Fri, 3 Jun 2022 15:49:34 +0200
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Marc Kleine-Budde <mkl@pengutronix.de>,
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Manivannan Sadhasivam <mani@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Richard Weinberger <richard@nod.at>,
         Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Uwe =?UTF-8?B?S2xlaW5lLUs=?= =?UTF-8?B?w7ZuaWc=?= 
-        <u.kleine-koenig@pengutronix.de>, linux-mtd@lists.infradead.org,
+        linux-mtd@lists.infradead.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mtd: mxc-nand: Drop undocumented
- properties from example
-Message-ID: <20220603154024.27ae9ad5@xps-13>
-In-Reply-To: <20220531150515.GB1742958-robh@kernel.org>
-References: <20220525205947.2487165-1-robh@kernel.org>
-        <20220527093839.3byc6r6ixuu5givt@pengutronix.de>
-        <20220531150515.GB1742958-robh@kernel.org>
+Subject: Re: [PATCH v4 0/2] Add support for unprotected spare data page
+Message-ID: <20220603154934.521c57ab@xps-13>
+In-Reply-To: <20220519190112.6344-1-ansuelsmth@gmail.com>
+References: <20220519190112.6344-1-ansuelsmth@gmail.com>
 Organization: Bootlin
 X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
@@ -61,45 +60,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob, Marc,
+Hi,
 
-robh@kernel.org wrote on Tue, 31 May 2022 10:05:15 -0500:
+ansuelsmth@gmail.com wrote on Thu, 19 May 2022 21:01:10 +0200:
 
-> On Fri, May 27, 2022 at 11:38:39AM +0200, Marc Kleine-Budde wrote:
-> > On 25.05.2022 15:59:46, Rob Herring wrote: =20
-> > > With unevaluatedProperties issues fixed, 'nand-bus-width' and
-> > > 'nand-ecc-mode' are flagged as undocumented. Removing them from the e=
-xample
-> > > is the easiest solution to silence the warnings.
-> > >=20
-> > > Signed-off-by: Rob Herring <robh@kernel.org> =20
-> >=20
-> > At least the 'nand-bus-width' property is described in
-> > "nand-controller.yaml" and the "mxc-nand.yaml" refers to it.
-> >=20
-> > | allOf:
-> > |   - $ref: "nand-controller.yaml"
-> >=20
-> > Is this ref broken? =20
+> Some background about this.
+> On original qsdk ipq8064 based firmware there was a big separation from
+> boot partition and user partition. With boot partition we refer to
+> partition used to init the router (bootloader, spm firmware and other
+> internal stuff) With user partition we refer to linux partition and data
+> partition not used to init the router.
+> When someone had to write to these boot partition a special mode was
+> needed, to switch the nand driver to this special configuration.
 >=20
-> Nope, read my note below. 'nand-bus-width' is documented as a nand chip=20
-> (child node) property, not a nand controller property.
+> Upstream version of the nandc driver totally dropped this and the result
+> is that if someone try to read data from these partition a CRC warning
+> is printed and if someone try to write that (if for example someone
+> wants to replace the bootloader) result is a broken system as the data
+> is badly written.
 >=20
+> This series comes to fix this.
 >=20
-> > regards,
-> > Marc
-> >  =20
-> > > ---
-> > > These properties may be deprecated, but they are still widely used in
-> > > bindings. They either need to be documented (and marked deprecated) or
-> > > removed from current users (i.e. dts files). =20
+> A user can declare offset and size of these special partition using the
+> qcom,boot-pages binding.
+>=20
+> An initial implementation of this assumed that the boot-pages started
+> from the start of the nand but we discover that some device have backup
+> of these special partition and we can have situation where we have this
+> partition scheme
+> - APPSBL (require special mode)
+> - APPSBLENV (doesn't require special mode)
+> - ART
+> - APPSBLBK (back of APPSBL require special mode)
+> - APPSBLENVBK (back of APPSBLENV doesn't require special mode)
+> With this configuration we need to declare sparse boot page and we can't
+> assume boot-pages always starts from the start of the nand.
+>=20
+> A user can use this form to declare sparse boot pages
+> qcom,boot-pages =3D <0x0 0x0c80000 0x0c80000 0x0500000>;
+>=20
+> The driver internally will parse this array, convert it to nand pages
+> and check internally on every read/write if this special configuration
+> should used for that page or the normal one.
+>=20
+> The reason for all of this is that qcom FOR SOME REASON, disable ECC for
+> spare data only for these boot partition and we need to reflect this
+> special configuration to mute these warning and to permit actually
+> writing to these pages.
 
-I don't mind keeping them undocumented to encourage people to migrate
-to a better description. For the record, in the past controllers and
-devices where not separated in the description, hence we had NAND chip
-specific properties landing in to the NAND controller description.
+Manivannan, any feedback on this?
 
-So I'm fine with the current approach.
+>=20
+> v4:
+> - Fix wrong compatible set for boot-pages (ipq8074 instead of ipq806x)
+> v3:
+> - Fix typo in Docmunetation commit desription
+> - Add items description for uint32-matrix
+> v2:
+> - Add fixes from Krzysztof in Documentation
+>=20
+> Ansuel Smith (2):
+>   mtd: nand: raw: qcom_nandc: add support for unprotected spare data
+>     pages
+>   dt-bindings: mtd: qcom_nandc: document qcom,boot-pages binding
+>=20
+>  .../devicetree/bindings/mtd/qcom,nandc.yaml   |  26 +++
+>  drivers/mtd/nand/raw/qcom_nandc.c             | 148 +++++++++++++++++-
+>  2 files changed, 169 insertions(+), 5 deletions(-)
+>=20
 
 Thanks,
 Miqu=C3=A8l
