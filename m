@@ -2,197 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F220A53C9E2
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 14:24:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AF8253C9FB
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 14:27:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244307AbiFCMT2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jun 2022 08:19:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34244 "EHLO
+        id S244401AbiFCMZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jun 2022 08:25:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244309AbiFCMTX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 08:19:23 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 813FB27161;
-        Fri,  3 Jun 2022 05:19:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1654258762; x=1685794762;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=vPjtyYVg+EEiabNmG8qMLL1Ibfw++Ug4T0dSA+weyig=;
-  b=o/Zk34jyEz5qD4lBhMMOtEohzzCGzUGZwiNFw7D2UkXM6qk08tvKZXWK
-   LXmecfep361we/6jpBXAy0RlU1krKatcwXNMn7XdKH2DOf0BL2gcmOa5s
-   lc6L26okWGs+75alc2EcE5d3b37U/92cxLIUC7cW6iHWOGVC4qTl93TUh
-   G/hDNUriiwvDtEIzNmqUVd7oWozP38OFV4RJ1JzAfTl8FCy1NEJ3YCGJ6
-   zEFoKKv4I78F6pcL7IJxRTVnh/JDOTyvz+j8z2scSbf793vCWt+nySxA+
-   skBwZXZQ28Id9FKwOZCACHSibAe3TKyOJGc2YCiFP5JNBl0O3MwmhZPkU
-   g==;
-X-IronPort-AV: E=Sophos;i="5.91,274,1647327600"; 
-   d="scan'208";a="98453581"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 03 Jun 2022 05:19:21 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Fri, 3 Jun 2022 05:19:21 -0700
-Received: from kavya-HP-Compaq-6000-Pro-SFF-PC.microchip.com (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Fri, 3 Jun 2022 05:19:17 -0700
-From:   Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <claudiu.beznea@microchip.com>, <UNGLinuxDriver@microchip.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <Kavyasree.Kotagiri@microchip.com>
-Subject: [PATCH 3/3] mfd: atmel-flexcom: Add support for lan966x flexcom chip-select configuration
-Date:   Fri, 3 Jun 2022 17:48:02 +0530
-Message-ID: <20220603121802.30320-4-kavyasree.kotagiri@microchip.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220603121802.30320-1-kavyasree.kotagiri@microchip.com>
-References: <20220603121802.30320-1-kavyasree.kotagiri@microchip.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S244395AbiFCMZO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jun 2022 08:25:14 -0400
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B5FB3A5C9;
+        Fri,  3 Jun 2022 05:25:13 -0700 (PDT)
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-f2e0a41009so10392159fac.6;
+        Fri, 03 Jun 2022 05:25:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=YZtN1F0Qk9NbbCUaUPvkdQ1eLPQxxxaqqx36o3Sni5k=;
+        b=7D8I6vv8Lo2I6NelwLtAOPQvVz+QUj67zjUst5AWEwAjBZhZ6ppJNW15jyRFnxXbj1
+         69AmvfKnxuM070OpaRPYw6KHvqdSnGVVLLdSrEA4+2CW8XZOjwiHVrAKohcH6pAAQTVm
+         olAp+E1eJf9+zMuLWp21LXyEsHyYVS+3AqljQbYva9/1dco3nBZECYebl31bbS5aculQ
+         Cp2KANOsWsgXp/NsuQRy5/SQTD9UzmgJ+Yoay4VT0Pw6vcH3gFAsmmBlawnwQuc/qD7P
+         KosZAwRvBimaKplPudsSocXZXdaoMX6YD4CZ6CGSVBWu0annCYbW9ztx4xaMk070CcUg
+         WG8g==
+X-Gm-Message-State: AOAM531Bv5DXP8AMCmlkwlms0hnImrxViL4ERFA1dwl5PlgAr9FSAT8d
+        u7/WxPQSdrxdFEXFw0G36q2XAhoN2w==
+X-Google-Smtp-Source: ABdhPJxSVrqRYKsD/zB7jTBr5ppoHfux9/u9Rnk3J/ggqOIFhHqD+yh/Q/u1OQq9Kf6x2ZnC3jgxgQ==
+X-Received: by 2002:a05:6870:c6a0:b0:f5:cf37:63a3 with SMTP id cv32-20020a056870c6a000b000f5cf3763a3mr5338923oab.288.1654259112858;
+        Fri, 03 Jun 2022 05:25:12 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id c30-20020a056830349e00b00605da994088sm3531447otu.2.2022.06.03.05.25.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Jun 2022 05:25:12 -0700 (PDT)
+Received: (nullmailer pid 136419 invoked by uid 1000);
+        Fri, 03 Jun 2022 12:25:11 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc:     devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20220603080019.2251764-2-vladimir.zapolskiy@linaro.org>
+References: <20220603080019.2251764-1-vladimir.zapolskiy@linaro.org> <20220603080019.2251764-2-vladimir.zapolskiy@linaro.org>
+Subject: Re: [PATCH v6 1/7] dt-bindings: clock: add QCOM SM8450 camera clock bindings
+Date:   Fri, 03 Jun 2022 07:25:11 -0500
+Message-Id: <1654259111.699187.136418.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-LAN966x SoC have 5 flexcoms. Each flexcom has 2 chip-selects.
-For each chip select of each flexcom there is a configuration
-register FLEXCOM_SHARED[0-4]:SS_MASK[0-1]. The width of
-configuration register is 21 because there are 21 shared pins
-on each of which the chip select can be mapped. Each bit of the
-register represents a different FLEXCOM_SHARED pin.
+On Fri, 03 Jun 2022 11:00:18 +0300, Vladimir Zapolskiy wrote:
+> The change adds device tree bindings for camera clock controller
+> found on SM8450 SoC.
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> ---
+> Changes from v5 to v6:
+> * added Rob's tag.
+> 
+> Changes from v4 to v5:
+> * fixed a typo in a usage example found in the yaml file.
+> 
+> Changes from v3 to v4:
+> * renamed a filename in $id value after the rename of the file itself.
+> 
+> Changes from v2 to v3:
+> * renamed files to match the compatible value "qcom,sm8450-camcc",
+> * fixed a typo in a usage example found in the yaml file.
+> 
+> Changes from v1 to v2:
+> * updated qcom,camcc-sm8450.yaml according to review comments from Rob,
+> * changed qcom,camcc-sm8450.h license to dual one.
+> 
+>  .../bindings/clock/qcom,sm8450-camcc.yaml     |  89 ++++++++++
+>  include/dt-bindings/clock/qcom,sm8450-camcc.h | 159 ++++++++++++++++++
+>  2 files changed, 248 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+>  create mode 100644 include/dt-bindings/clock/qcom,sm8450-camcc.h
+> 
 
-Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
----
- drivers/mfd/atmel-flexcom.c | 86 ++++++++++++++++++++++++++++++++++++-
- 1 file changed, 84 insertions(+), 2 deletions(-)
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-diff --git a/drivers/mfd/atmel-flexcom.c b/drivers/mfd/atmel-flexcom.c
-index 33caa4fba6af..f87ee3606eb0 100644
---- a/drivers/mfd/atmel-flexcom.c
-+++ b/drivers/mfd/atmel-flexcom.c
-@@ -28,15 +28,64 @@
- #define FLEX_MR_OPMODE(opmode)	(((opmode) << FLEX_MR_OPMODE_OFFSET) &	\
- 				 FLEX_MR_OPMODE_MASK)
- 
-+/* LAN966x flexcom shared register offsets */
-+#define FLEX_SHRD_SS_MASK_0	0x0
-+#define FLEX_SHRD_SS_MASK_1	0x4
-+#define FLEX_SHRD_MASK		0x1FFFFF
-+
-+struct atmel_flex_caps {
-+	bool has_flx_cs;
-+};
-+
- struct atmel_flexcom {
--	void __iomem *base;
-+	void __iomem *base, *flexcom_shared_base;
- 	u32 opmode;
- 	struct clk *clk;
- };
- 
-+static int atmel_flexcom_lan966x_cs_config(struct platform_device *pdev)
-+{
-+	struct atmel_flexcom *ddata = dev_get_drvdata(&pdev->dev);
-+	struct device_node *np = pdev->dev.of_node;
-+	u32 flx_shrd_pins[2], val;
-+	int err, i, count;
-+
-+	count = of_property_count_u32_elems(np, "microchip,flx-shrd-pins");
-+	if (count <= 0 || count > 2) {
-+		dev_err(&pdev->dev, "Invalid %s property (%d)\n", "flx-shrd-pins",
-+				count);
-+		return -EINVAL;
-+	}
-+
-+	err = of_property_read_u32_array(np, "microchip,flx-shrd-pins", flx_shrd_pins, count);
-+	if (err)
-+		return err;
-+
-+	for (i = 0; i < count; i++) {
-+		const char *flx_cs;
-+
-+		if (flx_shrd_pins[i] > 20)
-+			return -EINVAL;
-+
-+		val = ~(1 << flx_shrd_pins[i]) & FLEX_SHRD_MASK;
-+
-+		err = of_property_read_string_index(np, "microchip,flx-cs", i, &flx_cs);
-+		if (err)
-+			return err;
-+
-+		if (!strcmp(flx_cs, "cs0") || !strcmp(flx_cs, "cts"))
-+			writel(val, ddata->flexcom_shared_base + FLEX_SHRD_SS_MASK_0);
-+		else if (!strcmp(flx_cs, "cs1") || !strcmp(flx_cs, "rts"))
-+			writel(val, ddata->flexcom_shared_base + FLEX_SHRD_SS_MASK_1);
-+	}
-+
-+	return 0;
-+}
-+
- static int atmel_flexcom_probe(struct platform_device *pdev)
- {
- 	struct device_node *np = pdev->dev.of_node;
-+	const struct atmel_flex_caps *caps;
- 	struct resource *res;
- 	struct atmel_flexcom *ddata;
- 	int err;
-@@ -76,13 +125,46 @@ static int atmel_flexcom_probe(struct platform_device *pdev)
- 	 */
- 	writel(FLEX_MR_OPMODE(ddata->opmode), ddata->base + FLEX_MR);
- 
-+	caps = of_device_get_match_data(&pdev->dev);
-+	if (!caps) {
-+		dev_err(&pdev->dev, "Could not retrieve flexcom caps\n");
-+		return -EINVAL;
-+	}
-+
-+	if (caps->has_flx_cs) {
-+		ddata->flexcom_shared_base = devm_platform_get_and_ioremap_resource(pdev, 1, NULL);
-+		if (IS_ERR(ddata->flexcom_shared_base))
-+			return dev_err_probe(&pdev->dev,
-+					PTR_ERR(ddata->flexcom_shared_base),
-+					"failed to get flexcom shared base address\n");
-+
-+		err = atmel_flexcom_lan966x_cs_config(pdev);
-+		if (err)
-+			return err;
-+	}
-+
- 	clk_disable_unprepare(ddata->clk);
- 
- 	return devm_of_platform_populate(&pdev->dev);
- }
- 
-+static const struct atmel_flex_caps atmel_flexcom_caps = {};
-+
-+static const struct atmel_flex_caps lan966x_flexcom_caps = {
-+	.has_flx_cs = true,
-+};
-+
- static const struct of_device_id atmel_flexcom_of_match[] = {
--	{ .compatible = "atmel,sama5d2-flexcom" },
-+	{
-+		.compatible = "atmel,sama5d2-flexcom",
-+		.data = &atmel_flexcom_caps,
-+	},
-+
-+	{
-+		.compatible = "microchip,lan966x-flexcom",
-+		.data = &lan966x_flexcom_caps,
-+	},
-+
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, atmel_flexcom_of_match);
--- 
-2.17.1
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.example.dtb: clock-controller@ade0000: reg: [[0, 182321152], [0, 131072]] is too long
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
