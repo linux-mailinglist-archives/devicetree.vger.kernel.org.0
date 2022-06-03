@@ -2,147 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56D7E53C34D
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 04:43:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23D1F53C355
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jun 2022 04:48:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236345AbiFCCn4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jun 2022 22:43:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52590 "EHLO
+        id S230148AbiFCCsk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jun 2022 22:48:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232344AbiFCCnz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 22:43:55 -0400
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 797C331DF0
-        for <devicetree@vger.kernel.org>; Thu,  2 Jun 2022 19:43:52 -0700 (PDT)
-Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
-        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20220603024351epoutp0106ab44360fb7d87ece743045a6140a7f~0-Cx0vyL71596615966epoutp01F
-        for <devicetree@vger.kernel.org>; Fri,  3 Jun 2022 02:43:51 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20220603024351epoutp0106ab44360fb7d87ece743045a6140a7f~0-Cx0vyL71596615966epoutp01F
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1654224231;
-        bh=xGD0aaO2qyPPbOAOGaZYEnVMOmOX5jr0Q2SBdx4lNTM=;
-        h=Subject:Reply-To:From:To:CC:In-Reply-To:Date:References:From;
-        b=L4a0frKiPsLHTh7P0mDTOERKnnhSNv2n8dC0PYObnoUv2MgqT//EQx2oEesZn4qgc
-         A5UbJRqDAWRFxUZlP9BDHPodQAoKZbyb0hSvFitJwsqUPbtWOmBL+jqJ+hQCbVSAek
-         kHXtY7p3/soIa6OyiYWZmBl9STNyeqsJYIS5aWbo=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-        epcas2p3.samsung.com (KnoxPortal) with ESMTP id
-        20220603024349epcas2p3b3a713e5f9cf5248e4e3d1304c162191~0-Cwxa_8Q1867018670epcas2p3o;
-        Fri,  3 Jun 2022 02:43:49 +0000 (GMT)
-Received: from epsmges2p3.samsung.com (unknown [182.195.36.102]) by
-        epsnrtp3.localdomain (Postfix) with ESMTP id 4LDnJN2MP7z4x9Q8; Fri,  3 Jun
-        2022 02:43:48 +0000 (GMT)
-X-AuditID: b6c32a47-573ff7000000272c-4d-62997564780d
-Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
-        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
-        1F.99.10028.46579926; Fri,  3 Jun 2022 11:43:48 +0900 (KST)
-Mime-Version: 1.0
-Subject: [PATCH v2 5/5] MAINTAINERS: Add maintainer for Axis ARTPEC-8 PCIe
- PHY driver
-Reply-To: wangseok.lee@samsung.com
-Sender: Wangseok Lee <wangseok.lee@samsung.com>
-From:   Wangseok Lee <wangseok.lee@samsung.com>
-To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "jesper.nilsson@axis.com" <jesper.nilsson@axis.com>,
-        "lars.persson@axis.com" <lars.persson@axis.com>
-CC:     "bhelgaas@google.com" <bhelgaas@google.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "kw@linux.com" <kw@linux.com>,
-        "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
-        "kernel@axis.com" <kernel@axis.com>,
-        Moon-Ki Jun <moonki.jun@samsung.com>,
-        Sang Min Kim <hypmean.kim@samsung.com>,
-        Dongjin Yang <dj76.yang@samsung.com>
-X-Priority: 3
-X-Content-Kind-Code: NORMAL
-In-Reply-To: <20220603015431epcms2p6203908cebe6a320854136559a32b54cb@epcms2p6>
-X-CPGS-Detection: blocking_info_exchange
-X-Drm-Type: N,general
-X-Msg-Generator: Mail
-X-Msg-Type: PERSONAL
-X-Reply-Demand: N
-Message-ID: <20220603024347epcms2p48d01596e10b251bec077581a6c609c48@epcms2p4>
-Date:   Fri, 03 Jun 2022 11:43:47 +0900
-X-CMS-MailID: 20220603024347epcms2p48d01596e10b251bec077581a6c609c48
+        with ESMTP id S230193AbiFCCsj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jun 2022 22:48:39 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1CF6338BA;
+        Thu,  2 Jun 2022 19:48:38 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5995061618;
+        Fri,  3 Jun 2022 02:48:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44D68C385A5;
+        Fri,  3 Jun 2022 02:48:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654224517;
+        bh=0yjv6yIGuuCsF28jC1oWN37CAZe1OojLqJTyuK1fAlM=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=dqvjSemHn4B/SAqJrv5LWrVHNQlq67l+qJ7JhnO55wKhSUt63Z+sfm0lgHM6MBH6Z
+         Y5vxgRQCLYtQqTlfriFNhhQ4V0+jBttVFU5uRr8Y5tixohL+x0zjKafli4bXy1i4dY
+         18CRvghUAixrc946nIYCudw7fY7p/uo9YhfacZPwb86XRbaF6qv5R5gQbhVKSZOqhB
+         eJLUYX0O43Iic1S7w4EdYC0+JgSTWP221lvj5Sh3HPqxXh/MOFCR6vMXHqDYH0kTl8
+         NiurbE2z8sSp0zpqCr23lubzH6eDy6uxHkELJ8YXvPPiqiCkrtBZ4qZreCMmZ79xMT
+         D8mH/PO7L9hZQ==
+Date:   Thu, 2 Jun 2022 19:48:36 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc:     <davem@davemloft.net>, <edumazet@google.com>, <pabeni@redhat.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux@armlinux.org.uk>, <vladimir.oltean@nxp.com>,
+        <grygorii.strashko@ti.com>, <vigneshr@ti.com>, <nsekhar@ti.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kishon@ti.com>
+Subject: Re: [PATCH v2 0/3] J7200: CPSW5G: Add support for QSGMII mode to
+ am65-cpsw driver
+Message-ID: <20220602194836.37e41003@kernel.org>
+In-Reply-To: <20220602114558.6204-1-s-vadapalli@ti.com>
+References: <20220602114558.6204-1-s-vadapalli@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-X-CPGSPASS: Y
-X-CPGSPASS: Y
-CMS-TYPE: 102P
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrLJsWRmVeSWpSXmKPExsWy7bCmuW5K6cwkgz/3uC2WNGVYvDykaTH/
-        yDlWi90zljNZzJx6htni+aFZzBafWlQtLjztYbN4Oesem0VDz29WiyNvPjJb7D++ksni8q45
-        bBZn5x1ns5iw6huLxZvfL9gtzi3OtGjde4TdYuedE8wOwh5r5q1h9Li+LsBjwaZSj02rOtk8
-        nlyZzuSxeUm9R9+WVYwex29sZ/L4vEkugDMq2yYjNTEltUghNS85PyUzL91WyTs43jne1MzA
-        UNfQ0sJcSSEvMTfVVsnFJ0DXLTMH6B8lhbLEnFKgUEBicbGSvp1NUX5pSapCRn5xia1SakFK
-        ToF5gV5xYm5xaV66Xl5qiZWhgYGRKVBhQnbGrfbZjAUzOSrOPTJvYPzH1sXIwSEhYCLRPLOq
-        i5GLQ0hgB6PElVk97CBxXgFBib87hLsYOTmEBcIlfjQ+YAexhQSUJHasmccMEdeXuL6imxXE
-        ZhPQlfi3+CUbyBwRgbNMEjfvbmcFcZgF5rBIXG/+AFYlIcArMaP9KQuELS2xfflWRhCbU8BP
-        4tyXLjaIuIbEj2W9zBC2qMTN1W/ZYez3x+YzQtgiEq33zkLVCEo8+LkbKi4lseDJIahd1RL7
-        //5mgrAbGCX676dCPKwvseO6MUiYV8BXYt2MqWDlLAKqEtffLIY6wUXiT9NusFZmAXmJ7W/n
-        MIO0MgtoSqzfpQ8xRVniyC0WmKcaNv5mR2czC/BJdBz+CxffMe8J1DFqEvNW7mSewKg8CxHQ
-        s5DsmoWwawEj8ypGsdSC4tz01GKjAmN4zCbn525iBKdrLfcdjDPeftA7xMjEwXiIUYKDWUmE
-        t2TX1CQh3pTEyqrUovz4otKc1OJDjKZAX05klhJNzgdmjLySeEMTSwMTMzNDcyNTA3MlcV6v
-        lA2JQgLpiSWp2ampBalFMH1MHJxSDUw6klMfcCe9/DCHg8uF+Xnmhny3670K9000U88INn0P
-        6Q16dFhXVCt+lXOIqzvHrODTq7m5p2p9mySYc7LT+e2bPxIndkh9P3btzC0VXSdfjoOOU+Oz
-        lm+QO19wyG1x/HfXzOfT3z6fwGLIHGMW1rI+bcMept5DL6P3RfCLzffT1ma8Jvvyjfg8hSnX
-        rq/+lae00TuBZ1t6cPzUxJpsrtWhVhPfNzIqp2QlbNj287zZhfhpO1za7/pk6DR/7dnilxJy
-        +ldQUuqPjXf83l5g36t8Wyh0VeQhHqesttsqT98/175kkHfgbkJHabjGkndRh9dprChkLYhT
-        aji8M59f5UTgxDMv/Wykl4vYuUZs+aDEUpyRaKjFXFScCABmhRjWYAQAAA==
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220603015431epcms2p6203908cebe6a320854136559a32b54cb
-References: <20220603015431epcms2p6203908cebe6a320854136559a32b54cb@epcms2p6>
-        <CGME20220603015431epcms2p6203908cebe6a320854136559a32b54cb@epcms2p4>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add maintainer for Axis ARTPEC-8 PCIe PHY.
+On Thu, 2 Jun 2022 17:15:55 +0530 Siddharth Vadapalli wrote:
+> Add support for QSGMII mode to am65-cpsw driver.
+> 
+> Change log:
+> v1 -> v2:
+> 1. Add new compatible for CPSW5G in ti,k3-am654-cpsw-nuss.yaml and extend
+>    properties for new compatible.
+> 2. Add extra_modes member to struct am65_cpsw_pdata to be used for QSGMII
+>    mode by new compatible.
+> 3. Add check for phylink supported modes to ensure that only one phy mode
+>    is advertised as supported.
+> 4. Check if extra_modes supports QSGMII mode in am65_cpsw_nuss_mac_config()
+>    for register write.
+> 5. Add check for assigning port->sgmii_base only when extra_modes is valid.
+> 
+> v1: https://lore.kernel.org/r/20220531113058.23708-1-s-vadapalli@ti.com
 
-Add Jesper Nilsson <jesper.nilsson@axis.com> and
-Lars Persson <lars.persson@axis.com> as Maintainer for these files.
+# Form letter - net-next is closed
 
-ARTPEC-8 is the SoC platform of Axis Communications
-and PCIe phy is designed based on Samsung PHY.
+We have already sent the networking pull request for 5.19
+and therefore net-next is closed for new drivers, features,
+code refactoring and optimizations. We are currently accepting
+bug fixes only.
 
-Signed-off-by: Wangseok Lee <wangseok.lee@samsung.com>
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+Please repost when net-next reopens after 5.19-rc1 is cut.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d4d4aa2..cd6f75b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1864,12 +1864,14 @@ M:	Jesper Nilsson <jesper.nilsson@axis.com>
- M:	Lars Persson <lars.persson@axis.com>
- L:	linux-arm-kernel@axis.com
- S:	Maintained
-+F:	Documentation/devicetree/bindings/phy/axis,artpec8-pcie-phy.yaml
- F:	Documentation/devicetree/bindings/pinctrl/axis,artpec6-pinctrl.txt
- F:	arch/arm/boot/dts/artpec6*
- F:	arch/arm/mach-artpec
- F:	drivers/clk/axis
- F:	drivers/crypto/axis
- F:	drivers/mmc/host/usdhi6rol0.c
-+F:	drivers/phy/artpec/phy-artpec*
- F:	drivers/pinctrl/pinctrl-artpec*
- 
- ARM/ASPEED I2C DRIVER
--- 
-2.9.5
+RFC patches sent for review only are obviously welcome at any time.
