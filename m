@@ -2,121 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C56C53D72E
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jun 2022 16:18:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F0E053D758
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jun 2022 16:58:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235468AbiFDOSQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Jun 2022 10:18:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45256 "EHLO
+        id S237156AbiFDO6V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Jun 2022 10:58:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234230AbiFDOSP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Jun 2022 10:18:15 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 158F033E17;
-        Sat,  4 Jun 2022 07:18:14 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A463B60C13;
-        Sat,  4 Jun 2022 14:18:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2766C385B8;
-        Sat,  4 Jun 2022 14:18:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654352293;
-        bh=D5lPavrfLD0VtXRKigqWh1Y8dtn2cjHrLnqBDqhJYKI=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=Oqm1DwhVrj7q+/MRS+WDQcIZOv2UlfMvrBl2Spr+LUxPOIANvk7DKbAac3MtLhVnZ
-         zK/34jzloOLVKKRouJlZCKSAut3ri875PGFGu311RMoBa4JapYgvBUp+LlMa5JlLmT
-         5mdESMe17XP7KK7fLJw8DRDy4hexNthV+QmQgYza6zdTZ0gy0G5vP5Upp2rl87nQLE
-         xAsrr6G2qoY10BSbM9zpVS5HG7cqz0aWDQnIM/FjaaTowe9jUh/PmvJ4+VSgizKdf3
-         yf/0cc9dlZDv92FUhZO52uBiUkSCvNJhY8SWmAyuGTi63t5/I9az1H3CLFOy4JfVaC
-         0RSSc7Ttemnjg==
-Date:   Sat, 4 Jun 2022 15:27:11 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>, lars@metafoo.de
-Cc:     linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, wens@csie.org,
-        lee.jones@linaro.org, sre@kernel.org, broonie@kernel.org,
-        gregkh@linuxfoundation.org, lgirdwood@gmail.com, rafael@kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 08/10] iio: adc: axp20x_adc: Add support for AXP192
-Message-ID: <20220604152711.22268711@jic23-huawei>
-In-Reply-To: <e9ABtmBNzztlyRcJD5f36OmAYZW4i7KH@localhost>
-References: <20220603135714.12007-1-aidanmacdonald.0x0@gmail.com>
-        <20220603135714.12007-9-aidanmacdonald.0x0@gmail.com>
-        <20220603174744.642157d8@jic23-huawei>
-        <e9ABtmBNzztlyRcJD5f36OmAYZW4i7KH@localhost>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
+        with ESMTP id S234161AbiFDO6V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Jun 2022 10:58:21 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03BE82D1C4;
+        Sat,  4 Jun 2022 07:58:20 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id y19so21036868ejq.6;
+        Sat, 04 Jun 2022 07:58:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gdxomBwRPh0XCfD0FFgCu7OEZQemPZyMFK2HqSAOxOw=;
+        b=AEbMv4lwZG1ecKb1QG237h98ziiE7ElGabFZquXuXEKq1e79B8VsL+W0WnzWmpkMTY
+         SkYA1bSLQ9KHquN94DEaKjd/5K6TW0iLvkgni1r77T2q0771Iq4rFUemzvwkERWCB2NA
+         kebT8itTyno4mzZSU9pLr14C2Xx89fA0yRw/Z068TqHkV7RoaFrI++zQt9a+3OOmJvSx
+         jMB+EbgVdUB0QUqiFvVtTvJSHi9WgxEIduoHQyvk3heTJqgYAxhilGW+iuAap6g4MvlB
+         wCp724a8TUTpRKdkJ/f1jEQlNoIDgvyyHLwES0CO5r1kuB8cN7JcqwwUzkq8j1Hp0ZDr
+         5mQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gdxomBwRPh0XCfD0FFgCu7OEZQemPZyMFK2HqSAOxOw=;
+        b=xXYfgSSS2m6SwXIlHqAY+KBYXWC+JXjbfYJ20C7z+Qt8tAsKIfHkozw1GnN6kE+tbI
+         v/4f+jWp5ps5HRvjV8rpT34uhWLYEBU9nQlQQ4k/mt5oaBLqkSmV1Ixyd/zJ5tOV5vKe
+         Tc/92FQD7MI0LyANqNA/Lu64Q38XmXGjubWyPGiw56ROqoBvK+wpKK3G+H/HL9EkRZUo
+         cIIouE+K63r78mCoScjCePc/LC+fcQFr8+HLnwieENhfJSjyyhPzYUbg1WhSiZ61A1pV
+         x8STRmj5B7wgibtviv2PrEVCrUTIQ66tL8Zgh2bhr0+PIynFvex/nPYwdvgeqerr46uA
+         9/HA==
+X-Gm-Message-State: AOAM532nmziNrk8PPwJUdhr/ql0gq5u4oPcHUa41ev/GuzmIkfs6VquC
+        MFiGgG2hjHm+F4IaJWna5gX9WGs7mug=
+X-Google-Smtp-Source: ABdhPJy/hAqxDgi+GMA9QA7AClDGu6PlQjx2HLSREJ45JSh60HBsV0UJb6S1pZY/S/BjcXygpr8xlA==
+X-Received: by 2002:a17:906:9b8d:b0:6ff:16a1:19c0 with SMTP id dd13-20020a1709069b8d00b006ff16a119c0mr13221236ejc.122.1654354698611;
+        Sat, 04 Jun 2022 07:58:18 -0700 (PDT)
+Received: from fedora.robimarko.hr (cpe-94-253-165-43.zg.cable.xnet.hr. [94.253.165.43])
+        by smtp.googlemail.com with ESMTPSA id lk24-20020a170906cb1800b006fa84a0af2asm4139322ejb.16.2022.06.04.07.58.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 04 Jun 2022 07:58:18 -0700 (PDT)
+From:   Robert Marko <robimarko@gmail.com>
+To:     sravanhome@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Robert Marko <robimarko@gmail.com>
+Subject: [PATCH v2 1/4] regulator: dt-bindings: mps,mp5416: add MP5496 compatible
+Date:   Sat,  4 Jun 2022 16:58:13 +0200
+Message-Id: <20220604145816.47576-1-robimarko@gmail.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 04 Jun 2022 12:47:38 +0100
-Aidan MacDonald <aidanmacdonald.0x0@gmail.com> wrote:
+MP5496 is the updated version of MP5416 with the only difference being
+that now all Buck regulators have the same 0.6-2.1875V range with a 12.5mV
+step.
 
-> Jonathan Cameron <jic23@kernel.org> writes:
-> 
-> > On Fri,  3 Jun 2022 14:57:12 +0100
-> > Aidan MacDonald <aidanmacdonald.0x0@gmail.com> wrote:
-> >  
-> >> The AXP192 is identical to the AXP20x, except for the addition of
-> >> two more GPIO ADC channels.
-> >> 
-> >> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>  
-> > Hi Aidan,
-> >
-> > A few minor questions and comments inline.
-> >
-> > Thanks,
-> >
-> > Jonathan
-> >
-> > Unless I missed a previous patch adding labels to the other devices supported,
-> > this is the first driver to use these.  Why do they make sense here but not
-> > to add to existing supported devices?
-> >
-> > I don't particularly mind this addition, just looking for an explanation.
-> >  
-> 
-> That'd be because 1d4ef9b39ebecca8 ("iio: core: Add optional symbolic
-> label to a device channel") added read_label in 2020, while the AXP
-> driver was introduced in 2017. I could add read_label for the other
-> chips while I'm here, for consistency.
+Since there is no way to differentiate them other than using compatibles,
+add compatible for the MP5496.
 
-Thanks, I don't really mind either way on adding support for additional parts.
+Signed-off-by: Robert Marko <robimarko@gmail.com>
+---
+Changes in v2:
+* Send DT bindings as well
 
-> 
-> One question I have is why read_label exists when the kernel already has
-> unique names for IIO channels. Why not just expose the datasheet_name to
-> userspace from the IIO core instead of making drivers do it?
+ Documentation/devicetree/bindings/regulator/mps,mp5416.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-In general, datasheet_name refers to the name of the pin on a datasheet for this
-device, whereas label can refer to how it is used.
-There are dt bindings to allow a per channel label letting a driver (where it
-makes sense) provide them for each individual ADC channel.
-(e.g. the ad7768-1 driver does this).
+diff --git a/Documentation/devicetree/bindings/regulator/mps,mp5416.yaml b/Documentation/devicetree/bindings/regulator/mps,mp5416.yaml
+index 90727fdc1283..7023c597c3ed 100644
+--- a/Documentation/devicetree/bindings/regulator/mps,mp5416.yaml
++++ b/Documentation/devicetree/bindings/regulator/mps,mp5416.yaml
+@@ -15,6 +15,7 @@ properties:
+   compatible:
+     enum:
+       - mps,mp5416
++      - mps,mp5496
+ 
+   reg:
+     maxItems: 1
+-- 
+2.36.1
 
-On other devices they come from entirely different sources such as the hardcoded
-choices in hid-sensor-custom-intel-hinge.
-
-I vaguely recall that we've talked in the past about exposing datasheet name directly
-but for many devices it's not that useful (the user doesn't care if a channel is
-aux channel 1 or 7, but rather what it is wired up to).
-
-At the moment this driver just exposes all channels rather than having
-per channel bindings, so we don't have the option to use labeling in the device
-tree to assign the names.   If it's particularly useful to you to have labels
-that are datasheet names that's fine.
-
-Jonathan
