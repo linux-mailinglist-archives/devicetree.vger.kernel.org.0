@@ -2,123 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA8B653D81E
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jun 2022 20:39:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 237EF53D8A3
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jun 2022 23:40:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239465AbiFDSjM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Jun 2022 14:39:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34052 "EHLO
+        id S240246AbiFDVkM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Jun 2022 17:40:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239461AbiFDSjM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Jun 2022 14:39:12 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD1BF31526
-        for <devicetree@vger.kernel.org>; Sat,  4 Jun 2022 11:39:10 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id k19so14448697wrd.8
-        for <devicetree@vger.kernel.org>; Sat, 04 Jun 2022 11:39:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=7zjb1mGSym65J9ellOm0DGmh/ve+ZjqPiIhIp48CKMg=;
-        b=AyHfIekbEa9O0Z2h216EY2CHg2BPLKqFNyNc+ZJm/WVRM/04WA8N9/2RkGQvUK8Kc3
-         JLDqCdqvbdAcL4CLa9aiP2G9cFCZQOCitOA6QIKUdoc1gwnScCmI7Dvmq7C6X9VpKyK/
-         EckOUHW7xwGgyms3yo/Z6DbfEYQjXekGyDItQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=7zjb1mGSym65J9ellOm0DGmh/ve+ZjqPiIhIp48CKMg=;
-        b=cGp3f8G7lNDi9CHVHKjySt64qZ07PdKYCk4h3unoGjjVAnTHs3RW25OMuiJjWrLHo4
-         FIEvkerDrQefiR9XZ38RAFL1s8LK8M9UGj/2zuADnwqON4KdT0re1f9jy9697Xu0Sbgs
-         PyPsZKb/6iljBfr8NwkWqL6aBM5mOXMZM8mkJLzVyzBSuutO51kh706tKngE8Su1LFNy
-         hf/Kd+CHs6fxGOnSp1wFQdDlijeUO83aC+cAjJzjPLCahzDTYvK6JxdnMM8z1AdHWG2v
-         emS/DFlYA8vVob9muidr4USOvKRMw1iKKaZ4rFEmJ618CMffa4ooUvc+JR6Odhm/cuqY
-         hb4g==
-X-Gm-Message-State: AOAM533BCOA8IZNMXUUWN6vb7FkhQLjlgQHDZtCXyo0nDekzkIrE+Dli
-        77Jb+gF+Def1oxc9SnGvh/+tBw==
-X-Google-Smtp-Source: ABdhPJzRj6geKqRf7J30fIivb1dEg0YG34ldikQSCda3nTTUGz7XeTsmi3BbgAmQ5/KxSGxLeHPezA==
-X-Received: by 2002:a05:6000:1841:b0:20f:d80a:963f with SMTP id c1-20020a056000184100b0020fd80a963fmr13447868wri.116.1654367949162;
-        Sat, 04 Jun 2022 11:39:09 -0700 (PDT)
-Received: from localhost.localdomain (mob-37-180-27-19.net.vodafone.it. [37.180.27.19])
-        by smtp.gmail.com with ESMTPSA id d6-20020adff846000000b0020c5253d8d2sm10814263wrq.30.2022.06.04.11.39.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 04 Jun 2022 11:39:08 -0700 (PDT)
-From:   Michael Trimarchi <michael@amarulasolutions.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "Ariel D'Alessandro" <ariel.dalessandro@collabora.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX
-        / MXC ARM ARCHITECTURE), linux-kernel@vger.kernel.org (open list)
-Cc:     devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX
-        / MXC ARM ARCHITECTURE), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH] arm64: dts: imx8mn-bsh-smm-s2/pro: Add pmic clock connection
-Date:   Sat,  4 Jun 2022 20:38:58 +0200
-Message-Id: <20220604183905.1025201-1-michael@amarulasolutions.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S232340AbiFDVkK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Jun 2022 17:40:10 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 728EA22292;
+        Sat,  4 Jun 2022 14:40:07 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (117.145-247-81.adsl-dyn.isp.belgacom.be [81.247.145.117])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8416F6D4;
+        Sat,  4 Jun 2022 23:40:04 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1654378804;
+        bh=u2g4RQI6otMc6+/Eb8lBzry0VC0TwPROt30ekEuQdK4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Z4zYNyqFWG8xiseIfzX0ccj7usIKSimNwggl78cF6emCiSFrR8t2I+s37+Rae2ieT
+         b3y11nYKrP1N7TRJyjbVXWIzM73nPHQdU8L/EWqsQO+es3ur3ZPnLcZxsgNb7Mg7GP
+         gx5SMKxY6VICwQc1FuOQ9+x/+d54gu8L42iyplGw=
+Date:   Sun, 5 Jun 2022 00:39:59 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     djakov@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        festevam@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, abel.vesa@nxp.com,
+        abailon@baylibre.com, l.stach@pengutronix.de, marex@denx.de,
+        paul.elder@ideasonboard.com, Markus.Niebel@ew.tq-group.com,
+        aford173@gmail.com, kernel@pengutronix.de,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-imx@nxp.com, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 1/8] dt-bindings: soc: imx: add interconnect property for
+ i.MX8MP media blk ctrl
+Message-ID: <YpvRL4d2Sh9hvVMl@pendragon.ideasonboard.com>
+References: <20220601094537.3390127-1-peng.fan@oss.nxp.com>
+ <20220601094537.3390127-2-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220601094537.3390127-2-peng.fan@oss.nxp.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-pmic clock is connected to svns_rtc using RTC_XTALI pin,
-and wifi/bluetooth chipset
+Hi Peng,
 
-Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
----
- .../boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi     | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Thank you for the patch.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
-index c11895d9d582..a21ec0d1d003 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
-@@ -28,6 +28,8 @@ usdhc2_pwrseq: usdhc2-pwrseq {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pinctrl_usdhc2_pwrseq>;
- 		reset-gpios = <&gpio4 27 GPIO_ACTIVE_LOW>;
-+		clocks = <&bd71847>;
-+		clock-names = "ext_clock";
- 	};
- };
- 
-@@ -214,6 +216,11 @@ &i2c4 {
- 	status = "okay";
- };
- 
-+&snvs_rtc {
-+	clocks = <&bd71847>;
-+	clock-names = "snvs-rtc";
-+};
-+
- &uart2 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_uart2>;
-@@ -235,6 +242,8 @@ bluetooth {
- 		shutdown-gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
- 		device-wakeup-gpios = <&gpio1 18 GPIO_ACTIVE_HIGH>;
- 		host-wakeup-gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
-+		clocks = <&bd71847>;
-+		clock-names = "lpo";
- 		max-speed = <3000000>;
- 	};
- };
+On Wed, Jun 01, 2022 at 05:45:30PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> Add interconnect property for i.MX8MP mediamix blk ctrl
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  .../soc/imx/fsl,imx8mp-media-blk-ctrl.yaml         | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
+> index 21d3ee486295..706bef39b87e 100644
+> --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
+> +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
+> @@ -64,6 +64,20 @@ properties:
+>        - const: isp
+>        - const: phy
+>  
+> +  interconnects:
+> +    maxItems: 8
+> +
+> +  interconnect-names:
+> +    items:
+> +      - const: lcdif-rd
+> +      - const: lcdif-wr
+> +      - const: isi0
+> +      - const: isi1
+> +      - const: isi2
+
+If I understand correctly, these are for the 1x RD and 2x WR channels of
+the ISI. Would it make sense to name thim accordingly, maybe isi-rd,
+isi-wr0 and isi-wr1 ? I'm not sure about the order though.
+
+> +      - const: isp0
+> +      - const: isp1
+> +      - const: dwe
+> +
+>  required:
+>    - compatible
+>    - reg
+
 -- 
-2.25.1
+Regards,
 
+Laurent Pinchart
