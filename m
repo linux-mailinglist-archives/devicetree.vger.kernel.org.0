@@ -2,160 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B68F653D793
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jun 2022 17:58:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C7CD53D7A2
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jun 2022 18:11:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231784AbiFDP6C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Jun 2022 11:58:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34106 "EHLO
+        id S232572AbiFDQLB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Jun 2022 12:11:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237927AbiFDP55 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Jun 2022 11:57:57 -0400
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E26A22BCC;
-        Sat,  4 Jun 2022 08:57:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:MIME-Version:
-        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=0vnK3UEVR6EXO17rYqPTO6dCpcjgtUEXe5tgO2RW2Ks=; b=jDxnS3Z/hdBdX+gYdKilbu9mfK
-        SBi9f/YVCIqSc85Lcdk3btgHp/5eENW9u6EQUyfV6snAj1WBHaX3GUVghGcYAEOD82sNEkqogH7D3
-        4t0TLwg3aitoLMWtMA2VOYEEbl9b9t3JB4bpccG6RbhDqiT5/QFN1Qez+9Y5DrQNTfbE=;
-Received: from p200300ccff3313001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff33:1300:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1nxW9t-0007tr-GM; Sat, 04 Jun 2022 17:57:49 +0200
-Received: from andi by aktux with local (Exim 4.94.2)
-        (envelope-from <andreas@kemnade.info>)
-        id 1nxW9s-002PNK-TO; Sat, 04 Jun 2022 17:57:48 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Andreas Kemnade <andreas@kemnade.info>
-Subject: [PATCH] ARM: dts: imx6: fix node names for ebook reader keys
-Date:   Sat,  4 Jun 2022 17:57:48 +0200
-Message-Id: <20220604155748.574153-1-andreas@kemnade.info>
-X-Mailer: git-send-email 2.30.2
+        with ESMTP id S230079AbiFDQLA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Jun 2022 12:11:00 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0471F274;
+        Sat,  4 Jun 2022 09:11:00 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id B9739B8069F;
+        Sat,  4 Jun 2022 16:10:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4329C385B8;
+        Sat,  4 Jun 2022 16:10:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654359057;
+        bh=BR/gIt545qkwHAcr26HVThFM3VwGBkQEksbYZhnyxAo=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=BFiYoPb+ci9cHbHuzO5GqpB8/1WBERjCf3AVC5dnrUtpokvnbWr/uxLVP1jDSl2Tq
+         soiKgukQTHtr+IiD+zJd/XxawBdZty6xoQWkUt6mS2NV8H9MkI5PVQa3dSu2yZRPU9
+         tmC8zlwN/BjgTMa5LpLelBlcaylddjhrTt0ihgkaK1Mqlatv5n/ajS6ddRIIfTlPGg
+         qlEu8bONjJK1WhEbz7lPNZP/X1bsiHVTDqmU0QP3HF7zLTJuBRPSn+vqW106MYdvcq
+         NZ/bGAyVw6PnrUZSXKx3QKQfhzXgBko2rlQ1lCaMib6HGiRw1fl4PiQrp1pCvYYBLK
+         NYGbWOYmlCqRQ==
+Date:   Sat, 4 Jun 2022 17:19:58 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Gwendal Grignou <gwendal@chromium.org>
+Cc:     robh+dt@kernel.org, swboyd@chromium.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 02/10] iio: sx9324: Fix register field spelling
+Message-ID: <20220604171958.28bcd451@jic23-huawei>
+In-Reply-To: <20220429220144.1476049-3-gwendal@chromium.org>
+References: <20220429220144.1476049-1-gwendal@chromium.org>
+        <20220429220144.1476049-3-gwendal@chromium.org>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Score: -1.0 (-)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Node names are supposed to start with key-
+On Fri, 29 Apr 2022 15:01:36 -0700
+Gwendal Grignou <gwendal@chromium.org> wrote:
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- arch/arm/boot/dts/e60k02.dtsi                | 4 ++--
- arch/arm/boot/dts/e70k02.dtsi                | 8 ++++----
- arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts | 8 ++++----
- 3 files changed, 10 insertions(+), 10 deletions(-)
+> Field for PROX_CTRL4 should contain PROX_CTRL4.
+> 
+> Fixes: 4c18a890dff8d ("iio:proximity:sx9324: Add SX9324 support")
+> Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Applied
 
-diff --git a/arch/arm/boot/dts/e60k02.dtsi b/arch/arm/boot/dts/e60k02.dtsi
-index 1a49f15f2df2..935e2359f8df 100644
---- a/arch/arm/boot/dts/e60k02.dtsi
-+++ b/arch/arm/boot/dts/e60k02.dtsi
-@@ -22,14 +22,14 @@ chosen {
- 	gpio_keys: gpio-keys {
- 		compatible = "gpio-keys";
- 
--		power {
-+		key-power {
- 			label = "Power";
- 			gpios = <&gpio5 8 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_POWER>;
- 			wakeup-source;
- 		};
- 
--		cover {
-+		key-cover {
- 			label = "Cover";
- 			gpios = <&gpio5 12 GPIO_ACTIVE_LOW>;
- 			linux,code = <SW_LID>;
-diff --git a/arch/arm/boot/dts/e70k02.dtsi b/arch/arm/boot/dts/e70k02.dtsi
-index 156de653f2cd..27ef9a62b23c 100644
---- a/arch/arm/boot/dts/e70k02.dtsi
-+++ b/arch/arm/boot/dts/e70k02.dtsi
-@@ -26,14 +26,14 @@ chosen {
- 	gpio_keys: gpio-keys {
- 		compatible = "gpio-keys";
- 
--		power {
-+		key-power {
- 			label = "Power";
- 			gpios = <&gpio4 25 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_POWER>;
- 			wakeup-source;
- 		};
- 
--		cover {
-+		key-cover {
- 			label = "Cover";
- 			gpios = <&gpio4 23 GPIO_ACTIVE_LOW>;
- 			linux,code = <SW_LID>;
-@@ -41,13 +41,13 @@ cover {
- 			wakeup-source;
- 		};
- 
--		pageup {
-+		key-pageup {
- 			label = "PageUp";
- 			gpios = <&gpio4 0 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_PAGEUP>;
- 		};
- 
--		pagedown {
-+		key-pagedown {
- 			label = "PageDown";
- 			gpios = <&gpio4 2 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_PAGEDOWN>;
-diff --git a/arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts b/arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts
-index a17b8bbbdb95..86ad93cbe60c 100644
---- a/arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts
-+++ b/arch/arm/boot/dts/imx6sl-tolino-shine2hd.dts
-@@ -27,7 +27,7 @@ gpio_keys: gpio-keys {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pinctrl_gpio_keys>;
- 
--		cover {
-+		key-cover {
- 			label = "Cover";
- 			gpios = <&gpio5 12 GPIO_ACTIVE_LOW>;
- 			linux,code = <SW_LID>;
-@@ -35,19 +35,19 @@ cover {
- 			wakeup-source;
- 		};
- 
--		fl {
-+		key-fl {
- 			label = "Frontlight";
- 			gpios = <&gpio3 26 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_BRIGHTNESS_CYCLE>;
- 		};
- 
--		home {
-+		key-home {
- 			label = "Home";
- 			gpios = <&gpio3 25 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_HOME>;
- 		};
- 
--		power {
-+		key-power {
- 			label = "Power";
- 			gpios = <&gpio5 8 GPIO_ACTIVE_LOW>;
- 			linux,code = <KEY_POWER>;
--- 
-2.30.2
+> ---
+> No Changes in v5.
+> Changes since v3:
+> - Added Review tags.
+> 
+> Changes since v2:
+> - no changes
+> 
+> Changes since v1:
+> - Add Fixes keyword in commit message.
+> 
+>  drivers/iio/proximity/sx9324.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/iio/proximity/sx9324.c b/drivers/iio/proximity/sx9324.c
+> index 378c2a17bae6e..a7d9a53692a6d 100644
+> --- a/drivers/iio/proximity/sx9324.c
+> +++ b/drivers/iio/proximity/sx9324.c
+> @@ -90,7 +90,7 @@
+>  #define SX9324_REG_PROX_CTRL4_AVGNEGFILT_MASK	GENMASK(5, 3)
+>  #define SX9324_REG_PROX_CTRL4_AVGNEG_FILT_2 0x08
+>  #define SX9324_REG_PROX_CTRL4_AVGPOSFILT_MASK	GENMASK(2, 0)
+> -#define SX9324_REG_PROX_CTRL3_AVGPOS_FILT_256 0x04
+> +#define SX9324_REG_PROX_CTRL4_AVGPOS_FILT_256 0x04
+>  #define SX9324_REG_PROX_CTRL5		0x35
+>  #define SX9324_REG_PROX_CTRL5_HYST_MASK			GENMASK(5, 4)
+>  #define SX9324_REG_PROX_CTRL5_CLOSE_DEBOUNCE_MASK	GENMASK(3, 2)
+> @@ -794,7 +794,7 @@ static const struct sx_common_reg_default sx9324_default_regs[] = {
+>  	{ SX9324_REG_PROX_CTRL3, SX9324_REG_PROX_CTRL3_AVGDEB_2SAMPLES |
+>  		SX9324_REG_PROX_CTRL3_AVGPOS_THRESH_16K },
+>  	{ SX9324_REG_PROX_CTRL4, SX9324_REG_PROX_CTRL4_AVGNEG_FILT_2 |
+> -		SX9324_REG_PROX_CTRL3_AVGPOS_FILT_256 },
+> +		SX9324_REG_PROX_CTRL4_AVGPOS_FILT_256 },
+>  	{ SX9324_REG_PROX_CTRL5, 0x00 },
+>  	{ SX9324_REG_PROX_CTRL6, SX9324_REG_PROX_CTRL6_PROXTHRESH_32 },
+>  	{ SX9324_REG_PROX_CTRL7, SX9324_REG_PROX_CTRL6_PROXTHRESH_32 },
 
