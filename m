@@ -2,120 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6C5553D75B
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jun 2022 16:58:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A35153D76F
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jun 2022 17:16:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234161AbiFDO6f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Jun 2022 10:58:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60066 "EHLO
+        id S236482AbiFDPQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Jun 2022 11:16:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237298AbiFDO6Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Jun 2022 10:58:24 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 371192DD4E;
-        Sat,  4 Jun 2022 07:58:23 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id n10so21062553ejk.5;
-        Sat, 04 Jun 2022 07:58:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=OkZxJ2cbCpkeb5OXZiKnIfcDHtHJrUFww95s/52sWJ0=;
-        b=oUvfti/HE4YpYOxMCKBiVDfq30MGveeaaVOfSd7DIY6Y+OR0C7JRY64l9uQJol5XYL
-         0oM8XffefkP0J8XjUqzLBvWgDMvheG9B7LD6OPQVKs/Rw6cQjnpz6MuFU1S0DyYJq16S
-         ddjrXlVZ/5btBDrfKVaQB6hVNQOfWd1vZCzQjWX0X/TQhQbv+a34w0HV2lTU1Yn+Uffg
-         OQM/XbElp7jdOHekitNESGmYOETDWxn3YQQS3gsp7krhKqBhk/D4LLGPmDqv/iIdqfI6
-         6Nbftm+fRr/bKp/uOQXSIuC503eFXVo6TxFkRrxxyfTGIDMZmcI+5dSf2c25OEZSiAjD
-         O0QQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=OkZxJ2cbCpkeb5OXZiKnIfcDHtHJrUFww95s/52sWJ0=;
-        b=D1MJm73Xgwv6mMhrdDXobW+MOsYLs9jDdbrQIw4nEvXtag171T1/RHbHeYPn86kflM
-         lZUcwa2rBl4DUIy72ceT/4hq3YkzrWe86SCsW2NQXJnAXnCIiDkzH9oPowf9yFdZ7xRq
-         d07twzgnjfmoCY24+SYrSI5i8YZ2UieocoL0/6N85VP+jLuNv7TynuROP+qOvLuBx9er
-         PKdpE6i/ZDK99taDPWlPOKfhOUzjqkZGXUaKFfCwsLX3sXEUlLwIDEN7M68cE2JGj5ej
-         oz94zFDpLsv9ovh3d2Agc2G/tXxHKfeceJVXQTw4Ss3LIp4wiybiN3F2IxuDrCMgH5PY
-         v7PQ==
-X-Gm-Message-State: AOAM532ohiruRScCNbHnNcYGtmOdsHxdyP0JJ3Mjzjzmo3G+V0pnkd2B
-        kAENtxBk3ajSAKeXvRFwQeQ=
-X-Google-Smtp-Source: ABdhPJzl8no+3llOEBWyJpjGP0Zs0pkakbQnH3LN9UruNQFPYbqCPrcce3zbd+PA2tg8qctjGUHOCg==
-X-Received: by 2002:a17:906:dc89:b0:6f4:d3a9:34ed with SMTP id cs9-20020a170906dc8900b006f4d3a934edmr13303592ejc.459.1654354701728;
-        Sat, 04 Jun 2022 07:58:21 -0700 (PDT)
-Received: from fedora.robimarko.hr (cpe-94-253-165-43.zg.cable.xnet.hr. [94.253.165.43])
-        by smtp.googlemail.com with ESMTPSA id lk24-20020a170906cb1800b006fa84a0af2asm4139322ejb.16.2022.06.04.07.58.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 04 Jun 2022 07:58:21 -0700 (PDT)
-From:   Robert Marko <robimarko@gmail.com>
-To:     sravanhome@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Robert Marko <robimarko@gmail.com>
-Subject: [PATCH v2 4/4] regulator: mp5416: add support for MP5496
-Date:   Sat,  4 Jun 2022 16:58:16 +0200
-Message-Id: <20220604145816.47576-4-robimarko@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220604145816.47576-1-robimarko@gmail.com>
-References: <20220604145816.47576-1-robimarko@gmail.com>
+        with ESMTP id S232805AbiFDPQd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Jun 2022 11:16:33 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D8A52BC5;
+        Sat,  4 Jun 2022 08:16:32 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E9F2360DF2;
+        Sat,  4 Jun 2022 15:16:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8045FC385B8;
+        Sat,  4 Jun 2022 15:16:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654355791;
+        bh=sMVrMeuN+iV/XtWw2AufvrZZOEq7TIiPqjXY1rL4f9g=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=Dpi95ZpkKxrLsmYgT2URHRj5uELvFeqz8H2wlFStZFuYv6dGW1G5k10G29ejzXlpX
+         LOqJgMy1s/AMzWICKHl/Wc0Mm0aShXLuQ9IZPS+8gZT/Z5WiQo5gLN9phpqZqq4IWu
+         rnoA4StXDeC5K6lurx01fPg8zXC9hl8Deca/WHXS/+N9naaZRys/QHyE3hgf2rjjSo
+         7PXMOtWELwJwLfWCM+7fhn6tQqzXw1EXriD6L8gx3/sQ9rDQeiZ9T8D3LtZw078B3c
+         qw3xwZy820FNE+hEbN+QWezuVb3JJ7yCOUwsmndzXSeZjYdJ9te2ORgdqCiEIUggJH
+         dRUS1Xa9Ml8LQ==
+Date:   Sat, 4 Jun 2022 16:25:32 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Cosmin Tanislav <demonsingur@gmail.com>,
+        cosmin.tanislav@analog.com, Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+Subject: Re: [PATCH v3 3/3] iio: addac: ad74413r: for_each_set_bit_from ->
+ for_each_set_bit
+Message-ID: <20220604162532.65e4ea0e@jic23-huawei>
+In-Reply-To: <20220130142558.7601722c@jic23-huawei>
+References: <20220111074703.3677392-1-cosmin.tanislav@analog.com>
+        <20220111074703.3677392-3-cosmin.tanislav@analog.com>
+        <CAHp75VeVRwbMhQp-oBYM7yVzL_ma0jRu3ESEjz19zLQDFWyzkA@mail.gmail.com>
+        <20220115185948.56f227df@jic23-huawei>
+        <20220130142558.7601722c@jic23-huawei>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MP5496 is the updated version of MP5416 with the only difference being
-that now all Buck regulators have the same 0.6-2.1875V range with a 12.5mV
-step.
+On Sun, 30 Jan 2022 14:25:58 +0000
+Jonathan Cameron <jic23@kernel.org> wrote:
 
-Signed-off-by: Robert Marko <robimarko@gmail.com>
----
- drivers/regulator/mp5416.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+> On Sat, 15 Jan 2022 18:59:48 +0000
+> Jonathan Cameron <jic23@kernel.org> wrote:
+> 
+> > On Tue, 11 Jan 2022 11:22:23 +0200
+> > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> >   
+> > > On Tue, Jan 11, 2022 at 9:47 AM Cosmin Tanislav <demonsingur@gmail.com> wrote:    
+> > > >
+> > > > The starting bit is always zero, it doesn't make much sense to
+> > > > use for_each_set_bit_from. Replace it with for_each_set_bit
+> > > > which doesn't start from a particular bit.      
+> > > 
+> > > We refer to the function() like this.
+> > > But no need to resend, I hope Jonathan may amend this when applying.
+> > >     
+> > 
+> > I'll need to wait for rc1 to have the relevant code in my fixes-togreg
+> > branch to pick these up.
+> > 
+> > They look fine to me and hopefully I'll remember to cleanup the above ;)
+> >   
+> First 2 applied to the fixes-togreg branch of iio.git.
+> 
+> This 3rd one isn't a fix so will have to wait for those to end up in
+> my togreg branch.  Give me a shout if I seem to have lost this once that
+> is true.
 
-diff --git a/drivers/regulator/mp5416.c b/drivers/regulator/mp5416.c
-index 011a825570ea..71e20e8d78ac 100644
---- a/drivers/regulator/mp5416.c
-+++ b/drivers/regulator/mp5416.c
-@@ -175,6 +175,17 @@ static struct regulator_desc mp5416_regulators_desc[MP5416_MAX_REGULATORS] = {
- 	MP5416LDO("ldo4", 4, BIT(1)),
- };
- 
-+static struct regulator_desc mp5496_regulators_desc[MP5416_MAX_REGULATORS] = {
-+	MP5416BUCK("buck1", 1, mp5416_I_limits1, MP5416_REG_CTL1, BIT(0), 1),
-+	MP5416BUCK("buck2", 2, mp5416_I_limits2, MP5416_REG_CTL1, BIT(1), 1),
-+	MP5416BUCK("buck3", 3, mp5416_I_limits1, MP5416_REG_CTL1, BIT(2), 1),
-+	MP5416BUCK("buck4", 4, mp5416_I_limits2, MP5416_REG_CTL2, BIT(5), 1),
-+	MP5416LDO("ldo1", 1, BIT(4)),
-+	MP5416LDO("ldo2", 2, BIT(3)),
-+	MP5416LDO("ldo3", 3, BIT(2)),
-+	MP5416LDO("ldo4", 4, BIT(1)),
-+};
-+
- static int mp5416_i2c_probe(struct i2c_client *client)
- {
- 	struct device *dev = &client->dev;
-@@ -212,12 +223,14 @@ static int mp5416_i2c_probe(struct i2c_client *client)
- 
- static const struct of_device_id mp5416_of_match[] = {
- 	{ .compatible = "mps,mp5416", .data = &mp5416_regulators_desc },
-+	{ .compatible = "mps,mp5496", .data = &mp5496_regulators_desc },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, mp5416_of_match);
- 
- static const struct i2c_device_id mp5416_id[] = {
- 	{ "mp5416", },
-+	{ "mp5496", },
- 	{ },
- };
- MODULE_DEVICE_TABLE(i2c, mp5416_id);
--- 
-2.36.1
+Oops.  Even with patchwork I occasionally lose patches as too many things
+stick there for a long time for complex reasons.
+
+Anyhow, now applied to the togreg branch of iio.git
+
+Sorry for the delay
+
+Jonathan
+
+> 
+> Thanks,
+> 
+> Jonathan
+> 
+> > Thanks,
+> > 
+> > Jonathan  
+> 
 
