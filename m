@@ -1,58 +1,68 @@
 Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 06ECB53DA28
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 06:52:32 +0200 (CEST)
+Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
+	by mail.lfdr.de (Postfix) with ESMTP id EBF3253DAF5
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 11:13:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243828AbiFEEuQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Jun 2022 00:50:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38580 "EHLO
+        id S1350900AbiFEJNs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Jun 2022 05:13:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233427AbiFEEuQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 00:50:16 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 964E02B255;
-        Sat,  4 Jun 2022 21:50:15 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 4DF2FB80B1B;
-        Sun,  5 Jun 2022 04:50:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id DA623C3411D;
-        Sun,  5 Jun 2022 04:50:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654404612;
-        bh=RX2wEaBw82qW8ojxQw9653S7XMkj3wRobXYqpSRQXHY=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=Egz0oID1xgX3HW6VgujboCzNGYko9LjV06+5OEQl7pDIhGxPeoXK1fR0ILGnN3m4P
-         v7HA1i7YdI+kxT2FifkSxNhApGx7OAavtLgd5EboylGcj83eXhcS/kwdfFqhl0LKM+
-         4gD1vX0mGNYAlKgzT7J4TQ/Q14pBjG5tzjBMn3ak3g6IDSrCI8jUC0cBarEeb6UBGJ
-         Q4uDsUztxufbv8GX47JN2N6YVj6hFvOyXZh27MWMY7GeobnsB5nGpOb/aWKb1xVuVP
-         80ukjIls+QU18BePxPxd0tUIbqzSEjDk+vcMHW2LzEwK0mhK7SNIjVfg9W2XIK3XUp
-         LuWEmWZIC1mrQ==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id BFFEFF03875;
-        Sun,  5 Jun 2022 04:50:12 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S231216AbiFEJNp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 05:13:45 -0400
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AFC4183AD
+        for <devicetree@vger.kernel.org>; Sun,  5 Jun 2022 02:13:44 -0700 (PDT)
+Received: by mail-pg1-x532.google.com with SMTP id c18so2307112pgh.11
+        for <devicetree@vger.kernel.org>; Sun, 05 Jun 2022 02:13:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=t40w8M/0e+7jzPaXKU8sHRs+0HYfLIpNt+JXgYblSMg=;
+        b=ocyh0GC00EAoaldlX1NjY7vXM7LbDtFDCA/7kXfCx1Ot+WKDvRO2xAoQE4IatRDfQE
+         iggeZJFMvcTXFNuSAHi269fFf0Y7FYT/7p7FgnjfU/0uYk4Y3dcrKAX1+i2bUYqFHOSa
+         nx9ZzclCH+yphK8vDpAp1cpBhgTl+ZyCbBuFE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=t40w8M/0e+7jzPaXKU8sHRs+0HYfLIpNt+JXgYblSMg=;
+        b=yw7qYj2KDR9oE2DnyMMUsv5+b8buidB9SEU/I1ssHh+u9DI5exW71Qmmr/tFP7pbMG
+         vitCYadaeTV36QBFJt1sNRsr+qF0J9nJmrX96LrIJd/EsPawLqRhLruXxrM4P6FEEwso
+         YcyVvYRoY9drGUctBQACqq2B0aIXoFnnotuI3ysbJH/DyTminLtc2tcD4Oo83kEFyXit
+         Kobd88l5NjMazKCLdPEKN9YycvjkDHeQeYzAQuebE9Qmif5spBQEjskNL9vVjNYNQDWu
+         NMfMxPhjq8/b1zdFpa6e/y1ahcid1OqHWZqP1dShOKkovlOPMswE8KCgYfkFTlSYKWgl
+         U94w==
+X-Gm-Message-State: AOAM532u5fzvYgDrjgA2T4cXgwa3hHj/tC3FRTeX3re2K0UM0HMQ4KwJ
+        YgJS2fuZagQW8mIBOAokQH0+F+eyIszBQrqSWfmxnQ==
+X-Google-Smtp-Source: ABdhPJyfM9d7kMlMNvdUeRn2dk39OQ/Usv5Q6CYgHbkGf9STAOM6qa29oOgODMY+MUkxTGzGNRvQeI1jGiWN9/fZwuA=
+X-Received: by 2002:a05:6a00:2402:b0:4e1:3df2:5373 with SMTP id
+ z2-20020a056a00240200b004e13df25373mr85499945pfh.40.1654420423926; Sun, 05
+ Jun 2022 02:13:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v2 1/2] dt-bindings: bluetooth: broadcom: Add BCM4349B1 DT
- binding
-From:   patchwork-bot+bluetooth@kernel.org
-Message-Id: <165440461278.31102.12185070226615381233.git-patchwork-notify@kernel.org>
-Date:   Sun, 05 Jun 2022 04:50:12 +0000
-References: <20220524055642.1574769-1-a.fatoum@pengutronix.de>
-In-Reply-To: <20220524055642.1574769-1-a.fatoum@pengutronix.de>
-To:     Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc:     kernel@pengutronix.de, krzysztof.kozlowski@linaro.org,
-        linus.walleij@linaro.org, linux-kernel@vger.kernel.org,
-        linux-bluetooth@vger.kernel.org, davem@davemloft.net,
-        kuba@kernel.org, pabeni@redhat.com, netdev@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+References: <20220604183905.1025201-1-michael@amarulasolutions.com>
+In-Reply-To: <20220604183905.1025201-1-michael@amarulasolutions.com>
+From:   Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
+Date:   Sun, 5 Jun 2022 11:13:31 +0200
+Message-ID: <CAOf5uwm=TTZSevG7GtYzB9x0kk4f+DMeJMrTvzrogPwqe9utZA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8mn-bsh-smm-s2/pro: Add pmic clock connection
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "Ariel D'Alessandro" <ariel.dalessandro@collabora.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -61,31 +71,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+Hi
 
-This series was applied to bluetooth/bluetooth-next.git (master)
-by Marcel Holtmann <marcel@holtmann.org>:
+I have some problems here. Open to suggestion:
 
-On Tue, 24 May 2022 07:56:40 +0200 you wrote:
-> The BCM4349B1, aka CYW/BCM89359, is a WiFi+BT chip and its Bluetooth
-> portion can be controlled over serial.
-> Extend the binding with its DT compatible.
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
-> 
-> [...]
+On Sat, Jun 4, 2022 at 8:39 PM Michael Trimarchi
+<michael@amarulasolutions.com> wrote:
+>
+> pmic clock is connected to svns_rtc using RTC_XTALI pin,
+> and wifi/bluetooth chipset
+>
+> Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
+> ---
+>  .../boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi     | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
+> index c11895d9d582..a21ec0d1d003 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
+> @@ -28,6 +28,8 @@ usdhc2_pwrseq: usdhc2-pwrseq {
+>                 pinctrl-names = "default";
+>                 pinctrl-0 = <&pinctrl_usdhc2_pwrseq>;
+>                 reset-gpios = <&gpio4 27 GPIO_ACTIVE_LOW>;
+> +               clocks = <&bd71847>;
+> +               clock-names = "ext_clock";
+>         };
+>  };
+>
+> @@ -214,6 +216,11 @@ &i2c4 {
+>         status = "okay";
+>  };
+>
+> +&snvs_rtc {
+> +       clocks = <&bd71847>;
+> +       clock-names = "snvs-rtc";
+> +};
+> +
+>  &uart2 {
+>         pinctrl-names = "default";
+>         pinctrl-0 = <&pinctrl_uart2>;
+> @@ -235,6 +242,8 @@ bluetooth {
+>                 shutdown-gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
+>                 device-wakeup-gpios = <&gpio1 18 GPIO_ACTIVE_HIGH>;
+>                 host-wakeup-gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
+> +               clocks = <&bd71847>;
+> +               clock-names = "lpo";
+>                 max-speed = <3000000>;
+>         };
+>  };
 
-Here is the summary with links:
-  - [v2,1/2] dt-bindings: bluetooth: broadcom: Add BCM4349B1 DT binding
-    https://git.kernel.org/bluetooth/bluetooth-next/c/534fdae369a8
-  - [v2,2/2] Bluetooth: hci_bcm: Add BCM4349B1 variant
-    https://git.kernel.org/bluetooth/bluetooth-next/c/a589ee43644c
+I've done more testing in suspend/resume and it can not work. I have
+modelled differently and extended the svns block to receive an
+external clock and make it always enabled. The problem here is the cpu
+takes the clock from the pmic that is enabled by default and the pmic
+clock even wifi and bluetooth. If I want to register the driver I
+would like to connect all of them but it seems that osc_32k is the
+basic clock of the cpu and can be modelled using pmic easily. Even I
+have created the ext clock on the snvs block so  should be always
+enabled suspend/resume. The device can not resume from suspend.
 
-You are awesome, thank you!
+Michael
+
+> --
+> 2.25.1
+>
+
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Michael Nazzareno Trimarchi
+Co-Founder & Chief Executive Officer
+M. +39 347 913 2170
+michael@amarulasolutions.com
+__________________________________
 
-
+Amarula Solutions BV
+Joop Geesinkweg 125, 1114 AB, Amsterdam, NL
+T. +31 (0)85 111 9172
+info@amarulasolutions.com
+www.amarulasolutions.com
