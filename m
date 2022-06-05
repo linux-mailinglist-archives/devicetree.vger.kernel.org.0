@@ -2,210 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B74B53D8A6
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jun 2022 23:45:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1400553D937
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 04:17:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242075AbiFDVpH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Jun 2022 17:45:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55786 "EHLO
+        id S244259AbiFECRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Jun 2022 22:17:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232340AbiFDVpG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Jun 2022 17:45:06 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23D5C222AC;
-        Sat,  4 Jun 2022 14:45:05 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (117.145-247-81.adsl-dyn.isp.belgacom.be [81.247.145.117])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 859AC6D4;
-        Sat,  4 Jun 2022 23:45:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1654379103;
-        bh=TrFjpWkzVkNWUt57w55uIPPPvqKwBd4wXSVA6ZZCZCk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MzLMCNe2RMozks1RnefrxWhkIyqATY7kiKwq6DQGiKtiqdpzkHj3+Tg7joo81UHcr
-         /hqBmwnPuByxG+SI0g3ihYny/vBtDwHR7/TZb1NR73dfaozpDHSu69IGQjVMvr/cix
-         E1LN8IqCNBW+/yVqVOrpoRqQ0Q0idLC/L7iXfJks=
-Date:   Sun, 5 Jun 2022 00:44:57 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     djakov@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        festevam@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, abel.vesa@nxp.com,
-        abailon@baylibre.com, l.stach@pengutronix.de, marex@denx.de,
-        paul.elder@ideasonboard.com, Markus.Niebel@ew.tq-group.com,
-        aford173@gmail.com, kernel@pengutronix.de,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-imx@nxp.com, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH 4/8] soc: imx: add icc paths for i.MX8MP media blk ctrl
-Message-ID: <YpvSWTZk5kb8d0Bn@pendragon.ideasonboard.com>
-References: <20220601094537.3390127-1-peng.fan@oss.nxp.com>
- <20220601094537.3390127-5-peng.fan@oss.nxp.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220601094537.3390127-5-peng.fan@oss.nxp.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230134AbiFECRx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Jun 2022 22:17:53 -0400
+Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 462C01A811;
+        Sat,  4 Jun 2022 19:17:52 -0700 (PDT)
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-e656032735so15322486fac.0;
+        Sat, 04 Jun 2022 19:17:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=vaQRGY53H6wADOsm4kW7eWOUF6mNNCacfi7LA2Rw00I=;
+        b=npL5Td5L74p4eCnbJPCwj0E3shh1ETMT1NfQ/+nyxtm78VDaBU6WRiiS0ckJz97aUv
+         o6ttrmcOf75+z4vbQbNo32E6ljNf97iUJnlSSmETaKd5Zei3JmHGKtgzIW8AEr/ve57q
+         0MSa1LRuxqAKi3HV7w54Gtfsvtza7wtgaRqnt89AQEds7SwrJcN2ghavw3FHyvMQt9UU
+         BEjx8gjUik6Ls8l7s8nXjl3HTebHM4cPNfQy1Yx41k4PVCYRoJLN7OiamH+G7zt73FOE
+         aXP1GHHn8HgljsZzoa0iLeIQnbLm9az1foIZhCzmtj9uOs0wrDiq1cMtL3TReytFD459
+         2KYQ==
+X-Gm-Message-State: AOAM532xHC9o/dobovsbCXt21ySztxTSLNx2F8XYJq5fHu19jVGLnvKg
+        xJK0fhHT427+4PpRx6UzXDysiLVmsg==
+X-Google-Smtp-Source: ABdhPJw3plt6cA7kHbewJlcD/6xi88pJPH3DzFJ7woCXjGhnxxWz7NQWVoOCvGF3d8MrxTK7Dn0cMw==
+X-Received: by 2002:a05:6870:7392:b0:f3:3d30:a44d with SMTP id z18-20020a056870739200b000f33d30a44dmr18009264oam.91.1654395471465;
+        Sat, 04 Jun 2022 19:17:51 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id e25-20020a056808111900b0032e73b538dasm978096oih.52.2022.06.04.19.17.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 04 Jun 2022 19:17:51 -0700 (PDT)
+Received: (nullmailer pid 3371064 invoked by uid 1000);
+        Sun, 05 Jun 2022 02:17:50 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Srinivas Neeli <srinivas.neeli@xilinx.com>
+Cc:     michal.simek@xilinx.com, shubhraj@xilinx.com, sgoud@xilinx.com,
+        linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, alexandre.belloni@bootlin.com,
+        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+        linux-rtc@vger.kernel.org, a.zummo@towertech.it, git@xilinx.com
+In-Reply-To: <20220603170432.26605-1-srinivas.neeli@xilinx.com>
+References: <20220603170432.26605-1-srinivas.neeli@xilinx.com>
+Subject: Re: [PATCH V5 1/2] dt-bindings: rtc: zynqmp: Add clock information
+Date:   Sat, 04 Jun 2022 21:17:50 -0500
+Message-Id: <1654395470.124495.3371063.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peng,
-
-Thank you for the patch.
-
-On Wed, Jun 01, 2022 at 05:45:33PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On Fri, 03 Jun 2022 22:34:31 +0530, Srinivas Neeli wrote:
+> Added clock information and deprecated calibration support.
 > 
-> Add interconnect paths for i.MX8MP media blk ctrl
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> Signed-off-by: Srinivas Neeli <srinivas.neeli@xilinx.com>
 > ---
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi |  1 +
->  drivers/soc/imx/imx8m-blk-ctrl.c          | 31 +++++++++++++++++++++++
->  2 files changed, 32 insertions(+)
+> Changes in V5:
+> -Removed quotes and _clk suffix from clocknames.
+> Changes in V4:
+> - Deprecated calibrtion support
+> Changes in V3:
+> - New patch
+> ---
+>  .../devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml      | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> index d9542dfff83f..2a1c6ff37e03 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -4,6 +4,7 @@
->   */
->  
->  #include <dt-bindings/clock/imx8mp-clock.h>
-> +#include <dt-bindings/interconnect/fsl,imx8mp.h>
->  #include <dt-bindings/power/imx8mp-power.h>
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/input/input.h>
-> diff --git a/drivers/soc/imx/imx8m-blk-ctrl.c b/drivers/soc/imx/imx8m-blk-ctrl.c
-> index 7f49385ed2f8..423cac0c9cb6 100644
-> --- a/drivers/soc/imx/imx8m-blk-ctrl.c
-> +++ b/drivers/soc/imx/imx8m-blk-ctrl.c
-> @@ -5,6 +5,7 @@
->   */
->  
->  #include <linux/device.h>
-> +#include <linux/interconnect.h>
->  #include <linux/module.h>
->  #include <linux/of_device.h>
->  #include <linux/platform_device.h>
-> @@ -37,6 +38,8 @@ struct imx8m_blk_ctrl_domain_data {
->  	const char *name;
->  	const char * const *clk_names;
->  	int num_clks;
-> +	const char * const *path_names;
-> +	int num_paths;
->  	const char *gpc_name;
->  	u32 rst_mask;
->  	u32 clk_mask;
-> @@ -52,11 +55,13 @@ struct imx8m_blk_ctrl_domain_data {
->  };
->  
->  #define DOMAIN_MAX_CLKS 4
-> +#define DOMAIN_MAX_PATHS 4
->  
->  struct imx8m_blk_ctrl_domain {
->  	struct generic_pm_domain genpd;
->  	const struct imx8m_blk_ctrl_domain_data *data;
->  	struct clk_bulk_data clks[DOMAIN_MAX_CLKS];
-> +	struct icc_bulk_data paths[DOMAIN_MAX_PATHS];
->  	struct device *power_dev;
->  	struct imx8m_blk_ctrl *bc;
->  };
-> @@ -117,6 +122,10 @@ static int imx8m_blk_ctrl_power_on(struct generic_pm_domain *genpd)
->  	if (data->mipi_phy_rst_mask)
->  		regmap_set_bits(bc->regmap, BLK_MIPI_RESET_DIV, data->mipi_phy_rst_mask);
->  
-> +	ret = icc_bulk_set_bw(data->num_paths, domain->paths);
-> +	if (ret)
-> +		dev_err(bc->dev, "failed to set icc bw\n");
 
-Don't we need to "release" the bandwidth on power off ?
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> +
->  	/* disable upstream clocks */
->  	clk_bulk_disable_unprepare(data->num_clks, domain->clks);
->  
-> @@ -228,6 +237,18 @@ static int imx8m_blk_ctrl_probe(struct platform_device *pdev)
->  		for (j = 0; j < data->num_clks; j++)
->  			domain->clks[j].id = data->clk_names[j];
->  
-> +		for (j = 0; j < data->num_paths; j++) {
-> +			domain->paths[j].name = data->path_names[j];
-> +			domain->paths[j].avg_bw = INT_MAX;
-> +			domain->paths[j].peak_bw = INT_MAX;
+yamllint warnings/errors:
 
-That's harsh :-) I suppose it's good enough to start with, but I wonder
-if we'll need more control later.
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.example.dtb: rtc@ffa60000: clock-names:0: 'rtc' was expected
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml
 
-> +		}
-> +
-> +		ret = devm_of_icc_bulk_get(dev, data->num_paths, domain->paths);
-> +		if (ret) {
-> +			dev_err_probe(dev, ret, "failed to get noc entries\n");
-> +			goto cleanup_pds;
-> +		}
-> +
->  		ret = devm_clk_bulk_get(dev, data->num_clks, domain->clks);
->  		if (ret) {
->  			dev_err_probe(dev, ret, "failed to get clock\n");
-> @@ -647,6 +668,8 @@ static const struct imx8m_blk_ctrl_domain_data imx8mp_media_blk_ctl_domain_data[
->  		.gpc_name = "lcdif1",
->  		.rst_mask = BIT(4) | BIT(5) | BIT(23),
->  		.clk_mask = BIT(4) | BIT(5) | BIT(23),
-> +		.path_names = (const char *[]){"lcdif-rd", "lcdif-wr"},
-> +		.num_paths = 2,
->  	},
->  	[IMX8MP_MEDIABLK_PD_ISI] = {
->  		.name = "mediablk-isi",
-> @@ -655,6 +678,8 @@ static const struct imx8m_blk_ctrl_domain_data imx8mp_media_blk_ctl_domain_data[
->  		.gpc_name = "isi",
->  		.rst_mask = BIT(6) | BIT(7),
->  		.clk_mask = BIT(6) | BIT(7),
-> +		.path_names = (const char *[]){"isi0", "isi1", "isi2"},
-> +		.num_paths = 3,
->  	},
->  	[IMX8MP_MEDIABLK_PD_MIPI_CSI2_2] = {
->  		.name = "mediablk-mipi-csi2-2",
-> @@ -672,6 +697,8 @@ static const struct imx8m_blk_ctrl_domain_data imx8mp_media_blk_ctl_domain_data[
->  		.gpc_name = "lcdif2",
->  		.rst_mask = BIT(11) | BIT(12) | BIT(24),
->  		.clk_mask = BIT(11) | BIT(12) | BIT(24),
-> +		.path_names = (const char *[]){"lcdif-rd", "lcdif-wr"},
-> +		.num_paths = 2,
->  	},
->  	[IMX8MP_MEDIABLK_PD_ISP] = {
->  		.name = "mediablk-isp",
-> @@ -680,6 +707,8 @@ static const struct imx8m_blk_ctrl_domain_data imx8mp_media_blk_ctl_domain_data[
->  		.gpc_name = "isp",
->  		.rst_mask = BIT(16) | BIT(17) | BIT(18),
->  		.clk_mask = BIT(16) | BIT(17) | BIT(18),
-> +		.path_names = (const char *[]){"isp0", "isp1"},
-> +		.num_paths = 2,
+doc reference errors (make refcheckdocs):
 
-As far as I understand, there's a single power domain for both ISP
-instances (I'm not entirely sure this is on purpose or a design mistake,
-but that's another story), but one interconnect path for each ISP
-instance. Would there be any use case for controlling them separately ?
-I can't really think of any myself.
+See https://patchwork.ozlabs.org/patch/
 
->  	},
->  	[IMX8MP_MEDIABLK_PD_DWE] = {
->  		.name = "mediablk-dwe",
-> @@ -688,6 +717,8 @@ static const struct imx8m_blk_ctrl_domain_data imx8mp_media_blk_ctl_domain_data[
->  		.gpc_name = "dwe",
->  		.rst_mask = BIT(19) | BIT(20) | BIT(21),
->  		.clk_mask = BIT(19) | BIT(20) | BIT(21),
-> +		.path_names = (const char *[]){"dwe"},
-> +		.num_paths = 1,
->  	},
->  	[IMX8MP_MEDIABLK_PD_MIPI_DSI_2] = {
->  		.name = "mediablk-mipi-dsi-2",
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
--- 
-Regards,
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-Laurent Pinchart
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
