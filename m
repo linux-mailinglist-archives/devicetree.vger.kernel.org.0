@@ -2,105 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B55E53D939
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 04:17:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10B0F53D962
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 05:24:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344367AbiFECRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Jun 2022 22:17:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54080 "EHLO
+        id S243661AbiFEDYp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Jun 2022 23:24:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239486AbiFECRz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Jun 2022 22:17:55 -0400
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D4891A82F;
-        Sat,  4 Jun 2022 19:17:53 -0700 (PDT)
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-e93bbb54f9so15214105fac.12;
-        Sat, 04 Jun 2022 19:17:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=lQ4WDAfIbQoDCBB4B+MAW+ijNY272OTmgCMkNTc+Uvc=;
-        b=bh43+VMw6g+mPjOJ60pNM4ZIZQ6mF1d9TZ9gGWo4WVWj3/xdCJneORFY3NCNXDMdfY
-         LKLIRwfdC8u/YwOvSRKONZuLPPaUrwCh4zshKG7lfNEkegy0JL9/kkMcRBP9UuxOZrm2
-         iW8QO3gm5sLfFTO6rqaXdV4kEX4QpqQf4iZ+xgebyCcLZXRFt712u72PAKJkueAkZONc
-         4kZ/UCN6A5rPJBh/z7VRgqXE1b3CuZoNnnyyaHV/Wvaz9cR+wMKMhOI6ymvsqrHxk/oH
-         waRPp00zRrTs4Dk5RAvu1GPlOI1/B/5ZgiNV0uGvTWnAzrmYl90a6EhCtvf9GMDZLFAO
-         dj3g==
-X-Gm-Message-State: AOAM5319N8Qx3MXx5inJldCUxyO7TBcsMS7FbqXxFrsuNxHJCd/fkC8V
-        w0cg3josQSC4pjjUxtSi4A==
-X-Google-Smtp-Source: ABdhPJzU8BDDcCbf/hdWWbHSyuiipZ4q19linmO5W5eMQ60JU5K7XyQVF6AYRByp35JPWgvTN+vLBA==
-X-Received: by 2002:a05:6870:ec90:b0:f3:4c28:5acf with SMTP id eo16-20020a056870ec9000b000f34c285acfmr16846652oab.28.1654395472806;
-        Sat, 04 Jun 2022 19:17:52 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id k84-20020aca3d57000000b0032e2599df3dsm5731389oia.10.2022.06.04.19.17.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 04 Jun 2022 19:17:52 -0700 (PDT)
-Received: (nullmailer pid 3371067 invoked by uid 1000);
-        Sun, 05 Jun 2022 02:17:50 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Harsh Agarwal <quic_harshq@quicinc.com>
-Cc:     ahalaney@redhat.com,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        quic_ppratap@quicinc.com, quic_jackp@quicinc.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-usb@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, quic_pkondeti@quicinc.com,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Felipe Balbi <balbi@kernel.org>
-In-Reply-To: <1654276362-28930-2-git-send-email-quic_harshq@quicinc.com>
-References: <1654276362-28930-1-git-send-email-quic_harshq@quicinc.com> <1654276362-28930-2-git-send-email-quic_harshq@quicinc.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: usb: dwc3: Add support for multiport related properties
-Date:   Sat, 04 Jun 2022 21:17:50 -0500
-Message-Id: <1654395470.146119.3371066.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        with ESMTP id S239358AbiFEDYn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Jun 2022 23:24:43 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2936186CD;
+        Sat,  4 Jun 2022 20:24:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=+l0GZ7z58a9WOSaF56AZ+Q4QK3euNlwmXxmDuMAYC+0=; b=K+yykGXDLEVF9Ufmqm3D0H4Shj
+        6gO8dpe4F4i8e1Pfucb+cFS4RfoYy6SGYGLVDLsl6Sjc/IDmP4LpaZyB7+jEouIdNL04if+bplwCG
+        fx/lUI/AjdVL+ox1TljEKu1wxbjrmmxFizBfiMcg3ImDC38rXPpVGJrvDOWR+czzTyMk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nxgsT-005b5j-K9; Sun, 05 Jun 2022 05:24:33 +0200
+Date:   Sun, 5 Jun 2022 05:24:33 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Piyush Malgujar <pmalgujar@marvell.com>
+Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        cchavva@marvell.com, deppel@marvell.com,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>
+Subject: Re: [PATCH v2 3/3] net: mdio: mdio-thunder: support for clock-freq
+ attribute
+Message-ID: <Ypwh8e0jdQPVyJVq@lunn.ch>
+References: <20220530125329.30717-1-pmalgujar@marvell.com>
+ <20220530125329.30717-4-pmalgujar@marvell.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220530125329.30717-4-pmalgujar@marvell.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 03 Jun 2022 22:42:40 +0530, Harsh Agarwal wrote:
-> Added support for multiport, mport, num_usb2_phy and num_usb3_phy
-> properties. These properties are used to support devices having
-> a multiport controller.
-> 
-> Signed-off-by: Harsh Agarwal <quic_harshq@quicinc.com>
-> ---
->  .../devicetree/bindings/usb/snps,dwc3.yaml         | 55 ++++++++++++++++++++++
->  1 file changed, 55 insertions(+)
-> 
+> +static inline u32 clk_freq(u32 phase)
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Please keep with the naming scheme in the rest of the driver, 
+thunder_mdiobus_clk_freq()
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/usb/snps,dwc3.yaml:366:8: [warning] wrong indentation: expected 6 but found 7 (indentation)
-./Documentation/devicetree/bindings/usb/snps,dwc3.yaml:367:10: [warning] wrong indentation: expected 11 but found 9 (indentation)
-./Documentation/devicetree/bindings/usb/snps,dwc3.yaml:369:11: [warning] wrong indentation: expected 11 but found 10 (indentation)
+> +{
+> +	return (100000000U / (2 * (phase)));
+> +}
+> +
+> +static inline u32 calc_sample(u32 phase)
+> +{
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/snps,dwc3.example.dtb: usb@4a000000: multiport: 'mport' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+thunder_mdiobus_calc_sample()
 
-doc reference errors (make refcheckdocs):
+> +	return (2 * (phase) - 3);
+> +}
+> +
+> +static u32 _config_clk(u32 req_freq, u32 *phase, u32 *sample)
 
-See https://patchwork.ozlabs.org/patch/
+thunder_mdiobus_config_clk().
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+> +{
+> +	unsigned int p;
+> +	u32 freq = 0, freq_prev;
+> +
+> +	for (p = PHASE_MIN; p < PHASE_DFLT; p++) {
+> +		freq_prev = freq;
+> +		freq = clk_freq(p);
+> +
+> +		if (req_freq >= freq)
+> +			break;
+> +	}
+> +
+> +	if (p == PHASE_DFLT)
+> +		freq = clk_freq(PHASE_DFLT);
+> +
+> +	if (p == PHASE_MIN || p == PHASE_DFLT)
+> +		goto out;
+> +
+> +	/* Check which clock value from the identified range
+> +	 * is closer to the requested value
+> +	 */
+> +	if ((freq_prev - req_freq) < (req_freq - freq)) {
+> +		p = p - 1;
+> +		freq = freq_prev;
+> +	}
+> +out:
+> +	*phase = p;
+> +	*sample = calc_sample(p);
+> +	return freq;
+> +}
+> +
+>  static int thunder_mdiobus_pci_probe(struct pci_dev *pdev,
+>  				     const struct pci_device_id *ent)
+>  {
+> @@ -56,6 +101,7 @@ static int thunder_mdiobus_pci_probe(struct pci_dev *pdev,
+>  	i = 0;
+>  	device_for_each_child_node(&pdev->dev, fwn) {
+>  		struct resource r;
+> +		u32 req_clk_freq;
+>  		struct mii_bus *mii_bus;
+>  		struct cavium_mdiobus *bus;
+>  		union cvmx_smix_clk smi_clk;
+> @@ -90,6 +136,23 @@ static int thunder_mdiobus_pci_probe(struct pci_dev *pdev,
+>  
+>  		smi_clk.u64 = oct_mdio_readq(bus->register_base + SMI_CLK);
+>  		smi_clk.s.clk_idle = 1;
+> +
+> +		if (!of_property_read_u32(node, "clock-frequency", &req_clk_freq)) {
+> +			u32 phase, sample;
+> +
+> +			dev_dbg(&pdev->dev, "requested bus clock frequency=%d\n",
+> +				req_clk_freq);
+> +
+> +			bus->clk_freq = _config_clk(req_clk_freq,
+> +						    &phase, &sample);
+> +
+> +			smi_clk.s.phase = phase;
+> +			smi_clk.s.sample_hi = (sample >> 4) & 0x1f;
+> +			smi_clk.s.sample = sample & 0xf;
+> +		} else {
+> +			bus->clk_freq = clk_freq(PHASE_DFLT);
+> +		}
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+You can make this simpler by setting req_clk_freq to your odd
+default. Then call of_property_read_u32(). If the property is not
+defined, the value of req_clk_freq will not be changed, and the
+calculation should come out with the correct value.
 
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+	    Andrew
