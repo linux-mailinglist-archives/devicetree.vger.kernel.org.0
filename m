@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84BFD53DE4B
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 23:09:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3683253DE4E
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 23:13:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242698AbiFEVJv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Jun 2022 17:09:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57136 "EHLO
+        id S244223AbiFEVNe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Jun 2022 17:13:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236184AbiFEVJv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 17:09:51 -0400
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9B7D35AAA
-        for <devicetree@vger.kernel.org>; Sun,  5 Jun 2022 14:09:49 -0700 (PDT)
-Received: by mail-qk1-f173.google.com with SMTP id o73so4770465qke.7
-        for <devicetree@vger.kernel.org>; Sun, 05 Jun 2022 14:09:49 -0700 (PDT)
+        with ESMTP id S236184AbiFEVNd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 17:13:33 -0400
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D39F626ACB;
+        Sun,  5 Jun 2022 14:13:30 -0700 (PDT)
+Received: by mail-qk1-f181.google.com with SMTP id bi27so3159718qkb.10;
+        Sun, 05 Jun 2022 14:13:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=VmVbhNLtb1RBxcowUesmpHLJYJQrkkd5bbnl1V1jqZ0=;
-        b=EsRC5Ix6mcE+qWLe+VlLV8rv6f9waBkEZUVkBlAN5Ce3BHFiik1rA/dcEEszyN/vB/
-         ITptjSv0YkMBMzlkRh2YKl8ZvT57knC1jpIExuPva+K356oiS+MWt893ISb992YXu+Il
-         EwA3Pnuh+IvjstfSv2YgrKxZ2SOxeLKXRNLa7abEBa/REteWnQPDYY9exyNEbIUVgS9Y
-         HfOp1pEbEuB0PHwTxM6HSV3n7jQZE5Wldpb81OXuzLCIH5681lch2X2vBsH51XTYjFCv
-         gJ0kpK74xHJ31rhBogA74oqxxvVAIvmJcjFYMoWXUZcE5+9h7uBtRBZch+P/rxj59Shp
-         eKWg==
-X-Gm-Message-State: AOAM532w1yjOQRmiUO7wrK28XZMODTLXYgM2dYaS0qnwbuaramEfEnGU
-        oXf3kobKy7cahl+qidPCTVPTrBi9pQ==
-X-Google-Smtp-Source: ABdhPJyxMLggMt+PXs1Z/jU6VjA23KSMaMsHvOuucD8iyu4V9ROgt+a7KcL/3ZYWBZH5lcdrsbC4VQ==
-X-Received: by 2002:a05:620a:12da:b0:6a6:b06b:2ee3 with SMTP id e26-20020a05620a12da00b006a6b06b2ee3mr4398234qkl.725.1654463388801;
-        Sun, 05 Jun 2022 14:09:48 -0700 (PDT)
+        bh=KpfFSC1M5yGrSdZeqGTbFQEXLC9iY/J8j0nw6v1d9eA=;
+        b=gQd16NOtxpBCu4nmbZtPFAGFhsvDrKvLNehq1FmbPx87arWNBQ2fd7MM9CsuctjMU0
+         blTN1UraSKDGd/kxRkuEbY4avXjoe5fxON5FQwjeq7aU/UiVBko9fS3KGMXeuuQafA5m
+         W8aZsdh1Oo0ivDVzQzMpQr04i2AnkbhWdj72r9ZpMLH66/BC5PXorGhNPMYsSBuH6Jxt
+         lkxDii/yWLBZ6x2vwB6+3TNuvS/D1NPERyZhZAwEaEtbM5p+DqzhR2mNfEf04uACQ6f8
+         IdFfh7RFNL+8tN14t1hMTAdDE9UdR6Ew3+V2iEKoLAcCoK2xnfAZjAAHclJ1GZ6bF6yv
+         QTpQ==
+X-Gm-Message-State: AOAM53266m5zaroi+sE12/XxLJha1IwXAohHSv9WrOGfzrVd04HLSyWN
+        O+B7d77CrHMeyb7Oo+9YLRNRXN7t1w==
+X-Google-Smtp-Source: ABdhPJxj+kVxZu2//p08PSHYzTQNamVKMAVwaHKls0V8bl/cpaDKySLz6Jed2QcRGNYVSKQw1ooWIA==
+X-Received: by 2002:a37:97c5:0:b0:6a6:8d77:1b5f with SMTP id z188-20020a3797c5000000b006a68d771b5fmr11485785qkd.216.1654463609916;
+        Sun, 05 Jun 2022 14:13:29 -0700 (PDT)
 Received: from robh.at.kernel.org ([2607:fb90:ac97:ac63:b5fd:aa9:8d74:9989])
-        by smtp.gmail.com with ESMTPSA id i20-20020a05620a249400b006a6bc598052sm1256098qkn.95.2022.06.05.14.09.46
+        by smtp.gmail.com with ESMTPSA id w15-20020a05620a424f00b006a69d7f390csm6411744qko.103.2022.06.05.14.13.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Jun 2022 14:09:48 -0700 (PDT)
-Received: (nullmailer pid 3522372 invoked by uid 1000);
-        Sun, 05 Jun 2022 21:09:45 -0000
-Date:   Sun, 5 Jun 2022 16:09:45 -0500
+        Sun, 05 Jun 2022 14:13:29 -0700 (PDT)
+Received: (nullmailer pid 3527763 invoked by uid 1000);
+        Sun, 05 Jun 2022 21:13:26 -0000
+Date:   Sun, 5 Jun 2022 16:13:26 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     robert.foss@linaro.org, laurent.pinchart@ideasonboard.com,
-        jernej.skrabec@gmail.com, jonas@kwiboo.se,
-        krzysztof.kozlowski+dt@linaro.org, sam@ravnborg.org,
-        maxime@cerno.tech, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH 2/6] dt-bindings: drm/bridge: ti-sn65dsi83: add
- documentation for reverse lvds lanes
-Message-ID: <20220605210945.GA3521050-robh@kernel.org>
-References: <20220530150548.1236307-1-m.felsch@pengutronix.de>
- <20220530150548.1236307-3-m.felsch@pengutronix.de>
+To:     Fabien Parent <fparent@baylibre.com>
+Cc:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        iommu@lists.linux-foundation.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/3] dt-bindings: iommu: mediatek: add binding
+ documentation for MT8365 SoC
+Message-ID: <20220605211326.GA3525347-robh@kernel.org>
+References: <20220530180328.845692-1-fparent@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220530150548.1236307-3-m.felsch@pengutronix.de>
+In-Reply-To: <20220530180328.845692-1-fparent@baylibre.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -66,13 +67,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 30, 2022 at 05:05:45PM +0200, Marco Felsch wrote:
-> The TI converter chip can swap the LVDS data lanes in a pre-defined
-> manner. This can be useful to improve the layout characteristic.
+On Mon, May 30, 2022 at 08:03:26PM +0200, Fabien Parent wrote:
+> Add IOMMU binding documentation for the MT8365 SoC.
 > 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
 > ---
->  .../bindings/display/bridge/ti,sn65dsi83.yaml | 58 ++++++++++++++++++-
->  1 file changed, 56 insertions(+), 2 deletions(-)
+>  .../bindings/iommu/mediatek,iommu.yaml        |  2 +
+>  include/dt-bindings/memory/mt8365-larb-port.h | 96 +++++++++++++++++++
+>  2 files changed, 98 insertions(+)
+>  create mode 100644 include/dt-bindings/memory/mt8365-larb-port.h
+> 
+> diff --git a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
+> index 97e8c471a5e8..5ba688365da5 100644
+> --- a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
+> +++ b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
+> @@ -77,6 +77,7 @@ properties:
+>            - mediatek,mt8173-m4u  # generation two
+>            - mediatek,mt8183-m4u  # generation two
+>            - mediatek,mt8192-m4u  # generation two
+> +          - mediatek,mt8365-m4u  # generation two
+>  
+>        - description: mt7623 generation one
+>          items:
+> @@ -120,6 +121,7 @@ properties:
+>        dt-binding/memory/mt8173-larb-port.h for mt8173,
+>        dt-binding/memory/mt8183-larb-port.h for mt8183,
+>        dt-binding/memory/mt8192-larb-port.h for mt8192.
+> +      dt-binding/memory/mt8365-larb-port.h for mt8365.
+>  
+>    power-domains:
+>      maxItems: 1
+> diff --git a/include/dt-bindings/memory/mt8365-larb-port.h b/include/dt-bindings/memory/mt8365-larb-port.h
+> new file mode 100644
+> index 000000000000..e7d5637aa38e
+> --- /dev/null
+> +++ b/include/dt-bindings/memory/mt8365-larb-port.h
+> @@ -0,0 +1,96 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Dual license please.
+
+Rob
