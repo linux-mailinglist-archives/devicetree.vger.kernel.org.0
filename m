@@ -2,81 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F6AA53DC9E
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 17:42:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B3C653DCA9
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 18:05:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345650AbiFEPm2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Jun 2022 11:42:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52970 "EHLO
+        id S1345732AbiFEQF2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Jun 2022 12:05:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238133AbiFEPm1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 11:42:27 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E8A93B3D7
-        for <devicetree@vger.kernel.org>; Sun,  5 Jun 2022 08:42:26 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id fd25so15828634edb.3
-        for <devicetree@vger.kernel.org>; Sun, 05 Jun 2022 08:42:26 -0700 (PDT)
+        with ESMTP id S232481AbiFEQF2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 12:05:28 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C49D726E1
+        for <devicetree@vger.kernel.org>; Sun,  5 Jun 2022 09:05:26 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id q1so24715348ejz.9
+        for <devicetree@vger.kernel.org>; Sun, 05 Jun 2022 09:05:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=9B1ls8yxGR8zR2l3YzKPbZsH4BwBWVg6R1Ggw6EpK00=;
-        b=hhjQr19dkEE4mggA5808Y6fgDAQLq+ga1n1mUxAle2NCtJU+zF8H7tAm46apPYHIzR
-         Hd8o6Q2m+p4m/msMntyB9mvrlG8Xkm4PO5q6bdnyHQDSyKUHkaGrb8qbFUFLXaLgeZwO
-         3NIZHxf1oJVF7navow3Ho6LMu9IjX7JA/38i7sjMDcP2vVOJwnkyccDxgTpN9SW7IvAJ
-         VqL8XqQ/3aFT3EqAq4MTnIrSeQbKA0T+a2iSUxnrpRwytydFJg4PA0o69hEQnx2UGk2g
-         csWnTlMPAu56EPLxquaefKiZ98/6yvJCp5g3ffeD2cFLYN3qIaARIKYZ693hULjmdeNN
-         EX4g==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZBtsLQEQHzTdEyPI6jY4pM50JcSmWWFR9nMexAxpXUs=;
+        b=ZjK8hRDmAYk37fChJDrX2TVhKN9iYnckQA+KCVGiaZhXDD0FiqLu196SVgAMKVF7N/
+         DE3IqhXR2XVgG7iDRojxz6P4/CAQf1Fjt9+vZnYI9xiGql40ABMRT9RnCOpt4owDJIJe
+         0Ju+V9Wxf57naDpqMCEg44I395yQvbz7qamLSeMo3ectZ0B+/kB0sRScqoqzycwXycZi
+         S9AAFmPLPK70rBoyhEdYBCpA0aSlqlj/zMsLPXb43jteUxWrMegiRB5s8QvRYIcO4aUE
+         tov5Dzi3SGYSdbnYVS6eO46vfBYnzRuhYo8lV7EZesBKqv//fvqW8H59lj38bh6n0Wck
+         tguQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=9B1ls8yxGR8zR2l3YzKPbZsH4BwBWVg6R1Ggw6EpK00=;
-        b=DhVH8Dfur+Fs+FVHidrRoidtXYsKIj0D4wz84yybbevssM3w9I+EDoe8Vp/HgWV5TH
-         TZuuQ6dsA9Cm3ISGyzE0vLdmT+gCQpF+80ojtIG0pLZllmBb4xacjr9sDZnt2lXxnb4p
-         S1/szLEpZzwY/jNG+ChzfbLWifAWpAn3LH8EQCKm5vNoAdgNJyep13Fgnz3lH4rWQ/FX
-         3DaoM3CZZL6F1z4RIM1ndo8dcEG+Kqc5fjvnJ/V2PdMZY+4Ou7Rzy85eX03wYystblk9
-         NaNH/PIu8/busY77f1kkLDvCzretsbw+WO40WSDnIHmEAdAL8lOED3AqCv6iwmMAE3Wq
-         PSAg==
-X-Gm-Message-State: AOAM533iWQ8RfTbGj0jOZiI6C8qyF8+rW2UN0bvcVnFlkcjjxyCyLCg3
-        8lhUT+nyfWTkC+/MHT1yRhVBKQ==
-X-Google-Smtp-Source: ABdhPJzYrCBob8WbVSGFXb2ZMYIBWQaNFllwDiFYYSjxcPKr8Kh4AZkpqz5U6Q0GOAn/Gyv0D0dynQ==
-X-Received: by 2002:a05:6402:1341:b0:42a:f7cb:44dc with SMTP id y1-20020a056402134100b0042af7cb44dcmr22194785edw.165.1654443744851;
-        Sun, 05 Jun 2022 08:42:24 -0700 (PDT)
-Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id hz10-20020a1709072cea00b0070e01426360sm3252319ejc.91.2022.06.05.08.42.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 Jun 2022 08:42:24 -0700 (PDT)
-Message-ID: <ea5ffada-c3be-885d-6b10-30ac027a4d6f@linaro.org>
-Date:   Sun, 5 Jun 2022 17:42:23 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: sdm845-oneplus: split qcom,board-id
- into tuples
-Content-Language: en-US
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Rob Clark <robdclark@gmail.com>,
-        Caleb Connolly <caleb@connolly.tech>
-References: <20220529202629.47588-1-krzysztof.kozlowski@linaro.org>
- <20220529202629.47588-5-krzysztof.kozlowski@linaro.org>
- <Yppatj7KuQLPdDW1@gerhold.net>
+        bh=ZBtsLQEQHzTdEyPI6jY4pM50JcSmWWFR9nMexAxpXUs=;
+        b=CZQCQzaWLq8F/Ddr64GOi1E49/N4xrqBDoXzc7W/srPQnYrn6ISO84JxqtYGCMunCw
+         h+LJUAqWaGq1chIYWflTlRxnxZnYlp6Ib+sWsT8WXNgchSRfpX6rpYtInLDtKnqeKOD1
+         iU6RuYeK72w9CIgqnQg+3nWb+i6T3zabSRKuAETrFCue6dOExC28XlAhOryv5S26f1Ev
+         k5tRp/6BwCflKuYVLWgkeYU8zDnblj9BDP9TdH6YxaJVGivqiFxGWSO4NgZeNOTyusGq
+         bEbhSqGeTq/TseKYrE8Pn/3Gj6wfqbbIdW8x0dvQwlybbabxbRa23nlE3ErEVrZu+lRn
+         cd0Q==
+X-Gm-Message-State: AOAM532TnnYDW8sbXPVAA/jZ/16+l/MzYISVxDUgz39Xt2dEh06A04ca
+        c4RcJ8EsX9bjdmqVgbhkAhhWOw==
+X-Google-Smtp-Source: ABdhPJxXgmPpebfDBf4KEbegfOnc3qUW/+ZYYW1lWdkmDO3QAZoTKZ44ibT9JQC2M9RRTcWh/ha5cg==
+X-Received: by 2002:a17:906:1257:b0:710:14e9:31a8 with SMTP id u23-20020a170906125700b0071014e931a8mr8996162eja.638.1654445125295;
+        Sun, 05 Jun 2022 09:05:25 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id x18-20020a170906805200b0070b7875aa6asm3969963ejw.166.2022.06.05.09.05.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 05 Jun 2022 09:05:24 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Yppatj7KuQLPdDW1@gerhold.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3 0/8] pinctrl/arm: dt-bindings: deprecate header with register constants
+Date:   Sun,  5 Jun 2022 18:05:00 +0200
+Message-Id: <20220605160508.134075-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -85,76 +74,105 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/06/2022 21:02, Stephan Gerhold wrote:
-> +Cc Caleb Connolly <caleb@connolly.tech>
-> 
-> On Sun, May 29, 2022 at 10:26:29PM +0200, Krzysztof Kozlowski wrote:
->> The qcom,board-id is an uint32 matrix, so a list of tuples.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts | 2 +-
->>  arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts    | 2 +-
->>  2 files changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
->> index bf2cf92e8976..8897a2f4cfe3 100644
->> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
->> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts
->> @@ -12,7 +12,7 @@ / {
->>  	compatible = "oneplus,enchilada", "qcom,sdm845";
->>  	chassis-type = "handset";
->>  	qcom,msm-id = <0x141 0x20001>;
->> -	qcom,board-id = <8 0 17819 22>;
->> +	qcom,board-id = <8 0>, <17819 22>;
-> 
-> FWIW: While it's just a cosmetic change this is a bit misleading in my
-> opinion. Having two tuples suggests this should be interpreted as:
-> 
-> "This device tree is suitable for two different boards:
->  board-id = <8 0> (aka sdm845-mtp, a standard qcom reference board)
->  OR, alternatively: board-id = <17819 22>"
-> 
-> Since this device tree is clearly not meant for sdm845-mtp one could now
-> argue that the <8 0> could be removed, and only the second tuple covers
-> the actual device. It might be worth a try (maybe Caleb can try?), but
-> I suspect the bootloader will not accept that...
-> 
-> I think the bootloader from OPPO/OnePlus is actually looking for
-> quadruples instead of tuples on this board. I have seen similar hacks on
-> several other OPPO devices as well. They usually add their project ID
-> (here: 17819) somewhere and look for that in the bootloader.
-> 
-> In this case maybe adding a short comment would be sufficient, just to
-> make it more obvious that this doesn't actually follow the binding
-> documentation.
+Hi,
 
-Thanks for bringing up this topic. I think we should include this
-quadruple-set in the DT schema.
+Merging
+=======
+1. I plan to take the DTS changes (patches 1-6) via Samsung SoC tree.
+2. The driver change (patch 7) can go independently via pinctrl tree or via my
+   Samsung pinctrl tree.
+3. The final bindings patch 8 will wait for next release, to avoid any cross
+   tree merges or warnings.
 
-> But this kind of brings up the question if it's worth making any
-> constraints in the DT schema at all, if some of the device trees
-> can not follow it.
-> 
-> For example, older OPPO bootloaders actually look for triples instead,
-> e.g.: (This is from a real device!)
-> 	qcom,board-id = <8 0 15009>;
-> 
-> So maybe it's just a matter of time until someone tries to add a DT
-> with a format that cannot be changed cosmetically to fit the DT schema...
+Changes since v2
+================
+1. Split last bindings patch per driver changes and bindings.
+2. Add tags.
 
-Generic answer is: yes, we want constraints because we want to define
-interface which is followed by bootloader. Following up answer is - in
-practice this might not be possible...
+Changes since v1
+================
+1. Correct title (in the comment) of each header (Chanho).
+2. Patch #7: Adjust warning message.
+3. Add tags.
 
-I wish I could say that DTS abusing bindings will not be accepted, but
-unfortunately vendor (OnePlus or whoever) simply does not care at all,
-so this would affect only the community. Therefore rejecting such DTS is
-not a viable option which leads me to first option - try to describe it
-in schema, as much as possible.
+Description
+===========
+The Samsung pin controller drivers were always expecting DTS to use raw
+register values for pin configuration (e.g. pull up/down, drive strength).  DTS
+had these values hard-coded all over, so at some point we decided for
+convenience to move them to dt-bindings header.  Less code duplication, some
+meaning added to raw number, etc.
 
-Even if it means some "oneOf:" set for different vendors.
+However these constants do not fit the purpose of bindings.  They do not
+provide any abstraction, any hardware and driver independent ID.  With minor
+exceptions, the Linux drivers actually do not use the bindings header at
+all.  Because of this "dt-bindings ID" approach, these constants were re-used
+between chips, e.g. Exynos ones in S5PV210.  These does not make much sense
+because the values between Exynos and S5PV210 (or S3C24xx) are not related.  If
+it was an abstraction ID, this would be fine. But it's not.
 
+Clean this up by:
+1. Moving the constants to DTS-local headers.
+2. Deprecating the bindings header.
+
+Tested by comparing DTBs (dtx_diff, fdtdump).
 
 Best regards,
 Krzysztof
+
+Krzysztof Kozlowski (8):
+  ARM: dts: s3c2410: use local header for pinctrl register values
+  ARM: dts: s3c64xx: use local header for pinctrl register values
+  ARM: dts: s5pv210: use local header for pinctrl register values
+  ARM: dts: exynos: use local header for pinctrl register values
+  arm64: dts: exynos: use local header for pinctrl register values
+  arm64: dts: fsd: use local header for pinctrl register values
+  pinctrl: samsung: do not use bindings header with constants
+  dt-bindings: pinctrl: samsung: deprecate header with register
+    constants
+
+ arch/arm/boot/dts/exynos-pinctrl.h            |  55 ++
+ arch/arm/boot/dts/exynos3250-pinctrl.dtsi     |   2 +-
+ arch/arm/boot/dts/exynos4210-pinctrl.dtsi     |   2 +-
+ arch/arm/boot/dts/exynos4412-midas.dtsi       |   3 +-
+ arch/arm/boot/dts/exynos4412-p4note.dtsi      |   2 +-
+ arch/arm/boot/dts/exynos4412-pinctrl.dtsi     |   2 +-
+ arch/arm/boot/dts/exynos5250-pinctrl.dtsi     |   2 +-
+ arch/arm/boot/dts/exynos5260-pinctrl.dtsi     |   2 +-
+ arch/arm/boot/dts/exynos5410-pinctrl.dtsi     |   2 +-
+ arch/arm/boot/dts/exynos5420-pinctrl.dtsi     |   2 +-
+ arch/arm/boot/dts/s3c2410-pinctrl.h           |  19 +
+ arch/arm/boot/dts/s3c2416-pinctrl.dtsi        |  38 +-
+ arch/arm/boot/dts/s3c64xx-pinctrl.dtsi        | 178 +++----
+ arch/arm/boot/dts/s3c64xx-pinctrl.h           |  27 +
+ arch/arm/boot/dts/s5pv210-aquila.dts          |   4 +-
+ arch/arm/boot/dts/s5pv210-aries.dtsi          | 134 ++---
+ arch/arm/boot/dts/s5pv210-fascinate4g.dts     |  22 +-
+ arch/arm/boot/dts/s5pv210-galaxys.dts         |  34 +-
+ arch/arm/boot/dts/s5pv210-pinctrl.dtsi        | 480 +++++++++---------
+ arch/arm/boot/dts/s5pv210-pinctrl.h           |  39 ++
+ arch/arm64/boot/dts/exynos/exynos-pinctrl.h   |  79 +++
+ .../boot/dts/exynos/exynos5433-pinctrl.dtsi   |   2 +-
+ .../boot/dts/exynos/exynos7-espresso.dts      |   6 +-
+ .../boot/dts/exynos/exynos7-pinctrl.dtsi      |  72 +--
+ .../boot/dts/exynos/exynos7885-pinctrl.dtsi   |   2 +-
+ .../boot/dts/exynos/exynos850-pinctrl.dtsi    |   2 +-
+ .../boot/dts/exynos/exynosautov9-pinctrl.dtsi |   2 +-
+ arch/arm64/boot/dts/tesla/fsd-pinctrl.dtsi    |  92 ++--
+ arch/arm64/boot/dts/tesla/fsd-pinctrl.h       |  33 ++
+ drivers/pinctrl/samsung/pinctrl-exynos.c      |   6 +-
+ drivers/pinctrl/samsung/pinctrl-exynos.h      |   3 +
+ drivers/pinctrl/samsung/pinctrl-samsung.c     |   4 +-
+ drivers/pinctrl/samsung/pinctrl-samsung.h     |   8 +
+ include/dt-bindings/pinctrl/samsung.h         |   7 +
+ 34 files changed, 817 insertions(+), 550 deletions(-)
+ create mode 100644 arch/arm/boot/dts/exynos-pinctrl.h
+ create mode 100644 arch/arm/boot/dts/s3c2410-pinctrl.h
+ create mode 100644 arch/arm/boot/dts/s3c64xx-pinctrl.h
+ create mode 100644 arch/arm/boot/dts/s5pv210-pinctrl.h
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos-pinctrl.h
+ create mode 100644 arch/arm64/boot/dts/tesla/fsd-pinctrl.h
+
+-- 
+2.34.1
+
