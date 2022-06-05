@@ -2,77 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B74B53DC3D
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 16:32:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD87F53DC5D
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 16:51:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344997AbiFEOcE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Jun 2022 10:32:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55782 "EHLO
+        id S240906AbiFEOu6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Jun 2022 10:50:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344887AbiFEOcD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 10:32:03 -0400
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48B445FC6;
-        Sun,  5 Jun 2022 07:32:02 -0700 (PDT)
-Received: by mail-ot1-f46.google.com with SMTP id w19-20020a9d6393000000b0060aeb359ca8so9056667otk.6;
-        Sun, 05 Jun 2022 07:32:02 -0700 (PDT)
+        with ESMTP id S232124AbiFEOu5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 10:50:57 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ECE65FBA
+        for <devicetree@vger.kernel.org>; Sun,  5 Jun 2022 07:50:56 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id h19so15765368edj.0
+        for <devicetree@vger.kernel.org>; Sun, 05 Jun 2022 07:50:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=n93enFeCwlBOT1IPLGGsCl2guLUAxzPd6f5EdOUxDVQ=;
+        b=BiW7DWP5cVTfui0LTgjGTRGNlhtb3vhvuW33Gy5L2V2iLM2sV45X/hk7NSznTKZL3i
+         yknzYNeJkuOaEciK4XB9SBjo8RaQB/lMgVFZ6HbHBGQ0osDViFZR/rVdjRF2touvCNVf
+         fBOm2AQU3xMXblqrLfir8zh2fjvO+fMyCauJP1LvRtBJnIxai173aUCr03VIhPr8UQqX
+         pVaiz24nOt7tGsD7jrAs3dlk0cw9u1JwaQyr19SmdtWWbUxIipLahrkep2AYgeB+J8bj
+         k7OGslfvfq8qkM4ZJHupyT/sr3mWEjqKy2MSmylZ1fRkSOjAJmmh8VfpVaS3G0Y5Vtcf
+         Uk4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=IfYNNheMDHaySO8uAV/0eKWM9iyEP3vdrlJ2GnMDEwY=;
-        b=28upnFK9hSfAGQsBqCUrXWlOIk6dI3o+GO/8pWawnTZKA1TcQ/F0xJTYaa25VcRy9W
-         gexI6FCOgV1eHmOKAGWZlQDYA0lqOookQKc/SEY0f2FLAThifqev3drLBbzZtMtyyF6o
-         /2wz0PmC19f4BcJ9yy9NobouR4+iQxzWlnd8Y3a0oNcbTZeGwUxZO7gjsy2jgxLy0h79
-         2KdS3faOMUL21SjbbXNRDIZvbvs3e+osqGNckZDxL6q8daNiHKGZszHwGb6WFtOVB34Z
-         f6zw4uIrbyb8gcegIh3u6iA5hUQKxsu8Ffty5AP4MRPYpLyNvkD/1ggv9xErFGn8fLro
-         gHOw==
-X-Gm-Message-State: AOAM532kfuqQ+lv+O0YdN17mLL/5gqVODaIv7TNfd/DLqeEhJ5mIZ29r
-        8EdqDVxGyuj6Qz1sAoqFvw==
-X-Google-Smtp-Source: ABdhPJxgClawXrgwzmM5I8cAuEiW+WdvBjRyEtxAjoycBUynlbj9Zb+ui40J4I/4J6tDLfJ+kfyWPQ==
-X-Received: by 2002:a05:6830:2693:b0:60a:c590:8382 with SMTP id l19-20020a056830269300b0060ac5908382mr7972030otu.344.1654439521575;
-        Sun, 05 Jun 2022 07:32:01 -0700 (PDT)
-Received: from robh.at.kernel.org ([2607:fb90:5fed:bdd:4931:91d5:7dbb:83fc])
-        by smtp.gmail.com with ESMTPSA id g9-20020a4a7549000000b0035eb4e5a6d3sm6574350oof.41.2022.06.05.07.32.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Jun 2022 07:32:01 -0700 (PDT)
-Received: (nullmailer pid 3455085 invoked by uid 1000);
-        Sun, 05 Jun 2022 14:30:15 -0000
-Date:   Sun, 5 Jun 2022 09:30:15 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     devicetree@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-        dmaengine@vger.kernel.org, Lee Jones <lee.jones@linaro.org>
-Subject: Re: [PATCH] dt-bindings: dma: Rewrite ST-Ericsson DMA40 to YAML
-Message-ID: <20220605143015.GA3455027-robh@kernel.org>
-References: <20220527215508.622374-1-linus.walleij@linaro.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=n93enFeCwlBOT1IPLGGsCl2guLUAxzPd6f5EdOUxDVQ=;
+        b=e5R359vrCNYfUoy0jhLkpZRPpWJhLnx4dGh3aI9TyecRybxdzDYZTqiVJvFwWKnLVw
+         ZAvVUcJpGbMP956trROILdLpqBC+DKh1zdZQCn2MG75yHlBYX5Fw6ZD4jSR/o+UUDLrF
+         sZBRjtoyRjZEXnQ6+3jg1KdFyXP38Ir0hPXQ81neelsGF/s1tFh3yd6MZCGBUbmgBH0R
+         tf1H8HXXFjWtYg3abIm1SqAKtsWD/jc37X+L7VRryP4H5O4vN84+brluoA+Cz23XrbQH
+         AdFnfC0h/OfIIvQ90sbWbz4kIdjRoAmoAhHeI/UJHly7lmZqCQBhqfhUN9IQyom+EwpL
+         jWFw==
+X-Gm-Message-State: AOAM531z0nK0796OFP88xbl56xdEiGy/QWXhmZZYYJvOkbwswvfSazMh
+        x/paXKjuNvK6XTLq03tbghrqVrgEghj2+g==
+X-Google-Smtp-Source: ABdhPJxhbBmfF6AIGg0aC+g3DWzMKlB5zF2M9iu4/Le02YRjP+qJC5IUvsf7s0nzOIIkry2n2CbnXA==
+X-Received: by 2002:aa7:d143:0:b0:42d:ca9c:aa76 with SMTP id r3-20020aa7d143000000b0042dca9caa76mr21972291edo.163.1654440654909;
+        Sun, 05 Jun 2022 07:50:54 -0700 (PDT)
+Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id my16-20020a1709065a5000b006fecf74395bsm5229671ejc.8.2022.06.05.07.50.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 05 Jun 2022 07:50:54 -0700 (PDT)
+Message-ID: <58b22f25-d5f1-efe2-f38f-a50c2dea0602@linaro.org>
+Date:   Sun, 5 Jun 2022 16:50:53 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220527215508.622374-1-linus.walleij@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH] dt-bindings: interrupt-controller: Convert
+ rda,8810pl-intc to YAML
+Content-Language: en-US
+To:     Stanislav Jakubek <stano.jakubek@gmail.com>
+Cc:     Manivannan Sadhasivam <mani@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-unisoc@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220527125633.GA5145@standask-GA-A55M-S2HP>
+ <4bb8e18a-11d8-c617-7952-8887aa815301@linaro.org>
+ <20220603121258.GA4919@standask-GA-A55M-S2HP>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220603121258.GA4919@standask-GA-A55M-S2HP>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 27 May 2022 23:55:08 +0200, Linus Walleij wrote:
-> This rewrites the ST-Ericsson DMA40 bindings in YAML.
+On 03/06/2022 14:12, Stanislav Jakubek wrote:
+> On Sun, May 29, 2022 at 04:05:12PM +0200, Krzysztof Kozlowski wrote:
+>> On 27/05/2022 14:56, Stanislav Jakubek wrote:
+>>> Convert RDA Micro interrupt controller bindings to DT schema format.
+>>>
+>>> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+>>> ---
+>>>
+>>> Didn't know what to do about the interrupt sources listed in the original txt file,
+>>> so I've split them off into a separate file. Hope that's okay.
+>>
+>> Interrupt sources are not kept in header files.
 > 
-> Cc: Lee Jones <lee.jones@linaro.org>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
->  .../devicetree/bindings/dma/ste-dma40.txt     | 138 ---------------
->  .../bindings/dma/stericsson,dma40.yaml        | 159 ++++++++++++++++++
->  2 files changed, 159 insertions(+), 138 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/dma/ste-dma40.txt
->  create mode 100644 Documentation/devicetree/bindings/dma/stericsson,dma40.yaml
-> 
+> Ok, should I move them somewhere else or is it fine to drop them?
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Either drop them or, if they are meaningful, keep in description. I
+doubt that they are meaningful, but who knows...
+
+> 
+>> Additionally are you
+>> sure this is a property of the interrupt controller, not a property of
+>> SoC itself? I would assume that one interrupt controller implementation
+>> (e.g. GIC) can be used in different SoCs and the sources are every time
+>> different because they depend on the actual wiring...
+>>
+> 
+> I honestly have no idea, I just wanted to make some YAML conversions.
+> Maybe Mani could answer this?
+
+
+Best regards,
+Krzysztof
