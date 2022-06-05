@@ -2,74 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD87F53DC5D
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 16:51:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 307B353DC5F
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 16:54:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240906AbiFEOu6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Jun 2022 10:50:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42630 "EHLO
+        id S1345282AbiFEOyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Jun 2022 10:54:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232124AbiFEOu5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 10:50:57 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ECE65FBA
-        for <devicetree@vger.kernel.org>; Sun,  5 Jun 2022 07:50:56 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id h19so15765368edj.0
-        for <devicetree@vger.kernel.org>; Sun, 05 Jun 2022 07:50:56 -0700 (PDT)
+        with ESMTP id S1345270AbiFEOyt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 10:54:49 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CC3E2BE1
+        for <devicetree@vger.kernel.org>; Sun,  5 Jun 2022 07:54:47 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id v1so13839577ejg.13
+        for <devicetree@vger.kernel.org>; Sun, 05 Jun 2022 07:54:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=n93enFeCwlBOT1IPLGGsCl2guLUAxzPd6f5EdOUxDVQ=;
-        b=BiW7DWP5cVTfui0LTgjGTRGNlhtb3vhvuW33Gy5L2V2iLM2sV45X/hk7NSznTKZL3i
-         yknzYNeJkuOaEciK4XB9SBjo8RaQB/lMgVFZ6HbHBGQ0osDViFZR/rVdjRF2touvCNVf
-         fBOm2AQU3xMXblqrLfir8zh2fjvO+fMyCauJP1LvRtBJnIxai173aUCr03VIhPr8UQqX
-         pVaiz24nOt7tGsD7jrAs3dlk0cw9u1JwaQyr19SmdtWWbUxIipLahrkep2AYgeB+J8bj
-         k7OGslfvfq8qkM4ZJHupyT/sr3mWEjqKy2MSmylZ1fRkSOjAJmmh8VfpVaS3G0Y5Vtcf
-         Uk4g==
+        bh=nr9goO6JCR6ynsOrkzdJyNSIrUg9yZwLsbH12VXCnv0=;
+        b=nrithu8KVe+0Ef6h0ePei9GiCMv2WDKM8GSaIfn0Ar6bNX8ASc1AN2K35a49/JrU3Y
+         j7k1YP5G4ugVlQjqD7hAuCd2aeuhbtK5rX6bFyzvxtHlkP8M/y5F145phmQbiR4J3Jvl
+         R85UOsOC9MPCyuuEjTYVXzl71SqvDMby/ip4U7POqd0Bra5XOdQ20YGXgH53LrsGPh59
+         gaeHsgWIzTUjQj+iouDOtdS6cR7/jwTbqvSsWJPR03Wh9u0yKHTDO7v4BwhVD5myoo4K
+         i17inQ2rz0Q/j8o8eagXaXgmEB/kFnFtQJ2FfBE+qb1ojXv8ba+1MEVFeWTTPR7YewC8
+         d02g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=n93enFeCwlBOT1IPLGGsCl2guLUAxzPd6f5EdOUxDVQ=;
-        b=e5R359vrCNYfUoy0jhLkpZRPpWJhLnx4dGh3aI9TyecRybxdzDYZTqiVJvFwWKnLVw
-         ZAvVUcJpGbMP956trROILdLpqBC+DKh1zdZQCn2MG75yHlBYX5Fw6ZD4jSR/o+UUDLrF
-         sZBRjtoyRjZEXnQ6+3jg1KdFyXP38Ir0hPXQ81neelsGF/s1tFh3yd6MZCGBUbmgBH0R
-         tf1H8HXXFjWtYg3abIm1SqAKtsWD/jc37X+L7VRryP4H5O4vN84+brluoA+Cz23XrbQH
-         AdFnfC0h/OfIIvQ90sbWbz4kIdjRoAmoAhHeI/UJHly7lmZqCQBhqfhUN9IQyom+EwpL
-         jWFw==
-X-Gm-Message-State: AOAM531z0nK0796OFP88xbl56xdEiGy/QWXhmZZYYJvOkbwswvfSazMh
-        x/paXKjuNvK6XTLq03tbghrqVrgEghj2+g==
-X-Google-Smtp-Source: ABdhPJxhbBmfF6AIGg0aC+g3DWzMKlB5zF2M9iu4/Le02YRjP+qJC5IUvsf7s0nzOIIkry2n2CbnXA==
-X-Received: by 2002:aa7:d143:0:b0:42d:ca9c:aa76 with SMTP id r3-20020aa7d143000000b0042dca9caa76mr21972291edo.163.1654440654909;
-        Sun, 05 Jun 2022 07:50:54 -0700 (PDT)
+        bh=nr9goO6JCR6ynsOrkzdJyNSIrUg9yZwLsbH12VXCnv0=;
+        b=RWdc3ZQQqslTwIt2my+VRbQ8pR7WYGHLkMvZcSWNF3o26VEy6OLM0Y6o0WrK68SYKi
+         CPk4X+l2iMnfnq+S2lqkDu3lCKsCTLMOc4Fz5NGdSjiHSup0tt04WPhCONDvpYBXYAKE
+         os5wzmDBypUyCVwOADN2n2MOrOLPalps1H4gPvK+ezMGLNJ2fADBrQ08WG1158SW1iBi
+         h4ZlHNYXm5HffoVXctUCxkWsqBVvUKW+I2YHmEK09DycRKWRDQLjhqibEMPB5mNJKLn1
+         TMt4iUVl39oOD2aL8OuWe49uETGgVejMnb7V85o/STtdH299NvhNgCvItCFZsVv1HGg7
+         Metg==
+X-Gm-Message-State: AOAM533Fjx5VGusO0xIvH84DildTI6+izVHr5Pv0p+xmjFioeBRN9SOr
+        HXHu5adbt9c1QQty7ezfR8umR4QjLAbPFw==
+X-Google-Smtp-Source: ABdhPJzJldMnVHXS3QDl/dM42X4k0XAaCUYXOZ4XIGmGG7wyaMi/VlfLe5nM4rkal6LkB6xfrPpcNQ==
+X-Received: by 2002:a17:907:3f9f:b0:6fe:f9e2:9c6a with SMTP id hr31-20020a1709073f9f00b006fef9e29c6amr18158922ejc.479.1654440885697;
+        Sun, 05 Jun 2022 07:54:45 -0700 (PDT)
 Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id my16-20020a1709065a5000b006fecf74395bsm5229671ejc.8.2022.06.05.07.50.54
+        by smtp.gmail.com with ESMTPSA id a23-20020aa7cf17000000b0042dc882c823sm7009190edy.70.2022.06.05.07.54.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 Jun 2022 07:50:54 -0700 (PDT)
-Message-ID: <58b22f25-d5f1-efe2-f38f-a50c2dea0602@linaro.org>
-Date:   Sun, 5 Jun 2022 16:50:53 +0200
+        Sun, 05 Jun 2022 07:54:45 -0700 (PDT)
+Message-ID: <34e6715e-795c-3d64-1341-31da9bd27563@linaro.org>
+Date:   Sun, 5 Jun 2022 16:54:43 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH] dt-bindings: interrupt-controller: Convert
- rda,8810pl-intc to YAML
+Subject: Re: [RFC v2 1/2] clk: hisilicon: add CRG driver Hi3521a SoC
 Content-Language: en-US
-To:     Stanislav Jakubek <stano.jakubek@gmail.com>
-Cc:     Manivannan Sadhasivam <mani@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-unisoc@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220527125633.GA5145@standask-GA-A55M-S2HP>
- <4bb8e18a-11d8-c617-7952-8887aa815301@linaro.org>
- <20220603121258.GA4919@standask-GA-A55M-S2HP>
+To:     "Marty E. Plummer" <hanetzer@startmail.com>
+Cc:     arnd@arndb.de, cai.huoqing@linux.dev, christian.koenig@amd.com,
+        devicetree@vger.kernel.org, gengdongjiu@huawei.com,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux@armlinux.org.uk, michael@walle.cc, miquel.raynal@bootlin.com,
+        mturquette@baylibre.com, novikov@ispras.ru, olof@lixom.net,
+        p.yadav@ti.com, rdunlap@infradead.org, richard@nod.at,
+        robh+dt@kernel.org, sboyd@kernel.org, soc@kernel.org,
+        sumit.semwal@linaro.org, tudor.ambarus@microchip.com,
+        vigneshr@ti.com, xuwei5@hisilicon.com
+References: <20220501054440.2434247-1-hanetzer@startmail.com>
+ <20220501173423.2473093-1-hanetzer@startmail.com>
+ <20220501173423.2473093-2-hanetzer@startmail.com>
+ <f42cb4d0-7133-eea5-b456-b5169bebfad1@linaro.org>
+ <20220601105846.7hriawg3stxb657f@proprietary-killer>
+ <630b0d13-6778-2508-6a34-9daa0358047d@linaro.org>
+ <20220601110616.xmxih663kxgupszv@proprietary-killer>
+ <a2a98c6d-2ff7-89f6-0711-c8f8b99e85c2@linaro.org>
+ <20220601182418.okoofgannw6vbcxo@proprietary-killer>
+ <b1b87be5-a048-b713-c9f2-84b948aa6718@linaro.org>
+ <20220603112227.hmzwy7xxl6ddezqh@proprietary-killer>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220603121258.GA4919@standask-GA-A55M-S2HP>
+In-Reply-To: <20220603112227.hmzwy7xxl6ddezqh@proprietary-killer>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,34 +92,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/06/2022 14:12, Stanislav Jakubek wrote:
-> On Sun, May 29, 2022 at 04:05:12PM +0200, Krzysztof Kozlowski wrote:
->> On 27/05/2022 14:56, Stanislav Jakubek wrote:
->>> Convert RDA Micro interrupt controller bindings to DT schema format.
->>>
->>> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
->>> ---
->>>
->>> Didn't know what to do about the interrupt sources listed in the original txt file,
->>> so I've split them off into a separate file. Hope that's okay.
+On 03/06/2022 13:22, Marty E. Plummer wrote:
+> On Thu, Jun 02, 2022 at 08:37:43AM +0200, Krzysztof Kozlowski wrote:
+>> On 01/06/2022 20:24, Marty E. Plummer wrote:
 >>
->> Interrupt sources are not kept in header files.
-> 
-> Ok, should I move them somewhere else or is it fine to drop them?
-
-Either drop them or, if they are meaningful, keep in description. I
-doubt that they are meaningful, but who knows...
-
-> 
->> Additionally are you
->> sure this is a property of the interrupt controller, not a property of
->> SoC itself? I would assume that one interrupt controller implementation
->> (e.g. GIC) can be used in different SoCs and the sources are every time
->> different because they depend on the actual wiring...
+>>>>> Either or. Whatever makes the workload easier is what I'm looking for.
+>>>>
+>>>> Sorry, you need to be more specific. Apply is not a job for you, for the
+>>>> patch submitter.
+>>>>
+>>>> Then you miss here important piece - which is the first patch. DTS goes
+>>>> always via separate branch (or even tree) from driver changes. That's
+>>>> why bindings are always separate first patches.
+>>>>
+>>> So, add a 4: arch/arm/boot/dts/soc.dtsi and 5: arch/arm/boot/dts/board.dts
+>>> to the above list, or should those be the same patch as well?
 >>
-> 
-> I honestly have no idea, I just wanted to make some YAML conversions.
-> Maybe Mani could answer this?
+>> For me does not matter, sub architecture maintainer might have preference.
+>>
+> Fair enough. That being said, for the dt-bindings patch, is it
+> permissible to include #define CLOCK_FOO 1337 and so on for clocks which
+> haven't been wired up in the driver yet? As in, you know they're there,
+> and are important enough to model, but you haven't gotten to that point
+> yet?
+
+What would be the benefit to include them now? I imagine that if you
+plan to add such clocks to the driver in next week or something, and you
+need to use them in DTS, then it's fine. If that's not the case,
+probably there is little sense in defining them upfront...
 
 
 Best regards,
