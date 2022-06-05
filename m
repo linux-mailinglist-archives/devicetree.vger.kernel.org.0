@@ -2,125 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC04C53DB37
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 12:10:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A12153DB95
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 15:33:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245343AbiFEKKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Jun 2022 06:10:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42594 "EHLO
+        id S244625AbiFENdV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Jun 2022 09:33:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245335AbiFEKKd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 06:10:33 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3722846662;
-        Sun,  5 Jun 2022 03:10:31 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id o10so15233687edi.1;
-        Sun, 05 Jun 2022 03:10:31 -0700 (PDT)
+        with ESMTP id S243886AbiFENdU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 09:33:20 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F29D1387BE
+        for <devicetree@vger.kernel.org>; Sun,  5 Jun 2022 06:33:16 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id h62-20020a1c2141000000b0039aa4d054e2so8711569wmh.1
+        for <devicetree@vger.kernel.org>; Sun, 05 Jun 2022 06:33:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=vVCp23L5FQ++D23bNToFr9/vJxz+m61H5hSSQD2iE7s=;
-        b=FAAGQQ0tOasCnIeAOw3CgvqS+UK4Fo6Xgn+UCUnnMHScBbJGIze2+66j7R5U/t9c/W
-         TSWPH6lqn06AMhvri9+U/HjBu+MwPFeRpzSxli4Uy7HanXmpAaMjB5DedPD5fRYMUDk1
-         X3oysloDYRvaAf9JITxmwPKKvkF8KqW/J+Uoe4yrXZEZLEAS7tCXVJn3TQBfjgN5QZ7k
-         +kk02kw4AUDFAbujtJXtxGEzlYI5qbyp+qx0aMAmNRekcp5cjGuNl6Ck/Q0iNTswDtf0
-         tlG9Jf9oX9C1OZhYPCtPLrJ/h53Ij/JYK7A1ALk8HvrNLXUt8sF8xyQ8eUfuaiS0F9mS
-         1wYQ==
+        d=conchuod.ie; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=NbA7wh6jY57A81MjAXEOdG7Q5joLo5XSqFmERYe0yms=;
+        b=KUt8AZOzNgbQqIXStUVCuFGSgDZ2GjKz/m7+3s++R2lHfDBG9uRWnD4abumwN/BtDD
+         sm+WhmB6LHlbFKIIMVxc/XdGG9t5tPqKMQfHhVQNCHaM+x+ztHA09HkGuQikZ7z5PR2I
+         j9FsPbeVBsRZ6Zf6MpPv0sbilYeqPuyR627Bhupbrkjl87E/h19SDQD25s1DZbv8HcgA
+         qhm2RsHyaapoLYtz8k4VipUibyDnHbDUGuGglW7lu6aPe1w5oIU7ce1mWQtkwZQqXlIZ
+         ZtOtz7LczF/LuLJkCgyOjiMvxH9QpzXQxCS6XmDRURKG5EqgkoMY4Qc4RTINiNl1JGDd
+         fnYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=vVCp23L5FQ++D23bNToFr9/vJxz+m61H5hSSQD2iE7s=;
-        b=EMHpNXMQNz2mwRWEYEiuH274mxMDUqsatRUmXMhgeX36j6ZAlLIXkFmfC9tuv0emKv
-         HSeG8Af8wLyasRQzfaozAUuYNKt5LDMrj0J/D/Fw3BNZP91xSL+od6YEgHU9EjJ+JpTD
-         5a5yIXAFOHrXADKxzPu/lX6RQgQmEdN/VaP4Q4ykFQn/k4Rpc4reiSwwNfavH53pq+8A
-         whNCL3RJmQaFJZeqx307Cq9yl0jNvegMwnzNlD7u0h9JjL4tLFJH7jr+7Bq1X0iTn+nn
-         fr+b5kGUS2cA4QnIoMKZrZxnq1gqY8OW0XaVcLDkLOVXwnE2E3r9inDfond+h4rCxBA2
-         VQ8g==
-X-Gm-Message-State: AOAM530yuiJURXj+r1JBnMkPq6A5uraiuH39leDoZ156x+9PTlDFlmUx
-        qU3+3tlRZcncP3xgb6IzhQE=
-X-Google-Smtp-Source: ABdhPJzQ7uhWSDjvawxpldyb/l71x0CtDEJk3kK4HZUXSE8R/d8c9aiOxIvamFUwdhqDxD/xkJZmcg==
-X-Received: by 2002:a05:6402:2926:b0:42e:1f3c:d041 with SMTP id ee38-20020a056402292600b0042e1f3cd041mr16295707edb.240.1654423829557;
-        Sun, 05 Jun 2022 03:10:29 -0700 (PDT)
-Received: from [192.168.0.104] (p5b3f6ffe.dip0.t-ipconnect.de. [91.63.111.254])
-        by smtp.gmail.com with ESMTPSA id f12-20020a17090631cc00b006fee961b9e0sm5004863ejf.195.2022.06.05.03.10.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 Jun 2022 03:10:29 -0700 (PDT)
-Message-ID: <326b83b5-65f8-7cd7-4732-157b978026af@gmail.com>
-Date:   Sun, 5 Jun 2022 12:10:28 +0200
+        bh=NbA7wh6jY57A81MjAXEOdG7Q5joLo5XSqFmERYe0yms=;
+        b=zxgRoN6v7DiG6GYSZsKfY82kac0ZwzwISZ6eH4ydoxrP+7ot19EbLAoVUZ3d1I0aE6
+         xITOv8kAEEeSZmyai4rkSlhwH6Gc8ifQTOBrJtq22Krzg3+fxy0fjvqgJKn/8ddV6syc
+         v3mqgMdFTZClMGA6bed/NqdneUx0l6R9fI6zaP8UwU5wicsrdjfCaz/Pgs79fnqFf4OK
+         VPun9svUfhuStnZAhG+BHyaqg2kUqo/e3QxkVBVDIysRUOOHDZSfiIfIKBZFTN6cjUo1
+         RI4A/SNHiQ9eKw5T62c5IsSiK+pJN/BKJaqHD09yyDa9ZDQQTYGn805jTL6ryGntwo7z
+         KRgw==
+X-Gm-Message-State: AOAM5305622x8jU+Ss9Hf7Vrqy9xiStTMqu2AxmJ5uRkAVAtpRG222Yl
+        inuCQnsGs2gmjof9KJ46AgB4kQ==
+X-Google-Smtp-Source: ABdhPJw10bY4o1/w1XS51daNaShBW8xHRcfsZfqKIJEbYDaIL1gaYDHaYsbiQI0FgXSBT2fsoaPqMw==
+X-Received: by 2002:a05:600c:19cc:b0:39c:3022:1b23 with SMTP id u12-20020a05600c19cc00b0039c30221b23mr16534325wmq.106.1654435995365;
+        Sun, 05 Jun 2022 06:33:15 -0700 (PDT)
+Received: from henark71.. ([51.37.234.167])
+        by smtp.gmail.com with ESMTPSA id n187-20020a1c27c4000000b0039c151298b7sm18217076wmn.10.2022.06.05.06.33.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 05 Jun 2022 06:33:14 -0700 (PDT)
+From:   mail@conchuod.ie
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Support Opensource <support.opensource@diasemi.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Steve Twiss <stwiss.opensource@diasemi.com>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-riscv@lists.infradead.org,
+        Atul Khare <atulkhare@rivosinc.com>
+Subject: [PATCH v1 0/6] clear riscv dtbs_check errors
+Date:   Sun,  5 Jun 2022 14:32:55 +0100
+Message-Id: <20220605133300.376161-1-mail@conchuod.ie>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v2 4/4] regulator: mp5416: add support for MP5496
-Content-Language: en-US
-To:     Robert Marko <robimarko@gmail.com>, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220604145816.47576-1-robimarko@gmail.com>
- <20220604145816.47576-4-robimarko@gmail.com>
-From:   saravanan sekar <sravanhome@gmail.com>
-In-Reply-To: <20220604145816.47576-4-robimarko@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/06/22 16:58, Robert Marko wrote:
-> MP5496 is the updated version of MP5416 with the only difference being
-> that now all Buck regulators have the same 0.6-2.1875V range with a 12.5mV
-> step.
-> 
-> Signed-off-by: Robert Marko <robimarko@gmail.com>
-> ---
->   drivers/regulator/mp5416.c | 13 +++++++++++++
->   1 file changed, 13 insertions(+)
-> 
-> diff --git a/drivers/regulator/mp5416.c b/drivers/regulator/mp5416.c
-> index 011a825570ea..71e20e8d78ac 100644
-> --- a/drivers/regulator/mp5416.c
-> +++ b/drivers/regulator/mp5416.c
-> @@ -175,6 +175,17 @@ static struct regulator_desc mp5416_regulators_desc[MP5416_MAX_REGULATORS] = {
->   	MP5416LDO("ldo4", 4, BIT(1)),
->   };
->   
-> +static struct regulator_desc mp5496_regulators_desc[MP5416_MAX_REGULATORS] = {
-> +	MP5416BUCK("buck1", 1, mp5416_I_limits1, MP5416_REG_CTL1, BIT(0), 1),
-> +	MP5416BUCK("buck2", 2, mp5416_I_limits2, MP5416_REG_CTL1, BIT(1), 1),
-> +	MP5416BUCK("buck3", 3, mp5416_I_limits1, MP5416_REG_CTL1, BIT(2), 1),
-> +	MP5416BUCK("buck4", 4, mp5416_I_limits2, MP5416_REG_CTL2, BIT(5), 1),
-> +	MP5416LDO("ldo1", 1, BIT(4)),
-> +	MP5416LDO("ldo2", 2, BIT(3)),
-> +	MP5416LDO("ldo3", 3, BIT(2)),
-> +	MP5416LDO("ldo4", 4, BIT(1)),
-> +};
-> +
->   static int mp5416_i2c_probe(struct i2c_client *client)
->   {
->   	struct device *dev = &client->dev;
-> @@ -212,12 +223,14 @@ static int mp5416_i2c_probe(struct i2c_client *client)
->   
->   static const struct of_device_id mp5416_of_match[] = {
->   	{ .compatible = "mps,mp5416", .data = &mp5416_regulators_desc },
-> +	{ .compatible = "mps,mp5496", .data = &mp5496_regulators_desc },
->   	{},
->   };
->   MODULE_DEVICE_TABLE(of, mp5416_of_match);
->   
->   static const struct i2c_device_id mp5416_id[] = {
->   	{ "mp5416", },
-> +	{ "mp5496", },
->   	{ },
->   };
->   MODULE_DEVICE_TABLE(i2c, mp5416_id);
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Acked-by: Saravanan Sekar <sravanhome@gmail.com>
+Hey,
+Couple conversions from txt to yaml here with the intent of fixing the
+the dtbs_check warnings for riscv. Atul Khare already sent patches for
+the gpio-line-names & cache-sets (which went awol) and will clear the
+remaining two errors.
+
+Rob/Krzysztof:
+Have I correctly expressed the mutually exclusive properties?
+I had a look around, but wasn't able to find an obvious binding to ape.
+
+Wasn't sure if a txt -> yaml conversion's MAINTAINERS update was meant
+to be in the same patch or not, so feel free to squash.
+Thanks,
+Conor.
+
+Conor Dooley (6):
+  dt-bindings: mmc: convert mmc-spi-slot to yaml
+  dt-bindings: i2c: convert ocores binding to yaml
+  MAINTAINERS: convert ocores i2c dt-binding to yaml
+  dt-bindings: mfd: convert da9063 to yaml
+  MAINTAINERS: convert da9063 to yaml
+  riscv: dts: sifive: "fix" pmic watchdog node name
+
+ .../devicetree/bindings/i2c/i2c-ocores.txt    |  78 -----------
+ .../devicetree/bindings/i2c/i2c-ocores.yaml   | 132 ++++++++++++++++++
+ .../devicetree/bindings/mfd/da9063.txt        | 111 ---------------
+ .../devicetree/bindings/mfd/da9063.yaml       | 123 ++++++++++++++++
+ .../devicetree/bindings/mmc/mmc-spi-slot.txt  |  29 ----
+ .../devicetree/bindings/mmc/mmc-spi-slot.yaml |  76 ++++++++++
+ .../devicetree/bindings/trivial-devices.yaml  |   2 -
+ MAINTAINERS                                   |   3 +-
+ .../boot/dts/sifive/hifive-unmatched-a00.dts  |   2 +-
+ 9 files changed, 334 insertions(+), 222 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-ocores.txt
+ create mode 100644 Documentation/devicetree/bindings/i2c/i2c-ocores.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mfd/da9063.txt
+ create mode 100644 Documentation/devicetree/bindings/mfd/da9063.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mmc/mmc-spi-slot.txt
+ create mode 100644 Documentation/devicetree/bindings/mmc/mmc-spi-slot.yaml
+
+-- 
+2.36.1
+
