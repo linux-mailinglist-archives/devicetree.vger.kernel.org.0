@@ -2,540 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB5C653DCF8
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 18:25:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDF5B53DD01
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 18:28:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238762AbiFEQZA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Jun 2022 12:25:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38562 "EHLO
+        id S1346135AbiFEQ2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Jun 2022 12:28:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351206AbiFEQYv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 12:24:51 -0400
-Received: from smtp.smtpout.orange.fr (smtp05.smtpout.orange.fr [80.12.242.127])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7BD94B1C9
-        for <devicetree@vger.kernel.org>; Sun,  5 Jun 2022 09:24:48 -0700 (PDT)
-Received: from [192.168.1.18] ([90.11.190.129])
-        by smtp.orange.fr with ESMTPA
-        id xt3OnV5YAE80Kxt3OnoLAV; Sun, 05 Jun 2022 18:24:45 +0200
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: YWZlNiIxYWMyZDliZWIzOTcwYTEyYzlhMmU3ZiQ1M2U2MzfzZDfyZTMxZTBkMTYyNDBjNDJlZmQ3ZQ==
-X-ME-Date: Sun, 05 Jun 2022 18:24:45 +0200
-X-ME-IP: 90.11.190.129
-Message-ID: <3874cac9-cf3c-aa31-ecba-e2ae33935286@wanadoo.fr>
-Date:   Sun, 5 Jun 2022 18:24:37 +0200
+        with ESMTP id S243238AbiFEQ2a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 12:28:30 -0400
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2051.outbound.protection.outlook.com [40.107.237.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30361BE1C;
+        Sun,  5 Jun 2022 09:28:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=djrNhRoMF97sIygqcclWTmITUAgFcpleOzprKJxGQVI2Aio0DVnTmpC6V+SA2P0GqkFpAjkarZluuN9UtN9AQzYkRwTXJR63a5sBwd3Dve5fJqIfLfubpY0oOuiVzmmAy+q1BKl0AIC//HDyhazXCJb5uRvXp1Qo+5EHQl/xLdWbZ+cAqpP344mpZOEgc2uwr8aqStEiNnRhGOm/PH72IHxyBQ0/THjO9h3PkKop7N55rB5tsp3uA1zaN6ZEDB0RZAhkJ77MCtgj6ITNs+nXrbDcnvhEED0U9KjbuKQs1N3KyOn6dszxX/mhNnxUcBlRcuWX/AOp+zHBG56H/9IcNg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=o3OOdFuzdFLKSQrkpIS0CsIS0zf0aDA38dQSkohMKo0=;
+ b=n7/ej80qVza4yBog0JCqu6yrvU0VGx81siPuJyX5c0ArnhJI+C4cgxuUjnj+SxdE0G3x+b8k4jsJZFq0zRmTeD9/JjKHNuN3BHFLTEG1WLI0Lq2qiM2QTRINohXAskPH3QirYd3EWM8xLFSacPfCFkl0H4+JuSUhvAeLyO4kiBp7SM2sRoFZadl5Lc7JbqmfuumXpZfIMY2PZ79Pywf94u3/OCzMvzVnrETVf90o6mmyL6vAABGEGAcJYBT24b64a1PmYjJaRQZaTNZr/ZKO39Anb7g7wXwPDN5nGH6ABhYdittuLV6FlWfwq1NnRbDaTzBL0pY4WjBcIztKR7vscw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
+ dkim=pass header.d=labundy.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=o3OOdFuzdFLKSQrkpIS0CsIS0zf0aDA38dQSkohMKo0=;
+ b=QRjXDOUY70/ZF+D8/bwXIiXpv9q4qLYBax2J6HTZT3uYakMP8y3QoD1J/8LRv4QKzn/98FJXxCH/AaHPm544FHUjhWCHBe7Jhdm5lcsmoKQm0ytGKehKfYhubu2WThuSiYqwmjCSNzTy08PebGcxq8j5KHVz4b8MH5baDWpn7Z0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=labundy.com;
+Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
+ (2603:10b6:803:43::21) by PH0PR08MB6987.namprd08.prod.outlook.com
+ (2603:10b6:510:77::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.13; Sun, 5 Jun
+ 2022 16:28:26 +0000
+Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
+ ([fe80::ccb4:7984:aaf2:e18f]) by SN4PR0801MB3774.namprd08.prod.outlook.com
+ ([fe80::ccb4:7984:aaf2:e18f%6]) with mapi id 15.20.5314.017; Sun, 5 Jun 2022
+ 16:28:26 +0000
+Date:   Sun, 5 Jun 2022 11:28:20 -0500
+From:   Jeff LaBundy <jeff@labundy.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Stefan Hansson <newbie13xd@gmail.com>,
+        Andreas Kemnade <andreas@kemnade.info>
+Subject: Re: [RFC PATCH 1/2] dt-bindings: input: gpio-keys: enforce node
+ names to match all properties
+Message-ID: <20220605162820.GA12875@nixie71>
+References: <20220603101601.542054-1-krzysztof.kozlowski@linaro.org>
+ <20220603101601.542054-2-krzysztof.kozlowski@linaro.org>
+ <20220604030455.GA12308@nixie71>
+ <fd5833ac-2f8c-98ce-a9bd-188c90cda6f5@linaro.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <fd5833ac-2f8c-98ce-a9bd-188c90cda6f5@linaro.org>
+X-ClientProxiedBy: DM5PR05CA0017.namprd05.prod.outlook.com
+ (2603:10b6:3:d4::27) To SN4PR0801MB3774.namprd08.prod.outlook.com
+ (2603:10b6:803:43::21)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v2 2/2] net: ti: icssg-prueth: Add ICSSG ethernet driver
-Content-Language: fr
-To:     p-mohan@ti.com
-Cc:     afd@ti.com, andrew@lunn.ch, davem@davemloft.net,
-        devicetree@vger.kernel.org, edumazet@google.com,
-        grygorii.strashko@ti.com, kishon@ti.com,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, nm@ti.com, robh+dt@kernel.org,
-        rogerq@kernel.org, s-anna@ti.com, ssantosh@kernel.org,
-        vigneshr@ti.com
-References: <20220531095108.21757-1-p-mohan@ti.com>
- <20220531095108.21757-3-p-mohan@ti.com>
-From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20220531095108.21757-3-p-mohan@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 92555ee2-495a-4370-7d5a-08da47106ab9
+X-MS-TrafficTypeDiagnostic: PH0PR08MB6987:EE_
+X-Microsoft-Antispam-PRVS: <PH0PR08MB698784E21D653C919950FD2CD3A39@PH0PR08MB6987.namprd08.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ykBPJvop62zRjibiCz2F4ui2Q3A+39+resUNdJLwrpFqnUvWfatZxurdXlfyEH1qpcMAjlUo98N9my2bDvqTrqQ89uBV+arWUefEfftYpYhJRZNIOGyexj6lh/JmrXi7GdvEjOAzCU8AVWVy+VcB+w+f5kuEAguKMvsGvGE65B7amPU+XPJnbqkgl9izsCejrDhBKY3EA6zoA5FgZkl8lIsG7qGBiod4cFzNlOy4BIV8kcw0/s4vFt0jH3bkgJ2vDpXay/NfVXOxje19DjmI1UjfiqE7xFknMbyOtnxEmnQvlX+TGXb1UWsYUG3tAt2FB3sHta5aZLzzP/BqBLhRy1HJN8yrQnGoTL/k8Y0Py0RHFo/xr6bx3voTC2Bzh5PBNM94cOpqF9h8JbOg6MnNGRaqByQJS7Oy4tTBKJ97HSq7PoWtioF+1AkjTA8W06By7atVPRUadutfdHZ6YsOevV+oWiqiC4mYWgK2HbSzxuNDLY3CnRqrBjySWNuT+tR3w/JRadNGKk5aAhFYbnGVXhu8kvQQNPfcSKlQXDgUS2atXZ/eR7FLAiJGkCQI/gDWjLsWLcv548JefgppcTSKe6bE0wA4BRoguYdgYcK9Xp6f7lBZYqbliXLelEOPsefo37AYeKPYGw+vNqQJ/DxlFuQ9OFYYViNEXE1UYD6JCdNb88CLt5TWyK0sZXbCKMZuP+Q+pXo1VD/uWNPwl8U81A==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0801MB3774.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(7916004)(39830400003)(136003)(366004)(346002)(396003)(53546011)(52116002)(41300700001)(8936002)(6916009)(6506007)(316002)(33716001)(86362001)(186003)(54906003)(6666004)(508600001)(33656002)(5660300002)(6486002)(2906002)(8676002)(4326008)(66476007)(38350700002)(66946007)(66556008)(1076003)(6512007)(9686003)(38100700002)(26005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?8uTdczMf6ZzIoSlXAuHh7gvQXT5tUVodiDK9wB0UgGYwMeQXFe62jc29rer2?=
+ =?us-ascii?Q?gRJhEONNja8k/NNQ5WD5+T6CgD+sQEQd66rGliPENDcP6DdNpBEH5g1up5Bs?=
+ =?us-ascii?Q?ecknlBqVxNCD2Iq+7dwckzCil4MxcQMVg8HK9uDDmIPg1tHbd7qpMkClb1S/?=
+ =?us-ascii?Q?OFE5Ehl9av8eqkWNTJeNejTTXS3p8G24kb0Mgz1iP14n1Zg6LOX2+v8pq25/?=
+ =?us-ascii?Q?PecEkVq02wDgW3j66AtwuhCQtHLO5R939lg6fx1FHfnyEZ5cB0tTsJq7nxBJ?=
+ =?us-ascii?Q?/6wvgRoyUZKgVfQf31nsRuma0JLiYENga8IBEOfmWa3F7iibl3K66lklrtvT?=
+ =?us-ascii?Q?2iOUSbncUIeIlpHKP3eG0Y7Q/vX1X3nHsNFzSoDn3AYvvi3GpuqcgXrq7sXe?=
+ =?us-ascii?Q?l0dqeoBqa6APQt+3m2bmp9L4aDNTndSjapsLPDUkum4Ne4J9TL9aIqSqJAx4?=
+ =?us-ascii?Q?X43jexddsZYPa4Uw/jnEFFaL3e35AiFpFsAYktkTE8OcInQD07GdWVBp7OaO?=
+ =?us-ascii?Q?nmMlXYCqAcLCs5h3dE6NPkjCKkx5Rs3BEJYqHLvYi4/3DFcDH6qNf3wxqvHt?=
+ =?us-ascii?Q?BHcAy7Xu2+QMwH03SG8FxcOvreEHI1u9/h52zylfqUngTrTOe4k8/15iAmwg?=
+ =?us-ascii?Q?M8/DIAputVwj60QgDU2N8Oi3W2zRp0vGxaq+mcv2UgBuByDFNJxcP8H2526z?=
+ =?us-ascii?Q?n6uGG4jKBb5SvHOModBKVb2pWjsd8w4Uz8Gc68mWmDiIj9bdahksoK//e1A+?=
+ =?us-ascii?Q?BmikGwnHXrML7is69xSAT1FwRuVMlf6cWx6E7nkbx22zc4kEZmXWjDlLOB/j?=
+ =?us-ascii?Q?MDiuwGLmsjxVTDCPvKC2p+BHQxVu56JzSwMK8MfrgjRbLkIM1K8flVaJgcsT?=
+ =?us-ascii?Q?fLN6Rqk8JflQnBkopR7SQ/TpqHQuG/31jWKM0wHcI0bHmeDXFoln1fav9cgv?=
+ =?us-ascii?Q?YXXIheVwvxBsa7DW0xJvQtgsgOHyriwvDbzqPNEsFgM/o1JQ8yaM3TmL56Sa?=
+ =?us-ascii?Q?vzmnURoeMwH58JXTjcpHmQjfmhbmT//imq9JDma/wQH7uRSTpxWJkF4xatOT?=
+ =?us-ascii?Q?d0rr0HvGr8cCuQWtsdNahKdjGGFr1nKORId0VqgfchbrlqNOf40VoDySQa76?=
+ =?us-ascii?Q?e2uxffr8VKfpyBEXs8ySF3CJrWdQI3YrSzZvht71S2RcWMExpXxJa++e6PRb?=
+ =?us-ascii?Q?MI6QOY6IM7J0D44TpuGqBk5xaBvEOnoW//ID8IRuKXZFxsGNzsuwrygtYiuy?=
+ =?us-ascii?Q?CwzDksry2HkIV4Vh93RhzGPjbk6wTgDcM+kGz6LeFEy/iGotJGVYlJ8WNhlU?=
+ =?us-ascii?Q?aDl13XfWfinmUuLnvCNDEcx4v8wMqLIx0yQcMKqWJ0NC/vbBDfY73JxTazs9?=
+ =?us-ascii?Q?/Xjb7VKfdej7VLuwxoFRaotpKebroOct++HcP+Gf/60H3z8i6n+Ne0tlovml?=
+ =?us-ascii?Q?s8mKb+tZKIGbrNnjxuoJ+7uUXxBd2nLhNaZDXmT3TL0GjUQw/vxjCI2ifG31?=
+ =?us-ascii?Q?M7BwPdmb+Vr/DCvmJ4At4f4fhoTV299GgfNQQTpRe44BbSLSV8GHHKzpUH+R?=
+ =?us-ascii?Q?CX19XE1lOod2SIJhZzNaZp8MObiXSbiTSZo0bev4/7MmqrCztiTe/ylUKJqv?=
+ =?us-ascii?Q?SlvTv9qmwLA7EqA8GQ1TIlm/MLA3uAbAih5MzfP6SYx/lCAvvgm7eUVbKFm2?=
+ =?us-ascii?Q?p78moYMQNRBEi+n256h9AW25mYAqmeVwvPBbSlp391BYHh1ifz2m8Rk8KKIK?=
+ =?us-ascii?Q?jxrLRMGJyA=3D=3D?=
+X-OriginatorOrg: labundy.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 92555ee2-495a-4370-7d5a-08da47106ab9
+X-MS-Exchange-CrossTenant-AuthSource: SN4PR0801MB3774.namprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2022 16:28:26.4436
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: /mVSd1kUPAmJuM0uvguq8crnzFR762H3r2VG5wLWyyaCBrrZVoAwJt+ciPIweQ7KVDu6BJdcNdIss2bQhPjnEA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR08MB6987
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Krzysztof,
 
-Just a few comments below, for what they worth.
-
-Le 31/05/2022 à 11:51, Puranjay Mohan a écrit :
-> From: Roger Quadros <rogerq-l0cyMroinI0@public.gmane.org>
+On Sun, Jun 05, 2022 at 05:12:42PM +0200, Krzysztof Kozlowski wrote:
+> On 04/06/2022 05:04, Jeff LaBundy wrote:
+> >> -      dependencies:
+> >> -        wakeup-event-action: [ wakeup-source ]
+> >> -        linux,input-value: [ gpios ]
+> >> -
+> >> -      unevaluatedProperties: false
+> >> +  "^(key|key-[a-z0-9-]+|[a-z0-9-]+-key)$":
+> > 
+> > Maybe this would be better as:
+> > 
+> > "^((key|switch|axis)|(key|switch|axis)-[a-z0-9-]+|[a-z0-9-]+-(key|switch|axis))$":
+> > 
+> > ...or perhaps a more efficient version of my counter-proposal.
+> > 
+> > The reason is because it is confusing to see a lid or dock switch named
+> > as "key-lid", etc.
 > 
-> This is the Ethernet driver for TI AM654 Silicon rev. 2
-> with the ICSSG PRU Sub-system running dual-EMAC firmware.
+> Nice point. "switch" I understand, but can you really have "axis" on
+> GPIO keys? I had impression axis is related to joysticks.
+
+I do not think it is very common, but technically we can use gpio-keys
+to create coarse sliders as follows:
+
+- linux,code = ABS_X (or ABS_Y, etc.)
+- linux,input-type = EV_ABS
+- linux,input-value = 0, 10, 20...
+
+Trying to encode all possible values for linux,input-type (EV_*) in the
+pattern is not reasonable, so maybe a compromise would be to use 'event'
+in place of 'key|switch' because events are what we are ultimately trying
+to describe here.
+
+That being said, these are special cases and I don't feel strongly against
+simply using 'key|switch' for now as those are by far the most common use-
+cases. Another compromise is 'key|switch|event', with 'event' available as
+a catch-all for these special cases.
+
 > 
+> 
+> Best regards,
+> Krzysztof
 
-[...]
-
-> +static int prueth_netdev_init(struct prueth *prueth,
-> +			      struct device_node *eth_node)
-> +{
-> +	int ret, num_tx_chn = PRUETH_MAX_TX_QUEUES;
-> +	struct prueth_emac *emac;
-> +	struct net_device *ndev;
-> +	enum prueth_port port;
-> +	enum prueth_mac mac;
-> +
-> +	port = prueth_node_port(eth_node);
-> +	if (port < 0)
-> +		return -EINVAL;
-> +
-> +	mac = prueth_node_mac(eth_node);
-> +	if (mac < 0)
-> +		return -EINVAL;
-> +
-> +	ndev = alloc_etherdev_mq(sizeof(*emac), num_tx_chn);
-> +	if (!ndev)
-> +		return -ENOMEM;
-> +
-> +	emac = netdev_priv(ndev);
-> +	prueth->emac[mac] = emac;
-> +	emac->prueth = prueth;
-> +	emac->ndev = ndev;
-> +	emac->port_id = port;
-> +	emac->cmd_wq = create_singlethread_workqueue("icssg_cmd_wq");
-> +	if (!emac->cmd_wq) {
-> +		ret = -ENOMEM;
-> +		goto free_ndev;
-> +	}
-> +	INIT_WORK(&emac->rx_mode_work, emac_ndo_set_rx_mode_work);
-> +
-> +	ret = pruss_request_mem_region(prueth->pruss,
-> +				       port == PRUETH_PORT_MII0 ?
-> +				       PRUSS_MEM_DRAM0 : PRUSS_MEM_DRAM1,
-> +				       &emac->dram);
-> +	if (ret) {
-> +		dev_err(prueth->dev, "unable to get DRAM: %d\n", ret);
-> +		return -ENOMEM;
-
-goto free_wq; ?
-
-> +	}
-> +
-> +	emac->tx_ch_num = 1;
-> +
-> +	SET_NETDEV_DEV(ndev, prueth->dev);
-> +	spin_lock_init(&emac->lock);
-> +	mutex_init(&emac->cmd_lock);
-> +
-> +	emac->phy_node = of_parse_phandle(eth_node, "phy-handle", 0);
-> +	if (!emac->phy_node && !of_phy_is_fixed_link(eth_node)) {
-> +		dev_err(prueth->dev, "couldn't find phy-handle\n");
-> +		ret = -ENODEV;
-> +		goto free;
-> +	} else if (of_phy_is_fixed_link(eth_node)) {
-> +		ret = of_phy_register_fixed_link(eth_node);
-> +		if (ret) {
-> +			ret = dev_err_probe(prueth->dev, ret,
-> +					    "failed to register fixed-link phy\n");
-> +			goto free;
-> +		}
-> +
-> +		emac->phy_node = eth_node;
-> +	}
-> +
-> +	ret = of_get_phy_mode(eth_node, &emac->phy_if);
-> +	if (ret) {
-> +		dev_err(prueth->dev, "could not get phy-mode property\n");
-> +		goto free;
-> +	}
-> +
-> +	if (emac->phy_if != PHY_INTERFACE_MODE_MII &&
-> +	    !phy_interface_mode_is_rgmii(emac->phy_if)) {
-> +		dev_err(prueth->dev, "PHY mode unsupported %s\n", phy_modes(emac->phy_if));
-> +		goto free;
-> +	}
-> +
-> +	ret = prueth_config_rgmiidelay(prueth, eth_node, emac->phy_if);
-> +	if (ret)
-> +		goto free;
-> +
-> +	/* get mac address from DT and set private and netdev addr */
-> +	ret = of_get_ethdev_address(eth_node, ndev);
-> +	if (!is_valid_ether_addr(ndev->dev_addr)) {
-> +		eth_hw_addr_random(ndev);
-> +		dev_warn(prueth->dev, "port %d: using random MAC addr: %pM\n",
-> +			 port, ndev->dev_addr);
-> +	}
-> +	ether_addr_copy(emac->mac_addr, ndev->dev_addr);
-> +
-> +	ndev->netdev_ops = &emac_netdev_ops;
-> +	ndev->ethtool_ops = &icssg_ethtool_ops;
-> +	ndev->hw_features = NETIF_F_SG;
-> +	ndev->features = ndev->hw_features;
-> +
-> +	netif_napi_add(ndev, &emac->napi_rx,
-> +		       emac_napi_rx_poll, NAPI_POLL_WEIGHT);
-> +
-> +	return 0;
-> +
-> +free:
-> +	pruss_release_mem_region(prueth->pruss, &emac->dram);
-
-free_wq:
-
-> +	destroy_workqueue(emac->cmd_wq);
-> +free_ndev:
-> +	free_netdev(ndev);
-> +	prueth->emac[mac] = NULL;
-> +
-> +	return ret;
-> +}
-> +
-> +static void prueth_netdev_exit(struct prueth *prueth,
-> +			       struct device_node *eth_node)
-> +{
-> +	struct prueth_emac *emac;
-> +	enum prueth_mac mac;
-> +
-> +	mac = prueth_node_mac(eth_node);
-> +	if (mac < 0)
-> +		return;
-> +
-> +	emac = prueth->emac[mac];
-> +	if (!emac)
-> +		return;
-> +
-> +	if (of_phy_is_fixed_link(emac->phy_node))
-> +		of_phy_deregister_fixed_link(emac->phy_node);
-> +
-> +	netif_napi_del(&emac->napi_rx);
-> +
-> +	pruss_release_mem_region(prueth->pruss, &emac->dram);
-> +	destroy_workqueue(emac->cmd_wq);
-> +	free_netdev(emac->ndev);
-> +	prueth->emac[mac] = NULL;
-> +}
-> +
-> +static int prueth_get_cores(struct prueth *prueth, int slice)
-> +{
-> +	enum pruss_pru_id pruss_id;
-> +	struct device *dev = prueth->dev;
-> +	struct device_node *np = dev->of_node;
-> +	int idx = -1, ret;
-> +
-> +	switch (slice) {
-> +	case ICSS_SLICE0:
-> +		idx = 0;
-> +		break;
-> +	case ICSS_SLICE1:
-> +		idx = 3;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	prueth->pru[slice] = pru_rproc_get(np, idx, &pruss_id);
-> +	if (IS_ERR(prueth->pru[slice])) {
-> +		ret = PTR_ERR(prueth->pru[slice]);
-> +		prueth->pru[slice] = NULL;
-> +		if (ret != -EPROBE_DEFER)
-> +			dev_err(dev, "unable to get PRU%d: %d\n", slice, ret);
-
-return dev_err_probe()?
-
-> +		return ret;
-> +	}
-> +	prueth->pru_id[slice] = pruss_id;
-> +
-> +	idx++;
-> +	prueth->rtu[slice] = pru_rproc_get(np, idx, NULL);
-> +	if (IS_ERR(prueth->rtu[slice])) {
-> +		ret = PTR_ERR(prueth->rtu[slice]);
-> +		prueth->rtu[slice] = NULL;
-> +		if (ret != -EPROBE_DEFER)
-> +			dev_err(dev, "unable to get RTU%d: %d\n", slice, ret);
-
-Same.
-
-> +		return ret;
-> +	}
-> +
-> +	idx++;
-> +	prueth->txpru[slice] = pru_rproc_get(np, idx, NULL);
-> +	if (IS_ERR(prueth->txpru[slice])) {
-> +		ret = PTR_ERR(prueth->txpru[slice]);
-> +		prueth->txpru[slice] = NULL;
-> +		if (ret != -EPROBE_DEFER)
-> +			dev_err(dev, "unable to get TX_PRU%d: %d\n",
-> +				slice, ret);
-
-Same.
-
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void prueth_put_cores(struct prueth *prueth, int slice)
-> +{
-> +	if (prueth->txpru[slice])
-> +		pru_rproc_put(prueth->txpru[slice]);
-> +
-> +	if (prueth->rtu[slice])
-> +		pru_rproc_put(prueth->rtu[slice]);
-> +
-> +	if (prueth->pru[slice])
-> +		pru_rproc_put(prueth->pru[slice]);
-> +}
-> +
-> +static const struct of_device_id prueth_dt_match[];
-> +
-> +static int prueth_probe(struct platform_device *pdev)
-> +{
-> +	struct prueth *prueth;
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *np = dev->of_node;
-> +	struct device_node *eth_ports_node;
-> +	struct device_node *eth_node;
-> +	struct device_node *eth0_node, *eth1_node;
-> +	const struct of_device_id *match;
-> +	struct pruss *pruss;
-> +	int i, ret;
-> +	u32 msmc_ram_size;
-> +	struct genpool_data_align gp_data = {
-> +		.align = SZ_64K,
-> +	};
-> +
-> +	match = of_match_device(prueth_dt_match, dev);
-> +	if (!match)
-> +		return -ENODEV;
-> +
-> +	prueth = devm_kzalloc(dev, sizeof(*prueth), GFP_KERNEL);
-> +	if (!prueth)
-> +		return -ENOMEM;
-> +
-> +	dev_set_drvdata(dev, prueth);
-> +	prueth->pdev = pdev;
-> +	prueth->pdata = *(const struct prueth_pdata *)match->data;
-> +
-> +	prueth->dev = dev;
-> +	eth_ports_node = of_get_child_by_name(np, "ethernet-ports");
-> +	if (!eth_ports_node)
-> +		return -ENOENT;
-> +
-> +	for_each_child_of_node(eth_ports_node, eth_node) {
-> +		u32 reg;
-> +
-> +		if (strcmp(eth_node->name, "port"))
-> +			continue;
-> +		ret = of_property_read_u32(eth_node, "reg", &reg);
-> +		if (ret < 0) {
-> +			dev_err(dev, "%pOF error reading port_id %d\n",
-> +				eth_node, ret);
-> +		}
-> +
-> +		of_node_get(eth_node);
-> +
-> +		if (reg == 0)
-> +			eth0_node = eth_node;
-> +		else if (reg == 1)
-> +			eth1_node = eth_node;
-> +		else
-> +			dev_err(dev, "port reg should be 0 or 1\n");
-> +	}
-> +
-> +	of_node_put(eth_ports_node);
-> +
-> +	/* At least one node must be present and available else we fail */
-> +	if (!eth0_node && !eth1_node) {
-> +		dev_err(dev, "neither port0 nor port1 node available\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	if (eth0_node == eth1_node) {
-> +		dev_err(dev, "port0 and port1 can't have same reg\n");
-> +		of_node_put(eth0_node);
-> +		return -ENODEV;
-> +	}
-> +
-> +	prueth->eth_node[PRUETH_MAC0] = eth0_node;
-> +	prueth->eth_node[PRUETH_MAC1] = eth1_node;
-> +
-> +	prueth->miig_rt = syscon_regmap_lookup_by_phandle(np, "ti,mii-g-rt");
-> +	if (IS_ERR(prueth->miig_rt)) {
-> +		dev_err(dev, "couldn't get ti,mii-g-rt syscon regmap\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	prueth->mii_rt = syscon_regmap_lookup_by_phandle(np, "ti,mii-rt");
-> +	if (IS_ERR(prueth->mii_rt)) {
-> +		dev_err(dev, "couldn't get ti,mii-rt syscon regmap\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	if (eth0_node) {
-> +		ret = prueth_get_cores(prueth, ICSS_SLICE0);
-> +		if (ret)
-> +			goto put_cores;
-> +	}
-> +
-> +	if (eth1_node) {
-> +		ret = prueth_get_cores(prueth, ICSS_SLICE1);
-> +		if (ret)
-> +			goto put_cores;
-> +	}
-> +
-> +	pruss = pruss_get(eth0_node ?
-> +			  prueth->pru[ICSS_SLICE0] : prueth->pru[ICSS_SLICE1]);
-> +	if (IS_ERR(pruss)) {
-> +		ret = PTR_ERR(pruss);
-> +		dev_err(dev, "unable to get pruss handle\n");
-> +		goto put_cores;
-> +	}
-> +
-> +	prueth->pruss = pruss;
-> +
-> +	ret = pruss_request_mem_region(pruss, PRUSS_MEM_SHRD_RAM2,
-> +				       &prueth->shram);
-> +	if (ret) {
-> +		dev_err(dev, "unable to get PRUSS SHRD RAM2: %d\n", ret);
-> +		goto put_mem;
-
-Is it safe to call pruss_release_mem_region() if 
-pruss_request_mem_region() has failed?
-
-The other place where it is called it is not done the same way.
-
-> +	}
-> +
-> +	prueth->sram_pool = of_gen_pool_get(np, "sram", 0);
-> +	if (!prueth->sram_pool) {
-> +		dev_err(dev, "unable to get SRAM pool\n");
-> +		ret = -ENODEV;
-> +
-> +		goto put_mem;
-> +	}
-> +
-> +	msmc_ram_size = MSMC_RAM_SIZE;
-> +
-> +	/* NOTE: FW bug needs buffer base to be 64KB aligned */
-> +	prueth->msmcram.va =
-> +		(void __iomem *)gen_pool_alloc_algo(prueth->sram_pool,
-> +						    msmc_ram_size,
-> +						    gen_pool_first_fit_align,
-> +						    &gp_data);
-> +
-> +	if (!prueth->msmcram.va) {
-> +		ret = -ENOMEM;
-> +		dev_err(dev, "unable to allocate MSMC resource\n");
-> +		goto put_mem;
-> +	}
-> +	prueth->msmcram.pa = gen_pool_virt_to_phys(prueth->sram_pool,
-> +						   (unsigned long)prueth->msmcram.va);
-> +	prueth->msmcram.size = msmc_ram_size;
-> +	memset(prueth->msmcram.va, 0, msmc_ram_size);
-> +	dev_dbg(dev, "sram: pa %llx va %p size %zx\n", prueth->msmcram.pa,
-> +		prueth->msmcram.va, prueth->msmcram.size);
-> +
-> +	/* setup netdev interfaces */
-> +	if (eth0_node) {
-> +		ret = prueth_netdev_init(prueth, eth0_node);
-> +		if (ret) {
-> +			if (ret != -EPROBE_DEFER) {
-> +				dev_err(dev, "netdev init %s failed: %d\n",
-> +					eth0_node->name, ret);
-
-dev_err_probe()?
-
-> +			}
-> +			goto netdev_exit;
-> +		}
-> +	}
-> +
-> +	if (eth1_node) {
-> +		ret = prueth_netdev_init(prueth, eth1_node);
-> +		if (ret) {
-> +			if (ret != -EPROBE_DEFER) {
-> +				dev_err(dev, "netdev init %s failed: %d\n",
-> +					eth1_node->name, ret);
-
-dev_err_probe()?
-
-> +			}
-> +			goto netdev_exit;
-> +		}
-> +	}
-> +
-> +	/* register the network devices */
-> +	if (eth0_node) {
-> +		ret = register_netdev(prueth->emac[PRUETH_MAC0]->ndev);
-> +		if (ret) {
-> +			dev_err(dev, "can't register netdev for port MII0");
-> +			goto netdev_exit;
-> +		}
-> +
-> +		prueth->registered_netdevs[PRUETH_MAC0] = prueth->emac[PRUETH_MAC0]->ndev;
-> +
-> +		emac_phy_connect(prueth->emac[PRUETH_MAC0]);
-> +		phy_attached_info(prueth->emac[PRUETH_MAC0]->ndev->phydev);
-> +	}
-> +
-> +	if (eth1_node) {
-> +		ret = register_netdev(prueth->emac[PRUETH_MAC1]->ndev);
-> +		if (ret) {
-> +			dev_err(dev, "can't register netdev for port MII1");
-> +			goto netdev_unregister;
-> +		}
-> +
-> +		prueth->registered_netdevs[PRUETH_MAC1] = prueth->emac[PRUETH_MAC1]->ndev;
-> +		emac_phy_connect(prueth->emac[PRUETH_MAC1]);
-> +		phy_attached_info(prueth->emac[PRUETH_MAC1]->ndev->phydev);
-> +	}
-> +
-> +	dev_info(dev, "TI PRU ethernet driver initialized: %s EMAC mode\n",
-> +		 (!eth0_node || !eth1_node) ? "single" : "dual");
-> +
-> +	if (eth1_node)
-> +		of_node_put(eth1_node);
-> +	if (eth0_node)
-> +		of_node_put(eth0_node);
-> +	return 0;
-> +
-> +netdev_unregister:
-> +	for (i = 0; i < PRUETH_NUM_MACS; i++) {
-> +		if (!prueth->registered_netdevs[i])
-> +			continue;
-> +		if (prueth->emac[i]->ndev->phydev) {
-> +			phy_disconnect(prueth->emac[i]->ndev->phydev);
-> +			prueth->emac[i]->ndev->phydev = NULL;
-> +		}
-> +		unregister_netdev(prueth->registered_netdevs[i]);
-> +	}
-> +
-> +netdev_exit:
-> +	for (i = 0; i < PRUETH_NUM_MACS; i++) {
-> +		struct device_node *eth_node;
-> +
-> +		eth_node = prueth->eth_node[i];
-> +		if (!eth_node)
-> +			continue;
-> +
-> +		prueth_netdev_exit(prueth, eth_node);
-> +	}
-> +
-> +gen_pool_free(prueth->sram_pool,
-
-1 tab missing.
-
-> +	      (unsigned long)prueth->msmcram.va, msmc_ram_size);
-> +
-> +put_mem:
-> +	pruss_release_mem_region(prueth->pruss, &prueth->shram);
-> +	pruss_put(prueth->pruss);
-> +
-> +put_cores:
-> +	if (eth1_node) {
-> +		prueth_put_cores(prueth, ICSS_SLICE1);
-> +		of_node_put(eth1_node);
-> +	}
-> +
-> +	if (eth0_node) {
-> +		prueth_put_cores(prueth, ICSS_SLICE0);
-> +		of_node_put(eth0_node);
-> +	}
-> +
-> +	return ret;
-> +}
-
-[...]
+Kind regards,
+Jeff LaBundy
