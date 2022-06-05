@@ -2,107 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9924153DD48
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 19:03:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2928F53DD6F
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 19:52:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233454AbiFERDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Jun 2022 13:03:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54692 "EHLO
+        id S1346600AbiFERwk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Jun 2022 13:52:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351371AbiFERDh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 13:03:37 -0400
-Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C4E3393E5
-        for <devicetree@vger.kernel.org>; Sun,  5 Jun 2022 10:03:35 -0700 (PDT)
-Received: by mail-pf1-x442.google.com with SMTP id b135so10974580pfb.12
-        for <devicetree@vger.kernel.org>; Sun, 05 Jun 2022 10:03:35 -0700 (PDT)
+        with ESMTP id S231337AbiFERwk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 13:52:40 -0400
+Received: from mail-oa1-x2f.google.com (mail-oa1-x2f.google.com [IPv6:2001:4860:4864:20::2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA5BC2B191;
+        Sun,  5 Jun 2022 10:52:38 -0700 (PDT)
+Received: by mail-oa1-x2f.google.com with SMTP id 586e51a60fabf-f3381207a5so16753889fac.4;
+        Sun, 05 Jun 2022 10:52:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=f/UilSAxG+uYZGr2O0WgxBidGfjIL+/pLfI/yMfN0No=;
-        b=bXwxrI0ssH12cDH+H1T5cB5Z5FLajoLD3gqazsVOaHXv0MLhHrIOps7dopyRrq8MLV
-         4aaKg6GTgfLmb8QagGZYn+fUOyQyf2Z5oEatgo2112CVL61Csso65XYO8LK4LHD9ZT8x
-         PyCNve7+VpKZqY+Rymo3wNl8yILe4f524D6n22wkZVzrmD/8ICSV68daU7ENQP0DyNI3
-         8lF2wXRSYE6gHz9HDqaPiB1hmUiN0lnCPjBa0E4NtFTAM5psnSKmXDagDiYVLnL9yx6X
-         oZhetkul6j3pwxF0viPPyEs647JrdRMz1Yl1c8ZSkmj6SBRsFqcsbGS/ICCCPMrHfxRF
-         gcdA==
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=f3dA/DYXJh6vkxG9o6pm4Tv3wyZL8CJuZGYKRytVcsY=;
+        b=ouXH3EtmVTBS4swgJYY9Zx7fP92qbZ8t959EPmePNWNZG+l8QrNi5xW6K9BkWI2DDa
+         DHDc072CjmhB62qLsimgvhEWdW1gc9crVWjX8gQvfZWQfBpnOakoRVWgi2H1Koe4Pw7z
+         IytXfvKQEkwQ13SoE/EoaOBmf5vHDTDMJTaWtQfphMR/usOYBUfnB9jIUBaywJRmOG2H
+         8TVPIwRF1vCaDfYOLacmB0/YpWFVh7TD6B2TKkqNvfLaVHP8jWw9b4y3aohWrN9+CpK0
+         Ktkw4pQ3pj9JrEaBgO+1xn8lb9YB2Qj0meurxW1NdVAN0Tt5gNk4nHbIqR14WNntm1FV
+         z3Iw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=f/UilSAxG+uYZGr2O0WgxBidGfjIL+/pLfI/yMfN0No=;
-        b=ndxz1Ldb0Wq+4Aoyk4HH5DjSj2AagRqe6icG03FqQOBKG1uMsYjgz3KJUwHdwYBMTv
-         Rpaq9v0NMlcrxD0/66Xmvsb7QU2udrfcfvgV167UsnZcnkvPNY88rYbGoBQLk0Gvkboa
-         TgYgmVs2V5+JdaViR2aqPFhyo4yLt6MFPM0+cU5zgLov64Yc0H18Q1rALJAmQKhwTmIw
-         7iZzaX8+r4b5Bz0ei9QiTEfSpb9xtWpGNQ15WobI4D2r1ULyqdX+24+1KSAHrjvjRsrM
-         406gt9ClubM9j4y87wf1a8r6TuU/f+QVEdBlOwHkA5z22Ta77JZNWby2KM/+n3gwnUGU
-         nVHA==
-X-Gm-Message-State: AOAM532jlFfG/iGpQ7gArzT306oTVZ5Wak4FGbGlTxFt6BupIu6OP9hu
-        JBWrVY6EVZVD5ntrGrgTMQxzGWta25KyPdn5NvI=
-X-Google-Smtp-Source: ABdhPJyuxqnDjaHHowDD7T1xsS3Mq2di4pvxh3mWGjJBn7xB4tkJbpQ1Ml/NJ42vh9iv1N8qFMzGkzB1vM2yuWFOYKQ=
-X-Received: by 2002:a65:6552:0:b0:3db:772a:2465 with SMTP id
- a18-20020a656552000000b003db772a2465mr17686114pgw.225.1654448615136; Sun, 05
- Jun 2022 10:03:35 -0700 (PDT)
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=f3dA/DYXJh6vkxG9o6pm4Tv3wyZL8CJuZGYKRytVcsY=;
+        b=VfZHQkd/ooD5p/1Oz55yUzzHe75HOGD0UMJlXg27ELN6EA6VzehpZ+Sz2OA/PGwVDM
+         Dp+Ses8sCskx0pyrH4wZeEKaRirC3cqzbeDhSrI1L+cQdSTO2T4JWs9lT6Umsjnn3xqx
+         dXI3qV7hI2IFv/TvUwL5vBf0AfHalA2UKWEXcMwxuojTwU06E4SqYQTYsUYyY/eygaSQ
+         pKZk/QE3R47JlM4TlEYlBoav/39nklp0yOQ5nT751mncmodL/mqEP8cUON+qUkT1OKU9
+         rjVlFnN9I9bKzoEBRvmOJIFoDcOsndHzcDbUBvHSBaQogJx39XOMii7c9zLnMin3eK7H
+         yq1w==
+X-Gm-Message-State: AOAM5335Kh6hawVpRtQgF6CQzXKABaCDBBhthVVk6ug9ao1NXD7cLztH
+        +2qxWlsF2OO6vt0UwPoI66s=
+X-Google-Smtp-Source: ABdhPJy3Uk3lUNytG0ZSYcnnYbODViKhvYoQmp0ybP72kT6LhRB3/rV0h4lqT96xYVJNtgfhZKIQxA==
+X-Received: by 2002:a05:6871:892:b0:fb:451e:9e43 with SMTP id r18-20020a056871089200b000fb451e9e43mr2126873oaq.162.1654451558020;
+        Sun, 05 Jun 2022 10:52:38 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id f3-20020a05680807c300b00325cda1ffa8sm6706130oij.39.2022.06.05.10.52.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 05 Jun 2022 10:52:37 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Sun, 5 Jun 2022 10:52:36 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Slawomir Stepien <sst@poczta.fm>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        jdelvare@suse.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, przemyslaw.cencner@nokia.com,
+        krzysztof.adamski@nokia.com, alexander.sverdlin@nokia.com,
+        slawomir.stepien@nokia.com
+Subject: Re: [PATCH 1/7] dt-bindings: hwmon: Add compatible string for
+ ADT7481 in lm90
+Message-ID: <20220605175236.GA3150698@roeck-us.net>
+References: <20220525073657.573327-1-sst@poczta.fm>
+ <20220525073657.573327-2-sst@poczta.fm>
 MIME-Version: 1.0
-Received: by 2002:a17:90a:a082:0:0:0:0 with HTTP; Sun, 5 Jun 2022 10:03:34
- -0700 (PDT)
-Reply-To: profdorothyinvestment@gmail.com
-From:   "Hon. Francisco " <franciscojinvestmentss@gmail.com>
-Date:   Sun, 5 Jun 2022 10:03:34 -0700
-Message-ID: <CALMQtE_gy_Ns7fq5o3Q-neD9LSUfgS5vRy-p0cNZNBRHXV6Pbg@mail.gmail.com>
-Subject: HELLO
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=6.6 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
-        LOTS_OF_MONEY,MONEY_FREEMAIL_REPTO,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNDISC_FREEM,UNDISC_MONEY autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2607:f8b0:4864:20:0:0:0:442 listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5000]
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [franciscojinvestmentss[at]gmail.com]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        *  0.0 LOTS_OF_MONEY Huge... sums of money
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  2.3 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-        *  2.0 MONEY_FREEMAIL_REPTO Lots of money from someone using free
-        *      email?
-        *  0.6 UNDISC_MONEY Undisclosed recipients + money/fraud signs
-X-Spam-Level: ******
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220525073657.573327-2-sst@poczta.fm>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
--- 
-URGENT LOAN IS NOW AVAILABLE
+On Wed, May 25, 2022 at 09:36:51AM +0200, Slawomir Stepien wrote:
+> From: Slawomir Stepien <slawomir.stepien@nokia.com>
+> 
+> This will allow binding the driver with the device from the device tree.
+> 
+> This device can work in extended temperature measurement mode, so add it
+> also to the list of devices that support 'ti,extended-range-enable'.
+> 
+> Signed-off-by: Slawomir Stepien <slawomir.stepien@nokia.com>
+> Acked-by: Rob Herring <robh@kernel.org>
 
-Hello, I'm here to testify of how i got my real estate business loan
-from PROF. MRS.DOROTHY JEAN INVESTMENTS
-(profdorothyinvestment@gmail.com) I don't know if you are in need of
-an urgent loan to pay bills, start business or build a house, they
-offer all kinds of loan Ranging from $5,000.00USD to $2,000,000.00USD
-with a low interest rate of 2% and loan duration of 1 to 33 years to
-pay back the loan secure and unsecured. Are you losing sleep at nights
-worrying how to get a Legit Loan Lender?
-MRS.DOROTHY JEAN holds all of the information about how to obtain
-money quickly and painlessly without cost/stress via Contacts
-Call/Text +1(315)256-0479
-Email profdorothyinvestment@gmail.com
+Applied to hwmon-next.
+
+Thanks,
+Guenter
+
+> ---
+>  Documentation/devicetree/bindings/hwmon/national,lm90.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/national,lm90.yaml b/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
+> index b04657849852..82fce96498c7 100644
+> --- a/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
+> @@ -16,6 +16,7 @@ properties:
+>        - adi,adm1032
+>        - adi,adt7461
+>        - adi,adt7461a
+> +      - adi,adt7481
+>        - dallas,max6646
+>        - dallas,max6647
+>        - dallas,max6649
+> @@ -70,6 +71,7 @@ allOf:
+>                enum:
+>                  - adi,adt7461
+>                  - adi,adt7461a
+> +                - adi,adt7481
+>                  - ti,tmp451
+>                  - ti,tmp461
+>      then:
