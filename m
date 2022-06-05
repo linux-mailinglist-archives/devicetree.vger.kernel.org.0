@@ -2,151 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBF3253DAF5
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 11:13:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE62753DB34
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 12:10:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350900AbiFEJNs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Jun 2022 05:13:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51860 "EHLO
+        id S245121AbiFEKKX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Jun 2022 06:10:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231216AbiFEJNp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 05:13:45 -0400
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AFC4183AD
-        for <devicetree@vger.kernel.org>; Sun,  5 Jun 2022 02:13:44 -0700 (PDT)
-Received: by mail-pg1-x532.google.com with SMTP id c18so2307112pgh.11
-        for <devicetree@vger.kernel.org>; Sun, 05 Jun 2022 02:13:44 -0700 (PDT)
+        with ESMTP id S237325AbiFEKKW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 06:10:22 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CA5B4664D;
+        Sun,  5 Jun 2022 03:10:20 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id b8so15200731edf.11;
+        Sun, 05 Jun 2022 03:10:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=t40w8M/0e+7jzPaXKU8sHRs+0HYfLIpNt+JXgYblSMg=;
-        b=ocyh0GC00EAoaldlX1NjY7vXM7LbDtFDCA/7kXfCx1Ot+WKDvRO2xAoQE4IatRDfQE
-         iggeZJFMvcTXFNuSAHi269fFf0Y7FYT/7p7FgnjfU/0uYk4Y3dcrKAX1+i2bUYqFHOSa
-         nx9ZzclCH+yphK8vDpAp1cpBhgTl+ZyCbBuFE=
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=QmfLcAbHryy1IIAetYAoGcOfIXsKgWBW6y02L6ugeGg=;
+        b=qrflZFjk4SIwu4KFvRYQar/ZyKEsx6E+7C2J5p1wMoRQPvNGd6QaWt25q6izabVts6
+         eGnPM8+4keZhThLhHLV1vBs07tbXASxT0aOkhaFtbSobiaubZ4scWrotz71v3YCNnnGL
+         DA1NUE6QUTDDE2AGBFDYEsK4K5rgGREFtfc+o040TINXpgqG/7H/eiVgmsLEwg+HVu6G
+         AM1pMokTHyJibw/W/VYDJNHjPID0P1HBRjECCwu0K1Te8Uv6eEGMD81ZkU01JeC6/ZHu
+         ExGXQ+Xjh2EsM+yOFypCbYRjNGaKQjK7KsOq8VywvGDRZxTLDAdGGJlNB3rCSfFeQd/J
+         oZtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=t40w8M/0e+7jzPaXKU8sHRs+0HYfLIpNt+JXgYblSMg=;
-        b=yw7qYj2KDR9oE2DnyMMUsv5+b8buidB9SEU/I1ssHh+u9DI5exW71Qmmr/tFP7pbMG
-         vitCYadaeTV36QBFJt1sNRsr+qF0J9nJmrX96LrIJd/EsPawLqRhLruXxrM4P6FEEwso
-         YcyVvYRoY9drGUctBQACqq2B0aIXoFnnotuI3ysbJH/DyTminLtc2tcD4Oo83kEFyXit
-         Kobd88l5NjMazKCLdPEKN9YycvjkDHeQeYzAQuebE9Qmif5spBQEjskNL9vVjNYNQDWu
-         NMfMxPhjq8/b1zdFpa6e/y1ahcid1OqHWZqP1dShOKkovlOPMswE8KCgYfkFTlSYKWgl
-         U94w==
-X-Gm-Message-State: AOAM532u5fzvYgDrjgA2T4cXgwa3hHj/tC3FRTeX3re2K0UM0HMQ4KwJ
-        YgJS2fuZagQW8mIBOAokQH0+F+eyIszBQrqSWfmxnQ==
-X-Google-Smtp-Source: ABdhPJyfM9d7kMlMNvdUeRn2dk39OQ/Usv5Q6CYgHbkGf9STAOM6qa29oOgODMY+MUkxTGzGNRvQeI1jGiWN9/fZwuA=
-X-Received: by 2002:a05:6a00:2402:b0:4e1:3df2:5373 with SMTP id
- z2-20020a056a00240200b004e13df25373mr85499945pfh.40.1654420423926; Sun, 05
- Jun 2022 02:13:43 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=QmfLcAbHryy1IIAetYAoGcOfIXsKgWBW6y02L6ugeGg=;
+        b=AK/dHDEkNmUZxu6Wmh5Wavk560PcWbxZJMSgV57Zj2wKs+8BC+7Mb+UTHorBrF6gPq
+         OOKhJLaoITOPbOM/28fh5LM/jkgS/QTAjJVVmgfpMNxAB2rqrIFz56UOVhxUELFCM8XF
+         2q4MbYpX47qg8BR1GIHxh2Y7brs66uE1VO0P77o20Bqz8y/mF2B0zs8xdtdIssPyqfVX
+         8ss9NmDuZ06RuPSKo+RsakUnlkpK8oSglL5ihRPsIKg6nf5TjZJo8KHiRCbDjTREK1IY
+         i81U+jqTV+5oCIDiv+0/OjyH8dGHarBDvXNflD/KmKDmlDEbjdpbXyLD0UPQC6M4hCkO
+         OjIg==
+X-Gm-Message-State: AOAM533C5mhS6Ifh+UEj448AvFIFQNANFZmWBzeNZS2B32hv3Rk/r8/E
+        OWCnDZtGHcB9m46agnZfRXCX/2kROXU=
+X-Google-Smtp-Source: ABdhPJx4TyNHg+Dg3Z8vekoPEFjbwiNqG+9BWbHG9O4PBvtmEpiQDBoXvNAzJcm3Ofuon0iEnHjFMg==
+X-Received: by 2002:a05:6402:1f8c:b0:42d:c3a9:5beb with SMTP id c12-20020a0564021f8c00b0042dc3a95bebmr20396106edc.160.1654423818984;
+        Sun, 05 Jun 2022 03:10:18 -0700 (PDT)
+Received: from [192.168.0.104] (p5b3f6ffe.dip0.t-ipconnect.de. [91.63.111.254])
+        by smtp.gmail.com with ESMTPSA id b23-20020a17090630d700b0070e1adff390sm2958588ejb.34.2022.06.05.03.10.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 05 Jun 2022 03:10:18 -0700 (PDT)
+Message-ID: <afbec770-437d-0304-1ea8-637b613bc053@gmail.com>
+Date:   Sun, 5 Jun 2022 12:10:17 +0200
 MIME-Version: 1.0
-References: <20220604183905.1025201-1-michael@amarulasolutions.com>
-In-Reply-To: <20220604183905.1025201-1-michael@amarulasolutions.com>
-From:   Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
-Date:   Sun, 5 Jun 2022 11:13:31 +0200
-Message-ID: <CAOf5uwm=TTZSevG7GtYzB9x0kk4f+DMeJMrTvzrogPwqe9utZA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mn-bsh-smm-s2/pro: Add pmic clock connection
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "Ariel D'Alessandro" <ariel.dalessandro@collabora.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v2 3/4] regulator: mp5416: use OF match data
+Content-Language: en-US
+To:     Robert Marko <robimarko@gmail.com>, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220604145816.47576-1-robimarko@gmail.com>
+ <20220604145816.47576-3-robimarko@gmail.com>
+From:   saravanan sekar <sravanhome@gmail.com>
+In-Reply-To: <20220604145816.47576-3-robimarko@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
-
-I have some problems here. Open to suggestion:
-
-On Sat, Jun 4, 2022 at 8:39 PM Michael Trimarchi
-<michael@amarulasolutions.com> wrote:
->
-> pmic clock is connected to svns_rtc using RTC_XTALI pin,
-> and wifi/bluetooth chipset
->
-> Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
+On 04/06/22 16:58, Robert Marko wrote:
+> In preparation for adding support for MP5496 which slightly differs from
+> MP5416 convert the driver to use OF match data instead of always using the
+> MP5416 regulator_desc for regulator registration.
+> 
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
 > ---
->  .../boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi     | 9 +++++++++
->  1 file changed, 9 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
-> index c11895d9d582..a21ec0d1d003 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
-> @@ -28,6 +28,8 @@ usdhc2_pwrseq: usdhc2-pwrseq {
->                 pinctrl-names = "default";
->                 pinctrl-0 = <&pinctrl_usdhc2_pwrseq>;
->                 reset-gpios = <&gpio4 27 GPIO_ACTIVE_LOW>;
-> +               clocks = <&bd71847>;
-> +               clock-names = "ext_clock";
->         };
->  };
->
-> @@ -214,6 +216,11 @@ &i2c4 {
->         status = "okay";
->  };
->
-> +&snvs_rtc {
-> +       clocks = <&bd71847>;
-> +       clock-names = "snvs-rtc";
-> +};
+>   drivers/regulator/mp5416.c | 10 ++++++++--
+>   1 file changed, 8 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/regulator/mp5416.c b/drivers/regulator/mp5416.c
+> index d8245080df03..011a825570ea 100644
+> --- a/drivers/regulator/mp5416.c
+> +++ b/drivers/regulator/mp5416.c
+> @@ -11,6 +11,7 @@
+>   #include <linux/init.h>
+>   #include <linux/kernel.h>
+>   #include <linux/module.h>
+> +#include <linux/of_device.h>
+>   #include <linux/platform_device.h>
+>   #include <linux/regmap.h>
+>   #include <linux/regulator/driver.h>
+> @@ -178,6 +179,7 @@ static int mp5416_i2c_probe(struct i2c_client *client)
+>   {
+>   	struct device *dev = &client->dev;
+>   	struct regulator_config config = { NULL, };
+> +	static const struct regulator_desc *desc;
+>   	struct regulator_dev *rdev;
+>   	struct regmap *regmap;
+>   	int i;
+> @@ -188,12 +190,16 @@ static int mp5416_i2c_probe(struct i2c_client *client)
+>   		return PTR_ERR(regmap);
+>   	}
+>   
+> +	desc = of_device_get_match_data(dev);
+> +	if (!desc)
+> +		return -ENODEV;
 > +
->  &uart2 {
->         pinctrl-names = "default";
->         pinctrl-0 = <&pinctrl_uart2>;
-> @@ -235,6 +242,8 @@ bluetooth {
->                 shutdown-gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
->                 device-wakeup-gpios = <&gpio1 18 GPIO_ACTIVE_HIGH>;
->                 host-wakeup-gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
-> +               clocks = <&bd71847>;
-> +               clock-names = "lpo";
->                 max-speed = <3000000>;
->         };
->  };
+>   	config.dev = dev;
+>   	config.regmap = regmap;
+>   
+>   	for (i = 0; i < MP5416_MAX_REGULATORS; i++) {
+>   		rdev = devm_regulator_register(dev,
+> -					       &mp5416_regulators_desc[i],
+> +					       &desc[i],
+>   					       &config);
+>   		if (IS_ERR(rdev)) {
+>   			dev_err(dev, "Failed to register regulator!\n");
+> @@ -205,7 +211,7 @@ static int mp5416_i2c_probe(struct i2c_client *client)
+>   }
+>   
+>   static const struct of_device_id mp5416_of_match[] = {
+> -	{ .compatible = "mps,mp5416" },
+> +	{ .compatible = "mps,mp5416", .data = &mp5416_regulators_desc },
+>   	{},
+>   };
+>   MODULE_DEVICE_TABLE(of, mp5416_of_match);
 
-I've done more testing in suspend/resume and it can not work. I have
-modelled differently and extended the svns block to receive an
-external clock and make it always enabled. The problem here is the cpu
-takes the clock from the pmic that is enabled by default and the pmic
-clock even wifi and bluetooth. If I want to register the driver I
-would like to connect all of them but it seems that osc_32k is the
-basic clock of the cpu and can be modelled using pmic easily. Even I
-have created the ext clock on the snvs block so  should be always
-enabled suspend/resume. The device can not resume from suspend.
-
-Michael
-
-> --
-> 2.25.1
->
-
-
--- 
-Michael Nazzareno Trimarchi
-Co-Founder & Chief Executive Officer
-M. +39 347 913 2170
-michael@amarulasolutions.com
-__________________________________
-
-Amarula Solutions BV
-Joop Geesinkweg 125, 1114 AB, Amsterdam, NL
-T. +31 (0)85 111 9172
-info@amarulasolutions.com
-www.amarulasolutions.com
+Acked-by: Saravanan Sekar <sravanhome@gmail.com>
