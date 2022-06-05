@@ -2,59 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5098253DCE5
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 18:13:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 952AC53DCE8
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 18:15:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234405AbiFEQNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Jun 2022 12:13:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38866 "EHLO
+        id S1345887AbiFEQP4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Jun 2022 12:15:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345605AbiFEQNz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 12:13:55 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A95EF4D274
-        for <devicetree@vger.kernel.org>; Sun,  5 Jun 2022 09:13:53 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id bg6so4903500ejb.0
-        for <devicetree@vger.kernel.org>; Sun, 05 Jun 2022 09:13:53 -0700 (PDT)
+        with ESMTP id S1345726AbiFEQPy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 12:15:54 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D6434D9F1
+        for <devicetree@vger.kernel.org>; Sun,  5 Jun 2022 09:15:53 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id s12so17530983ejx.3
+        for <devicetree@vger.kernel.org>; Sun, 05 Jun 2022 09:15:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=lLHJF8itDbCGt5pN7A8NEdfZyjPyqD4Q2iUB6Pm/cZI=;
-        b=gCYvF/1H1j+deX0Y/2/FaDJPBMTqvx99p9n/PNmRiwrh9IFGFd1IzqHL47KaRa/6ju
-         dEhJrdk5RhtB52l6qON8qGwcXsblI7XwBZeblHyYOvCWcZIJmdvCQHRRUJCdwAHZaedc
-         X08gX8FPdL1ZkcJJ8dfMZtqE0dkT+cycYnw6GpEi3huju9obp9JYDkA6PStBJ3qHeVeb
-         L0f8vi8yqyJEj9i+adbDIulAW5SJcwacUeifWMD1vDG2R3DarFbJYAVFeF++ObFXeasA
-         9HTyq4YfG6ysQMDEL9SqDK0gpmn69OTDgbgM1bQrU8fVFbUvcG1Z/KhdXeEQrPcCHXsG
-         /xZg==
+        bh=q4xvebV0XpbZSZUkLXPf7W0/7Coc/c8ZBxn+5C67nfo=;
+        b=ToZ5kP9Kz/Gl10P/HKmRpWlKQkXqmNdeTM+LNVC9njW6AT0pH0xVZjrKOFMF9f3Mez
+         AcF/EXzFS58WnSELEpFPVPByzmW2A97Z80IRjtKOGQtD287SCpazq6TM0+NDayFP0Hzh
+         p6wU6Dieof4JIaLDgkaBi1bM+pQagMygZFU2FJBur0Gv4O1k/0oiTvvkzT2eDdgAbbr4
+         E/ADr96nj771HkAQ8M3tsXz3SRGod5gtIPSo7d138A7JJoBnLThPqxp8HYVvzC6GtkU0
+         rppQermXFhcX51h1rqSJPu6KLJ3YCLozwHZYQ0k2ek3SJRr+2VP8xGpeSbqluAiZ+Xug
+         qvsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=lLHJF8itDbCGt5pN7A8NEdfZyjPyqD4Q2iUB6Pm/cZI=;
-        b=YUZnWIWc6Otisa3xNHuZh1nCiw6KI7ISGMsXqLMIByxW/2sJriEFqwFoYD+O1JFrWT
-         mJFnyFHPxFRtE423ncFFsDSsP5Y/Eba8yjxso6KfqWPxf6HihdAVZ+6Rj6Ku19GJ7Vxo
-         Qj/G3UvtWzvEv2DbU2AtxApsJlaO7ru+J/vr7MPX7/l8VyaEfZCVIQi9LRtu2lZ3TulE
-         BPS9vFUW7U0xisgoFIxOECNQ24a1a+84UZMt/N57rc3ZFm9JOWiJTmOMdbq/yfXVAp8K
-         AA9pY94e5/nA8msl7qpCstIyNuH85FYKRpPWhj2B7hqVIl3WG/1vYYlmvVhg/O8vUHBr
-         NprQ==
-X-Gm-Message-State: AOAM531X/B8sivGvijLVFwwQa7yi/VFVtk2L5DemkAJ/T8j0m9giEdlP
-        sR4PPGXKT5At+Jv8hQGaN0YNqQ==
-X-Google-Smtp-Source: ABdhPJwwQYWTE5gohxGjKVA+yFqOkqxemhBBY3bbZX1d8bQy/ZXhYxTyuC3zFWFIOKQAAd4IZI/qXw==
-X-Received: by 2002:a17:906:2001:b0:6f3:bd7f:d878 with SMTP id 1-20020a170906200100b006f3bd7fd878mr18306906ejo.133.1654445632295;
-        Sun, 05 Jun 2022 09:13:52 -0700 (PDT)
+        bh=q4xvebV0XpbZSZUkLXPf7W0/7Coc/c8ZBxn+5C67nfo=;
+        b=Owu6kEfbWsqkNTJPSVUB4oNsnLPGQ9KTryHcliC8MbfA3dWmYAyEZg8wwRaVNjJktH
+         otM3TI90fE+eJ/CLMMMmQ3gnMDhqH/XXs6BS6mROk7hhNXffNZrK1wOgY4pNdjRMynGT
+         hduh00PDEiDTGOBmaXrU4yHNWrrL4x8Xzh9mH55ckMC0Y9tpkm3861OYaGM9FR8ZfmRP
+         k1dQcvJvxRuFs705BN1K1ySqO+s/aC2+yraWNyWjRJORQWAKkFYV/T1bALQJ9aHNSik3
+         dquGtwiVZIIXmcxdl5+t+Pfs3u8UMiDVXtqvU2MZDMgCZRVSU7l6baXAqtSm55Vjw53k
+         THNQ==
+X-Gm-Message-State: AOAM5309sufnN//kDQ3umSMxYVwLnMxlfWfSj7B8M1NXSCBol4cnC98f
+        Q0Gcd/+qQ3gvrbe8A2hgVGNa1Q==
+X-Google-Smtp-Source: ABdhPJxSk6GbCqAjHVAFLDzd36/7DDWGhmcFeX1F2x1nAxkiNHAdgw8zDJgf/YKTF/YzV0jFi2Krxw==
+X-Received: by 2002:a17:906:b18e:b0:710:26db:7a53 with SMTP id w14-20020a170906b18e00b0071026db7a53mr9222702ejy.290.1654445751496;
+        Sun, 05 Jun 2022 09:15:51 -0700 (PDT)
 Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id e20-20020a056402149400b0042bd75c53casm7095695edv.83.2022.06.05.09.13.51
+        by smtp.gmail.com with ESMTPSA id u21-20020a1709064ad500b006f3ef214e14sm5196258ejt.122.2022.06.05.09.15.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 Jun 2022 09:13:51 -0700 (PDT)
-Message-ID: <8c125973-0221-6610-79ad-df1587cc70fd@linaro.org>
-Date:   Sun, 5 Jun 2022 18:13:50 +0200
+        Sun, 05 Jun 2022 09:15:50 -0700 (PDT)
+Message-ID: <56ef9076-3dae-31c1-defd-c3c24d55b82e@linaro.org>
+Date:   Sun, 5 Jun 2022 18:15:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v3 4/5] phy: samsung: ufs: remove drvdata from struct
- samsung_ufs_phy
+Subject: Re: [PATCH v3 5/5] phy: samsung: ufs: support secondary ufs phy
 Content-Language: en-US
 To:     Chanho Park <chanho61.park@samsung.com>,
         Kishon Vijay Abraham I <kishon@ti.com>,
@@ -66,15 +65,15 @@ Cc:     devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
 References: <20220603020410.2976-1-chanho61.park@samsung.com>
- <CGME20220603020426epcas2p43c70afe414dc36f3abb18cbdb1d450a4@epcas2p4.samsung.com>
- <20220603020410.2976-5-chanho61.park@samsung.com>
+ <CGME20220603020426epcas2p3f50ebe570e01c7f10972a857659a5625@epcas2p3.samsung.com>
+ <20220603020410.2976-6-chanho61.park@samsung.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220603020410.2976-5-chanho61.park@samsung.com>
+In-Reply-To: <20220603020410.2976-6-chanho61.park@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,12 +82,10 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 03/06/2022 04:04, Chanho Park wrote:
-> To change an offset of pmu_isol, we need to store its data instead of
-> having drvdata's pointer. The definition of the pmu_isol structure
-> should be extracted from samsung_ufs_phy_drvdata and rename the name
-> with samsung_ufs_phy_ prefix.
+> To support secondary ufs phy device, we need to get an offset for phy
+> isolation from the syscon DT node. If the first index argument of the
+> node is existing, we can read the offset value and set it as isol->offset.
 > 
-> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > Signed-off-by: Chanho Park <chanho61.park@samsung.com>
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
