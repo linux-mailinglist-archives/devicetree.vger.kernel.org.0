@@ -2,96 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 290DD53DCD9
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 18:09:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E40253DCDC
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 18:10:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351167AbiFEQJY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Jun 2022 12:09:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57944 "EHLO
+        id S1346003AbiFEQKA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Jun 2022 12:10:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234405AbiFEQJX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 12:09:23 -0400
-Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF34119007;
-        Sun,  5 Jun 2022 09:09:22 -0700 (PDT)
-Received: by mail-qt1-x833.google.com with SMTP id x16so5692808qtw.12;
-        Sun, 05 Jun 2022 09:09:22 -0700 (PDT)
+        with ESMTP id S234405AbiFEQJ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 12:09:57 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDB851C908
+        for <devicetree@vger.kernel.org>; Sun,  5 Jun 2022 09:09:56 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id kq6so11706927ejb.11
+        for <devicetree@vger.kernel.org>; Sun, 05 Jun 2022 09:09:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6up09UGqR4zDkptKkUpRxOQclq8e/PxkqljErjcyQ2E=;
-        b=VbQjAFRK2076PcSPrRV5HFm7+YD8sWkdvgQcJlk5EQN0aal9q301HlK/X2lc4ZmySa
-         aTtFsNq0zWZhraZT83Hi6VTGpl/TT/m9KkvLQljDidlAK8fAo/YyFm+OenUw+gjmoygK
-         2pXQEHfNqvQ42Qpg+89Mok3y17t0GzI0szbih20AcfsG8EZj0S3lsW7LFslIGUB+DE8A
-         yn2mxIs+xegyuGlP34hHjKlxrSlAbViSeZeqOvizO3RvxX/kfNyUU0kiRju+YuE2EIAc
-         Hh3s5mvYpikROcPJFwxXY1B/7vm7+3Y0awoCLTcJdjsL3VC4sVwv4mVdHq08s/5DsHFQ
-         dWQQ==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=WXuUPPn6pqEoecB1CMvgFgHHVc8dzCQtsrq8BhZMrgc=;
+        b=WIaSpYQ+crFGMhUCl6zgXOd7jeXuMnX8cuXFbBSGJA6v0q3QcBHh3VjPHtutcU1lwa
+         UEbE4C78fYnZe8V3v5Ebe5jy9D1XMA928T1qDDNICXmshwgKIXA/+UVJVcXVG7Snenvt
+         bOHwL+38+Z+U6ZwXOJBvw1CnRPK3osqR/btRRZJE0LjGnEzFCHQamXZq1ux1Jf0z6Wz8
+         3vZWQvnwOXTIb92luWxhDDTLphN7djAEOzlu411u2z1/8iMcUGVVoJ9gTPfu/07XYuG3
+         HeNCAt5PvL8OMmTVO/73AsLCM6qCTw+7VkGx/ol5N2dFN+Z4myX7zmxAR2NeoklfAnjZ
+         2n7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6up09UGqR4zDkptKkUpRxOQclq8e/PxkqljErjcyQ2E=;
-        b=KgpvxatHHI5z9GZTOQpfgpW1Z4+JgYq1xcXUAMmBjgYVEP3gJprbkSIApooYGk+yIP
-         atHJgEF0OCeDzph4IbEDAjfuyZQcYFs7f+YYDriVVbULLrfVncp9nQ9WwgX6YuMd6Hwe
-         NLG2+z85Zoiut/FhJ9vsxR55PRKpxvPfLHVUb7TIQeIHZVVtcTiaNJHpuRF8qL6GEul0
-         n2GTMp64bB2as9Het4Vkc1Yhg67WdC4RkS0f+um2SLsFuHMZ3oonM9p8tpoh3bgbtQlA
-         sGluMXw8GJAzOnpmLeeQH+DG2moMAX0bgQqQjK2lTkBEA/NuR0HwFlKlCHjaEEG4xnBN
-         GlHA==
-X-Gm-Message-State: AOAM533iU5nTgFA2WlIiBEPy7Dqn0lcylp+KWQ0ZSYdxMkAq7CMia4ze
-        +e5NdAht6VdJRd4zBOOS8S3oc/lvx768+fqUL9rq7WfKCyo=
-X-Google-Smtp-Source: ABdhPJywOCa4JlrqnpzvOPcfnToSWNzzpI6MTYAso0GYBwlHVATHQIbN8TAROAwYj3k3ojftAmvK9igBBdtJghbl7ME=
-X-Received: by 2002:ac8:5dcb:0:b0:2f3:e079:8d66 with SMTP id
- e11-20020ac85dcb000000b002f3e0798d66mr14959327qtx.318.1654445361883; Sun, 05
- Jun 2022 09:09:21 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=WXuUPPn6pqEoecB1CMvgFgHHVc8dzCQtsrq8BhZMrgc=;
+        b=dipd4O9z3Eku6TdsyPXQFN7OgSSr4yHY9aGDl/GvZZcfCtu7XaNb2rGOcdmk9lqqC/
+         XOGy3rgY4vcnDybvHoMxx8hBh4nG6S3MHnp46+y+boov/V+c/xGv1ZOGpRz4RNU74bXW
+         jvMkxgfXMkBC0Ld4dAdhOswDGNtbmUdftu85xjEK1BjaIVhJb60xKYYNCpBqIxfpZqwT
+         vZ2lvE8Tl3b9Wczc1CIC5o5AaFDMCkRmxZSZJkj4K4mqicmpy31wJ/LNGBiryayRI/JV
+         UbdY3E8Cn+ONfJ26L5SYEIb6yhvrxLqi+k5ELedGf1j9w75YFRYn4l6p3scPWH3jPz/L
+         MU5w==
+X-Gm-Message-State: AOAM533oeNYI1PBuNt60PTIVxpDfO3LKFT2CR5ETJNmTRHJ7hXzu95N3
+        FY0690V1XK++Wb42QCffacWmXvlv3+r9sw==
+X-Google-Smtp-Source: ABdhPJyqxxmSVxagsYXopLmk5gZz5Rj53CwHm5DsGfP1qoncV9Qw1zrBEBKtMKfjglvk33U7h84CoA==
+X-Received: by 2002:a17:907:2cc4:b0:6fe:2100:de21 with SMTP id hg4-20020a1709072cc400b006fe2100de21mr17660853ejc.462.1654445395529;
+        Sun, 05 Jun 2022 09:09:55 -0700 (PDT)
+Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id hz14-20020a1709072cee00b00708e906faecsm4856703ejc.124.2022.06.05.09.09.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 05 Jun 2022 09:09:55 -0700 (PDT)
+Message-ID: <2c0d4c55-ed79-0b6d-3429-a4cefb16d808@linaro.org>
+Date:   Sun, 5 Jun 2022 18:09:54 +0200
 MIME-Version: 1.0
-References: <20220604164653.79284-1-robimarko@gmail.com> <20220605140744.GA3416078-robh@kernel.org>
-In-Reply-To: <20220605140744.GA3416078-robh@kernel.org>
-From:   Robert Marko <robimarko@gmail.com>
-Date:   Sun, 5 Jun 2022 18:09:10 +0200
-Message-ID: <CAOX2RU7PHpzKUNvuv=-MyqGtgcz30qKkvx2MHNV=ehtCZGBYEA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: i2c: qcom,i2c-qup: convert to dtschema
-To:     Rob Herring <robh@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        linux-i2c@vger.kernel.org,
-        Devicetree List <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v3 3/5] phy: samsung: ufs: constify samsung_ufs_phy_cfg
+Content-Language: en-US
+To:     Chanho Park <chanho61.park@samsung.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20220603020410.2976-1-chanho61.park@samsung.com>
+ <CGME20220603020426epcas2p3f6b5174734313e5d06d0177c3ebd777d@epcas2p3.samsung.com>
+ <20220603020410.2976-4-chanho61.park@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220603020410.2976-4-chanho61.park@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 5 Jun 2022 at 16:07, Rob Herring <robh@kernel.org> wrote:
->
-> On Sat, Jun 04, 2022 at 06:46:53PM +0200, Robert Marko wrote:
-> > Convert DT bindings for Qualcomm QUP I2C controller to DT schema format.
-> >
-> > Old text bindings were missing usage of DMA so that was documented, as
-> > well as the max clock-frequency.
-> >
-> > Signed-off-by: Robert Marko <robimarko@gmail.com>
-> > ---
-> >  .../devicetree/bindings/i2c/qcom,i2c-qup.txt  | 40 ---------
-> >  .../devicetree/bindings/i2c/qcom,i2c-qup.yaml | 83 +++++++++++++++++++
-> >  2 files changed, 83 insertions(+), 40 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/i2c/qcom,i2c-qup.txt
-> >  create mode 100644 Documentation/devicetree/bindings/i2c/qcom,i2c-qup.yaml
->
-> This one is already done.
+On 03/06/2022 04:04, Chanho Park wrote:
+> Put const qualifier of samsung_ufs_phy_cfg pointer because they will
+> not be changed from drvdata.
+> 
+> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+> ---
+>  drivers/phy/samsung/phy-samsung-ufs.c | 4 ++--
+>  drivers/phy/samsung/phy-samsung-ufs.h | 2 +-
+>  2 files changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/phy/samsung/phy-samsung-ufs.c b/drivers/phy/samsung/phy-samsung-ufs.c
+> index ed272631e8aa..e1e26da27245 100644
+> --- a/drivers/phy/samsung/phy-samsung-ufs.c
+> +++ b/drivers/phy/samsung/phy-samsung-ufs.c
+> @@ -75,7 +75,7 @@ static int samsung_ufs_phy_wait_for_lock_acq(struct phy *phy)
+>  static int samsung_ufs_phy_calibrate(struct phy *phy)
+>  {
+>  	struct samsung_ufs_phy *ufs_phy = get_samsung_ufs_phy(phy);
+> -	struct samsung_ufs_phy_cfg **cfgs = ufs_phy->cfgs;
+> +	const struct samsung_ufs_phy_cfg **cfgs = ufs_phy->cfgs;
+>  	const struct samsung_ufs_phy_cfg *cfg;
+>  	int err = 0;
+>  	int i;
+> @@ -327,7 +327,7 @@ static int samsung_ufs_phy_probe(struct platform_device *pdev)
+>  	drvdata = match->data;
+>  	phy->dev = dev;
+>  	phy->drvdata = drvdata;
+> -	phy->cfgs = (struct samsung_ufs_phy_cfg **)drvdata->cfgs;
+> +	phy->cfgs = drvdata->cfgs;
+>  	phy->isol = &drvdata->isol;
+>  	phy->lane_cnt = PHY_DEF_LANE_CNT;
+>  
+> diff --git a/drivers/phy/samsung/phy-samsung-ufs.h b/drivers/phy/samsung/phy-samsung-ufs.h
+> index 1788b356cf56..101497698f23 100644
+> --- a/drivers/phy/samsung/phy-samsung-ufs.h
+> +++ b/drivers/phy/samsung/phy-samsung-ufs.h
+> @@ -121,7 +121,7 @@ struct samsung_ufs_phy {
+>  	struct clk *rx0_symbol_clk;
+>  	struct clk *rx1_symbol_clk;
+>  	const struct samsung_ufs_phy_drvdata *drvdata;
+> -	struct samsung_ufs_phy_cfg **cfgs;
+> +	const struct samsung_ufs_phy_cfg **cfgs;
 
-Yeah, I did not check linux-next before doing the conversion.
-Sorry for the noise.
+I still think this should be array of const pointers to const data, so:
+	const struct samsung_ufs_phy_cfg * const *cfgs;
+I proposed this in last email.
 
-Regards,
-Robert
->
-> Rob
+Best regards,
+Krzysztof
