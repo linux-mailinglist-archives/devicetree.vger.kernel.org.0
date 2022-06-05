@@ -2,59 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4D1D53DEA4
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 00:36:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDD7D53DEA5
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 00:38:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348275AbiFEWgI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Jun 2022 18:36:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57276 "EHLO
+        id S1348369AbiFEWig (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Jun 2022 18:38:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244959AbiFEWgH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 18:36:07 -0400
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7657337A3D;
-        Sun,  5 Jun 2022 15:36:06 -0700 (PDT)
-Received: by mail-qk1-f170.google.com with SMTP id az35so2608751qkb.3;
-        Sun, 05 Jun 2022 15:36:06 -0700 (PDT)
+        with ESMTP id S244959AbiFEWif (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 18:38:35 -0400
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B799A2C12F;
+        Sun,  5 Jun 2022 15:38:34 -0700 (PDT)
+Received: by mail-qt1-f171.google.com with SMTP id x16so6054645qtw.12;
+        Sun, 05 Jun 2022 15:38:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=qdL2h+CpB7Qp73uInrXQknZDwtjhnJMiR1ys7J8wUKg=;
-        b=K8sjgGRlTe1PDPw+Rvvc45VuL94iDn2+bCOKlsiygyPSkOsKJjCcGTfBly81Jlvf/H
-         Ai5xMDtXacyt8XSzUhKe4HmM0R0O3Dd71pFODxnkYU7sn+/k5XoQKXkabBiv4BbcIbaL
-         sH2fJp41boS5pKI6sHzT5oa7Y3aUxFBFt5x2zs1DYCYgeEiPOfF770CThQz8wbIpKERF
-         ZIAT2C4Vxs7cyAcnwfd0eZTGjwT7stCuKrbyXSI/cvMXE07aS6dKrRUe9rl3UFValqfA
-         pATKT3sdkkMy6+pNecvok/ewqb8JapAs2zhAgHXwhkkC3ab4o2wzqTGrsnldEf8hsBns
-         mRBA==
-X-Gm-Message-State: AOAM532dMR8wKgzVoidxjqxaVQruvil9xkhhT4pp+QJgNDXwmNVR1V6O
-        MuJtqJvRji8oU1InXhSuNQ==
-X-Google-Smtp-Source: ABdhPJxcqt/PoDG0WQ5Wt6/haRjT98u70HDtx6+YvKp5Fc9p2f5o+gZXGKA17Vxnzj4zMjyuUlf1bA==
-X-Received: by 2002:ae9:e50f:0:b0:6a6:a470:5 with SMTP id w15-20020ae9e50f000000b006a6a4700005mr8671243qkf.705.1654468565587;
-        Sun, 05 Jun 2022 15:36:05 -0700 (PDT)
+        bh=2o4Si/ESwdinfrZMz9nTD0LmxXF7OLAHry8I5SkRmG4=;
+        b=ijt0QmnS78dPHQE8IYbojVcDJNBQBVSEgVBkxH9/J51mtI4fVcXF+KW51DkiST+jBU
+         /7wSiLSsSdbkeDdHEY4ZCgeNj5nqqUKDBlcMz7vvJ1lOBKl+brz3gIy1s7ypKl9JalXs
+         rECMmCVyOS7GVE9/ixmiyDyLQ66dzzLFA3/kVurzKJy9/CevCybfCpMd5StJuHEn2nLS
+         dC/ShF1BRdaJrsfRMPTIwfzMxoAZG+EF3rv05bLdlNfvqno+FTb0CKsj9TrfSmRqMs12
+         bRg1QapUOG81M3By53RLEseDAexmq8Ondgy9XEARdFmKvE5MiKUnQ3hR/+GMNzkEg4Ss
+         g6TQ==
+X-Gm-Message-State: AOAM533dPs6noLuNmOqX69dseiIb0S6knZcK4LGa0g0yciYClQDRP/Ve
+        uD2PtYVQ4U7wKJpJPmQ0Gg==
+X-Google-Smtp-Source: ABdhPJzSKRDnrny8BKo9He5QTFTcAXpqrnhpYOyi4zRLtD4q9a2RlGz5Mr2RHgWmvJf67C+lU0kTdg==
+X-Received: by 2002:ac8:7d49:0:b0:304:e4ce:3345 with SMTP id h9-20020ac87d49000000b00304e4ce3345mr7305436qtb.508.1654468713846;
+        Sun, 05 Jun 2022 15:38:33 -0700 (PDT)
 Received: from robh.at.kernel.org ([2607:fb90:1bdb:2e61:f12:452:5315:9c7e])
-        by smtp.gmail.com with ESMTPSA id y20-20020ac87c94000000b00304ea539edesm2054546qtv.16.2022.06.05.15.36.04
+        by smtp.gmail.com with ESMTPSA id w184-20020a3794c1000000b006a098381abcsm10168131qkd.114.2022.06.05.15.38.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Jun 2022 15:36:05 -0700 (PDT)
-Received: (nullmailer pid 3653388 invoked by uid 1000);
-        Sun, 05 Jun 2022 22:36:03 -0000
-Date:   Sun, 5 Jun 2022 17:36:03 -0500
+        Sun, 05 Jun 2022 15:38:33 -0700 (PDT)
+Received: (nullmailer pid 3657152 invoked by uid 1000);
+        Sun, 05 Jun 2022 22:38:30 -0000
+Date:   Sun, 5 Jun 2022 17:38:30 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Artur Rojek <contact@artur-rojek.eu>
-Cc:     Chris Morgan <macroalpha82@gmail.com>, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, heiko@sntech.de,
-        krzysztof.kozlowski+dt@linaro.org, dmitry.torokhov@gmail.com,
-        maccraft123mc@gmail.com, Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: adc-joystick: bindings for
- adc-joystick-polled
-Message-ID: <20220605223603.GA3649253-robh@kernel.org>
-References: <20220601191730.29721-1-macroalpha82@gmail.com>
- <20220601191730.29721-2-macroalpha82@gmail.com>
- <db2795c639cc092e54980de6f3af3b01@artur-rojek.eu>
+To:     Krishna <quic_mkrishn@quicinc.com>
+Cc:     devicetree@vger.kernel.org, quic_kalyant@quicinc.com,
+        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] dt-bindings: msm: update maintainers list with proper
+ id
+Message-ID: <20220605223830.GA3657088-robh@kernel.org>
+References: <1654166998-14907-1-git-send-email-quic_mkrishn@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <db2795c639cc092e54980de6f3af3b01@artur-rojek.eu>
+In-Reply-To: <1654166998-14907-1-git-send-email-quic_mkrishn@quicinc.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -66,45 +64,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 01, 2022 at 09:44:43PM +0200, Artur Rojek wrote:
-> On 2022-06-01 21:17, Chris Morgan wrote:
-> > From: Chris Morgan <macromorgan@hotmail.com>
+On Thu, 02 Jun 2022 16:19:58 +0530, Krishna wrote:
+> From: Krishna Manikandan <quic_mkrishn@quicinc.com>
 > 
-> Hi Chris,
+> Use quic id instead of codeaurora id in maintainers list
+> for display devicetree bindings.
 > 
-> > 
-> > Add devicetree bindings for adc-joystick-polled.
-> > 
-> > Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
-> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/input/adc-joystick.yaml | 8 ++++++--
-> >  1 file changed, 6 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/input/adc-joystick.yaml
-> > b/Documentation/devicetree/bindings/input/adc-joystick.yaml
-> > index 2ee04e03bc22..a9d2ac157322 100644
-> > --- a/Documentation/devicetree/bindings/input/adc-joystick.yaml
-> > +++ b/Documentation/devicetree/bindings/input/adc-joystick.yaml
-> > @@ -12,11 +12,15 @@ maintainers:
-> > 
-> >  description: >
-> >    Bindings for joystick devices connected to ADC controllers supporting
-> > -  the Industrial I/O subsystem.
-> > +  the Industrial I/O subsystem. Supports both polled devices where no
-> > +  iio trigger is available and non-polled devices which are triggered
-> > +  by iio.
-> > 
-> >  properties:
-> >    compatible:
-> > -    const: adc-joystick
-> > +    enum:
-> > +      - adc-joystick
-> > +      - adc-joystick-polled
+> Signed-off-by: Krishna Manikandan <quic_mkrishn@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml          | 2 +-
+>  Documentation/devicetree/bindings/display/msm/dpu-sc7280.yaml          | 2 +-
+>  Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml          | 2 +-
+>  Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml | 2 +-
+>  Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml        | 2 +-
+>  Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml        | 2 +-
+>  Documentation/devicetree/bindings/display/msm/dsi-phy-20nm.yaml        | 2 +-
+>  Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml        | 2 +-
+>  Documentation/devicetree/bindings/display/msm/dsi-phy-common.yaml      | 2 +-
+>  9 files changed, 9 insertions(+), 9 deletions(-)
 > 
-> There is no need to create a new compatible for your functionality. Instead,
-> just add a new (optional) property.
 
-Perhaps the already defined for input devices 'poll-interval'.
-
-Rob
+Applied, thanks!
