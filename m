@@ -2,65 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC54753DC74
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 17:11:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6ADD253DC7C
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 17:12:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345374AbiFEPLJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Jun 2022 11:11:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59058 "EHLO
+        id S1349416AbiFEPMx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Jun 2022 11:12:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235016AbiFEPLI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 11:11:08 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CC5C24963;
-        Sun,  5 Jun 2022 08:11:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=iWUbGe4LrkszuU4l/we/4GAXrYyZL/tQclEBTdqNsUU=; b=wkdQflUSAzs9i1PnUB+Eg2PW06
-        dMUud3WOM8o9J0P01ibvjsMW4vzeyI/PVVWMvGihfz1oR1OT1Ng4NJK2QcSYb3C5HZiKIiVM6c3kH
-        HMgIlQhv9GN2OS0mM3qeNwey0w5fNY6c68nFdN12I5prpmBcDgvexqi/bl40dr5svV4s=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1nxruA-005eSM-HH; Sun, 05 Jun 2022 17:11:02 +0200
-Date:   Sun, 5 Jun 2022 17:11:02 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Puranjay Mohan <p-mohan@ti.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-kernel@vger.kernel.org, davem@davemloft.net,
-        edumazet@google.com, krzysztof.kozlowski+dt@linaro.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org, nm@ti.com,
-        ssantosh@kernel.org, s-anna@ti.com,
-        linux-arm-kernel@lists.infradead.org, rogerq@kernel.org,
-        grygorii.strashko@ti.com, vigneshr@ti.com, kishon@ti.com,
-        robh+dt@kernel.org, afd@ti.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: net: Add ICSSG Ethernet Driver
- bindings
-Message-ID: <YpzHhsPlbKLecUdO@lunn.ch>
-References: <20220531095108.21757-1-p-mohan@ti.com>
- <20220531095108.21757-2-p-mohan@ti.com>
- <4ccba38a-ccde-83cd-195b-77db7a64477c@linaro.org>
- <faff79c9-7e1e-a69b-f314-6c00dedf1722@ti.com>
+        with ESMTP id S1346556AbiFEPMv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 11:12:51 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAEE91571D
+        for <devicetree@vger.kernel.org>; Sun,  5 Jun 2022 08:12:45 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id x5so10675160edi.2
+        for <devicetree@vger.kernel.org>; Sun, 05 Jun 2022 08:12:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=x+fdYMlfBqjJsfTMeBXwmbk6chP7/1R1+jVisQRo6VE=;
+        b=Y1Dch9GREjMHFir6ioGvURLkQcuw1g/GFu4AvifmbQxrXTFtiEQQQwOnIa1DupKNs8
+         LFmAJFhsUYiH18tTruEBMCG2jUj/pYHTjOxm9t3f/o1LVjRzYdE4i8srROR12Bi/Rf34
+         Z+BDwI09IuDxRGyOcGLNNh8D8cGSNMue7TpiVtw0lTI9BAovmCEqhgeqwQutCJQoGrmy
+         DKgX5V7hA/FsrlpDmH0LFzjtso0R02MT3VCy569uPDn6Gc7s9q32MwAtkE+iYMYBJj64
+         rOG9eB9wJ/ttxnw0dk2/p1LGwy0OA8MZVOSb/6AmJ70Vvx4qyf9raZcGkfG9mkVHdK3g
+         lWrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=x+fdYMlfBqjJsfTMeBXwmbk6chP7/1R1+jVisQRo6VE=;
+        b=6c40GRTvPC7pecfTFFN4CmKX6xkN5HFFd7eUudfVQFvPbalpwnMGqmTzzY4rUo+izk
+         aqmZBof+5wJjHCnqLjdEfce5sy61n9nmuADNhYJkyRAMSRXlTs2hhfwp/JudPK4ZKvbG
+         aT6lSKX+Uwy4PR60wb1dyulY9ixFrAAyY3Ftsqw0UzxxjpW1kDExpCWF0bPXbdAG2k5I
+         pfUbGclR/T1YFj97Sldh4XMcOaGXYSEZdDh3tYeGR1oVrRml3VdYqylMfn3psZtmtcjo
+         FTM730V6Huul0IU/wZqoch6o8caF/NwSlkLqFo/3b53QmSXcTZqK+ZDs4zTV2xhQJra2
+         vH2g==
+X-Gm-Message-State: AOAM5327hNGGjlULaIhT4aaXOF5dSpF/w0SnFbZ6taNMBsy0lJwbvjb8
+        o0u9jDRbvY6zHmss2qKIjAC8Ng==
+X-Google-Smtp-Source: ABdhPJwIRqpcVDFlSRzOMhcXpNy5cRM9nogH70w6WrtmyUcI5vpHYq4qgXyi/wc8+zavNqoYDH36ng==
+X-Received: by 2002:a05:6402:c08:b0:42d:d005:13c1 with SMTP id co8-20020a0564020c0800b0042dd00513c1mr21453363edb.187.1654441964278;
+        Sun, 05 Jun 2022 08:12:44 -0700 (PDT)
+Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id r25-20020aa7cb99000000b0042a5a39ba7esm6892714edt.25.2022.06.05.08.12.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 05 Jun 2022 08:12:43 -0700 (PDT)
+Message-ID: <fd5833ac-2f8c-98ce-a9bd-188c90cda6f5@linaro.org>
+Date:   Sun, 5 Jun 2022 17:12:42 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <faff79c9-7e1e-a69b-f314-6c00dedf1722@ti.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [RFC PATCH 1/2] dt-bindings: input: gpio-keys: enforce node names
+ to match all properties
+Content-Language: en-US
+To:     Jeff LaBundy <jeff@labundy.com>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Stefan Hansson <newbie13xd@gmail.com>,
+        Andreas Kemnade <andreas@kemnade.info>
+References: <20220603101601.542054-1-krzysztof.kozlowski@linaro.org>
+ <20220603101601.542054-2-krzysztof.kozlowski@linaro.org>
+ <20220604030455.GA12308@nixie71>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220604030455.GA12308@nixie71>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> He said ethernet-port is preferred but all other drivers were using
-> "port" so I though it is not compulsory. Will change it if it compulsory
-> to use ethernet-port
- 
-It is a good idea to mention this in the change history. It is then
-clear you have considered it, but decided against it.
+On 04/06/2022 05:04, Jeff LaBundy wrote:
+>> -      dependencies:
+>> -        wakeup-event-action: [ wakeup-source ]
+>> -        linux,input-value: [ gpios ]
+>> -
+>> -      unevaluatedProperties: false
+>> +  "^(key|key-[a-z0-9-]+|[a-z0-9-]+-key)$":
+> 
+> Maybe this would be better as:
+> 
+> "^((key|switch|axis)|(key|switch|axis)-[a-z0-9-]+|[a-z0-9-]+-(key|switch|axis))$":
+> 
+> ...or perhaps a more efficient version of my counter-proposal.
+> 
+> The reason is because it is confusing to see a lid or dock switch named
+> as "key-lid", etc.
 
-      Andrew
+Nice point. "switch" I understand, but can you really have "axis" on
+GPIO keys? I had impression axis is related to joysticks.
+
+
+Best regards,
+Krzysztof
