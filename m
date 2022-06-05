@@ -2,125 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 307B353DC5F
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 16:54:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B240F53DC66
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 16:59:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345282AbiFEOyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Jun 2022 10:54:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51624 "EHLO
+        id S1345304AbiFEO7v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Jun 2022 10:59:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345270AbiFEOyt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 10:54:49 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CC3E2BE1
-        for <devicetree@vger.kernel.org>; Sun,  5 Jun 2022 07:54:47 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id v1so13839577ejg.13
-        for <devicetree@vger.kernel.org>; Sun, 05 Jun 2022 07:54:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=nr9goO6JCR6ynsOrkzdJyNSIrUg9yZwLsbH12VXCnv0=;
-        b=nrithu8KVe+0Ef6h0ePei9GiCMv2WDKM8GSaIfn0Ar6bNX8ASc1AN2K35a49/JrU3Y
-         j7k1YP5G4ugVlQjqD7hAuCd2aeuhbtK5rX6bFyzvxtHlkP8M/y5F145phmQbiR4J3Jvl
-         R85UOsOC9MPCyuuEjTYVXzl71SqvDMby/ip4U7POqd0Bra5XOdQ20YGXgH53LrsGPh59
-         gaeHsgWIzTUjQj+iouDOtdS6cR7/jwTbqvSsWJPR03Wh9u0yKHTDO7v4BwhVD5myoo4K
-         i17inQ2rz0Q/j8o8eagXaXgmEB/kFnFtQJ2FfBE+qb1ojXv8ba+1MEVFeWTTPR7YewC8
-         d02g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=nr9goO6JCR6ynsOrkzdJyNSIrUg9yZwLsbH12VXCnv0=;
-        b=RWdc3ZQQqslTwIt2my+VRbQ8pR7WYGHLkMvZcSWNF3o26VEy6OLM0Y6o0WrK68SYKi
-         CPk4X+l2iMnfnq+S2lqkDu3lCKsCTLMOc4Fz5NGdSjiHSup0tt04WPhCONDvpYBXYAKE
-         os5wzmDBypUyCVwOADN2n2MOrOLPalps1H4gPvK+ezMGLNJ2fADBrQ08WG1158SW1iBi
-         h4ZlHNYXm5HffoVXctUCxkWsqBVvUKW+I2YHmEK09DycRKWRDQLjhqibEMPB5mNJKLn1
-         TMt4iUVl39oOD2aL8OuWe49uETGgVejMnb7V85o/STtdH299NvhNgCvItCFZsVv1HGg7
-         Metg==
-X-Gm-Message-State: AOAM533Fjx5VGusO0xIvH84DildTI6+izVHr5Pv0p+xmjFioeBRN9SOr
-        HXHu5adbt9c1QQty7ezfR8umR4QjLAbPFw==
-X-Google-Smtp-Source: ABdhPJzJldMnVHXS3QDl/dM42X4k0XAaCUYXOZ4XIGmGG7wyaMi/VlfLe5nM4rkal6LkB6xfrPpcNQ==
-X-Received: by 2002:a17:907:3f9f:b0:6fe:f9e2:9c6a with SMTP id hr31-20020a1709073f9f00b006fef9e29c6amr18158922ejc.479.1654440885697;
-        Sun, 05 Jun 2022 07:54:45 -0700 (PDT)
-Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id a23-20020aa7cf17000000b0042dc882c823sm7009190edy.70.2022.06.05.07.54.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 Jun 2022 07:54:45 -0700 (PDT)
-Message-ID: <34e6715e-795c-3d64-1341-31da9bd27563@linaro.org>
-Date:   Sun, 5 Jun 2022 16:54:43 +0200
+        with ESMTP id S237838AbiFEO7u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 10:59:50 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 645801FCE4;
+        Sun,  5 Jun 2022 07:59:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=f6ITGMVSYKdyPTaSGh9FaQu1SXHqypfqsFuH4T3wZRw=; b=op+gHEkyUQkY5emRtaZhkikPsR
+        U73v1G5/wt2A1h2pSzlKabKHAD9z4Mv7V1Lhr2Z57HI8OnBRG+R5EI6AnICv906AKYNoWWFFvKmIC
+        9BlphuB8QZZLGDTIRU/KxEIRC8l1SShw5540VX/TiSjacvIETW4YvdTcLBElo4caBYoQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nxrjE-005eP9-J2; Sun, 05 Jun 2022 16:59:44 +0200
+Date:   Sun, 5 Jun 2022 16:59:44 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Piyush Malgujar <pmalgujar@marvell.com>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, cchavva@marvell.com,
+        deppel@marvell.com, "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>
+Subject: Re: [PATCH v2 2/3] dt-bindings: net: cavium-mdio.txt: add
+ clock-frequency attribute
+Message-ID: <YpzE4A1MUYNbhKJo@lunn.ch>
+References: <20220530125329.30717-1-pmalgujar@marvell.com>
+ <20220530125329.30717-3-pmalgujar@marvell.com>
+ <20220602150755.GA2323599-robh@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [RFC v2 1/2] clk: hisilicon: add CRG driver Hi3521a SoC
-Content-Language: en-US
-To:     "Marty E. Plummer" <hanetzer@startmail.com>
-Cc:     arnd@arndb.de, cai.huoqing@linux.dev, christian.koenig@amd.com,
-        devicetree@vger.kernel.org, gengdongjiu@huawei.com,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux@armlinux.org.uk, michael@walle.cc, miquel.raynal@bootlin.com,
-        mturquette@baylibre.com, novikov@ispras.ru, olof@lixom.net,
-        p.yadav@ti.com, rdunlap@infradead.org, richard@nod.at,
-        robh+dt@kernel.org, sboyd@kernel.org, soc@kernel.org,
-        sumit.semwal@linaro.org, tudor.ambarus@microchip.com,
-        vigneshr@ti.com, xuwei5@hisilicon.com
-References: <20220501054440.2434247-1-hanetzer@startmail.com>
- <20220501173423.2473093-1-hanetzer@startmail.com>
- <20220501173423.2473093-2-hanetzer@startmail.com>
- <f42cb4d0-7133-eea5-b456-b5169bebfad1@linaro.org>
- <20220601105846.7hriawg3stxb657f@proprietary-killer>
- <630b0d13-6778-2508-6a34-9daa0358047d@linaro.org>
- <20220601110616.xmxih663kxgupszv@proprietary-killer>
- <a2a98c6d-2ff7-89f6-0711-c8f8b99e85c2@linaro.org>
- <20220601182418.okoofgannw6vbcxo@proprietary-killer>
- <b1b87be5-a048-b713-c9f2-84b948aa6718@linaro.org>
- <20220603112227.hmzwy7xxl6ddezqh@proprietary-killer>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220603112227.hmzwy7xxl6ddezqh@proprietary-killer>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220602150755.GA2323599-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/06/2022 13:22, Marty E. Plummer wrote:
-> On Thu, Jun 02, 2022 at 08:37:43AM +0200, Krzysztof Kozlowski wrote:
->> On 01/06/2022 20:24, Marty E. Plummer wrote:
->>
->>>>> Either or. Whatever makes the workload easier is what I'm looking for.
->>>>
->>>> Sorry, you need to be more specific. Apply is not a job for you, for the
->>>> patch submitter.
->>>>
->>>> Then you miss here important piece - which is the first patch. DTS goes
->>>> always via separate branch (or even tree) from driver changes. That's
->>>> why bindings are always separate first patches.
->>>>
->>> So, add a 4: arch/arm/boot/dts/soc.dtsi and 5: arch/arm/boot/dts/board.dts
->>> to the above list, or should those be the same patch as well?
->>
->> For me does not matter, sub architecture maintainer might have preference.
->>
-> Fair enough. That being said, for the dt-bindings patch, is it
-> permissible to include #define CLOCK_FOO 1337 and so on for clocks which
-> haven't been wired up in the driver yet? As in, you know they're there,
-> and are important enough to model, but you haven't gotten to that point
-> yet?
+On Thu, Jun 02, 2022 at 10:07:55AM -0500, Rob Herring wrote:
+> On Mon, May 30, 2022 at 05:53:27AM -0700, Piyush Malgujar wrote:
+> > Add support to configure MDIO clock frequency via DTS
+> > 
+> > Signed-off-by: Damian Eppel <deppel@marvell.com>
+> > Signed-off-by: Piyush Malgujar <pmalgujar@marvell.com>
+> > ---
+> >  Documentation/devicetree/bindings/net/cavium-mdio.txt | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/cavium-mdio.txt b/Documentation/devicetree/bindings/net/cavium-mdio.txt
+> > index 020df08b8a30f4df80766bb90e100ae6210a777b..638c341966a80823b9eb2f33b947f38110907cc1 100644
+> > --- a/Documentation/devicetree/bindings/net/cavium-mdio.txt
+> > +++ b/Documentation/devicetree/bindings/net/cavium-mdio.txt
+> > @@ -41,6 +41,9 @@ Properties:
+> >  
+> >  - reg: The PCI device and function numbers of the nexus device.
+> >  
+> > +- clock-frequency: MDIO bus clock frequency in Hz. It defaults to 3.125 MHz and
+> > +		   and not to standard 2.5 MHz for Marvell Octeon family.
 
-What would be the benefit to include them now? I imagine that if you
-plan to add such clocks to the driver in next week or something, and you
-need to use them in DTS, then it's fine. If that's not the case,
-probably there is little sense in defining them upfront...
+Hi Piyush
 
+There is an ambiguity here in the English. It could be interpreted
+that 2.5MHz is the standard for Marvell Octeon family. When in fact
+802.3 c22 says it should be up to 2.5MHz.
 
-Best regards,
-Krzysztof
+    For Marvell Octeon family it defaults to 3.125 MHz and not to
+    the 802.3 standard 2.5 MHz.
+
+> 
+> Already covered by mdio.yaml, so perhaps convert this to DT schema 
+> format instead.
+
+Hi Rob
+
+Yes, this property is in mdio.yaml:
+
+  clock-frequency:
+    description:
+      Desired MDIO bus clock frequency in Hz. Values greater than IEEE 802.3
+      defined 2.5MHz should only be used when all devices on the bus support
+      the given clock speed.
+
+However, for some reason, this driver decides to break the standard
+and defaults to 3.125MHz not 2.5MHz. So i would like that clearly
+documented in the binding.
+
+	   Andrew
