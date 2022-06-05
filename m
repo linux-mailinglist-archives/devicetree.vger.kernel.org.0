@@ -2,93 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D263353DCD6
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 18:08:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 290DD53DCD9
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jun 2022 18:09:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347872AbiFEQIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Jun 2022 12:08:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55990 "EHLO
+        id S1351167AbiFEQJY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Jun 2022 12:09:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239699AbiFEQIn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 12:08:43 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC854A1AD
-        for <devicetree@vger.kernel.org>; Sun,  5 Jun 2022 09:08:42 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id w27so15840581edl.7
-        for <devicetree@vger.kernel.org>; Sun, 05 Jun 2022 09:08:42 -0700 (PDT)
+        with ESMTP id S234405AbiFEQJX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 12:09:23 -0400
+Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF34119007;
+        Sun,  5 Jun 2022 09:09:22 -0700 (PDT)
+Received: by mail-qt1-x833.google.com with SMTP id x16so5692808qtw.12;
+        Sun, 05 Jun 2022 09:09:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=tIgKVMtmhbJ/yQDQy1ksmKE3q8q6VHVyHRkt89LKTUQ=;
-        b=G4emj7bhfnaa3mfF/MnUDuWYGHLr5bxddaecNKd+brBrtkI5NCY5EekgN8TRNliJev
-         7jH7SyTHMWFLDwAlmR1hKROa17156HQ23w6DNuCOUe1CYER6ecLKHbZlPBWbklqLtGkJ
-         fuuCPy0rkHzIaXQegRz8XRWvw0mzAaSBLfRRRTWeM80jkP0HrBfy9kJYiPpC5OgxSCDF
-         CsyHoFewNkNiKUbxRY9X+k0WVcEIZKwgsExwIeyWyd3WvwNVAg1gJLV9nER1ekhVO87F
-         q6D2s1n6BdNxZjK1gkCHMh3EAkMHC+0A9P7fdY6uY/BCf3Tq1HXOEVW27HQRS6Rp2JE8
-         3nPQ==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=6up09UGqR4zDkptKkUpRxOQclq8e/PxkqljErjcyQ2E=;
+        b=VbQjAFRK2076PcSPrRV5HFm7+YD8sWkdvgQcJlk5EQN0aal9q301HlK/X2lc4ZmySa
+         aTtFsNq0zWZhraZT83Hi6VTGpl/TT/m9KkvLQljDidlAK8fAo/YyFm+OenUw+gjmoygK
+         2pXQEHfNqvQ42Qpg+89Mok3y17t0GzI0szbih20AcfsG8EZj0S3lsW7LFslIGUB+DE8A
+         yn2mxIs+xegyuGlP34hHjKlxrSlAbViSeZeqOvizO3RvxX/kfNyUU0kiRju+YuE2EIAc
+         Hh3s5mvYpikROcPJFwxXY1B/7vm7+3Y0awoCLTcJdjsL3VC4sVwv4mVdHq08s/5DsHFQ
+         dWQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=tIgKVMtmhbJ/yQDQy1ksmKE3q8q6VHVyHRkt89LKTUQ=;
-        b=FoU7bsWNs1x1cU9C9jXsAvgfhBhmRFE193vf6/VWjCWe1yKpv5ULRpsCNlELh5L48J
-         qHAG4PiUil98gptp5KfvXSt00o5BvcqoHRmTaeVfMy11xGEriE0+bpNKct0EhhVVbQZu
-         VCFahk3NhEzTTkLm91XaHOi03bQIxa9eMvW9+Pu3fP56cTjjFpupgq7Fw2IVVSd1peM8
-         Q7YAJ4Bp4wC5eMNN9b0ATwv9dQZKBMG7Ay6tWLw3UWRb5Go41Q/kx3vtWiX8CG4n99y6
-         Mbh9dqYCcnor+4EYrJKk2d+FI2kDkE313sq2/+0BXGA0BRXwpE774vhAQTOWmUKMJ9qy
-         EKzA==
-X-Gm-Message-State: AOAM530OOMbj9nqwuMAIHHYGMsRlsJWxWEOmklDjOb3BRDkxITA4kzjN
-        B/ZDlwD0AUTcKknDUvpS8spYEw==
-X-Google-Smtp-Source: ABdhPJy8Hs4LLrm6+pH+VUU7Dq9ew5esPZNY3uTM3+0zdWwA5oV1gsR+RpwU/zB37h+RM1xxjSKTxw==
-X-Received: by 2002:aa7:c492:0:b0:42d:ed6a:26e5 with SMTP id m18-20020aa7c492000000b0042ded6a26e5mr21719521edq.64.1654445321340;
-        Sun, 05 Jun 2022 09:08:41 -0700 (PDT)
-Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id l15-20020a056402344f00b0042dd3454512sm7023434edc.63.2022.06.05.09.08.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 Jun 2022 09:08:40 -0700 (PDT)
-Message-ID: <2b6e5c23-ed33-4aaf-415e-02a826e8642b@linaro.org>
-Date:   Sun, 5 Jun 2022 18:08:40 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6up09UGqR4zDkptKkUpRxOQclq8e/PxkqljErjcyQ2E=;
+        b=KgpvxatHHI5z9GZTOQpfgpW1Z4+JgYq1xcXUAMmBjgYVEP3gJprbkSIApooYGk+yIP
+         atHJgEF0OCeDzph4IbEDAjfuyZQcYFs7f+YYDriVVbULLrfVncp9nQ9WwgX6YuMd6Hwe
+         NLG2+z85Zoiut/FhJ9vsxR55PRKpxvPfLHVUb7TIQeIHZVVtcTiaNJHpuRF8qL6GEul0
+         n2GTMp64bB2as9Het4Vkc1Yhg67WdC4RkS0f+um2SLsFuHMZ3oonM9p8tpoh3bgbtQlA
+         sGluMXw8GJAzOnpmLeeQH+DG2moMAX0bgQqQjK2lTkBEA/NuR0HwFlKlCHjaEEG4xnBN
+         GlHA==
+X-Gm-Message-State: AOAM533iU5nTgFA2WlIiBEPy7Dqn0lcylp+KWQ0ZSYdxMkAq7CMia4ze
+        +e5NdAht6VdJRd4zBOOS8S3oc/lvx768+fqUL9rq7WfKCyo=
+X-Google-Smtp-Source: ABdhPJywOCa4JlrqnpzvOPcfnToSWNzzpI6MTYAso0GYBwlHVATHQIbN8TAROAwYj3k3ojftAmvK9igBBdtJghbl7ME=
+X-Received: by 2002:ac8:5dcb:0:b0:2f3:e079:8d66 with SMTP id
+ e11-20020ac85dcb000000b002f3e0798d66mr14959327qtx.318.1654445361883; Sun, 05
+ Jun 2022 09:09:21 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v3 2/5] phy: samsung: ufs: rename cfg to cfgs for
- clarification
-Content-Language: en-US
-To:     Chanho Park <chanho61.park@samsung.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220603020410.2976-1-chanho61.park@samsung.com>
- <CGME20220603020426epcas2p484be447d93da1c015415fb2847f659a7@epcas2p4.samsung.com>
- <20220603020410.2976-3-chanho61.park@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220603020410.2976-3-chanho61.park@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20220604164653.79284-1-robimarko@gmail.com> <20220605140744.GA3416078-robh@kernel.org>
+In-Reply-To: <20220605140744.GA3416078-robh@kernel.org>
+From:   Robert Marko <robimarko@gmail.com>
+Date:   Sun, 5 Jun 2022 18:09:10 +0200
+Message-ID: <CAOX2RU7PHpzKUNvuv=-MyqGtgcz30qKkvx2MHNV=ehtCZGBYEA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: i2c: qcom,i2c-qup: convert to dtschema
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-i2c@vger.kernel.org,
+        Devicetree List <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/06/2022 04:04, Chanho Park wrote:
-> Rename **cfg to **cfgs to clarify the naming.
-> 
-> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+On Sun, 5 Jun 2022 at 16:07, Rob Herring <robh@kernel.org> wrote:
+>
+> On Sat, Jun 04, 2022 at 06:46:53PM +0200, Robert Marko wrote:
+> > Convert DT bindings for Qualcomm QUP I2C controller to DT schema format.
+> >
+> > Old text bindings were missing usage of DMA so that was documented, as
+> > well as the max clock-frequency.
+> >
+> > Signed-off-by: Robert Marko <robimarko@gmail.com>
+> > ---
+> >  .../devicetree/bindings/i2c/qcom,i2c-qup.txt  | 40 ---------
+> >  .../devicetree/bindings/i2c/qcom,i2c-qup.yaml | 83 +++++++++++++++++++
+> >  2 files changed, 83 insertions(+), 40 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/i2c/qcom,i2c-qup.txt
+> >  create mode 100644 Documentation/devicetree/bindings/i2c/qcom,i2c-qup.yaml
+>
+> This one is already done.
 
+Yeah, I did not check linux-next before doing the conversion.
+Sorry for the noise.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+Regards,
+Robert
+>
+> Rob
