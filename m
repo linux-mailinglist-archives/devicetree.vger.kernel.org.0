@@ -2,80 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A82C53DF65
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 03:39:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2E6053DF7D
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 03:48:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352015AbiFFBjg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Jun 2022 21:39:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56206 "EHLO
+        id S1351971AbiFFBst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Jun 2022 21:48:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351993AbiFFBj3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 21:39:29 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EECB04EDD3;
-        Sun,  5 Jun 2022 18:39:27 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id q1so14261485ljb.5;
-        Sun, 05 Jun 2022 18:39:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=2aAzgWufLM3eFBRQ9m2A+4XEm2/EjgHO8XjvIlt8qsc=;
-        b=Icn4irk9qnC0CRZA12hvjLPiNe929gRNEg4ZfZV0T3RYBehB9uqQtL9hviXbnYeMv2
-         bPOGPBWkInazcMgEV6wlUWAWy4LSCAmIviwlw4PqqQoU1GClhQ+gTrya2W+LXGW27HEI
-         YTBJghZmXIacPXwHbAz2rLV6GEdEzbddpeFWiv5x8CHz0zoKy99fxoUgELLe3DGexses
-         5LgMUJl0NxVpiM5Ez4NxsHgGhlLB+23vcIQlNp/NfcZ79MKpf4bLNTppNG2jATt0VSfc
-         LY9vQsx92hbFfZqPtzMGD9LKgeqzTKmWr7UkOiBTX5xPNFaUc0caWkM8N94mo7q/5kjt
-         wuHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=2aAzgWufLM3eFBRQ9m2A+4XEm2/EjgHO8XjvIlt8qsc=;
-        b=qk5EA1mPyMBAiVwI31e0WMEWOtSdD2YLNat/olzs/OPmS+5Aw1lAXR3IFS/fdLk96r
-         ZZCccozFH8i8USaHEvWGdJgnWySmI6EHSO3onyWdJWj3+qbDwJ0GV1ni/wy2WsF1PjsC
-         up/6mfR4aCm6SxtJ8sM2gBF0qQ+rSoWpIUQxzdBla3aQ/lYDsIRtBfXD/rwXubeW+f6w
-         XqvVTu2uUrtqSaj6knm7YikMICdZlxktSUnhwFW24EVDYo0K7LySvtNo/R9YwHsXU8zO
-         F+sUYw8sRv5MZ5FsiMU3MTT/Q4hoxel5Mt3n26JYp2P8M2ATherh0wBkCZF4SEv4eQ1c
-         3TPA==
-X-Gm-Message-State: AOAM530tJO+N/QFtVAaGpxZzJAnAmJYstvw+RNsSakLXfLhGp1xfe/Ub
-        StsJQEuRI3NNjlLKNoqMzkb78fOh8XJBhZ/dEr8=
-X-Google-Smtp-Source: ABdhPJz9OSonsWzarHgyRgYmCYlUPNe4zRBAj9Xp3fTYOkGEBTtj9VEAk2DAw1kz0ZE+rmV7BJU35tGBEixhOrTn2Ic=
-X-Received: by 2002:a2e:904a:0:b0:255:7b02:8f32 with SMTP id
- n10-20020a2e904a000000b002557b028f32mr9325452ljg.133.1654479565373; Sun, 05
- Jun 2022 18:39:25 -0700 (PDT)
+        with ESMTP id S232327AbiFFBss (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 21:48:48 -0400
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2045.outbound.protection.outlook.com [40.107.22.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FD6227FED;
+        Sun,  5 Jun 2022 18:48:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=e5sLrUA0xazRVPfMbkwMoy6VexmB+IU/qZK+qTgxoimXWyX657QoDCUTsw7AVjeZBLQUiWAm3CcD455ExInRuR26bLNt2OmECp6T/W0of06mGGgyJDdKQpur0W8+5GpCVcjCCPZrvPf0/xwDOXFc4ngnZfX/X+VgW9YwAXp+PYFTSPB/3w27n95uNyFMXlgM54G2aoKSbTQtP4+cCXLXdZmrh2RzFmgouGoTJAzKqR0RLWtmGvmWPlHocyYzndlg01pLegiiPEmYpX5YJROOc/9TpcQBKWmk4No9UxMRmsoN/LMK1iIZIpJP9tAJpFZAATJbaBhdJYtFSKQak8PKoQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1FBeCKUr01tU3IwzEjk36SymVZEx3jf0/fCfXMoOCz4=;
+ b=lVh9dI2MmBEjs9vH9uTrK8uL4DiDWEKGD0qytQp7c2i47s1PvDRkQD1vYFqBZ5N9pI/uXMUoJt1c2Q21KmESrZX0bDD5g4A2eLTm3KPIuNZH4pLRk3G0T/0s0kFPDjDJ7Tx7Bev1LNDvB6fpVaVJlJ1BTI0tAP3Z9Nr3ps+EW3nLwgP3JkLU9p/SibUbNQ3UT9YPMaNHF3cI+sVEYNoH8332EsS/lNW1b37QIAh82pltxv9rby+g40seIeKXEhKI67PgDlgBFWCE4Pw4oju8+c0/OfQzJSGjHVZq1F8Cct3dGPUCKXTbsRzqf9Lz1v2bEKZUrTQap2zKR1p+AlZXMQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1FBeCKUr01tU3IwzEjk36SymVZEx3jf0/fCfXMoOCz4=;
+ b=KtegU5bvxuOTO5gA5tFjdNmCJKn/F4mstQHNcEOsjUN3O7AuvCWmSMtxz0wI39FYwzWYpvLSk03Uccn4HWVdcM6zAM8xZ+kbRn1xOsWu+esJ9WD0Q4jofsXJUg1EX61+y8ginhKi9CYZuTpZo7XeNBzy6qBMd736cQy26pd6jec=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from PA4PR04MB9416.eurprd04.prod.outlook.com (2603:10a6:102:2ab::21)
+ by AM6PR04MB4840.eurprd04.prod.outlook.com (2603:10a6:20b:11::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.19; Mon, 6 Jun
+ 2022 01:48:42 +0000
+Received: from PA4PR04MB9416.eurprd04.prod.outlook.com
+ ([fe80::f9cf:2b4f:f903:fd63]) by PA4PR04MB9416.eurprd04.prod.outlook.com
+ ([fe80::f9cf:2b4f:f903:fd63%4]) with mapi id 15.20.5314.019; Mon, 6 Jun 2022
+ 01:48:42 +0000
+From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        sboyd@kernel.org, mturquette@baylibre.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de
+Cc:     aisheng.dong@nxp.com, l.stach@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH V3 0/7] imx: support i.MX93 SRC and mediamix blk ctrl
+Date:   Mon,  6 Jun 2022 09:50:18 +0800
+Message-Id: <20220606015025.180840-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2P153CA0023.APCP153.PROD.OUTLOOK.COM (2603:1096:4:190::6)
+ To PA4PR04MB9416.eurprd04.prod.outlook.com (2603:10a6:102:2ab::21)
 MIME-Version: 1.0
-References: <1653534995-30794-1-git-send-email-u0084500@gmail.com>
- <1653534995-30794-2-git-send-email-u0084500@gmail.com> <1c7ab94c-a736-c629-bd8c-8a974803e2b9@linaro.org>
- <CADiBU39jZ6TdYZoH80m4R-X2_fUXZOvDA4yUd_TQdPzBJLE+JA@mail.gmail.com>
- <076d53d3-6062-686f-8e45-14c5f936bbf6@linaro.org> <20220602135604.GA2194286-robh@kernel.org>
- <e3aa9c7e-bf2d-dd55-8b3f-ca51f569771d@linaro.org> <CADiBU3-dN0vtQBEqvVLFCUp4-MkhLbQRkOiCet+fO8WfkEW4MQ@mail.gmail.com>
- <12096a2c-98c3-9e77-785f-808cc3e1a0e4@linaro.org>
-In-Reply-To: <12096a2c-98c3-9e77-785f-808cc3e1a0e4@linaro.org>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Mon, 6 Jun 2022 09:39:15 +0800
-Message-ID: <CADiBU3_REqNRb4UtT5OrVBKuhYL0NPAALisHTM76SrFCHUYMuA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: backlight: rt4831: Add the new property
- for ocp level selection
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
-        Helge Deller <deller@gmx.de>, cy_huang <cy_huang@richtek.com>,
-        lucas_tsai@richtek.com,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 1e4461e4-62ca-4bad-677d-08da475eaf0f
+X-MS-TrafficTypeDiagnostic: AM6PR04MB4840:EE_
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-Microsoft-Antispam-PRVS: <AM6PR04MB4840D14837925525C256FEB5C9A29@AM6PR04MB4840.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 85wrioCZ8dQhv7L5gM5cPzrx5ABI+EbPEhP2TveJl0FaW939PuPvuo/qR8B5EQuNJhHq1R0oHcqRqq7cSfQhpX6XGOubLuXhxt5CY2YbqsJkdNOtV/Rha/lFGzK6UhjMinhExYsoUAULF9/4dzfphkNL3sR4G5V8jBe9F9cMdHZxkfR4GhJG6N9jtMH9OyglGCIdLDU+YKhnyM8e6LxbuJ2tjcsCCdfVkQwMfHaHy7cMAYA0xI4T4cQvt3K7SUSCSdmoyc3uVOvqjxw2oJivH+hBa8YuJ9BKu2eoRemmMoOdybvesQ7WSWBTEtLXtAi7A77c3OrlyrvOmyqc/HUHSL82Tptn0InMoVza4hvkWbtHnzM32OvtaE2M8ho1a19ubb+RwzlJ4GAjE6VzBDpTg9qznKN0rT3yN8pR0CpdG9raqlggu4prjIcsZ8vtyWlrNruwd+r3o6xx6cL2ztxSiUyyUPfhTRsn1LEJuZGeoun91yBnzqygc1TAgX5xhqGsmlxKmIlYMn98xFWB/3gU8K+lSeXKpXjI40OL6t5n0V1g9BDC2hqfXY1BFh+BphlgBA2oV7Hkwwiuc3UPXKujNaTpVvRAvrRKmWdR3i5yCTIct2C1vNb2jf+TvUPxddXpRLfyhvsZolvdLQ+tsyP7BPhGYwW17vWKhfGME8YDKriD2Y3beADyjinLhLF11WPwlLtPGVnLNjuNoTwvX/47Dv+zefCIiFHkQZ89Dj0amDmbZB5CoETOQ6gFoDtQz7VbIHyChYS4NyrzgKfsbwrRbT0uvW7adeifKY/EZ+Vr0oM=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9416.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(2616005)(8936002)(66946007)(7416002)(66476007)(66556008)(5660300002)(2906002)(8676002)(186003)(316002)(26005)(83380400001)(1076003)(6512007)(508600001)(38100700002)(38350700002)(6506007)(6486002)(52116002)(86362001)(4326008)(966005)(6666004);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?W9LWSgCttLMlo0Zf6/xX/jNcA1+MxQIvQzp6LSq7u0Ox4nBf5UqcVMea39IY?=
+ =?us-ascii?Q?9GOGnYDC42pUwenB01jSHRgjL4CkFxoSokxH9SKEVHYVpuYJJWIqmYyzfo8h?=
+ =?us-ascii?Q?FOf/kyGbACt9xhBoeplsRQIeRwUwWC5MlR2H3NwtQm8UGAnies9Md8a0BGyo?=
+ =?us-ascii?Q?fzok89268w+0R6SVefXBd6jGyTUeOclToSGGoEulLeMVlxq7u3ZTulqH7Vs4?=
+ =?us-ascii?Q?J2vegeyw8rHUJ3o4aW58RNvnLLz4eTte+KPAL5hKV/YkejfHbjZ/0kwqcLzF?=
+ =?us-ascii?Q?/sB96VfMGUM3jRMmTwRSTCyRcbYoTx7OxltoUYyf7co54zVlp7OTSBUxCVs+?=
+ =?us-ascii?Q?8VSsPB5edAmQLYxGognn7b3Or/ah3kcGa/sc2uC/okaELO06uanr7G2mb/cJ?=
+ =?us-ascii?Q?a/ELYySw1ryh01+5dHwQ0VyOeWiTDIv3RjbOJ66KAnblf6ugafGk5N80JU8C?=
+ =?us-ascii?Q?hoouOyv8iWIaNOATrtLZ79xu5+q8jz+tgmzP34MGDpB9CC8yZwF+5/S2NY1P?=
+ =?us-ascii?Q?Z1Wv9np3PY8kEIrVQtNybfMhuvK3qHbV+uXtCsbxNWqo8BUuf5nc7ieBXd+q?=
+ =?us-ascii?Q?cC+UeRb5DRLqzHV52odnALIfKan978rOJ8iPGjcuLpT54ZsYXL0D4361Asa7?=
+ =?us-ascii?Q?0BhQhRgs6b5saDEsl0sMiYEjEJXU3MizNTw+YY/01bBypuDIKAC5iEApJrVb?=
+ =?us-ascii?Q?3hTfEnrWthfJn/5UyJwobuVTNzicl6xxGrnMoroCEkdGqdS8AdaE2TYkwIP5?=
+ =?us-ascii?Q?O/Gz1rpE/x1SAt5rLJkcktqqB5ylKqcBGoHIgPXpSRwz+SfVCjdlXoiUoOTG?=
+ =?us-ascii?Q?NrUKJ6Wq1iTJJuyF15J4JtlinnEFZRMtPVXEJWwVFxZfrllOFMUwlKRt8xaX?=
+ =?us-ascii?Q?M8z2u6YWscnPtBA77VJvT/BzoD/HWEgoDFbG5NilfuS1lp3mrnR2uPsfxyY8?=
+ =?us-ascii?Q?3HWFZItAOTJx04jC4L2K1PFvQsS6h+w6raFbfT5qkI4fjtCQ1DKBN9fjO+75?=
+ =?us-ascii?Q?d31ZF98o/3ft/4rVy+J+dsj+LMf0LVM8P7saKeBxP2mXsswORt6t2sexL6B/?=
+ =?us-ascii?Q?Lzvuk4t+v21Q2ATxN0n5fwbbu/IXxh4EWhjQEGozQDETlWuvd6XVqzOdzDeM?=
+ =?us-ascii?Q?T8qEtz+51Rsxe0wrSD3LEjuoibFd7Rkb+07NM3WCgE6G7tyw8RAtv4f14wcY?=
+ =?us-ascii?Q?aR57K5PJ4tjsqnTZp6F9y5wq5v49vJCr3680WX3pr9gtqW+Hy7LyyEvbHCnc?=
+ =?us-ascii?Q?MU2OBxmq69eRRu4BPvXap4yV0h3zlFTbPKwfRdJXOqGJ/gGm7T9w9onKciEX?=
+ =?us-ascii?Q?r6lR8BwdHvy5ubX/B1QLKBSe1ZL+lrI2P8d8s+oNpmJ8hXAKOukY8yfOoYR2?=
+ =?us-ascii?Q?kvruMvoKnDxd6ReLeG8XMjDPFihm8bzjDvTc6MFzzQ1uvoqI6klc/PY/Z8Jo?=
+ =?us-ascii?Q?2ff26l06sP1a93uHSJ95K5lL4cnvK8vHV/z2+ByBL0p8/Z7U0yIaJM4hZDBo?=
+ =?us-ascii?Q?EvQFMYQcAhEb72CIYLXZgxeUc/qYqPKHQG7jBc2jcLC4AB0N/VVk3kstfPtH?=
+ =?us-ascii?Q?i6CuRxRu0S4nEhn5RuqHzQiWgMUTKW+/0t9iRh5ZKGgm9VEP0V6mur+07iW5?=
+ =?us-ascii?Q?rk6X788EthJnZ+pJJg7Hva3FpVEt0UeercibKTTwhOpj1b6bUGrVhwPnD2I/?=
+ =?us-ascii?Q?ZGgQkjF+LjQ30Hty1+vPkVq7CILtUHyjEypsz7tcFKqMmWkoRKE2UfwkKZPK?=
+ =?us-ascii?Q?t0W18Hz6Vg=3D=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1e4461e4-62ca-4bad-677d-08da475eaf0f
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9416.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jun 2022 01:48:42.3590
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6CvJw4WYKqcdCsTrbh/gznRnqCGCQhcv+bZ/URDT8ddW4sAhjl33ILBR+whuv5yKaxKTc0Jamwy765R7JhM9dw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB4840
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,115 +119,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E6=96=BC 2022=E5=B9=
-=B46=E6=9C=886=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8A=E5=8D=8812:11=E5=AF=AB=
-=E9=81=93=EF=BC=9A
->
-> On 02/06/2022 17:31, ChiYuan Huang wrote:
-> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E6=96=BC 2022=E5=
-=B9=B46=E6=9C=882=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=889:58=E5=AF=
-=AB=E9=81=93=EF=BC=9A
-> >>
-> >> On 02/06/2022 15:56, Rob Herring wrote:
-> >>> On Thu, May 26, 2022 at 12:32:12PM +0200, Krzysztof Kozlowski wrote:
-> >>>> On 26/05/2022 10:13, ChiYuan Huang wrote:
-> >>>>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E6=96=BC 2022=
-=E5=B9=B45=E6=9C=8826=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=884:06=E5=
-=AF=AB=E9=81=93=EF=BC=9A
-> >>>>>>
-> >>>>>> On 26/05/2022 05:16, cy_huang wrote:
-> >>>>>>> From: ChiYuan Huang <cy_huang@richtek.com>
-> >>>>>>>
-> >>>>>>> Add the new property for ocp level selection.
-> >>>>>>>
-> >>>>>>> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> >>>>>>> ---
-> >>>>>>>  .../bindings/leds/backlight/richtek,rt4831-backlight.yaml       =
-  | 8 ++++++++
-> >>>>>>>  include/dt-bindings/leds/rt4831-backlight.h                     =
-  | 5 +++++
-> >>>>>>>  2 files changed, 13 insertions(+)
-> >>>>>>>
-> >>>>>>> diff --git a/Documentation/devicetree/bindings/leds/backlight/ric=
-htek,rt4831-backlight.yaml b/Documentation/devicetree/bindings/leds/backlig=
-ht/richtek,rt4831-backlight.yaml
-> >>>>>>> index e0ac686..c1c59de 100644
-> >>>>>>> --- a/Documentation/devicetree/bindings/leds/backlight/richtek,rt=
-4831-backlight.yaml
-> >>>>>>> +++ b/Documentation/devicetree/bindings/leds/backlight/richtek,rt=
-4831-backlight.yaml
-> >>>>>>> @@ -47,6 +47,14 @@ properties:
-> >>>>>>>      minimum: 0
-> >>>>>>>      maximum: 3
-> >>>>>>>
-> >>>>>>> +  richtek,bled-ocp-sel:
-> >>>>>>
-> >>>>>> Skip "sel" as it is a shortcut of selection. Name instead:
-> >>>>>> "richtek,backlight-ocp"
-> >>>>>>
-> >>>>> OK, if so, do I need to rename all properties from 'bled' to 'backl=
-ight' ?
-> >>>>> If  only this property is naming as 'backlight'. it may conflict wi=
-th
-> >>>>> the others like as "richtek,bled-ovp-sel".
-> >>>>
-> >>>> Ah, no, no need.
-> >>>>
-> >>>>>>
-> >>>>>>> +    description: |
-> >>>>>>> +      Backlight OCP level selection, currently support 0.9A/1.2A=
-/1.5A/1.8A
-> >>>>>>
-> >>>>>> Could you explain here what is OCP (unfold the acronym)?
-> >>>>> Yes. And the full name is 'over current protection'.
-> >>>>
-> >>>> Thanks and this leads to second thing - you encode register value
-> >>>> instead of logical value. This must be a logical value in mA, so
-> >>>> "richtek,bled-ocp-microamp".
-> >>>
-> >>> We already have common properties for setting current of LEDs. We sho=
-uld
-> >>> use that here I think.
-> >>
-> >> It might not be exactly the same. We have "led-max-microamp" which is
-> >> the maximum allowed current. I guess over-current protection level  is
-> >> slightly higher (e.g. led-max-microamp + 1). IOW, led-max-microamp is
-> >> something which still can be set and used by system/hardware. OCP shou=
-ld
-> >> not.
-> >>
-> > Yap, you're right.
->
-> So I am right or Rob?
->
-As I know, both are incorrect.
-> > From the modern backlight IC design, it uses the boost converter archit=
-ecture.
-> > This OCP level is to limit the inductor current when the internal MOS
-> > switch turn on.
-> > Details can refer to the below wiki link
-> > https://en.wikipedia.org/wiki/Boost_converter
-> >
-> > And based on it, OVP is used to limit the inductor output voltage.
-> > Each channel maximum current is based on the IC affordable limit.
-> > It is more like as what you said 'led-max-microamp'.
-> >
-> > So boost voltage level may depend on the LED VF.
-> > The different series of LED may cause different boost voltage.
-> >
-> > RT4831's OVP/OCP is not just the protection, more like as the limit.
->
-> This suggests Rob is right, so let's use led-max-microamp property?
->
-No, the meaning is different. 'led-max-microamp' always means the
-channel output current.
-It already can be adjusted by backlight brightness node.
+From: Peng Fan <peng.fan@nxp.com>
 
-For example
-low voltage side (3.3~4.4V) to generate the boost voltage to 16~17V,
-even 20V for BLED Vout.
-This OCP is to limit the input current of low voltage side.
+V3:
+  Move src yaml to power directory.
+  Update slice name to slices
+ 
+V2:
+  yaml fix
 
-After the explanation, do you still think it's the same thing?
-> Best regards,
-> Krzysztof
+This patchset is to support i.MX93 SRC and mediamix blk ctrl.
+SRC functions as power domain provider as i.MX8M GPC.
+mediamix blk ctrl is similar with i.MX8M blk ctrl, but much simplier from
+software view.
+
+Export of_clk_bulk_get_all for driver usage.
+
+Add bindings and dts node
+
+Based on:
+https://patchwork.kernel.org/project/linux-arm-kernel/cover/20220510124050.398891-1-peng.fan@oss.nxp.com/
+
+Peng Fan (7):
+  dt-bindings: soc: add i.MX93 SRC
+  dt-bindings: soc: add i.MX93 mediamix blk ctrl
+  clk: export of_clk_bulk_get_all
+  soc: imx: add i.MX93 SRC power domain driver
+  soc: imx: add i.MX93 media blk ctrl driver
+  arm64: dts: imx93: add src node
+  arm64: dts: imx93: add mediamix blk ctrl node
+
+ .../bindings/power/fsl,imx93-src.yaml         |  96 +++++
+ .../soc/imx/fsl,imx93-media-blk-ctrl.yaml     |  80 +++++
+ arch/arm64/boot/dts/freescale/imx93.dtsi      |  38 ++
+ drivers/clk/clk-bulk.c                        |   3 +-
+ drivers/soc/imx/Kconfig                       |  10 +
+ drivers/soc/imx/Makefile                      |   1 +
+ drivers/soc/imx/imx93-blk-ctrl.c              | 333 ++++++++++++++++++
+ drivers/soc/imx/imx93-pd.c                    | 271 ++++++++++++++
+ include/dt-bindings/power/fsl,imx93-power.h   |  17 +
+ include/linux/clk.h                           |   2 +
+ 10 files changed, 850 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/power/fsl,imx93-src.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
+ create mode 100644 drivers/soc/imx/imx93-blk-ctrl.c
+ create mode 100644 drivers/soc/imx/imx93-pd.c
+ create mode 100644 include/dt-bindings/power/fsl,imx93-power.h
+
+-- 
+2.25.1
+
