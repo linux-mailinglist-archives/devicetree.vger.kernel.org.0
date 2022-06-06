@@ -2,210 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1FF153E6A7
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:07:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B55D53EBE4
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:09:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241474AbiFFQFg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jun 2022 12:05:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40194 "EHLO
+        id S241208AbiFFQIp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jun 2022 12:08:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241491AbiFFQFc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 12:05:32 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5E9B51660BE;
-        Mon,  6 Jun 2022 09:05:21 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.91,280,1647270000"; 
-   d="scan'208";a="122056556"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 07 Jun 2022 01:05:20 +0900
-Received: from localhost.localdomain (unknown [10.226.92.45])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id AC279400A0F8;
-        Tue,  7 Jun 2022 01:05:16 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v2 1/2] dt-bindings: pwm: Add RZ/G2L GPT binding
-Date:   Mon,  6 Jun 2022 17:05:08 +0100
-Message-Id: <20220606160509.250962-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220606160509.250962-1-biju.das.jz@bp.renesas.com>
-References: <20220606160509.250962-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S241219AbiFFQIp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 12:08:45 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BC8C19FA4;
+        Mon,  6 Jun 2022 09:08:44 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id DC40BB81A87;
+        Mon,  6 Jun 2022 16:08:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B34DC385A9;
+        Mon,  6 Jun 2022 16:08:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654531721;
+        bh=VcnSGVYbTblm760SjoQqgE9wkQ5/rRfgycH6HwRHJBc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=V+beBwDxRnKh4QQe2VqHO65haLEa4SFcYqmwQ5ha8+WUYCaxluVJVO3WScGsMh7p/
+         yCfF9SVghYkLIH6xbuY7EblAx0+pw2kCeFY+U8r5aYiYId7tg1gWkBet3TOBYGLIQT
+         PcGrSh8CCrUG5ygkR02Frlr2vLWxWu4elm2N6km6BG/SAlnAB2hA9vt/LQe6X0dQsB
+         l9+KnyRf/Tk2tZ0WgxX6uJlruPDsrpmtYtQVC3nbp0WKqm9tlPjhyXCBWfx3JGBLic
+         6DN4asOH0MIrEIiwReQNoKx9++AZ6UztiGOM76QW95uzWgz6z9uoC1ZFVsS5+hc9Y0
+         yB6c3lFfV6NaA==
+Date:   Mon, 6 Jun 2022 17:08:35 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
+Cc:     robh+dt@kernel.org, angelogioacchino.delregno@collabora.com,
+        aaronyu@google.com, matthias.bgg@gmail.com, trevor.wu@mediatek.com,
+        tzungbi@google.com, julianbraha@gmail.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v5 19/20] ASoC: mediatek: mt8186: add machine driver with
+ mt6366, rt1019 and rt5682s
+Message-ID: <Yp4mg3ObzfQJ3FgP@sirena.org.uk>
+References: <20220523132858.22166-1-jiaxin.yu@mediatek.com>
+ <20220523132858.22166-20-jiaxin.yu@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="9rL9qmwu0rrfH0q3"
+Content-Disposition: inline
+In-Reply-To: <20220523132858.22166-20-jiaxin.yu@mediatek.com>
+X-Cookie: Zeus gave Leda the bird.
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for the General PWM Timer (GPT).
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v1->v2:
- * Added '|' after 'description:' to preserve formatting.
- * Removed description for pwm_cells as it is common property.
- * Changed the reg size in example from 0xa4->0x100
- * Added Rb tag from Geert.
-RFC->v1:
- * Added Description
- * Removed comments from reg and clock
----
- .../bindings/pwm/renesas,rzg2l-gpt.yaml       | 129 ++++++++++++++++++
- 1 file changed, 129 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
+--9rL9qmwu0rrfH0q3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-new file mode 100644
-index 000000000000..e8f7b9947eaa
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-@@ -0,0 +1,129 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pwm/renesas,rzg2l-gpt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas RZ/G2L General PWM Timer (GPT)
-+
-+maintainers:
-+  - Biju Das <biju.das.jz@bp.renesas.com>
-+
-+description: |
-+  RZ/G2L General PWM Timer (GPT) composed of 8 channels with 32-bit timer
-+  (GPT32E). It supports the following functions
-+  * 32 bits × 8 channels.
-+  * Up-counting or down-counting (saw waves) or up/down-counting
-+    (triangle waves) for each counter.
-+  * Clock sources independently selectable for each channel.
-+  * Two I/O pins per channel.
-+  * Two output compare/input capture registers per channel.
-+  * For the two output compare/input capture registers of each channel,
-+    four registers are provided as buffer registers and are capable of
-+    operating as comparison registers when buffering is not in use.
-+  * In output compare operation, buffer switching can be at crests or
-+    troughs, enabling the generation of laterally asymmetric PWM waveforms.
-+  * Registers for setting up frame cycles in each channel (with capability
-+    for generating interrupts at overflow or underflow)
-+  * Generation of dead times in PWM operation.
-+  * Synchronous starting, stopping and clearing counters for arbitrary
-+    channels.
-+  * Starting, stopping, clearing and up/down counters in response to input
-+    level comparison.
-+  * Starting, clearing, stopping and up/down counters in response to a
-+    maximum of four external triggers.
-+  * Output pin disable function by dead time error and detected
-+    short-circuits between output pins.
-+  * A/D converter start triggers can be generated (GPT32E0 to GPT32E3)
-+  * Enables the noise filter for input capture and external trigger
-+    operation.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - renesas,r9a07g044-gpt  # RZ/G2{L,LC}
-+          - renesas,r9a07g054-gpt  # RZ/V2L
-+      - const: renesas,rzg2l-gpt
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#pwm-cells':
-+    const: 2
-+
-+  interrupts:
-+    items:
-+      - description: GTCCRA input capture/compare match
-+      - description: GTCCRB input capture/compare
-+      - description: GTCCRC compare match
-+      - description: GTCCRD compare match
-+      - description: GTCCRE compare match
-+      - description: GTCCRF compare match
-+      - description: GTADTRA compare match
-+      - description: GTADTRB compare match
-+      - description: GTCNT overflow/GTPR compare match
-+      - description: GTCNT underflow
-+
-+  interrupt-names:
-+    items:
-+      - const: ccmpa
-+      - const: ccmpb
-+      - const: cmpc
-+      - const: cmpd
-+      - const: cmpe
-+      - const: cmpf
-+      - const: adtrga
-+      - const: adtrgb
-+      - const: ovf
-+      - const: unf
-+
-+  clocks:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - power-domains
-+  - resets
-+
-+allOf:
-+  - $ref: pwm.yaml#
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r9a07g044-cpg.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    gpt4: pwm@10048400 {
-+        compatible = "renesas,r9a07g044-gpt", "renesas,rzg2l-gpt";
-+        reg = <0x10048400 0x100>;
-+        interrupts = <GIC_SPI 270 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 271 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 272 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 273 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 274 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 275 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 276 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 277 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 278 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 279 IRQ_TYPE_EDGE_RISING>;
-+        interrupt-names = "ccmpa", "ccmpb", "cmpc", "cmpd",
-+                          "cmpe", "cmpf", "adtrga", "adtrgb",
-+                          "ovf", "unf";
-+        clocks = <&cpg CPG_MOD R9A07G044_GPT_PCLK>;
-+        power-domains = <&cpg>;
-+        resets = <&cpg R9A07G044_GPT_RST_C>;
-+        #pwm-cells = <2>;
-+    };
--- 
-2.25.1
+On Mon, May 23, 2022 at 09:28:57PM +0800, Jiaxin Yu wrote:
+> Add support for mt8186 board with mt6366, rt1019 and rt5682s.
+>=20
+> Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
 
+This breaks an x86 allmodconfig build:
+
+/build/stage/linux/sound/soc/mediatek/mt8186/mt8186-mt6366-da7219-max98357.=
+c: In function =E2=80=98mt8186_da7219_init=E2=80=99:
+/build/stage/linux/sound/soc/mediatek/mt8186/mt8186-mt6366-da7219-max98357.=
+c:58:15: error: too many arguments to function =E2=80=98snd_soc_card_jack_n=
+ew=E2=80=99
+   58 |         ret =3D snd_soc_card_jack_new(rtd->card, "Headset Jack",
+      |               ^~~~~~~~~~~~~~~~~~~~~
+In file included from /build/stage/linux/include/sound/soc.h:1362,
+                 from /build/stage/linux/sound/soc/mediatek/mt8186/mt8186-m=
+t6366-da7219-max98357.c:15:
+/build/stage/linux/include/sound/soc-card.h:18:5: note: declared here
+   18 | int snd_soc_card_jack_new(struct snd_soc_card *card, const char *id=
+, int type,
+      |     ^~~~~~~~~~~~~~~~~~~~~
+/build/stage/linux/sound/soc/mediatek/mt8186/mt8186-mt6366-da7219-max98357.=
+c: In function =E2=80=98mt8186_mt6366_da7219_max98357_hdmi_init=E2=80=99:
+/build/stage/linux/sound/soc/mediatek/mt8186/mt8186-mt6366-da7219-max98357.=
+c:161:15: error: too many arguments to function =E2=80=98snd_soc_card_jack_=
+new=E2=80=99
+  161 |         ret =3D snd_soc_card_jack_new(rtd->card, "HDMI Jack", SND_J=
+ACK_LINEOUT,
+      |               ^~~~~~~~~~~~~~~~~~~~~
+In file included from /build/stage/linux/include/sound/soc.h:1362,
+                 from /build/stage/linux/sound/soc/mediatek/mt8186/mt8186-m=
+t6366-da7219-max98357.c:15:
+/build/stage/linux/include/sound/soc-card.h:18:5: note: declared here
+   18 | int snd_soc_card_jack_new(struct snd_soc_card *card, const char *id=
+, int type,
+      |     ^~~~~~~~~~~~~~~~~~~~~
+make[5]: *** [/build/stage/linux/scripts/Makefile.build:249: sound/soc/medi=
+atek/mt8186/mt8186-mt6366-da7219-max98357.o] Error 1
+/build/stage/linux/sound/soc/mediatek/mt8186/mt8186-mt6366-rt1019-rt5682s.c=
+: In function =E2=80=98mt8186_rt5682s_init=E2=80=99:
+/build/stage/linux/sound/soc/mediatek/mt8186/mt8186-mt6366-rt1019-rt5682s.c=
+:61:15: error: too many arguments to function =E2=80=98snd_soc_card_jack_ne=
+w=E2=80=99
+   61 |         ret =3D snd_soc_card_jack_new(rtd->card, "Headset Jack",
+      |               ^~~~~~~~~~~~~~~~~~~~~
+In file included from /build/stage/linux/include/sound/soc.h:1362,
+                 from /build/stage/linux/sound/soc/mediatek/mt8186/mt8186-m=
+t6366-rt1019-rt5682s.c:17:
+/build/stage/linux/include/sound/soc-card.h:18:5: note: declared here
+   18 | int snd_soc_card_jack_new(struct snd_soc_card *card, const char *id=
+, int type,
+      |     ^~~~~~~~~~~~~~~~~~~~~
+/build/stage/linux/sound/soc/mediatek/mt8186/mt8186-mt6366-rt1019-rt5682s.c=
+: In function =E2=80=98mt8186_mt6366_rt1019_rt5682s_hdmi_init=E2=80=99:
+/build/stage/linux/sound/soc/mediatek/mt8186/mt8186-mt6366-rt1019-rt5682s.c=
+:137:15: error: too many arguments to function =E2=80=98snd_soc_card_jack_n=
+ew=E2=80=99
+  137 |         ret =3D snd_soc_card_jack_new(rtd->card, "HDMI Jack", SND_J=
+ACK_LINEOUT,
+      |               ^~~~~~~~~~~~~~~~~~~~~
+In file included from /build/stage/linux/include/sound/soc.h:1362,
+                 from /build/stage/linux/sound/soc/mediatek/mt8186/mt8186-m=
+t6366-rt1019-rt5682s.c:17:
+/build/stage/linux/include/sound/soc-card.h:18:5: note: declared here
+   18 | int snd_soc_card_jack_new(struct snd_soc_card *card, const char *id=
+, int type,
+      |     ^~~~~~~~~~~~~~~~~~~~~
+make[5]: *** [/build/stage/linux/scripts/Makefile.build:249: sound/soc/medi=
+atek/mt8186/mt8186-mt6366-rt1019-rt5682s.o] Error 1
+
+--9rL9qmwu0rrfH0q3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmKeJoIACgkQJNaLcl1U
+h9CFwgf9G5LGVON0H/dhjgLQ816wyvWWAsYE0+WxJJpawHUSAJG6kzTYC82FZhmg
+sKZTDn6T5jUPGtP/wzWpE+EzcUyUds+Uo6QzoZ4rqzYCEid76p5sksmT5oGdmn8R
+HaQSkTKIWF6OprneORmZda8SBV+UcpqScD8irzR1x5V/ZAxo7BRqfOw3ZiTcz8Ru
+RgJf+UcRdUoECGjsxBl0yA4BLMfk6Bt8SDPr/KG5J4mkdFxzRwZCz68nyWdt0CFE
+FDU1KIBy/P0Oy5eyMdw1n+gT63rWT2swrBcjfanH+HML8cj4Yo63Fl7wMxA1C+WN
+ZB/b3z4o7yvK/wM7PbzvknzAm0536w==
+=91r5
+-----END PGP SIGNATURE-----
+
+--9rL9qmwu0rrfH0q3--
