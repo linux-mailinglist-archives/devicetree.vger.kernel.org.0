@@ -2,144 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DA3B53E8EF
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:08:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF9D253E976
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:08:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239861AbiFFO32 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jun 2022 10:29:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35592 "EHLO
+        id S239575AbiFFOcZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jun 2022 10:32:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239844AbiFFO31 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 10:29:27 -0400
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFC5FC7E3D;
-        Mon,  6 Jun 2022 07:29:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1654525766; x=1686061766;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=6gFuK9m/CegkpD/g+gX8hVz/ChSurSOe3kM0kYWm6aE=;
-  b=eMC426nikFbLleMpcDTh7f0evVLQFOc0EOD+mur79kxbvG6TELXmV8Aj
-   nKCCefZWHVfjqCAiqyuxa6AoT7ForInPA8yVKBMPw0N5veqmcsRD0MHpG
-   WfnXh0EIX4qO/xF58JQ14SySJcla3/QhtBM00+2CbGX7MYqJ01fHG4pCM
-   OmHgeLZTj9y3aiEgmKrcwqGTCAd27vIFsy+QS7RkB6xTPSlM/eYjbTEvY
-   jIYL5BuSi5oE4+2LfaM97VvzDcnwrsHa0onSb5vU/EInWkCdLieVMka/T
-   D5FyRsO5GakZz4AcB75dugRKVfr3X7rX7Hio/NQkBb6988DLPTnDDPa6P
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10369"; a="275436363"
-X-IronPort-AV: E=Sophos;i="5.91,280,1647327600"; 
-   d="scan'208";a="275436363"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Jun 2022 07:29:26 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,280,1647327600"; 
-   d="scan'208";a="554471422"
-Received: from lkp-server01.sh.intel.com (HELO 60dabacc1df6) ([10.239.97.150])
-  by orsmga006.jf.intel.com with ESMTP; 06 Jun 2022 07:29:19 -0700
-Received: from kbuild by 60dabacc1df6 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nyDjK-000Cnd-JV;
-        Mon, 06 Jun 2022 14:29:18 +0000
-Date:   Mon, 6 Jun 2022 22:28:27 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     ChiaEn Wu <peterwu.pub@gmail.com>, lee.jones@linaro.org,
-        daniel.thompson@linaro.org, jingoohan1@gmail.com, pavel@ucw.cz,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, sre@kernel.org, chunfeng.yun@mediatek.com,
-        gregkh@linuxfoundation.org, jic23@kernel.org, lars@metafoo.de,
-        lgirdwood@gmail.com, broonie@kernel.org, linux@roeck-us.net,
-        heikki.krogerus@linux.intel.com, deller@gmx.de
-Cc:     kbuild-all@lists.01.org, cy_huang@richtek.com,
-        alice_chen@richtek.com, chiaen_wu@richtek.com,
-        peterwu.pub@gmail.com, dri-devel@lists.freedesktop.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-iio@vger.kernel.org
-Subject: Re: [RESEND 12/14] leds: mt6370: Add Mediatek MT6370 Indicator
- support
-Message-ID: <202206062207.q0S8wxpj-lkp@intel.com>
-References: <20220531111900.19422-13-peterwu.pub@gmail.com>
+        with ESMTP id S239535AbiFFOcY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 10:32:24 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2208913F61;
+        Mon,  6 Jun 2022 07:32:19 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 38D496601E94;
+        Mon,  6 Jun 2022 15:32:18 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1654525938;
+        bh=YMYIIOjdr7X3xgwUiFiBZS3Co4/RxQgCOo0x434ptFE=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=T8KWPtQKbM+lkmGY0j+8VgnQys9vQH8Fyd2an0W04VCW9bsCAddlaI0zF/fqgHQzQ
+         mBXQdV0nNgS4PZhqX+Uiks0E46zyNJytUkQ7hKmBQi2I5C6l+oyE61SU/xJcRf46yx
+         OxTv7DUL3Ci3D9jlc21E+dyqt7MpnOM9vI0xC6SfTXB9ZRiq0QrUONZJHRbydTcuXk
+         1GLkxJL2oHvX/p3UQYQH4pE6JFuK2k/boWb+u7pmNrj9CVxcmn74K2LWlIwPVynuXr
+         vqzWnw6Y0HFpziWY82HxloJ+2SLipB86z+lqfr71BdBUXdJ4xDIATSHmLGTvOM+piQ
+         3Ol27qkGt6uIw==
+Message-ID: <287b7d3a-a412-0ec9-7be0-c17f3da782b6@collabora.com>
+Date:   Mon, 6 Jun 2022 16:32:16 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220531111900.19422-13-peterwu.pub@gmail.com>
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH 2/2] arm64: dts: mediatek: mt8195: add pwm node
+Content-Language: en-US
+To:     Fabien Parent <fparent@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220531114544.144785-1-fparent@baylibre.com>
+ <20220531114544.144785-2-fparent@baylibre.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220531114544.144785-2-fparent@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi ChiaEn,
+Il 31/05/22 13:45, Fabien Parent ha scritto:
+> MT8195's PWM IP has 4 PWM blocks.
+> 
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
 
-Thank you for the patch! Yet something to improve:
+I've verified that the binding is actually right - and it is, the MT8183
+data is a perfect match with MT8195.
 
-[auto build test ERROR on pavel-leds/for-next]
-[also build test ERROR on lee-mfd/for-mfd-next lee-backlight/for-backlight-next v5.19-rc1 next-20220606]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+In any case, there are at least a few MT8195 boards on which the PWM controller
+is not used (only the disp-pwm one is used), so please set this node as disabled
+by default, after which, you get my:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/ChiaEn-Wu/Add-Mediatek-MT6370-PMIC-support/20220531-211432
-base:   git://git.kernel.org/pub/scm/linux/kernel/git/pavel/linux-leds.git for-next
-config: nios2-allyesconfig (https://download.01.org/0day-ci/archive/20220606/202206062207.q0S8wxpj-lkp@intel.com/config)
-compiler: nios2-linux-gcc (GCC) 11.3.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/4de9e5ff11aeade155aa744bcaf9efca82b3d4ee
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review ChiaEn-Wu/Add-Mediatek-MT6370-PMIC-support/20220531-211432
-        git checkout 4de9e5ff11aeade155aa744bcaf9efca82b3d4ee
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.3.0 make.cross W=1 O=build_dir ARCH=nios2 SHELL=/bin/bash
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 15 +++++++++++++++
+>   1 file changed, 15 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> index d076a376bdcc..366543f27a99 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> @@ -367,6 +367,21 @@ pwrap: pwrap@10024000 {
+>   			assigned-clock-parents = <&topckgen CLK_TOP_ULPOSC1_D10>;
+>   		};
+>   
+> +		pwm0: pwm@10048000 {
+> +			compatible = "mediatek,mt8195-pwm",
+> +				     "mediatek,mt8183-pwm";
+> +			reg = <0 0x10048000 0 0x1000>;
+> +			#pwm-cells = <2>;
+> +			clocks = <&infracfg_ao CLK_INFRA_AO_PWM_H>,
+> +				 <&infracfg_ao CLK_INFRA_AO_PWM>,
+> +				 <&infracfg_ao CLK_INFRA_AO_PWM1>,
+> +				 <&infracfg_ao CLK_INFRA_AO_PWM2>,
+> +				 <&infracfg_ao CLK_INFRA_AO_PWM3>,
+> +				 <&infracfg_ao CLK_INFRA_AO_PWM4>;
+> +			clock-names = "top", "main", "pwm1", "pwm2", "pwm3",
+> +				      "pwm4";
+> +		};
+> +
+>   		scp_adsp: clock-controller@10720000 {
+>   			compatible = "mediatek,mt8195-scp_adsp";
+>   			reg = <0 0x10720000 0 0x1000>;
+> 
 
-All errors (new ones prefixed by >>):
 
-   drivers/leds/leds-mt6370.c: In function 'mt6370_check_vendor_info':
->> drivers/leds/leds-mt6370.c:873:15: error: implicit declaration of function 'FIELD_GET'; did you mean 'FOLL_GET'? [-Werror=implicit-function-declaration]
-     873 |         vid = FIELD_GET(MT6370_VENID_MASK, devinfo);
-         |               ^~~~~~~~~
-         |               FOLL_GET
-   cc1: some warnings being treated as errors
-
-
-vim +873 drivers/leds/leds-mt6370.c
-
-   863	
-   864	static int mt6370_check_vendor_info(struct mt6370_priv *priv)
-   865	{
-   866		unsigned int devinfo, vid;
-   867		int ret;
-   868	
-   869		ret = regmap_read(priv->regmap, MT6370_REG_DEV_INFO, &devinfo);
-   870		if (ret)
-   871			return ret;
-   872	
- > 873		vid = FIELD_GET(MT6370_VENID_MASK, devinfo);
-   874		if (vid == 0x9 || vid == 0xb) {
-   875			priv->reg_fields = mt6372_reg_fields;
-   876			priv->ranges = mt6372_led_ranges;
-   877			priv->is_mt6372 = true;
-   878		} else {
-   879			priv->reg_fields = common_reg_fields;
-   880			priv->ranges = common_led_ranges;
-   881		}
-   882	
-   883		return 0;
-   884	}
-   885	
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
