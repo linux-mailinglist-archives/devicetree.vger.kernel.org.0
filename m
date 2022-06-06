@@ -2,109 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C16553E1D1
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 10:53:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BD2E53E225
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 10:54:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230214AbiFFG4Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jun 2022 02:56:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57566 "EHLO
+        id S230346AbiFFHXM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jun 2022 03:23:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230203AbiFFG4Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 02:56:24 -0400
-Received: from smtpo62.interia.pl (smtpo62.interia.pl [217.74.67.62])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6E1D220ED
-        for <devicetree@vger.kernel.org>; Sun,  5 Jun 2022 23:56:23 -0700 (PDT)
-Received: from t480s.localdomain (unknown [80.68.225.159])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by poczta.interia.pl (INTERIA.PL) with ESMTPSA;
-        Mon,  6 Jun 2022 08:56:20 +0200 (CEST)
-Date:   Mon, 6 Jun 2022 08:56:18 +0200
-From:   Slawomir Stepien <sst@poczta.fm>
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        jdelvare@suse.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, przemyslaw.cencner@nokia.com,
-        krzysztof.adamski@nokia.com, alexander.sverdlin@nokia.com,
-        slawomir.stepien@nokia.com
-Subject: Re: [PATCH 4/7] hwmon: (lm90) Add support for 2nd remote channel's
- offset register
-Message-ID: <Yp2lEmvD+5JiGejX@t480s.localdomain>
-References: <20220525073657.573327-1-sst@poczta.fm>
- <20220525073657.573327-5-sst@poczta.fm>
- <20220605180310.GA3151289@roeck-us.net>
- <Yp2fCO84VrrSQHbL@t480s.localdomain>
- <5f471f82-83b1-aea4-ea25-e51c0672c8ff@roeck-us.net>
+        with ESMTP id S230427AbiFFHXF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 03:23:05 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 960C1D4E
+        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 00:23:01 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id u12so27189315eja.8
+        for <devicetree@vger.kernel.org>; Mon, 06 Jun 2022 00:23:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=vfnaQ4smw+KgX15hin83GBkysb52zahcEdPRKs8bkOg=;
+        b=pC/Qa4Krj7RNRHVG7Xh2KYRWWPHMQtGRbRGIetXDGbSdVA21anYdrJYYwyALs2VMYX
+         bwwypHFH2+KQRIlffVL6+2limzoOAauHSFQNHW/oGyEkz1ONR47IsM6fKybF7hEyErRV
+         XHr+SYdu+p7pmxwXwDRLhQs4rS2xGiae5pEg+hJilghhdSN6xDCYTlyuBye2rfxvLr42
+         1WeH3WSWNX1N+/jmI1Lo5lW15BC+EmfZww5q6/ZAnKXof2xhK6xxL0duLR99aZTrQw0Y
+         Td8A6jkJDGB233rvfOV2oE9p63zaifR15tHMz7XxtHWQvzJFxVZgB7nAxkIM4DRPaW0C
+         5tOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=vfnaQ4smw+KgX15hin83GBkysb52zahcEdPRKs8bkOg=;
+        b=0PsGUYdIBOUtdJvOVJ6AlZ9LCC+3bWa/zj8IjoLIk9kcGu7l2IbCQ8h0HwDfnMrU35
+         RfUsq80ibuc0Eoli3EWvDiKK2UEKE+9UAP0D3vLIl/klF5OE7MOPCf9EEowoKfDkVSfR
+         MriSIfL5ORyWCxUJ5BrLf/YmmzrEuaciZvDQO7M62c63wz3g/87sviXGODRcysvryfPM
+         qz/M6tXAFl7m4ew9m6Kyc3faJu0d88PUQuP1jqhbqz5HtRrNGZ7ur1OOvCbaRyO9MUEO
+         f6qYRbgcYnPThSIDe4Jq0DAke22wvC2f1xNzhkV8T4G7mhuBtoFGHeCBeaGgdyBkH8aO
+         N03Q==
+X-Gm-Message-State: AOAM533a+XpRyuelo8FxJTzYWCCmwsF0VkZkA/pAKXGy2a+LMufxwNX4
+        e0jvPMKizbqt931o5GMrFuFrUw==
+X-Google-Smtp-Source: ABdhPJzwaYd6IaBpfzwUsA4bAkGr8QzrdvNm2CozvFR5qXSLzG76K65KUqmBOt/kZPzEqwzsMibjpg==
+X-Received: by 2002:a17:907:2c65:b0:70e:c2ee:781b with SMTP id ib5-20020a1709072c6500b0070ec2ee781bmr13594605ejc.281.1654500180012;
+        Mon, 06 Jun 2022 00:23:00 -0700 (PDT)
+Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id f12-20020a17090631cc00b006fee961b9e0sm5964547ejf.195.2022.06.06.00.22.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Jun 2022 00:22:59 -0700 (PDT)
+Message-ID: <e6967010-b3a5-e0e8-4f30-97fe5a13b49a@linaro.org>
+Date:   Mon, 6 Jun 2022 09:22:58 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5f471f82-83b1-aea4-ea25-e51c0672c8ff@roeck-us.net>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=interia.pl;
-        s=biztos; t=1654498582;
-        bh=bfQRRY+S6j5ps09OSWSQ5yO6cgGebDFoRVda7QF2vA8=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-        b=Q1D/6GjRv4NNNcJHO6vN0LQK4KJQs/MEpH2pp2mNq7twQdJthgUVeWz2syjpvtO9N
-         uZ2W5XbJKpDqsV89EDKuB2HAKR4sQTZyoOzNTd3cdwua6y1p54J5hx3FUDgmMD7P34
-         FkT3r6cIBnCfL48snKstDMhAMhbkoK5fw4ncUH7Y=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,FREEMAIL_FROM,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v2 4/5] dt-bindings: crypto: add documentation for aspeed
+ hace
+Content-Language: en-US
+To:     Neal Liu <neal_liu@aspeedtech.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Johnny Huang <johnny_huang@aspeedtech.com>
+Cc:     linux-aspeed@lists.ozlabs.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, BMC-SW@aspeedtech.com
+References: <20220606064935.1458903-1-neal_liu@aspeedtech.com>
+ <20220606064935.1458903-5-neal_liu@aspeedtech.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220606064935.1458903-5-neal_liu@aspeedtech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On cze 05, 2022 23:50, Guenter Roeck wrote:
-> On 6/5/22 23:30, Slawomir Stepien wrote:
-> > On cze 05, 2022 11:03, Guenter Roeck wrote:
-> > > On Wed, May 25, 2022 at 09:36:54AM +0200, Slawomir Stepien wrote:
-> > > > From: Slawomir Stepien <slawomir.stepien@nokia.com>
-> > > > 
-> > > > The ADT7461 supports offset register for both remote channels it has.
-> > > 
-> > > ADT7481
-> > 
-> > Oops. I will fix that in new version.
-> > 
-> > > > Both registers have the same bit width (resolution).
-> > > > 
-> > > > In the code, this device has LM90_HAVE_TEMP3 and LM90_HAVE_OFFSET flags,
-> > > > but the support of second remote channel's offset is missing. Add that
-> > > > implementation.
-> > > > 
-> > > > Signed-off-by: Slawomir Stepien <slawomir.stepien@nokia.com>
-> > > > ---
-> > > >   drivers/hwmon/lm90.c | 37 ++++++++++++++++++++++++++++++++-----
-> > > >   1 file changed, 32 insertions(+), 5 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/hwmon/lm90.c b/drivers/hwmon/lm90.c
-> > > > index 02b211a4e571..d226f1dea2ba 100644
-> > > > --- a/drivers/hwmon/lm90.c
-> > > > +++ b/drivers/hwmon/lm90.c
-> > > > @@ -153,6 +153,8 @@ enum chips { adm1023, adm1032, adt7461, adt7461a, adt7481,
-> > > >   #define LM90_REG_REMOTE_TEMPL		0x10
-> > > >   #define LM90_REG_REMOTE_OFFSH		0x11
-> > > >   #define LM90_REG_REMOTE_OFFSL		0x12
-> > > > +#define LM90_REG_REMOTE2_OFFSH		0x34
-> > > > +#define LM90_REG_REMOTE2_OFFSL		0x35
-> > > 
-> > > I don't think those are needed.
-> > 
-> > In lm90_temp_write() (unlike in lm90_update_limits()) the remote channel is *not* set. I find
+On 06/06/2022 08:49, Neal Liu wrote:
+> Add device tree binding documentation for the Aspeed Hash
+> and Crypto Engines (HACE) Controller.
 > 
-> ... unless lm90_set_temp() is used to write the values. If I recall correctly
-> I didn't do that because selecting the remote channel seemed unnecessary.
-> 
-> > setting it (the remote channel) in lm90_temp_write() a waste of xfers, if we can address the
-> > registers directly. But if you prefer to have just one set of register and setting the remote
-> > channel bit, then sure I can do it like that.
-> > 
-> It isn't as if setting the offset happens all the time, so I'd prefer
-> to use lm90_set_temp() if that is possible.
+> Signed-off-by: Neal Liu <neal_liu@aspeedtech.com>
+> Signed-off-by: Johnny Huang <johnny_huang@aspeedtech.com>
 
-Good point! So I will use just one set of the registers.
 
--- 
-Slawomir Stepien
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+Best regards,
+Krzysztof
