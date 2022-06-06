@@ -2,111 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CDBAB53EBA2
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:09:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DBA953E84A
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:08:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240453AbiFFPWN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jun 2022 11:22:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55994 "EHLO
+        id S240678AbiFFP0I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jun 2022 11:26:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240393AbiFFPWM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 11:22:12 -0400
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 393453899;
-        Mon,  6 Jun 2022 08:22:08 -0700 (PDT)
-Received: by mail-qk1-x72b.google.com with SMTP id 15so5900634qki.6;
-        Mon, 06 Jun 2022 08:22:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Y+RKIOBF1OQyUNrZYbnbVUIUGYZ5O+hX0E7GZIjjSWI=;
-        b=Z4DdLkdgtIojvPksRc1nRsDAhfDBzi2t4FpFde7mk1uVMzqpsfSCZAND7jQOARYrj7
-         ywmaDIXJ5jpLMJPYvkwao5ALMAtErh0UGZVXmdMDyTEDfNF+dyq5q9RglZf0+wSK4le5
-         ME2qKQnf4vkuCddfAbROLrOUoSrJBnpro3Ch+pvINf2rcMboq1DO/z+7IfV1+ySaZcTF
-         5LK01Y3h3yXMxuiqOkWuD5Myoq3OXXItuWyCr8L1H6QWJpZ6MMI3dW27g9t9pGYm5Jq3
-         wp6SONpuHytw3hmxpcIcD+Zt5WzxrCt1kbPn3KzEPx3YR6VMFdYnQeyjHlpYxQXmjUlv
-         I9kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Y+RKIOBF1OQyUNrZYbnbVUIUGYZ5O+hX0E7GZIjjSWI=;
-        b=bejMdqMnq9ZK0eMljeA6otJp0D5X4sf7HO4dp/ZEZkNMXaJRf4n62DkRA0o3pPPhHY
-         RzU3HU1wfGM9TKF4YJnqZnl5d3RYlxFYATS+Ut4RAMzsphxKbMO3J4gE6Jg8/pN4HJTx
-         Je5QHACYkkhX1apdNQYlLeFgWa6nhZrEfgEkJOjS15EWb3j90P980R97LDpVjUxD3BID
-         1m2cWjHaXUIZVO1hMEZEHlmNiYfo6MfSYhlgmCyc+yC6Co35Yk+oyeadF7zk4PCv4K0D
-         50ms+c2T4kzx+Fej2JF3BWXqLHGlzqOgK+oC13rVwzQNtlERLD8NpzQZJuYq/CmdR7pW
-         oapg==
-X-Gm-Message-State: AOAM533cIMjKlApVJ7l3oWD6VNl9KuKEfBrP3mPkGmzx1dRMaKXI9HTR
-        G0yLWEm27z5Mldk3qFSxOZY=
-X-Google-Smtp-Source: ABdhPJzNZVI3s+nxt6m2FFvXcQvwZ0jgqwi3ZUNIyXgPjRgXy261jsfK6+B3tV7qSBt4YCbJPSmSlg==
-X-Received: by 2002:a05:620a:4305:b0:6a6:50f8:17e3 with SMTP id u5-20020a05620a430500b006a650f817e3mr15315327qko.389.1654528927273;
-        Mon, 06 Jun 2022 08:22:07 -0700 (PDT)
-Received: from master-x64.sparksnet ([2601:153:980:85b1::10])
-        by smtp.gmail.com with ESMTPSA id e2-20020ac80642000000b002f905347586sm9784635qth.14.2022.06.06.08.22.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jun 2022 08:22:07 -0700 (PDT)
-From:   Peter Geis <pgwipeout@gmail.com>
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] fixup! arm64: dts: rockchip: Add rk3568 PCIe2x1 controller
-Date:   Mon,  6 Jun 2022 11:22:04 -0400
-Message-Id: <20220606152204.3671113-1-pgwipeout@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S240584AbiFFPZw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 11:25:52 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BADE1CD350;
+        Mon,  6 Jun 2022 08:25:51 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 97A6761532;
+        Mon,  6 Jun 2022 15:25:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F9A7C341DE;
+        Mon,  6 Jun 2022 15:25:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654529149;
+        bh=JJt0IO+HD16nKaMzBkekejjxzH6zJTBr5QCuFRGczGE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=FQvjxVAjYkRkMlnXeUbGK/ffXS9EGiIGJB6czmy41m7BUi+gGlw+X1Vu+xVWhr8kL
+         VZmd7RutDKDJkQ6+PNC2k4EBuWcMiwehnWLeUgcaztEFymFfTpyADom9iKEZ2r0U6R
+         8QTKxcO8tqR2nN17KQ7uaYrNw3fG0aG82GOK9/YW0npuVqsyv4lNhNtBEPuUTmVVIT
+         XOE4wPosVqLjYqBNBMuGPxA5PXF0QCAYswfnxGdyJu5zTk6VkYY/y8ZNnVzT895FLj
+         P6YX/uUQeJAT8yJ01In++Ksk7XfTNpL0aA6OZ6qjgQfLIhLB4De2E2AivHQOnNJprR
+         rbUcjc+xUJibQ==
+Received: from mchehab by mail.kernel.org with local (Exim 4.95)
+        (envelope-from <mchehab@kernel.org>)
+        id 1nyEby-0012On-0x;
+        Mon, 06 Jun 2022 16:25:46 +0100
+From:   Mauro Carvalho Chehab <mchehab@kernel.org>
+To:     Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        linux-kernel@vger.kernel.org, "H. Peter Anvin" <hpa@zytor.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Borislav Petkov <bp@alien8.de>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Dave Hansen <dave.hansen@linux.intel.com>,
+        Federico Vaga <federico.vaga@vaga.pv.it>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Ingo Molnar <mingo@redhat.com>,
+        Jarkko Sakkinen <jarkko@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Markus Mayer <mmayer@broadcom.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        keyrings@vger.kernel.org, kvm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-cachefs@redhat.com,
+        linux-gpio@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-m68k@lists.linux-m68k.org, linux-mmc@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-pm@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, linux-usb@vger.kernel.org,
+        x86@kernel.org
+Subject: [PATCH 00/23] Update Documentation/ cross-references
+Date:   Mon,  6 Jun 2022 16:25:22 +0100
+Message-Id: <cover.1654529011.git.mchehab@kernel.org>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Having a gap in the address space leads to read issues with NVMe SSDs.
-Fixup the address space.
+Hi John,
 
-Signed-off-by: Peter Geis <pgwipeout@gmail.com>
----
+There were a number of DT binding conversions and other docs change that
+were not updated. Address them, in order to keep the cross-references on
+a sane state.
 
-It seems this address space change was lost in one of my rebases. This
-fixes up my original patch to correct issues with NVMe SSDs.
-It's based off Heiko's v5.20-armsoc/dts64 at:
-https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/?h=v5.20-armsoc/dts64
+Patch series is against v5.19-rc1 (and applies cleanly on the top of
+today's -next).
 
- arch/arm64/boot/dts/rockchip/rk356x.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Mauro Carvalho Chehab (23):
+  dt-bindings: mfd: bd9571mwv: update rohm,bd9571mwv.yaml reference
+  dt-bindings: interrupt-controller: update brcm,l2-intc.yaml reference
+  dt-bindings: arm: update vexpress-config.yaml references
+  dt-bindings: reset: update st,stih407-powerdown.yaml references
+  dt-bindings: mfd: rk808: update rockchip,rk808.yaml reference
+  dt-bindings: mmc: exynos-dw-mshc: update samsung,pinctrl.yaml
+    reference
+  docs: netdev: update maintainer-netdev.rst reference
+  docs: filesystems: update netfs-api.rst reference
+  Documentation: update watch_queue.rst references
+  Documentation: KVM: update s390-pv.rst reference
+  Documentation: KVM: update amd-memory-encryption.rst references
+  Documentation: KVM: update msr.rst reference
+  Documentation: KVM: update s390-diag.rst reference
+  MAINTAINERS: update arm,hdlcd.yaml reference
+  MAINTAINERS: update arm,komeda.yaml reference
+  MAINTAINERS: update arm,malidp.yaml reference
+  MAINTAINERS: update cortina,gemini-ethernet.yaml reference
+  MAINTAINERS: update dongwoon,dw9807-vcm.yaml reference
+  MAINTAINERS: update maxim,max77693.yaml reference
+  MAINTAINERS: update snps,axs10x-reset.yaml reference
+  objtool: update objtool.txt references
+  ASoC: wm8731: update wlf,wm8731.yaml reference
+  arch: m68k: q40: README: drop references to IDE driver
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-index 99ab013b8ba4..cc1c5a65c5e5 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-@@ -839,7 +839,7 @@ pcie2x1: pcie@fe260000 {
- 		compatible = "rockchip,rk3568-pcie";
- 		reg = <0x3 0xc0000000 0x0 0x00400000>,
- 		      <0x0 0xfe260000 0x0 0x00010000>,
--		      <0x3 0x00000000 0x0 0x01000000>;
-+		      <0x3 0x3f000000 0x0 0x01000000>;
- 		reg-names = "dbi", "apb", "config";
- 		interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>,
- 			     <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>,
-@@ -868,8 +868,8 @@ pcie2x1: pcie@fe260000 {
- 		phys = <&combphy2 PHY_TYPE_PCIE>;
- 		phy-names = "pcie-phy";
- 		power-domains = <&power RK3568_PD_PIPE>;
--		ranges = <0x01000000 0x0 0x01000000 0x3 0x01000000 0x0 0x00100000
--			  0x02000000 0x0 0x02000000 0x3 0x01100000 0x0 0x3ef00000>;
-+		ranges = <0x01000000 0x0 0x3ef00000 0x3 0x3ef00000 0x0 0x00100000
-+			  0x02000000 0x0 0x00000000 0x3 0x00000000 0x0 0x3ef00000>;
- 		resets = <&cru SRST_PCIE20_POWERUP>;
- 		reset-names = "pipe";
- 		#address-cells = <3>;
+ .../ABI/testing/sysfs-driver-bd9571mwv-regulator   |  2 +-
+ Documentation/admin-guide/kernel-parameters.txt    |  2 +-
+ .../bindings/cpufreq/brcm,stb-avs-cpu-freq.txt     |  2 +-
+ .../devicetree/bindings/hwmon/vexpress.txt         |  2 +-
+ .../devicetree/bindings/mmc/exynos-dw-mshc.txt     |  2 +-
+ .../devicetree/bindings/phy/phy-stih407-usb.txt    |  2 +-
+ .../devicetree/bindings/pinctrl/pinctrl-rk805.txt  |  2 +-
+ .../devicetree/bindings/regulator/vexpress.txt     |  2 +-
+ .../bindings/sound/atmel-sam9x5-wm8731-audio.txt   |  2 +-
+ Documentation/devicetree/bindings/usb/dwc3-st.txt  |  2 +-
+ Documentation/devicetree/bindings/usb/ehci-st.txt  |  2 +-
+ Documentation/devicetree/bindings/usb/ohci-st.txt  |  2 +-
+ Documentation/security/keys/core.rst               |  2 +-
+ Documentation/security/secrets/coco.rst            |  2 +-
+ .../translations/it_IT/networking/netdev-FAQ.rst   |  2 +-
+ Documentation/virt/kvm/api.rst                     |  4 ++--
+ Documentation/virt/kvm/s390/s390-pv-boot.rst       |  2 +-
+ Documentation/virt/kvm/x86/hypercalls.rst          |  2 +-
+ Documentation/x86/orc-unwinder.rst                 |  2 +-
+ MAINTAINERS                                        | 14 +++++++-------
+ arch/m68k/q40/README                               |  4 +---
+ include/linux/fscache.h                            |  2 +-
+ include/linux/objtool.h                            |  2 +-
+ include/linux/watch_queue.h                        |  2 +-
+ init/Kconfig                                       |  2 +-
+ kernel/watch_queue.c                               |  2 +-
+ lib/Kconfig.debug                                  |  2 +-
+ tools/include/linux/objtool.h                      |  2 +-
+ tools/objtool/check.c                              |  2 +-
+ 29 files changed, 36 insertions(+), 38 deletions(-)
+
 -- 
-2.25.1
+2.36.1
+
 
