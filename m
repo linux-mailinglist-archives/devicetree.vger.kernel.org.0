@@ -2,53 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BB0A53E015
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 05:33:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 954DA53E097
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 06:59:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348559AbiFFDdy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Jun 2022 23:33:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55636 "EHLO
+        id S229460AbiFFEYi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jun 2022 00:24:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232586AbiFFDdx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 23:33:53 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5434B37A39;
-        Sun,  5 Jun 2022 20:33:51 -0700 (PDT)
+        with ESMTP id S229455AbiFFEYh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 00:24:37 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B29513F93D;
+        Sun,  5 Jun 2022 21:17:34 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B269460EDC;
-        Mon,  6 Jun 2022 03:33:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 07FCBC36AFE;
-        Mon,  6 Jun 2022 03:33:50 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id B338DB80E90;
+        Mon,  6 Jun 2022 04:09:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39FB8C34119;
+        Mon,  6 Jun 2022 04:09:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654486430;
-        bh=GvbnNdDO95Viv4J08oBd15X/hC/cew08t9KpoUk6BoM=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=q0E3wy1n1jEU0ZITn0noAJw5W16quomE4u+H5T2nj+WCyMpxDRu7XnKzpN26wCR61
-         MnmEq2m9czldbZte/wDySuCe6JaEva7mT2ZOlQff4mae2rs3k6+JEY/KpC+FVNwnOi
-         VZnU6aqhEwLbKW1JiCXksE4dLALpzk055saaImz2LHAhCTXFwdCUtv5dUbQyd2XXo2
-         O4qzcRofc760Q1wjdNxim3EipfH16Z4I0p/3SSCoIp5ZhOuGIX6Ul4JtEaNzy9BNew
-         fF9zWS20pUM2bDMqyGlsQ5CpwM5abPloa+eFxyGT9BGT1AOYZOyhUdrnkrZ1KytrYU
-         IZZqzlvC9G1ow==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id DFECBE737F4;
-        Mon,  6 Jun 2022 03:33:49 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        s=k20201202; t=1654488592;
+        bh=dYNFi/wy07Ov4cuvSH4qkleX/fOBI4marWs8y/XSuS4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ZXQtVBBAMiwnMbu15JFucRfaQ4D/t6U7SeESaIsPkJ8lpemOx/pqqN+CnCrNCSfUj
+         ub5go6jWXUQ7oRe9SM5gp0Ll69MUncQyNMnFgIsxif2Nger9B71PyQJ0YNHTtwx0IY
+         7baZ1ssPCf5CXLV/ZQfp0waDmmTOrXY3UlFPWlH9YGmoyVppNmOWve5RyRW5XiTqVG
+         RJ5nM7rb4SfrUNBui9Hh3KCSYljrsQkUrJG0mfRsq2FN7qavFv+qSDNMmy2a3enT3Y
+         WVKRobQm9gXWuEYu7CByr+7tbgtbo1mdGzfhQbn69JgWGkzcnmAKg6oM3r23vr8RMl
+         etMN90/2ena1g==
+Date:   Mon, 6 Jun 2022 09:39:45 +0530
+From:   Manivannan Sadhasivam <mani@kernel.org>
+To:     Stanislav Jakubek <stano.jakubek@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-unisoc@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: interrupt-controller: Convert
+ rda,8810pl-intc to YAML
+Message-ID: <20220606040945.GA21449@thinkpad>
+References: <20220527125633.GA5145@standask-GA-A55M-S2HP>
+ <4bb8e18a-11d8-c617-7952-8887aa815301@linaro.org>
+ <20220603121258.GA4919@standask-GA-A55M-S2HP>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v5 0/2] Input: cros-ec-keyb: Better matrixless support
-From:   patchwork-bot+chrome-platform@kernel.org
-Message-Id: <165448642991.20111.2194828010616443866.git-patchwork-notify@kernel.org>
-Date:   Mon, 06 Jun 2022 03:33:49 +0000
-References: <20220516183452.942008-1-swboyd@chromium.org>
-In-Reply-To: <20220516183452.942008-1-swboyd@chromium.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     dmitry.torokhov@gmail.com, linux-kernel@vger.kernel.org,
-        patches@lists.linux.dev, chrome-platform@lists.linux.dev,
-        krzk+dt@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
-        bleung@chromium.org, groeck@chromium.org, dianders@chromium.org,
-        hsinyi@chromium.org, joebar@chromium.org
+In-Reply-To: <20220603121258.GA4919@standask-GA-A55M-S2HP>
 X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -59,31 +63,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
-
-This series was applied to chrome-platform/linux.git (for-next)
-by Dmitry Torokhov <dmitry.torokhov@gmail.com>:
-
-On Mon, 16 May 2022 11:34:50 -0700 you wrote:
-> This is a followup to my previous patch[1] that skips keyboard registration
-> when the matrix properties aren't present. This adds a compatible string
-> for this scenario so we can ease existing DTBs over to the new design.
+On Fri, Jun 03, 2022 at 02:12:58PM +0200, Stanislav Jakubek wrote:
+> On Sun, May 29, 2022 at 04:05:12PM +0200, Krzysztof Kozlowski wrote:
+> > On 27/05/2022 14:56, Stanislav Jakubek wrote:
+> > > Convert RDA Micro interrupt controller bindings to DT schema format.
+> > > 
+> > > Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+> > > ---
+> > > 
+> > > Didn't know what to do about the interrupt sources listed in the original txt file,
+> > > so I've split them off into a separate file. Hope that's okay.
+> > 
+> > Interrupt sources are not kept in header files.
 > 
-> Changes from v4 (https://lore.kernel.org/r/20220503204212.3907925-1-swboyd@chromium.org):
->  * Make switches compatible fail probe if no switches present
->  * Add description to compatible list
+> Ok, should I move them somewhere else or is it fine to drop them?
 > 
-> [...]
+> > Additionally are you
+> > sure this is a property of the interrupt controller, not a property of
+> > SoC itself? I would assume that one interrupt controller implementation
+> > (e.g. GIC) can be used in different SoCs and the sources are every time
+> > different because they depend on the actual wiring...
+> > 
+> 
+> I honestly have no idea, I just wanted to make some YAML conversions.
+> Maybe Mani could answer this?
+> 
 
-Here is the summary with links:
-  - [v5,1/2] dt-bindings: google,cros-ec-keyb: Introduce switches only compatible
-    https://git.kernel.org/chrome-platform/c/52dc6d3bea3b
-  - [v5,2/2] Input: cros-ec-keyb - skip keyboard registration w/o cros-ec-keyb compatible
-    https://git.kernel.org/chrome-platform/c/ca1eadbfcd36
+You can drop them. I didn't include it in a header file because it could vary
+between SoCs. So added here for documenting purposes.
 
-You are awesome, thank you!
+Thanks,
+Mani
+
+> > 
+> > Best regards,
+> > Krzysztof
+> 
+> 
+> Thanks,
+> Stanislav
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+மணிவண்ணன் சதாசிவம்
