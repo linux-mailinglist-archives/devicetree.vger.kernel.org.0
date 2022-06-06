@@ -2,83 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 227C553E864
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:08:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB5AC53E64E
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:07:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238310AbiFFNFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jun 2022 09:05:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48570 "EHLO
+        id S238480AbiFFNLX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jun 2022 09:11:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238275AbiFFNFZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 09:05:25 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 094ED381B4
-        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 06:05:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1654520717;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=KmLC5ubGvZsJtnoDwiPb040o/HjveLriUpNT/ErB8Q4=;
-        b=ZOZ+L6AdSap2Uyu1lcdrsVZi6RmHqiCUIROItZ7WSKFby3kgUT5NnBwCpsev7F10hMgNvv
-        j5yURo3Of6AN/ftL96lRQGK/0Cw4lSuIujqVDo7cRYRInHflodj3orbrfQABSEPwZgDSHa
-        TOHGwXJjH9KAaY4K7oLbTUq/cGlXsO8=
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
- [209.85.219.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-621-A9dxAXpnM_aDlxjpLIhOJw-1; Mon, 06 Jun 2022 09:04:31 -0400
-X-MC-Unique: A9dxAXpnM_aDlxjpLIhOJw-1
-Received: by mail-qv1-f70.google.com with SMTP id k6-20020a0cd686000000b004625db7d2aaso8705525qvi.7
-        for <devicetree@vger.kernel.org>; Mon, 06 Jun 2022 06:04:31 -0700 (PDT)
+        with ESMTP id S238475AbiFFNLW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 09:11:22 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1FFFBF89E
+        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 06:11:19 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id s12so21657429ejx.3
+        for <devicetree@vger.kernel.org>; Mon, 06 Jun 2022 06:11:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=/KmFuF4jKpeydY8hbk92wijllFhsM6aXhxKlyczUkII=;
+        b=Zb2v5Bcxnbp4pnPLrvvGYauoWTb/YiV4kr8T2Bi3n31ywqgW1fDOcnj4Y5Qhzv1Idm
+         MtLyfN+8uIZc5GUyYpWyqNcQCNEu8dkKk7IursYxJsDaqiVxqLHRa4JB7NHYjwKnL6M7
+         /3UxvJ7MWHZ77ML3MxF6LiYrWv7viZSTbkz3TsQWULBtNM5HutUhv/vinEye4zL0ktwO
+         CVr/8QdM1mXeK+pk46ww+rW1D4EQ/ZjP9iUSoU2PevWy97kHLwuhi2FOU3gZ0MQkikqe
+         +dB/NpUmOd+8KGvBG6jNes9RmCwT6wheAtCMtKlPC7bCbmBl/DcnMsqZ2gUa1/YwpMw5
+         N/4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=KmLC5ubGvZsJtnoDwiPb040o/HjveLriUpNT/ErB8Q4=;
-        b=j/pYD914ogP/2/ztMTdltntnzOUW/WAd91X1KKH98xjrEyFxqn2uYpIlwK3dLCmS+V
-         1amNXTPFqTgFQf+CxRmY73wO0RUQAeus/GUWEXDVcl4AwCbRReHBNAeCc5MblcnPxHbj
-         WUGxRy6V4Cupl1+zWsNb0X7vHNZJg7BEF4oqzqphHteeWMdENU491wROGy2uTiYfvVCj
-         B6x3C5Yo4+9Hn/kFpXzmUgam5pwUyYT6nrmTCiNOF7K4NBbWObafjCn/m9fRtLdlIJvG
-         u+hXOmwiF44HJcN09Q9UZRhvaFarnDMQl5UWRVkMpXHCsev9iFRgja8mvc7K+fxvEFCe
-         s4PQ==
-X-Gm-Message-State: AOAM5307/db6qTzv5xj5cPGByjT/3UXp9hNCFtH0U43OGMeKMVESaqbM
-        hYOrfNVr7jk4mkuheKpyykAZ2meyC/CL83F8EY4jh83YcbrLyZPd/l7jbn2g7hiOvAZbJLyU2lr
-        elV1dH0NW5VulEcB6npf5Ig==
-X-Received: by 2002:a05:622a:5c6:b0:304:b3d8:4ce with SMTP id d6-20020a05622a05c600b00304b3d804cemr18203130qtb.633.1654520670821;
-        Mon, 06 Jun 2022 06:04:30 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxf8UF9hMtdOpHMbIOcJNNBn52yz7ntP4+s1wtRwcpE+bq2R8yajX/Ou+cvd8l1HbrPiPum3g==
-X-Received: by 2002:a05:622a:5c6:b0:304:b3d8:4ce with SMTP id d6-20020a05622a05c600b00304b3d804cemr18203066qtb.633.1654520670349;
-        Mon, 06 Jun 2022 06:04:30 -0700 (PDT)
-Received: from halaneylaptop ([2600:1700:1ff0:d0e0::48])
-        by smtp.gmail.com with ESMTPSA id ay28-20020a05622a229c00b00304ecf35b50sm1996421qtb.97.2022.06.06.06.04.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jun 2022 06:04:29 -0700 (PDT)
-Date:   Mon, 6 Jun 2022 08:04:26 -0500
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     Harsh Agarwal <quic_harshq@quicinc.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_pkondeti@quicinc.com,
-        quic_ppratap@quicinc.com, quic_jackp@quicinc.com
-Subject: Re: [PATCH 3/3] usb: dwc3: Refactor PHY logic to support Multiport
- Controller
-Message-ID: <20220606130426.zcblqxuscpn4p6hm@halaneylaptop>
-References: <1653985217-20953-1-git-send-email-quic_harshq@quicinc.com>
- <1653985217-20953-4-git-send-email-quic_harshq@quicinc.com>
- <20220601195311.xvyqzez247djomcr@halaneylaptop>
- <365b8a54-5177-d728-5a95-dc561c1971ef@quicinc.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=/KmFuF4jKpeydY8hbk92wijllFhsM6aXhxKlyczUkII=;
+        b=cNmHIp1s3RnibPPhnIC+2GaD133nzZ+MlvJbnSQp2jq4vFxV/GwYSOh4CUzp5Bjfd4
+         bSMALjkw6OEwENIHjIVH4wr8L/XJtgkuHkvOV8lA6mIJ92Z9M9hPMR7upTBXH9TP2j5+
+         PXc1gr75V2jDoKJYFVMB5UOFfECeMriejoQFaFR7KZoY0KxAsqieIwyArYjdXExYTem7
+         uPoipDygSQ3wNRHYN1/+rKycRd/8gQmo3v/cDtZmvvCJ8pFhicNxFAAHwuGgjg8WTiX5
+         R8pjhZ0Ql2VGP0gvSajHUD4zWqlBHthK+Jrag6CFlVJAsp3p3U3vdPZdWTMS5mytpTh/
+         exzA==
+X-Gm-Message-State: AOAM530nIpRpMS8rmnJcavQFaLv3MdR07X2RaorCYZNzgB7leJxfUJ/4
+        fDfZ7+ozWLlu3JFtNx5pK3fvNA==
+X-Google-Smtp-Source: ABdhPJxK/dku1Cegj7+im0IoLMrrBQFPj08zFzUqOe++/+VsCOLq+IIcBWQ4fVLUqypvR16LpDcDUg==
+X-Received: by 2002:a17:906:4fce:b0:6f4:f41c:3233 with SMTP id i14-20020a1709064fce00b006f4f41c3233mr20383676ejw.117.1654521078400;
+        Mon, 06 Jun 2022 06:11:18 -0700 (PDT)
+Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id cf4-20020a0564020b8400b0042fbc23bfcesm4528813edb.46.2022.06.06.06.11.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Jun 2022 06:11:17 -0700 (PDT)
+Message-ID: <cf00eaad-420f-a6ad-ab7f-418f273886fe@linaro.org>
+Date:   Mon, 6 Jun 2022 15:11:16 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <365b8a54-5177-d728-5a95-dc561c1971ef@quicinc.com>
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v1 4/6] dt-bindings: mfd: convert da9063 to yaml
+Content-Language: en-US
+To:     mail@conchuod.ie, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Support Opensource <support.opensource@diasemi.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Steve Twiss <stwiss.opensource@diasemi.com>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-riscv@lists.infradead.org,
+        Atul Khare <atulkhare@rivosinc.com>
+References: <20220605133300.376161-1-mail@conchuod.ie>
+ <20220605133300.376161-5-mail@conchuod.ie>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220605133300.376161-5-mail@conchuod.ie>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,699 +86,237 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 05, 2022 at 11:51:38PM +0530, Harsh Agarwal wrote:
+On 05/06/2022 15:32, mail@conchuod.ie wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> On 6/2/2022 1:23 AM, Andrew Halaney wrote:
-> > On Tue, May 31, 2022 at 01:50:17PM +0530, Harsh Agarwal wrote:
-> > > Currently the DWC3 driver supports only single port controller
-> > > which requires at most 2 PHYs ie HS and SS PHYs.
-> > > 
-> > > But some SOCs have a "multiport" USB DWC3 controller where a
-> > > single controller supports multiple ports and each port have
-> > > their own PHYs. Refactor PHY logic to support the same.
-> > > 
-> > > Signed-off-by: Harsh Agarwal <quic_harshq@quicinc.com>
-> > > ---
-> > >   drivers/usb/dwc3/core.c   | 400 +++++++++++++++++++++++++++++++++-------------
-> > >   drivers/usb/dwc3/core.h   |  12 +-
-> > >   drivers/usb/dwc3/drd.c    |  16 +-
-> > >   drivers/usb/dwc3/gadget.c |   4 +-
-> > >   4 files changed, 305 insertions(+), 127 deletions(-)
-> > > 
-> > > diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-> > > index 5734219..5cc799e 100644
-> > > --- a/drivers/usb/dwc3/core.c
-> > > +++ b/drivers/usb/dwc3/core.c
-> > > @@ -120,7 +120,7 @@ static void __dwc3_set_mode(struct work_struct *work)
-> > >   {
-> > >   	struct dwc3 *dwc = work_to_dwc(work);
-> > >   	unsigned long flags;
-> > > -	int ret;
-> > > +	int i, ret;
-> > >   	u32 reg;
-> > >   	mutex_lock(&dwc->mutex);
-> > > @@ -189,10 +189,13 @@ static void __dwc3_set_mode(struct work_struct *work)
-> > >   		if (ret) {
-> > >   			dev_err(dwc->dev, "failed to initialize host\n");
-> > >   		} else {
-> > > -			if (dwc->usb2_phy)
-> > > -				otg_set_vbus(dwc->usb2_phy->otg, true);
-> > > -			phy_set_mode(dwc->usb2_generic_phy, PHY_MODE_USB_HOST);
-> > > -			phy_set_mode(dwc->usb3_generic_phy, PHY_MODE_USB_HOST);
-> > > +			for (i = 0; i < dwc->num_usb2_phy; i++) {
-> > > +				if (dwc->usb2_phy[i])
-> > > +					otg_set_vbus(dwc->usb2_phy[i]->otg, true);
-> > > +				phy_set_mode(dwc->usb2_generic_phy[i], PHY_MODE_USB_HOST);
-> > > +			}
-> > > +			for (i = 0; i < dwc->num_usb3_phy; i++)
-> > > +				phy_set_mode(dwc->usb3_generic_phy[i], PHY_MODE_USB_HOST);
-> > >   			if (dwc->dis_split_quirk) {
-> > >   				reg = dwc3_readl(dwc->regs, DWC3_GUCTL3);
-> > >   				reg |= DWC3_GUCTL3_SPLITDISABLE;
-> > > @@ -205,10 +208,10 @@ static void __dwc3_set_mode(struct work_struct *work)
-> > >   		dwc3_event_buffers_setup(dwc);
-> > > -		if (dwc->usb2_phy)
-> > > -			otg_set_vbus(dwc->usb2_phy->otg, false);
-> > > -		phy_set_mode(dwc->usb2_generic_phy, PHY_MODE_USB_DEVICE);
-> > > -		phy_set_mode(dwc->usb3_generic_phy, PHY_MODE_USB_DEVICE);
-> > > +		if (dwc->usb2_phy[0])
-> > > +			otg_set_vbus(dwc->usb2_phy[0]->otg, false);
-> > > +		phy_set_mode(dwc->usb2_generic_phy[0], PHY_MODE_USB_DEVICE);
-> > > +		phy_set_mode(dwc->usb3_generic_phy[0], PHY_MODE_USB_DEVICE);
-> > >   		ret = dwc3_gadget_init(dwc);
-> > >   		if (ret)
-> > > @@ -656,6 +659,7 @@ static int dwc3_core_ulpi_init(struct dwc3 *dwc)
-> > >    */
-> > >   static int dwc3_phy_setup(struct dwc3 *dwc)
-> > >   {
-> > > +	int i;
-> > >   	unsigned int hw_mode;
-> > >   	u32 reg;
-> > > @@ -716,7 +720,8 @@ static int dwc3_phy_setup(struct dwc3 *dwc)
-> > >   	if (dwc->dis_del_phy_power_chg_quirk)
-> > >   		reg &= ~DWC3_GUSB3PIPECTL_DEPOCHANGE;
-> > > -	dwc3_writel(dwc->regs, DWC3_GUSB3PIPECTL(0), reg);
-> > > +	for (i = 0; i < dwc->num_usb3_phy; i++)
-> > > +		dwc3_writel(dwc->regs, DWC3_GUSB3PIPECTL(i), reg);
-> > >   	reg = dwc3_readl(dwc->regs, DWC3_GUSB2PHYCFG(0));
-> > > @@ -730,7 +735,8 @@ static int dwc3_phy_setup(struct dwc3 *dwc)
-> > >   		} else if (dwc->hsphy_interface &&
-> > >   				!strncmp(dwc->hsphy_interface, "ulpi", 4)) {
-> > >   			reg |= DWC3_GUSB2PHYCFG_ULPI_UTMI;
-> > > -			dwc3_writel(dwc->regs, DWC3_GUSB2PHYCFG(0), reg);
-> > > +			for (i = 0; i < dwc->num_usb2_phy; i++)
-> > > +				dwc3_writel(dwc->regs, DWC3_GUSB2PHYCFG(i), reg);
-> > >   		} else {
-> > >   			/* Relying on default value. */
-> > >   			if (!(reg & DWC3_GUSB2PHYCFG_ULPI_UTMI))
-> > > @@ -787,7 +793,8 @@ static int dwc3_phy_setup(struct dwc3 *dwc)
-> > >   	if (dwc->dis_u2_freeclk_exists_quirk)
-> > >   		reg &= ~DWC3_GUSB2PHYCFG_U2_FREECLK_EXISTS;
-> > > -	dwc3_writel(dwc->regs, DWC3_GUSB2PHYCFG(0), reg);
-> > > +	for (i = 0; i < dwc->num_usb2_phy; i++)
-> > > +		dwc3_writel(dwc->regs, DWC3_GUSB2PHYCFG(i), reg);
-> > >   	return 0;
-> > >   }
-> > > @@ -826,17 +833,23 @@ static void dwc3_clk_disable(struct dwc3 *dwc)
-> > >   static void dwc3_core_exit(struct dwc3 *dwc)
-> > >   {
-> > > +	int i;
-> > >   	dwc3_event_buffers_cleanup(dwc);
-> > > -	usb_phy_shutdown(dwc->usb2_phy);
-> > > -	usb_phy_shutdown(dwc->usb3_phy);
-> > > -	phy_exit(dwc->usb2_generic_phy);
-> > > -	phy_exit(dwc->usb3_generic_phy);
-> > > +	for (i = 0; i < dwc->num_usb2_phy; i++) {
-> > > +		usb_phy_shutdown(dwc->usb2_phy[i]);
-> > > +		usb_phy_set_suspend(dwc->usb2_phy[i], 1);
-> > > +		phy_exit(dwc->usb2_generic_phy[i]);
-> > > +		phy_power_off(dwc->usb2_generic_phy[i]);
-> > > +	}
-> > > +
-> > > +	for (i = 0; i < dwc->num_usb3_phy; i++) {
-> > > +		usb_phy_shutdown(dwc->usb3_phy[i]);
-> > > +		usb_phy_set_suspend(dwc->usb3_phy[i], 1);
-> > > +		phy_exit(dwc->usb3_generic_phy[i]);
-> > > +		phy_power_off(dwc->usb3_generic_phy[i]);
-> > > +	}
-> > > -	usb_phy_set_suspend(dwc->usb2_phy, 1);
-> > > -	usb_phy_set_suspend(dwc->usb3_phy, 1);
-> > > -	phy_power_off(dwc->usb2_generic_phy);
-> > > -	phy_power_off(dwc->usb3_generic_phy);
-> > >   	dwc3_clk_disable(dwc);
-> > >   	reset_control_assert(dwc->reset);
-> > >   }
-> > > @@ -1039,7 +1052,7 @@ static int dwc3_core_init(struct dwc3 *dwc)
-> > >   {
-> > >   	unsigned int		hw_mode;
-> > >   	u32			reg;
-> > > -	int			ret;
-> > > +	int			ret, i;
-> > >   	hw_mode = DWC3_GHWPARAMS0_MODE(dwc->hwparams.hwparams0);
-> > > @@ -1067,16 +1080,24 @@ static int dwc3_core_init(struct dwc3 *dwc)
-> > >   		dwc->phys_ready = true;
-> > >   	}
-> > > -	usb_phy_init(dwc->usb2_phy);
-> > > -	usb_phy_init(dwc->usb3_phy);
-> > > -	ret = phy_init(dwc->usb2_generic_phy);
-> > > -	if (ret < 0)
-> > > -		goto err0a;
-> > > +	for (i = 0; i < dwc->num_usb2_phy; i++)
-> > > +		usb_phy_init(dwc->usb2_phy[i]);
-> > > +	for (i = 0; i < dwc->num_usb3_phy; i++)
-> > > +		usb_phy_init(dwc->usb3_phy[i]);
-> > > -	ret = phy_init(dwc->usb3_generic_phy);
-> > > -	if (ret < 0) {
-> > > -		phy_exit(dwc->usb2_generic_phy);
-> > > -		goto err0a;
-> > > +	for (i = 0; i < dwc->num_usb2_phy; i++) {
-> > > +		ret = phy_init(dwc->usb2_generic_phy[i]);
-> > > +		if (ret < 0)
-> > > +			goto err0a;
-> > Should we clean up the prior phys that did not fail? There's a couple
-> > loops where that question stands in this patch.
-> I am just keeping the Generic PHY implementation as is.
-> Earlier also we were cleaning up the HS PHY incase
-> SS PHY fails, so keeping the same for Multiport.
-> For you please point out if you find any major concern here?
-
-Earlier, there was only one usb2_generic_phy/usb3_generic_phy, so if
-phy_init(usb2_generic_phy) returned an error, it wasn't initialized, and
-it did not need a matching call to phy_exit(usb2_generic_phy).
-
-That is being called though ifthe superspeed phy fails since the
-highspeed one did successfully init, so things are cleaned up in the
-old cases.
-
-My point now is that, say with 4 highspeed phys, the 3rd one fails.
-i.e. phy_init(usb2_generic_phy[i]) where i == 2. In that case we don't
-ever call phy_exit() on the first two phys. I wouldn't say it is a
-major concern, but cleanup here is not fully done.
-
-You could do something like this to do clean it all up, kind of annoying
-though:
-
-	for (i = 0; i < dwc->num_usb2_phy; i++) {
-		ret = phy_init(dwc->usb2_generic_phy[i]);
-		if (ret < 0) {
-			/* clean up prior phys we initialized */
-			for (j = 0; j < i; j++)
-				phy_exit(usb2_generic_phy[j]);
-			goto err0a;
-		}
-	}
-
-Thanks,
-Andrew
-
+> Convert the dt binding for the da9063/da9063l to yaml.
 > 
-> > > +	}
-> > > +
-> > > +	for (i = 0; i < dwc->num_usb3_phy; i++) {
-> > > +		ret = phy_init(dwc->usb3_generic_phy[i]);
-> > > +		if (ret < 0) {
-> > > +			for (i = 0; i < dwc->num_usb2_phy; i++)
-> > > +				phy_exit(dwc->usb2_generic_phy[i]);
-> > > +			goto err0a;
-> > > +		}
-> > >   	}
-> > >   	ret = dwc3_core_soft_reset(dwc);
-> > > @@ -1086,15 +1107,19 @@ static int dwc3_core_init(struct dwc3 *dwc)
-> > >   	if (hw_mode == DWC3_GHWPARAMS0_MODE_DRD &&
-> > >   	    !DWC3_VER_IS_WITHIN(DWC3, ANY, 194A)) {
-> > >   		if (!dwc->dis_u3_susphy_quirk) {
-> > > -			reg = dwc3_readl(dwc->regs, DWC3_GUSB3PIPECTL(0));
-> > > -			reg |= DWC3_GUSB3PIPECTL_SUSPHY;
-> > > -			dwc3_writel(dwc->regs, DWC3_GUSB3PIPECTL(0), reg);
-> > > +			for (i = 0; i < dwc->num_usb3_phy; i++) {
-> > > +				reg = dwc3_readl(dwc->regs, DWC3_GUSB3PIPECTL(i));
-> > > +				reg |= DWC3_GUSB3PIPECTL_SUSPHY;
-> > > +				dwc3_writel(dwc->regs, DWC3_GUSB3PIPECTL(i), reg);
-> > > +			}
-> > >   		}
-> > >   		if (!dwc->dis_u2_susphy_quirk) {
-> > > -			reg = dwc3_readl(dwc->regs, DWC3_GUSB2PHYCFG(0));
-> > > -			reg |= DWC3_GUSB2PHYCFG_SUSPHY;
-> > > -			dwc3_writel(dwc->regs, DWC3_GUSB2PHYCFG(0), reg);
-> > > +			for (i = 0; i < dwc->num_usb2_phy; i++) {
-> > > +				reg = dwc3_readl(dwc->regs, DWC3_GUSB2PHYCFG(i));
-> > > +				reg |= DWC3_GUSB2PHYCFG_SUSPHY;
-> > > +				dwc3_writel(dwc->regs, DWC3_GUSB2PHYCFG(i), reg);
-> > > +			}
-> > >   		}
-> > >   	}
-> > > @@ -1113,15 +1138,19 @@ static int dwc3_core_init(struct dwc3 *dwc)
-> > >   	dwc3_set_incr_burst_type(dwc);
-> > > -	usb_phy_set_suspend(dwc->usb2_phy, 0);
-> > > -	usb_phy_set_suspend(dwc->usb3_phy, 0);
-> > > -	ret = phy_power_on(dwc->usb2_generic_phy);
-> > > -	if (ret < 0)
-> > > -		goto err2;
-> > > +	for (i = 0; i < dwc->num_usb2_phy; i++) {
-> > > +		usb_phy_set_suspend(dwc->usb2_phy[i], 0);
-> > > +		ret = phy_power_on(dwc->usb2_generic_phy[i]);
-> > > +		if (ret < 0)
-> > > +			goto err2;
-> > > +	}
-> > > -	ret = phy_power_on(dwc->usb3_generic_phy);
-> > > -	if (ret < 0)
-> > > -		goto err3;
-> > > +	for (i = 0; i < dwc->num_usb3_phy; i++) {
-> > > +		usb_phy_set_suspend(dwc->usb3_phy[i], 0);
-> > > +		ret = phy_power_on(dwc->usb3_generic_phy[i]);
-> > > +		if (ret < 0)
-> > > +			goto err3;
-> > > +	}
-> > >   	ret = dwc3_event_buffers_setup(dwc);
-> > >   	if (ret) {
-> > > @@ -1229,20 +1258,29 @@ static int dwc3_core_init(struct dwc3 *dwc)
-> > >   	return 0;
-> > >   err4:
-> > > -	phy_power_off(dwc->usb3_generic_phy);
-> > > +	for (i = 0; i < dwc->num_usb3_phy; i++)
-> > > +		phy_power_off(dwc->usb3_generic_phy[i]);
-> > >   err3:
-> > > -	phy_power_off(dwc->usb2_generic_phy);
-> > > +	for (i = 0; i < dwc->num_usb2_phy; i++)
-> > > +		phy_power_off(dwc->usb2_generic_phy[i]);
-> > >   err2:
-> > > -	usb_phy_set_suspend(dwc->usb2_phy, 1);
-> > > -	usb_phy_set_suspend(dwc->usb3_phy, 1);
-> > > +	for (i = 0; i < dwc->num_usb2_phy; i++)
-> > > +		usb_phy_set_suspend(dwc->usb2_phy[i], 1);
-> > > +	for (i = 0; i < dwc->num_usb3_phy; i++)
-> > > +		usb_phy_set_suspend(dwc->usb3_phy[i], 1);
-> > >   err1:
-> > > -	usb_phy_shutdown(dwc->usb2_phy);
-> > > -	usb_phy_shutdown(dwc->usb3_phy);
-> > > -	phy_exit(dwc->usb2_generic_phy);
-> > > -	phy_exit(dwc->usb3_generic_phy);
-> > > +	for (i = 0; i < dwc->num_usb2_phy; i++) {
-> > > +		usb_phy_shutdown(dwc->usb2_phy[i]);
-> > > +		phy_exit(dwc->usb2_generic_phy[i]);
-> > > +	}
-> > > +
-> > > +	for (i = 0; i < dwc->num_usb3_phy; i++) {
-> > > +		usb_phy_shutdown(dwc->usb3_phy[i]);
-> > > +		phy_exit(dwc->usb3_generic_phy[i]);
-> > > +	}
-> > >   err0a:
-> > >   	dwc3_ulpi_exit(dwc);
-> > > @@ -1251,53 +1289,172 @@ static int dwc3_core_init(struct dwc3 *dwc)
-> > >   	return ret;
-> > >   }
-> > > -static int dwc3_core_get_phy(struct dwc3 *dwc)
-> > > +static struct usb_phy *dwc3_core_get_phy_by_handle_with_node(struct device *dev,
-> > > +	const char *phandle, u8 index, struct device_node *lookup_node)
-> > > +{
-> > > +	struct device_node *node;
-> > > +	struct usb_phy	*phy;
-> > > +
-> > > +	node = of_parse_phandle(lookup_node, phandle, index);
-> > > +	if (!node) {
-> > > +		dev_err(dev, "failed to get %s phandle in %pOF node\n", phandle,
-> > > +			dev->of_node);
-> > > +		return ERR_PTR(-ENODEV);
-> > > +	}
-> > > +	phy = devm_usb_get_phy_by_node(dev, node, NULL);
-> > > +	of_node_put(node);
-> > > +	return phy;
-> > > +}
-> > > +
-> > > +static int dwc3_count_phys(struct dwc3 *dwc, struct device_node *lookup_node)
-> > > +{
-> > > +	int count;
-> > > +
-> > > +	count = of_count_phandle_with_args(lookup_node, "phys", NULL);
-> > > +
-> > > +	if (count == -ENOENT)
-> > > +		count = of_count_phandle_with_args(lookup_node, "usb-phy", NULL);
-> > > +
-> > > +	if (count == 1) {
-> > > +		dwc->num_usb2_phy++;
-> > > +	} else if (count == 2) {
-> > > +		dwc->num_usb2_phy++;
-> > > +		dwc->num_usb3_phy++;
-> > > +	} else {
-> > > +		return count;
-> > > +	}
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static int dwc3_extract_num_phys(struct dwc3 *dwc)
-> > > +{
-> > > +	struct device_node	*ports, *port;
-> > > +	int			ret;
-> > > +
-> > > +	/* Find if any "multiport" child is present inside DWC3*/
-> > Nit, space after DWC3
-> Done
-> > 
-> > > +	for_each_available_child_of_node(dwc->dev->of_node, ports) {
-> > > +		if (!strcmp(ports->name, "multiport"))
-> > > +			break;
-> > > +	}
-> > > +	if (!ports) {
-> > > +		dwc->num_usb2_phy = 1;
-> > > +		dwc->num_usb3_phy = 1;
-> > > +	} else {
-> > > +		for_each_available_child_of_node(ports, port) {
-> > > +			ret  = dwc3_count_phys(dwc, port);
-> > > +			if (ret)
-> > > +				return ret;
-> > > +		}
-> > > +	}
-> > > +	dev_info(dwc->dev, "Num of HS and SS PHY are %u %u\n", dwc->num_usb2_phy,
-> > > +									dwc->num_usb3_phy);
-> > > +
-> > > +	dwc->usb2_phy = devm_kzalloc(dwc->dev,
-> > > +		sizeof(*dwc->usb2_phy) * dwc->num_usb2_phy, GFP_KERNEL);
-> > > +	if (!dwc->usb2_phy)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	dwc->usb3_phy = devm_kzalloc(dwc->dev,
-> > > +		sizeof(*dwc->usb3_phy) * dwc->num_usb3_phy, GFP_KERNEL);
-> > > +	if (!dwc->usb3_phy)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	dwc->usb2_generic_phy = devm_kzalloc(dwc->dev,
-> > > +		sizeof(*dwc->usb2_generic_phy) * dwc->num_usb2_phy, GFP_KERNEL);
-> > > +	if (!dwc->usb2_generic_phy)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	dwc->usb3_generic_phy = devm_kzalloc(dwc->dev,
-> > > +		sizeof(*dwc->usb3_generic_phy) * dwc->num_usb3_phy, GFP_KERNEL);
-> > > +	if (!dwc->usb3_generic_phy)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static int dwc3_core_get_phy_by_node(struct dwc3 *dwc,
-> > > +		struct device_node *lookup_node, int i)
-> > >   {
-> > >   	struct device		*dev = dwc->dev;
-> > > -	struct device_node	*node = dev->of_node;
-> > > -	int ret;
-> > > +	int			ret;
-> > > -	if (node) {
-> > > -		dwc->usb2_phy = devm_usb_get_phy_by_phandle(dev, "usb-phy", 0);
-> > > -		dwc->usb3_phy = devm_usb_get_phy_by_phandle(dev, "usb-phy", 1);
-> > > +	if (lookup_node) {
-> > > +		dwc->usb2_phy[i] = devm_of_usb_get_phy_by_phandle(dev,
-> > > +								"usb-phy", 0, lookup_node);
-> > > +		dwc->usb3_phy[i] = devm_of_usb_get_phy_by_phandle(dev,
-> > > +								"usb-phy", 1, lookup_node);
-> > >   	} else {
-> > > -		dwc->usb2_phy = devm_usb_get_phy(dev, USB_PHY_TYPE_USB2);
-> > > -		dwc->usb3_phy = devm_usb_get_phy(dev, USB_PHY_TYPE_USB3);
-> > > +		dwc->usb2_phy[i] = devm_usb_get_phy(dev, USB_PHY_TYPE_USB2);
-> > > +		dwc->usb3_phy[i] = devm_usb_get_phy(dev, USB_PHY_TYPE_USB3);
-> > >   	}
-> > > -	if (IS_ERR(dwc->usb2_phy)) {
-> > > -		ret = PTR_ERR(dwc->usb2_phy);
-> > > +	if (IS_ERR(dwc->usb2_phy[i])) {
-> > > +		ret = PTR_ERR(dwc->usb2_phy[i]);
-> > >   		if (ret == -ENXIO || ret == -ENODEV)
-> > > -			dwc->usb2_phy = NULL;
-> > > +			dwc->usb2_phy[i] = NULL;
-> > >   		else
-> > >   			return dev_err_probe(dev, ret, "no usb2 phy configured\n");
-> > >   	}
-> > > -	if (IS_ERR(dwc->usb3_phy)) {
-> > > -		ret = PTR_ERR(dwc->usb3_phy);
-> > > +	if (IS_ERR(dwc->usb3_phy[i])) {
-> > > +		ret = PTR_ERR(dwc->usb3_phy[i]);
-> > >   		if (ret == -ENXIO || ret == -ENODEV)
-> > > -			dwc->usb3_phy = NULL;
-> > > +			dwc->usb3_phy[i] = NULL;
-> > >   		else
-> > >   			return dev_err_probe(dev, ret, "no usb3 phy configured\n");
-> > >   	}
-> > > -	dwc->usb2_generic_phy = devm_phy_get(dev, "usb2-phy");
-> > > -	if (IS_ERR(dwc->usb2_generic_phy)) {
-> > > -		ret = PTR_ERR(dwc->usb2_generic_phy);
-> > > -		if (ret == -ENOSYS || ret == -ENODEV)
-> > > -			dwc->usb2_generic_phy = NULL;
-> > > +	dwc->usb2_generic_phy[i] = devm_of_phy_get(dev, lookup_node, "usb2-phy");
-> > > +	if (IS_ERR(dwc->usb2_generic_phy[i])) {
-> > > +		ret = PTR_ERR(dwc->usb2_generic_phy[i]);
-> > > +		if (ret == -ENODEV)
-> > I think this can be -ENOSYS if !CONFIG_GENERIC_PHY
-> For now, I have added it back
-> > 
-> > > +			dwc->usb2_generic_phy[i] = NULL;
-> > >   		else
-> > >   			return dev_err_probe(dev, ret, "no usb2 phy configured\n");
-> > >   	}
-> > > -	dwc->usb3_generic_phy = devm_phy_get(dev, "usb3-phy");
-> > > -	if (IS_ERR(dwc->usb3_generic_phy)) {
-> > > -		ret = PTR_ERR(dwc->usb3_generic_phy);
-> > > -		if (ret == -ENOSYS || ret == -ENODEV)
-> > > -			dwc->usb3_generic_phy = NULL;
-> > > +	dwc->usb3_generic_phy[i] = devm_of_phy_get(dev, lookup_node, "usb3-phy");
-> > > +	if (IS_ERR(dwc->usb3_generic_phy[i])) {
-> > > +		ret = PTR_ERR(dwc->usb3_generic_phy[i]);
-> > > +		if (ret == -ENODEV)
-> > > +			dwc->usb3_generic_phy[i] = NULL;
-> > >   		else
-> > >   			return dev_err_probe(dev, ret, "no usb3 phy configured\n");
-> > >   	}
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static int dwc3_core_get_phy(struct dwc3 *dwc)
-> > > +{
-> > > +	struct device		*dev = dwc->dev;
-> > > +	struct device_node	*node = dev->of_node;
-> > > +	struct device_node	*ports, *port;
-> > > +	int ret, i = 0;
-> > > +
-> > > +	ret = dwc3_extract_num_phys(dwc);
-> > > +	if (ret) {
-> > > +		dev_err(dwc->dev, "Unable to extract number of PHYs\n");
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	/* Find if any "multiport" child is present inside DWC3*/
-> > Nit, space after DWC3
-> Done
-> > 
-> > > +	for_each_available_child_of_node(node, ports) {
-> > > +		if (!strcmp(ports->name, "multiport"))
-> > > +			break;
-> > > +	}
-> > > +
-> > > +	if (!ports) {
-> > > +		ret = dwc3_core_get_phy_by_node(dwc, node, 0);
-> > > +		if (ret)
-> > > +			return ret;
-> > > +	} else {
-> > > +		for_each_available_child_of_node(ports, port) {
-> > > +			ret = dwc3_core_get_phy_by_node(dwc, port, i);
-> > > +			if (ret)
-> > > +				return ret;
-> > > +			i++;
-> > > +		}
-> > > +	}
-> > >   	return 0;
-> > >   }
-> > > @@ -1305,16 +1462,16 @@ static int dwc3_core_get_phy(struct dwc3 *dwc)
-> > >   static int dwc3_core_init_mode(struct dwc3 *dwc)
-> > >   {
-> > >   	struct device *dev = dwc->dev;
-> > > -	int ret;
-> > > +	int i, ret;
-> > >   	switch (dwc->dr_mode) {
-> > >   	case USB_DR_MODE_PERIPHERAL:
-> > >   		dwc3_set_prtcap(dwc, DWC3_GCTL_PRTCAP_DEVICE);
-> > > -		if (dwc->usb2_phy)
-> > > -			otg_set_vbus(dwc->usb2_phy->otg, false);
-> > > -		phy_set_mode(dwc->usb2_generic_phy, PHY_MODE_USB_DEVICE);
-> > > -		phy_set_mode(dwc->usb3_generic_phy, PHY_MODE_USB_DEVICE);
-> > > +		if (dwc->usb2_phy[0])
-> > > +			otg_set_vbus(dwc->usb2_phy[0]->otg, false);
-> > > +		phy_set_mode(dwc->usb2_generic_phy[0], PHY_MODE_USB_DEVICE);
-> > > +		phy_set_mode(dwc->usb3_generic_phy[0], PHY_MODE_USB_DEVICE);
-> > >   		ret = dwc3_gadget_init(dwc);
-> > >   		if (ret)
-> > > @@ -1323,10 +1480,15 @@ static int dwc3_core_init_mode(struct dwc3 *dwc)
-> > >   	case USB_DR_MODE_HOST:
-> > >   		dwc3_set_prtcap(dwc, DWC3_GCTL_PRTCAP_HOST);
-> > > -		if (dwc->usb2_phy)
-> > > -			otg_set_vbus(dwc->usb2_phy->otg, true);
-> > > -		phy_set_mode(dwc->usb2_generic_phy, PHY_MODE_USB_HOST);
-> > > -		phy_set_mode(dwc->usb3_generic_phy, PHY_MODE_USB_HOST);
-> > > +		for (i = 0; i < dwc->num_usb3_phy; i++) {
-> > > +			if (dwc->usb2_phy[i])
-> > > +				otg_set_vbus(dwc->usb2_phy[i]->otg, true);
-> > > +			phy_set_mode(dwc->usb2_generic_phy[i], PHY_MODE_USB_HOST);
-> > > +		}
-> > > +
-> > > +
-> > > +		for (i = 0; i < dwc->num_usb3_phy; i++)
-> > > +			phy_set_mode(dwc->usb3_generic_phy[i], PHY_MODE_USB_HOST);
-> > >   		ret = dwc3_host_init(dwc);
-> > >   		if (ret)
-> > > @@ -1674,7 +1836,7 @@ static int dwc3_probe(struct platform_device *pdev)
-> > >   	struct resource		*res, dwc_res;
-> > >   	struct dwc3		*dwc;
-> > > -	int			ret;
-> > > +	int			ret, i;
-> > >   	void __iomem		*regs;
-> > > @@ -1839,15 +2001,18 @@ static int dwc3_probe(struct platform_device *pdev)
-> > >   	dwc3_debugfs_exit(dwc);
-> > >   	dwc3_event_buffers_cleanup(dwc);
-> > > -	usb_phy_shutdown(dwc->usb2_phy);
-> > > -	usb_phy_shutdown(dwc->usb3_phy);
-> > > -	phy_exit(dwc->usb2_generic_phy);
-> > > -	phy_exit(dwc->usb3_generic_phy);
-> > > -
-> > > -	usb_phy_set_suspend(dwc->usb2_phy, 1);
-> > > -	usb_phy_set_suspend(dwc->usb3_phy, 1);
-> > > -	phy_power_off(dwc->usb2_generic_phy);
-> > > -	phy_power_off(dwc->usb3_generic_phy);
-> > > +	for (i = 0; i < dwc->num_usb2_phy; i++) {
-> > > +		usb_phy_shutdown(dwc->usb2_phy[i]);
-> > > +		usb_phy_set_suspend(dwc->usb2_phy[i], 1);
-> > > +		phy_exit(dwc->usb2_generic_phy[i]);
-> > > +		phy_power_off(dwc->usb2_generic_phy[i]);
-> > > +	}
-> > > +	for (i = 0; i < dwc->num_usb3_phy; i++) {
-> > > +		usb_phy_shutdown(dwc->usb3_phy[i]);
-> > > +		usb_phy_set_suspend(dwc->usb3_phy[i], 1);
-> > > +		phy_exit(dwc->usb3_generic_phy[i]);
-> > > +		phy_power_off(dwc->usb3_generic_phy[i]);
-> > > +	}
-> > >   	dwc3_ulpi_exit(dwc);
-> > > @@ -1929,6 +2094,7 @@ static int dwc3_core_init_for_resume(struct dwc3 *dwc)
-> > >   static int dwc3_suspend_common(struct dwc3 *dwc, pm_message_t msg)
-> > >   {
-> > > +	int i;
-> > >   	unsigned long	flags;
-> > >   	u32 reg;
-> > > @@ -1951,17 +2117,21 @@ static int dwc3_suspend_common(struct dwc3 *dwc, pm_message_t msg)
-> > >   		/* Let controller to suspend HSPHY before PHY driver suspends */
-> > >   		if (dwc->dis_u2_susphy_quirk ||
-> > >   		    dwc->dis_enblslpm_quirk) {
-> > > -			reg = dwc3_readl(dwc->regs, DWC3_GUSB2PHYCFG(0));
-> > > -			reg |=  DWC3_GUSB2PHYCFG_ENBLSLPM |
-> > > -				DWC3_GUSB2PHYCFG_SUSPHY;
-> > > -			dwc3_writel(dwc->regs, DWC3_GUSB2PHYCFG(0), reg);
-> > > -
-> > > -			/* Give some time for USB2 PHY to suspend */
-> > > -			usleep_range(5000, 6000);
-> > > +			for (i = 0; i < dwc->num_usb2_phy; i++) {
-> > > +				reg = dwc3_readl(dwc->regs, DWC3_GUSB2PHYCFG(i));
-> > > +				reg |=  DWC3_GUSB2PHYCFG_ENBLSLPM |
-> > > +					DWC3_GUSB2PHYCFG_SUSPHY;
-> > > +				dwc3_writel(dwc->regs, DWC3_GUSB2PHYCFG(i), reg);
-> > > +
-> > > +				/* Give some time for USB2 PHY to suspend */
-> > > +				usleep_range(5000, 6000);
-> > > +			}
-> > >   		}
-> > > -		phy_pm_runtime_put_sync(dwc->usb2_generic_phy);
-> > > -		phy_pm_runtime_put_sync(dwc->usb3_generic_phy);
-> > > +		for (i = 0; i < dwc->num_usb2_phy; i++)
-> > > +			phy_pm_runtime_put_sync(dwc->usb2_generic_phy[i]);
-> > > +		for (i = 0; i < dwc->num_usb3_phy; i++)
-> > > +			phy_pm_runtime_put_sync(dwc->usb3_generic_phy[i]);
-> > >   		break;
-> > >   	case DWC3_GCTL_PRTCAP_OTG:
-> > >   		/* do nothing during runtime_suspend */
-> > > @@ -1989,7 +2159,7 @@ static int dwc3_suspend_common(struct dwc3 *dwc, pm_message_t msg)
-> > >   static int dwc3_resume_common(struct dwc3 *dwc, pm_message_t msg)
-> > >   {
-> > >   	unsigned long	flags;
-> > > -	int		ret;
-> > > +	int		i, ret;
-> > >   	u32		reg;
-> > >   	switch (dwc->current_dr_role) {
-> > > @@ -2012,17 +2182,21 @@ static int dwc3_resume_common(struct dwc3 *dwc, pm_message_t msg)
-> > >   			break;
-> > >   		}
-> > >   		/* Restore GUSB2PHYCFG bits that were modified in suspend */
-> > > -		reg = dwc3_readl(dwc->regs, DWC3_GUSB2PHYCFG(0));
-> > > -		if (dwc->dis_u2_susphy_quirk)
-> > > -			reg &= ~DWC3_GUSB2PHYCFG_SUSPHY;
-> > > +		for (i = 0; i < dwc->num_usb2_phy; i++) {
-> > > +			reg = dwc3_readl(dwc->regs, DWC3_GUSB2PHYCFG(i));
-> > > +			if (dwc->dis_u2_susphy_quirk)
-> > > +				reg &= ~DWC3_GUSB2PHYCFG_SUSPHY;
-> > > -		if (dwc->dis_enblslpm_quirk)
-> > > -			reg &= ~DWC3_GUSB2PHYCFG_ENBLSLPM;
-> > > +			if (dwc->dis_enblslpm_quirk)
-> > > +				reg &= ~DWC3_GUSB2PHYCFG_ENBLSLPM;
-> > > -		dwc3_writel(dwc->regs, DWC3_GUSB2PHYCFG(0), reg);
-> > > +			dwc3_writel(dwc->regs, DWC3_GUSB2PHYCFG(i), reg);
-> > > +		}
-> > > -		phy_pm_runtime_get_sync(dwc->usb2_generic_phy);
-> > > -		phy_pm_runtime_get_sync(dwc->usb3_generic_phy);
-> > > +		for (i = 0; i < dwc->num_usb2_phy; i++)
-> > > +			phy_pm_runtime_get_sync(dwc->usb2_generic_phy[i]);
-> > > +		for (i = 0; i < dwc->num_usb3_phy; i++)
-> > > +			phy_pm_runtime_get_sync(dwc->usb3_generic_phy[i]);
-> > >   		break;
-> > >   	case DWC3_GCTL_PRTCAP_OTG:
-> > >   		/* nothing to do on runtime_resume */
-> > > diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
-> > > index 81c486b..c169bf1 100644
-> > > --- a/drivers/usb/dwc3/core.h
-> > > +++ b/drivers/usb/dwc3/core.h
-> > > @@ -1020,6 +1020,8 @@ struct dwc3_scratchpad_array {
-> > >    * @usb_psy: pointer to power supply interface.
-> > >    * @usb2_phy: pointer to USB2 PHY
-> > >    * @usb3_phy: pointer to USB3 PHY
-> > > + * @num_usb2_phy: Number of HS ports controlled by the core
-> > > + * @num_dsphy: Number of SS ports controlled by the core
-> > s/num_dsphy/num_usb3_phy/
-> Done
-> > 
-> > >    * @usb2_generic_phy: pointer to USB2 PHY
-> > >    * @usb3_generic_phy: pointer to USB3 PHY
-> > >    * @phys_ready: flag to indicate that PHYs are ready
-> > > @@ -1147,11 +1149,13 @@ struct dwc3 {
-> > >   	struct reset_control	*reset;
-> > > -	struct usb_phy		*usb2_phy;
-> > > -	struct usb_phy		*usb3_phy;
-> > > +	struct usb_phy		**usb2_phy;
-> > > +	struct usb_phy		**usb3_phy;
-> > > +	u32			num_usb2_phy;
-> > > +	u32			num_usb3_phy;
-> > > -	struct phy		*usb2_generic_phy;
-> > > -	struct phy		*usb3_generic_phy;
-> > > +	struct phy		**usb2_generic_phy;
-> > > +	struct phy		**usb3_generic_phy;
-> > >   	bool			phys_ready;
-> > > diff --git a/drivers/usb/dwc3/drd.c b/drivers/usb/dwc3/drd.c
-> > > index 039bf24..404643f 100644
-> > > --- a/drivers/usb/dwc3/drd.c
-> > > +++ b/drivers/usb/dwc3/drd.c
-> > > @@ -384,10 +384,10 @@ void dwc3_otg_update(struct dwc3 *dwc, bool ignore_idstatus)
-> > >   		if (ret) {
-> > >   			dev_err(dwc->dev, "failed to initialize host\n");
-> > >   		} else {
-> > > -			if (dwc->usb2_phy)
-> > > -				otg_set_vbus(dwc->usb2_phy->otg, true);
-> > > -			if (dwc->usb2_generic_phy)
-> > > -				phy_set_mode(dwc->usb2_generic_phy,
-> > > +			if (dwc->usb2_phy[0])
-> > > +				otg_set_vbus(dwc->usb2_phy[0]->otg, true);
-> > > +			if (dwc->usb2_generic_phy[0])
-> > > +				phy_set_mode(dwc->usb2_generic_phy[0],
-> > >   					     PHY_MODE_USB_HOST);
-> > >   		}
-> > >   		break;
-> > > @@ -398,10 +398,10 @@ void dwc3_otg_update(struct dwc3 *dwc, bool ignore_idstatus)
-> > >   		dwc3_event_buffers_setup(dwc);
-> > >   		spin_unlock_irqrestore(&dwc->lock, flags);
-> > > -		if (dwc->usb2_phy)
-> > > -			otg_set_vbus(dwc->usb2_phy->otg, false);
-> > > -		if (dwc->usb2_generic_phy)
-> > > -			phy_set_mode(dwc->usb2_generic_phy,
-> > > +		if (dwc->usb2_phy[0])
-> > > +			otg_set_vbus(dwc->usb2_phy[0]->otg, false);
-> > > +		if (dwc->usb2_generic_phy[0])
-> > > +			phy_set_mode(dwc->usb2_generic_phy[0],
-> > >   				     PHY_MODE_USB_DEVICE);
-> > >   		ret = dwc3_gadget_init(dwc);
-> > >   		if (ret)
-> > > diff --git a/drivers/usb/dwc3/gadget.c b/drivers/usb/dwc3/gadget.c
-> > > index 00427d1..e3b2a17 100644
-> > > --- a/drivers/usb/dwc3/gadget.c
-> > > +++ b/drivers/usb/dwc3/gadget.c
-> > > @@ -2872,8 +2872,8 @@ static int dwc3_gadget_vbus_draw(struct usb_gadget *g, unsigned int mA)
-> > >   	union power_supply_propval	val = {0};
-> > >   	int				ret;
-> > > -	if (dwc->usb2_phy)
-> > > -		return usb_phy_set_power(dwc->usb2_phy, mA);
-> > > +	if (dwc->usb2_phy[0])
-> > > +		return usb_phy_set_power(dwc->usb2_phy[0], mA);
-> > >   	if (!dwc->usb_psy)
-> > >   		return -EOPNOTSUPP;
-> > > -- 
-> > > 2.7.4
-> > > 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  .../devicetree/bindings/mfd/da9063.txt        | 111 ----------------
+>  .../devicetree/bindings/mfd/da9063.yaml       | 123 ++++++++++++++++++
+>  .../devicetree/bindings/trivial-devices.yaml  |   2 -
+>  3 files changed, 123 insertions(+), 113 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mfd/da9063.txt
+>  create mode 100644 Documentation/devicetree/bindings/mfd/da9063.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/mfd/da9063.txt b/Documentation/devicetree/bindings/mfd/da9063.txt
+> deleted file mode 100644
+> index 91b79a21d403..000000000000
+> --- a/Documentation/devicetree/bindings/mfd/da9063.txt
+> +++ /dev/null
+> @@ -1,111 +0,0 @@
+> -* Dialog DA9063/DA9063L Power Management Integrated Circuit (PMIC)
+> -
+> -DA9063 consists of a large and varied group of sub-devices (I2C Only):
+> -
+> -Device                   Supply Names    Description
+> -------                   ------------    -----------
+> -da9063-regulator        :               : LDOs & BUCKs
+> -da9063-onkey            :               : On Key
+> -da9063-rtc              :               : Real-Time Clock (DA9063 only)
+> -da9063-watchdog         :               : Watchdog
+> -
+> -======
+> -
+> -Required properties:
+> -
+> -- compatible : Should be "dlg,da9063" or "dlg,da9063l"
+> -- reg : Specifies the I2C slave address (this defaults to 0x58 but it can be
+> -  modified to match the chip's OTP settings).
+> -- interrupts : IRQ line information.
+> -- interrupt-controller
+> -
+> -Sub-nodes:
+> -
+> -- regulators : This node defines the settings for the LDOs and BUCKs.
+> -  The DA9063(L) regulators are bound using their names listed below:
+> -
+> -    bcore1    : BUCK CORE1
+> -    bcore2    : BUCK CORE2
+> -    bpro      : BUCK PRO
+> -    bmem      : BUCK MEM
+> -    bio       : BUCK IO
+> -    bperi     : BUCK PERI
+> -    ldo1      : LDO_1	(DA9063 only)
+> -    ldo2      : LDO_2	(DA9063 only)
+> -    ldo3      : LDO_3
+> -    ldo4      : LDO_4	(DA9063 only)
+> -    ldo5      : LDO_5	(DA9063 only)
+> -    ldo6      : LDO_6	(DA9063 only)
+> -    ldo7      : LDO_7
+> -    ldo8      : LDO_8
+> -    ldo9      : LDO_9
+> -    ldo10     : LDO_10	(DA9063 only)
+> -    ldo11     : LDO_11
+> -
+> -  The component follows the standard regulator framework and the bindings
+> -  details of individual regulator device can be found in:
+> -  Documentation/devicetree/bindings/regulator/regulator.txt
+> -
+> -- rtc : This node defines settings for the Real-Time Clock associated with
+> -  the DA9063 only. The RTC is not present in DA9063L. There are currently
+> -  no entries in this binding, however compatible = "dlg,da9063-rtc" should
+> -  be added if a node is created.
+> -
+> -- onkey : This node defines the OnKey settings for controlling the key
+> -  functionality of the device. The node should contain the compatible property
+> -  with the value "dlg,da9063-onkey".
+> -
+> -  Optional onkey properties:
+> -
+> -  - dlg,disable-key-power : Disable power-down using a long key-press. If this
+> -    entry exists the OnKey driver will remove support for the KEY_POWER key
+> -    press. If this entry does not exist then by default the key-press
+> -    triggered power down is enabled and the OnKey will support both KEY_POWER
+> -    and KEY_SLEEP.
+> -
+> -- watchdog : This node defines settings for the Watchdog timer associated
+> -  with the DA9063 and DA9063L. There are currently no entries in this
+> -  binding, however compatible = "dlg,da9063-watchdog" should be added
+> -  if a node is created.
+> -
+> -
+> -Example:
+> -
+> -	pmic0: da9063@58 {
+> -		compatible = "dlg,da9063"
+> -		reg = <0x58>;
+> -		interrupt-parent = <&gpio6>;
+> -		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
+> -		interrupt-controller;
+> -
+> -		rtc {
+> -			compatible = "dlg,da9063-rtc";
+> -		};
+> -
+> -		wdt {
+> -			compatible = "dlg,da9063-watchdog";
+> -		};
+> -
+> -		onkey {
+> -			compatible = "dlg,da9063-onkey";
+> -			dlg,disable-key-power;
+> -		};
+> -
+> -		regulators {
+> -			DA9063_BCORE1: bcore1 {
+> -				regulator-name = "BCORE1";
+> -				regulator-min-microvolt = <300000>;
+> -				regulator-max-microvolt = <1570000>;
+> -				regulator-min-microamp = <500000>;
+> -				regulator-max-microamp = <2000000>;
+> -				regulator-boot-on;
+> -			};
+> -			DA9063_LDO11: ldo11 {
+> -				regulator-name = "LDO_11";
+> -				regulator-min-microvolt = <900000>;
+> -				regulator-max-microvolt = <3600000>;
+> -				regulator-boot-on;
+> -			};
+> -		};
+> -	};
+> -
+> diff --git a/Documentation/devicetree/bindings/mfd/da9063.yaml b/Documentation/devicetree/bindings/mfd/da9063.yaml
+> new file mode 100644
+> index 000000000000..376880061f42
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/da9063.yaml
 
+dlg,da9063.yaml
+
+> @@ -0,0 +1,123 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/da9063.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Dialog DA9063/DA9063L Power Management Integrated Circuit (PMIC)
+> +
+> +maintainers:
+> +  - Steve Twiss <stwiss.opensource@diasemi.com>
+> +
+> +description: |
+> +  For device-tree bindings of other sub-modules refer to the binding documents
+> +  under the respective sub-system directories.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - dlg,da9063
+> +      - dlg,da9063l
+> +
+> +  reg:
+> +    description:
+> +      I2C device address.
+
+Skip description.
+
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  "#interrupt-cells":
+> +    const: 2
+> +
+> +  watchdog:
+> +    type: object
+> +    $ref: ../watchdog/watchdog.yaml#
+
+1. full reference, so /schemas/watchdog/....
+2. unevaluatedProperties:false
+
+> +    properties:
+> +      compatible:
+> +        const: dlg,da9063-watchdog
+
+> +
+> +  rtc:
+> +    type: object
+> +    $ref: ../rtc/rtc.yaml#
+
+Ditto
+
+> +    properties:
+> +      compatible:
+> +        const: dlg,da9063-rtc
+> +
+> +  onkey:
+> +    type: object
+> +    $ref: ../input/input.yaml#
+
+Ditto
+
+> +    properties:
+> +      compatible:
+> +        const: dlg,da9063-onkey
+> +
+> +      dlg,disable-key-power:
+> +        type: boolean
+> +        description: |
+> +          Disable power-down using a long key-press.
+> +          If this entry does not exist then by default the key-press triggered
+> +          power down is enabled and the OnKey will support both KEY_POWER and
+> +          KEY_SLEEP.
+> +
+> +  regulators:
+> +    type: object
+> +    patternProperties:
+> +      "^(ldo[1-11]|bcore[1-2]|bpro|bmem|bio|bperi)$":
+> +        $ref: ../regulator/regulator.yaml
+
+Ditto
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-controller
+> +
+Best regards,
+Krzysztof
