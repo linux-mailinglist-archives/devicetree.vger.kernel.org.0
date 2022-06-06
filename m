@@ -2,56 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B55D53EBE4
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:09:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0F8153E9CC
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:08:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241208AbiFFQIp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jun 2022 12:08:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56466 "EHLO
+        id S241562AbiFFQNk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jun 2022 12:13:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241219AbiFFQIp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 12:08:45 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BC8C19FA4;
-        Mon,  6 Jun 2022 09:08:44 -0700 (PDT)
+        with ESMTP id S241595AbiFFQNg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 12:13:36 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2E8A1248D3;
+        Mon,  6 Jun 2022 09:13:35 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id DC40BB81A87;
-        Mon,  6 Jun 2022 16:08:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B34DC385A9;
-        Mon,  6 Jun 2022 16:08:38 +0000 (UTC)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 0E8B8CE1C04;
+        Mon,  6 Jun 2022 16:13:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 130A0C34115;
+        Mon,  6 Jun 2022 16:13:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654531721;
-        bh=VcnSGVYbTblm760SjoQqgE9wkQ5/rRfgycH6HwRHJBc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=V+beBwDxRnKh4QQe2VqHO65haLEa4SFcYqmwQ5ha8+WUYCaxluVJVO3WScGsMh7p/
-         yCfF9SVghYkLIH6xbuY7EblAx0+pw2kCeFY+U8r5aYiYId7tg1gWkBet3TOBYGLIQT
-         PcGrSh8CCrUG5ygkR02Frlr2vLWxWu4elm2N6km6BG/SAlnAB2hA9vt/LQe6X0dQsB
-         l9+KnyRf/Tk2tZ0WgxX6uJlruPDsrpmtYtQVC3nbp0WKqm9tlPjhyXCBWfx3JGBLic
-         6DN4asOH0MIrEIiwReQNoKx9++AZ6UztiGOM76QW95uzWgz6z9uoC1ZFVsS5+hc9Y0
-         yB6c3lFfV6NaA==
-Date:   Mon, 6 Jun 2022 17:08:35 +0100
+        s=k20201202; t=1654532012;
+        bh=KzlsCY5EneODGrRzogwzoUlBLdPUtIfNZ9l+NxOzLQc=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=NlF6jaNtP+Vg7t9azUkk8f/rm25iImW2yfh9pKiK4/70IPqxibkL2erZQhw2UYOcP
+         vt/NRoRxJvq47TG1PtQzNL0E4Q4B8QEnaImnKmyr4h6r7P/4PEehpe53vEuMnpR/kk
+         jkR9PzOm6yeXoLIGKjhB/9pyTzs5ofg6CgoYfEiJtbu5C6/iLakxm7s9ZOdW3qab1e
+         A+cOpvre8Zcvd6kE2ACj/DLCNNGTYMK7hkA9j80002gk/YcMY6svCH+UHC4Mocjg2O
+         ziDdANo+53zRL/IjcxRwLKFF9xcRI8yMxoCq4/BqfJO6zLglQAhJgpVv8H4d+JIJY1
+         f1GhV/Dht7z5Q==
 From:   Mark Brown <broonie@kernel.org>
-To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
-Cc:     robh+dt@kernel.org, angelogioacchino.delregno@collabora.com,
-        aaronyu@google.com, matthias.bgg@gmail.com, trevor.wu@mediatek.com,
-        tzungbi@google.com, julianbraha@gmail.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v5 19/20] ASoC: mediatek: mt8186: add machine driver with
- mt6366, rt1019 and rt5682s
-Message-ID: <Yp4mg3ObzfQJ3FgP@sirena.org.uk>
-References: <20220523132858.22166-1-jiaxin.yu@mediatek.com>
- <20220523132858.22166-20-jiaxin.yu@mediatek.com>
+To:     conor.dooley@microchip.com, agross@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, bjorn.andersson@linaro.org,
+        robh@kernel.org
+Cc:     krzysztof.kozlowski@linaro.org, devicetree@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20220526014141.2872567-1-robh@kernel.org>
+References: <20220526014141.2872567-1-robh@kernel.org>
+Subject: Re: [PATCH] spi: dt-bindings: Fix unevaluatedProperties warnings in examples
+Message-Id: <165453200977.2010189.2397395940075983324.b4-ty@kernel.org>
+Date:   Mon, 06 Jun 2022 17:13:29 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="9rL9qmwu0rrfH0q3"
-Content-Disposition: inline
-In-Reply-To: <20220523132858.22166-20-jiaxin.yu@mediatek.com>
-X-Cookie: Zeus gave Leda the bird.
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -62,95 +56,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 25 May 2022 20:41:41 -0500, Rob Herring wrote:
+> The 'unevaluatedProperties' schema checks is not fully working and doesn't
+> catch some cases where there's a $ref to another schema. A fix is pending,
+> but results in new warnings in examples.
+> 
+> 'spi-max-frequency' is supposed to be a per SPI peripheral device property,
+> not a SPI controller property, so drop it.
+> 
+> [...]
 
---9rL9qmwu0rrfH0q3
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied to
 
-On Mon, May 23, 2022 at 09:28:57PM +0800, Jiaxin Yu wrote:
-> Add support for mt8186 board with mt6366, rt1019 and rt5682s.
->=20
-> Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
-This breaks an x86 allmodconfig build:
+Thanks!
 
-/build/stage/linux/sound/soc/mediatek/mt8186/mt8186-mt6366-da7219-max98357.=
-c: In function =E2=80=98mt8186_da7219_init=E2=80=99:
-/build/stage/linux/sound/soc/mediatek/mt8186/mt8186-mt6366-da7219-max98357.=
-c:58:15: error: too many arguments to function =E2=80=98snd_soc_card_jack_n=
-ew=E2=80=99
-   58 |         ret =3D snd_soc_card_jack_new(rtd->card, "Headset Jack",
-      |               ^~~~~~~~~~~~~~~~~~~~~
-In file included from /build/stage/linux/include/sound/soc.h:1362,
-                 from /build/stage/linux/sound/soc/mediatek/mt8186/mt8186-m=
-t6366-da7219-max98357.c:15:
-/build/stage/linux/include/sound/soc-card.h:18:5: note: declared here
-   18 | int snd_soc_card_jack_new(struct snd_soc_card *card, const char *id=
-, int type,
-      |     ^~~~~~~~~~~~~~~~~~~~~
-/build/stage/linux/sound/soc/mediatek/mt8186/mt8186-mt6366-da7219-max98357.=
-c: In function =E2=80=98mt8186_mt6366_da7219_max98357_hdmi_init=E2=80=99:
-/build/stage/linux/sound/soc/mediatek/mt8186/mt8186-mt6366-da7219-max98357.=
-c:161:15: error: too many arguments to function =E2=80=98snd_soc_card_jack_=
-new=E2=80=99
-  161 |         ret =3D snd_soc_card_jack_new(rtd->card, "HDMI Jack", SND_J=
-ACK_LINEOUT,
-      |               ^~~~~~~~~~~~~~~~~~~~~
-In file included from /build/stage/linux/include/sound/soc.h:1362,
-                 from /build/stage/linux/sound/soc/mediatek/mt8186/mt8186-m=
-t6366-da7219-max98357.c:15:
-/build/stage/linux/include/sound/soc-card.h:18:5: note: declared here
-   18 | int snd_soc_card_jack_new(struct snd_soc_card *card, const char *id=
-, int type,
-      |     ^~~~~~~~~~~~~~~~~~~~~
-make[5]: *** [/build/stage/linux/scripts/Makefile.build:249: sound/soc/medi=
-atek/mt8186/mt8186-mt6366-da7219-max98357.o] Error 1
-/build/stage/linux/sound/soc/mediatek/mt8186/mt8186-mt6366-rt1019-rt5682s.c=
-: In function =E2=80=98mt8186_rt5682s_init=E2=80=99:
-/build/stage/linux/sound/soc/mediatek/mt8186/mt8186-mt6366-rt1019-rt5682s.c=
-:61:15: error: too many arguments to function =E2=80=98snd_soc_card_jack_ne=
-w=E2=80=99
-   61 |         ret =3D snd_soc_card_jack_new(rtd->card, "Headset Jack",
-      |               ^~~~~~~~~~~~~~~~~~~~~
-In file included from /build/stage/linux/include/sound/soc.h:1362,
-                 from /build/stage/linux/sound/soc/mediatek/mt8186/mt8186-m=
-t6366-rt1019-rt5682s.c:17:
-/build/stage/linux/include/sound/soc-card.h:18:5: note: declared here
-   18 | int snd_soc_card_jack_new(struct snd_soc_card *card, const char *id=
-, int type,
-      |     ^~~~~~~~~~~~~~~~~~~~~
-/build/stage/linux/sound/soc/mediatek/mt8186/mt8186-mt6366-rt1019-rt5682s.c=
-: In function =E2=80=98mt8186_mt6366_rt1019_rt5682s_hdmi_init=E2=80=99:
-/build/stage/linux/sound/soc/mediatek/mt8186/mt8186-mt6366-rt1019-rt5682s.c=
-:137:15: error: too many arguments to function =E2=80=98snd_soc_card_jack_n=
-ew=E2=80=99
-  137 |         ret =3D snd_soc_card_jack_new(rtd->card, "HDMI Jack", SND_J=
-ACK_LINEOUT,
-      |               ^~~~~~~~~~~~~~~~~~~~~
-In file included from /build/stage/linux/include/sound/soc.h:1362,
-                 from /build/stage/linux/sound/soc/mediatek/mt8186/mt8186-m=
-t6366-rt1019-rt5682s.c:17:
-/build/stage/linux/include/sound/soc-card.h:18:5: note: declared here
-   18 | int snd_soc_card_jack_new(struct snd_soc_card *card, const char *id=
-, int type,
-      |     ^~~~~~~~~~~~~~~~~~~~~
-make[5]: *** [/build/stage/linux/scripts/Makefile.build:249: sound/soc/medi=
-atek/mt8186/mt8186-mt6366-rt1019-rt5682s.o] Error 1
+[1/1] spi: dt-bindings: Fix unevaluatedProperties warnings in examples
+      commit: 6aa27071e4354c351d98e345fc888b70f335f185
 
---9rL9qmwu0rrfH0q3
-Content-Type: application/pgp-signature; name="signature.asc"
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
------BEGIN PGP SIGNATURE-----
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmKeJoIACgkQJNaLcl1U
-h9CFwgf9G5LGVON0H/dhjgLQ816wyvWWAsYE0+WxJJpawHUSAJG6kzTYC82FZhmg
-sKZTDn6T5jUPGtP/wzWpE+EzcUyUds+Uo6QzoZ4rqzYCEid76p5sksmT5oGdmn8R
-HaQSkTKIWF6OprneORmZda8SBV+UcpqScD8irzR1x5V/ZAxo7BRqfOw3ZiTcz8Ru
-RgJf+UcRdUoECGjsxBl0yA4BLMfk6Bt8SDPr/KG5J4mkdFxzRwZCz68nyWdt0CFE
-FDU1KIBy/P0Oy5eyMdw1n+gT63rWT2swrBcjfanH+HML8cj4Yo63Fl7wMxA1C+WN
-ZB/b3z4o7yvK/wM7PbzvknzAm0536w==
-=91r5
------END PGP SIGNATURE-----
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
---9rL9qmwu0rrfH0q3--
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
