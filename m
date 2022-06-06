@@ -2,133 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78C6153EAF0
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:09:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADB7153E901
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:08:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241199AbiFFP5P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jun 2022 11:57:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58922 "EHLO
+        id S241197AbiFFQGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jun 2022 12:06:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241168AbiFFP5I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 11:57:08 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89AF013DF7
-        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 08:57:07 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id j10so23967009lfe.12
-        for <devicetree@vger.kernel.org>; Mon, 06 Jun 2022 08:57:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=YdNQsAh0qlk4u0zBBVjDkzwiH9R4DqegW0uwFh+QZew=;
-        b=Ry/wQFW21izQYCGVPxoTTQkGOePxLZ94A6g0x0GNQyIisRWf063vJSA9VrU6GHiNBJ
-         8tX5GNA2Q/evL4mMqDhUdJP/XblS2pNXJtKFL8BB5v4nSP+/BNMhEhM9eY7ndE8sqpEd
-         NkWhDGj2l5I1giLnh5G/k9ykB4AhicZpUHfTpl4a7itRpZQZCBNjxW0TpeS0DEfpLCEq
-         7t7VYoei6nEklWuuJEgdUFWGJf+1zQYE2oQABaGRbJMLdBv33H3GUPn4rT1nEKFh3veh
-         RPLBYhzEFDxkR+/0tKBtIVmloJoLJgeszvSZkxPXZxRz3EfvLAY/vnmGSAsT1MzflzY2
-         jsxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=YdNQsAh0qlk4u0zBBVjDkzwiH9R4DqegW0uwFh+QZew=;
-        b=F34ndbByuNv1ZQ27KsBFYxZ8SFfHKckBJVLEgHE9hMBRoTtUN/Pa0wcRREJapsL7WN
-         fMVPNcTZwuQB1wBFmf+BIacsERYj1cWWcUrSeWfIm7BklP3Gr52XGHTMdmDduPPyRu7F
-         EhvPeHtQX+xzw9iBy8hu+0oB5qUXcH/45SNn5R6iiqupl5MYfh3W77JO+qeGOuMWAeEX
-         wn0uwxN7JYvt5rcQP41hxBpNE2vYIWF6xse4PCYTOFm1Wq/M6AO0qHw5SKxQuXfR4mHG
-         Y8WmLco1CpUH0SBu3PImOKCDttQSI9AbRZgvZAuyBEx+SW6pTIsTp+fXToHv1U8eEkhf
-         CPOA==
-X-Gm-Message-State: AOAM530Ieb1QfAUWVZ4hADYlIEME8D3lBoPywagE3DL+KkRkpIUIc88A
-        yF5VoNWL9xJqMfC7Htoqg00iQQ==
-X-Google-Smtp-Source: ABdhPJxanyqAWNvCGkqFfFiDr0g6eEVU9GfHoKUKyz3jwWQBwP8oldiA+lJj0xPi8o4Z+6YdMBM3Yw==
-X-Received: by 2002:ac2:5b08:0:b0:479:16ed:e624 with SMTP id v8-20020ac25b08000000b0047916ede624mr11946145lfn.618.1654531025868;
-        Mon, 06 Jun 2022 08:57:05 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id j22-20020a056512345600b00478ed85bc92sm2906342lfr.249.2022.06.06.08.57.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Jun 2022 08:57:04 -0700 (PDT)
-Message-ID: <9872153f-8f46-23c3-6eb7-154d20fdee5b@linaro.org>
-Date:   Mon, 6 Jun 2022 18:57:04 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH] arm64: dts: qcom: sm8450: fix interconnects property of
- UFS node
-Content-Language: en-GB
-To:     Vinod Koul <vkoul@kernel.org>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+        with ESMTP id S241168AbiFFQGn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 12:06:43 -0400
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0F1F1A44B4;
+        Mon,  6 Jun 2022 09:06:41 -0700 (PDT)
+Received: from g550jk.arnhem.chello.nl (31-151-115-246.dynamic.upc.nl [31.151.115.246])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 783DECCE35;
+        Mon,  6 Jun 2022 16:06:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1654531569; bh=FDmhzeRJXLln4Tsh/IURDfuOWharrgHiMsf+T6eZVRk=;
+        h=From:To:Cc:Subject:Date;
+        b=kIXuQ34jpxSgTAlu5WQwYutKhQUg6+TwsdaWr3k9kvYEfI5uyWrGa6TrRcvbiAWxJ
+         EPWQrlhfOVl/5YFwN7isG+qeC3a53HRBmMX+fMvvPOlOTjXqe7oSBMpTFt+5GJABhQ
+         /m4BrcW7yN/T/rIKEVaEQfyDVZrFkCKa/mewNKD0=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Luca Weiss <luca@z3ntu.xyz>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220310221934.1560729-1-vladimir.zapolskiy@linaro.org>
- <dbe6d9c5-f717-785f-e65d-baa1328cea2b@linaro.org> <Ykx6NWrcf4IA2Mam@ripper>
- <CAA8EJpqrJr5RB8E6CQ+cAgp6bad4m_LSG6CPeMsf+Ws0jqFf1Q@mail.gmail.com>
- <YlTlZa35A4lu02oI@builder.lan>
- <2af9a8a7-0904-df31-7c1a-21705bcda8d6@linaro.org> <YlVf13E+AI4JAgkp@matsya>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <YlVf13E+AI4JAgkp@matsya>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] ARM: dts: qcom: msm8974: re-add missing pinctrl
+Date:   Mon,  6 Jun 2022 18:04:21 +0200
+Message-Id: <20220606160421.1641778-1-luca@z3ntu.xyz>
+X-Mailer: git-send-email 2.36.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
+        FROM_SUSPICIOUS_NTLD_FP,PDS_OTHER_BAD_TLD,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: **
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/04/2022 14:17, Vinod Koul wrote:
-> On 12-04-22, 09:34, Vladimir Zapolskiy wrote:
->> Hi Bjorn,
->>
->> On 4/12/22 05:35, Bjorn Andersson wrote:
->>> On Tue 05 Apr 12:38 CDT 2022, Dmitry Baryshkov wrote:
->>>
->>>> On Tue, 5 Apr 2022 at 20:17, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
->>>>>
->>>>> On Tue 05 Apr 08:38 PDT 2022, Dmitry Baryshkov wrote:
->>>>>
->>>>>> On 11/03/2022 01:19, Vladimir Zapolskiy wrote:
->>>>>>> All interconnect device tree nodes on sm8450 are 2-cells, however in
->>>>>>> UFS node they are handled as 1-cells, fix it.
->>>>>>>
->>>>>>> Fixes: aa2d0bf04a3c ("arm64: dts: qcom: sm8450: add interconnect nodes")
->>>>>>> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
->>>>>>
->>>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>>>>
->>>>>> Bjorn, could you please this pick for the -rc kernel?
->>>>>>
->>>>>
->>>>> The change is obviously correct, but what difference does this change
->>>>> make with the current implementation?
->>>>
->>>> it makes interconnect paths probe correctly. All NoC have
->>>> #interconnec-cells = <2> now.
->>>>
->>>
->>> But there's no code in the UFS driver that calls of_icc_get(), so what
->>> does this actually do? (Other than correcting the dtb for the day when
->>> we add that support to the driver).
->>
->> FWIW the change also has a runtime effect, it fixes a parsing of the board dtb,
->> otherwise a warning in the kernel log appears:
->>
->>    OF: /soc@0/ufshc@1d84000: could not get #interconnect-cells for /clocks/sleep-clk
->>
->> Why /clocks/sleep-clk is mentioned here at all??
->> Its phandle value is 0x26, which is equal to SLAVE_UFS_MEM_CFG from the array.
-> 
-> We should either apply this fix or a patch to drop this line from dts.
-> Either would be apt and latter would make more sense..
+As part of a recent cleanup commit, the pinctrl for a few uart and i2c
+nodes was removed. Adjust the names and/or add it back and assign it to
+the uart and i2c nodes.
 
-So, neither of the patches were applied. I'd suggest to apply this one 
-now during the -rc stage.
+Fixes: 1dfe967ec7cf ("ARM: dts: qcom-msm8974*: Consolidate I2C/UART/SDHCI")
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+---
+Bjorn, could you please pick this up for -fixes so it lands in an
+upcoming 5.19-rc?
 
+ arch/arm/boot/dts/qcom-msm8974.dtsi | 30 +++++++++++++++++++++++++----
+ 1 file changed, 26 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
+index 814ad0b46232..c3b8a6d63027 100644
+--- a/arch/arm/boot/dts/qcom-msm8974.dtsi
++++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
+@@ -506,6 +506,8 @@ blsp1_uart2: serial@f991e000 {
+ 			interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&gcc GCC_BLSP1_UART2_APPS_CLK>, <&gcc GCC_BLSP1_AHB_CLK>;
+ 			clock-names = "core", "iface";
++			pinctrl-names = "default";
++			pinctrl-0 = <&blsp1_uart2_default>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -581,6 +583,9 @@ blsp2_uart1: serial@f995d000 {
+ 			interrupts = <GIC_SPI 113 IRQ_TYPE_NONE>;
+ 			clocks = <&gcc GCC_BLSP2_UART1_APPS_CLK>, <&gcc GCC_BLSP2_AHB_CLK>;
+ 			clock-names = "core", "iface";
++			pinctrl-names = "default", "sleep";
++			pinctrl-0 = <&blsp2_uart1_default>;
++			pinctrl-1 = <&blsp2_uart1_sleep>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -599,6 +604,8 @@ blsp2_uart4: serial@f9960000 {
+ 			interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&gcc GCC_BLSP2_UART4_APPS_CLK>, <&gcc GCC_BLSP2_AHB_CLK>;
+ 			clock-names = "core", "iface";
++			pinctrl-names = "default";
++			pinctrl-0 = <&blsp2_uart4_default>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -639,6 +646,9 @@ blsp2_i2c6: i2c@f9968000 {
+ 			interrupts = <0 106 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&gcc GCC_BLSP2_QUP6_I2C_APPS_CLK>, <&gcc GCC_BLSP2_AHB_CLK>;
+ 			clock-names = "core", "iface";
++			pinctrl-names = "default", "sleep";
++			pinctrl-0 = <&blsp2_i2c6_default>;
++			pinctrl-1 = <&blsp2_i2c6_sleep>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 		};
+@@ -1256,7 +1266,7 @@ cd {
+ 				};
+ 			};
+ 
+-			blsp1_uart2_active: blsp1-uart2-active {
++			blsp1_uart2_default: blsp1-uart2-default {
+ 				rx {
+ 					pins = "gpio5";
+ 					function = "blsp_uart2";
+@@ -1272,7 +1282,7 @@ tx {
+ 				};
+ 			};
+ 
+-			blsp2_uart1_active: blsp2-uart1-active {
++			blsp2_uart1_default: blsp2-uart1-default {
+ 				tx-rts {
+ 					pins = "gpio41", "gpio44";
+ 					function = "blsp_uart7";
+@@ -1295,7 +1305,7 @@ blsp2_uart1_sleep: blsp2-uart1-sleep {
+ 				bias-pull-down;
+ 			};
+ 
+-			blsp2_uart4_active: blsp2-uart4-active {
++			blsp2_uart4_default: blsp2-uart4-default {
+ 				tx-rts {
+ 					pins = "gpio53", "gpio56";
+ 					function = "blsp_uart10";
+@@ -1406,7 +1416,19 @@ blsp2_i2c5_sleep: blsp2-i2c5-sleep {
+ 				bias-pull-up;
+ 			};
+ 
+-			/* BLSP2_I2C6 info is missing - nobody uses it though? */
++			blsp2_i2c6_default: blsp2-i2c6-default {
++				pins = "gpio87", "gpio88";
++				function = "blsp_i2c12";
++				drive-strength = <2>;
++				bias-disable;
++			};
++
++			blsp2_i2c6_sleep: blsp2-i2c6-sleep {
++				pins = "gpio87", "gpio88";
++				function = "blsp_i2c12";
++				drive-strength = <2>;
++				bias-pull-up;
++			};
+ 
+ 			spi8_default: spi8_default {
+ 				mosi {
 -- 
-With best wishes
-Dmitry
+2.36.1
+
