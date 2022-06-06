@@ -2,108 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FB2D53EFEA
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 22:38:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B88D453F070
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 22:46:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233859AbiFFUhw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jun 2022 16:37:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57792 "EHLO
+        id S234453AbiFFUo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jun 2022 16:44:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234168AbiFFUhW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 16:37:22 -0400
-Received: from hutie.ust.cz (hutie.ust.cz [185.8.165.127])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A488CAEE29;
-        Mon,  6 Jun 2022 13:35:24 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
-        t=1654547721; bh=vfmRHdsKy5jL3Jkg558Ih+Gkg25m+JW1BWtz6hVF+I4=;
-        h=Subject:From:In-Reply-To:Date:Cc:References:To;
-        b=Zp4+x16vSA/uhNUrENr7G3Ja9fHEb+dC8TemongFVg6cfy89mwvmpUWN+UecWyi+m
-         0fOjdk0f7kDw9VOeUFI1A9djS8U2MgbR+iKH5OR/1g/BMqZ7d5h3CA1PWEH1iMw67n
-         bWCoGFvgB5UrtKJwpQPs1QJPPvL568oBkOd05khg=
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.80.82.1.1\))
-Subject: Re: [RFC PATCH v2 3/5] ASoC: apple: Add MCA platform driver for Apple
- SoCs
-From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>
-In-Reply-To: <Yp5g43IxFQsUoS/y@sirena.org.uk>
-Date:   Mon, 6 Jun 2022 22:35:20 +0200
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        with ESMTP id S232339AbiFFUoi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 16:44:38 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 206F6FC4DF;
+        Mon,  6 Jun 2022 13:39:28 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7AEA561572;
+        Mon,  6 Jun 2022 20:39:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 436B5C385A9;
+        Mon,  6 Jun 2022 20:39:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654547967;
+        bh=qeDYNocyvB6ztqkmiLeKEV1qxWokU2Os5Sf6lfKULq8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=FLWMznABSFfkkpCwItmaxJq1ey3mCAS4AXqqUmDRoUHjQ/qct9ufY+QcZtrjhadXE
+         QFmDLlQYvd//o0Ort33ZfuZTBuMuFY9rDheTFpbf7HqkJJ/Yt87LO4lFHlKjylrsb8
+         UF7H/a94f7uM6JXxvsEgcbSl0V4JveoceNnBFhonxzrR/L6UCEbVun1WZ6fHg9FkYe
+         t/oP70qpkDr9wfj9yz4PSYlBCfOy5AnEhW+r4OA//YZm2aWlch0DTlJGSsRSj4dW/o
+         3PekMMwifLR+XgCyTqJAC1zbkjt7MX+0zV57FpKopFEAEwIUmNc6P08egXuTGZ7DBD
+         TsI7lBry+VZdA==
+Message-ID: <058de46e-24cf-e25b-121c-3ff080702776@kernel.org>
+Date:   Mon, 6 Jun 2022 23:39:19 +0300
+MIME-Version: 1.0
+Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: sdm845: Add CPU BWMON
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>, asahi@lists.linux.dev
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <E0FD0022-9DA1-4907-9737-19F7460B8EFF@cutebit.org>
-References: <20220606191910.16580-1-povik+lin@cutebit.org>
- <20220606191910.16580-4-povik+lin@cutebit.org>
- <Yp5g43IxFQsUoS/y@sirena.org.uk>
-To:     Mark Brown <broonie@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     Thara Gopinath <thara.gopinath@linaro.org>
+References: <20220601101140.170504-1-krzysztof.kozlowski@linaro.org>
+ <20220601101140.170504-5-krzysztof.kozlowski@linaro.org>
+From:   Georgi Djakov <djakov@kernel.org>
+In-Reply-To: <20220601101140.170504-5-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 1.06.22 13:11, Krzysztof Kozlowski wrote:
+> Add device node for CPU-memory BWMON device (bandwidth monitoring) on
+> SDM845 measuring bandwidth between CPU (gladiator_noc) and Last Level
+> Cache (memnoc).  Usage of this BWMON allows to remove fixed bandwidth
+> votes from cpufreq (CPU nodes) thus achieve high memory throughput even
+> with lower CPU frequencies.
+> 
+> Performance impact (SDM845-MTP RB3 board, linux next-20220422):
+> 1. No noticeable impact when running with schedutil or performance
+>     governors.
+> 
+> 2. When comparing to customized kernel with synced interconnects and
+>     without bandwidth votes from CPU freq, the sysbench memory tests
+>     show significant improvement with bwmon for blocksizes past the L3
+>     cache.  The results for such superficial comparison:
+> 
+> sysbench memory test, results in MB/s (higher is better)
+>   bs kB |  type |    V  | V+no bw votes | bwmon | benefit %
+>       1 | W/seq | 14795 |          4816 |  4985 |      3.5%
+>      64 | W/seq | 41987 |         10334 | 10433 |      1.0%
+>    4096 | W/seq | 29768 |          8728 | 32007 |    266.7%
+>   65536 | W/seq | 17711 |          4846 | 18399 |    279.6%
+> 262144 | W/seq | 16112 |          4538 | 17429 |    284.1%
+>      64 | R/seq | 61202 |         67092 | 66804 |     -0.4%
+>    4096 | R/seq | 23871 |          5458 | 24307 |    345.4%
+>   65536 | R/seq | 18554 |          4240 | 18685 |    340.7%
+> 262144 | R/seq | 17524 |          4207 | 17774 |    322.4%
+>      64 | W/rnd |  2663 |          1098 |  1119 |      1.9%
+>   65536 | W/rnd |   600 |           316 |   610 |     92.7%
+>      64 | R/rnd |  4915 |          4784 |  4594 |     -4.0%
+>   65536 | R/rnd |   664 |           281 |   678 |    140.7%
+> 
+> Legend:
+> bs kB: block size in KB (small block size means only L1-3 caches are
+>        used
+> type: R - read, W - write, seq - sequential, rnd - random
+> V: vanilla (next-20220422)
+> V + no bw votes: vanilla without bandwidth votes from CPU freq
+> bwmon: bwmon without bandwidth votes from CPU freq
+> benefit %: difference between vanilla without bandwidth votes and bwmon
+>             (higher is better)
+> 
 
-> On 6. 6. 2022, at 22:17, Mark Brown <broonie@kernel.org> wrote:
->=20
-> On Mon, Jun 06, 2022 at 09:19:08PM +0200, Martin Povi=C5=A1er wrote:
->=20
->> +++ b/sound/soc/apple/mca.c
->> @@ -0,0 +1,1122 @@
->> +/*
->> + * Apple SoCs MCA driver
->=20
-> Please add SPDX headers to all your files.
->=20
->> +		mca_modify(cl, serdes_conf,
->> +			SERDES_CONF_SOME_RST, SERDES_CONF_SOME_RST);
->> +		(void) readl_relaxed(cl->base + serdes_conf);
->=20
-> Please drop the cast, casts to/from void are generally a warning sign =
-as
-> they're unneeded in C.  If you want to document the barrier use a
-> comment or wrapper function.
->=20
->> +	/*
->> +	 * Codecs require clocks at time of umute with the 'mute_stream' =
-op.
->> +	 * We need to enable them here at the latest (frontend prepare =
-would
->> +	 * be too late).
->> +	 */
->> +	if (!mca_fe_clocks_in_use(fe_cl)) {
->> +		ret =3D mca_fe_enable_clocks(fe_cl);
->> +		if (ret < 0)
->> +			return ret;
->> +	}
->=20
-> This requirement is CODEC specific.  It's fine to bodge around to
-> satisfy it though, especially given the restricted set of platforms =
-this
-> can be used with.
->=20
->> +	fe_cl =3D &mca->clusters[cl->port_driver];
->> +	if (!mca_fe_clocks_in_use(fe_cl))
->> +		return 0; /* Nothing to do */
->> +
->> +	cl->clocks_in_use[substream->stream] =3D false;
->> +
->> +	if (!mca_fe_clocks_in_use(fe_cl))
->> +		mca_fe_disable_clocks(fe_cl);
->=20
-> Are you sure this doesn't need locking?
+Ok, now i see! So bwmon shows similar performance compared with the current
+cpufreq-based bandwidth scaling. And if you add bwmon on top of vanilla, are
+the results close/same? Is the plan to remove the cpufreq based bandwidth
+scaling and switch to bwmon? It might improve the power consumption in some
+scenarios.
 
-I am not sure. I need to study what locking is already done by =
-ALSA/ASoC.
-I assume the two stream directions here don=E2=80=99t share a lock =
-already...
+Thanks,
+Georgi
+
+> Co-developed-by: Thara Gopinath <thara.gopinath@linaro.org>
+> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/sdm845.dtsi | 54 ++++++++++++++++++++++++++++
+>   1 file changed, 54 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> index 83e8b63f0910..adffb9c70566 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -2026,6 +2026,60 @@ llcc: system-cache-controller@1100000 {
+>   			interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
+>   		};
+>   
+> +		pmu@1436400 {
+> +			compatible = "qcom,sdm845-cpu-bwmon";
+> +			reg = <0 0x01436400 0 0x600>;
+> +
+> +			interrupts = <GIC_SPI 581 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
+> +					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
+> +			interconnect-names = "ddr", "l3c";
+> +
+> +			operating-points-v2 = <&cpu_bwmon_opp_table>;
+> +
+> +			cpu_bwmon_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				/*
+> +				 * The interconnect paths bandwidths taken from
+> +				 * cpu4_opp_table bandwidth.
+> +				 * They also match different tables from
+> +				 * msm-4.9 downstream kernel:
+> +				 *  - the gladiator_noc-mem_noc from bandwidth
+> +				 *    table of qcom,llccbw (property qcom,bw-tbl);
+> +				 *    bus width: 4 bytes;
+> +				 *  - the OSM L3 from bandwidth table of
+> +				 *    qcom,cpu4-l3lat-mon (qcom,core-dev-table);
+> +				 *    bus width: 16 bytes;
+> +				 */
+> +				opp-0 {
+> +					opp-peak-kBps = <800000 4800000>;
+> +				};
+> +				opp-1 {
+> +					opp-peak-kBps = <1804000 9216000>;
+> +				};
+> +				opp-2 {
+> +					opp-peak-kBps = <2188000 11980800>;
+> +				};
+> +				opp-3 {
+> +					opp-peak-kBps = <3072000 15052800>;
+> +				};
+> +				opp-4 {
+> +					opp-peak-kBps = <4068000 19353600>;
+> +				};
+> +				opp-5 {
+> +					opp-peak-kBps = <5412000 20889600>;
+> +				};
+> +				opp-6 {
+> +					opp-peak-kBps = <6220000 22425600>;
+> +				};
+> +				opp-7 {
+> +					opp-peak-kBps = <7216000 25497600>;
+> +				};
+> +			};
+> +		};
+> +
+>   		pcie0: pci@1c00000 {
+>   			compatible = "qcom,pcie-sdm845";
+>   			reg = <0 0x01c00000 0 0x2000>,
 
