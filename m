@@ -2,213 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4E8153E942
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:08:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 718F853EAF9
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:09:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241015AbiFFPll (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jun 2022 11:41:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43568 "EHLO
+        id S241036AbiFFPoR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jun 2022 11:44:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241023AbiFFPlk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 11:41:40 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA18856772;
-        Mon,  6 Jun 2022 08:41:38 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 159C0CE1715;
-        Mon,  6 Jun 2022 15:41:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 544A0C34115;
-        Mon,  6 Jun 2022 15:41:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654530095;
-        bh=LMoX1OcQiR7IDT2C7EN5//xbFskMPn+ON5V9Ke6Ivno=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=HlIzFg/OhGuQWx1ZqLx5fiR58C9tYsF1IXPSKIhLLspkIGEC8F5dqwX+lQsHVxQLs
-         JKibXvQ1cRBbkwhzLPw5HdqeoJgmb/y/f2zlu4PdtVmKBAqB4ymTrQh6VoV+1vW++Z
-         l84KI5xxpYUuxEqwKLOBeINckzdfyOKnEfXzuZjaglXT0A+ZXLEnI8AolAiRIyItiW
-         uTDtuDmGzu3LXjlbsqfHVMyhJRKafIx47YiM+uusvwwhZmDAtL6Hnag8BMpgZ+3gdc
-         X30q500cZGcu+yr0fIdd9te+pu/fCh0kiwb9FpheosVA3c199oPwEzaBtJgWGyi0Lq
-         ExwbvEtJgLIqQ==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1nyErE-00FwW9-TN; Mon, 06 Jun 2022 16:41:33 +0100
-Date:   Mon, 06 Jun 2022 16:41:32 +0100
-Message-ID: <87r1414x5f.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S241059AbiFFPoQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 11:44:16 -0400
+Received: from mail-oo1-xc2d.google.com (mail-oo1-xc2d.google.com [IPv6:2607:f8b0:4864:20::c2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C6FECC15D;
+        Mon,  6 Jun 2022 08:44:15 -0700 (PDT)
+Received: by mail-oo1-xc2d.google.com with SMTP id ay16-20020a056820151000b0041b71517844so958763oob.4;
+        Mon, 06 Jun 2022 08:44:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=1Dyxrxglk8UzaHWlu8Ip8w2vSs7l7OGlq6jwwOsQ960=;
+        b=BwrNGtzgFqc5GBs+deBOcDtRAxLlmSKd/PBfifxCqtEON0K0Xetx9idzSHIQMwV5SA
+         9f2Lh+l8E89eWdqBoG0wndpJIL4MrXW9B2Z0988Ek2KK4sF5EGuuyAq7HZD0Ne+AbimE
+         TGNYT2BK0SktuwFMDQip7/3ArorHNXsQ8yuWySv1otJ8/qyNvpJFPgCcDTeyh864sVq2
+         pezAVQqrB9W5SXgH36eWHugxjPI8TZTv1DBDpYyrqYQtjH202Y//b+rcc6ABMSaFiOMf
+         ndiybo/ZM8ybLw47HKBm7WsJk1HwxEB1xnxOEWc3TAD7Aao8nS5QOyvldisyxMopaGZ1
+         0IUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
+         :subject:content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=1Dyxrxglk8UzaHWlu8Ip8w2vSs7l7OGlq6jwwOsQ960=;
+        b=YbO5WgRttcIfuy2Bv8noKDYE6981tpEhEjrKjiFhsJMKHfhp5bq+gq/JtbzdRZjiZw
+         HRGxiD/J1MciCb3OqnRNWXFyy04cdKUOTt7H4Br7pEOVkQ730ojiqVkUWYyhlZ7ryqpj
+         jjh2+TgS+5kw6Bje0jP0Tv3afsP4PMJGQuepYkXuqEtOVIkbUqGV5ZL2cNZLrBVdNwUf
+         PcYWgXPhjSRzufdoLfSbp3oBtnMwXXMfcWUQANR4sfrTWdaGcjIw7HR6IWGDr6ES4Xkq
+         jyeIzyrf8XRrC3A2+REaANYf//VZQncdlhtlOWmjXS9FeKdsdFpOWYxDadEBtSz7QrLk
+         4ItQ==
+X-Gm-Message-State: AOAM532u87Q1gIsH0w2ZUHS8uzpWABiAKMQ/vX/uMT9KbWN1GXcPsu5L
+        58kY5pJ/3aAqyJwlsPJNXaE=
+X-Google-Smtp-Source: ABdhPJy1zCj2ZN6ndVK4A6V4NXnjLvRe27BQH9UEBJSslBjosstbd4cuAI508h2hMmqaKojcUerFng==
+X-Received: by 2002:a4a:4f16:0:b0:41b:6f0e:4acc with SMTP id c22-20020a4a4f16000000b0041b6f0e4accmr4734194oob.33.1654530254919;
+        Mon, 06 Jun 2022 08:44:14 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id m4-20020a9d6084000000b0060b1f3924c3sm8318726otj.44.2022.06.06.08.44.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Jun 2022 08:44:14 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <451ad3f1-e365-e136-fa1b-c7bb0b05a15f@roeck-us.net>
+Date:   Mon, 6 Jun 2022 08:44:11 -0700
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 03/23] dt-bindings: arm: update vexpress-config.yaml
+ references
+Content-Language: en-US
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>
+Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Jean Delvare <jdelvare@suse.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH RFC 2/2] irqchip/sifive-plic: Add support for Renesas RZ/Five SoC
-In-Reply-To: <CA+V-a8vfzsB55YdFmtx3eim617b=WCYJu+Tm3SO9c1QCB3i0Lw@mail.gmail.com>
-References: <20220524172214.5104-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-        <20220524172214.5104-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-        <CA+V-a8vfzsB55YdFmtx3eim617b=WCYJu+Tm3SO9c1QCB3i0Lw@mail.gmail.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: prabhakar.csengg@gmail.com, geert+renesas@glider.be, prabhakar.mahadev-lad.rj@bp.renesas.com, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com, paul.walmsley@sifive.com, sagar.kadam@sifive.com, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, phil.edworthy@renesas.com, biju.das.jz@bp.renesas.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1654529011.git.mchehab@kernel.org>
+ <7020edd9e183652249fc95bf61a1055cc342a4dc.1654529011.git.mchehab@kernel.org>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <7020edd9e183652249fc95bf61a1055cc342a4dc.1654529011.git.mchehab@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 27 May 2022 12:05:38 +0100,
-"Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
+On 6/6/22 08:25, Mauro Carvalho Chehab wrote:
+> Changeset 7e8339b5162f ("dt-bindings: arm: convert vexpress-config to DT schema")
+> renamed: Documentation/devicetree/bindings/arm/vexpress-sysreg.txt
+> to: Documentation/devicetree/bindings/arm/vexpress-config.yaml.
 > 
-> Hi,
+> Update the cross-references accordingly.
 > 
-> On Tue, May 24, 2022 at 6:22 PM Lad Prabhakar
-> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> >
-> > The Renesas RZ/Five SoC has a RISC-V AX45MP AndesCore with NCEPLIC100. The
-> > NCEPLIC100 supports both edge-triggered and level-triggered interrupts. In
-> > case of edge-triggered interrupts NCEPLIC100 ignores the next interrupt
-> > edge until the previous completion message has been received and
-> > NCEPLIC100 doesn't support pending interrupt counter, hence losing the
-> > interrupts if not acknowledged in time.
-> >
-> > So the workaround for edge-triggered interrupts to be handled correctly
-> > and without losing is that it needs to be acknowledged first and then
-> > handler must be run so that we don't miss on the next edge-triggered
-> > interrupt.
-> >
-> > This patch adds a new compatible string for Renesas RZ/Five SoC and adds
-> > support to change interrupt flow based on the interrupt type. It also
-> > implements irq_ack and irq_set_type callbacks.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
-> >  drivers/irqchip/Kconfig           |  1 +
-> >  drivers/irqchip/irq-sifive-plic.c | 71 ++++++++++++++++++++++++++++++-
-> >  2 files changed, 70 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
-> > index f3d071422f3b..aea0e4e7e547 100644
-> > --- a/drivers/irqchip/Kconfig
-> > +++ b/drivers/irqchip/Kconfig
-> > @@ -537,6 +537,7 @@ config SIFIVE_PLIC
-> >         bool "SiFive Platform-Level Interrupt Controller"
-> >         depends on RISCV
-> >         select IRQ_DOMAIN_HIERARCHY
-> > +       select IRQ_FASTEOI_HIERARCHY_HANDLERS
-> >         help
-> >            This enables support for the PLIC chip found in SiFive (and
-> >            potentially other) RISC-V systems.  The PLIC controls devices
-> > diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifive-plic.c
-> > index bb87e4c3b88e..abffce48e69c 100644
-> > --- a/drivers/irqchip/irq-sifive-plic.c
-> > +++ b/drivers/irqchip/irq-sifive-plic.c
-> > @@ -60,10 +60,13 @@
-> >  #define        PLIC_DISABLE_THRESHOLD          0x7
-> >  #define        PLIC_ENABLE_THRESHOLD           0
-> >
-> > +#define RENESAS_R9A07G043_PLIC         1
-> > +
-> >  struct plic_priv {
-> >         struct cpumask lmask;
-> >         struct irq_domain *irqdomain;
-> >         void __iomem *regs;
-> > +       u8 of_data;
-> >  };
-> >
-> >  struct plic_handler {
-> > @@ -163,10 +166,31 @@ static int plic_set_affinity(struct irq_data *d,
-> >  }
-> >  #endif
-> >
-> > +static void plic_irq_ack(struct irq_data *d)
-> > +{
-> > +       struct plic_handler *handler = this_cpu_ptr(&plic_handlers);
-> > +
-> > +       if (irqd_irq_masked(d)) {
-> > +               plic_irq_unmask(d);
-> > +               writel(d->hwirq, handler->hart_base + CONTEXT_CLAIM);
-> > +               plic_irq_mask(d);
-> > +       } else {
-> > +               writel(d->hwirq, handler->hart_base + CONTEXT_CLAIM);
-> > +       }
-> > +}
-> > +
-> I sometimes still see an interrupt miss!
-> 
-> As per [0], we first need to claim the interrupt by reading the claim
-> register which needs to be done in the ack callback (which should be
-> doable) for edge interrupts, but the problem arises in the chained
-> handler callback where it does claim the interrupt by reading the
-> claim register.
-> 
-> static void plic_handle_irq(struct irq_desc *desc)
-> {
->     struct plic_handler *handler = this_cpu_ptr(&plic_handlers);
->     struct irq_chip *chip = irq_desc_get_chip(desc);
->     void __iomem *claim = handler->hart_base + CONTEXT_CLAIM;
->     irq_hw_number_t hwirq;
-> 
->     WARN_ON_ONCE(!handler->present);
-> 
->     chained_irq_enter(chip, desc);
-> 
->     while ((hwirq = readl(claim))) {
->         int err = generic_handle_domain_irq(handler->priv->irqdomain,
->                             hwirq);
->         if (unlikely(err))
->             pr_warn_ratelimited("can't find mapping for hwirq %lu\n",
->                     hwirq);
->     }
-> 
->     chained_irq_exit(chip, desc);
-> }
-> 
-> I was thinking I would get around by getting the irqdata in
-> plic_handle_irq() callback using the irq_desc (struct irq_data *d =
-> &desc->irq_data;) and check the d->hwirq but this will be always 9.
-> 
->         plic: interrupt-controller@12c00000 {
->             compatible = "renesas-r9a07g043-plic";
->             #interrupt-cells = <2>;
->             #address-cells = <0>;
->             riscv,ndev = <543>;
->             interrupt-controller;
->             reg = <0x0 0x12c00000 0 0x400000>;
->             clocks = <&cpg CPG_MOD R9A07G043_NCEPLIC_ACLK>;
->             clock-names = "plic100ss";
->             power-domains = <&cpg>;
->             resets = <&cpg R9A07G043_NCEPLIC_ARESETN>;
->             interrupts-extended = <&cpu0_intc 11 &cpu0_intc 9>;
->         };
-> 
-> Any pointers on how this could be done sanely.
+> Fixes: 7e8339b5162f ("dt-bindings: arm: convert vexpress-config to DT schema")
+> Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
 
-Why doesn't the chained interrupt also get the ack-aware irq_chip?
+Acked-by: Guenter Roeck <linux@roeck-us.net>
 
-	M.
+> ---
+> 
+> To avoid mailbombing on a large number of people, only mailing lists were C/C on the cover.
+> See [PATCH 00/23] at: https://lore.kernel.org/all/cover.1654529011.git.mchehab@kernel.org/
+> 
+>   Documentation/devicetree/bindings/hwmon/vexpress.txt     | 2 +-
+>   Documentation/devicetree/bindings/regulator/vexpress.txt | 2 +-
+>   2 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/vexpress.txt b/Documentation/devicetree/bindings/hwmon/vexpress.txt
+> index 9c27ed694bbb..4a4df4ffc460 100644
+> --- a/Documentation/devicetree/bindings/hwmon/vexpress.txt
+> +++ b/Documentation/devicetree/bindings/hwmon/vexpress.txt
+> @@ -9,7 +9,7 @@ Requires node properties:
+>   	"arm,vexpress-power"
+>   	"arm,vexpress-energy"
+>   - "arm,vexpress-sysreg,func" when controlled via vexpress-sysreg
+> -  (see Documentation/devicetree/bindings/arm/vexpress-sysreg.txt
+> +  (see Documentation/devicetree/bindings/arm/vexpress-config.yaml
+>     for more details)
+>   
+>   Optional node properties:
+> diff --git a/Documentation/devicetree/bindings/regulator/vexpress.txt b/Documentation/devicetree/bindings/regulator/vexpress.txt
+> index d775f72487aa..1c2e92c7831e 100644
+> --- a/Documentation/devicetree/bindings/regulator/vexpress.txt
+> +++ b/Documentation/devicetree/bindings/regulator/vexpress.txt
+> @@ -4,7 +4,7 @@ Versatile Express voltage regulators
+>   Requires node properties:
+>   - "compatible" value: "arm,vexpress-volt"
+>   - "arm,vexpress-sysreg,func" when controlled via vexpress-sysreg
+> -  (see Documentation/devicetree/bindings/arm/vexpress-sysreg.txt
+> +  (see Documentation/devicetree/bindings/arm/vexpress-config.yaml
+>     for more details)
+>   
+>   Required regulator properties:
 
--- 
-Without deviation from the norm, progress is not possible.
