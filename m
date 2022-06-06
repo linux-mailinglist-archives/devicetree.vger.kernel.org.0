@@ -2,79 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD93553E733
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:07:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D5C053E9EF
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:08:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240718AbiFFP0Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jun 2022 11:26:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49530 "EHLO
+        id S241020AbiFFPlN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jun 2022 11:41:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240585AbiFFP0W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 11:26:22 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAA8D328EEA
-        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 08:26:16 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id q15so12296098wrc.11
-        for <devicetree@vger.kernel.org>; Mon, 06 Jun 2022 08:26:16 -0700 (PDT)
+        with ESMTP id S241011AbiFFPlN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 11:41:13 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EEBA562C6
+        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 08:41:10 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id y19so29730474ejq.6
+        for <devicetree@vger.kernel.org>; Mon, 06 Jun 2022 08:41:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=conchuod.ie; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=gKndGtfRMJoB9VZHAXJ3155b6Ocgr/Z/0m5W/nSp3fk=;
-        b=aJEoKakPceXnbp1/ZlShcjfkeytqJDUAJr7R96RlUzYUysC5vsKDlaQOFn4CuEJOqt
-         6lhIxLXlNtmdxeKHk4mesWxv20OXnO5LbD8vF2oZLoegnB2ohozQL4HS3QodkbprZN68
-         eZcOZoVKCoZSg2pDCktQ/G5fQsz3dGyKfF1I4rfJgO3VIn0v3Koz48s/4rtU2+lGkcU0
-         WMCWFmkoNYTPPCClc4bd6usX25oVt+CHu+IA7WfdTxpBR3jb8GhFQ9pkmZFKu133Y/Oc
-         CCPs1nMC/CN2VyBK7h9NZBeAIn3I9T082Zz3ShRxaViE3KN9EEM053orGKLOrGpV8TXL
-         DWeQ==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=5bsP623yeVUhI4X2qyWKm7xhZAZBEQqTrR3MfihqiO0=;
+        b=pGV3u32GEBOhd7TPDnOWLKJ9oLJuUOxDipMCgJt3EuoZ1rarvWVYq8oK+EU5doKOjK
+         SjmxM35Rzb1UHksLLMUZC4DYfUe6w8HvXhq0YtIZ23J8rixxB6XuOgLghu9cBT3X7v+5
+         8CKA9/yAOJtmExGP8T4abFpaA3PaM3BnjfL2ukfBwdBbz7233FZ2pQAgim1oO1u4diFw
+         Dnf3lFRkKT93piQWB7AwqEXehvglKXOTwbtf2OtFQ4WNsFBDbscEbx8lE2uQE2D7ANLE
+         Aeq7piv2zqJSmwRp4PA+HAoVDcvxcdfbrtP0VaTbP7qHmqDopLuXdRpnHi+IPAgVaH8Y
+         Tqlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=gKndGtfRMJoB9VZHAXJ3155b6Ocgr/Z/0m5W/nSp3fk=;
-        b=PQG6RtIxU4fY2UCaLSG8BGK6IyxgkxOMKnxY0IKPrmROAa8CGcg99ZwV29wxc0njjG
-         ZxWfb2dgvDaBNzZ6nRnLf17l46Yy5kY1muGQ6CDOP/jDHo7S0sUHFhtAg0AxHQgYzmk8
-         Sul0TVU0PNk1mwmnU329HTzTWUc3U3Zs456f8EW2CEQPAZQ+thZsktfgy6Ph5bZTs/1t
-         pA3VSY4eMmHe48DZzCA1C3DVkGbZZbAClzSpioEPzlUzcncxXdq+0fAYLmET1HFGrVNr
-         2n2UzmJmKqZpc5kYWT/Q9pDYiT0F5U2YpEzj8hfhmRgr+zr0zhKLDpuZI0ojqO167ZaD
-         ah3g==
-X-Gm-Message-State: AOAM5319LcJDi64RZVkm7wQ3/2K+zLGhVyCYfqKAnVMtJ7Brx8N9FTCS
-        vq+/aKXjYrDSNRyqwRpEpNwBlQ==
-X-Google-Smtp-Source: ABdhPJxv5R9KdhXC8FcRfcFRcCDgFBV2z1vjprwaGxWfFLbq88Rm1mz3L9kBxgErlQ4yXKLde/16gA==
-X-Received: by 2002:a5d:5142:0:b0:212:af29:530 with SMTP id u2-20020a5d5142000000b00212af290530mr22119805wrt.444.1654529174889;
-        Mon, 06 Jun 2022 08:26:14 -0700 (PDT)
-Received: from henark71.. ([51.37.234.167])
-        by smtp.gmail.com with ESMTPSA id h1-20020adffd41000000b002103aebe8absm15623944wrs.93.2022.06.06.08.26.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jun 2022 08:26:14 -0700 (PDT)
-From:   Conor Dooley <mail@conchuod.ie>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Support Opensource <support.opensource@diasemi.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Steve Twiss <stwiss.opensource@diasemi.com>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-riscv@lists.infradead.org,
-        Atul Khare <atulkhare@rivosinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 4/4] riscv: dts: sifive: "fix" pmic watchdog node name
-Date:   Mon,  6 Jun 2022 16:25:58 +0100
-Message-Id: <20220606152557.438771-5-mail@conchuod.ie>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220606152557.438771-1-mail@conchuod.ie>
-References: <20220606152557.438771-1-mail@conchuod.ie>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=5bsP623yeVUhI4X2qyWKm7xhZAZBEQqTrR3MfihqiO0=;
+        b=n3BrtSq9QJGhBeaSEyKK6DSCnvaufW9/WTX79gRtvZhZY8hkTTcAH+/6x4tvpbbA92
+         l3TMBLaSt6HSOKmgbOMcKc1uWqcXeY/kAqgy/GjLchVzK9aj+mulnFquBdESpwIOnNmz
+         ABpmrIAVmpct7NENTAcoqc9OsHTJopchc+IpXXYvs4QgLwI1ztTysrGFGfzFY5OaHL5t
+         b8glKkiOJVw1V1gDXbxoJ3QznKwgb0Fo6+G48l8rgZkfVQh5iXuOxPU+FrJzXlSw1azz
+         H4IBZep8tHEXKGdWdl4saFr8HwLK5WSAN/4lLJGhOyCpH2RtAlI6CWaDkz4LqORwBv5k
+         d5Tg==
+X-Gm-Message-State: AOAM530zOr4494RPTO4ha9Ftd/WLpqyMMPuexpO7SjOTb604TJmVglWa
+        Zq1DEbnxN+nkOEhA5NKTC8s0OA==
+X-Google-Smtp-Source: ABdhPJxPmR5o/ptnO48/LLqqFHYgHv9f2kSvvBI4oOyV4SSHNtCri883LtJ4arOlCN8+RLxPMr+1YQ==
+X-Received: by 2002:a17:906:5959:b0:710:c2e8:79f3 with SMTP id g25-20020a170906595900b00710c2e879f3mr11652199ejr.489.1654530069008;
+        Mon, 06 Jun 2022 08:41:09 -0700 (PDT)
+Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id n16-20020aa7c790000000b0042bced44061sm8728646eds.10.2022.06.06.08.41.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Jun 2022 08:41:08 -0700 (PDT)
+Message-ID: <5fe2246f-97db-e7b0-a72e-c8c5ff6b2abe@linaro.org>
+Date:   Mon, 6 Jun 2022 17:41:07 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 06/23] dt-bindings: mmc: exynos-dw-mshc: update
+ samsung,pinctrl.yaml reference
+Content-Language: en-US
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>
+Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+References: <cover.1654529011.git.mchehab@kernel.org>
+ <5c937793dd7aec30da4964b39561072ae184f89b.1654529011.git.mchehab@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <5c937793dd7aec30da4964b39561072ae184f89b.1654529011.git.mchehab@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,30 +85,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
+On 06/06/2022 17:25, Mauro Carvalho Chehab wrote:
+> Changeset af030d83da1d ("dt-bindings: pinctrl: samsung: convert to dtschema")
+> renamed: bindings/pinctrl/samsung-pinctrl.txt
+> to: bindings/pinctrl/samsung-pinctrl.yaml, splitting it into multiple
+> files.
+> 
+> Update exynos-dw-mshc.txt accordingly.
+> 
+> Fixes: af030d83da1d ("dt-bindings: pinctrl: samsung: convert to dtschema")
+> Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
 
-After converting the pmic watchdog binding to yaml, dtbs_check complains
-that the node name doesn't match the binding. "Fix" it.
+Commit is okay, but you can also drop it entirely because entire part
+will be removed with:
+https://lore.kernel.org/all/20220605163710.144210-4-krzysztof.kozlowski@linaro.org/
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-index c4ed9efdff03..1f386b07a832 100644
---- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-+++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-@@ -90,7 +90,7 @@ rtc {
- 			compatible = "dlg,da9063-rtc";
- 		};
- 
--		wdt {
-+		watchdog {
- 			compatible = "dlg,da9063-watchdog";
- 		};
- 
--- 
-2.36.1
 
+Best regards,
+Krzysztof
