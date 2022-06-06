@@ -2,193 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74E5E53E667
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:07:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10ADF53EB1E
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:09:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238909AbiFFNgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jun 2022 09:36:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47180 "EHLO
+        id S239060AbiFFNrx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jun 2022 09:47:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238867AbiFFNgT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 09:36:19 -0400
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50A5221E0CF;
-        Mon,  6 Jun 2022 06:36:18 -0700 (PDT)
-Received: by mail-io1-f54.google.com with SMTP id a10so12181057ioe.9;
-        Mon, 06 Jun 2022 06:36:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=aJMNgSVQO447NKXH868O96uQGEnseJ7a42xNt19YMwo=;
-        b=Hdig9MPg1pttcdAxCE1UFDsTRZcY5ZcgxjWM4M+2UPe8uGuk3BUSzN0ew5dKb7jyrr
-         5U9GfgJA+sMJbjY+jy9AvV8H4gt+kGGBh4pkXyxKaaT4flnKpAai25EUvbcWpKQUtWZN
-         2zSX3z0M28OjKlRD3YIM3gDdejHNpoSbDSj15brDgbGR18HSMz9f2vQuHcdb6xTA+m9t
-         MXy2z86jYmSMdHbVA/EBbwUjL732r7WFKxCZe1ZrL1zwcw838MssgEXoqULFTk2+vpUn
-         q0iiI7mbk51rduvJSkFXCDw57YwhgNOOgl3jwequ8VX+XLMaVU/I2jaOnBM3tu4kLqyF
-         0a5g==
-X-Gm-Message-State: AOAM532whhonm4sK9K3QrTTH6PXb8tOoLBvwlwT9QOX0f7R20LR7wp6u
-        W1H1EY1l5YrFHvE6JELZeQ==
-X-Google-Smtp-Source: ABdhPJyoIGcPS/tcQCUeUiTpd10BgFpTIxTSxmM6wQT++mb2LRlADkkBEpMSvmUjbTnpBQkuyzwdPA==
-X-Received: by 2002:a6b:3115:0:b0:660:d5f1:e3b6 with SMTP id j21-20020a6b3115000000b00660d5f1e3b6mr11581406ioa.99.1654522577516;
-        Mon, 06 Jun 2022 06:36:17 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id y16-20020a02bb10000000b003314a583804sm5678560jan.20.2022.06.06.06.36.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jun 2022 06:36:16 -0700 (PDT)
-Received: (nullmailer pid 601560 invoked by uid 1000);
-        Mon, 06 Jun 2022 13:36:15 -0000
-Date:   Mon, 6 Jun 2022 08:36:15 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: mtd: partitions: Document new
- dynamic-partition nodes
-Message-ID: <20220606133615.GA564610-robh@kernel.org>
-References: <20220518233258.5483-1-ansuelsmth@gmail.com>
- <20220518233258.5483-2-ansuelsmth@gmail.com>
- <20220601210655.GA380852-robh@kernel.org>
- <629a91f8.1c69fb81.371aa.1d32@mx.google.com>
+        with ESMTP id S239057AbiFFNrw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 09:47:52 -0400
+Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1D4F99814
+        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 06:47:51 -0700 (PDT)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.west.internal (Postfix) with ESMTP id 0837D320094E;
+        Mon,  6 Jun 2022 09:47:50 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute3.internal (MEProxy); Mon, 06 Jun 2022 09:47:51 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm1; t=1654523270; x=1654609670; bh=YpFYNv7QOh
+        4+yxcwjwur3dorr2EdlcofAUzMq4w1odI=; b=RCib4ykUbycziixbr4XJNn3drn
+        FiNRogwbWZaQPsOOydF1bdxxg3QDpRxTUyfBx91D0cQe/jd2P9telTcnQ2hnV1Vy
+        fb6ChM4g3NtFFEkd6RfjqD0pgMUSMhhcZmKjUqDn/Z9Ig2COSs38CkHdl9UWEpnY
+        pvy+fsRvwX3QOfx/6dVvtz5frbkFHs+P0CytNKWcxfg6y4CcFpdXiPDdYYkZhjQa
+        inPpLrxtSHv/g9i+h5EStMMHCTS1DDqbVn+CCWwMCL0hXdryCdbZ6qbjsWc8r2bF
+        D6JzZ2jrkktBDDQKvKopJKkGo5v2SMLTQ87x2bakwA+0EqCq07HQZ8SQ/NFg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm2; t=1654523270; x=1654609670; bh=YpFYNv7QOh4+yxcwjwur3dorr2Ed
+        lcofAUzMq4w1odI=; b=x3f4TrhVRDelyKvcYWqgkX7SwCgcAGzXEAtv7A89cK1y
+        0wmbQjt2+sbuCMlUwx9MpZeaLP0i4KXBoRzaMzwxaFYK2UTOJ0c4/XxEkTVgByCB
+        zJ2cQiJynI+b2p+a+BQ9GdFcxK7dFMP8ftf28xVww3W7072uo5An9TrCCJgVrfPh
+        kYfxiIhcR08EquQo2vl01Fu9C2MbcUxVcQUi4id0YpPUpLklYg1etahUbM7gEFHp
+        obQbYI5gxfrOuQVkXyLyODs7Z3whTqhzzJjI6j1a0XU73tU2i0RPvvWK5hJedkdO
+        GbDBOh4/+BnG7eUWTzNjzeJOsZm34oSuzGROqOjO1g==
+X-ME-Sender: <xms:hgWeYsElrFXscygOx6Ucj32ow-AdrGwWFjaL73bQeL21UENUP8z6ZQ>
+    <xme:hgWeYlWVGZhkxzHhpcQ4VhDPdD39GkisP8B0Vq-Ml42s4oSIVj6gnZQpxdlfpqQ0q
+    PFDVe_JB9AH9414wds>
+X-ME-Received: <xmr:hgWeYmJLyxba5NsfyKZutYlGtI7y-VWQeEctPi5hCe5tCb3RfSSdx7lr4dk9C16tfn96dGVyC0XVQ7eaNsswYu237JhQKBizcQ-ZBAo>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedruddtvddgieekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpedugfdvgfeiiefgheevueffleffiedvtdevkeehudefjeeivdegteefjefh
+    hfeuudenucffohhmrghinhephigrmhhlrdhsohenucevlhhushhtvghrufhiiigvpedtne
+    curfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:hgWeYuGQhBlg9ML_ChHm_tLIwd39_rGgxR8DI2h0vw6AjsIWszG0EQ>
+    <xmx:hgWeYiWaS-EwRD6ijIJfSakITYInWhu6CNZpKpTEFmWuZ_F04v-ykg>
+    <xmx:hgWeYhN8sIpz0Cdb1OcbzIshzuffEqqOu9MfZCdCvpU--iP0HlLS2A>
+    <xmx:hgWeYld37mrJa8_XNWEVydpSJD_CBqoHbTPRjW1v7q8kUJx4bNErSQ>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 6 Jun 2022 09:47:49 -0400 (EDT)
+Date:   Mon, 6 Jun 2022 15:47:48 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Stefan Wahren <stefan.wahren@i2se.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: display: bcm2835-dpi: warning about #address-cells',
+ '#size-cells'
+Message-ID: <20220606134748.zkmndftkorygdu4w@houat>
+References: <a28d1fe5-eac8-bb86-cbda-f3236c104d61@i2se.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="gudndhwlv3afkpye"
 Content-Disposition: inline
-In-Reply-To: <629a91f8.1c69fb81.371aa.1d32@mx.google.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <a28d1fe5-eac8-bb86-cbda-f3236c104d61@i2se.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jun 04, 2022 at 12:57:58AM +0200, Ansuel Smith wrote:
-> On Wed, Jun 01, 2022 at 04:06:55PM -0500, Rob Herring wrote:
-> > On Thu, May 19, 2022 at 01:32:57AM +0200, Ansuel Smith wrote:
-> > > Document new dynamic-partition nodes used to provide an OF node for
-> > > partition registred at runtime by parsers. This is required for nvmem
-> > > system to declare and detect nvmem-cells.
-> > > 
-> > > With these special partitions, the reg / offset is not required.
-> > > The label binding is used to match the partition allocated by the
-> > > parser at runtime and the parser will provide reg and offset of the mtd.
-> > > 
-> > > NVMEM will use the data from the parser and provide the NVMEM cells
-> > > declared in the DTS, "connecting" the dynamic partition with a
-> > > static declaration of cells in them.
-> > > 
-> > > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > > ---
-> > >  .../mtd/partitions/dynamic-partition.yaml     | 57 +++++++++++++++++++
-> > >  .../mtd/partitions/qcom,smem-part.yaml        |  4 ++
-> > >  2 files changed, 61 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/dynamic-partition.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/mtd/partitions/dynamic-partition.yaml b/Documentation/devicetree/bindings/mtd/partitions/dynamic-partition.yaml
-> > > new file mode 100644
-> > > index 000000000000..f57d7b9cae7f
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/mtd/partitions/dynamic-partition.yaml
-> > > @@ -0,0 +1,57 @@
-> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/mtd/partitions/dynamic-partition.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Dynamic Partition
-> > > +
-> > > +description: |
-> > > +  This binding describes a single flash partition that is dynamically allocated
-> > > +  by a dedicated parser that is not a fixed-partition parser.
-> > > +
-> > > +  Each child of the parser partition node is then compared and if a match with
-> > > +  the provided label is found then the OF node is assigned.
-> > > +
-> > > +  These special partition definition can be used to give a dynamic partition
-> > > +  an OF node to declare NVMEM cells. An example is declaring the partition
-> > > +  label and all the NVMEM cells in it. The parser will detect the correct reg
-> > > +  and offset and the NVMEM will register the cells in it based on the data
-> > > +  extracted by the parser.
-> > > +
-> > > +maintainers:
-> > > +  - Ansuel Smith <ansuelsmth@gmail.com>
-> > > +
-> > > +properties:
-> > > +  label:
-> > > +    description: The label / name for the partition assigned by the parser at
-> > > +      runtime. This is needed for sybsystem like NVMEM to define cells and
-> > 
-> > typo
-> > 
-> > > +      register with this OF node.
-> > > +
-> > > +required:
-> > > +  - label
-> > > +
-> > > +additionalProperties: true
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    flash {
-> > > +      partitions {
-> > > +        compatible = "qcom,smem-part";
-> > > +
-> > > +        partition-art {
-> > > +          compatible = "nvmem-cells";
-> > > +          #address-cells = <1>;
-> > > +          #size-cells = <1>;
-> > > +          label = "0:art";
-> > > +
-> > > +          macaddr_art_0: macaddr@0 {
-> > > +            reg = <0x0 0x6>;
-> > > +          };
-> > > +
-> > > +          macaddr_art_6: macaddr@6 {
-> > > +            reg = <0x6 0x6>;
-> > > +          };
-> > 
-> > There's a problem with the schema structure for this which is a common 
-> > problem where we have parent and child nodes with parent defined 
-> > properties in the child nodes (label in this case). The issue is that 
-> > there is not a single schema applied to the child node which contains 
-> > all possible properties sub-node names. This is necessary to check for 
-> > extra, undocumented properties using unevaluatedProperties. The creation 
-> > of spi-periphera-props.yaml is an example of how to address this. I 
-> > suspect that all the partition schemas may need similar restructuring.
-> > 
-> > The nvmem-cells schema may happen to already have 'label', so it happens 
-> > to work (that and unevaluatedProperties is probably missing in places).
-> > 
-> > Given this schema is really just one property which is already 
-> > documented for 'partition' nodes, all we really need is to say is if 
-> > 'reg' is not present, then 'label' is required:
-> > 
-> > if:
-> >   not:
-> >     required: [ reg ]
-> > then:
-> >   required: [ label ]
-> > 
-> >
-> 
-> Just to make sure. The correct way to implement this would be drop the
-> current dynamic-partition schema and expand the partition.yaml with the
-> additional if and the extra stuff in the description.
-> Wanted to keep the 2 thing separated but if necessary I will follow this
-> path.
 
-Yes. I agree separate would have been nice documentation wise, 
-but the schema has ended having such a small difference it doesn't 
-make sense anymore.
+--gudndhwlv3afkpye
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Rob
+On Mon, Jun 06, 2022 at 01:40:19PM +0200, Stefan Wahren wrote:
+> Hi,
+>=20
+> recently i noticed the following warning during "make dtbs_check"
+>=20
+> arch/arm/boot/dts/bcm2835-rpi-b.dtb: dpi@7e208000: '#address-cells',
+> '#size-cells' do not match any of the regexes: 'pinctrl-[0-9]+'
+>=20
+> During conversion to DT schema 094536003e06 "dt-bindings: display: Convert
+> VC4 bindings to schemas" the properties has been dropped from the example.
+>=20
+> But i'm not sure how to fix this properly (drop them from the bcm283x.dtsi
+> file or add the properties to brcm,bcm2835-dpi.yaml).
+
+So #address-cells and #size-cells are used to get the children register
+address and size.
+
+However, for DPI, it's not clear what the child node is going to be in
+the first place. The only one that stands out is the port node, but
+there's a single one. So we don't need a reg property to differentiate
+between multiple ports, and thus we don't need #address-cells or
+#size-cells.
+
+The proper fix would be to remove them from the bcm283x device tree.
+
+Maxime
+
+--gudndhwlv3afkpye
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYp4FhAAKCRDj7w1vZxhR
+xaCkAQDo/tJkiWGSyxp1qR/tXv4JDzdA9JCcN1iUO4WqKgWjSQD/dPGlyaG2zOBq
+jKdNgKmr99ApVLCXfpzedB58hhUTUQM=
+=YPXe
+-----END PGP SIGNATURE-----
+
+--gudndhwlv3afkpye--
