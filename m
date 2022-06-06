@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B23353EED2
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 21:45:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 161E953EEDD
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 21:49:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232654AbiFFTpK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jun 2022 15:45:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48784 "EHLO
+        id S232719AbiFFTtQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jun 2022 15:49:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232626AbiFFTox (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 15:44:53 -0400
+        with ESMTP id S232720AbiFFTtP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 15:49:15 -0400
 Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BE2564D6;
-        Mon,  6 Jun 2022 12:44:50 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 194CE64E3;
+        Mon,  6 Jun 2022 12:49:15 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E3E36B8198B;
-        Mon,  6 Jun 2022 19:44:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D122BC385A9;
-        Mon,  6 Jun 2022 19:44:44 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id C59E1B81B46;
+        Mon,  6 Jun 2022 19:49:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC115C3411D;
+        Mon,  6 Jun 2022 19:49:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654544687;
-        bh=TdyzOHBijyDDuJa2kymQDu3XUPAwTzmKg4DRuJ4dnrU=;
+        s=k20201202; t=1654544952;
+        bh=UzryUnnGvZZBNEMB0odKe1O3TvXeLuFqBrHf32g9aVE=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KfuwYUHQcSCTFzs4dSzoQUcCQF+ZZHaLVUn0UV2rRBcCmdFfEhGh4NnKetgvUk1kI
-         O3LAEHez8RgANUrufP2o/DWqEtA6dihYZEqwTKKHZp5348tIXqvii4XljVl7dEZB+y
-         DykCz2bL4OOTh3E9WAaR9B70f0zqex800F83+hTZpmET7+ZXofKcLNe2iJ/n8F686P
-         ebQ9auP9Dz9pv4F6rzmNLwCGICqCU4deKMQtmn3da/jbmB6dclsKHSkje9jJUUDl9J
-         otobhR/BlmJMPh2NAx0Wf5qo6D0dj5J/LEfzJ/qCkcpPSz+RBd350XJLhb9kLRql/m
-         Zty0pLS61y7Pg==
-Date:   Mon, 6 Jun 2022 20:44:41 +0100
+        b=iSyhAlslzDDLj/7+Ko7uPEdCPdRI4c8xh7YsepEmcyIlfyiKhprn2+f9X5Uqkymuv
+         4tkQNb1dIa13VQQdvzszUg+0yNoXARS3zWuu5hq4Ak+Y5B21nhDSSlU991gfMTO144
+         /MU9S1P/yQSnhBdRvcSuLFSaHDuzSF+ttkze0lVvkJX5YykMaNKl21+daYla1GWA9N
+         9yhKNQSQpMSBiBhR7/I+00PZvgapPRk2hgHEJ2PHV3KOuTUj5ngjvx1kROjhoDwmw1
+         jnZhZ7BP3uEkBiupsa6PUosb/egFxyIVpPk7SQqgh9o+Ry9lSeop6vKXQ4VDZETtv5
+         25y1JxiHsQUUg==
+Date:   Mon, 6 Jun 2022 20:49:06 +0100
 From:   Mark Brown <broonie@kernel.org>
 To:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>
 Cc:     Liam Girdwood <lgirdwood@gmail.com>,
@@ -43,16 +43,16 @@ Cc:     Liam Girdwood <lgirdwood@gmail.com>,
         Mark Kettenis <kettenis@openbsd.org>,
         Hector Martin <marcan@marcan.st>,
         Sven Peter <sven@svenpeter.dev>, asahi@lists.linux.dev
-Subject: Re: [RFC PATCH v2 1/5] dt-bindings: sound: Add Apple MCA I2S
- transceiver
-Message-ID: <Yp5ZKZ+MOW/75KXi@sirena.org.uk>
+Subject: Re: [RFC PATCH v2 2/5] dt-bindings: sound: Add Apple Macs sound
+ peripherals
+Message-ID: <Yp5aMi0sSfBQzk0p@sirena.org.uk>
 References: <20220606191910.16580-1-povik+lin@cutebit.org>
- <20220606191910.16580-2-povik+lin@cutebit.org>
+ <20220606191910.16580-3-povik+lin@cutebit.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="AlCYaszFUFMsVBIw"
+        protocol="application/pgp-signature"; boundary="vLLkHsME4UnMDWvc"
 Content-Disposition: inline
-In-Reply-To: <20220606191910.16580-2-povik+lin@cutebit.org>
+In-Reply-To: <20220606191910.16580-3-povik+lin@cutebit.org>
 X-Cookie: Have an adequate day.
 X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
@@ -65,40 +65,33 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---AlCYaszFUFMsVBIw
+--vLLkHsME4UnMDWvc
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 06, 2022 at 09:19:06PM +0200, Martin Povi=C5=A1er wrote:
+On Mon, Jun 06, 2022 at 09:19:07PM +0200, Martin Povi=C5=A1er wrote:
 
-> +  interrupts:
-> +    maxItems: 6
-> +    description: |
-> +      One interrupt per each cluster
+> +      dai-link@1 {
+> +        reg =3D <1>;
+> +        link-name =3D "Headphones Jack";
 
-Other properties are specified in a manner which implies that there's a
-minimum of 4 clusters, eg:
+Incredibly trivial bikeshed but normally that'd be "Headphone Jack"
+(singular).
 
-> +  clocks:
-> +    minItems: 4
-> +    maxItems: 6
-> +    description: |
-> +      Clusters' input reference clock.
-
---AlCYaszFUFMsVBIw
+--vLLkHsME4UnMDWvc
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmKeWSgACgkQJNaLcl1U
-h9Aqfwf+NBQXCTVBk663Vwcd22hz9vBXtdVIMfmgPBYszdHc/ZlYb3vSsd7l2Cb4
-SvxdYa7uixpvVOi1yoFW0M7G4fBAVHT1PEt9s2sRkE0iFu4QcOaUfKDyo8pY9jdc
-ak3EHjJ74hPZtcHSF4KfFkKIJm6kl7mgjpATzUfhi8D1GGDXmyaGBBncDgCvUnEl
-ulVKVpRQcd12KVDLfvzZZCDMIJOiZO6WF5F3OtN0alwfekPGU9poRs+QxpjAWxHf
-Q8WIk7rctnKt4HREyq7egXNJuG3V06K3jzZnwIT7P1n9ye7RrZH87PR3oLsQIVWd
-zh6Ibuyl9Ia2Zh9q4RLPcaLE+mbYUA==
-=TRq/
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmKeWjEACgkQJNaLcl1U
+h9BZ3wgAhIlgRunaKB0X+XBqE2TxgOKqeJ9dsZt0OJULGSwYFsGmFVb+calG3r2T
+TnKHqrx30urVJntDF1UmZu4m6Z31PMR5NXDvmMTy1DLb/LHyjOG/kAdRI1DW1zZm
+xVQFXD4QgCsyB10o+UL+Xl8AfWrj7FqoGXGioG3nYMWmtqsldUI2FinUDZKLZ5ef
+kqWVr17QjYvQSS/HbxlDfwQV4x+7JcMoVXn53oP21uOuYtg1peXr1ST50UpY+ixU
+fSGC+tIq7h/zTiKoXcbB8kPyLxZrAHMW8d+KolWhZzfq0ff06SMb0nfS4t7vT8Vy
+tbWwjbvUTkF7PRrrwCW6KCXI19BxWQ==
+=9TYE
 -----END PGP SIGNATURE-----
 
---AlCYaszFUFMsVBIw--
+--vLLkHsME4UnMDWvc--
