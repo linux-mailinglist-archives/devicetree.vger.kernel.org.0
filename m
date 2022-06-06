@@ -2,79 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5252853EF55
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 22:14:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE1E153EF6A
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 22:18:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233175AbiFFUOX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jun 2022 16:14:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33628 "EHLO
+        id S233387AbiFFUR7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jun 2022 16:17:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233178AbiFFUOU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 16:14:20 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD55513AF07
-        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 13:14:08 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id h5so21339155wrb.0
-        for <devicetree@vger.kernel.org>; Mon, 06 Jun 2022 13:14:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=conchuod.ie; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=gKndGtfRMJoB9VZHAXJ3155b6Ocgr/Z/0m5W/nSp3fk=;
-        b=R3sETjnSuiHTlG/IUAzV7fv8dB2d7Wfi3qLYLNc9aIyzyelXvPU2/mkdqHiJ8OxdOK
-         9EjpPrT+BIuW9BnpUX5pJVptwi19xM1aqlQ3ntH2S40hkm/uJRXdQVZ2TmJvQMr4XbcF
-         VdIoxfrs97B8KLigTlKKPvrC5tp6w+YaeOg06kxlzvWW885WtneFPzVamFPzvto1kl5J
-         vu0AV4mMAvhrfjf9qxND5ndORn1bpfOaJhqU1Awf4OwE7Sw7DDLNBxys18uyxQ/GpZwe
-         95O9Dx832MZjcqSiJ39v5GdixKb9ETtsnviT6fuZDmmM44dK4epNnYyydTHlDDHRy08U
-         Yhww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=gKndGtfRMJoB9VZHAXJ3155b6Ocgr/Z/0m5W/nSp3fk=;
-        b=x4DbTOCQaDANpWo0TXNGsi5xC73FtgTZ+2aOmgIfSYPCR4/8Qvw6H8vFCFqE3REVrZ
-         dFaapzWYPgquR5YciDLN+uI8Fnjw16BPlHSareB1JRbI/KWvNyAnw6vFHGxWptwN6RKv
-         GBqmsyIv1s5ezeTJG9h6ruaL+52KvDqTsVH2GtUEFmSpaowYRBRENQxLV4tg8NnBVaeu
-         TLTXOD1fH9S44z29WlyDIzsNaDLKIq1gsnirZi+lX5NcVsEB7ZM/H8vr5ZT5ZxWdydw2
-         mKCnRjw0neeigWJ3kQHFMo3xsbSqNNHAmf/LF8bsgKLcyIyfTk4nayZFIoQ16rsnQsUy
-         wqLA==
-X-Gm-Message-State: AOAM532SqZdJA19plSDj4rl/+zAQVHmh+70QPO1tLnf7mdkXhoJqQoZ9
-        XeCSYiGjq89WanO7Hb1ybG4MHw==
-X-Google-Smtp-Source: ABdhPJwht5UACwjuoVJK2k9+/Vd37V0UwaPay+ABBXzqJFR7D3rCMgEzfyarZa6XGbyJAiiVBloG5Q==
-X-Received: by 2002:adf:dd0a:0:b0:213:ba65:73fa with SMTP id a10-20020adfdd0a000000b00213ba6573famr18855142wrm.521.1654546447347;
-        Mon, 06 Jun 2022 13:14:07 -0700 (PDT)
-Received: from henark71.. ([51.37.234.167])
-        by smtp.gmail.com with ESMTPSA id p9-20020a5d4589000000b0020fcf070f61sm16038489wrq.59.2022.06.06.13.14.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jun 2022 13:14:06 -0700 (PDT)
-From:   Conor Dooley <mail@conchuod.ie>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Support Opensource <support.opensource@diasemi.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Steve Twiss <stwiss.opensource@diasemi.com>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-riscv@lists.infradead.org,
-        Atul Khare <atulkhare@rivosinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 4/4] riscv: dts: sifive: "fix" pmic watchdog node name
-Date:   Mon,  6 Jun 2022 21:13:44 +0100
-Message-Id: <20220606201343.514391-5-mail@conchuod.ie>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220606201343.514391-1-mail@conchuod.ie>
-References: <20220606201343.514391-1-mail@conchuod.ie>
+        with ESMTP id S233554AbiFFURw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 16:17:52 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF00862A24;
+        Mon,  6 Jun 2022 13:17:45 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8C422614F9;
+        Mon,  6 Jun 2022 20:17:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CCE5C385A9;
+        Mon,  6 Jun 2022 20:17:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654546665;
+        bh=/B/PloBld3O4RZgCV+lWXc3i8yVuTLMMkjx9VYvCuws=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=aoKo2oMj/3Zm29onm9GITm4MOVqXfu7+oV0bWECk3Z8pxRMmbBzPeRLkQJ7bc/eMZ
+         k0fbcvuo7hEgg+OIva5vuVm112PdpnSHmWtKZkcm3z2ryt0g2UST/yudrgzTG47qCS
+         8pdQTb7WDLJ+c43lGsbgXGidsXNQtW3z14NJEje+1u8lCONjFVNgIrvIeYPeYnyzrz
+         7BOaEGuqn0FtB5WNp1bye/dOhP9Mnp1ApvtcC3nV0lQ9fH6qhMJ8XO653U1hTrqkpU
+         wOa3b2pit7AO9MKP19/cFJFVkN23xKJEEzeNGvfAJaILVx/n4KV/Lp7HJKu72MG2rg
+         fp1Rzb6VMDC0Q==
+Date:   Mon, 6 Jun 2022 21:17:39 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Martin =?utf-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>, asahi@lists.linux.dev
+Subject: Re: [RFC PATCH v2 3/5] ASoC: apple: Add MCA platform driver for
+ Apple SoCs
+Message-ID: <Yp5g43IxFQsUoS/y@sirena.org.uk>
+References: <20220606191910.16580-1-povik+lin@cutebit.org>
+ <20220606191910.16580-4-povik+lin@cutebit.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="elKz+L5SmKmXJeQI"
+Content-Disposition: inline
+In-Reply-To: <20220606191910.16580-4-povik+lin@cutebit.org>
+X-Cookie: Have an adequate day.
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,30 +64,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
 
-After converting the pmic watchdog binding to yaml, dtbs_check complains
-that the node name doesn't match the binding. "Fix" it.
+--elKz+L5SmKmXJeQI
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Mon, Jun 06, 2022 at 09:19:08PM +0200, Martin Povi=C5=A1er wrote:
 
-diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-index c4ed9efdff03..1f386b07a832 100644
---- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-+++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-@@ -90,7 +90,7 @@ rtc {
- 			compatible = "dlg,da9063-rtc";
- 		};
- 
--		wdt {
-+		watchdog {
- 			compatible = "dlg,da9063-watchdog";
- 		};
- 
--- 
-2.36.1
+> +++ b/sound/soc/apple/mca.c
+> @@ -0,0 +1,1122 @@
+> +/*
+> + * Apple SoCs MCA driver
 
+Please add SPDX headers to all your files.
+
+> +		mca_modify(cl, serdes_conf,
+> +			SERDES_CONF_SOME_RST, SERDES_CONF_SOME_RST);
+> +		(void) readl_relaxed(cl->base + serdes_conf);
+
+Please drop the cast, casts to/from void are generally a warning sign as
+they're unneeded in C.  If you want to document the barrier use a
+comment or wrapper function.
+
+> +	/*
+> +	 * Codecs require clocks at time of umute with the 'mute_stream' op.
+> +	 * We need to enable them here at the latest (frontend prepare would
+> +	 * be too late).
+> +	 */
+> +	if (!mca_fe_clocks_in_use(fe_cl)) {
+> +		ret =3D mca_fe_enable_clocks(fe_cl);
+> +		if (ret < 0)
+> +			return ret;
+> +	}
+
+This requirement is CODEC specific.  It's fine to bodge around to
+satisfy it though, especially given the restricted set of platforms this
+can be used with.
+
+> +	fe_cl =3D &mca->clusters[cl->port_driver];
+> +	if (!mca_fe_clocks_in_use(fe_cl))
+> +		return 0; /* Nothing to do */
+> +
+> +	cl->clocks_in_use[substream->stream] =3D false;
+> +
+> +	if (!mca_fe_clocks_in_use(fe_cl))
+> +		mca_fe_disable_clocks(fe_cl);
+
+Are you sure this doesn't need locking?
+
+--elKz+L5SmKmXJeQI
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmKeYOIACgkQJNaLcl1U
+h9BVlQf9Hhza64pdhAryt0leuNmoItrjQI4ru3oVzIPzjS1FTHojgISfLilo8RjN
+xsVACb5GG0HKM5P/KUmFuH3+niL6W1zxmfO67gzGz0gr5zGpQLvy7XaNc52rVqM5
+u5A9NH0Mqv4/OBbjCi8UzbhG8wZfkAIr2B6FENy3KsSbzdUq2crOrOhiS+TwEK8P
+gQ0yfnnAAm7oueBiZ0ByCfMHOeBtG6dR3o5Yz+UhnZDmg783E0xvz4okjXcbuo2m
+eHMDeulABPHv86DHGZ3KlvUHIK3n8398P1iZxs/0NuJqvNkT4JFcL06Y1TFYeywz
+/0ogXX5hoScevm8+OW4gzuc99bGDBA==
+=ItfL
+-----END PGP SIGNATURE-----
+
+--elKz+L5SmKmXJeQI--
