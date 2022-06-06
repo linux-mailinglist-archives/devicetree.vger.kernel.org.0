@@ -2,87 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CB9553DEE0
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 01:04:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A82C53DF65
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 03:39:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351789AbiFEXEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 5 Jun 2022 19:04:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42678 "EHLO
+        id S1352015AbiFFBjg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 5 Jun 2022 21:39:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231932AbiFEXEK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 19:04:10 -0400
-Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35BDE37BCC;
-        Sun,  5 Jun 2022 16:04:10 -0700 (PDT)
-Received: by mail-qv1-f48.google.com with SMTP id s10so6132876qvt.8;
-        Sun, 05 Jun 2022 16:04:10 -0700 (PDT)
+        with ESMTP id S1351993AbiFFBj3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 5 Jun 2022 21:39:29 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EECB04EDD3;
+        Sun,  5 Jun 2022 18:39:27 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id q1so14261485ljb.5;
+        Sun, 05 Jun 2022 18:39:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=2aAzgWufLM3eFBRQ9m2A+4XEm2/EjgHO8XjvIlt8qsc=;
+        b=Icn4irk9qnC0CRZA12hvjLPiNe929gRNEg4ZfZV0T3RYBehB9uqQtL9hviXbnYeMv2
+         bPOGPBWkInazcMgEV6wlUWAWy4LSCAmIviwlw4PqqQoU1GClhQ+gTrya2W+LXGW27HEI
+         YTBJghZmXIacPXwHbAz2rLV6GEdEzbddpeFWiv5x8CHz0zoKy99fxoUgELLe3DGexses
+         5LgMUJl0NxVpiM5Ez4NxsHgGhlLB+23vcIQlNp/NfcZ79MKpf4bLNTppNG2jATt0VSfc
+         LY9vQsx92hbFfZqPtzMGD9LKgeqzTKmWr7UkOiBTX5xPNFaUc0caWkM8N94mo7q/5kjt
+         wuHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=PQ86WMtQWZtiSCCUV0t2mZwhMOZMEYWoxSVQTAw8avI=;
-        b=AmRluNomWSrH8h9MrGT3LA4kPVPUGE0frL/6r66BxjjKMiquWjS3IuONJhCcnwUFGF
-         tU3n/C5jZ/5tIYZQ1QaWR+3pet2oZUhP+h7ZDxodxvvR+qwh+y83Q1evk1BVRU40IevH
-         Iqxn1XRxV84iIUOzeGsk7nMfv2UZqBiGPZ9YFPMcqIwSo1g76PgMBTbJAMN1wYPCiFpx
-         jnMS7Ehb0xqphef0W8XBFuGuOe/w8ZZEMh6fvTxwtTvcx5CK9A2lvVSi0ce9EqIZfzXM
-         41K2TTVirM/afUE4cGr2l8nCHlO/BMjkT5MS+RpdM40MyM9xWK2woU5Y+JEy/GaiDE0V
-         pdPA==
-X-Gm-Message-State: AOAM531xbOdoX7UrD/K7LgDvJ51Fqh1WAmcLoJwYe9qEN4Z60WUefwT0
-        OPju4peITtq77e6Lk7OV1Wh3xBQFaw==
-X-Google-Smtp-Source: ABdhPJw8o4qYBHW4CaM8n7loO8vPejDTZL9r68n+Z50Xa/JCRCy726BVnoeF1wKhs0xUySvy2IwPyw==
-X-Received: by 2002:a05:6214:29c6:b0:466:fda7:8279 with SMTP id gh6-20020a05621429c600b00466fda78279mr15387044qvb.32.1654470249321;
-        Sun, 05 Jun 2022 16:04:09 -0700 (PDT)
-Received: from robh.at.kernel.org ([2607:fb90:1bdb:2e61:f12:452:5315:9c7e])
-        by smtp.gmail.com with ESMTPSA id q19-20020a05620a0d9300b006a68fdc2d18sm7459600qkl.130.2022.06.05.16.04.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Jun 2022 16:04:09 -0700 (PDT)
-Received: (nullmailer pid 3694907 invoked by uid 1000);
-        Sun, 05 Jun 2022 23:04:04 -0000
-Date:   Sun, 5 Jun 2022 18:04:04 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Luca Ceresoli <luca@lucaceresoli.net>
-Cc:     linux-kernel@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
-        Lee Jones <lee.jones@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        linux-pm@vger.kernel.org, Leon Luo <leonl@leopardimaging.com>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        linux-clk@vger.kernel.org, Sebastian Reichel <sre@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-media@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH 2/6] dt-bindings: update Luca Ceresoli's e-mail address
-Message-ID: <20220605230404.GA3694857-robh@kernel.org>
-References: <20220603155727.1232061-1-luca@lucaceresoli.net>
- <20220603155727.1232061-2-luca@lucaceresoli.net>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=2aAzgWufLM3eFBRQ9m2A+4XEm2/EjgHO8XjvIlt8qsc=;
+        b=qk5EA1mPyMBAiVwI31e0WMEWOtSdD2YLNat/olzs/OPmS+5Aw1lAXR3IFS/fdLk96r
+         ZZCccozFH8i8USaHEvWGdJgnWySmI6EHSO3onyWdJWj3+qbDwJ0GV1ni/wy2WsF1PjsC
+         up/6mfR4aCm6SxtJ8sM2gBF0qQ+rSoWpIUQxzdBla3aQ/lYDsIRtBfXD/rwXubeW+f6w
+         XqvVTu2uUrtqSaj6knm7YikMICdZlxktSUnhwFW24EVDYo0K7LySvtNo/R9YwHsXU8zO
+         F+sUYw8sRv5MZ5FsiMU3MTT/Q4hoxel5Mt3n26JYp2P8M2ATherh0wBkCZF4SEv4eQ1c
+         3TPA==
+X-Gm-Message-State: AOAM530tJO+N/QFtVAaGpxZzJAnAmJYstvw+RNsSakLXfLhGp1xfe/Ub
+        StsJQEuRI3NNjlLKNoqMzkb78fOh8XJBhZ/dEr8=
+X-Google-Smtp-Source: ABdhPJz9OSonsWzarHgyRgYmCYlUPNe4zRBAj9Xp3fTYOkGEBTtj9VEAk2DAw1kz0ZE+rmV7BJU35tGBEixhOrTn2Ic=
+X-Received: by 2002:a2e:904a:0:b0:255:7b02:8f32 with SMTP id
+ n10-20020a2e904a000000b002557b028f32mr9325452ljg.133.1654479565373; Sun, 05
+ Jun 2022 18:39:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220603155727.1232061-2-luca@lucaceresoli.net>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+References: <1653534995-30794-1-git-send-email-u0084500@gmail.com>
+ <1653534995-30794-2-git-send-email-u0084500@gmail.com> <1c7ab94c-a736-c629-bd8c-8a974803e2b9@linaro.org>
+ <CADiBU39jZ6TdYZoH80m4R-X2_fUXZOvDA4yUd_TQdPzBJLE+JA@mail.gmail.com>
+ <076d53d3-6062-686f-8e45-14c5f936bbf6@linaro.org> <20220602135604.GA2194286-robh@kernel.org>
+ <e3aa9c7e-bf2d-dd55-8b3f-ca51f569771d@linaro.org> <CADiBU3-dN0vtQBEqvVLFCUp4-MkhLbQRkOiCet+fO8WfkEW4MQ@mail.gmail.com>
+ <12096a2c-98c3-9e77-785f-808cc3e1a0e4@linaro.org>
+In-Reply-To: <12096a2c-98c3-9e77-785f-808cc3e1a0e4@linaro.org>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Mon, 6 Jun 2022 09:39:15 +0800
+Message-ID: <CADiBU3_REqNRb4UtT5OrVBKuhYL0NPAALisHTM76SrFCHUYMuA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: backlight: rt4831: Add the new property
+ for ocp level selection
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        Helge Deller <deller@gmx.de>, cy_huang <cy_huang@richtek.com>,
+        lucas_tsai@richtek.com,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 03 Jun 2022 17:57:23 +0200, Luca Ceresoli wrote:
-> My Bootlin address is preferred from now on.
-> 
-> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
-> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> ---
->  Documentation/devicetree/bindings/clock/idt,versaclock5.yaml    | 2 +-
->  Documentation/devicetree/bindings/mfd/maxim,max77714.yaml       | 2 +-
->  .../devicetree/bindings/power/supply/maxim,max77976.yaml        | 2 +-
->  3 files changed, 3 insertions(+), 3 deletions(-)
-> 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E6=96=BC 2022=E5=B9=
+=B46=E6=9C=886=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8A=E5=8D=8812:11=E5=AF=AB=
+=E9=81=93=EF=BC=9A
+>
+> On 02/06/2022 17:31, ChiYuan Huang wrote:
+> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E6=96=BC 2022=E5=
+=B9=B46=E6=9C=882=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=889:58=E5=AF=
+=AB=E9=81=93=EF=BC=9A
+> >>
+> >> On 02/06/2022 15:56, Rob Herring wrote:
+> >>> On Thu, May 26, 2022 at 12:32:12PM +0200, Krzysztof Kozlowski wrote:
+> >>>> On 26/05/2022 10:13, ChiYuan Huang wrote:
+> >>>>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E6=96=BC 2022=
+=E5=B9=B45=E6=9C=8826=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=884:06=E5=
+=AF=AB=E9=81=93=EF=BC=9A
+> >>>>>>
+> >>>>>> On 26/05/2022 05:16, cy_huang wrote:
+> >>>>>>> From: ChiYuan Huang <cy_huang@richtek.com>
+> >>>>>>>
+> >>>>>>> Add the new property for ocp level selection.
+> >>>>>>>
+> >>>>>>> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> >>>>>>> ---
+> >>>>>>>  .../bindings/leds/backlight/richtek,rt4831-backlight.yaml       =
+  | 8 ++++++++
+> >>>>>>>  include/dt-bindings/leds/rt4831-backlight.h                     =
+  | 5 +++++
+> >>>>>>>  2 files changed, 13 insertions(+)
+> >>>>>>>
+> >>>>>>> diff --git a/Documentation/devicetree/bindings/leds/backlight/ric=
+htek,rt4831-backlight.yaml b/Documentation/devicetree/bindings/leds/backlig=
+ht/richtek,rt4831-backlight.yaml
+> >>>>>>> index e0ac686..c1c59de 100644
+> >>>>>>> --- a/Documentation/devicetree/bindings/leds/backlight/richtek,rt=
+4831-backlight.yaml
+> >>>>>>> +++ b/Documentation/devicetree/bindings/leds/backlight/richtek,rt=
+4831-backlight.yaml
+> >>>>>>> @@ -47,6 +47,14 @@ properties:
+> >>>>>>>      minimum: 0
+> >>>>>>>      maximum: 3
+> >>>>>>>
+> >>>>>>> +  richtek,bled-ocp-sel:
+> >>>>>>
+> >>>>>> Skip "sel" as it is a shortcut of selection. Name instead:
+> >>>>>> "richtek,backlight-ocp"
+> >>>>>>
+> >>>>> OK, if so, do I need to rename all properties from 'bled' to 'backl=
+ight' ?
+> >>>>> If  only this property is naming as 'backlight'. it may conflict wi=
+th
+> >>>>> the others like as "richtek,bled-ovp-sel".
+> >>>>
+> >>>> Ah, no, no need.
+> >>>>
+> >>>>>>
+> >>>>>>> +    description: |
+> >>>>>>> +      Backlight OCP level selection, currently support 0.9A/1.2A=
+/1.5A/1.8A
+> >>>>>>
+> >>>>>> Could you explain here what is OCP (unfold the acronym)?
+> >>>>> Yes. And the full name is 'over current protection'.
+> >>>>
+> >>>> Thanks and this leads to second thing - you encode register value
+> >>>> instead of logical value. This must be a logical value in mA, so
+> >>>> "richtek,bled-ocp-microamp".
+> >>>
+> >>> We already have common properties for setting current of LEDs. We sho=
+uld
+> >>> use that here I think.
+> >>
+> >> It might not be exactly the same. We have "led-max-microamp" which is
+> >> the maximum allowed current. I guess over-current protection level  is
+> >> slightly higher (e.g. led-max-microamp + 1). IOW, led-max-microamp is
+> >> something which still can be set and used by system/hardware. OCP shou=
+ld
+> >> not.
+> >>
+> > Yap, you're right.
+>
+> So I am right or Rob?
+>
+As I know, both are incorrect.
+> > From the modern backlight IC design, it uses the boost converter archit=
+ecture.
+> > This OCP level is to limit the inductor current when the internal MOS
+> > switch turn on.
+> > Details can refer to the below wiki link
+> > https://en.wikipedia.org/wiki/Boost_converter
+> >
+> > And based on it, OVP is used to limit the inductor output voltage.
+> > Each channel maximum current is based on the IC affordable limit.
+> > It is more like as what you said 'led-max-microamp'.
+> >
+> > So boost voltage level may depend on the LED VF.
+> > The different series of LED may cause different boost voltage.
+> >
+> > RT4831's OVP/OCP is not just the protection, more like as the limit.
+>
+> This suggests Rob is right, so let's use led-max-microamp property?
+>
+No, the meaning is different. 'led-max-microamp' always means the
+channel output current.
+It already can be adjusted by backlight brightness node.
 
-Applied, thanks!
+For example
+low voltage side (3.3~4.4V) to generate the boost voltage to 16~17V,
+even 20V for BLED Vout.
+This OCP is to limit the input current of low voltage side.
+
+After the explanation, do you still think it's the same thing?
+> Best regards,
+> Krzysztof
