@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17EEF53E760
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:07:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECC4853EAAC
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:09:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238151AbiFFNBW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jun 2022 09:01:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58174 "EHLO
+        id S238234AbiFFNE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jun 2022 09:04:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238150AbiFFNBU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 09:01:20 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F6AD52537
-        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 06:01:19 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id h23so17726147ejj.12
-        for <devicetree@vger.kernel.org>; Mon, 06 Jun 2022 06:01:19 -0700 (PDT)
+        with ESMTP id S238230AbiFFNDa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 09:03:30 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87B3436B5D
+        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 06:03:21 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id c2so18726748edf.5
+        for <devicetree@vger.kernel.org>; Mon, 06 Jun 2022 06:03:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=h1m3RQgl4XOArgt66k3NUS75Xxdt0168uvwBuanYOsA=;
-        b=E5H1VvUpCKh6EY97ERLISONJ4bt1XDT4xrpgdLOUS+fM5kqjjAr+Xk8msa5eZYYd6Q
-         9K9TVTkCKd4stBAPxvFaJKWB11AVgpvutQ3t7MHBzTV3JNXcECnYFXGLEyAGazGEw2Ke
-         n0+yNf4gDGDuuk7yrNY31O3hdDKR3SRXAO+OLB2m9wgg8gC9TuUPZNhc6Aq1Hy+cpv9d
-         gAx1BC7ju4s21/+9Tf4h2cmVlGUJBV/wKVk8GTmACbBtnbtzm63lcwToO2N/IslQY+jp
-         9OEHiyU2sSObzY51gNWmQ9bn65LjzIzEdq8faRn3piuit/BNe02+tIL770/gFS46ypw0
-         2CQA==
+        bh=9OxRTMOPQcoWtDJkrs/ws60KmhDcry5eiLie80rsiV0=;
+        b=xoxeEc83WssMlenazqEebhL7ESdnn2WRPAKXcSsM1JgAPUMh85wEYEivR3T+D2TVMn
+         vj1fhc9ErRY1A4NtIfYOtMrAB1C5/qlXZ7VyDuT1ERDuuE/Hhzu59eyNRZbQ5QXZaioB
+         F70Uqz3Ej8KAxIrj1b6NXy9gOvDixOvxzV8X2hU1GGg385WBeT5ldpcakEZMrGwOF2Ya
+         JlfE98zdHlnEMyvEJUDWxNrMtR8Wv1uto71QAHC6Zqh33wcrl888XzOy/YtuMZxevRWt
+         OEF81cX4qBKpiEP6mkMx9ixt3bxEMKGWD7je8bHkKHUM3lUTBXGzJLDdUv11zR9MOrDU
+         0DWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=h1m3RQgl4XOArgt66k3NUS75Xxdt0168uvwBuanYOsA=;
-        b=fkx2ReITzDSoXAoOk0dbxfN1WE4AUx2QBw3zjj2M23PIEc5yvEaXX5btTdqhOvQDr2
-         uI8axWN9VG1A/B+tYVGG3LaHkz4sE99BFgq371XFw2UukJCdEryewvxGOabZerb2PKo7
-         LPkBY23sYFmL5D+e7Igvsvip+Elzp5G2dFIBduqUr5O6E1wxW+MCDejSf4Sdr9j4//Dv
-         v+XJlmhnSVoJfHCWrYCaGeN2E/i5iQcYUBbv44QlPQgean+3cQT8S/jP2jzAgmnaNVmk
-         70PPP8vwlWMj197j/YI8q5naUajeSHwlghvRkCb0GSHqXX4k6X85697d1zZlGbUGeRt/
-         SDyA==
-X-Gm-Message-State: AOAM5311B90Q+PylMDFoLQwd6CdUOPZLVxXgCUbLzGzy0MmZvmuRPhll
-        tawXF7qKJfyeNDirJ+0nFxOLYg==
-X-Google-Smtp-Source: ABdhPJws0YTuXlPG7rD3iB4yGZAKH7ihRhnQrcSFYkPV14mM09aTsOcUCFRHvzhpIa709UCZYR3Whg==
-X-Received: by 2002:a17:907:3e8d:b0:6fe:d99b:90a with SMTP id hs13-20020a1709073e8d00b006fed99b090amr21447213ejc.416.1654520476858;
-        Mon, 06 Jun 2022 06:01:16 -0700 (PDT)
+        bh=9OxRTMOPQcoWtDJkrs/ws60KmhDcry5eiLie80rsiV0=;
+        b=XlhP1rlKNU90YlsxCu/e0KbfYlBRhUb/5dD/4UhGRmjuAY802/JRnVd1R/klDF7tCk
+         ZQZNAnJNPd0LmgNje/YwbLukTDiwPDrUYzCqvinn+mc/YHDu76W9FaJDCYJHIrFU2Zf4
+         WbdO7vIRhiIALVKNUE+kzDfgwn7kRfmj9+6jOokdG+3nf0IowzBzYzrD3vawVDxDGOQF
+         vHrmsHwCcb8soQbK0rtdxdAyyWs7OxuYyVVhaIyQrUi4WoR4SvY3BLdivK7egFbPk0f/
+         VGmyKmbBPvHLFAUO7RsFCiJ5Ka6m07hIx3ml7/4TZj5tlNuaGnHrQOh1OJgebt1UhJle
+         HCUg==
+X-Gm-Message-State: AOAM533UW3kfruy/ZppyIvqemb01VjPFEIGKuGfmWJdbSLgg+w4EWggQ
+        uHXGn5VLGrdkcwKWC802Fa1nXQ==
+X-Google-Smtp-Source: ABdhPJyIJ0g5jgaKC+UYSyfG1jno/pBLV87i2zkT42j9LvLZ9rhebxwHb50RHOMeIEFNkou/TJJ7zQ==
+X-Received: by 2002:a05:6402:438a:b0:42e:985:4944 with SMTP id o10-20020a056402438a00b0042e09854944mr25827674edc.283.1654520600280;
+        Mon, 06 Jun 2022 06:03:20 -0700 (PDT)
 Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id yz17-20020a170906dc5100b0070b1ecdc12bsm5117954ejb.112.2022.06.06.06.01.13
+        by smtp.gmail.com with ESMTPSA id y24-20020a170906071800b006feed200464sm6356249ejb.131.2022.06.06.06.03.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Jun 2022 06:01:14 -0700 (PDT)
-Message-ID: <ba24037d-8c31-ea35-6fc9-ed8a61118848@linaro.org>
-Date:   Mon, 6 Jun 2022 15:01:13 +0200
+        Mon, 06 Jun 2022 06:03:19 -0700 (PDT)
+Message-ID: <1764f3ce-608f-e55c-d977-18fb95e4a0fe@linaro.org>
+Date:   Mon, 6 Jun 2022 15:03:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH 1/3] dt-bindings: mfd: atmel,flexcom: Convert to
- json-schema
+Subject: Re: [PATCH 2/3] dt-bindings: mfd: atmel,flexcom: Add new compatible
+ string for lan966x
 Content-Language: en-US
 To:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -63,14 +63,14 @@ To:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
 References: <20220603121802.30320-1-kavyasree.kotagiri@microchip.com>
- <20220603121802.30320-2-kavyasree.kotagiri@microchip.com>
+ <20220603121802.30320-3-kavyasree.kotagiri@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220603121802.30320-2-kavyasree.kotagiri@microchip.com>
+In-Reply-To: <20220603121802.30320-3-kavyasree.kotagiri@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,35 +79,31 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 03/06/2022 14:18, Kavyasree Kotagiri wrote:
-> Convert the Atmel flexcom device tree bindings to json schema.
+> LAN966x SoC flexcoms has two optional I/O lines. Namely, CS0 and CS1 in
+> flexcom SPI mode. CTS and RTS in flexcom USART mode. These pins
+> can be mapped to lan966x FLEXCOM_SHARED[0-20] pins and usage depends on
+> functions being configured.
 > 
 > Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
 > ---
->  .../bindings/mfd/atmel,flexcom.yaml           | 97 +++++++++++++++++++
->  .../devicetree/bindings/mfd/atmel-flexcom.txt | 63 ------------
->  2 files changed, 97 insertions(+), 63 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
->  delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-flexcom.txt
+>  .../bindings/mfd/atmel,flexcom.yaml           | 21 ++++++++++++++++++-
+>  1 file changed, 20 insertions(+), 1 deletion(-)
 > 
 > diff --git a/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml b/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
-> new file mode 100644
-> index 000000000000..221bd840b49e
-> --- /dev/null
+> index 221bd840b49e..6050482ad8ef 100644
+> --- a/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
 > +++ b/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
-> @@ -0,0 +1,97 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/atmel,flexcom.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Device tree bindings for Atmel Flexcom (Flexible Serial Communication Unit)
+> @@ -16,7 +16,9 @@ description:
+>  
+>  properties:
+>    compatible:
+> -    const: atmel,sama5d2-flexcom
+> +    enum:
+> +      - atmel,sama5d2-flexcom
+> +      - microchip,lan966x-flexcom
 
-There was a v2 of the same patch to which already commented. Now you
-send the same patch, without comments applied as v1. This does not make
-any sense.
-
-Please version your patches correctly and do not ignore received feedback.
+Your new v1 is here worse than old v2, where this was just simple
+extension of existing enum. Why did you change it?
 
 
 Best regards,
