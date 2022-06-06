@@ -2,71 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDFCB53EB8E
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:09:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1EEB53E8F9
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:08:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241619AbiFFQPY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jun 2022 12:15:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33878 "EHLO
+        id S241694AbiFFQ13 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jun 2022 12:27:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241639AbiFFQPX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 12:15:23 -0400
-Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 873DC158F21
-        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 09:15:22 -0700 (PDT)
-Received: by mail-pg1-x529.google.com with SMTP id c18so4952541pgh.11
-        for <devicetree@vger.kernel.org>; Mon, 06 Jun 2022 09:15:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Yc3d6f09An5Iup7HnFnq+YmtnLxXizu7JY/ZtB+fmYU=;
-        b=bgidypdYCXahlWg67Jnr4ubl4uJixk0PWYtjDwcs3u5xJE0nvwIFqj7aCjjwNOiMvz
-         9L9/vq/xwoEPAh3c1EVJpaJc3qB5EvVqnHlAqc+E1Pb4BoPVwJFeuuLsB8kL0Y5NYxY5
-         +u50F+KOlu6kucbAAaG1q3yMKz27idq5V/1qICzsTjPfWVZ7EgTcgipFTw+mjl3KFKq8
-         2b9wF1Fbx/jsinj/hE1XcHEW/SqkDw70ZLHnxeAdO5eDdR0DGd3QG5Fbou9J33AI8mrX
-         sDURBwJYta4klrPdDpA4c/LylywEHj9RIBnVv6TKLt4/rgbZq5Qbgx0ciWFgtDIW81D3
-         Ykrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Yc3d6f09An5Iup7HnFnq+YmtnLxXizu7JY/ZtB+fmYU=;
-        b=N4gbbtk95EYcQELXED2PqorG3kzZhqPXMnJI0VzkVr/0a8UQy1P16Z+PCRtojaaFvx
-         ehyWk6VZxJ6DsnOV8/SMN0Yw80DZY0Za5E4Av2JoXSrhfQXMHki8933GYbCQPK7F3j90
-         JK72TfggZJJfQd77TBJ+nR7ygxl/D8jxWwlbxm1oeu0ivdXJprHHxcBsqulcp7jbka5W
-         /w4BlWzlM8k+GPnqn5NnQPFu2VUCKYvkQktLOXj6BN/FB4/w6WBElV2ddYdY6oKQX9zC
-         qzG8aTSmQpziWQhsrDQCuyEfjPkXFMifACJTAo9fGdOxOeFaekCGju3B1vd6XjHAfus0
-         XVPQ==
-X-Gm-Message-State: AOAM532vE5e4J/u3OmougMJVgDPjQVd6PHfMcvbvMWrTesnp9fDUbVMf
-        +bI5QYfcYoJrkYw0CDAyv/aJKg==
-X-Google-Smtp-Source: ABdhPJymBlKeJCj3tvmSxgMQ8W96PwRXnOWJMPIgOzJN40d5L4tl9aO20Ei3Hqzfn1EToQYphbdpOg==
-X-Received: by 2002:a63:e905:0:b0:3fa:ec8c:9013 with SMTP id i5-20020a63e905000000b003faec8c9013mr21525731pgh.599.1654532121881;
-        Mon, 06 Jun 2022 09:15:21 -0700 (PDT)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id s4-20020aa78d44000000b0051c179895a0sm2547571pfe.212.2022.06.06.09.15.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jun 2022 09:15:20 -0700 (PDT)
-Date:   Mon, 6 Jun 2022 10:15:18 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Puranjay Mohan <p-mohan@ti.com>
-Cc:     linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        nm@ti.com, ssantosh@kernel.org, s-anna@ti.com,
-        linux-arm-kernel@lists.infradead.org, rogerq@kernel.org,
-        grygorii.strashko@ti.com, vigneshr@ti.com, kishon@ti.com,
-        robh@kernel.org
-Subject: Re: [PATCH v4 0/6] Introduce PRU remoteproc consumer API
-Message-ID: <20220606161518.GB809345@p14s>
-References: <20220603121520.13730-1-p-mohan@ti.com>
- <20220606155612.GA809345@p14s>
+        with ESMTP id S241665AbiFFQ12 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 12:27:28 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEED41CB2F;
+        Mon,  6 Jun 2022 09:27:26 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 6B373B81A99;
+        Mon,  6 Jun 2022 16:27:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23100C385A9;
+        Mon,  6 Jun 2022 16:27:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654532844;
+        bh=ylWybLonD1BQqCYZrEEqFYrp83QmjcrwN1I8AMq+9V4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jKCgBcAhZw0W+7pwPPmYwVhEjCzvTnJ/7rjg5xNoB0iQhZbQ9gh+U4RZ5JomeY3Hp
+         6Rswdhk5jO20B82AjljfMyGXlmW1rIPp8rzd8eQ+h0x7RzTS7qcUJvfvNplhSAMnPF
+         Se3EWMpDXNMFnq63wG0PJhuHJY+S9N5dLX80eQoL2xWpJT6749f4TYWyoumb1K8/X8
+         HZhtP+wzgTikagNv3A3RCRVvwyxO7uGTgafX3qVZX9RGNdouLuyszi0mm1cnOiM6dP
+         BgHuO7xdWPs9hBNcqvtKJQjNz3Nrx71QPtbTMFNY5L6AND1xn8SpqMLrFtHegjXS7g
+         PsCeW1uxfSgwQ==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1nyFZV-0004As-AQ; Mon, 06 Jun 2022 18:27:17 +0200
+Date:   Mon, 6 Jun 2022 18:27:17 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh@kernel.org>,
+        Johan Hovold <johan+linaro@kernel.org>
+Subject: Re: [PATCH v13 4/7] PCI: dwc: Handle MSIs routed to multiple GIC
+ interrupts
+Message-ID: <Yp4q5S7WIYbYEdHc@hovoldconsulting.com>
+References: <20220603074137.1849892-1-dmitry.baryshkov@linaro.org>
+ <20220603074137.1849892-5-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220606155612.GA809345@p14s>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <20220603074137.1849892-5-dmitry.baryshkov@linaro.org>
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -75,79 +70,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 06, 2022 at 09:56:12AM -0600, Mathieu Poirier wrote:
-> I have started to review this set, comments will come over the next few days.  I
-> will clearly inform you when I am done reviewing.
-
-This patch is giving me several checkpatch warnings that should have been caught
-before sending the patches out to the mailing list.  As such I will not review
-this work and seriously considering adding your next revision at the very bottom
-of my queue.
-
+On Fri, Jun 03, 2022 at 10:41:34AM +0300, Dmitry Baryshkov wrote:
+> On some of Qualcomm platforms each group of 32 MSI vectors is routed to the
+> separate GIC interrupt. Implement support for such configurations by
+> parsing "msi0" ... "msiN" interrupts and attaching them to the chained
+> handler.
 > 
-> Thanks,
-> Mathieu
+> Note, that if DT doesn't list an array of MSI interrupts and uses single
+> "msi" IRQ, the driver will limit the amount of supported MSI vectors
+> accordingly (to 32).
 > 
-> On Fri, Jun 03, 2022 at 05:45:14PM +0530, Puranjay Mohan wrote:
-> > This is the v4 of the patch series [1]. The v3 had some comments
-> > on the DT patch that have been addressed here. The 6th patch in this
-> > series was missed in the previous versions, so, it has been added now.
-> > 
-> > I have posted two more patch series that depend on this series, one to
-> > the soc tree and another to the networking tree. I had sent all the 3
-> > series, including this one as RFC [2] to get comments and to explain the
-> > dependencies.
-> > 
-> > The Programmable Real-Time Unit and Industrial Communication Subsystem
-> > (PRU-ICSS or simply PRUSS) on various TI SoCs consists of dual 32-bit
-> > RISC cores (Programmable Real-Time Units, or PRUs) for program execution.
-> > 
-> > There are 3 foundation components for PRUSS subsystem: the PRUSS platform
-> > driver, the PRUSS INTC driver and the PRUSS remoteproc driver. All were
-> > already merged and can be found under:
-> > 1) drivers/soc/ti/pruss.c
-> >    Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
-> > 2) drivers/irqchip/irq-pruss-intc.c
-> >    Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
-> > 3) drivers/remoteproc/pru_rproc.c
-> >    Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
-> > 
-> > The programmable nature of the PRUs provide flexibility to implement custom
-> > peripheral interfaces, fast real-time responses, or specialized data handling.
-> > Example of a PRU consumer drivers will be:
-> >   - Software UART over PRUSS
-> >   - PRU-ICSS Ethernet EMAC
-> > 
-> > In order to make usage of common PRU resources and allow the consumer drivers to
-> > configure the PRU hardware for specific usage the PRU API is introduced.
-> > 
-> > [1] https://patchwork.kernel.org/project/linux-remoteproc/cover/20220418104118.12878-1-p-mohan@ti.com/
-> > [2] https://patchwork.kernel.org/project/linux-remoteproc/cover/20220406094358.7895-1-p-mohan@ti.com/
-> > 
-> > Thanks and Regards,
-> > Puranjay Mohan
-> > 
-> > Roger Quadros (1):
-> >   remoteproc: pru: Add pru_rproc_set_ctable() function
-> > 
-> > Suman Anna (2):
-> >   dt-bindings: remoteproc: Add PRU consumer bindings
-> >   remoteproc: pru: Make sysfs entries read-only for PRU client driven
-> >     boots
-> > 
-> > Tero Kristo (3):
-> >   remoteproc: pru: Add APIs to get and put the PRU cores
-> >   remoteproc: pru: Configure firmware based on client setup
-> >   remoteproc: pru: add support for configuring GPMUX based on client
-> >     setup
-> > 
-> >  .../bindings/remoteproc/ti,pru-consumer.yaml  |  69 +++++
-> >  drivers/remoteproc/pru_rproc.c                | 254 +++++++++++++++++-
-> >  include/linux/pruss.h                         |  78 ++++++
-> >  3 files changed, 396 insertions(+), 5 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
-> >  create mode 100644 include/linux/pruss.h
-> > 
-> > -- 
-> > 2.17.1
-> > 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../pci/controller/dwc/pcie-designware-host.c | 63 +++++++++++++++++--
+>  1 file changed, 59 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> index 85c1160792e1..d1f9e20df903 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> @@ -289,6 +289,46 @@ static void dw_pcie_msi_init(struct pcie_port *pp)
+>  	dw_pcie_writel_dbi(pci, PCIE_MSI_ADDR_HI, upper_32_bits(msi_target));
+>  }
+>  
+> +static int dw_pcie_parse_split_msi_irq(struct pcie_port *pp)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	struct device *dev = pci->dev;
+> +	struct platform_device *pdev = to_platform_device(dev);
+> +	int irq;
+> +	u32 ctrl, max_vectors;
+> +
+> +	/* Parse as many IRQs as described in the devicetree. */
+> +	for (ctrl = 0; ctrl < MAX_MSI_CTRLS; ctrl++) {
+> +		char *msi_name = "msiX";
+> +
+> +		msi_name[3] = '0' + ctrl;
+
+This oopses here as the string constant is read only:
+
+	[   19.787973] Unable to handle kernel write to read-only memory at virtual address ffffaa14f831afd3
+
+Did you not test the series before posting?
+
+You need to define msi_name as:
+
+	char msi_name[] = "msiX";
+
+> +		irq = platform_get_irq_byname_optional(pdev, msi_name);
+> +		if (irq == -ENXIO)
+> +			break;
+> +		if (irq < 0)
+> +			return dev_err_probe(dev, irq,
+> +					     "Failed to parse MSI IRQ '%s'\n",
+> +					     msi_name);
+> +
+> +		pp->msi_irq[ctrl] = irq;
+> +	}
+
+Johan
