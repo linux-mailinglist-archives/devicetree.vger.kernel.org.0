@@ -2,80 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B044A53E936
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:08:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 332E653E73F
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:07:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233251AbiFFJz2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jun 2022 05:55:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37172 "EHLO
+        id S233340AbiFFKC4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jun 2022 06:02:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233121AbiFFJz1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 05:55:27 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1FB8113A1C
-        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 02:55:22 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id d14so10117069wra.10
-        for <devicetree@vger.kernel.org>; Mon, 06 Jun 2022 02:55:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=/HGBwVcm94G6hJzxxoyTgU9jvYkuG8KyARLPoR4g984=;
-        b=sSIY/sq3tJH+ruvIsuQApXH81UhkfbHOfABcA9lRdOXBMbUsWyeFwDFrglxz8GfoFY
-         QmStVG7kQyI/Q+/6pzQ1jyZY82gcQ94oe3qAb4fzAxkirKGmyAUaoqUUXub2FoGcDeKV
-         S/Wm7MMIB0Gh1CQX3FHGnak7oG6MzRuQNup0KHkoXlknAeFpQTqPF8kWakz2k1lHJoxZ
-         dthp0Z3elQaJG1D3TE/Vs4VI3xS7Hn4Pu8rhIoTTWWgEf0GTiaogaHkE4OCPgIBPe8BV
-         1InWXF/vn+LEpsxPD/Vb9arMdS+o9J/eS52eFzf2SzeGhMRIomxC+4FZ1I5qKCu7/UsL
-         xuAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=/HGBwVcm94G6hJzxxoyTgU9jvYkuG8KyARLPoR4g984=;
-        b=4KnG44SzfZEwWlNqwxxl2PTOcCANtJJ11Lx0xAC21tFXnfZqDu31ujS+hEdTz0tmNk
-         ihNSnqjo9QOSssaP8/M0lfkDMd8KtuG2OSP0+04PYJNumRppwD9Ovddh3Pfx4M5Rqo9h
-         wkUIy+T32xOAo2n6o4Ejc6JoiPjnXeye/+37iJPXaCooC1A8mN0hNZGCmiM7jlhYT0v0
-         2F4TMkWVnxdTwxk5+/nTZDxsl9MWwPJ6c48wDGOr8PZ3Cs3szRl9s4l3jHMkDG28lQXc
-         x7aSuEB5R+hXDU/nUm61FvKk/c0ANlGb8cIYHXIw9sI7hvsUAQJbIUtxvAjGFCgcNMbI
-         L2vw==
-X-Gm-Message-State: AOAM5329jES4fDJQ3KkDCDE9WlGtAWWKyGoLJqplf5fBi0SEKn9m9mI9
-        r+JpJJmjET931rErifqwzpy6Dg==
-X-Google-Smtp-Source: ABdhPJxFMRPPs4LSY3Kcwnsvn2fgmQxO/3GAT/dfFczxe2I21JguLlXbCT27NpSSDOKSGZaQZm8pJA==
-X-Received: by 2002:a05:6000:2a9:b0:210:2530:be32 with SMTP id l9-20020a05600002a900b002102530be32mr21432918wry.153.1654509321248;
-        Mon, 06 Jun 2022 02:55:21 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id o10-20020adfeaca000000b0020c5253d8c2sm14659609wrn.14.2022.06.06.02.55.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jun 2022 02:55:20 -0700 (PDT)
-Date:   Mon, 6 Jun 2022 10:55:03 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Luca Ceresoli <luca@lucaceresoli.net>
-Cc:     linux-kernel@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Leon Luo <leonl@leopardimaging.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>
-Subject: Re: [PATCH 4/6] mfd: max77714: update Luca Ceresoli's e-mail address
-Message-ID: <Yp3O92gg9LiIzQTX@google.com>
-References: <20220603155727.1232061-1-luca@lucaceresoli.net>
- <20220603155727.1232061-4-luca@lucaceresoli.net>
+        with ESMTP id S233344AbiFFKC4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 06:02:56 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1E5361113;
+        Mon,  6 Jun 2022 03:02:54 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DE7DE15DB;
+        Mon,  6 Jun 2022 03:02:53 -0700 (PDT)
+Received: from e120937-lin.home (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9BA963F66F;
+        Mon,  6 Jun 2022 03:02:51 -0700 (PDT)
+From:   Cristian Marussi <cristian.marussi@arm.com>
+To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     sudeep.holla@arm.com, james.quinlan@broadcom.com,
+        Jonathan.Cameron@Huawei.com, f.fainelli@gmail.com,
+        etienne.carriere@linaro.org, vincent.guittot@linaro.org,
+        daniel.lezcano@linaro.org, tarek.el-sherbiny@arm.com,
+        adrian.slatineanu@arm.com, souvik.chakravarty@arm.com,
+        wleavitt@marvell.com, wbartczak@marvell.com,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v2 1/7] dt-bindings: firmware: arm,scmi: Add powercap protocol
+Date:   Mon,  6 Jun 2022 11:02:24 +0100
+Message-Id: <20220606100230.3465828-2-cristian.marussi@arm.com>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20220606100230.3465828-1-cristian.marussi@arm.com>
+References: <20220606100230.3465828-1-cristian.marussi@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220603155727.1232061-4-luca@lucaceresoli.net>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,21 +48,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 03 Jun 2022, Luca Ceresoli wrote:
+Add new SCMIv3.1 Powercap protocol bindings definitions and example.
 
-> My Bootlin address is preferred from now on.
-> 
-> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
-> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> ---
->  drivers/mfd/max77714.c       | 4 ++--
->  include/linux/mfd/max77714.h | 2 +-
->  2 files changed, 3 insertions(+), 3 deletions(-)
+Acked-by: Rob Herring <robh@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
+---
+ .../devicetree/bindings/firmware/arm,scmi.yaml         | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-Applied, thanks.
-
+diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+index 948e2a38beed..1c0388da6721 100644
+--- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
++++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+@@ -183,6 +183,12 @@ properties:
+             required:
+               - reg
+ 
++  protocol@18:
++    type: object
++    properties:
++      reg:
++        const: 0x18
++
+ additionalProperties: false
+ 
+ patternProperties:
+@@ -323,6 +329,10 @@ examples:
+                     };
+                 };
+             };
++
++            scmi_powercap: protocol@18 {
++                reg = <0x18>;
++            };
+         };
+     };
+ 
 -- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.32.0
+
