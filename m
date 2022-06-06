@@ -2,636 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E42D353F13E
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 22:58:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B38F553F16B
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 23:09:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230132AbiFFU6A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jun 2022 16:58:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36860 "EHLO
+        id S235029AbiFFVJa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jun 2022 17:09:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234827AbiFFU5q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 16:57:46 -0400
-Received: from hutie.ust.cz (hutie.ust.cz [185.8.165.127])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8131A121CDB;
-        Mon,  6 Jun 2022 13:46:26 -0700 (PDT)
-From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
-        t=1654548384; bh=u1isTWSeb6uW/pN53wPvzFBUNL/gSgdFJGQPWKSaW/o=;
-        h=From:Subject:Date:In-Reply-To:Cc:References;
-        b=n6rrkdenyJM5fGxcP1ineL/wKFiL2O1e4negh1B68LMycRU1DPXgRDpnY6fIBNb1t
-         LYMijEX+twveCJbi9rqr6bnQZAVxceHFRhT5/mtTIL0vXciYBe8biyQ7njEjoexISm
-         A4UQjdhkVgeStbtx68mSA7BdlYbo2Hx9JLOBttqA=
-Content-Type: text/plain;
-        charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.80.82.1.1\))
-Subject: Re: [RFC PATCH v2 5/5] ASoC: apple: Add macaudio machine driver
-Date:   Mon, 6 Jun 2022 22:46:23 +0200
-In-Reply-To: <8e1641d0-b081-6301-db94-2c026166079a@linux.intel.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S235048AbiFFVJW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 17:09:22 -0400
+Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com [IPv6:2001:4860:4864:20::29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5114964EE
+        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 14:09:18 -0700 (PDT)
+Received: by mail-oa1-x29.google.com with SMTP id 586e51a60fabf-fb1ae0cd9cso10097903fac.13
+        for <devicetree@vger.kernel.org>; Mon, 06 Jun 2022 14:09:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=KjZUeR41V+hdVlsqMk8d6AC7MYE0tWAvsjnkRUTqWy0=;
+        b=pFvU4CCOoui9Xxwvj+qmAzvOiXI5aFvbgInYPFz5KR8vAZcLHD+eEK+zBnSYabG76Y
+         MRbf1UnC8j/xo4HYq+uQIv7B4Yo4XSCQVBFX4QN+29ohKySkRHLH8O6dLfXIRcEhoZHk
+         F+kZ7/hlhRgAU6+FKMAK4AcL0Zy1S2foyOzvqfUfQP4ii2fFfQPSFElUi+vip+WNdGs2
+         aJy5/A7s8iEQiAMgum4CAooOH52UZzohQgmE3lxqlDPwx39Z0rbT1T65u5ahuNxZgHri
+         XpAhd6N9EMVKAo2hPVj7k5YB+vDf1PNUK2WXKIL44ij8uok/rG3Qeu7OsWtHTFwEkoJ5
+         kWTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=KjZUeR41V+hdVlsqMk8d6AC7MYE0tWAvsjnkRUTqWy0=;
+        b=fEpNv1yHQtpccyVDvLDf/98f8C0V01QyJl+ieMoGs22La2n5Vpa3ZK6aX2v3XnrAKn
+         1FUPyWE0HnQXQ2yYa4h6HJTGZlHbSKYd63dbNKHryCS7ksnITHvsFDLJIoDV1xx1/jdG
+         zUTopnS1w3SfIZ4MycMmkzGCZP24raN5t9hob36PJXHaTvj5IIXQYTB8hUZFmOp3b2eB
+         4oAx2ZyjqhXdPV7gVbNaMR8tS4ViGUKYHFcgtaId00kDcK8FsG86+0tupJwNDWhHo323
+         odSNUPNvXeqQ5ZPw08rLrAcgC1fWJT+9VlS/oPSNtIcQoYzy8Vf1Ltb7rJCZMP63kszx
+         78Rw==
+X-Gm-Message-State: AOAM533qjQP/Xwdy7NFhWqVl0Rt8FHCGSRGP0+k/QjfEWCIQfjVu2Xvz
+        q+EmErO5w8Zg4ZcGct3cWPP9Gw==
+X-Google-Smtp-Source: ABdhPJyFpCdTs573Aa9BUetYgzmOYdpif+0Pijgsdtagi9smmxL5Z1AK44PHxIkjGftSEl++FYBRGQ==
+X-Received: by 2002:a05:6870:b14c:b0:fa:e853:9a7e with SMTP id a12-20020a056870b14c00b000fae8539a7emr9763440oal.186.1654549757512;
+        Mon, 06 Jun 2022 14:09:17 -0700 (PDT)
+Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id q28-20020a05683022dc00b0060c00c3fde5sm1108100otc.72.2022.06.06.14.09.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Jun 2022 14:09:16 -0700 (PDT)
+Date:   Mon, 6 Jun 2022 14:11:41 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Georgi Djakov <djakov@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org, Sven Peter <sven@svenpeter.dev>,
-        Hector Martin <marcan@marcan.st>, linux-kernel@vger.kernel.org,
-        asahi@lists.linux.dev, Mark Kettenis <kettenis@openbsd.org>
-References: <20220606191910.16580-1-povik+lin@cutebit.org>
- <20220606191910.16580-6-povik+lin@cutebit.org>
- <8e1641d0-b081-6301-db94-2c026166079a@linux.intel.com>
-Message-Id: <ED93F42F-5406-4D4F-B996-86F683EC09ED@cutebit.org>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,MISSING_HEADERS,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v4 1/4] dt-bindings: interconnect: qcom,sdm845-cpu-bwmon:
+ add BWMON device
+Message-ID: <Yp5tjUICIEUptKSx@ripper>
+References: <20220601101140.170504-1-krzysztof.kozlowski@linaro.org>
+ <20220601101140.170504-2-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220601101140.170504-2-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-(I am having trouble delivering mail to linux.intel.com, so I reply to =
-the list
-and CC at least...)
+On Wed 01 Jun 03:11 PDT 2022, Krzysztof Kozlowski wrote:
 
-> On 6. 6. 2022, at 22:02, Pierre-Louis Bossart =
-<pierre-louis.bossart@linux.intel.com> wrote:
->=20
->=20
->> + * Virtual FE/BE Playback Topology
->> + * -------------------------------
->> + *
->> + * The platform driver has independent frontend and backend DAIs =
-with the
->> + * option of routing backends to any of the frontends. The platform
->> + * driver configures the routing based on DPCM couplings in ASoC =
-runtime
->> + * structures, which in turn is determined from DAPM paths by ASoC. =
-But the
->> + * platform driver doesn't supply relevant DAPM paths and leaves =
-that up for
->> + * the machine driver to fill in. The filled-in virtual topology can =
-be
->> + * anything as long as a particular backend isn't connected to more =
-than one
->> + * frontend at any given time. (The limitation is due to the =
-unsupported case
->> + * of reparenting of live BEs.)
->> + *
->> + * The DAPM routing that this machine-level driver makes up has two =
-use-cases
->> + * in mind:
->> + *
->> + * - Using a single PCM for playback such that it conditionally =
-sinks to either
->> + *   speakers or headphones based on the plug-in state of the =
-headphones jack.
->> + *   All the while making the switch transparent to userspace. This =
-has the
->> + *   drawback of requiring a sample stream suited for both speakers =
-and
->> + *   headphones, which is hard to come by on machines where tailored =
-DSP for
->> + *   speakers in userspace is desirable or required.
->> + *
->> + * - Driving the headphones and speakers from distinct PCMs, having =
-userspace
->> + *   bridge the difference and apply different signal processing to =
-the two.
->> + *
->> + * In the end the topology supplied by this driver looks like this:
->> + *
->> + *  PCMs (frontends)                   I2S Port Groups (backends)
->> + *  =E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80                   =
-=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
-=E2=94=80
->> + *
->> + *  =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90       =
-=E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=96=
-=BA =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90     =
-=E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=90
->> + *  =E2=94=82 Primary  =E2=94=9C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=A4                 =E2=94=82 Mux =E2=94=82 =
-=E2=94=80=E2=94=80=E2=96=BA =E2=94=82 Speakers =E2=94=82
->> + *  =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98       =E2=94=82    =
-=E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=96=BA =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=98     =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98
->> + *                =E2=94=8C=E2=94=80=E2=94=80=E2=94=80 =E2=94=82 =
-=E2=94=80=E2=94=80=E2=94=80=E2=94=98             =E2=96=B2
->> + *  =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90  =E2=94=82    =E2=94=82       =
-           =E2=94=82
->> + *  =E2=94=82Secondary =E2=94=9C=E2=94=80=E2=94=80=E2=94=98    =E2=94=82=
-     =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
-=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=B4=E2=94=90
->> + *  =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98       =
-=E2=94=9C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=96=BA=E2=94=82Plug-in =
-Demux=E2=94=82
->> + *                     =E2=94=82     =
-=E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=AC=E2=94=98
->> + *                     =E2=94=82                  =E2=94=82
->> + *                     =E2=94=82                  =E2=96=BC
->> + *                     =E2=94=82                 =
-=E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90     =
-=E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=90
->> + *                     =
-=E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=96=
-=BA =E2=94=82 Mux =E2=94=82 =E2=94=80=E2=94=80=E2=96=BA =E2=94=82Headphone=
-s=E2=94=82
->> + *                                       =E2=94=94=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=98     =
-=E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
-=94=80=E2=94=80=E2=94=80=E2=94=98
->> + */
->=20
-> In Patch2, the 'clusters' are described as front-ends, with I2S as
-> back-ends. Here the PCMs are described as front-ends, but there's no
-> mention of clusters. Either one of the two descriptions is outdated, =
-or
-> there's something missing to help reconcile the two pieces of =
-information?
+> Add bindings for the Qualcomm Bandwidth Monitor device providing
+> performance data on interconnects.  The bindings describe only BWMON
+> version 4, e.g. the instance on SDM845 between CPU and Last Level Cache
+> Controller.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Acked-by: Georgi Djakov <djakov@kernel.org>
+> ---
+>  .../interconnect/qcom,sdm845-cpu-bwmon.yaml   | 97 +++++++++++++++++++
+>  1 file changed, 97 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sdm845-cpu-bwmon.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,sdm845-cpu-bwmon.yaml b/Documentation/devicetree/bindings/interconnect/qcom,sdm845-cpu-bwmon.yaml
+> new file mode 100644
+> index 000000000000..8c82e06ee432
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interconnect/qcom,sdm845-cpu-bwmon.yaml
+> @@ -0,0 +1,97 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/interconnect/qcom,sdm845-cpu-bwmon.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Interconnect Bandwidth Monitor
+> +
+> +maintainers:
+> +  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +
+> +description:
+> +  Bandwidth Monitor measures current throughput on buses between various NoC
+> +  fabrics and provides information when it crosses configured thresholds.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,sdm845-cpu-bwmon       # BWMON v4
 
-Both descriptions should be in sync. Maybe I don=E2=80=99t know the =
-proper
-terminology. In both cases the frontend is meant to be the actual I2S
-transceiver unit, and backend the I2S port on the SoC=E2=80=99s =
-periphery,
-which can be routed to any of transceiver units. (Multiple ports can
-be routed to the same unit, which means the ports will have the same
-clocks and data line -- that's a configuration we need to support to
-drive some of the speaker arrays, hence the backend/frontend
-distinction).
+It seems the thing that's called bwmon v4 is compatible with a number of
+different platforms, should we add a generic compatible to the binding
+as well, to avoid having to update the implementation for each SoC?
 
-Maybe I am using 'PCM' in a confusing way here? What I meant is a
-subdevice that=E2=80=99s visible from userspace, because I have seen it =
-used
-that way in ALSA codebase.
+(I.e. "qcom,sdm845-cpu-bwmon", "qcom,bwmon-v4")
 
->> +static int macaudio_copy_link(struct device *dev, struct =
-snd_soc_dai_link *target,
->> +			       struct snd_soc_dai_link *source)
->> +{
->> +	memcpy(target, source, sizeof(struct snd_soc_dai_link));
->> +
->> +	target->cpus =3D devm_kcalloc(dev, target->num_cpus,
->> +				sizeof(*target->cpus), GFP_KERNEL);
->> +	target->codecs =3D devm_kcalloc(dev, target->num_codecs,
->> +				sizeof(*target->codecs), GFP_KERNEL);
->> +	target->platforms =3D devm_kcalloc(dev, target->num_platforms,
->> +				sizeof(*target->platforms), GFP_KERNEL);
->> +
->> +	if (!target->cpus || !target->codecs || !target->platforms)
->> +		return -ENOMEM;
->> +
->> +	memcpy(target->cpus, source->cpus, sizeof(*target->cpus) * =
-target->num_cpus);
->> +	memcpy(target->codecs, source->codecs, sizeof(*target->codecs) * =
-target->num_codecs);
->> +	memcpy(target->platforms, source->platforms, =
-sizeof(*target->platforms) * target->num_platforms);
->=20
->=20
-> use devm_kmemdup?
+Regards,
+Bjorn
 
-Looks like what I am looking for.
-
->> +
->> +	return 0;
->> +}
->=20
->> +static int macaudio_get_runtime_mclk_fs(struct snd_pcm_substream =
-*substream)
->> +{
->> +	struct snd_soc_pcm_runtime *rtd =3D =
-asoc_substream_to_rtd(substream);
->> +	struct macaudio_snd_data *ma =3D =
-snd_soc_card_get_drvdata(rtd->card);
->> +	struct snd_soc_dpcm *dpcm;
->> +
->> +	/*
->> +	 * If this is a FE, look it up in link_props directly.
->> +	 * If this is a BE, look it up in the respective FE.
->> +	 */
->> +	if (!rtd->dai_link->no_pcm)
->> +		return ma->link_props[rtd->dai_link->id].mclk_fs;
->> +
->> +	for_each_dpcm_fe(rtd, substream->stream, dpcm) {
->> +		int fe_id =3D dpcm->fe->dai_link->id;
->> +
->> +		return ma->link_props[fe_id].mclk_fs;
->> +	}
->=20
-> I am not sure what the concept of mclk would mean for a front-end? =
-This
-> is typically very I2S-specific, i.e. a back-end property, no?
-
-Right, that=E2=80=99s a result of the confusion from above. Hope I =
-cleared it up
-somehow. The frontend already decides the clocks and data serialization,
-hence mclk/fs is a frontend-prop here.
-
->> +
->> +	return 0;
->> +}
->> +
->> +static int macaudio_dpcm_hw_params(struct snd_pcm_substream =
-*substream,
->> +				   struct snd_pcm_hw_params *params)
->> +{
->> +	struct snd_soc_pcm_runtime *rtd =3D =
-asoc_substream_to_rtd(substream);
->> +	struct snd_soc_dai *cpu_dai =3D asoc_rtd_to_cpu(rtd, 0);
->> +	int mclk_fs =3D macaudio_get_runtime_mclk_fs(substream);
->> +	int i;
->> +
->> +	if (mclk_fs) {
->> +		struct snd_soc_dai *dai;
->> +		int mclk =3D params_rate(params) * mclk_fs;
->> +
->> +		for_each_rtd_codec_dais(rtd, i, dai)
->> +			snd_soc_dai_set_sysclk(dai, 0, mclk, =
-SND_SOC_CLOCK_IN);
->> +
->> +		snd_soc_dai_set_sysclk(cpu_dai, 0, mclk, =
-SND_SOC_CLOCK_OUT);
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static void macaudio_dpcm_shutdown(struct snd_pcm_substream =
-*substream)
->> +{
->> +	struct snd_soc_pcm_runtime *rtd =3D =
-asoc_substream_to_rtd(substream);
->> +	struct snd_soc_dai *cpu_dai =3D asoc_rtd_to_cpu(rtd, 0);
->> +	struct snd_soc_dai *dai;
->> +	int mclk_fs =3D macaudio_get_runtime_mclk_fs(substream);
->> +	int i;
->> +
->> +	if (mclk_fs) {
->> +		for_each_rtd_codec_dais(rtd, i, dai)
->> +			snd_soc_dai_set_sysclk(dai, 0, 0, =
-SND_SOC_CLOCK_IN);
->> +
->> +		snd_soc_dai_set_sysclk(cpu_dai, 0, 0, =
-SND_SOC_CLOCK_OUT);
->> +	}
->> +}
->> +
->> +static const struct snd_soc_ops macaudio_fe_ops =3D {
->> +	.shutdown	=3D macaudio_dpcm_shutdown,
->> +	.hw_params	=3D macaudio_dpcm_hw_params,
->> +};
->> +
->> +static const struct snd_soc_ops macaudio_be_ops =3D {
->> +	.shutdown	=3D macaudio_dpcm_shutdown,
->> +	.hw_params	=3D macaudio_dpcm_hw_params,
->> +};
->> +
->> +static int macaudio_be_assign_tdm(struct snd_soc_pcm_runtime *rtd)
->> +{
->> +	struct snd_soc_card *card =3D rtd->card;
->> +	struct macaudio_snd_data *ma =3D snd_soc_card_get_drvdata(card);
->> +	struct macaudio_link_props *props =3D =
-&ma->link_props[rtd->dai_link->id];
->> +	struct snd_soc_dai *dai;
->> +	unsigned int mask;
->> +	int nslots, ret, i;
->> +
->> +	if (!props->tdm_mask)
->> +		return 0;
->> +
->> +	mask =3D props->tdm_mask;
->> +	nslots =3D __fls(mask) + 1;
->> +
->> +	if (rtd->num_codecs =3D=3D 1) {
->> +		ret =3D snd_soc_dai_set_tdm_slot(asoc_rtd_to_codec(rtd, =
-0), mask,
->> +					       0, nslots, =
-MACAUDIO_SLOTWIDTH);
->> +
->> +		/*
->> +		 * Headphones get a pass on -EOPNOTSUPP (see the comment
->> +		 * around mclk_fs value for primary FE).
->> +		 */
->> +		if (ret =3D=3D -EOPNOTSUPP && props->is_headphones)
->> +			return 0;
->> +
->> +		return ret;
->> +	}
->> +
->> +	for_each_rtd_codec_dais(rtd, i, dai) {
->> +		int slot =3D __ffs(mask);
->> +
->> +		mask &=3D ~(1 << slot);
->> +		ret =3D snd_soc_dai_set_tdm_slot(dai, 1 << slot, 0, =
-nslots,
->> +					       MACAUDIO_SLOTWIDTH);
->> +		if (ret)
->> +			return ret;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static int macaudio_be_init(struct snd_soc_pcm_runtime *rtd)
->> +{
->> +	struct snd_soc_card *card =3D rtd->card;
->> +	struct macaudio_snd_data *ma =3D snd_soc_card_get_drvdata(card);
->> +	struct macaudio_link_props *props =3D =
-&ma->link_props[rtd->dai_link->id];
->> +	struct snd_soc_dai *dai;
->> +	int i, ret;
->> +
->> +	ret =3D macaudio_be_assign_tdm(rtd);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	if (props->is_headphones) {
->> +		for_each_rtd_codec_dais(rtd, i, dai)
->> +			snd_soc_component_set_jack(dai->component, =
-&ma->jack, NULL);
->> +	}
->=20
-> this is weird, set_jack() is invoked by the ASoC core. You shouldn't
-> need to do this?
-
-That=E2=80=99s interesting. Where would it be invoked? How does ASoC =
-know which codec
-it attaches to?
-
->> +
->> +	return 0;
->> +}
->> +
->> +static void macaudio_be_exit(struct snd_soc_pcm_runtime *rtd)
->> +{
->> +	struct snd_soc_card *card =3D rtd->card;
->> +	struct macaudio_snd_data *ma =3D snd_soc_card_get_drvdata(card);
->> +	struct macaudio_link_props *props =3D =
-&ma->link_props[rtd->dai_link->id];
->> +	struct snd_soc_dai *dai;
->> +	int i;
->> +
->> +	if (props->is_headphones) {
->> +		for_each_rtd_codec_dais(rtd, i, dai)
->> +			snd_soc_component_set_jack(dai->component, NULL, =
-NULL);
->> +	}
->=20
-> same, why is this needed?
->=20
->> +}
->> +
->> +static int macaudio_fe_init(struct snd_soc_pcm_runtime *rtd)
->> +{
->> +	struct snd_soc_card *card =3D rtd->card;
->> +	struct macaudio_snd_data *ma =3D snd_soc_card_get_drvdata(card);
->> +	struct macaudio_link_props *props =3D =
-&ma->link_props[rtd->dai_link->id];
->> +	int nslots =3D props->mclk_fs / MACAUDIO_SLOTWIDTH;
->> +
->> +	return snd_soc_dai_set_tdm_slot(asoc_rtd_to_cpu(rtd, 0), (1 << =
-nslots) - 1,
->> +					(1 << nslots) - 1, nslots, =
-MACAUDIO_SLOTWIDTH);
->> +}
->> +
->> +
->> +static int macaudio_jack_event(struct notifier_block *nb, unsigned =
-long event,
->> +				void *data);
->> +
->> +static struct notifier_block macaudio_jack_nb =3D {
->> +	.notifier_call =3D macaudio_jack_event,
->> +};
->=20
-> why is this needed? we have already many ways of dealing with the jack
-> events (dare I say too many ways?).
-
-Because I want to update the DAPM paths based on the jack status,
-specifically I want to set macaudio_plugin_demux. I don=E2=80=99t know =
-how
-else it could be done.
-
->> +
->> +static int macaudio_probe(struct snd_soc_card *card)
->> +{
->> +	struct macaudio_snd_data *ma =3D snd_soc_card_get_drvdata(card);
->> +	int ret;
->> +
->> +	ma->pin.pin =3D "Headphones";
->> +	ma->pin.mask =3D SND_JACK_HEADSET | SND_JACK_HEADPHONE;
->> +	ret =3D snd_soc_card_jack_new(card, ma->pin.pin,
->> +			SND_JACK_HEADSET |
->> +			SND_JACK_HEADPHONE |
->> +			SND_JACK_BTN_0 | SND_JACK_BTN_1 |
->> +			SND_JACK_BTN_2 | SND_JACK_BTN_3,
->> +			&ma->jack, &ma->pin, 1);
->> +
->> +	if (ret < 0) {
->> +		dev_err(card->dev, "jack creation failed: %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	snd_soc_jack_notifier_register(&ma->jack, &macaudio_jack_nb);
->> +
->> +	return ret;
->> +}
->> +
->> +static int macaudio_add_backend_dai_route(struct snd_soc_card *card, =
-struct snd_soc_dai *dai,
->> +					  bool is_speakers)
->> +{
->> +	struct snd_soc_dapm_route routes[2];
->> +	int nroutes;
->> +	int ret;
->=20
-> newline?
->=20
->> +	memset(routes, 0, sizeof(routes));
->> +
->> +	dev_dbg(card->dev, "adding routes for '%s'\n", dai->name);
->> +
->> +	if (is_speakers)
->> +		routes[0].source =3D "Speakers Playback";
->> +	else
->> +		routes[0].source =3D "Headphones Playback";
->> +	routes[0].sink =3D dai->playback_widget->name;
->> +	nroutes =3D 1;
->> +
->> +	if (!is_speakers) {
->> +		routes[1].source =3D dai->capture_widget->name;
->> +		routes[1].sink =3D "Headphones Capture";
->> +		nroutes =3D 2;
->> +	}
->> +
->> +	ret =3D snd_soc_dapm_add_routes(&card->dapm, routes, nroutes);
->> +	if (ret)
->> +		dev_err(card->dev, "failed adding dynamic DAPM routes =
-for %s\n",
->> +			dai->name);
->> +	return ret;
->> +}
->> +
->> +static bool macaudio_match_kctl_name(const char *pattern, const char =
-*name)
->> +{
->> +	if (pattern[0] =3D=3D '*') {
->> +		int namelen, patternlen;
->> +
->> +		pattern++;
->> +		if (pattern[0] =3D=3D ' ')
->> +			pattern++;
->> +
->> +		namelen =3D strlen(name);
->> +		patternlen =3D strlen(pattern);
->> +
->> +		if (namelen > patternlen)
->> +			name +=3D (namelen - patternlen);
->> +	}
->> +
->> +	return !strcmp(name, pattern);
->> +}
->> +
->> +static int macaudio_limit_volume(struct snd_soc_card *card,
->> +				 const char *pattern, int max)
->> +{
->> +	struct snd_kcontrol *kctl;
->> +	struct soc_mixer_control *mc;
->> +	int found =3D 0;
->> +
->> +	list_for_each_entry(kctl, &card->snd_card->controls, list) {
->> +		if (!macaudio_match_kctl_name(pattern, kctl->id.name))
->> +			continue;
->> +
->> +		found++;
->> +		dev_dbg(card->dev, "limiting volume on '%s'\n", =
-kctl->id.name);
->> +
->> +		/*
->> +		 * TODO: This doesn't decrease the volume if it's =
-already
->> +		 * above the limit!
->> +		 */
->> +		mc =3D (struct soc_mixer_control *)kctl->private_value;
->> +		if (max <=3D mc->max)
->> +			mc->platform_max =3D max;
->> +
->> +	}
->> +
->> +	return found;
->> +}
->> +
->> +static int macaudio_late_probe(struct snd_soc_card *card)
->> +{
->> +	struct macaudio_snd_data *ma =3D snd_soc_card_get_drvdata(card);
->> +	struct snd_soc_pcm_runtime *rtd;
->> +	struct snd_soc_dai *dai;
->> +	int ret, i;
->> +
->> +	/* Add the dynamic DAPM routes */
->> +	for_each_card_rtds(card, rtd) {
->> +		struct macaudio_link_props *props =3D =
-&ma->link_props[rtd->dai_link->id];
->> +
->> +		if (!rtd->dai_link->no_pcm)
->> +			continue;
->> +
->> +		for_each_rtd_cpu_dais(rtd, i, dai) {
->> +			ret =3D macaudio_add_backend_dai_route(card, =
-dai, props->is_speakers);
->> +
->> +			if (ret)
->> +				return ret;
->> +		}
->> +	}
->> +
->> +	if (!ma->mdata) {
->> +		dev_err(card->dev, "driver doesn't know speaker limits =
-for this model\n");
->> +		return void_warranty ? 0 : -EINVAL;
->> +	}
->> +
->> +	macaudio_limit_volume(card, "* Amp Gain", =
-ma->mdata->spk_amp_gain_max);
->> +	return 0;
->> +}
->> +
->> +static const char * const macaudio_plugin_demux_texts[] =3D {
->> +	"Speakers",
->> +	"Headphones"
->> +};
->> +
->> +SOC_ENUM_SINGLE_VIRT_DECL(macaudio_plugin_demux_enum, =
-macaudio_plugin_demux_texts);
->> +
->> +static int macaudio_plugin_demux_get(struct snd_kcontrol *kcontrol,
->> +			struct snd_ctl_elem_value *ucontrol)
->> +{
->> +	struct snd_soc_dapm_context *dapm =3D =
-snd_soc_dapm_kcontrol_dapm(kcontrol);
->> +	struct macaudio_snd_data *ma =3D =
-snd_soc_card_get_drvdata(dapm->card);
->> +
->> +	/*
->> +	 * TODO: Determine what locking is in order here...
->> +	 */
->> +	ucontrol->value.enumerated.item[0] =3D ma->jack_plugin_state;
->> +
->> +	return 0;
->> +}
->> +
->> +static int macaudio_jack_event(struct notifier_block *nb, unsigned =
-long event,
->> +				void *data)
->> +{
->> +	struct snd_soc_jack *jack =3D data;
->> +	struct macaudio_snd_data *ma =3D =
-snd_soc_card_get_drvdata(jack->card);
->> +
->> +	ma->jack_plugin_state =3D !!event;
->> +
->> +	if (!ma->plugin_demux_kcontrol)
->> +		return 0;
->> +
->> +	snd_soc_dapm_mux_update_power(&ma->card.dapm, =
-ma->plugin_demux_kcontrol,
->> +				      ma->jack_plugin_state,
->> +				      (struct soc_enum *) =
-&macaudio_plugin_demux_enum, NULL);
->=20
-> the term 'plugin' can be understood in many ways by different audio
-> folks. 'plugin' is usually the term used for processing libraries =
-(VST,
-> LADSPA, etc). I think here you meant 'jack control'?
-
-So =E2=80=98jack control=E2=80=99 would be understood as the jack =
-plugged/unplugged status?
-
->=20
->> +
->> +	return 0;
->> +}
->> +
->=20
-
-Martin
-
+> +
+> +  interconnects:
+> +    maxItems: 2
+> +
+> +  interconnect-names:
+> +    items:
+> +      - const: ddr
+> +      - const: l3c
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  operating-points-v2: true
+> +  opp-table: true
+> +
+> +  reg:
+> +    # Currently described BWMON v4 and v5 use one register address space.
+> +    # BWMON v2 uses two register spaces - not yet described.
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - interconnects
+> +  - interconnect-names
+> +  - interrupts
+> +  - operating-points-v2
+> +  - opp-table
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interconnect/qcom,osm-l3.h>
+> +    #include <dt-bindings/interconnect/qcom,sdm845.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    pmu@1436400 {
+> +        compatible = "qcom,sdm845-cpu-bwmon";
+> +        reg = <0x01436400 0x600>;
+> +
+> +        interrupts = <GIC_SPI 581 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +        interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
+> +                        <&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
+> +        interconnect-names = "ddr", "l3c";
+> +
+> +        operating-points-v2 = <&cpu_bwmon_opp_table>;
+> +
+> +        cpu_bwmon_opp_table: opp-table {
+> +            compatible = "operating-points-v2";
+> +
+> +            opp-0 {
+> +                opp-peak-kBps = <800000 4800000>;
+> +            };
+> +            opp-1 {
+> +                opp-peak-kBps = <1804000 9216000>;
+> +            };
+> +            opp-2 {
+> +                opp-peak-kBps = <2188000 11980800>;
+> +            };
+> +            opp-3 {
+> +                opp-peak-kBps = <3072000 15052800>;
+> +            };
+> +            opp-4 {
+> +                opp-peak-kBps = <4068000 19353600>;
+> +            };
+> +            opp-5 {
+> +                opp-peak-kBps = <5412000 20889600>;
+> +            };
+> +            opp-6 {
+> +                opp-peak-kBps = <6220000 22425600>;
+> +            };
+> +            opp-7 {
+> +                opp-peak-kBps = <7216000 25497600>;
+> +            };
+> +        };
+> +    };
+> -- 
+> 2.34.1
+> 
