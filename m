@@ -2,70 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2526553E804
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:08:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDBAB53EBA2
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:09:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240332AbiFFPOy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jun 2022 11:14:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48294 "EHLO
+        id S240453AbiFFPWN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jun 2022 11:22:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240369AbiFFPOr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 11:14:47 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BDDF118D10;
-        Mon,  6 Jun 2022 08:14:45 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id q21so29613464ejm.1;
-        Mon, 06 Jun 2022 08:14:45 -0700 (PDT)
+        with ESMTP id S240393AbiFFPWM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 11:22:12 -0400
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 393453899;
+        Mon,  6 Jun 2022 08:22:08 -0700 (PDT)
+Received: by mail-qk1-x72b.google.com with SMTP id 15so5900634qki.6;
+        Mon, 06 Jun 2022 08:22:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
+        h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=GYSZo6XHpAMyhvRqkjuy1lYBsylet9wRGEIDu+7oMAg=;
-        b=Sjpbo1f3mz+MDObOhOImNTpeNo2ne+Ui6zvvn7v/z35jvASMQcDf/nUUd0HRF/t/Ea
-         4h8P2FFMK6drGKIuDe7GJdr4VJiUqql9Zkf5vd/qkcjzjYBEosbzEWuLOrLbtWtJTZSQ
-         go1rdCHGLfc6Rtc6BxG+G5Motw9DHduYGE4PafmLUcSrSbFALoldaHcCiFu4vi+Mr2Sz
-         dbKFzNplwkQu7TA9PrRtYSaK/hXBl8xLBphmb6NCeocwI6CMhlaBO8hk/x93chFTKKDY
-         8kzV7kkTNyDaEkCVvOKZY3q6zuxOX2mlyAq41FsA19gzg7LN43M2Vp0WkKAaaEY0ZPwO
-         +UaQ==
+        bh=Y+RKIOBF1OQyUNrZYbnbVUIUGYZ5O+hX0E7GZIjjSWI=;
+        b=Z4DdLkdgtIojvPksRc1nRsDAhfDBzi2t4FpFde7mk1uVMzqpsfSCZAND7jQOARYrj7
+         ywmaDIXJ5jpLMJPYvkwao5ALMAtErh0UGZVXmdMDyTEDfNF+dyq5q9RglZf0+wSK4le5
+         ME2qKQnf4vkuCddfAbROLrOUoSrJBnpro3Ch+pvINf2rcMboq1DO/z+7IfV1+ySaZcTF
+         5LK01Y3h3yXMxuiqOkWuD5Myoq3OXXItuWyCr8L1H6QWJpZ6MMI3dW27g9t9pGYm5Jq3
+         wp6SONpuHytw3hmxpcIcD+Zt5WzxrCt1kbPn3KzEPx3YR6VMFdYnQeyjHlpYxQXmjUlv
+         I9kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=GYSZo6XHpAMyhvRqkjuy1lYBsylet9wRGEIDu+7oMAg=;
-        b=yqDRtZHeTcZjwWfH6L8o3LI47h6PRBG2EDksl3jt0AszMPkQl7YycHMujME8Dp6jDV
-         YfKWAsnezjRumAoU1nrsd8Z9+7wMrUk8p5B4z+gAbML3AwrZUIVJIm3wVmZULBjCfJNc
-         VfKnmM6I2+FQUxEwx0rAJbN466ztrMO0VWj/vw0Vs20JW5iAqEOHYOh5vqrz/qLY4zvz
-         rgp6LOh6dl/8wLQIU816X0o8ZX8LbiD/F/wDy2t0xdYuRX0sZNNjUvIghyPs0xhD3RnM
-         aFEPPVOk5eF9bHeEyP2R12gSRYNm93Dok/32Orr2eT6JGzxIHxZnwSnPJIU7ZFEEZO8C
-         ocqw==
-X-Gm-Message-State: AOAM532BHF+q5QPses+B4Ux3awYPjfvkr+6V2fpv90DIqRn0GFFqKfba
-        Kwsew3c1ZpOgcTHywPqAB6M=
-X-Google-Smtp-Source: ABdhPJyUO4QhLpj5hQB1ExfVx6GyV11SpB7T0Mr7aQNaOcyQYh/tJ5wxoOy0jfL291yecIhfv8GacA==
-X-Received: by 2002:a17:907:7811:b0:6ef:a896:b407 with SMTP id la17-20020a170907781100b006efa896b407mr21254860ejc.645.1654528484015;
-        Mon, 06 Jun 2022 08:14:44 -0700 (PDT)
-Received: from localhost.localdomain (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
-        by smtp.googlemail.com with ESMTPSA id be5-20020a0564021a2500b0042e09f44f81sm7494001edb.38.2022.06.06.08.14.42
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Y+RKIOBF1OQyUNrZYbnbVUIUGYZ5O+hX0E7GZIjjSWI=;
+        b=bejMdqMnq9ZK0eMljeA6otJp0D5X4sf7HO4dp/ZEZkNMXaJRf4n62DkRA0o3pPPhHY
+         RzU3HU1wfGM9TKF4YJnqZnl5d3RYlxFYATS+Ut4RAMzsphxKbMO3J4gE6Jg8/pN4HJTx
+         Je5QHACYkkhX1apdNQYlLeFgWa6nhZrEfgEkJOjS15EWb3j90P980R97LDpVjUxD3BID
+         1m2cWjHaXUIZVO1hMEZEHlmNiYfo6MfSYhlgmCyc+yC6Co35Yk+oyeadF7zk4PCv4K0D
+         50ms+c2T4kzx+Fej2JF3BWXqLHGlzqOgK+oC13rVwzQNtlERLD8NpzQZJuYq/CmdR7pW
+         oapg==
+X-Gm-Message-State: AOAM533cIMjKlApVJ7l3oWD6VNl9KuKEfBrP3mPkGmzx1dRMaKXI9HTR
+        G0yLWEm27z5Mldk3qFSxOZY=
+X-Google-Smtp-Source: ABdhPJzNZVI3s+nxt6m2FFvXcQvwZ0jgqwi3ZUNIyXgPjRgXy261jsfK6+B3tV7qSBt4YCbJPSmSlg==
+X-Received: by 2002:a05:620a:4305:b0:6a6:50f8:17e3 with SMTP id u5-20020a05620a430500b006a650f817e3mr15315327qko.389.1654528927273;
+        Mon, 06 Jun 2022 08:22:07 -0700 (PDT)
+Received: from master-x64.sparksnet ([2601:153:980:85b1::10])
+        by smtp.gmail.com with ESMTPSA id e2-20020ac80642000000b002f905347586sm9784635qth.14.2022.06.06.08.22.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jun 2022 08:14:43 -0700 (PDT)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jens Axboe <axboe@kernel.dk>,
-        Ansuel Smith <ansuelsmth@gmail.com>,
-        =?UTF-8?q?=EF=BF=BDecki?= <rafal@milecki.pl>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v5 3/3] mtd: core: introduce of support for dynamic partitions
-Date:   Mon,  6 Jun 2022 17:14:17 +0200
-Message-Id: <20220606151417.19227-4-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220606151417.19227-1-ansuelsmth@gmail.com>
-References: <20220606151417.19227-1-ansuelsmth@gmail.com>
+        Mon, 06 Jun 2022 08:22:07 -0700 (PDT)
+From:   Peter Geis <pgwipeout@gmail.com>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] fixup! arm64: dts: rockchip: Add rk3568 PCIe2x1 controller
+Date:   Mon,  6 Jun 2022 11:22:04 -0400
+Message-Id: <20220606152204.3671113-1-pgwipeout@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,95 +69,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We have many parser that register mtd partitions at runtime. One example
-is the cmdlinepart or the smem-part parser where the compatible is defined
-in the dts and the partitions gets detected and registered by the
-parser. This is problematic for the NVMEM subsystem that requires an OF node
-to detect NVMEM cells.
+Having a gap in the address space leads to read issues with NVMe SSDs.
+Fixup the address space.
 
-To fix this problem, introduce an additional logic that will try to
-assign an OF node to the MTD if declared.
-
-On MTD addition, it will be checked if the MTD has an OF node and if
-not declared will check if a partition with the same label is
-declared in DTS. If an exact match is found, the partition dynamically
-allocated by the parser will have a connected OF node.
-
-The NVMEM subsystem will detect the OF node and register any NVMEM cells
-declared statically in the DTS.
-
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+Signed-off-by: Peter Geis <pgwipeout@gmail.com>
 ---
- drivers/mtd/mtdcore.c | 49 +++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 49 insertions(+)
 
-diff --git a/drivers/mtd/mtdcore.c b/drivers/mtd/mtdcore.c
-index 7731796024e0..807194efb580 100644
---- a/drivers/mtd/mtdcore.c
-+++ b/drivers/mtd/mtdcore.c
-@@ -546,6 +546,54 @@ static int mtd_nvmem_add(struct mtd_info *mtd)
- 	return 0;
- }
- 
-+static void mtd_check_of_node(struct mtd_info *mtd)
-+{
-+	struct device_node *partitions, *parent_dn, *mtd_dn = NULL;
-+	struct mtd_info *parent;
-+	const char *mtd_name;
-+	bool found = false;
-+	int plen;
-+
-+	/* Check if MTD already has a device node */
-+	if (dev_of_node(&mtd->dev))
-+		return;
-+
-+	/* Check if a partitions node exist */
-+	parent = mtd->parent;
-+	parent_dn = dev_of_node(&parent->dev);
-+	if (!parent_dn)
-+		return;
-+
-+	partitions = of_get_child_by_name(parent_dn, "partitions");
-+	if (!partitions)
-+		goto exit_parent;
-+
-+	/* Search if a partition is defined with the same name */
-+	for_each_child_of_node(partitions, mtd_dn) {
-+		/* Skip partition with no label */
-+		mtd_name = of_get_property(mtd_dn, "label", &plen);
-+		if (!mtd_name)
-+			continue;
-+
-+		if (!strncmp(mtd->name, mtd_name, plen)) {
-+			found = true;
-+			break;
-+		}
-+	}
-+
-+	if (!found)
-+		goto exit_partitions;
-+
-+	/* Set of_node only for nvmem */
-+	if (of_device_is_compatible(mtd_dn, "nvmem-cells"))
-+		mtd_set_of_node(mtd, mtd_dn);
-+
-+exit_partitions:
-+	of_node_put(partitions);
-+exit_parent:
-+	of_node_put(parent_dn);
-+}
-+
- /**
-  *	add_mtd_device - register an MTD device
-  *	@mtd: pointer to new MTD device info structure
-@@ -651,6 +699,7 @@ int add_mtd_device(struct mtd_info *mtd)
- 	mtd->dev.devt = MTD_DEVT(i);
- 	dev_set_name(&mtd->dev, "mtd%d", i);
- 	dev_set_drvdata(&mtd->dev, mtd);
-+	mtd_check_of_node(mtd);
- 	of_node_get(mtd_get_of_node(mtd));
- 	error = device_register(&mtd->dev);
- 	if (error)
+It seems this address space change was lost in one of my rebases. This
+fixes up my original patch to correct issues with NVMe SSDs.
+It's based off Heiko's v5.20-armsoc/dts64 at:
+https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/?h=v5.20-armsoc/dts64
+
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+index 99ab013b8ba4..cc1c5a65c5e5 100644
+--- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+@@ -839,7 +839,7 @@ pcie2x1: pcie@fe260000 {
+ 		compatible = "rockchip,rk3568-pcie";
+ 		reg = <0x3 0xc0000000 0x0 0x00400000>,
+ 		      <0x0 0xfe260000 0x0 0x00010000>,
+-		      <0x3 0x00000000 0x0 0x01000000>;
++		      <0x3 0x3f000000 0x0 0x01000000>;
+ 		reg-names = "dbi", "apb", "config";
+ 		interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>,
+@@ -868,8 +868,8 @@ pcie2x1: pcie@fe260000 {
+ 		phys = <&combphy2 PHY_TYPE_PCIE>;
+ 		phy-names = "pcie-phy";
+ 		power-domains = <&power RK3568_PD_PIPE>;
+-		ranges = <0x01000000 0x0 0x01000000 0x3 0x01000000 0x0 0x00100000
+-			  0x02000000 0x0 0x02000000 0x3 0x01100000 0x0 0x3ef00000>;
++		ranges = <0x01000000 0x0 0x3ef00000 0x3 0x3ef00000 0x0 0x00100000
++			  0x02000000 0x0 0x00000000 0x3 0x00000000 0x0 0x3ef00000>;
+ 		resets = <&cru SRST_PCIE20_POWERUP>;
+ 		reset-names = "pipe";
+ 		#address-cells = <3>;
 -- 
-2.36.1
+2.25.1
 
