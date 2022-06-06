@@ -2,78 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFF6853EC14
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:09:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74E5E53E667
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:07:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238873AbiFFNaz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jun 2022 09:30:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51132 "EHLO
+        id S238909AbiFFNgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jun 2022 09:36:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238867AbiFFNay (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 09:30:54 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAF161053EC;
-        Mon,  6 Jun 2022 06:30:49 -0700 (PDT)
-X-UUID: a0ec86c67f274074b7e688a18597a874-20220606
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:8658252a-4f70-4798-8950-687847093197,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:2a19b09,CLOUDID:2ce8557e-c8dc-403a-96e8-6237210dceee,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:0,BEC:nil
-X-UUID: a0ec86c67f274074b7e688a18597a874-20220606
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1973886207; Mon, 06 Jun 2022 21:30:43 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Mon, 6 Jun 2022 21:30:42 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Mon, 6 Jun 2022 21:30:42 +0800
-Message-ID: <8598b46381861bd36008cc87599c73863cb4b98e.camel@mediatek.com>
-Subject: Re: [RESEND v4 1/3] dt-bindings: mediatek: add vdosys1 RDMA
- definition for mt8195
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "airlied@linux.ie" <airlied@linux.ie>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "pavel@ucw.cz" <pavel@ucw.cz>,
-        "Nancy Lin =?UTF-8?Q?=28=E6=9E=97=E6=AC=A3=E8=9E=A2=29?=" 
-        <Nancy.Lin@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "CK Hu =?UTF-8?Q?=28=E8=83=A1=E4=BF=8A=E5=85=89=29?=" 
-        <ck.hu@mediatek.com>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
-Date:   Mon, 6 Jun 2022 21:30:42 +0800
-In-Reply-To: <1654520033.524963.534472.nullmailer@robh.at.kernel.org>
-References: <20220606051131.14182-1-rex-bc.chen@mediatek.com>
-         <20220606051131.14182-2-rex-bc.chen@mediatek.com>
-         <1654520033.524963.534472.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S238867AbiFFNgT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 09:36:19 -0400
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50A5221E0CF;
+        Mon,  6 Jun 2022 06:36:18 -0700 (PDT)
+Received: by mail-io1-f54.google.com with SMTP id a10so12181057ioe.9;
+        Mon, 06 Jun 2022 06:36:18 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=aJMNgSVQO447NKXH868O96uQGEnseJ7a42xNt19YMwo=;
+        b=Hdig9MPg1pttcdAxCE1UFDsTRZcY5ZcgxjWM4M+2UPe8uGuk3BUSzN0ew5dKb7jyrr
+         5U9GfgJA+sMJbjY+jy9AvV8H4gt+kGGBh4pkXyxKaaT4flnKpAai25EUvbcWpKQUtWZN
+         2zSX3z0M28OjKlRD3YIM3gDdejHNpoSbDSj15brDgbGR18HSMz9f2vQuHcdb6xTA+m9t
+         MXy2z86jYmSMdHbVA/EBbwUjL732r7WFKxCZe1ZrL1zwcw838MssgEXoqULFTk2+vpUn
+         q0iiI7mbk51rduvJSkFXCDw57YwhgNOOgl3jwequ8VX+XLMaVU/I2jaOnBM3tu4kLqyF
+         0a5g==
+X-Gm-Message-State: AOAM532whhonm4sK9K3QrTTH6PXb8tOoLBvwlwT9QOX0f7R20LR7wp6u
+        W1H1EY1l5YrFHvE6JELZeQ==
+X-Google-Smtp-Source: ABdhPJyoIGcPS/tcQCUeUiTpd10BgFpTIxTSxmM6wQT++mb2LRlADkkBEpMSvmUjbTnpBQkuyzwdPA==
+X-Received: by 2002:a6b:3115:0:b0:660:d5f1:e3b6 with SMTP id j21-20020a6b3115000000b00660d5f1e3b6mr11581406ioa.99.1654522577516;
+        Mon, 06 Jun 2022 06:36:17 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id y16-20020a02bb10000000b003314a583804sm5678560jan.20.2022.06.06.06.36.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Jun 2022 06:36:16 -0700 (PDT)
+Received: (nullmailer pid 601560 invoked by uid 1000);
+        Mon, 06 Jun 2022 13:36:15 -0000
+Date:   Mon, 6 Jun 2022 08:36:15 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: mtd: partitions: Document new
+ dynamic-partition nodes
+Message-ID: <20220606133615.GA564610-robh@kernel.org>
+References: <20220518233258.5483-1-ansuelsmth@gmail.com>
+ <20220518233258.5483-2-ansuelsmth@gmail.com>
+ <20220601210655.GA380852-robh@kernel.org>
+ <629a91f8.1c69fb81.371aa.1d32@mx.google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <629a91f8.1c69fb81.371aa.1d32@mx.google.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,83 +71,124 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-06-06 at 20:53 +0800, Rob Herring wrote:
-> On Mon, 06 Jun 2022 13:11:29 +0800, Bo-Chen Chen wrote:
-> > From: "Nancy.Lin" <nancy.lin@mediatek.com>
+On Sat, Jun 04, 2022 at 12:57:58AM +0200, Ansuel Smith wrote:
+> On Wed, Jun 01, 2022 at 04:06:55PM -0500, Rob Herring wrote:
+> > On Thu, May 19, 2022 at 01:32:57AM +0200, Ansuel Smith wrote:
+> > > Document new dynamic-partition nodes used to provide an OF node for
+> > > partition registred at runtime by parsers. This is required for nvmem
+> > > system to declare and detect nvmem-cells.
+> > > 
+> > > With these special partitions, the reg / offset is not required.
+> > > The label binding is used to match the partition allocated by the
+> > > parser at runtime and the parser will provide reg and offset of the mtd.
+> > > 
+> > > NVMEM will use the data from the parser and provide the NVMEM cells
+> > > declared in the DTS, "connecting" the dynamic partition with a
+> > > static declaration of cells in them.
+> > > 
+> > > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> > > ---
+> > >  .../mtd/partitions/dynamic-partition.yaml     | 57 +++++++++++++++++++
+> > >  .../mtd/partitions/qcom,smem-part.yaml        |  4 ++
+> > >  2 files changed, 61 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/dynamic-partition.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/mtd/partitions/dynamic-partition.yaml b/Documentation/devicetree/bindings/mtd/partitions/dynamic-partition.yaml
+> > > new file mode 100644
+> > > index 000000000000..f57d7b9cae7f
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/mtd/partitions/dynamic-partition.yaml
+> > > @@ -0,0 +1,57 @@
+> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/mtd/partitions/dynamic-partition.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Dynamic Partition
+> > > +
+> > > +description: |
+> > > +  This binding describes a single flash partition that is dynamically allocated
+> > > +  by a dedicated parser that is not a fixed-partition parser.
+> > > +
+> > > +  Each child of the parser partition node is then compared and if a match with
+> > > +  the provided label is found then the OF node is assigned.
+> > > +
+> > > +  These special partition definition can be used to give a dynamic partition
+> > > +  an OF node to declare NVMEM cells. An example is declaring the partition
+> > > +  label and all the NVMEM cells in it. The parser will detect the correct reg
+> > > +  and offset and the NVMEM will register the cells in it based on the data
+> > > +  extracted by the parser.
+> > > +
+> > > +maintainers:
+> > > +  - Ansuel Smith <ansuelsmth@gmail.com>
+> > > +
+> > > +properties:
+> > > +  label:
+> > > +    description: The label / name for the partition assigned by the parser at
+> > > +      runtime. This is needed for sybsystem like NVMEM to define cells and
 > > 
-> > Add vdosys1 RDMA definition.
+> > typo
 > > 
-> > Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
-> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > Reviewed-by: AngeloGioacchino Del Regno <
-> > angelogioacchino.delregno@collabora.com>
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Tested-by: AngeloGioacchino Del Regno <
-> > angelogioacchino.delregno@collabora.com>
-> > ---
-> >  .../display/mediatek/mediatek,mdp-rdma.yaml   | 88
-> > +++++++++++++++++++
-> >  1 file changed, 88 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-
-> > rdma.yaml
+> > > +      register with this OF node.
+> > > +
+> > > +required:
+> > > +  - label
+> > > +
+> > > +additionalProperties: true
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    flash {
+> > > +      partitions {
+> > > +        compatible = "qcom,smem-part";
+> > > +
+> > > +        partition-art {
+> > > +          compatible = "nvmem-cells";
+> > > +          #address-cells = <1>;
+> > > +          #size-cells = <1>;
+> > > +          label = "0:art";
+> > > +
+> > > +          macaddr_art_0: macaddr@0 {
+> > > +            reg = <0x0 0x6>;
+> > > +          };
+> > > +
+> > > +          macaddr_art_6: macaddr@6 {
+> > > +            reg = <0x6 0x6>;
+> > > +          };
 > > 
+> > There's a problem with the schema structure for this which is a common 
+> > problem where we have parent and child nodes with parent defined 
+> > properties in the child nodes (label in this case). The issue is that 
+> > there is not a single schema applied to the child node which contains 
+> > all possible properties sub-node names. This is necessary to check for 
+> > extra, undocumented properties using unevaluatedProperties. The creation 
+> > of spi-periphera-props.yaml is an example of how to address this. I 
+> > suspect that all the partition schemas may need similar restructuring.
+> > 
+> > The nvmem-cells schema may happen to already have 'label', so it happens 
+> > to work (that and unevaluatedProperties is probably missing in places).
+> > 
+> > Given this schema is really just one property which is already 
+> > documented for 'partition' nodes, all we really need is to say is if 
+> > 'reg' is not present, then 'label' is required:
+> > 
+> > if:
+> >   not:
+> >     required: [ reg ]
+> > then:
+> >   required: [ label ]
+> > 
+> >
 > 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m
-> dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-
-> review/Documentation/devicetree/bindings/display/mediatek/mediatek,md
-> p-rdma.yaml: properties:compatible: [{'const': 'mediatek,mt8195-vdo1-
-> rdma'}] is not of type 'object', 'boolean'
-> 	from schema $id: 
-> https://urldefense.com/v3/__http://json-schema.org/draft-07/schema*__;Iw!!CTRNKA9wMg0ARbw!3hhZrSKSWnCN5Bha9laiHlB5JCx9_p-ksaYDZmoCLQRi1tI4KJCcTJQva2vds3j3bwKF$
->  
-> /builds/robherring/linux-dt-
-> review/Documentation/devicetree/bindings/display/mediatek/mediatek,md
-> p-rdma.yaml: ignoring, error in schema: properties: compatible
-> Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-
-> rdma.example.dtb:0:0: /example-0/soc/rdma@1c104000: failed to match
-> any schema with compatible: ['mediatek,mt8195-vdo1-rdma']
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/patch/
-> 
-> This check can fail if there are any dependencies. The base for a
-> patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up
-> to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
-> 
+> Just to make sure. The correct way to implement this would be drop the
+> current dynamic-partition schema and expand the partition.yaml with the
+> additional if and the extra stuff in the description.
+> Wanted to keep the 2 thing separated but if necessary I will follow this
+> path.
 
-Hello Rob,
+Yes. I agree separate would have been nice documentation wise, 
+but the schema has ended having such a small difference it doesn't 
+make sense anymore.
 
-We found that if we write this, and the error will disapear:
- properties:
-   compatible:
--    - const: mediatek,mt8195-vdo1-rdma
-+    items:
-+      - const: mediatek,mt8195-vdo1-rdma
-
-But from Krzysztof's review[1], he adviced us to drop items.
-
-Is there any suggsetion for this error or do we have any
-misunderstanding?
-
-[1]:https://patchwork.kernel.org/comment/24849447/
-
-BRs,
-Rex
-
+Rob
