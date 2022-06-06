@@ -2,159 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B2EE53E208
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 10:53:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9FC053E30E
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 10:55:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231742AbiFFIdv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jun 2022 04:33:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48878 "EHLO
+        id S232350AbiFFIjh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jun 2022 04:39:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231731AbiFFIdt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 04:33:49 -0400
-X-Greylist: delayed 434 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 06 Jun 2022 01:33:48 PDT
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86512FF5A5;
-        Mon,  6 Jun 2022 01:33:46 -0700 (PDT)
-Received: from beast.luon.net (unknown [IPv6:2a10:3781:2531:0:973d:c368:8ed:ffaa])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: sjoerd)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id D5273660204F;
-        Mon,  6 Jun 2022 09:26:32 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1654503992;
-        bh=0pFWHr8nZPd/x652n6ie2quX6dlxkCbVAMeZopa6ow0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=a4X1xRcx8+R0YQxN6+31nvR+V8gHeRJ4dP7pnf6AWEmsdu4OL1qEF997WL7376ywd
-         Acp3Bsv/gWFubmtBSPDyVjPHYjBhB6doASnOiwzMlOmIbR6IKbyEfUUKIH9rLAdflx
-         ibryNiRLita0P4JkJUEegdigX9+ltBjqSVDlMkZtlRR5Te1D1pFf8pLU7pekCWPb19
-         58QFfNeZfOoTBWQ2PePTDiiNSZCZpPQLpfwDzNvjwFHSKC0uOkh3Z7vYtO4VYxJelE
-         i0mlPynGU8VbsgxkJqjbDK2+cJxQxO56O67BziR7RLLG4wbjonI0lmYJ1JUn2ElGD1
-         OfW7zUqk7LsXg==
-Received: by beast.luon.net (Postfix, from userid 1000)
-        id A6DFE404D08F; Mon,  6 Jun 2022 10:26:30 +0200 (CEST)
-From:   Sjoerd Simons <sjoerd@collabora.com>
-To:     linux-rockchip@lists.infradead.org
-Cc:     kernel@collabora.com, Akash Gajjar <akash@openedev.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: rockchip: rock-pi-s add more peripherals
-Date:   Mon,  6 Jun 2022 10:26:28 +0200
-Message-Id: <20220606082629.79682-3-sjoerd@collabora.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220606082629.79682-1-sjoerd@collabora.com>
-References: <20220606082629.79682-1-sjoerd@collabora.com>
+        with ESMTP id S232376AbiFFIjW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 04:39:22 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A6F433E95;
+        Mon,  6 Jun 2022 01:39:11 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id u12-20020a17090a1d4c00b001df78c7c209so17304410pju.1;
+        Mon, 06 Jun 2022 01:39:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:from:subject:to:cc
+         :references:content-language:in-reply-to:content-transfer-encoding;
+        bh=9jt8S5U1f1kOACj8Cd91MdGJdCEtZCqF+0G+U8Im1w0=;
+        b=Hvc4xds3Ld7nAJoFdHYgv6+UFN82CWncpDasinypvWoPemToMat6BoFjtJTCdNtruy
+         xpm0n7Ecsr9mqwIrgfF6+2JuLkB3pkqNOk1gdBx7tWSUfOB5WPreDXz1YV6TSZRLoC53
+         dkWeL14FRfZQh4I1nArWCy/RtcNe0rKjqYoxPtMhAp33eQF7bjyYyjYnAQOM727//P0X
+         28z86ae0g4jemj+bzT0QCHanlHnlKulad53O8aID3XjFS1PKnLAT0Iu/1J6achDaY+3j
+         02GXlT31Eykn1GX/23JF98/HAjrkTcbX+pi/6tzzrI28/c6rajgm1qIHBD1B9BvvCBxm
+         AU+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:from
+         :subject:to:cc:references:content-language:in-reply-to
+         :content-transfer-encoding;
+        bh=9jt8S5U1f1kOACj8Cd91MdGJdCEtZCqF+0G+U8Im1w0=;
+        b=eLt0rZz49MSXFtbN9FpW6MOBCIeME/zyR1NHjbRsY5ejk32I76z49TONdYHlAp5Nfo
+         wnwEvqZmnkEO3/J4frOXWO+VP2Z6TFjzo4xEoOLMDolJmtJzvCEsSsIKybXXZOR8upK9
+         3+76H9Id3egSMtVkTVf7Y1V566enn4H10nh2yDUXZjmciZS4bNwW4ifQt5FyxxaNhzCd
+         8UExUzpEZ8TAxav35M0rgEZHWbJeO6aTju7hzhkgk9wjDzAjF597jscxr993koEsxCbY
+         2THkLewzaWAKheBk9itCPyblhuZ/aRFtg5OfXfbgcD1pMGnw1F5aoWtQniz3esoQD9E9
+         asdg==
+X-Gm-Message-State: AOAM532/Gm5LOaISX03xbrv6Fs2gUJo9oG1JK+mVtK+vusjSwvEClEsi
+        JGzOqR4jd0V4VueWUCoyHde5Ebr5gWgHow==
+X-Google-Smtp-Source: ABdhPJx2O4PvrW1/HZhvHE0AP+0R76eiX3FJho3sOmcdSrrlkGiC8gY1b7TUVBkwObCt32ewEIRH0w==
+X-Received: by 2002:a17:903:186:b0:167:62b0:a556 with SMTP id z6-20020a170903018600b0016762b0a556mr10753955plg.122.1654504750423;
+        Mon, 06 Jun 2022 01:39:10 -0700 (PDT)
+Received: from [10.10.12.193] (125-228-123-29.hinet-ip.hinet.net. [125.228.123.29])
+        by smtp.gmail.com with ESMTPSA id 3-20020a17090a1a4300b001e2f53e1042sm11948045pjl.7.2022.06.06.01.39.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Jun 2022 01:39:10 -0700 (PDT)
+Message-ID: <f0a8c3fd-8013-0f7f-b7f8-5e9e85395543@gmail.com>
+Date:   Mon, 6 Jun 2022 16:39:06 +0800
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+From:   Potin Lai <potin.lai.pt@gmail.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: aspeed-i2c: add properties for manual
+ clock setting
+To:     Rob Herring <robh@kernel.org>
+Cc:     Brendan Higgins <brendanhiggins@google.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Rayn Chen <rayn_chen@aspeedtech.com>,
+        Patrick Williams <patrick@stwcx.xyz>,
+        Potin Lai <potin.lai@quantatw.com>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+References: <20220601041512.21484-1-potin.lai.pt@gmail.com>
+ <20220601041512.21484-3-potin.lai.pt@gmail.com>
+ <20220605214700.GA3558088-robh@kernel.org>
+Content-Language: en-US
+In-Reply-To: <20220605214700.GA3558088-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This enables the following peripherals:
-* Onboard ethernet support
-* Bluetooth
-* USB 2 port
-* OTG port via type-c connector
-* Hardware watchog
 
-Also add aliases for the mmc devices and the ethernet interface
+Rob Herring 於 2022/6/6 上午 05:47 寫道:
+> On Wed, Jun 01, 2022 at 12:15:12PM +0800, Potin Lai wrote:
+>> Add following properties for manual tuning clock divisor and cycle of
+>> hign/low pulse witdh.
+>>
+>> * aspeed,i2c-manual-clk: Enable aspeed i2c clock manual setting
+>> * aspeed,i2c-base-clk-div: Base Clock divisor (tBaseClk)
+>> * aspeed,i2c-clk-high-cycle: Cycles of clock-high pulse (tClkHigh)
+>> * aspeed,i2c-clk-low-cycle: Cycles of clock-low pulse (tClkLow)
+>>
+>> Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
+>> ---
+>>  .../devicetree/bindings/i2c/aspeed,i2c.yaml   | 44 +++++++++++++++++++
+>>  1 file changed, 44 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml b/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
+>> index ea643e6c3ef5..e2f67fe2aa0c 100644
+>> --- a/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
+>> +++ b/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
+>> @@ -12,6 +12,28 @@ maintainers:
+>>  allOf:
+>>    - $ref: /schemas/i2c/i2c-controller.yaml#
+>>  
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          const: st,stm32-uart
+> stm32 uart?
+Sorry, I will remove it.
+>> +
+>> +    then:
+>> +      properties:
+>> +        aspeed,i2c-clk-high-cycle:
+>> +          maximum: 8
+>> +        aspeed,i2c-clk-low-cycle:
+>> +          maximum: 8
+>> +
+>> +  - if:
+>> +      required:
+>> +        - aspeed,i2c-manual-clk
+>> +
+>> +    then:
+>> +      required:
+>> +        - aspeed,i2c-base-clk-div
+>> +        - aspeed,i2c-clk-high-cycle
+>> +        - aspeed,i2c-clk-low-cycle
+> 'dependencies' can better express this than an if/then.
+>
+> However, I think this should all be done in a common way.
+>
+>> +
+>>  properties:
+>>    compatible:
+>>      enum:
+>> @@ -49,6 +71,28 @@ properties:
+>>      description:
+>>        states that there is another master active on this bus
+>>  
+>> +  aspeed,i2c-manual-clk:
+>> +    type: boolean
+>> +    description: enable manual clock setting
+> No need for this as presence of the other properties can determine this.
+>
+>> +
+>> +  aspeed,i2c-base-clk-div:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    enum: [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192,
+>> +           16384, 32768]
+>> +    description: base clock divisor
+> Specify the i2c bus frequency and calculate the divider.
+>
+>> +
+>> +  aspeed,i2c-clk-high-cycle:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    minimum: 1
+>> +    maximum: 16
+>> +    description: cycles of master clock-high pulse width
+>> +
+>> +  aspeed,i2c-clk-low-cycle:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    minimum: 1
+>> +    maximum: 16
+>> +    description: cycles of master clock-low pulse width
+> These 2 should be common. I think you just need a single property 
+> expressing duty cycle.
+>
+> Rob
 
-Signed-off-by: Sjoerd Simons <sjoerd@collabora.com>
+Got it, thank you for the suggestion of duty cycle.
+I will use duty cycle for next version.
 
----
-
- .../boot/dts/rockchip/rk3308-rock-pi-s.dts    | 52 +++++++++++++++++++
- 1 file changed, 52 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts b/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts
-index 9095efe25ccd..46ba48b843c5 100644
---- a/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3308-rock-pi-s.dts
-@@ -11,6 +11,12 @@ / {
- 	model = "Radxa ROCK Pi S";
- 	compatible = "radxa,rockpis", "rockchip,rk3308";
- 
-+	aliases {
-+		ethernet0 = &gmac;
-+		mmc0 = &emmc;
-+		mmc1 = &sdmmc;
-+	};
-+
- 	chosen {
- 		stdout-path = "serial0:1500000n8";
- 	};
-@@ -132,6 +138,15 @@ &emmc {
- 	status = "okay";
- };
- 
-+&gmac {
-+	clock_in_out = "output";
-+	phy-supply = <&vcc_io>;
-+	snps,reset-gpio = <&gpio0 RK_PA7 GPIO_ACTIVE_LOW>;
-+	snps,reset-active-low;
-+	snps,reset-delays-us = <0 50000 50000>;
-+	status = "okay";
-+};
-+
- &i2c1 {
- 	status = "okay";
- };
-@@ -195,10 +210,47 @@ &sdmmc {
- 	status = "okay";
- };
- 
-+&u2phy {
-+	status = "okay";
-+
-+	u2phy_host: host-port {
-+		phy-supply = <&vcc5v0_otg>;
-+		status = "okay";
-+	};
-+
-+	u2phy_otg: otg-port {
-+		phy-supply = <&vcc5v0_otg>;
-+		status = "okay";
-+	};
-+};
-+
- &uart0 {
- 	status = "okay";
- };
- 
- &uart4 {
- 	status = "okay";
-+
-+	bluetooth {
-+		compatible = "realtek,rtl8723bs-bt";
-+		device-wake-gpios = <&gpio4 RK_PB3 GPIO_ACTIVE_HIGH>;
-+		host-wake-gpios = <&gpio4 RK_PB4 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+&usb_host_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host_ohci {
-+	status = "okay";
-+};
-+
-+&usb20_otg {
-+	dr_mode = "peripheral";
-+	status = "okay";
-+};
-+
-+&wdt {
-+	status = "okay";
- };
--- 
-2.36.1
+Potin
 
