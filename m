@@ -2,170 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAB7E53EF7C
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 22:22:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FB2D53EFEA
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 22:38:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233374AbiFFUWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jun 2022 16:22:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38644 "EHLO
+        id S233859AbiFFUhw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jun 2022 16:37:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233369AbiFFUWe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 16:22:34 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01DBBEE1C
-        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 13:22:33 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id z7so20285317edm.13
-        for <devicetree@vger.kernel.org>; Mon, 06 Jun 2022 13:22:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rasmusvillemoes.dk; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=VUSdGLwnJ0Y/lNfZiFkctM/6S+/lIr4cXT4yYV5L0eg=;
-        b=fyyHVyXBohzxlEcKJtNBA0J4PW/3kKJlkInCdkTTIOy0hCUdbc6wQLZdjnNKUKDiUq
-         neoo5gxyaB/TmYq+WyXdo11Lh+xPQSr0h4H538Rs10wdiiPnzjFKnZTh4rqsHC9OK6fy
-         P9bCMhASV6zjcr0aeBlMdsn52n2/CZv6gfwXw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=VUSdGLwnJ0Y/lNfZiFkctM/6S+/lIr4cXT4yYV5L0eg=;
-        b=d0lfVHoetEL5PXrNowwDYlUA2+bYJk7WVEawU9deA1NOG93oPFBH9kqIPArniP+CRY
-         lqzQ2cpudnfxnvNdPn9JX5BKwNZMtpJM00H7VnUBFaYfqg70oOBzkBx+6U8LFNothnrX
-         ek15Q0jgs+JhhTzhaLUETGKT+r3cDuwWHgP9MYpYynuN7a75Xc483ROzyDEGKIHTLy+p
-         E+zn7sOVp7r/3VONce+TrA0K0bRaRKdqCy5/JAxUAY3pFjI+sXcpT+qhKSVwVcP0/b7f
-         6DGE29tQLzDo4S79zhPWeYp1EAUFKwg6Ewk9U47fAlj5xn/O7K9ESuDUK4W6GjlT9uiA
-         Eq5A==
-X-Gm-Message-State: AOAM533/pn5npDfCZjTrkb4s5J0UV1dEUBrLoRg8taCVrdZ3oc1rBT8A
-        DUHBpanaHAE5JYex++EDQk8oOQ==
-X-Google-Smtp-Source: ABdhPJxhEaNa/rFWgmZj8irzos8l14CPgg7Dl5BaZLkXL9q5+PuuKp0icUIG5T5d33851ZBnt9yGXg==
-X-Received: by 2002:a05:6402:4003:b0:42d:fb4d:dada with SMTP id d3-20020a056402400300b0042dfb4ddadamr29129905eda.183.1654546951582;
-        Mon, 06 Jun 2022 13:22:31 -0700 (PDT)
-Received: from prevas-ravi.tritech.se ([80.208.64.233])
-        by smtp.gmail.com with ESMTPSA id d20-20020aa7ce14000000b0042dd4ccccf5sm9043789edv.82.2022.06.06.13.22.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jun 2022 13:22:31 -0700 (PDT)
-From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
-To:     netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Jakub Kicinski <kuba@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Dan Murphy <dmurphy@ti.com>,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH net-next 3/3] net: phy: dp83867: implement support for io_impedance_ctrl nvmem cell
-Date:   Mon,  6 Jun 2022 22:22:20 +0200
-Message-Id: <20220606202220.1670714-4-linux@rasmusvillemoes.dk>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20220606202220.1670714-1-linux@rasmusvillemoes.dk>
-References: <20220606202220.1670714-1-linux@rasmusvillemoes.dk>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S234168AbiFFUhW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 16:37:22 -0400
+Received: from hutie.ust.cz (hutie.ust.cz [185.8.165.127])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A488CAEE29;
+        Mon,  6 Jun 2022 13:35:24 -0700 (PDT)
+Content-Type: text/plain;
+        charset=utf-8
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
+        t=1654547721; bh=vfmRHdsKy5jL3Jkg558Ih+Gkg25m+JW1BWtz6hVF+I4=;
+        h=Subject:From:In-Reply-To:Date:Cc:References:To;
+        b=Zp4+x16vSA/uhNUrENr7G3Ja9fHEb+dC8TemongFVg6cfy89mwvmpUWN+UecWyi+m
+         0fOjdk0f7kDw9VOeUFI1A9djS8U2MgbR+iKH5OR/1g/BMqZ7d5h3CA1PWEH1iMw67n
+         bWCoGFvgB5UrtKJwpQPs1QJPPvL568oBkOd05khg=
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.80.82.1.1\))
+Subject: Re: [RFC PATCH v2 3/5] ASoC: apple: Add MCA platform driver for Apple
+ SoCs
+From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>
+In-Reply-To: <Yp5g43IxFQsUoS/y@sirena.org.uk>
+Date:   Mon, 6 Jun 2022 22:35:20 +0200
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>, asahi@lists.linux.dev
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <E0FD0022-9DA1-4907-9737-19F7460B8EFF@cutebit.org>
+References: <20220606191910.16580-1-povik+lin@cutebit.org>
+ <20220606191910.16580-4-povik+lin@cutebit.org>
+ <Yp5g43IxFQsUoS/y@sirena.org.uk>
+To:     Mark Brown <broonie@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We have a board where measurements indicate that the current three
-options - leaving IO_IMPEDANCE_CTRL at the (factory calibrated) reset
-value or using one of the two boolean properties to set it to the
-min/max value - are too coarse.
 
-Implement support for the newly added binding allowing device tree to
-specify an nvmem cell containing an appropriate value for this
-specific board.
+> On 6. 6. 2022, at 22:17, Mark Brown <broonie@kernel.org> wrote:
+>=20
+> On Mon, Jun 06, 2022 at 09:19:08PM +0200, Martin Povi=C5=A1er wrote:
+>=20
+>> +++ b/sound/soc/apple/mca.c
+>> @@ -0,0 +1,1122 @@
+>> +/*
+>> + * Apple SoCs MCA driver
+>=20
+> Please add SPDX headers to all your files.
+>=20
+>> +		mca_modify(cl, serdes_conf,
+>> +			SERDES_CONF_SOME_RST, SERDES_CONF_SOME_RST);
+>> +		(void) readl_relaxed(cl->base + serdes_conf);
+>=20
+> Please drop the cast, casts to/from void are generally a warning sign =
+as
+> they're unneeded in C.  If you want to document the barrier use a
+> comment or wrapper function.
+>=20
+>> +	/*
+>> +	 * Codecs require clocks at time of umute with the 'mute_stream' =
+op.
+>> +	 * We need to enable them here at the latest (frontend prepare =
+would
+>> +	 * be too late).
+>> +	 */
+>> +	if (!mca_fe_clocks_in_use(fe_cl)) {
+>> +		ret =3D mca_fe_enable_clocks(fe_cl);
+>> +		if (ret < 0)
+>> +			return ret;
+>> +	}
+>=20
+> This requirement is CODEC specific.  It's fine to bodge around to
+> satisfy it though, especially given the restricted set of platforms =
+this
+> can be used with.
+>=20
+>> +	fe_cl =3D &mca->clusters[cl->port_driver];
+>> +	if (!mca_fe_clocks_in_use(fe_cl))
+>> +		return 0; /* Nothing to do */
+>> +
+>> +	cl->clocks_in_use[substream->stream] =3D false;
+>> +
+>> +	if (!mca_fe_clocks_in_use(fe_cl))
+>> +		mca_fe_disable_clocks(fe_cl);
+>=20
+> Are you sure this doesn't need locking?
 
-Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
----
- drivers/net/phy/dp83867.c | 55 ++++++++++++++++++++++++++++++++++-----
- 1 file changed, 49 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/net/phy/dp83867.c b/drivers/net/phy/dp83867.c
-index 8561f2d4443b..45d8a9298251 100644
---- a/drivers/net/phy/dp83867.c
-+++ b/drivers/net/phy/dp83867.c
-@@ -14,6 +14,7 @@
- #include <linux/netdevice.h>
- #include <linux/etherdevice.h>
- #include <linux/bitfield.h>
-+#include <linux/nvmem-consumer.h>
- 
- #include <dt-bindings/net/ti-dp83867.h>
- 
-@@ -521,6 +522,51 @@ static int dp83867_verify_rgmii_cfg(struct phy_device *phydev)
- }
- 
- #if IS_ENABLED(CONFIG_OF_MDIO)
-+static int dp83867_of_init_io_impedance(struct phy_device *phydev)
-+{
-+	struct dp83867_private *dp83867 = phydev->priv;
-+	struct device *dev = &phydev->mdio.dev;
-+	struct device_node *of_node = dev->of_node;
-+	struct nvmem_cell *cell;
-+	u8 *buf, val;
-+	int ret;
-+
-+	cell = of_nvmem_cell_get(of_node, "io_impedance_ctrl");
-+	if (IS_ERR(cell)) {
-+		ret = PTR_ERR(cell);
-+		if (ret != -ENOENT)
-+			return phydev_err_probe(phydev, ret,
-+						"failed to get nvmem cell io_impedance_ctrl\n");
-+
-+		/* If no nvmem cell, check for the boolean properties. */
-+		if (of_property_read_bool(of_node, "ti,max-output-impedance"))
-+			dp83867->io_impedance = DP83867_IO_MUX_CFG_IO_IMPEDANCE_MAX;
-+		else if (of_property_read_bool(of_node, "ti,min-output-impedance"))
-+			dp83867->io_impedance = DP83867_IO_MUX_CFG_IO_IMPEDANCE_MIN;
-+		else
-+			dp83867->io_impedance = -1; /* leave at default */
-+
-+		return 0;
-+	}
-+
-+	buf = nvmem_cell_read(cell, NULL);
-+	nvmem_cell_put(cell);
-+
-+	if (IS_ERR(buf))
-+		return PTR_ERR(buf);
-+
-+	val = *buf;
-+	kfree(buf);
-+
-+	if ((val & DP83867_IO_MUX_CFG_IO_IMPEDANCE_MASK) != val) {
-+		phydev_err(phydev, "nvmem cell 'io_impedance_ctrl' contents out of range\n");
-+		return -ERANGE;
-+	}
-+	dp83867->io_impedance = val;
-+
-+	return 0;
-+}
-+
- static int dp83867_of_init(struct phy_device *phydev)
- {
- 	struct dp83867_private *dp83867 = phydev->priv;
-@@ -548,12 +594,9 @@ static int dp83867_of_init(struct phy_device *phydev)
- 		}
- 	}
- 
--	if (of_property_read_bool(of_node, "ti,max-output-impedance"))
--		dp83867->io_impedance = DP83867_IO_MUX_CFG_IO_IMPEDANCE_MAX;
--	else if (of_property_read_bool(of_node, "ti,min-output-impedance"))
--		dp83867->io_impedance = DP83867_IO_MUX_CFG_IO_IMPEDANCE_MIN;
--	else
--		dp83867->io_impedance = -1; /* leave at default */
-+	ret = dp83867_of_init_io_impedance(phydev);
-+	if (ret)
-+		return ret;
- 
- 	dp83867->rxctrl_strap_quirk = of_property_read_bool(of_node,
- 							    "ti,dp83867-rxctrl-strap-quirk");
--- 
-2.31.1
+I am not sure. I need to study what locking is already done by =
+ALSA/ASoC.
+I assume the two stream directions here don=E2=80=99t share a lock =
+already...
 
