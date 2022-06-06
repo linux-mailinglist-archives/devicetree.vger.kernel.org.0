@@ -2,55 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5678453ECA0
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:10:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4511653E984
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:08:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239276AbiFFOHZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jun 2022 10:07:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45536 "EHLO
+        id S239468AbiFFOPi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jun 2022 10:15:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235611AbiFFOHX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 10:07:23 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6598262F9
-        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 07:07:20 -0700 (PDT)
-Received: from [192.168.1.107] ([37.4.249.155]) by mrelayeu.kundenserver.de
- (mreue011 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1MwwqB-1nZxKu3OIt-00yNkM; Mon, 06 Jun 2022 16:07:11 +0200
-Message-ID: <c4e55ac1-2ee9-2f61-7731-bee164907f41@i2se.com>
-Date:   Mon, 6 Jun 2022 16:07:11 +0200
+        with ESMTP id S239452AbiFFOPg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 10:15:36 -0400
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EA4D2D1C1;
+        Mon,  6 Jun 2022 07:15:29 -0700 (PDT)
+Received: by mail-ot1-x335.google.com with SMTP id 61-20020a9d0bc3000000b0060b9bfcfe76so10831812oth.9;
+        Mon, 06 Jun 2022 07:15:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:message-id:date:mime-version:user-agent:content-language:to
+         :cc:references:from:subject:in-reply-to:content-transfer-encoding;
+        bh=YE5fd2PXzgrRrp6QmDickm+mZx4l8rN3v8iuptY0YE8=;
+        b=Uf5uAcfO43BI37XVfWxFs27iKBoPVFRkbqDVTrO8B/Kc7NaQCqRUBEajc26O3UFmlp
+         d3lyZyCgCCt2wbIRc6YdNsMKxEUvQDHs1rveWTET3ZYuHUYXPP3h0VQ+FaIGH7cX4Nv6
+         Ciy2PFqn6FisnWLmuiodQNLoK8C/pRtSXZHTeUfI/kQGPWvhMdCcIwVdU8keGXmQIvZM
+         5a1/lEZ19QUYg4XOygy2kj/9Dxn93XZc0VmBzvzF0Vc0J97uZDWjMFZXs+UhyCl5IPL7
+         nMyCc+KG18R9yE4uAPzx5bequv+930NDrXWe4ToT/ATVdAj66i0/e+2pf0Wmwa0DGBy6
+         rseg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
+         :content-language:to:cc:references:from:subject:in-reply-to
+         :content-transfer-encoding;
+        bh=YE5fd2PXzgrRrp6QmDickm+mZx4l8rN3v8iuptY0YE8=;
+        b=D5NsdrKrecgJpM3ocPf03fQBdliHVgP0reKy2qgxMaP+qHIX/u8SkHPu6yY+/kvitc
+         94RxG4LzZWQrgesyxlB3R6OYKTTodmvdPTWGWNhgdqODqIolsDLxBhL9iOZwt+xqBhl6
+         KFFMb03hmOyksAbfi/wO7NPFrnZulciuo3qPLPWBvsjlRubIUFid+UGufsfwxy0FPRhe
+         rsZ+AgH4PICzp4NnkwyNDENlZModnpY42JP1Sqm0YxMezdT77dimTyb7ZL/orzel0q2z
+         GHApt1FHYyraVyxZcL5YWYG5hi+FerHDFG2kRGq4Bw09zmPbpUhjtYAvC+Bgbwl7Fy3K
+         fTJg==
+X-Gm-Message-State: AOAM533YIvW8K9VL/HM4gtCxuim/Mp4f+1uHGrsoiy5Ep9I8viGM76qs
+        IudxUaaiLJHWOj+3ac2ta50=
+X-Google-Smtp-Source: ABdhPJyBJnTwOW+Pzla8e7Pjter9px3qElskKW4RQsLdwiuMW3/i5JPjGrPCN/IAY9NT258XscnfRg==
+X-Received: by 2002:a9d:76c3:0:b0:60b:9c19:2248 with SMTP id p3-20020a9d76c3000000b0060b9c192248mr10302414otl.62.1654524928871;
+        Mon, 06 Jun 2022 07:15:28 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id j6-20020a056830270600b0060603221264sm7683251otu.52.2022.06.06.07.15.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Jun 2022 07:15:27 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <ec333cc5-1e49-dfe8-d5d4-8b3f3982e316@roeck-us.net>
+Date:   Mon, 6 Jun 2022 07:15:24 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: display: bcm2835-dpi: warning about #address-cells',
- '#size-cells'
 Content-Language: en-US
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-References: <a28d1fe5-eac8-bb86-cbda-f3236c104d61@i2se.com>
- <20220606134748.zkmndftkorygdu4w@houat>
-From:   Stefan Wahren <stefan.wahren@i2se.com>
-In-Reply-To: <20220606134748.zkmndftkorygdu4w@houat>
+To:     Slawomir Stepien <sst@poczta.fm>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        jdelvare@suse.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, przemyslaw.cencner@nokia.com,
+        krzysztof.adamski@nokia.com, alexander.sverdlin@nokia.com,
+        slawomir.stepien@nokia.com
+References: <20220525073657.573327-1-sst@poczta.fm>
+ <20220525073657.573327-5-sst@poczta.fm>
+ <20220605180310.GA3151289@roeck-us.net> <Yp2fCO84VrrSQHbL@t480s.localdomain>
+ <5f471f82-83b1-aea4-ea25-e51c0672c8ff@roeck-us.net>
+ <Yp3vpgR8jbyzWmiq@t480s.localdomain>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH 4/7] hwmon: (lm90) Add support for 2nd remote channel's
+ offset register
+In-Reply-To: <Yp3vpgR8jbyzWmiq@t480s.localdomain>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Provags-ID: V03:K1:KuEydgGiR+M+OGw5Lo85DpNlXgnv8Xkt69yODJsIRcJAuDdUtHB
- t8of3hSSOlUGYqcxo8xKxyOh6d9fdYfAouYX4cjy13lDIHL8FLDWw7ORmpJD5uzZS4Yur/w
- ydQv7Mky9CV0/sWnHRmyQ0vHWQ3c1ZJc9i0upxULrral1ZWBLXJt5o5tCr2/2RCdCbutzEy
- S70rOvvmpj+yZhHnkj4RA==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:cijSELYeCx0=:p0lw3NnIzN5OJgqvKJyvr/
- +tqwgZQKuiDO6AVCn36aCu8Pu+sazzL5h6Jp/OSp+JSsxN1tzuqTcmbu1qh43GHgucjManyBH
- 1qBt9zKDl9OF2mIZB2oIStuFMIVbX6/VXVTBPmNqKdv7BCknlw1WB4hlb6o0RKNEsgcmxNv+c
- BM6evxyJnyKr7IGou8GLdT7gAAfStv8se2C4qPGkVbZ0OfppxTbl99L87oweyOwu1HlYmQjL9
- Lbm2wPymxfiJsqQQoVYcrLgIl8if79nJmqsCNV36cPki3fdivJLtvGrLLxjfXJwAcCLE6dhVd
- HN3L8CaNusBYE6qy/Jwo6Yk3XtyTGr38Z+qLD2N39zfP0NI00vddx55QWRO73lBljsPsqT7UP
- ZfqWK7n+uhNHCRL8r/whKdzAbTez3+XyHixaGgdzz2YNV/tFVfeERwnuSZQXSzmjE7Wvp6gQM
- eDWuiuhcAajvSlmmLfMLC2mJHId7WeuYYnI6Xk2g4fefgRM4L/JBJfBDzgNdCY5noU/l1TgTd
- xJHhzjgppHcK93fAE6+tCaAVs2y/So/9KTr1RzdtZaTrGbn2zMb9x2DnoXErlgHqBq2sogqSc
- Hu/FdS7N71bQzVnUPrhOC/RK5M/NcXZ78uoEK2SvMZGMu75HxTsxpYBzJPLNKOy+VGqNs5BED
- +In2zgzFuYOED32k1C4jGzDt4frw52C71DJOVCVqn4zjepfDbW8Ui53AyBBxhGGe0uodz4wX9
- 2wdSdllvFXCUX0K9SYEba0KkxjTo2upxQyKeA8pLvdfyVfgxKwtpFEBzO0g=
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,32 +83,121 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime,
+On 6/6/22 05:14, Slawomir Stepien wrote:
+> On cze 05, 2022 23:50, Guenter Roeck wrote:
+>> On 6/5/22 23:30, Slawomir Stepien wrote:
+>>> On cze 05, 2022 11:03, Guenter Roeck wrote:
+>>>> On Wed, May 25, 2022 at 09:36:54AM +0200, Slawomir Stepien wrote:
+>>>>> From: Slawomir Stepien <slawomir.stepien@nokia.com>
+>>>>>
+>>>>> The ADT7461 supports offset register for both remote channels it has.
+>>>>
+>>>> ADT7481
+>>>
+>>> Oops. I will fix that in new version.
+>>>
+>>>>> Both registers have the same bit width (resolution).
+>>>>>
+>>>>> In the code, this device has LM90_HAVE_TEMP3 and LM90_HAVE_OFFSET flags,
+>>>>> but the support of second remote channel's offset is missing. Add that
+>>>>> implementation.
+>>>>>
+>>>>> Signed-off-by: Slawomir Stepien <slawomir.stepien@nokia.com>
+>>>>> ---
+>>>>>    drivers/hwmon/lm90.c | 37 ++++++++++++++++++++++++++++++++-----
+>>>>>    1 file changed, 32 insertions(+), 5 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/hwmon/lm90.c b/drivers/hwmon/lm90.c
+>>>>> index 02b211a4e571..d226f1dea2ba 100644
+>>>>> --- a/drivers/hwmon/lm90.c
+>>>>> +++ b/drivers/hwmon/lm90.c
+>>>>> @@ -153,6 +153,8 @@ enum chips { adm1023, adm1032, adt7461, adt7461a, adt7481,
+>>>>>    #define LM90_REG_REMOTE_TEMPL		0x10
+>>>>>    #define LM90_REG_REMOTE_OFFSH		0x11
+>>>>>    #define LM90_REG_REMOTE_OFFSL		0x12
+>>>>> +#define LM90_REG_REMOTE2_OFFSH		0x34
+>>>>> +#define LM90_REG_REMOTE2_OFFSL		0x35
+>>>>
+>>>> I don't think those are needed.
+>>>
+>>> In lm90_temp_write() (unlike in lm90_update_limits()) the remote channel is *not* set. I find
+>>
+>> ... unless lm90_set_temp() is used to write the values. If I recall correctly
+>> I didn't do that because selecting the remote channel seemed unnecessary.
+> 
+> I think that modifying lm90_set_temp() to support offsets is a bit messy:
+> 
+> 1. The offset on all supported devices is always on two bytes. Unlike the temperature, where
+> sometimes it is just on one (but if more than one byte, then we set reg_remote_ext). With this also
+> 'regs' in lm90_set_temp() will be back as 2 dimensional array OR additional high and low indexes for
+> REMOTE_OFFSET and REMOTE2_OFFSET should be added (that will also caused bits glueing on write/read).
+> 
+> 2. For offset the calls lm90_temp_from/to_reg should have 0 as flags (1st argument) - that would be
+> an additional if in lm90_set_temp() OR clear&restore of the flags before&after the call..
+> 
+> Maybe, Guenter you will be happy with something like this (new functions):
+> 
+> static int lm90_get_temp_offset(struct lm90_data *data, int index)
+> {
+> 	int res = lm90_temp_get_resolution(data, index);
+> 
+> 	return lm90_temp_from_reg(0, data->temp[index], res);
+> }
+> 
+> static int lm90_set_temp_offset(struct lm90_data *data, int index, int channel, long val)
+> {
+> 	int err;
+> 	static const u8 regs[][2] = {
+> 		[REMOTE_OFFSET] = {LM90_REG_REMOTE_OFFSH, LM90_REG_REMOTE_OFFSL},
+> 		[REMOTE2_OFFSET] = {LM90_REG_REMOTE_OFFSH, LM90_REG_REMOTE_OFFSL},
+> 	};
 
-Am 06.06.22 um 15:47 schrieb Maxime Ripard:
-> On Mon, Jun 06, 2022 at 01:40:19PM +0200, Stefan Wahren wrote:
->> Hi,
->>
->> recently i noticed the following warning during "make dtbs_check"
->>
->> arch/arm/boot/dts/bcm2835-rpi-b.dtb: dpi@7e208000: '#address-cells',
->> '#size-cells' do not match any of the regexes: 'pinctrl-[0-9]+'
->>
->> During conversion to DT schema 094536003e06 "dt-bindings: display: Convert
->> VC4 bindings to schemas" the properties has been dropped from the example.
->>
->> But i'm not sure how to fix this properly (drop them from the bcm283x.dtsi
->> file or add the properties to brcm,bcm2835-dpi.yaml).
-> So #address-cells and #size-cells are used to get the children register
-> address and size.
->
-> However, for DPI, it's not clear what the child node is going to be in
-> the first place. The only one that stands out is the port node, but
-> there's a single one. So we don't need a reg property to differentiate
-> between multiple ports, and thus we don't need #address-cells or
-> #size-cells.
->
-> The proper fix would be to remove them from the bcm283x device tree.
-thanks. I will send a patch soon.
->
-> Maxime
+That array is unnecessary.
+> 	u8 regh = regs[index][0];
+> 	u8 regl = regs[index][1];
+
+	regh = regs[0];
+	regl = regs[1];
+
+has the same result, meaning you can just use LM90_REG_REMOTE_OFFSH
+and LM90_REG_REMOTE_OFFSL directly.
+
+... and then you can just use the direct registers and add a comment stating
+that those only work for ADT7481 and not for chips which require channel select.
+
+> 
+> 	val = lm90_temp_to_reg(0, val, lm90_temp_get_resolution(data, index));
+> 
+> 	if (channel > 1)
+> 		lm90_select_remote_channel(data, true);
+> 
+> 	err = lm90_write16(data->client, regh, regl, val);
+> 
+> 	if (channel > 1)
+> 		lm90_select_remote_channel(data, false);
+> 
+> 	if (err)
+> 		return err;
+> 
+> 	data->temp[index] = val;
+> 
+> 	return 0;
+> }
+> 
+> And new channel->index translator:
+> 
+> static const s8 lm90_temp_offset_index[MAX_CHANNELS] = {
+> 	-1, REMOTE_OFFSET, REMOTE2_OFFSET
+> };
+> 
+> Having that, we can use that functions in hwmon's read/write attrs but also while paring the
+> device-tree channel nodes.
+> 
+> Maybe I missed something and using lm90_set_temp() will not be messy?
+> What do you think?
+> 
+Using a new (simplified) function to write the registers sounds good.
+Go for it.
+
+Thanks,
+Guenter
