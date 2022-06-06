@@ -2,129 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 10ADF53EB1E
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:09:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E129053E8F7
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:08:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239060AbiFFNrx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jun 2022 09:47:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43648 "EHLO
+        id S239221AbiFFNsd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jun 2022 09:48:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239057AbiFFNrw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 09:47:52 -0400
-Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1D4F99814
-        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 06:47:51 -0700 (PDT)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.west.internal (Postfix) with ESMTP id 0837D320094E;
-        Mon,  6 Jun 2022 09:47:50 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Mon, 06 Jun 2022 09:47:51 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm1; t=1654523270; x=1654609670; bh=YpFYNv7QOh
-        4+yxcwjwur3dorr2EdlcofAUzMq4w1odI=; b=RCib4ykUbycziixbr4XJNn3drn
-        FiNRogwbWZaQPsOOydF1bdxxg3QDpRxTUyfBx91D0cQe/jd2P9telTcnQ2hnV1Vy
-        fb6ChM4g3NtFFEkd6RfjqD0pgMUSMhhcZmKjUqDn/Z9Ig2COSs38CkHdl9UWEpnY
-        pvy+fsRvwX3QOfx/6dVvtz5frbkFHs+P0CytNKWcxfg6y4CcFpdXiPDdYYkZhjQa
-        inPpLrxtSHv/g9i+h5EStMMHCTS1DDqbVn+CCWwMCL0hXdryCdbZ6qbjsWc8r2bF
-        D6JzZ2jrkktBDDQKvKopJKkGo5v2SMLTQ87x2bakwA+0EqCq07HQZ8SQ/NFg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm2; t=1654523270; x=1654609670; bh=YpFYNv7QOh4+yxcwjwur3dorr2Ed
-        lcofAUzMq4w1odI=; b=x3f4TrhVRDelyKvcYWqgkX7SwCgcAGzXEAtv7A89cK1y
-        0wmbQjt2+sbuCMlUwx9MpZeaLP0i4KXBoRzaMzwxaFYK2UTOJ0c4/XxEkTVgByCB
-        zJ2cQiJynI+b2p+a+BQ9GdFcxK7dFMP8ftf28xVww3W7072uo5An9TrCCJgVrfPh
-        kYfxiIhcR08EquQo2vl01Fu9C2MbcUxVcQUi4id0YpPUpLklYg1etahUbM7gEFHp
-        obQbYI5gxfrOuQVkXyLyODs7Z3whTqhzzJjI6j1a0XU73tU2i0RPvvWK5hJedkdO
-        GbDBOh4/+BnG7eUWTzNjzeJOsZm34oSuzGROqOjO1g==
-X-ME-Sender: <xms:hgWeYsElrFXscygOx6Ucj32ow-AdrGwWFjaL73bQeL21UENUP8z6ZQ>
-    <xme:hgWeYlWVGZhkxzHhpcQ4VhDPdD39GkisP8B0Vq-Ml42s4oSIVj6gnZQpxdlfpqQ0q
-    PFDVe_JB9AH9414wds>
-X-ME-Received: <xmr:hgWeYmJLyxba5NsfyKZutYlGtI7y-VWQeEctPi5hCe5tCb3RfSSdx7lr4dk9C16tfn96dGVyC0XVQ7eaNsswYu237JhQKBizcQ-ZBAo>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedruddtvddgieekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpedugfdvgfeiiefgheevueffleffiedvtdevkeehudefjeeivdegteefjefh
-    hfeuudenucffohhmrghinhephigrmhhlrdhsohenucevlhhushhtvghrufhiiigvpedtne
-    curfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:hgWeYuGQhBlg9ML_ChHm_tLIwd39_rGgxR8DI2h0vw6AjsIWszG0EQ>
-    <xmx:hgWeYiWaS-EwRD6ijIJfSakITYInWhu6CNZpKpTEFmWuZ_F04v-ykg>
-    <xmx:hgWeYhN8sIpz0Cdb1OcbzIshzuffEqqOu9MfZCdCvpU--iP0HlLS2A>
-    <xmx:hgWeYld37mrJa8_XNWEVydpSJD_CBqoHbTPRjW1v7q8kUJx4bNErSQ>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 6 Jun 2022 09:47:49 -0400 (EDT)
-Date:   Mon, 6 Jun 2022 15:47:48 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: display: bcm2835-dpi: warning about #address-cells',
- '#size-cells'
-Message-ID: <20220606134748.zkmndftkorygdu4w@houat>
-References: <a28d1fe5-eac8-bb86-cbda-f3236c104d61@i2se.com>
+        with ESMTP id S239208AbiFFNsb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 09:48:31 -0400
+Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45BC49A985;
+        Mon,  6 Jun 2022 06:48:27 -0700 (PDT)
+Received: by mail-il1-f181.google.com with SMTP id v7so11961216ilo.3;
+        Mon, 06 Jun 2022 06:48:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Iq+/ZT5S/tsKY65k+c5zzqLlMmHdbOtpYrK6tQD4cqY=;
+        b=0zL69b45rZX+vti6TKAhUTuVAXolTaDVadZv3AygbgK75Iwf2HvWmPV4oa88S+yJDi
+         uREPJe51ALGVCoXQ9D+EaLN8GPGLRMptCyAyVYTFsMGPGQ1pnSLSe3vaHkvKnwRuT55A
+         swxhSbjT4a+9YHKrF28nIaaupjbMwfzCjrGGdwPhRj39NEvTbgTTqMaouCU1d5Y3Cn+W
+         548W5PBtE/5tupQ8GxbfTjde1KPkD+QlTtsLY5tXZ7pO6ikoJXT3OUViUpPwVZc6Afrr
+         Tl7GxeahBcEJUGQghjsP7/TZah1tJqZQH271sfFcRSkXnhNMwOUUu0T3KTKO9l0cLa1X
+         uiTA==
+X-Gm-Message-State: AOAM530SmjNBbwU5Jgg0m4QurEfekARzbCbcaDzuVYxGVDHDg50PRGVy
+        yCmETxiOrZpNxQxXezBKSQ==
+X-Google-Smtp-Source: ABdhPJwbi6EJiI2PaM91wEcFQReWOmrXQCRfzQHoHXpccKkWDSHoKnOoq6i68X1AyLTQWbbX3840mg==
+X-Received: by 2002:a05:6e02:15ca:b0:2bf:ad58:4a6d with SMTP id q10-20020a056e0215ca00b002bfad584a6dmr14825916ilu.13.1654523306793;
+        Mon, 06 Jun 2022 06:48:26 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id y38-20020a029529000000b0032e583132e4sm5675598jah.123.2022.06.06.06.48.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Jun 2022 06:48:26 -0700 (PDT)
+Received: (nullmailer pid 632986 invoked by uid 1000);
+        Mon, 06 Jun 2022 13:48:24 -0000
+Date:   Mon, 6 Jun 2022 08:48:24 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sameer Pujar <spujar@nvidia.com>
+Cc:     broonie@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        thierry.reding@gmail.com, catalin.marinas@arm.com, will@kernel.org,
+        perex@perex.cz, tiwai@suse.com, jonathanh@nvidia.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 1/6] ASoC: tegra: Add binding doc for OPE module
+Message-ID: <20220606134824.GB564610-robh@kernel.org>
+References: <1654238172-16293-1-git-send-email-spujar@nvidia.com>
+ <1654238172-16293-2-git-send-email-spujar@nvidia.com>
+ <20220603203003.GA852734-robh@kernel.org>
+ <b70e024b-4f80-16b9-4bbe-ed8a24a384df@nvidia.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="gudndhwlv3afkpye"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <a28d1fe5-eac8-bb86-cbda-f3236c104d61@i2se.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <b70e024b-4f80-16b9-4bbe-ed8a24a384df@nvidia.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Jun 06, 2022 at 01:47:48PM +0530, Sameer Pujar wrote:
+> 
+> On 04-06-2022 02:00, Rob Herring wrote:
+> > Doesn't apply for me. I guess there is some undocumented dependency
+> > here? Resend after the merge window if that solves it.
+> 
+> These were getting applied fine on linux-next.
 
---gudndhwlv3afkpye
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+linux-next is not a base maintainers can apply to. Convenient instead of 
+having to get a specific tree, but you still need to say what the base 
+is (what tree it should be applied to).
 
-On Mon, Jun 06, 2022 at 01:40:19PM +0200, Stefan Wahren wrote:
-> Hi,
->=20
-> recently i noticed the following warning during "make dtbs_check"
->=20
-> arch/arm/boot/dts/bcm2835-rpi-b.dtb: dpi@7e208000: '#address-cells',
-> '#size-cells' do not match any of the regexes: 'pinctrl-[0-9]+'
->=20
-> During conversion to DT schema 094536003e06 "dt-bindings: display: Convert
-> VC4 bindings to schemas" the properties has been dropped from the example.
->=20
-> But i'm not sure how to fix this properly (drop them from the bcm283x.dtsi
-> file or add the properties to brcm,bcm2835-dpi.yaml).
+> Merge window seems to have closed now and v5.19-rc1 release is out. I can
+> apply these cleanly on v5.19-rc1. Please let me know if re-send is needed
+> now or I need to wait for some more time? Thanks.
 
-So #address-cells and #size-cells are used to get the children register
-address and size.
+Yes, or the automated checks don't run.
 
-However, for DPI, it's not clear what the child node is going to be in
-the first place. The only one that stands out is the port node, but
-there's a single one. So we don't need a reg property to differentiate
-between multiple ports, and thus we don't need #address-cells or
-#size-cells.
-
-The proper fix would be to remove them from the bcm283x device tree.
-
-Maxime
-
---gudndhwlv3afkpye
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYp4FhAAKCRDj7w1vZxhR
-xaCkAQDo/tJkiWGSyxp1qR/tXv4JDzdA9JCcN1iUO4WqKgWjSQD/dPGlyaG2zOBq
-jKdNgKmr99ApVLCXfpzedB58hhUTUQM=
-=YPXe
------END PGP SIGNATURE-----
-
---gudndhwlv3afkpye--
+Rob
