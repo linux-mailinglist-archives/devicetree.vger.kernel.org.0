@@ -2,80 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D14553EBC5
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:09:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B044A53E936
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jun 2022 19:08:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233032AbiFFJwj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jun 2022 05:52:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53120 "EHLO
+        id S233251AbiFFJz2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jun 2022 05:55:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233025AbiFFJwi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 05:52:38 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CE9F1091B6;
-        Mon,  6 Jun 2022 02:52:36 -0700 (PDT)
-X-UUID: 0cb88c1cb1094b2abfed64b3a6c2c6e3-20220606
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:00dcf17f-d879-4fd0-8aae-b3de4726c5f3,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:45
-X-CID-INFO: VERSION:1.1.5,REQID:00dcf17f-d879-4fd0-8aae-b3de4726c5f3,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
-        N:release,TS:45
-X-CID-META: VersionHash:2a19b09,CLOUDID:a180c0ad-3171-4dd4-a2d9-73b846daf167,C
-        OID:2f8c2e4cc389,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:0,BEC:nil
-X-UUID: 0cb88c1cb1094b2abfed64b3a6c2c6e3-20220606
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <tinghan.shen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2101235386; Mon, 06 Jun 2022 17:52:33 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Mon, 6 Jun 2022 17:52:31 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Mon, 6 Jun 2022 17:52:31 +0800
-Message-ID: <fe9fae165443f0db55f2bac2bbe214f3b018052d.camel@mediatek.com>
-Subject: Re: [PATCH v1 05/15] remoteproc: mediatek: Add SCP core 1 driver
- for dual-core scp
-From:   Tinghan Shen <tinghan.shen@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        with ESMTP id S233121AbiFFJz1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 05:55:27 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1FB8113A1C
+        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 02:55:22 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id d14so10117069wra.10
+        for <devicetree@vger.kernel.org>; Mon, 06 Jun 2022 02:55:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=/HGBwVcm94G6hJzxxoyTgU9jvYkuG8KyARLPoR4g984=;
+        b=sSIY/sq3tJH+ruvIsuQApXH81UhkfbHOfABcA9lRdOXBMbUsWyeFwDFrglxz8GfoFY
+         QmStVG7kQyI/Q+/6pzQ1jyZY82gcQ94oe3qAb4fzAxkirKGmyAUaoqUUXub2FoGcDeKV
+         S/Wm7MMIB0Gh1CQX3FHGnak7oG6MzRuQNup0KHkoXlknAeFpQTqPF8kWakz2k1lHJoxZ
+         dthp0Z3elQaJG1D3TE/Vs4VI3xS7Hn4Pu8rhIoTTWWgEf0GTiaogaHkE4OCPgIBPe8BV
+         1InWXF/vn+LEpsxPD/Vb9arMdS+o9J/eS52eFzf2SzeGhMRIomxC+4FZ1I5qKCu7/UsL
+         xuAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=/HGBwVcm94G6hJzxxoyTgU9jvYkuG8KyARLPoR4g984=;
+        b=4KnG44SzfZEwWlNqwxxl2PTOcCANtJJ11Lx0xAC21tFXnfZqDu31ujS+hEdTz0tmNk
+         ihNSnqjo9QOSssaP8/M0lfkDMd8KtuG2OSP0+04PYJNumRppwD9Ovddh3Pfx4M5Rqo9h
+         wkUIy+T32xOAo2n6o4Ejc6JoiPjnXeye/+37iJPXaCooC1A8mN0hNZGCmiM7jlhYT0v0
+         2F4TMkWVnxdTwxk5+/nTZDxsl9MWwPJ6c48wDGOr8PZ3Cs3szRl9s4l3jHMkDG28lQXc
+         x7aSuEB5R+hXDU/nUm61FvKk/c0ANlGb8cIYHXIw9sI7hvsUAQJbIUtxvAjGFCgcNMbI
+         L2vw==
+X-Gm-Message-State: AOAM5329jES4fDJQ3KkDCDE9WlGtAWWKyGoLJqplf5fBi0SEKn9m9mI9
+        r+JpJJmjET931rErifqwzpy6Dg==
+X-Google-Smtp-Source: ABdhPJxFMRPPs4LSY3Kcwnsvn2fgmQxO/3GAT/dfFczxe2I21JguLlXbCT27NpSSDOKSGZaQZm8pJA==
+X-Received: by 2002:a05:6000:2a9:b0:210:2530:be32 with SMTP id l9-20020a05600002a900b002102530be32mr21432918wry.153.1654509321248;
+        Mon, 06 Jun 2022 02:55:21 -0700 (PDT)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id o10-20020adfeaca000000b0020c5253d8c2sm14659609wrn.14.2022.06.06.02.55.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Jun 2022 02:55:20 -0700 (PDT)
+Date:   Mon, 6 Jun 2022 10:55:03 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Luca Ceresoli <luca@lucaceresoli.net>
+Cc:     linux-kernel@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Daisuke Nojiri <dnojiri@chromium.org>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        "Dustin L. Howett" <dustin@howett.net>,
-        Tzung-Bi Shih <tzungbi@kernel.org>,
-        "Gustavo A. R. Silva" <gustavoars@kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        "Brian Norris" <briannorris@chromium.org>
-CC:     <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <chrome-platform@lists.linux.dev>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <weishunc@google.com>
-Date:   Mon, 6 Jun 2022 17:52:31 +0800
-In-Reply-To: <dd12145b-bbb3-b771-b8f7-075ea20bee17@collabora.com>
-References: <20220601112201.15510-1-tinghan.shen@mediatek.com>
-         <20220601112201.15510-6-tinghan.shen@mediatek.com>
-         <dd12145b-bbb3-b771-b8f7-075ea20bee17@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Leon Luo <leonl@leopardimaging.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>
+Subject: Re: [PATCH 4/6] mfd: max77714: update Luca Ceresoli's e-mail address
+Message-ID: <Yp3O92gg9LiIzQTX@google.com>
+References: <20220603155727.1232061-1-luca@lucaceresoli.net>
+ <20220603155727.1232061-4-luca@lucaceresoli.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220603155727.1232061-4-luca@lucaceresoli.net>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,45 +83,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-06-06 at 11:15 +0200, AngeloGioacchino Del Regno wrote:
-> Il 01/06/22 13:21, Tinghan Shen ha scritto:
-> > MT8195 SCP is a dual-core processor. The mtk_scp.c driver only controls
-> > SCP core 0. This patch adds a basic driver to control the another core.
-> > 
-> > Core 1 and core 0 of the SCP are housed in the same subsys.They see
-> > registers and memory in the same way.
-> > 
-> > Core 1 of the SCP features its own set of core configuration registers,
-> > interrupt controller, timers, and DMAs. The rest of the peripherals
-> > in this subsystem are shared by core 0 and core 1.
-> > 
-> > As for memory, core 1 has its own cache memory, and the SCP SRAM is shared
-> > by core 0 and core 1.
-> > 
+On Fri, 03 Jun 2022, Luca Ceresoli wrote:
+
+> My Bootlin address is preferred from now on.
 > 
-> Hello Tinghan,
-> 
-> checking all the patches that are introducing support for the secondary SCP core,
-> it's clear that you're practically reusing *most of* mtk_scp in mtk_scp_dual.
-> 
-> I don't think that adding a new configuration option for MTK_SCP_DUALCORE (nor a
-> new file just for that) is a good idea... the code is "short enough" so you should
-> really just add support for multi-core SCP in mtk_scp.c instead.
-> 
-> After doing so, I have a hunch that we'll be able to reduce the size of this
-> implementation even more, as I see literally too much common code :-)
-> 
+> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
+> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> ---
+>  drivers/mfd/max77714.c       | 4 ++--
+>  include/linux/mfd/max77714.h | 2 +-
+>  2 files changed, 3 insertions(+), 3 deletions(-)
 
-Hi Angelo,
+Applied, thanks.
 
-Thanks for your review.
-
-This series has 2 new files, mtk_scp_dual.c and mtk_scp_subdev.c.
-Is your advice to merge both files into mtk_scp.c, 
-or to merely merge mtk_scp_dual.c to mtk_scp.c?
-
-Thanks,
-TingHan
-
-
-
+-- 
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
