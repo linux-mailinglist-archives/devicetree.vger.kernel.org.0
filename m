@@ -2,160 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 181FF53FE92
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 14:19:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C201553FEB2
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 14:24:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243638AbiFGMTr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 08:19:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51852 "EHLO
+        id S242936AbiFGMYo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 08:24:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243672AbiFGMRr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 08:17:47 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B45EAF8E5C
-        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 05:16:18 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id v1so24112066ejg.13
-        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 05:16:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=06i39agsU8HuZjR8TtH1PW9licnqFJhwqBG7mgYQgaU=;
-        b=vUX+/ZCQT/Vp1n72imHbSlot9vnnbBJMMjxqrMcq7njwpDdCXU+5WZ65+pOolivfo8
-         STLqF/r0aUY6MD+PKoHssQ85CvsUzNPExIMs2To0iXcko+j7/5DkfNQ/q7g0qSNcr2E0
-         Ap9Pw78QUjRoWgPpSy13R3htRu7KF+kHc0II9266WmTEz3459csi10bOhbliz/G2M0P2
-         DZ+oXbLl+6iVS4afBNtpJRUDb4GuJ1lR5z09PsfmWt39LdbJnKR5YDSdqXiuIJzsar4R
-         GmalyqjG2yp/Y4wMKYM5Nf0baaxZKunN1D6rtg7iFCYzyINze0XMnJYLzmGttAkDLh5w
-         fvIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=06i39agsU8HuZjR8TtH1PW9licnqFJhwqBG7mgYQgaU=;
-        b=a3tKz8HpRoGoYOkGA5rJ29EzRuz9wRKy9WNK5zqRnhlEEtdMdcKfIJ1349iQe4IWdl
-         Re0sM09lv+4s2XeRRb0seta6OOQ9VzNqpf3Um6p0QSo9L7J+0FIDodiTG9w3k8igbc1l
-         4Qtj7tcVM/tbTl/SkcpAjc4F3JO9MXEbEEYVQoUkJ9MogHeZR9SCZ5NKYWMLIZydNbw9
-         YPkL5tY4Z8Jd0SYWAEsL158AUdhXwQzcLUu5zr4NhUxhd9bSF13zZGhQQIfvRc6bHI8u
-         JKVUBxgSosYcA9TN36ec9xfIjgoEsCS2mtyZiDbT0V9HuAHlCCuGppLy2kLNmrKBThb4
-         pVHg==
-X-Gm-Message-State: AOAM530pjlB7kHYRKZIM06Tt1jk/hQPfj7BHJRm7rdXBQvPpt+2/l0pb
-        y4qI/XOb3r390TFQ2PdEpkO9X+XUe7U0DA==
-X-Google-Smtp-Source: ABdhPJw9Q1zxLxajWHbMHVWAMN//ho5UJetCvthsIdVimgSkH+1lCvTdz9db4IvCmnSQw9n73jXsdQ==
-X-Received: by 2002:a17:907:9606:b0:70a:e140:6329 with SMTP id gb6-20020a170907960600b0070ae1406329mr24523296ejc.471.1654604174858;
-        Tue, 07 Jun 2022 05:16:14 -0700 (PDT)
-Received: from [192.168.0.183] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id u4-20020a170906124400b007105a157706sm4626183eja.82.2022.06.07.05.16.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Jun 2022 05:16:14 -0700 (PDT)
-Message-ID: <3849248a-fe0e-157a-21dc-62c1c91ae204@linaro.org>
-Date:   Tue, 7 Jun 2022 14:16:13 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH] dt-bindings: i2c: Convert arm,i2c-versatile to DT schema
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
+        with ESMTP id S242387AbiFGMYn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 08:24:43 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E3ACBD2;
+        Tue,  7 Jun 2022 05:24:37 -0700 (PDT)
+X-UUID: fb5b78e7daca4a7db5691981b3edb879-20220607
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:a0705966-04a2-4de5-943a-691efd1ac7ab,OB:0,LO
+        B:0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:50
+X-CID-INFO: VERSION:1.1.5,REQID:a0705966-04a2-4de5-943a-691efd1ac7ab,OB:0,LOB:
+        0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
+        N:release,TS:50
+X-CID-META: VersionHash:2a19b09,CLOUDID:8857f3e4-2ba2-4dc1-b6c5-11feb6c769e0,C
+        OID:24b0c7df9da5,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,QS:0,BEC:nil
+X-UUID: fb5b78e7daca4a7db5691981b3edb879-20220607
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 2012312828; Tue, 07 Jun 2022 20:24:32 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Tue, 7 Jun 2022 20:24:31 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Tue, 7 Jun 2022 20:24:31 +0800
+Message-ID: <8af7938ae9244e4b7caf62e0c6ce0bcdddc13889.camel@mediatek.com>
+Subject: Re: [PATCH v10 18/21] drm/mediatek: Add mt8195 Embedded DisplayPort
+ driver
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>,
+        Guillaume Ranquet <granquet@baylibre.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220606184339.1058557-1-robh@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220606184339.1058557-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chunfeng Yun =?UTF-8?Q?=28=E4=BA=91=E6=98=A5=E5=B3=B0=29?= 
+        <Chunfeng.Yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, Helge Deller <deller@gmx.de>,
+        Jitao Shi =?UTF-8?Q?=28=E7=9F=B3=E8=AE=B0=E6=B6=9B=29?= 
+        <jitao.shi@mediatek.com>
+CC:     Markus Schneider-Pargmann <msp@baylibre.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>
+Date:   Tue, 7 Jun 2022 20:24:31 +0800
+In-Reply-To: <0bd8b0c66b9e2a1b63280e7eab63048bee7fe786.camel@mediatek.com>
+References: <20220523104758.29531-1-granquet@baylibre.com>
+         <20220523104758.29531-19-granquet@baylibre.com>
+         <0bd8b0c66b9e2a1b63280e7eab63048bee7fe786.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/06/2022 20:43, Rob Herring wrote:
-> Convert the arm,i2c-versatile binding to DT schema format.
+On Tue, 2022-06-07 at 14:21 +0800, CK Hu wrote:
+> Hi, Rex:
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../bindings/i2c/arm,i2c-versatile.yaml       | 29 +++++++++++++++++++
->  .../devicetree/bindings/i2c/i2c-versatile.txt | 10 -------
->  MAINTAINERS                                   |  2 +-
->  3 files changed, 30 insertions(+), 11 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/i2c/arm,i2c-versatile.yaml
->  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-versatile.txt
+> On Mon, 2022-05-23 at 12:47 +0200, Guillaume Ranquet wrote:
+> > From: Markus Schneider-Pargmann <msp@baylibre.com>
+> > 
+> > This patch adds a DisplayPort driver for the Mediatek mt8195 SoC.
+> > 
+> > It supports the mt8195, the embedded DisplayPort units. It offers
+> > DisplayPort 1.4 with up to 4 lanes.
+> > 
+> > The driver creates a child device for the phy. The child device
+> > will
+> > never exist without the parent being active. As they are sharing a
+> > register range, the parent passes a regmap pointer to the child so
+> > that
+> > both can work with the same register range. The phy driver sets
+> > device
+> > data that is read by the parent to get the phy device that can be
+> > used
+> > to control the phy properties.
+> > 
+> > This driver is based on an initial version by
+> > Jason-JH.Lin <jason-jh.lin@mediatek.com>.
+> > 
+> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> > ---
 > 
-> diff --git a/Documentation/devicetree/bindings/i2c/arm,i2c-versatile.yaml b/Documentation/devicetree/bindings/i2c/arm,i2c-versatile.yaml
-> new file mode 100644
-> index 000000000000..e58465d1b0c8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/i2c/arm,i2c-versatile.yaml
-> @@ -0,0 +1,29 @@
-> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/i2c/arm,i2c-versatile.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: I2C Controller on ARM Ltd development platforms
-> +
-> +maintainers:
-> +  - Linus Walleij <linus.walleij@linaro.org>
-> +
-> +allOf:
-> +  - $ref: /schemas/i2c/i2c-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: arm,versatile-i2c
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +...
-> +
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-versatile.txt b/Documentation/devicetree/bindings/i2c/i2c-versatile.txt
-> deleted file mode 100644
-> index 361d31c51b6f..000000000000
-> --- a/Documentation/devicetree/bindings/i2c/i2c-versatile.txt
-> +++ /dev/null
-> @@ -1,10 +0,0 @@
-> -i2c Controller on ARM Versatile platform:
-> -
-> -Required properties:
-> -- compatible : Must be "arm,versatile-i2c";
-> -- reg
-> -- #address-cells = <1>;
-> -- #size-cells = <0>;
-> -
-> -Optional properties:
-> -- Child nodes conforming to i2c bus binding
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index a6d3bd9d2a8d..ecc0907e312a 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1520,7 +1520,7 @@ F:	Documentation/devicetree/bindings/arm/arm,versatile.yaml
->  F:	Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
->  F:	Documentation/devicetree/bindings/auxdisplay/arm,versatile-lcd.yaml
->  F:	Documentation/devicetree/bindings/clock/arm,syscon-icst.yaml
-> -F:	Documentation/devicetree/bindings/i2c/i2c-versatile.txt
-> +F:	Documentation/devicetree/bindings/i2c/arn,i2c-versatile.yaml
+> [snip]
+> 
+> > +
+> > +static irqreturn_t mtk_dp_hpd_event_thread(int hpd, void *dev)
+> > +{
+> > +	struct mtk_dp *mtk_dp = dev;
+> > +	int event;
+> > +	u8 buf[DP_RECEIVER_CAP_SIZE] = {};
+> > +
+> > +	event = mtk_dp_plug_state(mtk_dp) ? connector_status_connected
+> > :
+> > +						  connector_status_disc
+> > onnected;
+> > +
+> > +	if (event < 0)
+> 
+> event is always > 0, isn't it?
+> 
+Hello CK,
 
-typo:
-s/arn/arm/
+ok, I will move this to dp patch.
 
-With that:
+> > +		return IRQ_HANDLED;
+> > +
+> > +	if (mtk_dp->drm_dev) {
+> > +		dev_info(mtk_dp->dev, "drm_helper_hpd_irq_event\n");
+> > +		drm_helper_hpd_irq_event(mtk_dp->bridge.dev);
+> 
+> I think this ISR would come once. If bridge has not attached, the drm
+> core would lost this event. Maybe you should enable eDP hardware
+> after
+> bridge attached or send this event when attached.
+> 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+for edp patch, I will move it to (mtk_dp_bridge_attach).
+for dp patch, I will add it back.
 
+> > +	}
+> > +
+> > +	if (mtk_dp->train_info.cable_state_change) {
+> 
+> Executing this thread imply cable_state_change = true, so drop
+> cable_state_change.
+> 
 
-Best regards,
-Krzysztof
+In mtk_dp_hpd_isr_handler(), there is another irq
+"MTK_DP_HPD_INTERRUPT" which means the sink devices give a interrupt to
+source device. it's not about connected status, so I think we still
+need this.
+
+> > +		mtk_dp->train_info.cable_state_change = false;
+> > +
+> > +		mtk_dp->train_state = MTK_DP_TRAIN_STATE_STARTUP;
+> > +
+> > +		if (!mtk_dp->train_info.cable_plugged_in ||
+> > +		    !mtk_dp_plug_state(mtk_dp)) {
+> 
+> I do not like two variable to present one thing. If
+> 
+> mtk_dp->train_info.cable_plugged_in = false
+> and
+> mtk_dp_plug_state(mtk_dp) = ture
+> 
+> What does this mean? I think this mean 'now' is connected because
+> cable_plugged_in is old information and mtk_dp_plug_state() is
+> current
+> information.
+> 
+> But I would like to keep cable_plugged_in and drop
+> mtk_dp_plug_state()
+> because cable_plugged_in would be changed in isr and it would be the
+> same as mtk_dp_plug_state().
+> 
+> Regards,
+> CK
+> 
+
+ok, I will drop this.
+
+BRs,
+Rex
+
+> > +			mtk_dp_video_mute(mtk_dp, true);
+> > +
+> > +			mtk_dp_initialize_priv_data(mtk_dp);
+> > +			mtk_dp_set_idle_pattern(mtk_dp, true);
+> > +			if (mtk_dp->has_fec)
+> > +				mtk_dp_fec_enable(mtk_dp, false);
+> > +
+> > +			mtk_dp_update_bits(mtk_dp,
+> > MTK_DP_TOP_PWR_STATE,
+> > +					   DP_PWR_STATE_BANDGAP_TPLL,
+> > +					   DP_PWR_STATE_MASK);
+> > +		} else {
+> > +			mtk_dp_update_bits(mtk_dp,
+> > MTK_DP_TOP_PWR_STATE,
+> > +					   DP_PWR_STATE_BANDGAP_TPLL_LA
+> > NE,
+> > +					   DP_PWR_STATE_MASK);
+> > +			drm_dp_read_dpcd_caps(&mtk_dp->aux, buf);
+> > +			mtk_dp->train_info.link_rate =
+> > +				min_t(int, mtk_dp->max_linkrate,
+> > +				      buf[mtk_dp->max_linkrate]);
+> > +			mtk_dp->train_info.lane_count =
+> > +				min_t(int, mtk_dp->max_lanes,
+> > +				      drm_dp_max_lane_count(buf));
+> > +		}
+> > +	}
+> > +
+> > +	if (mtk_dp->train_info.irq_status & MTK_DP_HPD_INTERRUPT) {
+> > +		dev_dbg(mtk_dp->dev, "MTK_DP_HPD_INTERRUPT\n");
+> > +		mtk_dp->train_info.irq_status &= ~MTK_DP_HPD_INTERRUPT;
+> > +		mtk_dp_hpd_sink_event(mtk_dp);
+> > +	}
+> > +
+> > +	return IRQ_HANDLED;
+> > +}
+> > +
+> 
+> 
+
