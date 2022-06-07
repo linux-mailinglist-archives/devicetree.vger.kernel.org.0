@@ -2,106 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF18F5403EC
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 18:39:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81F445403E1
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 18:38:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345104AbiFGQjt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 12:39:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42976 "EHLO
+        id S1345073AbiFGQi5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 12:38:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345110AbiFGQjk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 12:39:40 -0400
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4ABAC8BF1;
-        Tue,  7 Jun 2022 09:39:39 -0700 (PDT)
-Received: by mail-pf1-x42c.google.com with SMTP id bo5so15995558pfb.4;
-        Tue, 07 Jun 2022 09:39:39 -0700 (PDT)
+        with ESMTP id S1345069AbiFGQi4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 12:38:56 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BCD6814B4;
+        Tue,  7 Jun 2022 09:38:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=aawj7hG1Xbc+Qda8TB7Lg5hLA/qmPkKw+fCuOCx3eEw=;
-        b=gj0//NcXWdRESh0slbXEmK4UiYABgxbNpk9xMhOaO6vBUgQcZNsX3t6RJtmh3zCpC8
-         6FxRO9P5loqq+uRE60xUQMNonjzinITqCrsDh5u1pTwvtjTu38ie4+gCe30Daf6DAFqh
-         C299g5Cp9pCnPkJ/aSNCa83Wbo7C5L4oHparszEnh7uGoA2ZRpkUDSvaIizVHuX6h2tJ
-         NoK/95kryoWrZ+p43VHqmTJ55zdsq6HmlUqmOx8h8ZIDnqdAD6/hezEbOW+Xp89H0mYA
-         GibckzYUxy2ilra+pVO6KanBAi4dglRoKVVoE9WPXDB455lK32vKEw4/wgf+m6UmNoZe
-         1Trw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=aawj7hG1Xbc+Qda8TB7Lg5hLA/qmPkKw+fCuOCx3eEw=;
-        b=t7uNkv2OUfoqdv89XLR1wX1zStobSy0VflXZJwbVfN15bYB9pd76kpNMElDGE5Nl6q
-         elMm1koUBRIunzfUYUvd+s22aLwWAI7XTyVbAzot4kSBzHZGnmRgUBgEvW0Eq59MgQrB
-         NnCQEA5bxs5vKeZ+BTaycXmAaj3OhltZIYmiEzkvAQjHyd8SU4TldkB7uET4XJM8Cezk
-         Jlp4ytVo6gVO9DK/yKu0MEcxEs2tJ1zaE8kOWWRcdcQt20GdWEKtLnnzd9ySgE9rMFsM
-         ogNo+vxSJFLcNJ70MP02//6a/0plftYXRz9xDj2kLNGxCQBEVFnuQsN5s0ABCrPyj6vW
-         dzIg==
-X-Gm-Message-State: AOAM53023JM9XrmibSurD13E/y4A4kj8oUdLBPyYzQ00SGW3KZmwgdA/
-        w4kWtsOV62M9uo0DMhg9aYE=
-X-Google-Smtp-Source: ABdhPJw1wLF5PQnn7vw9tzWD7yWUylInWPqMGKa9/YsNsEWJz7DaizG+XWonJpgcLRvbujhgg2s/VQ==
-X-Received: by 2002:a65:404c:0:b0:3c6:4018:ffbf with SMTP id h12-20020a65404c000000b003c64018ffbfmr26572041pgp.408.1654619979325;
-        Tue, 07 Jun 2022 09:39:39 -0700 (PDT)
-Received: from potin-quanta.dhcpserver.local (125-228-123-29.hinet-ip.hinet.net. [125.228.123.29])
-        by smtp.gmail.com with ESMTPSA id d15-20020aa797af000000b0051bbc198f3fsm12560272pfq.13.2022.06.07.09.39.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jun 2022 09:39:39 -0700 (PDT)
-From:   Potin Lai <potin.lai.pt@gmail.com>
-To:     Brendan Higgins <brendanhiggins@google.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rayn Chen <rayn_chen@aspeedtech.com>
-Cc:     Patrick Williams <patrick@stwcx.xyz>,
-        Potin Lai <potin.lai@quantatw.com>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        Potin Lai <potin.lai.pt@gmail.com>
-Subject: [PATCH v3 2/2] dt-bindings: aspeed-i2c: add properties for setting i2c clock duty cycle
-Date:   Wed,  8 Jun 2022 00:37:03 +0800
-Message-Id: <20220607163703.26355-3-potin.lai.pt@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220607163703.26355-1-potin.lai.pt@gmail.com>
-References: <20220607163703.26355-1-potin.lai.pt@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1654619935; x=1686155935;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=uKV8Rrvy8kCqSKlM45aKJN6vfteKfERlb/gHHUZ2hGE=;
+  b=eenzpvUgxXQaYdsJQYmJHLoYazvwDnOAI4KDAjGbDTl+g3zQzAgyPcKq
+   FkEn23dldDXQrfHYuvtZyUc8QdA6zAL3NLW59CMRAjHJG6sFQjwQd907x
+   1mxveKa4iESJVznu5hOOO4maN4zX9WEEEmHNKC5VFMpf7CpkOXzFvugHv
+   M=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 07 Jun 2022 09:38:55 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jun 2022 09:38:54 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Tue, 7 Jun 2022 09:38:54 -0700
+Received: from [10.216.1.130] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Tue, 7 Jun 2022
+ 09:38:46 -0700
+Message-ID: <5427aa79-b87c-74eb-def5-9b4e3299a331@quicinc.com>
+Date:   Tue, 7 Jun 2022 22:08:38 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v12 00/12] Add soundcard support for sc7280 based
+ platforms.
+Content-Language: en-US
+To:     Matthias Kaehlcke <mka@chromium.org>
+CC:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_rohkumar@quicinc.com>, <srinivas.kandagatla@linaro.org>,
+        <dianders@chromium.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>, <quic_tdas@quicinc.com>
+References: <1653049124-24713-1-git-send-email-quic_srivasam@quicinc.com>
+ <Yp5yUSvC05wOxtei@google.com>
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Organization: Qualcomm
+In-Reply-To: <Yp5yUSvC05wOxtei@google.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introduce a new property for setting a minimum duty cycle for clock high.
 
-* i2c-clk-duty-cycle-min: a minimum percentage of clock high
+On 6/7/2022 3:02 AM, Matthias Kaehlcke wrote:
+Thanks for your time Matthias!!!
+> On Fri, May 20, 2022 at 05:48:32PM +0530, Srinivasa Rao Mandadapu wrote:
+>> This patch set is to add bolero digital macros, WCD and maxim codecs nodes
+>> for audio on sc7280 based platforms.
+>>
+>> This patch set depends on:
+>>      -- https://patchwork.kernel.org/project/linux-arm-msm/list/?series=638776
+>>      -- https://patchwork.kernel.org/project/linux-arm-msm/list/?series=634597
+>>      -- https://patchwork.kernel.org/project/linux-clk/list/?series=637999
+>>      -- https://patchwork.kernel.org/project/linux-arm-msm/list/?series=638002
+> Another dependency (at least in terms of functionality) is:
+>
+> ASoC: qcom: soundwire: Add support for controlling audio CGCR from HLOS
+> https://patchwork.kernel.org/patch/12853622/
+This is landed today.
+>
+> And then there is this:
+>
+> arm64: dts: qcom: sc7280: Add lpasscore & lpassaudio clock controllers
+> https://patchwork.kernel.org/project/linux-arm-msm/patch/20220523100058.26241-1-quic_tdas@quicinc.com/
+>
+> A previous version (v3) of that patch already landed (9499240d15f2
+> "arm64: dts: qcom: sc7280: Add lpasscore & lpassaudio clock controllers"),
+> it is not clear to me why it is still evolving as if that weren't the
+> case.
 
-Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
----
- Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
+I too have same doubt. the changes should be incremental and new patch. 
+May be Taniya considered
 
-diff --git a/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml b/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
-index ea643e6c3ef5..af4c49111cc0 100644
---- a/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
-+++ b/Documentation/devicetree/bindings/i2c/aspeed,i2c.yaml
-@@ -49,6 +49,14 @@ properties:
-     description:
-       states that there is another master active on this bus
- 
-+  i2c-clk-duty-cycle-min:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 1
-+    maximum: 100
-+    default: 50
-+    description:
-+      a minimum percentage of clock high
-+
- required:
-   - reg
-   - compatible
--- 
-2.17.1
+the status in patchwork.kernel org, where still it's showing new.
+
+>
+>  From the newer version of the patch at least marking the 'lpasscc' node
+> as disabled is needed.
+
+yes, agree. And the node name changed to lpasscore to lpass_core.
+
+Included Taniya in the mail chain for further discussion.
 
