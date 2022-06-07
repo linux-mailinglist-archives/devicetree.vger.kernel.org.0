@@ -2,69 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94ADB53FE0C
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 13:54:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E69053FE13
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 13:57:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234580AbiFGLyh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 07:54:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50048 "EHLO
+        id S243261AbiFGL5A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 07:57:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235404AbiFGLyg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 07:54:36 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84676E1F
-        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 04:54:34 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id j10so27893766lfe.12
-        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 04:54:34 -0700 (PDT)
+        with ESMTP id S242062AbiFGL47 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 07:56:59 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C239CB5264
+        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 04:56:58 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id v25so22670329eda.6
+        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 04:56:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rasmusvillemoes.dk; s=google;
+        d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=5ME10fIbmXdEFfUfbRX6sJYfra+AxLz+ca4bfa0pYus=;
-        b=i4f/2pufUHufiv8y3/qTffQ5TzfJLHyQxKmmbVZhTx1J1+VmBTbNPyU+B+pLA/IJRq
-         55Aha+yg1aSQ5+NeJSBLQPR63K/D9jAJnr9/0H43aD0WmfOd3p1xiJEhm+JnBBnL3z3r
-         GWkeTyIGqHtkcYMwHWi0b0vUdhgaxddE8A2dc=
+        bh=9yUA6xZ+TgF7E05GHOHfVerF3dIUaRPmpzkb0SqFslg=;
+        b=yZF938OJ/O7+VlTfOCAPvgavpyjTL2l5Dn0Tn2nIwpSe55xG1IS+57nq5ALnIDLec5
+         79x4zkTiEbOgwCtHLa2fhZ6iEu7D/lMorP76inFutqBeQJldod8/6UKADExabiSlqIZq
+         7rJDPGd5+1ninnZI67YT6mdGZGLaV7/tQ/7ZzIF7BwPODSUOM1S9QaAQK6gUDp23lTd9
+         gKGU3+5H5GU/ValDpNcmAVHC/SiNrjA+eDInhSLCfU/8aPrUi7hryXGpr/h7BVjHK6AI
+         Chjo1f2a4t4ZOsYIOaYc+aElJ5n6uhyYpsQWQsYJQ2JhdcqiYa6bvS4vcxEwwON3K/Nu
+         euzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=5ME10fIbmXdEFfUfbRX6sJYfra+AxLz+ca4bfa0pYus=;
-        b=PZx1TXAS4Oodm7haVaeJM5je2aqytHERtAVnyh8ru/WpV/BQvL2g2Y0UtiIkXY+V2E
-         tAgxrD99n6jxqE42CRMnbU96S4/+/uTnoDdTwtYwodTjkbHpvR1ZgMTgzXJoiM7XwIyg
-         ybavyZR3s1FlTjbT1uQv6PLNFhY0j76RkIBa8LwcjH9K3fkMIfbh8cU3cBJdLB/AZxFP
-         cQRa7oM00Vp+ulYn/qTfzteNl4yTi4OiCCyjOR+jizBXN460b+FbxkK6HNzrIXmKj8Vj
-         HGhFQxcR0xNF4Jok6WXVKMGJLbEYvzMzOIaKr5pZ95ShIGtXWvb6SaHszbELZtZc7WPJ
-         kTyg==
-X-Gm-Message-State: AOAM531rUaYJF0lpO7eN3cGGPF2FnKH0x68imJWLsD8NHwRu1BrN6yJU
-        xDjHbpYsGtnqIFeC3qF4qtC+Jg==
-X-Google-Smtp-Source: ABdhPJw8ydE1A1Y42rmMMJg4s0ZWu9AfQ0mqNbbG4ax1CX79el6PQVu/YFt9z7rf62Pl3ImxDJ+ngw==
-X-Received: by 2002:a05:6512:401a:b0:479:2409:7b2a with SMTP id br26-20020a056512401a00b0047924097b2amr10620147lfb.34.1654602872844;
-        Tue, 07 Jun 2022 04:54:32 -0700 (PDT)
-Received: from [172.21.3.73] ([87.54.42.112])
-        by smtp.gmail.com with ESMTPSA id k18-20020a192d12000000b0047920d89606sm1648636lfj.187.2022.06.07.04.54.31
+        bh=9yUA6xZ+TgF7E05GHOHfVerF3dIUaRPmpzkb0SqFslg=;
+        b=V6B4Q3ND2eLdABFn9PDGb/kCpoDfp7K/4HnIswwVr59BUjBfY77SHxCuUNXwEPEBqM
+         gAijozS90VmsZZNN4hGByWmPgi0mvNOknTQ0N4WsB9Z+c+D5SBLY1W+RdddKGqPx88gg
+         /hHdJhIsHu9G99SXpcIg8l2jgfljVFz5SiHMlPQpREkfy6Vy1QnQVPtjPAdXdqSZpM1l
+         NtDNQN1gUqxzIU/VR9NWPS61KYmzMvI8+9GB8SixgfR+75+PBOC9f1N83uGBJt9uSxFf
+         8mw2KbSJuoUzoWkzTmnp4kauNT6WG6MTPt0B5Q/geayovHQL54wEHWB8aiLZYPrqgbc4
+         ojuA==
+X-Gm-Message-State: AOAM533V0jfBo+kROxZous8SbYtQXi/fAE177v4NCsO+tggRGWxf2cgo
+        GJLtRVmY1zbieLddtgTjstQClA==
+X-Google-Smtp-Source: ABdhPJyDyZBQOke271JtAgNt1hSBlmSVUkFbj2ZmbW/2KkYdQf3mrTIq3KxTSW9YKCe45nHpZbAZ1A==
+X-Received: by 2002:a05:6402:438a:b0:42e:985:4944 with SMTP id o10-20020a056402438a00b0042e09854944mr31974058edc.283.1654603017338;
+        Tue, 07 Jun 2022 04:56:57 -0700 (PDT)
+Received: from [192.168.0.183] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id o22-20020a170906601600b006fe8b456672sm7680363ejj.3.2022.06.07.04.56.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Jun 2022 04:54:32 -0700 (PDT)
-Message-ID: <29ddcecb-18d3-b92e-10fb-d5ea278886d6@rasmusvillemoes.dk>
-Date:   Tue, 7 Jun 2022 13:54:30 +0200
+        Tue, 07 Jun 2022 04:56:56 -0700 (PDT)
+Message-ID: <5a604d43-92f3-2709-bf3e-098a9d2dfa54@linaro.org>
+Date:   Tue, 7 Jun 2022 13:56:55 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH net-next 1/3] dt-bindings: dp83867: add binding for
- io_impedance_ctrl nvmem cell
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v17 01/10] dt-bindings: arm: sunplus: Add bindings for
+ Sunplus SP7021 SoC boards
 Content-Language: en-US
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     netdev@vger.kernel.org, Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Jakub Kicinski <kuba@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Dan Murphy <dmurphy@ti.com>, linux-kernel@vger.kernel.org
-References: <20220606202220.1670714-1-linux@rasmusvillemoes.dk>
- <20220606202220.1670714-2-linux@rasmusvillemoes.dk>
- <Yp54aOPqd5weWnFt@lunn.ch>
-From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
-In-Reply-To: <Yp54aOPqd5weWnFt@lunn.ch>
+To:     Qin Jian <qinjian@cqplus1.com>, sboyd@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        mturquette@baylibre.com, linux@armlinux.org.uk, arnd@arndb.de,
+        olof@lixom.net, soc@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+References: <cover.1654565776.git.qinjian@cqplus1.com>
+ <2b3d1c0f7b83f9e317ecd68965b6cbf7d7f3d13b.1654565776.git.qinjian@cqplus1.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <2b3d1c0f7b83f9e317ecd68965b6cbf7d7f3d13b.1654565776.git.qinjian@cqplus1.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,30 +78,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/06/2022 23.58, Andrew Lunn wrote:
->> There is no documented mapping from the 32 possible values of the
->> IO_IMPEDANCE_CTRL field to values in the range 35-70 ohms
+On 07/06/2022 03:58, Qin Jian wrote:
+> This introduces bindings for boards based Sunplus SP7021 SoC.
 > 
-> There have been a few active TI engineers submitting patches to TI PHY
-> drivers. Please could you reach out to them and ask if they can
-> provide documentation.
->
-> Having magic values in DT is not the preferred why to use it. Ideally
-> you should store Ohms in the cell and convert to the register value.
+> Acked-by: Rob Herring <robh+dt@kernel.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 
-We've already asked TI for more detailed information, but apparently the
-data sheet already says all there is to know. I should have worded the
-commit message differently. Something like
+This is not a correct address in the tag. I never used such. Please fix
+all reviewed and acked-by tags (mine and Rob) to what you received.
 
-  There is no fixed mapping from register values to values in the range
-  35-70 ohms; it varies from chip to chip, and even that target range is
-  approximate.
+Mine was:
 
-So AFAICS the only meaningful thing to store in an nvmem cell is an
-appropriate (per-board) raw value of that field.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I would think this would be very similar to how various sensors have
-nvmem cells defining calibration data.
 
-Rasmus
-
+Best regards,
+Krzysztof
