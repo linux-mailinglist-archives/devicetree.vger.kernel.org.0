@@ -2,193 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51E63540461
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 19:09:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 594AC54046C
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 19:12:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237340AbiFGRI7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 13:08:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34848 "EHLO
+        id S234068AbiFGRMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 13:12:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345437AbiFGRI4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 13:08:56 -0400
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34E3A5D66C
-        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 10:08:53 -0700 (PDT)
-Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
-        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220607170851epoutp0365ded08b81073ca23aebdfc1c8ed3540~2ZbK5EjEj0118101181epoutp03I
-        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 17:08:51 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220607170851epoutp0365ded08b81073ca23aebdfc1c8ed3540~2ZbK5EjEj0118101181epoutp03I
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1654621731;
-        bh=mYga23Gx8rf0zWOC6GImrO86F75RdGz/KnshQQ/odbo=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=evF6GXAolIgBL773K3YArbBqQQ+Rb/GqQAXci8C8SDe6qn1pKcZgWofByeg9z4TeK
-         wK5nyfDglrtpO+9cETEEXsQPcHg1VelzpsQPOT7ZN8x98O2KD3FOXMwajs3oYTkyGP
-         Qzrc0kQaktrLni1JEb+Ith4mAIh+FMlA2XMsjGHc=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-        epcas5p1.samsung.com (KnoxPortal) with ESMTP id
-        20220607170850epcas5p16502bcc15d5e937b6f1090dd5742ea79~2ZbKWRr1n1777517775epcas5p13;
-        Tue,  7 Jun 2022 17:08:50 +0000 (GMT)
-Received: from epsmges5p2new.samsung.com (unknown [182.195.38.183]) by
-        epsnrtp1.localdomain (Postfix) with ESMTP id 4LHcJc1VwVz4x9Pp; Tue,  7 Jun
-        2022 17:08:48 +0000 (GMT)
-Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
-        epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        07.8F.09827.0268F926; Wed,  8 Jun 2022 02:08:48 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
-        20220607170846epcas5p368ccc1cc50e1e508ae85de648a2eded5~2ZbGtQ5HA0863108631epcas5p3k;
-        Tue,  7 Jun 2022 17:08:46 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20220607170846epsmtrp2c8015b9a7715ca31d1f534b989a6b274~2ZbGsXojI0702807028epsmtrp21;
-        Tue,  7 Jun 2022 17:08:46 +0000 (GMT)
-X-AuditID: b6c32a4a-b51ff70000002663-a5-629f86203456
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        C5.E6.08924.E168F926; Wed,  8 Jun 2022 02:08:46 +0900 (KST)
-Received: from alimakhtar03 (unknown [107.122.12.5]) by epsmtip2.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20220607170845epsmtip28ac651b71e8278972dea283d2890523a~2ZbFJl92Z0563805638epsmtip2X;
-        Tue,  7 Jun 2022 17:08:45 +0000 (GMT)
-From:   "Alim Akhtar" <alim.akhtar@samsung.com>
-To:     "'Chanho Park'" <chanho61.park@samsung.com>,
-        "'Kishon Vijay Abraham I'" <kishon@ti.com>,
-        "'Vinod Koul'" <vkoul@kernel.org>,
-        "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-        "'Rob Herring'" <robh+dt@kernel.org>,
-        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>
-Cc:     <devicetree@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <linux-samsung-soc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-In-Reply-To: <20220607072907.127000-4-chanho61.park@samsung.com>
-Subject: RE: [PATCH v4 3/5] phy: samsung: ufs: constify samsung_ufs_phy_cfg
-Date:   Tue, 7 Jun 2022 22:38:44 +0530
-Message-ID: <00a901d87a91$3fc71d50$bf5557f0$@samsung.com>
+        with ESMTP id S237301AbiFGRMH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 13:12:07 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4A761021E1
+        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 10:12:05 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id b8so7175034edj.11
+        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 10:12:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=516c1ECeAdlTDYUv5SFW9WeHPEyFi2CPyVtGYdPkmAE=;
+        b=dMWz8Fu3pnpw7EgoHQ8AoC3kGZ93ymrLgYNbUyChqTuJIaSdzlRMJYc2hThjfcvEwT
+         xisRuno3peKuEKyqG+5tPELfFRBU2Y3AYcY56udOuCNl/HXC1GmQ44uxO5QgK53f83Ad
+         jGFl9UVWsMqBujvYjmJ+ZL9zUiF2uoWE69PYXzH3dFDPvPYQtjKC21JkJLLCjPF9fcmP
+         rJGzJo1Rh85V9h7gtjh0eSNaxu74ud8uzRJHGaIkkpDV2Q5u2UvTWGQKFUOHlQ9jGig4
+         Z90ZJ6sS0msIRaYbPtWA/3DmV8Wg9rL3ldvq7sKcFIkCI4Y10GyX446hKN+OpDc4ETQP
+         PP4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=516c1ECeAdlTDYUv5SFW9WeHPEyFi2CPyVtGYdPkmAE=;
+        b=rY6VZ+iDtDA8r4fBrWDLDhiwEppI8diUDV10t98LZUIyRCkmGv8skxFdi9m/PNvG7m
+         +bDUMsar2Js2o89hLXofNMc84L4mB9srmYwA06rqH1DcGrNLrWq65ioSxdxI2uO2A0mX
+         wuWLrOXlUQCMSymwfbmyqmIIZdEQvSxM6AdJlxQs7x9QyrOk1HKBBClcEssSyZFmLtGF
+         wNsnX+Rqfi0o8/TLdnRijSLDjT1fCNGIA4qSxx3ZqPEjbxMsI0Nw+PqT1sb1N2XPrZyG
+         zKM3uqID5gVmvRMNraW9TGvnvyyQG7jOuHse39NnZZJY9EH9JoPaOi2nl5TQQluON9Ph
+         5rKg==
+X-Gm-Message-State: AOAM532umrxfuWqmn1qp/jrAO3yDRSQSEagmjAySfFqOznND/Y0rr5iO
+        m9K2YMBwi5GcIMSksmQi5P8BsQ==
+X-Google-Smtp-Source: ABdhPJzvpSk0Qjg661liVIKltScH0Q9G3bh+JG3VX3DkiOZwIcBf4+cWHgZ6prLeIuDfqneiTvvBwg==
+X-Received: by 2002:a05:6402:35c9:b0:431:3b5f:ecc1 with SMTP id z9-20020a05640235c900b004313b5fecc1mr18641630edc.349.1654621924477;
+        Tue, 07 Jun 2022 10:12:04 -0700 (PDT)
+Received: from [192.168.0.186] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id d19-20020a056402145300b0043151e18630sm4521204edx.21.2022.06.07.10.12.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Jun 2022 10:12:03 -0700 (PDT)
+Message-ID: <cd9b1212-0950-9fd8-7481-e3ef14de2131@linaro.org>
+Date:   Tue, 7 Jun 2022 19:12:01 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v4 1/3] dt-bindings: mediatek: add vdosys1 RDMA definition
+ for mt8195
+Content-Language: en-US
+To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, chunkuang.hu@kernel.org,
+        p.zabel@pengutronix.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     matthias.bgg@gmail.com, airlied@linux.ie,
+        angelogioacchino.delregno@collabora.com, pavel@ucw.cz,
+        dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        "Nancy.Lin" <nancy.lin@mediatek.com>
+References: <20220606031818.13646-1-rex-bc.chen@mediatek.com>
+ <20220606031818.13646-2-rex-bc.chen@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220606031818.13646-2-rex-bc.chen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQJ2i5m4q1cxa8jD2OFuvpyrHOG1RgI8fgAxAgguoPqr5eXRgA==
-Content-Language: en-us
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrJJsWRmVeSWpSXmKPExsWy7bCmhq5C2/wkgweb2S0u79e2mH/kHKvF
-        hac9bBZ9Lx4yW+x9vZXdYtPja6wWE1Z9Y7GYcX4fk0Xr3iPsFjvvnGB24PLYtKqTzePOtT1s
-        HpuX1Hv0bVnF6HH8xnYmj8+b5ALYorJtMlITU1KLFFLzkvNTMvPSbZW8g+Od403NDAx1DS0t
-        zJUU8hJzU22VXHwCdN0yc4AOU1IoS8wpBQoFJBYXK+nb2RTll5akKmTkF5fYKqUWpOQUmBTo
-        FSfmFpfmpevlpZZYGRoYGJkCFSZkZxy6Z1fwV7ji5vVLjA2MawS7GDk4JARMJDbu8+li5OIQ
-        EtjNKHH24n4mCOcTo8TnzvVsEM5nRokts1pYuxg5wTrOzJgLldjFKLG6eREbSEJI4CWjROs3
-        ORCbTUBXYsfiNrC4iMBCJolpLT4gNrPABEaJlZ+8QWxOAQeJhSu/MYPYwgLeEtcfzGICsVkE
-        VCS+LPzKCGLzClhKnPt3jQ3CFpQ4OfMJC8QceYntb+cwQxykIPHz6TJWiF1OEg82HYSqEZd4
-        efQIO8ihEgI7OCReHPzLAtHgIrH60WRGCFtY4tXxLewQtpTE53d72SDh4iGx6I8URDhD4u3y
-        9VDl9hIHrsxhASlhFtCUWL9LH2IVn0Tv7ydMEJ28Eh1tQhDVqhLN765CLZWWmNjdDQ1CD4lV
-        X/4wT2BUnIXksVlIHpuF5IFZCMsWMLKsYpRMLSjOTU8tNi0wyksth0d2cn7uJkZwmtXy2sH4
-        8MEHvUOMTByMhxglOJiVRHglw+cnCfGmJFZWpRblxxeV5qQWH2I0BYb2RGYp0eR8YKLPK4k3
-        NLE0MDEzMzOxNDYzVBLnFfjfmCQkkJ5YkpqdmlqQWgTTx8TBKdXAlCLiHCx4wuDkhOzXPy0X
-        yplezQ64wbBY02rWjTWLHx2eWfKLzcfDw/SPlIhyo4+JoaO2qaiSyMba1bPUb170fJ7axBB5
-        2Eo3u5BpqvfkFzpS5S+0G9eVuG2e2xqou2mO61efREWbnhme7783mS+ySPssVP97+ZzzTZma
-        +7ZaModqe63wur+zJbtLxzz12tG8rsI3n1Xy90uFbdRdlbldS+El/+VVUdILv+bXhmoyi0TP
-        /WzDLVu+q7X31ZIZLz4zTa23PPOdyXTLb9aMtx6/OMxydha2pa9pXiQe5ZFZk5Tz8Ufuj5SN
-        Ou+3Nnjvkdul9lInv+Zx/MFf5key/25i6XzxSCondo7n9e3eGZxKLMUZiYZazEXFiQC5Vmh8
-        PAQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprGIsWRmVeSWpSXmKPExsWy7bCSvK5c2/wkg0PTdC0u79e2mH/kHKvF
-        hac9bBZ9Lx4yW+x9vZXdYtPja6wWE1Z9Y7GYcX4fk0Xr3iPsFjvvnGB24PLYtKqTzePOtT1s
-        HpuX1Hv0bVnF6HH8xnYmj8+b5ALYorhsUlJzMstSi/TtErgyDt2zK/grXHHz+iXGBsY1gl2M
-        nBwSAiYSZ2bMZeti5OIQEtjBKHF09QNWiIS0xPWNE9ghbGGJlf+es0MUPWeUOLhwKwtIgk1A
-        V2LH4jawbhGBpUwSHXdmMoM4zAJTGCUuX30JViUkcJRRovWfAYjNKeAgsXDlN2YQW1jAW+L6
-        g1lMIDaLgIrEl4VfGUFsXgFLiXP/rrFB2IISJ2c+AZvDLKAt0fuwlRHClpfY/nYOM8R5ChI/
-        ny4DO1tEwEniwaaDUPXiEi+PHmGfwCg8C8moWUhGzUIyahaSlgWMLKsYJVMLinPTc4sNC4zy
-        Usv1ihNzi0vz0vWS83M3MYKjTktrB+OeVR/0DjEycTAeYpTgYFYS4ZUMn58kxJuSWFmVWpQf
-        X1Sak1p8iFGag0VJnPdC18l4IYH0xJLU7NTUgtQimCwTB6dUA9OFQGH3c5s2FpYVvprZ0ckr
-        eHmz5oErN54fOrNlytfrARLp1e/PJTbnOKU8ON2utXdH7wo2n2xTjvVzOKW/Pqqckio56czB
-        4BleaskzVzzROP5VqepEa8wWleaWCvGAe8u/1of9Tox2nMf0abGqwHSR/u9Nn8ONb+RMa7hq
-        Jzv1U7voz2lb1j86ylnLZMnVP3nWxITLRfINlQekmpx/Osrrrinw+fVQRfFXxe6w+GaR70s9
-        rR1fxn8K6igM3XXsqNPGvZ9+B8XcWT7LSV2K91oWb87Nz1+b4hIZeHLz9jQLLwlc+vHz05pV
-        JZk3Pu3hzD8iZDGv9LOV41Xrhb3bnv76sObIVvPq3wsqWryN9+9UYinOSDTUYi4qTgQAjA1n
-        0ikDAAA=
-X-CMS-MailID: 20220607170846epcas5p368ccc1cc50e1e508ae85de648a2eded5
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220607072938epcas2p4aa59fc2826fe0563bc1f8f68301e2bb4
-References: <20220607072907.127000-1-chanho61.park@samsung.com>
-        <CGME20220607072938epcas2p4aa59fc2826fe0563bc1f8f68301e2bb4@epcas2p4.samsung.com>
-        <20220607072907.127000-4-chanho61.park@samsung.com>
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 06/06/2022 05:18, Bo-Chen Chen wrote:
+> From: "Nancy.Lin" <nancy.lin@mediatek.com>
+> 
+> Add vdosys1 RDMA definition.
+> 
+> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Tested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> ---
+>  .../display/mediatek/mediatek,mdp-rdma.yaml   | 88 +++++++++++++++++++
+>  1 file changed, 88 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-rdma.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-rdma.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-rdma.yaml
+> new file mode 100644
+> index 000000000000..678abb321cc2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,mdp-rdma.yaml
+> @@ -0,0 +1,88 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/mediatek/mediatek,mdp-rdma.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek MDP RDMA
+> +
+> +maintainers:
+> +  - Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> +  - Philipp Zabel <p.zabel@pengutronix.de>
+> +
+> +description:
+> +  The MediaTek MDP RDMA stands for Read Direct Memory Access.
+> +  It provides real time data to the back-end panel driver, such as DSI,
+> +  DPI and DP_INTF.
+> +  It contains one line buffer to store the sufficient pixel data.
+> +  RDMA device node must be siblings to the central MMSYS_CONFIG node.
+> +  For a description of the MMSYS_CONFIG binding, see
+> +  Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml for details.
+> +
+> +properties:
+> +  compatible:
+> +    - const: mediatek,mt8195-vdo1-rdma
 
+During my review I missed that part. But your testing should not miss it
+- please always run `make dt_bindings_check` and do not send code which
+fails.
 
->-----Original Message-----
->From: Chanho Park [mailto:chanho61.park@samsung.com]
->Sent: Tuesday, June 7, 2022 12:59 PM
->To: Kishon Vijay Abraham I <kishon@ti.com>; Vinod Koul
-><vkoul@kernel.org>; Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>;
->Alim Akhtar <alim.akhtar@samsung.com>; Rob Herring
-><robh+dt@kernel.org>; Krzysztof Kozlowski
-><krzysztof.kozlowski+dt@linaro.org>
->Cc: devicetree@vger.kernel.org; linux-phy@lists.infradead.org; linux-
->samsung-soc@vger.kernel.org; linux-arm-kernel@lists.infradead.org; Chanho
->Park <chanho61.park@samsung.com>
->Subject: [PATCH v4 3/5] phy: samsung: ufs: constify samsung_ufs_phy_cfg
->
->Put const qualifier of samsung_ufs_phy_cfg pointer because they will not be
->changed from drvdata.
->
->Signed-off-by: Chanho Park <chanho61.park@samsung.com>
->---
-Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
-
-> drivers/phy/samsung/phy-samsung-ufs.c | 4 ++--  drivers/phy/samsung/phy-
->samsung-ufs.h | 2 +-
-> 2 files changed, 3 insertions(+), 3 deletions(-)
->
->diff --git a/drivers/phy/samsung/phy-samsung-ufs.c
->b/drivers/phy/samsung/phy-samsung-ufs.c
->index ed272631e8aa..cd1c02d2cdda 100644
->--- a/drivers/phy/samsung/phy-samsung-ufs.c
->+++ b/drivers/phy/samsung/phy-samsung-ufs.c
->@@ -75,7 +75,7 @@ static int samsung_ufs_phy_wait_for_lock_acq(struct
->phy *phy)  static int samsung_ufs_phy_calibrate(struct phy *phy)  {
-> 	struct samsung_ufs_phy *ufs_phy = get_samsung_ufs_phy(phy);
->-	struct samsung_ufs_phy_cfg **cfgs = ufs_phy->cfgs;
->+	const struct samsung_ufs_phy_cfg * const *cfgs = ufs_phy->cfgs;
-> 	const struct samsung_ufs_phy_cfg *cfg;
-> 	int err = 0;
-> 	int i;
->@@ -327,7 +327,7 @@ static int samsung_ufs_phy_probe(struct
->platform_device *pdev)
-> 	drvdata = match->data;
-> 	phy->dev = dev;
-> 	phy->drvdata = drvdata;
->-	phy->cfgs = (struct samsung_ufs_phy_cfg **)drvdata->cfgs;
->+	phy->cfgs = drvdata->cfgs;
-> 	phy->isol = &drvdata->isol;
-> 	phy->lane_cnt = PHY_DEF_LANE_CNT;
->
->diff --git a/drivers/phy/samsung/phy-samsung-ufs.h
->b/drivers/phy/samsung/phy-samsung-ufs.h
->index 1788b356cf56..5cd919539a3e 100644
->--- a/drivers/phy/samsung/phy-samsung-ufs.h
->+++ b/drivers/phy/samsung/phy-samsung-ufs.h
->@@ -121,7 +121,7 @@ struct samsung_ufs_phy {
-> 	struct clk *rx0_symbol_clk;
-> 	struct clk *rx1_symbol_clk;
-> 	const struct samsung_ufs_phy_drvdata *drvdata;
->-	struct samsung_ufs_phy_cfg **cfgs;
->+	const struct samsung_ufs_phy_cfg * const *cfgs;
-> 	const struct pmu_isol *isol;
-> 	u8 lane_cnt;
-> 	int ufs_phy_state;
->--
->2.36.1
-
-
+Best regards,
+Krzysztof
