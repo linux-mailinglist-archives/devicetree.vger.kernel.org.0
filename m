@@ -2,123 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FD1253FB5F
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 12:34:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A055953FBBF
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 12:45:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232869AbiFGKeN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 06:34:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35400 "EHLO
+        id S241473AbiFGKpn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 06:45:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240615AbiFGKeE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 06:34:04 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F4A569CF7
-        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 03:34:01 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id v19so22376572edd.4
-        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 03:34:01 -0700 (PDT)
+        with ESMTP id S241459AbiFGKpf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 06:45:35 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C0B61E3E7;
+        Tue,  7 Jun 2022 03:45:28 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id v1so23651420ejg.13;
+        Tue, 07 Jun 2022 03:45:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=UVrEyDI1PPHvzCAbZaShKqmCzODPm4yYUnVIkzwCwX8=;
-        b=OMMPzvhRG6d4OSSbryIv7SZSHeRq3Dpk+HEiJusk04NUzZYZQoyQXiuoHFhjHnHc7Z
-         5+kTRjFN1ZPI2NI7b1J6f4h/c2SdoCT156Yf1eb4fyAXpXULiAcCRqkTpkAw1i7deDiQ
-         07GvWkahXm0gkfIeI9jUjbJahg/GlYRNFhN1Lhrv60jsdsfe4tzJMNzpXOs5WZshsSgC
-         5/NBvTEoMmCQahWKto2xEwrKWnGhealIC868+nJ19qBwQKXW3OyWeTVZhaO7DsptYPoo
-         mgBORvAiLwRKQcAcQQVMcf4mZndp0MApNEifaoPZUXL8c08GiPtfGuKNefEdA8n4N5lf
-         PbdA==
+        d=gmail.com; s=20210112;
+        h=references:from:to:cc:subject:date:in-reply-to:message-id
+         :mime-version;
+        bh=5iMSi5NreryGR8izdeYc2rW3YzGt+AHDIAmvUOT38HA=;
+        b=mUGaFDf9Gq0PSdRL0ePEpqPTGkc1KrPolQlTAYyeymOzOnlEIgzV3lIifZX+vORBp4
+         aPyi3xOaoTHuTDpvRYxKep8i1RKNnJYRIgY5tBNcScV9B7KDzNgI90XHeDYh39IVbeOm
+         16vSzWm/lkp6CP+owW9BVb6RLwQzLyt8C3F2yEumydUgagXiWzN9PVOyHBdcnrfVOn1O
+         bP7ZQOiYH9lJ5HYmQwV0OEfZ3ofCnzj5ei0Bbgw0TNWlmb6yeFsGHiqK/jvz+JeQ/++R
+         oOKpuNnTlQmbT0RrXb3m6K0MJDn0oDuHvSeYPrPle0WJmKDTGM3bmwvA6DW28RkBRquX
+         lbBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=UVrEyDI1PPHvzCAbZaShKqmCzODPm4yYUnVIkzwCwX8=;
-        b=YYISE/uHdPG0BHyWWsuonG/hbtA930W7fqLRLLauuXTipeJLfPUJtb0vRh3scsoY51
-         6kgNI3dOMba+FkpNyEsIC3Ohd+xfZPEvMUUByYsADMO5HIew70wjbhJ8qHTj3ayp7DEH
-         2he24vy6Neab6j2w6kE3hwE/M0e37KH2n98H0dNW1sUQWjQOJMEcQLXL5dULvtxJQNlN
-         uTHHjppP5tiZNdsqJw7khMYj55GkzANQCATAMn9A9wLIInF1yJEpnD0xFJDRaSXRkr3n
-         2VRQAndgOxr/FR6g9poA2cGezTDcYuJqEv/LTnQYMxjVQO0e5b1EFVKMqjiu7403ljK/
-         xtuQ==
-X-Gm-Message-State: AOAM532yAd1TLIsjoLEICC5UNrCOzPaj25TWyoiLmxltdPcRscWwnqOO
-        BYHnb/muwTsmP3D/GSLGDPD2f+9ZmlTJLQ==
-X-Google-Smtp-Source: ABdhPJyOTR5n6tilKn83GYM5Nsi6ppDbx5M6PKI7VSulNDoRCtph1T1Dw+nPWE2vli9It0aQ0A11Iw==
-X-Received: by 2002:a05:6402:50d2:b0:431:53c8:2356 with SMTP id h18-20020a05640250d200b0043153c82356mr13053043edb.300.1654598039850;
-        Tue, 07 Jun 2022 03:33:59 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id x4-20020a1709065ac400b00704fa2748ffsm7505359ejs.99.2022.06.07.03.33.59
+        h=x-gm-message-state:references:from:to:cc:subject:date:in-reply-to
+         :message-id:mime-version;
+        bh=5iMSi5NreryGR8izdeYc2rW3YzGt+AHDIAmvUOT38HA=;
+        b=MUO3LlOndnL+/OWB0NnHXS1pW2x9/C30lrB7SXlOen6nTsA3pSuNBXP2xT14se8ZD2
+         loFv00cBfZEqcCOI0E1E8gNPjZzBqlePs+v28e09v6GQedB16RgkKtEh0l8mHWfIcwj6
+         S9Od37U+9rPfXRKiIlAUxfUBCQ2r+qMgl3TgCgSvNtqOc9sUqNPoVnwY7bp8XNOoVk3j
+         YqwoiQHtIggpGJnLfdjRb0BBTu84+qov3MB4jLCxj7yo6aqE6AqpgmROI2CVRiy3wv0o
+         2gjHKQybw0VQ1NMIgm/2aPq/jgV6cJUn2HtLxgVbJ1MHFPYEb2X1D6zyw/AExsiDTLHr
+         CnGg==
+X-Gm-Message-State: AOAM5303tLabLlVHJ4R0GEmgB/tIZFHJMgZ2gpQ6pY4Jt8S2mOuTNr/F
+        eVAvbdROVHIw+E9uPDI3FeQ=
+X-Google-Smtp-Source: ABdhPJyC3axRmTgpQLe92bAYa+ea9uBIxBbgw9QtK8HQMRAK5klP6mYvkHGZslsJ56KeVDZNNFEhww==
+X-Received: by 2002:a17:907:761c:b0:6d6:e553:7bd1 with SMTP id jx28-20020a170907761c00b006d6e5537bd1mr25471613ejc.5.1654598726651;
+        Tue, 07 Jun 2022 03:45:26 -0700 (PDT)
+Received: from localhost (92.40.203.111.threembb.co.uk. [92.40.203.111])
+        by smtp.gmail.com with ESMTPSA id p4-20020a170906784400b00702d8b43df3sm7369536ejm.167.2022.06.07.03.45.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jun 2022 03:33:59 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 10/10] arm64: dts: qcom: sdm845-db845c: add function and color to LED nodes
-Date:   Tue,  7 Jun 2022 12:29:31 +0200
-Message-Id: <20220607102931.102805-10-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220607102931.102805-1-krzysztof.kozlowski@linaro.org>
-References: <20220607102931.102805-1-krzysztof.kozlowski@linaro.org>
+        Tue, 07 Jun 2022 03:45:25 -0700 (PDT)
+References: <20220603135714.12007-1-aidanmacdonald.0x0@gmail.com>
+ <20220603135714.12007-6-aidanmacdonald.0x0@gmail.com>
+ <20220605225504.GA3678983-robh@kernel.org>
+From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linus.walleij@linaro.org, brgl@bgdev.pl,
+        krzysztof.kozlowski+dt@linaro.org, wens@csie.org, jic23@kernel.org,
+        lee.jones@linaro.org, sre@kernel.org, broonie@kernel.org,
+        gregkh@linuxfoundation.org, lgirdwood@gmail.com, lars@metafoo.de,
+        rafael@kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 05/10] dt-bindings: gpio: Add AXP192 GPIO bindings
+Date:   Tue, 07 Jun 2022 11:34:19 +0100
+In-reply-to: <20220605225504.GA3678983-robh@kernel.org>
+Message-ID: <7w5P7NKqcSgfwmILB1hRmmdtkmw7UXrH@localhost>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add common LED properties - the function and color - to LED nodes.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 7 +++++++
- 1 file changed, 7 insertions(+)
+Rob Herring <robh@kernel.org> writes:
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-index 194ebeb3259c..398055fc1fdc 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -5,6 +5,7 @@
- 
- /dts-v1/;
- 
-+#include <dt-bindings/leds/common.h>
- #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- #include <dt-bindings/sound/qcom,q6afe.h>
-@@ -62,6 +63,8 @@ leds {
- 
- 		user4 {
- 			label = "green:user4";
-+			function = LED_FUNCTION_INDICATOR;
-+			color = <LED_COLOR_ID_GREEN>;
- 			gpios = <&pm8998_gpio 13 GPIO_ACTIVE_HIGH>;
- 			linux,default-trigger = "panic-indicator";
- 			default-state = "off";
-@@ -69,6 +72,8 @@ user4 {
- 
- 		wlan {
- 			label = "yellow:wlan";
-+			function = LED_FUNCTION_WLAN;
-+			color = <LED_COLOR_ID_YELLOW>;
- 			gpios = <&pm8998_gpio 9 GPIO_ACTIVE_HIGH>;
- 			linux,default-trigger = "phy0tx";
- 			default-state = "off";
-@@ -76,6 +81,8 @@ wlan {
- 
- 		bt {
- 			label = "blue:bt";
-+			function = LED_FUNCTION_BLUETOOTH;
-+			color = <LED_COLOR_ID_BLUE>;
- 			gpios = <&pm8998_gpio 5 GPIO_ACTIVE_HIGH>;
- 			linux,default-trigger = "bluetooth-power";
- 			default-state = "off";
--- 
-2.34.1
+> On Fri, Jun 03, 2022 at 02:57:09PM +0100, Aidan MacDonald wrote:
+>> The AXP192 PMIC is different enough from the PMICs supported by
+>> the AXP20x GPIO driver to warrant a separate driver. The AXP192
+>> driver also supports interrupts and pinconf settings.
+>> 
+>> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+>> ---
+>>  .../bindings/gpio/x-powers,axp192-gpio.yaml   | 59 +++++++++++++++++++
+>>  1 file changed, 59 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/gpio/x-powers,axp192-gpio.yaml
+>> 
+>> diff --git a/Documentation/devicetree/bindings/gpio/x-powers,axp192-gpio.yaml b/Documentation/devicetree/bindings/gpio/x-powers,axp192-gpio.yaml
+>> new file mode 100644
+>> index 000000000000..7a985640ade8
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/gpio/x-powers,axp192-gpio.yaml
+>> @@ -0,0 +1,59 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: "http://devicetree.org/schemas/gpio/x-powers,axp192-gpio.yaml#"
+>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>> +
+>> +title: X-Powers AXP192 GPIO Device Tree Bindings
+>> +
+>> +maintainers:
+>> +  - Chen-Yu Tsai <wens@csie.org>
+>> +
+>> +properties:
+>> +  "#gpio-cells":
+>> +    const: 2
+>> +    description: >
+>> +      The first cell is the pin number and the second is the GPIO flags.
+>> +
+>> +  compatible:
+>> +    oneOf:
+>> +      - enum:
+>
+> No need for 'oneOf' with only 1 entry.
+>
+
+Got it.
+
+>> +          - x-powers,axp192-gpio
+>> +
+>> +  gpio-controller: true
+>> +
+>> +patternProperties:
+>> +  "^.*-pins?$":
+>
+> You can omit '^.*'
+>
+> Why does 's' need to be optional?
+>
+
+TBH I just copied this from x-powers,axp209-gpio.yaml. A similar pattern
+is used in a few other bindings, eg. allwinner,sun4i-a10-pinctrl.yaml.
+I guess it's to allow the node names to sound more natural when there's
+only one pin.
+
+I am going to send a v2 with '-pins?$' but if you would prefer to have
+'-pins$' that's fine. I don't mind either way.
+
+Regards,
+Aidan
+
+>> +    $ref: /schemas/pinctrl/pinmux-node.yaml#
+>> +
+>> +    properties:
+>> +      pins:
+>> +        items:
+>> +          enum:
+>> +            - GPIO0
+>> +            - GPIO1
+>> +            - GPIO2
+>> +            - GPIO3
+>> +            - GPIO4
+>> +            - N_RSTO
+>> +
+>> +      function:
+>> +        enum:
+>> +          - output
+>> +          - input
+>> +          - ldo
+>> +          - pwm
+>> +          - adc
+>> +          - low_output
+>> +          - floating
+>> +          - ext_chg_ctl
+>> +          - ldo_status
+>> +
+>> +required:
+>> +  - compatible
+>> +  - "#gpio-cells"
+>> +  - gpio-controller
+>> +
+>> +additionalProperties: false
+>> +
+>> +...
+>> -- 
+>> 2.35.1
+>> 
+>> 
 
