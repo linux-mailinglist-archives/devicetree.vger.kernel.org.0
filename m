@@ -2,134 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 043565414E3
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 22:23:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A24B854190C
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 23:19:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359581AbiFGUXD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 16:23:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47390 "EHLO
+        id S1377800AbiFGVSl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 17:18:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358268AbiFGUWl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 16:22:41 -0400
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12olkn2067.outbound.protection.outlook.com [40.92.21.67])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71F1017C6AD;
-        Tue,  7 Jun 2022 11:31:50 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nht8JmLBtJXEBznZXi3jjXIXWtRP+sbTvn7iLJq02xd/lanl/l6bWs01t+VBE3VM5dVObDAVNhbX9X3EMM7SeBw68H//7Tu5s42ONJ+8dL+KiqowUrFrP8EzkDI4o+UlVNlFtrYr8OOiC3W2qp06KhLmvHUWgRfrIMGGc6ghwoothAA6PyB1ci/ICOPuA1NynEWjdOnB4fOKZ6yl8nyqYJE2K4HIFqCfYbLP0/hgD5IJuCHx1T+ybci8LpHcQFu+4BT3UiHa9QcfWzEHseop8WoY8RjpgRQ1y4ZoQUwae/Mp6W9hjdHZ/VINuYc8LoPNjsH/MrdSVkN7Q1szFNtiwQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=f+Z4zht1sFByQGiYmQIrYXxd2kBBeoTcTO8elbgbnTg=;
- b=KBP7dmo3+QRxCmGfGPXVuqz69AY/on3YVZDa36bYeD4Qhv8QvZ69vJ9ElhCwCTD7Pn01mTiuSuaoJv5Uq5syUWn9RC+rKBsGmR1nEJ6/76NPNTyN7hHOh460agC3J5QOAZep/Qi0chqzveN7PuoTM33gQHuZQVfw50qmaF8prySHhw13qL+DJqVkxCs45s1pmjGZ++WXUx85fkDMCx+AQ+wQVSZ6/1b0uQ+jiqWBW8/vx/qKYJEsxT8VA1Avx+HgFoj9RbvVYuEcyuZeOq2iq+uwt+BqlDTPozM77uPONQb5iiNNFDaZqJVKpXQ8Og4pYBDbbZ6r4NFQKNF5hUOleA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-Received: from BY5PR02MB7009.namprd02.prod.outlook.com (2603:10b6:a03:236::13)
- by BN0PR02MB7885.namprd02.prod.outlook.com (2603:10b6:408:148::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.12; Tue, 7 Jun
- 2022 18:31:48 +0000
-Received: from BY5PR02MB7009.namprd02.prod.outlook.com
- ([fe80::e179:40c4:4269:70e]) by BY5PR02MB7009.namprd02.prod.outlook.com
- ([fe80::e179:40c4:4269:70e%5]) with mapi id 15.20.5314.019; Tue, 7 Jun 2022
- 18:31:48 +0000
-Message-ID: <BY5PR02MB70099A0E4C060E52284DCE46D9A59@BY5PR02MB7009.namprd02.prod.outlook.com>
-Date:   Wed, 8 Jun 2022 00:01:35 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v2 1/3] drm/panel: nt36672a: add backlight support
-Content-Language: en-US
-To:     Sumit Semwal <sumit.semwal@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S1380959AbiFGVRL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 17:17:11 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFF21143842
+        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 11:58:09 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id m25so16938802lji.11
+        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 11:58:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/W9jGpIH/OL56+uBhFnE9P3noAAOQAr28i57rZ4o8JQ=;
+        b=Fx68vBqv45589Im4IvB0H8RQ6BqBh+sZp72BRgAEYLdJUHRr5zV3uUKQXxAjSGUa6q
+         TCRiIPrfiGlbN9VT3oaxlxkAEPik61ghm4YmrJEiPPrnU6kFTxxb+LhB2c2O8iujSbpZ
+         vYa0IXYWBue7/PqO70VJ2VbjW+HXeMZIspILfuL/mUL0wG5E+krhe8/YDsfxiZe5D8+k
+         qCMIHa60w5zUFT9WMf2LTRvvMJrH4MU7NV8zhsJT1ffDSPXHA54XjHcBlj8S0T94Bb3G
+         fkQdrK5t0CnollXZ7RGFXTbvnyOPE2iMS5kBvNZWKmI7LkrPYHWDCqkJTfc7KvdS2Ilt
+         fesA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/W9jGpIH/OL56+uBhFnE9P3noAAOQAr28i57rZ4o8JQ=;
+        b=V09wfSKgwz6LfPcjnpdDUsCwQHeew7zRX4X8OaWNv9kWKF6iiSHWyGPEcfsjoNfiyn
+         QLHEFId8TLCjFt12j46MUnLeZQMyIXjBmv2AdKL92AhcmQXIShsC6J53xkNzEAJpjFFl
+         347tJ23V9RECH24c8HJr9VjhiCyVGL1BIvmc13MsgLwAJOFUeJ/8tMW0yBN6c3/o3DPz
+         mytir9lvsBBlHX1INja/ZG7/tECTjtrdH64OI+OrcwtxyS6r9zDj2vCgmLKy9er1Qa9y
+         sbg9BHUHH3V51z9NxYsaO+sSsSyc3qENiMQPLD1O1K8ei3O7SGXVpsnqAW708+iOcyqP
+         IH0Q==
+X-Gm-Message-State: AOAM531oj5kxdBPMtZgcum1dpUCu4gpb4T121qFvOIIm2BogoKO8w914
+        xznkVG+LqYiWVn9EnIqZe7XjrQ==
+X-Google-Smtp-Source: ABdhPJzLmOS1+/guV5q204SUkhFztXDSFtNTawl/bLE9lR2G+hjpUayf3IPB1mxKvThg6bhdHx7edw==
+X-Received: by 2002:a05:651c:1a10:b0:255:9422:a7c6 with SMTP id by16-20020a05651c1a1000b002559422a7c6mr7959383ljb.328.1654628287555;
+        Tue, 07 Jun 2022 11:58:07 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id d19-20020a2eb053000000b0025587b872cesm1611668ljl.70.2022.06.07.11.58.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Jun 2022 11:58:07 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Amit Pundir <amit.pundir@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>
-References: <20220401001810.81507-1-jo@jsfamily.in>
- <BY5PR02MB700935F5817128CB7C3991CDD9E09@BY5PR02MB7009.namprd02.prod.outlook.com>
-From:   Joel Selvaraj <jo@jsfamily.in>
-In-Reply-To: <BY5PR02MB700935F5817128CB7C3991CDD9E09@BY5PR02MB7009.namprd02.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN:  [uHUVQl3FvT0MV1NIB42qP0jy67q/XIWc9xEENbIDu+09BEu+ZHOU/UaJZ3UmlAAd]
-X-ClientProxiedBy: PN2PR01CA0006.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:25::11) To BY5PR02MB7009.namprd02.prod.outlook.com
- (2603:10b6:a03:236::13)
-X-Microsoft-Original-Message-ID: <2e964339-85fe-9bf7-2df1-aad3ea593bb8@jsfamily.in>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, David Heidelberg <david@ixit.cz>
+Subject: [PATCH v1 0/7] drm/msm/hdmi: YAML-ify schema and cleanup some platform properties
+Date:   Tue,  7 Jun 2022 21:57:59 +0300
+Message-Id: <20220607185806.2771739-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 798a7039-6fe5-4154-b931-08da48b3fb04
-X-MS-TrafficTypeDiagnostic: BN0PR02MB7885:EE_
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: eyeB/lQbTXB3dIeP7BXG+8mx52D3dl1Ek6zrUtFl1QtshHg6p6ec3VO7m9a6VUQsGnMh+P2YB2HyLWXzIP/BdqRCXaxSn99TN5GzCh63iVIVUbmIa/F+khVaKPrqY5S4PXz7DDnURyR3ZhV7E28sb+kxmNes6gZcuothkB8GEqVCkQXa0sxgrx9jCdFGasRYmWjLZN7KUBk3sHVL+Qm4yeRvDRWkCOMnFBd2QqzkWmzcKBjDjG4DCO0yXy28u4dcb+cFv7e3CcE+4x5Gl8sUzI1YhP914BO4XmF1n2b62n0LB+PAIYhpFT9BkvNKpQBDBUlvEt5SrBQRoab4BjLvuJYznLxGtfhiNr3BKSbcxvhv2p+e2Q2z0raO9SEvWYNXJzLqTfXPvGrEqppPQ+oGS+GpL+uKvG6BRRjCel+EjKHdcFIzIMkf1aq6UiTs9+WEJmSQ9b5qHthokqh2PtgLFOElkI8guSj4zYTIyhfaQtDvDzCpMYV50igKCJryIfp5phvZ8DihftYPr1VzMo5ijK/X739frS1LlWhGtjfcuj0z4SkvH4uj8cCH2Urzp96qYYtTYB1Xij9j6rjAjiWIJQ==
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S252akR1T3ExSHk1QWRhN2ljUDF3VVg0T1BNYjl6dldjckRIWm9EUVVrYUJH?=
- =?utf-8?B?anQzMm1SWHZXbmpFU21DYzF6NW9NM0NhZHVkYkh1cVUxVHlYQm00MW40ZFU4?=
- =?utf-8?B?TWpMbjRrWUx1TWRqNk5FaWZzdmFCVTRBTjc4b3B2WWx2alZMU0ZTck1tekRI?=
- =?utf-8?B?Q0JzZXVJSWlnTm5nVGZhcUFSamVKOUYxV3hnbjZRTVZDQWZSTjIrOHN5UzJ3?=
- =?utf-8?B?RkVTZ2lHRFpacHBiUnRscHRtZGhEblRGc1RTWTZkVkhNVXYyRFZXNHIyREVI?=
- =?utf-8?B?ZG5oQXlGUzN2YkRjUnZvRXVKS0NVak9vanpYK3kxRnlIYllXOEF3ZEdqZkdi?=
- =?utf-8?B?TEwvakNsUkJyU2ZNdWxXRHh2OVVYeVVFL1gzTWU3NEYvdXZsWVNjcEl5Q3VW?=
- =?utf-8?B?T3A2SnpVN1c1aTJpZm9xbGFHZWtXZ2JmNG9MZkNoR3RXTitWL1dPcHJaUGY5?=
- =?utf-8?B?OU1qYk5ldHVyeHZwUmYrZDRra1ZiWFNzV0dvbnpSQVNncDduQ3ZTKzN5UkMr?=
- =?utf-8?B?dGdZTjI4K1FkOGNWUjE5WFdqaUJ4NGYvb3VQdHRDRTBCY0k1V0ZYbys0NVFq?=
- =?utf-8?B?TTkxWUppb2JaY1BUbHlWdjJKTW5MMWh0RDNLRTROOTJQVFVpcDFFOHBXS1Zq?=
- =?utf-8?B?QzFZTHNrODNJdC9DdmJiUWNvU3M0MGZjMWJkeDRPRnBMSWR4akE0THVsVGhl?=
- =?utf-8?B?S3JIM2ZxUW1JM2lJTjVYdW1wSTdwdm1pa2pjL3VzbEUzMlVpby9KRDV0TUla?=
- =?utf-8?B?d3FodHFBdytsMWlWMGZCY2pwMzhrSnBhTG9Telc0dEswa1ZBRExrSWQ3ZXFs?=
- =?utf-8?B?RVlweEZ5VGFvVDk3ZlhKZEpad0Jqb09iT0hqMGdiU0lpb04wU2FFWkV3eThh?=
- =?utf-8?B?TFR5czJJVXB4KyswQkZVU3V3MFFQTExpNGhOTHZTTXpQMlpPS2lYdWFQNlcz?=
- =?utf-8?B?MXBKSXJxSmFLTTVCaFRRd1VacGZVTngxR2tZSjZrRkMrR3B2d3ptbEpkUWZp?=
- =?utf-8?B?OFVVTVhSd2ppQXhTNnpveWxaa0NwcWUvN1RBaWJCTEJpZHJwRGFSUW9VTWlp?=
- =?utf-8?B?cmhvbkJOUW5KQzFaWHZxQXdySC9tVUc5WU9ITXNvdTJlek51WWlTeDFxWkww?=
- =?utf-8?B?N0hSL0Vsc0tyc0I1V284Zlc2ZVZEU0xwUWlNb3VwQ3pIYlp5SlBXZEttcTFB?=
- =?utf-8?B?L1Z2UkJGQk9iL01ZVHlHYXNlY0s2RTBZOEQyVE1xUCtlOTlBeHFzaThSNkt1?=
- =?utf-8?B?dnFKMjJyclovd09GaERkanlxV1RVdnNpR3hNcVlLbnJpbHRlalEvbk5WVDlO?=
- =?utf-8?B?MXNxcnI4M3VMZm92R3IzWmlKSzV1QzArS3ovQ3hhL0UwV2JEdEtxaE8xM056?=
- =?utf-8?B?TTRkbGpBUmd5N0x6VDBjZ3EvMXR3SkpwSmQ5OXBJZ2tYWFRzSTg3ZjlwT0w0?=
- =?utf-8?B?emthQWlaT0luRisrRTdsdlRoQnQ3eDVlMERFNHJCWTM2MjQwQjFaSTZEdWVl?=
- =?utf-8?B?SE1abHlpUnpUTmJ3aW5RckRlVmpMV2pjNERjNlhGWWYxMmJmaVRFNDBvQ0NZ?=
- =?utf-8?B?R2JvSDh5M09pOGFQaU5ZbGU0dEkxcE80NHZMcXFRVktteWNuT3pPZ2JOcWQr?=
- =?utf-8?B?RXEvWDlHbkEvRGRpVG4xN3hnS3ZFOU9Oa2VpVFhzRHByZy93OEZRa3BJKytT?=
- =?utf-8?B?V3F0REk0NU1TVGszNDJzVTdabXdIUmMxd1BQUHFWWnJ0UllmZVpIaTh4YUV6?=
- =?utf-8?B?S1hoZEh3NjM0V0FVdHNyVVE3N1ZTcitycjlaRWNSb1FiMkNxRkp3SDh1dFlj?=
- =?utf-8?B?WXJ6VWptdjlNR1BRSUk0RnNZM29kMnhsKzlmNEhib282bjlPZWk5RU56K3Yx?=
- =?utf-8?B?b2JFZDczQUl6Vi82UTRlN21SZk8wUS9PZWJaTlY2UE9RbnJoVk4vWTdZTWdw?=
- =?utf-8?B?QUROSUdqN3BIYUFhT1pzUVkyM0xPOWJUcGd5L2Z5dlJZSk9YU2c1aEVlNjVY?=
- =?utf-8?B?TWFlTU54b3FRPT0=?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-99c3d.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: 798a7039-6fe5-4154-b931-08da48b3fb04
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR02MB7009.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jun 2022 18:31:48.0659
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR02MB7885
-X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,FORGED_MUA_MOZILLA,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+As agreed with David, this is a continuation of his work started at [1].
 
-I can see that the dts changes from this patch series has been applied 
-to 5.19-rc1 release. However, this patch that has the related change to 
-the panel driver, is not applied in the 5.19-rc1 release. Any particular 
-reason why it's not picked up? or just that, it got missed out? Kindly 
-let me know if changes are required from my end.
+Changes since his patches:
+HDMI schema:
+- Dropped generic pinctrl properties
+- Dropped data-lanes property, which is not supported by the HDMI driver
+- Switched to unevaluatedProperties
+- Moved clocks/regulators/supplies to condition clauses
+- Specified phy-names as used by existing DT files
+- Dropped #phy-cells
+- Dropped power-domains property (which is not used by the device trees)
+- Marked old GPIO properties as deprecated (in a separate patch)
 
-With Regards,
-Joel Selvaraj
+HDMI PHY schema:
+- Split into QMP (msm8996) and non-QMP (other) PHY schemas
+- Added proper clocks/clock-names/reg/reg-names descriptions
+
+The rest of the patches consist of the new work. They further cleanup
+the platform configs, remove unused supplies, etc.
+
+[1]: https://patchwork.freedesktop.org/series/98353/
+
+Dmitry Baryshkov (7):
+  dt-bindings: display/msm: hdmi: split and convert to yaml
+  dt-bindings: display/msm: hdmi: mark old GPIO properties as deprecated
+  drm/msm/hdmi: drop unused GPIO support
+  drm/msm/hdmi: enable core-vcc/core-vdda-supply for 8996 platform
+  drm/msm/hdmi: drop empty 'none' regulator lists
+  drm/msm/hdmi: drop hpd_regs usage on 8x74/8084
+  drm/msm/hdmi: merge platform config for 8974/8084/8994/8996
+
+ .../devicetree/bindings/display/msm/hdmi.txt  |  99 --------
+ .../bindings/display/msm/qcom,hdmi.yaml       | 240 ++++++++++++++++++
+ .../bindings/phy/qcom,hdmi-phy-other.yaml     | 103 ++++++++
+ .../bindings/phy/qcom,hdmi-phy-qmp.yaml       |  84 ++++++
+ drivers/gpu/drm/msm/hdmi/hdmi.c               |  98 +------
+ drivers/gpu/drm/msm/hdmi/hdmi.h               |  13 +-
+ drivers/gpu/drm/msm/hdmi/hdmi_hpd.c           |  62 +----
+ 7 files changed, 447 insertions(+), 252 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/msm/hdmi.txt
+ create mode 100644 Documentation/devicetree/bindings/display/msm/qcom,hdmi.yaml
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,hdmi-phy-other.yaml
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,hdmi-phy-qmp.yaml
+
+-- 
+2.35.1
+
