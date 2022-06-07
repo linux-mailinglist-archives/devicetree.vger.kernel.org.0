@@ -2,60 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5171553F8FB
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 11:05:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D3E353F924
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 11:13:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238971AbiFGJFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 05:05:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37844 "EHLO
+        id S229841AbiFGJNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 05:13:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238875AbiFGJFL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 05:05:11 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20120CA3FC;
-        Tue,  7 Jun 2022 02:05:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1654592710; x=1686128710;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=y0b/gx80TGhLtYHMOPQ93yc4whRx4q+feLOznlFnaV4=;
-  b=fVIo2ecWBSqz5ud4pjMdfpB7b8OaNejoR3+j/SSlBMeGz/NzBTx9DsKe
-   L4ZvAwgUEeFtBnI9n14N/gi1+mwYgc2QBwL0P0G29ET5KPEGOM5n7Ib3X
-   +QmzgHEZvvt5XHgb3zNwwWt78AvehA4Jimfq3xi2KxmbLkeOFpzCzeWvS
-   nTbiixa7jeZpAP+xZTt7WqB/sPjByMDsNcw4TZgjeDGkarmHveCFv+ZDv
-   jDdWXVGYq0Jxi5+GdpMXE6izUGt6VirfAp2vq6LL+9aliKNm3a1K9DA52
-   FE8PfhlM+bZHMObc8K40s7xeULeGGslT6Sv+v+4DbNFcGsFx83qytCj2e
-   g==;
-X-IronPort-AV: E=Sophos;i="5.91,283,1647327600"; 
-   d="scan'208";a="167384994"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Jun 2022 02:05:09 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Tue, 7 Jun 2022 02:05:08 -0700
-Received: from ROB-ULT-M18282.microchip.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Tue, 7 Jun 2022 02:05:06 -0700
-From:   Eugen Hristev <eugen.hristev@microchip.com>
-To:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <linux-kernel@vger.kernel.org>, <claudiu.beznea@microchip.com>,
-        <nicolas.ferre@microchip.com>,
-        Eugen Hristev <eugen.hristev@microchip.com>
-Subject: [PATCH 2/2] ARM: dts: at91: sama5d2_icp: fix eeprom compatibles
-Date:   Tue, 7 Jun 2022 12:04:55 +0300
-Message-ID: <20220607090455.80433-2-eugen.hristev@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220607090455.80433-1-eugen.hristev@microchip.com>
-References: <20220607090455.80433-1-eugen.hristev@microchip.com>
+        with ESMTP id S232209AbiFGJNu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 05:13:50 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E45F669CC2;
+        Tue,  7 Jun 2022 02:13:48 -0700 (PDT)
+X-UUID: 0fa794990b414e1890f80e81b3df8836-20220607
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:adedc9e7-406b-48db-b14e-8ba1509dafe0,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:45
+X-CID-INFO: VERSION:1.1.5,REQID:adedc9e7-406b-48db-b14e-8ba1509dafe0,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
+        N:release,TS:45
+X-CID-META: VersionHash:2a19b09,CLOUDID:31deece4-2ba2-4dc1-b6c5-11feb6c769e0,C
+        OID:ebc12f442421,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:0,BEC:nil
+X-UUID: 0fa794990b414e1890f80e81b3df8836-20220607
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1283919427; Tue, 07 Jun 2022 17:13:44 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Tue, 7 Jun 2022 17:13:42 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 7 Jun 2022 17:13:42 +0800
+Message-ID: <e55fc34a7a29e5bc1a0200764145ddb2353c14f3.camel@mediatek.com>
+Subject: Re: [PATCH v19 1/6] soc: mediatek: mutex: add common interface for
+ modules setting
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Moudy Ho <moudy.ho@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>
+CC:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        <tfiga@chromium.org>, <drinkcat@chromium.org>,
+        <pihsun@chromium.org>, <hsinyi@google.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        <allen-kh.cheng@mediatek.com>, <xiandong.wang@mediatek.com>,
+        <randy.wu@mediatek.com>, <jason-jh.lin@mediatek.com>,
+        <roy-cw.yeh@mediatek.com>, <river.cheng@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <cellopoint.kai@gmail.com>
+Date:   Tue, 7 Jun 2022 17:13:42 +0800
+In-Reply-To: <20220531055224.19280-2-moudy.ho@mediatek.com>
+References: <20220531055224.19280-1-moudy.ho@mediatek.com>
+         <20220531055224.19280-2-moudy.ho@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,44 +85,161 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The eeprom memories on the board are microchip 24aa025e48, which are 2 Kbits
-and are compatible with at24c02 not at24c32.
+Hi, Moudy:
 
-Fixes: 68a95ef72cefe ("ARM: dts: at91: sama5d2-icp: add SAMA5D2-ICP")
-Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
----
- arch/arm/boot/dts/at91-sama5d2_icp.dts | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+On Tue, 2022-05-31 at 13:52 +0800, Moudy Ho wrote:
+> In order to allow multiple modules to operate MUTEX hardware through
+> a common interfrace, two flexible indexes "mtk_mutex_mod_index" and
+> "mtk_mutex_sof_index" need to be added to replace original component
+> ID so that like DDP and MDP can add their own MOD table or SOF
+> settings independently.
+> 
+> In addition, 2 generic interface "mtk_mutex_write_mod" and
+> "mtk_mutex_write_sof" have been added, which is expected to replace
+> the "mtk_mutex_add_comp" and "mtk_mutex_remove_comp" pair originally
+> dedicated to DDP in the future.
+> 
+> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <
+> angelogioacchino.delregno@collabora.com>
+> Reviewed-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> ---
+>  drivers/soc/mediatek/mtk-mutex.c       | 59
+> ++++++++++++++++++++++++++
+>  include/linux/soc/mediatek/mtk-mutex.h | 26 ++++++++++++
+>  2 files changed, 85 insertions(+)
+> 
+> diff --git a/drivers/soc/mediatek/mtk-mutex.c
+> b/drivers/soc/mediatek/mtk-mutex.c
+> index 981d56967e7a..a3b054b33826 100644
+> --- a/drivers/soc/mediatek/mtk-mutex.c
+> +++ b/drivers/soc/mediatek/mtk-mutex.c
+> @@ -185,6 +185,7 @@ struct mtk_mutex_data {
+>  	const unsigned int *mutex_sof;
+>  	const unsigned int mutex_mod_reg;
+>  	const unsigned int mutex_sof_reg;
+> +	const unsigned int *mutex_table_mod;
+>  	const bool no_clk;
+>  };
+>  
+> @@ -606,6 +607,64 @@ void mtk_mutex_release(struct mtk_mutex *mutex)
+>  }
+>  EXPORT_SYMBOL_GPL(mtk_mutex_release);
+>  
+> +int mtk_mutex_write_mod(struct mtk_mutex *mutex,
+> +			enum mtk_mutex_mod_index idx, bool clear)
+> +{
+> +	struct mtk_mutex_ctx *mtx = container_of(mutex, struct
+> mtk_mutex_ctx,
+> +						 mutex[mutex->id]);
+> +	unsigned int reg;
+> +	unsigned int offset;
+> +
+> +	WARN_ON(&mtx->mutex[mutex->id] != mutex);
+> +
+> +	if (idx < MUTEX_MOD_IDX_MDP_RDMA0 ||
+> +	    idx >= MUTEX_MOD_IDX_MAX) {
+> +		dev_err(mtx->dev, "Not supported MOD table index : %d",
+> idx);
+> +		return -EINVAL;
+> +	}
+> +
+> +	offset = DISP_REG_MUTEX_MOD(mtx->data->mutex_mod_reg,
+> +				    mutex->id);
+> +	reg = readl_relaxed(mtx->regs + offset);
+> +
+> +	if (clear)
+> +		reg &= ~BIT(mtx->data->mutex_table_mod[idx]);
+> +	else
+> +		reg |= BIT(mtx->data->mutex_table_mod[idx]);
+> +
+> +	writel_relaxed(reg, mtx->regs + offset);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(mtk_mutex_write_mod);
+> +
+> +int mtk_mutex_write_sof(struct mtk_mutex *mutex,
+> +			enum mtk_mutex_sof_index idx, bool clear)
+> +{
+> +	struct mtk_mutex_ctx *mtx = container_of(mutex, struct
+> mtk_mutex_ctx,
+> +						 mutex[mutex->id]);
+> +	unsigned int val;
+> +
+> +	WARN_ON(&mtx->mutex[mutex->id] != mutex);
+> +
+> +	if (idx < MUTEX_SOF_IDX_SINGLE_MODE ||
+> +	    idx >= MUTEX_SOF_IDX_MAX) {
+> +		dev_err(mtx->dev, "Not supported SOF index : %d", idx);
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (clear)
+> +		val = MUTEX_SOF_SINGLE_MODE;
 
-diff --git a/arch/arm/boot/dts/at91-sama5d2_icp.dts b/arch/arm/boot/dts/at91-sama5d2_icp.dts
-index 806eb1d911d7c..164201a8fbf2d 100644
---- a/arch/arm/boot/dts/at91-sama5d2_icp.dts
-+++ b/arch/arm/boot/dts/at91-sama5d2_icp.dts
-@@ -329,21 +329,21 @@ &i2c1 {
- 	status = "okay";
- 
- 	eeprom@50 {
--		compatible = "atmel,24c32";
-+		compatible = "atmel,24c02";
- 		reg = <0x50>;
- 		pagesize = <16>;
- 		status = "okay";
- 	};
- 
- 	eeprom@52 {
--		compatible = "atmel,24c32";
-+		compatible = "atmel,24c02";
- 		reg = <0x52>;
- 		pagesize = <16>;
- 		status = "disabled";
- 	};
- 
- 	eeprom@53 {
--		compatible = "atmel,24c32";
-+		compatible = "atmel,24c02";
- 		reg = <0x53>;
- 		pagesize = <16>;
- 		status = "disabled";
--- 
-2.25.1
+This equal to 'idx = MUTEX_SOF_SINGLE_MODE', so 'clear' is not
+necessary.
+
+Regards,
+CK
+
+> +	else
+> +		val = idx;
+> +
+> +	writel_relaxed(val, mtx->regs +
+> +		       DISP_REG_MUTEX_SOF(mtx->data->mutex_sof_reg,
+> mutex->id));
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(mtk_mutex_write_sof);
+> +
+>  static int mtk_mutex_probe(struct platform_device *pdev)
+>  {
+>  	struct device *dev = &pdev->dev;
+> diff --git a/include/linux/soc/mediatek/mtk-mutex.h
+> b/include/linux/soc/mediatek/mtk-mutex.h
+> index 6fe4ffbde290..829231523e3f 100644
+> --- a/include/linux/soc/mediatek/mtk-mutex.h
+> +++ b/include/linux/soc/mediatek/mtk-mutex.h
+> @@ -10,6 +10,26 @@ struct regmap;
+>  struct device;
+>  struct mtk_mutex;
+>  
+> +enum mtk_mutex_mod_index {
+> +	/* MDP table index */
+> +	MUTEX_MOD_IDX_MDP_RDMA0,
+> +	MUTEX_MOD_IDX_MDP_RSZ0,
+> +	MUTEX_MOD_IDX_MDP_RSZ1,
+> +	MUTEX_MOD_IDX_MDP_TDSHP0,
+> +	MUTEX_MOD_IDX_MDP_WROT0,
+> +	MUTEX_MOD_IDX_MDP_WDMA,
+> +	MUTEX_MOD_IDX_MDP_AAL0,
+> +	MUTEX_MOD_IDX_MDP_CCORR0,
+> +
+> +	MUTEX_MOD_IDX_MAX		/* ALWAYS keep at the end */
+> +};
+> +
+> +enum mtk_mutex_sof_index {
+> +	MUTEX_SOF_IDX_SINGLE_MODE,
+> +
+> +	MUTEX_SOF_IDX_MAX		/* ALWAYS keep at the end */
+> +};
+> +
+>  struct mtk_mutex *mtk_mutex_get(struct device *dev);
+>  int mtk_mutex_prepare(struct mtk_mutex *mutex);
+>  void mtk_mutex_add_comp(struct mtk_mutex *mutex,
+> @@ -22,5 +42,11 @@ void mtk_mutex_unprepare(struct mtk_mutex *mutex);
+>  void mtk_mutex_put(struct mtk_mutex *mutex);
+>  void mtk_mutex_acquire(struct mtk_mutex *mutex);
+>  void mtk_mutex_release(struct mtk_mutex *mutex);
+> +int mtk_mutex_write_mod(struct mtk_mutex *mutex,
+> +			enum mtk_mutex_mod_index idx,
+> +			bool clear);
+> +int mtk_mutex_write_sof(struct mtk_mutex *mutex,
+> +			enum mtk_mutex_sof_index idx,
+> +			bool clear);
+>  
+>  #endif /* MTK_MUTEX_H */
 
