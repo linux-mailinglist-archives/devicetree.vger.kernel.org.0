@@ -2,157 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36ED353FEE9
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 14:36:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0093253FF17
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 14:42:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243843AbiFGMgQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 08:36:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54488 "EHLO
+        id S242470AbiFGMlq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 08:41:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243856AbiFGMgO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 08:36:14 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26671C4EB9;
-        Tue,  7 Jun 2022 05:36:12 -0700 (PDT)
+        with ESMTP id S244024AbiFGMlp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 08:41:45 -0400
+Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF45A63B2;
+        Tue,  7 Jun 2022 05:41:43 -0700 (PDT)
+Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-3135519f95fso3833747b3.6;
+        Tue, 07 Jun 2022 05:41:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1654605372; x=1686141372;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=fYpPCX6VZdvNlaz5PU1EmmzGezp4ojXcHXRAL2naybc=;
-  b=WAdtr08VdHF0FaoCNYSI3IjbIWdRE0OWKShlPAGcCv6s9+LD0IOTMQGe
-   /WHZTnK/nb4EjByDLNHFQ8HhHRFLvtEwKVswmKdw80OTqSIjEXobgrC9f
-   a/Yk4LGkurTYgvGK7OjYIPjbT4TYADnq8AbFqxu6v2a2XlerKWuJnoR7h
-   s=;
-Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
-  by alexa-out.qualcomm.com with ESMTP; 07 Jun 2022 05:36:12 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jun 2022 05:36:11 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 7 Jun 2022 05:36:10 -0700
-Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 7 Jun 2022 05:36:04 -0700
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
-        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
-        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
-        <judyhsiao@chromium.org>, <vkoul@kernel.org>
-CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Subject: [PATCH 2/2] ASoC: qcom: soundwire: Add software clock gating requirement check
-Date:   Tue, 7 Jun 2022 18:05:34 +0530
-Message-ID: <1654605334-32030-3-git-send-email-quic_srivasam@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1654605334-32030-1-git-send-email-quic_srivasam@quicinc.com>
-References: <1654605334-32030-1-git-send-email-quic_srivasam@quicinc.com>
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=imu3RAy17O3xYzLzj29191Uurx3QbXXQ67LBoXgR1Ss=;
+        b=GYjKq01x7+sad07xx8Ceb64jKJzc+op9gTL5tI/tHOFKpwr2FveRdU2xCwrgCtW8aM
+         ZWxVLWwI219sDRARMit+S0FpI/ZkHohtZbY3jv5LNZWrWq+B4q9gwd1Yw3sfMV1Os3I6
+         U71+WxuNQlEPL3uhtZyJEQNo3mifSD8qaKdwfZnzM0hS3MxnG3mvEV61F6eU/zaH89OG
+         f4yD+KYcPXaiRSn5QRTVRzJ26UQoUhFN7vCBVNI+mIr6tH0LeVF3criKWWp3aYww8flI
+         B7/HzeDPnzZRPgUR6UohXs8NSHwiPksJtYwarMfSHMv5cBjAx5rEuc3zChWGZBcbyig4
+         47Sg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=imu3RAy17O3xYzLzj29191Uurx3QbXXQ67LBoXgR1Ss=;
+        b=4Kte6ucXwbHDJ0Dt8mg6WFgg6Yw0NCEbZffFASerXy86EzrYayWquvjIIumewP24p1
+         tI5WWj2McBz6hjLiZTXXLKUQ7LE6CyKpmEmdM84rSz5DX+oo3+WSS122yJkyuzdY/vpe
+         k/dGS8jP5qX/uSEMpIyB67yFtC/+PIcVl5/HbVM3cs9R+jx0a8oBB2M55lstU/XdIpAy
+         6upaJEC2uf3LrsEUMK7KS8epPamg50Ja0HkcbEaT0rB7g4PMc9skq5VG0AWd47ukW0Cv
+         DCp1sBYwip5fTEHmAbx+7wXini+VM9NOZQYNQ8/8P2HsrZdJAUVoVRTlTtDtPvVlppF4
+         neiw==
+X-Gm-Message-State: AOAM531SBjt9fxMRgDnrmsLVILWnPZARX/4az6wO3v9DmypRelCVMRlK
+        wUkTlUfYDfFcHRrD/DKEmdHS00/CxfZejXL9wY0=
+X-Google-Smtp-Source: ABdhPJw2njVFVWdRIpcT95AAL06Uur0AIIRAASfMMVkezO+AcAdLA5sbw2VKoaUirhLjUWv8kuJ/ps4qfmiwWwyTq2o=
+X-Received: by 2002:a81:6d89:0:b0:313:43b6:e9aa with SMTP id
+ i131-20020a816d89000000b0031343b6e9aamr2418963ywc.119.1654605702912; Tue, 07
+ Jun 2022 05:41:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20220524172214.5104-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220524172214.5104-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CA+V-a8vfzsB55YdFmtx3eim617b=WCYJu+Tm3SO9c1QCB3i0Lw@mail.gmail.com> <87r1414x5f.wl-maz@kernel.org>
+In-Reply-To: <87r1414x5f.wl-maz@kernel.org>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Tue, 7 Jun 2022 13:41:16 +0100
+Message-ID: <CA+V-a8sRW7oUmwOmzBx8cpk+n=cRofh3vT1cmroH_ESHN+Z3YA@mail.gmail.com>
+Subject: Re: [PATCH RFC 2/2] irqchip/sifive-plic: Add support for Renesas
+ RZ/Five SoC
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Validate software clock gating required or not and do software
-clock gating on hclk if soundwire is operational and keep it
-running by adding flag in private dat structure.
-This is to avoid conflict between older architectures,
-where software clock gating is not required and on latest
-architectues, where software clock gating is mandatory.
+Hi Marc,
 
-Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
----
- drivers/soundwire/qcom.c | 27 ++++++++++++++++++++-------
- 1 file changed, 20 insertions(+), 7 deletions(-)
+On Mon, Jun 6, 2022 at 4:41 PM Marc Zyngier <maz@kernel.org> wrote:
+>
+> On Fri, 27 May 2022 12:05:38 +0100,
+> "Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
+> >
+> > Hi,
+> >
+> > On Tue, May 24, 2022 at 6:22 PM Lad Prabhakar
+> > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > >
+> > > The Renesas RZ/Five SoC has a RISC-V AX45MP AndesCore with NCEPLIC100. The
+> > > NCEPLIC100 supports both edge-triggered and level-triggered interrupts. In
+> > > case of edge-triggered interrupts NCEPLIC100 ignores the next interrupt
+> > > edge until the previous completion message has been received and
+> > > NCEPLIC100 doesn't support pending interrupt counter, hence losing the
+> > > interrupts if not acknowledged in time.
+> > >
+> > > So the workaround for edge-triggered interrupts to be handled correctly
+> > > and without losing is that it needs to be acknowledged first and then
+> > > handler must be run so that we don't miss on the next edge-triggered
+> > > interrupt.
+> > >
+> > > This patch adds a new compatible string for Renesas RZ/Five SoC and adds
+> > > support to change interrupt flow based on the interrupt type. It also
+> > > implements irq_ack and irq_set_type callbacks.
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > ---
+> > >  drivers/irqchip/Kconfig           |  1 +
+> > >  drivers/irqchip/irq-sifive-plic.c | 71 ++++++++++++++++++++++++++++++-
+> > >  2 files changed, 70 insertions(+), 2 deletions(-)
+> > >
+> > > diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
+> > > index f3d071422f3b..aea0e4e7e547 100644
+> > > --- a/drivers/irqchip/Kconfig
+> > > +++ b/drivers/irqchip/Kconfig
+> > > @@ -537,6 +537,7 @@ config SIFIVE_PLIC
+> > >         bool "SiFive Platform-Level Interrupt Controller"
+> > >         depends on RISCV
+> > >         select IRQ_DOMAIN_HIERARCHY
+> > > +       select IRQ_FASTEOI_HIERARCHY_HANDLERS
+> > >         help
+> > >            This enables support for the PLIC chip found in SiFive (and
+> > >            potentially other) RISC-V systems.  The PLIC controls devices
+> > > diff --git a/drivers/irqchip/irq-sifive-plic.c b/drivers/irqchip/irq-sifive-plic.c
+> > > index bb87e4c3b88e..abffce48e69c 100644
+> > > --- a/drivers/irqchip/irq-sifive-plic.c
+> > > +++ b/drivers/irqchip/irq-sifive-plic.c
+> > > @@ -60,10 +60,13 @@
+> > >  #define        PLIC_DISABLE_THRESHOLD          0x7
+> > >  #define        PLIC_ENABLE_THRESHOLD           0
+> > >
+> > > +#define RENESAS_R9A07G043_PLIC         1
+> > > +
+> > >  struct plic_priv {
+> > >         struct cpumask lmask;
+> > >         struct irq_domain *irqdomain;
+> > >         void __iomem *regs;
+> > > +       u8 of_data;
+> > >  };
+> > >
+> > >  struct plic_handler {
+> > > @@ -163,10 +166,31 @@ static int plic_set_affinity(struct irq_data *d,
+> > >  }
+> > >  #endif
+> > >
+> > > +static void plic_irq_ack(struct irq_data *d)
+> > > +{
+> > > +       struct plic_handler *handler = this_cpu_ptr(&plic_handlers);
+> > > +
+> > > +       if (irqd_irq_masked(d)) {
+> > > +               plic_irq_unmask(d);
+> > > +               writel(d->hwirq, handler->hart_base + CONTEXT_CLAIM);
+> > > +               plic_irq_mask(d);
+> > > +       } else {
+> > > +               writel(d->hwirq, handler->hart_base + CONTEXT_CLAIM);
+> > > +       }
+> > > +}
+> > > +
+> > I sometimes still see an interrupt miss!
+> >
+> > As per [0], we first need to claim the interrupt by reading the claim
+> > register which needs to be done in the ack callback (which should be
+> > doable) for edge interrupts, but the problem arises in the chained
+> > handler callback where it does claim the interrupt by reading the
+> > claim register.
+> >
+> > static void plic_handle_irq(struct irq_desc *desc)
+> > {
+> >     struct plic_handler *handler = this_cpu_ptr(&plic_handlers);
+> >     struct irq_chip *chip = irq_desc_get_chip(desc);
+> >     void __iomem *claim = handler->hart_base + CONTEXT_CLAIM;
+> >     irq_hw_number_t hwirq;
+> >
+> >     WARN_ON_ONCE(!handler->present);
+> >
+> >     chained_irq_enter(chip, desc);
+> >
+> >     while ((hwirq = readl(claim))) {
+> >         int err = generic_handle_domain_irq(handler->priv->irqdomain,
+> >                             hwirq);
+> >         if (unlikely(err))
+> >             pr_warn_ratelimited("can't find mapping for hwirq %lu\n",
+> >                     hwirq);
+> >     }
+> >
+> >     chained_irq_exit(chip, desc);
+> > }
+> >
+> > I was thinking I would get around by getting the irqdata in
+> > plic_handle_irq() callback using the irq_desc (struct irq_data *d =
+> > &desc->irq_data;) and check the d->hwirq but this will be always 9.
+> >
+> >         plic: interrupt-controller@12c00000 {
+> >             compatible = "renesas-r9a07g043-plic";
+> >             #interrupt-cells = <2>;
+> >             #address-cells = <0>;
+> >             riscv,ndev = <543>;
+> >             interrupt-controller;
+> >             reg = <0x0 0x12c00000 0 0x400000>;
+> >             clocks = <&cpg CPG_MOD R9A07G043_NCEPLIC_ACLK>;
+> >             clock-names = "plic100ss";
+> >             power-domains = <&cpg>;
+> >             resets = <&cpg R9A07G043_NCEPLIC_ARESETN>;
+> >             interrupts-extended = <&cpu0_intc 11 &cpu0_intc 9>;
+> >         };
+> >
+> > Any pointers on how this could be done sanely.
+>
+> Why doesn't the chained interrupt also get the ack-aware irq_chip?
+>
+Sorry for being naive, could you please elaborate on this.
 
-diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-index 38c3bf5..4896e92 100644
---- a/drivers/soundwire/qcom.c
-+++ b/drivers/soundwire/qcom.c
-@@ -194,6 +194,12 @@ static const struct qcom_swrm_data swrm_v1_5_data = {
- 	.default_cols = 16,
- };
- 
-+static const struct qcom_swrm_data swrm_v1_6_data = {
-+	.default_rows = 50,
-+	.default_cols = 16,
-+	.sw_clk_gate_required = 1,
-+};
-+
- #define to_qcom_sdw(b)	container_of(b, struct qcom_swrm_ctrl, bus)
- 
- static int qcom_swrm_ahb_reg_read(struct qcom_swrm_ctrl *ctrl, int reg,
-@@ -659,7 +665,8 @@ static int qcom_swrm_init(struct qcom_swrm_ctrl *ctrl)
- 	val = FIELD_PREP(SWRM_MCP_FRAME_CTRL_BANK_ROW_CTRL_BMSK, ctrl->rows_index);
- 	val |= FIELD_PREP(SWRM_MCP_FRAME_CTRL_BANK_COL_CTRL_BMSK, ctrl->cols_index);
- 
--	reset_control_reset(ctrl->audio_cgcr);
-+	if (data->sw_clk_gate_required)
-+		reset_control_reset(ctrl->audio_cgcr);
- 
- 	ctrl->reg_write(ctrl, SWRM_MCP_FRAME_CTRL_BANK_ADDR(0), val);
- 
-@@ -1312,6 +1319,15 @@ static int qcom_swrm_probe(struct platform_device *pdev)
- 			return PTR_ERR(ctrl->mmio);
- 	}
- 
-+	if (data->sw_clk_gate_required) {
-+		ctrl->audio_cgcr = devm_reset_control_get_exclusive(dev, "swr_audio_cgcr");
-+		if (IS_ERR(ctrl->audio_cgcr)) {
-+			dev_err(dev, "Failed to get cgcr reset ctrl required for SW gating\n");
-+			ret = PTR_ERR(ctrl->audio_cgcr);
-+			goto err_init;
-+		}
-+	}
-+
- 	ctrl->irq = of_irq_get(dev->of_node, 0);
- 	if (ctrl->irq < 0) {
- 		ret = ctrl->irq;
-@@ -1337,10 +1353,6 @@ static int qcom_swrm_probe(struct platform_device *pdev)
- 	ctrl->bus.compute_params = &qcom_swrm_compute_params;
- 	ctrl->bus.clk_stop_timeout = 300;
- 
--	ctrl->audio_cgcr = devm_reset_control_get_exclusive(dev, "swr_audio_cgcr");
--	if (IS_ERR(ctrl->audio_cgcr))
--		dev_err(dev, "Failed to get audio_cgcr reset required for soundwire-v1.6.0\n");
--
- 	ret = qcom_swrm_get_port_config(ctrl);
- 	if (ret)
- 		goto err_clk;
-@@ -1494,7 +1506,8 @@ static int __maybe_unused swrm_runtime_resume(struct device *dev)
- 		qcom_swrm_get_device_status(ctrl);
- 		sdw_handle_slave_status(&ctrl->bus, ctrl->status);
- 	} else {
--		reset_control_reset(ctrl->audio_cgcr);
-+		if (data->sw_clk_gate_required)
-+			reset_control_reset(ctrl->audio_cgcr);
- 
- 		ctrl->reg_write(ctrl, SWRM_MCP_BUS_CTRL, SWRM_MCP_BUS_CLK_START);
- 		ctrl->reg_write(ctrl, SWRM_INTERRUPT_CLEAR,
-@@ -1559,7 +1572,7 @@ static const struct dev_pm_ops swrm_dev_pm_ops = {
- static const struct of_device_id qcom_swrm_of_match[] = {
- 	{ .compatible = "qcom,soundwire-v1.3.0", .data = &swrm_v1_3_data },
- 	{ .compatible = "qcom,soundwire-v1.5.1", .data = &swrm_v1_5_data },
--	{ .compatible = "qcom,soundwire-v1.6.0", .data = &swrm_v1_5_data },
-+	{ .compatible = "qcom,soundwire-v1.6.0", .data = &swrm_v1_6_data },
- 	{/* sentinel */},
- };
- 
--- 
-2.7.4
+Cheers,
+Prabhakar
 
+>         M.
+>
+> --
+> Without deviation from the norm, progress is not possible.
