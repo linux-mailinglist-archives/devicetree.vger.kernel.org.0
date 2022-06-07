@@ -2,71 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1668453FE5D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 14:09:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A412E53FE6B
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 14:10:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243558AbiFGMIu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 08:08:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55614 "EHLO
+        id S243601AbiFGMKu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 08:10:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243557AbiFGMIs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 08:08:48 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A012380220
-        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 05:08:47 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id h23so23680456ejj.12
-        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 05:08:47 -0700 (PDT)
+        with ESMTP id S243599AbiFGMKs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 08:10:48 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62A12ABF61
+        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 05:10:47 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id n10so34794598ejk.5
+        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 05:10:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=xV+JNWROXIXNNl72An2tMAra5xOJapsLU/5a6Polwlg=;
-        b=p8WSw2UMIhQNr2Fwr8cpY5cZqsab+1E35dtmXpB41xaHUUoak4LJRLYksNib4yNTik
-         t0+d1YA7pOXHFbyDI5/w/PSMRJn2b1otbPqCKptEO6LjOiQYGxLvxohrBSkzvKqKZjzv
-         eXpzqayAHIETEYiDAZVNbAE+SUc8MNrVk6jm5JzjS6ygFRirmZueNBO167lnAvlYQtj1
-         mcU3zA6ggk0c2VHVTjAy15pCP91j2Shz/q1lvUWmaKKMAwssV8CWTjktGezp/honngST
-         Qj3vhh8HEDRk1Y1SzxPh5IGFbC38EyNYCgnKjMEZW6ycmUN17A0DIAJ+ANpqxUHx4IOk
-         UbEg==
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=zW09mgxo9rZF5JNQCX20WzyX9xeVAnc/U5ZjWECn3qU=;
+        b=rl9oDqD1LCQb54yPd7X+BYIbArjSL5pL3V3uloaOc9xHHaM3BFB5WkAwZuMPFgh5Of
+         /+CwSshQykYHuovwxiqV2TVeiomcNDJJJ/FVdDsKnFs7NUSyLPaAJ3YItdc3y+x3QaXV
+         l3WRUX17AH1E3KTqCCVLfowcpGm/rOYVYsvjASWjqmXLLkNTLBYs4aki1AWIN3/eNuTn
+         eY6pSJxagm5ZOIry4yNLtZh/nF6VJA12SrfUOigG9+LH7JGgHmdOdbYI8OZ6O6YHtF36
+         OCy7YySEgdv7x7E+y7gkRzoWrzrVdiOHxcMUtOcByifXry/8PsE9gzxJwyxbFmIRCBN5
+         agGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=xV+JNWROXIXNNl72An2tMAra5xOJapsLU/5a6Polwlg=;
-        b=eTj5VfKaxZEUmJITgmp9DHtOde6ORYnE+r+2F6ck3tm2cU193smdznEkYyS7PaZFiS
-         H47BmcvC427LUH6DIBbqv8pfSzUTB63ZP6md2Wjsjc6UA8sRRr4zmhwesd6n2Xx1w/YS
-         pq6agej3Vj6KsF79tdeA2/UCEA7cXxR5zj2e/UOU8Ny+fEGFt8Tuw/IISgBrlQa5MaJi
-         yhyLT+wyiU9E7PfFwu1rutThb87DsfuR8+2woK/jAzEM2U/TilKtBEdpJfalZ2VgkkhM
-         58OAxNm9Z3rfz1gUDPCxHXaWjx4he9QRiBHk8YPt8OofW4g6VOVEC5ZARhPCe/gpA2EP
-         KQBg==
-X-Gm-Message-State: AOAM533KFV8at17FD+Pxvd16LPpDHow/jpHeEOeAwEoaGcBalxkHq6Pm
-        1nIq68xVHgAD4zoI9dS+Ff2p2Q==
-X-Google-Smtp-Source: ABdhPJyczAHK7KPQ/MU9ZVoX5hsVjj1U5sR9a+dXDnJEexExXSxpVn7QuiQ2RX1o5bvhSIAmm4Grwg==
-X-Received: by 2002:a17:907:d29:b0:711:d215:5a5e with SMTP id gn41-20020a1709070d2900b00711d2155a5emr8283950ejc.697.1654603726171;
-        Tue, 07 Jun 2022 05:08:46 -0700 (PDT)
+        bh=zW09mgxo9rZF5JNQCX20WzyX9xeVAnc/U5ZjWECn3qU=;
+        b=0Xq3PsjIU1uCGOXZQ6tSK8fS318UiGBlBUrhkt3Rm82WPssL94Xw4Bc2JReJrveT2B
+         MCNFDAbDrI1xgnDGiHfLoodx5NjCY8tFxcumj6W3vReVeQ7c5MgWf1DGIYfn0utXGlvk
+         HfA/JQE+d5C0jGTl5Qn3wUyz/J6IXGy8DabsW64GVX6bASH98IuYFOjzwgFp8S8pLw1p
+         eVUAeb8RKjS6daajT+Rkz01DNo5mwa47m1uuITwW64DTNFGIOgu5MCHJb1o+wLMh6L+x
+         97v6oCK/f5MQJZwUswOvjV2ZEUktrF0LpX/NKJaKv3Cdafjp6tA2uFMW6HtpHKQoT+7X
+         S87Q==
+X-Gm-Message-State: AOAM530DOI5SNNL8weuUwdON8K7jn6IUlEmXvlPE3ncs9HEBkKfNj5C9
+        VmFIoAmegjcGC93mBvtUlLNVqg==
+X-Google-Smtp-Source: ABdhPJw8pZ3YdMS2B95fwfrjxTj1hVyD/Ee7HcgKEpsqgNqld8T3GeOSXRUIwU1WEvlgZervcmKzsQ==
+X-Received: by 2002:a17:907:d27:b0:6ff:d8b:9564 with SMTP id gn39-20020a1709070d2700b006ff0d8b9564mr26136443ejc.364.1654603845940;
+        Tue, 07 Jun 2022 05:10:45 -0700 (PDT)
 Received: from [192.168.0.183] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id v4-20020a170906488400b006fea2035036sm7546255ejq.86.2022.06.07.05.08.45
+        by smtp.gmail.com with ESMTPSA id cx12-20020a05640222ac00b0042bd6630a14sm10552844edb.87.2022.06.07.05.10.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Jun 2022 05:08:45 -0700 (PDT)
-Message-ID: <c2da559b-1d87-be64-5531-aef0e9c62aa7@linaro.org>
-Date:   Tue, 7 Jun 2022 14:08:44 +0200
+        Tue, 07 Jun 2022 05:10:45 -0700 (PDT)
+Message-ID: <c77cc0f2-dc7a-83fb-0324-c335a52429d5@linaro.org>
+Date:   Tue, 7 Jun 2022 14:10:44 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH 1/7] dt-bindings: display: panel: Add Innolux TD4328 panel
- bindings
+Subject: Re: [PATCH v3] ARM: dts: nuvoton: wpcm450: Add missing aliases for
+ serial0/serial1
 Content-Language: en-US
-To:     Teguh Sobirin <teguh@sobir.in>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
+        openbmc@lists.ozlabs.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org
-References: <SEZPR03MB6666F4081BF29953A0DC379BDDA29@SEZPR03MB6666.apcprd03.prod.outlook.com>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220606213154.2055462-1-j.neuschaefer@gmx.net>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <SEZPR03MB6666F4081BF29953A0DC379BDDA29@SEZPR03MB6666.apcprd03.prod.outlook.com>
+In-Reply-To: <20220606213154.2055462-1-j.neuschaefer@gmx.net>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -77,140 +76,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/06/2022 01:05, Teguh Sobirin wrote:
-> Add documentation for "innolux,td4328" panel.
+On 06/06/2022 23:31, Jonathan Neuschäfer wrote:
+> Without these, /chosen/stdout-path = "serial0:115200n8" does not work.
 > 
-> Signed-off-by: Teguh Sobirin <teguh@sobir.in>
+> Signed-off-by: Jonathan Neuschäfer <j.neuschaefer@gmx.net>
 > ---
->  .../display/panel/innolux,td4328.yaml         | 83 +++++++++++++++++++
->  1 file changed, 83 insertions(+)
->  create mode 100755 Documentation/devicetree/bindings/display/panel/innolux,td4328.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/innolux,td4328.yaml b/Documentation/devicetree/bindings/display/panel/innolux,td4328.yaml
-> new file mode 100755
-> index 000000000000..d4773ade0f13
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/innolux,td4328.yaml
-> @@ -0,0 +1,83 @@
-> +# SPDX-License-Identifier: GPL-2.0
 
-Dual License please (like checkpatch asks).
 
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/innolux,td4328.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Synaptics TD4328 based DSI display Panels
-> +
-> +maintainers:
-> +  - Teguh Sobirin <teguh@sobir.in>
-> +
-> +description: |
-> +  The TD4328 IC from Synaptics is a DSI Panel IC used to drive DSI panels.
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: innolux,td4328
-
-Innolux or Synaptics?
-
-> +    description: This indicates the panel manufacturer of the panel that is
-> +      in turn using the TD4328 panel driver.
-
-What does the "panel driver" mean here?
-
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description: phandle of gpio for reset line - This should be 8mA, gpio
-> +      can be configured using mux, pinctrl, pinctrl-names (active high)
-
-s/phandle of gpio//
-Everywhere.
-
-> +
-> +  vddio-supply:
-> +    description: phandle of the regulator that provides the supply voltage
-> +      Power IC supply
-
-s/phandle of the regulator//
-Everywhere. This should be simply:
-"Power IC supply"
-
-> +
-> +  vddpos-supply:
-> +    description: phandle of the positive boost supply regulator
-
-"Positive boost supply"
-
-> +
-> +  vddneg-supply:
-> +    description: phandle of the negative boost supply regulator
-
-"Negative boost supply"
-
-> +
-> +  rotation:
-> +    description: Display rotation in degrees counter clockwise (0,90,180,270)
-
-No need for description, just true
-
-> +
-> +  reg: true
-
-maxItems
-
-> +  port: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vddio-supply
-> +  - vddpos-supply
-> +  - vddneg-supply
-> +  - reset-gpios
-> +  - rotation
-> +  - port
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |+
-
-Just "  - |"
-
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    dsi0 {
-
-dsi
-
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        panel@0 {
-> +            compatible = "innolux,td4328";
-> +            reg = <0>;
-> +            vddio-supply = <&vreg_l14a_1p88>;
-> +            vddpos-supply = <&lab>;
-> +            vddneg-supply = <&ibb>;
-> +
-> +            reset-gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
-> +            rotation = <90>;
-> +
-> +            port {
-> +                panel0_in: endpoint {
-> +                    remote-endpoint = <&dsi0_out>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +...
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
