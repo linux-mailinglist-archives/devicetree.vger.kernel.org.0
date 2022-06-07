@@ -2,177 +2,296 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 012DF53FDFC
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 13:52:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 912B753FE08
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 13:53:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243287AbiFGLv6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 07:51:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40290 "EHLO
+        id S243214AbiFGLxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 07:53:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243232AbiFGLvq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 07:51:46 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B4C0B5259;
-        Tue,  7 Jun 2022 04:51:21 -0700 (PDT)
+        with ESMTP id S243293AbiFGLx2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 07:53:28 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67A1A880CC
+        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 04:52:59 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id bg6so14847108ejb.0
+        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 04:52:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1654602681; x=1686138681;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=LH242uOUOVYSvyf632u/YdcynqcsDhqbq4iJHhnzjHY=;
-  b=mYN2Y6lTD1O81RglgIiwGq3g86x3h3tKbuGZ6XFHBys3pircKVMyzBPN
-   7GVpUVQYLHzbATfvAZE67uPJunlQkGjBHfc4Lb8uEReeiSvVNUvYSFNzj
-   aJ/LQPazwjRXwiCteEbI2EtIkQiBMLtCTvcE2+oxpf2Nbx5bFhgY/2uKi
-   I=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
-  by alexa-out.qualcomm.com with ESMTP; 07 Jun 2022 04:51:20 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jun 2022 04:51:20 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 7 Jun 2022 04:51:20 -0700
-Received: from c-skakit-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 7 Jun 2022 04:51:15 -0700
-From:   Satya Priya <quic_c_skakit@quicinc.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
-        <quic_collinsd@quicinc.com>, <quic_subbaram@quicinc.com>,
-        <quic_jprakash@quicinc.com>,
-        Satya Priya <quic_c_skakit@quicinc.com>
-Subject: [PATCH V14 9/9] arm64: dts: qcom: sc7280: Add pm8008 support for sc7280-idp
-Date:   Tue, 7 Jun 2022 17:20:15 +0530
-Message-ID: <1654602615-28849-10-git-send-email-quic_c_skakit@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1654602615-28849-1-git-send-email-quic_c_skakit@quicinc.com>
-References: <1654602615-28849-1-git-send-email-quic_c_skakit@quicinc.com>
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=piPevDvXMOwAc75XwvmVTymrw0B5BQHWDNrVAu3X6IE=;
+        b=wVIw55Q3WAwg7C7Av5gAgSOFfDBIdKq09Lx535E9Dn/Zzla0tDuR3s8WBffHGv5qm4
+         rJg7LOmUrJ6Yi3FNCkFdQBlLTLZpzDaBK4SFuSzZvxSeA7yPMDOa3H8SowTBar8tDQPM
+         xVBuPRnVM4dJRQUp1Mn577eUqZA8ICQ+t5lyFKBcogS060GdBASE4Ma0+uTBiWnTnGs0
+         J5bDZtJfnENlhi6zMHkB4AonbNSTrHOnBtoPy9d+b6oXu3grxWlJk2cxG9nPu3x8MKuI
+         NSIUVMd7oWZTt/9n/17aMElEvRp0dO6TESJE/nja3YZKca8JvqcySpi/JMgtxoWvZ7SS
+         2mbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=piPevDvXMOwAc75XwvmVTymrw0B5BQHWDNrVAu3X6IE=;
+        b=fJlnPkhFQWRto+3148vzb95+XDoY0bzW2uvGIkKL/XuH1FRGBP3D/7V77yX6Bwbw/s
+         Gabjz9W7HChGL6RFgWriMw2HYe5Sitm9dnYsbybOjZQ/4J1m9Jm87uZ5KdSo1gMoIsxf
+         EmVYQKknklQzNH0volmHvO6koGCUIaUU1D6j5XARwtmkLhOC3b7ZFoFbd0klcB40XK/e
+         PzB8roas1CoTICmZ+Oq0+61veWMJdCsOKHkCIFrekkoglYDZBIK15dRV1Qp1/gHdBOX8
+         CTe0VqPHRjNXYREMQU36oH7l+J+vkhSmgucd+BNcXGu5Lu8zRAS40IYzZCV2irnxwe4d
+         91ig==
+X-Gm-Message-State: AOAM532eGXtxzgyCDSxDi9orJFmwWw7nxHxWwMvzrN/iDensnO+t6EMu
+        2cEdI2GYH1biYqPFGjpF8ac7Ug==
+X-Google-Smtp-Source: ABdhPJylpNNk7xJhZOJCtrgQgkU74x1PYxnCIEo+xs0NtNCWCYhYQHsj29e7UbcnFvMwVi4kULs1tA==
+X-Received: by 2002:a17:907:1b05:b0:6f0:18d8:7be0 with SMTP id mp5-20020a1709071b0500b006f018d87be0mr25896461ejc.561.1654602777986;
+        Tue, 07 Jun 2022 04:52:57 -0700 (PDT)
+Received: from [192.168.0.183] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id m26-20020a50ef1a000000b0042bae6fbee2sm10087662eds.74.2022.06.07.04.52.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Jun 2022 04:52:57 -0700 (PDT)
+Message-ID: <96ecca0b-b65c-749d-d66b-33443cacf2e4@linaro.org>
+Date:   Tue, 7 Jun 2022 13:52:56 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 1/4] dt-binding: mfd: Add Richtek RT5120 PMIC support
+Content-Language: en-US
+To:     cy_huang <u0084500@gmail.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee.jones@linaro.org,
+        broonie@kernel.org, dmitry.torokhov@gmail.com
+Cc:     lgirdwood@gmail.com, cy_huang@richtek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-input@vger.kernel.org
+References: <1654581161-12349-1-git-send-email-u0084500@gmail.com>
+ <1654581161-12349-2-git-send-email-u0084500@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1654581161-12349-2-git-send-email-u0084500@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pm8008 infra and regulators support for sc7280 idp.
+On 07/06/2022 07:52, cy_huang wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
+> 
+> Add Richtek RT5120 PMIC devicetree document.
+> 
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> ---
+>  .../devicetree/bindings/mfd/richtek,rt5120.yaml    | 180 +++++++++++++++++++++
+>  1 file changed, 180 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/richtek,rt5120.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/richtek,rt5120.yaml b/Documentation/devicetree/bindings/mfd/richtek,rt5120.yaml
+> new file mode 100644
+> index 00000000..376bf73
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/richtek,rt5120.yaml
+> @@ -0,0 +1,180 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/richtek,rt5120.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Richtek RT5120 PMIC
+> +
+> +maintainers:
+> +  - ChiYuan Huang <cy_huang@richtek.com>
+> +
+> +description: |
+> +  The RT5120 provides four high-efficiency buck converters and one LDO voltage
+> +  regulator. The device is targeted at providingthe processor voltage, memory,
+> +  I/O, and peripheral rails in home entertainment devices. The I2C interface is
+> +  used for dynamic voltage scaling of the processor voltage, power rails on/off
+> +  sequence control, operation mode selection.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - richtek,rt5120
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  "#interrupt-cells":
+> +    const: 1
+> +
+> +  wakeup-source: true
+> +
+> +  richtek,enable-undervolt-hiccup:
+> +    type: boolean
+> +    description: |
+> +      If used, under voltage protection trigger hiccup behavior, else latchup as
+> +      default
+> +
+> +  richtek,enable-overvolt-hiccup:
+> +    type: boolean
+> +    description:
+> +      Like as 'enable-uv-hiccup', it configures over voltage protection to
+> +      hiccup, else latchup as default
+> +
+> +  vin1-supply:
+> +    description: phandle for buck1 input power source
+> +
+> +  vin2-supply:
+> +    description: phandle for buck2 input power source
+> +
+> +  vin3-supply:
+> +    description: phandle for buck3 input power source
+> +
+> +  vin4-supply:
+> +    description: phandle for buck4 input power source
+> +
+> +  vinldo-supply:
+> +    description: phandle for ldo input power source
+> +
+> +  regulators:
+> +    type: object
+> +
+> +    patternProperties:
+> +      "^buck[1-4]$":
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +
+> +        properties:
+> +          regulator-allowed-modes:
+> +            description: |
+> +              Used to specify the allowed buck converter operating mode
+> +              mode mapping:
+> +                0: auto mode
+> +                1: force pwm mode
+> +            items:
+> +              enum: [0, 1]
+> +
+> +        unevaluatedProperties: false
 
-Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
----
-Changes in V14:
- - None.
+Better to put it after '$ref' for readability.
 
-Changes in V13:
- - None.
+> +
+> +      "^(ldo|exten)$":
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml#
 
-Changes in V12:
- - None.
+You need here unevaluatedProperties:false as well (for the ldo/exten
+properties)
 
-Changes in V11:
- - Add ldos and parent supplies directly under pm8008@8 node.
+> +
+> +    additionalProperties: false
+> +
+> +  powerkey:
+> +    type: object
+> +    description:
+> +      The power key driver may be optional. If not used, change node status to
+> +      'disabled'
 
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 66 ++++++++++++++++++++++++++++++++
- 1 file changed, 66 insertions(+)
+This description is not helpful, does not describe the hardware. Please
+describe hardware, not Devicetree usage.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index 5eb6689..166812e 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -271,6 +271,63 @@
- 	};
- };
- 
-+pm8008_bus: &i2c1 {
-+	status = "okay";
-+};
-+
-+#include "pm8008.dtsi"
-+
-+&pm8008 {
-+	interrupt-parent = <&tlmm>;
-+	interrupts = <24 IRQ_TYPE_EDGE_RISING>;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pm8008_active>;
-+
-+	reset-gpios = <&pm8350c_gpios 4 GPIO_ACTIVE_LOW>;
-+
-+	vdd_l1_l2-supply = <&vreg_s8b_1p2>;
-+	vdd_l3_l4-supply = <&vreg_s1b_1p8>;
-+	vdd_l5-supply = <&vreg_bob>;
-+	vdd_l6-supply = <&vreg_bob>;
-+	vdd_l7-supply = <&vreg_bob>;
-+};
-+
-+&pm8008_l1 {
-+	regulator-min-microvolt = <950000>;
-+	regulator-max-microvolt = <1300000>;
-+};
-+
-+&pm8008_l2 {
-+	regulator-min-microvolt = <950000>;
-+	regulator-max-microvolt = <1250000>;
-+};
-+
-+&pm8008_l3 {
-+	regulator-min-microvolt = <1650000>;
-+	regulator-max-microvolt = <3000000>;
-+};
-+
-+&pm8008_l4 {
-+	regulator-min-microvolt = <1504000>;
-+	regulator-max-microvolt = <1600000>;
-+};
-+
-+&pm8008_l5 {
-+	regulator-min-microvolt = <2600000>;
-+	regulator-max-microvolt = <3000000>;
-+};
-+
-+&pm8008_l6 {
-+	regulator-min-microvolt = <2600000>;
-+	regulator-max-microvolt = <3000000>;
-+};
-+
-+&pm8008_l7 {
-+	regulator-min-microvolt = <3000000>;
-+	regulator-max-microvolt = <3544000>;
-+};
-+
- &qfprom {
- 	vcc-supply = <&vreg_l1c_1p8>;
- };
-@@ -383,6 +440,15 @@
- 	drive-strength = <2>;
- };
- 
-+&pm8350c_gpios {
-+	pm8008_active: pm8008-active {
-+		pins = "gpio4";
-+		function = "normal";
-+		bias-disable;
-+		power-source = <0>;
-+	};
-+};
-+
- &qspi_cs0 {
- 	bias-disable;
- };
--- 
-2.7.4
+> +
+> +    properties:
+> +      compatible:
+> +        enum:
+> +          - richtek,rt5120-pwrkey
+> +
+> +    required:
+> +      - compatible
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - '#interrupt-cells'
+> +  - interrupt-controller
+> +  - regulators
+> +  - powerkey
 
+You wrote powerkey is optional... so the node should not be required, right?
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      pmic@62 {
+> +        compatible = "richtek,rt5120";
+> +        reg = <0x62>;
+> +        interrupts-extended = <&gpio_intc 32 IRQ_TYPE_LEVEL_LOW>;
+> +        interrupt-controller;
+> +        #interrupt-cells = <1>;
+> +        wakeup-source;
+> +
+> +        regulators {
+> +          buck1 {
+> +            regulator-name = "rt5120-buck1";
+> +            regulator-min-microvolt = <600000>;
+> +            regulator-max-microvolt = <1393750>;
+> +            regulator-allowed-modes = <0 1>;
+> +            regulator-boot-on;
+> +          };
+> +          buck2 {
+> +            regulator-name = "rt5120-buck2";
+> +            regulator-min-microvolt = <1100000>;
+> +            regulator-max-microvolt = <1100000>;
+> +            regulator-allowed-modes = <0 1>;
+> +            regulator-always-on;
+> +          };
+> +          buck3 {
+> +            regulator-name = "rt5120-buck3";
+> +            regulator-min-microvolt = <1800000>;
+> +            regulator-max-microvolt = <1800000>;
+> +            regulator-allowed-modes = <0 1>;
+> +            regulator-always-on;
+> +          };
+> +          buck4 {
+> +            regulator-name = "rt5120-buck4";
+> +            regulator-min-microvolt = <3300000>;
+> +            regulator-max-microvolt = <3300000>;
+> +            regulator-allowed-modes = <0 1>;
+> +            regulator-always-on;
+> +          };
+> +          ldo {
+> +            regulator-name = "rt5120-ldo";
+> +            regulator-min-microvolt = <1800000>;
+> +            regulator-max-microvolt = <1800000>;
+> +            regulator-always-on;
+> +          };
+> +          exten {
+> +            regulator-name = "rt5120-exten";
+> +            regulator-min-microvolt = <3000000>;
+> +            regulator-max-microvolt = <3000000>;
+> +            regulator-always-on;
+> +          };
+> +        };
+> +        powerkey {
+> +                status = "okay";
+
+Messed up indentation. No need for status in examples.
+
+> +                compatible = "richtek,rt5120-pwrkey";
+> +        };
+> +      };
+> +    };
+
+
+Best regards,
+Krzysztof
