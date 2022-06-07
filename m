@@ -2,60 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2198D53F8E6
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 10:57:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67131540093
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 15:59:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238796AbiFGI5n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 04:57:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40496 "EHLO
+        id S244918AbiFGN7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 09:59:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238829AbiFGI5h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 04:57:37 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B4225F5F;
-        Tue,  7 Jun 2022 01:57:24 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 439D5CE1F23;
-        Tue,  7 Jun 2022 08:57:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D838FC385A5;
-        Tue,  7 Jun 2022 08:57:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654592241;
-        bh=SriLGMk1BgEmrua1TDVNzRa6fB3h+Ll26QQJcP+HNDQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=aJWYGHBtNQdx0J7qIEpwO6vhrp/Tl0F1SJcNDkxO9NAzOwXogsbigd5F9Ks+5mvst
-         w1N5QtCnQKPDf2XFar2s3BHWAm1ASs6B2KVSVZbkaQsVjYNFXxNoNEuoLTQdh6Dgob
-         clk5qzOieQL4/SJFTnA51YM+Zgg+jgL5ZRZRp6oUGUTB9G4LEXFGDqZlDCgIkuWLAh
-         QplGjg5ZcDCLz6lrZN1kx0Tz98WU4D+oehvvI0J0/uiI3wJScLbnRpR+V3GcSx2rwO
-         YeESgAFTlpckJtqzydfeRjfeU5d77BJITMMOjQhNhgS1z6oJs1NEoOUfK9KczpYN0G
-         sUbOHW80AG+0Q==
-Date:   Tue, 7 Jun 2022 14:27:14 +0530
-From:   Manivannan Sadhasivam <mani@kernel.org>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        with ESMTP id S244570AbiFGN7e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 09:59:34 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56E6CC1EC0;
+        Tue,  7 Jun 2022 06:59:32 -0700 (PDT)
+X-UUID: ace8cd74f8ce4fd99de08cafac9355e7-20220607
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:adbdde54-99f6-4ec0-a825-8f65f00df0a1,OB:0,LO
+        B:0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:5
+X-CID-META: VersionHash:2a19b09,CLOUDID:f23ff5e4-2ba2-4dc1-b6c5-11feb6c769e0,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
+        ,QS:0,BEC:nil
+X-UUID: ace8cd74f8ce4fd99de08cafac9355e7-20220607
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 125801399; Tue, 07 Jun 2022 21:59:24 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with ShadowRedundancy id 15.2.792.3;
+ Tue, 7 Jun 2022 13:57:48 +0000
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Tue, 7 Jun 2022 17:04:13 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 7 Jun 2022 17:04:13 +0800
+Message-ID: <77cdd43716b49aaffd9e052f4fe2c88e198ea7ff.camel@mediatek.com>
+Subject: Re: [PATCH v10 18/21] drm/mediatek: Add mt8195 Embedded DisplayPort
+ driver
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
+        Guillaume Ranquet <granquet@baylibre.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        "Daniel Vetter" <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mtd@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 0/2] Add support for unprotected spare data page
-Message-ID: <20220607085714.GA5410@thinkpad>
-References: <20220519190112.6344-1-ansuelsmth@gmail.com>
- <20220603151806.GB26696@thinkpad>
- <629a2806.1c69fb81.591ea.6012@mx.google.com>
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        "Kishon Vijay Abraham I" <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, "Helge Deller" <deller@gmx.de>,
+        Jitao shi <jitao.shi@mediatek.com>
+CC:     Markus Schneider-Pargmann <msp@baylibre.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>, <linux-fbdev@vger.kernel.org>
+Date:   Tue, 7 Jun 2022 17:04:13 +0800
+In-Reply-To: <20220523104758.29531-19-granquet@baylibre.com>
+References: <20220523104758.29531-1-granquet@baylibre.com>
+         <20220523104758.29531-19-granquet@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <629a2806.1c69fb81.591ea.6012@mx.google.com>
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,103 +81,103 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 03, 2022 at 05:25:56PM +0200, Ansuel Smith wrote:
-> On Fri, Jun 03, 2022 at 08:48:06PM +0530, Manivannan Sadhasivam wrote:
-> > On Thu, May 19, 2022 at 09:01:10PM +0200, Ansuel Smith wrote:
-> > > Some background about this.
-> > > On original qsdk ipq8064 based firmware there was a big separation from
-> > > boot partition and user partition. With boot partition we refer to
-> > > partition used to init the router (bootloader, spm firmware and other
-> > > internal stuff) With user partition we refer to linux partition and data
-> > > partition not used to init the router.
-> > > When someone had to write to these boot partition a special mode was
-> > > needed, to switch the nand driver to this special configuration.
-> > > 
-> > > Upstream version of the nandc driver totally dropped this and the result
-> > > is that if someone try to read data from these partition a CRC warning
-> > > is printed and if someone try to write that (if for example someone
-> > > wants to replace the bootloader) result is a broken system as the data
-> > > is badly written.
-> > > 
-> > 
-> > Can you please point me to the downstream/vendor driver that has this
-> > implementation?
-> > 
-> > Thanks,
-> > Mani
-> >
-> 
-> Actually found the repo...This is the link [1].
-> 
-> My implementation is a variant of this since originally they used a
-> sysfs entry to swap the ecc configuration.
-> 
-> [1] https://github.com/marxfang/ipq807x-spf100-cs/blob/master/qsdk/qca/src/linux-4.4/drivers/mtd/nand/qcom_nandc.c
-> 
+Hi, Rex:
 
-Thanks for the link! After talking internally to Qcom folks, I confirmed
-that this quirk is only needed on IPQ8064 based platforms.
-
-More in the driver patch...
-
-Thanks,
-Mani
-
-> > > This series comes to fix this.
-> > > 
-> > > A user can declare offset and size of these special partition using the
-> > > qcom,boot-pages binding.
-> > > 
-> > > An initial implementation of this assumed that the boot-pages started
-> > > from the start of the nand but we discover that some device have backup
-> > > of these special partition and we can have situation where we have this
-> > > partition scheme
-> > > - APPSBL (require special mode)
-> > > - APPSBLENV (doesn't require special mode)
-> > > - ART
-> > > - APPSBLBK (back of APPSBL require special mode)
-> > > - APPSBLENVBK (back of APPSBLENV doesn't require special mode)
-> > > With this configuration we need to declare sparse boot page and we can't
-> > > assume boot-pages always starts from the start of the nand.
-> > > 
-> > > A user can use this form to declare sparse boot pages
-> > > qcom,boot-pages = <0x0 0x0c80000 0x0c80000 0x0500000>;
-> > > 
-> > > The driver internally will parse this array, convert it to nand pages
-> > > and check internally on every read/write if this special configuration
-> > > should used for that page or the normal one.
-> > > 
-> > > The reason for all of this is that qcom FOR SOME REASON, disable ECC for
-> > > spare data only for these boot partition and we need to reflect this
-> > > special configuration to mute these warning and to permit actually
-> > > writing to these pages.
-> > > 
-> > > v4:
-> > > - Fix wrong compatible set for boot-pages (ipq8074 instead of ipq806x)
-> > > v3:
-> > > - Fix typo in Docmunetation commit desription
-> > > - Add items description for uint32-matrix
-> > > v2:
-> > > - Add fixes from Krzysztof in Documentation
-> > > 
-> > > Ansuel Smith (2):
-> > >   mtd: nand: raw: qcom_nandc: add support for unprotected spare data
-> > >     pages
-> > >   dt-bindings: mtd: qcom_nandc: document qcom,boot-pages binding
-> > > 
-> > >  .../devicetree/bindings/mtd/qcom,nandc.yaml   |  26 +++
-> > >  drivers/mtd/nand/raw/qcom_nandc.c             | 148 +++++++++++++++++-
-> > >  2 files changed, 169 insertions(+), 5 deletions(-)
-> > > 
-> > > -- 
-> > > 2.34.1
-> > > 
-> > 
-> > -- 
-> > மணிவண்ணன் சதாசிவம்
+On Mon, 2022-05-23 at 12:47 +0200, Guillaume Ranquet wrote:
+> From: Markus Schneider-Pargmann <msp@baylibre.com>
 > 
-> -- 
-> 	Ansuel
+> This patch adds a DisplayPort driver for the Mediatek mt8195 SoC.
+> 
+> It supports the mt8195, the embedded DisplayPort units. It offers
+> DisplayPort 1.4 with up to 4 lanes.
+> 
+> The driver creates a child device for the phy. The child device will
+> never exist without the parent being active. As they are sharing a
+> register range, the parent passes a regmap pointer to the child so
+> that
+> both can work with the same register range. The phy driver sets
+> device
+> data that is read by the parent to get the phy device that can be
+> used
+> to control the phy properties.
+> 
+> This driver is based on an initial version by
+> Jason-JH.Lin <jason-jh.lin@mediatek.com>.
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> ---
 
--- 
-மணிவண்ணன் சதாசிவம்
+[snip]
+
+> +
+> +static irqreturn_t mtk_dp_hpd_event_thread(int hpd, void *dev)
+> +{
+> +	struct mtk_dp *mtk_dp = dev;
+> +	int event;
+> +	u8 buf[DP_RECEIVER_CAP_SIZE] = {};
+> +
+> +	event = mtk_dp_plug_state(mtk_dp) ? connector_status_connected
+> :
+> +						  connector_status_disc
+> onnected;
+> +
+> +	if (event < 0)
+> +		return IRQ_HANDLED;
+> +
+> +	if (mtk_dp->drm_dev) {
+> +		dev_info(mtk_dp->dev, "drm_helper_hpd_irq_event\n");
+> +		drm_helper_hpd_irq_event(mtk_dp->bridge.dev);
+> +	}
+> +
+> +	if (mtk_dp->train_info.cable_state_change) {
+> +		mtk_dp->train_info.cable_state_change = false;
+> +
+> +		mtk_dp->train_state = MTK_DP_TRAIN_STATE_STARTUP;
+> +
+> +		if (!mtk_dp->train_info.cable_plugged_in ||
+> +		    !mtk_dp_plug_state(mtk_dp)) {
+> +			mtk_dp_video_mute(mtk_dp, true);
+
+For eDP, when does 'unplug' happen? Explain this or move unplug
+processing to DP patch.
+
+Regards,
+CK
+
+> +
+> +			mtk_dp_initialize_priv_data(mtk_dp);
+> +			mtk_dp_set_idle_pattern(mtk_dp, true);
+> +			if (mtk_dp->has_fec)
+> +				mtk_dp_fec_enable(mtk_dp, false);
+> +
+> +			mtk_dp_update_bits(mtk_dp,
+> MTK_DP_TOP_PWR_STATE,
+> +					   DP_PWR_STATE_BANDGAP_TPLL,
+> +					   DP_PWR_STATE_MASK);
+> +		} else {
+> +			mtk_dp_update_bits(mtk_dp,
+> MTK_DP_TOP_PWR_STATE,
+> +					   DP_PWR_STATE_BANDGAP_TPLL_LA
+> NE,
+> +					   DP_PWR_STATE_MASK);
+> +			drm_dp_read_dpcd_caps(&mtk_dp->aux, buf);
+> +			mtk_dp->train_info.link_rate =
+> +				min_t(int, mtk_dp->max_linkrate,
+> +				      buf[mtk_dp->max_linkrate]);
+> +			mtk_dp->train_info.lane_count =
+> +				min_t(int, mtk_dp->max_lanes,
+> +				      drm_dp_max_lane_count(buf));
+> +		}
+> +	}
+> +
+> +	if (mtk_dp->train_info.irq_status & MTK_DP_HPD_INTERRUPT) {
+> +		dev_dbg(mtk_dp->dev, "MTK_DP_HPD_INTERRUPT\n");
+> +		mtk_dp->train_info.irq_status &= ~MTK_DP_HPD_INTERRUPT;
+> +		mtk_dp_hpd_sink_event(mtk_dp);
+> +	}
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+
