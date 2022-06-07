@@ -2,21 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3D29542707
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 08:58:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD5B85424AB
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 08:52:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233030AbiFHCza (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 22:55:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51140 "EHLO
+        id S230461AbiFHDWs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 23:22:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1443731AbiFHCxM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 22:53:12 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8FA01F0A76
-        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 13:43:09 -0700 (PDT)
+        with ESMTP id S231946AbiFHDVz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 23:21:55 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.73])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18AAD1F0FE4
+        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 13:43:08 -0700 (PDT)
 Received: from localhost.localdomain ([37.4.249.155]) by
  mrelayeu.kundenserver.de (mreue106 [212.227.15.183]) with ESMTPSA (Nemesis)
- id 1MauJJ-1nMJPg3BQh-00cPYl; Tue, 07 Jun 2022 22:42:55 +0200
+ id 1MxVfj-1na6uH0ufB-00xuiT; Tue, 07 Jun 2022 22:42:56 +0200
 From:   Stefan Wahren <stefan.wahren@i2se.com>
 To:     Florian Fainelli <f.fainelli@gmail.com>,
         Ray Jui <rjui@broadcom.com>,
@@ -29,107 +29,99 @@ Cc:     Peter Robinson <pbrobinson@gmail.com>,
         Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         Stefan Wahren <stefan.wahren@i2se.com>
-Subject: [PATCH V3 08/11] soc: bcm: bcm2835-power: Refactor ASB control
-Date:   Tue,  7 Jun 2022 22:42:23 +0200
-Message-Id: <20220607204226.8703-9-stefan.wahren@i2se.com>
+Subject: [PATCH V3 09/11] soc: bcm: bcm2835-power: Resolve ASB register macros
+Date:   Tue,  7 Jun 2022 22:42:24 +0200
+Message-Id: <20220607204226.8703-10-stefan.wahren@i2se.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220607204226.8703-1-stefan.wahren@i2se.com>
 References: <20220607204226.8703-1-stefan.wahren@i2se.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:WFPoiHPB+UjDxwBJeyOPFDIsAZ2kFHIp5hl9lhT0C5P23iX8MAL
- hs3ueGpJWcZvTQvL5Z7lU09ZxQbRpKJ8cyCjk3ugL5KcurH9fqifJyrWeYIKYfAyEiXkFPj
- cdyVFM2q9qTC5ob6RzyAqEa3cjC9TKtxo8BgXaWT1cIBtzPg0Xj179/nqowi1x2il/X9fm/
- oqgL4QjvRsh7yKx1srTww==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:3PxX7hzxzDY=:2Rxbo+3IaeIwrBEm7e8a84
- WwGYUk2bcj0HVIgHRla2bMbFA8ZdmBVTCn+gUMao483mw3xC+KkRSMxV5eXIAhAVzVGLK5jQj
- qo9AnE8OxtBqUwPFQR9Nvd3olQpSDG6jvB1XK1atq1sMOo0XwF607d07HhjUcSRE4ZDhjVsMl
- xtXf1GFTC7cvfCbslbCBQOGT9v12sm7M94BKIp8kpfO/lfx0dhOxRHMosDrjNpVVKxjYZEsaJ
- UvAJLwzHr6WyBGGGMzuAzPFQv3DFLJ2xPOX84WxBqcVZ5jgR+TfNa1CGnBKGAsUJue4dMjoZk
- GrVa8eRNBUCxu8nrcmeCoAq+yNV77zOBGUdPzrkG3967XnkPQlruTmadE74JoNh8Uvnt517Y9
- +09+sF1KdY4FYhUT0NF8xcKqBGYUIVLexH166EBo+7r7aImFEqXSnz4CY4yaEX6sY6w3+kZgU
- onSO+e3L4qae8Is0QHJJ4ZCXEegWJUdATfcCGuWihzqbgRdcaSNlbzT2mRoMgRBmNSv20qx0t
- LtbQj7ggncMdUgHeOQHe+015eCYruphbf7j5viJZDc8eO1g8dD1CUQZOci0mNmyxwCRiqkw5C
- iVJon2qqroKguCI1aI2b3MFVLHdZ1ypmMi30CJxVA+nUe3zZEf/ttfM4LqSI1Q/4RwoKl8+ia
- kRk/N8AlG5oEl2GNEAic55D0LIDUjGIIa9dViQ1gqA+NjNJlfnmriBKlhAtlzuhDyjtJriSWI
- UibXpMZAIzORog1R+kF5wZK4lQaQPmni6D8SOLZjrYt3Oe6ILF3OMaX0OmY=
+X-Provags-ID: V03:K1:TO0tcJhnc6nhVz7iEf0cEFHoHRyEGHAlr/i1E9NHLoKByewzB/J
+ hyUBqfRDttjveiaVdHwzt357GJF9Oe6GPSorJlyJYsJ5LqZipZbWt9lvELJWl4laaX5tlUm
+ 7Fvbk+lHu4r7NW5p0LowYno4vuCyDn70kiREiTozMnEjCqd7ZlbWB0JFTI/3/mVxIoppowk
+ cNbeHiKvO8e25/ssZmC1g==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:n6ovhqRBigY=:cuHDaTY5kjmUVkxZ1plKZr
+ AVWZoZ4tF9bspBhvblEcptCiOVy/kJk2kOnboSUMH9ggtJiQbBh8jUXAWm6eFyHJjIksa6wx0
+ 849a/w4l5wkY4m/i9RFxz9JUUG68qQVRAUh1p+xsIkk9OVr/9Te+/AwRZYIiIjUzOTMNOVhiu
+ zbU18MvXAzkSfFMRx3rQGjWuGwoKWEwZ9zY1bS5N3T9bshvu/WDfz8A5VVOSbOY3Lnk7bXiGv
+ INQcpO7AjE91DhceUohDZR3ca5tvBS/bDSbPTCEiMzo9jTWA08r62reHSo9zv7CvGzuVvJRhY
+ ALCMxCxX+p/3m0ENqmPEBYR/q7zpBPcYLBMoHCRRWQVDt1TWcucIJmaHM8mfpDSs78KHGswSn
+ 9Nv4uvvYhA5MrJDNsVxV+I3m9ZInSe/3lpE95zXeSlMAZ5Oen7L6bie07hhOW9zGyKRViVNx9
+ sAupSSvmThqOUeKjwVEIdon6PwDYSsUiKpXrgBOJC43auaW2+lG1wcqcd4C45fr3f14xNMU93
+ BI7KcDdN44gSaKBptz2Q2pVESDugcEY9G8zvsYBaHzjVYKqXYYTZ5fp8kxo7mkCvIeIEgX381
+ r99a8EoHIP0ZVgfPRV1HdhjovBt35DWcz8A4HCQGVqqaQr5Cow0WDlil0v2htjfZnK9IZZXVI
+ 6McKmCMgKAdzHNEuLijWZZRP/S9jA3hih61AHfX0tiUutLDg/Eid8JuSdd5BGFJYpHKtMITnX
+ u0jSp++CbcXRhrQ+0k9L925kRsdhwXUyF+J2BtzqCWrdb6zVFffWiu9GEmw=
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The functions to control the async AXI bridges are almost identical.
-So define a general function to handle it and keep the original ones as
-wrapper. This should make this driver easier to extend.
+The macros in order to access the ASB registers have a hard coded base
+address. So extending them for other platforms would make them harder
+to read. As a solution resolve these macros.
 
 Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
 Reviewed-by: Peter Robinson <pbrobinson@gmail.com>
 ---
- drivers/soc/bcm/bcm2835-power.c | 31 +++++++++++++------------------
- 1 file changed, 13 insertions(+), 18 deletions(-)
+ drivers/soc/bcm/bcm2835-power.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/soc/bcm/bcm2835-power.c b/drivers/soc/bcm/bcm2835-power.c
-index 1e0041ec8132..77dc9e62b207 100644
+index 77dc9e62b207..9c352f66e6d5 100644
 --- a/drivers/soc/bcm/bcm2835-power.c
 +++ b/drivers/soc/bcm/bcm2835-power.c
-@@ -148,7 +148,7 @@ struct bcm2835_power {
- 	struct reset_controller_dev reset;
- };
+@@ -126,9 +126,6 @@
  
--static int bcm2835_asb_enable(struct bcm2835_power *power, u32 reg)
-+static int bcm2835_asb_control(struct bcm2835_power *power, u32 reg, bool enable)
+ #define ASB_AXI_BRDG_ID			0x20
+ 
+-#define ASB_READ(reg) readl(power->asb + (reg))
+-#define ASB_WRITE(reg, val) writel(PM_PASSWORD | (val), power->asb + (reg))
+-
+ struct bcm2835_power_domain {
+ 	struct generic_pm_domain base;
+ 	struct bcm2835_power *power;
+@@ -150,7 +147,9 @@ struct bcm2835_power {
+ 
+ static int bcm2835_asb_control(struct bcm2835_power *power, u32 reg, bool enable)
  {
++	void __iomem *base = power->asb;
  	u64 start;
++	u32 val;
  
-@@ -158,7 +158,12 @@ static int bcm2835_asb_enable(struct bcm2835_power *power, u32 reg)
- 	start = ktime_get_ns();
+ 	if (!reg)
+ 		return 0;
+@@ -159,12 +158,13 @@ static int bcm2835_asb_control(struct bcm2835_power *power, u32 reg, bool enable
  
  	/* Enable the module's async AXI bridges. */
--	ASB_WRITE(reg, ASB_READ(reg) & ~ASB_REQ_STOP);
-+	if (enable) {
-+		ASB_WRITE(reg, ASB_READ(reg) & ~ASB_REQ_STOP);
-+	} else {
-+		ASB_WRITE(reg, ASB_READ(reg) | ASB_REQ_STOP);
-+	}
-+
- 	while (ASB_READ(reg) & ASB_ACK) {
+ 	if (enable) {
+-		ASB_WRITE(reg, ASB_READ(reg) & ~ASB_REQ_STOP);
++		val = readl(base + reg) & ~ASB_REQ_STOP;
+ 	} else {
+-		ASB_WRITE(reg, ASB_READ(reg) | ASB_REQ_STOP);
++		val = readl(base + reg) | ASB_REQ_STOP;
+ 	}
++	writel(PM_PASSWORD | val, base + reg);
+ 
+-	while (ASB_READ(reg) & ASB_ACK) {
++	while (readl(base + reg) & ASB_ACK) {
  		cpu_relax();
  		if (ktime_get_ns() - start >= 1000)
-@@ -168,24 +173,14 @@ static int bcm2835_asb_enable(struct bcm2835_power *power, u32 reg)
- 	return 0;
- }
+ 			return -ETIMEDOUT;
+@@ -622,7 +622,7 @@ static int bcm2835_power_probe(struct platform_device *pdev)
+ 	power->base = pm->base;
+ 	power->asb = pm->asb;
  
--static int bcm2835_asb_disable(struct bcm2835_power *power, u32 reg)
-+static int bcm2835_asb_enable(struct bcm2835_power *power, u32 reg)
- {
--	u64 start;
--
--	if (!reg)
--		return 0;
--
--	start = ktime_get_ns();
--
--	/* Enable the module's async AXI bridges. */
--	ASB_WRITE(reg, ASB_READ(reg) | ASB_REQ_STOP);
--	while (!(ASB_READ(reg) & ASB_ACK)) {
--		cpu_relax();
--		if (ktime_get_ns() - start >= 1000)
--			return -ETIMEDOUT;
--	}
-+	return bcm2835_asb_control(power, reg, true);
-+}
- 
--	return 0;
-+static int bcm2835_asb_disable(struct bcm2835_power *power, u32 reg)
-+{
-+	return bcm2835_asb_control(power, reg, false);
- }
- 
- static int bcm2835_power_power_off(struct bcm2835_power_domain *pd, u32 pm_reg)
+-	id = ASB_READ(ASB_AXI_BRDG_ID);
++	id = readl(power->asb + ASB_AXI_BRDG_ID);
+ 	if (id != 0x62726467 /* "BRDG" */) {
+ 		dev_err(dev, "ASB register ID returned 0x%08x\n", id);
+ 		return -ENODEV;
 -- 
 2.25.1
 
