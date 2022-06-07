@@ -2,694 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B76895424C5
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 08:52:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9239542741
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 08:59:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380379AbiFHAto (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 20:49:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40596 "EHLO
+        id S1348688AbiFHAss (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 20:48:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1575209AbiFGX0z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 19:26:55 -0400
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 603854096A7
-        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 14:38:58 -0700 (PDT)
-Received: by mail-oi1-x22c.google.com with SMTP id s124so7535389oia.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 14:38:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=mmhJTrds0AK825mdt0RAOR2S9VJs5ATamOGYxgtTiGE=;
-        b=kgtVED8yCNKTkSolu+HhI4L0ia4bhgC9LPlxsdechqL+fiMDvnqPzY76GC7xcuBJB2
-         +Qle3/2cVItzOrsti8mklUwWCeH5Qw30E3vSbxY0xhf3UN0axpShuqk+onrRIWIQeX2K
-         qzmC5ic6PvIKx3E8PHNVxdlQ2lBioQ2Nj+oCgfP4cD7dQl/RQrztTGupSJxbeR0EoIAE
-         nwVATnJ9WITVxNXa/nCG+xiS6NNxrKqDDPkh7fy0r71uNrAaYrJQ366mQpNzD1EWkYtm
-         90Do+NXb/OGa3nSUZv/ym/KTNl7HCmkrtaKO2LWpL2xxqyuMeVB1+SMpiGI1ryzWgtj0
-         aSQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=mmhJTrds0AK825mdt0RAOR2S9VJs5ATamOGYxgtTiGE=;
-        b=OFBfeygHgnCkLnCjisPTgIgQ3Pp9dGRIVF/h8z5V72vJEcCnDaWtVRlaAS9LoQQ0tu
-         a1PMehdQkyNsxZ3IVtRUa/HFnUUI+ivVg2avny9JXncZNOolVULRmBtUtoE8LHPKKeHj
-         hd7wcyru0cfonn8Xtti+fUUNaUs2R5Ks92ojBOGCqFkQ2loBiJld0VAFMh1mDwXvl5gN
-         i8mceJE3ZHj9mFRRjkImwsTbMp918uuzQmALF5+gA02EFwMK6ownQYAPS7N/igXLkTEC
-         5F9b3iL1dtK6tAmzB2O9dNh533gPenTAz7wjvxqcPKWGgvOwLrxh3MhM38YI9qRugPvj
-         OKdg==
-X-Gm-Message-State: AOAM531Dti5fzBFNe/dwKTnriWSvYvizbehTsUFLQryNtX4m+Oh8fgUB
-        GDc4mUJR65so3XEPSmKyWzr+yw==
-X-Google-Smtp-Source: ABdhPJxhCOn4x9ulK4BZABDhXUp2WB1BUMpNTcNNkp4vcQ/D/EW0ImPOa3V3AjWnBjEqapmqHj58nw==
-X-Received: by 2002:a05:6808:1308:b0:32b:a23d:bc05 with SMTP id y8-20020a056808130800b0032ba23dbc05mr571724oiv.145.1654637933525;
-        Tue, 07 Jun 2022 14:38:53 -0700 (PDT)
-Received: from ripper.. (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id cr11-20020a056870ebcb00b000f33a37411dsm8554122oab.26.2022.06.07.14.38.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jun 2022 14:38:52 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>
-Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 4/4] arm64: dts: qcom: add SA8540P and ADP
-Date:   Tue,  7 Jun 2022 14:41:13 -0700
-Message-Id: <20220607214113.4057684-5-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220607214113.4057684-1-bjorn.andersson@linaro.org>
-References: <20220607214113.4057684-1-bjorn.andersson@linaro.org>
+        with ESMTP id S1580912AbiFGXma (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 19:42:30 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73826243ED8;
+        Tue,  7 Jun 2022 14:56:37 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B51E8895;
+        Tue,  7 Jun 2022 23:56:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1654638994;
+        bh=8e+jILCgnnwJuUe2upSQaQdhfc29+TaDklo1e37/sec=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=vUJXYVRYLI8ncfB8pKxzsyNZBVz3xEVOVJ/qZLb8mbJ+NY62zPSSXeNLbBP5ew1B0
+         hQMWPJ+IXc1wkNV581cy1zo2PPVRhIi2VRiKbkwf15q616PSUZgyjVbYC/ZLwU4x4M
+         pR4ZOORv+qZ4KqT+KG6TZ6o9sFrr7CxSkoboemsU=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20220607134057.2427663-1-bryan.odonoghue@linaro.org>
+References: <20220607134057.2427663-1-bryan.odonoghue@linaro.org>
+Subject: Re: [PATCH 0/2] Add imx577 compatible to imx412
+From:   Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc:     dmitry.baryshkov@linaro.org, konrad.dybcio@somainline.org,
+        andrey.konovalov@linaro.org,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        daniele.alessandrelli@intel.com, devicetree@vger.kernel.org,
+        jacopo@jmondi.org, linux-media@vger.kernel.org, mchehab@kernel.org,
+        paul.j.murphy@intel.com, sakari.ailus@iki.fi
+Date:   Tue, 07 Jun 2022 22:56:32 +0100
+Message-ID: <165463899225.186364.3363631428060807036@Monstersaurus>
+User-Agent: alot/0.10
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introduce the Qualcomm SA8540P automotive platform and the SA8295P ADP
-development board.
+Quoting Bryan O'Donoghue (2022-06-07 14:40:55)
+> Right now the imx412 and imx577 are code and pin compatible however, they
+> are distinct pieces of silicon.
+>=20
+> Document imx577 as a compatible enum and add the compat string to imx412.=
+c.
+> This allows us to differentiate these chips in DTS and potentially to app=
+ly
+> any future imx412 or imx577 specific changes appropriately.
 
-The SA8540P and SC8280XP are fairly similar, so the SA8540P is built
-ontop of the SC8280XP dtsi to reduce duplication. As more advanced
-features are integrated this might be re-evaluated.
+While I think this is probably fine to get things working, there seems to
+be quite a few extra features in the IMX577 [0] compared with the IMX412 [1=
+].=20
 
-This initial contribution supports SMP, CPUFreq, cluster idle, UFS, RPMh
-regulators, debug UART, PMICs, remoteprocs (NSPs crashes shortly after
-booting) and USB.
+[0] https://www.sony-semicon.co.jp/products/common/pdf/IMX412-AACK_Flyer03.=
+pdf
+[1] https://www.sony-semicon.co.jp/products/common/pdf/IMX577-AACK_Flyer.pdf
 
-The SA8295P ADP contains four PM8450 PMICs, which according to their
-revid are compatible with PM8150. They are defined within the ADP for
-now, to avoid creating additional .dtsi files for PM8150 with just
-addresses changed - and to allow using the labels from the schematics.
+I certainly agree though that it's better to declare the camera
+correctly in the DT - so it's better to add this support than 'fake' the
+DT to say it's an IMX412 on the platform.
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- arch/arm64/boot/dts/qcom/Makefile        |   1 +
- arch/arm64/boot/dts/qcom/sa8295p-adp.dts | 434 +++++++++++++++++++++++
- arch/arm64/boot/dts/qcom/sa8540p.dtsi    | 133 +++++++
- 3 files changed, 568 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sa8295p-adp.dts
- create mode 100644 arch/arm64/boot/dts/qcom/sa8540p.dtsi
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index ceeae094a59f..2f416b84b71c 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -52,6 +52,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qrb5165-rb5.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sa8155p-adp.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sa8295p-adp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-idp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1-lte.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-new file mode 100644
-index 000000000000..f78203d7bfd2
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-@@ -0,0 +1,434 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2022, Linaro Limited
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/gpio-keys.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-+#include <dt-bindings/spmi/spmi.h>
-+
-+#include "sa8540p.dtsi"
-+
-+/ {
-+	model = "Qualcomm SA8295P ADP";
-+	compatible = "qcom,sa8295p-adp", "qcom,sa8540p";
-+
-+	aliases {
-+		serial0 = &qup2_uart17;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	reserved-memory {
-+	};
-+};
-+
-+&apps_rsc {
-+	pmm8540-a-regulators {
-+		compatible = "qcom,pm8150-rpmh-regulators";
-+		qcom,pmic-id = "a";
-+
-+		vreg_l3a: ldo3 {
-+			regulator-name = "vreg_l3a";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1208000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l5a: ldo5 {
-+			regulator-name = "vreg_l5a";
-+			regulator-min-microvolt = <912000>;
-+			regulator-max-microvolt = <912000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l7a: ldo7 {
-+			regulator-name = "vreg_l7a";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l13a: ldo13 {
-+			regulator-name = "vreg_l13a";
-+			regulator-min-microvolt = <3072000>;
-+			regulator-max-microvolt = <3072000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+		};
-+	};
-+
-+	pmm8540-c-regulators {
-+		compatible = "qcom,pm8150-rpmh-regulators";
-+		qcom,pmic-id = "c";
-+
-+		vreg_l1c: ldo1 {
-+			regulator-name = "vreg_l1c";
-+			regulator-min-microvolt = <912000>;
-+			regulator-max-microvolt = <912000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l2c: ldo2 {
-+			regulator-name = "vreg_l2c";
-+			regulator-min-microvolt = <3072000>;
-+			regulator-max-microvolt = <3072000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l3c: ldo3 {
-+			regulator-name = "vreg_l3c";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l4c: ldo4 {
-+			regulator-name = "vreg_l4c";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1208000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l6c: ldo6 {
-+			regulator-name = "vreg_l6c";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l7c: ldo7 {
-+			regulator-name = "vreg_l7c";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l10c: ldo10 {
-+			regulator-name = "vreg_l10c";
-+			regulator-min-microvolt = <2504000>;
-+			regulator-max-microvolt = <2504000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l17c: ldo17 {
-+			regulator-name = "vreg_l17c";
-+			regulator-min-microvolt = <2504000>;
-+			regulator-max-microvolt = <2504000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+		};
-+	};
-+
-+	pmm8540-g-regulators {
-+		compatible = "qcom,pm8150-rpmh-regulators";
-+		qcom,pmic-id = "g";
-+
-+		vreg_l3g: ldo3 {
-+			regulator-name = "vreg_l3g";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l7g: ldo7 {
-+			regulator-name = "vreg_l7g";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+		};
-+
-+		vreg_l8g: ldo8 {
-+			regulator-name = "vreg_l8g";
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <880000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-allow-set-load;
-+		};
-+	};
-+};
-+
-+&qup2 {
-+	status = "okay";
-+};
-+
-+&qup2_uart17 {
-+	compatible = "qcom,geni-debug-uart";
-+	status = "okay";
-+};
-+
-+&remoteproc_adsp {
-+	status = "okay";
-+	firmware-name = "qcom/sa8540p/adsp.mbn";
-+};
-+
-+&remoteproc_nsp0 {
-+	status = "okay";
-+	firmware-name = "qcom/sa8540p/cdsp.mbn";
-+};
-+
-+&remoteproc_nsp1 {
-+	status = "okay";
-+	firmware-name = "qcom/sa8540p/cdsp1.mbn";
-+};
-+
-+&spmi_bus {
-+	pm8450a: pmic@0 {
-+		compatible = "qcom,pm8150", "qcom,spmi-pmic";
-+		reg = <0x0 SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		pm8450a_gpios: gpio@c000 {
-+			compatible = "qcom,pm8150-gpio";
-+			reg = <0xc000>;
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+
-+	pm8450c: pmic@4 {
-+		compatible = "qcom,pm8150", "qcom,spmi-pmic";
-+		reg = <0x4 SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		pm8450c_gpios: gpio@c000 {
-+			compatible = "qcom,pm8150-gpio";
-+			reg = <0xc000>;
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+
-+	pm8450e: pmic@8 {
-+		compatible = "qcom,pm8150", "qcom,spmi-pmic";
-+		reg = <0x8 SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		pm8450e_gpios: gpio@c000 {
-+			compatible = "qcom,pm8150-gpio";
-+			reg = <0xc000>;
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+
-+	pm8450g: pmic@c {
-+		compatible = "qcom,pm8150", "qcom,spmi-pmic";
-+		reg = <0xc SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		pm8450g_gpios: gpio@c000 {
-+			compatible = "qcom,pm8150-gpio";
-+			reg = <0xc000>;
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+};
-+
-+&ufs_mem_hc {
-+	status = "okay";
-+
-+	reset-gpios = <&tlmm 228 GPIO_ACTIVE_LOW>;
-+
-+	vcc-supply = <&vreg_l17c>;
-+	vcc-max-microamp = <800000>;
-+	vccq-supply = <&vreg_l6c>;
-+	vccq-max-microamp = <900000>;
-+};
-+
-+&ufs_mem_phy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vreg_l8g>;
-+	vdda-pll-supply = <&vreg_l3g>;
-+};
-+
-+&ufs_card_hc {
-+	status = "okay";
-+
-+	reset-gpios = <&tlmm 229 GPIO_ACTIVE_LOW>;
-+
-+	vcc-supply = <&vreg_l10c>;
-+	vcc-max-microamp = <800000>;
-+	vccq-supply = <&vreg_l3c>;
-+	vccq-max-microamp = <900000>;
-+};
-+
-+&ufs_card_phy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vreg_l8g>;
-+	vdda-pll-supply = <&vreg_l3g>;
-+};
-+
-+&usb_0 {
-+	status = "okay";
-+};
-+
-+&usb_0_dwc3 {
-+	/* TODO: Define USB-C connector properly */
-+	dr_mode = "peripheral";
-+};
-+
-+&usb_0_hsphy {
-+	status = "okay";
-+
-+	vdda-pll-supply = <&vreg_l5a>;
-+	vdda18-supply = <&vreg_l7a>;
-+	vdda33-supply = <&vreg_l13a>;
-+};
-+
-+&usb_0_qmpphy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vreg_l3a>;
-+	vdda-pll-supply = <&vreg_l5a>;
-+};
-+
-+&usb_1 {
-+	status = "okay";
-+};
-+
-+&usb_1_dwc3 {
-+	/* TODO: Define USB-C connector properly */
-+	dr_mode = "host";
-+};
-+
-+&usb_1_hsphy {
-+	status = "okay";
-+
-+	vdda-pll-supply = <&vreg_l1c>;
-+	vdda18-supply = <&vreg_l7c>;
-+	vdda33-supply = <&vreg_l2c>;
-+};
-+
-+&usb_1_qmpphy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vreg_l4c>;
-+	vdda-pll-supply = <&vreg_l1c>;
-+};
-+
-+&usb_2 {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&usb2_en_state>, <&usb3_en_state>, <&usb4_en_state>, <&usb5_en_state>;
-+};
-+
-+&usb_2_dwc3 {
-+	dr_mode = "host";
-+};
-+
-+&usb_2_hsphy0 {
-+	status = "okay";
-+
-+	vdda-pll-supply = <&vreg_l5a>;
-+	vdda18-supply = <&vreg_l7g>;
-+	vdda33-supply = <&vreg_l13a>;
-+};
-+
-+&usb_2_hsphy1 {
-+	status = "okay";
-+
-+	vdda-pll-supply = <&vreg_l5a>;
-+	vdda18-supply = <&vreg_l7g>;
-+	vdda33-supply = <&vreg_l13a>;
-+};
-+
-+&usb_2_hsphy2 {
-+	status = "okay";
-+
-+	vdda-pll-supply = <&vreg_l5a>;
-+	vdda18-supply = <&vreg_l7g>;
-+	vdda33-supply = <&vreg_l13a>;
-+};
-+
-+&usb_2_hsphy3 {
-+	status = "okay";
-+
-+	vdda-pll-supply = <&vreg_l5a>;
-+	vdda18-supply = <&vreg_l7g>;
-+	vdda33-supply = <&vreg_l13a>;
-+};
-+
-+&usb_2_qmpphy0 {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vreg_l3a>;
-+	vdda-pll-supply = <&vreg_l5a>;
-+};
-+
-+&usb_2_qmpphy1 {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vreg_l3a>;
-+	vdda-pll-supply = <&vreg_l5a>;
-+};
-+
-+/* PINCTRL */
-+&pm8450c_gpios {
-+	usb2_en_state: usb2-en-state {
-+		pins = "gpio9";
-+		function = "normal";
-+		output-high;
-+		power-source = <0>;
-+	};
-+};
-+
-+&pm8450e_gpios {
-+	usb3_en_state: usb3-en-state {
-+		pins = "gpio5";
-+		function = "normal";
-+		output-high;
-+		power-source = <0>;
-+	};
-+};
-+
-+&pm8450g_gpios {
-+	usb4_en_state: usb4-en-state {
-+		pins = "gpio5";
-+		function = "normal";
-+		output-high;
-+		power-source = <0>;
-+	};
-+
-+	usb5_en_state: usb5-en-state {
-+		pins = "gpio9";
-+		function = "normal";
-+		output-high;
-+		power-source = <0>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sa8540p.dtsi b/arch/arm64/boot/dts/qcom/sa8540p.dtsi
-new file mode 100644
-index 000000000000..8ea2886fbab2
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sa8540p.dtsi
-@@ -0,0 +1,133 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2022, Linaro Limited
-+ */
-+
-+#include "sc8280xp.dtsi"
-+
-+/delete-node/ &cpu0_opp_table;
-+/delete-node/ &cpu4_opp_table;
-+
-+/ {
-+	cpu0_opp_table: cpu0-opp-table {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp-403200000 {
-+			opp-hz = /bits/ 64 <403200000>;
-+		};
-+		opp-499200000 {
-+			opp-hz = /bits/ 64 <499200000>;
-+		};
-+		opp-595200000 {
-+			opp-hz = /bits/ 64 <595200000>;
-+		};
-+		opp-710400000 {
-+			opp-hz = /bits/ 64 <710400000>;
-+		};
-+		opp-806400000 {
-+			opp-hz = /bits/ 64 <806400000>;
-+		};
-+		opp-902400000 {
-+			opp-hz = /bits/ 64 <902400000>;
-+		};
-+		opp-1017600000 {
-+			opp-hz = /bits/ 64 <1017600000>;
-+		};
-+		opp-1113600000 {
-+			opp-hz = /bits/ 64 <1113600000>;
-+		};
-+		opp-1209600000 {
-+			opp-hz = /bits/ 64 <1209600000>;
-+		};
-+		opp-1324800000 {
-+			opp-hz = /bits/ 64 <1324800000>;
-+		};
-+		opp-1440000000 {
-+			opp-hz = /bits/ 64 <1440000000>;
-+		};
-+		opp-1555200000 {
-+			opp-hz = /bits/ 64 <1555200000>;
-+		};
-+		opp-1670400000 {
-+			opp-hz = /bits/ 64 <1670400000>;
-+		};
-+		opp-1785600000 {
-+			opp-hz = /bits/ 64 <1785600000>;
-+		};
-+		opp-1881600000 {
-+			opp-hz = /bits/ 64 <1881600000>;
-+		};
-+		opp-2016000000 {
-+			opp-hz = /bits/ 64 <2016000000>;
-+		};
-+		opp-2131200000 {
-+			opp-hz = /bits/ 64 <2131200000>;
-+		};
-+		opp-2246400000 {
-+			opp-hz = /bits/ 64 <2246400000>;
-+		};
-+	};
-+
-+	cpu4_opp_table: cpu4-opp-table {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp-825600000 {
-+			opp-hz = /bits/ 64 <825600000>;
-+		};
-+		opp-940800000 {
-+			opp-hz = /bits/ 64 <940800000>;
-+		};
-+		opp-1056000000 {
-+			opp-hz = /bits/ 64 <1056000000>;
-+		};
-+		opp-1171200000 {
-+			opp-hz = /bits/ 64 <1171200000>;
-+		};
-+		opp-1286400000 {
-+			opp-hz = /bits/ 64 <1286400000>;
-+		};
-+		opp-1401600000 {
-+			opp-hz = /bits/ 64 <1401600000>;
-+		};
-+		opp-1516800000 {
-+			opp-hz = /bits/ 64 <1516800000>;
-+		};
-+		opp-1632000000 {
-+			opp-hz = /bits/ 64 <1632000000>;
-+		};
-+		opp-1747200000 {
-+			opp-hz = /bits/ 64 <1747200000>;
-+		};
-+		opp-1862400000 {
-+			opp-hz = /bits/ 64 <1862400000>;
-+		};
-+		opp-1977600000 {
-+			opp-hz = /bits/ 64 <1977600000>;
-+		};
-+		opp-2073600000 {
-+			opp-hz = /bits/ 64 <2073600000>;
-+		};
-+		opp-2169600000 {
-+			opp-hz = /bits/ 64 <2169600000>;
-+		};
-+		opp-2284800000 {
-+			opp-hz = /bits/ 64 <2284800000>;
-+		};
-+		opp-2380800000 {
-+			opp-hz = /bits/ 64 <2380800000>;
-+		};
-+		opp-2496000000 {
-+			opp-hz = /bits/ 64 <2496000000>;
-+		};
-+		opp-2592000000 {
-+			opp-hz = /bits/ 64 <2592000000>;
-+		};
-+	};
-+};
-+
-+&rpmhpd {
-+	compatible = "qcom,sa8540p-rpmhpd";
-+};
--- 
-2.35.1
+wdiff  /tmp/imx412 /tmp/imx577=20
 
+[-IMX412-AACK-] {+IMX577-AACK+}
+Diagonal 7.857 mm (Type 1/2.3) 12.3 Mega-Pixel CMOS Image Sensor with Square
+Pixel for Color Cameras
+Description
+
+[-IMX412-AACK-]{+The IMX577-AACK+} is a diagonal 7.857 mm (Type 1/2.3)
+12.3 Mega-pixel CMOS active pixel type stacked image sensor with a
+square pixel array.
+
+{+It adopts Sony=E2=80=99s Stacked CMOS Image Sensor technology to achieve =
+high
+speed image capturing by column parallel A/D converter circuits and high
+sensitivity and low noise image (comparing with conventional CMOS image
+sensor) through the backside illuminated imaging pixel structure.+}
+
+R, G, and B pigment primary color mosaic filter is employed. It equips
+an electronic shutter with variable integration time. It operates with
+three power supply voltages: analog [-2.75-] {+2.8+} V, digital 1.05 V
+and 1.8 V for input/output interface and achieves low power consumption.
+
+[-(Applications: Surveillance cameras)-]
+
+{+In addition, this product is designed for use in consumer use
+camcorder. When using this for another application, Sony Semiconductor
+Solutions Corporation does not guarantee the quality and reliability of
+product. Therefore, don't use this for applications other than consumer
+use camcorder.  In addition, individual specification change cannot be
+supported because this is a standard product.  Consult your Sony
+Semiconductor Solutions Corporation sales representative if you have any
+questions.+}
+
+
+Features
+=E2=97=86 Back-illuminated and stacked CMOS image sensor
+=E2=97=86 Digital Overlap High Dynamic Range (DOL-HDR) mode with raw data [=
+-output-] {+output.+}
+=E2=97=86 High signal to noise ratio [-(SNR)-] {+(SNR).+}
+=E2=97=86 Full resolution @60 frame/s (Normal), 4K2K @60 frame/s (Normal), =
+1080p @240 frame/s
+Full resolution @40 frame/s (12 bit Normal), Full resolution @30 frame/s (D=
+OL-HDR, 2 frame)
+=E2=97=86 Output video format of [-RAW12/10-] {+RAW12/10/8, COMP8.+}
+=E2=97=86 [-Low-] Power [-Streaming-] {+Save+} Mode with MIPI ULPS operation
+=E2=97=86 Pixel binning readout and V sub-sampling [-function-] {+function.=
++}
+=E2=97=86 Independent flipping and [-mirroring-] {+mirroring.+}
+=E2=97=86 Input clock frequency [-6, 12, 18, 24 or-] {+6 to+} 27 MHz
+=E2=97=86 CSI-2 serial data output (MIPI 2lane/4lane, Max. 2.1 Gbps/lane, D=
+-PHY spec. ver. 1.2 compliant)
+=E2=97=86 2-wire serial [-communication-] {+communication.+}
+=E2=97=86 Two PLLs for independent clock generation for pixel control and d=
+ata output [-interface-] {+interface.+}
+=E2=97=86 Defect Pixel Correction (DPC)
+=E2=97=86 {+Ambient Light Sensor (ALS)
+=E2=97=86+} Fast mode [-transition-] {+transition.+} (on the fly)
+=E2=97=86 Dual sensor synchronization operation (Multi camera compatible)
+=E2=97=86 7 k bit of OTP ROM for [-users-] {+users.
+=E2=97=86 Built-in temperature sensor+}
+=E2=97=86 10-bit/12-bit A/D conversion on chip
+=E2=97=86 Horizontal Low Power [-analog-] {+Analog+} Cropping
+{+=E2=97=86 Window Scanning mode+}
+=E2=97=86 92-pin high-precision ceramic package
+
+
+So picking out the diffs from that:
+
+IMX412
+ - Designed for Surveillance cameras
+ - Defined input clocks of 6, 12, 18, 24 or 27MHz
+
+IMX577
+ + Designed for Camcorder use cases
+ + May have an extra RAW8, COMP8 output format.
+ + Less definition on input clock '6 to 27MHz' (may be the same)
+ + Has an Ambiant light sensor
+ + Has Built in temperature sensor
+ + Window scanning mode
+
+The extra RAW modes, ALS and temperature sensor may be key
+differentiators in the future to be aware of. Perhaps they can be
+handled by the compatible string though.
+
+If only we had better/more open drivers/documentation for these
+components I bet they could be factored out for better support.
+
+--
+Kieran
+
+
+
+>=20
+> Bryan O'Donoghue (2):
+>   media: dt-bindings: imx412: Add imx577 compatible string
+>   media: i2c: imx412: Add imx577 compatible string
+>=20
+>  Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml | 5 ++++-
+>  drivers/media/i2c/imx412.c                                   | 1 +
+>  2 files changed, 5 insertions(+), 1 deletion(-)
+>=20
+> --=20
+> 2.36.1
+>
