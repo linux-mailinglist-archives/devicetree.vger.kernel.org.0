@@ -2,77 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E056C53F681
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 08:48:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B44653F687
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 08:49:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237333AbiFGGsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 02:48:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36768 "EHLO
+        id S237291AbiFGGtD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 02:49:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237286AbiFGGsK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 02:48:10 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21C02B0D25
-        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 23:48:07 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id q1so33188312ejz.9
-        for <devicetree@vger.kernel.org>; Mon, 06 Jun 2022 23:48:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=9oONL/OIu1tsLLfjz8MWbADwzFR0KPOH6QzNxFIcw1A=;
-        b=eHc01tNuGgQVe9JfPpB6GYMNwZK46sRHR3uDq807BB8RAkhtM9iR1guy6gYb+UKuJW
-         g3yAm4q1CjZJ6Pp9OZfINnQzQ6SlfDARMFL44cz7rzQyewKJDz4DCw2s9a6+PUnsnsls
-         kkbjZQKYC5uzVhSvIW60DvmNZwSNXhTnEDamP2tQK2CG6zybiBXQOP8biOwIXxqLd/lr
-         xXp4GE/l02zl0EyPtU9/au8J7ZOL5nvjMry9t1lUMfnAAiEl5h/aERCGNL3NcZMtNr6W
-         z9u/tnTpAuY5gaFcEPQ2vdavW7L3MZwzsFofi2wXD9QrtStZ8mfDytt2Wi/3dZ3/NivE
-         FNhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=9oONL/OIu1tsLLfjz8MWbADwzFR0KPOH6QzNxFIcw1A=;
-        b=SZz70vB0VkBI0/rI/O/7AlneZ12NjjV4nnPxNB7AynXTaXUT50fyHBXoHT+0jtjwe+
-         /YQfGhQBmbfqfNWzaElhdLtC3bS5R86YgifHQPFL15Cy56ZEL144OQyj7588HbftOELM
-         0/r85iXRHxXsI7PhVIJUrzXZP5WvByCu3qXHV3FSUA1ToHumWuGs0Fn3qIMmePTc3a0M
-         NNd4JigqV7/wWP6kvkVVAFyg+uYQzhawDnfx7aHr83nCNSF5mOvAIKMhbE4CVbFUt780
-         6r6KFcW85PLMdiaRv2hhRByDyTD8XdXc/uKlmqkRztFZ3vQl6hIvkNkoPoxKvwCy9Z2D
-         ELBQ==
-X-Gm-Message-State: AOAM533dPOWzjBaZCNR23TzW3W55XfK7w2gpt3A1UVgZ+zcSO//o0kUE
-        IpTss4JUYSFK590toAWa0LETPg==
-X-Google-Smtp-Source: ABdhPJwZ+u3wskAK8md9FAIw+OFZWkxhbfQb/zXoi4kIC5wHI/eBNsIRDkNmc9Xh8XtL7N+ZNnWZaw==
-X-Received: by 2002:a17:907:3d89:b0:6f9:1fc:ebf3 with SMTP id he9-20020a1709073d8900b006f901fcebf3mr25319012ejc.403.1654584485575;
-        Mon, 06 Jun 2022 23:48:05 -0700 (PDT)
-Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id d20-20020aa7ce14000000b0042dd4ccccf5sm9653874edv.82.2022.06.06.23.48.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Jun 2022 23:48:05 -0700 (PDT)
-Message-ID: <e5029de5-2548-23a4-8dcf-101154e0be29@linaro.org>
-Date:   Tue, 7 Jun 2022 08:48:03 +0200
+        with ESMTP id S237295AbiFGGtB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 02:49:01 -0400
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59189DFD24
+        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 23:48:56 -0700 (PDT)
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20220607064854epoutp0285ccaa095909343e65045b7d8baf4ceb~2Q94mUQ2T0244202442epoutp02B
+        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 06:48:54 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20220607064854epoutp0285ccaa095909343e65045b7d8baf4ceb~2Q94mUQ2T0244202442epoutp02B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1654584534;
+        bh=epgGBSZEzRa1cyyYp5tq47GPvwjgPjVT1Q2XRWqWbWo=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=EDfXrL8AP4jRIfowpko3c5n2imSWuXR/EApnhzECDkiV5ySuG2QRBlhTAOMvjkzvp
+         SuAQY9onPOHk67wMqMA07vGb20lA1XsKbrgZo19SFhcrlLwD/44lHRhXpJVODYLi+I
+         BIfKXC/fe27/pIBTpJkKXG7A43UtqAsbhjhpB+ic=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas2p4.samsung.com (KnoxPortal) with ESMTP id
+        20220607064853epcas2p46982884fb0c80c80cf3ccd17919a4a77~2Q93U6e6G0671806718epcas2p4T;
+        Tue,  7 Jun 2022 06:48:53 +0000 (GMT)
+Received: from epsmges2p2.samsung.com (unknown [182.195.36.88]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 4LHLYH6nXvz4x9QC; Tue,  7 Jun
+        2022 06:48:51 +0000 (GMT)
+Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
+        epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        FE.5F.09764.3D4FE926; Tue,  7 Jun 2022 15:48:51 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
+        20220607064851epcas2p2ede54f5bb25ab53eed6d96fab375cca3~2Q91f7bEC2054420544epcas2p2f;
+        Tue,  7 Jun 2022 06:48:51 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20220607064851epsmtrp23e961a040d8e4aa7934dadcb57522718~2Q91fEAHo3073930739epsmtrp2B;
+        Tue,  7 Jun 2022 06:48:51 +0000 (GMT)
+X-AuditID: b6c32a46-f8bff70000002624-a0-629ef4d31fd2
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        B1.92.11276.2D4FE926; Tue,  7 Jun 2022 15:48:50 +0900 (KST)
+Received: from KORCO082417 (unknown [10.229.8.121]) by epsmtip1.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20220607064850epsmtip121ae99a8ba1a08b1a66dd656f0ea36e8~2Q91NjkX_1664016640epsmtip17;
+        Tue,  7 Jun 2022 06:48:50 +0000 (GMT)
+From:   "Chanho Park" <chanho61.park@samsung.com>
+To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
+        "'Kishon Vijay Abraham I'" <kishon@ti.com>,
+        "'Vinod Koul'" <vkoul@kernel.org>,
+        "'Alim Akhtar'" <alim.akhtar@samsung.com>,
+        "'Rob Herring'" <robh+dt@kernel.org>,
+        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>
+Cc:     <devicetree@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <linux-samsung-soc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+In-Reply-To: <2fad1706-563d-72c3-eab2-5f464bf92681@linaro.org>
+Subject: RE: [PATCH v2 4/6] arm64: dts: exynosautov9: adjust DT style of ufs
+ nodes
+Date:   Tue, 7 Jun 2022 15:48:50 +0900
+Message-ID: <011101d87a3a$a56b3cb0$f041b610$@samsung.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: sdm845: Add CPU BWMON
-Content-Language: en-US
-To:     Georgi Djakov <djakov@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Thara Gopinath <thara.gopinath@linaro.org>
-References: <20220601101140.170504-1-krzysztof.kozlowski@linaro.org>
- <20220601101140.170504-5-krzysztof.kozlowski@linaro.org>
- <058de46e-24cf-e25b-121c-3ff080702776@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <058de46e-24cf-e25b-121c-3ff080702776@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQLWkTnA63V9WykH3rm22/0hqLdk6gDwbtfQAjlpnFUCvbOT2wIRVVTpAbRdZlSq+eiMoA==
+Content-Language: ko
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrNJsWRmVeSWpSXmKPExsWy7bCmue7lL/OSDPoXGVg8mLeNzWL+kXOs
+        Fhee9rBZ9L14yGyx9/VWdotNj6+xWkxY9Y3FYsb5fUwWrXuPsFvsvHOC2YHLY9OqTjaPO9f2
+        sHlsXlLv0bdlFaPH8RvbmTw+b5ILYIvKtslITUxJLVJIzUvOT8nMS7dV8g6Od443NTMw1DW0
+        tDBXUshLzE21VXLxCdB1y8wBukxJoSwxpxQoFJBYXKykb2dTlF9akqqQkV9cYquUWpCSU2Be
+        oFecmFtcmpeul5daYmVoYGBkClSYkJ0xZ/401oLtzBU39u9hbWB8xdTFyMkhIWAi0ThxBnMX
+        IxeHkMAORomdu/czQTifGCXaNsxjhXC+MUqceL2LFabl+JPtUIm9jBL/lp5nhHBeMEq83PSa
+        GaSKTUBf4mXHNrAqEYH5TBJPO6+CbWQWmMAosfKTN4jNKWAn8WvCREYQW1ggROLT7SVANRwc
+        LAIqEvfni4OEeQUsJXafvs0CYQtKnJz5hAVijLbEsoUQuyQEFCR+Pl0Gdp2IQJjE5VPrWSFq
+        RCRmd7aBPSchsIVD4smmB1ANLhJzm65AQ0BY4tXxLewQtpTE53d72SDsYomlsz4xQTQ3MEpc
+        3vYLKmEsMetZOyPIocwCmhLrd+mDmBICyhJHbkHdxifRcfgvO0SYV6KjTQiiUV3iwPbpLBC2
+        rET3nM+sExiVZiH5bBaSz2Yh+WAWwq4FjCyrGMVSC4pz01OLjQqM4LGdnJ+7iRGcarXcdjBO
+        eftB7xAjEwfjIUYJDmYlEV7/yXOThHhTEiurUovy44tKc1KLDzGaAoN6IrOUaHI+MNnnlcQb
+        mlgamJiZGZobmRqYK4nzeqVsSBQSSE8sSc1OTS1ILYLpY+LglGpgap2dK7qp7N3RJv/Z5R5b
+        Fsqe7X656SyXH0fZxnVp8189n8feV5x6pM37kLzw5ttu7i0mye/CHyq4/Fy/qDBE7kbbhZhJ
+        y7SCw6JlDpp9C20NfjLx1/6f9p2/Upcuzl590cdOSujz77Xfe/19pOXWatra/kliYjxxrT/q
+        dNsyXneXIzs+7XrrWnLvI7uo6mURyWl2a6vl9jdN3Xk3252pi+FwZpWVTERButolS98zRu6N
+        cgl6Bk8VLq1kqa+ZcHr2i9ppN5bP2ZNx5+kbx/REr4MiOvvvm8y7Ud6143LUwnK55TdrNLnj
+        yx7Pbv7ZWpltFKEjuGnC416+9jkuP29N2p15SrDCK3+T4ebqS0yuSizFGYmGWsxFxYkAUUXd
+        Bj4EAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprBIsWRmVeSWpSXmKPExsWy7bCSnO6lL/OSDNZNtrF4MG8bm8X8I+dY
+        LS487WGz6HvxkNli7+ut7BabHl9jtZiw6huLxYzz+5gsWvceYbfYeecEswOXx6ZVnWwed67t
+        YfPYvKTeo2/LKkaP4ze2M3l83iQXwBbFZZOSmpNZllqkb5fAlbHo4GTmgm3MFVtf3mNtYHzO
+        1MXIySEhYCJx/Ml21i5GLg4hgd2MEu2d21ggErISz97tYIewhSXutxyBKnrGKNG64xIzSIJN
+        QF/iZcc2sISIwGImif4TZ9lAHGaBKYwSl6++ZIFoucok8e38azaQFk4BO4lfEyYygtjCAkES
+        Py8dArI5OFgEVCTuzxcHCfMKWErsPn2bBcIWlDg58wmYzSygLfH05lM4e9nC18wQ5ylI/Hy6
+        jBXEFhEIk7h8aj0rRI2IxOzONuYJjMKzkIyahWTULCSjZiFpWcDIsopRMrWgODc9t9iwwDAv
+        tVyvODG3uDQvXS85P3cTIzjytDR3MG5f9UHvECMTB+MhRgkOZiURXv/Jc5OEeFMSK6tSi/Lj
+        i0pzUosPMUpzsCiJ817oOhkvJJCeWJKanZpakFoEk2Xi4JRqYDKadimmT/rO2ttvTRy2mO/d
+        YyKb8iX6yZ0W2ftb5P5utfk6765hmdxW4ct5Spxxc7X+/JrIm1lsLi8qsq3jxpzMI08bOo4/
+        c138wKRK/ltDOFOnrTvr1Elx8XxPObc4z9iU7trwSyjwbvHBdHGt87xJvQdczbtWy+090fRS
+        WV5FI99G/v6HoMJbcpdyk7uXKNXOuL9Gri9vz9cHD9e01/Rub1aQC/RzOZ+/xoc7aeHsirLE
+        J9Mv7apu2nIrcsoTvkqD97lOHQzXS3euu9R6veV3rOYdy5epzZsFo46bzXGYq5rEEpOnWXbu
+        StG+Sf8CN696EDPLXTbwtumFwKMVsZfOvtJfklL3dqfM57eeBUosxRmJhlrMRcWJAG+O8oEr
+        AwAA
+X-CMS-MailID: 20220607064851epcas2p2ede54f5bb25ab53eed6d96fab375cca3
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220602053329epcas2p407039a6087b6c460d6687b1cc1f3872a
+References: <20220602053250.62593-1-chanho61.park@samsung.com>
+        <CGME20220602053329epcas2p407039a6087b6c460d6687b1cc1f3872a@epcas2p4.samsung.com>
+        <20220602053250.62593-5-chanho61.park@samsung.com>
+        <c86cb9c3-5fac-a990-f4cf-5aa8e4fe8a75@linaro.org>
+        <000001d87a2e$6ed35ea0$4c7a1be0$@samsung.com>
+        <2fad1706-563d-72c3-eab2-5f464bf92681@linaro.org>
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,64 +129,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/06/2022 22:39, Georgi Djakov wrote:
-> On 1.06.22 13:11, Krzysztof Kozlowski wrote:
->> Add device node for CPU-memory BWMON device (bandwidth monitoring) on
->> SDM845 measuring bandwidth between CPU (gladiator_noc) and Last Level
->> Cache (memnoc).  Usage of this BWMON allows to remove fixed bandwidth
->> votes from cpufreq (CPU nodes) thus achieve high memory throughput even
->> with lower CPU frequencies.
->>
->> Performance impact (SDM845-MTP RB3 board, linux next-20220422):
->> 1. No noticeable impact when running with schedutil or performance
->>     governors.
->>
->> 2. When comparing to customized kernel with synced interconnects and
->>     without bandwidth votes from CPU freq, the sysbench memory tests
->>     show significant improvement with bwmon for blocksizes past the L3
->>     cache.  The results for such superficial comparison:
->>
->> sysbench memory test, results in MB/s (higher is better)
->>   bs kB |  type |    V  | V+no bw votes | bwmon | benefit %
->>       1 | W/seq | 14795 |          4816 |  4985 |      3.5%
->>      64 | W/seq | 41987 |         10334 | 10433 |      1.0%
->>    4096 | W/seq | 29768 |          8728 | 32007 |    266.7%
->>   65536 | W/seq | 17711 |          4846 | 18399 |    279.6%
->> 262144 | W/seq | 16112 |          4538 | 17429 |    284.1%
->>      64 | R/seq | 61202 |         67092 | 66804 |     -0.4%
->>    4096 | R/seq | 23871 |          5458 | 24307 |    345.4%
->>   65536 | R/seq | 18554 |          4240 | 18685 |    340.7%
->> 262144 | R/seq | 17524 |          4207 | 17774 |    322.4%
->>      64 | W/rnd |  2663 |          1098 |  1119 |      1.9%
->>   65536 | W/rnd |   600 |           316 |   610 |     92.7%
->>      64 | R/rnd |  4915 |          4784 |  4594 |     -4.0%
->>   65536 | R/rnd |   664 |           281 |   678 |    140.7%
->>
->> Legend:
->> bs kB: block size in KB (small block size means only L1-3 caches are
->>        used
->> type: R - read, W - write, seq - sequential, rnd - random
->> V: vanilla (next-20220422)
->> V + no bw votes: vanilla without bandwidth votes from CPU freq
->> bwmon: bwmon without bandwidth votes from CPU freq
->> benefit %: difference between vanilla without bandwidth votes and bwmon
->>             (higher is better)
->>
-> 
-> Ok, now i see! So bwmon shows similar performance compared with the current
-> cpufreq-based bandwidth scaling. And if you add bwmon on top of vanilla, are
-> the results close/same? 
+> Oh, thanks=21 Unfortunately it helped for the patch =234 (first of DTS) b=
+ut
+> not for the next one. Maybe some other patch caused the hunks to differ.
+> Please rebase remaining two DTS patches.
 
-Vanilla + bwmon results in almost no difference.
+Looks like they're conflicted with watchdog patches.
+I'll rebase rest two patches on top of your next/dt64 branch.
+https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux.git/log/?h=3Dnex=
+t/dt64
 
-> Is the plan to remove the cpufreq based bandwidth
-> scaling and switch to bwmon? It might improve the power consumption in some
-> scenarios.
+Best Regards,
+Chanho Park
 
-The next plan would be to implement the second bwmon, one between CPU
-and caches. With both of them, the cpufreq bandwidth votes can be
-removed (I think Android might be interested in this).
-
-
-Best regards,
-Krzysztof
