@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C77153FE1F
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 13:57:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 878B153FE37
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 14:02:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243281AbiFGL5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 07:57:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55836 "EHLO
+        id S232435AbiFGMCY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 08:02:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229721AbiFGL5s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 07:57:48 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7E0B35870
-        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 04:57:43 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id x5so17576912edi.2
-        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 04:57:43 -0700 (PDT)
+        with ESMTP id S243300AbiFGMCX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 08:02:23 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAB0F140E6
+        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 05:02:21 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id n10so34748023ejk.5
+        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 05:02:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=yZDBuoVlQ71P4cKl6Kapb0clRrwsrrvDiAbyCiR8ot0=;
-        b=Kmk6lPezqek4hazrchUlF3SwI3blkWE9a1Oms0ehWdjz94uADugBjeyrjtU+zCmV5N
-         6QdG/2Bp5tUYJlu2RG+1e4G2I/90ULDJ5R4iK0op0G7znqXcM+7HPC1RyhkUqjPqMW11
-         xOMNnKBoLfZOfZszGKbaxBrJOF6CW+upTZhvQiSoiTHqjBtbMH4IuqjBcs3dSdsvvcNc
-         vWa0tpEdLOPruoTK0oK3kde6/E5DgsgRJkEGZ2tSAF773DHvMAwvo2LkxfkvTyryz/kj
-         0J4KcNpXIPrTcXOEztHmQ9bQfP0haiJeLKYMQkmFraHHqEr1UpbC6clqXTdpHsk9gswm
-         ecEQ==
+        bh=2zKuan/jhAX3A2Hdr1EYY7YvJVTUTaaQGbbK7GiBIAY=;
+        b=BYSoUTcYNzXYREenAq5WuhMq77F78MMKa/95jv78RnMpGUJCN6WFcW09EL8IZhC7nL
+         1i5ZcYUKNUmxEkKxF0cZVnEE9gx6N6+gIt6q4pcK6GWB7QNL+bDEaqoC3CbfGpwzIL0F
+         Ry7N5Lo0Iac5uAy7OATWwqjpJOkVAzTKXSYqbOaMXb/s1pG7AiQh8w5+Wcb2cYSdWVPq
+         yypnNnAy9NR9SU4IekQ/bpONQNbhNI57VpG699BSU66vEBBSrPYLct5mXVSiedPoLAOQ
+         +43wI0ztEc2Vz5DyCXKzxhvH8cGeSazFY6tzTJ7F9bxeYHMKTXpVOqtzH/fFlGXc5u1j
+         JzxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=yZDBuoVlQ71P4cKl6Kapb0clRrwsrrvDiAbyCiR8ot0=;
-        b=HLfQ0Qk8iaJHdVn4B8X4CH+Zl5OcnSg9FXSTmjVIQ3Q1TtQ/ZpLGnDgXTTOmu3DjSy
-         ZDKOxfc2QC0L5zW6M+pJUDMxue0cvUt7O85S2dT/xe4WSlrJyiJZWqebRl1xKlvYMKdM
-         /CzP5v6dbJGBt8eG63qCDUMxJo5Jwv1A4v5z2co+kyDrqPQfD72wFqG07pgSz4rjjfk8
-         l+ukk6GKMDp22w0LisRrGiGnLq2sH4OBhjf5jB3QHx0KNUWkvoRhtqYwdJ1IqiY5SunS
-         f9xFYVKtlYZOEcWfVSRIg4RGIdV65U71VhuCtvKK3Jyam1Ml3W7Sjb497UBEgc+LgnGg
-         TOFg==
-X-Gm-Message-State: AOAM532R0ILyjWTH2y4jjXBhpFU+fhCwbTehP+lG4i9Rzq2wiCgb7gBi
-        vrpAhE7GdCtwiWDg2pUfm2q4sQ==
-X-Google-Smtp-Source: ABdhPJy5IOhjy3MQT0HkzRMlUxWQFG4EiGON9lppvA3+TQzxKlphzo1A5dyIGWXxh/ppAL7ZzunKkg==
-X-Received: by 2002:a05:6402:289:b0:42d:cd82:be22 with SMTP id l9-20020a056402028900b0042dcd82be22mr32920366edv.373.1654603061912;
-        Tue, 07 Jun 2022 04:57:41 -0700 (PDT)
+        bh=2zKuan/jhAX3A2Hdr1EYY7YvJVTUTaaQGbbK7GiBIAY=;
+        b=mwR2/t5cw8CnWd0Jf0crvdNDS6FvNctEBPDdorZ6wvQtQcWlpl44Whl0NQp1wb/Xnk
+         O24S5FuAkhMUcxm7Dk3tEWcP03GdFff4pQpVXNwVcEhBjq89FuUIoDy6ug+ehnvRLyaa
+         72maWd858GBqmGKj8dEfYn5rfR08W1OjBKRNNarek/aaj6501O2mRW8mw2bNmQRGgRRz
+         teVfunsFi1PBWdF9GQ9mv3h1IuRvHc5E44iLea/xk2P9kzOCvWfm6NDgKyluz9NlnoLL
+         nBw9706+Lisd6YShK0jVjwAa14prEcg5ds/9/r22kFtb3sdsoyPqL/REjj2qbjr8hqI6
+         Eybw==
+X-Gm-Message-State: AOAM531PaPDQbm4gslwjQO5CAmlaQu00xO4zoe5bcQS2batuFJtmK9Sb
+        RzgmOhLtVWrT3sSkI97ve5ex/A==
+X-Google-Smtp-Source: ABdhPJzyzhCbH0aRCnoNsl2kXIEk2elKa3s5CRkcJOZswzVuspuW5H+8i2qQuzuxCq81eEpr83XarA==
+X-Received: by 2002:a17:906:685:b0:6fa:8e17:e9b5 with SMTP id u5-20020a170906068500b006fa8e17e9b5mr27657846ejb.522.1654603331838;
+        Tue, 07 Jun 2022 05:02:11 -0700 (PDT)
 Received: from [192.168.0.183] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id da7-20020a056402176700b0042e032164a4sm9126964edb.61.2022.06.07.04.57.40
+        by smtp.gmail.com with ESMTPSA id o7-20020a50fd87000000b0042dc25fdf5bsm10189078edt.29.2022.06.07.05.02.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Jun 2022 04:57:41 -0700 (PDT)
-Message-ID: <7aa025a6-a08a-a11f-3931-7a1a0750a15f@linaro.org>
-Date:   Tue, 7 Jun 2022 13:57:40 +0200
+        Tue, 07 Jun 2022 05:02:10 -0700 (PDT)
+Message-ID: <fc7a6f0e-e93d-a645-8078-2d747c4208d0@linaro.org>
+Date:   Tue, 7 Jun 2022 14:02:09 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v17 04/10] dt-bindings: clock: Add bindings for SP7021
- clock driver
+Subject: Re: [PATCH v17 10/10] ARM: dts: Add Sunplus SP7021-Demo-V3 board
+ device tree
 Content-Language: en-US
 To:     Qin Jian <qinjian@cqplus1.com>, sboyd@kernel.org
 Cc:     krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
@@ -63,15 +63,15 @@ Cc:     krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
 References: <cover.1654565776.git.qinjian@cqplus1.com>
- <8f5673ae8730ec117c1d8fe1e28fb50a2216e891.1654565776.git.qinjian@cqplus1.com>
+ <e54fac0acbcedddb37a572e47face7edbacbec5d.1654565776.git.qinjian@cqplus1.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <8f5673ae8730ec117c1d8fe1e28fb50a2216e891.1654565776.git.qinjian@cqplus1.com>
+In-Reply-To: <e54fac0acbcedddb37a572e47face7edbacbec5d.1654565776.git.qinjian@cqplus1.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UPPERCASE_50_75
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -79,11 +79,82 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 07/06/2022 03:58, Qin Jian wrote:
-> Add documentation to describe Sunplus SP7021 clock driver bindings.
+> Add the basic support for Sunplus SP7021-Demo-V3 board.
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Signed-off-by: Qin Jian <qinjian@cqplus1.com>
+> ---
+> Fix the comments from Krzysztof.
+> ---
 
-Wrong address...
+> +
+> +		pctl: pinctl@9c000100 {
+
+Wrong node name - the schema requires "pinctrl" or "pinmux".
+
+> +			compatible = "sunplus,sp7021-pctl";
+> +			reg = <0x9C000100 0x100>,
+> +			      <0x9C000300 0x100>,
+> +			      <0x9C0032e4 0x1C>,
+> +			      <0x9C000080 0x20>;
+> +			reg-names = "moon2", "gpioxt", "first", "moon1";
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			clocks = <&clkc CLK_GPIO>;
+> +			resets = <&rstc RST_GPIO>;
+> +
+> +			leds_pins: pinmux_gpio_leds-pins {
+> +				sunplus,pins = < SPPCTL_IOPAD(0,SPPCTL_PCTL_G_GPIO,0,SPPCTL_PCTL_L_OUT) >;
+> +			};
+> +
+> +			emmc_pins: emmc-pins {
+> +				function = "CARD0_EMMC";
+> +				groups = "CARD0_EMMC";
+> +			};
+> +
+> +			sdcard-pins {
+> +				function = "SD_CARD";
+> +				groups = "SD_CARD";
+> +				sunplus,pins = < SPPCTL_IOPAD(91, SPPCTL_PCTL_G_GPIO, 0, 0) >;
+> +			};
+> +
+> +			emac_pins: pinmux_emac_demo_board_v3-pins {
+> +				sunplus,pins = <
+> +					SPPCTL_IOPAD(49,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_CLK_OUT,0)
+> +					SPPCTL_IOPAD(44,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_MAC_SMI_MDC,0)
+> +					SPPCTL_IOPAD(43,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_MAC_SMI_MDIO,0)
+> +					SPPCTL_IOPAD(52,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P0_MAC_RMII_TXEN,0)
+> +					SPPCTL_IOPAD(50,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P0_MAC_RMII_TXD0,0)
+> +					SPPCTL_IOPAD(51,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P0_MAC_RMII_TXD1,0)
+> +					SPPCTL_IOPAD(46,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P0_MAC_RMII_CRSDV,0)
+> +					SPPCTL_IOPAD(47,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P0_MAC_RMII_RXD0,0)
+> +					SPPCTL_IOPAD(48,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P0_MAC_RMII_RXD1,0)
+> +					SPPCTL_IOPAD(45,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P0_MAC_RMII_RXER,0)
+> +					SPPCTL_IOPAD(59,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P1_MAC_RMII_TXEN,0)
+> +					SPPCTL_IOPAD(57,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P1_MAC_RMII_TXD0,0)
+> +					SPPCTL_IOPAD(58,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P1_MAC_RMII_TXD1,0)
+> +					SPPCTL_IOPAD(54,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P1_MAC_RMII_CRSDV,0)
+> +					SPPCTL_IOPAD(55,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P1_MAC_RMII_RXD0,0)
+> +					SPPCTL_IOPAD(56,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P1_MAC_RMII_RXD1,0)
+> +					SPPCTL_IOPAD(53,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P1_MAC_RMII_RXER,0)
+> +				>;
+> +				sunplus,zerofunc = <
+> +					MUXF_L2SW_LED_FLASH0
+> +					MUXF_L2SW_LED_FLASH1
+> +					MUXF_L2SW_LED_ON0
+> +					MUXF_L2SW_LED_ON1
+> +					MUXF_DAISY_MODE
+> +				>;
+> +			};
+> +
+> +			uart0_pins: pinmux_uart0-pins {
+> +				function = "UA0";
+> +				groups = "UA0";
+> +			};
+> +
+> +			uart1_pins: pinmux_uart1-pins {
+
+No underscores in node names.
+
 
 Best regards,
 Krzysztof
