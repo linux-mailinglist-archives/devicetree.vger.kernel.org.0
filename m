@@ -2,78 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B70553F994
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 11:27:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85B5F53FA7C
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 11:56:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239390AbiFGJ1O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 05:27:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38260 "EHLO
+        id S240226AbiFGJ4L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 05:56:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239037AbiFGJ1N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 05:27:13 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 966011A058
-        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 02:27:09 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id i29so10590453lfp.3
-        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 02:27:09 -0700 (PDT)
+        with ESMTP id S240199AbiFGJ4K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 05:56:10 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 592EAE77DF
+        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 02:56:05 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id p5-20020a1c2905000000b003970dd5404dso9257094wmp.0
+        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 02:56:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=bycnujn+C+TNXArQgDaRYNKXnzzQ5tOqUsTDh+BoVXc=;
-        b=t8p26q3E/L/TgZvfOS55JAOsz9xPuki8ovvsGEs+DFidMo0+nC5q87KialHMbXXUx2
-         NZBSPLKbAm5cIgCaNWSfYwSt4fnlLecR64L71ARiiI5CPS1aqqzrxJvXB6IKLY3WXNuu
-         5SHFPVTF0HSOWo8rE6sQ/WkS4a9ZCwX0/c1KlNkUzxFzcQXCYtwlIQpkRlh9O9h7hD2c
-         lzKWKa/el8B4Cs+eVSyH6vN291VP71o6gwb8Ctk7TpGDvbmiVIQea1yApDwP5aGLX40A
-         Z49d4wqGHGA6mOLOnxNUVdf0Mj1739Iv+QtyQf++UoZ8BECNUCN8dDbnFukVMBX5uYds
-         kbDQ==
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=fjBt4PhnxyvpQZHwHALGbz1X5a0xwh6G7fjizoTyXiA=;
+        b=XiUcORudV3I+wOJDx2F4UjTWywNx8pQlMnZKao6ujML4UCvVEVbdo9GiUiP8htMMNd
+         jptZB/A3xMYe1wqA0ab8tQgQ+O5eDq2P0+De+G86GhEurHIbukEIeSqpnKLHS9Wj1TOg
+         Df2CboRzOWEdzjLdAr7B8RaczL4lr1qW7Dw34=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=bycnujn+C+TNXArQgDaRYNKXnzzQ5tOqUsTDh+BoVXc=;
-        b=XQKqfT/Yast6G4oyNRYdL/k5k3r1YWcj/H3u+FLrTJwsezEF9sQ8cfTVPZTwbLP+nC
-         0gY22ZTeKH9oMkYAdEoP0KVKVMYF65BqhFYOVR9ZLiX7yboXFaphp7yjE+1j/mupue4G
-         5UVI20GVV2uw75TKVXk7rsk0ARndHfTd9ZD/zo2bf2iG0LvUK/xScPbZ6OWGZPcmgPWS
-         M1gi1SBLUfQblQJLks+P55ZFXXQ7sZ48vqygKi5h+UVP/KDekK4w2xdhqoaQFRDiu7EF
-         Ty85kjB86pO7lX3n5zVR+74JK7rvMjLFjCcqZTxCGk0gznyUuntTQ1dMdW9SADhwhdJa
-         A3BA==
-X-Gm-Message-State: AOAM531gBeSFwSPKoieqr55r61svvgBMCWzKY+0mdcnNr1zFao8DVVYv
-        ZIdMo0/wICcliGk5hXwqf6kOFYfmyfwlACW9NMIpbg==
-X-Google-Smtp-Source: ABdhPJxQISkP4fpMf2Tx4GQZOz5bRQyTzJ8vaUdWMeVJt9giKQNrG2uqpo97Sb9v8bOTq0hPO8Lyk67AS9Huf+RLHh4=
-X-Received: by 2002:a05:6512:403:b0:479:1627:a9b7 with SMTP id
- u3-20020a056512040300b004791627a9b7mr15454828lfk.233.1654594027813; Tue, 07
- Jun 2022 02:27:07 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=fjBt4PhnxyvpQZHwHALGbz1X5a0xwh6G7fjizoTyXiA=;
+        b=kN5fFacp4YZSlkHofLgBxZeSOU2mMVW9p68vvK4FjwbOCm97gf+dEYFQi8jhLc/jt3
+         q82qJzvLS4ODhaWKaqjAXuAni9FbeAzG+3wI9ycOzU6eAXuxQVdWJ/J4FvPZXGafeIKb
+         /IPgRfxscLSqCID+Z0x5oddsrBLL7/fR2Fv/+Ljk+rAh4ONzPcfXPnBD+hJhCiWtv0RJ
+         W7pKXkeVbaU1fGUFiTuhDzmE5dM7E9k8KTdx/WeyThJ14ILJvENsQTXQi+TaQ1dNl36D
+         PplNRboPKrehFhB0uDc6k+Q7qhdg0NpwHDrmluzwYgvv/KSZM1tLAHLcC53jUdSpniui
+         V9HA==
+X-Gm-Message-State: AOAM5331O2QfbVKlTMpZbpu07fyPZUOgFXxYr58PZVivtZNbRNlVwvsd
+        CsDD1awuppHwd8fGzbQ7ji1rDQ==
+X-Google-Smtp-Source: ABdhPJyz6I1RYwmUAxHnrQGAGFRYDsx+0dLgsYTbqHOC7aO+teSP15UYWyqEzB1guWK5JWu1M6qpvA==
+X-Received: by 2002:a7b:cb4b:0:b0:39c:49dd:b2cc with SMTP id v11-20020a7bcb4b000000b0039c49ddb2ccmr14467285wmj.123.1654595763943;
+        Tue, 07 Jun 2022 02:56:03 -0700 (PDT)
+Received: from dario-ThinkPad-T14s-Gen-2i.pdxnet.pdxeng.ch (mob-5-90-137-51.net.vodafone.it. [5.90.137.51])
+        by smtp.gmail.com with ESMTPSA id b12-20020a5d4b8c000000b0020feb9c44c2sm17693546wrt.20.2022.06.07.02.56.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Jun 2022 02:56:03 -0700 (PDT)
+From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        Oliver Graute <oliver.graute@kococonnector.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org
+Subject: [RESEND PATCH v4 0/6] Input: edt-ft5x06 - Improve configuration
+Date:   Tue,  7 Jun 2022 11:55:50 +0200
+Message-Id: <20220607095556.1034338-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-References: <20220525015140.384-1-axe.yang@mediatek.com> <20220525015140.384-2-axe.yang@mediatek.com>
- <CAPDyKFr25qbAb9DdCpu6Cp9NyK35YAv745Duw_ht7BQc+pQF=A@mail.gmail.com> <c46ef886f908067d10b1cb9f37b3e41e6157c71d.camel@mediatek.com>
-In-Reply-To: <c46ef886f908067d10b1cb9f37b3e41e6157c71d.camel@mediatek.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 7 Jun 2022 11:26:31 +0200
-Message-ID: <CAPDyKFp1ibzg2FO9m_m9quqPRew9jOtLJRSF80VTi0cesjhBqw@mail.gmail.com>
-Subject: Re: [RESEND v12 1/3] dt-bindings: mmc: mtk-sd: extend interrupts and
- pinctrls properties
-To:     Axe Yang <axe.yang@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Satya Tangirala <satyat@google.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Lucas Stach <dev@lynxeye.de>,
-        Eric Biggers <ebiggers@google.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kiwoong Kim <kwmad.kim@samsung.com>,
-        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
-        angelogioacchino.delregno@collabora.com, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -84,105 +70,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 7 Jun 2022 at 10:24, Axe Yang <axe.yang@mediatek.com> wrote:
->
-> On Fri, 2022-06-03 at 09:28 +0200, Ulf Hansson wrote:
-> > On Wed, 25 May 2022 at 03:51, Axe Yang <axe.yang@mediatek.com> wrote:
-> > >
-> > > Extend interrupts and pinctrls for SDIO wakeup interrupt feature.
-> > > This feature allow SDIO devices alarm asynchronous interrupt to
-> > > host
-> > > even when host stop providing clock to SDIO card. An extra wakeup
-> > > interrupt and pinctrl states for SDIO DAT1 pin state switching are
-> > > required in this scenario.
-> > >
-> > > Reviewed-by: AngeloGioacchino Del Regno <
-> > > angelogioacchino.delregno@collabora.com>
-> > > Signed-off-by: Axe Yang <axe.yang@mediatek.com>
-> > > ---
-> > >  .../devicetree/bindings/mmc/mtk-sd.yaml       | 50
-> > > ++++++++++++++++++-
-> > >  1 file changed, 49 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> > > b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> > > index 2a2e9fa8c188..e83bf10281d6 100644
-> > > --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> > > +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> > > @@ -72,12 +72,27 @@ properties:
-> > >        - const: ahb_cg
-> > >
-> > >    interrupts:
-> > > -    maxItems: 1
-> > > +    description:
-> > > +      Should at least contain MSDC GIC interrupt. To support SDIO
-> > > in-band wakeup, an extended
-> > > +      interrupt is required and be configured as wakeup source
-> > > irq.
-> > > +    minItems: 1
-> > > +    maxItems: 2
-> > > +
-> > > +  interrupt-names:
-> > > +    items:
-> > > +      - const: msdc
-> > > +      - const: sdio_wakeup
-> > >
-> > >    pinctrl-names:
-> > > +    description:
-> > > +      Should at least contain default and state_uhs. To support
-> > > SDIO in-band wakeup, dat1 pin
-> > > +      will be switched between GPIO mode and SDIO DAT1 mode,
-> > > state_eint and state_dat1 are
-> > > +      mandatory in this scenarios.
-> > > +    minItems: 2
-> > >      items:
-> > >        - const: default
-> > >        - const: state_uhs
-> > > +      - const: state_eint
-> >
-> > Don't you need something along the lines of the below instead? I mean
-> > the "state_eint" isn't always needed, right?
-> >
-> > oneOf:
-> >   - items:
-> >       - const: default
-> >       - const: state_uhs
-> >     - items:
-> >         - const: default
-> >         - const: state_uhs
-> >         - const: state_eint
-> >
-> No, it is not always needed.
-> As Rob said, the 'minItems: 2' makes the 3rd item optional.
-> Combine 'minItems' and 'description' fields, it is easy for others to
-> understand how to set pinctrl related properities.
+The series was born from the analysis and mitigation of a crc problem
+raised by an M06 type device. The added sysfs attributes were helpful
+in debugging the problem. Patches that change the report rate on driver
+probing, mitigated crc errors on kernel bootup. The patch to get/set
+report rate by sysfs for an M12 device, has been tested.
 
-Yes, I agree.
+Changes in v4:
+- Add Rob Herring 'Acked-by' tag.
 
->
-> Anyway, If you insist 'oneOf' is the better way, I can update that in
-> next version. What do you think?
+Changes in v3:
+- Add hz unit suffix.
+- Add '|' to description.
+- Check the lower and upper limits of the report-rate-hz value
+- Convert the M06 report-rate-hz value
 
-I am fine with it as is, sorry for the noise.
+Changes in v2:
+- Add Oliver Graute's 'Acked-by' tag to:
+  * Input: edt-ft5x06 - show model name by sysfs
+  * Input: edt-ft5x06 - show firmware version by sysfs
+- Fix yaml file. Tested with `make DT_CHECKER_FLAGS=-m dt_binding_check'.
 
->
-> And thanks to your comment, I found a mistake in 'description', I
-> should remove descriptions related to 'state_dat1', and I will update
-> that in next version.
+Dario Binacchi (6):
+  dt-bindings: input: touchscreen: edt-ft5x06: add report-rate-hz
+  Input: edt-ft5x06 - get/set M12 report rate by sysfs
+  Input: edt-ft5x06 - set report rate by dts property
+  Input: edt-ft5x06 - show model name by sysfs
+  Input: edt-ft5x06 - show firmware version by sysfs
+  Input: edt-ft5x06 - show crc and header errors by sysfs
 
-Okay.
+ .../input/touchscreen/edt-ft5x06.yaml         |   8 ++
+ drivers/input/touchscreen/edt-ft5x06.c        | 103 ++++++++++++++++--
+ 2 files changed, 103 insertions(+), 8 deletions(-)
 
->
-> And do you have any comment on patch 2/3 and 3/3?
+-- 
+2.32.0
 
-Sorry for the delay, I will have a look asap.
-
->
->
-> Regards,
-> Axe
->
->
-
-Kind regards
-Uffe
