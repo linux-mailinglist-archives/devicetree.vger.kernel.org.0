@@ -2,75 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECA0E53F671
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 08:44:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CA1C53F67A
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 08:47:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237196AbiFGGom (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 02:44:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60004 "EHLO
+        id S237225AbiFGGrm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 02:47:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232554AbiFGGok (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 02:44:40 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 560B7B0A76;
-        Mon,  6 Jun 2022 23:44:38 -0700 (PDT)
-X-UUID: f2ff2b99b3a6428b81381a0435a5737a-20220607
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:bd6e63f1-6500-4bea-bd3e-52a63a9384c9,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:2a19b09,CLOUDID:bde48d21-199a-43f9-af93-057fe480bdd5,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:0,BEC:nil
-X-UUID: f2ff2b99b3a6428b81381a0435a5737a-20220607
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 528559842; Tue, 07 Jun 2022 14:44:33 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Tue, 7 Jun 2022 14:44:32 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Tue, 7 Jun 2022 14:44:32 +0800
-Message-ID: <b8aef76cef2fa434401b6a016de291eb24198faa.camel@mediatek.com>
-Subject: Re: [PATCH v10 18/21] drm/mediatek: Add mt8195 Embedded DisplayPort
- driver
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        Guillaume Ranquet <granquet@baylibre.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        "Daniel Vetter" <daniel@ffwll.ch>,
+        with ESMTP id S237222AbiFGGrl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 02:47:41 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 046942BB24
+        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 23:47:39 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2576lUjn058852;
+        Tue, 7 Jun 2022 01:47:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1654584450;
+        bh=ro3uEmamXLD2DJiX+pcaLGmTFnqcIb3NuiEBBGahxLA=;
+        h=From:To:CC:Subject:Date;
+        b=drfDCnU5CnIv/IMe5M1/6lRe7POPjUIQLg3h7f8iup3902CCguWJYFRia6I9sNzA2
+         nlRK8sMsd2osqNh8hg/RuITttmP/uyBDFVkXwrIVab5QpEiWs5azCVLIlkevYtgswO
+         lJvNGdx0yqeunQtmqV2/wSvL4/jWvf6GZVfvisQg=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2576lUDu002375
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 7 Jun 2022 01:47:30 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 7
+ Jun 2022 01:47:29 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 7 Jun 2022 01:47:29 -0500
+Received: from a0393678-lt.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2576lPoQ049003;
+        Tue, 7 Jun 2022 01:47:26 -0500
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        "Kishon Vijay Abraham I" <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, "Helge Deller" <deller@gmx.de>,
-        Jitao shi <jitao.shi@mediatek.com>
-CC:     Markus Schneider-Pargmann <msp@baylibre.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>, <linux-fbdev@vger.kernel.org>
-Date:   Tue, 7 Jun 2022 14:44:32 +0800
-In-Reply-To: <20220523104758.29531-19-granquet@baylibre.com>
-References: <20220523104758.29531-1-granquet@baylibre.com>
-         <20220523104758.29531-19-granquet@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Subject: [PATCH v2] arm64: dts: ti: k3-am65-main: Remove "syscon" nodes added for pcieX_mode/pcie_devid
+Date:   Tue, 7 Jun 2022 12:17:23 +0530
+Message-ID: <20220607064723.2623-1-kishon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,131 +65,92 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Rex:
+Remove "syscon" nodes added for pcieX_mode/pcie_devid and have the PCIe
+node point to the parent with an offset argument. This change is as
+discussed in [1].
 
-On Mon, 2022-05-23 at 12:47 +0200, Guillaume Ranquet wrote:
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
-> 
-> This patch adds a DisplayPort driver for the Mediatek mt8195 SoC.
-> 
-> It supports the mt8195, the embedded DisplayPort units. It offers
-> DisplayPort 1.4 with up to 4 lanes.
-> 
-> The driver creates a child device for the phy. The child device will
-> never exist without the parent being active. As they are sharing a
-> register range, the parent passes a regmap pointer to the child so
-> that
-> both can work with the same register range. The phy driver sets
-> device
-> data that is read by the parent to get the phy device that can be
-> used
-> to control the phy properties.
-> 
-> This driver is based on an initial version by
-> Jason-JH.Lin <jason-jh.lin@mediatek.com>.
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> ---
+commit 7dcf07ac8867 ("PCI: keystone: Use phandle argument from
+"ti,syscon-pcie-id"/"ti,syscon-pcie-mode"") added the corresponding driver
+changes.
 
-[snip]
+[1] -> http://lore.kernel.org/r/CAL_JsqKiUcO76bo1GoepWM1TusJWoty_BRy2hFSgtEVMqtrvvQ@mail.gmail.com
 
-> +
-> +static int mtk_dp_train_handler(struct mtk_dp *mtk_dp)
-> +{
-> +	bool training_done = false;
-> +	short max_retry = 50;
-> +	int ret = 0;
-> +
-> +	do {
-> +		switch (mtk_dp->train_state) {
-> +		case MTK_DP_TRAIN_STATE_STARTUP:
+Cc: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Reported-by: Jan Kiszka <jan.kiszka@siemens.com>
+Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+---
+Changes from v1:
+Added Reported-by: Jan Kiszka.
 
-mtk_dp->train_state is initialized as MTK_DP_TRAIN_STATE_STARTUP even
-though HPD ISR does not exist. Does this mean HPD ISR is redundant? If
-HPD ISR is not redundant, create a new state MTK_DP_TRAIN_STATE_NONE
-for init state.
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 27 ++++++------------------
+ 1 file changed, 6 insertions(+), 21 deletions(-)
 
-> +			mtk_dp_state_handler(mtk_dp);
-> +			mtk_dp->train_state =
-> MTK_DP_TRAIN_STATE_CHECKCAP;
-> +			break;
-> +
-> +		case MTK_DP_TRAIN_STATE_CHECKCAP:
-> +			if (mtk_dp_parse_capabilities(mtk_dp)) {
-> +				mtk_dp->train_info.check_cap_count = 0;
-> +				mtk_dp->train_state =
-> MTK_DP_TRAIN_STATE_CHECKEDID;
-> +			} else {
-> +				mtk_dp->train_info.check_cap_count++;
-> +
-> +				if (mtk_dp->train_info.check_cap_count
-> >
-> +				    MTK_DP_CHECK_SINK_CAP_TIMEOUT_COUNT
-> ) {
-> +					mtk_dp-
-> >train_info.check_cap_count = 0;
-> +					mtk_dp->train_state =
-> MTK_DP_TRAIN_STATE_DPIDLE;
-> +					ret = -ETIMEDOUT;
-> +				}
-> +			}
-> +			break;
-> +
-> +		case MTK_DP_TRAIN_STATE_CHECKEDID:
-> +			mtk_dp->train_state =
-> MTK_DP_TRAIN_STATE_TRAINING_PRE;
-
-MTK_DP_TRAIN_STATE_CHECKEDID is a redundant state, drop it.
-
-> +			break;
-> +
-> +		case MTK_DP_TRAIN_STATE_TRAINING_PRE:
-> +			mtk_dp_state_handler(mtk_dp);
-> +			mtk_dp->train_state =
-> MTK_DP_TRAIN_STATE_TRAINING;
-> +			break;
-> +
-> +		case MTK_DP_TRAIN_STATE_TRAINING:
-> +			ret = mtk_dp_train_start(mtk_dp);
-> +			if (ret == 0) {
-> +				mtk_dp_video_mute(mtk_dp, true);
-> +				mtk_dp->train_state =
-> MTK_DP_TRAIN_STATE_NORMAL;
-> +				mtk_dp_fec_enable(mtk_dp, mtk_dp-
-> >has_fec);
-> +			} else if (ret != -EAGAIN) {
-> +				mtk_dp->train_state =
-> MTK_DP_TRAIN_STATE_DPIDLE;
-> +			}
-> +			break;
-> +		case MTK_DP_TRAIN_STATE_NORMAL:
-> +			mtk_dp_state_handler(mtk_dp);
-> +			training_done = true;
-> +			break;
-> +		case MTK_DP_TRAIN_STATE_DPIDLE:
-
-When would this case happen?
-
-Regards,
-CK
-
-> +			break;
-> +		default:
-> +			break;
-> +		}
-> +
-> +		if (ret) {
-> +			if (ret == -EAGAIN)
-> +				continue;
-> +			/*
-> +			 * If we get any other error number, it doesn't
-> +			 * make any sense to keep iterating.
-> +			 */
-> +			break;
-> +		}
-> +	} while (!training_done || --max_retry);
-> +
-> +	return ret;
-> +}
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+index e749343acced..8509fdc561c1 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+@@ -307,21 +307,6 @@
+ 		#size-cells = <1>;
+ 		ranges = <0x0 0x0 0x00100000 0x1c000>;
+ 
+-		pcie0_mode: pcie-mode@4060 {
+-			compatible = "syscon";
+-			reg = <0x00004060 0x4>;
+-		};
+-
+-		pcie1_mode: pcie-mode@4070 {
+-			compatible = "syscon";
+-			reg = <0x00004070 0x4>;
+-		};
+-
+-		pcie_devid: pcie-devid@210 {
+-			compatible = "syscon";
+-			reg = <0x00000210 0x4>;
+-		};
+-
+ 		serdes0_clk: clock@4080 {
+ 			compatible = "syscon";
+ 			reg = <0x00004080 0x4>;
+@@ -697,8 +682,8 @@
+ 		#size-cells = <2>;
+ 		ranges = <0x81000000 0 0          0x0 0x10020000 0 0x00010000>,
+ 			 <0x82000000 0 0x10030000 0x0 0x10030000 0 0x07FD0000>;
+-		ti,syscon-pcie-id = <&pcie_devid>;
+-		ti,syscon-pcie-mode = <&pcie0_mode>;
++		ti,syscon-pcie-id = <&scm_conf 0x210>;
++		ti,syscon-pcie-mode = <&scm_conf 0x4060>;
+ 		bus-range = <0x0 0xff>;
+ 		num-viewport = <16>;
+ 		max-link-speed = <2>;
+@@ -713,7 +698,7 @@
+ 		reg =  <0x0 0x5500000 0x0 0x1000>, <0x0 0x5501000 0x0 0x1000>, <0x0 0x10000000 0x0 0x8000000>, <0x0 0x5506000 0x0 0x1000>;
+ 		reg-names = "app", "dbics", "addr_space", "atu";
+ 		power-domains = <&k3_pds 120 TI_SCI_PD_EXCLUSIVE>;
+-		ti,syscon-pcie-mode = <&pcie0_mode>;
++		ti,syscon-pcie-mode = <&scm_conf 0x4060>;
+ 		num-ib-windows = <16>;
+ 		num-ob-windows = <16>;
+ 		max-link-speed = <2>;
+@@ -730,8 +715,8 @@
+ 		#size-cells = <2>;
+ 		ranges = <0x81000000 0 0          0x0   0x18020000 0 0x00010000>,
+ 			 <0x82000000 0 0x18030000 0x0   0x18030000 0 0x07FD0000>;
+-		ti,syscon-pcie-id = <&pcie_devid>;
+-		ti,syscon-pcie-mode = <&pcie1_mode>;
++		ti,syscon-pcie-id = <&scm_conf 0x210>;
++		ti,syscon-pcie-mode = <&scm_conf 0x4070>;
+ 		bus-range = <0x0 0xff>;
+ 		num-viewport = <16>;
+ 		max-link-speed = <2>;
+@@ -746,7 +731,7 @@
+ 		reg =  <0x0 0x5600000 0x0 0x1000>, <0x0 0x5601000 0x0 0x1000>, <0x0 0x18000000 0x0 0x4000000>, <0x0 0x5606000 0x0 0x1000>;
+ 		reg-names = "app", "dbics", "addr_space", "atu";
+ 		power-domains = <&k3_pds 121 TI_SCI_PD_EXCLUSIVE>;
+-		ti,syscon-pcie-mode = <&pcie1_mode>;
++		ti,syscon-pcie-mode = <&scm_conf 0x4070>;
+ 		num-ib-windows = <16>;
+ 		num-ob-windows = <16>;
+ 		max-link-speed = <2>;
+-- 
+2.17.1
 
