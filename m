@@ -2,237 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F6D453F5B6
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 07:53:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DB8553F603
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 08:21:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236840AbiFGFxX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 01:53:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59592 "EHLO
+        id S230292AbiFGGVi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 02:21:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236839AbiFGFxH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 01:53:07 -0400
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C7E2140C6;
-        Mon,  6 Jun 2022 22:53:06 -0700 (PDT)
-Received: by mail-pj1-x102b.google.com with SMTP id d12-20020a17090abf8c00b001e2eb431ce4so14506681pjs.1;
-        Mon, 06 Jun 2022 22:53:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=Fgmmdez2YLBvzLz/N5O3pA9gc8sSQ4ag8UiBs6nCanY=;
-        b=h9gXRUmlvZssxYebh60B7y+6eGju0Vjf1fIzk4JxB6xZawVmH6w/DS1UBJU0wNTnnQ
-         9OMiHHyXDJmD7+w/0S3i01Q+SmtsSkctYXFLs0qmVMCtb2zycgf0HttkelMchWp6xS1b
-         LOvPphyt3BOpbBymt969qOfu7xXay+dHJ7araycgDgMpnQEdvewFb5qc/ItgaVZFq/4t
-         jwWNJImXrcZBL91jc74cYUjJd9Ip/JShpTc281/FsEpUET/RqTbxc1pOhXxBlGCB1CJs
-         JTh6OReqgrX2ffARONz+NJX6Bs7PM72rLBui2GybUeF8EFs+9svcz01JN3Ds3AH55+qy
-         Eayw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=Fgmmdez2YLBvzLz/N5O3pA9gc8sSQ4ag8UiBs6nCanY=;
-        b=o3MguGQXLcj74FQnAWODjtmJhqSXhBO/rozy84X7sPEM8cP6PHQSLSr1zJS/wiQbVa
-         LQEqnKOzqTVWCgmhBr62C327vnqdETduHKfPeX0Ig7tQlw7+aHq1ItpO4WVNFDU3btAs
-         61ed1fqvwdbEnM4R+TMs6x8nZsHT1v/jADW0sKSmsZRMk8aJktCfeUyVNdj2ge/oNn8q
-         Q2FL42dmbcvwGKhiVqonl0ihyp/jHAXa6hh9bSHkFeLhsgg026afwTekcvZjOA1KdZdm
-         eAddTYP9jU4lppJeUOu76IlI7ZqmMHDfNsBoH5xTYTu795NBOVUSzOQLUGwKL1hDRHQE
-         yMcA==
-X-Gm-Message-State: AOAM532a9rLOatsMyb35+DjcPaJTMMaSDFG9C8adXRVqvoKwNtUxH1ds
-        pQtD/dfxk1LQ8S0XMnqLBNKorw5gKeE=
-X-Google-Smtp-Source: ABdhPJyr8xr0wayTmQYYNh77h744b4u308+xWr/YYM3F87PpsJs/WVNCXJjl6oSUuqSmvB5+JqIYwA==
-X-Received: by 2002:a17:90a:1f4c:b0:1e6:6f77:c573 with SMTP id y12-20020a17090a1f4c00b001e66f77c573mr32257267pjy.17.1654581185722;
-        Mon, 06 Jun 2022 22:53:05 -0700 (PDT)
-Received: from localhost.localdomain ([49.216.54.77])
-        by smtp.gmail.com with ESMTPSA id z41-20020a056a001da900b0051b62689ec2sm9203520pfw.129.2022.06.06.22.53.02
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 06 Jun 2022 22:53:05 -0700 (PDT)
-From:   cy_huang <u0084500@gmail.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee.jones@linaro.org, broonie@kernel.org, dmitry.torokhov@gmail.com
-Cc:     lgirdwood@gmail.com, cy_huang@richtek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-input@vger.kernel.org
-Subject: [PATCH 4/4] input: misc: rt5120: Add power key support
-Date:   Tue,  7 Jun 2022 13:52:41 +0800
-Message-Id: <1654581161-12349-5-git-send-email-u0084500@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1654581161-12349-1-git-send-email-u0084500@gmail.com>
-References: <1654581161-12349-1-git-send-email-u0084500@gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230086AbiFGGVh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 02:21:37 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C0366FD2F;
+        Mon,  6 Jun 2022 23:21:30 -0700 (PDT)
+X-UUID: 65a4006f858644e5b49a6e18ee0f91e9-20220607
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:2c3b1d89-4978-4ed5-8c92-0baceb47a6ee,OB:0,LO
+        B:0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:5
+X-CID-META: VersionHash:2a19b09,CLOUDID:47f0e4e4-2ba2-4dc1-b6c5-11feb6c769e0,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
+        ,QS:0,BEC:nil
+X-UUID: 65a4006f858644e5b49a6e18ee0f91e9-20220607
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1400721123; Tue, 07 Jun 2022 14:21:27 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Tue, 7 Jun 2022 14:21:25 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Tue, 7 Jun 2022 14:21:24 +0800
+Message-ID: <0bd8b0c66b9e2a1b63280e7eab63048bee7fe786.camel@mediatek.com>
+Subject: Re: [PATCH v10 18/21] drm/mediatek: Add mt8195 Embedded DisplayPort
+ driver
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
+        Guillaume Ranquet <granquet@baylibre.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        "Daniel Vetter" <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        "Kishon Vijay Abraham I" <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, "Helge Deller" <deller@gmx.de>,
+        Jitao shi <jitao.shi@mediatek.com>
+CC:     Markus Schneider-Pargmann <msp@baylibre.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>, <linux-fbdev@vger.kernel.org>
+Date:   Tue, 7 Jun 2022 14:21:24 +0800
+In-Reply-To: <20220523104758.29531-19-granquet@baylibre.com>
+References: <20220523104758.29531-1-granquet@baylibre.com>
+         <20220523104758.29531-19-granquet@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+Hi, Rex:
 
-Add RT5120 PMIC power key support.
+On Mon, 2022-05-23 at 12:47 +0200, Guillaume Ranquet wrote:
+> From: Markus Schneider-Pargmann <msp@baylibre.com>
+> 
+> This patch adds a DisplayPort driver for the Mediatek mt8195 SoC.
+> 
+> It supports the mt8195, the embedded DisplayPort units. It offers
+> DisplayPort 1.4 with up to 4 lanes.
+> 
+> The driver creates a child device for the phy. The child device will
+> never exist without the parent being active. As they are sharing a
+> register range, the parent passes a regmap pointer to the child so
+> that
+> both can work with the same register range. The phy driver sets
+> device
+> data that is read by the parent to get the phy device that can be
+> used
+> to control the phy properties.
+> 
+> This driver is based on an initial version by
+> Jason-JH.Lin <jason-jh.lin@mediatek.com>.
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> ---
 
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
----
- drivers/input/misc/Kconfig         |   9 +++
- drivers/input/misc/Makefile        |   1 +
- drivers/input/misc/rt5120-pwrkey.c | 115 +++++++++++++++++++++++++++++++++++++
- 3 files changed, 125 insertions(+)
- create mode 100644 drivers/input/misc/rt5120-pwrkey.c
+[snip]
 
-diff --git a/drivers/input/misc/Kconfig b/drivers/input/misc/Kconfig
-index dd5227c..9c0d814 100644
---- a/drivers/input/misc/Kconfig
-+++ b/drivers/input/misc/Kconfig
-@@ -881,6 +881,15 @@ config INPUT_SC27XX_VIBRA
- 	  To compile this driver as a module, choose M here. The module will
- 	  be called sc27xx_vibra.
- 
-+config INPUT_RT5120_PWRKEY
-+	tristate "RT5120 PMIC power key support"
-+	depends on MFD_RT5120
-+	help
-+	  This enables support for RT5120 PMIC power key driver.
-+
-+	  To compile this driver as a module, choose M here. the module will
-+	  be called rt5120-pwerkey.
-+
- config INPUT_STPMIC1_ONKEY
- 	tristate "STPMIC1 PMIC Onkey support"
- 	depends on MFD_STPMIC1
-diff --git a/drivers/input/misc/Makefile b/drivers/input/misc/Makefile
-index b92c53a..164ea20 100644
---- a/drivers/input/misc/Makefile
-+++ b/drivers/input/misc/Makefile
-@@ -68,6 +68,7 @@ obj-$(CONFIG_INPUT_RAVE_SP_PWRBUTTON)	+= rave-sp-pwrbutton.o
- obj-$(CONFIG_INPUT_RB532_BUTTON)	+= rb532_button.o
- obj-$(CONFIG_INPUT_REGULATOR_HAPTIC)	+= regulator-haptic.o
- obj-$(CONFIG_INPUT_RETU_PWRBUTTON)	+= retu-pwrbutton.o
-+obj-$(CONFIG_INPUT_RT5120_PWRKEY)	+= rt5120-pwrkey.o
- obj-$(CONFIG_INPUT_AXP20X_PEK)		+= axp20x-pek.o
- obj-$(CONFIG_INPUT_GPIO_ROTARY_ENCODER)	+= rotary_encoder.o
- obj-$(CONFIG_INPUT_RK805_PWRKEY)	+= rk805-pwrkey.o
-diff --git a/drivers/input/misc/rt5120-pwrkey.c b/drivers/input/misc/rt5120-pwrkey.c
-new file mode 100644
-index 00000000..42bd2f3
---- /dev/null
-+++ b/drivers/input/misc/rt5120-pwrkey.c
-@@ -0,0 +1,115 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+
-+#include <linux/bits.h>
-+#include <linux/input.h>
-+#include <linux/interrupt.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+
-+#define RT5120_REG_INTSTAT	0x1E
-+#define RT5120_PWRKEYSTAT_MASK	BIT(7)
-+
-+struct rt5120_priv {
-+	struct regmap *regmap;
-+	struct input_dev *input;
-+	int press_irq;
-+	int release_irq;
-+};
-+
-+static irqreturn_t rt5120_pwrkey_handler(int irq, void *devid)
-+{
-+	struct rt5120_priv *priv = devid;
-+	unsigned int stat;
-+	bool is_pressed;
-+	int ret;
-+
-+	ret = regmap_read(priv->regmap, RT5120_REG_INTSTAT, &stat);
-+	if (ret)
-+		return IRQ_NONE;
-+
-+	is_pressed = !(stat & RT5120_PWRKEYSTAT_MASK);
-+
-+	if ((is_pressed && irq == priv->press_irq) ||
-+	    (!is_pressed  && irq == priv->release_irq)) {
-+		input_report_key(priv->input, KEY_POWER, is_pressed);
-+		input_sync(priv->input);
-+	}
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int rt5120_pwrkey_probe(struct platform_device *pdev)
-+{
-+	struct rt5120_priv *priv;
-+	int ret;
-+
-+	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->regmap = dev_get_regmap(pdev->dev.parent, NULL);
-+	if (!priv->regmap) {
-+		dev_err(&pdev->dev, "Failed to init regmap\n");
-+		return -ENODEV;
-+	}
-+
-+	priv->press_irq = platform_get_irq_byname(pdev, "pwrkey-press");
-+	if (priv->press_irq < 0)
-+		return priv->press_irq;
-+
-+	priv->release_irq = platform_get_irq_byname(pdev, "pwrkey-release");
-+	if (priv->release_irq < 0)
-+		return priv->release_irq;
-+
-+	/* Make input device be device resource managed */
-+	priv->input = devm_input_allocate_device(&pdev->dev);
-+	if (!priv->input) {
-+		dev_err(&pdev->dev, "Failed to allocate input device\n");
-+		return -ENOMEM;
-+	}
-+
-+	priv->input->name = "rt5120_pwrkey";
-+	priv->input->phys = "rt5120_pwrkey/input0";
-+	priv->input->id.bustype = BUS_I2C;
-+	input_set_capability(priv->input, EV_KEY, KEY_POWER);
-+
-+	ret = input_register_device(priv->input);
-+	if (ret) {
-+		dev_err(&pdev->dev, "Failed to register input device\n");
-+		return ret;
-+	}
-+
-+	ret = devm_request_threaded_irq(&pdev->dev, priv->press_irq, NULL,
-+					rt5120_pwrkey_handler, 0,
-+					"pwrkey-press", priv);
-+	if (ret) {
-+		dev_err(&pdev->dev, "Failed to register pwrkey press irq\n");
-+		return ret;
-+	}
-+
-+	return devm_request_threaded_irq(&pdev->dev, priv->release_irq, NULL,
-+					 rt5120_pwrkey_handler, 0,
-+					 "pwrkey-release", priv);
-+}
-+
-+static const struct of_device_id r5120_pwrkey_match_table[] = {
-+	{ .compatible = "richtek,rt5120-pwrkey", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, r5120_pwrkey_match_table);
-+
-+static struct platform_driver rt5120_pwrkey_driver = {
-+	.driver = {
-+		.name = "rt5120-pwrkey",
-+		.of_match_table = r5120_pwrkey_match_table,
-+	},
-+	.probe = rt5120_pwrkey_probe,
-+};
-+module_platform_driver(rt5120_pwrkey_driver);
-+
-+MODULE_AUTHOR("ChiYuan Huang <cy_huang@richtek.com>");
-+MODULE_DESCRIPTION("Richtek RT5120 power key driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.7.4
+> +
+> +static irqreturn_t mtk_dp_hpd_event_thread(int hpd, void *dev)
+> +{
+> +	struct mtk_dp *mtk_dp = dev;
+> +	int event;
+> +	u8 buf[DP_RECEIVER_CAP_SIZE] = {};
+> +
+> +	event = mtk_dp_plug_state(mtk_dp) ? connector_status_connected
+> :
+> +						  connector_status_disc
+> onnected;
+> +
+> +	if (event < 0)
+
+event is always > 0, isn't it?
+
+> +		return IRQ_HANDLED;
+> +
+> +	if (mtk_dp->drm_dev) {
+> +		dev_info(mtk_dp->dev, "drm_helper_hpd_irq_event\n");
+> +		drm_helper_hpd_irq_event(mtk_dp->bridge.dev);
+
+I think this ISR would come once. If bridge has not attached, the drm
+core would lost this event. Maybe you should enable eDP hardware after
+bridge attached or send this event when attached.
+
+> +	}
+> +
+> +	if (mtk_dp->train_info.cable_state_change) {
+
+Executing this thread imply cable_state_change = true, so drop
+cable_state_change.
+
+> +		mtk_dp->train_info.cable_state_change = false;
+> +
+> +		mtk_dp->train_state = MTK_DP_TRAIN_STATE_STARTUP;
+> +
+> +		if (!mtk_dp->train_info.cable_plugged_in ||
+> +		    !mtk_dp_plug_state(mtk_dp)) {
+
+I do not like two variable to present one thing. If
+
+mtk_dp->train_info.cable_plugged_in = false
+and
+mtk_dp_plug_state(mtk_dp) = ture
+
+What does this mean? I think this mean 'now' is connected because
+cable_plugged_in is old information and mtk_dp_plug_state() is current
+information.
+
+But I would like to keep cable_plugged_in and drop mtk_dp_plug_state()
+because cable_plugged_in would be changed in isr and it would be the
+same as mtk_dp_plug_state().
+
+Regards,
+CK
+
+> +			mtk_dp_video_mute(mtk_dp, true);
+> +
+> +			mtk_dp_initialize_priv_data(mtk_dp);
+> +			mtk_dp_set_idle_pattern(mtk_dp, true);
+> +			if (mtk_dp->has_fec)
+> +				mtk_dp_fec_enable(mtk_dp, false);
+> +
+> +			mtk_dp_update_bits(mtk_dp,
+> MTK_DP_TOP_PWR_STATE,
+> +					   DP_PWR_STATE_BANDGAP_TPLL,
+> +					   DP_PWR_STATE_MASK);
+> +		} else {
+> +			mtk_dp_update_bits(mtk_dp,
+> MTK_DP_TOP_PWR_STATE,
+> +					   DP_PWR_STATE_BANDGAP_TPLL_LA
+> NE,
+> +					   DP_PWR_STATE_MASK);
+> +			drm_dp_read_dpcd_caps(&mtk_dp->aux, buf);
+> +			mtk_dp->train_info.link_rate =
+> +				min_t(int, mtk_dp->max_linkrate,
+> +				      buf[mtk_dp->max_linkrate]);
+> +			mtk_dp->train_info.lane_count =
+> +				min_t(int, mtk_dp->max_lanes,
+> +				      drm_dp_max_lane_count(buf));
+> +		}
+> +	}
+> +
+> +	if (mtk_dp->train_info.irq_status & MTK_DP_HPD_INTERRUPT) {
+> +		dev_dbg(mtk_dp->dev, "MTK_DP_HPD_INTERRUPT\n");
+> +		mtk_dp->train_info.irq_status &= ~MTK_DP_HPD_INTERRUPT;
+> +		mtk_dp_hpd_sink_event(mtk_dp);
+> +	}
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
 
