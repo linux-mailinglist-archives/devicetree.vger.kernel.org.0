@@ -2,352 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48A2553F56D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 07:01:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF6DD53F573
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 07:04:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236654AbiFGFAs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 01:00:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45700 "EHLO
+        id S236751AbiFGFEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 01:04:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235906AbiFGFAo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 01:00:44 -0400
-Received: from smtp.smtpout.orange.fr (smtp07.smtpout.orange.fr [80.12.242.129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA173AFB1D
-        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 22:00:41 -0700 (PDT)
-Received: from [192.168.1.18] ([90.11.190.129])
-        by smtp.orange.fr with ESMTPA
-        id yRKRntRriL5fDyRKSnPDgo; Tue, 07 Jun 2022 07:00:39 +0200
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: YWZlNiIxYWMyZDliZWIzOTcwYTEyYzlhMmU3ZiQ1M2U2MzfzZDfyZTMxZTBkMTYyNDBjNDJlZmQ3ZQ==
-X-ME-Date: Tue, 07 Jun 2022 07:00:39 +0200
-X-ME-IP: 90.11.190.129
-Message-ID: <a85c4f87-c87f-784f-7db3-0b83570f82da@wanadoo.fr>
-Date:   Tue, 7 Jun 2022 07:00:31 +0200
+        with ESMTP id S236722AbiFGFEV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 01:04:21 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 595E8C1ECE;
+        Mon,  6 Jun 2022 22:04:19 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 25754BWT013755;
+        Tue, 7 Jun 2022 00:04:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1654578251;
+        bh=LuyJp6N2+OSRRSCMTgRGlAsY50dcRaUtJNXh97nhDcw=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=LGQLeIUFehUMVRddXGsbBAUwn98Txzayy1mu+Htw/cWRp1SqI7xa54Z0vWJw1v8VS
+         PoC03iinNDyZRo2HttU17al509mLTTroHnvyrlXczBgGM/in0zgvi9xB+2A1bBr5Gx
+         3XmqiVcpApZ2STi6dLMlVI3JcmfB5Am4WsrqMDmI=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 25754Bro003108
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 7 Jun 2022 00:04:11 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 7
+ Jun 2022 00:04:10 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 7 Jun 2022 00:04:10 -0500
+Received: from [172.24.220.119] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 25753v3M120195;
+        Tue, 7 Jun 2022 00:03:59 -0500
+Message-ID: <37bbd74e-17e2-5b45-43da-f1103dd0c752@ti.com>
+Date:   Tue, 7 Jun 2022 10:33:56 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v2 5/5] crypto: aspeed: add HACE crypto driver
-Content-Language: fr
-To:     Neal Liu <neal_liu@aspeedtech.com>
-Cc:     linux-aspeed@lists.ozlabs.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, BMC-SW@aspeedtech.com,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Johnny Huang <johnny_huang@aspeedtech.com>
-References: <20220606064935.1458903-1-neal_liu@aspeedtech.com>
- <20220606064935.1458903-6-neal_liu@aspeedtech.com>
- <ef2fc6ab-e487-1f95-dceb-fd190f064ac2@wanadoo.fr>
- <HK0PR06MB3202DFD70F7BA5090A14ACB780A59@HK0PR06MB3202.apcprd06.prod.outlook.com>
-From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <HK0PR06MB3202DFD70F7BA5090A14ACB780A59@HK0PR06MB3202.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v4 0/6] Introduce PRU remoteproc consumer API
+Content-Language: en-US
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>
+CC:     <linux-kernel@vger.kernel.org>, <bjorn.andersson@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <nm@ti.com>, <ssantosh@kernel.org>, <s-anna@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>, <rogerq@kernel.org>,
+        <grygorii.strashko@ti.com>, <vigneshr@ti.com>, <kishon@ti.com>,
+        <robh@kernel.org>
+References: <20220603121520.13730-1-p-mohan@ti.com>
+ <20220606155612.GA809345@p14s> <20220606161518.GB809345@p14s>
+From:   Puranjay Mohan <p-mohan@ti.com>
+In-Reply-To: <20220606161518.GB809345@p14s>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-8.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le 07/06/2022 à 05:53, Neal Liu a écrit :
->> Le 06/06/2022 à 08:49, Neal Liu a écrit :
->>> Add HACE crypto driver to support symmetric-key encryption and
->>> decryption with multiple modes of operation.
+Hi Mathieu,
+
+On 06/06/22 21:45, Mathieu Poirier wrote:
+> On Mon, Jun 06, 2022 at 09:56:12AM -0600, Mathieu Poirier wrote:
+>> I have started to review this set, comments will come over the next few days.  I
+>> will clearly inform you when I am done reviewing.
+> 
+> This patch is giving me several checkpatch warnings that should have been caught
+> before sending the patches out to the mailing list.  As such I will not review
+> this work and seriously considering adding your next revision at the very bottom
+> of my queue.
+
+I am sorry for this. I had introduced the 6th patch in v4 and it is
+giving these errors. I have fixed them and sent a v5. Please don't move
+the v5 to the bottom of the queue. I will be extra cautious from next time.
+
+Thanks,
+Puranjay Mohan
+
+> 
+>>
+>> Thanks,
+>> Mathieu
+>>
+>> On Fri, Jun 03, 2022 at 05:45:14PM +0530, Puranjay Mohan wrote:
+>>> This is the v4 of the patch series [1]. The v3 had some comments
+>>> on the DT patch that have been addressed here. The 6th patch in this
+>>> series was missed in the previous versions, so, it has been added now.
 >>>
->>> Signed-off-by: Neal Liu <neal_liu@aspeedtech.com>
->>> Signed-off-by: Johnny Huang <johnny_huang@aspeedtech.com>
->>> ---
->>
->> [...]
->>
->>> +static int aspeed_sk_transfer_sg(struct aspeed_hace_dev *hace_dev) {
->>> +	struct aspeed_engine_crypto *crypto_engine =
->> &hace_dev->crypto_engine;
->>> +	struct device *dev = hace_dev->dev;
->>> +	struct aspeed_cipher_reqctx *rctx;
->>> +	struct skcipher_request *req;
->>> +
->>> +	CIPHER_DBG(hace_dev, "\n");
->>> +
->>> +	req = skcipher_request_cast(crypto_engine->areq);
->>> +	rctx = skcipher_request_ctx(req);
->>> +
->>> +	if (req->src == req->dst) {
->>> +		dma_unmap_sg(dev, req->src, rctx->src_nents,
->> DMA_BIDIRECTIONAL);
->>> +
->>
->> Unneeded empty line.
-> 
-> Okay !
-> 
->>
->>> +	} else {
->>> +		dma_unmap_sg(dev, req->src, rctx->src_nents, DMA_TO_DEVICE);
->>> +		dma_unmap_sg(dev, req->dst, rctx->dst_nents,
->> DMA_FROM_DEVICE);
->>> +	}
->>> +
->>> +	return aspeed_sk_complete(hace_dev, 0); }
->>> +
->>
->> [...]
->>
->>> +static int aspeed_sk_start_sg(struct aspeed_hace_dev *hace_dev) {
->>> +	struct aspeed_engine_crypto *crypto_engine =
->> &hace_dev->crypto_engine;
->>> +	struct aspeed_sg_list *src_list, *dst_list;
->>> +	dma_addr_t src_dma_addr, dst_dma_addr;
->>> +	struct aspeed_cipher_reqctx *rctx;
->>> +	struct skcipher_request *req;
->>> +	struct scatterlist *s;
->>> +	int src_sg_len;
->>> +	int dst_sg_len;
->>> +	int total, i;
->>> +	int rc;
->>> +
->>> +	CIPHER_DBG(hace_dev, "\n");
->>> +
->>> +	req = skcipher_request_cast(crypto_engine->areq);
->>> +	rctx = skcipher_request_ctx(req);
->>> +
->>> +	rctx->enc_cmd |= HACE_CMD_DES_SG_CTRL |
->> HACE_CMD_SRC_SG_CTRL |
->>> +			 HACE_CMD_AES_KEY_HW_EXP |
->> HACE_CMD_MBUS_REQ_SYNC_EN;
->>> +
->>> +	/* BIDIRECTIONAL */
->>> +	if (req->dst == req->src) {
->>> +		src_sg_len = dma_map_sg(hace_dev->dev, req->src,
->>> +					rctx->src_nents, DMA_BIDIRECTIONAL);
->>> +		dst_sg_len = src_sg_len;
->>> +		if (!src_sg_len) {
->>> +			dev_warn(hace_dev->dev, "dma_map_sg() src error\n");
->>> +			return -EINVAL;
->>> +		}
->>> +
->>> +	} else {
->>> +		src_sg_len = dma_map_sg(hace_dev->dev, req->src,
->>> +					rctx->src_nents, DMA_TO_DEVICE);
->>> +		if (!src_sg_len) {
->>> +			dev_warn(hace_dev->dev, "dma_map_sg() src error\n");
->>> +			return -EINVAL;
->>> +		}
->>> +
->>> +		dst_sg_len = dma_map_sg(hace_dev->dev, req->dst,
->>> +					rctx->dst_nents, DMA_FROM_DEVICE);
->>> +		if (!dst_sg_len) {
->>> +			dev_warn(hace_dev->dev, "dma_map_sg() dst error\n");
->>> +			rc = -EINVAL;
->>> +			goto free_req_src;
->>
->> Should we realy call dma_unmap_sg() if dma_map_sg() fails?
-> 
-> This error handling is unmap() the above buffer (req->src), not really this buffer (req->dst).
-> I think it should.
-
-You are right, I missread it. Sorry for the noise.
-
-> 
->>
->>> +		}
->>> +	}
->>> +
->>> +	src_list = (struct aspeed_sg_list *)crypto_engine->cipher_addr;
->>> +	src_dma_addr = crypto_engine->cipher_dma_addr;
->>> +	total = req->cryptlen;
->>> +
->>> +	for_each_sg(req->src, s, src_sg_len, i) {
->>> +		src_list[i].phy_addr = sg_dma_address(s);
->>> +
->>> +		/* last sg list */
->>> +		if (sg_dma_len(s) >= total) {
->>> +			src_list[i].len = total;
->>> +			src_list[i].len |= BIT(31);
->>> +			total = 0;
->>> +			break;
->>> +		}
->>> +
->>> +		src_list[i].len = sg_dma_len(s);
->>> +		total -= src_list[i].len;
->>> +	}
->>> +
->>> +	if (total != 0)
->>> +		return -EINVAL;
->>
->> goto free_req_src; ?
-> 
-> Yes, I miss this part. I'll revise it in next patch, thanks.
-
-There is another one below...
-
-> 
->>
->>> +
->>> +	if (req->dst == req->src) {
->>> +		dst_list = src_list;
->>> +		dst_dma_addr = src_dma_addr;
->>> +
->>> +	} else {
->>> +		dst_list = (struct aspeed_sg_list *)crypto_engine->dst_sg_addr;
->>> +		dst_dma_addr = crypto_engine->dst_sg_dma_addr;
->>> +		total = req->cryptlen;
->>> +
->>> +		for_each_sg(req->dst, s, dst_sg_len, i) {
->>> +			dst_list[i].phy_addr = sg_dma_address(s);
->>> +
->>> +			/* last sg list */
->>> +			if (sg_dma_len(s) >= total) {
->>> +				dst_list[i].len = total;
->>> +				dst_list[i].len |= BIT(31);
->>> +				total = 0;
->>> +				break;
->>> +			}
->>> +
->>> +			dst_list[i].len = sg_dma_len(s);
->>> +			total -= dst_list[i].len;
->>> +		}
->>> +
->>> +		dst_list[dst_sg_len].phy_addr = 0;
->>> +		dst_list[dst_sg_len].len = 0;
->>> +	}
->>> +
->>> +	if (total != 0)
->>> +		return -EINVAL;
-
-... here.
-
->>> +
->>> +	crypto_engine->resume = aspeed_sk_transfer_sg;
->>> +
->>> +	/* Dummy read for barriers */
->>> +	readl(src_list);
->>> +	readl(dst_list);
->>> +
->>> +	/* Trigger engines */
->>> +	ast_hace_write(hace_dev, src_dma_addr, ASPEED_HACE_SRC);
->>> +	ast_hace_write(hace_dev, dst_dma_addr, ASPEED_HACE_DEST);
->>> +	ast_hace_write(hace_dev, req->cryptlen, ASPEED_HACE_DATA_LEN);
->>> +	ast_hace_write(hace_dev, rctx->enc_cmd, ASPEED_HACE_CMD);
->>> +
->>> +	return -EINPROGRESS;
->>> +
->>> +free_req_src:
->>> +	dma_unmap_sg(hace_dev->dev, req->src, rctx->src_nents,
->>> +DMA_TO_DEVICE);
->>> +
->>> +	return rc;
->>> +}
->>> +
->>
->> [...]
->>
->>> +static int aspeed_aes_setkey(struct crypto_skcipher *cipher, const u8 *key,
->>> +			     unsigned int keylen)
->>> +{
->>> +	struct aspeed_cipher_ctx *ctx = crypto_skcipher_ctx(cipher);
->>> +	struct aspeed_hace_dev *hace_dev = ctx->hace_dev;
->>> +	struct crypto_aes_ctx gen_aes_key;
->>> +
->>> +	CIPHER_DBG(hace_dev, "keylen: %d bits\n", (keylen * 8));
->>> +
->>> +	if (keylen != AES_KEYSIZE_128 && keylen != AES_KEYSIZE_192 &&
->>> +	    keylen != AES_KEYSIZE_256)
->>> +		return -EINVAL;
->>> +
->>> +	if (ctx->hace_dev->version == AST2500_VERSION) {
->>> +		aes_expandkey(&gen_aes_key, key, keylen);
->>> +		memcpy(ctx->key, gen_aes_key.key_enc, AES_MAX_KEYLENGTH);
->>> +
->>
->> Unneeded empty line
-> 
-> Okay !
-> 
->>
->>> +	} else {
->>> +		memcpy(ctx->key, key, keylen);
->>> +	}
->>> +
->>> +	ctx->key_len = keylen;
->>> +
->>> +	return 0;
->>> +}
->>> +
->>
->> [...]
->>
->>> +	crypto_engine->cipher_ctx =
->>> +		dma_alloc_coherent(&pdev->dev,
->>> +				   PAGE_SIZE,
->>> +				   &crypto_engine->cipher_ctx_dma,
->>> +				   GFP_KERNEL);
->>> +	if (!crypto_engine->cipher_ctx) {
->>> +		dev_err(&pdev->dev, "Failed to allocate cipher ctx dma\n");
->>> +		rc = -ENOMEM;
->>> +		goto free_hash_src;
->>> +	}
->>> +
->>> +	crypto_engine->cipher_addr =
->>> +		dma_alloc_coherent(&pdev->dev,
->>> +				   ASPEED_CRYPTO_SRC_DMA_BUF_LEN,
->>> +				   &crypto_engine->cipher_dma_addr,
->>> +				   GFP_KERNEL);
->>> +	if (!crypto_engine->cipher_addr) {
->>> +		dev_err(&pdev->dev, "Failed to allocate cipher addr dma\n");
->>> +		rc = -ENOMEM;
->>> +		goto free_cipher_ctx;
->>> +	}
->>> +
->>> +	if (hace_dev->version == AST2600_VERSION) {
->>> +		crypto_engine->dst_sg_addr =
->>> +			dma_alloc_coherent(&pdev->dev,
->>> +					   ASPEED_CRYPTO_DST_DMA_BUF_LEN,
->>> +					   &crypto_engine->dst_sg_dma_addr,
->>> +					   GFP_KERNEL);
->>> +		if (!crypto_engine->dst_sg_addr) {
->>> +			dev_err(&pdev->dev, "Failed to allocate dst_sg dma\n");
->>> +			rc = -ENOMEM;
->>> +			goto free_cipher_addr;
->>> +		}
->>> +	}
->>> +
->>>    	rc = aspeed_hace_register(hace_dev);
->>>    	if (rc) {
->>>    		dev_err(&pdev->dev, "Failed to register algs, rc:0x%x\n", rc);
->>
->> I guess that the new dma_alloc_coherent() just a few lines above should also
->> be undone in error hanfling path if aspeed_hace_register() fails?
-> 
-> I'll remove the return value (rc) since it's useless here. So no need error handling on this part.
-> I'll revise it in next patch, thanks.
-> 
->>
->>> @@ -179,6 +282,18 @@ static int aspeed_hace_probe(struct
->>> platform_device *pdev)
+>>> I have posted two more patch series that depend on this series, one to
+>>> the soc tree and another to the networking tree. I had sent all the 3
+>>> series, including this one as RFC [2] to get comments and to explain the
+>>> dependencies.
 >>>
->>>    	return 0;
+>>> The Programmable Real-Time Unit and Industrial Communication Subsystem
+>>> (PRU-ICSS or simply PRUSS) on various TI SoCs consists of dual 32-bit
+>>> RISC cores (Programmable Real-Time Units, or PRUs) for program execution.
 >>>
->>> +free_cipher_addr:
->>> +	dma_free_coherent(&pdev->dev, ASPEED_CRYPTO_SRC_DMA_BUF_LEN,
->>> +			  crypto_engine->cipher_addr,
->>> +			  crypto_engine->cipher_dma_addr);
->>> +free_cipher_ctx:
->>> +	dma_free_coherent(&pdev->dev, PAGE_SIZE,
->>> +			  crypto_engine->cipher_ctx,
->>> +			  crypto_engine->cipher_ctx_dma);
->>> +free_hash_src:
->>> +	dma_free_coherent(&pdev->dev, ASPEED_HASH_SRC_DMA_BUF_LEN,
->>> +			  hash_engine->ahash_src_addr,
->>> +			  hash_engine->ahash_src_dma_addr);
->>>    end:
->>>    	clk_disable_unprepare(hace_dev->clk);
->>>    	return rc;
-
+>>> There are 3 foundation components for PRUSS subsystem: the PRUSS platform
+>>> driver, the PRUSS INTC driver and the PRUSS remoteproc driver. All were
+>>> already merged and can be found under:
+>>> 1) drivers/soc/ti/pruss.c
+>>>    Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+>>> 2) drivers/irqchip/irq-pruss-intc.c
+>>>    Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
+>>> 3) drivers/remoteproc/pru_rproc.c
+>>>    Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
+>>>
+>>> The programmable nature of the PRUs provide flexibility to implement custom
+>>> peripheral interfaces, fast real-time responses, or specialized data handling.
+>>> Example of a PRU consumer drivers will be:
+>>>   - Software UART over PRUSS
+>>>   - PRU-ICSS Ethernet EMAC
+>>>
+>>> In order to make usage of common PRU resources and allow the consumer drivers to
+>>> configure the PRU hardware for specific usage the PRU API is introduced.
+>>>
+>>> [1] https://patchwork.kernel.org/project/linux-remoteproc/cover/20220418104118.12878-1-p-mohan@ti.com/
+>>> [2] https://patchwork.kernel.org/project/linux-remoteproc/cover/20220406094358.7895-1-p-mohan@ti.com/
+>>>
+>>> Thanks and Regards,
+>>> Puranjay Mohan
+>>>
+>>> Roger Quadros (1):
+>>>   remoteproc: pru: Add pru_rproc_set_ctable() function
+>>>
+>>> Suman Anna (2):
+>>>   dt-bindings: remoteproc: Add PRU consumer bindings
+>>>   remoteproc: pru: Make sysfs entries read-only for PRU client driven
+>>>     boots
+>>>
+>>> Tero Kristo (3):
+>>>   remoteproc: pru: Add APIs to get and put the PRU cores
+>>>   remoteproc: pru: Configure firmware based on client setup
+>>>   remoteproc: pru: add support for configuring GPMUX based on client
+>>>     setup
+>>>
+>>>  .../bindings/remoteproc/ti,pru-consumer.yaml  |  69 +++++
+>>>  drivers/remoteproc/pru_rproc.c                | 254 +++++++++++++++++-
+>>>  include/linux/pruss.h                         |  78 ++++++
+>>>  3 files changed, 396 insertions(+), 5 deletions(-)
+>>>  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
+>>>  create mode 100644 include/linux/pruss.h
+>>>
+>>> -- 
+>>> 2.17.1
+>>>
