@@ -2,74 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18A8C53FBA7
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 12:44:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8E3753FBB7
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 12:45:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241357AbiFGKn5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 06:43:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36876 "EHLO
+        id S241396AbiFGKpX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 06:45:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241349AbiFGKnz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 06:43:55 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D5BD201BD
-        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 03:43:54 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id c2so8226688lfk.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 03:43:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tfeUV1AwNiT/W19hxcj/NliOzzEK95QXMUgUDGQeGVM=;
-        b=mklHMeniN+Ch9TA/pHudegQh81MPjZetIIdfVLjDQbypod4GCI5NH296O4xL3oLXX5
-         EtSB95qGej4GPTANqSeLL+ml3+OGdRkpbbQd3nd+tb1z5QHIZPdeWwIy9GjH8pZQc50C
-         zDzkcvE0nFPpibbibIYz2TxiRK0MjxayLE0RrcacIAZUSgfhpanYLUuZ1lZQ1ef4w2AN
-         GiIxg3XVYvrQR5k8hBIPZ4uPZx8rnz0rqd6kA63O1jDWdVd1H7Bm+5fqY5eA5Cc5zfC6
-         0g0oy8babwOZ1jqtD/zY3rQIq6OWxFbiaf+s/hVixKGFRHrlCVFvTyQvlxMm1WKzXD6V
-         Wjsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tfeUV1AwNiT/W19hxcj/NliOzzEK95QXMUgUDGQeGVM=;
-        b=qYjroP1zDTdapO92YbSSpK5u812awc34ZDwiLjGbK1rGKC5Q90+0IDr0mbPpEWycW1
-         tkHRTAoZaJ2NZwB6kxkemu7f/oqV+Qy8Aa8+O0rlYtB3OAV00cfZYZwWiO5i+dvFYB4s
-         31O+KFjXmXmnvyMBwoyhkMuvKGBZrX5z5eOtvBL5RePF/ghtK0Pn8Q6CXfy08IfIWDYF
-         abe/D/2JC9WBGYMPXmick4JEFZ61ZYZgERCNU9Vip6GfQA2ncQmkTOlg9M+0DuNOaSrp
-         9Un/aVsNkr8IYB507YgbF/4nOoEU51TxvaPrkhxKTznX64whuB7zzYzYJbpZpKNDmhLS
-         RA4g==
-X-Gm-Message-State: AOAM531iLO9DXmIuJel+OQFZysslBuVbySb+irZOfTOfnd1iRig1hVUE
-        kLHdYT3zbd1LuvEDrwsbILx2EYrumbFhKlZ4YDI4QQ==
-X-Google-Smtp-Source: ABdhPJzPGTimBB70OBlGTNcTyqnDOsp8/I8NBiCevRFSY/lrkvKnq2LAYOlDrii5/PhsOwu2dbZ17DoYgnn4hQ42m3A=
-X-Received: by 2002:ac2:54b9:0:b0:479:a29:c1ec with SMTP id
- w25-20020ac254b9000000b004790a29c1ecmr17619658lfk.358.1654598632532; Tue, 07
- Jun 2022 03:43:52 -0700 (PDT)
+        with ESMTP id S235227AbiFGKpW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 06:45:22 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 223281EEF1;
+        Tue,  7 Jun 2022 03:45:22 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D60AFB81EEF;
+        Tue,  7 Jun 2022 10:45:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08CDEC385A5;
+        Tue,  7 Jun 2022 10:45:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654598719;
+        bh=dWi9pVoSXFMjNQasXg+itxXBUXG1usYFJbMM2nTrsb0=;
+        h=From:To:In-Reply-To:References:Subject:Date:From;
+        b=jbbJVJHznc3BWrvL9hvWGW4/IGx4f9ENxcWG7iVdMkdZZkNnISL4d7mjeKfubXrKK
+         8oPtTg3eNzeA68a4oOOg0kkVVwIuIoGXkdZpV/vYd2tSjFtKgITsle39SazOg118Pm
+         Mf+eXY4bu7Zxiay+y++FcaKk9OMzuy4ymsYPo4Mu/kSBYEVwMcwZ8CM629Bj061DgT
+         sJXD3LI7cYrabxXNs9qSkQb6cbzB/iPlh+YtJCjjEg3M3ZJdi53jIHjOwbpKitXMcg
+         MgwAm0rX3ZF8O3d5eZqJiSkjd+X4FVd1U4A+JZiBt2TsmSWZztnAobUsMsc8Ni2+u2
+         4yFlXg4mWM/lQ==
+From:   Mark Brown <broonie@kernel.org>
+To:     srinivas.kandagatla@linaro.org, bjorn.andersson@linaro.org,
+        swboyd@chromium.org, tiwai@suse.com, vkoul@kernel.org,
+        linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        quic_plai@quicinc.com, bgoswami@quicinc.com,
+        devicetree@vger.kernel.org, judyhsiao@chromium.org,
+        robh+dt@kernel.org, lgirdwood@gmail.com, quic_rohkumar@quicinc.com,
+        perex@perex.cz, linux-kernel@vger.kernel.org,
+        quic_srivasam@quicinc.com, alsa-devel@alsa-project.org
+In-Reply-To: <1652877755-25120-1-git-send-email-quic_srivasam@quicinc.com>
+References: <1652877755-25120-1-git-send-email-quic_srivasam@quicinc.com>
+Subject: Re: [PATCH v2] ASoC: qcom: soundwire: Add support for controlling audio CGCR from HLOS
+Message-Id: <165459871566.301808.10281011736457954166.b4-ty@kernel.org>
+Date:   Tue, 07 Jun 2022 11:45:15 +0100
 MIME-Version: 1.0
-References: <20220606201343.514391-1-mail@conchuod.ie> <20220606201343.514391-2-mail@conchuod.ie>
-In-Reply-To: <20220606201343.514391-2-mail@conchuod.ie>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 7 Jun 2022 12:43:15 +0200
-Message-ID: <CAPDyKFqvo3qf+tK2p-Vkk8=7TGAaAKjAsJvsh=rKYBB_vxpB4A@mail.gmail.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: mmc: convert mmc-spi-slot to yaml
-To:     Conor Dooley <mail@conchuod.ie>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Support Opensource <support.opensource@diasemi.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Steve Twiss <stwiss.opensource@diasemi.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-riscv@lists.infradead.org,
-        Atul Khare <atulkhare@rivosinc.com>,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,148 +58,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 6 Jun 2022 at 22:14, Conor Dooley <mail@conchuod.ie> wrote:
->
-> From: Conor Dooley <conor.dooley@microchip.com>
->
-> Convert the mmc-spi-slot text based binding doc to yaml,
-> with the side effect of cleaning up some of the riscv
-> dtbs_check warnings.
->
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+On Wed, 18 May 2022 18:12:35 +0530, Srinivasa Rao Mandadapu wrote:
+> Add support for controlling soundwire audio CGCR interface using clock
+> framework to make hclk ungating with software. As per new hardware
+> changes, software has to always ungate hclk if soundwire is operational
+> and keep it running. This requirement is for latest LPASS chipsets for
+> RX, TX and WSA path to work.
+> 
+> 
+> [...]
 
-Applied for next, thanks!
+Applied to
 
-Kind regards
-Uffe
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
+Thanks!
 
-> ---
->  .../devicetree/bindings/mmc/mmc-spi-slot.txt  | 29 -------
->  .../devicetree/bindings/mmc/mmc-spi-slot.yaml | 77 +++++++++++++++++++
->  2 files changed, 77 insertions(+), 29 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mmc/mmc-spi-slot.txt
->  create mode 100644 Documentation/devicetree/bindings/mmc/mmc-spi-slot.yaml
->
-> diff --git a/Documentation/devicetree/bindings/mmc/mmc-spi-slot.txt b/Documentation/devicetree/bindings/mmc/mmc-spi-slot.txt
-> deleted file mode 100644
-> index 5e74db69f581..000000000000
-> --- a/Documentation/devicetree/bindings/mmc/mmc-spi-slot.txt
-> +++ /dev/null
-> @@ -1,29 +0,0 @@
-> -MMC/SD/SDIO slot directly connected to a SPI bus
-> -
-> -This file documents differences between the core properties described
-> -by mmc.txt and the properties used by the mmc_spi driver.
-> -
-> -Required properties:
-> -- spi-max-frequency : maximum frequency for this device (Hz).
-> -
-> -Optional properties:
-> -- voltage-ranges : two cells are required, first cell specifies minimum
-> -  slot voltage (mV), second cell specifies maximum slot voltage (mV).
-> -  Several ranges could be specified. If not provided, 3.2v..3.4v is assumed.
-> -- gpios : may specify GPIOs in this order: Card-Detect GPIO,
-> -  Write-Protect GPIO. Note that this does not follow the
-> -  binding from mmc.txt, for historical reasons.
-> -
-> -Example:
-> -
-> -       mmc-slot@0 {
-> -               compatible = "fsl,mpc8323rdb-mmc-slot",
-> -                            "mmc-spi-slot";
-> -               reg = <0>;
-> -               gpios = <&qe_pio_d 14 1
-> -                        &qe_pio_d 15 0>;
-> -               voltage-ranges = <3300 3300>;
-> -               spi-max-frequency = <50000000>;
-> -               interrupts = <42>;
-> -               interrupt-parent = <&PIC>;
-> -       };
-> diff --git a/Documentation/devicetree/bindings/mmc/mmc-spi-slot.yaml b/Documentation/devicetree/bindings/mmc/mmc-spi-slot.yaml
-> new file mode 100644
-> index 000000000000..c45b91099325
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mmc/mmc-spi-slot.yaml
-> @@ -0,0 +1,77 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mmc/mmc-spi-slot.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MMC/SD/SDIO slot directly connected to a SPI bus
-> +
-> +maintainers:
-> +  - Ulf Hansson <ulf.hansson@linaro.org>
-> +
-> +allOf:
-> +  - $ref: "mmc-controller.yaml"
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml
-> +
-> +description: |
-> +  The extra properties used by an mmc connected via SPI.
-> +
-> +properties:
-> +  compatible:
-> +    const: mmc-spi-slot
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-max-frequency: true
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  voltage-ranges:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    description: |
-> +      Two cells are required, first cell specifies minimum slot voltage (mV),
-> +      second cell specifies maximum slot voltage (mV).
-> +    items:
-> +      - description: |
-> +          value for minimum slot voltage in mV
-> +        default: 3200
-> +      - description: |
-> +          value for maximum slot voltage in mV
-> +        default: 3400
-> +
-> +  gpios:
-> +    description: |
-> +      For historical reasons, this does not follow the generic mmc-controller
-> +      binding.
-> +    minItems: 1
-> +    items:
-> +      - description: Card-Detect GPIO
-> +      - description: Write-Protect GPIO
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - spi-max-frequency
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    spi {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      mmc@0 {
-> +        compatible = "mmc-spi-slot";
-> +        reg = <0>;
-> +        gpios = <&gpio 14 GPIO_ACTIVE_LOW>, <&gpio 15 GPIO_ACTIVE_HIGH>;
-> +        voltage-ranges = <3300 3300>;
-> +        spi-max-frequency = <50000000>;
-> +        interrupts = <42>;
-> +        interrupt-parent = <&PIC>;
-> +      };
-> +    };
-> +
-> +...
-> --
-> 2.36.1
->
+[1/1] ASoC: qcom: soundwire: Add support for controlling audio CGCR from HLOS
+      commit: 32882881078bd8f8fae47ff69c102d9e691f5bb9
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
