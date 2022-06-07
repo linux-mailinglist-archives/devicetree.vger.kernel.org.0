@@ -2,41 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FD1953F3B4
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 04:05:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1DA453F3ED
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 04:31:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233117AbiFGCFP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jun 2022 22:05:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39936 "EHLO
+        id S235462AbiFGCbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jun 2022 22:31:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235868AbiFGCFF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 22:05:05 -0400
-Received: from mx1.cqplus1.com (unknown [113.204.237.245])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D9C87B8BC0
-        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 19:04:47 -0700 (PDT)
-X-MailGates: (flag:4,DYNAMIC,BADHELO,RELAY,NOHOST:PASS)(compute_score:DE
-        LIVER,40,3)
-Received: from 172.28.114.216
-        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(2334:0:AUTH_RELAY)
-        (envelope-from <qinjian@cqplus1.com>); Tue, 07 Jun 2022 09:58:35 +0800 (CST)
-From:   Qin Jian <qinjian@cqplus1.com>
-To:     sboyd@kernel.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        mturquette@baylibre.com, linux@armlinux.org.uk, arnd@arndb.de,
-        olof@lixom.net, soc@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        Qin Jian <qinjian@cqplus1.com>
-Subject: [PATCH v17 10/10] ARM: dts: Add Sunplus SP7021-Demo-V3 board device tree
-Date:   Tue,  7 Jun 2022 09:58:10 +0800
-Message-Id: <e54fac0acbcedddb37a572e47face7edbacbec5d.1654565776.git.qinjian@cqplus1.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <cover.1654565776.git.qinjian@cqplus1.com>
-References: <cover.1654565776.git.qinjian@cqplus1.com>
+        with ESMTP id S231431AbiFGCbe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jun 2022 22:31:34 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E7458A320;
+        Mon,  6 Jun 2022 19:31:27 -0700 (PDT)
+X-UUID: 8656a8c9b5ba4510b70bf0e1b5362453-20220607
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:3723c212-8544-46a6-be12-41fdc549bbe9,OB:0,LO
+        B:0,IP:0,URL:25,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,AC
+        TION:release,TS:70
+X-CID-INFO: VERSION:1.1.5,REQID:3723c212-8544-46a6-be12-41fdc549bbe9,OB:0,LOB:
+        0,IP:0,URL:25,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Spam_GS981B3D,AC
+        TION:quarantine,TS:70
+X-CID-META: VersionHash:2a19b09,CLOUDID:3ecbdbe4-2ba2-4dc1-b6c5-11feb6c769e0,C
+        OID:873374f2b283,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,QS:0,BEC:nil
+X-UUID: 8656a8c9b5ba4510b70bf0e1b5362453-20220607
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1303853498; Tue, 07 Jun 2022 10:31:22 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Tue, 7 Jun 2022 10:31:21 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 7 Jun 2022 10:31:21 +0800
+Message-ID: <a86afcd38ce4243f86fddd1647129d64585e56d1.camel@mediatek.com>
+Subject: Re: [PATCH v10 01/21] dt-bindings: mediatek,dpi: Add DPINTF
+ compatible
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Guillaume Ranquet <granquet@baylibre.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        "Kishon Vijay Abraham I" <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, "Helge Deller" <deller@gmx.de>,
+        CK Hu <ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>
+CC:     Markus Schneider-Pargmann <msp@baylibre.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>, <linux-fbdev@vger.kernel.org>
+Date:   Tue, 7 Jun 2022 10:31:21 +0800
+In-Reply-To: <c1dacdd0-f25e-a522-5d5f-1ef2fe297094@collabora.com>
+References: <20220523104758.29531-1-granquet@baylibre.com>
+         <20220523104758.29531-2-granquet@baylibre.com>
+         <c1dacdd0-f25e-a522-5d5f-1ef2fe297094@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -44,493 +82,132 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the basic support for Sunplus SP7021-Demo-V3 board.
+On Wed, 2022-05-25 at 13:55 +0200, AngeloGioacchino Del Regno wrote:
+> Il 23/05/22 12:47, Guillaume Ranquet ha scritto:
+> > From: Markus Schneider-Pargmann <msp@baylibre.com>
+> > 
+> > DPINTF is similar to DPI but does not have the exact same feature
+> > set
+> > or register layouts.
+> > 
+> > DPINTF is the sink of the display pipeline that is connected to the
+> > DisplayPort controller and encoder unit. It takes the same clocks
+> > as
+> > DPI.
+> > 
+> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> > ---
+> >   .../bindings/display/mediatek/mediatek,dpi.yaml     | 13
+> > ++++++++-----
+> >   1 file changed, 8 insertions(+), 5 deletions(-)
+> > 
+> > diff --git
+> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.y
+> > aml
+> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.y
+> > aml
+> > index dd2896a40ff0..6d9f6c11806e 100644
+> > ---
+> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.y
+> > aml
+> > +++
+> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.y
+> > aml
+> > @@ -4,16 +4,16 @@
+> >   $id: 
+> > http://devicetree.org/schemas/display/mediatek/mediatek,dpi.yaml#
+> >   $schema: http://devicetree.org/meta-schemas/core.yaml#
+> >   
+> > -title: mediatek DPI Controller Device Tree Bindings
+> > +title: mediatek DPI/DPINTF Controller
+> >   
+> >   maintainers:
+> >     - CK Hu <ck.hu@mediatek.com>
+> >     - Jitao shi <jitao.shi@mediatek.com>
+> >   
+> >   description: |
+> > -  The Mediatek DPI function block is a sink of the display
+> > subsystem and
+> > -  provides 8-bit RGB/YUV444 or 8/10/10-bit YUV422 pixel data on a
+> > parallel
+> > -  output bus.
+> > +  The Mediatek DPI and DPINTF function blocks are a sink of the
+> > display
+> > +  subsystem and provides 8-bit RGB/YUV444 or 8/10/10-bit YUV422
+> > pixel data on a
+> > +  parallel output bus.
+> >   
+> >   properties:
+> >     compatible:
+> > @@ -23,6 +23,7 @@ properties:
+> >         - mediatek,mt8173-dpi
+> >         - mediatek,mt8183-dpi
+> >         - mediatek,mt8192-dpi
+> > +      - mediatek,mt8195-dpintf
+> >   
+> >     reg:
+> >       maxItems: 1
+> > @@ -35,12 +36,14 @@ properties:
+> >         - description: Pixel Clock
+> >         - description: Engine Clock
+> >         - description: DPI PLL
+> > +      - description: Optional CK CG Clock
+> >   
+> >     clock-names:
+> >       items:
+> >         - const: pixel
+> >         - const: engine
+> >         - const: pll
+> > +      - const: ck_cg
+> 
+> This is my understanding on how the DisplayPort Interface clocks work
+> on 8195:
+> 
+> The "engine" clock is for the *VPP Engine's DisplayPort ip/block*,
+> "pll" is for TVD PLL divider selection
+> "pixel" is the gate for the pixel clock to the connected display.
+> 
+> "ck_cg" is useless, as that's the parent of "pixel" (and will always
+> be)... for
+> example, on mt8195... check clk/mediatek/clk-mt8195-vdo0.c - the
+> CLK_VDO0_DP_INTF0_DP_INTF clock already has CLK_TOP_EDP as its
+> parent, hence
+> enabling the first will enable the latter.
+> 
+> That said... you can most probably avoid adding the ck_cg clock, as
+> if you try
+> to turn that off while it's in use by its children, you'll be only
+> decrementing
+> a refcount, but no "real action" will ever take place.
+> 
+> 
+> Regards,
+> Angelo
 
-Signed-off-by: Qin Jian <qinjian@cqplus1.com>
----
-Fix the comments from Krzysztof.
----
- MAINTAINERS                                  |   1 +
- arch/arm/boot/dts/Makefile                   |   2 +
- arch/arm/boot/dts/sunplus-sp7021-achip.dtsi  |  84 +++++
- arch/arm/boot/dts/sunplus-sp7021-demo-v3.dts |  26 ++
- arch/arm/boot/dts/sunplus-sp7021.dtsi        | 318 +++++++++++++++++++
- 5 files changed, 431 insertions(+)
- create mode 100644 arch/arm/boot/dts/sunplus-sp7021-achip.dtsi
- create mode 100644 arch/arm/boot/dts/sunplus-sp7021-demo-v3.dts
- create mode 100644 arch/arm/boot/dts/sunplus-sp7021.dtsi
+Hello Chunfeng and Angelo,
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 4435ec6ca..23774ee07 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2814,6 +2814,7 @@ F:	Documentation/devicetree/bindings/arm/sunplus,sp7021.yaml
- F:	Documentation/devicetree/bindings/clock/sunplus,sp7021-clkc.yaml
- F:	Documentation/devicetree/bindings/interrupt-controller/sunplus,sp7021-intc.yaml
- F:	Documentation/devicetree/bindings/reset/sunplus,reset.yaml
-+F:	arch/arm/boot/dts/sunplus-sp7021*.dts*
- F:	arch/arm/configs/sp7021_*defconfig
- F:	arch/arm/mach-sunplus/
- F:	drivers/clk/clk-sp7021.c
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 7c16f8a2b..2862dac61 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -79,6 +79,8 @@ dtb-$(CONFIG_SOC_SAM_V7) += \
- 	at91-vinco.dtb
- dtb-$(CONFIG_SOC_SAMA7G5) += \
- 	at91-sama7g5ek.dtb
-+dtb-$(CONFIG_SOC_SP7021) += \
-+	sunplus-sp7021-demo-v3.dtb
- dtb-$(CONFIG_ARCH_AXXIA) += \
- 	axm5516-amarillo.dtb
- dtb-$(CONFIG_ARCH_BCM2835) += \
-diff --git a/arch/arm/boot/dts/sunplus-sp7021-achip.dtsi b/arch/arm/boot/dts/sunplus-sp7021-achip.dtsi
-new file mode 100644
-index 000000000..67274a49e
---- /dev/null
-+++ b/arch/arm/boot/dts/sunplus-sp7021-achip.dtsi
-@@ -0,0 +1,84 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device Tree Source for Sunplus SP7021
-+ *
-+ * Copyright (C) 2021 Sunplus Technology Co.
-+ */
-+
-+#include "sunplus-sp7021.dtsi"
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+/ {
-+	compatible = "sunplus,sp7021-achip", "sunplus,sp7021";
-+	model = "Sunplus SP7021 (CA7)";
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+	interrupt-parent = <&gic>;
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		cpu0: cpu@0 {
-+			compatible = "arm,cortex-a7";
-+			device_type = "cpu";
-+			reg = <0>;
-+			clock-frequency = <931000000>;
-+		};
-+		cpu1: cpu@1 {
-+			compatible = "arm,cortex-a7";
-+			device_type = "cpu";
-+			reg = <1>;
-+			clock-frequency = <931000000>;
-+		};
-+		cpu2: cpu@2 {
-+			compatible = "arm,cortex-a7";
-+			device_type = "cpu";
-+			reg = <2>;
-+			clock-frequency = <931000000>;
-+		};
-+		cpu3: cpu@3 {
-+			compatible = "arm,cortex-a7";
-+			device_type = "cpu";
-+			reg = <3>;
-+			clock-frequency = <931000000>;
-+		};
-+	};
-+
-+	gic: interrupt-controller@9f101000 {
-+		compatible = "arm,cortex-a7-gic";
-+		interrupt-controller;
-+		#interrupt-cells = <3>;
-+		reg = <0x9f101000 0x1000>,
-+		      <0x9f102000 0x2000>,
-+		      <0x9f104000 0x2000>,
-+		      <0x9f106000 0x2000>;
-+	};
-+
-+	timer {
-+		compatible = "arm,armv7-timer";
-+		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-+		clock-frequency = <XTAL>;
-+		arm,cpu-registers-not-fw-configured;
-+	};
-+
-+	arm-pmu {
-+		compatible = "arm,cortex-a7-pmu";
-+		interrupts = <GIC_SPI 219 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 220 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 221 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 222 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
-+	};
-+
-+	soc {
-+		intc: interrupt-controller@9c000780 {
-+			interrupt-parent = <&gic>;
-+			interrupts = <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>, /* EXT_INT0 */
-+				<GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>; /* EXT_INT1 */
-+		};
-+	};
-+};
-diff --git a/arch/arm/boot/dts/sunplus-sp7021-demo-v3.dts b/arch/arm/boot/dts/sunplus-sp7021-demo-v3.dts
-new file mode 100644
-index 000000000..bfac954bb
---- /dev/null
-+++ b/arch/arm/boot/dts/sunplus-sp7021-demo-v3.dts
-@@ -0,0 +1,26 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device Tree Source for Sunplus SP7021 Demo V3 SBC board
-+ *
-+ * Copyright (C) Sunplus Technology Co.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sunplus-sp7021-achip.dtsi"
-+
-+/ {
-+	compatible = "sunplus,sp7021-demo-v3", "sunplus,sp7021";
-+	model = "Sunplus SP7021/CA7/Demo_V3";
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x00000000 0x20000000>;
-+	};
-+};
-diff --git a/arch/arm/boot/dts/sunplus-sp7021.dtsi b/arch/arm/boot/dts/sunplus-sp7021.dtsi
-new file mode 100644
-index 000000000..3c1f4d106
---- /dev/null
-+++ b/arch/arm/boot/dts/sunplus-sp7021.dtsi
-@@ -0,0 +1,318 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device Tree Source for Sunplus SP7021
-+ *
-+ * Copyright (C) 2021 Sunplus Technology Co.
-+ */
-+
-+#include <dt-bindings/clock/sunplus,sp7021-clkc.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/reset/sunplus,sp7021-reset.h>
-+#include <dt-bindings/pinctrl/sppctl-sp7021.h>
-+#include <dt-bindings/gpio/gpio.h>
-+
-+#define XTAL	27000000
-+
-+/ {
-+	compatible = "sunplus,sp7021";
-+	model = "Sunplus SP7021";
-+
-+	aliases {
-+		serial0 = &uart0;
-+		serial1 = &uart1;
-+		serial2 = &uart2;
-+		serial3 = &uart3;
-+		serial4 = &uart4;
-+	};
-+
-+	clocks {
-+		extclk: osc0 {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <XTAL>;
-+			clock-output-names = "extclk";
-+		};
-+	};
-+
-+	soc {
-+		compatible = "simple-bus";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+		interrupt-parent = <&intc>;
-+
-+		intc: interrupt-controller@9c000780 {
-+			compatible = "sunplus,sp7021-intc";
-+			reg = <0x9c000780 0x80>, <0x9c000a80 0x80>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+
-+		clkc: clock-controller@9c000004 {
-+			compatible = "sunplus,sp7021-clkc";
-+			reg = <0x9c000004 0x28>,
-+			      <0x9c000200 0x44>,
-+			      <0x9c000268 0x04>;
-+			clocks = <&extclk>;
-+			#clock-cells = <1>;
-+		};
-+
-+		rstc: reset@9c000054 {
-+			compatible = "sunplus,sp7021-reset";
-+			reg = <0x9c000054 0x28>;
-+			#reset-cells = <1>;
-+		};
-+
-+		rtc: serial@9c003a00 {
-+			compatible = "sunplus,sp7021-rtc";
-+			reg = <0x9c003a00 0x80>;
-+			reg-names = "rtc";
-+			clocks = <&clkc CLK_RTC>;
-+			resets = <&rstc RST_RTC>;
-+			interrupts = <163 IRQ_TYPE_EDGE_RISING>;
-+		};
-+
-+		otp: otp@9c00af00 {
-+			compatible = "sunplus,sp7021-ocotp";
-+			reg = <0x9c00af00 0x34>, <0x9c00af80 0x58>;
-+			reg-names = "hb_gpio", "otprx";
-+			clocks = <&clkc CLK_OTPRX>;
-+			resets = <&rstc RST_OTPRX>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			therm_calib: thermal-calibration@14 {
-+				reg = <0x14 0x3>;
-+			};
-+			disc_vol: disconnect-voltage@18 {
-+				reg = <0x18 0x2>;
-+			};
-+			mac_addr0: mac-address0@34 {
-+				reg = <0x34 0x6>;
-+			};
-+			mac_addr1: mac-address1@3a {
-+				reg = <0x3a 0x6>;
-+			};
-+		};
-+
-+		uart0: serial@9c000900 {
-+			compatible = "sunplus,sp7021-uart";
-+			reg = <0x9c000900 0x80>;
-+			interrupts = <53 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clkc CLK_UA0>;
-+			resets = <&rstc RST_UA0>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&uart0_pins>;
-+		};
-+
-+		uart1: serial@9c000980 {
-+			compatible = "sunplus,sp7021-uart";
-+			reg = <0x9c000980 0x80>;
-+			interrupts = <54 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clkc CLK_UA1>;
-+			resets = <&rstc RST_UA1>;
-+			status = "disabled";
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&uart1_pins>;
-+		};
-+
-+		uart2: serial@9c000800 {
-+			compatible = "sunplus,sp7021-uart";
-+			reg = <0x9c000800 0x80>;
-+			interrupts = <55 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clkc CLK_UA2>;
-+			resets = <&rstc RST_UA2>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&uart2_pins>;
-+			status = "disabled";
-+		};
-+
-+		uart3: serial@9c000880 {
-+			compatible = "sunplus,sp7021-uart";
-+			reg = <0x9c000880 0x80>;
-+			interrupts = <56 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clkc CLK_UA3>;
-+			resets = <&rstc RST_UA3>;
-+			status = "disabled";
-+		};
-+
-+		uart4: serial@9c008780 {
-+			compatible = "sunplus,sp7021-uart";
-+			reg = <0x9c008780 0x80>;
-+			interrupts = <134 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clkc CLK_UA4>;
-+			resets = <&rstc RST_UA4>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&uart4_pins>;
-+			status = "disabled";
-+		};
-+
-+		spi_controller0: spi@9c002d80 {
-+			compatible = "sunplus,sp7021-spi";
-+			reg = <0x9c002d80 0x80>, <0x9c002e00 0x80>;
-+			reg-names = "master", "slave";
-+			interrupts = <144 IRQ_TYPE_LEVEL_HIGH>,
-+				     <146 IRQ_TYPE_LEVEL_HIGH>,
-+				     <145 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "dma_w", "master_risc", "slave_risc";
-+			clocks = <&clkc CLK_SPI_COMBO_0>;
-+			resets = <&rstc RST_SPI_COMBO_0>;
-+
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&spi0_pins>;
-+			cs-gpios = <&pctl 26 GPIO_ACTIVE_LOW>,
-+				   <&pctl 28 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		spi_controller1: spi@9c00f480 {
-+			compatible = "sunplus,sp7021-spi";
-+			reg = <0x9c00f480 0x80>, <0x9c00f500 0x80>;
-+			reg-names = "master", "slave";
-+			interrupts = <67 IRQ_TYPE_LEVEL_HIGH>,
-+				     <69 IRQ_TYPE_LEVEL_HIGH>,
-+				     <68 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "dma_w", "master_risc", "slave_risc";
-+			clocks = <&clkc CLK_SPI_COMBO_1>;
-+			resets = <&rstc RST_SPI_COMBO_1>;
-+			spi-max-frequency = <25000000>;
-+			status = "disabled";
-+		};
-+
-+		spi_controller2: spi@9c00f600 {
-+			compatible = "sunplus,sp7021-spi";
-+			reg = <0x9c00f600 0x80>, <0x9c00f680 0x80>;
-+			reg-names = "master", "slave";
-+			interrupts = <70 IRQ_TYPE_LEVEL_HIGH>,
-+				     <72 IRQ_TYPE_LEVEL_HIGH>,
-+				     <71 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "dma_w", "master_risc", "slave_risc";
-+			clocks = <&clkc CLK_SPI_COMBO_2>;
-+			resets = <&rstc RST_SPI_COMBO_2>;
-+			spi-max-frequency = <25000000>;
-+			status = "disabled";
-+		};
-+
-+		spi_controller3: spi@9c00f780 {
-+			compatible = "sunplus,sp7021-spi";
-+			reg = <0x9c00f780 0x80>, <0x9c00f800 0x80>;
-+			reg-names = "master", "slave";
-+			interrupts = <73 IRQ_TYPE_LEVEL_HIGH>,
-+				     <75 IRQ_TYPE_LEVEL_HIGH>,
-+				     <74 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "dma_w", "master_risc", "slave_risc";
-+			clocks = <&clkc CLK_SPI_COMBO_3>;
-+			resets = <&rstc RST_SPI_COMBO_3>;
-+			spi-max-frequency = <25000000>;
-+			status = "disabled";
-+		};
-+
-+		pctl: pinctl@9c000100 {
-+			compatible = "sunplus,sp7021-pctl";
-+			reg = <0x9C000100 0x100>,
-+			      <0x9C000300 0x100>,
-+			      <0x9C0032e4 0x1C>,
-+			      <0x9C000080 0x20>;
-+			reg-names = "moon2", "gpioxt", "first", "moon1";
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			clocks = <&clkc CLK_GPIO>;
-+			resets = <&rstc RST_GPIO>;
-+
-+			leds_pins: pinmux_gpio_leds-pins {
-+				sunplus,pins = < SPPCTL_IOPAD(0,SPPCTL_PCTL_G_GPIO,0,SPPCTL_PCTL_L_OUT) >;
-+			};
-+
-+			emmc_pins: emmc-pins {
-+				function = "CARD0_EMMC";
-+				groups = "CARD0_EMMC";
-+			};
-+
-+			sdcard-pins {
-+				function = "SD_CARD";
-+				groups = "SD_CARD";
-+				sunplus,pins = < SPPCTL_IOPAD(91, SPPCTL_PCTL_G_GPIO, 0, 0) >;
-+			};
-+
-+			emac_pins: pinmux_emac_demo_board_v3-pins {
-+				sunplus,pins = <
-+					SPPCTL_IOPAD(49,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_CLK_OUT,0)
-+					SPPCTL_IOPAD(44,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_MAC_SMI_MDC,0)
-+					SPPCTL_IOPAD(43,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_MAC_SMI_MDIO,0)
-+					SPPCTL_IOPAD(52,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P0_MAC_RMII_TXEN,0)
-+					SPPCTL_IOPAD(50,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P0_MAC_RMII_TXD0,0)
-+					SPPCTL_IOPAD(51,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P0_MAC_RMII_TXD1,0)
-+					SPPCTL_IOPAD(46,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P0_MAC_RMII_CRSDV,0)
-+					SPPCTL_IOPAD(47,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P0_MAC_RMII_RXD0,0)
-+					SPPCTL_IOPAD(48,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P0_MAC_RMII_RXD1,0)
-+					SPPCTL_IOPAD(45,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P0_MAC_RMII_RXER,0)
-+					SPPCTL_IOPAD(59,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P1_MAC_RMII_TXEN,0)
-+					SPPCTL_IOPAD(57,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P1_MAC_RMII_TXD0,0)
-+					SPPCTL_IOPAD(58,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P1_MAC_RMII_TXD1,0)
-+					SPPCTL_IOPAD(54,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P1_MAC_RMII_CRSDV,0)
-+					SPPCTL_IOPAD(55,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P1_MAC_RMII_RXD0,0)
-+					SPPCTL_IOPAD(56,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P1_MAC_RMII_RXD1,0)
-+					SPPCTL_IOPAD(53,SPPCTL_PCTL_G_PMUX,MUXF_L2SW_P1_MAC_RMII_RXER,0)
-+				>;
-+				sunplus,zerofunc = <
-+					MUXF_L2SW_LED_FLASH0
-+					MUXF_L2SW_LED_FLASH1
-+					MUXF_L2SW_LED_ON0
-+					MUXF_L2SW_LED_ON1
-+					MUXF_DAISY_MODE
-+				>;
-+			};
-+
-+			uart0_pins: pinmux_uart0-pins {
-+				function = "UA0";
-+				groups = "UA0";
-+			};
-+
-+			uart1_pins: pinmux_uart1-pins {
-+				sunplus,pins = <
-+					SPPCTL_IOPAD(14,SPPCTL_PCTL_G_PMUX,MUXF_UA4_TX,0)
-+					SPPCTL_IOPAD(16,SPPCTL_PCTL_G_PMUX,MUXF_UA4_RX,0)
-+				>;
-+			};
-+
-+			uart2_pins: pinmux_uart2-pins {
-+				sunplus,pins = <
-+					SPPCTL_IOPAD(16,SPPCTL_PCTL_G_PMUX,MUXF_UA2_TX,0)
-+					SPPCTL_IOPAD(17,SPPCTL_PCTL_G_PMUX,MUXF_UA2_RX,0)
-+					SPPCTL_IOPAD(18,SPPCTL_PCTL_G_PMUX,MUXF_UA2_RTS,0)
-+					SPPCTL_IOPAD(19,SPPCTL_PCTL_G_PMUX,MUXF_UA2_CTS,0)
-+				>;
-+			};
-+
-+			uart4_pins: pinmux_uart4-pins {
-+				sunplus,pins = <
-+					SPPCTL_IOPAD(22,SPPCTL_PCTL_G_PMUX,MUXF_UA4_TX,0)
-+					SPPCTL_IOPAD(20,SPPCTL_PCTL_G_PMUX,MUXF_UA4_RX,0)
-+					SPPCTL_IOPAD(23,SPPCTL_PCTL_G_PMUX,MUXF_UA4_RTS,0)
-+					SPPCTL_IOPAD(21,SPPCTL_PCTL_G_PMUX,MUXF_UA4_CTS,0)
-+				>;
-+			};
-+
-+			spi0_pins: pinmux_spi0-pins {
-+				sunplus,pins = <
-+					SPPCTL_IOPAD(26,SPPCTL_PCTL_G_GPIO,0,0)
-+					SPPCTL_IOPAD(28,SPPCTL_PCTL_G_GPIO,0,0)
-+					SPPCTL_IOPAD(23,SPPCTL_PCTL_G_PMUX,MUXF_SPI0S_DO,0)
-+					SPPCTL_IOPAD(25,SPPCTL_PCTL_G_PMUX,MUXF_SPI0S_DI,0)
-+					SPPCTL_IOPAD(27,SPPCTL_PCTL_G_PMUX,MUXF_SPI0S_CLK,0)
-+				>;
-+			};
-+		};
-+	};
-+
-+	led {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&leds_pins>;
-+		system-led {
-+			label = "system-led";
-+			gpios = <&pctl 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+};
--- 
-2.33.1
+ck_cg is a clock gate, and I try to remove it from drivers but it's
+failed to enable dp_intf.
+
+the block diagram is:
+1. 26M->CLK_APMIXED_TVDPLL1(pll)->CLK_TOP_EDP(pixel)-
+>CLK_VDO0_DP_INTF0_DP_INTF(ck_cg)->dp_intf
+
+2. VDOSYS clock->CLK_VDO0_DP_INTF0(engine)->dp_intf
+
+"engine" and "ck_cg" are all clock gates which control the clock source
+input to dp_intf.
+
+Maybe we just need to rename it?
+If so, what name do you think we should modify?
+
+BRs,
+Bo-Chen
+
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
 
