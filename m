@@ -2,128 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9816A53F826
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 10:28:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E715153F84D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 10:38:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238169AbiFGI2s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 04:28:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38638 "EHLO
+        id S238277AbiFGIiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 04:38:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229629AbiFGI2r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 04:28:47 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3514566C86
-        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 01:28:46 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1nyUZj-0005qp-9D; Tue, 07 Jun 2022 10:28:31 +0200
-Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id C42C68D888;
-        Tue,  7 Jun 2022 08:28:27 +0000 (UTC)
-Date:   Tue, 7 Jun 2022 10:28:27 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Conor.Dooley@microchip.com
-Cc:     wg@grandegger.com, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
-        paul.walmsley@sifive.com, aou@eecs.berkeley.edu,
-        Daire.McNamara@microchip.com, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH net-next 0/2] Document PolarFire SoC can controller
-Message-ID: <20220607082827.iuonhektfbuqtuqo@pengutronix.de>
-References: <20220607065459.2035746-1-conor.dooley@microchip.com>
- <20220607071519.6m6swnl55na3vgwm@pengutronix.de>
- <51e8e297-0171-0c3f-ba86-e61add04830e@microchip.com>
+        with ESMTP id S231558AbiFGIiH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 04:38:07 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 933AA23BF2;
+        Tue,  7 Jun 2022 01:38:05 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id m39-20020a05600c3b2700b0039c511ebbacso2265734wms.3;
+        Tue, 07 Jun 2022 01:38:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=jjMIOURiqBgt1XuOBupgxyJ8SiKwkL50UheFyS/nhUs=;
+        b=oUBBWohkWrVW3ZHW0YQHSXqQiVif0gZRuU7rU1VDlqc55SqMwl1M+E96F+OyOyzSIq
+         uS2ypmpqiem/WjoUI5uBRWbDdBqn+jwdSw+zzVnn1XwPhwjJ7N0J+OBRoWfV5l4oC9Sv
+         9LjHM+b6MonYT273X6TBH/k1oeEw2awDa6CHertIZCXYQIzFyBnj7AFQFgyk8qPeKFHC
+         ja875OOi/oYn+U/90Bk9AMl3L+qKrYd9bn3gvR3mMF5QY6c4s7ZV71pMY2ZPXmfI49jP
+         XY2ZRl9KIU/QOi4Ln3WYBfJUgfuKvlqYU7WGSjZ5/fqTel2NVvEmV6bi3ol6crW3UwNZ
+         mxBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=jjMIOURiqBgt1XuOBupgxyJ8SiKwkL50UheFyS/nhUs=;
+        b=iybUlrEOGUMCemiq9QTSQKpk7RnrN8qOHOX5L14f2m6iDvHun+8MFDoqywq1Ffs/Lh
+         WAq0hXa+8mw8Qrz+vC0Wyj2pAQT0uoU3RpyIxDY0tfh2ZeDGk1Zi21ME4A1bsEgyp2CV
+         iMEZJloi1Q+Iv0GN0WnmZPDgkIPZF1A+A3/ApbC8zYMRKz4dg6sqvSQbkwmZNQqjLJoG
+         uKLPAxF9+X4Hdo5oY3TO/YF/mo99nFxMKQa47Dzm2bE3kJP2EWPa7DK3la3aUdWdzxd7
+         dzQvEgl1JhInkkXtYucqxJtOZGBMGQXoydo+M0CjC3Uy2zc4rFcFv6ImwjQEQoTVZfhj
+         k2Yw==
+X-Gm-Message-State: AOAM530KSnbhQFTAdMSa7PII8dkER+7kVO7gaNUqHK8syvAD1BaEJg/x
+        7KpBWu2TWuj9fecYHII4omYHhrI7lzMxpBpYIWyTolU0MdI=
+X-Google-Smtp-Source: ABdhPJzVrQd50BB5eIvflfDQDEueszQVC37lKmsZ20myiKuFoxyQk9RC+1nqkahOxEcD46KaFfxm2+WnZ5xGxnoIjJE=
+X-Received: by 2002:a05:600c:4ed1:b0:394:8352:3ea1 with SMTP id
+ g17-20020a05600c4ed100b0039483523ea1mr27467952wmq.153.1654591084057; Tue, 07
+ Jun 2022 01:38:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ajso5cyytlmmpn5k"
-Content-Disposition: inline
-In-Reply-To: <51e8e297-0171-0c3f-ba86-e61add04830e@microchip.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220505101433.1575096-1-gengcixi@gmail.com> <CAF12kFvQsz-EKD-VdVkJVCUwNj1FL=4=uVarwnTyYTb_dRNZbQ@mail.gmail.com>
+In-Reply-To: <CAF12kFvQsz-EKD-VdVkJVCUwNj1FL=4=uVarwnTyYTb_dRNZbQ@mail.gmail.com>
+From:   Cixi Geng <gengcixi@gmail.com>
+Date:   Tue, 7 Jun 2022 16:37:27 +0800
+Message-ID: <CAF12kFvRJM9Y9VPzhjuZJ+vR_SWrx=vS+5XfEwd=Tyny3-h+3g@mail.gmail.com>
+Subject: Re: [PATCH v5 0/4] Add ums512 clocks and relative bindings file
+To:     sboyd@kernel.org
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        linux-clk@vger.kernel.org,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        krzysztof.kozlowski+dt@linaro.org,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        "baolin.wang7@gmail.com" <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Cixi Geng <gengcixi@gmail.com> =E4=BA=8E2022=E5=B9=B45=E6=9C=8824=E6=97=A5=
+=E5=91=A8=E4=BA=8C 17:25=E5=86=99=E9=81=93=EF=BC=9A
+>
+> Cixi Geng <gengcixi@gmail.com> =E4=BA=8E2022=E5=B9=B45=E6=9C=885=E6=97=A5=
+=E5=91=A8=E5=9B=9B 18:14=E5=86=99=E9=81=93=EF=BC=9A
+> >
+> > From: Cixi Geng <cixi.geng1@unisoc.com>
+> >
+> > This patchset is add the UMS512 clocks support
+> >
+> > v2 changes:
+> >   adjust description and add the "sprd,ums512-glbregs,syscon,simple-mfd=
+"
+> >   compatibles to fix match failed logs in the dt_binding_check.
+> >   add the property license and copyright notice.
+> >
+> > v3 changes:
+> >   fix wrong indentation and hint: "maxItems" is not needed with an "ite=
+ms"
+> >   list when use the latest dtschema.
+> >
+> > v4 changes:
+> >   move the syscon bindins from clk to glbreg yaml file by pickup
+> >   chunyan's patch for global registers bindings
+> >   fix the comments from Krzysztof in v3 patchset
+> >   add the Acked-by: Krzysztof in patch v4 3/4
+> >   fix the  warning Prefer "GPL" over "GPL v2"
+> >
+> > v5 changes:
+> >   Add review tags.
+> >   fix the comments in ums512-glbreg.yaml.
+> Dear maintainers:
+> I have not received any new comments so far
+> Is this patch ready to be merged?
+> I'd appreciate any information of your reviews.
+> Thanks
+>
+Hi Stephen:
+Could you review this patchset wether meet the merge condition,
+if not,please advise me what I should do next
+Thanks
 
---ajso5cyytlmmpn5k
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On 07.06.2022 07:52:30, Conor.Dooley@microchip.com wrote:
-> On 07/06/2022 08:15, Marc Kleine-Budde wrote:
-> > On 07.06.2022 07:54:58, Conor Dooley wrote:
-> >> When adding the dts for PolarFire SoC, the can controllers were
-> >                                             ^^^
-> >> omitted, so here they are...
-> >=20
-> > Nitpick:
-> > Consider writing "CAN" in capital letters to avoid confusion for the not
-> > informed reader.
->=20
-> Yeah, sure. I'll try to get over my fear of capital letters ;)
-
-:)
-
-> > Is the documentation for the CAN controller openly available? Is there a
-> > driver somewhere?
->=20
-> There is a driver /but/ for now only a UIO one so I didn't send it.
-
-Brrrrr...
-
-> There's an online doc & if the horrible link doesn't drop you there
-> directly, its section 6.12.3:
-> https://onlinedocs.microchip.com/pr/GUID-0E320577-28E6-4365-9BB8-9E1416A0=
-A6E4-en-US-3/index.html?GUID-A362DC3C-83B7-4441-BECB-B19F9AD48B66
->=20
-> And a PDF direct download here, see section 4.12.3 (page 72):
-> https://www.microsemi.com/document-portal/doc_download/1245725-polarfire-=
-soc-fpga-mss-technical-reference-manual
-
-Thanks. The documentation is quite sparse, is there a more detailed one?
-The register map cannot be downloaded directly anymore. For reference:
-
-http://web.archive.org/web/20220403030214/https://www.microsemi.com/documen=
-t-portal/doc_download/1244581-polarfire-soc-register-map
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---ajso5cyytlmmpn5k
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmKfDCgACgkQrX5LkNig
-010ixggAri8+zJpGE06Rm9LwkSy5IXbnAuXl+05ecMHijzwTZoXuxRjLi7FLgUt8
-RMmHB1ehanHgnud3Ux9EMH2GIbigcx6EwV5iEcShe8ltxXfHATt7HI/L1x8dtS/Z
-e6ic76cZ24PHhR/EAn5+uN9O17sTaoj+nCx13pVdLOe1iHUqZQf3RaVbABSibySZ
-wt1j6nOt7Au4o2hJCHXO3uQ72fiNDQQAdKIFRRqvsDvMVukw+nrt1vL8Fw87AKXU
-xfswszw4E2QowEV8gQeSduJwoYBlzCiya0hQJjTrlWPpxlLpYIN0VsNX+oliI0BN
-bXRB2pUhMmd1nv1wnSnZOzNcCS91/A==
-=PF1R
------END PGP SIGNATURE-----
-
---ajso5cyytlmmpn5k--
+> Best regards
+> Cixi
+> >
+> > Chunyan Zhang (1):
+> >   dt-bindings: mfd: sprd: Add bindings for ums512 global registers
+> >
+> > Cixi Geng (3):
+> >   dt-bindings: clk: sprd: Add bindings for ums512 clock controller
+> >   clk: sprd: Add dt-bindings include file for UMS512
+> >   clk: sprd: Add clocks support for UMS512
+> >
+> >  .../bindings/clock/sprd,ums512-clk.yaml       |   71 +
+> >  .../bindings/mfd/sprd,ums512-glbreg.yaml      |   68 +
+> >  drivers/clk/sprd/Kconfig                      |    6 +
+> >  drivers/clk/sprd/Makefile                     |    1 +
+> >  drivers/clk/sprd/ums512-clk.c                 | 2199 +++++++++++++++++
+> >  include/dt-bindings/clock/sprd,ums512-clk.h   |  397 +++
+> >  6 files changed, 2742 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/sprd,ums512=
+-clk.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/mfd/sprd,ums512-g=
+lbreg.yaml
+> >  create mode 100644 drivers/clk/sprd/ums512-clk.c
+> >  create mode 100644 include/dt-bindings/clock/sprd,ums512-clk.h
+> >
+> > --
+> > 2.25.1
+> >
