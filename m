@@ -2,71 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C8F4540026
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 15:35:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2098854003D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 15:41:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244772AbiFGNf0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 09:35:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50532 "EHLO
+        id S243703AbiFGNlE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 09:41:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244792AbiFGNfY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 09:35:24 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B5CBD02BD
-        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 06:35:22 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id o10so23016660edi.1
-        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 06:35:22 -0700 (PDT)
+        with ESMTP id S242222AbiFGNlD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 09:41:03 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 267E9BCE8B
+        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 06:41:02 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id q7so24237806wrg.5
+        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 06:41:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=xDQbY/64npGudGixqFX4Cr/5hLlk9RCSz25mhEaqA2c=;
-        b=m2ARHIniY851xN8CFtadCNZjqaVeAHydgmzCm+xX+Ru5UzM97CKTsIrQmrwTMuKqoA
-         qq/LVaQlkK5EQKx9mkGt9foUSMiGdVvX/eNmmxL0FG97RgFcZtM9cSu3EEwY+Qp1mc1j
-         RZV++y2nZR0rNieLFBGuwYMnW8Y2s2J9niujersBAyc1ywS3ZcJmy2VIdyxEWZth6Tci
-         DU1hNjr4h1vCNvSj7eQD1T/EJQlxB/Kh5aSEVC8cUnygrJOKBqhURnGT3NlCHtFr02qn
-         59fVxJzsCFKvVR65WJHvsA3fkCZjgwzfO6eti9s61Hld5UvWXtyIS+Xan03FZ4kJYh/j
-         Cw4A==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=H1AtsGdEkkqVoDoziwXz7u9gxAqoupVuYeRio02Yhgc=;
+        b=Y7PerUmuAC+I+TxAwvOKEOP3NPC1VHKehphs8e30npMwl+dDGqLkSX50iz2BXzKBVr
+         7MfkDNfKgZJdv3e0N3tDHnkvGBfJKgT1Vpa0sPApGKlS9fgDUmDh5p1BWAtqpdYFXkP/
+         N6zgT8ZXa6HyXYbZgM1F3oncwhzyc2rp2Kjil9QhjHz63F1a8LUvwWaiGuVnWaeS3eSR
+         QOV3pLw9hRFqEB7F1+EtoPZZHkVV91Hb9GSX6W1eyOAjQegLMTX/jiafWIbT4cmvHK6T
+         Wvc0dr+kRoe+jdDOctNwp0EwnnBk0I503HGE+3TnE850llkSTRN7Z2WOOMWudW5GpP7V
+         +dzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=xDQbY/64npGudGixqFX4Cr/5hLlk9RCSz25mhEaqA2c=;
-        b=MM+axlexEukF2XkHp/ujJxt8F6FvDFz8SuPaGcAD0afYLalIIkuJjk2NM/RO5aGsBH
-         vg1SZurjea83Dhk2wmkKdMszbvkWm6GRFnk19JWZvcnDTF6uxhC32tBqQhdNjW4ouCo3
-         IaCdilHAgUl9f+tTLHFHbHG7LQ789XGMIb06e5lQzaylm8JHljXUB2cNRz2M0o+xgeW+
-         2mhcbg+81Pa3DfKOvVFA+/w04vGcpDNafnwfAO7GZvgeO7IMHNvH4XLpNtTCogu4xcnH
-         t4x2HfDI74bUE4lvUnzVVs2FKUftOHcfldgRfOKOqLErVLkPJzDkZGu9GeSzyGS//Guc
-         UCTw==
-X-Gm-Message-State: AOAM533pF3y8sE+NAui/IdvCtdwjnU0iO0eldl5Tcmoq7q9WRKTlHhoh
-        MgnlQfHlPimCkbytOIeGv1uJ1Q==
-X-Google-Smtp-Source: ABdhPJz2bmmQ/mb8Z+m00RUNU/4Q9fwi2oEPL0lZSscE/c56c7Vu+nsR2ZqBwPjPSbWamBkIWnA8SA==
-X-Received: by 2002:a05:6402:42c1:b0:42d:fba6:d5c5 with SMTP id i1-20020a05640242c100b0042dfba6d5c5mr33801935edc.295.1654608920839;
-        Tue, 07 Jun 2022 06:35:20 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id b23-20020a17090630d700b0070e1adff390sm5644204ejb.34.2022.06.07.06.35.19
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=H1AtsGdEkkqVoDoziwXz7u9gxAqoupVuYeRio02Yhgc=;
+        b=OuKYJVrtRoHdMXn/8D3VypWedpA02a5jIAINvNlcE6QS/rs8vy2Rv7jxfk8ecqWtuG
+         kexULzTLNNR/0LFmWtyM+74m2vM9F/zaCgvZd6EWQmqVhtOv5JTLr3e3UfNjR/FfH/z/
+         5U2c316gOW7322j9aef8jHmjSWdHU8ixneASQZigilTGhDTnf1WCUCcmhIDV6wjoX+/6
+         yF+s5CNQOzFou+l7kshFFGovedn28LSoJtSoUJ28gR1Rap/Jc2yj+6TiAtPS8B6IJPTB
+         VPwj1fP8H1IN3sXK9ntHv6TyaB2T7VFy94ncxDKszOrSogoH9tMVW5FoAorvPM6l+NrU
+         R/nQ==
+X-Gm-Message-State: AOAM533Z9BSEHrcUmHBKe7k1yC0jF+OXyW4wRCGGrRNbOjFj/tbvTZCM
+        Nhs1Fi+wE49ehVIXZjg48DlX89kuZMAsffqu
+X-Google-Smtp-Source: ABdhPJzL9EH31N8AERCGNlck5JOegjARRYqZjS+5PlKTlV1mXDSm7m5WtDLdrVtfkbpWaNxGfC9wHA==
+X-Received: by 2002:a5d:59a4:0:b0:218:4a29:f12b with SMTP id p4-20020a5d59a4000000b002184a29f12bmr6732079wrr.145.1654609260350;
+        Tue, 07 Jun 2022 06:41:00 -0700 (PDT)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id k7-20020a5d6d47000000b0020e5e906e47sm17818792wri.75.2022.06.07.06.40.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jun 2022 06:35:20 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] dt-bindings: mfd: qcom,tcsr: Add qcom,tcsr-mdm9615
-Date:   Tue,  7 Jun 2022 15:34:43 +0200
-Message-Id: <20220607133443.182468-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220607133443.182468-1-krzysztof.kozlowski@linaro.org>
-References: <20220607133443.182468-1-krzysztof.kozlowski@linaro.org>
+        Tue, 07 Jun 2022 06:40:59 -0700 (PDT)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     sakari.ailus@iki.fi, jacopo@jmondi.org, paul.j.murphy@intel.com,
+        daniele.alessandrelli@intel.com, mchehab@kernel.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     dmitry.baryshkov@linaro.org, konrad.dybcio@somainline.org,
+        andrey.konovalov@linaro.org,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: [PATCH 0/2] Add imx577 compatible to imx412
+Date:   Tue,  7 Jun 2022 14:40:55 +0100
+Message-Id: <20220607134057.2427663-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,25 +70,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the (already used) TCSR on MDM9615.
+Right now the imx412 and imx577 are code and pin compatible however, they
+are distinct pieces of silicon.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Document imx577 as a compatible enum and add the compat string to imx412.c.
+This allows us to differentiate these chips in DTS and potentially to apply
+any future imx412 or imx577 specific changes appropriately.
 
-diff --git a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
-index 428973f97a72..2f816fd0c9ec 100644
---- a/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
-+++ b/Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml
-@@ -21,6 +21,7 @@ properties:
-               - qcom,tcsr-apq8064
-               - qcom,tcsr-apq8084
-               - qcom,tcsr-ipq8064
-+              - qcom,tcsr-mdm9615
-               - qcom,tcsr-msm8660
-               - qcom,tcsr-msm8916
-               - qcom,tcsr-msm8953
+Bryan O'Donoghue (2):
+  media: dt-bindings: imx412: Add imx577 compatible string
+  media: i2c: imx412: Add imx577 compatible string
+
+ Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml | 5 ++++-
+ drivers/media/i2c/imx412.c                                   | 1 +
+ 2 files changed, 5 insertions(+), 1 deletion(-)
+
 -- 
-2.34.1
+2.36.1
 
