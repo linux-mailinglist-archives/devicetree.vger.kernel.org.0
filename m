@@ -2,78 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50AD553F7B7
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 09:56:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAC7E53F7C0
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 10:01:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237980AbiFGH4H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 03:56:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50514 "EHLO
+        id S237899AbiFGIBg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 04:01:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237722AbiFGH4G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 03:56:06 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86851CC143
-        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 00:56:03 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id h23so22410275ejj.12
-        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 00:56:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=C8YP1cEzC8FEy1cpmzx9rDcPUNRhyGSItme8uhv4fGQ=;
-        b=sr+27sd4DqbmnPpwJ/lzVsNAArv8N8yoQmCz4VyfJinf5Klvk7GFZi4XHbBn9jsMX7
-         ruSTEGorxKAAZQGsfeRaTAIl3w2EDJcClJ8AKMigakCDi8+/8cBhxn8rNujIi1ppYkHN
-         Fl/O+3m8Cze9/fj2jbN7WLX4FLexTon7cKd4PXOFz2+oTPWmRtUcyA8b6uyDn8CO0+dP
-         DHF5FnMRgj/0sQxzgWubiqCRVpd3OuMSL0COzLMrT3JXcjTn5CN3QAxWKOru+GszHZQp
-         NPe2I4ePQyDKaN4eeHqMNZYyEKDItGf4DZJ9VJDrslHL/QFbAhSS8xbCudnCdLWEW+G4
-         Gwuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=C8YP1cEzC8FEy1cpmzx9rDcPUNRhyGSItme8uhv4fGQ=;
-        b=osg2xd0I0tmylx/XcNUYKLdd1Kei8VbfmTTxlSZbN2teN7gHAP0svSUfmId0GNMkv9
-         u/ehiAHF3Qzc4SzdLoeo0iyGO2A4dpyeGhslme2hTRlECFBQYq9LUkwukjCyH9vUlkh1
-         uLmh/STc9vbusfc7BhThoiqm7ZV3JvlreenADbYj2HeU032V0s8Zg1R6LYc5aUBLd6OV
-         5hEi4NMzEEyTF4TszkRr7n5L3oVJ+uIAENIVBbh+Rjtoe6YB+2Hk9jK1YpEV4WXStRvq
-         pC7d9g+U3JqGA5AV0GqhjkofoO7x/FLDv8UtaTxBEn/0zXR0y59PUzVTkO0krl7wF3p6
-         gQwA==
-X-Gm-Message-State: AOAM531cZNam2+70VSMUIVhDxMCXqcviNWpeEm9w08svfgxrWeExgnDH
-        YoSwnGs7DoP7vywm/emjLw3nJA==
-X-Google-Smtp-Source: ABdhPJyiZAlWo7Vx/LkHmost5qEinMsSgDsnErUy4IHlpBkrUDNIUU3DcFmJZ06jfmN3iGe8eVgfdA==
-X-Received: by 2002:a17:907:7f91:b0:6ff:c1a:2e8e with SMTP id qk17-20020a1709077f9100b006ff0c1a2e8emr24305881ejc.70.1654588562088;
-        Tue, 07 Jun 2022 00:56:02 -0700 (PDT)
-Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id c2-20020a170906154200b006f3ef214dd2sm7160834ejd.56.2022.06.07.00.56.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Jun 2022 00:56:01 -0700 (PDT)
-Message-ID: <33ceeaa0-2f1b-8562-a6b8-cfcc9dcb31e4@linaro.org>
-Date:   Tue, 7 Jun 2022 09:56:00 +0200
+        with ESMTP id S231132AbiFGIBe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 04:01:34 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AE1ECC148;
+        Tue,  7 Jun 2022 01:01:30 -0700 (PDT)
+X-UUID: d742e5a3f56f4ec89160624d0e463bdc-20220607
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:5f35ce3b-6f41-4603-a32d-3e26e3b75624,OB:0,LO
+        B:10,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,AC
+        TION:release,TS:45
+X-CID-INFO: VERSION:1.1.5,REQID:5f35ce3b-6f41-4603-a32d-3e26e3b75624,OB:0,LOB:
+        10,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:45
+X-CID-META: VersionHash:2a19b09,CLOUDID:69b7737e-c8dc-403a-96e8-6237210dceee,C
+        OID:a9c23a514e78,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:0,BEC:nil
+X-UUID: d742e5a3f56f4ec89160624d0e463bdc-20220607
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 298287096; Tue, 07 Jun 2022 16:01:27 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Tue, 7 Jun 2022 16:01:25 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 7 Jun 2022 16:01:25 +0800
+Message-ID: <387fc4f9a65b87467fbff3878ad371bee4552e6e.camel@mediatek.com>
+Subject: Re: [PATCH v10 18/21] drm/mediatek: Add mt8195 Embedded DisplayPort
+ driver
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
+        Guillaume Ranquet <granquet@baylibre.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        "Daniel Vetter" <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        "Kishon Vijay Abraham I" <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, "Helge Deller" <deller@gmx.de>,
+        Jitao shi <jitao.shi@mediatek.com>
+CC:     Markus Schneider-Pargmann <msp@baylibre.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>, <linux-fbdev@vger.kernel.org>
+Date:   Tue, 7 Jun 2022 16:01:25 +0800
+In-Reply-To: <20220523104758.29531-19-granquet@baylibre.com>
+References: <20220523104758.29531-1-granquet@baylibre.com>
+         <20220523104758.29531-19-granquet@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 2/3] dt-bindings: mfd: atmel,flexcom: Add new compatible
- string for lan966x
-Content-Language: en-US
-To:     Kavyasree.Kotagiri@microchip.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
-        Claudiu.Beznea@microchip.com, UNGLinuxDriver@microchip.com
-References: <20220603121802.30320-1-kavyasree.kotagiri@microchip.com>
- <20220603121802.30320-3-kavyasree.kotagiri@microchip.com>
- <1764f3ce-608f-e55c-d977-18fb95e4a0fe@linaro.org>
- <CO1PR11MB48656331826CDEA9DFB6A11092A29@CO1PR11MB4865.namprd11.prod.outlook.com>
- <ed469c4d-cbf3-2f54-743b-a22c0c120df1@linaro.org>
- <CO1PR11MB4865CA9098EA7E1C052823D792A59@CO1PR11MB4865.namprd11.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CO1PR11MB4865CA9098EA7E1C052823D792A59@CO1PR11MB4865.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,47 +81,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/06/2022 09:54, Kavyasree.Kotagiri@microchip.com wrote:
->>>>> LAN966x SoC flexcoms has two optional I/O lines. Namely, CS0 and CS1
->> in
->>>>> flexcom SPI mode. CTS and RTS in flexcom USART mode. These pins
->>>>> can be mapped to lan966x FLEXCOM_SHARED[0-20] pins and usage
->>>> depends on
->>>>> functions being configured.
->>>>>
->>>>> Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
->>>>> ---
->>>>>  .../bindings/mfd/atmel,flexcom.yaml           | 21 ++++++++++++++++++-
->>>>>  1 file changed, 20 insertions(+), 1 deletion(-)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
->>>> b/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
->>>>> index 221bd840b49e..6050482ad8ef 100644
->>>>> --- a/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
->>>>> +++ b/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
->>>>> @@ -16,7 +16,9 @@ description:
->>>>>
->>>>>  properties:
->>>>>    compatible:
->>>>> -    const: atmel,sama5d2-flexcom
->>>>> +    enum:
->>>>> +      - atmel,sama5d2-flexcom
->>>>> +      - microchip,lan966x-flexcom
->>>>
->>>> Your new v1 is here worse than old v2, where this was just simple
->>>> extension of existing enum. Why did you change it?
->>>>
->>> I introduced new compatible string for lan966x and also I have new DT
->> properties
->>> "microchip,flx-shrd-pins" and "microchip,flx-cs-names".
->>
->> v1 also had the new compatible, hadn't it? The difference is in the enum
->> - before you did not modify this line. Less code in the diff...
->>
-> Yes, previous patch series also had new compatible which introduced new mux DT properties in atmel-flexcom.yaml and mux driver.
-> As part of review comments from Peter Rosin on driver part, Mux implementation is dropped. Please ignore previous patch series. Now, flexcom chip-select support is done in atme-flexcom.c driver. So, I started new patch series now which introduced new DT properties "microchip,flx-shrd-pins" and "microchip,flx-cs-names" and driver changes only in atmel-flexcom.c driver.
+Hi, Rex:
 
-We talk only about the hunk here, not about other properties.
+On Mon, 2022-05-23 at 12:47 +0200, Guillaume Ranquet wrote:
+> From: Markus Schneider-Pargmann <msp@baylibre.com>
+> 
+> This patch adds a DisplayPort driver for the Mediatek mt8195 SoC.
+> 
+> It supports the mt8195, the embedded DisplayPort units. It offers
+> DisplayPort 1.4 with up to 4 lanes.
+> 
+> The driver creates a child device for the phy. The child device will
+> never exist without the parent being active. As they are sharing a
+> register range, the parent passes a regmap pointer to the child so
+> that
+> both can work with the same register range. The phy driver sets
+> device
+> data that is read by the parent to get the phy device that can be
+> used
+> to control the phy properties.
+> 
+> This driver is based on an initial version by
+> Jason-JH.Lin <jason-jh.lin@mediatek.com>.
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> ---
 
-Best regards,
-Krzysztof
+[snip]
+
+> +
+> +static void mtk_dp_state_handler(struct mtk_dp *mtk_dp)
+> +{
+> +	switch (mtk_dp->state) {
+
+Does mtk_dp->state has any relation with mtk_dp->train_state. If yes,
+mix mtk_dp->state and mtk_dp->train_state into one state. If no, move
+calling mtk_dp_state_handler() out of mtk_dp_train_handler().
+
+Regards,
+CK
+
+> +	case MTK_DP_STATE_INITIAL:
+> +		mtk_dp_video_mute(mtk_dp, true);
+> +		mtk_dp->state = MTK_DP_STATE_IDLE;
+> +		break;
+> +
+> +	case MTK_DP_STATE_IDLE:
+> +		if (mtk_dp->train_state == MTK_DP_TRAIN_STATE_NORMAL)
+> +			mtk_dp->state = MTK_DP_STATE_PREPARE;
+> +		break;
+> +
+> +	case MTK_DP_STATE_PREPARE:
+> +		mtk_dp_video_config(mtk_dp);
+> +		mtk_dp_video_enable(mtk_dp, true);
+> +
+> +		mtk_dp->state = MTK_DP_STATE_NORMAL;
+> +		break;
+> +
+> +	case MTK_DP_STATE_NORMAL:
+> +		if (mtk_dp->train_state != MTK_DP_TRAIN_STATE_NORMAL) {
+> +			mtk_dp_video_mute(mtk_dp, true);
+> +			mtk_dp->state = MTK_DP_STATE_IDLE;
+> +		}
+> +		break;
+> +
+> +	default:
+> +		break;
+> +	}
+> +}
+
