@@ -2,177 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1A5A53FC20
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 12:50:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4C3853FCBC
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 13:01:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241761AbiFGKut (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 06:50:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42244 "EHLO
+        id S242171AbiFGLBh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 07:01:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242205AbiFGKuF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 06:50:05 -0400
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2113.outbound.protection.outlook.com [40.107.113.113])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C4CBF1353;
-        Tue,  7 Jun 2022 03:49:26 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nWPSBdB9RxrMA8Lw7AfOVUEZo59e2mxW4pJmyY4pGdZCDzr1OC57Kpx7msD9KO1Tv9l/M3VnTFWsKyfLNAWA/zVrP+/f3vqNnhxsefNFW7mJd5SSlWhlkm4UbADlAjdKC7Sf/Sh6/XZU/e+0EUdQd4MNRplMK88i13zy1M/GXd7Wejl4P3ELLoam49Pl/vp7Qx5MOwFbqnHiu9gAz78uxBlHZmRnkxAVdwBkRQR2sqDxxFZVmfP1G0NitKteB5g4IWPnJFavFdHKz0NWFT9iMcDJsHyfaRy6CLth7CxfkX1TKcLUzZJJmSJq42ASryJu6361a9F8TVlUbXXHQMomEQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Jj7dZD0cAkvORn2yT9pHiAPD6Z3XLBYmOo+K2vy/gjI=;
- b=CbtxODmneh6l+nO+fvt0BmZHUOt/5P2nWVqBnV4HkMFz4PMH+ffWaeXW6/aKhQyQFTlkWQOi2GCrEi2RVph5b4r5Pg0n5ze7rl6yPTwWZ+hWCoW98DPMAO4L6TqUupyZvYDlVuOrnCIddsv5oSOejKOeP70VCx/WjG0+zQokA8UF529b5Gy3qW85r2DcBBOKUzvjBSA9unFjwxqmJLdX37JR8OHmjTLgi65U/YAWbjaFQdIy+0r7ZW5l6UTP7YOn8ZbDvaVV9dGn2RroXKejeSkru4v82Sc6EhGM4M+qq6rqn/8MOIWJpyC554hQgyj4GsdybXG6UYMKQZkWlJ62XA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Jj7dZD0cAkvORn2yT9pHiAPD6Z3XLBYmOo+K2vy/gjI=;
- b=s9WRShr0oLBmPwRQXAVJvpYdtJHi0ArID/GTU4qGyHnFJk4pdz54NhJ/HUKUg20o5HWpI7sfBo9tMC9Q7J/cyGzWaNUhl1nwXeXdiIu1rd5zSMUsnddAa+KCGWnPYN/kxaMd1iB8RVeFukyribr+BD0of0ebb3nk1KshDzWCR1M=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by OSAPR01MB3105.jpnprd01.prod.outlook.com (2603:1096:604:5::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.12; Tue, 7 Jun
- 2022 10:49:23 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::3e:970b:c238:f57]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::3e:970b:c238:f57%9]) with mapi id 15.20.5314.019; Tue, 7 Jun 2022
- 10:49:22 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>
-CC:     Liam Girdwood <lgirdwood@gmail.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH] ASoC: dt-bindings: renesas,rz-ssi: Document RZ/G2UL SoC
-Thread-Topic: [PATCH] ASoC: dt-bindings: renesas,rz-ssi: Document RZ/G2UL SoC
-Thread-Index: AQHYVxaFuP5oz6eqt0ObmMSIhSpBsa1ECf/w
-Date:   Tue, 7 Jun 2022 10:49:22 +0000
-Message-ID: <OS0PR01MB5922E60C12F1B49A949913A286A59@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20220423133154.141027-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20220423133154.141027-1-biju.das.jz@bp.renesas.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a6b4c370-697f-48d1-2159-08da487361cf
-x-ms-traffictypediagnostic: OSAPR01MB3105:EE_
-x-microsoft-antispam-prvs: <OSAPR01MB310577DC4F46E5E8FE41A15786A59@OSAPR01MB3105.jpnprd01.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 2dxd/52TPXuQ9ehmlydu1Uwy0UttLNoP1z+Xrocg8FDW8qUYwwV/q0UpX9nBnlMYmDW6lPlUKzJzM3wJuHzSlwbBZij90lMJm0OxwDWxojuKc66LVf4PLjiV1Xywqqj3rEp3jplE9Mr6FfNny3R+kptFP8rqK6ZVq8ATt9OX3pUTQtuCPd1kAIDdupkN3PlspBYVMz9D9cUXWPrj0dhomKcjTAa1NaMfELnhtzG4j6h9+g0SgI/fwlRW8mKg1YlICw8uK7OOB/EdAPVYlfkulPiawvozwgRDCKPjgkZ1oIjwupSisiga+XM0PIMJ7P/yO7T7AreoloqYOI6mYP4n/s6Ec40QK92t2z96gFL8oB6k5MebKx4X1dT5Lajset3vQKx26GFKp6sIYpBHbOI4Z1d3KTBuEUNOa1yAqvbV5TLD2n751YYbxxWm+snHBbYBzuFuoreUHM1ifY4RrVRAvVEaQQ+04QKr0cOvzZxOVXvI8up0tzhclCI2DI/im3VPts5ipfza9R6QO+ziCtEwtmPJHHGP1WoceU7O6BVpzeQntPNxVqimTKY2Wa/bqXb7Xxu6t4bJMiEmknYr+ZtlOyxSIMIyszPsqt+IAjukkbbyuL7PEMCHPHNQsAHZfHs6JNZg9X1m7OTf4XUOTC7HN6BtUy4ZzhhCA+8mLVPoQFFduuzhBODzQ1k1GFOhD6BdzaOYrsk0rswzB6Oz1Pc9rw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(52536014)(8676002)(5660300002)(38070700005)(122000001)(38100700002)(86362001)(76116006)(4326008)(316002)(110136005)(66446008)(66476007)(186003)(83380400001)(64756008)(33656002)(54906003)(66946007)(66556008)(8936002)(55016003)(71200400001)(9686003)(7696005)(2906002)(6506007)(508600001)(26005);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?groLRwF1ELL6lMHcZyzczLLwKYmbtO65DKqkKZ6DQU3sdp+YSfe3rdc5Y6QA?=
- =?us-ascii?Q?Q+kuOcZyBNhOoJzDAl6FyrPsMcB1Xtm+BwjdJObPQv3YRUU4jTnTlp5cbX6s?=
- =?us-ascii?Q?RAZR4kyLS7JtahiQU2N2+fvzxmfkiPCIowKqFbrTPUdB4venPHJJGtpRboWb?=
- =?us-ascii?Q?VDbQ4Xwk7MGy8sH5Fkq9TaZD5kWPg0iNk56aZ8eLNCD4TwEq0Cw7hS3eZtYC?=
- =?us-ascii?Q?rBQO8xs2/RaLwY0EjQ2bZsHsH6biPtnc0T9LOFBebAOrxryf9dIhVY4YxLRM?=
- =?us-ascii?Q?iWVF/dbpirQ2MU+VrWd+5o/qo02+DNMFv2enL8VvumKSL9l3PggI3qxtsCiK?=
- =?us-ascii?Q?oNObnhmleH3BTKuCvNVlRZuNrugQqe0AF9RnZKh7e0mls1BS8jdYv2b8jdGH?=
- =?us-ascii?Q?SSVajNKyG6su/ph79lHYemGuxboYkVmoy2oqnIKYJsepm9l/4vsEu3jS2s0b?=
- =?us-ascii?Q?hQkl0rh7oelHbs3DbM8KzjL2/B1Xz33ymkIjKa/zYUWS1JOFXb4zQTo4phqA?=
- =?us-ascii?Q?6ijwn7U9Y8FbgnNV6CUXbIJm4ukGcIbYLoP6Z7qSJ+zTvgIjoJzo6DZDoete?=
- =?us-ascii?Q?QoeNMRmJ0w1NEm5JXfy6+rostfRRWngCX5NFRcT5wh97/MFYwP4N2b9M6lYi?=
- =?us-ascii?Q?84Hbu7h6842+tGab2ALMpFc3Vmwi1/BS8JJv488pmxMeiJ2b0wB3SWYaMer2?=
- =?us-ascii?Q?7JJaPTgg1dku0N+/zoO6kmb3nRQrjeuFAtq2/meic0EFnoss3yniFplNP3wA?=
- =?us-ascii?Q?26pQHfEuI72xRZC3reggKHkd6qydmaF/ttp/ukP0VVr7kvqlayzf5JsTtNiJ?=
- =?us-ascii?Q?yse1qdel7uAd5oatpWaIal1zQqC5+TyRmQAqhzsYh+nahEBnZ+fV1TaYQfn0?=
- =?us-ascii?Q?shN6rr551nCZiX9/Aq0F+mTnT5HFcSACmqrVRFEdSy9KcWL53JgTsOdu9loV?=
- =?us-ascii?Q?sRT9ZBPcdE9o4mk5021DSTVWfUxVEqFpROQPRuD9KGt1nS8R6EwKb5sTC9pn?=
- =?us-ascii?Q?pz2iKK3Hs5RtWZYNdskKTsYdLsvk+aUmDW3UXYxqK2DKv6nj+X947r7o6iB1?=
- =?us-ascii?Q?JXDcRtJiPEGX6F6V+1eR9UDcJw0HSlMaxmcoanbT1qdyNoR2yotiB1hFPV1o?=
- =?us-ascii?Q?w74sd6T2duNVTc8FtbB0aFPFYaoya5hFxONnBkAdruB5DFeVidPNGYDZbkJd?=
- =?us-ascii?Q?h/giFEHWCGTpeLhkiITOOJm4n4/RCyRFxB639HXZvGYZobH5s5IaYlZS9XnN?=
- =?us-ascii?Q?TeLLMwmDKjb/rBbjyN+W36SQ+H94gqutut/aidfkpYn0Yi35t6GVEKT7h5hz?=
- =?us-ascii?Q?+F3O452NxdzNLZk6Uj2+EtIFNzYbK9UZMWIQnjHtMWnpB6a5PYJ3E3xzs9r0?=
- =?us-ascii?Q?C1eTgS9FreAKHhioXb1moesB2C/8+q+2UPsmOaBH+2TZKwR9MRH/+b4NXus6?=
- =?us-ascii?Q?P6p4eK0T5WAhI+6Ll1ztp4XaSDXq1VceErYhw1Mj7xXxkuCShSgJE9b41T8b?=
- =?us-ascii?Q?Xsbg2PuXSZ69KUaCDGc3Ic/DDVcxeoj3kBqPH88KcvLcV4RzOgsDo+v9m8fL?=
- =?us-ascii?Q?MK9XhtmFKjZxLgX8+ZcPqjW58P8/icReO7P9wmpxv6EsTqzak6MoFJBHrIHb?=
- =?us-ascii?Q?vqIy8ucdm4MdGslKXW1eySXx9CzW+rHbBLpnDba5O3pY1Ga5IPnvE1SkhW8F?=
- =?us-ascii?Q?h0qPa+tZ3grGR6tgfxVp6ZuA0qEOuOg8iuGTiQz7nA0zrCCZN5lveKAjJNID?=
- =?us-ascii?Q?jZ0ZtILKcA6L5VKCLPsh9rjHDORSxfk=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S242549AbiFGLAT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 07:00:19 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2F4D240AD;
+        Tue,  7 Jun 2022 03:57:45 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id b8so5781550edj.11;
+        Tue, 07 Jun 2022 03:57:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=references:from:to:cc:subject:date:in-reply-to:message-id
+         :mime-version;
+        bh=yPufLHAHmFZwiernSymaEB3w3KO3bi6vBnV8PeUhLxI=;
+        b=hnKKSGjrNlED/ZlKz+Mk3ptadzuBrA4J1vL8VD7NRqCFW31W644HRaVQWmcraWSz71
+         5dMMJhQ+BcrWbNn2bCO8fTqN5+WThdkCsK5+8qkojv9mzGUNfRJSpSKT+5aUzYU7AriE
+         N7h2CR0qwrfJOvOIgBnFh1Ojle66VSa4bdCOAgWpyASOVWzfksdaV8BbDK99daFoltnx
+         9sKL5RHXz4+K+NTOK/9S5RP0flCJurYELlgQNxb44NTX2PeREFNp8IFqImXVcc7UKaUX
+         41e5IN3X4u4zJ6l/4WTvjR7NZhLpY5SRHCdxpyg9Mzyz377bI/qPH89bq5szta5I48YR
+         Z6NQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:references:from:to:cc:subject:date:in-reply-to
+         :message-id:mime-version;
+        bh=yPufLHAHmFZwiernSymaEB3w3KO3bi6vBnV8PeUhLxI=;
+        b=Gm/qfIlm1hviu7MYzhjE+rrnBeh601A0YerY2pCujipZ0abE1y1Swy3TE0vNNOgFCQ
+         AaSZRx4qn1ijiwSXHv2BhS40OsoylEaWAuG5PPoXUKhNTdG3tdnGjHA0jPqupFD/VH5C
+         K0mkxeaNlzHdM1b3P46c4NUjGlC6vHVC4CYpoLQ2qFcSCXBswNVZkPG9mE/U+105kbSp
+         19VGjvSqpamoDZsIpwIOROfA+608iF5RgLX3+SECq6SAS5hMnhGDpFN2F5M9f8RhSuIA
+         BFN4h5+WAWu7ePzIJwnzrUHYXK+tLwgUVa596lJGqBVZJ0e1RPfGDit8GjIUky0hgmml
+         wsxw==
+X-Gm-Message-State: AOAM532SuHrQTDBoIDzvmtT+yTPoesAb4fqNRiotBw41rHuejdG5pH+C
+        KSlCWgxwE/y0AwAoUjHZAjs=
+X-Google-Smtp-Source: ABdhPJyQ0oBf+aAihrAexYG8itdUihorYdbcNhw5dal9/wGkAvJYiJHkpOylC6RmzGwUA7Fxg7qaow==
+X-Received: by 2002:a05:6402:23a3:b0:42e:251a:c963 with SMTP id j35-20020a05640223a300b0042e251ac963mr27606354eda.173.1654599464256;
+        Tue, 07 Jun 2022 03:57:44 -0700 (PDT)
+Received: from localhost (92.40.203.141.threembb.co.uk. [92.40.203.141])
+        by smtp.gmail.com with ESMTPSA id gj12-20020a170906e10c00b006fed8dfcf78sm7396457ejb.225.2022.06.07.03.57.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Jun 2022 03:57:43 -0700 (PDT)
+References: <20220603135714.12007-1-aidanmacdonald.0x0@gmail.com>
+ <20220603135714.12007-9-aidanmacdonald.0x0@gmail.com>
+ <20220603174744.642157d8@jic23-huawei>
+ <e9ABtmBNzztlyRcJD5f36OmAYZW4i7KH@localhost>
+ <20220604152711.22268711@jic23-huawei>
+From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     lars@metafoo.de, linus.walleij@linaro.org, brgl@bgdev.pl,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        wens@csie.org, lee.jones@linaro.org, sre@kernel.org,
+        broonie@kernel.org, gregkh@linuxfoundation.org,
+        lgirdwood@gmail.com, rafael@kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 08/10] iio: adc: axp20x_adc: Add support for AXP192
+Date:   Tue, 07 Jun 2022 11:49:58 +0100
+In-reply-to: <20220604152711.22268711@jic23-huawei>
+Message-ID: <9Ju6ijQ68x8e8Es1zhzsVMZHprvKy16b@localhost>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a6b4c370-697f-48d1-2159-08da487361cf
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jun 2022 10:49:22.5593
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tR/JooV4Ok/fyZ80qz1AupCpt7DmcQfx8Q04nlap988oyJZxxLDq56YscNBKlu1sORumin1p7boDeLHhBtGmYsp24XkFiZKMA6pzuhamL5o=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSAPR01MB3105
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi All,
 
-Gentle ping.
+Jonathan Cameron <jic23@kernel.org> writes:
 
-Are we happy with this patch? Please let me know.
+> On Sat, 04 Jun 2022 12:47:38 +0100
+> Aidan MacDonald <aidanmacdonald.0x0@gmail.com> wrote:
+>
+>> Jonathan Cameron <jic23@kernel.org> writes:
+>> 
+>> > On Fri,  3 Jun 2022 14:57:12 +0100
+>> > Aidan MacDonald <aidanmacdonald.0x0@gmail.com> wrote:
+>> >  
+>> >> The AXP192 is identical to the AXP20x, except for the addition of
+>> >> two more GPIO ADC channels.
+>> >> 
+>> >> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>  
+>> > Hi Aidan,
+>> >
+>> > A few minor questions and comments inline.
+>> >
+>> > Thanks,
+>> >
+>> > Jonathan
+>> >
+>> > Unless I missed a previous patch adding labels to the other devices supported,
+>> > this is the first driver to use these.  Why do they make sense here but not
+>> > to add to existing supported devices?
+>> >
+>> > I don't particularly mind this addition, just looking for an explanation.
+>> >  
+>> 
+>> That'd be because 1d4ef9b39ebecca8 ("iio: core: Add optional symbolic
+>> label to a device channel") added read_label in 2020, while the AXP
+>> driver was introduced in 2017. I could add read_label for the other
+>> chips while I'm here, for consistency.
+>
+> Thanks, I don't really mind either way on adding support for additional parts.
+>
+>> 
+>> One question I have is why read_label exists when the kernel already has
+>> unique names for IIO channels. Why not just expose the datasheet_name to
+>> userspace from the IIO core instead of making drivers do it?
+>
+> In general, datasheet_name refers to the name of the pin on a datasheet for this
+> device, whereas label can refer to how it is used.
+> There are dt bindings to allow a per channel label letting a driver (where it
+> makes sense) provide them for each individual ADC channel.
+> (e.g. the ad7768-1 driver does this).
+>
+> On other devices they come from entirely different sources such as the hardcoded
+> choices in hid-sensor-custom-intel-hinge.
+>
+> I vaguely recall that we've talked in the past about exposing datasheet name directly
+> but for many devices it's not that useful (the user doesn't care if a channel is
+> aux channel 1 or 7, but rather what it is wired up to).
+>
+> At the moment this driver just exposes all channels rather than having
+> per channel bindings, so we don't have the option to use labeling in the device
+> tree to assign the names.   If it's particularly useful to you to have labels
+> that are datasheet names that's fine.
+>
+> Jonathan
 
-Cheers,
-Biju
+Thanks for the explanation, makes sense that "gpio0_v" is probably not
+all that useful. I was thinking mainly of channels like battery charge
+current where the channel usage is fixed by hardware. The labels aren't
+terribly useful to me so I'll just leave them out, I'd rather not bother
+with adding dt labels.
 
-> Subject: [PATCH] ASoC: dt-bindings: renesas,rz-ssi: Document RZ/G2UL SoC
->=20
-> Document RZ/G2U2L SSI bindings. RZ/G2UL SSI is identical to one found on
-> the RZ/G2L SoC. No driver changes are required as generic compatible
-> string "renesas,rz-ssi" will be used as a fallback.
->=20
-> While at it add a '.' at the end of dmas description for the first cell.
->=20
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
->  Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
-> b/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
-> index 7e8d252f7bca..0d9840375132 100644
-> --- a/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
-> +++ b/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
-> @@ -13,6 +13,7 @@ properties:
->    compatible:
->      items:
->        - enum:
-> +          - renesas,r9a07g043-ssi  # RZ/G2UL
->            - renesas,r9a07g044-ssi  # RZ/G2{L,LC}
->            - renesas,r9a07g054-ssi  # RZ/V2L
->        - const: renesas,rz-ssi
-> @@ -50,7 +51,7 @@ properties:
->      minItems: 1
->      maxItems: 2
->      description:
-> -      The first cell represents a phandle to dmac
-> +      The first cell represents a phandle to dmac.
->        The second cell specifies the encoded MID/RID values of the SSI
-> port
->        connected to the DMA client and the slave channel configuration
->        parameters.
-> --
-> 2.25.1
-
+Regards,
+Aidan
