@@ -2,348 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3D31540AE8
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 20:24:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 043565414E3
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 22:23:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350502AbiFGSY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 14:24:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40320 "EHLO
+        id S1359581AbiFGUXD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 16:23:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350793AbiFGSXA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 14:23:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1445C1EC9;
-        Tue,  7 Jun 2022 10:54:18 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B3EEF6159C;
-        Tue,  7 Jun 2022 17:54:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C1C2C34115;
-        Tue,  7 Jun 2022 17:54:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654624450;
-        bh=N2HpP649Pyz7gdMBv34La6YNqe/tnO/A22HbdsDKRmw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=a0TmmOfMIINqWF0rAkRbZHsZkJx1YigLEfjzSjHGn6kcqymdymq4uGPvgu6JFWgLO
-         l5IIXseMQfFZ4uZUcVqlC2aR8DomxBO6xL3thYv+KnnbjXJig3wgx5QyHAdYWPaoAy
-         60+fLZZdAwL0jTCkxxAujO+oHmNyxSoLBon3tcRvxWBfHThAkCcaK9SViqLWI1gmzj
-         HZnkDKiGBAnNZ5a8Okvy/kltzMis1rFIbjSZgUSBaZXpxV2RjlRsE69ydqpVfDBT3Q
-         1b/Lhv0gj/MYtCYgtDx62TZlzp0sJtGnaMmrwFt/+T8+ULyVrbOX11WA/SDXyKGaPA
-         RCZ66vNNPCfpA==
-Date:   Tue, 7 Jun 2022 23:23:54 +0530
-From:   Manivannan Sadhasivam <mani@kernel.org>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        with ESMTP id S1358268AbiFGUWl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 16:22:41 -0400
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12olkn2067.outbound.protection.outlook.com [40.92.21.67])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71F1017C6AD;
+        Tue,  7 Jun 2022 11:31:50 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nht8JmLBtJXEBznZXi3jjXIXWtRP+sbTvn7iLJq02xd/lanl/l6bWs01t+VBE3VM5dVObDAVNhbX9X3EMM7SeBw68H//7Tu5s42ONJ+8dL+KiqowUrFrP8EzkDI4o+UlVNlFtrYr8OOiC3W2qp06KhLmvHUWgRfrIMGGc6ghwoothAA6PyB1ci/ICOPuA1NynEWjdOnB4fOKZ6yl8nyqYJE2K4HIFqCfYbLP0/hgD5IJuCHx1T+ybci8LpHcQFu+4BT3UiHa9QcfWzEHseop8WoY8RjpgRQ1y4ZoQUwae/Mp6W9hjdHZ/VINuYc8LoPNjsH/MrdSVkN7Q1szFNtiwQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=f+Z4zht1sFByQGiYmQIrYXxd2kBBeoTcTO8elbgbnTg=;
+ b=KBP7dmo3+QRxCmGfGPXVuqz69AY/on3YVZDa36bYeD4Qhv8QvZ69vJ9ElhCwCTD7Pn01mTiuSuaoJv5Uq5syUWn9RC+rKBsGmR1nEJ6/76NPNTyN7hHOh460agC3J5QOAZep/Qi0chqzveN7PuoTM33gQHuZQVfw50qmaF8prySHhw13qL+DJqVkxCs45s1pmjGZ++WXUx85fkDMCx+AQ+wQVSZ6/1b0uQ+jiqWBW8/vx/qKYJEsxT8VA1Avx+HgFoj9RbvVYuEcyuZeOq2iq+uwt+BqlDTPozM77uPONQb5iiNNFDaZqJVKpXQ8Og4pYBDbbZ6r4NFQKNF5hUOleA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+Received: from BY5PR02MB7009.namprd02.prod.outlook.com (2603:10b6:a03:236::13)
+ by BN0PR02MB7885.namprd02.prod.outlook.com (2603:10b6:408:148::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.12; Tue, 7 Jun
+ 2022 18:31:48 +0000
+Received: from BY5PR02MB7009.namprd02.prod.outlook.com
+ ([fe80::e179:40c4:4269:70e]) by BY5PR02MB7009.namprd02.prod.outlook.com
+ ([fe80::e179:40c4:4269:70e%5]) with mapi id 15.20.5314.019; Tue, 7 Jun 2022
+ 18:31:48 +0000
+Message-ID: <BY5PR02MB70099A0E4C060E52284DCE46D9A59@BY5PR02MB7009.namprd02.prod.outlook.com>
+Date:   Wed, 8 Jun 2022 00:01:35 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.0
+Subject: Re: [PATCH v2 1/3] drm/panel: nt36672a: add backlight support
+Content-Language: en-US
+To:     Sumit Semwal <sumit.semwal@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mtd@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_sricharan@quicinc.com, quic_mdalam@quicinc.com
-Subject: Re: [PATCH v4 1/2] mtd: nand: raw: qcom_nandc: add support for
- unprotected spare data pages
-Message-ID: <20220607175354.GB1882@thinkpad>
-References: <20220519190112.6344-1-ansuelsmth@gmail.com>
- <20220519190112.6344-2-ansuelsmth@gmail.com>
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Amit Pundir <amit.pundir@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>
+References: <20220401001810.81507-1-jo@jsfamily.in>
+ <BY5PR02MB700935F5817128CB7C3991CDD9E09@BY5PR02MB7009.namprd02.prod.outlook.com>
+From:   Joel Selvaraj <jo@jsfamily.in>
+In-Reply-To: <BY5PR02MB700935F5817128CB7C3991CDD9E09@BY5PR02MB7009.namprd02.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TMN:  [uHUVQl3FvT0MV1NIB42qP0jy67q/XIWc9xEENbIDu+09BEu+ZHOU/UaJZ3UmlAAd]
+X-ClientProxiedBy: PN2PR01CA0006.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:25::11) To BY5PR02MB7009.namprd02.prod.outlook.com
+ (2603:10b6:a03:236::13)
+X-Microsoft-Original-Message-ID: <2e964339-85fe-9bf7-2df1-aad3ea593bb8@jsfamily.in>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220519190112.6344-2-ansuelsmth@gmail.com>
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 798a7039-6fe5-4154-b931-08da48b3fb04
+X-MS-TrafficTypeDiagnostic: BN0PR02MB7885:EE_
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: eyeB/lQbTXB3dIeP7BXG+8mx52D3dl1Ek6zrUtFl1QtshHg6p6ec3VO7m9a6VUQsGnMh+P2YB2HyLWXzIP/BdqRCXaxSn99TN5GzCh63iVIVUbmIa/F+khVaKPrqY5S4PXz7DDnURyR3ZhV7E28sb+kxmNes6gZcuothkB8GEqVCkQXa0sxgrx9jCdFGasRYmWjLZN7KUBk3sHVL+Qm4yeRvDRWkCOMnFBd2QqzkWmzcKBjDjG4DCO0yXy28u4dcb+cFv7e3CcE+4x5Gl8sUzI1YhP914BO4XmF1n2b62n0LB+PAIYhpFT9BkvNKpQBDBUlvEt5SrBQRoab4BjLvuJYznLxGtfhiNr3BKSbcxvhv2p+e2Q2z0raO9SEvWYNXJzLqTfXPvGrEqppPQ+oGS+GpL+uKvG6BRRjCel+EjKHdcFIzIMkf1aq6UiTs9+WEJmSQ9b5qHthokqh2PtgLFOElkI8guSj4zYTIyhfaQtDvDzCpMYV50igKCJryIfp5phvZ8DihftYPr1VzMo5ijK/X739frS1LlWhGtjfcuj0z4SkvH4uj8cCH2Urzp96qYYtTYB1Xij9j6rjAjiWIJQ==
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S252akR1T3ExSHk1QWRhN2ljUDF3VVg0T1BNYjl6dldjckRIWm9EUVVrYUJH?=
+ =?utf-8?B?anQzMm1SWHZXbmpFU21DYzF6NW9NM0NhZHVkYkh1cVUxVHlYQm00MW40ZFU4?=
+ =?utf-8?B?TWpMbjRrWUx1TWRqNk5FaWZzdmFCVTRBTjc4b3B2WWx2alZMU0ZTck1tekRI?=
+ =?utf-8?B?Q0JzZXVJSWlnTm5nVGZhcUFSamVKOUYxV3hnbjZRTVZDQWZSTjIrOHN5UzJ3?=
+ =?utf-8?B?RkVTZ2lHRFpacHBiUnRscHRtZGhEblRGc1RTWTZkVkhNVXYyRFZXNHIyREVI?=
+ =?utf-8?B?ZG5oQXlGUzN2YkRjUnZvRXVKS0NVak9vanpYK3kxRnlIYllXOEF3ZEdqZkdi?=
+ =?utf-8?B?TEwvakNsUkJyU2ZNdWxXRHh2OVVYeVVFL1gzTWU3NEYvdXZsWVNjcEl5Q3VW?=
+ =?utf-8?B?T3A2SnpVN1c1aTJpZm9xbGFHZWtXZ2JmNG9MZkNoR3RXTitWL1dPcHJaUGY5?=
+ =?utf-8?B?OU1qYk5ldHVyeHZwUmYrZDRra1ZiWFNzV0dvbnpSQVNncDduQ3ZTKzN5UkMr?=
+ =?utf-8?B?dGdZTjI4K1FkOGNWUjE5WFdqaUJ4NGYvb3VQdHRDRTBCY0k1V0ZYbys0NVFq?=
+ =?utf-8?B?TTkxWUppb2JaY1BUbHlWdjJKTW5MMWh0RDNLRTROOTJQVFVpcDFFOHBXS1Zq?=
+ =?utf-8?B?QzFZTHNrODNJdC9DdmJiUWNvU3M0MGZjMWJkeDRPRnBMSWR4akE0THVsVGhl?=
+ =?utf-8?B?S3JIM2ZxUW1JM2lJTjVYdW1wSTdwdm1pa2pjL3VzbEUzMlVpby9KRDV0TUla?=
+ =?utf-8?B?d3FodHFBdytsMWlWMGZCY2pwMzhrSnBhTG9Telc0dEswa1ZBRExrSWQ3ZXFs?=
+ =?utf-8?B?RVlweEZ5VGFvVDk3ZlhKZEpad0Jqb09iT0hqMGdiU0lpb04wU2FFWkV3eThh?=
+ =?utf-8?B?TFR5czJJVXB4KyswQkZVU3V3MFFQTExpNGhOTHZTTXpQMlpPS2lYdWFQNlcz?=
+ =?utf-8?B?MXBKSXJxSmFLTTVCaFRRd1VacGZVTngxR2tZSjZrRkMrR3B2d3ptbEpkUWZp?=
+ =?utf-8?B?OFVVTVhSd2ppQXhTNnpveWxaa0NwcWUvN1RBaWJCTEJpZHJwRGFSUW9VTWlp?=
+ =?utf-8?B?cmhvbkJOUW5KQzFaWHZxQXdySC9tVUc5WU9ITXNvdTJlek51WWlTeDFxWkww?=
+ =?utf-8?B?N0hSL0Vsc0tyc0I1V284Zlc2ZVZEU0xwUWlNb3VwQ3pIYlp5SlBXZEttcTFB?=
+ =?utf-8?B?L1Z2UkJGQk9iL01ZVHlHYXNlY0s2RTBZOEQyVE1xUCtlOTlBeHFzaThSNkt1?=
+ =?utf-8?B?dnFKMjJyclovd09GaERkanlxV1RVdnNpR3hNcVlLbnJpbHRlalEvbk5WVDlO?=
+ =?utf-8?B?MXNxcnI4M3VMZm92R3IzWmlKSzV1QzArS3ovQ3hhL0UwV2JEdEtxaE8xM056?=
+ =?utf-8?B?TTRkbGpBUmd5N0x6VDBjZ3EvMXR3SkpwSmQ5OXBJZ2tYWFRzSTg3ZjlwT0w0?=
+ =?utf-8?B?emthQWlaT0luRisrRTdsdlRoQnQ3eDVlMERFNHJCWTM2MjQwQjFaSTZEdWVl?=
+ =?utf-8?B?SE1abHlpUnpUTmJ3aW5RckRlVmpMV2pjNERjNlhGWWYxMmJmaVRFNDBvQ0NZ?=
+ =?utf-8?B?R2JvSDh5M09pOGFQaU5ZbGU0dEkxcE80NHZMcXFRVktteWNuT3pPZ2JOcWQr?=
+ =?utf-8?B?RXEvWDlHbkEvRGRpVG4xN3hnS3ZFOU9Oa2VpVFhzRHByZy93OEZRa3BJKytT?=
+ =?utf-8?B?V3F0REk0NU1TVGszNDJzVTdabXdIUmMxd1BQUHFWWnJ0UllmZVpIaTh4YUV6?=
+ =?utf-8?B?S1hoZEh3NjM0V0FVdHNyVVE3N1ZTcitycjlaRWNSb1FiMkNxRkp3SDh1dFlj?=
+ =?utf-8?B?WXJ6VWptdjlNR1BRSUk0RnNZM29kMnhsKzlmNEhib282bjlPZWk5RU56K3Yx?=
+ =?utf-8?B?b2JFZDczQUl6Vi82UTRlN21SZk8wUS9PZWJaTlY2UE9RbnJoVk4vWTdZTWdw?=
+ =?utf-8?B?QUROSUdqN3BIYUFhT1pzUVkyM0xPOWJUcGd5L2Z5dlJZSk9YU2c1aEVlNjVY?=
+ =?utf-8?B?TWFlTU54b3FRPT0=?=
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-99c3d.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 798a7039-6fe5-4154-b931-08da48b3fb04
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR02MB7009.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jun 2022 18:31:48.0659
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR02MB7885
+X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,FORGED_MUA_MOZILLA,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+ Sricharan, Alam
+Hi,
 
-On Thu, May 19, 2022 at 09:01:11PM +0200, Ansuel Smith wrote:
-> IPQ8064 nand have special pages where the spare data is not protected by
-> ECC. These special page are used by boot partition and on reading them
-> lots of warning are reported about wrong ECC data and if written to
-> results in broken data and not bootable device.
-> 
+I can see that the dts changes from this patch series has been applied 
+to 5.19-rc1 release. However, this patch that has the related change to 
+the panel driver, is not applied in the 5.19-rc1 release. Any particular 
+reason why it's not picked up? or just that, it got missed out? Kindly 
+let me know if changes are required from my end.
 
-After checking internally I gathered more information on this issue. The
-problem is that the boot partitions are using a different layout scheme compared
-to other partitions like rootfs. This is because, the boot partitions are
-accessed by bootloader like u-boot that uses the modified layout.
-
-And the modified layout uses 512 bytes as the codeword size (even for the last
-codeword) while writing to the CFG0 register. This forces the NAND controller
-to unprotect the 4 bytes of spare data. So if kernel is unaware of this layout,
-it will try to protect the spare data too during read/write to these partitions
-and that will result in CRC errors.
-
-So please update the commit message with above info.
-
-> Under the hood these special page are just normal page with the spare
-> data not protected by ECC.
-> 
-> Add support for this by permitting the user to declare these special
-> pages in dts by declaring offset and size of the partition. The driver
-> internally will convert these value to nand pages.
-> 
-> On user read/write the page is checked and if it's a boot page the
-> correct configuration is applied.
-> 
-> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> ---
->  drivers/mtd/nand/raw/qcom_nandc.c | 148 +++++++++++++++++++++++++++++-
->  1 file changed, 143 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/mtd/nand/raw/qcom_nandc.c b/drivers/mtd/nand/raw/qcom_nandc.c
-> index 1a77542c6d67..289aef4f191d 100644
-> --- a/drivers/mtd/nand/raw/qcom_nandc.c
-> +++ b/drivers/mtd/nand/raw/qcom_nandc.c
-> @@ -80,8 +80,10 @@
->  #define	DISABLE_STATUS_AFTER_WRITE	4
->  #define	CW_PER_PAGE			6
->  #define	UD_SIZE_BYTES			9
-> +#define	UD_SIZE_BYTES_MASK		GENMASK(18, 9)
->  #define	ECC_PARITY_SIZE_BYTES_RS	19
->  #define	SPARE_SIZE_BYTES		23
-> +#define	SPARE_SIZE_BYTES_MASK		GENMASK(26, 23)
->  #define	NUM_ADDR_CYCLES			27
->  #define	STATUS_BFR_READ			30
->  #define	SET_RD_MODE_AFTER_STATUS	31
-> @@ -102,6 +104,7 @@
->  #define	ECC_MODE			4
->  #define	ECC_PARITY_SIZE_BYTES_BCH	8
->  #define	ECC_NUM_DATA_BYTES		16
-> +#define	ECC_NUM_DATA_BYTES_MASK		GENMASK(25, 16)
->  #define	ECC_FORCE_CLK_OPEN		30
->  
->  /* NAND_DEV_CMD1 bits */
-> @@ -418,6 +421,19 @@ struct qcom_nand_controller {
->  	const struct qcom_nandc_props *props;
->  };
->  
-> +/*
-> + * NAND special boot pages
-
-s/page/partitions everywhere
-
-> + *
-> + * @offset:			offset of the page where spare data is not protected
-> + *				by ECC
-> + * @size:			size of the page where spare data is not protected
-> + *				by ECC
-> + */
-> +struct qcom_nand_boot_page {
-> +	u32 offset;
-> +	u32 size;
-> +};
-> +
->  /*
->   * NAND chip structure
->   *
-> @@ -444,6 +460,13 @@ struct qcom_nand_controller {
->   * @cfg0, cfg1, cfg0_raw..:	NANDc register configurations needed for
->   *				ecc/non-ecc mode for the current nand flash
->   *				device
-> + *
-> + * @unprotect_spare_data:	keep track of the current ecc configuration used by
-> + *				the driver for read/write operation.
-
-Unprotected spare data is the effect of using a different codeword size. So use
-something like, @codeword_fixup.
-
-> + * @boot_pages_count:		count of the boot pages where spare data is not
-> + *				protected by ECC
-> + * @boot_pages:			array of boot pages where offset and size of the
-> + *				boot pages are stored
->   */
->  struct qcom_nand_host {
->  	struct nand_chip chip;
-> @@ -466,6 +489,10 @@ struct qcom_nand_host {
->  	u32 ecc_bch_cfg;
->  	u32 clrflashstatus;
->  	u32 clrreadstatus;
-> +
-> +	bool unprotect_spare_data;
-> +	int boot_pages_count;
-> +	struct qcom_nand_boot_page *boot_pages;
-
-Reorganize the members to avoid holes.
-
->  };
->  
->  /*
-> @@ -475,6 +502,7 @@ struct qcom_nand_host {
->   * @is_bam - whether NAND controller is using BAM
->   * @is_qpic - whether NAND CTRL is part of qpic IP
->   * @qpic_v2 - flag to indicate QPIC IP version 2
-> + * @has_boot_pages - whether NAND has different ecc settings for boot pages
-
-@use_codeword_fixup?
-
->   * @dev_cmd_reg_start - NAND_DEV_CMD_* registers starting offset
->   */
->  struct qcom_nandc_props {
-> @@ -482,6 +510,7 @@ struct qcom_nandc_props {
->  	bool is_bam;
->  	bool is_qpic;
->  	bool qpic_v2;
-> +	bool has_boot_pages;
->  	u32 dev_cmd_reg_start;
->  };
->  
-> @@ -1701,7 +1730,7 @@ qcom_nandc_read_cw_raw(struct mtd_info *mtd, struct nand_chip *chip,
->  	data_size1 = mtd->writesize - host->cw_size * (ecc->steps - 1);
->  	oob_size1 = host->bbm_size;
->  
-> -	if (qcom_nandc_is_last_cw(ecc, cw)) {
-> +	if (qcom_nandc_is_last_cw(ecc, cw) && !host->unprotect_spare_data) {
->  		data_size2 = ecc->size - data_size1 -
->  			     ((ecc->steps - 1) * 4);
->  		oob_size2 = (ecc->steps * 4) + host->ecc_bytes_hw +
-> @@ -1782,7 +1811,7 @@ check_for_erased_page(struct qcom_nand_host *host, u8 *data_buf,
->  	}
->  
->  	for_each_set_bit(cw, &uncorrectable_cws, ecc->steps) {
-> -		if (qcom_nandc_is_last_cw(ecc, cw)) {
-> +		if (qcom_nandc_is_last_cw(ecc, cw) && !host->unprotect_spare_data) {
->  			data_size = ecc->size - ((ecc->steps - 1) * 4);
->  			oob_size = (ecc->steps * 4) + host->ecc_bytes_hw;
->  		} else {
-> @@ -1940,7 +1969,7 @@ static int read_page_ecc(struct qcom_nand_host *host, u8 *data_buf,
->  	for (i = 0; i < ecc->steps; i++) {
->  		int data_size, oob_size;
->  
-> -		if (qcom_nandc_is_last_cw(ecc, i)) {
-> +		if (qcom_nandc_is_last_cw(ecc, i) && !host->unprotect_spare_data) {
->  			data_size = ecc->size - ((ecc->steps - 1) << 2);
->  			oob_size = (ecc->steps << 2) + host->ecc_bytes_hw +
->  				   host->spare_bytes;
-> @@ -2037,6 +2066,52 @@ static int copy_last_cw(struct qcom_nand_host *host, int page)
->  	return ret;
->  }
->  
-> +static bool
-> +qcom_nandc_is_boot_page(struct qcom_nand_host *host, int page)
-> +{
-> +	struct qcom_nand_boot_page *boot_page;
-> +	u32 start, end;
-> +	int i;
-> +
-> +	for (i = 0; i < host->boot_pages_count; i++) {
-> +		boot_page = &host->boot_pages[i];
-> +		start = boot_page->offset;
-> +		end = start + boot_page->size;
-> +		/* Boot page are at the start of the nand.
-> +		 * Check the page from the boot page end first
-> +		 * to save one extra check.
-
-Is the comment valid still?
-
-> +		 */
-> +		if (page < end && page >= start)
-> +			return 1;
-
-true?
-
-> +	}
-> +
-> +	return 0;
-
-false?
-
-> +}
-> +
-> +static void
-> +qcom_nandc_check_boot_pages(struct qcom_nand_host *host, int page)
-
-qcom_nandc_codeword_fixup()?
-
-> +{
-> +	bool unprotect_spare_data = qcom_nandc_is_boot_page(host, page);
-> +
-> +	/* Skip conf write if we are already in the correct mode */
-> +	if (unprotect_spare_data == host->unprotect_spare_data)
-> +		return;
-> +
-> +	host->unprotect_spare_data = unprotect_spare_data;
-> +
-> +	host->cw_data = unprotect_spare_data ? 512 : 516;
-> +	host->spare_bytes = host->cw_size - host->ecc_bytes_hw -
-> +			    host->bbm_size - host->cw_data;
-> +
-> +	host->cfg0 &= ~(SPARE_SIZE_BYTES_MASK | UD_SIZE_BYTES_MASK);
-> +	host->cfg0 |= host->spare_bytes << SPARE_SIZE_BYTES |
-> +		      host->cw_data << UD_SIZE_BYTES;
-> +
-> +	host->ecc_bch_cfg &= ~ECC_NUM_DATA_BYTES_MASK;
-> +	host->ecc_bch_cfg |= host->cw_data << ECC_NUM_DATA_BYTES;
-> +	host->ecc_buf_cfg = (unprotect_spare_data ? 0x1ff : 0x203) << NUM_STEPS;
-> +}
-> +
-
-[...]
-
-> +static int qcom_nand_host_parse_boot_pages(struct qcom_nand_controller *nandc,
-> +					   struct qcom_nand_host *host,
-> +					   struct device_node *dn)
-> +{
-> +	struct nand_chip *chip = &host->chip;
-> +	struct mtd_info *mtd = nand_to_mtd(chip);
-> +	struct qcom_nand_boot_page *boot_page;
-> +	struct device *dev = nandc->dev;
-> +	int pages_count, i, ret;
-> +
-> +	if (!nandc->props->has_boot_pages)
-> +		return 0;
-> +
-> +	pages_count = of_property_count_u32_elems(dn, "qcom,boot-pages");
-> +	if (pages_count < 0) {
-> +		dev_err(dev, "Error parsing boot_pages. Ignoring.");
-
-I'd first check for the existence of the property first and bail out if it is
-not present. If it is present, then this error is a hard error.
-
-This way, we will preserve DT backward compatibility and abort if the DT is
-broken.
-
-> +		return 0;
-> +	}
-> +
-> +	host->boot_pages_count = pages_count / 2;
-> +	host->boot_pages = devm_kcalloc(dev, host->boot_pages_count,
-> +					sizeof(*host->boot_pages), GFP_KERNEL);
-> +	if (!host->boot_pages)
-> +		return 0;
-
-This should be a hard error since the property is present in DT and it is
-broken.
-
-> +
-> +	ret = of_property_read_u32_array(dn, "qcom,boot-pages", (u32 *)host->boot_pages,
-> +					 pages_count);
-> +	if (ret) {
-> +		dev_err(dev, "Error reading boot_pages. Ignoring.");
-> +		return 0;
-> +	}
-
-How about,
-
-        for (i = 0, j = 0; i < host->nr_boot_partitions; i++, j += 2) {
-                of_property_read_u32_index(dn, "qcom,boot-partitions", j,
-                                           &host->boot_pages[i].offset);
-                of_property_read_u32_index(dn, "qcom,boot-partitions", j + 1,
-                                           &host->boot_pages[i].size);
-        }
-
-Thanks,
-Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+With Regards,
+Joel Selvaraj
