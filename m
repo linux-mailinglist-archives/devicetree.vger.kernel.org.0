@@ -2,164 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D43E53FCFD
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 13:11:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DD3053F6D4
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 09:05:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229529AbiFGLLU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 07:11:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57382 "EHLO
+        id S231365AbiFGHFm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 03:05:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242756AbiFGLKF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 07:10:05 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 235478721C;
-        Tue,  7 Jun 2022 04:06:17 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id q1so34459151ejz.9;
-        Tue, 07 Jun 2022 04:06:17 -0700 (PDT)
+        with ESMTP id S231532AbiFGHFl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 03:05:41 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80C447E1FD
+        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 00:05:40 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id er5so21683999edb.12
+        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 00:05:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:from:to:cc:subject:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=JYTw8qBceECAtQp7A1kdanNQp5jRY5QBdh0dwqqC9RU=;
-        b=Nw5HmIulmE1vH1fMJ8FcWCnuJQHQiHH/x26C400Hk5Bf9PGo6Hw3r8UEWG1iplpkO3
-         bn2h1/zeXA+zFIZm1mDr53CRhOeZBRmwk6l3fWcutnWVOBQX8QXyqimHHXhXCV5SW1D9
-         xneNpq0uZNxhavrDzIyjaOlg3cRi/GIRrnD6ph4c9sc+7OaVG22cBe4ciXUj1oSePQ8H
-         dTk9dRNW6OXOx83c+AUB10I/nvHOjLk6/U8Qxj2b5caJczVcORF4L2HCpp0ebje4/wKs
-         EN8zGeT/km2CULPG1J7Sa/caGJwt7KFGxSaItC782x1KKRszWhdDADTmktx1IH/qarM9
-         N3bQ==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=BQmziczRlu4giJiB7sNu/ZlEzEr9Mm6i5Ea2AKg1doc=;
+        b=RGKDXTEzT+sIu2kJCj6V4RryzKlQrpqgkkWGV2UfTFsqJLnH4OYHPbs7juZ/LGfkb7
+         NAoolvK+4wJSbbv1pRpEuRu9NQX8m1yQwHbNHaMh3nycf8ToPKLAAedRKIOB6INDjcnd
+         0/SSlg7k4K+buKbabYwrPTrHIyQ1o8xMEQMWUik9nCsLZ1U4iI/xWL2HEG5s8CZpO2Ks
+         tNJe4qQOiKQVKDM+gEuqEt4g2+tqfVkbNB0NVaqxioTmjLPasdHZAd2fjGgwzgGFoHPT
+         XuLTWgFav9m67PdWE1e/F9Rr2M2QjVfS/G0mSngSkr3ipFBmZBHRr/OVyb6w24igYAvC
+         KQzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=JYTw8qBceECAtQp7A1kdanNQp5jRY5QBdh0dwqqC9RU=;
-        b=UBNjL3NrXNDVHoom9pNMDHtTdP8dJr4AUoBKoHqGPIKDQwFbP0hS1rWPkyeCK5UzAz
-         vobp5UfQJiuJOtQeYkVXwlF3qmWyyU2QDssPgVWAK1Scs+4PRo5pmhHvdfvEMgnI5q1j
-         1RA/VlbTLqxaVklYZXPCL8K2r3uwYQI6/KgBVTYpeGht17ESHhUs7QU4XTLePmYCk3lu
-         hJYSmcm5AKNTin3RtusZZfar43RnJ2yYXJqVtlvZadAkuxesm4aYOupPlIfUqcBHACL5
-         8HwBEQp7evtbxijTmPWKHIwmK9L0mUAcW+IqVpHe2rJJEpSVgVPNfxSrjicTj5Em11Bm
-         2Kuw==
-X-Gm-Message-State: AOAM533xbJXsTCxAlMpQoS5ElN9Blc22nNQbl07CWmPrnfqFucLUubof
-        Cfeoh1qSbKNgwy9nfoFgbsfhoaQGCYc=
-X-Google-Smtp-Source: ABdhPJy8xYlbSp5BuzRvztb2RbXiyhlVE5XzRRPnbXnxapSzqknqjm/tCBViCfgB25Q9EmDSXjGvQg==
-X-Received: by 2002:a17:907:da3:b0:6fe:f08b:776 with SMTP id go35-20020a1709070da300b006fef08b0776mr26382420ejc.558.1654599976053;
-        Tue, 07 Jun 2022 04:06:16 -0700 (PDT)
-Received: from Ansuel-xps. (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
-        by smtp.gmail.com with ESMTPSA id w21-20020aa7d295000000b0042dd482d0c4sm10115552edq.80.2022.06.07.04.06.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jun 2022 04:06:15 -0700 (PDT)
-Message-ID: <629f3127.1c69fb81.2590d.39ac@mx.google.com>
-X-Google-Original-Message-ID: <Yp74rG6DVmeU+QCQ@Ansuel-xps.>
-Date:   Tue, 7 Jun 2022 09:05:16 +0200
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Manivannan Sadhasivam <mani@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mtd@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] dt-bindings: mtd: qcom_nandc: document
- qcom,boot-pages binding
-References: <20220519190112.6344-1-ansuelsmth@gmail.com>
- <20220519190112.6344-3-ansuelsmth@gmail.com>
- <20220607091522.GB5410@thinkpad>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=BQmziczRlu4giJiB7sNu/ZlEzEr9Mm6i5Ea2AKg1doc=;
+        b=BjZ+Fmt8mndo169UYCL2Y8KH78CYALq0S/gAQsaxqKUvcRVWs6Xv98/hysT3ntdFWz
+         qkDksd1WWaK5pM3s3O0haqvyZOPn9LP455yaoyy6cPk8eJxHNd4sO+LdNUPctpmLCYge
+         hi4lho7Bv5dwZP9NBIlY8cBAB+L7vouw6DMnNVpEaSK0TCTDbI1vOc0+kcQvZzLnLS0K
+         A/Jo1aouY0Ep6Hddok7pIkAQnF6uvS6cg7EkZwjGBcU8dmsl5RXI6X12XG9pnKK+mgRH
+         PnNVJVgJTarb7ByDGUCU7OTLRvjbZCae159chMRZbMsbLhfIEruJl9a244OyHymo8TI/
+         HsDg==
+X-Gm-Message-State: AOAM530RMczktW0FhjFESpcNHeZ5zwEjWZlvGQkXdpRxiSMgIddki9UO
+        6mjltTBn/XiXpAOX2nNzRH+R2g==
+X-Google-Smtp-Source: ABdhPJyTgM2tnhmubkgkYsjgL5jB1r5EwXYL9sIzsbiOUGgOZTdIAAjPXL6NW+g53GNT2TnbSLFG2Q==
+X-Received: by 2002:a05:6402:4411:b0:42b:a773:4800 with SMTP id y17-20020a056402441100b0042ba7734800mr32124908eda.37.1654585538993;
+        Tue, 07 Jun 2022 00:05:38 -0700 (PDT)
+Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id d1-20020a1709067f0100b006feba31171bsm7371213ejr.11.2022.06.07.00.05.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Jun 2022 00:05:38 -0700 (PDT)
+Message-ID: <ed469c4d-cbf3-2f54-743b-a22c0c120df1@linaro.org>
+Date:   Tue, 7 Jun 2022 09:05:37 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220607091522.GB5410@thinkpad>
-X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,DATE_IN_PAST_03_06,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 2/3] dt-bindings: mfd: atmel,flexcom: Add new compatible
+ string for lan966x
+Content-Language: en-US
+To:     Kavyasree.Kotagiri@microchip.com, robh+dt@kernel.org,
+        Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
+        Claudiu.Beznea@microchip.com, UNGLinuxDriver@microchip.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220603121802.30320-1-kavyasree.kotagiri@microchip.com>
+ <20220603121802.30320-3-kavyasree.kotagiri@microchip.com>
+ <1764f3ce-608f-e55c-d977-18fb95e4a0fe@linaro.org>
+ <CO1PR11MB48656331826CDEA9DFB6A11092A29@CO1PR11MB4865.namprd11.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CO1PR11MB48656331826CDEA9DFB6A11092A29@CO1PR11MB4865.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 07, 2022 at 02:45:22PM +0530, Manivannan Sadhasivam wrote:
-> On Thu, May 19, 2022 at 09:01:12PM +0200, Ansuel Smith wrote:
-> > Document new qcom,boot-pages binding used to apply special
-> > read/write configuration to boot pages.
-> > 
-> > QCOM apply a special configuration where spare data is not protected
-> > by ECC for some special pages (used for boot partition). Add
-> > Documentation on how to declare these special pages.
-> > 
-> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > ---
-> >  .../devicetree/bindings/mtd/qcom,nandc.yaml   | 26 +++++++++++++++++++
-> >  1 file changed, 26 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-> > index 84ad7ff30121..a59ae9525f4e 100644
-> > --- a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-> > +++ b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-> > @@ -102,6 +102,30 @@ allOf:
-> >              - const: rx
-> >              - const: cmd
-> >  
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - qcom,ipq806x-nand
-> > +
-> > +    then:
-> > +      properties:
-> > +        qcom,boot-pages:
-> 
-> Eventhough the page layout is what making the difference, here the boot
-> partition offset and size are getting specified. So how about, changing it
-> to "qcom,boot-partitions"?
-> 
-> Thanks,
-> Mani
->
+On 06/06/2022 15:28, Kavyasree.Kotagiri@microchip.com wrote:
+>>> LAN966x SoC flexcoms has two optional I/O lines. Namely, CS0 and CS1 in
+>>> flexcom SPI mode. CTS and RTS in flexcom USART mode. These pins
+>>> can be mapped to lan966x FLEXCOM_SHARED[0-20] pins and usage
+>> depends on
+>>> functions being configured.
+>>>
+>>> Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+>>> ---
+>>>  .../bindings/mfd/atmel,flexcom.yaml           | 21 ++++++++++++++++++-
+>>>  1 file changed, 20 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
+>> b/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
+>>> index 221bd840b49e..6050482ad8ef 100644
+>>> --- a/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
+>>> +++ b/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
+>>> @@ -16,7 +16,9 @@ description:
+>>>
+>>>  properties:
+>>>    compatible:
+>>> -    const: atmel,sama5d2-flexcom
+>>> +    enum:
+>>> +      - atmel,sama5d2-flexcom
+>>> +      - microchip,lan966x-flexcom
+>>
+>> Your new v1 is here worse than old v2, where this was just simple
+>> extension of existing enum. Why did you change it?
+>>
+> I introduced new compatible string for lan966x and also I have new DT properties 
+> "microchip,flx-shrd-pins" and "microchip,flx-cs-names".
 
-Yep, you are correct and the naming is confusing. Will do the change.
-Did you check the code if you notice something to improve / an idea of a
-better implementation or better naming?
-Just to skip sending multiple revision with small changes.
+v1 also had the new compatible, hadn't it? The difference is in the enum
+- before you did not modify this line. Less code in the diff...
 
-> > +          $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> > +          items:
-> > +            items:
-> > +              - description: offset
-> > +              - description: size
-> > +          description:
-> > +            Some special page used by boot partition have spare data
-> > +            not protected by ECC. Use this to declare these special page
-> > +            by defining first the offset and then the size.
-> > +
-> > +            It's in the form of <offset1 size1 offset2 size2 offset3 ...>
-> > +
-> > +            Refer to the ipq8064 example on how to use this special binding.
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > @@ -135,6 +159,8 @@ examples:
-> >          nand-ecc-strength = <4>;
-> >          nand-bus-width = <8>;
-> >  
-> > +        qcom,boot-pages = <0x0 0x58a0000>;
-> > +
-> >          partitions {
-> >            compatible = "fixed-partitions";
-> >            #address-cells = <1>;
-> > -- 
-> > 2.34.1
-> > 
-> 
-> -- 
-> மணிவண்ணன் சதாசிவம்
 
--- 
-	Ansuel
+Best regards,
+Krzysztof
