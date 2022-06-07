@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E69053FE13
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 13:57:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33A6853FE1B
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 13:57:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243261AbiFGL5A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 07:57:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53872 "EHLO
+        id S239469AbiFGL5S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 07:57:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242062AbiFGL47 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 07:56:59 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C239CB5264
-        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 04:56:58 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id v25so22670329eda.6
-        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 04:56:58 -0700 (PDT)
+        with ESMTP id S229721AbiFGL5R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 07:57:17 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8845BB94
+        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 04:57:12 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id er5so22636466edb.12
+        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 04:57:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=9yUA6xZ+TgF7E05GHOHfVerF3dIUaRPmpzkb0SqFslg=;
-        b=yZF938OJ/O7+VlTfOCAPvgavpyjTL2l5Dn0Tn2nIwpSe55xG1IS+57nq5ALnIDLec5
-         79x4zkTiEbOgwCtHLa2fhZ6iEu7D/lMorP76inFutqBeQJldod8/6UKADExabiSlqIZq
-         7rJDPGd5+1ninnZI67YT6mdGZGLaV7/tQ/7ZzIF7BwPODSUOM1S9QaAQK6gUDp23lTd9
-         gKGU3+5H5GU/ValDpNcmAVHC/SiNrjA+eDInhSLCfU/8aPrUi7hryXGpr/h7BVjHK6AI
-         Chjo1f2a4t4ZOsYIOaYc+aElJ5n6uhyYpsQWQsYJQ2JhdcqiYa6bvS4vcxEwwON3K/Nu
-         euzg==
+        bh=Sv7ySlJYlyYKUpAcQrKFFpWkB9BOyCw7FGbzXDHtuOg=;
+        b=GDFtLI6TiFEB9XBEeWMrxN9/h3S8Vk+tbhLh89pDqWQV8nukxDjJGCz5R+5qf7Iusb
+         3C2DUlq5KeVLPq35U1+yTj34Ry49hjaFJ4fDn6pJFKZpzraPxS3GzDUute3X1V6jiWCv
+         HeOjJGObw7cB0Gv8dtIYgpP63hDfp1Hnr5w110otrGGPA4Fx2bctY6Rj12MvanBRhryq
+         H63YeWzmEQ0Kbe+JtNleE1M7eFaCWBoW/T2ZukS2sTwLlHvIla32rDsFKHUv4wN98vFp
+         uVIP8CMwseBiu0nRlFv/watH7oTZmbq5d828E71IxAz6TN3XucT3RkCkfIcX1kWr6nim
+         ZoLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=9yUA6xZ+TgF7E05GHOHfVerF3dIUaRPmpzkb0SqFslg=;
-        b=V6B4Q3ND2eLdABFn9PDGb/kCpoDfp7K/4HnIswwVr59BUjBfY77SHxCuUNXwEPEBqM
-         gAijozS90VmsZZNN4hGByWmPgi0mvNOknTQ0N4WsB9Z+c+D5SBLY1W+RdddKGqPx88gg
-         /hHdJhIsHu9G99SXpcIg8l2jgfljVFz5SiHMlPQpREkfy6Vy1QnQVPtjPAdXdqSZpM1l
-         NtDNQN1gUqxzIU/VR9NWPS61KYmzMvI8+9GB8SixgfR+75+PBOC9f1N83uGBJt9uSxFf
-         8mw2KbSJuoUzoWkzTmnp4kauNT6WG6MTPt0B5Q/geayovHQL54wEHWB8aiLZYPrqgbc4
-         ojuA==
-X-Gm-Message-State: AOAM533V0jfBo+kROxZous8SbYtQXi/fAE177v4NCsO+tggRGWxf2cgo
-        GJLtRVmY1zbieLddtgTjstQClA==
-X-Google-Smtp-Source: ABdhPJyDyZBQOke271JtAgNt1hSBlmSVUkFbj2ZmbW/2KkYdQf3mrTIq3KxTSW9YKCe45nHpZbAZ1A==
-X-Received: by 2002:a05:6402:438a:b0:42e:985:4944 with SMTP id o10-20020a056402438a00b0042e09854944mr31974058edc.283.1654603017338;
-        Tue, 07 Jun 2022 04:56:57 -0700 (PDT)
+        bh=Sv7ySlJYlyYKUpAcQrKFFpWkB9BOyCw7FGbzXDHtuOg=;
+        b=pjtJyvZAlqfpukoN63G/fKImvlNk7S2FGDIjNiXes0gCHkR89vf4ndfb2FaezFjNe+
+         3SHGwDYiPbXHmg6MzuIZ/TES8/UiA/V4UH46bcvlSryD+C5nAm/oPDne9ysWRwAgKzaB
+         UNl0DH2aL975pS65/IuE3kTMDRuJenAmkw4H07Q/hIByaJxzFD/fp1cAx5y5t4UxJrkX
+         s2dFMmdgG/JsBs0/Q7qsxl1WpWkip+1I76TF3LtJNO+rkCn5YsnJjjMVQc9Lf34trn7T
+         wqcx/6dMCmHqQITkylBTucTIbLBPFCch9b9rKykHrlKQQxRC+PCdNTU5ZfrdtQgYCaCD
+         658w==
+X-Gm-Message-State: AOAM5322/wL/U72DsOqLIB6cy7+pk0k/MV5uLRfgnYk0xsJjoHJ+HukK
+        3Ejxy/wwACInmJ48AXVEARzIwA==
+X-Google-Smtp-Source: ABdhPJziqHi5ZgWy6/fdz2QXIjy2GgumEbw1uZDzUdvopDa4v/ubEVhpR/dJQNdOKQbLirBbEaT7pg==
+X-Received: by 2002:a05:6402:3482:b0:42d:e063:7c1d with SMTP id v2-20020a056402348200b0042de0637c1dmr32989224edc.40.1654603031110;
+        Tue, 07 Jun 2022 04:57:11 -0700 (PDT)
 Received: from [192.168.0.183] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id o22-20020a170906601600b006fe8b456672sm7680363ejj.3.2022.06.07.04.56.56
+        by smtp.gmail.com with ESMTPSA id g9-20020aa7c849000000b0042a2d9af0f8sm10036993edt.79.2022.06.07.04.57.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Jun 2022 04:56:56 -0700 (PDT)
-Message-ID: <5a604d43-92f3-2709-bf3e-098a9d2dfa54@linaro.org>
-Date:   Tue, 7 Jun 2022 13:56:55 +0200
+        Tue, 07 Jun 2022 04:57:10 -0700 (PDT)
+Message-ID: <99398f9a-0516-eabf-62f5-e6f286679657@linaro.org>
+Date:   Tue, 7 Jun 2022 13:57:09 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v17 01/10] dt-bindings: arm: sunplus: Add bindings for
- Sunplus SP7021 SoC boards
+Subject: Re: [PATCH v17 02/10] dt-bindings: reset: Add bindings for SP7021
+ reset driver
 Content-Language: en-US
 To:     Qin Jian <qinjian@cqplus1.com>, sboyd@kernel.org
 Cc:     krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
@@ -63,9 +63,9 @@ Cc:     krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
 References: <cover.1654565776.git.qinjian@cqplus1.com>
- <2b3d1c0f7b83f9e317ecd68965b6cbf7d7f3d13b.1654565776.git.qinjian@cqplus1.com>
+ <9f0b7682ae5f4c29686304db8bf0e15417706115.1654565776.git.qinjian@cqplus1.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <2b3d1c0f7b83f9e317ecd68965b6cbf7d7f3d13b.1654565776.git.qinjian@cqplus1.com>
+In-Reply-To: <9f0b7682ae5f4c29686304db8bf0e15417706115.1654565776.git.qinjian@cqplus1.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,17 +79,12 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 07/06/2022 03:58, Qin Jian wrote:
-> This introduces bindings for boards based Sunplus SP7021 SoC.
+> Add documentation to describe Sunplus SP7021 reset driver bindings.
 > 
-> Acked-by: Rob Herring <robh+dt@kernel.org>
+> Reviewed-by: Rob Herring <robh+dt@kernel.org>
 > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 
-This is not a correct address in the tag. I never used such. Please fix
-all reviewed and acked-by tags (mine and Rob) to what you received.
-
-Mine was:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Wrong addresses...
 
 
 Best regards,
