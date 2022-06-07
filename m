@@ -2,53 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2AC753FC9F
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 13:01:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1DEF53FCA0
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 13:01:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231843AbiFGLBV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 07:01:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48456 "EHLO
+        id S238489AbiFGLBW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 07:01:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242337AbiFGK7o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 06:59:44 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB6D410789B;
-        Tue,  7 Jun 2022 03:55:22 -0700 (PDT)
+        with ESMTP id S242522AbiFGLAR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 07:00:17 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85C712A2;
+        Tue,  7 Jun 2022 03:57:12 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6492F61563;
-        Tue,  7 Jun 2022 10:55:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 224E2C385A5;
-        Tue,  7 Jun 2022 10:55:18 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 417B8B81EF1;
+        Tue,  7 Jun 2022 10:57:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A07BCC385A5;
+        Tue,  7 Jun 2022 10:57:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654599321;
-        bh=5JaZ8fuFAsCs3zwfgmDiaQbX9q96F/m3qVELfXvKhnE=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=qXg2Eg9uNjPunE55sZ+BYMJ5NTmO6e4w5ByJadfTdStS0+FZjNCqBowUi+6KqvBos
-         JS6jGOP9QNpAodD2mbEStUZdH25C2vWJn0tzp+BTevWrJJp+r+/SjQz+tcPza6VckL
-         B8416lH1ZvjJR5BuckGw7yqkpyq9FEIE095V1z+wU2PqVI1nQ1f9OWWcvKQ1PQ+2aP
-         nIe6QJK0cTSo4R4wJIW/4OKlXCv2y9R/Ie6dxoslCxh8Bd7gioxNdB27ULvAehleCF
-         /zgpb575z90pCyBNr2gD86eS3vvVKc7+2fHKBP38j7CH4pn6gaJoL8qns5iOjyaPj+
-         R94JgD9oKxLzA==
+        s=k20201202; t=1654599430;
+        bh=MdS+txKXv+9X5ryEdcg9mNAEZ7btmpcAumgQQKGGxks=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=G0Mj0kX82xuV6/ArZJYjYJCZ7GC7zEiBlGrcwPGdtQvilE9MxqU03+Rw02AIEkMTo
+         f96eOIOyu24h2JHFgJ6379aZuOqzsdrlxNIEFo6QRYbV2z3io0u/awWR9WABEfuGii
+         NCsoqQrYAmA3RUaTg0/tTLaEJltQP1q2RYvpjkXeFezeN1AMkaZMS53ADEibrJuER2
+         KK8D1PMfwG+WOhhEzXIpvldpPimnG7FrVtU0cECgg1JMVT2PJ08RgqzmJCIFknyLwf
+         Lp+yJg5dOMzFAKqxLw9CJTSdGzdHGBjLOhaL+XC8iksXH5LYjONcypcq6h1kJ0HhQF
+         JAWr5DxBmbx2A==
+Date:   Tue, 7 Jun 2022 11:57:04 +0100
 From:   Mark Brown <broonie@kernel.org>
-To:     robh+dt@kernel.org, angelogioacchino.delregno@collabora.com,
-        jiaxin.yu@mediatek.com
-Cc:     linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, tzungbi@google.com,
-        matthias.bgg@gmail.com, trevor.wu@mediatek.com,
-        julianbraha@gmail.com, aaronyu@google.com,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org
-In-Reply-To: <20220523132858.22166-1-jiaxin.yu@mediatek.com>
-References: <20220523132858.22166-1-jiaxin.yu@mediatek.com>
-Subject: Re: [PATCH v5 00/20] ASoC: mediatek: Add support for MT8186 SoC
-Message-Id: <165459931885.399031.2621579592368573898.b4-ty@kernel.org>
-Date:   Tue, 07 Jun 2022 11:55:18 +0100
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: renesas,rz-ssi: Document RZ/G2UL SoC
+Message-ID: <Yp8vAJHkJAQuDqMx@sirena.org.uk>
+References: <20220423133154.141027-1-biju.das.jz@bp.renesas.com>
+ <OS0PR01MB5922E60C12F1B49A949913A286A59@OS0PR01MB5922.jpnprd01.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="GXbXScl54FIbGRKd"
+Content-Disposition: inline
+In-Reply-To: <OS0PR01MB5922E60C12F1B49A949913A286A59@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+X-Cookie: Where's SANDY DUNCAN?
 X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -59,91 +65,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 23 May 2022 21:28:38 +0800, Jiaxin Yu wrote:
-> This series of patches adds support for Mediatek AFE of MT8186 Soc.
-> Patches are based on broonie tree "for-next" branch.
-> 
-> Changes since v4:
->   - [v5 07/20]
->     - remove unsusd controls
->   - [v5 09/20]
->     - correct indent error
->   - [v5 10/20]
->   - [v5 13/20]
->   - [v5 14/20]
->     - fix the return value if the value is different from the previous
->       value in mixer controls
->   - [v5 17/20]
->   - [v5 19/20]
->     - correct the compatible name with '_' instead of '-'
->   - [v5 18/20]
->   - [v5 20/20]
->     - correct the yaml after 'pip3 install dtschema --upgrade'
-> 
-> [...]
 
-Applied to
+--GXbXScl54FIbGRKd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+On Tue, Jun 07, 2022 at 10:49:22AM +0000, Biju Das wrote:
+> Hi All,
+>=20
+> Gentle ping.
+>=20
+> Are we happy with this patch? Please let me know.
 
-Thanks!
+Please don't send content free pings and please allow a reasonable time
+for review.  People get busy, go on holiday, attend conferences and so=20
+on so unless there is some reason for urgency (like critical bug fixes)
+please allow at least a couple of weeks for review.  If there have been
+review comments then people may be waiting for those to be addressed.
 
-[01/20] ASoC: mediatek: mt6366: support for mt6366 codec
-        commit: 612c4695e312c753a8b06f6b052cea3d8338e3c3
-[02/20] dt-bindings: mediatek: mt6358: add new compatible for using mt6366
-        (no commit info)
-[03/20] ASoC: mediatek: mt8186: support audsys clock control
-        commit: 58949aa35c0f74a98b03864817354d85f452a51c
-[04/20] ASoC: mediatek: mt8186: support adda in platform driver
-        commit: b65c466220b336f5044c1be75ebc771d087ee7ca
-[05/20] ASoC: mediatek: mt8186: support hostless in platform driver
-        commit: 55cac93d271166a2aa431d453bf31fdcb19bd5e6
-[06/20] ASoC: mediatek: mt8186: support hw gain in platform driver
-        commit: 2567ccae9105cbc881828f2ea09954c1b5fd975d
-[07/20] ASoC: mediatek: mt8186: support i2s in platform driver
-        commit: 2907d261276e09bd84fdc8bad35930a046a99d4d
-[08/20] ASoC: mediatek: mt8186: support pcm in platform driver
-        commit: 920508f9fe2fc90f19916d74f4c23088030d32e0
-[09/20] ASoC: mediatek: mt8186: support src in platform driver
-        commit: e118015db7bd0dad1744221d0fe18333ebf9c622
-[10/20] ASoC: mediatek: mt8186: support tdm in platform driver
-        commit: ae92dcbee8b6a6f63198a2a6fea0fc9f6a0fe07b
-[11/20] ASoC: mediatek: mt8186: support audio clock control in platform driver
-        commit: 55b423d5623ccd6785429431c2cf5f3e073b73ba
-[12/20] ASoC: mediatek: mt8186: support gpio control in platform driver
-        commit: cfa9a966f12a91a269e50f1c3237c006ffe2ee9a
-[13/20] ASoC: mediatek: mt8186: add misc driver and register definitions
-        commit: 80d8cad2e9ce21517d50c7084c12a59d38a778f7
-[14/20] ASoC: mediatek: mt8186: add platform driver
-        (no commit info)
-[15/20] ASoC: mediatek: mt8186: add mt8186-mt6366 common driver
-        (no commit info)
-[16/20] dt-bindings: mediatek: mt8186: add audio afe document
-        (no commit info)
-[17/20] ASoC: mediatek: mt8186: add machine driver with mt6366, da7219 and max98357
-        (no commit info)
-[18/20] dt-bindings: mediatek: mt8186: add mt8186-mt6366-da7219-max98357 document
-        (no commit info)
-[19/20] ASoC: mediatek: mt8186: add machine driver with mt6366, rt1019 and rt5682s
-        (no commit info)
-[20/20] dt-bindings: mediatek: mt8186: add mt8186-mt6366-rt1019-rt5682s document
-        (no commit info)
+Sending content free pings adds to the mail volume (if they are seen at
+all) which is often the problem and since they can't be reviewed
+directly if something has gone wrong you'll have to resend the patches
+anyway, so sending again is generally a better approach though there are
+some other maintainers who like them - if in doubt look at how patches
+for the subsystem are normally handled.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Please don't top post, reply in line with needed context.  This allows
+readers to readily follow the flow of conversation and understand what
+you are talking about and also helps ensure that everything in the
+discussion is being addressed.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+--GXbXScl54FIbGRKd
+Content-Type: application/pgp-signature; name="signature.asc"
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+-----BEGIN PGP SIGNATURE-----
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmKfLv8ACgkQJNaLcl1U
+h9Aq/ggAhE7veJ8rah/J3hheu5lkagPNihFTKaV61Udo7zG07xni5ABebgYDFZL2
+a591f4BomXe9yjdF867WxvRDf5Sm171Gb0O0zvbDM7dTIemv24MKOEZ2m9sBOhvQ
+2eO+GnryNx6gyZe++VhJ359WnIB1ueIL0Q/nQthaKycbQn1w6xCyuUBD+8raCe05
+je+YFe2TccOYCEd7c1HuXJJjTKNXk6j6YgshgZjZVkfeSYKY7NmwA/bLp2c6QLvA
+0eDm/lnm+esgjv223RCVel1rBy+TtfRLVYQHrO9O/dajsa7Luxaydz6/8LueIcNH
+RRL1enLtDeRFmTW6ovOfcBlktnusEw==
+=+1se
+-----END PGP SIGNATURE-----
 
-Thanks,
-Mark
+--GXbXScl54FIbGRKd--
