@@ -2,72 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1020753F626
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 08:32:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84C8553F634
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 08:33:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237019AbiFGGcw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 02:32:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46056 "EHLO
+        id S230118AbiFGGdy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 02:33:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236995AbiFGGcu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 02:32:50 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 459802898E
-        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 23:32:49 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id b8so4930438edj.11
-        for <devicetree@vger.kernel.org>; Mon, 06 Jun 2022 23:32:49 -0700 (PDT)
+        with ESMTP id S237044AbiFGGdx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 02:33:53 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87E262983F
+        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 23:33:52 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id s12so25906778ejx.3
+        for <devicetree@vger.kernel.org>; Mon, 06 Jun 2022 23:33:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=kUL0/+TW0ZmFocb8yDY5jqKbncdLIBblavQc/eaSQJI=;
-        b=sftAmM2OlEfC6VJ8zIEA0Xfsy6v2HTaNTjUKMfYdtxoSdcD3vxrEO/PCEGePaDtozC
-         xyHlmLmsdRgR2yk1elTff9tbXqil/B41tk+0WtgEj08Gm/1Kmpx2r/HeUOPzdA0SMfGc
-         wFE+ZMwPJFu6CpQ03yhMFxJ04tcjr5hJhfqrLepuc7NPW50CeYYD/ZycxufDQK3A+vuv
-         T2ZpVYajmKu/RZ+gY+7+/lh8OekW/q2hi1jds/Xh06lKnW8KXQa4oJEoM09itLbjopST
-         PwShn5HcVR8etj+2V8Zl0LAGZJFoRFdvIEiublN0VZCnbQrafYQwBrkLSxB59YhB/GsV
-         tuKw==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=MrBdSE+grn8LT47tXLayVexkMgaXUe8RtWJBxBXFaqk=;
+        b=bnFho8U7nOdhZMVpWkDFScj100VJe75OnkuyHoq42OR4uIYhU90/7FN5WdL1S5BX5F
+         7l+inS94sggjLvtlgi40e2NrqQTewUKWTUIrW5vxFbzfOUkllvrxaLlEFPZXsXO9KA+C
+         YP1cjAT++nZIF4ixUlk9Q+wPLXj1425e2L2Gc6avVyzDZ/EAPN9gjoj/3zMMEZQZ3CFv
+         /oqQYM8gNcwCd7rxbkjeMqk/nUtQnRLnQWbjBk2SjpDs/fe+8ndEbpDb+Fwp9h/h/P1s
+         JzyM9Ddj2CNbjD4r8E687StGwMCNPu5p8WQ+LP9lZKSIT9nk7C3NPnGJF4wUpk7BkB7M
+         +rPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=kUL0/+TW0ZmFocb8yDY5jqKbncdLIBblavQc/eaSQJI=;
-        b=DSM9s5vqenAH0Pg19jHDH4ScwZX1Q5SVLmPvscoQ7gJMfrF/F6Bt2ELFSI2DbfloDW
-         oeHUCX83HpZxQOQeVBnWZhczS7d3MKf5XlZWNFhQGrjEIKeLZNjHd0zvqyGYN0Mbb7fv
-         CQ5IUTiVOKqGMVmT1wEZU+eDnGkkjYv9yGlOfjkY+4OURpfhVFoZExK5QmYDhYo6krpm
-         t1wiHD5Ho3LSehO+AjKjA7bqNxAacLwPg5+88xdYBsxID+ARJCsGNs9c0ji1QIXUJB4D
-         zfftkcXuf/xEjkfedJuA1K631hPvIwpgzxSTwTDwU5fMOdYuj6eTX+Q924QYvSFUO2Wl
-         8IOw==
-X-Gm-Message-State: AOAM530Y6WBVzFnscSu6WdoIgHNz4l9fcHc7waEGKMPrBqVk46qGhv6b
-        u+dNZGgUmUV7EGq+HZ8zdtd/XSPNn239UQ==
-X-Google-Smtp-Source: ABdhPJzMq/JTC9wN4RGWyrxYyQtSlviJZtlJ2Wjip2i6n2thkVBo2E+uQfiitHipF1MrM27CgRNrQQ==
-X-Received: by 2002:a05:6402:139a:b0:431:6b50:11a2 with SMTP id b26-20020a056402139a00b004316b5011a2mr8272850edv.72.1654583567642;
-        Mon, 06 Jun 2022 23:32:47 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id eg13-20020a056402288d00b0042dce73168csm9796349edb.13.2022.06.06.23.32.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jun 2022 23:32:47 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-mmc@vger.kernel.org, Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: (subset) [PATCH v2 2/4] arm64: dts: exynos: align MMC node name with dtschema
-Date:   Tue,  7 Jun 2022 08:32:41 +0200
-Message-Id: <165458355453.6489.3351290853657960731.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220605163710.144210-3-krzysztof.kozlowski@linaro.org>
-References: <20220605163710.144210-1-krzysztof.kozlowski@linaro.org> <20220605163710.144210-3-krzysztof.kozlowski@linaro.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=MrBdSE+grn8LT47tXLayVexkMgaXUe8RtWJBxBXFaqk=;
+        b=2bOyurFA3axD3jVOgYo1RB/u+y4IC1tpalb2OWaxMQVVxCPmAwybp+bio6o4TeN9ql
+         LR/A/9a7fMw70y/Zb8yNm2rBd3xqSYdt4rwMNfmxlHtjd7jkp9KbvwtmLckfS43EjWG1
+         5j15T7OGL2PfPu2p1FIUxRK4L8C4QIt+YLwCx5KAWfPVSxv8cZWmL5Of3oZz7gvMNGL9
+         r94pFHrt+yQJtKKQ/cswuAughMH+bbazH9uegCt2plCy2pYxUzGbJjNQcwi6JpM/Ej7b
+         MKERLHLYO1h0S75yYrQ+VjkM70UJYlODw5Ph+1yc4C/26zwXOSIrnBVzC3azjzytloD7
+         30qA==
+X-Gm-Message-State: AOAM531thn3XR2zYEWZrKgWSG9enDLdRBLasybJ9fQ4KUoqgIhV9KWbv
+        N7JFo5iwCu7PCnAtorY0tZC/XA==
+X-Google-Smtp-Source: ABdhPJyplNyPIe/T6bYyLSDq3aa3CWsQKbpcGxl+tx+4NoectMYlag5lodWutJKGoaF/yraYpIb5uA==
+X-Received: by 2002:a17:907:3e99:b0:6fe:f823:ab96 with SMTP id hs25-20020a1709073e9900b006fef823ab96mr25335841ejc.428.1654583631036;
+        Mon, 06 Jun 2022 23:33:51 -0700 (PDT)
+Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id e2-20020a1709062d4200b006fec2097d53sm7160736eji.118.2022.06.06.23.33.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Jun 2022 23:33:50 -0700 (PDT)
+Message-ID: <2fad1706-563d-72c3-eab2-5f464bf92681@linaro.org>
+Date:   Tue, 7 Jun 2022 08:33:49 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v2 4/6] arm64: dts: exynosautov9: adjust DT style of ufs
+ nodes
+Content-Language: en-US
+To:     Chanho Park <chanho61.park@samsung.com>,
+        'Kishon Vijay Abraham I' <kishon@ti.com>,
+        'Vinod Koul' <vkoul@kernel.org>,
+        'Alim Akhtar' <alim.akhtar@samsung.com>,
+        'Rob Herring' <robh+dt@kernel.org>,
+        'Krzysztof Kozlowski' <krzysztof.kozlowski+dt@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20220602053250.62593-1-chanho61.park@samsung.com>
+ <CGME20220602053329epcas2p407039a6087b6c460d6687b1cc1f3872a@epcas2p4.samsung.com>
+ <20220602053250.62593-5-chanho61.park@samsung.com>
+ <c86cb9c3-5fac-a990-f4cf-5aa8e4fe8a75@linaro.org>
+ <000001d87a2e$6ed35ea0$4c7a1be0$@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <000001d87a2e$6ed35ea0$4c7a1be0$@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,17 +84,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 5 Jun 2022 18:37:08 +0200, Krzysztof Kozlowski wrote:
-> The node names should be generic and MMC controller dtschema expects
-> "mmc".
+On 07/06/2022 07:21, Chanho Park wrote:
+>> Subject: Re: [PATCH v2 4/6] arm64: dts: exynosautov9: adjust DT style of
+>> ufs nodes
+>>
+>> On 02/06/2022 07:32, Chanho Park wrote:
+>>> Drop "ufs0-" label name usage of ufs phy and hci nodes.
+>>> Regarding the comments of reg properties, we don't need to illustrate
+>>> here because we can find the description from the dt-binding doc.
+>>>
+>>> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+>>
+>> This does not apply. Can you rebase and send the DTS patches as separate
+>> patchset?
 > 
+> I forgot to point the baseline of this patchset. I stacked this patch on top of below patch.
+> If you do not apply below patch or put this separate branch, I'll rebase this patchset without below patch.
 > 
+> https://lore.kernel.org/linux-samsung-soc/20220526204323.832243-1-krzysztof.kozlowski@linaro.org/
 
-Applied, thanks!
+Oh, thanks! Unfortunately it helped for the patch #4 (first of DTS) but
+not for the next one. Maybe some other patch caused the hunks to differ.
+Please rebase remaining two DTS patches.
 
-[2/4] arm64: dts: exynos: align MMC node name with dtschema
-      https://git.kernel.org/krzk/linux/c/2164784a4b2700d1929854b5ec6b2169ff449814
 
 Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Krzysztof
