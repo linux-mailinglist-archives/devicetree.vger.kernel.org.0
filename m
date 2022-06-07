@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D67365404B9
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 19:19:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E5D05404BD
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 19:19:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345698AbiFGRTF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 13:19:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38698 "EHLO
+        id S1345701AbiFGRTG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 13:19:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345656AbiFGRS5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 13:18:57 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28DF3104CBA
-        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 10:18:55 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id kq6so23529295ejb.11
-        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 10:18:54 -0700 (PDT)
+        with ESMTP id S1345664AbiFGRS6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 13:18:58 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4939F1053D5
+        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 10:18:56 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id o10so23865888edi.1
+        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 10:18:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=O50J38PsJB3mSreFXR7H6YL7U8VScHENB0mb2zpmi8g=;
-        b=dfOwAx6m3NGMCpVp7fz88gnUMIhFgCPWJ13r9LOLR4on+glxzIPRJ8/erD9NNAHTcy
-         N3L6AydiDUq/ZkUeVxzOhHWGO2BOvvk9RGKnzQwR3/wFg/DHym+NXZqiqgDZxYur6vh9
-         uiYWO/tjposidV/VYc1EZODA6QA4fwHS7yaXQ3bccfsjMnMUaeyV0L2hm3K1/vjw/cpy
-         3B+gcY8Q+XLpVAzVR/iPU+cjKDO4pIDWccrf0UevZLWbTOd6T1Dj+rGrPRmn+ThAedwq
-         453vSM7EKVtlxtE2FN4l/jb3m6yqnchxDycJPUkfRZ6aFJZOQxLjwvZsHoe17mOyi4Zw
-         1kVQ==
+        bh=95xSn5ZnLXJf8gOJTiH12x4Y2i7vMsP36HiT3AQ0fYQ=;
+        b=WLHHjfo9g9OtC97Ni2SdnwCyNBlO3bH4M6XH4VmoqOFPxMwQh+og626C+6TxlPADAk
+         lrcLFoTQGyO/g+iVGeVKRMwuu9T/ngU0SYD1CMGcKEYcEPDPc0dYWzGuYwTGtZzKiQue
+         R3gJ068LyWhxJ2iodOnCH1MA95bWJO1RIaBgxsrNKOGdMVWKJlmYbYDfAMWORHr3JZ2G
+         VoyYDPYbd+jkte9eGh8XzLl/ThfsZ9+JIlb0fEVKC/AcIDVY5ORqnPhVIK/23EYLeAH8
+         kl4DkbgF5iWDslWhTWWAi6MLhFm54UIH+0/n5i7u2QPmGLG/QksLU4WlebWWJX8Vtbfj
+         L27g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=O50J38PsJB3mSreFXR7H6YL7U8VScHENB0mb2zpmi8g=;
-        b=xg+3dcatXjl+D6Z43jO3kRtFQyoz2AlrzdsVq0wa0rOd5ZK/8KtaG9BzldvGqi4iX6
-         9hLsPQ175BNJNx0qFiXLdtJwkq2QNYo4/c1fbCWXMPrjCf4/1dkObE0birdxvJnxTFxj
-         IRGT9zs5UVOuQvGexa9Xju9mEzWRwhJGzg05JxOnZeEs9mXZkv2ROdz2dNXIK5X/P4M3
-         bWBonCZWxm8KNi80jQsEr7T7Fx7M8k+EnAebTXm7PiWbAcY2cxGSrGtYGeafk3qzU/8p
-         WQcDr8DPzHRXyqrc+XedD0cczJFGwT/oe5ATfzzKUKOYTjBs2/ZgY2lcjRpYnfBH9kM0
-         58Zw==
-X-Gm-Message-State: AOAM533eu2sGskj7aWTLL9s72Mu9snRlan2IqaB+8WiIQBgmudzvmq/k
-        PXYyxGXdE2144d16GQLoFF4E4A==
-X-Google-Smtp-Source: ABdhPJz1F3LAIEP4ue3EJN7mJgqEYDBvnfzH2jpqlMVOEYry68H4798O3PVWAvS1Hlo7BG56rQTbBQ==
-X-Received: by 2002:a17:906:6806:b0:703:1f4e:9868 with SMTP id k6-20020a170906680600b007031f4e9868mr27808874ejr.699.1654622333447;
-        Tue, 07 Jun 2022 10:18:53 -0700 (PDT)
+        bh=95xSn5ZnLXJf8gOJTiH12x4Y2i7vMsP36HiT3AQ0fYQ=;
+        b=3Bi7OJ9cymbXd87jbwUUEvHpXT7pThgueZ/S1WvtopYEanTvuZS+qt00xdQAmd33jE
+         LqkOPs/oC0iZGIoFLTngMBniw8zP7nXV0DJahNqWPluiYBJaMaGYZYNgDVgjcTF1J6oZ
+         dsjfKNpxf+fam2Ca/s6nGR0qEuK9fmo7z3Pu7G4OFGHxKnvJOLWKoqH7nmwUpK4kHfMm
+         7Lv98sOg1Q4NZ8VRLXwF+scFJH7DALvVHiKOFWnm/Zn8vufyhlu1NXi1zc0Eb0wXTJ/H
+         DmCza24EAB9jBXCkgtxRaMn4mi8u2gS95QlCrpaw02VQn/sqSUg/NphmXhQzMiJsxr1f
+         TXBw==
+X-Gm-Message-State: AOAM532UrpDYt5hH22d1unDuJ/OdBrLGG97kj3XCfWj7aOz9g8CiUNsu
+        uJmzYAX5+wxcmAbC6LlrxSBCSw==
+X-Google-Smtp-Source: ABdhPJwJTxFyEVm/dLk4XAcF5mviLMRqjgStSv977bRQo2b9oBdyXECKGSidxoUJXmxfzthmnqIl1A==
+X-Received: by 2002:aa7:c34d:0:b0:42d:ce57:5df2 with SMTP id j13-20020aa7c34d000000b0042dce575df2mr34430319edr.315.1654622334478;
+        Tue, 07 Jun 2022 10:18:54 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id i7-20020a170906444700b0070e238ff66fsm5876540ejp.96.2022.06.07.10.18.52
+        by smtp.gmail.com with ESMTPSA id i7-20020a170906444700b0070e238ff66fsm5876540ejp.96.2022.06.07.10.18.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jun 2022 10:18:53 -0700 (PDT)
+        Tue, 07 Jun 2022 10:18:54 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -57,9 +57,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 02/14] dt-bindings: sram: qcom,imem: add IMEM memory region
-Date:   Tue,  7 Jun 2022 19:18:36 +0200
-Message-Id: <20220607171848.535128-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 03/14] ARM: dts: qcom: use generic sram as name for imem and ocmem nodes
+Date:   Tue,  7 Jun 2022 19:18:37 +0200
+Message-Id: <20220607171848.535128-3-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220607171848.535128-1-krzysztof.kozlowski@linaro.org>
 References: <20220607171848.535128-1-krzysztof.kozlowski@linaro.org>
@@ -67,7 +67,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,98 +75,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for IMEM memory region (like SRAM) used on several
-Qualcomm SoCs.  In the downstream (vendor) tree, it comes with several
-children used for debugging purposes.  The upstreamed parts are much
-smaller - just image loader and syscon reboot.
+According to Devicetree specification, the device nodes should be
+generic, reflecting the function of the device.  The typical name for
+memory regions is "sram".
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/sram/qcom,imem.yaml   | 75 +++++++++++++++++++
- 1 file changed, 75 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sram/qcom,imem.yaml
+ arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts | 2 +-
+ arch/arm/boot/dts/qcom-msm8974.dtsi                | 4 ++--
+ arch/arm/boot/dts/qcom-sdx55.dtsi                  | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/sram/qcom,imem.yaml b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
-new file mode 100644
-index 000000000000..e9199190198d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sram/qcom,imem.yaml
-@@ -0,0 +1,75 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sram/qcom,imem.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm IMEM memory region
-+
-+maintainers:
-+  - Bjorn Andersson <bjorn.andersson@linaro.org>
-+
-+description:
-+  Qualcomm IMEM is dedicated memory region for various debug features and DMA
-+  transactions.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - qcom,apq8064-imem
-+          - qcom,msm8974-imem
-+          - qcom,qcs404-imem
-+          - qcom,sc7180-imem
-+          - qcom,sc7280-imem
-+          - qcom,sdm630-imem
-+          - qcom,sdm845-imem
-+          - qcom,sdx55-imem
-+      - const: syscon
-+      - const: simple-mfd
-+
-+  reg:
-+    maxItems: 1
-+
-+  ranges: true
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 1
-+
-+  reboot-mode:
-+    $ref: /schemas/power/reset/syscon-reboot-mode.yaml#
-+
-+patternProperties:
-+  "^pil-reloc@[0-9a-f]+$":
-+    $ref: /schemas/remoteproc/qcom,pil-info.yaml#
-+    description: Peripheral image loader relocation region
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        sram@146bf000 {
-+            compatible = "qcom,sdm845-imem", "syscon", "simple-mfd";
-+            reg = <0 0x146bf000 0 0x1000>;
-+            ranges = <0 0 0x146bf000 0x1000>;
-+
-+            #address-cells = <1>;
-+            #size-cells = <1>;
-+
-+            pil-reloc@94c {
-+                compatible = "qcom,pil-reloc-info";
-+                reg = <0x94c 0xc8>;
-+            };
-+        };
-+    };
+diff --git a/arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts b/arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts
+index ca9f73528196..de01e34409f2 100644
+--- a/arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts
++++ b/arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts
+@@ -341,7 +341,7 @@ mmc@12400000 {
+ 			};
+ 		};
+ 
+-		imem@2a03f000 {
++		sram@2a03f000 {
+ 			compatible = "syscon", "simple-mfd";
+ 			reg = <0x2a03f000 0x1000>;
+ 
+diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
+index 814ad0b46232..09b181bb5365 100644
+--- a/arch/arm/boot/dts/qcom-msm8974.dtsi
++++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
+@@ -1603,7 +1603,7 @@ opp-27000000 {
+ 			};
+ 		};
+ 
+-		ocmem@fdd00000 {
++		sram@fdd00000 {
+ 			compatible = "qcom,msm8974-ocmem";
+ 			reg = <0xfdd00000 0x2000>,
+ 			      <0xfec00000 0x180000>;
+@@ -1650,7 +1650,7 @@ smd-edge {
+ 			};
+ 		};
+ 
+-		imem: imem@fe805000 {
++		imem: sram@fe805000 {
+ 			compatible = "syscon", "simple-mfd";
+ 			reg = <0xfe805000 0x1000>;
+ 
+diff --git a/arch/arm/boot/dts/qcom-sdx55.dtsi b/arch/arm/boot/dts/qcom-sdx55.dtsi
+index 1c2b208a5670..710c7f772d42 100644
+--- a/arch/arm/boot/dts/qcom-sdx55.dtsi
++++ b/arch/arm/boot/dts/qcom-sdx55.dtsi
+@@ -561,7 +561,7 @@ tlmm: pinctrl@f100000 {
+ 			#interrupt-cells = <2>;
+ 		};
+ 
+-		imem@1468f000 {
++		sram@1468f000 {
+ 			compatible = "simple-mfd";
+ 			reg = <0x1468f000 0x1000>;
+ 
 -- 
 2.34.1
 
