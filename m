@@ -2,59 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CBFD5400B1
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 16:06:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20CB65400BC
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 16:08:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244005AbiFGOGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 10:06:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45628 "EHLO
+        id S244116AbiFGOIu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 10:08:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235425AbiFGOGa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 10:06:30 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53C047980A;
-        Tue,  7 Jun 2022 07:06:28 -0700 (PDT)
-X-UUID: 04abf3211fdb4163b8c6d128d6f9e16a-20220607
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:2e3329ea-a9ce-4462-a29d-ba0209819bf2,OB:0,LO
-        B:0,IP:0,URL:5,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:0
-X-CID-META: VersionHash:2a19b09,CLOUDID:4ce97f7e-c8dc-403a-96e8-6237210dceee,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:0,BEC:nil
-X-UUID: 04abf3211fdb4163b8c6d128d6f9e16a-20220607
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <johnson.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 148456900; Tue, 07 Jun 2022 22:06:07 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Tue, 7 Jun 2022 22:06:06 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 7 Jun 2022 22:06:06 +0800
-From:   Johnson Wang <johnson.wang@mediatek.com>
-To:     <cw00.choi@samsung.com>, <krzk+dt@kernel.org>,
-        <robh+dt@kernel.org>, <kyungmin.park@samsung.com>
-CC:     <khilman@kernel.org>, <djakov@kernel.org>,
-        <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <jia-wei.chang@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Johnson Wang <johnson.wang@mediatek.com>
-Subject: [PATCH v7 2/2] PM / devfreq: mediatek: Introduce MediaTek CCI devfreq driver
-Date:   Tue, 7 Jun 2022 22:05:56 +0800
-Message-ID: <20220607140556.6278-3-johnson.wang@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220607140556.6278-1-johnson.wang@mediatek.com>
-References: <20220607140556.6278-1-johnson.wang@mediatek.com>
+        with ESMTP id S239509AbiFGOIt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 10:08:49 -0400
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-eopbgr80089.outbound.protection.outlook.com [40.107.8.89])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17F46B19;
+        Tue,  7 Jun 2022 07:08:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Q6dWNsQpWdiFRXdg3q7PhPt/kdkwoZa1EXfb9HlZ7FRiVhihiXw+46aik5Crz+Q1zbY6OkAQZJneZ601e+J3aoHXwGXhbL7K9FguDhvr8FFalBlaVd0mTjimKU5Su+erNAM8wVy65lMXQETxNdMKRKzYlJHPL2+LsPhBdj0D7j4zCWrgvmZDciGbyL3pSkBvzZGu6fO5fP8YPRUm9MAP9L2oDNr5NcDry9yvAkvGxWltncqNV3w1XCoHa98la/c6Ez8vz8Js5tHQOIQjGGs93f3Q/yLzPaYP96hg2oNweW5lV617C7D6Mu6KXoR+XUyukh0o+KCPRChmt/ByvgySWw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AAv7ILwntnNsPEfp576+sR1pYrnPKoriHPQ0xZYZP6w=;
+ b=kY3EvpveukMrvpDX2tt8LM8/LCCMMKsDFgj5PTMMssg9SXVOrtJlxUW+DwJVBBC07UNxqN8w0JWLBDgcUojORJ0CQEBJF8r7Cs/8SBHgRX9/WUs4VN4USUcJTd9/ujlx9mzvqXUhf769p9eeKFIr0Ylce1VqZjfdbKDm/zEdqIR/3GsnEbMnoommRm5+tJxG5u7bhDHxrY5SGpt/YAQnSg317hDX6ROXxRJBejcHRKxlzAwsAdQR+GIcHxnEbzo/yFYGklua57cJV84h5Lb664aztbeFRAMYJfAcM4IeUFBQNfp/hr3slkY2HDQWifYxW42gP9qNQuLXm1j/X2LYjw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
+ header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=cherrycloud.onmicrosoft.com; s=selector2-cherrycloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AAv7ILwntnNsPEfp576+sR1pYrnPKoriHPQ0xZYZP6w=;
+ b=eP4tMO4IVl1vceesU5WVZirC7Ak++rzATthM7ZRmcJFNeZmV7q5oZdAEnOorxiEkCKZT7NWt56+9/SiZSXxBehdyPhkvM5jK26S4E2A/zsgP6skGt74w9NLlLQvyg9eqiqlvG7O5d8MZW0QAqqreQP1WXfYit71fgT18rHTLqhU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
+Received: from PA4PR04MB9367.eurprd04.prod.outlook.com (2603:10a6:102:2aa::7)
+ by DU0PR04MB9274.eurprd04.prod.outlook.com (2603:10a6:10:355::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.19; Tue, 7 Jun
+ 2022 14:08:41 +0000
+Received: from PA4PR04MB9367.eurprd04.prod.outlook.com
+ ([fe80::880a:6606:6f57:dd0a]) by PA4PR04MB9367.eurprd04.prod.outlook.com
+ ([fe80::880a:6606:6f57:dd0a%6]) with mapi id 15.20.5314.019; Tue, 7 Jun 2022
+ 14:08:41 +0000
+Message-ID: <249907c9-1d59-d8ab-1870-c01e8ace7d18@theobroma-systems.com>
+Date:   Tue, 7 Jun 2022 16:08:39 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v5 2/4] media: ov5675: add device-tree support and support
+ runtime PM
+Content-Language: en-US
+To:     Jacopo Mondi <jacopo@jmondi.org>,
+        Quentin Schulz <foss+kernel@0leil.net>
+Cc:     shawnx.tu@intel.com, mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220525145833.1165437-1-foss+kernel@0leil.net>
+ <20220525145833.1165437-2-foss+kernel@0leil.net>
+ <20220531131633.tjkp6q43kwwxtnvk@uno.localdomain>
+From:   Quentin Schulz <quentin.schulz@theobroma-systems.com>
+In-Reply-To: <20220531131633.tjkp6q43kwwxtnvk@uno.localdomain>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AM7PR04CA0011.eurprd04.prod.outlook.com
+ (2603:10a6:20b:110::21) To PA4PR04MB9367.eurprd04.prod.outlook.com
+ (2603:10a6:102:2aa::7)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 97ca23b0-fc9f-43fd-c078-08da488f399f
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9274:EE_
+X-Microsoft-Antispam-PRVS: <DU0PR04MB9274A648FCFB0D337E41D64AC2A59@DU0PR04MB9274.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: T+ciiJP3DHmCBaRA12xJUoTN+g0gDpfC3XToW/jDHdb08uQ1gVMUt6fxmxy0UczWOU+abO7QP0rTNp/XRmPVcleRHY7deGHgNMhduMH8+ggv0cVRsZuPVUa2nLNErK3l0V3FMnK3StS5LGEUixSTZT9lTlswI4kdpKRU1Qp86qAOUVL6b2iRvtlmYX5CB9Q6FKpmpi0EV1qihww6AGs0SNgOzgfPl1OqSOUzdlpt164tbyvFZhDIzW/ZVYQSWiWkux7Tp3NUQyZ+HIwSqF59MPft1shlQDi5bZZSOPtQln/ePFa6Bpx6u8J/TxA5qZqC2RSqFio72B+8OYDg+KI/lKM6AoRA4Ac7LZIalHZfU04fxpgLFaJW3OzL/yW/Ds5tx7nNS1/tYXZ4UI7+E4hYfuDPYLtxRL0MPG9mFwrP5dDmRr+8qUnCCU10uE/btNA/qvkEECteLeFbTDLVJ4OxQ15IApd2O6hH7wrPxXYFs5TVRfJehtNdvY0WVoGvaJ8eEPW+hy4/FuweUkRjUsySIcWDmj1bG6Xna0AqTdOScomADpbjebKOlQKU6Ft9B7hrWLwjl+abw3AOaIIdIhlqUs0DNrTDCelSR+epjHS4NIyWI4gluVgKXyDLdvyhJPLYOhzZ/9THPXMRhz47cKCxW3UsrneMIlw7uKGqCdK76hvGfFCPznZwk9emD+vWLdz3LPGQwnzdFbq6whBaatXa+gOP1a1/c0w6TRKpRKvTF28=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9367.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(2616005)(186003)(86362001)(38100700002)(31696002)(83380400001)(36756003)(5660300002)(110136005)(8676002)(8936002)(44832011)(316002)(4326008)(2906002)(66476007)(66946007)(66556008)(6506007)(6512007)(53546011)(26005)(31686004)(6486002)(508600001)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RkpudmE0RHJtdzBCd1FKWkNDZmoxSnY5anJzcUNJWTU5ck9nY1ZOMmJjR1NR?=
+ =?utf-8?B?MFJFSzdOeEwyUEovMVhtaHo3VmlRNGhxVXh1L0FrWWlVM2dlc29xaDdkUkxn?=
+ =?utf-8?B?TTM2aW5pSDF2LzIrNjdiTkZmb3JzLzV2ZkhCNzVIRVEyL1FpTCtBUHplRm1P?=
+ =?utf-8?B?OExVWG9JeEErMjQwUXNVbUQ1ZmxOVWJ5TjlrcFVSbUw4UGRPSElPb3U2MXA5?=
+ =?utf-8?B?WmNpT2c0MDk0NUg1cHNMUE5yK0g5clBWczFLZjgwR0xCSmkxVDBYRlpxNTRq?=
+ =?utf-8?B?RWpZaGZxcGpCVi9QOUFTOVcrTkVaSHdVbjNLRUFjNUNIMjY2Ritac0p6YlpO?=
+ =?utf-8?B?dk9BYldONE5QdUhpSTV0Tktic000Y2VpMGplSDIxajZmNS9VTXBZWVZid1lR?=
+ =?utf-8?B?Ymczb3RZL3N0SUdpQkptZ3JsdG9FTGZ0N25HWjE3SmNPM001Z09ISElNZUwv?=
+ =?utf-8?B?MXhXWERrNzdTS2tBQnVmNzRTQ2wyeVo1TUZPMS9UT0pCSTUwM2dsT1VPdjg0?=
+ =?utf-8?B?TGdoallON3JrcEpEcUVjeU5RSlZxVS9SWTRPL1BSZWYxOHN3dXBDc21zRDFU?=
+ =?utf-8?B?UU0xSjRpaEZud29FWm50c3Vhakp6WjFxcGpoMlZMMGRzVU1pelFmdGgzam82?=
+ =?utf-8?B?eFR2VlRuWTBEc2VvUHRLZnBuTW1lVHJ4ek5KNGJySk0vSmxPemJhSVQreXF4?=
+ =?utf-8?B?RFhnV0dMVm83Yk4xS29waU5aekMzczNGWGNWWjdMY05NdW9tcUh0RlR4NnNv?=
+ =?utf-8?B?K2wya3RjeEQzYkprTU9GZTNyL1FKRXpBeSt4NE5VVkhWUW54Ti9jWHY3Yksv?=
+ =?utf-8?B?WVB1emI3QjdKa3NlemEwMW0zTW03QUwrQVAvUW81QWF3ZXA1N3dJUXpXMDMw?=
+ =?utf-8?B?TkU4MUpEdlNabElhQWZEWGZybmZPRnNjZ2ZTUEVhV3B4UWhZeVN3OEI5TWpk?=
+ =?utf-8?B?WFRWRHRlMjBNZDhtaElwL0xlS0hHSVJTNWowSlRHNlp4Zjd3dTVObWpKUVQv?=
+ =?utf-8?B?SUl3bGVQREt4YmRyaTA4bDR1ZS9Td3VQWUVFaVYwc1c0Wk04Zmtxbk94SEd0?=
+ =?utf-8?B?Q1VMSFpMTHFNeUZFMWdLa3VBN1dHWW0yRzJlQ0l2VkdsNFBDdHFXbmRDbElM?=
+ =?utf-8?B?QU1IRWlHZDRYTTdHTm5LdmxyZFE0L3NkS2FpWnB3aFhYTWQrbFgzUWxVeWRj?=
+ =?utf-8?B?WHRKaU50R3RGRkNRR2QrL1pRT3RHOUU4RWdBbmFCWVVKTHlOOTFkY0RxU0ZD?=
+ =?utf-8?B?dXFjRVdJYS9RbUcwc0VzY1p1bXZPaFRoK0k1K2VJMXZGakwwcjNudWZ1eUR4?=
+ =?utf-8?B?R0lwL0tjRVpQeWdsb1hQZjdIR2ZQdFMxWENrTldGR29SRGhVaEhZckxpcERZ?=
+ =?utf-8?B?UUE3cmJOYzhpblh6NGpSeVlVaEJOYU9LY3RxaEp1NXhadUdLeUdWN0N3UHhh?=
+ =?utf-8?B?K01PNEJKUzdiSWhuQ1NkajlyYVRPQlh5MzUyMG1HelY3RG53N3J3T3FhSjht?=
+ =?utf-8?B?QUtKeVQvaFlYL01aalI2MS9mMTZLdlpkTWdzb2xkaElaVzU0SlNKQ3dWSHg4?=
+ =?utf-8?B?QkJ6UVhaZTFCKzUrRVB4MUdaNk1NZ3cvNGNMQ29lR3pZSjllWFM1WHpFSHBT?=
+ =?utf-8?B?Yk9pY3BHcFpaOXRYODMyLzNMWE10Ymo2WEptdXVJTitCUG5qdkkxSG55a3pk?=
+ =?utf-8?B?U1A3T2JCVjdvRmlZQTBJZEtPTS93QndaanNlbW0zano4WEZBOFpocWcxd2VG?=
+ =?utf-8?B?SklPSlhRWGlRTTJ0ajNOZVJIWjh4ZXJIUmkxVDlOeDZaVEZubW5oRDdlWldG?=
+ =?utf-8?B?RTJ0VXpGb3NLWWlrYm10L3M0VUYySldlaVNlY1lHZHBONDRob1F3RFNESkdS?=
+ =?utf-8?B?VVdmbVRtOHE2YlM1V014TmtwUzkyWjZ1Z055dFNEcXVDbDBoYTVrelBuMzZO?=
+ =?utf-8?B?TnBXUnRrVVN5V3A5QWxZcm96eVhRcW0rVEFvMS8za20wV0ZIaUJiUTk5VzUw?=
+ =?utf-8?B?Rjh1MmE3K012Ryt0WWdYMzdvQmhWTDcvL0w5eVVwOTFpdkJ5V1R5RDBQR1Qv?=
+ =?utf-8?B?Ly8wczJYR1RxYjBoTkVod2hQRWVSOVd5QnBTNkZqSEJyUlpEK0o3citySXdM?=
+ =?utf-8?B?SXBvZmdGK2IzZ3FOT280OU8zTEZhM0FFQk1GUmdDcmthRGdYaW1ocVhRVlFr?=
+ =?utf-8?B?YTZQdkRlcU1Heit0RCtlOGdUTEJ6U29aaFdlT3F5bHd3akVZQzNLaUw5cklk?=
+ =?utf-8?B?K0xmR2E5K0k1cVhOWXVZVmNvd1oxRG5FY0psY1VKdHVaRWNpL0NNc0hrZXJy?=
+ =?utf-8?B?Q1BpSHRTV0RvVkUxcXhjZGZCVDd5SnRGVFZTei8xWnJicjhDYUR4dGpwMDZz?=
+ =?utf-8?Q?lW71y7u1awbbw0ZsFgqrPuPfZVLJqMX/Vk+fB?=
+X-OriginatorOrg: theobroma-systems.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 97ca23b0-fc9f-43fd-c078-08da488f399f
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9367.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jun 2022 14:08:41.4992
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: cBQIWWVpYoN63AR0136T46Yh72bPcANFeO/NtwN6HbhqOVnHsjDhs5BFEHGu5efqCUMYtuVOETXDBmyQ4g8riClNNbSkF/s/Dl4Hz6a2EqX0TbJYsbO1bc6OpCaANZvK
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9274
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,502 +135,124 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We introduce a devfreq driver for the MediaTek Cache Coherent Interconnect
-(CCI) used by some MediaTek SoCs.
+Hi Jacopo,
 
-In this driver, we use the passive devfreq driver to get target frequencies
-and adjust voltages accordingly. In MT8183 and MT8186, the MediaTek CCI
-is supplied by the same regulators with the little core CPUs.
+On 5/31/22 15:16, Jacopo Mondi wrote:
+> Hi Quentin,
+>     one more question
+> 
+> On Wed, May 25, 2022 at 04:58:31PM +0200, Quentin Schulz wrote:
+>> From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+>>
+>> Until now, this driver only supported ACPI. This adds support for
+>> Device Tree too while enabling clock and regulators in runtime PM.
+>>
+>> Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+>> ---
+>>
+>> v5:
+>>   - fixed -Wdeclaration-after-statement for delay_us,
+>>
+>> v4:
+>>   - added delays based on clock cycles as specified in datasheet for
+>>   pre-power-off and post-power-on,
+>>   - re-arranged clk handling, shutdown toggling and regulator handling to
+>>   better match power up/down sequence defined in datasheet,
+>>   - added comment on need for regulator being stable before releasing
+>>   shutdown pin,
+>>
+>> v3:
+>>   - added linux/mod_devicetable.h include,
+>>   - moved delay for reset pulse right after the regulators are enabled,
+>>   - removed check on is_acpi_node in favor of checks on presence of OF
+>>   properties (e.g. devm_clk_get_optional returns NULL),
+>>   - moved power management out of system suspend/resume into runtime PM
+>>   callbacks,
+>>   - removed ACPI specific comment since it's not specific to this driver,
+>>   - changed devm_clk_get to devm_clk_get_optional,
+>>   - remove OF use of clock-frequency (handled by devm_clk_get_optional
+>>   directly),
+>>   - removed name of clock (only one, so no need for anything explicit)
+>>   when requesting a clock from OF,
+>>   - wrapped lines to 80 chars,
+>>
+>> v2:
+>>   - fixed unused-const-variable warning by removing of_match_ptr in
+>>   of_match_table, reported by kernel test robot,
+>>
+>>   drivers/media/i2c/ov5675.c | 149 +++++++++++++++++++++++++++++++------
+>>   1 file changed, 128 insertions(+), 21 deletions(-)
+>>
+>> diff --git a/drivers/media/i2c/ov5675.c b/drivers/media/i2c/ov5675.c
+>> index 82ba9f56baec8..ea801edb8e408 100644
+>> --- a/drivers/media/i2c/ov5675.c
+>> +++ b/drivers/media/i2c/ov5675.c
+>> @@ -3,10 +3,14 @@
+>>
+>>   #include <asm/unaligned.h>
+>>   #include <linux/acpi.h>
+>> +#include <linux/clk.h>
+>>   #include <linux/delay.h>
+>> +#include <linux/gpio/consumer.h>
+>>   #include <linux/i2c.h>
+>> +#include <linux/mod_devicetable.h>
+>>   #include <linux/module.h>
+>>   #include <linux/pm_runtime.h>
+>> +#include <linux/regulator/consumer.h>
+>>   #include <media/v4l2-ctrls.h>
+>>   #include <media/v4l2-device.h>
+>>   #include <media/v4l2-fwnode.h>
+>> @@ -17,7 +21,7 @@
+>>
+>>   #define OV5675_LINK_FREQ_450MHZ		450000000ULL
+>>   #define OV5675_SCLK			90000000LL
+>> -#define OV5675_MCLK			19200000
+>> +#define OV5675_XVCLK_19_2		19200000
+>>   #define OV5675_DATA_LANES		2
+>>   #define OV5675_RGB_DEPTH		10
+>>
+>> @@ -76,6 +80,14 @@
+>>
+>>   #define to_ov5675(_sd)			container_of(_sd, struct ov5675, sd)
+>>
+>> +static const char * const ov5675_supply_names[] = {
+>> +	"avdd",		/* Analog power */
+>> +	"dovdd",	/* Digital I/O power */
+>> +	"dvdd",		/* Digital core power */
+>> +};
+>> +
+>> +#define OV5675_NUM_SUPPLIES	ARRAY_SIZE(ov5675_supply_names)
+>> +
+>>   enum {
+>>   	OV5675_LINK_FREQ_900MBPS,
+>>   };
+>> @@ -484,6 +496,9 @@ struct ov5675 {
+>>   	struct v4l2_subdev sd;
+>>   	struct media_pad pad;
+>>   	struct v4l2_ctrl_handler ctrl_handler;
+>> +	struct clk		*xvclk;
+>> +	struct gpio_desc	*reset_gpio;
+>> +	struct regulator_bulk_data supplies[OV5675_NUM_SUPPLIES];
+>>
+>>   	/* V4L2 Controls */
+>>   	struct v4l2_ctrl *link_freq;
+>> @@ -944,6 +959,56 @@ static int ov5675_set_stream(struct v4l2_subdev *sd, int enable)
+>>   	return ret;
+>>   }
+>>
+>> +static int ov5675_power_off(struct device *dev)
+> 
+> Does this (and power_on) require __maybe_unused to avoid a warning
+> when compiling without CONFIG_PM support ? Have you tried that ?
+> 
 
-Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.com>
-Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
-Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
----
- drivers/devfreq/Kconfig           |  10 +
- drivers/devfreq/Makefile          |   1 +
- drivers/devfreq/mtk-cci-devfreq.c | 440 ++++++++++++++++++++++++++++++
- 3 files changed, 451 insertions(+)
- create mode 100644 drivers/devfreq/mtk-cci-devfreq.c
+It does not, because they are called manually in the probe function and 
+its error path (but thanks for the heads up, because I definitely forgot 
+about this one).
 
-diff --git a/drivers/devfreq/Kconfig b/drivers/devfreq/Kconfig
-index 87eb2b837e68..9754d8b31621 100644
---- a/drivers/devfreq/Kconfig
-+++ b/drivers/devfreq/Kconfig
-@@ -120,6 +120,16 @@ config ARM_TEGRA_DEVFREQ
- 	  It reads ACTMON counters of memory controllers and adjusts the
- 	  operating frequencies and voltages with OPP support.
- 
-+config ARM_MEDIATEK_CCI_DEVFREQ
-+	tristate "MEDIATEK CCI DEVFREQ Driver"
-+	depends on ARM_MEDIATEK_CPUFREQ || COMPILE_TEST
-+	select DEVFREQ_GOV_PASSIVE
-+	help
-+	  This adds a devfreq driver for MediaTek Cache Coherent Interconnect
-+	  which is shared the same regulators with the cpu cluster. It can track
-+	  buck voltages and update a proper CCI frequency. Use the notification
-+	  to get the regulator status.
-+
- config ARM_RK3399_DMC_DEVFREQ
- 	tristate "ARM RK3399 DMC DEVFREQ Driver"
- 	depends on (ARCH_ROCKCHIP && HAVE_ARM_SMCCC) || \
-diff --git a/drivers/devfreq/Makefile b/drivers/devfreq/Makefile
-index 0b6be92a25d9..bf40d04928d0 100644
---- a/drivers/devfreq/Makefile
-+++ b/drivers/devfreq/Makefile
-@@ -11,6 +11,7 @@ obj-$(CONFIG_DEVFREQ_GOV_PASSIVE)	+= governor_passive.o
- obj-$(CONFIG_ARM_EXYNOS_BUS_DEVFREQ)	+= exynos-bus.o
- obj-$(CONFIG_ARM_IMX_BUS_DEVFREQ)	+= imx-bus.o
- obj-$(CONFIG_ARM_IMX8M_DDRC_DEVFREQ)	+= imx8m-ddrc.o
-+obj-$(CONFIG_ARM_MEDIATEK_CCI_DEVFREQ)	+= mtk-cci-devfreq.o
- obj-$(CONFIG_ARM_RK3399_DMC_DEVFREQ)	+= rk3399_dmc.o
- obj-$(CONFIG_ARM_SUN8I_A33_MBUS_DEVFREQ)	+= sun8i-a33-mbus.o
- obj-$(CONFIG_ARM_TEGRA_DEVFREQ)		+= tegra30-devfreq.o
-diff --git a/drivers/devfreq/mtk-cci-devfreq.c b/drivers/devfreq/mtk-cci-devfreq.c
-new file mode 100644
-index 000000000000..71abb3fbd042
---- /dev/null
-+++ b/drivers/devfreq/mtk-cci-devfreq.c
-@@ -0,0 +1,440 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2022 MediaTek Inc.
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/devfreq.h>
-+#include <linux/minmax.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_opp.h>
-+#include <linux/regulator/consumer.h>
-+
-+struct mtk_ccifreq_platform_data {
-+	int min_volt_shift;
-+	int max_volt_shift;
-+	int proc_max_volt;
-+	int sram_min_volt;
-+	int sram_max_volt;
-+};
-+
-+struct mtk_ccifreq_drv {
-+	struct device *dev;
-+	struct devfreq *devfreq;
-+	struct regulator *proc_reg;
-+	struct regulator *sram_reg;
-+	struct clk *cci_clk;
-+	struct clk *inter_clk;
-+	int inter_voltage;
-+	unsigned long pre_freq;
-+	/* Avoid race condition for regulators between notify and policy */
-+	struct mutex reg_lock;
-+	struct notifier_block opp_nb;
-+	const struct mtk_ccifreq_platform_data *soc_data;
-+	int vtrack_max;
-+};
-+
-+static int mtk_ccifreq_set_voltage(struct mtk_ccifreq_drv *drv, int new_voltage)
-+{
-+	const struct mtk_ccifreq_platform_data *soc_data = drv->soc_data;
-+	struct device *dev = drv->dev;
-+	int pre_voltage, pre_vsram, new_vsram, vsram, voltage, ret;
-+	int retry_max = drv->vtrack_max;
-+
-+	if (!drv->sram_reg) {
-+		ret = regulator_set_voltage(drv->proc_reg, new_voltage,
-+					    drv->soc_data->proc_max_volt);
-+		return ret;
-+	}
-+
-+	pre_voltage = regulator_get_voltage(drv->proc_reg);
-+	if (pre_voltage < 0) {
-+		dev_err(dev, "invalid vproc value: %d\n", pre_voltage);
-+		return pre_voltage;
-+	}
-+
-+	pre_vsram = regulator_get_voltage(drv->sram_reg);
-+	if (pre_vsram < 0) {
-+		dev_err(dev, "invalid vsram value: %d\n", pre_vsram);
-+		return pre_vsram;
-+	}
-+
-+	new_vsram = clamp(new_voltage + soc_data->min_volt_shift,
-+			  soc_data->sram_min_volt, soc_data->sram_max_volt);
-+
-+	do {
-+		if (pre_voltage <= new_voltage) {
-+			vsram = clamp(pre_voltage + soc_data->max_volt_shift,
-+				      soc_data->sram_min_volt, new_vsram);
-+			ret = regulator_set_voltage(drv->sram_reg, vsram,
-+						    soc_data->sram_max_volt);
-+			if (ret)
-+				return ret;
-+
-+			if (vsram == soc_data->sram_max_volt ||
-+			    new_vsram == soc_data->sram_min_volt)
-+				voltage = new_voltage;
-+			else
-+				voltage = vsram - soc_data->min_volt_shift;
-+
-+			ret = regulator_set_voltage(drv->proc_reg, voltage,
-+						    soc_data->proc_max_volt);
-+			if (ret) {
-+				regulator_set_voltage(drv->sram_reg, pre_vsram,
-+						      soc_data->sram_max_volt);
-+				return ret;
-+			}
-+		} else if (pre_voltage > new_voltage) {
-+			voltage = max(new_voltage,
-+				      pre_vsram - soc_data->max_volt_shift);
-+			ret = regulator_set_voltage(drv->proc_reg, voltage,
-+						    soc_data->proc_max_volt);
-+			if (ret)
-+				return ret;
-+
-+			if (voltage == new_voltage)
-+				vsram = new_vsram;
-+			else
-+				vsram = max(new_vsram,
-+					    voltage + soc_data->min_volt_shift);
-+
-+			ret = regulator_set_voltage(drv->sram_reg, vsram,
-+						    soc_data->sram_max_volt);
-+			if (ret) {
-+				regulator_set_voltage(drv->proc_reg, pre_voltage,
-+						      soc_data->proc_max_volt);
-+				return ret;
-+			}
-+		}
-+
-+		pre_voltage = voltage;
-+		pre_vsram = vsram;
-+
-+		if (--retry_max < 0) {
-+			dev_err(dev,
-+				"over loop count, failed to set voltage\n");
-+			return -EINVAL;
-+		}
-+	} while (voltage != new_voltage || vsram != new_vsram);
-+
-+	return 0;
-+}
-+
-+static int mtk_ccifreq_target(struct device *dev, unsigned long *freq,
-+			      u32 flags)
-+{
-+	struct mtk_ccifreq_drv *drv = dev_get_drvdata(dev);
-+	struct clk *cci_pll = clk_get_parent(drv->cci_clk);
-+	struct dev_pm_opp *opp;
-+	unsigned long opp_rate;
-+	int voltage, pre_voltage, inter_voltage, target_voltage, ret;
-+
-+	if (!drv)
-+		return -EINVAL;
-+
-+	if (drv->pre_freq == *freq)
-+		return 0;
-+
-+	inter_voltage = drv->inter_voltage;
-+
-+	opp_rate = *freq;
-+	opp = devfreq_recommended_opp(dev, &opp_rate, 1);
-+	if (IS_ERR(opp)) {
-+		dev_err(dev, "failed to find opp for freq: %ld\n", opp_rate);
-+		return PTR_ERR(opp);
-+	}
-+
-+	mutex_lock(&drv->reg_lock);
-+
-+	voltage = dev_pm_opp_get_voltage(opp);
-+	dev_pm_opp_put(opp);
-+
-+	pre_voltage = regulator_get_voltage(drv->proc_reg);
-+	if (pre_voltage < 0) {
-+		dev_err(dev, "invalid vproc value: %d\n", pre_voltage);
-+		ret = pre_voltage;
-+		goto out_unlock;
-+	}
-+
-+	/* scale up: set voltage first then freq. */
-+	target_voltage = max(inter_voltage, voltage);
-+	if (pre_voltage <= target_voltage) {
-+		ret = mtk_ccifreq_set_voltage(drv, target_voltage);
-+		if (ret) {
-+			dev_err(dev, "failed to scale up voltage\n");
-+			goto out_restore_voltage;
-+		}
-+	}
-+
-+	/* switch the cci clock to intermediate clock source. */
-+	ret = clk_set_parent(drv->cci_clk, drv->inter_clk);
-+	if (ret) {
-+		dev_err(dev, "failed to re-parent cci clock\n");
-+		goto out_restore_voltage;
-+	}
-+
-+	/* set the original clock to target rate. */
-+	ret = clk_set_rate(cci_pll, *freq);
-+	if (ret) {
-+		dev_err(dev, "failed to set cci pll rate: %d\n", ret);
-+		clk_set_parent(drv->cci_clk, cci_pll);
-+		goto out_restore_voltage;
-+	}
-+
-+	/* switch the cci clock back to the original clock source. */
-+	ret = clk_set_parent(drv->cci_clk, cci_pll);
-+	if (ret) {
-+		dev_err(dev, "failed to re-parent cci clock\n");
-+		mtk_ccifreq_set_voltage(drv, inter_voltage);
-+		goto out_unlock;
-+	}
-+
-+	/*
-+	 * If the new voltage is lower than the intermediate voltage or the
-+	 * original voltage, scale down to the new voltage.
-+	 */
-+	if (voltage < inter_voltage || voltage < pre_voltage) {
-+		ret = mtk_ccifreq_set_voltage(drv, voltage);
-+		if (ret) {
-+			dev_err(dev, "failed to scale down voltage\n");
-+			goto out_unlock;
-+		}
-+	}
-+
-+	drv->pre_freq = *freq;
-+	mutex_unlock(&drv->reg_lock);
-+
-+	return 0;
-+
-+out_restore_voltage:
-+	mtk_ccifreq_set_voltage(drv, pre_voltage);
-+
-+out_unlock:
-+	mutex_unlock(&drv->reg_lock);
-+	return ret;
-+}
-+
-+static int mtk_ccifreq_opp_notifier(struct notifier_block *nb,
-+				    unsigned long event, void *data)
-+{
-+	struct dev_pm_opp *opp = data;
-+	struct mtk_ccifreq_drv *drv;
-+	unsigned long freq, volt;
-+
-+	drv = container_of(nb, struct mtk_ccifreq_drv, opp_nb);
-+
-+	if (event == OPP_EVENT_ADJUST_VOLTAGE) {
-+		freq = dev_pm_opp_get_freq(opp);
-+
-+		mutex_lock(&drv->reg_lock);
-+		/* current opp item is changed */
-+		if (freq == drv->pre_freq) {
-+			volt = dev_pm_opp_get_voltage(opp);
-+			mtk_ccifreq_set_voltage(drv, volt);
-+		}
-+		mutex_unlock(&drv->reg_lock);
-+	}
-+
-+	return 0;
-+}
-+
-+static struct devfreq_dev_profile mtk_ccifreq_profile = {
-+	.target = mtk_ccifreq_target,
-+};
-+
-+static int mtk_ccifreq_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct mtk_ccifreq_drv *drv;
-+	struct devfreq_passive_data *passive_data;
-+	struct dev_pm_opp *opp;
-+	unsigned long rate, opp_volt;
-+	int ret;
-+
-+	drv = devm_kzalloc(dev, sizeof(*drv), GFP_KERNEL);
-+	if (!drv)
-+		return -ENOMEM;
-+
-+	drv->dev = dev;
-+	drv->soc_data = (const struct mtk_ccifreq_platform_data *)
-+				of_device_get_match_data(&pdev->dev);
-+	mutex_init(&drv->reg_lock);
-+	platform_set_drvdata(pdev, drv);
-+
-+	drv->cci_clk = devm_clk_get(dev, "cci");
-+	if (IS_ERR(drv->cci_clk)) {
-+		ret = PTR_ERR(drv->cci_clk);
-+		return dev_err_probe(dev, ret, "failed to get cci clk\n");
-+	}
-+
-+	drv->inter_clk = devm_clk_get(dev, "intermediate");
-+	if (IS_ERR(drv->inter_clk)) {
-+		ret = PTR_ERR(drv->inter_clk);
-+		return dev_err_probe(dev, ret,
-+				     "failed to get intermediate clk\n");
-+	}
-+
-+	drv->proc_reg = devm_regulator_get_optional(dev, "proc");
-+	if (IS_ERR(drv->proc_reg)) {
-+		ret = PTR_ERR(drv->proc_reg);
-+		return dev_err_probe(dev, ret,
-+				     "failed to get proc regulator\n");
-+	}
-+
-+	ret = regulator_enable(drv->proc_reg);
-+	if (ret) {
-+		dev_err(dev, "failed to enable proc regulator\n");
-+		return ret;
-+	}
-+
-+	drv->sram_reg = devm_regulator_get_optional(dev, "sram");
-+	if (IS_ERR(drv->sram_reg))
-+		drv->sram_reg = NULL;
-+	else {
-+		ret = regulator_enable(drv->sram_reg);
-+		if (ret) {
-+			dev_err(dev, "failed to enable sram regulator\n");
-+			goto out_free_resources;
-+		}
-+	}
-+
-+	/*
-+	 * We assume min voltage is 0 and tracking target voltage using
-+	 * min_volt_shift for each iteration.
-+	 * The retry_max is 3 times of expected iteration count.
-+	 */
-+	drv->vtrack_max = 3 * DIV_ROUND_UP(max(drv->soc_data->sram_max_volt,
-+					       drv->soc_data->proc_max_volt),
-+					   drv->soc_data->min_volt_shift);
-+
-+	ret = clk_prepare_enable(drv->cci_clk);
-+	if (ret)
-+		goto out_free_resources;
-+
-+	ret = dev_pm_opp_of_add_table(dev);
-+	if (ret) {
-+		dev_err(dev, "failed to add opp table: %d\n", ret);
-+		goto out_disable_cci_clk;
-+	}
-+
-+	rate = clk_get_rate(drv->inter_clk);
-+	opp = dev_pm_opp_find_freq_ceil(dev, &rate);
-+	if (IS_ERR(opp)) {
-+		ret = PTR_ERR(opp);
-+		dev_err(dev, "failed to get intermediate opp: %d\n", ret);
-+		goto out_remove_opp_table;
-+	}
-+	drv->inter_voltage = dev_pm_opp_get_voltage(opp);
-+	dev_pm_opp_put(opp);
-+
-+	rate = U32_MAX;
-+	opp = dev_pm_opp_find_freq_floor(drv->dev, &rate);
-+	if (IS_ERR(opp)) {
-+		dev_err(dev, "failed to get opp\n");
-+		ret = PTR_ERR(opp);
-+		goto out_remove_opp_table;
-+	}
-+
-+	opp_volt = dev_pm_opp_get_voltage(opp);
-+	dev_pm_opp_put(opp);
-+	ret = mtk_ccifreq_set_voltage(drv, opp_volt);
-+	if (ret) {
-+		dev_err(dev, "failed to scale to highest voltage %lu in proc_reg\n",
-+			opp_volt);
-+		goto out_remove_opp_table;
-+	}
-+
-+	passive_data = devm_kzalloc(dev, sizeof(*passive_data), GFP_KERNEL);
-+	if (!passive_data) {
-+		ret = -ENOMEM;
-+		goto out_remove_opp_table;
-+	}
-+
-+	passive_data->parent_type = CPUFREQ_PARENT_DEV;
-+	drv->devfreq = devm_devfreq_add_device(dev, &mtk_ccifreq_profile,
-+					       DEVFREQ_GOV_PASSIVE,
-+					       passive_data);
-+	if (IS_ERR(drv->devfreq)) {
-+		ret = -EPROBE_DEFER;
-+		dev_err(dev, "failed to add devfreq device: %ld\n",
-+			PTR_ERR(drv->devfreq));
-+		goto out_remove_opp_table;
-+	}
-+
-+	drv->opp_nb.notifier_call = mtk_ccifreq_opp_notifier;
-+	ret = dev_pm_opp_register_notifier(dev, &drv->opp_nb);
-+	if (ret) {
-+		dev_err(dev, "failed to register opp notifier: %d\n", ret);
-+		goto out_remove_opp_table;
-+	}
-+	return 0;
-+
-+out_remove_opp_table:
-+	dev_pm_opp_of_remove_table(dev);
-+
-+out_disable_cci_clk:
-+	clk_disable_unprepare(drv->cci_clk);
-+
-+out_free_resources:
-+	if (regulator_is_enabled(drv->proc_reg))
-+		regulator_disable(drv->proc_reg);
-+	if (drv->sram_reg && regulator_is_enabled(drv->sram_reg))
-+		regulator_disable(drv->sram_reg);
-+
-+	return ret;
-+}
-+
-+static int mtk_ccifreq_remove(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct mtk_ccifreq_drv *drv;
-+
-+	drv = platform_get_drvdata(pdev);
-+
-+	dev_pm_opp_unregister_notifier(dev, &drv->opp_nb);
-+	dev_pm_opp_of_remove_table(dev);
-+	clk_disable_unprepare(drv->cci_clk);
-+	regulator_disable(drv->proc_reg);
-+	if (drv->sram_reg)
-+		regulator_disable(drv->sram_reg);
-+
-+	return 0;
-+}
-+
-+static const struct mtk_ccifreq_platform_data mt8183_platform_data = {
-+	.min_volt_shift = 100000,
-+	.max_volt_shift = 200000,
-+	.proc_max_volt = 1150000,
-+};
-+
-+static const struct mtk_ccifreq_platform_data mt8186_platform_data = {
-+	.min_volt_shift = 100000,
-+	.max_volt_shift = 250000,
-+	.proc_max_volt = 1118750,
-+	.sram_min_volt = 850000,
-+	.sram_max_volt = 1118750,
-+};
-+
-+static const struct of_device_id mtk_ccifreq_machines[] = {
-+	{ .compatible = "mediatek,mt8183-cci", .data = &mt8183_platform_data },
-+	{ .compatible = "mediatek,mt8186-cci", .data = &mt8186_platform_data },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, mtk_ccifreq_machines);
-+
-+static struct platform_driver mtk_ccifreq_platdrv = {
-+	.probe	= mtk_ccifreq_probe,
-+	.remove	= mtk_ccifreq_remove,
-+	.driver = {
-+		.name = "mtk-ccifreq",
-+		.of_match_table = mtk_ccifreq_machines,
-+	},
-+};
-+module_platform_driver(mtk_ccifreq_platdrv);
-+
-+MODULE_DESCRIPTION("MediaTek CCI devfreq driver");
-+MODULE_AUTHOR("Jia-Wei Chang <jia-wei.chang@mediatek.com>");
-+MODULE_LICENSE("GPL v2");
--- 
-2.18.0
+I received some review outside of this mailing list telling me the error 
+path is incorrect for pm_runtime so I'll have a look at it before 
+sending a v6.
 
+Cheers,
+Quentin
