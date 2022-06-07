@@ -2,182 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F28A3540083
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 15:57:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD16D5400B5
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 16:06:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244935AbiFGN5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 09:57:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53356 "EHLO
+        id S245092AbiFGOGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 10:06:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244995AbiFGN4s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 09:56:48 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CD7E5B043A;
-        Tue,  7 Jun 2022 06:56:45 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.91,283,1647270000"; 
-   d="scan'208";a="122171377"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 07 Jun 2022 22:56:44 +0900
-Received: from localhost.localdomain (unknown [10.226.93.86])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id E3E8D4487B1A;
-        Tue,  7 Jun 2022 22:56:40 +0900 (JST)
-From:   Phil Edworthy <phil.edworthy@renesas.com>
-To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: [PATCH 1/2] dt-bindings: watchdog: renesas,wdt: Add r9a09g011 (RZ/V2M) support
-Date:   Tue,  7 Jun 2022 14:56:18 +0100
-Message-Id: <20220607135619.174110-2-phil.edworthy@renesas.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220607135619.174110-1-phil.edworthy@renesas.com>
-References: <20220607135619.174110-1-phil.edworthy@renesas.com>
+        with ESMTP id S245080AbiFGOGc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 10:06:32 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EBD77A456;
+        Tue,  7 Jun 2022 07:06:31 -0700 (PDT)
+X-UUID: a9a47d3a242d4318be3c2b9eb43b7a7e-20220607
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:b1113a88-ed15-414b-947b-840f974a7474,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:2a19b09,CLOUDID:417ef5e4-2ba2-4dc1-b6c5-11feb6c769e0,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:0,BEC:nil
+X-UUID: a9a47d3a242d4318be3c2b9eb43b7a7e-20220607
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <johnson.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 770820792; Tue, 07 Jun 2022 22:06:10 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Tue, 7 Jun 2022 22:06:06 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 7 Jun 2022 22:06:06 +0800
+From:   Johnson Wang <johnson.wang@mediatek.com>
+To:     <cw00.choi@samsung.com>, <krzk+dt@kernel.org>,
+        <robh+dt@kernel.org>, <kyungmin.park@samsung.com>
+CC:     <khilman@kernel.org>, <djakov@kernel.org>,
+        <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <jia-wei.chang@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Johnson Wang <johnson.wang@mediatek.com>
+Subject: [PATCH v7 0/2] Introduce MediaTek CCI devfreq driver
+Date:   Tue, 7 Jun 2022 22:05:54 +0800
+Message-ID: <20220607140556.6278-1-johnson.wang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the documentation for the r9a09g011 SoC, but in doing so also
-reorganise the doc to make it easier to read.
-Additionally, make the binding require an interrupt to be specified.
-Whilst the driver does not need an interrupt, all of the SoCs that use
-this binding actually provide one.
+The Cache Coherent Interconnect (CCI) is the management of cache
+coherency by hardware. CCI DEVFREQ is DVFS driver for power saving by
+scaling clock frequency and supply voltage of CCI. CCI uses the same
+input clock source and power rail as LITTLE CPUs on Mediatek SoCs.
 
-Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
-Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- .../bindings/watchdog/renesas,wdt.yaml        | 63 ++++++++++++-------
- 1 file changed, 42 insertions(+), 21 deletions(-)
+This series depends on:
+Chanwoo's repo: kernel/git/chanwoo/linux.git
+branch: devfreq-testing
+[1]: PM / devfreq: Export devfreq_get_freq_range symbol within devfreq
+[2]: PM / devfreq: Add cpu based scaling support to passive governor
+[3]: PM / devfreq: passive: Reduce duplicate code when passive_devfreq case
+[4]: PM / devfreq: passive: Update frequency when start governor
 
-diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-index a8d7dde5271b..6473734921e3 100644
---- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-@@ -31,6 +31,11 @@ properties:
-               - renesas,r9a07g054-wdt    # RZ/V2L
-           - const: renesas,rzg2l-wdt
- 
-+      - items:
-+          - enum:
-+              - renesas,r9a09g011-wdt    # RZ/V2M
-+          - const: renesas,rzv2m-wdt     # RZ/V2M
-+
-       - items:
-           - enum:
-               - renesas,r8a7742-wdt      # RZ/G1H
-@@ -70,13 +75,27 @@ properties:
-   reg:
-     maxItems: 1
- 
--  interrupts: true
-+  interrupts:
-+    minItems: 1
-+    items:
-+      - description: Timeout
-+      - description: Parity error
- 
--  interrupt-names: true
-+  interrupt-names:
-+    items:
-+      - const: wdt
-+      - const: perrout
- 
--  clocks: true
-+  clocks:
-+    minItems: 1
-+    items:
-+      - description: Register access clock
-+      - description: Main clock
- 
--  clock-names: true
-+  clock-names:
-+    items:
-+      - const: pclk
-+      - const: oscclk
- 
-   power-domains:
-     maxItems: 1
-@@ -89,6 +108,7 @@ properties:
- required:
-   - compatible
-   - reg
-+  - interrupts
-   - clocks
- 
- allOf:
-@@ -112,32 +132,31 @@ allOf:
-         compatible:
-           contains:
-             enum:
-+              - renesas,rzv2m-wdt
-               - renesas,rzg2l-wdt
-     then:
-       properties:
--        interrupts:
--          maxItems: 2
--        interrupt-names:
--          items:
--            - const: wdt
--            - const: perrout
-         clocks:
--          items:
--            - description: Register access clock
--            - description: Main clock
-+          minItems: 2
-         clock-names:
--          items:
--            - const: pclk
--            - const: oscclk
-+          minItems: 2
-       required:
-         - clock-names
--        - interrupt-names
--    else:
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,rzg2l-wdt
-+    then:
-       properties:
-         interrupts:
--          maxItems: 1
--        clocks:
--          maxItems: 1
-+          minItems: 2
-+        interrupt-names:
-+          minItems: 2
-+      required:
-+        - interrupt-names
- 
- additionalProperties: false
- 
-@@ -145,9 +164,11 @@ examples:
-   - |
-     #include <dt-bindings/clock/r8a7795-cpg-mssr.h>
-     #include <dt-bindings/power/r8a7795-sysc.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-     wdt0: watchdog@e6020000 {
-             compatible = "renesas,r8a7795-wdt", "renesas,rcar-gen3-wdt";
-             reg = <0xe6020000 0x0c>;
-+            interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
-             clocks = <&cpg CPG_MOD 402>;
-             power-domains = <&sysc R8A7795_PD_ALWAYS_ON>;
-             resets = <&cpg 402>;
+Changes in v7:
+- remove the 'ret' printing from dev_err_probe().
+
+Changes in v6:
+- Remove unnecessary "goto" statement.
+
+Changes in v5:
+- Modify some binding description.
+- Remove pre_voltage member.
+- Not to enable/disable intermediate clock.
+- Not to "put" resources that using devm_ variants.
+
+Resend v4:
+- CC interconnect maintainer.
+- Change sign-off sequence in commit message.
+
+Changes in v4:
+- Add a maintainer in the binding document.
+- Modify clock description.
+- Add binding document into MAINTAINERS.
+- Replace format specifier %d with %ld.
+
+Changes in v3:
+- Move binding document to 'interconnect' and rename it.
+- Add COMPILE_TEST dependence symbol.
+- Remove need_voltage_tracking variable.
+- Move mtk_ccifreq_voltage_tracking() code into mtk_ccifreq_set_voltage().
+- Add an interation limit in the while() loop.
+- Replace 'cci_dev' with 'dev'
+- Replace old_* with pre_*
+- Remove of_match_ptr()
+- Use module_platform_driver()
+
+Changes in v2:
+- Take MT8183 as example in binding document.
+- Use dev_err() instead of pr_err().
+- Use 'goto' statement to handle error case.
+- Clean up driver code.
+
+Johnson Wang (2):
+  dt-bindings: interconnect: Add MediaTek CCI dt-bindings
+  PM / devfreq: mediatek: Introduce MediaTek CCI devfreq driver
+
+ .../bindings/interconnect/mediatek,cci.yaml   | 140 ++++++
+ MAINTAINERS                                   |   1 +
+ drivers/devfreq/Kconfig                       |  10 +
+ drivers/devfreq/Makefile                      |   1 +
+ drivers/devfreq/mtk-cci-devfreq.c             | 474 ++++++++++++++++++
+ 5 files changed, 626 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interconnect/mediatek,cci.yaml
+ create mode 100644 drivers/devfreq/mtk-cci-devfreq.c
+
 -- 
-2.34.1
+2.18.0
 
