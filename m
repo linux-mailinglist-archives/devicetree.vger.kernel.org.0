@@ -2,73 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34E1F53FE53
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 14:08:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AFAD53FE54
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 14:08:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243458AbiFGMIJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 08:08:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51766 "EHLO
+        id S243469AbiFGMIO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 08:08:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243459AbiFGMIA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 08:08:00 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00FB685EC7;
-        Tue,  7 Jun 2022 05:07:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=4qZMNchScS18GtLOGLWv0/eb8j4kTognaJ3arI79b68=; b=4iwtUVJgmnOUhJuW7XtXYaN6SR
-        oht4um1BEjLyql/PwMCPfHBPqs6EcY2JvSHlTmQntqq2/dG+vuMyidipSjq2PjXlJs3Hexbky86wB
-        yiX45cR6qY3y0vGhaqBF3fwgfTcSDHhvbHp9Kfc/OCnQvgCV2AVoEEOOb+HiMVcIIkzk=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1nyXzf-005wiU-GQ; Tue, 07 Jun 2022 14:07:31 +0200
-Date:   Tue, 7 Jun 2022 14:07:31 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     20220515233047.531979-3-chris.packham@alliedtelesis.co.nz
-Cc:     robh+dt@kernel.org,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        krzysztof.kozlowski+dt@linaro.org, catalin.marinas@arm.com,
-        will@kernel.org, gregory.clement@bootlin.com,
-        sebastian.hesselbarth@gmail.com, kostap@marvell.com,
-        robert.marko@sartura.hr, vadym.kochan@plvision.eu,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v8 2/3] arm64: dts: marvell: Add Armada 98DX2530 SoC and
- RD-AC5X board
-Message-ID: <Yp8/g0m0xWiRmOq9@lunn.ch>
-References: <20220515233047.531979-3-chris.packham@alliedtelesis.co.nz>
- <20220607114936.GA18404@plvision.eu>
+        with ESMTP id S243470AbiFGMIF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 08:08:05 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34AF88BD10;
+        Tue,  7 Jun 2022 05:08:01 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D57FBB81F6F;
+        Tue,  7 Jun 2022 12:07:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF57EC385A5;
+        Tue,  7 Jun 2022 12:07:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654603678;
+        bh=nHE1DVu+fUv8cZvdfRHSwShQafvIqrXmQrldkvf66xI=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=GVpNCgxf7qma2p57EIyUvU1Gh2gVi9axDW/HpLX3095LCXZHX//UjwBQJZliZ46qo
+         Lnc/QBV6k43CJhH2ggACxmN0BEzWGyFrq1PMKBOvoghz/ZNPXM0Yn1iLuIKRjdnxFy
+         BJ0ftEyBLYHrt/WW/0qdnOxjKsOUKXdKVsq6SI78kfM6haSOw9UJerKV0udljYcuUn
+         tnOr+ALA6tzhbMW9+MfD4AYwJQ3GvNquE/wrg6Fagilk75rzVgmMCL62ssiutdKUia
+         K18LoG/mQLeciSYngVIih1YiDTY9JCyY1JSJHYU38WoHIsUS5qiRUWkemux1aSaTAl
+         txOTKtUalz4MA==
+From:   Mark Brown <broonie@kernel.org>
+To:     robh@kernel.org, briannorris@chromium.org, lee.jones@linaro.org,
+        lgirdwood@gmail.com, acourbot@nvidia.com,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20220606184310.1057797-1-robh@kernel.org>
+References: <20220606184310.1057797-1-robh@kernel.org>
+Subject: Re: [PATCH] regulator: dt-bindings: Convert pwm-regulator to DT schema
+Message-Id: <165460367660.763141.3678690822911695459.b4-ty@kernel.org>
+Date:   Tue, 07 Jun 2022 13:07:56 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220607114936.GA18404@plvision.eu>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 07, 2022 at 02:49:36PM +0300, Vadym Kochan wrote:
-> Hi All,
+On Mon, 6 Jun 2022 13:43:09 -0500, Rob Herring wrote:
+> Convert the pwm-regulator binding to DT schema format.
 > 
-> > arch/arm64/boot/dts/marvell/Makefile          |   1 +
-> > .../boot/dts/marvell/armada-98dx25xx.dtsi     | 297 ++++++++++++++++++
-> > .../boot/dts/marvell/armada-98dx35xx-rd.dts   | 101 ++++++
-> > .../boot/dts/marvell/armada-98dx35xx.dtsi     |  13 +
 > 
-> There is a proposal from the Marvell to replace "armada-" prefix to "ac5-" in DTS naming as there
-> is no much common with Armada SoC's.
 
-O.K. We can do this. But i hope it is not Marvell being lazy.
+Applied to
 
-I can also see an advantage of using armada-, since it makes it clear
-we are talking about mainline device tree files, not Marvell vendor
-device tree files. It is not given they will be compatible.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
-       Andrew
+Thanks!
+
+[1/1] regulator: dt-bindings: Convert pwm-regulator to DT schema
+      commit: a9369fd316cf3002642295250b6a52c4554aa74c
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
