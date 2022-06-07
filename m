@@ -2,60 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B97C5401BD
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 16:48:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8715754020C
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 17:03:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343534AbiFGOsS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 10:48:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47698 "EHLO
+        id S239032AbiFGPDn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 11:03:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343556AbiFGOsP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 10:48:15 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3235DF505A;
-        Tue,  7 Jun 2022 07:48:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1654613287; x=1686149287;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=CZJWqgxwvCwWXufhzXjvG8+KNQ3coiyjK70Ldxx9G9E=;
-  b=v4YPhuRvhbk+iVklklPkEH+HMQ0D+ARun/qc3ich/TIAETNAbEi3S9+S
-   3fstZAw67QjvVc1g+0kJY9tqKpQ2ha5bBI/HWABQG6Fwa5A4M9Q2Zlp2j
-   clPbJmFwvfZXLM67dWf30tZsFezdZMKhXiHLGUGg5kmFnZmhpM405Q/6z
-   mlhbUX7PDasRMM6rJsDvYvjpAbiUV+8ekBswiyCXXCxDnCNAQgM4zT3WD
-   ZYJ0lK/gDVwqi4ofaCO1OO7vebKbDpHbqzjLYuDHwWMjh8KsUo6jus9t5
-   /oNGZpPWPOyeo/xOp8jkPHPKMMEpRt5A35qivLs1TT7cef4RO4Z+6KBj+
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.91,284,1647327600"; 
-   d="scan'208";a="162250883"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Jun 2022 07:48:06 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Tue, 7 Jun 2022 07:48:04 -0700
-Received: from kavya-HP-Compaq-6000-Pro-SFF-PC.microchip.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Tue, 7 Jun 2022 07:48:01 -0700
-From:   Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-To:     <krzysztof.kozlowski+dt@linaro.org>, <nicolas.ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <kavyasree.kotagiri@microchip.com>,
-        <UNGLinuxDriver@microchip.com>
-Subject: [PATCH v2 3/3] mfd: atmel-flexcom: Add support for lan966x flexcom chip-select configuration
-Date:   Tue, 7 Jun 2022 20:17:40 +0530
-Message-ID: <20220607144740.14937-4-kavyasree.kotagiri@microchip.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220607144740.14937-1-kavyasree.kotagiri@microchip.com>
-References: <20220607144740.14937-1-kavyasree.kotagiri@microchip.com>
+        with ESMTP id S1343803AbiFGPDn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 11:03:43 -0400
+Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F33754C788;
+        Tue,  7 Jun 2022 08:03:41 -0700 (PDT)
+Received: by mail-il1-f171.google.com with SMTP id h18so14410758ilj.7;
+        Tue, 07 Jun 2022 08:03:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=UNKzlkx0zpGiRwZkuCDlK4Dewwo3rZNjJ0z5GnzZn/M=;
+        b=zhufxe838KlflSHQewH9Qy32MMnlxopUfPARFudMhS1fpVUix+MsfR1agfC2iUGLuw
+         dgZIVMHfZQpOHJvTuBsPE3lg7T76HoPrfOnwrXO5WRu8RFZFKxSVGZsqUj+LoiEYiAGH
+         telxJpQNwAAJ8ku+G5LB7KN66GftO7aMyNup/PR0CoLf3QEVEWdpkC5ZNRtnw8KuRdNL
+         MK0Fac9ZW9wKSOzFWHLlHxOodOQG1XHSIkaZxtFnK9q8MAsCDfowd6IRi4HZCD25BPc/
+         QOeRvfTHFAb1/0pybhMP5x1baAiBt2g3vM0CqS3Phr9yKof5mhJebrzBep9L8qRv7th8
+         QY1g==
+X-Gm-Message-State: AOAM533a+Twy6YlrBYhjA1dhZFGTCSvyDX/DyUHyS/oKvuES2ULuwp/Q
+        ZTo9Zh0VKUpToXZxmnB03A==
+X-Google-Smtp-Source: ABdhPJyyGevfYzoesUjlKy26l6DER5X3JuiJkpM5mXxGu5oCZUr9aNH5N1Fmt+iapjPA2aimr2L/oQ==
+X-Received: by 2002:a92:3609:0:b0:2c6:3595:2a25 with SMTP id d9-20020a923609000000b002c635952a25mr17174689ila.233.1654614220999;
+        Tue, 07 Jun 2022 08:03:40 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id i7-20020a02a0c7000000b0032e5417e910sm6697973jah.12.2022.06.07.08.03.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Jun 2022 08:03:40 -0700 (PDT)
+Received: (nullmailer pid 3246236 invoked by uid 1000);
+        Tue, 07 Jun 2022 15:03:38 -0000
+Date:   Tue, 7 Jun 2022 09:03:38 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Heinrich Schuchardt <xypron.glpk@gmx.de>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH] dt-bindings: input: Convert adc-keys to DT schema
+Message-ID: <20220607150338.GA3189983-robh@kernel.org>
+References: <20220606184243.1057145-1-robh@kernel.org>
+ <7657a50f-20c0-9ad0-aecb-5b3e71feb18c@gmx.de>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7657a50f-20c0-9ad0-aecb-5b3e71feb18c@gmx.de>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,149 +65,144 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-LAN966x SoC have 5 flexcoms. Each flexcom has 2 chip-selects.
-For each chip select of each flexcom there is a configuration
-register FLEXCOM_SHARED[0-4]:SS_MASK[0-1]. The width of
-configuration register is 21 because there are 21 shared pins
-on each of which the chip select can be mapped. Each bit of the
-register represents a different FLEXCOM_SHARED pin.
+On Tue, Jun 07, 2022 at 09:48:33AM +0200, Heinrich Schuchardt wrote:
+> On 6/6/22 20:42, Rob Herring wrote:
+> > Convert the adc-keys binding to DT schema format.
+> > 
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> >   .../devicetree/bindings/input/adc-keys.txt    |  67 ------------
+> >   .../devicetree/bindings/input/adc-keys.yaml   | 103 ++++++++++++++++++
+> >   2 files changed, 103 insertions(+), 67 deletions(-)
+> >   delete mode 100644 Documentation/devicetree/bindings/input/adc-keys.txt
+> >   create mode 100644 Documentation/devicetree/bindings/input/adc-keys.yaml
 
-Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
----
-v1 -> v2:
- - use GENMASK for mask, macros for maximum allowed values.
- - use u32 values for flexcom chipselects instead of strings.
- - disable clock in case of errors.
+> > -+--------------------------------+------------------------+
+> > diff --git a/Documentation/devicetree/bindings/input/adc-keys.yaml b/Documentation/devicetree/bindings/input/adc-keys.yaml
+> > new file mode 100644
+> > index 000000000000..a3a1af9550bc
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/input/adc-keys.yaml
+> > @@ -0,0 +1,103 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/input/adc-keys.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: ADC attached resistor ladder buttons
+> > +
+> > +maintainers:
+> > +  - Heinrich Schuchardt <xypron.glpk@gmx.de>
+> 
+> Thanks for converting to yaml.
+> 
+> I only contributed a single patch. I am not a maintainer. Please, remove
+> that line.
 
- drivers/mfd/atmel-flexcom.c | 93 ++++++++++++++++++++++++++++++++++++-
- 1 file changed, 92 insertions(+), 1 deletion(-)
+Okay.
 
-diff --git a/drivers/mfd/atmel-flexcom.c b/drivers/mfd/atmel-flexcom.c
-index 33caa4fba6af..ac700a85b46f 100644
---- a/drivers/mfd/atmel-flexcom.c
-+++ b/drivers/mfd/atmel-flexcom.c
-@@ -28,15 +28,68 @@
- #define FLEX_MR_OPMODE(opmode)	(((opmode) << FLEX_MR_OPMODE_OFFSET) &	\
- 				 FLEX_MR_OPMODE_MASK)
- 
-+/* LAN966x flexcom shared register offsets */
-+#define FLEX_SHRD_SS_MASK_0	0x0
-+#define FLEX_SHRD_SS_MASK_1	0x4
-+#define FLEX_SHRD_PIN_MAX	20
-+#define FLEX_CS_MAX		1
-+#define FLEX_SHRD_MASK		GENMASK(20, 0)
-+
-+struct atmel_flex_caps {
-+	bool has_flx_cs;
-+};
-+
- struct atmel_flexcom {
- 	void __iomem *base;
-+	void __iomem *flexcom_shared_base;
- 	u32 opmode;
- 	struct clk *clk;
- };
- 
-+static int atmel_flexcom_lan966x_cs_config(struct platform_device *pdev)
-+{
-+	struct atmel_flexcom *ddata = dev_get_drvdata(&pdev->dev);
-+	struct device_node *np = pdev->dev.of_node;
-+	u32 flx_shrd_pins[2], flx_cs[2], val;
-+	int err, i, count;
-+
-+	count = of_property_count_u32_elems(np, "microchip,flx-shrd-pins");
-+	if (count <= 0 || count > 2) {
-+		dev_err(&pdev->dev, "Invalid %s property (%d)\n", "flx-shrd-pins",
-+				count);
-+		return -EINVAL;
-+	}
-+
-+	err = of_property_read_u32_array(np, "microchip,flx-shrd-pins", flx_shrd_pins, count);
-+	if (err)
-+		return err;
-+
-+	err = of_property_read_u32_array(np, "microchip,flx-cs", flx_cs, count);
-+	if (err)
-+		return err;
-+
-+	for (i = 0; i < count; i++) {
-+		if (flx_shrd_pins[i] > FLEX_SHRD_PIN_MAX)
-+			return -EINVAL;
-+
-+		if (flx_cs[i] > FLEX_CS_MAX)
-+			return -EINVAL;
-+
-+		val = ~(1 << flx_shrd_pins[i]) & FLEX_SHRD_MASK;
-+
-+		if (flx_cs[i] == 0)
-+			writel(val, ddata->flexcom_shared_base + FLEX_SHRD_SS_MASK_0);
-+		else
-+			writel(val, ddata->flexcom_shared_base + FLEX_SHRD_SS_MASK_1);
-+	}
-+
-+	return 0;
-+}
-+
- static int atmel_flexcom_probe(struct platform_device *pdev)
- {
- 	struct device_node *np = pdev->dev.of_node;
-+	const struct atmel_flex_caps *caps;
- 	struct resource *res;
- 	struct atmel_flexcom *ddata;
- 	int err;
-@@ -76,13 +129,51 @@ static int atmel_flexcom_probe(struct platform_device *pdev)
- 	 */
- 	writel(FLEX_MR_OPMODE(ddata->opmode), ddata->base + FLEX_MR);
- 
-+	caps = of_device_get_match_data(&pdev->dev);
-+	if (!caps) {
-+		dev_err(&pdev->dev, "Could not retrieve flexcom caps\n");
-+		clk_disable_unprepare(ddata->clk);
-+		return -EINVAL;
-+	}
-+
-+	if (caps->has_flx_cs) {
-+		ddata->flexcom_shared_base = devm_platform_get_and_ioremap_resource(pdev, 1, NULL);
-+		if (IS_ERR(ddata->flexcom_shared_base)) {
-+			clk_disable_unprepare(ddata->clk);
-+			return dev_err_probe(&pdev->dev,
-+					PTR_ERR(ddata->flexcom_shared_base),
-+					"failed to get flexcom shared base address\n");
-+		}
-+
-+		err = atmel_flexcom_lan966x_cs_config(pdev);
-+		if (err) {
-+			clk_disable_unprepare(ddata->clk);
-+			return err;
-+		}
-+	}
-+
- 	clk_disable_unprepare(ddata->clk);
- 
- 	return devm_of_platform_populate(&pdev->dev);
- }
- 
-+static const struct atmel_flex_caps atmel_flexcom_caps = {};
-+
-+static const struct atmel_flex_caps lan966x_flexcom_caps = {
-+	.has_flx_cs = true,
-+};
-+
- static const struct of_device_id atmel_flexcom_of_match[] = {
--	{ .compatible = "atmel,sama5d2-flexcom" },
-+	{
-+		.compatible = "atmel,sama5d2-flexcom",
-+		.data = &atmel_flexcom_caps,
-+	},
-+
-+	{
-+		.compatible = "microchip,lan966x-flexcom",
-+		.data = &lan966x_flexcom_caps,
-+	},
-+
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, atmel_flexcom_of_match);
--- 
-2.17.1
+> scripts/get_maintainer.pl
+> Documentation/devicetree/bindings/input/adc-keys.txt yields
+> Dmitry Torokhov <dmitry.torokhov@gmail.com> (maintainer:INPUT (KEYBOARD,
+> MOUSE, JOYSTICK, TOUCHSCREEN)...)
 
+The maintainer here is supposed to be someone that cares about this 
+particular binding, not who applies patches. IOW, who would care if the 
+binding was deleted.
+
+> It would be preferable to have a single reference point for
+> maintainership: file /MAINTAINERS.
+
+There's 2 main reasons why it is not. MAINTAINERS doesn't work for the 
+DT only tree we generate[1]. Second, having an entry in MAINTAINERS 
+for bindings is not consistent. With it in the schema, I don't have to 
+check, the tools do it for me.
+
+> > +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/input/input.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: adc-keys
+> > +
+> > +  io-channels:
+> > +    maxItems: 1
+> 
+> Please, add a description to each property.
+
+Common properties don't get descriptions unless there is something 
+specific about this binding to say. What would that be?
+
+ 
+> > +  io-channel-names:
+> > +    const: buttons
+> > +
+> > +  keyup-threshold-microvolt:
+> > +    description:
+> > +      Voltage above or equal to which all the keys are considered up.
+> > +
+> > +patternProperties:
+> > +  '^button-':
+> > +    type: object
+> > +    additionalProperties: false
+> > +    description:
+> > +      Each button (key) is represented as a sub-node.
+> > +
+> > +    properties:
+> > +      label: true
+> 
+> Please, add a description.
+
+No, common property.
+
+> > +      linux,code:
+> > +        description: Keycode to emit.
+> > +        $ref: /schemas/types.yaml#/definitions/uint32
+> 
+> Unfortunately usable values are only defined in
+> include/uapi/linux/input-event-codes.h up to now. Please, consider
+> adding that link to the description.
+
+linux,code is common for lots of bindings, so really the type, 
+description, and any common constraints need to be documented somewhere 
+common. I'm not sure if input.yaml makes sense given that includes a 
+bunch of other properties.
+
+> It is unclear to me if using values above KEY_MAX (=0x2ff) could make
+> sense of should be forbidden by this yaml file.
+
+Shrug. I have no idea.
+
+> For interoperability of device-trees with other operating systems we
+> should have a yaml file defining an enum with used values and their meaning.
+
+Certainly, but that's an orthogonal issue.
+
+> > +
+> > +      press-threshold-microvolt:
+> > +        description:
+> > +          Voltage above or equal to which this key is considered pressed. No
+> > +          two values of press-threshold-microvolt may be the same. All values
+> > +          of press-threshold-microvolt must be less than
+> > +          keyup-threshold-microvolt.
+> > +
+> > +    required:
+> > +      - label
+> 
+> Property label is not used in our the driver code. It only exists for
+> human readability. Why is it marked as required? Stripping the labels
+> would reduce the DT size.
+
+From the original:
+
+> > -Required subnode-properties:
+> > -	- label: Descriptive name of the key.
+
+But I'll drop it.
+
+Rob
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/devicetree/devicetree-rebasing.git/tree/
