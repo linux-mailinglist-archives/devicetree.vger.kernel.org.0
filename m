@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 089CA54248D
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 08:52:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C9485423D3
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 08:51:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351504AbiFHAsx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 20:48:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48694 "EHLO
+        id S1378993AbiFHAt2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 20:49:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1835726AbiFGX4u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 19:56:50 -0400
-Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8D04154349
-        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 16:29:06 -0700 (PDT)
-Received: by mail-qk1-x72f.google.com with SMTP id 68so5942580qkk.9
-        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 16:29:06 -0700 (PDT)
+        with ESMTP id S1839315AbiFHAC5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 20:02:57 -0400
+Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 163AC9FEF
+        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 16:52:34 -0700 (PDT)
+Received: by mail-qk1-x72e.google.com with SMTP id bi27so7850423qkb.10
+        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 16:52:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=FiG/Hud81dwYwv++beYl18TZSvKyeM5nOEBoDQXc/3k=;
-        b=Mhd6cpCaYW2Tl9OtEjwkeQyhLh8AP+YBY8ohGYJRJEdwgvp9n5japd0qSF3K7ob11Q
-         BZQzSwqd0ed8DunZ5Yq4By8en7g2y5YtH/Homnn6/QyOy4Jh5dMNYD0xxXUrlg2R0YOt
-         VSi+8B3al9Gl19aXHSB3Zw/oU4PzIAOoLRIeS3ymUQb3becgGH8C+waoXnX7MoFChAUi
-         QzSAYSEvNxpkdsTMB/lwDDMovbmZcAjGanIX5mh5RtEdVlzDF67Uutz5OzBSPIvp9ERX
-         4YjM0t4ARG6gxXmfL2SCnKJwkGC79J1x+1mMQA1rY2ZUIgjq3UVifYVey3cU0Vw5l6II
-         jGPA==
+        bh=I5bIA8RovZ0OK8PNlEOCrd8XWvxVcrOKgYX0lsRMHs0=;
+        b=KTfI2qFLJ+aAHRXp1Fk+G2auRh0YeaY5jKt5RMRNbLOXBXdmxmYzqTIxcyN30yQGQ2
+         8LzXgVmswee+4+r5DbL0cYffY4N1/883lIpTOTb9kcIz4fuphFY0SLktL7tMOT4ZIxU4
+         rwQw+qwo4XLB9tGwHE2Nt66zTrt1EzBj7QECltOIVKwaLsQ0UR+nrIlp/jVCb8ok2/nM
+         mlU2WxBH23u09BZK+VG8vbgdQ1bgp5TnNEJlyTCr7R99ZgnPzm2D0gZ7uUON6m+DJm+S
+         38PrqlVvCEMzw6Ao8zd+u8m6KN3ITXaZdnxxNMt0OwvV4R7KNAedS7CQKML09xH+71he
+         Piwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=FiG/Hud81dwYwv++beYl18TZSvKyeM5nOEBoDQXc/3k=;
-        b=Q7LXksEK/DrNLz/iCqqE4QEDBIwXTScmY/BDQlwYL5XJWgYixjuK1mVK3hT8/OUbPX
-         iPcrgxicVheUdw67Cg6NGZ0tf9UwcujdFc1Y0QfccEZQpUtiDX8V9ucCwCR5wCEkzfcL
-         uxUbetomZUTouc8tUCBNzdbd2eFwBRO62NjyIpe+DmjHdngI2KWm5Aza2AEe7uTmPQBV
-         z6A8va1umKstv/TXNPQewvUHoT1lnbb8cbw3Q0IDDdCds0tri0UkFzCzUumN/QWnLtVq
-         vh2Z0PxUkpftfMMP+orxnM0JPvioge6wftynhHW+515oD+6+BVhqTJBUYiTJ/iNaoZyx
-         0dpQ==
-X-Gm-Message-State: AOAM531JB1UZkkKpkq/W1K9VmGbfQ/3aMTjPVH33XAWi3RPTe6NSKDlj
-        q53ULvl+wSMNNh6x90EEzg2JPp2bgzP9rsEq6d1Daw==
-X-Google-Smtp-Source: ABdhPJwwRGTBBD5DqoWSE8LyFQtfkj3/fAdtxJwR2bzfmzzNtNXVVBWyuAU1DMg4twFQYPKztB8GkiUIAIASkkTukhY=
-X-Received: by 2002:a05:620a:4156:b0:6a6:f8d2:6d9e with SMTP id
- k22-20020a05620a415600b006a6f8d26d9emr1947955qko.30.1654644545911; Tue, 07
- Jun 2022 16:29:05 -0700 (PDT)
+        bh=I5bIA8RovZ0OK8PNlEOCrd8XWvxVcrOKgYX0lsRMHs0=;
+        b=B1gBqS8Uw8WQhX0LWIU+nh/QeogliL4P92KtKFso0rt/fuIIYNVN+YJI8ISwTJRQpT
+         pg6d4c6RX0Xd5FE7rogHF9JoxYJwpQw3hs3Nipx49NT4Lfbeiq7BYZgUf50TGazvIo3O
+         x1xGz35eocShLKM8qGCqTFxi6/MbVIHw1yXmvKZSWSYCj5XRdALnpWKXHpH9o4I91eM6
+         aG78hXbJxW0nr4nkPT3Ipfpt4Kq9Rac93ARq72Kix8jwR4xodtEezlLACyrP+CNOw1/C
+         qf3kuHmJ+uH4xtP8dzMC9Yu0wURZGmSF9n6Dx/Os0367KIgEeaQStF1way9YBH7oteps
+         Ryxw==
+X-Gm-Message-State: AOAM531fn/QLXNI+D64vwWSrRrcAYtxpt63vK20yZzeQWGxndrUk0zMy
+        TQJXRIr0+zNU6GanLJx7e3cwmTVn6G8q7U3UL5UkWQ==
+X-Google-Smtp-Source: ABdhPJx9OS3WgJ7xFZVSzzuFy/GVj77eWoUolgeKliH+N0347n1Xtkzr+MVR+jabfBeySi2RA42Y4jrUEpLCwgNrh5s=
+X-Received: by 2002:a05:620a:4311:b0:67e:8a0f:4cd5 with SMTP id
+ u17-20020a05620a431100b0067e8a0f4cd5mr21887718qko.363.1654645953166; Tue, 07
+ Jun 2022 16:52:33 -0700 (PDT)
 MIME-Version: 1.0
 References: <20220607213543.4057620-1-bjorn.andersson@linaro.org>
  <20220607213543.4057620-4-bjorn.andersson@linaro.org> <d9658f54-e594-8f0e-071e-ef627285d281@linaro.org>
  <Yp/ZkxNltUgE79nC@ripper>
 In-Reply-To: <Yp/ZkxNltUgE79nC@ripper>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Wed, 8 Jun 2022 02:28:54 +0300
-Message-ID: <CAA8EJppTa88Rbo5R1SbycfvpPMAB18DXPd_iGJ_M+swE9KBv2Q@mail.gmail.com>
+Date:   Wed, 8 Jun 2022 02:52:22 +0300
+Message-ID: <CAA8EJppSKfWXoNhqj+XOVV18P+uP=5fo7kaOGNWdYnN-NH8xNw@mail.gmail.com>
 Subject: Re: [PATCH v2 3/5] phy: qcom-qmp: Add USB4 5NM QMP combo PHY registers
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>
 Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
@@ -64,7 +64,7 @@ Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -137,90 +137,38 @@ On Wed, 8 Jun 2022 at 02:02, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
 > different naming scheme for the ones that doesn't match the existing
 > constants - when we could just use the autogenerated files that exist in
 > the downstream kernels.
->
-> [..]
-> > > +#define USB43DP_V5_5NM_QSERDES_TXA_DEBUG_BUS1                              0xf0
-> > > +#define USB43DP_V5_5NM_QSERDES_TXA_DEBUG_BUS2                              0xf4
-> > > +#define USB43DP_V5_5NM_QSERDES_TXA_DEBUG_BUS3                              0xf8
-> > > +#define USB43DP_V5_5NM_QSERDES_TXA_TX_BKUP_RO_BUS                  0xfc
-> >
-> > QSERDES_V5_20_TX_foo ? This looks compatible with the 4 registers that we
-> > have in the header, but I can not verify the rest of registers
-> >
->
-> Exactly the point I was making in my reply to the other patch.
->
-> Per the documentation this is version 5.0.0, but these register offsets
-> happens to match the 5.20 defines that we have...
->
-> > > +
-> > > +/* Module: USB43DP_QSERDES_RXA_USB43DP_QSERDES_RXA_USB4_USB3_DP_QMP_RX */
-> [..]
-> > > +#define USB43DP_V5_5NM_QSERDES_RXA_RX_BKUP_READ_BUS3_STATUS                0x3e8
->
-> And these, doesn't match either V5 or V5_20.
 
-Yes, I guessed so.
+I decided that I should write more about it. My main issue with using
+downstream tables is that we end up with tons of repetitive defines.
+Each chip generation would bring 2-4 sets of tables, wouldn't it? This
+can easily become an unsupported beast.
+I'd propose to follow the opposite path. Let's split the existing
+tables on a per-generation, per-region basis. Yes, we'd end up with
+tens of the header files. However then when new generation arrives, we
+can split corresponding header files on a region-by-region basis, and
+compare each region with existing tables. If the region matches, use
+it. If it does not, create a new header. Yes, I can do this for the
+existing header as a continuation of the QMP split saga, if everybody
+agrees that this is a good path.
 
->
-> [..]
-> > > +#define USB43DP_V5_5NM_QSERDES_TXB_TX_BKUP_RO_BUS                  0xfc
-> >
-> > What is the difference between _TXA_ and _TXB_ ?
-> >
->
-> Nothing, I just don't want us to mess around with these files if we can
-> get them dumped from the register documentation.
+You can ask, why do I suggest such a scheme? Because it looks like the
+lowest common scheme. If we check downstream, we have USB/USB+DP with
+huge autogenerated tables. Then comes UFS, which mostly follows naming
+of the phy-qcom-qmp.h.
 
-Well, you still had the register offsets adjusted, hadn't you? I think
-we can also apply sed to convert the names and then check if they
-match the existing headers or not. If they do not, create a new
-prefix, repeat, etc.
+And the last one is a PCIe. I do not know about the sc8280xp, but for
+the rest of the platforms we do not have register names at all. When I
+was porting the SM8450 PCIe PHY support, I had to guess the correct
+generation beforehand. With just 5 QSERDES_COM_ namespaces, guessing
+is easy. If  we had separate namespaces for the UFS and for several
+USB PHY instances, guessing would be next to impossible. And then
+creating a correct table would also be impossible. Well, as long as we
+do not accept tables without register names.
 
->
-> > > +
-> [..]
-> > > +
-> > > +/* Module: USB3_PCS_MISC_USB3_PCS_MISC_USB3_PCS_MISC */
-> > > +#define USB3_V5_5NM_PCS_MISC_TYPEC_CTRL                                    0x00
-> > > +#define USB3_V5_5NM_PCS_MISC_TYPEC_PWRDN_CTRL                              0x04
-> > > +#define USB3_V5_5NM_PCS_MISC_PCS_MISC_CONFIG1                              0x08
-> > > +#define USB3_V5_5NM_PCS_MISC_CLAMP_ENABLE                          0x0c
-> > > +#define USB3_V5_5NM_PCS_MISC_TYPEC_STATUS                          0x10
-> > > +#define USB3_V5_5NM_PCS_MISC_PLACEHOLDER_STATUS                            0x14
-> >
-> > QPHY_V4_PCS_MISC (or v5)
-> >
->
-> Perhaps, but then we're just making up those prefixes and hoping for the
-> best.
->
-> [..]
-> > > +#define USB3_V5_5NM_PCS_EQ_CONFIG2                                 0x1e0
-> > > +#define USB3_V5_5NM_PCS_EQ_CONFIG3                                 0x1e4
-> > > +#define USB3_V5_5NM_PCS_EQ_CONFIG4                                 0x1E8
-> > > +#define USB3_V5_5NM_PCS_EQ_CONFIG5                                 0x1EC
-> >
-> > This looks like both QPHY_V4_PCS and QPHY_V5_PCS. Most probably we should
-> > merge them together and add these defines.
-> >
->
-> Exactly, all these defines looks like defines we already have and if you
-> pick the wrong one you end up with things not working - or in my case
-> something that worked sometimes.
->
-> > > +
-> > > +/* Module: USB3_PCS_USB3_USB3_PCS_USB3_USB3_PCS_USB3 */
-> [..]
-> > > +#define USB3_V5_5NM_PCS_USB3_RXTERMINATION_DLY_SEL                 0x60
-> >
-> > Again, QPHY_V5_PCS_USB w/o the 0x300 offset
-> >
->
-> Yeah, that extra region needs to be added to the binding and driver.
+Thus I think we should resort to using a single naming scheme rather
+than following downstream here. If you dislike existing
+QSERDES_Vn/QPHY_Vn, let's come up with something more sensible.
 
-We can add it to the driver first (and just make it as an offset from pcs).
-
--- 
+--
 With best wishes
 Dmitry
