@@ -2,61 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 526B55400E5
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 16:11:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 231355400FA
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 16:13:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245164AbiFGOLr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 10:11:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59176 "EHLO
+        id S235219AbiFGOM6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 10:12:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245197AbiFGOLq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 10:11:46 -0400
+        with ESMTP id S233115AbiFGOM6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 10:12:58 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F18DA501E;
-        Tue,  7 Jun 2022 07:11:45 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1F8F19E;
+        Tue,  7 Jun 2022 07:12:56 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E81C26157B;
-        Tue,  7 Jun 2022 14:11:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31A53C385A5;
-        Tue,  7 Jun 2022 14:11:37 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DF81461578;
+        Tue,  7 Jun 2022 14:12:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15294C385A5;
+        Tue,  7 Jun 2022 14:12:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654611104;
-        bh=letTzTlIdmYyCQr3t4i/4sQ++BrVupVi397GE8M9uvI=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=ZmrXJqh5VhK6LBrkWuZLcZPb6LB/aKqB7VgbxKHQ5EKdRZGn1B/UtUl37J/VZlncM
-         XaKVqUs9/CrLhurHZmfQE4ZHromAzF5QHFhfcePHGAZt6gJN4oXn1Jgu9OhytNBGsZ
-         Dpp8c39jiY4Y6vji5iZNzY0BkjvDT9oCjsHIgHSItTWWl1ZaFW8x1MWtKzh54+Jsmx
-         MgLY2ScRWCz28NxqLMnfdu2v0uWPvoMrX/y8LVhRzTo8e9BmO+8kP0GacNDIRYfLCx
-         +YjXzNg0JjEvKZfsqCZP5oIjyElXDN9wiUZpKQTLYg3m4X5qyHVoxoSHYehWp506BX
-         a+HtETwbE/zkg==
-From:   Mark Brown <broonie@kernel.org>
-To:     linux-doc@vger.kernel.org, corbet@lwn.net, mchehab@kernel.org
-Cc:     linux@roeck-us.net, linux-cachefs@redhat.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dave.hansen@linux.intel.com, linux-samsung-soc@vger.kernel.org,
-        geert@linux-m68k.org, ulf.hansson@linaro.org, hpa@zytor.com,
-        alsa-devel@alsa-project.org, linux-m68k@lists.linux-m68k.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        bcm-kernel-feedback-list@broadcom.com, kvm@vger.kernel.org,
-        mingo@redhat.com, mchehab+huawei@kernel.org, jdelvare@suse.com,
-        robh+dt@kernel.org, linux-gpio@vger.kernel.org, rafael@kernel.org,
-        linux-mmc@vger.kernel.org, federico.vaga@vaga.pv.it, bp@alien8.de,
-        linux-phy@lists.infradead.org, mmayer@broadcom.com,
-        keyrings@vger.kernel.org, x86@kernel.org,
-        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        alim.akhtar@samsung.com, Viresh Kumar <viresh.kumar@linaro.org>,
-        linux-pm@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        jarkko@kernel.org, tglx@linutronix.de, linus.walleij@linaro.org
-In-Reply-To: <cover.1654529011.git.mchehab@kernel.org>
-References: <cover.1654529011.git.mchehab@kernel.org>
-Subject: Re: (subset) [PATCH 00/23] Update Documentation/ cross-references
-Message-Id: <165461109692.1597191.11390741473240531333.b4-ty@kernel.org>
-Date:   Tue, 07 Jun 2022 15:11:36 +0100
+        s=k20201202; t=1654611175;
+        bh=tOlTuXrCdHXR6tngcOYuj9xb6Z7sf9Xjv7iA3sFggYc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=KH4AWZwnRnDjxQDeZmq+Cmgtn6CDh5+jO2Zb7+EQMAhBVKoINQHyhMuThDfmevcBt
+         ZTDUUyjmeiOD4Tibu/IbzEYR2NAYUYA59os4W+XauvN7beQS/xos5AiLJDnwVrndUB
+         rM5amS1fGMBjy59vEfHyiqOmGRTu9UYaqMyg/YOisI7Va9vKbs3Qac9qJhRxKkexml
+         aU8UhPgCJH+avMFetQh4PoMZ0XdyT5aMEOm1EY4vsbeKaZ9Hwl8hfcWkqD8AjYVwK9
+         ukNPlmqK55f0NoRDtDaBQC0MTDoeqZPUvqzfB4UPasrcLeVxKToaglkKnnAk9WRCro
+         RPY6qgXxQqaTw==
+Date:   Tue, 7 Jun 2022 19:42:42 +0530
+From:   Manivannan Sadhasivam <mani@kernel.org>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-mtd@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] dt-bindings: mtd: qcom_nandc: document
+ qcom,boot-pages binding
+Message-ID: <20220607141242.GA1882@thinkpad>
+References: <20220519190112.6344-1-ansuelsmth@gmail.com>
+ <20220519190112.6344-3-ansuelsmth@gmail.com>
+ <20220607091522.GB5410@thinkpad>
+ <629f3127.1c69fb81.2590d.39ac@mx.google.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <629f3127.1c69fb81.2590d.39ac@mx.google.com>
 X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -67,40 +65,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 6 Jun 2022 16:25:22 +0100, Mauro Carvalho Chehab wrote:
-> There were a number of DT binding conversions and other docs change that
-> were not updated. Address them, in order to keep the cross-references on
-> a sane state.
+On Tue, Jun 07, 2022 at 09:05:16AM +0200, Ansuel Smith wrote:
+> On Tue, Jun 07, 2022 at 02:45:22PM +0530, Manivannan Sadhasivam wrote:
+> > On Thu, May 19, 2022 at 09:01:12PM +0200, Ansuel Smith wrote:
+> > > Document new qcom,boot-pages binding used to apply special
+> > > read/write configuration to boot pages.
+> > > 
+> > > QCOM apply a special configuration where spare data is not protected
+> > > by ECC for some special pages (used for boot partition). Add
+> > > Documentation on how to declare these special pages.
+> > > 
+> > > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> > > ---
+> > >  .../devicetree/bindings/mtd/qcom,nandc.yaml   | 26 +++++++++++++++++++
+> > >  1 file changed, 26 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
+> > > index 84ad7ff30121..a59ae9525f4e 100644
+> > > --- a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
+> > > +++ b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
+> > > @@ -102,6 +102,30 @@ allOf:
+> > >              - const: rx
+> > >              - const: cmd
+> > >  
+> > > +  - if:
+> > > +      properties:
+> > > +        compatible:
+> > > +          contains:
+> > > +            enum:
+> > > +              - qcom,ipq806x-nand
+> > > +
+> > > +    then:
+> > > +      properties:
+> > > +        qcom,boot-pages:
+> > 
+> > Eventhough the page layout is what making the difference, here the boot
+> > partition offset and size are getting specified. So how about, changing it
+> > to "qcom,boot-partitions"?
+> > 
+> > Thanks,
+> > Mani
+> >
 > 
-> Patch series is against v5.19-rc1 (and applies cleanly on the top of
-> today's -next).
+> Yep, you are correct and the naming is confusing. Will do the change.
+> Did you check the code if you notice something to improve / an idea of a
+> better implementation or better naming?
+> Just to skip sending multiple revision with small changes.
 > 
-> [...]
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[22/23] ASoC: wm8731: update wlf,wm8731.yaml reference
-        commit: 69c8027c5ff43d68449fda4510a8cce70e8578b0
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Yep, I do have some comments. Will share them.
 
 Thanks,
-Mark
+Mani
+
+> > > +          $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > > +          items:
+> > > +            items:
+> > > +              - description: offset
+> > > +              - description: size
+> > > +          description:
+> > > +            Some special page used by boot partition have spare data
+> > > +            not protected by ECC. Use this to declare these special page
+> > > +            by defining first the offset and then the size.
+> > > +
+> > > +            It's in the form of <offset1 size1 offset2 size2 offset3 ...>
+> > > +
+> > > +            Refer to the ipq8064 example on how to use this special binding.
+> > > +
+> > >  required:
+> > >    - compatible
+> > >    - reg
+> > > @@ -135,6 +159,8 @@ examples:
+> > >          nand-ecc-strength = <4>;
+> > >          nand-bus-width = <8>;
+> > >  
+> > > +        qcom,boot-pages = <0x0 0x58a0000>;
+> > > +
+> > >          partitions {
+> > >            compatible = "fixed-partitions";
+> > >            #address-cells = <1>;
+> > > -- 
+> > > 2.34.1
+> > > 
+> > 
+> > -- 
+> > மணிவண்ணன் சதாசிவம்
+> 
+> -- 
+> 	Ansuel
+
+-- 
+மணிவண்ணன் சதாசிவம்
