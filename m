@@ -2,21 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4159954217F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 08:38:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF69C542432
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 08:52:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233663AbiFHBbK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 21:31:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52856 "EHLO
+        id S242680AbiFHAsd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 20:48:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1389720AbiFHB2x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 21:28:53 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACE051F0A77
-        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 13:43:06 -0700 (PDT)
+        with ESMTP id S1842487AbiFHAJe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 20:09:34 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.74])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AE081F0A7B
+        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 13:43:04 -0700 (PDT)
 Received: from localhost.localdomain ([37.4.249.155]) by
  mrelayeu.kundenserver.de (mreue106 [212.227.15.183]) with ESMTPSA (Nemesis)
- id 1MFL8J-1o0XjA3SG1-00Ffvp; Tue, 07 Jun 2022 22:42:53 +0200
+ id 1M1INQ-1nvv9A1KiQ-002nl8; Tue, 07 Jun 2022 22:42:54 +0200
 From:   Stefan Wahren <stefan.wahren@i2se.com>
 To:     Florian Fainelli <f.fainelli@gmail.com>,
         Ray Jui <rjui@broadcom.com>,
@@ -30,33 +30,33 @@ Cc:     Peter Robinson <pbrobinson@gmail.com>,
         linux-arm-kernel@lists.infradead.org,
         Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
         Stefan Wahren <stefan.wahren@i2se.com>
-Subject: [PATCH V3 04/11] ARM: dts: bcm2835/bcm2711: Introduce reg-names in watchdog node
-Date:   Tue,  7 Jun 2022 22:42:19 +0200
-Message-Id: <20220607204226.8703-5-stefan.wahren@i2se.com>
+Subject: [PATCH V3 05/11] ARM: dts: bcm2711: Use proper compatible in PM/Watchdog node
+Date:   Tue,  7 Jun 2022 22:42:20 +0200
+Message-Id: <20220607204226.8703-6-stefan.wahren@i2se.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220607204226.8703-1-stefan.wahren@i2se.com>
 References: <20220607204226.8703-1-stefan.wahren@i2se.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:RZwyktpGBw13LEvECvmQkFP5A/2abbduZU0vURMRqnZq0osOfUw
- uKoCoV0KeXptqa/O5FXnTGa1ftM8W3Av21GxCDq/ne1ZzOSNjcKw0rtCfID5RW4A0HwxDwq
- kKg6LbBqSEcGORAZ1QcljzS7Lo2OM+mKpgwT8kJuwFG0g2KqRQBaTqx8t7vBY9Ijb/UaKql
- QcwRxTAD/OrOPWiFtzT+g==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:PxIJ2dmHzpw=:3Prxuui3ya22wd3gN7zz2C
- AuS+8iIQcXumxmKaAaKdvfc8d+i7wYcN8ubOx6R5GdHcAyL9sPjfw8eAMGmELdNfYhpJrq6jo
- 3sg+IzHQCHq//Db9mzqi0Ldg2XheglE5QIiQrYc/3ycFCR3aOXZTeYbhOQ5QY8VIZA15ovsA0
- 703O5xyBz0+rOry/hN5jtgv6+mQJYkiJ4k8jAbyOTIPzEgRsq9Ej+TnTcGBx96k0mgFZASY9m
- nFNUUf0GVlQDtEQkZhY7JWToJwc30cif2oMoceie+81noJ7MttCwbhQQiOBUloxPr2CYhgvJG
- dF77qymf9z89BuznZkLV/5ja1Rb33kdZRsJOCq50BvzPAjY+LkXcP4Q2fZ0+I5m5FOstH3x8V
- dX+fqxB2sYrO+EAGo8Q/1e68+j8Ju2hvrhVudw6lOX9GZkR8mIBOyU+Sbq/7P++lF2dYNm+U/
- H9ymSDyyZptxVgPmmIDjO0qK3OJS2Z9yVIlGlY1/dWDIRddH615PS7gQGPXoASLjAElMm4v/C
- qeNUo1zR3YgJG/ZJLZI+VdYjQ+Dnkl7EOqJpQh/q5hEEHwKfgdw+WFmpzlkdfGOPuIr4eoiSl
- fMtru12Zi9SMQtFLp7O+PrjGt6YhNKwDM2hiImiDtjGjGVdWDdMGbKwti+dQrqrnSFdNqUa/h
- QO57N9qosa1hbkZ0LvnLm4fr+TVMc06KYWZa3NA4BqZjyeSzKk5l+kXPUKRo69UV6r/ss0n7Q
- HLmvrLZehDrZViO5mvQNFX/OhE1r6cxRsupLilPujbbdZvVpomhqsN0I070=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Provags-ID: V03:K1:zELN2rQeacuGlbrII61qEELxj982ZGzztwLFEicqtg86t/fczcv
+ ZYHzq8HttUOpkM2CcqlAPiSXDXEIiI3X8ReIoWENpfCroMkFQ3yBTdr350NXYUW/uRFeMT1
+ YWPQlAwMKKh+uWB6JkJb1AUjpn/+qd07CwLX1J5BpTqpGi9gLcBXHePapsO8btNyIpT3b74
+ b4xipHoKeoCL6Ccd0vI/A==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:tL4oKOIphs0=:NSEbR8dyNyTRa4yE/ygb74
+ Epz/7HgTjBZLbEFHIrpxccUKlTcn8SJZEAS/syBx1A6rAg1c8PiL4P+Z9PEnd/Sn85d88pBiT
+ ILcZg3xlPDIkj2jzhdpDQqqELNW5ERb+Gvwpcq1yVLVr0lT0PqLMNVbmh+uTqErG9MFsrwok6
+ qSgwJt3D7NAP4+HLNJO4+RZLacf+04wT2ITqW3RVXvQ808SY/hvRMup7S3CKO0yPfUgw+rJaD
+ Glt0Y03AeLdhycA3vQ/T2pO2H/QQUBFXv+lWxwWR8zrNaZrIXenIQpBveT+IgwkdVedPvzks1
+ BIvnzX5N8SyYm3wTOOp+Mwa9ZFNOyg8wkNT3dGZ9MUGX0XaVGuJk57rvZVeJVVBSW+1WNJHku
+ BKuYYxhx09xqH+g6ZBYergNrw3VbyPn7C5ujMZTSQv8bqngX7MF9oA4YKkpGZ459tRfS6appb
+ ajWfqHGO1SFLemwZrFT+dobW8e9WGBklvUWLUc+00z2V4NsL16Vc5eXoF46WJHWf4e2rnSils
+ 6zNUwc9BTRnr58jW9zoJCcdfKGS8ubtindBST6lkckTMfReih7NJB9XZFz6F9Z6jhphPmUDTu
+ /H+r3H5cpJct+nQm/ZxXLtiuhkh08KXutsMb4dDNY/39Uimc02kbV7EAxFl3f2IcHFB5InGTV
+ zX4kMNvYTcIXxfdqEvWlakHLaLixshX04eBiGsA7B1Wok6LlyG/gvH11eHBNES42A87ob2dcO
+ uV3tMxJLXGZY/WWm3H8vALixXwMBI0w4GodV5QiQk4Ak8lBVkLRedboDio4=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -65,41 +65,29 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 
-bcm2835-pm's bindings now support explicitly setting 'reg-names,' so use
-them.
+A new compatible string was introduced specifically for BCM2711, so make
+use of it.
 
 Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
 Reviewed-by: Peter Robinson <pbrobinson@gmail.com>
 ---
- arch/arm/boot/dts/bcm2711.dtsi        | 1 +
- arch/arm/boot/dts/bcm2835-common.dtsi | 1 +
- 2 files changed, 2 insertions(+)
+ arch/arm/boot/dts/bcm2711.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm/boot/dts/bcm2711.dtsi b/arch/arm/boot/dts/bcm2711.dtsi
-index 89af57482bc8..cbb47e2c9434 100644
+index cbb47e2c9434..5eca5207c212 100644
 --- a/arch/arm/boot/dts/bcm2711.dtsi
 +++ b/arch/arm/boot/dts/bcm2711.dtsi
-@@ -113,6 +113,7 @@ pm: watchdog@7e100000 {
- 			reg = <0x7e100000 0x114>,
- 			      <0x7e00a000 0x24>,
- 			      <0x7ec11000 0x20>;
-+			reg-names = "pm", "asb", "rpivid_asb";
- 			clocks = <&clocks BCM2835_CLOCK_V3D>,
- 				 <&clocks BCM2835_CLOCK_PERI_IMAGE>,
- 				 <&clocks BCM2835_CLOCK_H264>,
-diff --git a/arch/arm/boot/dts/bcm2835-common.dtsi b/arch/arm/boot/dts/bcm2835-common.dtsi
-index c25e797b9060..a037d2bc5b11 100644
---- a/arch/arm/boot/dts/bcm2835-common.dtsi
-+++ b/arch/arm/boot/dts/bcm2835-common.dtsi
-@@ -62,6 +62,7 @@ pm: watchdog@7e100000 {
+@@ -107,7 +107,7 @@ dma: dma@7e007000 {
+ 		};
+ 
+ 		pm: watchdog@7e100000 {
+-			compatible = "brcm,bcm2835-pm", "brcm,bcm2835-pm-wdt";
++			compatible = "brcm,bcm2711-pm", "brcm,bcm2835-pm-wdt";
+ 			#power-domain-cells = <1>;
  			#reset-cells = <1>;
  			reg = <0x7e100000 0x114>,
- 			      <0x7e00a000 0x24>;
-+			reg-names = "pm", "asb";
- 			clocks = <&clocks BCM2835_CLOCK_V3D>,
- 				 <&clocks BCM2835_CLOCK_PERI_IMAGE>,
- 				 <&clocks BCM2835_CLOCK_H264>,
 -- 
 2.25.1
 
