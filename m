@@ -2,140 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6C0C53F679
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 08:47:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E056C53F681
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 08:48:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237220AbiFGGrk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 02:47:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34956 "EHLO
+        id S237333AbiFGGsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 02:48:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237209AbiFGGrj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 02:47:39 -0400
-Received: from mail-sz.amlogic.com (mail-sz.amlogic.com [211.162.65.117])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0A332B262;
-        Mon,  6 Jun 2022 23:47:38 -0700 (PDT)
-Received: from droid11-sz.amlogic.com (10.28.8.21) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.2176.2; Tue, 7 Jun 2022
- 14:47:35 +0800
-From:   Liang Yang <liang.yang@amlogic.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        <linux-mtd@lists.infradead.org>
-CC:     Liang Yang <liang.yang@amlogic.com>, Rob Herring <robh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        XianWei Zhao <xianwei.zhao@amlogic.com>,
-        Kelvin Zhang <kelvin.zhang@amlogic.com>,
-        BiChao Zheng <bichao.zheng@amlogic.com>,
-        YongHui Yu <yonghui.yu@amlogic.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v6 1/5] dt-bindings: nand: meson: fix meson nfc clock
-Date:   Tue, 7 Jun 2022 14:47:26 +0800
-Message-ID: <20220607064731.13367-2-liang.yang@amlogic.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220607064731.13367-1-liang.yang@amlogic.com>
-References: <20220607064731.13367-1-liang.yang@amlogic.com>
+        with ESMTP id S237286AbiFGGsK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 02:48:10 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21C02B0D25
+        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 23:48:07 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id q1so33188312ejz.9
+        for <devicetree@vger.kernel.org>; Mon, 06 Jun 2022 23:48:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=9oONL/OIu1tsLLfjz8MWbADwzFR0KPOH6QzNxFIcw1A=;
+        b=eHc01tNuGgQVe9JfPpB6GYMNwZK46sRHR3uDq807BB8RAkhtM9iR1guy6gYb+UKuJW
+         g3yAm4q1CjZJ6Pp9OZfINnQzQ6SlfDARMFL44cz7rzQyewKJDz4DCw2s9a6+PUnsnsls
+         kkbjZQKYC5uzVhSvIW60DvmNZwSNXhTnEDamP2tQK2CG6zybiBXQOP8biOwIXxqLd/lr
+         xXp4GE/l02zl0EyPtU9/au8J7ZOL5nvjMry9t1lUMfnAAiEl5h/aERCGNL3NcZMtNr6W
+         z9u/tnTpAuY5gaFcEPQ2vdavW7L3MZwzsFofi2wXD9QrtStZ8mfDytt2Wi/3dZ3/NivE
+         FNhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=9oONL/OIu1tsLLfjz8MWbADwzFR0KPOH6QzNxFIcw1A=;
+        b=SZz70vB0VkBI0/rI/O/7AlneZ12NjjV4nnPxNB7AynXTaXUT50fyHBXoHT+0jtjwe+
+         /YQfGhQBmbfqfNWzaElhdLtC3bS5R86YgifHQPFL15Cy56ZEL144OQyj7588HbftOELM
+         0/r85iXRHxXsI7PhVIJUrzXZP5WvByCu3qXHV3FSUA1ToHumWuGs0Fn3qIMmePTc3a0M
+         NNd4JigqV7/wWP6kvkVVAFyg+uYQzhawDnfx7aHr83nCNSF5mOvAIKMhbE4CVbFUt780
+         6r6KFcW85PLMdiaRv2hhRByDyTD8XdXc/uKlmqkRztFZ3vQl6hIvkNkoPoxKvwCy9Z2D
+         ELBQ==
+X-Gm-Message-State: AOAM533dPOWzjBaZCNR23TzW3W55XfK7w2gpt3A1UVgZ+zcSO//o0kUE
+        IpTss4JUYSFK590toAWa0LETPg==
+X-Google-Smtp-Source: ABdhPJwZ+u3wskAK8md9FAIw+OFZWkxhbfQb/zXoi4kIC5wHI/eBNsIRDkNmc9Xh8XtL7N+ZNnWZaw==
+X-Received: by 2002:a17:907:3d89:b0:6f9:1fc:ebf3 with SMTP id he9-20020a1709073d8900b006f901fcebf3mr25319012ejc.403.1654584485575;
+        Mon, 06 Jun 2022 23:48:05 -0700 (PDT)
+Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id d20-20020aa7ce14000000b0042dd4ccccf5sm9653874edv.82.2022.06.06.23.48.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Jun 2022 23:48:05 -0700 (PDT)
+Message-ID: <e5029de5-2548-23a4-8dcf-101154e0be29@linaro.org>
+Date:   Tue, 7 Jun 2022 08:48:03 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.28.8.21]
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: sdm845: Add CPU BWMON
+Content-Language: en-US
+To:     Georgi Djakov <djakov@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     Thara Gopinath <thara.gopinath@linaro.org>
+References: <20220601101140.170504-1-krzysztof.kozlowski@linaro.org>
+ <20220601101140.170504-5-krzysztof.kozlowski@linaro.org>
+ <058de46e-24cf-e25b-121c-3ff080702776@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <058de46e-24cf-e25b-121c-3ff080702776@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-EMMC and NAND have the same clock control register named 'SD_EMMC_CLOCK'
-which is defined in EMMC port internally. bit0~5 of 'SD_EMMC_CLOCK' is
-the divider and bit6~7 is the mux for fix pll and xtal. At the beginning,
-a common MMC and NAND sub-clock was discussed and planed to be implemented
-as NFC clock provider, but now this series of patches of a common MMC and
-NAND sub-clock are never being accepted and the current binding was never
-valid. the reasons for giving up are:
-1. EMMC and NAND, which are mutually exclusive anyway
-2. coupling the EMMC and NAND.
-3. it seems that a common MMC and NAND sub-clock is over engineered.
-and let us see the link fot more information:
-https://lore.kernel.org/all/20220121074508.42168-5-liang.yang@amlogic.com
-so The meson nfc can't work now, let us rework the clock.
+On 06/06/2022 22:39, Georgi Djakov wrote:
+> On 1.06.22 13:11, Krzysztof Kozlowski wrote:
+>> Add device node for CPU-memory BWMON device (bandwidth monitoring) on
+>> SDM845 measuring bandwidth between CPU (gladiator_noc) and Last Level
+>> Cache (memnoc).  Usage of this BWMON allows to remove fixed bandwidth
+>> votes from cpufreq (CPU nodes) thus achieve high memory throughput even
+>> with lower CPU frequencies.
+>>
+>> Performance impact (SDM845-MTP RB3 board, linux next-20220422):
+>> 1. No noticeable impact when running with schedutil or performance
+>>     governors.
+>>
+>> 2. When comparing to customized kernel with synced interconnects and
+>>     without bandwidth votes from CPU freq, the sysbench memory tests
+>>     show significant improvement with bwmon for blocksizes past the L3
+>>     cache.  The results for such superficial comparison:
+>>
+>> sysbench memory test, results in MB/s (higher is better)
+>>   bs kB |  type |    V  | V+no bw votes | bwmon | benefit %
+>>       1 | W/seq | 14795 |          4816 |  4985 |      3.5%
+>>      64 | W/seq | 41987 |         10334 | 10433 |      1.0%
+>>    4096 | W/seq | 29768 |          8728 | 32007 |    266.7%
+>>   65536 | W/seq | 17711 |          4846 | 18399 |    279.6%
+>> 262144 | W/seq | 16112 |          4538 | 17429 |    284.1%
+>>      64 | R/seq | 61202 |         67092 | 66804 |     -0.4%
+>>    4096 | R/seq | 23871 |          5458 | 24307 |    345.4%
+>>   65536 | R/seq | 18554 |          4240 | 18685 |    340.7%
+>> 262144 | R/seq | 17524 |          4207 | 17774 |    322.4%
+>>      64 | W/rnd |  2663 |          1098 |  1119 |      1.9%
+>>   65536 | W/rnd |   600 |           316 |   610 |     92.7%
+>>      64 | R/rnd |  4915 |          4784 |  4594 |     -4.0%
+>>   65536 | R/rnd |   664 |           281 |   678 |    140.7%
+>>
+>> Legend:
+>> bs kB: block size in KB (small block size means only L1-3 caches are
+>>        used
+>> type: R - read, W - write, seq - sequential, rnd - random
+>> V: vanilla (next-20220422)
+>> V + no bw votes: vanilla without bandwidth votes from CPU freq
+>> bwmon: bwmon without bandwidth votes from CPU freq
+>> benefit %: difference between vanilla without bandwidth votes and bwmon
+>>             (higher is better)
+>>
+> 
+> Ok, now i see! So bwmon shows similar performance compared with the current
+> cpufreq-based bandwidth scaling. And if you add bwmon on top of vanilla, are
+> the results close/same? 
 
-Acked-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Liang Yang <liang.yang@amlogic.com>
----
- .../bindings/mtd/amlogic,meson-nand.txt       | 29 ++++++++-----------
- 1 file changed, 12 insertions(+), 17 deletions(-)
+Vanilla + bwmon results in almost no difference.
 
-diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-index 5794ab1147c1..5d5cdfef417f 100644
---- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-+++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-@@ -7,18 +7,19 @@ Required properties:
- - compatible : contains one of:
-   - "amlogic,meson-gxl-nfc"
-   - "amlogic,meson-axg-nfc"
-+
-+- reg        : Offset and length of the register set
-+
-+- reg-names  : "nfc" is the register set for NFC controller and "emmc"
-+		is the register set for MCI controller.
-+
- - clocks     :
- 	A list of phandle + clock-specifier pairs for the clocks listed
- 	in clock-names.
- 
- - clock-names: Should contain the following:
- 	"core" - NFC module gate clock
--	"device" - device clock from eMMC sub clock controller
--	"rx" - rx clock phase
--	"tx" - tx clock phase
--
--- amlogic,mmc-syscon	: Required for NAND clocks, it's shared with SD/eMMC
--				controller port C
-+	"device" - parent clock for internal NFC
- 
- Optional children nodes:
- Children nodes represent the available nand chips.
-@@ -28,24 +29,18 @@ see Documentation/devicetree/bindings/mtd/nand-controller.yaml for generic bindi
- 
- Example demonstrate on AXG SoC:
- 
--	sd_emmc_c_clkc: mmc@7000 {
--		compatible = "amlogic,meson-axg-mmc-clkc", "syscon";
--		reg = <0x0 0x7000 0x0 0x800>;
--	};
--
- 	nand-controller@7800 {
- 		compatible = "amlogic,meson-axg-nfc";
--		reg = <0x0 0x7800 0x0 0x100>;
-+		reg = <0x0 0x7800 0x0 0x100>,
-+		      <0x0 0x7000 0x0 0x800>;
-+		reg-names = "nfc", "emmc";
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 		interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
- 
- 		clocks = <&clkc CLKID_SD_EMMC_C>,
--			<&sd_emmc_c_clkc CLKID_MMC_DIV>,
--			<&sd_emmc_c_clkc CLKID_MMC_PHASE_RX>,
--			<&sd_emmc_c_clkc CLKID_MMC_PHASE_TX>;
--		clock-names = "core", "device", "rx", "tx";
--		amlogic,mmc-syscon = <&sd_emmc_c_clkc>;
-+			 <&clkc CLKID_FCLK_DIV2>;
-+		clock-names = "core", "device";
- 
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&nand_pins>;
--- 
-2.34.1
+> Is the plan to remove the cpufreq based bandwidth
+> scaling and switch to bwmon? It might improve the power consumption in some
+> scenarios.
 
+The next plan would be to implement the second bwmon, one between CPU
+and caches. With both of them, the cpufreq bandwidth votes can be
+removed (I think Android might be interested in this).
+
+
+Best regards,
+Krzysztof
