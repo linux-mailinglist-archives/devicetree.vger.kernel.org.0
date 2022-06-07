@@ -2,59 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDD555402AC
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 17:44:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16BB254031C
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 17:53:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245487AbiFGPoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 11:44:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57622 "EHLO
+        id S1344580AbiFGPxh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 11:53:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236628AbiFGPoA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 11:44:00 -0400
-Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA1EE5F60;
-        Tue,  7 Jun 2022 08:43:59 -0700 (PDT)
-Received: by mail-io1-f46.google.com with SMTP id q76so10674405iod.8;
-        Tue, 07 Jun 2022 08:43:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=9emrPFpd8ECWdFEtrFErG7pTyWgKbTKd/J5t7zJBtZM=;
-        b=jf4taYSEfAoZChJ1lRdb49fAdx0aFttI5dUCOIjdlebS+owQrUsoM67B5bxfhGYk+y
-         egsO22Mxh5vqf0vN/PAVFraBtJGEAMiL6Ecpx6WFGnOjfA1xTKmk+W9wDtRK3Odoes14
-         qMPlsjMxBsgGn1PdcZv9Pjr962dPsk1KTK6EJi+hDaVgvAuDgofoG5zHtTWpJ0bW60YA
-         DSaqvx9kW22erZX0uMsdwcLM37WfrJp6XkZPYHC/RZPsvfaLN6tQZcDmd9PHhsKsLjby
-         It8odpbY2bqsS0j/k972xKV7TVaB6C3qDwolgzpCI462RGrZPzC497FNed0M5LWgAwM1
-         wYUQ==
-X-Gm-Message-State: AOAM533l4wxpk/JxO8SNAiov/wIH9lamfkADSI++MdkOTJ1H4SCO+EFL
-        1icfje3tnrEZh3t9Fh0ISg==
-X-Google-Smtp-Source: ABdhPJzMlpTTkGHOHDVxZDAQC2uPBC8KMs8m7/yAAkbYaTB8zx5q/+Lj8guskOzy7/ATEbRVs6/SsA==
-X-Received: by 2002:a02:b0ca:0:b0:331:92b7:f6a7 with SMTP id w10-20020a02b0ca000000b0033192b7f6a7mr8483213jah.97.1654616639214;
-        Tue, 07 Jun 2022 08:43:59 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id g14-20020a92520e000000b002d3ba224e25sm7362246ilb.10.2022.06.07.08.43.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jun 2022 08:43:58 -0700 (PDT)
-Received: (nullmailer pid 3310493 invoked by uid 1000);
-        Tue, 07 Jun 2022 15:43:57 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Abel Vesa <abel.vesa@nxp.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220607105951.1821519-2-abel.vesa@nxp.com>
-References: <20220607105951.1821519-1-abel.vesa@nxp.com> <20220607105951.1821519-2-abel.vesa@nxp.com>
-Subject: Re: [PATCH 01/10] dt-bindings: arm: freescale: Switch fsl,scu to yaml
-Date:   Tue, 07 Jun 2022 09:43:57 -0600
-Message-Id: <1654616637.643800.3310491.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        with ESMTP id S1344588AbiFGPxO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 11:53:14 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C8A82BF0
+        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 08:52:58 -0700 (PDT)
+Received: from localhost.localdomain ([37.4.249.155]) by
+ mrelayeu.kundenserver.de (mreue012 [212.227.15.167]) with ESMTPSA (Nemesis)
+ id 1N7QM9-1nhqx01R2T-017j9a; Tue, 07 Jun 2022 17:52:47 +0200
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>
+Cc:     bcm-kernel-feedback-list@broadcom.com,
+        Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Stefan Wahren <stefan.wahren@i2se.com>
+Subject: [PATCH] ARM: dts: bcm283x: Drop unnecessary properties from dpi node
+Date:   Tue,  7 Jun 2022 17:50:28 +0200
+Message-Id: <20220607155028.42029-1-stefan.wahren@i2se.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:WcrKzCO5nzFZCPjgw/ARjO/8kBBFJxi1m5u17jpWQuf6AyHczGC
+ REaLjym8bhoQTPpx1IWgna5qtKb/+5z4BHWjQmTeJ6ang6H0PdlW2vku17XJ5glT4vJwIln
+ jyGjf6TwOJG4BeR4Tc6TVMJLj1+8fmVIoitvYz+HHYeuxWfduuajunPnEt1ScFNHZx90zSD
+ PpSApGxFmtVFceqJ455mA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:0Zjy5MvneHM=:SI//QI7KJNXxnL6S40Sy1w
+ Ypk8+4ZEhCexU9vqX9IE3E98XQcdGl+EOXD3BEhCFV2Lbtvd+bJV9+XOR7Z0f7xi+22tZhgcj
+ Fpb/UQBwtwHNh8hUq94SC/fz+CnLew/Rj4smXvkeKrP0kBON1RS0v6I3SIYskiu0aF4QY6LIl
+ rzmwa8IvK/44fyUXpITzKSiYlXZmdAsztqpPXz2o7fFP61jqr8btQrH798LjAN2DL7wbN/kU8
+ snt2qPRBcy4Sd3NgT+d7V+mil1vujni4Dhac2io2kEtVXLCmU8sg772a4Xug4X5HEolRo6aSq
+ ZSunEDwmZRVqpKccvhd1yeXG94gXQ4inSsN02TsW5XBPCZmzTbimeJ+ZuHHgdB59lP7tgRxC2
+ 93Hi4VnbJloV7IQ+xG9OMLIAkDr749wQwarPRHb769JkcMGTakb/fCGbduDqyOywoTZR0xfWM
+ 0AQG/YK7vXuV5NAc6C8FKpH0DaaI/5uxmSHvdx1EcHT4lavrVdyvG9qymse97eDzRLnkAJEpr
+ g/3ecxfClUdwRpwCyXcGH+NeRX1HqTE9SdsWko70yURMCQHoHSZ5oKFsdnxZgA83iHcCq5tF+
+ li2uDBB89/ds4YuYwTRceSETb57U1nCU3wDMyG2/iONccSgHxjZyrFSifFWtakfWe3Rmt9udO
+ MiHJZPxXOLqq9eTTA/vxNysRgdm7v3gMcZXA6x8rad6cc5JbAPLRCxRYKea+7ai+DC6CE3da8
+ 3Q3BySpaYMOtibC6IyTTRkZwp7rGr9OyA5/8n2eYX+0w2mlZ3NhZn4rhNPA=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,51 +56,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 07 Jun 2022 13:59:42 +0300, Abel Vesa wrote:
-> This patch actually addds the fsl,scu.yaml which is only for the
-> main SCU node. The child nodes schemas will be split in different
-> yaml files. The old txt file will be removed only after all the
-> child nodes have been properly switch to yaml.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
-> ---
->  .../bindings/arm/freescale/fsl,scu.yaml       | 185 ++++++++++++++++++
->  1 file changed, 185 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/freescale/fsl,scu.yaml
-> 
+Since commit 094536003e06 ("dt-bindings: display: Convert
+VC4 bindings to schemas") it has been defined that the properties
+'#address-cells' and '#size-cells' are not necessary for the dpi
+node. This results in a warning during dtbs_check:
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+  dpi@7e208000: '#address-cells', '#size-cells' do not match any
+  of the regexes: 'pinctrl-[0-9]+'
 
-yamllint warnings/errors:
+Since we don't need a reg property to differentiate between
+multiple ports, drop them from the dtsi file.
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/arm/freescale/fsl,scu.example.dtb:0:0: /example-0/firmware/scu/clock-controller: failed to match any schema with compatible: ['fsl,imx8qxp-clk', 'fsl,scu-clk']
-Documentation/devicetree/bindings/arm/freescale/fsl,scu.example.dtb:0:0: /example-0/firmware/scu/clock-controller: failed to match any schema with compatible: ['fsl,imx8qxp-clk', 'fsl,scu-clk']
-Documentation/devicetree/bindings/arm/freescale/fsl,scu.example.dtb:0:0: /example-0/firmware/scu/iomuxc: failed to match any schema with compatible: ['fsl,imx8qxp-iomuxc']
-Documentation/devicetree/bindings/arm/freescale/fsl,scu.example.dtb:0:0: /example-0/firmware/scu/imx8qx-ocotp: failed to match any schema with compatible: ['fsl,imx8qxp-scu-ocotp']
-Documentation/devicetree/bindings/arm/freescale/fsl,scu.example.dtb:0:0: /example-0/firmware/scu/imx8qx-pd: failed to match any schema with compatible: ['fsl,imx8qxp-scu-pd', 'fsl,scu-pd']
-Documentation/devicetree/bindings/arm/freescale/fsl,scu.example.dtb:0:0: /example-0/firmware/scu/imx8qx-pd: failed to match any schema with compatible: ['fsl,imx8qxp-scu-pd', 'fsl,scu-pd']
-Documentation/devicetree/bindings/arm/freescale/fsl,scu.example.dtb:0:0: /example-0/firmware/scu/rtc: failed to match any schema with compatible: ['fsl,imx8qxp-sc-rtc']
-Documentation/devicetree/bindings/arm/freescale/fsl,scu.example.dtb:0:0: /example-0/firmware/scu/scu-key: failed to match any schema with compatible: ['fsl,imx8qxp-sc-key', 'fsl,imx-sc-key']
-Documentation/devicetree/bindings/arm/freescale/fsl,scu.example.dtb:0:0: /example-0/firmware/scu/scu-key: failed to match any schema with compatible: ['fsl,imx8qxp-sc-key', 'fsl,imx-sc-key']
-Documentation/devicetree/bindings/arm/freescale/fsl,scu.example.dtb:0:0: /example-0/firmware/scu/watchdog: failed to match any schema with compatible: ['fsl,imx8qxp-sc-wdt', 'fsl,imx-sc-wdt']
-Documentation/devicetree/bindings/arm/freescale/fsl,scu.example.dtb:0:0: /example-0/firmware/scu/watchdog: failed to match any schema with compatible: ['fsl,imx8qxp-sc-wdt', 'fsl,imx-sc-wdt']
-Documentation/devicetree/bindings/arm/freescale/fsl,scu.example.dtb:0:0: /example-0/firmware/scu/thermal-sensor: failed to match any schema with compatible: ['fsl,imx8qxp-sc-thermal', 'fsl,imx-sc-thermal']
-Documentation/devicetree/bindings/arm/freescale/fsl,scu.example.dtb:0:0: /example-0/firmware/scu/thermal-sensor: failed to match any schema with compatible: ['fsl,imx8qxp-sc-thermal', 'fsl,imx-sc-thermal']
+Suggested-by: Maxime Ripard <maxime@cerno.tech>
+Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+---
+ arch/arm/boot/dts/bcm283x.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+diff --git a/arch/arm/boot/dts/bcm283x.dtsi b/arch/arm/boot/dts/bcm283x.dtsi
+index c113661a6668..6f99b70e1db0 100644
+--- a/arch/arm/boot/dts/bcm283x.dtsi
++++ b/arch/arm/boot/dts/bcm283x.dtsi
+@@ -352,8 +352,6 @@ dpi: dpi@7e208000 {
+ 			clocks = <&clocks BCM2835_CLOCK_VPU>,
+ 				 <&clocks BCM2835_CLOCK_DPI>;
+ 			clock-names = "core", "pixel";
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+ 			status = "disabled";
+ 		};
+ 
+-- 
+2.25.1
 
