@@ -2,148 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4C3853FCBC
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 13:01:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E044753FC8F
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 12:58:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242171AbiFGLBh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 07:01:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52848 "EHLO
+        id S242243AbiFGK6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 06:58:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242549AbiFGLAT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 07:00:19 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2F4D240AD;
-        Tue,  7 Jun 2022 03:57:45 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id b8so5781550edj.11;
-        Tue, 07 Jun 2022 03:57:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=references:from:to:cc:subject:date:in-reply-to:message-id
-         :mime-version;
-        bh=yPufLHAHmFZwiernSymaEB3w3KO3bi6vBnV8PeUhLxI=;
-        b=hnKKSGjrNlED/ZlKz+Mk3ptadzuBrA4J1vL8VD7NRqCFW31W644HRaVQWmcraWSz71
-         5dMMJhQ+BcrWbNn2bCO8fTqN5+WThdkCsK5+8qkojv9mzGUNfRJSpSKT+5aUzYU7AriE
-         N7h2CR0qwrfJOvOIgBnFh1Ojle66VSa4bdCOAgWpyASOVWzfksdaV8BbDK99daFoltnx
-         9sKL5RHXz4+K+NTOK/9S5RP0flCJurYELlgQNxb44NTX2PeREFNp8IFqImXVcc7UKaUX
-         41e5IN3X4u4zJ6l/4WTvjR7NZhLpY5SRHCdxpyg9Mzyz377bI/qPH89bq5szta5I48YR
-         Z6NQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:references:from:to:cc:subject:date:in-reply-to
-         :message-id:mime-version;
-        bh=yPufLHAHmFZwiernSymaEB3w3KO3bi6vBnV8PeUhLxI=;
-        b=Gm/qfIlm1hviu7MYzhjE+rrnBeh601A0YerY2pCujipZ0abE1y1Swy3TE0vNNOgFCQ
-         AaSZRx4qn1ijiwSXHv2BhS40OsoylEaWAuG5PPoXUKhNTdG3tdnGjHA0jPqupFD/VH5C
-         K0mkxeaNlzHdM1b3P46c4NUjGlC6vHVC4CYpoLQ2qFcSCXBswNVZkPG9mE/U+105kbSp
-         19VGjvSqpamoDZsIpwIOROfA+608iF5RgLX3+SECq6SAS5hMnhGDpFN2F5M9f8RhSuIA
-         BFN4h5+WAWu7ePzIJwnzrUHYXK+tLwgUVa596lJGqBVZJ0e1RPfGDit8GjIUky0hgmml
-         wsxw==
-X-Gm-Message-State: AOAM532SuHrQTDBoIDzvmtT+yTPoesAb4fqNRiotBw41rHuejdG5pH+C
-        KSlCWgxwE/y0AwAoUjHZAjs=
-X-Google-Smtp-Source: ABdhPJyQ0oBf+aAihrAexYG8itdUihorYdbcNhw5dal9/wGkAvJYiJHkpOylC6RmzGwUA7Fxg7qaow==
-X-Received: by 2002:a05:6402:23a3:b0:42e:251a:c963 with SMTP id j35-20020a05640223a300b0042e251ac963mr27606354eda.173.1654599464256;
-        Tue, 07 Jun 2022 03:57:44 -0700 (PDT)
-Received: from localhost (92.40.203.141.threembb.co.uk. [92.40.203.141])
-        by smtp.gmail.com with ESMTPSA id gj12-20020a170906e10c00b006fed8dfcf78sm7396457ejb.225.2022.06.07.03.57.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jun 2022 03:57:43 -0700 (PDT)
-References: <20220603135714.12007-1-aidanmacdonald.0x0@gmail.com>
- <20220603135714.12007-9-aidanmacdonald.0x0@gmail.com>
- <20220603174744.642157d8@jic23-huawei>
- <e9ABtmBNzztlyRcJD5f36OmAYZW4i7KH@localhost>
- <20220604152711.22268711@jic23-huawei>
-From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     lars@metafoo.de, linus.walleij@linaro.org, brgl@bgdev.pl,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        wens@csie.org, lee.jones@linaro.org, sre@kernel.org,
-        broonie@kernel.org, gregkh@linuxfoundation.org,
-        lgirdwood@gmail.com, rafael@kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 08/10] iio: adc: axp20x_adc: Add support for AXP192
-Date:   Tue, 07 Jun 2022 11:49:58 +0100
-In-reply-to: <20220604152711.22268711@jic23-huawei>
-Message-ID: <9Ju6ijQ68x8e8Es1zhzsVMZHprvKy16b@localhost>
-MIME-Version: 1.0
+        with ESMTP id S242250AbiFGK5u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 06:57:50 -0400
+Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-eopbgr130043.outbound.protection.outlook.com [40.107.13.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52AAAB82DC;
+        Tue,  7 Jun 2022 03:53:40 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=We4zgh09WpENawPIOdl9wervWOeg6wRdHF6zgQ7AH3dBrTqn0vJMLwyGk7NIAnxe23k5oWT7/Kt/utb37gr8wrmW2IIj/Xmh6nLD+9mfyutBGd8tp2JpCjDsC3+zoul6IBF8AKWVjqVEJJX7R9/8ihEben/UErceP8eB9roCZ78bnXu51xT7nyenafsP2PzH4+EDzUovQ/4a1LkxTOgNlIBAJjhUpS1FuV5wv5eFGk2IBAyAj2fJgYRcKdA62qEMMaK7DtZLdZ8zUPgzkGyejRejb24BDevSeSy0ynjRRD/QTZIMkk04g6T80YCoaEwf/6rg6+hDSHwCyGYjaQlPjg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7vvI+yoOrwD8TXBgZIdZT2/yd2tRJsbEjerDGdJFo1A=;
+ b=CwzPfeeey53wZ6oXdwugkHuSXSYDp8L3jOx3zJMCmWR/gHkNBimHOaHBJ3iilwlnp0f3X0dc1JGxTk/Avr0twJoWv2LKSZXwwjtzHyks3GJhnp7Ja/vAYUoGu75VU2kkRHUJrenp+6W7IWzV8cpigOcsaCHwDn1nEDsCsQRnkID/ZnlbWrQ7aw0uvsy/f6Ns53V4QVnHxGDiKx3rBcPmp8b6wcXruymVz/ZCfzdTaKIYzOVtrkfXjGhCsGoGxt8I3I2115054+7085zpAQn9UJJjiykBqsV9pDw6MQEm5kKjVXRcKp2/GiJ/8Yn7IN5yTUz/8gVq80sH+eyg00u0Zw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7vvI+yoOrwD8TXBgZIdZT2/yd2tRJsbEjerDGdJFo1A=;
+ b=otFGvhnO8J17cdwodnQ+R3r7gMGjdq6fzzZudDSzpAcqnvrOpHrKEVwq+ndQZufw2vTviklt13zxybxZ76K3EMe3/gV118NWYsb7bagTz137WCZiGX9OFMoLJVsfOPpTPruzA9PDhBKeDUtqXFJ7oORJL+9VKSqZdw9jzT0aQDo=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB4688.eurprd04.prod.outlook.com (2603:10a6:803:6a::30)
+ by VI1PR04MB4221.eurprd04.prod.outlook.com (2603:10a6:803:3e::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.19; Tue, 7 Jun
+ 2022 10:53:37 +0000
+Received: from VI1PR04MB4688.eurprd04.prod.outlook.com
+ ([fe80::a541:25cd:666f:11b1]) by VI1PR04MB4688.eurprd04.prod.outlook.com
+ ([fe80::a541:25cd:666f:11b1%5]) with mapi id 15.20.5314.019; Tue, 7 Jun 2022
+ 10:53:37 +0000
+From:   Abel Vesa <abel.vesa@nxp.com>
+To:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] arm64: dts: freescale: imx8qxp: Fix thermal zone name for cpu0
+Date:   Tue,  7 Jun 2022 13:52:55 +0300
+Message-Id: <20220607105255.1811769-1-abel.vesa@nxp.com>
+X-Mailer: git-send-email 2.34.3
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-ClientProxiedBy: AS9PR06CA0556.eurprd06.prod.outlook.com
+ (2603:10a6:20b:485::19) To VI1PR04MB4688.eurprd04.prod.outlook.com
+ (2603:10a6:803:6a::30)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: e719da6b-8d09-4947-7d4a-08da4873f9bb
+X-MS-TrafficTypeDiagnostic: VI1PR04MB4221:EE_
+X-Microsoft-Antispam-PRVS: <VI1PR04MB4221F757B84377E2213583C8F6A59@VI1PR04MB4221.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: /9E60KkKKLHUMNlH2KabuzbO/COSZJCf3EQiW8iCmZhjimnruxo/tBaIkK7qCNnMZYdhEi0FKcsXoa7bNykAFY+rRB29TOIx7sTgC1HbpGzP+YoKrxnypFvv8sx67UySCYg8xP8khYNzDgXJyJBnWOIiBsbB/vHle/PkAvQ+yG3VGVCPAEbbgl5fl4ymARehR3VFiZGPV0j7ub3/XzkQ4snqtLDgsvkc4mdu2dUBbQQcHzjW/vw/9hXeo0CytkNrsalThndROelos66zVueYjHgV5PAIhlNV6UNXdxHyTXv9jYKIlYrMhX5tl4ET72VKybuDnEP/a69ylhnJ1WUe8VjWmo1wNEQhwmL6WoPTk9PaF8TPmzXKecRGa/n80uUJpmMHrNVPvjuOsZF6OWhyBJH5EEE4Su2VO3Z+z7MoQs4rKcOF3yeK4Bt7G+qssCvKelddgfKbOdSy9msLJVWRAaavkHa4kAle8TxGG7iRgyGk2acmyWMo0Vw8I5hAhtMSKe4lVg4DVOV5ozzGP5AYqOf1A3G6po4zjKQWJueFAP3x28Y4PitLq3da4L7UxJsOIrb9lrFwGOvxiygDnSb4R7VYtIYIiVQcVl7kYy9cE11C8GpPATbexi4Cg4Buq+Eb9p6TGIwpKovpMFqOvR6aTkWMpCQC3PtRixzjug7gDw4qL1stmpRii7Fk8BfDl5mV2T7vD0MjOUnNzPPfs1wYqFm3NcJ8I43D34fG9YTwITM=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB4688.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(2906002)(186003)(44832011)(36756003)(6512007)(26005)(4744005)(1076003)(5660300002)(38350700002)(316002)(2616005)(38100700002)(54906003)(66476007)(8936002)(86362001)(6666004)(110136005)(6506007)(66556008)(66946007)(508600001)(6486002)(4326008)(8676002)(52116002)(83380400001)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?bOk198HYp62yVR8GPQv9diOxSvIciHbP/88bSs+RKwUIxl2joVOVCNJlCElB?=
+ =?us-ascii?Q?RvA63/tpGY9oMNcpiyXO0xyBaEZ9VP0RWOByPs502kM1fbTqBzy96R86lps1?=
+ =?us-ascii?Q?hEutwbPB5beAq7/1wZ5e2afuGjjzH2OvFWiQyV2afukODJe2yfW3+wPPibAc?=
+ =?us-ascii?Q?77S2xU4Vk1WGugB2i946qlGoR60teaHXWY0q/pq+kJkoCfRT+ynOc2MrZ9XW?=
+ =?us-ascii?Q?+kG++j/B6X8gBTYxbKAv21NG/6OM3nzhqMy5ZbLygyl3pQd0o6dbruQG8ioU?=
+ =?us-ascii?Q?9XBX2LtRZSxSNRMXOCCHNlGuYEBcgnF/p3MZStD35rQe9QqzYY6o3SshLvQY?=
+ =?us-ascii?Q?741Z1vH8Sbiz6JvovGcwzcgHje1LsTNkMxI0+De+jGjdEL1V2DVunWJo1xSP?=
+ =?us-ascii?Q?wp0zoosZT3q/XyoeJ/QNjkAQQ9gryOZojLEKgDJ28EaAUG1NGCs1x2J8jv5V?=
+ =?us-ascii?Q?h3Wz+74h+angT64suCc41IwnfkFvlXEe2KTyiWYML7FOPShmjuZH3XWsCBCo?=
+ =?us-ascii?Q?3rNpn+uNJ0VVHTDAVeArnm6xpZN5agzz1ZWmf7R71sp4UdRlRxMoEjG8lLJi?=
+ =?us-ascii?Q?jMZWpVhMx1z5PIX6uRmZOhU3pXrnPt/TKtlR1B/HTT0sSLTzdFV1YUvIP6Pp?=
+ =?us-ascii?Q?1PQWOK7n6Ykv8MNt9QBaYRfM92PQzThz6icZFmI1uY0UNl2W7syKI+zFj7AI?=
+ =?us-ascii?Q?PGMPucBuZBUNrP9zrtZlJcgD1A/UnmbCyZV5asXKglCR+Fqdw0WWVhtxtepu?=
+ =?us-ascii?Q?ypSNVx8dGNd20yKo4o7O/VJ5ytDZ07Gnkhy+Jv59axKRnOBjqzNbiSppGb/5?=
+ =?us-ascii?Q?rfXmqkgYJ0RrmfuhlY86K429uu2Z5UGtvqPtBRWP/O3bWY7xBGGdlUL77uuj?=
+ =?us-ascii?Q?nEjBXMjJZe4z+rLKK0eRnqiP3UWtuMSwAxJMJMs/h/KbmovBI3jl9UNIsZhc?=
+ =?us-ascii?Q?v2W5ZZpNZ23HcwwlkOcdi9WB7XrfippN/5CShvZl7dXpuDI55ROk83/OLldn?=
+ =?us-ascii?Q?TiyIASryKGYg0vLvjhp8gqSOg7Fag6Z0/xNNxow5kYO+p1UTbJLMs67G9MNV?=
+ =?us-ascii?Q?aEE2groREtUYUbBUQp3EvA8L6usKdxp0Zp3MXGAk4ccV4HoJpEdxDSAQ/u/Y?=
+ =?us-ascii?Q?mgErZHv0o9GSdK3ptCDAA7Z14S0kdWX7XxnBGSU1MP0oNdfgLsB92NC4dxth?=
+ =?us-ascii?Q?CpDqXxtLWA+5JHmCkbbrKrl25Gx9Rl6x3t6jpyP9jYn633QFy0nIgZx4/g1E?=
+ =?us-ascii?Q?bJ550od0D9ktEz8aC9jO56Nz9DKEbq26l0iUVu4DjzkBOiGBFux3/fgb2t8b?=
+ =?us-ascii?Q?ei2MD5aPmumUR4A9eUi1zKI6Rj8NEsYVxrv1XEWMA1LGY2s+2zEjL+R/eov7?=
+ =?us-ascii?Q?DC7UCRLTmIOFPgDdlcIAHY2Ajytpb6O0sKfBE1rh9/KLlb9Xl/YzqXEOkvEw?=
+ =?us-ascii?Q?8abB/xJC6e6QBQQb1dysVbyPBMJyE0ei4HGsr09mK+cv1BGGU1jqOFk1+SIJ?=
+ =?us-ascii?Q?W0bfYsihkLnv2yiGKLWUZm/S0ndqW965rlQZkECJXVNEzldScpK9re6mOj4T?=
+ =?us-ascii?Q?VacwokQzGD4CXNmv4T/fsq4Zt7gj45h1YPrYC0R0TOv819kFM1RLC9ghZDr1?=
+ =?us-ascii?Q?WkVPam8H6zt/aW4/8ZbSPSIOWhL5EUG2F6LdJWYNzw76Fz8c+5+5oYjDD+XH?=
+ =?us-ascii?Q?c4tM+8ckDW+LsRwqrFN3AQslN0aZJWo0X8bFdYsf8/IYJt/ag7cZyRg5sdsC?=
+ =?us-ascii?Q?7ZjPOXvciQ=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e719da6b-8d09-4947-7d4a-08da4873f9bb
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB4688.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jun 2022 10:53:37.6943
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: qcjdZbu3NzGWsCgc1sLBiFhb6r1Qq/SUbnxiRV/kMXtRVt3OTCNGYN/QOz7uWyNRz5FNU1R7UXWwhEaxnvwJ0Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4221
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The proper name is cpu0-thermal, not cpu-thermal0, so change it to that.
 
-Jonathan Cameron <jic23@kernel.org> writes:
+Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/imx8qxp.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> On Sat, 04 Jun 2022 12:47:38 +0100
-> Aidan MacDonald <aidanmacdonald.0x0@gmail.com> wrote:
->
->> Jonathan Cameron <jic23@kernel.org> writes:
->> 
->> > On Fri,  3 Jun 2022 14:57:12 +0100
->> > Aidan MacDonald <aidanmacdonald.0x0@gmail.com> wrote:
->> >  
->> >> The AXP192 is identical to the AXP20x, except for the addition of
->> >> two more GPIO ADC channels.
->> >> 
->> >> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>  
->> > Hi Aidan,
->> >
->> > A few minor questions and comments inline.
->> >
->> > Thanks,
->> >
->> > Jonathan
->> >
->> > Unless I missed a previous patch adding labels to the other devices supported,
->> > this is the first driver to use these.  Why do they make sense here but not
->> > to add to existing supported devices?
->> >
->> > I don't particularly mind this addition, just looking for an explanation.
->> >  
->> 
->> That'd be because 1d4ef9b39ebecca8 ("iio: core: Add optional symbolic
->> label to a device channel") added read_label in 2020, while the AXP
->> driver was introduced in 2017. I could add read_label for the other
->> chips while I'm here, for consistency.
->
-> Thanks, I don't really mind either way on adding support for additional parts.
->
->> 
->> One question I have is why read_label exists when the kernel already has
->> unique names for IIO channels. Why not just expose the datasheet_name to
->> userspace from the IIO core instead of making drivers do it?
->
-> In general, datasheet_name refers to the name of the pin on a datasheet for this
-> device, whereas label can refer to how it is used.
-> There are dt bindings to allow a per channel label letting a driver (where it
-> makes sense) provide them for each individual ADC channel.
-> (e.g. the ad7768-1 driver does this).
->
-> On other devices they come from entirely different sources such as the hardcoded
-> choices in hid-sensor-custom-intel-hinge.
->
-> I vaguely recall that we've talked in the past about exposing datasheet name directly
-> but for many devices it's not that useful (the user doesn't care if a channel is
-> aux channel 1 or 7, but rather what it is wired up to).
->
-> At the moment this driver just exposes all channels rather than having
-> per channel bindings, so we don't have the option to use labeling in the device
-> tree to assign the names.   If it's particularly useful to you to have labels
-> that are datasheet names that's fine.
->
-> Jonathan
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
+index a79ae33cbad2..483996a1f2d5 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
+@@ -276,7 +276,7 @@ xtal24m: clock-xtal24m {
+ 	};
+ 
+ 	thermal_zones: thermal-zones {
+-		cpu-thermal0 {
++		cpu0-thermal {
+ 			polling-delay-passive = <250>;
+ 			polling-delay = <2000>;
+ 			thermal-sensors = <&tsens IMX_SC_R_SYSTEM>;
+-- 
+2.34.3
 
-Thanks for the explanation, makes sense that "gpio0_v" is probably not
-all that useful. I was thinking mainly of channels like battery charge
-current where the channel usage is fixed by hardware. The labels aren't
-terribly useful to me so I'll just leave them out, I'd rather not bother
-with adding dt labels.
-
-Regards,
-Aidan
