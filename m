@@ -2,69 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AFBC53F64C
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 08:39:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAC9553F654
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 08:39:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237106AbiFGGjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 02:39:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41166 "EHLO
+        id S237123AbiFGGja (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 02:39:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237124AbiFGGjV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 02:39:21 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35E98B0A7E
-        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 23:39:20 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id u12so33158850eja.8
+        with ESMTP id S237132AbiFGGjW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 02:39:22 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07D75CC151
+        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 23:39:21 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id u12so33158928eja.8
         for <devicetree@vger.kernel.org>; Mon, 06 Jun 2022 23:39:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=+6eJuTNYhenhOtSy0mpWdMyC3zMMcmWC680KdPh5O/c=;
-        b=HYozM8kFiTcwqKrVxYDLCrX0493cz93zCKZJ+f8P4vW52obPXnTq6NV3kh1FoHfz/G
-         X7fCON7a3YXvLmCYLMb+5TKI6U8CRoyGk1XVbE+v2dqJZU4GmCu7YVFqieiSRxDesBBv
-         EnCAKtz9K9i+BZiMcySVBRAt5VYZiUFrgSciSMlfiDD+pJsVjpI5akEzEcegUZ5wFBvw
-         JyxMduaLcnkgClGEdFK7A82CrDWTQvLxJKe4jDuWXaS1lO4J+IpQitElubvTUunFLq4/
-         X4UXNzx72E7wcm3vvgo+19Mc1hGGRqsjDGQxY7tiZXGAxaojashVw2hVrZ7AWz77Q663
-         FxXg==
+        bh=hTnxOKZr3+ndForNuYwPMS9kKQWB3G2RjAQYxRP9CpI=;
+        b=Vil8nMBL2h+FO48FmtCLBY05Ilnikq4E5A8SWoL+H4u7OcvuJyw9zvJILK1hc1Em1g
+         bucYSwUMDG+SR8wbxCFCHKvUPREpF3In+RdWuJ2bUGlfSRerxvm/b9KXnn7an0GSSpoY
+         wLTHDWz6W8tkpqdWMG2+bZn3QNORKH8S/OMFf6dzJEmkZkU3RPzRAa0//fxDPtG8ayoA
+         BzmHH52W++FAkBmS5rrupzL3nTjvetO2kaUfajVjDS15WHhqnkD7Q6WGPaJWY9AMY90r
+         C5bPUkMM1Z3ZWbZQ1ffmNw7Dm8cjOXjbzyyzBIdtFsczXp5ccS/P1JkZP2jNN5V7qw50
+         B3HA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=+6eJuTNYhenhOtSy0mpWdMyC3zMMcmWC680KdPh5O/c=;
-        b=eJ+1XX38UtXGbZAVmzRBI29tPdDrSP+Yk5qCaVwsCHIhbJWrvC7ccpD25b+QbqHXsT
-         k8vVmuMziuX9tyH2s4UJtx4GH5TQ4VFEpk83YNxY5V5O7kHwEazFE/cGPYE+Y69MMPFy
-         5aEnFR0lsN5zhl72xK8z24zewpElIsGH8SeoCr10gejZAE7Xj2KJaTZdUugF0TOR/CcV
-         4ezS0cX2jCzk0TL/oBO+OZYvg8HNwZQCav7uwpiodULs3h32kpjkWPfRFshycHqjfIjG
-         I1yBIgH8rmYpU1/c2nS3lJIwQf+DRXq6Y/RFZCR5y73DjhSy2EnlVbf0RupuJbEoLyqW
-         1rHg==
-X-Gm-Message-State: AOAM531Baln979cOZF5An6YWJSnvVWxPhaPva+jvYphpTmicE9ndl2Bg
-        E+Yz+65pRBTbwbxiTuq70lvf8Q==
-X-Google-Smtp-Source: ABdhPJxJC6R9vm7E7RbQ7imv1QtZeFxdBWu2Z8oRZQhCapGo8C6J6E4SBIOg2hjT2XFEC6lAoeIJAw==
-X-Received: by 2002:a17:907:2d29:b0:70e:8b1c:c3f0 with SMTP id gs41-20020a1709072d2900b0070e8b1cc3f0mr18729905ejc.37.1654583958428;
-        Mon, 06 Jun 2022 23:39:18 -0700 (PDT)
+        bh=hTnxOKZr3+ndForNuYwPMS9kKQWB3G2RjAQYxRP9CpI=;
+        b=nu4VLH3PZZrF9dbtjVfTtxyEeZAEqpJXfq46MO786w0y4boUIA8Fv1ZE2sLZZSs9lX
+         pGW3XIUT7XFPmWls5lJcQkP8dzxdadrNkFxAM5AMOpqSI4kjoMekdsHeBvPrJCLuohaR
+         dI/1Rw1c02/16BtgwqVon8E57T2D7/p/NmKDFE4JHjShrrDW7Ke+fzxs8nJCdmc1V4bK
+         DCN60i/t5XfYjpxWwI0RPq4q0utaVZLKV4sbnEh09plw39wfz1vealFbkYREzvH4e7+6
+         kPVo/0oz+P0oxJ+f/VDAV1+jG+YiGsiM4u86vnlKHsConJ+M90Bot0f5X8DCOTaCP+LX
+         AsvA==
+X-Gm-Message-State: AOAM530g6Cxip2nkLmO1RRVYHODUEkl+pxpTaxt0sqTwHI3qIIa8ffEC
+        1bR6Oid9cyCiEA59700NXQWCaw==
+X-Google-Smtp-Source: ABdhPJznIa7ycw86Mz/saSlmjmACL+gX5E2xoZyqN9IfBg+jlMZH1KHXpzMpCPQ/+e4Nm4+dFBZ43A==
+X-Received: by 2002:a17:906:1e8b:b0:6fe:c45e:814a with SMTP id e11-20020a1709061e8b00b006fec45e814amr25037866ejj.304.1654583959451;
+        Mon, 06 Jun 2022 23:39:19 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id jo13-20020a170906f6cd00b006febc86b8besm7016888ejb.117.2022.06.06.23.39.17
+        by smtp.gmail.com with ESMTPSA id jo13-20020a170906f6cd00b006febc86b8besm7016888ejb.117.2022.06.06.23.39.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jun 2022 23:39:18 -0700 (PDT)
+        Mon, 06 Jun 2022 23:39:19 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     linux-arm-kernel@lists.infradead.org,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
         Tomasz Figa <tomasz.figa@gmail.com>,
         linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Linus Walleij <linus.walleij@linaro.org>,
         linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
         Alim Akhtar <alim.akhtar@samsung.com>
 Cc:     Chanho Park <chanho61.park@samsung.com>
-Subject: Re: (subset) [PATCH v3 3/8] ARM: dts: s5pv210: use local header for pinctrl register values
-Date:   Tue,  7 Jun 2022 08:39:11 +0200
-Message-Id: <165458395109.7886.10195566966608207927.b4-ty@linaro.org>
+Subject: Re: (subset) [PATCH v3 4/8] ARM: dts: exynos: use local header for pinctrl register values
+Date:   Tue,  7 Jun 2022 08:39:12 +0200
+Message-Id: <165458395109.7886.16177873811849349064.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220605160508.134075-4-krzysztof.kozlowski@linaro.org>
-References: <20220605160508.134075-1-krzysztof.kozlowski@linaro.org> <20220605160508.134075-4-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220605160508.134075-5-krzysztof.kozlowski@linaro.org>
+References: <20220605160508.134075-1-krzysztof.kozlowski@linaro.org> <20220605160508.134075-5-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -78,23 +78,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 5 Jun 2022 18:05:03 +0200, Krzysztof Kozlowski wrote:
+On Sun, 5 Jun 2022 18:05:04 +0200, Krzysztof Kozlowski wrote:
 > The DTS uses hardware register values directly in pin controller pin
 > configuration.  These are not some IDs or other abstraction layer but
 > raw numbers used in the registers.
 > 
 > These numbers were previously put in the bindings header to avoid code
 > duplication and to provide some context meaning (name), but they do not
-> fit the purpose of bindings.  It is also quite confusing to use
-> constants prefixed with Exynos for other SoC, because there is actually
-> nothing here in common, except the actual value.
+> fit the purpose of bindings.
 > 
 > [...]
 
 Applied, thanks!
 
-[3/8] ARM: dts: s5pv210: use local header for pinctrl register values
-      https://git.kernel.org/krzk/linux/c/7fd554de160eed060e7819aa42ca0478c9e0f4cb
+[4/8] ARM: dts: exynos: use local header for pinctrl register values
+      https://git.kernel.org/krzk/linux/c/fd1d3737f605c8b821794b031e3ed0920f6d843d
 
 Best regards,
 -- 
