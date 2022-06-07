@@ -2,122 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D090C53FD8E
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 13:33:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D93C53FD24
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 13:16:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242989AbiFGLdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 07:33:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53022 "EHLO
+        id S235104AbiFGLQE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 07:16:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241584AbiFGLdo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 07:33:44 -0400
-Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 269E71CFD2;
-        Tue,  7 Jun 2022 04:33:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-        d=metrotek.ru; s=mail;
-        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding:
-         in-reply-to:references;
-        bh=Y+q3Espln8Rodgx5Nn4tnLIErSJz4K4izMOM418Zr7I=;
-        b=Sp0Qg+SoMUSeKX6olIfh/Bq0rPpNYLgcHZsEm8spH180rnWXnhyqZ+RKWaiCbPFPwbqFmddiQnKAt
-         hx8f6p1O+W0/gEe7otuq6csEf7J83MRC/FV1B3tuPiwdeSwrj+Bb67SjXmLAsCMf3RlbK/kgLaUFqh
-         2JdA7IIwD4LQmqaOo+WpCSKr+kMgXlQhP0p3aPAOCHz3e1FEdKOhJCf6tXKKfRt62NDE1IHJiMdRrm
-         7LBshHy9nIWPMGw9A0YnRLa2Hn7XkhaB/2AnytjhH1KWg1F7uzzezbyo7Y1frZvVltFakmZz86WiD4
-         WMZZTEgp9A7SJ4A5vyjsWSrqIGC/84w==
-X-Kerio-Anti-Spam:  Build: [Engines: 2.16.3.1424, Stamp: 3], Multi: [Enabled, t: (0.000009,0.008030)], BW: [Enabled, t: (0.000017,0.000001)], RTDA: [Enabled, t: (0.075185), Hit: No, Details: v2.39.0; Id: 15.52kadl.1g4uv1b4m.1knj; mclb], total: 0(700)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Level: 
-X-Footer: bWV0cm90ZWsucnU=
-Received: from localhost.localdomain ([178.70.36.174])
-        (authenticated user i.bornyakov@metrotek.ru)
-        by mail.pr-group.ru with ESMTPSA
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
-        Tue, 7 Jun 2022 14:33:09 +0300
-From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
-To:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
-        trix@redhat.com
-Cc:     Ivan Bornyakov <i.bornyakov@metrotek.ru>,
-        Conor.Dooley@microchip.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        system@metrotek.ru, Rob Herring <robh@kernel.org>
-Subject: [PATCH v16 3/3] dt-bindings: fpga: add binding doc for microchip-spi fpga mgr
-Date:   Tue,  7 Jun 2022 14:10:30 +0300
-Message-Id: <20220607111030.3003-4-i.bornyakov@metrotek.ru>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220607111030.3003-1-i.bornyakov@metrotek.ru>
-References: <20220607111030.3003-1-i.bornyakov@metrotek.ru>
+        with ESMTP id S242656AbiFGLP4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 07:15:56 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA66E5FB6
+        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 04:15:54 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id h23so23415981ejj.12
+        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 04:15:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=4fN31emiPSLrSSZpsn7Oq3o1ezw79oaA/r4pVULki3E=;
+        b=tQY36N5MGuxHc3V9UqHKQuIQQ4aHKA7oOVp5CmeU6mfN4lFe6xAQF6cnDBGT7nlERl
+         wTa7UnZ6mu1DqWXYcGvbyypxI0R7TzsEwcMvyfMZwho4d49acw9GDBbI/Ib3Dp5DAhv/
+         oqkSNaEGkV4YgLbLwJq3cQuvi//h1J2gZqMFgRt059TK+OAn35WnJOChAayryzg1nh23
+         nEQkAP4sQ3o0UxRLEUpEuDJWdZrRj7jwl+r72lvtEXSvExcM2vvzsW+AGxWZ1OkWAOTy
+         YDcaC1JYUEZH2HMLiPU+0cPodpOEdnmvJTbSDTL8nKRwGO+dguWJGv8NDn3/ncuBTPkp
+         yB+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=4fN31emiPSLrSSZpsn7Oq3o1ezw79oaA/r4pVULki3E=;
+        b=TmNFu8bO+bMZo99plfPY9Mo1THdo+zfApEkppmXo8cDJRTBgOJ1znB/NjiftF/igGc
+         mcbnErVfpkESh2ul6422ow9BPr8118cEWf9Fqd84lYf4FrwI0Zn8nlFkL+U12HUbUs0p
+         qvvj3P88g9GZ9QE8606RwRNiCL6UWUBBgr9vzy2k9rx5Dq5WKoL7kJJeEp/2IwGzNfeF
+         vlyMK9Q9XHrOO+ZIiDqz/z7z85Qw2Mpz4br51q5hYNDsR0t1+E1D47WzRiJ4nzmhkewg
+         u21iInU3GHkyc4ww6gWeoF/hcL1W48AqIr2nsnxRhC8IxHGq1VK16KuX/qS89ajrdxDH
+         O0Bw==
+X-Gm-Message-State: AOAM530zHKAQnlSr2BXHd6Jh9sfHkl4GdxUDtgA9StyevPHea0nlUlAr
+        vSfsIpv+iI+q0Ajn0ZGf3GLpJg==
+X-Google-Smtp-Source: ABdhPJzSEMUZJ83C9YuQS9zQGX+1xBdQyT2SxdNEMEw0D4djkDKkCIanjUa1Ek6Lg3gxSg/s6asbZw==
+X-Received: by 2002:a17:907:2cc3:b0:6f8:5a21:4d62 with SMTP id hg3-20020a1709072cc300b006f85a214d62mr27126205ejc.256.1654600553287;
+        Tue, 07 Jun 2022 04:15:53 -0700 (PDT)
+Received: from [192.168.0.183] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id u15-20020a05640207cf00b0042dd60352d1sm10203839edy.35.2022.06.07.04.15.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Jun 2022 04:15:52 -0700 (PDT)
+Message-ID: <54015d41-d4eb-12ae-5bd1-00d2c3cf7814@linaro.org>
+Date:   Tue, 7 Jun 2022 13:15:51 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 1/4] dt-bindings: arm: qcom: document qcom,msm-id and
+ qcom,board-id
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Amit Pundir <amit.pundir@linaro.org>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Rob Clark <robdclark@gmail.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Kumar Gala <galak@codeaurora.org>
+References: <20220529202629.47588-1-krzysztof.kozlowski@linaro.org>
+ <20220529202629.47588-2-krzysztof.kozlowski@linaro.org>
+ <20220605150747.GA3465286-robh@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220605150747.GA3465286-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Device Tree Binding doc for Microchip Polarfire FPGA Manager using
-slave SPI to load .dat formatted bitstream image.
+On 05/06/2022 17:07, Rob Herring wrote:
+> On Sun, May 29, 2022 at 10:26:26PM +0200, Krzysztof Kozlowski wrote:
+>> The top level qcom,msm-id and qcom,board-id properties are utilized by
+>> bootloaders on Qualcomm MSM platforms to determine which device tree
+>> should be used and passed to the kernel.
+>>
+>> The commit b32e592d3c28 ("devicetree: bindings: Document qcom board
+>> compatible format") from 2015 was a consensus during discussion about
+>> upstreaming qcom,msm-id and qcom,board-id fields.  There are however still
+>> problems with that consensus:
+>> 1. It was reached 7 years ago but it turned out its implementation did
+>>    not reach all possible products.
+>>
+>> 2. Initially additional tool (dtbTool) was needed for parsing these
+>>    fields to create a QCDT image consisting of multiple DTBs, later the
+>>    bootloaders were improved and they use these qcom,msm-id and
+>>    qcom,board-id properties directly.
+>>
+>> 3. Extracting relevant information from the board compatible requires
+>>    this additional tool (dtbTool), which makes the build process more
+>>    complicated and not easily reproducible (DTBs are modified after the
+>>    kernel build).
+>>
+>> 4. Some versions of Qualcomm bootloaders expect these properties even
+>>    when booting with a single DTB.  The community is stuck with these
+>>    bootloaders thus they require properties in the DTBs.
+>>
+>> Since several upstreamed Qualcomm SoC-based boards require these
+>> properties to properly boot and the properties are reportedly used by
+>> bootloaders, document them.
+> 
+> My primary issue here is accepting this will be an endorsement for 
+> other vendors doing something similar. I'm not against an ID 
+> property(ies) in the root node, but would rather see something common 
+> if we do anything.
 
-Signed-off-by: Ivan Bornyakov <i.bornyakov@metrotek.ru>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../fpga/microchip,mpf-spi-fpga-mgr.yaml      | 44 +++++++++++++++++++
- 1 file changed, 44 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
+Hi Rob,
 
-diff --git a/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml b/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
-new file mode 100644
-index 000000000000..aee45cb15592
---- /dev/null
-+++ b/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
-@@ -0,0 +1,44 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/fpga/microchip,mpf-spi-fpga-mgr.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip Polarfire FPGA manager.
-+
-+maintainers:
-+  - Ivan Bornyakov <i.bornyakov@metrotek.ru>
-+
-+description:
-+  Device Tree Bindings for Microchip Polarfire FPGA Manager using slave SPI to
-+  load the bitstream in .dat format.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - microchip,mpf-spi-fpga-mgr
-+
-+  reg:
-+    description: SPI chip select
-+    maxItems: 1
-+
-+  spi-max-frequency: true
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            fpga_mgr@0 {
-+                    compatible = "microchip,mpf-spi-fpga-mgr";
-+                    spi-max-frequency = <20000000>;
-+                    reg = <0>;
-+            };
-+    };
--- 
-2.35.1
+A more common approach was merged back in 2015 - encoding this ID
+information in the board compatibles. If I understood previous
+discussion correctly, this common method was later used by Qualcomm DTB
+post-processing tool. At least for some of the cases.
+
+Other cases (several Qualcomm boards from different vendors) still use
+these ID properties. It even turns out they use it differently between
+vendors (e.g. Xiaomi vs OnePlus).
+
+Important arguments for documenting these properties:
+1. These ID properties are already on released boards where changing
+bootloader is non-trivial or even not possible. It will not be possible
+to remove these properties, without seriously affecting the community
+working with them.
+
+2. According to Konrad [1] (second paragraph), newer chipsets (starting
+with sm8350 released in 2021) do not use these properties. These newer
+DTS do not have them.
+
+Considering 1+2 above, maybe let's document these properties as
+compatible? Would that solve your point of "endorsement for other vendors"?
+
+[1]
+https://lore.kernel.org/all/20220522195138.35943-1-konrad.dybcio@somainline.org/
 
 
+Best regards,
+Krzysztof
