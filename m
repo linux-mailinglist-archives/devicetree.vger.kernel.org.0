@@ -2,136 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4E3F541B6F
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 23:47:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 076295422C2
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 08:50:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381373AbiFGVrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 17:47:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60920 "EHLO
+        id S1349171AbiFHCrL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 22:47:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1382038AbiFGVqK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 17:46:10 -0400
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5B9B235B03;
-        Tue,  7 Jun 2022 12:07:44 -0700 (PDT)
-Received: by mail-io1-f49.google.com with SMTP id i201so10914649ioa.6;
-        Tue, 07 Jun 2022 12:07:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=FfDC8OCE89M5DmQOiwz11rqXI91cPiUhxnizP3Vecs4=;
-        b=KtkDR78AVoln2T3KHs1nW/C5BlGGhNxb2vdT9H3jjsMOjvRHT/hsUGovoOz9nAhqIo
-         NznUDv7XY5VUhTH7/yXDhq+9iUGfnLWiK70mZLA3GeHjAuBKUuhbm5Lvi/ZV/NKqnF2o
-         UBlv2S7U9TTMH2MYXK0oBT83zADuBc8P4xwK+6PI0BEC3IVYt+C6Bjzy9HXomhHrEF1T
-         D16dp3UAdkmdXKZX/UrczVCRi4rVCT62MzTjmJCibDaA/VmzcSEbab1zcmSB1Myw3bK6
-         gElauK/zHLMU89daVerhSSf+d/qdZHh56+3EGmnXJtVknVasaa8GnO9fF0lYeG30A9gX
-         O+bw==
-X-Gm-Message-State: AOAM531rTDHbxc3PIFCHHXNAGVFNdZ/UKlaYW62Rv5jZRdtJ/Csduu84
-        dHzipIOdahEnoF9YiUmAM0VDTHYuMw==
-X-Google-Smtp-Source: ABdhPJyXN4BjBm3eZUFDX9fHMePl6YzIdSCERXPSC3Ydq6geCntnC7mEUdXSSQ2BbAKOjP5dYeuqbQ==
-X-Received: by 2002:a05:6638:160a:b0:330:f07b:7c5d with SMTP id x10-20020a056638160a00b00330f07b7c5dmr17052629jas.222.1654628863838;
-        Tue, 07 Jun 2022 12:07:43 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id k4-20020a926f04000000b002d52f2f5a97sm3143012ilc.35.2022.06.07.12.07.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jun 2022 12:07:43 -0700 (PDT)
-Received: (nullmailer pid 3646440 invoked by uid 1000);
-        Tue, 07 Jun 2022 19:07:41 -0000
-Date:   Tue, 7 Jun 2022 13:07:41 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Vaibhav Jain <vaibhav@linux.ibm.com>
-Cc:     Prakhar Srivastava <prsriva@linux.microsoft.com>,
-        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
-        Thiago Jung Bauermann <bauerman@linux.vnet.ibm.com>,
-        linux-kernel@vger.kernel.org,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        Ritesh Harjani <ritesh.list@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Mimi Zohar <zohar@linux.vnet.ibm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Subject: Re: [PATCH v3] of: check previous kernel's ima-kexec-buffer against
- memory bounds
-Message-ID: <20220607190741.GA3644258-robh@kernel.org>
-References: <20220531041446.3334259-1-vaibhav@linux.ibm.com>
+        with ESMTP id S1383705AbiFHCiT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 22:38:19 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA95B1F0FCF
+        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 13:43:06 -0700 (PDT)
+Received: from localhost.localdomain ([37.4.249.155]) by
+ mrelayeu.kundenserver.de (mreue106 [212.227.15.183]) with ESMTPSA (Nemesis)
+ id 1MGyl3-1o2Cgi3Bfn-00E22J; Tue, 07 Jun 2022 22:42:51 +0200
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Lee Jones <lee.jones@linaro.org>
+Cc:     Peter Robinson <pbrobinson@gmail.com>,
+        Melissa Wen <melissa.srw@gmail.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Stefan Wahren <stefan.wahren@i2se.com>
+Subject: [PATCH V3 00/11] soc: bcm2835-power: Prepare BCM2711 V3D support
+Date:   Tue,  7 Jun 2022 22:42:15 +0200
+Message-Id: <20220607204226.8703-1-stefan.wahren@i2se.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220531041446.3334259-1-vaibhav@linux.ibm.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:95IZT/hv9VsgclPJn6CoB4XLPs5t9/b/k8nKkbIprddSSRDDCm+
+ ffidJaQH/5DXaJsTrv+47t5BYB8lH1tGuY2bDlVw2s54ar472C3Yt42ZIc/6OIy2ZOZVmlu
+ 2hfYjtuCphGoGsiMJllA1khuc67Bt9F2ptTtUUOedxTVghmcadwydy0JbNxUvNJBs7OcSUZ
+ Y3POskhRcWoUfMfMxXR2w==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:qslAVAJZLjc=:y/MDIRl5MLSnOZU2OB5O8z
+ Ms388ropO6IugFg2c58Yez5x1ChUlDce5KjacRD7pOHUxJzkXsS2UrxSqk8qw8t8ab3CrPwVW
+ zVV2gQuWb4JdXkfVFJ3H8hW6O21pOBD7DcnORPQnBS9a/ILNWzPDQZx57PVIOeveVUshqbckM
+ UYTEFHUZVAqcCbk09TklwtL+ifwiQMqqpvq0kiul96SFVSltNNGbdOH1Eixi6g7W+1CXYZNfb
+ cX7+bfaglYS6ZRCOYdT7tL2Cw/3mzv+YC/bzJtMAH+V/TFyqLhcLJRjYfI2DAcf8PlEHnY3os
+ 4G0ZZhy1nHDC5Fxbv0OlDM5IESGlQXPpsAmPTYoUC5IIY78pvwoP1lpNr9MZWFSucB4WSzGBY
+ hmkXRytCqe8f7GSwFzLggWRGYW0J/p1CvbZA3jFsJ/WXs0zdlAOGoVyZhFvgHbJXIKSd9/tU/
+ 3LH0i9WocTucJ/yzhVepbkDHe39jHsKKhQWX36Wclqzubdoqg9kspnsgUfSaFZpLx+yTc2N7F
+ 5E02ICAfsJxWBsqifjHeeHdQSuzhhSZOzxrpAHEUrk+TTmt3i9sroGTmhHS87QrNdP+ZRWOjL
+ zhWmyEEzWFfwDJUAX+GVkuir+cf1coPwfr7553/zefUxMkF57IRkXMPwJ6Xv2UIf5+w0I5l95
+ B8ZBrBphYNwcLpw99bjk2G0jxPo+8OWDE0WQxeMCTfo5IDc6zxnyKGTWBqgB4XC6M1Qz4DMUJ
+ 1BdV8Q5Su21pOFVXbCV2bbSN2SN6iRp6Du+8iVXiowx0+BpH9K7gDYv0DMc=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 31 May 2022 09:44:46 +0530, Vaibhav Jain wrote:
-> Presently ima_get_kexec_buffer() doesn't check if the previous kernel's
-> ima-kexec-buffer lies outside the addressable memory range. This can result
-> in a kernel panic if the new kernel is booted with 'mem=X' arg and the
-> ima-kexec-buffer was allocated beyond that range by the previous kernel.
-> The panic is usually of the form below:
-> 
-> $ sudo kexec --initrd initrd vmlinux --append='mem=16G'
-> 
-> <snip>
->  BUG: Unable to handle kernel data access on read at 0xc000c01fff7f0000
->  Faulting instruction address: 0xc000000000837974
->  Oops: Kernel access of bad area, sig: 11 [#1]
-> <snip>
->  NIP [c000000000837974] ima_restore_measurement_list+0x94/0x6c0
->  LR [c00000000083b55c] ima_load_kexec_buffer+0xac/0x160
->  Call Trace:
->  [c00000000371fa80] [c00000000083b55c] ima_load_kexec_buffer+0xac/0x160
->  [c00000000371fb00] [c0000000020512c4] ima_init+0x80/0x108
->  [c00000000371fb70] [c0000000020514dc] init_ima+0x4c/0x120
->  [c00000000371fbf0] [c000000000012240] do_one_initcall+0x60/0x2c0
->  [c00000000371fcc0] [c000000002004ad0] kernel_init_freeable+0x344/0x3ec
->  [c00000000371fda0] [c0000000000128a4] kernel_init+0x34/0x1b0
->  [c00000000371fe10] [c00000000000ce64] ret_from_kernel_thread+0x5c/0x64
->  Instruction dump:
->  f92100b8 f92100c0 90e10090 910100a0 4182050c 282a0017 3bc00000 40810330
->  7c0802a6 fb610198 7c9b2378 f80101d0 <a1240000> 2c090001 40820614 e9240010
->  ---[ end trace 0000000000000000 ]---
-> 
-> Fix this issue by checking returned PFN range of previous kernel's
-> ima-kexec-buffer with page_is_ram() to ensure correct memory bounds.
-> 
-> Fixes: 467d27824920 ("powerpc: ima: get the kexec buffer passed by the previous kernel")
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Cc: Prakhar Srivastava <prsriva@linux.microsoft.com>
-> Cc: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-> Cc: Thiago Jung Bauermann <bauerman@linux.ibm.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Ritesh Harjani <ritesh.list@gmail.com>
-> Cc: Robin Murphy <robin.murphy@arm.com>
-> Signed-off-by: Vaibhav Jain <vaibhav@linux.ibm.com>
-> ---
-> Changelog
-> ==========
-> v3:
-> * change the type for {start,end}_pfn to unsigned long [ Ritesh ]
-> * Switched to page_is_ram() from pfn_vaild() [ Rob ]
-> 
-> v2:
-> * Instead of using memblock to determine the valid bounds use pfn_valid() to do
-> so since memblock may not be available late after the kernel init. [ Mpe ]
-> * Changed the patch prefix from 'powerpc' to 'of' [ Mpe ]
-> * Updated the 'Fixes' tag to point to correct commit that introduced this
-> function. [ Rob ]
-> * Fixed some whitespace/tab issues in the patch description [ Rob ]
-> * Added another check for checking ig 'tmp_size' for ima-kexec-buffer is > 0
-> ---
->  drivers/of/kexec.c | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
-> 
+This series is a split out of version 4 - Raspberry PI 4 V3D enablement send
+by Peter Robinson [1]. It attempts to enable BCM2711 V3D support for the
+power management driver. It's a rework of the less controversial changes
+(excluding V3D GPU driver changes) so this can be reviewed and applied faster.
 
-Applied, thanks!
+Changes in V3:
+- add more Reviewed-by by Peter
+- fix minItems in Patch #3 found by Rob
+
+Changes in V2:
+- add Peter's Reviewed-by
+- simplify schema for rpivid_asb as suggested by Rob
+- fix reference and clarify fallback & error handling in patch #7
+- drop unnecessary newline in patch #9
+- improve log messages as noticed by Peter
+
+Changes since the mention series:
+- fix DT schema errors
+- make rpivid_asb register optional in DT schema
+- avoid code duplication in BCM2835 ASB enable/disable
+- rework ASB V3D handling so we don't need the V3D flag
+- avoid log errors for optional register
+- use a define for expected ASB_AXI_BRDG_ID result
+- fix copy & paste issues in bcm2835-pm changes
+
+[1] - https://patchwork.kernel.org/project/linux-arm-kernel/cover/20220213225646.67761-1-pbrobinson@gmail.com/
+
+Nicolas Saenz Julienne (6):
+  dt-bindings: soc: bcm: bcm2835-pm: Convert bindings to DT schema
+  dt-bindings: soc: bcm: bcm2835-pm: Introduce reg-names
+  ARM: dts: bcm2835/bcm2711: Introduce reg-names in watchdog node
+  ARM: dts: bcm2711: Use proper compatible in PM/Watchdog node
+  mfd: bcm2835-pm: Use 'reg-names' to get resources
+  soc: bcm: bcm2835-power: Bypass power_on/off() calls
+
+Stefan Wahren (5):
+  dt-bindings: soc: bcm: bcm2835-pm: Add support for bcm2711
+  mfd: bcm2835-pm: Add support for BCM2711
+  soc: bcm: bcm2835-power: Refactor ASB control
+  soc: bcm: bcm2835-power: Resolve ASB register macros
+  soc: bcm: bcm2835-power: Add support for BCM2711's RPiVid ASB
+
+ .../bindings/soc/bcm/brcm,bcm2835-pm.txt      | 46 ----------
+ .../bindings/soc/bcm/brcm,bcm2835-pm.yaml     | 86 +++++++++++++++++++
+ arch/arm/boot/dts/bcm2711.dtsi                |  3 +-
+ arch/arm/boot/dts/bcm2835-common.dtsi         |  1 +
+ drivers/mfd/bcm2835-pm.c                      | 80 +++++++++++++----
+ drivers/soc/bcm/bcm2835-power.c               | 72 ++++++++++------
+ include/linux/mfd/bcm2835-pm.h                |  1 +
+ 7 files changed, 199 insertions(+), 90 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.txt
+ create mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
+
+-- 
+2.25.1
+
