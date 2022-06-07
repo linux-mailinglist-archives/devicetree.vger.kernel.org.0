@@ -2,191 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E0CC53F73F
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 09:30:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F2DF53F779
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 09:44:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237689AbiFGHas (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 03:30:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59122 "EHLO
+        id S237804AbiFGHoQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 03:44:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237687AbiFGHal (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 03:30:41 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E302D53B5B;
-        Tue,  7 Jun 2022 00:30:32 -0700 (PDT)
-X-UUID: f843737c3f404615a59783296f1684a9-20220607
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:598b5a6e-c7bd-4943-9063-8511df6351cf,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:2a19b09,CLOUDID:704b727e-c8dc-403a-96e8-6237210dceee,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:0,BEC:nil
-X-UUID: f843737c3f404615a59783296f1684a9-20220607
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 841689716; Tue, 07 Jun 2022 15:30:24 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Tue, 7 Jun 2022 15:30:23 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Tue, 7 Jun 2022 15:30:23 +0800
-Message-ID: <a93e5600ca3526651b728eceba51145b96d58037.camel@mediatek.com>
-Subject: Re: [PATCH v10 18/21] drm/mediatek: Add mt8195 Embedded DisplayPort
- driver
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        Guillaume Ranquet <granquet@baylibre.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        "Daniel Vetter" <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        "Kishon Vijay Abraham I" <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, "Helge Deller" <deller@gmx.de>,
-        Jitao shi <jitao.shi@mediatek.com>
-CC:     Markus Schneider-Pargmann <msp@baylibre.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>, <linux-fbdev@vger.kernel.org>
-Date:   Tue, 7 Jun 2022 15:30:20 +0800
-In-Reply-To: <20220523104758.29531-19-granquet@baylibre.com>
-References: <20220523104758.29531-1-granquet@baylibre.com>
-         <20220523104758.29531-19-granquet@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S235160AbiFGHoP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 03:44:15 -0400
+Received: from mail.shift-gmbh.com (mail.shift-gmbh.com [85.10.195.145])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84ACC2EA3B;
+        Tue,  7 Jun 2022 00:44:11 -0700 (PDT)
+From:   Alexander Martinz <amartinz@shiftphones.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shiftphones.com;
+        s=2018; t=1654587849;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=GgHqv91xtDPT2OEbMPNAx9fBgy2xHBtE3Y0HuLoRfss=;
+        b=APfhe2ypnM9Th4dzKXX3dmJlMsKRxitnyLVzNQlNbNU+ZKcNKJfZ92KaxkWtHbKCwfokae
+        ggassWgauXib4xD8oBibMonVeVb5btUMkj7EmYx/kAWQS9ndp2u87Mkm0aXg3z8fFrHqUZ
+        qc3i9WvuwixveMkXq2GabkQbALv4eAfN74cGfXmFArL8JsbXe3bUCo25MpnLc7+l4rP8z6
+        fmrgGWV/TB7CZLVR9BHha1ocLIG/VifxAUzYTGUwU8bdWqIYHyQ96eeFB/ZGxrfRASTLrr
+        eJKMiowGtfLNvgxOXfxTyyzR4Y+mq7CPghM/0MlFDPiHq097mSrs65B247Jq7g==
+To:     ~postmarketos/upstreaming@lists.sr.ht
+Cc:     phone-devel@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Caleb Connolly <caleb@connolly.tech>,
+        Dylan Van Assche <me@dylanvanassche.be>,
+        Alexander Martinz <amartinz@shiftphones.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2 1/2] ASoC: dt-bindings: nxp,tfa989x: Add tfa9890 support
+Date:   Tue,  7 Jun 2022 09:43:29 +0200
+Message-Id: <20220607074329.13129-1-amartinz@shiftphones.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+        auth=pass smtp.auth=amartinz@shiftphones.com smtp.mailfrom=amartinz@shiftphones.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Rex:
+Document TFA9890 binding for tfa989x.
 
-On Mon, 2022-05-23 at 12:47 +0200, Guillaume Ranquet wrote:
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
-> 
-> This patch adds a DisplayPort driver for the Mediatek mt8195 SoC.
-> 
-> It supports the mt8195, the embedded DisplayPort units. It offers
-> DisplayPort 1.4 with up to 4 lanes.
-> 
-> The driver creates a child device for the phy. The child device will
-> never exist without the parent being active. As they are sharing a
-> register range, the parent passes a regmap pointer to the child so
-> that
-> both can work with the same register range. The phy driver sets
-> device
-> data that is read by the parent to get the phy device that can be
-> used
-> to control the phy properties.
-> 
-> This driver is based on an initial version by
-> Jason-JH.Lin <jason-jh.lin@mediatek.com>.
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> ---
+Signed-off-by: Alexander Martinz <amartinz@shiftphones.com>
+Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-[snip]
-
-> +
-> +static ssize_t mtk_dp_aux_transfer(struct drm_dp_aux *mtk_aux,
-> +				   struct drm_dp_aux_msg *msg)
-> +{
-> +	struct mtk_dp *mtk_dp;
-> +	bool is_read;
-> +	u8 request;
-> +	size_t accessed_bytes = 0;
-> +	int ret = 0;
-> +
-> +	mtk_dp = container_of(mtk_aux, struct mtk_dp, aux);
-> +
-> +	if (!mtk_dp->train_info.cable_plugged_in ||
-> +	    mtk_dp->train_info.irq_status & MTK_DP_HPD_DISCONNECT) {
-> +		mtk_dp->train_state = MTK_DP_TRAIN_STATE_CHECKCAP;
-
-Changing state here has no any effect, so drop this.
-
-> +		return -EAGAIN;
-> +	}
-> +
-> +	switch (msg->request) {
-> +	case DP_AUX_I2C_MOT:
-> +	case DP_AUX_I2C_WRITE:
-> +	case DP_AUX_NATIVE_WRITE:
-> +	case DP_AUX_I2C_WRITE_STATUS_UPDATE:
-> +	case DP_AUX_I2C_WRITE_STATUS_UPDATE | DP_AUX_I2C_MOT:
-> +		request = msg->request &
-> ~DP_AUX_I2C_WRITE_STATUS_UPDATE;
-> +		is_read = false;
-> +		break;
-> +	case DP_AUX_I2C_READ:
-> +	case DP_AUX_NATIVE_READ:
-> +	case DP_AUX_I2C_READ | DP_AUX_I2C_MOT:
-> +		request = msg->request;
-> +		is_read = true;
-> +		break;
-> +	default:
-> +		drm_err(mtk_aux->drm_dev, "invalid aux cmd = %d\n",
-> +			msg->request);
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (msg->size == 0) {
-> +		ret = mtk_dp_aux_do_transfer(mtk_dp, is_read, request,
-> +					     msg->address +
-> accessed_bytes,
-> +					     msg->buffer +
-> accessed_bytes, 0);
-> +	} else {
-> +		while (accessed_bytes < msg->size) {
-> +			size_t to_access =
-> +				min_t(size_t, DP_AUX_MAX_PAYLOAD_BYTES,
-> +				      msg->size - accessed_bytes);
-> +
-> +			ret = mtk_dp_aux_do_transfer(mtk_dp,
-> +						     is_read, request,
-> +							 msg->address +
-> accessed_bytes,
-> +							 msg->buffer +
-> accessed_bytes,
-> +							 to_access);
-> +
-> +			if (ret) {
-> +				drm_info(mtk_dp->drm_dev,
-> +					 "Failed to do AUX transfer:
-> %d\n", ret);
-> +				break;
-> +			}
-> +			accessed_bytes += to_access;
-> +		}
-> +	}
-> +
-> +	if (ret) {
-> +		msg->reply = DP_AUX_NATIVE_REPLY_NACK |
-> DP_AUX_I2C_REPLY_NACK;
-> +		return ret;
-> +	}
-> +
-> +	msg->reply = DP_AUX_NATIVE_REPLY_ACK | DP_AUX_I2C_REPLY_ACK;
-> +	return msg->size;
-> +}
+diff --git a/Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml b/Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml
+index b9b1dba40856..7f2e68ff6d34 100644
+--- a/Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml
++++ b/Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml
+@@ -15,6 +15,7 @@ allOf:
+ properties:
+   compatible:
+     enum:
++      - nxp,tfa9890
+       - nxp,tfa9895
+       - nxp,tfa9897
+ 
+-- 
+2.36.1
 
