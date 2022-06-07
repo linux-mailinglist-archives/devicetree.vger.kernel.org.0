@@ -2,242 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97EBF542463
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 08:52:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68489542455
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 08:52:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344296AbiFHAse (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 20:48:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41642 "EHLO
+        id S242832AbiFHAr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 20:47:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1449441AbiFGXJt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 19:09:49 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F7871F5E2F;
-        Tue,  7 Jun 2022 13:46:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1654634777;
-        bh=1XNiGX/khM+S8gmD65pIw9fIxxv7YQTuxd2uCADNsgQ=;
-        h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:In-Reply-To;
-        b=VvCLkNnEALv7AAJcpWeT7O7vBkzc+N22YMkSgmYp0SrhRxaix8/rZdYllgEHPJit4
-         7c7wiQOgCt9s+YrLyXVZGj8PCHoGAztaIpFVL2SRqVpMoKbNnubH+c68K6im78zxCw
-         2Jv9JPV86aHNXxaYPpqZH+LOc85yNT/BZwnzYGAk=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [192.168.123.94] ([62.143.94.109]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MHXBj-1o2kZ746wj-00DYs2; Tue, 07
- Jun 2022 22:46:17 +0200
-Message-ID: <eb0ea0d5-0650-53e8-f83c-eb4b82343c7a@gmx.de>
-Date:   Tue, 7 Jun 2022 22:45:58 +0200
+        with ESMTP id S1455452AbiFGXSl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 19:18:41 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC3FC21C613
+        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 14:15:48 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id e9so6210112pju.5
+        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 14:15:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jT8DLfbyhUAC8YupnNkx7/WPeiPnBTRo6q4n9p3S9IY=;
+        b=VlUgXcU9owX1EBIje6hBA2fwQ9kjFpI9bPxIwfz3BBF+P0QwC14EOuzXoFF8wDys4m
+         LvFexAAmIgm9t44ySB3iZn4tl5NRcrd+xFuGu0qVyxf3w/br+VLAlQmjgGoWKBREO2gT
+         mBi4xnNl9LeVoaIH1Mm5CLnk7Jt6LFoQ9GNFo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jT8DLfbyhUAC8YupnNkx7/WPeiPnBTRo6q4n9p3S9IY=;
+        b=wUBsYYVDNjLHquwI9DC+YnENoeBqS08DvTmW+oBdYZ5tffWdQSV6+mz020punJKR8Z
+         Fk4qXDQhifTsKHxtD0qo3fgCQyFqgKHaXYbrCSo6la5HoTVl2jtgimEwgCI0sBWdN9oe
+         Jl8X5TSIPZFgqGktYBiwrRt9vjw9Pkb6N0SVHlj71Ibhh6Ms9X0IRHWm0UChBwZx01G4
+         OvP1X1Xx1O1dvobG8BFy7xpjMxYFe0/1jJIN3CXRfwsD/+Ke3GNQCYk0kKrug+i/An8S
+         SK4jwnXT3yWQNii2J2/uvrS5oXtkviqxIqMjsubrtmVjnJ1DR6Zo7Iuig7DJGqQK0LWf
+         21rA==
+X-Gm-Message-State: AOAM531LkTSuSd7RR96Hd2zF4rKE/mkTD7YuwUvQxL/Wvj45wa6O1Xkc
+        IxnzcybFA6bdrcpvKy0y4rHOSg==
+X-Google-Smtp-Source: ABdhPJxhFzWqzH75FBiSKGcGqopAKv26dB/QVu2+AEpLNrGFVc0gxO7a4bpodDrd1FVbJmDNPWR2Tg==
+X-Received: by 2002:a17:903:110e:b0:167:8847:5d9d with SMTP id n14-20020a170903110e00b0016788475d9dmr8945619plh.3.1654636548284;
+        Tue, 07 Jun 2022 14:15:48 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:b689:cc5b:e6ad:930e])
+        by smtp.gmail.com with UTF8SMTPSA id g7-20020a636b07000000b003fd3a3db089sm8589907pgc.11.2022.06.07.14.15.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Jun 2022 14:15:47 -0700 (PDT)
+From:   Brian Norris <briannorris@chromium.org>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+        Sebastian Fricke <sebastian.fricke@collabora.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Brian Norris <briannorris@chromium.org>, stable@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: Assign RK3399 VDU clock rate
+Date:   Tue,  7 Jun 2022 14:15:36 -0700
+Message-Id: <20220607141535.1.Idafe043ffc94756a69426ec68872db0645c5d6e2@changeid>
+X-Mailer: git-send-email 2.36.1.255.ge46751e96f-goog
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH] dt-bindings: input: Convert adc-keys to DT schema
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20220606184243.1057145-1-robh@kernel.org>
- <7657a50f-20c0-9ad0-aecb-5b3e71feb18c@gmx.de>
- <20220607150338.GA3189983-robh@kernel.org>
-From:   Heinrich Schuchardt <xypron.glpk@gmx.de>
-In-Reply-To: <20220607150338.GA3189983-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:sAJO+crPttf9E9cY2pdNq2SJkxUR9xDLYLA0dhas5UqVhJrZNl7
- styEa0zHdms+U38XCb4gvu3NexRnuNOs2tJ+tvqSnigb5Q9vPgab3tCkaPA8+LXB005VJMX
- zq1lJpvf6JMbvTx/ObF/Z7RuPMmQbwfHvyIfpG5qkiS8UjOg1KYaRgFMofhwJsj3G6OjDC4
- mE5RpYto0rOddNGCIe8uw==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:E0MskkJOt7Q=:A/CRL5GzQpI9aoeoKqV6Oz
- xMfXWSi+WwDIzLig9sTBwZfDH55fTlhnByZJbXP3C80YX+TLtkYhqCKXKSUPZNkkbLx7NCqDc
- QX04Li+78ojXyEs04SIEk8xWevK84nkF+1ufY+1LDJPQ0FGAp1CtsLKZXKvZRcj/YenW/EXYL
- +tcUioZtlFk7CPpV7NeCQ0DgAei2lTMvlw3lq+ctZtxc0HvyrgKIB3HVNGOzs/y8JfKx+W+G7
- RWOW+bJvfjUCms9+1VN4XSgHh7zFBZVgSHjjyuTgcRHvjceBoaq9pyGP2F6SuV2X/pVL4XsSR
- GuKqUFkx8SChDv5a0z4BxWytX1ycQf0DW9stm9rn9AILE5eICNs+hm7jiZKt+qKh2pt5391bi
- fDV7vIbbDQTtG/ObvIIiRU7E+h2CJqI5l3ssBpBZ4ctram3dpGCao4cY/K0tGyUMQ7QWMnbl2
- 3K6PGtETgoD+Gs7k0Dt23hbRhz/HvmEAj7plcTtFtWYgYEQ7cUhDcu2pi0MJdyA+TU4j69OyD
- 7dkTePsKb3luXZKDbmjdDLNm4AJYRr9UMQ8oEdWAsMcubOIRvyZ/SCgv8ndjJBg382B4vDDzi
- +s23TJACxK6uaB5TsaU8Q336aoOomfSXiBZ5JFI1e8bdalncgJkTIEU0nTmy7EuNKbTKVE+NZ
- eHWCYAiAc0Dp1EoKjr7d7LFi4dxer8zRukF3KnmXDXvAqzkhdogi28FMg8TlH63Ovv1PDoS+z
- wLxHujOrw+yfmHTnv87N531fdrMzLmmWrPRPGTtuS+ASmp0XiYoo5XBXgcN8SnfBz7AxbF9JV
- TRBRjwZwxtwJGwKBv8VXt4n86WoA3I7bBZ3i67tzZhCo1DQiMSkp4yINpZp2B/MyrXcdT9uyw
- 7FWP5aAOkSwS1meFBUdoe6j7xbEZSX/g7GI+l/jJhWI0TR6N1Dmlmdss7AzgUSuYfTMvyv/nj
- 20AWqTnu5im6YuMqqpH60bkqMe8KwOEP1KHHRqEuh8l8zC+ntoo7KVuK+XnBQOZ4stdoel5Pd
- Y+UeyGo3iz6S5V34bbi9IW9wFmK+vPPv8ea+rV7Wd/7HbJo5yvfZYRi33B5zNBiLcNmMHGN3p
- IzSJLKrIo25OvfJJGwLuAklNOoU3etitrQUBA5MkDhLch6p0vfDPynq7w==
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/7/22 17:03, Rob Herring wrote:
-> On Tue, Jun 07, 2022 at 09:48:33AM +0200, Heinrich Schuchardt wrote:
->> On 6/6/22 20:42, Rob Herring wrote:
->>> Convert the adc-keys binding to DT schema format.
->>>
->>> Signed-off-by: Rob Herring <robh@kernel.org>
->>> ---
->>>    .../devicetree/bindings/input/adc-keys.txt    |  67 ------------
->>>    .../devicetree/bindings/input/adc-keys.yaml   | 103 +++++++++++++++=
-+++
->>>    2 files changed, 103 insertions(+), 67 deletions(-)
->>>    delete mode 100644 Documentation/devicetree/bindings/input/adc-keys=
-.txt
->>>    create mode 100644 Documentation/devicetree/bindings/input/adc-keys=
-.yaml
->
->>> -+--------------------------------+------------------------+
->>> diff --git a/Documentation/devicetree/bindings/input/adc-keys.yaml b/D=
-ocumentation/devicetree/bindings/input/adc-keys.yaml
->>> new file mode 100644
->>> index 000000000000..a3a1af9550bc
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/input/adc-keys.yaml
->>> @@ -0,0 +1,103 @@
->>> +# SPDX-License-Identifier: GPL-2.0
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/input/adc-keys.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: ADC attached resistor ladder buttons
->>> +
->>> +maintainers:
->>> +  - Heinrich Schuchardt <xypron.glpk@gmx.de>
->>
->> Thanks for converting to yaml.
->>
->> I only contributed a single patch. I am not a maintainer. Please, remov=
-e
->> that line.
->
-> Okay.
->
->> scripts/get_maintainer.pl
->> Documentation/devicetree/bindings/input/adc-keys.txt yields
->> Dmitry Torokhov <dmitry.torokhov@gmail.com> (maintainer:INPUT (KEYBOARD=
-,
->> MOUSE, JOYSTICK, TOUCHSCREEN)...)
->
-> The maintainer here is supposed to be someone that cares about this
-> particular binding, not who applies patches. IOW, who would care if the
-> binding was deleted.
->
->> It would be preferable to have a single reference point for
->> maintainership: file /MAINTAINERS.
->
-> There's 2 main reasons why it is not. MAINTAINERS doesn't work for the
-> DT only tree we generate[1]. Second, having an entry in MAINTAINERS
-> for bindings is not consistent. With it in the schema, I don't have to
-> check, the tools do it for me.
->
->>> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
->>> +
->>> +allOf:
->>> +  - $ref: /schemas/input/input.yaml#
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: adc-keys
->>> +
->>> +  io-channels:
->>> +    maxItems: 1
->>
->> Please, add a description to each property.
->
-> Common properties don't get descriptions unless there is something
-> specific about this binding to say. What would that be?
->
->
->>> +  io-channel-names:
->>> +    const: buttons
->>> +
->>> +  keyup-threshold-microvolt:
->>> +    description:
->>> +      Voltage above or equal to which all the keys are considered up.
->>> +
->>> +patternProperties:
->>> +  '^button-':
->>> +    type: object
->>> +    additionalProperties: false
->>> +    description:
->>> +      Each button (key) is represented as a sub-node.
->>> +
->>> +    properties:
->>> +      label: true
->>
->> Please, add a description.
->
-> No, common property.
->
->>> +      linux,code:
->>> +        description: Keycode to emit.
->>> +        $ref: /schemas/types.yaml#/definitions/uint32
->>
->> Unfortunately usable values are only defined in
->> include/uapi/linux/input-event-codes.h up to now. Please, consider
->> adding that link to the description.
->
-> linux,code is common for lots of bindings, so really the type,
-> description, and any common constraints need to be documented somewhere
-> common. I'm not sure if input.yaml makes sense given that includes a
-> bunch of other properties.
->
->> It is unclear to me if using values above KEY_MAX (=3D0x2ff) could make
->> sense of should be forbidden by this yaml file.
->
-> Shrug. I have no idea.
->
->> For interoperability of device-trees with other operating systems we
->> should have a yaml file defining an enum with used values and their mea=
-ning.
->
-> Certainly, but that's an orthogonal issue.
+Before commit 9998943f6dfc ("media: rkvdec: Stop overclocking the
+decoder"), the rkvdec driver was forcing the VDU clock rate. After that
+commit, we rely on the default clock rate. That rate works OK on many
+boards, with the default PLL settings (CPLL is 800MHz, VDU dividers
+leave it at 400MHz); but some boards change PLL settings.
 
-Yes, it is orthogonal.
+Assign the expected default clock rate explicitly, so that the rate is
+consistent, regardless of PLL configuration.
 
-git grep -ni keycode Documentation/devicetree/bindings/
-finds 15+ documents referring to key-codes.
+This was particularly broken on RK3399 Gru Scarlet systems, where the
+rk3399-gru-scarlet.dtsi assigns PLL_CPLL to 1.6 GHz, and so the VDU
+clock ends up at 800 MHz (twice the expected rate), and causes video
+artifacts and other issues.
 
-So this will be a worthwhile undertaking.
+Note: I assign the clock rate in the clock controller instead of the
+vdec node, because there are multiple nodes that use this clock, and per
+the clock.yaml specification:
 
-Best regards
+  Configuring a clock's parent and rate through the device node that
+  consumes the clock can be done only for clocks that have a single
+  user. Specifying conflicting parent or rate configuration in multiple
+  consumer nodes for a shared clock is forbidden.
 
-Heinrich
+  Configuration of common clocks, which affect multiple consumer devices
+  can be similarly specified in the clock provider node.
 
->
->>> +
->>> +      press-threshold-microvolt:
->>> +        description:
->>> +          Voltage above or equal to which this key is considered pres=
-sed. No
->>> +          two values of press-threshold-microvolt may be the same. Al=
-l values
->>> +          of press-threshold-microvolt must be less than
->>> +          keyup-threshold-microvolt.
->>> +
->>> +    required:
->>> +      - label
->>
->> Property label is not used in our the driver code. It only exists for
->> human readability. Why is it marked as required? Stripping the labels
->> would reduce the DT size.
->
->>From the original:
->
->>> -Required subnode-properties:
->>> -	- label: Descriptive name of the key.
->
-> But I'll drop it.
->
-> Rob
->
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/devicetree/devicetre=
-e-rebasing.git/tree/
+Fixes: 9998943f6dfc ("media: rkvdec: Stop overclocking the decoder")
+Cc: <stable@vger.kernel.org>
+Signed-off-by: Brian Norris <briannorris@chromium.org>
+---
+This is a candidate for 5.19 IMO, since commit 9998943f6dfc landed in
+5.19-rc1 and is being queued up for -stable as we speak.
+
+ arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi | 4 +++-
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi             | 6 ++++--
+ 2 files changed, 7 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi
+index 913d845eb51a..1977103a5ef4 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi
+@@ -376,7 +376,8 @@ &cru {
+ 		<&cru ACLK_VIO>,
+ 		<&cru ACLK_GIC_PRE>,
+ 		<&cru PCLK_DDR>,
+-		<&cru ACLK_HDCP>;
++		<&cru ACLK_HDCP>,
++		<&cru ACLK_VDU>;
+ 	assigned-clock-rates =
+ 		<600000000>, <1600000000>,
+ 		<1000000000>,
+@@ -388,6 +389,7 @@ &cru {
+ 		<400000000>,
+ 		<200000000>,
+ 		<200000000>,
++		<400000000>,
+ 		<400000000>;
+ };
+ 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+index fbd0346624e6..9d5b0e8c9cca 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+@@ -1462,7 +1462,8 @@ cru: clock-controller@ff760000 {
+ 			<&cru HCLK_PERILP1>, <&cru PCLK_PERILP1>,
+ 			<&cru ACLK_VIO>, <&cru ACLK_HDCP>,
+ 			<&cru ACLK_GIC_PRE>,
+-			<&cru PCLK_DDR>;
++			<&cru PCLK_DDR>,
++			<&cru ACLK_VDU>;
+ 		assigned-clock-rates =
+ 			 <594000000>,  <800000000>,
+ 			<1000000000>,
+@@ -1473,7 +1474,8 @@ cru: clock-controller@ff760000 {
+ 			 <100000000>,   <50000000>,
+ 			 <400000000>, <400000000>,
+ 			 <200000000>,
+-			 <200000000>;
++			 <200000000>,
++			 <400000000>;
+ 	};
+ 
+ 	grf: syscon@ff770000 {
+-- 
+2.36.1.255.ge46751e96f-goog
 
