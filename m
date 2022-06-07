@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 54F0153FB58
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 12:34:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 705FE53FB5A
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 12:34:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241083AbiFGKeG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 06:34:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35402 "EHLO
+        id S241075AbiFGKeH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 06:34:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241075AbiFGKeC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 06:34:02 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27E5362CD4
+        with ESMTP id S241079AbiFGKeD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 06:34:03 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5599664BF7
         for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 03:33:58 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id n10so34308477ejk.5
+Received: by mail-ej1-x62e.google.com with SMTP id n10so34308480ejk.5
         for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 03:33:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=WdAxh+O0uIjFe4UvozVO34klV0ZIe/hi3OtAodjcZGE=;
-        b=Mb0K0i/8GyglpnlM9LcfaGHP6z5FNt+4CH6xvL7yruCiCSjz9yV8dDlC/rrkNEfPkP
-         OwCgk8SfaQc9DTDXA78F/nql/eOsSFR/gZcI7A1PnFQAt0mJUSrLh/fM1k1kpG3mHN2O
-         2/Ic/F7zJxl1KA0NGD8BnnR8j4kGWRDSBKZpPkYbsfaDXgLCRNetWMxdE+t6gWF+S9+i
-         240S7z8aSqm19wXigQDlaLCKbHOtzx97sMy2ns1mLpdTdC5ljmcvt2Xo2/ycby9QfsEf
-         U1ih6H+BHoXc2VljsDuf6jGLcaVJFE586ohHZFoMEJ0gBZer2c5bvLvqshRITognF00L
-         STnQ==
+        bh=Din8b4ZDN1HEqW7Sqe8kkBNl+yuozkXEbwel+kwZoV8=;
+        b=dZfRGo6wkdJHzd6+xUGZzUGP7iGh81wHnB2LbxM97/Mlj5ykrgb9qNqWXu5yQbt1Y2
+         UU6HJQ0YjNR8MKs+1wBitE7l+r7A9c7CDIjD8oMmsN4GnZ6xoyrAjvMPohHnf0lYv8Z0
+         tWalXe8fHZyApWWjqeizj5V6jMJjQ2ZdvoKtctxCnBdGPnAyRhr5fNDFZgZYKnymMfAt
+         1biUyTbvHAVaCeNNijSV7oqQxK7lNMDguuiGRFOBzAe+fjCyKqcYXwgDqQtLHxZ6fq2/
+         tmDedTs7a6SGyRf2ziqS3LtMeMeMrB45qvOfqE+ERX/BqpHy5b+CGIxydSLQYtOTHplQ
+         OGYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=WdAxh+O0uIjFe4UvozVO34klV0ZIe/hi3OtAodjcZGE=;
-        b=yVTJYGwMI5cVEtgp/Q6lGZ8SOzzROjksoucTjOoezbxwmHarLRGpOByZNngDEBAJzA
-         WW2YDr/ZAeW/S6Fu0H5T7oDNku2CQEbGzHFJP/lNnUA2VIHdQUA+Q/QRo5XBijlp4GO3
-         EfWOqeslI7RrOLJMWEuFsLYskzOqMvjS5Mi1iOFE52oTwaOUZkYiRYtqK8N0Zlw8tlcN
-         HB1Q8/ZI2+KmZn0kjCvUJ7XYgbny2P8/5OBHpX/2TyXQZlOA/J0UV8gzZc4FbMPu1xMZ
-         xQnIIrS9D4R9XwZk+CkRVc/BVeIduBNsOmGPbTpMKbm2u8VeEmOwO/v8SWY1Ks7MSdp6
-         Dmcw==
-X-Gm-Message-State: AOAM530keFgWZLOEq02uk6L41gz+f7lrYhu+f6tXf6NA7FlDXqtx55+e
-        VwEFBAs9k0OKRYEv78havHqemQ==
-X-Google-Smtp-Source: ABdhPJzvRlBXV1eQi92TT0ErMTBYtwbQKRdn24Vp05ftWF8pyeD1zchH+8Mlvqdt1bbOp7ohlNEIGw==
-X-Received: by 2002:a17:906:14d5:b0:711:c55a:998 with SMTP id y21-20020a17090614d500b00711c55a0998mr11917498ejc.708.1654598035746;
-        Tue, 07 Jun 2022 03:33:55 -0700 (PDT)
+        bh=Din8b4ZDN1HEqW7Sqe8kkBNl+yuozkXEbwel+kwZoV8=;
+        b=WoCiJLWphabfitYADnGUYVKka0Xn0EpI8YUhRdTvbIr1MiXBpvccnJwcDlWF6H4kw8
+         ctH19Uz5afw4rwoceDLeew1q/WxjFE+oaHpYgKHIhwofzUAYnlEEa8zY+EZDxRleHJkR
+         fERrnlv00REddDjhqzWPPfGZ4MMDQjhD+eqTVVnQ6r7LJpjRft6+F62XmZOh97C8BDYI
+         PHNV9okdNeVVhjGlF200goRDv2pT0G+tEE8H79uodBJcA4cKWAdKLft6YiWDI6orun6d
+         b9gvbCtY0rnWAep/l79xYl227VJty4lunjTS0+kHdXsYWBzRh6lCdXaoXwr+iUBXCJ7d
+         OT3w==
+X-Gm-Message-State: AOAM530rkb0jvVr7Uq9YkYimEL+ieuJ0R/oHyXyPuUjFX4OeLjhakJDy
+        qOfQvdnNyiIK5IiJAkbgScqhyQ==
+X-Google-Smtp-Source: ABdhPJz+3fvEjAfKB5gT7bcoIJU5OB2vBmnwN7ro8Vccgd2VLK0R6k+Id02ZTLH7jnGntIPJmwteXw==
+X-Received: by 2002:a17:906:40c4:b0:70a:5d82:4e68 with SMTP id a4-20020a17090640c400b0070a5d824e68mr26220526ejk.172.1654598036835;
+        Tue, 07 Jun 2022 03:33:56 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id x4-20020a1709065ac400b00704fa2748ffsm7505359ejs.99.2022.06.07.03.33.54
+        by smtp.gmail.com with ESMTPSA id x4-20020a1709065ac400b00704fa2748ffsm7505359ejs.99.2022.06.07.03.33.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jun 2022 03:33:55 -0700 (PDT)
+        Tue, 07 Jun 2022 03:33:56 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -55,9 +55,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 06/10] arm64: dts: qcom: apq8016-sbc: add function and color to LED nodes
-Date:   Tue,  7 Jun 2022 12:29:27 +0200
-Message-Id: <20220607102931.102805-6-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 07/10] arm64: dts: qcom: qrb5165-rb5: add function and color to LED nodes
+Date:   Tue,  7 Jun 2022 12:29:28 +0200
+Message-Id: <20220607102931.102805-7-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220607102931.102805-1-krzysztof.kozlowski@linaro.org>
 References: <20220607102931.102805-1-krzysztof.kozlowski@linaro.org>
@@ -77,72 +77,46 @@ Add common LED properties - the function and color - to LED nodes.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/apq8016-sbc.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dts b/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
-index 7c1eab605c15..3385cdf14a28 100644
---- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
-+++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
-@@ -8,6 +8,7 @@
- #include "msm8916-pm8916.dtsi"
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
+diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+index 0e63f707b911..3b480b9a9fed 100644
+--- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
++++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+@@ -5,6 +5,7 @@
+ 
+ /dts-v1/;
+ 
 +#include <dt-bindings/leds/common.h>
- #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
- #include <dt-bindings/pinctrl/qcom,pmic-mpp.h>
- #include <dt-bindings/sound/apq8016-lpass.h>
-@@ -116,6 +117,8 @@ leds {
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ #include <dt-bindings/sound/qcom,q6afe.h>
+ #include <dt-bindings/sound/qcom,q6asm.h>
+@@ -59,6 +60,8 @@ leds {
  
- 		led@1 {
- 			label = "apq8016-sbc:green:user1";
-+			function = LED_FUNCTION_HEARTBEAT;
+ 		user4 {
+ 			label = "green:user4";
++			function = LED_FUNCTION_INDICATOR;
 +			color = <LED_COLOR_ID_GREEN>;
- 			gpios = <&msmgpio 21 GPIO_ACTIVE_HIGH>;
- 			linux,default-trigger = "heartbeat";
+ 			gpios = <&pm8150_gpios 10 GPIO_ACTIVE_HIGH>;
+ 			linux,default-trigger = "panic-indicator";
  			default-state = "off";
-@@ -123,6 +126,8 @@ led@1 {
+@@ -66,6 +69,8 @@ user4 {
  
- 		led@2 {
- 			label = "apq8016-sbc:green:user2";
-+			function = LED_FUNCTION_DISK_ACTIVITY;
-+			color = <LED_COLOR_ID_GREEN>;
- 			gpios = <&msmgpio 120 GPIO_ACTIVE_HIGH>;
- 			linux,default-trigger = "mmc0";
- 			default-state = "off";
-@@ -130,6 +135,8 @@ led@2 {
- 
- 		led@3 {
- 			label = "apq8016-sbc:green:user3";
-+			function = LED_FUNCTION_DISK_ACTIVITY;
-+			color = <LED_COLOR_ID_GREEN>;
- 			gpios = <&pm8916_gpios 1 GPIO_ACTIVE_HIGH>;
- 			linux,default-trigger = "mmc1";
- 			default-state = "off";
-@@ -137,6 +144,7 @@ led@3 {
- 
- 		led@4 {
- 			label = "apq8016-sbc:green:user4";
-+			color = <LED_COLOR_ID_GREEN>;
- 			gpios = <&pm8916_gpios 2 GPIO_ACTIVE_HIGH>;
- 			linux,default-trigger = "none";
- 			panic-indicator;
-@@ -145,6 +153,8 @@ led@4 {
- 
- 		led@5 {
- 			label = "apq8016-sbc:yellow:wlan";
+ 		wlan {
+ 			label = "yellow:wlan";
 +			function = LED_FUNCTION_WLAN;
 +			color = <LED_COLOR_ID_YELLOW>;
- 			gpios = <&pm8916_mpps 2 GPIO_ACTIVE_HIGH>;
+ 			gpios = <&pm8150_gpios 9 GPIO_ACTIVE_HIGH>;
  			linux,default-trigger = "phy0tx";
  			default-state = "off";
-@@ -152,6 +162,8 @@ led@5 {
+@@ -73,6 +78,8 @@ wlan {
  
- 		led@6 {
- 			label = "apq8016-sbc:blue:bt";
+ 		bt {
+ 			label = "blue:bt";
 +			function = LED_FUNCTION_BLUETOOTH;
 +			color = <LED_COLOR_ID_BLUE>;
- 			gpios = <&pm8916_mpps 3 GPIO_ACTIVE_HIGH>;
+ 			gpios = <&pm8150_gpios 7 GPIO_ACTIVE_HIGH>;
  			linux,default-trigger = "bluetooth-power";
  			default-state = "off";
 -- 
