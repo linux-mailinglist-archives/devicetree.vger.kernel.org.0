@@ -2,123 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7C8953F6ED
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 09:12:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8074353F6FD
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 09:15:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230117AbiFGHMY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 03:12:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37522 "EHLO
+        id S237225AbiFGHPq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 03:15:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231491AbiFGHMV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 03:12:21 -0400
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD26062EB
-        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 00:12:20 -0700 (PDT)
-Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
-        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20220607071217epoutp02ff5fa1d684008606b37bf0bda164cb7d~2RSTqivPK2676526765epoutp02G
-        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 07:12:17 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20220607071217epoutp02ff5fa1d684008606b37bf0bda164cb7d~2RSTqivPK2676526765epoutp02G
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1654585938;
-        bh=V5LNV5a76kT6PYjBibAJh3MOlOCzMfWt93cWVTaCjgg=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=aWS1XRytdRvfl+Wgdp7V4/LCXUKZU+vf6LZd5tXodhbuEIj/CoIBEx4mIVzNRRc+Z
-         7Qklsg6M8hzwHy0Kdk4g0QZSg6qc+/j3KN2uYvNDKeRNfj06t2HR5XvRbwxPiuB5a9
-         F69N4Yh9+xYx5W0azER5tXjjfZq49WlXOp2D+sNA=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-        epcas2p3.samsung.com (KnoxPortal) with ESMTP id
-        20220607071217epcas2p33799b95550ba43d2bf40297f062c8c39~2RSTEswEb0640406404epcas2p3c;
-        Tue,  7 Jun 2022 07:12:17 +0000 (GMT)
-Received: from epsmges2p2.samsung.com (unknown [182.195.36.90]) by
-        epsnrtp3.localdomain (Postfix) with ESMTP id 4LHM4J2D4xz4x9QC; Tue,  7 Jun
-        2022 07:12:16 +0000 (GMT)
-Received: from epcas2p4.samsung.com ( [182.195.41.56]) by
-        epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        0B.0F.09764.05AFE926; Tue,  7 Jun 2022 16:12:16 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
-        20220607071215epcas2p4f1cab6403bae37f1f19e2aae28e3875a~2RSRo_-5K2315623156epcas2p48;
-        Tue,  7 Jun 2022 07:12:15 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20220607071215epsmtrp17e261136330c46c4f5ad5e4405d0cdbf~2RSRn973B2834028340epsmtrp1O;
-        Tue,  7 Jun 2022 07:12:15 +0000 (GMT)
-X-AuditID: b6c32a46-f8bff70000002624-7c-629efa507ea8
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        4C.81.08924.F4AFE926; Tue,  7 Jun 2022 16:12:15 +0900 (KST)
-Received: from KORCO082417 (unknown [10.229.8.121]) by epsmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20220607071215epsmtip1aa7d022a63b292b60df180f7fcda025f~2RSRakIDP3120431204epsmtip1f;
-        Tue,  7 Jun 2022 07:12:15 +0000 (GMT)
-From:   "Chanho Park" <chanho61.park@samsung.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
-        "'Kishon Vijay Abraham I'" <kishon@ti.com>,
-        "'Vinod Koul'" <vkoul@kernel.org>,
-        "'Alim Akhtar'" <alim.akhtar@samsung.com>,
-        "'Rob Herring'" <robh+dt@kernel.org>,
-        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>
-Cc:     <devicetree@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <linux-samsung-soc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-In-Reply-To: <2c0d4c55-ed79-0b6d-3429-a4cefb16d808@linaro.org>
-Subject: RE: [PATCH v3 3/5] phy: samsung: ufs: constify samsung_ufs_phy_cfg
-Date:   Tue, 7 Jun 2022 16:12:15 +0900
-Message-ID: <011601d87a3d$eaad2880$c0077980$@samsung.com>
+        with ESMTP id S237382AbiFGHPn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 03:15:43 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39CCD2018C
+        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 00:15:43 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1nyTQy-0002zY-S2; Tue, 07 Jun 2022 09:15:24 +0200
+Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id C17DC8D788;
+        Tue,  7 Jun 2022 07:15:20 +0000 (UTC)
+Date:   Tue, 7 Jun 2022 09:15:19 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     Wolfgang Grandegger <wg@grandegger.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH net-next 0/2] Document PolarFire SoC can controller
+Message-ID: <20220607071519.6m6swnl55na3vgwm@pengutronix.de>
+References: <20220607065459.2035746-1-conor.dooley@microchip.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQL8YIa13wrKaA+2+QkenJ62eRCubQKAIuirAM1o1T0BG2uULarYcsgA
-Content-Language: ko
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrFJsWRmVeSWpSXmKPExsWy7bCmhW7Ar3lJBhsm8Fs8mLeNzWL+kXOs
-        Fhee9rBZ9L14yGyx9/VWdotNj6+xWkxY9Y3FYsb5fUwWrXuPsFvsvHOC2YHLY9OqTjaPO9f2
-        sHlsXlLv0bdlFaPH8RvbmTw+b5ILYIvKtslITUxJLVJIzUvOT8nMS7dV8g6Od443NTMw1DW0
-        tDBXUshLzE21VXLxCdB1y8wBukxJoSwxpxQoFJBYXKykb2dTlF9akqqQkV9cYquUWpCSU2Be
-        oFecmFtcmpeul5daYmVoYGBkClSYkJ2xe9d+9oKLTBWrO24yNTB2MnUxcnJICJhI/Px/ha2L
-        kYtDSGAHo8T8u3uhnE+MEj/bvrGAVAkJfGaUOHFGB6Zj56V/7BBFuxglOo4/ZocoesEo0XTE
-        GsRmE9CXeNmxjRWkSERgPpPE086rYPuYBSYwSqz85A1icwrYSUycto4ZxBYW8Jb4OuEIG4jN
-        IqAiMfPhWjCbV8BSYtbLbYwQtqDEyZlPWCDmyEtsfzuHGeIiBYmfT5exgtgiAm4SzYenMkLU
-        iEjM7mxjBjlCQmAPh8SEyYuhGlwk1s3ZxQ5hC0u8Or4FypaSeNnfBmUXSyyd9YkJormBUeLy
-        tl9sEAljiVnP2oE2cABt0JRYv0sfxJQQUJY4cgvqNj6JjsN/2SHCvBIdbUIQjeoSB7ZPZ4Gw
-        ZSW653xmncCoNAvJZ7OQfDYLyQezEHYtYGRZxSiWWlCcm55abFRgBI/s5PzcTYzgRKvltoNx
-        ytsPeocYmTgYDzFKcDArifD6T56bJMSbklhZlVqUH19UmpNafIjRFBjWE5mlRJPzgak+ryTe
-        0MTSwMTMzNDcyNTAXEmc1ytlQ6KQQHpiSWp2ampBahFMHxMHp1QDk/DhpKyfLdGr+/ZG5AlW
-        nr4ge9r9Ue7Bh3e0Pswrigl4HK/i+7blZ38nwxQra3uPq7+2T/o22WNZqNGfmNYmaVl5MamP
-        jQZtKUtV56wv/NlpV2p9cs+X9SYHjh/h3tW5velXofXNpXHL8o+x3t+p+OV55rqQsnevdCrY
-        I056aTxdtS/p5e9Ea8vjty2ndH66oD+j8o7OJLsXMakzZUtFa2N7bfssmhw7nGSjtxmuW2C1
-        6qw0V/pLqcrYOIHV13ZNeb8u8oGrPsv6to8LvLimRDsFb59YxKt7eKdGzPe/Oz+bzP9w4Wr4
-        /GuBKbnWOayduyfmGEyyenU37uID3hf9RcwxU3LOn23NO1igUbetQImlOCPRUIu5qDgRAM5t
-        vC89BAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprJIsWRmVeSWpSXmKPExsWy7bCSnK7/r3lJBq0zNCwezNvGZjH/yDlW
-        iwtPe9gs+l48ZLbY+3oru8Wmx9dYLSas+sZiMeP8PiaL1r1H2C123jnB7MDlsWlVJ5vHnWt7
-        2Dw2L6n36NuyitHj+I3tTB6fN8kFsEVx2aSk5mSWpRbp2yVwZezetZ+94CJTxeqOm0wNjJ1M
-        XYycHBICJhI7L/1j72Lk4hAS2MEocW7yJEaIhKzEs3c72CFsYYn7LUdYIYqeMUq8ebGBDSTB
-        JqAv8bJjG1hCRGAxk0T/ibNsIA6zwBRGictXX7JAtHxmlHh6eCsLSAungJ3ExGnrmEFsYQFv
-        ia8TjoCNYhFQkZj5cC2YzStgKTHr5TZGCFtQ4uTMJ2C9zALaEk9vPoWy5SW2v53DDHGfgsTP
-        p8tYQWwRATeJ5sNTGSFqRCRmd7YxT2AUnoVk1Cwko2YhGTULScsCRpZVjJKpBcW56bnFhgVG
-        eanlesWJucWleel6yfm5mxjBsaeltYNxz6oPeocYmTgYDzFKcDArifD6T56bJMSbklhZlVqU
-        H19UmpNafIhRmoNFSZz3QtfJeCGB9MSS1OzU1ILUIpgsEwenVAPTxb9q/5cuTkzN13Ccu+ux
-        886fD689mXJLPmCeyrpc/kBL+TVC+/jDol/6vOl2c57BJdTMw3QpS0E8XXl2ZkvLAePbH8MT
-        2yf+XcrJv+hd/jX18MzgWKtzigsmHDj738/5Q3TK0W12To++q16ZXdFZwPV2wROpOSdPH34Q
-        8p35762pK40O3jjkveq3yPmjAjvM5L/ODC3w52W0nea/fcf0jLkbIqZv82B6fOD5o50iYnrh
-        u2/9ev+3tcz8aimD+dovEj0zH75+Wry76vDZ351BJYeezXQ40Gh2SzEyvvbw2ZVrLs3xDQ44
-        zFjtVuSjfY83/O71k37+y+4xqyyYsFJirs/qef5Pc8oV6q9z7/XVTFNiKc5INNRiLipOBACG
-        uzIjLAMAAA==
-X-CMS-MailID: 20220607071215epcas2p4f1cab6403bae37f1f19e2aae28e3875a
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220603020426epcas2p3f6b5174734313e5d06d0177c3ebd777d
-References: <20220603020410.2976-1-chanho61.park@samsung.com>
-        <CGME20220603020426epcas2p3f6b5174734313e5d06d0177c3ebd777d@epcas2p3.samsung.com>
-        <20220603020410.2976-4-chanho61.park@samsung.com>
-        <2c0d4c55-ed79-0b6d-3429-a4cefb16d808@linaro.org>
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="wmxu3eossejojdgn"
+Content-Disposition: inline
+In-Reply-To: <20220607065459.2035746-1-conor.dooley@microchip.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -126,15 +64,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > -	struct samsung_ufs_phy_cfg **cfgs;
-> > +	const struct samsung_ufs_phy_cfg **cfgs;
-> 
-> I still think this should be array of const pointers to const data, so:
-> 	const struct samsung_ufs_phy_cfg * const *cfgs; I proposed this in
-> last email.
 
-Make sense. I'll change this as you suggested.
+--wmxu3eossejojdgn
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best Regards,
-Chanho Park
+On 07.06.2022 07:54:58, Conor Dooley wrote:
+> When adding the dts for PolarFire SoC, the can controllers were
+                                             ^^^
+> omitted, so here they are...
 
+Nitpick:
+Consider writing "CAN" in capital letters to avoid confusion for the not
+informed reader.
+
+Is the documentation for the CAN controller openly available? Is there a
+driver somewhere?
+
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+--wmxu3eossejojdgn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmKe+wUACgkQrX5LkNig
+010mGwgAsk4h1zagYu60b6rZjltdh82vMaUZuWWlhOtLWxaZXbgHboLYurlj7gq3
+dXxVDkrAByE6WcaAkKCRdUSGV66X+amInYdrRsvG9wfESbX001Lj3XdwyL97XI8g
+WGs4T0e0dhR/EjU0Ap8YZh3KyIs9vyfLzACRVWyRJhLQXz2KLtWMTa/QGzAd9hQJ
+j4vT0fIesQFuh1qxqZw2eYUxpYN5o6aysm4/qfXJTIVIn9Y03jwPcRVWFWt+GiQl
+xirOrt/V5cw72EE02V0IWnmKT7fylD3HgTrwgyAInguTharRV9WZYhXttUwQc+Kc
+SFIA5n4bQb3DdGldoJGkkCUDJPAT9A==
+=epBJ
+-----END PGP SIGNATURE-----
+
+--wmxu3eossejojdgn--
