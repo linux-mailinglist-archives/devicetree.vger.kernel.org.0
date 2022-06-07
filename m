@@ -2,69 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EC0953F656
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 08:39:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AFBC53F64C
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 08:39:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237137AbiFGGjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S237106AbiFGGjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 7 Jun 2022 02:39:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41120 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237113AbiFGGjU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 02:39:20 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA37BB043D
-        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 23:39:18 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id v1so22451951ejg.13
-        for <devicetree@vger.kernel.org>; Mon, 06 Jun 2022 23:39:18 -0700 (PDT)
+        with ESMTP id S237124AbiFGGjV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 02:39:21 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35E98B0A7E
+        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 23:39:20 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id u12so33158850eja.8
+        for <devicetree@vger.kernel.org>; Mon, 06 Jun 2022 23:39:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=30/swRoGI7lxOeK/JCZOMenofIQ2Qnwy381c+smb4TA=;
-        b=hRvd0fRQ06nsWwDyDjPYxTGsvqvXXrNQMbjT1Em4UrrOfqMzAG5qNorVycW89lVPlM
-         /4d395QujBeRwU1UilsC99/3sC3wup/EJDNh4LKuI0DvkhJoZ9tAvIa6Uve607PoFRme
-         2i09ToSIIxI+Tdx4TAk40sq2HIPtM52oEOsZwHI3qQtcUe0eBRno4BS+DdEYJGOExBx7
-         LqplQKH0pLizRr1ziLYe5MBWbS4swqfviGOjwvMfj5PCWdxXRHy9XXu09/LjaUcphHwV
-         9LaZSxuXkKdBAW5a3zSBLlkw/IJjmQEsdUMQxuH6RqPvrDbcc46SxLtUnE6GIRLLH0gq
-         6eoQ==
+        bh=+6eJuTNYhenhOtSy0mpWdMyC3zMMcmWC680KdPh5O/c=;
+        b=HYozM8kFiTcwqKrVxYDLCrX0493cz93zCKZJ+f8P4vW52obPXnTq6NV3kh1FoHfz/G
+         X7fCON7a3YXvLmCYLMb+5TKI6U8CRoyGk1XVbE+v2dqJZU4GmCu7YVFqieiSRxDesBBv
+         EnCAKtz9K9i+BZiMcySVBRAt5VYZiUFrgSciSMlfiDD+pJsVjpI5akEzEcegUZ5wFBvw
+         JyxMduaLcnkgClGEdFK7A82CrDWTQvLxJKe4jDuWXaS1lO4J+IpQitElubvTUunFLq4/
+         X4UXNzx72E7wcm3vvgo+19Mc1hGGRqsjDGQxY7tiZXGAxaojashVw2hVrZ7AWz77Q663
+         FxXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=30/swRoGI7lxOeK/JCZOMenofIQ2Qnwy381c+smb4TA=;
-        b=UyKgy9T03LYoNIh192JZmrZOX6Tu7r4XC1lFj+FsEUCThJisWUpS+3oEDgnXEjacWG
-         xCrH7ULVpkNhuRs0Ll2MaF3LvFV4SXbDNW3+TgV1EY73b4NL+hQ/0gtnIJs158e62fM6
-         aOz4nixuUI3BBLpWxTSpg+wK556VMnVsOSlhAd0KsR0AJZ1kAgB0iGMwcptHHGh2LZ/M
-         Ov52UvS0Ti1ErO7/RJIJcGxh+ivVZISVg2DaE+bu7ULRGEkuXeoplrP5rTSiuCHt+SzZ
-         qvq6hp8NFR5Pogh5sFXcZx00QCUvSFzap12e97EiL2YX3vRZGQwn8FD8unJ4eIOdV8+T
-         RYyg==
-X-Gm-Message-State: AOAM531+zDDQPBoYQ0c6a2k87eE/XBJSZ60ikNClknqlvnB2liWSAsPy
-        0L09OzmUwY3ifEdH11Ot3SoZ3w==
-X-Google-Smtp-Source: ABdhPJxPb4B1+kYdlB7X2PcS4f0mWtob9442OqwnUgNprAost6mEYGoTJP2LBYDLNSUfIEVPMRgI3Q==
-X-Received: by 2002:a17:906:b816:b0:708:2e56:97d7 with SMTP id dv22-20020a170906b81600b007082e5697d7mr24712545ejb.502.1654583957338;
-        Mon, 06 Jun 2022 23:39:17 -0700 (PDT)
+        bh=+6eJuTNYhenhOtSy0mpWdMyC3zMMcmWC680KdPh5O/c=;
+        b=eJ+1XX38UtXGbZAVmzRBI29tPdDrSP+Yk5qCaVwsCHIhbJWrvC7ccpD25b+QbqHXsT
+         k8vVmuMziuX9tyH2s4UJtx4GH5TQ4VFEpk83YNxY5V5O7kHwEazFE/cGPYE+Y69MMPFy
+         5aEnFR0lsN5zhl72xK8z24zewpElIsGH8SeoCr10gejZAE7Xj2KJaTZdUugF0TOR/CcV
+         4ezS0cX2jCzk0TL/oBO+OZYvg8HNwZQCav7uwpiodULs3h32kpjkWPfRFshycHqjfIjG
+         I1yBIgH8rmYpU1/c2nS3lJIwQf+DRXq6Y/RFZCR5y73DjhSy2EnlVbf0RupuJbEoLyqW
+         1rHg==
+X-Gm-Message-State: AOAM531Baln979cOZF5An6YWJSnvVWxPhaPva+jvYphpTmicE9ndl2Bg
+        E+Yz+65pRBTbwbxiTuq70lvf8Q==
+X-Google-Smtp-Source: ABdhPJxJC6R9vm7E7RbQ7imv1QtZeFxdBWu2Z8oRZQhCapGo8C6J6E4SBIOg2hjT2XFEC6lAoeIJAw==
+X-Received: by 2002:a17:907:2d29:b0:70e:8b1c:c3f0 with SMTP id gs41-20020a1709072d2900b0070e8b1cc3f0mr18729905ejc.37.1654583958428;
+        Mon, 06 Jun 2022 23:39:18 -0700 (PDT)
 Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id jo13-20020a170906f6cd00b006febc86b8besm7016888ejb.117.2022.06.06.23.39.16
+        by smtp.gmail.com with ESMTPSA id jo13-20020a170906f6cd00b006febc86b8besm7016888ejb.117.2022.06.06.23.39.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Jun 2022 23:39:16 -0700 (PDT)
+        Mon, 06 Jun 2022 23:39:18 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        linux-arm-kernel@lists.infradead.org,
+To:     linux-arm-kernel@lists.infradead.org,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
         Tomasz Figa <tomasz.figa@gmail.com>,
         linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Linus Walleij <linus.walleij@linaro.org>,
         linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
         Alim Akhtar <alim.akhtar@samsung.com>
 Cc:     Chanho Park <chanho61.park@samsung.com>
-Subject: Re: (subset) [PATCH v3 2/8] ARM: dts: s3c64xx: use local header for pinctrl register values
-Date:   Tue,  7 Jun 2022 08:39:10 +0200
-Message-Id: <165458395109.7886.7299681625638246723.b4-ty@linaro.org>
+Subject: Re: (subset) [PATCH v3 3/8] ARM: dts: s5pv210: use local header for pinctrl register values
+Date:   Tue,  7 Jun 2022 08:39:11 +0200
+Message-Id: <165458395109.7886.10195566966608207927.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220605160508.134075-3-krzysztof.kozlowski@linaro.org>
-References: <20220605160508.134075-1-krzysztof.kozlowski@linaro.org> <20220605160508.134075-3-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220605160508.134075-4-krzysztof.kozlowski@linaro.org>
+References: <20220605160508.134075-1-krzysztof.kozlowski@linaro.org> <20220605160508.134075-4-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -78,7 +78,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 5 Jun 2022 18:05:02 +0200, Krzysztof Kozlowski wrote:
+On Sun, 5 Jun 2022 18:05:03 +0200, Krzysztof Kozlowski wrote:
 > The DTS uses hardware register values directly in pin controller pin
 > configuration.  These are not some IDs or other abstraction layer but
 > raw numbers used in the registers.
@@ -93,8 +93,8 @@ On Sun, 5 Jun 2022 18:05:02 +0200, Krzysztof Kozlowski wrote:
 
 Applied, thanks!
 
-[2/8] ARM: dts: s3c64xx: use local header for pinctrl register values
-      https://git.kernel.org/krzk/linux/c/468fff18c3776ced9bb466ae4fb2e30fdf671bef
+[3/8] ARM: dts: s5pv210: use local header for pinctrl register values
+      https://git.kernel.org/krzk/linux/c/7fd554de160eed060e7819aa42ca0478c9e0f4cb
 
 Best regards,
 -- 
