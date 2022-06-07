@@ -2,83 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEEB953FB8D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 12:41:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2D2453FB9C
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 12:43:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239509AbiFGKln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 06:41:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56374 "EHLO
+        id S241294AbiFGKnY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 06:43:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230206AbiFGKlm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 06:41:42 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A00E782165
-        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 03:41:40 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id h62-20020a1c2141000000b0039aa4d054e2so11501499wmh.1
-        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 03:41:40 -0700 (PDT)
+        with ESMTP id S241289AbiFGKnW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 06:43:22 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E1721D322
+        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 03:43:17 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id s6so27604337lfo.13
+        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 03:43:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=qw8JacEfJNF9P2iNLjQzkAXW/8/vZkXuOjt3GnWBvjw=;
-        b=hyDSvJIfh0LYoaLEeqkmPROm1N2u7R8cMpaut6DZYA8pNoxIG7jthQ5F82HOCMq2rG
-         fYjscsLiZQgKk+uyZcbEemQ19fmtnvUYc1F4ZnC8f0xbYYmnoXgHcdlVqTkkiGAZFBqw
-         9s6rtFDUlnRG2c31zUx4ljO2jYpPUAnFu2CD7zbQdqqR7D+ujyFr+ex7gPKhkrnSR44Y
-         KTeHSqWku7fvSZxcJb7rgNvOQP8DFieQ2czxXmC8Grj3rVCEqXal1Ce2ctYVkpSgaPKD
-         4Q++EwprNd3zbAp7TC5+zWZnPLhJLp5WeJfaaKmzs3WBKvfUaGGXdb6qII//hNYJ6OuU
-         10vg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=8XdRg5mTQzw6nhVkPbcttepeHu1kmSLwBbs3fva93xc=;
+        b=N1DSIYQ2tUBiiR928h/wpbuAkWoyNemmJ20vBlcsKVQyNN84AnPudb55G8X5EEHZc5
+         VrfLCbnWDAtsrhHYhabH4L0BcK6Yj8HILDRD4QS8o9jivIkV09uQ9k8+flwSL9YhpfOf
+         EKIY6RpNWcq9H5P5HOecjEdKbfbUTACnthsEE+FVdO9ZPFQkU20CO5hbDY+TsXwi7Gyk
+         XR89OVy0Qnt+8Lqc8HgO4+mf7B2XbeP3Iw4IkdQhRpmxypzV+y4NmZjw14ztQ0cTRyjV
+         Vc9XiSpbooXYnaIEGWYbXJ0j+c6+AycmpTWR911QhQRT0pklscDEgFFUW/dz8ZLGdIVr
+         VVCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=qw8JacEfJNF9P2iNLjQzkAXW/8/vZkXuOjt3GnWBvjw=;
-        b=dOZDvcwZdaRYkFzBswWddOA9N+4se2GesTZWadKSlnJg46xRYbEVicopFVHYY7XtCO
-         Ofmpj/dMeOTXUpflTfE+e3Rg+hkSSy7FSZBMeMPrdKsxvRg1KPG6gzpOlCpIA7PDTz2d
-         +Xk96pjdM0in5RqLboR+ilHnnBxCSa20w4ETcMzuGgkW1YgVD9XQ/97cDs9MIKrmJimZ
-         xJNgGUewE507dFtU7nJQCGBB4bhE7lI5wAxSptUgRASKht+iwvLWDAJH+pWyNfNbtzES
-         lKZxzELiOxPbmkkIm1TF8JgT5W3Zdy8jHXZj93SFLoXAHFsrle+BXAba1eZZIBQVEnA0
-         Gtdw==
-X-Gm-Message-State: AOAM531CSvb6B+gKlJY/e7dWsjDiSbogOIIKU+nKuJRltkdUNYtaEuR7
-        QrzfwqGck5wWsUZQFPXzkVyWgw==
-X-Google-Smtp-Source: ABdhPJz0rzj4eqfRw2wspCI3jipVGst2fbnr65Qmu05TDb5e0ptD3uTC6nEhOxZyIE8KFnMOZnH58g==
-X-Received: by 2002:a05:600c:3c8f:b0:39b:808c:b5cb with SMTP id bg15-20020a05600c3c8f00b0039b808cb5cbmr28760884wmb.11.1654598498995;
-        Tue, 07 Jun 2022 03:41:38 -0700 (PDT)
-Received: from maple.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
-        by smtp.gmail.com with ESMTPSA id n22-20020a05600c3b9600b00397342e3830sm27940708wms.0.2022.06.07.03.41.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jun 2022 03:41:38 -0700 (PDT)
-Date:   Tue, 7 Jun 2022 11:41:36 +0100
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     ChiaEn Wu <peterwu.pub@gmail.com>
-Cc:     lee.jones@linaro.org, jingoohan1@gmail.com, pavel@ucw.cz,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, sre@kernel.org, chunfeng.yun@mediatek.com,
-        gregkh@linuxfoundation.org, jic23@kernel.org, lars@metafoo.de,
-        lgirdwood@gmail.com, broonie@kernel.org, linux@roeck-us.net,
-        heikki.krogerus@linux.intel.com, deller@gmx.de,
-        ChiYuan Huang <cy_huang@richtek.com>, alice_chen@richtek.com,
-        chiaen_wu@richtek.com, dri-devel@lists.freedesktop.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-fbdev@vger.kernel.org
-Subject: Re: [RESEND 14/14] video: backlight: mt6370: Add Mediatek MT6370
- support
-Message-ID: <20220607104136.cfnpwo6ajqiuafbf@maple.lan>
-References: <20220531111900.19422-1-peterwu.pub@gmail.com>
- <20220531111900.19422-15-peterwu.pub@gmail.com>
- <20220601094623.jnwh2fgsqepy72tc@maple.lan>
- <CABtFH5+-o=cML_VCSY9frJwEU_TnZt0+myJebi8J7BpP+BOqOw@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8XdRg5mTQzw6nhVkPbcttepeHu1kmSLwBbs3fva93xc=;
+        b=YUKXo71aCARl9G4R19yQ8J7CacbsygUVXpATLaGbePC1o2lvTyc2GYEvciKCSOxGip
+         YCve7s1yubUSgAaDj1zKX/EN58roH4CbHrajOSkHL2GQG1s2EYx07bIQomuzAUJgOevw
+         JNeFuK3CNEdNtZ9zmLh2uKdUch/2fd2GNW0Lf9PmSnVPthGMICPf6ItlUr3L4P6mSefh
+         GkOXVziq06Vp2juSpcdd1Un0MPUv3nwTlbY33z63OVdMe/wFjWxWNm+IKjXPs81LmPfW
+         WYDbJBpkNqEElzoEjmnGMMItzU4UfPNj48Dhwn+kVETi7q0trMsosVL3UrkswIPB7rMe
+         BS/A==
+X-Gm-Message-State: AOAM5310CyJXFA7RUYmapwYIprpqS6ifx7LLq9mz0C5qFWst/MnYOO2s
+        bSGuBVHMITT/ByNHHqBTTtpLd1c9kSQ9WKyr247YaA==
+X-Google-Smtp-Source: ABdhPJzxvjAZjQF6R+Mrr94IoW1X7wi8uwFKBgPf5GLnc+Gvu4doMpfp0SK0kukM6bfhDVOV0zyEW3g+vrtCParwkeY=
+X-Received: by 2002:a05:6512:403:b0:479:1627:a9b7 with SMTP id
+ u3-20020a056512040300b004791627a9b7mr15634227lfk.233.1654598595349; Tue, 07
+ Jun 2022 03:43:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CABtFH5+-o=cML_VCSY9frJwEU_TnZt0+myJebi8J7BpP+BOqOw@mail.gmail.com>
+References: <20220606225137.1536010-1-robh@kernel.org>
+In-Reply-To: <20220606225137.1536010-1-robh@kernel.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 7 Jun 2022 12:42:38 +0200
+Message-ID: <CAPDyKFqNiJB_2aEaQpBo4=Vzc60-986=aKKw4JZtXvO=X9WTqQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: Drop more redundant 'maxItems/minItems' in
+ if/then schemas
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Hu Ziji <huziji@marvell.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,143 +78,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 03, 2022 at 03:14:56AM +0800, ChiaEn Wu wrote:
-> Daniel Thompson <daniel.thompson@linaro.org> 於 2022年6月1日 週三 下午5:46寫道：
-> >
-> > On Tue, May 31, 2022 at 07:19:00PM +0800, ChiaEn Wu wrote:
-> > > +#define MT6370_DT_PROP_DECL(_name, _type, _reg, _mask, _max, _inv)   \
-> > > +{                                                                    \
-> > > +     .name = "mediatek,bled-" #_name,                                \
-> >
-> > I'd rather have the whole DT property in the macro (because it helps
-> > with grepability).
-> 
-> Do you mean the _name parameter must be the full name of the DT
-> property and do not use "#" to concat like following example?
-> 
-> // in declare
->             .name = _name,
-> // in use
->             MT6370_DT_PROP_DECL(mediatek,bled-pwm-enable, ......)
+On Tue, 7 Jun 2022 at 00:51, Rob Herring <robh@kernel.org> wrote:
+>
+> Another round from new cases in 5.19-rc of removing redundant
+> minItems/maxItems when 'items' list is specified. This time it is in
+> if/then schemas as the meta-schema was failing to check this case.
+>
+> If a property has an 'items' list, then a 'minItems' or 'maxItems' with the
+> same size as the list is redundant and can be dropped. Note that is DT
+> schema specific behavior and not standard json-schema behavior. The tooling
+> will fixup the final schema adding any unspecified minItems/maxItems.
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Yes, I would prefer this form, although, as discussed below, I don't really
-like MT6370_DT_PROP_DECL().
+Acked-by: Ulf Hansson <ulf.hansson@linaro.org>
 
+Kind regards
+Uffe
 
-> > > +     .type = MT6370_PARSE_TYPE_##_type,                              \
-> > > +     .reg = _reg,                                                    \
-> > > +     .mask = _mask,                                                  \
-> > > +     .max_val = _max,                                                \
-> > > +     .invert = _inv,                                                 \
-> > > +}
-> > > +
-> > > +static int mt6370_init_backlight_properties(struct mt6370_priv *priv,
-> > > +                                         struct backlight_properties *props)
-> > > +{
-> > > +     struct device *dev = priv->dev;
-> > > +     u8 prop_val;
-> > > +     u32 brightness;
-> > > +     unsigned int mask, val;
-> > > +     static const struct {
-> > > +             char *name;
-> > > +             enum mt6370_prop_type type;
-> > > +             unsigned int reg;
-> > > +             unsigned int mask;
-> > > +             u8 max_val;
-> > > +             bool invert;
-> > > +     } vendor_opt_props[] = {
-> > > +             MT6370_DT_PROP_DECL(pwm-enable, BOOL, MT6370_REG_BL_PWM,
-> > > +                                 MT6370_BL_PWM_EN_MASK, 1, false),
-> > > +             MT6370_DT_PROP_DECL(pwm-hys-enable, BOOL, MT6370_REG_BL_PWM,
-> > > +                                 MT6370_BL_PWM_HYS_EN_MASK, 1, false),
-> > > +             MT6370_DT_PROP_DECL(pwm-hys-sel, U8, MT6370_REG_BL_PWM,
-> > > +                                 MT6370_BL_PWM_HYS_SEL_MASK, 3, false),
-> > > +             MT6370_DT_PROP_DECL(ovp-level-sel, U8, MT6370_REG_BL_BSTCTRL,
-> > > +                                 MT6370_BL_OVP_SEL_MASK, 3, false),
-> > > +             MT6370_DT_PROP_DECL(ovp-shutdown, BOOL, MT6370_REG_BL_BSTCTRL,
-> > > +                                 MT6370_BL_OVP_EN_MASK, 1, true),
-> > > +             MT6370_DT_PROP_DECL(ocp-level-sel, U8, MT6370_REG_BL_BSTCTRL,
-> > > +                                 MT6370_BL_OC_SEL_MASK, 3, false),
-> > > +             MT6370_DT_PROP_DECL(ocp-shutdown, BOOL, MT6370_REG_BL_BSTCTRL,
-> > > +                                 MT6370_BL_OC_EN_MASK, 1, true),
-> > > +     }, *prop_now;
-> > > +     int i, ret;
-> > > +
-> > > +     /* vendor optional properties */
-> > > +     for (i = 0; i < ARRAY_SIZE(vendor_opt_props); i++) {
-> > > +             prop_now = vendor_opt_props + i;
-> > > +
-> > > +             switch (prop_now->type) {
-> > > +             case MT6370_PARSE_TYPE_BOOL:
-> > > +                     if (device_property_read_bool(dev, prop_now->name))
-> > > +                             val = 1;
-> > > +                     else
-> > > +                             val = 0;
-> > > +                     break;
-> > > +             case MT6370_PARSE_TYPE_U8:
-> > > +                     ret = device_property_read_u8(dev, prop_now->name,
-> > > +                                                   &prop_val);
-> > > +                     /* Property not exist, keep value in default */
-> > > +                     if (ret)
-> > > +                             continue;
-> > > +
-> > > +                     val = min_t(u8, prop_val, prop_now->max_val);
-> > > +                     break;
-> > > +             default:
-> > > +                     return -EINVAL;
-> > > +             }
-> > > +
-> > > +             if (prop_now->invert)
-> > > +                     val = prop_now->max_val - val;
-> > > +
-> > > +             val <<= ffs(prop_now->mask) - 1;
-> > > +
-> > > +             ret = regmap_update_bits(priv->regmap, prop_now->reg,
-> > > +                                      prop_now->mask, val);
-> > > +             if (ret)
-> > > +                     return ret;
-> > > +     }
-> >
-> > Is it really worth all this tricky code for 7 properties?
-> >
-> > The code would be much easier to read and maintain if it were coded
-> > directly. For example, the inverted boolean code is hard to read and
-> > can be written directly as:
-> >
-> >
-> >         val = device_property_read_bool(dev, "mediatek,bled-ovp_shutdown");
-> >         ret = regmap_update_bits(priv->regmap, MT6370_REG_BL_BST_CTRL,
-> >                                  MT6370_BL_OVP_EN_MASK,
-> >                                  MT6370_BL_OVP_EN_MASK * !val);
-> >         if (ret)
-> >                 return ret;
-> >
-> > The direct coded approach will probably also pay off if you switch
-> > the bindings over to microvolts/microamps since it becomes much more
-> > natural to call out to a lookup function to convert it into a register
-> > value.
-> >
-> 
-> The purpose of my code is trying to avoid the repeat code in this
-> function. And for loop can help to decrease the lines of code
-> effectively, that's why I use these code to parse the DT properties.
-
-I'm not really convinced that is uses fewer lines of code. It
-certainly would if there were a very large number of properties
-but here there is only seven.
-
-However I guess what I'm really complaining about is how hard it is to
-read the for loop. We have to study the macros, keep track six different
-arguments per property and review the complex logic of the for loop
-(which for example handles inverted u8's that don't actually exist).
-
-To be clear, it's not that loops aren't useful for reducing boilerplate
-code. They can be. However trying to handle booleans and integers in the
-*same* loop ends up needlessly hard to read.
-
-Also, I think that if/when you adopt microamps/microvolts then the
-hard-to-read problem will get even worse unless you get loops to do only
-one thing!
-
-
-Daniel.
+> ---
+>  .../bindings/memory-controllers/nvidia,tegra186-mc.yaml        | 3 ---
+>  Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml | 1 -
+>  .../devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml  | 1 -
+>  3 files changed, 5 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
+> index c7cfa6c2cd81..935d63d181d9 100644
+> --- a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
+> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
+> @@ -150,7 +150,6 @@ allOf:
+>            description: 5 memory controller channels and 1 for stream-id registers
+>
+>          reg-names:
+> -          maxItems: 6
+>            items:
+>              - const: sid
+>              - const: broadcast
+> @@ -170,7 +169,6 @@ allOf:
+>            description: 17 memory controller channels and 1 for stream-id registers
+>
+>          reg-names:
+> -          minItems: 18
+>            items:
+>              - const: sid
+>              - const: broadcast
+> @@ -202,7 +200,6 @@ allOf:
+>            description: 17 memory controller channels and 1 for stream-id registers
+>
+>          reg-names:
+> -          minItems: 18
+>            items:
+>              - const: sid
+>              - const: broadcast
+> diff --git a/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml b/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
+> index c79639e9027e..7a2b22dd6d05 100644
+> --- a/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
+> @@ -145,7 +145,6 @@ allOf:
+>            items:
+>              - description: Xenon IP registers
+>              - description: Armada 3700 SoC PHY PAD Voltage Control register
+> -          minItems: 2
+>
+>          marvell,pad-type:
+>            $ref: /schemas/types.yaml#/definitions/string
+> diff --git a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+> index cbcf19f51411..ed6c1ca80dcc 100644
+> --- a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+> @@ -64,7 +64,6 @@ if:
+>  then:
+>    properties:
+>      clocks:
+> -      minItems: 2
+>        items:
+>          - description: High-frequency oscillator input, divided internally
+>          - description: Low-frequency oscillator input
+> --
+> 2.34.1
+>
