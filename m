@@ -2,83 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE41853F638
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 08:34:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 763B953F64B
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jun 2022 08:39:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237053AbiFGGej (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 02:34:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53548 "EHLO
+        id S237129AbiFGGjW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 02:39:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231666AbiFGGeh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 02:34:37 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EBEA2E093
-        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 23:34:34 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id gl15so19254206ejb.4
-        for <devicetree@vger.kernel.org>; Mon, 06 Jun 2022 23:34:34 -0700 (PDT)
+        with ESMTP id S237051AbiFGGjT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 02:39:19 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE8FFAFB00
+        for <devicetree@vger.kernel.org>; Mon,  6 Jun 2022 23:39:17 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id q21so33164869ejm.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Jun 2022 23:39:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=BS02hl5lG0fU1teehsFBTzwy9idYtqKSriIvuXGDAVw=;
-        b=a7CXUgo1LhI6a6Wn7l3MjaqsS2nWFcnVUfB+fpGL3Su3s8vvd+hexirjTkuKfqfJku
-         tpNMIqWEqQEc2ykTutSqnsatSkZguMPoVRX3zgp44CcWRwEfmM1O1H6YW+PdMuDF7l1h
-         GQ6t7rKl0oPrV2wyje3dJJlB8t/G+d+oEPBjgNvSx5jNjOGBUUFO1INCvt51Z5vD9upr
-         zpEb/NvfB8O/xEMwCpBTttttkHN5KejGkpvAyS3ebegD2zJBG1dA9Qz1ci0llYeESeo+
-         JMbAguBqPVrXMBWFpgVz6EOSHE3P+6K+R88uzWCgJV4Flf2vyjRbzalZP0Jxm4TrIWS4
-         iuAw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=loges8s8zoV1C9PFiO71uU1qlpSiYfV9MSsL7MBBWRw=;
+        b=LjQdF1tKP1kQSL+husirj9ps8XjdG4g5cybME/kjkMYjlDiT1Cr034Q4FkeoHhhCQd
+         2ZhUcIiSQvW1S+GqPeYk4whHbq3utWCf6jbt1PH6+T5TS8QQajLKNPNvpIMLgbmr0Vj8
+         BDsCEOyhF+kuWbcZ4U8yLsUd6iO1oA2Ai+id7lHLfZGmP238HeZEplNoGU6ZIEk374iV
+         ba3Gqcp/j3YLV2cq/ZlwCO/i/R4AvaSapwf6ny+/cuNGb+HLE9Xq3P5qFMLkfoGifyQX
+         t4b8OsGm3Q61enqMs0j3EIblK83BLEi1hwJDiLWmjfFeLOfUq182eejFL38sX+sATHv9
+         YOcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=BS02hl5lG0fU1teehsFBTzwy9idYtqKSriIvuXGDAVw=;
-        b=KPXYpMjUddbzB6NmfkJ4hoXivzlbWiBUo9CFMAzXUZ9va/d7rljhx6B1Jh5aL8GrJ7
-         FFEWHVZibt3x73w57VhJalFlB2+RkTQpT24q0PeYTbN3V9fkGNy43xU34Jc8t7XEkMfr
-         DYExnUREihkqGInDpVgrw5tSjlUNFmdho2yZa0egq1xoeVeAdnkeja2Vcf0kIo6mPaCC
-         szkhgauA443IYFmN0WEgU0XFUyT3mQkagzTU1x97EZwaWJuxT2FEfI65PSUGjLsDwUHV
-         YYK0V+6qhfTAo0Q3uFkwUbU9SUrGYoe8AIYvAfsMOA6PgThW9Yi3O1cakrkyIFlW5Nyb
-         OWrg==
-X-Gm-Message-State: AOAM533UJfpDz7AYnLXvsRyZLaMR3w73XG1YPo2B2qUPO8ln7conyWmR
-        BEJB0J6fJYAHsJsrTcjS3GbsxaXRNAYwcg==
-X-Google-Smtp-Source: ABdhPJxeChl1qKeEil8PnLVpGZrlHOFtfAIS6W5eozpO3H9ZCDC+R/hedgSwKsMBni0ziaZVCtATcQ==
-X-Received: by 2002:a17:907:7e8b:b0:711:e5e6:6694 with SMTP id qb11-20020a1709077e8b00b00711e5e66694mr150753ejc.35.1654583673038;
-        Mon, 06 Jun 2022 23:34:33 -0700 (PDT)
-Received: from [192.168.0.181] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id me3-20020a170906aec300b006ff01fbb7ccsm7153425ejb.40.2022.06.06.23.34.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Jun 2022 23:34:32 -0700 (PDT)
-Message-ID: <717eb4d5-f547-4763-1670-51e90cbe0803@linaro.org>
-Date:   Tue, 7 Jun 2022 08:34:31 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH] dt-bindings: Drop more redundant 'maxItems/minItems' in
- if/then schemas
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Hu Ziji <huziji@marvell.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Maxime Ripard <mripard@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-References: <20220606225137.1536010-1-robh@kernel.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=loges8s8zoV1C9PFiO71uU1qlpSiYfV9MSsL7MBBWRw=;
+        b=zj7448CTHJLVYFHuSVasqIW6/j8XPfRc20RDiQbtDZ9p3QYfv7l80bcgwSEKJ+OYrH
+         V44x/pTP0A+9FwzRgdJRa0ORX/uRymrgPVxGHuvRnDw478mxS7ZzYqItRojKBrGobVMx
+         rON/tDBxJElQa6I5+73AYlLsQIL7uqhYINa7onCaVHbm9XjxE7w687ItkeOw6HelAZLa
+         9kiUpDWXp0aLlpR6MT6/HWHg6S3Hg3QIeMnx5X19+zGVMwwTwIgYqVwBQZBwwBzrt3Rc
+         V1/RcVgWk29vrTkHxzT1TTe8B7Qa4p52gTjBfF8sBmvw17gA8x2ysHl6VSB/J9oG7Bhs
+         7tkA==
+X-Gm-Message-State: AOAM533HhsulHECH4CW1cZJVnO9xsjBKzhfQlsQvw5+tNDE6ETPBe9aO
+        WZXhGXkdcahycXC4Z5oFuxUtRx+O+a8CQA==
+X-Google-Smtp-Source: ABdhPJwd5sMXWXnHhxyv65OQ/SEnHwE8kGMI0uMl3SQbTKiwqhP+IINZDFnRlE8FgFVg7MdFxzEJmg==
+X-Received: by 2002:a17:906:c838:b0:711:d49f:687c with SMTP id dd24-20020a170906c83800b00711d49f687cmr6629267ejb.668.1654583956240;
+        Mon, 06 Jun 2022 23:39:16 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id jo13-20020a170906f6cd00b006febc86b8besm7016888ejb.117.2022.06.06.23.39.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Jun 2022 23:39:15 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220606225137.1536010-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Alim Akhtar <alim.akhtar@samsung.com>
+Cc:     Chanho Park <chanho61.park@samsung.com>
+Subject: Re: (subset) [PATCH v3 1/8] ARM: dts: s3c2410: use local header for pinctrl register values
+Date:   Tue,  7 Jun 2022 08:39:09 +0200
+Message-Id: <165458395109.7886.17085666406343091963.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220605160508.134075-2-krzysztof.kozlowski@linaro.org>
+References: <20220605160508.134075-1-krzysztof.kozlowski@linaro.org> <20220605160508.134075-2-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,21 +78,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/06/2022 00:51, Rob Herring wrote:
-> Another round from new cases in 5.19-rc of removing redundant
-> minItems/maxItems when 'items' list is specified. This time it is in
-> if/then schemas as the meta-schema was failing to check this case.
+On Sun, 5 Jun 2022 18:05:01 +0200, Krzysztof Kozlowski wrote:
+> The DTS uses hardware register values directly in pin controller pin
+> configuration.  These are not some IDs or other abstraction layer but
+> raw numbers used in the registers.
 > 
-> If a property has an 'items' list, then a 'minItems' or 'maxItems' with the
-> same size as the list is redundant and can be dropped. Note that is DT
-> schema specific behavior and not standard json-schema behavior. The tooling
-> will fixup the final schema adding any unspecified minItems/maxItems.
+> These numbers were previously put in the bindings header to avoid code
+> duplication and to provide some context meaning (name), but they do not
+> fit the purpose of bindings.  It is also quite confusing to use
+> constants prefixed with Exynos for other SoC, because there is actually
+> nothing here in common, except the actual value.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> [...]
 
+Applied, thanks!
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+[1/8] ARM: dts: s3c2410: use local header for pinctrl register values
+      https://git.kernel.org/krzk/linux/c/5dba27958273ffc0056795a479550957a134e981
 
 Best regards,
-Krzysztof
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
