@@ -2,84 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B70FD543EE9
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 23:56:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39C0E543EF8
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 00:01:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234629AbiFHV44 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 17:56:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52116 "EHLO
+        id S235694AbiFHWB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 18:01:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233456AbiFHV4z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 17:56:55 -0400
-Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84F5A980B1
-        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 14:56:54 -0700 (PDT)
-Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-30fdbe7467cso188152247b3.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 14:56:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=o/FxEvZvW1gTJxwxNX2DkDyV7vVmddxl0z+6t//DzGw=;
-        b=GfP2IP4Fat3QQOJUQ1zjmZgkYIDYRLt6vRQO45pbcMcGVtU5pBvQcFY5UvJcGk8abd
-         +JSzoHHE0NFLzvXxIbPCxL7Mld79vHYVn5PIdyGBgg0FkKvkhTDeiTe8VNdYvnRPSjGO
-         KRwPsYoXEKfCPsnJrtFV9ohI5YEFExn5kwhkM=
+        with ESMTP id S232615AbiFHWBz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 18:01:55 -0400
+Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 845D2B8BC5;
+        Wed,  8 Jun 2022 15:01:54 -0700 (PDT)
+Received: by mail-io1-f45.google.com with SMTP id p128so924292iof.1;
+        Wed, 08 Jun 2022 15:01:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=o/FxEvZvW1gTJxwxNX2DkDyV7vVmddxl0z+6t//DzGw=;
-        b=BWt7M7rhCCrqHNRmrjeF+tmbbLyHxFc4j+Ug7qCF1lKaObkaFREGjZVZaGEGMAeAf/
-         HEEZsKBxvGVA6BaRai2viHqyRrEF5rHDc+LLVTDNT6NVNiXKy3vqH904Gmpa/QH3RJAx
-         umXicltpxI97dRHnVzDtMDosCNpu2Glsee/epNgHwjTbWm9afUJy7A29+0xnRIYJkXn4
-         CX6PQiRliI9/sBeYK1r6qtVPl3eGreGoME5jWn8gOmBoPkxaNZXvIVf5i5Wl+D/Jc43U
-         MsHgZkchswnKfqhwxL7Tz/ejEA5namAXEaaCNrx/7lDjLZigHUFSCDdKOHTw6N/hjn0P
-         VysA==
-X-Gm-Message-State: AOAM531sNOxNi63QjaCAJJ92TwbzsoXD361CCNlUthJZQFPArFw4QHbV
-        QmvT+XDOT/dq+JRMcy1RUOrNmmZYwuShj75eb2v/7A==
-X-Google-Smtp-Source: ABdhPJyNxCPNzrOQbcyyyd4qjPEc47HfGivnM4HCR4GSlQ1K3nk/S/w0ukyRatBku42k6tv5eQ/gkohhiS9vlMCItdg=
-X-Received: by 2002:a81:54c5:0:b0:302:53b8:806b with SMTP id
- i188-20020a8154c5000000b0030253b8806bmr39710077ywb.432.1654725413771; Wed, 08
- Jun 2022 14:56:53 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220607190131.1647511-1-pmalani@chromium.org>
- <20220607190131.1647511-5-pmalani@chromium.org> <fbc48d41-b2cc-86f6-5f1c-7cfcbdb41e46@linaro.org>
- <YqDXfGa9bugnLFGH@chromium.org>
-In-Reply-To: <YqDXfGa9bugnLFGH@chromium.org>
-From:   Prashant Malani <pmalani@chromium.org>
-Date:   Wed, 8 Jun 2022 14:56:42 -0700
-Message-ID: <CACeCKaeHocnAuY5D-oVt1fhgRGkNT014RcK3JSe6piKoXNtKCQ@mail.gmail.com>
-Subject: Re: [PATCH 4/7] dt-bindings: drm/bridge: anx7625: Add mode-switch support
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        bleung@chromium.org, swboyd@chromium.org,
-        heikki.krogerus@linux.intel.com,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=NN7GcotegH3FFfcqHSDcYe6YeJ9nxGa2AwyTelBXKr8=;
+        b=gPw85fgrG6aLwnLxi2yRHtV8srawtwgsyYS2yO+OJMMdU950BOekt49MY9Ez1evs0a
+         ICqBbwaZZx8JTRt4xm2yMP/DA0UFu2+eLMcekQEKribLx056ZnlqjtNcN6sw9EIbr1Eu
+         pRNRMlRkBxao8amiyS3C8BG+FUhi8LVB7RftfEM4pTWsWq9EHU/+7JEq7eGWgHHXly1W
+         f0gaO1lcs1uO/NOEYHsH24sU6cg4AfeJprs2bX/gXcbJzFoS3ffAeFOTho473ezBg+1N
+         nUSZMf9Pp0djrwjkYXmGbPjtozajwPYegqabY2upmOeju5ARXEwj1bTLTMttdfKlPnmE
+         GcnA==
+X-Gm-Message-State: AOAM533FEr214/iuV+qjxAQMArdI8R0eH3Y4V+nUBpspyY4G3EE+886u
+        sSGbkJs6pwdW1/Cpcfj8og==
+X-Google-Smtp-Source: ABdhPJwYJUic/1ZyEOvAqw740GgvsE+qnzhkTfmFrKTOJpNUOscNySpwIX4S+PyzbpZVs1iVy1344A==
+X-Received: by 2002:a05:6638:3383:b0:331:b268:261 with SMTP id h3-20020a056638338300b00331b2680261mr9101899jav.55.1654725713770;
+        Wed, 08 Jun 2022 15:01:53 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id b12-20020a5edc0c000000b00669a3f60e99sm727337iok.31.2022.06.08.15.01.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Jun 2022 15:01:53 -0700 (PDT)
+Received: (nullmailer pid 2156157 invoked by uid 1000);
+        Wed, 08 Jun 2022 22:01:50 -0000
+Date:   Wed, 8 Jun 2022 16:01:50 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Mao Jinlong <quic_jinlmao@quicinc.com>
+Cc:     Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Pin-Yen Lin <treapking@chromium.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Xin Ji <xji@analogixsemi.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Leo Yan <leo.yan@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Tao Zhang <quic_taozha@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>,
+        linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Subject: Re: [PATCH v8 03/10] dt-bindings: arm: Adds CoreSight TPDM hardware
+ definitions
+Message-ID: <20220608220150.GA2137312-robh@kernel.org>
+References: <20220608154705.40322-1-quic_jinlmao@quicinc.com>
+ <20220608154705.40322-4-quic_jinlmao@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220608154705.40322-4-quic_jinlmao@quicinc.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,138 +78,153 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 8, 2022 at 10:08 AM Prashant Malani <pmalani@chromium.org> wrote:
->
-> Hi Krzysztof,
->
-> Thank you for looking at the patch.
->
-> On Jun 08 11:24, Krzysztof Kozlowski wrote:
-> > On 07/06/2022 21:00, Prashant Malani wrote:
-> > > Analogix 7625 can be used in systems to switch USB Type-C DisplayPort
-> > > alternate mode lane traffic between 2 Type-C ports.
-> > >
-> > > Update the binding to accommodate this usage by introducing a switch
-> > > property.
-> > >
-> > > Signed-off-by: Prashant Malani <pmalani@chromium.org>
-> > > ---
-> > >  .../display/bridge/analogix,anx7625.yaml      | 56 +++++++++++++++++++
-> > >  1 file changed, 56 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > > index 35a48515836e..7e1f655ddfcc 100644
-> > > --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > > +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > > @@ -105,6 +105,26 @@ properties:
-> > >        - port@0
-> > >        - port@1
-> > >
-> > > +  switches:
-> > > +    type: object
-> > > +    description: Set of switches controlling DisplayPort traffic on
-> > > +      outgoing RX/TX lanes to Type C ports.
-> > > +
-> > > +    properties:
-> > > +      switch:
-> >
-> > You allow only one switch with such schema, so no need for "switches"...
->
-> See below comment (summary: we'd like to allow 1 or 2 switches).
-> >
-> > > +        $ref: /schemas/usb/typec-switch.yaml#
-> > > +        maxItems: 2
-> >
-> > Are you sure this works? what are you limiting here with maxItems? I
-> > think you wanted patternProperties...
->
-> Yeah, I might not have used the DT syntax correctly here.
-> What I'm aiming for is:
-> "switches" should can contain 1 or 2 "switch" nodes.
-> 2 is the maximum (limitation of the hardware).
->
-> >
-> > > +
-> > > +        properties:
-> > > +          reg:
-> > > +            maxItems: 1
-> > > +
-> > > +        required:
-> > > +          - reg
-> > > +
-> > > +    required:
-> > > +      - switch@0
-> >
-> > This does not match the property.
-> >
-> > You also need unevaluatedProperties:false
->
-> Ack, will update this in the next version.
+On Wed, Jun 08, 2022 at 11:46:58PM +0800, Mao Jinlong wrote:
+> Adds new coresight-tpdm.yaml file describing the bindings required
+> to define tpdm in the device trees.
+> 
+> Acked-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+> Reviewed-by: Mike Leach <mike.leach@linaro.org>
+> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+> ---
+>  .../bindings/arm/coresight-tpdm.yaml          | 99 +++++++++++++++++++
 
-Actually, could you kindly clarify which of the two needs this?
-"switches" or "switch" ?
-I interpreted "switch" as requiring it, but I thought it better to confirm.
+qcom,coresight-tpdm.yaml
 
->
-> >
-> >
-> > > +
-> > >  required:
-> > >    - compatible
-> > >    - reg
-> > > @@ -167,5 +187,41 @@ examples:
-> > >                      };
-> > >                  };
-> > >              };
-> > > +            switches {
-> > > +                #address-cells = <1>;
-> > > +                #size-cells = <0>;
-> > > +                switch@0 {
-> > > +                    compatible = "typec-switch";
-> > > +                    reg = <0>;
-> > > +                    mode-switch;
-> > > +
-> > > +                    ports {
-> > > +                        #address-cells = <1>;
-> > > +                        #size-cells = <0>;
-> > > +                        port@0 {
-> > > +                            reg = <0>;
-> > > +                            anx_typec0: endpoint {
-> > > +                              remote-endpoint = <&typec_port0>;
-> >
-> > Messed up indentation. Your previous patch should also switch to 4-space
-> > as recommended by schema coding style.
->
-> Sorry about that, will fix up the indentation in the next version.
->
-> >
-> > > +                            };
-> > > +                        };
-> > > +                    };
-> > > +                };
-> > > +                switch@1 {
-> > > +                    compatible = "typec-switch";
-> > > +                    reg = <1>;
-> > > +                    mode-switch;
-> > > +
-> > > +                    ports {
-> > > +                        #address-cells = <1>;
-> > > +                        #size-cells = <0>;
-> > > +                        port@0 {
-> > > +                            reg = <0>;
-> > > +                            anx_typec1: endpoint {
-> > > +                              remote-endpoint = <&typec_port1>;
-> >
-> > Ditto.
-> >
-> > > +                            };
-> > > +                        };
-> > > +                    };
-> > > +                };
-> > > +            };
-> > >          };
-> > >      };
-> >
-> >
-> > Best regards,
-> > Krzysztof
+>  .../devicetree/bindings/arm/coresight.txt     |  7 ++
+
+This file is going away[1]. I'd just drop the changes to it.
+
+>  MAINTAINERS                                   |  1 +
+>  3 files changed, 107 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/coresight-tpdm.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/coresight-tpdm.yaml b/Documentation/devicetree/bindings/arm/coresight-tpdm.yaml
+> new file mode 100644
+> index 000000000000..14bef4ce4274
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/coresight-tpdm.yaml
+> @@ -0,0 +1,99 @@
+> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+> +# Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/coresight-tpdm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Trace, Profiling and Diagnostics Monitor - TPDM
+> +
+> +description: |
+> +  The TPDM or Monitor serves as data collection component for various dataset
+> +  types specified in the QPMDA spec. It covers Implementation defined ((ImplDef),
+> +  Basic Counts (BC), Tenure Counts (TC), Continuous Multi-Bit (CMB), and Discrete
+> +  Single Bit (DSB). It performs data collection in the data producing clock
+> +  domain and transfers it to the data collection time domain, generally ATB
+> +  clock domain.
+> +
+> +  The primary use case of the TPDM is to collect data from different data
+> +  sources and send it to a TPDA for packetization, timestamping, and funneling.
+> +
+> +maintainers:
+> +  - Mao Jinlong <quic_jinlmao@quicinc.com>
+> +  - Tao Zhang <quic_taozha@quicinc.com>
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^tpdm(@[0-9a-f]+)$"
+
+blank line
+
+> +  compatible:
+> +    items:
+> +      - const: qcom,coresight-tpdm
+> +      - const: arm,primecell
+
+You need a 'select' to fix the errors reported. See other primecell 
+bindings.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: apb_pclk
+> +
+> +  out-ports:
+> +    description: |
+> +      Output connections from the TPDM to coresight funnle/tpda.
+
+typo
+
+> +    $ref: /schemas/graph.yaml#/properties/ports
+
+blank line here.
+
+> +    properties:
+> +      port:
+> +        description: Output connection from the TPDM to coresight
+> +            funnel/tpda.
+
+s/tpda/TPDA/
+
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  # minimum TPDM definition. TPDM connect to coresight funnel.
+> +  - |
+> +    tpdm@6980000 {
+> +      compatible = "qcom,coresight-tpdm", "arm,primecell";
+> +      reg = <0x6980000 0x1000>;
+> +
+> +      clocks = <&aoss_qmp>;
+> +      clock-names = "apb_pclk";
+> +
+> +      out-ports {
+> +        port {
+> +          tpdm_turing_out_funnel_turing: endpoint {
+> +            remote-endpoint =
+> +              <&funnel_turing_in_tpdm_turing>;
+> +          };
+> +        };
+> +      };
+> +    };
+> +  # minimum TPDM definition. TPDM connect to coresight TPDA.
+> +  - |
+
+The only difference in the 2 examples is some external phandle. 1 
+example is sufficient.
+
+> +    tpdm@684c000 {
+> +      compatible = "qcom,coresight-tpdm", "arm,primecell";
+> +      reg = <0x684c000 0x1000>;
+> +
+> +      clocks = <&aoss_qmp>;
+> +      clock-names = "apb_pclk";
+> +
+> +      out-ports {
+> +        port {
+> +          tpdm_prng_out_tpda_qdss: endpoint {
+> +            remote-endpoint =
+> +              <&tpda_qdss_in_tpdm_prng>;
+> +          };
+> +        };
+> +      };
+> +    };
+> +
+> +...
+
+Rob
+
+[1] https://lore.kernel.org/all/20220603011933.3277315-1-robh@kernel.org/
