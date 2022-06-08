@@ -2,140 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B23115431B8
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 15:44:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAD305431D0
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 15:47:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240627AbiFHNot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 09:44:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59948 "EHLO
+        id S240784AbiFHNpc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 09:45:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240622AbiFHNoq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 09:44:46 -0400
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4EB6B0F;
-        Wed,  8 Jun 2022 06:44:44 -0700 (PDT)
-Received: (Authenticated sender: foss@0leil.net)
-        by mail.gandi.net (Postfix) with ESMTPSA id A47A34000D;
-        Wed,  8 Jun 2022 13:44:41 +0000 (UTC)
-From:   Quentin Schulz <foss+kernel@0leil.net>
-Cc:     shawnx.tu@intel.com, mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        foss+kernel@0leil.net,
-        Quentin Schulz <quentin.schulz@theobroma-systems.com>
-Subject: [PATCH v7 4/4] media: i2c: ov5675: add .get_selection support
-Date:   Wed,  8 Jun 2022 15:44:20 +0200
-Message-Id: <20220608134420.1750530-4-foss+kernel@0leil.net>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220608134420.1750530-1-foss+kernel@0leil.net>
-References: <20220608134420.1750530-1-foss+kernel@0leil.net>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,PDS_OTHER_BAD_TLD,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S240801AbiFHNpZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 09:45:25 -0400
+Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBB0726E90E;
+        Wed,  8 Jun 2022 06:45:23 -0700 (PDT)
+Received: by mail-il1-f181.google.com with SMTP id f7so16573847ilr.5;
+        Wed, 08 Jun 2022 06:45:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=8s0YrfWn9fhADGPEGf3nKU4A+tmSBSkKOwYBtdSyIws=;
+        b=VvZmwoj1LsXC9IsSWEEaBFminavVqxSGP2tt5Wnp7K9ephaEDyZS9l3uXC/uLm1fW0
+         uJirx2AaRDqp1QFzaVHUfrAESH08hQUYgLcBodwt8smhZO4cjdePT3gVb7fUMby0N9fK
+         +M7chUHSYmB4q1e33ZjT/4BHMEu9IFKbhdPkdx3BfsnWuWPTn8LWVJX3f4rQmiOmN2Jw
+         F2mn5jC2YlzE5bQxwthUlWaNXY69oEP5lyZJfRjXRWbTdEGQRMABsow1/zBQ2r5PaNrR
+         6N7nyXrRVJFvqgzHgSbFJNdWWGtaY8J95njJGMAULNqK23QASNnv1OBdD2z/LqtNkrGt
+         jJKQ==
+X-Gm-Message-State: AOAM531M1Y2V6lB1dkWGkViKhZh+gj6JVQLekm3lILfOcU0ss2Jzitef
+        2lM2t+zNceX8gilDIC7I1Q==
+X-Google-Smtp-Source: ABdhPJz7Q8MLtTkPwji36IpKE2im28oPmR3QxFQufPLcocka4qU8MkFuhTbPDygOZ9plX+RHb35PPQ==
+X-Received: by 2002:a92:ca4d:0:b0:2d3:dce1:1ee1 with SMTP id q13-20020a92ca4d000000b002d3dce11ee1mr19266018ilo.301.1654695923518;
+        Wed, 08 Jun 2022 06:45:23 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id p5-20020a056e02144500b002d392d98afdsm8971338ilo.9.2022.06.08.06.45.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Jun 2022 06:45:23 -0700 (PDT)
+Received: (nullmailer pid 1272090 invoked by uid 1000);
+        Wed, 08 Jun 2022 13:45:07 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Jingoo Han <jingoohan1@gmail.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        linux-pci@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Johan Hovold <johan@kernel.org>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Andy Gross <agross@kernel.org>
+In-Reply-To: <20220608102208.2967438-6-dmitry.baryshkov@linaro.org>
+References: <20220608102208.2967438-1-dmitry.baryshkov@linaro.org> <20220608102208.2967438-6-dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v14 5/7] dt-bindings: PCI: qcom: Support additional MSI interrupts
+Date:   Wed, 08 Jun 2022 07:45:07 -0600
+Message-Id: <1654695907.391751.1272089.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+On Wed, 08 Jun 2022 13:22:06 +0300, Dmitry Baryshkov wrote:
+> On Qualcomm platforms each group of 32 MSI vectors is routed to the
+> separate GIC interrupt. Document mapping of additional interrupts.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../devicetree/bindings/pci/qcom,pcie.yaml    | 53 +++++++++++++++++--
+>  1 file changed, 50 insertions(+), 3 deletions(-)
+> 
 
-The sensor has 2592*1944 active pixels, surrounded by 16 active dummy
-pixels and there are an additional 24 black rows "at the bottom".
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-                     [2624]
-        +-----+------------------+-----+
-        |     |     16 dummy     |     |
-        +-----+------------------+-----+
-        |     |                  |     |
-        |     |     [2592]       |     |
-        |     |                  |     |
-        |16   |      valid       | 16  |[2000]
-        |dummy|                  |dummy|
-        |     |            [1944]|     |
-        |     |                  |     |
-        +-----+------------------+-----+
-        |     |     16 dummy     |     |
-        +-----+------------------+-----+
-        |     |  24 black lines  |     |
-        +-----+------------------+-----+
+yamllint warnings/errors:
 
-The top-left coordinate is gotten from the registers specified in the
-modes which are identical for both currently supported modes.
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/qcom,pcie.yaml: allOf:19:then:oneOf:0:properties:interrupt-names: {'maxItems': 1, 'items': [{'const': 'msi'}]} should not be valid under {'required': ['maxItems']}
+	hint: "maxItems" is not needed with an "items" list
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/qcom,pcie.yaml: allOf:19:then:oneOf:1:properties:interrupt-names: 'oneOf' conditional failed, one must be fixed:
+	[{'const': 'msi0'}, {'const': 'msi1'}, {'const': 'msi2'}, {'const': 'msi3'}, {'const': 'msi4'}, {'const': 'msi5'}, {'const': 'msi6'}, {'const': 'msi7'}] is too long
+	[{'const': 'msi0'}, {'const': 'msi1'}, {'const': 'msi2'}, {'const': 'msi3'}, {'const': 'msi4'}, {'const': 'msi5'}, {'const': 'msi6'}, {'const': 'msi7'}] is too short
+	False schema does not allow 8
+	1 was expected
+	8 is greater than the maximum of 2
+	8 is greater than the maximum of 3
+	8 is greater than the maximum of 4
+	8 is greater than the maximum of 5
+	8 is greater than the maximum of 6
+	8 is greater than the maximum of 7
+	hint: "minItems" is only needed if less than the "items" list length
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pci/qcom,pcie.yaml: ignoring, error in schema: allOf: 19: then: oneOf: 0: properties: interrupt-names
+Documentation/devicetree/bindings/pci/qcom,pcie.example.dtb:0:0: /example-0/pcie@1b500000: failed to match any schema with compatible: ['qcom,pcie-ipq8064']
+Documentation/devicetree/bindings/pci/qcom,pcie.example.dtb:0:0: /example-1/pcie@fc520000: failed to match any schema with compatible: ['qcom,pcie-apq8084']
 
-There are currently two modes supported by this driver: 2592*1944 and
-1296*972. The second mode is obtained thanks to subsampling while
-keeping the same field of view (FoV). No cropping involved, hence the
-harcoded values.
+doc reference errors (make refcheckdocs):
 
-Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
----
+See https://patchwork.ozlabs.org/patch/
 
-v7:
- - fixed incorrect V4L2_SEL_TGT_CROP_BOUNDS introduced in v6,
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-v6:
- - explicit a bit more the commit log around subsampling for lower
- resolution modes,
- - (again) fixed reporting for V4L2_SEL_TGT_CROP_* thanks to Jacopo's help,
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-v4:
- - explicit a bit more the commit log,
- - added drawing in the commit log,
- - fixed reporting for V4L2_SEL_TGT_CROP_* thanks to Jacopo's help,
+pip3 install dtschema --upgrade
 
-added in v3
-
- drivers/media/i2c/ov5675.c | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
-
-diff --git a/drivers/media/i2c/ov5675.c b/drivers/media/i2c/ov5675.c
-index 80840ad7bbb0..5f70ead2dd47 100644
---- a/drivers/media/i2c/ov5675.c
-+++ b/drivers/media/i2c/ov5675.c
-@@ -1121,6 +1121,31 @@ static int ov5675_get_format(struct v4l2_subdev *sd,
- 	return 0;
- }
- 
-+static int ov5675_get_selection(struct v4l2_subdev *sd,
-+				struct v4l2_subdev_state *state,
-+				struct v4l2_subdev_selection *sel)
-+{
-+	if (sel->which != V4L2_SUBDEV_FORMAT_ACTIVE)
-+		return -EINVAL;
-+
-+	switch (sel->target) {
-+	case V4L2_SEL_TGT_CROP_BOUNDS:
-+		sel->r.top = 0;
-+		sel->r.left = 0;
-+		sel->r.width = 2624;
-+		sel->r.height = 2000;
-+		return 0;
-+	case V4L2_SEL_TGT_CROP:
-+	case V4L2_SEL_TGT_CROP_DEFAULT:
-+		sel->r.top = 16;
-+		sel->r.left = 16;
-+		sel->r.width = 2592;
-+		sel->r.height = 1944;
-+		return 0;
-+	}
-+	return -EINVAL;
-+}
-+
- static int ov5675_enum_mbus_code(struct v4l2_subdev *sd,
- 				 struct v4l2_subdev_state *sd_state,
- 				 struct v4l2_subdev_mbus_code_enum *code)
-@@ -1170,6 +1195,7 @@ static const struct v4l2_subdev_video_ops ov5675_video_ops = {
- static const struct v4l2_subdev_pad_ops ov5675_pad_ops = {
- 	.set_fmt = ov5675_set_format,
- 	.get_fmt = ov5675_get_format,
-+	.get_selection = ov5675_get_selection,
- 	.enum_mbus_code = ov5675_enum_mbus_code,
- 	.enum_frame_size = ov5675_enum_frame_size,
- };
--- 
-2.36.1
+Please check and re-submit.
 
