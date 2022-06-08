@@ -2,260 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E5AD542812
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 09:48:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E04C5427C2
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 09:46:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234831AbiFHHJY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 03:09:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57948 "EHLO
+        id S234649AbiFHHpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 03:45:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242843AbiFHGvH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 02:51:07 -0400
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB5E7BA556;
-        Tue,  7 Jun 2022 23:42:14 -0700 (PDT)
-Received: (Authenticated sender: jacopo@jmondi.org)
-        by mail.gandi.net (Postfix) with ESMTPSA id 78CB1FF80C;
-        Wed,  8 Jun 2022 06:42:11 +0000 (UTC)
-Date:   Wed, 8 Jun 2022 08:42:09 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-Cc:     Quentin Schulz <foss+kernel@0leil.net>, shawnx.tu@intel.com,
-        mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Quentin Schulz <quentin.schulz@theobroma-systems.com>
-Subject: Re: [PATCH v6 4/4] media: i2c: ov5675: add .get_selection support
-Message-ID: <20220608064209.roub7uk7kx4k4muf@uno.localdomain>
-References: <20220607153335.875956-1-foss+kernel@0leil.net>
- <20220607153335.875956-4-foss+kernel@0leil.net>
- <20220607165136.bmriu2n7yorc7fx6@uno.localdomain>
- <20220607220405.GB821506@tom-ThinkPad-T14s-Gen-2i>
+        with ESMTP id S237633AbiFHHht (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 03:37:49 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03C872E089
+        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 00:02:03 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id v19so25779817edd.4
+        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 00:02:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=IszLqlcgD05eXsWHK13yuSjgjcF65FqgTaQ7oezgSi4=;
+        b=NjXMwy0Ts/fq1WUFcl5f4PCvQ/UYTYZE3Rs/+jZBO44gx1HpJBaivPOwsr61BxJTRo
+         0jOQdxVMzqB3XC7uLPTP+9b/fzypRc86ErpIoxSxn74l65/OqMDRMPODtxkIAvkU4IZg
+         VE8aL2/NkHewERdimvy7JordNYjmdyLk2yhdEj2tkxU3Rfej+NiRWKdn5EgYX7K3nrzO
+         sEtmFe55nQJXl6pZr6suToBXUXpSxeKdAfdkg3w4QMC6joj364ejRrFkRMnFo9gEtIbI
+         N9CfgAmn4Gr60zenjPy6xNzOGVTY/bP5tiIKL6q18qIynPjDrxzWuZQfWlyAHGy5JWmb
+         YiMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=IszLqlcgD05eXsWHK13yuSjgjcF65FqgTaQ7oezgSi4=;
+        b=xCYT7ZS5HHXI3HeXGCfBBNwbhLfMS8SWfPYzGlzAjBy0O+ts6CQ8xefspczTyeIeI2
+         bUAigCX4Dw3cUZV2NR7Oy1GCwSOqXWec2EYj95PmlZ3YP/g9cHtzoTU/xbEMgYa+AtSL
+         Mjhh23ydE64aNuboLnQ5ISQNpxMWFD3vFa8uVs8ZjkP1vQRfozg4zFY//tICir8i76SS
+         4VSOW0D5IuyhIQLGf5uPmat4EoZL+ujFjVqjunwfdAVhiJi3WqDZb4vrG88rmoD8OgQG
+         /4povkQmnEAg8UwA7yHIYxI3kiaArVrQj5OTlytShZ/wXoZkJ05CDldgqEOcEJVeRjm2
+         yuxw==
+X-Gm-Message-State: AOAM530aW0iaimLmQX6t7u36pb2e2Adpjhzrh0Y6Vil0nXHusPIJHz8M
+        30fAk5kP6FYMVsiJOPyxqyZnkw==
+X-Google-Smtp-Source: ABdhPJxvk8YHrSsJrzY21s3QYfRp4SZFfYvBTOWmH1qJRX3O68CfGHN5Cg7V2McI8/LJ5VGflChnpA==
+X-Received: by 2002:a05:6402:270a:b0:431:43f6:1e02 with SMTP id y10-20020a056402270a00b0043143f61e02mr20644054edd.317.1654671721433;
+        Wed, 08 Jun 2022 00:02:01 -0700 (PDT)
+Received: from [192.168.0.188] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id i27-20020a170906115b00b006fec56c57e6sm8687368eja.46.2022.06.08.00.01.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Jun 2022 00:02:00 -0700 (PDT)
+Message-ID: <678ce480-cbbc-ffa8-10bf-d93021a0df0a@linaro.org>
+Date:   Wed, 8 Jun 2022 09:01:58 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 1/4] dt-binding: mfd: Add Richtek RT5120 PMIC support
+Content-Language: en-US
+To:     ChiYuan Huang <u0084500@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Brown <broonie@kernel.org>, dmitry.torokhov@gmail.com,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        cy_huang <cy_huang@richtek.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
+        linux-input@vger.kernel.org
+References: <1654581161-12349-1-git-send-email-u0084500@gmail.com>
+ <1654581161-12349-2-git-send-email-u0084500@gmail.com>
+ <96ecca0b-b65c-749d-d66b-33443cacf2e4@linaro.org>
+ <CADiBU39BTr9FjtXgBe55aOTHNVotHfC1n=aHrH3XAcVoWkk8sA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CADiBU39BTr9FjtXgBe55aOTHNVotHfC1n=aHrH3XAcVoWkk8sA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220607220405.GB821506@tom-ThinkPad-T14s-Gen-2i>
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,PDS_OTHER_BAD_TLD,
-        RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+On 08/06/2022 04:52, ChiYuan Huang wrote:
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> 於 2022年6月7日 週二 下午7:52寫道：
+>>
+>> On 07/06/2022 07:52, cy_huang wrote:
+>>> From: ChiYuan Huang <cy_huang@richtek.com>
+>>>
+>>> Add Richtek RT5120 PMIC devicetree document.
+>>>
+>>> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+>>> ---
+>>>  .../devicetree/bindings/mfd/richtek,rt5120.yaml    | 180 +++++++++++++++++++++
+>>>  1 file changed, 180 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/mfd/richtek,rt5120.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mfd/richtek,rt5120.yaml b/Documentation/devicetree/bindings/mfd/richtek,rt5120.yaml
+>>> new file mode 100644
+>>> index 00000000..376bf73
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/mfd/richtek,rt5120.yaml
+>>> @@ -0,0 +1,180 @@
+>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/mfd/richtek,rt5120.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Richtek RT5120 PMIC
+>>> +
+>>> +maintainers:
+>>> +  - ChiYuan Huang <cy_huang@richtek.com>
+>>> +
+>>> +description: |
+>>> +  The RT5120 provides four high-efficiency buck converters and one LDO voltage
+>>> +  regulator. The device is targeted at providingthe processor voltage, memory,
+>>> +  I/O, and peripheral rails in home entertainment devices. The I2C interface is
+>>> +  used for dynamic voltage scaling of the processor voltage, power rails on/off
+>>> +  sequence control, operation mode selection.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - richtek,rt5120
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  interrupts:
+>>> +    maxItems: 1
 
-On Wed, Jun 08, 2022 at 12:04:05AM +0200, Tommaso Merciai wrote:
-> Hi Quentin/Jacopo,
->
-> On Tue, Jun 07, 2022 at 06:51:36PM +0200, Jacopo Mondi wrote:
-> > Hi Quentin,
-> >
-> > On Tue, Jun 07, 2022 at 05:33:35PM +0200, Quentin Schulz wrote:
-> > > From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
-> > >
-> > > The sensor has 2592*1944 active pixels, surrounded by 16 active dummy
-> > > pixels and there are an additional 24 black rows "at the bottom".
-> > >
-> > >                      [2624]
-> > >         +-----+------------------+-----+
-> > >         |     |     16 dummy     |     |
-> > >         +-----+------------------+-----+
-> > >         |     |                  |     |
-> > >         |     |     [2592]       |     |
-> > >         |     |                  |     |
-> > >         |16   |      valid       | 16  |[2000]
-> > >         |dummy|                  |dummy|
-> > >         |     |            [1944]|     |
-> > >         |     |                  |     |
-> > >         +-----+------------------+-----+
-> > >         |     |     16 dummy     |     |
-> > >         +-----+------------------+-----+
-> > >         |     |  24 black lines  |     |
-> > >         +-----+------------------+-----+
-> > >
-> > > The top-left coordinate is gotten from the registers specified in the
-> > > modes which are identical for both currently supported modes.
-> > >
-> > > There are currently two modes supported by this driver: 2592*1944 and
-> > > 1296*972. The second mode is obtained thanks to subsampling while
-> > > keeping the same field of view (FoV). No cropping involved, hence the
-> > > harcoded values.
-> > >
-> > > Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
-> > > ---
-> > >
-> > > v6:
-> > >  - explicit a bit more the commit log around subsampling for lower
-> > >  resolution modes,
-> > >  - (again) fixed reporting for V4L2_SEL_TGT_CROP_* thanks to Jacopo's help,
-> > >
-> > > v4:
-> > >  - explicit a bit more the commit log,
-> > >  - added drawing in the commit log,
-> > >  - fixed reporting for V4L2_SEL_TGT_CROP_* thanks to Jacopo's help,
-> > >
-> > > added in v3
-> > >
-> > >  drivers/media/i2c/ov5675.c | 21 +++++++++++++++++++++
-> > >  1 file changed, 21 insertions(+)
-> > >
-> > > diff --git a/drivers/media/i2c/ov5675.c b/drivers/media/i2c/ov5675.c
-> > > index 80840ad7bbb0..2230ff47ef49 100644
-> > > --- a/drivers/media/i2c/ov5675.c
-> > > +++ b/drivers/media/i2c/ov5675.c
-> > > @@ -1121,6 +1121,26 @@ static int ov5675_get_format(struct v4l2_subdev *sd,
-> > >  	return 0;
-> > >  }
-> > >
-> > > +static int ov5675_get_selection(struct v4l2_subdev *sd,
-> > > +				struct v4l2_subdev_state *state,
-> > > +				struct v4l2_subdev_selection *sel)
-> > > +{
-> > > +	if (sel->which != V4L2_SUBDEV_FORMAT_ACTIVE)
-> > > +		return -EINVAL;
-> > > +
-> > > +	switch (sel->target) {
-> > > +	case V4L2_SEL_TGT_CROP:
-> > > +	case V4L2_SEL_TGT_CROP_BOUNDS:
-> >
-> > Seem like we have trouble understanding each other, or better, I have
-> > troubles explaining myself most probably :)
-> >
-> > If the dummy/black area is readable, this should just be (0, 0, 2624,
-> > 2000) like it was in your previous version. What has changed that I
-> > have missed ?
->
-> Taking as reference drivers/media/i2c/ov5693.c and others,
-> seems ok what Quentin have done from my side.
->
-> Just one thing: maybe is better to avoid magic numbers with more
-> explicit defines like:
->
->  + case V4L2_SEL_TGT_CROP_DEFAULT:
->  +           sel->r.top = OV5675_ACTIVE_START_TOP;
->  +           sel->r.left = OV5693_ACTIVE_START_LEFT;
->  +           sel->r.width = OV5693_ACTIVE_WIDTH;
->  +           sel->r.height = OV5693_ACTIVE_HEIGHT;
->
-> What do you think about?
->
-> Thanks,
-> Tommaso
->
->
+Your powerkey driver takes two interrupts. You should describe them in
+the powerkey.
 
-We have extensively discussed this:
-https://patchwork.linuxtv.org/project/linux-media/patch/20220509143226.531117-4-foss+kernel@0leil.net/
-https://patchwork.linuxtv.org/project/linux-media/patch/20220525145833.1165437-4-foss+kernel@0leil.net/
+>>> +
+>>> +  interrupt-controller: true
+>>> +
+>>> +  "#interrupt-cells":
+>>> +    const: 1
+>>> +
+>>> +  wakeup-source: true
+>>> +
+>>> +  richtek,enable-undervolt-hiccup:
+>>> +    type: boolean
+>>> +    description: |
+>>> +      If used, under voltage protection trigger hiccup behavior, else latchup as
+>>> +      default
+>>> +
+>>> +  richtek,enable-overvolt-hiccup:
+>>> +    type: boolean
+>>> +    description:
+>>> +      Like as 'enable-uv-hiccup', it configures over voltage protection to
+>>> +      hiccup, else latchup as default
+>>> +
+>>> +  vin1-supply:
+>>> +    description: phandle for buck1 input power source
+>>> +
+>>> +  vin2-supply:
+>>> +    description: phandle for buck2 input power source
+>>> +
+>>> +  vin3-supply:
+>>> +    description: phandle for buck3 input power source
+>>> +
+>>> +  vin4-supply:
+>>> +    description: phandle for buck4 input power source
+>>> +
+>>> +  vinldo-supply:
+>>> +    description: phandle for ldo input power source
+>>> +
+>>> +  regulators:
+>>> +    type: object
+>>> +
+>>> +    patternProperties:
+>>> +      "^buck[1-4]$":
+>>> +        type: object
+>>> +        $ref: /schemas/regulator/regulator.yaml#
+>>> +
+>>> +        properties:
+>>> +          regulator-allowed-modes:
+>>> +            description: |
+>>> +              Used to specify the allowed buck converter operating mode
+>>> +              mode mapping:
+>>> +                0: auto mode
+>>> +                1: force pwm mode
+>>> +            items:
+>>> +              enum: [0, 1]
+>>> +
+>>> +        unevaluatedProperties: false
+>>
+>> Better to put it after '$ref' for readability.
+> OK, Fix in next
+>>
+>>> +
+>>> +      "^(ldo|exten)$":
+>>> +        type: object
+>>> +        $ref: /schemas/regulator/regulator.yaml#
+>>
+>> You need here unevaluatedProperties:false as well (for the ldo/exten
+>> properties)
+> Fix in next.
+>>
+>>> +
+>>> +    additionalProperties: false
+>>> +
+>>> +  powerkey:
+>>> +    type: object
+>>> +    description:
+>>> +      The power key driver may be optional. If not used, change node status to
+>>> +      'disabled'
+>>
+>> This description is not helpful, does not describe the hardware. Please
+>> describe hardware, not Devicetree usage.
+> That's because it's a PMIC. Power key is also connected to it.
+> For power key press, all power rails will start to power up.
+> But in the application, there may be other PMIC that's also connected
+> to power key.
+> That's why this power key driver may need to be optional.
+> One system only need one driver to report the power key status.
+> 
+> Currently in some linux OS, it uses the auto module loading mechanism.
+> All kernel module files may be all the same, but it uses the
+> devicetree to decide how many devices
+> need to be declared. Since RT5120 power key device may be optional,
+> following by mfd_add_device, if of_node is
+> found, and status is "disabled", the sub device would be skipped.
+> 
+> Actually, I'm also confused about it. There may be three ways to implement it
+> 1. not to build this kernel module -> seems to violate my above application
+> 2. Use one boolean property to decide power key cell need to be used or not??
+> 3. like as now, use the node status to decide it.
+> 
+> Is there the better way to do it?
 
-From the CROP_BOUNDS definition:
-Bounds of the crop rectangle. All valid crop rectangles fit inside the
-crop bounds rectangle.
+The status does not determine whether device in the bindings is optional
+or not. Rather it's presence. In the term of bindings the "optional"
+means that something might not be there physically. E.g. clock line
+connected or not. System implementation - MFD, power off handling - is
+here (almost) irrelevant.
 
-From CROP_DEFAULT:
-Suggested cropping rectangle that covers the “whole picture”. This
-includes only active pixels and excludes other non-active pixels such
-as black pixels.
+In your case, the power key feature seems to be there always, so the
+"powerkey" node should be required and not disabled. Don't mention in
+description of hardware anything about disabling it or not.
 
-If (and only if) dummy/inactive pixels can be read out, the BOUNDS
-rectangle should contain them. In this case, as the analog crop
-rectangle is defined with a 16x16 top-left corner (and with a visible
-size of 2592x1944) from a larger rectangle, I presume it means
-dummy/invalid pixls can be read (IOW you can give to the ISP a rectangle
-that includes them).
+In your application, I would say it is interesting design that someone
+connects one power up line to two different PMICs in a conflicting way.
+This sounds like total mistake from hardware point of view.
 
-Anyway, we're discussing details really. I think v5 was almost there
+Anyway it is not the job for this patch to solve such conflicts.
 
-+	switch (sel->target) {
-+	case V4L2_SEL_TGT_CROP_BOUNDS:
-+		sel->r.top = 0;
-+		sel->r.left = 0;
-+		sel->r.width = 2624;
-+		sel->r.height = 2000;
-+		return 0;
-+	case V4L2_SEL_TGT_CROP:
-+		sel->r.top = 16;
-+		sel->r.left = 16;
-+		sel->r.width = ov5675->cur_mode->width;
-+		sel->r.height = ov5675->cur_mode->height;
-+		return 0;
-+	case V4L2_SEL_TGT_CROP_DEFAULT:
-+		sel->r.top = 16;
-+		sel->r.left = 16;
-+		sel->r.width = supported_modes[0].width;
-+		sel->r.height = supported_modes[0].height;
-+		return 0;
-+	}
-
-Apart from the fact that TGT_CROP should not report the final image
-size (after binning/digital crop) but the size of the pixel array
-portion processed to obtain the final image.
-
-
-+	switch (sel->target) {
-+	case V4L2_SEL_TGT_CROP_BOUNDS:
-+		sel->r.top = 0;
-+		sel->r.left = 0;
-+		sel->r.width = 2624;
-+		sel->r.height = 2000;
-+		return 0;
-+	case V4L2_SEL_TGT_CROP:
-+	case V4L2_SEL_TGT_CROP_DEFAULT:
-+		sel->r.top = 16;
-+		sel->r.left = 16;
-+		sel->r.width = 2592;
-+		sel->r.height = 1944;
-+		return 0;
-+	}
-
-Let me remind that (in the context of pleasing libcamera requirements
-as Quentin is doing) all targets apart TGT_CROP are only useful to
-report static properties of the camera, which are of no real use
-unless you start actually looking into reading out black pixels etc
-etc.
-
-
-> >
-> > Thanks
-> >   j
-> >
-> >
-> > > +	case V4L2_SEL_TGT_CROP_DEFAULT:
-> > > +		sel->r.top = 16;
-> > > +		sel->r.left = 16;
-> > > +		sel->r.width = 2592;
-> > > +		sel->r.height = 1944;
-> > > +		return 0;
-> > > +	}
-> > > +	return -EINVAL;
-> > > +}
-> > > +
-> > >  static int ov5675_enum_mbus_code(struct v4l2_subdev *sd,
-> > >  				 struct v4l2_subdev_state *sd_state,
-> > >  				 struct v4l2_subdev_mbus_code_enum *code)
-> > > @@ -1170,6 +1190,7 @@ static const struct v4l2_subdev_video_ops ov5675_video_ops = {
-> > >  static const struct v4l2_subdev_pad_ops ov5675_pad_ops = {
-> > >  	.set_fmt = ov5675_set_format,
-> > >  	.get_fmt = ov5675_get_format,
-> > > +	.get_selection = ov5675_get_selection,
-> > >  	.enum_mbus_code = ov5675_enum_mbus_code,
-> > >  	.enum_frame_size = ov5675_enum_frame_size,
-> > >  };
-> > > --
-> > > 2.36.1
-> > >
->
-> --
-> Tommaso Merciai
-> Embedded Linux Engineer
-> tommaso.merciai@amarulasolutions.com
-> __________________________________
->
-> Amarula Solutions SRL
-> Via Le Canevare 30, 31100 Treviso, Veneto, IT
-> T. +39 042 243 5310
-> info@amarulasolutions.com
-> www.amarulasolutions.com
+Best regards,
+Krzysztof
