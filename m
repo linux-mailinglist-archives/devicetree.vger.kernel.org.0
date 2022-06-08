@@ -2,134 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E081854310F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 15:09:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C88B8543141
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 15:23:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240028AbiFHNIv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 09:08:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40130 "EHLO
+        id S240066AbiFHNWs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 09:22:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239974AbiFHNIt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 09:08:49 -0400
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2086.outbound.protection.outlook.com [40.107.21.86])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88F0C25D82C;
-        Wed,  8 Jun 2022 06:08:48 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BdnhUvIuukzohfTgxtbWpXwlR3MZjsN1TOXbqMyetdwJWuPXXRECbeGMYRGeRWgOgorUb4AdIUJI1DbIV88jvDGsya+Bh+QRFBECdSb62gOUvaebcF9BfTyZzYY0X2UeKZ+NKxreoEQUMOQ/JGA9+VNiS5zdfj2+Njp2Z/n0b5kT6LPccMbinwODQ8Hg2sBxeyx+dae5uEzkqjjXuMXHBl0m20hTUMfFBElNSU4GfHDR19/RRjBEynKd35kCEbrT843UmOzQNdyU31jzSfFqnA3itEpQ2Wd67iF248+EOEKmBzLh2SJ7ybhq4pqQ9yMrX1UWOWt3qJqTrzpusU8KPQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zFhnqP082Ay0394vc5XMq/xJxQ6OACLoSFSjBmjD4M0=;
- b=LttWEcamzuYud1jB2s2qIvSJXv7xl84RXguyw7WscZ25n4MgpKZRPblrROsZeNEPLPWlWETKZQHKdlODUtu7hSyWh/pyYPCAbYzaurNPXI6q41l/GDrnFNM10fgwz2ff9qgRz1pty98GzOWwVyO4ssCYjMGp0kwJLeuS3s8dVRK6IbN+RycqIZHgo5pdNcca8o9E6q+8Ckf5EHm/z6qmlMmzcHTg70eucKWm1MDi2subWn+zzKu9uuuUNBJtd0f9pRJINbU+HBwHy1vucFw2WsyZ3bCNwlE1CW5gBaNGMZw+9AO5ItyTONlHAD+RcVUtXMzTKH6+qbFu52rXdvnt1A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zFhnqP082Ay0394vc5XMq/xJxQ6OACLoSFSjBmjD4M0=;
- b=I5V3kNq22SfrrlI2bSruhKrnfCjPGFmVfHuEfjvvr13r+kdpXMDFA+iSlCi/bhyoT9SVSChu0u0MfkkaGc8vUA4uIQSpzNoXEtYPxtlRQpjYjOhWokEXBhFMOFG26HSW0l2g/mm9zysvaVkZ8zn+Q/otXKYIlFLjjk/+7ENiM7Y=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wolfvision.net;
-Received: from AM4PR0802MB2131.eurprd08.prod.outlook.com
- (2603:10a6:200:5c::22) by VE1PR08MB4704.eurprd08.prod.outlook.com
- (2603:10a6:802:b0::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.15; Wed, 8 Jun
- 2022 13:08:44 +0000
-Received: from AM4PR0802MB2131.eurprd08.prod.outlook.com
- ([fe80::248c:2539:5ba5:74f2]) by AM4PR0802MB2131.eurprd08.prod.outlook.com
- ([fe80::248c:2539:5ba5:74f2%3]) with mapi id 15.20.5332.012; Wed, 8 Jun 2022
- 13:08:44 +0000
-Message-ID: <5e0b908b-52c8-494e-a804-393c8aad097a@wolfvision.net>
-Date:   Wed, 8 Jun 2022 15:08:41 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: rock-pi-s add more peripherals
-Content-Language: en-US
-To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org,
-        Sjoerd Simons <sjoerd@collabora.com>
-Cc:     kernel@collabora.com, Akash Gajjar <akash@openedev.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220606082629.79682-1-sjoerd@collabora.com>
- <4731d47f-ef02-d512-c599-274f8208f845@wolfvision.net>
- <3576f2af98a0d9e7128568777d85af3bfbab801d.camel@collabora.com>
- <2759751.88bMQJbFj6@diego>
-From:   Michael Riesch <michael.riesch@wolfvision.net>
-In-Reply-To: <2759751.88bMQJbFj6@diego>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: ZR0P278CA0066.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:21::17) To AM4PR0802MB2131.eurprd08.prod.outlook.com
- (2603:10a6:200:5c::22)
+        with ESMTP id S239983AbiFHNWr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 09:22:47 -0400
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 756E95641D;
+        Wed,  8 Jun 2022 06:22:45 -0700 (PDT)
+Received: from fraeml711-chm.china.huawei.com (unknown [172.18.147.200])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4LJ7Cr1SYjz6H6pl;
+        Wed,  8 Jun 2022 21:21:28 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml711-chm.china.huawei.com (10.206.15.60) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.24; Wed, 8 Jun 2022 15:22:42 +0200
+Received: from localhost (10.202.226.42) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Wed, 8 Jun
+ 2022 14:22:41 +0100
+Date:   Wed, 8 Jun 2022 14:22:40 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+CC:     <linus.walleij@linaro.org>, <brgl@bgdev.pl>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <wens@csie.org>,
+        <jic23@kernel.org>, <lee.jones@linaro.org>, <sre@kernel.org>,
+        <broonie@kernel.org>, <gregkh@linuxfoundation.org>,
+        <lgirdwood@gmail.com>, <lars@metafoo.de>, <rafael@kernel.org>,
+        <quic_gurus@quicinc.com>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-iio@vger.kernel.org>, <linux-pm@vger.kernel.org>
+Subject: Re: [PATCH v2 10/17] iio: adc: axp20x_adc: Minor code cleanups
+Message-ID: <20220608142240.00001161@Huawei.com>
+In-Reply-To: <20220607155324.118102-11-aidanmacdonald.0x0@gmail.com>
+References: <20220607155324.118102-1-aidanmacdonald.0x0@gmail.com>
+        <20220607155324.118102-11-aidanmacdonald.0x0@gmail.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; i686-w64-mingw32)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 124cdc9b-ffa4-4dc0-00b9-08da49500422
-X-MS-TrafficTypeDiagnostic: VE1PR08MB4704:EE_
-X-Microsoft-Antispam-PRVS: <VE1PR08MB4704B29970B5C44DE998DE12F2A49@VE1PR08MB4704.eurprd08.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: TRKTlSaz47Pg5UuwTjxcIF00rZaOoo6gqamJFjhD/6XD6TyiBSKRCKjE0wcRUViLuHBiZ34O8aZ97C/rgK95HLSaANHgCdHwLhZ0BXn/ClayTCGyT2N2IwFRrCDynqvgosPBrqmwaUnQEDFI6vwl8N12ADEcVbCA3uIW9vVZtDGGm82fz/ZCSvjpEQueXl+ie3tYbFIv8ayvBud9Io9mEGLsQ6XfzCDmRb86p1VT/o+LmULI7hwp7Xh05u55KCKeAi4P+g1FCWDzQzKMmJwDL0lars6DJngO4ndvJOS3/1T4M4d9zX2SzCZNV1NnnwuwUHJPz4G/7WalD72Uuj0CDiXSnH+F/EyaWftBMuz9PudG2OxOxblJJPBh48uTGpXR/PZWqC/FYRihtRf/5t65MoRZw8ip7tjrh3eejFB1s8kWb6nMl2JVxt3W2uJWYYThCqzWOEdE9rTpg6TeFUjYhrBrW/CwYUP4YLFyizLeMoc0enSnJtF2K93fAJdaC2wl1O3a6y/6MZQvW1WmPsro4lzbhwjPYIjWsd3XOF3HOEcFp18RRQViWh8TEmKHR/uvkXWgGi61jW9qQumC303MVAfs4w5gLCjlPEPIcK/ijnsuKo75MrPKpipRh3ms3w6e9BJfM45Kc03cHvQuSvv3BzvseMJ61HFfQNHjPoLNVg9OgddYCU6a2qrgJqn1YJaCykz/oKaOcMFTMp1OW3XuU8RrTBZpHUJ/icH0x+jRcxs=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM4PR0802MB2131.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(136003)(39840400004)(366004)(346002)(396003)(66476007)(6666004)(6506007)(316002)(8936002)(66556008)(36756003)(2616005)(66946007)(38100700002)(6512007)(31696002)(86362001)(5660300002)(31686004)(8676002)(4326008)(52116002)(7416002)(110136005)(53546011)(186003)(44832011)(54906003)(508600001)(83380400001)(41300700001)(6486002)(2906002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WlFMdnFLS3JNb2ZNMXA5WkxtQlNZcnZhTmt3Ymxua3lMNzhjd05DYk9WUGJN?=
- =?utf-8?B?V2Yzc2ppOVF1UUo5N28zMi9PTmt0M3lFWFFEUDBmaXRsR3Z3cC9ucW5ad0FC?=
- =?utf-8?B?aFg1ZEpzeE5uVm0xMVNQWGxSbEQ0VVNqY1dxYkJhOW5CeVNYRzcycUpqYmhn?=
- =?utf-8?B?UWxGaEN1SGp3VlBVOGtrUWZ4RE9qc0JGYXA4QnVLVmtDMURSSThPcjBzOUJG?=
- =?utf-8?B?bFpCaDJJUlovdXZQY281eDNXMTlKT1ZGYkRHWVFxeHhtQkxlYkR5bXhZTU9V?=
- =?utf-8?B?UGRrNVU4alJ4cUVCMWFXQW5LbThGaitOUDhORFVydDR3azEyeXBrSVZ5MHFY?=
- =?utf-8?B?MXlYN0lCMUNMM0FtNlRqZ3FXcGN5TDI4SFRKbVNVeFNaeGxEL3dlT2d1REEy?=
- =?utf-8?B?VXBMQ010ZmNka1J6RGg4b3RQeGN5bi8vQXdBTlRRQy83T1J2RS9XbjRaODVk?=
- =?utf-8?B?QWNyQ3pIVFZacndyZWdjUEphV1VTRHhMNkJ6SzkwMVcvWHd3SG9FNEQ2ZFdi?=
- =?utf-8?B?YmNSaklodWJ6SmtWZHM3MDk1aUptN25LaVRPZVV3Z3hxY2E5OUhXeVo3OVJz?=
- =?utf-8?B?Tyt1ajNlcmxZYTRoZFZ5SVlnOVQ0aDQrS1dMV0NPbUtreHpieGdDbkVTLzVW?=
- =?utf-8?B?c2hnZkJJalpKU3NpN1pIajFmY1pBNEszRUtBTDRtRDlhYnZFZGZ4RUhKcU1X?=
- =?utf-8?B?blZiaEY4NmtZOEowUGZ3WDFTQUhXbUVHTTR0bFJuRWN3QTVMbDVOK1pXekQ2?=
- =?utf-8?B?WXl1RFZORjdIYVQrY0NzM0N3YUlxMllLdVB0U2pxaXVxdlI0VlROOTk2MU9p?=
- =?utf-8?B?NUNkR1hSUW84bHRwMi91ZXRiWlp0QlI4Q05zWWV3cndldy8vM2Q1TU1uWHdY?=
- =?utf-8?B?STlka1EwaFNwZkVrVjhYeGhZQmxxK1lWQ05Sc3pqKzJldVg4N0FMb0E2cksz?=
- =?utf-8?B?MkEzUkFHdDdheUlDQXFBcWZLaTI0RnBTNUJyRnNXYjd5TVVDWTIvTHNFcFd2?=
- =?utf-8?B?TFhlWFhDbUxSZHVPWEkvM3lKZDRwVUs4QU45aFpRTm5IS0Y5VTlUMTk1SmZK?=
- =?utf-8?B?NlhPVGxubFl3MFNzUXNlRk9IUldPUXNtN1BPdHpnNERYdk15VDgxdjJzU1hB?=
- =?utf-8?B?TmU5QmIrM2xBbmhNdXpjZDBmSDNYdU9oblM0QVRjSVBkdjZKaGZkTnlDZ1da?=
- =?utf-8?B?d1VKaks5S0JHMUd0M0hLTkE1aDUwTnJBTnZnZnJZaWxwa3IwbEJqZDkwSnB0?=
- =?utf-8?B?ZXRoaW1ONnFPUzg4UW1EZ0JPZDVxMHVVekNNYmNWQjlSVUZuOGZubk5CZ0hU?=
- =?utf-8?B?T2EzQTcvVVE0dWcwKzc5eU9lUFBnUnhDRUdSMVJEMFp1djZQY3NHbk0vNFZy?=
- =?utf-8?B?RnArbURLRUpWSml3MjRqTm03MTNEaHY1ME9oQ1QzMU5CVXhhVEVxUDZZd0tn?=
- =?utf-8?B?NnJkaDFCcjJLM1hTeWNjQkF2amJaY29IMlJQazJxVDBnRno2bVBwM01US2Nq?=
- =?utf-8?B?Wi9WQVZWQnIvc29XOEJJQVlxQTkyRTNsWHFxaUE5RjNCemtGMUw4dDI0NVpr?=
- =?utf-8?B?OWJ3aW11UEVjb2E4VDhxM2lzSWZkeHpxS0UwY25FdXVKcXJxcWYrR0V1OENN?=
- =?utf-8?B?cVNOS24vcHFUNHo3U2dOS0Nyem15VGt0TjFlVVoxa2NTN3oyMXZrSVlqMUgv?=
- =?utf-8?B?U0F1MnM3VG9oV1A4elpwN1Qycy9pQWpiUTRUTk50SE1tNnluMTFIcnk0cDA2?=
- =?utf-8?B?K0dkbmpha0VOck9UcnphTlpRSFkyOUxwNUp2ZFdUdzRoRUNUUVZIRzF6Snlh?=
- =?utf-8?B?Z05HV3U1N0JvMGIrQk1SZVNnbFN3Q1NETWhGWE9uVFJYRDRqUUh2SlRCbW1U?=
- =?utf-8?B?ZG9nREt2a29ZQ29lbnB1dFRiZEN2WFdKNjVUQjd3RzYwbS9oNE9oRmxpVGsw?=
- =?utf-8?B?UFo5UHVBOUszTE5QNlByNjRJcGxZRGYvWTh5eFpJbnBURjhablRteGx5OWo5?=
- =?utf-8?B?cGppbGp0Z3ZPaE5NR0c0Tk9heFNQdXFtQlV5WGR2TG9QVnJML0VsMkZJbG8z?=
- =?utf-8?B?TlZFcXhrSGZ1N2lHR3ZiS3YzYkFuek0wb0NZcnBMYjVMVE9aTzRrTmdyd1ZJ?=
- =?utf-8?B?c2x4MExkMVBPYUxhaGlEY1ZzYksrbzRGUmEwSVY1SElDRmRVcFBGOTdPSFVI?=
- =?utf-8?B?ZFJrczc1N1Byem9sMmthczhhckRyT1JWUXBnUWtqTjlxdy9memQ5WW5Na0pX?=
- =?utf-8?B?SGg5blNOYTZ6MDNzOGRHakF6SGlDOGNqcWNyUjN4R1E0dHBNVzRxSWlma3Ux?=
- =?utf-8?B?Q1dSR2UxSW4wVzFoMXlJblNpRHIwOVZTMTkzVzlnenc2VDFDcUpYMDYyQUl2?=
- =?utf-8?Q?X7ZT27ramplq4tFvIYyKhGGmZr8Gq7I2HSQUZe6qP1FkB?=
-X-MS-Exchange-AntiSpam-MessageData-1: FQq9TQJ1EAOWpLb9vquZiCNyWtbBBBOx5L8b+iAt5WLAzF7rX8/kb9b1
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 124cdc9b-ffa4-4dc0-00b9-08da49500422
-X-MS-Exchange-CrossTenant-AuthSource: AM4PR0802MB2131.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2022 13:08:44.3301
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jdLJPcDfTsPgxsc9YC7QTNHCCmwJLxOkBr9s2vDOqLHCeV/gnt/NfgB1+0d+1GqOFD5CFktKLXQpIoh7NXJPJzGix/DrGXXEkLVztqiMKPE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR08MB4704
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.202.226.42]
+X-ClientProxiedBy: lhreml739-chm.china.huawei.com (10.201.108.189) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -137,56 +59,210 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all,
+On Tue,  7 Jun 2022 16:53:17 +0100
+Aidan MacDonald <aidanmacdonald.0x0@gmail.com> wrote:
 
-On 6/8/22 14:19, Heiko Stübner wrote:
-> Am Mittwoch, 8. Juni 2022, 14:07:33 CEST schrieb Sjoerd Simons:
->> Hey Michael,
->>
->> On Mon, 2022-06-06 at 14:00 +0200, Michael Riesch wrote:
->>>
->>>> +       aliases {
->>>> +               ethernet0 = &gmac;
->>>> +               mmc0 = &emmc;
->>>> +               mmc1 = &sdmmc;
->>>
->>> Sure? emmc is at address ff49000 which is larger than sdmmc's address
->>> ff480000. I believe the aliases should be sorted w.r.t. addresses.
->>
->> Do you have a reference about this sorting requirement?
+> The code may be clearer if parameters are not re-purposed to hold
+> temporary results like register values, so introduce local variables
+> as necessary to avoid that. Also, use the common FIELD_PREP macro
+> instead of a hand-rolled version.
+> 
+> Suggested-by: Jonathan Cameron <jic23@kernel.org>
+> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
 
-No, not really. I did have the impression that such a convention existed...
+Hi Aidan,
 
-> I do believe we used that mmcx -> *mmc-device sorted by address
-> when the aliases still were in the main soc dtsi. Simply because one
-> couldn't really know what was available on a specific board
-> (no emmc for example).
+Looks good.  One trivial further suggestion inline.
 
-... and this seems to be the case indeed...
+Also, am I fine picking up the IIO patches, or does the whole
+set need to go in via mfd?
 
-> I guess now on a per-board level we could actually do that more relaxed
-> and let that be the decision of the board submitter ;-) .
+Thanks,
 
-... but apparently the convention is not that crucial anymore :-) Just
-wanted to point it out.
+Jonathan
 
->> Also do you mean that mmc0 should be &sdmmc *or* that the aliases
->> should have mmc1 listed first.
+> ---
+>  drivers/iio/adc/axp20x_adc.c | 61 +++++++++++++++++++-----------------
+>  1 file changed, 33 insertions(+), 28 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/axp20x_adc.c b/drivers/iio/adc/axp20x_adc.c
+> index 53bf7d4899d2..9d5b1de24908 100644
+> --- a/drivers/iio/adc/axp20x_adc.c
+> +++ b/drivers/iio/adc/axp20x_adc.c
+> @@ -15,6 +15,7 @@
+>  #include <linux/property.h>
+>  #include <linux/regmap.h>
+>  #include <linux/thermal.h>
+> +#include <linux/bitfield.h>
+>  
+>  #include <linux/iio/iio.h>
+>  #include <linux/iio/driver.h>
+> @@ -22,20 +23,20 @@
+>  #include <linux/mfd/axp20x.h>
+>  
+>  #define AXP20X_ADC_EN1_MASK			GENMASK(7, 0)
+> -
+>  #define AXP20X_ADC_EN2_MASK			(GENMASK(3, 2) | BIT(7))
+> +
+>  #define AXP22X_ADC_EN1_MASK			(GENMASK(7, 5) | BIT(0))
+>  
+>  #define AXP20X_GPIO10_IN_RANGE_GPIO0		BIT(0)
+>  #define AXP20X_GPIO10_IN_RANGE_GPIO1		BIT(1)
+> -#define AXP20X_GPIO10_IN_RANGE_GPIO0_VAL(x)	((x) & BIT(0))
+> -#define AXP20X_GPIO10_IN_RANGE_GPIO1_VAL(x)	(((x) & BIT(0)) << 1)
+>  
+>  #define AXP20X_ADC_RATE_MASK			GENMASK(7, 6)
+> -#define AXP813_V_I_ADC_RATE_MASK		GENMASK(5, 4)
+> -#define AXP813_ADC_RATE_MASK			(AXP20X_ADC_RATE_MASK | AXP813_V_I_ADC_RATE_MASK)
+>  #define AXP20X_ADC_RATE_HZ(x)			((ilog2((x) / 25) << 6) & AXP20X_ADC_RATE_MASK)
+> +
+>  #define AXP22X_ADC_RATE_HZ(x)			((ilog2((x) / 100) << 6) & AXP20X_ADC_RATE_MASK)
+> +
+> +#define AXP813_V_I_ADC_RATE_MASK		GENMASK(5, 4)
+> +#define AXP813_ADC_RATE_MASK			(AXP20X_ADC_RATE_MASK | AXP813_V_I_ADC_RATE_MASK)
+>  #define AXP813_TS_GPIO0_ADC_RATE_HZ(x)		AXP20X_ADC_RATE_HZ(x)
+>  #define AXP813_V_I_ADC_RATE_HZ(x)		((ilog2((x) / 100) << 4) & AXP813_V_I_ADC_RATE_MASK)
+>  #define AXP813_ADC_RATE_HZ(x)			(AXP20X_ADC_RATE_HZ(x) | AXP813_V_I_ADC_RATE_HZ(x))
+> @@ -234,7 +235,7 @@ static int axp20x_adc_raw(struct iio_dev *indio_dev,
+>  			  struct iio_chan_spec const *chan, int *val)
+>  {
+>  	struct axp20x_adc_iio *info = iio_priv(indio_dev);
+> -	int size = 12;
+> +	int ret, size;
+>  
+>  	/*
+>  	 * N.B.:  Unlike the Chinese datasheets tell, the charging current is
+> @@ -246,10 +247,11 @@ static int axp20x_adc_raw(struct iio_dev *indio_dev,
+>  	else
+>  		size = 12;
+>  
+> -	*val = axp20x_read_variable_width(info->regmap, chan->address, size);
+> -	if (*val < 0)
+> -		return *val;
+> +	ret = axp20x_read_variable_width(info->regmap, chan->address, size);
+> +	if (ret < 0)
+> +		return ret;
+>  
+> +	*val = ret;
+>  	return IIO_VAL_INT;
+>  }
+>  
+> @@ -257,11 +259,13 @@ static int axp22x_adc_raw(struct iio_dev *indio_dev,
+>  			  struct iio_chan_spec const *chan, int *val)
+>  {
+>  	struct axp20x_adc_iio *info = iio_priv(indio_dev);
+> +	int ret;
+>  
+> -	*val = axp20x_read_variable_width(info->regmap, chan->address, 12);
+> -	if (*val < 0)
+> -		return *val;
+> +	ret = axp20x_read_variable_width(info->regmap, chan->address, 12);
+> +	if (ret < 0)
+> +		return ret;
+>  
+> +	*val = ret;
+>  	return IIO_VAL_INT;
+>  }
+>  
+> @@ -269,11 +273,13 @@ static int axp813_adc_raw(struct iio_dev *indio_dev,
+>  			  struct iio_chan_spec const *chan, int *val)
+>  {
+>  	struct axp20x_adc_iio *info = iio_priv(indio_dev);
+> +	int ret;
+>  
+> -	*val = axp20x_read_variable_width(info->regmap, chan->address, 12);
+> -	if (*val < 0)
+> -		return *val;
+> +	ret = axp20x_read_variable_width(info->regmap, chan->address, 12);
+> +	if (ret < 0)
+> +		return ret;
+>  
+> +	*val = ret;
+>  	return IIO_VAL_INT;
+>  }
+>  
+> @@ -443,27 +449,27 @@ static int axp20x_adc_offset_voltage(struct iio_dev *indio_dev, int channel,
+>  				     int *val)
+>  {
+>  	struct axp20x_adc_iio *info = iio_priv(indio_dev);
+> +	unsigned int regval;
+>  	int ret;
+>  
+> -	ret = regmap_read(info->regmap, AXP20X_GPIO10_IN_RANGE, val);
+> +	ret = regmap_read(info->regmap, AXP20X_GPIO10_IN_RANGE, &regval);
+>  	if (ret < 0)
+>  		return ret;
+>  
+>  	switch (channel) {
+>  	case AXP20X_GPIO0_V:
+> -		*val &= AXP20X_GPIO10_IN_RANGE_GPIO0;
+> +		regval &= AXP20X_GPIO10_IN_RANGE_GPIO0;
 
-FTR, I would have suggested
+Maybe use FIELD_GET() here to be clear you are extracting that
+field (even though we don't care about the shift).
 
-mmc0 = &sdmmc;
-mmc1 = &emmc;
+Hopefully the compiler will be clever enough to remove the shift
+anyway and using FIELD_GET() would act as slightly more 'documentation
+in code'.
 
-according to said convention, but then I would also take a look on
-whatever any other rk3308 boards do and aim to be in sync...
 
->> For reference the reason is that mmc0 is emmc is because it seems more
->> logical to have the builtin devices come first (e.g. as mmcblk0) 
 
-... unless there is a good reason not to. You be the judge of that ;-)
+>  		break;
+>  
+>  	case AXP20X_GPIO1_V:
+> -		*val &= AXP20X_GPIO10_IN_RANGE_GPIO1;
+> +		regval &= AXP20X_GPIO10_IN_RANGE_GPIO1;
+>  		break;
+>  
+>  	default:
+>  		return -EINVAL;
+>  	}
+>  
+> -	*val = *val ? 700000 : 0;
+> -
+> +	*val = regval ? 700000 : 0;
+>  	return IIO_VAL_INT;
+>  }
+>  
+> @@ -548,7 +554,7 @@ static int axp20x_write_raw(struct iio_dev *indio_dev,
+>  			    long mask)
+>  {
+>  	struct axp20x_adc_iio *info = iio_priv(indio_dev);
+> -	unsigned int reg, regval;
+> +	unsigned int regmask, regval;
+>  
+>  	/*
+>  	 * The AXP20X PMIC allows the user to choose between 0V and 0.7V offsets
+> @@ -560,25 +566,24 @@ static int axp20x_write_raw(struct iio_dev *indio_dev,
+>  	if (val != 0 && val != 700000)
+>  		return -EINVAL;
+>  
+> -	val = val ? 1 : 0;
+> +	regval = val ? 1 : 0;
+>  
+>  	switch (chan->channel) {
+>  	case AXP20X_GPIO0_V:
+> -		reg = AXP20X_GPIO10_IN_RANGE_GPIO0;
+> -		regval = AXP20X_GPIO10_IN_RANGE_GPIO0_VAL(val);
+> +		regmask = AXP20X_GPIO10_IN_RANGE_GPIO0;
+> +		regval = FIELD_PREP(AXP20X_GPIO10_IN_RANGE_GPIO0, regval);
+>  		break;
+>  
+>  	case AXP20X_GPIO1_V:
+> -		reg = AXP20X_GPIO10_IN_RANGE_GPIO1;
+> -		regval = AXP20X_GPIO10_IN_RANGE_GPIO1_VAL(val);
+> +		regmask = AXP20X_GPIO10_IN_RANGE_GPIO1;
+> +		regval = FIELD_PREP(AXP20X_GPIO10_IN_RANGE_GPIO1, regval);
+>  		break;
+>  
+>  	default:
+>  		return -EINVAL;
+>  	}
+>  
+> -	return regmap_update_bits(info->regmap, AXP20X_GPIO10_IN_RANGE, reg,
+> -				  regval);
+> +	return regmap_update_bits(info->regmap, AXP20X_GPIO10_IN_RANGE, regmask, regval);
+>  }
+>  
+>  static const struct iio_info axp20x_adc_iio_info = {
 
-Best regards,
-Michael
-
->> [...]
