@@ -2,253 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27C2F5430FD
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 15:06:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E081854310F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 15:09:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239887AbiFHNFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 09:05:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53440 "EHLO
+        id S240028AbiFHNIv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 09:08:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239855AbiFHNFp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 09:05:45 -0400
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-eopbgr70042.outbound.protection.outlook.com [40.107.7.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77B7B91573;
-        Wed,  8 Jun 2022 06:05:40 -0700 (PDT)
+        with ESMTP id S239974AbiFHNIt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 09:08:49 -0400
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2086.outbound.protection.outlook.com [40.107.21.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88F0C25D82C;
+        Wed,  8 Jun 2022 06:08:48 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=m1dNKbhTjw43Gv6rm0tMwGSQSETRxwIh6mq7kfwooEXzUJ4nFEy/hVzw2SzV19Fu2vMPjN4Qwlz8lMkDZ6nh0AnEa05tRldECk0I/YVKca7CTPR2dmO9qHQzGnGtjrzPsRIZZR3nZvxzl1yr82xga3lqXTWXED9fzt2DMl2ekzNLUi9eK0/H1nJbL1ktuYzIGqxhfT9AqQsRPcAXpJRkDzou64YnQcp1R1I8LRqmqP2HVl7ZeTyQmL60fWF/fRmh6Rh8maeqXbhLGDOSWctbtYAGKs0BnbcUHYNSr4l+TCl0h4YoT5dI7Ji65jLUF6CxfVUqGuVhLpz41WxeO4OAwQ==
+ b=BdnhUvIuukzohfTgxtbWpXwlR3MZjsN1TOXbqMyetdwJWuPXXRECbeGMYRGeRWgOgorUb4AdIUJI1DbIV88jvDGsya+Bh+QRFBECdSb62gOUvaebcF9BfTyZzYY0X2UeKZ+NKxreoEQUMOQ/JGA9+VNiS5zdfj2+Njp2Z/n0b5kT6LPccMbinwODQ8Hg2sBxeyx+dae5uEzkqjjXuMXHBl0m20hTUMfFBElNSU4GfHDR19/RRjBEynKd35kCEbrT843UmOzQNdyU31jzSfFqnA3itEpQ2Wd67iF248+EOEKmBzLh2SJ7ybhq4pqQ9yMrX1UWOWt3qJqTrzpusU8KPQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UjGA93lymzpgHYAL9uJXcqmqPNsL3V0fyUYYmgfY07M=;
- b=ZiVzcOk3b7cWBS1G2+J4nhk5j15sFH0tOIlY14k+BzfEtF+zHB8JxnQ4qVO982OI1UU7/m4a7MCD/dHFUjSQTEv99Rqts463nVE+81pp3IFH/h95iAwb6EJOtov6j4krARx0PiUQGKuqgultqiaSjnd2FWvgJpzk+qN+8BPxAqCUrRDXd8ScGsIfvludVmhP44K/VA+hMjaRLhHVVXDoZ0/d7AcRMwgH5KghCuIJmXhAWw8Lhd8PcuAJXy8MUjfcIChYxHdVyZGrbTfc9Eo+Ojz0Z3Ne67fvyWknNLbCKuId/VeAPHtVKKbljUG7CyTAVvhY1tGyBkjLWXu8Gl6NQQ==
+ bh=zFhnqP082Ay0394vc5XMq/xJxQ6OACLoSFSjBmjD4M0=;
+ b=LttWEcamzuYud1jB2s2qIvSJXv7xl84RXguyw7WscZ25n4MgpKZRPblrROsZeNEPLPWlWETKZQHKdlODUtu7hSyWh/pyYPCAbYzaurNPXI6q41l/GDrnFNM10fgwz2ff9qgRz1pty98GzOWwVyO4ssCYjMGp0kwJLeuS3s8dVRK6IbN+RycqIZHgo5pdNcca8o9E6q+8Ckf5EHm/z6qmlMmzcHTg70eucKWm1MDi2subWn+zzKu9uuuUNBJtd0f9pRJINbU+HBwHy1vucFw2WsyZ3bCNwlE1CW5gBaNGMZw+9AO5ItyTONlHAD+RcVUtXMzTKH6+qbFu52rXdvnt1A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
- header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
- arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=cherrycloud.onmicrosoft.com; s=selector2-cherrycloud-onmicrosoft-com;
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UjGA93lymzpgHYAL9uJXcqmqPNsL3V0fyUYYmgfY07M=;
- b=kpux2ujM7vTsR2zPhVteMF5xK4MnWnkgBbTBDMzYdN19l1S1zI/i2TI9q7SYPoLaggN4Fi6tdOJQK9bKkBbRSfZE0aI+YydmCNmhwR63eAgLm7uHNXRgTKqs4mAkGyXaw9d3jzpBBovGfOosb1zFrm1iDJSlVvBDKDQUV96NPVQ=
+ bh=zFhnqP082Ay0394vc5XMq/xJxQ6OACLoSFSjBmjD4M0=;
+ b=I5V3kNq22SfrrlI2bSruhKrnfCjPGFmVfHuEfjvvr13r+kdpXMDFA+iSlCi/bhyoT9SVSChu0u0MfkkaGc8vUA4uIQSpzNoXEtYPxtlRQpjYjOhWokEXBhFMOFG26HSW0l2g/mm9zysvaVkZ8zn+Q/otXKYIlFLjjk/+7ENiM7Y=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
-Received: from PA4PR04MB9367.eurprd04.prod.outlook.com (2603:10a6:102:2aa::7)
- by AS8PR04MB9510.eurprd04.prod.outlook.com (2603:10a6:20b:44a::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5273.22; Wed, 8 Jun
- 2022 13:05:37 +0000
-Received: from PA4PR04MB9367.eurprd04.prod.outlook.com
- ([fe80::880a:6606:6f57:dd0a]) by PA4PR04MB9367.eurprd04.prod.outlook.com
- ([fe80::880a:6606:6f57:dd0a%6]) with mapi id 15.20.5314.019; Wed, 8 Jun 2022
- 13:05:37 +0000
-Message-ID: <941c3300-05e9-18b3-999a-1885585cf972@theobroma-systems.com>
-Date:   Wed, 8 Jun 2022 15:05:29 +0200
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from AM4PR0802MB2131.eurprd08.prod.outlook.com
+ (2603:10a6:200:5c::22) by VE1PR08MB4704.eurprd08.prod.outlook.com
+ (2603:10a6:802:b0::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.15; Wed, 8 Jun
+ 2022 13:08:44 +0000
+Received: from AM4PR0802MB2131.eurprd08.prod.outlook.com
+ ([fe80::248c:2539:5ba5:74f2]) by AM4PR0802MB2131.eurprd08.prod.outlook.com
+ ([fe80::248c:2539:5ba5:74f2%3]) with mapi id 15.20.5332.012; Wed, 8 Jun 2022
+ 13:08:44 +0000
+Message-ID: <5e0b908b-52c8-494e-a804-393c8aad097a@wolfvision.net>
+Date:   Wed, 8 Jun 2022 15:08:41 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v6 4/4] media: i2c: ov5675: add .get_selection support
+ Thunderbird/91.9.0
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: rock-pi-s add more peripherals
 Content-Language: en-US
-To:     Jacopo Mondi <jacopo@jmondi.org>,
-        Tommaso Merciai <tommaso.merciai@amarulasolutions.com>
-Cc:     Quentin Schulz <foss+kernel@0leil.net>, shawnx.tu@intel.com,
-        mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220607153335.875956-1-foss+kernel@0leil.net>
- <20220607153335.875956-4-foss+kernel@0leil.net>
- <20220607165136.bmriu2n7yorc7fx6@uno.localdomain>
- <20220607220405.GB821506@tom-ThinkPad-T14s-Gen-2i>
- <20220608064209.roub7uk7kx4k4muf@uno.localdomain>
-From:   Quentin Schulz <quentin.schulz@theobroma-systems.com>
-In-Reply-To: <20220608064209.roub7uk7kx4k4muf@uno.localdomain>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AS8PR04CA0002.eurprd04.prod.outlook.com
- (2603:10a6:20b:310::7) To PA4PR04MB9367.eurprd04.prod.outlook.com
- (2603:10a6:102:2aa::7)
+To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org,
+        Sjoerd Simons <sjoerd@collabora.com>
+Cc:     kernel@collabora.com, Akash Gajjar <akash@openedev.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220606082629.79682-1-sjoerd@collabora.com>
+ <4731d47f-ef02-d512-c599-274f8208f845@wolfvision.net>
+ <3576f2af98a0d9e7128568777d85af3bfbab801d.camel@collabora.com>
+ <2759751.88bMQJbFj6@diego>
+From:   Michael Riesch <michael.riesch@wolfvision.net>
+In-Reply-To: <2759751.88bMQJbFj6@diego>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: ZR0P278CA0066.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:910:21::17) To AM4PR0802MB2131.eurprd08.prod.outlook.com
+ (2603:10a6:200:5c::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 14157ff0-d3e7-496a-bb21-08da494f946b
-X-MS-TrafficTypeDiagnostic: AS8PR04MB9510:EE_
-X-Microsoft-Antispam-PRVS: <AS8PR04MB9510524B06D3AFCCC7D6FA1EC2A49@AS8PR04MB9510.eurprd04.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 124cdc9b-ffa4-4dc0-00b9-08da49500422
+X-MS-TrafficTypeDiagnostic: VE1PR08MB4704:EE_
+X-Microsoft-Antispam-PRVS: <VE1PR08MB4704B29970B5C44DE998DE12F2A49@VE1PR08MB4704.eurprd08.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: P5iMwOhqZH65jck17Pjw61ym7rPnb4jJptjNdFjdHjni3gdzxDeNhjNgrQ2fEJm2wjqWe8PdWcnfRZl5LdYUKBHwyvMUS3ZaSBoEkxMkgCQF1tWqqzlQwi6OrxfqRsG13WG6UXixOsUDIxRk6nrb69bBvLRHqro+nBiVllydV7l0I03B1VeTs5h1APMJU5xqknwqYZoowW6I8sVdXQ77Qg5bv7AOCjQf29IMkIC491vDqp/deMYz/Ey5qjEIZ1IWvaV9ifYZ7Ozz27FAR0wgxABmOm9HJ4PD9v3ovZySlQaKNEtnGA2oXSNyisspE2ybp6vfFb5qtcPOV2QPCQiKdHkr8Q+40hDEZalpp4qZdn0O/fZVPFMBQiFSWxq6yns02N9x8YiJpH9Z+WxM5tX+t3Fp9ubblYV7ii9cQlLNb84HX5u97jrQPlTyWyqbJcUKbLXmDElWJ++PLFtau2oBREWmRNU5nlg09uFlfmAC+cn+vxdqo4PhAE51fzmd++iE9xEEPXEJTe5waN3R1oCiUFStFsFhUoefQfB3d9NgJ1sptrMzkJAFo829FwYXDoGomIewBnIjMgGaTJss2mPCx4p5aMriPL0EkomgxR4Zu3KgmftjaCwZPoX9v/Jn3KMDoZuX3z98GaEwBchsy+Fvf031Rr36AXCAwtl+ghfZJPKtK8iBd9nhiDq/gytY4d4JhhAta6NL+WNeWQai2KvNx4i4SLNE0zpLrKex9gr8tKP0qVxizCFyAHjvHrL5Tyyi
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9367.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(508600001)(53546011)(8676002)(66476007)(86362001)(31696002)(66556008)(4326008)(316002)(6486002)(186003)(2616005)(6512007)(110136005)(44832011)(66946007)(8936002)(6506007)(31686004)(38100700002)(5660300002)(6666004)(36756003)(2906002)(7416002)(26005)(142923001)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UzMzVHlNcjAyRUtPeEtDMm8rYnJ6ZnczdDRrZW9sTGI5eis5ZzZXeGFzdStx?=
- =?utf-8?B?a1llTXI5NVB3WlpJeDhtWndQODZPNFdpeGFGZko0Rk90MVJIc0xnZWI2SHU2?=
- =?utf-8?B?OUwwUW1RME9rcnVsZmxCNmJ5czFaaUxESHRBeGRaK0tSc2s1TGMrZkZvbDJB?=
- =?utf-8?B?bDMrM1V1RzlqZnp5eW1CYzliNmltR0RHZ1dFR3NXK3NHREIwTVhWcWU3bnpJ?=
- =?utf-8?B?d2pwNitLY3FBSmRQT3NhOEo1NFRENUUzSUxUOHlueDF6MW1Tb05Ob0lzOGx4?=
- =?utf-8?B?OStVUVk3QXlGTHZuMDEwUHQyM3A4Wmd6L05ReDRSMUpSZ3l0WDhuR204eURa?=
- =?utf-8?B?aVZuYVpLa3lTVjIzdnlKYXBqMGdST042ZG1WalMwczkvUFM1MHBITG9XQ3hW?=
- =?utf-8?B?WktLN2l2VmRGZDJETlArVWJwS3lZZDZvK2hyVTl4bE1oUEtFYnFMUGtMcVlQ?=
- =?utf-8?B?WXdLNUYwS2xaamdVbGg2OHJaWTRJb1NNNUFUb1Zlb25SZnp5dnJqRVlycDZI?=
- =?utf-8?B?MC95TkZSbWNKdFNpcXR3T21XRURQcENPUHRmMFZOYnJoL2JOWmNnRGZHdnpo?=
- =?utf-8?B?VmlCZFh1OXRyMCswVUtISWRETE5VbHR5aVVad1VRcjZFYUZRQ240SDBZUVY5?=
- =?utf-8?B?ckJPc05KSEp5MGdQWW16Zm5WYk9Lc3dDRkdXTndOSEhwaHVybzMxdGJ0OXZk?=
- =?utf-8?B?TnExWDdwZFA3VzN1cHIybHFzUDN2dFdaZGNJQm9QU25DVUFxZm1GU01jMmVD?=
- =?utf-8?B?WXpNTFlwei9GQVB2bnRkTi9teG1EUEFPTmlFVHkvSzg3WDVsZHdXbkl1RTNT?=
- =?utf-8?B?dTJ3NjdzMlpUdzBreGVQb29xR2xTKzgzOEFHaGYrSEwzTzZOa0ZDU2oydE1V?=
- =?utf-8?B?RUhIYUU4UTR1VGNDYXVuSlY2dDJWK3ZTaUJYVEJBcTIrWTJUQmV2MGk4Wk9X?=
- =?utf-8?B?Vkk0M3RMa3l1MmlLQ3MzaHZMOXNOSlNtUEZldERROUo1S3BCaUM4akFmclJk?=
- =?utf-8?B?TGNPSFk3RlZQOFlOK1pnNzM2L3g4bklWbzhQaUE3eHRDT0NDcW93UmI1Z1cv?=
- =?utf-8?B?amNHNStVY3NETWRDT0FBWFBnTWh6UlE0ZjQ1RGw5T1BETG1tNTFFOXRVQU5W?=
- =?utf-8?B?czVCdEtSM0FYWWdnTllBR2JjYmNYZ3M2eko0UXBjTUFCUUN6OWJIcEpoOGVa?=
- =?utf-8?B?NU85WjgyUk5qRjUrY1VaMzk0dUdqV1Vac2VIYzVqOGxVRUJHcEdpa1gzQjFP?=
- =?utf-8?B?eHhRWHRxYWNLQ040UWRacDdSUzFSWXBDdU10TlhoUnNhSllJOHhjMFRweDMr?=
- =?utf-8?B?L1lmZVVnaWVPVWtDelpiZWliOTF3TmFSa2Y2LzkvZjYzd09BQlMyTWZGcmVE?=
- =?utf-8?B?Tm1zRXlJYWJvbDBkK2FNSlB4YWFNVitaYzZzb2xzWWQ3MHcwQUgwWlhJQlRq?=
- =?utf-8?B?cW1OY01Fb3oyNEpaSGp3WHBKeWxnNmNzZ1VIY25kWTRzcTBFUUJHRlNBNjBR?=
- =?utf-8?B?aE5BVHBjOElZU1h2WnYyTWRJT1l1QXRLREVDUU0yeFhyQ0RQSGcwZjhpdkN0?=
- =?utf-8?B?RklTalc3OWlWSlVBZHM1YURPMmRvQXlZajR5MHhPdkVaVFQ4V0owR0hYRU5Q?=
- =?utf-8?B?MXpDcHI2dlprdzgvd3hiNlpvQzgwdCt1UWtrcXdrdHhBVWFGRXRlSUI4aGlB?=
- =?utf-8?B?UGRNYkpxaUhIQVJ6THpZUVJQWVlNOXNNNUhkSkxvZXlVem4rOTJYRnhNSnoz?=
- =?utf-8?B?RUVVQlVGYkxybnJOUm5VZU5FS3RLeHVKc1pCNjhQRjNxL28xdDFzMlBZWDJ6?=
- =?utf-8?B?MVhHUFJaRk41dEdya1BMTUVjYlRHRng1ZzlrT1pzdFh0WitUWWpwN2tIMm0r?=
- =?utf-8?B?N2dDWHlPZ1l6Lzc3c2xhc1hVM2xwNEMvSW9oTzd4N0lycHFqdGNmdUU3SHU3?=
- =?utf-8?B?NUtzSmU1VlNvYmVYaXhMYk5JVGp2OFRodjEyNkNhU1JVQ25JZmJUU2N5Ukth?=
- =?utf-8?B?czQzZ0lvbDVVeExvZi9kdy9VOG5FTm1LSUhVYlZqcUkwdzRYWnhnMkdyUUdi?=
- =?utf-8?B?NG1yNGg5K1FyV1pEZ1hocWFZQmRKWFZQb0NVZkxvV2ErOXVUMVdsbEZBMlZD?=
- =?utf-8?B?K2F2Q1Y5TnhTN2F1aUxpOXZ3TkZmaGErRzcrQzBTbmxHM01mVTVwN0E1bTBt?=
- =?utf-8?B?WTIyVnMzZE43RVhzeFQ4WXVRd3BHMmcxMnVFMDNwZStTVEExaGRrN0N2UHpy?=
- =?utf-8?B?UlJrR1AwQUZKajZ2SkdEWG9HaWpUQXNVTWdPLzdZbU1JbVljbG95RXNKTUZF?=
- =?utf-8?B?ZmpTZ2RSUnkrSlNqUUI3a0ZzVlZzU3p0a25mOTNqR1BEanNqU0RCNDYySEx3?=
- =?utf-8?Q?CIUMZadI8upCXiGffQAayjx3ABTsSY2VrnRPo?=
-X-OriginatorOrg: theobroma-systems.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 14157ff0-d3e7-496a-bb21-08da494f946b
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9367.eurprd04.prod.outlook.com
+X-Microsoft-Antispam-Message-Info: TRKTlSaz47Pg5UuwTjxcIF00rZaOoo6gqamJFjhD/6XD6TyiBSKRCKjE0wcRUViLuHBiZ34O8aZ97C/rgK95HLSaANHgCdHwLhZ0BXn/ClayTCGyT2N2IwFRrCDynqvgosPBrqmwaUnQEDFI6vwl8N12ADEcVbCA3uIW9vVZtDGGm82fz/ZCSvjpEQueXl+ie3tYbFIv8ayvBud9Io9mEGLsQ6XfzCDmRb86p1VT/o+LmULI7hwp7Xh05u55KCKeAi4P+g1FCWDzQzKMmJwDL0lars6DJngO4ndvJOS3/1T4M4d9zX2SzCZNV1NnnwuwUHJPz4G/7WalD72Uuj0CDiXSnH+F/EyaWftBMuz9PudG2OxOxblJJPBh48uTGpXR/PZWqC/FYRihtRf/5t65MoRZw8ip7tjrh3eejFB1s8kWb6nMl2JVxt3W2uJWYYThCqzWOEdE9rTpg6TeFUjYhrBrW/CwYUP4YLFyizLeMoc0enSnJtF2K93fAJdaC2wl1O3a6y/6MZQvW1WmPsro4lzbhwjPYIjWsd3XOF3HOEcFp18RRQViWh8TEmKHR/uvkXWgGi61jW9qQumC303MVAfs4w5gLCjlPEPIcK/ijnsuKo75MrPKpipRh3ms3w6e9BJfM45Kc03cHvQuSvv3BzvseMJ61HFfQNHjPoLNVg9OgddYCU6a2qrgJqn1YJaCykz/oKaOcMFTMp1OW3XuU8RrTBZpHUJ/icH0x+jRcxs=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM4PR0802MB2131.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(136003)(39840400004)(366004)(346002)(396003)(66476007)(6666004)(6506007)(316002)(8936002)(66556008)(36756003)(2616005)(66946007)(38100700002)(6512007)(31696002)(86362001)(5660300002)(31686004)(8676002)(4326008)(52116002)(7416002)(110136005)(53546011)(186003)(44832011)(54906003)(508600001)(83380400001)(41300700001)(6486002)(2906002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WlFMdnFLS3JNb2ZNMXA5WkxtQlNZcnZhTmt3Ymxua3lMNzhjd05DYk9WUGJN?=
+ =?utf-8?B?V2Yzc2ppOVF1UUo5N28zMi9PTmt0M3lFWFFEUDBmaXRsR3Z3cC9ucW5ad0FC?=
+ =?utf-8?B?aFg1ZEpzeE5uVm0xMVNQWGxSbEQ0VVNqY1dxYkJhOW5CeVNYRzcycUpqYmhn?=
+ =?utf-8?B?UWxGaEN1SGp3VlBVOGtrUWZ4RE9qc0JGYXA4QnVLVmtDMURSSThPcjBzOUJG?=
+ =?utf-8?B?bFpCaDJJUlovdXZQY281eDNXMTlKT1ZGYkRHWVFxeHhtQkxlYkR5bXhZTU9V?=
+ =?utf-8?B?UGRrNVU4alJ4cUVCMWFXQW5LbThGaitOUDhORFVydDR3azEyeXBrSVZ5MHFY?=
+ =?utf-8?B?MXlYN0lCMUNMM0FtNlRqZ3FXcGN5TDI4SFRKbVNVeFNaeGxEL3dlT2d1REEy?=
+ =?utf-8?B?VXBMQ010ZmNka1J6RGg4b3RQeGN5bi8vQXdBTlRRQy83T1J2RS9XbjRaODVk?=
+ =?utf-8?B?QWNyQ3pIVFZacndyZWdjUEphV1VTRHhMNkJ6SzkwMVcvWHd3SG9FNEQ2ZFdi?=
+ =?utf-8?B?YmNSaklodWJ6SmtWZHM3MDk1aUptN25LaVRPZVV3Z3hxY2E5OUhXeVo3OVJz?=
+ =?utf-8?B?Tyt1ajNlcmxZYTRoZFZ5SVlnOVQ0aDQrS1dMV0NPbUtreHpieGdDbkVTLzVW?=
+ =?utf-8?B?c2hnZkJJalpKU3NpN1pIajFmY1pBNEszRUtBTDRtRDlhYnZFZGZ4RUhKcU1X?=
+ =?utf-8?B?blZiaEY4NmtZOEowUGZ3WDFTQUhXbUVHTTR0bFJuRWN3QTVMbDVOK1pXekQ2?=
+ =?utf-8?B?WXl1RFZORjdIYVQrY0NzM0N3YUlxMllLdVB0U2pxaXVxdlI0VlROOTk2MU9p?=
+ =?utf-8?B?NUNkR1hSUW84bHRwMi91ZXRiWlp0QlI4Q05zWWV3cndldy8vM2Q1TU1uWHdY?=
+ =?utf-8?B?STlka1EwaFNwZkVrVjhYeGhZQmxxK1lWQ05Sc3pqKzJldVg4N0FMb0E2cksz?=
+ =?utf-8?B?MkEzUkFHdDdheUlDQXFBcWZLaTI0RnBTNUJyRnNXYjd5TVVDWTIvTHNFcFd2?=
+ =?utf-8?B?TFhlWFhDbUxSZHVPWEkvM3lKZDRwVUs4QU45aFpRTm5IS0Y5VTlUMTk1SmZK?=
+ =?utf-8?B?NlhPVGxubFl3MFNzUXNlRk9IUldPUXNtN1BPdHpnNERYdk15VDgxdjJzU1hB?=
+ =?utf-8?B?TmU5QmIrM2xBbmhNdXpjZDBmSDNYdU9oblM0QVRjSVBkdjZKaGZkTnlDZ1da?=
+ =?utf-8?B?d1VKaks5S0JHMUd0M0hLTkE1aDUwTnJBTnZnZnJZaWxwa3IwbEJqZDkwSnB0?=
+ =?utf-8?B?ZXRoaW1ONnFPUzg4UW1EZ0JPZDVxMHVVekNNYmNWQjlSVUZuOGZubk5CZ0hU?=
+ =?utf-8?B?T2EzQTcvVVE0dWcwKzc5eU9lUFBnUnhDRUdSMVJEMFp1djZQY3NHbk0vNFZy?=
+ =?utf-8?B?RnArbURLRUpWSml3MjRqTm03MTNEaHY1ME9oQ1QzMU5CVXhhVEVxUDZZd0tn?=
+ =?utf-8?B?NnJkaDFCcjJLM1hTeWNjQkF2amJaY29IMlJQazJxVDBnRno2bVBwM01US2Nq?=
+ =?utf-8?B?Wi9WQVZWQnIvc29XOEJJQVlxQTkyRTNsWHFxaUE5RjNCemtGMUw4dDI0NVpr?=
+ =?utf-8?B?OWJ3aW11UEVjb2E4VDhxM2lzSWZkeHpxS0UwY25FdXVKcXJxcWYrR0V1OENN?=
+ =?utf-8?B?cVNOS24vcHFUNHo3U2dOS0Nyem15VGt0TjFlVVoxa2NTN3oyMXZrSVlqMUgv?=
+ =?utf-8?B?U0F1MnM3VG9oV1A4elpwN1Qycy9pQWpiUTRUTk50SE1tNnluMTFIcnk0cDA2?=
+ =?utf-8?B?K0dkbmpha0VOck9UcnphTlpRSFkyOUxwNUp2ZFdUdzRoRUNUUVZIRzF6Snlh?=
+ =?utf-8?B?Z05HV3U1N0JvMGIrQk1SZVNnbFN3Q1NETWhGWE9uVFJYRDRqUUh2SlRCbW1U?=
+ =?utf-8?B?ZG9nREt2a29ZQ29lbnB1dFRiZEN2WFdKNjVUQjd3RzYwbS9oNE9oRmxpVGsw?=
+ =?utf-8?B?UFo5UHVBOUszTE5QNlByNjRJcGxZRGYvWTh5eFpJbnBURjhablRteGx5OWo5?=
+ =?utf-8?B?cGppbGp0Z3ZPaE5NR0c0Tk9heFNQdXFtQlV5WGR2TG9QVnJML0VsMkZJbG8z?=
+ =?utf-8?B?TlZFcXhrSGZ1N2lHR3ZiS3YzYkFuek0wb0NZcnBMYjVMVE9aTzRrTmdyd1ZJ?=
+ =?utf-8?B?c2x4MExkMVBPYUxhaGlEY1ZzYksrbzRGUmEwSVY1SElDRmRVcFBGOTdPSFVI?=
+ =?utf-8?B?ZFJrczc1N1Byem9sMmthczhhckRyT1JWUXBnUWtqTjlxdy9memQ5WW5Na0pX?=
+ =?utf-8?B?SGg5blNOYTZ6MDNzOGRHakF6SGlDOGNqcWNyUjN4R1E0dHBNVzRxSWlma3Ux?=
+ =?utf-8?B?Q1dSR2UxSW4wVzFoMXlJblNpRHIwOVZTMTkzVzlnenc2VDFDcUpYMDYyQUl2?=
+ =?utf-8?Q?X7ZT27ramplq4tFvIYyKhGGmZr8Gq7I2HSQUZe6qP1FkB?=
+X-MS-Exchange-AntiSpam-MessageData-1: FQq9TQJ1EAOWpLb9vquZiCNyWtbBBBOx5L8b+iAt5WLAzF7rX8/kb9b1
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 124cdc9b-ffa4-4dc0-00b9-08da49500422
+X-MS-Exchange-CrossTenant-AuthSource: AM4PR0802MB2131.eurprd08.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2022 13:05:36.9553
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2022 13:08:44.3301
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: URu57IXnZ23EqdHj6de5upU12GDokJYBa8O5HHwFIvsnSPrYS80TUaxbl/XEu9XDe/9jMfDDdVgq9RTDa8mcqOCeI0v0v10MQF/xTsDiXrmujIZVFe2ivmlh30svq/Vy
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB9510
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,PDS_OTHER_BAD_TLD,RCVD_IN_DNSWL_NONE,
+X-MS-Exchange-CrossTenant-UserPrincipalName: jdLJPcDfTsPgxsc9YC7QTNHCCmwJLxOkBr9s2vDOqLHCeV/gnt/NfgB1+0d+1GqOFD5CFktKLXQpIoh7NXJPJzGix/DrGXXEkLVztqiMKPE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR08MB4704
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jacopo, Tommaso,
+Hi all,
 
-On 6/8/22 08:42, Jacopo Mondi wrote:
-> Hi
-> 
-> On Wed, Jun 08, 2022 at 12:04:05AM +0200, Tommaso Merciai wrote:
->> Hi Quentin/Jacopo,
+On 6/8/22 14:19, Heiko Stübner wrote:
+> Am Mittwoch, 8. Juni 2022, 14:07:33 CEST schrieb Sjoerd Simons:
+>> Hey Michael,
 >>
->> On Tue, Jun 07, 2022 at 06:51:36PM +0200, Jacopo Mondi wrote:
->>> Hi Quentin,
+>> On Mon, 2022-06-06 at 14:00 +0200, Michael Riesch wrote:
 >>>
->>> On Tue, Jun 07, 2022 at 05:33:35PM +0200, Quentin Schulz wrote:
->>>> From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
->>>>
->>>> The sensor has 2592*1944 active pixels, surrounded by 16 active dummy
->>>> pixels and there are an additional 24 black rows "at the bottom".
->>>>
->>>>                       [2624]
->>>>          +-----+------------------+-----+
->>>>          |     |     16 dummy     |     |
->>>>          +-----+------------------+-----+
->>>>          |     |                  |     |
->>>>          |     |     [2592]       |     |
->>>>          |     |                  |     |
->>>>          |16   |      valid       | 16  |[2000]
->>>>          |dummy|                  |dummy|
->>>>          |     |            [1944]|     |
->>>>          |     |                  |     |
->>>>          +-----+------------------+-----+
->>>>          |     |     16 dummy     |     |
->>>>          +-----+------------------+-----+
->>>>          |     |  24 black lines  |     |
->>>>          +-----+------------------+-----+
->>>>
->>>> The top-left coordinate is gotten from the registers specified in the
->>>> modes which are identical for both currently supported modes.
->>>>
->>>> There are currently two modes supported by this driver: 2592*1944 and
->>>> 1296*972. The second mode is obtained thanks to subsampling while
->>>> keeping the same field of view (FoV). No cropping involved, hence the
->>>> harcoded values.
->>>>
->>>> Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
->>>> ---
->>>>
->>>> v6:
->>>>   - explicit a bit more the commit log around subsampling for lower
->>>>   resolution modes,
->>>>   - (again) fixed reporting for V4L2_SEL_TGT_CROP_* thanks to Jacopo's help,
->>>>
->>>> v4:
->>>>   - explicit a bit more the commit log,
->>>>   - added drawing in the commit log,
->>>>   - fixed reporting for V4L2_SEL_TGT_CROP_* thanks to Jacopo's help,
->>>>
->>>> added in v3
->>>>
->>>>   drivers/media/i2c/ov5675.c | 21 +++++++++++++++++++++
->>>>   1 file changed, 21 insertions(+)
->>>>
->>>> diff --git a/drivers/media/i2c/ov5675.c b/drivers/media/i2c/ov5675.c
->>>> index 80840ad7bbb0..2230ff47ef49 100644
->>>> --- a/drivers/media/i2c/ov5675.c
->>>> +++ b/drivers/media/i2c/ov5675.c
->>>> @@ -1121,6 +1121,26 @@ static int ov5675_get_format(struct v4l2_subdev *sd,
->>>>   	return 0;
->>>>   }
->>>>
->>>> +static int ov5675_get_selection(struct v4l2_subdev *sd,
->>>> +				struct v4l2_subdev_state *state,
->>>> +				struct v4l2_subdev_selection *sel)
->>>> +{
->>>> +	if (sel->which != V4L2_SUBDEV_FORMAT_ACTIVE)
->>>> +		return -EINVAL;
->>>> +
->>>> +	switch (sel->target) {
->>>> +	case V4L2_SEL_TGT_CROP:
->>>> +	case V4L2_SEL_TGT_CROP_BOUNDS:
+>>>> +       aliases {
+>>>> +               ethernet0 = &gmac;
+>>>> +               mmc0 = &emmc;
+>>>> +               mmc1 = &sdmmc;
 >>>
->>> Seem like we have trouble understanding each other, or better, I have
->>> troubles explaining myself most probably :)
->>>
->>> If the dummy/black area is readable, this should just be (0, 0, 2624,
->>> 2000) like it was in your previous version. What has changed that I
->>> have missed ?
+>>> Sure? emmc is at address ff49000 which is larger than sdmmc's address
+>>> ff480000. I believe the aliases should be sorted w.r.t. addresses.
 >>
+>> Do you have a reference about this sorting requirement?
 
-I wouldn't say there's some misunderstanding, it's just super hard to 
-figure out how to match what the datasheet says to what the kernel 
-wants. Yay to obscure/confusing datasheets \o/
+No, not really. I did have the impression that such a convention existed...
 
-I just did things too quickly, nothing changed. Sorry, will send a v7.
+> I do believe we used that mmcx -> *mmc-device sorted by address
+> when the aliases still were in the main soc dtsi. Simply because one
+> couldn't really know what was available on a specific board
+> (no emmc for example).
 
->> Taking as reference drivers/media/i2c/ov5693.c and others,
->> seems ok what Quentin have done from my side.
->>
->> Just one thing: maybe is better to avoid magic numbers with more
->> explicit defines like:
->>
->>   + case V4L2_SEL_TGT_CROP_DEFAULT:
->>   +           sel->r.top = OV5675_ACTIVE_START_TOP;
->>   +           sel->r.left = OV5693_ACTIVE_START_LEFT;
->>   +           sel->r.width = OV5693_ACTIVE_WIDTH;
->>   +           sel->r.height = OV5693_ACTIVE_HEIGHT;
->>
+... and this seems to be the case indeed...
 
-They are hardcoded today but actually depend on what;s set in the 
-registers too, which might differ if we add more modes in the future? 
-It's anyway auto-magic and it's the only place it's used, so not sure it 
-brings much especially since the variable names on the left hand side of 
-the operator are pretty self-explanatory (not talking about 
-V4L2_SEL_TGT_CROP_* :p)? Not that I'm against it.
+> I guess now on a per-board level we could actually do that more relaxed
+> and let that be the decision of the board submitter ;-) .
 
-Cheers,
-Quentin
+... but apparently the convention is not that crucial anymore :-) Just
+wanted to point it out.
+
+>> Also do you mean that mmc0 should be &sdmmc *or* that the aliases
+>> should have mmc1 listed first.
+
+FTR, I would have suggested
+
+mmc0 = &sdmmc;
+mmc1 = &emmc;
+
+according to said convention, but then I would also take a look on
+whatever any other rk3308 boards do and aim to be in sync...
+
+>> For reference the reason is that mmc0 is emmc is because it seems more
+>> logical to have the builtin devices come first (e.g. as mmcblk0) 
+
+... unless there is a good reason not to. You be the judge of that ;-)
+
+Best regards,
+Michael
+
+>> [...]
