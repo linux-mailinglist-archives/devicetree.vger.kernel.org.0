@@ -2,167 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BD2F543819
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 17:52:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B6B4543820
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 17:54:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239819AbiFHPv7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 11:51:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58220 "EHLO
+        id S244444AbiFHPyF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 11:54:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231237AbiFHPv6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 11:51:58 -0400
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B15EE49244
-        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 08:51:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
-        s=20170329; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=4Vxeo9jH11rHQyQP2R0cI5LaRVtfqr/hSLMJ4leQkxM=; b=PhmIe1qe2P6DDjozBkILvARJUI
-        c/nZEsOGaaQzhnEVZDphYyL8AT0vqoipAjuVJp8dWUEIbJq8+NflXicm1jM+7qnwT/uI4A4yWSIEK
-        o2oiikk+B2XiOdBz4fyULdUpJtp9CGyiMtdw6V8/IRySboBH/rwhQf7vf0YhU22gW+QjA/KWz6TNB
-        PYNRd6wh4xhf8GBbGgFjmb4RR+yYCxN2CV/g0S/+S4l93bIDBSvkfSeoi9Y+2Cojo/LMFdKUaUR8C
-        Lvx2QwDyLp4Nd2yTwGA9Ve9UXiw1s/YzPLCnSuv7SJqB7WwtpEXU1rSeqoZclx/O8qKYNtDXw9JmB
-        hvjDh8vA==;
-Received: from [165.90.126.25] (helo=mail.igalia.com)
-        by fanzine2.igalia.com with esmtpsa 
-        (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
-        id 1nyxyC-00EPDe-TK; Wed, 08 Jun 2022 17:51:45 +0200
-Date:   Wed, 8 Jun 2022 14:51:30 -0100
-From:   Melissa Wen <mwen@igalia.com>
-To:     Javier Martinez Canillas <javierm@redhat.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Peter Robinson <pbrobinson@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, Emma Anholt <emma@anholt.net>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org, maxime@cerno.tech,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        with ESMTP id S245168AbiFHPxz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 11:53:55 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD82BDE87;
+        Wed,  8 Jun 2022 08:53:53 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 485C26169F;
+        Wed,  8 Jun 2022 15:53:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC017C34116;
+        Wed,  8 Jun 2022 15:53:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654703632;
+        bh=8I9ndSA8ysJ7knYeBSEFb57EYrZdMtUNTBUVavgL6Ps=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=iNqS7+kwRIEJTkFaKfhMjyNuUif81BXeSUlY3Bm+JAsumIZ2HOzTGPasB8FI0/LtI
+         6N3cvj0pjeDeELM+xWcvAW3cf/WOl4tuMASrBgk+cNKa8+ir1oLlDcMlYLfA2blNHD
+         jpKxukCE41eG9rXu3LoPMz8zf2ebJmfKFJ+dbeNjNknQQmT9PTZWhi5nstYkhPSCqm
+         Ks3boxM2pa/rJyX3lr4Es30CY/B8k+2L2aV9xM16E3L9MuVvenUY0ptSKUrPXezYaN
+         cr+oeUcVhJ6MnMHh48V93QGLmTNt1qC6iDk/5cd+mjytZotTftD18AF9//nEtcIGcE
+         l2TeD0jCVfARg==
+Date:   Wed, 8 Jun 2022 21:23:47 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Subject: Re: [PATCH v6 0/6] Raspberry PI 4 V3D enablement
-Message-ID: <20220608155130.w4piz2g3obp7qnx7@mail.igalia.com>
-References: <20220603092610.1909675-1-pbrobinson@gmail.com>
- <cadecbfd-e174-eadb-276c-577bb2bf70f2@gmail.com>
- <9aaaaa29-11c0-d494-11dd-0bbf5d384364@redhat.com>
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, quic_pkondeti@quicinc.com,
+        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
+        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+Subject: Re: [PATCH v8 1/3] dt-bindings: phy: qcom,usb-snps-femto-v2: Add phy
+ override params bindings
+Message-ID: <YqDGCxWFvxYWWoZh@matsya>
+References: <1654066564-20518-1-git-send-email-quic_kriskura@quicinc.com>
+ <1654066564-20518-2-git-send-email-quic_kriskura@quicinc.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="z56oylvtyf4k6pji"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <9aaaaa29-11c0-d494-11dd-0bbf5d384364@redhat.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <1654066564-20518-2-git-send-email-quic_kriskura@quicinc.com>
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 01-06-22, 12:26, Krishna Kurapati wrote:
+> From: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+> 
+> Add device tree bindings for SNPS phy tuning parameters.
+> 
+> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../bindings/phy/qcom,usb-snps-femto-v2.yaml       | 96 ++++++++++++++++++++++
+>  1 file changed, 96 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+> index 1ce251d..daeeb04 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+> @@ -53,6 +53,102 @@ properties:
+>    vdda33-supply:
+>      description: phandle to the regulator 3.3V supply node.
+>  
+> +  qcom,hs-disconnect-bp:
+> +    description:
+> +      This adjusts the voltage level for the threshold used to
+> +      detect a disconnect event at the host. Possible values are.
+> +      The values defined are in multiples of basis points (1bp = 0.01%).
+> +      The hardware accepts only discrete values. The value closest to the
+> +      provided input will be chosen as the override value for this param.
+> +    minimum: -272
+> +    maximum: 2156
+> +
+> +  qcom,squelch-detector-bp:
+> +    description:
+> +      This adjusts the voltage level for the threshold used to
+> +      detect valid high-speed data.
+> +      The values defined are in multiples of basis points (1bp = 0.01%).
+> +      The hardware accepts only discrete values. The value closest to the
+> +      provided input will be chosen as the override value for this param.
+> +    minimum: -2090
+> +    maximum: 1590
+> +
+> +  qcom,hs-amplitude-bp:
+> +    description:
+> +      This adjusts the high-speed DC level voltage.
+> +      The values defined are in multiples of basis points (1bp = 0.01%).
+> +      The hardware accepts only discrete values. The value closest to the
+> +      provided input will be chosen as the override value for this param.
+> +    minimum: -660
+> +    maximum: 2670
+> +
+> +  qcom,pre-emphasis-duration-bp:
+> +    description:
+> +      This signal controls the duration for which the
+> +      HS pre-emphasis current is sourced onto DP<#> or DM<#>.
+> +      The HS Transmitter pre-emphasis duration is defined in terms of
+> +      unit amounts. One unit of pre-emphasis duration is approximately
+> +      650 ps and is defined as 1X pre-emphasis duration.
+> +      The values defined are in multiples of basis points (1bp = 0.01%).
+> +      The hardware accepts only discrete values. The value closest to the
+> +      provided input will be chosen as the override value for this param.
+> +    minimum: 10000
+> +    maximum: 20000
+> +
+> +  qcom,pre-emphasis-amplitude-bp:
+> +    description:
+> +      This signal controls the amount of current sourced to
+> +      DP<#> and DM<#> after a J-to-K or K-to-J transition.
+> +      The HS Transmitter pre-emphasis current is defined in terms of unit
+> +      amounts. One unit amount is approximately 2 mA and is defined as
+> +      1X pre-emphasis current.
+> +      The values defined are in multiples of basis points (1bp = 0.01%).
+> +      The hardware accepts only discrete values. The value closest to the
+> +      provided input will be chosen as the override value for this param.
+> +    minimum: 10000
+> +    maximum: 40000
+> +
+> +  qcom,hs-rise-fall-time-bp:
+> +    description:
+> +      This adjusts the rise/fall times of the high-speed waveform.
+> +      The values defined are in multiples of basis points (1bp = 0.01%).
+> +      The hardware accepts only discrete values. The value closest to the
+> +      provided input will be chosen as the override value for this param.
+> +    minimum: -4100
+> +    maximum: 5430
+> +
+> +  qcom,hs-crossover-voltage-microvolt:
+> +    description:
+> +      This adjusts the voltage at which the DP<#> and DM<#>
+> +      signals cross while transmitting in HS mode.
+> +      The values defined are in milli volts. The hardware accepts only
+> +      discrete values. The value closest to the provided input will be
+> +      chosen as the override value for this param.
+> +    minimum: -31000
+> +    maximum: 28000
+> +
+> +  qcom,hs-output-impedance-micro-ohms:
+> +    description:
+> +      In some applications, there can be significant series resistance
+> +      on the D+ and D- paths between the transceiver and cable. This adjusts
+> +      the driver source impedance to compensate for added series
+> +      resistance on the USB. The values defined are in milli ohms.
+> +      The hardware accepts only discrete values. The value closest to the
+> +      provided input will be chosen as the override value for this param.
+> +    minimum: -2300000
+> +    maximum: 6100000
+> +
+> +  qcom,ls-fs-output-impedance-bp:
+> +    description:
+> +      This adjusts the low- and full-speed single-ended source
+> +      impedance while driving high. The following adjustment values are based
+> +      on nominal process, voltage, and temperature.
+> +      The values defined are in multiples of basis points (1bp = 0.01%).
+> +      The hardware accepts only discrete values. The value closest to the
+> +      provided input will be chosen as the override value for this param.
+> +    minimum: -1053
+> +    maximum: 1310
 
---z56oylvtyf4k6pji
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+do we need all these values in DT, till now we have these in driver..
+what is the reasoning to add these in DT instead?
 
-On 06/08, Javier Martinez Canillas wrote:
-> Hello Florian,
->=20
-> On 6/8/22 11:26, Florian Fainelli wrote:
-> >=20
-> >=20
-> > On 6/3/2022 11:26 AM, Peter Robinson wrote:
-> >> This is a follow up from my v4 patchset. The power management pieces h=
-ave
-> >> been split out to a separate independent set of patches by Stefan [1].=
- This
-> >> version 5 of the DRM patches are independent and given the V3D driver =
-has
-> >> been upstream for some time the two patches to enable it in defconfigs=
- can
-> >> be taken at anytime independent of the enablement for the Raspberry Pi=
- 4.
-> >>
-> >> I've tested this using mesa 22.0.x and Wayland/Gnome on Fedora 36, it's
-> >> more or less stable with basic testing.
-> >>
-> >> Changes since v5:
-> >> - Update the DT compatible to match the others that were updated
-> >> - Adjust the Kconfig help text
-> >> - Add review tags
-> >>
-> >> Changes since v4:
-> >> - Fixes for device tree and bindings
-> >> - Split out the power management changes into an independent set
-> >> - Rebase to 5.18
-> >> - Individual changes in patches
-> >>
-> >> [1] https://www.spinics.net/lists/arm-kernel/msg980342.html
-> >=20
-> > I can take the last 3 patches through the Broadcom ARM SoC pull request=
-,=20
-> > but the first three should probably go via the DRM tree unless you want=
-=20
-> > me to merge them all?
->=20
-> I can merge the first 3 patches through the drm-misc tree. Can I get
-> an ack from you for those ?
->=20
-> The changes are independent so there's no need for an immutable branch
-> or any kind of cross tree coordination.
-
-Hi Javier,
-
-I'm not sure if you're suggesting here to apply the entire series as it
-is now.
-
-I'm not able to have a functional kernel from arm defconfig, only for
-arm64. I'd like to have this issue clarified before merge this serie. I
-tried multi_v7_defconfig on raspbian 32-bits and got a kernel panic.
-Things work better when using downstream bcm2711_defconfig.
-
-If you have an idea of what is going on, please, let me know. I can try
-again and I'll be okay on merging it. Otherwise, let's wait for more
-inputs to have a better picture of the situation.
-
-Thanks,
-
-Melissa
-
->=20
-> --=20
-> Best regards,
->=20
-> Javier Martinez Canillas
-> Linux Engineering
-> Red Hat
->=20
-
---z56oylvtyf4k6pji
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEd8WOo/JViG+Tu+XIwqF3j0dLehwFAmKgxXYACgkQwqF3j0dL
-ehySWA//YfV/JrmvLlJ/UzGQfDL4EqAUfeeAX66bdXj5dGRhj+5UibYJFjK47jik
-xWLAMWQuEYBOxGFjiEQVkM2+QQovjGkhSgcHFOAJJNq4seZi76iyZy68jWUYBqpK
-6pmKulmEmplaTyYs2O1DDbQQVbbqXDmoaS8y0FQyPUhg2iVTqTAoPiX2fPn/Xmqc
-IRzgZHuk4lq9gm8IRsgskPBle5R+xP0kjUS29JwbmEyc3fcTpt+9Ad9yhfusrp4h
-ftwEN4JaWg1n3O1oM1D+jbLf2ZgDhuVGW2OqG7V81UVFaoh7RZ5XynnYRz2Pjfmf
-hzk45/gGUHvDcMXxjcfnflNjuACR2Mw3IlXo1L0A+xEQJh+Otdy7yf0ksznjyGHH
-o57DXSF0PBcp2JtSTxB6ZuwFNZfPScG08HxCIQWT3Nl2yP46CZFW28Bc9PZmcppe
-x82sn1FOIJBPzlHGLd6Po6YX5f2/6IOG44q0jqQRmFPBMQnRVo9GCzwS5DkMxkav
-6ZvhTIibs0XGhXtVkL/UlGRCsAnLcQnXqQQ+Mk51YHXR3W19mDnDvD+bY2Ihv0t2
-ojpYul594P8cwyinQQX7cXftjHMry8A7wj8y2/NdOuY3sRnIND/s9M7bGNf8zYVn
-HIxxLdzXm3b4IegfIbudfbwH0tOsmh5tKlGdDTTJ+iV+frXsB+c=
-=fJYd
------END PGP SIGNATURE-----
-
---z56oylvtyf4k6pji--
+-- 
+~Vinod
