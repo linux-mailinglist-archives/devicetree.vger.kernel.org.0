@@ -2,138 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 077F154302B
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 14:24:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60E9C543081
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 14:33:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239094AbiFHMXa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 08:23:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53324 "EHLO
+        id S239392AbiFHMdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 08:33:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238835AbiFHMXV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 08:23:21 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DFC571BF09E
-        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 05:23:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1654690999;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=WysPZlcw09T7q+C1fUqR9rq1Bzu/+VYftlOBGYd++mc=;
-        b=cGae2+wANtVL7pIELQJjbIEioJ8aUZz+pY4S4rpKOONeAR+/H78gBhptKf+iziMVzha3kc
-        gnxBxhvBrE3zInreOY3eKDTpRXZ7pqhPt8pNU47JLRqwG6vp7Sbsu59Em9or96yyQmktP1
-        +Snl4dus5i26Pe1FBLGx7M86nyBZ/3w=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-561-HfmhIztZMneSX5H1p7xbfw-1; Wed, 08 Jun 2022 08:23:18 -0400
-X-MC-Unique: HfmhIztZMneSX5H1p7xbfw-1
-Received: by mail-wm1-f71.google.com with SMTP id ay28-20020a05600c1e1c00b0039c5cbe76c1so1939196wmb.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 05:23:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=WysPZlcw09T7q+C1fUqR9rq1Bzu/+VYftlOBGYd++mc=;
-        b=ngTIdSXaIKuz7EQzcu/B5yvLlRR88uuk/QJYn1a04Wp/xjhpJmPKUw03SrPhiFqONd
-         +i5JFeLZSlkdkfRJQ6ZmPZz9XyAP7i09VQbeii+Kt6ZqxkFa25wxLx0ndou0w1RA5qp+
-         HmzbdEFBCo6NL4FLqCdno39+/f0kauew5Nav6IciX82vA6TIhHeCd+8gqwrl3eraRVnx
-         6qX6Pwkw/Vo9FnZMQRlm2JQ+6XEOHsLQAGv8c8eH1c9XMHAFZz2zHbjzqQtxUTSeKTFs
-         kQShhDw7w5lYPww/wEihKsIX6Bk8Gx5ZzR8BhlJKSKiMXh8CeetW4+Qjts46owu/Ws9z
-         LT9g==
-X-Gm-Message-State: AOAM530SlbMzkUQuyB4lcx1iYsdHl9KWsSXV3+lTXuBCenMOtxmFGYiZ
-        Nq3ogV7mfhjHU2Ak1+yK4gwrFW8Yp9pYFSNeMsiq4jAIIH8/Jd5PBxLTpqXgZMu9JaSynKwA+8M
-        0Zd7CNB5nrrs48egq98c5Ww==
-X-Received: by 2002:adf:f38f:0:b0:210:30cf:6e4a with SMTP id m15-20020adff38f000000b0021030cf6e4amr34276134wro.676.1654690996873;
-        Wed, 08 Jun 2022 05:23:16 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwnn0twO0DVIW7IZ6/4N32WijMPurWbHo+V8aC9+pPIdJveu5UOwQ9M/8i7btwDkro790RfwA==
-X-Received: by 2002:adf:f38f:0:b0:210:30cf:6e4a with SMTP id m15-20020adff38f000000b0021030cf6e4amr34276097wro.676.1654690996523;
-        Wed, 08 Jun 2022 05:23:16 -0700 (PDT)
-Received: from [192.168.1.129] (205.pool92-176-231.dynamic.orange.es. [92.176.231.205])
-        by smtp.gmail.com with ESMTPSA id o10-20020adfeaca000000b0020c5253d8c2sm20778215wrn.14.2022.06.08.05.23.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jun 2022 05:23:16 -0700 (PDT)
-Message-ID: <9aaaaa29-11c0-d494-11dd-0bbf5d384364@redhat.com>
-Date:   Wed, 8 Jun 2022 14:23:14 +0200
+        with ESMTP id S239398AbiFHMdD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 08:33:03 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BADD329E4E2;
+        Wed,  8 Jun 2022 05:33:01 -0700 (PDT)
+Received: from localhost.localdomain (unknown [186.189.224.65])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: adalessandro)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 47A026601780;
+        Wed,  8 Jun 2022 13:32:54 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1654691577;
+        bh=6zZ3JVA8se89xqhPzZ/QyyWi3pmDJIoGZzkI1kPjPWs=;
+        h=From:To:Cc:Subject:Date:From;
+        b=ChrNavfDiEB7trqMZP2l3apaGDKGiBfsNfVI9+ToKN+VT2mSnJaED05UyAu8+byX6
+         802C088qtVbBcKmSQOcKfpIp0EVfAw8lbr894uJ+ItfjXAvYw2d3suXRsC/3GfOfUU
+         U1hng2DREUx1gzzBHC8SuAvYLRnaeOok0klz6YuPV62HjV4MytxEW1uFSLXuJxNNJj
+         6hKJXrlC3rnR+Ch0qufjd7ffL4aGH0qRLVEReMpco1z9IbZAUZVUXSsWXMvxaK6YLI
+         1RFKEnD4mLg9JUMo8w6HDz1p78+9ytOGnW+DwHddkPMQE/ZbB0WZXaQiAMPYTpx5CK
+         88V3w6661Z2rg==
+From:   Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-rpi-kernel@lists.infradead.org
+Cc:     gbcm-kernel-feedback-list@broadcom.com,
+        gkrzysztof.kozlowski+dt@linaro.org, gnsaenz@kernel.org,
+        grobh+dt@kernel.org
+Subject: [PATCH] ARM: dts: bcm2711-rpi-4-b: Use aliases to set custom MMC device index
+Date:   Wed,  8 Jun 2022 09:32:33 -0300
+Message-Id: <20220608123233.13439-1-ariel.dalessandro@collabora.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v6 0/6] Raspberry PI 4 V3D enablement
-Content-Language: en-US
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Peter Robinson <pbrobinson@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, Emma Anholt <emma@anholt.net>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org, maxime@cerno.tech,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-References: <20220603092610.1909675-1-pbrobinson@gmail.com>
- <cadecbfd-e174-eadb-276c-577bb2bf70f2@gmail.com>
-From:   Javier Martinez Canillas <javierm@redhat.com>
-In-Reply-To: <cadecbfd-e174-eadb-276c-577bb2bf70f2@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Florian,
+Add MMC aliases to ensure that the /dev/mmcblk ID for SD card won't
+change depending on the probe order of the MMC drivers.
 
-On 6/8/22 11:26, Florian Fainelli wrote:
-> 
-> 
-> On 6/3/2022 11:26 AM, Peter Robinson wrote:
->> This is a follow up from my v4 patchset. The power management pieces have
->> been split out to a separate independent set of patches by Stefan [1]. This
->> version 5 of the DRM patches are independent and given the V3D driver has
->> been upstream for some time the two patches to enable it in defconfigs can
->> be taken at anytime independent of the enablement for the Raspberry Pi 4.
->>
->> I've tested this using mesa 22.0.x and Wayland/Gnome on Fedora 36, it's
->> more or less stable with basic testing.
->>
->> Changes since v5:
->> - Update the DT compatible to match the others that were updated
->> - Adjust the Kconfig help text
->> - Add review tags
->>
->> Changes since v4:
->> - Fixes for device tree and bindings
->> - Split out the power management changes into an independent set
->> - Rebase to 5.18
->> - Individual changes in patches
->>
->> [1] https://www.spinics.net/lists/arm-kernel/msg980342.html
-> 
-> I can take the last 3 patches through the Broadcom ARM SoC pull request, 
-> but the first three should probably go via the DRM tree unless you want 
-> me to merge them all?
+Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+---
+ arch/arm/boot/dts/bcm2711-rpi-4-b.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-I can merge the first 3 patches through the drm-misc tree. Can I get
-an ack from you for those ?
-
-The changes are independent so there's no need for an immutable branch
-or any kind of cross tree coordination.
-
+diff --git a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+index 4432412044de..780812542bad 100644
+--- a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
++++ b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+@@ -14,6 +14,10 @@ chosen {
+ 		stdout-path = "serial1:115200n8";
+ 	};
+ 
++	aliases {
++		mmc0 = &emmc2;	/* mmcblk0 for SD */
++	};
++
+ 	leds {
+ 		led-act {
+ 			gpios = <&gpio 42 GPIO_ACTIVE_HIGH>;
 -- 
-Best regards,
-
-Javier Martinez Canillas
-Linux Engineering
-Red Hat
+2.34.1
 
