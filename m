@@ -2,126 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 308E25425B6
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 08:55:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 264465425D7
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 08:55:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232894AbiFHESp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 00:18:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37086 "EHLO
+        id S232145AbiFHE0Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 00:26:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232991AbiFHERz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 00:17:55 -0400
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C8812F4F5B;
-        Tue,  7 Jun 2022 18:40:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1654652448; x=1686188448;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=zbm4iZu1MGqfCpOkzqcAjxrsjpBC11cUbsTqwp4M7J0=;
-  b=WrKfzuHlSJLzjsBoSP5ZCx4IEQRpzr5B3A6KqL6rokwYTWVd1kiHY32e
-   sSGZ9pKsPcQhSW1yGCeNd//nyH43m+nE3+W5TmJMJQPPhn58d/IjEAtc3
-   12j4Rte3l2rLukXfu7ixgFS4IdJKvUpycEtxKArzBLrhJW9mBNFfEL4F/
-   dNlszB9OqWns7OxavDI3VHy9vw530rnc4k6ocWtSfhG6VADJV0HCrnoLy
-   29zJobdrqYn1M0mbulkb69jrb1bSgo7pWDey5ppWCmKjMiuezZV7b9qel
-   Vl1kSJDCJFSCsW2ALFr6D2+hCTQR9wJbOczBez3yrDYrEopAV8/Xf1r1/
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10371"; a="340797571"
-X-IronPort-AV: E=Sophos;i="5.91,284,1647327600"; 
-   d="scan'208";a="340797571"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jun 2022 18:40:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,284,1647327600"; 
-   d="scan'208";a="670294643"
-Received: from lkp-server01.sh.intel.com (HELO 60dabacc1df6) ([10.239.97.150])
-  by FMSMGA003.fm.intel.com with ESMTP; 07 Jun 2022 18:40:13 -0700
-Received: from kbuild by 60dabacc1df6 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nykg8-000E8z-R5;
-        Wed, 08 Jun 2022 01:40:12 +0000
-Date:   Wed, 8 Jun 2022 09:39:48 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Satya Priya <quic_c_skakit@quicinc.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     kbuild-all@lists.01.org, Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, quic_collinsd@quicinc.com,
-        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com,
-        Satya Priya <quic_c_skakit@quicinc.com>
-Subject: Re: [PATCH V14 7/9] regulator: Add a regulator driver for the PM8008
- PMIC
-Message-ID: <202206080910.XAMKbeVH-lkp@intel.com>
-References: <1654602615-28849-8-git-send-email-quic_c_skakit@quicinc.com>
+        with ESMTP id S233908AbiFHEY3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 00:24:29 -0400
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FAE235F8A3
+        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 18:50:38 -0700 (PDT)
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20220608014344epoutp040b1cdcc31b799ea36f92bcda3c31b99e~2gct6FIfg0154201542epoutp04Z
+        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 01:43:44 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20220608014344epoutp040b1cdcc31b799ea36f92bcda3c31b99e~2gct6FIfg0154201542epoutp04Z
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1654652624;
+        bh=KqfS/4/IeJ632hAg/V9fsBPAEPGRQopHMhfw27hpgJI=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=rpt1BGGS40YE0Wj64lt8WWv8e/GMQU7qZEDXfM1SlesREL6rdShKj+GAsgahDRIy0
+         pG7+cbGZKD29GllzURwmkys4ecW6GUn9lyrPmVDYhzhqUxsSQROLgCJIPvYXYUTHRk
+         GqxOzxZoJwCk7n6Hvqg12Hgs93MDeaHXerpsG3PU=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas2p2.samsung.com (KnoxPortal) with ESMTP id
+        20220608014343epcas2p2eb6c94e6e0cd2251c3e450aa543bf2aa~2gctV1RUE0725707257epcas2p2A;
+        Wed,  8 Jun 2022 01:43:43 +0000 (GMT)
+Received: from epsmges2p3.samsung.com (unknown [182.195.36.102]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 4LHqkk5Dlfz4x9Q3; Wed,  8 Jun
+        2022 01:43:42 +0000 (GMT)
+Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
+        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
+        43.F0.10028.ECEFF926; Wed,  8 Jun 2022 10:43:42 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
+        20220608014341epcas2p1bf184d852c59b35484b3c57189f1eadf~2gcr3jnZZ1607416074epcas2p12;
+        Wed,  8 Jun 2022 01:43:41 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20220608014341epsmtrp243b275605ade7fdc50c7105ac7efea41~2gcr2sFGv1948519485epsmtrp2E;
+        Wed,  8 Jun 2022 01:43:41 +0000 (GMT)
+X-AuditID: b6c32a47-589ff7000000272c-96-629ffece429f
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        AD.E3.11276.DCEFF926; Wed,  8 Jun 2022 10:43:41 +0900 (KST)
+Received: from KORCO082417 (unknown [10.229.8.121]) by epsmtip1.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20220608014341epsmtip1896b1c38c2d57e0c13addc19484891cc~2gcrpgRQc1248812488epsmtip1Q;
+        Wed,  8 Jun 2022 01:43:41 +0000 (GMT)
+From:   "Chanho Park" <chanho61.park@samsung.com>
+To:     "'Alim Akhtar'" <alim.akhtar@samsung.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>
+Cc:     <devicetree@vger.kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <vkoul@kernel.org>,
+        <avri.altman@wdc.com>, <bvanassche@acm.org>,
+        <martin.petersen@oracle.com>, <pankaj.dubey@samsung.com>,
+        "'Bharat Uppal'" <bharat.uppal@samsung.com>
+In-Reply-To: <20220603154714.30532-4-alim.akhtar@samsung.com>
+Subject: RE: [PATCH v2 3/7] phy: samsung-ufs: add support for FSD ufs phy
+ driver
+Date:   Wed, 8 Jun 2022 10:43:41 +0900
+Message-ID: <002d01d87ad9$2ea92ac0$8bfb8040$@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1654602615-28849-8-git-send-email-quic_c_skakit@quicinc.com>
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: ko
+Thread-Index: AQFSBQ9Zoh1+pG8sApsbls4ebot9jgKYKc3AAgKsrFGuLM/TEA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrJJsWRmVeSWpSXmKPExsWy7bCmme65f/OTDGZ95LZ4MG8bm8XLn1fZ
+        LK69vMBuMe3DT2aL+UfOsVr0vXjIbLHp8TVWi8u75rBZTFj1jcWi+/oONovlx/8xWSza+oXd
+        onXvEXaLnXdOMDvweVy+4u2xaVUnm8eda3vYPDYvqff4+PQWi0ffllWMHp83yXm0H+hmCuCI
+        yrbJSE1MSS1SSM1Lzk/JzEu3VfIOjneONzUzMNQ1tLQwV1LIS8xNtVVy8QnQdcvMATpbSaEs
+        MacUKBSQWFyspG9nU5RfWpKqkJFfXGKrlFqQklNgXqBXnJhbXJqXrpeXWmJlaGBgZApUmJCd
+        0fT9KUvBRZaKK7+OMTUwfmHuYuTkkBAwkXh/5B1rFyMXh5DADkaJ/6vfMUI4nxglNl18ywLh
+        fGOUuHi1iR2mpWneTjYQW0hgL6PEp6+8EEUvGCUm7bkBVsQmoC/xsmMb2FwRkLmfV3wCG8Us
+        0Mkk0X3kAhNIFaeArcSmvnVgtrBAkMSkQ3/AxrIIqEic27GXBcTmFbCU2HSwix3CFpQ4OfMJ
+        WJxZQFti2cLXUF8oSPx8uowVIi4iMbuzDSwuIuAksafvN9gVEgIPOCTuPfnNCtHgInFq92uo
+        f4QlXh3fAmVLSXx+t5cNwi6WWDrrExNEcwOjxOVtv6ASxhKznrUDg4kDaJumxPpd+iCmhICy
+        xJFbULfxSXQc/ssOEeaV6GgTgmhUlziwfToLhC0r0T3nM+sERqVZSD6bheSzWUi+mYWwawEj
+        yypGsdSC4tz01GKjAmN4dCfn525iBKdpLfcdjDPeftA7xMjEwXiIUYKDWUmEVzJ8fpIQb0pi
+        ZVVqUX58UWlOavEhRlNgWE9klhJNzgdmirySeEMTSwMTMzNDcyNTA3MlcV6vlA2JQgLpiSWp
+        2ampBalFMH1MHJxSDUyM0wLSTZ+ecM2vCLmb4zPRzNfqfdOS7E6l+FAfeevwhJiYkA2sDc+E
+        3p41sd8ybXdQbOKS0ttVWUl/Lt7ouaq3UcdaqWT/as+1h8sXrl3w4or59eRLfn8VPoUkGraJ
+        rTxyz3Tfh9+aiaLG+g0M/63yeyfOnhzur2usVBomeHNxXeuKP+VKIl1Ctg+qHz5kUNkfbjRf
+        bV8y/9e0FbVsuw4/KW0O3P/5d6vChNuTD7z8+X5lfXnjigdcTu94DX/H7J7RGq9cUfVjmvWP
+        Pjtjr+pC+5cdb44c+v4w64TQ2ux1/tu/lP2qWVEhLjhb/17D4Tm3eeVW/WrlsI/M5na6NH1K
+        a3J00LuAbbm3znu0X1ViKc5INNRiLipOBACrpkQtXAQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrGIsWRmVeSWpSXmKPExsWy7bCSnO7Zf/OTDPZv0rV4MG8bm8XLn1fZ
+        LK69vMBuMe3DT2aL+UfOsVr0vXjIbLHp8TVWi8u75rBZTFj1jcWi+/oONovlx/8xWSza+oXd
+        onXvEXaLnXdOMDvweVy+4u2xaVUnm8eda3vYPDYvqff4+PQWi0ffllWMHp83yXm0H+hmCuCI
+        4rJJSc3JLEst0rdL4MpY336JseAwS8WWI89YGhifMXcxcnJICJhINM3bydbFyMUhJLCbUWLm
+        16VQCVmJZ+92sEPYwhL3W46wQhQ9Y5TYMuUvG0iCTUBf4mXHNrCEiMAeRom2eafYQRxmgclM
+        EpMavrJAtOxnlPi9q50FpIVTwFZiU986JhBbWCBAouXwXVYQm0VAReLcjr1gNbwClhKbDnax
+        Q9iCEidnPgGLMwtoS/Q+bGWEsZctfA11q4LEz6fLWCHiIhKzO9vA4iICThJ7+n6zTmAUnoVk
+        1Cwko2YhGTULSfsCRpZVjJKpBcW56bnFhgWGeanlesWJucWleel6yfm5mxjBUauluYNx+6oP
+        eocYmTgYDzFKcDArifBKhs9PEuJNSaysSi3Kjy8qzUktPsQozcGiJM57oetkvJBAemJJanZq
+        akFqEUyWiYNTqoFp8ox1QT2ex92EAt2VWs6xcf8489DBtlb4/J7ODdE3jnx4occhtbxq9jUX
+        rjk5Oy6eWcv5xylBT82kX9KqqfPP8i27N8lLdbkvXvVCwfGx9MSXhUkvtqVkfc+btP338b21
+        P7YKbFhX5vDh8QLtfJdc/iVzBeu3vO/nP19w9krBTd8/DsE7VOe8tfsWWbJxi9DBD1f68yxl
+        GXLyFmulPO15O3HNf/8f4awPfae/9yhy+qt6OXL/13vbYr/a/V3EvF38ftzKqXGbJjMq7Hi6
+        in+78rabzZzLX96tu3Gmy/rZ+nkudrymGwrvSG7VYf12btssnc3RET4mM1bGf5dwe/KyojHr
+        c13pm4aGk5yzaha1n1BiKc5INNRiLipOBAD85gRBSQMAAA==
+X-CMS-MailID: 20220608014341epcas2p1bf184d852c59b35484b3c57189f1eadf
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220603154857epcas5p4b4684d4400f4ff66f69ff5e288ef635c
+References: <20220603154714.30532-1-alim.akhtar@samsung.com>
+        <CGME20220603154857epcas5p4b4684d4400f4ff66f69ff5e288ef635c@epcas5p4.samsung.com>
+        <20220603154714.30532-4-alim.akhtar@samsung.com>
 X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Satya,
+> Subject: =5BPATCH v2 3/7=5D phy: samsung-ufs: add support for FSD ufs phy
+> driver
+>=20
+> Adds support for Tesla Full Self-Driving (FSD) ufs phy driver.
+> This SoC has different cdr lock status offset.
+>=20
+> Signed-off-by: Bharat Uppal <bharat.uppal=40samsung.com>
+> Signed-off-by: Alim Akhtar <alim.akhtar=40samsung.com>
 
-Thank you for the patch! Perhaps something to improve:
+Reviewed-by: Chanho Park <chanho61.park=40samsung.com>
 
-[auto build test WARNING on lee-mfd/for-mfd-next]
-[also build test WARNING on robh/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+As you may know, it seems to be rebased if below patchset goes first.
+https://lore.kernel.org/linux-phy/20220607072907.127000-1-chanho61.park=40s=
+amsung.com/T/=23t
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Satya-Priya/Add-Qualcomm-Technologies-Inc-PM8008-regulator-driver/20220607-195327
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
-config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20220608/202206080910.XAMKbeVH-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-1) 11.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/intel-lab-lkp/linux/commit/11e915cb6368e90fdc4186104c56a3619aa63440
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Satya-Priya/Add-Qualcomm-Technologies-Inc-PM8008-regulator-driver/20220607-195327
-        git checkout 11e915cb6368e90fdc4186104c56a3619aa63440
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/regulator/
+Best Regards,
+Chanho Park
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
-   drivers/regulator/qcom-pm8008-regulator.c: In function 'pm8008_regulator_get_voltage':
->> drivers/regulator/qcom-pm8008-regulator.c:74:13: warning: unused variable 'rc' [-Wunused-variable]
-      74 |         int rc, uV;
-         |             ^~
-
-
-vim +/rc +74 drivers/regulator/qcom-pm8008-regulator.c
-
-    69	
-    70	static int pm8008_regulator_get_voltage(struct regulator_dev *rdev)
-    71	{
-    72		struct pm8008_regulator *pm8008_reg = rdev_get_drvdata(rdev);
-    73		__le16 mV;
-  > 74		int rc, uV;
-    75	
-    76		regmap_bulk_read(pm8008_reg->regmap,
-    77				LDO_VSET_LB_REG(pm8008_reg->base), (void *)&mV, 2);
-    78	
-    79		uV = le16_to_cpu(mV) * 1000;
-    80		return (uV - pm8008_reg->rdesc.min_uV) / pm8008_reg->rdesc.uV_step;
-    81	}
-    82	
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
