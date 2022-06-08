@@ -2,77 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E917054299D
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 10:40:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 654AE5429B4
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 10:44:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230284AbiFHIkN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 04:40:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45182 "EHLO
+        id S231695AbiFHImR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 04:42:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229911AbiFHIjb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 04:39:31 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F1F0B8BC5
-        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 00:58:59 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id v1so29121690ejg.13
-        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 00:58:59 -0700 (PDT)
+        with ESMTP id S229863AbiFHIl1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 04:41:27 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C64624F7B4
+        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 01:03:51 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id o7so6513546eja.1
+        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 01:03:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=6Q5FdgVP8OZg3GIdsAYNEY53XcA8611Hl5+gVXO7790=;
-        b=zs5M0PlpBU5Rj6lc+tLkYZypPtYKTDLqoG/rfhvJL9CckMAyBX+rVUkFz32AhJ/B/P
-         qv5MtYuLNGlp3NYHhj63Ue0Z17SIZAuCFqIrpEl5Keoy0fWcxlWGOmDH0++bzcxxb3VD
-         Ri8075DQSjzLNjZwsHrT8x3SH7JZ6sHDRSQcJW5SnsIgypZxhT3aoxgdeT0ekYZnEhul
-         hCjz6j8BoNAVI2gAxS7D48YlOF5od+8oFa8e1w4ohUzJjaPtD2EqQ+DnExzbWDEnrS7i
-         i74zBQKG+Q9VMFAkHsgJm7ftrBPOLMIpGJu67CkLmzOl0Jmk8yaRyfn4FY+NfLQhzeas
-         MicQ==
+        bh=cQPf4o0FLnpYr0g5LbwDliAY1aq0umFdw17thSCyAkQ=;
+        b=IT7kg1hUsFCC4KIhHK9UBHSRA/L6ZJf8/FCqxk//PYSuHm07tU87J7tskZJsXs2iUk
+         65nmqD3JZDK8GWwZA1QzEkfCK5q3Uw6wFS4MbxKAu8V5ctq96H4lxRDRUdFy/7oMk7oU
+         q9/TqrkNsswIyenivpNqoRapjHhRkB/ocEjgzWRU7I7Ht/tL4cX30a1X/cMP3gNyKXHp
+         /Q1WTc9jxbY6XkaM05W62GfqmsLHiwBor/0MBhZcWSVuDCIiP7b36foQU9i76UJB1sWg
+         rl4ICPicXVD82jvw29E7In3j0XzJul7/V/g5OwQp9DFodGMNPVmF27rO+pNjqYTnDmFb
+         FmVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=6Q5FdgVP8OZg3GIdsAYNEY53XcA8611Hl5+gVXO7790=;
-        b=6tSfQQPiTewl6V1b+9U873ZXm2oYo35WRkIevxyUzO7nRGkOuC44GRDwg0+G0OGzbh
-         Jp5V3yrfWTFXYEDuGhQwQ+rPAKLjGgw0rHUn6y6woUXRJIzvXJb8YzeS2EIUaS3qlXEt
-         yLIeglGi/D6f9vxbnxoe80LtafH2igVM9gLlAuooXrtkTIm1akzBsJvHW0UQknTpnakn
-         1G6vYAfIejpxCJ7u17RAdnhmvI+l2s/d8GCO2lEsHEzBPXK6xP4FxJPCbUJbJYWWuPB1
-         Vb60yEX3JJ3F+5jgg7DErPDoyanJOjF+8atsZiYd+v/kwzMZRNqFypzpdecQhcEDFUFC
-         UK1g==
-X-Gm-Message-State: AOAM532WesewwfMmADnnmE88+rsKN47u/OoqYygVXrMh9nybF2pHsM04
-        7zBtNDMKY8eB6chrBHSbWsNc0Q==
-X-Google-Smtp-Source: ABdhPJzb/dsRL6rsb5Z4shOLN9Lbi+McEv1tdNHRTqEgCzD+sVevGLREksulT6tWaIIIx587nap+JA==
-X-Received: by 2002:a17:906:49d4:b0:6d6:e5ec:9a23 with SMTP id w20-20020a17090649d400b006d6e5ec9a23mr30993322ejv.79.1654675136499;
-        Wed, 08 Jun 2022 00:58:56 -0700 (PDT)
+        bh=cQPf4o0FLnpYr0g5LbwDliAY1aq0umFdw17thSCyAkQ=;
+        b=3DlhCF38N+VXzl9bSIEifETjbD12g4IhlBBteE1xSmGpNUkoCQuie3gUAL5K+Fdo3e
+         au7zFQ49bU5RGpVSg72zxVFLTXam6zudm3c6mRQhPwFhcxaK5Vy9tMBVsYaOVVMZ3RCR
+         pHXRdNzDxZOpW3RrS/RH9kM7J5Vv7BaW9IYopsgSGaNUOtiWTpHIC9ohmKuo8lcoEJvN
+         CWXRBb/ZPz6btgqU0e4PWXPsoTzYtL3OZ+Hp+0f73JkQ9yeW10zFjY8k+5ObxITSMUqL
+         uIpbXUxxlYiEWY6xbT2AbYRwchI4vKgai3lOtFzFvmu5VuqUrGQtxwCUdd1LZgEAzFeA
+         2EWQ==
+X-Gm-Message-State: AOAM5318ZEVw2Ahk4B+idPEYJPfwJ/XHyKOfZVoHK2XM0/ip4sw1OVRs
+        hsWaFw+orQADcab0UgCDl+cSQA==
+X-Google-Smtp-Source: ABdhPJy+FA+lFViN60Z3sT0HRKAT4Bbth/WPynt87kUH6G6DDkAoN3SmsMGKsEXRtLSB0IiTCJPwmw==
+X-Received: by 2002:a17:906:8a59:b0:711:34fd:29ff with SMTP id gx25-20020a1709068a5900b0071134fd29ffmr18762082ejc.439.1654675194443;
+        Wed, 08 Jun 2022 00:59:54 -0700 (PDT)
 Received: from [192.168.0.188] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id y12-20020a170906470c00b00711d0b41bcfsm3584719ejq.0.2022.06.08.00.58.54
+        by smtp.gmail.com with ESMTPSA id l4-20020a170906644400b006feb047502bsm8778738ejn.151.2022.06.08.00.59.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jun 2022 00:58:55 -0700 (PDT)
-Message-ID: <543f3e82-9016-9a7e-4533-53ec8d5f0703@linaro.org>
-Date:   Wed, 8 Jun 2022 09:58:54 +0200
+        Wed, 08 Jun 2022 00:59:53 -0700 (PDT)
+Message-ID: <0dc3ff06-4afe-a465-9681-9b51b2944cbe@linaro.org>
+Date:   Wed, 8 Jun 2022 09:59:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v2 1/5] dt-bindings: phy: qcom,qmp: Add compatible for
- SC8280XP USB phys
+Subject: Re: [PATCH 1/4] dt-bindings: mailbox: qcom-ipcc: Add NSP1 client
 Content-Language: en-US
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manu Gautam <mgautam@codeaurora.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220607213543.4057620-1-bjorn.andersson@linaro.org>
- <20220607213543.4057620-2-bjorn.andersson@linaro.org>
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220607214113.4057684-1-bjorn.andersson@linaro.org>
+ <20220607214113.4057684-2-bjorn.andersson@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220607213543.4057620-2-bjorn.andersson@linaro.org>
+In-Reply-To: <20220607214113.4057684-2-bjorn.andersson@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,11 +79,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/06/2022 23:35, Bjorn Andersson wrote:
-> The SC8280XP platform has a pair of 5nm USB3 UNI phys and a pair of
-> 5nm USB4/3/DP combo PHYs, add a compatible for these.
+On 07/06/2022 23:41, Bjorn Andersson wrote:
+> Add a client for the NSP1 found in some recent Qualcomm platforms.
 > 
 > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+> 
+> Jassi, there's no code dependency on this constant, so it's only going to be
+> referenced from the dts (patch 2/4). I would appreciate if I could get an Ack
+> and merge this together with the dts changes.
+> 
 
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
