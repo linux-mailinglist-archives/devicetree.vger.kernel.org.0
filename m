@@ -2,89 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F23F543AAC
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 19:39:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6A11543AD4
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 19:53:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232615AbiFHRjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 13:39:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41914 "EHLO
+        id S232993AbiFHRxE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 13:53:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232517AbiFHRjj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 13:39:39 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDAA031DC6;
-        Wed,  8 Jun 2022 10:39:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1654709911;
-        bh=SR1VTuMOXDTjsNlYicSw844o8AeTNjX000JV8bAUIic=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=L4P+F8gecA14ZeUYBilj1mn805fMy+4IuO5W8qlxvEmZVnea+1VpSkzBR3ZoIc+KK
-         pTFseQic+GP2azKNjmb9LlWvRHItqIufW1cAHKCvblQpLjHElsk+/UuObfSDqMyMie
-         TktnoD92HpwjJKlFp1l3D+vaqB2F6uIwkcdiK9t8=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [80.245.76.43] ([80.245.76.43]) by web-mail.gmx.net
- (3c-app-gmx-bap09.server.lan [172.19.172.79]) (via HTTP); Wed, 8 Jun 2022
- 19:38:30 +0200
+        with ESMTP id S232823AbiFHRxD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 13:53:03 -0400
+Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34A21DE9E
+        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 10:53:02 -0700 (PDT)
+Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-30c143c41e5so217241987b3.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 10:53:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=auWYjGrmO12LzarWgU8/f/He/qw8x0OfWAJAXSy8JA4=;
+        b=ScaOGpRUTXvnCQlaUrqa38bGJWp6nx5WeYWo3sJhv9wR70OzuWBoJqnVw8uPBX+mQE
+         IOn50VGwJcfsKLLTvE4jmR2ASgUPbmm7sL40828LtRfaHsF/DdThZcGrwzH3hr9j9vb3
+         TD3SKF9DHaiJFIZDMdwB0heHW4RWLZfFFfBO71SJGQA0ZA2F0e7U39Cm3KGk5sTafI+0
+         vncXdN7eelTAPPl1PPZR6otF9GZO7/sW84Q8yo05NgvFIX4JUK2l1VldaNhND6Kvw3ck
+         8QihL/x7Xscyb2F+V8QKI/fhPijESsm8BQat2LTeNlF/2sOptnQrwJyszbte9VPetVGh
+         lZew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=auWYjGrmO12LzarWgU8/f/He/qw8x0OfWAJAXSy8JA4=;
+        b=7imGcKs+uXpTvOd6GcEEPvfy9x1mGCiBmJ8oKbWmiQhMm0IzSLCNt5qgwIjrImvH+O
+         zbWq8HnV2u192vJZCrBA0UiAIB4cORM7VLIIxmDNEKb+RvayqQo2eYKFQlW6WNj005Uo
+         Jgt8dL3lixGTkPw+8bCTGAKbLeT9n0IcrEsa6WfCEinZPYoUYVWvusoKJpXEGOPnCFMo
+         kRk8FJxqyZ2gOOm0LG+Z/Waln5/zQ8MqEg98wen6VCloJcQzEdeGpV5ASRmvToAPlGZs
+         WH5hyoeFM0cvC2rn1LW02AbENVOjR0K1J2gUEbzyYclqsxtGc2Zz7pcYLqEi652GZ/dn
+         BXZg==
+X-Gm-Message-State: AOAM530nt+tN/5Mk1Qz62HbXrG6b0aWMhUjH5zyjKfLwsAByags5pW6J
+        1/MvmFdZyBwvJgqI5jhTX50aR4u4UWhxETG1JvsbYw==
+X-Google-Smtp-Source: ABdhPJxMIOaoKBRXUno4tnLibt0f7B15Qao1xtz+Mhz7w4xpjucvfVG0wz6VQHFD4YznuOECgMzAPjK+B35JLGEpuAE=
+X-Received: by 2002:a81:b45:0:b0:30c:1c31:604b with SMTP id
+ 66-20020a810b45000000b0030c1c31604bmr40100617ywl.114.1654710781368; Wed, 08
+ Jun 2022 10:53:01 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID: <trinity-c7b8fdfa-11b4-4e5c-90d6-6dd96da1e2d2-1654709910860@3c-app-gmx-bap09>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     linux-mediatek@lists.infradead.org
-Cc:     linux-rockchip@lists.infradead.org, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+References: <20220401001810.81507-1-jo@jsfamily.in> <BY5PR02MB700935F5817128CB7C3991CDD9E09@BY5PR02MB7009.namprd02.prod.outlook.com>
+ <BY5PR02MB70099A0E4C060E52284DCE46D9A59@BY5PR02MB7009.namprd02.prod.outlook.com>
+ <CAO_48GH5V2-Z0cqGJoF68hzZjqhY6_aGxReSk+ByC_zrLWusYQ@mail.gmail.com> <BY5PR02MB7009AA50A0F7D570877DA646D9A49@BY5PR02MB7009.namprd02.prod.outlook.com>
+In-Reply-To: <BY5PR02MB7009AA50A0F7D570877DA646D9A49@BY5PR02MB7009.namprd02.prod.outlook.com>
+From:   Sumit Semwal <sumit.semwal@linaro.org>
+Date:   Wed, 8 Jun 2022 23:22:49 +0530
+Message-ID: <CAO_48GEvQhMOst0KhM9CU9y1cv3q+4hbXM9MentRn7QPTs_mQA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] drm/panel: nt36672a: add backlight support
+To:     Joel Selvaraj <jo@jsfamily.in>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Greg Ungerer <gerg@kernel.org>,
-        =?UTF-8?Q?Ren=C3=A9_van_Dorst?= <opensource@vdorst.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Frank Wunderlich <linux@fw-web.de>
-Subject: Aw: [PATCH v3 0/6] Support mt7531 on BPI-R2 Pro
-Content-Type: text/plain; charset=UTF-8
-Date:   Wed, 8 Jun 2022 19:38:30 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <20220507170440.64005-1-linux@fw-web.de>
-References: <20220507170440.64005-1-linux@fw-web.de>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:b5vLgY6x8wk0IfFlmacN0mlyvljNM3lzBAp6gZ3YYSyGfOwKIWWsICLx3aTIAj3wYk/H5
- KVQ8p8tAQrEv3DQDo7PQzbkzWkokqRFf5VURxU6LUhBvPkAKZ9FZw3ZaXGypApq2yw2Ceb05qSGM
- XRJy/ooHfrCvcRmLD9Ke0/z1BvxnrEIlnadqGaoJ1UULJfp1IYpnx6rhukiqQ9/97t7RF/EBk44L
- sFcuSdyJtzl3S2x3tomYxVO9hsvM/5ek/0SO3qkAI58RWVUfRNVJl44Bu1VF36NtG8GHcyq7WKwL
- vI=
-X-UI-Out-Filterresults: notjunk:1;V03:K0:Tsy9Ri02RQw=:VA5cKMITPNkPq9WTs/tyI5
- IjrtX4u3TO8GPfPqH+1pF6qOd/RzV5bHzcfPzolKqrEJegNSwOR9dRj11z4LI38lhFvcnmGR0
- XB8FVZM2QG8b3Q8t4QhZnkjw6viiWfwYAxQ98ij+WD4+LgI3nw6PI4brmkiOWww4oEO0inDGG
- 9YloHncR2sFyBA5eBBGlLHzk6MzUjs/0m8ylNlLehz6Er50By1lF7JMVO4bAF0+upZfPzf7zX
- kJxoCLq3xjhdP21hWx7QWTVCKQOObDnxm7dHAUlXvxzHurGAmEhMdpeB3I59kImogpVtEqCyJ
- AYHEv1jo6He+6AI1JgA0Xm3k9bn4UTeSuINvJDLZ2QXNHXRtJzWNQFbS6AG3y82lZKFRNXast
- FTjc1TifJ8RpkrrkLVTvRginX7LjqJBJdsv2sLun6kZjRCf6ZFmNw4MTCmwdEIoyW4soi74nH
- PAzPg0Sfi/DgFp6WpztZpmLTIiZUD7ISQTNOM+tPfYMxR8lBwle894MCVvcge7kOfrokpcKyf
- zS5h3DyIvETKIvLWdE44K027QtM+lvqdGIz3l/VHAR8DIWPm2DTNJAm4AZr7Pxr5FS/JJTcAe
- gi8SSBK0BZjlNzJ7JKhe3F31W8RHOqLYKMRCd3hV7ccjCy+8adYSwSkmMn+RiyyTpAmgYOlCz
- 8KfkD6OOFkcVrUeoyoNIPyCD5rFo1DJQf2BcOTB/bQumkAhPlHa+V6dyvOcipGdjZ2kMX8uty
- y2zow8tcV+TjBJDzaggVBQm1ein3QpSVMiDHkQSWJ7S3aay+x6lWp4lYTnz7JPTIy+lmJv/Jl
- YwcpfGn
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Amit Pundir <amit.pundir@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-just a gentle ping, is anything missing/wrong?
+Hi Joel,
 
-regards Frank
+On Wed, 8 Jun 2022 at 22:10, Joel Selvaraj <jo@jsfamily.in> wrote:
+>
+> Hi Sumit,
+>
+> On 08/06/22 22:00, Sumit Semwal wrote:
+> > This is entirely my fault - It somehow missed my radar, and I didn't
+> > queue it up. I will push it via drm-misc tree tonight. Apologies
+> > again!
+>
+> No problem. Thanks for the update! So it will land on upcoming 5.19-rcs
+> or 5.20-rc?
+Not for 5.19-rcs for sure, but I think it should make it for 5.20-rcs?
+>
+> > Best,
+> > Sumit.
+>
+> Best Regards,
+> Joel Selvaraj
+
+Best,
+Sumit.
