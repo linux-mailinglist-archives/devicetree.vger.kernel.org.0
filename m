@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 611B6543E07
+	by mail.lfdr.de (Postfix) with ESMTP id 12469543E06
 	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 22:57:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233972AbiFHU4i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 16:56:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57476 "EHLO
+        id S231416AbiFHU4z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 16:56:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232316AbiFHU4g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 16:56:36 -0400
-Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ABEB203A28
-        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 13:56:35 -0700 (PDT)
-Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-fb6b4da1dfso10790714fac.4
-        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 13:56:35 -0700 (PDT)
+        with ESMTP id S229904AbiFHU4y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 16:56:54 -0400
+Received: from mail-oa1-x2f.google.com (mail-oa1-x2f.google.com [IPv6:2001:4860:4864:20::2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EFA82044D2
+        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 13:56:51 -0700 (PDT)
+Received: by mail-oa1-x2f.google.com with SMTP id 586e51a60fabf-fe15832ce5so3062830fac.8
+        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 13:56:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=uoflk9ZD42yTqlWFFFtt2B3OyFO93fCK9K2LB5UTMT8=;
-        b=mspAVxZx07cISScTn8vphHUwaC9+I1lJP/rNe4vCeLEPkIMfrye3kzXFsg8y30kNUQ
-         E8axWJREnFK7kgXPPdhb40iW94D8vS94Xa+Q1cGSDK+kpoAIHLcEnO9xUwW2BqULnlQt
-         JgsziaHWOF+CdH+0ugkPKHjk7GSuBnZrUas/E=
+        bh=v7Nak7X+2PmTexgwbA2pTmn1vNdtzIgIfHNl64wkMKY=;
+        b=mEzg4mxTna9YIc14kLmTZ96iT6nIeloTFrcrRA9gSf1SA66PLSTZuK0mo/54Moy1KX
+         tcQBJ2f4ayMmDWuYEqxChHp/Qbz0mZhjKJhth7KTWDw5iMz/fYXzOWys+JLTZzciGqDy
+         p00Km0Ma13AYbY9AgcVdR9H33r37rOt01y91g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=uoflk9ZD42yTqlWFFFtt2B3OyFO93fCK9K2LB5UTMT8=;
-        b=Nf94dXalz1dE7Zz6w8xorCQNlt4UJWMm9HqdV2pY8vH6G4+rh+1pPRgwSqc028joEg
-         OR9JGXh/10QCetJT6Py1OjfdykLU/s/GUnJ0pfJ16O50pXQ39U9Y8Pnug84DWZ5aN/jq
-         kzb1ZbC+00In39FWOO875zeRuNItyOU+h9qEpDKLRg/osFv/QnTCYQhlP31OD2mE0IcU
-         1AUlzp85Bubbv2SzX0tKKu8B8UvRzqpv3ftHfQuUKgqmEy2Qd8n2cKWhBp3fDzze9koS
-         vv6HJ0cmm5Ee3jMJk3Aos3v1j+v92iLAzzREr3fCF2FmlhBopJYOK4zWU2R2zAlFssxA
-         egmg==
-X-Gm-Message-State: AOAM5314U2vTGFohhXSIf8/g7MrB4Oq/y5vMUw1BjXMBsRd+stFeeqgZ
-        6StSUhFOJBGgzJYvZ5zW41kdvv+KeGEk9qobN2CYHg==
-X-Google-Smtp-Source: ABdhPJyIaQ3UiUYUvaiSPO44e3POU/qNgkGu5ZFpgew9NSUx88rB+R+DEX5E3FMCjq8MpcqYcFKBsJcgHwyAMwkkIzQ=
+        bh=v7Nak7X+2PmTexgwbA2pTmn1vNdtzIgIfHNl64wkMKY=;
+        b=Yp4n+pNq968M/jtLhAkED0ZwCJTjdJalXcVqDWrks+avstEJ49MClvuoDkUp/ljbfU
+         AvF0ey3gDwDdT4Lrs6v34fhTlG3eXdQsNJ/ppRcKahfPDRtTec5RiuKCeh28NhaULcA6
+         5bB2CplpoLcjUcdlBWGgCzM1xGd6gDQXw91AilU0u+Y6C4+ANdj95TDRQPYST/xYr9i3
+         Pa0+bKILXfGuSHRUkGc2YG+6zFSVmfS8ImnlsXyDO2DI+TxIjS0LYa4HHksVyuzNZ+fK
+         IbLlCuF/Dk+Md9okYsn2es6oZsvwmXXVNpUeYMKgAyn8X/8q0l3ArSa3ixBhmTgxr7kw
+         tPyA==
+X-Gm-Message-State: AOAM531HjTApbnxiqBzn98og0mG1lZ4IQeP4OwwAypHMX+S13uUZ2r6L
+        BYS3RlZyLykL5sMl3/RwHE7Wci+DIeLU2OoHyMqRGA==
+X-Google-Smtp-Source: ABdhPJxabmpsfSGW+bvn77sCFVrRP3NgpCd+ghOBpTDAkTie/k6DjxTP2EftIQ8wF8o2G0mJU2Xaer735XNxODj6Ncw=
 X-Received: by 2002:a05:6870:240d:b0:f1:b878:e97c with SMTP id
- n13-20020a056870240d00b000f1b878e97cmr3367934oap.193.1654721794575; Wed, 08
- Jun 2022 13:56:34 -0700 (PDT)
+ n13-20020a056870240d00b000f1b878e97cmr3368428oap.193.1654721810576; Wed, 08
+ Jun 2022 13:56:50 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 8 Jun 2022 13:56:34 -0700
+ HTTPREST; Wed, 8 Jun 2022 13:56:50 -0700
 MIME-Version: 1.0
-In-Reply-To: <20220608120723.2987843-3-dmitry.baryshkov@linaro.org>
-References: <20220608120723.2987843-1-dmitry.baryshkov@linaro.org> <20220608120723.2987843-3-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220608120723.2987843-4-dmitry.baryshkov@linaro.org>
+References: <20220608120723.2987843-1-dmitry.baryshkov@linaro.org> <20220608120723.2987843-4-dmitry.baryshkov@linaro.org>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.10
-Date:   Wed, 8 Jun 2022 13:56:34 -0700
-Message-ID: <CAE-0n53UGHQXcU++xk+sXxNTg78_Na=Cw4Jjtmn_JtknW=r+5w@mail.gmail.com>
-Subject: Re: [PATCH v2 02/12] dt-bindings: display/msm: hdmi: mark old GPIO
- properties as deprecated
+Date:   Wed, 8 Jun 2022 13:56:50 -0700
+Message-ID: <CAE-0n538RnLT0KgLhZVfowmWNAmVmSJ3AaJUOCxgsToL6+VmgA@mail.gmail.com>
+Subject: Re: [PATCH v2 03/12] dt-bindings: display/msm: hdmi: mark
+ hdmi-mux-supply as deprecated
 To:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -73,10 +73,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Dmitry Baryshkov (2022-06-08 05:07:13)
-> Mark obsolete GPIO properties as deprecated. They are not used by
-> existing device trees. While we are at it, also drop them from the
-> schema example.
+Quoting Dmitry Baryshkov (2022-06-08 05:07:14)
+> hdmi-mux-supply is not used by the SoC's HDMI block, it is thought to
+> power up the external logic. Thus it should not be a part of HDMI
+> bindings, but it should be declared at some other device in the DT (like
+> HDMI mux, bridge, etc). Mark it as deprecated.
 >
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
