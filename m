@@ -2,85 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30AB0542BEC
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 11:48:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51037542BF9
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 11:51:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235408AbiFHJsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 05:48:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36374 "EHLO
+        id S235451AbiFHJuh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 05:50:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235103AbiFHJrt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 05:47:49 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D92B99B1A7;
-        Wed,  8 Jun 2022 02:15:44 -0700 (PDT)
-X-UUID: 7cc79328284944a88504c762acb1b5d6-20220608
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:f4e56451-adb2-47dc-8874-c3ca6c3699ec,OB:0,LO
-        B:0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:5
-X-CID-META: VersionHash:2a19b09,CLOUDID:3b89a17e-c8dc-403a-96e8-6237210dceee,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:0,BEC:nil
-X-UUID: 7cc79328284944a88504c762acb1b5d6-20220608
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1423809204; Wed, 08 Jun 2022 17:15:38 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Wed, 8 Jun 2022 17:15:37 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Wed, 8 Jun 2022 17:15:37 +0800
-Message-ID: <09dac512543c3865b5fd7d3926e36e0df190e097.camel@mediatek.com>
-Subject: Re: [PATCH v10 18/21] drm/mediatek: Add mt8195 Embedded DisplayPort
- driver
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        Guillaume Ranquet <granquet@baylibre.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        "Daniel Vetter" <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chunfeng Yun =?UTF-8?Q?=28=E4=BA=91=E6=98=A5=E5=B3=B0=29?= 
-        <Chunfeng.Yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, "Helge Deller" <deller@gmx.de>,
-        Jitao Shi =?UTF-8?Q?=28=E7=9F=B3=E8=AE=B0=E6=B6=9B=29?= 
-        <jitao.shi@mediatek.com>
-CC:     Markus Schneider-Pargmann <msp@baylibre.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>
-Date:   Wed, 8 Jun 2022 17:15:36 +0800
-In-Reply-To: <6aa6e07728f67c86a6c50f32e3cb461012b60409.camel@mediatek.com>
-References: <20220523104758.29531-1-granquet@baylibre.com>
-         <20220523104758.29531-19-granquet@baylibre.com>
-         <0bd8b0c66b9e2a1b63280e7eab63048bee7fe786.camel@mediatek.com>
-         <8af7938ae9244e4b7caf62e0c6ce0bcdddc13889.camel@mediatek.com>
-         <358331497a5ff431d46bfea9c5c9dcadfaaa9a63.camel@mediatek.com>
-         <6aa6e07728f67c86a6c50f32e3cb461012b60409.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S235480AbiFHJuV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 05:50:21 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8848B392A2B
+        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 02:18:38 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id x5so21124876edi.2
+        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 02:18:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=uslo1ay+/qxoDJknXX4jPIC6SbHTLg2hMT/co1gVHAM=;
+        b=Pqt7muh1OBZiOFSiS3jyVF1QSLKEUn1uSY8nr2V3ACJvzmkgVnQHkAfGVZauD+0c1v
+         +hbhGHn5MnERl91/CB0MMUI9XDTrcXhx0xM3sYOanaEnHzpdQmnI3TNih+WK9C1iHNkT
+         xYWWuW3xA5Ocf/tmlVbVefF7Jso7rh5Jh4AGyQ0BuqDFP19TMjU4BRRmRMAqtP+wrr2c
+         1hK3Qb1ssTEMomdCVyzMefEjWQ98Tl0LZxhibkrlEE8aFG/MV2Mv36nNxUfUbo2ChLCz
+         iEzuVGRJ22qzlV6VKnZGcI7LF9aLW+tFAh1BdCSbZAEdRsoACcYubLtMyucU9tKAXSi5
+         /1aQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=uslo1ay+/qxoDJknXX4jPIC6SbHTLg2hMT/co1gVHAM=;
+        b=NH4n/UO7urOA7IJJg2nBRS6hpS19WQSOWTUyNU9pyXUpEKpxONmxwWW7g33KCXlDCq
+         Dn28ud0KOgmNocpuA/xk8i93lGMP7ybSTdRMBMU4SaxtqwVaJbwatxiWO4bqRjZp9oow
+         fE00va5OXGMxWVqS+R+YsIBSo+KoQFPsWgGnk1DCa3ktyydpSsWm8Q2sPjb3QNY9gI6l
+         QcApmjRpQXB1VeFWX3rBcHt+EWpkSC6vZ05dXUMPO3N3OY28s241QU0YQqoJnv7udumx
+         zdI4aYwov37IuQtD3OG75mVHacQBK+UEhHb7p3NjfFDV8oNFyqIGVL+JK7bBIjJCFm0V
+         +A6A==
+X-Gm-Message-State: AOAM53139i6dOtFa8IwxsR2sYc1RtVUPokrH1ykLxHtXsL+z57tophPV
+        hj9N0wxnGzUKnVK1g8qkZlqeZA==
+X-Google-Smtp-Source: ABdhPJxhwRETD56REVG88NNrnjg9TIUTndzhZYmh/uo+HYu0/kJkj0sbCqXQDYyYFhdRJ09ufgeBng==
+X-Received: by 2002:aa7:d9d9:0:b0:42d:f9e4:49e0 with SMTP id v25-20020aa7d9d9000000b0042df9e449e0mr37661598eds.299.1654679916702;
+        Wed, 08 Jun 2022 02:18:36 -0700 (PDT)
+Received: from [192.168.0.190] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id e1-20020a1709062c0100b0070bdc059ab2sm7432535ejh.138.2022.06.08.02.18.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Jun 2022 02:18:36 -0700 (PDT)
+Message-ID: <ba499783-1794-1c00-348a-d912c9562e1e@linaro.org>
+Date:   Wed, 8 Jun 2022 11:18:31 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 3/7] dt-bindings: usb: Add Type-C switch binding
+Content-Language: en-US
+To:     Prashant Malani <pmalani@chromium.org>,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+Cc:     bleung@chromium.org, swboyd@chromium.org,
+        heikki.krogerus@linux.intel.com,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        =?UTF-8?B?Sm9zw6kgRXhww7NzaXRv?= <jose.exposito89@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>, Pin-Yen Lin <treapking@chromium.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Tzung-Bi Shih <tzungbi@google.com>,
+        Xin Ji <xji@analogixsemi.com>
+References: <20220607190131.1647511-1-pmalani@chromium.org>
+ <20220607190131.1647511-4-pmalani@chromium.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220607190131.1647511-4-pmalani@chromium.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,257 +100,115 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Rex:
-
-On Wed, 2022-06-08 at 16:43 +0800, Rex-BC Chen wrote:
-> On Wed, 2022-06-08 at 10:23 +0800, CK Hu wrote:
-> > Hi, Rex:
-> > 
-> > On Tue, 2022-06-07 at 20:24 +0800, Rex-BC Chen wrote:
-> > > On Tue, 2022-06-07 at 14:21 +0800, CK Hu wrote:
-> > > > Hi, Rex:
-> > > > 
-> > > > On Mon, 2022-05-23 at 12:47 +0200, Guillaume Ranquet wrote:
-> > > > > From: Markus Schneider-Pargmann <msp@baylibre.com>
-> > > > > 
-> > > > > This patch adds a DisplayPort driver for the Mediatek mt8195
-> > > > > SoC.
-> > > > > 
-> > > > > It supports the mt8195, the embedded DisplayPort units. It
-> > > > > offers
-> > > > > DisplayPort 1.4 with up to 4 lanes.
-> > > > > 
-> > > > > The driver creates a child device for the phy. The child
-> > > > > device
-> > > > > will
-> > > > > never exist without the parent being active. As they are
-> > > > > sharing
-> > > > > a
-> > > > > register range, the parent passes a regmap pointer to the
-> > > > > child
-> > > > > so
-> > > > > that
-> > > > > both can work with the same register range. The phy driver
-> > > > > sets
-> > > > > device
-> > > > > data that is read by the parent to get the phy device that
-> > > > > can
-> > > > > be
-> > > > > used
-> > > > > to control the phy properties.
-> > > > > 
-> > > > > This driver is based on an initial version by
-> > > > > Jason-JH.Lin <jason-jh.lin@mediatek.com>.
-> > > > > 
-> > > > > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > > > > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > > > > ---
-> > > > 
-> > > > [snip]
-> > > > 
-> > > > > +
-> > > > > +static irqreturn_t mtk_dp_hpd_event_thread(int hpd, void
-> > > > > *dev)
-> > > > > +{
-> > > > > +	struct mtk_dp *mtk_dp = dev;
-> > > > > +	int event;
-> > > > > +	u8 buf[DP_RECEIVER_CAP_SIZE] = {};
-> > > > > +
-> > > > > +	event = mtk_dp_plug_state(mtk_dp) ?
-> > > > > connector_status_connected
-> > > > > :
-> > > > > +						  connector_sta
-> > > > > tus_disc
-> > > > > onnected;
-> > > > > +
-> > > > > +	if (event < 0)
-> > > > 
-> > > > event is always > 0, isn't it?
-> > > > 
-> > > 
-> > > Hello CK,
-> > > 
-> > > ok, I will move this to dp patch.
-> > > 
-> > > > > +		return IRQ_HANDLED;
-> > > > > +
-> > > > > +	if (mtk_dp->drm_dev) {
-> > > > > +		dev_info(mtk_dp->dev,
-> > > > > "drm_helper_hpd_irq_event\n");
-> > > > > +		drm_helper_hpd_irq_event(mtk_dp->bridge.dev);
-> > > > 
-> > > > I think this ISR would come once. If bridge has not attached,
-> > > > the
-> > > > drm
-> > > > core would lost this event. Maybe you should enable eDP
-> > > > hardware
-> > > > after
-> > > > bridge attached or send this event when attached.
-> > > > 
-> > > 
-> > > for edp patch, I will move it to (mtk_dp_bridge_attach).
-> > > for dp patch, I will add it back.
-> > 
-> > I find out that mtk_dp_poweron() is in top of
-> > mtk_dp_bridge_attach().
-> > If move mtk_dp_poweron() to bottom of mtk_dp_bridge_attach(),
-> > mtk_dp-
-> > > drm_dev would not be NULL here. So we could drop this checking.
-> > > 
+On 07/06/2022 21:00, Prashant Malani wrote:
+> Introduce a binding which represents a component that can control the
+> routing of USB Type-C data lines as well as address data line
+> orientation (based on CC lines' orientation).
 > 
-> Hello CK,
+> Signed-off-by: Prashant Malani <pmalani@chromium.org>
+> ---
+>  .../devicetree/bindings/usb/typec-switch.yaml | 76 +++++++++++++++++++
+>  1 file changed, 76 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/typec-switch.yaml
 > 
-> If we failed to setup phy(ret!=0), we alos need to deattach this
-> bridge.
-> I don't think  it's a good idea just for remove this.
+> diff --git a/Documentation/devicetree/bindings/usb/typec-switch.yaml b/Documentation/devicetree/bindings/usb/typec-switch.yaml
+> new file mode 100644
+> index 000000000000..60a600a63fef
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/typec-switch.yaml
+> @@ -0,0 +1,76 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/typec-switch.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: USB Type-C Switch
+> +
+> +maintainers:
+> +  - Prashant Malani <pmalani@chromium.org>
+> +
+> +description:
+> +  A USB Type-C switch represents a component which routes USB Type-C data
+> +  lines to various protocol host controllers (e.g USB, VESA DisplayPort,
+> +  Thunderbolt etc.) depending on which mode the Type-C port, port partner
+> +  and cable are operating in. It can also modify lane routing based on
+> +  the orientation of a connected Type-C peripheral.
+> +
+> +properties:
+> +  compatible:
+> +    items:
 
-OK, move mtk_dp_hwirq_enable() out of mtk_dp_poweron() and to the
-bottom of mtk_dp_bridge_attach(). irq is not part of power.
+Single item, so no need for items.
 
-> 
-> > > > > +	}
-> > > > > +
-> > > > > +	if (mtk_dp->train_info.cable_state_change) {
-> > > > 
-> > > > Executing this thread imply cable_state_change = true, so drop
-> > > > cable_state_change.
-> > > > 
-> > > 
-> > > In mtk_dp_hpd_isr_handler(), there is another irq
-> > > "MTK_DP_HPD_INTERRUPT" which means the sink devices give a
-> > > interrupt
-> > > to
-> > > source device. it's not about connected status, so I think we
-> > > still
-> > > need this.
-> > 
-> > In bottom of mtk_dp_hpd_isr_handler(), the code is:
-> > 
-> > +	train_info->cable_state_change = true;
-> > +
-> > +	return IRQ_WAKE_THREAD;
-> > 
-> > This thread is called only when return IRQ_WAKE_THREAD, and before
-> > return IRQ_WAKE_THREAD, train_info->cable_state_change is always
-> > set
-> > to
-> > true. So in this thread, train_info->cable_state_change must be
-> > true.
-> > 
-> 
-> As mentioned, this irq handler function is not only for connected
-> status.
-> 
-> this could be return if this irq is interrupt from sink device.
-> +	if (!(train_info->irq_status &
-> +	      (MTK_DP_HPD_CONNECT | MTK_DP_HPD_DISCONNECT)))
-> +		return IRQ_HANDLED;
+> +      - enum:
+> +          - typec-switch
+> +
+> +  mode-switch:
+> +    type: boolean
+> +    description: Specify that this switch can handle alternate mode switching.
+> +
+> +  orientation-switch:
+> +    type: boolean
+> +    description: Specify that this switch can handle orientation switching.
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +    description: OF graph binding modelling data lines to the Type-C switch.
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Link between the switch and a Type-C connector.
+> +
+> +    required:
+> +      - port@0
+> +
+> +required:
+> +  - compatible
+> +  - ports
+> +
+> +anyOf:
+> +  - required:
+> +      - mode-switch
+> +  - required:
+> +      - orientation-switch
+> +
+> +additionalProperties: true
 
-According to [1], return IRQ_WAKE_THREAD to wake up thread. So return
-IRQ_HANDLED would not wake up thread.
+Why true? I see usb-connector has it from commit 6a0e321ea735
+("dt-bindings: Explicitly allow additional properties in common schemas")
+ but that looks also weird - this is not a common schema, but a
+complete, generic one.
 
-[1] 
-https://www.kernel.org/doc/htmldocs/kernel-api/API-request-threaded-irq.html
+> +
+> +examples:
+> +  - |
+> +    anx7625 {
 
-Regards,
-CK
+Generic node name.
 
-> 
-> BRs,
-> Bo-Chen
-> > Regards,
-> > CK
-> > 
-> > > 
-> > > > > +		mtk_dp->train_info.cable_state_change = false;
-> > > > > +
-> > > > > +		mtk_dp->train_state =
-> > > > > MTK_DP_TRAIN_STATE_STARTUP;
-> > > > > +
-> > > > > +		if (!mtk_dp->train_info.cable_plugged_in ||
-> > > > > +		    !mtk_dp_plug_state(mtk_dp)) {
-> > > > 
-> > > > I do not like two variable to present one thing. If
-> > > > 
-> > > > mtk_dp->train_info.cable_plugged_in = false
-> > > > and
-> > > > mtk_dp_plug_state(mtk_dp) = ture
-> > > > 
-> > > > What does this mean? I think this mean 'now' is connected
-> > > > because
-> > > > cable_plugged_in is old information and mtk_dp_plug_state() is
-> > > > current
-> > > > information.
-> > > > 
-> > > > But I would like to keep cable_plugged_in and drop
-> > > > mtk_dp_plug_state()
-> > > > because cable_plugged_in would be changed in isr and it would
-> > > > be
-> > > > the
-> > > > same as mtk_dp_plug_state().
-> > > > 
-> > > > Regards,
-> > > > CK
-> > > > 
-> > > 
-> > > ok, I will drop this.
-> > > 
-> > > BRs,
-> > > Rex
-> > > 
-> > > > > +			mtk_dp_video_mute(mtk_dp, true);
-> > > > > +
-> > > > > +			mtk_dp_initialize_priv_data(mtk_dp);
-> > > > > +			mtk_dp_set_idle_pattern(mtk_dp, true);
-> > > > > +			if (mtk_dp->has_fec)
-> > > > > +				mtk_dp_fec_enable(mtk_dp,
-> > > > > false);
-> > > > > +
-> > > > > +			mtk_dp_update_bits(mtk_dp,
-> > > > > MTK_DP_TOP_PWR_STATE,
-> > > > > +					   DP_PWR_STATE_BANDGAP
-> > > > > _TPLL,
-> > > > > +					   DP_PWR_STATE_MASK);
-> > > > > +		} else {
-> > > > > +			mtk_dp_update_bits(mtk_dp,
-> > > > > MTK_DP_TOP_PWR_STATE,
-> > > > > +					   DP_PWR_STATE_BANDGAP
-> > > > > _TPLL_LA
-> > > > > NE,
-> > > > > +					   DP_PWR_STATE_MASK);
-> > > > > +			drm_dp_read_dpcd_caps(&mtk_dp->aux,
-> > > > > buf);
-> > > > > +			mtk_dp->train_info.link_rate =
-> > > > > +				min_t(int, mtk_dp-
-> > > > > > max_linkrate,
-> > > > > 
-> > > > > +				      buf[mtk_dp-
-> > > > > > max_linkrate]);
-> > > > > 
-> > > > > +			mtk_dp->train_info.lane_count =
-> > > > > +				min_t(int, mtk_dp->max_lanes,
-> > > > > +				      drm_dp_max_lane_count(buf
-> > > > > ));
-> > > > > +		}
-> > > > > +	}
-> > > > > +
-> > > > > +	if (mtk_dp->train_info.irq_status &
-> > > > > MTK_DP_HPD_INTERRUPT) {
-> > > > > +		dev_dbg(mtk_dp->dev, "MTK_DP_HPD_INTERRUPT\n");
-> > > > > +		mtk_dp->train_info.irq_status &=
-> > > > > ~MTK_DP_HPD_INTERRUPT;
-> > > > > +		mtk_dp_hpd_sink_event(mtk_dp);
-> > > > > +	}
-> > > > > +
-> > > > > +	return IRQ_HANDLED;
-> > > > > +}
-> > > > > +
-> > > > 
-> > > > 
-> > > 
-> > > 
-> > 
-> > 
-> 
-> 
+> +      typecswitch {
 
+I guess here as well, so "usb-switch"?
+
+> +        compatible = "typec-switch";
+> +        mode-switch;
+> +        orientation-switch;
+> +        ports {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          port@0 {
+> +            reg = <0>;
+> +            anx_ep: endpoint {
+> +              remote-endpoint = <&typec_controller>;
+> +            };
+> +          };
+> +        };
+> +      };
+> +    };
+
+
+Best regards,
+Krzysztof
