@@ -2,180 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B3085429E9
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 10:53:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA77C5429E6
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 10:53:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232265AbiFHIvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 04:51:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55268 "EHLO
+        id S231970AbiFHIwb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 04:52:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231288AbiFHIvI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 04:51:08 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B32491AFAD4;
-        Wed,  8 Jun 2022 01:08:22 -0700 (PDT)
-X-UUID: 3c3a4f0d82bf45c38212bc910e100c7c-20220608
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.5,REQID:8d42f104-f239-479f-95c7-ff76915e1037,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:2a19b09,CLOUDID:79af13e5-2ba2-4dc1-b6c5-11feb6c769e0,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:-5,EDM:-3,IP:nil,URL:1,File:ni
-        l,QS:0,BEC:nil
-X-UUID: 3c3a4f0d82bf45c38212bc910e100c7c-20220608
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <guodong.liu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 2025737687; Wed, 08 Jun 2022 16:08:15 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Wed, 8 Jun 2022 16:08:14 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 8 Jun 2022 16:08:13 +0800
-Message-ID: <1332454e2733d48fdf2396bcaed37bc3e33616b5.camel@mediatek.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: mt8192: Switch
- drive-strength-adv for -microamp
-From:   Guodong Liu <guodong.liu@mediatek.com>
-To:     "=?ISO-8859-1?Q?N=EDcolas?= F. R. A. Prado" <nfraprado@collabora.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-CC:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, <kernel@collabora.com>,
+        with ESMTP id S232505AbiFHIv5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 04:51:57 -0400
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99C8A26A926;
+        Wed,  8 Jun 2022 01:09:21 -0700 (PDT)
+Received: by mail-pl1-x629.google.com with SMTP id h1so16965661plf.11;
+        Wed, 08 Jun 2022 01:09:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=wzCO2PHgpPzaCVBVfWdrrgnry8jUU6uemsouKbLB4Pc=;
+        b=kPTykBE3ERcs7XgModDK/vMFZHXgn8br/ljamm2UtAtie5/HYQ5y7diDf8ds42B06m
+         xMN7sBQ5vJhuyosrGLubGqgaFtggMbK1UtZAoJPbvOkn9tNFr+jAwJmLaFVfnZ9Iehwh
+         yCd5jHtWUjMTC//CoNqgNMsOpYu47NRQOOoODVgqHQhwZPabgstDwKW7MCVw/UMSllwQ
+         T0e56yNmXH3ns+T9gZUiPge5WDMr6CfTmbF182AbnbyoXSgc9lerKFCkD5AvA05BmPmQ
+         kkFu/VewHjANXX4XgZSnvO+OAGpuU7Hm6gl1YS3YVmj5o46YvCUNeR3dIQ4QNOs/68Dz
+         Aqrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=wzCO2PHgpPzaCVBVfWdrrgnry8jUU6uemsouKbLB4Pc=;
+        b=zDsRGiv0lXAwv8dbvVxodiVKxaFc97LKBsUczOjZVtSLFA3FrF52e4KETf/bWNfJUL
+         kUvXpCJWpHuKn+EPM+TjolRGSfUtV3UNXALTL6zsauLu4hK1vjERSb8WjHMoVa9nE9Xy
+         uU0VIN9sUq/o4EhLLq0gb0VGZ6AqZwXQ+rplnuvdVREoZDkcuAiGT5AsNvVE4PEHWOiJ
+         giKnWQ3jvzYKO6oWXSN0e6eU0z1DP01Jkb8gjNKHUwdy0ZakTbbSHuI3vJoVhPuRF1pD
+         EJ7M5gh59fmq7Fk5GkFdBKlajlEhMOlBCxPwvxQ08Q5nSXY0guLav8UvgM+G7z2H/A0C
+         UT2w==
+X-Gm-Message-State: AOAM533bWsggDvPrek4f9Tgy7irsTpoc/yQ7VMX8wjgiJPV6hEXGYvLE
+        VHrQ7M7XqAhDbYjzcSuHFwE=
+X-Google-Smtp-Source: ABdhPJwy7w1/KLYXns+KpuB2zm2khovi9eQl2y3X3BbPGCbRCANZ/itnaL9+SU6NpnPv35n7LVPfvQ==
+X-Received: by 2002:a17:90b:1101:b0:1e8:5df5:b2ac with SMTP id gi1-20020a17090b110100b001e85df5b2acmr22164892pjb.239.1654675760849;
+        Wed, 08 Jun 2022 01:09:20 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id t18-20020a170902e85200b0015e8d4eb1c8sm14008098plg.18.2022.06.08.01.09.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Jun 2022 01:09:20 -0700 (PDT)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     bcm-kernel-feedback-list@broadcom.com,
+        William Zhang <william.zhang@broadcom.com>,
+        Linux ARM List <linux-arm-kernel@lists.infradead.org>
+Cc:     joel.peshkin@broadcom.com, tomer.yacoby@broadcom.com,
+        kursad.oney@broadcom.com, philippe.reynes@softathome.com,
+        dan.beygelman@broadcom.com, samyon.furman@broadcom.com,
+        anand.gore@broadcom.com, florian.fainelli@broadcom.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Wed, 8 Jun 2022 16:08:13 +0800
-In-Reply-To: <20220531221954.160036-2-nfraprado@collabora.com>
-References: <20220531221954.160036-1-nfraprado@collabora.com>
-         <20220531221954.160036-2-nfraprado@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/5] arm64: dts: add dts files for bcmbca soc 63158
+Date:   Wed,  8 Jun 2022 01:09:18 -0700
+Message-Id: <20220608080918.1448974-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220601225654.18519-4-william.zhang@broadcom.com>
+References: <20220601225654.18519-1-william.zhang@broadcom.com> <20220601225654.18519-4-william.zhang@broadcom.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-MTK:  N
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
-        SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
------Original Message-----
-From: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com
->, kernel@collabora.com, Nícolas F. R. A. Prado <
-nfraprado@collabora.com>, Krzysztof Kozlowski <
-krzysztof.kozlowski+dt@linaro.org>, Matthias Brugger <
-matthias.bgg@gmail.com>, Rob Herring <robh+dt@kernel.org>, Sean Wang <
-sean.wang@mediatek.com>, devicetree@vger.kernel.org, 
-linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
-linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-Subject: [PATCH v2 1/2] dt-bindings: pinctrl: mt8192: Switch drive-
-strength-adv for -microamp
-Date: Tue, 31 May 2022 18:19:53 -0400
+On Wed,  1 Jun 2022 15:56:51 -0700, William Zhang <william.zhang@broadcom.com> wrote:
+> Add dts for ARMv8 based broadband SoC BCM63158. bcm63158.dtsi is the
+> SoC description dts header and bcm963158.dts is a simple dts file for
+> Broadcom BCM963158 Reference board that only enable the UART port.
+> 
+> Signed-off-by: William Zhang <william.zhang@broadcom.com>
+> 
+> ---
 
-Commit e5fabbe43f3f ("pinctrl: mediatek: paris: Support generic
-PIN_CONFIG_DRIVE_STRENGTH_UA") added support for using
-drive-strength-microamp instead of mediatek,drive-strength-adv.
-
-Since there aren't any users of mediatek,drive-strength-adv on mt8192
-yet, remove this property and add drive-strength-microamp in its place,
-which has a clearer meaning.
-
-While at it, add a new 'if' block to validate that drive-strength and
-drive-strength-microamp aren't used together, since they're mutually
-exclusive.
-
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: AngeloGioacchino Del Regno <
-angelogiocchino.delregno@collabora.com>
----
-
-Changes in v2:
-- Added 'if' block to make drive-strength and drive-strength-microamp
-  mutually exclusive
-- Changed commit title to be more precise
-- Dropped Fixes tag
-
- .../bindings/pinctrl/pinctrl-mt8192.yaml      | 35 ++++++-------------
- 1 file changed, 10 insertions(+), 25 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-
-mt8192.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-
-mt8192.yaml
-index c90a132fbc79..c8092b218f2f 100644
---- a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8192.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8192.yaml
-@@ -80,31 +80,8 @@ patternProperties:
-               dt-bindings/pinctrl/mt65xx.h. It can only support
-2/4/6/8/10/12/14/16mA in mt8192.
-             enum: [2, 4, 6, 8, 10, 12, 14, 16]
- 
--          mediatek,drive-strength-adv:
--            description: |
--              Describe the specific driving setup property.
--              For I2C pins, the existing generic driving setup can
-only support
--              2/4/6/8/10/12/14/16mA driving. But in specific driving
-setup, they
--              can support 0.125/0.25/0.5/1mA adjustment. If we enable
-specific
--              driving setup, the existing generic setup will be
-disabled.
--              The specific driving setup is controlled by E1E0EN.
--              When E1=0/E0=0, the strength is 0.125mA.
--              When E1=0/E0=1, the strength is 0.25mA.
--              When E1=1/E0=0, the strength is 0.5mA.
--              When E1=1/E0=1, the strength is 1mA.
--              EN is used to enable or disable the specific driving
-setup.
--              Valid arguments are described as below:
--              0: (E1, E0, EN) = (0, 0, 0)
--              1: (E1, E0, EN) = (0, 0, 1)
--              2: (E1, E0, EN) = (0, 1, 0)
--              3: (E1, E0, EN) = (0, 1, 1)
--              4: (E1, E0, EN) = (1, 0, 0)
--              5: (E1, E0, EN) = (1, 0, 1)
--              6: (E1, E0, EN) = (1, 1, 0)
--              7: (E1, E0, EN) = (1, 1, 1)
--              So the valid arguments are from 0 to 7.
--            $ref: /schemas/types.yaml#/definitions/uint32
--            enum: [0, 1, 2, 3, 4, 5, 6, 7]
-
-Can't remove mediatek,drive-strength-adv property, I2C pins will ofter
-use this property
-
-+          drive-strength-microamp:
-+            enum: [125, 250, 500, 1000]
- 
-           mediatek,pull-up-adv:
-             description: |
-@@ -138,6 +115,14 @@ patternProperties:
-         required:
-           - pinmux
- 
-+        allOf:
-+          - if:
-+              required:
-+                - drive-strength-microamp
-+            then:
-+              properties:
-+                drive-strength: false
-+
-         additionalProperties: false
- 
-Property drive-strength-microamp and drive-strength aren't exclusive,
-just i2c pins support drive-strength-microamp property .
-
- allOf:
-
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree-arm64/next, thanks!
+--
+Florian
