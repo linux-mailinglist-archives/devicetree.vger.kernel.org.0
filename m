@@ -2,98 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71CC3542C82
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 12:04:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1E2F542CA0
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 12:09:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235722AbiFHKEi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 06:04:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39908 "EHLO
+        id S235963AbiFHKJq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 06:09:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236353AbiFHKDm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 06:03:42 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D52E717EF4C;
-        Wed,  8 Jun 2022 02:47:06 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 431BC619C5;
-        Wed,  8 Jun 2022 09:47:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 744BFC34116;
-        Wed,  8 Jun 2022 09:47:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654681625;
-        bh=Jorqtsqre+knYuVCMZVf8w1e+vT3PzQP8A6uE9eOcy0=;
-        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
-        b=ia1uTWThiKJKkirUArp2zjiq0kobE6RwKYmZKHNbgpZTPkbpYUQFUslRjCXTXLG0f
-         eLCLHr+lnNY1BNrvwwu5fIG9tNAMo8hpMI+5TKr8C4hiZ0i1bSYC4aWGa+TburuZ9m
-         /X6c6Fe0X8a6lrrrUeIDg6iS+Sx6bpm8O0o3ISgHIKIsyIvVdH1wWi+mzkzbl0UDSq
-         IAOzeCx9822Y5RQzLC31P8AQCUNazUqO17x5xchx1vq8Fj/nQ0TL9sy0475Q0r2FJK
-         D7kx9cY06b0+oUhjePOojzbIG/EcgkGt9QJOticwFliv/HyIl9EBX39Nrpzyimqb76
-         jIfjRBOdvUgtg==
-Date:   Wed, 8 Jun 2022 11:47:00 +0200 (CEST)
-From:   Jiri Kosina <jikos@kernel.org>
-To:     Douglas Anderson <dianders@chromium.org>
-cc:     Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        with ESMTP id S236189AbiFHKIM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 06:08:12 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45DA51B0780;
+        Wed,  8 Jun 2022 02:51:36 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id j7so18116515pjn.4;
+        Wed, 08 Jun 2022 02:51:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=fauG2+ouC/pE9fJBFguldPR02kf/OkXrX9OF5a1epKw=;
+        b=HMDNWEhCcLSUhdf09KbZLJllzy0AHoA5hc7cY+4DfDKpW3uhdJJGQTM+yjNkBMqLC0
+         rel0nka4lEpbb+UZaUt2hdT2PndkqBx9zUxAjumk+h47hcHBM/kwuB01UJ2vi57TYn1S
+         bQYn+pk+nuP3R1TtODW7OP1xUqdV8AsjP9m2AQQU4wWsRjO8MqdDt49f8k7fRbhjrEGK
+         BR8Ad9MoyjpPqYQf/1w6npeHENegaiZkU1umUoVJlpoj/YNRrQ4d2io8IAjflbzm+L4R
+         1sJN0vFwes29VAAdtCA3+nhPFeSHeqwhgIU1IYGqBiwoBG1qB6AG5kzC/m4B/DwShDUt
+         UHyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=fauG2+ouC/pE9fJBFguldPR02kf/OkXrX9OF5a1epKw=;
+        b=JVdBqo2+E22LHn0+jbrBhtHLC4D9x/nr1ATfVZkTshNFcksdet+30xZEa7NthhUoLV
+         GGf7k6uYWt8Ehvws9lpadtEkg8JcZJ1uAhJ+cHPSPCerPicL6AClCRknbmjVsnRmpMND
+         IHZeKRHfUUfd1tqFegcU5ETPPCK2x1f6g4JataOC8HUSuBkJowNDApfsdP4QCFXdl/WY
+         Noq6+8Kfrdhm8jo+BSDUdFAruzehufdkIobuqQO4K9uNQggVWOG72vTRQCYuNI656lA+
+         uXlRPS8TSnoSyA/Cz5HQAwGGFzZkmT71Q6svoWvVJihMiVxezhLPHJXKqWq2VJJZaqug
+         lkZg==
+X-Gm-Message-State: AOAM530Z8sJk7EXq1TKqNQwu2/9sN0mIPVSd8HMvxijy9GhGFVQ7WU3l
+        WnzbyzS4Ahw3llQ1hyEfSVU=
+X-Google-Smtp-Source: ABdhPJxEWS/rHoQGxKsD3tIotODBmp2FZwHZA31x813cDASnCP9ZP49/qjqKKz0GqJChqK0YicDI1A==
+X-Received: by 2002:a17:90b:3b8a:b0:1e2:ee1e:6340 with SMTP id pc10-20020a17090b3b8a00b001e2ee1e6340mr36776831pjb.38.1654681895328;
+        Wed, 08 Jun 2022 02:51:35 -0700 (PDT)
+Received: from [192.168.43.80] (subs03-180-214-233-80.three.co.id. [180.214.233.80])
+        by smtp.gmail.com with ESMTPSA id e13-20020aa798cd000000b0050dc76281b8sm15275765pfm.146.2022.06.08.02.51.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Jun 2022 02:51:33 -0700 (PDT)
+Message-ID: <28ec9f61-3086-a12e-3e8d-33f855f916fc@gmail.com>
+Date:   Wed, 8 Jun 2022 16:51:26 +0700
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: virt_to_phys outside array bounds warning (GCC 12.1.0)
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Cc:     =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        swboyd@chromium.org, mka@chromium.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: HID: i2c-hid: elan: Introduce bindings
- for Elan eKTH6915
-In-Reply-To: <20220523142257.v2.1.Iedc61f9ef220a89af6a031200a7850a27a440134@changeid>
-Message-ID: <nycvar.YFH.7.76.2206081146490.10851@cbobk.fhfr.pm>
-References: <20220523142257.v2.1.Iedc61f9ef220a89af6a031200a7850a27a440134@changeid>
-User-Agent: Alpine 2.21 (LSU 202 2017-01-01)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        Russell King <linux@armlinux.org.uk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+        linux-kernel@vger.kernel.org, Kees Cook <keescook@chromium.org>,
+        Naresh Kamboju <naresh.kamboju@linaro.org>,
+        Andrew Morton <akpm@linux-foundation.org>
+References: <YqBgWoXQmzVczRDo@debian.me>
+ <e8f8f42b-9df3-d9a1-893e-0f972e27ef80@linaro.org>
+From:   Bagas Sanjaya <bagasdotme@gmail.com>
+In-Reply-To: <e8f8f42b-9df3-d9a1-893e-0f972e27ef80@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 23 May 2022, Douglas Anderson wrote:
+On 6/8/22 16:28, Krzysztof Kozlowski wrote:
+> On 08/06/2022 10:39, Bagas Sanjaya wrote:
+>> Hi everyone,
+>>
+>> When cross-compiling arm 5.19-rc1 kernel using GCC 12.1.0 (armv7 with neon
+>> fpu, multi_v7_defconfig), I got outside array bounds warning pointing to
+>> virt_to_phys() macro:
+>>
+> 
+> Thanks for the report!
+> 
+> I think this was already reported:
+> https://lore.kernel.org/all/CAK8P3a3X0UwQiVNZqvGmSKi8BX6zg=k07+9Q3rDGqHVkc8Hdsg@mail.gmail.com/
+> 
 
-> Like many i2c-hid touchscreen controllers, the Elan eKTH6915
-> controller has a reset gpio. For the Goodix GT7375P touchscreen the
-> decision was to add a new binding rather than trying to add a new GPIO
-> to the existing i2c-hid binding. We'll follow the lead and do it here,
-> too.
-> 
-> SIDE NOTE: the Elan eKTH6915 is a touchscreen _controller_ that's
-> included as a part on some touchscreens. The reset line isn't truly
-> necessary for the functioning of the touchscreen, so it's possible
-> that some designs won't have it hooked up and will just guarantee the
-> power sequencing requirements with RLC circuits. Thus, we'll mark the
-> reset gpio as optional.
-> 
-> Note that if the reset GPIO isn't used there's actually no true need
-> to use the "elan,ekth6915" compatible instead of the "hid-over-i2c" on
-> Linux. However:
-> - Officially using just "hid-over-i2c" for this device violates the
->   existing "hid-over-i2c" bindings. The bindings say that you're not
->   supposed to use "post-power-on-delay-ms" without specifying a more
->   specific compatible. Currently the Linux driver doesn't enforce
->   this, but it violates the bindings to just use
->   "hid-over-i2c". ...and if you're going to add a more specific
->   compatible anyway, might as well do it right.
-> - Using this compatible means we don't need to specify
->   "hid-descr-addr" since it's inferred from the compatible.
-> - Using this compatible means that the regulator names match the names
->   on the Elan datasheet (vcc33 / vccio) vs the generic hid-over-i2c
->   (vdd / vddl).
-> 
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+The report above is for arm64, but similar to this report (arm report).
 
-Now queued in hid.git, thanks.
+> Anyway, for the future:
+> I don't think the CC list matches the problem. Please bisect this issue
+> (since it is reproducible build time, it should be straightforward) to
+> find offending commit and then Cc responsible people and maintainers
+> (scripts/get_maintainer.pl). Ccing half-random people might not get
+> necessary attention.
+> 
+
+I think the most likely culprit is commit 37efe6427dd50e ("[ARM] use asm/sections.h")
+and 14c4a533e0996f ("ARM: 8583/1: mm: fix location of _etext").
+
+
+Thanks.
 
 -- 
-Jiri Kosina
-SUSE Labs
-
+An old man doll... just what I always wanted! - Clara
