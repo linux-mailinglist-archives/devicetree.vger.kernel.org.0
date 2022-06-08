@@ -2,157 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 256335427C8
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 09:46:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B89E8542814
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 09:48:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234123AbiFHHIl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 03:08:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53102 "EHLO
+        id S233965AbiFHHHO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 03:07:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353013AbiFHGQZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 02:16:25 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDA6C12DBCE;
-        Tue,  7 Jun 2022 22:57:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1654667858; x=1686203858;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=5rkPqdmhV7ewS1zsGuSZb/biHuI3KnTqJbyZpR2YbNA=;
-  b=ZyuFuIsEDU91DkcTm8agxiVC1pRP0KN/r9yKfe7/DLqchfokjaKxQ5JU
-   ZiHXhWhrNodXlafydts/2/+BF8NIOv+IvcsAD8KkEWb8w+kYD6xJxuwkB
-   aAyCmsm7cndfeVscI7/6GOoIyXRo2DFdLRp9qKq3MZr4gvNAuQQ4oWKQN
-   8=;
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 07 Jun 2022 22:57:37 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jun 2022 22:57:37 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 7 Jun 2022 22:57:36 -0700
-Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 7 Jun 2022 22:57:30 -0700
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
-        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
-        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
-        <judyhsiao@chromium.org>, <vkoul@kernel.org>
-CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Subject: [PATCH v2 2/2] ASoC: qcom: soundwire: Add software clock gating requirement check
-Date:   Wed, 8 Jun 2022 11:27:04 +0530
-Message-ID: <1654667824-3760-3-git-send-email-quic_srivasam@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1654667824-3760-1-git-send-email-quic_srivasam@quicinc.com>
-References: <1654667824-3760-1-git-send-email-quic_srivasam@quicinc.com>
+        with ESMTP id S1354255AbiFHGT3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 02:19:29 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CAC16B7C5;
+        Tue,  7 Jun 2022 23:08:07 -0700 (PDT)
+X-UUID: 21fa56a84bcc4c0ba6046ed7d93b2971-20220608
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:ffccffab-942d-4b2d-b3e4-cb75cc808314,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:2a19b09,CLOUDID:7ba50de5-2ba2-4dc1-b6c5-11feb6c769e0,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:0,BEC:nil
+X-UUID: 21fa56a84bcc4c0ba6046ed7d93b2971-20220608
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <irui.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1720442951; Wed, 08 Jun 2022 14:08:00 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Wed, 8 Jun 2022 14:07:59 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 8 Jun 2022 14:07:57 +0800
+From:   Irui Wang <irui.wang@mediatek.com>
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tzung-Bi Shih <tzungbi@chromium.org>
+CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Tomasz Figa <tfiga@chromium.org>, <xia.jiang@mediatek.com>,
+        <maoguang.meng@mediatek.com>, kyrie wu <kyrie.wu@mediatek.com>,
+        <srv_heupstream@mediatek.com>
+Subject: [V2,0/2] Enable hardware jpeg encoder for MT8186
+Date:   Wed, 8 Jun 2022 14:07:53 +0800
+Message-ID: <20220608060755.2213-1-irui.wang@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Validate software clock gating required or not and do software
-clock gating on hclk if soundwire is operational and keep it
-running by adding flag in private dat structure.
-This is to avoid conflict between older architectures,
-where software clock gating is not required and on latest
-architectues, where software clock gating is mandatory.
+From: kyrie wu <kyrie.wu@mediatek.com>
 
-Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
----
- drivers/soundwire/qcom.c | 27 ++++++++++++++++++++-------
- 1 file changed, 20 insertions(+), 7 deletions(-)
+This series adds support for MT8186 hardware jpeg encoding.
 
-diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-index 38c3bf5..930aa93 100644
---- a/drivers/soundwire/qcom.c
-+++ b/drivers/soundwire/qcom.c
-@@ -194,6 +194,12 @@ static const struct qcom_swrm_data swrm_v1_5_data = {
- 	.default_cols = 16,
- };
- 
-+static const struct qcom_swrm_data swrm_v1_6_data = {
-+	.default_rows = 50,
-+	.default_cols = 16,
-+	.sw_clk_gate_required = 1,
-+};
-+
- #define to_qcom_sdw(b)	container_of(b, struct qcom_swrm_ctrl, bus)
- 
- static int qcom_swrm_ahb_reg_read(struct qcom_swrm_ctrl *ctrl, int reg,
-@@ -659,7 +665,8 @@ static int qcom_swrm_init(struct qcom_swrm_ctrl *ctrl)
- 	val = FIELD_PREP(SWRM_MCP_FRAME_CTRL_BANK_ROW_CTRL_BMSK, ctrl->rows_index);
- 	val |= FIELD_PREP(SWRM_MCP_FRAME_CTRL_BANK_COL_CTRL_BMSK, ctrl->cols_index);
- 
--	reset_control_reset(ctrl->audio_cgcr);
-+	if (ctrl->audio_cgcr)
-+		reset_control_reset(ctrl->audio_cgcr);
- 
- 	ctrl->reg_write(ctrl, SWRM_MCP_FRAME_CTRL_BANK_ADDR(0), val);
- 
-@@ -1312,6 +1319,15 @@ static int qcom_swrm_probe(struct platform_device *pdev)
- 			return PTR_ERR(ctrl->mmio);
- 	}
- 
-+	if (data->sw_clk_gate_required) {
-+		ctrl->audio_cgcr = devm_reset_control_get_exclusive(dev, "swr_audio_cgcr");
-+		if (IS_ERR(ctrl->audio_cgcr)) {
-+			dev_err(dev, "Failed to get cgcr reset ctrl required for SW gating\n");
-+			ret = PTR_ERR(ctrl->audio_cgcr);
-+			goto err_init;
-+		}
-+	}
-+
- 	ctrl->irq = of_irq_get(dev->of_node, 0);
- 	if (ctrl->irq < 0) {
- 		ret = ctrl->irq;
-@@ -1337,10 +1353,6 @@ static int qcom_swrm_probe(struct platform_device *pdev)
- 	ctrl->bus.compute_params = &qcom_swrm_compute_params;
- 	ctrl->bus.clk_stop_timeout = 300;
- 
--	ctrl->audio_cgcr = devm_reset_control_get_exclusive(dev, "swr_audio_cgcr");
--	if (IS_ERR(ctrl->audio_cgcr))
--		dev_err(dev, "Failed to get audio_cgcr reset required for soundwire-v1.6.0\n");
--
- 	ret = qcom_swrm_get_port_config(ctrl);
- 	if (ret)
- 		goto err_clk;
-@@ -1494,7 +1506,8 @@ static int __maybe_unused swrm_runtime_resume(struct device *dev)
- 		qcom_swrm_get_device_status(ctrl);
- 		sdw_handle_slave_status(&ctrl->bus, ctrl->status);
- 	} else {
--		reset_control_reset(ctrl->audio_cgcr);
-+		if (ctrl->audio_cgcr)
-+			reset_control_reset(ctrl->audio_cgcr);
- 
- 		ctrl->reg_write(ctrl, SWRM_MCP_BUS_CTRL, SWRM_MCP_BUS_CLK_START);
- 		ctrl->reg_write(ctrl, SWRM_INTERRUPT_CLEAR,
-@@ -1559,7 +1572,7 @@ static const struct dev_pm_ops swrm_dev_pm_ops = {
- static const struct of_device_id qcom_swrm_of_match[] = {
- 	{ .compatible = "qcom,soundwire-v1.3.0", .data = &swrm_v1_3_data },
- 	{ .compatible = "qcom,soundwire-v1.5.1", .data = &swrm_v1_5_data },
--	{ .compatible = "qcom,soundwire-v1.6.0", .data = &swrm_v1_5_data },
-+	{ .compatible = "qcom,soundwire-v1.6.0", .data = &swrm_v1_6_data },
- 	{/* sentinel */},
- };
- 
+This series has been tested with both MT8186.
+Encoding worked for this chip.
+
+Patches 1 Adds jpeg encoder dt-bindings for mt8186
+
+Patches 2 set bit mask for jpegenc to support 34bits iova space,
+	which means iova rangement from 0 to 16GB.
+
+Changes compared with v1:
+--rebase on latest media_stage tree
+
+kyrie wu (2):
+  media: media: jpegenc: add mediatek,mt8186-jpgenc compatible
+  media: media: jpegenc: set bit mask for jpegenc
+
+ .../devicetree/bindings/media/mediatek-jpeg-encoder.yaml    | 6 ++++++
+ drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c        | 3 +++
+ 2 files changed, 9 insertions(+)
+
 -- 
-2.7.4
+2.18.0
 
