@@ -2,105 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D26B5431C8
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 15:47:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99BEE5431E4
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 15:49:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240712AbiFHNpT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 09:45:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34176 "EHLO
+        id S240485AbiFHNs7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 09:48:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240706AbiFHNpS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 09:45:18 -0400
-Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0BD0270F04;
-        Wed,  8 Jun 2022 06:45:15 -0700 (PDT)
-Received: by mail-il1-f181.google.com with SMTP id r3so16579809ilt.8;
-        Wed, 08 Jun 2022 06:45:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=nxt4zB3NiDLvrfrp1r/mGAmD2xuuHerTwRdciW5oJ38=;
-        b=z+R6eqdf7XVHc4nbEpE8C7bPKNKboWpA+5z9FdQTor/5ssklxc8/ALyU89J+nn02zU
-         IQn/2LAKrNuzHfEg43ZLeUYRJjGXtLndP325AVgnJ7B6p4ZnkT/bzsETbRNU3/8YLz+p
-         SCYA6lzsRnSPOJKFSYS4DA6pFXpnoPqzvQsuALDsHjNiXVMAFa/9i8uVTbjPPqmhuk7W
-         BxkNBgw/2ysbWTSEmbD/VkIl1jvulW4c3QzPg6/AM7scpkWIz4smqXaZifNFMXeuZ+5Z
-         RtFM/8BUqbn5VgK8fcoXnk8I/2FReB3IDzIny3RZS5/QywZQNuQ8h0+vl7vIkRFhpnd+
-         aq9Q==
-X-Gm-Message-State: AOAM5322G6q8X22XBTfU2RkgCvuxgTrm+rRBQb2PDYZnICn5q80MOX2r
-        xHksPRkpdSKfhX+V60AtOw==
-X-Google-Smtp-Source: ABdhPJzsgg41nY4HIETpdP5gTS2iptitF26o+NqLxOyvONx5rzCV4DuniTOJCbxZxNkm8/k0z0qA+w==
-X-Received: by 2002:a05:6e02:1d18:b0:2d3:bd9f:1a5f with SMTP id i24-20020a056e021d1800b002d3bd9f1a5fmr20404838ila.35.1654695914878;
-        Wed, 08 Jun 2022 06:45:14 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id p3-20020a0566380e8300b0032b74686763sm8079460jas.76.2022.06.08.06.45.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jun 2022 06:45:14 -0700 (PDT)
-Received: (nullmailer pid 1272094 invoked by uid 1000);
-        Wed, 08 Jun 2022 13:45:07 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        with ESMTP id S240563AbiFHNst (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 09:48:49 -0400
+Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 037A75EDF0
+        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 06:48:47 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed30:243a:e14b:d107:1f56])
+        by michel.telenet-ops.be with bizsmtp
+        id gdol2700K1qF9lr06dol04; Wed, 08 Jun 2022 15:48:46 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1nyw3B-003DAi-3L; Wed, 08 Jun 2022 15:48:45 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1nyw39-008L1Y-NN; Wed, 08 Jun 2022 15:48:43 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Ivan T. Ivanov" <ivan.ivanov@linaro.org>,
-        linux-kernel@vger.kernel.org, Kumar Gala <galak@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-In-Reply-To: <20220608112702.80873-1-krzysztof.kozlowski@linaro.org>
-References: <20220608112702.80873-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH 1/2] dt-bindings: thermal: qcom,spmi-temp-alarm: convert to dtschema
-Date:   Wed, 08 Jun 2022 07:45:07 -0600
-Message-Id: <1654695907.406371.1272093.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: clock: renesas,rzg2l: Simplify header file references
+Date:   Wed,  8 Jun 2022 15:48:34 +0200
+Message-Id: <f274ad16010798dd4a45d2dca5f870da8acbb470.1654696009.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 08 Jun 2022 13:27:01 +0200, Krzysztof Kozlowski wrote:
-> Convert the Qualcomm QPNP PMIC Temperature Alarm to DT Schema.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../thermal/qcom,spmi-temp-alarm.yaml         | 85 +++++++++++++++++++
->  .../bindings/thermal/qcom-spmi-temp-alarm.txt | 51 -----------
->  2 files changed, 85 insertions(+), 51 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/thermal/qcom,spmi-temp-alarm.yaml
->  delete mode 100644 Documentation/devicetree/bindings/thermal/qcom-spmi-temp-alarm.txt
-> 
+The bindings already uses <dt-bindings/clock/r9a0*-cpg.h> to refer to
+the header files with DT binding definitions for core clocks.
+Use more wildcards to simplify more references to these files.
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+ .../devicetree/bindings/clock/renesas,rzg2l-cpg.yaml       | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
-
-Full log is available here: https://patchwork.ozlabs.org/patch/
-
-
-temp-alarm@2400: '#thermal-sensor-cells' is a required property
-	arch/arm/boot/dts/qcom-apq8074-dragonboard.dtb
-	arch/arm/boot/dts/qcom-apq8074-dragonboard.dtb
-	arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dtb
-	arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dtb
-	arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dtb
-	arch/arm/boot/dts/qcom-msm8974pro-fairphone-fp2.dtb
-	arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dtb
-	arch/arm/boot/dts/qcom-msm8974pro-sony-xperia-shinano-castor.dtb
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine-amami.dtb
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine-amami.dtb
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine-honami.dtb
-	arch/arm/boot/dts/qcom-msm8974-sony-xperia-rhine-honami.dtb
+diff --git a/Documentation/devicetree/bindings/clock/renesas,rzg2l-cpg.yaml b/Documentation/devicetree/bindings/clock/renesas,rzg2l-cpg.yaml
+index 8880b834f264cd9f..d036675e0779addc 100644
+--- a/Documentation/devicetree/bindings/clock/renesas,rzg2l-cpg.yaml
++++ b/Documentation/devicetree/bindings/clock/renesas,rzg2l-cpg.yaml
+@@ -45,10 +45,9 @@ properties:
+     description: |
+       - For CPG core clocks, the two clock specifier cells must be "CPG_CORE"
+         and a core clock reference, as defined in
+-        <dt-bindings/clock/r9a0*-cpg.h>
++        <dt-bindings/clock/r9a0*-cpg.h>,
+       - For module clocks, the two clock specifier cells must be "CPG_MOD" and
+-        a module number, as defined in the <dt-bindings/clock/r9a07g0*-cpg.h> or
+-        <dt-bindings/clock/r9a09g011-cpg.h>.
++        a module number, as defined in <dt-bindings/clock/r9a0*-cpg.h>.
+     const: 2
+ 
+   '#power-domain-cells':
+@@ -62,7 +61,7 @@ properties:
+   '#reset-cells':
+     description:
+       The single reset specifier cell must be the module number, as defined in
+-      the <dt-bindings/clock/r9a07g0*-cpg.h> or <dt-bindings/clock/r9a09g011-cpg.h>.
++      <dt-bindings/clock/r9a0*-cpg.h>.
+     const: 1
+ 
+ required:
+-- 
+2.25.1
 
