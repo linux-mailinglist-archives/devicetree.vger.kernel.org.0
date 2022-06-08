@@ -2,73 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30F97543299
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 16:31:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 037CB5435A8
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 16:53:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241333AbiFHOal (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 10:30:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35430 "EHLO
+        id S242441AbiFHOwQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 10:52:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241114AbiFHOak (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 10:30:40 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 813801F7012;
-        Wed,  8 Jun 2022 07:30:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1654698640; x=1686234640;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=wy3q5swCJkf2ktsGowx7L5B+6fEwt7Bq5SRhOUfH3B4=;
-  b=aHw1jM5M9TAoJazR7PZr66XGMFagx+jOxxPNb8M+s+DoCKe/ke3AMDD7
-   WP7UvmpWCyT7Y4pIw+0JGd1z0j+MI3c5ysWX8alrpER+VzR9yYikO2orV
-   reBiv319s3G6wFcjdDUkloc2Ts+nqH7uJl9ndXVsuUyJEdRsAmJcAKb4u
-   E=;
-Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
-  by alexa-out.qualcomm.com with ESMTP; 08 Jun 2022 07:30:39 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jun 2022 07:30:39 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 8 Jun 2022 07:30:38 -0700
-Received: from [10.216.34.67] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 8 Jun 2022
- 07:30:33 -0700
-Message-ID: <5c847f66-9caf-b303-2c25-b22e67a83c79@quicinc.com>
-Date:   Wed, 8 Jun 2022 20:00:30 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v2 2/3] usb: phy: Add devm_of_usb_get_phy_by_phandle
-Content-Language: en-US
-To:     Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S243743AbiFHOvS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 10:51:18 -0400
+Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20DA72C6530;
+        Wed,  8 Jun 2022 07:50:12 -0700 (PDT)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 135225C01D7;
+        Wed,  8 Jun 2022 10:48:51 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Wed, 08 Jun 2022 10:48:51 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm1; t=1654699731; x=1654786131; bh=wvfHGDUJj5
+        HTe8KNpI/We7HJo6zHxzE6/zDY7YQE62U=; b=gjQXF1atg0p2d3bAa3gaA/bP1t
+        MIcmOetW6epvjQL6zhjlxYMCXxPSSuhMSMSjap9/8qE+mkBw4h9ZNKTgV7a0RaZl
+        /SfgjXQZocDn36RpJDFoXpWRf2ee7O4vnq6TDpis57kBZdOeKbf0PEoQB0ojyUuT
+        23hZ84CHt/9hOUGahKKqSmw/NQsS7YnT+4gncv7hc+X9ecSRixmkCl84oRPBJEj8
+        amo01RLfXRfiaTCpBlHrL2BlV+e+mIPhRSVnBaAC9eo8isN3ov8tq5TwzgXGi+Nt
+        e0PaR9B0YWFnjgmJrO6ARKDyqAQ9EF5G5ftClY/W8Fgdzojv1r0Uk53I6dow==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm2; t=1654699731; x=1654786131; bh=wvfHGDUJj5HTe8KNpI/We7HJo6zH
+        xzE6/zDY7YQE62U=; b=LU/8i0p8cid4FsmSI7SS17u0V5nOI8l3a236Wusg/0oM
+        UZXwTqWLee9gqeHJf2VqkDphlnpyToDjVAoY9SXoDUC8s8/GrQglyXmjZQKWdWnD
+        maQmBy+xqVVhPxg9aB1zwI0Uo8Qj/Nn+bw3o9L6UP29CzBNJ62toSwBXyIzITq5O
+        rUBXCfutEey5JfCPlQX3W0sJEjw6U+2isCSyi1U2cR6qWp4KdqVXuLH7h9c23FDT
+        y3xSX4cSU+8DfYzRJRBqTzaI5O0wlI0w036LeJ0Bt3EvHV2EtAdBlUuzugSb2ZXV
+        GKsbym/x9JX3zeZomXtm6VfRY+pNRFQrxIxIPJrEMw==
+X-ME-Sender: <xms:0bagYtkcOfjSf1LetKWt9Q6GizidLuAcxtZ1_XzefPJBJSFsReQb8g>
+    <xme:0bagYo1aPg61L0nGu7Ey2t0Gk7Iluyzova92m-rLm0PxSWYrdV6--Zf2-XnZsyHE5
+    3gDJZeCqwqhaagJW8Y>
+X-ME-Received: <xmr:0bagYjqUQ83G3wCejlwGrVXEpxPAQDFqspVmfpqgrzPtOxOQhoYkbWeV2C1qZknM8X_dTmwYZqiZYitUzW3uZK3_atgyjthfmovdYqo>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedruddtjedgkedtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
+    grgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:0bagYtmkTVNSjqLc8P_jRx9cqqXJR4-0gMWm6lnGBJF-V36C7t3uMA>
+    <xmx:0bagYr3qeZy7Q1gQvm9rq3vy-XB4gx_bkcLZE2b123uE8TxzYP9UOA>
+    <xmx:0bagYstc8fV8xzQ2fkfbaNjwQn8UE93Jj7voutWxAYHBmwwEHo3m1w>
+    <xmx:07agYi8PM4SWSSTAdcyiQZayWLeHRbZXiE6ge11fRK0xiOHFIVRCWw>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 8 Jun 2022 10:48:49 -0400 (EDT)
+Date:   Wed, 8 Jun 2022 16:48:47 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Samuel Holland <samuel@sholland.org>,
+        Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+        Sandy Huang <hjc@rock-chips.com>,
+        dri-devel@lists.freedesktop.org,
+        linux-rockchip@lists.infradead.org,
+        Alistair Francis <alistair@alistair23.me>,
+        =?utf-8?Q?Ond=C5=99ej?= Jirman <x@xff.cz>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        David Airlie <airlied@linux.ie>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Liang Chen <cl@rock-chips.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Peter Geis <pgwipeout@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        "Bjorn Andersson" <bjorn.andersson@linaro.org>
-CC:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>,
-        <ahalaney@redhat.com>
-References: <1654276362-28930-1-git-send-email-quic_harshq@quicinc.com>
- <1654276362-28930-3-git-send-email-quic_harshq@quicinc.com>
- <c52d93db-e89a-24ba-725c-420641bd43af@omp.ru>
-From:   Harsh Agarwal <quic_harshq@quicinc.com>
-In-Reply-To: <c52d93db-e89a-24ba-725c-420641bd43af@omp.ru>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 00/16] drm/rockchip: Rockchip EBC ("E-Book
+ Controller") display driver
+Message-ID: <20220608144847.3ibr4buxcbmfj3al@houat>
+References: <20220413221916.50995-1-samuel@sholland.org>
+ <20220414085018.ayjvscgdkoen5nw5@houat>
+ <Yo5kz/9cSd6ewC5f@phenom.ffwll.local>
+ <20220531085835.grw5nt4vyofis3po@penduick>
+ <YpddFxvC9pCsobNB@phenom.ffwll.local>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="5uxifszvnbelvki3"
+Content-Disposition: inline
+In-Reply-To: <YpddFxvC9pCsobNB@phenom.ffwll.local>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -76,36 +108,171 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 6/6/2022 4:30 PM, Sergey Shtylyov wrote:
-> Hello!
->
-> On 6/3/22 8:12 PM, Harsh Agarwal wrote:
->
->> Adding support for devm_of_usb_get_phy_by_phandle which allows
->> us to get PHY phandles of a device declared inside lookup_node.
->>
->> Signed-off-by: Harsh Agarwal <quic_harshq@quicinc.com>
-> [...]
->> diff --git a/include/linux/usb/phy.h b/include/linux/usb/phy.h
->> index e4de6bc..2581c72 100644
->> --- a/include/linux/usb/phy.h
->> +++ b/include/linux/usb/phy.h
-> [...]
->> @@ -249,6 +251,12 @@ static inline struct usb_phy *devm_usb_get_phy_by_phandle(struct device *dev,
->>   	return ERR_PTR(-ENXIO);
->>   }
->>   
->> +extern inline struct usb_phy *devm_of_usb_get_phy_by_phandle(struct device *dev,
->     *extern inline*? :-O
->     Shouldn't it be *static*?
-This was a typo. Will change it. Thanks
->   
->> +	const char *phandle, u8 index, struct device_node *lookup_node)
->> +{
->> +	return ERR_PTR(-ENXIO);
->> +}
->> +
->>   static inline struct usb_phy *devm_usb_get_phy_by_node(struct device *dev,
->>   	struct device_node *node, struct notifier_block *nb)
->>   {
-> MBR, Sergey
+--5uxifszvnbelvki3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Jun 01, 2022 at 02:35:35PM +0200, Daniel Vetter wrote:
+> On Tue, May 31, 2022 at 10:58:35AM +0200, Maxime Ripard wrote:
+> > Hi Daniel,
+> >=20
+> > Thanks for your feedback
+> >=20
+> > On Wed, May 25, 2022 at 07:18:07PM +0200, Daniel Vetter wrote:
+> > > > > VBLANK Events and Asynchronous Commits
+> > > > > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > > > > When should the VBLANK event complete? When the pixels have been =
+blitted
+> > > > > to the kernel's shadow buffer? When the first frame of the wavefo=
+rm is
+> > > > > sent to the panel? When the last frame is sent to the panel?
+> > > > >=20
+> > > > > Currently, the driver is taking the first option, letting
+> > > > > drm_atomic_helper_fake_vblank() send the VBLANK event without wai=
+ting on
+> > > > > the refresh thread. This is the only way I was able to get good
+> > > > > performance with existing userspace.
+> > > >=20
+> > > > I've been having the same kind of discussions in private lately, so=
+ I'm
+> > > > interested by the answer as well :)
+> > > >=20
+> > > > It would be worth looking into the SPI/I2C panels for this, since i=
+t's
+> > > > basically the same case.
+> > >=20
+> > > So it's maybe a bit misnamed and maybe kerneldocs aren't super clear =
+(pls
+> > > help improve them), but there's two modes:
+> > >=20
+> > > - drivers which have vblank, which might be somewhat variable (VRR) or
+> > >   become simulated (self-refresh panels), but otherwise is a more-or-=
+less
+> > >   regular clock. For this case the atomic commit event must match the
+> > >   vblank events exactly (frame count and timestamp)
+> >=20
+> > Part of my interrogation there is do we have any kind of expectation
+> > on whether or not, when we commit, the next vblank is going to be the
+> > one matching that commit or we're allowed to defer it by an arbitrary
+> > number of frames (provided that the frame count and timestamps are
+> > correct) ?
+>=20
+> In general yes, but there's no guarantee. The only guarante we give for
+> drivers with vblank counters is that if you receive a vblank event (flip
+> complete or vblank event) for frame #n, then an immediate flip/atomic
+> ioctl call will display earliest for frame #n+1.
+>=20
+> Also usually you should be able to hit #n+1, but even today with fun stuff
+> like self refresh panels getting out of self refresh mode might take a bit
+> more than a few frames, and so you might end up being late. But otoh if
+> you just do a page flip loop then on average (after the crtc is fully
+> resumed) you should be able to update at vrefresh rate exactly.
+
+I had more the next item in mind there: if we were to write something in
+the kernel that would transparently behave like a full-blown KMS driver,
+but would pipe the commits through a KMS writeback driver before sending
+them to our SPI panel, we would always be at best two vblanks late.
+
+So this would mean that userspace would do a page flip, get a first
+vblank, but the actual vblank for that commit would be the next one (at
+best), consistently.
+
+> > > - drivers which don't have vblank at all, mostly these are i2c/spi pa=
+nels
+> > >   or virtual hw and stuff like that. In this case the event simply ha=
+ppens
+> > >   when the driver is done with refresh/upload, and the frame count sh=
+ould
+> > >   be zero (since it's meaningless).
+> > >=20
+> > > Unfortuantely the helper to dtrt has fake_vblank in it's name, maybe
+> > > should be renamed to no_vblank or so (the various flags that control =
+it
+> > > are a bit better named).
+> > >=20
+> > > Again the docs should explain it all, but maybe we should clarify the=
+m or
+> > > perhaps rename that helper to be more meaningful.
+> > >=20
+> > > > > Blitting/Blending in Software
+> > > > > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D
+> > > > > There are multiple layers to this topic (pun slightly intended):
+> > > > >  1) Today's userspace does not expect a grayscale framebuffer.
+> > > > >     Currently, the driver advertises XRGB8888 and converts to Y4
+> > > > >     in software. This seems to match other drivers (e.g. repaper).
+> > > > >
+> > > > >  2) Ignoring what userspace "wants", the closest existing format =
+is
+> > > > >     DRM_FORMAT_R8. Geert sent a series[4] adding DRM_FORMAT_R1 th=
+rough
+> > > > >     DRM_FORMAT_R4 (patch 9), which I believe are the "correct" fo=
+rmats
+> > > > >     to use.
+> > > > >=20
+> > > > >  3) The RK356x SoCs have an "RGA" hardware block that can do the
+> > > > >     RGB-to-grayscale conversion, and also RGB-to-dithered-monochr=
+ome
+> > > > >     which is needed for animation/video. Currently this is expose=
+d with
+> > > > >     a V4L2 platform driver. Can this be inserted into the pipelin=
+e in a
+> > > > >     way that is transparent to userspace? Or must some userspace =
+library
+> > > > >     be responsible for setting up the RGA =3D> EBC pipeline?
+> > > >=20
+> > > > I'm very interested in this answer as well :)
+> > > >=20
+> > > > I think the current consensus is that it's up to userspace to set t=
+his
+> > > > up though.
+> > >=20
+> > > Yeah I think v4l mem2mem device is the answer for these, and then
+> > > userspace gets to set it all up.
+> >=20
+> > I think the question wasn't really about where that driver should be,
+> > but more about who gets to set it up, and if the kernel could have
+> > some component to expose the formats supported by the converter, but
+> > whenever a commit is being done pipe that to the v4l2 device before
+> > doing a page flip.
+> >=20
+> > We have a similar use-case for the RaspberryPi where the hardware
+> > codec will produce a framebuffer format that isn't standard. That
+> > format is understood by the display pipeline, and it can do
+> > writeback.
+> >=20
+> > However, some people are using a separate display (like a SPI display
+> > supported by tinydrm) and we would still like to be able to output the
+> > decoded frames there.
+> >=20
+> > Is there some way we could plumb things to "route" that buffer through
+> > the writeback engine to perform a format conversion before sending it
+> > over to the SPI display automatically?
+>=20
+> Currently not transparently. Or at least no one has done that, and I'm not
+> sure that's really a great idea. With big gpus all that stuff is done with
+> separate command submission to the render side of things, and you can
+> fully pipeline all that with in/out-fences.
+>=20
+> Doing that in the kms driver side in the kernel feels very wrong to me :-/
+
+So I guess what you're saying is that there's a close to 0% chance of it
+being accepted if we were to come up with such an architecture?
+
+Thanks!
+Maxime
+
+--5uxifszvnbelvki3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYqC2zwAKCRDj7w1vZxhR
+xfFhAQDpMG8318nD1cMM0/HpUu4Jvkjq5pn1/sC4MDW1ViKg7gEAifSRNemz4cgr
+ZtPYHR4j21YFIDjjzeYl80Rl/2PoBwc=
+=iUBo
+-----END PGP SIGNATURE-----
+
+--5uxifszvnbelvki3--
