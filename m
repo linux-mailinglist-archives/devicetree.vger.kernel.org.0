@@ -2,49 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32EF45439F2
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 19:09:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86958543A19
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 19:18:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230366AbiFHRGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 13:06:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60066 "EHLO
+        id S231137AbiFHRSK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 13:18:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237546AbiFHRFI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 13:05:08 -0400
-Received: from mail-4317.proton.ch (mail-4317.proton.ch [185.70.43.17])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B40E3C618C;
-        Wed,  8 Jun 2022 09:53:54 -0700 (PDT)
-Date:   Wed, 08 Jun 2022 16:53:49 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
-        s=protonmail; t=1654707232; x=1654966432;
-        bh=NTQKID+P6bfYd2k0VkyU/2Td+qJJ4uMnG1+NHLimZJM=;
-        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
-         References:Feedback-ID:From:To:Cc:Date:Subject:Reply-To:
-         Feedback-ID:Message-ID;
-        b=XWVVjhVogiP0j+qooPSRX7WA631cydiXaNvkxI8inrldH5Ot5LgK+E45NQinzaZBA
-         Wu4ULipxn/7hvQ75wVFJOKhzu/mxoAvNhJC1a+yRNdgq+OSs7hYCHVLOpLV2ndlS7x
-         Z5NfugD+J69aaBg0ZluGb7u82YH3UKLI9dSq5QU4=
-To:     Dylan Van Assche <me@dylanvanassche.be>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-From:   Caleb Connolly <caleb@connolly.tech>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Reply-To: Caleb Connolly <caleb@connolly.tech>
-Subject: Re: [PATCH] arm64: dts: qcom/sdm845-shift-axolotl: Enable pmi9889 LPG LED
-Message-ID: <19c35ce5-d98c-b5b2-893b-d89425693add@connolly.tech>
-In-Reply-To: <20220512054439.13971-1-me@dylanvanassche.be>
-References: <20220512054439.13971-1-me@dylanvanassche.be>
-Feedback-ID: 10753939:user:proton
+        with ESMTP id S229798AbiFHRRW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 13:17:22 -0400
+Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [217.70.178.231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D039417CED;
+        Wed,  8 Jun 2022 10:04:58 -0700 (PDT)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id E30C6100003;
+        Wed,  8 Jun 2022 17:04:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1654707897;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=XAPYcyRqiKyOI9m5kT9zO45hbfPySQ29+pZokJ8GgDw=;
+        b=I8yKmz2hHWLep0Zm5s3+d/Vj81S34rhDfyDBXkszTb+quiLESF4Ai5D+Wk1RjaRdtAB5ir
+        y2Q5uq1G3t/dRZsw4W2W9zgbNcXqKJGMpGN2Udy0Z/ip8s2LSdf+Syw/+0Pn8Zg5br7fYb
+        3q7AZR2KNMGe+q6tcgHYhuppsgGivaEwh3KvHQPZAkfUi73ZEq3Wcx9yqjoBdNyoE6j8XK
+        zR78TSR7CozcaE0LNqel83G93LVmdnrqtw8N89WMqlA7GuaAwClgM4hNb6u31fZyZX3Trf
+        in20qXIMX5En380N3GrdTa+bsL+g1AZNuj9Rume7qH85kaFJKBodfdMPP9EWdg==
+Date:   Wed, 8 Jun 2022 19:04:55 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Abel Vesa <abel.vesa@nxp.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-clk@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH v2 07/10] dt-bindings: rtc: Add fsl,scu-rtc yaml file
+Message-ID: <YqDWt0w8/9bwz5OL@mail.local>
+References: <20220608164928.2706697-1-abel.vesa@nxp.com>
+ <20220608164928.2706697-8-abel.vesa@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220608164928.2706697-8-abel.vesa@nxp.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -52,82 +66,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 12/05/2022 06:44, Dylan Van Assche wrote:
-> Enables the RGB notification LED on the SHIFT 6mq (sdm845-shift-axolotl)
-> with the Qualcomm Light Pulse Generator bindings by Bjorn Andersson [1].
-> Patches are merged in for-next branch of linux-leds.
-> Tested these changes on the SHIFT 6mq.
->
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/pavel/linux-leds.git/=
-commit/?h=3Dfor-next&id=3Da8e53db46f19f67be6a26488aafb7d10c78e33bd
->
-> Signed-off-by: Dylan Van Assche <me@dylanvanassche.be>
-Tested-by: Caleb Connolly <caleb@connolly.tech>
-Reviewed-by: Caleb Connolly <caleb@connolly.tech>
+On 08/06/2022 19:49:25+0300, Abel Vesa wrote:
+> In order to replace the fsl,scu txt file from bindings/arm/freescale,
+> we need to split it between the right subsystems. This patch documents
+> separately the 'rtc' child node of the SCU main node.
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
 > ---
->   .../boot/dts/qcom/sdm845-shift-axolotl.dts    | 29 +++++++++++++++++++
->   1 file changed, 29 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm=
-64/boot/dts/qcom/sdm845-shift-axolotl.dts
-> index 847f6217a77b..af412ac2c9d0 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
-> @@ -2,11 +2,13 @@
->   /*
->    * Copyright (c) 2022, Alexander Martinz <amartinz@shiftphones.com>
->    * Copyright (c) 2022, Caleb Connolly <caleb@connolly.tech>
-> + * Copyright (c) 2022, Dylan Van Assche <me@dylanvanassche.be>
->    */
->
->   /dts-v1/;
->
->   #include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/leds/common.h>
->   #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->   #include "sdm845.dtsi"
->   #include "pm8998.dtsi"
-> @@ -554,6 +556,33 @@ &pmi8998_smb2 {
->   =09monitored-battery =3D <&battery>;
->   };
->
-> +&pmi8998_lpg {
-> +=09status =3D "okay";
+>  .../devicetree/bindings/rtc/fsl,scu-rtc.yaml  | 22 +++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/fsl,scu-rtc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/rtc/fsl,scu-rtc.yaml b/Documentation/devicetree/bindings/rtc/fsl,scu-rtc.yaml
+> new file mode 100644
+> index 000000000000..bd8c3cf365ff
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rtc/fsl,scu-rtc.yaml
+> @@ -0,0 +1,22 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rtc/fsl,scu-rtc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +=09multi-led {
-> +=09=09color =3D <LED_COLOR_ID_RGB>;
-> +=09=09function =3D LED_FUNCTION_STATUS;
+> +title: i.MX SCU Client Device Node - RTC bindings based on SCU Message Protocol
 > +
-> +=09=09#address-cells =3D <1>;
-> +=09=09#size-cells =3D <0>;
-> +
-> +=09=09led@3 {
-> +=09=09=09reg =3D <3>;
-> +=09=09=09color =3D <LED_COLOR_ID_BLUE>;
-> +=09=09};
-> +
-> +=09=09led@4 {
-> +=09=09=09reg =3D <4>;
-> +=09=09=09color =3D <LED_COLOR_ID_GREEN>;
-> +=09=09};
-> +
-> +=09=09led@5 {
-> +=09=09=09reg =3D <5>;
-> +=09=09=09color =3D <LED_COLOR_ID_RED>;
-> +=09=09};
-> +=09};
-> +};
-> +
->   &qup_uart9_default {
->   =09pinconf-rx {
->   =09=09pins =3D "gpio5";
-> --
-> 2.36.1
->
+> +maintainers:
+> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
 
---
-Kind Regards,
-Caleb
+Isn't NXP going to maintain their binding?
 
+> +
+> +description: i.MX SCU Client Device Node
+> +  Client nodes are maintained as children of the relevant IMX-SCU device node.
+> +
+> +properties:
+> +  compatible:
+> +    const: fsl,imx8qxp-sc-rtc
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> -- 
+> 2.34.3
+> 
+
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
