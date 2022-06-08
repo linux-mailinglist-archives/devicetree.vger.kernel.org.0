@@ -2,64 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B6B4543820
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 17:54:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0E1254383A
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 17:57:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244444AbiFHPyF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 11:54:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38586 "EHLO
+        id S244887AbiFHP5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 11:57:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245168AbiFHPxz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 11:53:55 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD82BDE87;
-        Wed,  8 Jun 2022 08:53:53 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 485C26169F;
-        Wed,  8 Jun 2022 15:53:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC017C34116;
-        Wed,  8 Jun 2022 15:53:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1654703632;
-        bh=8I9ndSA8ysJ7knYeBSEFb57EYrZdMtUNTBUVavgL6Ps=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=iNqS7+kwRIEJTkFaKfhMjyNuUif81BXeSUlY3Bm+JAsumIZ2HOzTGPasB8FI0/LtI
-         6N3cvj0pjeDeELM+xWcvAW3cf/WOl4tuMASrBgk+cNKa8+ir1oLlDcMlYLfA2blNHD
-         jpKxukCE41eG9rXu3LoPMz8zf2ebJmfKFJ+dbeNjNknQQmT9PTZWhi5nstYkhPSCqm
-         Ks3boxM2pa/rJyX3lr4Es30CY/B8k+2L2aV9xM16E3L9MuVvenUY0ptSKUrPXezYaN
-         cr+oeUcVhJ6MnMHh48V93QGLmTNt1qC6iDk/5cd+mjytZotTftD18AF9//nEtcIGcE
-         l2TeD0jCVfARg==
-Date:   Wed, 8 Jun 2022 21:23:47 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S244877AbiFHP5o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 11:57:44 -0400
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 242E36B089;
+        Wed,  8 Jun 2022 08:57:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1654703863; x=1686239863;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=hQWh/ajhlNrdHVnR8asoXOOhohzEj4Vrv4I0sYKIHMk=;
+  b=Hf2yPBd1EukiMalQN77+ApBRqBxtLEJR4PppT0NpNdLBw4A2BnefC138
+   slwfrTr1UFUgdmx/RpJ63d3Q3HdRoUtCn7+bjEdp5tcYe1o+Y9vGGLrA8
+   3nFEuQycQwIfMKgsbxrLFVJ7wWLKk/pv356BldI77fn6O0ENpTg7MNa2Y
+   q3ywPfLd2snPxP8ooHys6D7+GkVP4X5ln0XAKZ1nzXnS+pswrH0HnvQ8C
+   xTwjlnDe8nqngSZQs4K0rY/adTBC6CuHqgyAHl1Mr9HBL7sOXIrY6/9Jr
+   pQAApVCyGH+A/B3gZo0rj/llx6iaUwLChAiXnXZLfTP6U995xysb4Qt7g
+   A==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10372"; a="363274011"
+X-IronPort-AV: E=Sophos;i="5.91,286,1647327600"; 
+   d="scan'208";a="363274011"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jun 2022 08:57:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,286,1647327600"; 
+   d="scan'208";a="609717426"
+Received: from lkp-server01.sh.intel.com (HELO 60dabacc1df6) ([10.239.97.150])
+  by orsmga008.jf.intel.com with ESMTP; 08 Jun 2022 08:57:38 -0700
+Received: from kbuild by 60dabacc1df6 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1nyy3u-000ElX-2h;
+        Wed, 08 Jun 2022 15:57:38 +0000
+Date:   Wed, 8 Jun 2022 23:57:36 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
         Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, quic_pkondeti@quicinc.com,
-        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
-        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-Subject: Re: [PATCH v8 1/3] dt-bindings: phy: qcom,usb-snps-femto-v2: Add phy
- override params bindings
-Message-ID: <YqDGCxWFvxYWWoZh@matsya>
-References: <1654066564-20518-1-git-send-email-quic_kriskura@quicinc.com>
- <1654066564-20518-2-git-send-email-quic_kriskura@quicinc.com>
+        freedreno@lists.freedesktop.org
+Subject: Re: [PATCH v2 06/12] drm/msm/hdmi: drop unused GPIO support
+Message-ID: <202206082312.XB745jWy-lkp@intel.com>
+References: <20220608120723.2987843-7-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1654066564-20518-2-git-send-email-quic_kriskura@quicinc.com>
-X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20220608120723.2987843-7-dmitry.baryshkov@linaro.org>
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,124 +72,101 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01-06-22, 12:26, Krishna Kurapati wrote:
-> From: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-> 
-> Add device tree bindings for SNPS phy tuning parameters.
-> 
-> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../bindings/phy/qcom,usb-snps-femto-v2.yaml       | 96 ++++++++++++++++++++++
->  1 file changed, 96 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
-> index 1ce251d..daeeb04 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
-> @@ -53,6 +53,102 @@ properties:
->    vdda33-supply:
->      description: phandle to the regulator 3.3V supply node.
->  
-> +  qcom,hs-disconnect-bp:
-> +    description:
-> +      This adjusts the voltage level for the threshold used to
-> +      detect a disconnect event at the host. Possible values are.
-> +      The values defined are in multiples of basis points (1bp = 0.01%).
-> +      The hardware accepts only discrete values. The value closest to the
-> +      provided input will be chosen as the override value for this param.
-> +    minimum: -272
-> +    maximum: 2156
-> +
-> +  qcom,squelch-detector-bp:
-> +    description:
-> +      This adjusts the voltage level for the threshold used to
-> +      detect valid high-speed data.
-> +      The values defined are in multiples of basis points (1bp = 0.01%).
-> +      The hardware accepts only discrete values. The value closest to the
-> +      provided input will be chosen as the override value for this param.
-> +    minimum: -2090
-> +    maximum: 1590
-> +
-> +  qcom,hs-amplitude-bp:
-> +    description:
-> +      This adjusts the high-speed DC level voltage.
-> +      The values defined are in multiples of basis points (1bp = 0.01%).
-> +      The hardware accepts only discrete values. The value closest to the
-> +      provided input will be chosen as the override value for this param.
-> +    minimum: -660
-> +    maximum: 2670
-> +
-> +  qcom,pre-emphasis-duration-bp:
-> +    description:
-> +      This signal controls the duration for which the
-> +      HS pre-emphasis current is sourced onto DP<#> or DM<#>.
-> +      The HS Transmitter pre-emphasis duration is defined in terms of
-> +      unit amounts. One unit of pre-emphasis duration is approximately
-> +      650 ps and is defined as 1X pre-emphasis duration.
-> +      The values defined are in multiples of basis points (1bp = 0.01%).
-> +      The hardware accepts only discrete values. The value closest to the
-> +      provided input will be chosen as the override value for this param.
-> +    minimum: 10000
-> +    maximum: 20000
-> +
-> +  qcom,pre-emphasis-amplitude-bp:
-> +    description:
-> +      This signal controls the amount of current sourced to
-> +      DP<#> and DM<#> after a J-to-K or K-to-J transition.
-> +      The HS Transmitter pre-emphasis current is defined in terms of unit
-> +      amounts. One unit amount is approximately 2 mA and is defined as
-> +      1X pre-emphasis current.
-> +      The values defined are in multiples of basis points (1bp = 0.01%).
-> +      The hardware accepts only discrete values. The value closest to the
-> +      provided input will be chosen as the override value for this param.
-> +    minimum: 10000
-> +    maximum: 40000
-> +
-> +  qcom,hs-rise-fall-time-bp:
-> +    description:
-> +      This adjusts the rise/fall times of the high-speed waveform.
-> +      The values defined are in multiples of basis points (1bp = 0.01%).
-> +      The hardware accepts only discrete values. The value closest to the
-> +      provided input will be chosen as the override value for this param.
-> +    minimum: -4100
-> +    maximum: 5430
-> +
-> +  qcom,hs-crossover-voltage-microvolt:
-> +    description:
-> +      This adjusts the voltage at which the DP<#> and DM<#>
-> +      signals cross while transmitting in HS mode.
-> +      The values defined are in milli volts. The hardware accepts only
-> +      discrete values. The value closest to the provided input will be
-> +      chosen as the override value for this param.
-> +    minimum: -31000
-> +    maximum: 28000
-> +
-> +  qcom,hs-output-impedance-micro-ohms:
-> +    description:
-> +      In some applications, there can be significant series resistance
-> +      on the D+ and D- paths between the transceiver and cable. This adjusts
-> +      the driver source impedance to compensate for added series
-> +      resistance on the USB. The values defined are in milli ohms.
-> +      The hardware accepts only discrete values. The value closest to the
-> +      provided input will be chosen as the override value for this param.
-> +    minimum: -2300000
-> +    maximum: 6100000
-> +
-> +  qcom,ls-fs-output-impedance-bp:
-> +    description:
-> +      This adjusts the low- and full-speed single-ended source
-> +      impedance while driving high. The following adjustment values are based
-> +      on nominal process, voltage, and temperature.
-> +      The values defined are in multiples of basis points (1bp = 0.01%).
-> +      The hardware accepts only discrete values. The value closest to the
-> +      provided input will be chosen as the override value for this param.
-> +    minimum: -1053
-> +    maximum: 1310
+Hi Dmitry,
 
-do we need all these values in DT, till now we have these in driver..
-what is the reasoning to add these in DT instead?
+I love your patch! Perhaps something to improve:
+
+[auto build test WARNING on drm/drm-next]
+[also build test WARNING on robh/for-next linus/master v5.19-rc1 next-20220608]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Dmitry-Baryshkov/drm-msm-hdmi-YAML-ify-schema-and-cleanup-some-platform-properties/20220608-200925
+base:   git://anongit.freedesktop.org/drm/drm drm-next
+config: hexagon-randconfig-r045-20220608 (https://download.01.org/0day-ci/archive/20220608/202206082312.XB745jWy-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project b92436efcb7813fc481b30f2593a4907568d917a)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/c3e263fe0a077b382c2a76911c8ace385bd59a4c
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Dmitry-Baryshkov/drm-msm-hdmi-YAML-ify-schema-and-cleanup-some-platform-properties/20220608-200925
+        git checkout c3e263fe0a077b382c2a76911c8ace385bd59a4c
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash drivers/gpu/drm/msm/
+
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/gpu/drm/msm/hdmi/hdmi.c:532:2: warning: variable 'hdmi' is uninitialized when used here [-Wuninitialized]
+           hdmi->hpd_gpiod = devm_gpiod_get_optional(dev, "hpd", GPIOD_IN);
+           ^~~~
+   drivers/gpu/drm/msm/hdmi/hdmi.c:518:19: note: initialize the variable 'hdmi' to silence this warning
+           struct hdmi *hdmi;
+                            ^
+                             = NULL
+   1 warning generated.
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for DRM_DP_AUX_BUS
+   Depends on HAS_IOMEM && DRM && OF
+   Selected by
+   - DRM_MSM && HAS_IOMEM && DRM && (ARCH_QCOM || SOC_IMX5 || COMPILE_TEST && COMMON_CLK && IOMMU_SUPPORT && (QCOM_OCMEM || QCOM_OCMEM && (QCOM_LLCC || QCOM_LLCC && (QCOM_COMMAND_DB || QCOM_COMMAND_DB
+
+
+vim +/hdmi +532 drivers/gpu/drm/msm/hdmi/hdmi.c
+
+   513	
+   514	static int msm_hdmi_bind(struct device *dev, struct device *master, void *data)
+   515	{
+   516		struct msm_drm_private *priv = dev_get_drvdata(master);
+   517		struct hdmi_platform_config *hdmi_cfg;
+   518		struct hdmi *hdmi;
+   519		struct device_node *of_node = dev->of_node;
+   520		int err;
+   521	
+   522		hdmi_cfg = (struct hdmi_platform_config *)
+   523				of_device_get_match_data(dev);
+   524		if (!hdmi_cfg) {
+   525			DRM_DEV_ERROR(dev, "unknown hdmi_cfg: %pOFn\n", of_node);
+   526			return -ENXIO;
+   527		}
+   528	
+   529		hdmi_cfg->mmio_name     = "core_physical";
+   530		hdmi_cfg->qfprom_mmio_name = "qfprom_physical";
+   531	
+ > 532		hdmi->hpd_gpiod = devm_gpiod_get_optional(dev, "hpd", GPIOD_IN);
+   533		/* This will catch e.g. -PROBE_DEFER */
+   534		if (IS_ERR(hdmi->hpd_gpiod))
+   535			return PTR_ERR(hdmi->hpd_gpiod);
+   536	
+   537		if (!hdmi->hpd_gpiod)
+   538			DBG("failed to get HPD gpio");
+   539	
+   540		if (hdmi->hpd_gpiod)
+   541			gpiod_set_consumer_name(hdmi->hpd_gpiod, "HDMI_HPD");
+   542	
+   543		dev->platform_data = hdmi_cfg;
+   544	
+   545		hdmi = msm_hdmi_init(to_platform_device(dev));
+   546		if (IS_ERR(hdmi))
+   547			return PTR_ERR(hdmi);
+   548		priv->hdmi = hdmi;
+   549	
+   550		err = msm_hdmi_register_audio_driver(hdmi, dev);
+   551		if (err) {
+   552			DRM_ERROR("Failed to attach an audio codec %d\n", err);
+   553			hdmi->audio_pdev = NULL;
+   554		}
+   555	
+   556		return 0;
+   557	}
+   558	
 
 -- 
-~Vinod
+0-DAY CI Kernel Test Service
+https://01.org/lkp
