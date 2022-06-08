@@ -2,76 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 297A4542AD9
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 11:12:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97EF3542ADD
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 11:12:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234361AbiFHJKW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 05:10:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46496 "EHLO
+        id S234586AbiFHJK7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 05:10:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233604AbiFHJJO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 05:09:14 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89F0C21CBF9
-        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 01:26:47 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id fd25so26064309edb.3
-        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 01:26:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=pMsHwy7E/xLjDEEsUZts4AUene1hjdqOhTRjyDswkzk=;
-        b=E8NB/2f0URNU7PNZSgEeDI0looKPg4GXnardUu6uxPQbCLD/BDqvF41YH6KXApwxiF
-         gKgorM8EvdS80nuP67fOY6zeQPUuJxyghGCXx6+of6Zstz53Bm8BfDnDHPtLwle/07Fx
-         neXE/8kBuRFM+vkSYKtPnOwV9ugYei5PauEaSDpOxOZdyFUFkNu4e/nYNdkwEiI8QckI
-         qhrB6ce0Ecv/ZafjbLSx3g/VHDKecpICx9BSVDi8dtp3Xu1FOrNvwNb5PoKsVZbXfE2t
-         SICv1/5CeF7SNl7NA4jTB/Toy4h6h9ptwo+8eOjoUOI8EYY/PZenaASSqqIgnaM2VLGK
-         jj+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=pMsHwy7E/xLjDEEsUZts4AUene1hjdqOhTRjyDswkzk=;
-        b=NTt0IuEN0+1fU874ir0UJgF5NJmo+1BqIQbIUXeuI4rD5e5eaZKSFIDaetb31l7qpo
-         MRjR8iHaVP0H7JIWlzUsrZEiDOoZWxKLXALZ82LhiA0txYKIaUoERlqDxnPwkfL+pOvV
-         GFT43KGI0d7ZCnOLXSIqjLgCcqgtZBiPP7tJBPUQXQsztpJKb0y4Kz+a9WMjYAC+vPe9
-         ca6lMxoLq3v1xCInIefcxmA9nABLLfFAsI74Jb8p3kZVFEujg2/74RZ9LRAMBFwa1F+G
-         Pf0RIJvcevw1v7fn/S4VJYSDPyaOYS31JM5IvEACzaWh9Ckyo37SG7l6qDmL/u9Pk7Am
-         uGnw==
-X-Gm-Message-State: AOAM530UgPUQkeHGpG/QpskkmQ2bMvW3QWZ81l55AerBdunA4q9DC45Q
-        JsjGF8OPVsThgYXCTaZbLfZLww==
-X-Google-Smtp-Source: ABdhPJxT2XneRrGJcLdjXRKLMXv9KAQjDXOXQ3UZsDHcyZt3gLmxCrWYCweARDOvznAPwpQGiBR0zA==
-X-Received: by 2002:a05:6402:3588:b0:42e:6a8:a5d5 with SMTP id y8-20020a056402358800b0042e06a8a5d5mr37733781edc.117.1654676806148;
-        Wed, 08 Jun 2022 01:26:46 -0700 (PDT)
-Received: from [192.168.0.189] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id ss9-20020a170907c00900b00711d8696de9sm2938274ejc.70.2022.06.08.01.26.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jun 2022 01:26:45 -0700 (PDT)
-Message-ID: <ff5afd82-8183-b94a-afa5-ce9e684e97fb@linaro.org>
-Date:   Wed, 8 Jun 2022 10:26:44 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: add SA8540P and ADP
-Content-Language: en-US
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S234319AbiFHJKM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 05:10:12 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18554DD0DD;
+        Wed,  8 Jun 2022 01:30:52 -0700 (PDT)
+X-UUID: a37301e5447b4942a3b56d2a91fe09e9-20220608
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.5,REQID:0c547b5c-1586-4a17-b9e0-cd64a1cdb344,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:2a19b09,CLOUDID:a650b342-1e5e-4cfb-b16f-006f4c195e5d,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:0,BEC:nil
+X-UUID: a37301e5447b4942a3b56d2a91fe09e9-20220608
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 2013580248; Wed, 08 Jun 2022 16:30:47 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Wed, 8 Jun 2022 16:30:46 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Wed, 8 Jun 2022 16:30:46 +0800
+Message-ID: <651e6b993562d53c893d0325d33fa137e98ab596.camel@mediatek.com>
+Subject: Re: [PATCH v10 18/21] drm/mediatek: Add mt8195 Embedded DisplayPort
+ driver
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
+        Guillaume Ranquet <granquet@baylibre.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        "Daniel Vetter" <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>
-Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220607214113.4057684-1-bjorn.andersson@linaro.org>
- <20220607214113.4057684-5-bjorn.andersson@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220607214113.4057684-5-bjorn.andersson@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        "Kishon Vijay Abraham I" <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, "Helge Deller" <deller@gmx.de>,
+        Jitao shi <jitao.shi@mediatek.com>
+CC:     Markus Schneider-Pargmann <msp@baylibre.com>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>, <linux-fbdev@vger.kernel.org>
+Date:   Wed, 8 Jun 2022 16:30:45 +0800
+In-Reply-To: <20220523104758.29531-19-granquet@baylibre.com>
+References: <20220523104758.29531-1-granquet@baylibre.com>
+         <20220523104758.29531-19-granquet@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,73 +78,98 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/06/2022 23:41, Bjorn Andersson wrote:
-> Introduce the Qualcomm SA8540P automotive platform and the SA8295P ADP
-> development board.
+Hi, Rex:
+
+On Mon, 2022-05-23 at 12:47 +0200, Guillaume Ranquet wrote:
+> From: Markus Schneider-Pargmann <msp@baylibre.com>
 > 
-> The SA8540P and SC8280XP are fairly similar, so the SA8540P is built
-> ontop of the SC8280XP dtsi to reduce duplication. As more advanced
-> features are integrated this might be re-evaluated.
+> This patch adds a DisplayPort driver for the Mediatek mt8195 SoC.
 > 
-> This initial contribution supports SMP, CPUFreq, cluster idle, UFS, RPMh
-> regulators, debug UART, PMICs, remoteprocs (NSPs crashes shortly after
-> booting) and USB.
+> It supports the mt8195, the embedded DisplayPort units. It offers
+> DisplayPort 1.4 with up to 4 lanes.
 > 
-> The SA8295P ADP contains four PM8450 PMICs, which according to their
-> revid are compatible with PM8150. They are defined within the ADP for
-> now, to avoid creating additional .dtsi files for PM8150 with just
-> addresses changed - and to allow using the labels from the schematics.
+> The driver creates a child device for the phy. The child device will
+> never exist without the parent being active. As they are sharing a
+> register range, the parent passes a regmap pointer to the child so
+> that
+> both can work with the same register range. The phy driver sets
+> device
+> data that is read by the parent to get the phy device that can be
+> used
+> to control the phy properties.
 > 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> This driver is based on an initial version by
+> Jason-JH.Lin <jason-jh.lin@mediatek.com>.
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
 > ---
->  arch/arm64/boot/dts/qcom/Makefile        |   1 +
->  arch/arm64/boot/dts/qcom/sa8295p-adp.dts | 434 +++++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/sa8540p.dtsi    | 133 +++++++
->  3 files changed, 568 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sa8295p-adp.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/sa8540p.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index ceeae094a59f..2f416b84b71c 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -52,6 +52,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qrb5165-rb5.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sa8155p-adp.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sa8295p-adp.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-idp.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1-lte.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> new file mode 100644
-> index 000000000000..f78203d7bfd2
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> @@ -0,0 +1,434 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2022, Linaro Limited
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/gpio-keys.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> +#include <dt-bindings/spmi/spmi.h>
-> +
-> +#include "sa8540p.dtsi"
-> +
-> +/ {
-> +	model = "Qualcomm SA8295P ADP";
-> +	compatible = "qcom,sa8295p-adp", "qcom,sa8540p";
 
-Similarly to previous patch - this needs to be documented.
+[snip]
 
-Rest looks ok.
+> +
+> +static bool mtk_dp_parse_capabilities(struct mtk_dp *mtk_dp)
+> +{
+> +	u8 buf[DP_RECEIVER_CAP_SIZE] = {};
+> +	u8 val;
+> +	struct mtk_dp_train_info *train_info = &mtk_dp->train_info;
+> +
+> +	if (!mtk_dp_plug_state(mtk_dp))
+> +		return false;
+> +
+> +	drm_dp_dpcd_writeb(&mtk_dp->aux, DP_SET_POWER,
+> DP_SET_POWER_D0);
+> +	/* Wait for power on */
+> +	usleep_range(2000, 5000);
+> +
+> +	drm_dp_read_dpcd_caps(&mtk_dp->aux, buf);
+> +
+> +	memcpy(mtk_dp->rx_cap, buf, min(sizeof(mtk_dp->rx_cap),
+> sizeof(buf)));
 
-Best regards,
-Krzysztof
+sizeof(mtk_dp->rx_cap) is identical to sizeof(buf), so
+
+drm_dp_read_dpcd_caps(&mtk_dp->aux, mtk_dp->rx_cap);
+
+
+> +	mtk_dp->rx_cap[DP_TRAINING_AUX_RD_INTERVAL] &=
+> DP_TRAINING_AUX_RD_MASK;
+> +
+> +	train_info->link_rate =
+> +		min_t(int, mtk_dp->max_linkrate, buf[mtk_dp-
+> >max_linkrate]);
+> +	train_info->lane_count =
+> +		min_t(int, mtk_dp->max_lanes,
+> drm_dp_max_lane_count(buf));
+> +
+> +	train_info->tps3 = drm_dp_tps3_supported(buf);
+> +	train_info->tps4 = drm_dp_tps4_supported(buf);
+> +
+> +	train_info->sink_ssc =
+> +		!!(buf[DP_MAX_DOWNSPREAD] & DP_MAX_DOWNSPREAD_0_5);
+> +
+> +	train_info->sink_ssc = false;
+
+What does these two statement do?
+
+Regards,
+CK
+
+> +
+> +	drm_dp_dpcd_readb(&mtk_dp->aux, DP_MSTM_CAP, &val);
+> +	if (val & DP_MST_CAP) {
+> +		/* Clear DP_DEVICE_SERVICE_IRQ_VECTOR_ESI0 */
+> +		drm_dp_dpcd_readb(&mtk_dp->aux,
+> +				  DP_DEVICE_SERVICE_IRQ_VECTOR_ESI0,
+> &val);
+> +		if (val)
+> +			drm_dp_dpcd_writeb(&mtk_dp->aux,
+> +					   DP_DEVICE_SERVICE_IRQ_VECTOR
+> _ESI0,
+> +					   val);
+> +	}
+> +
+> +	return true;
+> +}
+> +
+
