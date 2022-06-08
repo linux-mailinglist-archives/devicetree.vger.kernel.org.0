@@ -2,116 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 863605425BC
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 08:55:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E44B54271F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 08:59:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237376AbiFHCQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jun 2022 22:16:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48824 "EHLO
+        id S232514AbiFHDmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jun 2022 23:42:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1445130AbiFHCL4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 22:11:56 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27C7EF67;
-        Tue,  7 Jun 2022 17:11:37 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id m20so38217154ejj.10;
-        Tue, 07 Jun 2022 17:11:37 -0700 (PDT)
+        with ESMTP id S230366AbiFHDmQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jun 2022 23:42:16 -0400
+Received: from mail-yb1-xb41.google.com (mail-yb1-xb41.google.com [IPv6:2607:f8b0:4864:20::b41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1EA121CBE0
+        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 17:52:36 -0700 (PDT)
+Received: by mail-yb1-xb41.google.com with SMTP id r1so5334870ybd.4
+        for <devicetree@vger.kernel.org>; Tue, 07 Jun 2022 17:52:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=peEtDnuQnzaJUUeMjl4LqwaDIeftlXgdWfg5usfizDM=;
-        b=arIWg9P/rpW9RjH2/kZdbxLIEKz/qsOVFMIqQpAOBi1CmHQHyeKnT3tHNY8v9dM5x5
-         UXW7jWkClwvY9b4vrujSkFYIhe9xrWuOCSW12rU6R44Zh0knenIBmnnZ3LdpEKufbG+U
-         CVJ73XAj52QFqzGPtaWPDlDkd+0byXkcESSP6Q1e0Gm6QtngzyYcayvCjXTUYp8CgpwI
-         Hl0NE62SXCgcvGCGiMZbQd82St+lH2TTvcnsLPuinDOoL7TbTrc8b1/ndsSN/WcocjB8
-         KXjmSKD2y9P75k1+dDXYm/wxo5z6U1PF2TQEM7BImXBlFibG658W5fQayCDsA8ThHlBE
-         5Law==
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=eUaUWc6Sx+nDtEXOr23sHQ20TeN0EwbTH3hUEt9tqJc=;
+        b=cysVenGh2i5Ly9i32S6ONTpf4V6Pbe3xzF7bFRTa4+X6SLeucoNKTEMniWk78axRUm
+         mqxnd93tmA3oa6bUXulu7q60RWydtEHPwRPW69CYu9D7KU+MVjaJbzl+SfpJ/NvjkvGz
+         hTDRGQ44nAXiO5fimSaDsI4VSNCi3NlAOf3bE6oxnTLLHc2pyKboYPOIwHlhWixVEhr9
+         TDTI1MysA7jHUeyszgzq2qsulIaiDe5mvytsLK/A87FBLTcFgtvmO2iMxiz9LvqSv7Jr
+         SxKyKTik7SSsyWCLTbfj3UfrgeD7D4X+78BoeZ4jBpLJs7MBuyHd6JWHZx/DlBnfTOgC
+         xFOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=peEtDnuQnzaJUUeMjl4LqwaDIeftlXgdWfg5usfizDM=;
-        b=PglSJ/9h9cl5eEibIJ4yya7DWu+GdJtd6TNoCqvmf6Dh8X8/0JI6rotBnHVM/ZlB7O
-         9B4qcCzeATqahMn9UClCF7pFUOq5AzVjvNR5qxSSVlAdTIm53OZTxFblp+hYMwYSIzpG
-         /38kHHSPXMRxxEC8keXS65uMEPL6Ls9IpNm02/QAeFXY5SNUrwz5BXmHVZSWVEUKkjXm
-         wcnOtls49/KcDsCEZMdo8IicwmAdEdVHqnFxkn/JbS8t+Vr0biR1RQDHcP1w1IyDjS+c
-         PIQtLg4nARdpFFf1XBw5Pq8DkGijQS3tafCvCnjxf+xX4EGcIYFWF3653kbsiz51yVMs
-         GZPg==
-X-Gm-Message-State: AOAM530iWk4VCnRjaknx/wPfbtirhhKB2T0x9aPhInpuGspUD0gMGBoa
-        LhnO7nXlCxnJ4clGwzHSEzk=
-X-Google-Smtp-Source: ABdhPJwVcxROaQW6z1CnZo/uOEvNYmnun8vP30SLXWhuaCTc7t9UfttE1pcsJ8QJRiOq/sMxdxLHng==
-X-Received: by 2002:a17:906:685:b0:6fa:8e17:e9b5 with SMTP id u5-20020a170906068500b006fa8e17e9b5mr30668613ejb.522.1654647095641;
-        Tue, 07 Jun 2022 17:11:35 -0700 (PDT)
-Received: from localhost.localdomain (93-42-70-190.ip85.fastwebnet.it. [93.42.70.190])
-        by smtp.googlemail.com with ESMTPSA id o19-20020a1709061b1300b006fed85c1a8fsm8434947ejg.202.2022.06.07.17.11.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jun 2022 17:11:35 -0700 (PDT)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Manivannan Sadhasivam <mani@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mtd@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>
-Subject: [PATCH v5 3/3] mtd: nand: raw: qcom_nandc: reorder qcom_nand_host struct
-Date:   Wed,  8 Jun 2022 02:10:30 +0200
-Message-Id: <20220608001030.18813-4-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220608001030.18813-1-ansuelsmth@gmail.com>
-References: <20220608001030.18813-1-ansuelsmth@gmail.com>
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=eUaUWc6Sx+nDtEXOr23sHQ20TeN0EwbTH3hUEt9tqJc=;
+        b=yBnqlomKaDl+H5rasdP4cikX7bkwJ0umD9FG015+6O6njM+CrHa8rS9Smq0WOe8KV/
+         vBvlU6pLyj+amGzjj3J6J/7kdaTmQ/zLab7Ez7LwxJJEZkoSiMD6H6T2fqRHiSB1MqIo
+         jgVKAZOq/E3t/x+e25llxJBSVBfSOo24+DUGgPewmV76sWr4yrIKbuy8Vd+vQ8XCVeIM
+         60DA+3j0I+anCzL0dxq+ITlGTkIMFjHDNtjZMWA/PURQ4uo7aAbOk4LeYHgpx9R/yFDY
+         AjmXtIufK/fWIdJYNla1Tn5BKjHZrwlp8mY5CHBRHs2D8H/30Sl77qKDjEy1mhZdGpVl
+         Drmg==
+X-Gm-Message-State: AOAM532RvNnvwTffLC1jKLeEF1fgHfOqX+Xt8LhdE8rKCzdzVFikuVNV
+        OKEn/LXXu73dNOExY4h3wvvMl/iVFseXSxT0owE=
+X-Google-Smtp-Source: ABdhPJx2+GHvV5CZweVFmGCnEOJlDrrhr68bVb2zNxYVF3W2HZQmR6fgKZHnl7LeKWsz/V040UIq3IfV6iImDLrNJD8=
+X-Received: by 2002:a25:abe2:0:b0:65c:a71b:cf25 with SMTP id
+ v89-20020a25abe2000000b0065ca71bcf25mr32927938ybi.324.1654649555306; Tue, 07
+ Jun 2022 17:52:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Received: by 2002:a05:6918:a412:b0:bd:a4b6:a28 with HTTP; Tue, 7 Jun 2022
+ 17:52:35 -0700 (PDT)
+Reply-To: krf1470@gmail.com
+From:   Hassan Gilbert <fazzabinprince92@gmail.com>
+Date:   Wed, 8 Jun 2022 01:52:35 +0100
+Message-ID: <CAHkhAyyFfwwbjQrUtFF9vSw9S_YDS7iK2-ehYrGdvbsVN7nKig@mail.gmail.com>
+Subject: Greetings My Good Friend,
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: Yes, score=7.3 required=5.0 tests=BAYES_99,BAYES_999,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FREEMAIL_REPLYTO,
+        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2607:f8b0:4864:20:0:0:0:b41 listed in]
+        [list.dnswl.org]
+        *  3.5 BAYES_99 BODY: Bayes spam probability is 99 to 100%
+        *      [score: 1.0000]
+        *  0.2 BAYES_999 BODY: Bayes spam probability is 99.9 to 100%
+        *      [score: 1.0000]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+        *       in digit
+        *      [fazzabinprince92[at]gmail.com]
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [fazzabinprince92[at]gmail.com]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+        *      digit
+        *      [krf1470[at]gmail.com]
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
+        *  2.3 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+X-Spam-Level: *******
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reorder qcom_nand_host to save holes in the struct.
+Attn:
 
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
----
- drivers/mtd/nand/raw/qcom_nandc.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/mtd/nand/raw/qcom_nandc.c b/drivers/mtd/nand/raw/qcom_nandc.c
-index 06ee9a836a3b..110f839c9e51 100644
---- a/drivers/mtd/nand/raw/qcom_nandc.c
-+++ b/drivers/mtd/nand/raw/qcom_nandc.c
-@@ -475,11 +475,13 @@ struct qcom_nand_host {
- 	int cs;
- 	int cw_size;
- 	int cw_data;
--	bool use_ecc;
--	bool bch_enabled;
- 	int ecc_bytes_hw;
- 	int spare_bytes;
- 	int bbm_size;
-+
-+	bool codeword_fixup;
-+	bool use_ecc;
-+	bool bch_enabled;
- 	u8 status;
- 	int last_command;
- 
-@@ -490,7 +492,6 @@ struct qcom_nand_host {
- 	u32 clrflashstatus;
- 	u32 clrreadstatus;
- 
--	bool codeword_fixup;
- 	int nr_boot_partitions;
- 	struct qcom_nand_boot_partition *boot_partitions;
- };
--- 
-2.36.1
+May the love and peace of the Almighty Allah be with you and your
+family.  My name  is Gilbert Hassan, a representative (Financial
+adviser) of Sheikh Hamdan bin Mohammed bin Rashid Al Maktoum (Fazza),
+Founder and owner of Al Maktoum Foundation.
 
+
+Can we seek your consent in establishing charity foundation, work and
+organization and investment with the funds that my client has mapped
+out for charity work which is deposited in a security firm/bank.
+
+
+We have embark in charity work, thereby giving back to the society,
+which  is service to humanity and the best work of life.
+
+
+Now, we are looking for a reputable, reliable and God fearing person
+Whom we can entrust as an agent/ambassador to help us to establish a
+Charity/orphanage home in your country in other  to enhance the lives
+of the poor, less privileged and also fight Covid-19 (Corona Virus).
+
+
+On your interest, do get back to us for more details.
+
+
+Looking forward to hearing from you.
+
+
+Regard,
+Gilbert Hassan.
