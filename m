@@ -2,85 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C5EB542D43
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 12:24:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 321B1542D5B
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 12:24:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236540AbiFHKYS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 06:24:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46710 "EHLO
+        id S236544AbiFHKX7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 06:23:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236429AbiFHKXA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 06:23:00 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B323E1F379A
-        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 03:11:47 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id x62so26380563ede.10
-        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 03:11:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=mygdx+EWNce3HPDkrN+VDocEDtdpxehguvhwMJDyyeI=;
-        b=PAAKqLB62Hf/CGzyWWAYkLIyFRIVbTaQknYin4XTddJKhLILqUaH/h+ROZBMEzpWG9
-         QvZNQgojCeVWEyVWWvz52S0tjhNRD5zUpMdD+SSF4PFZw4Kzmfa3vqiqt3HVjg/mIEgA
-         CUgcFu3b8gEdphdAFko5DtnElqBmE4T0Uk7F2XTl9/goXCdVZaoGEOgKv7QEO7Nhvoqh
-         ZtZx8/7BFoPuNznm/pVcXHiHxsqKTyH5/8i39BW8eM4qLIm/hxWdIsb5PmO+oNG5mqbI
-         3j5K3G0lMJISK4JnFAKs+uO/4kFyh4MSo16lSqaiAMgTjLW3UcBytzBo1km+4BzgDKWo
-         7hLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=mygdx+EWNce3HPDkrN+VDocEDtdpxehguvhwMJDyyeI=;
-        b=WxmKcV6rSsm0QXGPPAj9JW++rz0CGrskBYVWyEjqcHJ2HIzgMEyAzkWFnhWE9ZR8/k
-         CNekpFB1gRpdDlK68QJg/VtK21IRSgA20eYWRXYP+N4HUNru9McFDyjnze/TB81hwSz1
-         uZRKTUHHBHXpWBQIr8j5qrMo6pt7AKBA3btjsQYhYS8ylBCSOzkiASx+oZz7iQv4cAzV
-         DXQGVZDwkETJkdHBRSzCT4tfoG3O4o75AbTX6LGGsfN5YNDjyzlPdw/C/V2jF8O3bP4L
-         aL1QPbX/SA1Sr8SdhLzLYErO/PBCva3J0UDcnAym4c3gM2kw9U+CTg4f58RO0db1BrP6
-         LG4g==
-X-Gm-Message-State: AOAM533xTtjH6QicYw8rdcwF+uWO9eLk3VE3M0TPpzMbx1QhauyxDoFe
-        eGO6ZqTFXtl89xLTK63TszxnLQ==
-X-Google-Smtp-Source: ABdhPJz6yzZ0SRBcoSfjLq/PRs3lNBoAcpo1IGSW4puqEJVVItF1fjdsK3KOv8VpyJU205TN8zsZrA==
-X-Received: by 2002:aa7:d6d5:0:b0:431:b7c0:50c9 with SMTP id x21-20020aa7d6d5000000b00431b7c050c9mr4115115edr.62.1654683105981;
-        Wed, 08 Jun 2022 03:11:45 -0700 (PDT)
-Received: from [192.168.0.191] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id m26-20020a50ef1a000000b0042bae6fbee2sm11815721eds.74.2022.06.08.03.11.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jun 2022 03:11:45 -0700 (PDT)
-Message-ID: <add025b6-c622-b204-d39e-67b31878d37f@linaro.org>
-Date:   Wed, 8 Jun 2022 12:11:43 +0200
+        with ESMTP id S236540AbiFHKXB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 06:23:01 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 711A91F5E1A;
+        Wed,  8 Jun 2022 03:12:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 1D971B826AA;
+        Wed,  8 Jun 2022 10:12:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 146DBC34116;
+        Wed,  8 Jun 2022 10:12:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654683130;
+        bh=NgdrgTl3dZ/SGMPXdfbwfHxcsCdqkPUGxnyJC5YWywo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=OWAr6TkECveSD1zPWhbbzl84/dt6uZH8CWvazsACrsq8kUr/kbc8yCivJqucAVb/j
+         jhr+F0WKWU22kbqwesiNuAuDbmXtf2DsLI6tQgMqL3vXgzlG4WaS+1LJDZbLGGY8tk
+         QUTJ+oDUGYeC/mwq7Uouwt8LgRf6beP+bNOsyPfGUT9SvJd7QdsdsnSWmq11Wopn4X
+         Hav0FK8qsSIVnLRdRS7FxcYGCV7rEKsqBUFnfyb2rUaUUFtSw8sEUwfeP/Z5s9x81+
+         i1KPx+x5C/2W/oDJErI9bUf7OG8NFrN+mP5J81R42OvY9r/EeRocM/5LfplYqbWBeI
+         GWXSOVDSLZVaw==
+Date:   Wed, 8 Jun 2022 11:12:04 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     ChiYuan Huang <u0084500@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>, dmitry.torokhov@gmail.com,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        cy_huang <cy_huang@richtek.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
+        linux-input@vger.kernel.org
+Subject: Re: [PATCH 3/4] regulator: rt5120: Add PMIC regulator support
+Message-ID: <YqB19O/HYvEAxdiM@sirena.org.uk>
+References: <1654581161-12349-1-git-send-email-u0084500@gmail.com>
+ <1654581161-12349-4-git-send-email-u0084500@gmail.com>
+ <Yp+gS6r5Kpi33Ags@sirena.org.uk>
+ <CADiBU38+0vp3Dv6i7uYzCwR431PKBr-HNQnY0Qe7fvvRYGEJmw@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 12/20] dt-bindings: reset: npcm: Add support for
- NPCM8XX
-Content-Language: en-US
-To:     Tomer Maimon <tmaimon77@gmail.com>, avifishman70@gmail.com,
-        tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
-        yuenn@google.com, benjaminfair@google.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, p.zabel@pengutronix.de,
-        gregkh@linuxfoundation.org, daniel.lezcano@linaro.org,
-        tglx@linutronix.de, wim@linux-watchdog.org, linux@roeck-us.net,
-        catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
-        olof@lixom.net, jirislaby@kernel.org, shawnguo@kernel.org,
-        bjorn.andersson@linaro.org, geert+renesas@glider.be,
-        marcel.ziswiler@toradex.com, vkoul@kernel.org,
-        biju.das.jz@bp.renesas.com, nobuhiro1.iwamatsu@toshiba.co.jp,
-        robert.hancock@calian.com, j.neuschaefer@gmx.net, lkundrak@v3.sk
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220608095623.22327-1-tmaimon77@gmail.com>
- <20220608095623.22327-13-tmaimon77@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220608095623.22327-13-tmaimon77@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="MaGFacYl3eetw6pk"
+Content-Disposition: inline
+In-Reply-To: <CADiBU38+0vp3Dv6i7uYzCwR431PKBr-HNQnY0Qe7fvvRYGEJmw@mail.gmail.com>
+X-Cookie: My NOSE is NUMB!
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -89,76 +64,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/06/2022 11:56, Tomer Maimon wrote:
-> Add binding document and device tree binding
-> constants for Nuvoton BMC NPCM8XX reset controller.
-> 
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> ---
->  .../bindings/reset/nuvoton,npcm-reset.yaml    |  13 +-
->  .../dt-bindings/reset/nuvoton,npcm8xx-reset.h | 128 ++++++++++++++++++
->  2 files changed, 140 insertions(+), 1 deletion(-)
->  create mode 100644 include/dt-bindings/reset/nuvoton,npcm8xx-reset.h
-> 
-> diff --git a/Documentation/devicetree/bindings/reset/nuvoton,npcm-reset.yaml b/Documentation/devicetree/bindings/reset/nuvoton,npcm-reset.yaml
-> index c6bbc1589ab9..93ea81686f58 100644
-> --- a/Documentation/devicetree/bindings/reset/nuvoton,npcm-reset.yaml
-> +++ b/Documentation/devicetree/bindings/reset/nuvoton,npcm-reset.yaml
-> @@ -9,9 +9,20 @@ title: Nuvoton NPCM Reset controller
->  maintainers:
->    - Tomer Maimon <tmaimon77@gmail.com>
->  
-> +description: |
-> +  The NPCM reset controller used to reset various set of peripherals. 
-> +  Please refer to reset.txt in this directory for common reset
-> +  controller binding usage.
-> +
-> +  For list of all valid reset indices see
-> +    <dt-bindings/reset/nuvoton,npcm7xx-reset.h> for Poleg NPCM7XX SoC,
-> +    <dt-bindings/reset/nuvoton,npcm8xx-reset.h> for Arbel NPCM8XX SoC.
-> +
->  properties:
->    compatible:
-> -    const: nuvoton,npcm750-reset
-> +    enum: 
-> +      - nuvoton,npcm750-reset        # Poleg NPCM7XX SoC
-> +      - nuvoton,npcm845-reset        # Arbel NPCM8XX SoC
->  
->    reg:
->      maxItems: 1
-> diff --git a/include/dt-bindings/reset/nuvoton,npcm8xx-reset.h b/include/dt-bindings/reset/nuvoton,npcm8xx-reset.h
-> new file mode 100644
-> index 000000000000..5b3b74534b50
-> --- /dev/null
-> +++ b/include/dt-bindings/reset/nuvoton,npcm8xx-reset.h
-> @@ -0,0 +1,128 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
 
-Again - ignored comment from v1.
+--MaGFacYl3eetw6pk
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +/*
-> + * Copyright (c) 2022 Nuvoton Technology corporation.
-> + * Author: Tomer Maimon <tmaimon77@gmail.com>
-> + */
-> +
-> +#ifndef _DT_BINDINGS_NPCM8XX_RESET_H
-> +#define _DT_BINDINGS_NPCM8XX_RESET_H
-> +
-> +/* represent reset register offset */
-> +#define NPCM8XX_RESET_IPSRST1		0x20
-> +#define NPCM8XX_RESET_IPSRST2		0x24
-> +#define NPCM8XX_RESET_IPSRST3		0x34
-> +#define NPCM8XX_RESET_IPSRST4		0x74
-> +
-> +/* Reset lines on IP1 reset module (NPCM8XX_RESET_IPSRST1) */
+On Wed, Jun 08, 2022 at 11:15:56AM +0800, ChiYuan Huang wrote:
+> Mark Brown <broonie@kernel.org> =E6=96=BC 2022=E5=B9=B46=E6=9C=888=E6=97=
+=A5 =E9=80=B1=E4=B8=89 =E4=B8=8A=E5=8D=883:00=E5=AF=AB=E9=81=93=EF=BC=9A
+> > On Tue, Jun 07, 2022 at 01:52:40PM +0800, cy_huang wrote:
 
-Again - ignored comment from v1. My last message was quite clear, wasn't it?
+> > > +     static const char * const name[] =3D { "buck1", "buck2", "buck3=
+", "buck4",
+> > > +                                          "ldo", "exten" };
+> > > +     static const char * const sname[] =3D { "vin1", "vin2", "vin3",=
+ "vin4",
+> > > +                                           "vinldo", NULL };
 
-https://lore.kernel.org/all/4a69902f-a545-23a1-1430-e5ece16997e9@linaro.org/
+> > It would be easier and clearer to just make this a static table like
+> > other drivers do, there's no need to generate anything dynamically as
+> > far as I can see.
 
-You ignored several of previous comments, so:
+> My excuse. let me explain it.
+> buck1 voltage range from 600mV to 1393.75mV.
+> buck2~4/ldo/exten is the fixed regulator.
+> buck3 and buck4 is fixed by the IC efuse default.
+> buck2 and ldo is fixed by the external resistor chosen.
+> exten is designed to connected to the external power.
 
-NAK.
+> That's why I cannot directly declared it as the static regulator_desc.
 
-Best regards,
-Krzysztof
+So buck 2-4 need some dynamic handling then but the rest can be static -
+that would be a lot clearer.  You could also have a template for the
+ones with some dynamic values and just override the few fields that need
+it.
+
+> > > +     if (init_data->constraints.min_uV !=3D init_data->constraints.m=
+ax_uV) {
+> > > +             dev_err(priv->dev, "Variable voltage for fixed regulato=
+r\n");
+> > > +             return -EINVAL;
+> > > +     }
+> > > +
+> > > +     desc->fixed_uV =3D init_data->constraints.min_uV;
+> > > +     init_data->constraints.apply_uV =3D 0;
+
+> > Drivers should never override constraints passed in by machine drivers,
+> > if there's validation needed let the core do it.  The same probably
+> > applies to providing a voltage range for a fixed regulator though that's
+> > not modifying everything so not such a problem.
+
+> Please check the above explanation about each power rails.
+
+I'm not sure what you're referencing here?
+
+> > > +     for (i =3D 0; i < RT5120_MAX_REGULATOR; i++) {
+> > > +             ret =3D rt5120_of_parse_cb(priv, i, rt5120_regu_match +=
+ i);
+> > > +             if (ret) {
+> > > +                     dev_err(priv->dev, "Failed in [%d] of_passe_cb\=
+n", i);
+> > > +                     return ret;
+> > > +             }
+> > > +     }
+> >
+> > This is all open coding stuff that's in the core - just provde an
+> > of_parse_cb() operation and let the core take care of calling it.
+
+> Ditto
+
+Or here.
+
+--MaGFacYl3eetw6pk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmKgdfMACgkQJNaLcl1U
+h9C6iwf6AvA+ZFlpGr0gQNW0555AlhBtLyRqR9rwNGL5qQZFAWbQJcvsXnBbtxdV
+4G3r/BHQdWP0tkW7FjNrOisB20DqNNw8NE+5RoHZxBLUlFyEmT7eV/JywbDiMmfu
+veYdLX0vCPOl53cjAx7oAWSWP/eD6C8A8AiQ/a0MTW08vIjsQhcDNWAfCOKK9deV
+RgGqaMpCGe5+UnTbn+Wn9c20K8/lKn5+uD+nn2OOS75d/oj42VzrvAWg90E4ao+x
+VZD2EcFV41CW1g/2GDs1zQigwB5+zDhgArNvPPaLnXwY/Pl+U/oHuk2/F0PMFziN
+z1rTwX9w3MVaH8DxTIca7wwj6k38PQ==
+=Ie6i
+-----END PGP SIGNATURE-----
+
+--MaGFacYl3eetw6pk--
