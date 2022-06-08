@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F28CD542AB6
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 11:07:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 297A4542AD9
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 11:12:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234224AbiFHJG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 05:06:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41684 "EHLO
+        id S234361AbiFHJKW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 05:10:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233569AbiFHJFe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 05:05:34 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5A883B339B
-        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 01:24:29 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id n28so26034265edb.9
-        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 01:24:29 -0700 (PDT)
+        with ESMTP id S233604AbiFHJJO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 05:09:14 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89F0C21CBF9
+        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 01:26:47 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id fd25so26064309edb.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 01:26:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=vodrx9Dco7ZxIlzK0qDIX2Es3mCU3/JNor2aY4jBwbM=;
-        b=t08WwvG5y3MyKeLKsES490ZtIpkQCrkT1liIEjI54pqTipGo1c7Z/Diizpe986wprW
-         Qf8AHdFCv8wyHlauhIGOEa/6gdRs+FdrU8p6eDnVMHTmQH1qHalmwAyWQSKPjdQcfgSQ
-         4upP9ggs2Kv6lPDkACe3jxT3jcCkKU1hnDH+7OapbA2Qweaap7+1DQ4VyAgCZWGZyuvA
-         qK4xRFcanjF7tKaLACgudwr0W7zpoXQtd1hjs1CcIml7zUAH3nZEH8/GY++lk2TUG5LS
-         hJdtOVSoxyMPBDDFZZsOs1HDUK6vtNXVahHtv361r51miEFyjcLHxp5WqzPJwSkULGSO
-         vU1A==
+        bh=pMsHwy7E/xLjDEEsUZts4AUene1hjdqOhTRjyDswkzk=;
+        b=E8NB/2f0URNU7PNZSgEeDI0looKPg4GXnardUu6uxPQbCLD/BDqvF41YH6KXApwxiF
+         gKgorM8EvdS80nuP67fOY6zeQPUuJxyghGCXx6+of6Zstz53Bm8BfDnDHPtLwle/07Fx
+         neXE/8kBuRFM+vkSYKtPnOwV9ugYei5PauEaSDpOxOZdyFUFkNu4e/nYNdkwEiI8QckI
+         qhrB6ce0Ecv/ZafjbLSx3g/VHDKecpICx9BSVDi8dtp3Xu1FOrNvwNb5PoKsVZbXfE2t
+         SICv1/5CeF7SNl7NA4jTB/Toy4h6h9ptwo+8eOjoUOI8EYY/PZenaASSqqIgnaM2VLGK
+         jj+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=vodrx9Dco7ZxIlzK0qDIX2Es3mCU3/JNor2aY4jBwbM=;
-        b=SRxkGBnEz1VIWDp+7l6N57FmsNiDXs2i6nAUjbvurkhwl2gNxvULO3DDbL7tkYYmmx
-         g7hytxNWpJJNdIBYWk7p5usP28vk69mGBSr6s77TaO8XQiiui2nyyiKvNleCiX/WpSwV
-         C1BHDDh0syEiBQ4/uawUC7kHU07yOznToww6PP7Ie/x8RApZ/h0CwavidhKJSqdaWZNd
-         yjQq42khQBkVgr7PVIY5TzibsKILRiz2TTcMdOJrNeGgmzijWuKU4UoRuJpCqvOqCMKX
-         /F4tsd3yCFfrdS8s0fFv7MeeW4MCJd6f9XGFzu4jTc/iyEjrFT87l8kVREjYKT8freCm
-         glXQ==
-X-Gm-Message-State: AOAM531prk+s/YweMGaXZ66m1K6mRnMFrQjbPC6YaSrIETqe7PwaQk22
-        kGP80uqsXhQVUHPzjg6hCymdYQ==
-X-Google-Smtp-Source: ABdhPJwJrRNykTvzNzekDfyvGERqLBpdsrsDtBsy8hgpntnnrRo809+bvJQgrX7tfjoZX6nCaR5e8Q==
-X-Received: by 2002:a05:6402:3546:b0:42e:2f58:2c90 with SMTP id f6-20020a056402354600b0042e2f582c90mr30791745edd.84.1654676668039;
-        Wed, 08 Jun 2022 01:24:28 -0700 (PDT)
+        bh=pMsHwy7E/xLjDEEsUZts4AUene1hjdqOhTRjyDswkzk=;
+        b=NTt0IuEN0+1fU874ir0UJgF5NJmo+1BqIQbIUXeuI4rD5e5eaZKSFIDaetb31l7qpo
+         MRjR8iHaVP0H7JIWlzUsrZEiDOoZWxKLXALZ82LhiA0txYKIaUoERlqDxnPwkfL+pOvV
+         GFT43KGI0d7ZCnOLXSIqjLgCcqgtZBiPP7tJBPUQXQsztpJKb0y4Kz+a9WMjYAC+vPe9
+         ca6lMxoLq3v1xCInIefcxmA9nABLLfFAsI74Jb8p3kZVFEujg2/74RZ9LRAMBFwa1F+G
+         Pf0RIJvcevw1v7fn/S4VJYSDPyaOYS31JM5IvEACzaWh9Ckyo37SG7l6qDmL/u9Pk7Am
+         uGnw==
+X-Gm-Message-State: AOAM530UgPUQkeHGpG/QpskkmQ2bMvW3QWZ81l55AerBdunA4q9DC45Q
+        JsjGF8OPVsThgYXCTaZbLfZLww==
+X-Google-Smtp-Source: ABdhPJxT2XneRrGJcLdjXRKLMXv9KAQjDXOXQ3UZsDHcyZt3gLmxCrWYCweARDOvznAPwpQGiBR0zA==
+X-Received: by 2002:a05:6402:3588:b0:42e:6a8:a5d5 with SMTP id y8-20020a056402358800b0042e06a8a5d5mr37733781edc.117.1654676806148;
+        Wed, 08 Jun 2022 01:26:46 -0700 (PDT)
 Received: from [192.168.0.189] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id lo27-20020a170906fa1b00b006fe9209a9edsm8609058ejb.128.2022.06.08.01.24.26
+        by smtp.gmail.com with ESMTPSA id ss9-20020a170907c00900b00711d8696de9sm2938274ejc.70.2022.06.08.01.26.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jun 2022 01:24:26 -0700 (PDT)
-Message-ID: <32db32cb-ff08-93ac-fd33-6306d6eded62@linaro.org>
-Date:   Wed, 8 Jun 2022 10:24:25 +0200
+        Wed, 08 Jun 2022 01:26:45 -0700 (PDT)
+Message-ID: <ff5afd82-8183-b94a-afa5-ce9e684e97fb@linaro.org>
+Date:   Wed, 8 Jun 2022 10:26:44 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: sc8280x: Add reference device
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: add SA8540P and ADP
 Content-Language: en-US
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -64,14 +64,14 @@ Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20220607214113.4057684-1-bjorn.andersson@linaro.org>
- <20220607214113.4057684-4-bjorn.andersson@linaro.org>
+ <20220607214113.4057684-5-bjorn.andersson@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220607214113.4057684-4-bjorn.andersson@linaro.org>
+In-Reply-To: <20220607214113.4057684-5-bjorn.andersson@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,42 +80,49 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 07/06/2022 23:41, Bjorn Andersson wrote:
-> Add basic support for the SC8280XP reference device, which allows it to
-> boot to a shell (using EFIFB) with functional storage (UFS), USB,
-> keyboard, touchpad, touchscreen, backlight and remoteprocs.
+> Introduce the Qualcomm SA8540P automotive platform and the SA8295P ADP
+> development board.
 > 
-> The PMICs are, per socinfo, reused from other platforms. But given that
-> the address of the PMICs doesn't match other cases and that it's
-> desirable to label things according to the schematics a new dtsi file is
-> created to represent the reference combination of PMICs.
+> The SA8540P and SC8280XP are fairly similar, so the SA8540P is built
+> ontop of the SC8280XP dtsi to reduce duplication. As more advanced
+> features are integrated this might be re-evaluated.
+> 
+> This initial contribution supports SMP, CPUFreq, cluster idle, UFS, RPMh
+> regulators, debug UART, PMICs, remoteprocs (NSPs crashes shortly after
+> booting) and USB.
+> 
+> The SA8295P ADP contains four PM8450 PMICs, which according to their
+> revid are compatible with PM8150. They are defined within the ADP for
+> now, to avoid creating additional .dtsi files for PM8150 with just
+> addresses changed - and to allow using the labels from the schematics.
 > 
 > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 > ---
->  arch/arm64/boot/dts/qcom/Makefile            |   1 +
->  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts    | 423 +++++++++++++++++++
->  arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi | 108 +++++
->  3 files changed, 532 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
+>  arch/arm64/boot/dts/qcom/Makefile        |   1 +
+>  arch/arm64/boot/dts/qcom/sa8295p-adp.dts | 434 +++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sa8540p.dtsi    | 133 +++++++
+>  3 files changed, 568 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/sa8540p.dtsi
 > 
 > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 2f8aec2cc6db..ceeae094a59f 100644
+> index ceeae094a59f..2f416b84b71c 100644
 > --- a/arch/arm64/boot/dts/qcom/Makefile
 > +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -89,6 +89,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine-villager-r0.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-crd-r3.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sc8280xp-crd.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-ganges-kirin.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-discovery.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-pioneer.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+> @@ -52,6 +52,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= qrb5165-rb5.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sa8155p-adp.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= sa8295p-adp.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-idp.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1-lte.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
 > new file mode 100644
-> index 000000000000..1031ee039107
+> index 000000000000..f78203d7bfd2
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> @@ -0,0 +1,423 @@
+> +++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> @@ -0,0 +1,434 @@
 > +// SPDX-License-Identifier: BSD-3-Clause
 > +/*
 > + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
@@ -128,193 +135,17 @@ On 07/06/2022 23:41, Bjorn Andersson wrote:
 > +#include <dt-bindings/input/gpio-keys.h>
 > +#include <dt-bindings/input/input.h>
 > +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+> +#include <dt-bindings/spmi/spmi.h>
 > +
-> +#include "sc8280xp.dtsi"
-> +#include "sc8280xp-pmics.dtsi"
+> +#include "sa8540p.dtsi"
 > +
 > +/ {
-> +	model = "Qualcomm SC8280XP CRD";
-> +	compatible = "qcom,sc8280xp-crd", "qcom,sc8280xp";
+> +	model = "Qualcomm SA8295P ADP";
+> +	compatible = "qcom,sa8295p-adp", "qcom,sa8540p";
 
-This needs to be documented in the bindings.
+Similarly to previous patch - this needs to be documented.
 
-> +
-> +	aliases {
-> +		serial0 = &qup2_uart17;
-> +	};
-> +
-> +	backlight {
-> +		compatible = "pwm-backlight";
-> +		pwms = <&pmc8280c_lpg 3 1000000>;
-> +		enable-gpios = <&pmc8280_1_gpios 8 GPIO_ACTIVE_HIGH>;
-> +		power-supply = <&vreg_edp_bl>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&edp_bl_en>, <&edp_bl_pwm>;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	vreg_edp_bl: edp-bl-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VREG_EDP_BL";
-> +
-> +		regulator-min-microvolt = <3600000>;
-> +		regulator-max-microvolt = <3600000>;
-> +
-> +		gpio = <&pmc8280_1_gpios 9 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&edp_bl_reg_en>;
-> +
-> +		regulator-boot-on;
-> +	};
-> +
-> +	vreg_misc_3p3: misc-3p3-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VREG_MISC_3P3";
-> +
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +
-> +		gpio = <&pmc8280_1_gpios 0 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&misc_3p3_reg_en>;
-> +
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +
-> +	reserved-memory {
-> +	};
-> +};
-> +
-> +&apps_rsc {
-> +	pmc8280-1-rpmh-regulators {
-> +		compatible = "qcom,pm8350-rpmh-regulators";
-> +		qcom,pmic-id = "b";
-> +
-> +		vdd-l3-l5-supply = <&vreg_s11b>;
-> +
-> +		vreg_s11b: smps11 {
-> +			regulator-name = "vreg_s11b";
-> +			regulator-min-microvolt = <1272000>;
-> +			regulator-max-microvolt = <1272000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l3b: ldo3 {
-> +			regulator-name = "vreg_l3b";
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1200000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +			regulator-boot-on;
-> +			regulator-always-on;
-> +		};
-> +
-> +		vreg_l4b: ldo4 {
-> +			regulator-name = "vreg_l4b";
-> +			regulator-min-microvolt = <912000>;
-> +			regulator-max-microvolt = <912000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +		};
-> +
-> +		vreg_l6b: ldo6 {
-> +			regulator-name = "vreg_l6b";
-> +			regulator-min-microvolt = <880000>;
-> +			regulator-max-microvolt = <880000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +			regulator-boot-on;
-> +		};
-> +	};
-> +
-> +	pmc8280c-rpmh-regulators {
-> +		compatible = "qcom,pm8350c-rpmh-regulators";
-> +		qcom,pmic-id = "c";
-> +
-> +		vreg_l1c: ldo1 {
-> +			regulator-name = "vreg_l1c";
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +		};
-> +
-> +		vreg_l7c: ldo7 {
-> +			regulator-name = "vreg_l7c";
-> +			regulator-min-microvolt = <2504000>;
-> +			regulator-max-microvolt = <2504000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +		};
-> +
-> +		vreg_l13c: ldo13 {
-> +			regulator-name = "vreg_l13c";
-> +			regulator-min-microvolt = <3072000>;
-> +			regulator-max-microvolt = <3072000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +		};
-> +	};
-> +
-> +	pmc8280-2-rpmh-regulators {
-> +		compatible = "qcom,pm8350-rpmh-regulators";
-> +		qcom,pmic-id = "d";
-> +
-> +		vdd-l1-l4-supply = <&vreg_s11b>;
-> +
-> +		vreg_l3d: ldo3 {
-> +			regulator-name = "vreg_l3d";
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1200000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +		};
-> +
-> +		vreg_l4d: ldo4 {
-> +			regulator-name = "vreg_l4d";
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1200000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +		};
-> +
-> +		vreg_l6d: ldo6 {
-> +			regulator-name = "vreg_l6d";
-> +			regulator-min-microvolt = <880000>;
-> +			regulator-max-microvolt = <880000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +		};
-> +
-> +		vreg_l7d: ldo7 {
-> +			regulator-name = "vreg_l7d";
-> +			regulator-min-microvolt = <3072000>;
-> +			regulator-max-microvolt = <3072000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +		};
-> +
-> +		vreg_l9d: ldo9 {
-> +			regulator-name = "vreg_l9d";
-> +			regulator-min-microvolt = <912000>;
-> +			regulator-max-microvolt = <912000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-allow-set-load;
-> +		};
-> +	};
-> +
-
-No need for blank line
-
-
+Rest looks ok.
 
 Best regards,
 Krzysztof
