@@ -2,78 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69854542E5A
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 12:50:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56271542E57
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 12:50:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237652AbiFHKu3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 06:50:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48012 "EHLO
+        id S236797AbiFHKuh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 06:50:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237630AbiFHKuY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 06:50:24 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15BF51E443B
-        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 03:50:17 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id s12so33429034ejx.3
-        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 03:50:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Vm9XhdeYU7rRvslTwvUkHce0nhE9IQ9ok1tIOOnzVp0=;
-        b=tjftErh4YNKJPcP5BEyJk296R2TSigz64ffMTdehQ+794p/qVh3rgyGMgXrt8fhe0x
-         b1PUPN96Cxn5PbRvvtDMM5JG0rd5uI27wGcl1Fh2b0nYm+POWF/rCDnFarA1GWIg2y6v
-         WstIjAqZ6MeUik55bC4h15atWIM3AE7tmBpeQ9gUyVj/eBMePcOWoOSSnjW0lHE1o8/w
-         qBwQ221x8rox/TsMWLM0UbJVMavcfk2KBadVelqvdRxYsFhlZ3E9lXM8iyCn6g4xkrZi
-         27OCwci1yUXHziOwIo6LEhy0YlX5ubQAfn/e+W0x1Tzo23jplro7Xgp4okYdRT5r3OJ8
-         H50A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Vm9XhdeYU7rRvslTwvUkHce0nhE9IQ9ok1tIOOnzVp0=;
-        b=Xyq1W4KPMY0+rSJyzdLkLz8a4iYolL+5zJoL/Blq3ExZSBPdmSgT7ksP88FgpsHZhS
-         8fJzJsl96tojDPKnXAcJ3YF13BdJfM8mQB3PLOTcnFTCuuHTh/QGUbR6NRY1zvOs5dh9
-         Tf4hHAEOZm61gEpHA94EeksRZopR1YXml3EHQig1hW+a2pZevNmNjZEt6TcMC//Ncfab
-         b88I9eVeFKRV75qC0O0+I2ziC1yRWJ7XOv+TTYcRa6L3mHJIoyySZB2l4RVhoFCYlUot
-         uPTFffhSKXX6hzUIemvTvcCqp3BqA2PMClPL4hSW8YRgeCji1UkXOAuXfMg2xxXOI5Ac
-         HL4A==
-X-Gm-Message-State: AOAM530tmfMOnJknI8WnQsXn90u+n9RCEo+Xe32icWCN7L2PWI5mwVTf
-        tGmJveeNusq7Scalu4E8MPA7uQ==
-X-Google-Smtp-Source: ABdhPJzWUzL4o7NZrlrAIH2mz7oyYOOIbQLDjxuZ30g5twmrX8aF6udUHt0tBSrqq1P80KtyUooUaQ==
-X-Received: by 2002:a17:906:7954:b0:6fe:d9af:feb0 with SMTP id l20-20020a170906795400b006fed9affeb0mr30037683ejo.361.1654685416246;
-        Wed, 08 Jun 2022 03:50:16 -0700 (PDT)
-Received: from [192.168.0.191] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id a9-20020a50ff09000000b0042fb3badd48sm7944900edu.9.2022.06.08.03.50.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jun 2022 03:50:15 -0700 (PDT)
-Message-ID: <505d2462-c448-ecd1-c27a-27b263e354e8@linaro.org>
-Date:   Wed, 8 Jun 2022 12:50:14 +0200
+        with ESMTP id S237628AbiFHKua (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 06:50:30 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64BB21E2269
+        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 03:50:29 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nytGd-0001nt-Lb; Wed, 08 Jun 2022 12:50:27 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nytGd-007APG-Hm; Wed, 08 Jun 2022 12:50:26 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nytGb-00ExQg-GN; Wed, 08 Jun 2022 12:50:25 +0200
+Date:   Wed, 8 Jun 2022 12:50:25 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     nicolas saenz julienne <nsaenz@kernel.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org, kernel@pengutronix.de
+Subject: Re: [PATCH] arm: bcm2711-rpi-4-b: Add gpio offsets to line name array
+Message-ID: <20220608105025.zz4luujitqxglyok@pengutronix.de>
+References: <20211130161147.317653-1-u.kleine-koenig@pengutronix.de>
+ <3dd6940acac27e5577b54ded8f2d472bbb6f7733.camel@kernel.org>
+ <bc412de6-1f77-b8ba-fdff-af27c47c8e30@gmail.com>
+ <921ec5ea67b6d343647a28b57b78923e5678d59b.camel@kernel.org>
+ <20220608071349.uflbfojuf3e65k5y@pengutronix.de>
+ <a9113658-4267-fe36-a9f5-36c142ab0e0c@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 05/17] dt-bindings: power: supply: axp20x: Add AXP192
- compatible
-Content-Language: en-US
-To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>,
-        linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, wens@csie.org, jic23@kernel.org,
-        lee.jones@linaro.org, sre@kernel.org, broonie@kernel.org,
-        gregkh@linuxfoundation.org, lgirdwood@gmail.com
-Cc:     lars@metafoo.de, rafael@kernel.org, quic_gurus@quicinc.com,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-pm@vger.kernel.org
-References: <20220607155324.118102-1-aidanmacdonald.0x0@gmail.com>
- <20220607155324.118102-6-aidanmacdonald.0x0@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220607155324.118102-6-aidanmacdonald.0x0@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="okjqcwl3a5cgd5p7"
+Content-Disposition: inline
+In-Reply-To: <a9113658-4267-fe36-a9f5-36c142ab0e0c@gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,14 +59,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/06/2022 17:53, Aidan MacDonald wrote:
-> The AXP192's USB power supply is similar to the AXP202 but it has
-> different USB current limits.
-> 
-> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
 
-Please send a v3 with tags properly accumulated.
+--okjqcwl3a5cgd5p7
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Jun 08, 2022 at 10:13:20AM +0200, Florian Fainelli wrote:
+>=20
+>=20
+> On 6/8/2022 9:13 AM, Uwe Kleine-K=F6nig wrote:
+> > Hello Nicolas,
+> >=20
+> > On Thu, Dec 02, 2021 at 09:21:53AM +0100, nicolas saenz julienne wrote:
+> > > On Wed, 2021-12-01 at 14:16 -0800, Florian Fainelli wrote:
+> > > > On 12/1/21 3:40 AM, nicolas saenz julienne wrote:
+> > > > > On Tue, 2021-11-30 at 17:11 +0100, Uwe Kleine-K=F6nig wrote:
+> > > > > > this helps human readers considerably to determine the line nam=
+e for a
+> > > > > > given offset or vice versa.
+> > > > > >=20
+> > > > > > Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.=
+de>
+> > > > > > ---
+> > > > >=20
+> > > > > Applied for next.
+> > > >=20
+> > > > Subject should be:
+> > > >=20
+> > > > ARM: dts: bcm2711-rpi-4-b: Add gpio offsets to line name array
+> > > >=20
+> > > > Can you fix that up before sending this to me as a pull request? Th=
+anks
+> > >=20
+> > > Done, thanks for catching that one.
+> >=20
+> > This patch is in next since 2021-12-16 as ce94980d2970, but didn't hit
+> > mainline yet. What's wrong here?
+>=20
+> It's there:
+>=20
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit=
+/?id=3D5e8c1bf1a0a5c728cee2b6c2162348a9dfddf1bf
 
-Best regards,
-Krzysztof
+Thanks, so it's just that the for-next branch in
+git://git.kernel.org/pub/scm/linux/kernel/git/nsaenz/linux-rpi.git needs
+a rebase.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--okjqcwl3a5cgd5p7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmKgfu4ACgkQwfwUeK3K
+7AkIwQf8DAYTlmYthwjWifMim1CvWuHN1lqD5mRHmkhBFPTgXdOnqjpEW+2ZdXSp
+VcPagLEa8pgUAIqzJ83Jp91cpvsmRG4QWYBsxfsppqPiroXCNNBYq70r8R55GevK
+/lzcGG3NCxeeZuGJirHLy2MZOWEwdw+6xNqKl5P7uTB8oW9J6zUGVHUDrIpoRp5z
+byDwdFFrCcNUrztycHNoRvjmKyMeg7pwDmLeYdnUbv/WCXQh/X9gnBwbOK8CzzLP
+MuIIShrm982v4HbIDf7W9xFwmzyI1USkVXBDLXUjqu1vihTvPMEOiN8VT8u3hqGC
+e0cvW/T0Nchp5r7ak9k4HjG67Kw2qg==
+=Mz+Q
+-----END PGP SIGNATURE-----
+
+--okjqcwl3a5cgd5p7--
