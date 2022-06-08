@@ -2,316 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05715543809
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 17:49:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BD2F543819
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 17:52:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244930AbiFHPsh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 11:48:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40258 "EHLO
+        id S239819AbiFHPv7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 11:51:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245057AbiFHPs1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 11:48:27 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8E9A46B17;
-        Wed,  8 Jun 2022 08:48:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1654703302; x=1686239302;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=XkTtCRcAMobeAss0nkgydfWrw8JI3rM9HbTz4l0vIbg=;
-  b=tx0onptrX/5RYdXgpWJMi4HacYWhwOybbecn264GzB2+CUu4bPTIMZX/
-   qhWxMgIhlE7wvhoj1sKTfnPpm1egJcnrl2kyyTsec8vGPHt0IS3mO2jKg
-   TPTsyRZlnsUZqrYNEoREQpSf6gtJQIvfYinNta0NMa7KC4N1s5Wd3+F1P
-   g=;
-Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 08 Jun 2022 08:48:21 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jun 2022 08:48:21 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 8 Jun 2022 08:48:21 -0700
-Received: from jinlmao-gv.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 8 Jun 2022 08:48:16 -0700
-From:   Mao Jinlong <quic_jinlmao@quicinc.com>
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
+        with ESMTP id S231237AbiFHPv6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 11:51:58 -0400
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B15EE49244
+        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 08:51:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+        s=20170329; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=4Vxeo9jH11rHQyQP2R0cI5LaRVtfqr/hSLMJ4leQkxM=; b=PhmIe1qe2P6DDjozBkILvARJUI
+        c/nZEsOGaaQzhnEVZDphYyL8AT0vqoipAjuVJp8dWUEIbJq8+NflXicm1jM+7qnwT/uI4A4yWSIEK
+        o2oiikk+B2XiOdBz4fyULdUpJtp9CGyiMtdw6V8/IRySboBH/rwhQf7vf0YhU22gW+QjA/KWz6TNB
+        PYNRd6wh4xhf8GBbGgFjmb4RR+yYCxN2CV/g0S/+S4l93bIDBSvkfSeoi9Y+2Cojo/LMFdKUaUR8C
+        Lvx2QwDyLp4Nd2yTwGA9Ve9UXiw1s/YzPLCnSuv7SJqB7WwtpEXU1rSeqoZclx/O8qKYNtDXw9JmB
+        hvjDh8vA==;
+Received: from [165.90.126.25] (helo=mail.igalia.com)
+        by fanzine2.igalia.com with esmtpsa 
+        (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+        id 1nyxyC-00EPDe-TK; Wed, 08 Jun 2022 17:51:45 +0200
+Date:   Wed, 8 Jun 2022 14:51:30 -0100
+From:   Melissa Wen <mwen@igalia.com>
+To:     Javier Martinez Canillas <javierm@redhat.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Peter Robinson <pbrobinson@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Emma Anholt <emma@anholt.net>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org, maxime@cerno.tech,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Mao Jinlong <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        "Tao Zhang" <quic_taozha@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        "Hao Zhang" <quic_hazha@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>
-Subject: [PATCH v8 10/10] arm64: dts: qcom: sm8250: Add tpdm mm/prng
-Date:   Wed, 8 Jun 2022 23:47:05 +0800
-Message-ID: <20220608154705.40322-11-quic_jinlmao@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220608154705.40322-1-quic_jinlmao@quicinc.com>
-References: <20220608154705.40322-1-quic_jinlmao@quicinc.com>
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Subject: Re: [PATCH v6 0/6] Raspberry PI 4 V3D enablement
+Message-ID: <20220608155130.w4piz2g3obp7qnx7@mail.igalia.com>
+References: <20220603092610.1909675-1-pbrobinson@gmail.com>
+ <cadecbfd-e174-eadb-276c-577bb2bf70f2@gmail.com>
+ <9aaaaa29-11c0-d494-11dd-0bbf5d384364@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="z56oylvtyf4k6pji"
+Content-Disposition: inline
+In-Reply-To: <9aaaaa29-11c0-d494-11dd-0bbf5d384364@redhat.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add tpdm mm and tpdm prng for sm8250.
 
-+---------------+                +-------------+
-|  tpdm@6c08000 |                |tpdm@684C000 |
-+-------|-------+                +------|------+
-        |                               |
-+-------|-------+                       |
-| funnel@6c0b000|                       |
-+-------|-------+                       |
-        |                               |
-+-------|-------+                       |
-|funnel@6c2d000 |                       |
-+-------|-------+                       |
-        |                               |
-        |    +---------------+          |
-        +----- tpda@6004000  -----------+
-             +-------|-------+
-                     |
-             +-------|-------+
-             |funnel@6005000 |
-             +---------------+
+--z56oylvtyf4k6pji
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 173 +++++++++++++++++++++++++++
- 1 file changed, 173 insertions(+)
+On 06/08, Javier Martinez Canillas wrote:
+> Hello Florian,
+>=20
+> On 6/8/22 11:26, Florian Fainelli wrote:
+> >=20
+> >=20
+> > On 6/3/2022 11:26 AM, Peter Robinson wrote:
+> >> This is a follow up from my v4 patchset. The power management pieces h=
+ave
+> >> been split out to a separate independent set of patches by Stefan [1].=
+ This
+> >> version 5 of the DRM patches are independent and given the V3D driver =
+has
+> >> been upstream for some time the two patches to enable it in defconfigs=
+ can
+> >> be taken at anytime independent of the enablement for the Raspberry Pi=
+ 4.
+> >>
+> >> I've tested this using mesa 22.0.x and Wayland/Gnome on Fedora 36, it's
+> >> more or less stable with basic testing.
+> >>
+> >> Changes since v5:
+> >> - Update the DT compatible to match the others that were updated
+> >> - Adjust the Kconfig help text
+> >> - Add review tags
+> >>
+> >> Changes since v4:
+> >> - Fixes for device tree and bindings
+> >> - Split out the power management changes into an independent set
+> >> - Rebase to 5.18
+> >> - Individual changes in patches
+> >>
+> >> [1] https://www.spinics.net/lists/arm-kernel/msg980342.html
+> >=20
+> > I can take the last 3 patches through the Broadcom ARM SoC pull request=
+,=20
+> > but the first three should probably go via the DRM tree unless you want=
+=20
+> > me to merge them all?
+>=20
+> I can merge the first 3 patches through the drm-misc tree. Can I get
+> an ack from you for those ?
+>=20
+> The changes are independent so there's no need for an immutable branch
+> or any kind of cross tree coordination.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index e0193907c498..4456ef8bb167 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -2730,6 +2730,76 @@
- 			};
- 		};
- 
-+		tpda@6004000 {
-+			compatible = "arm,primecell";
-+			reg = <0 0x06004000 0 0x1000>;
-+			reg-names = "tpda-base";
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			out-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					tpda_out_funnel_qatb: endpoint {
-+						remote-endpoint = <&funnel_qatb_in_tpda>;
-+					};
-+				};
-+			};
-+
-+			in-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@9 {
-+					reg = <9>;
-+					tpda_9_in_tpdm_mm: endpoint {
-+						remote-endpoint = <&tpdm_mm_out_tpda9>;
-+					};
-+				};
-+
-+				port@17 {
-+					reg = <23>;
-+					tpda_23_in_tpdm_prng: endpoint {
-+						remote-endpoint = <&tpdm_prng_out_tpda_23>;
-+					};
-+				};
-+			};
-+		};
-+
-+		funnel@6005000 {
-+			compatible = "arm,primecell";
-+
-+			reg = <0 0x06005000 0 0x1000>;
-+			reg-names = "funnel-base";
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			out-ports {
-+				port {
-+					funnel_qatb_out_funnel_in0: endpoint {
-+						remote-endpoint = <&funnel_in0_in_funnel_qatb>;
-+					};
-+				};
-+			};
-+
-+			in-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					funnel_qatb_in_tpda: endpoint {
-+						remote-endpoint = <&tpda_out_funnel_qatb>;
-+					};
-+				};
-+			};
-+		};
-+
- 		funnel@6041000 {
- 			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
- 			reg = <0 0x06041000 0 0x1000>;
-@@ -2749,6 +2819,13 @@
- 				#address-cells = <1>;
- 				#size-cells = <0>;
- 
-+				port@6 {
-+					reg = <6>;
-+					funnel_in0_in_funnel_qatb: endpoint {
-+						remote-endpoint = <&funnel_qatb_out_funnel_in0>;
-+					};
-+				};
-+
- 				port@7 {
- 					reg = <7>;
- 					funnel0_in7: endpoint {
-@@ -2867,6 +2944,23 @@
- 			};
- 		};
- 
-+		tpdm@684c000 {
-+			compatible = "arm,primecell";
-+			reg = <0 0x0684c000 0 0x1000>;
-+			reg-names = "tpdm-base";
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			out-ports {
-+				port {
-+					tpdm_prng_out_tpda_23: endpoint {
-+						remote-endpoint = <&tpda_23_in_tpdm_prng>;
-+					};
-+				};
-+			};
-+		};
-+
- 		funnel@6b04000 {
- 			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
- 			arm,primecell-periphid = <0x000bb908>;
-@@ -2951,6 +3045,85 @@
- 			};
- 		};
- 
-+		tpdm@6c08000 {
-+			compatible = "arm,primecell";
-+			reg = <0 0x06c08000 0 0x1000>;
-+			reg-names = "tpdm-base";
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			out-ports {
-+				port {
-+					tpdm_mm_out_funnel_dl_mm: endpoint {
-+						remote-endpoint = <&funnel_dl_mm_in_tpdm_mm>;
-+					};
-+				};
-+			};
-+		};
-+
-+		funnel@6c0b000 {
-+			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-+
-+			reg = <0 0x06c0b000 0 0x1000>;
-+			reg-names = "funnel-base";
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			out-ports {
-+				port {
-+					funnel_dl_mm_out_funnel_dl_center: endpoint {
-+					remote-endpoint = <&funnel_dl_center_in_funnel_dl_mm>;
-+					};
-+				};
-+			};
-+
-+			in-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@3 {
-+					reg = <3>;
-+					funnel_dl_mm_in_tpdm_mm: endpoint {
-+						remote-endpoint = <&tpdm_mm_out_funnel_dl_mm>;
-+					};
-+				};
-+			};
-+		};
-+
-+		funnel@6c2d000 {
-+			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-+
-+			reg = <0 0x06c2d000 0 0x1000>;
-+			reg-names = "funnel-base";
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			out-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				port {
-+					tpdm_mm_out_tpda9: endpoint {
-+						remote-endpoint = <&tpda_9_in_tpdm_mm>;
-+					};
-+				};
-+			};
-+
-+			in-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@2 {
-+					reg = <2>;
-+					funnel_dl_center_in_funnel_dl_mm: endpoint {
-+					remote-endpoint = <&funnel_dl_mm_out_funnel_dl_center>;
-+					};
-+				};
-+			};
-+		};
-+
- 		etm@7040000 {
- 			compatible = "arm,coresight-etm4x", "arm,primecell";
- 			reg = <0 0x07040000 0 0x1000>;
--- 
-2.17.1
+Hi Javier,
 
+I'm not sure if you're suggesting here to apply the entire series as it
+is now.
+
+I'm not able to have a functional kernel from arm defconfig, only for
+arm64. I'd like to have this issue clarified before merge this serie. I
+tried multi_v7_defconfig on raspbian 32-bits and got a kernel panic.
+Things work better when using downstream bcm2711_defconfig.
+
+If you have an idea of what is going on, please, let me know. I can try
+again and I'll be okay on merging it. Otherwise, let's wait for more
+inputs to have a better picture of the situation.
+
+Thanks,
+
+Melissa
+
+>=20
+> --=20
+> Best regards,
+>=20
+> Javier Martinez Canillas
+> Linux Engineering
+> Red Hat
+>=20
+
+--z56oylvtyf4k6pji
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEd8WOo/JViG+Tu+XIwqF3j0dLehwFAmKgxXYACgkQwqF3j0dL
+ehySWA//YfV/JrmvLlJ/UzGQfDL4EqAUfeeAX66bdXj5dGRhj+5UibYJFjK47jik
+xWLAMWQuEYBOxGFjiEQVkM2+QQovjGkhSgcHFOAJJNq4seZi76iyZy68jWUYBqpK
+6pmKulmEmplaTyYs2O1DDbQQVbbqXDmoaS8y0FQyPUhg2iVTqTAoPiX2fPn/Xmqc
+IRzgZHuk4lq9gm8IRsgskPBle5R+xP0kjUS29JwbmEyc3fcTpt+9Ad9yhfusrp4h
+ftwEN4JaWg1n3O1oM1D+jbLf2ZgDhuVGW2OqG7V81UVFaoh7RZ5XynnYRz2Pjfmf
+hzk45/gGUHvDcMXxjcfnflNjuACR2Mw3IlXo1L0A+xEQJh+Otdy7yf0ksznjyGHH
+o57DXSF0PBcp2JtSTxB6ZuwFNZfPScG08HxCIQWT3Nl2yP46CZFW28Bc9PZmcppe
+x82sn1FOIJBPzlHGLd6Po6YX5f2/6IOG44q0jqQRmFPBMQnRVo9GCzwS5DkMxkav
+6ZvhTIibs0XGhXtVkL/UlGRCsAnLcQnXqQQ+Mk51YHXR3W19mDnDvD+bY2Ihv0t2
+ojpYul594P8cwyinQQX7cXftjHMry8A7wj8y2/NdOuY3sRnIND/s9M7bGNf8zYVn
+HIxxLdzXm3b4IegfIbudfbwH0tOsmh5tKlGdDTTJ+iV+frXsB+c=
+=fJYd
+-----END PGP SIGNATURE-----
+
+--z56oylvtyf4k6pji--
