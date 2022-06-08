@@ -2,156 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D50E5428E0
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 10:07:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B81D154292A
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 10:19:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229711AbiFHIHT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 04:07:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42722 "EHLO
+        id S229796AbiFHIRa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 04:17:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229583AbiFHIGV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 04:06:21 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E64271F5880;
-        Wed,  8 Jun 2022 00:37:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1654673853; x=1686209853;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=Eag6Lh/S0LV708EcBNMf/sXvde4Yq+2WtaO4ZjLD3QA=;
-  b=j6DI3+cCycsZ/MU1e+/o+N9OKU12c+WQAk8tsLSeUasi1kWthVxl7nQn
-   ucG3KMUGDICDKCzOuuLsoW6FCphQaWK7f3h9q5Vo5sY3xU7NBDZzphhmx
-   IsCXA5K1ArB7XVTUMqARYMZSdskanl1VzQF02iyUYW0ZM1EeGOr9itRxf
-   coFDpsLwyV8T4GXjnq6W/WsM1Mja91mt/tgsWKmEqaPctFji94tAwn7oi
-   WCw7rHnEHcOPq208QH8p/hjKg1/MOR9/Q55XZl+hZG1U/KSgT2lHQC6FE
-   FWmDjrfNVxFcOWVmKCIVe8FKzfCaMUYnKaAdxlQnMKsmYUOvH6gI/XTxX
-   g==;
-X-IronPort-AV: E=Sophos;i="5.91,285,1647327600"; 
-   d="scan'208";a="99068344"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Jun 2022 00:37:33 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Wed, 8 Jun 2022 00:37:32 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17 via Frontend Transport; Wed, 8 Jun 2022 00:37:32 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IMIlH71D+iXpUkqk5wo0Tm3gYpk1sv3Y14He+XzTPaXo7iwdpHpcD61ZDHp3wENtLSircf5NlEaDmYQa+jaWM0YBUF6aHhMtAygcgn4vBgHk+Ce4jr/jLpjzl9nCpGy3aTkgUq91Eb+l6AWSxTtLu+/D3O211speJhCvpDyU1FIobVPoE+SJbQdMp16S+gOBcYcRyI/SUEOzNKYgls/6vofw6mFE/AbdAziztXj1veehA1ws7UFFEoNCOHD35ro9szz9+p/wFD1p9ClLsHJW+c/N37xCPGIPL0C5mxSpDYkrMzjy9gl+5S1103mj/qpMSZNYYp6fxCtUSQ5nVz9RNA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Eag6Lh/S0LV708EcBNMf/sXvde4Yq+2WtaO4ZjLD3QA=;
- b=dq0VWGeXxpXU5hMLd8bGHGw1uqzlpQVB3KPvGgNUWURv7mcjeYR1bgGksaDscZRSnHv/lOlSmDBZlaD5cfAaIa1ossD0Qb9xgJiAysXvbMl7aGyzwh2E7U3xEPFyDZb1VY52caCObpWEIQST8Igzo/pd3pvY3ipQNaUiiJvVm+3L1GZC4yXb7bRwAQkXlNPzBrJmdYNNZQKYSU3dXZTS33n85Go57o5acDoeNzrp1srHYgPPEDghgYSgZ/GrrLPBe6O5nYUVuOjaxPbu2iugf6WImrEJTBtsxS9y79vVw3nfattk0rhmNHO8SJ8FUVRzfkdkY8/ZBsnETB3U+fRqYw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+        with ESMTP id S232050AbiFHIPh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 04:15:37 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52D2B25BC30
+        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 00:44:34 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id me5so39200291ejb.2
+        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 00:44:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Eag6Lh/S0LV708EcBNMf/sXvde4Yq+2WtaO4ZjLD3QA=;
- b=Xsi+tCdE7eQNoDPGHu8kvva3IB5kG7brlf2cvfJwvAkEHeGvLKaezENzvi+Aw3b6B5tU7GJJgPzAFh6tRw6+tLjtMCKXXdVpbf2OLndrOW2xhk+LarRjv8ve527glbLC80jElTcVdZKMXFrkzIrPqB/bOjp88VU+dLmNgAY9g/U=
-Received: from CY4PR11MB1960.namprd11.prod.outlook.com (2603:10b6:903:11d::21)
- by PH0PR11MB4888.namprd11.prod.outlook.com (2603:10b6:510:32::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5314.13; Wed, 8 Jun
- 2022 07:37:28 +0000
-Received: from CY4PR11MB1960.namprd11.prod.outlook.com
- ([fe80::457f:8e4d:4bc1:b997]) by CY4PR11MB1960.namprd11.prod.outlook.com
- ([fe80::457f:8e4d:4bc1:b997%12]) with mapi id 15.20.5314.019; Wed, 8 Jun 2022
- 07:37:28 +0000
-From:   <Claudiu.Beznea@microchip.com>
-To:     <Eugen.Hristev@microchip.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <linux-kernel@vger.kernel.org>, <Nicolas.Ferre@microchip.com>
-Subject: Re: [PATCH 2/2] ARM: dts: at91: sama5d2_icp: fix eeprom compatibles
-Thread-Topic: [PATCH 2/2] ARM: dts: at91: sama5d2_icp: fix eeprom compatibles
-Thread-Index: AQHYewqawICcesfza0CkEkcF2D0qvA==
-Date:   Wed, 8 Jun 2022 07:37:28 +0000
-Message-ID: <a946e0fb-815b-cb38-9541-5d6092708007@microchip.com>
-References: <20220607090455.80433-1-eugen.hristev@microchip.com>
- <20220607090455.80433-2-eugen.hristev@microchip.com>
-In-Reply-To: <20220607090455.80433-2-eugen.hristev@microchip.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 0ae9716e-0a96-4205-3a7d-08da4921bd67
-x-ms-traffictypediagnostic: PH0PR11MB4888:EE_
-x-microsoft-antispam-prvs: <PH0PR11MB4888859BE3BE6D3F0DABA32187A49@PH0PR11MB4888.namprd11.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: llXlnV+oJ7/4nzBp5ipcJN1W6EqvqPDzhA+/6ViEZ/0sZOIJocqNu/ZdDk9BOpF4hOMNWe5ngqNiIVQttLHRAlWZiSj2zN9nX9ki7eF3kY0uO9Exhs94DdsdaTIE3LR6qwTwEo4zDPmWbZPo/POX1dboCTqO/eVCSFpOh23BV5KUVsRO2oGBvHrKqX36jwMRxTu3QFe+C01RNt4SUnzFpcaBsQJcW1ojQ/+Hq033l7e02buCwlQNu9kjAv30H5t4p2N8YuF4lcnVXw4JtLlhhH3UC05+R6Rw4h4Xbj0itnLyIrEwdDsj+2ixWM03om5speTgHek9DOF0bv+cnlj8KIgqJTRWG3Q0Yzyb0Mcc6cavaP50mVaw0qnPOMEQFkRGFYB7Ozs3qqdqL/H3fZa4fsfJcbb9KKX864JT8Itunck3wnerO8C0j2nMkCZM/0X5WC7gZHdsiki54PudIDU6akVtkDEId/JLmW6VhDXgw7/ZWJ6O4hfd6HUY1B/tOyB2oSKUQQZHLI1VYdEfTsTdDOvcWhcOSmtT+wPtpOO/EV4Hwky0mXqrVpGJViznlFezbmlxiqa0o5RgbHYW9/89+IgkI8FrvbXnWqXewTQPZ7NV47SJ+kTYPQR2tDhHR9k1keHzO5MrYD8NYHJoxg3hJpVBGHAer1+xHeCQt9x83MsXIN59xk5trhxKUR01aKfBJQMVH1qWLRAutGReulZm0Wri8LiYYRShrWDyVuNwZTYzd/Hz1WgF8tLy7xhIW8gJBHauSbazcKmx3whZNSiBAA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY4PR11MB1960.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(6512007)(8936002)(316002)(91956017)(508600001)(5660300002)(38100700002)(38070700005)(110136005)(54906003)(66946007)(71200400001)(66446008)(36756003)(66476007)(8676002)(4326008)(66556008)(64756008)(31686004)(76116006)(6486002)(2906002)(122000001)(26005)(186003)(31696002)(2616005)(107886003)(86362001)(53546011)(83380400001)(6506007)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?b2RLdE1jckJ2K3lqcS9jaExJdzY2cHdINFZqZGpHWEhZWEZlY0xiZ2d2YVhx?=
- =?utf-8?B?Y0YwSjB3OXJneHhWMnY0SmhzVFBBalhpZ0lIRXFaaEM2U2FrT0psYjdjdEVP?=
- =?utf-8?B?dVU5WHZBWlFoclkrOHovOHppenNKTXpWdjZ1aWhzMyt0VWhyTVVHdVk4d3pZ?=
- =?utf-8?B?ZlAydGc4RTlhdW9zS09ib05vZXlsUE5Xem5ZSURqN3NhOXBNR1JXdjRNQ3BK?=
- =?utf-8?B?OGJJQzJaTVAwOStKVXNJRUd0Tm1GR3BoR0ZEOFdSdENNem1Rc2o4akZacDlZ?=
- =?utf-8?B?bzk1cTdGRDhpYXdURVZqQ2JCbFpxVjBiYlBkUElWWnE2cEpIYzVtZC92WVJV?=
- =?utf-8?B?a05RZzJETzUzUThNVjM5eVN5TW1zYThPbjFOeGVQb25yK3NjRkI5bUFiMWxB?=
- =?utf-8?B?R2RtdnlNa2d2N2xoWWxIclBDMVNNYXN2N2ZrN1VselVUSTJoVU9kMU5qM2tB?=
- =?utf-8?B?RWhYYytrY1V2VGI1Y3RsVk9jQjB0SllHOTFLRHNHVTI2MHM0YTlOd1FNWlZ5?=
- =?utf-8?B?bjhBNm53aTZUZjBRbVlac0ZGQmhKM0lrS1VSZms5bmp0VmZGZXdkRWVlNUhR?=
- =?utf-8?B?RkJrakg5ek5XWmFpVGpwdnpCU3p2ZnZMWElsT3JwNVBIQ002TnRxV1k2Vjg1?=
- =?utf-8?B?aXZyTVNRd0Z2NmRUOWV2VVAwQlN2ZGFudnJzRURBU1lzTlUzNGJNbExQanVj?=
- =?utf-8?B?QVJ1MnFxU0pzcVZzbHRWYzVPMzI4R2o0Rmg3S2EvVUtBZWdhTEt5eDBrZ0Yz?=
- =?utf-8?B?R1YyZmNvYjhmMlpubWQyQTkxbEh2d29EYUNtM3B0K3RBY0p1QUZ6L2tQMkNJ?=
- =?utf-8?B?WEhlRWJoZVJiY3JoT05wVVRpaWZ3QlFvNDJLdnhtSUM3TWY5WE95V3k0UVl2?=
- =?utf-8?B?eGxROVdpTmVIaUtvcWpuR3Z5a1VEMFFhUTY1NkpXdnUvUllCV2lsMW10aXRi?=
- =?utf-8?B?eVQ1Vnh4NGllVlhFY21idkdFeDhjTDNFOU1NallFZXFLc3pHWlRuekRUSXls?=
- =?utf-8?B?KzBoRXg1TlVMWElQM05vYzMzREFLSEtJMk1pei9jSzk5NytySHp3YWxqQWdX?=
- =?utf-8?B?N0Y5VUEvdTVEMEJHd2JJbFRVSHVpWUc0VFhDUit4WG1Sa2UvL0hSWFV0ekhw?=
- =?utf-8?B?TS9LNVBTcDBVUXVyM2pyOHgzT0JpZ3JZWlZZcXE4cjVHUzlXcDJWRmFwSDVF?=
- =?utf-8?B?WEdpZk5mR2VNdFlGR3U5UGtQc09uamhKTjgrdjhSVzVLRjNtNjVTWkcrdUx5?=
- =?utf-8?B?MUd3NUVzWVpEbTNQZzFnenpGalpES1Rta2JyeHcybW13K0l2WkFXWGc4SEdE?=
- =?utf-8?B?RUFYbVpjRExnUFlmNkdCUWRyU2d4aW90V0ZjbjMrTXdWYnJLV3FMaWxRdzBF?=
- =?utf-8?B?eXpJWkZPeWtobklxV0hxVEwvazlscUo1TEI5K2ZjRkU2bHJJSEpHcWdCc1NE?=
- =?utf-8?B?ZUtDU2dxVE1LZGcwR3hDWG1oOEJJVXlER0E1Sk52WE0vVzJlcE9zMHgvMklm?=
- =?utf-8?B?VXNjM0ltU0JDUGF0czZTdVFINloxRit4NkpmakliZkNIc29NdjdrTVBxbEJx?=
- =?utf-8?B?R24rZ3ozTEwwbWNoaHhRRVVtdFpoUU1FZGtXZFVWKzl3MU5xaHZJUVJQTWl3?=
- =?utf-8?B?S3JSYWhrN0tHdWxmbnRaa1lhQ2pmcWY2QjI1VllzdkRhOEN1T2swOGhvb21j?=
- =?utf-8?B?bVlUNXE0RFhQRVEyVkU4NXlzTEZVVzhBM0QwSDlmbUVIaDdVVU01RWxNTGoz?=
- =?utf-8?B?RXlDV3EzVCt1QVZXQ2MvdkUwZDlCcCsyYkpwY2w5dXhtSURiZXVSTGFGc0tO?=
- =?utf-8?B?ZkU0ZUw0eWhOQUx4ZkxHNzJIdzJuMHRiS0RweWpmc0syd25rRGxQQm1EZHBk?=
- =?utf-8?B?cVNhMUVqOGR5NnI1dmovOGJUYllPbDdBemRDbWs1Um5IVjI0UjBMeVRBTXpZ?=
- =?utf-8?B?ZzhZRzBLRXpEUGJiZ2dndHlzbXJlR09YVk5qQXhZK3AweVJhWFNmcFBicFlH?=
- =?utf-8?B?WHdXQUplVTRhSGtIbmhpNCt1ZlA2TGduczJPWGZHK2NKMkdxVCthQVowQys3?=
- =?utf-8?B?bFgwb2Q2eVVCWkdlZUdnSlp1dG9BVzV4Wm1vMTQ3UnZuYXVhWk5mUnlLNDhw?=
- =?utf-8?B?RDYxM2Z4d3JJeUhhLzA4R3VYRU9oS2FCbHNoL1VWQmVvUVd2MUdQbncyMElY?=
- =?utf-8?B?ejVIYlBCdkFPVjlXMXUvblVaTXdVUWVjT0Y5cHRmeXRVMWhEZDViNm80YVk1?=
- =?utf-8?B?K2JHMmZXVHBYUTZFaEo4dytseUpBREpkMlpFT0FxQTV4RXRsMWhYVWNCSUJZ?=
- =?utf-8?B?cnM1TzUxUVR6YWdsUXVCaU9yelY2NUJvenBaWHhiUnhoNWphSnRrTjdEejly?=
- =?utf-8?Q?la3VMNc6XgBKICAY=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <59E61DCE930DAC40B911C9A6B95FA754@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=N2n4ue6PvN6bYRXZMADyZay+yUMidu99Jpd+YeUrnSA=;
+        b=EN01mXO3gemFA0PVoJChdj4QdHI1gLkxsAGQia81YCD5SnC0p/H3vC0bs/YFKRLsz5
+         TKg1iprCemQ5rTvvNZt2zEpQdA9ubyqYnl0Qc6r1x1+gVapgHIm6AazbUK+d0QjdLSNU
+         ADEtPXitLSnC4xasjZJEvcZnIPs1F9XnfCq2HpWC70Btu7OM/tWTdDHJT/BtCtvZObok
+         oBSNCdmGPQt+a4oBurqbktDCdOUkAB0jwhHhsAzzAdHlrZZdlfW0Zj0YVKTrv+r39Cli
+         DnHFoHJRPgGEG9w3QMMEe+cvibpTIUCEg/43ZN87gA01F6Xlpg3n4TCzvy17V09EYGjj
+         JiUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=N2n4ue6PvN6bYRXZMADyZay+yUMidu99Jpd+YeUrnSA=;
+        b=sSPRzlDIA3duZ90xB4Qnv5YvxJzvFnUf6lSkZKYOFLOUhfVw2V+hhwzN81yUnuCi/0
+         EiiPBcbr12U1hhk8TI9jNCSEbTSblbMvkC+Ttt+redVmLkjEmdN2iKU9wQoSH7S84MZb
+         a1tovrtEGlk3N/SCEi3lB1xFCaVEjV2XEGAHGfmYVcaxTTS4ymC5iq5C18zbj6jJ83XJ
+         /LI7RXPmNPoT4w5lhrbAc0Fq/M/JXsg8xgybkkFybmHEM5SE8gmXJjTvqApgyeV8RoMi
+         Otmq3thAyBFNO8narMgDoftsKDvHvFHR8jZxRU7cShBTVUJ1TpVNlCAC3XzdfyHD/Lze
+         amsQ==
+X-Gm-Message-State: AOAM531Vm0F1qCKKydW5jC31zqTxNj6fbg+1BVUP1BDWWZvesWwErg2x
+        ADbQW3tdPn9hAzFPMTCsWssVIQ==
+X-Google-Smtp-Source: ABdhPJxktVGx8ZCyus9xJ9fy5x0fPfD7lcKo9ekfLPVPW5eczfU5qTVPGdJFlmZrt/qJH5NCv2WViQ==
+X-Received: by 2002:a17:907:724c:b0:711:d0bc:2369 with SMTP id ds12-20020a170907724c00b00711d0bc2369mr13248474ejc.23.1654674272867;
+        Wed, 08 Jun 2022 00:44:32 -0700 (PDT)
+Received: from [192.168.0.188] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id cf18-20020a170906b2d200b006ff802baf5dsm8738219ejb.54.2022.06.08.00.44.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Jun 2022 00:44:32 -0700 (PDT)
+Message-ID: <d2a81596-3a70-98e4-c406-36417d36f00b@linaro.org>
+Date:   Wed, 8 Jun 2022 09:44:31 +0200
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY4PR11MB1960.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0ae9716e-0a96-4205-3a7d-08da4921bd67
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jun 2022 07:37:28.6285
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: d4G2RA6JWAjz7Cd3/IPoTEMIKIjMfJH1rEy5K5zxLkKVdIc3xPtOJYrAt3Zn20kRlgWNrll2IQUO6TCYLOMg40MbwP4+EkppUXp09Qo12dk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4888
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 1/4] dt-binding: mfd: Add Richtek RT5120 PMIC support
+Content-Language: en-US
+To:     ChiYuan Huang <u0084500@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Brown <broonie@kernel.org>, dmitry.torokhov@gmail.com,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        cy_huang <cy_huang@richtek.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
+        linux-input@vger.kernel.org
+References: <1654581161-12349-1-git-send-email-u0084500@gmail.com>
+ <1654581161-12349-2-git-send-email-u0084500@gmail.com>
+ <96ecca0b-b65c-749d-d66b-33443cacf2e4@linaro.org>
+ <CADiBU39BTr9FjtXgBe55aOTHNVotHfC1n=aHrH3XAcVoWkk8sA@mail.gmail.com>
+ <678ce480-cbbc-ffa8-10bf-d93021a0df0a@linaro.org>
+ <CADiBU38Gc2McH0ryRFPUAkmJzL1rxQnLHqvo5-+U_TPVjgHxzg@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CADiBU38Gc2McH0ryRFPUAkmJzL1rxQnLHqvo5-+U_TPVjgHxzg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -159,26 +85,192 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMDcuMDYuMjAyMiAxMjowNCwgRXVnZW4gSHJpc3RldiB3cm90ZToNCj4gVGhlIGVlcHJvbSBt
-ZW1vcmllcyBvbiB0aGUgYm9hcmQgYXJlIG1pY3JvY2hpcCAyNGFhMDI1ZTQ4LCB3aGljaCBhcmUg
-MiBLYml0cw0KPiBhbmQgYXJlIGNvbXBhdGlibGUgd2l0aCBhdDI0YzAyIG5vdCBhdDI0YzMyLg0K
-PiANCj4gRml4ZXM6IDY4YTk1ZWY3MmNlZmUgKCJBUk06IGR0czogYXQ5MTogc2FtYTVkMi1pY3A6
-IGFkZCBTQU1BNUQyLUlDUCIpDQo+IFNpZ25lZC1vZmYtYnk6IEV1Z2VuIEhyaXN0ZXYgPGV1Z2Vu
-LmhyaXN0ZXZAbWljcm9jaGlwLmNvbT4NCg0KUmV2aWV3ZWQtYnk6IENsYXVkaXUgQmV6bmVhIDxj
-bGF1ZGl1LmJlem5lYUBtaWNyb2NoaXAuY29tPg0KDQoNCj4gLS0tDQo+ICBhcmNoL2FybS9ib290
-L2R0cy9hdDkxLXNhbWE1ZDJfaWNwLmR0cyB8IDYgKysrLS0tDQo+ICAxIGZpbGUgY2hhbmdlZCwg
-MyBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2FyY2gv
-YXJtL2Jvb3QvZHRzL2F0OTEtc2FtYTVkMl9pY3AuZHRzIGIvYXJjaC9hcm0vYm9vdC9kdHMvYXQ5
-MS1zYW1hNWQyX2ljcC5kdHMNCj4gaW5kZXggODA2ZWIxZDkxMWQ3Yy4uMTY0MjAxYThmYmYyZCAx
-MDA2NDQNCj4gLS0tIGEvYXJjaC9hcm0vYm9vdC9kdHMvYXQ5MS1zYW1hNWQyX2ljcC5kdHMNCj4g
-KysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvYXQ5MS1zYW1hNWQyX2ljcC5kdHMNCj4gQEAgLTMyOSwy
-MSArMzI5LDIxIEBAICZpMmMxIHsNCj4gIAlzdGF0dXMgPSAib2theSI7DQo+ICANCj4gIAllZXBy
-b21ANTAgew0KPiAtCQljb21wYXRpYmxlID0gImF0bWVsLDI0YzMyIjsNCj4gKwkJY29tcGF0aWJs
-ZSA9ICJhdG1lbCwyNGMwMiI7DQo+ICAJCXJlZyA9IDwweDUwPjsNCj4gIAkJcGFnZXNpemUgPSA8
-MTY+Ow0KPiAgCQlzdGF0dXMgPSAib2theSI7DQo+ICAJfTsNCj4gIA0KPiAgCWVlcHJvbUA1MiB7
-DQo+IC0JCWNvbXBhdGlibGUgPSAiYXRtZWwsMjRjMzIiOw0KPiArCQljb21wYXRpYmxlID0gImF0
-bWVsLDI0YzAyIjsNCj4gIAkJcmVnID0gPDB4NTI+Ow0KPiAgCQlwYWdlc2l6ZSA9IDwxNj47DQo+
-ICAJCXN0YXR1cyA9ICJkaXNhYmxlZCI7DQo+ICAJfTsNCj4gIA0KPiAgCWVlcHJvbUA1MyB7DQo+
-IC0JCWNvbXBhdGlibGUgPSAiYXRtZWwsMjRjMzIiOw0KPiArCQljb21wYXRpYmxlID0gImF0bWVs
-LDI0YzAyIjsNCj4gIAkJcmVnID0gPDB4NTM+Ow0KPiAgCQlwYWdlc2l6ZSA9IDwxNj47DQo+ICAJ
-CXN0YXR1cyA9ICJkaXNhYmxlZCI7DQoNCg==
+On 08/06/2022 09:25, ChiYuan Huang wrote:
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> 於 2022年6月8日 週三 下午3:02寫道：
+>>
+>> On 08/06/2022 04:52, ChiYuan Huang wrote:
+>>> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> 於 2022年6月7日 週二 下午7:52寫道：
+>>>>
+>>>> On 07/06/2022 07:52, cy_huang wrote:
+>>>>> From: ChiYuan Huang <cy_huang@richtek.com>
+>>>>>
+>>>>> Add Richtek RT5120 PMIC devicetree document.
+>>>>>
+>>>>> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+>>>>> ---
+>>>>>  .../devicetree/bindings/mfd/richtek,rt5120.yaml    | 180 +++++++++++++++++++++
+>>>>>  1 file changed, 180 insertions(+)
+>>>>>  create mode 100644 Documentation/devicetree/bindings/mfd/richtek,rt5120.yaml
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/mfd/richtek,rt5120.yaml b/Documentation/devicetree/bindings/mfd/richtek,rt5120.yaml
+>>>>> new file mode 100644
+>>>>> index 00000000..376bf73
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/mfd/richtek,rt5120.yaml
+>>>>> @@ -0,0 +1,180 @@
+>>>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/mfd/richtek,rt5120.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: Richtek RT5120 PMIC
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - ChiYuan Huang <cy_huang@richtek.com>
+>>>>> +
+>>>>> +description: |
+>>>>> +  The RT5120 provides four high-efficiency buck converters and one LDO voltage
+>>>>> +  regulator. The device is targeted at providingthe processor voltage, memory,
+>>>>> +  I/O, and peripheral rails in home entertainment devices. The I2C interface is
+>>>>> +  used for dynamic voltage scaling of the processor voltage, power rails on/off
+>>>>> +  sequence control, operation mode selection.
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    enum:
+>>>>> +      - richtek,rt5120
+>>>>> +
+>>>>> +  reg:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  interrupts:
+>>>>> +    maxItems: 1
+>>
+>> Your powerkey driver takes two interrupts. You should describe them in
+>> the powerkey.
+>>
+>>>>> +
+>>>>> +  interrupt-controller: true
+>>>>> +
+>>>>> +  "#interrupt-cells":
+>>>>> +    const: 1
+>>>>> +
+>>>>> +  wakeup-source: true
+>>>>> +
+>>>>> +  richtek,enable-undervolt-hiccup:
+>>>>> +    type: boolean
+>>>>> +    description: |
+>>>>> +      If used, under voltage protection trigger hiccup behavior, else latchup as
+>>>>> +      default
+>>>>> +
+>>>>> +  richtek,enable-overvolt-hiccup:
+>>>>> +    type: boolean
+>>>>> +    description:
+>>>>> +      Like as 'enable-uv-hiccup', it configures over voltage protection to
+>>>>> +      hiccup, else latchup as default
+>>>>> +
+>>>>> +  vin1-supply:
+>>>>> +    description: phandle for buck1 input power source
+>>>>> +
+>>>>> +  vin2-supply:
+>>>>> +    description: phandle for buck2 input power source
+>>>>> +
+>>>>> +  vin3-supply:
+>>>>> +    description: phandle for buck3 input power source
+>>>>> +
+>>>>> +  vin4-supply:
+>>>>> +    description: phandle for buck4 input power source
+>>>>> +
+>>>>> +  vinldo-supply:
+>>>>> +    description: phandle for ldo input power source
+>>>>> +
+>>>>> +  regulators:
+>>>>> +    type: object
+>>>>> +
+>>>>> +    patternProperties:
+>>>>> +      "^buck[1-4]$":
+>>>>> +        type: object
+>>>>> +        $ref: /schemas/regulator/regulator.yaml#
+>>>>> +
+>>>>> +        properties:
+>>>>> +          regulator-allowed-modes:
+>>>>> +            description: |
+>>>>> +              Used to specify the allowed buck converter operating mode
+>>>>> +              mode mapping:
+>>>>> +                0: auto mode
+>>>>> +                1: force pwm mode
+>>>>> +            items:
+>>>>> +              enum: [0, 1]
+>>>>> +
+>>>>> +        unevaluatedProperties: false
+>>>>
+>>>> Better to put it after '$ref' for readability.
+>>> OK, Fix in next
+>>>>
+>>>>> +
+>>>>> +      "^(ldo|exten)$":
+>>>>> +        type: object
+>>>>> +        $ref: /schemas/regulator/regulator.yaml#
+>>>>
+>>>> You need here unevaluatedProperties:false as well (for the ldo/exten
+>>>> properties)
+>>> Fix in next.
+>>>>
+>>>>> +
+>>>>> +    additionalProperties: false
+>>>>> +
+>>>>> +  powerkey:
+>>>>> +    type: object
+>>>>> +    description:
+>>>>> +      The power key driver may be optional. If not used, change node status to
+>>>>> +      'disabled'
+>>>>
+>>>> This description is not helpful, does not describe the hardware. Please
+>>>> describe hardware, not Devicetree usage.
+>>> That's because it's a PMIC. Power key is also connected to it.
+>>> For power key press, all power rails will start to power up.
+>>> But in the application, there may be other PMIC that's also connected
+>>> to power key.
+>>> That's why this power key driver may need to be optional.
+>>> One system only need one driver to report the power key status.
+>>>
+>>> Currently in some linux OS, it uses the auto module loading mechanism.
+>>> All kernel module files may be all the same, but it uses the
+>>> devicetree to decide how many devices
+>>> need to be declared. Since RT5120 power key device may be optional,
+>>> following by mfd_add_device, if of_node is
+>>> found, and status is "disabled", the sub device would be skipped.
+>>>
+>>> Actually, I'm also confused about it. There may be three ways to implement it
+>>> 1. not to build this kernel module -> seems to violate my above application
+>>> 2. Use one boolean property to decide power key cell need to be used or not??
+>>> 3. like as now, use the node status to decide it.
+>>>
+>>> Is there the better way to do it?
+>>
+>> The status does not determine whether device in the bindings is optional
+>> or not. Rather it's presence. In the term of bindings the "optional"
+>> means that something might not be there physically. E.g. clock line
+>> connected or not. System implementation - MFD, power off handling - is
+>> here (almost) irrelevant.
+>>
+>> In your case, the power key feature seems to be there always, so the
+>> "powerkey" node should be required and not disabled. Don't mention in
+>> description of hardware anything about disabling it or not.
+>>
+>> In your application, I would say it is interesting design that someone
+>> connects one power up line to two different PMICs in a conflicting way.
+>> This sounds like total mistake from hardware point of view.
+>>
+>> Anyway it is not the job for this patch to solve such conflicts.
+>>
+> Thanks,  I think your point is 'optional' keyword.
+> If there's only redundant description line, I may decide to remove it.
+> The property name already show its usage.
+
+I repeated my point twice - your description is not relevant to the
+bindings:
+"This description is not helpful, does not describe the hardware. Please
+describe hardware, not Devicetree usage."
+"System implementation - MFD, power off handling - is
+here (almost) irrelevant."
+"Don't mention in
+description of hardware anything about disabling it or not."
+
+Please describe briefly the hardware behind this property, not status or
+other Devicetree usage.
+
+
+Best regards,
+Krzysztof
