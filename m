@@ -2,86 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3152D542DCD
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 12:31:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FD5E542DC6
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 12:31:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237279AbiFHKaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 06:30:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45080 "EHLO
+        id S237206AbiFHKak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 06:30:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238140AbiFHK3x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 06:29:53 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1900C192C5A
-        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 03:21:58 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id m20so40449744ejj.10
-        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 03:21:58 -0700 (PDT)
+        with ESMTP id S238174AbiFHK3z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 06:29:55 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 050C5C3665
+        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 03:22:12 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id s13so22190476ljd.4
+        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 03:22:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=+bPvkCIqs6A3Lw8cRRemx4/EkW0G1asPn8kHboHtVJY=;
-        b=wDIlVKTWdiWhZ8wBWJY6cKiaQFw8rDj207bvbTp/h11ey3tP6nET1Ax/CdHjZfLIEV
-         bWnJx67yUwmZnAjjjd5Pnmh8VhMfnKk9ZGg+xoCyY9GLA3nn7mGO8lVMAqq0oiDn/3Gb
-         RdEmlcoDLk/NATza/gALLbwlAadFQrZRy9MfXKJk8j2q4AuOEEZ+zY7bealsPyXM8b4Y
-         ih+WRBDp4jQzRDyApQ0uO+L54w+TGVWPyUYM9CH3Ot8Y/Q0bHkVx4jxyiDXFnpuvcBiT
-         7waY/rXX63WmY9xsunaYaDRWKXRiJMMbWedZPkAKAn6m/lwDnhiKftwSsfbgmiXgBvuN
-         pGIA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=AbKSfBNHMsB6gPQL/2rq+lhYEHklPNuzgxkaV0yDgno=;
+        b=C8zmcSh8kYU52OoswL7DTEeRYlTehP7/3y+AfdFoA++vcRkdZcfFCNg6ZOfrnQp3ZI
+         13+Y95T8Bh7U8yGWDvaMo+v2+1AFp1mfEgHkL5HNsHrPn5gu9BfNEkbrLw1vV8MicHna
+         Zlqo3Arg8IucLqkr4Vv3HWcPri8OD8bPfZv593RWgOw9VfAaHUalCbOMGor2jrgVapyj
+         Q7jxcVTFPPP8MkSbRilMYU0LlI0yfERdKBCOOvserLLoeTTQ6LeoN64O0/4pm9XYzQop
+         DFBN4y651eeQ2f2Z20Ku4iS/3mihSqezWUJzJC5yCHIFkvsTpxrv4Dhes/Wwib+Fd+1E
+         ZLrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=+bPvkCIqs6A3Lw8cRRemx4/EkW0G1asPn8kHboHtVJY=;
-        b=DEmQ5Pt/6sxLCHJ26XFoHeanCs3s2WgQ+ITkfcPQh3MXYxXYniDD6EwkKsAkpBGKre
-         uk492+HVDK+SZ+O95TkMg2Aa8HiVmyfLVHR0SKFrZkS7haSVHeiFTZK0DVl5Um2NStFQ
-         AceYOXIJXoQSBcKUXikz4ViVgbsjxLzLSfAuJRq2pyp/cr87AmkPKgVnzGOCgyHheebo
-         N1sd2D79N3RrYwRPF3ELTyXHGxY1aRGQFpcUXQgXLVRkPm72iprrhE0LkbHMUdOr7fVc
-         VxcF3axfIQk3od3WeYjv8d+oVrAui6+Uos7wzXiAJ2uXmRazjrxyEbm2jyshZmz/8zFj
-         l5gw==
-X-Gm-Message-State: AOAM5304+8wQDHIwOFKPEfDXLOrnpGxA/OFhz9fM+yoJh8kxWBpwmgLx
-        mlM3i26soqt7YDzFHFVjplbakA==
-X-Google-Smtp-Source: ABdhPJw4saSPhMUohzNzjdscZN0KDbM9WKgE0UI3Y2mk91NtDGFQsXLJsTcltgv6Da2VMwekYNeMFA==
-X-Received: by 2002:a17:906:8416:b0:705:6a1b:e8ef with SMTP id n22-20020a170906841600b007056a1be8efmr30244309ejx.614.1654683716491;
-        Wed, 08 Jun 2022 03:21:56 -0700 (PDT)
-Received: from [192.168.0.191] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id g3-20020aa7dd83000000b0042bc5a536edsm11883683edv.28.2022.06.08.03.21.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jun 2022 03:21:55 -0700 (PDT)
-Message-ID: <24ad8ba0-4244-1159-328d-12d0e67951e1@linaro.org>
-Date:   Wed, 8 Jun 2022 12:21:54 +0200
+        bh=AbKSfBNHMsB6gPQL/2rq+lhYEHklPNuzgxkaV0yDgno=;
+        b=a/ydcS8u4nDBL4Q6M4PTkL5n411K/IQP1w8bhK1E/KPHQuYAKBl2i1GvNz7G5rfb4F
+         9bv5mdXRvsxq2FpJbLNA+RN8EYh+DBG+DsqNlqulRcEA1X5/hwilC5+hB1UTe1PUzQyi
+         AbBCuGoh82Vzw6O+aj1boghjIq0qx5/xqQecd8SrFaLvsqA7Z8sFEg1PPVjm776Mn214
+         4PW/+XPyq0vyXAAHIcvkMI/CrAjNZmiarCJbBq553DAyaqLst1GDh5q+ljCVht14OHd1
+         savbpJjPSxqM6V48eTSynkYvOXMOJHa1J792Qbksdtxqefoa7V+ZSYbzWElaegq1fLQY
+         nMIg==
+X-Gm-Message-State: AOAM5301VGXtPyeocAvnrBnBZ4uBKGrjIHggCSnfzGnOdNpGX0dZ7My9
+        G+9hV9CFVEQRFUM0tnMntvcNKQ==
+X-Google-Smtp-Source: ABdhPJxcZzw3ShwMGJ6nR/dJ/fZjPdi5oqIicOs2LJhVAjvyxGcfnWH1a52O7RJlK1W83DrQE1jAdw==
+X-Received: by 2002:a2e:87c9:0:b0:255:7e94:d93b with SMTP id v9-20020a2e87c9000000b002557e94d93bmr14386532ljj.396.1654683730706;
+        Wed, 08 Jun 2022 03:22:10 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id v1-20020ac25601000000b00478fe3327aasm3642934lfd.217.2022.06.08.03.22.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Jun 2022 03:22:09 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        Johan Hovold <johan@kernel.org>
+Subject: [PATCH v14 0/7] PCI: dwc: Fix higher MSI vectors handling
+Date:   Wed,  8 Jun 2022 13:22:01 +0300
+Message-Id: <20220608102208.2967438-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 18/20] arm64: dts: nuvoton: Add initial NPCM8XX device
- tree
-Content-Language: en-US
-To:     Tomer Maimon <tmaimon77@gmail.com>, avifishman70@gmail.com,
-        tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
-        yuenn@google.com, benjaminfair@google.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, p.zabel@pengutronix.de,
-        gregkh@linuxfoundation.org, daniel.lezcano@linaro.org,
-        tglx@linutronix.de, wim@linux-watchdog.org, linux@roeck-us.net,
-        catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de,
-        olof@lixom.net, jirislaby@kernel.org, shawnguo@kernel.org,
-        bjorn.andersson@linaro.org, geert+renesas@glider.be,
-        marcel.ziswiler@toradex.com, vkoul@kernel.org,
-        biju.das.jz@bp.renesas.com, nobuhiro1.iwamatsu@toshiba.co.jp,
-        robert.hancock@calian.com, j.neuschaefer@gmx.net, lkundrak@v3.sk
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220608095623.22327-1-tmaimon77@gmail.com>
- <20220608095623.22327-19-tmaimon77@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220608095623.22327-19-tmaimon77@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,138 +77,119 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/06/2022 11:56, Tomer Maimon wrote:
-> This adds initial device tree support for the
-> Nuvoton NPCM845 Board Management controller (BMC) SoC family.
-> 
-> The NPCM845 based quad-core Cortex-A35 ARMv8 architecture and
-> have various peripheral IPs.
-> 
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> ---
->  arch/arm64/boot/dts/Makefile                  |   1 +
->  .../dts/nuvoton/nuvoton-common-npcm8xx.dtsi   | 197 ++++++++++++++++++
->  .../boot/dts/nuvoton/nuvoton-npcm845.dtsi     |  76 +++++++
->  3 files changed, 274 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
->  create mode 100644 arch/arm64/boot/dts/nuvoton/nuvoton-npcm845.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/Makefile b/arch/arm64/boot/dts/Makefile
-> index 1ba04e31a438..7b107fa7414b 100644
-> --- a/arch/arm64/boot/dts/Makefile
-> +++ b/arch/arm64/boot/dts/Makefile
-> @@ -19,6 +19,7 @@ subdir-y += lg
->  subdir-y += marvell
->  subdir-y += mediatek
->  subdir-y += microchip
-> +subdir-y += nuvoton
->  subdir-y += nvidia
->  subdir-y += qcom
->  subdir-y += realtek
-> diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-> new file mode 100644
-> index 000000000000..97e108c50760
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-> @@ -0,0 +1,197 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +// Copyright (c) 2021 Nuvoton Technology tomer.maimon@nuvoton.com
-> +
-> +#include <dt-bindings/clock/nuvoton,npcm8xx-clock.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +/ {
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +	interrupt-parent = <&gic>;
-> +
-> +	/* external reference clock */
-> +	clk_refclk: clk-refclk {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <25000000>;
+I have replied with my Tested-by to the patch at [2], which has landed
+in the linux-next as the commit 20f1bfb8dd62 ("PCI: qcom:
+Add support for handling MSIs from 8 endpoints"). However lately I
+noticed that during the tests I still had 'pcie_pme=nomsi', so the
+device was not forced to use higher MSI vectors.
 
-Ignored comment.
+After removing this option I noticed that hight MSI vectors are not
+delivered on tested platforms. After additional research I stumbled upon
+a patch in msm-4.14 ([1]), which describes that each group of MSI
+vectors is mapped to the separate interrupt. Implement corresponding
+mapping.
 
-> +		clock-output-names = "refclk";
-> +	};
-> +
-> +	/* external reference clock for cpu. float in normal operation */
-> +	clk_sysbypck: clk-sysbypck {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <1000000000>;
+The last patch in the series is a revert of  [2] (landed in pci-next).
+Bjorn Helgaas has removed the offending patch from his 5.19 pull
+request, but the revert is still a part of this patch series as a
+reminder to Lorenzo to drop the patch from his pci/qcom branch.
 
-Ignored comment.
+Changes since v13:
+ - Changed msiX from pointer to the char array (reported by Johan).
 
-> +		clock-output-names = "sysbypck";
-> +	};
-> +
-> +	/* external reference clock for MC. float in normal operation */
-> +	clk_mcbypck: clk-mcbypck {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <1050000000>;
-> +		clock-output-names = "mcbypck";
-> +	};
-> +
-> +	soc {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		compatible = "simple-bus";
-> +		interrupt-parent = <&gic>;
-> +		ranges;
-> +
-> +		gcr: gcr@f0800000 {
+Changes since v12:
+ - Dropped split_msi_names array in favour of generating the msi_name on
+   the fly (Rob),
+ - Dropped separate split MSI ISR as requested by Rob,
+ - Many small syntax & spelling changes as suggested by Johan and Rob,
+ - Moved a revert to be a last patch, as it is now a reminder to
+   Lorenzo,
+ - Renamed series to name dwc rather than qcom, as the are no more
+   actual changes to the qcom PCIe driver (Johan thanks for all
+   suggestions for making the code to work as is).
 
-Ignored comment.
+Changes since v11 (suggested by Johan):
+ - Added back reporting errors for the "msi0" interrupt,
+ - Stopped overriding num_vectors field if it is less than the amount of
+   MSI vectors deduced from interrupt list,
+ - Added a warning (and an override) if the host specifies more MSI
+   vectors than available,
+ - Moved has_split_msi_irq variable to the patch where it is used.
 
-> +			compatible = "nuvoton,npcm845-gcr", "syscon",
-> +				"simple-mfd";
+Changes since v10:
+ - Remove has_split_msi_irqs flag. Trust DT and use split MSI IRQs if
+   they are described in the DT. This removes the need for the
+   pcie-qcom.c changes (everything is handled by the core (suggested by
+   Johan).
+ - Rebased on top of Lorenzo's DWC branch
 
-This is not a simple-mfd... I see original bindings defined it that way,
-but why? I think they should be corrected - remove simple-mfd from the
-bindings and DTS.
+Changes since v9:
+ - Relax requirements and stop validating the DT. If the has_split_msi
+   was specified, parse as many msiN irqs as specified in DT. If there
+   are none, fallback to the single "msi" IRQ.
 
+Changes since v8:
+ - Fix typos noted by Bjorn Helgaas
+ - Add missing links to the patch 1 (revert)
+ - Fix sm8250 interrupt-names (Johan)
+ - Specify num_vectors in qcom configuration data (Johan)
+ - Rework parsing of MSI IRQs (Johan)
 
-> +			reg = <0x0 0xf0800000 0x0 0x1000>;
-> +		};
-> +
-> +		gic: interrupt-controller@dfff9000 {
-> +			compatible = "arm,gic-400";
-> +			reg = <0x0 0xdfff9000 0x0 0x1000>,
-> +			      <0x0 0xdfffa000 0x0 0x2000>,
-> +			      <0x0 0xdfffc000 0x0 0x2000>,
-> +			      <0x0 0xdfffe000 0x0 0x2000>;
-> +			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-> +			#interrupt-cells = <3>;
-> +			interrupt-controller;
-> +			#address-cells = <0>;
-> +			ppi-partitions {
-> +				ppi_cluster0: interrupt-partition-0 {
-> +					affinity = <&cpu0 &cpu1 &cpu2 &cpu3>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +
-> +	ahb {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		compatible = "simple-bus";
-> +		interrupt-parent = <&gic>;
-> +		ranges;
-> +
-> +		rstc: rstc@f0801000 {
+Changes since v7:
+ - Move code back to the dwc core driver (as required by Rob),
+ - Change dt schema to require either a single "msi" interrupt or an
+   array of "msi0", "msi1", ... "msi7" IRQs. Disallow specifying a
+   part of the array (the DT should specify the exact amount of MSI IRQs
+   allowing fallback to a single "msi" IRQ),
+ - Fix in the DWC init code for the dma_mapping_error() return value.
 
-Ignored comment.
+Changes since v6:
+ - Fix indentation of the arguments as requested by Stanimir
 
-Four comments from v1 ignored in this patch alone.
+Changes since v5:
+ - Fixed commit subject and in-comment code according to Bjorn's
+   suggestion,
+ - Changed variable idx to i to follow dw_handle_msi_irq() style.
 
-I'll stop reviewing, it is a waste of my time.
+Changes since v4:
+ - Fix the minItems/maxItems properties in the YAML schema.
 
-NAK for this change.
+Changes since v3:
+ - Reimplement MSI handling scheme in the Qualcomm host controller
+   driver.
 
-Best regards,
-Krzysztof
+Changes since v2:
+ - Fix and rephrase commit message for patch 2.
+
+Changes since v1:
+ - Split a huge patch into three patches as suggested by Bjorn Helgaas
+ - snps,dw-pcie removal is now part of [3]
+
+[1] https://git.codelinaro.org/clo/la/kernel/msm-4.14/-/commit/671a3d5f129f4bfe477152292ada2194c8440d22
+[2] https://lore.kernel.org/linux-arm-msm/20211214101319.25258-1-manivannan.sadhasivam@linaro.org/
+
+Dmitry Baryshkov (7):
+  PCI: dwc: Correct msi_irq condition in dw_pcie_free_msi()
+  PCI: dwc: Convert msi_irq to the array
+  PCI: dwc: split MSI IRQ parsing/allocation to a separate function
+  PCI: dwc: Handle MSIs routed to multiple GIC interrupts
+  dt-bindings: PCI: qcom: Support additional MSI interrupts
+  arm64: dts: qcom: sm8250: provide additional MSI interrupts
+  PCI: qcom: Revert "PCI: qcom: Add support for handling MSIs from 8
+    endpoints"
+
+ .../devicetree/bindings/pci/qcom,pcie.yaml    |  53 +++++-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |  12 +-
+ drivers/pci/controller/dwc/pci-dra7xx.c       |   2 +-
+ drivers/pci/controller/dwc/pci-exynos.c       |   2 +-
+ .../pci/controller/dwc/pcie-designware-host.c | 161 +++++++++++++-----
+ drivers/pci/controller/dwc/pcie-designware.h  |   2 +-
+ drivers/pci/controller/dwc/pcie-keembay.c     |   2 +-
+ drivers/pci/controller/dwc/pcie-qcom.c        |   1 -
+ drivers/pci/controller/dwc/pcie-spear13xx.c   |   2 +-
+ drivers/pci/controller/dwc/pcie-tegra194.c    |   2 +-
+ 10 files changed, 185 insertions(+), 54 deletions(-)
+
+-- 
+2.35.1
+
