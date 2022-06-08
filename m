@@ -2,334 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC74D543B0E
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 20:05:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF33A543B39
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 20:17:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233950AbiFHSFY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 14:05:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46318 "EHLO
+        id S234053AbiFHSQw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 14:16:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231362AbiFHSFV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 14:05:21 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43F21229399
-        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 11:05:20 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id 3-20020a17090a174300b001e426a02ac5so21392677pjm.2
-        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 11:05:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version;
-        bh=7iQtNqjaHUWQYMfaZIzJdMiPbOtzILV3LkgTlDj5Mag=;
-        b=AIbRxNfGYwiRT4wE83/no8dnbHPXIXSI6TJMSugD9xd8Y0itUCTjkRkDBCEVP7zn4b
-         YyZ+s+95gcKzaKJyKSb3KI0Mkzj/QAk9b+k6RbyORKLkAZ6Mq2yCbxR0DGXBDX53zqK/
-         sC1lDRPDHqLDz5skO6L/TGW2TAyo2BCgVFSxg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version;
-        bh=7iQtNqjaHUWQYMfaZIzJdMiPbOtzILV3LkgTlDj5Mag=;
-        b=jMguTpUot00wYJzy0SkoTbSaqxKrp2+TTk8ST77unD1BxO8CvrLqk4jfLS9f+9Hfr3
-         ltrPmkmmEAJdold56sLKOHbEgmdLvzhTPiuOY/gJOV7F0JIEbGClpacTBMrkLTbwsntg
-         jER87ZEkUI1PzQOeXL7Nz0YHDV0ZuKn/iIENbjEcLFP+DhF6Bnw7Y9xGCQe/9eJEKKeO
-         1SiR8lgaIN+I874Pzzpn2ldiVPoxT/BNDFKWe6VZw5yYcpZr1+z+8hdHQO9Pm9joWCyY
-         8HFsT0wZCDs7Hpflnjwi1rWbmLnO4svIalyMfSP6SuXM+IgAeIP0JPrzoa+crcm0Eyia
-         VMMg==
-X-Gm-Message-State: AOAM533QG1sJyq1s5sbgxwH/A58HiKT8S8fivrVn8k+KWxnd2tNte3kP
-        VgReXlZG114VaTLDIU62tfAISw==
-X-Google-Smtp-Source: ABdhPJxBmUUaKIpTOGzict4ExV+nDYENmdjWM4NVB6CmAHxf3emJhZEGYS/9QpQxEFxKML0TMrM7lg==
-X-Received: by 2002:a17:902:da8d:b0:165:7c1b:6803 with SMTP id j13-20020a170902da8d00b001657c1b6803mr35199763plx.157.1654711519677;
-        Wed, 08 Jun 2022 11:05:19 -0700 (PDT)
-Received: from T3500-3.dhcp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id m6-20020a62a206000000b0051c505e1703sm2338903pff.86.2022.06.08.11.05.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jun 2022 11:05:19 -0700 (PDT)
-From:   William Zhang <william.zhang@broadcom.com>
-To:     Linux ARM List <linux-arm-kernel@lists.infradead.org>
-Cc:     samyon.furman@broadcom.com,
-        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
-        dan.beygelman@broadcom.com, tomer.yacoby@broadcom.com,
-        philippe.reynes@softathome.com, kursad.oney@broadcom.com,
-        f.fainelli@gmail.com, anand.gore@broadcom.com,
-        joel.peshkin@broadcom.com,
-        William Zhang <william.zhang@broadcom.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/3] arm64: dts: Add DTS files for bcmbca SoC BCM6856
-Date:   Wed,  8 Jun 2022 11:04:36 -0700
-Message-Id: <20220608180437.31971-3-william.zhang@broadcom.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220608180437.31971-1-william.zhang@broadcom.com>
-References: <20220608180437.31971-1-william.zhang@broadcom.com>
+        with ESMTP id S235043AbiFHSO7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 14:14:59 -0400
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BDC2F66;
+        Wed,  8 Jun 2022 11:14:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1654712098; x=1686248098;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=USR+6rgHbgZJo4Au9EyLSSIMNVZXWNHuMgZbXeF60T8=;
+  b=KUHQCJ6eHGyySzXySrw0ntHzsNh+MhR1XzY2Q/vdWMyEAKpWX3ab2Gyi
+   fRKjHajKK+S6duf+QoPBU43SSAEasQfMBUEUs3MtdBJn/oNkhbbilTNLS
+   oMYASXq7/14qpzv0Co/WmawnCVtGISE9x1b9FW7FDyBZG6acYHCpyTEcD
+   1ngE4QZrP6qe+UBctcrtTOqAvI9ckRGeGnavKldbViry7i3dsViBkoQmN
+   pTPGvu+w6R4dKRdyTKw+eWtdvvnawD8t/AmVPXx/+C1uJjkPVC7R4t6/N
+   EQwBQaTUrC/CGcpKQmW6PESmuxUedmRC6NR3B2A7C4yE/bdXBi5mvXIp+
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10372"; a="260138413"
+X-IronPort-AV: E=Sophos;i="5.91,286,1647327600"; 
+   d="scan'208";a="260138413"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jun 2022 11:14:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,286,1647327600"; 
+   d="scan'208";a="683478114"
+Received: from lkp-server01.sh.intel.com (HELO 60dabacc1df6) ([10.239.97.150])
+  by fmsmga002.fm.intel.com with ESMTP; 08 Jun 2022 11:14:48 -0700
+Received: from kbuild by 60dabacc1df6 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1nz0CY-000Et1-O8;
+        Wed, 08 Jun 2022 18:14:42 +0000
+Date:   Thu, 9 Jun 2022 02:14:34 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Prashant Malani <pmalani@chromium.org>,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        heikki.krogerus@linux.intel.com,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        David Airlie <airlied@linux.ie>,
+        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Tzung-Bi Shih <tzungbi@google.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado 
+        <nfraprado@collabora.com>, Jonas Karlman <jonas@kwiboo.se>,
+        swboyd@chromium.org, Pin-Yen Lin <treapking@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Xin Ji <xji@analogixsemi.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        =?iso-8859-1?Q?Jos=E9_Exp=F3sito?= <jose.exposito89@gmail.com>
+Subject: Re: [PATCH 6/7] drm/bridge: anx7625: Register Type-C mode switches
+Message-ID: <202206090139.lV7qgO5F-lkp@intel.com>
+References: <20220607190131.1647511-7-pmalani@chromium.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="0000000000005b482c05e0f38cbc"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220607190131.1647511-7-pmalani@chromium.org>
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---0000000000005b482c05e0f38cbc
-Content-Transfer-Encoding: 8bit
+Hi Prashant,
 
-Add DTS for ARMv8 based broadband SoC BCM6856. bcm6856.dtsi is the
-SoC description DTS header and bcm96856.dts is a simple DTS file for
-Broadcom BCM96956 Reference board that only enable the UART port.
+I love your patch! Perhaps something to improve:
 
-Signed-off-by: William Zhang <william.zhang@broadcom.com>
----
+[auto build test WARNING on drm/drm-next]
+[also build test WARNING on usb/usb-testing v5.19-rc1 next-20220608]
+[cannot apply to balbi-usb/testing/next peter-chen-usb/for-usb-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
- arch/arm64/boot/dts/broadcom/bcmbca/Makefile  |   3 +-
- .../boot/dts/broadcom/bcmbca/bcm6856.dtsi     | 103 ++++++++++++++++++
- .../boot/dts/broadcom/bcmbca/bcm96856.dts     |  30 +++++
- 3 files changed, 135 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/broadcom/bcmbca/bcm6856.dtsi
- create mode 100644 arch/arm64/boot/dts/broadcom/bcmbca/bcm96856.dts
+url:    https://github.com/intel-lab-lkp/linux/commits/Prashant-Malani/usb-typec-Introduce-typec-switch-binding/20220608-042545
+base:   git://anongit.freedesktop.org/drm/drm drm-next
+config: i386-randconfig-a006 (https://download.01.org/0day-ci/archive/20220609/202206090139.lV7qgO5F-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project b92436efcb7813fc481b30f2593a4907568d917a)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/2ac4609c73d7bb4d1a585dae84559967ced3bad6
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Prashant-Malani/usb-typec-Introduce-typec-switch-binding/20220608-042545
+        git checkout 2ac4609c73d7bb4d1a585dae84559967ced3bad6
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/gpu/drm/bridge/analogix/
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/Makefile b/arch/arm64/boot/dts/broadcom/bcmbca/Makefile
-index 427299b8e63f..cee920bea124 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/Makefile
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/Makefile
-@@ -2,4 +2,5 @@
- dtb-$(CONFIG_ARCH_BCMBCA) += bcm963158.dtb \
- 				bcm96858.dtb \
- 				bcm94912.dtb \
--				bcm963146.dtb
-+				bcm963146.dtb \
-+				bcm96856.dtb
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm6856.dtsi b/arch/arm64/boot/dts/broadcom/bcmbca/bcm6856.dtsi
-new file mode 100644
-index 000000000000..0bce6497219f
---- /dev/null
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm6856.dtsi
-@@ -0,0 +1,103 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2022 Broadcom Ltd.
-+ */
-+
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+/ {
-+	compatible = "brcm,bcm6856", "brcm,bcmbca";
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	interrupt-parent = <&gic>;
-+
-+	cpus {
-+		#address-cells = <2>;
-+		#size-cells = <0>;
-+
-+		B53_0: cpu@0 {
-+			compatible = "brcm,brahma-b53";
-+			device_type = "cpu";
-+			reg = <0x0 0x0>;
-+			next-level-cache = <&L2_0>;
-+			enable-method = "psci";
-+		};
-+
-+		B53_1: cpu@1 {
-+			compatible = "brcm,brahma-b53";
-+			device_type = "cpu";
-+			reg = <0x0 0x1>;
-+			next-level-cache = <&L2_0>;
-+			enable-method = "psci";
-+		};
-+
-+		L2_0: l2-cache0 {
-+			compatible = "cache";
-+		};
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
-+			<GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
-+			<GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
-+			<GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>;
-+	};
-+
-+	pmu: pmu {
-+		compatible = "arm,cortex-a53-pmu";
-+		interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
-+			<GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-affinity = <&B53_0>, <&B53_1>;
-+	};
-+
-+	clocks: clocks {
-+		periph_clk:periph-clk {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <200000000>;
-+		};
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-0.2";
-+		method = "smc";
-+	};
-+
-+	axi@81000000 {
-+		compatible = "simple-bus";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0x0 0x0 0x81000000 0x8000>;
-+
-+		gic: interrupt-controller@1000 {
-+			compatible = "arm,gic-400";
-+			#interrupt-cells = <3>;
-+			interrupt-controller;
-+			reg = <0x1000 0x1000>, /* GICD */
-+				<0x2000 0x2000>, /* GICC */
-+				<0x4000 0x2000>, /* GICH */
-+				<0x6000 0x2000>; /* GICV */
-+			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(2) |
-+					IRQ_TYPE_LEVEL_HIGH)>;
-+		};
-+	};
-+
-+	bus@ff800000 {
-+		compatible = "simple-bus";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0x0 0x0 0xff800000 0x800000>;
-+
-+		uart0: serial@640 {
-+			compatible = "brcm,bcm6345-uart";
-+			reg = <0x640 0x18>;
-+			interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&periph_clk>;
-+			clock-names = "refclk";
-+			status = "disabled";
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm96856.dts b/arch/arm64/boot/dts/broadcom/bcmbca/bcm96856.dts
-new file mode 100644
-index 000000000000..032aeb75c983
---- /dev/null
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm96856.dts
-@@ -0,0 +1,30 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2022 Broadcom Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include "bcm6856.dtsi"
-+
-+/ {
-+	model = "Broadcom BCM96856 Reference Board";
-+	compatible = "brcm,bcm96856", "brcm,bcm6856", "brcm,bcmbca";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x08000000>;
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+   In file included from drivers/gpu/drm/bridge/analogix/anx7625.c:18:
+>> include/linux/usb/typec_mux.h:83:19: warning: no previous prototype for function 'fwnode_typec_mux_get' [-Wmissing-prototypes]
+   struct typec_mux *fwnode_typec_mux_get(struct fwnode_handle *fwnode,
+                     ^
+   include/linux/usb/typec_mux.h:83:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+   struct typec_mux *fwnode_typec_mux_get(struct fwnode_handle *fwnode,
+   ^
+   static 
+>> include/linux/usb/typec_mux.h:89:6: warning: no previous prototype for function 'typec_mux_put' [-Wmissing-prototypes]
+   void typec_mux_put(struct typec_mux *mux) {}
+        ^
+   include/linux/usb/typec_mux.h:89:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+   void typec_mux_put(struct typec_mux *mux) {}
+   ^
+   static 
+>> include/linux/usb/typec_mux.h:91:5: warning: no previous prototype for function 'typec_mux_set' [-Wmissing-prototypes]
+   int typec_mux_set(struct typec_mux *mux, struct typec_mux_state *state)
+       ^
+   include/linux/usb/typec_mux.h:91:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+   int typec_mux_set(struct typec_mux *mux, struct typec_mux_state *state)
+   ^
+   static 
+>> include/linux/usb/typec_mux.h:103:1: warning: no previous prototype for function 'typec_mux_register' [-Wmissing-prototypes]
+   typec_mux_register(struct device *parent, const struct typec_mux_desc *desc)
+   ^
+   include/linux/usb/typec_mux.h:102:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+   struct typec_mux *
+   ^
+   static 
+>> include/linux/usb/typec_mux.h:107:6: warning: no previous prototype for function 'typec_mux_unregister' [-Wmissing-prototypes]
+   void typec_mux_unregister(struct typec_mux *mux) {}
+        ^
+   include/linux/usb/typec_mux.h:107:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+   void typec_mux_unregister(struct typec_mux *mux) {}
+   ^
+   static 
+>> include/linux/usb/typec_mux.h:109:6: warning: no previous prototype for function 'typec_mux_set_drvdata' [-Wmissing-prototypes]
+   void typec_mux_set_drvdata(struct typec_mux *mux, void *data) {}
+        ^
+   include/linux/usb/typec_mux.h:109:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+   void typec_mux_set_drvdata(struct typec_mux *mux, void *data) {}
+   ^
+   static 
+>> include/linux/usb/typec_mux.h:110:7: warning: no previous prototype for function 'typec_mux_get_drvdata' [-Wmissing-prototypes]
+   void *typec_mux_get_drvdata(struct typec_mux *mux)
+         ^
+   include/linux/usb/typec_mux.h:110:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+   void *typec_mux_get_drvdata(struct typec_mux *mux)
+   ^
+   static 
+   drivers/gpu/drm/bridge/analogix/anx7625.c:2617:23: error: incompatible pointer types assigning to 'struct typec_mux_dev *' from 'struct typec_mux *' [-Werror,-Wincompatible-pointer-types]
+           port_data->typec_mux = typec_mux_register(dev, &mux_desc);
+                                ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/bridge/analogix/anx7625.c:2631:24: error: incompatible pointer types passing 'struct typec_mux_dev *' to parameter of type 'struct typec_mux *' [-Werror,-Wincompatible-pointer-types]
+                   typec_mux_unregister(ctx->typec_ports[i].typec_mux);
+                                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/usb/typec_mux.h:107:45: note: passing argument to parameter 'mux' here
+   void typec_mux_unregister(struct typec_mux *mux) {}
+                                               ^
+   7 warnings and 2 errors generated.
+
+
+vim +/fwnode_typec_mux_get +83 include/linux/usb/typec_mux.h
+
+0835afe6b807ae Prashant Malani 2022-06-07   82  
+0835afe6b807ae Prashant Malani 2022-06-07  @83  struct typec_mux *fwnode_typec_mux_get(struct fwnode_handle *fwnode,
+0835afe6b807ae Prashant Malani 2022-06-07   84  				       const struct typec_altmode_desc *desc)
+0835afe6b807ae Prashant Malani 2022-06-07   85  {
+0835afe6b807ae Prashant Malani 2022-06-07   86  	return ERR_PTR(-EOPNOTSUPP);
+0835afe6b807ae Prashant Malani 2022-06-07   87  }
+0835afe6b807ae Prashant Malani 2022-06-07   88  
+0835afe6b807ae Prashant Malani 2022-06-07  @89  void typec_mux_put(struct typec_mux *mux) {}
+0835afe6b807ae Prashant Malani 2022-06-07   90  
+0835afe6b807ae Prashant Malani 2022-06-07  @91  int typec_mux_set(struct typec_mux *mux, struct typec_mux_state *state)
+0835afe6b807ae Prashant Malani 2022-06-07   92  {
+0835afe6b807ae Prashant Malani 2022-06-07   93  	return -EOPNOTSUPP;
+0835afe6b807ae Prashant Malani 2022-06-07   94  }
+0835afe6b807ae Prashant Malani 2022-06-07   95  
+0835afe6b807ae Prashant Malani 2022-06-07   96  static inline struct typec_mux *
+0835afe6b807ae Prashant Malani 2022-06-07   97  typec_mux_get(struct device *dev, const struct typec_altmode_desc *desc)
+0835afe6b807ae Prashant Malani 2022-06-07   98  {
+0835afe6b807ae Prashant Malani 2022-06-07   99  	return ERR_PTR(-EOPNOTSUPP);
+0835afe6b807ae Prashant Malani 2022-06-07  100  }
+0835afe6b807ae Prashant Malani 2022-06-07  101  
+0835afe6b807ae Prashant Malani 2022-06-07  102  struct typec_mux *
+0835afe6b807ae Prashant Malani 2022-06-07 @103  typec_mux_register(struct device *parent, const struct typec_mux_desc *desc)
+0835afe6b807ae Prashant Malani 2022-06-07  104  {
+0835afe6b807ae Prashant Malani 2022-06-07  105  	return ERR_PTR(-EOPNOTSUPP);
+0835afe6b807ae Prashant Malani 2022-06-07  106  }
+0835afe6b807ae Prashant Malani 2022-06-07 @107  void typec_mux_unregister(struct typec_mux *mux) {}
+0835afe6b807ae Prashant Malani 2022-06-07  108  
+0835afe6b807ae Prashant Malani 2022-06-07 @109  void typec_mux_set_drvdata(struct typec_mux *mux, void *data) {}
+0835afe6b807ae Prashant Malani 2022-06-07 @110  void *typec_mux_get_drvdata(struct typec_mux *mux)
+0835afe6b807ae Prashant Malani 2022-06-07  111  {
+0835afe6b807ae Prashant Malani 2022-06-07  112  	return ERR_PTR(-EOPNOTSUPP);
+0835afe6b807ae Prashant Malani 2022-06-07  113  }
+0835afe6b807ae Prashant Malani 2022-06-07  114  
+
 -- 
-2.36.1
-
-
---0000000000005b482c05e0f38cbc
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-TltlrAeBKRJ1M9O/DY5v7L1Yrs//7XIRg/d2ZPAOSGBQzFYjYTFWwNBiR1s1zP0m2y56DPbS5gwj
-fqAN/I4PJHIvTh3zUgHXNKadYoYRiPHXfaTWO9UhzysOpQIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
-BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
-YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
-BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
-MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
-YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
-Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
-HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
-BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUohM5GmNlGWe5wpzDxzIy
-+EgzbRswDQYJKoZIhvcNAQELBQADggEBACKu9JSQAYTlmC+JTniO/C/UcXGonATI/muBjWTxtkHc
-abZtz0uwzzrRrpV+mbHLGVFFeRbXSLvcEzqHp8VomXifEZlfsE9LajSehzaqhd+np+tmUPz1RlI/
-ibZ7vW+1VF18lfoL+wHs2H0fsG6JfoqZldEWYXASXnUrs0iTLgXxvwaQj69cSMuzfFm1X5kWqWCP
-W0KkR8025J0L5L4yXfkSO6psD/k4VcTsMJHLN4RfMuaXIT6EM0cNO6h3GypyTuPf1N1X+F6WQPKb
-1u+rvdML63P9fX7e7mwwGt5klRnf8aK2VU7mIdYCcrFHaKDTW3fkG6kIgrE1wWSgiZYL400xggJt
-MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
-VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw28eX6TfvsbNfu
-SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEICFL0nxNJ0ze2IwcFal0Pr42xcwO
-szrjtB1xknn7JNDGMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
-MDYwODE4MDUyMFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
-CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
-AwQCATANBgkqhkiG9w0BAQEFAASCAQBo79UnDQso45XlIgDII1iZlO8ugNJWxP7guqxIVW8dmW3R
-WdEKEbg+EuytWkTUu+ktuWbKiAy5Ve6YjpvD9/VaPtXo3sPUzYRba0708YjMRC7Lv5DKtccPx2vH
-Hx0ZSQS6lsiTCgqTxOhpKK0MfdW7YYNy9S9rYBbZ0N5nFWm8bhw1sYv3E087dPbiLhm/Hmb22pI9
-cbWCIc7j6hDbRvc1ulCEBRFCKCF1h8+eoHAgiwqXxq6aYQ9g4G7+qtq8udDfPKJdXVCPFblOnNxp
-iMqEUyaZ5WJmLU1RxTQhbkHzBXHhLbptGnp7UryfRsAB3jpv3DfAsBaxHaqwATVCZciD
---0000000000005b482c05e0f38cbc--
+0-DAY CI Kernel Test Service
+https://01.org/lkp
