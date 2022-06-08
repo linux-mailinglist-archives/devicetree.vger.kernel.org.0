@@ -2,200 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FCD554282F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 09:48:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C388E54289D
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 09:55:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234670AbiFHHp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 03:45:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46836 "EHLO
+        id S230398AbiFHHy6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 03:54:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239458AbiFHHiJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 03:38:09 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 187721BD7E5
-        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 00:03:44 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id z7so25772201edm.13
-        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 00:03:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=/P5DonPEbL4zrk1lq27Ekk5M3s4m3V/4aGFOiKZb8iw=;
-        b=tNxFbUlk894ytaMSQBGHCh2CKU8QcY9xUHyTRn9WX4sjlRipH13BWFDnYPyywlXCiE
-         adRCZ3HNmK3ewQyLZLZPFIUP5PmCymNE0ruugSr1SUwDTyNBQ7wc268t93ZM/mIiy3PB
-         tSTOrGBxURXhUDSRctt4qvT8Jw5biZn6m7IIUB2DdG2KNqG3R0iEzrjOwdvixNmicvbG
-         iaBwNe5PBucqG0KmhHdNMeAb31cTu6GxNggVFyJBJxJtSaWI6kSVyc9+12z1QSKAOwlD
-         F+hKqjIXw/fHIWrius0cqfAOAkJocFLfUKdSg7Iv54CkF8jh0AGWdkhJ+qjzYCVWas+m
-         bQZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=/P5DonPEbL4zrk1lq27Ekk5M3s4m3V/4aGFOiKZb8iw=;
-        b=xM4ncs6Z4O080KETv+ro7P2peqri0SwsJiMF7mR2OnCO3rlYfYK5IEplqTBIsO3iEo
-         Tk14T7MF4yoEna98gWf8pvFmnXVX85HQJzOi6QoMftjSs8vGl5aireNb/vDoLim2pdui
-         JiQsBS/Y4s/TC+y9ioo7fx/lI7rCUtaXFntox3cnA2je+lImard5tKNC4JDKTqoVU2As
-         emQ9qEmmrl6HCb7CfrpFnfDiKe5/HWOqxom1AdN5/+7Lcmpgg3kuL2vsaTzA30uS/CwN
-         w0L1WdFNJXzyZb6yB7udSVovPlrhWUKrU9FVTypP6X03v0DtbXwBwyOFI85HJdOn8Jfy
-         gW3w==
-X-Gm-Message-State: AOAM5319aDT+zg/xCHcNxcyffpdv2HOHovZWuMBaUkyJUL0zrEocYf/u
-        rSKqcod1DbLyui141Q63gknEOw==
-X-Google-Smtp-Source: ABdhPJw2vWTH67y24uKVTvgMlYsRtG5nGCSYzVcpmzPlzZcTRbGD2+Va5H64O4ZQ/Ih1pH+cLtpzNQ==
-X-Received: by 2002:a05:6402:1692:b0:42d:e291:67f3 with SMTP id a18-20020a056402169200b0042de29167f3mr36847187edv.392.1654671822360;
-        Wed, 08 Jun 2022 00:03:42 -0700 (PDT)
-Received: from [192.168.0.188] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id 10-20020a170906058a00b007101f6f0720sm5919524ejn.120.2022.06.08.00.03.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jun 2022 00:03:41 -0700 (PDT)
-Message-ID: <b37a1a32-056e-cb25-f53a-3028a4d90ece@linaro.org>
-Date:   Wed, 8 Jun 2022 09:03:40 +0200
+        with ESMTP id S234120AbiFHHyY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 03:54:24 -0400
+X-Greylist: delayed 910 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 08 Jun 2022 00:21:41 PDT
+Received: from sender4-op-o18.zoho.com (sender4-op-o18.zoho.com [136.143.188.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DFFC18F849
+        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 00:21:40 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1654671917; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=EwX9GHj36baFZECDvbfvU8mD912tZ+9/+KGQTTtvObKU35dhQ0kSaPkKMjR7WRpTO6A7Q+M5wYVzGb6JLyuZFygwIOZPdxj0PVAXBTixbJh0XwBQUOHd64GL+Uut/fFAJmP52dYib6yXfwi8e0XjiZuLoqUKILvjllpAhyh3Hhw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1654671917; h=Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=4qHioTwosoMtsVC5cf0hSqO5QmqpfNid/SOhD8fTy7Y=; 
+        b=GdcGV3gzIoJEsQr7znI/Gf1ba4EPwrnQywrEfjnkN3/n1UCi1MCAV0nwXBtr7a6pFkKH/RlzVaGGIeHZPIpXnPgn92aCq+Edd8EEgXeB4iDjTZVbaoi/Zv/tJJW7jW/3Z3iOeemrnRsldJYYGFmHFn0ryGhF++xuudo+F/4qIu4=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=icenowy.me;
+        spf=pass  smtp.mailfrom=uwu@icenowy.me;
+        dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1654671917;
+        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
+        h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-Id:Message-Id:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Reply-To;
+        bh=4qHioTwosoMtsVC5cf0hSqO5QmqpfNid/SOhD8fTy7Y=;
+        b=byVdaaJj/CFCY6LvkPczj0FZUgIyfzT1CfhzFmF164613R0xCJ1voYda6Tk+cUBA
+        7hTddmz0vMKq8GLGzA8sHKK6NI75Ks1qOeIQ4Fnbd03UWAdDiFKIw1HAmpl15pvsjd8
+        edRTAUMtbEoxVzeU8rt9aSMsFPFZckayGjDMjN64=
+Received: from edelgard.icenowy.me (59.41.163.66 [59.41.163.66]) by mx.zohomail.com
+        with SMTPS id 1654671914833265.775927181988; Wed, 8 Jun 2022 00:05:14 -0700 (PDT)
+From:   Icenowy Zheng <uwu@icenowy.me>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Bin Liu <b-liu@ti.com>
+Cc:     linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-usb@vger.kernel.org,
+        Icenowy Zheng <uwu@icenowy.me>
+Subject: [PATCH 1/7] mailmap: update Icenowy Zheng's mail address
+Date:   Wed,  8 Jun 2022 15:04:46 +0800
+Message-Id: <20220608070452.338006-2-uwu@icenowy.me>
+X-Mailer: git-send-email 2.36.0
+In-Reply-To: <20220608070452.338006-1-uwu@icenowy.me>
+References: <20220608070452.338006-1-uwu@icenowy.me>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 4/4] input: misc: rt5120: Add power key support
-Content-Language: en-US
-To:     cy_huang <u0084500@gmail.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lee.jones@linaro.org,
-        broonie@kernel.org, dmitry.torokhov@gmail.com
-Cc:     lgirdwood@gmail.com, cy_huang@richtek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-input@vger.kernel.org
-References: <1654581161-12349-1-git-send-email-u0084500@gmail.com>
- <1654581161-12349-5-git-send-email-u0084500@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1654581161-12349-5-git-send-email-u0084500@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,PDS_OTHER_BAD_TLD,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/06/2022 07:52, cy_huang wrote:
-> From: ChiYuan Huang <cy_huang@richtek.com>
-> 
-> Add RT5120 PMIC power key support.
-> 
-> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> ---
->  drivers/input/misc/Kconfig         |   9 +++
->  drivers/input/misc/Makefile        |   1 +
->  drivers/input/misc/rt5120-pwrkey.c | 115 +++++++++++++++++++++++++++++++++++++
->  3 files changed, 125 insertions(+)
->  create mode 100644 drivers/input/misc/rt5120-pwrkey.c
-> 
-> diff --git a/drivers/input/misc/Kconfig b/drivers/input/misc/Kconfig
-> index dd5227c..9c0d814 100644
-> --- a/drivers/input/misc/Kconfig
-> +++ b/drivers/input/misc/Kconfig
-> @@ -881,6 +881,15 @@ config INPUT_SC27XX_VIBRA
->  	  To compile this driver as a module, choose M here. The module will
->  	  be called sc27xx_vibra.
->  
-> +config INPUT_RT5120_PWRKEY
-> +	tristate "RT5120 PMIC power key support"
-> +	depends on MFD_RT5120
-> +	help
-> +	  This enables support for RT5120 PMIC power key driver.
-> +
-> +	  To compile this driver as a module, choose M here. the module will
-> +	  be called rt5120-pwerkey.
-> +
->  config INPUT_STPMIC1_ONKEY
->  	tristate "STPMIC1 PMIC Onkey support"
->  	depends on MFD_STPMIC1
-> diff --git a/drivers/input/misc/Makefile b/drivers/input/misc/Makefile
-> index b92c53a..164ea20 100644
-> --- a/drivers/input/misc/Makefile
-> +++ b/drivers/input/misc/Makefile
-> @@ -68,6 +68,7 @@ obj-$(CONFIG_INPUT_RAVE_SP_PWRBUTTON)	+= rave-sp-pwrbutton.o
->  obj-$(CONFIG_INPUT_RB532_BUTTON)	+= rb532_button.o
->  obj-$(CONFIG_INPUT_REGULATOR_HAPTIC)	+= regulator-haptic.o
->  obj-$(CONFIG_INPUT_RETU_PWRBUTTON)	+= retu-pwrbutton.o
-> +obj-$(CONFIG_INPUT_RT5120_PWRKEY)	+= rt5120-pwrkey.o
->  obj-$(CONFIG_INPUT_AXP20X_PEK)		+= axp20x-pek.o
->  obj-$(CONFIG_INPUT_GPIO_ROTARY_ENCODER)	+= rotary_encoder.o
->  obj-$(CONFIG_INPUT_RK805_PWRKEY)	+= rk805-pwrkey.o
-> diff --git a/drivers/input/misc/rt5120-pwrkey.c b/drivers/input/misc/rt5120-pwrkey.c
-> new file mode 100644
-> index 00000000..42bd2f3
-> --- /dev/null
-> +++ b/drivers/input/misc/rt5120-pwrkey.c
-> @@ -0,0 +1,115 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +
-> +#include <linux/bits.h>
-> +#include <linux/input.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +
-> +#define RT5120_REG_INTSTAT	0x1E
-> +#define RT5120_PWRKEYSTAT_MASK	BIT(7)
-> +
-> +struct rt5120_priv {
-> +	struct regmap *regmap;
-> +	struct input_dev *input;
-> +	int press_irq;
-> +	int release_irq;
-> +};
-> +
-> +static irqreturn_t rt5120_pwrkey_handler(int irq, void *devid)
-> +{
-> +	struct rt5120_priv *priv = devid;
-> +	unsigned int stat;
-> +	bool is_pressed;
-> +	int ret;
-> +
-> +	ret = regmap_read(priv->regmap, RT5120_REG_INTSTAT, &stat);
-> +	if (ret)
-> +		return IRQ_NONE;
-> +
-> +	is_pressed = !(stat & RT5120_PWRKEYSTAT_MASK);
-> +
-> +	if ((is_pressed && irq == priv->press_irq) ||
-> +	    (!is_pressed  && irq == priv->release_irq)) {
-> +		input_report_key(priv->input, KEY_POWER, is_pressed);
-> +		input_sync(priv->input);
-> +	}
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static int rt5120_pwrkey_probe(struct platform_device *pdev)
-> +{
-> +	struct rt5120_priv *priv;
-> +	int ret;
-> +
-> +	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->regmap = dev_get_regmap(pdev->dev.parent, NULL);
-> +	if (!priv->regmap) {
-> +		dev_err(&pdev->dev, "Failed to init regmap\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	priv->press_irq = platform_get_irq_byname(pdev, "pwrkey-press");
-> +	if (priv->press_irq < 0)
-> +		return priv->press_irq;
-> +
-> +	priv->release_irq = platform_get_irq_byname(pdev, "pwrkey-release");
-> +	if (priv->release_irq < 0)
-> +		return priv->release_irq;
+Due to the SMTP provider adopted by AOSC applied some more restricted
+rate limit that is not suitable for sending kernel patches, I switched
+to a mailbox hosted on my own domain name now. In addition, there's a
+single commit that is pushed to the mainline kernel tree during my
+internship at Sipeed the last year.
 
-Not described in the bindings. All properties need to be documented.
+Map two AOSC mail addresses (both aosc.io and aosc.xyz domain names) and
+a defunct Sipeed mail address to the new mail address.
 
+Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+---
+ .mailmap | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Best regards,
-Krzysztof
+diff --git a/.mailmap b/.mailmap
+index 825fae8e6b7b..b4065082029e 100644
+--- a/.mailmap
++++ b/.mailmap
+@@ -150,6 +150,9 @@ Henrik Rydberg <rydberg@bitmath.org>
+ Herbert Xu <herbert@gondor.apana.org.au>
+ Huacai Chen <chenhuacai@kernel.org> <chenhc@lemote.com>
+ Huacai Chen <chenhuacai@kernel.org> <chenhuacai@loongson.cn>
++Icenowy Zheng <uwu@icenowy.me> <icenowy@aosc.io>
++Icenowy Zheng <uwu@icenowy.me> <icenowy@aosc.xyz>
++Icenowy Zheng <uwu@icenowy.me> <icenowy@sipeed.com>
+ Jacob Shin <Jacob.Shin@amd.com>
+ Jaegeuk Kim <jaegeuk@kernel.org> <jaegeuk@google.com>
+ Jaegeuk Kim <jaegeuk@kernel.org> <jaegeuk.kim@samsung.com>
+-- 
+2.36.0
+
