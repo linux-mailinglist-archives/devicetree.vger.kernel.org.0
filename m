@@ -2,69 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B5BE543624
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 17:11:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C08C9543716
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 17:16:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242844AbiFHPKi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 11:10:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56224 "EHLO
+        id S243675AbiFHPQl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 11:16:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243215AbiFHPKY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 11:10:24 -0400
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 796E3464C95;
-        Wed,  8 Jun 2022 08:00:28 -0700 (PDT)
-Received: by mail-io1-f45.google.com with SMTP id y79so557893iof.2;
-        Wed, 08 Jun 2022 08:00:28 -0700 (PDT)
+        with ESMTP id S243264AbiFHPQG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 11:16:06 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 076791580A
+        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 08:12:18 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id h23so31021827ejj.12
+        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 08:12:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=0wo28W6u7lVNDcrnTWpD6PtK5Yh/q56MRuIbEHfWpMA=;
+        b=UqPBSC8UeBWLodpPuqbv9EGQdkhhD0u3WcQIiBuu9jP3Gx1lQO+7rw57nqILzKDmF3
+         QjZJPODF7cSMorpXUweOgyyt7D1OupUkUjFD6VJ7lpLHA8CYh84fkqpBHoIIPnOwEFvt
+         mj7la1t2vqFNWZHkguUZlN50rQ+VojzxiyYHuPJJH+j/a29wULqRkOnZS+JC6931tvEf
+         uAIOD0+pG+F49VLtdvkm4Zs+/Z8f72cSxrDU6mjg2MrpP4NgOgxblEyzlh/oi7Flki5m
+         dRmqgfQKunhlD0kynkGsuPFiBzdPkvkvqgmH2YIM8GlYPagNk81M9PiCCgVaYk/C69BL
+         AbuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=5xIHFMIqlOUk9Aus35ryVRsDFE47iiJwnIacUdLPVwY=;
-        b=KMtIvoeXTLby9XTgxM6HErRYWYOhYBYMHRZq2gffG2nRLWVMZu2XGezM5eijO57GVF
-         59Mqzqqw0o++kvLcheGL8oOKgHSYtBLh429EGD1i1tIkWfG/q+h4/ZQ2aEnvllMHetRZ
-         PR3P//yNSSe8F3dLu1q+wRpC9wWYD5Yda488Lb9pBksqRobvDiXz6SbqyLRY88Ry9Q9p
-         2UwFif72vwkB4snalBVeuUo7xOsXDWd9Yv3Bbg51OTBpKro9MsWwN0Ymit+5DzX1HgrL
-         Ovku7nNjHMV1WE4ySbdR+iKNSfUpOz+RiwwYWBEu7NlzSS/B3wn9IOwFAHvdORzO5VYb
-         nWTw==
-X-Gm-Message-State: AOAM533Vj8/HYem7Dzx0GKAbPn4hqIatO+14xTHhD1IAeNxlChmlMY5L
-        9nsQvtnjoKnnVzHcNGzDI7Dxh4fgZw==
-X-Google-Smtp-Source: ABdhPJyzlGi+QzeZyTQq4zOi31iAXIn0f8Dgk2LUVJzEf1hLrggGw+NONFfZiJftfEUfxEIgASsyKg==
-X-Received: by 2002:a05:6638:2503:b0:331:950a:9478 with SMTP id v3-20020a056638250300b00331950a9478mr10671602jat.211.1654700426927;
-        Wed, 08 Jun 2022 08:00:26 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id w123-20020a022a81000000b003315f06075csm7737187jaw.22.2022.06.08.08.00.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jun 2022 08:00:26 -0700 (PDT)
-Received: (nullmailer pid 1398631 invoked by uid 1000);
-        Wed, 08 Jun 2022 15:00:24 -0000
-Date:   Wed, 8 Jun 2022 09:00:24 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Irui Wang <irui.wang@mediatek.com>
-Cc:     kyrie wu <kyrie.wu@mediatek.com>, devicetree@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tomasz Figa <tfiga@chromium.org>, xia.jiang@mediatek.com,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-media@vger.kernel.org, Tzung-Bi Shih <tzungbi@chromium.org>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        maoguang.meng@mediatek.com,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [V2,1/2] media: media: jpegenc: add mediatek,mt8186-jpgenc
- compatible
-Message-ID: <20220608150024.GA1398383-robh@kernel.org>
-References: <20220608060755.2213-1-irui.wang@mediatek.com>
- <20220608060755.2213-2-irui.wang@mediatek.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=0wo28W6u7lVNDcrnTWpD6PtK5Yh/q56MRuIbEHfWpMA=;
+        b=Urm2OrAoJ6wIUmiDQ6GOR9tvFWJMt/qZy9ci0EsB5Zo/8xMRETZy5KLuXDJpZ/6Zke
+         tkYgYhkC+gkP4elzpwo4Cal/qajZvb9kmsB2xm+SbVcXQG/uG9ZZ+57ZJBQNh1TDhSyW
+         S+E/UoTeQQhkP7TK7OSdZcf3mxzHeZgZiTcdi5nHQp/6vGUKJLzXZFWcVj1LWdrJj17q
+         x+bG0D3+rNfF9omnDPir21toyqS5jMHjG/KQt/Eqfi77g8EfW7q8awTyA6KtA7ODt1lE
+         BBMjtGuFX/DaOrUqbzUO2AhDqezSamlmZT2PZxO3sk1+jzXDaakHTkB0qIjzytjwELab
+         erDg==
+X-Gm-Message-State: AOAM533FmoRJ8V94D0kZZNCNVU6W7tWM2IIbDIoaaR1iWzCcZkXOXdSa
+        ZjKC0Tkjzz0tOZ2aJT+fMrxQMw==
+X-Google-Smtp-Source: ABdhPJztdyKIPVdguj7TN6+S7yMRjzDCE9N9DK46oHiWu07CES1P4a7OzzlUMd8F3+cU5ML4Wlsw2A==
+X-Received: by 2002:a17:906:99c5:b0:6fe:b069:4ab6 with SMTP id s5-20020a17090699c500b006feb0694ab6mr31875027ejn.436.1654701136476;
+        Wed, 08 Jun 2022 08:12:16 -0700 (PDT)
+Received: from [192.168.0.194] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id p11-20020a1709060dcb00b006fe9f9d0938sm9486755eji.175.2022.06.08.08.12.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Jun 2022 08:12:15 -0700 (PDT)
+Message-ID: <6178d685-5a87-6057-1200-e41baa3ece7d@linaro.org>
+Date:   Wed, 8 Jun 2022 17:12:14 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220608060755.2213-2-irui.wang@mediatek.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 1/5] dt-bindings: clock: Add bindings for Exynos7885
+ CMU_FSYS
+Content-Language: en-US
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     phone-devel@vger.kernel.org,
+        David Virag <virag.david003@gmail.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220601233743.56317-1-virag.david003@gmail.com>
+ <20220601233743.56317-2-virag.david003@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220601233743.56317-2-virag.david003@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,27 +85,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 08 Jun 2022 14:07:54 +0800, Irui Wang wrote:
-> From: kyrie wu <kyrie.wu@mediatek.com>
+On 02/06/2022 01:37, David Virag wrote:
+> CMU_FSYS clock domain provides clocks for MMC (MMC_CARD, MMC_EMBD,
+> MMC_SDIO), and USB30DRD.
 > 
-> Add mediatek,mt8186-jpgenc compatible to binding document.
+> Add clock indices and bindings documentation for CMU_FSYS domain.
 > 
-> MT8186 iommu support 0~16GB iova. We separate it to four banks:
-> 0~4G; 4G~8G; 8G~12G; 12G~16G.
-> 
-> The "dma-ranges" could be used to adjust the bank we locate.
-> If we don't set this property. The default range always is 0~4G.
-> 
-> Signed-off-by: kyrie wu <kyrie.wu@mediatek.com>
+> Signed-off-by: David Virag <virag.david003@gmail.com>
 > ---
->  .../devicetree/bindings/media/mediatek-jpeg-encoder.yaml    | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
+>  .../clock/samsung,exynos7885-clock.yaml       | 27 ++++++++++++++++
+>  include/dt-bindings/clock/exynos7885.h        | 31 ++++++++++++++++++-
 
+It seems the clock IDs from bindings are used by both driver and DTS.
+Sylwester, can I take them to Samsung Soc and send you a pull request?
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
-
-If a tag was not added on purpose, please state why and what changed.
-
+Best regards,
+Krzysztof
