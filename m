@@ -2,140 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F76E542307
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 08:51:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 308E25425B6
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 08:55:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231219AbiFHFBY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 01:01:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39480 "EHLO
+        id S232894AbiFHESp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 00:18:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232903AbiFHFBB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 01:01:01 -0400
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE6252A1D7C
-        for <devicetree@vger.kernel.org>; Tue,  7 Jun 2022 18:37:25 -0700 (PDT)
-Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
-        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220608013723epoutp03b85a2b6d84c98c4cf4f213b778744057~2gXLguuY-2663226632epoutp03k
-        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 01:37:23 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220608013723epoutp03b85a2b6d84c98c4cf4f213b778744057~2gXLguuY-2663226632epoutp03k
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1654652243;
-        bh=opXGkGbRe/ErGUghcNtoq7K7Ws9fOuLrbwVHZpDOy3A=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=mLWgLsfLoiNhjQzY61FaaTwZyuv6dC2Xx0HAPMYNpJ3tTV1P7ISIq4ZylhqzLdBXN
-         ZJ7KjdWD7W+/K2E40epmM9JuzGriMwO7XJyBjRNOB/QvsWrEcj3MO+HJhC8LB+oVZl
-         YiHjpXmNvguVNPbi6UjpAC9KyU451HIqcZ5ys1h8=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas2p3.samsung.com (KnoxPortal) with ESMTP id
-        20220608013722epcas2p39188b5686cb3b868a8688159d040bad4~2gXK74ALD2152521525epcas2p3E;
-        Wed,  8 Jun 2022 01:37:22 +0000 (GMT)
-Received: from epsmges2p3.samsung.com (unknown [182.195.36.98]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4LHqbQ1KMgz4x9QP; Wed,  8 Jun
-        2022 01:37:22 +0000 (GMT)
-Received: from epcas2p4.samsung.com ( [182.195.41.56]) by
-        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
-        B7.DC.10028.25DFF926; Wed,  8 Jun 2022 10:37:22 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
-        20220608013721epcas2p3a1505f7ade7ad2a41a3a8d477c5b0188~2gXJyNTDI0960809608epcas2p32;
-        Wed,  8 Jun 2022 01:37:21 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20220608013721epsmtrp1bac4215603a142cf7349c3a89c2028c7~2gXJxVmfh3218032180epsmtrp1A;
-        Wed,  8 Jun 2022 01:37:21 +0000 (GMT)
-X-AuditID: b6c32a47-573ff7000000272c-c0-629ffd522376
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        0D.63.11276.15DFF926; Wed,  8 Jun 2022 10:37:21 +0900 (KST)
-Received: from KORCO082417 (unknown [10.229.8.121]) by epsmtip2.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20220608013721epsmtip272c4a5caf8d0c7d83dc3e875652ad4bb~2gXJlqiVm0080300803epsmtip2U;
-        Wed,  8 Jun 2022 01:37:21 +0000 (GMT)
-From:   "Chanho Park" <chanho61.park@samsung.com>
-To:     "'Alim Akhtar'" <alim.akhtar@samsung.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>
-Cc:     <devicetree@vger.kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <vkoul@kernel.org>,
-        <avri.altman@wdc.com>, <bvanassche@acm.org>,
-        <martin.petersen@oracle.com>, <pankaj.dubey@samsung.com>,
-        "'Bharat Uppal'" <bharat.uppal@samsung.com>
-In-Reply-To: <20220603154714.30532-3-alim.akhtar@samsung.com>
-Subject: RE: [PATCH v2 2/7] phy: samsung-ufs: move cdr offset to drvdata
-Date:   Wed, 8 Jun 2022 10:37:21 +0900
-Message-ID: <002c01d87ad8$4c0f8600$e42e9200$@samsung.com>
+        with ESMTP id S232991AbiFHERz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 00:17:55 -0400
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C8812F4F5B;
+        Tue,  7 Jun 2022 18:40:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1654652448; x=1686188448;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=zbm4iZu1MGqfCpOkzqcAjxrsjpBC11cUbsTqwp4M7J0=;
+  b=WrKfzuHlSJLzjsBoSP5ZCx4IEQRpzr5B3A6KqL6rokwYTWVd1kiHY32e
+   sSGZ9pKsPcQhSW1yGCeNd//nyH43m+nE3+W5TmJMJQPPhn58d/IjEAtc3
+   12j4Rte3l2rLukXfu7ixgFS4IdJKvUpycEtxKArzBLrhJW9mBNFfEL4F/
+   dNlszB9OqWns7OxavDI3VHy9vw530rnc4k6ocWtSfhG6VADJV0HCrnoLy
+   29zJobdrqYn1M0mbulkb69jrb1bSgo7pWDey5ppWCmKjMiuezZV7b9qel
+   Vl1kSJDCJFSCsW2ALFr6D2+hCTQR9wJbOczBez3yrDYrEopAV8/Xf1r1/
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10371"; a="340797571"
+X-IronPort-AV: E=Sophos;i="5.91,284,1647327600"; 
+   d="scan'208";a="340797571"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jun 2022 18:40:17 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.91,284,1647327600"; 
+   d="scan'208";a="670294643"
+Received: from lkp-server01.sh.intel.com (HELO 60dabacc1df6) ([10.239.97.150])
+  by FMSMGA003.fm.intel.com with ESMTP; 07 Jun 2022 18:40:13 -0700
+Received: from kbuild by 60dabacc1df6 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1nykg8-000E8z-R5;
+        Wed, 08 Jun 2022 01:40:12 +0000
+Date:   Wed, 8 Jun 2022 09:39:48 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Satya Priya <quic_c_skakit@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     kbuild-all@lists.01.org, Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org, quic_collinsd@quicinc.com,
+        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com,
+        Satya Priya <quic_c_skakit@quicinc.com>
+Subject: Re: [PATCH V14 7/9] regulator: Add a regulator driver for the PM8008
+ PMIC
+Message-ID: <202206080910.XAMKbeVH-lkp@intel.com>
+References: <1654602615-28849-8-git-send-email-quic_c_skakit@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: ko
-Thread-Index: AQFSBQ9Zoh1+pG8sApsbls4ebot9jgJwO85AAlq0dRmuK062cA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrOJsWRmVeSWpSXmKPExsWy7bCmhW7Q3/lJBlf6OCwezNvGZvHy51U2
-        i2svL7BbTPvwk9li/pFzrBZ9Lx4yW2x6fI3V4vKuOWwWE1Z9Y7Hovr6DzWL58X9MFou2fmG3
-        aN17hN1i550TzA58HpeveHtsWtXJ5nHn2h42j81L6j0+Pr3F4tG3ZRWjx+dNch7tB7qZAjii
-        sm0yUhNTUosUUvOS81My89JtlbyD453jTc0MDHUNLS3MlRTyEnNTbZVcfAJ03TJzgM5WUihL
-        zCkFCgUkFhcr6dvZFOWXlqQqZOQXl9gqpRak5BSYF+gVJ+YWl+al6+WlllgZGhgYmQIVJmRn
-        zHyykqVgMXPFr6YtzA2M15i6GDk5JARMJNaf+cDWxcjFISSwg1Gi//JiJgjnE6NEw4FXrBDO
-        N0aJ7r637DAth9e/YAGxhQT2MkqcWSgCUfSCUWLdpsVgc9kE9CVedmwD6xYBmft5xScWEIdZ
-        oJNJovvIBbAqTgFbiV+LJ7OB2MICHhLzrnQxdzFycLAIqEj0rwsGCfMKWEpsf7SSGcIWlDg5
-        8wnYZmYBeYntb+cwQ1ykIPHz6TJWiLiIxOzONrC4iICTxIX3U6BqnnBInLhuCmG7SDxue8MG
-        YQtLvDq+BeozKYmX/W1QdrHE0lmfwGEhIdDAKHF52y+oBmOJWc/aGUHuZBbQlFi/Sx/ElBBQ
-        ljhyC+o0PomOw3/ZIcK8Eh1tQhCN6hIHtk9ngbBlJbrnfGadwKg0C8ljs5A8NgvJM7MQdi1g
-        ZFnFKJZaUJybnlpsVGAMj+zk/NxNjOAUreW+g3HG2w96hxiZOBgPMUpwMCuJ8EqGz08S4k1J
-        rKxKLcqPLyrNSS0+xGgKDOmJzFKiyfnALJFXEm9oYmlgYmZmaG5kamCuJM7rlbIhUUggPbEk
-        NTs1tSC1CKaPiYNTqoGp31v2af3Tkqluej1TAx4cytTRlDp0cUtH5ffHwjkp8Wt+RIdrrTJK
-        Otbj8Wbj9xnJ8pFXG7VWTV2jtdRzdtsN+bgjJUYXFSV+SOTGfTzjvlRyqvG1NI8P6l+v/fxw
-        hSdNd9KMS8t/+uw9G1y385++Q+KZw1l6dren87if3Hkzd1N2z68GNhUFE9ktZ8VjhO5O0s/8
-        t4G1R+L+vIgrS2Itcr06r1/jswydbOgYHLBVJ+am5SILJyteq5JbSslHOVQ3yD19qha5110m
-        69JbX4M12sszvz/WZTlz2ir9hLawRL0gk9OTDWlZy27GqZVotP0LVzqrLvR9rkFESZ/S/c8H
-        5Ptrfl9/emInw/Ee4XYlluKMREMt5qLiRAAvr9uPWgQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrKIsWRmVeSWpSXmKPExsWy7bCSvG7g3/lJBsvfKlk8mLeNzeLlz6ts
-        FtdeXmC3mPbhJ7PF/CPnWC36Xjxkttj0+BqrxeVdc9gsJqz6xmLRfX0Hm8Xy4/+YLBZt/cJu
-        0br3CLvFzjsnmB34PC5f8fbYtKqTzePOtT1sHpuX1Ht8fHqLxaNvyypGj8+b5DzaD3QzBXBE
-        cdmkpOZklqUW6dslcGXMfLKSpWAxc8Wvpi3MDYzXmLoYOTkkBEwkDq9/wdLFyMUhJLCbUWLv
-        xmcsEAlZiWfvdrBD2MIS91uOsEIUPWOUWNP/nBEkwSagL/GyYxtYQkRgD6NE27xT7CAOs8Bk
-        JolJDV+h5u5nlFi2ahNYC6eArcSvxZPZQGxhAQ+JeVe6mLsYOThYBFQk+tcFg4R5BSwltj9a
-        yQxhC0qcnPkE7CRmAW2J3oetjBC2vMT2t3OYIc5TkPj5dBkrRFxEYnZnG1hcRMBJ4sL7KcwT
-        GIVnIRk1C8moWUhGzULSvoCRZRWjZGpBcW56brFhgWFearlecWJucWleul5yfu4mRnDMamnu
-        YNy+6oPeIUYmDsZDjBIczEoivJLh85OEeFMSK6tSi/Lji0pzUosPMUpzsCiJ817oOhkvJJCe
-        WJKanZpakFoEk2Xi4JRqYGrd+3zWrfysxQmNO8qFr7tdTpvuacL+K+2dovtLNb/r/0KehAuU
-        XRPvX7CNRy+89+W0oz6BNyNXn1/+O/xf5vkjDsWG+qcaBVdxvX5zafo5m4qzeQmXr3iJ7NdV
-        +pK0kdG9ce3xjOYLhiFckc+4bHs+cob2Tjy27J6IH19du3noO4a9P9x7leY0aM9ap/reqzZg
-        arTR9u5fRvPttwu9mPiJ8W3Z9/kKO9WqQm6vcNEtzlVQWZxwucFO8PUal4fpWiFne3Y+P7R2
-        0eWibVah3FWrdkx53G1Ws+BMc92JLVoyLHGrV0ufub6nOGXDzRU/aj/9fFa4wkp3qiFPs3HM
-        dJ+NBnaTZbp4+XbpvjtwYqUSS3FGoqEWc1FxIgBuNA77SAMAAA==
-X-CMS-MailID: 20220608013721epcas2p3a1505f7ade7ad2a41a3a8d477c5b0188
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220603154853epcas5p1f072d462edae5584d1cce601189ab85b
-References: <20220603154714.30532-1-alim.akhtar@samsung.com>
-        <CGME20220603154853epcas5p1f072d462edae5584d1cce601189ab85b@epcas5p1.samsung.com>
-        <20220603154714.30532-3-alim.akhtar@samsung.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1654602615-28849-8-git-send-email-quic_c_skakit@quicinc.com>
 X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Subject: [PATCH v2 2/7] phy: samsung-ufs: move cdr offset to drvdata
-> 
-> Move CDR lock offset to drv data so that it can be extended for other SoCs
-> which are having CDR lock at different register offset.
-> 
-> Signed-off-by: Bharat Uppal <bharat.uppal@samsung.com>
-> Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
+Hi Satya,
 
-Reviewed-by: Chanho Park <chanho61.park@samsung.com>
+Thank you for the patch! Perhaps something to improve:
 
-Best Regards,
-Chanho Park
+[auto build test WARNING on lee-mfd/for-mfd-next]
+[also build test WARNING on robh/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Satya-Priya/Add-Qualcomm-Technologies-Inc-PM8008-regulator-driver/20220607-195327
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
+config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20220608/202206080910.XAMKbeVH-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.3.0-1) 11.3.0
+reproduce (this is a W=1 build):
+        # https://github.com/intel-lab-lkp/linux/commit/11e915cb6368e90fdc4186104c56a3619aa63440
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Satya-Priya/Add-Qualcomm-Technologies-Inc-PM8008-regulator-driver/20220607-195327
+        git checkout 11e915cb6368e90fdc4186104c56a3619aa63440
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/regulator/
+
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+   drivers/regulator/qcom-pm8008-regulator.c: In function 'pm8008_regulator_get_voltage':
+>> drivers/regulator/qcom-pm8008-regulator.c:74:13: warning: unused variable 'rc' [-Wunused-variable]
+      74 |         int rc, uV;
+         |             ^~
+
+
+vim +/rc +74 drivers/regulator/qcom-pm8008-regulator.c
+
+    69	
+    70	static int pm8008_regulator_get_voltage(struct regulator_dev *rdev)
+    71	{
+    72		struct pm8008_regulator *pm8008_reg = rdev_get_drvdata(rdev);
+    73		__le16 mV;
+  > 74		int rc, uV;
+    75	
+    76		regmap_bulk_read(pm8008_reg->regmap,
+    77				LDO_VSET_LB_REG(pm8008_reg->base), (void *)&mV, 2);
+    78	
+    79		uV = le16_to_cpu(mV) * 1000;
+    80		return (uV - pm8008_reg->rdesc.min_uV) / pm8008_reg->rdesc.uV_step;
+    81	}
+    82	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
