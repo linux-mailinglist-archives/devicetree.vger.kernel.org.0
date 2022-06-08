@@ -2,145 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DC67543F3A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 00:36:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05808543F46
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 00:43:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236619AbiFHWgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 18:36:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49962 "EHLO
+        id S234789AbiFHWnA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 18:43:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234574AbiFHWgU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 18:36:20 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D1B822ABDC
-        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 15:36:18 -0700 (PDT)
-Received: from [192.168.1.107] ([37.4.249.155]) by mrelayeu.kundenserver.de
- (mreue011 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1MKKER-1oKJmj0RrD-00LjJZ; Thu, 09 Jun 2022 00:35:34 +0200
-Message-ID: <d315b387-8500-ceee-d7ef-1d11779baf54@i2se.com>
-Date:   Thu, 9 Jun 2022 00:35:28 +0200
+        with ESMTP id S234573AbiFHWm7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 18:42:59 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 372FD29CA6
+        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 15:42:57 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id e5so4780603wma.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 15:42:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=conchuod.ie; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=5uDM6tpuJABWxtiilCsqiowJeB7LSvJ3XOBsyRBng14=;
+        b=ZpV0eJIiO9NjPQhX7Pl1+84j9heHppBnLerRQ0JTcVYGIcd+V4BCwS42iTP1N7oKQB
+         W7tSUdxaNseKHAZj1LTZWO6VOczeDo5mScli8jffnF99cYBFJ4fPWPro4MpfoSmbnuYs
+         UDWVcmRF4Tsk9qX82xDLerieJ65qvcB+MLtqEt1G5KVMWJYO54dLxcNQLRERpDDCZhqV
+         fHb9aqAQ8v1ViIltT0HzpeVJIWFRxOizwUNd/R9t57RElo8irDHrFnLQPlLrJ7ZjqLfF
+         Ou1lGanFu8k16V9tWGdRh7l6ra84kf8MzsiM9yjzzuP09JlkNuYa7lVXkpgwGYe+3ueo
+         7zkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=5uDM6tpuJABWxtiilCsqiowJeB7LSvJ3XOBsyRBng14=;
+        b=jd0JLk4oRX1BZu2mHgWMjQ7fwEg8o6LXfcn+PsZoIW+TAMORWWU5q2An+Po/wkBxj9
+         QoGpTwDNWsPQah5l7uQ63xwYodVgE8RXWRt8DaCzbzWS6iC4U7+bt81zBp6z5OPlHDyQ
+         ZRcFSmP8on5QLDQrhDCH1Wo/N1eq2jiOaqXe++seELAxL27Vvfibsxad5jouwviRD0Tg
+         PTKupAm6ASJRXeaRDAUuP2RSimRdRxYUC84nnN+/d1LxIWDH1pyFaz4uxnI5V+tGK+tQ
+         apw8UZ9oXWZr+b93xtzgxOJET6eHV+dPqKUtaJaf3vNoGIH7PPYHeT+LjlEaM6IbQ5YW
+         bugQ==
+X-Gm-Message-State: AOAM531lq27XDWR9QP5yHDHdNEYFkkhXnE3lVc454BeL7IMdLJtANM6A
+        KpQCkUFi+r8v6af4PcFAJ+WXAA==
+X-Google-Smtp-Source: ABdhPJwWjpgU/pQzp05ZueMBa5kILkWmN28ZkUdlRmQ9I4QeDy95gollDJq8USjph7VhhJ4Hd7rl2g==
+X-Received: by 2002:a1c:f314:0:b0:397:10a5:a355 with SMTP id q20-20020a1cf314000000b0039710a5a355mr204713wmq.176.1654728175656;
+        Wed, 08 Jun 2022 15:42:55 -0700 (PDT)
+Received: from [192.168.2.222] ([51.37.234.167])
+        by smtp.gmail.com with ESMTPSA id s1-20020adfea81000000b00210320d9fbfsm27203751wrm.18.2022.06.08.15.42.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Jun 2022 15:42:55 -0700 (PDT)
+Message-ID: <32299bd6-6038-4c4e-1d6f-979a438db8cc@conchuod.ie>
+Date:   Wed, 8 Jun 2022 23:42:53 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.9.1
-Subject: Re: [PATCH v6 0/6] Raspberry PI 4 V3D enablement
+Subject: Re: [PATCH v1 0/6] clear riscv dtbs_check errors
 Content-Language: en-US
-To:     Melissa Wen <mwen@igalia.com>,
-        Peter Robinson <pbrobinson@gmail.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, Emma Anholt <emma@anholt.net>,
-        Florian Fainelli <f.fainelli@gmail.com>, javierm@redhat.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org, maxime@cerno.tech,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-References: <20220603092610.1909675-1-pbrobinson@gmail.com>
- <20220608125113.q6bfhf3o424iwuzn@mail.igalia.com>
-From:   Stefan Wahren <stefan.wahren@i2se.com>
-In-Reply-To: <20220608125113.q6bfhf3o424iwuzn@mail.igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Atul Khare <atulkhare@rivosinc.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Support Opensource <support.opensource@diasemi.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Steve Twiss <stwiss.opensource@diasemi.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+References: <20220605133300.376161-1-mail@conchuod.ie>
+ <CABMhjYq0GSEfg4T+cTqBwRdykC-rbQNEqnAZ1qM5fYbjUah5Mg@mail.gmail.com>
+From:   Conor Dooley <mail@conchuod.ie>
+In-Reply-To: <CABMhjYq0GSEfg4T+cTqBwRdykC-rbQNEqnAZ1qM5fYbjUah5Mg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Provags-ID: V03:K1:XeocH6bh5+umXROrV69UM9f2AoqI2hCIywMcMk0r6wzLP9EGcrh
- H5h+/qRx+GQMDNtmdXGFc7IhlyO8aOWmH2d3n5IDrtUwD2QYsOYnNM/0Rf5tQL6qWk/nFpO
- YDfXWXZPSX2TO7+lttmWYM20jnaOXV/faQir16UumJIAoXMsrsMz/ogkxRigXS81sXc/Ypl
- wcMfOgppIbjYJ2+/ZmbhQ==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:2VfwKV7+e14=:qQmsPFZm+fXF28lz48QiKC
- Efl6HjpqxHVSeppd8KOGzDJ8Wwnj0SWuWlmBhUTdiv/7aEtFBa0Ea7la5N+6Wn03n8/aN4CA7
- g9BmT94R/ucZcfYJ+87R0M21Vs/aa5rhCOFIq2RTMTjRUzIW+CsRtqYtbP2BaPfvhWzETGtsS
- Rz/mRxQzJi6Tds4sdEXN935ZH5omOK22hegFbinW2M6SpsFOiN/CGqZklwd8PBSLdhbQmxGmL
- wJzfukWWq34XVvn+iQDyyTw0JfFUlbLIji3X33vWLr5XcZkEs0Qjv7COHcGaGi7sKL4LdoS2g
- Ykqch9R5Y28ncWJynlVcd7POMdkaguOKGZiNE1bA+THjihtPiLtpxZFroDBFme/WsMFVpEiQi
- Si2/5W+v/D8Yig/fGyxE9+ku+b6VpRodDHWFzv+taNtjMo0aDoesFE8v0UK9jM2ghP3ROGLZh
- UklNvxafkJUr/adAGebfY9bOQSfaYhQ+tCzSRc6NGarSVv5GRcUV4Q1RHyX0o/QoOqDO8XMLf
- vXKY4bsSQRfKo/E4HIwrqEZoJKAp2kZdOR4II5yc5QNbf9+1xPbabnp3CCgSndi5S/6agVaeF
- VtyXapyxchdT8tExV192A+WGkL6xItL3CIcK1kd0u8LXN37D/sXwN+MfYdBDJ6RA7R+Zz0pf3
- vnudHoW4/AroOkITLraJa4M8IJeZ+d97zTfcmsq/HNUZVqfhwl2BuGIA43u5Kp79h620DUphG
- 1Zht/M5BfKktRFDWeO45Zgr1VEhpAVh2EVBkO7LskPpoWhKdPVmq0sM0S9Y=
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Melissa,
+On 08/06/2022 23:27, Atul Khare wrote:
+> Conor,
+> 
+> Thanks for the feedback. I will rebase and send out a v2 series
+> shortly (it appears that the 1024 hart context patch is redundant as
+> well).
 
-Am 08.06.22 um 14:51 schrieb Melissa Wen:
-> On 06/03, Peter Robinson wrote:
->> This is a follow up from my v4 patchset. The power management pieces have
->> been split out to a separate independent set of patches by Stefan [1]. This
->> version 5 of the DRM patches are independent and given the V3D driver has
->> been upstream for some time the two patches to enable it in defconfigs can
->> be taken at anytime independent of the enablement for the Raspberry Pi 4.
-> Hi Peter,
->
-> I was able to check and run some tests on arm64, and it seems ok. But I
-> was not successful on bringing it up for arm using multi_v7_defconfig +
-> device_tree=bcm2711-rpi-4-b.dtb.
+Great, will be nice to get down to zero warnings :)
 
-for Raspberry Pi 4 you also need to enable CONFIG_ARM_LPAE, which is not 
-enabled in multi_v7_defconfig.
-
-Best regards
-
->
-> How can I check this path?
->
-> Btw, using the config from rpi downstream kernel works nicely for arm
-> (on my side)
->
-> Best regards,
->
-> Melissa
->> I've tested this using mesa 22.0.x and Wayland/Gnome on Fedora 36, it's
->> more or less stable with basic testing.
+> 
+> On Sun, Jun 5, 2022 at 6:33 AM <mail@conchuod.ie> wrote:
 >>
->> Changes since v5:
->> - Update the DT compatible to match the others that were updated
->> - Adjust the Kconfig help text
->> - Add review tags
+>> From: Conor Dooley <conor.dooley@microchip.com>
 >>
->> Changes since v4:
->> - Fixes for device tree and bindings
->> - Split out the power management changes into an independent set
->> - Rebase to 5.18
->> - Individual changes in patches
+>> Hey,
+>> Couple conversions from txt to yaml here with the intent of fixing the
+>> the dtbs_check warnings for riscv. Atul Khare already sent patches for
+>> the gpio-line-names & cache-sets (which went awol) and will clear the
+>> remaining two errors.
 >>
->> [1] https://www.spinics.net/lists/arm-kernel/msg980342.html
+>> Rob/Krzysztof:
+>> Have I correctly expressed the mutually exclusive properties?
+>> I had a look around, but wasn't able to find an obvious binding to ape.
 >>
->> Nicolas Saenz Julienne (1):
->>    arm64: config: Enable DRM_V3D
+>> Wasn't sure if a txt -> yaml conversion's MAINTAINERS update was meant
+>> to be in the same patch or not, so feel free to squash.
+>> Thanks,
+>> Conor.
 >>
->> Peter Robinson (5):
->>    dt-bindings: gpu: v3d: Add BCM2711's compatible
->>    drm/v3d: Get rid of pm code
->>    drm/v3d: Add support for bcm2711
->>    ARM: dts: bcm2711: Enable V3D
->>    ARM: configs: Enable DRM_V3D
+>> Conor Dooley (6):
+>>   dt-bindings: mmc: convert mmc-spi-slot to yaml
+>>   dt-bindings: i2c: convert ocores binding to yaml
+>>   MAINTAINERS: convert ocores i2c dt-binding to yaml
+>>   dt-bindings: mfd: convert da9063 to yaml
+>>   MAINTAINERS: convert da9063 to yaml
+>>   riscv: dts: sifive: "fix" pmic watchdog node name
 >>
->>   .../devicetree/bindings/gpu/brcm,bcm-v3d.yaml  |  1 +
->>   arch/arm/boot/dts/bcm2711-rpi.dtsi             |  4 ++++
->>   arch/arm/boot/dts/bcm2711.dtsi                 | 11 +++++++++++
->>   arch/arm/configs/bcm2835_defconfig             |  1 +
->>   arch/arm/configs/multi_v7_defconfig            |  1 +
->>   arch/arm64/configs/defconfig                   |  1 +
->>   drivers/gpu/drm/v3d/Kconfig                    |  5 +++--
->>   drivers/gpu/drm/v3d/v3d_debugfs.c              | 18 +-----------------
->>   drivers/gpu/drm/v3d/v3d_drv.c                  | 12 +-----------
->>   drivers/gpu/drm/v3d/v3d_gem.c                  | 12 +-----------
->>   10 files changed, 25 insertions(+), 41 deletions(-)
+>>  .../devicetree/bindings/i2c/i2c-ocores.txt    |  78 -----------
+>>  .../devicetree/bindings/i2c/i2c-ocores.yaml   | 132 ++++++++++++++++++
+>>  .../devicetree/bindings/mfd/da9063.txt        | 111 ---------------
+>>  .../devicetree/bindings/mfd/da9063.yaml       | 123 ++++++++++++++++
+>>  .../devicetree/bindings/mmc/mmc-spi-slot.txt  |  29 ----
+>>  .../devicetree/bindings/mmc/mmc-spi-slot.yaml |  76 ++++++++++
+>>  .../devicetree/bindings/trivial-devices.yaml  |   2 -
+>>  MAINTAINERS                                   |   3 +-
+>>  .../boot/dts/sifive/hifive-unmatched-a00.dts  |   2 +-
+>>  9 files changed, 334 insertions(+), 222 deletions(-)
+>>  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-ocores.txt
+>>  create mode 100644 Documentation/devicetree/bindings/i2c/i2c-ocores.yaml
+>>  delete mode 100644 Documentation/devicetree/bindings/mfd/da9063.txt
+>>  create mode 100644 Documentation/devicetree/bindings/mfd/da9063.yaml
+>>  delete mode 100644 Documentation/devicetree/bindings/mmc/mmc-spi-slot.txt
+>>  create mode 100644 Documentation/devicetree/bindings/mmc/mmc-spi-slot.yaml
 >>
->> -- 
+>> --
 >> 2.36.1
 >>
->>
->> _______________________________________________
->> linux-arm-kernel mailing list
->> linux-arm-kernel@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
