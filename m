@@ -2,118 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1E2F542CA0
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 12:09:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DA0F542DCE
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 12:31:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235963AbiFHKJq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 06:09:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35570 "EHLO
+        id S237153AbiFHKae (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 06:30:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236189AbiFHKIM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 06:08:12 -0400
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45DA51B0780;
-        Wed,  8 Jun 2022 02:51:36 -0700 (PDT)
-Received: by mail-pj1-x102c.google.com with SMTP id j7so18116515pjn.4;
-        Wed, 08 Jun 2022 02:51:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=fauG2+ouC/pE9fJBFguldPR02kf/OkXrX9OF5a1epKw=;
-        b=HMDNWEhCcLSUhdf09KbZLJllzy0AHoA5hc7cY+4DfDKpW3uhdJJGQTM+yjNkBMqLC0
-         rel0nka4lEpbb+UZaUt2hdT2PndkqBx9zUxAjumk+h47hcHBM/kwuB01UJ2vi57TYn1S
-         bQYn+pk+nuP3R1TtODW7OP1xUqdV8AsjP9m2AQQU4wWsRjO8MqdDt49f8k7fRbhjrEGK
-         BR8Ad9MoyjpPqYQf/1w6npeHENegaiZkU1umUoVJlpoj/YNRrQ4d2io8IAjflbzm+L4R
-         1sJN0vFwes29VAAdtCA3+nhPFeSHeqwhgIU1IYGqBiwoBG1qB6AG5kzC/m4B/DwShDUt
-         UHyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=fauG2+ouC/pE9fJBFguldPR02kf/OkXrX9OF5a1epKw=;
-        b=JVdBqo2+E22LHn0+jbrBhtHLC4D9x/nr1ATfVZkTshNFcksdet+30xZEa7NthhUoLV
-         GGf7k6uYWt8Ehvws9lpadtEkg8JcZJ1uAhJ+cHPSPCerPicL6AClCRknbmjVsnRmpMND
-         IHZeKRHfUUfd1tqFegcU5ETPPCK2x1f6g4JataOC8HUSuBkJowNDApfsdP4QCFXdl/WY
-         Noq6+8Kfrdhm8jo+BSDUdFAruzehufdkIobuqQO4K9uNQggVWOG72vTRQCYuNI656lA+
-         uXlRPS8TSnoSyA/Cz5HQAwGGFzZkmT71Q6svoWvVJihMiVxezhLPHJXKqWq2VJJZaqug
-         lkZg==
-X-Gm-Message-State: AOAM530Z8sJk7EXq1TKqNQwu2/9sN0mIPVSd8HMvxijy9GhGFVQ7WU3l
-        WnzbyzS4Ahw3llQ1hyEfSVU=
-X-Google-Smtp-Source: ABdhPJxEWS/rHoQGxKsD3tIotODBmp2FZwHZA31x813cDASnCP9ZP49/qjqKKz0GqJChqK0YicDI1A==
-X-Received: by 2002:a17:90b:3b8a:b0:1e2:ee1e:6340 with SMTP id pc10-20020a17090b3b8a00b001e2ee1e6340mr36776831pjb.38.1654681895328;
-        Wed, 08 Jun 2022 02:51:35 -0700 (PDT)
-Received: from [192.168.43.80] (subs03-180-214-233-80.three.co.id. [180.214.233.80])
-        by smtp.gmail.com with ESMTPSA id e13-20020aa798cd000000b0050dc76281b8sm15275765pfm.146.2022.06.08.02.51.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jun 2022 02:51:33 -0700 (PDT)
-Message-ID: <28ec9f61-3086-a12e-3e8d-33f855f916fc@gmail.com>
-Date:   Wed, 8 Jun 2022 16:51:26 +0700
+        with ESMTP id S238191AbiFHK34 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 06:29:56 -0400
+Received: from maillog.nuvoton.com (maillog.nuvoton.com [202.39.227.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 28276C0E3D;
+        Wed,  8 Jun 2022 03:22:09 -0700 (PDT)
+Received: from NTHCCAS04.nuvoton.com (NTHCCAS04.nuvoton.com [10.1.8.29])
+        by maillog.nuvoton.com (Postfix) with ESMTP id 6C0A21C80414;
+        Wed,  8 Jun 2022 17:56:29 +0800 (CST)
+Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCCAS04.nuvoton.com
+ (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 8 Jun
+ 2022 17:56:29 +0800
+Received: from taln60.nuvoton.com (10.191.1.180) by NTHCCAS01.nuvoton.com
+ (10.1.12.25) with Microsoft SMTP Server id 15.1.2375.7 via Frontend
+ Transport; Wed, 8 Jun 2022 17:56:28 +0800
+Received: by taln60.nuvoton.com (Postfix, from userid 10070)
+        id D27B362D98; Wed,  8 Jun 2022 12:56:27 +0300 (IDT)
+From:   Tomer Maimon <tmaimon77@gmail.com>
+To:     <avifishman70@gmail.com>, <tali.perry1@gmail.com>,
+        <joel@jms.id.au>, <venture@google.com>, <yuenn@google.com>,
+        <benjaminfair@google.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <p.zabel@pengutronix.de>,
+        <gregkh@linuxfoundation.org>, <daniel.lezcano@linaro.org>,
+        <tglx@linutronix.de>, <wim@linux-watchdog.org>,
+        <linux@roeck-us.net>, <catalin.marinas@arm.com>, <will@kernel.org>,
+        <arnd@arndb.de>, <olof@lixom.net>, <jirislaby@kernel.org>,
+        <shawnguo@kernel.org>, <bjorn.andersson@linaro.org>,
+        <geert+renesas@glider.be>, <marcel.ziswiler@toradex.com>,
+        <vkoul@kernel.org>, <biju.das.jz@bp.renesas.com>,
+        <nobuhiro1.iwamatsu@toshiba.co.jp>, <robert.hancock@calian.com>,
+        <j.neuschaefer@gmx.net>, <lkundrak@v3.sk>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-serial@vger.kernel.org>,
+        <linux-watchdog@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tomer Maimon <tmaimon77@gmail.com>
+Subject: [PATCH v2 00/20] Introduce Nuvoton Arbel NPCM8XX BMC SoC
+Date:   Wed, 8 Jun 2022 12:56:03 +0300
+Message-ID: <20220608095623.22327-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: virt_to_phys outside array bounds warning (GCC 12.1.0)
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Cc:     =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        Russell King <linux@armlinux.org.uk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        linux-kernel@vger.kernel.org, Kees Cook <keescook@chromium.org>,
-        Naresh Kamboju <naresh.kamboju@linaro.org>,
-        Andrew Morton <akpm@linux-foundation.org>
-References: <YqBgWoXQmzVczRDo@debian.me>
- <e8f8f42b-9df3-d9a1-893e-0f972e27ef80@linaro.org>
-From:   Bagas Sanjaya <bagasdotme@gmail.com>
-In-Reply-To: <e8f8f42b-9df3-d9a1-893e-0f972e27ef80@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+        FORGED_GMAIL_RCVD,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/8/22 16:28, Krzysztof Kozlowski wrote:
-> On 08/06/2022 10:39, Bagas Sanjaya wrote:
->> Hi everyone,
->>
->> When cross-compiling arm 5.19-rc1 kernel using GCC 12.1.0 (armv7 with neon
->> fpu, multi_v7_defconfig), I got outside array bounds warning pointing to
->> virt_to_phys() macro:
->>
-> 
-> Thanks for the report!
-> 
-> I think this was already reported:
-> https://lore.kernel.org/all/CAK8P3a3X0UwQiVNZqvGmSKi8BX6zg=k07+9Q3rDGqHVkc8Hdsg@mail.gmail.com/
-> 
+This patchset  adds initial support for the Nuvoton 
+Arbel NPCM8XX Board Management controller (BMC) SoC family. 
 
-The report above is for arm64, but similar to this report (arm report).
+The Nuvoton Arbel NPCM8XX SoC is a fourth-generation BMC.
+The NPCM8XX computing subsystem comprises a quadcore ARM 
+Cortex A35 ARM-V8 architecture.
 
-> Anyway, for the future:
-> I don't think the CC list matches the problem. Please bisect this issue
-> (since it is reproducible build time, it should be straightforward) to
-> find offending commit and then Cc responsible people and maintainers
-> (scripts/get_maintainer.pl). Ccing half-random people might not get
-> necessary attention.
-> 
+This patchset adds minimal architecture and drivers such as:
+Clocksource, Clock, Reset, and WD.
 
-I think the most likely culprit is commit 37efe6427dd50e ("[ARM] use asm/sections.h")
-and 14c4a533e0996f ("ARM: 8583/1: mm: fix location of _etext").
+Some of the Arbel NPCM8XX peripherals are based on Poleg NPCM7XX.
 
+This patchset was tested on the Arbel NPCM8XX evaluation board.
 
-Thanks.
+Addressed comments from:
+ - Arnd Bergmann : https://www.spinics.net/lists/arm-kernel/msg982728.html
+		   https://www.spinics.net/lists/linux-serial/msg48179.html
+ - Stephen Boyd: https://www.spinics.net/lists/arm-kernel/msg983594.html
+ - Krzysztof Kozlowski: https://www.spinics.net/lists/kernel/msg4368955.html
+			https://www.spinics.net/lists/arm-kernel/msg982427.html
+			https://lore.kernel.org/all/973d75b8-0eb6-ff5b-6cd2-9b7d7c5cbcaa@linaro.org/
+			https://www.spinics.net/lists/arm-kernel/msg982778.html
+			https://www.spinics.net/lists/arm-kernel/msg982588.html
+ - Ilpo Järvinen: https://www.spinics.net/lists/kernel/msg4368936.html
+ - Stephen Boyd: https://www.spinics.net/lists/arm-kernel/msg983596.html
+ - Geert Uytterhoeven : https://www.spinics.net/lists/kernel/msg4369514.html
+
+Changes since version 1:
+ - NPCM8XX clock driver
+	- Modify dt-binding.
+	- Remove unsed definition and include.
+	- Include alphabetically.
+	- Use clock devm.
+ - NPCM reset driver
+	- Modify dt-binding.
+	- Modify syscon name.
+	- Add syscon support to NPCM7XX dts reset node.
+	- use data structure.
+ - NPCM8XX device tree:
+	- Modify evb compatible name.
+	- Add NPCM7xx compatible.
+	- Remove disable nodes from the EVB DTS.
+
+Tomer Maimon (20):
+  clocksource: timer-npcm7xx: Add NPCM845 timer
+  dt-bindings: serial: 8250: Add npcm845 compatible string
+  tty: serial: 8250: Add NPCM845 UART support
+  dt-bindings: watchdog: npcm: Add npcm845 compatible string
+  watchdog: npcm_wdt: Add NPCM845 watchdog support
+  dt-binding: clk: npcm845: Add binding for Nuvoton NPCM8XX Clock
+  clk: npcm8xx: add clock controller
+  dt-bindings: reset: modify to general NPCM name
+  dt-bindings: reset: npcm: add GCR syscon property
+  ARM: dts: nuvoton: add reset syscon property
+  reset: npcm: using syscon instead of device data
+  dt-bindings: reset: npcm: Add support for NPCM8XX
+  reset: npcm: Add NPCM8XX support
+  dt-bindings: arm: npcm: Add maintainer
+  dt-bindings: arm: npcm: Add nuvoton,npcm845 compatible string
+  dt-bindings: arm: npcm: Add nuvoton,npcm845 GCR compatible string
+  arm64: npcm: Add support for Nuvoton NPCM8XX BMC SoC
+  arm64: dts: nuvoton: Add initial NPCM8XX device tree
+  arm64: dts: nuvoton: Add initial NPCM845 EVB device tree
+  arm64: defconfig: Add Nuvoton NPCM family support
+
+ .../devicetree/bindings/arm/npcm/npcm.yaml    |   7 +
+ .../bindings/arm/npcm/nuvoton,gcr.yaml        |   2 +
+ .../bindings/clock/nuvoton,npcm845-clk.yaml   |  63 ++
+ ...750-reset.yaml => nuvoton,npcm-reset.yaml} |  21 +-
+ .../devicetree/bindings/serial/8250.yaml      |   1 +
+ .../bindings/watchdog/nuvoton,npcm-wdt.txt    |   3 +-
+ MAINTAINERS                                   |   3 +
+ arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi |   1 +
+ arch/arm64/Kconfig.platforms                  |  11 +
+ arch/arm64/boot/dts/Makefile                  |   1 +
+ arch/arm64/boot/dts/nuvoton/Makefile          |   2 +
+ .../dts/nuvoton/nuvoton-common-npcm8xx.dtsi   | 197 +++++
+ .../boot/dts/nuvoton/nuvoton-npcm845-evb.dts  |  30 +
+ .../boot/dts/nuvoton/nuvoton-npcm845.dtsi     |  76 ++
+ arch/arm64/configs/defconfig                  |   3 +
+ drivers/clk/Kconfig                           |   6 +
+ drivers/clk/Makefile                          |   1 +
+ drivers/clk/clk-npcm8xx.c                     | 756 ++++++++++++++++++
+ drivers/clocksource/timer-npcm7xx.c           |   1 +
+ drivers/reset/reset-npcm.c                    | 202 ++++-
+ drivers/tty/serial/8250/8250_of.c             |   1 +
+ drivers/watchdog/npcm_wdt.c                   |   1 +
+ .../dt-bindings/clock/nuvoton,npcm8xx-clock.h |  50 ++
+ .../dt-bindings/reset/nuvoton,npcm8xx-reset.h | 128 +++
+ 24 files changed, 1530 insertions(+), 37 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/nuvoton,npcm845-clk.yaml
+ rename Documentation/devicetree/bindings/reset/{nuvoton,npcm750-reset.yaml => nuvoton,npcm-reset.yaml} (58%)
+ create mode 100644 arch/arm64/boot/dts/nuvoton/Makefile
+ create mode 100644 arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
+ create mode 100644 arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
+ create mode 100644 arch/arm64/boot/dts/nuvoton/nuvoton-npcm845.dtsi
+ create mode 100644 drivers/clk/clk-npcm8xx.c
+ create mode 100644 include/dt-bindings/clock/nuvoton,npcm8xx-clock.h
+ create mode 100644 include/dt-bindings/reset/nuvoton,npcm8xx-reset.h
 
 -- 
-An old man doll... just what I always wanted! - Clara
+2.33.0
+
