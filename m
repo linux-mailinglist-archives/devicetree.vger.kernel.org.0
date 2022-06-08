@@ -2,88 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61C63542C03
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 11:53:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B4AA542C06
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 11:54:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235054AbiFHJwl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 05:52:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42888 "EHLO
+        id S234079AbiFHJyc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 05:54:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235580AbiFHJwS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 05:52:18 -0400
-Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AAD14126EA;
-        Wed,  8 Jun 2022 02:22:29 -0700 (PDT)
-Received: by mail-vs1-xe31.google.com with SMTP id i186so19115536vsc.9;
-        Wed, 08 Jun 2022 02:22:29 -0700 (PDT)
+        with ESMTP id S235850AbiFHJxk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 05:53:40 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BB654253FB
+        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 02:23:38 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id m125-20020a1ca383000000b0039c63fe5f64so398527wme.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 02:23:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=B8O+dWqJRmNXX42l+VfIBuyFVruFBhzZuKmMeYrDL58=;
-        b=hkoxbNrBqAlZ0FGFOLDe5AB3Bry2Ykq7l9Dhemn4K6VHIHDrx5Y8QQJavYzlibjoG/
-         FDSDZ4OckDv9TbGJQX5b6Wn8ZAyFJomZCLAzC2HiAo5V3q31MC2ZrB/bssFrnfHxNjsr
-         CQeJt2wpvD8sUkf/f2AeBlNvKvct8HOrM/YZO6Ddn2+ibWm7YhTBm1+8/x4AOM2kNIWH
-         xqNNQRB00l6nlEI9xVW/KgbiFigjkS4LbxsQO6VyVvEGwvBeDaTl7qHyD9A/xrQwT83L
-         XhTMS61qcII60DeucnrRo8kYSYN96zeqL19rRSDeT8RYvZiJDPXnfvvg0YthpsPw007J
-         19tA==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=8eV6nIYV8SU6cGKfjJH6IuBQJkesB4s+GfYeW1ujbBY=;
+        b=yfPJviBzBPAoWfqiRyBev2YmtSekag/ce5R4TXWS48H1P/Evi7E5TB4vT3PR3E8aj3
+         W7V+yIRePpReAEdegxUDxKd1K5j3YcZ/X9I2dg95aREfa2ooixPGrI4JNbofdS5Sq1cJ
+         W42F5YcmUZk2zJk+QQk0+MVdp0O0W1Pk01mKCNppDXZyCUkjqBW10RbxyMuj7ydHz4dZ
+         PfnejUW3iyyNEIkJcCSwpK+9Ki08hmTYbDfedqOsRj+WbfyXvmi6OR4qm+K/cObXS/t9
+         HYm9o8wLPshlOpW4G0YGfzNBC2K2TstMcRLWAUaLgN+v2Db+PnvZLxiNHb1dAZfixesi
+         jIXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=B8O+dWqJRmNXX42l+VfIBuyFVruFBhzZuKmMeYrDL58=;
-        b=VazuBR9THDRWGeKm4sQQ8h1bsq2shZNaTCCa6PlQHAvGtr/ol80GZh5cmmq+YhHvQI
-         L6rIErxkGXBDygKhv9EfgCVFDAOxzaYDSicd282Vj6pDacc8AjTkWjBDUEI6ybW1H5Mr
-         Rqj6zQkEyjMjOr7rFGHMFF/174bKm1BGAvWsDKZNlKQ8/N2J3WiO3AE5pRMIGv5RZb5t
-         rDAM/S+9ENw8kspWAwjpgBtN8sTXrnD5bF3ub1CykTtb0t1TK8XdmWfgkMNrJO/w++SZ
-         HqURMFwAfg8xYGwo8LoQ1ShxG6TGt/1Yzzf50OimpjNnYV7GBkrgD4ruKxZaHTj0ISqn
-         Xx8A==
-X-Gm-Message-State: AOAM530gvlEZB5kq2GOmhvR1fv8v4u8zJ1Wt96gbmZkGn0VPKSn2eO14
-        y28Vh7ieFL8E9QMZMBXfj64=
-X-Google-Smtp-Source: ABdhPJwwQ2eAzPtXPZklE6UqxsgzDYohhvbvRhkYC3OrryuPAij4OaKq7kMHYZGnNksdHmb+05buGA==
-X-Received: by 2002:a05:6102:3f4b:b0:337:c02d:f5d7 with SMTP id l11-20020a0561023f4b00b00337c02df5d7mr14462774vsv.50.1654680135517;
-        Wed, 08 Jun 2022 02:22:15 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id c1-20020a9f3e41000000b0037559ff42a4sm2694770uaj.9.2022.06.08.02.22.13
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=8eV6nIYV8SU6cGKfjJH6IuBQJkesB4s+GfYeW1ujbBY=;
+        b=I5HMTHSbGKKqzSFfO0YClH80Yu4aWYPXoKqu8Bhrra92MhUxz8BuphTmZGchWnV54j
+         //RG+ySlaLMQqMsZWBhomClRpJrBrkNyRFwlmmm+lHWXe8akUCJqTLUz8SmND+sZEED0
+         HB93tON6eBXWrUHfCos9xG3wxsisAhqyxfuZ5njEPEi2bY//uIqYyPP1w+Awjhx8QyDI
+         DWoq1b1JzIREZTUY218QOV+CZWVgj1VaRJ9g/NTb+geyApehaW28xhfka5acadIkAYt+
+         Y7jsjWExZpad6oTCr1IEeemkaZwKsX9VjhppAR8pvlP45rO6K6aIQ8KHHfUmoT2V7sxz
+         D5KA==
+X-Gm-Message-State: AOAM5322YSmcGcFh9Ssc/y5nVIN5mEJK7cwIzypM5tqr3wlfZtE0nlOO
+        YmpVFxPvE29jkRd6ytIl5EDVyg==
+X-Google-Smtp-Source: ABdhPJyM+IflvMN2gKuuxgwYkvwPOCyEfY1Cnbc1MlR6mjMqp5ng/HykRi2LIV6jvv1XqHQatPbucg==
+X-Received: by 2002:a7b:c5da:0:b0:39c:542a:a07b with SMTP id n26-20020a7bc5da000000b0039c542aa07bmr13928306wmk.83.1654680217388;
+        Wed, 08 Jun 2022 02:23:37 -0700 (PDT)
+Received: from maple.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
+        by smtp.gmail.com with ESMTPSA id o18-20020a05600c4fd200b0039744bd664esm27578721wmq.13.2022.06.08.02.23.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jun 2022 02:22:14 -0700 (PDT)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        William Zhang <william.zhang@broadcom.com>,
-        Linux ARM List <linux-arm-kernel@lists.infradead.org>
-Cc:     joel.peshkin@broadcom.com, anand.gore@broadcom.com,
-        kursad.oney@broadcom.com, florian.fainelli@broadcom.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Wed, 08 Jun 2022 02:23:36 -0700 (PDT)
+Date:   Wed, 8 Jun 2022 10:23:34 +0100
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     cy_huang <u0084500@gmail.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee.jones@linaro.org, jingoohan1@gmail.com, pavel@ucw.cz,
+        deller@gmx.de, cy_huang@richtek.com, lucas_tsai@richtek.com,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-fbdev@vger.kernel.org, linux-leds@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: update bcm47622 dts file
-Date:   Wed,  8 Jun 2022 02:22:12 -0700
-Message-Id: <20220608092212.1463998-1-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220601233606.23281-1-william.zhang@broadcom.com>
-References: <20220601233606.23281-1-william.zhang@broadcom.com>
+Subject: Re: [PATCH v2 2/2] backlight: rt4831: Apply ocp level from devicetree
+Message-ID: <20220608092334.23srjgxsjmj7mwer@maple.lan>
+References: <1654677674-15417-1-git-send-email-u0084500@gmail.com>
+ <1654677674-15417-3-git-send-email-u0084500@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1654677674-15417-3-git-send-email-u0084500@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed,  1 Jun 2022 16:36:06 -0700, William Zhang <william.zhang@broadcom.com> wrote:
-> Fix a few issue in bcm47622.dtsi file:
-> - Remove unnecessary cpu_on and cpu_off properties from psci node
-> - Add the missing gic registers and interrupts property to gic node
-> - Cosmetic changes
+On Wed, Jun 08, 2022 at 04:41:14PM +0800, cy_huang wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
 > 
-> Signed-off-by: William Zhang <william.zhang@broadcom.com>
+> Add 'richtek,bled-ocp-microamp' property parsing in
+> device_property_init function.
 > 
-> ---
+> This value may configure prior to the kernel driver. If it's not specified in
+> devicetree, keep the original setting. Else, use clamp to align the
+> value in min/max range and also roundup to choose the best selector.
+> 
+> Reported-by: Lucas Tsai <lucas_tsai@richtek.com>
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
---
-Florian
+Reviewed-by: Daniel Thompson <daniel.thompson@linaro.org>
+
+
+Daniel.
