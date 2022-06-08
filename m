@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EEF57542FDE
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 14:08:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9205542FF5
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 14:08:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238715AbiFHMHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 08:07:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38548 "EHLO
+        id S238732AbiFHMHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 08:07:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238699AbiFHMHo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 08:07:44 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A2A21D01D0
-        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 05:07:34 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id be31so32918740lfb.10
-        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 05:07:33 -0700 (PDT)
+        with ESMTP id S238705AbiFHMHr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 08:07:47 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A17821D51AD
+        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 05:07:36 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id a15so32880215lfb.9
+        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 05:07:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=OpFXH16in5cHn4raKF0Pb6v4UhkdcLR/Jb9aXlUmXhE=;
-        b=VHwNwMhKOhOS/njzIln1ebySUKrHlmCd4ta2Gc74f3Sqkfto12atc0vNrNU3saj8PM
-         PswzUU3GXZf44jbg2HOU4EFobDKjWy0VN7jVK6RS76TcnCZZUqHEYM4s49sm8Ets492v
-         qEH5oeNx79S+F9VCka3lAQkJ7LyAtVn8hdsvVv7VvlRuYW7XxtH7DESM6v19PMwjBOGr
-         c1OmHRVdlp2ziNNDfAwxanfeNwYyZziOYqBRg9YMxy2oQDIbBWRF0ikuLzRLoIT6S7HB
-         UQiruR+WuVuteegOizNp5VnbBI56wDf48m308FZaQJLJsLFYn/YVi7Gzh29llWUtkkeS
-         K9rQ==
+        bh=ORFFh/OvwkdHyQw6T41fKq8t4AfCf6S/1IDmxoyQ/4c=;
+        b=wDi7mI3wFjv+MqE1wKSSFLB8GGcxe+vfPK0vtxw3GUBXmzYkA/1Ov4rnTQCOrdFvDa
+         WCzA7ufrcjUn0xLCY/pr3hTjPeVdsyGB9vWa5KJgx5aunKyFtxRuLFRTHcfrW8ULQWlQ
+         4qWFCkoe1mX4vdziltcPI5wegX7NYuzr0s5aOmZ0X1YcuBP6ywgxzn6J7a8glXk2SJFC
+         VYLo348CEhpBzGjZoPACRRXcnYOvnTHSLwmv9sx1zluWS4s0XHjVhVcY2tQ+Y0Onsca+
+         ZR5pADzA/lyp4L3d9SFlzEi8MQT0ezCXnaBh+C8UeidMrEZfper3ZItUBagrFi3sRMRI
+         pLHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=OpFXH16in5cHn4raKF0Pb6v4UhkdcLR/Jb9aXlUmXhE=;
-        b=f9YT7np4lJmy1DB3XgFpnDd2/blvY+Qcjw0l/AMYSdH9YMaU/9ypefFEkacy6aotaR
-         1H0Qx8i2WcI+iGYLGnDbfIaQba6sQivtYUDvwgatOStM5COd+JGsQ7ywDC4otsWhdxoZ
-         +RLXmIm1v7RZhH4SAlXthQgYA4ShgO5VOCCEZ/byfiYDKRB1HuERaWprzZXTl0nT9FXU
-         /olwh3zvuQPofBMIc2ZssAvQDMgqs+O1jhA854voOZwe5wECsb6FRx9sfBV/I8k8oBUK
-         vrBU/P5Tizx3s/56AOJke+q2wSzzWWahgaday4sGk5OQDPNUPk5SKOFmUmFGTxYKPP0N
-         FwGQ==
-X-Gm-Message-State: AOAM532n2QGk2CBRz/8wMHLHwuV200zO3nniB//K5RYmVcHqWTGwJ0vB
-        X7qvUeC0P5o090dmoAxNVXK9vA==
-X-Google-Smtp-Source: ABdhPJwbrQN2RGqJpe8Uw9ASRmVYQFvgJ8+fpfIF7QqXelS1hGc+IZolxnyt5rU2w6vzHBEHhM0R4g==
-X-Received: by 2002:a05:6512:2625:b0:478:5a51:7fe3 with SMTP id bt37-20020a056512262500b004785a517fe3mr20891208lfb.158.1654690053628;
-        Wed, 08 Jun 2022 05:07:33 -0700 (PDT)
+        bh=ORFFh/OvwkdHyQw6T41fKq8t4AfCf6S/1IDmxoyQ/4c=;
+        b=5R23DAMp16agSfkXoAirypoW8N4Ev8U8AeyBVqYG/Axo3b6cTVJDo+BqsDnBoa17Ih
+         TNhbLbfVyBijUq3ZR4h40O5lvirncIq2y847ys8h+P+Nih6hk4mcdFojBPsp6UTl9Re9
+         TEVsSsAVlaunke7QrY44fDbltDWTIy+JgW2WwpaGLC1iBZ1PH2Eu0L/Uake2v62RUKWQ
+         njXWm/1bHvZHSiSP0uloI+KBehmYaYY7nHtT5QtYEpVgBWFXvqOBA3FZBc+ERphr4w2h
+         tXSdQlw9pW8P53m45XYygbRumKYFh25XuhfbBXF1PdV3JzWSx4t6Z8KuJAKHv2+Pudlm
+         j63g==
+X-Gm-Message-State: AOAM531sWujPK3u4L5FUbZBExTivlA3imqqaSHK0uex+ZGZmGY9glJz8
+        aAZOAUaseGMhdIZaBT4ole4cOA==
+X-Google-Smtp-Source: ABdhPJy+dxO/IWKY0573dyyNPc6FWVijcUPdMYkPtITz4qJPlvq4+Y19DzS2iPFWw9L8FlKp3vWCTw==
+X-Received: by 2002:a05:6512:53a:b0:479:1725:51f2 with SMTP id o26-20020a056512053a00b00479172551f2mr18043645lfc.688.1654690054546;
+        Wed, 08 Jun 2022 05:07:34 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id 4-20020ac25f04000000b0047b0f2d7650sm52049lfq.271.2022.06.08.05.07.32
+        by smtp.gmail.com with ESMTPSA id 4-20020ac25f04000000b0047b0f2d7650sm52049lfq.271.2022.06.08.05.07.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jun 2022 05:07:33 -0700 (PDT)
+        Wed, 08 Jun 2022 05:07:34 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -59,9 +59,9 @@ Cc:     Stephen Boyd <swboyd@chromium.org>,
         Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
         freedreno@lists.freedesktop.org
-Subject: [PATCH v2 08/12] drm/msm/hdmi: drop empty 'none' regulator lists
-Date:   Wed,  8 Jun 2022 15:07:19 +0300
-Message-Id: <20220608120723.2987843-9-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v2 09/12] drm/msm/hdmi: drop hpd_regs usage on 8x74/8084
+Date:   Wed,  8 Jun 2022 15:07:20 +0300
+Message-Id: <20220608120723.2987843-10-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220608120723.2987843-1-dmitry.baryshkov@linaro.org>
 References: <20220608120723.2987843-1-dmitry.baryshkov@linaro.org>
@@ -69,7 +69,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,9 +77,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Several platform configs use empty 'none' regulator arrays. They are not
-necessary, as the code will use corresponding _cnt field and skip the
-array completely. Drop them now.
+The MSM HDMI driver has support for hpd_regs on 8x74/8084: supply
+regulators that are to be enabled for HPD to work. Currently these
+regulators contain the hpd_gdsc, which was replaced by the power-domains
+support and hpd-5v/hpd-5v-en, which are not used by the chip itself.
+They power up the ESD bridge.
+However it is a separate device which should be represented separately
+in the device tree.
+None of upstreamed devices support these properties. Thus drop support
+for them from the HDMI driver.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
@@ -87,32 +93,31 @@ Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
  1 file changed, 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/msm/hdmi/hdmi.c b/drivers/gpu/drm/msm/hdmi/hdmi.c
-index 67397fff645c..ebc87f2a626c 100644
+index ebc87f2a626c..bc6ec6aa2cb9 100644
 --- a/drivers/gpu/drm/msm/hdmi/hdmi.c
 +++ b/drivers/gpu/drm/msm/hdmi/hdmi.c
-@@ -353,9 +353,6 @@ int msm_hdmi_modeset_init(struct hdmi *hdmi,
- 	.item ## _names = item ##_names_ ## entry, \
- 	.item ## _cnt   = ARRAY_SIZE(item ## _names_ ## entry)
+@@ -364,24 +364,19 @@ static struct hdmi_platform_config hdmi_tx_8960_config = {
+ };
  
--static const char *pwr_reg_names_none[] = {};
--static const char *hpd_reg_names_none[] = {};
--
- static struct hdmi_platform_config hdmi_tx_8660_config;
+ static const char *pwr_reg_names_8x74[] = {"core-vdda", "core-vcc"};
+-static const char *hpd_reg_names_8x74[] = {"hpd-gdsc", "hpd-5v"};
+ static const char *pwr_clk_names_8x74[] = {"extp", "alt_iface"};
+ static const char *hpd_clk_names_8x74[] = {"iface", "core", "mdp_core"};
+ static unsigned long hpd_clk_freq_8x74[] = {0, 19200000, 0};
  
- static const char *hpd_reg_names_8960[] = {"core-vdda"};
-@@ -392,7 +389,6 @@ static struct hdmi_platform_config hdmi_tx_8084_config = {
- 
- static struct hdmi_platform_config hdmi_tx_8994_config = {
+ static struct hdmi_platform_config hdmi_tx_8974_config = {
  		HDMI_CFG(pwr_reg, 8x74),
--		HDMI_CFG(hpd_reg, none),
+-		HDMI_CFG(hpd_reg, 8x74),
  		HDMI_CFG(pwr_clk, 8x74),
  		HDMI_CFG(hpd_clk, 8x74),
  		.hpd_freq      = hpd_clk_freq_8x74,
-@@ -400,7 +396,6 @@ static struct hdmi_platform_config hdmi_tx_8994_config = {
+ };
  
- static struct hdmi_platform_config hdmi_tx_8996_config = {
+-static const char *hpd_reg_names_8084[] = {"hpd-gdsc", "hpd-5v", "hpd-5v-en"};
+-
+ static struct hdmi_platform_config hdmi_tx_8084_config = {
  		HDMI_CFG(pwr_reg, 8x74),
--		HDMI_CFG(hpd_reg, none),
+-		HDMI_CFG(hpd_reg, 8084),
  		HDMI_CFG(pwr_clk, 8x74),
  		HDMI_CFG(hpd_clk, 8x74),
  		.hpd_freq      = hpd_clk_freq_8x74,
