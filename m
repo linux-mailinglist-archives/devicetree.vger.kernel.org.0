@@ -2,76 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E72E542C09
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 11:55:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAA45542C19
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 11:56:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235738AbiFHJzK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 05:55:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38258 "EHLO
+        id S235606AbiFHJzu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 05:55:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235561AbiFHJyp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 05:54:45 -0400
+        with ESMTP id S235662AbiFHJzM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 05:55:12 -0400
 Received: from mail-vs1-xe32.google.com (mail-vs1-xe32.google.com [IPv6:2607:f8b0:4864:20::e32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94BC1274D7F
-        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 02:27:01 -0700 (PDT)
-Received: by mail-vs1-xe32.google.com with SMTP id w10so19155393vsa.4
-        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 02:27:01 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 678FFA76E7
+        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 02:28:03 -0700 (PDT)
+Received: by mail-vs1-xe32.google.com with SMTP id n4so10217698vsm.6
+        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 02:28:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=2lZGbCRWT1o/aFofNx6AhoO+aw7BhW/JA9MZQKTHd/A=;
-        b=gghKvqxf+FCHVDQ0z8HltpRkE8orGonRmXkKDy3rmBAp4EZQKHdsHHdU4aIflo5h3Q
-         j0LgQYXetLu4RrItKOeALnnTFjY7yBiNLGdf+nKg0aYppRWaSzQB/Io67FwlVpW0tE5c
-         sPmZN5/QTgMUwDrqd6SIOSHwLEVhlnUiUYkmVBJL694o0w++4y936SyyttRj6IBnT2O7
-         fYTFBoumOxSpOzAI0cDnYV2VKsu8+FkSzKRMTKdLEj/wUvmuvhyQbfKopFivvjgsWPf9
-         JvgR/+k6+9xWjotlEIQkG6EvnantGcxj5clGTezaKvMNHnSZGTyqva4a44mh/cDaGcsJ
-         PqQQ==
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Lqs4gUnH/ZvZia/+V1meC4v0Z5zlzIibOazqFT5so9w=;
+        b=Kr+a0DDJj8uxKq5CXUsWrkZ+tpzAiP9a47NvU9/c/6RJFp1FJYhYhrET/fBVBbKYgD
+         KavOiMuPRujKLYDrJGyR1ur20EzUE4C9G/5YoMdJvnKGmpc+rLCA1s3tEhEfYT0qipef
+         1odGpOyHHEVdfFV0VUfHA3wssTgXCyMO95s8OSkgq9i/oOMy17lLi0Z/NJwAfGdP9y3N
+         6KjEUoB6O1QxzSXaBseet3Dia48h7emEfM1R2go1/3MU5EIxJ97OfZ9n/BDNDrE/RcxQ
+         tdTqij07S/SZmDhfQB0B8WytJlLAI0K3XC0+9PYlme5M5c+VnA0AFqwTwgc44zVIF7lo
+         CXIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=2lZGbCRWT1o/aFofNx6AhoO+aw7BhW/JA9MZQKTHd/A=;
-        b=52Vs/rEwNuYYnWEFE/Cuywh2UEhTahhDPyY4G+VCPiGWGuv5fYfvMNlNo67slFR2cq
-         Stxc7iRJiusYJn4JVEo5mzFHy/GGbF3MCVwRTu4qjr0XMy+TqK9e9s3i3+q+WK1d1mD0
-         6YDXFuQMRgaeQBcXLQSbTG449HjDmkjBf8rxZyzkmWpnbpfO9a8xg5ullXa+J6N08RQO
-         J15pK0EfB2WyZAxRfG6Ur663HUsGzBJ5jXrHuA5nn3qo46PHYdo6b+5iziU7uHLXjm/V
-         mDdTo8p1iJhYIha480Ntf5+HbIqC8wHGDXS1erJPjqIlnGToitRC2l6zStnGPO2iqR+N
-         aWVQ==
-X-Gm-Message-State: AOAM532JXla1ujGZmTtxkk2qzsJRa3Y8HP7pYixZtKFsAjIoX8Ule5Dq
-        nvgn8PADjzBUhWZznGYUgz8=
-X-Google-Smtp-Source: ABdhPJwb+4C4QqoFxe2xD91wcP2Otm6U+nHmZkfFm+cVa1X13myEiC0QY82/QebeolbF5AVif/+lhQ==
-X-Received: by 2002:a67:ae44:0:b0:33f:7baf:852c with SMTP id u4-20020a67ae44000000b0033f7baf852cmr15204678vsh.78.1654680420627;
-        Wed, 08 Jun 2022 02:27:00 -0700 (PDT)
+        bh=Lqs4gUnH/ZvZia/+V1meC4v0Z5zlzIibOazqFT5so9w=;
+        b=0Unt+aEhZTebcwIo+CS/Uubwr5wXmD3pR3e49gSrZFcsQbUV/ftvAVk4mA8h6nr4OB
+         qqFl+ExUUuCWW8lEu9tD2t+LvlydbJG+2ioMSUc+jHOGzGVUQg267lx8l7Q7dD2LFanK
+         gsWvS6LzsB3J6SVbH2TvJN0IvI09R1oj0DtepR3byyBWLGmY3I7qpe5iy5rzJS5AGKwZ
+         wNkP3MGk1vr7J1ub+LqFzqCflqG7naNqC+MIPZHHMdsGHlncbazqoYlKQwenMmq0iBqI
+         FKaxlNrLrIYSw3wRUyWP0aYoDp7U3WK6uCbNnXX+ktijb1zQ+B4j0kxOcSPG2VXYf+DL
+         pX0Q==
+X-Gm-Message-State: AOAM533tZL/5mXoRMdOfbigO4EDJRbgmJRZGex0lC3oKyucLjNSpapK5
+        vH6XruIYlJQctwxqOTkfEXk=
+X-Google-Smtp-Source: ABdhPJw9Iab44GgfVokvcakmp5RdbEOEAjJKlD/lpXw2F9G8HVIBlNGfwJ+SCMymEUpXoHqDVbLY0g==
+X-Received: by 2002:a05:6102:2758:b0:34b:b836:2af7 with SMTP id p24-20020a056102275800b0034bb8362af7mr7223616vsu.33.1654680482373;
+        Wed, 08 Jun 2022 02:28:02 -0700 (PDT)
 Received: from [10.230.29.214] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id bi9-20020a056122188900b0035ca960eeacsm2679782vkb.5.2022.06.08.02.26.54
+        by smtp.gmail.com with ESMTPSA id a17-20020ac5cd31000000b0034e6f1fd061sm2654326vkm.43.2022.06.08.02.27.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jun 2022 02:27:00 -0700 (PDT)
-Message-ID: <cadecbfd-e174-eadb-276c-577bb2bf70f2@gmail.com>
-Date:   Wed, 8 Jun 2022 11:26:51 +0200
+        Wed, 08 Jun 2022 02:28:01 -0700 (PDT)
+Message-ID: <952d541b-6b41-3db6-3ea0-efd5eab612a7@gmail.com>
+Date:   Wed, 8 Jun 2022 11:27:54 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v6 0/6] Raspberry PI 4 V3D enablement
+Subject: Re: [PATCH V3 00/11] soc: bcm2835-power: Prepare BCM2711 V3D support
 Content-Language: en-US
-To:     Peter Robinson <pbrobinson@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
+To:     Stefan Wahren <stefan.wahren@i2se.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Lee Jones <lee.jones@linaro.org>
+Cc:     Peter Robinson <pbrobinson@gmail.com>,
+        Melissa Wen <melissa.srw@gmail.com>,
+        Phil Elwell <phil@raspberrypi.com>,
         bcm-kernel-feedback-list@broadcom.com,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, Emma Anholt <emma@anholt.net>,
-        Florian Fainelli <f.fainelli@gmail.com>, javierm@redhat.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org, maxime@cerno.tech,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-References: <20220603092610.1909675-1-pbrobinson@gmail.com>
+        Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20220607204226.8703-1-stefan.wahren@i2se.com>
 From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20220603092610.1909675-1-pbrobinson@gmail.com>
+In-Reply-To: <20220607204226.8703-1-stefan.wahren@i2se.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,31 +83,13 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 6/3/2022 11:26 AM, Peter Robinson wrote:
-> This is a follow up from my v4 patchset. The power management pieces have
-> been split out to a separate independent set of patches by Stefan [1]. This
-> version 5 of the DRM patches are independent and given the V3D driver has
-> been upstream for some time the two patches to enable it in defconfigs can
-> be taken at anytime independent of the enablement for the Raspberry Pi 4.
-> 
-> I've tested this using mesa 22.0.x and Wayland/Gnome on Fedora 36, it's
-> more or less stable with basic testing.
-> 
-> Changes since v5:
-> - Update the DT compatible to match the others that were updated
-> - Adjust the Kconfig help text
-> - Add review tags
-> 
-> Changes since v4:
-> - Fixes for device tree and bindings
-> - Split out the power management changes into an independent set
-> - Rebase to 5.18
-> - Individual changes in patches
-> 
-> [1] https://www.spinics.net/lists/arm-kernel/msg980342.html
+On 6/7/2022 10:42 PM, Stefan Wahren wrote:
+> This series is a split out of version 4 - Raspberry PI 4 V3D enablement send
+> by Peter Robinson [1]. It attempts to enable BCM2711 V3D support for the
+> power management driver. It's a rework of the less controversial changes
+> (excluding V3D GPU driver changes) so this can be reviewed and applied faster.
 
-I can take the last 3 patches through the Broadcom ARM SoC pull request, 
-but the first three should probably go via the DRM tree unless you want 
-me to merge them all?
+Lee, can I get your Ack so I can take all of these patches through the 
+Broadcom ARM SoC pull requests for v5.20?
 -- 
 Florian
