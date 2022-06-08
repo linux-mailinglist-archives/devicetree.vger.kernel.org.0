@@ -2,69 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1593543E2F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 23:06:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1911A543E5C
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 23:15:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234618AbiFHVFW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 17:05:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37440 "EHLO
+        id S235552AbiFHVMO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 17:12:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234683AbiFHVFV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 17:05:21 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B512922719E
-        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 14:05:20 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id i66so29600198oia.11
-        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 14:05:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=VA68tU8Jc9kgWMO703PZLr2L2nKtPtdGngJzNOM+IbI=;
-        b=R64J4Id6Un10yWpmLrpwQ9IrFKHeIuM0yd5slKvFvXUBYFTeNDbJsc0DDII8S7f7Np
-         yihilvK2WcDSltrO5JTXZwCXSX/AZjO0NzoCuddVOypOsjOlyXpaZ2QTSAmJx73BO4XI
-         3gNfMVKMHjSVb5mfuvEMbwIDzI614AuuJuFzQ=
+        with ESMTP id S235677AbiFHVMN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 17:12:13 -0400
+Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2B552FA600;
+        Wed,  8 Jun 2022 14:12:11 -0700 (PDT)
+Received: by mail-il1-f169.google.com with SMTP id s1so17529744ilj.0;
+        Wed, 08 Jun 2022 14:12:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=VA68tU8Jc9kgWMO703PZLr2L2nKtPtdGngJzNOM+IbI=;
-        b=HiJ6BS7fs9roZZ85fsOHyxbD3623BaDSP02NlxSwed5oUEJiVzh37MaJTpkgns8eC7
-         sHXT/LMFHyK2lG3HeqXdERvDewRusr0lxuXwt4KPlQM5S12CccCTP6gF7ANDnk0x3fci
-         JyuFi2niO6ytPGMs7wRkFbOjerhDosV22vYP01OCy+gpEaDzBqpXzRY5repoK778Naj5
-         w4zUNTyRReof9wB8c4El33ZW1Q4n/PuWsSyk7o6i3qAP9pz6V8OxkrUjoZpMCzkPaYiP
-         zXw+9SyMsJurVDs99+lWc2NwpmDgoAjArA29OMD7f+CmGJjH8ciKCeQXHgemGPtcW9b/
-         0OZA==
-X-Gm-Message-State: AOAM532bezIn6V0HHbPZGEF/bR1LPnanZpdCneUolZErJAse+e2j2Rzl
-        8kIf2GfGUXHSNFaclHNLZjfShtryaGjczFw+59pT1w==
-X-Google-Smtp-Source: ABdhPJz4xugE9u2X8gXA7bGWKinzkwl5XrS/bCZu4dvnfeiEvjtwL5S+Oche29KAAYjoVEaJe1AqJJnc9xwa8njrK60=
-X-Received: by 2002:a05:6808:e87:b0:32e:4789:d2c with SMTP id
- k7-20020a0568080e8700b0032e47890d2cmr3370939oil.193.1654722319945; Wed, 08
- Jun 2022 14:05:19 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 8 Jun 2022 14:05:19 -0700
-MIME-Version: 1.0
-In-Reply-To: <20220608120723.2987843-13-dmitry.baryshkov@linaro.org>
-References: <20220608120723.2987843-1-dmitry.baryshkov@linaro.org> <20220608120723.2987843-13-dmitry.baryshkov@linaro.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Wed, 8 Jun 2022 14:05:19 -0700
-Message-ID: <CAE-0n50eJxs13GObtbOfPAUFySUk0hiCzXKrhF5QrBYdV+vrvQ@mail.gmail.com>
-Subject: Re: [PATCH v2 12/12] drm/msm/hdmi-phy: populate 8x60 HDMI PHY requirements
-To:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PhK8gQeeDf/2yHkxa648eCoqZ+9RIeWpPVRZuyaKxg0=;
+        b=KS23V2K42GnimefksDVOvghhWTJmZ2WhcezIbTNKDWi9JIU+buIyCvTjEteK/tudiS
+         t3jUFqAUfKo9EoRpod8l3L37mV2sg26y6ktKrzLpda7iGYClDMA3LYNF+7IDwmMbyi2s
+         w2LgAb226BVxol6VzzKq66HE6DHeAUFz3XtQhCtQ2kPSBVqQ3uBAbr+O4mW0IT+YXHri
+         +7wafnHvGVAok1Qis/R0sKh5/v6pN5SjtbLKQXCjrS+hfganbgMkpQkiQF4w9FRMNLC1
+         ulVDg6qYfWZOnwnz8N2KfqlUY7ACAlqQT4zRDY6pQolJn17QdlBq5VIWRXfy3lpvnDIj
+         rlmg==
+X-Gm-Message-State: AOAM532vLH2JqEKxB8mbbkh23ME29Br3dvjzSWZ4p6INuGcFrzaZ4iPW
+        fwAjswfzmxTIGQUjQoD/mg==
+X-Google-Smtp-Source: ABdhPJxUUCQsJvfQM0+vAJPEKWtpiJ1lC0N1AjSkw3LRVkHiUgY0wszhleAUy2dMyX4wgiWWPhHmXw==
+X-Received: by 2002:a92:cf01:0:b0:2cd:aeb6:b3f8 with SMTP id c1-20020a92cf01000000b002cdaeb6b3f8mr19782664ilo.265.1654722731199;
+        Wed, 08 Jun 2022 14:12:11 -0700 (PDT)
+Received: from xps15.herring.priv ([64.188.179.251])
+        by smtp.googlemail.com with ESMTPSA id v11-20020a02cbab000000b00331bd537addsm3295264jap.102.2022.06.08.14.12.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Jun 2022 14:12:10 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, Sean Paul <sean@poorly.run>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Heinrich Schuchardt <xypron.glpk@gmx.de>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Artur Rojek <contact@artur-rojek.eu>,
+        Maxime Ripard <mripard@kernel.org>,
+        Jeff LaBundy <jeff@labundy.com>, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/5] dt-bindings: input: Common property clean-ups and adc-keys conversion
+Date:   Wed,  8 Jun 2022 15:12:02 -0600
+Message-Id: <20220608211207.2058487-1-robh@kernel.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,11 +67,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Dmitry Baryshkov (2022-06-08 05:07:23)
-> Declare that 8x60 HDMI PHY uses the core-vdda regulator and slave_iface
-> clock (this is the same config as is used by the 8960).
->
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
+This series refactors the common 'linux,code', 'linux,keycodes', and
+'linux,input-type' properties defined in various binding schemas. As the
+properties are common, they should only have a single common schema type
+definition. Note that 'linux,input-value' was not included here as it is
+only used in 1 binding (gpio-keys).
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+The clean-ups are are result of the discussion on v1 of the adc-keys
+binding conversion[1].
+
+Rob
+
+[1] https://lore.kernel.org/all/20220606184243.1057145-1-robh@kernel.org/
+
+
+Rob Herring (5):
+  dt-bindings: input: Increase maximum keycode value to 0x2ff
+  dt-bindings: input: Centralize 'linux,code' definition
+  dt-bindings: input: Use common 'linux,keycodes' definition
+  dt-bindings: input: Centralize 'linux,input-type' definition
+  dt-bindings: input: Convert adc-keys to DT schema
+
+ .../bindings/input/adc-joystick.yaml          |   2 +-
+ .../devicetree/bindings/input/adc-keys.txt    |  67 ------------
+ .../devicetree/bindings/input/adc-keys.yaml   | 103 ++++++++++++++++++
+ .../input/allwinner,sun4i-a10-lradc-keys.yaml |   5 +-
+ .../bindings/input/azoteq,iqs7222.yaml        |   8 +-
+ .../devicetree/bindings/input/gpio-keys.yaml  |   8 +-
+ .../devicetree/bindings/input/input.yaml      |  24 +++-
+ .../devicetree/bindings/input/iqs269a.yaml    |  15 +--
+ .../devicetree/bindings/input/iqs626a.yaml    |  11 +-
+ .../bindings/input/iqs62x-keys.yaml           |   9 +-
+ .../bindings/input/max77650-onkey.yaml        |   8 +-
+ 11 files changed, 150 insertions(+), 110 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/input/adc-keys.txt
+ create mode 100644 Documentation/devicetree/bindings/input/adc-keys.yaml
+
+-- 
+2.34.1
+
