@@ -2,43 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AAFB054515A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 17:55:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 495D2545360
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 19:50:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237102AbiFIPzb convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 9 Jun 2022 11:55:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49646 "EHLO
+        id S1343696AbiFIRur (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jun 2022 13:50:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344369AbiFIPz3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 11:55:29 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3221A434B3;
-        Thu,  9 Jun 2022 08:55:24 -0700 (PDT)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1nzKVB-0007Jz-Ts; Thu, 09 Jun 2022 17:55:17 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Maya Matuszczyk <maccraft123mc@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        arm@kernel.org, soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 32/48] arm64: dts: rockchip: align gpio-key node names with dtschema
-Date:   Thu, 09 Jun 2022 17:55:17 +0200
-Message-ID: <6317926.K2JlShyGXD@diego>
-In-Reply-To: <e6406956-07b7-d217-f8f4-ef6168647cc2@linaro.org>
-References: <20220609113721.379932-1-krzysztof.kozlowski@linaro.org> <2126178.C4sosBPzcN@diego> <e6406956-07b7-d217-f8f4-ef6168647cc2@linaro.org>
+        with ESMTP id S241642AbiFIRur (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jun 2022 13:50:47 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93AD521D;
+        Thu,  9 Jun 2022 10:50:45 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id y19so48956332ejq.6;
+        Thu, 09 Jun 2022 10:50:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=references:from:to:cc:subject:date:in-reply-to:message-id
+         :mime-version;
+        bh=gXcE6wxEZaP+bBDc88LJAQk22rXvPFk5Q6tlaHsBuyA=;
+        b=XyyhqqGv7jXlYrpM4ABumXRCwO9wRs36xgqlBa1Uo8RV6lqaVRhTDHj5DbdBZ0nZ1g
+         /BOy0mXiW2sCkpyclw00gb4FFmq6v7wzqSWPufJVQuV5Bwr+EDZ3g/uCkA46PpWjF8BL
+         vmMnrCcJESM7YtXgyulkqBlYqSl06wRXKdvizhPtqJjAl+iMsP65nfDWvGhfU/kyuXzp
+         rh/GyGzrvgnBV23cFquRMXzQ7Mw2R6gePS2lM7zliCrN/DTybHpDZsMNdI+99AeJ17Tm
+         Fo+p10PUBP487eslU4BEN7Dpnpn1qeS14Qr3BKzYW7fQD5RKQrGVbN9S+KG2MlcM2xk8
+         dtUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:references:from:to:cc:subject:date:in-reply-to
+         :message-id:mime-version;
+        bh=gXcE6wxEZaP+bBDc88LJAQk22rXvPFk5Q6tlaHsBuyA=;
+        b=rDIlBhfVEH4oHuJ+ftB/QMiEpdzp6RRmOY9X0l+ldBw181b3z25pkcWVmrQW6i2DFq
+         833Sx9ZwASnChkc6pepc1M7TlZR/EX0P1cy7Ycj6Xcuha9TLyYlqcBO3Wu/oo6jkw82Q
+         7//XxtnxqY8HYsl2/VQ9vlHTwHn0p+QDLJxP0NLP+0pxN+YFZpGtF71ia/oUGwfHWaEA
+         k55Yfd6vWFS9rgwU7CpE7qnHWik1VdDt+g97qmKUjATh8vsvQAIC4jXQQ4ZgvIn6Etok
+         tcOcXTOvTj6xTGgAIuO8ke/Qso7J6f6v75lj113QFgY3I9RKbqX3mFCqRDJcQew7Ow6w
+         hYcw==
+X-Gm-Message-State: AOAM530Ow+dXk1E/0a9NlNWQVfZQYYmUO9JNvVVmVUoTun/6DP7HA7x7
+        gU5xL91M8nVykwDpmq9drRPHXrGOawe0aw==
+X-Google-Smtp-Source: ABdhPJw+8nSbv9vhs+OkAxIY1IK3e3DuVkMtDoo4H9hM6FQP4voVPAug19zfl62xU/oPnifV1xRjiA==
+X-Received: by 2002:a17:906:7a4a:b0:712:c6d:46df with SMTP id i10-20020a1709067a4a00b007120c6d46dfmr3226717ejo.314.1654797044096;
+        Thu, 09 Jun 2022 10:50:44 -0700 (PDT)
+Received: from localhost (92.40.202.100.threembb.co.uk. [92.40.202.100])
+        by smtp.gmail.com with ESMTPSA id i7-20020a170906444700b0070e238ff66fsm8870390ejp.96.2022.06.09.10.50.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Jun 2022 10:50:43 -0700 (PDT)
+References: <20220607155324.118102-1-aidanmacdonald.0x0@gmail.com>
+ <20220607155324.118102-11-aidanmacdonald.0x0@gmail.com>
+ <20220608142240.00001161@Huawei.com>
+From:   Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+Cc:     linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, wens@csie.org, jic23@kernel.org,
+        lee.jones@linaro.org, sre@kernel.org, broonie@kernel.org,
+        gregkh@linuxfoundation.org, lgirdwood@gmail.com, lars@metafoo.de,
+        rafael@kernel.org, quic_gurus@quicinc.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v2 10/17] iio: adc: axp20x_adc: Minor code cleanups
+Date:   Wed, 08 Jun 2022 23:58:11 +0100
+In-reply-to: <20220608142240.00001161@Huawei.com>
+Message-ID: <O77RhgXy1hTudLgL6W1viJAUs7PAkVuZ@localhost>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+Content-Type: text/plain
+X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,DATE_IN_PAST_12_24,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -46,107 +77,219 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Donnerstag, 9. Juni 2022, 17:05:49 CEST schrieb Krzysztof Kozlowski:
-> On 09/06/2022 16:56, Heiko Stübner wrote:
-> > Am Donnerstag, 9. Juni 2022, 16:15:25 CEST schrieb Krzysztof Kozlowski:
-> >> On 09/06/2022 15:57, Maya Matuszczyk wrote:
-> >>> czw., 9 cze 2022 o 13:56 Krzysztof Kozlowski
-> >>> <krzysztof.kozlowski@linaro.org> napisał(a):
-> >>>>
-> >>>> The node names should be generic and DT schema expects certain pattern
-> >>>> (e.g. with key/button/switch).
-> >>>>
-> >>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >>>> ---
-> >>>>  arch/arm64/boot/dts/rockchip/rk3308-evb.dts   |  2 +-
-> >>>>  .../boot/dts/rockchip/rk3326-odroid-go2.dts   | 32 +++++++++----------
-> >>>>  .../boot/dts/rockchip/rk3328-nanopi-r2s.dts   |  2 +-
-> >>>>  arch/arm64/boot/dts/rockchip/rk3368-evb.dtsi  |  2 +-
-> >>>>  .../boot/dts/rockchip/rk3368-geekbox.dts      |  2 +-
-> >>>>  .../dts/rockchip/rk3368-orion-r68-meta.dts    |  2 +-
-> >>>>  .../boot/dts/rockchip/rk3368-px5-evb.dts      |  2 +-
-> >>>>  arch/arm64/boot/dts/rockchip/rk3368-r88.dts   |  2 +-
-> >>>>  .../boot/dts/rockchip/rk3399-firefly.dts      |  2 +-
-> >>>>  .../dts/rockchip/rk3399-gru-chromebook.dtsi   |  2 +-
-> >>>>  .../boot/dts/rockchip/rk3399-gru-kevin.dts    |  2 +-
-> >>>>  .../boot/dts/rockchip/rk3399-gru-scarlet.dtsi |  2 +-
-> >>>>  .../boot/dts/rockchip/rk3399-khadas-edge.dtsi |  2 +-
-> >>>>  .../boot/dts/rockchip/rk3399-nanopi-r4s.dts   |  4 +--
-> >>>>  .../boot/dts/rockchip/rk3399-nanopi4.dtsi     |  2 +-
-> >>>>  .../boot/dts/rockchip/rk3399-orangepi.dts     |  2 +-
-> >>>>  .../boot/dts/rockchip/rk3399-pinebook-pro.dts |  4 +--
-> >>>>  .../boot/dts/rockchip/rk3399-roc-pc.dtsi      |  2 +-
-> >>>>  .../boot/dts/rockchip/rk3399-rockpro64.dtsi   |  2 +-
-> >>>>  .../boot/dts/rockchip/rk3399-sapphire.dtsi    |  2 +-
-> >>>>  .../boot/dts/rockchip/rk3566-pinenote.dtsi    |  2 +-
-> >>>>  21 files changed, 38 insertions(+), 38 deletions(-)
-> >>>>
-> >>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3308-evb.dts b/arch/arm64/boot/dts/rockchip/rk3308-evb.dts
-> >>>> index 9b4f855ea5d4..4b5413b12bfa 100644
-> >>>> --- a/arch/arm64/boot/dts/rockchip/rk3308-evb.dts
-> >>>> +++ b/arch/arm64/boot/dts/rockchip/rk3308-evb.dts
-> >>>> @@ -75,7 +75,7 @@ gpio-keys {
-> >>>>                 pinctrl-names = "default";
-> >>>>                 pinctrl-0 = <&pwr_key>;
-> >>>>
-> >>>> -               power {
-> >>>> +               power-key {
-> > 
-> > hmm, it looks like all the others below are named key-power, while
-> > only this uses power-key ?
-> > 
-> 
-> Because a bit earlier in DTS, there are two adc-keys nodes with "key"
-> suffix, so I kept that approach to be consistent within one DTS. If you
-> prefer, I can change it to key-power.
 
-I just saw that discrepancy and was not sure if that was intentional.
-Although with the below, I guess it makes sense to go with
-$type-$name, aka key-power, same as button-sw1 etc.
+Jonathan Cameron <Jonathan.Cameron@Huawei.com> writes:
 
+> On Tue,  7 Jun 2022 16:53:17 +0100
+> Aidan MacDonald <aidanmacdonald.0x0@gmail.com> wrote:
+>
+>> The code may be clearer if parameters are not re-purposed to hold
+>> temporary results like register values, so introduce local variables
+>> as necessary to avoid that. Also, use the common FIELD_PREP macro
+>> instead of a hand-rolled version.
+>> 
+>> Suggested-by: Jonathan Cameron <jic23@kernel.org>
+>> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+>
+> Hi Aidan,
+>
+> Looks good.  One trivial further suggestion inline.
+>
+> Also, am I fine picking up the IIO patches, or does the whole
+> set need to go in via mfd?
+>
+> Thanks,
+>
+> Jonathan
+>
 
-> >>>>                         gpios = <&gpio0 RK_PA6 GPIO_ACTIVE_LOW>;
-> >>>>                         linux,code = <KEY_POWER>;
-> >>>>                         label = "GPIO Key Power";
-> >>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-> >>>> index ea0695b51ecd..72328dd993ee 100644
-> >>>> --- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-> >>>> +++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-> >>>> @@ -71,82 +71,82 @@ gpio-keys {
-> >>>>                  * |------------------------------------------------|
-> >>>>                  */
-> >>>>
-> >>>> -               sw1 {
-> >>>> +               switch-1 {
-> >>> Wouldn't it make more sense to rename this and all other
-> >>> renamed nodes in this dts into "button-dpad-up" or "button-1",
-> >>> as on the physical device those are buttons and the naming
-> >>> scheme of "sw" + number seems to be a carryover from
-> >>> downstream sources.
-> > 
-> > The naming actually carries over from the device itself.
-> > In the schematics the relevant keys are also named sw1, sw2, etc.
-> > 
-> > And I do believe it is way nicer when devicetree names correspond to the
-> > things you find in device schematics and not be named "arbitarily" to
-> > only conform to some schema ;-)
-> 
-> Then you are entirely depending on hardware engineers which might start
-> calling their buttons "cute-pony-xxx" :)
+I think it has to go through mfd because of the GPIO2-3 ADC registers
+which are added in the mfd patch. Cleanups are okay to pick up though.
 
-What's wrong with cute-ponies?
-Though it should be button-cute-pony-xxx then ;-)
+>> ---
+>>  drivers/iio/adc/axp20x_adc.c | 61 +++++++++++++++++++-----------------
+>>  1 file changed, 33 insertions(+), 28 deletions(-)
+>> 
+>> diff --git a/drivers/iio/adc/axp20x_adc.c b/drivers/iio/adc/axp20x_adc.c
+>> index 53bf7d4899d2..9d5b1de24908 100644
+>> --- a/drivers/iio/adc/axp20x_adc.c
+>> +++ b/drivers/iio/adc/axp20x_adc.c
+>> @@ -15,6 +15,7 @@
+>>  #include <linux/property.h>
+>>  #include <linux/regmap.h>
+>>  #include <linux/thermal.h>
+>> +#include <linux/bitfield.h>
+>>  
+>>  #include <linux/iio/iio.h>
+>>  #include <linux/iio/driver.h>
+>> @@ -22,20 +23,20 @@
+>>  #include <linux/mfd/axp20x.h>
+>>  
+>>  #define AXP20X_ADC_EN1_MASK			GENMASK(7, 0)
+>> -
+>>  #define AXP20X_ADC_EN2_MASK			(GENMASK(3, 2) | BIT(7))
+>> +
+>>  #define AXP22X_ADC_EN1_MASK			(GENMASK(7, 5) | BIT(0))
+>>  
+>>  #define AXP20X_GPIO10_IN_RANGE_GPIO0		BIT(0)
+>>  #define AXP20X_GPIO10_IN_RANGE_GPIO1		BIT(1)
+>> -#define AXP20X_GPIO10_IN_RANGE_GPIO0_VAL(x)	((x) & BIT(0))
+>> -#define AXP20X_GPIO10_IN_RANGE_GPIO1_VAL(x)	(((x) & BIT(0)) << 1)
+>>  
+>>  #define AXP20X_ADC_RATE_MASK			GENMASK(7, 6)
+>> -#define AXP813_V_I_ADC_RATE_MASK		GENMASK(5, 4)
+>> -#define AXP813_ADC_RATE_MASK			(AXP20X_ADC_RATE_MASK | AXP813_V_I_ADC_RATE_MASK)
+>>  #define AXP20X_ADC_RATE_HZ(x)			((ilog2((x) / 25) << 6) & AXP20X_ADC_RATE_MASK)
+>> +
+>>  #define AXP22X_ADC_RATE_HZ(x)			((ilog2((x) / 100) << 6) & AXP20X_ADC_RATE_MASK)
+>> +
+>> +#define AXP813_V_I_ADC_RATE_MASK		GENMASK(5, 4)
+>> +#define AXP813_ADC_RATE_MASK			(AXP20X_ADC_RATE_MASK | AXP813_V_I_ADC_RATE_MASK)
+>>  #define AXP813_TS_GPIO0_ADC_RATE_HZ(x)		AXP20X_ADC_RATE_HZ(x)
+>>  #define AXP813_V_I_ADC_RATE_HZ(x)		((ilog2((x) / 100) << 4) & AXP813_V_I_ADC_RATE_MASK)
+>>  #define AXP813_ADC_RATE_HZ(x)			(AXP20X_ADC_RATE_HZ(x) | AXP813_V_I_ADC_RATE_HZ(x))
+>> @@ -234,7 +235,7 @@ static int axp20x_adc_raw(struct iio_dev *indio_dev,
+>>  			  struct iio_chan_spec const *chan, int *val)
+>>  {
+>>  	struct axp20x_adc_iio *info = iio_priv(indio_dev);
+>> -	int size = 12;
+>> +	int ret, size;
+>>  
+>>  	/*
+>>  	 * N.B.:  Unlike the Chinese datasheets tell, the charging current is
+>> @@ -246,10 +247,11 @@ static int axp20x_adc_raw(struct iio_dev *indio_dev,
+>>  	else
+>>  		size = 12;
+>>  
+>> -	*val = axp20x_read_variable_width(info->regmap, chan->address, size);
+>> -	if (*val < 0)
+>> -		return *val;
+>> +	ret = axp20x_read_variable_width(info->regmap, chan->address, size);
+>> +	if (ret < 0)
+>> +		return ret;
+>>  
+>> +	*val = ret;
+>>  	return IIO_VAL_INT;
+>>  }
+>>  
+>> @@ -257,11 +259,13 @@ static int axp22x_adc_raw(struct iio_dev *indio_dev,
+>>  			  struct iio_chan_spec const *chan, int *val)
+>>  {
+>>  	struct axp20x_adc_iio *info = iio_priv(indio_dev);
+>> +	int ret;
+>>  
+>> -	*val = axp20x_read_variable_width(info->regmap, chan->address, 12);
+>> -	if (*val < 0)
+>> -		return *val;
+>> +	ret = axp20x_read_variable_width(info->regmap, chan->address, 12);
+>> +	if (ret < 0)
+>> +		return ret;
+>>  
+>> +	*val = ret;
+>>  	return IIO_VAL_INT;
+>>  }
+>>  
+>> @@ -269,11 +273,13 @@ static int axp813_adc_raw(struct iio_dev *indio_dev,
+>>  			  struct iio_chan_spec const *chan, int *val)
+>>  {
+>>  	struct axp20x_adc_iio *info = iio_priv(indio_dev);
+>> +	int ret;
+>>  
+>> -	*val = axp20x_read_variable_width(info->regmap, chan->address, 12);
+>> -	if (*val < 0)
+>> -		return *val;
+>> +	ret = axp20x_read_variable_width(info->regmap, chan->address, 12);
+>> +	if (ret < 0)
+>> +		return ret;
+>>  
+>> +	*val = ret;
+>>  	return IIO_VAL_INT;
+>>  }
+>>  
+>> @@ -443,27 +449,27 @@ static int axp20x_adc_offset_voltage(struct iio_dev *indio_dev, int channel,
+>>  				     int *val)
+>>  {
+>>  	struct axp20x_adc_iio *info = iio_priv(indio_dev);
+>> +	unsigned int regval;
+>>  	int ret;
+>>  
+>> -	ret = regmap_read(info->regmap, AXP20X_GPIO10_IN_RANGE, val);
+>> +	ret = regmap_read(info->regmap, AXP20X_GPIO10_IN_RANGE, &regval);
+>>  	if (ret < 0)
+>>  		return ret;
+>>  
+>>  	switch (channel) {
+>>  	case AXP20X_GPIO0_V:
+>> -		*val &= AXP20X_GPIO10_IN_RANGE_GPIO0;
+>> +		regval &= AXP20X_GPIO10_IN_RANGE_GPIO0;
+>
+> Maybe use FIELD_GET() here to be clear you are extracting that
+> field (even though we don't care about the shift).
+>
+> Hopefully the compiler will be clever enough to remove the shift
+> anyway and using FIELD_GET() would act as slightly more 'documentation
+> in code'.
+>
 
+You're probably right; I erred on the side of premature optimization.
+I'll go back to FIELD_GET in the v3 since I've got to resend anyway.
 
-> > So personally I'd actually prefer going with switch-sw1 (or button-sw1 if
-> > you prefer) as being able to just use the search function in schematic pdfs
-> > is a helpful tool.
-> 
-> Both are fine with me, let's just pick one - switch-sw1 or button-sw1.
-> Since these are physically buttons, I propose the latter.
-
-fine by me, button-sw1, etc it is then :-)
-
-Heiko
-
+>>  		break;
+>>  
+>>  	case AXP20X_GPIO1_V:
+>> -		*val &= AXP20X_GPIO10_IN_RANGE_GPIO1;
+>> +		regval &= AXP20X_GPIO10_IN_RANGE_GPIO1;
+>>  		break;
+>>  
+>>  	default:
+>>  		return -EINVAL;
+>>  	}
+>>  
+>> -	*val = *val ? 700000 : 0;
+>> -
+>> +	*val = regval ? 700000 : 0;
+>>  	return IIO_VAL_INT;
+>>  }
+>>  
+>> @@ -548,7 +554,7 @@ static int axp20x_write_raw(struct iio_dev *indio_dev,
+>>  			    long mask)
+>>  {
+>>  	struct axp20x_adc_iio *info = iio_priv(indio_dev);
+>> -	unsigned int reg, regval;
+>> +	unsigned int regmask, regval;
+>>  
+>>  	/*
+>>  	 * The AXP20X PMIC allows the user to choose between 0V and 0.7V offsets
+>> @@ -560,25 +566,24 @@ static int axp20x_write_raw(struct iio_dev *indio_dev,
+>>  	if (val != 0 && val != 700000)
+>>  		return -EINVAL;
+>>  
+>> -	val = val ? 1 : 0;
+>> +	regval = val ? 1 : 0;
+>>  
+>>  	switch (chan->channel) {
+>>  	case AXP20X_GPIO0_V:
+>> -		reg = AXP20X_GPIO10_IN_RANGE_GPIO0;
+>> -		regval = AXP20X_GPIO10_IN_RANGE_GPIO0_VAL(val);
+>> +		regmask = AXP20X_GPIO10_IN_RANGE_GPIO0;
+>> +		regval = FIELD_PREP(AXP20X_GPIO10_IN_RANGE_GPIO0, regval);
+>>  		break;
+>>  
+>>  	case AXP20X_GPIO1_V:
+>> -		reg = AXP20X_GPIO10_IN_RANGE_GPIO1;
+>> -		regval = AXP20X_GPIO10_IN_RANGE_GPIO1_VAL(val);
+>> +		regmask = AXP20X_GPIO10_IN_RANGE_GPIO1;
+>> +		regval = FIELD_PREP(AXP20X_GPIO10_IN_RANGE_GPIO1, regval);
+>>  		break;
+>>  
+>>  	default:
+>>  		return -EINVAL;
+>>  	}
+>>  
+>> -	return regmap_update_bits(info->regmap, AXP20X_GPIO10_IN_RANGE, reg,
+>> -				  regval);
+>> +	return regmap_update_bits(info->regmap, AXP20X_GPIO10_IN_RANGE, regmask, regval);
+>>  }
+>>  
+>>  static const struct iio_info axp20x_adc_iio_info = {
 
