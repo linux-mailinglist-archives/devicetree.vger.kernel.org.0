@@ -2,133 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BC7E542B12
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 11:17:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14B92542B45
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 11:19:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234840AbiFHJQT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 05:16:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43802 "EHLO
+        id S233772AbiFHJTk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 05:19:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235607AbiFHJPH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 05:15:07 -0400
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1A411E44C4;
-        Wed,  8 Jun 2022 01:39:57 -0700 (PDT)
-Received: by mail-pj1-x1032.google.com with SMTP id cx11so17988377pjb.1;
-        Wed, 08 Jun 2022 01:39:57 -0700 (PDT)
+        with ESMTP id S235202AbiFHJTD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 05:19:03 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61A57224138
+        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 01:41:11 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id gl15so26150814ejb.4
+        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 01:41:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:mime-version:content-disposition;
-        bh=JASAiT3vXh0ZJKWH+RJe3v1twmK34V/YWwlarnk5/x0=;
-        b=mzh5bNGbHr3vGSP7PJBL66nAkjOZ/q2p2L8puGTWPsHBE8qiaedY6T1LYAjy/dViU2
-         MIOWg+tV9Id8u1JadoTwdlMJTkOXPbATkDPz22j48vXFBm+UERMywzJuHCK+wvwxkrEo
-         2lple/TzyYJ9gkFxugOXyrvoHHWnrzaY4PLDqr8YiH1qP5pq1LAo+nfdaLNgQxyEE5/U
-         5M1a9q9Io3KBHQgg/e8YQk3u60XyR6LJGnxNTnU36cvpLQyS07qWRNhBW6bIFTMr6T1C
-         XktI+luDD4TbwmretCKI+ZJESgm2qvlqjpu77Ore4mLokpYo3RBvjPVr/julwkwlBz/D
-         rS8A==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=S47dvdWUN7Ba1ERPw3oejaVkM1n7wr7OiK0XR5kUMiQ=;
+        b=uskTefCRS9kyK9iuKEe/3qoMsEytarqwN6AXzGTDBnv2LVMTzz/sxDZoGIH9d8zBPt
+         cwNJs62tItAXDHb2G0GHD/49bmVrFskdBCNFpJn9rsNKyvczECgj6pXsrBwZdj4cefa1
+         jGCnSUwy/sce9iFb8mwBofAv4BW4wX6IVWnOIA0tRBa6/VzaL+epPxgqPPIaQCePnjnP
+         WsQk67eePQ2ffVELCDJVr1sT+uJ71CzGaUe8ielsLR2g9tTGuZA+SlSAgH1RbqG+FZb3
+         /SFPJLn/gsaXj4WZXQ+xT8iyPB5wh9jEr4c5NRm4HVWcMq4gz3oRLqhi8ieVbYfm4QhM
+         cdiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
-         :content-disposition;
-        bh=JASAiT3vXh0ZJKWH+RJe3v1twmK34V/YWwlarnk5/x0=;
-        b=WXZznnKjnHdqn8aOMrPBuMwzv3wN01OriIMAV2kbyrGTDltIzp1EnofpXbboLKJcfq
-         CZ9gC3rSdet9WGkncQE5jUlw5c1bEHzNYlaUaIlheOqSiOUKBvlgUHK/JtcinGKM1XLF
-         ao0TsjgEyDgzrA6YW4tjee7A3W8U+GU6XrNUu237KT70tymnk0PWCYZyH04PHJQ2Bkyk
-         Su/IUsYw1K21A843cPBcjvdcQauUdsmAnf6hAUuFE3TIxelwB4HHS3pe5HEGrWPL2F+g
-         vSX12ERJl1JxZEso5GE1M2nLeMXzXzwZ50hVsn1kVoqC/PWW1boss2KNiKxu6o9mtEGI
-         ipdg==
-X-Gm-Message-State: AOAM531/sRgiXNJGRRrfLPRKu8Wvyn/o34lgWJobXRHimV7/MPaCLJ9s
-        w2F+SacQ5xYd1ONVjI0ini8=
-X-Google-Smtp-Source: ABdhPJz6h8AXUH2LJZjDhTb51xavtnq5fJGuXMz/UJjlqctNAsIAqj4tOG3352gD8ob9z1b304PQ+Q==
-X-Received: by 2002:a17:90a:9741:b0:1e8:a001:5caa with SMTP id i1-20020a17090a974100b001e8a0015caamr8765872pjw.231.1654677597383;
-        Wed, 08 Jun 2022 01:39:57 -0700 (PDT)
-Received: from localhost (subs02-180-214-232-66.three.co.id. [180.214.232.66])
-        by smtp.gmail.com with ESMTPSA id u5-20020a170903108500b00161f9e72233sm13800249pld.261.2022.06.08.01.39.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jun 2022 01:39:56 -0700 (PDT)
-Date:   Wed, 8 Jun 2022 15:39:54 +0700
-From:   Bagas Sanjaya <bagasdotme@gmail.com>
-To:     Linux ARM <linux-arm-kernel@lists.infradead.org>
-Cc:     =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        Russell King <linux@armlinux.org.uk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        linux-kernel@vger.kernel.org
-Subject: virt_to_phys outside array bounds warning (GCC 12.1.0)
-Message-ID: <YqBgWoXQmzVczRDo@debian.me>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=S47dvdWUN7Ba1ERPw3oejaVkM1n7wr7OiK0XR5kUMiQ=;
+        b=3Fr/3z1FoVLNXeN6zI4C3zt7iMN16yLNZthWBClqhaw0p+GF3cw1HcINwym/3c/cfD
+         MRLBx+U1kHLBrEGMzxtTZq4R4gqmiN7H87quMPCXoehhumN/EgObZGzJZ4PHIVmFsNzk
+         pjYJex1YkG5Ps+1pf0LWY8LtMj2ANPM9VkkDcLS0C1hHNdfcMDumJaqdRJ7oxt70pKbQ
+         mjKwQK/lo5CQLrj+XoV/xQD95CEOECjDlNo+OrlaFDnOAmyiUZJOZKbX4Mg4EvYpVBDP
+         jGl+MCSOb/wm7F3kP2LHBLuX9dYzUEGFWSpDRksw82S1sz8Wwq1u6ym95m4E6qGNyRG9
+         5NVQ==
+X-Gm-Message-State: AOAM533xOmTix/4SlPdx7Wo5J28TRlUoW2VVz9GqkfzzTi+NQi1bxe7a
+        SQ8rBZcRZxdQ6QObv3sxCNS1cg==
+X-Google-Smtp-Source: ABdhPJxy4wBmQ7wW9pIeaifXRzMYwbZ1QM8BkkK3IBZZEIknvSNeVtXpfTetoTj1b+dT5cZTfxs6iA==
+X-Received: by 2002:a17:906:449:b0:711:c975:cfb8 with SMTP id e9-20020a170906044900b00711c975cfb8mr15670663eja.58.1654677669990;
+        Wed, 08 Jun 2022 01:41:09 -0700 (PDT)
+Received: from [192.168.0.189] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id c2-20020a170906154200b006f3ef214dd2sm8699500ejd.56.2022.06.08.01.41.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Jun 2022 01:41:09 -0700 (PDT)
+Message-ID: <c2724dc0-b3c7-00eb-08ea-b23296f40044@linaro.org>
+Date:   Wed, 8 Jun 2022 10:41:08 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v4 1/9] ARM: dts: at91: use generic name for reset
+ controller
+Content-Language: en-US
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        p.zabel@pengutronix.de, sre@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220608083942.1584087-1-claudiu.beznea@microchip.com>
+ <20220608083942.1584087-2-claudiu.beznea@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220608083942.1584087-2-claudiu.beznea@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi everyone,
+On 08/06/2022 10:39, Claudiu Beznea wrote:
+> Use generic name for reset controller of AT91 devices to comply with
+> DT specifications.
+> 
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 
-When cross-compiling arm 5.19-rc1 kernel using GCC 12.1.0 (armv7 with neon
-fpu, multi_v7_defconfig), I got outside array bounds warning pointing to
-virt_to_phys() macro:
 
-  DTC     arch/arm/boot/dts/am335x-evm.dtb
-In file included from ./arch/arm/include/asm/page.h:163,
-                 from ./arch/arm/include/asm/thread_info.h:14,
-                 from ./include/linux/thread_info.h:60,
-                 from ./include/asm-generic/preempt.h:5,
-                 from ./arch/arm/include/generated/asm/preempt.h:1,
-                 from ./include/linux/preempt.h:78,
-                 from ./include/linux/spinlock.h:55,
-                 from ./include/linux/wait.h:9,
-                 from ./include/linux/wait_bit.h:8,
-                 from ./include/linux/fs.h:6,
-                 from ./include/linux/proc_fs.h:10,
-                 from ./include/linux/efi.h:19,
-                 from arch/arm/kernel/setup.c:7:
-In function 'request_standard_resources',
-    inlined from 'setup_arch' at arch/arm/kernel/setup.c:1158:2:
-./arch/arm/include/asm/memory.h:311:22: warning: array subscript -1 is outside array bounds of 'char[2147483647]' [-Warray-bounds]
-  311 | #define virt_to_phys virt_to_phys
-arch/arm/kernel/setup.c:855:31: note: in expansion of macro 'virt_to_phys'
-  855 |         kernel_code.end     = virt_to_phys(__init_begin - 1);
-      |                               ^~~~~~~~~~~~
-In file included from ./include/linux/pid_namespace.h:7,
-                 from ./include/linux/ptrace.h:10,
-                 from ./include/linux/elfcore.h:11,
-                 from ./include/linux/crash_core.h:6,
-                 from ./include/linux/kexec.h:18,
-                 from arch/arm/kernel/setup.c:20:
-./include/linux/mm.h: In function 'setup_arch':
-./include/linux/mm.h:2500:21: note: at offset -1 into object '__init_begin' of size [0, 2147483647]
- 2500 |         extern char __init_begin[], __init_end[];
-      |                     ^~~~~~~~~~~~
-In function 'request_standard_resources',
-    inlined from 'setup_arch' at arch/arm/kernel/setup.c:1158:2:
-./arch/arm/include/asm/memory.h:311:22: warning: array subscript -1 is outside array bounds of 'char[2147483647]' [-Warray-bounds]
-  311 | #define virt_to_phys virt_to_phys
-arch/arm/kernel/setup.c:857:31: note: in expansion of macro 'virt_to_phys'
-  857 |         kernel_data.end     = virt_to_phys(_end - 1);
-      |                               ^~~~~~~~~~~~
-In file included from ./arch/arm/include/asm/sections.h:5,
-                 from ./include/linux/interrupt.h:21,
-                 from ./include/linux/rtc.h:17,
-                 from ./include/linux/efi.h:20:
-./include/asm-generic/sections.h: In function 'setup_arch':
-./include/asm-generic/sections.h:41:13: note: at offset -1 into object '_end' of size [0, 2147483647]
-   41 | extern char _end[];
-      |             ^~~~
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Thanks.
 
-Reported-by: Bagas Sanjaya <bagasdotme@gmail.com>
-
--- 
-An old man doll... just what I always wanted! - Clara
+Best regards,
+Krzysztof
