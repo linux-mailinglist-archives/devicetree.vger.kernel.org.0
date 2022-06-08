@@ -2,229 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39C0E543EF8
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 00:01:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE8F8543F1C
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jun 2022 00:27:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235694AbiFHWB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 18:01:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45006 "EHLO
+        id S234574AbiFHW1X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 18:27:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232615AbiFHWBz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 18:01:55 -0400
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 845D2B8BC5;
-        Wed,  8 Jun 2022 15:01:54 -0700 (PDT)
-Received: by mail-io1-f45.google.com with SMTP id p128so924292iof.1;
-        Wed, 08 Jun 2022 15:01:54 -0700 (PDT)
+        with ESMTP id S234139AbiFHW1Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 18:27:16 -0400
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B6563A5CB
+        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 15:27:15 -0700 (PDT)
+Received: by mail-qk1-x734.google.com with SMTP id n197so9510380qke.1
+        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 15:27:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=jH4c12+CVRrTyhBbIEeVtZFXG81rflTZGiVkHkiLLNo=;
+        b=79GOQq0/+RRLbqGewSFK851+7PhvVY6uIRw83i4C4/WmB5SQlsbXr91fSZ4M1Aq4zo
+         jYEfd9tQql48uWWjKyGf4SSHjZ2kgu3BiGZkLvs50XK+WBCYiR6x2aSw3qcKvV/JjYux
+         lNTMO8K+kxoTr+sxFdXVylNC73MD/mvw/XXFjNzdx2z2QpjyA7fvL70Dguby53f0zKXf
+         6se2d5PW2hVwFTo4wFVBLKkZf+NeW+iCZTxggUfBrlXWPst6eAk6UiP+9jzYb7f/+cY7
+         0jEGy99UQm+Y0vFZQLG2lvPk+3BXvIUufzJzMTeSmgp18wBsqe9dRjxkSNUp6VSQNB5+
+         3raQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=NN7GcotegH3FFfcqHSDcYe6YeJ9nxGa2AwyTelBXKr8=;
-        b=gPw85fgrG6aLwnLxi2yRHtV8srawtwgsyYS2yO+OJMMdU950BOekt49MY9Ez1evs0a
-         ICqBbwaZZx8JTRt4xm2yMP/DA0UFu2+eLMcekQEKribLx056ZnlqjtNcN6sw9EIbr1Eu
-         pRNRMlRkBxao8amiyS3C8BG+FUhi8LVB7RftfEM4pTWsWq9EHU/+7JEq7eGWgHHXly1W
-         f0gaO1lcs1uO/NOEYHsH24sU6cg4AfeJprs2bX/gXcbJzFoS3ffAeFOTho473ezBg+1N
-         nUSZMf9Pp0djrwjkYXmGbPjtozajwPYegqabY2upmOeju5ARXEwj1bTLTMttdfKlPnmE
-         GcnA==
-X-Gm-Message-State: AOAM533FEr214/iuV+qjxAQMArdI8R0eH3Y4V+nUBpspyY4G3EE+886u
-        sSGbkJs6pwdW1/Cpcfj8og==
-X-Google-Smtp-Source: ABdhPJwYJUic/1ZyEOvAqw740GgvsE+qnzhkTfmFrKTOJpNUOscNySpwIX4S+PyzbpZVs1iVy1344A==
-X-Received: by 2002:a05:6638:3383:b0:331:b268:261 with SMTP id h3-20020a056638338300b00331b2680261mr9101899jav.55.1654725713770;
-        Wed, 08 Jun 2022 15:01:53 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id b12-20020a5edc0c000000b00669a3f60e99sm727337iok.31.2022.06.08.15.01.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jun 2022 15:01:53 -0700 (PDT)
-Received: (nullmailer pid 2156157 invoked by uid 1000);
-        Wed, 08 Jun 2022 22:01:50 -0000
-Date:   Wed, 8 Jun 2022 16:01:50 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Mao Jinlong <quic_jinlmao@quicinc.com>
-Cc:     Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Subject: Re: [PATCH v8 03/10] dt-bindings: arm: Adds CoreSight TPDM hardware
- definitions
-Message-ID: <20220608220150.GA2137312-robh@kernel.org>
-References: <20220608154705.40322-1-quic_jinlmao@quicinc.com>
- <20220608154705.40322-4-quic_jinlmao@quicinc.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jH4c12+CVRrTyhBbIEeVtZFXG81rflTZGiVkHkiLLNo=;
+        b=SlVw3Y3A6PRDyof+HkV6Bw8p8bCPy3hOa7nkOp6t/2W6b8c/X5efQEvdmfmWkGhKY5
+         E+nsSe4xgIxOyG7KnkFA2jrkWwfUEhypwADGYfu7yF0ET8zNpHuG8j8bJ2dv8opgx4KT
+         O2AgVCCjl1qaEjoVnVxEWKxMnCEGY4aVVIfwG6AgYSFYXc36Q/l4GBfkjdl2cIu2G2vd
+         7LCUaQwQ8i+gHJRNT323el/98T4ERgXQbHBCcWpiweQqJ6l2b9u23yuLakvnWNItqb8m
+         Kdgsv7cmPImOmHEmvLLaFBDQI6tj867QIvrOzbQr04EhS2+N6ime0kCnrz+QTetcJTKT
+         8EZw==
+X-Gm-Message-State: AOAM532n67eeMXa57q6ukzMEt7lyNNsnZ/2Sr3r0ehifHEr1ZxOEobAH
+        eHQa9nP0ttRu0CErSBaa7XwcW/NF9zMNBMjS83I+AQ==
+X-Google-Smtp-Source: ABdhPJwnmP1wXXzF9NYXnVqUZJwhOa7wXTGFQNqRavcPOps9dctULuEYturAac2aYv7sw0Yyw1hdiyadaWlF3TTaF0o=
+X-Received: by 2002:a05:620a:1911:b0:6a6:e8e9:70cd with SMTP id
+ bj17-20020a05620a191100b006a6e8e970cdmr6644053qkb.627.1654727234308; Wed, 08
+ Jun 2022 15:27:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220608154705.40322-4-quic_jinlmao@quicinc.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+References: <20220605133300.376161-1-mail@conchuod.ie>
+In-Reply-To: <20220605133300.376161-1-mail@conchuod.ie>
+From:   Atul Khare <atulkhare@rivosinc.com>
+Date:   Wed, 8 Jun 2022 15:27:03 -0700
+Message-ID: <CABMhjYq0GSEfg4T+cTqBwRdykC-rbQNEqnAZ1qM5fYbjUah5Mg@mail.gmail.com>
+Subject: Re: [PATCH v1 0/6] clear riscv dtbs_check errors
+To:     mail@conchuod.ie
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Support Opensource <support.opensource@diasemi.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Steve Twiss <stwiss.opensource@diasemi.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 08, 2022 at 11:46:58PM +0800, Mao Jinlong wrote:
-> Adds new coresight-tpdm.yaml file describing the bindings required
-> to define tpdm in the device trees.
-> 
-> Acked-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-> Reviewed-by: Mike Leach <mike.leach@linaro.org>
-> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
-> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
-> ---
->  .../bindings/arm/coresight-tpdm.yaml          | 99 +++++++++++++++++++
+Conor,
 
-qcom,coresight-tpdm.yaml
+Thanks for the feedback. I will rebase and send out a v2 series
+shortly (it appears that the 1024 hart context patch is redundant as
+well).
 
->  .../devicetree/bindings/arm/coresight.txt     |  7 ++
-
-This file is going away[1]. I'd just drop the changes to it.
-
->  MAINTAINERS                                   |  1 +
->  3 files changed, 107 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/coresight-tpdm.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/coresight-tpdm.yaml b/Documentation/devicetree/bindings/arm/coresight-tpdm.yaml
-> new file mode 100644
-> index 000000000000..14bef4ce4274
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/coresight-tpdm.yaml
-> @@ -0,0 +1,99 @@
-> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> +# Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/coresight-tpdm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Trace, Profiling and Diagnostics Monitor - TPDM
-> +
-> +description: |
-> +  The TPDM or Monitor serves as data collection component for various dataset
-> +  types specified in the QPMDA spec. It covers Implementation defined ((ImplDef),
-> +  Basic Counts (BC), Tenure Counts (TC), Continuous Multi-Bit (CMB), and Discrete
-> +  Single Bit (DSB). It performs data collection in the data producing clock
-> +  domain and transfers it to the data collection time domain, generally ATB
-> +  clock domain.
-> +
-> +  The primary use case of the TPDM is to collect data from different data
-> +  sources and send it to a TPDA for packetization, timestamping, and funneling.
-> +
-> +maintainers:
-> +  - Mao Jinlong <quic_jinlmao@quicinc.com>
-> +  - Tao Zhang <quic_taozha@quicinc.com>
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^tpdm(@[0-9a-f]+)$"
-
-blank line
-
-> +  compatible:
-> +    items:
-> +      - const: qcom,coresight-tpdm
-> +      - const: arm,primecell
-
-You need a 'select' to fix the errors reported. See other primecell 
-bindings.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: apb_pclk
-> +
-> +  out-ports:
-> +    description: |
-> +      Output connections from the TPDM to coresight funnle/tpda.
-
-typo
-
-> +    $ref: /schemas/graph.yaml#/properties/ports
-
-blank line here.
-
-> +    properties:
-> +      port:
-> +        description: Output connection from the TPDM to coresight
-> +            funnel/tpda.
-
-s/tpda/TPDA/
-
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  # minimum TPDM definition. TPDM connect to coresight funnel.
-> +  - |
-> +    tpdm@6980000 {
-> +      compatible = "qcom,coresight-tpdm", "arm,primecell";
-> +      reg = <0x6980000 0x1000>;
-> +
-> +      clocks = <&aoss_qmp>;
-> +      clock-names = "apb_pclk";
-> +
-> +      out-ports {
-> +        port {
-> +          tpdm_turing_out_funnel_turing: endpoint {
-> +            remote-endpoint =
-> +              <&funnel_turing_in_tpdm_turing>;
-> +          };
-> +        };
-> +      };
-> +    };
-> +  # minimum TPDM definition. TPDM connect to coresight TPDA.
-> +  - |
-
-The only difference in the 2 examples is some external phandle. 1 
-example is sufficient.
-
-> +    tpdm@684c000 {
-> +      compatible = "qcom,coresight-tpdm", "arm,primecell";
-> +      reg = <0x684c000 0x1000>;
-> +
-> +      clocks = <&aoss_qmp>;
-> +      clock-names = "apb_pclk";
-> +
-> +      out-ports {
-> +        port {
-> +          tpdm_prng_out_tpda_qdss: endpoint {
-> +            remote-endpoint =
-> +              <&tpda_qdss_in_tpdm_prng>;
-> +          };
-> +        };
-> +      };
-> +    };
-> +
-> +...
-
-Rob
-
-[1] https://lore.kernel.org/all/20220603011933.3277315-1-robh@kernel.org/
+On Sun, Jun 5, 2022 at 6:33 AM <mail@conchuod.ie> wrote:
+>
+> From: Conor Dooley <conor.dooley@microchip.com>
+>
+> Hey,
+> Couple conversions from txt to yaml here with the intent of fixing the
+> the dtbs_check warnings for riscv. Atul Khare already sent patches for
+> the gpio-line-names & cache-sets (which went awol) and will clear the
+> remaining two errors.
+>
+> Rob/Krzysztof:
+> Have I correctly expressed the mutually exclusive properties?
+> I had a look around, but wasn't able to find an obvious binding to ape.
+>
+> Wasn't sure if a txt -> yaml conversion's MAINTAINERS update was meant
+> to be in the same patch or not, so feel free to squash.
+> Thanks,
+> Conor.
+>
+> Conor Dooley (6):
+>   dt-bindings: mmc: convert mmc-spi-slot to yaml
+>   dt-bindings: i2c: convert ocores binding to yaml
+>   MAINTAINERS: convert ocores i2c dt-binding to yaml
+>   dt-bindings: mfd: convert da9063 to yaml
+>   MAINTAINERS: convert da9063 to yaml
+>   riscv: dts: sifive: "fix" pmic watchdog node name
+>
+>  .../devicetree/bindings/i2c/i2c-ocores.txt    |  78 -----------
+>  .../devicetree/bindings/i2c/i2c-ocores.yaml   | 132 ++++++++++++++++++
+>  .../devicetree/bindings/mfd/da9063.txt        | 111 ---------------
+>  .../devicetree/bindings/mfd/da9063.yaml       | 123 ++++++++++++++++
+>  .../devicetree/bindings/mmc/mmc-spi-slot.txt  |  29 ----
+>  .../devicetree/bindings/mmc/mmc-spi-slot.yaml |  76 ++++++++++
+>  .../devicetree/bindings/trivial-devices.yaml  |   2 -
+>  MAINTAINERS                                   |   3 +-
+>  .../boot/dts/sifive/hifive-unmatched-a00.dts  |   2 +-
+>  9 files changed, 334 insertions(+), 222 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-ocores.txt
+>  create mode 100644 Documentation/devicetree/bindings/i2c/i2c-ocores.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mfd/da9063.txt
+>  create mode 100644 Documentation/devicetree/bindings/mfd/da9063.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mmc/mmc-spi-slot.txt
+>  create mode 100644 Documentation/devicetree/bindings/mmc/mmc-spi-slot.yaml
+>
+> --
+> 2.36.1
+>
