@@ -2,106 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD264542BA5
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 11:36:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 123B1542BAE
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 11:39:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234612AbiFHJg2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 05:36:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49240 "EHLO
+        id S234177AbiFHJij (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 05:38:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234679AbiFHJgH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 05:36:07 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C934B4DF60;
-        Wed,  8 Jun 2022 01:59:37 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id u12-20020a17090a1d4c00b001df78c7c209so23220980pju.1;
-        Wed, 08 Jun 2022 01:59:37 -0700 (PDT)
+        with ESMTP id S235078AbiFHJiC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 05:38:02 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB7B618490C
+        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 02:05:16 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id x62so26154755ede.10
+        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 02:05:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=aeY+E2s+xqcp9S+3WYYKKbSRPSZdfKf0yIr1/ChlM6Y=;
-        b=G3EJjCDGk7gLbL/ubJK60fZmOOwfehvNH8HAuHtIs1iNLAgYpEdN7Tw5Xu3a8tXN+F
-         IgkNvAwT1rIW3tGcivbUqaQz8ECQFs/OEcoH5SWFtoRBM87bWPcx6G6JP6qFGKNt3PHM
-         4EzjNVJK3XdIv7QrJVTodkFaDADVrQjYoI3bYXXeQR7U/YpZA834tzyrRWgriqwBIX0p
-         mZ9b8wToYPe8mlTUlqqfOd9thkUPRa+19vsX9AS7xfnUknTNTP8zAFSEGafs6UzENkD5
-         AqpILKRJdMaAYDeN5A+hm3demJEZHfCrP8sgiRPkC5FvIv/Tg4Ss7hP8oqNvsIHQn7Lu
-         BrdQ==
+        bh=oiAKojnSb91/fs9PbBc2BR8fQQ+2pgjjbaqdMMi6Ld0=;
+        b=iR8SBG8llqld/s9wiSkQcvkD5SyH+0lxEupixJwq/BcjKOMCXVBNd3hXbWO/YaHTOM
+         paTtgKf2qAwV140JUSvJP3aItVayrqwIahefBZVHlo01Y7sgOdMTOMaRrhaOArLXZDMD
+         tdRyAxv3IHihl+A1mOzpRv9vE9xkdidbHad5YfE0mHNyWWTewseGB//634ZxSlY49cSI
+         MaQ6lfEVCdTgzvQQO44fyhTeFPzslfQcvaOWYKXlSt3uuWoXl9pU7ZDRb4EHPMsRlKjc
+         6hHDdhhR05SjWAzKg8JdiuUhuQT+C9kmTSiPm8/ugSJYS00Ms/FRUdrNBSE6LEzLnLao
+         njcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=aeY+E2s+xqcp9S+3WYYKKbSRPSZdfKf0yIr1/ChlM6Y=;
-        b=Nu/ouvmu6jobEvcSUs+XleOJtQGw5apeXM22+ONPX+W8ZT+KfQMeONdHcQQt8zTP5/
-         wbEhUBq7dsT5WOc7vlFjVBN3yac7sLlQHeT+Du4fgzj/+TfDguOcSXigZCl6WQaXqvQo
-         S3F9F3vZpez/C2qZKXyKI4q/iV/etxH82h1OLFeHJxVYs1t5oqvVcnbPHEt/nKcohlAh
-         w+tuu9CAFeRK7NXEMu7FfavsJ6cFdg+yP1XyfbXMIamKBYz/LeWfNdHM/92BbP9XSCOi
-         CVMRRlsXnOUlZuECSugc1GbfavbMqEEfXxcYSAH40MoNyThkGCM4Yw12J+Rpral4IsBG
-         ZrNA==
-X-Gm-Message-State: AOAM533Ss00SNFYHWCnayyor1amzG0jDEk5CZE9b6rXAq/x2cnxXGwuk
-        n8GbqqR9Kfa0L7o4ODF4tjs=
-X-Google-Smtp-Source: ABdhPJzj3e3D998OD8t66vRWWcs3+/ze7qNVmF+RikiNyrTtdIp4YMnu6VD/heXrhybNFh+AS+kmhQ==
-X-Received: by 2002:a17:902:ccd0:b0:156:7ac2:5600 with SMTP id z16-20020a170902ccd000b001567ac25600mr32674595ple.156.1654678776902;
-        Wed, 08 Jun 2022 01:59:36 -0700 (PDT)
-Received: from [192.168.0.24] ([88.126.57.132])
-        by smtp.gmail.com with ESMTPSA id e22-20020a17090a4a1600b001e345c579d5sm13331733pjh.26.2022.06.08.01.59.33
+        bh=oiAKojnSb91/fs9PbBc2BR8fQQ+2pgjjbaqdMMi6Ld0=;
+        b=POmg6Upk/yqkVnNNVq3FFJxDQErj7K/RW6ZOx5V0Y7Y4huqKytZ0n1iMOBNye/NHFV
+         t98SiTULz64MY225ZRxQnnOXsDKSbvDN2tnfMHxM0aTwKKHLiaa+0Cjl5htF8efoQqMH
+         wNjP/U2BOOy4h9gqGHHfXEehIcrXw+u8ARiaqJVVYmEa6+zUIEkZEQ+HwnByFBxVFXzN
+         vdypfSqIJpm/8PpkiViAgE2Et8yZXcOlbNbY+0CN/azHrUub/bNMMgs+0FzjMO4hRsYF
+         9js1j92/wEh6skUhvBc4yjfzH4vlLAYdFdCbX1bS0oBTXeIQ4tgwtJ26ahYoQYZrWwaR
+         spxg==
+X-Gm-Message-State: AOAM531jIBdDFgCtjNVZB0k0din6JENRDN1LdzmS5XLNeZuXT9Bs3Pk3
+        zY9jJX00pjSG0Gj/bsigzNwduA==
+X-Google-Smtp-Source: ABdhPJyckb8xscBNTOvpq4Q37RPBgb7rImH1MWN1fFRpLJNZ8145876OyuEylO5gyszpaBgghwXnrg==
+X-Received: by 2002:a05:6402:2750:b0:42e:3d52:d270 with SMTP id z16-20020a056402275000b0042e3d52d270mr30814728edd.332.1654679115174;
+        Wed, 08 Jun 2022 02:05:15 -0700 (PDT)
+Received: from [192.168.0.190] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
+        by smtp.gmail.com with ESMTPSA id g22-20020aa7c596000000b0042deea0e961sm11689352edq.67.2022.06.08.02.05.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jun 2022 01:59:36 -0700 (PDT)
-Message-ID: <b89a2406-282c-7de1-2452-17f1a1c98d38@gmail.com>
-Date:   Wed, 8 Jun 2022 10:59:30 +0200
+        Wed, 08 Jun 2022 02:05:14 -0700 (PDT)
+Message-ID: <c431b51a-f68f-8608-5d5d-6dac85e2be4f@linaro.org>
+Date:   Wed, 8 Jun 2022 11:05:13 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v3 0/3] arm64: bcmbca: add bcm6858 soc support
+Subject: Re: [PATCH v1 2/7] dt-bindings: display/msm: hdmi: mark old GPIO
+ properties as deprecated
 Content-Language: en-US
-To:     Anand Gore <anand.gore@broadcom.com>,
-        Linux ARM List <linux-arm-kernel@lists.infradead.org>
-Cc:     kursad.oney@broadcom.com, tomer.yacoby@broadcom.com,
-        William Zhang <william.zhang@broadcom.com>,
-        joel.peshkin@broadcom.com, samyon.furman@broadcom.com,
-        dan.beygelman@broadcom.com,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220601201958.3072173-1-anand.gore@broadcom.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20220601201958.3072173-1-anand.gore@broadcom.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, David Heidelberg <david@ixit.cz>
+References: <20220607185806.2771739-1-dmitry.baryshkov@linaro.org>
+ <20220607185806.2771739-3-dmitry.baryshkov@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220607185806.2771739-3-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 07/06/2022 20:58, Dmitry Baryshkov wrote:
+> Mark obsolete GPIO properties as deprecated. They are not used by
+> existing device trees. While we are at it, also drop them from the
+> schema example.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../devicetree/bindings/display/msm/qcom,hdmi.yaml         | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,hdmi.yaml b/Documentation/devicetree/bindings/display/msm/qcom,hdmi.yaml
+> index 2f485b5d1c5d..2b1cac0851ce 100644
+> --- a/Documentation/devicetree/bindings/display/msm/qcom,hdmi.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/qcom,hdmi.yaml
+> @@ -59,22 +59,27 @@ properties:
+>  
+>    qcom,hdmi-tx-ddc-clk-gpios:
+>      maxItems: 1
+> +    deprecated: true
+>      description: HDMI DDC clock
+>  
+>    qcom,hdmi-tx-ddc-data-gpios:
+>      maxItems: 1
+> +    deprecated: true
+
+This is confusing. These two are not defined in the old bindings, not
+used by DTS, not used by Linux implementation - why did you add them?
+
+>      description: HDMI DDC data
+>  
+>    qcom,hdmi-tx-mux-en-gpios:
+>      maxItems: 1
+> +    deprecated: true
+>      description: HDMI mux enable pin
+>  
+>    qcom,hdmi-tx-mux-sel-gpios:
+>      maxItems: 1
+> +    deprecated: true
+>      description: HDMI mux select pin
+>  
+>    qcom,hdmi-tx-mux-lpm-gpios:
+>      maxItems: 1
+> +    deprecated: true
+>      description: HDMI mux lpm pin
+>  
+>    '#sound-dai-cells':
+> @@ -171,8 +176,6 @@ examples:
+>            <&clk 61>,
+>            <&clk 72>,
+>            <&clk 98>;
+> -      qcom,hdmi-tx-ddc-clk-gpios = <&msmgpio 70 0>;
+> -      qcom,hdmi-tx-ddc-data-gpios = <&msmgpio 71 0>;
+>        hpd-gpios = <&msmgpio 72 0>;
+>        core-vdda-supply = <&pm8921_hdmi_mvs>;
+>        hdmi-mux-supply = <&ext_3p3v>;
 
 
-On 6/1/2022 10:19 PM, Anand Gore wrote:
-> 
-> The initial support includes a bare-bone dts
-> for quad core ARM v8  with a brcm6345 uart.
-> 
-> Changes in v3:
-> - bus addressing changed from 64 bit to 32 bit
-> 
-> Changes in v2:
-> - Fix psci and GIC entries in dts
-> - Remove extra empty lines
-> - Simplify subject line
-> 
-> Anand Gore (3):
->    ARM64: dts: add dts files for bcmbca SoC bcm6858
->    dt-bindings: arm64: add BCM6858 soc
->    MAINTAINERS: add bcm6858 to bcmbca arch entry
-
-Series applied, thanks Anand.
--- 
-Florian
+Best regards,
+Krzysztof
