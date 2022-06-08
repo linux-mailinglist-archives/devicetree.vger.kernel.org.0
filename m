@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D11F542FDB
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 14:08:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE35A542FE4
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 14:08:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238653AbiFHMHi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 08:07:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38192 "EHLO
+        id S238683AbiFHMHj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 08:07:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238687AbiFHMHh (ORCPT
+        with ESMTP id S238688AbiFHMHh (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 08:07:37 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F2441CA5F4
-        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 05:07:31 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id e4so6561490ljl.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 05:07:31 -0700 (PDT)
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58ADC17DDEE
+        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 05:07:32 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id a2so26768533lfg.5
+        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 05:07:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=kDBKU4xgHvGFrezVeATBy53n8vUXQx7PhLrDpuBLOD4=;
-        b=zMmuc/84StRSzomRzYwYkOTluBMw+YRiUPxxGgiwpJBcPSQS8CDIuhceJv/uFsRV++
-         mzvEzRCJvXITD//EvJbHoo3wfwmj3qCs3LWO8TTIFX4m68+UqYURFwXnt8VjcSAt4KjE
-         1z10+1gxzQY3qsiTBkDL98DwZa35SnFx7LExEWLJDO+ZOK8HM8zV+5F0OezD4BleycKy
-         wVnc78tc+bXdEpu4lGrpY01/Du06cpy6hX6E8w4CK5MGL166HfNQPaM3X3Aq+616Sw9a
-         N6anojECNgXeqe5CheDJi0H4so3Xl5Vihf6pH6gUeLflvko6uqWoLGAfEoKSAyaWNCEF
-         8kOA==
+        bh=ywZDJVrp0n0IRRgem+yzlly0FGJg2gJ3lpMx4tNxzuM=;
+        b=LhfKofCuo1hI/kyqKa7GESz/tFf5nTTEsRGD1drqYnsDSKTKl7mh7bjqOMVtcPzePR
+         +d8NnY0Em/bybYJK+GfY61r9DoLU1p1HNrb26LJhZb1l4qzE/vnKh11DliTs98bndMU1
+         pTsHLKiI5PEMWM67FRQLRzblAmmyzZ7aoHhFt1Lfd8j5V1ZF/t+2Bemio1dtTaYNeIoX
+         p6bOhZqVZzeDQ823vnmjyZ4TjXq/nbxO5SulggVBKOmjpPW74XFxZj0H6smDQWLomNRx
+         7y+etJlIb0WDVgJ8Zs0BMSERlp3ak1aDh258XRSZOhb3fsshb3khdppIYx3qEEv6fEQF
+         +q6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=kDBKU4xgHvGFrezVeATBy53n8vUXQx7PhLrDpuBLOD4=;
-        b=xN/tV18ZoA+RtPj5ae00EIt+p8FWwUGUT8C+wN1iTbFFt8yjUAXX5V5vf2wYYmn9vw
-         FsxtshqRoSOS2OxfEPxiR6oLZUIZUZ0KbLkbgpxbfC/VZNCFbH0jo3ph6If/K4N1wo7I
-         tnIEBbSKBG8Id6G/xBQe+5jVpI3/UYs753szeHM9Ura5roXFvkrPvlh8bJ6lXFxuYpqu
-         sEwwCMxYElK+tmocClbAamkb7/SIs//0OifRg5lbhNhBrEvNfyM6WI0bW4GMKCfHUo9C
-         T0yeomBFgW5YLwd7rmLATjYLwu9EuP2XNywg3exoegvfI5SgHwgcH8mk0zHFBk41lQFa
-         NHWg==
-X-Gm-Message-State: AOAM531478DF/KyFx+dw7dbzz2+ycQU2r+LaWdBJUWqw9Dmq6PmmZpvr
-        9tMrnnSYKPBVE/2jlqPnn5loAKLp22jQAJ/2
-X-Google-Smtp-Source: ABdhPJy/S5pVnSNNP6KRSYp3iaasr5TE0F0eWIvCe2hCYSzGL89wafjDuU8uxmo+hYriHLwvIbJSsg==
-X-Received: by 2002:a05:651c:199f:b0:255:a45c:1517 with SMTP id bx31-20020a05651c199f00b00255a45c1517mr6258544ljb.25.1654690049580;
-        Wed, 08 Jun 2022 05:07:29 -0700 (PDT)
+        bh=ywZDJVrp0n0IRRgem+yzlly0FGJg2gJ3lpMx4tNxzuM=;
+        b=28pjWuKkYQ08hzf7eLUSoDV2UHUtd6huKO59FfCg1Mc/a5au98KrgsQrh7TGkSeS4a
+         qArOvAN4AjrBPWjvlb7jzf3IPQd1s8OAER1yUS+P8KHl1DBmVF/b2GKrIzzfdpYiA2D6
+         xdR+xbo/4q9jByDP8W41AAGFnSjXAZfJ2M4jWB7P/TwcaiNSZC2J3ERrq4453PkPYXvN
+         BqpWZYGwhSPvO+OVHkyplC+F3w9RSX0VDfhrM6tLAKB98y2VDG4hsnCC5esgIQJ7nACd
+         aTiLOIL5b4ND3ArhyAUVnm8+rTWVIaQ9XfhBpKzYFpowqnuVgsS3uRzCx8jSW4BN87qj
+         /lhA==
+X-Gm-Message-State: AOAM530BLaRZm23c5V2jTo9APNewFGStAgweuxynNfVA/wI2jBnen8HU
+        XXAcRAp64k+LorLAC4TSPggKipm4cqzAzqiW
+X-Google-Smtp-Source: ABdhPJz7tK93EXNnMP55322ciEx1xGXgkiQ6vvmmZXDmFnGwjAV/yE1fK6My8eJe0sLtueQUeBFgxg==
+X-Received: by 2002:a19:a411:0:b0:478:f29b:e30e with SMTP id q17-20020a19a411000000b00478f29be30emr21631651lfc.334.1654690050658;
+        Wed, 08 Jun 2022 05:07:30 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id 4-20020ac25f04000000b0047b0f2d7650sm52049lfq.271.2022.06.08.05.07.28
+        by smtp.gmail.com with ESMTPSA id 4-20020ac25f04000000b0047b0f2d7650sm52049lfq.271.2022.06.08.05.07.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jun 2022 05:07:29 -0700 (PDT)
+        Wed, 08 Jun 2022 05:07:30 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -59,9 +59,9 @@ Cc:     Stephen Boyd <swboyd@chromium.org>,
         Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
         freedreno@lists.freedesktop.org
-Subject: [PATCH v2 04/12] arm: dts: qcom: apq8064-ifc6410: drop hdmi-mux-supply
-Date:   Wed,  8 Jun 2022 15:07:15 +0300
-Message-Id: <20220608120723.2987843-5-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v2 05/12] drm/msm/hdmi: drop the hdmi-mux support
+Date:   Wed,  8 Jun 2022 15:07:16 +0300
+Message-Id: <20220608120723.2987843-6-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220608120723.2987843-1-dmitry.baryshkov@linaro.org>
 References: <20220608120723.2987843-1-dmitry.baryshkov@linaro.org>
@@ -77,26 +77,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The HDMI circuitry on the IFC6410 is not powered by the 3v3. Drop the
-hdmi-mux-supply property.
+With the last (and only) in-kernel user of hdmi-mux regulator, drop it
+from the HDMI driver.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm/boot/dts/qcom-apq8064-ifc6410.dts | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/msm/hdmi/hdmi.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/qcom-apq8064-ifc6410.dts b/arch/arm/boot/dts/qcom-apq8064-ifc6410.dts
-index 2638b380be20..eb6b1a1ff117 100644
---- a/arch/arm/boot/dts/qcom-apq8064-ifc6410.dts
-+++ b/arch/arm/boot/dts/qcom-apq8064-ifc6410.dts
-@@ -341,7 +341,6 @@ hdmi-tx@4a00000 {
- 			status = "okay";
+diff --git a/drivers/gpu/drm/msm/hdmi/hdmi.c b/drivers/gpu/drm/msm/hdmi/hdmi.c
+index cf24e68864ba..06b44b40ec09 100644
+--- a/drivers/gpu/drm/msm/hdmi/hdmi.c
++++ b/drivers/gpu/drm/msm/hdmi/hdmi.c
+@@ -358,7 +358,7 @@ static const char *hpd_reg_names_none[] = {};
  
- 			core-vdda-supply = <&pm8921_hdmi_switch>;
--			hdmi-mux-supply = <&ext_3p3v>;
+ static struct hdmi_platform_config hdmi_tx_8660_config;
  
- 			hpd-gpios = <&tlmm_pinmux 72 GPIO_ACTIVE_HIGH>;
+-static const char *hpd_reg_names_8960[] = {"core-vdda", "hdmi-mux"};
++static const char *hpd_reg_names_8960[] = {"core-vdda"};
+ static const char *hpd_clk_names_8960[] = {"core", "master_iface", "slave_iface"};
  
+ static struct hdmi_platform_config hdmi_tx_8960_config = {
 -- 
 2.35.1
 
