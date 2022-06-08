@@ -2,221 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4837A54389C
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 18:15:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 012325438A5
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 18:17:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245234AbiFHQPK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 12:15:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51648 "EHLO
+        id S245255AbiFHQQ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 12:16:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245050AbiFHQPJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 12:15:09 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BABD04705E;
-        Wed,  8 Jun 2022 09:15:07 -0700 (PDT)
+        with ESMTP id S245245AbiFHQQ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 12:16:56 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20E6E3CA4F;
+        Wed,  8 Jun 2022 09:16:55 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id o7so9153349eja.1;
+        Wed, 08 Jun 2022 09:16:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1654704907; x=1686240907;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=/Z87esyQGQnwIqrnliOSqFPtMlfM+AiPadqlZdDyIlA=;
-  b=xyXdSU3UI0jWshslX6kJSK4fw3/OPnyEmuzr0gCE3iUUqq9aaILKywpp
-   KYZxOv0uQhv072eUew+fYBSHDqPc0TMrP9Bg0FbGNlBi4pDt0pknAqoLZ
-   MD9/v/y1LlG+igeY8lU8pvXPRUYG+eslCFs4EO/0SAOQDh8TE/neWkfFm
-   A=;
-Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 08 Jun 2022 09:15:07 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jun 2022 09:15:06 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 8 Jun 2022 09:15:06 -0700
-Received: from [10.216.14.169] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 8 Jun 2022
- 09:14:59 -0700
-Message-ID: <c8c3775c-6724-1726-7c2e-cdfb8bf71e1b@quicinc.com>
-Date:   Wed, 8 Jun 2022 21:44:56 +0530
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=RulrCroV+cJFfdecqwchHiiW/aMfDe+YTb7wp3z5Uvw=;
+        b=ZG5ZRvUUiR5wvuU1XGn+fQLGxRbZbhvBllxNQQqjt3osLgM1EECsTAkuWanRrZ5+MY
+         2HM0LtKxkyTSKeBOWaTNwLNkAJDGWnTIgzAfNLvEfk9N6diBW5jESUvzUZk9ohk4Xjqk
+         1d6aozWmcT5Qj3Kv+OQp6+vbJRaoqGcv23GgRIuCbNKyT+jlgTq6q6HzhYF3x2FnhxeZ
+         JtciVjOQ3FToH3zAGbRnlIYCAw03wVYG+BO1ZyVKjMS08K09CDzA4aZYhZd6PJiPsNHF
+         aho20Pq4iqrXlJDvSDivHJXn+ZY+syzt1kSfi2u8rmryfwrR/hVULRMw81YOdUKrhSQo
+         YnCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=RulrCroV+cJFfdecqwchHiiW/aMfDe+YTb7wp3z5Uvw=;
+        b=AnRCXT2Ay43W8dAwnPBadZjbp1hn/A1NKje2GKNWDQwq36D88+zz7XZ+YiI82mMfDp
+         p2vlibxupL7AGb0tbfjf4+SgT7JP/QHt8yQxZenzfJd3X/zVMR+LXDfbXlPrgxdFIOsI
+         ibqEgM5YpwCT8wfOZARr0pSLRn90bDYTVAB/5yrkVcDekf2FMG+3+W+gtE5yeBaTqX9q
+         ZOp9j8r/3wZwVJfoO5Az4zT8o50vYXUM4HQ/eEzkA0iPjmlTG4UHqu27v+2UE4l7jaPV
+         nn2TxEzMqpmicyPiAfV3uX9frcSdaRkSULMdrDTYqQX00dDRZaxDnhAfzD+ULvLvTAxU
+         y0DQ==
+X-Gm-Message-State: AOAM530OG5hzqjXwsa08pqoplczGNodcaHahiVpR71RTth/ULlEInlOZ
+        B2+XWKWuH09Sojd+1rwB7pCrdRBABqFntvgaJEA=
+X-Google-Smtp-Source: ABdhPJzC25VNWovNJxyxqoY+z+J343yMcTvxYwXOTWVpZYW2hxqNCcOD/G9PR2DhoS/NkUCbRh5rZ8JHiz3PV3h7bZw=
+X-Received: by 2002:a17:906:149:b0:711:fca6:bc2f with SMTP id
+ 9-20020a170906014900b00711fca6bc2fmr2287384ejh.497.1654705013642; Wed, 08 Jun
+ 2022 09:16:53 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v8 1/3] dt-bindings: phy: qcom,usb-snps-femto-v2: Add phy
- override params bindings
-Content-Language: en-US
-To:     Vinod Koul <vkoul@kernel.org>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        "Doug Anderson" <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <quic_pkondeti@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <quic_vpulyala@quicinc.com>,
-        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-References: <1654066564-20518-1-git-send-email-quic_kriskura@quicinc.com>
- <1654066564-20518-2-git-send-email-quic_kriskura@quicinc.com>
- <YqDGCxWFvxYWWoZh@matsya>
-From:   Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <YqDGCxWFvxYWWoZh@matsya>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220608113553.32083-1-shreeya.patel@collabora.com> <20220608113553.32083-3-shreeya.patel@collabora.com>
+In-Reply-To: <20220608113553.32083-3-shreeya.patel@collabora.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Wed, 8 Jun 2022 18:16:17 +0200
+Message-ID: <CAHp75VcpHO-_Dghdc0VFjT=us-95h1b03Jmg32odJuuJZRy8aA@mail.gmail.com>
+Subject: Re: [PATCH v5 2/2] iio: light: Add support for ltrf216a sensor
+To:     Shreeya Patel <shreeya.patel@collabora.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>, Zhigang.Shi@liteon.com,
+        krisman@collabora.com, linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Collabora Kernel ML <kernel@collabora.com>,
+        alvaro.soliverez@collabora.com, Dmitry Osipenko <digetx@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Jun 8, 2022 at 1:37 PM Shreeya Patel
+<shreeya.patel@collabora.com> wrote:
+>
+> From: Zhigang Shi <Zhigang.Shi@liteon.com>
+>
+> Add initial support for ltrf216a ambient light sensor.
+>
+> Datasheet: gitlab.steamos.cloud/shreeya/iio/-/blob/main/LTRF216A.pdf
 
-On 6/8/2022 9:23 PM, Vinod Koul wrote:
-> On 01-06-22, 12:26, Krishna Kurapati wrote:
->> From: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
->>
->> Add device tree bindings for SNPS phy tuning parameters.
->>
->> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
->> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>   .../bindings/phy/qcom,usb-snps-femto-v2.yaml       | 96 ++++++++++++++++++++++
->>   1 file changed, 96 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
->> index 1ce251d..daeeb04 100644
->> --- a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
->> +++ b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
->> @@ -53,6 +53,102 @@ properties:
->>     vdda33-supply:
->>       description: phandle to the regulator 3.3V supply node.
->>   
->> +  qcom,hs-disconnect-bp:
->> +    description:
->> +      This adjusts the voltage level for the threshold used to
->> +      detect a disconnect event at the host. Possible values are.
->> +      The values defined are in multiples of basis points (1bp = 0.01%).
->> +      The hardware accepts only discrete values. The value closest to the
->> +      provided input will be chosen as the override value for this param.
->> +    minimum: -272
->> +    maximum: 2156
->> +
->> +  qcom,squelch-detector-bp:
->> +    description:
->> +      This adjusts the voltage level for the threshold used to
->> +      detect valid high-speed data.
->> +      The values defined are in multiples of basis points (1bp = 0.01%).
->> +      The hardware accepts only discrete values. The value closest to the
->> +      provided input will be chosen as the override value for this param.
->> +    minimum: -2090
->> +    maximum: 1590
->> +
->> +  qcom,hs-amplitude-bp:
->> +    description:
->> +      This adjusts the high-speed DC level voltage.
->> +      The values defined are in multiples of basis points (1bp = 0.01%).
->> +      The hardware accepts only discrete values. The value closest to the
->> +      provided input will be chosen as the override value for this param.
->> +    minimum: -660
->> +    maximum: 2670
->> +
->> +  qcom,pre-emphasis-duration-bp:
->> +    description:
->> +      This signal controls the duration for which the
->> +      HS pre-emphasis current is sourced onto DP<#> or DM<#>.
->> +      The HS Transmitter pre-emphasis duration is defined in terms of
->> +      unit amounts. One unit of pre-emphasis duration is approximately
->> +      650 ps and is defined as 1X pre-emphasis duration.
->> +      The values defined are in multiples of basis points (1bp = 0.01%).
->> +      The hardware accepts only discrete values. The value closest to the
->> +      provided input will be chosen as the override value for this param.
->> +    minimum: 10000
->> +    maximum: 20000
->> +
->> +  qcom,pre-emphasis-amplitude-bp:
->> +    description:
->> +      This signal controls the amount of current sourced to
->> +      DP<#> and DM<#> after a J-to-K or K-to-J transition.
->> +      The HS Transmitter pre-emphasis current is defined in terms of unit
->> +      amounts. One unit amount is approximately 2 mA and is defined as
->> +      1X pre-emphasis current.
->> +      The values defined are in multiples of basis points (1bp = 0.01%).
->> +      The hardware accepts only discrete values. The value closest to the
->> +      provided input will be chosen as the override value for this param.
->> +    minimum: 10000
->> +    maximum: 40000
->> +
->> +  qcom,hs-rise-fall-time-bp:
->> +    description:
->> +      This adjusts the rise/fall times of the high-speed waveform.
->> +      The values defined are in multiples of basis points (1bp = 0.01%).
->> +      The hardware accepts only discrete values. The value closest to the
->> +      provided input will be chosen as the override value for this param.
->> +    minimum: -4100
->> +    maximum: 5430
->> +
->> +  qcom,hs-crossover-voltage-microvolt:
->> +    description:
->> +      This adjusts the voltage at which the DP<#> and DM<#>
->> +      signals cross while transmitting in HS mode.
->> +      The values defined are in milli volts. The hardware accepts only
->> +      discrete values. The value closest to the provided input will be
->> +      chosen as the override value for this param.
->> +    minimum: -31000
->> +    maximum: 28000
->> +
->> +  qcom,hs-output-impedance-micro-ohms:
->> +    description:
->> +      In some applications, there can be significant series resistance
->> +      on the D+ and D- paths between the transceiver and cable. This adjusts
->> +      the driver source impedance to compensate for added series
->> +      resistance on the USB. The values defined are in milli ohms.
->> +      The hardware accepts only discrete values. The value closest to the
->> +      provided input will be chosen as the override value for this param.
->> +    minimum: -2300000
->> +    maximum: 6100000
->> +
->> +  qcom,ls-fs-output-impedance-bp:
->> +    description:
->> +      This adjusts the low- and full-speed single-ended source
->> +      impedance while driving high. The following adjustment values are based
->> +      on nominal process, voltage, and temperature.
->> +      The values defined are in multiples of basis points (1bp = 0.01%).
->> +      The hardware accepts only discrete values. The value closest to the
->> +      provided input will be chosen as the override value for this param.
->> +    minimum: -1053
->> +    maximum: 1310
-> do we need all these values in DT, till now we have these in driver..
-> what is the reasoning to add these in DT instead?
+https?
 
-Hi Vinod,
+...
 
-   The patch series started out as you mentioned. We used to have phy 
-tune register values passed from dT to driver and written to respective 
-registers in the driver code.
+> +#define LTRF216A_ALS_READ_DATA_DELAY   20000
 
-But it was later suggested not to pass register values from dT. Instead 
-define the meaningful properties that make up the phy tuning parameters 
-and pass their values from dT. The driver code is supposed to convert 
-these values and map them to required register values. This is why we 
-had to come up with these parameters and declare them in bindings and dT.
+What units?
 
-More info regarding the discussion at : 
-https://lore.kernel.org/linux-usb/b45b3b7e-e1c0-79b6-81c0-53c70427dd10@canonical.com/
+...
 
+> +/* Window Factor is needed when device is under Window glass
 
-Regards,
+the device
 
-Krishna,
+> + * with coated tinted ink. This is to compensate the light loss
 
+for the?
+
+> + * due to the lower transmission rate of the window glass.
+> + */
+
+/*
+ * Multi-line comments should look
+ * like this very example. Find the difference.
+ */
+
+...
+
+> +static int ltrf216a_init(struct iio_dev *indio_dev)
+> +{
+> +       struct ltrf216a_data *data = iio_priv(indio_dev);
+> +       int ret = 0;
+
+Useless assignment.
+
+> +
+> +       /* enable sensor */
+> +       ret |= FIELD_PREP(LTRF216A_ALS_ENABLE_MASK, 1);
+
+This is bad code. Use another variable with distinguashable name.
+
+> +       ret = i2c_smbus_write_byte_data(data->client, LTRF216A_MAIN_CTRL, ret);
+
+Can this driver utilize regmap I2C?
+
+> +       if (ret < 0)
+> +               dev_err(&data->client->dev,
+> +                       "Error writing to LTRF216A_MAIN_CTRL while enabling the sensor: %d\n", ret);
+> +
+> +       return ret;
+> +}
+
+...
+
+> +static int ltrf216a_disable(struct iio_dev *indio_dev)
+> +{
+> +       struct ltrf216a_data *data = iio_priv(indio_dev);
+> +       int ret = 0;
+
+Useless assignment.
+
+> +       ret = i2c_smbus_write_byte_data(data->client, LTRF216A_MAIN_CTRL, 0);
+> +       if (ret < 0)
+
+> +               dev_err(&data->client->dev,
+> +                       "Error writing to LTRF216A_MAIN_CTRL while disabling the sensor: %d\n",
+> +                       ret);
+
+With a temporary variable for the device this may be located on one line.
+Same for the similar cases.
+
+> +       return ret;
+> +}
+
+...
+
+> +#ifdef CONFIG_PM
+
+Why? Can't it be hidden by using pm_sleep_ptr() or alike?
+
+> +static int ltrf216a_set_power_state(struct ltrf216a_data *data, bool on)
+> +{
+> +       struct device *dev = &data->client->dev;
+> +       int ret = 0, suspended;
+
+Useless assignment. Please, go thru all your code and drop these
+potentially dangerous assignments.
+
+> +
+> +       if (on) {
+> +               suspended = pm_runtime_suspended(dev);
+> +               ret = pm_runtime_get_sync(dev);
+> +
+> +               /* Allow one integration cycle before allowing a reading */
+> +               if (suspended)
+> +                       msleep(ltrf216a_int_time_reg[0][0]);
+> +       } else {
+> +               pm_runtime_mark_last_busy(dev);
+> +               ret = pm_runtime_put_autosuspend(dev);
+> +       }
+> +
+> +       return ret;
+> +}
+> +#else
+> +static int ltrf216a_set_power_state(struct ltrf216a_data *data, bool on)
+> +{
+> +       return 0;
+> +}
+> +#endif
+> +
+> +int ltrf216a_check_for_data(struct i2c_client *client)
+> +{
+> +       int ret;
+> +
+> +       ret = i2c_smbus_read_byte_data(client, LTRF216A_MAIN_STATUS);
+> +       if (ret < 0) {
+> +               dev_err(&client->dev, "Failed to read LTRF216A_MAIN_STATUS register: %d\n", ret);
+
+> +               return ret;
+
+Dup.
+
+> +       }
+> +
+> +       return ret;
+> +}
+
+...
+
+> +#ifdef CONFIG_PM_SLEEP
+
+Oh, please no.
+
+> +#endif
+
+...
+
+> +static const struct dev_pm_ops ltrf216a_pm_ops = {
+> +       SET_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend,
+> +                               pm_runtime_force_resume)
+> +       SET_RUNTIME_PM_OPS(ltrf216a_runtime_suspend,
+> +                          ltrf216a_runtime_resume, NULL)
+> +};
+
+Use pm_sleep_ptr() and corresponding top-level macros.
+
+-- 
+With Best Regards,
+Andy Shevchenko
