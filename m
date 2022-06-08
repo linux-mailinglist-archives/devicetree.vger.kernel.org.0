@@ -2,79 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B880C542E78
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 12:53:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DA1C542E7D
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 12:55:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236959AbiFHKwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 06:52:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55882 "EHLO
+        id S237476AbiFHKz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 06:55:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236971AbiFHKw3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 06:52:29 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F14E65F267
-        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 03:52:26 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id me5so40122496ejb.2
-        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 03:52:26 -0700 (PDT)
+        with ESMTP id S236867AbiFHKz2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 06:55:28 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 562E334BB8
+        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 03:55:26 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id kq6so27635372ejb.11
+        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 03:55:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=H9gdPAYEu5XJptAc0kQeVYVgl5hWoLoZN5syYTQ5mNM=;
-        b=Qh7Ty68rfizvfaF3qG8UEXEMAt0L3arSPDojNDSN3auo8VlkqDM72cqwFuZziVAsa0
-         plKefXVcxI4k66rDRYoTRRW41rt9bZNsOeumGTlCSWF6NdgTUl6bHDo7dCSMiFfN41m3
-         ouBmkLI4q5sjmmTLuySV7f3HrRmRK5Iq4vu50YsM/ZWBx2Ksr7AuLb7SCZpErlpQUzfE
-         V1fQEd7BVgwnY/mzfQmbnuD9aR6iRklNYslEvhNJ6YfKXeezX1RGHUGLX/hNEbDzDipA
-         bIeLe8zWV+LJSLMvxR2s4DD089CMhg8Zv79vStXTYNP/dQNUB0+dop1eCwqCoC9uP51u
-         LTKA==
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=Tx1fdSUDP/pC4Eok8lmSr38LqKqS6wXLAExFohKmVw4=;
+        b=Nvy53yTqgduzk3wU+K42i9OpUPveaEpMI/kpiazssE4NLLvharnwBHoUX3Ch4UXdF+
+         9sQ8XGD1lqXbwRa8rsV0+qtloNosw3/krAllwPwcowHIxpQPLteFdNr1wpLJfOI+u5y2
+         v8PxsSQZ14Nk/Pbxvv/Bbw5xfRWeo0Iec9TK2lxVj/8upsFDQvaBWvcyFv7c0qkfh0NE
+         qISBIjRcXQPvmE3KjeCmqx7UrpH5joWgX/HM+vPr3gz3w2befhRpscka0/c2HLuXLb0S
+         4gdInESuoNyHkrl0EvmbfqPcNCbPu4rOyNxYiBWbfqwI6ie0Bxo5J5a0diRchFSQxEeZ
+         fJIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+         :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=H9gdPAYEu5XJptAc0kQeVYVgl5hWoLoZN5syYTQ5mNM=;
-        b=PqMRYNyKUtbonoXxp9n6XBFIPvAc/A1O14tUAqMTbo+SE6HWkm6kvX8nPXZXpmwJW2
-         KaLA/3CD1HDylwliRub9U+zUsbl3vpEsIIPOtjgMl6cDP8EyEixkc2U/4xHtvjA1Faoo
-         yqt+T067RWHS8TT0A70k6kL5fmp8wEkBeSZBN4EUBtGezGXSKJW/OBWFrEeIK/+UpDvU
-         ucJVaNBmf4joSAFKIeCMrCmhHYeptSbUEcjvtSxXAK/3+5fjGGohonFNDBTXNzebdxWb
-         fM6q5eqia50AeS+o3X50s8ghZsOCZDwoLVUqTeL69+qiMJaATKTnlwrJNUxyR3tyGiMX
-         WVBQ==
-X-Gm-Message-State: AOAM531sLGptLXd2ARyCW6kRAZr+JcueVzsr6t9ezChn4n18WfU2Kuit
-        vG/vNv1T/hgqKBn+EumQt4fhVQ==
-X-Google-Smtp-Source: ABdhPJwWec2s26qVJ689sEFpvOyRFQnCAppG/t70ZsXqIRM6ewBZOhQ5Orpe86cCQG5CBFZlBxQUTw==
-X-Received: by 2002:a17:906:6a1a:b0:711:ec13:b7bc with SMTP id qw26-20020a1709066a1a00b00711ec13b7bcmr4875722ejc.688.1654685545546;
-        Wed, 08 Jun 2022 03:52:25 -0700 (PDT)
+        bh=Tx1fdSUDP/pC4Eok8lmSr38LqKqS6wXLAExFohKmVw4=;
+        b=iA7WJ4esGucv0makzZ4t3Hj9g6NUm+j71DhuECDfKpIAOOuLFfFVrUGXSTeZ/bAmN/
+         hgO1tVBDwBCu1WB044/o9/Mqiavkfkv+hxJjx1n4HKh0B/aLUL+8xDlVoDlFyF2hP2Za
+         Pd+0X+YIu/LSwMQ1S2zKt+JA+xOtBUDGXgocum6GB8ppcz6cmv1xLYwnC712EvuuG7R3
+         uiV+PpT9elgU6XH95YEC0BFnw0mxRKcWNwS8ou4R911k5sI8IIVaZgRdzCv4ffgXFS9n
+         LWsOWYMH13O64vMvsNuq2XOO1YM6H8Jfvsw+IFYAFSegEaG0nL5WJiQEPUUPrwJistVe
+         lIMw==
+X-Gm-Message-State: AOAM531rlQpz57bKi2cWyOKPU4m9FMF+1i3o3ck5/epvU9unX6VEEHnK
+        ZgobTa6kAHp8UUEcWMKFhbGh0w==
+X-Google-Smtp-Source: ABdhPJyFoezE9GANGcKacdeyOOY6mgdnZIIflaruNPfFrKyeD51sAFPGlB+AbSdhYKD9FdglBTy1Tg==
+X-Received: by 2002:a17:906:7944:b0:6da:b834:2f3e with SMTP id l4-20020a170906794400b006dab8342f3emr31804457ejo.353.1654685724878;
+        Wed, 08 Jun 2022 03:55:24 -0700 (PDT)
 Received: from [192.168.0.191] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id b6-20020a17090636c600b006feb6dee4absm9002564ejc.137.2022.06.08.03.52.24
+        by smtp.gmail.com with ESMTPSA id a23-20020aa7cf17000000b0042dc882c823sm12062001edy.70.2022.06.08.03.55.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jun 2022 03:52:24 -0700 (PDT)
-Message-ID: <83a8fb86-3311-87fe-c4ca-ab8e6d0cf784@linaro.org>
-Date:   Wed, 8 Jun 2022 12:52:23 +0200
+        Wed, 08 Jun 2022 03:55:24 -0700 (PDT)
+Message-ID: <3930eabd-4ca8-d644-e27a-588b189cf1ae@linaro.org>
+Date:   Wed, 8 Jun 2022 12:55:23 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH 1/2] dt-bindings: watchdog: renesas,wdt: Add r9a09g011
- (RZ/V2M) support
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: qcom: Add sdm845 compatibles
 Content-Language: en-US
-To:     Phil Edworthy <phil.edworthy@renesas.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+To:     Stefan Hansson <newbie13xd@gmail.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>
-References: <20220607135619.174110-1-phil.edworthy@renesas.com>
- <20220607135619.174110-2-phil.edworthy@renesas.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org
+References: <20220603201341.94137-1-newbie13xd@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220607135619.174110-2-phil.edworthy@renesas.com>
+In-Reply-To: <20220603201341.94137-1-newbie13xd@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,71 +78,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/06/2022 15:56, Phil Edworthy wrote:
-> Add the documentation for the r9a09g011 SoC, but in doing so also
-> reorganise the doc to make it easier to read.
-> Additionally, make the binding require an interrupt to be specified.
-> Whilst the driver does not need an interrupt, all of the SoCs that use
-> this binding actually provide one.
-> 
-> Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+On 03/06/2022 22:13, Stefan Hansson wrote:
+> Add compatible for SDM845 and all supported devices that use it.
 > ---
->  .../bindings/watchdog/renesas,wdt.yaml        | 63 ++++++++++++-------
->  1 file changed, 42 insertions(+), 21 deletions(-)
+>  .../devicetree/bindings/arm/qcom.yaml          | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> index a8d7dde5271b..6473734921e3 100644
-> --- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> @@ -31,6 +31,11 @@ properties:
->                - renesas,r9a07g054-wdt    # RZ/V2L
->            - const: renesas,rzg2l-wdt
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index 129cdd246223..6436b79dc60a 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -235,6 +235,24 @@ properties:
+>                - xiaomi,lavender
+>            - const: qcom,sdm660
 >  
 > +      - items:
 > +          - enum:
-> +              - renesas,r9a09g011-wdt    # RZ/V2M
-> +          - const: renesas,rzv2m-wdt     # RZ/V2M
-> +
->        - items:
->            - enum:
->                - renesas,r8a7742-wdt      # RZ/G1H
-> @@ -70,13 +75,27 @@ properties:
->    reg:
->      maxItems: 1
->  
-> -  interrupts: true
-> +  interrupts:
-> +    minItems: 1
-> +    items:
-> +      - description: Timeout
-> +      - description: Parity error
->  
-> -  interrupt-names: true
-> +  interrupt-names:
+> +              - google,cheza-rev1
+> +              - google,cheza-rev2
+> +              - google,cheza
 
-This also needs minItems
+All these were already sent:
+Google by Doug, other by me:
 
-> +    items:
-> +      - const: wdt
-> +      - const: perrout
->  
-> -  clocks: true
-> +  clocks:
-> +    minItems: 1
-> +    items:
-> +      - description: Register access clock
-> +      - description: Main clock
->  
-> -  clock-names: true
-> +  clock-names:
+https://lore.kernel.org/all/20220521164550.91115-7-krzysztof.kozlowski@linaro.org/
 
-Ditto
-
-> +    items:
-> +      - const: pclk
-> +      - const: oscclk
->  
 
 Best regards,
 Krzysztof
