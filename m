@@ -2,69 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B515C543CDB
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 21:29:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 889FD543CEF
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 21:33:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232406AbiFHT3I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 15:29:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34374 "EHLO
+        id S234376AbiFHTdr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 15:33:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235475AbiFHT3H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 15:29:07 -0400
-Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 857BE1E4B49
-        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 12:29:05 -0700 (PDT)
-Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-e5e433d66dso28460560fac.5
-        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 12:29:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to;
-        bh=5vvwrgdknn1K9gJFkCVHoS1UOMpaiXh3dfNKyE3vHCA=;
-        b=Hd5jcwosS+DHrHrSRvsp1DiAbCxUrFWV4Ys2JHKBdh4xlpDyW7BhzoIfKfDx5gjQXM
-         1mW+SikjxugwKvDlj4Tgp4hFCUdMfAORPCneDm8IwpDuvRUsynDdRTIVK3kwSK3+KRHw
-         5rMCTq+XO6A0kbgcSWlQN+lUXklGV8Tcp6KxI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to;
-        bh=5vvwrgdknn1K9gJFkCVHoS1UOMpaiXh3dfNKyE3vHCA=;
-        b=vuI+IVU0sQPlzj550uw2FM5PqBnBPcfiIpD37f0TKkR7z+90XbRJc6lk+GlQd2R+5T
-         1Xv4TcU6omtMZQ3cN6P8I331BqUZkGfGsUgyM4LYnltnnA1nC6bez1tGDXYg9YtJKfNT
-         30txBPlN8Gs0HRvcHy0rmUlQddh6QLdD9H27pvZCaDo5M0mvGqpurTH+GY1wavzlSPGB
-         XouMXDzkWG4i/HhOaREZh06I8yYW8GfxhOrmhyWgKndpotcIC6+aaDwmBt2nT0X3+h6y
-         UUMpGwZsyY0GjOxUm2Qe8j1kg3Yw1+3ndghjiz9p2rwHt/jodQNLsqREpZwvMYUkvst0
-         k74Q==
-X-Gm-Message-State: AOAM531XGi6psHYh05UX3aQm3jjUIvQcGtQP4+eNHlqwZBTOGs1c6w6H
-        BppdQzibbjJOHonOMiBGbiLzpWbTRgtFx4JXcURMeg==
-X-Google-Smtp-Source: ABdhPJwfbQOhuoavwnKuPwNYfxx7ThIu71YX1w2/3eSgITORUdWupWunN82u7ED3ykn9MRwPBeCHP/wkwS4CsJQhctI=
-X-Received: by 2002:a05:6870:240d:b0:f1:b878:e97c with SMTP id
- n13-20020a056870240d00b000f1b878e97cmr3169953oap.193.1654716544865; Wed, 08
- Jun 2022 12:29:04 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 8 Jun 2022 12:29:04 -0700
+        with ESMTP id S233915AbiFHTdq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 15:33:46 -0400
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 68C451E73FA;
+        Wed,  8 Jun 2022 12:33:42 -0700 (PDT)
+Received: from [10.16.8.184] (unknown [131.107.147.184])
+        by linux.microsoft.com (Postfix) with ESMTPSA id A896E20BE665;
+        Wed,  8 Jun 2022 12:33:41 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com A896E20BE665
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1654716821;
+        bh=9VPqD11Y0U15W613gU8t13a2O2PKBaCp3UdzdYQ4GpQ=;
+        h=Date:From:Subject:To:Cc:References:In-Reply-To:From;
+        b=WhxkAlfE/Arw1RbLOc7GEnlQmI2Ol2oj9XSLISpdfl1thZVJCkxMpYubDUAIfp6gg
+         qzT1HybGTMPU538EVfXltAv3LCVgFXVxdeKXiiAmKKD3USU/q0s8/vVNvxd6sOBC9s
+         6eAoj0OttVQQb2g3fgR8EyvCwRtYvdmQyszSk3gk=
+Message-ID: <6f9e1481-db9c-cd5f-c38d-bdcd3040315f@linux.microsoft.com>
+Date:   Wed, 8 Jun 2022 12:33:41 -0700
 MIME-Version: 1.0
-In-Reply-To: <1654696929-20205-3-git-send-email-quic_srivasam@quicinc.com>
-References: <1654696929-20205-1-git-send-email-quic_srivasam@quicinc.com> <1654696929-20205-3-git-send-email-quic_srivasam@quicinc.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Wed, 8 Jun 2022 12:29:04 -0700
-Message-ID: <CAE-0n53EY1eKqnVLhU__e7t63BbVoKz++6aijOpEw0k5Cxa8-w@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] ASoC: qcom: soundwire: Add software clock gating
- requirement check
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        agross@kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@quicinc.com, bjorn.andersson@linaro.org,
-        broonie@kernel.org, devicetree@vger.kernel.org,
-        judyhsiao@chromium.org, lgirdwood@gmail.com,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        perex@perex.cz, quic_plai@quicinc.com, quic_rohkumar@quicinc.com,
-        robh+dt@kernel.org, srinivas.kandagatla@linaro.org, tiwai@suse.com,
-        vkoul@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+From:   Dhananjay Phadke <dphadke@linux.microsoft.com>
+Subject: Re: [PATCH 5/5] crypto: aspeed: add HACE crypto driver
+To:     Neal Liu <neal_liu@aspeedtech.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Johnny Huang <johnny_huang@aspeedtech.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-crypto@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org
+References: <20220601054204.1522976-1-neal_liu@aspeedtech.com>
+ <20220601054204.1522976-6-neal_liu@aspeedtech.com>
+Content-Language: en-US
+In-Reply-To: <20220601054204.1522976-6-neal_liu@aspeedtech.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-21.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,47 +60,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2022-06-08 07:02:09)
-> Validate software clock gating required or not and do software
-> clock gating on hclk if soundwire is operational and keep it
-> running by adding flag in private dat structure.
-> This is to avoid conflict between older architectures,
-> where software clock gating is not required and on latest
-> architectues, where software clock gating is mandatory.
+On 6/6/2022 8:43 PM, Neal Liu wrote:
+>>> +struct aspeed_hace_alg {
+>>> +	struct aspeed_hace_dev		*hace_dev;
+>>> +	union {
+>>> +		struct skcipher_alg	skcipher;
+>>> +		struct aead_alg		aead;
+>>> +		struct ahash_alg	ahash;
+>>> +		struct kpp_alg		kpp;
+>>> +		struct akcipher_alg	akcipher;
+>>
+>> Your patch dont do any kpp or akcipher (and aead/skcipher also).
+>> Please drop this.
+>
+> I miss this part, I'll revise it in next patch, thanks.
 
-This talks about software clock gating but the code is getting a reset
-and asserting it. Is that because the power on reset value of the clock
-gating is to have hardware clock gating disabled, but some earlier code
-is enabling hardware clock gating?
+Hi Neal,
 
->
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> ---
->  drivers/soundwire/qcom.c | 27 ++++++++++++++++++++-------
->  1 file changed, 20 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-> index 38c3bf5..ebd7479 100644
-> --- a/drivers/soundwire/qcom.c
-> +++ b/drivers/soundwire/qcom.c
-> @@ -659,7 +665,8 @@ static int qcom_swrm_init(struct qcom_swrm_ctrl *ctrl)
->         val = FIELD_PREP(SWRM_MCP_FRAME_CTRL_BANK_ROW_CTRL_BMSK, ctrl->rows_index);
->         val |= FIELD_PREP(SWRM_MCP_FRAME_CTRL_BANK_COL_CTRL_BMSK, ctrl->cols_index);
->
-> -       reset_control_reset(ctrl->audio_cgcr);
-> +       if (ctrl->audio_cgcr)
-> +               reset_control_reset(ctrl->audio_cgcr);
->
->         ctrl->reg_write(ctrl, SWRM_MCP_FRAME_CTRL_BANK_ADDR(0), val);
->
-> @@ -1494,7 +1506,8 @@ static int __maybe_unused swrm_runtime_resume(struct device *dev)
->                 qcom_swrm_get_device_status(ctrl);
->                 sdw_handle_slave_status(&ctrl->bus, ctrl->status);
->         } else {
-> -               reset_control_reset(ctrl->audio_cgcr);
-> +               if (ctrl->audio_cgcr)
-> +                       reset_control_reset(ctrl->audio_cgcr);
+Are you planning to submit aead separately? HW programming interface
+for aes-gcm is almost same as other aes modes except extra regs/fields 
+for tag etc.
 
-reset_control_reset() is a no-op if the pointer is NULL so the if
-condition is not necessary in the above two statements.
+
+Thanks,
+Dhananjay
+
+
