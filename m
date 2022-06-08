@@ -2,71 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1681542C57
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 12:00:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB15F542C60
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 12:01:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235897AbiFHKAY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 06:00:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47404 "EHLO
+        id S235935AbiFHKBN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 06:01:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235760AbiFHJ7n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 05:59:43 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2AF650E15
-        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 02:33:55 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id kq6so27240906ejb.11
-        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 02:33:55 -0700 (PDT)
+        with ESMTP id S235990AbiFHKAd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 06:00:33 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 861D0220FD
+        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 02:36:27 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id fd25so26289160edb.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 02:36:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ZfZbcQl+BD4m4GvvgoxEYulyWPQbslWZIUb/bydU51Y=;
-        b=Fm2x5X7BWWrduLHXcvbjhZrXy3KT7WDDSrSNCzf7n3Uj8PAW2CsRUoOw6y2Tw+lj/3
-         uGUXzn63669Q9xVBTvL2u59BOUTe+mt1kA8wdpWOXMZow86b2j/UFatLEJf8cUSxh0y/
-         vCGZhNkY/Yw6tpWYrMZ8k29sWvG2Na9CgZtBKKPtSVoBH4Jn3sRTJ2y+CLmQyCIKymK/
-         vB4G8J64FeyYzcS57JSdahDNhhqEB0O1NRT8F0mHn8bhr8HGLzGO5mUye1HxgXEOyxuV
-         0plkpOf2y1gGSHULbJNtHjKibZsPwkKkwPA41tC0FYMtIR6DHLo9UTQs/Lk1KYqe9Rnm
-         11fA==
+        bh=eI4rRuIF5rwXNrtStQNZCOGZWwsWfQkS5JLBX7fWVXQ=;
+        b=DRxCBnOFXtFvXDB08Qu2T1k921VY6qvaJVNLpoCyU0XijkcKt5mfQl5JSSJvkoo08u
+         8Cnp+cSjN747ozsJLyWF2jGta2Vm92/pWAJfM3gnGC6INl0qkuXS5QGYxT+0bh8WZedZ
+         RiUV7ELu1zvO86fy8VHFet50nvw7jNk1Rvcg8an/xzgDGwfpIWQKX62OUDuECECcejwa
+         BAusj4YBGjftykGx4pcb39RkMzT5yH25BhynJ+VAjWWbq1I5Gm8q3n7TAb+Q/CS8Dyfj
+         5cMg14rbj3Q3OPiUYo/Vzjp+6G36z32cjdwsCFScEBs0VgGirlHlmbBqfyZ6h1NmDNy4
+         85ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=ZfZbcQl+BD4m4GvvgoxEYulyWPQbslWZIUb/bydU51Y=;
-        b=JHIPXm45FJhwt0SaTu4pauV66Pb0+dJ7xa98LHzgyWTm4Lh4kAkTY4edIdBcWCo+ag
-         OIWafJOHGeMlirOp7I9yELRCwhLqY7gA0FKlDxf6Bw3QAxuOEt16wPgb6HC/FFsGQcPb
-         BKL9xwlq2SjM/EK09c7pFFGg1UknhhSSUFFOthjGSgDA8qPUJondTCOq6tPdE5+6OGtd
-         HfwaoMyb/l7I89cepqoIHHQ2Wa8nLGHM/OMQQEGQYzNEmgLaA9e2lbGsncuRVKms2oZx
-         PET+/706JOZvZ1W8M+9iIx1wMb+sNL1aulKmGaLdDfrobqv/3ePsfJOJe1bPf4foNGsX
-         Ifxg==
-X-Gm-Message-State: AOAM533a700kiG3iIFBg7KL9kIQvscflPZkaLSTiD7iX7hGfildMqxak
-        rjea7Jkli78Hm9tOhAwhQxcUxA==
-X-Google-Smtp-Source: ABdhPJzEtXPNk7J7EASb6iGEsm561kmYPbwceqTmY03OzGejejqTqbheB8ZkBL2ZhO/YZGCCKKm/vA==
-X-Received: by 2002:a17:907:3e11:b0:6fe:cce4:57e5 with SMTP id hp17-20020a1709073e1100b006fecce457e5mr29429490ejc.640.1654680834512;
-        Wed, 08 Jun 2022 02:33:54 -0700 (PDT)
+        bh=eI4rRuIF5rwXNrtStQNZCOGZWwsWfQkS5JLBX7fWVXQ=;
+        b=FYhXJNfPAvjk0h2O5lyekx7rg5/Zm0bVTzOl06VF5cvAiLTD0Xx8RG0N8Ei2LvyCTA
+         bvnoWSFTn0OOB7dJZbFtpjZx8XXAvFyYQ9Ac89nMmKTfNW2r1+u22JDhN8hcNzhw4TRi
+         cKg/loHB1zq9mG3YnO1I8jXtLj6r1zidrFzkO6KPLBerlRF7VpRmtylwzb5fwLPXlnrs
+         cdi8ZD0/PB2fM3iu7Nj5KMZO1T6Beqtl0kyhVGWxcVu4TyaVLObJ5Lii43Jse+gDKOp2
+         c6yGH+TCc0drckgKr1qRIPl14ij45lmJwQawa5k1lDBccJF2aDDrjwmivYMMjrS7br0J
+         MwfQ==
+X-Gm-Message-State: AOAM533VzvVH+qZKubctfky/6KKT/6aUSQZOE35zVdaqzG8PjOR2o0N7
+        DvynMv3eOzmqz1pXGDJknTyW7w==
+X-Google-Smtp-Source: ABdhPJx2vRZB9jUOwfNQSE3tD1mYIxgaNMiVS9zySc4nX10DE5LPoeunwV0M4wGchyKlmJW2htL1uA==
+X-Received: by 2002:a05:6402:1d51:b0:41f:cf6c:35a5 with SMTP id dz17-20020a0564021d5100b0041fcf6c35a5mr38740410edb.25.1654680986080;
+        Wed, 08 Jun 2022 02:36:26 -0700 (PDT)
 Received: from [192.168.0.191] (xdsl-188-155-176-92.adslplus.ch. [188.155.176.92])
-        by smtp.gmail.com with ESMTPSA id o13-20020a17090608cd00b006fedcb78854sm8883545eje.164.2022.06.08.02.33.53
+        by smtp.gmail.com with ESMTPSA id fg24-20020a1709069c5800b006fe9ec4ba9esm8735506ejc.52.2022.06.08.02.36.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jun 2022 02:33:53 -0700 (PDT)
-Message-ID: <18c84400-2fb1-e802-d43a-766c7dcb80aa@linaro.org>
-Date:   Wed, 8 Jun 2022 11:33:52 +0200
+        Wed, 08 Jun 2022 02:36:25 -0700 (PDT)
+Message-ID: <00cf0a30-46d5-f566-af35-9f7c33ec4182@linaro.org>
+Date:   Wed, 8 Jun 2022 11:36:24 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.10.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: mfd: atmel,flexcom: Convert to
- json-schema
+Subject: Re: [PATCH v8 1/3] dt-bindings: phy: qcom,usb-snps-femto-v2: Add phy
+ override params bindings
 Content-Language: en-US
-To:     Kavyasree.Kotagiri@microchip.com,
-        krzysztof.kozlowski+dt@linaro.org, Nicolas.Ferre@microchip.com,
-        alexandre.belloni@bootlin.com, Claudiu.Beznea@microchip.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com
-References: <20220607144740.14937-1-kavyasree.kotagiri@microchip.com>
- <20220607144740.14937-2-kavyasree.kotagiri@microchip.com>
- <1345050e-b6a4-64be-1359-8d31d88769ab@linaro.org>
- <CO1PR11MB4865738B0AFB2F74CD184C5592A49@CO1PR11MB4865.namprd11.prod.outlook.com>
+To:     Krishna Kurapati <quic_kriskura@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, quic_pkondeti@quicinc.com,
+        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
+        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+References: <1654066564-20518-1-git-send-email-quic_kriskura@quicinc.com>
+ <1654066564-20518-2-git-send-email-quic_kriskura@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CO1PR11MB4865738B0AFB2F74CD184C5592A49@CO1PR11MB4865.namprd11.prod.outlook.com>
+In-Reply-To: <1654066564-20518-2-git-send-email-quic_kriskura@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,57 +87,109 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/06/2022 11:31, Kavyasree.Kotagiri@microchip.com wrote:
->>> Convert the Atmel flexcom device tree bindings to json schema.
->>>
->>> Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
->>> ---
->>> v1 -> v2:
->>>  - Fix title.
->>>
->>>  .../bindings/mfd/atmel,flexcom.yaml           | 97 +++++++++++++++++++
->>>  .../devicetree/bindings/mfd/atmel-flexcom.txt | 63 ------------
->>>  2 files changed, 97 insertions(+), 63 deletions(-)
->>>  create mode 100644
->> Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
->>>  delete mode 100644 Documentation/devicetree/bindings/mfd/atmel-
->> flexcom.txt
->>>
->>> diff --git a/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
->> b/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
->>> new file mode 100644
->>> index 000000000000..05cb6ebb4b2a
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/mfd/atmel,flexcom.yaml
->>> @@ -0,0 +1,97 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/mfd/atmel,flexcom.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Atmel Flexcom (Flexible Serial Communication Unit)
->>> +
->>> +maintainers:
->>> +  - Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
->>> +
->>> +description:
->>> +  The Atmel Flexcom is just a wrapper which embeds a SPI controller,
->>> +  an I2C controller and an USART. Only one function can be used at a
->>> +  time and is chosen at boot time according to the device tree.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: atmel,sama5d2-flexcom
->>
->> Same comment applies as before... Your previous set was better here and
->> for some reason you decided to change it. This should be enum so you
->> avoid useless change next patch.
->>
-> Thanks for your comments.
-> Do you mean use "enum" instead of "const" in current patch itself and add new compatible in 2/3 patch?
+On 01/06/2022 08:56, Krishna Kurapati wrote:
+> From: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+> 
+> Add device tree bindings for SNPS phy tuning parameters.
+> 
+> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../bindings/phy/qcom,usb-snps-femto-v2.yaml       | 96 ++++++++++++++++++++++
+>  1 file changed, 96 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+> index 1ce251d..daeeb04 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+> @@ -53,6 +53,102 @@ properties:
+>    vdda33-supply:
+>      description: phandle to the regulator 3.3V supply node.
+>  
+> +  qcom,hs-disconnect-bp:
+> +    description:
+> +      This adjusts the voltage level for the threshold used to
+> +      detect a disconnect event at the host. Possible values are.
+> +      The values defined are in multiples of basis points (1bp = 0.01%).
+> +      The hardware accepts only discrete values. The value closest to the
+> +      provided input will be chosen as the override value for this param.
+> +    minimum: -272
+> +    maximum: 2156
+> +
+> +  qcom,squelch-detector-bp:
+> +    description:
+> +      This adjusts the voltage level for the threshold used to
+> +      detect valid high-speed data.
+> +      The values defined are in multiples of basis points (1bp = 0.01%).
+> +      The hardware accepts only discrete values. The value closest to the
+> +      provided input will be chosen as the override value for this param.
+> +    minimum: -2090
+> +    maximum: 1590
+> +
+> +  qcom,hs-amplitude-bp:
+> +    description:
+> +      This adjusts the high-speed DC level voltage.
+> +      The values defined are in multiples of basis points (1bp = 0.01%).
+> +      The hardware accepts only discrete values. The value closest to the
+> +      provided input will be chosen as the override value for this param.
+> +    minimum: -660
+> +    maximum: 2670
+> +
+> +  qcom,pre-emphasis-duration-bp:
+> +    description:
+> +      This signal controls the duration for which the
+> +      HS pre-emphasis current is sourced onto DP<#> or DM<#>.
+> +      The HS Transmitter pre-emphasis duration is defined in terms of
+> +      unit amounts. One unit of pre-emphasis duration is approximately
+> +      650 ps and is defined as 1X pre-emphasis duration.
+> +      The values defined are in multiples of basis points (1bp = 0.01%).
+> +      The hardware accepts only discrete values. The value closest to the
+> +      provided input will be chosen as the override value for this param.
+> +    minimum: 10000
+> +    maximum: 20000
+> +
+> +  qcom,pre-emphasis-amplitude-bp:
+> +    description:
+> +      This signal controls the amount of current sourced to
+> +      DP<#> and DM<#> after a J-to-K or K-to-J transition.
+> +      The HS Transmitter pre-emphasis current is defined in terms of unit
+> +      amounts. One unit amount is approximately 2 mA and is defined as
+> +      1X pre-emphasis current.
+> +      The values defined are in multiples of basis points (1bp = 0.01%).
+> +      The hardware accepts only discrete values. The value closest to the
+> +      provided input will be chosen as the override value for this param.
+> +    minimum: 10000
+> +    maximum: 40000
+> +
+> +  qcom,hs-rise-fall-time-bp:
+> +    description:
+> +      This adjusts the rise/fall times of the high-speed waveform.
+> +      The values defined are in multiples of basis points (1bp = 0.01%).
+> +      The hardware accepts only discrete values. The value closest to the
+> +      provided input will be chosen as the override value for this param.
+> +    minimum: -4100
+> +    maximum: 5430
+> +
+> +  qcom,hs-crossover-voltage-microvolt:
+> +    description:
+> +      This adjusts the voltage at which the DP<#> and DM<#>
+> +      signals cross while transmitting in HS mode.
+> +      The values defined are in milli volts.
 
-Yes. This is how you did it in previous patchsets.
+It's not accurate anymore - it's microvolt. I propose to skip this one
+sentence, because unit is obvious from the type.
+
+> +    maximum: 28000
+> +
+> +  qcom,hs-output-impedance-micro-ohms:
+> +    description:
+> +      In some applications, there can be significant series resistance
+> +      on the D+ and D- paths between the transceiver and cable. This adjusts
+> +      the driver source impedance to compensate for added series
+> +      resistance on the USB. The values defined are in milli ohms.
+
+The same. Other places might need similar change.
 
 Best regards,
 Krzysztof
