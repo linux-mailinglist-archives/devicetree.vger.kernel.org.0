@@ -2,171 +2,730 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0E1254383A
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 17:57:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA1FF543840
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 18:01:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244887AbiFHP5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 11:57:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57620 "EHLO
+        id S244628AbiFHQAg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 12:00:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244877AbiFHP5o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 11:57:44 -0400
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 242E36B089;
-        Wed,  8 Jun 2022 08:57:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1654703863; x=1686239863;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=hQWh/ajhlNrdHVnR8asoXOOhohzEj4Vrv4I0sYKIHMk=;
-  b=Hf2yPBd1EukiMalQN77+ApBRqBxtLEJR4PppT0NpNdLBw4A2BnefC138
-   slwfrTr1UFUgdmx/RpJ63d3Q3HdRoUtCn7+bjEdp5tcYe1o+Y9vGGLrA8
-   3nFEuQycQwIfMKgsbxrLFVJ7wWLKk/pv356BldI77fn6O0ENpTg7MNa2Y
-   q3ywPfLd2snPxP8ooHys6D7+GkVP4X5ln0XAKZ1nzXnS+pswrH0HnvQ8C
-   xTwjlnDe8nqngSZQs4K0rY/adTBC6CuHqgyAHl1Mr9HBL7sOXIrY6/9Jr
-   pQAApVCyGH+A/B3gZo0rj/llx6iaUwLChAiXnXZLfTP6U995xysb4Qt7g
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10372"; a="363274011"
-X-IronPort-AV: E=Sophos;i="5.91,286,1647327600"; 
-   d="scan'208";a="363274011"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jun 2022 08:57:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.91,286,1647327600"; 
-   d="scan'208";a="609717426"
-Received: from lkp-server01.sh.intel.com (HELO 60dabacc1df6) ([10.239.97.150])
-  by orsmga008.jf.intel.com with ESMTP; 08 Jun 2022 08:57:38 -0700
-Received: from kbuild by 60dabacc1df6 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1nyy3u-000ElX-2h;
-        Wed, 08 Jun 2022 15:57:38 +0000
-Date:   Wed, 8 Jun 2022 23:57:36 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Stephen Boyd <swboyd@chromium.org>,
-        freedreno@lists.freedesktop.org
-Subject: Re: [PATCH v2 06/12] drm/msm/hdmi: drop unused GPIO support
-Message-ID: <202206082312.XB745jWy-lkp@intel.com>
-References: <20220608120723.2987843-7-dmitry.baryshkov@linaro.org>
+        with ESMTP id S232893AbiFHQAf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 12:00:35 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79FDB3CA48;
+        Wed,  8 Jun 2022 09:00:33 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id fu3so40859779ejc.7;
+        Wed, 08 Jun 2022 09:00:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=aihxIc5SO349stMIX7gpxqiPA3y82iFQ8y4BNhtME10=;
+        b=kBd/zhobcVVzR+Y3k/PRQ0ipl1paL4xEBhVngktlqJqRiduI+Ab1Qap0nMSAgTuP0w
+         +JaRxTGqW8Vwhn1bRpGNopJQX13Tzg5k8gzhEAlbN/ieD1cwi1rGZP9WMO4l8Ol7knua
+         sfPS8wLnEHwAckK9zn49PsV8cV/FxNvELfQhMFx32ovvL1uVaxZ3N4TamjwSU//2HlGI
+         rTwUyL/8gwqlN5WXKh99XR8eyUabxRCzREo+p5593P9xkKAUXvn7VZOx1qWSK3FI51ME
+         0hLFehLDm4spRu/p+HFnGUA7zUIF69Yo/RXc/0o9qGmZZxDSxTtghj64FsQPPBDXPpdy
+         pIpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=aihxIc5SO349stMIX7gpxqiPA3y82iFQ8y4BNhtME10=;
+        b=TTbW6zvMhZmcdfrSKGUYF5JMD2ahS2zlbhvw4R1ygUnBpivivd7PWoG5epo0tLjpXy
+         xABvJKVIVC4MX6Q8FWYd3+rMICS858kHHAaxyca7JnRMD1Tq/r9uDOcuVHG1uauKoVM8
+         k6rzQFTuQXq62wU9+ljaMpnMlUz7eSDdyS3Eece79TkTtoyVtBKSqOcwGxZwvMYK/cih
+         gv/k66pTaLDE6u+GS78d22n3kfBEbdX+seJLVGubF+TE0xf+fmCCuuBfx0PUtvUHoOjR
+         Wn6YV9kV0GwX02/Mohxp2qPKCHWIaK3WuysQPGQeNxrqiNTyRwnk+EGX3PGA5DOI9Eg3
+         uUpg==
+X-Gm-Message-State: AOAM5310xFf4ZlxP4inT1uYRFcCllQ9KZf10CfBf8y5dO+ifrD3nNx9t
+        RS/55xL9IU5wpl01K60vT7Eba+MlgCaK03lP9Uw=
+X-Google-Smtp-Source: ABdhPJwyUyPuY751GfKVIqbY8V1Ln3v0wl0W6Xj98WxRCTsWLIo/Q24q2CO+afGeR6OX3OJZ4pIvnpwjVIafXsKiR0g=
+X-Received: by 2002:a17:906:d9d9:b0:710:f2ae:b455 with SMTP id
+ qk25-20020a170906d9d900b00710f2aeb455mr20995359ejb.77.1654704031598; Wed, 08
+ Jun 2022 09:00:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220608120723.2987843-7-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220608091238.403897-1-cosmin.tanislav@analog.com> <20220608091238.403897-3-cosmin.tanislav@analog.com>
+In-Reply-To: <20220608091238.403897-3-cosmin.tanislav@analog.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Wed, 8 Jun 2022 17:59:54 +0200
+Message-ID: <CAHp75Vdvng-fxt-p2bHJiF8i967eh1o_MUgDFN_odhW0sLu69A@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] iio: adc: ad4130: add AD4130 driver
+To:     Cosmin Tanislav <demonsingur@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Cosmin Tanislav <cosmin.tanislav@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry,
+On Wed, Jun 8, 2022 at 12:19 PM Cosmin Tanislav <demonsingur@gmail.com> wrote:
+>
+> AD4130-8 is an ultra-low power, high precision, measurement solution for
+> low bandwidth battery operated applications.
+>
+> The fully integrated AFE (Analog Front-End) includes a multiplexer for up
+> to 16 single-ended or 8 differential inputs, PGA (Programmable Gain
+> Amplifier), 24-bit Sigma-Delta ADC, on-chip reference and oscillator,
+> selectable filter options, smart sequencer, sensor biasing and excitation
+> options, diagnostics, and a FIFO buffer.
 
-I love your patch! Perhaps something to improve:
+I believe we may gain a few LoCs by slightly bending the rule of 80.
+Also see below.
 
-[auto build test WARNING on drm/drm-next]
-[also build test WARNING on robh/for-next linus/master v5.19-rc1 next-20220608]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+...
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Dmitry-Baryshkov/drm-msm-hdmi-YAML-ify-schema-and-cleanup-some-platform-properties/20220608-200925
-base:   git://anongit.freedesktop.org/drm/drm drm-next
-config: hexagon-randconfig-r045-20220608 (https://download.01.org/0day-ci/archive/20220608/202206082312.XB745jWy-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project b92436efcb7813fc481b30f2593a4907568d917a)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/c3e263fe0a077b382c2a76911c8ace385bd59a4c
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Dmitry-Baryshkov/drm-msm-hdmi-YAML-ify-schema-and-cleanup-some-platform-properties/20220608-200925
-        git checkout c3e263fe0a077b382c2a76911c8ace385bd59a4c
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash drivers/gpu/drm/msm/
+> +static const unsigned int ad4130_reg_size[] = {
+> +       [AD4130_STATUS_REG] = 1,
+> +       [AD4130_ADC_CONTROL_REG] = 2,
+> +       [AD4130_DATA_REG] = 3,
+> +       [AD4130_IO_CONTROL_REG] = 2,
+> +       [AD4130_VBIAS_REG] = 2,
+> +       [AD4130_ID_REG] = 1,
+> +       [AD4130_ERROR_REG] = 2,
+> +       [AD4130_ERROR_EN_REG] = 2,
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+> +       [AD4130_CHANNEL_X_REG(0) ...
+> +        AD4130_CHANNEL_X_REG(AD4130_MAX_CHANNELS)] = 3,
 
-All warnings (new ones prefixed by >>):
+One line?
 
->> drivers/gpu/drm/msm/hdmi/hdmi.c:532:2: warning: variable 'hdmi' is uninitialized when used here [-Wuninitialized]
-           hdmi->hpd_gpiod = devm_gpiod_get_optional(dev, "hpd", GPIOD_IN);
-           ^~~~
-   drivers/gpu/drm/msm/hdmi/hdmi.c:518:19: note: initialize the variable 'hdmi' to silence this warning
-           struct hdmi *hdmi;
-                            ^
-                             = NULL
-   1 warning generated.
+> +       [AD4130_CONFIG_X_REG(0) ...
+> +        AD4130_CONFIG_X_REG(AD4130_MAX_SETUPS)] = 2,
 
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for DRM_DP_AUX_BUS
-   Depends on HAS_IOMEM && DRM && OF
-   Selected by
-   - DRM_MSM && HAS_IOMEM && DRM && (ARCH_QCOM || SOC_IMX5 || COMPILE_TEST && COMMON_CLK && IOMMU_SUPPORT && (QCOM_OCMEM || QCOM_OCMEM && (QCOM_LLCC || QCOM_LLCC && (QCOM_COMMAND_DB || QCOM_COMMAND_DB
+Ditto.
+
+> +       [AD4130_FILTER_X_REG(0) ...
+> +        AD4130_FILTER_X_REG(AD4130_MAX_SETUPS)] = 3,
+
+Ditto.
+
+> +       [AD4130_FIFO_CONTROL_REG] = 3,
+> +       [AD4130_FIFO_STATUS_REG] = 1,
+> +};
+
+...
+
+> +enum ad4130_iout {
+> +       AD4130_IOUT_OFF,
+> +       AD4130_IOUT_10000NA,
+> +       AD4130_IOUT_20000NA,
+> +       AD4130_IOUT_50000NA,
+> +       AD4130_IOUT_100000NA,
+> +       AD4130_IOUT_150000NA,
+> +       AD4130_IOUT_200000NA,
+> +       AD4130_IOUT_100NA,
+> +       AD4130_IOUT_MAX,
+
+No comma for MAX if it's not a hardware (datasheet) name.
+
+> +};
+...
+
+> +struct ad4130_setup_info {
+> +       unsigned int                    iout0_val;
+> +       unsigned int                    iout1_val;
+> +       unsigned int                    burnout;
+> +       unsigned int                    pga;
+> +       unsigned int                    fs;
+
+> +       bool                            ref_bufp;
+> +       bool                            ref_bufm;
+> +       u32                             ref_sel;
+
+Moving this member before booleans might save a few bytes (depending
+on how enum will be optimized by the compiler).
+
+> +       enum ad4130_filter_mode         filter_mode;
+> +};
+
+...
+
+> +struct ad4130_state {
+> +       struct spi_device               *spi;
+> +       struct regmap                   *regmap;
+
+Put the one that is mostly used in the code, the first. In such cases
+the pointer arithmetics will be no-op at compile time.
+
+> +       struct spi_message      fifo_msg;
+> +       struct spi_transfer     fifo_xfer[2];
+> +
+> +       /*
+> +        * DMA (thus cache coherency maintenance) requires the
+> +        * transfer buffers to live in their own cache lines.
+> +        */
+> +       u8                      reset_buf[AD4130_RESET_BUF_SIZE] __aligned(IIO_DMA_MINALIGN);
+> +       u8                      reg_write_tx_buf[4];
+> +       u8                      reg_read_tx_buf[1];
+> +       u8                      reg_read_rx_buf[3];
+> +       u8                      fifo_tx_buf[2];
+> +       u8                      fifo_rx_buf[AD4130_FIFO_SIZE *
+> +                                           AD4130_FIFO_MAX_SAMPLE_SIZE];
+> +};
+
+...
+
+> +       *size = ad4130_reg_size[reg];
+> +       if (!*size)
+> +               return -EINVAL;
+
+Is this check necessary?
+
+...
+
+> +       switch (size) {
+> +       case 3:
+> +               *val = get_unaligned_be24(st->reg_read_rx_buf);
+> +               break;
+> +       case 2:
+> +               *val = get_unaligned_be16(st->reg_read_rx_buf);
+> +               break;
+> +       case 1:
+> +               *val = st->reg_read_rx_buf[0];
+> +               break;
+> +       default:
+
+> +               ret = -EINVAL;
+> +               break;
+
+Direct return.
+
+> +       }
+> +
+> +       return 0;
+
+...
+
+> +static void ad4130_gpio_set(struct gpio_chip *gc, unsigned int offset,
+> +                           int value)
+> +{
+> +       struct ad4130_state *st = gpiochip_get_data(gc);
+> +       unsigned int real_offset = st->gpio_offsets[offset];
+
+Can't you use valid_mask instead of this additional array? In such a
+case the real offset can be got by the number of the set bit, no?
+
+> +       unsigned int mask = FIELD_PREP(AD4130_IO_CONTROL_GPIO_DATA_MASK,
+> +                                      BIT(real_offset));
+> +
+> +       regmap_update_bits(st->regmap, AD4130_IO_CONTROL_REG, mask,
+> +                          value ? mask : 0);
+> +}
+
+...
+
+> +       for (i = 0; i < AD4130_MAX_SETUPS; i++) {
+> +               struct ad4130_slot_info *slot_info = &st->slots_info[i];
+> +
+> +               /* Immediately accept a matching setup info. */
+
+> +               if (!memcmp(target_setup_info, &slot_info->setup,
+> +                           sizeof(*target_setup_info))) {
+
+Instead, you may use crc32 and save it, the matching will be much faster.
+
+The example, where it's done for the same purposes (to compare later)
+https://elixir.bootlin.com/linux/latest/source/drivers/acpi/scan.c#L659
+
+> +                       *slot = i;
+> +                       return 0;
+> +               }
+> +
+> +               /* Ignore all setups which are used by enabled channels. */
+> +               if (slot_info->enabled_channels)
+> +                       continue;
+> +
+> +               /* Find the least used slot. */
+
+Have you considered to use
+https://elixir.bootlin.com/linux/latest/source/include/linux/list_lru.h
+?
+
+> +               if (*slot == AD4130_INVALID_SLOT ||
+> +                   slot_info->channels < st->slots_info[*slot].channels)
+> +                       *slot = i;
+> +       }
+
+...
+
+> +       /*
+> +        * The following cases need to be handled.
+> +        *
+> +        * 1. Enabled and linked channel with setup changes:
+> +        *    - Find slot. If not possible, return error.
+
+a slot
+
+> +        *    - Unlink channel from current slot.
+> +        *    - If slot has channels linked to it, unlink all channels, and
+
+the slot
+
+> +        *      write the new setup to it.
+> +        *    - Link channel to new slot.
+> +        *
+> +        * 2. Soon to be enabled and unlinked channel:
+> +        *    - Find slot. If not possible, return error.
+
+a slot
+
+> +        *    - If slot has channels linked to it, unlink all channels, and
+
+the slot
+
+> +        *      write the new setup to it.
+> +        *    - Link channel to slot.
+
+the slot
+
+> +        *
+> +        * 3. Disabled and linked channel with setup changes:
+> +        *    - Unlink channel from current slot.
+> +        *
+> +        * 4. Soon to be enabled and linked channel:
+> +        * 5. Disabled and unlinked channel with setup changes:
+> +        *    - Do nothing.
+> +        */
+
+...
+
+> +       if (!on_enable && !chan_info->enabled) {
+> +               if (chan_info->slot != AD4130_INVALID_SLOT)
+> +                       /* Case 3 */
+> +                       ad4130_unlink_channel(st, channel);
+> +
+> +               /* Case 3 & 5 */
+
+Cases
+
+> +               return 0;
+> +       }
+> +
+> +       /* Case 1 & 2 */
+
+Cases
+
+...
+
+> +       const struct ad4130_filter_config *filter_config =
+> +               &ad4130_filter_configs[filter_mode];
+
+One line? Or even a helper, since you are using this more than once.
+
+...
+
+> +       dividend = filter_config->fs_max * filter_config->odr_div *
+> +                  ((u64)val * NANO + val2);
+
+One line.
+
+...
+
+> +               *val = st->bipolar ? -(1 << (chan->scan_type.realbits - 1)) : 0;
+
+BIT() ?
+
+...
+
+> +       /*
+> +        * When the chip enters FIFO mode, IRQ polarity is inversed.
+
+inverted ?
+
+> +        * See datasheet pages: 65, FIFO Watermark Interrupt section,
+> +        * and 71, Bit Descriptions for STATUS Register, RDYB.
+> +        */
+
+...
+
+> +       /*
+> +        * update_scan_mode is not called in the disable path, disable all
+
+->update_scan_mode() ?
+
+> +        * channels here.
+> +        */
+
+...
+
+> +       switch (ref_sel) {
+> +       case AD4130_REF_REFIN1:
+> +               ret = regulator_get_voltage(st->regulators[2].consumer);
+> +               break;
+> +       case AD4130_REF_REFIN2:
+> +               ret = regulator_get_voltage(st->regulators[3].consumer);
+> +               break;
+> +       case AD4130_REF_AVDD_AVSS:
+> +               ret = regulator_get_voltage(st->regulators[0].consumer);
+> +               break;
+> +       case AD4130_REF_REFOUT_AVSS:
+> +               ret = st->int_ref_uv;
+> +               break;
+> +       default:
+> +               ret = -EINVAL;
+> +               break;
+> +       }
+
+> +       if (ret < 0)
+> +               return dev_err_probe(dev, ret, "Cannot use reference %u\n",
+> +                                    ref_sel);
+
+Can it be moved to the caller where it would cleaner to use, I think?
+As a good side effect the all above will be shortened to just return directly.
+
+> +       return ret;
+
+...
+
+> +       fwnode_property_read_u32(child, "adi,excitation-current-0-nanoamps",
+> +                                &current_na);
+
+One line?
+
+...
+
+> +               return dev_err_probe(dev, ret,
+> +                                    "Invalid excitation current %unA\n",
+> +                                    current_na);
+
+Ditto or two lines?
+
+...
+
+> +       fwnode_property_read_u32(child, "adi,excitation-current-1-nanoamps",
+> +                                &current_na);
+
+Ditto. Moreover you can shorten the name of temporary variable to
+something like tmp since it makes no sense to have a custom name for
+many options.
+
+...
+
+> +               return dev_err_probe(dev, ret,
+> +                                    "Invalid excitation current %unA\n",
+> +                                    current_na);
+
+One line?
+
+...
+
+> +       fwnode_property_read_u32(child, "adi,burnout-current-nanoamps",
+> +                                &current_na);
+
+Ditto.
+
+...
+
+> +               return dev_err_probe(dev, ret,
+> +                                    "Invalid burnout current %unA\n",
+> +                                    current_na);
+
+Ditto.
+
+...
+
+> +       fwnode_property_read_u32(child, "adi,reference-select",
+> +                                &setup_info->ref_sel);
+
+Ditto.
+
+...
+
+> +               return dev_err_probe(dev, -EINVAL,
+> +                                    "Invalid reference selected %u\n",
+> +                                    setup_info->ref_sel);
+
+Ditto.
+
+...
+
+> +       ret = ad4130_get_ref_voltage(st, setup_info->ref_sel);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       return 0;
+
+In all cases what does the positive return value mean?
+If there is no meaning, drop all these ' < 0' parts and esp. here use simply
+
+return ad4130_get_ref_voltage(...);
+
+...
+
+> +               return dev_err_probe(dev, -EINVAL,
+> +                                    "Invalid diffreential channel %u\n", pin);
+
+One line?
+
+...
+
+> +               return dev_err_probe(dev, -EINVAL,
+> +                                    "Pin %u already used with fn %u\n", pin,
+> +                                    st->pins_fn[pin]);
+
+2 lines?
+
+...
+
+> +static int ad4130_validate_diff_channels(struct ad4130_state *st,
+> +                                        u32 *pins, unsigned int len)
+> +{
+> +       unsigned int i;
+
+> +       int ret = 0;
+
+Useless assignment.
+
+> +
+> +       for (i = 0; i < len; i++) {
+> +               ret = ad4130_validate_diff_channel(st, pins[i]);
+> +               if (ret)
+
+> +                       break;
+
+Useless. Return immediately.
+
+> +       }
+> +
+> +       return ret;
+> +}
+
+...
+
+> +               return dev_err_probe(dev, -EINVAL,
+> +                                    "Invalid excitation pin %u\n", pin);
+
+One line?
+
+...
+
+> +               return dev_err_probe(dev, -EINVAL,
+> +                                    "Pin %u already used with fn %u\n", pin,
+> +                                    st->pins_fn[pin]);
+
+One or two lines?
+
+...
+
+> +               return dev_err_probe(dev, -EINVAL, "Invalid vbias pin %u\n",
+> +                                    pin);
+
+Ditto.
+
+...
+
+> +               return dev_err_probe(dev, -EINVAL,
+> +                                    "Pin %u already used with fn %u\n", pin,
+> +                                    st->pins_fn[pin]);
+
+Ditto.
+
+...
+
+> +       unsigned int i;
+> +       int ret = 0;
+> +
+> +       for (i = 0; i < st->num_vbias_pins; i++) {
+> +               ret = ad4130_validate_vbias_pin(st, pins[i]);
+> +               if (ret)
+> +                       break;
+> +       }
+> +
+> +       return ret;
+
+As per above comments.
+
+...
+
+> +       ret = fwnode_property_read_u32_array(child, "diff-channels", pins,
+> +                                            ARRAY_SIZE(pins));
+
+One line?
+
+...
+
+> +       fwnode_property_read_u32(child, "adi,excitation-pin-0",
+> +                                &chan_info->iout0);
+
+Ditto.
+
+...
+
+> +       fwnode_property_read_u32(child, "adi,excitation-pin-1",
+> +                                &chan_info->iout1);
+
+Ditto.
+
+...
+
+> +       bool int_clk_out = false;
+
+Why is this assignment needed?
+
+...
+
+> +               return dev_err_probe(dev, PTR_ERR(st->mclk),
+> +                                    "Failed to get mclk\n");
+
+One line?
+
+...
+
+> +       if (st->int_pin_sel == AD4130_INT_PIN_DOUT)
+> +               return dev_err_probe(dev, -EINVAL,
+> +                                    "Cannot use DOUT as interrupt pin\n");
+
+Ditto.
+
+...
+
+> +       int_clk_out = device_property_read_bool(dev, "adi,int-clk-out");
+> +       if (st->mclk && int_clk_out)
+> +               return dev_err_probe(dev, -EINVAL,
+> +                                    "Cannot expose internal clock\n");
+
+Ditto.
+
+...
+
+> +       if (ext_clk_freq != AD4130_MCLK_FREQ_153_6KHZ &&
+> +           ext_clk_freq != AD4130_MCLK_FREQ_76_8KHZ)
+
+> +               return dev_err_probe(dev, -EINVAL,
+> +                                    "Invalid external clock frequency %u\n",
+> +                                    ext_clk_freq);
+
+2 lines?
+
+...
+
+> +       if (st->int_pin_sel == AD4130_INT_PIN_CLK &&
+> +           st->mclk_sel != AD4130_MCLK_76_8KHZ)
+> +               return dev_err_probe(dev, -EINVAL,
+> +                                    "Invalid clock %u for interrupt pin %u\n",
+> +                                    st->mclk_sel, st->int_pin_sel);
+
+2 lines?
+
+...
+
+> +               if (ret > AD4130_MAX_ANALOG_PINS)
+> +                       return dev_err_probe(dev, -EINVAL,
+> +                                            "Too many vbias pins %u\n", ret);
+
+One line?
+
+...
+
+> +               if (ret)
+> +                       return dev_err_probe(dev, ret,
+> +                                            "Failed to read vbias pins\n");
+
+Ditto.
 
 
-vim +/hdmi +532 drivers/gpu/drm/msm/hdmi/hdmi.c
+> +               for (j = 0; j < AD4130_MAX_PGA; j++) {
+> +                       unsigned int pow = resolution + j - st->bipolar;
 
-   513	
-   514	static int msm_hdmi_bind(struct device *dev, struct device *master, void *data)
-   515	{
-   516		struct msm_drm_private *priv = dev_get_drvdata(master);
-   517		struct hdmi_platform_config *hdmi_cfg;
-   518		struct hdmi *hdmi;
-   519		struct device_node *of_node = dev->of_node;
-   520		int err;
-   521	
-   522		hdmi_cfg = (struct hdmi_platform_config *)
-   523				of_device_get_match_data(dev);
-   524		if (!hdmi_cfg) {
-   525			DRM_DEV_ERROR(dev, "unknown hdmi_cfg: %pOFn\n", of_node);
-   526			return -ENXIO;
-   527		}
-   528	
-   529		hdmi_cfg->mmio_name     = "core_physical";
-   530		hdmi_cfg->qfprom_mmio_name = "qfprom_physical";
-   531	
- > 532		hdmi->hpd_gpiod = devm_gpiod_get_optional(dev, "hpd", GPIOD_IN);
-   533		/* This will catch e.g. -PROBE_DEFER */
-   534		if (IS_ERR(hdmi->hpd_gpiod))
-   535			return PTR_ERR(hdmi->hpd_gpiod);
-   536	
-   537		if (!hdmi->hpd_gpiod)
-   538			DBG("failed to get HPD gpio");
-   539	
-   540		if (hdmi->hpd_gpiod)
-   541			gpiod_set_consumer_name(hdmi->hpd_gpiod, "HDMI_HPD");
-   542	
-   543		dev->platform_data = hdmi_cfg;
-   544	
-   545		hdmi = msm_hdmi_init(to_platform_device(dev));
-   546		if (IS_ERR(hdmi))
-   547			return PTR_ERR(hdmi);
-   548		priv->hdmi = hdmi;
-   549	
-   550		err = msm_hdmi_register_audio_driver(hdmi, dev);
-   551		if (err) {
-   552			DRM_ERROR("Failed to attach an audio codec %d\n", err);
-   553			hdmi->audio_pdev = NULL;
-   554		}
-   555	
-   556		return 0;
-   557	}
-   558	
+> +                       unsigned int nv = div_u64((((u64)ret * NANO) >>
+> +                                                  pow), MILLI);
+
+It will be much better if you make it on one line. Moreover, it seems
+it's ivariamt to the loop, why it's inside the loop?
+
+> +                       st->scale_tbls[i][j][0] = 0;
+> +                       st->scale_tbls[i][j][1] = nv;
+> +               }
+
+...
+
+> +       unsigned long rate = AD4130_MCLK_FREQ_76_8KHZ;
+
+Please move it closer to the alternative assignments so all of them
+will be closer to each other for better code reading and
+understanding. It also applies to ither similar places in the code.
+
+...
+
+> +       ret = devm_add_action_or_reset(dev, ad4130_clk_disable_unprepare,
+> +                                      st->mclk);
+
+One line?
+
+...
+
+> +       val = FIELD_PREP(AD4130_IO_CONTROL_INT_PIN_SEL_MASK, st->int_pin_sel);
+> +       for (i = 0; i < st->num_gpios; i++)
+> +               val |= BIT(st->gpio_offsets[i]);
+
+valid_mask reinvention?
+
+...
+
+> +       ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(st->regulators),
+> +                                     st->regulators);
+
+One line?
+
+> +       if (ret)
+> +               return dev_err_probe(dev, ret,
+> +                                    "Failed to get regulators\n");
+
+Ditto.
+
+> +       ret = regulator_bulk_enable(ARRAY_SIZE(st->regulators), st->regulators);
+> +       if (ret)
+> +               return dev_err_probe(dev, ret,
+> +                                    "Failed to enable regulators\n");
+
+Ditto.
+
+> +       ret = devm_add_action_or_reset(dev, ad4130_disable_regulators, st);
+> +       if (ret)
+> +               return dev_err_probe(dev, ret,
+> +                                    "Failed to add regulators disable action\n");
+
+Ditto.
+
+...
+
+Why below magic is needed? Maybe one line comment?
+
+> +       if (st->irq_trigger & IRQF_TRIGGER_RISING)
+> +               st->inv_irq_trigger = IRQF_TRIGGER_FALLING;
+> +       else if (st->irq_trigger & IRQF_TRIGGER_FALLING)
+> +               st->inv_irq_trigger = IRQF_TRIGGER_RISING;
+> +       else
+> +               return dev_err_probe(dev, -EINVAL, "Invalid irq flags: %u\n",
+> +                                    st->irq_trigger);
+
+One line?
+
+...
+
+> +static const struct of_device_id ad4130_of_match[] = {
+> +       {
+> +               .compatible = "adi,ad4130",
+> +       },
+> +       { },
+
+No comma for terminator entry.
+
+> +};
 
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+With Best Regards,
+Andy Shevchenko
