@@ -2,111 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D71D9543780
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 17:35:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 330A654379B
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 17:40:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244024AbiFHPfG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 11:35:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38578 "EHLO
+        id S244300AbiFHPjJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 11:39:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244057AbiFHPfF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 11:35:05 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D24764B42B
-        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 08:34:40 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id v14so2613707wra.5
-        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 08:34:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ffwll.ch; s=google;
-        h=date:from:to:cc:subject:message-id:mail-followup-to:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=/3Uhz2MzX+opEJ1vl2VMkznGEHPHcYf9Tcal/QO6uyQ=;
-        b=YATbmhtVNkDLRL1cMxkgnNPvC9xkZ/OO1tTeSzJBVdWnAcc3ED6f4ZkzxnoUisY+l1
-         uFpUnotT+0w/sJ/jbMoxdaAhnVQfGFYwMKasa5+bWHDDG/3oeCOpsYhc0YPvPPQCAsAP
-         CpLOGClljy6gCmZajMHqSotb7MH0++HqNHL+8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id
-         :mail-followup-to:references:mime-version:content-disposition
-         :in-reply-to;
-        bh=/3Uhz2MzX+opEJ1vl2VMkznGEHPHcYf9Tcal/QO6uyQ=;
-        b=UIzeQoThH6VP8RugdRQXptW7DKQ+5b18Uk7/4+jn7jMIhWVb5NJbZ4OX+c7weo672p
-         L/MGkX0MEG660+tOdbrExVA1PL+XaepSWSgtGzrL+XlgSleZQALX9xP2SMEL2wfNK/C8
-         aSGaljjNFt75PFwrXhgDmeHt6cOsebN4hj/uOzY1PKUm2yNvvXuiKclzbjgb0MhLe8H9
-         QpBKe1aEHFtyksHZkna7zDU6Ok9aAC+uJHGp4AFK21li1+liwvUXKYo3Tmw1l4GFkS7A
-         1NoNes1EW3154l6LDuP06Kx1pt1cdctT4c4R/REoj2VNe2dM/Bgxh/MjftrG7PgNYW0e
-         IfmA==
-X-Gm-Message-State: AOAM5319FsWNTPOPktXnzeEQmfjAUpDUeicLYG0hOtbx9noELCE5A7t4
-        Fd9/JIfk5JXyGoqdPE0ZsRgP5w==
-X-Google-Smtp-Source: ABdhPJyGzzVZ3D0bxcuNPUPGWV3cn1+ftk4zl/yiq3z2ZoGXPol7G7JsxCQHanG23JHpFxLm/6GTig==
-X-Received: by 2002:a05:6000:1c1b:b0:215:840a:3fc4 with SMTP id ba27-20020a0560001c1b00b00215840a3fc4mr25725772wrb.30.1654702470986;
-        Wed, 08 Jun 2022 08:34:30 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
-        by smtp.gmail.com with ESMTPSA id m18-20020a05600c3b1200b00397122e63b6sm24818307wms.29.2022.06.08.08.34.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jun 2022 08:34:30 -0700 (PDT)
-Date:   Wed, 8 Jun 2022 17:34:28 +0200
-From:   Daniel Vetter <daniel@ffwll.ch>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Samuel Holland <samuel@sholland.org>,
-        Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-        Sandy Huang <hjc@rock-chips.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-rockchip@lists.infradead.org,
-        Alistair Francis <alistair@alistair23.me>,
-        =?utf-8?Q?Ond=C5=99ej?= Jirman <x@xff.cz>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        David Airlie <airlied@linux.ie>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Liang Chen <cl@rock-chips.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
+        with ESMTP id S244248AbiFHPjH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 11:39:07 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF59914CA27;
+        Wed,  8 Jun 2022 08:39:03 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B748360AEC;
+        Wed,  8 Jun 2022 15:39:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1300BC34116;
+        Wed,  8 Jun 2022 15:39:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654702742;
+        bh=nsyJF3pXdweJoPkZuCtmk2FLBqcSIdPNeR+uaAPmkd0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=K1qQ8DTPCBBnskV/dUbQ3macERVbOoszjDUywAD2ERkwPhgvDEGLjnFpgnUR18t4C
+         RGMyuR5Wwrucrbgy8Pf+xazXJYk3lOvvGv5pGLR6mh9YtZHYOu20IqRjAv5n3QlFFu
+         hZ6JwUdIy1qhQBXmp+2tUfwWe7BaxrGdDpuhAhf70st36XwV2v4A/24VvTP1ZHIBBa
+         HOD4Nz+ek1Shig3aNVsl/qAZXMDmL5equZF9oFi/XF7Z54DFGDHsJnv0hSaP27LBKj
+         7/M5acZoNzTOUQQ2+gtWusi2QLKckrBnvVVBWfqC/6rPXKwaLpb9kX7Se6unhYkjPZ
+         3Qm+zgxTU7sSw==
+Date:   Wed, 8 Jun 2022 21:08:56 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Manu Gautam <mgautam@codeaurora.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 00/16] drm/rockchip: Rockchip EBC ("E-Book
- Controller") display driver
-Message-ID: <YqDBhMZCu1gKNFfs@phenom.ffwll.local>
-Mail-Followup-To: Maxime Ripard <maxime@cerno.tech>,
-        Samuel Holland <samuel@sholland.org>,
-        Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-        Sandy Huang <hjc@rock-chips.com>, dri-devel@lists.freedesktop.org,
-        linux-rockchip@lists.infradead.org,
-        Alistair Francis <alistair@alistair23.me>,
-        =?utf-8?Q?Ond=C5=99ej?= Jirman <x@xff.cz>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        David Airlie <airlied@linux.ie>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Liang Chen <cl@rock-chips.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>, Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220413221916.50995-1-samuel@sholland.org>
- <20220414085018.ayjvscgdkoen5nw5@houat>
- <Yo5kz/9cSd6ewC5f@phenom.ffwll.local>
- <20220531085835.grw5nt4vyofis3po@penduick>
- <YpddFxvC9pCsobNB@phenom.ffwll.local>
- <20220608144847.3ibr4buxcbmfj3al@houat>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/5] phy: qcom-qmp: Add USB4 5NM QMP combo PHY
+ registers
+Message-ID: <YqDCkNB9Ss0D9PnO@matsya>
+References: <20220607213543.4057620-1-bjorn.andersson@linaro.org>
+ <20220607213543.4057620-4-bjorn.andersson@linaro.org>
+ <d9658f54-e594-8f0e-071e-ef627285d281@linaro.org>
+ <Yp/ZkxNltUgE79nC@ripper>
+ <CAA8EJppSKfWXoNhqj+XOVV18P+uP=5fo7kaOGNWdYnN-NH8xNw@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220608144847.3ibr4buxcbmfj3al@houat>
-X-Operating-System: Linux phenom 5.10.0-8-amd64 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <CAA8EJppSKfWXoNhqj+XOVV18P+uP=5fo7kaOGNWdYnN-NH8xNw@mail.gmail.com>
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -114,164 +63,116 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 08, 2022 at 04:48:47PM +0200, Maxime Ripard wrote:
-> On Wed, Jun 01, 2022 at 02:35:35PM +0200, Daniel Vetter wrote:
-> > On Tue, May 31, 2022 at 10:58:35AM +0200, Maxime Ripard wrote:
-> > > Hi Daniel,
-> > > 
-> > > Thanks for your feedback
-> > > 
-> > > On Wed, May 25, 2022 at 07:18:07PM +0200, Daniel Vetter wrote:
-> > > > > > VBLANK Events and Asynchronous Commits
-> > > > > > ======================================
-> > > > > > When should the VBLANK event complete? When the pixels have been blitted
-> > > > > > to the kernel's shadow buffer? When the first frame of the waveform is
-> > > > > > sent to the panel? When the last frame is sent to the panel?
-> > > > > > 
-> > > > > > Currently, the driver is taking the first option, letting
-> > > > > > drm_atomic_helper_fake_vblank() send the VBLANK event without waiting og
-> > > > > > the refresh thread. This is the only way I was able to get good
-> > > > > > performance with existing userspace.
-> > > > > 
-> > > > > I've been having the same kind of discussions in private lately, so I'm
-> > > > > interested by the answer as well :)
-> > > > > 
-> > > > > It would be worth looking into the SPI/I2C panels for this, since it's
-> > > > > basically the same case.
-> > > > 
-> > > > So it's maybe a bit misnamed and maybe kerneldocs aren't super clear (pls
-> > > > help improve them), but there's two modes:
-> > > > 
-> > > > - drivers which have vblank, which might be somewhat variable (VRR) or
-> > > >   become simulated (self-refresh panels), but otherwise is a more-or-less
-> > > >   regular clock. For this case the atomic commit event must match the
-> > > >   vblank events exactly (frame count and timestamp)
-> > > 
-> > > Part of my interrogation there is do we have any kind of expectation
-> > > on whether or not, when we commit, the next vblank is going to be the
-> > > one matching that commit or we're allowed to defer it by an arbitrary
-> > > number of frames (provided that the frame count and timestamps are
-> > > correct) ?
-> > 
-> > In general yes, but there's no guarantee. The only guarante we give for
-> > drivers with vblank counters is that if you receive a vblank event (flip
-> > complete or vblank event) for frame #n, then an immediate flip/atomic
-> > ioctl call will display earliest for frame #n+1.
-> > 
-> > Also usually you should be able to hit #n+1, but even today with fun stuff
-> > like self refresh panels getting out of self refresh mode might take a bit
-> > more than a few frames, and so you might end up being late. But otoh if
-> > you just do a page flip loop then on average (after the crtc is fully
-> > resumed) you should be able to update at vrefresh rate exactly.
+On 08-06-22, 02:52, Dmitry Baryshkov wrote:
+> On Wed, 8 Jun 2022 at 02:02, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
+> >
+> > On Tue 07 Jun 15:24 PDT 2022, Dmitry Baryshkov wrote:
+> >
+> > > On 08/06/2022 00:35, Bjorn Andersson wrote:
+> > > > Add all registers defines from qcom,usb4-5nm-qmp-combo.h of the msm-5.4
+> > > > kernel. Offsets are adjusted to be relative to each sub-block, as we
+> > > > describe the individual pieces in the upstream kernel and "v5_5NM" are
+> > > > injected in the defines to not collide with existing constants.
+> > > >
+> > > > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > > ---
+> > > >
+> > > > Changes since v1:
+> > > > - New patch
+> > > >
+> > > >   .../qualcomm/phy-qcom-usb4-5nm-qmp-combo.h    | 1547 +++++++++++++++++
+> > > >   1 file changed, 1547 insertions(+)
+> > > >   create mode 100644 drivers/phy/qualcomm/phy-qcom-usb4-5nm-qmp-combo.h
+> > > >
+> > > > diff --git a/drivers/phy/qualcomm/phy-qcom-usb4-5nm-qmp-combo.h b/drivers/phy/qualcomm/phy-qcom-usb4-5nm-qmp-combo.h
+> > > > new file mode 100644
+> > > > index 000000000000..7be8a50269ec
+> > > > --- /dev/null
+> > > > +++ b/drivers/phy/qualcomm/phy-qcom-usb4-5nm-qmp-combo.h
+> > > > @@ -0,0 +1,1547 @@
+> > > > +/* SPDX-License-Identifier: GPL-2.0-only */
+> > > > +/*
+> > > > + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
+> > > > + */
+> > > > +
+> > > > +#ifndef PHY_QCOM_V5_5NM_QMP_COMBO_USB4_H
+> > > > +#define PHY_QCOM_V5_5NM_QMP_COMBO_USB4_H
+> > > > +
+> > > > +/* USB4-USB3-DP Combo PHY register offsets */
+> > > > +/* Module: USB43DP_COM_USB43DP_COM_USB4_USB3_DP_COM */
+> > > > +#define USB43DP_V5_5NM_COM_PHY_MODE_CTRL                           0x00
+> > > > +#define USB43DP_V5_5NM_COM_SW_RESET                                        0x04
+> > > > +#define USB43DP_V5_5NM_COM_POWER_DOWN_CTRL                         0x08
+> > > > +#define USB43DP_V5_5NM_COM_SWI_CTRL                                        0x0c
+> > > > +#define USB43DP_V5_5NM_COM_TYPEC_CTRL                                      0x10
+> > > > +#define USB43DP_V5_5NM_COM_TYPEC_PWRDN_CTRL                                0x14
+> > > > +#define USB43DP_V5_5NM_COM_DP_BIST_CFG_0                           0x18
+> > > > +#define USB43DP_V5_5NM_COM_RESET_OVRD_CTRL1                                0x1c
+> > > > +#define USB43DP_V5_5NM_COM_RESET_OVRD_CTRL2                                0x20
+> > > > +#define USB43DP_V5_5NM_COM_DBG_CLK_MUX_CTRL                                0x24
+> > > > +#define USB43DP_V5_5NM_COM_TYPEC_STATUS                                    0x28
+> > > > +#define USB43DP_V5_5NM_COM_PLACEHOLDER_STATUS                              0x2c
+> > > > +#define USB43DP_V5_5NM_COM_REVISION_ID0                                    0x30
+> > > > +#define USB43DP_V5_5NM_COM_REVISION_ID1                                    0x34
+> > > > +#define USB43DP_V5_5NM_COM_REVISION_ID2                                    0x38
+> > > > +#define USB43DP_V5_5NM_COM_REVISION_ID3                                    0x3c
+> > >
+> > > QPHY_V5_DP_COM_foo ?
+> > >
+> >
+> > My first version of the QMP patch used V5 defines and USB worked
+> > sometimes. So I hacked up a thing to dump the phy sequences of the
+> > downstream and upstream kernels, compared the magic numbers and then
+> > tried to fit suitable constants.
+> >
+> > But it obviously was a waste of time and I would have to make up a
+> > different naming scheme for the ones that doesn't match the existing
+> > constants - when we could just use the autogenerated files that exist in
+> > the downstream kernels.
 > 
-> I had more the next item in mind there: if we were to write something in
-> the kernel that would transparently behave like a full-blown KMS driver,
-> but would pipe the commits through a KMS writeback driver before sending
-> them to our SPI panel, we would always be at best two vblanks late.
+> I decided that I should write more about it. My main issue with using
+> downstream tables is that we end up with tons of repetitive defines.
+> Each chip generation would bring 2-4 sets of tables, wouldn't it? This
+> can easily become an unsupported beast.
+> I'd propose to follow the opposite path. Let's split the existing
+> tables on a per-generation, per-region basis. Yes, we'd end up with
+> tens of the header files. However then when new generation arrives, we
+> can split corresponding header files on a region-by-region basis, and
+> compare each region with existing tables. If the region matches, use
+> it. If it does not, create a new header. Yes, I can do this for the
+> existing header as a continuation of the QMP split saga, if everybody
+> agrees that this is a good path.
 > 
-> So this would mean that userspace would do a page flip, get a first
-> vblank, but the actual vblank for that commit would be the next one (at
-> best), consistently.
+> You can ask, why do I suggest such a scheme? Because it looks like the
+> lowest common scheme. If we check downstream, we have USB/USB+DP with
+> huge autogenerated tables. Then comes UFS, which mostly follows naming
+> of the phy-qcom-qmp.h.
 > 
-> > > > - drivers which don't have vblank at all, mostly these are i2c/spi panels
-> > > >   or virtual hw and stuff like that. In this case the event simply happens
-> > > >   when the driver is done with refresh/upload, and the frame count should
-> > > >   be zero (since it's meaningless).
-> > > > 
-> > > > Unfortuantely the helper to dtrt has fake_vblank in it's name, maybe
-> > > > should be renamed to no_vblank or so (the various flags that control it
-> > > > are a bit better named).
-> > > > 
-> > > > Again the docs should explain it all, but maybe we should clarify them or
-> > > > perhaps rename that helper to be more meaningful.
-> > > > 
-> > > > > > Blitting/Blending in Software
-> > > > > > =============================
-> > > > > > There are multiple layers to this topic (pun slightly intended):
-> > > > > >  1) Today's userspace does not expect a grayscale framebuffer.
-> > > > > >     Currently, the driver advertises XRGB8888 and converts to Y4
-> > > > > >     in software. This seems to match other drivers (e.g. repaper).
-> > > > > >
-> > > > > >  2) Ignoring what userspace "wants", the closest existing format is
-> > > > > >     DRM_FORMAT_R8. Geert sent a series[4] adding DRM_FORMAT_R1 through
-> > > > > >     DRM_FORMAT_R4 (patch 9), which I believe are the "correct" formats
-> > > > > >     to use.
-> > > > > > 
-> > > > > >  3) The RK356x SoCs have an "RGA" hardware block that can do the
-> > > > > >     RGB-to-grayscale conversion, and also RGB-to-dithered-monochrome
-> > > > > >     which is needed for animation/video. Currently this is exposed with
-> > > > > >     a V4L2 platform driver. Can this be inserted into the pipeline in a
-> > > > > >     way that is transparent to userspace? Or must some userspace library
-> > > > > >     be responsible for setting up the RGA => EBC pipeline?
-> > > > > 
-> > > > > I'm very interested in this answer as well :)
-> > > > > 
-> > > > > I think the current consensus is that it's up to userspace to set this
-> > > > > up though.
-> > > > 
-> > > > Yeah I think v4l mem2mem device is the answer for these, and then
-> > > > userspace gets to set it all up.
-> > > 
-> > > I think the question wasn't really about where that driver should be,
-> > > but more about who gets to set it up, and if the kernel could have
-> > > some component to expose the formats supported by the converter, but
-> > > whenever a commit is being done pipe that to the v4l2 device before
-> > > doing a page flip.
-> > > 
-> > > We have a similar use-case for the RaspberryPi where the hardware
-> > > codec will produce a framebuffer format that isn't standard. That
-> > > format is understood by the display pipeline, and it can do
-> > > writeback.
-> > > 
-> > > However, some people are using a separate display (like a SPI display
-> > > supported by tinydrm) and we would still like to be able to output the
-> > > decoded frames there.
-> > > 
-> > > Is there some way we could plumb things to "route" that buffer through
-> > > the writeback engine to perform a format conversion before sending it
-> > > over to the SPI display automatically?
-> > 
-> > Currently not transparently. Or at least no one has done that, and I'm not
-> > sure that's really a great idea. With big gpus all that stuff is done with
-> > separate command submission to the render side of things, and you can
-> > fully pipeline all that with in/out-fences.
-> > 
-> > Doing that in the kms driver side in the kernel feels very wrong to me :-/
+> And the last one is a PCIe. I do not know about the sc8280xp, but for
+> the rest of the platforms we do not have register names at all. When I
+> was porting the SM8450 PCIe PHY support, I had to guess the correct
+> generation beforehand. With just 5 QSERDES_COM_ namespaces, guessing
+> is easy. If  we had separate namespaces for the UFS and for several
+> USB PHY instances, guessing would be next to impossible. And then
+> creating a correct table would also be impossible. Well, as long as we
+> do not accept tables without register names.
 > 
-> So I guess what you're saying is that there's a close to 0% chance of it
-> being accepted if we were to come up with such an architecture?
+> Thus I think we should resort to using a single naming scheme rather
+> than following downstream here. If you dislike existing
+> QSERDES_Vn/QPHY_Vn, let's come up with something more sensible.
 
-Yup.
+Bjorn has a valid point that we should not tinker with downstream
+auto-generated headers and use as is. But Dmitry also has a good
+argument of this becoming unmanageable mess.
 
-I think the only exception is if you have a multi-region memory manager
-using ttm (or hand-rolled, but please don't), where we first have to move
-the buffer into the right region before it can be scanned out. And that's
-generally done with a copy engine, for performance reasons.
+So which of the lesser devils should we deal with... Former is easy to
+do, latter involves a bit of work for kernel developers...
 
-But that copy engine is really just a very dumb (but fast!) memcpy, and
-doesn't do any format conversion or stride/orientation changes like a
-full-blown blitter engine (or mem2mem in v4l speak) can do.
+TBH My personal taste would be latter as that keeps the code clean... We
+have seen the versions are getting managed terribly downstream.. Maybe
+splitting the headers up is a good idea in that direction...
 
-So if it's really just memory management then I think it's fine, but
-anything beyond that is a no imo.
-
-Now for an overall full-featured stack we clearly need that, and it would
-be great if there's some common userspace libraries for hosting such code.
-But thus far all attempts have fallen short :-/ Which I guess is another
-indicator that we really shouldn't try to solve this problem in a generic
-fashion, and hence really shouldn't try to solve it with magic behind the
-generic kms interface in the kernel.
-
-For even more context I do think my old "why is 2d so hard" blogpost rant
-still applies:
-
-https://blog.ffwll.ch/2018/08/no-2d-in-drm.html
-
-The "why no 2d api for the more limited problem of handling framebuffers"
-is really just a small, but not any less complex, subset of that bigger
-conundrum.
--Daniel
+Thought...?
+ 
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+~Vinod
