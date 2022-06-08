@@ -2,76 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEEB2542EAE
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 13:05:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F329542F19
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jun 2022 13:25:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237658AbiFHLEx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jun 2022 07:04:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42402 "EHLO
+        id S238120AbiFHLYy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jun 2022 07:24:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237761AbiFHLEv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 07:04:51 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A4D42010E2
-        for <devicetree@vger.kernel.org>; Wed,  8 Jun 2022 04:04:47 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id m39-20020a05600c3b2700b0039c511ebbacso4155303wms.3
-        for <devicetree@vger.kernel.org>; Wed, 08 Jun 2022 04:04:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=GgaoEba9JTX/8rf6MhX/IHFUfnxIpKajZjqqNMcI1dE=;
-        b=R8OVVjXXNfqwmr4RyFvKq0FPMbmCY6x1lamR22m6KbEUlP7j7PiSI2KIoeppC4SkTI
-         xaybNffpGSQdTqY6jkv0esrcL16DP7F2oOTT+qLXyRwxrFbguHkD09ewOgbWQ/rPmHud
-         jMrp6CRBomTmGje13S+DV2aqBpfwVbrIAglqc9Me4Rtp1obrnEhJARd2O5DPSnViuzqb
-         3xY3IScRh2j2EBctqFn2xvlX12ZW8LRDfozoH8yEyhBIDARBqQwkQ59fNGGhRUeWp8BO
-         MaUxfLQ1yAArzMEkbK1T/G1lyoOrxFOAbuFGW5tqxSMQxol8P5lPdyRcvsRW8qv4M0eb
-         Nc7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=GgaoEba9JTX/8rf6MhX/IHFUfnxIpKajZjqqNMcI1dE=;
-        b=q9Se2P+g/uxHFv+JSLqP+it87NU0TGRsa9S91oh0rvzs9EgpJ8uwGjZI6068BUVlfR
-         vwcBAlVw6SzuFvOb+cPGrAFhBAyXaFIbJ66cAh+xxAEVSey1lzHIb6pqYJyOf5d0GeKB
-         NAH1mmO5FilZj47s1smQzXlPfOQHbumj8jz8tRhMbDOyHtGHNlSnwEw1GnQMVVvi/68Q
-         MjNQEqMW88SrqtjlUmZlKOdomrkxIZ+2K5t/dQ3yhpyVU71JHuRzHUv/jyemjoP2vslA
-         DMeRzRu8EGOJSa8GVWawrY3xktNDZZfPjvq3WJm/6u2Cv6p3YqJj3w0DIAsqMcCvejs1
-         owqg==
-X-Gm-Message-State: AOAM532bjQxDpMpX1uLIh5mxGo/mXZCVpQEbFdbAq5/kG99obhgyoLEj
-        TUjDd20+ET6Z0nQCEGrnSx/v4g==
-X-Google-Smtp-Source: ABdhPJz/cEPCAdCYd2kfWJjqjQ45KHiD/unWUtPlJ67tPiMmmF9NpW0vtFwO0pisM7jXeHZSa+zt6A==
-X-Received: by 2002:a7b:c3cd:0:b0:39c:474b:2056 with SMTP id t13-20020a7bc3cd000000b0039c474b2056mr22726329wmj.30.1654686285787;
-        Wed, 08 Jun 2022 04:04:45 -0700 (PDT)
-Received: from [192.168.86.238] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id o12-20020a5d58cc000000b0020c6b78eb5asm21212543wrf.68.2022.06.08.04.04.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jun 2022 04:04:45 -0700 (PDT)
-Message-ID: <adb12452-dacd-7fb7-5153-220a2324fa71@linaro.org>
-Date:   Wed, 8 Jun 2022 12:04:43 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v2 1/2] soundwire: qcom: Add flag for software clock
- gating check
-Content-Language: en-US
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, quic_plai@quicinc.com,
-        bgoswami@quicinc.com, perex@perex.cz, tiwai@suse.com,
-        quic_rohkumar@quicinc.com, linux-arm-msm@vger.kernel.org,
+        with ESMTP id S238132AbiFHLYx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jun 2022 07:24:53 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A23D412C97E;
+        Wed,  8 Jun 2022 04:24:52 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 5A0C0B8271E;
+        Wed,  8 Jun 2022 11:24:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49EFAC34116;
+        Wed,  8 Jun 2022 11:24:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1654687490;
+        bh=gxuRxmn8LltL6EShbwujtTGcPs590C9dPrlLHgw8yFA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=J0+PV/9eBcimatHw1QFoUGvheIowOl9qq2FFyDOD3cBHqgEbBeyHUC+D8j0XdXd2m
+         A4Oh7V1PRqZmIqrvBAK8ejapVyycZ/IKBraDQYigEjf6T/CqPLsNezjNag0ZfqtTty
+         aIjaUe6Uj9XoGrW5cL3sQQ29XZL8QxiNYNyBZ+LYg7KdZKdnYHLZCtM0J2OyYGwm7w
+         w7Tw2ky3wrcHAwtFIzPFBc0eTDadiv1XVUTxNAD9L+EkZRnvFv8+8wYwRaGrDTlIC+
+         GrMAk0Ju6QNB2YQaNUnm8z0+OWcmZvkbNZAObcbgx7Ui2cCkJ9VmwAqK442Yuxkblg
+         27fSaQaECCi5Q==
+Date:   Wed, 8 Jun 2022 12:24:43 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
+Cc:     robh+dt@kernel.org, angelogioacchino.delregno@collabora.com,
+        aaronyu@google.com, matthias.bgg@gmail.com, trevor.wu@mediatek.com,
+        tzungbi@google.com, julianbraha@gmail.com,
         alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org, vkoul@kernel.org
-References: <1654667824-3760-1-git-send-email-quic_srivasam@quicinc.com>
- <1654667824-3760-2-git-send-email-quic_srivasam@quicinc.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <1654667824-3760-2-git-send-email-quic_srivasam@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v6 2/8] ASoC: mediatek: mt8186: add platform driver
+Message-ID: <YqCG+9YkuXsDeh/I@sirena.org.uk>
+References: <20220607142046.28060-1-jiaxin.yu@mediatek.com>
+ <20220607142046.28060-3-jiaxin.yu@mediatek.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ETWoB/2pglKUOdqk"
+Content-Disposition: inline
+In-Reply-To: <20220607142046.28060-3-jiaxin.yu@mediatek.com>
+X-Cookie: Never give an inch!
+X-Spam-Status: No, score=-8.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,29 +62,35 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--ETWoB/2pglKUOdqk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 08/06/2022 06:57, Srinivasa Rao Mandadapu wrote:
-> Add flag in qcom_swrm_data private data structure for validating
-> software colck gating control requirement.
-> 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> ---
+On Tue, Jun 07, 2022 at 10:20:40PM +0800, Jiaxin Yu wrote:
 
-Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> +obj-$(CONFIG_SND_SOC_MT8186) += snd-soc-mt8186-afe.o
+> +obj-$(CONFIG_SND_SOC_MT8186_MT6366_DA7219_MAX98357) += mt8186-mt6366-da7219-max98357.o
+> +obj-$(CONFIG_SND_SOC_MT8186_MT6366_RT1019_RT5682S) += mt8186-mt6366-rt1019-rt5682s.o
 
+This breaks bisection - these drivers are being added to the build here
+but the relevant source files aren't added until later on in the series
+so the commits in between won't build when the relevant Kconfig options
+are selected.  The Makefile and Kconfig updates should be moved into the
+driver patches.
 
->   drivers/soundwire/qcom.c | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-> index a3fccf0..38c3bf5 100644
-> --- a/drivers/soundwire/qcom.c
-> +++ b/drivers/soundwire/qcom.c
-> @@ -181,6 +181,7 @@ struct qcom_swrm_ctrl {
->   struct qcom_swrm_data {
->   	u32 default_cols;
->   	u32 default_rows;
-> +	bool sw_clk_gate_required;
->   };
->   
->   static const struct qcom_swrm_data swrm_v1_3_data = {
+--ETWoB/2pglKUOdqk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmKghvsACgkQJNaLcl1U
+h9B4mwf9HGDlHmNk1TjFP832KkIO385bqzgKxTOtgibu1i5TUutnTN3f36lv+FUc
+IIi+QaUpFHyArXuTY9vK8ucB4JU4Lv2uPXSngImJwTCIFhcOxgnKymFYhrTXoyPN
+Vjd45Su/+rD0FtSZfyoltQ55n/InkmXhSSM+YnPdAef1fyyRneTXE/XQUf9jGacR
+hIxq2HvnVFk/ts/N6U29ebBTDjISvCax0YUBBhbw494r1QTKFMSRIdSZ9ETOQeep
+WtxnWuVmFNm8WhWK5Fgl2cSCI+NmJ1XvlwJSUsTTf6ogdifjwYF+PyzlqEaVpddT
+0HyYM/5R86UhVW1MY9AqJ1yR4Wg8Wg==
+=2c29
+-----END PGP SIGNATURE-----
+
+--ETWoB/2pglKUOdqk--
